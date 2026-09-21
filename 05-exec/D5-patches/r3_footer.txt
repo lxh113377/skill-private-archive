@@ -1,0 +1,5 @@
+<!-- footer:begin session=fe25905e023843a08383cf7ba5cca9a6 ts=2026-09-22T02:06:00+08:00 -->
+[skill清单] 本轮调用=3 个 (A-memory-start, A-project-handoff, A-project-better)
+[升级建议] skill=A-memory-start | 五问=低效流程 | 改法=同项门禁两入口结论不一致时先查对象 mtime 与仓库提交序再当下复跑 | 对照=已取(证据=生效路径：R269 落盘后 coldstart 6 行全等 + 焚诀 verify 16 PASS + 速查区数仍为 6；反例：不复核即把并行会话的修复误判为「门禁自相矛盾」并写入 [BUG]，须撤回) | 状态=已闭环(证据=D:\global_skills\A-memory-start\SKILL.md#版本行:V10.62.0)
+[升级建议] skill=A-project-handoff | 五问=错误信息 | 改法=commit 的 --fix-mirror 未生效，须手工补镜像 | 对照=已取(证据=生效路径：手工 check-skill-mirror.ps1 -Fix 后 [GATE:mirror-pass]；反例：--fix-mirror 提交后 gates 立即报 mirror=fail missing=1 mismatch=6，同一现象本轮复现 2 次) | 状态=未闭环(原因=属 rule_editor 自动补齐链缺陷，待修)
+<!-- footer:end -->
