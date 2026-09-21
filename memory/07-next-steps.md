@@ -12,6 +12,7 @@
 
 ## P0 — 必须做
 
+- [ ] **`rule_editor.py commit --fix-mirror` 失效（本轮实测）**：commit 成功但镜像端 `missing=1 mismatch=6` → `gates` 报 `mirror=fail`，需**手工** `check-skill-mirror.ps1 -Fix` 才恢复；与「改完镜像零漂移」纪律冲突，应修自动补齐链
 - [ ] **阶段1 补跑**：`attention_sim.py` / `content_snr.py` / `negative_tag_audit.py`；扫描脚本补「通配符引用」死链检测（`scan_all.py --stage scan` 已修好可用，见 `05-exec/第3轮执行报告.md` 第十节）
 - [ ] **遗留 3 条待逐条判定**：`openclaw-task-supervision` / `wps-knowledgebase` / `data-layer-consistency-fix` 各 1 处弃用平台名
 - [ ] **v2 清单的 LOW 30 / EXCLUDE 43 待裁定**：v2 按 151 基数重出后灰区 30 条 + 排除 43 条是否维持（v1 曾裁定灰区「排除」）

@@ -30,7 +30,8 @@
 - [x] **D4 提交推送**：工作区 5 提交（`5c00034` / `b1801f7` / `c55d2ea` / `84ad487` / `9ca53f1`），逐路径白名单暂存；HEAD == `origin/main` ✅；status 干净
 - [x] **① 阶段0 清单按 151 重出**：先修 `scan_all.py` 失效源（`platform-oc.json` 随 OC 退役被删 → 改在役端并集）；v1 三件原样归档 `archive/scope-v1-169-2026-09-14/`；v2 = **HIGH 51 / MID 26 / LOW 30 / EXCLUDE 43**（自建 **77**，失真 41）
 - [x] **② 31 件入册**：摘除 `retired_skills` **100→69** → 注册表 **120→151** → `build_indexes --apply` 守恒 PASS；**顺带修 C6（GM note 引用 V1.22）与 C16（STATUS 家族内容过期，用生成器重出）** → 焚诀 `verify` **16 PASS / 0 FAIL**；双仓提交（焚诀 `28daf6e` / GM `575ca99`，SHA 一致）
-- 🔎 **本轮新发现**：GM 每日日志 09-09~09-20 空档 12 天（R9 事故未回填）；**skill 数口径更新为注册表 151 条**（磁盘含 SKILL.md 151 == 注册表，C1 全等）；31 件入册的**真实原因 = 退役黑名单未随「重装回磁盘」更新**；新入册 31 件在 `D:\global_skills` 仍是 `??` 未跟踪
+- [x] **④ A-project-handoff 工作流升级：删除 → 回收站**（受管根 `49789bb`，**V3.43.0**）：新增 `handoff_lib/recycle.py` + CLI `recycle`（`--list`/`--restore`）+ **致命纪律 #21** + `commands.md` §18；**系统回收站优先**（`FOF_ALLOWUNDO`）、**`_trash` 回落**、两路写 manifest + 还原指引；**防静默永久删除**（无回收站卷先探测再显式回落）；`audit forget` 硬删点改走回收站。验证 **18/18**（层a 含哈希级复原与两条反例 + 层b 真机实测 `method=recycle_bin`）
+- 🔎 **本轮新发现**：GM 每日日志 09-09~09-20 空档 12 天（R9 事故未回填）；**skill 数口径更新为注册表 151 条**（磁盘含 SKILL.md 151 == 注册表，C1 全等）；31 件入册的**真实原因 = 退役黑名单未随「重装回磁盘」更新**；新入册 31 件在 `D:\global_skills` 仍是 `??` 未跟踪；**`rule_editor.py commit --fix-mirror` 未生效**（须手工 `check-skill-mirror.ps1 -Fix`）
 
 ## 🔴 第 3 轮进度（2026-09-19）
 

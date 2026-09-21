@@ -41,6 +41,9 @@
 | 路径 | 用途 | 关键产出 |
 |---|---|---|
 | `D1-patches/` | D1 门禁判据修复的 5 份补丁 + 索引 `README.md` | 受管根 commit `7cc7d4d`（`A-project-handoff` V3.42.0） |
+| `D4-patches/` | ④ 回收站升级的 6 份补丁（facade / audit / SKILL / disciplines / commands / version-history） | 受管根 commit `49789bb`（`A-project-handoff` V3.43.0） |
+| `recycle_selftest.py` | ④ 回收站两层自检（回落分支隔离桩 + 真机 CLI + 哈希级复原判据） | **18/18 通过**（真机 `method=recycle_bin`） |
+| `unretire_31.py` | ② 从 `retired_skills` 摘除 31 项（dry-run / `--apply` + 写后守恒） | 焚诀 commit `28daf6e`（注册表 120→151） |
 | `user_created_audit.py` | 注册表 `user_created` 失真复核（含口径裁定与三类判据） | `user_created_audit.json` |
 | `user_created_audit.json` | 120 条逐条明细 + 三类失真清单 + 阶段0 清单交叉 | A/B 类均为 **0**；C 类 85（判据不可靠） |
 | `direct_map_dead_targets.py` | 直连表死目标扫描（双源判据：注册表 ∪ 磁盘） | `direct_map_dead_targets.json` |

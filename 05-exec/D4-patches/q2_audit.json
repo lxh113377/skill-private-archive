@@ -1,0 +1,6 @@
+[
+  {
+    "old": "    if not remaining and text.strip():\n        # 源文件仅此一条 → 归档后源文件整体移除（内容已入 archive，非丢失）\n        os.remove(src)",
+    "new": "    if not remaining and text.strip():\n        # 源文件仅此一条 → 归档后源文件整体移除（内容已入 archive，非丢失）\n        # #21（V3.43.0）：不再 os.remove 硬删 —— 改入回收站（系统回收站优先，回落 _trash），删错可复原\n        from handoff_lib.recycle import recycle as _recycle\n        _r = _recycle(src, reason=\"audit forget：唯一条目已归档，源文件整体移除\")\n        if not _r.get(\"ok\"):\n            print(f\"  ERROR: 源文件入回收站失败（已中止，未删除）: {_r.get('error')}\")\n            return 1\n        print(f\"  源文件已入回收站（method={_r['method']}）→ 还原指引: {_r['hint']}\")"
+  }
+]

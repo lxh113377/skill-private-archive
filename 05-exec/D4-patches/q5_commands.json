@@ -1,0 +1,6 @@
+[
+  {
+    "old": "- 异常：绑定表不存在 → 🔴 rc=1；目录不可用 → ⚠️ rc=1\n- 实现：`cmd_gate_diff` → `report_gate_diff()`",
+    "new": "- 异常：绑定表不存在 → 🔴 rc=1；目录不可用 → ⚠️ rc=1\n- 实现：`cmd_gate_diff` → `report_gate_diff()`\n\n### 18. recycle — 删除必经回收站（#21，V3.43.0）\n\n**何时执行**：**任何删除动作**之前（含 agent 手工 `Remove-Item` / `rm`）。禁止直接永久删除。\n\n**执行**：\n```\npython handoff.py recycle <path> [--anchor <root>] [--reason \"…\"] [--dry-run]\npython handoff.py recycle --list [<anchor>] [--limit N]\npython handoff.py recycle --restore <anchor> <id|原路径>\n```\n\n**说明**：\n- **路径优先级（两者结合，用户拍板）**：① **系统回收站**（Windows Shell `FOF_ALLOWUNDO`，资源管理器可右键「还原」）→ ② 卷无回收站 / API 失败 / 非 Windows 时回落 `<anchor>/_trash/<时间戳>/`（`shutil.move`，同盘可逆）。\n- **`<anchor>` 缺省解析**：就近向上找含 `memory/` 或 `.git` 的目录（项目根 / 受管根）；找不到则用目标所在目录。\n- **台账**：`<anchor>/_trash/recycle_manifest.jsonl`（追加 id / 时间 / 原路径 / 去向 / method / 原因 / recycle_bin_available / 回落原因）；`--list` 可查，`--restore` 按 id 或原路径复原（系统回收站条目返回资源管理器还原指引，脚本不代执行）。\n- **防静默永久删除**：送回收站前探测「盘符根下的 `$Recycle.Bin`」；不存在则**显式走 `_trash`**（不赌 `FOF_ALLOWUNDO` 会被尊重）—— 否则「入回收站」会退化成不可逆删除。\n- **实现**：`handoff_lib/recycle.py`（`recycle` / `restore` / `read_manifest` / `anchor_for` / `recycle_bin_available`）；`audit forget` 的源文件整体移除已改为走回收站（失败即中止，不静默）。\n- **唯一例外**：用户显式要求「彻底删除」时按指令执行，并在汇报中写明「不可回滚 + 已按用户明示执行」。"
+  }
+]

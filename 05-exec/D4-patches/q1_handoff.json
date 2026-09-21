@@ -1,0 +1,14 @@
+[
+  {
+    "old": "17 subcommands（口径 = references/commands.md 的 `### ` 章节集合；`help` 为元命令不计入）:\n    init, sync, clean, status, archive, restore, diff, handoff, savepoint,\n    review, audit, noise, sanitize, split, coldstart, trim-shell, gate-diff\n实际可调用命令 = 17 + `help` 元命令 = 18。",
+    "new": "18 subcommands（口径 = references/commands.md 的 `### ` 章节集合；`help` 为元命令不计入）:\n    init, sync, clean, status, archive, restore, diff, handoff, savepoint,\n    review, audit, noise, sanitize, split, coldstart, trim-shell, gate-diff,\n    recycle\n实际可调用命令 = 18 + `help` 元命令 = 19。"
+  },
+  {
+    "old": "    # coldstart：冷启动声明单一数据源（不需要 project_path；--check 需 skill_dir）",
+    "new": "    # recycle：删除必经回收站（致命纪律 #21，V3.43.0）；参数形态与 <command> <project_path> 约定不同 → 独立分支\n    if len(sys.argv) >= 2 and sys.argv[1] == \"recycle\":\n        from handoff_lib.recycle import cmd_recycle\n        return cmd_recycle(sys.argv[2:])\n\n    # coldstart：冷启动声明单一数据源（不需要 project_path；--check 需 skill_dir）"
+  },
+  {
+    "old": "    gate-diff  <path>                 门禁失败归因（R225；savepoint 门禁失败时自动调用）。详见 commands.md §16",
+    "new": "    gate-diff  <path>                 门禁失败归因（R225；savepoint 门禁失败时自动调用）。详见 commands.md §16\n    recycle   <path>|--list|--restore  删除必经回收站（#21，V3.43.0）：系统回收站优先，回落 _trash/<时间戳>/；写 manifest + 还原指引。详见 commands.md §18"
+  }
+]

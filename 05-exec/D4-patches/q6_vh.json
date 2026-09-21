@@ -1,0 +1,6 @@
+[
+  {
+    "old": "- V3.42.0 (2026-09-22):",
+    "new": "- V3.43.0 (2026-09-22): **新增致命纪律「删除必经回收站」+ `recycle` 子命令（用户立规：删错了要能复原）**——此前「删除」有三条互不衔接的路径：① 散落项按致命纪律 #17 迁 `_trash`（不永久删但只能手工复原、无台账）② `audit forget` 里 `os.remove(src)` **硬删源文件**（不可逆）③ agent 手工 `Remove-Item` / `rm`（无台账、无复原路径）。本版统一为「**先入回收站**」：新增 `handoff_lib/recycle.py` —— `recycle()` **优先送系统回收站**（Windows Shell `SHFileOperationW` + `FOF_ALLOWUNDO`，资源管理器右键即可「还原」），**卷无回收站 / API 失败 / 非 Windows 时回落 `<anchor>/_trash/<时间戳>/`**（`shutil.move`，同盘可逆）；两条路径都写 `<anchor>/_trash/recycle_manifest.jsonl` 并打印**还原指引**。新增 CLI：`recycle <path> [--anchor] [--reason] [--dry-run]` / `--list` 查台账 / `--restore <anchor> <id|原路径>` 复原，`<anchor>` 缺省就近向上找含 `memory/` 或 `.git` 的目录。**防静默永久删除（本版最容易漏的坑）**：`FOF_ALLOWUNDO` 在**无回收站的卷**上会被忽略而**直接永久删除**，故送回收站前先探测「盘符根下的 `$Recycle.Bin`」，不存在则显式走 `_trash` 回落（不赌运气）—— 对照实测：无回收站走回落路径、有回收站走 API 路径，两条都留台账。**连带修**：`audit forget` 的 `os.remove(src)` 改为先写台账再入回收站，失败即中止（不静默当作已删）。验证：隔离桩（回收站不可用 → 必走回落；路径不存在 → 明确报错不静默成功）+ 端到端实测（`--restore` 复原后**内容哈希一致**为判据，非仅「文件回来了」）。同步 frontmatter 3.42.0 → 3.43.0、决策树新增 recycle 行、`commands.md` §18、`handoff.py` facade 计数（18 子命令 + help = 19）。\n\n- V3.42.0 (2026-09-22):"
+  }
+]

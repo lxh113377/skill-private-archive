@@ -1,0 +1,14 @@
+[
+  {
+    "old": "version: 3.42.0",
+    "new": "version: 3.43.0"
+  },
+  {
+    "old": "| 冷启动声明/声明一致性（coldstart） | `coldstart` |",
+    "new": "| 冷启动声明/声明一致性（coldstart） | `coldstart` |\n| **删除文件/目录（任何删除动作必经回收站，#21）** | `recycle` |"
+  },
+  {
+    "old": "| 17 个子命令完整用法（init / sync / clean / status / archive / restore / diff / handoff / savepoint / review / audit / noise / sanitize / split / coldstart / trim-shell / gate-diff） | `references/commands.md` |",
+    "new": "| 18 个子命令完整用法（init / sync / clean / status / archive / restore / diff / handoff / savepoint / review / audit / noise / sanitize / split / coldstart / trim-shell / gate-diff / recycle） | `references/commands.md` |"
+  }
+]
