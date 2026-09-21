@@ -1,0 +1,6 @@
+[
+  {
+    "old": "| `A-memory-align` | 记忆配置对齐（intent_classifier版本、junction映射、custom_instructions裁剪） | 行为规则、skill文件 |\n",
+    "delete": true
+  }
+]

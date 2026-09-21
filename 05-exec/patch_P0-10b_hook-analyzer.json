@@ -1,0 +1,10 @@
+[
+  {
+    "old": "# 1. 先自备分镜拆解 JSON（breakdown.json）\n# ⚠️ 2026-09-19 实测：本 skill 的上游 `video-breakdown-skill` 在 D:\\global_skills 下不存在 →\n#    下面这行原示例无法执行，breakdown.json 需由调用方自备（或先补建上游 skill，待用户裁定）\n# python ../video-breakdown-skill/scripts/process_video.py \"https://example.com/video.mp4\" > breakdown.json",
+    "new": "# 1. 先用上游 video-breakdown-skill 拆解出 breakdown.json（上游已于 2026-09-19 补建，实测可跑通）\npython ../video-breakdown-skill/scripts/process_video.py \"https://example.com/video.mp4\" --json-out breakdown.json"
+  },
+  {
+    "old": "version: 1.0.1",
+    "new": "version: 1.0.2"
+  }
+]

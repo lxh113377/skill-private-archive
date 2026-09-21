@@ -1,0 +1,10 @@
+[
+  {
+    "old": "**错误做法：** 分别编辑 QW的AGENTS.md、OC的AGENTS.md、WB的AGENTS.md、CC的CLAUDE.md、TC的SOUL.md，每个文件加同一行规则。",
+    "new": "**错误做法：** 分别编辑各端启动文件（OC的AGENTS.md、WB的AGENTS.md、TC的SOUL.md、HM的启动文件等），每个文件加同一行规则。"
+  },
+  {
+    "old": "3. **QW的memory tool是特例** — 它写本地文件，需要额外的同步规则（Path B中的QW特殊处理）\n",
+    "delete": true
+  }
+]

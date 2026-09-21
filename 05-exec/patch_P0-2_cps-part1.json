@@ -1,0 +1,22 @@
+[
+  {
+    "old": "# CPS 卷1（原理 / 治标vs治本 / 触发条件 / 四端架构 / 核心共享文件）",
+    "new": "# CPS 卷1（原理 / 治标vs治本 / 触发条件 / 在役端架构 / 核心共享文件）"
+  },
+  {
+    "old": "  ↓ 5端行为规则同步",
+    "new": "  ↓ 在役端行为规则同步"
+  },
+  {
+    "old": "| **治标** | 改N个平台的本地启动文件（AGENTS.md/CLAUDE.md/SOUL.md） |",
+    "new": "| **治标** | 改N个平台的本地启动文件（各端 AGENTS.md / SOUL.md 等） |"
+  },
+  {
+    "old": "## 四端架构映射表",
+    "new": "## 在役端架构映射表"
+  },
+  {
+    "old": "| Claude Code | CC | `C:\\Users\\37533\\.claude\\global_memory\\` | `C:\\Users\\37533\\.claude\\CLAUDE.md` | L11 | USER.md L3 |\n",
+    "delete": true
+  }
+]

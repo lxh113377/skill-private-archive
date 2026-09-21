@@ -1,0 +1,18 @@
+[
+  {
+    "old": "# CPS 卷5（Path D：5端批量验证 / Python 脚本）",
+    "new": "# CPS 卷5（Path D：在役端批量验证 / Python 脚本）"
+  },
+  {
+    "old": "## Path D：5端批量验证",
+    "new": "## Path D：在役端批量验证"
+  },
+  {
+    "old": "每次修改共享文件后，必须验证5端都能读到。",
+    "new": "每次修改共享文件后，必须验证各在役端都能读到。"
+  },
+  {
+    "old": "    'CC CLAUDE.md': (pathlib.Path(r'C:\\Users\\37533\\.claude\\CLAUDE.md'), 'BOOTSTRAP'),\n",
+    "delete": true
+  }
+]

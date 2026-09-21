@@ -1,0 +1,14 @@
+[
+  {
+    "old": "同步六端(OC/WB/CC/TC/HM/CX)。改过就必须跑",
+    "new": "同步在役端(OC/WB/TR/CX/HM)（口径 = `D:\\global_memory\\cross_platform_map.json`：CC 已弃用 2026-09-08、QW 已移除、HM 在役）。改过就必须跑"
+  },
+  {
+    "old": "version: 2.0.1",
+    "new": "version: 2.0.2"
+  },
+  {
+    "old": "| 2.0.1 | 2026-07-22 | 收尾硬化：新增 sync-global-memory 硬门禁，改过 D:\\global_memory 收尾必同步四端 |",
+    "new": "| 2.0.2 | 2026-09-19 | 收尾门禁平台枚举口径修正：`六端(OC/WB/CC/TC/HM/CX)` → 在役端 `OC/WB/TR/CX/HM`（CC 已弃用/QW 已移除，权威 = cross_platform_map.json） |\n| 2.0.1 | 2026-07-22 | 收尾硬化：新增 sync-global-memory 硬门禁，改过 D:\\global_memory 收尾必同步四端 |"
+  }
+]

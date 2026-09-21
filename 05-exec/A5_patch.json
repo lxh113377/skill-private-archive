@@ -1,0 +1,10 @@
+[
+  {
+    "old": "description: OpenClaw双门禁质量审计 — 自评+Codex独立逐文件审计。openclaw双门禁审计",
+    "new": "description: OpenClaw双门禁质量审计 — 让 openclaw 先自评，再由 Codex 独立逐文件审计验证，发现虚高后要求修复并实测重评，直到双门禁均 ≥85 分或确认已最优（最多 5 轮）。**仅适用于「审计某个交付物或系统的质量评分」场景**（见下方「何时不用本 skill」）；不做任务进度监督（改投 openclaw-task-supervision）、不做周度维护（改投 openclaw-fenjue-weekly）。触发词：双门禁审计、openclaw质量审计、自评加独立审计、逐文件审计、审计员视角、虚高识别、质量评分打分。"
+  },
+  {
+    "old": "你 **不替 openclaw 执行任务**，只做审计、验证、判定。",
+    "new": "你 **不替 openclaw 执行任务**，只做审计、验证、判定。\n\n## 何时不用本 skill（负向边界）\n\n本技能**专用于「质量评分审计」**——即「产出物打了多少分、有没有虚高」这类判定，不是 OpenClaw 任务的通用入口。命中以下场景请改投：\n\n| 场景 | 改投 |\n|---|---|\n| 任务进度监督、卡死检测、任务清单推进 | `openclaw-task-supervision` |\n| 周度维护、定期巡检的例行执行 | `openclaw-fenjue-weekly` |\n| 技能体系命中率 / 路由健康审计 | `skill-hitrate-full-audit` |\n| agent 行为链预判（会怎么理解、在哪犯错） | `vp-perspective-audit` |\n\n**反例（症状）**：description 若只写「双门禁质量审计」而无边界，任何含「审计」二字的查询都会被吸过来（同族 `vp-perspective-audit` 2026-09-14 实测过该误命中，根因即负向边界缺位）。"
+  }
+]

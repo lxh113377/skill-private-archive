@@ -1,0 +1,29 @@
+# 生成物（可重建，禁入库）
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+node_modules/
+.pytest_cache/
+.coverage
+coverage.xml
+*.log
+
+# 历史备份叠层（归档迁出，不进仓库）
+_bak/
+_trash/
+_temp/
+*.tar.gz
+*.bundle
+
+# 环境与编辑器元数据
+.codebuddy/
+.trae/
+.workbuddy/
+.vscode/
+.idea/
+
+# 密钥（任何情况下禁入库）
+.env
+*.key

@@ -1,0 +1,14 @@
+[
+  {
+    "old": "   N. **Protocol名称（铁律）**: 具体规则描述。This applies to ALL platforms (OC/WB/CC/TC/HM/CX).",
+    "new": "   N. **Protocol名称（铁律）**: 具体规则描述。This applies to ALL platforms (OC/WB/TR/CX/HM)."
+  },
+  {
+    "old": "   - C:\\Users\\37533\\.claude\\CLAUDE.md\n",
+    "delete": true
+  },
+  {
+    "old": "### QW特殊处理：双向记忆共享\n\n\n```\n## 记忆权威源\nD:\\global_memory\\（统一记忆源，所有平台共用）\n**QW本地memory tool写入后，必须同步到D:\\global_memory\\lessons\\**\n```\n\n这是QW独有的，其他平台的 memory 写入天然通过 junction 共享。\n",
+    "new": "### 已移除平台的历史做法（保留留痕，勿再执行）\n\n> QW 已于 2026-08-04 下线（权威 = `焚诀\\eval\\truth_constants.json` → `retired.qw`），\n> 其「本地 memory tool 写入后须同步到 `D:\\global_memory\\lessons\\`」的特例规则**已失效**；\n> 其余平台的 memory 写入天然通过 junction 共享，无需额外同步。\n"
+  }
+]

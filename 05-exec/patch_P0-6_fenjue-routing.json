@@ -1,0 +1,18 @@
+[
+  {
+    "old": "1. **从 VERSION_LOCK 提取版本表**：⚠️ **结构已变（2026-07-22 实测）**：`VERSION_LOCK.md` 自 R83 起已重构为 **4 卷索引**（`VERSION_LOCK.part1.md`→R83、`part2`→R85–R86、`part3`→R87–R89、`part4`→R90–R91），根文件只含分卷目录，**不再持有逐文件版本表**。本步须改为：读取 `VERSION_LOCK.part1..4.md` 四个分卷，提取其中 R-条目与版本声明，解析出 `文件路径 → VL标注版本号`。若只读根 `VL` 会得到 0 条 → **假阴性（本次审计已踩）**。",
+    "new": "1. **从 VERSION_LOCK 提取版本表**：⚠️ **结构已变（2026-07-22 首测 / 2026-09-19 复核）**：`VERSION_LOCK.md` 已重构为**分卷索引**，根文件只含分卷目录，**不再持有逐文件版本表**。本步须**动态枚举**分卷：`Get-ChildItem D:\\global_memory\\meta\\VERSION_LOCK.part*.md`（**禁止写死 `part1..part4`** —— 2026-09-19 实测实际为 `part1` + `part15`~`part29` 共 16 卷，写死会漏卷），再提取其中 R-条目与版本声明，解析出 `文件路径 → VL标注版本号`。若只读根 `VL` 会得到 0 条 → **假阴性（本次审计已踩）**。"
+  },
+  {
+    "old": "5. **VERSION_LOCK 内部一致性**（结构已变，调整）：\n   - `VERSION_LOCK.md` 现为索引，头尾均只含分卷目录、无版本号 → 旧的\"头尾版本号一致\"检查已失效，改查：四个 `VERSION_LOCK.partN.md` 分卷文件是否齐全、且分卷内 R-条目编号连续无断号。\n   - 另核对 `VERSION_LOCK.md` 分卷目录列出的 part1–part4 与实际文件一致（缺卷/多卷 → 标记 `VL_INDEX_DRIFT`）。",
+    "new": "5. **VERSION_LOCK 内部一致性**（结构已变，调整）：\n   - `VERSION_LOCK.md` 现为索引，头尾均只含分卷目录、无版本号 → 旧的\"头尾版本号一致\"检查已失效，改查：**动态枚举** `VERSION_LOCK.part*.md`（`Get-ChildItem D:\\global_memory\\meta\\VERSION_LOCK.part*.md`，禁止写死卷号范围）得到的实际分卷是否齐全、且分卷内 R-条目编号连续无断号。\n   - 另核对 `VERSION_LOCK.md` 分卷目录列出的卷号与**实际枚举结果**一致（缺卷/多卷 → 标记 `VL_INDEX_DRIFT`）。"
+  },
+  {
+    "old": "version: 2.5.1",
+    "new": "version: 2.5.2"
+  },
+  {
+    "old": "## 版本历史\n- V2.5.1 (2026-08-16, R196-05 固化)",
+    "new": "## 版本历史\n- V2.5.2 (2026-09-19): CHECK-3 分卷口径修正——实测 `VERSION_LOCK.part*.md` 实际为 `part1` + `part15`~`part29`（16 卷），旧文写死 `part1..part4` 会漏卷致假阴性；步骤 1/5 改为**动态枚举**，禁写死卷号范围\n- V2.5.1 (2026-08-16, R196-05 固化)"
+  }
+]

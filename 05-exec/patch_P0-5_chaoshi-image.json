@@ -1,0 +1,26 @@
+[
+  {
+    "old": "- ffmpeg路径: `C:\\Users\\37533\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\\ffmpeg-8.1.1-full_build\\bin\\ffmpeg.exe`",
+    "new": "- ffmpeg: **动态探测，禁止硬编码版本目录** —— 优先 `(Get-Command ffmpeg).Source`；未入 PATH 时枚举 `$env:LOCALAPPDATA\\Microsoft\\WinGet\\Packages\\Gyan.FFmpeg_*\\ffmpeg-*\\bin\\ffmpeg.exe`。⚠️ 2026-09-19 实测：本机已升到 `ffmpeg-9.0-full_build`，旧文硬编码的 `8.1.1` 已失效（WinGet 升级会改版本目录名，硬编码必崩）"
+  },
+  {
+    "old": "$ffmpeg = 'C:\\Users\\37533\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\\ffmpeg-8.1.1-full_build\\bin\\ffmpeg.exe'\n\n$files = Get-ChildItem $imgDir -Filter '*.jpg'",
+    "new": "$ffmpeg = (Get-Command ffmpeg -ErrorAction SilentlyContinue).Source\nif (-not $ffmpeg) {\n    $ffmpeg = (Get-ChildItem \"$env:LOCALAPPDATA\\Microsoft\\WinGet\\Packages\\Gyan.FFmpeg_*\\ffmpeg-*\\bin\\ffmpeg.exe\" -ErrorAction SilentlyContinue | Select-Object -First 1).FullName\n}\nif (-not $ffmpeg) { throw 'ffmpeg 未找到：请先 winget install Gyan.FFmpeg，或把 ffmpeg 加入 PATH' }\n\n$files = Get-ChildItem $imgDir -Filter '*.jpg'"
+  },
+  {
+    "old": "$ffmpeg = 'C:\\Users\\37533\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\\ffmpeg-8.1.1-full_build\\bin\\ffmpeg.exe'\n$smDir = Join-Path $imgDir 'sm'",
+    "new": "$ffmpeg = (Get-Command ffmpeg -ErrorAction SilentlyContinue).Source\nif (-not $ffmpeg) { $ffmpeg = (Get-ChildItem \"$env:LOCALAPPDATA\\Microsoft\\WinGet\\Packages\\Gyan.FFmpeg_*\\ffmpeg-*\\bin\\ffmpeg.exe\" -ErrorAction SilentlyContinue | Select-Object -First 1).FullName }\nif (-not $ffmpeg) { throw 'ffmpeg 未找到：请先 winget install Gyan.FFmpeg' }\n$smDir = Join-Path $imgDir 'sm'"
+  },
+  {
+    "old": "$ffmpeg = '<ffmpeg完整路径>'",
+    "new": "$ffmpeg = (Get-Command ffmpeg -ErrorAction SilentlyContinue).Source   # 动态探测，勿硬编码版本目录"
+  },
+  {
+    "old": "- **ffmpeg 路径含空格和长路径**：必须用完整路径且加引号。`where ffmpeg` 可能找不到（未加 PATH），用 WinGet 安装路径。",
+    "new": "- **ffmpeg 必须动态探测，勿硬编码版本目录**：WinGet 升级会改版本目录名（2026-09-19 实测 `8.1.1` → `9.0`），硬编码路径必崩。用 `(Get-Command ffmpeg).Source`；未入 PATH 时枚举 `$env:LOCALAPPDATA\\Microsoft\\WinGet\\Packages\\Gyan.FFmpeg_*\\ffmpeg-*\\bin\\ffmpeg.exe`。路径含空格须加引号。"
+  },
+  {
+    "old": "version: 1.1.0",
+    "new": "version: 1.2.0"
+  }
+]

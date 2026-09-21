@@ -1,0 +1,2870 @@
+{
+ "rows": [
+  {
+   "skill": "9b-lightworkflow",
+   "conf": "HIGH",
+   "score": 10,
+   "reg_uc": true,
+   "disk_src": "global_skills",
+   "domain": "automation",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=true",
+    "source=user-created",
+    "version=community",
+    "命名域:9b-*",
+    "gitAdd=2026-08-16|feat: 入库13个真新skill(9b-lightworkflow/browser-cdp/clawhub/coding-agent/first-principles-decomposer/frontend-slides/hermes-installer/nano-pdf/oracle/skill-creator/spike/taskflow-inbox-triage/windows-native-ocr), 47文件, 全部已注册"
+   ]
+  },
+  {
+   "skill": "A-ask-questions",
+   "conf": "HIGH",
+   "score": 10,
+   "reg_uc": true,
+   "disk_src": "global_skills",
+   "domain": "general_utils",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=true",
+    "source=user-created",
+    "version=community",
+    "命名域:A-*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "A-get-memory",
+   "conf": "HIGH",
+   "score": 12,
+   "reg_uc": true,
+   "disk_src": "global_skills",
+   "domain": "memory",
+   "version": "3.3.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=true",
+    "source=user-created",
+    "version=3.3.0(semver)",
+    "命名域:A-*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "A-java-problem",
+   "conf": "HIGH",
+   "score": 7,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "code",
+   "version": "1.2.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=1.2.0(semver)",
+    "命名域:A-*",
+    "gitAdd=2026-09-08|docs(R219c): 五端→四端 全量收口(12个SKILL.md, 23处) + A-java-problem 纳管"
+   ]
+  },
+  {
+   "skill": "A-memory-start",
+   "conf": "HIGH",
+   "score": 12,
+   "reg_uc": true,
+   "disk_src": "global_skills",
+   "domain": "memory",
+   "version": "7.0.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=true",
+    "source=user-created",
+    "version=7.0.0(semver)",
+    "命名域:A-*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "A-project-handoff",
+   "conf": "HIGH",
+   "score": 12,
+   "reg_uc": true,
+   "disk_src": "global_skills",
+   "domain": "automation",
+   "version": "3.0.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=true",
+    "source=user-created",
+    "version=3.0.0(semver)",
+    "命名域:A-*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "A-prompt-better",
+   "conf": "HIGH",
+   "score": 10,
+   "reg_uc": true,
+   "disk_src": "global_skills",
+   "domain": "creative",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=true",
+    "source=user-created",
+    "version=community",
+    "命名域:A-*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "agent-browser",
+   "conf": "MID",
+   "score": 4,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "web",
+   "version": "1.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=1.0(semver)",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "algorithmic-art",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "design",
+   "version": "1.0",
+   "evidence": [
+    "LICENSE:LICENSE.txt(官方/市场包)"
+   ]
+  },
+  {
+   "skill": "audit-runner-safe-aggregate",
+   "conf": "HIGH",
+   "score": 12,
+   "reg_uc": true,
+   "disk_src": "global_skills",
+   "domain": "general_utils",
+   "version": "1.0.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=true",
+    "source=user-created",
+    "version=1.0.0(semver)",
+    "命名域:audit-runner*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "bigfile-split",
+   "conf": "HIGH",
+   "score": 12,
+   "reg_uc": true,
+   "disk_src": "global_skills",
+   "domain": "memory",
+   "version": "1.2.1",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=true",
+    "source=user-created",
+    "version=1.2.1(semver)",
+    "命名域:bigfile-split*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "brainstorming",
+   "conf": "LOW",
+   "score": 2,
+   "reg_uc": null,
+   "disk_src": null,
+   "domain": null,
+   "version": null,
+   "evidence": [
+    "disk:未登记(orphan,待人工)",
+    "disk:global_skills(本地原生)",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "brand-guidelines",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": null,
+   "disk_src": null,
+   "domain": null,
+   "version": null,
+   "evidence": [
+    "LICENSE:LICENSE.txt(官方/市场包)"
+   ]
+  },
+  {
+   "skill": "browser-cdp",
+   "conf": "LOW",
+   "score": 2,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "web",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=community",
+    "gitAdd=2026-08-05|R178 升级轮: 大SKILL分卷(A-get-memory/fenjue/story-setup/story-long-write)+红队/消歧/记忆预读相关技能更新"
+   ]
+  },
+  {
+   "skill": "byted-bp-cdn-pagesdeploy",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "web",
+   "version": "community",
+   "evidence": [
+    "source=skillhub(市场)"
+   ]
+  },
+  {
+   "skill": "byted-mediakit-shared",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "media",
+   "version": "1.0.0",
+   "evidence": [
+    "LICENSE:LICENSE(官方/市场包)"
+   ]
+  },
+  {
+   "skill": "byted-seedance-video-generate",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "media",
+   "version": "community",
+   "evidence": [
+    "LICENSE:LICENSE.txt(官方/市场包)"
+   ]
+  },
+  {
+   "skill": "byted-seedream-image-generate",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "media",
+   "version": "community",
+   "evidence": [
+    "LICENSE:LICENSE(官方/市场包)"
+   ]
+  },
+  {
+   "skill": "c-cleanup",
+   "conf": "HIGH",
+   "score": 12,
+   "reg_uc": true,
+   "disk_src": "global_skills",
+   "domain": "code",
+   "version": "2.0.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=true",
+    "source=user-created",
+    "version=2.0.0(semver)",
+    "命名域:c-cleanup*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "canvas-design",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "design",
+   "version": "community",
+   "evidence": [
+    "LICENSE:LICENSE.txt(官方/市场包)"
+   ]
+  },
+  {
+   "skill": "chaoshi-admin-inline-edit",
+   "conf": "HIGH",
+   "score": 10,
+   "reg_uc": true,
+   "disk_src": "global_skills",
+   "domain": "web",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=true",
+    "source=user-created",
+    "version=community",
+    "命名域:chaoshi-*",
+    "gitAdd=2026-08-03|chore: 补录 28 个未跟踪技能目录 + 恢复 .gitignore (R131)"
+   ]
+  },
+  {
+   "skill": "chaoshi-image-optimization",
+   "conf": "HIGH",
+   "score": 10,
+   "reg_uc": true,
+   "disk_src": "global_skills",
+   "domain": "web",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=true",
+    "source=user-created",
+    "version=community",
+    "命名域:chaoshi-*",
+    "gitAdd=2026-08-03|chore: 补录 28 个未跟踪技能目录 + 恢复 .gitignore (R131)"
+   ]
+  },
+  {
+   "skill": "chaoshi-web-deploy",
+   "conf": "HIGH",
+   "score": 10,
+   "reg_uc": true,
+   "disk_src": "global_skills",
+   "domain": "web",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=true",
+    "source=user-created",
+    "version=community",
+    "命名域:chaoshi-*",
+    "gitAdd=2026-07-26|chaoshi-web-deploy v1.4.0: 补充 getProducts action 部署后验证"
+   ]
+  },
+  {
+   "skill": "chart-visualization",
+   "conf": "LOW",
+   "score": 2,
+   "reg_uc": null,
+   "disk_src": null,
+   "domain": null,
+   "version": null,
+   "evidence": [
+    "disk:未登记(orphan,待人工)",
+    "disk:global_skills(本地原生)",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "clawhub",
+   "conf": "LOW",
+   "score": 2,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "web",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=community",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "cloudbase-db-optimize",
+   "conf": "MID",
+   "score": 4,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "data",
+   "version": "1.0.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=1.0.0(semver)",
+    "gitAdd=2026-08-15|R198.4 + 技能库清理: noise_lint 正则修正(.tmpl豁免) + A-project-handoff 噪声规范 + 批量退役无用skill(744文件, 用户确认)"
+   ]
+  },
+  {
+   "skill": "cloudbase-webapp-deploy-debug",
+   "conf": "HIGH",
+   "score": 10,
+   "reg_uc": true,
+   "disk_src": "global_skills",
+   "domain": "web",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=true",
+    "source=user-created",
+    "version=community",
+    "命名域:cloudbase-webapp*",
+    "gitAdd=2026-08-03|chore: 补录 28 个未跟踪技能目录 + 恢复 .gitignore (R131)"
+   ]
+  },
+  {
+   "skill": "cloudbase__skillhub",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "system",
+   "version": "community",
+   "evidence": [
+    "source=skillhub(市场)"
+   ]
+  },
+  {
+   "skill": "code-review",
+   "conf": "HIGH",
+   "score": 14,
+   "reg_uc": true,
+   "disk_src": "global_skills",
+   "domain": "code",
+   "version": "1.0.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=true",
+    "source=user-created",
+    "version=1.0.0(semver)",
+    "命名域:code-review*",
+    "gitAdd=2026-09-09|feat(skill): code-review skill 注册 + A-memory-start V10.13.0 direct_map 正负样本配对时序速查（2026-09-09 审查专项）",
+    "git:版本化提交"
+   ]
+  },
+  {
+   "skill": "coding-agent",
+   "conf": "LOW",
+   "score": 2,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "code",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=community",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "computer-use-guidance-windows",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "system",
+   "version": "0.9.0",
+   "evidence": [
+    ".skill-metadata.yaml(官方元数据)"
+   ]
+  },
+  {
+   "skill": "consulting-analysis",
+   "conf": "LOW",
+   "score": 2,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "research",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=community",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "create-skill",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "general_utils",
+   "version": "1.0.0",
+   "evidence": [
+    ".skill-metadata.yaml(官方元数据)"
+   ]
+  },
+  {
+   "skill": "cross-platform-agent-sync",
+   "conf": "HIGH",
+   "score": 7,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "system",
+   "version": "1.1.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=1.1.0(semver)",
+    "命名域:cross-platform-*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "cross-platform-skill-sync",
+   "conf": "HIGH",
+   "score": 12,
+   "reg_uc": true,
+   "disk_src": "global_skills",
+   "domain": "system",
+   "version": "1.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=true",
+    "source=community",
+    "version=1.0(semver)",
+    "命名域:cross-platform-*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "data-analysis",
+   "conf": "LOW",
+   "score": 2,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "data",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=community",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "data-layer-consistency-fix",
+   "conf": "HIGH",
+   "score": 7,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "system",
+   "version": "1.0.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=1.0.0(semver)",
+    "命名域:data-layer-*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "data-visualization",
+   "conf": "LOW",
+   "score": 2,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "data",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=community",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "debugging-fixing",
+   "conf": "MID",
+   "score": 5,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "code",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=community",
+    "命名域:debugging-fixing*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "deep-research-pro",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "research",
+   "version": "1.0.0",
+   "evidence": [
+    "_meta.json:发布元数据(市场件)"
+   ]
+  },
+  {
+   "skill": "defuddle",
+   "conf": "LOW",
+   "score": 2,
+   "reg_uc": null,
+   "disk_src": null,
+   "domain": null,
+   "version": null,
+   "evidence": [
+    "disk:未登记(orphan,待人工)",
+    "disk:global_skills(本地原生)",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "diagram-maker",
+   "conf": "LOW",
+   "score": 2,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "design",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=community",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "discover-agent-cli",
+   "conf": "MID",
+   "score": 4,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "system",
+   "version": "1.0.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=1.0.0(semver)",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "doc-coauthoring",
+   "conf": "LOW",
+   "score": 2,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "doc",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=community",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "docx",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "doc",
+   "version": "2.0.0",
+   "evidence": [
+    ".skill-metadata.yaml(官方元数据)"
+   ]
+  },
+  {
+   "skill": "dogfood",
+   "conf": "HIGH",
+   "score": 7,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "automation",
+   "version": "1.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=1.0(semver)",
+    "命名域:dogfood*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "electron",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "web",
+   "version": "1.0",
+   "evidence": [
+    "精读人工判定:市场/上游件"
+   ]
+  },
+  {
+   "skill": "elon-musk-perspective",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "general_utils",
+   "version": "community",
+   "evidence": [
+    "LICENSE:LICENSE(官方/市场包)"
+   ]
+  },
+  {
+   "skill": "embedding-index-alignment",
+   "conf": "HIGH",
+   "score": 10,
+   "reg_uc": true,
+   "disk_src": "global_skills",
+   "domain": "memory",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=true",
+    "source=user-created",
+    "version=community",
+    "命名域:embedding-index*",
+    "gitAdd=2026-08-03|chore: 补录 28 个未跟踪技能目录 + 恢复 .gitignore (R131)"
+   ]
+  },
+  {
+   "skill": "executing-plans",
+   "conf": "LOW",
+   "score": 2,
+   "reg_uc": null,
+   "disk_src": null,
+   "domain": null,
+   "version": null,
+   "evidence": [
+    "disk:未登记(orphan,待人工)",
+    "disk:global_skills(本地原生)",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "fenjue-advisor-scoring",
+   "conf": "HIGH",
+   "score": 12,
+   "reg_uc": true,
+   "disk_src": "global_skills",
+   "domain": "automation",
+   "version": "2.2.1",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=true",
+    "source=user-created",
+    "version=2.2.1(semver)",
+    "命名域:fenjue-*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "fenjue-cc-audit-cycle",
+   "conf": "HIGH",
+   "score": 7,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "automation",
+   "version": "2.0.1",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=2.0.1(semver)",
+    "命名域:fenjue-*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "fenjue-lessons-hitrate",
+   "conf": "HIGH",
+   "score": 10,
+   "reg_uc": true,
+   "disk_src": "global_skills",
+   "domain": "memory",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=true",
+    "source=user-created",
+    "version=community",
+    "命名域:fenjue-*",
+    "gitAdd=2026-08-03|chore: 补录 28 个未跟踪技能目录 + 恢复 .gitignore (R131)"
+   ]
+  },
+  {
+   "skill": "fenjue-memory-audit",
+   "conf": "HIGH",
+   "score": 10,
+   "reg_uc": true,
+   "disk_src": "global_skills",
+   "domain": "memory",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=true",
+    "source=user-created",
+    "version=community",
+    "命名域:fenjue-*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "fenjue-routing-health-check",
+   "conf": "HIGH",
+   "score": 7,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "system",
+   "version": "2.1.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=2.1.0(semver)",
+    "命名域:fenjue-*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "figma",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": null,
+   "disk_src": null,
+   "domain": null,
+   "version": null,
+   "evidence": [
+    "LICENSE:LICENSE.txt(官方/市场包)"
+   ]
+  },
+  {
+   "skill": "find-skills",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "general_utils",
+   "version": "1.0.4",
+   "evidence": [
+    ".skill-metadata.yaml(官方元数据)"
+   ]
+  },
+  {
+   "skill": "first-principles-decomposer",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "general_utils",
+   "version": "community",
+   "evidence": [
+    "_meta.json:发布元数据(市场件)"
+   ]
+  },
+  {
+   "skill": "frontend-design",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": null,
+   "disk_src": null,
+   "domain": null,
+   "version": null,
+   "evidence": [
+    "LICENSE:LICENSE.txt(官方/市场包)"
+   ]
+  },
+  {
+   "skill": "frontend-skill",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "design",
+   "version": "1.0",
+   "evidence": [
+    "LICENSE:LICENSE.txt(官方/市场包)"
+   ]
+  },
+  {
+   "skill": "frontend-slides",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "creative",
+   "version": "community",
+   "evidence": [
+    "LICENSE:LICENSE(官方/市场包)"
+   ]
+  },
+  {
+   "skill": "github",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "web",
+   "version": "community",
+   "evidence": [
+    "_meta.json:发布元数据(市场件)"
+   ]
+  },
+  {
+   "skill": "gsap",
+   "conf": "LOW",
+   "score": 2,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "web",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=community",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "gstack",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "web",
+   "version": "1.1.0",
+   "evidence": [
+    "LICENSE:LICENSE(官方/市场包)"
+   ]
+  },
+  {
+   "skill": "hermes-installer",
+   "conf": "HIGH",
+   "score": 10,
+   "reg_uc": true,
+   "disk_src": "global_skills",
+   "domain": "system",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=true",
+    "source=user-created",
+    "version=community",
+    "命名域:hermes-installer*",
+    "gitAdd=2026-08-05|R178 升级轮: 大SKILL分卷(A-get-memory/fenjue/story-setup/story-long-write)+红队/消歧/记忆预读相关技能更新"
+   ]
+  },
+  {
+   "skill": "hook-analyzer-skill",
+   "conf": "MID",
+   "score": 5,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "automation",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=community",
+    "命名域:hook-analyzer*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "html-ppt",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "creative",
+   "version": "community",
+   "evidence": [
+    "LICENSE:LICENSE(官方/市场包)"
+   ]
+  },
+  {
+   "skill": "hyperframes",
+   "conf": "LOW",
+   "score": 2,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "creative",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=community",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "hyperframes-cli",
+   "conf": "LOW",
+   "score": 2,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "creative",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=community",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "hyperframes-media",
+   "conf": "LOW",
+   "score": 2,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "creative",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=community",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "hyperframes-registry",
+   "conf": "LOW",
+   "score": 2,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "creative",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=community",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "ican-deploy",
+   "conf": "MID",
+   "score": 5,
+   "reg_uc": null,
+   "disk_src": null,
+   "domain": null,
+   "version": null,
+   "evidence": [
+    "disk:未登记(orphan,待人工)",
+    "disk:global_skills(本地原生)",
+    "命名域:ican-*",
+    "gitAdd=2026-09-11|[rule_editor] 新增 ican-deploy：PythonAnywhere 免控制台部署通道 + 地址名册 + 坑清单 (ican-deploy/SKILL.md)"
+   ]
+  },
+  {
+   "skill": "ican-frontend-design-system",
+   "conf": "HIGH",
+   "score": 7,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "09-dev-tools",
+   "version": "1.0.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=1.0.0(semver)",
+    "命名域:ican-*",
+    "gitAdd=2026-09-10|[rule_editor] feat(skill): 新增 ican-frontend-design-system —— iCAN 门店 AI 管理智能体 V3 设计体系与交付链 (ican-frontend-design-system/SKILL.md)"
+   ]
+  },
+  {
+   "skill": "install-skill-dependency",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "system",
+   "version": "1.0.0",
+   "evidence": [
+    ".skill-metadata.yaml(官方元数据)"
+   ]
+  },
+  {
+   "skill": "internal-comms",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": null,
+   "disk_src": null,
+   "domain": null,
+   "version": null,
+   "evidence": [
+    "LICENSE:LICENSE.txt(官方/市场包)"
+   ]
+  },
+  {
+   "skill": "json-canvas",
+   "conf": "LOW",
+   "score": 2,
+   "reg_uc": null,
+   "disk_src": null,
+   "domain": null,
+   "version": null,
+   "evidence": [
+    "disk:未登记(orphan,待人工)",
+    "disk:global_skills(本地原生)",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "knowledge-capture",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": null,
+   "disk_src": null,
+   "domain": null,
+   "version": null,
+   "evidence": [
+    "evaluations/(官方评测件)"
+   ]
+  },
+  {
+   "skill": "local-asr",
+   "conf": "MID",
+   "score": 5,
+   "reg_uc": null,
+   "disk_src": null,
+   "domain": null,
+   "version": null,
+   "evidence": [
+    "disk:未登记(orphan,待人工)",
+    "disk:global_skills(本地原生)",
+    "命名域:local-*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "local-computer-use",
+   "conf": "MID",
+   "score": 5,
+   "reg_uc": null,
+   "disk_src": null,
+   "domain": null,
+   "version": null,
+   "evidence": [
+    "disk:未登记(orphan,待人工)",
+    "disk:global_skills(本地原生)",
+    "命名域:local-*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "local-img2img",
+   "conf": "MID",
+   "score": 5,
+   "reg_uc": null,
+   "disk_src": null,
+   "domain": null,
+   "version": null,
+   "evidence": [
+    "disk:未登记(orphan,待人工)",
+    "disk:global_skills(本地原生)",
+    "命名域:local-*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "local-mineru",
+   "conf": "MID",
+   "score": 5,
+   "reg_uc": null,
+   "disk_src": null,
+   "domain": null,
+   "version": null,
+   "evidence": [
+    "disk:未登记(orphan,待人工)",
+    "disk:global_skills(本地原生)",
+    "命名域:local-*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "local-ocr-npu",
+   "conf": "MID",
+   "score": 5,
+   "reg_uc": null,
+   "disk_src": null,
+   "domain": null,
+   "version": null,
+   "evidence": [
+    "disk:未登记(orphan,待人工)",
+    "disk:global_skills(本地原生)",
+    "命名域:local-*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "local-realtime-translator",
+   "conf": "MID",
+   "score": 5,
+   "reg_uc": null,
+   "disk_src": null,
+   "domain": null,
+   "version": null,
+   "evidence": [
+    "disk:未登记(orphan,待人工)",
+    "disk:global_skills(本地原生)",
+    "命名域:local-*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "local-screenshot-qa",
+   "conf": "MID",
+   "score": 5,
+   "reg_uc": null,
+   "disk_src": null,
+   "domain": null,
+   "version": null,
+   "evidence": [
+    "disk:未登记(orphan,待人工)",
+    "disk:global_skills(本地原生)",
+    "命名域:local-*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "local-tts",
+   "conf": "MID",
+   "score": 5,
+   "reg_uc": null,
+   "disk_src": null,
+   "domain": null,
+   "version": null,
+   "evidence": [
+    "disk:未登记(orphan,待人工)",
+    "disk:global_skills(本地原生)",
+    "命名域:local-*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "local-txt2img",
+   "conf": "MID",
+   "score": 5,
+   "reg_uc": null,
+   "disk_src": null,
+   "domain": null,
+   "version": null,
+   "evidence": [
+    "disk:未登记(orphan,待人工)",
+    "disk:global_skills(本地原生)",
+    "命名域:local-*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "local-vram",
+   "conf": "MID",
+   "score": 5,
+   "reg_uc": null,
+   "disk_src": null,
+   "domain": null,
+   "version": null,
+   "evidence": [
+    "disk:未登记(orphan,待人工)",
+    "disk:global_skills(本地原生)",
+    "命名域:local-*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "mcporter",
+   "conf": "EXCLUDE",
+   "score": -1,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "general_utils",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "homepage=http://mcporter.dev(外部来源)",
+    "version=community",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "meeting-intelligence",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": null,
+   "disk_src": null,
+   "domain": null,
+   "version": null,
+   "evidence": [
+    "evaluations/(官方评测件)"
+   ]
+  },
+  {
+   "skill": "multi-search-engine",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "research",
+   "version": "community",
+   "evidence": [
+    "_meta.json:发布元数据(市场件)"
+   ]
+  },
+  {
+   "skill": "nano-pdf",
+   "conf": "EXCLUDE",
+   "score": -1,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "doc",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "homepage=https://pypi.org/project/nano-pdf/(外部来源)",
+    "version=community",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "node-inspect-debugger",
+   "conf": "LOW",
+   "score": 2,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "code",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=community",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "notion-cli",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": null,
+   "disk_src": null,
+   "domain": null,
+   "version": null,
+   "evidence": [
+    "LICENSE:LICENSE.md(官方/市场包)"
+   ]
+  },
+  {
+   "skill": "obsidian-bases",
+   "conf": "LOW",
+   "score": 2,
+   "reg_uc": null,
+   "disk_src": null,
+   "domain": null,
+   "version": null,
+   "evidence": [
+    "disk:未登记(orphan,待人工)",
+    "disk:global_skills(本地原生)",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "obsidian-cli",
+   "conf": "LOW",
+   "score": 2,
+   "reg_uc": null,
+   "disk_src": null,
+   "domain": null,
+   "version": null,
+   "evidence": [
+    "disk:未登记(orphan,待人工)",
+    "disk:global_skills(本地原生)",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "obsidian-markdown",
+   "conf": "LOW",
+   "score": 2,
+   "reg_uc": null,
+   "disk_src": null,
+   "domain": null,
+   "version": null,
+   "evidence": [
+    "disk:未登记(orphan,待人工)",
+    "disk:global_skills(本地原生)",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "oc-dispatch-exec-guard",
+   "conf": "HIGH",
+   "score": 12,
+   "reg_uc": true,
+   "disk_src": "global_skills",
+   "domain": "system",
+   "version": "1.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=true",
+    "source=user",
+    "version=1.0(semver)",
+    "命名域:oc-dispatch*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "office-automation-pro",
+   "conf": "MID",
+   "score": 4,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "automation",
+   "version": "1.0.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=1.0.0(semver)",
+    "gitAdd=2026-08-15|R198.4 + 技能库清理: noise_lint 正则修正(.tmpl豁免) + A-project-handoff 噪声规范 + 批量退役无用skill(744文件, 用户确认)"
+   ]
+  },
+  {
+   "skill": "openai-whisper-api",
+   "conf": "EXCLUDE",
+   "score": -1,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "media",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "homepage=https://platform.openai.com/docs/guides/speech-to-text(外部来源)",
+    "version=community",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "openclaw-dual-gate-quality-audit",
+   "conf": "HIGH",
+   "score": 12,
+   "reg_uc": true,
+   "disk_src": "global_skills",
+   "domain": "system",
+   "version": "1.3.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=true",
+    "source=user-created",
+    "version=1.3.0(semver)",
+    "命名域:openclaw-*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "openclaw-fenjue-weekly",
+   "conf": "HIGH",
+   "score": 12,
+   "reg_uc": true,
+   "disk_src": "global_skills",
+   "domain": "system",
+   "version": "2.0.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=true",
+    "source=user-created",
+    "version=2.0.0(semver)",
+    "命名域:openclaw-*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "openclaw-task-supervision",
+   "conf": "HIGH",
+   "score": 12,
+   "reg_uc": true,
+   "disk_src": "global_skills",
+   "domain": "system",
+   "version": "1.3.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=true",
+    "source=user-created",
+    "version=1.3.0(semver)",
+    "命名域:openclaw-*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "oracle",
+   "conf": "EXCLUDE",
+   "score": -1,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "research",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "homepage=https://askoracle.dev(外部来源)",
+    "version=community",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "pdf",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "doc",
+   "version": "1.0.1",
+   "evidence": [
+    ".skill-metadata.yaml(官方元数据)"
+   ]
+  },
+  {
+   "skill": "pixelle-api-ensure",
+   "conf": "LOW",
+   "score": 2,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "automation",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=community",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "pptx",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "doc",
+   "version": "community",
+   "evidence": [
+    "LICENSE:LICENSE.txt(官方/市场包)"
+   ]
+  },
+  {
+   "skill": "prompt-consolidation",
+   "conf": "HIGH",
+   "score": 7,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "system",
+   "version": "2.1.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=2.1.0(semver)",
+    "命名域:prompt-*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "prompt-system-audit",
+   "conf": "HIGH",
+   "score": 7,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "system",
+   "version": "1.3.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=1.3.0(semver)",
+    "命名域:prompt-*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "python-debugpy",
+   "conf": "LOW",
+   "score": 2,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "code",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=community",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "refactoring",
+   "conf": "LOW",
+   "score": 2,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "code",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=community",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "report-generator-skill",
+   "conf": "MID",
+   "score": 5,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "doc",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=community",
+    "命名域:report-generator*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "research-documentation",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": null,
+   "disk_src": null,
+   "domain": null,
+   "version": null,
+   "evidence": [
+    "evaluations/(官方评测件)"
+   ]
+  },
+  {
+   "skill": "screenshot",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "web",
+   "version": "1.0",
+   "evidence": [
+    "LICENSE:LICENSE.txt(官方/市场包)"
+   ]
+  },
+  {
+   "skill": "shadcn",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "design",
+   "version": "1.0",
+   "evidence": [
+    "evals/evals.json(官方评测件)"
+   ]
+  },
+  {
+   "skill": "shell-encoding-pitfalls",
+   "conf": "MID",
+   "score": 5,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "code",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=community",
+    "命名域:shell-encoding*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "skill-creator",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "system",
+   "version": "community",
+   "evidence": [
+    "LICENSE:license.txt(官方/市场包)"
+   ]
+  },
+  {
+   "skill": "skill-defer-to-authority",
+   "conf": "HIGH",
+   "score": 7,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "system",
+   "version": "1.1.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=1.1.0(semver)",
+    "命名域:skill-*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "skill-drift-surgery",
+   "conf": "HIGH",
+   "score": 12,
+   "reg_uc": true,
+   "disk_src": "global_skills",
+   "domain": "system",
+   "version": "1.0.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=true",
+    "source=user-created",
+    "version=1.0.0(semver)",
+    "命名域:skill-*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "skill-hitrate-full-audit",
+   "conf": "HIGH",
+   "score": 10,
+   "reg_uc": true,
+   "disk_src": "global_skills",
+   "domain": "system",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=true",
+    "source=user-created",
+    "version=community",
+    "命名域:skill-*",
+    "gitAdd=2026-08-03|chore: 补录 28 个未跟踪技能目录 + 恢复 .gitignore (R131)"
+   ]
+  },
+  {
+   "skill": "skill-hitrate-improvement-pipeline",
+   "conf": "HIGH",
+   "score": 10,
+   "reg_uc": true,
+   "disk_src": "global_skills",
+   "domain": "system",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=true",
+    "source=user-created",
+    "version=community",
+    "命名域:skill-*",
+    "gitAdd=2026-08-03|chore: 补录 28 个未跟踪技能目录 + 恢复 .gitignore (R131)"
+   ]
+  },
+  {
+   "skill": "skill-install",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "system",
+   "version": "community",
+   "evidence": [
+    "精读人工判定:市场/上游件"
+   ]
+  },
+  {
+   "skill": "skill-manager",
+   "conf": "HIGH",
+   "score": 10,
+   "reg_uc": true,
+   "disk_src": "global_skills",
+   "domain": "system",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=true",
+    "source=community",
+    "version=community",
+    "命名域:skill-*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "skill-merge",
+   "conf": "HIGH",
+   "score": 12,
+   "reg_uc": true,
+   "disk_src": "global_skills",
+   "domain": "system",
+   "version": "1.0.1",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=true",
+    "source=user-created",
+    "version=1.0.1(semver)",
+    "命名域:skill-*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "skill-midtask-recheck",
+   "conf": "HIGH",
+   "score": 12,
+   "reg_uc": true,
+   "disk_src": "global_skills",
+   "domain": "system",
+   "version": "1.0.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=true",
+    "source=user-created",
+    "version=1.0.0(semver)",
+    "命名域:skill-*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "skill-routing-regeneration",
+   "conf": "HIGH",
+   "score": 10,
+   "reg_uc": true,
+   "disk_src": "global_skills",
+   "domain": "system",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=true",
+    "source=user-created",
+    "version=community",
+    "命名域:skill-*",
+    "gitAdd=2026-08-03|chore: 补录 28 个未跟踪技能目录 + 恢复 .gitignore (R131)"
+   ]
+  },
+  {
+   "skill": "skill-routing-test-driven-fix",
+   "conf": "HIGH",
+   "score": 10,
+   "reg_uc": true,
+   "disk_src": "global_skills",
+   "domain": "system",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=true",
+    "source=user-created",
+    "version=community",
+    "命名域:skill-*",
+    "gitAdd=2026-08-03|chore: 补录 28 个未跟踪技能目录 + 恢复 .gitignore (R131)"
+   ]
+  },
+  {
+   "skill": "skill-trigger-diagnosis",
+   "conf": "HIGH",
+   "score": 7,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "system",
+   "version": "1.0.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=1.0.0(semver)",
+    "命名域:skill-*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "skills-security-check",
+   "conf": "HIGH",
+   "score": 10,
+   "reg_uc": true,
+   "disk_src": "global_skills",
+   "domain": "system",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=true",
+    "source=community",
+    "version=community",
+    "命名域:skills-security-check*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "slides",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": null,
+   "disk_src": null,
+   "domain": null,
+   "version": null,
+   "evidence": [
+    "LICENSE:LICENSE.txt(官方/市场包)"
+   ]
+  },
+  {
+   "skill": "spec-to-implementation",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": null,
+   "disk_src": null,
+   "domain": null,
+   "version": null,
+   "evidence": [
+    "evaluations/(官方评测件)"
+   ]
+  },
+  {
+   "skill": "spike",
+   "conf": "LOW",
+   "score": 2,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "research",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=community",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "sq-cleanmgr-c",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "code",
+   "version": "1.2.0",
+   "evidence": [
+    "_meta.json:发布元数据(市场件)"
+   ]
+  },
+  {
+   "skill": "static-site-batch-audit-fix",
+   "conf": "HIGH",
+   "score": 10,
+   "reg_uc": true,
+   "disk_src": "global_skills",
+   "domain": "web",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=true",
+    "source=user-created",
+    "version=community",
+    "命名域:static-site*",
+    "gitAdd=2026-08-03|chore: 补录 28 个未跟踪技能目录 + 恢复 .gitignore (R131)"
+   ]
+  },
+  {
+   "skill": "story",
+   "conf": "LOW",
+   "score": 2,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "creative",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=community",
+    "gitAdd=2026-08-05|R178 升级轮: 大SKILL分卷(A-get-memory/fenjue/story-setup/story-long-write)+红队/消歧/记忆预读相关技能更新"
+   ]
+  },
+  {
+   "skill": "story-cover",
+   "conf": "HIGH",
+   "score": 7,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "creative",
+   "version": "1.0.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=1.0.0(semver)",
+    "命名域:story-*",
+    "gitAdd=2026-08-05|R178 升级轮: 大SKILL分卷(A-get-memory/fenjue/story-setup/story-long-write)+红队/消歧/记忆预读相关技能更新"
+   ]
+  },
+  {
+   "skill": "story-deslop",
+   "conf": "HIGH",
+   "score": 7,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "creative",
+   "version": "1.0.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=1.0.0(semver)",
+    "命名域:story-*",
+    "gitAdd=2026-08-05|R178 升级轮: 大SKILL分卷(A-get-memory/fenjue/story-setup/story-long-write)+红队/消歧/记忆预读相关技能更新"
+   ]
+  },
+  {
+   "skill": "story-import",
+   "conf": "HIGH",
+   "score": 7,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "creative",
+   "version": "1.0.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=1.0.0(semver)",
+    "命名域:story-*",
+    "gitAdd=2026-08-05|R178 升级轮: 大SKILL分卷(A-get-memory/fenjue/story-setup/story-long-write)+红队/消歧/记忆预读相关技能更新"
+   ]
+  },
+  {
+   "skill": "story-long-analyze",
+   "conf": "HIGH",
+   "score": 7,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "creative",
+   "version": "1.0.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=1.0.0(semver)",
+    "命名域:story-*",
+    "gitAdd=2026-08-05|R178 升级轮: 大SKILL分卷(A-get-memory/fenjue/story-setup/story-long-write)+红队/消歧/记忆预读相关技能更新"
+   ]
+  },
+  {
+   "skill": "story-long-scan",
+   "conf": "HIGH",
+   "score": 7,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "creative",
+   "version": "1.0.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=1.0.0(semver)",
+    "命名域:story-*",
+    "gitAdd=2026-08-05|R178 升级轮: 大SKILL分卷(A-get-memory/fenjue/story-setup/story-long-write)+红队/消歧/记忆预读相关技能更新"
+   ]
+  },
+  {
+   "skill": "story-long-write",
+   "conf": "HIGH",
+   "score": 7,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "creative",
+   "version": "1.0.1",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=1.0.1(semver)",
+    "命名域:story-*",
+    "gitAdd=2026-08-05|R178 升级轮: 大SKILL分卷(A-get-memory/fenjue/story-setup/story-long-write)+红队/消歧/记忆预读相关技能更新"
+   ]
+  },
+  {
+   "skill": "story-review",
+   "conf": "HIGH",
+   "score": 7,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "creative",
+   "version": "1.1.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=1.1.0(semver)",
+    "命名域:story-*",
+    "gitAdd=2026-08-05|R178 升级轮: 大SKILL分卷(A-get-memory/fenjue/story-setup/story-long-write)+红队/消歧/记忆预读相关技能更新"
+   ]
+  },
+  {
+   "skill": "story-setup",
+   "conf": "HIGH",
+   "score": 7,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "creative",
+   "version": "1.2.8",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=1.2.8(semver)",
+    "命名域:story-*",
+    "gitAdd=2026-08-05|R178 升级轮: 大SKILL分卷(A-get-memory/fenjue/story-setup/story-long-write)+红队/消歧/记忆预读相关技能更新"
+   ]
+  },
+  {
+   "skill": "story-short-analyze",
+   "conf": "HIGH",
+   "score": 7,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "creative",
+   "version": "3.0.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=3.0.0(semver)",
+    "命名域:story-*",
+    "gitAdd=2026-08-05|R178 升级轮: 大SKILL分卷(A-get-memory/fenjue/story-setup/story-long-write)+红队/消歧/记忆预读相关技能更新"
+   ]
+  },
+  {
+   "skill": "story-short-scan",
+   "conf": "HIGH",
+   "score": 7,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "creative",
+   "version": "1.0.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=1.0.0(semver)",
+    "命名域:story-*",
+    "gitAdd=2026-08-05|R178 升级轮: 大SKILL分卷(A-get-memory/fenjue/story-setup/story-long-write)+红队/消歧/记忆预读相关技能更新"
+   ]
+  },
+  {
+   "skill": "story-short-write",
+   "conf": "HIGH",
+   "score": 7,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "creative",
+   "version": "1.0.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=1.0.0(semver)",
+    "命名域:story-*",
+    "gitAdd=2026-08-05|R178 升级轮: 大SKILL分卷(A-get-memory/fenjue/story-setup/story-long-write)+红队/消歧/记忆预读相关技能更新"
+   ]
+  },
+  {
+   "skill": "taskflow",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "automation",
+   "version": "community",
+   "evidence": [
+    "精读人工判定:市场/上游件"
+   ]
+  },
+  {
+   "skill": "taskflow-inbox-triage",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "automation",
+   "version": "community",
+   "evidence": [
+    "精读人工判定:市场/上游件"
+   ]
+  },
+  {
+   "skill": "test-driven-development",
+   "conf": "LOW",
+   "score": 2,
+   "reg_uc": null,
+   "disk_src": null,
+   "domain": null,
+   "version": null,
+   "evidence": [
+    "disk:未登记(orphan,待人工)",
+    "disk:global_skills(本地原生)",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "testing",
+   "conf": "MID",
+   "score": 4,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "code",
+   "version": "1.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "version=1.0(semver)",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "theme-factory",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": null,
+   "disk_src": null,
+   "domain": null,
+   "version": null,
+   "evidence": [
+    "LICENSE:LICENSE.txt(官方/市场包)"
+   ]
+  },
+  {
+   "skill": "ui-ux-pro-max",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "design",
+   "version": "community",
+   "evidence": [
+    "_meta.json:发布元数据(市场件)"
+   ]
+  },
+  {
+   "skill": "utf8-encoding-fix",
+   "conf": "MID",
+   "score": 5,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "code",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=community",
+    "命名域:utf8-*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "video-frames",
+   "conf": "EXCLUDE",
+   "score": -1,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "media",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "homepage=https://ffmpeg.org(外部来源)",
+    "version=community",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "video-whisper-transcribe",
+   "conf": "MID",
+   "score": 4,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "media",
+   "version": "1.1.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=1.1.0(semver)",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "vp-perspective-audit",
+   "conf": "HIGH",
+   "score": 7,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "automation",
+   "version": "1.1.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=1.1.0(semver)",
+    "命名域:vp-perspective*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "wb-git-commit-recipe",
+   "conf": "HIGH",
+   "score": 9,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "code",
+   "version": "1.1.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=1.1.0(semver)",
+    "命名域:wb-git-*",
+    "gitAdd=2026-09-06|feat(skill): 新增 wb-git-commit-recipe V1.0.0——WB Bash PATHEXT 缺失+PATH 污染致 hook 链必失败的根因与修复配方（R217 实测沉淀，审计 P2）",
+    "git:版本化提交"
+   ]
+  },
+  {
+   "skill": "web-design-guidelines",
+   "conf": "LOW",
+   "score": 2,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "design",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=community",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "wechat-automation",
+   "conf": "HIGH",
+   "score": 7,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "automation",
+   "version": "1.0.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=1.0.0(semver)",
+    "命名域:wechat-*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "wechat-voice-transcription",
+   "conf": "HIGH",
+   "score": 10,
+   "reg_uc": true,
+   "disk_src": "global_skills",
+   "domain": "media",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=true",
+    "source=user-created",
+    "version=community",
+    "命名域:wechat-*",
+    "gitAdd=2026-08-03|chore: 补录 28 个未跟踪技能目录 + 恢复 .gitignore (R131)"
+   ]
+  },
+  {
+   "skill": "windows-bash-cli-interop-pitfalls",
+   "conf": "HIGH",
+   "score": 10,
+   "reg_uc": true,
+   "disk_src": "global_skills",
+   "domain": "code",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=true",
+    "source=user-created",
+    "version=community",
+    "命名域:windows-*",
+    "gitAdd=2026-08-03|chore: 补录 28 个未跟踪技能目录 + 恢复 .gitignore (R131)"
+   ]
+  },
+  {
+   "skill": "windows-cli-utf8-wrapper",
+   "conf": "HIGH",
+   "score": 7,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "local",
+   "version": "1.0.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=1.0.0(semver)",
+    "命名域:windows-*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "windows-gitbash-chinese-path-pit",
+   "conf": "HIGH",
+   "score": 7,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "local",
+   "version": "1.0.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=user-created",
+    "version=1.0.0(semver)",
+    "命名域:windows-*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "windows-native-ocr",
+   "conf": "HIGH",
+   "score": 10,
+   "reg_uc": true,
+   "disk_src": "global_skills",
+   "domain": "local",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=true",
+    "source=user-created",
+    "version=community",
+    "命名域:windows-*",
+    "gitAdd=2026-08-03|chore: 补录 28 个未跟踪技能目录 + 恢复 .gitignore (R131)"
+   ]
+  },
+  {
+   "skill": "workbuddy-mcp",
+   "conf": "HIGH",
+   "score": 7,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "general_utils",
+   "version": "1.1.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=1.1.0(semver)",
+    "命名域:workbuddy-*",
+    "gitAdd=2026-08-15|R198.4 + 技能库清理: noise_lint 正则修正(.tmpl豁免) + A-project-handoff 噪声规范 + 批量退役无用skill(744文件, 用户确认)"
+   ]
+  },
+  {
+   "skill": "workflow-preflight-check",
+   "conf": "HIGH",
+   "score": 7,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "automation",
+   "version": "1.0.0",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=1.0.0(semver)",
+    "命名域:workflow-*",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "wps-knowledgebase",
+   "conf": "HIGH",
+   "score": 7,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "system",
+   "version": "2.0.3",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=2.0.3(semver)",
+    "命名域:wps-*",
+    "gitAdd=2026-08-15|R198.4 + 技能库清理: noise_lint 正则修正(.tmpl豁免) + A-project-handoff 噪声规范 + 批量退役无用skill(744文件, 用户确认)"
+   ]
+  },
+  {
+   "skill": "writing-plans",
+   "conf": "LOW",
+   "score": 2,
+   "reg_uc": null,
+   "disk_src": null,
+   "domain": null,
+   "version": null,
+   "evidence": [
+    "disk:未登记(orphan,待人工)",
+    "disk:global_skills(本地原生)",
+    "gitAdd=2026-07-22|chore: 初始化 skill 库仓库 + 2026-07-22 收尾硬门禁加固"
+   ]
+  },
+  {
+   "skill": "xlsx",
+   "conf": "EXCLUDE",
+   "score": -100,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "data",
+   "version": "1.0.1",
+   "evidence": [
+    ".skill-metadata.yaml(官方元数据)"
+   ]
+  },
+  {
+   "skill": "天眼一下",
+   "conf": "MID",
+   "score": 5,
+   "reg_uc": false,
+   "disk_src": "global_skills",
+   "domain": "research",
+   "version": "community",
+   "evidence": [
+    "disk:global_skills(本地原生)",
+    "registry:user_created=false(字段已失真,不计负分)",
+    "source=community",
+    "version=community",
+    "命名域:天眼一下*",
+    "gitAdd=无"
+   ]
+  }
+ ],
+ "distortion": [
+  {
+   "skill": "A-java-problem",
+   "prefix": "A-",
+   "reg_user_created": false,
+   "reg_source": "community",
+   "disk_source": "global_skills",
+   "version": "1.2.0"
+  },
+  {
+   "skill": "cross-platform-agent-sync",
+   "prefix": "cross-platform-",
+   "reg_user_created": false,
+   "reg_source": "community",
+   "disk_source": "global_skills",
+   "version": "1.1.0"
+  },
+  {
+   "skill": "data-layer-consistency-fix",
+   "prefix": "data-layer-",
+   "reg_user_created": false,
+   "reg_source": "community",
+   "disk_source": "global_skills",
+   "version": "1.0.0"
+  },
+  {
+   "skill": "debugging-fixing",
+   "prefix": "debugging-fixing",
+   "reg_user_created": false,
+   "reg_source": "community",
+   "disk_source": "global_skills",
+   "version": "community"
+  },
+  {
+   "skill": "dogfood",
+   "prefix": "dogfood",
+   "reg_user_created": false,
+   "reg_source": "community",
+   "disk_source": "global_skills",
+   "version": "1.0"
+  },
+  {
+   "skill": "fenjue-cc-audit-cycle",
+   "prefix": "fenjue-",
+   "reg_user_created": false,
+   "reg_source": "community",
+   "disk_source": "global_skills",
+   "version": "2.0.1"
+  },
+  {
+   "skill": "fenjue-routing-health-check",
+   "prefix": "fenjue-",
+   "reg_user_created": false,
+   "reg_source": "community",
+   "disk_source": "global_skills",
+   "version": "2.1.0"
+  },
+  {
+   "skill": "hook-analyzer-skill",
+   "prefix": "hook-analyzer",
+   "reg_user_created": false,
+   "reg_source": "community",
+   "disk_source": "global_skills",
+   "version": "community"
+  },
+  {
+   "skill": "ican-frontend-design-system",
+   "prefix": "ican-",
+   "reg_user_created": false,
+   "reg_source": "community",
+   "disk_source": "global_skills",
+   "version": "1.0.0"
+  },
+  {
+   "skill": "prompt-consolidation",
+   "prefix": "prompt-",
+   "reg_user_created": false,
+   "reg_source": "community",
+   "disk_source": "global_skills",
+   "version": "2.1.0"
+  },
+  {
+   "skill": "prompt-system-audit",
+   "prefix": "prompt-",
+   "reg_user_created": false,
+   "reg_source": "community",
+   "disk_source": "global_skills",
+   "version": "1.3.0"
+  },
+  {
+   "skill": "report-generator-skill",
+   "prefix": "report-generator",
+   "reg_user_created": false,
+   "reg_source": "community",
+   "disk_source": "global_skills",
+   "version": "community"
+  },
+  {
+   "skill": "shell-encoding-pitfalls",
+   "prefix": "shell-encoding",
+   "reg_user_created": false,
+   "reg_source": "community",
+   "disk_source": "global_skills",
+   "version": "community"
+  },
+  {
+   "skill": "skill-defer-to-authority",
+   "prefix": "skill-",
+   "reg_user_created": false,
+   "reg_source": "community",
+   "disk_source": "global_skills",
+   "version": "1.1.0"
+  },
+  {
+   "skill": "skill-trigger-diagnosis",
+   "prefix": "skill-",
+   "reg_user_created": false,
+   "reg_source": "community",
+   "disk_source": "global_skills",
+   "version": "1.0.0"
+  },
+  {
+   "skill": "story-cover",
+   "prefix": "story-",
+   "reg_user_created": false,
+   "reg_source": "community",
+   "disk_source": "global_skills",
+   "version": "1.0.0"
+  },
+  {
+   "skill": "story-deslop",
+   "prefix": "story-",
+   "reg_user_created": false,
+   "reg_source": "community",
+   "disk_source": "global_skills",
+   "version": "1.0.0"
+  },
+  {
+   "skill": "story-import",
+   "prefix": "story-",
+   "reg_user_created": false,
+   "reg_source": "community",
+   "disk_source": "global_skills",
+   "version": "1.0.0"
+  },
+  {
+   "skill": "story-long-analyze",
+   "prefix": "story-",
+   "reg_user_created": false,
+   "reg_source": "community",
+   "disk_source": "global_skills",
+   "version": "1.0.0"
+  },
+  {
+   "skill": "story-long-scan",
+   "prefix": "story-",
+   "reg_user_created": false,
+   "reg_source": "community",
+   "disk_source": "global_skills",
+   "version": "1.0.0"
+  },
+  {
+   "skill": "story-long-write",
+   "prefix": "story-",
+   "reg_user_created": false,
+   "reg_source": "community",
+   "disk_source": "global_skills",
+   "version": "1.0.1"
+  },
+  {
+   "skill": "story-review",
+   "prefix": "story-",
+   "reg_user_created": false,
+   "reg_source": "community",
+   "disk_source": "global_skills",
+   "version": "1.1.0"
+  },
+  {
+   "skill": "story-setup",
+   "prefix": "story-",
+   "reg_user_created": false,
+   "reg_source": "community",
+   "disk_source": "global_skills",
+   "version": "1.2.8"
+  },
+  {
+   "skill": "story-short-analyze",
+   "prefix": "story-",
+   "reg_user_created": false,
+   "reg_source": "community",
+   "disk_source": "global_skills",
+   "version": "3.0.0"
+  },
+  {
+   "skill": "story-short-scan",
+   "prefix": "story-",
+   "reg_user_created": false,
+   "reg_source": "community",
+   "disk_source": "global_skills",
+   "version": "1.0.0"
+  },
+  {
+   "skill": "story-short-write",
+   "prefix": "story-",
+   "reg_user_created": false,
+   "reg_source": "community",
+   "disk_source": "global_skills",
+   "version": "1.0.0"
+  },
+  {
+   "skill": "utf8-encoding-fix",
+   "prefix": "utf8-",
+   "reg_user_created": false,
+   "reg_source": "community",
+   "disk_source": "global_skills",
+   "version": "community"
+  },
+  {
+   "skill": "vp-perspective-audit",
+   "prefix": "vp-perspective",
+   "reg_user_created": false,
+   "reg_source": "community",
+   "disk_source": "global_skills",
+   "version": "1.1.0"
+  },
+  {
+   "skill": "wb-git-commit-recipe",
+   "prefix": "wb-git-",
+   "reg_user_created": false,
+   "reg_source": "community",
+   "disk_source": "global_skills",
+   "version": "1.1.0"
+  },
+  {
+   "skill": "wechat-automation",
+   "prefix": "wechat-",
+   "reg_user_created": false,
+   "reg_source": "community",
+   "disk_source": "global_skills",
+   "version": "1.0.0"
+  },
+  {
+   "skill": "windows-cli-utf8-wrapper",
+   "prefix": "windows-",
+   "reg_user_created": false,
+   "reg_source": "community",
+   "disk_source": "global_skills",
+   "version": "1.0.0"
+  },
+  {
+   "skill": "windows-gitbash-chinese-path-pit",
+   "prefix": "windows-",
+   "reg_user_created": false,
+   "reg_source": "user-created",
+   "disk_source": "global_skills",
+   "version": "1.0.0"
+  },
+  {
+   "skill": "workbuddy-mcp",
+   "prefix": "workbuddy-",
+   "reg_user_created": false,
+   "reg_source": "community",
+   "disk_source": "global_skills",
+   "version": "1.1.0"
+  },
+  {
+   "skill": "workflow-preflight-check",
+   "prefix": "workflow-",
+   "reg_user_created": false,
+   "reg_source": "community",
+   "disk_source": "global_skills",
+   "version": "1.0.0"
+  },
+  {
+   "skill": "wps-knowledgebase",
+   "prefix": "wps-",
+   "reg_user_created": false,
+   "reg_source": "community",
+   "disk_source": "global_skills",
+   "version": "2.0.3"
+  },
+  {
+   "skill": "天眼一下",
+   "prefix": "天眼一下",
+   "reg_user_created": false,
+   "reg_source": "community",
+   "disk_source": "global_skills",
+   "version": "community"
+  }
+ ]
+}

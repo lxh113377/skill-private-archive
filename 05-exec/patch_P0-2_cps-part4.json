@@ -1,0 +1,18 @@
+[
+  {
+    "old": "**QW (AGENTS.md):**\n```\n## 铁律级协议（强制Read）\nRead `D:\\global_memory\\core\\BOOTSTRAP.md` → N Protocols。此文件junction 5端共享，改一处全平台生效。\n```\n\n",
+    "delete": true
+  },
+  {
+    "old": "**CC (CLAUDE.md):**\n```\nRead D:\\global_memory\\core\\BOOTSTRAP.md (~1.2KB) → 身份 + 铁律\n```\n\n",
+    "delete": true
+  },
+  {
+    "old": "→ 身份+铁律+N Protocols。junction 5端共享，改一处全平台生效。",
+    "new": "→ 身份+铁律+N Protocols。junction 各在役端共享，改一处全平台生效。"
+  },
+  {
+    "old": "→ 四端按需加载 #1–#36 时断链",
+    "new": "→ 各在役端按需加载 #1–#36 时断链"
+  }
+]

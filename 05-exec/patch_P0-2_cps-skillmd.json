@@ -1,0 +1,26 @@
+[
+  {
+    "old": "覆盖QW/OC/WB/CC/TC四端。当需要新增或修改跨平台铁律、修复启动文件引用链、验证5端规则传播、诊断某端不响应问题时使用。",
+    "new": "覆盖在役端 OC/WB/TR/CX/HM（CC 已弃用 2026-09-08、QW 已移除，权威 = `焚诀\\eval\\truth_constants.json`）。当需要新增或修改跨平台铁律、修复启动文件引用链、验证各在役端规则传播、诊断某端不响应问题时使用。"
+  },
+  {
+    "old": "> 通过Windows junction打通5个AI agent平台的配置目录，",
+    "new": "> 通过Windows junction打通各在役 AI agent 平台（OC/WB/TR/CX/HM）的配置目录，"
+  },
+  {
+    "old": "> 实现\"修改一个文件 → 5个平台的新session全部生效\"。",
+    "new": "> 实现\"修改一个文件 → 各在役平台的新session全部生效\"。"
+  },
+  {
+    "old": "- **卷1** `references/cps.part1.md` — 原理 / 治标vs治本 / 触发条件 / 四端架构映射 / 核心共享文件",
+    "new": "- **卷1** `references/cps.part1.md` — 原理 / 治标vs治本 / 触发条件 / 在役端架构映射 / 核心共享文件"
+  },
+  {
+    "old": "- **卷5** `references/cps.part5.md` — Path D：5端批量验证（Python 脚本）",
+    "new": "- **卷5** `references/cps.part5.md` — Path D：在役端批量验证（Python 脚本）"
+  },
+  {
+    "old": "version: 1.2.1",
+    "new": "version: 1.3.0"
+  }
+]
