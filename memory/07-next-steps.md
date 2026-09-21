@@ -17,7 +17,7 @@
 - [ ] **遗留 3 条待逐条判定**：`openclaw-task-supervision` / `wps-knowledgebase` / `data-layer-consistency-fix` 各 1 处弃用平台名
 
 - [ ] **[P2] 注册表 2 条真脏数据**：`testing` 的 `source` 为空串、`oc-dispatch-exec-guard` 的 `source=user`（非标准值 `user-created`）
-- [ ] **[P2] 受管根 39 条残留脏项待处置（D7）**：` D` **6**（上一轮 D3 轮转 / #17 迁移留下的**未提交删除**；磁盘均在 `global_memory_archive\_trash\backup-rotation\` 与 `global_skills\_trash\`，**非数据丢失**）+ `??` **33**（`.rule_backup/*.bak`，该仓库本就跟踪此目录）→ 需一次「提交迁移删除 + 跟进备份」的 git 提交（破坏性，待确认）
+
 
 ## 分卷目录
 - **卷1** `07-next-steps.part1.md` — 历史待办与已完成条目（2026-09-22 已按实测销账）

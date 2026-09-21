@@ -8,7 +8,7 @@
 - **D2② 注册表 `user_created` 复核（口径已裁定）**：注册表口径 = **120 条**（verify C1/C2/C10 三方守）；A 类（死件）**0**、B 类（true+市场信号）**0** → 09-14 报的「42 条失真」在当前口径**不复现**；C 类 85 条**不可判为失真**（反证 `canvas-design`）；2 条真脏数据登记 P2。附带量化：磁盘含 `SKILL.md` **151** vs 注册表 **120**（仅磁盘有 31；**仅注册表有 0**）；阶段0 自建清单 90 → 仅 **60** 在册
 - **D3 归档与轮转**：`.rule_backup` 仅 1 组超阈值（`A-memory-start.SKILL.md` @09-19 共 10 份）→ 保留 5、**迁移（非删除）** 5 至 `D:\global_memory_archive\_trash\backup-rotation\A-memory-start\2026-09-19\`；总数 **40 → 35**；`overlap_raw.txt`（283KB）→ `archive/`；随后 `sync` 刷新目录树
 
-## ✅ 已完成（2026-09-22 第 6 批：用户追加三项）
+> ⚠️ 去重说明（2026-09-22）：savepoint 自动分卷曾留下**重复的「第 6 批」标题**，此处合并为同一批次（原第二个标题已删）。
 
 - **修 `rule_editor.py commit --fix-mirror`**（受管根 `7d8a8e1`，`A-memory-start` **V10.62.0 → V10.63.0**）
   - **根因（✅已实测）**：该 flag 的修复**只挂在 `_do_commit` 的失败分支**，而**三仓（`D:\global_skills` / 焚诀 / `D:\global_memory`）`.git/hooks` 实测只有 `post-commit`（自动 push）、没有 `pre-commit`** ⇒ `_do_commit` 永远 rc=0 ⇒ 该分支是**死代码**；文档「已挂 `hooks/pre-commit`」属**设计意图而非既成事实**

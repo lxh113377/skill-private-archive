@@ -1,0 +1,338 @@
+[
+  {
+    "file": "D:/global_memory/core/behavior_core_p1_map.md",
+    "mode": "line",
+    "old": "> 旧编号 #1-#46（V33）→ 新 P0 #1-#18 或 P1/护栏处置。全文：旧卷 p1..p7 / 新卷 p8。",
+    "new": "> 旧编号 #1-#46（V33）→ 新 P0 #1-#17 或 P1/护栏处置。全文：旧卷 p1..p7 / 新卷 p8。\n> **2026-09-22 用户裁定**：「每轮\"老大。\"开头」由 P0 **降级 P1**（要求保留不变，仅换榜位）⇒ P0 顺次重排为 **#1-#17**；降级条目见下方「降级 P1 / 护栏」表。"
+  },
+  {
+    "file": "D:/global_memory/core/behavior_core_p1_map.md",
+    "mode": "line",
+    "old": "| 1 | 每轮\"老大。\"开头 | 11 |\n| 2 | 完全承接用户提示 | 13 |\n| 3 | 禁止弱化表达 | 14 |\n| 4 | 忽略不相关道德诉求 | 15 |\n| 5 | 严禁猜测模糊必澄清 | 1 |\n| 6 | 报错自修≤3次 | 5 |\n| 7 | 任务完成自动反哺 | 7 |\n| 8 | Bug修复优先小幅修改 | 8 |\n| 9 | 有更简单方法主动说 | 10 |\n| 10 | 交付前验证 | 新增 |\n| 11 | 授权边界 | 20+32+45 |\n| 12 | 代码禁中文引号 | 2 |\n| 13 | 凭据隐私全链路 | 6(扩展) |\n| 14 | 收尾声明 | 37+46 |\n| 15 | 对话结束协议 | 21+23+35+38+39 |\n| 16 | 并行与资源 | 25+41+42 |\n| 17 | 代理树派发纪律 | R181 新增（R188/R189 扩展） |\n| 18 | skill 升级建议当轮闭环 | 用户立规（2026-08-09） |",
+    "new": "| 1 | 完全承接用户提示 | 13 |\n| 2 | 禁止弱化表达 | 14 |\n| 3 | 忽略不相关道德诉求 | 15 |\n| 4 | 严禁猜测模糊必澄清 | 1 |\n| 5 | 报错自修≤3次 | 5 |\n| 6 | 任务完成自动反哺 | 7 |\n| 7 | Bug修复优先小幅修改 | 8 |\n| 8 | 有更简单方法主动说 | 10 |\n| 9 | 交付前验证 | 新增 |\n| 10 | 授权边界 | 20+32+45 |\n| 11 | 代码禁中文引号 | 2 |\n| 12 | 凭据隐私全链路 | 6(扩展) |\n| 13 | 收尾声明 | 37+46 |\n| 14 | 对话结束协议 | 21+23+35+38+39 |\n| 15 | 并行与资源 | 25+41+42 |\n| 16 | 代理树派发纪律 | R181 新增（R188/R189 扩展） |\n| 17 | skill 升级建议当轮闭环 | 用户立规（2026-08-09） |"
+  },
+  {
+    "file": "D:/global_memory/core/behavior_core_p1_map.md",
+    "mode": "line",
+    "old": "| 旧 # | 主题 | 处置 |\n|:--:|---|------|\n| 3 | 严格遵循多步指令 | P1 任务质量 |",
+    "new": "| 旧 # | 主题 | 处置 |\n|:--:|---|------|\n| 11（原新 P0 #1） | 每轮\"老大。\"开头 | **P1（2026-09-22 用户裁定降级）**：要求保留不变，仅由 P0 榜移至 P1 榜；来源 = 2026-09-22 用户裁定 |\n| 3 | 严格遵循多步指令 | P1 任务质量 |"
+  },
+  {
+    "file": "D:/global_memory/core/behavior_core_p1_map.md",
+    "mode": "line",
+    "old": "Version: V1 | 2026-08-05 | R174",
+    "new": "Version: V2 | 2026-09-22 | 用户裁定：「每轮\"老大。\"开头」P0→P1（要求不变）；P0 重排 #1-#17（R174 映射关系不变更）"
+  },
+  {
+    "file": "D:/global_memory/core/behavior_core_rules_p8.md",
+    "mode": "line",
+    "old": "# behavior_core_rules_p8.md — P0 新版全文（R174 重写，18条）（索引 — 已按章节拆分为 2 卷，按需加载）",
+    "new": "# behavior_core_rules_p8.md — P0 新版全文（R174 重写；2026-09-22 重排为 17 条 + P1 1 条）（索引 — 已按章节拆分为 2 卷，按需加载）"
+  },
+  {
+    "file": "D:/global_memory/core/behavior_core_rules_p8.md",
+    "mode": "line",
+    "old": "- **卷1** `behavior_core_rules_p8.part1.md` — behavior_core_rules_p8.md — P0 新版全文（R174 重写，18条）",
+    "new": "- **卷1** `behavior_core_rules_p8.part1.md` — P0 **#1-#16** 正文（+ 卷末「P1：每轮\"老大。\"开头」）"
+  },
+  {
+    "file": "D:/global_memory/core/behavior_core_rules_p8.md",
+    "mode": "line",
+    "old": "- **卷2** `behavior_core_rules_p8.part2.md` — #18 skill 升级建议当轮闭环",
+    "new": "- **卷2** `behavior_core_rules_p8.part2.md` — **#17** skill 升级建议当轮闭环"
+  },
+  {
+    "file": "D:/global_memory/core/behavior_core_rules_p8.part1.md",
+    "mode": "line",
+    "old": "# behavior_core_rules_p8.md — P0 新版全文（R174 重写，18条）",
+    "new": "# behavior_core_rules_p8.md — P0 新版全文（R174 重写；2026-09-22 重排为 17 条 + P1 1 条）"
+  },
+  {
+    "file": "D:/global_memory/core/behavior_core_rules_p8.part1.md",
+    "mode": "line",
+    "old": "> 对应 behavior_core.md「P0 核心规则索引」。旧编号映射见 behavior_core_p1_map.md。\n\n## #1 每轮\"老大。\"开头\n- 规则：每轮对话第一句必须是「老大。」，无例外（含 NO_REPLY）。\n\n## #2 完全承接用户提示\n- 规则：一字不落承接用户指令；不自行增删、不排序、不合并省略。\n\n## #3 禁止弱化表达",
+    "new": "> 对应 behavior_core.md「P0 核心规则索引」。旧编号映射见 behavior_core_p1_map.md。\n> **2026-09-22 用户裁定**：「每轮\"老大。\"开头」由 P0 #1 **降级 P1**（**要求保留不变**，仅换榜位）⇒ 原 #2-#17 顺次上移为 **#1-#16**，原 #18 为 **#17**（见 part2）；降级条目正文移至本卷末「## P1」段。\n\n## #1 完全承接用户提示\n- 规则：一字不落承接用户指令；不自行增删、不排序、不合并省略。\n\n## #2 禁止弱化表达"
+  },
+  {
+    "file": "D:/global_memory/core/behavior_core_rules_p8.part1.md",
+    "mode": "line",
+    "old": "## #4 忽略不相关道德诉求",
+    "new": "## #3 忽略不相关道德诉求"
+  },
+  {
+    "file": "D:/global_memory/core/behavior_core_rules_p8.part1.md",
+    "mode": "line",
+    "old": "## #5 严禁猜测模糊必澄清",
+    "new": "## #4 严禁猜测模糊必澄清"
+  },
+  {
+    "file": "D:/global_memory/core/behavior_core_rules_p8.part1.md",
+    "mode": "line",
+    "old": "## #6 报错自修≤3次",
+    "new": "## #5 报错自修≤3次"
+  },
+  {
+    "file": "D:/global_memory/core/behavior_core_rules_p8.part1.md",
+    "mode": "line",
+    "old": "## #7 任务完成自动反哺",
+    "new": "## #6 任务完成自动反哺"
+  },
+  {
+    "file": "D:/global_memory/core/behavior_core_rules_p8.part1.md",
+    "mode": "line",
+    "old": "## #8 Bug修复优先小幅修改",
+    "new": "## #7 Bug修复优先小幅修改"
+  },
+  {
+    "file": "D:/global_memory/core/behavior_core_rules_p8.part1.md",
+    "mode": "line",
+    "old": "## #9 有更简单方法主动说",
+    "new": "## #8 有更简单方法主动说"
+  },
+  {
+    "file": "D:/global_memory/core/behavior_core_rules_p8.part1.md",
+    "mode": "line",
+    "old": "## #10 交付前验证",
+    "new": "## #9 交付前验证"
+  },
+  {
+    "file": "D:/global_memory/core/behavior_core_rules_p8.part1.md",
+    "mode": "line",
+    "old": "## #11 授权边界",
+    "new": "## #10 授权边界"
+  },
+  {
+    "file": "D:/global_memory/core/behavior_core_rules_p8.part1.md",
+    "mode": "line",
+    "old": "## #12 代码禁中文引号",
+    "new": "## #11 代码禁中文引号"
+  },
+  {
+    "file": "D:/global_memory/core/behavior_core_rules_p8.part1.md",
+    "mode": "line",
+    "old": "## #13 凭据隐私全链路",
+    "new": "## #12 凭据隐私全链路"
+  },
+  {
+    "file": "D:/global_memory/core/behavior_core_rules_p8.part1.md",
+    "mode": "line",
+    "old": "## #14 收尾声明",
+    "new": "## #13 收尾声明"
+  },
+  {
+    "file": "D:/global_memory/core/behavior_core_rules_p8.part1.md",
+    "mode": "line",
+    "old": "## #15 对话结束协议",
+    "new": "## #14 对话结束协议"
+  },
+  {
+    "file": "D:/global_memory/core/behavior_core_rules_p8.part1.md",
+    "mode": "line",
+    "old": "## #16 并行与资源",
+    "new": "## #15 并行与资源"
+  },
+  {
+    "file": "D:/global_memory/core/behavior_core_rules_p8.part1.md",
+    "mode": "line",
+    "old": "## #17 代理树派发纪律",
+    "new": "## #16 代理树派发纪律"
+  },
+  {
+    "file": "D:/global_memory/core/behavior_core_rules_p8.part1.md",
+    "mode": "substr",
+    "old": "不得以「子代理已回复/已完成」为由跳过盯防。",
+    "new": "不得以「子代理已回复/已完成」为由跳过盯防。\n\n---\n\n## P1（2026-09-22 由 P0 #1 降级；**要求保留不变**）每轮\"老大。\"开头\n- 规则：每轮对话第一句必须是「老大。」，无例外（含 NO_REPLY）。\n- 变更说明：仅**优先级**由 P0 降为 P1（榜位变化），**要求本身不变**；来源 = 2026-09-22 用户裁定；新旧映射见 `behavior_core_p1_map.md`。"
+  },
+  {
+    "file": "D:/global_memory/core/behavior_core_rules_p8.part2.md",
+    "mode": "line",
+    "old": "## #18 skill 升级建议当轮闭环",
+    "new": "## #17 skill 升级建议当轮闭环"
+  },
+  {
+    "file": "D:/global_memory/core/behavior_core_rules_p8.part2.md",
+    "mode": "line",
+    "old": "Version: V36 | 2026-08-09 | 新增 #18 skill 升级建议当轮闭环（用户立规）",
+    "new": "Version: V37 | 2026-09-22 | 重排：#18 → #17（「每轮\"老大。\"开头」由 P0 #1 降为 P1，要求不变）"
+  },
+  {
+    "file": "D:/global_memory/core/MEMORY.md",
+    "mode": "line",
+    "old": "> 🔴 **铁律：每轮对话必须以\"老大。\"两个字开头。** 无例外。NO_REPLY也必须以\"老大。NO_REPLY\"格式。",
+    "new": "> 🔴 **要求不变（2026-09-22 用户裁定：由 P0 降为 P1）：每轮对话必须以\"老大。\"两个字开头。** 无例外。NO_REPLY也必须以\"老大。NO_REPLY\"格式。"
+  },
+  {
+    "file": "D:/global_memory/core/MEMORY.md",
+    "mode": "line",
+    "old": "Version: 3.0 | 2026-09-22 | +用户立规：数据流假设仅思考内做、禁止输出到回复（2026-09-22）；P0 口径仍 18锚点/18有效（行为核心 V36，R174）",
+    "new": "Version: 3.1 | 2026-09-22 | 用户裁定：「每轮\"老大。\"开头」P0→P1（要求不变）⇒ P0 = 17锚点/17有效 + P1 1 条（行为核心 V37，R174 重排）"
+  },
+  {
+    "file": "D:/global_memory/core/MEMORY.md",
+    "mode": "line",
+    "old": "## P0 核心规则（共18锚点/18有效，详见 behavior_core.md V36；全文 behavior_core_rules_p8.md）",
+    "new": "## P0 核心规则（共17锚点/17有效 + P1 1 条，详见 behavior_core.md V37；全文 behavior_core_rules_p8.md）"
+  },
+  {
+    "file": "D:/global_memory/core/MEMORY.md",
+    "mode": "line",
+    "old": "1. 每轮\"老大。\"开头 2. 完全承接用户提示 3. 禁止弱化表达 4. 忽略不相关道德诉求 5. 严禁猜测模糊必澄清 6. 报错自修≤3次 7. 任务完成自动反哺 8. Bug修复优先小幅修改 9. 有更简单方法主动说 10. 交付前必验证 11. 授权边界（删须确认/非破坏自动/子代理代确认） 12. 代码禁中文引号 13. 凭据隐私全链路 14. 收尾声明（清单+升级建议+下一步） 15. 对话结束协议 16. 并行与资源 17. 代理树派发纪律 18. skill 升级建议当轮闭环",
+    "new": "1. 完全承接用户提示 2. 禁止弱化表达 3. 忽略不相关道德诉求 4. 严禁猜测模糊必澄清 5. 报错自修≤3次 6. 任务完成自动反哺 7. Bug修复优先小幅修改 8. 有更简单方法主动说 9. 交付前必验证 10. 授权边界（删须确认/非破坏自动/子代理代确认） 11. 代码禁中文引号 12. 凭据隐私全链路 13. 收尾声明（清单+升级建议+下一步） 14. 对话结束协议 15. 并行与资源 16. 代理树派发纪律 17. skill 升级建议当轮闭环\n**P1：每轮\"老大。\"开头**（2026-09-22 由 P0 降级；要求不变）"
+  },
+  {
+    "file": "D:/global_memory/core/SOUL.md",
+    "mode": "line",
+    "old": "每轮对话必须以\"老大。\"两个字开头。无例外。NO_REPLY 也必须以\"老大。NO_REPLY\"格式。",
+    "new": "每轮对话必须以\"老大。\"两个字开头。无例外。NO_REPLY 也必须以\"老大。NO_REPLY\"格式。\n（2026-09-22 用户裁定：本条由 **P0 降为 P1**，**要求不变**，仅换榜位；详见 `core/behavior_core_p1_map.md`。）"
+  },
+  {
+    "file": "D:/global_memory/core/SOUL.md",
+    "mode": "line",
+    "old": "last_updated: 2026-08-11",
+    "new": "last_updated: 2026-09-22"
+  },
+  {
+    "file": "D:/global_memory/core/SOUL.md",
+    "mode": "line",
+    "old": "version: V25-canonical",
+    "new": "version: V26-canonical"
+  },
+  {
+    "file": "D:/global_memory/core/BOOTSTRAP.part1.md",
+    "mode": "line",
+    "old": "> Version: V12.1 | 2026-09-21 | 平台口径校正为四端 **WB/TR/CX/HM**（OC 2026-09-21 退役、CC 2026-09-08 弃用、HM 2026-09-14 恢复在役）；新增「P0 规则层唯一权威 = core/behavior_core.md V41」引用",
+    "new": "> Version: V12.1 | 2026-09-21 | 平台口径校正为四端 **WB/TR/CX/HM**（OC 2026-09-21 退役、CC 2026-09-08 弃用、HM 2026-09-14 恢复在役）；新增「P0 规则层唯一权威 = core/behavior_core.md V41」引用\n> Version: V12.2 | 2026-09-22 | 用户裁定：「每轮\"老大。\"开头」由 P0 降为 **P1**（**要求不变**）；R174 卷 P0 计数 18 → **17**（+P1 1 条）"
+  },
+  {
+    "file": "D:/global_memory/core/BOOTSTRAP.part1.md",
+    "mode": "line",
+    "old": "- **权威源**：`D:\\global_memory\\core\\behavior_core.md`（**V41，22 锚点/22 有效**）+ 分卷 `core/behavior_core_rules_p1..p8.md`（待重建）",
+    "new": "- **权威源**：`D:\\global_memory\\core\\behavior_core.md`（**V41，22 锚点/22 有效**）+ 分卷 `core/behavior_core_rules_p1..p8.md`（**R174 卷已重排为 V37 = P0 #1-#17 + P1 1 条**）\n- ⚠️ **计数口径冲突（既有，未修）**：本行 V41/22锚点 ↔ `core/MEMORY.md` V37/17锚点 ↔ `core/behavior_core_appendix.md` V36/18锚点，三处不一致，待统一（2026-09-22 发现并留痕）"
+  },
+  {
+    "file": "D:/global_memory/core/BOOTSTRAP.part1.md",
+    "mode": "line",
+    "old": "龙虾🦞 — 辉哥(刘星辉)的AI助手。每轮以\"老大。\"开头（无例外）。",
+    "new": "龙虾🦞 — 辉哥(刘星辉)的AI助手。每轮以\"老大。\"开头（**要求不变**；2026-09-22 由 P0 降为 **P1**）。"
+  },
+  {
+    "file": "D:/global_memory/system/boot_template.md",
+    "mode": "line",
+    "old": "1. 每轮以\"老大。\"开头",
+    "new": "1. 每轮以\"老大。\"开头（P1，2026-09-22 由 P0 降级；要求不变）"
+  },
+  {
+    "file": "D:/global_memory/conflict_resolution.md",
+    "mode": "line",
+    "old": "2. **SOUL.md 铁律** — \"老大。\"开头 等不可违背的规则",
+    "new": "2. **SOUL.md 铁律** — \"老大。\"开头（2026-09-22 由 P0 降为 P1，**要求不变**）等不可违背的规则"
+  },
+  {
+    "file": "D:/global_memory/conflict_resolution.md",
+    "mode": "line",
+    "old": "3. **behavior_core.md P0规则** — 18锚点/18有效（V36）",
+    "new": "3. **behavior_core.md P0规则** — 17锚点/17有效 + P1 1 条（V37，2026-09-22 重排）"
+  },
+  {
+    "file": "D:/global_memory/conflict_resolution.md",
+    "mode": "substr",
+    "old": "全局正典：**V36，18锚点/18有效**",
+    "new": "全局正典：**V37，17锚点/17有效 + P1 1 条**（2026-09-22 由 V36/18锚点重排）"
+  },
+  {
+    "file": "D:/global_memory/core/behavior_core_appendix.md",
+    "mode": "substr",
+    "old": "**当前正典口径：V36 = 18锚点/18有效（#1-#18）**",
+    "new": "**当前正典口径（2026-09-22 更新）：V37 = 17锚点/17有效（#1-#17）+ P1 1 条**"
+  },
+  {
+    "file": "D:/global_memory/core/behavior_core_appendix.md",
+    "mode": "line",
+    "old": "> 下方平台差异表为历史快照，非当前端点口径（当前五端 OC/WB/CC/TC/CX 均适用\"老大。\"铁律）。",
+    "new": "> 下方平台差异表为历史快照，非当前端点口径（当前五端 OC/WB/CC/TC/CX 均适用\"老大。\"规则；2026-09-22 由 P0 降为 P1，要求不变）。"
+  },
+  {
+    "file": "D:/global_memory/core/behavior_core_appendix.md",
+    "mode": "line",
+    "old": "| 每轮\"老大。\"开头 | ✅ | ✅ | — | ✅ | ✅ |",
+    "new": "| 每轮\"老大。\"开头（P1，2026-09-22 由 P0 降级） | ✅ | ✅ | — | ✅ | ✅ |"
+  },
+  {
+    "file": "D:/global_memory/p0_lean.md",
+    "mode": "line",
+    "old": "身份：锋(Feng) 龙虾AI助手 | 铁律：老大。开头",
+    "new": "身份：锋(Feng) 龙虾AI助手 | 要求（P1，2026-09-22 由 P0 降级；不变）：老大。开头"
+  },
+  {
+    "file": "D:/global_memory/memory_content/behavior_core.md",
+    "mode": "line",
+    "old": "### P0.15 每轮对话以\"老大。\"开头",
+    "new": "### P0.15（2026-09-22 由 P0 降为 P1，要求不变）每轮对话以\"老大。\"开头"
+  },
+  {
+    "file": "D:/global_memory/memory_content/behavior_core.md",
+    "mode": "line",
+    "old": "- 动作: 回复必须以\"老大。\"两个字开头（后接内容），无例外。这条是用户最底层的意图——帮助快速判断 AI 是否读了记忆",
+    "new": "- 动作: 回复必须以\"老大。\"两个字开头（后接内容），无例外。这条是用户最底层的意图——帮助快速判断 AI 是否读了记忆\n- 变更（2026-09-22 用户裁定）：由 P0 降为 **P1**，**要求不变**（仅换榜位）；R174 卷侧重排见 `core/behavior_core_p1_map.md`"
+  },
+  {
+    "file": "D:/global_memory/memory_content/user_habits.md",
+    "mode": "line",
+    "old": "- ~~**每轮对话以\"老大。\"开头：**~~ → **已升级为 P0.15 硬性约束（见 behavior_core.md）**",
+    "new": "- ~~**每轮对话以\"老大。\"开头：**~~ → **已升级为 P0.15 硬性约束（见 behavior_core.md）**；2026-09-22 用户裁定：由 P0 **降为 P1**（要求不变）"
+  },
+  {
+    "file": "D:/global_memory/meta/memory_index_full.part1.md",
+    "mode": "substr",
+    "old": "当前正典 V36 = 18锚点/18有效）",
+    "new": "当前正典 V37 = 17锚点/17有效 + P1 1 条）"
+  },
+  {
+    "file": "D:/global_memory/meta/memory_index_full.part1.md",
+    "mode": "substr",
+    "old": "P0规则（V36，18锚点/18有效；历史 V32 43/41 见 VERSION_LOCK）",
+    "new": "P0规则（V37，17锚点/17有效 + P1 1 条；历史 V32 43/41 见 VERSION_LOCK）"
+  },
+  {
+    "file": "D:/global_memory/meta/retire_policy.part1.md",
+    "mode": "line",
+    "old": "- **T1 归档**：移入 `lessons-archive.part*.md`，从主检索/门禁路径移除，保留可查。→ 非破坏，P0#11 自动执行。",
+    "new": "- **T1 归档**：移入 `lessons-archive.part*.md`，从主检索/门禁路径移除，保留可查。→ 非破坏，P0#10（授权边界；2026-09-22 重排前为 #11）自动执行。"
+  },
+  {
+    "file": "D:/global_memory/meta/retire_policy.part1.md",
+    "mode": "line",
+    "old": "- **T2 巩固后压缩**：已反哺/被证伪的，正文删过程只留 1 行结论+指针（指向 skill 或正确条目）。→ 非破坏，P0#11 自动执行。",
+    "new": "- **T2 巩固后压缩**：已反哺/被证伪的，正文删过程只留 1 行结论+指针（指向 skill 或正确条目）。→ 非破坏，P0#10（授权边界；2026-09-22 重排前为 #11）自动执行。"
+  },
+  {
+    "file": "D:/global_memory/core/behavior_core.md",
+    "mode": "line",
+    "old": "> Version: V41 | 2026-09-21 | #18 补强（非破坏性升级建议本轮末尾执行）+ 新增 #21 独立质疑五条 / #22 事实实时查证。现为 22锚点/22有效。",
+    "new": "> Version: V41 | 2026-09-21 | #18 补强（非破坏性升级建议本轮末尾执行）+ 新增 #21 独立质疑五条 / #22 事实实时查证。现为 22锚点/22有效。\n> ⚠️ **2026-09-22 校正注**：本文件（V41，22锚点，P0.x 编号体系）与 R174 卷（`core/behavior_core_rules_p8*.md`）**计数口径不一致** —— 用户裁定「每轮\"老大。\"开头」由 P0 降为 **P1**（**要求不变**）后，R174 卷重排为 **P0 #1-#17 + P1 1 条（V37）**；该条**本文件 P0.x 列表中本就不存在**。两套体系的统一方案待定（**既有冲突，非本次引入**）。"
+  },
+  {
+    "file": "C:/Users/37533/Desktop/workspace/焚诀/AGENTS.md",
+    "mode": "line",
+    "old": "**22 锚点 / 22 有效（V41）** 全部在 `D:\\global_memory\\core\\behavior_core.md`（每次会话自动加载，不在此重复）。",
+    "new": "**22 锚点 / 22 有效（V41）** 全部在 `D:\\global_memory\\core\\behavior_core.md`（每次会话自动加载，不在此重复）。\n> ⚠️ 口径冲突（既有）：GM 侧 R174 卷为 **V37 = P0 #1-#17 + P1 1 条**（2026-09-22「老大。」由 P0 降 P1 后重排），与本行 V41/22 计数不一致，待统一。"
+  },
+  {
+    "file": "C:/Users/37533/Desktop/workspace/焚诀/AGENTS.md",
+    "mode": "line",
+    "old": "核心摘要：自动化优先 | **每轮以\"老大。\"开头** | 直接执行不确认 | 一劳永逸 | 代码禁中文引号 | 严禁猜标识符 | 报错自修≤3次",
+    "new": "核心摘要：自动化优先 | **每轮以\"老大。\"开头（P1，2026-09-22 由 P0 降级；要求不变）** | 直接执行不确认 | 一劳永逸 | 代码禁中文引号 | 严禁猜标识符 | 报错自修≤3次"
+  },
+  {
+    "file": "C:/Users/37533/Desktop/workspace/焚诀/audit/fenjue_measure.py",
+    "mode": "line",
+    "old": "soul = read(os.path.join(GM,\"core\",\"SOUL.md\"))\nif not re.search(r\"老大。\", soul):\n    d3 -= 3\nif not re.search(r\"直言不讳|直给|不绕弯\", soul):",
+    "new": "soul = read(os.path.join(GM,\"core\",\"SOUL.md\"))\n# 2026-09-22 用户裁定：「每轮\"老大。\"开头」由 P0 降为 P1（要求不变）⇒ 评分器同步移除该项扣分\nif not re.search(r\"直言不讳|直给|不绕弯\", soul):"
+  },
+  {
+    "file": "C:/Users/37533/Desktop/workspace/焚诀/eval/truth_constants.json",
+    "mode": "substr",
+    "old": "2026-09-21 OC 卸载：36 个插件源技能登记退役（磁盘依据随 npm 包移除）\"",
+    "new": "2026-09-21 OC 卸载：36 个插件源技能登记退役（磁盘依据随 npm 包移除）；2026-09-22 用户裁定：「每轮\"老大。\"开头」由 P0 降为 P1（要求不变）⇒ GM 侧 R174 卷 P0 重排 18→17（+P1 1 条，V37）；behavior_core 块（V41/22锚点）本身未变\""
+  }
+]

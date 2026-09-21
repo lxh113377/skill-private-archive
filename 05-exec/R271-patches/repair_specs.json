@@ -1,0 +1,61 @@
+[
+  {
+    "file": "D:/global_memory/core/behavior_core_rules_p8.part1.md",
+    "repo": "D:/global_memory",
+    "ref": "fdb86d0~1",
+    "relpath": "core/behavior_core_rules_p8.part1.md",
+    "orig_anchor": "不得以「子代理已回复/已完成」为由跳过盯防。",
+    "cur_anchor": "不得以「子代理已回复/已完成」为由跳过盯防。",
+    "replace": false
+  },
+  {
+    "file": "D:/global_memory/conflict_resolution.md",
+    "repo": "D:/global_memory",
+    "ref": "fdb86d0~1",
+    "relpath": "conflict_resolution.md",
+    "orig_anchor": "全局正典：**V36，18锚点/18有效**",
+    "old_sub": "全局正典：**V36，18锚点/18有效**",
+    "new_sub": "全局正典：**V37，17锚点/17有效 + P1 1 条**（2026-09-22 由 V36/18锚点重排）",
+    "cur_anchor": "全局正典：**V37"
+  },
+  {
+    "file": "D:/global_memory/core/behavior_core_appendix.md",
+    "repo": "D:/global_memory",
+    "ref": "fdb86d0~1",
+    "relpath": "core/behavior_core_appendix.md",
+    "orig_anchor": "当前正典口径：V36 = 18锚点/18有效（#1-#18）",
+    "old_sub": "**当前正典口径：V36 = 18锚点/18有效（#1-#18）**",
+    "new_sub": "**当前正典口径（2026-09-22 更新）：V37 = 17锚点/17有效（#1-#17）+ P1 1 条**",
+    "cur_anchor": "当前正典口径（2026-09-22 更新）"
+  },
+  {
+    "file": "D:/global_memory/meta/memory_index_full.part1.md",
+    "repo": "D:/global_memory",
+    "ref": "fdb86d0~1",
+    "relpath": "meta/memory_index_full.part1.md",
+    "orig_anchor": "43/41 为 V32 历史口径",
+    "old_sub": "当前正典 V36 = 18锚点/18有效）",
+    "new_sub": "当前正典 V37 = 17锚点/17有效 + P1 1 条）",
+    "cur_anchor": "当前正典 V37 = 17锚点/17有效 + P1 1 条）"
+  },
+  {
+    "file": "D:/global_memory/meta/memory_index_full.part1.md",
+    "repo": "D:/global_memory",
+    "ref": "fdb86d0~1",
+    "relpath": "meta/memory_index_full.part1.md",
+    "orig_anchor": "历史 V32 43/41 见 VERSION_LOCK",
+    "old_sub": "P0规则（V36，18锚点/18有效；历史 V32 43/41 见 VERSION_LOCK）",
+    "new_sub": "P0规则（V37，17锚点/17有效 + P1 1 条；历史 V32 43/41 见 VERSION_LOCK）",
+    "cur_anchor": "P0规则（V37，17锚点/17有效 + P1 1 条；历史 V32 43/41 见 VERSION_LOCK）"
+  },
+  {
+    "file": "C:/Users/37533/Desktop/workspace/焚诀/eval/truth_constants.json",
+    "repo": "C:/Users/37533/Desktop/workspace/焚诀",
+    "ref": "29dfb22~1",
+    "relpath": "eval/truth_constants.json",
+    "orig_anchor": "2026-09-21 OC 卸载：36 个插件源技能登记退役（磁盘依据随 npm 包移除）\"",
+    "old_sub": "2026-09-21 OC 卸载：36 个插件源技能登记退役（磁盘依据随 npm 包移除）\"",
+    "new_sub": "2026-09-21 OC 卸载：36 个插件源技能登记退役（磁盘依据随 npm 包移除）；2026-09-22 用户裁定：「每轮『老大。』开头」由 P0 降为 P1（要求不变）⇒ GM 侧 R174 卷 P0 重排 18→17（+P1 1 条，V37）；behavior_core 块（V41/22锚点）本身未变\"",
+    "cur_anchor": "2026-09-22 用户裁定：「每轮\"老大。\"开头」由 P0 降为 P1（要求不变）"
+  }
+]
