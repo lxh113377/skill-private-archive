@@ -16,3 +16,22 @@
   - **路由器实测**：`拆解视频分镜` → top1 `video-breakdown-skill`(0.6465)；`分镜拆解出关键帧` → top1 同上(0.7363)
   - `verify_truth_consistency`：12 PASS / 2 FAIL（C13 A-memory-start 版本漂移、C14 时效产物，**均非本轮引入**）
   - 三门禁 `mirror=pass noise=pass evolution=pass`
+
+## ✅ 已完成（2026-09-22 第 3 轮）
+
+- **A-project-better 四维体检**（用户按钮选定口径）→ `05-exec/第3轮执行报告.md`：四源感知 + 5 项门禁实跑取证 + 四维诊断 + 10 条建议清单
+  - 门禁实测基线：`handoff status` 6/8 filled；`handoff review` 5/9（56%，4 warnings）；`rule_editor.py gates` 三门禁全绿；焚诀 `verify` **15 PASS / 0 FAIL / 0 SKIP**；版本控制基线（#20）远端 SHA == 本地 HEAD ✅
+- **7 项非破坏性整改落盘**：
+  1. `07-next-steps.md` 主卷 P0 按实测重写 + `part1` 过期待办逐条销账（原「已完成」标题下藏 7 条 `- [ ]`，其中 5 条实测早已完成）
+  2. `05-feature-status.part1.md` 清失效阻塞：LOW 灰区 / HM 方案 / q-2 / q-3 四项均移入「已解除（历史留痕）」
+  3. `01-goal.md` 六阶段目标按实测勾选 + 补「已完成目标」3 条
+  4. `handoff.py sync` 填充 `02-structure.md` 目录树 + 手工回填模块说明 / `03-tech-stack.md` / `04-file-map.md`
+  5. `06-constraints.md` 补 4 条 [BUG] + 7 条 [DEBT] + 5 条红线
+  6. `08-ac-obs.md` 补 **8 条真实可复跑 AC**（AC-OBS-01~08，全部带命令判据）
+  7. 新增 `README.md`（工作区入口）/ `05-exec/README.md`（19 patch 索引）/ `05-exec/第3轮执行报告.md`
+- **本轮新发现（实测，已登记为待办）**：
+  - 上游门禁 **3 处判据缺陷**：AC 未剔注释致假通过 / 05 判「无功能状态」假阴性 / `status`≠`review` 对 02 口径矛盾
+  - GM 每日日志 **09-09~09-20 空档 12 天**（R9 事故清空未回填）→ 项目 09-14/09-19 的 footer 落盘证据不可核验
+  - skill 数口径 **四数不一**（169 / 120 / 152 / 205）
+  - `.rule_backup` 实测 32 个 `.bak`；`01-scan/overlap_raw.txt`（283KB）中间产物滞留
+- **收尾（2026-09-22）**：`savepoint` **exit 0**（中途 1 次被拒 = `焚诀\.codebuddy` 未 gitignore 豁免 → 并行会话 `1f354e9` 解除）；焚诀 `verify` 15 PASS / 0 FAIL；`gates` 三门禁全绿

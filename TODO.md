@@ -1,9 +1,36 @@
-# TODO — 自建 skill 体系优化审计（跨会话续接唯一入口）
+# TODO — 阶段状态总表（索引，**非入口**）
 
-> 更新：2026-09-19（第 3 轮） | 当前阶段：**阶段0-4 主体完成，P0 清单 23/25 已闭环**，阶段5 部分完成；剩余项以 `memory/07-next-steps.md` P0 为准
+> **入口声明（2026-09-22 修正）**：跨会话**唯一入口 = `memory/07-next-steps.md`**（A-project-handoff 致命纪律 #1）。本文件只做「六阶段状态总表」，**不承载 P0** —— 此前本文件自称「唯一入口」，与 handoff 法定入口冲突，已消解。
+> 更新：2026-09-22 | 当前阶段：**阶段0-4 完成，阶段5 进行中（三项已绿 / 两项未做）**
 > 权威范围：`00-scope/自建skill清单.md` | 权威源：`D:\global_skills`（git）→ 镜像 `C:\Users\37533\.agents\skills`
+> 三处分工（消三重同义源）：查「下一步做什么」→ `memory/07-next-steps.md`；查「哪个阶段到哪」→ 本表；查「上一轮干了啥」→ `05-exec/README.md`。
 
-## 🔴 第 3 轮进度（2026-09-19，本轮）
+## 六阶段状态总表（2026-09-22 实测）
+
+| 阶段 | 状态 | 产物 | 未闭环项 |
+|---|---|---|---|
+| 0 范围裁定 | ✅ 完成 | `00-scope/`（3 文件） | — |
+| 1 四维机器扫描 | ⚠️ 部分 | `01-scan/`（4 文件） | `attention_sim.py` / `content_snr.py` / `negative_tag_audit.py` 未跑；缺「通配符引用」死链检测 |
+| 2 全量精读 | ✅ 完成 | `02-review/`（6 份族卡，7 批） | — |
+| 3 审计报告 | ✅ 完成 | `03-audit/`（P0 25 项分级） | — |
+| 4 实施计划 + 执行 | ✅ 完成（4 批） | `04-plan/` + `05-exec/` | 批5 其余项（用户裁定「只做 b」，b 已完成） |
+| 5 工作流专项 | 🚧 进行中 | `04-plan/工作流专项建议.md` | ① `direct_map` 误命中 ② 注册表 `user_created` 失真复核（基数待裁定） |
+| 记忆层 | ✅ 建档（本轮回填） | `memory/` 8 文件 + 分卷 + P-1 | `archive/` 为空（归档机制从未执行） |
+
+## 🔴 第 4 轮进度（2026-09-22）
+
+- [x] **A-project-better 四维体检**（用户按钮选定口径）→ `05-exec/第3轮执行报告.md`：四源感知 + 5 项门禁实跑 + 四维诊断 + 10 条建议清单
+- [x] **7 项非破坏性整改落盘**：07 主卷 P0 重写 + part1 销账 / 05 清失效阻塞 / 01-goal 勾选 / 02·03·04 回填 / 06 补 Bug·DEBT / 08 补 8 条真实 AC / 新增 `README.md` + `05-exec/README.md` + 第3轮报告
+- [x] **门禁实测基线**：`handoff review` 5/9（56%）→ 本轮整改后复跑见第 3 轮报告；`rule_editor.py gates` 三门禁全绿；焚诀 `verify` **15 PASS / 0 FAIL / 0 SKIP**
+- [x] **savepoint 一度被拒 → 已解除**：受管根 `焚诀\.codebuddy\`（**运行中 IDE 会话数据**，非交付物）未在 `.gitignore` 豁免 → `[GATE:noise-fail]`；并行会话 01:20:13 补 `焚诀\.gitignore`（commit `1f354e9`）后 `noise` = `[GATE:noise-pass]`，本项目 `savepoint` 复跑 **exit 0**。⚠️ 教训：活跃工具目录**不能**按 #17 字面迁 `_trash`
+- [x] **D1 修 3 处门禁判据缺陷**（受管根 `7cc7d4d`，A-project-handoff **V3.42.0**）：假通过（AC 未剔注释）/ 假阴性（05 不认章节式）/ 口径矛盾（status≠review）；三函数下沉 `common.py` 单一真相源；层a 11/11 + 层b 含对照；本项目 `review` **56% → 100%**
+- [x] **D2 阶段5 两项**（焚诀 `bf5e284`，已推送 SHA 一致）：① 直连表 —— 收窄 vp 过泛 pattern + **复扫 7 死目标 / 11 条死直连全数修正**，死目标归零、回归 **ALL PASS**；② 注册表 `user_created` 口径裁定为 **120 条**，「42 条失真」**不复现**，2 条真脏数据登记 P2
+- [x] **D3 归档与轮转**：`.rule_backup` 40 → **35**（5 份迁 `_trash\backup-rotation\`）；`overlap_raw.txt`(283KB) → `archive/`
+- [x] **D5 GM 日志空档留痕**：追加「R9 事故 · 每日日志空档说明（事后补记）」，**不补造当日日志**；`[GATE:evolution-pass]`
+- [ ] **待确认（D4）**：本轮 11 改 + 3 新增的 `git commit` + `push`（工作区仓）
+- 🔎 **本轮新发现**：GM 每日日志 09-09~09-20 空档 12 天（R9 事故未回填）；**skill 数口径已裁定 = 注册表 120 条**（磁盘含 SKILL.md 151 / 仅磁盘有 31 / 仅注册表有 0）；**阶段0 自建清单 90 → 仅 60 在册**
+
+## 🔴 第 3 轮进度（2026-09-19）
 
 - [x] **批2 剩余 P0 单点修复（commit `eb77870`，7 文件 / 19 处补丁）**：P0-5 `chaoshi-image-optimization` ffmpeg 硬编码 `8.1.1`（实测已升 9.0 → 脚本必崩）→ 动态探测；P0-6 `fenjue-routing-health-check` CHECK-3 写死 `part1..4` → 动态枚举（实测 16 卷，旧文漏 12 卷致假阴性）；P0-10 `hook-analyzer`/`report-generator` 上游 `video-breakdown-skill` 不存在 → 标注悬空；P0-12 `openclaw-fenjue-weekly` 收尾门禁枚举 → 在役端 `OC/WB/TR/CX/HM`；P0-14 删 `A-memory-align` 死引用行
 - [x] 三门禁 `mirror=pass noise=pass evolution=pass`；工作区仅剩他人 `github/_skillhub_meta.json`
