@@ -1,0 +1,5 @@
+<!-- footer:begin session=fe25905e023843a08383cf7ba5cca9a6 ts=2026-09-22T01:52:00+08:00 -->
+[skill清单] 本轮调用=3 个 (A-memory-start, A-project-handoff, A-project-better)
+[升级建议] skill=A-project-handoff | 五问=错误信息 | 改法=review 判据剔 HTML 注释、兼容「章节式」功能状态写法 | 对照=已取(证据=生效路径：本项目 handoff review 56%→100% 且合成项目 05/08 双 PASS；反例：注释-only 合成项目仍报「没有定义 AC-OBS」，防线未放松) | 状态=已闭环(证据=D:\global_skills\A-project-handoff\SKILL.md#版本行:V3.42.0)
+[升级建议] skill=A-memory-start | 五问=低效流程 | 改法=同项门禁两入口结论不一致时先查 mtime 与 commit 时间 | 对照=已取(证据=生效路径：查得 01:17 失败、01:20 并行会话修复后 noise 转 pass 且 savepoint exit 0；反例=不查时间即判「门禁自相矛盾」→ 误写 [BUG] 须撤回) | 状态=未闭环(原因=本轮未落盘为规则)
+<!-- footer:end -->
