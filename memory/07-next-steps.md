@@ -6,7 +6,8 @@
 
 ## 最近对话摘要
 
-- **2026-09-22（第 3 轮，本轮）** — A-project-better 四维体检 + 7 项非破坏性整改；详见 `05-exec/第3轮执行报告.md`（含新发现：门禁判据 3 处缺陷、GM 日志 09-09~09-20 空档 12 天、skill 数口径四数不一）。收尾三条：`handoff savepoint` **exit 0**（中途一度被拒，根因 = `焚诀\.codebuddy` 未 gitignore 豁免，已由并行会话 commit `1f354e9` 解除）、焚诀 `verify` **15 PASS / 0 FAIL**、`rule_editor gates` 三门禁全绿
+- **2026-09-22（第 6 批，本轮）** — 用户追加三项全闭环：① 修 `rule_editor.py commit --fix-mirror`（受管根 `7d8a8e1`，落盘 **R270**，A-memory-start **V10.63.0**；两层对照实测）② v2 清单 LOW 30 / EXCLUDE 43 **维持**（自建口径定格 **77 条**）③ 31 件按**全量自包含**入库（受管根 `29f9d868`，399 文件 / 54.3MB；`local==remote`）。新增待确认 **D7**：受管根 39 条残留脏项
+- **2026-09-22（第 3 轮）** — A-project-better 四维体检 + 7 项非破坏性整改；详见 `05-exec/第3轮执行报告.md`（含新发现：门禁判据 3 处缺陷、GM 日志 09-09~09-20 空档 12 天、skill 数口径四数不一）。收尾三条：`handoff savepoint` **exit 0**（中途一度被拒，根因 = `焚诀\.codebuddy` 未 gitignore 豁免，已由并行会话 commit `1f354e9` 解除）、焚诀 `verify` **15 PASS / 0 FAIL**、`rule_editor gates` 三门禁全绿
 - **2026-09-19（第 2 轮）** — 批2 剩余 P0 单点修复 + 注册表重建；见 `05-exec/第2轮执行报告.md` §十四~§二十
 - **2026-09-14（第 1 轮）** — 阶段0-4 主体；见 `07-next-steps.part3.md`
 
@@ -16,6 +17,7 @@
 - [ ] **遗留 3 条待逐条判定**：`openclaw-task-supervision` / `wps-knowledgebase` / `data-layer-consistency-fix` 各 1 处弃用平台名
 
 - [ ] **[P2] 注册表 2 条真脏数据**：`testing` 的 `source` 为空串、`oc-dispatch-exec-guard` 的 `source=user`（非标准值 `user-created`）
+- [ ] **[P2] 受管根 39 条残留脏项待处置（D7）**：` D` **6**（上一轮 D3 轮转 / #17 迁移留下的**未提交删除**；磁盘均在 `global_memory_archive\_trash\backup-rotation\` 与 `global_skills\_trash\`，**非数据丢失**）+ `??` **33**（`.rule_backup/*.bak`，该仓库本就跟踪此目录）→ 需一次「提交迁移删除 + 跟进备份」的 git 提交（破坏性，待确认）
 
 ## 分卷目录
 - **卷1** `07-next-steps.part1.md` — 历史待办与已完成条目（2026-09-22 已按实测销账）
