@@ -12,10 +12,10 @@
 
 ## P0 — 必须做
 
-- [ ] **阶段0 清单基数已过期，需重出**：原清单「自建 90（HIGH+MID）」实测**仅 60 仍在注册表**，30 个已从磁盘消失 ⇒ 以「注册表 **120** 条」为唯一口径重出清单，或明确标注该清单为历史快照
-- [ ] **31 个「仅磁盘有」的 skill 是否入册**：11 个 `local-*`（用户裁定排除）+ 20 个新装市场件（brainstorming / figma / slides / obsidian-* / notion-cli / theme-factory 等）→ 裁定后跑 `build_registry`
-- [ ] **阶段1 补跑**：`attention_sim.py` / `content_snr.py` / `negative_tag_audit.py`；扫描脚本补「通配符引用」死链检测
+- [ ] **阶段1 补跑**：`attention_sim.py` / `content_snr.py` / `negative_tag_audit.py`；扫描脚本补「通配符引用」死链检测（`scan_all.py --stage scan` 已修好可用，见 `05-exec/第3轮执行报告.md` 第十节）
 - [ ] **遗留 3 条待逐条判定**：`openclaw-task-supervision` / `wps-knowledgebase` / `data-layer-consistency-fix` 各 1 处弃用平台名
+- [ ] **v2 清单的 LOW 30 / EXCLUDE 43 待裁定**：v2 按 151 基数重出后灰区 30 条 + 排除 43 条是否维持（v1 曾裁定灰区「排除」）
+- [ ] **[P2] 新入册 31 件在 `D:\global_skills` 仍是未跟踪（`??`）** → 是否纳入版本化（否则 `git clean` 即丢）
 - [ ] **[P2] 注册表 2 条真脏数据**：`testing` 的 `source` 为空串、`oc-dispatch-exec-guard` 的 `source=user`（非标准值 `user-created`）
 
 ## 分卷目录

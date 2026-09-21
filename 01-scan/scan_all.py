@@ -20,7 +20,7 @@ sys.stdout.reconfigure(encoding="utf-8")
 GS = r"D:\global_skills"
 REG_DIR = r"C:\Users\37533\Desktop\workspace\焚诀\skill\registry"
 IDX = os.path.join(REG_DIR, "unified-skills-index.json")
-POC = os.path.join(REG_DIR, "platform-oc.json")
+POC = os.path.join(REG_DIR, "platform-oc.json")  # ⚠️ 2026-09-21 OC 退役后该文件已被删除（下方走在役端回落）
 MANIFEST = os.path.join(REG_DIR, "disk_manifest.json")
 WS = r"c:\Users\37533\Desktop\workspace\自建skill优化"
 SCOPE_DIR = os.path.join(WS, "00-scope")
@@ -94,16 +94,27 @@ def git_first_adds():
 
 def triage():
     idx = load_json(IDX)
-    poc = load_json(POC)
     man = load_json(MANIFEST)
     reg = idx.get("skills", {})
-    uc_list = set(poc.get("user_created_skills", []))
+    # 2026-09-22 适配（R236：命令先实跑）：原来的第二源 platform-oc.json 已随 OC 退役（2026-09-21）
+    # 被删除 → 原代码在此 FileNotFoundError，阶段0/1 的「唯一可复跑工具」整体失效。
+    # 口径回落为「在役端 platform-*.json 的 user_created_skills 并集」（语义等价：原 = OC 端自建名单）。
+    uc_list = set()
+    if os.path.exists(POC):
+        uc_list = set(load_json(POC).get("user_created_skills", []))
+        uc_src = "platform-oc"
+    else:
+        for _pf in ("platform-wb.json", "platform-tc.json", "platform-codex.json", "platform-hm.json"):
+            _pp = os.path.join(REG_DIR, _pf)
+            if os.path.exists(_pp):
+                uc_list |= set(load_json(_pp).get("user_created_skills", []))
+        uc_src = "在役端 platform-*"
     man_map = {s["name"]: s for s in man.get("skills", [])}
 
     dirs = sorted(d for d in os.listdir(GS)
                   if os.path.isdir(os.path.join(GS, d)) and d not in SKIP_DIRS)
     adds = git_first_adds()
-    print(f"[info] 磁盘 {len(dirs)} | 注册表 {len(reg)} | platform-oc 自建 {len(uc_list)} "
+    print(f"[info] 磁盘 {len(dirs)} | 注册表 {len(reg)} | {uc_src} 自建 {len(uc_list)} "
           f"| disk_manifest {len(man_map)} | git A 提交文件 {len(adds)}")
 
     rows, distortion = [], []
@@ -242,8 +253,11 @@ def triage():
         print(f"[conf] {k}: {len(by_conf.get(k, []))}")
     print(f"[distortion] 命名域自建但注册表 false: {len(distortion)}")
 
-    md = ["# 自建 skill 清单（三源交叉裁定）", "",
-          "> 生成：scan_all.py --stage scope | 源：unified-skills-index.json + platform-oc.json + disk_manifest.json + 磁盘枚举 + git 首提交",
+    md = ["# 自建 skill 清单（三源交叉裁定 · v2）", "",
+          f"> 生成：scan_all.py --stage scope（2026-09-22 重出；基数 = 注册表 {len(reg)} 条 = 磁盘实测，焚诀 verify C1 全等）",
+          "> 源：unified-skills-index.json + 在役端 platform-*.json（user_created_skills 并集）+ disk_manifest.json + 磁盘枚举 + git 首提交",
+          "> ⚠️ 本版**取代 v1**（2026-09-14，169 条时代）。v1 已原样归档至 `archive/scope-v1-169-2026-09-14/`（历史留痕不改写）。",
+          f"> 覆盖：磁盘 {len(dirs)} 个目录；已排除 `SKIP_DIRS`（`_my-skills` = 保护标记非任务型 skill、`hooks` 基建、`_trash`/`_temp`/`_bak`/`.git`/`.hermes`/`__pycache__`）→ 与注册表 151 条差 1（即 `_my-skills`）。",
           "> 打分：registry user_created=true +5 | 命名域自建族 +3 | semver +2 | git 版本化提交 +2 | disk global_skills +1 "
           "| user_created=false -4 | LICENSE -3 | source=skillhub -3 | 官方元数据 -3 | openclaw_plugin -6",
           f"> 磁盘目录 {len(dirs)} → HIGH {len(by_conf.get('HIGH', []))} / MID {len(by_conf.get('MID', []))} "
@@ -270,7 +284,7 @@ def triage():
 
     dmd = ["# 注册表 user_created 标记失真条目", "",
            "> 判定：命名域属自建族（用户澄清口径）但 `unified-skills-index.json` 标 `user_created:false`",
-           "> 处置：阶段5 用 data-layer-consistency-fix 修正，修正后重建派生件（build_registry.py --apply）",
+           "> 处置（2026-09-22 修正）：`data-layer-consistency-fix` 已退役 → 改为「先判定是否**真失真**（无市场元数据 ≠ 自建，反证：`canvas-design` 为 Anthropic 市场件却无 `_meta.json`；且 `user_created` 取自 frontmatter 且缺省 false = **未标注**而非标错）→ 确认真失真才改 SKILL.md frontmatter → 跑 `build_registry.py` + `build_indexes.py --apply` + `verify_truth_consistency.py`」",
            f"> 共 {len(distortion)} 条", "",
            "| skill | 前缀 | 注册表uc | 注册表source | disk源 | 版本 |",
            "|---|---|---|---|---|---|"]
