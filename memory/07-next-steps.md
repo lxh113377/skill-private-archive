@@ -14,7 +14,7 @@
 
 - [ ] **阶段1 补跑**：`attention_sim.py` / `content_snr.py` / `negative_tag_audit.py`；扫描脚本补「通配符引用」死链检测（`scan_all.py --stage scan` 已修好可用，见 `05-exec/第3轮执行报告.md` 第十节）
 - [ ] **遗留 3 条待逐条判定**：`openclaw-task-supervision` / `wps-knowledgebase` / `data-layer-consistency-fix` 各 1 处弃用平台名
-- [ ] **[P2] 新入册 31 件在 `D:\global_skills` 仍是未跟踪（`??`）** → 是否纳入版本化（否则 `git clean` 即丢）
+
 - [ ] **[P2] 注册表 2 条真脏数据**：`testing` 的 `source` 为空串、`oc-dispatch-exec-guard` 的 `source=user`（非标准值 `user-created`）
 
 ## 分卷目录
