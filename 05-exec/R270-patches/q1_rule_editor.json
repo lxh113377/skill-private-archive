@@ -1,0 +1,10 @@
+[
+  {
+    "old": "        print(f\"[mirror] Fix 执行异常: {e}\")\n        return False",
+    "new": "        print(f\"[mirror] Fix 执行异常: {e}\")\n        return False\n\n\ndef _mirror_check_only():\n    \"\"\"R270：只读检查镜像是否零漂移（不带 -Fix）。True = 镜像完整。\n\n    判据：check-skill-mirror.ps1 无 -Fix 时即只读模式（漂移 → [GATE:mirror-fail] + exit 1）。\n    脚本不存在 → 返回 True（不阻塞提交）并打印告警，避免把「检查不可用」误报成「镜像漂移」。\n    \"\"\"\n    if not os.path.exists(MIRROR_FIX_PS1):\n        print(f\"[mirror] ⚠️ 镜像脚本不存在，跳过主动检查: {MIRROR_FIX_PS1}\")\n        return True\n    cmd = [\"powershell\", \"-NoProfile\", \"-ExecutionPolicy\", \"Bypass\", \"-File\", MIRROR_FIX_PS1]\n    try:\n        r = subprocess.run(cmd, capture_output=True, timeout=180)\n        return r.returncode == 0\n    except Exception as e:\n        print(f\"[mirror] 只读检查异常: {e}\")\n        return False"
+  },
+  {
+    "old": "        pending = [r for r in rels if _has_pending_changes(r)]\n        if not pending:\n            print(\"[git] 无待提交内容（已是最新）\")\n            return",
+    "new": "        pending = [r for r in rels if _has_pending_changes(r)]\n        if not pending:\n            print(\"[git] 无待提交内容（已是最新）\")\n            return\n        # R270（2026-09-22 实测根治）：--fix-mirror 改**主动前置**，不再依赖 pre-commit hook。\n        # 根因（✅实测）：本 flag 的修复只挂在 _do_commit 的**失败分支**（「hook 判为镜像拦截 → -Fix → 重试」），\n        #   而三仓 .git/hooks 实测**只有 post-commit（自动 push），没有 pre-commit**（仅 *.sample）⇒\n        #   _do_commit 永远 rc=0 ⇒ 该分支是**死代码**，flag 形同虚设。\n        #   实证：两次 commit 成功，但紧接着 gates 报 mirror=fail missing=1 mismatch=6，必须手工补。\n        # 现为提交前主动三步：只读检查 → 漂移则 -Fix → 复核（复核仍失败则**显式告警**，不静默）。\n        # 原 hook 失败重试分支保留，以兼容将来装回 pre-commit hook 的场景。\n        if FIX_MIRROR:\n            if not _mirror_check_only():\n                print(\"[mirror] 检测到镜像漂移，自动执行 check-skill-mirror.ps1 -Fix ...\")\n                if run_mirror_fix() and _mirror_check_only():\n                    print(\"[mirror] 镜像已补齐（复核通过）\")\n                else:\n                    print(\"[mirror] ⚠️ 自动补齐未成功，镜像仍漂移；请手动执行：\\n\"\n                          f\"    powershell -NoProfile -ExecutionPolicy Bypass -File {MIRROR_FIX_PS1} -Fix\")"
+  }
+]

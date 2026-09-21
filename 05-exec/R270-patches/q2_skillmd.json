@@ -1,0 +1,18 @@
+[
+  {
+    "old": "## ⚙️ 报障分诊速查：设计性行为 vs 真实缺陷（V10.40.0，实测 2026-09-19）",
+    "new": "> **R270 —— 「自动修复开关」必须主动前置：门禁只挂在 hook 里 = 假保险**（2026-09-22 实测根治）：\n> **现象**：`rule_editor.py commit --fix-mirror` **两次**提交成功，但紧接着 `gates` 报 `mirror=fail missing=1 mismatch=6`，须**手工**跑 `check-skill-mirror.ps1 -Fix` 才恢复 ⇒ flag 形同虚设。\n> **根因（✅已实测）**：该 flag 的修复**只挂在 `_do_commit` 的失败分支**（「hook 判为镜像门禁拦截 → `-Fix` → 重试」）；而三仓 `.git/hooks` 实测**只有 `post-commit`（自动 push），没有 `pre-commit`**（`Get-ChildItem .git/hooks -File | Where-Object Name -notmatch '\\.sample$'` 仅 post-commit）⇒ `_do_commit` **永远 rc=0** ⇒ 该分支是**死代码**。文档（`04-plan/工作流专项建议.md` §4「mirror / noise / evolution 已挂 `hooks/pre-commit`」）是**设计意图，非既成事实**。\n> **判据（通用）**：**任何「提交后修复」型开关，都必须同时有「提交前主动检查」路径** —— 只依赖外部 hook 的自动修复 = 把修复能力托付给一个**可能不存在**的东西。**自查一行**：`Test-Path <repo>/.git/hooks/pre-commit`（False ⇒ 所有基于 hook 拦截的自动修复都是死代码）。\n> **修法**：`--fix-mirror` 改为提交前主动三步 —— ① 只读检查（`check-skill-mirror.ps1` **不带** `-Fix`，漂移即 `[GATE:mirror-fail]` + exit 1）② 漂移则 `-Fix` ③ **复核**；复核仍失败则**显式告警**（不静默）；原 hook 失败重试分支保留（兼容将来装回 hook）。\n> **对照（生效路径 + 反例）**：生效路径 = 制造漂移后 `commit --fix-mirror` → 自动补齐 → `gates` = `mirror=pass`；反例 = 修前同操作 → `mirror=fail missing=1 mismatch=6`。\n> 同源族：R220（假通过）、R247（判据须先证输入非空／不可用时不假报）、R269（先证再判）。\n\n## ⚙️ 报障分诊速查：设计性行为 vs 真实缺陷（V10.40.0，实测 2026-09-19）"
+  },
+  {
+    "old": "## ⚙️ 现状核验 / 历史留痕速查（V10.34.0—V10.62.0，实测 2026-09-19—2026-09-22）",
+    "new": "## ⚙️ 现状核验 / 历史留痕速查（V10.34.0—V10.63.0，实测 2026-09-19—2026-09-22）"
+  },
+  {
+    "old": "version: 10.62.0",
+    "new": "version: 10.63.0"
+  },
+  {
+    "old": "> V10.62.0 (2026-09-22): **R269 —— 「同项两入口结论不一致」先查时间戳（对象 mtime / 仓库提交序）并**当下复跑**，再谈判据缺陷**；否则会把**并行会话的修复**误读成「门禁自相矛盾」并登记不存在的缺陷（实证：`noise` 01:17 fail ↔ `gates` 01:19 pass，真因是 01:20:13 另一会话补了 `.gitignore` 豁免）。附伴生结论：活跃工具目录（`.codebuddy`）不能按 #17 字面迁 `_trash`，应走 gitignore → quarantine（区内追加，区数 6 不变）。本行是 C13 门禁锚点，版本号须与 frontmatter `version:` 同步 bump。",
+    "new": "> V10.63.0 (2026-09-22): **R270 —— 「自动修复开关」必须主动前置：门禁只挂在 hook 里 = 假保险**。根因实测：`commit --fix-mirror` 的修复只挂 `_do_commit` 失败分支，而三仓 `.git/hooks` **只有 `post-commit`、没有 `pre-commit`**（仅 `.sample`）⇒ `_do_commit` 永远 rc=0 ⇒ 该分支是死代码（两次 commit 后 `gates` 即报 `mirror=fail`）。修法 = 提交前主动三步：只读检查 → `-Fix` → 复核，复核仍失败则显式告警；存档自查一行 `Test-Path <repo>/.git/hooks/pre-commit`（区内追加，区数 6 不变）。本行是 C13 门禁锚点，版本号须与 frontmatter `version:` 同步 bump。"
+  }
+]
