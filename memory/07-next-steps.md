@@ -12,7 +12,6 @@
 
 ## P0 — 必须做
 
-- [ ] **31 件入库粒度待定（已授权纳入版本化，粒度待选）**：31 个「仅磁盘有」件全量 57.6MB，其中约 **44MB 是第三方依赖与产物**（openvino `bin/` 29.6MB、`wheels/` 9.8MB、`nltk_data/` 5.0MB、`.pyc` 0.3MB）→ 入库前须选粒度（排除依赖 ≈13MB / 连素材也排除 ≈2MB / 全量自包含 ≈57.6MB）
 - [ ] **阶段1 补跑**：`attention_sim.py` / `content_snr.py` / `negative_tag_audit.py`；扫描脚本补「通配符引用」死链检测（`scan_all.py --stage scan` 已修好可用，见 `05-exec/第3轮执行报告.md` 第十节）
 - [ ] **遗留 3 条待逐条判定**：`openclaw-task-supervision` / `wps-knowledgebase` / `data-layer-consistency-fix` 各 1 处弃用平台名
 - [ ] **[P2] 新入册 31 件在 `D:\global_skills` 仍是未跟踪（`??`）** → 是否纳入版本化（否则 `git clean` 即丢）

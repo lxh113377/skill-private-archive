@@ -40,4 +40,5 @@
 - **卷2** `05-feature-status.part2.md` — 已完成：2026-09-19 第 3 轮（P0-2 收口 + 补建上游 + 注册表重建）
 - **卷3** `05-feature-status.part3.md` — 已完成：2026-09-22 第 4 轮（D1–D5 授权项执行结果）
 - **卷4** `05-feature-status.part4.md` — 05-feature-status 分卷（R199 自动拆卷）
+- **卷5** `05-feature-status.part5.md` — 05-feature-status 分卷（R199 自动拆卷）
 

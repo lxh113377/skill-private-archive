@@ -34,7 +34,8 @@
 - [x] **④ A-project-handoff 工作流升级：删除 → 回收站**（受管根 `49789bb`，**V3.43.0**）：新增 `handoff_lib/recycle.py` + CLI `recycle`（`--list`/`--restore`）+ **致命纪律 #21** + `commands.md` §18；**系统回收站优先**（`FOF_ALLOWUNDO`）、**`_trash` 回落**、两路写 manifest + 还原指引；**防静默永久删除**（无回收站卷先探测再显式回落）；`audit forget` 硬删点改走回收站。验证 **18/18**（层a 含哈希级复原与两条反例 + 层b 真机实测 `method=recycle_bin`）
 - [x] **修 `rule_editor.py commit --fix-mirror`**（受管根 `7d8a8e1`，A-memory-start **V10.63.0**）：根因 = 修复只挂 `_do_commit` 失败分支，而**三仓 `.git/hooks` 只有 `post-commit`、没有 `pre-commit`** ⇒ 该分支是死代码；修法 = 改为**提交前主动三步**（只读检查 → `-Fix` → 复核，复核失败则显式告警）。落盘 **R270** + 通用判据「任何『提交后修复』型开关都必须有『提交前主动检查』路径；自查一行 `Test-Path <repo>/.git/hooks/pre-commit`」
 - [x] **v2 清单 LOW 30 / EXCLUDE 43 维持不变**（用户 2026-09-22 裁定）：自建口径 = **HIGH 51 + MID 26 = 77 条**，此后统计唯一基数（替代已作废的「90 / 169 时代」）
-- [ ] **31 件入库粒度待定**（已授权纳入版本化）：全量 57.6MB 中约 **44MB 为第三方依赖与产物**（openvino `bin/` 29.6MB + `wheels/` 9.8MB + `nltk_data/` 5.0MB + `.pyc` 0.3MB）→ 待选粒度后执行
+- [x] **31 件纳入版本化（全量自包含，用户裁定）**：`D:\global_skills` commit **`29f9d868` 已推送（local == remote）**，**399 文件 / 54.3MB**（含 openvino 二进制、wheel、素材）；`.git` 21.6MB → 54.9MB，已跟踪 1665 → 2064；未跟踪剩余 33（全为 `.rule_backup/*.bak`）
+- [x] **pre-commit hook**：用户裁定**暂不补装**（R270 已让 `--fix-mirror` 主动生效）；「三仓无 `pre-commit`」作为已知事实留痕，不再列待办
 - 🔎 **本轮新发现**：GM 每日日志 09-09~09-20 空档 12 天（R9 事故未回填）；**skill 数口径更新为注册表 151 条**（磁盘含 SKILL.md 151 == 注册表，C1 全等）；31 件入册的**真实原因 = 退役黑名单未随「重装回磁盘」更新**；**三仓均无 `pre-commit` hook**（「已挂 hooks/pre-commit」是设计意图而非既成事实，文档与实况脱节）
 
 ## 🔴 第 3 轮进度（2026-09-19）
