@@ -1,0 +1,30 @@
+[
+  {
+    "old": "from handoff_lib.common import COLD_START_DECL, SCRIPT_DIR, ensure_binding_table, ensure_utf8_read, ensure_utf8_write",
+    "new": "from handoff_lib.common import COLD_START_DECL, SCRIPT_DIR, ensure_binding_table, ensure_utf8_read, ensure_utf8_write, has_feature_entries, is_sync_placeholder, strip_html_comments"
+  },
+  {
+    "old": "    if struct.exists():\n        content = ensure_utf8_read(struct)\n        if \"运行 `handoff.py sync`\" in content:",
+    "new": "    if struct.exists():\n        content = ensure_utf8_read(struct)\n        if is_sync_placeholder(content):"
+  },
+  {
+    "old": "    if tech.exists():\n        content = ensure_utf8_read(tech)\n        if \"运行 `handoff.py sync`\" in content:",
+    "new": "    if tech.exists():\n        content = ensure_utf8_read(tech)\n        if is_sync_placeholder(content):"
+  },
+  {
+    "old": "    if fmap.exists():\n        content = ensure_utf8_read(fmap)\n        if \"运行 `handoff.py sync`\" in content:",
+    "new": "    if fmap.exists():\n        content = ensure_utf8_read(fmap)\n        if is_sync_placeholder(content):"
+  },
+  {
+    "old": "        has_features = bool(re.search(r\"^-\\s*(\\[x\\]|\\[ \\]|[✅🚧📋])\", content, re.MULTILINE))\n        if not has_features:",
+    "new": "        has_features = has_feature_entries(content)\n        if not has_features:"
+  },
+  {
+    "old": "        content = ensure_utf8_read(acobs)\n        # Find AC-OBS entries\n        ac_entries = re.findall(r\"AC-OBS-\\d+\", content)",
+    "new": "        content = ensure_utf8_read(acobs)\n        # 先剔 HTML 注释：模板 `<!-- 示例： -->` 里的 AC-OBS 不是真实验收标准（防假通过）\n        content = strip_html_comments(content)\n        # Find AC-OBS entries\n        ac_entries = re.findall(r\"AC-OBS-\\d+\", content)"
+  },
+  {
+    "old": "    ac_count = len(set(re.findall(r\"AC-OBS-\\d+\", acobs_content)))",
+    "new": "    ac_count = len(set(re.findall(r\"AC-OBS-\\d+\", strip_html_comments(acobs_content))))"
+  }
+]

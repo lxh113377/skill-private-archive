@@ -1,0 +1,47 @@
+# ── 门禁判据共用判定（单一真相源：防 status / review 两处漂移） ─────────────
+
+# ① 结构类文件「未运行 sync」模板占位符（status 与 review 共用）
+SYNC_PLACEHOLDER = "运行 `handoff.py sync`"
+
+
+def is_sync_placeholder(text):
+    """结构类文件是否仍停留在「未运行 sync」模板占位状态。
+
+    实测（2026-09-22）：模板的 `## 模块说明` + 2 条空列表项恰好凑够 3 行阈值 →
+    status 误判 `filled`，而同日 review 判「尚未运行 sync，目录树为空」——两子命令结论相反。
+    """
+    return SYNC_PLACEHOLDER in text
+
+
+# ② 05-feature-status 功能条目判定：兼容两种主流写法
+_FEATURE_MARKER_ITEM = re.compile(r"^-\s*(\[x\]|\[ \]|[✅🚧📋])", re.MULTILINE)
+_STATUS_SECTION = re.compile(r"^#{2,3}\s*.*?(✅|🚧|📋|⛔)", re.MULTILINE)
+_PLAIN_LIST_ITEM = re.compile(r"^-\s+\S", re.MULTILINE)
+
+
+def has_feature_entries(text):
+    """05-feature-status 是否记录了功能状态。
+
+    旧判据只认 `- ✅` / `- [x]` 标记形态 → 对「`## ✅ 已完成` 章节 + 普通 `- 描述`」
+    这一主流写法**假阴性**（实测 2026-09-22：项目实有 10 条已完成条目仍被判
+    「没有记录任何功能状态」）。现判据：标记式 **或** 「状态章节 + 列表项」均算通过。
+    """
+    if _FEATURE_MARKER_ITEM.search(text):
+        return True
+    return bool(_STATUS_SECTION.search(text) and _PLAIN_LIST_ITEM.search(text))
+
+
+# ③ HTML 注释剥离：凡「计数类」判据都必须先剥离注释再计数
+_HTML_COMMENT = re.compile(r"<!--.*?-->", re.DOTALL)
+
+
+def strip_html_comments(text):
+    """剥离 HTML 注释（同族既有做法见 extract_p0_section）。
+
+    实测（2026-09-22）：08-ac-obs 模板 `<!-- 示例： -->` 里的 3 条 AC-OBS 被 review 计为
+    真实验收标准，构成**假通过**（输出「8 个 AC-OBS，但只有 11 个格式正确」，11 > 8 自相矛盾）。
+    """
+    return _HTML_COMMENT.sub("", text)
+
+
+def extract_p0_section(content):

@@ -1,0 +1,6 @@
+[
+  {
+    "old": "- V3.41.5 (2026-09-22):",
+    "new": "- V3.42.0 (2026-09-22): **门禁判据 3 处缺陷修复（同一项目实跑暴露的「假通过 / 假阴性 / 口径矛盾」）**——① **假通过**：`review` 用全文正则数 `AC-OBS-\\d+` 但**不剔 HTML 注释**，模板 `<!-- 示例： -->` 里的 3 条示例被计为真实验收标准（实测输出「8 个 AC-OBS，但只有 11 个格式正确」，11 > 8 自相矛盾）；修法 = 计数前先 `strip_html_comments()`（沿用 `extract_p0_section` 既有同族做法），交叉检查的 AC 计数同步修正。② **假阴性**：`05-feature-status` 判据只认 `- ✅` / `- [x]` 标记形态，**不认「`## ✅ 已完成` 章节 + 普通 `- 描述`」这一主流写法** ⇒ 项目实有 10 条已完成条目仍被判「没有记录任何功能状态」；修法 = 新增 `has_feature_entries()`，标记式 **或**「状态章节 + 列表项」均判通过。③ **口径矛盾**：`status` 判 `02-structure.md ✅ filled (auto-synced)`，同日 `review` 判其「尚未运行 sync，目录树为空」——根因是 `status` 的 `filled` 只数非空行，模板的 `## 模块说明` + 2 条空列表项恰好凑够 3 行阈值；修法 = 结构类文件先判 `is_sync_placeholder()`，是则降级 `empty / needs sync`，且**降级必须发生在 `filled_count` 累加之前**（否则 `Completeness` 仍虚高）。三个判定函数**下沉 `common.py` 作单一真相源**（`is_sync_placeholder` / `has_feature_entries` / `strip_html_comments`），`savepoint`（review）与 `projcmds`（status）共用，**根绝双处漂移**。验证（R238 两层含对照）：层 a 隔离桩覆盖边界样本（标记式 / 章节式 / 空模板 / 注释-only）；层 b 集成对照 —— 合成「有真实内容」项目应全绿、「注释-only + 无功能状态」项目应**仍报警**（证明判据未放松）。同步 SKILL.md frontmatter 3.41.5 → 3.42.0。\n\n- V3.41.5 (2026-09-22):"
+  }
+]

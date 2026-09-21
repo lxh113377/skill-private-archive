@@ -1,0 +1,10 @@
+[
+  {
+    "old": "STRUCTURAL_FILES, TEMPLATE_DIR,",
+    "new": "STRUCTURAL_FILES, TEMPLATE_DIR, is_sync_placeholder,"
+  },
+  {
+    "old": "    for fname in MEMORY_FILES:\n        fpath = mem_dir / fname\n        status, lines = file_fill_status(fpath)\n        if status == \"filled\":\n            filled_count += 1\n        icon = status_icons.get(status, \"?\")\n        note = \"\"\n        if fname in STRUCTURAL_FILES and status == \"filled\":\n            # Check if stale (compare mtime with sync markers)\n            content = ensure_utf8_read(fpath)\n            if \"SYNC_AUTO_GENERATED\" in content:\n                note = \"auto-synced\"\n            else:\n                note = \"manually edited\"\n        elif status == \"partial\":\n            note = \"needs more content\"\n        elif status == \"empty\":\n            note = \"needs filling\"\n        print(f\"{fname:<30} {icon} {status:<9} {lines:<8} {note}\")",
+    "new": "    for fname in MEMORY_FILES:\n        fpath = mem_dir / fname\n        status, lines = file_fill_status(fpath)\n        note = \"\"\n        # 判据修正（2026-09-22 实测）：结构类文件仍停留在「未运行 sync」模板占位时不得算 filled。\n        # 旧口径只数非空行，模板的 `## 模块说明` + 2 条空列表项恰好凑够 3 行阈值 → 误判 filled，\n        # 而同日 review 判其「尚未运行 sync，目录树为空」，同文件两子命令结论相反。\n        if fname in STRUCTURAL_FILES and status != \"missing\" and is_sync_placeholder(ensure_utf8_read(fpath)):\n            status = \"empty\"\n            note = \"needs sync（未运行 sync，仍为模板占位）\"\n        if status == \"filled\":\n            filled_count += 1\n        icon = status_icons.get(status, \"?\")\n        if not note and fname in STRUCTURAL_FILES and status == \"filled\":\n            content = ensure_utf8_read(fpath)\n            note = \"auto-synced\" if \"SYNC_AUTO_GENERATED\" in content else \"manually edited\"\n        elif not note and status == \"partial\":\n            note = \"needs more content\"\n        elif not note and status == \"empty\":\n            note = \"needs filling\"\n        print(f\"{fname:<30} {icon} {status:<9} {lines:<8} {note}\")"
+  }
+]
