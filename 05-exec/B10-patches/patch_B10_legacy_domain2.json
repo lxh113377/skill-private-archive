@@ -1,0 +1,12 @@
+[
+  {
+    "file": "C:\\Users\\37533\\Desktop\\workspace\\焚诀\\skill\\tools\\_add_oc_builtins.js",
+    "old": "// Domain classification\nconst domains = {\n    '09-dev-tools': ['1password','clawhub','coding-agent','diagram-maker',\n        'eightctl','gemini','gh-issues','gog','healthcheck','mcporter',\n        'model-usage','nano-pdf','node-connect','node-inspect-debugger',\n        'openai-whisper','openai-whisper-api','oracle','ordercli',\n        'peekaboo','python-debugpy','sag','session-logs','skill-creator',\n        'spike','taskflow','taskflow-inbox-triage','video-frames','xurl'],\n    '06-frontend-ui': ['apple-notes','apple-reminders','bear-notes','blogwatcher',\n        'blucli','camsnap','gifgrep','goplaces','himalaya','imsg',\n        'meme-maker','obsidian','openhue','sherpa-onnx-tts','songsee',\n        'sonoscli','spotify-player','summarize','things-mac','tmux',\n        'trello','weather'],\n    '02-skill-ecosystem': ['notion']\n};\n\nfunction getDomain(name) {\n    for (const [domain, list] of Object.entries(domains)) {\n        if (list.includes(name)) return domain;\n    }\n    return '09-dev-tools';\n}",
+    "new": "// Domain classification\n// 2026-09-22 第 10 轮：原实现硬编码旧数字前缀域（09-dev-tools / 06-frontend-ui /\n// 02-skill-ecosystem，2026-08-16 已软删除）。按 build_registry._infer_domain 的明令「禁止再生成」，\n// 此处**去掉整套名→域映射**，统一落 general_utils；\n// 真实域判定唯一权威 = eval/build_registry.py → domain_classifier.classify_domain。\nfunction getDomain(name) {\n    return 'general_utils';\n}"
+  },
+  {
+    "file": "C:\\Users\\37533\\Desktop\\workspace\\焚诀\\skill\\tools\\_fix_registry.py",
+    "old": "        \"domain\": \"02-skill-ecosystem\",\n        \"compatible_platforms\": [\"oc\", \"wb\", \"cc\", \"tc\"],",
+    "new": "        # 2026-09-22 第 10 轮：旧数字前缀域已退役（禁止再生）→ 统一 general_utils；\n        # 在役端 = WB/TR/CX/HM（OC 已退役 2026-09-21 / TC 是 TR 别名）。\n        \"domain\": \"general_utils\",\n        \"compatible_platforms\": [\"wb\", \"tr\", \"cx\", \"hm\"],"
+  }
+]
