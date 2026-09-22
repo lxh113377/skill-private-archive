@@ -43,4 +43,5 @@
 - **卷3** `05-feature-status.part3.md` — 已完成：2026-09-22 第 4 轮（D1–D5 授权项执行结果）
 - **卷4** `05-feature-status.part4.md` — 05-feature-status 分卷（R199 自动拆卷）
 - **卷5** `05-feature-status.part5.md` — 05-feature-status 分卷（R199 自动拆卷）
+- **卷6** `05-feature-status.part6.md` — 已完成：2026-09-22 第 10 轮（Step 0 首次实跑 + 记忆层回写 + 阶段1 补齐 + B1–B7 授权执行）
 
