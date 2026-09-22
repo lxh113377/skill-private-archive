@@ -14,7 +14,7 @@
 
 ## P0 — 必须做
 
-- [ ] **【环境待办】工作区 `693dcc8` 推送未达**（2026-09-23 00:47 实测）：`git push` 报 `Failed to connect to github.com port 443 via 127.0.0.1`（代理未通）——网络恢复后重推即可，本地 `main` 领先 `origin/main` 1 个提交，无数据风险
+- [x] **【环境待办·已解除】工作区 `693dcc8` 推送一度未达**（2026-09-23 00:47 实测）：`git push` 曾报 `Failed to connect to github.com port 443 via 127.0.0.1`（代理瞬断）——同轮后段重试已通，post-commit hook 自动推送生效，实测 `main...origin/main` 无领先（`693dcc8` + `2c896cc` 均已达远端）
 
 - [x] **【待观察·他人在途】** 受管根 `A-project-handoff/references/version-history.md` 有**未提交改动**（2 增 2 删）：把已提交的 `V3.44.1` 条目**重编号为 `V3.45.1`** 并将 `V3.45.0` 降为短行。C13 仍全绿，但**改写已提交的版本历史条目**触及 R241 口径 ⇒ 按 R269 不擅动，登记待观察（待该会话收口）—— **✅ 已收口（2026-09-23 销账）**：实测 `git status --porcelain -- A-project-handoff/references/version-history.md` = **空**（该会话已提交/还原）
 - [ ] **【待观察·他人在途】** 受管根 4 个未提交改动（2026-09-23 00:25 实测 `git -C D:\global_skills status --porcelain`）：`gstack` / `local-computer-use` / `local-realtime-translator` / `local-screenshot-qa` 各自 `SKILL.md` 为 `M` —— 按 R269 与 P-1 铁律**只登记不擅动**，待对应会话自行收口
