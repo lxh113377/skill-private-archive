@@ -15,7 +15,7 @@
 ## P0 — 必须做
 
 - [ ] **【待观察·他人在途】** 受管根 `A-project-handoff/references/version-history.md` 有**未提交改动**（2 增 2 删）：把已提交的 `V3.44.1` 条目**重编号为 `V3.45.1`** 并将 `V3.45.0` 降为短行。C13 仍全绿，但**改写已提交的版本历史条目**触及 R241 口径 ⇒ 按 R269 不擅动，登记待观察（待该会话收口）
-- [ ] **【仅登记，无法处理】④ 受管根存在并行会话在途改动**：`A-project-handoff/scripts/handoff_lib/projcmds.py` / `savepoint.py` 未提交态 ⇒ 任何触碰 `handoff_lib` 的改动须先协调；另 GM `memory/01-goal.md`、`memory/07-next-steps*`、`memory/2026-0X-XX.md` 删除项亦属他人在途
+- [x] **④ 受管根并行在途改动已收口（2026-09-22 第 12 批复核）**：`handoff_lib/projcmds.py` / `savepoint.py` 的改动**已提交**（`4638e4d` 14:49:44 → `b7ba255` 15:09:43），`git status --porcelain -- handoff_lib` **为空**；R272 已落地并经我方独立复验（层a 7/7 + 层b′ 2/2 + 层b 零误报）。**仅剩** `references/version-history.md` 1 项未提交（见上条 P0）
 
 
 ## 分卷目录
