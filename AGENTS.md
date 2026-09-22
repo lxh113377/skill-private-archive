@@ -1,14 +1,10 @@
 # AGENTS.md — 自建skill优化
 
-> 自动生成: 2026-09-23 01:28:14
+> 自动生成: 2026-09-23 04:11:33
 
 
 ## 最近对话摘要
-- **2026-09-23（第 11 轮，本轮）** — A-project-better 全流程第二次实跑：Step 0 台账 10 条（取证 00:25，**6 条实为记忆滞后**）→ 用户按钮确认 → 四维诊断 + 3 条建议 → 用户选「全执行 1+2」：记忆层销账回写（06×4 条加注 / 05.part1 三条平台名 / 07 本卷 P0 收口 + 新待观察登记）→ 白名单提交 + savepoint 收口。**r2 补记**：`[推荐:R196-01]` 已收口——noise 处置提示补活跃工具运行态例外（A-project-handoff **V3.46.3**，受管根 `216be16`，dry-run 3/3 + py_compile + noise pass 路径复跑）
-- **2026-09-22（第 6 批）** — 修 `rule_editor.py commit --fix-mirror`（`7d8a8e1`，R270）；v2 口径定格 **77 条**；31 件全量自包含入库（`29f9d868`）
-- **2026-09-22（第 3 轮）** — A-project-better 四维体检 + 7 项非破坏性整改；见 `05-exec/第3轮执行报告.md`
-- **2026-09-19（第 2 轮）** — 批2 剩余 P0 单点修复 + 注册表重建；见 `05-exec/第2轮执行报告.md`
-- **2026-09-14（第 1 轮）** — 阶段0-4 主体；见 `07-next-steps.part3.md`
+- **2026-09-23（第 13 轮，本轮）** — 性能瓶颈三维实测分析（用户任务：加载速度/运行效率/资源占用，约束=不改功能行为）：实测结论「墙钟全健康、真瓶颈=每会话固定注入 ~146KB 上下文税」→ 报告 `05-exec/性能瓶颈分析与优化方案.md`（commit `0d1f0af`）；P0-1/P0-2/P1-3a/P1-4 待授权登记本卷 P0；上游债 trim-shell 判据盲区 R269 登记。**r2 补记**：用户授权后 P0-1+P0-2 已执行收口——A-memory-start/SKILL.md 68,676B→**24,759B（-64%）**六区迁 `references/quickref-*` 六卷留指针索引（V10.66.0）；contract.md 44,847B→**18,616B（-58%）**R-CURRENT 全文与维护工作流迁两卷、第 N 条锚点保留（V10.67.0）；受管根 2 commits、`--fix-mirror` 同步、gates **mirror/noise/evolution=pass**（stub=fail 为既有在途债）、焚诀 verify 迁移前后均 **19 PASS / 0 FAIL**；对照=已取（生效路径全绿 + 反例两道：未提交态 mirror=fail 被拦、编号预检拦「R251 首号」fail-closed）。**r3 补记**：trim-shell 双重盲区修复收口（上游 V3.47.0，隔离桩 15/15 + 本项目 05 主壳 5,130B→1,036B 实测）；05 主壳自愈 + split 拆出 part9 + 07 摘要历史 6 条迁 part6（主壳 4,045B）；AGENTS.md 注入壳重生成（05 节 -3,887B、07 节净 +3,045B 为本轮登记成本）；P1-3a 裁定：06 收敛不动（无上游分卷机制支撑，不擅建结构，维持登记）
 
 ---
 
@@ -190,37 +186,7 @@
 
 ## ✅ 已完成
 
-- 阶段0 范围裁定（2026-09-14）
-  - 产出 `00-scope/自建skill清单.md`、`注册表失真条目.md`、`scope_result.json`
-  - 结论：自建 102 / EXCLUDE 34 / 灰区 33 / 失真 42
-  - ⚠️ **校正注（2026-09-22 第 10 轮，R241 只加注不改写）**：上行为 **v1（169 基数）当时为真**。现行 **v2（注册表 151 基数）** = 自建 **77**（HIGH 51 + MID 26）/ EXCLUDE **43** / 灰区 LOW **30** / 失真 **41**；v1 三件已原样归档 `archive/scope-v1-169-2026-09-14/`。**此后所有比例统计只以 v2 为分母。**
-- 项目记忆初始化（2026-09-14）：memory/ 8 文件 + archive/ + P-1 绑定表 + .aiexclude
-
-- 阶段1 四维机器扫描（2026-09-14）
-  - 产出 `01-scan/scan_report.md`、`scan_result.json`、`overlap_raw.txt`
-  - 结论：超4KB 83/102、弱触发 9、真死链 4、弃用平台名 25、合并候选 4 簇
-  - ✅ **补齐（2026-09-22 第 10 轮）**：三脚本已实跑 —— `attention_sim`（本会话上下文税 9.32% / 软注意力稀释 0.9x / 干草堆 Top-1 46.9%、Top-10 87.5%）、`content_snr`（**4.7/6**）、`negative_tag_audit`（**FAIL**，7 ghost 条目 + 7 ghost 引用，健康率 72.5%）；通配符引用死链检测已加跑（**无新增需修项**）。`overlap_raw.txt` 已迁 `archive/`。详见 `05-exec/第10轮执行报告.md`。
-
-- 阶段2 第1批：A族 5 个精读（2026-09-14）→ `02-review/A族_精读.md`
-
-- 阶段3 审计报告（2026-09-14）→ `03-audit/自建skill优化审计报告.md`：P0 共 25 项（分三梯队）、P1 按族、P2 合并决策、阶段4 分 5 批
-
-- 阶段4 实施计划（2026-09-14）→ `04-plan/实施计划.md`：5 批共 40+ 项，每项含目标文件/改动/验证命令/回滚手段；建议顺序 批3→批1→批2→批4→批5
-
-- 阶段4 A3/A4/A5（2026-09-14, commit `bc225b3`）：9 补 `version` + 1 收窄 description 并补负向边界 + 7 回填 `meta.json` description → 17 文件一次收口，`[GATE:mirror-pass]`、工作区 status=0
-  - 实测修正 3 处清单偏差：A3 实存 13（`skill-install` 已退役）其中 4 个为市场件应跳过；A4 清单漏 `local-vram`；A4 性质 = 上游 marvis 打包 bug（不参与路由）
-
-- 阶段4 批3.1 拆卷（2026-09-14, commit `f8bc12f` + `V3.37.1`）：`A-project-handoff/SKILL.md` **85,508B → 3,827B（≤4KB）**，分入 `references/` 5 卷（disciplines / skill-binding / memory-structure / commands / version-history），内容零丢失
-  - **回归修复**：拆卷使 `COLD_START_DECL` 锚点迁出 SKILL.md → `coldstart --check` exit 1 → **所有项目 savepoint 被误拒**；修 `handoff.py cmd_coldstart` 锚点回退链（SKILL.md → `references/*.md`），实测 `✅ 6 行逐行 diff 全等`
-  - 经验：**大型 skill 拆卷必须同步检查「按 SKILL.md 定位的机器锚点/门禁」**（coldstart 锚点、行号引用、脚本内硬编码路径）
-- 阶段4 批4 元数据（2026-09-14）：`ican-frontend-design-system` version 1.0.0→4.0.0（对齐版本表 V4）；`dogfood`/`testing` 补 `version: 1.0.0`
-
-- 批5-b `story-scan` 合并（2026-09-14, commit `15449b0`，27 文件）：`story-long-scan`(17.3KB) + `story-short-scan`(9.2KB) → 统一入口 `story-scan`（`--length=long|short`）
-  - 结构：`SKILL.md` 5,343B（第0步分流 + 采集质量门 + 分卷索引 + 流程衔接）+ `references/scan-long.md`(16.8KB 原文) / `scan-short.md`(8.8KB 原文) + 其余 6 references + 8 scripts（`cdp-utils.js` 去重）
-  - 顺带**补齐审计指出的「短篇缺采集质量门」** → 提为两篇通用
-  - 11 处引用方文本更新（`story/`、`story-long|short-analyze|write`）+ 4 个命令文档改名（`story-scan-long|short.md`）；旧件 → `_trash/retired-2026-09-14-story-scan-merge`
-  - 风险控制：两篇正文**按原文搬运未改写**（git rename 识别 97%/95%），旧件入 `_trash` 可回滚
-- 灰区裁定（用户 2026-09-14）：Intel 分发样例包（`local-asr`/`computer-use`/`realtime-translator`/`tts`/`txt2img`）+ 25 个边缘件 → **排除**，不纳入维护范围
+- trim-shell 双重盲区修复 + 本项目记忆自愈（2026-09-23 第 13 轮 r3，上游 A-project-handoff **V3.47.0**）：① 调用面与条目识别双修复（cmd_trim_shell/savepoint 遍历 SPLIT_TARGETS + 认 ✅/已完成章节普通列表）；② 验证 = 隔离桩 15/15 + py_compile + gates 三项 pass + 本项目实跑 05 主壳 5,130B→1,036B 迁 11 条零误伤；③ split 拆出 part9、07 摘要历史 6 条迁 part6、AGENTS.md 重生成（05 节 -3,887B）；④ P1-3a 裁定不做（无上游机制支撑，登记上游建议）
 
 ## 分卷目录
 - **卷1** `05-feature-status.part1.md` — 进行中 / 计划中 / 阻塞
@@ -230,6 +196,8 @@
 - **卷5** `05-feature-status.part5.md` — 05-feature-status 分卷（R199 自动拆卷）
 - **卷6** `05-feature-status.part6.md` — 已完成：2026-09-22 第 10 轮（Step 0 首次实跑 + 记忆层回写 + 阶段1 补齐 + B1–B7 授权执行）
 - **卷7** `05-feature-status.part7.md` — 05-feature-status 分卷（R199 自动拆卷）
+- **卷8** `05-feature-status.part8.md` — 已完成：2026-09-23 第 13 轮（性能瓶颈三维实测分析）
+- **卷9** `05-feature-status.part9.md` — 05-feature-status 分卷（R199 自动拆卷）
 
 
 ---
@@ -300,22 +268,21 @@
 
 ## 最近对话摘要
 
-- **2026-09-23（第 11 轮，本轮）** — A-project-better 全流程第二次实跑：Step 0 台账 10 条（取证 00:25，**6 条实为记忆滞后**）→ 用户按钮确认 → 四维诊断 + 3 条建议 → 用户选「全执行 1+2」：记忆层销账回写（06×4 条加注 / 05.part1 三条平台名 / 07 本卷 P0 收口 + 新待观察登记）→ 白名单提交 + savepoint 收口。**r2 补记**：`[推荐:R196-01]` 已收口——noise 处置提示补活跃工具运行态例外（A-project-handoff **V3.46.3**，受管根 `216be16`，dry-run 3/3 + py_compile + noise pass 路径复跑）
-- **2026-09-22（第 6 批）** — 修 `rule_editor.py commit --fix-mirror`（`7d8a8e1`，R270）；v2 口径定格 **77 条**；31 件全量自包含入库（`29f9d868`）
-- **2026-09-22（第 3 轮）** — A-project-better 四维体检 + 7 项非破坏性整改；见 `05-exec/第3轮执行报告.md`
-- **2026-09-19（第 2 轮）** — 批2 剩余 P0 单点修复 + 注册表重建；见 `05-exec/第2轮执行报告.md`
-- **2026-09-14（第 1 轮）** — 阶段0-4 主体；见 `07-next-steps.part3.md`
+- **2026-09-23（第 13 轮，本轮）** — 性能瓶颈三维实测分析（用户任务：加载速度/运行效率/资源占用，约束=不改功能行为）：实测结论「墙钟全健康、真瓶颈=每会话固定注入 ~146KB 上下文税」→ 报告 `05-exec/性能瓶颈分析与优化方案.md`（commit `0d1f0af`）；P0-1/P0-2/P1-3a/P1-4 待授权登记本卷 P0；上游债 trim-shell 判据盲区 R269 登记。**r2 补记**：用户授权后 P0-1+P0-2 已执行收口——A-memory-start/SKILL.md 68,676B→**24,759B（-64%）**六区迁 `references/quickref-*` 六卷留指针索引（V10.66.0）；contract.md 44,847B→**18,616B（-58%）**R-CURRENT 全文与维护工作流迁两卷、第 N 条锚点保留（V10.67.0）；受管根 2 commits、`--fix-mirror` 同步、gates **mirror/noise/evolution=pass**（stub=fail 为既有在途债）、焚诀 verify 迁移前后均 **19 PASS / 0 FAIL**；对照=已取（生效路径全绿 + 反例两道：未提交态 mirror=fail 被拦、编号预检拦「R251 首号」fail-closed）。**r3 补记**：trim-shell 双重盲区修复收口（上游 V3.47.0，隔离桩 15/15 + 本项目 05 主壳 5,130B→1,036B 实测）；05 主壳自愈 + split 拆出 part9 + 07 摘要历史 6 条迁 part6（主壳 4,045B）；AGENTS.md 注入壳重生成（05 节 -3,887B、07 节净 +3,045B 为本轮登记成本）；P1-3a 裁定：06 收敛不动（无上游分卷机制支撑，不擅建结构，维持登记）
 
 ## P0 — 必须做
 
-- [ ] **【待观察·他人在途】** 受管根未提交改动（2026-09-23 01:35 实测 `git -C D:\global_skills status --porcelain` = 6 条）：`gstack` / `local-computer-use` / `local-realtime-translator` / `local-screenshot-qa` / `chaoshi-image-optimization` / `chaoshi-web-deploy` 各自 `SKILL.md` 为 `M` —— 按 R269 与 P-1 铁律**只登记不擅动**，待对应会话自行收口
-- [ ] **【待观察·焚诀在途债】** `gate_stub_runner` 实测 `[GATE:stub-fail]`（2026-09-23 01:35）：① 桩 `stub_c16_memory` 2/3——正例样本硬编码总分 `181.6` vs 活体评分卡 `183.9`（判据样本与活体口径漂移，R263 补注①形态，须由移动总分的会话裁决）；② 未登记桩判据 C17/C18/C19（registry 冻结于 09-22 后新增）。均非本轮引入（本轮仅改 A-project-handoff 文案，焚诀 eval 零触碰），按 R269 登记待其归属会话收口
+- [ ] **【待观察·他人在途】** 受管根未提交改动（2026-09-23 01:35 实测 `git -C D:\global_skills status --porcelain` = 6 条）：`gstack` / `local-computer-use` / `local-realtime-translator` / `local-screenshot-qa` / `chaoshi-image-optimization` / `chaoshi-web-deploy` 各自 `SKILL.md` 为 `M` —— 按 R269 与 P-1 铁律**只登记不擅动**，待对应会话自行收口。**第 12 轮复核（2026-09-23 01:30）**：仍为同 6 条 `M`，未收口，维持待观察
+- [ ] **【待观察·焚诀在途债】** `gate_stub_runner` 实测 `[GATE:stub-fail]`（2026-09-23 01:35）：① 桩 `stub_c16_memory` 2/3——正例样本硬编码总分 `181.6` vs 活体评分卡 `183.9`（判据样本与活体口径漂移，R263 补注①形态，须由移动总分的会话裁决）；② 未登记桩判据 C17/C18/C19（registry 冻结于 09-22 后新增）。均非本轮引入（本轮仅改 A-project-handoff 文案，焚诀 eval 零触碰），按 R269 登记待其归属会话收口。**第 12 轮复核（2026-09-23 01:30）**：stub 复跑仍 `[GATE:stub-fail]`（2/3 + 3 未登记，同态）；同刻焚诀 `verify_truth_consistency.py` **19 PASS / 0 FAIL**，C17/C18/C19 静态判据本身全绿——债仅在「桩未登记 + 样本漂移」层，维持待观察
+- [x] **【待观察·上游债】** `handoff.py trim-shell` 不认「普通 `- 描述`」形态已完成条目（2026-09-23 实测：本项目 05 主壳 5,064B 含 12 条 2026-09-14 已完成条目，trim-shell 跑后原样未动，仅 07 报「无可迁条目」）——与上游已修 `has_feature_entries`（review 假阴性族）同源；`split --check` 判 05 主壳「索引壳，主卷不拆」为设计内形态，无违规，仅判据盲区登记，归属 A-project-handoff 会话裁决（R269 只登记不擅动）—— **✅ 校正注（2026-09-23 r3 销账）：已修复** —— 根因实测为**双重盲区**（调用面 cmd_trim_shell/savepoint 只处理 07，05 从未纳入自愈；迁移循环只认 `- [x] `）。本会话修于 A-project-handoff **V3.47.0**（受管根 5 文件提交 + gates 三项 pass）：两处调用遍历 `SPLIT_TARGETS` + 条目识别扩「复选框 ∪ ✅/已完成章节普通列表」（🚧/⛔ 章节绝不迁）。验证：隔离桩 15/15（五类反例留守 + 两形态正例迁出）+ 本项目实测 05 主壳 5,130B→1,036B 迁 11 条、07 摘要/P0 零误伤 + py_compile 双文件
+- [ ] **【P1 待授权·可选】** 性能方案剩余项（2026-09-23，详见 `05-exec/性能瓶颈分析与优化方案.md`）：P1-3a 本项目注入壳瘦身——**✅ 校正注（2026-09-23 r3 裁定：本轮不做，销账）**：实测 06 主文件 12,148B 无上游分卷/自愈机制（SPLIT_TARGETS 只注册 07/05，trim-shell 判据只认「✅/已完成」章节而 06 是 [BUG]/[DEBT] 留痕形态），收敛须逐条改写原文——违 R241「只加注不改写」精神且无机器护栏，**不擅建结构**；如要做须上游先裁 06 分卷口径（登记为上游建议，非本项目待办）。P1-4 unified_router direct_hit 短路（上游焚诀，每轮省 ~1.1s；**项目红线明文「焚诀 eval/ 只读调用不改」**，转焚诀归属会话）；P2 三项观察不动
 ## 分卷目录
 - **卷1** `07-next-steps.part1.md` — 历史待办与已完成条目（2026-09-22 已按实测销账）
 - **卷2** `07-next-steps.part2.md` — 已完成：批2 剩余 P0 与 q-2/q-3 收口
 - **卷3** `07-next-steps.part3.md` — 最近对话摘要（历史）
 - **卷4** `07-next-steps.part4.md` — 07-next-steps 分卷（R199 自动拆卷）
 - **卷5** `07-next-steps.part5.md` — 07-next-steps 分卷（R199 自动拆卷）
+- **卷6** `07-next-steps.part6.md` — 最近对话摘要（历史轮次，2026-09-23 第 13 轮 r3 迁入，正文零改写）
 
 
 ---
