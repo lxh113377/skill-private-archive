@@ -45,4 +45,5 @@
 - **卷5** `05-feature-status.part5.md` — 05-feature-status 分卷（R199 自动拆卷）
 - **卷6** `05-feature-status.part6.md` — 已完成：2026-09-22 第 10 轮（Step 0 首次实跑 + 记忆层回写 + 阶段1 补齐 + B1–B7 授权执行）
 - **卷7** `05-feature-status.part7.md` — 05-feature-status 分卷（R199 自动拆卷）
+- **卷8** `05-feature-status.part8.md` — 已完成：2026-09-23 第 13 轮（性能瓶颈三维实测分析）
 
