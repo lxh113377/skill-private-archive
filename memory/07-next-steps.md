@@ -14,10 +14,11 @@
 
 ## P0 — 必须做
 
-- [ ] **【待确认 B8｜因并发冲突挂起】** `A-project-handoff` review 增「主卷声明 vs 分卷已完成项」交叉校验（治本项目**记忆复发性滞后**的机制根因）—— 实测 `handoff_lib/projcmds.py`(+79 行) 与 `savepoint.py`(+16 行) **已被并行会话改过且未提交**；同文件编辑会被 `git add` 一并带走（R236 补注实证）⇒ 需**先协调该会话收口**再改
-- [ ] **【待确认 B9｜环境脏项/在途产物】** `D:\global_memory\_bak\07nextsteps_20260922_142621\`（18 文件 = GM `07-next-steps` 全卷，14:26:21 创建）—— **归属已查清**：同刻 GM 的 `memory/07-next-steps*.md` 正处于已修改未提交态，且全仓无脚本会写该形态 ⇒ 判为**并行会话改前手工快照（在途）**；按 R269 本轮未迁。**它是本项目 `savepoint` 被拒的唯一原因**（`noise=fail`）
+- [x] **B8 已改道解决（用户 2026-09-22 裁定）**：不改上游 `handoff_lib`（避开并行会话在途改动），改为把「**销账必须逐条对照分卷 `partN` 的已完成条目**」立为**本项目 `memory/AGENTS.md` 铁律** —— 零冲突、零风险，且约束面更直接（治的是本项目自己的判定习惯）
+- [x] **B9 已自解（用户 2026-09-22 裁定「暂不动，登记待观察」→ 观察期内外部自行清理）**：`Test-Path D:\global_memory\_bak` 实测 **False**（该目录已不存在）⇒ `gates` 的 `noise` 自动转 **pass**、本项目 `savepoint` 复跑 **exit 0「本次对话已安全落盘」**。归属结论留痕：曾为并行会话改 GM `07-next-steps` 前的手工快照（在途产物），按 R269 未迁，**由该会话自行收口**
 - [x] **B1–B7 全部完成**（焚诀 `f7c538c` / 受管根 `7375e40` / 工作区 `9976c46`+`5e4b3b6`）：负标签健康率 72.5→100%、平台口径改在役 4 端、`fenjue_measure` 失效路径、`.rule_backup` 迁出受管根、注册表 2 字段归一化、`content_snr` **4.7→6.0/6**（`degradation-test` 17/17）—— 明细见 `05-exec/第10轮执行报告.md` §九
-- [ ] **[P2] 本轮新发现 5 条**：① `build_registry.py` 无「已有条目字段刷新」路径；② 其 `compatible_platforms` 缺省仍含已退役 `oc`/`tc`；③ `_optimize_registry.js/.ps1` + `detect-changes.ps1:213` + `sync-skills-bridge.ps1:198` 硬编码 `09-dev-tools` ⇒ 会**再生**已退役域；④ 受管根存在并行会话在途改动；⑤ `skill_content/*.json.prev` 未跟踪
+- [x] **本轮 5 条新发现（用户 2026-09-22 选定「继续处理」）**：① `build_registry.py` 补 `refresh_fields()` + `--refresh`（只刷 frontmatter 显式声明的 `version`/`source`/`user_created`，实跑变更 38 处）② `compatible_platforms` 缺省改在役四端 ③ 旧数字前缀域硬编码**实测共 6 处**（非 3 处）已全清（3 ps1 + 2 js + 1 py，语法自检全 OK）⑤ `skill_content/*.json.prev` 入 GM `.gitignore` + `rm --cached`（13 份留磁盘）—— ①②③⑤ 完成；焚诀 `42a076a` / GM 提交
+- [ ] **【仅登记，无法处理】④ 受管根存在并行会话在途改动**：`A-project-handoff/scripts/handoff_lib/projcmds.py` / `savepoint.py` 未提交态 ⇒ 任何触碰 `handoff_lib` 的改动须先协调；另 GM `memory/01-goal.md`、`memory/07-next-steps*`、`memory/2026-0X-XX.md` 删除项亦属他人在途
 
 
 ## 分卷目录
