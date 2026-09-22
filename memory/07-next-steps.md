@@ -14,18 +14,12 @@
 
 ## P0 — 必须做
 
-- [x] **【环境待办·已解除】工作区 `693dcc8` 推送一度未达**（2026-09-23 00:47 实测）：`git push` 曾报 `Failed to connect to github.com port 443 via 127.0.0.1`（代理瞬断）——同轮后段重试已通，post-commit hook 自动推送生效，实测 `main...origin/main` 无领先（`693dcc8` + `2c896cc` 均已达远端）
-
-- [x] **【待观察·他人在途】** 受管根 `A-project-handoff/references/version-history.md` 有**未提交改动**（2 增 2 删）：把已提交的 `V3.44.1` 条目**重编号为 `V3.45.1`** 并将 `V3.45.0` 降为短行。C13 仍全绿，但**改写已提交的版本历史条目**触及 R241 口径 ⇒ 按 R269 不擅动，登记待观察（待该会话收口）—— **✅ 已收口（2026-09-23 销账）**：实测 `git status --porcelain -- A-project-handoff/references/version-history.md` = **空**（该会话已提交/还原）
 - [ ] **【待观察·他人在途】** 受管根未提交改动（2026-09-23 01:35 实测 `git -C D:\global_skills status --porcelain` = 6 条）：`gstack` / `local-computer-use` / `local-realtime-translator` / `local-screenshot-qa` / `chaoshi-image-optimization` / `chaoshi-web-deploy` 各自 `SKILL.md` 为 `M` —— 按 R269 与 P-1 铁律**只登记不擅动**，待对应会话自行收口
 - [ ] **【待观察·焚诀在途债】** `gate_stub_runner` 实测 `[GATE:stub-fail]`（2026-09-23 01:35）：① 桩 `stub_c16_memory` 2/3——正例样本硬编码总分 `181.6` vs 活体评分卡 `183.9`（判据样本与活体口径漂移，R263 补注①形态，须由移动总分的会话裁决）；② 未登记桩判据 C17/C18/C19（registry 冻结于 09-22 后新增）。均非本轮引入（本轮仅改 A-project-handoff 文案，焚诀 eval 零触碰），按 R269 登记待其归属会话收口
-- [x] **R272 第四类校验（主卷内嵌 commit/版本漂移）→ 结案：三种形态全部否决**（2026-09-22 按「先测边界值再定判据」推进）：① 宽口径（8 项目 / 104 行，四候选判据）**TP 恒 0、FP 1~3、真实正样本 0**；② **按用户要求收窄重测**「只查主卷 P0 的**提示级**」（9 项目主卷）**命中 2 处、2/2 全误报、TP=0** ⇒ 按用户口径「有误报就回报不做」**提示级亦否决** ⇒ 值比对 / 格式规范 / 提示级**三种形态全部不做**。替代机制 = `memory/AGENTS.md`「写当前值必须附取值命令、禁硬编码」+ 封条「勿再尝试」。证据：`05-exec/R272b-boundary.py`、`R272c-narrow.py`、报告 §14.4~§14.6
-- [x] **④ 受管根并行在途改动已收口（2026-09-22 第 12 批复核）**：`handoff_lib/projcmds.py` / `savepoint.py` 的改动**已提交**（`4638e4d` 14:49:44 → `b7ba255` 15:09:43），`git status --porcelain -- handoff_lib` **为空**；R272 已落地并经我方独立复验（层a 7/7 + 层b′ 2/2 + 层b 零误报）。**仅剩** `references/version-history.md` 1 项未提交（见上条 P0）
-
-
 ## 分卷目录
 - **卷1** `07-next-steps.part1.md` — 历史待办与已完成条目（2026-09-22 已按实测销账）
 - **卷2** `07-next-steps.part2.md` — 已完成：批2 剩余 P0 与 q-2/q-3 收口
 - **卷3** `07-next-steps.part3.md` — 最近对话摘要（历史）
 - **卷4** `07-next-steps.part4.md` — 07-next-steps 分卷（R199 自动拆卷）
+- **卷5** `07-next-steps.part5.md` — 07-next-steps 分卷（R199 自动拆卷）
 
