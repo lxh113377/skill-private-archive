@@ -1,0 +1,7 @@
+[
+  {
+    "file": "A-project-handoff/scripts/handoff_lib/savepoint.py",
+    "old": "        print(\"   处置：把散落项迁往对应 _trash（禁止删除），再重跑 savepoint\")",
+    "new": "        print(\"   处置：把散落项迁往对应 _trash（禁止删除），再重跑 savepoint\")\n        print(\"   ⚠️ 例外（同源纪律 R269）：活跃工具运行态文件/目录（IDE 会话数据、平台生成的 .zcodeignore 等）禁迁 _trash——向该仓 .gitignore 追加对应条目，gitignore 命中即降级 quarantine（先例：焚诀 .codebuddy/ 1f354e9、.zcodeignore c39d1b9）\")"
+  }
+]

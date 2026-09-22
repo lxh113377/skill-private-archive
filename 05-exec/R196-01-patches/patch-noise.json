@@ -1,0 +1,12 @@
+[
+  {
+    "file": "A-project-handoff/scripts/noise_lint.py",
+    "old": "  violation   — 根部出现的不该存在的散落文件/目录 → 必须迁往 _trash，禁止删除",
+    "new": "  violation   — 根部出现的不该存在的散落文件/目录 → 必须迁往 _trash，禁止删除；例外（同源纪律 R269）：活跃工具运行态文件/目录禁迁 _trash，改走 .gitignore 豁免（命中即降级 quarantine）"
+  },
+  {
+    "file": "A-project-handoff/scripts/noise_lint.py",
+    "old": "        print(f\"FAIL 发现 {total_violations} 个违规散落项 → 必须迁往对应 _trash，禁止删除。\")",
+    "new": "        print(f\"FAIL 发现 {total_violations} 个违规散落项 → 必须迁往对应 _trash，禁止删除。\")\n        print(\"⚠️ 例外（同源纪律 R269）：活跃工具运行态文件/目录禁迁 _trash，改走 .gitignore 豁免（命中即降级 quarantine）。\")"
+  }
+]
