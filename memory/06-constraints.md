@@ -57,4 +57,5 @@
 ## 分卷目录
 - **卷1** `06-constraints.part1.md` — 已完成条目归档（R224 主壳自愈）
 - **卷2** `06-constraints.part2.md` — 06-constraints 分卷（R199 自动拆卷）
+- **卷3** `06-constraints.part3.md` — 06-constraints 分卷（R199 自动拆卷）
 
