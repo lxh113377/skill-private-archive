@@ -1,0 +1,22 @@
+[
+  {
+    "file": "C:\\Users\\37533\\Desktop\\workspace\\焚诀\\audit\\fenjue_measure.py",
+    "old": "for k,cl in [(\"lessons.md\",0.9),(\"behavior_core.md\",5.7)]:",
+    "new": "for k,cl in [(\"lessons.md\",0.9),(\"core/behavior_core.md\",5.7)]:"
+  },
+  {
+    "file": "C:\\Users\\37533\\Desktop\\workspace\\焚诀\\audit\\fenjue_measure.py",
+    "old": "if (sz(os.path.join(GM,\"behavior_core.md\")) or 0) > 5*1024:",
+    "new": "if (sz(os.path.join(GM,\"core\",\"behavior_core.md\")) or 0) > 5*1024:"
+  },
+  {
+    "file": "C:\\Users\\37533\\Desktop\\workspace\\焚诀\\audit\\attention_sim.py",
+    "old": "# P0 清单：与 fenjue_measure.py L168 同集合，但 behavior_core.md 使用修正路径。\n# 实测：D:\\global_memory\\behavior_core.md 不存在，正文在 core\\behavior_core.md，\n# 主引擎按根路径取 size 得 0（失效引用）。本脚本用真实路径，并在输出标注差异。",
+    "new": "# P0 清单：与 fenjue_measure.py L182 同集合（该处已用修正路径，故 D1 未少算）。\n# 实测：D:\\global_memory\\behavior_core.md 不存在，正文在 core\\behavior_core.md。\n# 真正的失效引用在 D12(L347) 与 D15(L387) 两个子项 —— 2026-09-22 第 10 轮已修。"
+  },
+  {
+    "file": "C:\\Users\\37533\\Desktop\\workspace\\焚诀\\audit\\attention_sim.py",
+    "old": "            \"impact\": (\"无差异\" if upstream_exists else\n                       \"fenjue_measure.py L168 按根路径取 size=0，D1 少算该 P0 文件\"),",
+    "new": "            \"impact\": (\"无差异\" if upstream_exists else\n                       \"fenjue_measure.py 的 D12(L347)/D15(L387) 仍按根路径取 size=0（D1 的 P0 集合已在 L182 用修正路径，未少算）\"),"
+  }
+]

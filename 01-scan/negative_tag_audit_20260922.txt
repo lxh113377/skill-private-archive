@@ -1,0 +1,24 @@
+============================================================
+负标签健康检测 (negative_tag_audit)
+============================================================
+总条目: 51
+Ghost 条目(skill已删但仍有负标签): 7
+  [GHOST-ENTRY] skill-install
+  [GHOST-ENTRY] skill-creator
+  [GHOST-ENTRY] skills-security-check
+  [GHOST-ENTRY] install-skill-dependency
+  [GHOST-ENTRY] deep-research-pro
+  [GHOST-ENTRY] cloudbase-webapp-deploy-debug
+  [GHOST-ENTRY] clawhub
+Ghost 引用(负标签提到不存在的skill): 7
+  [GHOST-REF] skill-creator
+  [GHOST-REF] skills-security-check
+  [GHOST-REF] install-skill-dependency
+  [GHOST-REF] skill-install
+  [GHOST-REF] deep-research-pro
+  [GHOST-REF] cloudbase-webapp-deploy-debug
+  [GHOST-REF] clawhub
+自冲突: 0
+健康率: 72.5%
+
+RESULT: FAIL — 负标签存在系统性问题

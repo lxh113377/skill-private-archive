@@ -1,0 +1,12 @@
+[
+  {
+    "file": "D:\\global_skills\\A-memory-start\\references\\rule_editor.py",
+    "old": "BACKUP_DIR_NAME = \".rule_backup\"\n# R198.6：备份目录锚定脚本目录（防 cwd 漂移导致 undo 找不到备份）\nBACKUP_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), BACKUP_DIR_NAME)",
+    "new": "BACKUP_DIR_NAME = \".rule_backup\"\n# R198.6：备份目录锚定脚本目录（防 cwd 漂移导致 undo 找不到备份）\n_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))\n_LEGACY_BACKUP_DIR = os.path.join(_SCRIPT_DIR, BACKUP_DIR_NAME)\n# 2026-09-22 第 10 轮（B4）：备份落点移出受管根。\n#   问题：原落点 <脚本目录>/.rule_backup 位于 D:\\global_skills 内部，备份与目标 skill 分离、\n#         回滚定位成本高，且所有 skill 的 .bak 全部堆在 A-memory-start 下（实测 51 份常驻受管根）。\n#   新落点：D:\\global_memory_archive\\_trash\\rule_backup（受管根外 + _trash 属 noise quarantine 区，\n#         其内 *.bak 不会被 depth=2 STRAY_NAME 判违规；也不再污染 D:\\global_skills 的 git status）。\nRULE_BACKUP_EXTERNAL = r\"D:\\global_memory_archive\\_trash\\rule_backup\"\nBACKUP_DIR = (RULE_BACKUP_EXTERNAL\n              if os.path.isdir(os.path.dirname(RULE_BACKUP_EXTERNAL))\n              else _LEGACY_BACKUP_DIR)  # 外置盘不可用时回落到旧落点（不静默丢备份能力）"
+  },
+  {
+    "file": "D:\\global_skills\\A-memory-start\\references\\rule_editor.py",
+    "old": "        legacy_dirs = [BACKUP_DIR, os.path.join(os.getcwd(), BACKUP_DIR_NAME)]",
+    "new": "        # 2026-09-22 B4：显式纳入「迁出前的脚本目录落点」，保证历史备份仍可 undo\n        legacy_dirs = [BACKUP_DIR, _LEGACY_BACKUP_DIR, os.path.join(os.getcwd(), BACKUP_DIR_NAME)]"
+  }
+]

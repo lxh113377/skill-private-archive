@@ -1,0 +1,5 @@
+M1 元经验占比: 0.0% (0/86 files, 0.0/207.4 KB) -> 1.00
+M2 大SKILL文件(>40KB): 1 ['A-memory-start=65.1KB'] -> 1.00
+M3 索引声明失真: 1 [lessons.part1 声明 P0 必须记住 8 条, 实际 0 条] -> 0.66
+M4 自检金标准陈旧: 1 (degradation-test FAIL=4) [degradation-test 仍有 FAIL=4（陈旧项未识别或数据层真损）] -> 0.50
+内容信噪比: 4.7/6 [M1=1.00 M2=1.00 M3=0.66 M4=0.50]

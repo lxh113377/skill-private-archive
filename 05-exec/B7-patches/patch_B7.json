@@ -1,0 +1,17 @@
+[
+  {
+    "file": "D:\\global_memory\\scripts\\degradation-test.ps1",
+    "old": "# R164: 领域 JSON = 排除 skill_ids.json（其 skills 字段会重复计入总 skill 数 → 假 FAIL）\nfunction Get-DomainJsonFiles {\n    @(Get-ChildItem \"$global:skill_content\\*.json\" | Where-Object { $_.Name -ne 'skill_ids.json' })\n}",
+    "new": "# R164: 领域 JSON = 排除 skill_ids.json（其 skills 字段会重复计入总 skill 数 → 假 FAIL）\n# 2026-09-22 第 10 轮：追加排除 index_manifest.json（无 skills 字段，混入会导致 1c 计数虚高与 3b「空域」假 FAIL）\nfunction Get-DomainJsonFiles {\n    @(Get-ChildItem \"$global:skill_content\\*.json\" | Where-Object { $_.Name -notin @('skill_ids.json', 'index_manifest.json') })\n}"
+  },
+  {
+    "file": "D:\\global_memory\\scripts\\auto-fix.ps1",
+    "old": "    Get-ChildItem \"$SC\\*.json\" | Where-Object { $_.Name -notmatch '\\.bak' -and $_.Name -ne 'skill_ids.json' } | ForEach-Object {",
+    "new": "    Get-ChildItem \"$SC\\*.json\" | Where-Object { $_.Name -notmatch '\\.bak' -and $_.Name -notin @('skill_ids.json', 'index_manifest.json') } | ForEach-Object {"
+  },
+  {
+    "file": "D:\\global_memory\\scripts\\auto-fix.ps1",
+    "old": "    Get-ChildItem \"$SC\\*.json\" | Where-Object { $_.Name -notmatch '\\.bak' } | ForEach-Object {\n        $c = Get-Content $_.FullName -Raw | ConvertFrom-Json\n        $total += $c.skills.Count\n    }",
+    "new": "    Get-ChildItem \"$SC\\*.json\" | Where-Object { $_.Name -notmatch '\\.bak' -and $_.Name -notin @('skill_ids.json', 'index_manifest.json') } | ForEach-Object {\n        $c = Get-Content $_.FullName -Raw | ConvertFrom-Json\n        if ($null -ne $c.skills) { $total += $c.skills.Count }\n    }"
+  }
+]

@@ -1,0 +1,4 @@
+[
+  { "old": "- Must compare across all 5 platforms (cross-platform findings are high-value)",
+    "new": "- Must compare across all 4 active platforms WB/TR/CX/HM (cross-platform findings are high-value)" }
+]

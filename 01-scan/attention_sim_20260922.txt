@@ -1,0 +1,58 @@
+[bge_layer] BGE 语义层已通过 onnxruntime 后端加载（torch 不可用，已绕过）
+================================================================
+注意力税模拟 attention_sim.py（三件套）
+================================================================
+口径: token = bytes // 3 | 窗口 128000
+
+① 上下文税口径
+  P0 强制注入: 14.3KB = 4870 token = 3.8% of 128K （命中 6 文件）
+  本会话（P0+项目绑定）: 36.2KB = 12342 token = 9.64% of 128K （命中 13 文件）
+  全库（global_memory .md + 全部 SKILL.md）: 2801.1KB = 956099 token = 窗口的 7.47x（GM 449 md + 151 SKILL.md）
+  ⚠ 上游口径差异: fenjue_measure.py 用 `behavior_core.md`（不存在），实际为 `core/behavior_core.md` → fenjue_measure.py L168 按根路径取 size=0，D1 少算该 P0 文件
+
+② 蒙特卡洛软注意力稀释（相关块注意力占比 vs 场景 N）
+  trials=10000 seed=42 mu_rel=4.0 chunk=512token k=3
+  P0 强制注入                    N=    10 块 | 相关块注意力 0.9426 (p05 0.8547 / p95 0.9872) | 相对 P0 稀释 1.0x
+  本会话(P0+项目绑定)               N=    25 块 | 相关块注意力 0.8431 (p05 0.6740 / p95 0.9519) | 相对 P0 稀释 0.894x
+  全库(理论上限)                   N=  1868 块 | 相关块注意力 0.0777 (p05 0.0253 / p95 0.1711) | 相对 P0 稀释 0.082x
+  结论: D1/D7 满分 ≠ 稀释为零——上下文越大，同一相关块的注意力质量占比越低。
+
+③ 干草堆检索（协议集 vs 全库 rank）
+  引擎: bge（BGE）| 探测: torch 2.12.1+cpu
+  语料: 449 文件 / 783 块
+  Top-1 命中率 0.469 | Top-10 命中率 0.875 | 中位 rank 2
+    🟡 rank=3 → core/BOOTSTRAP.md
+    🟡 rank=2 → prompts/workflow_seven_step.md
+    ✅ rank=1 → system/simple_task_bypass_guide.md
+    🟡 rank=4 → meta/VERSION_LOCK.md
+    🟡 rank=10 → lessons/lessons.md
+    🟡 rank=2 → meta/MEMORY_WRITE_MAP.md
+    ✅ rank=1 → meta/SKILL_EVOLUTION.md
+    ❌ rank=13 → meta/BIGFILE_INDEX.md
+    🟡 rank=3 → meta/ARCHIVE_LOCATION.md
+    ✅ rank=1 → memory/01-goal.md
+    🟡 rank=3 → memory/02-structure.md
+    ✅ rank=1 → memory/03-tech-stack.md
+    🟡 rank=9 → memory/04-file-map.md
+    ❌ rank=13 → memory/05-feature-status.md
+    🟡 rank=3 → memory/06-constraints.md
+    ✅ rank=1 → memory/07-next-steps.md
+    🟡 rank=7 → memory/task-card.md
+    ❌ rank=16 → meta/memory_index.md
+    ✅ rank=1 → intent_classifier_canonical.md
+    ✅ rank=1 → skill_routing.md
+    ✅ rank=1 → RATIONALE.md
+    ✅ rank=1 → core/behavior_core.md
+    🟡 rank=2 → SOUL.md
+    ✅ rank=1 → core/USER.md
+    ✅ rank=1 → core/MEMORY.md
+    ✅ rank=1 → system/memory_protocol.md
+    ✅ rank=1 → system/language_preference.md
+    🟡 rank=6 → lessons/lessons-archive-manual.md
+    ❌ rank=73 → scripts/domain_map.ps1_readme.md
+    ✅ rank=1 → system/framework_common.md
+    🟡 rank=2 → system/critical_thinking.md
+    ✅ rank=1 → system/boot_template.md
+
+================================================================
+只读脚本：未修改任何文件。审计 D1/D7/D8 时建议与 fenjue_measure.py 同跑。

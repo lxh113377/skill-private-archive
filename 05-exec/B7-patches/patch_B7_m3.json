@@ -1,0 +1,17 @@
+[
+  {
+    "file": "D:\\global_memory\\lessons\\lessons.part1.md",
+    "old": "| P0 | `lessons/lessons-p0.md` | BOOTSTRAP Step 2，每次冷启动自动读 | **每次 session 必读（8 条）** |",
+    "new": "| P0 | `lessons/lessons-p0.md` | BOOTSTRAP Step 2，每次冷启动自动读 | **每次 session 必读（4 条）** |"
+  },
+  {
+    "file": "D:\\global_memory\\lessons\\lessons.part1.md",
+    "old": "## P0 必须记住（8条，已自动注入）\n\n已在 BOOTSTRAP Step 2 自动读入。关键内容：\n1. e3339204 文件会自发再生\n2. CC 审计是采样不是全量扫描\n3. 同名文件多目录 = 隐患\n4. Write 工具写 .ps1 默认 UTF-8 无 BOM\n5. 自举触发点须置于门禁之外（鸡生蛋）\n6. intent_classifier 缺失重建为三级路由\n7. 数据层生成器必须四道防线（2026-08-02 清空事故）\n8. 评分 prompt 定性措辞也是锚定（2026-08-02）",
+    "new": "## P0 必须记住（4条，已自动注入）\n\n已在 BOOTSTRAP Step 2 自动读入。关键内容（⚠️ 校正注 2026-09-22：原列 8 条系 R9 事故前版本；`lessons-p0.md` 现为 **R9 重建版**，实际 4 条，本摘要已按实况同步——判据由 `content_snr.py` M3 机器校验）：\n1. **R9**：递归镜像未加 `/XJ` 会跟随 junction（`robocopy /MIR` 曾清空 GM/GS 含 .git）\n2. **R263**：判据假失败先修判据、禁改数据凑绿；「0 命中」先证输入非空\n3. **派生件三方脱节**：部分构建 = 注册表/BGE/skill_content 脱节 → 必须完整 build + 提交 + verify\n4. **退役必须登记黑名单**：手工删目录 ≠ 退役完成（未登记 = 对账永远 PASS、注册表长期残留死件）"
+  },
+  {
+    "file": "C:\\Users\\37533\\Desktop\\workspace\\焚诀\\audit\\content_snr.py",
+    "old": "p0_items = len(\n    re.findall(r\"^##\\s+\\d+\\.\", read(os.path.join(LESSONS, \"lessons-p0.md\")), re.M)\n)",
+    "new": "p0_items = len(\n    re.findall(r\"^##\\s+\\S\", read(os.path.join(LESSONS, \"lessons-p0.md\")), re.M)\n)"
+  }
+]

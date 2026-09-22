@@ -8,6 +8,7 @@
 默认 dry-run（只打印摘要），加 --apply 才写盘。
 """
 import argparse
+import glob
 import json
 import os
 import re
@@ -375,7 +376,19 @@ def scan():
                 if any(f.endswith("/" + os.path.basename(rel)) for f in gm_files):
                     continue
                 dead.append(t)
-        dep = [d for d in DEPRECATED_PLATFORMS if d in raw]
+        # 通配符引用死链（2026-09-22 第 10 轮补，遗留 #1）
+        # 上一条正则的字符类不含 `*` 且要求以扩展名收尾 ⇒ `scripts/wf_*.ps1` 式引用整体漏检
+        dead_wild = []
+        for m2 in re.finditer(r"`((?:references|scripts|templates|assets)/[^`\s]*\*[^`\s]*)`", raw):
+            pat = m2.group(1).replace("\\", "/")
+            if glob.glob(os.path.join(GS, name, pat)):
+                continue
+            dead_wild.append(pat)
+        # 判据修复（2026-09-22 第 10 轮）：原实现为 `d in raw`（子串匹配），
+        # 而 DEPRECATED_PLATFORMS 含正则项 r"\bCC\b" ⇒ 该字面量永远匹配不到 ⇒ **CC 检测静默失效**
+        # （实证：`openclaw-task-supervision:114` 写「OC/WB/CC/TC/HM/CX」却从未被标出）
+        dep = [d for d in DEPRECATED_PLATFORMS if re.search(d, raw)]
+        dep = ["CC" if d == r"\bCC\b" else d.strip() for d in dep]
 
         rows.append(OrderedDict([
             ("skill", name),
@@ -385,6 +398,7 @@ def scan():
             ("desc_short", len(desc) < 40),
             ("has_version", "version" in fm), ("has_name", "name" in fm),
             ("dead_refs", sorted(set(dead))[:8]),
+            ("dead_wildcards", sorted(set(dead_wild))[:8]),
             ("deprecated_platform_hits", sorted(set(dep))),
         ]))
 
@@ -402,10 +416,12 @@ def scan():
         if r["desc_short"] or not r["has_name"]:
             md.append(f"| `{r['skill']}` | {r['desc_len']} | {r['has_trigger_words']} | "
                       f"{r['has_version']} | {r['has_name']} |")
-    md += ["", "## 死链 / 弃用平台名", "", "| skill | 死链候选 | 弃用平台名 |", "|---|---|---|"]
+    md += ["", "## 死链 / 弃用平台名", "",
+           "| skill | 死链候选 | 通配符死链候选 | 弃用平台名 |", "|---|---|---|---|"]
     for r in rows:
-        if r["dead_refs"] or r["deprecated_platform_hits"]:
+        if r["dead_refs"] or r["dead_wildcards"] or r["deprecated_platform_hits"]:
             md.append(f"| `{r['skill']}` | {', '.join(r['dead_refs']) or '-'} | "
+                      f"{', '.join(r['dead_wildcards']) or '-'} | "
                       f"{', '.join(r['deprecated_platform_hits']) or '-'} |")
 
     if args.apply:
@@ -420,6 +436,7 @@ def scan():
     print(f"[stat] 超4KB {sum(1 for r in rows if r['over_4kb'])} | "
           f"无触发词 {sum(1 for r in rows if not r['has_trigger_words'])} | "
           f"有死链候选 {sum(1 for r in rows if r['dead_refs'])} | "
+          f"有通配符死链候选 {sum(1 for r in rows if r['dead_wildcards'])} | "
           f"有弃用平台名 {sum(1 for r in rows if r['deprecated_platform_hits'])}")
     return 0
 

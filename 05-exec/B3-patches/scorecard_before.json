@@ -1,0 +1,90 @@
+{
+  "schema": "fenjue-track200-v1",
+  "generated_at": "2026-09-22T14:34:38",
+  "ts": "2026-09-22T14:34:38",
+  "total": 200,
+  "total_line": 200,
+  "pass_line": 170,
+  "line_pass": 0,
+  "overall": 168.4,
+  "pass": false,
+  "verdict": "FAIL",
+  "band": "良好",
+  "lines": [
+    {
+      "line": "主线① 跨平台skill互通同步",
+      "total": 29.0,
+      "max": 33
+    },
+    {
+      "line": "主线② 多agent统一记忆+路由",
+      "total": 29.1,
+      "max": 33
+    },
+    {
+      "line": "主线③ skill命中率优化",
+      "total": 30.7,
+      "max": 33
+    },
+    {
+      "line": "主线④ lessons命中率度量",
+      "total": 22.8,
+      "max": 33
+    },
+    {
+      "line": "主线⑤ 注意力优化",
+      "total": 26.2,
+      "max": 33
+    },
+    {
+      "line": "主线⑥ 前置使用率采样",
+      "total": 30.6,
+      "max": 33
+    }
+  ],
+  "lines_map": {
+    "line1": {
+      "score": 29.0,
+      "max": 33,
+      "detail": "sync: 44.0/50 → 29.0/33（50→33 归一化）",
+      "evidence": "scorecard.score_sync()",
+      "evidence_fingerprint": "track200:sync:scale33"
+    },
+    "line2": {
+      "score": 29.1,
+      "max": 33,
+      "detail": "memory: 44.1/50 → 29.1/33（50→33 归一化）",
+      "evidence": "scorecard.score_memory()",
+      "evidence_fingerprint": "track200:memory:scale33"
+    },
+    "line3": {
+      "score": 30.7,
+      "max": 33,
+      "detail": "routing: 46.5/50 → 30.7/33（50→33 归一化）",
+      "evidence": "scorecard.score_routing()",
+      "evidence_fingerprint": "track200:routing:scale33"
+    },
+    "line4": {
+      "score": 22.8,
+      "max": 33,
+      "detail": "lessons 命中率 9/13 = 69.2% → 22.8/33（可判定口径；manual 4 条无目标文件不计分母）",
+      "evidence": "eval/lessons_hitrate.py --json",
+      "evidence_fingerprint": "track200:line4:lessons_hitrate"
+    },
+    "line5": {
+      "score": 26.2,
+      "max": 33,
+      "detail": "注意力税: dilution=0.913×0.5 + Top1=0.469×0.25 + Top10=0.875×0.25 → 0.792 → 26.2/33 | strict本体Top1=0.344（R217 Top-10 加权纳入，双轨披露）",
+      "evidence": "audit/attention_sim.py --json",
+      "evidence_fingerprint": "track200:line5:attention"
+    },
+    "line6": {
+      "score": 30.6,
+      "max": 33,
+      "detail": "使用率: 低频候选 8/109 → 治理缺口 0.073 → 30.6/33",
+      "evidence": "eval/skill_usage_stats.py --json",
+      "evidence_fingerprint": "track200:line6:usage"
+    }
+  },
+  "unavailable_lines": []
+}
