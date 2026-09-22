@@ -26,14 +26,23 @@
   }
  },
  "detail": {
-  "A": [],
-  "B": [],
-  "C": [
-   "自建skill优化/07-next-steps.md:18 `b7ba255` [应通过]",
-   "自建skill优化/07-next-steps.part4.md:13 `b7ba255` [应通过]",
-   "自建skill优化/07-next-steps.part4.md:19 `42a076a` [应通过]"
+  "A": [
+   "[应通过] 医/05-feature-status.md:7 `43dbe7b` :: - [x] 2026-09-22 项目优化轮（A-project-better）：根仓库建 GitHub 私有远端备份 `lxh113377/yi-workspace`（commit 43dbe7b 已推送）；交付物断链",
+   "[应通过] 医/07-next-steps.md:25 `43dbe7b` :: - [x] 台账#7→S3 根仓库建远端备份：GitHub 私有仓 `https://github.com/lxh113377/yi-workspace`，commit `43dbe7b` 已推送（ls-remote 实"
   ],
-  "D": []
+  "B": [
+   "[应通过] 医/07-next-steps.md:11 `645177f` :: - [ ] 台账#3 9/30 12:00 内部冻结：跑 `node work/freeze_check.mjs`（2026-09-22 实测 4/4 ALL PASS：PDF=20页/视频=284.7s/health="
+  ],
+  "C": [
+   "[应通过] 自建skill优化/07-next-steps.md:19 `b7ba255` :: - [x] **④ 受管根并行在途改动已收口（2026-09-22 第 12 批复核）**：`handoff_lib/projcmds.py` / `savepoint.py` 的改动**已提交**（`4638e4d` ",
+   "[应通过] 自建skill优化/07-next-steps.part4.md:13 `b7ba255` :: - [x] **B8 已双重闭环（2026-09-22）**：① 项目侧——「**销账必须逐条对照分卷 `partN` 的已完成条目**」已立为**本项目 `memory/AGENTS.md` 铁律**（用户裁定的零冲突",
+   "[应通过] 自建skill优化/07-next-steps.part4.md:19 `42a076a` :: - [x] **本轮 5 条新发现（用户 2026-09-22 选定「继续处理」）**：① `build_registry.py` 补 `refresh_fields()` + `--refresh`（只刷 frontm"
+  ],
+  "D": [
+   "[应通过] iCAN大学生创新创业大赛/07-next-steps.part17.md:7 `d481666d` :: - [ ] **PH2-8D CloudBase 静态快照**（🔒 阻塞：需 `tcb login`；登录后 `tcb hosting deploy 演示快照集 -e d481666d...`，若提示付费则停止并保留 G",
+   "[应通过] 医/07-next-steps.md:11 `645177f` :: - [ ] 台账#3 9/30 12:00 内部冻结：跑 `node work/freeze_check.mjs`（2026-09-22 实测 4/4 ALL PASS：PDF=20页/视频=284.7s/health=",
+   "[应通过] 超市/07-next-steps.md:13 `5df544a` :: - [ ] 决定重构成果去留：备份分支 `dark-redesign-backup`（5df544a 暗色重构）已保留，确认不需要后可删除"
+  ]
  },
  "heads": {
   "D:\\global_skills": "b7ba255c169c1192c1aa775daba66bae0175d295",
