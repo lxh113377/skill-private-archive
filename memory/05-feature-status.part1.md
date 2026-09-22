@@ -21,7 +21,7 @@
 ## 📋 计划中（2026-09-22 第 10 轮校准）
 
 - ~~阶段1 补跑三脚本 + 通配符死链检测~~ → ✅ **已于第 10 轮执行完毕**（数值与两处判据修复详见 `05-exec/第10轮执行报告.md` 与 `01-scan/README.md`）
-- 遗留 3 条弃用平台名逐条判定（第 10 轮实测）：`data-layer-consistency-fix` = **已失效**（磁盘不存在）；`openclaw-task-supervision:114` = **仍有效**（写「6 platforms OC/WB/CC/TC/HM/CX」）；`wps-knowledgebase:219` = **待你判定**（注册表 `source=community`，内容为上游 CLI 支持的客户端清单）
+- 遗留 3 条弃用平台名逐条判定（第 10 轮实测）：`data-layer-consistency-fix` = **已失效**（磁盘不存在）；`openclaw-task-supervision:114` = **仍有效**（写「6 platforms OC/WB/CC/TC/HM/CX」）；`wps-knowledgebase:219` = **待你判定**（注册表 `source=community`，内容为上游 CLI 支持的客户端清单）—— **✅ 校正注（2026-09-23 销账）：三条全部收口** —— ① 已失效维持；② B2 已执行，实测 `:114` = 「4 active platforms (WB/TR/CX/HM)」；③ B2 已按本机实况标注，实测 `:219` = 「本机在役端：WorkBuddy / TRAE / Codex / Hermes」
 - 批5 其余项（a 审计族 15→8 / c local `_shared` 抽取 / d 4 个 Notion 件）—— 用户已裁定**本阶段不做**，如需再议
 - **非本审计范围**：工作区 `cloudbase__skillhub/*` 他人未提交改动（并行会话市场包升级）
 
