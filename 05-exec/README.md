@@ -12,6 +12,9 @@
 
 ## 补丁索引（19 个 JSON，全部走 `rule_editor.py replace --patch`）
 
+> **📁 位置变更（2026-09-23 第 12 轮）**：19 个补丁均已应用（见各行结果 commit），原件已整体迁至
+> `../archive/applied-patches-2026-09/`（git mv 保历史）；本表文件名相对该目录。05-exec 根目录只保留脚本与未归档轮次产物。
+
 | # | 补丁文件 | 对应 P0 | 目标 skill | 改动摘要 | 结果 commit |
 |---|---|---|---|---|---|
 | 1 | `patch_P0-2_cps-skillmd.json` | P0-2 | `cross-platform-agent-sync/SKILL.md` | description 口径修正 + 版本 1.2.1→1.3.0 | `4715713` |
@@ -34,7 +37,7 @@
 | 18 | `patch_P0-14_cps-part8.json` | P0-14 | `.../cps.part8.md` | 删 `A-memory-align` 死引用行（全库 0 命中） | `eb77870` |
 | 19 | `A5_patch.json` | A5 | `openclaw-dual-gate-quality-audit` | description 收窄 + 新增「何时不用本 skill」负向边界段 | `bc225b3` |
 
-> 覆盖核对：`patch_*.json` 实测 18 个 + `A5_patch.json` 1 个 = **19/19**（与目录实测计数一致）。
+> 覆盖核对：`patch_*.json` 实测 18 个 + `A5_patch.json` 1 个 = **19/19**（2026-09-23 迁移后实测 `archive/applied-patches-2026-09/` 计数 19，与目录一致）。
 > 已知工具坑（历史记录，保留原文）：`rule_editor.py replace` 对**删除类补丁**曾恒报 `[verify] FAIL 未找到: <旧文本>`（回退搜旧文本的误报），写盘实际成功。
 
 ## 脚本与补丁素材（2026-09-22 第 4 轮新增）

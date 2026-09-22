@@ -17,7 +17,9 @@ GIT_ROOT=D:\\global_skills；本主题需改 GM/焚诀两仓，故用本器。
 """
 import json
 import os
+import shutil
 import sys
+from datetime import datetime
 
 
 def _read(path):
@@ -47,6 +49,24 @@ def _find(lines, old_lines):
         if all(lines[i + k].strip() == old_lines[k] for k in range(n)):
             hits.append(i)
     return hits
+
+
+def _backup_all(plan):
+    """写前备份：全部目标文件原字节（含 BOM/行尾）拷入脚本旁 _bak/apply_patches/<ts>/。
+
+    任一拷贝失败即抛异常中止（fail-closed）——备份不全时绝不落盘。
+    目录已被 .gitignore `_bak/` 豁免，不进仓库。
+    """
+    ts = datetime.now().strftime("%Y%m%d-%H%M%S")
+    backup_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "_bak", "apply_patches", ts)
+    os.makedirs(backup_dir, exist_ok=True)
+    backups = {}
+    for path in plan:
+        flat = os.path.abspath(path).replace(":", "").replace("\\", "__").replace("/", "__")
+        dest = os.path.join(backup_dir, flat)
+        shutil.copy2(path, dest)
+        backups[path] = dest
+    return backup_dir, backups
 
 
 def main():
@@ -95,7 +115,13 @@ def main():
         text, _b2, _c2 = _read(path)
         sim = text.split("\n")
         for _idx, ln, n, new_lines, _bb, _cc in sorted(items, key=lambda x: -x[1]):
-            sim[ln:ln + n] = new_lines
+            # 模拟必须与 ② 的写入语义同构：substr = 行内子串替换，非 substr = 整块替换
+            # （2026-09-23 实测踩坑：模拟曾一律用整块替换 → 命中行前有其它内容的合法 substr
+            #   补丁被假失败拦截，而真实写入本是正确的）
+            if patches[_idx - 1].get("mode") == "substr":
+                sim[ln] = sim[ln].replace(patches[_idx - 1]["old"], "\n".join(new_lines))
+            else:
+                sim[ln:ln + n] = new_lines
         try:
             json.loads("\n".join(sim))
         except Exception as e:
@@ -114,6 +140,14 @@ def main():
                 print(f"  #{idx} {path}:{ln+1}  old({n} 行) → new({len(new_lines)} 行)")
         print("[dry-run] 未写盘")
         return 0
+
+    # ①c 写前备份（备份失败 = 未写盘；写后可整批还原）
+    try:
+        backup_dir, _backups = _backup_all(plan)
+    except Exception as e:
+        print(f"[FAIL] 写前备份失败，未写盘: {e}")
+        return 1
+    print(f"  [BACKUP] {backup_dir}")
 
     # ② 逐文件应用（同一文件内多处：从后往前替换，避免行号漂移）
     fails = []
