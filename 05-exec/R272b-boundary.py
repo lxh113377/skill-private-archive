@@ -119,8 +119,10 @@ def main():
                     for k, hit in (("A", hitA), ("B", hitB), ("C", hitC), ("D", hitD)):
                         key = ("TP" if hit else "FN") if should_reject else ("FP" if hit else "TN")
                         M[k][key] += 1
-                        if hit and (should_reject if k != "C" else (not should_reject)):
-                            detail[k].append(f"{os.path.basename(proj)}/{os.path.basename(f)}:{i} `{tok}` [{label}]")
+                        if hit:
+                            detail[k].append(
+                                f"[{label}] {os.path.basename(proj)}/{os.path.basename(f)}:{i} `{tok}` "
+                                f":: {ln.strip()[:110]}")
 
     print("=" * 82)
     print("R272 第四类校验 · 边界值测量（8 真实项目，只读）")
