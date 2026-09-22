@@ -1,0 +1,44 @@
+{
+ "matrix": {
+  "A": {
+   "TP": 0,
+   "FN": 1,
+   "FP": 2,
+   "TN": 163
+  },
+  "B": {
+   "TP": 0,
+   "FN": 1,
+   "FP": 1,
+   "TN": 164
+  },
+  "C": {
+   "TP": 0,
+   "FN": 1,
+   "FP": 3,
+   "TN": 162
+  },
+  "D": {
+   "TP": 0,
+   "FN": 1,
+   "FP": 3,
+   "TN": 162
+  }
+ },
+ "detail": {
+  "A": [],
+  "B": [],
+  "C": [
+   "自建skill优化/07-next-steps.md:18 `b7ba255` [应通过]",
+   "自建skill优化/07-next-steps.part4.md:13 `b7ba255` [应通过]",
+   "自建skill优化/07-next-steps.part4.md:19 `42a076a` [应通过]"
+  ],
+  "D": []
+ },
+ "heads": {
+  "D:\\global_skills": "b7ba255c169c1192c1aa775daba66bae0175d295",
+  "D:\\global_memory": "e3055ea7b7e07c53c85a2c181421a14e3656aff4",
+  "C:\\Users\\37533\\Desktop\\workspace\\焚诀": "42a076a493536eb07e36af108d199a3cbafb3808",
+  "C:\\Users\\37533\\.agents\\skills": "73265c7a00dc06fa528ec4b60ff52fb380ff2212"
+ }
+}

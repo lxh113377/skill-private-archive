@@ -1,0 +1,563 @@
+[
+ {
+  "project": "c:\\Users\\37533\\Desktop\\workspace\\自建skill优化",
+  "files": [
+   "05-feature-status.md",
+   "05-feature-status.part1.md",
+   "05-feature-status.part2.md",
+   "05-feature-status.part3.md",
+   "05-feature-status.part4.md",
+   "05-feature-status.part5.md",
+   "05-feature-status.part6.md",
+   "07-next-steps.md",
+   "07-next-steps.part1.md",
+   "07-next-steps.part2.md",
+   "07-next-steps.part3.md",
+   "07-next-steps.part4.md"
+  ],
+  "head": "e19f3c9768e65d96dcd33e9df6585ee373e4da76",
+  "sha_candidates": 42,
+  "ver_candidates": 32,
+  "sample_ext_hits": 2,
+  "samples": [
+   [
+    "SHA",
+    "05-feature-status.md",
+    25,
+    "bc225b3",
+    "- 阶段4 A3/A4/A5（2026-09-14, commit `bc225b3`）：9 补 `version` + 1 收窄 description 并补负向边界 + 7 回填 `meta.json` descri"
+   ],
+   [
+    "SHA",
+    "05-feature-status.md",
+    28,
+    "f8bc12f",
+    "- 阶段4 批3.1 拆卷（2026-09-14, commit `f8bc12f` + `V3.37.1`）：`A-project-handoff/SKILL.md` **85,508B → 3,827B（≤4KB）*"
+   ],
+   [
+    "VER",
+    "05-feature-status.md",
+    28,
+    "V3.37.1",
+    "- 阶段4 批3.1 拆卷（2026-09-14, commit `f8bc12f` + `V3.37.1`）：`A-project-handoff/SKILL.md` **85,508B → 3,827B（≤4KB）*"
+   ],
+   [
+    "VER",
+    "05-feature-status.md",
+    31,
+    "1.0.0",
+    "- 阶段4 批4 元数据（2026-09-14）：`ican-frontend-design-system` version 1.0.0→4.0.0（对齐版本表 V4）；`dogfood`/`testing` 补 `ve"
+   ],
+   [
+    "VER",
+    "05-feature-status.md",
+    31,
+    "4.0.0",
+    "- 阶段4 批4 元数据（2026-09-14）：`ican-frontend-design-system` version 1.0.0→4.0.0（对齐版本表 V4）；`dogfood`/`testing` 补 `ve"
+   ],
+   [
+    "VER",
+    "05-feature-status.md",
+    31,
+    "1.0.0",
+    "- 阶段4 批4 元数据（2026-09-14）：`ican-frontend-design-system` version 1.0.0→4.0.0（对齐版本表 V4）；`dogfood`/`testing` 补 `ve"
+   ],
+   [
+    "SHA",
+    "05-feature-status.md",
+    33,
+    "15449b0",
+    "- 批5-b `story-scan` 合并（2026-09-14, commit `15449b0`，27 文件）：`story-long-scan`(17.3KB) + `story-short-scan`(9.2K"
+   ],
+   [
+    "SHA",
+    "05-feature-status.part1.md",
+    8,
+    "5c00034",
+    "- ~~阶段4 收口~~ → ✅ **已完成**：本轮 7 项非破坏性整改已于 D4 按主题拆 3 提交（`5c00034` / `b1801f7` / `c55d2ea`），其后 D1–D7 各项陆续收口；阶段0-5 "
+   ],
+   [
+    "SHA",
+    "05-feature-status.part1.md",
+    8,
+    "b1801f7",
+    "- ~~阶段4 收口~~ → ✅ **已完成**：本轮 7 项非破坏性整改已于 D4 按主题拆 3 提交（`5c00034` / `b1801f7` / `c55d2ea`），其后 D1–D7 各项陆续收口；阶段0-5 "
+   ],
+   [
+    "SHA",
+    "05-feature-status.part1.md",
+    8,
+    "c55d2ea",
+    "- ~~阶段4 收口~~ → ✅ **已完成**：本轮 7 项非破坏性整改已于 D4 按主题拆 3 提交（`5c00034` / `b1801f7` / `c55d2ea`），其后 D1–D7 各项陆续收口；阶段0-5 "
+   ],
+   [
+    "SHA",
+    "05-feature-status.part1.md",
+    34,
+    "eb77870",
+    "- 批2 剩余 P0 单点修复（2026-09-19，commit `eb77870`，7 文件）：剩余 5 个单点 P0 一次收口（P0-5 / P0-6 / P0-10 / P0-12 / P0-14）。（校正注：完"
+   ],
+   [
+    "SHA",
+    "05-feature-status.part2.md",
+    7,
+    "eb77870",
+    "- 批2 剩余 P0 单点修复（commit `eb77870`，7 文件）：P0-5 ffmpeg 硬编码失效→动态探测（实测 9.0）/ P0-6 VERSION_LOCK 写死 part1..4→动态枚举（实测 1"
+   ]
+  ]
+ },
+ {
+  "project": "C:\\Users\\37533\\Desktop\\workspace\\项目\\门店 AI 管理智能体\\iCAN大学生创新创业大赛",
+  "files": [
+   "05-feature-status.md",
+   "05-feature-status.part1.md",
+   "07-next-steps.md",
+   "07-next-steps.part1.md",
+   "07-next-steps.part10.md",
+   "07-next-steps.part11.md",
+   "07-next-steps.part12.md",
+   "07-next-steps.part13.md",
+   "07-next-steps.part14.md",
+   "07-next-steps.part15.md",
+   "07-next-steps.part16.md",
+   "07-next-steps.part17.md",
+   "07-next-steps.part18.md",
+   "07-next-steps.part19.md",
+   "07-next-steps.part2.md",
+   "07-next-steps.part22.md",
+   "07-next-steps.part23.md",
+   "07-next-steps.part24.md",
+   "07-next-steps.part3.md",
+   "07-next-steps.part4.md",
+   "07-next-steps.part5.md",
+   "07-next-steps.part6.md",
+   "07-next-steps.part7.md",
+   "07-next-steps.part8.md",
+   "07-next-steps.part9.md"
+  ],
+  "head": "dbeb1c3b1cc80f24a757aa7a5260d4ba8679210e",
+  "sha_candidates": 37,
+  "ver_candidates": 6,
+  "sample_ext_hits": 0,
+  "samples": [
+   [
+    "SHA",
+    "05-feature-status.md",
+    78,
+    "079fb8c",
+    "- ✅ **P8 交付同步（2026-09-13）**：权威仓库提交 `079fb8c` 并 push main；Quality Gate 与"
+   ],
+   [
+    "SHA",
+    "05-feature-status.md",
+    88,
+    "a80c8c9",
+    "与本地一致；管理员顶部新增常驻行业包选择器，无需进入隐藏配置页；提交 `a80c8c9`，"
+   ],
+   [
+    "SHA",
+    "05-feature-status.md",
+    112,
+    "fc3cc89",
+    "- ✅ **PH5-4 验收与记忆收口（2026-09-15）**：真实 DeepSeek 两角色调用成功，权威提交 `fc3cc89`；PythonAnywhere 已上线 PH5，在线驾驶舱刷新通过；证据见 `PH5"
+   ],
+   [
+    "SHA",
+    "05-feature-status.md",
+    121,
+    "56860e2",
+    "- ✅ **PH6-3 评测证据入库与 CI（2026-09-16）**：`ai-eval-2026-09-16.md` 已更新为当前代码提交 `56860e2`，离线 20/20、在线 6/6 成功、P95 5625."
+   ],
+   [
+    "SHA",
+    "05-feature-status.md",
+    123,
+    "34997e8",
+    "- ✅ **PH6-4B 冷启动修复（2026-09-16）**：独立解压实测发现源码 ZIP 排除 `data/` 后 `init_db.py` 报 `sqlite3.OperationalError: unable "
+   ],
+   [
+    "SHA",
+    "05-feature-status.md",
+    123,
+    "56860e2",
+    "- ✅ **PH6-4B 冷启动修复（2026-09-16）**：独立解压实测发现源码 ZIP 排除 `data/` 后 `init_db.py` 报 `sqlite3.OperationalError: unable "
+   ],
+   [
+    "SHA",
+    "05-feature-status.md",
+    124,
+    "9f288a5",
+    "- ✅ **PH6-4C 在线复测与源码 ZIP 刷新（2026-09-16）**：在线 DeepSeek 6/6 成功、P95 5625.4 ms、Token 8169；源码 ZIP 刷新为 219 文件，纳入 9/1"
+   ],
+   [
+    "SHA",
+    "05-feature-status.md",
+    124,
+    "ee39cae",
+    "- ✅ **PH6-4C 在线复测与源码 ZIP 刷新（2026-09-16）**：在线 DeepSeek 6/6 成功、P95 5625.4 ms、Token 8169；源码 ZIP 刷新为 219 文件，纳入 9/1"
+   ],
+   [
+    "SHA",
+    "05-feature-status.md",
+    124,
+    "a2d7ba1",
+    "- ✅ **PH6-4C 在线复测与源码 ZIP 刷新（2026-09-16）**：在线 DeepSeek 6/6 成功、P95 5625.4 ms、Token 8169；源码 ZIP 刷新为 219 文件，纳入 9/1"
+   ],
+   [
+    "SHA",
+    "07-next-steps.md",
+    14,
+    "4f2e050",
+    "- [ ] **9/22—9/24 最终代码冻结复核**（⬜ AI 负责）：**HEAD 以 `git rev-parse --short HEAD` 当场实测为准，禁硬编码 commit hash**（9-22 基线 "
+   ],
+   [
+    "SHA",
+    "07-next-steps.part1.md",
+    3,
+    "d57d398",
+    "2026-09-10（流程收口+待决事项）: quality_gate 第10项防自比收口（d57d398，CI 双绿）；完成定义手工全量 SHA256 复验退役为抽查抽验（AGENTS.md 06/09 节修订）。**"
+   ],
+   [
+    "SHA",
+    "07-next-steps.part1.md",
+    6,
+    "783a683",
+    "2026-09-09（AI深化第五轮）: 三方向纵深落地并全绿交付——①预测季节调整（指数平滑+星期周期，去周期化防抵消，误差 35.7→0.0 杯）；②模糊意图路由（8 类语料+IDF Bigram，口语召回 0→10"
+   ]
+  ]
+ },
+ {
+  "project": "C:\\Users\\37533\\Desktop\\workspace\\项目\\陪聊",
+  "files": [
+   "05-feature-status.md",
+   "05-feature-status.part1.md",
+   "07-next-steps.md",
+   "07-next-steps.part1.md",
+   "07-next-steps.part2.md",
+   "07-next-steps.part3.md",
+   "07-next-steps.part4.md",
+   "07-next-steps.part5.md",
+   "07-next-steps.part6.md",
+   "07-next-steps.part7.md",
+   "07-next-steps.part8.md",
+   "07-next-steps.part9.md"
+  ],
+  "head": "9109e1d84688ab6656aaf4550ee5a4a124d877a2",
+  "sha_candidates": 4,
+  "ver_candidates": 11,
+  "sample_ext_hits": 4,
+  "samples": [
+   [
+    "VER",
+    "07-next-steps.part1.md",
+    18,
+    "V10.53.0",
+    "- [x] R256 落盘 A-memory-start（V10.53.0，固定悬浮层遮挡 + 像素判据双条件，三门禁全 pass）"
+   ],
+   [
+    "VER",
+    "07-next-steps.part1.md",
+    19,
+    "V10.54.0",
+    "- [x] R257 落盘 A-memory-start（V10.54.0，过程类动画须采关键帧 + 定时器 cancel + 结束/退出分路径，三门禁全 pass）"
+   ],
+   [
+    "VER",
+    "07-next-steps.part1.md",
+    20,
+    "V10.55.0",
+    "- [x] R258 落盘 A-memory-start（V10.55.0，全屏 canvas 像素判据须先隐藏浮层 UI + 恒保留未渲染对照组，三门禁全 pass）"
+   ],
+   [
+    "VER",
+    "07-next-steps.part1.md",
+    21,
+    "V10.56.0",
+    "- [x] R259 落盘 A-memory-start（V10.56.0，「实现了效果」≠「看得出效果」——可见性需求须在元素自身可见区间采样量化分布 + 弱化值设为常态，三门禁全 pass）"
+   ],
+   [
+    "SHA",
+    "07-next-steps.part3.md",
+    7,
+    "0002d3d",
+    "- 2026-09-20 r5 — 双色可分辨轮：老大反馈「双色看着像一个颜色」。根因=按**径向单调渐变**分色（内核主色→外晕次色），在 AdditiveBlending 下屏幕均值仍是单色；旧验证只看粒子数组 he"
+   ],
+   [
+    "VER",
+    "07-next-steps.part3.md",
+    7,
+    "0.676",
+    "- 2026-09-20 r5 — 双色可分辨轮：老大反馈「双色看着像一个颜色」。根因=按**径向单调渐变**分色（内核主色→外晕次色），在 AdditiveBlending 下屏幕均值仍是单色；旧验证只看粒子数组 he"
+   ],
+   [
+    "VER",
+    "07-next-steps.part3.md",
+    7,
+    "0.28",
+    "- 2026-09-20 r5 — 双色可分辨轮：老大反馈「双色看着像一个颜色」。根因=按**径向单调渐变**分色（内核主色→外晕次色），在 AdditiveBlending 下屏幕均值仍是单色；旧验证只看粒子数组 he"
+   ],
+   [
+    "VER",
+    "07-next-steps.part3.md",
+    7,
+    "0.522",
+    "- 2026-09-20 r5 — 双色可分辨轮：老大反馈「双色看着像一个颜色」。根因=按**径向单调渐变**分色（内核主色→外晕次色），在 AdditiveBlending 下屏幕均值仍是单色；旧验证只看粒子数组 he"
+   ],
+   [
+    "VER",
+    "07-next-steps.part3.md",
+    7,
+    "0.384",
+    "- 2026-09-20 r5 — 双色可分辨轮：老大反馈「双色看着像一个颜色」。根因=按**径向单调渐变**分色（内核主色→外晕次色），在 AdditiveBlending 下屏幕均值仍是单色；旧验证只看粒子数组 he"
+   ],
+   [
+    "VER",
+    "07-next-steps.part3.md",
+    7,
+    "0.088",
+    "- 2026-09-20 r5 — 双色可分辨轮：老大反馈「双色看着像一个颜色」。根因=按**径向单调渐变**分色（内核主色→外晕次色），在 AdditiveBlending 下屏幕均值仍是单色；旧验证只看粒子数组 he"
+   ],
+   [
+    "VER",
+    "07-next-steps.part3.md",
+    7,
+    "V10.52.0",
+    "- 2026-09-20 r5 — 双色可分辨轮：老大反馈「双色看着像一个颜色」。根因=按**径向单调渐变**分色（内核主色→外晕次色），在 AdditiveBlending 下屏幕均值仍是单色；旧验证只看粒子数组 he"
+   ],
+   [
+    "SHA",
+    "07-next-steps.part4.md",
+    5,
+    "fd6804e",
+    "- 2026-09-22 r1 — 老大「全部授权，继续执行未完成的任务」→ 完成 **J2**：`POST /api/chat` 与 v1 契约 1:1（契约实读自 `deploy/functions/api/chat"
+   ]
+  ]
+ },
+ {
+  "project": "C:\\Users\\37533\\Desktop\\workspace\\项目\\医",
+  "files": [
+   "05-feature-status.md",
+   "07-next-steps.md"
+  ],
+  "head": "43dbe7be4fa3cb5dae3a54660c24ac1eed8446c7",
+  "sha_candidates": 5,
+  "ver_candidates": 0,
+  "sample_ext_hits": 3,
+  "samples": [
+   [
+    "SHA",
+    "05-feature-status.md",
+    7,
+    "43dbe7b",
+    "- [x] 2026-09-22 项目优化轮（A-project-better）：根仓库建 GitHub 私有远端备份 `lxh113377/yi-workspace`（commit 43dbe7b 已推送）；交付物断链"
+   ],
+   [
+    "SHA",
+    "05-feature-status.md",
+    8,
+    "645177f",
+    "- [x] 2026-09-17 iCAN 冲刺冻结：公开仓库 `https://github.com/lxh113377/doctor-ai-dx`（main / `645177f`）+ 最终提交包 `交付物/医-iC"
+   ],
+   [
+    "SHA",
+    "07-next-steps.md",
+    11,
+    "645177f",
+    "- [ ] 台账#3 9/30 12:00 内部冻结：跑 `node work/freeze_check.mjs`（2026-09-22 实测 4/4 ALL PASS：PDF=20页/视频=284.7s/health="
+   ],
+   [
+    "SHA",
+    "07-next-steps.md",
+    25,
+    "43dbe7b",
+    "- [x] 台账#7→S3 根仓库建远端备份：GitHub 私有仓 `https://github.com/lxh113377/yi-workspace`，commit `43dbe7b` 已推送（ls-remote 实"
+   ],
+   [
+    "SHA",
+    "07-next-steps.md",
+    48,
+    "645177f",
+    "- [x] 2026-09-17 公开仓库推送 + 最终提交包冻结（HEAD `645177f` / `医-iCAN最终提交包-v1.1.zip`）"
+   ]
+  ]
+ },
+ {
+  "project": "C:\\Users\\37533\\Desktop\\workspace\\超市web\\超市",
+  "files": [
+   "05-feature-status.md",
+   "07-next-steps.md"
+  ],
+  "head": "2800d685b0886f0f46e545168f6dad2c0e24dfd6",
+  "sha_candidates": 2,
+  "ver_candidates": 0,
+  "sample_ext_hits": 0,
+  "samples": [
+   [
+    "SHA",
+    "07-next-steps.md",
+    27,
+    "ea7c1c9",
+    "- 2026-08-28 — 版本B落地执行：21 项前端优化（P0 17 + P1 4）实施+验证全绿（tsc 0/oxlint 0/109测试/build OK），git 提交 ea7c1c9（回滚点），部署双端上线"
+   ],
+   [
+    "SHA",
+    "07-next-steps.md",
+    27,
+    "f25c6132",
+    "- 2026-08-28 — 版本B落地执行：21 项前端优化（P0 17 + P1 4）实施+验证全绿（tsc 0/oxlint 0/109测试/build OK），git 提交 ea7c1c9（回滚点），部署双端上线"
+   ]
+  ]
+ },
+ {
+  "project": "C:\\Users\\37533\\Desktop\\workspace\\超市web\\supermarket-web",
+  "files": [
+   "05-feature-status.md",
+   "07-next-steps.md"
+  ],
+  "head": "541e659a7be8374f5cc082c8e7eca0820effcbfd",
+  "sha_candidates": 2,
+  "ver_candidates": 0,
+  "sample_ext_hits": 0,
+  "samples": [
+   [
+    "SHA",
+    "07-next-steps.md",
+    24,
+    "0d8d61e4",
+    "- 2026-09-05（二轮，凭证卫生+依赖+测试）— ①ADMIN_KEY 曾轮换为 64 位随机串，**用户拍板回退固定值 supermarket-admin-****（掩码；真值见 .dev.vars / Pag"
+   ],
+   [
+    "SHA",
+    "07-next-steps.md",
+    24,
+    "9d803bd",
+    "- 2026-09-05（二轮，凭证卫生+依赖+测试）— ①ADMIN_KEY 曾轮换为 64 位随机串，**用户拍板回退固定值 supermarket-admin-****（掩码；真值见 .dev.vars / Pag"
+   ]
+  ]
+ },
+ {
+  "project": "C:\\Users\\37533\\Desktop\\workspace\\ai漫剧\\小说[六道]\\ai改写",
+  "files": [
+   "05-feature-status.md",
+   "07-next-steps.md"
+  ],
+  "head": "5877d2347db2d56a8c3f321c5eacf5b88a4faddc",
+  "sha_candidates": 0,
+  "ver_candidates": 0,
+  "sample_ext_hits": 0,
+  "samples": []
+ },
+ {
+  "project": "c:\\Users\\37533\\Desktop\\workspace\\焚诀",
+  "files": [
+   "05-feature-status.md",
+   "07-next-steps.md",
+   "07-next-steps.part1.md",
+   "07-next-steps.part10.md",
+   "07-next-steps.part11.md",
+   "07-next-steps.part12.md",
+   "07-next-steps.part13.md",
+   "07-next-steps.part14.md",
+   "07-next-steps.part15.md",
+   "07-next-steps.part16.md",
+   "07-next-steps.part2.md",
+   "07-next-steps.part3.md",
+   "07-next-steps.part4.md",
+   "07-next-steps.part5.md",
+   "07-next-steps.part6.md",
+   "07-next-steps.part7.md",
+   "07-next-steps.part8.md",
+   "07-next-steps.part9.md"
+  ],
+  "head": "42a076a493536eb07e36af108d199a3cbafb3808",
+  "sha_candidates": 15,
+  "ver_candidates": 72,
+  "sample_ext_hits": 8,
+  "samples": [
+   [
+    "VER",
+    "05-feature-status.md",
+    10,
+    "V1.0",
+    "- [x] 七步闭环跨平台共享规范 — D:\\global_memory\\prompts\\workflow_seven_step.md V1.0（任务卡模板/五端适配/每端脚本/失败模式，2026-08-12 R195）"
+   ],
+   [
+    "VER",
+    "05-feature-status.md",
+    15,
+    "V3.5",
+    "- [x] savepoint 任务卡门禁机器校验 — handoff.py 接入 workflow_gate --check pre-savepoint（A-project-handoff V3.5，正反例实测，202"
+   ],
+   [
+    "VER",
+    "05-feature-status.md",
+    21,
+    "V1.1",
+    "- [x] 任务卡 11 区升级 — workflow_seven_step V1.1 + gate 校验（负面测试/失败预算/目标对齐/可行性/决策主体/回滚命令，2026-08-12 R196）"
+   ],
+   [
+    "VER",
+    "05-feature-status.md",
+    27,
+    "V3.6",
+    "- [x] clean 过期副本命令 — handoff.py clean（dry-run 只出清单 + --apply 移 archive/deprecated/ + 自动 sync；A-project-handoff"
+   ],
+   [
+    "VER",
+    "05-feature-status.md",
+    31,
+    "V1.15",
+    "- [x] P0P1 数据层清理轮（2026-08-16）— 口径统一 26=8+18 / memory_content 空目录软删 / 拆分瑕疵修复（14B 空标题卷归并+索引 5→4）/ 旧域软删（完整迁移 13 域"
+   ],
+   [
+    "VER",
+    "05-feature-status.md",
+    31,
+    "V1.7",
+    "- [x] P0P1 数据层清理轮（2026-08-16）— 口径统一 26=8+18 / memory_content 空目录软删 / 拆分瑕疵修复（14B 空标题卷归并+索引 5→4）/ 旧域软删（完整迁移 13 域"
+   ],
+   [
+    "VER",
+    "05-feature-status.md",
+    31,
+    "V1.4.0",
+    "- [x] P0P1 数据层清理轮（2026-08-16）— 口径统一 26=8+18 / memory_content 空目录软删 / 拆分瑕疵修复（14B 空标题卷归并+索引 5→4）/ 旧域软删（完整迁移 13 域"
+   ],
+   [
+    "SHA",
+    "07-next-steps.part12.md",
+    1,
+    "3b5dbfe",
+    "- 2026-08-16 — D:\\global_skills 批量入库收官 3b5dbfe（工作树全净 0 条）：32 个 untracked 新 skill 全量提交（400 文件 54.7MB）——local-* "
+   ],
+   [
+    "SHA",
+    "07-next-steps.part12.md",
+    1,
+    "17b41f7",
+    "- 2026-08-16 — D:\\global_skills 批量入库收官 3b5dbfe（工作树全净 0 条）：32 个 untracked 新 skill 全量提交（400 文件 54.7MB）——local-* "
+   ],
+   [
+    "SHA",
+    "07-next-steps.part12.md",
+    1,
+    "da2c690",
+    "- 2026-08-16 — D:\\global_skills 批量入库收官 3b5dbfe（工作树全净 0 条）：32 个 untracked 新 skill 全量提交（400 文件 54.7MB）——local-* "
+   ],
+   [
+    "SHA",
+    "07-next-steps.part12.md",
+    1,
+    "00e7909",
+    "- 2026-08-16 — D:\\global_skills 批量入库收官 3b5dbfe（工作树全净 0 条）：32 个 untracked 新 skill 全量提交（400 文件 54.7MB）——local-* "
+   ],
+   [
+    "SHA",
+    "07-next-steps.part12.md",
+    1,
+    "56769bb",
+    "- 2026-08-16 — D:\\global_skills 批量入库收官 3b5dbfe（工作树全净 0 条）：32 个 untracked 新 skill 全量提交（400 文件 54.7MB）——local-* "
+   ]
+  ]
+ }
+]
