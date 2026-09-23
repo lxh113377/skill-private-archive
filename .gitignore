@@ -27,3 +27,6 @@ _temp/
 # 密钥（任何情况下禁入库）
 .env
 *.key
+
+# mimosa 插件运行态（hook-state/hook-status），gitignore 命中 = noise quarantine 豁免（R269 同型，2026-09-23）
+.mimosa/

@@ -5,8 +5,6 @@
 
 ## ✅ 已完成
 
-- D 批结构优化（2026-09-23 r9，用户「批 P2」授权，`abec460`）：① 新建 `05-exec/_lib.py` 共用库单一真相源（`force_utf8_stdout` / `load_json` / `read_text`+`write_text` BOM/行尾保持+原子写 / `backup_file`），apply_patches / repair_lines / recycle_selftest / user_created_audit / scan_all 五脚本重复实现收拢；② `repair_lines` 顺带修「修复 CRLF 文件会把行尾改写成 LF」同族缺陷（旧 _write 不处理行尾）；③ `scan_result.json` 写盘改 `{rows:[...]}` 与 scope 对齐（09-22 冻结件仍裸数组，README 标注过渡期双形态）；④ 11 个一次性脚本 `git mv` 归档 `archive/one-shot-scripts-2026-09/`（含 README 服役记录），05-exec 只留 4 工具 + `_lib.py`。验证 = py_compile ×6 + apply_patches 回归夹具 **8/8**（**抓回 1 个真回归**：删 `import shutil` 致回滚路径 NameError，修后全绿）+ scan_all 双阶段 dry-run（56/21/30/43 与 r8 一致）
-
 ## 分卷目录
 - **卷1** `05-feature-status.part1.md` — 进行中 / 计划中 / 阻塞
 - **卷2** `05-feature-status.part2.md` — 已完成：2026-09-19 第 3 轮（P0-2 收口 + 补建上游 + 注册表重建）
@@ -20,4 +18,5 @@
 - **卷10** `05-feature-status.part10.md` — 05-feature-status 分卷（R199 自动拆卷）
 - **卷11** `05-feature-status.part11.md` — 05-feature-status 分卷（R199 自动拆卷）
 - **卷12** `05-feature-status.part12.md` — 05-feature-status 分卷（R199 自动拆卷）
+- **卷13** `05-feature-status.part13.md` — 05-feature-status 分卷（R199 自动拆卷）
 

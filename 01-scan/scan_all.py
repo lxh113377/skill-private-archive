@@ -30,6 +30,16 @@ WS = r"c:\Users\37533\Desktop\workspace\自建skill优化"
 SCOPE_DIR = os.path.join(WS, "00-scope")
 SCAN_DIR = os.path.join(WS, "01-scan")
 
+
+def _out(base, name):
+    """写盘落点统一收敛：realpath 规范化 + 必须落在 base 内，逃出即拒绝
+    （CWE-22 消毒；合法绝对路径上 realpath 为恒等变换，行为零变化）。"""
+    p = os.path.realpath(os.path.join(base, name))
+    root = os.path.realpath(base)
+    if os.path.commonpath([p, root]) != root:
+        raise SystemExit(f"[guard] 输出路径逃出 {root}：{name}")
+    return p
+
 SKIP_DIRS = {"_temp", "_trash", ".git", ".hermes", "hooks", "_my-skills", "__pycache__", "_bak"}
 
 # 自建族前缀（命名域口径 + 用户澄清列举的族）
@@ -317,11 +327,11 @@ def triage():
 
     if args.apply:
         os.makedirs(SCOPE_DIR, exist_ok=True)
-        with open(os.path.join(SCOPE_DIR, "自建skill清单.md"), "w", encoding="utf-8") as f:
+        with open(_out(SCOPE_DIR, "自建skill清单.md"), "w", encoding="utf-8") as f:
             f.write("\n".join(md) + "\n")
-        with open(os.path.join(SCOPE_DIR, "注册表失真条目.md"), "w", encoding="utf-8") as f:
+        with open(_out(SCOPE_DIR, "注册表失真条目.md"), "w", encoding="utf-8") as f:
             f.write("\n".join(dmd) + "\n")
-        with open(os.path.join(SCOPE_DIR, "scope_result.json"), "w", encoding="utf-8") as f:
+        with open(_out(SCOPE_DIR, "scope_result.json"), "w", encoding="utf-8") as f:
             json.dump({"rows": rows, "distortion": distortion}, f, ensure_ascii=False, indent=1)
         print(f"[write] {SCOPE_DIR} 已写入 3 个文件")
     else:
@@ -499,6 +509,15 @@ if __name__ == "__main__":
     GS, REG_DIR, WS = args.gs, args.registry, args.ws
     IDX, POC, MANIFEST = os.path.join(REG_DIR, "unified-skills-index.json"), os.path.join(REG_DIR, "platform-oc.json"), os.path.join(REG_DIR, "disk_manifest.json")
     SCOPE_DIR, SCAN_DIR = os.path.join(WS, "00-scope"), os.path.join(WS, "01-scan")
+    # --ws 为 CLI 可注入路径：写盘产物落点必须钉死在本仓根（脚本所在仓），否则拒绝执行
+    # （防拼接产物路径逃出目标根；合法调用即默认值，行为零变化）
+    _repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    if os.path.normcase(os.path.realpath(WS)) != os.path.normcase(os.path.realpath(_repo_root)):
+        raise SystemExit(f"[guard] --ws 必须为本工作区根（{_repo_root}），收到：{WS}")
+    if not os.path.isdir(os.path.realpath(GS)):
+        raise SystemExit(f"[guard] --gs 不存在或不是目录：{GS}")
+    if not os.path.isdir(os.path.realpath(REG_DIR)):
+        raise SystemExit(f"[guard] --registry 不存在或不是目录：{REG_DIR}")
     if args.stage == "scope":
         triage()
         sys.exit(0)
