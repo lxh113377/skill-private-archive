@@ -28,7 +28,7 @@ SKILLS = Path(r"D:\global_skills")
 OUT = Path(r"c:\Users\37533\Desktop\workspace\自建skill优化\05-exec\user_created_audit.json")
 SCOPE = Path(r"c:\Users\37533\Desktop\workspace\自建skill优化\00-scope\scope_result.json")
 
-MARKET_KEYS = ("ownerId", "publishedAt", "download_count", "download_url")
+MARKET_KEYS = ("ownerid", "publishedat", "download_count", "downloadcount", "download_url", "downloadurl")
 
 
 def market_signal(d: Path):
@@ -45,7 +45,8 @@ def market_signal(d: Path):
         while stack:
             cur = stack.pop()
             if isinstance(cur, dict):
-                keys |= set(cur.keys())
+                # 口径(2026-09-23修)：键名大小写归一，与01-scan/scan_all.py同源（原大小写敏感漏检）。
+                keys |= {str(k).lower() for k in cur.keys()}
                 stack.extend(cur.values())
             elif isinstance(cur, list):
                 stack.extend(cur)

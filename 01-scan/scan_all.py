@@ -16,7 +16,15 @@ import subprocess
 import sys
 from collections import OrderedDict
 
-sys.stdout.reconfigure(encoding="utf-8")
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+except Exception:
+    # 管道/重定向下reconfigure不可用时降级（与05-exec两脚本同形态，防崩）。
+    import io as _io
+    try:
+        sys.stdout = _io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
+    except Exception:
+        pass
 
 GS = r"D:\global_skills"
 REG_DIR = r"C:\Users\37533\Desktop\workspace\焚诀\skill\registry"
@@ -97,24 +105,31 @@ def triage():
     idx = load_json(IDX)
     man = load_json(MANIFEST)
     reg = idx.get("skills", {})
-    # 2026-09-22 适配（R236：命令先实跑）：原来的第二源 platform-oc.json 已随 OC 退役（2026-09-21）
-    # 被删除 → 原代码在此 FileNotFoundError，阶段0/1 的「唯一可复跑工具」整体失效。
-    # 口径回落为「在役端 platform-*.json 的 user_created_skills 并集」（语义等价：原 = OC 端自建名单）。
+    # 口径(2026-09-23修)：OC已退役，platform-oc.json即使存在也不再作为自建源；
+    # 在役端 = wb/tc/codex/hm/zc 五端并集（前版漏zc，已补；oc仅提示不纳入）。
     uc_list = set()
-    if os.path.exists(POC):
-        uc_list = set(load_json(POC).get("user_created_skills", []))
-        uc_src = "platform-oc"
-    else:
-        for _pf in ("platform-wb.json", "platform-tc.json", "platform-codex.json", "platform-hm.json"):
-            _pp = os.path.join(REG_DIR, _pf)
-            if os.path.exists(_pp):
+    for _pf in ("platform-wb.json", "platform-tc.json", "platform-codex.json", "platform-hm.json", "platform-zc.json"):
+        _pp = os.path.join(REG_DIR, _pf)
+        if os.path.exists(_pp):
+            try:
                 uc_list |= set(load_json(_pp).get("user_created_skills", []))
-        uc_src = "在役端 platform-*"
+            except Exception as _e:
+                print(f"[warn] {_pf} 读取失败: {_e}")
+    uc_src = "在役端 platform-*[wb/tc/codex/hm/zc]"
+    if os.path.exists(POC):
+        print("[warn] platform-oc.json 已退役，仅提示不纳入（磁盘存在，已忽略）")
     man_map = {s["name"]: s for s in man.get("skills", [])}
 
     dirs = sorted(d for d in os.listdir(GS)
                   if os.path.isdir(os.path.join(GS, d)) and d not in SKIP_DIRS)
     adds = git_first_adds()
+    # 性能(2026-09-23)：一次性缓存各目录文件名，替代循环内重复os.listdir/stat（输出不变）。
+    _ls = {}
+    for _d in dirs:
+        try:
+            _ls[_d] = set(os.listdir(os.path.join(GS, _d)))
+        except Exception:
+            _ls[_d] = set()
     print(f"[info] 磁盘 {len(dirs)} | 注册表 {len(reg)} | {uc_src} 自建 {len(uc_list)} "
           f"| disk_manifest {len(man_map)} | git A 提交文件 {len(adds)}")
 
@@ -131,10 +146,10 @@ def triage():
             hard = "disk:openclaw_plugin(插件市场包)"
         elif disk_src is None:
             reasons.append("disk:未登记(orphan,待人工)")
-        lic = [f for f in os.listdir(os.path.join(GS, d)) if f.upper().startswith("LICENSE")]
+        lic = [f for f in _ls.get(d, ()) if f.upper().startswith("LICENSE")]
         if lic and not hard:
             hard = f"LICENSE:{lic[0]}(官方/市场包)"
-        if os.path.exists(os.path.join(GS, d, ".skill-metadata.yaml")) and not hard:
+        if ".skill-metadata.yaml" in _ls.get(d, ()) and not hard:
             hard = ".skill-metadata.yaml(官方元数据)"
         if (e or {}).get("source") == "skillhub" and not hard:
             hard = "source=skillhub(市场)"
@@ -143,17 +158,28 @@ def triage():
         if not hard and d not in KEEP_SELF:
             mk = None
             for cand in ("_meta.json", "meta.json"):
+                if cand not in _ls.get(d, ()):
+                    continue
                 mp2 = os.path.join(GS, d, cand)
-                if os.path.exists(mp2):
-                    try:
-                        mj = json.load(open(mp2, "r", encoding="utf-8-sig"))
-                    except Exception:
-                        continue
-                    ks = {str(k).lower() for k in mj.keys()}
-                    # 只认强市场键；`slug` 过泛（local-* 等厂商样例包也有）会误伤自建
-                    if ks & {"ownerid", "publishedat", "download_count", "downloadcount"}:
-                        mk = f"{cand}:发布元数据(市场件)"
-                        break
+                try:
+                    mj = json.load(open(mp2, "r", encoding="utf-8-sig"))
+                except Exception:
+                    continue
+                # 口径(2026-09-23修)：与05-exec/user_created_audit.py对齐——
+                # ①大小写归一（audit原大小写敏感会漏检）；②嵌套键也查（原只查顶层）；
+                # ③补download_url系（厂商分包常见）。只认强市场键，`slug`仍排除防误伤。
+                _stack, _ks = [mj], set()
+                while _stack:
+                    _cur = _stack.pop()
+                    if isinstance(_cur, dict):
+                        _ks |= {str(k).lower() for k in _cur.keys()}
+                        _stack.extend(_cur.values())
+                    elif isinstance(_cur, list):
+                        _stack.extend(_cur)
+                if _ks & {"ownerid", "publishedat", "download_count", "downloadcount",
+                          "download_url", "downloadurl"}:
+                    mk = f"{cand}:发布元数据(市场件)"
+                    break
             if not mk and os.path.exists(os.path.join(GS, d, "evals", "evals.json")):
                 mk = "evals/evals.json(官方评测件)"
             if not mk and os.path.isdir(os.path.join(GS, d, "evaluations")):
@@ -260,7 +286,7 @@ def triage():
           "> ⚠️ 本版**取代 v1**（2026-09-14，169 条时代）。v1 已原样归档至 `archive/scope-v1-169-2026-09-14/`（历史留痕不改写）。",
           f"> 覆盖：磁盘 {len(dirs)} 个目录；已排除 `SKIP_DIRS`（`_my-skills` = 保护标记非任务型 skill、`hooks` 基建、`_trash`/`_temp`/`_bak`/`.git`/`.hermes`/`__pycache__`）→ 与注册表 151 条差 1（即 `_my-skills`）。",
           "> 打分：registry user_created=true +5 | 命名域自建族 +3 | semver +2 | git 版本化提交 +2 | disk global_skills +1 "
-          "| user_created=false -4 | LICENSE -3 | source=skillhub -3 | 官方元数据 -3 | openclaw_plugin -6",
+          "| user_created=false 不计分(失真字段,code:193) | LICENSE -3 | source=skillhub -3 | 官方元数据 -3 | openclaw_plugin -6",
           f"> 磁盘目录 {len(dirs)} → HIGH {len(by_conf.get('HIGH', []))} / MID {len(by_conf.get('MID', []))} "
           f"/ LOW {len(by_conf.get('LOW', []))} / EXCLUDE {len(by_conf.get('EXCLUDE', []))}", ""]
     for k in ("HIGH", "MID", "LOW", "EXCLUDE"):
@@ -387,7 +413,8 @@ def scan():
         # 判据修复（2026-09-22 第 10 轮）：原实现为 `d in raw`（子串匹配），
         # 而 DEPRECATED_PLATFORMS 含正则项 r"\bCC\b" ⇒ 该字面量永远匹配不到 ⇒ **CC 检测静默失效**
         # （实证：`openclaw-task-supervision:114` 写「OC/WB/CC/TC/HM/CX」却从未被标出）
-        dep = [d for d in DEPRECATED_PLATFORMS if re.search(d, raw)]
+        # 口径(2026-09-23修)：大小写不敏感（漏“claude code/ClaudeCode”变体）+ CC仍用\b护栏防误伤。
+        dep = [d for d in DEPRECATED_PLATFORMS if re.search(d, raw, re.IGNORECASE)]
         dep = ["CC" if d == r"\bCC\b" else d.strip() for d in dep]
 
         rows.append(OrderedDict([
@@ -442,10 +469,16 @@ def scan():
 
 
 if __name__ == "__main__":
-    ap = argparse.ArgumentParser()
+    ap = argparse.ArgumentParser(description="自建skill范围裁定+四维扫描（默认dry-run，加--apply写盘；路径默认即现值，可覆盖）")
     ap.add_argument("--stage", choices=["scope", "scan"], default="scope")
     ap.add_argument("--apply", action="store_true")
+    ap.add_argument("--gs", default=GS, help="global_skills根（默认 D:\\global_skills）")
+    ap.add_argument("--registry", default=REG_DIR, help="焚诀registry目录")
+    ap.add_argument("--ws", default=WS, help="本工作区根")
     args = ap.parse_args()
+    GS, REG_DIR, WS = args.gs, args.registry, args.ws
+    IDX, POC, MANIFEST = os.path.join(REG_DIR, "unified-skills-index.json"), os.path.join(REG_DIR, "platform-oc.json"), os.path.join(REG_DIR, "disk_manifest.json")
+    SCOPE_DIR, SCAN_DIR = os.path.join(WS, "00-scope"), os.path.join(WS, "01-scan")
     if args.stage == "scope":
         triage()
         sys.exit(0)
