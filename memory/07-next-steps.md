@@ -9,6 +9,7 @@
 - **2026-09-23（第 13 轮 r1–r6）** — 性能瓶颈三维实测分析 → P0-1/P0-2 落地（A-memory-start -64% / contract -58%） → 上游 trim-shell 双重盲区修复（V3.47.0）→ **06 纳入口径 V3.48.0**（注入壳 -6,435B/轮） → **noise_lint 假阳性根因修**（`d88b5ee`，savepoint 由被拒→安全落盘）。**逐轮全量记录（原样，零改写）见 `07-next-steps.part7.md`**
 - **2026-09-23（第 13 轮 r7）** — zijian.json 中断会话续接：遗留台账 6 项实测复核（2 项销账 / 2 项解阻塞）→ `09-workflow-state.md` 补建（`flow --init`，check PASS，status 9/9）→ noise_lint 修补文档同步收口（受管根 `7ebd682`，A-project-handoff V3.51.0，三文件白名单零夹带）→ gates 四门禁全绿
 - **2026-09-23（第 14 轮 r8）** — zijian.json 会话主体：代码质量五维审查（3 子代理并行）→ 用户按钮选定 A+B+C 批执行：apply_patches 4 修（夹具 12/12）+ scan_all 8 修 + B 批口径注记 7 处 + C 批 2 项；**重要实测发现：scope 复跑口径 56/21 vs 冻结件 51/26（切分漂移非笔误）**，冻结件不动已登记
+- **2026-09-23（第 14 轮 r9）** — D 批（用户口头授权「批 P2」）：新建 `05-exec/_lib.py` 单一真相源收拢 5 脚本重复实现 + `repair_lines` 顺带修 CRLF 行尾改写缺陷 + `scan_result.json` 写盘改 `{rows}` 包装（冻结件仍裸数组，README 标注过渡）+ 11 个一次性脚本 `git mv` 归档 `archive/one-shot-scripts-2026-09/`（含 README 服役记录）；夹具 8/8（**抓回 1 个 shutil 回归**）；工作区 `abec460` 推送 SHA 一致
 
 ## P0 — 必须做
 
@@ -21,7 +22,7 @@
 - [ ] **【待观察·他人在途（r7 新登记 2026-09-23 15:55）】** 受管根 `D:\global_skills` 现存 1 条在途：`A-get-memory/SKILL.md`（lessons 分卷定位按数字序教训补注 1 行，归属 = 医项目续接会话 `ses_cb_yi_resume_20260923`，本轮 `7ebd682` 已验证未卷入）；焚诀仓现存 **36 M + 2 ??**（eval/ 主体 + registry 等，归属焚诀在途会话）；GM 日志 `2026-09-23.md` 末位 footer 块（同医项目会话 15:28）`[skill清单]`/`[升级建议]` 两行偏离 `reply_footer.md` 规范格式（RE_SKILLS/RE_HIT 全不匹配），位于末位时 evolution 门禁 fail，待其归一化。均按 R269 **只登记不擅动**
 - [ ] **【待裁定·口径漂移（r8 新登记）】** `scan_all.py` 判据修复后 dry-run 复跑 = **HIGH 56 / MID 21** / LOW 30 / EXCLUDE 43，而冻结交付件（scope_result.json / 清单 v2，用户 2026-09-22 裁定口径）= HIGH 51 / MID 26（总数同为 77，LOW/EXCL 不变）。归因 = ① git quotepath 修复使 CJK 目录拿回 gitAdd 证据（此前恒 miss）② frontmatter CRLF 修复使 homepage 源恢复生效 ③ 受管池本体演进——即 `add8092` 提交信息的「HIGH56/MID21」**并非笔误**而是复跑新值，当时误标「零漂移」。**冻结件一律不改写**；重出清单 = 破坏性（改写用户裁定口径），须重新按钮裁定。详见 `01-scan/README.md` r8 节
 - [ ] **【登记·焚诀红线（r8）】** `unretire_31.py:51-53` 写入焚诀 `eval/truth_constants.json` `_meta` 的数字失真（硬编码「20 个市场件/11 个 local-*」，实际 21/10）——**焚诀 `eval/` 只读红线 ⇒ 本项目不代改**，待焚诀归属会话按 R241 加校正注；脚本侧失真成因已读码确认
-- [ ] **【P2 待授权·D 批缓办（r8，用户本轮未选）】** ① 11 个一次性脚本归档（B1/B6/B7×2/R272×5/direct_map/unretire_31 → `archive/one-shot-scripts-2026-09/`）② 重复代码抽 `_lib.py`（UTF-8 包装 5 份 / JSON 守卫 5 处 / git 调用 3 份）③ `scan_result.json` 包装 `{"rows":[...]}`——改动面大，下轮按需授权
+- [ ] **【P2 待授权·D 批缓办（r8，用户本轮未选）】** ① 11 个一次性脚本归档（B1/B6/B7×2/R272×5/direct_map/unretire_31 → `archive/one-shot-scripts-2026-09/`）② 重复代码抽 `_lib.py`（UTF-8 包装 5 份 / JSON 守卫 5 处 / git 调用 3 份）③ `scan_result.json` 包装 `{"rows":[...]}`——改动面大，下轮按需授权 —— **✅ 销账注（2026-09-23 r9 已执行）**：用户「批 P2」授权后三项全落地（`abec460`，夹具 8/8 含抓回 shutil 回归）；详见 05 r9 条
 ## 分卷目录
 - **卷1** `07-next-steps.part1.md` — 历史待办与已完成条目（2026-09-22 已按实测销账）
 - **卷2** `07-next-steps.part2.md` — 已完成：批2 剩余 P0 与 q-2/q-3 收口
