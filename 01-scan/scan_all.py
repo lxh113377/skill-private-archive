@@ -16,15 +16,10 @@ import subprocess
 import sys
 from collections import OrderedDict
 
-try:
-    sys.stdout.reconfigure(encoding="utf-8")
-except Exception:
-    # 管道/重定向下reconfigure不可用时降级（与05-exec两脚本同形态，防崩）。
-    import io as _io
-    try:
-        sys.stdout = _io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
-    except Exception:
-        pass
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), os.pardir, "05-exec"))
+from _lib import force_utf8_stdout, load_json  # noqa: E402
+
+force_utf8_stdout()
 
 GS = r"D:\global_skills"
 REG_DIR = r"C:\Users\37533\Desktop\workspace\焚诀\skill\registry"
@@ -71,11 +66,6 @@ VER_IN_MSG_RE = re.compile(r"V\d+\.\d+")
 DEPRECATED_PLATFORMS = ("QoderWork", r"\bQW\b", "QClaw", "Claude Code", r"\bCC\b")
 # 2026-09-23 审计：原 "QW "（尾随空格）在 "OC/WB/QW/TC" 等语境漏报 → 改 \bQW\b；
 # \bCC\b 在主循环单独用区分大小写匹配（小写 cc=抄送/变量名会误伤）
-
-
-def load_json(path):
-    with open(path, "r", encoding="utf-8-sig") as f:
-        return json.load(f)
 
 
 def git_first_adds():
@@ -482,7 +472,9 @@ def scan():
     if args.apply:
         os.makedirs(SCAN_DIR, exist_ok=True)
         with open(os.path.join(SCAN_DIR, "scan_result.json"), "w", encoding="utf-8") as f:
-            json.dump(rows, f, ensure_ascii=False, indent=1)
+            # 2026-09-23 r9：改 {"rows":[...]} 包装与 scope_result.json 对齐；
+            # ⚠️ 冻结件（09-22 版）仍为裸数组，下次 --apply 重出起才是新形态（README 已标注）
+            json.dump({"rows": rows}, f, ensure_ascii=False, indent=1)
         with open(os.path.join(SCAN_DIR, "scan_report.md"), "w", encoding="utf-8") as f:
             f.write("\n".join(md) + "\n")
         print(f"[write] {SCAN_DIR} 已写入 2 个文件")

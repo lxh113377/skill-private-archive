@@ -8,7 +8,7 @@
 |---|---|---|
 | `scan_all.py` | 手写 | 阶段0/阶段1 唯一可复跑工具（`--stage scope\|scan`，默认 dry-run，`--apply` 才写盘） |
 | `scan_report.md` | `scan_all.py --stage scan --apply` | 四维扫描基线（体积 / 触发 / 死链·通配符·平台名） |
-| `scan_result.json` | 同上 | 逐 skill 结构化明细（含 `dead_refs` / `dead_wildcards` / `deprecated_platform_hits`）；⚠️ 顶层为**裸数组**（非 `{rows:[...]}` 包装，与 `00-scope/scope_result.json` 不同），消费方勿假设同名包装字段 |
+| `scan_result.json` | 同上 | 逐 skill 结构化明细（含 `dead_refs` / `dead_wildcards` / `deprecated_platform_hits`）；⚠️ **形态过渡**：09-22 冻结件 = 裸数组，`scan_all.py` 自 2026-09-23 r9 起写 `{rows:[...]}` 包装（与 `scope_result.json` 对齐）——消费方两种形态都须兼容 |
 | `attention_sim_20260922.txt` | `焚诀/audit/attention_sim.py --trials 10000 --seed 42` | 注意力税三件套（上下文税 / 软注意力稀释 / 干草堆检索） |
 | `content_snr_20260922.txt` | `焚诀/audit/content_snr.py` | 内容信噪比（M1–M4） |
 | `negative_tag_audit_20260922.txt` | `焚诀/audit/negative_tag_audit.py` | 负标签健康检测 |

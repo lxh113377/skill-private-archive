@@ -61,3 +61,14 @@
 | `direct_map_dead_targets.json` | 死目标清单（修复前 7 目标 / 11 条，修复后 **0**） | 焚诀 commit `bf5e284` |
 
 > 中间产物已归档：`01-scan/overlap_raw.txt`（282,977B）→ `../archive/overlap_raw.txt`（2026-09-22，D3）。
+
+## 脚本清单（2026-09-23 r9 整编）
+
+**可复用工具（5 个，全部走共用库 `_lib.py`）**：
+- `_lib.py` — 共用库单一真相源：`force_utf8_stdout` / `load_json`(utf-8-sig) / `read_text`+`write_text`（BOM/行尾保持 + 原子写）/ `backup_file`；此前 stdout 包装 5 份、JSON 读取 3 份、BOM/行尾读写 2 份语义不一致的重复实现尽数收拢
+- `apply_patches.py` — 跨文件多处补丁应用器（全有或全无 + 命中数=1 + JSON 预校验 + 写前备份 + 失败自动回滚）
+- `repair_lines.py` — 定位式行修复器（git show 取原行）
+- `recycle_selftest.py` — 回收站两层自检（SHA256 级判据）
+- `user_created_audit.py` — 注册表 user_created 失真复核（⚠️ 输出为 09-22 冻结快照，重跑会改写；现行口径见 `_registry_epoch` 注记）
+
+**一次性脚本 11 个**已归档 `../archive/one-shot-scripts-2026-09/`（含 README 服役记录），勿直接复跑。

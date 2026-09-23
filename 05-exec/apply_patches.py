@@ -21,34 +21,8 @@ import shutil
 import sys
 from datetime import datetime
 
-
-def _read(path):
-    with open(path, "rb") as f:
-        raw = f.read()
-    bom = raw.startswith(b"\xef\xbb\xbf")
-    text = raw.decode("utf-8-sig")
-    crlf = text.count("\r\n") >= text.count("\n") - text.count("\r\n")
-    # CRLF 归一化为 LF 后再处理（2026-09-23 实测踩坑：CRLF 文件 split("\n") 残留行尾 "\r"，
-    # _write 的 \n→\r\n 复原会产出 "\r\r\n" 双重行尾；先归一化，写盘时按原行尾整体复原）
-    text = text.replace("\r\n", "\n")
-    return text, bom, crlf
-
-
-def _write(path, text, bom, crlf):
-    if crlf:
-        text = text.replace("\n", "\r\n")
-    data = text.encode("utf-8")
-    if bom:
-        data = b"\xef\xbb\xbf" + data
-    # 原子写：先写同目录临时文件再 os.replace，避免半写状态（2026-09-23 审计 A2）
-    tmp = os.path.join(os.path.dirname(os.path.abspath(path)), f".apply_patches.tmp.{os.getpid()}")
-    try:
-        with open(tmp, "wb") as f:
-            f.write(data)
-        os.replace(tmp, path)
-    finally:
-        if os.path.exists(tmp):
-            os.remove(tmp)
+# 读写/备份共用实现抽到 _lib（2026-09-23 r9：原两份拷贝语义不一致是 A1/A6 缺陷温床）
+from _lib import read_text as _read, write_text as _write, backup_file as _backup_one
 
 
 def _find(lines, old_lines):
@@ -69,13 +43,9 @@ def _backup_all(plan):
     """
     ts = datetime.now().strftime("%Y%m%d-%H%M%S")
     backup_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "_bak", "apply_patches", ts)
-    os.makedirs(backup_dir, exist_ok=True)
     backups = {}
     for path in plan:
-        flat = os.path.abspath(path).replace(":", "").replace("\\", "__").replace("/", "__")
-        dest = os.path.join(backup_dir, flat)
-        shutil.copy2(path, dest)
-        backups[path] = dest
+        backups[path] = _backup_one(path, backup_dir)
     return backup_dir, backups
 
 

@@ -11,7 +11,6 @@
   B1 系统回收站路径：真文件 → `handoff.py recycle <file>` → ok=True、原路径消失、manifest 有记录
 """
 import hashlib
-import io
 import json
 import os
 import shutil
@@ -20,7 +19,9 @@ import sys
 import tempfile
 from pathlib import Path
 
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
+from _lib import force_utf8_stdout
+
+force_utf8_stdout()
 HANDOFF = Path(r"D:\global_skills\A-project-handoff\scripts\handoff.py")
 sys.path.insert(0, r"D:\global_skills\A-project-handoff\scripts")
 

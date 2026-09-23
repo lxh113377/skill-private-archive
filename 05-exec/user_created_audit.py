@@ -14,14 +14,15 @@
 
 输出：05-exec/user_created_audit.json + 控制台摘要
 """
-import io
 import json
 import re
 import sys
 from datetime import date
 from pathlib import Path
 
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
+from _lib import force_utf8_stdout
+
+force_utf8_stdout()
 
 FENJUE = Path(r"C:\Users\37533\Desktop\workspace\焚诀")
 REG = FENJUE / "skill" / "registry" / "unified-skills-index.json"

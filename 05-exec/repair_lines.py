@@ -18,23 +18,12 @@
 用法：python repair_lines.py <repair.json> [--dry-run]
 """
 import json
-import os
 import subprocess
 import sys
 
-
-def _read(path):
-    with open(path, "rb") as f:
-        raw = f.read()
-    return raw.decode("utf-8-sig"), raw.startswith(b"\xef\xbb\xbf")
-
-
-def _write(path, text, bom):
-    data = text.encode("utf-8")
-    if bom:
-        data = b"\xef\xbb\xbf" + data
-    with open(path, "wb") as f:
-        f.write(data)
+# 读写共用实现抽到 _lib（2026-09-23 r9）：原 _write 不处理行尾 ⇒ 修复 CRLF 文件会被改写成 LF，
+# 且与 apply_patches 的读写语义不一致；现统一为「归一化读 + 按原行尾原子写」
+from _lib import read_text as _read, write_text as _write
 
 
 def _show(repo, ref, relpath):
@@ -72,13 +61,13 @@ def main():
                 continue
         else:
             correct = orig_line
-        text, bom = _read(s["file"])
+        text, bom, crlf = _read(s["file"])
         lines = text.split("\n")
         c_hits = [n for n, ln in enumerate(lines) if s["cur_anchor"] in ln]
         if len(c_hits) != 1:
             errors.append(f"#{i} 现文锚点命中 {len(c_hits)} 行（须 1）: {s['file']}")
             continue
-        plan.append((i, s["file"], c_hits[0], correct, bom))
+        plan.append((i, s["file"], c_hits[0], correct, bom, crlf))
 
     if errors:
         print("[FAIL] 预检未过，**未写盘**")
@@ -87,14 +76,14 @@ def main():
         return 1
 
     print(f"[OK] 预检通过：{len(plan)} 处修复")
-    for i, path, ln, correct, _b in plan:
+    for i, path, ln, correct, _b, _c in plan:
         print(f"  #{i} {path}:{ln+1}")
         print(f"      → {correct[:120]}{'…' if len(correct) > 120 else ''}")
         if not dry:
-            text, bom = _read(path)
+            text, bom, crlf = _read(path)
             lines = text.split("\n")
             lines[ln] = correct
-            _write(path, "\n".join(lines), bom)
+            _write(path, "\n".join(lines), bom, crlf)
             if path.lower().endswith(".json"):
                 try:
                     with open(path, encoding="utf-8-sig") as f:
