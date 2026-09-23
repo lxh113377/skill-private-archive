@@ -18,6 +18,7 @@ import io
 import json
 import re
 import sys
+from datetime import date
 from pathlib import Path
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
@@ -100,7 +101,7 @@ def main():
         }
 
     result = {
-        "generated": "2026-09-22",
+        "generated": date.today().isoformat(),
         "registry": str(REG),
         "scope_note": "注册表口径 = 本文件 skills 集合；与顶层目录数/全盘 SKILL.md 数不可混用",
         "total": n,

@@ -16,7 +16,7 @@
 | 阶段 | 目录 | 产物 | 状态 |
 |---|---|---|---|
 | 0 范围裁定 | `00-scope/` | 自建skill清单.md / 注册表失真条目.md / scope_result.json | ✅ 完成 |
-| 1 四维机器扫描 | `01-scan/` | scan_report.md / scan_result.json / overlap_raw.txt / scan_all.py | ✅ 完成（第10轮已补齐；2026-09-23 dry-run scope/scan均exit 0） |
+| 1 四维机器扫描 | `01-scan/` | scan_report.md / scan_result.json / scan_all.py（`overlap_raw.txt` 已迁 `archive/`，2026-09-23 r8 修正此前未同步的索引） | ✅ 完成（第10轮已补齐；2026-09-23 dry-run scope/scan均exit 0） |
 | 2 全量精读 | `02-review/` | 6 份族审计卡（A族 / fenjue / 审计族 / local / story / 其他） | ✅ 完成 |
 | 3 审计报告 | `03-audit/` | 自建skill优化审计报告.md | ✅ 完成 |
 | 4 实施计划 | `04-plan/` | 实施计划.md / 剩余待办分类清单.md / 工作流专项建议.md | ✅ 完成 |

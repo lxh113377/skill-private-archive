@@ -68,7 +68,9 @@ VER_IN_MSG_RE = re.compile(r"V\d+\.\d+")
 # 弃用平台口径（2026-09-14 用户裁决更新）：
 #   CC(Claude Code) 弃用 2026-09-08 / QW·QoderWork 卸载 2026-08-01 / QClaw 弃用
 #   ⚠️ HM(Hermes) 已于 2026-09-14 由用户确认「又下回来了」→ 移除弃用名单，HM 相关引用不再计为过时
-DEPRECATED_PLATFORMS = ("QoderWork", "QW ", "QClaw", "Claude Code", r"\bCC\b")
+DEPRECATED_PLATFORMS = ("QoderWork", r"\bQW\b", "QClaw", "Claude Code", r"\bCC\b")
+# 2026-09-23 审计：原 "QW "（尾随空格）在 "OC/WB/QW/TC" 等语境漏报 → 改 \bQW\b；
+# \bCC\b 在主循环单独用区分大小写匹配（小写 cc=抄送/变量名会误伤）
 
 
 def load_json(path):
@@ -81,7 +83,7 @@ def git_first_adds():
     out = {}
     try:
         p = subprocess.run(
-            ["git", "-C", GS, "log", "--diff-filter=A", "--reverse",
+            ["git", "-c", "core.quotepath=off", "-C", GS, "log", "--diff-filter=A", "--reverse",
              "--format=@@%ad|%s", "--date=short", "--name-only"],
             capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=300)
     except Exception as e:
@@ -162,8 +164,11 @@ def triage():
                     continue
                 mp2 = os.path.join(GS, d, cand)
                 try:
-                    mj = json.load(open(mp2, "r", encoding="utf-8-sig"))
-                except Exception:
+                    with open(mp2, "r", encoding="utf-8-sig") as _mf:
+                        mj = json.load(_mf)
+                except Exception as _me:
+                    # fail-open 会把损坏的市场包当「无市场信号」漏排除 → 至少留痕（2026-09-23 审计）
+                    print(f"[warn] {d}/{cand} 解析失败（按无市场信号处理）: {_me}")
                     continue
                 # 口径(2026-09-23修)：与05-exec/user_created_audit.py对齐——
                 # ①大小写归一（audit原大小写敏感会漏检）；②嵌套键也查（原只查顶层）；
@@ -228,7 +233,7 @@ def triage():
         if os.path.exists(sp):
             with open(sp, "r", encoding="utf-8-sig", errors="replace") as fh:
                 head = fh.read(1500)
-            mt = re.match(r"^---\n(.*?)\n---\n", head, re.S)
+            mt = re.match(r"^---\r?\n(.*?)\r?\n---\r?\n", head, re.S)
             if mt:
                 for line in mt.group(1).splitlines():
                     if line.startswith("homepage:"):
@@ -285,8 +290,9 @@ def triage():
           "> 源：unified-skills-index.json + 在役端 platform-*.json（user_created_skills 并集）+ disk_manifest.json + 磁盘枚举 + git 首提交",
           "> ⚠️ 本版**取代 v1**（2026-09-14，169 条时代）。v1 已原样归档至 `archive/scope-v1-169-2026-09-14/`（历史留痕不改写）。",
           f"> 覆盖：磁盘 {len(dirs)} 个目录；已排除 `SKIP_DIRS`（`_my-skills` = 保护标记非任务型 skill、`hooks` 基建、`_trash`/`_temp`/`_bak`/`.git`/`.hermes`/`__pycache__`）→ 与注册表 151 条差 1（即 `_my-skills`）。",
-          "> 打分：registry user_created=true +5 | 命名域自建族 +3 | semver +2 | git 版本化提交 +2 | disk global_skills +1 "
-          "| user_created=false 不计分(失真字段,code:193) | LICENSE -3 | source=skillhub -3 | 官方元数据 -3 | openclaw_plugin -6",
+          "> 打分（2026-09-23 与代码对齐，原文案 disk+1/LICENSE-3 等与实现不符）：disk global_skills +2 | registry user_created=true +5 "
+          "| unified user_created=true +4 | 命名域自建族 +3 | semver +2 | git 版本化提交 +2 | user_created=false 不计分(失真字段) | homepage 外部来源 -3 "
+          "| 市场硬排除命中即 EXCLUDE(-100)：LICENSE / .skill-metadata.yaml / source=skillhub / openclaw_plugin / 发布元数据(_meta.json 等) / 官方评测件",
           f"> 磁盘目录 {len(dirs)} → HIGH {len(by_conf.get('HIGH', []))} / MID {len(by_conf.get('MID', []))} "
           f"/ LOW {len(by_conf.get('LOW', []))} / EXCLUDE {len(by_conf.get('EXCLUDE', []))}", ""]
     for k in ("HIGH", "MID", "LOW", "EXCLUDE"):
@@ -344,14 +350,20 @@ def scan():
     print(f"[info] 扫描目标 {len(targets)} 个（HIGH+MID）")
 
     # 预建全库文件集合，供死链检测用（避免逐次 Test-Path）
+    # 2026-09-23 审计：walk 剪枝 SKIP_DIRS——① .git/_trash 等不再进白名单（指向 _trash 的引用
+    # 不再被误放行）；② .git 对象库数千文件不再无谓遍历
     all_files = set()
-    for root, _, files in os.walk(GS):
+    for root, dirs_, files in os.walk(GS):
+        dirs_[:] = [x for x in dirs_ if x not in SKIP_DIRS]
         for fn in files:
             all_files.add(os.path.relpath(os.path.join(root, fn), GS).replace("\\", "/"))
-    all_dirs = {os.path.relpath(os.path.join(r, d), GS).replace("\\", "/")
-                for r, ds, _ in os.walk(GS) for d in ds}
+    all_dirs = set()
+    for root, dirs_, _f in os.walk(GS):
+        dirs_[:] = [x for x in dirs_ if x not in SKIP_DIRS]
+        all_dirs |= {os.path.relpath(os.path.join(root, x), GS).replace("\\", "/") for x in dirs_}
     gm_files = set()
-    for root, _, files in os.walk(r"D:\global_memory"):
+    for root, dirs_, files in os.walk(r"D:\global_memory"):
+        dirs_[:] = [x for x in dirs_ if x not in SKIP_DIRS and x != "node_modules"]
         for fn in files:
             gm_files.add(os.path.relpath(os.path.join(root, fn), r"D:\global_memory")
                          .replace("\\", "/"))
@@ -363,13 +375,14 @@ def scan():
             continue
         raw = open(p, "r", encoding="utf-8-sig", errors="replace").read()
         size_b = os.path.getsize(p)
-        refs = os.listdir(os.path.join(GS, name))
-        has_refs = "references" in refs
+        entries = os.listdir(os.path.join(GS, name))
+        # 2026-09-23 审计：references 可能是同名**文件**（非目录）→ isdir 双重判断防 NotADirectoryError 中断全扫描
+        has_refs = "references" in entries and os.path.isdir(os.path.join(GS, name, "references"))
         ref_cnt = len(os.listdir(os.path.join(GS, name, "references"))) if has_refs else 0
 
         # frontmatter
         fm = {}
-        mt = re.match(r"^---\n(.*?)\n---\n", raw, re.S)
+        mt = re.match(r"^---\r?\n(.*?)\r?\n---\r?\n", raw, re.S)
         if mt:
             cur = None
             for line in mt.group(1).splitlines():
@@ -385,7 +398,7 @@ def scan():
         # 死链：只校验「skill 内部引用」与「全局记忆绝对路径」两类可验证引用
         # （排除跨项目路径：小说项目/部署仓库/焚诀 eval 等，非 skill 死链）
         dead = []
-        for m2 in re.finditer(r"`([A-Za-z0-9_\\\-./一-鿿]+\.(?:md|py|ps1|json|yaml|yml|js|sh))`", raw):
+        for m2 in re.finditer(r"`([A-Za-z0-9_\\\-./:一-鿿]+\.(?:md|py|ps1|json|yaml|yml|js|sh))`", raw):
             t = m2.group(1).replace("\\", "/")
             low = t.lower()
             if low.startswith(("references/", "scripts/", "templates/")):
@@ -395,11 +408,20 @@ def scan():
                 if any(f.endswith("/" + os.path.basename(t)) for f in all_files):
                     continue
                 dead.append(t)
-            elif low.startswith("d:/global_memory/") or low.startswith("d:/global_skills/"):
-                rel = t[3:]
+            elif low.startswith("d:/global_memory/"):
+                # 2026-09-23 审计（P0-1/P0-2）：原字符类不含 `:` ⇒ 本分支永不可达（全局记忆绝对路径死链全漏报）；
+                # 且原 t[3:] 切片留下 global_memory/ 前缀 ⇒ 修好可达性后会全量误报。现按前缀精确切片。
+                rel = t[len("d:/global_memory/"):]
                 if rel in gm_files or rel in all_files or rel in all_dirs:
                     continue
                 if any(f.endswith("/" + os.path.basename(rel)) for f in gm_files):
+                    continue
+                dead.append(t)
+            elif low.startswith("d:/global_skills/"):
+                rel = t[len("d:/global_skills/"):]
+                if rel in all_files or rel in all_dirs:
+                    continue
+                if any(f.endswith("/" + os.path.basename(rel)) for f in all_files):
                     continue
                 dead.append(t)
         # 通配符引用死链（2026-09-22 第 10 轮补，遗留 #1）
@@ -414,8 +436,14 @@ def scan():
         # 而 DEPRECATED_PLATFORMS 含正则项 r"\bCC\b" ⇒ 该字面量永远匹配不到 ⇒ **CC 检测静默失效**
         # （实证：`openclaw-task-supervision:114` 写「OC/WB/CC/TC/HM/CX」却从未被标出）
         # 口径(2026-09-23修)：大小写不敏感（漏“claude code/ClaudeCode”变体）+ CC仍用\b护栏防误伤。
-        dep = [d for d in DEPRECATED_PLATFORMS if re.search(d, raw, re.IGNORECASE)]
-        dep = ["CC" if d == r"\bCC\b" else d.strip() for d in dep]
+        # 2026-09-23 审计：CC 改为**区分大小写**匹配（IGNORECASE 会命中小写 cc=抄送/变量名，误报）
+        dep = []
+        for _d in DEPRECATED_PLATFORMS:
+            if _d == r"\bCC\b":
+                if re.search(_d, raw):
+                    dep.append("CC")
+            elif re.search(_d, raw, re.IGNORECASE):
+                dep.append(_d.strip())
 
         rows.append(OrderedDict([
             ("skill", name),

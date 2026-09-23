@@ -28,6 +28,9 @@ def _read(path):
     bom = raw.startswith(b"\xef\xbb\xbf")
     text = raw.decode("utf-8-sig")
     crlf = text.count("\r\n") >= text.count("\n") - text.count("\r\n")
+    # CRLF 归一化为 LF 后再处理（2026-09-23 实测踩坑：CRLF 文件 split("\n") 残留行尾 "\r"，
+    # _write 的 \n→\r\n 复原会产出 "\r\r\n" 双重行尾；先归一化，写盘时按原行尾整体复原）
+    text = text.replace("\r\n", "\n")
     return text, bom, crlf
 
 
@@ -37,8 +40,15 @@ def _write(path, text, bom, crlf):
     data = text.encode("utf-8")
     if bom:
         data = b"\xef\xbb\xbf" + data
-    with open(path, "wb") as f:
-        f.write(data)
+    # 原子写：先写同目录临时文件再 os.replace，避免半写状态（2026-09-23 审计 A2）
+    tmp = os.path.join(os.path.dirname(os.path.abspath(path)), f".apply_patches.tmp.{os.getpid()}")
+    try:
+        with open(tmp, "wb") as f:
+            f.write(data)
+        os.replace(tmp, path)
+    finally:
+        if os.path.exists(tmp):
+            os.remove(tmp)
 
 
 def _find(lines, old_lines):
@@ -83,7 +93,12 @@ def main():
     plan = {}
     errors = []
     for idx, p in enumerate(patches, 1):
-        path = p["file"]
+        rel = p["file"]
+        # 相对路径按 patch.json 所在目录解析，不按 CWD（2026-09-23 审计 A11：跨目录运行会 miss 或误命中同名文件）
+        if os.path.isabs(rel):
+            path = os.path.normpath(rel)
+        else:
+            path = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(patch_path)), rel))
         if not os.path.exists(path):
             errors.append(f"#{idx} 文件不存在: {path}")
             continue
@@ -106,6 +121,15 @@ def main():
             errors.append(f"#{idx} 命中数={len(hits)}（须为 1）: {path} ← {old_lines[0][:60]}")
             continue
         plan.setdefault(path, []).append((idx, hits[0], len(old_lines), new_lines, bom, crlf))
+
+    # ①a 同文件多处的行区间重叠检测（2026-09-23 审计 A3：从后往前替换只防行号漂移，
+    # 不防区间重叠——A 改 5-7、B 改 7-9 时会产出交错内容且写后校验拦不住）
+    for path, items in plan.items():
+        if len(items) > 1:
+            spans = sorted((ln, ln + n - 1, idx) for idx, ln, n, *_r in items)
+            for (s1, e1, i1), (s2, e2, i2) in zip(spans, spans[1:]):
+                if s2 <= e1:
+                    errors.append(f"行区间重叠：#{i1}({s1+1}-{e1+1}) 与 #{i2}({s2+1}-{e2+1}) 于 {path}")
 
     # ①b JSON 文件预校验：模拟应用后必须仍是合法 JSON
     # （2026-09-22 实测踩坑：补丁文本含裸 " 会写坏 JSON 字符串 → 门禁 JSONDecodeError）
@@ -143,38 +167,55 @@ def main():
 
     # ①c 写前备份（备份失败 = 未写盘；写后可整批还原）
     try:
-        backup_dir, _backups = _backup_all(plan)
+        backup_dir, backups = _backup_all(plan)
     except Exception as e:
         print(f"[FAIL] 写前备份失败，未写盘: {e}")
         return 1
     print(f"  [BACKUP] {backup_dir}")
 
     # ② 逐文件应用（同一文件内多处：从后往前替换，避免行号漂移）
+    # 任何写盘异常或写后校验失败 → 用写前备份自动回滚全部已写文件（2026-09-23 审计 A2：
+    # 原实现非事务且只报错不回滚，与 docstring「写后可整批还原」承诺脱节）
+    written = []
     fails = []
-    for path, items in plan.items():
-        text, bom, crlf = _read(path)
-        lines = text.split("\n")
-        for _idx, ln, n, new_lines, _b, _c in sorted(items, key=lambda x: -x[1]):
-            if patches[_idx - 1].get("mode") == "substr":
-                # ⚠️ 必须是**行内子串替换**，不可整行覆盖
-                # （2026-09-22 实测踩坑：误写为 lines[ln] = new → 吃掉该行打头内容，6 行受损，
-                #   且 dry-run 与「new 首行存在」校验都拦不住，因为坏的是被覆盖掉的旧内容）
-                lines[ln] = lines[ln].replace(patches[_idx - 1]["old"], "\n".join(new_lines))
-                continue
-            lines[ln:ln + n] = new_lines
-        _write(path, "\n".join(lines), bom, crlf)
-        # 写后自校验：每处 patch 的 new 首行必须出现（防静默丢补丁；2026-09-22 实测踩坑）
-        after, _b2, _c2 = _read(path)
-        for _idx, _ln, _n, new_lines, _b, _c in items:
-            head = new_lines[0].strip()
-            if head and head not in after:
-                fails.append(f"#{_idx} 写后校验失败（new 首行未出现）: {path}")
-        print(f"  [WRITE] {path}  ({len(items)} 处)")
+    try:
+        for path, items in plan.items():
+            text, bom, crlf = _read(path)
+            lines = text.split("\n")
+            for _idx, ln, n, new_lines, _b, _c in sorted(items, key=lambda x: -x[1]):
+                if patches[_idx - 1].get("mode") == "substr":
+                    # ⚠️ 必须是**行内子串替换**，不可整行覆盖
+                    # （2026-09-22 实测踩坑：误写为 lines[ln] = new → 吃掉该行打头内容，6 行受损，
+                    #   且 dry-run 与「new 首行存在」校验都拦不住，因为坏的是被覆盖掉的旧内容）
+                    lines[ln] = lines[ln].replace(patches[_idx - 1]["old"], "\n".join(new_lines))
+                    continue
+                lines[ln:ln + n] = new_lines
+            _write(path, "\n".join(lines), bom, crlf)
+            written.append(path)
+            # 写后自校验：每处 patch 的 new 首行必须出现（防静默丢补丁；2026-09-22 实测踩坑）
+            after, _b2, _c2 = _read(path)
+            for _idx, _ln, _n, new_lines, _b, _c in items:
+                head = new_lines[0].strip()
+                if head and head not in after:
+                    fails.append(f"#{_idx} 写后校验失败（new 首行未出现）: {path}")
+            print(f"  [WRITE] {path}  ({len(items)} 处)")
+    except Exception as e:
+        fails.append(f"写盘异常: {e}")
 
     if fails:
-        print("[FAIL] 写后自校验未通过：")
+        print("[FAIL] 写盘未完整成功，自动回滚全部已写文件：")
         for _f in fails:
             print("   " + _f)
+        rollback_ok = True
+        for path in written:
+            try:
+                shutil.copy2(backups[path], path)
+                print(f"  [ROLLBACK] {path} ← 备份恢复")
+            except Exception as re_:
+                rollback_ok = False
+                print(f"  [ROLLBACK-FAIL] {path}: {re_}（手工恢复源: {backups[path]}）")
+        if not rollback_ok:
+            print("   ⚠️ 存在回滚失败文件，须用备份目录手工还原")
         return 1
 
     print(f"[DONE] 已写盘 {len(plan)} 个文件 / {len(patches)} 处")

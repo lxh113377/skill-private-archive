@@ -14,6 +14,11 @@
 
 > **📁 位置变更（2026-09-23 第 12 轮）**：19 个补丁均已应用（见各行结果 commit），原件已整体迁至
 > `../archive/applied-patches-2026-09/`（git mv 保历史）；本表文件名相对该目录。05-exec 根目录只保留脚本与未归档轮次产物。
+>
+> **⚠️ 补丁双格式 runner 标注（2026-09-23 r8 审计补）**：本目录现存补丁 JSON 分两式——
+> ① **`apply_patches.py` 批量式**（每项含 `file`/`old`/`new`）：`B3-patches/` `B4-patches/` `B7-patches/` `B10-patches/` `R196-01-patches/` `R271-patches/` 的 `fix_truth_constants.json`·`laoda_*.json`·`repair_specs.json`；
+> ② **`rule_editor.py replace --patch` 单文件式**（仅 `old`/`new`，目标由 CLI `--file` 指定）：`B2-patches/` `D1-patches/` `D4-patches/` `R270-patches/` 及 `R271-patches/` 的 `q_*.json`。
+> 两式混存目录（R271）最易踩坑：用 `apply_patches.py` 跑②式会在 `p["file"]` 处 KeyError。均为**已应用历史证据**，勿直接复跑（目标文件已变化，预检会拒绝）。
 
 | # | 补丁文件 | 对应 P0 | 目标 skill | 改动摘要 | 结果 commit |
 |---|---|---|---|---|---|

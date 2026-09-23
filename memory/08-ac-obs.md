@@ -20,7 +20,7 @@
 
 - [ ] AC-OBS-01: 阶段0 自建清单裁定可复跑 → 跑 `01-scan/scan_all.py --stage scope` 退出码 0 且 `00-scope/` 下 3 个产物齐备（清单 / 失真条目 / scope_result.json） | 测试输出
 - [ ] AC-OBS-02: 阶段1 四维扫描可复跑 → 跑 `01-scan/scan_all.py --stage scan` 退出码 0 且 `01-scan/scan_result.json` 可被 JSON 解析 | 测试输出
-- [x] AC-OBS-03: 注册表与磁盘集合一致 → 焚诀 `verify_truth_consistency.py` 打印 `✅ C1 … 注册表 == 磁盘`（2026-09-22 实测 120 skills） | 测试输出
+- [x] AC-OBS-03: 注册表与磁盘集合一致 → 焚诀 `verify_truth_consistency.py` 打印 `✅ C1 … 注册表 == 磁盘`（2026-09-22 实测 120 skills）—— ✅ 校正注（2026-09-23 r8）：120 为**重建前**口径；现行注册表口径 = **151**（磁盘实测全等，`28daf6e` 重建后持续成立），以 151 为准 | 测试输出
 - [x] AC-OBS-04: 三门禁全绿 → `rule_editor.py gates` 退出码 0 且打印 `mirror=pass noise=pass evolution=pass`（2026-09-22 实测） | 测试输出
 - [x] AC-OBS-05: 记忆可交接 → `handoff.py savepoint <项目>` 退出码 0（07 P0 非空 + P-1 绑定表存在 + 门禁 PASS）—— 2026-09-22 实测 **exit 0「本次对话已安全落盘」**；P0 未完成 8 项、`coldstart --check` 6 行全等、`noise` = `[GATE:noise-pass]` | 测试输出
 - [ ] AC-OBS-06: 记忆完整性达标 → `handoff.py review <项目>` 输出 `Score: 9/9` 且 warnings = 0 —— 2026-09-22 实测 **7/9（78%）**，剩 2 条均为上游判据缺陷（假阴性 + 注释未剔） | 测试输出

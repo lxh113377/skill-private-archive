@@ -5,6 +5,7 @@
 > ⚠️ 本版**取代 v1**（2026-09-14，169 条时代）。v1 已原样归档至 `archive/scope-v1-169-2026-09-14/`（历史留痕不改写）。
 > 覆盖：磁盘 150 个目录；已排除 `SKIP_DIRS`（`_my-skills` = 保护标记非任务型 skill、`hooks` 基建、`_trash`/`_temp`/`_bak`/`.git`/`.hermes`/`__pycache__`）→ 与注册表 151 条差 1（即 `_my-skills`）。
 > 打分：registry user_created=true +5 | 命名域自建族 +3 | semver +2 | git 版本化提交 +2 | disk global_skills +1 | user_created=false -4 | LICENSE -3 | source=skillhub -3 | 官方元数据 -3 | openclaw_plugin -6
+> ⚠️ 校正注（2026-09-23 r8）：上行打分说明与 `scan_all.py` 实现不符（历史版本文案未随代码更新）——实际 = disk **+2** / `unified:user_created=true` **+4** / `user_created=false` **不计分**（失真字段）/ 无 LICENSE-3 等负分项，市场信号命中即 **EXCLUDE(-100)**（见 `01-scan/scan_all.py:208-219`）；下次 `--apply` 重出时以代码生成文案为准
 > 磁盘目录 150 → HIGH 51 / MID 26 / LOW 30 / EXCLUDE 43
 
 ## HIGH（51）
