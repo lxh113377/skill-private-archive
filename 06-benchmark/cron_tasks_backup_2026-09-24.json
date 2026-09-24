@@ -1,0 +1,52 @@
+{
+  "backup_purpose": "r21b 止血前的自动化任务全量定义备份（可据此逐条 update/remove 复原）",
+  "backup_ts": "2026-09-24T21:05:00+08:00",
+  "obtained_by": "mcp__builtin__qoder_cron action=list",
+  "note": "本文件只备份本项目相关任务的原文与全部调度参数；其余 6 个任务的完整 JSON 已在同轮会话输出中留档，且均未改动。",
+  "tasks_changed_in_r21b": [
+    {
+      "id": "36e379f3-66e8-4ee9-b432-c97fd036cc4c",
+      "name": "自建skill",
+      "productMode": "coding",
+      "agentId": "agent:default",
+      "trigger": { "kind": "schedule", "schedule": { "kind": "every", "everyMs": 3600000 } },
+      "executionScope": {
+        "kind": "workspace",
+        "workspaceId": "79f15ac3-8297-458b-bb86-30bd1562d0f1",
+        "cwd": "C:\\Users\\37533\\Desktop\\workspace\\自建skill优化"
+      },
+      "instruction_original_text": "将我的项目与GitHub上类似优质开源项目进行全面对标分析。 请从以下维度逐项深入比较：功能模块覆盖范围、技术架构与实现方式、性能表现、可扩展性、维护状态、文档完善程度、适用场景。明确指出我的工作流在该项目中的对应部分、存在的具体差距、可借鉴的优势功能。给出详细的改进建议并按优先级排序（高/中/低），以帮助我将工作流提升至与该项目同等或更优水平。最终输出结构化报告，必须包含：对比总览表、逐项差距说明、改进建议清单（含优先等级）、可操作的实施路径。\r\n把报告里的改进建议按优先级直接开工执行.其中破坏性操作在已确保有完整备份和Git版本控制自动提交。严禁询问，直接执行，用户不在无法确认，这是自动化任务。",
+      "model": "qfmodel",
+      "executionPolicy": { "permissionMode": "bypassPermissions" },
+      "outputMode": "merged",
+      "enabled": true,
+      "deleteAfterRun": false,
+      "expiresAt": null,
+      "revision_at_backup": 7,
+      "createdAt": 1790215796695,
+      "lastRunAt": 1790253318429,
+      "lastRunStatus": "succeeded",
+      "lastDurationMs": 700995,
+      "action_taken": "仅更新 instruction（前置幂等闸门），schedule/model/outputMode/permissionMode 全部保留原值；未 disable、未 remove",
+      "restore_command": "qoder_cron update jobId=36e379f3-66e8-4ee9-b432-c97fd036cc4c patch.prompt=<上面的 instruction_original_text 原文>"
+    }
+  ],
+  "tasks_observed_untouched": [
+    { "id": "c22cd5f4-da72-4c35-961e-03b3cff820f3", "name": "门店", "cwd": "C:\\Users\\37533\\Desktop\\workspace\\项目\\门店 AI 管理智能体", "everyMs": 3600000, "lastDurationMs": 1856474, "enabled": true },
+    { "id": "48fd8b94-7e4a-41c4-b55c-e73785b2d90d", "name": "医", "cwd": "C:\\Users\\37533\\Desktop\\workspace\\项目\\医", "everyMs": 3600000, "lastDurationMs": 746292, "enabled": true },
+    { "id": "db339ab3-9aeb-4fea-91dc-be6faf1b3de4", "name": "陪聊", "cwd": "C:\\Users\\37533\\Desktop\\workspace\\项目\\陪聊", "everyMs": 3600000, "lastDurationMs": 136260, "enabled": true },
+    { "id": "7acd7fc6-a570-47d7-a619-7d799b404633", "name": "孝心", "cwd": "C:\\Users\\37533\\Desktop\\workspace\\项目\\孝心联", "everyMs": 3600000, "lastDurationMs": 691930, "enabled": true },
+    { "id": "eb486c54-0d77-465d-8d84-1c2758db93f9", "name": "超市", "cwd": "C:\\Users\\37533\\Desktop\\workspace\\超市web", "everyMs": 3600000, "lastDurationMs": 623205, "enabled": true },
+    { "id": "57d67b2e-1c48-4275-8587-2b8e37fd6439", "name": "焚诀", "cwd": "C:\\Users\\37533\\Desktop\\workspace\\焚诀", "everyMs": 7200000, "lastDurationMs": 854951, "enabled": true }
+  ],
+  "fleet_cost_measured": {
+    "hourly_tasks": 6,
+    "sum_last_duration_minutes_per_hour": 79.2,
+    "ratio_vs_wallclock": 1.32,
+    "fenjue_avg_minutes_per_hour": 7.1,
+    "total_agent_minutes_per_day_approx": 1239,
+    "total_agent_hours_per_day_approx": 20.7,
+    "all_tasks_permissionMode": "bypassPermissions",
+    "derivation": "6 个每 3600000ms 任务的 lastDurationMs 之和 = 4,755,156ms = 79.25 分钟/每轮；焚诀 854,951ms 每 7,200,000ms = 7.12 分钟/小时均值。合计 ≈86.4 分钟/小时 ⇒ 超 100% 墙钟，任务间必然重叠并发"
+  }
+}
