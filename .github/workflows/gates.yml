@@ -3,10 +3,13 @@ name: gates
 # r31 / 对标新维度 N12「自动化验收面」的落地件。
 #
 # 覆盖边界（本仓 R20-2「任何预算/上限类门禁必须自证覆盖根清单」，此处同理）：
-#   本 workflow 只跑 run_gates.py 的 **可移植子集**（r31 实测 3/5 门）。
+#   本 workflow 只跑 run_gates.py 的 **可移植子集**（r31 实测 3/5 门 → r32 起 **4/6 门**，
+#   新增的 gate_run_freshness 读随仓提交的执行台账 ⇒ 它能在 CI 里判「本机是否还在跑门禁」）。
 #   r19_scan_fixtures 与 ratchet_gate 需读 D:\global_skills ∪ 焚诀 ∪ D:\global_memory，
 #   离机必红 ⇒ 由 runner 显式打印 SKIPPED-BY-DESIGN + 原因，**不静默跳过**。
-#   ⇒ 「CI 绿」在本仓的定义 = 可移植 3 门全绿，不等于本机 5 门全绿，更不等于受管根四门禁绿。
+#   ⚠️ r32 改判：这 2 门**不可**靠"扫描根参数化"搬进 CI —— 本仓 tracked SKILL.md 本体 = 0 个，
+#   CI 里没有语料可读；把语料复制进来 = 第二真相源 + 陈旧假绿（见报告 X-1）。
+#   ⇒ 「CI 绿」在本仓的定义 = 可移植 4 门全绿，不等于本机 6 门全绿，更不等于受管根四门禁绿。
 #
 # 借自对手的三条实物机制（原文见 06-benchmark/ci_evidence/）：
 #   · mycelium release-drift-heartbeat.yml：`schedule: cron "23 14 * * *"` 每日心跳 ——
@@ -33,7 +36,7 @@ concurrency:
 
 jobs:
   portable-gates:
-    name: 可移植门禁子集（3/5）
+    name: 可移植门禁子集（4/6）
     runs-on: ubuntu-latest
     steps:
       # 上游更严的做法是按 commit SHA 钉 action（mycelium 两份 workflow 均如此，带版本注释）。
