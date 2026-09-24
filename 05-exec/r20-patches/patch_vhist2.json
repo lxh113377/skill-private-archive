@@ -1,0 +1,6 @@
+[
+ {
+  "old": "> V10.68.0 (2026-09-24): **注入面端数口径改口八端",
+  "new": "> V10.69.0 (2026-09-24): **rule_editor 新增「写前脏源检测」并 fail-closed 挂进 commit**（自建skill优化 r19b/r20 实测治理）——既有归属校验只回答「我写完之后有没有被人再改」，不回答「我动手以前它脏不脏」，而后者才是本仓两次整文件夹带的根因（受管根 f6f5b0c 带走他人 splitvol.py 1 行、4b75d80 带走我的 contract.md hunks）。实现：write_text 写前取磁盘指纹、写后把 rel/pre_sha/post_sha 追加进 `BACKUP_DIR/write_chain.jsonl`（BACKUP_DIR 在受管根外，不污染 git status）；commit 在 staging 之前比对 HEAD 指纹与写入链——脏且链上无记录 ⇒ 打印逐文件处置建议并中止，显式 `--allow-dirty-source` 才放行且落 `dirty_source_overrides.jsonl` 留痕。边界：HEAD 不可读（新文件）与磁盘指纹读空一律不报（不猜测）；写入链按 rel 隔离，防跨文件背书。验证：`05-exec/r20_dirty_source_stub.py` 纯函数 7 例（干净基座/自有链中间态/他人在途/文案含处置/HEAD 不可读/指纹读空/链按文件隔离）+ 真实他人在途文件被点名 + 生效路径由升级后首次正常提交实测不报；受管根 `9a15f4e`。同步 frontmatter 10.68.0 → 10.69.0。\n> V10.68.0 (2026-09-24): **注入面端数口径改口八端"
+ }
+]
