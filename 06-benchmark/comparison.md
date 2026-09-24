@@ -40,7 +40,7 @@
 | 6 | 无 catalog 级三层 eval | N-A 结构/路由/行为三层 eval 在 CI | 焚诀有路由命中评测与召回评测（C26），**无「两技能描述撞车」静态判据** | r19 |
 | 7 | 注册表无 JSON Schema 契约 | AAS `schemas/aas-v1/` 12 份 schema | 运行态污染件靠 noise 门禁事后 quarantine | r18 N5 |
 | 8 | 对外文档为零 | N-A/N-B 有 docs home + comparison 页 | 对内极强、对外零；**本页即第 1 步** | r10 P2-1 / r19 落地本页 |
-| 9 | **自动化验收面为零（判据全靠人记得跑）** | N-E mycelium 11 个 workflow 全守规则资产（AAS 9 / spec-kit 18 / ruflo 29 / mem0 34） | r31 前 `.github` 不存在 ⇒ 42 项判据（C1~C33 + 本仓 5 + 四门禁）无离人执行面；**r31 起步**：`run_gates.py` 单入口 + `gates.yml`（可移植 3/5 门，余 2 门显式 SKIPPED） | r31 N12 |
+| 9 | **自动化验收面为零（判据全靠人记得跑）** | N-E mycelium 11 个 workflow 全守规则资产（AAS 9 / spec-kit 18 / ruflo 29 / mem0 34） | r31 前 `.github` 不存在 ⇒ 42 项判据（C1~C33 + 本仓 5 + 四门禁）无离人执行面；**r31 起步**：`run_gates.py` 单入口 + `gates.yml`（可移植 3/5 门，余 2 门显式 SKIPPED）；**r32 收口一半并改判剩余**：门数 5→6、可移植 3/5→**4/6**，剩余 2 门经实测改判为**设计边界**（仓内无语料，见 X-1）而非待修缺陷，防护转为「用 CI 盯人」的 `gate_run_freshness` | r31 N12 → r32 有效性面 |
 
 ### ⚠️ 落后项 #6 的 r31 校正注（R241：原文一字未改，只加注）
 
@@ -131,6 +131,36 @@ n=166 同一批文件，四档 = 现行尺 / 严格同义 / 功能等价宽写�
 借到的机制与落点：B1 one-source-of-truth（一份逻辑 N 处调用）/ B2 跑不到≠过（`UNVERIFIED` 三态）/
 B3 多 job 并列不短路 / B4 周期心跳档 / B5 `concurrency` 成本自觉 / B6 action 按 SHA 钉版本（本仓暂未做）。
 原文逐行证据见 `06-benchmark/ci_evidence/`。
+
+## CI 有效性（r32 增补：workflow 文件数只是必要条件，真值在 run 结论分布 + 心跳）
+
+复现：`python 05-exec/r32_ci_health.py --json 06-benchmark/ci_health_r32_2026-09-25.json`（窗口 = 每仓近 ≤50 run，全 workflow 全分支）
+
+| 对象 | workflow 数 | 近 50 run 结论分布 | success | 最近 run |
+|---|---|---|---|---|
+| obra/superpowers | 0（r31 实测） | `failure 41 / success 7 / startup_failure 2` | **14%** | 09-22 |
+| anthropics/skills | 0（r31 实测） | `failure 24 / success 8` | 25% | **08-13 ⇒ 停摆 6 周无一人报警** |
+| github/spec-kit | 18 | 半数卡在待批准 | 30% | 09-24 |
+| vercel-labs/skills | 3 | — | 22% | 09-24 |
+| mem0ai/mem0 | 34 | — | 54% | 09-24 |
+| sickn33/AAS | 9 | — | 72%（failure 18%） | 09-24 |
+| ruvnet/ruflo | 29 | — | 92%（中位 154 s） | 09-24 |
+| **mycelium/ai-brain-starter** | 11 | `success 39 / skipped 6 / failure 3` | **78%（中位 19 s）** | 09-24 当日 |
+| mattpocock/skills | 1 | `success 50` | 100% | **09-18 ⇒ 7 天未跑** |
+| **本体系** | 1 | `success 3` | **100%（中位 12 s）** | 当日 0.4 h 前 |
+
+⇒ **三条结论（含推翻上一轮自家建议）**
+1. **「搬进 CI 就变强」被对手实物推翻**：两家最高星标的 CI 现状 = 曾经有、跑不绿、然后静默停摆。
+   ⇒ 只把判据搬进 CI 而不配「有效性」监控，结局就是 anthropics 那种**没人报警的死亡**。
+2. **⛔ 推翻 r31 的 M-1**（"扫描根参数化即可让 CI 覆盖 3/5→5/5"）：本仓 tracked `SKILL.md` 本体 = **0** ⇒
+   CI 里没有语料，参数化只解决"从哪读"不解决"读什么"。要补语料就得把技能复制进归档仓
+   = 造第二真相源（违 C1）+ 陈旧即假绿。⇒ **改判为设计边界**，防护方向改成"证明本机还在真跑"。
+   新增禁止项 X-1：禁止为凑 CI 覆盖率把技能语料复制进归档仓。
+3. **本体系在第九维首次反超全场**：`gate_run_freshness`（台账新鲜度 + 实质门 verdict，空台账/纯 CI 记录/超期/坏 ts 一律不判绿）
+   + `r32_ci_health.py`（心跳与成功率自测）。**对手零家有等价物** —— 连最健康的 mycelium 也靠人盯，我们靠判据盯。
+
+反向用法说明：对手用 CI 判代码，本仓额外用 CI **盯人**（`gate_runs.jsonl` 随仓提交，CI 读它判"本机是否还在跑门禁"）。
+自锁教训见 `全量对标报告_r32_CI有效性_2026-09-25.md` §7.2（评台账的判据不得把自己的结论写回台账）。
 
 ## 维护状态（r30 实测化，替换此前的形容词）
 

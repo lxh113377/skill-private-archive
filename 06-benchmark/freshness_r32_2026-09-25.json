@@ -1,0 +1,18 @@
+{
+ "schema": "gate-freshness-v1",
+ "generated_at": "2026-09-25 06:37",
+ "readonly": true,
+ "benchmark": "r32 判据僵尸化防护",
+ "ledger": "C:\\Users\\37533\\Desktop\\workspace\\自建skill优化\\06-benchmark\\gate_runs.jsonl",
+ "rows": 6,
+ "max_days": 7,
+ "origin_domain": [
+  "local",
+  "ci"
+ ],
+ "state": "PASS",
+ "why": "最近本机 PASS 距今 0.00 天 ≤ max_days=7；台账共 6 条（本机 6 / CI 0）",
+ "coverage": [
+  "06-benchmark/gate_runs.jsonl"
+ ]
+}

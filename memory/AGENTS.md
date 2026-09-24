@@ -26,12 +26,21 @@ python 05-exec/run_gates.py
 > **r31 起改为聚合 runner 单入口**（对标 mycelium-hq/ai-brain-starter `template-purity.yml` 的
 > "the identical check runs locally pre-push, in the write-time hook, and here in CI — one source of truth"）。
 > runner 内 `GATES` 表 = 单一真相源，逐门独立执行**不短路**（原 5 段 `&&` 串一段红即后四段不可知），
-> 每门打印**覆盖根清单**（本仓 R20-2），并输出每门耗时（本仓首个自家门禁耗时基线；r31 实测热缓存 1,781 ms / 冷启动 4,152 ms，可移植 3 门 561 ms —— **单点值不可引用**，取值 `python 05-exec/run_gates.py --json <件>.json` 读 `total_ms`/`elapsed_ms`，最慢门固定为 `r19_scan_fixtures`）。
+> 每门打印**覆盖根清单**（本仓 R20-2），并输出每门耗时（**单点值不可引用**，取值 `python 05-exec/run_gates.py --json <件>.json` 读 `total_ms`/`elapsed_ms`；r31-r32 观测区间 1.78～4.82 s，最慢门恒为 `r19_scan_fixtures`）。
+> **r32 起门数 = 6**：新增 `gate_run_freshness`（`05-exec/r32_gate_freshness.py`），它评的是「本仓门禁最近是否还在被真跑」——
+> 依据 `06-benchmark/gate_runs.jsonl` 执行台账（每次 runner 执行追加一行，`origin` 区分 `local`/`ci`）。
+> 三条反假绿要点：① **空台账 ⇒ `UNVERIFIED`**（没跑过 ≠ 跑得干净）；② **只有 CI 记录 ⇒ FAIL**（CI 绿不能替人证明两台机专属门还在跑，这是本仓对 CI 的反向用法：用 CI 盯人）；
+> ③ 该门自身标 `meta: True`，其红**不写回台账 `verdict`**（否则一次引导期红会自锁成永久红，r32 实测复现过；`overall` 仍如实记录）。
+> 存在理由（对手实物）：anthropics/skills 的 run 分布 = 25% success / **75% failure**，且**已停摆 6 周无人报警**；
+> superpowers 近 50 run **82% failure**。⇒ 「把判据放进 CI」本身不构成保障，必须另有有效性判据。
+> 复现：`python 05-exec/r32_ci_health.py --json <件>.json`（近 ≤50 run 结论分布 + 心跳）；`python 05-exec/r32_freshness_fixtures.py`（18 例含变异 4/4）。
+> ⛔ **X-1（r32 立）**：禁止为了把 CI 覆盖凑到 6/6 而把技能语料复制进本归档仓 —— 仓内 tracked `SKILL.md` 恒为 0 是有意的，
+> 复制进来等于造第二真相源（违 C1），且快照陈旧会**假绿**（比红灯危险）。那 2 台机专属门是**设计边界**。
 > 三态判据：`PASS`（rc=0 且含该门标记）/ `FAIL`（rc≠0）/ **`UNVERIFIED`（rc=0 但标记不见 —— 静默跳过一律不算绿，R247/R220）**；
 > 门脚本缺失 ⇒ exit 2。聚合绿**不等于**受管根四门禁绿，runner 会显式打印「本 runner 不覆盖」清单。
-> 展开等价的 5 条原命令（顺序与 runner 一致）：
-> `python 05-exec/r19_scan_fixtures.py && python 05-exec/r19_baseline_contract_fixtures.py && python 05-exec/baseline_contract_scan.py --quiet && python 05-exec/ratchet_gate.py && python 05-exec/control_char_scan.py .`
-> 五条全 `[GATE:fixture-pass]` / `[CONTRACT:PASS]` / `[RATCHET:PASS]` / `[CTRL:CLEAN]` 才允许落盘改动（`[RATCHET:FAIL]` 只在「指标比基线长大」或「指标算不出」时出现；既有的超硬顶项按非阻断告警显示，`--strict-cap` 可升级为阻断）；任一红 = 判据或基线契约已失效，先修判据再动手（R263）。
+> 展开等价的 6 条原命令（顺序与 runner 一致）：
+> `python 05-exec/r19_scan_fixtures.py && python 05-exec/r19_baseline_contract_fixtures.py && python 05-exec/baseline_contract_scan.py --quiet && python 05-exec/ratchet_gate.py && python 05-exec/control_char_scan.py . && python 05-exec/r32_gate_freshness.py`
+> 六条全 `[GATE:fixture-pass]` / `[CONTRACT:PASS]` / `[RATCHET:PASS]` / `[CTRL:CLEAN]` / `[FRESH:PASS]` 才允许落盘改动（`[RATCHET:FAIL]` 只在「指标比基线长大」或「指标算不出」时出现；既有的超硬顶项按非阻断告警显示，`--strict-cap` 可升级为阻断）；任一红 = 判据或基线契约已失效，先修判据再动手（R263）。
 > runner 自身的夹具 = `python 05-exec/r31_run_gates_fixtures.py`（17 例含变异 4/4；刻意不入 `GATES` 表，因夹具会 subprocess 调 runner，入表即自递归）。
 > 第五条 `[CTRL:CLEAN]` = 全仓无非法控制符（C0 ∪ {0x7f DEL} 减制表/换行/回车）。它拦的是「肉眼看不见、但会让引用检索不到」这一类：实测当天四轮复现，含被修文件自身与受管根两处死引用。
 > 判据可信度本身由 `python 05-exec/r19_fixture_mutation_check.py` 变异测试担保（4 项变异必须全部被拦 + 未变异对照组通过）。

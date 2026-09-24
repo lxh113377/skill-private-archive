@@ -39,6 +39,11 @@ from datetime import datetime
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
+# r32：执行台账。每跑一次 runner 追加一行（origin 区分本机/CI）。
+# 台账随仓提交 ⇒ CI 能反过来判「本机专属门还在不在被人跑」；这是本仓与对手 CI 的用法差：
+# 对手的 CI 判代码，我们额外用 CI 盯「人有没有停跑」（依据见 06-benchmark/ci_health_r32_*.json）。
+LEDGER = os.path.join(REPO, "06-benchmark", "gate_runs.jsonl")
+ORIGIN = "ci" if os.environ.get("GITHUB_ACTIONS") == "true" else "local"
 
 # 单一真相源：门禁清单只在这里维护。AGENTS.md / CI / 会话内手工跑，都走本表。
 GATES = [
@@ -93,6 +98,18 @@ GATES = [
         "covers": ["本仓全部文本面（r31 实测 376 个面）"],
         "why": "拦「肉眼看不见、但让引用检索不到」的 C0 ∪ DEL",
     },
+    {
+        # r32 H-2：本仓独有一门 —— 用台账反证「本机专属门还在被跑」。CI 里也能跑（读已提交台账）。
+        "id": "gate_run_freshness",
+        "script": "r32_gate_freshness.py",
+        "argv": [],
+        "pass_token": "[FRESH:PASS]",
+        "portable": True,
+        "covers": ["06-benchmark/gate_runs.jsonl 执行台账",
+                   "间接盯住 ratchet_gate / r19_scan_fixtures 两台机专属门是否仍被人跑"],
+        "why": "防判据僵尸化（对手实测：spec-kit 50% run 停在 action_required，从未产生判定）",
+        "meta": True,   # 元判据：它评的是「台账本身」，不得把它的红写进台账 verdict（否则一次引导期红会永久自锁，r32 实测）
+    },
 ]
 
 # 显式声明本 runner **不覆盖**的面，防止聚合绿被读成「所有门禁都绿」（R20-2）。
@@ -118,7 +135,9 @@ def run_gate(gate, timeout):
         return "FAIL", 124, int((time.time() - t0) * 1000), "TIMEOUT after %ss" % timeout
     elapsed = int((time.time() - t0) * 1000)
     out = (p.stdout or "") + (p.stderr or "")
-    if p.returncode != 0:
+    if p.returncode == 2:
+        state = "UNVERIFIED"          # 门自报「取不到真相源/台账不可判」⇒ 同样不得算绿（R247）
+    elif p.returncode != 0:
         state = "FAIL"
     elif gate["pass_token"] not in out:
         state = "UNVERIFIED"          # rc=0 但标记不见 = 静默跳过，不得算绿
@@ -152,6 +171,8 @@ def main():
     ap.add_argument("--gate", action="append", default=[], help="只跑指定门 id（可重复）")
     ap.add_argument("--timeout", type=int, default=300)
     ap.add_argument("--json")
+    ap.add_argument("--no-ledger", action="store_true",
+                    help="不追加执行台账（只读试跑用；默认追加，供 gate_run_freshness 判新鲜度）")
     args = ap.parse_args()
 
     rows = []
@@ -181,6 +202,32 @@ def main():
 
     rc, why = aggregate(rows)
     n = len([r for r in rows if r["state"] != "SKIPPED"])
+    if not args.no_ledger:
+        # 台账只记事实，不记推测；git 取不到就写 None（不得因为取不到就跳过整行 —— 那会伪造连续性）
+        head = None
+        try:
+            h = subprocess.run(["git", "-C", REPO, "rev-parse", "--short", "HEAD"],
+                               capture_output=True, text=True, timeout=20)
+            head = h.stdout.strip() or None
+        except Exception:
+            head = None
+        # 台账的 `verdict` 只记**实质门**（排除 meta=True 的新鲜度门）：
+        # 新鲜度门评的是台账自己，若把它的引导期红写进 verdict，就会出现
+        # 「一次空台账 ⇒ 永久 FAIL」的自锁（r32 实测复现过）。`overall` 仍如实记全量结论供审计。
+        meta_ids = {g["id"] for g in GATES if g.get("meta")}
+        rc_sub, why_sub = aggregate([r for r in rows if r["id"] not in meta_ids])
+        entry = {"ts": datetime.now().strftime("%Y-%m-%dT%H:%M:%S"), "origin": ORIGIN,
+                 "verdict": "PASS" if rc_sub == 0 else ("FAIL" if rc_sub == 1 else "MISSING"),
+                 "verdict_reason": why_sub,
+                 "overall": "PASS" if rc == 0 else ("FAIL" if rc == 1 else "MISSING"),
+                 "mode": "portable-only" if args.portable_only else "full",
+                 "gates_run": n, "skipped": len(rows) - n, "total_ms": total_ms,
+                 "head": head, "per_gate": {r["id"]: r["state"] for r in rows}}
+        try:
+            with open(LEDGER, "a", encoding="utf-8") as f:
+                f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+        except OSError as e:
+            print("⚠️ 台账写入失败（不影响本轮判定，但会让 gate_run_freshness 下一轮报 UNVERIFIED）: %s" % e)
     print("-" * 72)
     print("执行 %d 门 / 跳过 %d 门 / 合计耗时 %d ms（均值 %d ms/门）"
           % (n, len([r for r in rows if r["state"] == "SKIPPED"]), total_ms,
