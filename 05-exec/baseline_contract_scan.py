@@ -182,6 +182,38 @@ INVARIANTS = {
 }
 
 
+def validate_jsonl(rows, contract, label="doc"):
+    """r33：JSONL 台账类产物的逐行契约（M-1′）。
+
+    为什么必须有：`06-benchmark/gate_runs.jsonl` 是 r32 第 6 门 `gate_run_freshness` 的**唯一证据面**。
+    此前它不在任何契约面内 ⇒ 谁都能把它写坏（缺键 / 第三种 origin / 坏 ts），
+    而 freshness 只会把坏数据读成 UNVERIFIED 或**更糟：把 cron 来源当本机记录放行**。
+    判据形状缺陷教训（r31 D4）：**取值域必须逐字段枚举**，不得只查"键在不在"。
+    """
+    msgs = []
+    if not rows:
+        return ["%s: 0 行（台账为空，禁判「无行=无违规」，R247）" % label]
+    req = contract.get("row_required", [])
+    enum = contract.get("row_enum", {}) or {}
+    fmt = contract.get("row_ts_format")
+    for i, row in enumerate(rows):
+        if not isinstance(row, dict):
+            msgs.append("%s row %d: 非对象行（JSONL 每行须为一个 JSON 对象）" % (label, i))
+            continue
+        miss = [k for k in req if k not in row]
+        if miss:
+            msgs.append("%s row %d: 缺键 %s" % (label, i, miss))
+        for k, allowed in enum.items():
+            if k in row and row[k] not in allowed:
+                msgs.append("%s row %d: %s 取值域违规=%r（允许 %s）" % (label, i, k, row[k], allowed))
+        if fmt and "ts" in row:
+            try:
+                datetime.strptime(str(row["ts"]), fmt)
+            except ValueError:
+                msgs.append("%s row %d: ts 形态非法=%r（须匹配 %s）" % (label, i, row["ts"], fmt))
+    return msgs
+
+
 def validate_doc(doc, contract, label="doc"):
     """按契约校验单个文档，返回违规描述列表（空 = 合规）。"""
     msgs = []
@@ -257,6 +289,22 @@ def main():
         bad_count = 0
         for fp in found:
             files_checked += 1
+            if fp.suffix == ".jsonl":   # r33：台账类产物走逐行契约
+                lines = []
+                for ln in fp.read_text(encoding="utf-8-sig").splitlines():
+                    ln = ln.strip()
+                    if not ln:
+                        continue
+                    try:
+                        lines.append(json.loads(ln))
+                    except ValueError:
+                        lines.append(ln)      # 原样传给 validate_jsonl，由它报「非对象行」
+                v = validate_jsonl(lines, contract, fp.name)
+                bad_count += len(v)
+                all_msgs += ["%s: %s" % (fp.name, m) for m in v]
+                if not args.quiet:
+                    print("%-46s %-24s 违规 %d（%d 行）" % (fp.name, pattern, len(v), len(lines)))
+                continue
             try:
                 doc = json.loads(fp.read_text(encoding="utf-8-sig"))
             except ValueError as e:

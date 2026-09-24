@@ -5,7 +5,7 @@
 
 ## ✅ 已完成
 
-- **r32 CI 有效性轮（2026-09-25 第 32 轮）** — 把 r31 第八维往深量一层（run 结论分布 + 心跳，非文件数）：13 仓实测发现 **superpowers 82% failure / anthropics 75% failure 且停摆 6 周无人报警 / spec-kit 50% 卡在 action_required** ⇒ 「搬进 CI 就变强」被对手实物推翻；**推翻并改写 r31 自家 M-1**（仓内 tracked `SKILL.md`=0 ⇒ 参数化造不出语料，复制语料=第二真相源+陈旧假绿 ⇒ 改判设计边界，新立禁止项 X-1）；落地**第 6 门 `gate_run_freshness`**（执行台账 `gate_runs.jsonl` + `origin` 分本机/CI + 空台账/纯CI记录/超期/坏ts 四类不判绿）与 `r32_ci_health.py`（只测不拦），门数 5→**6**、可移植 3/5→**4/6**，用法反转为「**用 CI 盯人**」；夹具 18 例含变异 4/4（**自纠两条**：M1 探针样本形态错致"假拦住"、元判据写回台账致自锁，均真机复现后修）。全文见 `06-benchmark/全量对标报告_r32_CI有效性_2026-09-25.md`；证据 `06-benchmark/{ci_health_r32,gate_run_r32,gate_run_r32_portable,freshness_r32}_2026-09-25.json`。
+- **r33 发布面维度 + 台账入契约轮（2026-09-25 第 33 轮）** — 12 对象发布/治理面实测（11/12 有 LICENSE、满配仅 spec-kit/AAS、0 tag 的是不做发布的 anthropics）⇒ 第三连结论「严格度源自外部消费者，非星标」；H-1 把 `gate_runs.jsonl` 纳入契约面（逐字段取值域 + ts 同源格式），夹具 22→**33** 例含真跑反例 3 条；H-2 首次给本仓打 annotated tag（版本锚由文本升级为 git 可查），并立 X-2 禁做（不补 LICENSE/发布流水线）；新登记 H-3 待裁定：焚诀治理三件被 noise 判散落（allowlist 缺治理件口径）。全文见 `06-benchmark/全量对标报告_r33_发布与治理面_2026-09-25.md`。
 
 - **r21c 还账轮（2026-09-24 第 21 轮 c 段）** — 本仓欠焚诀 C25/C31 的注入超顶已清偿：`A-memory-start/SKILL.md` 29,041→26,593B（长条目换一行摘要，全文归分卷），其余量 220→1,583B；实测 owner 已自落 C31 归因台账 ⇒ 我「注入区合一」建议作废。受管根 `928517a`/V10.70.0。全文见 `05-feature-status.part19.md`。
 - **r20b 棘轮落地轮（第 21 轮 b 段）** — A-get-memory 三条硬判据落地（受管根 `b8966da` V4.30.0，四门禁首次全绿）+ 本仓注入面棘轮 `ratchet_gate.py`（21/21 夹具，两级判定）挂进项目门禁命令。全文见 `05-feature-status.part18.md`。
@@ -37,4 +37,5 @@
 - **卷20** `05-feature-status.part20.md` — 05-feature-status 分卷（R199 自动拆卷）
 - **卷21** `05-feature-status.part21.md` — 05-feature-status 分卷（R199 自动拆卷）
 - **卷22** `05-feature-status.part22.md` — 05-feature-status 分卷（R199 自动拆卷）
+- **卷23** `05-feature-status.part23.md` — 05-feature-status 分卷（R199 自动拆卷）
 

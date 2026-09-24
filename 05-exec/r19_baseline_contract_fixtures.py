@@ -141,6 +141,33 @@ def main():
        any("schema" in x.lower() for x in bcs.validate_doc(d3, rub, "rubric")),
        json.dumps(bcs.validate_doc(d3, rub, "rubric"), ensure_ascii=False)[:200])
 
+    # --- r33：JSONL 台账纳入契约面（M-1′，护住 r32 新落的 freshness 门不被写坏）---
+    lj = contracts["artifacts"].get("gate_runs.jsonl")
+    ck("t13 契约已登记 gate_runs.jsonl（未登记=台账在契约面外，freshness 门可被静默写坏）",
+       isinstance(lj, dict) and bool(lj.get("row_required")), str(type(lj)))
+    if isinstance(lj, dict):
+        def bad_of(rows):
+            return bcs.validate_jsonl(rows, lj, "ledger") if hasattr(bcs, "validate_jsonl") else ["NO validate_jsonl"]
+        good = [{"ts": "2026-09-25T06:32:43", "origin": "local", "verdict": "PASS", "mode": "full"},
+                {"ts": "2026-09-25T06:32:46", "origin": "ci", "verdict": "PASS", "mode": "portable-only"}]
+        ck("t13.1 合规台账 → 零违规", bad_of(good) == [], json.dumps(bad_of(good), ensure_ascii=False)[:200])
+        ck("t14 行缺必填键 origin → 拦住并点名行号", any("缺键" in x and "row 0" in x for x in
+           bad_of([{"ts": "2026-09-25T06:32:43", "verdict": "PASS", "mode": "full"}])),
+           str(bad_of([{"ts": "2026-09-25T06:32:43", "verdict": "PASS", "mode": "full"}]))[:200])
+        ck("t15 origin 越出取值域 → 拦住（防第三态来源冒充本机记录）", any("origin 取值域" in x for x in
+           bad_of([{"ts": "2026-09-25T06:32:43", "origin": "cron-bot", "verdict": "PASS", "mode": "full"}])),
+           str(bad_of([{"ts": "2026-09-25T06:32:43", "origin": "cron-bot", "verdict": "PASS", "mode": "full"}]))[:200])
+        ck("t16 ts 形态非法 → 拦住", any("ts 形态" in x for x in
+           bad_of([{"ts": "2026/09/25 06:32", "origin": "local", "verdict": "PASS", "mode": "full"}])),
+           str(bad_of([{"ts": "2026/09/25 06:32", "origin": "local", "verdict": "PASS", "mode": "full"}]))[:200])
+        ck("t17 verdict 越出取值域 → 拦住", any("verdict 取值域" in x for x in
+           bad_of([{"ts": "2026-09-25T06:32:43", "origin": "local", "verdict": "maybe", "mode": "full"}])),
+           str(bad_of([{"ts": "2026-09-25T06:32:43", "origin": "local", "verdict": "maybe", "mode": "full"}]))[:200])
+        ck("t18 空台账 → 不得判过（R247，无行不等于无违规）", any("0 行" in x for x in bad_of([])),
+           str(bad_of([]))[:200])
+        ck("t19 非对象行（裸文本行）→ 拦住", any("非对象" in x for x in bad_of(["just a string"])),
+           str(bad_of(["just a string"]))[:200])
+
     # --- 契约面自身失效不得静默 PASS（R247）---
     ck("t9 空 artifacts → 报「契约面为空」", "CONTRACT-EMPTY" in
        json.dumps(bcs.validate_contracts({"artifacts": {}}, []), ensure_ascii=False))
@@ -178,6 +205,34 @@ def main():
     ck("层b′ 对照组：污染 schema 后 exit != 0", p2.returncode != 0, "rc=%s" % p2.returncode)
     ck("层b′ 对照组：报错点名该文件与 schema", "schema" in out2.lower() and "cumulative_drift" in out2,
        out2[-200:])
+
+    # --- 层 b″：台账反例走**真实 subprocess 路径**（r33 M-1′；函数级 t14-t20 之外再证一次生效侧）---
+    dirt2 = tmp / "06-dirty-ledger"
+    dirt2.mkdir()
+    src2 = HERE.parent / "06-benchmark" / "gate_runs.jsonl"
+    if src2.exists():
+        rows2 = [json.loads(l) for l in src2.read_text(encoding="utf-8").splitlines() if l.strip()]
+        # 三种真实写坏形态各注一行：第三种 origin（CI 冒充本机）、非法 verdict、坏 ts
+        rows2.append(dict(rows2[0], origin="cron-bot"))
+        rows2.append(dict(rows2[0], verdict="maybe"))
+        rows2.append(dict(rows2[0], ts="2026-09-25 07:00"))
+        (dirt2 / "gate_runs.jsonl").write_text(
+            "\n".join(json.dumps(r, ensure_ascii=False) for r in rows2) + "\n", encoding="utf-8")
+        p3 = subprocess.run([sys.executable, str(HERE / "baseline_contract_scan.py"), "--dir", str(dirt2)],
+                            capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=300)
+        out3 = (p3.stdout or "") + (p3.stderr or "")
+        ck("层b″ 真跑对照组：污染台账后 exit != 0", p3.returncode != 0, "rc=%s" % p3.returncode)
+        ck("层b″ 真跑对照组：三类违规逐条点名（origin/verdict/ts）",
+           all(k in out3 for k in ("origin 取值域", "verdict 取值域", "ts 形态")), out3[-260:])
+        # 空台账必须红（R247），不得因"没有行"而判过
+        (dirt2 / "gate_runs.jsonl").write_text("", encoding="utf-8")
+        p4 = subprocess.run([sys.executable, str(HERE / "baseline_contract_scan.py"), "--dir", str(dirt2)],
+                            capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=300)
+        out4 = (p4.stdout or "") + (p4.stderr or "")
+        ck("层b″ 真跑对照组：空台账判红而非绿（R247）",
+           p4.returncode != 0 and ("0 行" in out4 or "命中 0 个文件" in out4), "rc=%s" % p4.returncode)
+    else:
+        ck("层b″ 前置：06-benchmark/gate_runs.jsonl 存在", False, "台账缺失，反例侧无从注入")
 
     fails = [r for r in RESULTS if not r[0]]
     print("\n夹具合计: %d 项，通过 %d，失败 %d" % (len(RESULTS), len(RESULTS) - len(fails), len(fails)))

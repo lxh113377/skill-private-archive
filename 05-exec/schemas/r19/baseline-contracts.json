@@ -1,77 +1,221 @@
 {
-  "schema": "r19-baseline-contracts-v1",
-  "generated_at": "2026-09-24 18:40",
-  "source_of_truth": "05-exec/*.py 写出侧；改任一工具的 JSON 结构必须同步本契约（事前拒收，不再靠下游静默读不到字段）",
-  "benchmark": "sickn33/agentic-awesome-skills schemas/aas-v1/（版本化契约族，缩小到本仓基线件）",
-  "artifacts": {
-    "cumulative_drift_*.json": {
-      "schema_id": "cumulative-drift-scan-v2",
-      "required": ["schema", "generated_at", "readonly", "window_days", "threshold",
-                   "exclusions_enabled", "verdict_taxonomy", "evidence", "flagged_ruleish",
-                   "flagged_all", "excluded", "note"],
-      "types": {"window_days": "int", "threshold": "int", "exclusions_enabled": "bool",
-                "verdict_taxonomy": "list", "evidence": "dict", "flagged_ruleish": "list",
-                "flagged_all": "list", "excluded": "list"},
-      "invariants": ["readonly_true", "excluded_have_why", "flagged_row_shape",
-                     "verdict_taxonomy_complete"]
-    },
-    "description*.json": {
-      "required": ["generated_at", "denominator", "desc_max_official", "summary", "skills"],
-      "types": {"denominator": "dict", "desc_max_official": "int", "summary": "dict", "skills": "list"},
-      "invariants": ["denominator_glob_eq_registry", "counts_le_total", "desc_max_is_official_cap"]
-    },
-    "catalog_attention_tax_*.json": {
-      "schema_id": "catalog-attention-tax-v1",
-      "required": ["schema", "readonly", "denominator", "desc_chars_total", "name_chars_total",
-                   "grand_chars", "est_tokens_per_turn", "pct_of_128k_window"],
-      "types": {"desc_chars_total": "int", "grand_chars": "int"},
-      "invariants": ["readonly_true", "catalog_chars_sum"]
-    },
-    "claim_truth_*.json": {
-      "schema_id": "claim-truth-scan-v1",
-      "required": ["schema", "readonly", "truth", "registry_count", "targets_present",
-                   "targets_missing", "candidates", "exempt_rule"],
-      "types": {"truth": "dict", "candidates": "list", "targets_present": "list"},
-      "invariants": ["readonly_true", "truth_active_shape", "claim_candidates_shape"]
-    },
-    "rule_conflict_scan_*.json": {
-      "schema_id": "rule-conflict-scan-v1",
-      "required": ["schema", "readonly", "benchmark", "input_evidence", "declared_conflicts",
-                   "polarity_candidates", "note"],
-      "types": {"input_evidence": "dict", "declared_conflicts": "list", "polarity_candidates": "list"},
-      "invariants": ["readonly_true", "conflict_input_evidence_nonzero"]
-    },
-    "skill_structure_rubric_*.json": {
-      "schema_id": ["skill-structure-rubric-v1", "skill-structure-rubric-v2"],
-      "authorized_generations_note": "v1 = r18 基线件（skill_structure_rubric_2026-09-24.json，报告引用中，按 R241 不改写）；v2 = r29 双口径改造后的产物（skill_structure_rubric_r29_2026-09-24.json）。r31 实测：r29 升代未同步本契约，导致同一 glob 下两代产物并存且契约必红；改为逐代枚举授权，未登记代际（v3）仍拦。",
-      "required": ["schema", "readonly", "benchmark", "denominator", "rubric", "per_section", "all_six"],
-      "types": {"denominator": "dict", "per_section": "dict", "all_six": "dict"},
-      "invariants": ["readonly_true", "rubric_pct_within_total"]
-    },
-    "attention_sim_raw_*.json": {
-      "required": ["schema", "readonly", "ctx_tax", "dilution", "haystack"],
-      "types": {"ctx_tax": "dict", "haystack": "dict"},
-      "invariants": ["readonly_true"]
-    },
-    "memory_eval_scenarios*.json": {
-      "required": ["schema", "version", "scenarios"],
-      "types": {"scenarios": "list"},
-      "invariants": ["scenarios_nonempty"]
-    }
+ "schema": "r19-baseline-contracts-v1",
+ "generated_at": "2026-09-24 18:40",
+ "source_of_truth": "05-exec/*.py 写出侧；改任一工具的 JSON 结构必须同步本契约（事前拒收，不再靠下游静默读不到字段）",
+ "benchmark": "sickn33/agentic-awesome-skills schemas/aas-v1/（版本化契约族，缩小到本仓基线件）",
+ "artifacts": {
+  "cumulative_drift_*.json": {
+   "schema_id": "cumulative-drift-scan-v2",
+   "required": [
+    "schema",
+    "generated_at",
+    "readonly",
+    "window_days",
+    "threshold",
+    "exclusions_enabled",
+    "verdict_taxonomy",
+    "evidence",
+    "flagged_ruleish",
+    "flagged_all",
+    "excluded",
+    "note"
+   ],
+   "types": {
+    "window_days": "int",
+    "threshold": "int",
+    "exclusions_enabled": "bool",
+    "verdict_taxonomy": "list",
+    "evidence": "dict",
+    "flagged_ruleish": "list",
+    "flagged_all": "list",
+    "excluded": "list"
+   },
+   "invariants": [
+    "readonly_true",
+    "excluded_have_why",
+    "flagged_row_shape",
+    "verdict_taxonomy_complete"
+   ]
   },
-  "invariant_docs": {
-    "readonly_true": "声明只读的工具产物必须 readonly==true（防止有人把写盘副作用悄悄加进只读件）",
-    "excluded_have_why": "漂移扫描每条被排除项必须带 root/path/edits/why（排除必须可见，禁静默丢数据）",
-    "flagged_row_shape": "flagged_* 行必须含 root/path/edits",
-    "verdict_taxonomy_complete": "六态判据齐备：drift_detected/softened/refinement/additive/neutral_rephrase/uncertain",
-    "denominator_glob_eq_registry": "注册表可读时 glob_total 必须等于 registry.count，且 consistent 字段与该等式一致",
-    "counts_le_total": "summary 各计数不得超过 total（越界即统计口径 bug）",
-    "desc_max_is_official_cap": "desc_max_official 必须等于 anthropics/agent-skills 官方上限 1024",
-    "catalog_chars_sum": "desc_chars_total + name_chars_total 必须等于 grand_chars",
-    "truth_active_shape": "truth.n == len(truth.active) 且 > 0（端数为 0 = 真相源读取失败）",
-    "claim_candidates_shape": "每条失真候选必须含 family/file/line",
-    "conflict_input_evidence_nonzero": "冲突扫描的 files_present 与 polarity_rules 必须 > 0（R247 禁空面判零）",
-    "rubric_pct_within_total": "per_section 命中数不得超过 denominator.scanned",
-    "scenarios_nonempty": "评测集 scenarios 不得为空数组"
+  "description*.json": {
+   "required": [
+    "generated_at",
+    "denominator",
+    "desc_max_official",
+    "summary",
+    "skills"
+   ],
+   "types": {
+    "denominator": "dict",
+    "desc_max_official": "int",
+    "summary": "dict",
+    "skills": "list"
+   },
+   "invariants": [
+    "denominator_glob_eq_registry",
+    "counts_le_total",
+    "desc_max_is_official_cap"
+   ]
+  },
+  "catalog_attention_tax_*.json": {
+   "schema_id": "catalog-attention-tax-v1",
+   "required": [
+    "schema",
+    "readonly",
+    "denominator",
+    "desc_chars_total",
+    "name_chars_total",
+    "grand_chars",
+    "est_tokens_per_turn",
+    "pct_of_128k_window"
+   ],
+   "types": {
+    "desc_chars_total": "int",
+    "grand_chars": "int"
+   },
+   "invariants": [
+    "readonly_true",
+    "catalog_chars_sum"
+   ]
+  },
+  "claim_truth_*.json": {
+   "schema_id": "claim-truth-scan-v1",
+   "required": [
+    "schema",
+    "readonly",
+    "truth",
+    "registry_count",
+    "targets_present",
+    "targets_missing",
+    "candidates",
+    "exempt_rule"
+   ],
+   "types": {
+    "truth": "dict",
+    "candidates": "list",
+    "targets_present": "list"
+   },
+   "invariants": [
+    "readonly_true",
+    "truth_active_shape",
+    "claim_candidates_shape"
+   ]
+  },
+  "rule_conflict_scan_*.json": {
+   "schema_id": "rule-conflict-scan-v1",
+   "required": [
+    "schema",
+    "readonly",
+    "benchmark",
+    "input_evidence",
+    "declared_conflicts",
+    "polarity_candidates",
+    "note"
+   ],
+   "types": {
+    "input_evidence": "dict",
+    "declared_conflicts": "list",
+    "polarity_candidates": "list"
+   },
+   "invariants": [
+    "readonly_true",
+    "conflict_input_evidence_nonzero"
+   ]
+  },
+  "skill_structure_rubric_*.json": {
+   "schema_id": [
+    "skill-structure-rubric-v1",
+    "skill-structure-rubric-v2"
+   ],
+   "authorized_generations_note": "v1 = r18 基线件（skill_structure_rubric_2026-09-24.json，报告引用中，按 R241 不改写）；v2 = r29 双口径改造后的产物（skill_structure_rubric_r29_2026-09-24.json）。r31 实测：r29 升代未同步本契约，导致同一 glob 下两代产物并存且契约必红；改为逐代枚举授权，未登记代际（v3）仍拦。",
+   "required": [
+    "schema",
+    "readonly",
+    "benchmark",
+    "denominator",
+    "rubric",
+    "per_section",
+    "all_six"
+   ],
+   "types": {
+    "denominator": "dict",
+    "per_section": "dict",
+    "all_six": "dict"
+   },
+   "invariants": [
+    "readonly_true",
+    "rubric_pct_within_total"
+   ]
+  },
+  "attention_sim_raw_*.json": {
+   "required": [
+    "schema",
+    "readonly",
+    "ctx_tax",
+    "dilution",
+    "haystack"
+   ],
+   "types": {
+    "ctx_tax": "dict",
+    "haystack": "dict"
+   },
+   "invariants": [
+    "readonly_true"
+   ]
+  },
+  "memory_eval_scenarios*.json": {
+   "required": [
+    "schema",
+    "version",
+    "scenarios"
+   ],
+   "types": {
+    "scenarios": "list"
+   },
+   "invariants": [
+    "scenarios_nonempty"
+   ]
+  },
+  "gate_runs.jsonl": {
+   "kind": "jsonl",
+   "row_required": [
+    "ts",
+    "origin",
+    "verdict",
+    "mode"
+   ],
+   "row_enum": {
+    "origin": [
+     "local",
+     "ci"
+    ],
+    "verdict": [
+     "PASS",
+     "FAIL",
+     "MISSING"
+    ],
+    "mode": [
+     "full",
+     "portable-only"
+    ]
+   },
+   "row_ts_format": "%Y-%m-%dT%H:%M:%S",
+   "note": "r33 M-1′ 纳入。本件是 r32 第 6 门 gate_run_freshness 的唯一证据面，故必须逐字段枚举取值域：origin 只允许 local/ci（第三种来源即『CI 记录冒充本机记录』的入口）、verdict 只允许三态、ts 必须是秒级 ISO 无时区形态（与 r32_gate_freshness.TS_FMT 同源，改格式须两处同改）。空文件不得判过（R247）。"
   }
+ },
+ "invariant_docs": {
+  "readonly_true": "声明只读的工具产物必须 readonly==true（防止有人把写盘副作用悄悄加进只读件）",
+  "excluded_have_why": "漂移扫描每条被排除项必须带 root/path/edits/why（排除必须可见，禁静默丢数据）",
+  "flagged_row_shape": "flagged_* 行必须含 root/path/edits",
+  "verdict_taxonomy_complete": "六态判据齐备：drift_detected/softened/refinement/additive/neutral_rephrase/uncertain",
+  "denominator_glob_eq_registry": "注册表可读时 glob_total 必须等于 registry.count，且 consistent 字段与该等式一致",
+  "counts_le_total": "summary 各计数不得超过 total（越界即统计口径 bug）",
+  "desc_max_is_official_cap": "desc_max_official 必须等于 anthropics/agent-skills 官方上限 1024",
+  "catalog_chars_sum": "desc_chars_total + name_chars_total 必须等于 grand_chars",
+  "truth_active_shape": "truth.n == len(truth.active) 且 > 0（端数为 0 = 真相源读取失败）",
+  "claim_candidates_shape": "每条失真候选必须含 family/file/line",
+  "conflict_input_evidence_nonzero": "冲突扫描的 files_present 与 polarity_rules 必须 > 0（R247 禁空面判零）",
+  "rubric_pct_within_total": "per_section 命中数不得超过 denominator.scanned",
+  "scenarios_nonempty": "评测集 scenarios 不得为空数组"
+ }
 }

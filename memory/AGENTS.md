@@ -45,6 +45,17 @@ python 05-exec/run_gates.py
 > 第五条 `[CTRL:CLEAN]` = 全仓无非法控制符（C0 ∪ {0x7f DEL} 减制表/换行/回车）。它拦的是「肉眼看不见、但会让引用检索不到」这一类：实测当天四轮复现，含被修文件自身与受管根两处死引用。
 > 判据可信度本身由 `python 05-exec/r19_fixture_mutation_check.py` 变异测试担保（4 项变异必须全部被拦 + 未变异对照组通过）。
 > **条件前置（非每轮必跑）**：要把判据建议**外推给归属会话**时，先跑 `python 05-exec/transmit_obsolescence_check.py` —— 它拿 `06-benchmark/transmit_proposals.json` 与焚诀 verify 注册面（实测 33 条已注判据）做覆盖度比对；打印 `[TRANSMIT:STALE]` = 该件归属方**已自落**，禁止再外推；`[TRANSMIT:UNKNOWN]`/exit 2 = 真相源取不到，**不得当作「未过期」放行**。夹具 `05-exec/r21d_obsolete_fixtures.py` 26 例（含 4 项变异对照）。
+> **r33 起轮次版本锚约定（对标第十维实测的结论，非抄形式）**：每完成一个实质轮次，push 后给该提交打 **annotated tag**
+> （名式 `rNN`，如 `git tag -a r33 -m "r33 ..." && git push origin r33`）。
+> 理由（实物）：12 个对标对象里 **11 个有 tag**（最少的同构参照系 mycelium 也有 4 个），唯一 0 tag 的 anthropics/skills 是因为它不做发布；
+> 而本体系过去把版本全写在**文本**里（技能 `version:` / `Version: V1.0` / C13 的 `V10.70.0` 锚点行），
+> **git 层 0 tag** ⇒ 无法 `git describe`、无法回答"r31 那轮落在哪个提交"、区间回滚 `git revert r33..HEAD` 根本写不出来。
+> ⇒ 补的是**机器可查锚点**（回滚与归因能力），不是发布流水线。
+> ⛔ 同时立 **X-2 禁做**：不得为"像一线"而补 `LICENSE`（= 对外授予权利，本仓为私有归档，非所愿）
+> 或开 release/发布流水线（无外部消费者；r31 §1.2 与 r32 §1.1② 两轮的共同结论：**严格度由有无外部消费者决定，不由星标决定**）。
+> 验收：`git tag -l` ≥1 且 `git describe --tags` 可解析；取值 `git -C . tag -l && git describe --tags`。
+> 关联待裁定（本仓不代决）：受管根 `焚诀` 新增的 `CONTRIBUTING.md`/`LICENSE.md`/`SECURITY.md` 被 `noise` 判 VIOL 要求迁 `_trash`
+> ⇒ allowlist 与业界治理件冲突，属 A-project-handoff 面，见报告 §1.1④ 与 §5 H-3（R269 不擅动他人在途文件）。
 > ⛔ **边界（behavior_core #23「用户命令绝对优先」）**：上面这条只判定「**该不该把建议外推给别人**」，**不得**被引申为「本轮可以少干活/跳过执行」。本仓一切判据的合法作用域是**约束写法与落盘方式**（原子替换、先备份、只降不升棘轮），**永久禁止**用「自判重复 ⇒ 跳过执行」实现幂等。
 
 

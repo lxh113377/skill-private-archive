@@ -1,0 +1,247 @@
+{
+ "schema": "release-governance-v1",
+ "generated_at": "2026-09-25 07:16",
+ "readonly": true,
+ "benchmark": "r33 第十维 发布与治理文件面（实物探测，非 README 宣称）",
+ "provenance_cmd": "gh api repos/<s>/contents/<f> --jq .name ; gh api repos/<s>/tags?per_page=100 --jq length",
+ "input_evidence": {
+  "repos": 12,
+  "gov_files_probed": 5,
+  "probe_cap": 100
+ },
+ "denominator": {
+  "objects_ok": 12,
+  "failed": []
+ },
+ "caveat": "tags/releases=100 表示触顶（>=100），禁当精确值引用；LICENSE 探测含 LICENSE 与 LICENSE.md 两种命名",
+ "objects": [
+  {
+   "id": "O1",
+   "repo": "obra/superpowers",
+   "stars": 291214,
+   "license": "MIT",
+   "tags": 35,
+   "tags_capped": false,
+   "releases": 13,
+   "releases_capped": false,
+   "gov": {
+    "LICENSE": true,
+    "SECURITY.md": false,
+    "CONTRIBUTING.md": false,
+    "CHANGELOG.md": false,
+    "CODE_OF_CONDUCT.md": true
+   },
+   "gov_count": 2,
+   "probe_untrusted": []
+  },
+  {
+   "id": "O2",
+   "repo": "anthropics/skills",
+   "stars": 177979,
+   "license": "none",
+   "tags": 0,
+   "tags_capped": false,
+   "releases": 0,
+   "releases_capped": false,
+   "gov": {
+    "LICENSE": false,
+    "SECURITY.md": false,
+    "CONTRIBUTING.md": false,
+    "CHANGELOG.md": false,
+    "CODE_OF_CONDUCT.md": false
+   },
+   "gov_count": 0,
+   "probe_untrusted": []
+  },
+  {
+   "id": "O3",
+   "repo": "github/spec-kit",
+   "stars": 138784,
+   "license": "MIT",
+   "tags": 100,
+   "tags_capped": true,
+   "releases": 100,
+   "releases_capped": true,
+   "gov": {
+    "LICENSE": true,
+    "SECURITY.md": true,
+    "CONTRIBUTING.md": true,
+    "CHANGELOG.md": true,
+    "CODE_OF_CONDUCT.md": true
+   },
+   "gov_count": 5,
+   "probe_untrusted": []
+  },
+  {
+   "id": "O4",
+   "repo": "ruvnet/ruflo",
+   "stars": 73219,
+   "license": "MIT",
+   "tags": 100,
+   "tags_capped": true,
+   "releases": 100,
+   "releases_capped": true,
+   "gov": {
+    "LICENSE": true,
+    "SECURITY.md": true,
+    "CONTRIBUTING.md": true,
+    "CHANGELOG.md": true,
+    "CODE_OF_CONDUCT.md": false
+   },
+   "gov_count": 4,
+   "probe_untrusted": []
+  },
+  {
+   "id": "O5",
+   "repo": "mem0ai/mem0",
+   "stars": 65951,
+   "license": "Apache-2.0",
+   "tags": 100,
+   "tags_capped": true,
+   "releases": 100,
+   "releases_capped": true,
+   "gov": {
+    "LICENSE": true,
+    "SECURITY.md": true,
+    "CONTRIBUTING.md": true,
+    "CHANGELOG.md": false,
+    "CODE_OF_CONDUCT.md": true
+   },
+   "gov_count": 4,
+   "probe_untrusted": []
+  },
+  {
+   "id": "N-A",
+   "repo": "addyosmani/agent-skills",
+   "stars": 98890,
+   "license": "MIT",
+   "tags": 12,
+   "tags_capped": false,
+   "releases": 12,
+   "releases_capped": false,
+   "gov": {
+    "LICENSE": true,
+    "SECURITY.md": false,
+    "CONTRIBUTING.md": true,
+    "CHANGELOG.md": false,
+    "CODE_OF_CONDUCT.md": false
+   },
+   "gov_count": 2,
+   "probe_untrusted": []
+  },
+  {
+   "id": "N-C",
+   "repo": "sickn33/agentic-awesome-skills",
+   "stars": 46874,
+   "license": "MIT",
+   "tags": 100,
+   "tags_capped": true,
+   "releases": 100,
+   "releases_capped": true,
+   "gov": {
+    "LICENSE": true,
+    "SECURITY.md": true,
+    "CONTRIBUTING.md": true,
+    "CHANGELOG.md": true,
+    "CODE_OF_CONDUCT.md": true
+   },
+   "gov_count": 5,
+   "probe_untrusted": []
+  },
+  {
+   "id": "N-D",
+   "repo": "vercel-labs/skills",
+   "stars": 32414,
+   "license": "MIT",
+   "tags": 47,
+   "tags_capped": false,
+   "releases": 47,
+   "releases_capped": false,
+   "gov": {
+    "LICENSE": true,
+    "SECURITY.md": false,
+    "CONTRIBUTING.md": false,
+    "CHANGELOG.md": false,
+    "CODE_OF_CONDUCT.md": false
+   },
+   "gov_count": 1,
+   "probe_untrusted": []
+  },
+  {
+   "id": "N-E",
+   "repo": "mycelium-hq/ai-brain-starter",
+   "stars": 36,
+   "license": "MIT",
+   "tags": 4,
+   "tags_capped": false,
+   "releases": 4,
+   "releases_capped": false,
+   "gov": {
+    "LICENSE": true,
+    "SECURITY.md": true,
+    "CONTRIBUTING.md": true,
+    "CHANGELOG.md": false,
+    "CODE_OF_CONDUCT.md": false
+   },
+   "gov_count": 3,
+   "probe_untrusted": []
+  },
+  {
+   "id": "O9",
+   "repo": "mattpocock/skills",
+   "stars": 269117,
+   "license": "MIT",
+   "tags": 7,
+   "tags_capped": false,
+   "releases": 7,
+   "releases_capped": false,
+   "gov": {
+    "LICENSE": true,
+    "SECURITY.md": false,
+    "CONTRIBUTING.md": false,
+    "CHANGELOG.md": true,
+    "CODE_OF_CONDUCT.md": false
+   },
+   "gov_count": 2,
+   "probe_untrusted": []
+  },
+  {
+   "id": "N-B",
+   "repo": "Fission-AI/OpenSpec",
+   "stars": 70222,
+   "license": "MIT",
+   "tags": 54,
+   "tags_capped": false,
+   "releases": 50,
+   "releases_capped": false,
+   "gov": {
+    "LICENSE": true,
+    "SECURITY.md": true,
+    "CONTRIBUTING.md": true,
+    "CHANGELOG.md": true,
+    "CODE_OF_CONDUCT.md": false
+   },
+   "gov_count": 4,
+   "probe_untrusted": []
+  },
+  {
+   "id": "SELF",
+   "repo": "lxh113377/skill-private-archive",
+   "stars": 0,
+   "license": "none",
+   "tags": 0,
+   "tags_capped": false,
+   "releases": 0,
+   "releases_capped": false,
+   "gov": {
+    "LICENSE": false,
+    "SECURITY.md": false,
+    "CONTRIBUTING.md": false,
+    "CHANGELOG.md": false,
+    "CODE_OF_CONDUCT.md": false
+   },
+   "gov_count": 0,
+   "probe_untrusted": []
+  }
+ ]
+}

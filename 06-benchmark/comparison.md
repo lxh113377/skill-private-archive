@@ -162,6 +162,40 @@ B3 多 job 并列不短路 / B4 周期心跳档 / B5 `concurrency` 成本自觉 
 反向用法说明：对手用 CI 判代码，本仓额外用 CI **盯人**（`gate_runs.jsonl` 随仓提交，CI 读它判"本机是否还在跑门禁"）。
 自锁教训见 `全量对标报告_r32_CI有效性_2026-09-25.md` §7.2（评台账的判据不得把自己的结论写回台账）。
 
+## 发布与治理文件面（r33 第十维；实物探测，回答的是"有没有外部消费者"）
+
+复现：`python 05-exec/r33_release_governance.py --json 06-benchmark/release_governance_r33_2026-09-25.json`
+（tags/releases 用 `per_page=100` ⇒ **100+ 为触顶值，禁当精确数**；LICENSE 同时探 `LICENSE` 与 `LICENSE.md`）
+
+| 对象 | ★ | license | tags | releases | 治理件 |
+|---|---|---|---|---|---|
+| github/spec-kit | 138,785 | MIT | 100+ | 100+ | **5/5** |
+| sickn33/AAS | 46,874 | MIT | 100+ | 100+ | **5/5**（且 open issues 仅 3） |
+| ruvnet/ruflo | 73,219 | MIT | 100+ | 100+ | 4/5（缺 COC） |
+| mem0ai/mem0 | 65,951 | Apache-2.0 | 100+ | 100+ | 4/5（缺 CHANGELOG） |
+| Fission-AI/OpenSpec | 70,222 | MIT | 54 | 50 | 4/5 |
+| vercel-labs/skills | 32,413 | MIT | 47 | 47 | 1/5（只 LICENSE） |
+| obra/superpowers | 291,213 | MIT | 35 | 13 | 2/5 |
+| addyosmani/agent-skills | 98,889 | MIT | 12 | 12 | 2/5 |
+| mattpocock/skills | 269,117 | MIT | 7 | 7 | 2/5 |
+| **mycelium/ai-brain-starter** | **36** | MIT | **4** | 4 | **3/5** |
+| anthropics/skills | 177,979 | **none** | **0** | **0** | **0/5** |
+| **本体系** | 私有归档 | none | **0 → 1（r33 起打轮次 tag）** | 0 | 0/5 |
+
+⇒ **三条结论**
+1. **治理件密度与星标无关，与"是否有外部消费者"强相关**：269,117★ 的 mattpocock 只 2/5，46,874★ 的 AAS 满配 5/5；
+   满配者全是有 npm/PyPI 分发物的产品仓。与 r31（CI 存在性 ρ=−0.114）、r32（CI 有效性）三连同向
+   ⇒ **本体系选对标对象的唯一合格依据 = 机制同构度 + 有无外部消费者，不是星标。**
+2. **真缺陷只有一个：版本锚机器不可查**。过去版本全写在文本里（技能 `version:` / `Version: V1.0` / C13 的 `V10.70.0` 锚点），
+   git 层 0 tag ⇒ `git describe` 不可用、"r31 那轮落在哪个提交"答不出、`git revert r33..HEAD` 写不出来。
+   ⇒ r33 起每轮打 annotated tag（补的是**回滚与归因能力**，不是发布流水线）。
+3. **LICENSE / release 明确不学**（见下方不学清单 X-2）：补 LICENSE = 对外授予权利，本仓是私有归档；
+   开发布线 = 服务不存在的消费者。唯一与我们同形的 anthropics 也不做发布，动机一致。
+
+⚠️ **内部矛盾（r33 实测，比对手结论更值得修）**：受管根 `焚诀` 被并行会话加了 `CONTRIBUTING.md`/`LICENSE.md`/`SECURITY.md`，
+`handoff.py noise` 逐条判 **VIOL 并要求迁 `_trash`** ⇒ 照建议执行就会把三家满配对手都有的标准治理件扔进回收站；
+不执行则 noise 恒红、savepoint 过不去。**这是 allowlist 缺治理件口径，不是文件该删**（待归属会话裁定，本仓按 R269 不擅动）。
+
 ## 维护状态（r30 实测化，替换此前的形容词）
 
 | 对象 | ★ | 最近推送 | open issues |
@@ -191,6 +225,8 @@ B3 多 job 并列不短路 / B4 周期心跳档 / B5 `concurrency` 成本自觉 
 | R241 历史留痕只加注不改写 | 多数对手直接 force-push 改写历史文案；我们的分母失真（151→167）能追溯全靠没改写 |
 | 删除必经回收站 + 远端双前提 | 一次 robocopy /MIR 事故（R9）换来的铁律 |
 | 判据带夹具 + 对照组（R238） | 对手 eval 多在 CI 跑 positive；我们要求「应报警的仍要报警」 |
+| **不放 LICENSE / 不开 release 流水线**（r33 X-2） | 11/12 对手有 LICENSE、多数有 release —— 但那是**对外分发**的必需品。本仓是私有归档：补 LICENSE = 对外授予权利（非所愿），开发布线 = 服务不存在消费者。r31/r32/r33 三连同向结论：**严格度来自有无外部消费者，不来自星标** |
+| **版本靠 tag 不靠流水线**（r33 H-2 起的取舍） | 对手用 tag/release 表达版本；我们只取 **tag**（回滚与归因锚点），不取 release（发布动作）。同一维度里"要一半不要一半"是刻意的，勿被"对标就要照抄"推着走 |
 
 ## 前序报告索引
 
