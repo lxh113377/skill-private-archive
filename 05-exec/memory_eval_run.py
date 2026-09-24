@@ -84,6 +84,19 @@ def main():
     results = run(args.project, args.scenarios)
     n_pass = sum(1 for r in results if r["pass"])
     total = len(results)
+
+    # V3.52.1 review 接入：结果落盘 memory/sessions/memory-eval.jsonl（append-only，last wins）
+    try:
+        rec_dir = Path(args.project).resolve() / "memory" / "sessions"
+        rec_dir.mkdir(parents=True, exist_ok=True)
+        rec = {"ts": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+               "total": total, "passed": n_pass,
+               "scenario_file": str(Path(args.scenarios).resolve())}
+        with open(rec_dir / "memory-eval.jsonl", "a", encoding="utf-8", newline="\n") as f:
+            f.write(json.dumps(rec, ensure_ascii=False) + "\n")
+    except OSError as e:
+        print("⚠️ memory-eval.jsonl 落盘失败（不影响评测）: {0}".format(e))
+
     print("=== 交接记忆评测（{0}） ===".format(datetime.now().strftime("%Y-%m-%d %H:%M")))
     for r in results:
         print("  {0} {1} [{2}节{3}] {4}  → {5}".format(

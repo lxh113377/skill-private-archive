@@ -1,15 +1,15 @@
 {
- "generated_at": "2026-09-24T08:56:29",
+ "generated_at": "2026-09-24T09:32:55",
  "summary": {
   "total": 151,
   "errors": 0,
   "no_desc": 0,
   "has_desc": 151,
-  "with_trigger": 98,
-  "double_element": 98,
+  "with_trigger": 103,
+  "double_element": 103,
   "len_min": 23,
   "len_max": 1019,
-  "len_median": 233,
+  "len_median": 249,
   "junctions_excluded": [
    "rag-eval"
   ]
@@ -64,10 +64,10 @@
    "skill": "A-memory-start",
    "path": "D:\\global_skills\\A-memory-start\\SKILL.md",
    "name": "A-memory-start",
-   "desc": "全局记忆入口加载 — 目录索引式按需加载全局记忆。全局记忆启动门禁",
-   "desc_len": 33,
-   "has_trigger": false,
-   "double_element": false
+   "desc": "全局记忆入口加载 — 目录索引式按需加载全局记忆。全局记忆启动门禁 Directory-indexed on-demand global memory loader + 执行契约门禁 for HM / WB / CX / TC / ZC. 统一权威源 D:\\global_memory\\。复杂任务先自然语言+追问澄清需求，再查全局记忆+skill tree按需加载相关skill， 只加载所需内容减少算力浪费。加载全部相关提示词后给出AI可读的优化建议。 L1 文件 (MEMORY/SOUL/USER/CONTEXT_BOOT) 系统自动注入——永不重读。 Step 4 技能预检：执行前必须确保相关 skill 已加载且可用，禁止裸跑。 Step 3.5 项目级 AGENTS.md 探测：检测到项目路径时先 Read 项目内 memory/AGENTS.md 取 skill 强制绑定表，命中即加载。 Step 0.8 阶段边界动态重评估门禁 + 非首轮快速重加载协议（每轮 session r2+ 加载时触发轻量 skill 重探）。 Step 0.6 程序化预路由：非闲聊消息强制跑 unified_router.py --json，direct_hit/needs_llm 决策后 Skill() 加载。 Step 4.6 提示词优化反馈：读取全部相关提示词后输出AI可读的优化建议。 Step 4.5.7 + behavior_core P0#14（收尾声明）：footer 块**每轮必落盘** GM 日志；**回复展示层仅在「有未闭环项」时贴出**，全部已闭环则用一句自然语言结论代替（用户 2026-09-21 立规，详见 references/reply_footer.md §5）。 P0#20：每次新会话第一条回复第一句必须先加载本 skill，并逐字以「老大。A-memory-start 已加载。」开头；闲聊/简单/Plan Mode/子代理首轮均无例外。 V9.7.0 瘦身版：详细契约全文在 references/contract.md（首轮复杂任务必读）。",
+   "desc_len": 896,
+   "has_trigger": true,
+   "double_element": true
   },
   {
    "skill": "A-project-better",
@@ -91,10 +91,10 @@
    "skill": "A-prompt-better",
    "path": "D:\\global_skills\\A-prompt-better\\SKILL.md",
    "name": "A-prompt-better",
-   "desc": "Prompt优化器 — 自动按业界最佳实践优化用户提示词。Prompt自动优化",
-   "desc_len": 39,
-   "has_trigger": false,
-   "double_element": false
+   "desc": "Prompt优化器 — 自动按业界最佳实践优化用户提示词。Prompt自动优化 Prompt 优化器——加载后自动将用户发给 AI 的提示词按业界最佳实践优化润色， 再交给 agent 执行。适用于所有需要高质量 prompt 输出的场景。 **自动执行：被调用后立即对当前 user query 走优化流程，无需等待用户二次确认。** 纯闲聊/问候/确认(如\"执行\"/\"好的\"/\"继续\")时跳过。 NOT a general chat skill. This skill should be used when the user explicitly calls it or when the task involves sending prompts to external AI models and the user wants them optimized first.",
+   "desc_len": 390,
+   "has_trigger": true,
+   "double_element": true
   },
   {
    "skill": "A-skill-manager",
@@ -154,8 +154,8 @@
    "skill": "bigfile-split",
    "path": "D:\\global_skills\\bigfile-split\\SKILL.md",
    "name": "bigfile-split",
-   "desc": "拆分超大记忆/知识库markdown文件 — 按标题切块+原文件留索引。超大markdown拆分工具",
-   "desc_len": 50,
+   "desc": "拆分超大记忆/知识库markdown文件 — 按标题切块+原文件留索引。超大markdown拆分工具 Split oversized memory/knowledge-base files via the **composite-pointer + semantic-leaf** paradigm (4KB user hard limit ≤4096B, aligned with `meta/bigfile_governance.md` R161 zero-exemption; 10KB is deprecated skill default only). Active-core files are真拆 into `<dir>/NN_key.md` leaves (all ≤4096B) + pointer shell, byte_identical reassembled via SHA256-verified distribution. Archives/snapshots/reports are kept (R48 zero-logical-delete). Covers measurement, classification (narrative vs data-JSON), lossless exact-slice, cross-platform distribution, and pre-cc-check [15] exemption. Legacy `_parts/` chunking is retired (R68); used only as a local read helper.",
+   "desc_len": 712,
    "has_trigger": false,
    "double_element": false
   },
@@ -388,10 +388,10 @@
    "skill": "discover-agent-cli",
    "path": "D:\\global_skills\\discover-agent-cli\\SKILL.md",
    "name": "discover-agent-cli",
-   "desc": "发现Electron桌面应用中隐藏的CLI工具。发现桌面应用隐藏CLI",
-   "desc_len": 35,
-   "has_trigger": false,
-   "double_element": false
+   "desc": "发现Electron桌面应用中隐藏的CLI工具。发现桌面应用隐藏CLI 发现 Electron 桌面应用中隐藏的 CLI 工具。当需要调用某个桌面应用（如 WorkBuddy/TRAE/Cursor/OpenCode 等 coding agent，或 Slack/Discord/Notion 等工具）但\"以为没有 CLI\"时使用。标准化发现流程：定位安装目录 → 找 bin/ 子目录 → 测试 CLI → 检查 headless 模式 → 修复 PATH → 输出能力矩阵。避免错误地假设\"需要用户手动操作\"。 触发词：discover CLI、发现CLI、找CLI、agent CLI、命令行接口、headless、无头模式、CLI发现。",
+   "desc_len": 322,
+   "has_trigger": true,
+   "double_element": true
   },
   {
    "skill": "doc-coauthoring",
@@ -919,10 +919,10 @@
    "skill": "prompt-consolidation",
    "path": "D:\\global_skills\\prompt-consolidation\\SKILL.md",
    "name": "prompt-consolidation",
-   "desc": "清理多agent提示词中的append-only补丁 — 输出结构化合并版。提示词补丁清理合并",
-   "desc_len": 47,
-   "has_trigger": false,
-   "double_element": false
+   "desc": "清理多agent提示词中的append-only补丁 — 输出结构化合并版。提示词补丁清理合并 清理多agent提示词文件中的append-only补丁层，输出按功能分章节的干净版本， 并内建V1-V7漏洞验证确保清理不引入新漏洞。 适用于经过多轮迭代后变得臃肿、充满补丁标记的提示词文件。 只做单文件清理，严禁跨文件合并（合并会引入新的V1-V7漏洞）。 触发词：提示词整合、提示词清理、prompt consolidation、清理补丁、 提示词瘦身、整合提示词、补丁清理、prompt cleanup、提示词重构、 清理append-only、提示词去补丁、prompt layer cleanup。",
+   "desc_len": 303,
+   "has_trigger": true,
+   "double_element": true
   },
   {
    "skill": "prompt-system-audit",
@@ -1333,10 +1333,10 @@
    "skill": "workflow-preflight-check",
    "path": "D:\\global_skills\\workflow-preflight-check\\SKILL.md",
    "name": "workflow-preflight-check",
-   "desc": "多agent工作流预执行验证 — 模拟所有步骤预检。工作流预检",
-   "desc_len": 31,
-   "has_trigger": false,
-   "double_element": false
+   "desc": "多agent工作流预执行验证 — 模拟所有步骤预检。工作流预检 多agent工作流预执行验证（preflight check）。在实际执行pipeline前，逐项检查执行链完整性： 文件/路径存在性、CLI工具可用性、skill可加载性、agent可达性、输出路径可写性， 输出结构化预检报告（GREEN/YELLOW/RED三级判定）。 适用于任何多步骤、多agent协作的工作流在执行前的\"模拟一遍\"验证。 触发词：预检、preflight、模拟一遍、执行前检查、链路验证、pipeline预检、 跑前验证、workflow check、预执行验证。",
+   "desc_len": 277,
+   "has_trigger": true,
+   "double_element": true
   },
   {
    "skill": "wps-knowledgebase",

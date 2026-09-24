@@ -47,17 +47,18 @@ def parse_frontmatter(text):
         dm = re.match(r"^description:\s*(.*)$", ln)
         if dm and description is None:
             inline = dm.group(1).strip()
+            # 收集后续缩进行（块标量 |/> 或「内联 + 缩进续行」混合形态，2026-09-24 r17b 实测均有）
+            buf = []
+            for sub in lines[i + 1:]:
+                if not sub.strip() or re.match(r"^\s", sub):
+                    buf.append(sub.strip())
+                else:
+                    break
+            cont = " ".join(buf).strip()
             if inline in ("|", "|-", "|+", ">", ">-", ">+"):
-                # YAML 块标量：收集后续缩进行（2026-09-24 实测 10+ 条该形态，内联只捕获到 "|"）
-                buf = []
-                for sub in lines[i + 1:]:
-                    if not sub.strip() or re.match(r"^\s", sub):
-                        buf.append(sub.strip())
-                    else:
-                        break
-                description = " ".join(buf).strip() or None
+                description = cont or None
             else:
-                description = _scalar(inline) or None
+                description = (_scalar(inline) + (" " + cont if cont else "")).strip() or None
     return name, description
 
 
