@@ -175,6 +175,70 @@ def evaluate(metrics, baseline, caps):
     return findings, unknown
 
 
+def inject_face():
+    """注入面成员路径集合（与 inject_union_bytes 同一取法，供归因校验用）。"""
+    paths = set()
+    try:
+        tc = json.load(io_open(TRUTH_CONSTANTS))
+        for row in ((tc.get("inject_budget") or {}).get("files")) or []:
+            p = (row or {}).get("path")
+            if p:
+                paths.add(os.path.realpath(p))
+    except (OSError, ValueError, AttributeError):
+        pass
+    if PROJ_SHELL.exists():
+        paths.add(os.path.realpath(str(PROJ_SHELL)))
+    return paths
+
+
+def attribute_raise(now_m, base_m, attr):
+    """棘轮上调的唯一合法通道：**一项**增长被**一条**归因完整解释。
+
+    棘轮只降不升是刻意的，但实测会出现「合法的外部增长」——2026-09-24 本仓 inject_union_bytes
+    +447B 全部来自并行会话往 behavior_core.md 立 #23（用户明令的铁律）。既不能为此放宽判据
+    （那等于把棘轮交给人心情），也不能永久卡死自己 ⇒ 开一条**必须留账**的窄门：
+    commit 可解析 + path 确在注入面内 + delta 与实增**逐字节相等** + reason 非空。
+    任何一条不满足即维持阻断。
+    """
+    grows = {k: int(now_m[k]) - int(base_m[k]) for k in METRIC_NAMES
+             if isinstance(now_m.get(k), (int, float)) and isinstance(base_m.get(k), (int, float))
+             and now_m[k] > base_m[k]}
+    if not grows:
+        return True, "无增长，无需归因"
+    if len(grows) > 1:
+        return False, "多项同时长大 %s，一条归因不足以解释" % grows
+    name, delta = list(grows.items())[0]
+    cands = [a for a in (attr or []) if isinstance(a, dict)]
+    if name != "inject_union_bytes":
+        return False, "指标 %s 的增长不可按文件归因（只有注入面有成员清单）" % name
+    if len(cands) != 1:
+        return False, "需要且仅需要一条归因记录，实测 %d 条" % len(cands)
+    a = cands[0]
+    if not str(a.get("reason") or "").strip():
+        return False, "缺 reason"
+    if not str(a.get("commit") or "").strip():
+        return False, "缺 commit"
+    if int(a.get("delta") or -1) != delta:
+        return False, "归因 delta=%s 与实增 %s 不符" % (a.get("delta"), delta)
+    rp = os.path.realpath(str(a.get("path") or ""))
+    if rp not in inject_face():
+        return False, "path 不在注入面成员内: %s" % a.get("path")
+    if not _commit_exists(rp, str(a["commit"])):
+        return False, "commit 在该文件所属仓内解析不到: %s" % a["commit"]
+    return True, "%s +%d 由 %s@%s 解释" % (name, delta, os.path.basename(rp), a["commit"])
+
+
+def _commit_exists(path, sha):
+    """从文件所在目录向上找 .git，在该仓里解析 commit（找不到仓/对象、或对象不是 commit 即 False）。"""
+    import subprocess
+    d = Path(path).resolve().parent
+    for cand in [d] + list(d.parents):
+        if (cand / ".git").exists():
+            r = subprocess.run(["git", "-C", str(cand), "cat-file", "-t", sha], capture_output=True)
+            return r.returncode == 0 and (r.stdout or b"").strip() == b"commit"
+    return False
+
+
 def main():
     try:
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -188,11 +252,44 @@ def main():
     ap.add_argument("--quiet", action="store_true")
     ap.add_argument("--strict-cap", action="store_true", dest="strict_cap",
                     help="把「超硬顶」也按阻断处理（默认非阻断告警，便于跨项目既有超限不拦本仓修改任务）")
+    ap.add_argument("--raise-baseline", action="store_true", dest="raise_baseline",
+                    help="带归因上调基线（唯一合法通道；须同时给 --commit/--path/--delta/--reason，不成立即 exit 1）")
+    ap.add_argument("--commit", default="")
+    ap.add_argument("--path", default="")
+    ap.add_argument("--delta", type=int, default=-1)
+    ap.add_argument("--reason", default="")
     args = ap.parse_args()
 
     metrics, unknown = collect_metrics()
     caps = hard_caps()
     bl = load_baseline(args.baseline)
+
+    if args.raise_baseline:
+        if not bl.get("metrics"):
+            print("[RATCHET:REFUSE] 基线不可用，无从归因")
+            return 2
+        _grow = {k: int(metrics[k]) - int(bl["metrics"][k]) for k in METRIC_NAMES
+                 if isinstance(metrics.get(k), (int, float)) and isinstance(bl["metrics"].get(k), (int, float))
+                 and metrics[k] > bl["metrics"][k]}
+        if not _grow:
+            print("[RATCHET:REFUSE] 现状并未长大 ⇒ 归因上调无的放矢（拒绝，防把留账本当装饰刷条数）")
+            return 1
+        rec = [{"commit": args.commit, "path": args.path, "delta": args.delta, "reason": args.reason}]
+        ok, why = attribute_raise(metrics, bl["metrics"], rec)
+        if not ok:
+            print("[RATCHET:REFUSE] 归因不成立：%s（棘轮维持原值，判据不为人心情让路）" % why)
+            return 1
+        doc = dict(bl)
+        ledger = list(doc.get("attributed_raises") or [])
+        ledger.append(dict(rec[0], metric="inject_union_bytes",
+                           at=datetime.now().strftime("%Y-%m-%d %H:%M"),
+                           from_value=bl["metrics"].get("inject_union_bytes"),
+                           to_value=metrics.get("inject_union_bytes")))
+        doc["metrics"], doc["attributed_raises"] = metrics, ledger
+        Path(args.baseline).write_text(json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")
+        print("[RATCHET:RAISED-ATTRIBUTED] %s ⇒ 基线 %s→%s，累计留账 %d 条"
+              % (why, ledger[-1]["from_value"], ledger[-1]["to_value"], len(ledger)))
+        return 0
 
     if args.update:
         if unknown:
@@ -231,6 +328,11 @@ def main():
     if bl.get("error"):
         print("[RATCHET:FAIL] 基线不可用 → 先跑 `--update` 建立基线")
         return 2
+    _ar = bl.get("attributed_raises") or []
+    if _ar:
+        print("  ℹ️ 归因抬基线留账 %d 条；最近：%s @%s（%s → %s，%s）" % (
+            len(_ar), _ar[-1].get("reason", "-"), _ar[-1].get("commit", "-"),
+            _ar[-1].get("from_value", "-"), _ar[-1].get("to_value", "-"), _ar[-1].get("at", "-")))
     findings, _unknown2 = evaluate(metrics, bl["metrics"], caps)
     # 两级判定：超棘轮/无基线 = 本次长大或判据失效 ⇒ 阻断（exit 1）；
     # 超硬顶 = 可能是跨项目既有事实（C25 只管它自己那 5 个文件）⇒ 默认告警不阻断，

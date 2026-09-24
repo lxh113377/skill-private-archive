@@ -1,0 +1,393 @@
+{
+ "schema": "zijian-evidence-resolvability-v1",
+ "days": [
+  "2026-09-24",
+  "2026-09-23",
+  "2026-09-22"
+ ],
+ "agg": {
+  "SHAPE_OK_RESOLVABLE": 30,
+  "SHAPE_BAD_UNRESOLVABLE": 4,
+  "SHAPE_OK_UNRESOLVABLE": 20
+ },
+ "rows": [
+  {
+   "date": "2026-09-24",
+   "session": "zc-20260924-security",
+   "kind": "SHAPE_OK_RESOLVABLE",
+   "why": "token 在文件内(1.1.0)",
+   "evidence": "C:\\Users\\37533\\.zcode\\skills\\consulting-analysis\\SKILL.md#版本行:V1.1.0"
+  },
+  {
+   "date": "2026-09-24",
+   "session": "cb_r17_benchmark",
+   "kind": "SHAPE_BAD_UNRESOLVABLE",
+   "why": "token 不在该文件内",
+   "evidence": "D:\\global_skills\\A-project-handoff\\SKILL.md#版本行:3.52.0"
+  },
+  {
+   "date": "2026-09-24",
+   "session": "cb_r17_benchmark2",
+   "kind": "SHAPE_OK_RESOLVABLE",
+   "why": "token 在文件内(V3.52.0)",
+   "evidence": "D:\\global_skills\\A-project-handoff\\references\\version-history.md#版本行:V3.52.0"
+  },
+  {
+   "date": "2026-09-24",
+   "session": "cb_r17b_tail",
+   "kind": "SHAPE_OK_RESOLVABLE",
+   "why": "token 在文件内(3.52.1)",
+   "evidence": "D:\\global_skills\\A-project-handoff\\references\\version-history.md#版本行:V3.52.1"
+  },
+  {
+   "date": "2026-09-24",
+   "session": "qd-chaoshi-bench-0924",
+   "kind": "SHAPE_OK_RESOLVABLE",
+   "why": "token 在文件内(3.5.1)",
+   "evidence": "D:\\global_skills\\chaoshi-web-deploy\\SKILL.md#版本行:V3.5.1"
+  },
+  {
+   "date": "2026-09-24",
+   "session": "qd_r18_20260924",
+   "kind": "SHAPE_OK_UNRESOLVABLE",
+   "why": "backup ID 定位不到",
+   "evidence": "D:\\global_memory\\lessons\\lessons.part44.md#backup:part43-overflow-split-20260924"
+  },
+  {
+   "date": "2026-09-24",
+   "session": "qd-zijian-r19-0924",
+   "kind": "SHAPE_OK_UNRESOLVABLE",
+   "why": "token 不在该文件内",
+   "evidence": "D:\\global_skills\\A-project-handoff\\SKILL.md#版本行:V3.52.2"
+  },
+  {
+   "date": "2026-09-24",
+   "session": "qd_r19b_20260924",
+   "kind": "SHAPE_OK_RESOLVABLE",
+   "why": "回滚件存在",
+   "evidence": "D:\\global_skills\\github\\SKILL.md#backup:github.SKILL.md.20260924_184238_240484.bak"
+  },
+  {
+   "date": "2026-09-24",
+   "session": "qd_r19b_20260924",
+   "kind": "SHAPE_OK_RESOLVABLE",
+   "why": "回滚件存在",
+   "evidence": "D:\\global_skills\\A-memory-start\\references\\contract.md#backup:A-memory-start.references.contract.md.20260924_184238_407476.bak"
+  },
+  {
+   "date": "2026-09-24",
+   "session": "qd_r19b_20260924",
+   "kind": "SHAPE_OK_UNRESOLVABLE",
+   "why": "token 不在该文件内",
+   "evidence": "D:\\global_skills\\A-project-handoff\\SKILL.md#版本行:V3.52.3"
+  },
+  {
+   "date": "2026-09-24",
+   "session": "qd_r19b_20260924",
+   "kind": "SHAPE_OK_RESOLVABLE",
+   "why": "回滚件存在",
+   "evidence": "D:\\global_skills\\A-get-memory\\SKILL.md#backup:A-get-memory.SKILL.md.20260924_184238_544245.bak"
+  },
+  {
+   "date": "2026-09-24",
+   "session": "qd-zijian-r19b-0924",
+   "kind": "SHAPE_OK_RESOLVABLE",
+   "why": "token 在文件内(V10.68.0)",
+   "evidence": "D:\\global_skills\\A-memory-start\\SKILL.md#版本行:V10.68.0"
+  },
+  {
+   "date": "2026-09-24",
+   "session": "qd-chaoshi-bench-0924",
+   "kind": "SHAPE_OK_RESOLVABLE",
+   "why": "token 在文件内(3.5.1)",
+   "evidence": "D:\\global_skills\\chaoshi-web-deploy\\SKILL.md#版本行:V3.5.1"
+  },
+  {
+   "date": "2026-09-24",
+   "session": "qd-zijian-r20-0924",
+   "kind": "SHAPE_OK_RESOLVABLE",
+   "why": "token 在文件内(10.69.0)",
+   "evidence": "D:\\global_skills\\A-memory-start\\SKILL.md#版本行:V10.69.0"
+  },
+  {
+   "date": "2026-09-24",
+   "session": "qd_r20_20260924",
+   "kind": "SHAPE_OK_UNRESOLVABLE",
+   "why": "backup ID 定位不到",
+   "evidence": "D:\\global_memory\\lessons\\lessons.part44.md#backup:part44-4069B-le-4096-20260924"
+  },
+  {
+   "date": "2026-09-24",
+   "session": "qd-zijian-r20b-0924",
+   "kind": "SHAPE_OK_RESOLVABLE",
+   "why": "token 在文件内(4.30.0)",
+   "evidence": "D:\\global_skills\\A-get-memory\\SKILL.md#版本行:V4.30.0"
+  },
+  {
+   "date": "2026-09-24",
+   "session": "qd_r21b_20260924",
+   "kind": "SHAPE_OK_UNRESOLVABLE",
+   "why": "路径不存在",
+   "evidence": "C:\\Users\\37533\\Desktop\\workspace\\自建skill优化\\05-exec\\r21b-patches\\README.md#backup:5819b47"
+  },
+  {
+   "date": "2026-09-24",
+   "session": "qd-r4d-20260924",
+   "kind": "SHAPE_BAD_UNRESOLVABLE",
+   "why": "token 不在该文件内",
+   "evidence": "C:\\Users\\37533\\Desktop\\workspace\\焚诀\\eval\\tests\\test_inject_ledger.py#版本行:106"
+  },
+  {
+   "date": "2026-09-24",
+   "session": "qd-zijian-r21c-0924",
+   "kind": "SHAPE_OK_RESOLVABLE",
+   "why": "token 在文件内(10.70.0)",
+   "evidence": "D:\\global_skills\\A-memory-start\\SKILL.md#版本行:V10.70.0"
+  },
+  {
+   "date": "2026-09-24",
+   "session": "qd-zijian-r21c-0924",
+   "kind": "SHAPE_OK_RESOLVABLE",
+   "why": "回滚件存在",
+   "evidence": "C:\\Users\\37533\\Desktop\\workspace\\自建skill优化\\06-benchmark\\inject_ratchet_baseline.json#backup:A-memory-start.SKILL.md.20260924_214500_246348.bak"
+  },
+  {
+   "date": "2026-09-24",
+   "session": "qd_r22b_20260924",
+   "kind": "SHAPE_OK_UNRESOLVABLE",
+   "why": "token 不在该文件内",
+   "evidence": "D:\\global_skills\\A-project-handoff\\SKILL.md#版本行:V3.53.0"
+  },
+  {
+   "date": "2026-09-24",
+   "session": "qd_peiliao_r13_fullexec_20260924",
+   "kind": "SHAPE_BAD_UNRESOLVABLE",
+   "why": "无 #kind:val 结构",
+   "evidence": "本块 + 报告 §7 b7a0b0e"
+  },
+  {
+   "date": "2026-09-24",
+   "session": "qd_ican_r9_close_20260924",
+   "kind": "SHAPE_BAD_UNRESOLVABLE",
+   "why": "无 #kind:val 结构",
+   "evidence": "c02f733/509679b 两提交 + 门禁 13 项全绿"
+  },
+  {
+   "date": "2026-09-24",
+   "session": "qd-zijian-r21d-0924",
+   "kind": "SHAPE_OK_RESOLVABLE",
+   "why": "token 在文件内(41)",
+   "evidence": "D:\\global_memory\\lessons\\lessons.part49.md#版本行:V41"
+  },
+  {
+   "date": "2026-09-24",
+   "session": "qd-zijian-r21d-0924",
+   "kind": "SHAPE_OK_RESOLVABLE",
+   "why": "git 对象存在",
+   "evidence": "C:\\Users\\37533\\Desktop\\workspace\\自建skill优化\\05-exec\\r21d_fix_own_entry.py#backup:1257359f"
+  },
+  {
+   "date": "2026-09-24",
+   "session": "qd-r5-20260924",
+   "kind": "SHAPE_OK_UNRESOLVABLE",
+   "why": "token 不在该文件内",
+   "evidence": "C:\\Users\\37533\\Desktop\\workspace\\焚诀\\eval\\stubs\\stub_c33_memory_index.py#版本行:V10.69.0"
+  },
+  {
+   "date": "2026-09-23",
+   "session": "sess_b19792c1-dbe6-439a-8a80-5a36c16b33c5",
+   "kind": "SHAPE_OK_RESOLVABLE",
+   "why": "回滚件存在",
+   "evidence": "D:\\global_skills\\A-get-memory\\SKILL.md#backup:A-get-memory.SKILL.md.20260923_005651_617996"
+  },
+  {
+   "date": "2026-09-23",
+   "session": "zc-20260923-1130",
+   "kind": "SHAPE_OK_UNRESOLVABLE",
+   "why": "token 不在该文件内",
+   "evidence": "D:\\global_skills\\A-project-handoff\\SKILL.md#版本行:V3.46.3"
+  },
+  {
+   "date": "2026-09-23",
+   "session": "zc-chaoshi-round2-20260923",
+   "kind": "SHAPE_OK_RESOLVABLE",
+   "why": "token 在文件内(1.3.0)",
+   "evidence": "C:\\Users\\37533\\.zcode\\skills\\chaoshi-image-optimization\\SKILL.md#版本行:V1.3.0"
+  },
+  {
+   "date": "2026-09-23",
+   "session": "perf-exec-p01p02-0340",
+   "kind": "SHAPE_OK_RESOLVABLE",
+   "why": "token 在文件内(10.67.0)",
+   "evidence": "D:\\global_skills\\A-memory-start\\SKILL.md#版本行:V10.67.0"
+  },
+  {
+   "date": "2026-09-23",
+   "session": "zc-perf-20260923",
+   "kind": "SHAPE_OK_RESOLVABLE",
+   "why": "回滚件存在",
+   "evidence": "D:\\global_skills\\code-review\\SKILL.md#backup:code-review.SKILL.md.20260923_040715_816544.bak"
+  },
+  {
+   "date": "2026-09-23",
+   "session": "sess_8fa73048-8b1b-4775-9856-283af114d2c5",
+   "kind": "SHAPE_OK_RESOLVABLE",
+   "why": "token 在文件内(4)",
+   "evidence": "C:\\Users\\37533\\.zcode\\skills\\ican-frontend-design-system\\SKILL.md#版本行:V4"
+  },
+  {
+   "date": "2026-09-23",
+   "session": "perf-exec-r3-0411",
+   "kind": "SHAPE_OK_UNRESOLVABLE",
+   "why": "token 不在该文件内",
+   "evidence": "D:\\global_skills\\A-project-handoff\\SKILL.md#版本行:V3.47.0"
+  },
+  {
+   "date": "2026-09-23",
+   "session": "wb-fenjue-mirror-fullcheck-20260923",
+   "kind": "SHAPE_OK_RESOLVABLE",
+   "why": "回滚件存在",
+   "evidence": "D:\\global_skills\\A-skill-manager\\references\\lifecycle-sync.md#backup:A-skill-manager.references.lifecycle-sync.md.20260923_055053_851831.bak"
+  },
+  {
+   "date": "2026-09-23",
+   "session": "upstream-r5-0605",
+   "kind": "SHAPE_OK_UNRESOLVABLE",
+   "why": "token 不在该文件内",
+   "evidence": "D:\\global_skills\\A-project-handoff\\SKILL.md#版本行:V3.48.0"
+  },
+  {
+   "date": "2026-09-23",
+   "session": "sess_dynflow-P0-batch-20260923",
+   "kind": "SHAPE_OK_UNRESOLVABLE",
+   "why": "token 不在该文件内",
+   "evidence": "D:\\global_skills\\A-project-handoff\\SKILL.md#版本行:V3.49.0"
+  },
+  {
+   "date": "2026-09-23",
+   "session": "noise-r280-0628",
+   "kind": "SHAPE_OK_RESOLVABLE",
+   "why": "回滚件存在",
+   "evidence": "D:\\global_skills\\A-project-handoff\\scripts\\noise_lint.py#backup:A-project-handoff.scripts.noise_lint.py.20260923_061547_216350.bak"
+  },
+  {
+   "date": "2026-09-23",
+   "session": "sess_dynflow-P1-batch-20260923",
+   "kind": "SHAPE_OK_RESOLVABLE",
+   "why": "token 在文件内(1.3.0)",
+   "evidence": "D:\\global_skills\\A-skill-manager\\SKILL.md#版本行:V1.3.0"
+  },
+  {
+   "date": "2026-09-23",
+   "session": "sess_AM-V140-trash-unify-20260923",
+   "kind": "SHAPE_OK_RESOLVABLE",
+   "why": "token 在文件内(1.4.0)",
+   "evidence": "D:\\global_skills\\A-skill-manager\\SKILL.md#版本行:V1.4.0"
+  },
+  {
+   "date": "2026-09-23",
+   "session": "sess_C23-landing-gate-20260923",
+   "kind": "SHAPE_OK_UNRESOLVABLE",
+   "why": "backup ID 定位不到",
+   "evidence": "C:\\Users\\37533\\Desktop\\workspace\\焚诀\\eval\\stubs\\stub_c23_landing.py#backup:C23-landing"
+  },
+  {
+   "date": "2026-09-23",
+   "session": "sess_metrics-delta-20260923",
+   "kind": "SHAPE_OK_RESOLVABLE",
+   "why": "git 对象存在",
+   "evidence": "c:\\Users\\37533\\Desktop\\workspace\\焚诀\\reports\\2026-09-23_对标改进成效量化报告.md#backup:C786039"
+  },
+  {
+   "date": "2026-09-23",
+   "session": "ses_f34716885ffeX9fvYVyKq9juHJ",
+   "kind": "SHAPE_OK_RESOLVABLE",
+   "why": "token 在文件内(V2.1.0)",
+   "evidence": "D:\\global_skills\\debugging-fixing\\SKILL.md#版本行:V2.1.0"
+  },
+  {
+   "date": "2026-09-22",
+   "session": "TR-yi-better-20260922-r2",
+   "kind": "SHAPE_OK_UNRESOLVABLE",
+   "why": "token 不在该文件内",
+   "evidence": "D:\\global_skills\\A-project-handoff\\SKILL.md#版本行:V3.45.0"
+  },
+  {
+   "date": "2026-09-22",
+   "session": "578c5a823b2b45ea8324fb84ea5b6214",
+   "kind": "SHAPE_OK_RESOLVABLE",
+   "why": "token 在文件内(V3.41.5)",
+   "evidence": "D:\\global_skills\\A-project-handoff\\references\\version-history.md#版本行:V3.41.5"
+  },
+  {
+   "date": "2026-09-22",
+   "session": "578c5a823b2b45ea8324fb84ea5b6214",
+   "kind": "SHAPE_OK_UNRESOLVABLE",
+   "why": "token 不在该文件内",
+   "evidence": "D:\\global_skills\\A-memory-start\\SKILL.md#版本行:V10.61.6"
+  },
+  {
+   "date": "2026-09-22",
+   "session": "ddf18674d77b4221b2cb24fdb67f4ec0",
+   "kind": "SHAPE_OK_UNRESOLVABLE",
+   "why": "token 不在该文件内",
+   "evidence": "D:\\global_skills\\A-memory-start\\SKILL.md#版本行:V10.61.8"
+  },
+  {
+   "date": "2026-09-22",
+   "session": "578c5a823b2b45ea8324fb84ea5b6214",
+   "kind": "SHAPE_OK_RESOLVABLE",
+   "why": "回滚件存在",
+   "evidence": "D:\\global_skills\\A-project-handoff\\references\\disciplines.md#backup:20260922_012739_685678"
+  },
+  {
+   "date": "2026-09-22",
+   "session": "578c5a823b2b45ea8324fb84ea5b6214",
+   "kind": "SHAPE_OK_UNRESOLVABLE",
+   "why": "token 不在该文件内",
+   "evidence": "D:\\global_skills\\A-memory-start\\SKILL.md#版本行:V10.61.7"
+  },
+  {
+   "date": "2026-09-22",
+   "session": "fe25905e023843a08383cf7ba5cca9a6",
+   "kind": "SHAPE_OK_UNRESOLVABLE",
+   "why": "token 不在该文件内",
+   "evidence": "D:\\global_skills\\A-project-handoff\\SKILL.md#版本行:V3.42.0"
+  },
+  {
+   "date": "2026-09-22",
+   "session": "fe25905e023843a08383cf7ba5cca9a6",
+   "kind": "SHAPE_OK_UNRESOLVABLE",
+   "why": "token 不在该文件内",
+   "evidence": "D:\\global_skills\\A-memory-start\\SKILL.md#版本行:V10.62.0"
+  },
+  {
+   "date": "2026-09-22",
+   "session": "fe25905e023843a08383cf7ba5cca9a6",
+   "kind": "SHAPE_OK_RESOLVABLE",
+   "why": "token 在文件内(V10.63.0)",
+   "evidence": "D:\\global_skills\\A-memory-start\\SKILL.md#版本行:V10.63.0"
+  },
+  {
+   "date": "2026-09-22",
+   "session": "fe25905e023843a08383cf7ba5cca9a6",
+   "kind": "SHAPE_OK_RESOLVABLE",
+   "why": "token 在文件内(10.64.0)",
+   "evidence": "D:\\global_skills\\A-memory-start\\SKILL.md#版本行:V10.64.0"
+  },
+  {
+   "date": "2026-09-22",
+   "session": "6f85444b7d884df4ad2a83d3191c3679",
+   "kind": "SHAPE_OK_UNRESOLVABLE",
+   "why": "token 不在该文件内",
+   "evidence": "D:\\\\global_skills\\\\A-project-handoff\\\\SKILL.md#版本行:V3.46.0"
+  },
+  {
+   "date": "2026-09-22",
+   "session": "6f85444b7d884df4ad2a83d3191c3679",
+   "kind": "SHAPE_OK_UNRESOLVABLE",
+   "why": "token 不在该文件内",
+   "evidence": "D:\\global_skills\\A-project-handoff\\SKILL.md#版本行:V3.46.0"
+  }
+ ]
+}
