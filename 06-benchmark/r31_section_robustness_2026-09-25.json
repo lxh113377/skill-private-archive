@@ -1,0 +1,1774 @@
+{
+ "schema": "section-robustness-v2",
+ "generated_at": "2026-09-25 05:28",
+ "readonly": true,
+ "section": "rationalizations",
+ "n": 166,
+ "counts": {
+  "tier1": 28,
+  "tier2_near": 28,
+  "tier2b_broad": 123,
+  "tier3_heading": 60
+ },
+ "queue_strict": [
+  {
+   "skill": "chaoshi-web-deploy",
+   "bytes": 51164
+  },
+  {
+   "skill": "ican-frontend-design-system",
+   "bytes": 50226
+  },
+  {
+   "skill": "story-import",
+   "bytes": 36149
+  },
+  {
+   "skill": "story-short-write",
+   "bytes": 35725
+  },
+  {
+   "skill": "story-setup",
+   "bytes": 35572
+  },
+  {
+   "skill": "story-review",
+   "bytes": 34939
+  },
+  {
+   "skill": "openclaw-task-supervision",
+   "bytes": 33741
+  },
+  {
+   "skill": "prompt-system-audit",
+   "bytes": 31919
+  },
+  {
+   "skill": "story-deslop",
+   "bytes": 29697
+  },
+  {
+   "skill": "agent-browser",
+   "bytes": 29055
+  },
+  {
+   "skill": "story-long-analyze",
+   "bytes": 25853
+  },
+  {
+   "skill": "chaoshi-image-optimization",
+   "bytes": 24057
+  },
+  {
+   "skill": "wps-knowledgebase",
+   "bytes": 21388
+  },
+  {
+   "skill": "story-long-write",
+   "bytes": 19862
+  },
+  {
+   "skill": "wechat-automation",
+   "bytes": 18446
+  },
+  {
+   "skill": "story-short-analyze",
+   "bytes": 17018
+  },
+  {
+   "skill": "prompt-consolidation",
+   "bytes": 16120
+  },
+  {
+   "skill": "c-cleanup",
+   "bytes": 15283
+  },
+  {
+   "skill": "story-cover",
+   "bytes": 14721
+  },
+  {
+   "skill": "static-site-batch-audit-fix",
+   "bytes": 11229
+  },
+  {
+   "skill": "dogfood",
+   "bytes": 10428
+  },
+  {
+   "skill": "ican-deploy",
+   "bytes": 10261
+  },
+  {
+   "skill": "workflow-preflight-check",
+   "bytes": 9921
+  },
+  {
+   "skill": "fenjue-memory-audit",
+   "bytes": 9737
+  },
+  {
+   "skill": "天眼一下",
+   "bytes": 9066
+  },
+  {
+   "skill": "9b-lightworkflow",
+   "bytes": 8807
+  },
+  {
+   "skill": "discover-agent-cli",
+   "bytes": 8506
+  },
+  {
+   "skill": "cloudbase-db-optimize",
+   "bytes": 8364
+  },
+  {
+   "skill": "audio-deliverable-pipeline",
+   "bytes": 8314
+  },
+  {
+   "skill": "A-java-problem",
+   "bytes": 7094
+  },
+  {
+   "skill": "wb-git-commit-recipe",
+   "bytes": 6400
+  },
+  {
+   "skill": "chaoshi-admin-inline-edit",
+   "bytes": 6220
+  },
+  {
+   "skill": "local-realtime-translator",
+   "bytes": 5827
+  },
+  {
+   "skill": "win-toolchain-pitfalls",
+   "bytes": 5703
+  },
+  {
+   "skill": "A-skill-manager",
+   "bytes": 5466
+  },
+  {
+   "skill": "local-tts",
+   "bytes": 5381
+  },
+  {
+   "skill": "local-computer-use",
+   "bytes": 4700
+  },
+  {
+   "skill": "local-screenshot-qa",
+   "bytes": 4617
+  },
+  {
+   "skill": "openclaw-fenjue-weekly",
+   "bytes": 4614
+  },
+  {
+   "skill": "A-project-handoff",
+   "bytes": 4557
+  },
+  {
+   "skill": "local-mineru",
+   "bytes": 4552
+  },
+  {
+   "skill": "html-to-docx-win-fix",
+   "bytes": 4542
+  },
+  {
+   "skill": "windows-gitbash-chinese-path-pit",
+   "bytes": 4530
+  },
+  {
+   "skill": "workbuddy-mcp",
+   "bytes": 4262
+  },
+  {
+   "skill": "local-txt2img",
+   "bytes": 4114
+  },
+  {
+   "skill": "report-generator-skill",
+   "bytes": 3993
+  },
+  {
+   "skill": "hook-analyzer-skill",
+   "bytes": 3858
+  },
+  {
+   "skill": "oc-dispatch-exec-guard",
+   "bytes": 3830
+  },
+  {
+   "skill": "bigfile-split",
+   "bytes": 3817
+  },
+  {
+   "skill": "local-asr",
+   "bytes": 3602
+  },
+  {
+   "skill": "fenjue-lessons-hitrate",
+   "bytes": 3238
+  },
+  {
+   "skill": "wechat-voice-transcription",
+   "bytes": 3199
+  },
+  {
+   "skill": "office-automation-pro",
+   "bytes": 3173
+  },
+  {
+   "skill": "windows-native-ocr",
+   "bytes": 2685
+  },
+  {
+   "skill": "local-img2img",
+   "bytes": 2642
+  },
+  {
+   "skill": "local-ocr-npu",
+   "bytes": 2292
+  }
+ ],
+ "queue_all_tiers_missing": [
+  {
+   "skill": "wechat-automation",
+   "bytes": 18446
+  },
+  {
+   "skill": "story-cover",
+   "bytes": 14721
+  },
+  {
+   "skill": "天眼一下",
+   "bytes": 9066
+  },
+  {
+   "skill": "local-realtime-translator",
+   "bytes": 5827
+  },
+  {
+   "skill": "A-skill-manager",
+   "bytes": 5466
+  },
+  {
+   "skill": "report-generator-skill",
+   "bytes": 3993
+  },
+  {
+   "skill": "hook-analyzer-skill",
+   "bytes": 3858
+  },
+  {
+   "skill": "oc-dispatch-exec-guard",
+   "bytes": 3830
+  },
+  {
+   "skill": "local-ocr-npu",
+   "bytes": 2292
+  }
+ ],
+ "rows": [
+  {
+   "skill": "9b-lightworkflow",
+   "bytes": 8807,
+   "tier": "HIGH",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "_my-skills",
+   "bytes": 1062,
+   "tier": "UNLISTED",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "A-ask-questions",
+   "bytes": 10739,
+   "tier": "HIGH",
+   "t1": true,
+   "t2": true,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "A-get-memory",
+   "bytes": 44141,
+   "tier": "HIGH",
+   "t1": true,
+   "t2": true,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "A-java-problem",
+   "bytes": 7094,
+   "tier": "HIGH",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "A-memory-start",
+   "bytes": 26593,
+   "tier": "HIGH",
+   "t1": true,
+   "t2": true,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "A-project-better",
+   "bytes": 4714,
+   "tier": "HIGH",
+   "t1": true,
+   "t2": true,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "A-project-handoff",
+   "bytes": 4557,
+   "tier": "HIGH",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "A-prompt-better",
+   "bytes": 28676,
+   "tier": "HIGH",
+   "t1": true,
+   "t2": true,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "A-skill-manager",
+   "bytes": 5466,
+   "tier": "HIGH",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "agent-browser",
+   "bytes": 29055,
+   "tier": "MID",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "ai-video-homework-pipeline",
+   "bytes": 6242,
+   "tier": "LOW",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "algorithmic-art",
+   "bytes": 19769,
+   "tier": "EXCLUDE",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "audio-deliverable-pipeline",
+   "bytes": 8314,
+   "tier": "MID",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "audit-runner-safe-aggregate",
+   "bytes": 5364,
+   "tier": "HIGH",
+   "t1": true,
+   "t2": true,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "bigfile-split",
+   "bytes": 3817,
+   "tier": "HIGH",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "brainstorming",
+   "bytes": 10634,
+   "tier": "LOW",
+   "t1": true,
+   "t2": true,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "brand-guidelines",
+   "bytes": 2235,
+   "tier": "EXCLUDE",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "browser-cdp",
+   "bytes": 6303,
+   "tier": "LOW",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "byted-bp-cdn-pagesdeploy",
+   "bytes": 7985,
+   "tier": "EXCLUDE",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "byted-mediakit-shared",
+   "bytes": 10769,
+   "tier": "EXCLUDE",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "byted-seedance-video-generate",
+   "bytes": 8305,
+   "tier": "EXCLUDE",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "byted-seedream-image-generate",
+   "bytes": 8991,
+   "tier": "EXCLUDE",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "c-cleanup",
+   "bytes": 15283,
+   "tier": "HIGH",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "canvas-design",
+   "bytes": 12376,
+   "tier": "EXCLUDE",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "chaoshi-admin-inline-edit",
+   "bytes": 6220,
+   "tier": "HIGH",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "chaoshi-image-optimization",
+   "bytes": 24057,
+   "tier": "HIGH",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "chaoshi-web-deploy",
+   "bytes": 51164,
+   "tier": "HIGH",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "chart-visualization",
+   "bytes": 3355,
+   "tier": "LOW",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "cloudbase-db-optimize",
+   "bytes": 8364,
+   "tier": "MID",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "cloudbase__skillhub",
+   "bytes": 19440,
+   "tier": "EXCLUDE",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "code-review",
+   "bytes": 4652,
+   "tier": "HIGH",
+   "t1": true,
+   "t2": true,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "coding-agent",
+   "bytes": 4830,
+   "tier": "LOW",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "computer-use-guidance-windows",
+   "bytes": 28102,
+   "tier": "EXCLUDE",
+   "t1": true,
+   "t2": true,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "consulting-analysis",
+   "bytes": 37542,
+   "tier": "LOW",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "cross-platform-agent-sync",
+   "bytes": 2921,
+   "tier": "HIGH",
+   "t1": true,
+   "t2": true,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "data-analysis",
+   "bytes": 8929,
+   "tier": "LOW",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "data-visualization",
+   "bytes": 13700,
+   "tier": "LOW",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "debugging-fixing",
+   "bytes": 4038,
+   "tier": "MID",
+   "t1": true,
+   "t2": true,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "defuddle",
+   "bytes": 1034,
+   "tier": "LOW",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "diagram-maker",
+   "bytes": 2342,
+   "tier": "LOW",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "dingtalk-aisearch",
+   "bytes": 9085,
+   "tier": "UNLISTED",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "dingtalk-aitable",
+   "bytes": 26792,
+   "tier": "UNLISTED",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "dingtalk-calendar",
+   "bytes": 13351,
+   "tier": "UNLISTED",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "dingtalk-chat",
+   "bytes": 9578,
+   "tier": "UNLISTED",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "dingtalk-contact",
+   "bytes": 9474,
+   "tier": "UNLISTED",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "dingtalk-doc",
+   "bytes": 12063,
+   "tier": "UNLISTED",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "dingtalk-drive",
+   "bytes": 15450,
+   "tier": "UNLISTED",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "dingtalk-event",
+   "bytes": 10083,
+   "tier": "UNLISTED",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "dingtalk-mail",
+   "bytes": 9429,
+   "tier": "UNLISTED",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "dingtalk-minutes",
+   "bytes": 16587,
+   "tier": "UNLISTED",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "dingtalk-misc",
+   "bytes": 16078,
+   "tier": "UNLISTED",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "dingtalk-shared",
+   "bytes": 7002,
+   "tier": "UNLISTED",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "dingtalk-todo",
+   "bytes": 11749,
+   "tier": "UNLISTED",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "dingtalk-wiki",
+   "bytes": 13561,
+   "tier": "UNLISTED",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "discover-agent-cli",
+   "bytes": 8506,
+   "tier": "MID",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "doc-coauthoring",
+   "bytes": 15815,
+   "tier": "LOW",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "docx",
+   "bytes": 28922,
+   "tier": "EXCLUDE",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "dogfood",
+   "bytes": 10428,
+   "tier": "HIGH",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "electron",
+   "bytes": 6727,
+   "tier": "EXCLUDE",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "elon-musk-perspective",
+   "bytes": 23644,
+   "tier": "EXCLUDE",
+   "t1": true,
+   "t2": true,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "executing-plans",
+   "bytes": 2784,
+   "tier": "LOW",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "fenjue-lessons-hitrate",
+   "bytes": 3238,
+   "tier": "HIGH",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "fenjue-memory-audit",
+   "bytes": 9737,
+   "tier": "HIGH",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "figma",
+   "bytes": 3170,
+   "tier": "EXCLUDE",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "find-skills",
+   "bytes": 21192,
+   "tier": "EXCLUDE",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "first-principles-decomposer",
+   "bytes": 3034,
+   "tier": "EXCLUDE",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "frontend-design",
+   "bytes": 4440,
+   "tier": "EXCLUDE",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "frontend-skill",
+   "bytes": 7671,
+   "tier": "EXCLUDE",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "frontend-slides",
+   "bytes": 19654,
+   "tier": "EXCLUDE",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "github",
+   "bytes": 5084,
+   "tier": "EXCLUDE",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "gsap",
+   "bytes": 7776,
+   "tier": "LOW",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "gstack",
+   "bytes": 26697,
+   "tier": "EXCLUDE",
+   "t1": true,
+   "t2": true,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "hermes-installer",
+   "bytes": 2506,
+   "tier": "HIGH",
+   "t1": true,
+   "t2": true,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "hook-analyzer-skill",
+   "bytes": 3858,
+   "tier": "MID",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "html-ppt",
+   "bytes": 14265,
+   "tier": "EXCLUDE",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "html-to-docx-win-fix",
+   "bytes": 4542,
+   "tier": "MID",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "hyperframes",
+   "bytes": 33031,
+   "tier": "LOW",
+   "t1": true,
+   "t2": true,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "hyperframes-cli",
+   "bytes": 8949,
+   "tier": "LOW",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "hyperframes-media",
+   "bytes": 15149,
+   "tier": "LOW",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "hyperframes-registry",
+   "bytes": 4278,
+   "tier": "LOW",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "ican-deploy",
+   "bytes": 10261,
+   "tier": "HIGH",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "ican-frontend-design-system",
+   "bytes": 50226,
+   "tier": "HIGH",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "internal-comms",
+   "bytes": 1511,
+   "tier": "EXCLUDE",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "json-canvas",
+   "bytes": 7624,
+   "tier": "LOW",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "knowledge-capture",
+   "bytes": 7233,
+   "tier": "EXCLUDE",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "local-asr",
+   "bytes": 3602,
+   "tier": "MID",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "local-computer-use",
+   "bytes": 4700,
+   "tier": "MID",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "local-img2img",
+   "bytes": 2642,
+   "tier": "MID",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "local-mineru",
+   "bytes": 4552,
+   "tier": "MID",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "local-ocr-npu",
+   "bytes": 2292,
+   "tier": "MID",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "local-realtime-translator",
+   "bytes": 5827,
+   "tier": "MID",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "local-screenshot-qa",
+   "bytes": 4617,
+   "tier": "MID",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "local-tts",
+   "bytes": 5381,
+   "tier": "MID",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "local-txt2img",
+   "bytes": 4114,
+   "tier": "MID",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "local-vram",
+   "bytes": 4086,
+   "tier": "MID",
+   "t1": true,
+   "t2": true,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "mcporter",
+   "bytes": 1612,
+   "tier": "EXCLUDE",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "meeting-intelligence",
+   "bytes": 11210,
+   "tier": "EXCLUDE",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "nano-pdf",
+   "bytes": 954,
+   "tier": "EXCLUDE",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "node-inspect-debugger",
+   "bytes": 3563,
+   "tier": "LOW",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "notion-cli",
+   "bytes": 2371,
+   "tier": "EXCLUDE",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "obsidian-bases",
+   "bytes": 12903,
+   "tier": "LOW",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "obsidian-cli",
+   "bytes": 3183,
+   "tier": "LOW",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "obsidian-markdown",
+   "bytes": 5367,
+   "tier": "LOW",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "oc-dispatch-exec-guard",
+   "bytes": 3830,
+   "tier": "HIGH",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "office-automation-pro",
+   "bytes": 3173,
+   "tier": "MID",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "openai-whisper-api",
+   "bytes": 2073,
+   "tier": "EXCLUDE",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "openclaw-dual-gate-quality-audit",
+   "bytes": 21562,
+   "tier": "HIGH",
+   "t1": true,
+   "t2": true,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "openclaw-fenjue-weekly",
+   "bytes": 4614,
+   "tier": "HIGH",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "openclaw-task-supervision",
+   "bytes": 33741,
+   "tier": "HIGH",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "oracle",
+   "bytes": 4894,
+   "tier": "EXCLUDE",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "pdf",
+   "bytes": 8732,
+   "tier": "EXCLUDE",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "pixelle-api-ensure",
+   "bytes": 3495,
+   "tier": "LOW",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "pptx",
+   "bytes": 9243,
+   "tier": "EXCLUDE",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "prompt-consolidation",
+   "bytes": 16120,
+   "tier": "HIGH",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "prompt-system-audit",
+   "bytes": 31919,
+   "tier": "HIGH",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "python-debugpy",
+   "bytes": 2537,
+   "tier": "LOW",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "refactoring",
+   "bytes": 1965,
+   "tier": "LOW",
+   "t1": true,
+   "t2": true,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "report-generator-skill",
+   "bytes": 3993,
+   "tier": "MID",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "research-documentation",
+   "bytes": 3700,
+   "tier": "EXCLUDE",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "screenshot",
+   "bytes": 7595,
+   "tier": "EXCLUDE",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "shadcn",
+   "bytes": 16472,
+   "tier": "EXCLUDE",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "shell-encoding-pitfalls",
+   "bytes": 4108,
+   "tier": "MID",
+   "t1": true,
+   "t2": true,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "slides",
+   "bytes": 4557,
+   "tier": "EXCLUDE",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "spec-to-implementation",
+   "bytes": 8704,
+   "tier": "EXCLUDE",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "spike",
+   "bytes": 1869,
+   "tier": "LOW",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "sq-cleanmgr-c",
+   "bytes": 11519,
+   "tier": "EXCLUDE",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "sqlalchemy-loader-criteria-pitfalls",
+   "bytes": 4361,
+   "tier": "UNLISTED",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "static-site-batch-audit-fix",
+   "bytes": 11229,
+   "tier": "HIGH",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "story",
+   "bytes": 9007,
+   "tier": "LOW",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "story-cover",
+   "bytes": 14721,
+   "tier": "HIGH",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "story-deslop",
+   "bytes": 29697,
+   "tier": "HIGH",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "story-import",
+   "bytes": 36149,
+   "tier": "HIGH",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "story-long-analyze",
+   "bytes": 25853,
+   "tier": "HIGH",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "story-long-write",
+   "bytes": 19862,
+   "tier": "HIGH",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "story-review",
+   "bytes": 34939,
+   "tier": "HIGH",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "story-scan",
+   "bytes": 6213,
+   "tier": "HIGH",
+   "t1": true,
+   "t2": true,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "story-setup",
+   "bytes": 35572,
+   "tier": "HIGH",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "story-short-analyze",
+   "bytes": 17018,
+   "tier": "HIGH",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "story-short-write",
+   "bytes": 35725,
+   "tier": "HIGH",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "taskflow",
+   "bytes": 4893,
+   "tier": "EXCLUDE",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "taskflow-inbox-triage",
+   "bytes": 2565,
+   "tier": "EXCLUDE",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "test-driven-development",
+   "bytes": 9867,
+   "tier": "LOW",
+   "t1": true,
+   "t2": true,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "testing",
+   "bytes": 2283,
+   "tier": "MID",
+   "t1": true,
+   "t2": true,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "theme-factory",
+   "bytes": 3124,
+   "tier": "EXCLUDE",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "ui-ux-pro-max",
+   "bytes": 3055,
+   "tier": "EXCLUDE",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "utf8-encoding-fix",
+   "bytes": 5436,
+   "tier": "MID",
+   "t1": true,
+   "t2": true,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "video-breakdown-skill",
+   "bytes": 6867,
+   "tier": "MID",
+   "t1": true,
+   "t2": true,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "video-frames",
+   "bytes": 959,
+   "tier": "EXCLUDE",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "video-whisper-transcribe",
+   "bytes": 5725,
+   "tier": "MID",
+   "t1": true,
+   "t2": true,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "vp-perspective-audit",
+   "bytes": 15276,
+   "tier": "HIGH",
+   "t1": true,
+   "t2": true,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "wb-git-commit-recipe",
+   "bytes": 6400,
+   "tier": "HIGH",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "web-design-guidelines",
+   "bytes": 1112,
+   "tier": "LOW",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "wechat-automation",
+   "bytes": 18446,
+   "tier": "HIGH",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  },
+  {
+   "skill": "wechat-voice-transcription",
+   "bytes": 3199,
+   "tier": "HIGH",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "win-toolchain-pitfalls",
+   "bytes": 5703,
+   "tier": "MID",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "windows-bash-cli-interop-pitfalls",
+   "bytes": 6724,
+   "tier": "HIGH",
+   "t1": true,
+   "t2": true,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "windows-cli-utf8-wrapper",
+   "bytes": 11220,
+   "tier": "HIGH",
+   "t1": true,
+   "t2": true,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "windows-gitbash-chinese-path-pit",
+   "bytes": 4530,
+   "tier": "HIGH",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "windows-native-ocr",
+   "bytes": 2685,
+   "tier": "HIGH",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "workbuddy-mcp",
+   "bytes": 4262,
+   "tier": "HIGH",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "workflow-preflight-check",
+   "bytes": 9921,
+   "tier": "HIGH",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "wps-knowledgebase",
+   "bytes": 21388,
+   "tier": "HIGH",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "writing-plans",
+   "bytes": 6046,
+   "tier": "LOW",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": false
+  },
+  {
+   "skill": "xlsx",
+   "bytes": 9984,
+   "tier": "EXCLUDE",
+   "t1": false,
+   "t2": false,
+   "t3": true,
+   "heading_only": true
+  },
+  {
+   "skill": "天眼一下",
+   "bytes": 9066,
+   "tier": "MID",
+   "t1": false,
+   "t2": false,
+   "t3": false,
+   "heading_only": false
+  }
+ ],
+ "caveat": "DIRTY_SKILLS 为 r29 一次实测快照，复用前须重跑受管根 git status 核对"
+}

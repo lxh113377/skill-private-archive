@@ -40,6 +40,16 @@
 | 6 | 无 catalog 级三层 eval | N-A 结构/路由/行为三层 eval 在 CI | 焚诀有路由命中评测与召回评测（C26），**无「两技能描述撞车」静态判据** | r19 |
 | 7 | 注册表无 JSON Schema 契约 | AAS `schemas/aas-v1/` 12 份 schema | 运行态污染件靠 noise 门禁事后 quarantine | r18 N5 |
 | 8 | 对外文档为零 | N-A/N-B 有 docs home + comparison 页 | 对内极强、对外零；**本页即第 1 步** | r10 P2-1 / r19 落地本页 |
+| 9 | **自动化验收面为零（判据全靠人记得跑）** | N-E mycelium 11 个 workflow 全守规则资产（AAS 9 / spec-kit 18 / ruflo 29 / mem0 34） | r31 前 `.github` 不存在 ⇒ 42 项判据（C1~C33 + 本仓 5 + 四门禁）无离人执行面；**r31 起步**：`run_gates.py` 单入口 + `gates.yml`（可移植 3/5 门，余 2 门显式 SKIPPED） | r31 N12 |
+
+### ⚠️ 落后项 #6 的 r31 校正注（R241：原文一字未改，只加注）
+
+> 本表 #6 与上方 At-a-glance 里「N-A … **三层 eval（结构/路由/行为）在 CI**」这句**把对手的 README 宣称当成了实物**，
+> 与 r28 已纠正过的「拿对手宣称当实物」同形态，在**新维度上第二次复现**。
+> r31 实测（`gh api repos/addyosmani/agent-skills/contents/.github/workflows`）：该仓**只有 1 个 workflow**
+> = `test-plugin-install.yml`（内容 = checkout + setup-node + 插件安装/skill 内容校验），
+> **未见任何三层 eval 的执行件**。原文保留不改，引用时须改口为「addyosmani **宣称**三层 eval；其 CI 面实测仅 1 门」。
+> ⇒ 新增引用铁律（本页通用）：**引用对手能力必须标注「README 宣称」或「实物已验（附文件/路径）」，二选一，不得混用。**
 
 ## 六段解剖 A/B（r28 建尺 · r29 双口径复测，同一把尺量双方真实文件）
 
@@ -84,6 +94,44 @@ n=166 同一批文件，四档 = 现行尺 / 严格同义 / 功能等价宽写�
 ⇒ 引用规则：**说"缺制度级反理性化表"成立；说"完全没有负面指引"不成立**；裸百分比（不指名档位）视为不可引用。
 存量首批已按最保守口径（档2b 仍缺 ∩ 自建维护面）落 5 条（受管根 `359d0fc`），真队列 14 条、剩 9 条。
 
+> **r31 复测注（原文不改）**：第二批已落 **8 条**（受管根 `93107ca`，98 行纯新增，逐条反驳句指向该技能正文
+> 实测存在的 token，缺则拒写 —— 由 `05-exec/r31_landing_rationalizations.py::check_tokens` 机器把关）。
+> 档1 **16.9%(28) → 21.7%(36)**、档2 **仍与档1 相等**（继续复证「缺口不是措辞」）、档2b 123→131、档3 60→68；
+> 对 addyosmani 96.0% 的差距 **82.1pt → 74.3pt**。真队列 **9 → 1**（仅剩 `A-skill-manager`，他人在途 ` M`）。
+> 取值：`python 05-exec/r30_section_robustness.py --section rationalizations --json 06-benchmark/r31_section_robustness_after_2026-09-25.json`
+
+## 自动化验收面（r31 新增第八维；实物 = `.github/workflows/*.yml` 实数，非 README 宣称）
+
+复现：`python 05-exec/r31_ci_surface.py --json 06-benchmark/ci_surface_r31_2026-09-25.json`
+（15 对象 / 合计 112 个 workflow；原文留档 `06-benchmark/ci_evidence/`，8 份）
+
+| 对象 | ★ | workflow 数 | 这一维度上它守的是什么 |
+|---|---|---|---|
+| obra/superpowers | 291,188 | **0** | 无 CI 面（方法论靠会话内自觉，与我们改造前同形） |
+| anthropics/skills | 177,977 | **0** | 规范本体，无判据执行面 |
+| mattpocock/skills | 269,095 | 1 | 仅 `release.yml`（发布件完整性） |
+| github/spec-kit | 138,774 | 18 | `test/lint/codeql/security/extension-version-guard/catalog-assign` + 7 对 assess-fix-test |
+| addyosmani/agent-skills | 98,879 | 1 | `test-plugin-install.yml` —— **不是三层 eval**（见落后项 #6 校正注） |
+| ruvnet/ruflo | 73,218 | 29 | `verification-pipeline` `funnel-gates` `metaharness-pin-drift` `cve-audit` + 11 个 smoke |
+| mem0ai/mem0 | 65,949 | **34** | `ci-gate` `pr-gate` + 9 对 `*-cd/*-checks`（9 个分发产物各一对） |
+| **sickn33/AAS** | 46,875 | 9 | `ci.yml` 5 独立 job（`pr-policy`/`source-validation`/**`pr-evidence`**/`artifact-preview`/`main-validation-and-sync`）+ `skill-review` + `repo-hygiene` |
+| vercel-labs/skills | 32,414 | 3 | `agents.yml` `ci.yml` `publish.yml` |
+| **mycelium/ai-brain-starter** | **36** | **11** | `behavioral-install-eval`(周) `release-drift-heartbeat`(日) `template-purity` `personal-pii-scrub` `open-core-boundary` `install-canon-live-probe` —— **全数守规则/记忆资产本身** |
+| **本体系** | 私有归档 | r31 起 1 | `gates.yml`：可移植 3/5 门 + 每日心跳 + 覆盖边界自证 |
+
+⇒ **三条可执行结论**
+1. **星标不是 CI 严格度的代理指标**：Spearman(stars, workflow_count) = **ρ = −0.114**（n=15）。星标前 4 名里 3 个 ≤1 workflow。
+   这是 r28「结构纪律与星标无关」在**第二个独立维度**上的复现 ⇒ 本体系选对标对象一律**按机制同构度，不按星标**。
+2. **同构参照系恰恰是 CI 最严者**：36★ 的 mycelium 11 个 workflow 无一构建发布物，全守规则资产；
+   我们判据数量远多于它，执行面却只有「有人记得跑」⇒ 这是最刺眼的反向差，也是 r31 的落地起点。
+3. **把门禁搬进 CI 的真实成本不是加 yml，而是先把扫描根参数化**：本仓 5 门实测 **3 门可离机复现、2 门绑死
+   `D:\global_skills` ∪ 焚诀 ∪ `D:\global_memory`**（`ratchet_gate` + `r19_scan_fixtures` 层b）；
+   已在 `run_gates.py` 的 `not_portable_reason` 写死原因，禁后来者再猜（待办 M-1）。
+
+借到的机制与落点：B1 one-source-of-truth（一份逻辑 N 处调用）/ B2 跑不到≠过（`UNVERIFIED` 三态）/
+B3 多 job 并列不短路 / B4 周期心跳档 / B5 `concurrency` 成本自觉 / B6 action 按 SHA 钉版本（本仓暂未做）。
+原文逐行证据见 `06-benchmark/ci_evidence/`。
+
 ## 维护状态（r30 实测化，替换此前的形容词）
 
 | 对象 | ★ | 最近推送 | open issues |
@@ -96,6 +144,14 @@ n=166 同一批文件，四档 = 现行尺 / 严格同义 / 功能等价宽写�
 
 取值命令：`gh api repos/<owner>/<repo> --jq '"\(.stargazers_count) \(.pushed_at) \(.open_issues_count)"'`
 ⇒ **issue 存量与星标同向增长**：高星标不等于高维护度。我们没有社区兜底，唯一可依赖的是自证门禁 ⇒ 该维度上"更强"= 门禁更硬，不是 issue 更少。
+
+> **r31 复测注（原文不改，只加）**：同命令再跑一次，四家主对标为 superpowers 291,188★/401 issues、
+> anthropics 177,977★/**1,286**、addyosmani 98,879★/116、mattpocock 269,095★/527 —— 与 r30 同向且量级稳定，
+> 结论维持。新增两点：① **本体系侧首次有可比的「维护度」数字** = 四根 30 日提交合计 **487**
+> （本仓 93 / `global_skills` 120 / `global_memory` 109 / 焚诀 165），四根最近一次提交均为当日；
+> 取值 `git -C <root> log --since=30.days --oneline | wc -l`。② `letta-ai/letta` 推送停在 **09-10（15 天）**，
+> `open_issues=0` 是**关闭 issue 面**而非零积压（该仓 `issue-guard.yml` 唯一 workflow 即为此而设），
+> 引用它的 0 时须注明这不是健康度信号。
 
 ## 不学清单（独有优势，禁止为了「像一线」而丢）
 
@@ -114,5 +170,8 @@ n=166 同一批文件，四档 = 现行尺 / 严格同义 / 功能等价宽写�
 - `全量对标报告_r27_2026-09-24.md` — 57 个在册插件技能首次安全审计（HIGH 4 条逐行裁定，2 条在源码里裁定掉）
 - `全量对标报告_r28_六段解剖AB_2026-09-24.md` — 同一把尺量对手真实文件，推翻三条旧推断
 - `全量对标报告_r29_双口径与范围过滤_2026-09-24.md` — M2 双口径 + 判据稳健性 + H2 真队列 3→0
+- `全量对标报告_r30_四档稳健性与反理性化首批_2026-09-25.md` — 四档参数化 + 首批 5 条 + 维护状态实测化
+- **`全量对标报告_r31_自动化验收面_2026-09-25.md`** — 第八维（CI 执行面）15 对象实测 + ρ=−0.114 + 推翻「N-A 三层 eval 在 CI」+ 反理性化第二批 8 条 + `run_gates.py`/`gates.yml` 落地
+- `ci_surface_r31_2026-09-25.json` + `ci_evidence/`（8 份对手 workflow 原文） — r31 第八维证据件
 - `自建skill体系全量对标分析报告.md` — r10 首轮（七维矩阵 + 16 项映射，分母 151 已失效见 r18 校正注）
 - `P0-C_累积漂移复核第1批_2026-09-24.md` / `第2批` — 高频改写文件的承重句语义复核

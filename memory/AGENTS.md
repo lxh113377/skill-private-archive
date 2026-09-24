@@ -20,10 +20,20 @@
 ## 项目门禁命令（A-memory-start V9.8 / R193 读取本行，修改类任务动手前必跑）
 
 ```
-python 05-exec/r19_scan_fixtures.py && python 05-exec/r19_baseline_contract_fixtures.py && python 05-exec/baseline_contract_scan.py --quiet && python 05-exec/ratchet_gate.py
+python 05-exec/run_gates.py
 ```
 
-> 四条全 `[GATE:fixture-pass]` / `[CONTRACT:PASS]` / `[RATCHET:PASS]` 才允许落盘改动（`[RATCHET:FAIL]` 只在「指标比基线长大」或「指标算不出」时出现；既有的超硬顶项按非阻断告警显示，`--strict-cap` 可升级为阻断）；任一红 = 判据或基线契约已失效，先修判据再动手（R263）。
+> **r31 起改为聚合 runner 单入口**（对标 mycelium-hq/ai-brain-starter `template-purity.yml` 的
+> "the identical check runs locally pre-push, in the write-time hook, and here in CI — one source of truth"）。
+> runner 内 `GATES` 表 = 单一真相源，逐门独立执行**不短路**（原 5 段 `&&` 串一段红即后四段不可知），
+> 每门打印**覆盖根清单**（本仓 R20-2），并输出每门耗时（本仓首个自家门禁耗时基线；r31 实测热缓存 1,781 ms / 冷启动 4,152 ms，可移植 3 门 561 ms —— **单点值不可引用**，取值 `python 05-exec/run_gates.py --json <件>.json` 读 `total_ms`/`elapsed_ms`，最慢门固定为 `r19_scan_fixtures`）。
+> 三态判据：`PASS`（rc=0 且含该门标记）/ `FAIL`（rc≠0）/ **`UNVERIFIED`（rc=0 但标记不见 —— 静默跳过一律不算绿，R247/R220）**；
+> 门脚本缺失 ⇒ exit 2。聚合绿**不等于**受管根四门禁绿，runner 会显式打印「本 runner 不覆盖」清单。
+> 展开等价的 5 条原命令（顺序与 runner 一致）：
+> `python 05-exec/r19_scan_fixtures.py && python 05-exec/r19_baseline_contract_fixtures.py && python 05-exec/baseline_contract_scan.py --quiet && python 05-exec/ratchet_gate.py && python 05-exec/control_char_scan.py .`
+> 五条全 `[GATE:fixture-pass]` / `[CONTRACT:PASS]` / `[RATCHET:PASS]` / `[CTRL:CLEAN]` 才允许落盘改动（`[RATCHET:FAIL]` 只在「指标比基线长大」或「指标算不出」时出现；既有的超硬顶项按非阻断告警显示，`--strict-cap` 可升级为阻断）；任一红 = 判据或基线契约已失效，先修判据再动手（R263）。
+> runner 自身的夹具 = `python 05-exec/r31_run_gates_fixtures.py`（17 例含变异 4/4；刻意不入 `GATES` 表，因夹具会 subprocess 调 runner，入表即自递归）。
+> 第五条 `[CTRL:CLEAN]` = 全仓无非法控制符（C0 ∪ {0x7f DEL} 减制表/换行/回车）。它拦的是「肉眼看不见、但会让引用检索不到」这一类：实测当天四轮复现，含被修文件自身与受管根两处死引用。
 > 判据可信度本身由 `python 05-exec/r19_fixture_mutation_check.py` 变异测试担保（4 项变异必须全部被拦 + 未变异对照组通过）。
 > **条件前置（非每轮必跑）**：要把判据建议**外推给归属会话**时，先跑 `python 05-exec/transmit_obsolescence_check.py` —— 它拿 `06-benchmark/transmit_proposals.json` 与焚诀 verify 注册面（实测 33 条已注判据）做覆盖度比对；打印 `[TRANSMIT:STALE]` = 该件归属方**已自落**，禁止再外推；`[TRANSMIT:UNKNOWN]`/exit 2 = 真相源取不到，**不得当作「未过期」放行**。夹具 `05-exec/r21d_obsolete_fixtures.py` 26 例（含 4 项变异对照）。
 > ⛔ **边界（behavior_core #23「用户命令绝对优先」）**：上面这条只判定「**该不该把建议外推给别人**」，**不得**被引申为「本轮可以少干活/跳过执行」。本仓一切判据的合法作用域是**约束写法与落盘方式**（原子替换、先备份、只降不升棘轮），**永久禁止**用「自判重复 ⇒ 跳过执行」实现幂等。

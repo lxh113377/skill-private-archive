@@ -42,7 +42,8 @@
       "invariants": ["readonly_true", "conflict_input_evidence_nonzero"]
     },
     "skill_structure_rubric_*.json": {
-      "schema_id": "skill-structure-rubric-v1",
+      "schema_id": ["skill-structure-rubric-v1", "skill-structure-rubric-v2"],
+      "authorized_generations_note": "v1 = r18 基线件（skill_structure_rubric_2026-09-24.json，报告引用中，按 R241 不改写）；v2 = r29 双口径改造后的产物（skill_structure_rubric_r29_2026-09-24.json）。r31 实测：r29 升代未同步本契约，导致同一 glob 下两代产物并存且契约必红；改为逐代枚举授权，未登记代际（v3）仍拦。",
       "required": ["schema", "readonly", "benchmark", "denominator", "rubric", "per_section", "all_six"],
       "types": {"denominator": "dict", "per_section": "dict", "all_six": "dict"},
       "invariants": ["readonly_true", "rubric_pct_within_total"]

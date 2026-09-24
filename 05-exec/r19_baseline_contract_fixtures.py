@@ -65,6 +65,17 @@ GOOD_DESC = {
 }
 
 
+GOOD_RUBRIC = {
+    "schema": "skill-structure-rubric-v2", "generated_at": "2026-09-25 05:40", "readonly": True,
+    "benchmark": "r31", "denominator": {"glob_total": 167, "scanned": 166,
+                                        "junction_skipped": ["rag-eval"], "errors": []},
+    "rubric": ["overview", "when_to_use", "process", "rationalizations", "red_flags", "verification"],
+    "per_section": {"overview": {"count": 30, "pct": 18.1},
+                    "rationalizations": {"count": 36, "pct": 21.7}},
+    "all_six": {"count": 0, "pct": 0.0},
+}
+
+
 def main():
     bcs = load_validator()
     if bcs is None:
@@ -113,6 +124,22 @@ def main():
     bad6["readonly"] = False
     ck("t8 只读声明被改 False → 拦住", any("readonly" in x for x in
        bcs.validate_doc(bad6, contracts["artifacts"]["cumulative_drift_*.json"], "drift")))
+
+    # --- r31：schema_id 授权代际列表（同一 glob 下两代产物并存的真实形态）---
+    rub = contracts["artifacts"]["skill_structure_rubric_*.json"]
+    ck("t11 契约侧 schema_id 已改为授权列表（非通配、非单值）",
+       isinstance(rub.get("schema_id"), list) and len(rub["schema_id"]) == 2, str(rub.get("schema_id")))
+    for gen in ("skill-structure-rubric-v1", "skill-structure-rubric-v2"):
+        d = json.loads(json.dumps(GOOD_RUBRIC))
+        d["schema"] = gen
+        ck("t11.%s 已授权代际 → 零违规" % gen[-2:],
+           bcs.validate_doc(d, rub, "rubric") == [],
+           json.dumps(bcs.validate_doc(d, rub, "rubric"), ensure_ascii=False)[:200])
+    d3 = json.loads(json.dumps(GOOD_RUBRIC))
+    d3["schema"] = "skill-structure-rubric-v3"
+    ck("t12 未登记代际 v3 → 必须仍拦住（列表=逐代枚举授权，不是放宽匹配）",
+       any("schema" in x.lower() for x in bcs.validate_doc(d3, rub, "rubric")),
+       json.dumps(bcs.validate_doc(d3, rub, "rubric"), ensure_ascii=False)[:200])
 
     # --- 契约面自身失效不得静默 PASS（R247）---
     ck("t9 空 artifacts → 报「契约面为空」", "CONTRACT-EMPTY" in

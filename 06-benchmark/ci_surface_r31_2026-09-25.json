@@ -1,0 +1,287 @@
+{
+ "schema": "ci-surface-v1",
+ "generated_at": "2026-09-25 05:50",
+ "readonly": true,
+ "benchmark": "r31 N12 自动化验收面（对手实物 = .github/workflows/*.yml 实数，非 README 宣称）",
+ "provenance_cmd": "gh api repos/<slug>/contents/.github/workflows --jq '[.[]|select(.name|endswith(\".yml\"))|.name]|join(\",\")'",
+ "denominator": {
+  "objects": 15,
+  "api_calls_ok": 15,
+  "failed_ids": []
+ },
+ "input_evidence": {
+  "repos_queried": 15,
+  "workflows_total": 112
+ },
+ "statistics": {
+  "spearman_stars_vs_workflows": -0.114,
+  "note": "ρ≈0 或负 ⇒ 星标不是 CI 严格度的代理指标；选对手按机制同构度，不按星标（r31）"
+ },
+ "objects": [
+  {
+   "id": "O1",
+   "repo": "obra/superpowers",
+   "stars": 291189,
+   "pushed_at": "2026-09-22",
+   "open_issues": 401,
+   "workflow_count": 0,
+   "workflow_names": []
+  },
+  {
+   "id": "O2",
+   "repo": "anthropics/skills",
+   "stars": 177978,
+   "pushed_at": "2026-09-24",
+   "open_issues": 1286,
+   "workflow_count": 0,
+   "workflow_names": []
+  },
+  {
+   "id": "O3",
+   "repo": "github/spec-kit",
+   "stars": 138774,
+   "pushed_at": "2026-09-24",
+   "open_issues": 287,
+   "workflow_count": 18,
+   "workflow_names": [
+    "add-community-bundle.lock.yml",
+    "add-community-extension.lock.yml",
+    "add-community-preset.lock.yml",
+    "bug-assess.lock.yml",
+    "bug-fix.lock.yml",
+    "bug-test.lock.yml",
+    "catalog-assign.yml",
+    "codeql.yml",
+    "docs.yml",
+    "extension-version-guard.yml",
+    "feature-assess.lock.yml",
+    "lint.yml",
+    "publish-pypi.yml",
+    "release-trigger.yml",
+    "release.yml",
+    "security.yml",
+    "stale.yml",
+    "test.yml"
+   ]
+  },
+  {
+   "id": "O4",
+   "repo": "ruvnet/ruflo",
+   "stars": 73218,
+   "pushed_at": "2026-09-24",
+   "open_issues": 1011,
+   "workflow_count": 29,
+   "workflow_names": [
+    "adr-166-mcp-bridge-security.yml",
+    "all-plugins-smoke.yml",
+    "business-pods-smoke.yml",
+    "chatgpt-federation.yml",
+    "ci.yml",
+    "clone-tracker.yml",
+    "codeql.yml",
+    "codex-integration-audit.yml",
+    "cost-tracker-smoke.yml",
+    "cve-audit.yml",
+    "federation-peer-rust.yml",
+    "funnel-gates.yml",
+    "helpers-manifest-guard.yml",
+    "integration-tests.yml",
+    "metaharness-ci.yml",
+    "metaharness-pin-drift.yml",
+    "neural-trader-smoke.yml",
+    "no-agentbbs-smoke.yml",
+    "no-cli-optdep-bloat-2561.yml",
+    "no-metaharness-smoke.yml",
+    "no-phantom-agentic-flow-subpath.yml",
+    "oia-audit-weekly.yml",
+    "rollback-manager.yml",
+    "ruflo-agent-smoke.yml",
+    "stable-npm-release.yml",
+    "status-badges.yml",
+    "v3-ci.yml",
+    "validate-marketplace.yml",
+    "verification-pipeline.yml"
+   ]
+  },
+  {
+   "id": "O5",
+   "repo": "mem0ai/mem0",
+   "stars": 65949,
+   "pushed_at": "2026-09-24",
+   "open_issues": 765,
+   "workflow_count": 34,
+   "workflow_names": [
+    "agent-plugins-python-checks.yml",
+    "agent-plugins-typescript-checks.yml",
+    "cd.yml",
+    "ci-gate.yml",
+    "ci.yml",
+    "cli-node-cd.yml",
+    "cli-node-ci.yml",
+    "cli-python-cd.yml",
+    "cli-python-ci.yml",
+    "deepseek-plugin-cd.yml",
+    "deepseek-plugin-checks.yml",
+    "docs-llms-txt-check.yml",
+    "issue-labeler.yml",
+    "mem0-strands-cd.yml",
+    "mem0-strands-checks.yml",
+    "n8n-nodes-mem0-cd.yml",
+    "n8n-nodes-mem0-checks.yml",
+    "openclaw-cd.yml",
+    "openclaw-checks.yml",
+    "opencode-plugin-cd.yml",
+    "opencode-plugin-checks.yml",
+    "pi-agent-plugin-cd.yml",
+    "pi-agent-plugin-checks.yml",
+    "pr-gate.yml",
+    "pr-labeler.yml",
+    "release.yml",
+    "stale.yml",
+    "ts-sdk-cd.yml",
+    "ts-sdk-ci.yml",
+    "vercel-ai-cd.yml",
+    "vouch-check-pr.yml",
+    "vouch-manage-by-issue.yml",
+    "zapier-mem0-cd.yml",
+    "zapier-mem0-checks.yml"
+   ]
+  },
+  {
+   "id": "O6",
+   "repo": "letta-ai/letta",
+   "stars": 24870,
+   "pushed_at": "2026-09-10",
+   "open_issues": 0,
+   "workflow_count": 1,
+   "workflow_names": [
+    "issue-guard.yml"
+   ]
+  },
+  {
+   "id": "O7",
+   "repo": "GreatScottyMac/roo-code-memory-bank",
+   "stars": 1675,
+   "pushed_at": "2025-05-15",
+   "open_issues": 11,
+   "workflow_count": 0,
+   "workflow_names": []
+  },
+  {
+   "id": "O8",
+   "repo": "GreatScottyMac/context-portal",
+   "stars": 768,
+   "pushed_at": "2026-01-27",
+   "open_issues": 23,
+   "workflow_count": 1,
+   "workflow_names": [
+    "dependency-review.yml"
+   ]
+  },
+  {
+   "id": "N-A",
+   "repo": "addyosmani/agent-skills",
+   "stars": 98879,
+   "pushed_at": "2026-09-23",
+   "open_issues": 116,
+   "workflow_count": 1,
+   "workflow_names": [
+    "test-plugin-install.yml"
+   ]
+  },
+  {
+   "id": "N-B",
+   "repo": "Fission-AI/OpenSpec",
+   "stars": 70214,
+   "pushed_at": "2026-09-23",
+   "open_issues": 222,
+   "workflow_count": 3,
+   "workflow_names": [
+    "ci.yml",
+    "release-prepare.yml",
+    "security.yml"
+   ]
+  },
+  {
+   "id": "N-C",
+   "repo": "sickn33/agentic-awesome-skills",
+   "stars": 46875,
+   "pushed_at": "2026-09-24",
+   "open_issues": 3,
+   "workflow_count": 9,
+   "workflow_names": [
+    "aas-agent-first-preview.yml",
+    "actionlint.yml",
+    "ci.yml",
+    "codeql.yml",
+    "dependency-review.yml",
+    "pages.yml",
+    "publish-npm.yml",
+    "repo-hygiene.yml",
+    "skill-review.yml"
+   ]
+  },
+  {
+   "id": "N-D",
+   "repo": "vercel-labs/skills",
+   "stars": 32414,
+   "pushed_at": "2026-09-18",
+   "open_issues": 1213,
+   "workflow_count": 3,
+   "workflow_names": [
+    "agents.yml",
+    "ci.yml",
+    "publish.yml"
+   ]
+  },
+  {
+   "id": "N-E",
+   "repo": "mycelium-hq/ai-brain-starter",
+   "stars": 36,
+   "pushed_at": "2026-09-24",
+   "open_issues": 48,
+   "workflow_count": 11,
+   "workflow_names": [
+    "behavioral-install-eval.yml",
+    "dependabot-auto-merge.yml",
+    "install-canon-live-probe.yml",
+    "lint.yml",
+    "open-core-boundary.yml",
+    "personal-pii-scrub.yml",
+    "release-drift-heartbeat.yml",
+    "release.yml",
+    "security-audit.yml",
+    "template-purity.yml",
+    "windows-install.yml"
+   ]
+  },
+  {
+   "id": "N-F",
+   "repo": "lucasrosati/claude-code-memory-setup",
+   "stars": 993,
+   "pushed_at": "2026-09-11",
+   "open_issues": 5,
+   "workflow_count": 1,
+   "workflow_names": [
+    "ci.yml"
+   ]
+  },
+  {
+   "id": "O9",
+   "repo": "mattpocock/skills",
+   "stars": 269095,
+   "pushed_at": "2026-09-24",
+   "open_issues": 527,
+   "workflow_count": 1,
+   "workflow_names": [
+    "release.yml"
+   ]
+  }
+ ],
+ "local": {
+  "repo": "lxh113377/skill-private-archive",
+  "workflow_names": [],
+  "coverage_note": "gates.yml 只跑可移植 3/5 门，其余显式 SKIPPED-BY-DESIGN"
+ },
+ "note": "只算 .yml；spec-kit/OpenSpec/lucas 的 workflows 目录内含说明 .md，已按扩展名排除"
+}

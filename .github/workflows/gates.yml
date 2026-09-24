@@ -1,0 +1,71 @@
+name: gates
+
+# r31 / 对标新维度 N12「自动化验收面」的落地件。
+#
+# 覆盖边界（本仓 R20-2「任何预算/上限类门禁必须自证覆盖根清单」，此处同理）：
+#   本 workflow 只跑 run_gates.py 的 **可移植子集**（r31 实测 3/5 门）。
+#   r19_scan_fixtures 与 ratchet_gate 需读 D:\global_skills ∪ 焚诀 ∪ D:\global_memory，
+#   离机必红 ⇒ 由 runner 显式打印 SKIPPED-BY-DESIGN + 原因，**不静默跳过**。
+#   ⇒ 「CI 绿」在本仓的定义 = 可移植 3 门全绿，不等于本机 5 门全绿，更不等于受管根四门禁绿。
+#
+# 借自对手的三条实物机制（原文见 06-benchmark/ci_evidence/）：
+#   · mycelium release-drift-heartbeat.yml：`schedule: cron "23 14 * * *"` 每日心跳 ——
+#     防「workflow 文件在但再也不跑」；单 push 触发挡不住这个。
+#   · mycelium template-purity.yml：`concurrency` + `cancel-in-progress` 仅在 pull_request 生效
+#     （push/schedule 永不取消），并注释说明是成本审计后加的。
+#   · mycelium behavioral-install-eval.yml：判据取不到真相源时 exit 2 显式 INFRA 红，
+#     "a dead repo secret can never read as a green skip" ⇒ 对应本仓 run_gates 的 UNVERIFIED 三态。
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "17 22 * * *"   # 每日 06:17 (UTC+8)
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: gates-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  portable-gates:
+    name: 可移植门禁子集（3/5）
+    runs-on: ubuntu-latest
+    steps:
+      # 上游更严的做法是按 commit SHA 钉 action（mycelium 两份 workflow 均如此，带版本注释）。
+      # 本仓取 tag：动作面只读，且 run_gates 不接触任何密钥。
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: run portable gates
+        run: python 05-exec/run_gates.py --portable-only --json gate_run_ci.json
+
+      - name: 自证覆盖边界（把「跑了几门 / 跳了几门 / 为何跳」写进运行摘要）
+        if: always()
+        run: |
+          python - <<'PY'
+          import json, os
+          p = "gate_run_ci.json"
+          if not os.path.exists(p):
+              # 覆盖自证这一步本身不得静默：产物没出来就是 UNVERIFIED，不能读成绿
+              print("::error title=覆盖自证失败::runner 未产出 gate_run_ci.json（判据没跑成 ≠ 判据通过）")
+              raise SystemExit(2)
+          d = json.load(open(p, encoding="utf-8"))
+          ran = [g for g in d["gates"] if g["state"] != "SKIPPED"]
+          sk = [g for g in d["gates"] if g["state"] == "SKIPPED"]
+          lines = ["## 门禁覆盖自证",
+                   "- verdict: `%s`（%s）" % (d["verdict"], d["verdict_reason"]),
+                   "- 本次执行 **%d** 门：%s" % (len(ran), ", ".join(g["id"] for g in ran)),
+                   "- 本机专属（**未跑**，非通过）：**%d** 门" % len(sk)]
+          lines += ["  - `%s`" % g["id"] for g in sk]
+          lines += ["- 本 runner 不覆盖："] + ["  - %s" % s for s in d["not_covered"]]
+          open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8").write("\n".join(lines) + "\n")
+          print("\n".join(lines))
+          PY

@@ -1,0 +1,78 @@
+{
+ "schema": "gate-run-v1",
+ "generated_at": "2026-09-25 05:50",
+ "readonly": true,
+ "mode": "full",
+ "gates": [
+  {
+   "id": "r19_scan_fixtures",
+   "state": "PASS",
+   "rc": 0,
+   "elapsed_ms": 1355,
+   "portable": false,
+   "covers": [
+    "05-exec/cumulative_drift_scan.py 排除判据",
+    "05-exec/skill_structure_rubric_scan.py 口径",
+    "05-exec/description_baseline_scan.py PROCESS_RE",
+    "05-exec/_lib.py denominator()"
+   ],
+   "tail": "                     | PASS layerb claim 受检面非空（R247）                                    | PASS layerb claim 无未读数错误                                         | 夹具合计: 55 项，通过 55，失败 0 | [GATE:fixture-pass]"
+  },
+  {
+   "id": "r19_baseline_contract_fixtures",
+   "state": "PASS",
+   "rc": 0,
+   "elapsed_ms": 245,
+   "portable": true,
+   "covers": [
+    "05-exec/baseline_contract_scan.py",
+    "05-exec/schemas/r19/baseline-contracts.json"
+   ],
+   "tail": "                         | PASS 层b′ 对照组：污染 schema 后 exit != 0                             | PASS 层b′ 对照组：报错点名该文件与 schema                                   | 夹具合计: 22 项，通过 22，失败 0 | [GATE:fixture-pass]"
+  },
+  {
+   "id": "baseline_contract_scan",
+   "state": "PASS",
+   "rc": 0,
+   "elapsed_ms": 69,
+   "portable": true,
+   "covers": [
+    "06-benchmark/*.json 机器证据结构（实测 10 份 / 8 pattern）"
+   ],
+   "tail": "契约: baseline-contracts.json（8 个 pattern / 受检文件 10 个） | [CONTRACT:PASS] 10 份基线全部合规（结构 + 不变式）"
+  },
+  {
+   "id": "ratchet_gate",
+   "state": "PASS",
+   "rc": 0,
+   "elapsed_ms": 75,
+   "portable": false,
+   "covers": [
+    "06-benchmark/inject_ratchet_baseline.json",
+    "D:\\global_skills 注入面",
+    "焚诀 truth_constants"
+   ],
+   "tail": "行会话立 behavior_core #23 用户命令绝对优先（用户明令），注入面成员 growth 非本仓动作 @055f9b5（86346 → 86793，2026-09-24 23:31） |   ⚠️ 非阻断告警: inject_union_bytes=86793 超硬顶 65536（+21257） | [RATCHET:PASS] 5 项指标均在棘轮基线内（只降不升）；非阻断告警 1 项"
+  },
+  {
+   "id": "control_char_scan",
+   "state": "PASS",
+   "rc": 0,
+   "elapsed_ms": 190,
+   "portable": true,
+   "covers": [
+    "本仓全部文本面（r31 实测 376 个面）"
+   ],
+   "tail": "=== 控制字符扫描：394 个面 / 脏 0 / 跳过二进制 1 === | [CTRL:CLEAN] 无非法控制符"
+  }
+ ],
+ "not_covered": [
+  "受管根四门禁 mirror/noise/evolution/stub —— 属 rule_editor 面，取值：python D:\\global_skills\\A-memory-start\\references\\rule_editor.py gates",
+  "焚诀跨产物真值 C1~C33 —— 取值：python 焚诀\\eval\\verify_truth_consistency.py",
+  "判据变异测试（r19_fixture_mutation_check.py）—— 按需跑，非每轮前置"
+ ],
+ "verdict": "PASS",
+ "verdict_reason": "PASS=5（无 FAIL / 无 UNVERIFIED / 无 MISSING）",
+ "total_ms": 1934,
+ "gates_run": 5
+}

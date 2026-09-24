@@ -187,7 +187,12 @@ def validate_doc(doc, contract, label="doc"):
     msgs = []
     want = contract.get("schema_id")
     if want and doc.get("schema") != want:
-        msgs.append("schema: 期望 %r 实得 %r（契约过期或产物未重建）" % (want, doc.get("schema")))
+        # r31：schema_id 允许「已授权代际清单」（列表）。同一技能的产物在 06-benchmark 里跨轮共存，
+        # 一个 glob 只挂一个字面量的假设会让「上游升代」必然表现为一条红 —— 而历史件不该被改写。
+        # 列表是**逐代枚举授权**而非放宽匹配：未登记的代际（如 v3）照样拦（夹具 t12 反例实测）。
+        allowed = want if isinstance(want, list) else [want]
+        if doc.get("schema") not in allowed:
+            msgs.append("schema: 期望 %r 实得 %r（契约过期或产物未重建）" % (want, doc.get("schema")))
     for key in contract.get("required", []):
         found, _ = dig(doc, key)
         if not found:
