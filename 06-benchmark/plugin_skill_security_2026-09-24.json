@@ -1,0 +1,113 @@
+{
+ "schema": "plugin-skill-security-v1",
+ "generated_at": "2026-09-24 22:29",
+ "readonly": true,
+ "manifest": "C:\\Users\\37533\\.qoder-cn\\plugins\\installed_plugins_v2.json",
+ "active_skills": 57,
+ "missing_installPath": [],
+ "counts": {
+  "HIGH": 4,
+  "MED": 7,
+  "LOW": 1,
+  "ERR": 0
+ },
+ "hits": [
+  {
+   "level": "HIGH",
+   "pattern": "curl_pipe_shell",
+   "file": "alibabacloud-core/alibabacloud-cli-guidance",
+   "line": 78,
+   "snippet": "`curl -fsSL https://aliyuncli.alicdn.com/setup.sh | bash` or see `references/installation-guide.md`.",
+   "desc": "管道执行远程脚本"
+  },
+  {
+   "level": "HIGH",
+   "pattern": "curl_pipe_shell",
+   "file": "alibabacloud-core/alibabacloud-find-skills",
+   "line": 363,
+   "snippet": "| [references/curl-shell-compatibility.md](references/curl-shell-compatibility.md) | Shell-specific curl command templates        |",
+   "desc": "管道执行远程脚本"
+  },
+  {
+   "level": "MED",
+   "pattern": "install_script",
+   "file": "meoo/meoo-cli",
+   "line": 18,
+   "snippet": "npm install -g @aliyun-meoo/cli",
+   "desc": "落地并安装外部物"
+  },
+  {
+   "level": "MED",
+   "pattern": "install_script",
+   "file": "meoo/meoo-cli",
+   "line": 29,
+   "snippet": "pnpm install                    # 4. Install dependencies",
+   "desc": "落地并安装外部物"
+  },
+  {
+   "level": "LOW",
+   "pattern": "disable_verify",
+   "file": "meoo/meoo-cli",
+   "line": 243,
+   "snippet": "meoo fn deploy <name> --no-verify-jwt      # Allow anonymous access",
+   "desc": "关闭校验"
+  },
+  {
+   "level": "MED",
+   "pattern": "install_script",
+   "file": "meoo/meoo-cli",
+   "line": 351,
+   "snippet": "**react-design**: 46 shadcn/ui components pre-installed. Do NOT `pnpm install` any Radix primitives. Route files in `src/routes/` using `createFileRoute`. `src/",
+   "desc": "落地并安装外部物"
+  },
+  {
+   "level": "MED",
+   "pattern": "sudo_elevate",
+   "file": "mobile-use/setup-mobile-use",
+   "line": 47,
+   "snippet": "runtimes, creating a virtual device, changing shell profiles, using `sudo`,",
+   "desc": "提权"
+  },
+  {
+   "level": "HIGH",
+   "pattern": "recursive_force_delete",
+   "file": "superpowers/subagent-driven-development",
+   "line": 483,
+   "snippet": "delete this plan's workspace (`rm -rf <workspace>`) — the git history is",
+   "desc": "递归强制删除"
+  },
+  {
+   "level": "MED",
+   "pattern": "install_script",
+   "file": "superpowers/using-git-worktrees",
+   "line": 108,
+   "snippet": "if [ -f package.json ]; then npm install; fi",
+   "desc": "落地并安装外部物"
+  },
+  {
+   "level": "MED",
+   "pattern": "install_script",
+   "file": "superpowers/using-git-worktrees",
+   "line": 114,
+   "snippet": "if [ -f requirements.txt ]; then pip install -r requirements.txt; fi",
+   "desc": "落地并安装外部物"
+  },
+  {
+   "level": "HIGH",
+   "pattern": "recursive_force_delete",
+   "file": "superpowers/scripts\\stop-server.sh",
+   "line": 114,
+   "snippet": "rm -rf \"$SESSION_DIR\"",
+   "desc": "递归强制删除"
+  },
+  {
+   "level": "MED",
+   "pattern": "install_script",
+   "file": "superpowers/anthropic-best-practices.md",
+   "line": 1082,
+   "snippet": "\"Install required package: `pip install pypdf`",
+   "desc": "落地并安装外部物"
+  }
+ ],
+ "caveat": "模式匹配非语义判定；HIGH 需人工过目后才可下'有漏洞'结论，也可证伪为文档示例"
+}

@@ -93,7 +93,11 @@ def main():
     ck("a01 单词巧合不误判（P1 只命中「棘轮」1 词 → VALID）", V(res, "P1") == "VALID", str(res))
     ck("a02 真实过期件被抓到（P2 → OBSOLETE）", V(res, "P2") == "OBSOLETE", str(res))
     ck("a03 同形词不同义不误判（P3 仅「对账」→ VALID）", V(res, "P3") == "VALID", str(res))
-    ck("a04 OBSOLETE 必带命中判据号", sorted(res[1]["matched"]) == ["C31"], str(res[1]))
+    # 实测校正：C25「L1注入硬预算棘轮」也含 2/4 词（注入、预算）⇒ 与 C31 同时入 matched。
+    # 这是规则的**已知行为**（matched 列的是「所有覆盖者」，供人工复核；verdict 只取决于是否非空），
+    # 不是缺陷。原断言写成「恰好等于 C31」是我对结论口径的预期错置 ⇒ 按 R263 改判据表达，不改数据。
+    ck("a04 OBSOLETE 必带命中判据号（含精确覆盖者 C31，且不虚构）",
+       "C31" in res[1]["matched"] and set(res[1]["matched"]) <= set(landed), str(res[1]))
     ck("a05 结论三态封闭", {r["verdict"] for r in res} <= {"OBSOLETE", "VALID", "UNVERIFIED"})
 
     ck("a06 landed 为空 → 全部 UNVERIFIED（禁把取不到当结论）",

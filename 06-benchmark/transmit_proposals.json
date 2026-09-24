@@ -1,0 +1,32 @@
+{
+  "schema": "zijian-transmit-proposal-v1",
+  "note": "本仓拟外推给焚诀归属会话的判据建议登记表。外推前必须先跑 `python 05-exec/transmit_obsolescence_check.py`：被判 OBSOLETE 的条目=对方已自落，禁止再外推（推过期件=让人做无用功）；UNVERIFIED=取不到真相源，不得当作已过期或未过期。",
+  "updated": "2026-09-24",
+  "source": "06-benchmark/全量对标报告_r19_2026-09-24.md §9/§10 + 06-benchmark/计数断言基线_2026-09-24.md",
+  "proposals": [
+    {
+      "pid": "catalog_tax_ratchet",
+      "title": "平台技能目录注意力税棘轮",
+      "target": "焚诀 eval/verify_checks（原让号 C31′ 目录税棘轮）",
+      "proposed_at": "2026-09-24",
+      "keywords": ["目录", "注意力", "棘轮"],
+      "why": "r18 实测平台技能目录每轮注入 45,173 字符≈128k 窗口 35.3%，为 C25 硬顶 2.07 倍且零棘轮覆盖"
+    },
+    {
+      "pid": "inject_union_merge",
+      "title": "注入区口径合一（多项目注入壳并入统一预算）",
+      "target": "焚诀 eval/verify_checks（原让号 C32′ 注入区口径合一）",
+      "proposed_at": "2026-09-24",
+      "keywords": ["注入", "预算", "台账", "归因"],
+      "why": "C25 只管它那 5 个文件，其他项目注入壳全在预算外，实测并集 86,346B > 硬顶 65,536B 而 C25 判 PASS"
+    },
+    {
+      "pid": "claim_truth_gate",
+      "title": "计数断言内容级门禁（注入文本里的数字断言与真相源对账）",
+      "target": "焚诀 eval/verify_checks（原让号 C33′ 计数断言内容级门禁）",
+      "proposed_at": "2026-09-24",
+      "keywords": ["计数", "断言", "对账"],
+      "why": "端数/版本戳类失真句此前只能靠本仓 claim_truth_scan 抓，全局层无等价判据"
+    }
+  ]
+}
