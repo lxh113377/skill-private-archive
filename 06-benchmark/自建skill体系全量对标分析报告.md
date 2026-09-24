@@ -1,5 +1,10 @@
 # 自建 skill 体系 × GitHub 优质开源项目全量对标分析报告
 
+> **⚠️ 校正注（2026-09-24 r18，R241 只加注不改写正文）**：本报告正文（2026-09-23）**一字未改**，但以下三类内容现已失效，引用前必须重跑取值命令：
+> ① **分母**：正文所有 `151`（顶层技能数）已陈旧——实测 `python 焚诀/eval/verify_truth_consistency.py` 看 C1 行 = **167**（注册表 == 磁盘，含 1 个 junction）；本仓扫描器口径 `python 05-exec/description_baseline_scan.py` = **166**（按设计跳过 junction）。
+> ② **门禁与端数**：正文 `C1~C23` / 五端 现均扩为 **C1~C28 / 八端（cx/hm/oc/qd/qw/tr/wb/zc）**。
+> ③ **差距账**：G1~G5 已全部在 r17/r17b 闭环或转入归属会话；**增量账（新差距 N1~N8、对标对象 7→14、4 个新工具与首跑实测）见同目录 `全量对标报告_r18_2026-09-24.md`**。
+
 ## Abstract
 
 本报告以「整个自建 skill 体系」（`D:\global_skills` 全量技能库 + 注册表/路由 + 全局记忆系统 + 焚诀 eval 门禁基建 + 五端同步，151 个顶层技能）为被对标方，选取 **4 个主对标**（obra/superpowers 290,514★、anthropics/skills 177,786★、github/spec-kit 138,541★、ruvnet/ruflo 73,120★，均为 2026-09-23 经 GitHub API 实时核实）与 **3 个参照系**（mem0 65,887★、letta-ai/letta 24,858★、GreatScottyMac/roo-code-memory-bank 1,675★）做七维全量对标。

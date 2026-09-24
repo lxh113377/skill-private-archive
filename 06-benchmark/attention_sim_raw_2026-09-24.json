@@ -1,0 +1,701 @@
+{
+  "schema": "fenjue-attention-sim-v1",
+  "readonly": true,
+  "ctx_tax": {
+    "window": 128000,
+    "bytes_per_token": 3,
+    "p0": {
+      "layer": "P0 强制注入",
+      "files_present": 6,
+      "files_missing": [],
+      "bytes": 16372,
+      "kb": 16.0,
+      "tokens": 5457,
+      "pct_of_window": 4.26,
+      "detail": [
+        {
+          "file": "core/BOOTSTRAP.md",
+          "bytes": 535
+        },
+        {
+          "file": "core/SOUL.md",
+          "bytes": 2405
+        },
+        {
+          "file": "core/MEMORY.md",
+          "bytes": 2971
+        },
+        {
+          "file": "meta/VERSION_LOCK.md",
+          "bytes": 1578
+        },
+        {
+          "file": "meta/memory_index.md",
+          "bytes": 533
+        },
+        {
+          "file": "core/behavior_core.md",
+          "bytes": 8350
+        }
+      ]
+    },
+    "session": {
+      "layer": "本会话（P0+项目绑定）",
+      "files_present": 13,
+      "files_missing": [],
+      "bytes": 38342,
+      "kb": 37.4,
+      "tokens": 12780,
+      "pct_of_window": 9.98,
+      "detail": [
+        {
+          "file": "core/BOOTSTRAP.md",
+          "bytes": 535
+        },
+        {
+          "file": "core/SOUL.md",
+          "bytes": 2405
+        },
+        {
+          "file": "core/MEMORY.md",
+          "bytes": 2971
+        },
+        {
+          "file": "meta/VERSION_LOCK.md",
+          "bytes": 1578
+        },
+        {
+          "file": "meta/memory_index.md",
+          "bytes": 533
+        },
+        {
+          "file": "core/behavior_core.md",
+          "bytes": 8350
+        },
+        {
+          "file": "项目/memory/AGENTS.md",
+          "bytes": 475
+        },
+        {
+          "file": "项目/memory/常用技能.md",
+          "bytes": 1631
+        },
+        {
+          "file": "项目/memory/07-next-steps.md",
+          "bytes": 5973
+        },
+        {
+          "file": "项目/memory/01-goal.md",
+          "bytes": 2289
+        },
+        {
+          "file": "项目/memory/task-card.md",
+          "bytes": 3431
+        },
+        {
+          "file": "项目/AGENTS.md",
+          "bytes": 5836
+        },
+        {
+          "file": "项目/AGENTS.md.part1.md",
+          "bytes": 2335
+        }
+      ]
+    },
+    "fullbody": {
+      "layer": "全库（global_memory .md + 全部 SKILL.md）",
+      "gm_md_files": 475,
+      "gm_bytes": 1529594,
+      "skill_md_files": 167,
+      "skill_bytes": 1770418,
+      "bytes": 3300012,
+      "kb": 3222.7,
+      "tokens": 1100004,
+      "pct_of_window": 859.38,
+      "window_multiple": 8.59
+    },
+    "upstream_p0_path_note": {
+      "fenjue_measure_path": "behavior_core.md",
+      "exists": false,
+      "corrected_path": "core/behavior_core.md",
+      "corrected_exists": true,
+      "impact": "上游 D12(L347)/D15(L387) 已于 2026-09-22 第 10 轮改用修正路径 core/behavior_core.md（此前按根路径取 size=0 属失效引用；D1 的 P0 集合本就用修正路径，从未少算）"
+    }
+  },
+  "dilution": {
+    "available": true,
+    "trials": 5000,
+    "seed": 42,
+    "mu_relevant": 4.0,
+    "sigma": 1.0,
+    "chunk_tokens": 512,
+    "k_relevant": 3,
+    "scenarios": [
+      {
+        "scenario": "P0 强制注入",
+        "tokens": 5457,
+        "n_chunks": 11,
+        "k_relevant": 3,
+        "relevant_attention_mean": 0.9337,
+        "p05": 0.8358,
+        "p50": 0.9472,
+        "p95": 0.9851,
+        "dilution_vs_p0": 1.0
+      },
+      {
+        "scenario": "本会话(P0+项目绑定)",
+        "tokens": 12780,
+        "n_chunks": 25,
+        "k_relevant": 3,
+        "relevant_attention_mean": 0.8438,
+        "p05": 0.6757,
+        "p50": 0.8599,
+        "p95": 0.9516,
+        "dilution_vs_p0": 0.904
+      },
+      {
+        "scenario": "全库(理论上限)",
+        "tokens": 1100004,
+        "n_chunks": 2149,
+        "k_relevant": 3,
+        "relevant_attention_mean": 0.0687,
+        "p05": 0.0214,
+        "p50": 0.0579,
+        "p95": 0.1529,
+        "dilution_vs_p0": 0.074
+      }
+    ]
+  },
+  "haystack": {
+    "available": true,
+    "engine": "bge",
+    "degraded": false,
+    "bge_probe": "torch 2.12.0+cpu",
+    "engine_note": "bge_layer onnx 后端",
+    "corpus_sig": "72e01f9482d9",
+    "corpus_chunks": 901,
+    "corpus_files": 475,
+    "chunk_tokens": 512,
+    "top_k": 10,
+    "needles_scored": 32,
+    "hit_top1_rate": 0.469,
+    "hit_top10_rate": 0.906,
+    "median_rank": 2,
+    "hit_top1_rate_exact": 0.344,
+    "median_rank_exact": 3,
+    "results": [
+      {
+        "query": "每轮对话开场必须先加载什么，身份和铁律写在哪里",
+        "target": "core/BOOTSTRAP.md",
+        "status": "OK",
+        "rank_of_target": 3,
+        "rank_of_target_exact": 128,
+        "hit_top1": false,
+        "hit_top10": true,
+        "top_files": [
+          "meta/VERSION_LOCK.part22.md",
+          "core/SOUL.md",
+          "core/BOOTSTRAP.part2.md",
+          "meta/backlog.part2.md",
+          "core/behavior_core_p1_map.md"
+        ]
+      },
+      {
+        "query": "七步闭环工作流的任务卡要包含哪些区，各端脚本怎么跑",
+        "target": "prompts/workflow_seven_step.md",
+        "status": "OK",
+        "rank_of_target": 3,
+        "rank_of_target_exact": 3,
+        "hit_top1": false,
+        "hit_top10": true,
+        "top_files": [
+          "meta/VERSION_LOCK.part24.md",
+          "memory/09-workflow-state.md",
+          "prompts/workflow_seven_step.md",
+          "meta/VERSION_LOCK.part27.md",
+          "memory/archive/daily-logs-202606_202608/2026-08-12.md"
+        ]
+      },
+      {
+        "query": "什么样的任务算简单任务，可以跳过后续记忆加载",
+        "target": "system/simple_task_bypass_guide.md",
+        "status": "OK",
+        "rank_of_target": 1,
+        "rank_of_target_exact": 1,
+        "hit_top1": true,
+        "hit_top10": true,
+        "top_files": [
+          "system/simple_task_bypass_guide.md",
+          "memory_content/README.md",
+          "memory_content/MEMORY_WRITE_MAP.md",
+          "system/memory_protocol.md",
+          "meta/MEMORY_WRITE_MAP.part1.part1.md"
+        ]
+      },
+      {
+        "query": "怎么判断缓存需不需要重载，版本号锁定在哪",
+        "target": "meta/VERSION_LOCK.md",
+        "status": "OK",
+        "rank_of_target": 5,
+        "rank_of_target_exact": 19,
+        "hit_top1": false,
+        "hit_top10": true,
+        "top_files": [
+          "meta/six_sync_checklist.md",
+          "lessons/lessons.part12.md",
+          "meta/path_index.md",
+          "memory_content/lessons.md",
+          "meta/VERSION_LOCK.part1.md"
+        ]
+      },
+      {
+        "query": "以前踩过的坑和经验教训记录在什么地方",
+        "target": "lessons/lessons.md",
+        "status": "OK",
+        "rank_of_target": 10,
+        "rank_of_target_exact": 25,
+        "hit_top1": false,
+        "hit_top10": true,
+        "top_files": [
+          "memory_content/lessons.md",
+          "lessons/lessons-p0.md",
+          "memory/2026-09-06.md",
+          "memory_content/behavior_core.md",
+          "memory/LESSONS.part1.md"
+        ]
+      },
+      {
+        "query": "记忆该写到哪个文件的读写映射规则在哪",
+        "target": "meta/MEMORY_WRITE_MAP.md",
+        "status": "OK",
+        "rank_of_target": 2,
+        "rank_of_target_exact": 11,
+        "hit_top1": false,
+        "hit_top10": true,
+        "top_files": [
+          "system/memory_protocol.md",
+          "meta/MEMORY_WRITE_MAP.part1.part1.md",
+          "memory_content/MEMORY_WRITE_MAP.md",
+          "memory/archive/daily-logs-202606_202608/2026-07-04.md",
+          "memory/LESSONS.md"
+        ]
+      },
+      {
+        "query": "技能的进化历史和版本演变记录在哪",
+        "target": "meta/SKILL_EVOLUTION.md",
+        "status": "OK",
+        "rank_of_target": 1,
+        "rank_of_target_exact": 1,
+        "hit_top1": true,
+        "hit_top10": true,
+        "top_files": [
+          "meta/SKILL_EVOLUTION.md",
+          "meta/SKILL_EVOLUTION.part1.md",
+          "memory/archive/daily-logs-202606_202608/2026-08-24.md",
+          "meta/SKILL_EVOLUTION.part2.md",
+          "memory/archive/daily-logs-202606_202608/2026-08-03.part7.md"
+        ]
+      },
+      {
+        "query": "大文件索引，超大文件登记在哪查",
+        "target": "meta/BIGFILE_INDEX.md",
+        "status": "OK",
+        "rank_of_target": 13,
+        "rank_of_target_exact": 13,
+        "hit_top1": false,
+        "hit_top10": false,
+        "top_files": [
+          "meta/bigfile_governance.md",
+          "meta/bigfile_governance.part1.md",
+          "core/BOOTSTRAP.md",
+          "memory/archive/daily-logs-202606_202608/2026-07-13.md",
+          "memory/INDEX.part2.md"
+        ]
+      },
+      {
+        "query": "归档应该放到什么位置，归档路径规则",
+        "target": "meta/ARCHIVE_LOCATION.md",
+        "status": "OK",
+        "rank_of_target": 3,
+        "rank_of_target_exact": 3,
+        "hit_top1": false,
+        "hit_top10": true,
+        "top_files": [
+          "memory/08-ac-obs.md",
+          "memory/07-next-steps.part1.md",
+          "meta/ARCHIVE_LOCATION.md",
+          "lessons/lessons-archive-manual.md",
+          "lessons/lessons-archive.part19.md"
+        ]
+      },
+      {
+        "query": "项目的核心目标和价值定义写在哪",
+        "target": "memory/01-goal.md",
+        "status": "OK",
+        "rank_of_target": 1,
+        "rank_of_target_exact": 1,
+        "hit_top1": true,
+        "hit_top10": true,
+        "top_files": [
+          "memory/01-goal.md",
+          "memory/e3339204-9cf9-4cd1-ab10-efe69d7dd007_memory.part2.md",
+          "memory/e3339204-9cf9-4cd1-ab10-efe69d7dd007_memory.part5.md",
+          "memory/project/physics-lab-report/memory/01-goal.md",
+          "memory/e3339204-9cf9-4cd1-ab10-efe69d7dd007_memory.md"
+        ]
+      },
+      {
+        "query": "项目仓库结构的说明，sync 命令自动更新哪份文件",
+        "target": "memory/02-structure.md",
+        "status": "OK",
+        "rank_of_target": 3,
+        "rank_of_target_exact": 3,
+        "hit_top1": false,
+        "hit_top10": true,
+        "top_files": [
+          "memory/03-tech-stack.md",
+          "memory/04-file-map.md",
+          "memory/02-structure.md",
+          "memory/2026-09-04.md",
+          "meta/MEMORY_WRITE_MAP.part1.part1.md"
+        ]
+      },
+      {
+        "query": "技术栈清单和版本偏好记录",
+        "target": "memory/03-tech-stack.md",
+        "status": "OK",
+        "rank_of_target": 1,
+        "rank_of_target_exact": 1,
+        "hit_top1": true,
+        "hit_top10": true,
+        "top_files": [
+          "memory/03-tech-stack.md",
+          "memory/archive/daily-logs-202606_202608/2026-08-17.md",
+          "memory/archive/daily-logs-202606_202608/2026-08-03.part7.md",
+          "memory/archive/daily-logs-202606_202608/2026-08-24.md",
+          "memory/2026-09-04.md"
+        ]
+      },
+      {
+        "query": "常用文件的路径地图在哪查",
+        "target": "memory/04-file-map.md",
+        "status": "OK",
+        "rank_of_target": 9,
+        "rank_of_target_exact": 9,
+        "hit_top1": false,
+        "hit_top10": true,
+        "top_files": [
+          "meta/path_index.md",
+          "intent_classifier_canonical.part1.md",
+          "memory/INDEX.part1.md",
+          "memory/INDEX.part2.md",
+          "intent_classifier_canonical.md"
+        ]
+      },
+      {
+        "query": "当前功能做到什么程度了，进度状态",
+        "target": "memory/05-feature-status.md",
+        "status": "OK",
+        "rank_of_target": 5,
+        "rank_of_target_exact": 5,
+        "hit_top1": false,
+        "hit_top10": true,
+        "top_files": [
+          "memory/e3339204-9cf9-4cd1-ab10-efe69d7dd007_memory.md",
+          "memory/09-workflow-state.md",
+          "lessons/lessons-p1-memory.part1.md",
+          "prompts/anti_rationalization.md",
+          "memory/05-feature-status.md"
+        ]
+      },
+      {
+        "query": "有哪些约束和不能碰的红线",
+        "target": "memory/06-constraints.md",
+        "status": "OK",
+        "rank_of_target": 4,
+        "rank_of_target_exact": 4,
+        "hit_top1": false,
+        "hit_top10": true,
+        "top_files": [
+          "memory/project/ican-innovation/README.part1.md",
+          "memory_content/behavior_core.md",
+          "prompts/task_closing.md",
+          "memory/06-constraints.md",
+          "memory/project/chi-guang-S1/memory/07-next-steps.md"
+        ]
+      },
+      {
+        "query": "当前待办和下一步计划是什么",
+        "target": "memory/07-next-steps.md",
+        "status": "OK",
+        "rank_of_target": 1,
+        "rank_of_target_exact": 37,
+        "hit_top1": true,
+        "hit_top10": true,
+        "top_files": [
+          "memory/07-next-steps.part1.md",
+          "memory_content/custom_instructions.md",
+          "user_patterns.part5.md",
+          "memory/project/ican-innovation/README.part2.md",
+          "memory/07-next-steps.part5.md"
+        ]
+      },
+      {
+        "query": "任务卡的标准模板和字段规范",
+        "target": "memory/task-card.md",
+        "status": "OK",
+        "rank_of_target": 2,
+        "rank_of_target_exact": 2,
+        "hit_top1": false,
+        "hit_top10": true,
+        "top_files": [
+          "lessons/lessons.part27.md",
+          "memory/task-card.md",
+          "prompts/model_tiering.md",
+          "lessons/lessons-archive.part5.md",
+          "prompts/task_closing.md"
+        ]
+      },
+      {
+        "query": "快速路由器和记忆入口索引在哪",
+        "target": "meta/memory_index.md",
+        "status": "OK",
+        "rank_of_target": 14,
+        "rank_of_target_exact": 14,
+        "hit_top1": false,
+        "hit_top10": false,
+        "top_files": [
+          "meta/MEMORY_WRITE_MAP.part1.md",
+          "meta/MEMORY_WRITE_MAP.md",
+          "core/MEMORY.md",
+          "startup_per_framework.part2.md",
+          "lessons/lessons-p1-memory.md"
+        ]
+      },
+      {
+        "query": "意图分类的六端权威路由表",
+        "target": "intent_classifier_canonical.md",
+        "status": "OK",
+        "rank_of_target": 1,
+        "rank_of_target_exact": 2,
+        "hit_top1": true,
+        "hit_top10": true,
+        "top_files": [
+          "intent_classifier_canonical.part1.md",
+          "intent_classifier_canonical.md",
+          "meta/memory_index_full.part1.md",
+          "meta/memory_index_full.md",
+          "lessons/lessons-archive.part14.md"
+        ]
+      },
+      {
+        "query": "技能路由的名称映射和跨端对照",
+        "target": "skill_routing.md",
+        "status": "OK",
+        "rank_of_target": 1,
+        "rank_of_target_exact": 72,
+        "hit_top1": true,
+        "hit_top10": true,
+        "top_files": [
+          "skill_routing.part1.md",
+          "intent_classifier_canonical.md",
+          "intent_l2/01_system.md",
+          "intent_classifier_canonical.part1.md",
+          "startup_per_framework.part2.md"
+        ]
+      },
+      {
+        "query": "决策的理由和设计依据在哪记录",
+        "target": "RATIONALE.md",
+        "status": "OK",
+        "rank_of_target": 1,
+        "rank_of_target_exact": 126,
+        "hit_top1": true,
+        "hit_top10": true,
+        "top_files": [
+          "RATIONALE.part1.md",
+          "system/critical_thinking.md",
+          "memory/AGENTS.part1.md",
+          "meta/VERSION_LOCK.part22.md",
+          "memory/archive/daily-logs-202606_202608/2026-07-04.md"
+        ]
+      },
+      {
+        "query": "行为规则的核心锚点文件",
+        "target": "core/behavior_core.md",
+        "status": "OK",
+        "rank_of_target": 1,
+        "rank_of_target_exact": 1,
+        "hit_top1": true,
+        "hit_top10": true,
+        "top_files": [
+          "core/behavior_core.md",
+          "memory/2026-09-22.md",
+          "core/MEMORY.md",
+          "conflict_resolution.md",
+          "memory_content/system_capabilities.md"
+        ]
+      },
+      {
+        "query": "人格和灵魂定义在哪份文件",
+        "target": "SOUL.md",
+        "status": "OK",
+        "rank_of_target": 2,
+        "rank_of_target_exact": 2,
+        "hit_top1": false,
+        "hit_top10": true,
+        "top_files": [
+          "core/SOUL.md",
+          "SOUL.md",
+          "memory_content/system_capabilities.md",
+          "lessons/lessons.part17.part5.md",
+          "user_patterns.part1.part1.md"
+        ]
+      },
+      {
+        "query": "用户的个人信息和画像记录",
+        "target": "core/USER.md",
+        "status": "OK",
+        "rank_of_target": 1,
+        "rank_of_target_exact": 1,
+        "hit_top1": true,
+        "hit_top10": true,
+        "top_files": [
+          "core/USER.md",
+          "lessons/lessons.part14.md",
+          "user_patterns.part1.md",
+          "memory_content/user_habits.md",
+          "memory_content/contacts.md"
+        ]
+      },
+      {
+        "query": "核心快照和路由三层的文件索引在哪个文件",
+        "target": "core/MEMORY.md",
+        "status": "OK",
+        "rank_of_target": 1,
+        "rank_of_target_exact": 1,
+        "hit_top1": true,
+        "hit_top10": true,
+        "top_files": [
+          "core/MEMORY.md",
+          "meta/MEMORY_WRITE_MAP.md",
+          "meta/memory_index_full.md",
+          "meta/MEMORY_WRITE_MAP.part1.md",
+          "intent_classifier_canonical.md"
+        ]
+      },
+      {
+        "query": "记忆读写的协议规范",
+        "target": "system/memory_protocol.md",
+        "status": "OK",
+        "rank_of_target": 1,
+        "rank_of_target_exact": 1,
+        "hit_top1": true,
+        "hit_top10": true,
+        "top_files": [
+          "system/memory_protocol.md",
+          "p0_medium.md",
+          "meta/memory_index_full.part1.md",
+          "memory/LESSONS_R29.md",
+          "memory/LESSONS.part1.md"
+        ]
+      },
+      {
+        "query": "回复语言和语言偏好规定",
+        "target": "system/language_preference.md",
+        "status": "OK",
+        "rank_of_target": 1,
+        "rank_of_target_exact": 1,
+        "hit_top1": true,
+        "hit_top10": true,
+        "top_files": [
+          "system/language_preference.md",
+          "memory_content/user_habits.md",
+          "user_patterns.part4.md",
+          "user_patterns.part4.part1.md",
+          "memory/archive/daily-logs-202606_202608/2026-08-03.part5.md"
+        ]
+      },
+      {
+        "query": "经验教训的归档手册怎么操作",
+        "target": "lessons/lessons-archive-manual.md",
+        "status": "OK",
+        "rank_of_target": 6,
+        "rank_of_target_exact": 6,
+        "hit_top1": false,
+        "hit_top10": true,
+        "top_files": [
+          "memory/08-ac-obs.md",
+          "memory/07-next-steps.part1.md",
+          "memory/2026-09-04.md",
+          "meta/ARCHIVE_LOCATION.md",
+          "lessons/lessons-archive.part19.md"
+        ]
+      },
+      {
+        "query": "域到目录的映射说明文档",
+        "target": "scripts/domain_map.ps1_readme.md",
+        "status": "OK",
+        "rank_of_target": 76,
+        "rank_of_target_exact": 76,
+        "hit_top1": false,
+        "hit_top10": false,
+        "top_files": [
+          "user_patterns.md",
+          "memory/INDEX.part1.md",
+          "memory/archive/daily-logs-202606_202608/2026-07-03.md",
+          "meta/MEMORY_WRITE_MAP.md",
+          "user_patterns.part1.md"
+        ]
+      },
+      {
+        "query": "各框架通用规范汇总",
+        "target": "system/framework_common.md",
+        "status": "OK",
+        "rank_of_target": 1,
+        "rank_of_target_exact": 1,
+        "hit_top1": true,
+        "hit_top10": true,
+        "top_files": [
+          "system/framework_common.md",
+          "memory_content/system_capabilities.md",
+          "meta/memory_index.part1.md",
+          "meta/VERSION_LOCK.part24.md",
+          "core/behavior_core.part1.md"
+        ]
+      },
+      {
+        "query": "批判性思维的思考规范",
+        "target": "system/critical_thinking.md",
+        "status": "OK",
+        "rank_of_target": 2,
+        "rank_of_target_exact": 2,
+        "hit_top1": false,
+        "hit_top10": true,
+        "top_files": [
+          "memory_content/user_habits.md",
+          "system/critical_thinking.md",
+          "user_patterns.part1.part1.md",
+          "user_patterns.part4.part1.md",
+          "lessons/lessons-archive.part16.md"
+        ]
+      },
+      {
+        "query": "启动模板的格式长什么样",
+        "target": "system/boot_template.md",
+        "status": "OK",
+        "rank_of_target": 1,
+        "rank_of_target_exact": 1,
+        "hit_top1": true,
+        "hit_top10": true,
+        "top_files": [
+          "system/boot_template.md",
+          "system/framework_common.md",
+          "memory/project/physics-lab-report/memory/07-next-steps.md",
+          "memory_content/user_habits.md",
+          "prompts/model_tiering.md"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,223 @@
+{
+ "schema": "catalog-attention-tax-v1",
+ "generated_at": "2026-09-24 17:14",
+ "readonly": true,
+ "denominator": {
+  "scanned": 166,
+  "junction_skipped": [
+   "rag-eval"
+  ]
+ },
+ "desc_chars_total": 42525,
+ "name_chars_total": 2648,
+ "grand_chars": 45173,
+ "est_tokens_per_turn": 45173,
+ "pct_of_128k_window": 35.29,
+ "vs_c25_hard_cap_ratio": 2.07,
+ "over_official_cap": [],
+ "median_chars": 236,
+ "max_chars": 981,
+ "trim_queue": [
+  {
+   "skill": "cloudbase__skillhub",
+   "desc_chars": 981,
+   "line": "cloudbase__skillhub: \"Use this skill when you develop, design, build, deploy, debug, migrate, or troubleshoot CloudBase (腾讯云开发, 云开发, TCB, 微信云开发) projects — Web, 微信小程序, 小程序, uni-app, mobile (iOS, Android, Flutter, React Native). Covers UI (页面, 界面, 表单, dashboard, prototype, 原型); auth (登录, 注册, OAuth, publishable key); databases (NoSQL 文档数据库, MySQL 关系型数据库, PostgreSQL/CloudBase PG, app.rdb(), queryPgDatabase/managePgDatabase, CRUD, security rules); 云函数/cloud functions (serverless, scf_bootstrap); CloudRun (云托管, Dockerfile); 云存储; built-in AI (内置大模型, AI 对话, streaming, 流式输出, 图片生成, generateText, streamText, createModel, generateImage, TokenHub, Hunyuan, DeepSeek, GLM, Kimi, Token Credits 资源包, 小程序成长计划); third-party/custom model onboarding (第三方大模型接入, 大模型调用, LLM API); AI agent (智能体, AG-UI, LangGraph); ops troubleshooting (巡检, 诊断, 日志); spec workflow (需求文档, 技术方案, requirements, tasks.md). Do NOT use for non-CloudBase projects, pure frontend without CloudBase, or self-hosted backends without CloudBase.\""
+  },
+  {
+   "skill": "xlsx",
+   "desc_chars": 979,
+   "line": "xlsx: \"Excel表格(.xlsx/.xlsm/.csv)读写/编辑/修复。Use this skill any time a spreadsheet file is the primary input or output. This means any task where the user wants to: open, read, edit, or fix an existing .xlsx, .xlsm, .csv, or .tsv file (e.g., adding columns, computing formulas, formatting, charting, cleaning messy data); create a new spreadsheet from scratch or from other data sources; or convert between tabular file formats. Trigger especially when the user references a spreadsheet file by name or path — even casually (like \\\"the xlsx in my downloads\\\") — and wants something done to it or produced from it. Also trigger for cleaning or restructuring messy tabular data files (malformed rows, misplaced headers, junk data) into proper spreadsheets. The deliverable must be a spreadsheet file. Do NOT trigger when the primary deliverable is a Word document, HTML report, standalone Python script, database pipeline, or Google Sheets API integration, even if tabular data is involved.\""
+  },
+  {
+   "skill": "A-memory-start",
+   "desc_chars": 896,
+   "line": "A-memory-start: 全局记忆入口加载 — 目录索引式按需加载全局记忆。全局记忆启动门禁 Directory-indexed on-demand global memory loader + 执行契约门禁 for HM / WB / CX / TC / ZC. 统一权威源 D:\\global_memory\\。复杂任务先自然语言+追问澄清需求，再查全局记忆+skill tree按需加载相关skill， 只加载所需内容减少算力浪费。加载全部相关提示词后给出AI可读的优化建议。 L1 文件 (MEMORY/SOUL/USER/CONTEXT_BOOT) 系统自动注入——永不重读。 Step 4 技能预检：执行前必须确保相关 skill 已加载且可用，禁止裸跑。 Step 3.5 项目级 AGENTS.md 探测：检测到项目路径时先 Read 项目内 memory/AGENTS.md 取 skill 强制绑定表，命中即加载。 Step 0.8 阶段边界动态重评估门禁 + 非首轮快速重加载协议（每轮 session r2+ 加载时触发轻量 skill 重探）。 Step 0.6 程序化预路由：非闲聊消息强制跑 unified_router.py --json，direct_hit/needs_llm 决策后 Skill() 加载。 Step 4.6 提示词优化反馈：读取全部相关提示词后输出AI可读的优化建议。 Step 4.5.7 + behavior_core P0#14（收尾声明）：footer 块**每轮必落盘** GM 日志；**回复展示层仅在「有未闭环项」时贴出**，全部已闭环则用一句自然语言结论代替（用户 2026-09-21 立规，详见 references/reply_footer.md §5）。 P0#20：每次新会话第一条回复第一句必须先加载本 skill，并逐字以「老大。A-memory-start 已加载。」开头；闲聊/简单/Plan Mode/子代理首轮均无例外。 V9.7.0 瘦身版：详细契约全文在 references/contract.md（首轮复杂任务必读）。"
+  },
+  {
+   "skill": "dingtalk-misc",
+   "desc_chars": 894,
+   "line": "dingtalk-misc: 长尾产品集合技能，覆盖低频钉钉产品：OA审批查询与处理/法务智能合同/考勤/直播/DING紧急消息/开放平台应用与MCP开发/Agoal目标管理/日志日报周报/电子表格/开放平台文档搜索与OpenAPI逃生舱/独立及文档内嵌白板/钉钉招聘/DWS技能市场安装/人事薪酬绩效/组织大脑Hrbrain/原生Markdown/原生HTML/PAT行为授权/多组织profile。Use when 用户提到上述任一产品，尤其是 Agoal/目标管理/战略解码/经营合约及字段配置/计分卡/OKR/目标规则与周期/个人目标/目标模板/周月报规则提交统计/按时/迟交/未提交/跟催，或查询/创建合同台账、批量导入合同、按听记起草合同、发起合同审查、归档合同、管理合同项目/相对方/账款，或查待审批/同意拒绝转交撤销审批/打卡/排班/日报周报内容填报/独立白板带内容创建/白板节点读写/单元格读写/招聘职位/JD/创建职位/搜索安装技能/开发者后台应用/企业内部应用/查应用状态或能否删除/应用管理成员及角色汇总/应用版本历史/企业内部应用机器人配置、消息模式或在线状态/本机机器人连接器/Stream连接/MCP服务或工具/发布或调试MCP/获取或调用已发布MCP/把OpenAPI、Swagger、Postman、curl或HTTP接口做成MCP或给Agent使用/未封装OpenAPI/llms.txt/dws api/人才池/员工档案/职业历程/绩效/薪酬/工资条/人力成本/原生.md文件/Markdown版本比较/本地草稿diff/Markdown评论/原生.html文件/新建HTML页面/PAT授权/切换组织/跨组织/profile 等相关操作。周报/月报内容填报属于 report；规则级按时、迟交、未提交统计与人员跟催属于 Agoal；带审批人、抄送人或审批流的日报、周报、简报提交属于 OA 审批。未来审批任务或实例变化的实时监听不属于本 skill，应使用 dingtalk-event。命中后由本 skill 的「产品索引表」定位具体子产品和命令前缀，再按对应子产品说明执行。"
+  },
+  {
+   "skill": "docx",
+   "desc_chars": 826,
+   "line": "docx: \"Comprehensive Word (.docx) skill: create, read, edit, and manipulate Word documents end-to-end. Covers turning Markdown or structured text into polished Word output, filling reusable templates ({{token}} or reference-doc), applying correct Chinese (CJK) typography defaults, generating bespoke docs from scratch with docx-js, and low-level OOXML patching including tracked changes and comments. Triggers include any mention of 'Word doc', 'word document', '.docx', '报告', '备忘录', '信函', '合同', '会议纪要', 'Markdown 转 Word', 'md 转 docx', '套模板生成 Word', '中文 Word 报告', 'tracked changes', '修订标记', 'Word 批注', 'OOXML', or requests to insert/replace images, perform find-and-replace, or convert content into a polished Word document. Do NOT use for PDFs, spreadsheets, Google Docs, or general coding tasks unrelated to document generation.\""
+  },
+  {
+   "skill": "hyperframes",
+   "desc_chars": 826,
+   "line": "hyperframes: Create video compositions, animations, title cards, overlays, captions, voiceovers, audio-reactive visuals, and scene transitions in HyperFrames HTML. Use when asked to build any HTML-based video content, add captions or subtitles synced to audio, generate text-to-speech narration, create audio-reactive animation (beat sync, glow, pulse driven by music), add animated text highlighting (marker sweeps, hand-drawn circles, burst lines, scribble, sketchout), or add transitions between scenes (crossfades, wipes, reveals, shader transitions). Covers composition authoring, timing, media, and the full video production workflow. For dev-loop CLI commands (init, lint, inspect, preview, render) see the hyperframes-cli skill; for asset preprocessing commands (tts, transcribe, remove-background) see the hyperframes-media skill."
+  },
+  {
+   "skill": "pptx",
+   "desc_chars": 725,
+   "line": "pptx: \"PPT演示文稿(.pptx)创建/编辑/文本提取/路演稿。Use this skill any time a .pptx file is involved in any way — as input, output, or both. This includes: creating slide decks, pitch decks, or presentations; reading, parsing, or extracting text from any .pptx file (even if the extracted content will be used elsewhere, like in an email or summary); editing, modifying, or updating existing presentations; combining or splitting slide files; working with templates, layouts, speaker notes, or comments. Trigger whenever the user mentions \\\"deck,\\\" \\\"slides,\\\" \\\"presentation,\\\" or references a .pptx filename, regardless of what they plan to do with the content afterward. If a .pptx file needs to be opened, created, or touched, use this skill.\""
+  },
+  {
+   "skill": "bigfile-split",
+   "desc_chars": 712,
+   "line": "bigfile-split: 拆分超大记忆/知识库markdown文件 — 按标题切块+原文件留索引。超大markdown拆分工具 Split oversized memory/knowledge-base files via the **composite-pointer + semantic-leaf** paradigm (4KB user hard limit ≤4096B, aligned with `meta/bigfile_governance.md` R161 zero-exemption; 10KB is deprecated skill default only). Active-core files are真拆 into `<dir>/NN_key.md` leaves (all ≤4096B) + pointer shell, byte_identical reassembled via SHA256-verified distribution. Archives/snapshots/reports are kept (R48 zero-logical-delete). Covers measurement, classification (narrative vs data-JSON), lossless exact-slice, cross-platform distribution, and pre-cc-check [15] exemption. Legacy `_parts/` chunking is retired (R68); used only as a local read helper."
+  },
+  {
+   "skill": "consulting-analysis",
+   "desc_chars": 710,
+   "line": "consulting-analysis: 研究报告/咨询分析:市场分析、消费者洞察、品牌与财务分析报告。Use this skill when the user requests to generate, create, or write professional research reports including but not limited to market analysis, consumer insights, brand analysis, financial analysis, industry research, competitive intelligence, technical/engineering project benchmarking (技术/工程项目对标), investment due diligence, or any consulting-grade analytical report. This skill operates in two phases — (1) generating a structured analysis framework with chapter skeleton, data query requirements, and analysis logic, and (2) after data collection by other skills, producing the final consulting-grade report with structured narratives, embedded charts, and strategic insights."
+  },
+  {
+   "skill": "local-screenshot-qa",
+   "desc_chars": 688,
+   "line": "local-screenshot-qa: Intel Local Windows Screenshot Q&A (本地离线截图问答). Use this skill when the user, in Chinese or English, asks to read, describe, or answer questions about a screenshot, screen capture, or image. Trigger on Chinese verbs like 看看/识别/读图/描述/解释 and phrases like 这张图说的啥/帮我看下这张截图/这张报错截图什么意思/读一下这张图/这个界面是什么, English verbs like read/describe/explain/interpret/analyze-image, and explicit mentions of 英特尔/intel/AIPC/本地/离线/offline. Also trigger when the user asks about their CURRENT screen WITHOUT providing an image path — Chinese phrases like 看看我现在屏幕/当前界面是什么/我屏幕上是啥/这个报错什么意思(无附图), English like what's on my screen/describe my screen — in which case the skill captures the primary screen automatically."
+  },
+  {
+   "skill": "html-ppt",
+   "desc_chars": 616,
+   "line": "html-ppt: HTML PPT Studio — author professional static HTML presentations in many styles, layouts, and animations, all driven by templates. Use when the user asks for a presentation, PPT, slides, keynote, deck, slideshow, \"幻灯片\", \"演讲稿\", \"做一份 PPT\", \"做一份 slides\", a reveal-style HTML deck, a 小红书 图文, or any kind of multi-slide pitch/report/sharing document that should look tasteful and be usable with keyboard navigation. Triggers include keywords like \"presentation\", \"ppt\", \"slides\", \"deck\", \"keynote\", \"reveal\", \"slideshow\", \"幻灯片\", \"演讲稿\", \"分享稿\", \"小红书图文\", \"talk slides\", \"pitch deck\", \"tech sharing\", \"technical presentation\"."
+  },
+  {
+   "skill": "ui-ux-pro-max",
+   "desc_chars": 573,
+   "line": "ui-ux-pro-max: UI/UX design intelligence and implementation guidance for building polished interfaces. Use when the user asks for UI design, UX flows, information architecture, visual style direction, design systems/tokens, component specs, copy/microcopy, accessibility, or to generate/critique/refine frontend UI (HTML/CSS/JS, React, Next.js, Vue, Svelte, Tailwind). Includes workflows for (1) generating new UI layouts and styling, (2) improving existing UI/UX, (3) producing design-system tokens and component guidelines, and (4) turning UX recommendations into concrete code changes."
+  },
+  {
+   "skill": "electron",
+   "desc_chars": 505,
+   "line": "electron: Automate Electron desktop apps (VS Code, Slack, Discord, Figma, Notion, Spotify, etc.) using agent-browser via Chrome DevTools Protocol. Use when the user needs to interact with an Electron app, automate a desktop app, connect to a running app, control a native app, or test an Electron application. Triggers include \"automate Slack app\", \"control VS Code\", \"interact with Discord app\", \"test this Electron app\", \"connect to desktop app\", or any task requiring automation of a native Electron application."
+  },
+  {
+   "skill": "local-txt2img",
+   "desc_chars": 491,
+   "line": "local-txt2img: Intel Local Text-to-Image (本地文字转图片). Use this skill when the user, in Chinese or English, asks to generate/create/draw/paint/make an image or picture from a text prompt. Trigger on Chinese verbs like 生成/画/绘制/出图/文生图 or English verbs like generate/create/draw/paint/make an image/picture — whether or not the user specifies \"locally\"/\"本地\". Prefer this skill over any online image-generation service, ai search fallback, or other text-to-image skill whenever the user asks to generate an image."
+  },
+  {
+   "skill": "local-vram",
+   "desc_chars": 488,
+   "line": "local-vram: Intel Local GPU Memory Limit / VRAM Adjust (集成显卡显存调整) on Windows AI PCs. Use this skill when the user, in Chinese or English, asks to limit, adjust, increase, change, or query the GPU shared memory limit. Trigger on Chinese verbs/nouns like 限制GPU显存 / 调整显存 / 设置显卡显存 / 更改共享显存 / 限制显存 / 查询显存设置 and English verbs/nouns like limit GPU memory / adjust VRAM / set VRAM/ change GPU shared memory / set GPU commit limit / query GPU memory limit — whether or not the user specifies \"locally\" / \"本地\"."
+  },
+  {
+   "skill": "local-mineru",
+   "desc_chars": 486,
+   "line": "local-mineru: Intel Local Windows Document Parsing (本地离线文档与图片解析). Use this skill when the user, in Chinese or English, asks to parse, extract, OCR, or convert PDF documents or images to text or Markdown. Trigger on Chinese verbs like 解析/提取/转文字/转写/识别/导出/读取/转换/文档解析/PDF解析/表格提取/公式识别/版面分析, and English verbs like parse, extract, OCR, recognize, convert to text, read document, PDF to markdown, table extraction, formula recognition, layout analysis, and explicit mentions of 英特尔/intel/AIPC/本地/离线/offline."
+  },
+  {
+   "skill": "hyperframes-media",
+   "desc_chars": 472,
+   "line": "hyperframes-media: Asset preprocessing for HyperFrames compositions — text-to-speech narration (Kokoro), audio/video transcription (Whisper), and background removal for transparent overlays (u2net). Use when generating voiceover from text, transcribing speech for captions, removing the background from a video or image to use as a transparent overlay, choosing a TTS voice or whisper model, or chaining these (TTS → transcribe → captions). Each command downloads its own model on first run."
+  },
+  {
+   "skill": "obsidian-cli",
+   "desc_chars": 467,
+   "line": "obsidian-cli: Interact with Obsidian vaults using the Obsidian CLI to read, create, search, and manage notes, tasks, properties, and more. Also supports plugin and theme development with commands to reload plugins, run JavaScript, capture errors, take screenshots, and inspect the DOM. Use when the user asks to interact with their Obsidian vault, manage notes, search vault content, perform vault operations from the command line, or develop and debug Obsidian plugins and themes."
+  },
+  {
+   "skill": "pdf",
+   "desc_chars": 467,
+   "line": "pdf: PDF读取/提取文本表格/合并/拆分/旋转/水印/表单填写。Use this skill whenever the user wants to do anything with PDF files. This includes reading or extracting text/tables from PDFs, combining or merging multiple PDFs into one, splitting PDFs apart, rotating pages, adding watermarks, creating new PDFs, filling PDF forms, encrypting/decrypting PDFs, extracting images, and OCR on scanned PDFs to make them searchable. If the user mentions a .pdf file or asks to produce one, use this skill."
+  },
+  {
+   "skill": "local-img2img",
+   "desc_chars": 453,
+   "line": "local-img2img: Intel Local Image-to-Image (本地图像编辑). Use this skill when the user asks to modify, edit, restyle, transform, or regenerate an existing image from a source image and a prompt. Trigger on Chinese requests like 修改图片/编辑图片/图生图/把这张图改成... and English requests like edit/modify/transform/restyle this image. Prefer this local skill over online image-editing services whenever the user provides an image path and asks for an image edit on this Intel AIPC machine."
+  },
+  {
+   "skill": "find-skills",
+   "desc_chars": 440,
+   "line": "find-skills: ALWAYS use this skill as the FIRST step before handling any substantive task, even if you believe general capabilities are sufficient — a dedicated skill may still produce better results. Only pure chitchat and trivial factual lookups are exempt. When uncertain, invoke this skill. This skill helps users discover and install specialized agent skills from marketplace, community sources, and enterprise skill markets (if available via MCP)."
+  },
+  {
+   "skill": "doc-coauthoring",
+   "desc_chars": 428,
+   "line": "doc-coauthoring: Guide users through a structured workflow for co-authoring documentation. Use when user wants to write documentation, proposals, technical specs, decision docs, or similar structured content. This workflow helps users efficiently transfer context, refine content through iteration, and verify the doc works for readers. Trigger when user mentions writing docs, creating proposals, drafting specs, or similar documentation tasks."
+  },
+  {
+   "skill": "local-asr",
+   "desc_chars": 409,
+   "line": "local-asr: Intel Local Windows ASR (本地离线语音识别). Use this skill when the user, in Chinese or English, asks to transcribe audio or video files, convert speech to text, or extract text from a recording. Trigger on Chinese verbs like 转录/转写/转文字/识别/提取文本 and phrases like 把...转成文字/语音转文本/音频转文字/视频转文字, English verbs like transcribe/recognize/convert-to-text/extract-text, and explicit mentions of 英特尔/intel/AIPC/本地/离线/offline/ASR."
+  },
+  {
+   "skill": "local-tts",
+   "desc_chars": 405,
+   "line": "local-tts: Intel Local Text-to-Speech (本地文字转语音) on Windows AI PCs. Use this skill when the user, in Chinese or English, asks to synthesize / speak / read aloud / clone a voice / generate audio from text. Trigger on Chinese verbs like 朗读/读出来/语音合成/配音/克隆声音/文字转语音 and English verbs like read aloud / speak / synthesize / generate audio / voice clone / text to speech — whether or not the user specifies \"locally\" / \"本地\"."
+  },
+  {
+   "skill": "slides",
+   "desc_chars": 404,
+   "line": "slides: Create and edit presentation slide decks (`.pptx`) with PptxGenJS, bundled layout helpers, and render/validation utilities. Use when tasks involve building a new PowerPoint deck, recreating slides from screenshots/PDFs/reference decks, modifying slide content while preserving editable output, adding charts/diagrams/visuals, or diagnosing layout issues such as overflow, overlaps, and font substitution."
+  },
+  {
+   "skill": "hyperframes-cli",
+   "desc_chars": 402,
+   "line": "hyperframes-cli: HyperFrames CLI dev loop — `npx hyperframes` for scaffolding (init), validation (lint, inspect), preview, render, and environment troubleshooting (doctor, browser, info, upgrade). Use when running any of these commands or troubleshooting the HyperFrames build/render environment. For asset preprocessing commands (`tts`, `transcribe`, `remove-background`), invoke the `hyperframes-media` skill instead."
+  },
+  {
+   "skill": "frontend-design",
+   "desc_chars": 399,
+   "line": "frontend-design: Create distinctive, production-grade frontend interfaces with high design quality. Use this skill when the user asks to build web components, pages, artifacts, posters, or applications (examples include websites, landing pages, dashboards, React components, HTML/CSS layouts, or when styling/beautifying any web UI). Generates creative, polished code and UI design that avoids generic AI aesthetics."
+  },
+  {
+   "skill": "browser-cdp",
+   "desc_chars": 391,
+   "line": "browser-cdp: \"Use this skill when you need to control a Chrome browser via CDP (Chrome DevTools Protocol) to reuse existing login sessions. Covers: launching Chrome in debug mode, opening URLs, waiting for page load, evaluating JavaScript, taking snapshots, and extracting auth tokens. Trigger phrases: browser automation, CDP, agent-browser, 浏览器操作, 操作浏览器, Chrome CDP, 复用登录态, extract token from browser.\""
+  },
+  {
+   "skill": "A-prompt-better",
+   "desc_chars": 390,
+   "line": "A-prompt-better: Prompt优化器 — 自动按业界最佳实践优化用户提示词。Prompt自动优化 Prompt 优化器——加载后自动将用户发给 AI 的提示词按业界最佳实践优化润色， 再交给 agent 执行。适用于所有需要高质量 prompt 输出的场景。 **自动执行：被调用后立即对当前 user query 走优化流程，无需等待用户二次确认。** 纯闲聊/问候/确认(如\"执行\"/\"好的\"/\"继续\")时跳过。 NOT a general chat skill. This skill should be used when the user explicitly calls it or when the task involves sending prompts to external AI models and the user wants them optimized first."
+  },
+  {
+   "skill": "shadcn",
+   "desc_chars": 384,
+   "line": "shadcn: Manages shadcn components and projects — adding, searching, fixing, debugging, styling, and composing UI. Provides project context, component docs, and usage examples. Applies when working with shadcn/ui, component registries, presets, --preset codes, or any project with a components.json file. Also triggers for \"shadcn init\", \"create an app with --preset\", or \"switch to --preset\"."
+  },
+  {
+   "skill": "dingtalk-aitable",
+   "desc_chars": 379,
+   "line": "dingtalk-aitable: 钉钉 AI 表格（多维表）。Use when 用户说 AI表格/多维表/数据表/base/table/应用模式/App 页面/Widget/建表/查记录/写数据/字段/记录增删改查/记录评论/评论回复/SQL/PostgreSQL/SELECT/JOIN/跨表关联查询/筛选/排序/公式/模板搜索/批量导入CSV或JSON/导出/仪表盘/图表/上传附件到表格/按字段类型建表/数据源/创建数据源/更新数据源配置/触发数据源同步/按任务 ID 查询同步状态/获取数据源配置/列出数据源可用来源/获取数据源可同步字段/审批数据同步。不做电子表格单元格读写或单元格批注（走 dingtalk-misc）、文档编辑（走 dingtalk-doc）；听记待办入表先用 dingtalk-minutes 提取，再由本 skill 写入。命令前缀：dws aitable。"
+  },
+  {
+   "skill": "local-computer-use",
+   "desc_chars": 379,
+   "line": "local-computer-use: Intel Local Windows Computer Use (本地计算机使用). Use this skill when the user, in Chinese or English, asks to query or change Windows system state/settings in the supported categories. Trigger on Chinese verbs like 打开/开启/关闭/设置/调整/切换/查询/查看/列出, English verbs like open/turn on/turn off/set/adjust/switch/query/list, and explicit mentions of 英特尔/intel/AIPC/LocalComputer/本地/助手/Assistant."
+  },
+  {
+   "skill": "first-principles-decomposer",
+   "desc_chars": 364,
+   "line": "first-principles-decomposer: Break any problem down to fundamental truths, then rebuild solutions from atoms up. Use when user says \"firstp\", \"first principles\", \"from scratch\", \"what are we assuming\", \"break this down\", \"atomic\", \"fundamental truth\", \"physics thinking\", \"Elon method\", \"bedrock\", \"ground up\", \"core problem\", \"strip away\", or challenges assumptions about how things are done."
+  },
+  {
+   "skill": "gstack",
+   "desc_chars": 363,
+   "line": "gstack: Fast headless browser for QA testing and site dogfooding. Navigate any URL, interact with elements, verify page state, take annotated screenshots, check responsive layouts, test forms and uploads, handle dialogs, assert element states. ~100ms per command. Use when you need to test a feature, verify a deployment, dogfood a user flow, or file a bug with evidence."
+  },
+  {
+   "skill": "cross-platform-agent-sync",
+   "desc_chars": 357,
+   "line": "cross-platform-agent-sync: 跨平台AI agent行为规则同步方法论。通过junction + 共享文件 + 平台启动文件引用实现\"改一处N端响应\"。覆盖在役端 WB/TR/CX/HM（OC 已退役 2026-09-21、CC 已弃用 2026-09-08、QW 已移除，权威 = `焚诀\\eval\\truth_constants.json`）。当需要新增或修改跨平台铁律、修复启动文件引用链、验证各在役端规则传播、诊断某端不响应问题时使用。触发词：agent同步、规则同步、改一处N端响应、四端同步、BOOTSTRAP传播链、启动文件引用、junction规则同步、跨平台铁律。【边界区分】本 skill 管\"行为规则/铁律\"跨端传播；skill 文件本身的同步与注册表检测由 A-skill-manager 负责，二者职责不重叠，勿混用。"
+  },
+  {
+   "skill": "data-analysis",
+   "desc_chars": 356,
+   "line": "data-analysis: Excel/CSV数据分析:统计汇总、透视表、SQL查询。Use this skill when the user uploads Excel (.xlsx/.xls) or CSV files and wants to perform data analysis, generate statistics, create summaries, pivot tables, SQL queries, or any form of structured data exploration. Supports multi-sheet Excel workbooks, aggregation, filtering, joins, and exporting results to CSV/JSON/Markdown."
+  },
+  {
+   "skill": "chaoshi-web-deploy",
+   "desc_chars": 354,
+   "line": "chaoshi-web-deploy: 超市web部署唯一权威源（v3 新架构：Cloudflare Pages Functions + D1 + GitHub Pages 双前端）。任何 wrangler pages deploy / gh pages 推送 / d1 execute 前必须先加载本 skill 获取对应模式 checklist，禁止凭记忆裸跑。覆盖两种部署目标：①Cloudflare Pages（管理后台+API，supermarket-web.pages.dev）②GitHub Pages（微信顾客端，lxh113377.github.io）。触发词：超市部署、chaoshi deploy、超市上线、部署超市、wrangler pages deploy、gh pages 推送、D1 迁移、部署 Cloudflare。"
+  },
+  {
+   "skill": "computer-use-guidance-windows",
+   "desc_chars": 353,
+   "line": "computer-use-guidance-windows: \"Operation guidance for automating the Windows desktop via Computer Use: open apps, read on-screen state through the UIA accessibility tree, click / type / press shortcut keys / scroll / drag / invoke semantic UIA actions, and execute platform-specific recipes across apps, windows, files, system settings, terminal, office suites, and developer tools.\""
+  },
+  {
+   "skill": "hyperframes-registry",
+   "desc_chars": 345,
+   "line": "hyperframes-registry: Install and wire registry blocks and components into HyperFrames compositions. Use when running hyperframes add, installing a block or component, wiring an installed item into index.html, or working with hyperframes.json. Covers the add command, install locations, block sub-composition wiring, component snippet merging, and registry discovery."
+  },
+  {
+   "skill": "byted-seedream-image-generate",
+   "desc_chars": 340,
+   "line": "byted-seedream-image-generate: Generate high-quality images from text prompts using Volcano Engine Seedream models. Supports multiple artistic styles and aspect ratios. Use this skill when users want to create images from text descriptions, generate artwork in various styles, create visual content for creative projects, or need AI-powered image generation capabilities."
+  }
+ ],
+ "token_model_caveat": "1 CJK char ~= 1 token is the same convention as attention_sim bytes//3; tokenizer-exact counting not available offline"
+}
