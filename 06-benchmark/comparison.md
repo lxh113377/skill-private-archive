@@ -117,7 +117,7 @@ n=166 同一批文件，四档 = 现行尺 / 严格同义 / 功能等价宽写�
 | **sickn33/AAS** | 46,875 | 9 | `ci.yml` 5 独立 job（`pr-policy`/`source-validation`/**`pr-evidence`**/`artifact-preview`/`main-validation-and-sync`）+ `skill-review` + `repo-hygiene` |
 | vercel-labs/skills | 32,414 | 3 | `agents.yml` `ci.yml` `publish.yml` |
 | **mycelium/ai-brain-starter** | **36** | **11** | `behavioral-install-eval`(周) `release-drift-heartbeat`(日) `template-purity` `personal-pii-scrub` `open-core-boundary` `install-canon-live-probe` —— **全数守规则/记忆资产本身** |
-| **本体系** | 私有归档 | r31 起 1 | `gates.yml`：可移植 3/5 门 + 每日心跳 + 覆盖边界自证 |
+| **本体系** | 私有归档 | r31 起 1 | `gates.yml`：可移植 3/5 门 + 每日心跳 + 覆盖边界自证。**首跑已真机复验**：run `36064668657` = success，Linux 上 3 门 PASS / 234 ms，2 门 SKIPPED-BY-DESIGN 且原因进日志（取值 `gh run view --repo lxh113377/skill-private-archive --job 107851518725 --log`） |
 
 ⇒ **三条可执行结论**
 1. **星标不是 CI 严格度的代理指标**：Spearman(stars, workflow_count) = **ρ = −0.114**（n=15）。星标前 4 名里 3 个 ≤1 workflow。
