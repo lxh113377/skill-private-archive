@@ -5,8 +5,6 @@
 
 ## ✅ 已完成
 
-- **r33 发布面维度 + 台账入契约轮（2026-09-25 第 33 轮）** — 12 对象发布/治理面实测（11/12 有 LICENSE、满配仅 spec-kit/AAS、0 tag 的是不做发布的 anthropics）⇒ 第三连结论「严格度源自外部消费者，非星标」；H-1 把 `gate_runs.jsonl` 纳入契约面（逐字段取值域 + ts 同源格式），夹具 22→**33** 例含真跑反例 3 条；H-2 首次给本仓打 annotated tag（版本锚由文本升级为 git 可查），并立 X-2 禁做（不补 LICENSE/发布流水线）；新登记 H-3 待裁定：焚诀治理三件被 noise 判散落（allowlist 缺治理件口径）。全文见 `06-benchmark/全量对标报告_r33_发布与治理面_2026-09-25.md`。
-
 - **r21c 还账轮（2026-09-24 第 21 轮 c 段）** — 本仓欠焚诀 C25/C31 的注入超顶已清偿：`A-memory-start/SKILL.md` 29,041→26,593B（长条目换一行摘要，全文归分卷），其余量 220→1,583B；实测 owner 已自落 C31 归因台账 ⇒ 我「注入区合一」建议作废。受管根 `928517a`/V10.70.0。全文见 `05-feature-status.part19.md`。
 - **r20b 棘轮落地轮（第 21 轮 b 段）** — A-get-memory 三条硬判据落地（受管根 `b8966da` V4.30.0，四门禁首次全绿）+ 本仓注入面棘轮 `ratchet_gate.py`（21/21 夹具，两级判定）挂进项目门禁命令。全文见 `05-feature-status.part18.md`。
 - **r20 机制化轮（第 21 轮）** — rule_editor 写前脏源检测落地（受管根 `9a15f4e` V10.69.0，桩 10/10）+ 09 状态机首次真用 + comparison 常驻页。全文见 `05-feature-status.part17.md`。
@@ -38,4 +36,5 @@
 - **卷21** `05-feature-status.part21.md` — 05-feature-status 分卷（R199 自动拆卷）
 - **卷22** `05-feature-status.part22.md` — 05-feature-status 分卷（R199 自动拆卷）
 - **卷23** `05-feature-status.part23.md` — 05-feature-status 分卷（R199 自动拆卷）
+- **卷24** `05-feature-status.part24.md` — 05-feature-status 分卷（R199 自动拆卷）
 
