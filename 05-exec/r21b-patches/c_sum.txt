@@ -1,1 +1,0 @@
-> V10.70.0 (2026-09-24): **新增「重复轮次闸门」ROUTER 行（R285）**——同日同一条指令被自动化排程重放 5 次、本仓 5 轮占当日新增行 83.7%，且同一小时内两会话对同一指令产出分叉实物；此前该维只有自觉、无确定性拦截（对标 superpowers/spec-kit/AAS/addyosmani 四家均有）。闸门实物 = `自建skill优化/05-exec/repeat_round_guard.py`（0 放行 / 1 拒绝 / 2 取证失败）。本行是 C13 门禁锚点，版本号须与 frontmatter `version:` 同步 bump。
