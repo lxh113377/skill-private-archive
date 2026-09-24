@@ -12,9 +12,9 @@
 | | **本体系（global_skills + 焚诀 + 焚诀式门禁）** | superpowers (obra) | anthropics/skills | agent-skills (addyosmani) | spec-kit / OpenSpec | ruflo | AAS (sickn33) + vercel/skills | mem0 / letta / ai-brain-starter / cc-memory-setup |
 |---|---|---|---|---|---|---|---|---|
 | **一句话** | 个人多端 agent 的**规则+记忆+门禁**操作系统 | 把方法论编码成技能 | Agent Skills **规范本体** | 全 SDLC 生命周期技能库 | 规格驱动开发（重/轻两档） | swarm 编排 + RAG 记忆 | 技能**目录控制面与分发** | 记忆层 / 个人第二大脑 |
-| **组织原理** | 七步闭环 + 八端单源 + C1~C28 棘轮 | 线性流水线（brainstorm→plan→subagent→review） | frontmatter 契约 + 渐进式披露 | 六段解剖 + phase 命令 + review personas | phase gate / 工件引导 | 任务图 + 编排 | 本地 MCP 控制面 + schema 清单 | 向量/图记忆 + hook 级联归档 |
+| **组织原理** | 七步闭环 + 八端单源 + C1~C33 棘轮 | 线性流水线（brainstorm→plan→subagent→review） | frontmatter 契约 + 渐进式披露 | 六段解剖 + phase 命令 + review personas | phase gate / 工件引导 | 任务图 + 编排 | 本地 MCP 控制面 + schema 清单 | 向量/图记忆 + hook 级联归档 |
 | **技能规模** | 注册表 count（`verify_truth_consistency.py` C1 行） | ~14 | 官方示例若干 | 25 | 不是技能库 | 混合 | 目录 2,400+ | 不适用 |
-| **Distinctive 机制** | **跨产物真值门禁（C1~C28）+ 棘轮只降不升 + 八端 junction 单源 + 派生件重建链** | subagent + task reviewer 双签 + worktree 隔离 | 规范权威、1024 字符 description 上限口径 | Rationalizations/Red Flags 每技能必备 + **三层 eval（结构/路由/行为）在 CI** | converge 循环（AC 机器 verdict） | 编排 + 记忆检索 | `--risk/--category` 裁剪安装 + selection-evidence sidecar + 12 份 JSON Schema | 召回评测集 / drift+conflict 自检脚本 |
+| **Distinctive 机制** | **跨产物真值门禁（C1~C33）+ 棘轮只降不升 + 八端 junction 单源 + 派生件重建链** | subagent + task reviewer 双签 + worktree 隔离 | 规范权威、1024 字符 description 上限口径 | Rationalizations/Red Flags 每技能必备 + **三层 eval（结构/路由/行为）在 CI** | converge 循环（AC 机器 verdict） | 编排 + 记忆检索 | `--risk/--category` 裁剪安装 + selection-evidence sidecar + 12 份 JSON Schema | 召回评测集 / drift+conflict 自检脚本 |
 | **记忆** | 8 节结构化 + 分卷自愈 + 归档 + 回滚 + 召回评测 | 会话内 spec/plan 文件 | 无（规范不含记忆） | 无 durable memory（其 comparison 页自己承认） | 工件即记忆 | RAG 记忆 | 清单即记忆 | **主打项** |
 | **对「注意力税」的态度** | C25 字节棘轮（**只覆盖 5 文件**，r18 实测有盲区） | 未量化 | 描述即预算（≤1024 字符） | description 不写流程（防 agent 只读摘要） | 未量化 | 未量化 | 裁剪安装 = 结构侧解法 | N-F 把省 token 写成可验证标题 |
 | **治理/维护** | 单人 + 多并行会话，四根合计提交数见 `cumulative_drift_scan.py` | 近乎 solo，社区 PR 积压 | 官方团队 | 主动收社区件，每技能带 eval | 一线团队，日推 | 日推 | AAS 日推 + 3 open issues（维护最健康的直接竞品） | E 活跃 / F 停滞 |
@@ -22,24 +22,54 @@
 
 ## 我们领先的面（别被「对标」二字说服着丢掉）
 
-1. **跨产物真值门禁**：C1~C28 机器校验「注册表 == 磁盘 == BGE == skill_content == 产物文案」，
+1. **跨产物真值门禁**：C1~C33 机器校验「注册表 == 磁盘 == BGE == skill_content == 产物文案」，
    且基线棘轮只降不升 —— 14 个对象里**零家**有等价物（ruflo 有 RAG 无门禁；AAS 有 schema 无跨产物真值）。
 2. **八端单源 + junction 传播**：改一处权威源多端生效，且有 C3/C4/C6/C22 校验传播链完整性。
 3. **记忆可回滚**：阶段归档 + `restore` + savepoint 门禁；对照系里只有 mem0/letta 在「记忆」上有深度，但它们不回滚**项目记忆**。
 4. **交接结构化**：9 节记忆 + P-1 绑定表 + 09 状态机（V3.48.0 flow）——superpowers/agent-skills 均无 durable cross-session memory。
 
-## 我们落后的面（截至 r19，全部有实测证据）
+## 我们落后的面（截至 r29，全部有实测证据）
 
 | # | 落后项 | 对手做法 | 我们的状态 | 首次登记 |
 |---|---|---|---|---|
 | 1 | 目录注意力税无棘轮 | AAS 裁剪安装；N-A description ≤1024 | 每轮注入约 45,173 字符（`catalog_attention_tax.py`），C25 不覆盖 | r18 N1 |
 | 2 | 注入区口径双源 | 单一真相源清单 | C25 五文件 ∪ attention_sim 六文件 = 10 文件 69,494B 已超顶仍判 PASS | r18 N2 |
-| 3 | 六段解剖无规范 | 六段强制（含 Rationalizations/Red Flags/Verification） | 六段全含 **0/166**；Verification 58.4% | r18 N3 → r19 复测仍 0 |
+| 3 | 六段解剖无规范 | 六段强制（含 Rationalizations/Red Flags/Verification） | **r29 双口径修正**：宽口径下 overview 100% / when_to_use 78.9% / process 54.2%（process 全场第一），真缺口只剩 **rationalizations 13.9%（对手 96%）与 verification**；且 verification 原判缺 68 条里 **22 条（32.4%）是没用了那组词**（如 story-scan 写「采集质量门」），自建维护面真缺 **3 条已于 r29 补齐** | r18 N3 → r28 建 A/B 尺 → r29 双口径+范围过滤 |
 | 4 | description 质量门 | 「做什么+何时用」+**不写流程** | 双要素 120/166；**「流程入描述」24 条**（r19 新增判据首测） | r19 |
 | 5 | 正文计数断言无内容级门禁 | C16 型产物对账（我们已有，但外推不到正文） | 「五端/四端/V9.7.0」类失真 10 句在注入面（`claim_truth_scan.py`） | r19 |
 | 6 | 无 catalog 级三层 eval | N-A 结构/路由/行为三层 eval 在 CI | 焚诀有路由命中评测与召回评测（C26），**无「两技能描述撞车」静态判据** | r19 |
 | 7 | 注册表无 JSON Schema 契约 | AAS `schemas/aas-v1/` 12 份 schema | 运行态污染件靠 noise 门禁事后 quarantine | r18 N5 |
 | 8 | 对外文档为零 | N-A/N-B 有 docs home + comparison 页 | 对内极强、对外零；**本页即第 1 步** | r10 P2-1 / r19 落地本页 |
+
+## 六段解剖 A/B（r28 建尺 · r29 双口径复测，同一把尺量双方真实文件）
+
+复现：`python 05-exec/rubric_ab_compare.py --json 06-benchmark/rubric_ab_r29_2026-09-24.json`
+（判据单一真相源 = `skill_structure_rubric_scan.RUBRIC_RX`；正文口径与 r28 归档 7 列全等，`--against` 机器对账）
+
+**档一 · 正文口径（r18/r28 原尺，只认标题锚点）**
+
+| 对象 | n | overview | when_to_use | process | rationalizations | red_flags | verification | 六段全含 |
+|---|---|---|---|---|---|---|---|---|
+| 本体系 | 166 | 18.1% | 24.1% | **42.2%** | 13.9% | 54.2% | 59.0% | 0.0% |
+| obra/superpowers | 15 | 66.7% | 60.0% | 13.3% | 66.7% | 60.0% | 80.0% | 0.0% |
+| addyosmani/agent-skills | 25 | 96.0% | 92.0% | 24.0% | **96.0%** | **96.0%** | **100.0%** | **20.0%** |
+| anthropics/skills | 20 | 25.0% | 20.0% | 25.0% | 5.0% | 30.0% | 25.0% | 0.0% |
+| mattpocock/skills | 30 | 23.3% | 3.3% | 40.0% | 3.3% | 6.7% | 16.7% | 0.0% |
+
+**档二 · 宽口径（r29 M2：frontmatter description 亦可命中，复用 r17 description 判据）**
+
+| 对象 | n | overview | when_to_use | process | rationalizations | red_flags | verification | 六段全含 |
+|---|---|---|---|---|---|---|---|---|
+| 本体系 | 166 | 100.0% | 78.9% | **54.2%** | 13.9% | 54.2% | 59.6% | 4.8% |
+| obra/superpowers | 15 | 100.0% | 100.0% | 13.3% | 66.7% | 60.0% | 80.0% | 6.7% |
+| addyosmani/agent-skills | 25 | 100.0% | 100.0% | 28.0% | **96.0%** | **96.0%** | **100.0%** | **28.0%** |
+| anthropics/skills | 20 | 100.0% | 70.0% | 35.0% | 5.0% | 30.0% | 25.0% | 0.0% |
+| mattpocock/skills | 30 | 100.0% | 46.7% | 40.0% | 3.3% | 6.7% | 16.7% | 0.0% |
+
+两档差值（本体系）：overview +81.9 / when_to_use +54.8 / process +12.0 / **rationalizations +0.0** /
+**red_flags +0.0** / verification +0.6 ⇒ **只有 rationalizations 一段是真·零兜底余地的大缺口（差 82pt）**。
+`verification` 另经三档锚点稳健性检验：68 条原判缺里 22 条（32.4%）属措辞假阴性，
+自建维护面真缺 3 条已于 r29 补齐（`video-breakdown-skill` / `local-vram` / `office-automation-pro`）。
 
 ## 不学清单（独有优势，禁止为了「像一线」而丢）
 
@@ -54,5 +84,9 @@
 
 - `全量对标报告_r18_2026-09-24.md` — 14 对象扩容 + N1~N8 差距 + 4 工具落地
 - `全量对标报告_r19_2026-09-24.md` — 实物（代码）层核验 + 工具校准 + 分母统一 + 新判据两枚
+- `全量对标报告_r20_插件面补口径_2026-09-24.md` — 插件技能面进入分母（47.5% / 自建视角低估 34.3%）
+- `全量对标报告_r27_2026-09-24.md` — 57 个在册插件技能首次安全审计（HIGH 4 条逐行裁定，2 条在源码里裁定掉）
+- `全量对标报告_r28_六段解剖AB_2026-09-24.md` — 同一把尺量对手真实文件，推翻三条旧推断
+- `全量对标报告_r29_双口径与范围过滤_2026-09-24.md` — M2 双口径 + 判据稳健性 + H2 真队列 3→0
 - `自建skill体系全量对标分析报告.md` — r10 首轮（七维矩阵 + 16 项映射，分母 151 已失效见 r18 校正注）
 - `P0-C_累积漂移复核第1批_2026-09-24.md` / `第2批` — 高频改写文件的承重句语义复核

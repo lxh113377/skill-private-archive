@@ -17,6 +17,12 @@
 
 - [BUG] **夹带第六形态＝本仓自身：我在共享工作区用 `git add -A <路径>` 把并行会话的在途文件并入自己的提交**（2026-09-24 r27 实犯） —— 提交 `b973917` 含 4 个非我方文件（`05-exec/r21d_lessons_land.py` 118 行、`05-exec/r21d_obsolete_fixtures.py` 6 行、`05-exec/transmit_obsolescence_check.py` 140 行、`06-benchmark/transmit_proposals.json` 32 行），归属其 r21d/transmit 会话。根因与已登记的「跨会话夹带」同源（整目录/整文件提交），但落点是**本仓而非受管根**，故此前 06 卷未覆盖该面；直接违反本仓已立的 R236 补注（多会话并发 commit 必须显式 `--file` 白名单、禁 `git add -A`/`git add .`）。处置：**不回滚**（回滚=抹掉他人在途工作），改为追加归属说明提交；内容零改写。 | 状态：**已发生，防复发靠执行面改法**——本仓提交一律 `git add <逐个显式路径>`，提交后必查 `git show --stat HEAD` 的文件清单是否全部属本次改动
 
+- [BUG] **对标判据的「措辞假阴性」此前从未量化：verification 缺口有 32.4% 只是对手用了那组词**（2026-09-24 r29 实测） —— 现行锚点集判本体系 98/166=59.0%，补同族写法（质量门/质检/对账/复跑/自证/校验/断言/退出码/回归/通过标准/proof/evidence）后 120/166=72.3%，仅段落标题档 52/166=31.3%。实物反例：`story-scan` 有「采集质量门（两篇通用，必做）」四步硬检查却被原判据判缺；`agent-browser` 同族。**影响**：r18/r28 引用的「verification 差 41pt」应为 **27.7pt**；`overview` 列宽口径下五家全 100%，**无鉴别力，禁再引用**。 | 状态：**已修（判据层）**——`05-exec/r29_verification_anchor_robustness.py`（三档并排 + 真队列输出）+ M2 双口径已进 `rubric_ab_compare.py`；引用规程写入 r29 报告 §6.5。r28 报告已按 R241 加校正注（原文零改写）
+
+- [BUG] **对标整改队列未过「范围裁定」即会引导会话去改别人的技能**（2026-09-24 r29 实测） —— r28 的 H2 按 `verification=false` 体积降序取 top14，实为 `agent-browser`/`docx`/`computer-use-guidance-windows`/`gstack`/`shadcn`/`canvas-design` 等**全数市场/上游件**，越过 2026-09-22 用户裁定（维护面 = HIGH 51 + MID 26 = 77，EXCLUDE 43 / LOW 30 排除）。缺该段 67 条里自建在面仅 **14 条（20.9%）**，再叠判据稳健性过滤后真队列 **3 条**。 | 状态：**已闭环**——机器护栏 `05-exec/r29_scope_filtered_queue.py`（读 `00-scope/自建skill清单.md` 裁定表，越界项只登记不改）；3 条真队列已于 r29 补齐（受管根 `6a4f97b`，复测真队列 3→0）
+
+- [BUG] **`skill_structure_rubric_scan.py` 的 `covered` 把 `has_stepish_list` 计入六段，可输出自相矛盾的 "7/6"**（与本仓已登记的「8 个 AC 却 11 个格式正确」同族） | 状态：**已修**（r29，改 `sum(1 for k in RUBRIC if hit[k])`，排序键同步只数六段；历史报告未引用过该字段，无数字失真）
+
 ## 技术债
 <!-- 格式：- [DEBT] 描述 — 建议的还债方式 -->
 - [DEBT] **三仓均无 `pre-commit` hook**（2026-09-22 实测：`D:\global_skills` / 焚诀 / `D:\global_memory` 的 `.git/hooks` 仅 `post-commit`，其余全是 `*.sample`）—— 故「mirror / noise / evolution 已挂 `hooks/pre-commit`」（`04-plan/工作流专项建议.md` §4）属**设计意图而非既成事实**；影响：所有「hook 拦截后自动重试」的链路都是死代码（R270 已把 `--fix-mirror` 改为主动前置规避） | 处置：用户 2026-09-22 裁定**暂不补装**（改动面最小，改为「提交后按需跑 `gates`」）；如需恢复提交时拦截，须重新评估 fail-closed 对所有会话的影响

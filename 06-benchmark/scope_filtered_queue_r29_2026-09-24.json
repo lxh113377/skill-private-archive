@@ -1,0 +1,162 @@
+{
+ "schema": "scope-filtered-queue-v1",
+ "generated_at": "2026-09-24 23:06",
+ "readonly": true,
+ "section": "verification",
+ "scope_source": "C:\\Users\\37533\\Desktop\\workspace\\自建skill优化\\00-scope\\自建skill清单.md",
+ "tier_counts": {
+  "HIGH": 51,
+  "MID": 26,
+  "LOW": 30,
+  "EXCLUDE": 43
+ },
+ "scanned": 166,
+ "missing": 67,
+ "in_scope": [
+  {
+   "skill": "agent-browser",
+   "bytes": 29055,
+   "tier": "MID",
+   "in_flight": false
+  },
+  {
+   "skill": "local-realtime-translator",
+   "bytes": 5827,
+   "tier": "MID",
+   "in_flight": false
+  },
+  {
+   "skill": "local-tts",
+   "bytes": 5381,
+   "tier": "MID",
+   "in_flight": false
+  },
+  {
+   "skill": "story-scan",
+   "bytes": 5343,
+   "tier": "HIGH",
+   "in_flight": false
+  },
+  {
+   "skill": "video-breakdown-skill",
+   "bytes": 5277,
+   "tier": "MID",
+   "in_flight": false
+  },
+  {
+   "skill": "local-computer-use",
+   "bytes": 4700,
+   "tier": "MID",
+   "in_flight": false
+  },
+  {
+   "skill": "local-screenshot-qa",
+   "bytes": 4617,
+   "tier": "MID",
+   "in_flight": false
+  },
+  {
+   "skill": "local-mineru",
+   "bytes": 4552,
+   "tier": "MID",
+   "in_flight": false
+  },
+  {
+   "skill": "local-txt2img",
+   "bytes": 4114,
+   "tier": "MID",
+   "in_flight": false
+  },
+  {
+   "skill": "local-asr",
+   "bytes": 3602,
+   "tier": "MID",
+   "in_flight": false
+  },
+  {
+   "skill": "local-img2img",
+   "bytes": 2642,
+   "tier": "MID",
+   "in_flight": false
+  },
+  {
+   "skill": "local-vram",
+   "bytes": 2577,
+   "tier": "MID",
+   "in_flight": false
+  },
+  {
+   "skill": "office-automation-pro",
+   "bytes": 2424,
+   "tier": "MID",
+   "in_flight": false
+  },
+  {
+   "skill": "local-ocr-npu",
+   "bytes": 2292,
+   "tier": "MID",
+   "in_flight": false
+  }
+ ],
+ "out_of_scope": [
+  "_my-skills",
+  "algorithmic-art",
+  "brand-guidelines",
+  "browser-cdp",
+  "byted-mediakit-shared",
+  "byted-seedance-video-generate",
+  "byted-seedream-image-generate",
+  "canvas-design",
+  "chart-visualization",
+  "cloudbase__skillhub",
+  "coding-agent",
+  "computer-use-guidance-windows",
+  "data-analysis",
+  "defuddle",
+  "diagram-maker",
+  "dingtalk-contact",
+  "dingtalk-event",
+  "doc-coauthoring",
+  "docx",
+  "electron",
+  "frontend-design",
+  "frontend-skill",
+  "frontend-slides",
+  "gsap",
+  "gstack",
+  "html-ppt",
+  "hyperframes-cli",
+  "hyperframes-media",
+  "hyperframes-registry",
+  "internal-comms",
+  "mcporter",
+  "meeting-intelligence",
+  "nano-pdf",
+  "node-inspect-debugger",
+  "notion-cli",
+  "obsidian-bases",
+  "obsidian-cli",
+  "obsidian-markdown",
+  "openai-whisper-api",
+  "oracle",
+  "pdf",
+  "pixelle-api-ensure",
+  "python-debugpy",
+  "refactoring",
+  "research-documentation",
+  "screenshot",
+  "shadcn",
+  "slides",
+  "story",
+  "taskflow",
+  "taskflow-inbox-triage",
+  "video-frames",
+  "web-design-guidelines"
+ ],
+ "unlisted": [
+  "_my-skills",
+  "dingtalk-contact",
+  "dingtalk-event"
+ ],
+ "caveat": "DIRTY_SKILLS 是 r29 一次实测的并行会话在途快照，复用前必须重跑 git status 核对"
+}

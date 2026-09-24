@@ -16,7 +16,8 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from skill_structure_rubric_scan import RUBRIC_RX, GS_ROOT, is_reparse_dir  # 同一把尺
+from skill_structure_rubric_scan import (RUBRIC_RX, GS_ROOT, is_reparse_dir,
+                                          rubric_hits)  # 同一把尺（r29 起含双口径）
 
 REPOS = ["obra/superpowers", "addyosmani/agent-skills", "anthropics/skills", "mattpocock/skills"]
 
@@ -49,9 +50,10 @@ def fetch(repo, path):
         return None
 
 
-def apply_rubric(text):
-    body = text.split("---", 2)[-1] if text.startswith("---") else text
-    return {k: any(rx.search(body) for rx in rxs) for k, rxs in RUBRIC_RX.items()}
+def collect(text):
+    """同一文件跑两口径：body=r18/r28 原尺，both=r29 M2 宽口径（含 frontmatter 兜底）。"""
+    return {"body": rubric_hits(text, calibre="body"),
+            "both": rubric_hits(text, calibre="both")}
 
 
 def local_baseline(limit=400):
@@ -60,20 +62,24 @@ def local_baseline(limit=400):
         if is_reparse_dir(md.parent):
             continue
         try:
-            rows.append(apply_rubric(md.read_text(encoding="utf-8", errors="replace")))
+            rows.append(collect(md.read_text(encoding="utf-8", errors="replace")))
         except OSError:
             continue
     return rows
 
 
-def summarize(name, hits):
-    n = len(hits)
+def summarize(name, items):
+    """items = [{body:{...}, both:{...}}]；输出两口径各自的逐列百分比。"""
+    n = len(items)
+    out = {"name": name, "n": n}
     if not n:
-        return {"name": name, "n": 0}
-    per = {k: round(100.0 * sum(1 for h in hits if h[k]) / n, 1) for k in RUBRIC_RX}
-    per["all_six"] = round(100.0 * sum(1 for h in hits if all(h[k] for k in RUBRIC_RX)) / n, 1)
-    per.update({"name": name, "n": n})
-    return per
+        return out
+    for cal in ("body", "both"):
+        per = {k: round(100.0 * sum(1 for it in items if it[cal][k]) / n, 1) for k in RUBRIC_RX}
+        per["all_six"] = round(100.0 * sum(
+            1 for it in items if all(it[cal][k] for k in RUBRIC_RX)) / n, 1)
+        out[cal] = per
+    return out
 
 
 def main():
@@ -85,6 +91,7 @@ def main():
     ap.add_argument("--repos", nargs="*", default=REPOS)
     ap.add_argument("--cap", type=int, default=30, help="每仓最多取多少个 SKILL.md（防超大仓拉爆）")
     ap.add_argument("--json")
+    ap.add_argument("--against", help="与已归档 JSON 对账正文口径（防改尺时静默动了历史数字）")
     args = ap.parse_args()
 
     ours = summarize("本体系 D:\\global_skills", local_baseline())
@@ -105,7 +112,7 @@ def main():
             if t is None:
                 failed += 1
                 continue
-            hits.append(apply_rubric(t))
+            hits.append(collect(t))
         if not hits:
             print("  %-34s 无可用文件（清单 %d，取回失败 %d）" % (repo, len(paths), failed))
             continue
@@ -118,16 +125,46 @@ def main():
         return 2
 
     cols = list(RUBRIC_RX.keys()) + ["all_six"]
-    print("\n=== 六段解剖 A/B（同一把尺，全部实测真实文件）===")
-    print("%-34s %5s %s" % ("对象", "n", "".join("%14s" % c[:13] for c in cols)))
-    for r in rows:
-        print("%-34s %5d %s" % (r["name"], r["n"], "".join("%13.1f%%" % r.get(c, 0.0) for c in cols)))
-    print("\n读法：本体系 all_six 与对手同为 0 时说明「六段齐备」并非行业既成标准，")
-    print("      但单段差距（尤其 rationalizations / verification）才是可借的实物做法。")
+    for cal, title in (("body", "正文口径（r18/r28 原尺，只认标题锚点）"),
+                       ("both", "宽口径（r29 M2：frontmatter description 亦可命中）")):
+        print("\n=== 六段解剖 A/B · %s ===" % title)
+        print("%-34s %5s %s" % ("对象", "n", "".join("%14s" % c[:13] for c in cols)))
+        for r in rows:
+            per = r.get(cal) or {}
+            print("%-34s %5d %s" % (r["name"], r["n"],
+                                    "".join("%13.1f%%" % per.get(c, 0.0) for c in cols)))
+    print("\n差值（宽口径 - 正文口径，仅本体系一列说明口径水分有多大）:")
+    ours_b, ours_x = rows[0].get("body") or {}, rows[0].get("both") or {}
+    print("  " + "  ".join("%s %+.1f" % (c, ours_x.get(c, 0.0) - ours_b.get(c, 0.0)) for c in cols))
+    print("\n读法：两口径禁止混列引用。rationalizations / verification 两列在两口径下差值最小，"
+          "\n     ⇒ 这两段才是真缺口；overview / when_to_use 的差距里含标题风格差异，须以宽口径为准。")
+    if args.against:
+        # 只对本方一行做逐列对账：对手侧星标/文件数会随上游漂移，不是"改尺"的判据。
+        old = json.loads(Path(args.against).read_text(encoding="utf-8"))
+        prev = None
+        for r in old.get("rows", []):
+            if r.get("name") == rows[0]["name"] or "global_skills" in str(r.get("name", "")):
+                prev = r
+                break
+        if prev is None:
+            print("\n对账 %s: 归档里找不到本方行 -> 无法对账，判失败" % args.against)
+            return 2
+        prev_body = prev.get("body", prev)  # v1 行是扁平的，本身就是正文口径
+        drift = []
+        for c in cols:
+            a, b = float(prev_body.get(c, 0.0)), float(ours_b.get(c, 0.0))
+            if abs(a - b) > 0.05:
+                drift.append("%s %.1f->%.1f" % (c, a, b))
+        if drift:
+            print("\n对账 %s: 正文口径漂移 %s（改尺不得动历史数字）" % (args.against, "; ".join(drift)))
+            return 2
+        print("\n对账 %s: 正文口径 %d 列全等 ✅（宽口径为新增列，未触碰历史判据）" % (args.against, len(cols)))
     if args.json:
         Path(args.json).write_text(json.dumps(
-            {"schema": "rubric-ab-v1", "rows": rows, "repos_requested": args.repos,
-             "cap": args.cap, "rubric_source": "skill_structure_rubric_scan.RUBRIC_RX"},
+            {"schema": "rubric-ab-v2", "rows": rows, "repos_requested": args.repos,
+             "cap": args.cap, "calibres": ["body", "both"],
+             "rubric_source": "skill_structure_rubric_scan.RUBRIC_RX",
+             "frontmatter_calibre_source": "description_baseline_scan.{TRIGGER_RE,PROCESS_RE,MIN_DO_LEN}"},
             ensure_ascii=False, indent=1), encoding="utf-8")
         print("JSON -> %s" % args.json)
     return 0

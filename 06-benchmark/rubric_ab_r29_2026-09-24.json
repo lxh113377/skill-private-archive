@@ -1,0 +1,128 @@
+{
+ "schema": "rubric-ab-v2",
+ "rows": [
+  {
+   "name": "本体系 D:\\global_skills",
+   "n": 166,
+   "body": {
+    "overview": 18.1,
+    "when_to_use": 24.1,
+    "process": 42.2,
+    "rationalizations": 13.9,
+    "red_flags": 54.2,
+    "verification": 59.0,
+    "all_six": 0.0
+   },
+   "both": {
+    "overview": 100.0,
+    "when_to_use": 78.9,
+    "process": 54.2,
+    "rationalizations": 13.9,
+    "red_flags": 54.2,
+    "verification": 59.6,
+    "all_six": 4.8
+   }
+  },
+  {
+   "name": "obra/superpowers",
+   "n": 15,
+   "body": {
+    "overview": 66.7,
+    "when_to_use": 60.0,
+    "process": 13.3,
+    "rationalizations": 66.7,
+    "red_flags": 60.0,
+    "verification": 80.0,
+    "all_six": 0.0
+   },
+   "both": {
+    "overview": 100.0,
+    "when_to_use": 100.0,
+    "process": 13.3,
+    "rationalizations": 66.7,
+    "red_flags": 60.0,
+    "verification": 80.0,
+    "all_six": 6.7
+   }
+  },
+  {
+   "name": "addyosmani/agent-skills",
+   "n": 25,
+   "body": {
+    "overview": 96.0,
+    "when_to_use": 92.0,
+    "process": 24.0,
+    "rationalizations": 96.0,
+    "red_flags": 96.0,
+    "verification": 100.0,
+    "all_six": 20.0
+   },
+   "both": {
+    "overview": 100.0,
+    "when_to_use": 100.0,
+    "process": 28.0,
+    "rationalizations": 96.0,
+    "red_flags": 96.0,
+    "verification": 100.0,
+    "all_six": 28.0
+   }
+  },
+  {
+   "name": "anthropics/skills",
+   "n": 20,
+   "body": {
+    "overview": 25.0,
+    "when_to_use": 20.0,
+    "process": 25.0,
+    "rationalizations": 5.0,
+    "red_flags": 30.0,
+    "verification": 25.0,
+    "all_six": 0.0
+   },
+   "both": {
+    "overview": 100.0,
+    "when_to_use": 70.0,
+    "process": 35.0,
+    "rationalizations": 5.0,
+    "red_flags": 30.0,
+    "verification": 25.0,
+    "all_six": 0.0
+   }
+  },
+  {
+   "name": "mattpocock/skills",
+   "n": 30,
+   "body": {
+    "overview": 23.3,
+    "when_to_use": 3.3,
+    "process": 40.0,
+    "rationalizations": 3.3,
+    "red_flags": 6.7,
+    "verification": 16.7,
+    "all_six": 0.0
+   },
+   "both": {
+    "overview": 100.0,
+    "when_to_use": 46.7,
+    "process": 40.0,
+    "rationalizations": 3.3,
+    "red_flags": 6.7,
+    "verification": 16.7,
+    "all_six": 0.0
+   }
+  }
+ ],
+ "repos_requested": [
+  "obra/superpowers",
+  "addyosmani/agent-skills",
+  "anthropics/skills",
+  "mattpocock/skills"
+ ],
+ "cap": 30,
+ "calibres": [
+  "body",
+  "both"
+ ],
+ "rubric_source": "skill_structure_rubric_scan.RUBRIC_RX",
+ "frontmatter_calibre_source": "description_baseline_scan.{TRIGGER_RE,PROCESS_RE,MIN_DO_LEN}"
+}

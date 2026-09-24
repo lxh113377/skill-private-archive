@@ -1,0 +1,230 @@
+{
+ "schema": "verification-anchor-robustness-v1",
+ "generated_at": "2026-09-24 23:11",
+ "readonly": true,
+ "n": 166,
+ "narrow": 98,
+ "wide": 120,
+ "heading_only": 52,
+ "wording_artifact_count": 22,
+ "true_queue_in_scope": [
+  {
+   "skill": "video-breakdown-skill",
+   "bytes": 5277,
+   "tier": "MID",
+   "narrow": false,
+   "wide": false,
+   "heading": false
+  },
+  {
+   "skill": "local-vram",
+   "bytes": 2577,
+   "tier": "MID",
+   "narrow": false,
+   "wide": false,
+   "heading": false
+  },
+  {
+   "skill": "office-automation-pro",
+   "bytes": 2424,
+   "tier": "MID",
+   "narrow": false,
+   "wide": false,
+   "heading": false
+  }
+ ],
+ "true_queue_all": [
+  {
+   "skill": "_my-skills",
+   "tier": "UNLISTED"
+  },
+  {
+   "skill": "brand-guidelines",
+   "tier": "EXCLUDE"
+  },
+  {
+   "skill": "byted-mediakit-shared",
+   "tier": "EXCLUDE"
+  },
+  {
+   "skill": "byted-seedance-video-generate",
+   "tier": "EXCLUDE"
+  },
+  {
+   "skill": "byted-seedream-image-generate",
+   "tier": "EXCLUDE"
+  },
+  {
+   "skill": "canvas-design",
+   "tier": "EXCLUDE"
+  },
+  {
+   "skill": "chart-visualization",
+   "tier": "LOW"
+  },
+  {
+   "skill": "computer-use-guidance-windows",
+   "tier": "EXCLUDE"
+  },
+  {
+   "skill": "data-analysis",
+   "tier": "LOW"
+  },
+  {
+   "skill": "defuddle",
+   "tier": "LOW"
+  },
+  {
+   "skill": "diagram-maker",
+   "tier": "LOW"
+  },
+  {
+   "skill": "dingtalk-contact",
+   "tier": "UNLISTED"
+  },
+  {
+   "skill": "dingtalk-event",
+   "tier": "UNLISTED"
+  },
+  {
+   "skill": "docx",
+   "tier": "EXCLUDE"
+  },
+  {
+   "skill": "electron",
+   "tier": "EXCLUDE"
+  },
+  {
+   "skill": "frontend-design",
+   "tier": "EXCLUDE"
+  },
+  {
+   "skill": "frontend-slides",
+   "tier": "EXCLUDE"
+  },
+  {
+   "skill": "gsap",
+   "tier": "LOW"
+  },
+  {
+   "skill": "html-ppt",
+   "tier": "EXCLUDE"
+  },
+  {
+   "skill": "hyperframes-cli",
+   "tier": "LOW"
+  },
+  {
+   "skill": "hyperframes-media",
+   "tier": "LOW"
+  },
+  {
+   "skill": "hyperframes-registry",
+   "tier": "LOW"
+  },
+  {
+   "skill": "internal-comms",
+   "tier": "EXCLUDE"
+  },
+  {
+   "skill": "local-vram",
+   "tier": "MID"
+  },
+  {
+   "skill": "mcporter",
+   "tier": "EXCLUDE"
+  },
+  {
+   "skill": "meeting-intelligence",
+   "tier": "EXCLUDE"
+  },
+  {
+   "skill": "nano-pdf",
+   "tier": "EXCLUDE"
+  },
+  {
+   "skill": "node-inspect-debugger",
+   "tier": "LOW"
+  },
+  {
+   "skill": "notion-cli",
+   "tier": "EXCLUDE"
+  },
+  {
+   "skill": "obsidian-bases",
+   "tier": "LOW"
+  },
+  {
+   "skill": "obsidian-markdown",
+   "tier": "LOW"
+  },
+  {
+   "skill": "office-automation-pro",
+   "tier": "MID"
+  },
+  {
+   "skill": "openai-whisper-api",
+   "tier": "EXCLUDE"
+  },
+  {
+   "skill": "oracle",
+   "tier": "EXCLUDE"
+  },
+  {
+   "skill": "pdf",
+   "tier": "EXCLUDE"
+  },
+  {
+   "skill": "python-debugpy",
+   "tier": "LOW"
+  },
+  {
+   "skill": "refactoring",
+   "tier": "LOW"
+  },
+  {
+   "skill": "research-documentation",
+   "tier": "EXCLUDE"
+  },
+  {
+   "skill": "shadcn",
+   "tier": "EXCLUDE"
+  },
+  {
+   "skill": "slides",
+   "tier": "EXCLUDE"
+  },
+  {
+   "skill": "story",
+   "tier": "LOW"
+  },
+  {
+   "skill": "taskflow",
+   "tier": "EXCLUDE"
+  },
+  {
+   "skill": "taskflow-inbox-triage",
+   "tier": "EXCLUDE"
+  },
+  {
+   "skill": "video-breakdown-skill",
+   "tier": "MID"
+  },
+  {
+   "skill": "video-frames",
+   "tier": "EXCLUDE"
+  },
+  {
+   "skill": "web-design-guidelines",
+   "tier": "LOW"
+  }
+ ],
+ "anchor_sets": {
+  "narrow": [
+   "(验证|验收|证据|判据|核验|检查清单|退出条件|Verification|Acceptance|Definition of Done|Checklist|门禁|实测)"
+  ],
+  "wide_extra": [
+   "(质量门|质检|对账|复跑|复测|自证|校验|断言|退出码|exit\\s*code|assert|截图|录屏|日志|smoke|回归|通过标准|达标|checklist|检查项|逐项检查|验证命令|验收|proof|evidence)"
+  ]
+ }
+}
