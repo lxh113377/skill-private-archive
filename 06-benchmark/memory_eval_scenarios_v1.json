@@ -1,0 +1,84 @@
+{
+  "schema": "fenjue-memory-eval-v1",
+  "version": "v1",
+  "created": "2026-09-24",
+  "design": "12 场景 × 9 节 recall 基准（mem0 LOCOMO 思路的文件版）；含 3 条销账陷阱题；判据 = 正则可判定（确定性，零 LLM）",
+  "target_scope": "被测项目 memory/（主卷 + partN 分卷 + AGENTS.md 绑定表）",
+  "scenarios": [
+    {
+      "id": "M01",
+      "section": "01",
+      "question": "本项目目标是什么？（阶段划分关键词）",
+      "check": { "pattern": "阶段0|六阶段|阶段 0", "flags": "i" }
+    },
+    {
+      "id": "M02",
+      "section": "02",
+      "question": "执行证据目录是哪个？",
+      "check": { "pattern": "05-exec", "flags": "i" }
+    },
+    {
+      "id": "M03",
+      "section": "03",
+      "question": "本机首选 Python 解释器路径？",
+      "check": { "pattern": "Python312", "flags": "i" }
+    },
+    {
+      "id": "M04",
+      "section": "04",
+      "question": "阶段0/1 唯一可复跑脚本是哪个？",
+      "check": { "pattern": "scan_all\\.py", "flags": "i" }
+    },
+    {
+      "id": "M05",
+      "section": "05",
+      "question": "第 13 轮 noise_lint 修补的根因结论是什么（关键词）？",
+      "check": { "pattern": "noise_lint", "flags": "i" }
+    },
+    {
+      "id": "M06",
+      "section": "06",
+      "question": "受管根内散落项的处置红线是什么？",
+      "check": { "pattern": "只迁.{0,4}_trash", "flags": "i" }
+    },
+    {
+      "id": "M07",
+      "section": "07",
+      "question": "P0-2 AC 收敛机器化的落地命令形态？",
+      "check": { "pattern": "verify-ac", "flags": "i" }
+    },
+    {
+      "id": "M08",
+      "section": "08",
+      "question": "阶段0 自建清单裁定可复跑的验收标准编号？",
+      "check": { "pattern": "AC-OBS-01", "flags": "i" }
+    },
+    {
+      "id": "M09",
+      "section": "09",
+      "question": "动态工作流状态文件的 schema 标识？",
+      "check": { "pattern": "fenjue-workflow-state-v1", "flags": "i" }
+    },
+    {
+      "id": "M10",
+      "section": "06",
+      "kind": "trap",
+      "question": "【陷阱·销账类】`.rule_backup` 备份集中落点问题现在是什么状态？（应答：已闭环/销账，而非未修复）",
+      "check": { "pattern": "rule_backup[\\s\\S]{0,400}?(已闭环|销账|已修复)", "flags": "i" }
+    },
+    {
+      "id": "M11",
+      "section": "07",
+      "kind": "trap",
+      "question": "【陷阱·销账类】11 个一次性脚本归档这件事完成了吗？（应答：已归档至 archive/one-shot-scripts-2026-09）",
+      "check": { "pattern": "one-shot-scripts-2026-09", "flags": "i" }
+    },
+    {
+      "id": "M12",
+      "section": "05",
+      "kind": "trap",
+      "question": "【陷阱·状态类】06 注入壳瘦身（P1-3a）最终结果？（应答：已执行，-6,435B，而非未做）",
+      "check": { "pattern": "26,594B|6,435B", "flags": "i" }
+    }
+  ]
+}

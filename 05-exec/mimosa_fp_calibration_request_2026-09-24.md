@@ -47,6 +47,7 @@ node "$CLI" status --project "C:/Users/37533/Desktop/workspace/自建skill优化
 | # | 缺陷 | 实测证据 |
 |---|---|---|
 | ① | **路径穿越规则不识别任何消毒形态**：函数封装（realpath+commonpath+raise）与裸常量 join 一律 flag；内联 `os.path.realpath(os.path.join(...))` 因缺陷③无法落地验证 | 复扫 ×2 计数恒 13，命中点即 `_out` 调用点 |
+| ①+ | **（r12c 补充实测）规则实质 = 「open 写一律报高危」**：`open(os.path.realpath(REG), "w")`（REG 为纯字面量）与 `open(r"C:\...json", "w")`（**纯字符串字面量内联**）均被 flag——5 种形态全灭，任何含 Python 写文件的代码都无法凭内容清零 | B7-fix-registry-domain.py:140/142 三次改写三次复扫均 flag；已回滚至原形态 |
 | ② | **policy / threatModel 不作用于确定性规则**：`allowedWriteRoots`、`exclusions` 校验通过但 audit 不变 | `policy check` ✓ / `threat-model check` ✓ → audit 13 不变 |
 | ③ | **修复循环死锁：含 blocked finding 的文件编辑全锁**，且 deny 行号锚 stale（scan_all 恒指 474——已漂移至 484，该行现为 markdown 表头；_lib 恒指 10——docstring 行，从未是 sink） | PreToolUse Edit 连续 4 次 deny（3×scan_all + 1×_lib），候选内容即修复代码仍被拒 |
 | ④ | **blocked finding 不随内容收敛**：`ledger checkpoint`（covered=8）折叠后 blocked 反 6→7（含已消毒行对应的 finding），无自动转 `fixed_static` 机制 | `status` 前后对比 |

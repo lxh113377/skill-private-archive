@@ -300,3 +300,4 @@
 - 分析方法：API 实时取数 + README 直读 + 本机实测 + 既有源码级报告复用 + 跨项目三角验证
 - 本轮改动：零代码改动，仅新增本报告（`06-benchmark/`）
 - 数据快照：2026-09-23（star/pushed_at 以当日 API 返回为准；网络受限通道已标注）
+- **2026-09-24 复核注（零实质漂移，结论维持）**：自动化重复触发复核——① 对标仓 API 复测：superpowers 290,672★（+158）/ anthropics/skills 177,823★（+37）/ spec-kit 138,592★（+51）/ ruflo 73,154★（+34），四仓 pushed_at 均无新推送（superpowers/anthropics 仍 09-22、spec-kit/ruflo 仍 09-23）；② 本体系复测：151 个 SKILL.md / A-memory-start 10.67.0 / A-project-handoff 3.51.0，与 §2.1 基线全等。§6 差距清单（G1–G8）与 §8 建议（P0×2/P1×3/P2×3）全部维持，无需改写。
