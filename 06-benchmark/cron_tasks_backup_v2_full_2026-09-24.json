@@ -1,0 +1,28 @@
+{
+  "schema": "cron-backup-full-v2",
+  "purpose": "r22 全量备份（含原始 instruction 原文），供逐字段回滚；本文件先于任何 update 入库并 git 提交",
+  "backup_ts": "2026-09-24T21:55:00+08:00",
+  "obtained_by": "mcp__builtin__qoder_cron action=list",
+  "frequency_decision": "用户 2026-09-24 裁定：每小时一次保持不变。本轮及后续任何操作**禁止修改 schedule/everyMs**，只允许替换 instruction 文本。",
+  "shared_original_instruction": "将我的项目与GitHub上类似优质开源项目进行全面对标分析。 请从以下维度逐项深入比较：功能模块覆盖范围、技术架构与实现方式、性能表现、可扩展性、维护状态、文档完善程度、适用场景。明确指出我的工作流在该项目中的对应部分、存在的具体差距、可借鉴的优势功能。给出详细的改进建议并按优先级排序（高/中/低），以帮助我将工作流提升至与该项目同等或更优水平。最终输出结构化报告，必须包含：对比总览表、逐项差距说明、改进建议清单（含优先等级）、可操作的实施路径。\r\n把报告里的改进建议按优先级直接开工执行.其中破坏性操作在已确保有完整备份和Git版本控制自动提交。严禁询问，直接执行，用户不在无法确认，这是自动化任务。",
+  "shared_original_instruction_note": "本轮 list 实测 7 条任务中 6 条的 instruction.text 与上面逐字相同（门店/医/陪聊/孝心/超市/焚诀）；「自建skill」一条已在 r21b 被替换，其原文由本字段承担回滚值。全部原文一致 ⇒ 回滚任一条即用本字段。",
+  "restore_template": "qoder_cron update jobId=<id> patch.prompt=<shared_original_instruction 原文>",
+  "tasks": [
+    { "id": "c22cd5f4-da72-4c35-961e-03b3cff820f3", "name": "门店", "everyMs": 3600000, "cwd": "C:\\Users\\37533\\Desktop\\workspace\\项目\\门店 AI 管理智能体", "workspaceId": "de2182e8-7832-40ff-974a-6de547508e1f", "model": "qfmodel", "permissionMode": "bypassPermissions", "outputMode": "merged", "enabled": true, "deleteAfterRun": false, "expiresAt": null, "revision_at_backup": 7, "createdAt": 1790216556764 },
+    { "id": "48fd8b94-7e4a-41c4-b55c-e73785b2d90d", "name": "医", "everyMs": 3600000, "cwd": "C:\\Users\\37533\\Desktop\\workspace\\项目\\医", "workspaceId": "323722c6-2323-4087-b12c-e8f9baa2067e", "model": "qfmodel", "permissionMode": "bypassPermissions", "outputMode": "merged", "enabled": true, "deleteAfterRun": false, "expiresAt": null, "revision_at_backup": 7, "createdAt": 1790216491380 },
+    { "id": "db339ab3-9aeb-4fea-91dc-be6faf1b3de4", "name": "陪聊", "everyMs": 3600000, "cwd": "C:\\Users\\37533\\Desktop\\workspace\\项目\\陪聊", "workspaceId": "0c7dbd73-df39-4000-ae80-afde7cc9e82f", "model": "qfmodel", "permissionMode": "bypassPermissions", "outputMode": "merged", "enabled": true, "deleteAfterRun": false, "expiresAt": null, "revision_at_backup": 6, "createdAt": 1790216460597 },
+    { "id": "7acd7fc6-a570-47d7-a619-7d799b404633", "name": "孝心", "everyMs": 3600000, "cwd": "C:\\Users\\37533\\Desktop\\workspace\\项目\\孝心联", "workspaceId": "561e206f-bef6-49d7-b863-669d0ec866fb", "model": "qfmodel", "permissionMode": "bypassPermissions", "outputMode": "merged", "enabled": true, "deleteAfterRun": false, "expiresAt": null, "revision_at_backup": 5, "createdAt": 1790216407567 },
+    { "id": "eb486c54-0d77-465d-8d84-1c2758db93f9", "name": "超市", "everyMs": 3600000, "cwd": "C:\\Users\\37533\\Desktop\\workspace\\超市web", "workspaceId": "75eb3dae-4d51-4755-91b2-1e0ab7be25b2", "model": "qfmodel", "permissionMode": "bypassPermissions", "outputMode": "merged", "enabled": true, "deleteAfterRun": false, "expiresAt": null, "revision_at_backup": 8, "createdAt": 1790215933847 },
+    { "id": "36e379f3-66e8-4ee9-b432-c97fd036cc4c", "name": "自建skill", "everyMs": 3600000, "cwd": "C:\\Users\\37533\\Desktop\\workspace\\自建skill优化", "workspaceId": "79f15ac3-8297-458b-bb86-30bd1562d0f1", "model": "qfmodel", "permissionMode": "bypassPermissions", "outputMode": "merged", "enabled": true, "deleteAfterRun": false, "expiresAt": null, "revision_at_backup": 8, "createdAt": 1790215796695, "already_changed_in": "r21b（第0步闸门 + 保留全量要求与收尾约束）" },
+    { "id": "57d67b2e-1c48-4275-8587-2b8e37fd6439", "name": "焚诀", "everyMs": 7200000, "cwd": "C:\\Users\\37533\\Desktop\\workspace\\焚诀", "workspaceId": "21f3ab2a-55cd-4602-8a23-5bde443b15a8", "model": "qfmodel", "permissionMode": "bypassPermissions", "outputMode": "merged", "enabled": true, "deleteAfterRun": false, "expiresAt": null, "revision_at_backup": 8, "createdAt": 1790215709169, "note": "唯一非整点（每 2 小时），本轮同样不改 schedule" }
+  ],
+  "cross_repo_guard_test": {
+    "conclusion": "闸门脚本可跨仓评估（--repo 参数），实测三仓当日均已判 DUPLICATE",
+    "evidence": [
+      { "repo": "项目/医", "verdict": "DUPLICATE", "sample_commit": "02:17 6d25055 chore(医): 收尾在途改动…+GitHub对标报告" },
+      { "repo": "超市web", "verdict": "DUPLICATE", "sample_commit": "23:50 cc2d454 docs: 三层工作流对标分析报告 + 填充项目记忆空壳(03/05)" },
+      { "repo": "项目/门店 AI 管理智能体", "verdict": "DUPLICATE", "sample_commit": "09:57 e52521f docs: 新增 GitHub 开源项目全面对标分析报告（2026-09-24 定时对标轮，只新增文件不动代码）" }
+    ],
+    "test_harness_defect_disclosed": "上述三次测试用 `| tail -5; echo exit=$?` 取到的是 tail 的退出码而非脚本的（管道语义），exit 值不可信；判定文本本身可信。正式复验改用不带管道的调用。"
+  }
+}
