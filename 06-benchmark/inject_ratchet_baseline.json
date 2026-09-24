@@ -1,9 +1,9 @@
 {
  "schema": "zijian-inject-ratchet-v1",
- "generated_at": "2026-09-24 21:28",
+ "generated_at": "2026-09-24 21:47",
  "metrics": {
   "catalog_grand_chars": 45250,
-  "inject_union_bytes": 89014,
+  "inject_union_bytes": 86346,
   "claim_candidates": 4,
   "drift_ruleish_candidates": 10,
   "desc_over_cap": 0
