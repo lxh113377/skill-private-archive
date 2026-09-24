@@ -1,0 +1,2 @@
+    # 显式 UTF-8：中文技能正文在默认 cp936 下会直接抛 UnicodeDecodeError
+    content = skill_md.read_text(encoding="utf-8", errors="replace")

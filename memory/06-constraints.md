@@ -19,8 +19,6 @@
 
 - [BUG] **对标判据的「措辞假阴性」此前从未量化：verification 缺口有 32.4% 只是对手用了那组词**（2026-09-24 r29 实测） —— 现行锚点集判本体系 98/166=59.0%，补同族写法（质量门/质检/对账/复跑/自证/校验/断言/退出码/回归/通过标准/proof/evidence）后 120/166=72.3%，仅段落标题档 52/166=31.3%。实物反例：`story-scan` 有「采集质量门（两篇通用，必做）」四步硬检查却被原判据判缺；`agent-browser` 同族。**影响**：r18/r28 引用的「verification 差 41pt」应为 **27.7pt**；`overview` 列宽口径下五家全 100%，**无鉴别力，禁再引用**。 | 状态：**已修（判据层）**——`05-exec/r29_verification_anchor_robustness.py`（三档并排 + 真队列输出）+ M2 双口径已进 `rubric_ab_compare.py`；引用规程写入 r29 报告 §6.5。r28 报告已按 R241 加校正注（原文零改写）
 
-- [BUG] **对标整改队列未过「范围裁定」即会引导会话去改别人的技能**（2026-09-24 r29 实测） —— r28 的 H2 按 `verification=false` 体积降序取 top14，实为 `agent-browser`/`docx`/`computer-use-guidance-windows`/`gstack`/`shadcn`/`canvas-design` 等**全数市场/上游件**，越过 2026-09-22 用户裁定（维护面 = HIGH 51 + MID 26 = 77，EXCLUDE 43 / LOW 30 排除）。缺该段 67 条里自建在面仅 **14 条（20.9%）**，再叠判据稳健性过滤后真队列 **3 条**。 | 状态：**已闭环**——机器护栏 `05-exec/r29_scope_filtered_queue.py`（读 `00-scope/自建skill清单.md` 裁定表，越界项只登记不改）；3 条真队列已于 r29 补齐（受管根 `6a4f97b`，复测真队列 3→0）
-
 - [BUG] **`skill_structure_rubric_scan.py` 的 `covered` 把 `has_stepish_list` 计入六段，可输出自相矛盾的 "7/6"**（与本仓已登记的「8 个 AC 却 11 个格式正确」同族） | 状态：**已修**（r29，改 `sum(1 for k in RUBRIC if hit[k])`，排序键同步只数六段；历史报告未引用过该字段，无数字失真）
 
 ## 技术债
@@ -78,4 +76,5 @@
 - **卷1** `06-constraints.part1.md` — 已完成条目归档（R224 主壳自愈）
 - **卷2** `06-constraints.part2.md` — 06-constraints 分卷（R199 自动拆卷）
 - **卷3** `06-constraints.part3.md` — 06-constraints 分卷（R199 自动拆卷）
+- **卷4** `06-constraints.part4.md` — 06-constraints 分卷（R199 自动拆卷）
 

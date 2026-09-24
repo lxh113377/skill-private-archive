@@ -1,0 +1,1 @@
+    content = skill_md.read_text()

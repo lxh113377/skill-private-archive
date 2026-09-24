@@ -1,0 +1,3 @@
+- 改完必验 frontmatter YAML；**改后必跑 `build_indexes.py --apply`** 同步注册表（version/description/size）。
+- 新建技能正文必含三段（对标 addyosmani 六段里我们实测最缺的两段 + 本项目 H3 守卫）：**反理性化表**（借口+逐条反驳）、**验证**（交付前实物证据，含反例与"未达成怎么说"）、涉删除/覆盖/移动时的**作用域守卫**。骨架由 `assets/creator/init_skill.py` 生成；`quick_validate.py` 对缺段给提醒级提示（不阻断，避免存量技能集体变红）。
+- 存量技能补「验证」段：先过本项目范围裁定再排队列，市场/上游件只登记不改。

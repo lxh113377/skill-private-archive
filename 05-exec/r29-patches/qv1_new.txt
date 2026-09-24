@@ -1,0 +1,4 @@
+REQUIRED_BODY_SECTIONS = ("反理性化", "验证")
+
+
+def validate_skill(skill_path):
