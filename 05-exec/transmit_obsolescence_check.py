@@ -9,6 +9,10 @@ r21c 复测才发现对方**已自落 C31/C32** ⇒ 转办件两项早已过期�
 只读：不写任何仓；判据来源 = 焚诀 `eval/verify_truth_consistency.py` 的注册面（C 号 + 标题）。
 结论口径 = 单条已落判据标题对转办项关键词的命中数与占比（两下限 AND，防单词巧合与低占比误判）。
 
+⛔ 作用域边界（`D:\\global_memory\\core\\behavior_core.md` #23 用户命令绝对优先）：本件判的是
+「**要不要把建议外推给归属会话**」，不是「本轮要不要干活」。禁止把它挂成每轮前置拦截、或用它
+把重复指令降格为核验轮——那是 2026-09-24 被用户明令全删的「重复轮次闸门」的复活动机。
+
 用法：
     python 05-exec/transmit_obsolescence_check.py [--json]
         [--proposals 06-benchmark/transmit_proposals.json] [--verify-src <path>]
