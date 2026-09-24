@@ -5,7 +5,8 @@
 
 ## ✅ 已完成
 
-- **r29b H1/H3 补做轮（2026-09-24 第 29 轮 b 段，用户标注驱动）** — 复测推翻"模板被占用"误判：真实落点 `A-skill-manager/assets/creator/init_skill.py` + `references/lifecycle-create.md` 当时均干净。受管根 `afe0f13` 落地新建技能强制三段（反理性化表 / 验证含反例与未达成表述 / 破坏性命令作用域守卫）+ `quick_validate.py` 缺段提醒（提醒级不阻断，避免存量技能集体变红）+ 修 `read_text()` 未指定编码的中文崩溃坑；冒烟 py_compile PASS、生成骨架实含 3 段、校验器三侧齐；四门禁全绿。壳文件 `SKILL.md`/`version-history.md` 属他人 in-flight，未夹带、版本号未升。
+- **r30 反理性化首批轮（2026-09-25 第 30 轮）** — 四档稳健性工具段参数化（`05-exec/r30_section_robustness.py`）→ **rationalizations 严格同义零假阴性（档1=档2=13.9%，与 verification 的 29.2% 相反）但档2b=71.1%** ⇒ 定性为"缺的是借口→反驳这一形式，不是负面指引本身"；真队列取最保守口径 14 条，首批 5 条逐技能写特有失败形态落表（`story-scan`/`video-breakdown-skill`/`local-vram`/`code-review`/`utf8-encoding-fix`，受管根 `359d0fc` 50 行纯新增零夹带），复测档1 23→28、档3 55→60。维护状态维度首次实测化（4 仓 stars/pushed/issues，**issue 存量与星标同向**⇒高星标≠高维护度）并入常驻页。全文见 `06-benchmark/全量对标报告_r30_四档稳健性与反理性化首批_2026-09-25.md`。
+
 - **r21c 还账轮（2026-09-24 第 21 轮 c 段）** — 本仓欠焚诀 C25/C31 的注入超顶已清偿：`A-memory-start/SKILL.md` 29,041→26,593B（长条目换一行摘要，全文归分卷），其余量 220→1,583B；实测 owner 已自落 C31 归因台账 ⇒ 我「注入区合一」建议作废。受管根 `928517a`/V10.70.0。全文见 `05-feature-status.part19.md`。
 - **r20b 棘轮落地轮（第 21 轮 b 段）** — A-get-memory 三条硬判据落地（受管根 `b8966da` V4.30.0，四门禁首次全绿）+ 本仓注入面棘轮 `ratchet_gate.py`（21/21 夹具，两级判定）挂进项目门禁命令。全文见 `05-feature-status.part18.md`。
 - **r20 机制化轮（第 21 轮）** — rule_editor 写前脏源检测落地（受管根 `9a15f4e` V10.69.0，桩 10/10）+ 09 状态机首次真用 + comparison 常驻页。全文见 `05-feature-status.part17.md`。
@@ -33,3 +34,5 @@
 - **卷17** `05-feature-status.part17.md` — 已完成：2026-09-24 第 21 轮 r20 全文
 - **卷18** `05-feature-status.part18.md` — 已完成：2026-09-24 第 21 轮 r20b 全文
 - **卷19** `05-feature-status.part19.md` — 已完成：2026-09-24 第 21 轮 r21c 全文
+- **卷20** `05-feature-status.part20.md` — 05-feature-status 分卷（R199 自动拆卷）
+

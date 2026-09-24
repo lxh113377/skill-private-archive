@@ -21,7 +21,9 @@
 
 - [BUG] **`skill_structure_rubric_scan.py` 的 `covered` 把 `has_stepish_list` 计入六段，可输出自相矛盾的 "7/6"**（与本仓已登记的「8 个 AC 却 11 个格式正确」同族） | 状态：**已修**（r29，改 `sum(1 for k in RUBRIC if hit[k])`，排序键同步只数六段；历史报告未引用过该字段，无数字失真）
 
+
 ## 技术债
+- [DEBT] **反理性化表覆盖率仅 13.9%（23/166），但缺口性质与表面不同**（2026-09-25 r30 四档实测）—— 档1 现行尺与档2 严格同义**完全相等**（差 0），说明这不是措辞假阴性；而档2b（把"反模式/常见误区/禁忌/坑/不适用"算作功能等价）达 71.1% ⇒ **57.2% 的技能已有负面指引，缺的是「借口 → 逐条反驳」这一形式**。还债方式：按最保守口径真队列 14 条补表（r30 已补 5，剩 9：`wechat-automation` / `story-cover` / `天眼一下` / `local-realtime-translator` / `A-skill-manager`(他人 in-flight) / `report-generator-skill` / `hook-analyzer-skill` / `oc-dispatch-exec-guard` / `local-ocr-npu`），其余把已有负面指引改写成表即可，禁套模板 | 状态：**未清偿（首批 5/14 已落，受管根 `359d0fc`）**
 <!-- 格式：- [DEBT] 描述 — 建议的还债方式 -->
 - [DEBT] **三仓均无 `pre-commit` hook**（2026-09-22 实测：`D:\global_skills` / 焚诀 / `D:\global_memory` 的 `.git/hooks` 仅 `post-commit`，其余全是 `*.sample`）—— 故「mirror / noise / evolution 已挂 `hooks/pre-commit`」（`04-plan/工作流专项建议.md` §4）属**设计意图而非既成事实**；影响：所有「hook 拦截后自动重试」的链路都是死代码（R270 已把 `--fix-mirror` 改为主动前置规避） | 处置：用户 2026-09-22 裁定**暂不补装**（改动面最小，改为「提交后按需跑 `gates`」）；如需恢复提交时拦截，须重新评估 fail-closed 对所有会话的影响
 - [DEBT→**已闭环**] **受管根 39 条残留脏项未闭环**（2026-09-22 实测）：` D` **6**（5 个 `.rule_backup/*.bak` 已按 D3 迁 `global_memory_archive\_trash\backup-rotation\...`、`_bm_skillid_migration.json` 已按 #17 迁 `global_skills\_trash\`）+ `??` **33**（`.rule_backup/*.bak`，该仓库本就跟踪此目录）—— **非数据丢失、非本轮引入**（迁移目标磁盘可查） | 处置：需一次「提交迁移删除 + 跟进备份」的 git 提交（破坏性）→ 待确认 D7 | 状态：**已闭环**（D7 已执行，受管根 `172eb88`；2026-09-22 第 10 轮复测 `git -C D:\global_skills status --porcelain` **零条**）
