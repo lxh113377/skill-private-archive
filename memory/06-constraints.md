@@ -15,6 +15,8 @@
 
 - [BUG] **技能计数分母三态不一致（151 / 166 / 167），且历史登记句已失真** — 影响范围：一切以「151」为分母的结论（r10 报告全篇、07 主卷 r13/r17/r17b 三处摘要与「基线校正 103/151」）分母已失效；本项目扫描器按设计跳过 junction 目录，与注册表口径天然差 1。取值命令（三者各自实测，勿硬编码）：注册表口径 = `python 焚诀/eval/verify_truth_consistency.py` 看 C1 行；本仓工具口径 = `python 05-exec/description_baseline_scan.py` 看「SKILL.md 总数」；差集来源 = `ls -d D:/global_skills/*/ ` 中对 `LNK` 模式项（本轮实测 = `rag-eval`）。2026-09-24 r18 实测：C1 = **167**、扫描器 = **166**、r10 报告 = 151（陈旧一周）。 | 状态：**未修复**（本轮已按 R241 在 `06-benchmark/全量对标报告_r18_2026-09-24.md` §0 出校正注 + §5 P1-C 立「统计必须引用 C1 行」规程；改写历史登记句被红线禁止）
 
+- [BUG] **夹带第六形态＝本仓自身：我在共享工作区用 `git add -A <路径>` 把并行会话的在途文件并入自己的提交**（2026-09-24 r27 实犯） —— 提交 `b973917` 含 4 个非我方文件（`05-exec/r21d_lessons_land.py` 118 行、`05-exec/r21d_obsolete_fixtures.py` 6 行、`05-exec/transmit_obsolescence_check.py` 140 行、`06-benchmark/transmit_proposals.json` 32 行），归属其 r21d/transmit 会话。根因与已登记的「跨会话夹带」同源（整目录/整文件提交），但落点是**本仓而非受管根**，故此前 06 卷未覆盖该面；直接违反本仓已立的 R236 补注（多会话并发 commit 必须显式 `--file` 白名单、禁 `git add -A`/`git add .`）。处置：**不回滚**（回滚=抹掉他人在途工作），改为追加归属说明提交；内容零改写。 | 状态：**已发生，防复发靠执行面改法**——本仓提交一律 `git add <逐个显式路径>`，提交后必查 `git show --stat HEAD` 的文件清单是否全部属本次改动
+
 ## 技术债
 <!-- 格式：- [DEBT] 描述 — 建议的还债方式 -->
 - [DEBT] **三仓均无 `pre-commit` hook**（2026-09-22 实测：`D:\global_skills` / 焚诀 / `D:\global_memory` 的 `.git/hooks` 仅 `post-commit`，其余全是 `*.sample`）—— 故「mirror / noise / evolution 已挂 `hooks/pre-commit`」（`04-plan/工作流专项建议.md` §4）属**设计意图而非既成事实**；影响：所有「hook 拦截后自动重试」的链路都是死代码（R270 已把 `--fix-mirror` 改为主动前置规避） | 处置：用户 2026-09-22 裁定**暂不补装**（改动面最小，改为「提交后按需跑 `gates`」）；如需恢复提交时拦截，须重新评估 fail-closed 对所有会话的影响

@@ -25,6 +25,9 @@ python 05-exec/r19_scan_fixtures.py && python 05-exec/r19_baseline_contract_fixt
 
 > 四条全 `[GATE:fixture-pass]` / `[CONTRACT:PASS]` / `[RATCHET:PASS]` 才允许落盘改动（`[RATCHET:FAIL]` 只在「指标比基线长大」或「指标算不出」时出现；既有的超硬顶项按非阻断告警显示，`--strict-cap` 可升级为阻断）；任一红 = 判据或基线契约已失效，先修判据再动手（R263）。
 > 判据可信度本身由 `python 05-exec/r19_fixture_mutation_check.py` 变异测试担保（4 项变异必须全部被拦 + 未变异对照组通过）。
+> **条件前置（非每轮必跑）**：要把判据建议**外推给归属会话**时，先跑 `python 05-exec/transmit_obsolescence_check.py` —— 它拿 `06-benchmark/transmit_proposals.json` 与焚诀 verify 注册面（实测 33 条已注判据）做覆盖度比对；打印 `[TRANSMIT:STALE]` = 该件归属方**已自落**，禁止再外推；`[TRANSMIT:UNKNOWN]`/exit 2 = 真相源取不到，**不得当作「未过期」放行**。夹具 `05-exec/r21d_obsolete_fixtures.py` 26 例（含 4 项变异对照）。
+> ⛔ **边界（behavior_core #23「用户命令绝对优先」）**：上面这条只判定「**该不该把建议外推给别人**」，**不得**被引申为「本轮可以少干活/跳过执行」。本仓一切判据的合法作用域是**约束写法与落盘方式**（原子替换、先备份、只降不升棘轮），**永久禁止**用「自判重复 ⇒ 跳过执行」实现幂等。
+
 
 ## 铁律
 
