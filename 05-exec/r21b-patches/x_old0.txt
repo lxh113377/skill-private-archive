@@ -1,1 +1,0 @@
-| 同一指令当日重复触发（自动化/定时排程重放，或用户连续发同文） | **先过重复轮次闸门再动手调研**：`python 05-exec/repeat_round_guard.py --record --query "<指令原文>"`（仓内无该工具时降级：`git log --since=<当日>00:00 --oneline` 数同族轮次）；DUPLICATE(exit1)⇒禁开全量轮，只复跑既有计量工具与最新基线做差值，确有新证据须带 `--drift` 并附实测命令；FRESH/THIN(0)⇒照常执行；取证失败(2)⇒按 R247 不得判为放行（R285） |
