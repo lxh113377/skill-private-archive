@@ -1,0 +1,31 @@
+LEADING_COMMENT_RE = re.compile(r"(?:\s*<!--.*?-->\s*)+", re.DOTALL)
+
+
+def _leading_comments(body):
+    """取章节正文**开头**连续的 HTML 注释块（字段约定 / 图例），供重写时原样回填。
+
+    只取段首连续块：正文中间的注释（如模板里的示例行注释）语义由调用方决定。
+    """
+    m = LEADING_COMMENT_RE.match(body or "")
+    text = m.group(0).strip("\n") if m else ""
+    return text if ("<!--" in text and "-->" in text) else ""
+
+
+def _replace_section(content, header, new_body):
+    """替换「## <header> ...」章节正文（保留标题行 + 段首图例注释）；章节不存在返回 None。
+
+    实测缺陷（2026-09-24 自建skill优化 r19 实跑暴露）：首次 `flow --add` 会把
+    `09-workflow-state.md`「## 任务表」段首的「字段约定（勿改列名与列序）」图例整块吃掉——
+    正文是**替换式重写**，不保留旧正文任何内容。该图例是防误改契约的唯一说明。
+    """
+    pattern = r"(##\s+" + re.escape(header) + r"[^\n]*\n)(.*?)(?=\n##\s|\Z)"
+    m = re.search(pattern, content, re.DOTALL)
+    if not m:
+        return None
+    body = new_body if new_body.endswith("\n") else new_body + "\n"
+    legend = _leading_comments(m.group(2))
+
+    def _repl(mm):
+        return mm.group(1) + "\n" + ((legend + "\n\n") if legend else "") + body
+
+    return re.sub(pattern, _repl, content, count=1, flags=re.DOTALL)

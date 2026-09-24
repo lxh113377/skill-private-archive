@@ -97,6 +97,11 @@ def main():
         glob_total, n, len(junctions), ",".join(junctions) or "-", len(errors))
     )
     print("焚诀注册表口径(取值命令 `python 焚诀/eval/verify_truth_consistency.py` C1 行)须与本表对账后方可引用为分母")
+    if _lib is not None:
+        for ln in _lib.denominator_lines(_lib.denominator(n, junctions, errors, glob_total=glob_total)):
+            print(ln)
+    else:
+        print("口径对账: _lib 不可用 → 本表分母仅磁盘 glob")
     print()
     print("%-18s %6s %8s" % ("段落", "命中", "占比"))
     for k in RUBRIC:

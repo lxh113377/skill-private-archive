@@ -5,7 +5,8 @@
 
 ## ✅ 已完成
 
-- **r18 全量对标增量轮（2026-09-24，第 19 轮）** — 对标对象 7→**14**（新增 addyosmani/agent-skills 98.8k★、Fission-AI/OpenSpec 70.1k★、sickn33/agentic-awesome-skills 46.9k★、vercel-labs/skills 32.4k★、mycelium-hq/ai-brain-starter、lucasrosati/claude-code-memory-setup；gh api 当日取数）；产出 `06-benchmark/全量对标报告_r18_2026-09-24.md`（新差距 **N1~N8**）+ **当场落地 4 个只读新工具**：`05-exec/catalog_attention_tax.py`（N1）、`rule_conflict_scan.py`（N8，CH1 命中 5 / CH2 候选 6）、`cumulative_drift_scan.py`（N7，四根 316 commits / 规则类候选 16 条）、`skill_structure_rubric_scan.py`（N3，六段全含 0/166）；**首次跑通** `焚诀/audit/attention_sim.py`（本项目 AGENTS.md 阶段1 标注「仍未跑」之一），得 P0 16,372B / 本会话 38,342B / 全库 3.3MB 三层注意力税 + BGE 干草堆 hit@1 46.9%。受管根**零改动**（未用 rule_editor）；全部产物在本工作区。
+- **r19 对标实物层增量轮（2026-09-24，第 20 轮）** — 广度实测无收益（14 对象 35 分钟 +37 星）⇒ 转「读对手源码/Schema/模板」层：据 `drift-detection.py` 的 `SKIP_PREFIXES` 与 `--self-test` 实物，**修掉 r18 四工具的三处判据缺陷**（按设计累积项未排除致 6/16 噪声 37.5%、排除判据过宽误伤人工报告、四工具零夹具），并新建 `05-exec/r19_scan_fixtures.py`（**55/55** 两层夹具含 `--no-exclude` 对照组）。人工复核 P0-C 第 2 批（11 句六态判定：仍然成立 7 / 已失真 7 句 / uncertain 1）暴露**内容级门禁盲区** ⇒ 新建 `05-exec/claim_truth_scan.py`（正文端数/计数/版本断言 == 真相源，首跑 **10 条候选**，含每轮注入的 `A-memory-start` 「五端/V9.7.0」6 句）。P1-C 分母统一登记落地（`_lib.denominator()` 三口径 166/167/167，4 工具接入，注册表不可读 ⇒ `consistent=None` 禁静默）。新判据「流程入描述」（对标 skill-anatomy）实测 24/166。**上游真缺陷当场修**：`flow --add` 首次写 09 会吃掉「字段约定」图例与推进记录段首注释 ⇒ 受管根 `18294ba`（A-project-handoff **V3.52.2**，`_leading_comments()` 回填 + 幂等），隔离桩 **15/15 含修前/修后对照** + 真机端到端 `flow --check` PASS + 三文件白名单零夹带 + `-Fix` 后 mirror/noise/evolution 转绿。**flow 状态机本项目首次真用**（09 任务表此前恒空）：登记 R19-1/R19-2(blocked)/R19-3(todo) 并 `--sync` 回写 07。P2-A 交付 `06-benchmark/comparison.md` 常驻横向页。报告 = `06-benchmark/全量对标报告_r19_2026-09-24.md`。
+- **r18 全量对标增量轮（2026-09-24，第 19 轮）** — 对象 7→14 + 差距 N1~N8 + 4 只读工具落地；全文见 `05-feature-status.part14.md`（本轮条目级归档迁出，正文零改写）。⚠️ **r19 校正注**：该轮四工具当时**零夹具**、drift 扫描含 37.5% 噪声，已由 r19 修正。
 
 ## 分卷目录
 - **卷1** `05-feature-status.part1.md` — 进行中 / 计划中 / 阻塞
@@ -21,4 +22,5 @@
 - **卷11** `05-feature-status.part11.md` — 05-feature-status 分卷（R199 自动拆卷）
 - **卷12** `05-feature-status.part12.md` — 05-feature-status 分卷（R199 自动拆卷）
 - **卷13** `05-feature-status.part13.md` — 05-feature-status 分卷（R199 自动拆卷）
+- **卷14** `05-feature-status.part14.md` — 已完成：2026-09-24 第 19 轮 r18 全文（条目级归档迁出，防主壳超 4KB）
 

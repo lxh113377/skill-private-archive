@@ -1,0 +1,4 @@
+    body = strip_html_comments(m.group(2)).rstrip()
+    new_body = (body + "\n" + line).strip() + "\n"
+    return re.sub(pattern, lambda mm: mm.group(1) + "\n" + new_body, content,
+                  count=1, flags=re.DOTALL)

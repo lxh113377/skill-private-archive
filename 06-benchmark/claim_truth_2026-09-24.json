@@ -1,0 +1,113 @@
+{
+ "schema": "claim-truth-scan-v1",
+ "generated_at": "2026-09-24 17:46",
+ "readonly": true,
+ "truth": {
+  "active": [
+   "wb",
+   "tr",
+   "cx",
+   "hm",
+   "zc",
+   "oc",
+   "qw",
+   "qd"
+  ],
+  "n": 8
+ },
+ "registry_count": 167,
+ "targets_present": [
+  "D:\\global_skills\\A-memory-start\\SKILL.md",
+  "D:\\global_skills\\A-memory-start\\references\\contract.md",
+  "D:\\global_skills\\A-project-handoff\\SKILL.md",
+  "D:\\global_skills\\A-get-memory\\SKILL.md",
+  "D:\\global_skills\\A-project-better\\SKILL.md",
+  "D:\\global_skills\\A-skill-manager\\SKILL.md",
+  "C:\\Users\\37533\\Desktop\\workspace\\焚诀\\memory\\AGENTS.md"
+ ],
+ "targets_missing": [],
+ "candidates": [
+  {
+   "family": "endpoint_enum",
+   "file": "D:\\global_skills\\A-memory-start\\SKILL.md",
+   "line": 60,
+   "text": "✅ G2 任务类型判定+平台探测: <闲聊/简单/继续/复杂> | <HM/WB/CX/TC/ZC> (统一路径已解析)",
+   "claim": "HM/WB/CX/TC/ZC",
+   "truth": "缺 ['oc', 'qd', 'qw']（真值 8 端）"
+  },
+  {
+   "family": "endpoint_count",
+   "file": "D:\\global_skills\\A-memory-start\\SKILL.md",
+   "line": 92,
+   "text": "- **V10.0（R195）共享规范联动**：七步闭环统一读 `D:\\global_memory\\prompts\\workflow_seven_step.md`（V1.1：任务卡模板/五端适配/每端脚本/失败模式）；G5 增记 `工作流规范: <Vx.y>`；执行门禁用 `eval/workflow_gate.py`（--check/--bootstrap/--status/--next）。",
+   "claim": "五端 = 5",
+   "truth": "active 8 端 ['wb', 'tr', 'cx', 'hm', 'zc', 'oc', 'qw', 'qd']"
+  },
+  {
+   "family": "endpoint_count",
+   "file": "D:\\global_skills\\A-memory-start\\SKILL.md",
+   "line": 131,
+   "text": "## File Resolution（五端统一，绝对路径）",
+   "claim": "五端 = 5",
+   "truth": "active 8 端 ['wb', 'tr', 'cx', 'hm', 'zc', 'oc', 'qw', 'qd']"
+  },
+  {
+   "family": "endpoint_count",
+   "file": "D:\\global_skills\\A-memory-start\\SKILL.md",
+   "line": 135,
+   "text": "| 权威源 | `D:\\global_memory\\`（五端 junction/镜像：HM/WB/CX/TC/ZC；TR=TRAE(别名 TC)；ZC=ZCode 于 2026-09-22 入役（用户确认）：`~/.zcode/skills`→`D:\\global_skills`、`~/.zcode/memory`→`D:\\global_memory` 均为一级 junction；CC 已弃用 2",
+   "claim": "五端 = 5",
+   "truth": "active 8 端 ['wb', 'tr', 'cx', 'hm', 'zc', 'oc', 'qw', 'qd']"
+  },
+  {
+   "family": "endpoint_count",
+   "file": "D:\\global_skills\\A-memory-start\\SKILL.md",
+   "line": 139,
+   "text": "| 意图路由（五端权威） | `D:\\global_memory\\intent_classifier_canonical.md`（根目录分卷） |",
+   "claim": "五端 = 5",
+   "truth": "active 8 端 ['wb', 'tr', 'cx', 'hm', 'zc', 'oc', 'qw', 'qd']"
+  },
+  {
+   "family": "endpoint_count",
+   "file": "D:\\global_skills\\A-memory-start\\references\\contract.md",
+   "line": 10,
+   "text": "> 🔴 **统计口径铁律（五端生效）**：禁止统计、禁止输出工具调用数量。本合同只核对「清单文件是否读全」，不数次数、不写 X/Y。唯一对外统计数量 = **skill 调用数**（Step 4.5.7）。",
+   "claim": "五端 = 5",
+   "truth": "active 8 端 ['wb', 'tr', 'cx', 'hm', 'zc', 'oc', 'qw', 'qd']"
+  },
+  {
+   "family": "endpoint_count",
+   "file": "D:\\global_skills\\A-memory-start\\references\\contract.md",
+   "line": 85,
+   "text": "五端共享 D:\\\\global_memory\\\\（HM/WB/CX/TC/ZC；ZC 于 2026-09-22 入役）；0.1.2-0.1.3 权威启动表与五端速查见 references/detail_archive.md。",
+   "claim": "五端 = 5",
+   "truth": "active 8 端 ['wb', 'tr', 'cx', 'hm', 'zc', 'oc', 'qw', 'qd']"
+  },
+  {
+   "family": "endpoint_count",
+   "file": "D:\\global_skills\\A-get-memory\\SKILL.md",
+   "line": 285,
+   "text": "- 新条目：追加到当前最新 dated part（**定位最新卷须按数字序**：`[regex]::Match($_.Name,'part(\\d+)')` 提号转 int 后 `Sort-Object N`，**禁 `Sort-Object Name`** —— 字典序会把 part8 排在 part36 之后，2026-09-23 实测差点把新条目写进早已冻结的旧卷；每条 = 标题 + trig",
+   "claim": "四端 = 4",
+   "truth": "active 8 端 ['wb', 'tr', 'cx', 'hm', 'zc', 'oc', 'qw', 'qd']"
+  },
+  {
+   "family": "endpoint_count",
+   "file": "D:\\global_skills\\A-get-memory\\SKILL.md",
+   "line": 397,
+   "text": "2. 识别被修改的组件（intent_classifier_canonical.md 路由表 / behavior_core.md / MEMORY.md 等），更新对应四端版本号",
+   "claim": "四端 = 4",
+   "truth": "active 8 端 ['wb', 'tr', 'cx', 'hm', 'zc', 'oc', 'qw', 'qd']"
+  },
+  {
+   "family": "endpoint_count",
+   "file": "D:\\global_skills\\A-skill-manager\\SKILL.md",
+   "line": 3,
+   "text": "description: 技能全生命周期唯一总管——增/删/改/合并/上架/四端同步/依赖安装/安全审计/注册漂移/路由命中率一站式。当对话中出现主动增删改技能、装删技能、技能不生效、注册漂移、命中率诊断、技能安全审计等任何技能管理意图时加载。触发：加技能、删技能、改技能、合并技能、装技能、技能上架、skill注册、技能同步、技能漂移、命中率、技能安全、skill依赖、技能清理、退役技能。",
+   "claim": "四端 = 4",
+   "truth": "active 8 端 ['wb', 'tr', 'cx', 'hm', 'zc', 'oc', 'qw', 'qd']"
+  }
+ ],
+ "exempt_rule": "含「当时/原为/已作废/原文保留/校正注/历史/瘦身」或版本历史章节的行豁免（R241）",
+ "note": "候选非判决；技能正文此前不在任何内容级对账门禁面上（C3/C13/C16 均不覆盖）"
+}

@@ -1,6 +1,6 @@
 {
  "schema": "skill-structure-rubric-v1",
- "generated_at": "2026-09-24 17:12",
+ "generated_at": "2026-09-24 17:46",
  "readonly": true,
  "benchmark": "addyosmani/agent-skills six-section anatomy",
  "denominator": {

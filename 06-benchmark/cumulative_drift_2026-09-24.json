@@ -1,11 +1,20 @@
 {
- "schema": "cumulative-drift-scan-v1",
- "generated_at": "2026-09-24 17:12",
+ "schema": "cumulative-drift-scan-v2",
+ "generated_at": "2026-09-24 17:39",
  "readonly": true,
  "window_days": 30,
  "threshold": 5,
+ "exclusions_enabled": true,
+ "verdict_taxonomy": [
+  "drift_detected",
+  "softened",
+  "refinement",
+  "additive",
+  "neutral_rephrase",
+  "uncertain"
+ ],
  "evidence": {
-  "total_commits": 316,
+  "total_commits": 318,
   "roots": {
    "global_skills": {
     "commits": 60,
@@ -31,7 +40,8 @@
       "A-project-better/SKILL.md",
       10
      ]
-    ]
+    ],
+    "driftignore_patterns": 0
    },
    "global_memory": {
     "commits": 63,
@@ -57,7 +67,8 @@
       "skill_content/tfidf_matrix.npz",
       10
      ]
-    ]
+    ],
+    "driftignore_patterns": 0
    },
    "fenjue": {
     "commits": 141,
@@ -83,23 +94,24 @@
       "STATUS.part1.md",
       18
      ]
-    ]
+    ],
+    "driftignore_patterns": 0
    },
    "self": {
-    "commits": 52,
-    "files_touched": 197,
+    "commits": 54,
+    "files_touched": 212,
     "top5": [
      [
       "memory/07-next-steps.md",
-      35
+      37
      ],
      [
       "memory/05-feature-status.md",
-      17
+      18
      ],
      [
       "memory/06-constraints.md",
-      9
+      10
      ],
      [
       "TODO.md",
@@ -109,15 +121,16 @@
       "05-exec/第3轮执行报告.md",
       8
      ]
-    ]
+    ],
+    "driftignore_patterns": 0
    }
   }
  },
  "flagged_ruleish": [
   {
    "path": "memory/07-next-steps.md",
-   "edits": 35,
-   "bytes": 23380,
+   "edits": 37,
+   "bytes": 29315,
    "exists": true,
    "ruleish": true,
    "root": "self"
@@ -147,17 +160,9 @@
    "root": "global_skills"
   },
   {
-   "path": "memory/07-next-steps.part5.md",
-   "edits": 10,
-   "bytes": 4103,
-   "exists": true,
-   "ruleish": true,
-   "root": "global_memory"
-  },
-  {
    "path": "memory/06-constraints.md",
-   "edits": 9,
-   "bytes": 8859,
+   "edits": 10,
+   "bytes": 12207,
    "exists": true,
    "ruleish": true,
    "root": "self"
@@ -174,22 +179,6 @@
    "path": "memory/07-next-steps.md",
    "edits": 8,
    "bytes": 5973,
-   "exists": true,
-   "ruleish": true,
-   "root": "global_memory"
-  },
-  {
-   "path": "AGENTS.md",
-   "edits": 7,
-   "bytes": 5836,
-   "exists": true,
-   "ruleish": true,
-   "root": "fenjue"
-  },
-  {
-   "path": "memory/07-next-steps.part8.md",
-   "edits": 6,
-   "bytes": 2985,
    "exists": true,
    "ruleish": true,
    "root": "global_memory"
@@ -217,37 +206,13 @@
    "exists": true,
    "ruleish": true,
    "root": "global_memory"
-  },
-  {
-   "path": "eval/decay_lessons.py",
-   "edits": 5,
-   "bytes": 7387,
-   "exists": true,
-   "ruleish": true,
-   "root": "fenjue"
-  },
-  {
-   "path": "eval/lessons_pread_audit.py",
-   "edits": 5,
-   "bytes": 7181,
-   "exists": true,
-   "ruleish": true,
-   "root": "fenjue"
-  },
-  {
-   "path": "AGENTS.md",
-   "edits": 5,
-   "bytes": 29293,
-   "exists": true,
-   "ruleish": true,
-   "root": "self"
   }
  ],
  "flagged_all": [
   {
    "path": "memory/07-next-steps.md",
-   "edits": 35,
-   "bytes": 23380,
+   "edits": 37,
+   "bytes": 29315,
    "exists": true,
    "ruleish": true,
    "root": "self"
@@ -277,17 +242,9 @@
    "root": "global_skills"
   },
   {
-   "path": "memory/07-next-steps.part5.md",
-   "edits": 10,
-   "bytes": 4103,
-   "exists": true,
-   "ruleish": true,
-   "root": "global_memory"
-  },
-  {
    "path": "memory/06-constraints.md",
-   "edits": 9,
-   "bytes": 8859,
+   "edits": 10,
+   "bytes": 12207,
    "exists": true,
    "ruleish": true,
    "root": "self"
@@ -304,22 +261,6 @@
    "path": "memory/07-next-steps.md",
    "edits": 8,
    "bytes": 5973,
-   "exists": true,
-   "ruleish": true,
-   "root": "global_memory"
-  },
-  {
-   "path": "AGENTS.md",
-   "edits": 7,
-   "bytes": 5836,
-   "exists": true,
-   "ruleish": true,
-   "root": "fenjue"
-  },
-  {
-   "path": "memory/07-next-steps.part8.md",
-   "edits": 6,
-   "bytes": 2985,
    "exists": true,
    "ruleish": true,
    "root": "global_memory"
@@ -347,30 +288,6 @@
    "exists": true,
    "ruleish": true,
    "root": "global_memory"
-  },
-  {
-   "path": "eval/decay_lessons.py",
-   "edits": 5,
-   "bytes": 7387,
-   "exists": true,
-   "ruleish": true,
-   "root": "fenjue"
-  },
-  {
-   "path": "eval/lessons_pread_audit.py",
-   "edits": 5,
-   "bytes": 7181,
-   "exists": true,
-   "ruleish": true,
-   "root": "fenjue"
-  },
-  {
-   "path": "AGENTS.md",
-   "edits": 5,
-   "bytes": 29293,
-   "exists": true,
-   "ruleish": true,
-   "root": "self"
   },
   {
    "path": "skill/registry/disk_manifest.json",
@@ -405,12 +322,12 @@
    "root": "fenjue"
   },
   {
-   "path": "STATUS.part1.md",
+   "path": "memory/05-feature-status.md",
    "edits": 18,
-   "bytes": 8146,
+   "bytes": 2533,
    "exists": true,
    "ruleish": false,
-   "root": "fenjue"
+   "root": "self"
   },
   {
    "path": "A-project-handoff/references/version-history.md",
@@ -435,14 +352,6 @@
    "exists": true,
    "ruleish": false,
    "root": "fenjue"
-  },
-  {
-   "path": "memory/05-feature-status.md",
-   "edits": 17,
-   "bytes": 1527,
-   "exists": true,
-   "ruleish": false,
-   "root": "self"
   },
   {
    "path": "skill/registry/cross_platform_map.json",
@@ -480,14 +389,6 @@
    "path": "skill_content/index_manifest.json",
    "edits": 11,
    "bytes": 385,
-   "exists": true,
-   "ruleish": false,
-   "root": "global_memory"
-  },
-  {
-   "path": "memory/2026-09-22.md",
-   "edits": 11,
-   "bytes": 44056,
    "exists": true,
    "ruleish": false,
    "root": "global_memory"
@@ -552,14 +453,6 @@
    "path": "skill_content/tfidf_vectorizer.pkl",
    "edits": 10,
    "bytes": 168682,
-   "exists": true,
-   "ruleish": false,
-   "root": "global_memory"
-  },
-  {
-   "path": "skill_routing.part1.part3.md",
-   "edits": 10,
-   "bytes": 4987,
    "exists": true,
    "ruleish": false,
    "root": "global_memory"
@@ -789,14 +682,6 @@
    "root": "self"
   },
   {
-   "path": "memory/2026-09-23.md",
-   "edits": 7,
-   "bytes": 107006,
-   "exists": true,
-   "ruleish": false,
-   "root": "global_memory"
-  },
-  {
    "path": "eval/aggregate_status.py",
    "edits": 7,
    "bytes": 16123,
@@ -848,14 +733,6 @@
    "path": "05-exec/README.md",
    "edits": 7,
    "bytes": 7618,
-   "exists": true,
-   "ruleish": false,
-   "root": "self"
-  },
-  {
-   "path": "memory/05-feature-status.part3.md",
-   "edits": 7,
-   "bytes": 3770,
    "exists": true,
    "ruleish": false,
    "root": "self"
@@ -965,17 +842,17 @@
    "root": "global_skills"
   },
   {
-   "path": "memory/2026-09-21.md",
-   "edits": 5,
-   "bytes": 6692,
-   "exists": true,
-   "ruleish": false,
-   "root": "global_memory"
-  },
-  {
    "path": "scripts/.prompt_versions/store.json",
    "edits": 5,
    "bytes": 79164,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/decay_lessons.py",
+   "edits": 5,
+   "bytes": 7387,
    "exists": true,
    "ruleish": false,
    "root": "fenjue"
@@ -1029,6 +906,14 @@
    "root": "fenjue"
   },
   {
+   "path": "eval/lessons_pread_audit.py",
+   "edits": 5,
+   "bytes": 7181,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
    "path": ".github/workflows/ci.yml",
    "edits": 5,
    "bytes": 22472,
@@ -1043,14 +928,74 @@
    "exists": true,
    "ruleish": false,
    "root": "fenjue"
+  }
+ ],
+ "excluded": [
+  {
+   "root": "global_memory",
+   "path": "memory/2026-09-22.md",
+   "edits": 11,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
   },
   {
+   "root": "global_memory",
+   "path": "skill_routing.part1.part3.md",
+   "edits": 10,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "global_memory",
+   "path": "memory/07-next-steps.part5.md",
+   "edits": 10,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "global_memory",
+   "path": "memory/2026-09-23.md",
+   "edits": 7,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "global_memory",
+   "path": "memory/07-next-steps.part8.md",
+   "edits": 6,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "global_memory",
+   "path": "memory/2026-09-21.md",
+   "edits": 5,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "fenjue",
+   "path": "STATUS.part1.md",
+   "edits": 18,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "fenjue",
+   "path": "AGENTS.md",
+   "edits": 7,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "self",
+   "path": "memory/05-feature-status.part3.md",
+   "edits": 7,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "self",
+   "path": "AGENTS.md",
+   "edits": 5,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "self",
    "path": "memory/05-feature-status.part1.md",
    "edits": 5,
-   "bytes": 579,
-   "exists": true,
-   "ruleish": false,
-   "root": "self"
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
   }
  ],
  "note": "candidates for human re-read, not defects; DELEGATE-52 rationale: ~25% content corruption over 20 LLM edits"

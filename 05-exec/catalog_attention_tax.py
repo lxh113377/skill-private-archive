@@ -101,6 +101,11 @@ def main():
 
     print("=== 技能目录注意力税实测 (%s) ===" % datetime.now().strftime("%Y-%m-%d %H:%M"))
     print("枚举: %d 纳入 + %d junction 跳过(%s)" % (n, len(junctions), ",".join(junctions) or "-"))
+    if _lib is not None:
+        for ln in _lib.denominator_lines(_lib.denominator(n, junctions, [])):
+            print(ln)
+    else:
+        print("口径对账: _lib 不可用 → 本表分母仅磁盘 glob，禁止引用为全库分母")
     print("description 字符合计 : %d   (+ name %d) = %d" % (total, names_overhead, grand))
     print("按 1 CJK 字符 ~= 1 token: ~%d tokens/轮 = 上下文窗口(128k)的 %.1f%%" % (grand, pct_window))
     print("对照 C25: 基线 %dB / 硬顶 %dB -> 目录块是硬顶的 %.2f 倍" % (C25_BASELINE, C25_HARD_CAP, grand * 3.0 / C25_HARD_CAP))

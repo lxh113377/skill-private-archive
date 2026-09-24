@@ -1,0 +1,8 @@
+def _replace_section(content, header, new_body):
+    """替换「## <header> ...」章节正文（保留标题行）；章节不存在返回 None。"""
+    pattern = r"(##\s+" + re.escape(header) + r"[^\n]*\n)(.*?)(?=\n##\s|\Z)"
+    if not re.search(pattern, content, re.DOTALL):
+        return None
+    body = new_body if new_body.endswith("\n") else new_body + "\n"
+    return re.sub(pattern, lambda m: m.group(1) + "\n" + body, content,
+                  count=1, flags=re.DOTALL)

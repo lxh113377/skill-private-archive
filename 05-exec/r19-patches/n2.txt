@@ -1,0 +1,6 @@
+    legend = _leading_comments(m.group(2))
+    body = strip_html_comments(m.group(2)).rstrip()
+    new_body = "\n\n".join(
+        x for x in (legend.strip(), (body + "\n" + line).strip()) if x) + "\n"
+    return re.sub(pattern, lambda mm: mm.group(1) + "\n" + new_body, content,
+                  count=1, flags=re.DOTALL)
