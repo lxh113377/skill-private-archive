@@ -1,0 +1,38 @@
+[
+ {
+  "old": "# A-memory-start — 全局记忆入口（V9.7.0 瘦身版）",
+  "new": "# A-memory-start — 全局记忆入口（瘦身版 · 契约全文见 references/contract.md）"
+ },
+ {
+  "old": "✅ G2 任务类型判定+平台探测: <闲聊/简单/继续/复杂> | <HM/WB/CX/TC/ZC> (统一路径已解析)",
+  "new": "✅ G2 任务类型判定+平台探测: <闲聊/简单/继续/复杂> | <HM/WB/CX/TC/ZC/OC/QW/QD> (统一路径已解析，端数权威 = 焚诀/eval/truth_constants.json 的 endpoints.active)"
+ },
+ {
+  "old": "（V1.1：任务卡模板/五端适配/每端脚本/失败模式）",
+  "new": "（V1.1：任务卡模板/八端适配/每端脚本/失败模式）"
+ },
+ {
+  "old": "## File Resolution（五端统一，绝对路径）",
+  "new": "## File Resolution（八端统一，绝对路径）"
+ },
+ {
+  "old": "| 权威源 | `D:\\global_memory\\`（五端 junction/镜像：HM/WB/CX/TC/ZC；TR=TRAE(别名 TC)；",
+  "new": "| 权威源 | `D:\\global_memory\\`（八端 junction/镜像：HM/WB/CX/TC/ZC/OC/QW/QD；TR=TRAE(别名 TC)；"
+ },
+ {
+  "old": "HM(Hermes) 于 2026-09-14 恢复在役（用户在役确认）；OC 已退役 2026-09-21 用户确认） |",
+  "new": "HM(Hermes) 于 2026-09-14 恢复在役（用户在役确认）；OC 已退役 2026-09-21 用户确认【2026-09-24 校正注：退役的是 OpenClaw 本体；代号 oc 于 2026-09-23 由 OpenCode 接管复用（用户在役确认），qw/qd 于 2026-09-24 入役 ⇒ 在役端现为八端；原文保留不改，因其在当日为真】） |"
+ },
+ {
+  "old": "| 意图路由（五端权威） |",
+  "new": "| 意图路由（八端权威） |"
+ },
+ {
+  "old": "version: 10.67.0",
+  "new": "version: 10.68.0"
+ },
+ {
+  "old": "> V10.67.0 (2026-09-23): **执行契约分卷拆分",
+  "new": "> V10.68.0 (2026-09-24): **注入面端数口径改口八端（自建skill优化 r19 实物层实测发现）**——正文 `File Resolution`/G2 枚举/意图路由行仍写「五端 / `<HM/WB/CX/TC/ZC>`」，与真相源 `endpoints.active`=8 端脱节（oc 代号被 OpenCode 接管复用、qw/qd 入役后文本未跟）；H1 与正文的「V9.7.0 瘦身版」版本戳一并改为无戳表述（防同类漂移复发）。只改正文与版本历史，**未碰 frontmatter description** ⇒ 不触派生件重建；description 内同串留待重建窗口（登记为待办）。验证：`05-exec/claim_truth_scan.py` 复跑 endpoint 族候选由 6 句降至 0；新增夹具 `05-exec/r19_baseline_contract_fixtures.py` 18/18 + 变异对照 `05-exec/r19_fixture_mutation_check.py` 4/4。本行是 C13 门禁锚点，版本号须与 frontmatter `version:` 同步 bump。\n> V10.67.0 (2026-09-23): **执行契约分卷拆分"
+ }
+]

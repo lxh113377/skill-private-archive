@@ -1,0 +1,10 @@
+[
+ {
+  "old": "> 🔴 **统计口径铁律（五端生效）**：",
+  "new": "> 🔴 **统计口径铁律（八端生效）**："
+ },
+ {
+  "old": "五端共享 D:\\\\global_memory\\\\（HM/WB/CX/TC/ZC；ZC 于 2026-09-22 入役）；0.1.2-0.1.3 权威启动表与五端速查见 references/detail_archive.md。",
+  "new": "八端共享 D:\\\\global_memory\\\\（HM/WB/CX/TC/ZC/OC/QW/QD；ZC 于 2026-09-22 入役，代号 oc 于 2026-09-23 由 OpenCode 接管复用【原文「OC 已退役」指 OpenClaw 本体，留痕不改】，qw/qd 于 2026-09-24 入役）；0.1.2-0.1.3 权威启动表与八端速查见 references/detail_archive.md。"
+ }
+]

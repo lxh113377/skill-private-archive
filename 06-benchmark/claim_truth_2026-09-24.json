@@ -1,6 +1,6 @@
 {
  "schema": "claim-truth-scan-v1",
- "generated_at": "2026-09-24 17:46",
+ "generated_at": "2026-09-24 18:48",
  "readonly": true,
  "truth": {
   "active": [
@@ -28,60 +28,12 @@
  "targets_missing": [],
  "candidates": [
   {
-   "family": "endpoint_enum",
-   "file": "D:\\global_skills\\A-memory-start\\SKILL.md",
-   "line": 60,
-   "text": "✅ G2 任务类型判定+平台探测: <闲聊/简单/继续/复杂> | <HM/WB/CX/TC/ZC> (统一路径已解析)",
-   "claim": "HM/WB/CX/TC/ZC",
-   "truth": "缺 ['oc', 'qd', 'qw']（真值 8 端）"
-  },
-  {
-   "family": "endpoint_count",
-   "file": "D:\\global_skills\\A-memory-start\\SKILL.md",
-   "line": 92,
-   "text": "- **V10.0（R195）共享规范联动**：七步闭环统一读 `D:\\global_memory\\prompts\\workflow_seven_step.md`（V1.1：任务卡模板/五端适配/每端脚本/失败模式）；G5 增记 `工作流规范: <Vx.y>`；执行门禁用 `eval/workflow_gate.py`（--check/--bootstrap/--status/--next）。",
-   "claim": "五端 = 5",
-   "truth": "active 8 端 ['wb', 'tr', 'cx', 'hm', 'zc', 'oc', 'qw', 'qd']"
-  },
-  {
-   "family": "endpoint_count",
-   "file": "D:\\global_skills\\A-memory-start\\SKILL.md",
-   "line": 131,
-   "text": "## File Resolution（五端统一，绝对路径）",
-   "claim": "五端 = 5",
-   "truth": "active 8 端 ['wb', 'tr', 'cx', 'hm', 'zc', 'oc', 'qw', 'qd']"
-  },
-  {
-   "family": "endpoint_count",
-   "file": "D:\\global_skills\\A-memory-start\\SKILL.md",
-   "line": 135,
-   "text": "| 权威源 | `D:\\global_memory\\`（五端 junction/镜像：HM/WB/CX/TC/ZC；TR=TRAE(别名 TC)；ZC=ZCode 于 2026-09-22 入役（用户确认）：`~/.zcode/skills`→`D:\\global_skills`、`~/.zcode/memory`→`D:\\global_memory` 均为一级 junction；CC 已弃用 2",
-   "claim": "五端 = 5",
-   "truth": "active 8 端 ['wb', 'tr', 'cx', 'hm', 'zc', 'oc', 'qw', 'qd']"
-  },
-  {
-   "family": "endpoint_count",
-   "file": "D:\\global_skills\\A-memory-start\\SKILL.md",
-   "line": 139,
-   "text": "| 意图路由（五端权威） | `D:\\global_memory\\intent_classifier_canonical.md`（根目录分卷） |",
-   "claim": "五端 = 5",
-   "truth": "active 8 端 ['wb', 'tr', 'cx', 'hm', 'zc', 'oc', 'qw', 'qd']"
-  },
-  {
-   "family": "endpoint_count",
-   "file": "D:\\global_skills\\A-memory-start\\references\\contract.md",
-   "line": 10,
-   "text": "> 🔴 **统计口径铁律（五端生效）**：禁止统计、禁止输出工具调用数量。本合同只核对「清单文件是否读全」，不数次数、不写 X/Y。唯一对外统计数量 = **skill 调用数**（Step 4.5.7）。",
-   "claim": "五端 = 5",
-   "truth": "active 8 端 ['wb', 'tr', 'cx', 'hm', 'zc', 'oc', 'qw', 'qd']"
-  },
-  {
-   "family": "endpoint_count",
+   "family": "endpoint_retire_claim",
    "file": "D:\\global_skills\\A-memory-start\\references\\contract.md",
    "line": 85,
-   "text": "五端共享 D:\\\\global_memory\\\\（HM/WB/CX/TC/ZC；ZC 于 2026-09-22 入役）；0.1.2-0.1.3 权威启动表与五端速查见 references/detail_archive.md。",
-   "claim": "五端 = 5",
-   "truth": "active 8 端 ['wb', 'tr', 'cx', 'hm', 'zc', 'oc', 'qw', 'qd']"
+   "text": "八端共享 D:\\\\global_memory\\\\（HM/WB/CX/TC/ZC/OC/QW/QD；ZC 于 2026-09-22 入役，代号 oc 于 2026-09-23 由 OpenCode 接管复用【原文「OC 已退役」指 OpenClaw 本体，留痕不改】，qw/qd 于 2026-09-24 入役）；0.1.2-0.1.3 权威启动表与八端速查见 references/detail_ar",
+   "claim": "OC 声称已退役/弃用",
+   "truth": "oc 在 endpoints.active 内（09-23 起由 OpenCode 接管复用）"
   },
   {
    "family": "endpoint_count",

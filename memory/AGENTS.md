@@ -17,6 +17,15 @@
 | 提示词结构深度审计（V1-V7） | prompt-system-audit |
 | 触发命中率全量审计 | skill-hitrate-full-audit |
 
+## 项目门禁命令（A-memory-start V9.8 / R193 读取本行，修改类任务动手前必跑）
+
+```
+python 05-exec/r19_scan_fixtures.py && python 05-exec/r19_baseline_contract_fixtures.py && python 05-exec/baseline_contract_scan.py --quiet
+```
+
+> 三条全 `[GATE:fixture-pass]` / `[CONTRACT:PASS]` 才允许落盘改动；任一红 = 判据或基线契约已失效，先修判据再动手（R263）。
+> 判据可信度本身由 `python 05-exec/r19_fixture_mutation_check.py` 变异测试担保（4 项变异必须全部被拦 + 未变异对照组通过）。
+
 ## 铁律
 
 - `memory/07-next-steps.md` P0 永不为空；`savepoint` 后才能结束对话

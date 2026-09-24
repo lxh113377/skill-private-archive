@@ -1,0 +1,6 @@
+[
+ {
+  "old": "> V10.67.0 (2026-09-23): **执行契约分卷拆分（P0-2）**",
+  "new": "> V10.68.0 (2026-09-24): **注入面端数口径改口八端（自建skill优化 r19 实物层实测发现）**——`claim_truth_scan.py` 首跑 10 条候选，其中 6 条落在本 skill 每轮注入文本面：`SKILL.md` L60 平台枚举 `<HM/WB/CX/TC/ZC>`、L92「五端适配」、L131「五端统一」、L135「五端 junction/镜像」+「OC 已退役」、L139「五端权威」与 `contract.md` L10「五端生效」/L85「五端共享」；真相源 `焚诀/eval/truth_constants.json` `endpoints.active` = 8 端（wb/tr/cx/hm/zc/oc/qw/qd；oc 代号 09-23 由 OpenCode 接管复用、qw/qd 09-24 入役）。H1「V9.7.0 瘦身版」版本戳同步改为无戳表述。范围纪律：**只改正文与版本历史，不碰 frontmatter description**（description 属注册表/BGE/skill_content 派生件镜像，改它必须整链重建，按「派生件三方脱节」教训留待重建窗口）；历史句一律保留原文、其后追加带日期校正注（R241）。验证：`python 05-exec/claim_truth_scan.py` endpoint 族候选 6→0；`python 05-exec/r19_baseline_contract_fixtures.py` 18/18；`python 05-exec/r19_fixture_mutation_check.py` 变异 4/4 被拦（含未变异对照组）。同步 frontmatter 10.67.0 → 10.68.0。\n> V10.67.0 (2026-09-23): **执行契约分卷拆分（P0-2）**"
+ }
+]

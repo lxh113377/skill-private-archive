@@ -1,0 +1,51 @@
+{
+ "schema": "r19-baseline-contracts-v1",
+ "generated_at": "2026-09-24T18:41:17",
+ "contract_file": "C:\\Users\\37533\\Desktop\\workspace\\自建skill优化\\05-exec\\schemas\\r19\\baseline-contracts.json",
+ "dir": "C:\\Users\\37533\\Desktop\\workspace\\自建skill优化\\06-benchmark",
+ "files_checked": 8,
+ "artifacts": [
+  {
+   "glob": "cumulative_drift_*.json",
+   "files": 1,
+   "violations": 0
+  },
+  {
+   "glob": "description*.json",
+   "files": 1,
+   "violations": 0
+  },
+  {
+   "glob": "catalog_attention_tax_*.json",
+   "files": 1,
+   "violations": 0
+  },
+  {
+   "glob": "claim_truth_*.json",
+   "files": 1,
+   "violations": 0
+  },
+  {
+   "glob": "rule_conflict_scan_*.json",
+   "files": 1,
+   "violations": 0
+  },
+  {
+   "glob": "skill_structure_rubric_*.json",
+   "files": 1,
+   "violations": 0
+  },
+  {
+   "glob": "attention_sim_raw_*.json",
+   "files": 1,
+   "violations": 0
+  },
+  {
+   "glob": "memory_eval_scenarios*.json",
+   "files": 1,
+   "violations": 0
+  }
+ ],
+ "violations_total": 0,
+ "violations_detail": []
+}
