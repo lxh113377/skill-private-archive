@@ -17,6 +17,7 @@ skill-count baseline. Read-only; emits a remediation queue, changes nothing.
 """
 
 import argparse
+import collections
 import json
 import re
 import sys
@@ -30,6 +31,7 @@ except Exception:
     _lib = None
 
 GS_ROOT = Path(r"D:\global_skills")
+PLUGIN_MANIFEST = (Path.home() / ".qoder-cn" / "plugins" / "installed_plugins_v2.json")
 C25_BASELINE = 61472
 C25_HARD_CAP = 65536
 WINDOW_TOKENS = 128000
@@ -73,6 +75,31 @@ def scan():
     return rows, junctions
 
 
+def scan_plugins(manifest_path):
+    """Active plugin skills, resolved through installed_plugins_v2.json.
+
+    cache/ keeps superseded versions on disk; only installPath entries in the
+    manifest are actually injected, so counting the whole cache tree overstates
+    the tax (measured: 57 SKILL.md on disk vs the manifest-selected set).
+    """
+    try:
+        man = json.loads(Path(manifest_path).read_text(encoding="utf-8"))
+    except (OSError, ValueError) as e:
+        return None, "manifest unreadable (%s)" % e
+    rows, missing = [], []
+    for key, entries in (man.get("plugins") or {}).items():
+        for ent in entries if isinstance(entries, list) else [entries]:
+            ip = Path(ent.get("installPath", ""))
+            if not ip.is_dir():
+                missing.append(key)
+                continue
+            for md in sorted(ip.glob("skills/*/SKILL.md")):
+                desc = get_desc(md.read_text(encoding="utf-8", errors="replace")) or ""
+                rows.append({"skill": "%s/%s" % (key.split("@")[0], md.parent.name),
+                             "desc_chars": len(desc), "visible": ent.get("userVisible", True)})
+    return rows, missing
+
+
 def main():
     if _lib is not None:
         _lib.force_utf8_stdout()
@@ -85,6 +112,8 @@ def main():
     ap.add_argument("--json")
     ap.add_argument("--md")
     ap.add_argument("--top", type=int, default=20)
+    ap.add_argument("--plugin-manifest", default=PLUGIN_MANIFEST,
+                    help="Qoder installed_plugins_v2.json；传 none 关闭插件面")
     args = ap.parse_args()
 
     rows, junctions = scan()
@@ -99,6 +128,18 @@ def main():
     over_cap = [r for r in rows if r["desc_chars"] > ANTHROPIC_DESC_CAP]
     rows.sort(key=lambda r: -r["desc_chars"])
 
+    prows, pmissing, perr = [], [], None
+    plugin_on = bool(args.plugin_manifest) and str(args.plugin_manifest).lower() != "none"
+    if plugin_on:
+        prows, pmissing = scan_plugins(args.plugin_manifest)
+        if prows is None:
+            prows, perr, pmissing = [], pmissing, []
+    ptotal = sum(r["desc_chars"] for r in prows)
+    pnames = sum(len(r["skill"]) for r in prows)
+    pgrand = ptotal + pnames
+    cgrand = grand + pgrand
+    cpct = 100.0 * cgrand / WINDOW_TOKENS
+
     print("=== 技能目录注意力税实测 (%s) ===" % datetime.now().strftime("%Y-%m-%d %H:%M"))
     print("枚举: %d 纳入 + %d junction 跳过(%s)" % (n, len(junctions), ",".join(junctions) or "-"))
     if _lib is not None:
@@ -111,6 +152,32 @@ def main():
     print("对照 C25: 基线 %dB / 硬顶 %dB -> 目录块是硬顶的 %.2f 倍" % (C25_BASELINE, C25_HARD_CAP, grand * 3.0 / C25_HARD_CAP))
     print("超 anthropics 官方 description 上限(%d 字符)的技能: %d" % (ANTHROPIC_DESC_CAP, len(over_cap)))
     print("中位数 %d 字符 / 最长 %d 字符" % (rows[n // 2]["desc_chars"], rows[0]["desc_chars"]))
+    print()
+    print("--- 第四口径：插件技能面（不在 D:\\global_skills / 注册表 / 任何门禁内）---")
+    if not plugin_on:
+        print("  已按 --plugin-manifest none 关闭")
+    elif perr:
+        print("  清单不可读: %s → 本表分母仅自建面，禁止引用为全注入面" % perr)
+    else:
+        ptop = sorted(prows, key=lambda r: -r["desc_chars"])
+        print("  活跃插件技能 %d 条（清单 %s；缓存目录树含更多历史版本，按 manifest 选定项计数）"
+              % (len(prows), Path(args.plugin_manifest).name))
+        if pmissing:
+            print("  ⚠ manifest 指向但盘上缺失的插件: %s" % ", ".join(pmissing))
+        print("  description %d + name %d = %d 字符（中位 %d / 最长 %d）" % (
+            ptotal, pnames, pgrand,
+            ptop[len(ptop) // 2]["desc_chars"] if ptop else 0,
+            ptop[0]["desc_chars"] if ptop else 0))
+        print("  按插件计数: %s" % ", ".join(
+            "%s=%d" % (k, v) for k, v in sorted(
+                collections.Counter(r["skill"].split("/")[0] for r in prows).items(),
+                key=lambda kv: -kv[1])[:12]))
+        print()
+        print("=== 合计注入面（自建 + 插件）===")
+        print("  %d 技能 / %d 字符 ≈ %d tokens/轮 = 128k 窗口的 %.1f%% = C25 硬顶 %.2f 倍" % (
+            n + len(prows), cgrand, cgrand, cpct, cgrand * 3.0 / C25_HARD_CAP))
+        print("  仅看自建面会低估 %.1f%%（%d vs %d 字符）" % (
+            100.0 * pgrand / grand if grand else 0, grand, cgrand))
     print()
     print("裁剪候选 top %d（每轮省字符数）:" % args.top)
     for r in rows[: args.top]:
@@ -134,6 +201,21 @@ def main():
         "max_chars": rows[0]["desc_chars"],
         "trim_queue": rows[:40],
         "token_model_caveat": "1 CJK char ~= 1 token is the same convention as attention_sim bytes//3; tokenizer-exact counting not available offline",
+        "plugin_surface": {
+            "measured": bool(plugin_on) and perr is None,
+            "manifest": str(args.plugin_manifest),
+            "count": len(prows),
+            "desc_chars": ptotal,
+            "name_chars": pnames,
+            "grand_chars": pgrand,
+            "by_plugin": dict(collections.Counter(r["skill"].split("/")[0] for r in prows)),
+            "missing_installPath": pmissing,
+            "error": perr,
+            "gate_coverage": "NOT covered by 焚诀 C1 registry / C25 / C20 / C27 / C28 (all scoped to D:\\global_skills)",
+        },
+        "combined": {"skills": n + len(prows), "grand_chars": cgrand,
+                     "est_tokens_per_turn": cgrand, "pct_of_128k_window": round(cpct, 2),
+                     "vs_c25_hard_cap_ratio": round(cgrand * 3.0 / C25_HARD_CAP, 2)},
     }
     if args.json:
         Path(args.json).write_text(json.dumps(result, ensure_ascii=False, indent=1), encoding="utf-8")
@@ -150,7 +232,11 @@ def main():
               "| 占 128k 窗口 | %.1f%% |" % pct_window,
               "| vs C25 硬顶 65,536B | %.2f 倍 |" % (grand * 3.0 / C25_HARD_CAP),
               "| 中位/最长 description | %d / %d 字符 |" % (result["median_chars"], result["max_chars"]),
-              "| 超官方 1024 字符上限 | %d 条 |" % len(over_cap), "",
+              "| 超官方 1024 字符上限 | %d 条 |" % len(over_cap),
+              "| **插件技能面（第四口径）** | **%d 条 / %d 字符**（门禁零覆盖） |" % (len(prows), pgrand),
+              "| **合计注入面** | **%d 技能 / %d 字符 ≈ %d tokens/轮 = 窗口 %.1f%% = C25 硬顶 %.2f 倍** |" % (
+                  n + len(prows), cgrand, cgrand, cpct, cgrand * 3.0 / C25_HARD_CAP),
+              "| 只看自建面低估 | %.1f%% |" % (100.0 * pgrand / grand if grand else 0), "",
               "## 裁剪候选队列 (top %d)" % args.top, "", "| 技能 | 字符 | 每轮收益 |", "|---|---|---|"]
         md += ["| `%s` | %d | %d |" % (r["skill"], r["desc_chars"], r["desc_chars"]) for r in rows[: args.top]]
         md += ["", "## 口径注", "",
