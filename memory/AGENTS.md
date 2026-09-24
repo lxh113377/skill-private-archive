@@ -20,10 +20,10 @@
 ## 项目门禁命令（A-memory-start V9.8 / R193 读取本行，修改类任务动手前必跑）
 
 ```
-python 05-exec/r19_scan_fixtures.py && python 05-exec/r19_baseline_contract_fixtures.py && python 05-exec/baseline_contract_scan.py --quiet
+python 05-exec/r19_scan_fixtures.py && python 05-exec/r19_baseline_contract_fixtures.py && python 05-exec/baseline_contract_scan.py --quiet && python 05-exec/ratchet_gate.py
 ```
 
-> 三条全 `[GATE:fixture-pass]` / `[CONTRACT:PASS]` 才允许落盘改动；任一红 = 判据或基线契约已失效，先修判据再动手（R263）。
+> 四条全 `[GATE:fixture-pass]` / `[CONTRACT:PASS]` / `[RATCHET:PASS]` 才允许落盘改动（`[RATCHET:FAIL]` 只在「指标比基线长大」或「指标算不出」时出现；既有的超硬顶项按非阻断告警显示，`--strict-cap` 可升级为阻断）；任一红 = 判据或基线契约已失效，先修判据再动手（R263）。
 > 判据可信度本身由 `python 05-exec/r19_fixture_mutation_check.py` 变异测试担保（4 项变异必须全部被拦 + 未变异对照组通过）。
 
 ## 铁律

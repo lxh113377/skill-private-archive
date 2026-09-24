@@ -1,0 +1,22 @@
+{
+ "schema": "zijian-inject-ratchet-v1",
+ "generated_at": "2026-09-24 21:28",
+ "metrics": {
+  "catalog_grand_chars": 45250,
+  "inject_union_bytes": 89014,
+  "claim_candidates": 4,
+  "drift_ruleish_candidates": 10,
+  "desc_over_cap": 0
+ },
+ "hard_caps": {
+  "inject_union_bytes": 65536
+ },
+ "sources": {
+  "catalog": "C:\\Users\\37533\\Desktop\\workspace\\自建skill优化\\06-benchmark\\catalog_attention_tax_r20_2026-09-24.json",
+  "claim": "C:\\Users\\37533\\Desktop\\workspace\\自建skill优化\\06-benchmark\\claim_truth_2026-09-24.json",
+  "drift": "C:\\Users\\37533\\Desktop\\workspace\\自建skill优化\\06-benchmark\\cumulative_drift_2026-09-24.json",
+  "desc": "C:\\Users\\37533\\Desktop\\workspace\\自建skill优化\\06-benchmark\\description基线_2026-09-24.json",
+  "inject_files": "焚诀 truth_constants.inject_budget.files 实测 + 本项目 AGENTS.md"
+ },
+ "note": "只降不升棘轮；缺项/超顶/无基线一律 exit 非 0（R247）"
+}
