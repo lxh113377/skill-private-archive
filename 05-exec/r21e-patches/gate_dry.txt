@@ -1,0 +1,17 @@
+[dry-run] 目标: D:\global_skills\A-memory-start\references\upgrade_footer_gate.py
+  #1 命中行 31  old(2 行) → new(4 行)
+       上文: import json
+       - import re
+       + import os
+  #2 命中行 58  old(1 行) → new(68 行)
+       - FIX_HINT = (
+       + 
+  #3 命中行 210  old(2 行) → new(6 行)
+       上文: errs.append(f"改法超 {FIX_MAX_CHARS} 字（实测 {len(fix)} 字）")
+       -         if state == "已闭环" and not RE_EVID.match(val):
+       +         if state == "已闭环" and not RE_EVID.match(val):
+  #4 命中行 278  old(2 行) → new(4 行)
+       上文: f"命中={stats['hits']} 无命中={stats['nohits']}）")
+       -     if not args.quiet:
+       +     if not args.quiet:
+[dry-run] ✅ 共 4 处全部可应用；未写盘未备份（去掉 --dry-run 即执行）

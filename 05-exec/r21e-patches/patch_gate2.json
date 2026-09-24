@@ -1,0 +1,14 @@
+[
+ {
+  "old": "RE_EVID = re.compile(r\"^[A-Za-z]:[\\\\/].+?#(?:版本行:V\\d+(?:\\.\\d+)*|backup:[\\w.\\-]+)$\")",
+  "new": "RE_EVID = re.compile(r\"^[A-Za-z]:[\\\\/].+?#(?:版本行:V?\\d+(?:\\.\\d+)*|backup:[\\w.\\-]+)$\")"
+ },
+ {
+  "old": "    return (\"FAKE\", \"证据路径不存在\") if known else (\"SKIP\", \"路径在本体系外，不判\")",
+  "new": "    return (\"FAKE\", \"证据路径不存在\")\n    # 体系外豁免只留给「存在但读不到」；不存在一律 FAKE（绝对路径写不出=凭空引用）"
+ },
+ {
+  "old": "    known = any(p.replace(\"\\\\\", \"/\").lower().startswith(r.replace(\"\\\\\", \"/\").lower() + \"/\")\n                for r in RESOLVE_ROOTS)\n    return p, known",
+  "new": "    return p, True                                     # 绝对路径：交给 isfile 判，known 不再参与放行"
+ }
+]

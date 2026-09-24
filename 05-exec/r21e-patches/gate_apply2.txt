@@ -1,0 +1,3 @@
+[replace] OK (patch x4) -> D:\global_skills\A-memory-start\references\upgrade_footer_gate.py (备份: D:\global_memory_archive\_trash\rule_backup\A-memory-start.references.upgrade_footer_gate.py.20260924_231628_504828.bak)
+[git] skipped (--no-commit，待 commit 子命令收口)
+[verify] PASS 新内容已落盘

@@ -1,0 +1,14 @@
+[dry-run] 目标: D:\global_skills\A-memory-start\references\upgrade_footer_gate.py
+  #1 命中行 50  old(1 行) → new(1 行)
+       上文: r"^\[升级建议\] skill=(\S+) \| 五问=([^|]+) \| 改法=([^|]+) \| 对照=(已
+       - RE_EVID = re.compile(r"^[A-Za-z]:[\\/].+?#(?:版本行:V\d+(?:\.\d
+       + RE_EVID = re.compile(r"^[A-Za-z]:[\\/].+?#(?:版本行:V?\d+(?:\.\
+  #2 命中行 98  old(1 行) → new(2 行)
+       上文: if not os.path.isfile(path):
+       -     return ("FAKE", "证据路径不存在") if known else ("SKIP", "路径在本体
+       +     return ("FAKE", "证据路径不存在")
+  #3 命中行 79  old(3 行) → new(1 行)
+       上文: return cand, True
+       -     known = any(p.replace("\\", "/").lower().startswith(r.re
+       +     return p, True                                     # 绝对路
+[dry-run] ✅ 共 3 处全部可应用；未写盘未备份（去掉 --dry-run 即执行）
