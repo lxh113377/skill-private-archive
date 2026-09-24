@@ -1,0 +1,10 @@
+    # 重复轮次闸门行（r22；只转述各仓台账，本 skill 不硬编码任何单仓路径、不自算判定）
+    try:
+        _rg = _repeat_guard_row(mem_dir)
+        if _rg:
+            _rk, _rtxt = _rg
+            (warnings if _rk == "warn" else passed).append(_rtxt)
+    except Exception:
+        pass
+
+    # Cross-check: features in 05 vs AC-OBS in 08

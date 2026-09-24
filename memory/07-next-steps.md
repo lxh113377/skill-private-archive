@@ -37,6 +37,7 @@
 - [ ] **【待观察·他人在途（r20 登记）】** `A-get-memory/SKILL.md`（+ `references/step2_4_missed_audit.md`）当前为并行会话在途且**已 staged**（`git status --porcelain` 首列 `M`），frontmatter 已到 4.29.0（> 本会话所见的 4.27.0）⇒ 归属会话正在连改。本要把「判据类工具交付三条硬判据」写进该 skill，现改为**备好补丁不代改**：`05-exec/r20-patches/patch_agetmemory_jig_clause.json` + 同目录 README（含一条 `rule_editor replace --dry-run` 命令与验收判据），待其收口后由归属会话一键落地。另注：受管根出现 staged-but-uncommitted 状态本身是并发风险信号，本仓未做任何 `git add/reset` 触碰。
 - [ ] **【登记·跨会话夹带反向形态（r19b）】** 我在 `A-memory-start/references/contract.md` 的在途 hunks（八端生效/八端共享）被并行会话提交 **`4b75d80`** 一并带走（其说明只提「Step0.55 新增 6.5」）——根因同上轮 `f6f5b0c`：`rule_editor commit` 按整文件提交，同文件存在他人未提交改动；**内容未丢失、未改写**（两侧改动现均在工作树与 HEAD 中，`grep -c 八端` = 2 实测）。处置：**不回滚**（回滚 = 抹他人在途），只登记 + 提交前逐文件比对。**转办建议（焚诀归属会话）**：`rule_editor commit` 增加「同文件他人改动」预检（r18 已提过一次，本轮二次复现，优先级应提至 P1）
 - [ ] **【更正·转办判据编号撞号（r19b 实测）】** 下表 R19-2 所指「C29′ 目录税棘轮」**已不能叫 C29**：焚诀并行会话本轮实际落地的是 **C29 = index.md 与派生评分产物对账**（verify 现 29 checks）。⇒ 转办三项重编号为 **C30′ 目录税棘轮 / C31′ 注入区口径合一 / C32′ 计数断言内容级门禁**；证据包位置不变（`06-benchmark/全量对标报告_r19_2026-09-24.md` §2.2/§3 + `06-benchmark/计数断言基线_2026-09-24.md`）
+- [ ] **【待观察·外部红项（r21c）】** `gates` 现 `mirror=fail` 的 2 处 MISMATCH 均为 `ican-frontend-design-system/{SKILL.md,references/delivery-chain.md}` = 并行会话在途（本仓该 skill 零触碰），按 R269 不代跑 `-Fix`（-Fix 单向 源→镜像，覆写他人镜像侧在途会吞其工作）。本仓两文件已镜像一致。
 - [ ] **【待观察·同工作区并行会话（r20b 登记 21:5x）】** `git status --porcelain` 出现本仓外的新未跟踪件 `05-exec/r21b-patches/README.md`（另有 `r21b-patches/*.txt` 六个文件已被他人在途会话纳入其工作集）⇒ **有另一个会话正以 r21/r21b 编号在本工作区作业**，轮次编号已与我方 r20b 并行推进。按 R269 只登记不擅动：本会话未 add/未修改/未删除其任何文件（本仓提交 `git add` 全程按目录+文件白名单，未用 `-A`）。对后续会话的提示：动 `05-exec/r21b-patches/` 与其中和文件前先 `git log --oneline -3` 看是否已被其自行收口。另记一条本轮踩到的机制细节：footer `[升级建议]` 的 `skill=` 值**不得含空格**（写 `skill=焚诀 verify` 被 `upgrade_footer_gate.py` 判「块内非法行」，改 `fenjue-verify` 后 pass）——落盘后必须复跑门禁读结果，不能只信脚本 exit 0。
 - [ ] **【待观察·焚诀在途新判据 C29（r19 登记 2026-09-24 18:0x）】** 本轮开工时（17:31）实测 `verify_truth_consistency.py` = **28 PASS / 0 FAIL**，收口前（18:0x）复跑变 **28 PASS / 1 FAIL**，FAIL 项 = **C29「index.md 与派生评分产物对账」**（index.md 端点 6 vs `ENDPOINTS`=8、注册表 151 vs 实测 167、门禁范围 [24] vs C1~C29、评分卡 track_150 vs active track_200、`json.overall=175.1` vs STATUS 182.5）；同因导致 `rule_editor.py gates` 的 **stub 门禁新增「未登记判据 1 个」**。归因（实测）：`git -C 焚诀 status --porcelain` = **6 条 M**（`eval/verify_truth_consistency.py` / `verify_checks/status_layer.py` / `generate_index.py` / `aggregate_status.py` / `status_report.py` / `truth_constants.py`）⇒ 并行会话**正在开发 C29 且 index.md 尚未重生成**，非本项目引入（本轮对焚诀 `eval/` 零写入）。按 R269 只登记不擅动；取值命令同上一行。
 - [ ] **【待观察·跨根缺锚（r19 登记）】** `A-project-better` V1.8.0（2026-09-24 用户立规「破坏性 = 备份 + Git 双硬前提自动批准」）版本历史称「双层留痕 = 本 skill + **behavior_core #23 锚点**」，但实测 `grep -rn "#23" D:/global_memory/core/behavior_core*.md` **0 命中**（输入非空：6 个 `behavior_core*` 文件在盘，`core/behavior_core.md` 仍为 **V41 / 22 锚点**）⇒ 全局层锚点**尚未落地**（该 skill 与其 3 个 references 当前为 `M`，归属会话在途）。影响：跨端铁律 #18 补强「非破坏性升级建议本轮末尾执行」所依赖的编号链出现空洞。按 R269 只登记不擅动，待归属会话补 #23 或改口。
@@ -62,6 +63,8 @@
 - **卷9** `07-next-steps.part9.md` — 07-next-steps 分卷（R199 自动拆卷）
 
 - **卷10** `07-next-steps.part10.md` — 07-next-steps 分卷（R199 自动拆卷）
+
+- **卷11** `07-next-steps.part11.md` — 07-next-steps 分卷（R199 自动拆卷）
 
 ## 分卷目录
 - **卷1** `07-next-steps.part1.md` — 历史待办与已完成条目（2026-09-22 已按实测销账）

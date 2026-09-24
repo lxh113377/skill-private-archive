@@ -1,0 +1,38 @@
+
+
+def _repeat_guard_row(mem_dir):
+    """读 memory/sessions/repeat-guard.jsonl，返回 ('warn'|'ok', 文案) 或 None。
+
+    判据由各项目仓自己的 repeat_round_guard 落台账（共享 skill 不反向依赖单仓路径）；
+    无台账 → None 保持静默（同 memory-eval 行的防噪音口径）。非 JSON 行跳过，last-wins。
+    """
+    p = mem_dir / "sessions" / "repeat-guard.jsonl"
+    if not p.exists():
+        return None
+    last = None
+    try:
+        lines = p.read_text(encoding="utf-8", errors="replace").splitlines()
+    except OSError:
+        return None
+    for ln in lines:
+        ln = ln.strip()
+        if not ln:
+            continue
+        try:
+            obj = json.loads(ln)
+        except ValueError:
+            continue
+        if isinstance(obj, dict):
+            last = obj
+    if not last or not last.get("verdict"):
+        return None
+    verdict = str(last.get("verdict")).upper()
+    commits = last.get("commits") if isinstance(last.get("commits"), dict) else {}
+    sessions = last.get("same_day_sessions") if isinstance(last.get("same_day_sessions"), list) else []
+    txt = ("重复轮次闸门: %s — 当日同族轮次=%s 同族新增行=%s 同日 session=%d"
+           % (verdict, commits.get("rounds", "?"), commits.get("insertions_by_rounds", "?"), len(sessions)))
+    if verdict in ("DUPLICATE", "INCREMENT") or last.get("forked"):
+        if last.get("forked"):
+            txt += "；⚠ 同日多会话对同一指令分叉，登记须互不覆盖（夹带面）"
+        return ("warn", txt)
+    return ("ok", txt)
