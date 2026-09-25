@@ -1,15 +1,15 @@
 {
  "schema": "zijian-inject-ratchet-v1",
- "generated_at": "2026-09-25 08:59",
+ "generated_at": "2026-09-25 18:23",
  "metrics": {
   "catalog_grand_chars": 45250,
-  "inject_union_bytes": 86793,
+  "inject_union_bytes": 86756,
   "claim_candidates": 4,
   "drift_ruleish_candidates": 10,
   "desc_over_cap": 0,
   "username_in_skill_files": 23,
   "overdue_debt_items": 0,
-  "deferred_debt_items": 23,
+  "deferred_debt_items": 0,
   "repeat_debt_items": 0
  },
  "hard_caps": {

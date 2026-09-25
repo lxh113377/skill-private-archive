@@ -176,6 +176,39 @@ GATES = [
                "且实跑接线暴露调度器传给不变式的是名字串而非配置值——按名字比较会让全部证据件被字典序静默豁免",
     },
     {
+        # r55 D-100：同一判据两输入面（未注册根 strict 误判）修完的「登记不放宽判据」双向取证件
+        "id": "root_face_fixtures",
+        "script": "r55_rootface_fixtures.py",
+        "argv": [],
+        "pass_token": "[GATE:fixture-pass]",
+        "portable": False,
+        "not_portable_reason":
+            "整条夹具走真实 `handoff.py noise <项目根>` 子进程并核对本机受管根登记面（R286 的 KNOWN_CORE "
+            "键是绝对路径）；换机既无该登记也无本项目根，f2/f8 的残留项集合不成立",
+        "covers": ["受管根 noise_lint KNOWN_CORE 对本项目根的登记面（R286，受管根 e93896b）",
+                   "登记不放宽判据：植入散落产物仍须判 VIOL + 计数严格 +1 + 清理后复位",
+                   "f9 反向对照：未登记同形根上同一谓词必须抓到顶层 strict VIOL（防 f2 成空断言）"],
+        "why": "r54 我把「savepoint 绿」当「项目根干净」写进了 AGENTS.md 排障表 row 1 首版（未实测的检查命令），"
+               "r55 定位到根因是同一判据读了两个输入面；修完必须双向取证件——顶层 8→0 只证明变绿，"
+               "不证明牙齿还在（放宽 allowlist 凑绿是 X-9 的反面形态）",
+    },
+    {
+        # r55：--update 曾把基线 note 的逐轮人工归因从 496 字刷成 33 字，且无任何门禁变红
+        "id": "baseline_note_fixtures",
+        "script": "r55_note_fixtures.py",
+        "argv": [],
+        "pass_token": "[GATE:fixture-pass]",
+        "portable": False,
+        "not_portable_reason":
+            "n4/n5/n6 读写本项目 06-benchmark/inject_ratchet_baseline.json 的现件留账"
+            "（r38/r40/r45 三条人工核定依据是本轮恢复的历史事实，换机不存在）",
+        "covers": ["05-exec/ratchet_gate.py 的 merge_note 与 --update 落盘路径（留账只增不减 + attributed_raises 须存活）",
+                   "note 缩短即拒写分支（宁可红，不许把留账当装饰刷掉）",
+                   "n6 常驻锁：现件 note 仍含 r38/r40/r45 三条归因"],
+        "why": "指标面有「只降不升」的牙齿，留账面此前完全没有——r55 我跑一次 --update 就蒸发了三条核定依据"
+               "（含「真实敞口 22 而非 0」），当场自抓，并以变异体复验（改回旧行为 n4 必红）",
+    },
+    {
         # r49 W-20 + W-22：判据输入面截断自证 + 裁决对象自证
         "id": "input_face_fixtures",
         "script": "r49_face_fixtures.py",

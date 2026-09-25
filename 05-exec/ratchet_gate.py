@@ -96,6 +96,26 @@ def face_metric_refresh(age_days, budget_days):
     return "OK" if age_days <= budget_days else "STALE"
 
 
+def merge_note(prev_note, base_note, generated_at, changed):
+    """把 --update 的归因段接在历史留账之后。返回 (新 note, 是否缩短)。
+
+    存在理由（r55 实测）：`--update` 原先整份重建 doc 再落盘，等于每次刷新都把
+    「这个基线值凭什么是它」的逐轮归因刷掉一遍（本仓 note 496 字 → 33 字，
+    r38「真实敞口 22 而非 0」/ r40「真值直取证据件，未做人工削减」两条依据全丢）。
+    留账与指标值同等重要 ⇒ 只增不减；任何缩短都交回调用方拒写（宁可红，不许刷留账）。
+    """
+    prev = str(prev_note or "").strip()
+    if prev.startswith(base_note):
+        trail = prev[len(base_note):].strip()
+    else:
+        trail = prev                      # 人工改过的 note：整条当留账保住，禁按长度切片
+    seg = " ｜%s 自动核定 %s" % (
+        generated_at, "、".join("%s %s→%s" % (k, a, b) for k, (a, b) in sorted(changed.items()))) \
+        if changed else ""
+    new = base_note + ((" " + trail) if trail else "") + seg
+    return new, (len(new) < len(prev))
+
+
 def refresh_status():
     """返回 {指标: (状态, 年龄, 预算)}，并顺带把 STALE 记进 FACE_NOTES 供打印。"""
     out = {}
@@ -483,6 +503,25 @@ def main():
                            "desc": _latest("description*.json"),
                            "inject_files": "焚诀 truth_constants.inject_budget.files 实测 + 本项目 AGENTS.md"},
                "note": "只降不升棘轮；缺项/超顶/无基线一律 exit 非 0（R247）"}
+        # r55 修类缺陷：上面这份 doc 原先是**整份重建**后直接落盘 ⇒ 每次 --update 都会
+        # 抹掉历史 note 的逐轮归因与 attributed_raises 留账（实测：本仓 note 从 496 字被刷成
+        # 33 字，r38「真实敞口 22 而非 0」、r40「真值直取证据件未做人工削减」两条依据全丢）。
+        # 归因文字是「这个基线值凭什么是它」的唯一凭据，与指标值同等重要 ⇒ 只增不减，
+        # 且缩短即拒写（宁可红，不许把留账当装饰刷掉）。
+        base_note = doc["note"]
+        new_note, shrunk = merge_note(bl.get("note"), base_note,
+                                      doc["generated_at"],
+                                      {k: (old.get(k), v) for k, v in metrics.items()
+                                       if k in old and isinstance(old.get(k), (int, float))
+                                       and isinstance(v, (int, float)) and old[k] != v})
+        doc["note"] = new_note
+        for carry in ("attributed_raises",):
+            if bl.get(carry) and not doc.get(carry):
+                doc[carry] = bl[carry]
+        if shrunk:
+            print("[RATCHET:REFUSE] note 留账将缩短（%d→%d 字）⇒ 拒写基线"
+                  % (len(str(bl.get("note") or "")), len(doc["note"])))
+            return 1
         Path(args.baseline).parent.mkdir(parents=True, exist_ok=True)
         Path(args.baseline).write_text(json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")
         print("[RATCHET:BASELINE] 写入 %s（%d 项指标）" % (args.baseline, len(metrics)))

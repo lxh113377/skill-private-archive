@@ -117,7 +117,7 @@ python 05-exec/run_gates.py
 
 | # | 报错特征（逐字） | 根因（实测） | 一行检查 / 处置 |
 |---|---|---|---|
-| 1 | savepoint 报「噪声散射」被拒 | `noise_lint` 把**已跟踪治理件**与 `.git` 运行态判成散落（r37 连红 7 轮全是假阳性） | 看 `python D:/global_skills/A-project-handoff/scripts/handoff.py savepoint <项目>` 第 i) 步自己打印的 VIOL 明细（**不要**单跑 `handoff.py noise <项目根>`，见 row 13）；确认假阳性后先修判据，严禁迁走/删除已跟踪件凑绿（X-9） |
+| 1 | savepoint 报「噪声散射」被拒 | 该步实测调 `cmd_noise(["--quiet"])`（`handoff_lib/savepoint.py:502`）**不带项目根参数** ⇒ 只扫四受管根；已跟踪治理件被误判的情形见 r37 假阳性史 | 明细：`python handoff.py noise`（无参＝受管根）；**本项目根要单独跑** `python handoff.py noise "C:\Users\37533\Desktop\workspace\自建skill优化"`（r55 后本项目已在 `KNOWN_CORE` 登记，可直接跑）；确认假阳性后先修判据，严禁迁走/删除已跟踪件凑绿（X-9） |
 | 2 | `[RATCHET:FAIL] overdue_debt_items +N` | 三种因，动作不同：① 轮号推进使挂账到期（机制正常）② 我漏裁"账龄新越线"清单（r41）③ 标记写错行 | `python 05-exec/r38_debt_aging.py` 看 `overdue[].detail` 是"账龄越线"还是"挂账目标 rNN 已到期"；禁用 `--raise-baseline` 抹红 |
 | 3 | 明明写了裁决，下一轮该条仍红 | 标记错位：轻则行号漂移（W-9），重则**混合行尾并元素**（07 实测 178 CRLF + 4 纯 LF，追加落到邻条，W-23） | 一律走 `python 05-exec/r46_mark_verdict.py --key <锚点>`（同行读回验证）；`grep -c "r5[0-9] 裁决=" memory/07-next-steps.md` 核对条数 |
 | 4 | `[CONTRACT:FAIL] 缺分代必填列` 打在历史产物上 | 新列回溯误杀旧件（台账 append-only 不可回写，同 r42 D36） | 用 `schemas/r19/baseline-contracts.json` 的 `row_required_from`（分叉点按 ts 划代，可多代列表），不是删判据 |
@@ -129,7 +129,8 @@ python 05-exec/run_gates.py
 | 10 | `[FACE:UNVERIFIED]`（看起来像失败） | 不是失败：零输入面（定年面无到期项、活体扫描无源件）按 R-ENUM 不得静默判绿 | 读该行 `detail`；确属零输入即为正常态，别去凑一个假对象让它变绿 |
 | 11 | `[GATE:fixture-fail] m17 ... live=N uncited=M` | 我新写的报告里有数字没带取值途径（r54 抓到本轮 9 处） | 就近补 `> 取值：` 行；**不得**放宽 ±12 行窗口或单位集来凑绿，历史面按 R241 只登记不返工 |
 | 12 | `[MARK:REFUSED] ⑥ 条目自身编号 ... 已被宣布落地，却还往后挂账` | 我把 A 条的延期裁决写到 B 条上（r46 对 W-14 的真事故），或裁决文本里引用了旧标记原文被当成本次延期 | 核对该行 `【rNN 裁决=` 的**头部**（第一个 ｜ 之前）；延期只在头部生效，原因体引用旧标记不算延期（r49 q1–q5） |
-| 13 | 照本表某条检查命令跑，报出一堆你从没见过的问题 | **检查命令自身的面不对**：r54 实测 `handoff.py noise <项目根>` 对本项目报 8 条 VIOL（`03-audit`/`04-plan`/`05-exec`/`06-benchmark`/`memory`/`archive` 全中），因为项目根不在 `KNOWN_CORE` allowlist 内 ⇒ 默认 strict 判所有目录；而 savepoint 那一步用的是另一套口径，故它绿、它红 | 先问「这条命令读的是什么面」再动手；该判据的隔离桩在 `05-exec/r37_noise_tracked_stub.py` 可复跑；**禁**据此迁移或删除已跟踪目录（X-9） |
+| 13 | 照本表某条检查命令跑，报出一堆你从没见过的问题 | **检查命令自身的面不对**：r54 实测 `handoff.py noise <项目根>` 对本项目报 8 条 VIOL（`03-audit`/`04-plan`/`05-exec`/`06-benchmark`/`memory`/`archive` 全中），因为项目根不在 `KNOWN_CORE` allowlist 内 ⇒ 默认 strict 判所有目录。**✅ r55 已修**：受管根 `e93896b`（R286）把本项目根登记进 `KNOWN_CORE`，复验顶层 VIOL **8 → 0**、二级扫描随即露出 3 条真项（`手动维护。agent` + `_tmp_r54` + `mark_backup`）⇒ **登记不放宽判据**，只是把面认错纠正。**残留口径差仍在**：savepoint 那句「✅ 零散射」不含项目根（见 row 1），**禁**把它当"项目根干净"的证据 | 先问「这条命令读的是什么面」再动手；隔离桩 `05-exec/r37_noise_tracked_stub.py` 可复跑；**禁**据此迁移或删除已跟踪目录凑绿（X-9） |
+| 14 | `[GATE:mirror-fail] ... missing=0 mismatch=N`（我刚用 rule_editor 改完 skill） | `rule_editor.py commit` 只落**权威源** `D:\global_skills`，不自动同步镜像 `C:\Users\37533\.agents\skills`；同仓另有并行会话在途 ⇒ 全局 `-Fix` 会把**别人未提交**的源码推进镜像 | 先只读列全量：`powershell -File "C:/Users/37533/Desktop/workspace/焚诀/skill/sync/check-skill-mirror.ps1"`（无 `-Fix` 即只读）。逐条判归属：属自己提交过的文件，用 `git show <commit>^:<path> \| sha256sum` 与 mirror 比对证实"仅陈旧"，再 `cp -p` **只拷自己那几个**并复跑只读检查；属他人 `M`/`??` 的文件按 R269 登记不动。**禁**顺手 `-Fix` 凑绿 |
 
 > 本表自身同样适用 R236/R240：**每条检查命令都必须在本机实跑过才写进来**（row 13 就是 row 1 首版未实测留下的坑，r54 当场发现并修正）。
 > 三条通用取向（比逐条更常用）：

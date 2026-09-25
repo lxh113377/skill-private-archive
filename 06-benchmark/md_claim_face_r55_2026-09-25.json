@@ -1,0 +1,1189 @@
+{
+ "claims": 1011,
+ "uncited": 167,
+ "status": "EXPOSED",
+ "uncited_list": [
+  {
+   "line": 18,
+   "token": "11 个",
+   "file": "memory_eval基线_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 19,
+   "token": "6,435B",
+   "file": "memory_eval基线_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 21,
+   "token": "100%",
+   "file": "memory_eval基线_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 11,
+   "token": "586B",
+   "file": "P0-1_hook机制层探底_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 44,
+   "token": "586B",
+   "file": "P0-1_hook机制层探底_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 65,
+   "token": "7 条",
+   "file": "P0-1_hook机制层探底_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 40,
+   "token": "25%",
+   "file": "P0-C_累积漂移复核第2批_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 43,
+   "token": "10 条",
+   "file": "P0-C_累积漂移复核第2批_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 43,
+   "token": "7 条",
+   "file": "P0-C_累积漂移复核第2批_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 44,
+   "token": "3 条",
+   "file": "P0-C_累积漂移复核第2批_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 45,
+   "token": "9 例",
+   "file": "P0-C_累积漂移复核第2批_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 45,
+   "token": "5 例",
+   "file": "P0-C_累积漂移复核第2批_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 52,
+   "token": "65,536B",
+   "file": "P0-C_累积漂移复核第2批_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 53,
+   "token": "10 条",
+   "file": "P0-C_累积漂移复核第2批_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 53,
+   "token": "200 行",
+   "file": "P0-C_累积漂移复核第2批_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 57,
+   "token": "7 条",
+   "file": "P0-C_累积漂移复核第2批_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 20,
+   "token": "8 个",
+   "file": "rule_conflict基线_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 20,
+   "token": "11 个",
+   "file": "rule_conflict基线_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 85,
+   "token": "25,456B",
+   "file": "全量对标报告_r18_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 94,
+   "token": "16,372 B",
+   "file": "全量对标报告_r18_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 94,
+   "token": "4.26%",
+   "file": "全量对标报告_r18_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 95,
+   "token": "38,342 B",
+   "file": "全量对标报告_r18_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 95,
+   "token": "9.98%",
+   "file": "全量对标报告_r18_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 96,
+   "token": "3,300,012 B",
+   "file": "全量对标报告_r18_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 97,
+   "token": "46.9%",
+   "file": "全量对标报告_r18_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 97,
+   "token": "90.6%",
+   "file": "全量对标报告_r18_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 98,
+   "token": "35.3%",
+   "file": "全量对标报告_r18_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 98,
+   "token": "2.07 倍",
+   "file": "全量对标报告_r18_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 165,
+   "token": "5 条",
+   "file": "全量对标报告_r18_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 165,
+   "token": "6 组",
+   "file": "全量对标报告_r18_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 165,
+   "token": "97 条",
+   "file": "全量对标报告_r18_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 166,
+   "token": "16 条",
+   "file": "全量对标报告_r18_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 167,
+   "token": "13.9%",
+   "file": "全量对标报告_r18_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 191,
+   "token": "167 条",
+   "file": "全量对标报告_r18_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 203,
+   "token": "10.6%",
+   "file": "全量对标报告_r18_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 203,
+   "token": "40 行",
+   "file": "全量对标报告_r18_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 204,
+   "token": "69,494B",
+   "file": "全量对标报告_r18_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 204,
+   "token": "3,958B",
+   "file": "全量对标报告_r18_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 205,
+   "token": "16 条",
+   "file": "全量对标报告_r18_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 205,
+   "token": "1 个",
+   "file": "全量对标报告_r18_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 211,
+   "token": "8 条",
+   "file": "全量对标报告_r18_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 211,
+   "token": "0%",
+   "file": "全量对标报告_r18_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 211,
+   "token": "80%",
+   "file": "全量对标报告_r18_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 213,
+   "token": "1 行",
+   "file": "全量对标报告_r18_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 10,
+   "token": "14 个",
+   "file": "全量对标报告_r19_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 49,
+   "token": "9 份",
+   "file": "全量对标报告_r19_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 76,
+   "token": "10 条",
+   "file": "全量对标报告_r19_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 85,
+   "token": "3 例",
+   "file": "全量对标报告_r19_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 86,
+   "token": "24 条",
+   "file": "全量对标报告_r19_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 98,
+   "token": "12 份",
+   "file": "全量对标报告_r19_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 171,
+   "token": "55 例",
+   "file": "全量对标报告_r19_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 27,
+   "token": "47.5%",
+   "file": "全量对标报告_r20_插件面补口径_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 27,
+   "token": "65,536B",
+   "file": "全量对标报告_r20_插件面补口径_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 27,
+   "token": "2.78 倍",
+   "file": "全量对标报告_r20_插件面补口径_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 54,
+   "token": "47.5%",
+   "file": "全量对标报告_r27_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 54,
+   "token": "34.3%",
+   "file": "全量对标报告_r27_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 57,
+   "token": "4 份",
+   "file": "全量对标报告_r27_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 4,
+   "token": "59.0%",
+   "file": "全量对标报告_r28_六段解剖AB_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 4,
+   "token": "72.3%",
+   "file": "全量对标报告_r28_六段解剖AB_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 4,
+   "token": "68 条",
+   "file": "全量对标报告_r28_六段解剖AB_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 4,
+   "token": "22 条",
+   "file": "全量对标报告_r28_六段解剖AB_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 4,
+   "token": "32.4%",
+   "file": "全量对标报告_r28_六段解剖AB_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 50,
+   "token": "42.2%",
+   "file": "全量对标报告_r28_六段解剖AB_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 50,
+   "token": "13.3%",
+   "file": "全量对标报告_r28_六段解剖AB_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 51,
+   "token": "13.9%",
+   "file": "全量对标报告_r28_六段解剖AB_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 51,
+   "token": "96.0%",
+   "file": "全量对标报告_r28_六段解剖AB_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 51,
+   "token": "59.0%",
+   "file": "全量对标报告_r28_六段解剖AB_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 55,
+   "token": "72.3%",
+   "file": "全量对标报告_r28_六段解剖AB_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 55,
+   "token": "18.1%",
+   "file": "全量对标报告_r28_六段解剖AB_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 55,
+   "token": "24.1%",
+   "file": "全量对标报告_r28_六段解剖AB_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 57,
+   "token": "38 个",
+   "file": "全量对标报告_r28_六段解剖AB_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 64,
+   "token": "100%",
+   "file": "全量对标报告_r28_六段解剖AB_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 64,
+   "token": "59.0%",
+   "file": "全量对标报告_r28_六段解剖AB_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 65,
+   "token": "96%",
+   "file": "全量对标报告_r28_六段解剖AB_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 65,
+   "token": "13.9%",
+   "file": "全量对标报告_r28_六段解剖AB_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 66,
+   "token": "5 份",
+   "file": "全量对标报告_r28_六段解剖AB_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 73,
+   "token": "80%",
+   "file": "全量对标报告_r28_六段解剖AB_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 59,
+   "token": "78.9%",
+   "file": "全量对标报告_r29_双口径与范围过滤_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 59,
+   "token": "100%",
+   "file": "全量对标报告_r29_双口径与范围过滤_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 62,
+   "token": "13.9%",
+   "file": "全量对标报告_r29_双口径与范围过滤_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 63,
+   "token": "96.0%",
+   "file": "全量对标报告_r29_双口径与范围过滤_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 38,
+   "token": "13.9%",
+   "file": "全量对标报告_r30_四档稳健性与反理性化首批_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 38,
+   "token": "13.9%",
+   "file": "全量对标报告_r30_四档稳健性与反理性化首批_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 38,
+   "token": "71.1%",
+   "file": "全量对标报告_r30_四档稳健性与反理性化首批_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 38,
+   "token": "33.1%",
+   "file": "全量对标报告_r30_四档稳健性与反理性化首批_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 39,
+   "token": "60.8%",
+   "file": "全量对标报告_r30_四档稳健性与反理性化首批_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 39,
+   "token": "72.3%",
+   "file": "全量对标报告_r30_四档稳健性与反理性化首批_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 39,
+   "token": "74.1%",
+   "file": "全量对标报告_r30_四档稳健性与反理性化首批_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 39,
+   "token": "33.1%",
+   "file": "全量对标报告_r30_四档稳健性与反理性化首批_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 41,
+   "token": "29.2%",
+   "file": "全量对标报告_r30_四档稳健性与反理性化首批_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 41,
+   "token": "13.9%",
+   "file": "全量对标报告_r30_四档稳健性与反理性化首批_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 41,
+   "token": "13.9%",
+   "file": "全量对标报告_r30_四档稳健性与反理性化首批_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 42,
+   "token": "95 条",
+   "file": "全量对标报告_r30_四档稳健性与反理性化首批_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 42,
+   "token": "57.2%",
+   "file": "全量对标报告_r30_四档稳健性与反理性化首批_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 46,
+   "token": "14 条",
+   "file": "全量对标报告_r30_四档稳健性与反理性化首批_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 46,
+   "token": "5 条",
+   "file": "全量对标报告_r30_四档稳健性与反理性化首批_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 62,
+   "token": "3 个",
+   "file": "全量对标报告_r31_自动化验收面_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 66,
+   "token": "1 个",
+   "file": "全量对标报告_r31_自动化验收面_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 97,
+   "token": "11 个",
+   "file": "全量对标报告_r31_自动化验收面_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 109,
+   "token": "8 条",
+   "file": "全量对标报告_r31_自动化验收面_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 109,
+   "token": "96.0%",
+   "file": "全量对标报告_r31_自动化验收面_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 117,
+   "token": "21.7%",
+   "file": "全量对标报告_r31_自动化验收面_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 117,
+   "token": "96.0%",
+   "file": "全量对标报告_r31_自动化验收面_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 58,
+   "token": "166 个",
+   "file": "全量对标报告_r32_CI有效性_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 65,
+   "token": "11 个",
+   "file": "全量对标报告_r32_CI有效性_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 65,
+   "token": "78%",
+   "file": "全量对标报告_r32_CI有效性_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 65,
+   "token": "8 个",
+   "file": "全量对标报告_r32_CI有效性_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 66,
+   "token": "29 个",
+   "file": "全量对标报告_r32_CI有效性_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 66,
+   "token": "9 个",
+   "file": "全量对标报告_r32_CI有效性_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 66,
+   "token": "18%",
+   "file": "全量对标报告_r32_CI有效性_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 67,
+   "token": "100%",
+   "file": "全量对标报告_r32_CI有效性_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 78,
+   "token": "75%",
+   "file": "全量对标报告_r32_CI有效性_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 93,
+   "token": "5 条",
+   "file": "全量对标报告_r32_CI有效性_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 102,
+   "token": "82%",
+   "file": "全量对标报告_r32_CI有效性_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 105,
+   "token": "50%",
+   "file": "全量对标报告_r32_CI有效性_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 105,
+   "token": "62%",
+   "file": "全量对标报告_r32_CI有效性_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 116,
+   "token": "18 例",
+   "file": "全量对标报告_r32_CI有效性_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 79,
+   "token": "17 例",
+   "file": "全量对标报告_r34_可移植性_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 81,
+   "token": "25 个",
+   "file": "全量对标报告_r34_可移植性_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 61,
+   "token": "75%",
+   "file": "全量对标报告_r35_可移植性纵深_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 86,
+   "token": "10 例",
+   "file": "全量对标报告_r35_可移植性纵深_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 49,
+   "token": "92.2%",
+   "file": "全量对标报告_r36_引用可解析性_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 90,
+   "token": "2 条",
+   "file": "全量对标报告_r36_引用可解析性_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 91,
+   "token": "5 条",
+   "file": "全量对标报告_r36_引用可解析性_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 81,
+   "token": "13 条",
+   "file": "全量对标报告_r39_延期与终局分离_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 14,
+   "token": "6 条",
+   "file": "全量对标报告_r43_反延期treadmill与分档宽限_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 14,
+   "token": "11 条",
+   "file": "全量对标报告_r43_反延期treadmill与分档宽限_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 14,
+   "token": "4 条",
+   "file": "全量对标报告_r43_反延期treadmill与分档宽限_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 15,
+   "token": "15 条",
+   "file": "全量对标报告_r43_反延期treadmill与分档宽限_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 16,
+   "token": "5 条",
+   "file": "全量对标报告_r43_反延期treadmill与分档宽限_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 20,
+   "token": "6 条",
+   "file": "全量对标报告_r43_反延期treadmill与分档宽限_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 22,
+   "token": "15 条",
+   "file": "全量对标报告_r43_反延期treadmill与分档宽限_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 22,
+   "token": "11 条",
+   "file": "全量对标报告_r43_反延期treadmill与分档宽限_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 22,
+   "token": "4 条",
+   "file": "全量对标报告_r43_反延期treadmill与分档宽限_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 23,
+   "token": "15 条",
+   "file": "全量对标报告_r43_反延期treadmill与分档宽限_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 24,
+   "token": "5 条",
+   "file": "全量对标报告_r43_反延期treadmill与分档宽限_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 31,
+   "token": "11 条",
+   "file": "全量对标报告_r44_裁决完整性落地_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 14,
+   "token": "6 例",
+   "file": "全量对标报告_r45_反降级免检与标记错位真因_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 24,
+   "token": "11 条",
+   "file": "全量对标报告_r45_反降级免检与标记错位真因_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 14,
+   "token": "17 份",
+   "file": "全量对标报告_r48_契约分代与归属可机检_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 16,
+   "token": "31 行",
+   "file": "全量对标报告_r48_契约分代与归属可机检_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 31,
+   "token": "2 条",
+   "file": "全量对标报告_r48_契约分代与归属可机检_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 32,
+   "token": "3 条",
+   "file": "全量对标报告_r48_契约分代与归属可机检_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 32,
+   "token": "2 条",
+   "file": "全量对标报告_r48_契约分代与归属可机检_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 35,
+   "token": "3 条",
+   "file": "全量对标报告_r48_契约分代与归属可机检_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 58,
+   "token": "4 行",
+   "file": "全量对标报告_r49_判据输入面五面自证与三处劫持根因修_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 64,
+   "token": "27 条",
+   "file": "全量对标报告_r49_判据输入面五面自证与三处劫持根因修_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 64,
+   "token": "10 个",
+   "file": "全量对标报告_r49_判据输入面五面自证与三处劫持根因修_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 81,
+   "token": "100%",
+   "file": "全量对标报告_r49_判据输入面五面自证与三处劫持根因修_2026-09-25.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 20,
+   "token": "18.1%",
+   "file": "技能六段解剖基线_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 21,
+   "token": "24.1%",
+   "file": "技能六段解剖基线_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 22,
+   "token": "42.2%",
+   "file": "技能六段解剖基线_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 23,
+   "token": "13.9%",
+   "file": "技能六段解剖基线_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 24,
+   "token": "53.6%",
+   "file": "技能六段解剖基线_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 25,
+   "token": "58.4%",
+   "file": "技能六段解剖基线_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 26,
+   "token": "0.0%",
+   "file": "技能六段解剖基线_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 46,
+   "token": "20 条",
+   "file": "目录注意力税基线_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 46,
+   "token": "31.2%",
+   "file": "目录注意力税基线_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 16,
+   "token": "57 条",
+   "file": "目录注意力税基线_r20_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 17,
+   "token": "47.5%",
+   "file": "目录注意力税基线_r20_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 17,
+   "token": "2.78 倍",
+   "file": "目录注意力税基线_r20_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 18,
+   "token": "34.3%",
+   "file": "目录注意力税基线_r20_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 49,
+   "token": "20 条",
+   "file": "目录注意力税基线_r20_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 49,
+   "token": "31.1%",
+   "file": "目录注意力税基线_r20_2026-09-24.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 235,
+   "token": "314 个",
+   "file": "自建skill体系全量对标分析报告.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 249,
+   "token": "4 条",
+   "file": "自建skill体系全量对标分析报告.md",
+   "has_cmd": false,
+   "historical": true
+  },
+  {
+   "line": 249,
+   "token": "8 条",
+   "file": "自建skill体系全量对标分析报告.md",
+   "has_cmd": false,
+   "historical": true
+  }
+ ],
+ "files": 46,
+ "live_claims": 256,
+ "live_uncited": 0,
+ "historical_claims": 755,
+ "window_lines": 12,
+ "live_from_round": 51,
+ "schema": "md-claim-face-v1",
+ "generated_at": "2026-09-25T18:28:30",
+ "readonly": true,
+ "scope": "06-benchmark/*.md",
+ "rule": "数字（条/份/例/组/行/B/倍/百分比/个）须在同节 ±12 行内带取值途径",
+ "note": "默认只报告不阻断（r25 否决）；接线判据只看 live_uncited（历史面按 R241 不回改）",
+ "live_status": "PASS"
+}
