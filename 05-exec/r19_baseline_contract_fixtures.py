@@ -298,6 +298,23 @@ def main():
     ck("t32 边界：取不到当前轮号 ⇒ gap 为 None 而非 0（未知不得当成不陈旧）",
        st4[0]["gap"] is None and st4[0]["stale"] is False, st4)
 
+    # ---- r53：mtime 优先（自抓假阳性——刚重跑的日期名件不得被判陈旧）----
+    import time as _t
+    import tempfile as _tf
+    tmpd = Path(_tf.mkdtemp(prefix="r53_stale_"))
+    fresh = tmpd / "catalog_attention_tax_2026-09-24.json"
+    fresh.write_text("{}", encoding="utf-8")
+    st5 = bcs.face_pattern_staleness([("catalog_attention_tax_*.json", [fresh])], 53)
+    ck("t33 假阳性回归：文件名无轮号但 mtime 刚再生 ⇒ 不得判陈旧，且须标依据=mtime",
+       st5[0]["stale"] is False and st5[0]["basis"] == "mtime", st5)
+    old_f = tmpd / "catalog_attention_tax_r20_x.json"
+    old_f.write_text("{}", encoding="utf-8")
+    import os as _os
+    _os.utime(old_f, (_t.time() - 40 * 86400, _t.time() - 40 * 86400))
+    st6 = bcs.face_pattern_staleness([("catalog_attention_tax_*.json", [old_f])], 53)
+    ck("t34 反例：40 天未再生 ⇒ 判陈旧（mtime 口径生效，不再依赖命名）",
+       st6[0]["stale"] is True and st6[0]["newest_age_days"] >= 39, st6)
+
     fails = [r for r in RESULTS if not r[0]]
     print("\n夹具合计: %d 项，通过 %d，失败 %d" % (len(RESULTS), len(RESULTS) - len(fails), len(fails)))
     if fails:

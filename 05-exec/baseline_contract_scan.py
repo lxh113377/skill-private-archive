@@ -408,25 +408,40 @@ def validate_doc(doc, contract, label="doc"):
     return msgs
 
 
-def face_pattern_staleness(matched_files, cur_round):
-    """W-31（r52）：契约 pattern 自身的陈旧面 —— 命中集里的最大轮号离当前轮太远即提示。
+def face_pattern_staleness(matched_files, cur_round, max_age_days=14, max_gap=2):
+    """W-31（r52）+ r53 修正：契约 pattern 的新旧面。
 
-    存在理由（r52 实测）：pattern 曾写死 `debt_aging_r3*.json`，r40 起的新证据件**全部落在受检面外**，
-    而"pattern 零命中判红"抓不到这种病（它仍命中十份旧件）。⇒ 光查"有没有命中"不够，
-    还要查"命中的是不是最新那一代"。本函数只**报告**不判红（守 r25 否决：不得变成拦任务的闸门）。
+    r53 自抓的假阳性：`catalog_attention_tax_2026-09-24.json` 是本轮**刚重跑**的产物，
+    只因文件名不带轮号，被上一版按 `_rNN` 判成"落后 33 轮"。名字不等于新鲜度 ⇒
+    优先级改为 ① 文件 mtime（真实再生时间）② 文件名轮号（仅对取不到 mtime 的构造样本兜底）。
+    两者都取不到 ⇒ 不参与判定（记 note，不冒充已核验）。
     """
+    import time as _t
     out = []
     for pattern, files in matched_files:
-        rounds = [int(m.group(1)) for fp in files
-                  for m in [re.search(r"_r(\d{1,3})", Path(fp).name)] if m]
-        if not rounds:
-            out.append({"pattern": pattern, "max_round": None, "gap": None,
-                        "stale": False, "note": "命中集无轮号形态（如台账 jsonl），不参与陈旧判定"})
-            continue
-        gap = (cur_round - max(rounds)) if cur_round else None
-        out.append({"pattern": pattern, "max_round": max(rounds), "gap": gap,
-                    "stale": bool(gap is not None and gap > 2),
-                    "files": len(files)})
+        ages, rounds = [], []
+        for fp in files:
+            name = Path(str(fp)).name
+            m = re.search(r"_r(\d{1,3})", name)
+            if m:
+                rounds.append(int(m.group(1)))
+            try:
+                ages.append(_t.time() - Path(str(fp)).stat().st_mtime)
+            except OSError:
+                continue
+        newest_age_days = min(int(a // 86400) for a in ages) if ages else None
+        max_round = max(rounds) if rounds else None
+        gap = (cur_round - max_round) if (cur_round and max_round is not None) else None
+        if newest_age_days is not None:
+            stale = newest_age_days > max_age_days
+        elif gap is not None:
+            stale = gap > max_gap
+        else:
+            stale = False
+        out.append({"pattern": pattern, "files": len(files), "max_round": max_round, "gap": gap,
+                    "newest_age_days": newest_age_days, "stale": stale,
+                    "basis": ("mtime" if newest_age_days is not None
+                              else ("round" if gap is not None else "无数据不参与"))})
     return out
 
 
@@ -520,8 +535,8 @@ def main():
     faces = face_pattern_staleness(matched, max(_all_rounds) if _all_rounds else None)
     for f in faces:
         if f.get("stale"):
-            print("  ⚠️ 陈旧面 %s：命中最新只到 r%s（落后 %s 轮）⇒ 新证据件可能不在受检面内（W-31）"
-                  % (f["pattern"], f["max_round"], f["gap"]))
+            print("  ⚠️ 陈旧面 %s：最新件距今天数=%s ｜ 命中最大轮号=r%s（gap=%s）｜ 依据=%s"
+                  % (f["pattern"], f["newest_age_days"], f["max_round"], f["gap"], f["basis"]))
     print("  陈旧自检（W-31，只报告不判红）：pattern %d 个 ｜ 陈旧 %d 个 ｜ 无轮号形态 %d 个"
           % (len(faces), sum(1 for f in faces if f.get("stale")),
              sum(1 for f in faces if f.get("max_round") is None)))

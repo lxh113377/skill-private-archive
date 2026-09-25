@@ -1,0 +1,4069 @@
+{
+ "schema": "skill-structure-rubric-v2",
+ "generated_at": "2026-09-25 17:13",
+ "readonly": true,
+ "benchmark": "addyosmani/agent-skills six-section anatomy",
+ "denominator": {
+  "glob_total": 167,
+  "scanned": 166,
+  "junction_skipped": [
+   "rag-eval"
+  ],
+  "errors": []
+ },
+ "rubric": [
+  "overview",
+  "when_to_use",
+  "process",
+  "rationalizations",
+  "red_flags",
+  "verification"
+ ],
+ "per_section": {
+  "overview": {
+   "count": 30,
+   "pct": 18.1
+  },
+  "when_to_use": {
+   "count": 40,
+   "pct": 24.1
+  },
+  "process": {
+   "count": 70,
+   "pct": 42.2
+  },
+  "rationalizations": {
+   "count": 36,
+   "pct": 21.7
+  },
+  "red_flags": {
+   "count": 92,
+   "pct": 55.4
+  },
+  "verification": {
+   "count": 102,
+   "pct": 61.4
+  }
+ },
+ "all_six": {
+  "count": 0,
+  "pct": 0.0
+ },
+ "per_section_both": {
+  "overview": {
+   "count": 166,
+   "pct": 100.0
+  },
+  "when_to_use": {
+   "count": 131,
+   "pct": 78.9
+  },
+  "process": {
+   "count": 90,
+   "pct": 54.2
+  },
+  "rationalizations": {
+   "count": 36,
+   "pct": 21.7
+  },
+  "red_flags": {
+   "count": 92,
+   "pct": 55.4
+  },
+  "verification": {
+   "count": 103,
+   "pct": 62.0
+  }
+ },
+ "all_six_both": {
+  "count": 10,
+  "pct": 6.0
+ },
+ "per_skill": [
+  {
+   "skill": "9b-lightworkflow",
+   "bytes": 8807,
+   "sections": {
+    "overview": false,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 3,
+   "has_stepish_list": true,
+   "covered_both": 5
+  },
+  {
+   "skill": "_my-skills",
+   "bytes": 1062,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 0,
+   "has_stepish_list": true,
+   "covered_both": 1
+  },
+  {
+   "skill": "A-ask-questions",
+   "bytes": 15155,
+   "sections": {
+    "overview": false,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 5,
+   "has_stepish_list": true,
+   "covered_both": 6
+  },
+  {
+   "skill": "A-get-memory",
+   "bytes": 51189,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 3,
+   "has_stepish_list": true,
+   "covered_both": 6
+  },
+  {
+   "skill": "A-java-problem",
+   "bytes": 7100,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 2,
+   "has_stepish_list": true,
+   "covered_both": 5
+  },
+  {
+   "skill": "A-memory-start",
+   "bytes": 26377,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 3,
+   "has_stepish_list": true,
+   "covered_both": 6
+  },
+  {
+   "skill": "A-project-better",
+   "bytes": 4714,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": false
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 4,
+   "has_stepish_list": false,
+   "covered_both": 6
+  },
+  {
+   "skill": "A-project-handoff",
+   "bytes": 4557,
+   "sections": {
+    "overview": true,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 3,
+   "has_stepish_list": true,
+   "covered_both": 3
+  },
+  {
+   "skill": "A-prompt-better",
+   "bytes": 28676,
+   "sections": {
+    "overview": false,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 5,
+   "has_stepish_list": true,
+   "covered_both": 6
+  },
+  {
+   "skill": "A-skill-manager",
+   "bytes": 5466,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 2,
+   "has_stepish_list": true,
+   "covered_both": 4
+  },
+  {
+   "skill": "agent-browser",
+   "bytes": 29055,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": false,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": false
+   },
+   "covered": 1,
+   "has_stepish_list": true,
+   "covered_both": 2
+  },
+  {
+   "skill": "ai-video-homework-pipeline",
+   "bytes": 6242,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": true,
+    "has_stepish_list": false
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": true
+   },
+   "covered": 1,
+   "has_stepish_list": false,
+   "covered_both": 4
+  },
+  {
+   "skill": "algorithmic-art",
+   "bytes": 19769,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 0,
+   "has_stepish_list": true,
+   "covered_both": 3
+  },
+  {
+   "skill": "audio-deliverable-pipeline",
+   "bytes": 8314,
+   "sections": {
+    "overview": false,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 3,
+   "has_stepish_list": true,
+   "covered_both": 5
+  },
+  {
+   "skill": "audit-runner-safe-aggregate",
+   "bytes": 5364,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 3,
+   "has_stepish_list": true,
+   "covered_both": 4
+  },
+  {
+   "skill": "bigfile-split",
+   "bytes": 4022,
+   "sections": {
+    "overview": false,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": false
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 3,
+   "has_stepish_list": false,
+   "covered_both": 5
+  },
+  {
+   "skill": "brainstorming",
+   "bytes": 10634,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": true,
+    "red_flags": false,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": true,
+    "red_flags": false,
+    "verification": true
+   },
+   "covered": 3,
+   "has_stepish_list": true,
+   "covered_both": 5
+  },
+  {
+   "skill": "brand-guidelines",
+   "bytes": 2235,
+   "sections": {
+    "overview": true,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": false
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 1,
+   "has_stepish_list": false,
+   "covered_both": 1
+  },
+  {
+   "skill": "browser-cdp",
+   "bytes": 6303,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": false,
+    "has_stepish_list": false
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": false
+   },
+   "covered": 1,
+   "has_stepish_list": false,
+   "covered_both": 3
+  },
+  {
+   "skill": "byted-bp-cdn-pagesdeploy",
+   "bytes": 7985,
+   "sections": {
+    "overview": true,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": true
+   },
+   "covered": 2,
+   "has_stepish_list": true,
+   "covered_both": 2
+  },
+  {
+   "skill": "byted-mediakit-shared",
+   "bytes": 10769,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": false
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 0,
+   "has_stepish_list": false,
+   "covered_both": 2
+  },
+  {
+   "skill": "byted-seedance-video-generate",
+   "bytes": 8305,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 1,
+   "has_stepish_list": true,
+   "covered_both": 3
+  },
+  {
+   "skill": "byted-seedream-image-generate",
+   "bytes": 8991,
+   "sections": {
+    "overview": false,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 2,
+   "has_stepish_list": true,
+   "covered_both": 3
+  },
+  {
+   "skill": "c-cleanup",
+   "bytes": 15283,
+   "sections": {
+    "overview": true,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 4,
+   "has_stepish_list": true,
+   "covered_both": 5
+  },
+  {
+   "skill": "canvas-design",
+   "bytes": 12376,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 0,
+   "has_stepish_list": true,
+   "covered_both": 2
+  },
+  {
+   "skill": "chaoshi-admin-inline-edit",
+   "bytes": 6220,
+   "sections": {
+    "overview": false,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 3,
+   "has_stepish_list": true,
+   "covered_both": 4
+  },
+  {
+   "skill": "chaoshi-image-optimization",
+   "bytes": 24057,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 3,
+   "has_stepish_list": true,
+   "covered_both": 5
+  },
+  {
+   "skill": "chaoshi-web-deploy",
+   "bytes": 53114,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 2,
+   "has_stepish_list": true,
+   "covered_both": 5
+  },
+  {
+   "skill": "chart-visualization",
+   "bytes": 3355,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": false
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 1,
+   "has_stepish_list": false,
+   "covered_both": 3
+  },
+  {
+   "skill": "cloudbase-db-optimize",
+   "bytes": 8364,
+   "sections": {
+    "overview": false,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 4,
+   "has_stepish_list": true,
+   "covered_both": 5
+  },
+  {
+   "skill": "cloudbase__skillhub",
+   "bytes": 19440,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": false,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": false
+   },
+   "covered": 2,
+   "has_stepish_list": true,
+   "covered_both": 4
+  },
+  {
+   "skill": "code-review",
+   "bytes": 4652,
+   "sections": {
+    "overview": false,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 5,
+   "has_stepish_list": true,
+   "covered_both": 6
+  },
+  {
+   "skill": "coding-agent",
+   "bytes": 4830,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 1,
+   "has_stepish_list": true,
+   "covered_both": 2
+  },
+  {
+   "skill": "computer-use-guidance-windows",
+   "bytes": 28102,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 1,
+   "has_stepish_list": true,
+   "covered_both": 2
+  },
+  {
+   "skill": "consulting-analysis",
+   "bytes": 47685,
+   "sections": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 4,
+   "has_stepish_list": true,
+   "covered_both": 5
+  },
+  {
+   "skill": "cross-platform-agent-sync",
+   "bytes": 2921,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": false,
+    "verification": true,
+    "has_stepish_list": false
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": true,
+    "red_flags": false,
+    "verification": true
+   },
+   "covered": 2,
+   "has_stepish_list": false,
+   "covered_both": 5
+  },
+  {
+   "skill": "data-analysis",
+   "bytes": 8929,
+   "sections": {
+    "overview": true,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 2,
+   "has_stepish_list": true,
+   "covered_both": 3
+  },
+  {
+   "skill": "data-visualization",
+   "bytes": 13700,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": true,
+    "has_stepish_list": false
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": true
+   },
+   "covered": 2,
+   "has_stepish_list": false,
+   "covered_both": 4
+  },
+  {
+   "skill": "debugging-fixing",
+   "bytes": 4038,
+   "sections": {
+    "overview": false,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 5,
+   "has_stepish_list": true,
+   "covered_both": 6
+  },
+  {
+   "skill": "defuddle",
+   "bytes": 1034,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": false
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 1,
+   "has_stepish_list": false,
+   "covered_both": 3
+  },
+  {
+   "skill": "diagram-maker",
+   "bytes": 2342,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 0,
+   "has_stepish_list": true,
+   "covered_both": 1
+  },
+  {
+   "skill": "dingtalk-aisearch",
+   "bytes": 9085,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": true
+   },
+   "covered": 1,
+   "has_stepish_list": true,
+   "covered_both": 3
+  },
+  {
+   "skill": "dingtalk-aitable",
+   "bytes": 26792,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 3,
+   "has_stepish_list": true,
+   "covered_both": 5
+  },
+  {
+   "skill": "dingtalk-calendar",
+   "bytes": 13351,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 3,
+   "has_stepish_list": true,
+   "covered_both": 5
+  },
+  {
+   "skill": "dingtalk-chat",
+   "bytes": 9578,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 2,
+   "has_stepish_list": true,
+   "covered_both": 4
+  },
+  {
+   "skill": "dingtalk-contact",
+   "bytes": 9474,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": false,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": false
+   },
+   "covered": 1,
+   "has_stepish_list": true,
+   "covered_both": 3
+  },
+  {
+   "skill": "dingtalk-doc",
+   "bytes": 12063,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 2,
+   "has_stepish_list": true,
+   "covered_both": 3
+  },
+  {
+   "skill": "dingtalk-drive",
+   "bytes": 15450,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 2,
+   "has_stepish_list": true,
+   "covered_both": 4
+  },
+  {
+   "skill": "dingtalk-event",
+   "bytes": 10083,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": false
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 0,
+   "has_stepish_list": false,
+   "covered_both": 2
+  },
+  {
+   "skill": "dingtalk-mail",
+   "bytes": 9429,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 2,
+   "has_stepish_list": true,
+   "covered_both": 4
+  },
+  {
+   "skill": "dingtalk-minutes",
+   "bytes": 16587,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 2,
+   "has_stepish_list": true,
+   "covered_both": 4
+  },
+  {
+   "skill": "dingtalk-misc",
+   "bytes": 16078,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": false
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 3,
+   "has_stepish_list": false,
+   "covered_both": 5
+  },
+  {
+   "skill": "dingtalk-shared",
+   "bytes": 7002,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 2,
+   "has_stepish_list": true,
+   "covered_both": 4
+  },
+  {
+   "skill": "dingtalk-todo",
+   "bytes": 11749,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 3,
+   "has_stepish_list": true,
+   "covered_both": 5
+  },
+  {
+   "skill": "dingtalk-wiki",
+   "bytes": 13561,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 2,
+   "has_stepish_list": true,
+   "covered_both": 4
+  },
+  {
+   "skill": "discover-agent-cli",
+   "bytes": 8506,
+   "sections": {
+    "overview": false,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 3,
+   "has_stepish_list": true,
+   "covered_both": 5
+  },
+  {
+   "skill": "doc-coauthoring",
+   "bytes": 15815,
+   "sections": {
+    "overview": false,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 1,
+   "has_stepish_list": true,
+   "covered_both": 2
+  },
+  {
+   "skill": "docx",
+   "bytes": 28922,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": false,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": false
+   },
+   "covered": 1,
+   "has_stepish_list": true,
+   "covered_both": 3
+  },
+  {
+   "skill": "dogfood",
+   "bytes": 10428,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": true
+   },
+   "covered": 2,
+   "has_stepish_list": true,
+   "covered_both": 4
+  },
+  {
+   "skill": "electron",
+   "bytes": 6727,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 0,
+   "has_stepish_list": true,
+   "covered_both": 2
+  },
+  {
+   "skill": "elon-musk-perspective",
+   "bytes": 23644,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 3,
+   "has_stepish_list": true,
+   "covered_both": 5
+  },
+  {
+   "skill": "executing-plans",
+   "bytes": 2784,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": false
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 2,
+   "has_stepish_list": false,
+   "covered_both": 5
+  },
+  {
+   "skill": "fenjue-lessons-hitrate",
+   "bytes": 3238,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 2,
+   "has_stepish_list": true,
+   "covered_both": 4
+  },
+  {
+   "skill": "fenjue-memory-audit",
+   "bytes": 9737,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 2,
+   "has_stepish_list": true,
+   "covered_both": 4
+  },
+  {
+   "skill": "figma",
+   "bytes": 3170,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": true
+   },
+   "covered": 1,
+   "has_stepish_list": true,
+   "covered_both": 3
+  },
+  {
+   "skill": "find-skills",
+   "bytes": 21192,
+   "sections": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": true
+   },
+   "covered": 3,
+   "has_stepish_list": true,
+   "covered_both": 3
+  },
+  {
+   "skill": "first-principles-decomposer",
+   "bytes": 3034,
+   "sections": {
+    "overview": false,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": true
+   },
+   "covered": 2,
+   "has_stepish_list": true,
+   "covered_both": 3
+  },
+  {
+   "skill": "frontend-design",
+   "bytes": 4440,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": false
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 0,
+   "has_stepish_list": false,
+   "covered_both": 2
+  },
+  {
+   "skill": "frontend-skill",
+   "bytes": 7671,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 0,
+   "has_stepish_list": true,
+   "covered_both": 2
+  },
+  {
+   "skill": "frontend-slides",
+   "bytes": 19654,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": false,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": false
+   },
+   "covered": 1,
+   "has_stepish_list": true,
+   "covered_both": 3
+  },
+  {
+   "skill": "github",
+   "bytes": 5084,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 2,
+   "has_stepish_list": true,
+   "covered_both": 3
+  },
+  {
+   "skill": "gsap",
+   "bytes": 7776,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": false
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 0,
+   "has_stepish_list": false,
+   "covered_both": 2
+  },
+  {
+   "skill": "gstack",
+   "bytes": 26697,
+   "sections": {
+    "overview": true,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": false,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": false
+   },
+   "covered": 4,
+   "has_stepish_list": true,
+   "covered_both": 5
+  },
+  {
+   "skill": "hermes-installer",
+   "bytes": 2506,
+   "sections": {
+    "overview": false,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": false,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": false,
+    "verification": true
+   },
+   "covered": 3,
+   "has_stepish_list": true,
+   "covered_both": 4
+  },
+  {
+   "skill": "hook-analyzer-skill",
+   "bytes": 5033,
+   "sections": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 5,
+   "has_stepish_list": true,
+   "covered_both": 5
+  },
+  {
+   "skill": "html-ppt",
+   "bytes": 14265,
+   "sections": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 3,
+   "has_stepish_list": true,
+   "covered_both": 3
+  },
+  {
+   "skill": "html-to-docx-win-fix",
+   "bytes": 4542,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 2,
+   "has_stepish_list": true,
+   "covered_both": 4
+  },
+  {
+   "skill": "hyperframes",
+   "bytes": 33031,
+   "sections": {
+    "overview": true,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 4,
+   "has_stepish_list": true,
+   "covered_both": 5
+  },
+  {
+   "skill": "hyperframes-cli",
+   "bytes": 8949,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": false,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": false
+   },
+   "covered": 2,
+   "has_stepish_list": true,
+   "covered_both": 4
+  },
+  {
+   "skill": "hyperframes-media",
+   "bytes": 15149,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 0,
+   "has_stepish_list": true,
+   "covered_both": 3
+  },
+  {
+   "skill": "hyperframes-registry",
+   "bytes": 4278,
+   "sections": {
+    "overview": false,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 1,
+   "has_stepish_list": true,
+   "covered_both": 2
+  },
+  {
+   "skill": "ican-deploy",
+   "bytes": 10261,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 2,
+   "has_stepish_list": true,
+   "covered_both": 4
+  },
+  {
+   "skill": "ican-frontend-design-system",
+   "bytes": 58971,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 2,
+   "has_stepish_list": true,
+   "covered_both": 5
+  },
+  {
+   "skill": "internal-comms",
+   "bytes": 1511,
+   "sections": {
+    "overview": false,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 1,
+   "has_stepish_list": true,
+   "covered_both": 2
+  },
+  {
+   "skill": "json-canvas",
+   "bytes": 7624,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 2,
+   "has_stepish_list": true,
+   "covered_both": 4
+  },
+  {
+   "skill": "knowledge-capture",
+   "bytes": 7233,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 3,
+   "has_stepish_list": true,
+   "covered_both": 4
+  },
+  {
+   "skill": "local-asr",
+   "bytes": 3602,
+   "sections": {
+    "overview": true,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": false
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 2,
+   "has_stepish_list": false,
+   "covered_both": 3
+  },
+  {
+   "skill": "local-computer-use",
+   "bytes": 4700,
+   "sections": {
+    "overview": true,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": false
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 2,
+   "has_stepish_list": false,
+   "covered_both": 3
+  },
+  {
+   "skill": "local-img2img",
+   "bytes": 2642,
+   "sections": {
+    "overview": true,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": false
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 2,
+   "has_stepish_list": false,
+   "covered_both": 3
+  },
+  {
+   "skill": "local-mineru",
+   "bytes": 4552,
+   "sections": {
+    "overview": true,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": false
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 2,
+   "has_stepish_list": false,
+   "covered_both": 3
+  },
+  {
+   "skill": "local-ocr-npu",
+   "bytes": 3385,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": true,
+    "red_flags": false,
+    "verification": true,
+    "has_stepish_list": false
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": true,
+    "red_flags": false,
+    "verification": true
+   },
+   "covered": 3,
+   "has_stepish_list": false,
+   "covered_both": 5
+  },
+  {
+   "skill": "local-realtime-translator",
+   "bytes": 7140,
+   "sections": {
+    "overview": true,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": false,
+    "has_stepish_list": false
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": false
+   },
+   "covered": 4,
+   "has_stepish_list": false,
+   "covered_both": 5
+  },
+  {
+   "skill": "local-screenshot-qa",
+   "bytes": 4617,
+   "sections": {
+    "overview": true,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": false
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 2,
+   "has_stepish_list": false,
+   "covered_both": 3
+  },
+  {
+   "skill": "local-tts",
+   "bytes": 5381,
+   "sections": {
+    "overview": true,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": false,
+    "has_stepish_list": false
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": false
+   },
+   "covered": 3,
+   "has_stepish_list": false,
+   "covered_both": 4
+  },
+  {
+   "skill": "local-txt2img",
+   "bytes": 4114,
+   "sections": {
+    "overview": true,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": false
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 2,
+   "has_stepish_list": false,
+   "covered_both": 3
+  },
+  {
+   "skill": "local-vram",
+   "bytes": 4086,
+   "sections": {
+    "overview": true,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": false
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 5,
+   "has_stepish_list": false,
+   "covered_both": 6
+  },
+  {
+   "skill": "mcporter",
+   "bytes": 1612,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": false
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 0,
+   "has_stepish_list": false,
+   "covered_both": 1
+  },
+  {
+   "skill": "meeting-intelligence",
+   "bytes": 11210,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 1,
+   "has_stepish_list": true,
+   "covered_both": 2
+  },
+  {
+   "skill": "nano-pdf",
+   "bytes": 954,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": false
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 1,
+   "has_stepish_list": false,
+   "covered_both": 2
+  },
+  {
+   "skill": "node-inspect-debugger",
+   "bytes": 3563,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": false,
+    "has_stepish_list": false
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": false
+   },
+   "covered": 1,
+   "has_stepish_list": false,
+   "covered_both": 2
+  },
+  {
+   "skill": "notion-cli",
+   "bytes": 2371,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": false
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 0,
+   "has_stepish_list": false,
+   "covered_both": 2
+  },
+  {
+   "skill": "obsidian-bases",
+   "bytes": 12903,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 1,
+   "has_stepish_list": true,
+   "covered_both": 3
+  },
+  {
+   "skill": "obsidian-cli",
+   "bytes": 3183,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": false,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": false
+   },
+   "covered": 1,
+   "has_stepish_list": true,
+   "covered_both": 3
+  },
+  {
+   "skill": "obsidian-markdown",
+   "bytes": 5367,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": false,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": false
+   },
+   "covered": 2,
+   "has_stepish_list": true,
+   "covered_both": 4
+  },
+  {
+   "skill": "oc-dispatch-exec-guard",
+   "bytes": 5030,
+   "sections": {
+    "overview": false,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 4,
+   "has_stepish_list": true,
+   "covered_both": 5
+  },
+  {
+   "skill": "office-automation-pro",
+   "bytes": 3173,
+   "sections": {
+    "overview": false,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 3,
+   "has_stepish_list": true,
+   "covered_both": 4
+  },
+  {
+   "skill": "openai-whisper-api",
+   "bytes": 2073,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": false
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 1,
+   "has_stepish_list": false,
+   "covered_both": 2
+  },
+  {
+   "skill": "openclaw-dual-gate-quality-audit",
+   "bytes": 21562,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 4,
+   "has_stepish_list": true,
+   "covered_both": 6
+  },
+  {
+   "skill": "openclaw-fenjue-weekly",
+   "bytes": 4614,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 2,
+   "has_stepish_list": true,
+   "covered_both": 3
+  },
+  {
+   "skill": "openclaw-task-supervision",
+   "bytes": 33741,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 3,
+   "has_stepish_list": true,
+   "covered_both": 4
+  },
+  {
+   "skill": "oracle",
+   "bytes": 4894,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 0,
+   "has_stepish_list": true,
+   "covered_both": 1
+  },
+  {
+   "skill": "pdf",
+   "bytes": 8732,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": false
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 0,
+   "has_stepish_list": false,
+   "covered_both": 2
+  },
+  {
+   "skill": "pixelle-api-ensure",
+   "bytes": 3501,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": false
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 1,
+   "has_stepish_list": false,
+   "covered_both": 3
+  },
+  {
+   "skill": "pptx",
+   "bytes": 9243,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": true
+   },
+   "covered": 1,
+   "has_stepish_list": true,
+   "covered_both": 3
+  },
+  {
+   "skill": "prompt-consolidation",
+   "bytes": 16120,
+   "sections": {
+    "overview": false,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 4,
+   "has_stepish_list": true,
+   "covered_both": 5
+  },
+  {
+   "skill": "prompt-system-audit",
+   "bytes": 31919,
+   "sections": {
+    "overview": false,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 4,
+   "has_stepish_list": true,
+   "covered_both": 5
+  },
+  {
+   "skill": "python-debugpy",
+   "bytes": 2537,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": false
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 0,
+   "has_stepish_list": false,
+   "covered_both": 1
+  },
+  {
+   "skill": "refactoring",
+   "bytes": 1965,
+   "sections": {
+    "overview": false,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": true,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": true,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 3,
+   "has_stepish_list": true,
+   "covered_both": 4
+  },
+  {
+   "skill": "report-generator-skill",
+   "bytes": 5184,
+   "sections": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 5,
+   "has_stepish_list": true,
+   "covered_both": 5
+  },
+  {
+   "skill": "research-documentation",
+   "bytes": 3700,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 1,
+   "has_stepish_list": true,
+   "covered_both": 2
+  },
+  {
+   "skill": "screenshot",
+   "bytes": 7595,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 1,
+   "has_stepish_list": true,
+   "covered_both": 2
+  },
+  {
+   "skill": "shadcn",
+   "bytes": 16472,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 1,
+   "has_stepish_list": true,
+   "covered_both": 3
+  },
+  {
+   "skill": "shell-encoding-pitfalls",
+   "bytes": 4108,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 3,
+   "has_stepish_list": true,
+   "covered_both": 4
+  },
+  {
+   "skill": "slides",
+   "bytes": 4557,
+   "sections": {
+    "overview": true,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": false,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": false
+   },
+   "covered": 3,
+   "has_stepish_list": true,
+   "covered_both": 4
+  },
+  {
+   "skill": "spec-to-implementation",
+   "bytes": 8704,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": true
+   },
+   "covered": 2,
+   "has_stepish_list": true,
+   "covered_both": 3
+  },
+  {
+   "skill": "spike",
+   "bytes": 1869,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": true
+   },
+   "covered": 0,
+   "has_stepish_list": true,
+   "covered_both": 2
+  },
+  {
+   "skill": "sq-cleanmgr-c",
+   "bytes": 11519,
+   "sections": {
+    "overview": false,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": true
+   },
+   "covered": 3,
+   "has_stepish_list": true,
+   "covered_both": 4
+  },
+  {
+   "skill": "sqlalchemy-loader-criteria-pitfalls",
+   "bytes": 4361,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 2,
+   "has_stepish_list": true,
+   "covered_both": 5
+  },
+  {
+   "skill": "static-site-batch-audit-fix",
+   "bytes": 11988,
+   "sections": {
+    "overview": false,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 4,
+   "has_stepish_list": true,
+   "covered_both": 5
+  },
+  {
+   "skill": "story",
+   "bytes": 9007,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 0,
+   "has_stepish_list": true,
+   "covered_both": 2
+  },
+  {
+   "skill": "story-cover",
+   "bytes": 16128,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": false,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": false,
+    "verification": true
+   },
+   "covered": 2,
+   "has_stepish_list": true,
+   "covered_both": 4
+  },
+  {
+   "skill": "story-deslop",
+   "bytes": 29697,
+   "sections": {
+    "overview": false,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 4,
+   "has_stepish_list": true,
+   "covered_both": 5
+  },
+  {
+   "skill": "story-import",
+   "bytes": 36149,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 3,
+   "has_stepish_list": true,
+   "covered_both": 5
+  },
+  {
+   "skill": "story-long-analyze",
+   "bytes": 25853,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 3,
+   "has_stepish_list": true,
+   "covered_both": 5
+  },
+  {
+   "skill": "story-long-write",
+   "bytes": 19862,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 3,
+   "has_stepish_list": true,
+   "covered_both": 5
+  },
+  {
+   "skill": "story-review",
+   "bytes": 34939,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 3,
+   "has_stepish_list": true,
+   "covered_both": 5
+  },
+  {
+   "skill": "story-scan",
+   "bytes": 6213,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": false,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": false
+   },
+   "covered": 3,
+   "has_stepish_list": true,
+   "covered_both": 5
+  },
+  {
+   "skill": "story-setup",
+   "bytes": 35572,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 3,
+   "has_stepish_list": true,
+   "covered_both": 5
+  },
+  {
+   "skill": "story-short-analyze",
+   "bytes": 17018,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 3,
+   "has_stepish_list": true,
+   "covered_both": 5
+  },
+  {
+   "skill": "story-short-write",
+   "bytes": 35725,
+   "sections": {
+    "overview": true,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 4,
+   "has_stepish_list": true,
+   "covered_both": 5
+  },
+  {
+   "skill": "taskflow",
+   "bytes": 4893,
+   "sections": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 2,
+   "has_stepish_list": true,
+   "covered_both": 2
+  },
+  {
+   "skill": "taskflow-inbox-triage",
+   "bytes": 2565,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 0,
+   "has_stepish_list": true,
+   "covered_both": 1
+  },
+  {
+   "skill": "test-driven-development",
+   "bytes": 9867,
+   "sections": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": false
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 5,
+   "has_stepish_list": false,
+   "covered_both": 5
+  },
+  {
+   "skill": "testing",
+   "bytes": 2283,
+   "sections": {
+    "overview": false,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": true,
+    "red_flags": false,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": true,
+    "red_flags": false,
+    "verification": true
+   },
+   "covered": 4,
+   "has_stepish_list": true,
+   "covered_both": 5
+  },
+  {
+   "skill": "theme-factory",
+   "bytes": 3124,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": true
+   },
+   "covered": 2,
+   "has_stepish_list": true,
+   "covered_both": 3
+  },
+  {
+   "skill": "ui-ux-pro-max",
+   "bytes": 3055,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": true,
+    "has_stepish_list": false
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": true
+   },
+   "covered": 1,
+   "has_stepish_list": false,
+   "covered_both": 4
+  },
+  {
+   "skill": "utf8-encoding-fix",
+   "bytes": 5436,
+   "sections": {
+    "overview": true,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 4,
+   "has_stepish_list": true,
+   "covered_both": 4
+  },
+  {
+   "skill": "video-breakdown-skill",
+   "bytes": 6867,
+   "sections": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 5,
+   "has_stepish_list": true,
+   "covered_both": 5
+  },
+  {
+   "skill": "video-frames",
+   "bytes": 959,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": false
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 1,
+   "has_stepish_list": false,
+   "covered_both": 2
+  },
+  {
+   "skill": "video-whisper-transcribe",
+   "bytes": 5725,
+   "sections": {
+    "overview": false,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": false,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": false,
+    "verification": true
+   },
+   "covered": 3,
+   "has_stepish_list": true,
+   "covered_both": 4
+  },
+  {
+   "skill": "vp-perspective-audit",
+   "bytes": 15276,
+   "sections": {
+    "overview": true,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": true,
+    "red_flags": false,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": true,
+    "red_flags": false,
+    "verification": true
+   },
+   "covered": 4,
+   "has_stepish_list": true,
+   "covered_both": 5
+  },
+  {
+   "skill": "wb-git-commit-recipe",
+   "bytes": 6400,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 2,
+   "has_stepish_list": true,
+   "covered_both": 4
+  },
+  {
+   "skill": "web-design-guidelines",
+   "bytes": 1112,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "covered": 1,
+   "has_stepish_list": true,
+   "covered_both": 2
+  },
+  {
+   "skill": "wechat-automation",
+   "bytes": 19977,
+   "sections": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": false,
+    "verification": true,
+    "has_stepish_list": false
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": false,
+    "verification": true
+   },
+   "covered": 4,
+   "has_stepish_list": false,
+   "covered_both": 4
+  },
+  {
+   "skill": "wechat-voice-transcription",
+   "bytes": 3199,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": true
+   },
+   "covered": 1,
+   "has_stepish_list": true,
+   "covered_both": 2
+  },
+  {
+   "skill": "win-toolchain-pitfalls",
+   "bytes": 5709,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 2,
+   "has_stepish_list": true,
+   "covered_both": 3
+  },
+  {
+   "skill": "windows-bash-cli-interop-pitfalls",
+   "bytes": 6730,
+   "sections": {
+    "overview": false,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 4,
+   "has_stepish_list": true,
+   "covered_both": 6
+  },
+  {
+   "skill": "windows-cli-utf8-wrapper",
+   "bytes": 11220,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 3,
+   "has_stepish_list": true,
+   "covered_both": 4
+  },
+  {
+   "skill": "windows-gitbash-chinese-path-pit",
+   "bytes": 4548,
+   "sections": {
+    "overview": false,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 3,
+   "has_stepish_list": true,
+   "covered_both": 4
+  },
+  {
+   "skill": "windows-native-ocr",
+   "bytes": 2685,
+   "sections": {
+    "overview": false,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": false
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 4,
+   "has_stepish_list": false,
+   "covered_both": 5
+  },
+  {
+   "skill": "workbuddy-mcp",
+   "bytes": 4262,
+   "sections": {
+    "overview": false,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 3,
+   "has_stepish_list": true,
+   "covered_both": 4
+  },
+  {
+   "skill": "workflow-preflight-check",
+   "bytes": 9921,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 3,
+   "has_stepish_list": true,
+   "covered_both": 5
+  },
+  {
+   "skill": "wps-knowledgebase",
+   "bytes": 21388,
+   "sections": {
+    "overview": false,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": true,
+    "has_stepish_list": false
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": true
+   },
+   "covered": 2,
+   "has_stepish_list": false,
+   "covered_both": 3
+  },
+  {
+   "skill": "writing-plans",
+   "bytes": 6046,
+   "sections": {
+    "overview": true,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": false
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 3,
+   "has_stepish_list": false,
+   "covered_both": 4
+  },
+  {
+   "skill": "xlsx",
+   "bytes": 9984,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "covered": 2,
+   "has_stepish_list": true,
+   "covered_both": 5
+  },
+  {
+   "skill": "天眼一下",
+   "bytes": 10331,
+   "sections": {
+    "overview": false,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": false,
+    "verification": true,
+    "has_stepish_list": true
+   },
+   "sections_both": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": false,
+    "verification": true
+   },
+   "covered": 2,
+   "has_stepish_list": true,
+   "covered_both": 4
+  }
+ ],
+ "caveat": "keyword-anchor detection, not semantic; anchor absent != section absent (false negatives possible). Two calibres: 'sections'/'per_section' = body-heading only (r18/r28 ruler, comparable to a heading-based reading of opponents); 'sections_both'/'per_section_both' = M2 wide calibre that also credits frontmatter description (reuses r17 criteria: 做什么>=15 chars, 何时用=TRIGGER_RE, 流程=PROCESS_RE). Never mix the two in one sentence."
+}
