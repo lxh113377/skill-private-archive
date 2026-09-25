@@ -1,0 +1,31 @@
+{
+ "schema": "cmd-resolvability-v1",
+ "generated_at": "2026-09-25 09:44",
+ "readonly": true,
+ "benchmark": "r36 第十二维 文档内引用可解析性",
+ "provenance_cmd": "python 05-exec/r36_cmd_resolvability.py --json <件>",
+ "covers": [
+  "D:\\global_skills",
+  [
+   "addyosmani/agent-skills",
+   "obra/superpowers",
+   "anthropics/skills",
+   "Fission-AI/OpenSpec"
+  ]
+ ],
+ "ours": {
+  "skills_with_refs": 79,
+  "refs_total": 1030,
+  "by_class": {
+   "RESOLVABLE": 897,
+   "RESOLVABLE_VIA_SIBLING": 32,
+   "RESOLVABLE_VIA_EXTERNAL": 21,
+   "UNLOCATED": 80
+  },
+  "resolvable_rate": 0.9223,
+  "coverage_note": "全文扫描（非仅代码块）；解析域三级=技能目录 / 技能根下兄弟技能 / 焚诀仓根",
+  "dead_rows": []
+ },
+ "opposites": [],
+ "caveat": "两侧判定口径不同（技能目录 vs 全仓 blob），禁直接相减；本体系 DEAD 才是可整改项"
+}
