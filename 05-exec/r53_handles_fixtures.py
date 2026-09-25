@@ -90,6 +90,34 @@ ck("h8 可发现性：README 指向 06-benchmark 的链接数必须 >0（%d 份�
 ck("h9 守恒：链接数不得超过证据件总数（防为凑数堆无效链接）",
    n_md_links <= art * 2, "链接=%d 件=%d" % (n_md_links, art))
 
+# ---- h12 真机端到端：跑 CLI 写临时台账，句柄必须与同一次运行的 by_class 相等（r53 实测错位 84 vs 82 的回归）----
+import subprocess
+import tempfile
+
+
+def resolve_or_none(h):
+    try:
+        return da.resolve_handle(h) if h else None
+    except Exception as e:                                    # noqa: BLE001
+        return ("ERR", type(e).__name__)
+
+
+tmp2 = Path(tempfile.mkdtemp(prefix="r53_e2e_"))
+led2 = tmp2 / "debt_runs.jsonl"
+outj = tmp2 / "doc.json"
+rp = subprocess.run([sys.executable, str(HERE / "r38_debt_aging.py"), "--ledger", str(led2),
+                     "--json", str(outj)], capture_output=True, text=True,
+                    encoding="utf-8", errors="replace")
+docj = json.loads(io.open(outj, encoding="utf-8").read()) if outj.exists() else {}
+hh2 = docj.get("handles") or {}
+ck("h12 真机端到端：CLI 同一次运行内句柄值 == 本次 by_class（防「报告引用的是上一行」）",
+   rp.returncode == 0 and resolve_or_none(hh2.get("overdue")) == docj.get("by_class", {}).get("OVERDUE")
+   and resolve_or_none(hh2.get("open_total")) == docj.get("evidence", {}).get("open_total"),
+   {"rc": rp.returncode, "handle_overdue": resolve_or_none(hh2.get("overdue")),
+    "by_class": docj.get("by_class", {}).get("OVERDUE"), "drift": docj.get("handles_drift")})
+ck("h13 真机无漂移标记：同轮一致性自检不得产生 handles_drift（产生即红）",
+   not docj.get("handles_drift"), docj.get("handles_drift"))
+
 print("\n夹具合计: %d 项，通过 %d，失败 %d"
       % (len(RESULTS), sum(1 for r in RESULTS if r[0]), sum(1 for r in RESULTS if not r[0])))
 print("[GATE:fixture-fail]" if any(not r[0] for r in RESULTS) else "[GATE:fixture-pass]")

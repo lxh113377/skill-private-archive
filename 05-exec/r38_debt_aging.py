@@ -605,10 +605,6 @@ def main():
             print("  OVERDUE %-4s %-11s %s | %s" % (r["priority"], r["detail"],
                                                     r.get("first_seen", "?"), r["title"][:64]))
         print("[DEBT:MEASURED] 宽限 %d 轮｜本尺不阻断（阻断由 ratchet_gate 第 7 指标只降不升承载）" % args.grace)
-        hs = make_handles(doc)
-        got = {k: resolve_handle(v) for k, v in hs.items()}
-        print("可引用句柄（报告写句柄别抄值；解不出的键会是 None）：%s"
-              % " ".join("%s=%s" % (k, got[k]) for k in ("overdue", "open_total", "decided", "ledger_rows")))
         # W-20（r49）：判据读到的面必须先自证不是截断/降采样后的局部面
         for k, lbl in (("round", "轮号面(-40 窗口 vs tag 硬锚)"),
                        ("floor", "规模下限面(上轮受检卷须仍在面内)"),
@@ -684,7 +680,6 @@ def main():
     print("归属可机检（W-6）：声明归属但**无可解析路径**的条目 %d 条 —— 逐条核实是不是又是我自己的债（r40 D37 同族）"
           % len(unowned))
     doc["coverage"] = cov
-    doc["handles"] = make_handles(doc)
     doc["input_face"] = input_face
     doc["evidence"]["raw_item_lines"] = face["raw_lines"]
     doc["unowned_claims"] = unowned
@@ -694,6 +689,21 @@ def main():
               "自洽通过" if wrote else "分类面不完整或之和对不上，拒写"))
         if wrote == 0:
             print("[DEBT:LEDGER-REFUSED] 趋势线只接自洽的测量值（R247）")
+    # W-34 顺序修正（r53 实测）：句柄必须在台账写入**之后**再建，否则同一次运行里
+    # by_class 已经是新值、句柄却解出上一行（本轮实测 84 vs 82 的错位）。
+    doc["handles"] = make_handles(doc)
+    if not args.quiet:
+        got = {k: resolve_handle(v) for k, v in doc["handles"].items()}
+        mismatch = [k for k in ("overdue", "open_total", "decided")
+                    if k in got and got[k] is not None
+                    and got[k] != (doc["by_class"].get(k.upper()) if k != "open_total"
+                                   else doc["evidence"]["open_total"])]
+        print("可引用句柄（报告写句柄别抄值；解不出即为 None）：%s%s"
+              % (" ".join("%s=%s" % (k, got[k]) for k in
+                           ("overdue", "open_total", "decided", "ledger_rows")),
+                 "" if not mismatch else "  [HANDLE:DRIFT] 与本次测量不一致 %s" % mismatch))
+        if mismatch:
+            doc["handles_drift"] = mismatch
     if args.json:
         io.open(args.json, "w", encoding="utf-8", newline="").write(
             json.dumps(doc, ensure_ascii=False, indent=1))

@@ -5,6 +5,7 @@
 
 ## ✅ 已完成
 
+r53 句柄化引用轮（2026-09-25 第 23 轮） — `make_handles`/`resolve_handle` 落地于 `05-exec/r38_debt_aging.py`（句柄四件齐、解不出返 None 不返 0、h7 写读闭环守恒）+ 第 16 道常驻门 `handles_readme_fixtures`；W-31 陈旧自检改 mtime 优先（打掉首版 3 个命名假阳性，t33/t34 两向锁死），真机陈旧面 3→0；README 补证据面导航 19 链接/死链 0（对照 AAS 50 链接，我方此前为 0）⇒ 立 W-35 续改产物地图；立 W-36（指标须声明 max_age_days，超期判 unknown）；重跑 rubric 与目录税两探针；W-33/W-34 裁决回写
 r52 引用面对账轮（2026-09-25 第 22 轮） — 新工具 `05-exec/r52_md_claim_face_scan.py`（md 数字须同节 ±12 行带取值命令，窗口经 14 条抽样判读确定）+ 第 15 道常驻门 `md_claim_face`；可整改面 184 声明 / 0 敞口、历史面 755 处只登记；`face_pattern_staleness`（W-31）抓到 3 个陈旧 pattern 含轮号写死形态（W-33）；对手第 6 维实测（正文数字 0–1 / 徽章 1–5）⇒ 立 W-34「报告数字改引用台账字段」；W-30/31 执行完毕、W-32 转裁定；夹具 20 + 46 例全绿
 r51 取数面对账轮（2026-09-25 第 51 轮） — W-29 复核：我方引用的对手 open issues 含 PR 虚高 1.5–3.5 倍（134/143/368/58/17 为纯 issue 面），日期列 5/5 复现 ⇒ 命令须逐条；W-28 落 `inv_opponent_claims_have_retrieval`（结构识别不锁键名 + claims_face + 双路命令），并抓出 arg 传名字串导致全量豁免的接线缺陷（立 X-28，反例 r11/r12）；契约陈旧 glob `debt_aging_r3*`→`r*`；r50 非法 JSON 取证件重建并纳管 `opponents_*_r*.json`；W-27 分级 21 组=9 词（立 X-27）；W-19 以 `--mode note` 自用收口；常驻门 13→14
 r50 扩面与复核轮（2026-09-25 第 50 轮） — W-25：`05-exec/rule_conflict_scan.py` 扫描面 10→26 件（自动发现带极性规则的权威源分卷，极性规则 116→188、互斥候选 6→21）+ `05-exec/ratchet_gate.py` 读取面交叉对账；W-26：混合行尾根因用 `git show` 定死为写卷未传 `newline=""`（06 加归因校正注，立 X-25）；对手取证口径校正：superpowers/anthropics 仓库内 0 CI，`06-benchmark/opponents_workflow_face_r50_2026-09-25.json` 四路取值留证；建议面按前缀分路由（X→AGENTS 禁止项表）修掉自造假阳性，夹具 r49_face 32 例、r50_face 16 例，常驻门 12→13
