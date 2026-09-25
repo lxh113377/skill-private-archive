@@ -691,7 +691,10 @@ def main():
             print("[DEBT:LEDGER-REFUSED] 趋势线只接自洽的测量值（R247）")
     # W-34 顺序修正（r53 实测）：句柄必须在台账写入**之后**再建，否则同一次运行里
     # by_class 已经是新值、句柄却解出上一行（本轮实测 84 vs 82 的错位）。
-    doc["handles"] = make_handles(doc)
+    # r55 补齐另一半：句柄的 artifact 必须指向**本次真正写过的那本台账**。原先恒取默认
+    # `06-benchmark/debt_runs.jsonl`，于是夹具那种「写临时台账」的运行会拿临时测量值去比
+    # 真台账末行 ⇒ 同一轮里账面从 91 涨到 92 时，一致性自检反过来说我漂移（判据自己读错面）。
+    doc["handles"] = make_handles(doc, ledger_rel=(args.ledger or "06-benchmark/debt_runs.jsonl"))
     if not args.quiet:
         got = {k: resolve_handle(v) for k, v in doc["handles"].items()}
         mismatch = [k for k in ("overdue", "open_total", "decided")
