@@ -1,6 +1,6 @@
 {
  "schema": "gate-run-v1",
- "generated_at": "2026-09-25 18:39",
+ "generated_at": "2026-09-25 18:48",
  "readonly": true,
  "mode": "full",
  "gates": [
@@ -8,7 +8,7 @@
    "id": "r19_scan_fixtures",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 1388,
+   "elapsed_ms": 1786,
    "portable": false,
    "covers": [
     "05-exec/cumulative_drift_scan.py 排除判据",
@@ -22,7 +22,7 @@
    "id": "r19_baseline_contract_fixtures",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 454,
+   "elapsed_ms": 565,
    "portable": true,
    "covers": [
     "05-exec/baseline_contract_scan.py",
@@ -34,7 +34,7 @@
    "id": "baseline_contract_scan",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 88,
+   "elapsed_ms": 106,
    "portable": true,
    "covers": [
     "06-benchmark/*.json 机器证据结构（份数/pattern 数不硬编码，取值：该门 --json 输出的 files_checked 与 artifacts 长度）"
@@ -45,7 +45,7 @@
    "id": "ratchet_gate",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 97,
+   "elapsed_ms": 127,
    "portable": false,
    "covers": [
     "06-benchmark/inject_ratchet_baseline.json",
@@ -58,7 +58,7 @@
    "id": "control_char_scan",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 259,
+   "elapsed_ms": 310,
    "portable": true,
    "covers": [
     "本仓全部文本面（r31 实测 376 个面）"
@@ -69,7 +69,7 @@
    "id": "tracked_empty_check",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 84,
+   "elapsed_ms": 124,
    "portable": true,
    "covers": [
     "本仓全部 tracked 文本件（.md/.py/.json/.jsonl/.yml/.txt/.ps1/.sh/.toml 等）",
@@ -81,7 +81,7 @@
    "id": "mark_verdict_fixtures",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 1019,
+   "elapsed_ms": 1221,
    "portable": true,
    "covers": [
     "05-exec/r46_mark_verdict.py 的锚点定位与拒写分支",
@@ -93,7 +93,7 @@
    "id": "refresh_budget_fixtures",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 173,
+   "elapsed_ms": 208,
    "portable": false,
    "covers": [
     "05-exec/ratchet_gate.py 的 METRIC_SOURCES/METRIC_REFRESH_DAYS/source_age_days/face_metric_refresh",
@@ -106,7 +106,7 @@
    "id": "handles_readme_fixtures",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 257,
+   "elapsed_ms": 304,
    "portable": true,
    "covers": [
     "05-exec/r38_debt_aging.py 的 make_handles/resolve_handle（句柄可解值、死句柄返 None）",
@@ -119,7 +119,7 @@
    "id": "md_claim_face",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 79,
+   "elapsed_ms": 95,
    "portable": true,
    "covers": [
     "06-benchmark/*.md 引用面（数字声明 ±12 行内需有取值命令）",
@@ -144,20 +144,20 @@
    "id": "root_face_fixtures",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 2361,
+   "elapsed_ms": 3123,
    "portable": false,
    "covers": [
     "受管根 noise_lint KNOWN_CORE 对本项目根的登记面（R286，受管根 e93896b）",
     "登记不放宽判据：植入散落产物仍须判 VIOL + 计数严格 +1 + 清理后复位",
     "f9 反向对照：未登记同形根上同一谓词必须抓到顶层 strict VIOL（防 f2 成空断言）"
    ],
-   "tail": "已不存在（禁我自己留下新散落） | PASS f7 计数复位：清理后违规计数回到植入前（无残留、无漂移） | PASS f8 残留项可逐条解释：当前 VIOL 只容 R269 登记项与 W-39 待裁定项 | PASS f9 对照（防 f2 空断言）：未登记同形根上，同一谓词必须抓到顶层 strict VIOL | 夹具合计: 9 项，通过 9，失败 0 | [GATE:fixture-pass]"
+   "tail": "0 R287 正例：`noise .`（相对根）与绝对路径必须给出**同一个面**（修前 13 vs 2） | PASS f11 R287 反例（禁顺手放宽）：未登记的相对根仍须落 strict 判红 | PASS f9 对照（防 f2 空断言）：未登记同形根上，同一谓词必须抓到顶层 strict VIOL | 夹具合计: 11 项，通过 11，失败 0 | [GATE:fixture-pass]"
   },
   {
    "id": "baseline_note_fixtures",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 193,
+   "elapsed_ms": 271,
    "portable": false,
    "covers": [
     "05-exec/ratchet_gate.py 的 merge_note 与 --update 落盘路径（留账只增不减 + attributed_raises 须存活）",
@@ -170,20 +170,20 @@
    "id": "input_face_fixtures",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 106,
+   "elapsed_ms": 132,
    "portable": true,
    "covers": [
     "05-exec/r38_debt_aging.py 的 face_round/face_dedup/face_dating",
     "05-exec/r46_mark_verdict.py 的 landed_contradiction/item_own_id（第⑥重拒写）",
     "真卷输入面守恒（RE_ITEM 行数 == 计入条目数 + 前缀键零碰撞）"
    ],
-   "tail": "吞行） | PASS i3 真卷：80 字前缀键零碰撞（去重键不吞不同条目） | 真卷面 -> C:\\Users\\37533\\AppData\\Local\\Temp\\r49face_txjzdmy1\\real_face.json |   raw_lines=146 items=146 collisions=0 | 夹具合计: 32 项，通过 32，失败 0 | [GATE:fixture-pass]"
+   "tail": "吞行） | PASS i3 真卷：80 字前缀键零碰撞（去重键不吞不同条目） | 真卷面 -> C:\\Users\\37533\\AppData\\Local\\Temp\\r49face_tjm40jxb\\real_face.json |   raw_lines=146 items=146 collisions=0 | 夹具合计: 32 项，通过 32，失败 0 | [GATE:fixture-pass]"
   },
   {
    "id": "authority_face_fixtures",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 299,
+   "elapsed_ms": 316,
    "portable": false,
    "covers": [
     "05-exec/rule_conflict_scan.py 的 discover_authority_candidates/face_authority_coverage/effective_files",
@@ -196,7 +196,7 @@
    "id": "scan_inputs_fixtures",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 404,
+   "elapsed_ms": 458,
    "portable": true,
    "covers": [
     "05-exec/rule_conflict_scan.py 的 DEFAULT_FILES 与 input_evidence",
@@ -208,7 +208,7 @@
    "id": "debt_ledger_fixtures",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 3907,
+   "elapsed_ms": 3929,
    "portable": true,
    "covers": [
     "05-exec/r38_debt_aging.py 的 append_ledger 与 classify_item",
@@ -220,7 +220,7 @@
    "id": "noise_tracked_stub",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 4124,
+   "elapsed_ms": 5262,
    "portable": false,
    "covers": [
     "D:\\global_skills\\A-project-handoff\\scripts\\noise_lint.py",
@@ -233,13 +233,13 @@
    "id": "gate_run_freshness",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 58,
+   "elapsed_ms": 76,
    "portable": true,
    "covers": [
     "06-benchmark/gate_runs.jsonl 执行台账",
     "间接盯住 ratchet_gate / r19_scan_fixtures 两台机专属门是否仍被人跑"
    ],
-   "tail": "x_days=7 天｜来源域: ['local', 'ci']｜时间格式: %Y-%m-%dT%H:%M:%S | 覆盖根: 本机专属门 = ratchet_gate / r19_scan_fixtures（仓内无 SKILL.md 语料，CI 永远看不到） | [FRESH:PASS] 最近本机 PASS 距今 0.00 天 ≤ max_days=7；台账共 73 条（本机 73 / CI 0）"
+   "tail": "x_days=7 天｜来源域: ['local', 'ci']｜时间格式: %Y-%m-%dT%H:%M:%S | 覆盖根: 本机专属门 = ratchet_gate / r19_scan_fixtures（仓内无 SKILL.md 语料，CI 永远看不到） | [FRESH:PASS] 最近本机 PASS 距今 0.01 天 ≤ max_days=7；台账共 74 条（本机 74 / CI 0）"
   }
  ],
  "not_covered": [
@@ -249,6 +249,6 @@
  ],
  "verdict": "PASS",
  "verdict_reason": "PASS=19（无 FAIL / 无 UNVERIFIED / 无 MISSING）",
- "total_ms": 15438,
+ "total_ms": 18501,
  "gates_run": 19
 }

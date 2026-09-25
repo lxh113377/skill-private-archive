@@ -21,6 +21,7 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 HANDOFF = r"D:/global_skills/A-project-handoff/scripts/handoff.py"
+NL = r"D:/global_skills/A-project-handoff/scripts/noise_lint.py"
 PROBE = os.path.join(ROOT, "05-exec", "_r55probe_tmp")
 GOVERNED = ["00-scope", "01-scan", "02-review", "03-audit", "04-plan",
             "05-exec", "06-benchmark", "archive", "memory"]
@@ -93,6 +94,32 @@ def main():
        "before=%s after=%s VIOL=%s" % (base.get("violation"), back.get("violation"), viol2))
     ck("f8 残留项可逐条解释：当前 VIOL 只容 R269 登记项与 W-39 待裁定项",
        all(("手动维护" in n) or ("mark_backup" in n) for k, n, r in viol2), "VIOL=%s" % viol2)
+
+    # f10/f11 = R287（查表键绝对化）双向锁：相对路径不得换面，未登记根仍须 strict。
+    env = dict(os.environ, PYTHONPYCACHEPREFIX=r"C:/tmp/pyc_r55")
+    p_rel = subprocess.run([sys.executable, NL, "."], capture_output=True, text=True,
+                           encoding="utf-8", errors="replace", env=env, cwd=ROOT)
+    m = re.search(r"汇总：\s*(\{.*\})", p_rel.stdout or "")
+    same = bool(m) and json.loads(m.group(1)).get(".") == (sum0 or {}).get("自建skill优化")
+    ck("f10 R287 正例：`noise .`（相对根）与绝对路径必须给出**同一个面**（修前 13 vs 2）",
+       same, "dot=%s abs=%s" % (m.group(1) if m else None, sum0))
+
+    tmp2 = os.path.join(r"C:/tmp", "r55_unreg_rel_root")
+    try:
+        shutil.rmtree(tmp2, ignore_errors=True)
+        os.makedirs(os.path.join(tmp2, "memory"))
+        os.makedirs(os.path.join(tmp2, "docs"))
+        p_rel2 = subprocess.run([sys.executable, NL, "r55_unreg_rel_root"], capture_output=True,
+                                text=True, encoding="utf-8", errors="replace",
+                                env=env, cwd=r"C:/tmp")
+        mm = re.search(r"汇总：\s*(\{.*\})", p_rel2.stdout or "")
+        s2 = json.loads(mm.group(1)) if mm else {}
+        got = list(s2.values())[0] if s2 else {}
+        ck("f11 R287 反例（禁顺手放宽）：未登记的相对根仍须落 strict 判红",
+           got.get("violation", 0) >= 2 and p_rel2.returncode != 0,
+           "out=%s rc=%s" % (s2, p_rel2.returncode))
+    finally:
+        shutil.rmtree(tmp2, ignore_errors=True)
 
     # f9 = f2 的反向对照：f2 判绿必须是"看得见违规的能力还在"，不是"这条断言根本抓不到东西"。
     # 造一个**未登记**的临时根（同名治理目录），同一条谓词必须判红。
