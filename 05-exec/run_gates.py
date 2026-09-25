@@ -110,6 +110,17 @@ GATES = [
         "why": "拦「写崩/截断留下的 0 字节件」——r34 我曾把 memory/AGENTS.md 写成 0 字节，靠 Git 基线才恢复",
     },
     {
+        # r46 W-16：裁决标记写入器（锚点定位 + 五重拒写 + 读回验证）的夹具
+        "id": "mark_verdict_fixtures",
+        "script": "r46_mark_verdict_fixtures.py",
+        "argv": [],
+        "pass_token": "[GATE:fixture-pass]",
+        "portable": True,
+        "covers": ["05-exec/r46_mark_verdict.py 的锚点定位与拒写分支",
+                   "X-19 禁行号写标记（工具化，不靠自觉）"],
+        "why": "r45 实测 W-9 挂了 5 轮的真因是按行号写标记写到别处；本门锁死该入口不再接受行号、歧义与已闭环一律拒写、写完必须读回",
+    },
+    {
         # r40 L-4：冲突扫描器输入面自证（死条目必须红，且不得靠删条目把覆盖面做干净）
         "id": "scan_inputs_fixtures",
         "script": "r40_scan_inputs_fixtures.py",
