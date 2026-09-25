@@ -128,7 +128,7 @@ def overdue_debt_items():
     fail-closed：证据件缺失 / 取不到 OVERDUE / 四分类之和对不上 `open_total`（判据漏桶）
     ⇒ 一律返回 None，由棘轮按「指标算不出即红」处理，**不得**当作 0 放行（R247）。
     """
-    d = _read_json(BENCH / "debt_aging_r38_*.json")
+    d = _read_json(BENCH / "debt_aging_r*.json")   # 轮次不写死：写死会让指标永远读旧证据件（r39 夹具 t17 实测命中）
     if not isinstance(d, dict):
         return None
     by, ev = d.get("by_class") or {}, d.get("evidence") or {}

@@ -249,8 +249,34 @@
    ],
    "note": "M-2（r38 清偿挂账 3 轮）：棘轮基线键集合必须与 ratchet_gate.METRIC_NAMES 全等——少一项该指标即无基线、棘轮静默放行（回归保护失效），多一项即僵尸基线"
   },
-  "debt_aging_r38_*.json": {
-   "schema_id": "debt-aging-v1",
+  "debt_runs.jsonl": {
+   "kind": "jsonl",
+   "row_required": [
+    "ts",
+    "origin",
+    "open_total",
+    "overdue",
+    "active",
+    "decided",
+    "undated",
+    "grace_rounds",
+    "head",
+    "deferred"
+   ],
+   "row_enum": {
+    "origin": [
+     "local",
+     "ci"
+    ]
+   },
+   "row_ts_format": "%Y-%m-%dT%H:%M:%S",
+   "note": "r39 W-3：账龄趋势台账逐行契约。origin 取值域封闭为 local/ci（第三种来源即『本机记录冒充 CI』的入口，同族 gate_runs.jsonl）；行必须带五态计数（含 deferred：延期与终局必须分开看，否则挂账会变成永久免检通道），使斜率可从台账本身重算而不依赖当期证据件。"
+  },
+  "debt_aging_r3*.json": {
+   "schema_id": [
+    "debt-aging-v1",
+    "debt-aging-v2"
+   ],
    "required": [
     "generated_at",
     "readonly",
@@ -264,7 +290,8 @@
     "overdue",
     "undated",
     "opponents",
-    "note"
+    "note",
+    "opponents_measured_at"
    ],
    "types": {
     "readonly": "bool",
@@ -283,7 +310,7 @@
     "debt_class_sum",
     "debt_taxonomy_complete"
    ],
-   "note": "r38 第十四维：待办账龄。OVERDUE 数是 ratchet_gate 第 7 指标 overdue_debt_items 的唯一取值面"
+   "note": "r38/r39 第十四维债务账龄。v2 新增 DEFERRED 态（延期不得冒充已裁决，到期自动回判 OVERDUE）；OVERDUE 数是 ratchet_gate 第 7 指标唯一取值面；deferred 数待 W-4 立第 8 指标"
   }
  },
  "invariant_docs": {

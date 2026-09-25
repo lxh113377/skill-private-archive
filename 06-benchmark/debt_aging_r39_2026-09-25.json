@@ -1,0 +1,154 @@
+{
+ "schema": "debt-aging-v2",
+ "generated_at": "2026-09-25T11:26:57",
+ "readonly": true,
+ "grace_rounds": 2,
+ "current_round": 38,
+ "round_source": "git log --format=%s -40 中最大 rNN（未硬编码）",
+ "verdict_taxonomy": [
+  "OVERDUE",
+  "ACTIVE",
+  "DECIDED",
+  "UNDATED",
+  "DEFERRED",
+  "CLOSED"
+ ],
+ "files_scanned": [
+  "memory\\07-next-steps.md",
+  "memory\\07-next-steps.part1.md",
+  "memory\\07-next-steps.part10.md",
+  "memory\\07-next-steps.part11.md",
+  "memory\\07-next-steps.part12.md",
+  "memory\\07-next-steps.part13.md",
+  "memory\\07-next-steps.part2.md",
+  "memory\\07-next-steps.part3.md",
+  "memory\\07-next-steps.part4.md",
+  "memory\\07-next-steps.part5.md",
+  "memory\\07-next-steps.part6.md",
+  "memory\\07-next-steps.part7.md",
+  "memory\\07-next-steps.part8.md",
+  "memory\\07-next-steps.part9.md"
+ ],
+ "evidence": {
+  "volumes": 14,
+  "items_total": 107,
+  "open_total": 56,
+  "closed_total": 51
+ },
+ "by_class": {
+  "OVERDUE": 0,
+  "ACTIVE": 9,
+  "DECIDED": 11,
+  "UNDATED": 13,
+  "DEFERRED": 23
+ },
+ "overdue": [],
+ "undated": [
+  {
+   "title": "**【P0·待办 M-3（第十三维不许宣称领先的前提）】** 对手侧同尺分类：给 anthropics/skills(75% failure",
+   "file": "memory\\07-next-steps.md",
+   "line": 55
+  },
+  {
+   "title": "**【P0·待观察 他人归属】** 本轮开工前即存在的两条门禁红：① 焚诀 `C20 技能可移植性棘轮` —— `ican-frontend",
+   "file": "memory\\07-next-steps.md",
+   "line": 69
+  },
+  {
+   "title": "**【P0·待裁定 范围表漂移】** 自建裁定表（2026-09-22 v2，150 目录）与磁盘 167 已差 17 条：`verific",
+   "file": "memory\\07-next-steps.md",
+   "line": 70
+  },
+  {
+   "title": "**【P0 铁律·最高优先（老大 2026-09-24 立规）】** 权威源 `D:\\global_memory\\core\\behavior",
+   "file": "memory\\07-next-steps.md",
+   "line": 74
+  },
+  {
+   "title": "R19-1 注入面失真句批次整改(端数/版本戳10句+流程入描述24条+六段最小规范)（由 flow 登记；状态: blocked）—— *",
+   "file": "memory\\07-next-steps.md",
+   "line": 83
+  },
+  {
+   "title": "**【更正·转办判据编号撞号（r19b 实测）】** 下表 R19-2 所指「C29′ 目录税棘轮」**已不能叫 C29**：焚诀并行会话本",
+   "file": "memory\\07-next-steps.md",
+   "line": 86
+  },
+  {
+   "title": "**【待观察·外部红项（r21c）】** `gates` 现 `mirror=fail` 的 2 处 MISMATCH 均为 `ican-f",
+   "file": "memory\\07-next-steps.md",
+   "line": 87
+  },
+  {
+   "title": "**【待观察·跨会话夹带】** 受管根 `f6f5b0c`（本轮 V3.48.0 提交）**夹带**了并行会话在 `handoff_lib/",
+   "file": "memory\\07-next-steps.md",
+   "line": 98
+  },
+  {
+   "title": "**【r21d 复测闭环·新机器型判据】** 「转办前先复测归属方是否已自落」升格为机器型：判据 （转办登记表 vs 焚诀 verify 注",
+   "file": "memory\\07-next-steps.md",
+   "line": 135
+  },
+  {
+   "title": "**【r21e 控制符扫描（已挂必跑链第 5 条）】** `05-exec/control_char_scan.py` 脏集 = C0 ∪ ",
+   "file": "memory\\07-next-steps.md",
+   "line": 141
+  },
+  {
+   "title": "**【r21e 证据可解析性 + 归因抬基线】** `upgrade_footer_gate.py` 的 `RE_EVID` 原只校形状，形",
+   "file": "memory\\07-next-steps.md",
+   "line": 142
+  },
+  {
+   "title": "**【P0 新立判据·r21d】** 「状态=已闭环」只允许覆盖该条建议的**全部**作用面：一条建议若同时含「动作」与「教训/机制」两半，",
+   "file": "memory\\07-next-steps.md",
+   "line": 143
+  },
+  {
+   "title": "**【待观察·活写入者反复引入的死路径（r21d 实测 22:5x）】** 07 主卷 P0 铁律那条把权威源写成 `D:\\global_m",
+   "file": "memory\\07-next-steps.md",
+   "line": 144
+  }
+ ],
+ "opponents_measured_at": "2026-09-25",
+ "opponents": [
+  {
+   "repo": "github/spec-kit",
+   "open_issues": 287,
+   "workflows": 27,
+   "stale_automation": true,
+   "oldest_open_issue": "2025-09-25",
+   "note": "唯一有到期自动化：Close stale issues and PRs + 6 条 issue 流转 workflow"
+  },
+  {
+   "repo": "obra/superpowers",
+   "open_issues": 401,
+   "workflows": 2,
+   "stale_automation": false,
+   "oldest_open_issue": "2026-01-27"
+  },
+  {
+   "repo": "anthropics/skills",
+   "open_issues": 1290,
+   "workflows": 2,
+   "stale_automation": false,
+   "oldest_open_issue": "2025-10-16"
+  },
+  {
+   "repo": "addyosmani/agent-skills",
+   "open_issues": 118,
+   "workflows": 5,
+   "stale_automation": false,
+   "oldest_open_issue": "2026-04-04"
+  },
+  {
+   "repo": "pre-commit/pre-commit",
+   "open_issues": 25,
+   "workflows": 3,
+   "stale_automation": false,
+   "oldest_open_issue": "2018-07-02",
+   "note": "低积压靠少建待办，最老一条 8 年仍 open —— 到期治理同样缺失"
+  }
+ ],
+ "note": "OVERDUE 数 = ratchet_gate 第 7 指标 overdue_debt_items 的唯一取值面"
+}

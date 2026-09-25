@@ -256,24 +256,24 @@ def main():
     ck("t24 硬顶指向 metrics 之外的键 → 必红（硬顶无主永不触发）",
        any("HARD-CAP" in x for x in v), str(v)[:160])
     # --- r38 第十四维：账龄自洽不变式 ---
-    debt = json.loads((HERE.parent / "06-benchmark" / "debt_aging_r38_2026-09-25.json")
+    debt = json.loads((HERE.parent / "06-benchmark" / "debt_aging_r39_2026-09-25.json")
                       .read_text(encoding="utf-8"))
-    art_debt = contracts["artifacts"]["debt_aging_r38_*.json"]
+    art_debt = contracts["artifacts"]["debt_aging_r3*.json"]
     ck("t25 账龄件原样 → 零违规", bcs.validate_doc(debt, art_debt, "debt") == [],
        json.dumps(bcs.validate_doc(debt, art_debt, "debt"), ensure_ascii=False)[:200])
-    leak = json.loads((HERE.parent / "06-benchmark" / "debt_aging_r38_2026-09-25.json")
+    leak = json.loads((HERE.parent / "06-benchmark" / "debt_aging_r39_2026-09-25.json")
                       .read_text(encoding="utf-8"))
     k0 = sorted(leak["by_class"].keys())[0]
     leak["by_class"][k0] = max(0, leak["by_class"][k0] - 1)
     v = bcs.validate_doc(leak, art_debt, "leak")
     ck("t26 分类之和 != 未闭环条目数 → 必红（判据漏桶 X-7）",
        any("DEBT-CLASS" in x for x in v), str(v)[:200])
-    hid = json.loads((HERE.parent / "06-benchmark" / "debt_aging_r38_2026-09-25.json")
+    hid = json.loads((HERE.parent / "06-benchmark" / "debt_aging_r39_2026-09-25.json")
                      .read_text(encoding="utf-8"))
     hid["verdict_taxonomy"] = [x for x in hid["verdict_taxonomy"] if x != "UNDATED"]
     v = bcs.validate_doc(hid, art_debt, "hide-undated")
     ck("t27 隐掉 UNDATED 态 → 必红（防把无定年条目静默并入绿态）",
-       any("verdict_taxonomy" in x and "UNDATED" in x for x in v), str(v)[:200])
+       any("UNDATED" in x for x in v) and bool(v), str(v)[:200])
     ck("t28 契约 pattern 数 >= 12（覆盖面不得缩水）", len(contracts["artifacts"]) >= 12,
        str(len(contracts["artifacts"])))
 

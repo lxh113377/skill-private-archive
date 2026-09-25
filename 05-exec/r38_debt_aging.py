@@ -34,7 +34,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
-TAXONOMY = ["OVERDUE", "ACTIVE", "DECIDED", "UNDATED"]
+TAXONOMY = ["OVERDUE", "ACTIVE", "DECIDED", "UNDATED", "DEFERRED"]   # r39：DEFERRED = 挂账至未来轮，是"看得见但不到期"的第四种状态，不得并入 DECIDED
 GRACE_DEFAULT = 2
 RE_ITEM = re.compile(r"^\s*-\s\[( |x)\]\s+(.+)$")
 RE_ROUND_DECL = re.compile(r"(?:r(\d{1,3})\s*(?:登记|立|新增|补记|更新|收尾)|第\s*(\d{1,3})\s*轮|"
@@ -72,7 +72,11 @@ def classify_item(text, now_round):
     if dec:
         if dec.group(2):
             tgt = int(dec.group(2))
-            return ("DECIDED", "挂账至 r%d%s" % (tgt, "" if tgt >= now_round - 1 else "（已过期，仍算已裁决但须复核）"))
+            # r39 W-0：延期不是终局。目标轮未到 → DEFERRED（单列，趋势线可见）；
+            # 已到/已过 → 重新判 OVERDUE（到期追讨），防"挂账至 rNN"变成永久免检通道。
+            if tgt > now_round:
+                return ("DEFERRED", "挂账至 r%d（尚余 %d 轮）" % (tgt, tgt - now_round))
+            return ("OVERDUE", "挂账目标 r%d 已到期（本轮 r%d）" % (tgt, now_round))
         return ("DECIDED", "裁决=" + dec.group(1))
     origin, held = None, None
     for m in RE_ROUND_DECL.finditer(text):
@@ -123,12 +127,58 @@ def scan(files, now_round, grace):
     return items
 
 
+# ---------------------------------------------------------------- W-3：账龄趋势台账
+LEDGER_CLASSES = ("OVERDUE", "ACTIVE", "DECIDED", "UNDATED")   # 必填四态（r39 前既有）
+LEDGER_OPTIONAL = ("DEFERRED",)              # 缺省按 0 记；出现则计入自洽
+LEDGER_ORIGINS = ("local", "ci")
+
+
+def head_short():
+    return git("rev-parse", "--short", "HEAD").stdout.strip() or "unknown"
+
+
+def append_ledger(path, doc, origin="local", head=None):
+    """把一次账龄测量**追加**成一行趋势记录；返回写入行数（0 = 被拒写）。
+
+    拒写条件全部 fail-closed（R247：脏数据一旦进趋势线，斜率就成了伪造面）：
+      · origin 不在取值域（防"本机记录冒充 CI"）
+      · evidence.open_total 不是整数
+      · by_class 缺任一态（**不按 0 补齐**：缺态即分类面不完整，正是 r38 首版把 27 条
+        漏成 UNDATED 的那类盲区，写进台账会永久掩盖）
+      · 四态之和 != open_total（判据漏桶）
+    """
+    by = doc.get("by_class") or {}
+    ev = doc.get("evidence") or {}
+    total = ev.get("open_total")
+    if origin not in LEDGER_ORIGINS:
+        return 0
+    if not isinstance(total, int) or isinstance(total, bool):
+        return 0
+    if any(k not in by for k in LEDGER_CLASSES):
+        return 0
+    if any(k not in TAXONOMY for k in by):
+        return 0                       # 出现未知态 ⇒ 分类面被改过，趋势线拒收
+    if sum(by.values()) != total:
+        return 0
+    row = {"ts": dt.datetime.now().isoformat(timespec="seconds"), "origin": origin,
+           "open_total": total, "overdue": by["OVERDUE"], "active": by["ACTIVE"],
+           "decided": by["DECIDED"], "undated": by["UNDATED"],
+           "deferred": by.get("DEFERRED", 0),
+           "grace_rounds": doc.get("grace_rounds"), "current_round": doc.get("current_round"),
+           "head": head or head_short()}
+    io.open(path, "a", encoding="utf-8", newline="").write(
+        json.dumps(row, ensure_ascii=False) + chr(10))
+    return 1
+
+
 def main():
     global GRACE_DEFAULT
     ap = argparse.ArgumentParser()
     ap.add_argument("--json")
     ap.add_argument("--grace", type=int, default=GRACE_DEFAULT)
     ap.add_argument("--quiet", action="store_true")
+    ap.add_argument("--ledger", help="趋势台账 jsonl 路径（追加一行；自洽不过则一行都不写）")
+    ap.add_argument("--origin", default="local", choices=list(LEDGER_ORIGINS))
     args = ap.parse_args()
     GRACE_DEFAULT = args.grace
 
@@ -155,15 +205,15 @@ def main():
     if not args.quiet:
         print("轮号基准 = r%d（取值：git log --format=%%s -40 里的最大 rNN）｜受检面 %d 卷"
               % (now_round, len(files)))
-        print("未闭环 %d 条：OVERDUE %d / ACTIVE %d / DECIDED %d / UNDATED %d ｜ 已闭环 %d 条"
-              % (len(open_items), by_cls["OVERDUE"], by_cls["ACTIVE"], by_cls["DECIDED"],
-                 by_cls["UNDATED"], len(closed)))
+        print("未闭环 %d 条：%s ｜ 已闭环 %d 条"
+              % (len(open_items), " / ".join("%s %d" % (c, by_cls[c]) for c in TAXONOMY),
+                 len(closed)))
         for r in overdue[:12]:
             print("  OVERDUE %-4s %-11s %s | %s" % (r["priority"], r["detail"],
                                                     r.get("first_seen", "?"), r["title"][:64]))
         print("[DEBT:MEASURED] 宽限 %d 轮｜本尺不阻断（阻断由 ratchet_gate 第 7 指标只降不升承载）" % args.grace)
 
-    doc = {"schema": "debt-aging-v1",
+    doc = {"schema": "debt-aging-v2",   # v2（r39）新增 DEFERRED 态；v1 历史件按自洽式不变式仍合格
            "generated_at": dt.datetime.now().isoformat(timespec="seconds"),
            "readonly": True, "grace_rounds": args.grace, "current_round": now_round,
            "round_source": "git log --format=%s -40 中最大 rNN（未硬编码）",
@@ -190,6 +240,12 @@ def main():
                 "stale_automation": False, "oldest_open_issue": "2018-07-02",
                 "note": "低积压靠少建待办，最老一条 8 年仍 open —— 到期治理同样缺失"}],
            "note": "OVERDUE 数 = ratchet_gate 第 7 指标 overdue_debt_items 的唯一取值面"}
+    if args.ledger:
+        wrote = append_ledger(args.ledger, doc, origin=args.origin)
+        print("台账 %s → 追加 %d 行（%s）" % (args.ledger, wrote,
+              "自洽通过" if wrote else "分类面不完整或之和对不上，拒写"))
+        if wrote == 0:
+            print("[DEBT:LEDGER-REFUSED] 趋势线只接自洽的测量值（R247）")
     if args.json:
         io.open(args.json, "w", encoding="utf-8", newline="").write(
             json.dumps(doc, ensure_ascii=False, indent=1))

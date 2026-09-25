@@ -220,10 +220,18 @@ def inv_debt_class_sum(doc, arg):
 
 
 def inv_debt_taxonomy_complete(doc, arg):
-    want = {"OVERDUE", "ACTIVE", "DECIDED", "UNDATED"}
-    got = set(doc.get("verdict_taxonomy") or [])
-    return ["debt verdict_taxonomy 缺态 %s（少一类即可能把该态静默并入绿态）" % sorted(want - got)] \
-        if not want <= got else []
+    """声明的分类态必须与实际计数态一一对应（跨代际通用：v1 四态 / v2 五态都须自洽）。写死集合会在下一次加分层时把历史证据件全判脏（r39 实测踩到：加 DEFERRED 后昨天的 v1 件全体 CONTRACT:FAIL）。自洽式既不豁免任何一代，又能抓住「把某态从 taxonomy 摘掉以并入绿态」的伪装（t27 反例仍红）。"""
+    declared = set(doc.get('verdict_taxonomy') or [])
+    counted = set((doc.get('by_class') or {}).keys())
+    if not declared or not counted:
+        return ['debt taxonomy/by_class 有一方为空，不得判自洽（R247）']
+    msgs = []
+    if counted - declared:
+        msgs.append('debt by_class 出现未声明态 %s（分类面被改过）' % sorted(counted - declared))
+    ghost = declared - counted - {'CLOSED'}
+    if ghost:
+        msgs.append('debt verdict_taxonomy 声明却无计数 %s（少一类即可能把该态静默并入绿态）' % sorted(ghost))
+    return msgs
 
 
 INVARIANTS = {

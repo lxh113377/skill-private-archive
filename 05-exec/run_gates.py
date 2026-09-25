@@ -110,6 +110,17 @@ GATES = [
         "why": "拦「写崩/截断留下的 0 字节件」——r34 我曾把 memory/AGENTS.md 写成 0 字节，靠 Git 基线才恢复",
     },
     {
+        # r39 W-3：债务趋势台账的 fail-closed 夹具（拒写脏行 + 延期不得冒充已裁决）
+        "id": "debt_ledger_fixtures",
+        "script": "r39_debt_ledger_fixtures.py",
+        "argv": [],
+        "pass_token": "[GATE:fixture-pass]",
+        "portable": True,
+        "covers": ["05-exec/r38_debt_aging.py 的 append_ledger 与 classify_item",
+                   "05-exec/schemas/r19/baseline-contracts.json 的 debt_runs.jsonl 行契约"],
+        "why": "锁死三件：脏测量值不得进趋势线；挂账到期必须回判 OVERDUE；origin 取值域封闭 local/ci",
+    },
+    {
         # r37 H-4：把「判据自己会不会报错」变成常驻门（本轮实测：噪声门连红 7 轮全是假阳性）
         "id": "noise_tracked_stub",
         "script": "r37_noise_tracked_stub.py",
