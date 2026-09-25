@@ -1,0 +1,819 @@
+{
+ "schema": "username-context-audit-v1",
+ "generated_at": "2026-09-25 08:57",
+ "readonly": true,
+ "benchmark": "r35 H-2 修订（推翻 r34 的『P3=纯冗余』判定）",
+ "rule": "路径 os.path.exists 或 行内含执行语境 ⇒ LOAD_BEARING；两者皆无 ⇒ ILLUSTRATIVE；取不到边界 ⇒ UNKNOWN（不并入任一类）",
+ "covers": [
+  "D:\\global_skills"
+ ],
+ "root": "D:\\global_skills",
+ "user_len": 5,
+ "files_with_hits": 25,
+ "total": 94,
+ "totals_by_class": {
+  "LOAD_BEARING": 77,
+  "ILLUSTRATIVE": 8,
+  "UNKNOWN": 8,
+  "NON_PATH": 1
+ },
+ "rows": [
+  {
+   "skill": "A-get-memory",
+   "occurrences": 4,
+   "by_class": {
+    "LOAD_BEARING": 4
+   },
+   "detail": [
+    {
+     "line": 160,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\.agents\\skills",
+     "text": "1. 找到技能的 SKILL.md 文件（统一 skill 仓库：`D:\\global_skills\\<skill-name>\\SKILL.md`；各框架通过 Junction 自动映射：`~/.workbuddy/skills/` / `"
+    },
+    {
+     "line": 392,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\Desktop\\workspace\\焚诀\\eval\\record_lessons_usage.py",
+     "text": "C:\\Program Files\\Python312\\python.exe C:\\Users\\37533\\Desktop\\workspace\\焚诀\\eval\\record_lessons_usage.py --session <sessio"
+    },
+    {
+     "line": 449,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\.Codex\\memory\\YYYY-MM-DD.md",
+     "text": "> **CX 适配（2026-08-03）：** Codex 端当前无 user_profile.md → 跳过画像文件更新，在当日日志 `C:\\Users\\37533\\.Codex\\memory\\YYYY-MM-DD.md` 记录画像观察"
+    },
+    {
+     "line": 472,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533",
+     "text": "- `~` → `C:\\Users\\37533`"
+    }
+   ]
+  },
+  {
+   "skill": "A-java-problem",
+   "occurrences": 1,
+   "by_class": {
+    "ILLUSTRATIVE": 1
+   },
+   "detail": [
+    {
+     "line": 74,
+     "class": "ILLUSTRATIVE",
+     "path": "C:\\Users\\37533\\Desktop\\作业\\Java实验\\",
+     "text": "| Java 作业目录 | `C:\\Users\\37533\\Desktop\\作业\\Java实验\\`（题1/题2 已交付） |"
+    }
+   ]
+  },
+  {
+   "skill": "A-memory-start",
+   "occurrences": 5,
+   "by_class": {
+    "LOAD_BEARING": 5
+   },
+   "detail": [
+    {
+     "line": 81,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\Desktop\\workspace\\焚诀\\eval\\unified_router.py",
+     "text": "- **Step 0.6 程序化预路由（非闲聊强制）**：`C:\\Program Files\\Python312\\python.exe \"C:\\Users\\37533\\Desktop\\workspace\\焚诀\\eval\\unified_ro"
+    },
+    {
+     "line": 82,
+     "class": "LOAD_BEARING",
+     "path": "C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe（依赖已对齐",
+     "text": "**解释器降级链（R211，2026-09-04 实测）**：Step 0.6 命令报 ModuleNotFoundError（缺 numpy 等依赖）或静默 exit 1 时，优先改用 managed venv C:/Users/3753"
+    },
+    {
+     "line": 136,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\.workbuddy\\memory_content\\",
+     "text": "| memory_content junction | `C:\\Users\\37533\\.workbuddy\\memory_content\\` → D:\\global_memory |"
+    },
+    {
+     "line": 137,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\.zcode\\memory\\",
+     "text": "| zc memory junction | `C:\\Users\\37533\\.zcode\\memory\\` → D:\\global_memory（2026-09-22 建；ZCode 无内置 memory 目录，另经 `~/.zcode/"
+    },
+    {
+     "line": 138,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\.zcode\\skills\\",
+     "text": "| zc skills junction | `C:\\Users\\37533\\.zcode\\skills\\` → D:\\global_skills（2026-09-22 建，一级直连权威源） |"
+    }
+   ]
+  },
+  {
+   "skill": "A-project-handoff",
+   "occurrences": 1,
+   "by_class": {
+    "LOAD_BEARING": 1
+   },
+   "detail": [
+    {
+     "line": 63,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+     "text": "4. 回退：`C:\\Users\\37533\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe`"
+    }
+   ]
+  },
+  {
+   "skill": "A-skill-manager",
+   "occurrences": 1,
+   "by_class": {
+    "LOAD_BEARING": 1
+   },
+   "detail": [
+    {
+     "line": 40,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\.workbuddy\\binaries\\python\\envs\\default\\Scripts\\python.exe",
+     "text": "7. **BGE/索引重建用 managed venv**：`C:\\Users\\37533\\.workbuddy\\binaries\\python\\envs\\default\\Scripts\\python.exe`。"
+    }
+   ]
+  },
+  {
+   "skill": "audio-deliverable-pipeline",
+   "occurrences": 1,
+   "by_class": {
+    "LOAD_BEARING": 1
+   },
+   "detail": [
+    {
+     "line": 120,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\.workbuddy\\skills",
+     "text": "**受管根提醒**：`C:\\Users\\37533\\.workbuddy\\skills` 是 junction → `D:\\global_skills`（受管根，有噪声散射 pre-commit 校验）。本 skill 的目录内**只放正式"
+    }
+   ]
+  },
+  {
+   "skill": "chaoshi-image-optimization",
+   "occurrences": 12,
+   "by_class": {
+    "LOAD_BEARING": 12
+   },
+   "detail": [
+    {
+     "line": 10,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\Desktop\\workspace\\超市web\\supermarket-web",
+     "text": "> ⚠️ **路径防呆（2026-09-23 立，本条由实测踩坑反哺）**：本机项目实际位于 `C:\\Users\\37533\\Desktop\\workspace\\超市web\\supermarket-web`。早期版本把路径硬编码为 `Des"
+    },
+    {
+     "line": 14,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\Desktop\\workspace\\超市web\\supermarket-web",
+     "text": "- 项目路径: `C:\\Users\\37533\\Desktop\\workspace\\超市web\\supermarket-web`"
+    },
+    {
+     "line": 42,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\Desktop\\workspace\\超市web\\supermarket-web\\public\\images\\*.jpg",
+     "text": "pwsh -NoProfile -Command \"$f=Get-ChildItem 'C:\\Users\\37533\\Desktop\\workspace\\超市web\\supermarket-web\\public\\images\\*.jpg';"
+    },
+    {
+     "line": 48,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\Desktop\\workspace\\超市web\\supermarket-web\\public\\images\\*.jpg",
+     "text": "pwsh -NoProfile -Command \"Get-ChildItem 'C:\\Users\\37533\\Desktop\\workspace\\超市web\\supermarket-web\\public\\images\\*.jpg' | S"
+    },
+    {
+     "line": 74,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\Desktop\\workspace\\超市web\\supermarket-web\\public\\images",
+     "text": "$imgDir = 'C:\\Users\\37533\\Desktop\\workspace\\超市web\\supermarket-web\\public\\images'"
+    },
+    {
+     "line": 113,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\Desktop\\workspace\\超市web\\supermarket-web\\public\\images",
+     "text": "$imgDir = 'C:\\Users\\37533\\Desktop\\workspace\\超市web\\supermarket-web\\public\\images'"
+    },
+    {
+     "line": 190,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\Desktop\\workspace\\超市web\\supermarket-web\\public\\images\\{N}_new.jpg",
+     "text": "curl -sL -o \"C:\\Users\\37533\\Desktop\\workspace\\超市web\\supermarket-web\\public\\images\\{N}_new.jpg\" \"{imageUrl}\""
+    },
+    {
+     "line": 198,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\Desktop\\workspace\\超市web\\supermarket-web\\public\\images",
+     "text": "$imgDir = 'C:\\Users\\37533\\Desktop\\workspace\\超市web\\supermarket-web\\public\\images'"
+    },
+    {
+     "line": 228,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\Desktop\\workspace\\超市web\\supermarket-web\\src",
+     "text": "grep -rn \"/images/.*\\.jpg\" \"C:\\Users\\37533\\Desktop\\workspace\\超市web\\supermarket-web\\src\""
+    },
+    {
+     "line": 269,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\Desktop\\workspace\\超市web\\supermarket-web\\src",
+     "text": "grep -rn \"srcSet\" \"C:\\Users\\37533\\Desktop\\workspace\\超市web\\supermarket-web\\src\""
+    },
+    {
+     "line": 275,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\Desktop\\workspace\\超市web\\supermarket-web",
+     "text": "cd \"C:\\Users\\37533\\Desktop\\workspace\\超市web\\supermarket-web\" && npx vite build 2>&1"
+    },
+    {
+     "line": 286,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\Desktop\\workspace\\超市web\\supermarket-web\\public\\images\\*.webp",
+     "text": "pwsh -NoProfile -Command \"(Get-ChildItem 'C:\\Users\\37533\\Desktop\\workspace\\超市web\\supermarket-web\\public\\images\\*.webp')."
+    }
+   ]
+  },
+  {
+   "skill": "chaoshi-web-deploy",
+   "occurrences": 6,
+   "by_class": {
+    "LOAD_BEARING": 5,
+    "NON_PATH": 1
+   },
+   "detail": [
+    {
+     "line": 8,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\Desktop\\workspace\\超市web\\supermarket-web",
+     "text": "> ⚠️ **路径防呆（2026-09-23 立，本条由实测踩坑反哺）**：本机项目实际位于 `C:\\Users\\37533\\Desktop\\workspace\\超市web\\supermarket-web`。早期版本把路径硬编码为 `Des"
+    },
+    {
+     "line": 34,
+     "class": "NON_PATH",
+     "path": null,
+     "text": "| 凭证 | `node node_modules/wrangler/bin/wrangler.js whoami` | 应输出 `3753318894@qq.com`。OAuth 登录态在 `C:\\Users\\37533\\AppData\\"
+    },
+    {
+     "line": 34,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\AppData\\Roaming\\xdg.config\\.wrangler\\config\\default.toml",
+     "text": "| 凭证 | `node node_modules/wrangler/bin/wrangler.js whoami` | 应输出 `3753318894@qq.com`。OAuth 登录态在 `C:\\Users\\37533\\AppData\\"
+    },
+    {
+     "line": 120,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\Desktop\\workspace\\超市web\\supermarket-web",
+     "text": "cd \"C:\\Users\\37533\\Desktop\\workspace\\超市web\\supermarket-web\""
+    },
+    {
+     "line": 188,
+     "class": "LOAD_BEARING",
+     "path": "C:/Users/37533/Desktop/workspace/超市web/supermarket-web",
+     "text": "cd \"C:/Users/37533/Desktop/workspace/超市web/supermarket-web\""
+    },
+    {
+     "line": 246,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\Desktop\\workspace\\超市web\\supermarket-web",
+     "text": "cd \"C:\\Users\\37533\\Desktop\\workspace\\超市web\\supermarket-web\""
+    }
+   ]
+  },
+  {
+   "skill": "fenjue-lessons-hitrate",
+   "occurrences": 2,
+   "by_class": {
+    "LOAD_BEARING": 2
+   },
+   "detail": [
+    {
+     "line": 22,
+     "class": "LOAD_BEARING",
+     "path": "C:/Users/37533/Desktop/workspace/焚诀",
+     "text": "cd \"C:/Users/37533/Desktop/workspace/焚诀\""
+    },
+    {
+     "line": 59,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\AppData\\Local\\Temp\\fenjue_prompts",
+     "text": "- 指纹 target_files 支持 PROMPTS/ 前缀（指向 `C:\\Users\\37533\\AppData\\Local\\Temp\\fenjue_prompts`）"
+    }
+   ]
+  },
+  {
+   "skill": "fenjue-memory-audit",
+   "occurrences": 1,
+   "by_class": {
+    "LOAD_BEARING": 1
+   },
+   "detail": [
+    {
+     "line": 164,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\Desktop\\workspace\\焚诀\\audit\\fenjue_measure.py",
+     "text": "> 实跑：`python C:\\Users\\37533\\Desktop\\workspace\\焚诀\\audit\\fenjue_measure.py`（输出 D1-D30 + 三视角 + 总分，30 维口径 160，V1.7.0：40/40/2"
+    }
+   ]
+  },
+  {
+   "skill": "hermes-installer",
+   "occurrences": 1,
+   "by_class": {
+    "LOAD_BEARING": 1
+   },
+   "detail": [
+    {
+     "line": 39,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\AppData\\Local\\hermes\\hermes-agent",
+     "text": "5. **兜底**：先手动 `git clone https://github.com/NousResearch/hermes-agent` 到 `C:\\Users\\37533\\AppData\\Local\\hermes\\hermes-age"
+    }
+   ]
+  },
+  {
+   "skill": "html-to-docx-win-fix",
+   "occurrences": 2,
+   "by_class": {
+    "LOAD_BEARING": 1,
+    "UNKNOWN": 1
+   },
+   "detail": [
+    {
+     "line": 25,
+     "class": "LOAD_BEARING",
+     "path": "C:/Users/37533/.workbuddy/skills/html-to-docx-win-fix/scripts/patch_setup.py",
+     "text": "\"C:/Users/37533/.workbuddy/skills/html-to-docx-win-fix/scripts/patch_setup.py\""
+    },
+    {
+     "line": 44,
+     "class": "UNKNOWN",
+     "path": null,
+     "text": "ls -d \"/d/c/Users/37533/.venv-html-to-docx\""
+    }
+   ]
+  },
+  {
+   "skill": "ican-frontend-design-system",
+   "occurrences": 1,
+   "by_class": {
+    "LOAD_BEARING": 1
+   },
+   "detail": [
+    {
+     "line": 149,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\.workbuddy\\binaries\\python\\envs\\ican\\Scripts\\python.exe",
+     "text": "① `C:\\Users\\37533\\.workbuddy\\binaries\\python\\envs\\ican\\Scripts\\python.exe`（managed env，含 Flask/Pandas/ruff，实测 3.13.14 可用"
+    }
+   ]
+  },
+  {
+   "skill": "oc-dispatch-exec-guard",
+   "occurrences": 3,
+   "by_class": {
+    "LOAD_BEARING": 2,
+    "ILLUSTRATIVE": 1
+   },
+   "detail": [
+    {
+     "line": 29,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\AppData\\Local\\Temp\\fenjue_prompts\\",
+     "text": "3. **路径用 Windows 反斜杠 + ASCII 临时副本**：中文路径经 Git Bash 传给 node 系 CLI 必乱码（见 windows-gitbash-chinese-path-pit）。把提示词 cp 到 `C:\\U"
+    },
+    {
+     "line": 37,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\AppData\\Local\\Temp\\fenjue_prompts\\prompt_x.txt",
+     "text": "--message-file \"C:\\Users\\37533\\AppData\\Local\\Temp\\fenjue_prompts\\prompt_x.txt\" \\"
+    },
+    {
+     "line": 40,
+     "class": "ILLUSTRATIVE",
+     "path": "C:\\Users\\37533\\AppData\\Local\\Temp\\fenjue_prompts\\oc_r5.log",
+     "text": "> \"C:\\Users\\37533\\AppData\\Local\\Temp\\fenjue_prompts\\oc_r5.log\" 2>&1"
+    }
+   ]
+  },
+  {
+   "skill": "openclaw-task-supervision",
+   "occurrences": 14,
+   "by_class": {
+    "LOAD_BEARING": 14
+   },
+   "detail": [
+    {
+     "line": 19,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\Desktop\\我的skill.txt",
+     "text": "- `C:\\Users\\37533\\Desktop\\我的skill.txt`"
+    },
+    {
+     "line": 20,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\Desktop\\skill",
+     "text": "- `C:\\Users\\37533\\Desktop\\skill tree.txt`"
+    },
+    {
+     "line": 21,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\Desktop\\优化记忆.txt",
+     "text": "- `C:\\Users\\37533\\Desktop\\优化记忆.txt`"
+    },
+    {
+     "line": 22,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\Desktop\\workspace\\焚诀\\",
+     "text": "- Fenjue project directory at `C:\\Users\\37533\\Desktop\\workspace\\焚诀\\`, logs at `焚诀\\memory\\`"
+    },
+    {
+     "line": 53,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\Desktop\\{filename}.txt",
+     "text": "--message-file \"C:\\Users\\37533\\Desktop\\{filename}.txt\" \\"
+    },
+    {
+     "line": 81,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\Desktop\\我的skill.txt",
+     "text": "C:\\Users\\37533\\Desktop\\我的skill.txt"
+    },
+    {
+     "line": 82,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\Desktop\\skill",
+     "text": "C:\\Users\\37533\\Desktop\\skill tree.txt"
+    },
+    {
+     "line": 83,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\Desktop\\优化记忆.txt",
+     "text": "C:\\Users\\37533\\Desktop\\优化记忆.txt"
+    },
+    {
+     "line": 107,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\Desktop\\我的skill.txt",
+     "text": "--message-file \"C:\\Users\\37533\\Desktop\\我的skill.txt\" \\"
+    },
+    {
+     "line": 161,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\Desktop\\skill",
+     "text": "--message-file \"C:\\Users\\37533\\Desktop\\skill tree.txt\" \\"
+    },
+    {
+     "line": 229,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\Desktop\\优化记忆.txt",
+     "text": "--message-file \"C:\\Users\\37533\\Desktop\\优化记忆.txt\" \\"
+    },
+    {
+     "line": 615,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\.openclaw\\agents\\main\\sessions\\sessions.json",
+     "text": "Read → C:\\Users\\37533\\.openclaw\\agents\\main\\sessions\\sessions.json"
+    },
+    {
+     "line": 622,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\.openclaw\\agents\\main\\sessions\\{UUID}.jsonl",
+     "text": "path: C:\\Users\\37533\\.openclaw\\agents\\main\\sessions\\{UUID}.jsonl"
+    },
+    {
+     "line": 699,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\Desktop\\workspace\\焚诀\\",
+     "text": "- **Log path:** Fenjue project is at `C:\\Users\\37533\\Desktop\\workspace\\焚诀\\`, logs at `焚诀\\memory\\`"
+    }
+   ]
+  },
+  {
+   "skill": "pixelle-api-ensure",
+   "occurrences": 4,
+   "by_class": {
+    "LOAD_BEARING": 3,
+    "ILLUSTRATIVE": 1
+   },
+   "detail": [
+    {
+     "line": 51,
+     "class": "LOAD_BEARING",
+     "path": "C:/Users/37533/.workbuddy/skills/pixelle-api-ensure/ensure_api.py",
+     "text": "python \"C:/Users/37533/.workbuddy/skills/pixelle-api-ensure/ensure_api.py\""
+    },
+    {
+     "line": 54,
+     "class": "LOAD_BEARING",
+     "path": "C:/Users/37533/.workbuddy/skills/pixelle-api-ensure/ensure_api.py",
+     "text": "python \"C:/Users/37533/.workbuddy/skills/pixelle-api-ensure/ensure_api.py\" --quiet"
+    },
+    {
+     "line": 64,
+     "class": "LOAD_BEARING",
+     "path": "C:/Users/37533/.workbuddy/skills/pixelle-api-ensure/ensure_api.py",
+     "text": "python \"C:/Users/37533/.workbuddy/skills/pixelle-api-ensure/ensure_api.py\" --quiet"
+    },
+    {
+     "line": 110,
+     "class": "ILLUSTRATIVE",
+     "path": "C:\\Users\\37533\\.workbuddy\\workspace\\files\\3408\\8d7d611f-9ec0-41c7-857c-d82191997c03\\Pixelle-Video-v0.1.15-win64",
+     "text": "C:\\Users\\37533\\.workbuddy\\workspace\\files\\3408\\8d7d611f-9ec0-41c7-857c-d82191997c03\\Pixelle-Video-v0.1.15-win64"
+    }
+   ]
+  },
+  {
+   "skill": "video-whisper-transcribe",
+   "occurrences": 11,
+   "by_class": {
+    "LOAD_BEARING": 11
+   },
+   "detail": [
+    {
+     "line": 26,
+     "class": "LOAD_BEARING",
+     "path": "C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/pip",
+     "text": "C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/pip list | grep whisper"
+    },
+    {
+     "line": 38,
+     "class": "LOAD_BEARING",
+     "path": "C:/Users/37533/AppData/Local/Temp/target_video.mp4",
+     "text": "cp \"C:/path/to/videos/\"*关键词*.mp4 \"C:/Users/37533/AppData/Local/Temp/target_video.mp4\" && echo \"copy ok\""
+    },
+    {
+     "line": 46,
+     "class": "LOAD_BEARING",
+     "path": "C:/Users/37533/AppData/Local/Temp/target_video.mp4",
+     "text": "ffmpeg -i \"C:/Users/37533/AppData/Local/Temp/target_video.mp4\" \\"
+    },
+    {
+     "line": 48,
+     "class": "LOAD_BEARING",
+     "path": "C:/Users/37533/AppData/Local/Temp/target_audio.wav",
+     "text": "\"C:/Users/37533/AppData/Local/Temp/target_audio.wav\" -y"
+    },
+    {
+     "line": 67,
+     "class": "LOAD_BEARING",
+     "path": "C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/pip",
+     "text": "C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/pip install openai-whisper"
+    },
+    {
+     "line": 118,
+     "class": "LOAD_BEARING",
+     "path": "C:/Users/37533/AppData/Local/Temp/target_audio.wav",
+     "text": "\"C:/Users/37533/AppData/Local/Temp/target_audio.wav\","
+    },
+    {
+     "line": 124,
+     "class": "LOAD_BEARING",
+     "path": "C:/Users/37533/AppData/Local/Temp/transcript.txt",
+     "text": "with open(\"C:/Users/37533/AppData/Local/Temp/transcript.txt\", \"w\", encoding=\"utf-8\") as f:"
+    },
+    {
+     "line": 128,
+     "class": "LOAD_BEARING",
+     "path": "C:/Users/37533/AppData/Local/Temp/segments.json",
+     "text": "with open(\"C:/Users/37533/AppData/Local/Temp/segments.json\", \"w\", encoding=\"utf-8\") as f:"
+    },
+    {
+     "line": 137,
+     "class": "LOAD_BEARING",
+     "path": "C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe",
+     "text": "C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe transcribe.py"
+    },
+    {
+     "line": 159,
+     "class": "LOAD_BEARING",
+     "path": "C:/Users/37533/AppData/Local/Temp/transcript.txt",
+     "text": "cat \"C:/Users/37533/AppData/Local/Temp/transcript.txt\""
+    },
+    {
+     "line": 162,
+     "class": "LOAD_BEARING",
+     "path": "C:/Users/37533/AppData/Local/Temp/segments.json",
+     "text": "python -c \"import json; segs=json.load(open('C:/Users/37533/AppData/Local/Temp/segments.json')); [print(f'[{s[\\\"start\\\"]"
+    }
+   ]
+  },
+  {
+   "skill": "vp-perspective-audit",
+   "occurrences": 1,
+   "by_class": {
+    "LOAD_BEARING": 1
+   },
+   "detail": [
+    {
+     "line": 62,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533",
+     "text": "**关键：** 不要假设路径正确。实测。`~` = `C:\\Users\\37533`。"
+    }
+   ]
+  },
+  {
+   "skill": "wechat-voice-transcription",
+   "occurrences": 1,
+   "by_class": {
+    "UNKNOWN": 1
+   },
+   "detail": [
+    {
+     "line": 23,
+     "class": "UNKNOWN",
+     "path": null,
+     "text": "bash /c/Users/37533/AppData/Local/hermes/skills/media/wechat-voice-transcription/scripts/transcribe_silk.sh /path/to/voi"
+    }
+   ]
+  },
+  {
+   "skill": "win-toolchain-pitfalls",
+   "occurrences": 5,
+   "by_class": {
+    "UNKNOWN": 2,
+    "ILLUSTRATIVE": 1,
+    "LOAD_BEARING": 2
+   },
+   "detail": [
+    {
+     "line": 38,
+     "class": "UNKNOWN",
+     "path": null,
+     "text": "$ find \"/d/c/Users/37533/.venv-msys-test\" -type f | wc -l"
+    },
+    {
+     "line": 59,
+     "class": "UNKNOWN",
+     "path": null,
+     "text": "uv venv --python 3.12 \"/c/Users/37533/.venv-test\"   # RC=0，看起来成功"
+    },
+    {
+     "line": 60,
+     "class": "ILLUSTRATIVE",
+     "path": "d:\\c\\Users\\37533\\.venv-test\\Scripts\\activate",
+     "text": "# 实际输出：Activate with: d:\\c\\Users\\37533\\.venv-test\\Scripts\\activate"
+    },
+    {
+     "line": 79,
+     "class": "LOAD_BEARING",
+     "path": "D:\\\\c\\\\Users\\\\37533\\\\.venv-msys-test",
+     "text": "send2trash(\"D:\\\\c\\\\Users\\\\37533\\\\.venv-msys-test\")"
+    },
+    {
+     "line": 84,
+     "class": "LOAD_BEARING",
+     "path": "C:\\\\Users\\\\37533\\\\VENV-W~1",
+     "text": "`FileNotFoundError: [WinError 2] …: ['C:\\\\Users\\\\37533\\\\VENV-W~1']`。`SHFileOperation` 按短名找不到目标即抛错，"
+    }
+   ]
+  },
+  {
+   "skill": "windows-bash-cli-interop-pitfalls",
+   "occurrences": 1,
+   "by_class": {
+    "ILLUSTRATIVE": 1
+   },
+   "detail": [
+    {
+     "line": 49,
+     "class": "ILLUSTRATIVE",
+     "path": "C:\\Users\\37533\\Desktop\\项目\\public\\images\\*.jpg",
+     "text": "$files = Get-ChildItem 'C:\\Users\\37533\\Desktop\\项目\\public\\images\\*.jpg'"
+    }
+   ]
+  },
+  {
+   "skill": "windows-gitbash-chinese-path-pit",
+   "occurrences": 8,
+   "by_class": {
+    "UNKNOWN": 4,
+    "LOAD_BEARING": 1,
+    "ILLUSTRATIVE": 3
+   },
+   "detail": [
+    {
+     "line": 34,
+     "class": "UNKNOWN",
+     "path": null,
+     "text": "mkdir -p \"/c/Users/37533/AppData/Local/Temp/fenjue_prompts\""
+    },
+    {
+     "line": 36,
+     "class": "UNKNOWN",
+     "path": null,
+     "text": "\"/c/Users/37533/AppData/Local/Temp/fenjue_prompts/prompt_mem.txt\""
+    },
+    {
+     "line": 38,
+     "class": "UNKNOWN",
+     "path": null,
+     "text": "\"/c/Users/37533/AppData/Local/Temp/fenjue_prompts/prompt_skilltree.txt\""
+    },
+    {
+     "line": 40,
+     "class": "UNKNOWN",
+     "path": null,
+     "text": "\"/c/Users/37533/AppData/Local/Temp/fenjue_prompts/prompt_myskill.txt\""
+    },
+    {
+     "line": 46,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\AppData\\Local\\Temp\\fenjue_prompts\\prompt_mem.txt",
+     "text": "--message-file \"C:\\Users\\37533\\AppData\\Local\\Temp\\fenjue_prompts\\prompt_mem.txt\" \\"
+    },
+    {
+     "line": 49,
+     "class": "ILLUSTRATIVE",
+     "path": "C:\\Users\\37533\\AppData\\Local\\Temp\\fenjue_prompts\\oc_r23.log",
+     "text": "> \"C:\\Users\\37533\\AppData\\Local\\Temp\\fenjue_prompts\\oc_r23.log\" 2>&1"
+    },
+    {
+     "line": 64,
+     "class": "ILLUSTRATIVE",
+     "path": "C:\\Users\\37533\\AppData\\Local\\Temp\\fenjue_prompts\\prompt_mem.txt",
+     "text": "fs.existsSync(\"C:\\Users\\37533\\AppData\\Local\\Temp\\fenjue_prompts\\prompt_mem.txt\")"
+    },
+    {
+     "line": 66,
+     "class": "ILLUSTRATIVE",
+     "path": "C:/Users/37533/AppData/Local/Temp/fenjue_prompts/prompt_mem.txt",
+     "text": "fs.existsSync(\"C:/Users/37533/AppData/Local/Temp/fenjue_prompts/prompt_mem.txt\")"
+    }
+   ]
+  },
+  {
+   "skill": "windows-native-ocr",
+   "occurrences": 2,
+   "by_class": {
+    "LOAD_BEARING": 2
+   },
+   "detail": [
+    {
+     "line": 36,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\bin\\ocr.py",
+     "text": "把 `scripts/ocr.py` 放到 `C:\\Users\\37533\\bin\\ocr.py`，同目录建 `ocr.cmd`："
+    },
+    {
+     "line": 42,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\bin",
+     "text": "并把 `C:\\Users\\37533\\bin` 加入用户 PATH（PowerShell：`[Environment]::SetEnvironmentVariable('Path', $userPath + ';' + $dir, 'Use"
+    }
+   ]
+  },
+  {
+   "skill": "workbuddy-mcp",
+   "occurrences": 2,
+   "by_class": {
+    "LOAD_BEARING": 2
+   },
+   "detail": [
+    {
+     "line": 51,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\AppData\\Local\\WorkBuddy\\wb-mcp-bridge.js",
+     "text": "- 桥接没监听 → 重启桥接：`Start-Process -WindowStyle Hidden -FilePath 'C:\\Program Files\\nodejs\\node.exe' -ArgumentList 'C:\\Users\\3"
+    },
+    {
+     "line": 52,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\.codex\\bin\\wb-mcp-fix-url.sh",
+     "text": "- WSL 会话连不上（网关 IP 变了）→ 跑 `C:\\Users\\37533\\.codex\\bin\\wb-mcp-fix-url.sh` 更新 config URL"
+    }
+   ]
+  },
+  {
+   "skill": "workflow-preflight-check",
+   "occurrences": 4,
+   "by_class": {
+    "LOAD_BEARING": 4
+   },
+   "detail": [
+    {
+     "line": 214,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\Desktop\\我的skill.txt（可读）",
+     "text": "[ ] C:\\Users\\37533\\Desktop\\我的skill.txt（可读）"
+    },
+    {
+     "line": 215,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\Desktop\\skill",
+     "text": "[ ] C:\\Users\\37533\\Desktop\\skill tree.txt（可读）"
+    },
+    {
+     "line": 216,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\Desktop\\优化记忆.txt（可读）",
+     "text": "[ ] C:\\Users\\37533\\Desktop\\优化记忆.txt（可读）"
+    },
+    {
+     "line": 217,
+     "class": "LOAD_BEARING",
+     "path": "C:\\Users\\37533\\Desktop\\workspace\\焚诀\\prompts\\总控台提示词.txt（可读）",
+     "text": "[ ] C:\\Users\\37533\\Desktop\\workspace\\焚诀\\prompts\\总控台提示词.txt（可读）"
+    }
+   ]
+  }
+ ]
+}

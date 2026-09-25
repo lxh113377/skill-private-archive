@@ -99,6 +99,17 @@ GATES = [
         "why": "拦「肉眼看不见、但让引用检索不到」的 C0 ∪ DEL",
     },
     {
+        # r35 H-1：把 r34「我自己把 AGENTS.md 写成 0 字节」那次事故的**自觉型规则**升级成机器型
+        "id": "tracked_empty_check",
+        "script": "r35_tracked_empty.py",
+        "argv": [],
+        "pass_token": "[EMPTY:PASS]",
+        "portable": True,
+        "covers": ["本仓全部 tracked 文本件（.md/.py/.json/.jsonl/.yml/.txt/.ps1/.sh/.toml 等）",
+                   "二进制/未知扩展跳过但如实计数，不静默当通过"],
+        "why": "拦「写崩/截断留下的 0 字节件」——r34 我曾把 memory/AGENTS.md 写成 0 字节，靠 Git 基线才恢复",
+    },
+    {
         # r32 H-2：本仓独有一门 —— 用台账反证「本机专属门还在被跑」。CI 里也能跑（读已提交台账）。
         "id": "gate_run_freshness",
         "script": "r32_gate_freshness.py",
