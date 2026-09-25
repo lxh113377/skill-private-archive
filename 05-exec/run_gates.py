@@ -121,7 +121,20 @@ GATES = [
         "why": "r45 实测 W-9 挂了 5 轮的真因是按行号写标记写到别处；本门锁死该入口不再接受行号、歧义与已闭环一律拒写、写完必须读回",
     },
     {
-        # r51 W-28：外部取证件的两路取值 + 面声明判据（含接线反例）
+        # r52 W-30：Markdown 引用面数字须自带取值途径（只看可整改面，历史面按 R241 不回改）
+        "id": "md_claim_face",
+        "script": "r52_mdclaim_fixtures.py",
+        "argv": [],
+        "pass_token": "[GATE:fixture-pass]",
+        "portable": True,
+        "covers": ["06-benchmark/*.md 引用面（数字声明 ±12 行内需有取值命令）",
+                   "05-exec/r52_mdclaim_fixtures.py 的 19 例（含标题行排除与分面守恒）"],
+        "why": "r51 实测 JSON 取证件已被判据管住，但真正被读的是报告正文：r38 的 open issues 就在报告里"
+               "以无命令形态跑了 12 轮。接线口径 = 只判可整改面（r≥51 或 mtime 当日），"
+               "历史面 755 处敞口如实登记但不判红（R241 禁回改，且拿不可消的警告当判据即 W-32 那个毛病）",
+    },
+    {
+        # r51 W-28：外部取证件两路对账
         "id": "retrieval_fixtures",
         "script": "r51_retrieval_fixtures.py",
         "argv": [],

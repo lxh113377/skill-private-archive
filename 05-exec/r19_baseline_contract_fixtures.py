@@ -282,6 +282,22 @@ def main():
     ck("t28 契约 pattern 数 >= 12（覆盖面不得缩水）", len(contracts["artifacts"]) >= 12,
        str(len(contracts["artifacts"])))
 
+    # ---- r52 W-31：契约 pattern 自身的新旧面（陈旧自检，只报告不判红）----
+    from pathlib import Path as _P
+    fresh = [("x_r*.json", [_P("a/x_r52.json"), _P("a/x_r51.json")])]
+    st = bcs.face_pattern_staleness(fresh, 52)
+    ck("t29 正例：命中集含最新轮次 ⇒ 不判陈旧", st[0]["stale"] is False, st)
+    old = [("y_r*.json", [_P("a/y_r29.json"), _P("a/y_r28.json")])]
+    st2 = bcs.face_pattern_staleness(old, 52)
+    ck("t30 反例：命中最新只到 r29（落后 23 轮）⇒ 必须标陈旧并给出 gap",
+       st2[0]["stale"] is True and st2[0]["gap"] == 23, st2)
+    st3 = bcs.face_pattern_staleness([("gate_runs.jsonl", [_P("a/gate_runs.jsonl")])], 52)
+    ck("t31 边界：无轮号形态（台账类）⇒ 不参与陈旧判定也不冒充已核验",
+       st3[0]["max_round"] is None and st3[0]["stale"] is False, st3)
+    st4 = bcs.face_pattern_staleness([("z_r*.json", [_P("a/z_r10.json")])], None)
+    ck("t32 边界：取不到当前轮号 ⇒ gap 为 None 而非 0（未知不得当成不陈旧）",
+       st4[0]["gap"] is None and st4[0]["stale"] is False, st4)
+
     fails = [r for r in RESULTS if not r[0]]
     print("\n夹具合计: %d 项，通过 %d，失败 %d" % (len(RESULTS), len(RESULTS) - len(fails), len(fails)))
     if fails:

@@ -408,6 +408,28 @@ def validate_doc(doc, contract, label="doc"):
     return msgs
 
 
+def face_pattern_staleness(matched_files, cur_round):
+    """W-31（r52）：契约 pattern 自身的陈旧面 —— 命中集里的最大轮号离当前轮太远即提示。
+
+    存在理由（r52 实测）：pattern 曾写死 `debt_aging_r3*.json`，r40 起的新证据件**全部落在受检面外**，
+    而"pattern 零命中判红"抓不到这种病（它仍命中十份旧件）。⇒ 光查"有没有命中"不够，
+    还要查"命中的是不是最新那一代"。本函数只**报告**不判红（守 r25 否决：不得变成拦任务的闸门）。
+    """
+    out = []
+    for pattern, files in matched_files:
+        rounds = [int(m.group(1)) for fp in files
+                  for m in [re.search(r"_r(\d{1,3})", Path(fp).name)] if m]
+        if not rounds:
+            out.append({"pattern": pattern, "max_round": None, "gap": None,
+                        "stale": False, "note": "命中集无轮号形态（如台账 jsonl），不参与陈旧判定"})
+            continue
+        gap = (cur_round - max(rounds)) if cur_round else None
+        out.append({"pattern": pattern, "max_round": max(rounds), "gap": gap,
+                    "stale": bool(gap is not None and gap > 2),
+                    "files": len(files)})
+    return out
+
+
 def validate_contracts(contracts, matched_files):
     """契约面自检：空 artifacts / pattern 零命中 ⇒ 必须报，不得静默通过（R247）。
     matched_files: [(pattern, [路径...])]。返回 (messages, rows)。"""
@@ -492,6 +514,17 @@ def main():
     all_msgs += cmsgs
     if not files_checked:
         all_msgs.append("R247: 受检基线为 0 个文件，禁止判「全部合规」")
+    # W-31（r52）：契约自身的新旧面 —— 光查"有没有命中"不够，还要查"命中的是不是最新一代"
+    _rr = re.compile(r"_r(\d{1,3})")
+    _all_rounds = [int(m.group(1)) for _, fs in matched for f in fs for m in [_rr.search(Path(str(f)).name)] if m]
+    faces = face_pattern_staleness(matched, max(_all_rounds) if _all_rounds else None)
+    for f in faces:
+        if f.get("stale"):
+            print("  ⚠️ 陈旧面 %s：命中最新只到 r%s（落后 %s 轮）⇒ 新证据件可能不在受检面内（W-31）"
+                  % (f["pattern"], f["max_round"], f["gap"]))
+    print("  陈旧自检（W-31，只报告不判红）：pattern %d 个 ｜ 陈旧 %d 个 ｜ 无轮号形态 %d 个"
+          % (len(faces), sum(1 for f in faces if f.get("stale")),
+             sum(1 for f in faces if f.get("max_round") is None)))
     print("\n契约: %s（%d 个 pattern / 受检文件 %d 个）" % (
         Path(contracts.get("path", args.contracts)).name, len(contracts["artifacts"]), files_checked))
     if all_msgs:

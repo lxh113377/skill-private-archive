@@ -1,0 +1,50 @@
+{
+ "schema": "inject-face-breakdown-v1",
+ "generated_at": "2026-09-25T17:02:12",
+ "readonly": true,
+ "round": 52,
+ "cap": 65536,
+ "measured_total": 115870,
+ "over_cap": 50334,
+ "attribution_note": "取值为实测磁盘字节（不取清单登记值），与 ratchet_gate.inject_union_bytes 同口径",
+ "files": [
+  {
+   "path": "AGENTS.md",
+   "bytes": 29293,
+   "exists": true,
+   "declared_bytes": 5836
+  },
+  {
+   "path": "C:\\Users\\37533\\Desktop\\workspace\\自建skill优化\\AGENTS.md",
+   "bytes": 29293,
+   "exists": true,
+   "declared_bytes": null
+  },
+  {
+   "path": "D:/global_skills/A-memory-start/SKILL.md",
+   "bytes": 26377,
+   "exists": true,
+   "declared_bytes": 25456
+  },
+  {
+   "path": "D:/global_skills/A-memory-start/references/contract.md",
+   "bytes": 19116,
+   "exists": true,
+   "declared_bytes": 18616
+  },
+  {
+   "path": "D:/global_memory/core/behavior_core.md",
+   "bytes": 8797,
+   "exists": true,
+   "declared_bytes": 8350
+  },
+  {
+   "path": "C:/Users/37533/.zcode/AGENTS.md",
+   "bytes": 2994,
+   "exists": true,
+   "declared_bytes": 3214
+  }
+ ],
+ "retrieval": "python 05-exec/ratchet_gate.py 看 inject_union_bytes 行 ; python 05-exec/r32_w32_breakdown.py（本件）",
+ "decision_needed": "二选一：(a) 实减 —— 但 115870 B 中最大项来自受管根（本项目无权单方压缩）；(b) 显式重设硬顶并逐因归因（须由用户或归属会话裁定，禁本项目顺手放宽）"
+}
