@@ -5,6 +5,7 @@
 
 ## ✅ 已完成
 
+r54 再生预算轮（2026-09-25 第 24 轮） — `ratchet_gate` 新增 `METRIC_SOURCES`/`METRIC_REFRESH_DAYS`/`source_age_days`/`face_metric_refresh`/`refresh_status`：9 指标逐个声明保质期，STALE 转 unknown、UNVERIFIED 不转，CLI 打印「再生周期」行；真机误报率 0（源件年龄 0.0–0.99 天）；夹具 12 例（两向 + 配置形态反例）；第 5 维换口径：五家仅 2 家声明节律（12/7 行），且 pre-commit 39 天无提交却声明最密 ⇒ 节律≠活跃度，改三列并列；W-35 续款 README 24 链接 0 死链；新立 W-37（预算入契约）/W-38（再生健康度进趋势）；常驻门 16→17
 r53 句柄化引用轮（2026-09-25 第 23 轮） — `make_handles`/`resolve_handle` 落地于 `05-exec/r38_debt_aging.py`（句柄四件齐、解不出返 None 不返 0、h7 写读闭环守恒）+ 第 16 道常驻门 `handles_readme_fixtures`；W-31 陈旧自检改 mtime 优先（打掉首版 3 个命名假阳性，t33/t34 两向锁死），真机陈旧面 3→0；README 补证据面导航 19 链接/死链 0（对照 AAS 50 链接，我方此前为 0）⇒ 立 W-35 续改产物地图；立 W-36（指标须声明 max_age_days，超期判 unknown）；重跑 rubric 与目录税两探针；W-33/W-34 裁决回写
 r52 引用面对账轮（2026-09-25 第 22 轮） — 新工具 `05-exec/r52_md_claim_face_scan.py`（md 数字须同节 ±12 行带取值命令，窗口经 14 条抽样判读确定）+ 第 15 道常驻门 `md_claim_face`；可整改面 184 声明 / 0 敞口、历史面 755 处只登记；`face_pattern_staleness`（W-31）抓到 3 个陈旧 pattern 含轮号写死形态（W-33）；对手第 6 维实测（正文数字 0–1 / 徽章 1–5）⇒ 立 W-34「报告数字改引用台账字段」；W-30/31 执行完毕、W-32 转裁定；夹具 20 + 46 例全绿
 r51 取数面对账轮（2026-09-25 第 51 轮） — W-29 复核：我方引用的对手 open issues 含 PR 虚高 1.5–3.5 倍（134/143/368/58/17 为纯 issue 面），日期列 5/5 复现 ⇒ 命令须逐条；W-28 落 `inv_opponent_claims_have_retrieval`（结构识别不锁键名 + claims_face + 双路命令），并抓出 arg 传名字串导致全量豁免的接线缺陷（立 X-28，反例 r11/r12）；契约陈旧 glob `debt_aging_r3*`→`r*`；r50 非法 JSON 取证件重建并纳管 `opponents_*_r*.json`；W-27 分级 21 组=9 词（立 X-27）；W-19 以 `--mode note` 自用收口；常驻门 13→14
