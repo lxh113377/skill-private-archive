@@ -1,9 +1,9 @@
 {
  "schema": "debt-aging-v2",
- "generated_at": "2026-09-25T18:16:33",
+ "generated_at": "2026-09-25T18:39:04",
  "readonly": true,
  "grace_rounds": 2,
- "current_round": 54,
+ "current_round": 55,
  "round_source": "git log --format=%s -40 中最大 rNN（未硬编码）",
  "verdict_taxonomy": [
   "OVERDUE",
@@ -50,14 +50,14 @@
  ],
  "evidence": {
   "volumes": 32,
-  "items_total": 145,
-  "open_total": 90,
+  "items_total": 146,
+  "open_total": 91,
   "closed_total": 55,
-  "raw_item_lines": 145
+  "raw_item_lines": 146
  },
  "by_class": {
   "OVERDUE": 0,
-  "ACTIVE": 6,
+  "ACTIVE": 7,
   "DECIDED": 84,
   "UNDATED": 0,
   "DEFERRED": 0,
@@ -134,10 +134,10 @@
  },
  "input_face": {
   "round": {
-   "log": 54,
-   "tag": 54,
+   "log": 55,
+   "tag": 55,
    "ok": true,
-   "detail": "log=r54 ≥ tag=r54（差 0 轮：本轮 tag 已打，两源一致）"
+   "detail": "log=r55 ≥ tag=r55（差 0 轮：本轮 tag 已打，两源一致）"
   },
   "floor": {
    "ok": true,
@@ -145,7 +145,7 @@
   },
   "dedup": {
    "ok": true,
-   "detail": "145 行全部计入，80 字前缀键零碰撞"
+   "detail": "146 行全部计入，80 字前缀键零碰撞"
   },
   "dating": {
    "ok": null,
@@ -154,9 +154,9 @@
   },
   "suggestions": {
    "ok": true,
-   "detail": "4 条新编号全部在各自承接面有登记行（待办 4 条 / 禁止项 0 条）"
+   "detail": "5 条新编号全部在各自承接面有登记行（待办 5 条 / 禁止项 0 条）"
   },
-  "raw_lines": 145,
+  "raw_lines": 146,
   "collisions": [],
   "status": "UNVERIFIED",
   "red_faces": [],
