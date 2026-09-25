@@ -68,6 +68,23 @@ def volume_files():
     return sorted(ROOT.glob("memory/07-next-steps*.md"))
 
 
+RE_OWN_CLAIM = re.compile(r"(归属方|归属会话|转办|待归属|他人归属)")
+RE_PATH = re.compile(r"(?:[A-Za-z]:[\\/]|[\w.\-]+\.(?:py|md|json|jsonl|yml|yaml|sh|ps1|html))")
+
+
+def classify_owner(text):
+    """W-6（r48）：条目里「这不属于我」的声明必须**可机检**。
+
+    存在理由（r40 D37 实测）：我把本仓自持的 `rule_conflict_scan.py` 标成「归属方件」挂了 4 轮 ——
+    自家债被错误外部化后**永远不会有人做**。若允许只写"属归属方"而不给路径，
+    这条退路比降级还便宜（X-14 防的是降级免检，这里防的是"甩锅免检"）。
+    返回：OWNERED（声明归属且给了可解析路径）/ UNOWNED（声明归属却无路径 = 待查）/ NONE（不涉及归属）。
+    """
+    if not RE_OWN_CLAIM.search(text):
+        return "NONE"
+    return "OWNERED" if RE_PATH.search(text) else "UNOWNED"
+
+
 def find_item_line(lines, key):
     """W-13（r44）：按**标题锚点**定位在账待办，返回全部命中的 1-based 行号。
 
@@ -173,6 +190,9 @@ def scan(files, now_round, grace):
             cls, detail = classify_item(body, now_round)
             row = {"file": rel, "line": ln, "priority": "P0" if "【P0" in body else
                    ("P1" if "【P1" in body else ("P2" if "【P2" in body else "未标")),
+                   # r48 自抓：owner 必须按**整行全文**判，不能按截断后的 title[:110]——
+                   # 路径常出现在 110 字之后，用截断文本判会造假 UNOWNED（首跑即误报 2 条）。
+                   "owner": classify_owner(body),
                    "checked": m.group(1) == "x", "class": cls if m.group(1) == " " else "CLOSED",
                    "detail": detail, "title": body[:110]}
             if cls == "OVERDUE" and m.group(1) == " ":
@@ -336,7 +356,12 @@ def main():
                 "stale_automation": False, "oldest_open_issue": "2018-07-02",
                 "note": "低积压靠少建待办，最老一条 8 年仍 open —— 到期治理同样缺失"}],
            "note": "OVERDUE 数 = ratchet_gate 第 7 指标 overdue_debt_items 的唯一取值面"}
+    unowned = [{"file": r["file"], "line": r["line"], "title": r["title"][:90]}
+               for r in open_items if r.get("owner") == "UNOWNED"]
+    print("归属可机检（W-6）：声明归属但**无可解析路径**的条目 %d 条 —— 逐条核实是不是又是我自己的债（r40 D37 同族）"
+          % len(unowned))
     doc["coverage"] = cov
+    doc["unowned_claims"] = unowned
     if args.ledger:
         wrote = append_ledger(args.ledger, doc, origin=args.origin)
         print("台账 %s → 追加 %d 行（%s）" % (args.ledger, wrote,

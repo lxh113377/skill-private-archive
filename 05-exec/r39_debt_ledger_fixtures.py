@@ -294,6 +294,53 @@ def main():
             and r.get("coverage_missing") == 1)(json.loads(io.open(led15, encoding="utf-8").read().strip())),
        io.open(led15, encoding="utf-8").read().strip()[:200] if led15.exists() else "no file")
 
+    # --- r48 W-17 契约分代必填 + W-6 归属可机检 ---
+    bcs_spec = ilu.spec_from_file_location("bcs48", str(HERE / "baseline_contract_scan.py"))
+    bcs = ilu.module_from_spec(bcs_spec)
+    bcs_spec.loader.exec_module(bcs)
+    led48 = tmp / "gen.jsonl"
+    rows48 = [
+        {"ts": "2026-09-25T09:00:00", "origin": "local", "open_total": 56, "overdue": 13,
+         "active": 3, "decided": 0, "undated": 36, "deferred": 4, "repeat": 0,
+         "grace_rounds": 2, "current_round": 38, "head": "a1b2c3d"},
+        {"ts": "2026-09-25T16:00:00", "origin": "local", "open_total": 67, "overdue": 0,
+         "active": 6, "decided": 59, "undated": 0, "deferred": 2, "repeat": 0,
+         "grace_rounds": 2, "current_round": 47, "head": "d4e5f6a",
+         "coverage_status": "OK", "coverage_prev_overdue": 0, "coverage_missing": 0},
+        {"ts": "2026-09-25T16:30:00", "origin": "local", "open_total": 67, "overdue": 0,
+         "active": 6, "decided": 59, "undated": 0, "deferred": 2, "repeat": 0,
+         "grace_rounds": 2, "current_round": 48, "head": "e5f6a7b"},
+    ]
+    io.open(led48, "w", encoding="utf-8", newline="").write(
+        chr(10).join(json.dumps(x, ensure_ascii=False) for x in rows48) + chr(10))
+    arts = bcs.load_contracts()["artifacts"]
+    art48 = arts["debt_runs.jsonl"]
+    v_new_missing = bcs.validate_jsonl([rows48[2]], art48, "gen-new-missing")
+    v_old_missing = bcs.validate_jsonl([rows48[0]], art48, "gen-old-missing")
+    v_new_full = bcs.validate_jsonl([rows48[1]], art48, "gen-new-full")
+    ck("t60 W-17 分代必填：新代行缺 coverage 列 ⇒ 必红",
+       any("coverage" in x for x in v_new_missing), json.dumps(v_new_missing, ensure_ascii=False)[:200])
+    ck("t61 W-17 代际豁免：旧代行（早于分代点）缺 coverage 不得判红",
+       not any("coverage" in x for x in v_old_missing), json.dumps(v_old_missing, ensure_ascii=False)[:200])
+    ck("t62 反例方向：新代行带齐 coverage 三列 ⇒ 零违规（机制不永远红）",
+       v_new_full == [], json.dumps(v_new_full, ensure_ascii=False)[:200])
+
+    co = getattr(da, "classify_owner", None)
+    ck("t6-pre W-6 前置：账龄尺暴露 classify_owner（缺则下面四例全红而非 crash）", co is not None,
+       "AttributeError 型红不是好红，先让它干净失败")
+    own = ("【P0·待办 X（r40 登记）】 转办 焚诀 eval/verify_truth_consistency.py 归属会话收口")
+    ck("t63 W-6 归属声明带可解析路径 → OWNERED（不当盲区）",
+       (co or (lambda x: "MISSING"))(own) == "OWNERED", (co or (lambda x: "MISSING"))(own))
+    ck("t64 W-6 只写「归属方/转办某会话」无可解析路径 → UNOWNED",
+       (co or (lambda x: "MISSING"))("【P1·待办 Y】 该件属归属方，待相应会话处理") == "UNOWNED",
+       (co or (lambda x: "MISSING"))("【P1·待办 Y】 该件属归属方，待相应会话处理"))
+    ck("t65 反例：无归属字样不得误判 UNOWNED",
+       (co or (lambda x: "MISSING"))("【P0·待办 Z】 本仓自建判据待补夹具") == "NONE",
+       (co or (lambda x: "MISSING"))("【P0·待办 Z】 本仓自建判据待补夹具"))
+    ck("t66 绝对路径也算可解析归属（D 盘受管根写法）",
+       (co or (lambda x: "MISSING"))("转办 D:/global_skills/A-get-memory/SKILL.md 归属会话") == "OWNERED",
+       (co or (lambda x: "MISSING"))("转办 D:/global_skills/A-get-memory/SKILL.md 归属会话"))
+
     fails = [r for r in RESULTS if not r[0]]
     print("\n夹具合计: %d 项，通过 %d，失败 %d" % (len(RESULTS), len(RESULTS) - len(fails), len(fails)))
     if fails:
