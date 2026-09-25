@@ -196,6 +196,27 @@ B3 多 job 并列不短路 / B4 周期心跳档 / B5 `concurrency` 成本自觉 
 `handoff.py noise` 逐条判 **VIOL 并要求迁 `_trash`** ⇒ 照建议执行就会把三家满配对手都有的标准治理件扔进回收站；
 不执行则 noise 恒红、savepoint 过不去。**这是 allowlist 缺治理件口径，不是文件该删**（待归属会话裁定，本仓按 R269 不擅动）。
 
+## 可移植性（r34 第十一维；对手 SKILL.md 原文逐文件实测，不看 README）
+
+复现：`python 05-exec/r34_portability_surface.py --json 06-benchmark/portability_r34_2026-09-25.json`
+尺：P1 家目录绝对路径 / P2 盘符根路径 / **P3 本机账号名明文** / P4 机器专属工具绝对路径
+
+| 对象 | 取到 SKILL.md | 含机器专属路径 | 命中率 |
+|---|---|---|---|
+| addyosmani/agent-skills | 25/25 | **0** | 0% |
+| obra/superpowers | 15/15 | **0** | 0% |
+| anthropics/skills | 19/19 | **0** | 0% |
+| sickn33/AAS | 29/997 | 1 | 3% |
+| mycelium/ai-brain-starter | 29/38 | 2 | 7% |
+| **本体系** | **167/167 全量** | **49** | **29.3%** |
+
+⇒ **本体系第一处「可测地落后于全部对手」的维度，且是量级差**。前三维（CI 存在性/有效性/发布面）都能落到"定位差异、不必照抄"，这一维不行：三家对手抽样零命中，说明"技能文件不写死本机路径"在 Agent Skills 阵营是**普遍基线**而非某家特色。
+⇒ **但改进面要精确**：P2 盘符（47 处）是 junction 单源架构的**承重件**（AGENTS 明文禁 `~` 展开、必须写完整路径）⇒ **不清**（见不学清单 X-4）；
+真正该清的是 **P3 账号名明文（25 个文件）** —— 不承载任何机制、纯冗余、且是隐私面（当前靠"对外文档为零"侥幸未外泄）。
+⇒ 对手已把这类事做成门禁（mycelium `personal-pii-scrub.yml`，原文在 `ci_evidence/`），而我们只有 C20 管"绝对路径条数"，**管不到账号名**。
+⇒ r34 落地方式 = **复用既有棘轮**（`ratchet_gate.py` 第 6 指标 `username_in_skill_files`，基线 25 只降不升），不再新建第 7 道门。
+现存门禁盲区一条（r34 dogfood 当场暴露）：`rule_conflict_scan.DEFAULT_FILES` 十件里 `D:\global_memory\AGENTS.md` 不可读 ⇒ 权威面实际只有九件，待修（L-4）。
+
 ## 维护状态（r30 实测化，替换此前的形容词）
 
 | 对象 | ★ | 最近推送 | open issues |

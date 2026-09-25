@@ -26,6 +26,7 @@ import argparse
 import glob
 import json
 import os
+import re
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -33,12 +34,13 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 WS = HERE.parent
 BENCH = WS / "06-benchmark"
+GS = Path(r"D:\global_skills")
 PROJ_SHELL = WS / "AGENTS.md"
 DEFAULT_BASELINE = BENCH / "inject_ratchet_baseline.json"
 TRUTH_CONSTANTS = Path(r"C:\Users\37533\Desktop\workspace\焚诀\eval\truth_constants.json")
 
 METRIC_NAMES = ("catalog_grand_chars", "inject_union_bytes", "claim_candidates",
-                "drift_ruleish_candidates", "desc_over_cap")
+                "drift_ruleish_candidates", "desc_over_cap", "username_in_skill_files")
 SCHEMA = "zijian-inject-ratchet-v1"
 
 
@@ -83,6 +85,36 @@ def desc_over_cap():
     return (d.get("summary") or {}).get("over_cap") if isinstance(d, dict) else None
 
 
+def username_in_skill_files():
+    """r34 第十一维落点：**含本机账号名的 SKILL.md 个数**（只降不升）。
+
+    来源（实测）：`05-exec/r34_portability_surface.py` 量得本体系 167 个 SKILL.md 里
+    **49 个含机器专属路径**，其中**明文含当前 Windows 账号名**的有 26 个；
+    对手侧 addyosmani/agent-skills、obra/superpowers、anthropics/skills 三家抽样
+    （25/15/19 个文件）**命中 0**，AAS 29 个里 1 个、mycelium 29 个里 2 个。
+    ⇒ 这是本体系第一处"可测地落后于全部对手"的维度，且 C20（技能可移植性棘轮）早就存在却管不到这一类。
+
+    两个刻意的设计：
+      · 账号名由 `os.environ["USERNAME"]` 派生，**不把用户名再写死一遍**（否则本脚本自己成为新的泄漏点）；
+      · 取不到账号名或扫不到文件 ⇒ 返回 None 进 unknown（R247：算不出不等于 0 命中）。
+    """
+    user = (os.environ.get("USERNAME") or "").strip()
+    if not user or len(user) < 3:
+        return None
+    rx = re.compile(re.escape(user), re.IGNORECASE)
+    n = 0
+    scanned = 0
+    for f in sorted(GS.glob("*/SKILL.md")):
+        try:
+            text = f.read_text(encoding="utf-8", errors="replace")
+        except OSError:
+            continue
+        scanned += 1
+        if rx.search(text):
+            n += 1
+    return n if scanned else None
+
+
 def inject_union_bytes():
     """C25 注入区清单（**实测磁盘字节**，不取清单里登记的数字）∪ 本项目注入壳，按路径去重求和。
 
@@ -125,7 +157,8 @@ COMPUTE = {"catalog_grand_chars": catalog_grand_chars,
            "inject_union_bytes": inject_union_bytes,
            "claim_candidates": claim_candidates,
            "drift_ruleish_candidates": drift_ruleish_candidates,
-           "desc_over_cap": desc_over_cap}
+           "desc_over_cap": desc_over_cap,
+           "username_in_skill_files": username_in_skill_files}
 
 
 def collect_metrics():

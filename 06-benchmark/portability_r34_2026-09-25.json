@@ -1,0 +1,212 @@
+{
+ "schema": "portability-surface-v1",
+ "generated_at": "2026-09-25 08:05",
+ "readonly": true,
+ "benchmark": "r34 第十一维 可移植性（文件级实测，非 README 宣称）",
+ "provenance_cmd": "gh api repos/<s>/contents/skills/<n>/SKILL.md --jq .content | base64 -d",
+ "signals": [
+  "P1_home_abs",
+  "P2_drive_root",
+  "P3_username",
+  "P4_tool_abs"
+ ],
+ "ours": {
+  "root": "D:\\global_skills",
+  "total": 167,
+  "clean": 118,
+  "dirty": 49,
+  "unreadable": [],
+  "top": [
+   {
+    "skill": "openclaw-task-supervision",
+    "hits": {
+     "P2_drive_root": 19,
+     "P3_username": 14
+    },
+    "bytes": 33741
+   },
+   {
+    "skill": "A-memory-start",
+    "hits": {
+     "P1_home_abs": 1,
+     "P2_drive_root": 23,
+     "P3_username": 5,
+     "P4_tool_abs": 1
+    },
+    "bytes": 26593
+   },
+   {
+    "skill": "A-get-memory",
+    "hits": {
+     "P2_drive_root": 23,
+     "P3_username": 4
+    },
+    "bytes": 44966
+   },
+   {
+    "skill": "video-whisper-transcribe",
+    "hits": {
+     "P1_home_abs": 11,
+     "P3_username": 11,
+     "P4_tool_abs": 3
+    },
+    "bytes": 5725
+   },
+   {
+    "skill": "chaoshi-image-optimization",
+    "hits": {
+     "P2_drive_root": 12,
+     "P3_username": 12
+    },
+    "bytes": 24057
+   },
+   {
+    "skill": "windows-gitbash-chinese-path-pit",
+    "hits": {
+     "P1_home_abs": 6,
+     "P2_drive_root": 8,
+     "P3_username": 8
+    },
+    "bytes": 4530
+   },
+   {
+    "skill": "c-cleanup",
+    "hits": {
+     "P2_drive_root": 21
+    },
+    "bytes": 15283
+   },
+   {
+    "skill": "prompt-system-audit",
+    "hits": {
+     "P2_drive_root": 17
+    },
+    "bytes": 31919
+   },
+   {
+    "skill": "html-to-docx-win-fix",
+    "hits": {
+     "P1_home_abs": 5,
+     "P2_drive_root": 9,
+     "P3_username": 2
+    },
+    "bytes": 4542
+   },
+   {
+    "skill": "win-toolchain-pitfalls",
+    "hits": {
+     "P1_home_abs": 4,
+     "P2_drive_root": 5,
+     "P3_username": 5
+    },
+    "bytes": 5703
+   },
+   {
+    "skill": "wb-git-commit-recipe",
+    "hits": {
+     "P1_home_abs": 5,
+     "P2_drive_root": 3,
+     "P4_tool_abs": 4
+    },
+    "bytes": 6400
+   },
+   {
+    "skill": "chaoshi-web-deploy",
+    "hits": {
+     "P1_home_abs": 1,
+     "P2_drive_root": 4,
+     "P3_username": 6
+    },
+    "bytes": 51164
+   }
+  ],
+  "signal_totals": {
+   "P2_drive_root": 47,
+   "P3_username": 26,
+   "P1_home_abs": 12,
+   "P4_tool_abs": 3
+  }
+ },
+ "opposites": [
+  {
+   "repo": "addyosmani/agent-skills",
+   "subdir": "skills",
+   "skill_dirs_listed": 25,
+   "files_fetched": 25,
+   "fetch_failed": 0,
+   "clean": 25,
+   "dirty": 0,
+   "dirty_rate": 0.0,
+   "detail": []
+  },
+  {
+   "repo": "obra/superpowers",
+   "subdir": "skills",
+   "skill_dirs_listed": 15,
+   "files_fetched": 15,
+   "fetch_failed": 0,
+   "clean": 15,
+   "dirty": 0,
+   "dirty_rate": 0.0,
+   "detail": []
+  },
+  {
+   "repo": "sickn33/agentic-awesome-skills",
+   "subdir": "skills",
+   "skill_dirs_listed": 997,
+   "files_fetched": 29,
+   "fetch_failed": 1,
+   "clean": 28,
+   "dirty": 1,
+   "dirty_rate": 0.034,
+   "detail": [
+    {
+     "skill": "access-review",
+     "hits": {
+      "P1_home_abs": 4
+     }
+    }
+   ]
+  },
+  {
+   "repo": "anthropics/skills",
+   "subdir": "skills",
+   "skill_dirs_listed": 19,
+   "files_fetched": 19,
+   "fetch_failed": 0,
+   "clean": 19,
+   "dirty": 0,
+   "dirty_rate": 0.0,
+   "detail": []
+  },
+  {
+   "repo": "mycelium-hq/ai-brain-starter",
+   "subdir": "skills",
+   "skill_dirs_listed": 38,
+   "files_fetched": 29,
+   "fetch_failed": 1,
+   "clean": 27,
+   "dirty": 2,
+   "dirty_rate": 0.069,
+   "detail": [
+    {
+     "skill": "diagnose",
+     "hits": {
+      "P2_drive_root": 1
+     }
+    },
+    {
+     "skill": "ingest-health",
+     "hits": {
+      "P1_home_abs": 1
+     }
+    }
+   ]
+  }
+ ],
+ "denominator": {
+  "repos_ok": 5,
+  "repos_failed": []
+ },
+ "caveat": "命中数含正则重复计数，只用于横向相对比较，禁当精确缺陷数；对手每仓抽样上限 30 个技能"
+}

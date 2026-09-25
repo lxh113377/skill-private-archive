@@ -153,6 +153,51 @@ def polarity_pairs(rules):
     return out
 
 
+def on_write_check(candidate, authority_files):
+    """r34 M-1 · 写时冲突检查（对标 mycelium `check-rule-conflicts-on-write.py`）。
+
+    与批量模式 `scan(DEFAULT_FILES)` 的差别不是快慢，是**发现时点**：
+    批量模式在改动入库后出候选清单等人工裁；本函数在**落盘前**只拿"待写的这一个文件"
+    去撞权威源，命中即 rc=1，让"写进去才发现互斥"没有下一次。
+
+    三态（R247 口径，任一侧覆盖为空都不得判 CLEAN）：
+      UNVERIFIED  候选不存在/空/无极性规则句；权威源全部不可读或规则数为 0
+      CONFLICT    至少一组「必须 ↔ 禁止」共享 >=MIN_TERM 字的 CJK 子串，且**候选侧参与**
+      CLEAN       两侧覆盖均非空且无跨侧配对
+    """
+    cand = Path(candidate)
+    auths = [Path(p) for p in authority_files]
+    _cd, cand_rules, c_missing, c_empty = scan([cand])
+    _ad, auth_rules, a_missing, a_empty = scan(auths)
+    unreadable = [str(x) for x in (a_missing + a_empty)]
+    res = {"schema": "on-write-v1", "candidate": str(cand), "authority_files": [str(p) for p in auths],
+           "rules_candidate": len(cand_rules), "rules_authority": len(auth_rules),
+           "unreadable": unreadable, "state": "CLEAN", "why": "", "pairs": []}
+
+    if c_missing or c_empty:
+        res.update(state="UNVERIFIED",
+                   why="候选文件不可读或为空（%s）" % (c_missing + c_empty))
+        return res
+    if not cand_rules:
+        res.update(state="UNVERIFIED",
+                   why="候选内无「必须/禁止」类极性规则句 ⇒ 写时检查无对象，不得当作「无冲突」")
+        return res
+    if not auth_rules:
+        res.update(state="UNVERIFIED",
+                   why="权威源侧规则数为 0（不可读/为空: %s）⇒ 无鉴别力，禁止判 CLEAN（假绿最危险形态）"
+                       % (unreadable or "无文件"))
+        return res
+
+    cand_name = cand.name
+    pairs = polarity_pairs(cand_rules + auth_rules)
+    pairs = [p for p in pairs if cand_name in (p["must"]["loc"] + p["forbid"]["loc"])]
+    res["pairs"] = pairs
+    if pairs:
+        res.update(state="CONFLICT",
+                   why="%d 组跨侧互斥候选（含候选自身），先裁后写；禁改权威源凑绿（R263）" % len(pairs))
+    return res
+
+
 def main():
     if _lib is not None:
         _lib.force_utf8_stdout()
@@ -165,7 +210,30 @@ def main():
     ap.add_argument("--json", help="full result JSON output path")
     ap.add_argument("--md", help="markdown baseline output path")
     ap.add_argument("--max-pairs", type=int, default=40)
+    ap.add_argument("--on-write", metavar="FILE",
+                    help="r34 M-1 写时模式：只检这一个待写入文件与权威源是否互斥（rc=1 即拦）")
+    ap.add_argument("--against", action="append", default=[],
+                    help="写时模式的权威源，可重复；缺省用 DEFAULT_FILES")
     args = ap.parse_args()
+
+    if args.on_write:
+        res = on_write_check(args.on_write, args.against or DEFAULT_FILES)
+        print("=== 写时冲突检查（r34 M-1，对标 mycelium check-rule-conflicts-on-write）===")
+        print("候选: %s（极性规则 %d 条）" % (res["candidate"], res["rules_candidate"]))
+        print("权威: %d 个文件（极性规则 %d 条）%s" % (
+            len(res["authority_files"]), res["rules_authority"],
+            "｜不可读/空: %s" % ",".join(res["unreadable"]) if res["unreadable"] else ""))
+        print("规则: 两侧均非空才具鉴别力；配对要求候选侧参与（MIN_TERM=%d）" % MIN_TERM)
+        if res["state"] == "CONFLICT":
+            print("[ONWRITE:CONFLICT] %s" % res["why"])
+            for p in res["pairs"][:10]:
+                print("  · 共享词「%s」｜必须@%s ↔ 禁止@%s"
+                      % (p["term"], p["must"]["loc"], p["forbid"]["loc"]))
+        elif res["state"] == "UNVERIFIED":
+            print("[ONWRITE:UNVERIFIED] %s（R247：取不到/无覆盖不得判过）" % res["why"])
+        else:
+            print("[ONWRITE:CLEAN] 未发现与权威源互斥的新规则")
+        return 1 if res["state"] == "CONFLICT" else (0 if res["state"] == "CLEAN" else 2)
 
     files = [f for f in DEFAULT_FILES]
     declared, rules, missing, empty = scan(files)

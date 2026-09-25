@@ -87,7 +87,7 @@ GATES = [
         "portable": False,
         "not_portable_reason": "取值需读 焚诀 eval/truth_constants.json 与 D:\\global_skills 实测字节，跨机不可复现",
         "covers": ["06-benchmark/inject_ratchet_baseline.json", "D:\\global_skills 注入面", "焚诀 truth_constants"],
-        "why": "注入面/度量五项只降不升棘轮",
+        "why": "注入面/度量六项只降不升棘轮（r34 加第 6 项 username_in_skill_files）",
     },
     {
         "id": "control_char_scan",

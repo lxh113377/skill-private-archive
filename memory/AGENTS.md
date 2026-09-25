@@ -44,6 +44,11 @@ python 05-exec/run_gates.py
 > runner 自身的夹具 = `python 05-exec/r31_run_gates_fixtures.py`（17 例含变异 4/4；刻意不入 `GATES` 表，因夹具会 subprocess 调 runner，入表即自递归）。
 > 第五条 `[CTRL:CLEAN]` = 全仓无非法控制符（C0 ∪ {0x7f DEL} 减制表/换行/回车）。它拦的是「肉眼看不见、但会让引用检索不到」这一类：实测当天四轮复现，含被修文件自身与受管根两处死引用。
 > 判据可信度本身由 `python 05-exec/r19_fixture_mutation_check.py` 变异测试担保（4 项变异必须全部被拦 + 未变异对照组通过）。
+> **条件前置 · 写时冲突检查（r34 M-1，挂账四轮后本轮落地）**：往权威源同族文件（`behavior_core.md` / `BOOTSTRAP*` / `contract.md` / 各级 `AGENTS.md` / 技能 `SKILL.md`）**落规则前先跑**
+> `python 05-exec/rule_conflict_scan.py --on-write <待写文件> [--against <权威源>]`（缺省权威面 = 脚本内 `DEFAULT_FILES` 十件）。
+> 三态退出码：`0 CLEAN` / `1 CONFLICT`（先裁后写，**禁改权威源凑绿** R263）/ `2 UNVERIFIED`（候选不存在、为空、无极性词句，或权威侧规则数=0 ⇒ 覆盖为空即无鉴别力，**不得当作「无冲突」放行** R247）。
+> 与批量模式的分工：批量 `rule_conflict_scan.py` 出跨文档候选清单供人工裁定；`--on-write` 只拿**待写的这一个文件**去撞权威源，把「写进去、入库后才发现互斥」提前到落盘前 —— 对标 mycelium 的双脚本形态（`check-rule-conflicts.py` + `check-rule-conflicts-on-write.py`）。
+> 夹具 `python 05-exec/r34_onwrite_fixtures.py`（17 例含变异 4/4；变异 harness 自身缺陷见 r34 报告 §6 —— 「加载失败算拦住」已判为无效计数）。
 > **条件前置（非每轮必跑）**：要把判据建议**外推给归属会话**时，先跑 `python 05-exec/transmit_obsolescence_check.py` —— 它拿 `06-benchmark/transmit_proposals.json` 与焚诀 verify 注册面（实测 33 条已注判据）做覆盖度比对；打印 `[TRANSMIT:STALE]` = 该件归属方**已自落**，禁止再外推；`[TRANSMIT:UNKNOWN]`/exit 2 = 真相源取不到，**不得当作「未过期」放行**。夹具 `05-exec/r21d_obsolete_fixtures.py` 26 例（含 4 项变异对照）。
 > **r33 起轮次版本锚约定（对标第十维实测的结论，非抄形式）**：每完成一个实质轮次，push 后给该提交打 **annotated tag**
 > （名式 `rNN`，如 `git tag -a r33 -m "r33 ..." && git push origin r33`）。

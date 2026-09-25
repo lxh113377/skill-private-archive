@@ -1,12 +1,13 @@
 {
  "schema": "zijian-inject-ratchet-v1",
- "generated_at": "2026-09-24 21:47",
+ "generated_at": "2026-09-25 08:07",
  "metrics": {
   "catalog_grand_chars": 45250,
   "inject_union_bytes": 86793,
   "claim_candidates": 4,
   "drift_ruleish_candidates": 10,
-  "desc_over_cap": 0
+  "desc_over_cap": 0,
+  "username_in_skill_files": 25
  },
  "hard_caps": {
   "inject_union_bytes": 65536
@@ -18,17 +19,5 @@
   "desc": "C:\\Users\\37533\\Desktop\\workspace\\自建skill优化\\06-benchmark\\description基线_2026-09-24.json",
   "inject_files": "焚诀 truth_constants.inject_budget.files 实测 + 本项目 AGENTS.md"
  },
- "note": "只降不升棘轮；缺项/超顶/无基线一律 exit 非 0（R247）",
- "attributed_raises": [
-  {
-   "commit": "055f9b5",
-   "path": "D:\\global_memory\\core\\behavior_core.md",
-   "delta": 447,
-   "reason": "并行会话立 behavior_core #23 用户命令绝对优先（用户明令），注入面成员 growth 非本仓动作",
-   "metric": "inject_union_bytes",
-   "at": "2026-09-24 23:31",
-   "from_value": 86346,
-   "to_value": 86793
-  }
- ]
+ "note": "只降不升棘轮；缺项/超顶/无基线一律 exit 非 0（R247）"
 }
