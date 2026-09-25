@@ -203,7 +203,7 @@
    "row_ts_format": "%Y-%m-%dT%H:%M:%S",
    "note": "r33 M-1′ 纳入。本件是 r32 第 6 门 gate_run_freshness 的唯一证据面，故必须逐字段枚举取值域：origin 只允许 local/ci（第三种来源即『CI 记录冒充本机记录』的入口）、verdict 只允许三态、ts 必须是秒级 ISO 无时区形态（与 r32_gate_freshness.TS_FMT 同源，改格式须两处同改）。空文件不得判过（R247）。"
   },
-  "noise_falsepositive_r37_*.json": {
+  "noise_falsepositive_*.json": {
    "schema_id": "noise-falsepositive-audit-v1",
    "required": [
     "generated_at",

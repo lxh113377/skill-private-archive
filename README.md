@@ -49,3 +49,39 @@ Set-Location 'C:\Users\37533\Desktop\workspace\焚诀'; & "C:\Users\37533\.workb
 
 - 远端：`https://github.com/lxh113377/skill-private-archive.git`（私有归档仓）
 - 判据：`git rev-parse HEAD` == `git ls-remote origin main` 的 SHA
+
+## 证据面导航（r53 起；对标 `addyosmani/agent-skills` README 挂 50 个文件链接的做法）
+
+> 入口文档只**指路**、不抄数值：正文数字写成台账字段引用（句柄），
+> 由 `python 05-exec/r38_debt_aging.py` 现取；源头取不到必须显形为 None，不得沿用旧值。
+
+### 可再生台账
+
+- [debt_runs.jsonl](06-benchmark/debt_runs.jsonl) — 现值由末行/字段再生，报告不抄数
+- [gate_runs.jsonl](06-benchmark/gate_runs.jsonl) — 现值由末行/字段再生，报告不抄数
+- [md_claim_face_r52_2026-09-25.json](06-benchmark/md_claim_face_r52_2026-09-25.json) — 现值由末行/字段再生，报告不抄数
+
+### 判据证据件（按体积前 8）
+
+- [description基线_2026-09-24.json](06-benchmark/description基线_2026-09-24.json) — 114474 B
+- [skill_structure_rubric_r29_2026-09-24.json](06-benchmark/skill_structure_rubric_r29_2026-09-24.json) — 89748 B
+- [skill_structure_rubric_2026-09-24.json](06-benchmark/skill_structure_rubric_2026-09-24.json) — 49522 B
+- [rationalizations_robustness_r30_2026-09-25.json](06-benchmark/rationalizations_robustness_r30_2026-09-25.json) — 31719 B
+- [r31_section_robustness_2026-09-25.json](06-benchmark/r31_section_robustness_2026-09-25.json) — 31103 B
+- [rationalizations_robustness_r30b_2026-09-25.json](06-benchmark/rationalizations_robustness_r30b_2026-09-25.json) — 31101 B
+- [catalog_attention_tax_r20_2026-09-24.json](06-benchmark/catalog_attention_tax_r20_2026-09-24.json) — 30879 B
+- [r31_section_robustness_after_2026-09-25.json](06-benchmark/r31_section_robustness_after_2026-09-25.json) — 30050 B
+
+### 逐轮对标报告（最近 8 轮）
+
+- [全量对标报告_r45_反降级免检与标记错位真因_2026-09-25.md](06-benchmark/全量对标报告_r45_反降级免检与标记错位真因_2026-09-25.md)
+- [全量对标报告_r46_标记写入唯一入口_2026-09-25.md](06-benchmark/全量对标报告_r46_标记写入唯一入口_2026-09-25.md)
+- [全量对标报告_r47_无法定年盲区清零_2026-09-25.md](06-benchmark/全量对标报告_r47_无法定年盲区清零_2026-09-25.md)
+- [全量对标报告_r48_契约分代与归属可机检_2026-09-25.md](06-benchmark/全量对标报告_r48_契约分代与归属可机检_2026-09-25.md)
+- [全量对标报告_r49_判据输入面五面自证与三处劫持根因修_2026-09-25.md](06-benchmark/全量对标报告_r49_判据输入面五面自证与三处劫持根因修_2026-09-25.md)
+- [全量对标报告_r50_权威源扫描扩面与对手枚举面复核_2026-09-25.md](06-benchmark/全量对标报告_r50_权威源扫描扩面与对手枚举面复核_2026-09-25.md)
+- [全量对标报告_r51_取数面两路对账与判据接线自失效_2026-09-25.md](06-benchmark/全量对标报告_r51_取数面两路对账与判据接线自失效_2026-09-25.md)
+- [全量对标报告_r52_md引用面两路对账与契约陈旧自检_2026-09-25.md](06-benchmark/全量对标报告_r52_md引用面两路对账与契约陈旧自检_2026-09-25.md)
+
+本节目链接 19 个 ｜ 06-benchmark 机器可读件 60 ｜ 报告件 30
+

@@ -121,6 +121,18 @@ GATES = [
         "why": "r45 实测 W-9 挂了 5 轮的真因是按行号写标记写到别处；本门锁死该入口不再接受行号、歧义与已闭环一律拒写、写完必须读回",
     },
     {
+        # r53 W-34/W-35：报告数字改引用可再生句柄 + README 证据面可发现性
+        "id": "handles_readme_fixtures",
+        "script": "r53_handles_fixtures.py",
+        "argv": [],
+        "pass_token": "[GATE:fixture-pass]",
+        "portable": True,
+        "covers": ["05-exec/r38_debt_aging.py 的 make_handles/resolve_handle（句柄可解值、死句柄返 None）",
+                   "写台账→解句柄的闭环守恒 h7/h7b（源头断了必须显形，不得沿用旧值）",
+                   "README 指向 06-benchmark 的链接数 >0 且零死链（h8/h9 + 自检）"],
+        "why": "r53 实测：对手 AAS 一份 README 挂 50 个文件链接、正文数字 0-1 个，而我方 60 份机器可读件在入口文档里链接数为 0；同时 r38 含 PR 的数字在报告里无命令跑了 12 轮 ⇒ 数字必须由产物承载、入口必须可达",
+    },
+    {
         # r52 W-30：Markdown 引用面数字须自带取值途径（只看可整改面，历史面按 R241 不回改）
         "id": "md_claim_face",
         "script": "r52_mdclaim_fixtures.py",

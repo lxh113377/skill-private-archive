@@ -344,6 +344,51 @@ def face_dating_summary(fails, n_dated):
     return (True, "%d 条到期项定年两路同值（截断 needle 未改变结论）" % n_dated)
 
 
+def make_handles(doc, ledger_rel="06-benchmark/debt_runs.jsonl"):
+    """生成「可引用句柄」：报告正文写句柄 + 字段名，**不抄数值**（r53 W-34）。
+
+    存在理由（r53 双侧实测）：
+      · 对手：`addyosmani/agent-skills` 一份 README 挂 50 个文件链接、正文数字 0–1 个 ⇒ 数值由产物承载；
+      · 我方：`06-benchmark/` 有 60 份机器可读件，而 r38 那个含 PR 的 `open_issues` 在报告散文里
+        无命令跑了 **12 轮** ⇒ 抄进正文的数字必然与源头脱钩。句柄就是把"抄"换成"指"。
+    """
+    by = doc.get("by_class") or {}
+    h = {"overdue": {"artifact": ledger_rel, "field": "overdue", "selector": "末行",
+                     "command": "python -c 读 06-benchmark/debt_runs.jsonl 末行取 overdue（本件 resolve_handle 即该实现）"},
+         "ledger_rows": {"artifact": ledger_rel, "field": "#rows", "selector": "行数",
+                         "command": "wc -l 06-benchmark/debt_runs.jsonl"},
+         "open_total": {"artifact": ledger_rel, "field": "open_total", "selector": "末行",
+                        "command": "python 05-exec/r38_debt_aging.py --json /tmp/x.json 读 by_class 之和"},
+         "decided": {"artifact": ledger_rel, "field": "decided", "selector": "末行",
+                     "command": "tail -1 06-benchmark/debt_runs.jsonl"}}
+    for k in ("deferred", "repeat", "undated"):
+        if k in by:
+            h[k] = {"artifact": ledger_rel, "field": k, "selector": "末行",
+                    "command": "tail -1 06-benchmark/debt_runs.jsonl"}
+    return h
+
+
+def resolve_handle(h):
+    """按句柄现场解值。取不到（文件缺/形状不全/字段缺/台账空）一律 None ⇒ 绝不返回 0 冒充。"""
+    if not isinstance(h, dict):
+        return None
+    art, field = h.get("artifact"), h.get("field")
+    if not art or not field:
+        return None
+    p = Path(art) if os.path.isabs(str(art)) else ROOT / str(art)
+    if not p.is_file():
+        return None
+    try:
+        rows = [json.loads(x) for x in io.open(p, encoding="utf-8", errors="replace").read().splitlines() if x.strip()]
+    except ValueError:
+        return None
+    if not rows:
+        return None
+    if field == "#rows":
+        return len(rows)
+    return rows[-1].get(field)
+
+
 def scan(files, now_round, grace):
     """扫全部受检卷，返回 (items, face)。
 
@@ -560,6 +605,10 @@ def main():
             print("  OVERDUE %-4s %-11s %s | %s" % (r["priority"], r["detail"],
                                                     r.get("first_seen", "?"), r["title"][:64]))
         print("[DEBT:MEASURED] 宽限 %d 轮｜本尺不阻断（阻断由 ratchet_gate 第 7 指标只降不升承载）" % args.grace)
+        hs = make_handles(doc)
+        got = {k: resolve_handle(v) for k, v in hs.items()}
+        print("可引用句柄（报告写句柄别抄值；解不出的键会是 None）：%s"
+              % " ".join("%s=%s" % (k, got[k]) for k in ("overdue", "open_total", "decided", "ledger_rows")))
         # W-20（r49）：判据读到的面必须先自证不是截断/降采样后的局部面
         for k, lbl in (("round", "轮号面(-40 窗口 vs tag 硬锚)"),
                        ("floor", "规模下限面(上轮受检卷须仍在面内)"),
@@ -635,6 +684,7 @@ def main():
     print("归属可机检（W-6）：声明归属但**无可解析路径**的条目 %d 条 —— 逐条核实是不是又是我自己的债（r40 D37 同族）"
           % len(unowned))
     doc["coverage"] = cov
+    doc["handles"] = make_handles(doc)
     doc["input_face"] = input_face
     doc["evidence"]["raw_item_lines"] = face["raw_lines"]
     doc["unowned_claims"] = unowned
