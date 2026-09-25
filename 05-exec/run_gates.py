@@ -135,6 +135,23 @@ GATES = [
                "3 轮后才被到期追讨发现 —— 本锁把两者都变机器判据",
     },
     {
+        # r50 W-25：输入面自证推广到冲突判据与棘轮（覆盖面 + 读取面交叉对账）
+        "id": "authority_face_fixtures",
+        "script": "r50_face_fixtures.py",
+        "argv": [],
+        "pass_token": "[GATE:fixture-pass]",
+        "portable": False,
+        "not_portable_reason":
+            "c5–c8 在真机权威源 D:\\global_memory\\core 上跑发现器并断言扫描面无漏扫件；"
+            "换机无该根则候选集为空，覆盖面断言失去意义（只余纯函数例）",
+        "covers": ["05-exec/rule_conflict_scan.py 的 discover_authority_candidates/face_authority_coverage/effective_files",
+                   "05-exec/ratchet_gate.py 的 face_counted_vs_observed（OSError 静默跳过显形）",
+                   "05-exec/baseline_contract_scan.py 的 pattern 零命中判红（防回退）"],
+        "why": "r50 实测：冲突判据的手抄清单只 10 件，而 GM/core 有 18 件带可配对正负规则的权威源"
+               "（规则分卷 behavior_core_rules_p1..p8 即 22 锚点正文所在）从未进面 —— 扩面后极性规则 "
+               "116→188、自述冲突 6→11、互斥候选 6→21，证明「绿灯」曾是 38% 面上的结论",
+    },
+    {
         # r40 L-4：冲突扫描器输入面自证（死条目必须红，且不得靠删条目把覆盖面做干净）
         "id": "scan_inputs_fixtures",
         "script": "r40_scan_inputs_fixtures.py",

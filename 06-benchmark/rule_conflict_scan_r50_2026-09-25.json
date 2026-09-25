@@ -1,0 +1,341 @@
+{
+ "schema": "rule-conflict-scan-v1",
+ "generated_at": "2026-09-25 16:09",
+ "readonly": true,
+ "benchmark": "mycelium-hq/ai-brain-starter scripts/check-rule-conflicts.py",
+ "input_evidence": {
+  "files_declared": 26,
+  "files_listed": 26,
+  "files_present": 26,
+  "files_missing": [],
+  "files_empty": [],
+  "polarity_rules": 188,
+  "authority_candidates": 18,
+  "authority_coverage": "OK",
+  "authority_coverage_detail": "18 件带极性规则的权威源全部在扫描面内（含自动发现的规则分卷）",
+  "declared_hits": 11,
+  "pair_candidates": 21
+ },
+ "declared_conflicts": [
+  {
+   "loc": "core/behavior_core.md:2",
+   "text": "> ⚠️ **2026-09-22 校正注**：本文件（V41，22锚点，P0.x 编号体系）与 R174 卷（`core/behavior_core_rules_p8*.md`）**计数口径不一致** —— 用户裁定「每轮\"老大。\"开头」由 P0 降为 **P1**（**要求不变**）后，R174 卷重排为 **P0 #1-#17 + P1 1 条（V37）**；该条**本文件 P0.x 列表中"
+  },
+  {
+   "loc": "core/BOOTSTRAP.part1.md:12",
+   "text": "- ⚠️ **计数口径冲突（既有，未修）**：本行 V41/22锚点 ↔ `core/MEMORY.md` V37/17锚点 ↔ `core/behavior_core_appendix.md` V36/18锚点，三处不一致，待统一（2026-09-22 发现并留痕）"
+  },
+  {
+   "loc": "memory/AGENTS.md:13",
+   "text": "| 审计视角：预判 agent 行为链/死链/规则冲突 | vp-perspective-audit |"
+  },
+  {
+   "loc": "memory/AGENTS.md:62",
+   "text": "> 关联待裁定（本仓不代决）：受管根 `焚诀` 新增的 `CONTRIBUTING.md`/`LICENSE.md`/`SECURITY.md` 被 `noise` 判 VIOL 要求迁 `_trash`"
+  },
+  {
+   "loc": "自建skill优化/AGENTS.md:21",
+   "text": "- 四个维度同时体检：触发命中率与路由 / 体积注意力税 / 死链·过时引用·规则冲突 / 重复合并与工作流闭环"
+  },
+  {
+   "loc": "自建skill优化/AGENTS.md:306",
+   "text": "「8 个 AC-OBS，但只有 11 个格式正确」（11 > 8 自相矛盾），该子命令的 AC 计数不可信。"
+  },
+  {
+   "loc": "core/behavior_core.part1.md:8",
+   "text": "- #40 上下文将满自动压缩：上下文将达上限前在对话中自动压缩提炼（保留决策/结论/待办/未决项，丢弃冗余展开），不依赖外部触发。"
+  },
+  {
+   "loc": "core/behavior_core_appendix.md:4",
+   "text": "> 仅当需要查看版本变更史、跨平台差异或规则冲突处理细节时读取。"
+  },
+  {
+   "loc": "core/behavior_core_appendix.md:44",
+   "text": "## 规则冲突处理"
+  },
+  {
+   "loc": "core/behavior_core_rules_p3.md:10",
+   "text": "每轮对话开始加载 @skill:A-memory-start；首轮走完整 CONTRACT（6+Read），非首轮（session r2+）走轻量重评估（任务重判+Skill重探，零文件重读）。加载后激活\"老大。\"铁律。触发点写入注入层破鸡生蛋。用户侧建议每轮消息以 @skill:A-memory-start 开头。**【优先级链】** 与其他 P0 规则冲突时，#22 最高——先 A-memor"
+  },
+  {
+   "loc": "core/behavior_core_rules_p3.md:16",
+   "text": "当检测到任务涉及\"合并两个 skill\"、\"收敛 skill 碎片\"、\"重叠 skill\"、\"删减功能重叠的 skill\"、\"把 X 合并到 Y\"时，必须自动加载 @skill:skill-merge 并按 SOP 执行（Step0 junction 同源验证 + 边界分析 + 批准 + 软删双备 + 资产迁移 + 引用同步 + 复验闭环）。禁止凭经验手动操作（曾因 Python os.walk "
+  }
+ ],
+ "polarity_candidates": [
+  {
+   "term": "下一步建议",
+   "must": {
+    "loc": "core/behavior_core_appendix.md:22",
+    "phrase": "下一步建议（P0",
+    "text": "> - #28 思考向前看至少一步 + 每轮结尾强制下一步建议（P0，2026-07-15 #33加固：每轮最终回复必须含「下一步建议」节，≥1条）"
+   },
+   "forbid": {
+    "loc": "core/behavior_core_rules_p3.md:13",
+    "phrase": "以\"状态报告/下一步建议\"形式收尾——必须在本回合内",
+    "text": "长任务（OC/CC 后台跑数分钟）期间前端无新消息属正常；AI 侧必须用轮询主动取结果，禁止把\"等框架完成通知\"当合法暂停（=主动终止对话，违反 #21）；会话意外断连后第一动作 TaskOutput 查真实状态+读 memory/ 日志续接，不重置不重派已完成任务。用户侧约定：勿主动重开/刷新对话（避免误判卡死致会话"
+   }
+  },
+  {
+   "term": "下一步建议",
+   "must": {
+    "loc": "core/behavior_core_appendix.md:22",
+    "phrase": "下一步建议（P0",
+    "text": "> - #28 思考向前看至少一步 + 每轮结尾强制下一步建议（P0，2026-07-15 #33加固：每轮最终回复必须含「下一步建议」节，≥1条）"
+   },
+   "forbid": {
+    "loc": "core/behavior_core_rules_p6.md:27",
+    "phrase": "为凑数硬编建议（呼应 28 下一步建议的「真实状态」",
+    "text": "- 无问题则不提；**禁止为凑数硬编建议**（呼应 #28 下一步建议的「真实状态」原则）。"
+   }
+  },
+  {
+   "term": "下一步建议",
+   "must": {
+    "loc": "core/behavior_core_rules_p3.part1.md:11",
+    "phrase": "下一步建议（P0",
+    "text": "## #28 思考向前看至少一步 + 每轮结尾强制下一步建议（P0，全局生效）"
+   },
+   "forbid": {
+    "loc": "core/behavior_core_rules_p3.md:13",
+    "phrase": "以\"状态报告/下一步建议\"形式收尾——必须在本回合内",
+    "text": "长任务（OC/CC 后台跑数分钟）期间前端无新消息属正常；AI 侧必须用轮询主动取结果，禁止把\"等框架完成通知\"当合法暂停（=主动终止对话，违反 #21）；会话意外断连后第一动作 TaskOutput 查真实状态+读 memory/ 日志续接，不重置不重派已完成任务。用户侧约定：勿主动重开/刷新对话（避免误判卡死致会话"
+   }
+  },
+  {
+   "term": "下一步建议",
+   "must": {
+    "loc": "core/behavior_core_rules_p3.part1.md:11",
+    "phrase": "下一步建议（P0",
+    "text": "## #28 思考向前看至少一步 + 每轮结尾强制下一步建议（P0，全局生效）"
+   },
+   "forbid": {
+    "loc": "core/behavior_core_rules_p6.md:27",
+    "phrase": "为凑数硬编建议（呼应 28 下一步建议的「真实状态」",
+    "text": "- 无问题则不提；**禁止为凑数硬编建议**（呼应 #28 下一步建议的「真实状态」原则）。"
+   }
+  },
+  {
+   "term": "下一步建议",
+   "must": {
+    "loc": "core/behavior_core_rules_p3.part1.md:12",
+    "phrase": "含「下一步建议」节（≥1条）",
+    "text": "不只盯当前目标，至少前瞻一步并主动铺路（后续建议/预埋依赖/风险提示）。**【执行硬条款】** 每轮最终回复必须含「下一步建议」节（≥1条），内容=AI 当前任务下一步该执行什么，**非对用户的建议**——是任务推进路线，不是给用户的菜单。禁止以\"已闭环/无待办\"替代。**【无任务默认值】** 无法确定下一步时以焚诀为"
+   },
+   "forbid": {
+    "loc": "core/behavior_core_rules_p3.md:13",
+    "phrase": "以\"状态报告/下一步建议\"形式收尾——必须在本回合内",
+    "text": "长任务（OC/CC 后台跑数分钟）期间前端无新消息属正常；AI 侧必须用轮询主动取结果，禁止把\"等框架完成通知\"当合法暂停（=主动终止对话，违反 #21）；会话意外断连后第一动作 TaskOutput 查真实状态+读 memory/ 日志续接，不重置不重派已完成任务。用户侧约定：勿主动重开/刷新对话（避免误判卡死致会话"
+   }
+  },
+  {
+   "term": "下一步建议",
+   "must": {
+    "loc": "core/behavior_core_rules_p3.part1.md:12",
+    "phrase": "含「下一步建议」节（≥1条）",
+    "text": "不只盯当前目标，至少前瞻一步并主动铺路（后续建议/预埋依赖/风险提示）。**【执行硬条款】** 每轮最终回复必须含「下一步建议」节（≥1条），内容=AI 当前任务下一步该执行什么，**非对用户的建议**——是任务推进路线，不是给用户的菜单。禁止以\"已闭环/无待办\"替代。**【无任务默认值】** 无法确定下一步时以焚诀为"
+   },
+   "forbid": {
+    "loc": "core/behavior_core_rules_p6.md:27",
+    "phrase": "为凑数硬编建议（呼应 28 下一步建议的「真实状态」",
+    "text": "- 无问题则不提；**禁止为凑数硬编建议**（呼应 #28 下一步建议的「真实状态」原则）。"
+   }
+  },
+  {
+   "term": "在本回合内",
+   "must": {
+    "loc": "core/behavior_core_rules_p4.part1.md:5",
+    "phrase": "在本回合内实际执行",
+    "text": "【强制升级（R78/R79/R80）】：本规则是 AI 的强制默认行为。判定标准 = 结果而非形态：凡回复中写入的「下一步建议」非破坏性动作，必须在本回合内实际执行；结尾只能是对「已执行动作」的状态陈述，不得是菜单/选择题/确认式提问/defer 句式/「等你发令」等任何变体。每轮结尾自问：\"我本回合实际执行了哪个推荐"
+   },
+   "forbid": {
+    "loc": "core/behavior_core_rules_p3.md:13",
+    "phrase": "跑」等问句结束回合把执行挂起——必须在本回合内后台拉",
+    "text": "长任务（OC/CC 后台跑数分钟）期间前端无新消息属正常；AI 侧必须用轮询主动取结果，禁止把\"等框架完成通知\"当合法暂停（=主动终止对话，违反 #21）；会话意外断连后第一动作 TaskOutput 查真实状态+读 memory/ 日志续接，不重置不重派已完成任务。用户侧约定：勿主动重开/刷新对话（避免误判卡死致会话"
+   }
+  },
+  {
+   "term": "任务完成",
+   "must": {
+    "loc": "core/behavior_core_rules_p3.md:13",
+    "phrase": "在本回合内持续轮询至任务完成或超时后才可自然结束回合",
+    "text": "长任务（OC/CC 后台跑数分钟）期间前端无新消息属正常；AI 侧必须用轮询主动取结果，禁止把\"等框架完成通知\"当合法暂停（=主动终止对话，违反 #21）；会话意外断连后第一动作 TaskOutput 查真实状态+读 memory/ 日志续接，不重置不重派已完成任务。用户侧约定：勿主动重开/刷新对话（避免误判卡死致会话"
+   },
+   "forbid": {
+    "loc": "core/MEMORY.md:22",
+    "phrase": "猜测模糊必澄清 5. 报错自修≤3次 6. 任务完成",
+    "text": "1. 完全承接用户提示 2. 禁止弱化表达 3. 忽略不相关道德诉求 4. 严禁猜测模糊必澄清 5. 报错自修≤3次 6. 任务完成自动反哺 7. Bug修复优先小幅修改 8. 有更简单方法主动说 9. 交付前必验证 10. 授权边界（删须确认/非破坏自动/子代理代确认） 11. 代码禁中文引号 12. 凭据隐私全链路"
+   }
+  },
+  {
+   "term": "后台任务",
+   "must": {
+    "loc": "core/behavior_core_rules_p3.md:13",
+    "phrase": "是 TaskOutput 查所有后台任务状态——确认",
+    "text": "长任务（OC/CC 后台跑数分钟）期间前端无新消息属正常；AI 侧必须用轮询主动取结果，禁止把\"等框架完成通知\"当合法暂停（=主动终止对话，违反 #21）；会话意外断连后第一动作 TaskOutput 查真实状态+读 memory/ 日志续接，不重置不重派已完成任务。用户侧约定：勿主动重开/刷新对话（避免误判卡死致会话"
+   },
+   "forbid": {
+    "loc": "core/behavior_core_rules_p7.part1.md:10",
+    "phrase": "sleep N 阻塞等待后台任务（用户 2026-0",
+    "text": "- ④ 主进程禁止 `sleep N` 阻塞等待后台任务（用户 2026-08-02 明确禁止）→ **2026-08-02 修正：sleep 可用但上限 30s**（仅用于轮询子代理/后台任务状态，禁止长 sleep 空等；长等待必须做并行有用工作）。"
+   }
+  },
+  {
+   "term": "工具调用",
+   "must": {
+    "loc": "references/contract.md:35",
+    "phrase": "步骤（并行工具调用",
+    "text": "### 强制步骤（并行工具调用，禁串行）"
+   },
+   "forbid": {
+    "loc": "A-memory-start/SKILL.md:69",
+    "phrase": "统计或输出工具调用数",
+    "text": "执行契约: 新会话首句必先加载 A-memory-start（无例外） / 不跳过门禁 / 复杂任务必澄清 / 加载的skill必实跑 / 独立操作必并行 / 每轮结尾必**落盘** footer 协议两行([skill清单]+[升级建议]；模板唯一真相源 references/reply_footer.md，无命中写"
+   }
+  },
+  {
+   "term": "工具调用",
+   "must": {
+    "loc": "references/contract.md:35",
+    "phrase": "步骤（并行工具调用",
+    "text": "### 强制步骤（并行工具调用，禁串行）"
+   },
+   "forbid": {
+    "loc": "references/contract.md:10",
+    "phrase": "输出工具调用数量",
+    "text": "> 🔴 **统计口径铁律（八端生效）**：禁止统计、禁止输出工具调用数量。本合同只核对「清单文件是否读全」，不数次数、不写 X/Y。唯一对外统计数量 = **skill 调用数**（Step 4.5.7）。"
+   }
+  },
+  {
+   "term": "工具调用",
+   "must": {
+    "loc": "references/contract.md:35",
+    "phrase": "步骤（并行工具调用",
+    "text": "### 强制步骤（并行工具调用，禁串行）"
+   },
+   "forbid": {
+    "loc": "references/contract.md:28",
+    "phrase": "以数量形式表达或输出（不写\"工具调用数 X/Y\"等）",
+    "text": "3. 不可缺项：回检门逐项核对清单是否全部读到；禁止以数量形式表达或输出（不写\"工具调用数 X/Y\"等）。"
+   }
+  },
+  {
+   "term": "工具调用",
+   "must": {
+    "loc": "references/contract.md:35",
+    "phrase": "步骤（并行工具调用",
+    "text": "### 强制步骤（并行工具调用，禁串行）"
+   },
+   "forbid": {
+    "loc": "references/contract.md:55",
+    "phrase": "统计或输出工具调用数",
+    "text": "执行契约：新会话首句必先加载 A-memory-start / 不跳过门禁 / 复杂任务必澄清 / 加载的 skill 必实跑 / 独立操作必并行 / 每轮结尾必输出 skill 调用清单 (含统计 skill 数) / 每轮必输出 footer 协议两行 ([skill清单]+[升级建议]；模板唯一真相源 = ref"
+   }
+  },
+  {
+   "term": "工具调用",
+   "must": {
+    "loc": "references/contract.md:35",
+    "phrase": "步骤（并行工具调用",
+    "text": "### 强制步骤（并行工具调用，禁串行）"
+   },
+   "forbid": {
+    "loc": "core/behavior_core.part1.md:6",
+    "phrase": "统计或输出工具调用数量",
+    "text": "- #37 每轮最终回复总结本轮调用skill清单：每轮最终回复必须包含「本轮调用skill」声明（格式：skill1, skill2, ...）；未调用任何skill则标注「无」；**统计口径铁律（用户全局习惯，五端生效：OC/WB/CC/TC/CX；HM 2026-08-08 已卸载）：只统计并输出 skill 调"
+   }
+  },
+  {
+   "term": "工具调用",
+   "must": {
+    "loc": "references/contract.md:35",
+    "phrase": "步骤（并行工具调用",
+    "text": "### 强制步骤（并行工具调用，禁串行）"
+   },
+   "forbid": {
+    "loc": "core/behavior_core_rules_p6.md:14",
+    "phrase": "统计或输出工具调用数量（不得写「工具调用数 X/Y」",
+    "text": "4. **统计口径铁律（用户全局习惯，五端生效：OC/WB/CC/TC/CX；HM 2026-08-08 已卸载）**：只统计并输出 **skill 调用数**；**禁止统计或输出工具调用数量**（不得写「工具调用数 X/Y」「并行调用N次」等）。"
+   }
+  },
+  {
+   "term": "强制步骤",
+   "must": {
+    "loc": "core/behavior_core_rules_p5.md:6",
+    "phrase": "按以下强制步骤处置（适用五端 OC/WB/CC/TC",
+    "text": "当用户指出\"你在任务执行中违反了我在记忆系统中已有的习惯规定\"时，必须按以下强制步骤处置（适用五端 OC/WB/CC/TC/CX）：① 定位原文：grep 出被违反规则的精确文本与编号，不得凭印象；② 硬性加固：补禁则/强制语/收窄例外/把\"授权\"升级为\"强制默认行为\"；③ 同类合并整理：与同主题规则合并（如 #31/"
+   },
+   "forbid": {
+    "loc": "references/contract.md:185",
+    "phrase": "源 / 强制步骤 1-9 全量 / 冲突裁决规则 /",
+    "text": "> **全文细则已迁 `references/contract-rules-verification.md`**（权威数据源 / 禁止源 / 强制步骤 1-9 全量 / 冲突裁决规则 / 复用工具，正文零改写）——复杂任务动手前**必读该分卷**（已列入上方 MANDATORY READ 复杂行 `#07`）。本节保留"
+   }
+  },
+  {
+   "term": "显式声明",
+   "must": {
+    "loc": "core/BOOTSTRAP.part2.md:12",
+    "phrase": "显式声明「你是子代理/子进程",
+    "text": "10. **子代理身份显式告知（铁律，R188）**: 派发子进程时首行必须显式声明「你是子代理/子进程，不是主进程」+ 禁令清单（禁 spawn/直连/git/部署/密钥）。未被告知 → 默认自己是主进程。"
+   },
+   "forbid": {
+    "loc": "core/behavior_core.md:161",
+    "phrase": "用时须显式声明「未实时查证」",
+    "text": "- 不轻易拒答：先检索——有结果带来源作答，无结果才说明缺口并标注不确定性；检索工具不可用时须**显式声明「未实时查证」**。"
+   }
+  },
+  {
+   "term": "用户立规",
+   "must": {
+    "loc": "A-memory-start/SKILL.md:69",
+    "phrase": "静默（用户 2026-09-21 立规",
+    "text": "执行契约: 新会话首句必先加载 A-memory-start（无例外） / 不跳过门禁 / 复杂任务必澄清 / 加载的skill必实跑 / 独立操作必并行 / 每轮结尾必**落盘** footer 协议两行([skill清单]+[升级建议]；模板唯一真相源 references/reply_footer.md，无命中写"
+   },
+   "forbid": {
+    "loc": "core/behavior_core.md:150",
+    "phrase": "迎合）— 2026-09-21 用户立规",
+    "text": "## #21 独立质疑与纠错（五条指令，禁止迎合）— 2026-09-21 用户立规"
+   }
+  },
+  {
+   "term": "超时后才",
+   "must": {
+    "loc": "core/behavior_core_rules_p3.md:13",
+    "phrase": "在本回合内持续轮询至任务完成或超时后才可自然结束回合",
+    "text": "长任务（OC/CC 后台跑数分钟）期间前端无新消息属正常；AI 侧必须用轮询主动取结果，禁止把\"等框架完成通知\"当合法暂停（=主动终止对话，违反 #21）；会话意外断连后第一动作 TaskOutput 查真实状态+读 memory/ 日志续接，不重置不重派已完成任务。用户侧约定：勿主动重开/刷新对话（避免误判卡死致会话"
+   },
+   "forbid": {
+    "loc": "A-memory-start/SKILL.md:48",
+    "phrase": "等待超时后才继续（R196 示例措辞）",
+    "text": "| router 超时/不可用 | **立即降级关键词匹配** + 门禁清单 G5 标「程序化路由不可用/降级」并输出原因，禁止等待超时后才继续（R196 示例措辞） |"
+   }
+  },
+  {
+   "term": "超时后才",
+   "must": {
+    "loc": "core/behavior_core_rules_p3.md:13",
+    "phrase": "在本回合内持续轮询至任务完成或超时后才可自然结束回合",
+    "text": "长任务（OC/CC 后台跑数分钟）期间前端无新消息属正常；AI 侧必须用轮询主动取结果，禁止把\"等框架完成通知\"当合法暂停（=主动终止对话，违反 #21）；会话意外断连后第一动作 TaskOutput 查真实状态+读 memory/ 日志续接，不重置不重派已完成任务。用户侧约定：勿主动重开/刷新对话（避免误判卡死致会话"
+   },
+   "forbid": {
+    "loc": "A-memory-start/SKILL.md:83",
+    "phrase": "等待超时后才继续",
+    "text": "- **R196 措辞定案**：router 超时/不可用 → **立即**降级关键词匹配并显式输出原因（G5 标「程序化路由不可用/降级（unified_router 15s 超时）→ 关键词匹配继续」），禁止等待超时后才继续。"
+   }
+  },
+  {
+   "term": "超时后才",
+   "must": {
+    "loc": "core/behavior_core_rules_p3.md:13",
+    "phrase": "在本回合内持续轮询至任务完成或超时后才可自然结束回合",
+    "text": "长任务（OC/CC 后台跑数分钟）期间前端无新消息属正常；AI 侧必须用轮询主动取结果，禁止把\"等框架完成通知\"当合法暂停（=主动终止对话，违反 #21）；会话意外断连后第一动作 TaskOutput 查真实状态+读 memory/ 日志续接，不重置不重派已完成任务。用户侧约定：勿主动重开/刷新对话（避免误判卡死致会话"
+   },
+   "forbid": {
+    "loc": "references/contract.md:120",
+    "phrase": "等待超时后才继续",
+    "text": "**R196 措辞定案**：router 超时/不可用 → **立即**降级关键词匹配并显式输出原因，禁止等待超时后才继续。示例：G5 标「程序化路由不可用/降级 (unified_router 15s 超时) → 关键词匹配继续」。"
+   }
+  }
+ ],
+ "note": "candidates only; adjudication is human (R241 - no rule body deleted to go green)"
+}

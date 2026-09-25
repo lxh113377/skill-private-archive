@@ -45,6 +45,7 @@ METRIC_NAMES = ("catalog_grand_chars", "inject_union_bytes", "claim_candidates",
                 "deferred_debt_items",
                 "repeat_debt_items")   # r45 W-14：改期>=2 次的堆单独看守，防「降级」变成新免检通道
 SCHEMA = "zijian-inject-ratchet-v1"
+FACE_NOTES = {}   # r50 W-25：指标取值时的"读取面"自证结果，main() 里如实打印（不算进指标值）
 
 
 def _read_json(glob_pat):
@@ -88,6 +89,21 @@ def desc_over_cap():
     return (d.get("summary") or {}).get("over_cap") if isinstance(d, dict) else None
 
 
+def face_counted_vs_observed(counted, observed):
+    """读取面自证（r50 W-25，X-24 的交叉断言形态）：成功读取数必须等于枚举数。
+
+    存在理由：`username_in_skill_files` 里 `except OSError: continue` 会**静默跳过**读不到的文件，
+    于是 n 是在比声称面更小的面上算出来的，而指标数字本身不带这个信息 —— 棘轮拿它和历史比，
+    比的其实是两个不同的面。两条结构途径（枚举 vs 成功读取）不等即判红。
+    """
+    if observed == 0:
+        return (False, "枚举到 0 件 ⇒ 该指标无从计算，不得当作 0 命中（R247）")
+    if counted != observed:
+        return (False, "成功读取 %d < 枚举 %d ⇒ 有 %d 件被静默跳过，指标是在缩小的面上算的"
+                % (counted, observed, observed - counted))
+    return (True, "读取面 == 枚举面（%d 件）" % observed)
+
+
 def username_in_skill_files():
     """r34 第十一维落点：**含本机账号名的 SKILL.md 个数**（只降不升）。
 
@@ -107,7 +123,8 @@ def username_in_skill_files():
     rx = re.compile(re.escape(user), re.IGNORECASE)
     n = 0
     scanned = 0
-    for f in sorted(GS.glob("*/SKILL.md")):
+    paths = sorted(GS.glob("*/SKILL.md"))
+    for f in paths:
         try:
             text = f.read_text(encoding="utf-8", errors="replace")
         except OSError:
@@ -115,6 +132,10 @@ def username_in_skill_files():
         scanned += 1
         if rx.search(text):
             n += 1
+    ok, why = face_counted_vs_observed(scanned, len(paths))
+    FACE_NOTES["username_in_skill_files"] = (ok, why)
+    if not ok:
+        return None            # 面不完整 ⇒ 数字不参与棘轮比对（宁可 unknown，也不拿错面冒充可比值）
     return n if scanned else None
 
 
@@ -440,7 +461,12 @@ def main():
     if advisory and args.strict_cap:
         print("[RATCHET:FAIL] --strict-cap 生效：超硬顶 %d 项按阻断处理" % len(advisory))
         return 1
+        print("[RATCHET:FAIL] --strict-cap 生效：超硬顶 %d 项按阻断处理" % len(advisory))
+        return 1
     print("[RATCHET:PASS] %d 项指标均在棘轮基线内（只降不升）；非阻断告警 %d 项" % (len(metrics), len(advisory)))
+    for k, (ok, why) in sorted(FACE_NOTES.items()):     # r50 W-25：读取面自证（全 OK 时不刷屏）
+        if ok is not True:
+            print("  ⚠️ 读取面 %s ⇒ %s" % (k, why))
     return 0
 
 

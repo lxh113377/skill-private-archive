@@ -47,6 +47,7 @@ DEFAULT_FILES = [
     PROJ / "AGENTS.md",
 ]
 
+AUTHORITY_DIRS = [GM / "core"]     # 规则分卷的落点：新增分卷由 discover_authority_candidates 自动进面
 POS_RE = re.compile(r"(必须|必做|务必|强制|恒必填|缺一不可|一律|应当|须在|需在|要先)")
 NEG_RE = re.compile(r"(禁止|严禁|不得|不可|不要|不允许|不准|勿|禁做|排除在外)")
 DECLARED_RE = re.compile(r"(不一致|口径不一|两套|待裁|待定|未决|互相矛盾|自相矛盾|既有冲突|规则冲突)")
@@ -94,6 +95,55 @@ def longest_common_cjk(a, b, min_len=MIN_TERM):
     if best < min_len:
         return None
     return "".join(cb[best_end - best:best_end])
+
+
+def discover_authority_candidates(dirs=None):
+    """**发现**带可配对正负规则的权威源，返回 {Path: (n_pos, n_neg)}。
+
+    存在理由（r50 实测）：`DEFAULT_FILES` 是手抄清单，只 10 件；而 `GM/core/` 实存 25 件，
+    其中 17 件带可配对正负规则（`behavior_core_rules_p1..p8` 及其分卷 = 22 锚点规则的正文所在）
+    —— 手抄清单永远扫不到后来新增的分卷，冲突判据对它们全盲却照样绿灯（X-24 的第二处实证）。
+    发现规则要写死成"形状"（同目录下 *.md 且 pos≥1 且 neg≥1），不得再靠人记得加。
+    """
+    out = {}
+    for d in (dirs or AUTHORITY_DIRS):
+        try:
+            found = sorted(Path(d).glob("*.md"))
+        except OSError:
+            continue
+        for f in found:
+            try:
+                t = f.read_text(encoding="utf-8", errors="replace")
+            except OSError:
+                continue
+            p, n = len(POS_RE.findall(t)), len(NEG_RE.findall(t))
+            if p >= 1 and n >= 1:
+                out[f.resolve()] = (p, n)
+    return out
+
+
+def face_authority_coverage(listed, candidates):
+    """覆盖面自证：带极性规则的权威源若不在扫描面内 ⇒ 判红并点名（返回 (ok, detail)）。"""
+    try:
+        L = {Path(x).resolve() for x in listed}
+        keys = candidates.keys() if isinstance(candidates, dict) else candidates
+        C = [Path(x).resolve() for x in keys]
+    except (TypeError, OSError, AttributeError) as e:
+        return (False, "入参不可解析（%s）⇒ 覆盖面未自证，不得判绿" % type(e).__name__)
+    if not C:
+        return (None, "发现器零候选 ⇒ 覆盖面未行使（R-ENUM 边界条：零输入不得静默 PASS）")
+    miss = [c for c in C if c not in L]
+    if miss:
+        return (False, "%d/%d 件带可配对正负规则的权威源不在扫描面内：%s ⇒ 冲突判据对它们全盲"
+                % (len(miss), len(C), ", ".join(p.name for p in miss[:6])))
+    return (True, "%d 件带极性规则的权威源全部在扫描面内（含自动发现的规则分卷）" % len(C))
+
+
+def effective_files():
+    """扫描面 = 手抄核心清单 ∪ 自动发现的权威源分卷（去重、保持清单在前，便于与历史证据对账）。"""
+    cands = discover_authority_candidates()
+    have = {p.resolve() for p in DEFAULT_FILES}
+    return [p for p in DEFAULT_FILES if p.exists()] + [p for p in sorted(cands) if p not in have]
 
 
 def scan(files):
@@ -235,10 +285,16 @@ def main():
             print("[ONWRITE:CLEAN] 未发现与权威源互斥的新规则")
         return 1 if res["state"] == "CONFLICT" else (0 if res["state"] == "CLEAN" else 2)
 
-    files = [f for f in DEFAULT_FILES]
+    files = effective_files()                       # r50 W-25：手抄清单 ∪ 自动发现的规则分卷
     declared, rules, missing, empty = scan(files)
+    cands = discover_authority_candidates()
+    f_cov = face_authority_coverage({p.resolve() for p in files}, cands)
     pairs = polarity_pairs(rules)
     present = len(files) - len(missing)
+    print("扫描面 %d 件（手抄 %d + 自动发现 %d）｜权威源覆盖自证：%s ｜ %s"
+          % (len(files), len([p for p in DEFAULT_FILES if p.exists()]),
+             len(files) - len([p for p in DEFAULT_FILES if p.exists()]),
+             {True: "OK", False: "FAIL", None: "UNVERIFIED"}[f_cov[0]], f_cov[1]))
 
     result = {
         "schema": "rule-conflict-scan-v1",
@@ -251,6 +307,9 @@ def main():
             "files_missing": missing,
             "files_empty": empty,
             "polarity_rules": len(rules),
+            "authority_candidates": len(cands),
+            "authority_coverage": {True: "OK", False: "FAIL", None: "UNVERIFIED"}[f_cov[0]],
+            "authority_coverage_detail": f_cov[1],
             "declared_hits": len(declared),
             "pair_candidates": len(pairs),
         },
