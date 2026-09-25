@@ -68,6 +68,44 @@ def volume_files():
     return sorted(ROOT.glob("memory/07-next-steps*.md"))
 
 
+def find_item_line(lines, key):
+    """W-13（r44）：按**标题锚点**定位在账待办，返回全部命中的 1-based 行号。
+
+    存在理由（r43 实测 D55）：并行会话整卷重写 + 本会话前序插入都会让行号漂移，
+    按行号写裁决会写错行或漏写（r43 有 5 条 OVERDUE 报出的行号在写入时已不是未勾选行）。
+    只认 `- [ ]` 未勾选项 —— 已闭环条目不参与定位，禁止往别人已做完的条目上再写裁决。
+    命中数 != 1 时调用方必须**拒绝写入**并报告（多命中＝重复登记，见 t41/t46）。
+    """
+    return [i + 1 for i, l in enumerate(lines)
+            if key in l and l.lstrip().startswith("- [ ]")]
+
+
+def adjudication_gap(prev_keys, lines, round_tag):
+    """W-12（r44）：上一轮 OVERDUE 清单里，本轮**仍未真正处理**的条目（missing 列表）。
+
+    语义（t40–t46 锁死，防"只裁第一行就宣称完成"）：
+      · 无任意裁决标记的在账项 ⇒ missing；
+      · 最后一次标记是**已到期**的挂账（目标轮 <= 本轮）⇒ 仍 missing（延期不算已裁）；
+      · 最后一次标记是终局裁决（执行/降级/作废/保留）或未到期挂账 ⇒ 不算；
+      · 条目已勾掉或已不在账 ⇒ 不算（视为闭环/归档，不重复追责）。
+    动因：r41 只裁「当期到期清单」、漏裁「账龄新越线清单」，r42 账面从 1 炸到 20；
+    完整性没有机器约束时，它永远取决于我还记得多少。
+    """
+    cur = int(re.sub(r"\D", "", str(round_tag)) or 0)
+    missing = []
+    for key in prev_keys:
+        hits = find_item_line(lines, key)
+        for i in hits:
+            marks = list(RE_DECIDED.finditer(lines[i - 1]))
+            if not marks:
+                missing.append(key)
+                continue
+            last = marks[-1]
+            if last.group(2) and int(last.group(2)) <= cur:
+                missing.append(key)
+    return missing
+
+
 def first_seen(rel_path, needle):
     r = git("log", "--format=%ad", "--date=short", "-S", needle[:70], "--", rel_path)
     dates = [d for d in r.stdout.split() if re.match(r"^\d{4}-\d{2}-\d{2}$", d)]
@@ -187,6 +225,39 @@ def append_ledger(path, doc, origin="local", head=None):
     return 1
 
 
+def coverage_check(cur_round):
+    """W-12 接线：拿上一轮证据件的 OVERDUE 清单，逐条查本轮是否真被处理。
+
+    只报告不阻断（r25 用户否决拦任务的闸门）：`[ADJUDICATION:INCOMPLETE n]` 会进 JSON 与终端，
+    并把完整性变成趋势线上可追的一列，而不是等下一轮账面爆炸才发现。
+    """
+    hist = sorted(ROOT.glob("06-benchmark" + os.sep + "debt_aging_r*.json"),
+                  key=lambda p: p.stat().st_mtime)
+    if len(hist) < 2:
+        return {"status": "UNVERIFIED", "prev": None, "prev_overdue": 0, "missing": [],
+                "why": "历史证据件不足 2 份，无上一轮可比对（R247 不判绿）"}
+    try:
+        prev = json.loads(hist[-2].read_text(encoding="utf-8"))
+    except (OSError, ValueError) as e:
+        return {"status": "UNVERIFIED", "prev": hist[-2].name, "prev_overdue": 0, "missing": [],
+                "why": "上一轮证据件读不到：%s（不得当作已裁完）" % e}
+    byfile = {}
+    for row in prev.get("overdue") or []:
+        byfile.setdefault(row["file"], []).append(re.sub(r"\s+", " ", row["title"][:40]))
+    missing = []
+    for f, keys in byfile.items():
+        p = ROOT / f
+        if not p.is_file():
+            continue
+        lines = p.read_text(encoding="utf-8", errors="replace").split(chr(10))
+        for k in keys:
+            if adjudication_gap([k], lines, "r%s" % (cur_round or 0)):
+                missing.append({"file": f, "key": k})
+    return {"status": "OK" if not missing else "INCOMPLETE", "prev": hist[-2].name,
+            "prev_overdue": sum(len(v) for v in byfile.values()), "missing": missing,
+            "method": "adjudication_gap(上一轮 overdue[].title 前 40 字, 当前卷文本, 本轮轮号)"}
+
+
 def main():
     global GRACE_DEFAULT
     ap = argparse.ArgumentParser()
@@ -229,6 +300,12 @@ def main():
                                                     r.get("first_seen", "?"), r["title"][:64]))
         print("[DEBT:MEASURED] 宽限 %d 轮｜本尺不阻断（阻断由 ratchet_gate 第 7 指标只降不升承载）" % args.grace)
 
+    cov = coverage_check(now_round)
+    print("裁决完整性（W-12）：状态 %s ｜ 上轮 OVERDUE %d 条 → 本轮仍未处理 %d 条%s"
+          % (cov["status"], cov["prev_overdue"], len(cov["missing"]),
+             "" if not cov["missing"] else " ← " + str([m["key"][:24] for m in cov["missing"][:4]])))
+    if cov["status"] == "UNVERIFIED":
+        print("[ADJUDICATION:UNVERIFIED] %s" % cov["why"])
     doc = {"schema": "debt-aging-v2",   # v2（r39）新增 DEFERRED 态；v1 历史件按自洽式不变式仍合格
            "generated_at": dt.datetime.now().isoformat(timespec="seconds"),
            "readonly": True, "grace_rounds": args.grace, "current_round": now_round,
@@ -256,6 +333,7 @@ def main():
                 "stale_automation": False, "oldest_open_issue": "2018-07-02",
                 "note": "低积压靠少建待办，最老一条 8 年仍 open —— 到期治理同样缺失"}],
            "note": "OVERDUE 数 = ratchet_gate 第 7 指标 overdue_debt_items 的唯一取值面"}
+    doc["coverage"] = cov
     if args.ledger:
         wrote = append_ledger(args.ledger, doc, origin=args.origin)
         print("台账 %s → 追加 %d 行（%s）" % (args.ledger, wrote,

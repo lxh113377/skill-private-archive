@@ -230,6 +230,31 @@ def main():
     ck("t34 GRACE 分档表可读（值不写死在函数体内）", isinstance(getattr(da, "GRACE_BY_PRIORITY", None), dict),
        str(getattr(da, "GRACE_BY_PRIORITY", None)))
 
+    # --- r44 W-13 标题锚点定位 + W-12 裁决清单完整性（r42/r43 两轮点名未落地）---
+    # 语义定死：missing = 在账（未勾选且存在）且「无任意裁决标记」或「最后一次挂账已到期」；
+    #          已勾选项与已消失项不算 missing；未来挂账不算 missing（但会被 REPEAT 显形）。
+    L = ["- [ ] 【P0·待办 A（r41 登记）】 正文甲 【r43 裁决=挂账至 r46】",
+         "- [x] 【P0·待办 B（r41 登记）】 已闭环",
+         "- [ ] 【P0·待办 C（r42 登记）】 正文丙",
+         "- [ ] 【P1·待办 C（r42 登记）】 正文丙"]
+    ck("t40 W-13 唯一标题 → 命中 1 行", da.find_item_line(L, "待办 A") == [1], str(da.find_item_line(L, "待办 A")))
+    ck("t41 反例：标题重复 → 命中多行，调用方必须拒写而非挑第一行",
+       len(da.find_item_line(L, "待办 C")) == 2, str(da.find_item_line(L, "待办 C")))
+    ck("t42 已勾选项不参与定位（禁往闭环条目上写裁决）",
+       da.find_item_line(L, "待办 B") == [], str(da.find_item_line(L, "待办 B")))
+    gap = da.adjudication_gap(["待办 A", "待办 B", "待办 C", "待办 D"], L, "r44")
+    ck("t43 W-12 完整性：无标记的在账项全列 missing（含重复登记两份），已闭环/已消失/未来挂账不算",
+       gap == ["待办 C", "待办 C"], str(gap))
+    L2 = ["- [ ] 【P0·待办 C（r42 登记）】 正文丙 【r44 裁决=降级（转长期看守）】",
+          "- [ ] 【P1·待办 C（r42 登记）】 正文丙 【r44 裁决=降级（转长期看守）】"]
+    ck("t44 两份都拿到本轮终局裁决 → missing 归零（机制不永远红）",
+       da.adjudication_gap(["待办 C"], L2, "r44") == [], str(da.adjudication_gap(["待办 C"], L2, "r44")))
+    L3 = ["- [ ] 【P0·待办 A（r41 登记）】 正文甲 【r41 裁决=挂账至 r43】"]
+    ck("t45 反例：最后一次挂账已到期（r43 <= 本轮 r44）→ 仍算 missing，不得当已裁",
+       da.adjudication_gap(["待办 A"], L3, "r44") == ["待办 A"], str(da.adjudication_gap(["待办 A"], L3, "r44")))
+    ck("t46 多命中时 missing 逐行计（防只裁第一行就宣称完成）",
+       len(da.adjudication_gap(["待办 C"], L, "r44")) == 2, str(da.adjudication_gap(["待办 C"], L, "r44")))
+
     fails = [r for r in RESULTS if not r[0]]
     print("\n夹具合计: %d 项，通过 %d，失败 %d" % (len(RESULTS), len(RESULTS) - len(fails), len(fails)))
     if fails:
