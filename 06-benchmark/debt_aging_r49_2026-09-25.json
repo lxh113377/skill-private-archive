@@ -1,6 +1,6 @@
 {
  "schema": "debt-aging-v2",
- "generated_at": "2026-09-25T15:50:07",
+ "generated_at": "2026-09-25T15:57:24",
  "readonly": true,
  "grace_rounds": 2,
  "current_round": 49,
@@ -100,9 +100,9 @@
  "input_face": {
   "round": {
    "log": 49,
-   "tag": 48,
+   "tag": 49,
    "ok": true,
-   "detail": "log=r49 ≥ tag=r48（差 1 轮 = 本轮尚未打 tag，符合每轮收尾打标的既有节奏）"
+   "detail": "log=r49 ≥ tag=r49（差 0 轮：本轮 tag 已打，两源一致）"
   },
   "floor": {
    "ok": true,
@@ -113,8 +113,8 @@
    "detail": "129 行全部计入，80 字前缀键零碰撞"
   },
   "dating": {
-   "ok": true,
-   "detail": "0 条到期项定年两路同值（截断 needle 未改变结论）",
+   "ok": null,
+   "detail": "本轮无到期项 ⇒ 定年面未行使（不判绿，也不判红）",
    "checked": 0
   },
   "suggestions": {
@@ -123,9 +123,11 @@
   },
   "raw_lines": 129,
   "collisions": [],
-  "status": "OK",
+  "status": "UNVERIFIED",
   "red_faces": [],
-  "unverified_faces": []
+  "unverified_faces": [
+   "dating"
+  ]
  },
  "unowned_claims": []
 }

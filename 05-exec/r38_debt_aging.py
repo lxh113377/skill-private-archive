@@ -116,8 +116,10 @@ def face_round(round_log, round_tag):
     if round_tag > round_log:
         return (False, "tag=r%d 晚于 -40 窗口推出的 r%d ⇒ 窗口没覆盖到本轮声明，轮号基准被截断"
                 % (round_tag, round_log))
-    return (True, "log=r%d ≥ tag=r%d（差 %d 轮 = 本轮尚未打 tag，符合每轮收尾打标的既有节奏）"
-            % (round_log, round_tag, round_log - round_tag))
+    return (True, "log=r%d ≥ tag=r%d（差 %d 轮：%s）"
+            % (round_log, round_tag, round_log - round_tag,
+               "本轮 tag 已打，两源一致" if round_log == round_tag
+               else "本轮尚未打 tag，属每轮收尾打标的既有节奏"))
 
 
 def face_dedup(raw_lines, items_total, collisions):
@@ -324,6 +326,15 @@ def prev_scanned_volumes():
     return list(prev.get("files_scanned") or [])
 
 
+def face_dating_summary(fails, n_dated):
+    """把定年面收成分成三态（R-ENUM 边界条：零输入不得静默 PASS）。"""
+    if fails:
+        return (False, "定年双路取值有 %d 条不等：%s" % (len(fails), str(fails[0]["why"])[:90]))
+    if n_dated == 0:
+        return (None, "本轮无到期项 ⇒ 定年面未行使（不判绿，也不判红）")
+    return (True, "%d 条到期项定年两路同值（截断 needle 未改变结论）" % n_dated)
+
+
 def scan(files, now_round, grace):
     """扫全部受检卷，返回 (items, face)。
 
@@ -486,10 +497,7 @@ def main():
     f_round = face_round(now_round, round_tag)
     f_dedup = face_dedup(face["raw_lines"], face["items_total"], face["collisions"])
     f_dates = face["dating_fails"]
-    f_dating = ((False, "定年双路取值有 %d 条不等：%s" % (len(f_dates), str(f_dates[0]["why"])[:90]))
-                if f_dates else
-                (True, "%d 条到期项定年两路同值（截断 needle 未改变结论）"
-                 % sum(1 for r in items if r.get("dating_face"))))
+    f_dating = face_dating_summary(f_dates, sum(1 for r in items if r.get("dating_face")))
     # W-20 第 4 面：本轮报告新立的建议编号 → 待办卷承接对账
     sugg_ids, f_sugg = [], (None, "未传 --report ⇒ 建议面未对照（R247 不判绿）")
     if args.report:

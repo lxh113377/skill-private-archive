@@ -87,6 +87,13 @@ ck("f12 face_floor 反例：glob 少收一卷 ⇒ 判红并点名（其余四面
 ok, d = _safe("face_floor", da, ["memory/07-a.md"], [])
 ck("f13 face_floor 边界：无上轮证据 ⇒ UNVERIFIED（不得静默 PASS，R247）", ok is None, (ok, d))
 
+ok, d = _safe("face_dating_summary", da, [], 0)
+ck("f14 边界：本轮零到期项 ⇒ 定年面记 UNVERIFIED（R-ENUM：零输入不得静默 PASS）", ok is None, (ok, d))
+ok, d = _safe("face_dating_summary", da, [{"why": "两路不等"}], 3)
+ck("f15 有不等 ⇒ 判红", ok is False, (ok, d))
+ck("f16 有行使且全等 ⇒ 判绿", _safe("face_dating_summary", da, [], 3)[0] is True,
+   _safe("face_dating_summary", da, [], 3))
+
 # ---------------------------------------------------------------- W-22 裁决对象面
 SUBJ = ("8d7fb56 feat: r45 落地 W-14 反降级免检指标\n"
         "24fd233 docs: r44 savepoint\n")
