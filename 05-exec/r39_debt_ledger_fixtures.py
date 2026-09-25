@@ -339,6 +339,25 @@ def main():
        not any("分代必填" in x for x in v_old_missing),
        json.dumps(v_old_missing, ensure_ascii=False)[:200])
 
+    # ---- r56 W-38：第 3 代必填列 refresh_stale_count（分代点 19:15）----
+    row38_full = dict(rows48[1], ts="2026-09-25T19:20:00", refresh_stale_count=0)
+    row38_missing = dict(rows48[3], ts="2026-09-25T19:20:00",
+                         face_status="OK", face_red_count=0)
+    row38_old = dict(rows48[3], ts="2026-09-25T18:59:00",
+                     face_status="OK", face_red_count=0)
+    v38_full = bcs.validate_jsonl([row38_full], art48, "gen3-full")
+    v38_missing = bcs.validate_jsonl([row38_missing], art48, "gen3-missing")
+    v38_old = bcs.validate_jsonl([row38_old], art48, "gen3-old")
+    ck("t78 第 3 代必填（W-38）：19:15 后缺 refresh_stale_count ⇒ 必红且只点名它",
+       any("refresh_stale_count" in x for x in v38_missing)
+       and not any("coverage" in x or "face_status" in x for x in v38_missing),
+       json.dumps(v38_missing, ensure_ascii=False)[:200])
+    ck("t79 方向反例：带齐三代列的 19:20 行 ⇒ 零违规（机制不得永远红）",
+       v38_full == [], json.dumps(v38_full, ensure_ascii=False)[:200])
+    ck("t80 代际豁免：分代点前（18:59）前两代齐而无第 3 代列 ⇒ 不得判红（台账不可回写）",
+       not any("refresh_stale_count" in x for x in v38_old),
+       json.dumps(v38_old, ensure_ascii=False)[:200])
+
     co = getattr(da, "classify_owner", None)
     ck("t6-pre W-6 前置：账龄尺暴露 classify_owner（缺则下面四例全红而非 crash）", co is not None,
        "AttributeError 型红不是好红，先让它干净失败")

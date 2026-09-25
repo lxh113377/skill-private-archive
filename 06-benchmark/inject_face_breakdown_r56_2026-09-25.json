@@ -1,0 +1,58 @@
+{
+ "schema": "inject-face-breakdown-v1",
+ "generated_at": "2026-09-25T19:29:43",
+ "readonly": true,
+ "round": 56,
+ "cap": 65536,
+ "measured_total": 86756,
+ "over_cap": 21220,
+ "enumerator": "05-exec/ratchet_gate.py:inject_union_paths()（与棘轮同源，单份算法）",
+ "cross_check": "python 05-exec/ratchet_gate.py 的 inject_union_bytes 行须等于本件 measured_total",
+ "by_owner": {
+  "其它（端上注入壳，归属另议）": 2994,
+  "本项目可控": 29293,
+  "受管根（本项目不可改）": 54469
+ },
+ "files": [
+  {
+   "path": "C:\\Users\\37533\\Desktop\\workspace\\自建skill优化\\AGENTS.md",
+   "bytes": 29293,
+   "owner": "本项目可控"
+  },
+  {
+   "path": "D:\\global_skills\\A-memory-start\\SKILL.md",
+   "bytes": 26556,
+   "owner": "受管根（本项目不可改）"
+  },
+  {
+   "path": "D:\\global_skills\\A-memory-start\\references\\contract.md",
+   "bytes": 19116,
+   "owner": "受管根（本项目不可改）"
+  },
+  {
+   "path": "D:\\global_memory\\core\\behavior_core.md",
+   "bytes": 8797,
+   "owner": "受管根（本项目不可改）"
+  },
+  {
+   "path": "C:\\Users\\37533\\.zcode\\AGENTS.md",
+   "bytes": 2994,
+   "owner": "其它（端上注入壳，归属另议）"
+  }
+ ],
+ "decision_needed": [
+  {
+   "id": "W-32-A",
+   "选项": "真降",
+   "需要减": 21220,
+   "说明": "本项目可控面仅 29293 B，减不动 21k 量级 ⇒ 必须动受管根（须受管根侧授权）"
+  },
+  {
+   "id": "W-32-B",
+   "选项": "显式改硬顶 + 逐因归因",
+   "需要改": 65536,
+   "新值下限": 86756,
+   "说明": "硬顶在焚诀 truth_constants.inject_budget.hard_cap_bytes，改它=改共享预算，属受管根归属会话；本项目只出数不代改"
+  }
+ ]
+}

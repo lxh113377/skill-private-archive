@@ -193,6 +193,38 @@ GATES = [
                "不证明牙齿还在（放宽 allowlist 凑绿是 X-9 的反面形态）",
     },
     {
+        # r56 W-37：再生预算从代码常量升为被契约看守的声明面
+        "id": "budget_contract_fixtures",
+        "script": "r56_budget_fixtures.py",
+        "argv": [],
+        "pass_token": "[GATE:fixture-pass]",
+        "portable": True,
+        "covers": ["06-benchmark/inject_ratchet_baseline.json 的 refresh_days 声明面（schema v1→v2）",
+                   "05-exec/baseline_contract_scan.py 的 inv_ratchet_refresh_days（缺项/多键/越界三向判红）",
+                   "ratchet_gate.refresh_status 无静默回落（基线缺预算⇒UNVERIFIED 且不读代码常量）",
+                   "--update 不得改写预算面 + 预算与 note 留账同轮存活（D-104 同族再犯防护）"],
+        "why": "r54 我只做到「代码里逐个声明保质期」，但契约看不见那张表 ⇒ 谁删一项就静默少一项，"
+               "声明退化成没人看守的注释（当时登记为 D-97/W-37）；对手把节律写在被 CI 解析的文件里，"
+               "声明即被校验 —— 本门把同一件事在无 CI 条件下做成等价机制",
+    },
+    {
+        # r56 W-27/W-32：两份"裁定依据"件从一次性内联产物升为有生成器 + 被契约守
+        "id": "evidence_face_fixtures",
+        "script": "r56_artifact_face_fixtures.py",
+        "argv": [],
+        "pass_token": "[GATE:fixture-pass]",
+        "portable": False,
+        "not_portable_reason":
+            "断言对象是本项目 06-benchmark 里的 r56 实测件与受管根规则扫描结果（换机无同源件）",
+        "covers": ["06-benchmark 两类新 pattern：inject_face_breakdown_r*.json / w27_conflict_triage_r*.json",
+                   "baseline_contract_scan 的两条新不变式（逐件求和自洽 / 三数算术自洽 + 空面不判过）",
+                   "代际豁免 required_from + invariants_from：历史证据件不追溯判红，且分叉点后仍须红（e9）",
+                   "豁免可见性：扫描输出必须打印「代际豁免」计数行（e10，看不见的豁免=豁免表）"],
+        "why": "r52/r51 那两份裁定依据是**一次性内联脚本**产出的，仓里根本没有生成器 ⇒ 它们自己就是解不出的"
+               "死句柄（另立 W-46 记这条通病）；补生成器时又发现新必填面会回头把历史件判红——"
+               "台账早就有分代口径，本轮把它推广到 JSON 件并钉成常驻断言",
+    },
+    {
         # r55：--update 曾把基线 note 的逐轮人工归因从 496 字刷成 33 字，且无任何门禁变红
         "id": "baseline_note_fixtures",
         "script": "r55_note_fixtures.py",

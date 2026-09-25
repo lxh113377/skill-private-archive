@@ -1,0 +1,290 @@
+{
+ "schema": "conflict-triage-v2",
+ "generated_at": "2026-09-25 19:31",
+ "readonly": true,
+ "source": "05-exec/rule_conflict_scan.py --json（真实派发，不另起扫描）",
+ "total_candidates": 23,
+ "distinct_rule_pairs_after_volume_merge": 13,
+ "duplicated_pairs": 10,
+ "distinct_terms": 9,
+ "forbid_side_is_meta_about_presentation": 3,
+ "form_meta_token_table": [
+  "收尾",
+  "结尾",
+  "形式",
+  "footer",
+  "排版",
+  "段落"
+ ],
+ "inflation_cause": "同一规则本体被拆成分卷载体（behavior_core_rules_pN / appendix），一条 must 对多条 forbid 复制命中 ⇒ 组数被放大；归一到规则本体才是真对数",
+ "semantic_verdict": "UNVERIFIED —— 是否构成真互斥须人工裁定：本项目红线禁止改受管根规则正文，且 R241 只允许加校正注。本件只给可复算的结构数字与逐条定位。",
+ "decision_needed": [
+  {
+   "id": "W-27",
+   "要谁裁": "用户或受管根归属会话",
+   "裁什么": "每条 distinct pair 三选一：① 真互斥→改写其中一侧措辞 ② 不互斥（语境不同）→在扫描器加**成对豁免**（须写明理由，禁整词豁免）③ 元规则让位于行为规则（禁侧只谈呈现形式时）",
+   "候选对数": 13
+  }
+ ],
+ "distinct_pairs": [
+  {
+   "term": "下一步建议",
+   "must_base": "AGENTS.md",
+   "forbid_base": "core/behavior_core.md（分卷归一）"
+  },
+  {
+   "term": "下一步建议",
+   "must_base": "core/behavior_core.md（分卷归一）",
+   "forbid_base": "core/behavior_core.md（分卷归一）"
+  },
+  {
+   "term": "任务完成",
+   "must_base": "core/behavior_core.md（分卷归一）",
+   "forbid_base": "MEMORY.md"
+  },
+  {
+   "term": "后台任务",
+   "must_base": "core/behavior_core.md（分卷归一）",
+   "forbid_base": "core/behavior_core.md（分卷归一）"
+  },
+  {
+   "term": "在本回合内",
+   "must_base": "core/behavior_core.md（分卷归一）",
+   "forbid_base": "core/behavior_core.md（分卷归一）"
+  },
+  {
+   "term": "工具调用",
+   "must_base": "A-memory-start/references/contract.md",
+   "forbid_base": "SKILL.md:A-memory-start"
+  },
+  {
+   "term": "工具调用",
+   "must_base": "A-memory-start/references/contract.md",
+   "forbid_base": "core/behavior_core.md（分卷归一）"
+  },
+  {
+   "term": "工具调用",
+   "must_base": "A-memory-start/references/contract.md",
+   "forbid_base": "A-memory-start/references/contract.md"
+  },
+  {
+   "term": "强制步骤",
+   "must_base": "core/behavior_core.md（分卷归一）",
+   "forbid_base": "A-memory-start/references/contract.md"
+  },
+  {
+   "term": "显式声明",
+   "must_base": "BOOTSTRAP.md",
+   "forbid_base": "core/behavior_core.md（分卷归一）"
+  },
+  {
+   "term": "用户立规",
+   "must_base": "SKILL.md:A-memory-start",
+   "forbid_base": "core/behavior_core.md（分卷归一）"
+  },
+  {
+   "term": "超时后才",
+   "must_base": "core/behavior_core.md（分卷归一）",
+   "forbid_base": "SKILL.md:A-memory-start"
+  },
+  {
+   "term": "超时后才",
+   "must_base": "core/behavior_core.md（分卷归一）",
+   "forbid_base": "A-memory-start/references/contract.md"
+  }
+ ],
+ "rows": [
+  {
+   "term": "下一步建议",
+   "must_base": "core/behavior_core.md（分卷归一）",
+   "forbid_base": "core/behavior_core.md（分卷归一）",
+   "must_loc": "core/behavior_core_appendix.md:22",
+   "forbid_loc": "core/behavior_core_rules_p3.md:13",
+   "form_meta_tokens": []
+  },
+  {
+   "term": "下一步建议",
+   "must_base": "core/behavior_core.md（分卷归一）",
+   "forbid_base": "core/behavior_core.md（分卷归一）",
+   "must_loc": "core/behavior_core_appendix.md:22",
+   "forbid_loc": "core/behavior_core_rules_p6.md:27",
+   "form_meta_tokens": []
+  },
+  {
+   "term": "下一步建议",
+   "must_base": "core/behavior_core.md（分卷归一）",
+   "forbid_base": "core/behavior_core.md（分卷归一）",
+   "must_loc": "core/behavior_core_rules_p3.part1.md:11",
+   "forbid_loc": "core/behavior_core_rules_p3.md:13",
+   "form_meta_tokens": []
+  },
+  {
+   "term": "下一步建议",
+   "must_base": "core/behavior_core.md（分卷归一）",
+   "forbid_base": "core/behavior_core.md（分卷归一）",
+   "must_loc": "core/behavior_core_rules_p3.part1.md:11",
+   "forbid_loc": "core/behavior_core_rules_p6.md:27",
+   "form_meta_tokens": []
+  },
+  {
+   "term": "下一步建议",
+   "must_base": "core/behavior_core.md（分卷归一）",
+   "forbid_base": "core/behavior_core.md（分卷归一）",
+   "must_loc": "core/behavior_core_rules_p3.part1.md:12",
+   "forbid_loc": "core/behavior_core_rules_p3.md:13",
+   "form_meta_tokens": []
+  },
+  {
+   "term": "下一步建议",
+   "must_base": "core/behavior_core.md（分卷归一）",
+   "forbid_base": "core/behavior_core.md（分卷归一）",
+   "must_loc": "core/behavior_core_rules_p3.part1.md:12",
+   "forbid_loc": "core/behavior_core_rules_p6.md:27",
+   "form_meta_tokens": []
+  },
+  {
+   "term": "下一步建议",
+   "must_base": "AGENTS.md",
+   "forbid_base": "core/behavior_core.md（分卷归一）",
+   "must_loc": "memory/AGENTS.md:100",
+   "forbid_loc": "core/behavior_core_rules_p3.md:13",
+   "form_meta_tokens": []
+  },
+  {
+   "term": "下一步建议",
+   "must_base": "AGENTS.md",
+   "forbid_base": "core/behavior_core.md（分卷归一）",
+   "must_loc": "memory/AGENTS.md:100",
+   "forbid_loc": "core/behavior_core_rules_p6.md:27",
+   "form_meta_tokens": []
+  },
+  {
+   "term": "在本回合内",
+   "must_base": "core/behavior_core.md（分卷归一）",
+   "forbid_base": "core/behavior_core.md（分卷归一）",
+   "must_loc": "core/behavior_core_rules_p4.part1.md:5",
+   "forbid_loc": "core/behavior_core_rules_p3.md:13",
+   "form_meta_tokens": []
+  },
+  {
+   "term": "任务完成",
+   "must_base": "core/behavior_core.md（分卷归一）",
+   "forbid_base": "MEMORY.md",
+   "must_loc": "core/behavior_core_rules_p3.md:13",
+   "forbid_loc": "core/MEMORY.md:22",
+   "form_meta_tokens": []
+  },
+  {
+   "term": "后台任务",
+   "must_base": "core/behavior_core.md（分卷归一）",
+   "forbid_base": "core/behavior_core.md（分卷归一）",
+   "must_loc": "core/behavior_core_rules_p3.md:13",
+   "forbid_loc": "core/behavior_core_rules_p7.part1.md:10",
+   "form_meta_tokens": []
+  },
+  {
+   "term": "工具调用",
+   "must_base": "A-memory-start/references/contract.md",
+   "forbid_base": "SKILL.md:A-memory-start",
+   "must_loc": "references/contract.md:35",
+   "forbid_loc": "A-memory-start/SKILL.md:70",
+   "form_meta_tokens": [
+    "结尾",
+    "footer"
+   ]
+  },
+  {
+   "term": "工具调用",
+   "must_base": "A-memory-start/references/contract.md",
+   "forbid_base": "A-memory-start/references/contract.md",
+   "must_loc": "references/contract.md:35",
+   "forbid_loc": "references/contract.md:10",
+   "form_meta_tokens": []
+  },
+  {
+   "term": "工具调用",
+   "must_base": "A-memory-start/references/contract.md",
+   "forbid_base": "A-memory-start/references/contract.md",
+   "must_loc": "references/contract.md:35",
+   "forbid_loc": "references/contract.md:28",
+   "form_meta_tokens": [
+    "形式"
+   ]
+  },
+  {
+   "term": "工具调用",
+   "must_base": "A-memory-start/references/contract.md",
+   "forbid_base": "A-memory-start/references/contract.md",
+   "must_loc": "references/contract.md:35",
+   "forbid_loc": "references/contract.md:55",
+   "form_meta_tokens": [
+    "结尾",
+    "footer"
+   ]
+  },
+  {
+   "term": "工具调用",
+   "must_base": "A-memory-start/references/contract.md",
+   "forbid_base": "core/behavior_core.md（分卷归一）",
+   "must_loc": "references/contract.md:35",
+   "forbid_loc": "core/behavior_core.part1.md:6",
+   "form_meta_tokens": []
+  },
+  {
+   "term": "工具调用",
+   "must_base": "A-memory-start/references/contract.md",
+   "forbid_base": "core/behavior_core.md（分卷归一）",
+   "must_loc": "references/contract.md:35",
+   "forbid_loc": "core/behavior_core_rules_p6.md:14",
+   "form_meta_tokens": []
+  },
+  {
+   "term": "强制步骤",
+   "must_base": "core/behavior_core.md（分卷归一）",
+   "forbid_base": "A-memory-start/references/contract.md",
+   "must_loc": "core/behavior_core_rules_p5.md:6",
+   "forbid_loc": "references/contract.md:185",
+   "form_meta_tokens": []
+  },
+  {
+   "term": "显式声明",
+   "must_base": "BOOTSTRAP.md",
+   "forbid_base": "core/behavior_core.md（分卷归一）",
+   "must_loc": "core/BOOTSTRAP.part2.md:12",
+   "forbid_loc": "core/behavior_core.md:161",
+   "form_meta_tokens": []
+  },
+  {
+   "term": "用户立规",
+   "must_base": "SKILL.md:A-memory-start",
+   "forbid_base": "core/behavior_core.md（分卷归一）",
+   "must_loc": "A-memory-start/SKILL.md:70",
+   "forbid_loc": "core/behavior_core.md:150",
+   "form_meta_tokens": []
+  },
+  {
+   "term": "超时后才",
+   "must_base": "core/behavior_core.md（分卷归一）",
+   "forbid_base": "SKILL.md:A-memory-start",
+   "must_loc": "core/behavior_core_rules_p3.md:13",
+   "forbid_loc": "A-memory-start/SKILL.md:48",
+   "form_meta_tokens": []
+  },
+  {
+   "term": "超时后才",
+   "must_base": "core/behavior_core.md（分卷归一）",
+   "forbid_base": "SKILL.md:A-memory-start",
+   "must_loc": "core/behavior_core_rules_p3.md:13",
+   "forbid_loc": "A-memory-start/SKILL.md:84",
+   "form_meta_tokens": []
+  },
+  {
+   "term": "超时后才",
+   "must_base": "core/behavior_core.md（分卷归一）",
+   "forbid_base": "A-memory-start/references/contract.md",
+   "must_loc": "core/behavior_core_rules_p3.md:13",
+   "forbid_loc": "references/contract.md:120",
+   "form_meta_tokens": []
+  }
+ ]
+}

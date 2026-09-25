@@ -450,6 +450,24 @@ def head_short():
     return git("rev-parse", "--short", "HEAD").stdout.strip() or "unknown"
 
 
+def refresh_stale_count():
+    """W-38（r56）：本轮有几个棘轮指标的源件已超期。取不到一律 None，**不写 0 冒充健康**。
+
+    两种"取不到"都要显形：① 读不到 ratchet_gate/源件 mtime；② 基线根本没声明预算
+    （W-37 之后预算在基线件里，缺位时所有指标都是 UNVERIFIED ⇒ 此时"0 个超期"是假绿）。
+    """
+    try:
+        import ratchet_gate as rg
+        rf = rg.refresh_summary()
+    except Exception as e:
+        print("[REFRESH:UNVERIFIED] 读不到再生面（%s: %s）⇒ 超期数记 None" % (type(e).__name__, e))
+        return None
+    if rf and all(v[2] is None for v in rf.values()):
+        print("[REFRESH:UNVERIFIED] 基线未声明任何预算（W-37 面缺位）⇒ 超期数记 None，不记 0")
+        return None
+    return sum(1 for v in rf.values() if v[0] == "STALE")
+
+
 def append_ledger(path, doc, origin="local", head=None):
     """把一次账龄测量**追加**成一行趋势记录；返回写入行数（0 = 被拒写）。
 
@@ -484,6 +502,9 @@ def append_ledger(path, doc, origin="local", head=None):
            # FAIL 行必须能进台账，趋势线才看得见"哪天判据自己变脏了"）
            "face_status": (doc.get("input_face") or {}).get("status", "UNVERIFIED"),
            "face_red_count": len((doc.get("input_face") or {}).get("red_faces") or []),
+           # W-38（r56）：再生超期计数进趋势线 —— 一次性告警看不出斜率，"漏跑探针"必须可追。
+           # 取不到就写 None（**不写 0**）：0 会被读成"今天没有一个超期"，那正是 R247 禁的假绿。
+           "refresh_stale_count": doc.get("refresh_stale_count"),
            "grace_rounds": doc.get("grace_rounds"), "current_round": doc.get("current_round"),
            "head": head or head_short()}
     io.open(path, "a", encoding="utf-8", newline="").write(
@@ -684,6 +705,7 @@ def main():
     doc["evidence"]["raw_item_lines"] = face["raw_lines"]
     doc["unowned_claims"] = unowned
     if args.ledger:
+        doc["refresh_stale_count"] = refresh_stale_count()
         wrote = append_ledger(args.ledger, doc, origin=args.origin)
         print("台账 %s → 追加 %d 行（%s）" % (args.ledger, wrote,
               "自洽通过" if wrote else "分类面不完整或之和对不上，拒写"))

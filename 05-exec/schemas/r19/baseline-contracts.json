@@ -229,26 +229,29 @@
    "note": "r37：噪声门假阳性修前/修后对照件；before 必须来自改动前自动备份原件实跑（防记忆值冒充）"
   },
   "inject_ratchet_baseline*.json": {
-   "schema_id": "zijian-inject-ratchet-v1",
+   "schema_id": "zijian-inject-ratchet-v2",
    "required": [
     "generated_at",
     "metrics",
     "hard_caps",
     "sources",
     "note",
-    "schema"
+    "schema",
+    "refresh_days"
    ],
    "types": {
     "metrics": "dict",
     "hard_caps": "dict",
     "sources": "dict",
-    "note": "str"
+    "note": "str",
+    "refresh_days": "dict"
    },
    "invariants": [
     "ratchet_metric_set_matches",
+    "ratchet_refresh_days_matches",
     "ratchet_hardcap_subset"
    ],
-   "note": "M-2（r38 清偿挂账 3 轮）：棘轮基线键集合必须与 ratchet_gate.METRIC_NAMES 全等——少一项该指标即无基线、棘轮静默放行（回归保护失效），多一项即僵尸基线"
+   "note": "M-2（r38 清偿挂账 3 轮）：棘轮基线键集合必须与 ratchet_gate.METRIC_NAMES 全等——少一项该指标即无基线、棘轮静默放行（回归保护失效），多一项即僵尸基线 ｜W-37（r56）：新增 refresh_days 必填 + ratchet_refresh_days_matches，把「多久必须重算」从代码常量升为被契约看守的声明面（schema v1→v2）"
   },
   "debt_runs.jsonl": {
    "kind": "jsonl",
@@ -292,6 +295,12 @@
       "face_status",
       "face_red_count"
      ]
+    },
+    {
+     "from": "2026-09-25T19:15:00",
+     "fields": [
+      "refresh_stale_count"
+     ]
     }
    ]
   },
@@ -303,6 +312,28 @@
     "opponent_claims_have_retrieval"
    ],
   "note": "r51 W-28：凡引用外部/对手数字的取证件。claims_face 声明这些数取的是哪一面（issues / issues+PR / 全量），每条须带 ≥2 条独立取值命令（retrieval）；分叉点前历史件豁免"
+ },
+ "inject_face_breakdown_r*.json": {
+  "schema_id": "inject-face-breakdown-v1",
+  "required": ["schema", "generated_at", "readonly", "cap", "measured_total", "over_cap",
+   "files", "cross_check", "decision_needed"],
+  "required_from": [{"from": "2026-09-25T19:00:00", "fields": ["by_owner", "enumerator"]}],
+  "types": {"files": "list", "by_owner": "dict", "readonly": "bool"},
+  "invariants": ["inject_breakdown_sum_matches"],
+  "invariants_from": {"inject_breakdown_sum_matches": "2026-09-25T19:00:00"},
+  "note": "W-32 取值件：r56 起有可复跑生成器 05-exec/r56_inject_face_breakdown.py（r52 那份是内联一次性产物、仓里无生成器 ⇒ 死句柄，本轮补齐并纳入契约）"
+ },
+ "w27_conflict_triage_r*.json": {
+  "schema_id": ["conflict-triage-v1", "conflict-triage-v2"],
+  "required": ["schema", "generated_at", "readonly", "total_candidates",
+   "distinct_rule_pairs_after_volume_merge", "duplicated_pairs", "distinct_terms",
+   "semantic_verdict"],
+  "required_from": [{"from": "2026-09-25T19:00:00",
+   "fields": ["source", "form_meta_token_table", "decision_needed", "rows"]}],
+  "types": {"rows": "list", "decision_needed": "list", "readonly": "bool"},
+  "invariants": ["triage_counts_consistent"],
+  "invariants_from": {"triage_counts_consistent": "2026-09-25T19:00:00"},
+  "note": "W-27 取值件：r56 起有生成器 05-exec/r56_conflict_triage.py（强制分卷归一，单一来源跑 rule_conflict_scan）。只数不裁——语义裁定仍归人工，件里 decision_needed 写明要谁裁、裁什么"
  },
  "debt_aging_r*.json": {
    "schema_id": [

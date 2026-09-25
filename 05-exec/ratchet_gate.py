@@ -44,7 +44,7 @@ METRIC_NAMES = ("catalog_grand_chars", "inject_union_bytes", "claim_candidates",
                 "overdue_debt_items",
                 "deferred_debt_items",
                 "repeat_debt_items")   # r45 W-14：改期>=2 次的堆单独看守，防「降级」变成新免检通道
-SCHEMA = "zijian-inject-ratchet-v1"
+SCHEMA = "zijian-inject-ratchet-v2"   # W-37（r56）：新增必填面 refresh_days ⇒ 代际升 v2（旧件按新契约判红是有意的，须重生成）
 FACE_NOTES = {}   # r50 W-25：指标取值时的"读取面"自证结果，main() 里如实打印（不算进指标值）
 
 # ---- W-36（r54）：每个指标必须声明"多久必须重算一次" ----
@@ -67,6 +67,28 @@ METRIC_REFRESH_DAYS = {
     "drift_ruleish_candidates": 30, "desc_over_cap": 30, "username_in_skill_files": 14,
     "overdue_debt_items": 3, "deferred_debt_items": 3, "repeat_debt_items": 3,
 }   # 债务三态预算 3 天：账龄尺每轮必跑，超过一轮即说明我漏跑了
+# ⚠️ 上表 r56 起**只作种子**（`--seed-refresh-days` 一次性写进基线件），判定不再读它。
+
+# W-37（r56）：再生预算的**权威声明面 = 基线件的 `refresh_days` 字段**，由契约做集合全等。
+# 存在理由：预算原先只活在这个代码字典里，契约看不见 ⇒ 谁删掉某一项，collect_metrics 只会
+# 静默少一项而不报错，"多久必须重算"退化成没人看守的注释（r54 D-97 登记、r55 收口时仍挂账）。
+# 对手对照：pre-commit/spec-kit 把节律写在被 CI 解析的 workflow 里 —— 声明即被校验。
+BASELINE_REFRESH_DAYS = {}
+
+
+def set_baseline_budgets(mapping):
+    """装载基线件声明的预算；非 dict 一律按「未声明」处理（禁回落代码常量当豁免表）。"""
+    global BASELINE_REFRESH_DAYS
+    BASELINE_REFRESH_DAYS = mapping if isinstance(mapping, dict) else {}
+    return BASELINE_REFRESH_DAYS
+
+
+def refresh_budget(metric):
+    """取某指标的再生预算 ⇒ (预算 or None, 理由)。预算合法域与夹具一致：整数 ∈ (1, 60]。"""
+    v = BASELINE_REFRESH_DAYS.get(metric)
+    if isinstance(v, int) and not isinstance(v, bool) and 1 < v <= 60:
+        return v, ""
+    return None, "基线未声明该指标预算（refresh_days 缺项或越界，不回落代码常量）"
 
 
 def source_age_days(metric):
@@ -116,14 +138,33 @@ def merge_note(prev_note, base_note, generated_at, changed):
     return new, (len(new) < len(prev))
 
 
+def refresh_summary(path=None):
+    """W-38（r56）：给外部（账龄尺台账）用的再生健康度快照。
+
+    必须自己装载基线预算 —— 否则调用方拿到的是一律 UNVERIFIED 的假结论
+    （W-37 起预算不在代码里，装载是前提不是可选）。
+    """
+    bl = load_baseline(str(path or DEFAULT_BASELINE))
+    set_baseline_budgets(bl.get("refresh_days"))
+    return refresh_status()
+
+
 def refresh_status():
-    """返回 {指标: (状态, 年龄, 预算)}，并顺带把 STALE 记进 FACE_NOTES 供打印。"""
+    """返回 {指标: (状态, 年龄, 预算, 理由)}，并顺带把 STALE 记进 FACE_NOTES 供打印。
+
+    W-37（r56）：预算改由基线件提供。取不到即 UNVERIFIED 且理由指认基线 ——
+    **不回落代码常量**，否则契约外的运行仍按旧预算跑，等于给自己留一张豁免表。
+    """
     out = {}
     for k in METRIC_NAMES:
         age = source_age_days(k)
-        budget = METRIC_REFRESH_DAYS.get(k)
+        budget, why = refresh_budget(k)
         st = face_metric_refresh(age, budget)
-        out[k] = (st, age, budget)
+        out[k] = (st, age, budget, why)
+        if not why:
+            FACE_NOTES.pop(k + "·预算", None)
+        else:
+            FACE_NOTES[k + "·预算"] = (False, why)
         if st == "STALE":
             FACE_NOTES[k + "·再生"] = (False, "源件已 %.1f 天未重算（预算 %s 天）⇒ 该指标转 unknown"
                                        % (age, budget))
@@ -264,11 +305,9 @@ def repeat_debt_items():
     return _debt_class_state("REPEAT")
 
 
-def inject_union_bytes():
-    """C25 注入区清单（**实测磁盘字节**，不取清单里登记的数字）∪ 本项目注入壳，按路径去重求和。
-
-    这里刻意不用 `bytes` 字段：r19 实测清单登记值会滞后于盘上真实大小，
-    而「注入区双源且互不校验」正是要防的病灶（N2）。
+def inject_union_paths():
+    """注入区**路径并集**（realpath 去重）。清单里登记的 bytes 不作数，只取盘上实存路径。
+    抽成单源是为了让"逐件拆解"的取证脚本与棘轮判据共用同一个枚举器 —— 两份算法必漂移。
     """
     paths = set()
     try:
@@ -282,6 +321,16 @@ def inject_union_bytes():
             paths.add(os.path.realpath(p))
     if PROJ_SHELL.exists():
         paths.add(os.path.realpath(PROJ_SHELL))
+    return paths
+
+
+def inject_union_bytes():
+    """C25 注入区清单（**实测磁盘字节**，不取清单里登记的数字）∪ 本项目注入壳，按路径去重求和。
+
+    这里刻意不用 `bytes` 字段：r19 实测清单登记值会滞后于盘上真实大小，
+    而「注入区双源且互不校验」正是要防的病灶（N2）。
+    """
+    paths = inject_union_paths()
     if not paths:
         return None
     total = 0
@@ -443,6 +492,9 @@ def main():
     ap.add_argument("--json")
     ap.add_argument("--update", action="store_true",
                     help="把现状写成基线（**只允许下调**；上调或缺项一律拒绝）")
+    ap.add_argument("--seed-refresh-days", action="store_true", dest="seed_refresh_days",
+                    help="W-37：把代码种子表 METRIC_REFRESH_DAYS 一次性写进基线件 refresh_days 字段"
+                         "（此后基线件为权威声明面，改预算=改基线件并须过契约集合全等）")
     ap.add_argument("--quiet", action="store_true")
     ap.add_argument("--strict-cap", action="store_true", dest="strict_cap",
                     help="把「超硬顶」也按阻断处理（默认非阻断告警，便于跨项目既有超限不拦本仓修改任务）")
@@ -454,9 +506,24 @@ def main():
     ap.add_argument("--reason", default="")
     args = ap.parse_args()
 
+    # W-37（r56）：基线必须先装载 —— 再生预算的权威声明面在基线件里，
+    # 而 collect_metrics → refresh_status 就要用它（原先顺序是"先判定后读基线"）。
+    bl = load_baseline(args.baseline)
+    if args.seed_refresh_days:
+        if not bl.get("metrics"):
+            print("[RATCHET:REFUSE] 基线不可用，无从播种预算")
+            return 2
+        doc = dict(bl)
+        doc["refresh_days"] = dict(METRIC_REFRESH_DAYS)
+        doc["generated_at"] = datetime.now().strftime("%Y-%m-%d %H:%M")
+        doc["note"] = str(bl.get("note") or "") + " ｜%s 预算播种：refresh_days 由代码种子表写入基线件，此后基线为权威、代码表不再参与判定（W-37）" % doc["generated_at"]
+        Path(args.baseline).write_text(json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")
+        print("[RATCHET:SEEDED] 预算写入 %s（%d 项）；此后改预算=改基线件，且须过契约集合全等"
+              % (args.baseline, len(doc["refresh_days"])))
+        return 0
+    set_baseline_budgets(bl.get("refresh_days"))
     metrics, unknown = collect_metrics()
     caps = hard_caps()
-    bl = load_baseline(args.baseline)
 
     if args.raise_baseline:
         if not bl.get("metrics"):
@@ -518,6 +585,18 @@ def main():
         for carry in ("attributed_raises",):
             if bl.get(carry) and not doc.get(carry):
                 doc[carry] = bl[carry]
+        # W-37（r56）：`--update` 只刷「指标值」，**不得顺手重算预算声明面** ——
+        # 预算是"多久必须重算"的承诺，若每次刷新都被代码值覆盖，就永远改不动也追不到。
+        if bl.get("refresh_days"):
+            if doc.get("refresh_days") not in (None, bl["refresh_days"]):
+                print("[RATCHET:REFUSE] --update 试图改写预算声明面（%s→%s）⇒ 拒写；"
+                      "改预算请显式编辑基线件并过契约" % (
+                          bl["refresh_days"], doc.get("refresh_days")))
+                return 1
+            doc["refresh_days"] = bl["refresh_days"]
+        elif doc.get("refresh_days"):
+            print("[RATCHET:REFUSE] 老基线无预算面而新件有 ⇒ 来源不明，拒写（应先跑 --seed-refresh-days）")
+            return 1
         if shrunk:
             print("[RATCHET:REFUSE] note 留账将缩短（%d→%d 字）⇒ 拒写基线"
                   % (len(str(bl.get("note") or "")), len(doc["note"])))
@@ -571,8 +650,6 @@ def main():
     if advisory and args.strict_cap:
         print("[RATCHET:FAIL] --strict-cap 生效：超硬顶 %d 项按阻断处理" % len(advisory))
         return 1
-        print("[RATCHET:FAIL] --strict-cap 生效：超硬顶 %d 项按阻断处理" % len(advisory))
-        return 1
     print("[RATCHET:PASS] %d 项指标均在棘轮基线内（只降不升）；非阻断告警 %d 项" % (len(metrics), len(advisory)))
     for k, (ok, why) in sorted(FACE_NOTES.items()):     # r50 W-25：读取面自证（全 OK 时不刷屏）
         if ok is not True:
@@ -582,8 +659,14 @@ def main():
         bad = {k: v for k, v in rf.items() if v[0] != "OK"}
         print("  再生周期（W-36）：%d/%d 指标在预算内 ｜ 非 OK：%s" % (
             len(rf) - len(bad), len(rf),
-            " ".join("%s=%s(%.1fd/%sd)" % (k, v[0], v[1] if v[1] is not None else -1, v[2])
+            " ".join("%s=%s(%s)" % (k, v[0],
+                                    "%.1fd/%sd" % (v[1], v[2]) if v[1] is not None and v[2]
+                                    else (v[3] or "无源件"))
                      for k, v in sorted(bad.items())) or "无"))
+        decl = sum(1 for v in rf.values() if v[2] is not None)
+        print("  预算来源：基线件 refresh_days 已声明 %d/%d 项%s" % (
+            decl, len(rf),
+            "" if decl == len(rf) else " ⇒ 未声明项记 UNVERIFIED，**不回落代码常量**（W-37）"))
     return 0
 
 

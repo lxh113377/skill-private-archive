@@ -202,6 +202,75 @@ def inv_ratchet_metric_set(doc, arg):
     return msgs
 
 
+def inv_inject_breakdown_sum(doc, arg):
+    """W-32 取值件自证：逐件求和必须等于 measured_total，且 unknown 不得被写成数字。
+
+    存在理由：注入面拆解件是"超顶该谁降"的唯一依据；它自己若与棘轮口径不同源，
+    裁定就建在一个算错的数上（r52 首版就虚增过 29,293B，靠 realpath 去重才修）。
+    """
+    files = doc.get("files")
+    if not isinstance(files, list) or not files:
+        return ["INJECT-BD: files 为空面，禁判合规（R247）"]
+    mt = doc.get("measured_total")
+    if mt is None:
+        return []                                   # 显式 unknown 是合法态（不可读时不造数）
+    s = sum(int(f.get("bytes") or 0) for f in files)
+    msgs = []
+    if s != mt:
+        msgs.append("INJECT-BD: 逐件求和 %d != measured_total %d ⇒ 拆解口径与判定口径漂移" % (s, mt))
+    cap = doc.get("cap")
+    oc = doc.get("over_cap")
+    if isinstance(cap, int) and isinstance(mt, int) and oc is not None and mt - cap != oc:
+        msgs.append("INJECT-BD: over_cap=%s 与 measured_total-cap=%d 不符" % (oc, mt - cap))
+    return msgs
+
+
+def inv_triage_counts(doc, arg):
+    """W-27 取值件自证：组数/对数/重复数三者的算术必须自洽，且空面不得当「已复核」。"""
+    msgs = []
+    tot, dp = doc.get("total_candidates"), doc.get("distinct_rule_pairs_after_volume_merge")
+    dup = doc.get("duplicated_pairs")
+    if not isinstance(tot, int) or tot <= 0:
+        return ["TRIAGE: total_candidates 为空/非正 ⇒ 空面不得当已复核（R247）"]
+    if not isinstance(dp, int) or dp <= 0:
+        msgs.append("TRIAGE: 归一后对数缺失或为 0（分卷归一没跑？）")
+    elif isinstance(dup, int) and tot - dp != dup:
+        msgs.append("TRIAGE: 算术不自洽 total-distinct=%d 但 duplicated=%d" % (tot - dp, dup))
+    if dp is not None and isinstance(dup, int) and dup < 0:
+        msgs.append("TRIAGE: duplicated_pairs 为负 ⇒ 归一后反而变多，枚举被复制")
+    if not doc.get("decision_needed"):
+        msgs.append("TRIAGE: 无 decision_needed 面 ⇒ 只数不呈裁定，等于没交")
+    return msgs
+
+
+def inv_ratchet_refresh_days(doc, arg):
+    """W-37（r56）：再生预算必须成为**被契约看守的声明面**，与指标集合全等且每项为 (1,60] 整数。
+
+    存在理由：`METRIC_REFRESH_DAYS` 原先只存在于 `ratchet_gate.py` 里，契约看不见它 ⇒ 谁删掉
+    某一项，`collect_metrics` 只是静默少一项而不报错，"多久必须重算"退化成没人看守的注释
+    （r54 D-97 登记、r55 收口时仍挂账）。少一项 = 该指标**永远不会被判超期**（静默漏跑），
+    多一项 = 僵尸声明。对手对照：pre-commit/spec-kit 把节律写在被 CI 解析的 workflow 里，
+    声明即被校验 —— 本条就是把同一件事挪到无 CI 条件下的等价机制上。
+    """
+    rd = doc.get("refresh_days")
+    if not isinstance(rd, dict):
+        return ["REFRESH-DAYS: 基线缺 refresh_days 声明面（预算只活在代码常量里=契约看不见，W-37）"]
+    metrics = set((doc.get("metrics") or {}).keys())
+    if not metrics:
+        return ["REFRESH-DAYS: metrics 为空面，禁判预算一致（R247）"]
+    msgs = []
+    got = set(rd)
+    missing, extra = sorted(metrics - got), sorted(got - metrics)
+    if missing:
+        msgs.append("REFRESH-DAYS: 预算缺指标 %s（该项永远不会被判超期 ⇒ 静默漏跑）" % missing)
+    if extra:
+        msgs.append("REFRESH-DAYS: 预算多指标 %s（僵尸声明，ratchet_gate 已不产出）" % extra)
+    for k, v in sorted(rd.items()):
+        if isinstance(v, bool) or not isinstance(v, int) or not 1 < v <= 60:
+            msgs.append("REFRESH-DAYS: %s 预算=%r 非法（须整数 ∈ (1,60]；0/负/小数/字符串都算未声明）" % (k, v))
+    return msgs
+
+
 def inv_ratchet_hardcap_subset(doc, arg):
     caps = set((doc.get("hard_caps") or {}).keys())
     metrics = set((doc.get("metrics") or {}).keys())
@@ -328,11 +397,14 @@ INVARIANTS = {
     "rubric_pct_within_total": inv_rubric_pct_within_total,
     "scenarios_nonempty": inv_scenarios_nonempty,
     "ratchet_metric_set_matches": inv_ratchet_metric_set,
+    "ratchet_refresh_days_matches": inv_ratchet_refresh_days,
     "ratchet_hardcap_subset": inv_ratchet_hardcap_subset,
     "debt_class_sum": inv_debt_class_sum,
     "debt_taxonomy_complete": inv_debt_taxonomy_complete,
     "conflict_no_dead_inputs": inv_conflict_no_dead_inputs,
     "opponent_claims_have_retrieval": inv_opponent_claims_have_retrieval,
+    "inject_breakdown_sum_matches": inv_inject_breakdown_sum,
+    "triage_counts_consistent": inv_triage_counts,
 }
 
 
@@ -380,9 +452,15 @@ def validate_jsonl(rows, contract, label="doc"):
     return msgs
 
 
+GEN_EXEMPT = []   # r56：本次运行里被"代际豁免"跳过的项，必须在输出里数出来（看不见的豁免=豁免表）
+
+
 def validate_doc(doc, contract, label="doc"):
     """按契约校验单个文档，返回违规描述列表（空 = 合规）。"""
     msgs = []
+    # 时间戳有两种既有形态（`2026-09-25 16:33` 与 `2026-09-25T19:31:00`）；不统一成 T 分隔，
+    # 字典序会把"空格形态的新件"判成早于分叉点 ⇒ 新件被静默豁免（比误判更坏）。
+    doc_ts = str(doc.get("generated_at") or "").replace(" ", "T")
     want = contract.get("schema_id")
     if want and doc.get("schema") != want:
         # r31：schema_id 允许「已授权代际清单」（列表）。同一技能的产物在 06-benchmark 里跨轮共存，
@@ -395,6 +473,21 @@ def validate_doc(doc, contract, label="doc"):
         found, _ = dig(doc, key)
         if not found:
             msgs.append("required: 缺字段 %s" % key)
+    # r56（W-32/W-27 落地时踩到）：给一类件**新增**必填面，会把同族的歷史证据件回头判红，
+    # 而证据件不可回写（R241）也不该搬走躲判（X-9）⇒ 沿用台账的代际口径 `required_from`：
+    # 只追认到分叉时间之后的件。豁免**必须打印出来**——看不见的豁免就是豁免表（R247）。
+    for seg in (contract.get("required_from") or []):
+        frm = str(seg.get("from") or "")
+        if not frm:
+            msgs.append("required_from: 段缺 from ⇒ 无法判代际，视为契约写法错误")
+            continue
+        if doc_ts and doc_ts < frm:
+            GEN_EXEMPT.append((label, ["required:%s" % k for k in seg.get("fields", [])]))
+            continue
+        for key in seg.get("fields", []):
+            found, _ = dig(doc, key)
+            if not found:
+                msgs.append("required(代际 %s 起): 缺字段 %s" % (frm, key))
     for key, tname in (contract.get("types") or {}).items():
         found, val = dig(doc, key)
         if found and not isinstance(val, TYPE_MAP.get(tname, object)):
@@ -403,6 +496,10 @@ def validate_doc(doc, contract, label="doc"):
         fn = INVARIANTS.get(name)
         if fn is None:
             msgs.append("invariants: 未知不变式 %s（契约与实现脱节）" % name)
+            continue
+        frm = str((contract.get("invariants_from") or {}).get(name) or "")
+        if frm and doc_ts and doc_ts < frm:
+            GEN_EXEMPT.append((label, ["invariant:%s(自 %s)" % (name, frm)]))
             continue
         msgs += fn(doc, name)
     return msgs
@@ -484,6 +581,7 @@ def main():
         return 2
 
     rows, all_msgs = [], []
+    GEN_EXEMPT.clear()          # r56：同进程多次调用时不得把上一轮的豁免记到这一轮
     files_checked = 0
     matched = []
     for pattern, contract in contracts["artifacts"].items():
@@ -542,6 +640,9 @@ def main():
              sum(1 for f in faces if f.get("max_round") is None)))
     print("\n契约: %s（%d 个 pattern / 受检文件 %d 个）" % (
         Path(contracts.get("path", args.contracts)).name, len(contracts["artifacts"]), files_checked))
+    print("  代际豁免（r56，新增面不追溯判红历史证据件）：%d 处 ｜ 涉及件 %s" % (
+        sum(len(v) for _, v in GEN_EXEMPT),
+        ", ".join(sorted({p for p, _ in GEN_EXEMPT})) or "无"))
     if all_msgs:
         print("[CONTRACT:FAIL] 违规 %d 条" % len(all_msgs))
         for m in all_msgs:

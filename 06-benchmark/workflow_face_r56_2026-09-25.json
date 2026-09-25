@@ -1,0 +1,84 @@
+{
+ "schema": "wf-validation-face-v1",
+ "generated_at": "2026-09-25T19:45:51",
+ "readonly": true,
+ "method": "git/trees/HEAD?recursive=1 取自有 .github/workflows/*.y(a)ml 为分母；逐个 contents raw 正文匹配校验 token；同时取 /actions/workflows.total_count 作对照面",
+ "validate_tokens": [
+  "pre-commit run",
+  "--check",
+  "validate",
+  "schema",
+  "lint"
+ ],
+ "face_caveat": "api 总计面含平台侧/历史条目，与自有文件面不等是常态（r56 实测两家差 2）；任何一侧单独引用都不算已核验",
+ "repos": [
+  {
+   "repo": "github/spec-kit",
+   "tree_truncated": false,
+   "own_workflow_files": 18,
+   "read_ok": 18,
+   "unreadable": [],
+   "api_total_face": 27,
+   "face_delta": 9,
+   "with_validation_step": 10,
+   "validation_names": [
+    "add-community-bundle.lock.yml",
+    "add-community-extension.lock.yml",
+    "add-community-preset.lock.yml",
+    "bug-assess.lock.yml",
+    "bug-fix.lock.yml",
+    "bug-test.lock.yml",
+    "feature-assess.lock.yml",
+    "lint.yml",
+    "release-trigger.yml",
+    "test.yml"
+   ]
+  },
+  {
+   "repo": "obra/superpowers",
+   "tree_truncated": false,
+   "own_workflow_files": 0,
+   "read_ok": 0,
+   "unreadable": [],
+   "api_total_face": 2,
+   "face_delta": 2,
+   "with_validation_step": 0,
+   "validation_names": []
+  },
+  {
+   "repo": "anthropics/skills",
+   "tree_truncated": false,
+   "own_workflow_files": 0,
+   "read_ok": 0,
+   "unreadable": [],
+   "api_total_face": 2,
+   "face_delta": 2,
+   "with_validation_step": 0,
+   "validation_names": []
+  },
+  {
+   "repo": "addyosmani/agent-skills",
+   "tree_truncated": false,
+   "own_workflow_files": 1,
+   "read_ok": 1,
+   "unreadable": [],
+   "api_total_face": 5,
+   "face_delta": 4,
+   "with_validation_step": 1,
+   "validation_names": [
+    "test-plugin-install.yml"
+   ]
+  },
+  {
+   "repo": "pre-commit/pre-commit",
+   "tree_truncated": false,
+   "own_workflow_files": 2,
+   "read_ok": 2,
+   "unreadable": [],
+   "api_total_face": 3,
+   "face_delta": 1,
+   "with_validation_step": 0,
+   "validation_names": []
+  }
+ ]
+}
