@@ -21,3 +21,4 @@
 {"ts": "2026-09-25T14:07:56", "origin": "local", "open_total": 63, "overdue": 4, "active": 4, "decided": 43, "undated": 12, "deferred": 0, "repeat": 0, "grace_rounds": 2, "current_round": 43, "head": "321b44f"}
 {"ts": "2026-09-25T14:08:42", "origin": "local", "open_total": 62, "overdue": 2, "active": 4, "decided": 43, "undated": 12, "deferred": 1, "repeat": 0, "grace_rounds": 2, "current_round": 43, "head": "321b44f"}
 {"ts": "2026-09-25T14:11:39", "origin": "local", "open_total": 63, "overdue": 1, "active": 6, "decided": 43, "undated": 12, "deferred": 1, "repeat": 0, "grace_rounds": 2, "current_round": 43, "head": "321b44f"}
+{"ts": "2026-09-25T14:17:36", "origin": "local", "open_total": 63, "overdue": 0, "active": 4, "decided": 46, "undated": 12, "deferred": 1, "repeat": 0, "coverage_status": "OK", "coverage_prev_overdue": 1, "coverage_missing": 0, "grace_rounds": 2, "current_round": 44, "head": "24fd233"}

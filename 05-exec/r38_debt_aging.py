@@ -218,6 +218,9 @@ def append_ledger(path, doc, origin="local", head=None):
            "open_total": total, "overdue": by["OVERDUE"], "active": by["ACTIVE"],
            "decided": by["DECIDED"], "undated": by["UNDATED"],
            "deferred": by.get("DEFERRED", 0), "repeat": by.get("REPEAT", 0),
+           "coverage_status": (doc.get("coverage") or {}).get("status", "UNVERIFIED"),
+           "coverage_prev_overdue": (doc.get("coverage") or {}).get("prev_overdue"),
+           "coverage_missing": len((doc.get("coverage") or {}).get("missing") or []),
            "grace_rounds": doc.get("grace_rounds"), "current_round": doc.get("current_round"),
            "head": head or head_short()}
     io.open(path, "a", encoding="utf-8", newline="").write(

@@ -9,7 +9,8 @@
   "desc_over_cap": 0,
   "username_in_skill_files": 23,
   "overdue_debt_items": 0,
-  "deferred_debt_items": 23
+  "deferred_debt_items": 23,
+  "repeat_debt_items": 0
  },
  "hard_caps": {
   "inject_union_bytes": 65536
@@ -21,5 +22,5 @@
   "desc": "C:\\Users\\37533\\Desktop\\workspace\\自建skill优化\\06-benchmark\\description基线_2026-09-24.json",
   "inject_files": "焚诀 truth_constants.inject_budget.files 实测 + 本项目 AGENTS.md"
  },
- "note": "只降不升棘轮；缺项/超顶/无基线一律 exit 非 0（R247） ｜r38 人工核定第 7 指标 overdue_debt_items=22（r38 二次核定：账龄尺补上裸 rNN 回落后，原被判 UNDATED 的 27 条里 9 条实为超期，真实敞口 22 而非 0；取值面 06-benchmark/debt_aging_r38_*.json 的 by_class.OVERDUE；本轮 13 条超期已逐条裁决归零，非放宽判据所得） ｜r39 复核定 overdue_debt_items=0：22 条超期已逐条给终局或带期裁决（OVERDUE 0，DEFERRED 23 单列可见，未销账）；DEFERRED 敞口待 W-4 立第 8 指标看守 ｜r40 核定 deferred_debt_items=23（真值直接取自 debt_aging 最新证据件，未做人工削减；W-4 用途＝防给每条写挂账把账面做干净）"
+ "note": "只降不升棘轮；缺项/超顶/无基线一律 exit 非 0（R247） ｜r38 人工核定第 7 指标 overdue_debt_items=22（r38 二次核定：账龄尺补上裸 rNN 回落后，原被判 UNDATED 的 27 条里 9 条实为超期，真实敞口 22 而非 0；取值面 06-benchmark/debt_aging_r38_*.json 的 by_class.OVERDUE；本轮 13 条超期已逐条裁决归零，非放宽判据所得） ｜r39 复核定 overdue_debt_items=0：22 条超期已逐条给终局或带期裁决（OVERDUE 0，DEFERRED 23 单列可见，未销账）；DEFERRED 敞口待 W-4 立第 8 指标看守 ｜r40 核定 deferred_debt_items=23（真值直接取自 debt_aging 最新证据件，未做人工削减；W-4 用途＝防给每条写挂账把账面做干净） | r45 核定 repeat_debt_items=0（W-14 新指标；现值取 debt_aging_r45 的 by_class.REPEAT=0，未做人工削减）"
 }

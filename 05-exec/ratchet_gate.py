@@ -42,7 +42,8 @@ TRUTH_CONSTANTS = Path(r"C:\Users\37533\Desktop\workspace\焚诀\eval\truth_cons
 METRIC_NAMES = ("catalog_grand_chars", "inject_union_bytes", "claim_candidates",
                 "drift_ruleish_candidates", "desc_over_cap", "username_in_skill_files",
                 "overdue_debt_items",
-                "deferred_debt_items")   # r40 W-4：延期堆单独看守，防换个地方堆债
+                "deferred_debt_items",
+                "repeat_debt_items")   # r45 W-14：改期>=2 次的堆单独看守，防「降级」变成新免检通道
 SCHEMA = "zijian-inject-ratchet-v1"
 
 
@@ -151,6 +152,15 @@ def deferred_debt_items():
     配套 W-5：两态连续 3 轮同时不降 ⇒ 停开新维度轮。
     """
     return _debt_class_state("DEFERRED")
+def repeat_debt_items():
+    """r45 W-14：被改期 >=2 次的待办数（只降不升）。
+
+    存在理由（r44 D59 实测）：那一轮把 OVERDUE 从 16 压到 1，其中 11 条是靠「降级为长期看守」实现的；
+    降级是**合法终局裁决**，但如果没有独立指标，「全部降级」就能把账面做得比真还债还干净。
+    本指标把这条退路也纳入只降不升的看守面。取值面 by_class.REPEAT，与 overdue/deferred 同一自洽门。"""
+    return _debt_class_state("REPEAT")
+
+
 def inject_union_bytes():
     """C25 注入区清单（**实测磁盘字节**，不取清单里登记的数字）∪ 本项目注入壳，按路径去重求和。
 
@@ -196,7 +206,8 @@ COMPUTE = {"catalog_grand_chars": catalog_grand_chars,
            "desc_over_cap": desc_over_cap,
            "username_in_skill_files": username_in_skill_files,
            "overdue_debt_items": overdue_debt_items,
-           "deferred_debt_items": deferred_debt_items}
+           "deferred_debt_items": deferred_debt_items,
+           "repeat_debt_items": repeat_debt_items}
 
 
 def collect_metrics():

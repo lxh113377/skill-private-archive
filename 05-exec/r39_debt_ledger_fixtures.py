@@ -255,6 +255,45 @@ def main():
     ck("t46 多命中时 missing 逐行计（防只裁第一行就宣称完成）",
        len(da.adjudication_gap(["待办 C"], L, "r44")) == 2, str(da.adjudication_gap(["待办 C"], L, "r44")))
 
+    # --- r45 W-14：REPEAT 必须有独立棘轮指标（否则「降级」变成新的免检通道）---
+    b45 = tmp / "bench45"
+    b45.mkdir()
+    def ev45(name, repeat):
+        by = {"OVERDUE": 1, "ACTIVE": 2, "DECIDED": 3, "UNDATED": 4, "DEFERRED": 5, "REPEAT": repeat}
+        io.open(b45 / name, "w", encoding="utf-8", newline="").write(json.dumps(
+            {"schema": "debt-aging-v2", "evidence": {"open_total": sum(by.values())}, "by_class": by}))
+    ev45("debt_aging_r44_a.json", 6)
+    rg.BENCH = b45
+    ck("t50 METRIC_NAMES 含 repeat_debt_items（不进棘轮=白写）",
+       "repeat_debt_items" in rg.METRIC_NAMES, str(rg.METRIC_NAMES))
+    ck("t51 取值读最新证据件的 REPEAT 态",
+       getattr(rg, "repeat_debt_items", lambda: None)() == 6, "")
+    import time as _tm
+    ev45("debt_aging_r45_b.json", 11)
+    _tm.sleep(1.1)
+    ck("t52 反例：REPEAT 堆增长时指标如实跟涨",
+       getattr(rg, "repeat_debt_items", lambda: None)() == 11, "")
+    io.open(b45 / "debt_aging_r46_c.json", "w", encoding="utf-8", newline="").write(json.dumps(
+        {"schema": "debt-aging-v2", "evidence": {"open_total": 3},
+         "by_class": {"OVERDUE": 1, "ACTIVE": 1, "DECIDED": 1,
+                      "UNDATED": 1, "DEFERRED": 1, "REPEAT": 1}}))
+    ck("t53 反例：三态指标共用同一自洽门（脏证据一律 None）",
+       [rg.overdue_debt_items(), rg.deferred_debt_items(),
+        getattr(rg, "repeat_debt_items", lambda: "MISS")()] == [None, None, None],
+       str([rg.overdue_debt_items(), rg.deferred_debt_items()]))
+    ck("t54 脏证据下 repeat 指标必须 None（不得单独放行）",
+       getattr(rg, "repeat_debt_items", lambda: "MISSING")() is None,
+       str(getattr(rg, "repeat_debt_items", None)))
+    # W-15：趋势台账行须承载完整性结果
+    led15 = tmp / "led15.jsonl"
+    doc15 = doc({"OVERDUE": 1, "ACTIVE": 1, "DECIDED": 1, "UNDATED": 1, "REPEAT": 1}, open_total=5)
+    doc15["coverage"] = {"status": "INCOMPLETE", "prev_overdue": 15, "missing": [{"file": "f", "key": "k"}]}
+    ck("t55 台账行写入 coverage 三列（status/prev_overdue/missing_count）",
+       da.append_ledger(str(led15), doc15, origin="local") == 1
+       and (lambda r: r.get("coverage_status") == "INCOMPLETE" and r.get("coverage_prev_overdue") == 15
+            and r.get("coverage_missing") == 1)(json.loads(io.open(led15, encoding="utf-8").read().strip())),
+       io.open(led15, encoding="utf-8").read().strip()[:200] if led15.exists() else "no file")
+
     fails = [r for r in RESULTS if not r[0]]
     print("\n夹具合计: %d 项，通过 %d，失败 %d" % (len(RESULTS), len(RESULTS) - len(fails), len(fails)))
     if fails:
