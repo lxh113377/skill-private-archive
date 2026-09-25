@@ -1,50 +1,39 @@
 {
  "schema": "inject-face-breakdown-v1",
- "generated_at": "2026-09-25T17:02:12",
+ "generated_at": "2026-09-25T17:02:45",
  "readonly": true,
  "round": 52,
  "cap": 65536,
- "measured_total": 115870,
- "over_cap": 50334,
- "attribution_note": "取值为实测磁盘字节（不取清单登记值），与 ratchet_gate.inject_union_bytes 同口径",
+ "measured_total": 86577,
+ "over_cap": 21041,
+ "attribution_note": "按 realpath 去重（首版把清单里的相对 AGENTS.md 与本项目注入壳各算一次，虚增 29,293B；已改为与 ratchet_gate.inject_union_bytes 同口径，两值现必须相等）",
+ "cross_check": "python 05-exec/ratchet_gate.py 的 inject_union_bytes 应等于本件 measured_total",
  "files": [
-  {
-   "path": "AGENTS.md",
-   "bytes": 29293,
-   "exists": true,
-   "declared_bytes": 5836
-  },
   {
    "path": "C:\\Users\\37533\\Desktop\\workspace\\自建skill优化\\AGENTS.md",
    "bytes": 29293,
-   "exists": true,
-   "declared_bytes": null
+   "exists": true
   },
   {
-   "path": "D:/global_skills/A-memory-start/SKILL.md",
+   "path": "D:\\global_skills\\A-memory-start\\SKILL.md",
    "bytes": 26377,
-   "exists": true,
-   "declared_bytes": 25456
+   "exists": true
   },
   {
-   "path": "D:/global_skills/A-memory-start/references/contract.md",
+   "path": "D:\\global_skills\\A-memory-start\\references\\contract.md",
    "bytes": 19116,
-   "exists": true,
-   "declared_bytes": 18616
+   "exists": true
   },
   {
-   "path": "D:/global_memory/core/behavior_core.md",
+   "path": "D:\\global_memory\\core\\behavior_core.md",
    "bytes": 8797,
-   "exists": true,
-   "declared_bytes": 8350
+   "exists": true
   },
   {
-   "path": "C:/Users/37533/.zcode/AGENTS.md",
+   "path": "C:\\Users\\37533\\.zcode\\AGENTS.md",
    "bytes": 2994,
-   "exists": true,
-   "declared_bytes": 3214
+   "exists": true
   }
  ],
- "retrieval": "python 05-exec/ratchet_gate.py 看 inject_union_bytes 行 ; python 05-exec/r32_w32_breakdown.py（本件）",
- "decision_needed": "二选一：(a) 实减 —— 但 115870 B 中最大项来自受管根（本项目无权单方压缩）；(b) 显式重设硬顶并逐因归因（须由用户或归属会话裁定，禁本项目顺手放宽）"
+ "decision_needed": "超出 21041 B 中受管根占 54290 B（A-memory-start 两件 + GM 核心），本项目侧唯一可控项是注入壳 29293 B；重设硬顶须用户或归属会话裁定（禁顺手放宽）"
 }
