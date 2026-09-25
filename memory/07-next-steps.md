@@ -128,6 +128,36 @@ r42 根因轮（2026-09-25 第 42 轮，第十二次逐字触发 ⇒ 整跑一�
 
 - **卷15** `07-next-steps.part15.md` — 07-next-steps 分卷（R199 自动拆卷）
 
+- **卷16** `07-next-steps.part17.md` — 07-next-steps 分卷（R199 自动拆卷）
+
+- **卷17** `07-next-steps.part18.md` — 07-next-steps 分卷（R199 自动拆卷）
+
+- **卷18** `07-next-steps.part19.md` — 07-next-steps 分卷（R199 自动拆卷）
+
+- **卷19** `07-next-steps.part20.md` — 07-next-steps 分卷（R199 自动拆卷）
+
+- **卷20** `07-next-steps.part21.md` — 07-next-steps 分卷（R199 自动拆卷）
+
+- **卷21** `07-next-steps.part22.md` — 07-next-steps 分卷（R199 自动拆卷）
+
+- **卷22** `07-next-steps.part23.md` — 07-next-steps 分卷（R199 自动拆卷）
+
+- **卷23** `07-next-steps.part24.md` — 07-next-steps 分卷（R199 自动拆卷）
+
+- **卷24** `07-next-steps.part25.md` — 07-next-steps 分卷（R199 自动拆卷）
+
+- **卷25** `07-next-steps.part26.md` — 07-next-steps 分卷（R199 自动拆卷）
+
+- **卷26** `07-next-steps.part27.md` — 07-next-steps 分卷（R199 自动拆卷）
+
+- **卷27** `07-next-steps.part28.md` — 07-next-steps 分卷（R199 自动拆卷）
+
+- **卷28** `07-next-steps.part29.md` — 07-next-steps 分卷（R199 自动拆卷）
+
+- **卷29** `07-next-steps.part30.md` — 07-next-steps 分卷（R199 自动拆卷）
+
+- **卷30** `07-next-steps.part31.md` — 07-next-steps 分卷（R199 自动拆卷）
+
 ## 分卷目录
 - **卷1** `07-next-steps.part1.md` — 历史待办与已完成条目（2026-09-22 已按实测销账）
 - **卷2** `07-next-steps.part2.md` — 已完成：批2 剩余 P0 与 q-2/q-3 收口
