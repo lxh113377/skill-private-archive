@@ -1,0 +1,7 @@
+# 07-next-steps.part36.md
+
+<!-- 本卷为 07-next-steps.part33.md 的延续 -->
+
+## 已完成（索引；完整明细见 `05-feature-status.md` 与 `part2.md`）
+
+- **2026-09-25（第 50 轮 r50，W-25 输入面自证推广 + 对手枚举面复核）** — 同一指令第二十次逐字触发 ⇒ 整跑一轮；W-5 约束下不开新维度。① **自家判据的真缺口**：`rule_conflict_scan` 的 `DEFAULT_FILES` 是手抄 10 件，而 `D:/global_memory/core` 有 18 件带可配对正负规则的权威源（`behavior_core_rules_p1..p8` = 22 锚点正文所在）**从未进面** ⇒ 扩面到 26 件后极性规则 116→188、自述冲突 6→11、互斥候选 6→21，证明此前的绿灯只是 **38% 面上的结论**；落地 `discover_authority_candidates`/`face_authority_coverage`/`effective_files`，并加对照例 c6b「只用手抄清单必须判红」防扩面空转（立 **X-26**）。② **同一把尺回头量对手取证**：`/actions/workflows` 总计面混有平台 `dynamic/*` ⇒ superpowers 与 anthropics/skills 实测**仓库内 0 个 workflow**（contents 目录 404），r31/r32 的「2 workflow / 82% failure / 75% failure 停摆 6 周」描述的是 Copilot 平台件而非仓库测试 CI；校正基数 = spec-kit 18、AAS 2、pre-commit 2、其余 0，历史条目不删只在 comparison 加校正附节（R241）。③ **棘轮读取面对账**：`face_counted_vs_observed` 让 `OSError: continue` 静默跳过显形，面不完整即转 unknown （禁止拿缩小面的数字与基线比）。④ **W-26 收口 = 先归因再定性**：`git show r43..r49` 实测仓库内全为纯 LF ⇒ 混合行尾来自**本仓写卷脚本未传 `newline=""`**，与并行会话无关（我 r49 那句未经核验的归因已加**校正注**），立 **X-25**。⑤ **判据自己造的假阳性**：建议面把 `X-24` 判成漏登记 —— 但 X 编号的承接面是 `memory/AGENTS.md` 禁止项表而非 07。已按前缀分面路由（W/M/H/L→待办卷、X→禁止项表，且禁止互相顶替，反例 f17–f20）。⑥ 到期债 W-17 一条裁决（OVERDUE 1→0、DECIDED 70→73），新立 W-27（21 组互斥候选转裁定）/W-28（枚举源双路对账做成判据）/W-29（复核其余对手数字）。末态：夹具 32+16+58+10+5 全绿、`[FACE:UNVERIFIED]`（定年面零到期项未行使，不静默判绿）、报告 = `06-benchmark/全量对标报告_r50_权威源扫描扩面与对手枚举面复核_2026-09-25.md`

@@ -34,7 +34,7 @@
 | R57-1 | P1 | 推荐:rule_editor gates 输出截断机器化——mirror 明细须逐条打印（本轮因只看 tail 误判「他人脏项」，跑 check-skill-mirror.ps1 原文才发现 13 项全是自己的） | done | - | - | 2026-09-25 21:30 | D:/global_skills/A-memory-start/references/rule_editor.py#GATE_DETAIL_LINES 明细打印（违规样本 13 项全见 + 正例 -Fix 后绿） |
 | R57-2 | P1 | 推荐:memory/08-ac-obs.md（4,102B 超 4KB）裁口径——入 SPLIT_TARGETS 还是加豁免册（flow --verify-ac 整卷解析 08，拆卷会打断 AC 判定） | done | - | - | 2026-09-25 21:30 | volume_gov_stub.py 26/26（豁免册不判红 + 不在册照判两侧） |
 | R57-3 | P1 | 推荐:注入壳 AGENTS.md 29,293B / TODO.md 31,909B 超 root_doc_max 16KB——走 trim-shell 迁历史条目（VOL-858E6/VOL-D908D 的落地） | todo | - | - | 2026-09-25 21:06 | - |
-| VOL-2A600 | P1 | 体量治理[L1 记忆卷] memory/07-next-steps.md — 主卷注入面超告警线：按条数归档（savepoint 摘要归档 / trim-shell）或把长校正注迁分卷；P0 与红线内容禁自动改 | todo | - | - | 2026-09-25 21:30 | - |
+| VOL-2A600 | P1 | 体量治理[L1 记忆卷] memory/07-next-steps.md — 主卷注入面超告警线：按条数归档（savepoint 摘要归档 / trim-shell）或把长校正注迁分卷；P0 与红线内容禁自动改 | blocked | - | 摘要已按条数归档（主壳 138,304B→119,610B，-18,694B）；余量为 P0 活债 70KB + 分卷目录 36KB，须逐条人工裁决（禁自动改 P0） | 2026-09-25 21:49 | - |
 
 ## 推进记录
 
@@ -54,6 +54,7 @@
 - [2026-09-25 21:30] VOL-1BFD2 todo → done
 - [2026-09-25 21:30] R57-1 todo → done
 - [2026-09-25 21:30] R57-2 todo → done
+- [2026-09-25 21:49] VOL-2A600 todo → blocked（摘要已按条数归档（主壳 138,304B→119,610B，-18,694B）；余量为 P0 活债 70KB + 分卷目录 36KB，须逐条人工裁决（禁自动改 P0））
 
 ## 分卷目录
 
