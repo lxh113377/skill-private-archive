@@ -40,7 +40,7 @@ DEFAULT_FILES = [
     GM / "core" / "BOOTSTRAP.part1.md",
     GM / "core" / "BOOTSTRAP.part2.md",
     GM / "prompts" / "workflow_seven_step.md",
-    GM / "AGENTS.md",
+    Path(r"C:\\Users\\37533\\.qoder-cn") / "agents.md",   # r40 L-4 修：原写 GM/AGENTS.md（实测不存在，死输入面）→ 改指真实在役的 QD 注入壳
     GS / "A-memory-start" / "SKILL.md",
     GS / "A-memory-start" / "references" / "contract.md",
     PROJ / "memory" / "AGENTS.md",
@@ -246,7 +246,7 @@ def main():
         "readonly": True,
         "benchmark": "mycelium-hq/ai-brain-starter scripts/check-rule-conflicts.py",
         "input_evidence": {
-            "files_listed": len(files),
+            "files_declared": len(files), "files_listed": len(files),
             "files_present": present,
             "files_missing": missing,
             "files_empty": empty,

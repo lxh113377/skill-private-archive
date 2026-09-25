@@ -170,6 +170,34 @@ def main():
     ck("t19 最新一份四态之和 != open_total → 指标 None（脏证据不得放行）",
        rg.overdue_debt_items() is None, str(rg.overdue_debt_items()))
 
+    # --- r40 W-4：延期堆必须有**独立**回归保护，否则"换个地方堆债"无人看守 ---
+    bench3 = tmp / "bench3"
+    bench3.mkdir()
+    def ev3(name, overdue, deferred):
+        """合成**自洽**证据件：open_total 恒等于五态之和（否则测的是 fail-closed 而非跟涨）。"""
+        by = {"OVERDUE": overdue, "ACTIVE": 9, "DECIDED": 11, "UNDATED": 13, "DEFERRED": deferred}
+        io.open(bench3 / name, "w", encoding="utf-8", newline="").write(json.dumps(
+            {"schema": "debt-aging-v2", "evidence": {"open_total": sum(by.values())},
+             "by_class": by}))
+    ev3("debt_aging_r39_a.json", 0, 23)
+    rg.BENCH = bench3
+    ck("t20 ratchet_gate 暴露第 8 指标 deferred_debt_items", hasattr(rg, "deferred_debt_items"), "")
+    ck("t21 METRIC_NAMES 含 deferred_debt_items（否则指标不进棘轮=白写）",
+       "deferred_debt_items" in rg.METRIC_NAMES, str(rg.METRIC_NAMES))
+    ck("t22 取值正确：读最新证据件的 DEFERRED 态",
+       getattr(rg, "deferred_debt_items", lambda: None)() == 23,
+       str(getattr(rg, "deferred_debt_items", None)))
+    import time as _tm
+    ev3("debt_aging_r40_b.json", 5, 30)
+    _tm.sleep(1.1)
+    ck("t23 反例：延期堆增长时指标如实跟涨（不沿用旧值）",
+       getattr(rg, "deferred_debt_items", lambda: None)() == 30, "")
+    io.open(bench3 / "debt_aging_r41_c.json", "w", encoding="utf-8", newline="").write(json.dumps(
+        {"schema": "debt-aging-v2", "evidence": {"open_total": 40},
+         "by_class": {"OVERDUE": 1, "ACTIVE": 1, "DECIDED": 1, "UNDATED": 1, "DEFERRED": 1}}))
+    ck("t25 脏证据（之和 != open_total）→ deferred 指标同样 None（与 overdue 同等 fail-closed）",
+       rg.deferred_debt_items() is None if hasattr(rg, "deferred_debt_items") else False, "")
+
     fails = [r for r in RESULTS if not r[0]]
     print("\n夹具合计: %d 项，通过 %d，失败 %d" % (len(RESULTS), len(RESULTS) - len(fails), len(fails)))
     if fails:

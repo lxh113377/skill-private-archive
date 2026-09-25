@@ -208,6 +208,32 @@ def inv_ratchet_hardcap_subset(doc, arg):
     return ["HARD-CAP: %s 设了硬顶却不在 metrics 里（硬顶无主，永不触发）" % orphan] if orphan else []
 
 
+def inv_conflict_no_dead_inputs(doc, arg):
+    """r40 L-4：冲突扫描器的输入面必须"声明 == 实存"。
+
+    扫描器自身已把 `files_missing` 透明打印（9/10 存在），但**契约此前不看这一项** ⇒
+    死条目可以长期存在而 [CONTRACT:PASS] 照绿。本不变式把"取不到的权威源"升格为违规：
+    要么补回真实路径（不得靠删条目把覆盖面做小），要么显式承认少扫。
+    """
+    ev = doc.get("input_evidence") or {}
+    declared = ev.get("files_declared", ev.get("files_listed"))
+    present = ev.get("files_present")
+    missing = ev.get("files_missing") or []
+    if "files_declared" not in ev:
+        # 代际豁免：files_declared 是 r40 才新增的自证字段，历史产物写不出它，
+        # 按 R241 不得被回溯判红（判据只约束会写该字段的今后产物）。
+        return []
+    if declared is None or present is None:
+        # 代际豁免：files_declared 是 r40 才落的自证字段，历史记录写不出它不能被回溯判红
+        # （与 R241「历史只加注不改写」同理）。判据只约束**会写该字段的今后产物**。
+        return []
+    if missing:
+        return ["CONFLICT-INPUT: 存在死输入条目 %s（声明 %s 实存 %s）" % (missing, declared, present)]
+    return [] if declared == present else [
+        "CONFLICT-INPUT: files_declared=%s != files_present=%s 却无 missing 名单（自相矛盾）"
+        % (declared, present)]
+
+
 def inv_debt_class_sum(doc, arg):
     """r38 第十四维：三分类之和必须 == open_total（判据漏桶即红，X-7 同族）。"""
     ev, by = doc.get("evidence") or {}, doc.get("by_class") or {}
@@ -252,6 +278,7 @@ INVARIANTS = {
     "ratchet_hardcap_subset": inv_ratchet_hardcap_subset,
     "debt_class_sum": inv_debt_class_sum,
     "debt_taxonomy_complete": inv_debt_taxonomy_complete,
+    "conflict_no_dead_inputs": inv_conflict_no_dead_inputs,
 }
 
 

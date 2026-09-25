@@ -119,7 +119,8 @@
    },
    "invariants": [
     "readonly_true",
-    "conflict_input_evidence_nonzero"
+    "conflict_input_evidence_nonzero",
+    "conflict_no_dead_inputs"
    ]
   },
   "skill_structure_rubric_*.json": {

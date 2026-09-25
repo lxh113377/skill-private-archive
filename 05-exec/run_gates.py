@@ -110,6 +110,18 @@ GATES = [
         "why": "拦「写崩/截断留下的 0 字节件」——r34 我曾把 memory/AGENTS.md 写成 0 字节，靠 Git 基线才恢复",
     },
     {
+        # r40 L-4：冲突扫描器输入面自证（死条目必须红，且不得靠删条目把覆盖面做干净）
+        "id": "scan_inputs_fixtures",
+        "script": "r40_scan_inputs_fixtures.py",
+        "argv": [],
+        "pass_token": "[GATE:fixture-pass]",
+        "portable": True,
+        "covers": ["05-exec/rule_conflict_scan.py 的 DEFAULT_FILES 与 input_evidence",
+                   "05-exec/baseline_contract_scan.py 的 conflict_no_dead_inputs 不变式"],
+        "why": "r40 实测：DEFAULT_FILES 里有一条指不到文件的权威源，被错标成归属方件挂账 4 轮"
+               "——本条把『声明==实存』钉成契约判据，防同类债务被错误外部化",
+    },
+    {
         # r39 W-3：债务趋势台账的 fail-closed 夹具（拒写脏行 + 延期不得冒充已裁决）
         "id": "debt_ledger_fixtures",
         "script": "r39_debt_ledger_fixtures.py",
