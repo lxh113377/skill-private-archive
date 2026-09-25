@@ -1,0 +1,76 @@
+{
+ "schema": "noise-falsepositive-audit-v1",
+ "generated_at": "2026-09-25T10:10:43",
+ "readonly": true,
+ "before_snapshot_source": "改动前 12 分钟的自动备份（即 r37 之前的在役版本）：A-project-handoff.scripts.noise_lint.py.20260925_100007_370018.bak",
+ "verdict_taxonomy": [
+  "governance_file_tracked",
+  "auto_memory_rootdoc",
+  "git_runtime_state(仓内工具自写)",
+  "subpath_scatter",
+  "untracked_root_file",
+  "genuine_scatter"
+ ],
+ "before": {
+  "global_skills": {
+   "ok": 168,
+   "quarantine": 6,
+   "violation": []
+  },
+  "global_memory": {
+   "ok": 66,
+   "quarantine": 3,
+   "violation": [
+    ".git/push-failure.log",
+    "reference-github-pages-blocked.md"
+   ]
+  },
+  "global_memory_archive": {
+   "ok": 6,
+   "quarantine": 7,
+   "violation": []
+  },
+  "fenjue": {
+   "ok": 38,
+   "quarantine": 16,
+   "violation": [
+    ".git/push-failure.log",
+    "CONTRIBUTING.md",
+    "LICENSE.md",
+    "SECURITY.md"
+   ]
+  }
+ },
+ "after": {
+  "global_skills": {
+   "ok": 168,
+   "quarantine": 6,
+   "violation": []
+  },
+  "global_memory": {
+   "ok": 67,
+   "quarantine": 3,
+   "violation": []
+  },
+  "global_memory_archive": {
+   "ok": 6,
+   "quarantine": 7,
+   "violation": []
+  },
+  "fenjue": {
+   "ok": 41,
+   "quarantine": 16,
+   "violation": []
+  }
+ },
+ "before_violation_provenance": {
+  "global_memory/.git/push-failure.log": "git_runtime_state(仓内工具 git_autopush.py 自写)",
+  "global_memory/reference-github-pages-blocked.md": "auto_memory_rootdoc",
+  "fenjue/.git/push-failure.log": "git_runtime_state(仓内工具 git_autopush.py 自写)",
+  "fenjue/CONTRIBUTING.md": "governance_file_tracked",
+  "fenjue/LICENSE.md": "governance_file_tracked",
+  "fenjue/SECURITY.md": "governance_file_tracked"
+ },
+ "gate": "[GATE:noise-pass]",
+ "note": "before=修前原件实跑四根；after=在役原件实跑四根；每条 before VIOL 的 provenance 由 git 实测"
+}

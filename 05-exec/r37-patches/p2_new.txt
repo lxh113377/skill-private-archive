@@ -1,0 +1,10 @@
+    if STRAY_NAME.search(name) or MIGRATION_NAME.search(name):
+        return "violation", "根部散落：临时/备份/迁移产物"
+    # R283（2026-09-25 自建skill优化 r37）：allowlist 漏登记**归属方有意提交的治理件**会判 VIOL，
+    # 且给出的处置是「迁往 _trash」——对已入库件是破坏性建议。放行条件三重收窄，缺一即维持 VIOL：
+    #   ① 只在本 strict 分支；② 只放行**文件**（目录仍须登记 dirs，保住「防随手建目录」的牙齿）；
+    #   ③ 命名不撞 STRAY_NAME/MIGRATION_NAME（上面那条已先判，`*_bak`/`*.tmp` 即便被误提交也照样红）。
+    # 未跟踪项与 git 不可用（git_tracked 返回 False）同路径处理 = fail-closed。
+    if not is_dir and git_tracked(root, name):
+        return "ok", "Git 已跟踪根部文件（归属方有意入库，非散射）"
+    return "violation", "根部意外项（不在核心 allowlist）"

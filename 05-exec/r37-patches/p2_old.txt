@@ -1,0 +1,3 @@
+    if STRAY_NAME.search(name) or MIGRATION_NAME.search(name):
+        return "violation", "根部散落：临时/备份/迁移产物"
+    return "violation", "根部意外项（不在核心 allowlist）"

@@ -1,0 +1,9 @@
+        # ③ junction / 符号链接 → 内容归目标根口径，跨根不重复判定
+        if is_reparse_dir(child):
+            continue
+        # ④ R283（2026-09-25 实测）：`.git` 是 git **运行态**目录、不是项目内容面。其内部文件
+        #    （如仓内工具 git_autopush.py 失败时写的 `push-failure.log`）天然不受 .gitignore 管辖，
+        #    深扫会把「发生过一次推送失败」变成**永久红**（结构性自锁，本项目 savepoint 连红 7 轮）。
+        #    只跳过二级深扫；一级仍按该根 allowlist 判 `.git`，`.git` 之外子目录的散落照抓不放松。
+        if name == ".git":
+            continue

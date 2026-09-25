@@ -1,0 +1,3 @@
+# harness auto-memory（Qoder/Claude 系）会把用户级反馈件写在 GM 根：feedback-<kebab>.md。
+# R282 先例是逐文件名登记，但每新增一条反馈就再挡一次全员 savepoint（2026-09-25 实测第二件 feedback-edit-long-line-ledger.md 复现同因），故收编为模式白名单；仅限 GM 根。
+AUTO_MEM_FEEDBACK = re.compile(r"^feedback-[a-z0-9][a-z0-9\-]*\.md$")

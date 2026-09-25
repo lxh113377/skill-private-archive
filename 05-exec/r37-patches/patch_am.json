@@ -1,0 +1,10 @@
+[
+ {
+  "old_file": "05-exec\\r37-patches\\a_old.txt",
+  "new_file": "05-exec\\r37-patches\\a_new.txt"
+ },
+ {
+  "old_file": "05-exec\\r37-patches\\u_old.txt",
+  "new_file": "05-exec\\r37-patches\\u_new.txt"
+ }
+]

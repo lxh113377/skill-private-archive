@@ -76,7 +76,7 @@ GATES = [
         "argv": ["--quiet"],
         "pass_token": "[CONTRACT:PASS]",
         "portable": True,
-        "covers": ["06-benchmark/*.json 机器证据结构（实测 10 份 / 8 pattern）"],
+        "covers": ["06-benchmark/*.json 机器证据结构（份数/pattern 数不硬编码，取值：该门 --json 输出的 files_checked 与 artifacts 长度）"],
         "why": "产物 schema/必填/类型/不变式事前拒收",
     },
     {
@@ -108,6 +108,21 @@ GATES = [
         "covers": ["本仓全部 tracked 文本件（.md/.py/.json/.jsonl/.yml/.txt/.ps1/.sh/.toml 等）",
                    "二进制/未知扩展跳过但如实计数，不静默当通过"],
         "why": "拦「写崩/截断留下的 0 字节件」——r34 我曾把 memory/AGENTS.md 写成 0 字节，靠 Git 基线才恢复",
+    },
+    {
+        # r37 H-4：把「判据自己会不会报错」变成常驻门（本轮实测：噪声门连红 7 轮全是假阳性）
+        "id": "noise_tracked_stub",
+        "script": "r37_noise_tracked_stub.py",
+        "argv": [],
+        "pass_token": "[GATE:fixture-pass]",
+        "portable": False,
+        "not_portable_reason":
+            "层a 需在 %TEMP% 建真实 git 仓并 git commit（要 git 身份），层b 断言两个真实受管根"
+            "（焚诀 / global_memory）的已知假阳性必须清零 —— 换机无这两根即无意义",
+        "covers": ["D:\\global_skills\\A-project-handoff\\scripts\\noise_lint.py",
+                   "受管根 strict allowlist 放行面", "二级深扫 .git 例外"],
+        "why": "锁死「已跟踪根部文件不误判 + .git 运行态不深扫 + 放行面不外溢」三件，"
+               "防任何一次再为凑绿而放宽判据（R263/R220）",
     },
     {
         # r32 H-2：本仓独有一门 —— 用台账反证「本机专属门还在被跑」。CI 里也能跑（读已提交台账）。

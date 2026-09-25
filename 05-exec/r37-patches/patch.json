@@ -1,0 +1,14 @@
+[
+ {
+  "old_file": "05-exec\\r37-patches\\p1_old.txt",
+  "new_file": "05-exec\\r37-patches\\p1_new.txt"
+ },
+ {
+  "old_file": "05-exec\\r37-patches\\p2_old.txt",
+  "new_file": "05-exec\\r37-patches\\p2_new.txt"
+ },
+ {
+  "old_file": "05-exec\\r37-patches\\p3_old.txt",
+  "new_file": "05-exec\\r37-patches\\p3_new.txt"
+ }
+]

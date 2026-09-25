@@ -1,0 +1,8 @@
+# harness auto-memory（Qoder/Claude 系）会把用户级记忆件写在 GM 根，名如 `<类型>-<kebab>.md`。
+# R282 先例是逐文件名登记，但每新增一条就再挡一次全员 savepoint（2026-09-25 实测第二件
+# feedback-edit-long-line-ledger.md 复现同因）⇒ 收编为模式白名单；**仅限 GM 根**（只登记在 GM 的
+# file_patterns_allowed，其它受管根不共享该放行面）。
+# R283 续（同日实测）：第三件 reference-github-pages-blocked.md 又挡一次 ⇒ 类型前缀不止 feedback-。
+# 只放行**实测出现过实物**的两种（`ls D:\global_memory` 取证：feedback- 6 件 / reference- 1 件）；
+# project-、user- 等前缀尚无实物，按 R236 不预先放行 —— 放行面 = 已证实的设计行为，不是猜测。
+AUTO_MEM_ROOTDOC = re.compile(r"^(?:feedback|reference)-[a-z0-9][a-z0-9\-]*\.md$")

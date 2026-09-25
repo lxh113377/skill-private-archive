@@ -1,0 +1,3 @@
+        # ③ junction / 符号链接 → 内容归目标根口径，跨根不重复判定
+        if is_reparse_dir(child):
+            continue

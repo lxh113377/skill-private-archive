@@ -1,0 +1,19 @@
+def git_tracked(root, name):
+    """R283（2026-09-25 自建skill优化 r37 实测）：该根部项是否已被 Git 跟踪（= 归属方有意入库）。
+
+    用途：strict 模式放行「已跟踪的根部**文件**」——`git ls-files --error-unmatch` 命中即说明
+    它是被版本管理、可回滚、可追责的决策件（实测：焚诀 `CONTRIBUTING.md`/`LICENSE.md`/`SECURITY.md`
+    由 `114b5b0` 有意提交，却因未登记 allowlist 被判 VIOL 并建议「迁往 _trash」= 破坏性假阳性）。
+    fail-closed：无 git / 非仓库 / 超时等任何异常一律返回 False，宁可维持原判也不因取不到真相源而放行（R247）。
+    """
+    try:
+        r = subprocess.run(
+            ["git", "-C", root, "ls-files", "--error-unmatch", "--", name],
+            capture_output=True, text=True,
+        )
+        return r.returncode == 0
+    except Exception:
+        return False
+
+
+def has_skill_md(path):
