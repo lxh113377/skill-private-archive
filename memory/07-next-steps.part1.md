@@ -13,6 +13,9 @@
 - [x] **阶段4 首批：A族 P0 整改** —— 拆卷 `f8bc12f`（85,508B→3,827B）+ 回归修复 `V3.37.1`；A-get-memory 死链 `5bcb550`；版本号/平台名清理
 
 ## P1 / P2（已全部销账）
+- [ ] VOL-D908D 体量治理[L2 根文档] TODO.md — 注入壳瘦身：历史条目迁 memory/ 分卷，壳内只留指针（handoff.py trim-shell）（由 flow 登记；状态: todo）
+- [ ] VOL-858E6 体量治理[L2 根文档] AGENTS.md — 注入壳瘦身：历史条目迁 memory/ 分卷，壳内只留指针（handoff.py trim-shell）（由 flow 登记；状态: todo）
+- [ ] VOL-1BFD2 体量治理[L1 记忆卷] memory/08-ac-obs.md — 非 4KB 拆卷目标：先裁口径（是否入 SPLIT_TARGETS / 加豁免册），禁自动拆（由 flow 登记；状态: todo）
 - [x] R19-3 本仓9份基线JSON落 schemas/r19 契约族+校验器（由 flow 登记；状态: todo）
 
 - [x] 阶段2 按族分批全量精读 102 个自建 skill —— 6 份族审计卡，7 批（2026-09-14）
