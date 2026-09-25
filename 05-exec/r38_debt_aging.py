@@ -591,20 +591,44 @@ def main():
            "overdue": overdue,
            "undated": [{"title": r["title"][:70], "file": r["file"], "line": r["line"]}
                        for r in open_items if r["class"] == "UNDATED"],
+           "claims_face": "未闭环积压：REST open_issues_count（含 PR）与 search 纯 issue 面并列；"
+                          "workflow 数并给 API 总计面/仓库内面/dynamic 面。r51 起每行带 retrieval",
            "opponents_measured_at": "2026-09-25",
            "opponents": [
-               {"repo": "github/spec-kit", "open_issues": 287, "workflows": 27,
-                "stale_automation": True, "oldest_open_issue": "2025-09-25",
-                "note": "唯一有到期自动化：Close stale issues and PRs + 6 条 issue 流转 workflow"},
-               {"repo": "obra/superpowers", "open_issues": 401, "workflows": 2,
-                "stale_automation": False, "oldest_open_issue": "2026-01-27"},
-               {"repo": "anthropics/skills", "open_issues": 1290, "workflows": 2,
-                "stale_automation": False, "oldest_open_issue": "2025-10-16"},
-               {"repo": "addyosmani/agent-skills", "open_issues": 118, "workflows": 5,
-                "stale_automation": False, "oldest_open_issue": "2026-04-04"},
-               {"repo": "pre-commit/pre-commit", "open_issues": 25, "workflows": 3,
-                "stale_automation": False, "oldest_open_issue": "2018-07-02",
-                "note": "低积压靠少建待办，最老一条 8 年仍 open —— 到期治理同样缺失"}],
+               {"repo": "github/spec-kit", "open_issues_pure": 134, "open_issues_incl_pr": 287,
+                "workflows": 18, "workflows_listed": 27, "stale_automation": True,
+                "oldest_open_issue": "2025-09-25",
+                "note": "唯一有到期自动化：Close stale issues and PRs + 6 条 issue 流转 workflow（stale.yml 系仓库自有件）",
+                "retrieval": "gh api \"search/issues?q=repo:github/spec-kit+type:issue+state:open&per_page=1\" --jq .total_count ; "
+                             "gh api repos/github/spec-kit --jq .open_issues_count ; "
+                             "gh api repos/github/spec-kit/actions/workflows --jq '[.workflows[]|select(.path|startswith(\".github/workflows\"))]|length'"},
+               {"repo": "obra/superpowers", "open_issues_pure": 143, "open_issues_incl_pr": 402,
+                "workflows": 0, "workflows_listed": 2, "stale_automation": False,
+                "oldest_open_issue": "2026-01-27",
+                "note": "仓库内 0 个 workflow（.github/workflows 实测 404）；listed=2 全为平台 dynamic 件（r50 校正）",
+                "retrieval": "gh api \"search/issues?q=repo:obra/superpowers+type:issue+state:open&per_page=1\" --jq .total_count ; "
+                             "gh api repos/obra/superpowers --jq .open_issues_count ; "
+                             "gh api repos/obra/superpowers/contents/.github/workflows  # 404"},
+               {"repo": "anthropics/skills", "open_issues_pure": 368, "open_issues_incl_pr": 1292,
+                "workflows": 0, "workflows_listed": 2, "stale_automation": False,
+                "oldest_open_issue": "2025-10-16",
+                "note": "同上：仓库内 0 个自有 workflow，积压规模最大但无到期治理",
+                "retrieval": "gh api \"search/issues?q=repo:anthropics/skills+type:issue+state:open&per_page=1\" --jq .total_count ; "
+                             "gh api repos/anthropics/skills --jq .open_issues_count ; "
+                             "gh api repos/anthropics/skills/contents/.github/workflows  # 404"},
+               {"repo": "addyosmani/agent-skills", "open_issues_pure": 58, "open_issues_incl_pr": 120,
+                "workflows": 2, "workflows_listed": 5, "stale_automation": False,
+                "oldest_open_issue": "2026-04-04",
+                "note": "contents 目录实测 1 件（API 仍报已不存在的 markdownlint.yml）⇒ API 面 ≠ 磁盘面",
+                "retrieval": "gh api \"search/issues?q=repo:addyosmani/agent-skills+type:issue+state:open&per_page=1\" --jq .total_count ; "
+                             "gh api repos/addyosmani/agent-skills/contents/.github/workflows --jq '.[].name'"},
+               {"repo": "pre-commit/pre-commit", "open_issues_pure": 17, "open_issues_incl_pr": 25,
+                "workflows": 2, "workflows_listed": 3, "stale_automation": False,
+                "oldest_open_issue": "2018-07-02",
+                "note": "低积压靠少建待办，最老一条 8 年仍 open（日期已复现）；2 个自有 workflow 均为跨仓 uses: 复用件",
+                "retrieval": "gh api \"search/issues?q=repo:pre-commit/pre-commit+type:issue+state:open&per_page=1\" --jq .total_count ; "
+                             "gh api repos/pre-commit/pre-commit --jq .open_issues_count ; "
+                             "gh api \"search/issues?q=repo:pre-commit/pre-commit+type:issue+state:open&sort=created&order=asc&per_page=1\" --jq '.items[0].created_at'"}],
            "note": "OVERDUE 数 = ratchet_gate 第 7 指标 overdue_debt_items 的唯一取值面"}
     unowned = [{"file": r["file"], "line": r["line"], "title": r["title"][:90]}
                for r in open_items if r.get("owner") == "UNOWNED"]

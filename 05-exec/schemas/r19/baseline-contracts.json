@@ -295,7 +295,16 @@
     }
    ]
   },
-  "debt_aging_r3*.json": {
+  "opponents_*_r*.json": {
+  "kind": "json",
+  "required": ["schema", "generated_at", "claims_face", "opponents"],
+  "invariants": [
+    "readonly_true",
+    "opponent_claims_have_retrieval"
+   ],
+  "note": "r51 W-28：凡引用外部/对手数字的取证件。claims_face 声明这些数取的是哪一面（issues / issues+PR / 全量），每条须带 ≥2 条独立取值命令（retrieval）；分叉点前历史件豁免"
+ },
+ "debt_aging_r*.json": {
    "schema_id": [
     "debt-aging-v1",
     "debt-aging-v2"
@@ -332,6 +341,8 @@
     "readonly_true",
     "debt_class_sum",
     "debt_taxonomy_complete"
+   ,
+    "opponent_claims_have_retrieval"
    ],
    "note": "r38/r39 第十四维债务账龄。v2 新增 DEFERRED 态（延期不得冒充已裁决，到期自动回判 OVERDUE）；OVERDUE 数是 ratchet_gate 第 7 指标唯一取值面；deferred 数待 W-4 立第 8 指标"
   }

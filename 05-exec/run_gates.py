@@ -121,6 +121,19 @@ GATES = [
         "why": "r45 实测 W-9 挂了 5 轮的真因是按行号写标记写到别处；本门锁死该入口不再接受行号、歧义与已闭环一律拒写、写完必须读回",
     },
     {
+        # r51 W-28：外部取证件的两路取值 + 面声明判据（含接线反例）
+        "id": "retrieval_fixtures",
+        "script": "r51_retrieval_fixtures.py",
+        "argv": [],
+        "pass_token": "[GATE:fixture-pass]",
+        "portable": True,
+        "covers": ["05-exec/baseline_contract_scan.py 的 inv_opponent_claims_have_retrieval（结构识别，不锁键名）",
+                   "契约 debt_aging glob 由 r3* 修成 r*（陈旧 pattern 面洞）",
+                   "真机：06-benchmark/opponents_*_r*.json 全部须过判据"],
+        "why": "r51 实测我方引用对手 open issues 取自 REST 含 PR 面（虚高 1.5–3.5 倍）、workflow 数混入平台 dynamic 件；"
+               "且实跑接线暴露调度器传给不变式的是名字串而非配置值——按名字比较会让全部证据件被字典序静默豁免",
+    },
+    {
         # r49 W-20 + W-22：判据输入面截断自证 + 裁决对象自证
         "id": "input_face_fixtures",
         "script": "r49_face_fixtures.py",

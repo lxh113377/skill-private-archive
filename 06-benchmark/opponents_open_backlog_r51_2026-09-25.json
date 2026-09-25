@@ -1,0 +1,61 @@
+{
+ "schema": "opponent-claims-v1",
+ "generated_at": "2026-09-25T17:20:00",
+ "readonly": true,
+ "claims_face": "未闭环积压：REST open_issues_count（含 PR）与 search API 纯 issue 面并列给出；r38/r49 此前只引用了前者并称之为 open issues ⇒ 计数列口径错",
+ "round": 51,
+ "opponents": [
+  {
+   "repo": "github/spec-kit",
+   "open_issues_as_cited_in_r38": 287,
+   "rest_issues_plus_pr": 287,
+   "search_issues_only_open": 134,
+   "inflation_vs_pure_issues": 2.14,
+   "oldest_open_issue": "2025-09-25",
+   "oldest_open_reproduced": true,
+   "retrieval": "gh api \"search/issues?q=repo:github/spec-kit+type:issue+state:open&per_page=1\" --jq .total_count ; gh api repos/github/spec-kit --jq .open_issues_count ; gh api \"search/issues?q=repo:github/spec-kit+type:issue+state:open&sort=created&order=asc&per_page=1\" --jq .items[0].created_at"
+  },
+  {
+   "repo": "obra/superpowers",
+   "open_issues_as_cited_in_r38": 401,
+   "rest_issues_plus_pr": 402,
+   "search_issues_only_open": 143,
+   "inflation_vs_pure_issues": 2.81,
+   "oldest_open_issue": "2026-01-27",
+   "oldest_open_reproduced": true,
+   "retrieval": "gh api \"search/issues?q=repo:obra/superpowers+type:issue+state:open&per_page=1\" --jq .total_count ; gh api repos/obra/superpowers --jq .open_issues_count ; gh api \"search/issues?q=repo:obra/superpowers+type:issue+state:open&sort=created&order=asc&per_page=1\" --jq .items[0].created_at"
+  },
+  {
+   "repo": "anthropics/skills",
+   "open_issues_as_cited_in_r38": 1290,
+   "rest_issues_plus_pr": 1292,
+   "search_issues_only_open": 368,
+   "inflation_vs_pure_issues": 3.51,
+   "oldest_open_issue": "2025-10-16",
+   "oldest_open_reproduced": true,
+   "retrieval": "gh api \"search/issues?q=repo:anthropics/skills+type:issue+state:open&per_page=1\" --jq .total_count ; gh api repos/anthropics/skills --jq .open_issues_count ; gh api \"search/issues?q=repo:anthropics/skills+type:issue+state:open&sort=created&order=asc&per_page=1\" --jq .items[0].created_at"
+  },
+  {
+   "repo": "addyosmani/agent-skills",
+   "open_issues_as_cited_in_r38": 118,
+   "rest_issues_plus_pr": 120,
+   "search_issues_only_open": 58,
+   "inflation_vs_pure_issues": 2.07,
+   "oldest_open_issue": "2026-04-04",
+   "oldest_open_reproduced": true,
+   "retrieval": "gh api \"search/issues?q=repo:addyosmani/agent-skills+type:issue+state:open&per_page=1\" --jq .total_count ; gh api repos/addyosmani/agent-skills --jq .open_issues_count ; gh api \"search/issues?q=repo:addyosmani/agent-skills+type:issue+state:open&sort=created&order=asc&per_page=1\" --jq .items[0].created_at"
+  },
+  {
+   "repo": "pre-commit/pre-commit",
+   "open_issues_as_cited_in_r38": 25,
+   "rest_issues_plus_pr": 25,
+   "search_issues_only_open": 17,
+   "inflation_vs_pure_issues": 1.47,
+   "oldest_open_issue": "2018-07-02",
+   "oldest_open_reproduced": true,
+   "retrieval": "gh api \"search/issues?q=repo:pre-commit/pre-commit+type:issue+state:open&per_page=1\" --jq .total_count ; gh api repos/pre-commit/pre-commit --jq .open_issues_count ; gh api \"search/issues?q=repo:pre-commit/pre-commit+type:issue+state:open&sort=created&order=asc&per_page=1\" --jq .items[0].created_at"
+  }
+ ],
+ "verdict": "① 计数列改引 search 纯 issue 面（134/143/368/58/17）并注明 REST 值含 PR；② 日期列 5/5 逐条复现 ⇒ 年龄类结论不动；③ 同一份件里两类列可信度不同 ⇒ retrieval 必须逐条而非逐件。",
+ "consequence_for_my_own_number": "我方对标分母（自建 77 条、注册表 151 条）与本族无关：由 01-scan/scan_all.py 与注册表 walk 得出，且已有 denominator_glob_eq_registry 不变式做两路对账。"
+}

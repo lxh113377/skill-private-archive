@@ -21,6 +21,7 @@ import argparse
 import fnmatch
 import importlib.util
 import json
+import re
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -208,6 +209,58 @@ def inv_ratchet_hardcap_subset(doc, arg):
     return ["HARD-CAP: %s 设了硬顶却不在 metrics 里（硬顶无主，永不触发）" % orphan] if orphan else []
 
 
+RETRIEVAL_CUTOFF = "2026-09-25T17:00:00"     # 代际分叉点：早于此的历史件不追判（台账/证据件不可回写，同 r48 W-17）
+
+
+def inv_opponent_claims_have_retrieval(doc, arg):
+    """外部取证件必须声明「取的是哪一面」并给两条独立取值命令（r51 W-28）。
+
+    存在理由（r51 实测，两处都在我自己写的数上）：
+      · r38 引用的对手 open issues 287/401/1290/118/25 取自 REST `open_issues_count`，
+        **该字段含 PR**；search API 纯 issue 面 = 134/143/368/58/17 ⇒ 虚高 1.5–3.5 倍；
+      · r50 又发现 `/actions/workflows` 总计面混有平台 `dynamic/*` ⇒ workflow 数同样错面。
+    同族根因 = **取证件没声明自己读的是哪一面，也没留第二条路**。同一份 r38 件里
+    "最老 open 日期"却 5/5 逐条复现 ⇒ 错的是计数列，不是整份件 —— 这正说明判据该锁列不锁件。
+    入参 arg：调度器实际传的是**不变式名字符串**（见 INVARIANTS 派发处），不是配置值。
+    ⇒ 只有形如 `2026-09-25T17:00:00` 的字符串才当分叉点用，其余（含名字本身）一律回落默认值。
+    这个坑是本轮实跑接线的副产品：按名字比较时 `"2026-.." < "opponent_.."` 恒真，
+    会让**全部**证据件被字典序豁免，判据当场静默失效而夹具（传 True）照样全绿。
+    """
+    cut = (arg if isinstance(arg, str) and re.match(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}", arg)
+           else RETRIEVAL_CUTOFF)
+    gen = str(doc.get("generated_at") or "")
+    exempt = bool(gen) and gen < cut
+    msgs = []
+    # 按**结构**识别外部引用数字：任何顶层列表里带 `repo` 字段的 dict 都算，不锁死键名
+    # （`opponents`/`repos`/`peers`/`benchmarks` 同视）—— 否则改个键名即可绕过本判据
+    # （与「文档引用违禁词=规则本体」的豁免滥用同族）。
+    items = []
+    for val in (doc.values() if isinstance(doc, dict) else []):
+        if isinstance(val, list):
+            items += [x for x in val if isinstance(x, dict) and "repo" in x]
+    if not items:
+        if isinstance(doc, dict) and isinstance(doc.get("opponents"), list):
+            return ([] if exempt else
+                    ["opponents 为空数组：空面不得当「已复核」（R247 禁判零通过）"])
+        return []                       # 不适用（没有外部引用数字）—— 不得凭空造红
+    if exempt:
+        return []
+    if not str(doc.get("claims_face") or "").strip():
+        msgs.append("件级缺 claims_face：未声明这些数字取的是哪一面（issues / issues+PR / 全量…）")
+    for it in items:
+        repo = str(it.get("repo") or "?")
+        ret = str(it.get("retrieval") or "").strip()
+        if not ret:
+            msgs.append("opponents[%s] 缺 retrieval ⇒ 数字不可复算" % repo)
+            continue
+        paths = [s for s in re.split(r"[;；\n]", ret) if s.strip()]
+        if len(paths) < 2:
+            msgs.append("opponents[%s] retrieval 不足两条独立取值命令（须 ≥2 条，单路即错面风险）" % repo)
+        elif repo != "?" and repo not in ret:
+            msgs.append("opponents[%s] retrieval 里未出现该 repo 名 ⇒ 命令取的是别的对象，疑似顶包" % repo)
+    return msgs
+
+
 def inv_conflict_no_dead_inputs(doc, arg):
     """r40 L-4：冲突扫描器的输入面必须"声明 == 实存"。
 
@@ -279,6 +332,7 @@ INVARIANTS = {
     "debt_class_sum": inv_debt_class_sum,
     "debt_taxonomy_complete": inv_debt_taxonomy_complete,
     "conflict_no_dead_inputs": inv_conflict_no_dead_inputs,
+    "opponent_claims_have_retrieval": inv_opponent_claims_have_retrieval,
 }
 
 

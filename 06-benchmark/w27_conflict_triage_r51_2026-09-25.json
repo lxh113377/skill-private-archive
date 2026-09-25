@@ -1,0 +1,153 @@
+{
+ "schema": "conflict-triage-v1",
+ "generated_at": "2026-09-25 16:33",
+ "readonly": true,
+ "total_candidates": 21,
+ "distinct_rule_pairs_after_volume_merge": 21,
+ "duplicated_pairs": 0,
+ "forbid_side_is_meta_about_presentation": 2,
+ "semantic_verdict": "UNVERIFIED —— 是否构成真互斥需人工裁定（本项目不改受管根规则正文，红线 + R241）。本件只给可复算的结构数字：原始组数、分卷归一后规则对数、不同共用词数、禁侧为呈现形式元规则的组数。",
+ "distinct_pairs": [
+  {
+   "term": "下一步建议",
+   "must_base": "core/behavior_core_appendix.md:22",
+   "forbid_base": "core/behavior_core_rules_p3.md:13",
+   "count": 1
+  },
+  {
+   "term": "下一步建议",
+   "must_base": "core/behavior_core_appendix.md:22",
+   "forbid_base": "core/behavior_core_rules_p6.md:27",
+   "count": 1
+  },
+  {
+   "term": "下一步建议",
+   "must_base": "core/behavior_core_rules_p3.md:11",
+   "forbid_base": "core/behavior_core_rules_p3.md:13",
+   "count": 1
+  },
+  {
+   "term": "下一步建议",
+   "must_base": "core/behavior_core_rules_p3.md:11",
+   "forbid_base": "core/behavior_core_rules_p6.md:27",
+   "count": 1
+  },
+  {
+   "term": "下一步建议",
+   "must_base": "core/behavior_core_rules_p3.md:12",
+   "forbid_base": "core/behavior_core_rules_p3.md:13",
+   "count": 1
+  },
+  {
+   "term": "下一步建议",
+   "must_base": "core/behavior_core_rules_p3.md:12",
+   "forbid_base": "core/behavior_core_rules_p6.md:27",
+   "count": 1
+  },
+  {
+   "term": "任务完成",
+   "must_base": "core/behavior_core_rules_p3.md:13",
+   "forbid_base": "core/MEMORY.md:22",
+   "count": 1
+  },
+  {
+   "term": "后台任务",
+   "must_base": "core/behavior_core_rules_p3.md:13",
+   "forbid_base": "core/behavior_core_rules_p7.md:10",
+   "count": 1
+  },
+  {
+   "term": "在本回合内",
+   "must_base": "core/behavior_core_rules_p4.md:5",
+   "forbid_base": "core/behavior_core_rules_p3.md:13",
+   "count": 1
+  },
+  {
+   "term": "工具调用",
+   "must_base": "references/contract.md:35",
+   "forbid_base": "A-memory-start/SKILL.md:69",
+   "count": 1
+  },
+  {
+   "term": "工具调用",
+   "must_base": "references/contract.md:35",
+   "forbid_base": "core/behavior_core.md:6",
+   "count": 1
+  },
+  {
+   "term": "工具调用",
+   "must_base": "references/contract.md:35",
+   "forbid_base": "core/behavior_core_rules_p6.md:14",
+   "count": 1
+  },
+  {
+   "term": "工具调用",
+   "must_base": "references/contract.md:35",
+   "forbid_base": "references/contract.md:10",
+   "count": 1
+  },
+  {
+   "term": "工具调用",
+   "must_base": "references/contract.md:35",
+   "forbid_base": "references/contract.md:28",
+   "count": 1
+  },
+  {
+   "term": "工具调用",
+   "must_base": "references/contract.md:35",
+   "forbid_base": "references/contract.md:55",
+   "count": 1
+  },
+  {
+   "term": "强制步骤",
+   "must_base": "core/behavior_core_rules_p5.md:6",
+   "forbid_base": "references/contract.md:185",
+   "count": 1
+  },
+  {
+   "term": "显式声明",
+   "must_base": "core/BOOTSTRAP.md:12",
+   "forbid_base": "core/behavior_core.md:161",
+   "count": 1
+  },
+  {
+   "term": "用户立规",
+   "must_base": "A-memory-start/SKILL.md:69",
+   "forbid_base": "core/behavior_core.md:150",
+   "count": 1
+  },
+  {
+   "term": "超时后才",
+   "must_base": "core/behavior_core_rules_p3.md:13",
+   "forbid_base": "A-memory-start/SKILL.md:48",
+   "count": 1
+  },
+  {
+   "term": "超时后才",
+   "must_base": "core/behavior_core_rules_p3.md:13",
+   "forbid_base": "A-memory-start/SKILL.md:83",
+   "count": 1
+  },
+  {
+   "term": "超时后才",
+   "must_base": "core/behavior_core_rules_p3.md:13",
+   "forbid_base": "references/contract.md:120",
+   "count": 1
+  }
+ ],
+ "method": "base(loc) = 去掉 .partN 分卷后缀归一到基名卷，再按 (词, 必须侧基名:行, 禁止侧基名:行) 去重",
+ "retrieval": "python 05-exec/rule_conflict_scan.py --json 06-benchmark/rule_conflict_scan_r51_2026-09-25.json --max-pairs 40 ; 再跑本段归一脚本（可复算）",
+ "distinct_terms": 9,
+ "term_breakdown": {
+  "下一步建议": 6,
+  "工具调用": 6,
+  "超时后才": 3,
+  "在本回合内": 1,
+  "任务完成": 1,
+  "后台任务": 1,
+  "强制步骤": 1,
+  "显式声明": 1,
+  "用户立规": 1
+ },
+ "inflation_cause": "候选数 = 同侧命中行的笛卡尔积（同一规则区有 3 行都含「必须含下一步建议」，对面 2 行都含禁语 ⇒ 记 6 组）⇒ 21 不可当「冲突条数」引用；对外口径应为「21 组候选 / 9 个不同共用词」"
+}
