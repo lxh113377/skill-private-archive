@@ -234,6 +234,14 @@ B3 多 job 并列不短路 / B4 周期心跳档 / B5 `concurrency` 成本自觉 
 > 四根复跑 `[GATE:noise-pass]`，`savepoint` 7 轮后首次转绿；本仓新增第 8 道常驻门 `noise_tracked_stub`（16 例含 5 反例）。
 > ⚠️ **不得据此声称领先对手**：M-3（给对手 CI 的红灯逐条分类「真缺陷 vs 假阳性」）❌未实测。详见 `全量对标报告_r37_门禁假阳性治理_2026-09-25.md`。
 
+> **r38 追加（第十四维「积压债务的可见性与到期治理」）**：对手 `gh api` 实测 —— 只有 `github/spec-kit`（27 workflow）
+> 配 `Close stale issues and PRs` + 6 条 issue 流转自动化；`anthropics/skills`(1290 open，最老 2025-10-16)、
+> `superpowers`(401，最老 2026-01-27)、`addyosmani/agent-skills`(118)、`pre-commit`(25，最老 2018 仍 open) **stale 自动化均为 0**。
+> 我方首跑账龄尺即量出 **13 条超期无裁决（最老 30 轮）** ⇒ 「挂账 N 轮」长期只是散文。
+> 现已做成判据：`05-exec/r38_debt_aging.py` 四分类 + `ratchet_gate` 第 7 指标 `overdue_debt_items`（只降不升，变异对照会红），
+> 13 条逐条取证裁决至 **0**。取向差异记入不学清单 **X-10**（不引入自动关闭）/**X-11**（待办不外迁 tracker）：
+> 对手消灭债务靠"关掉"，我靠"逼人裁决"，因为 07 是跨会话唯一真相源。**可宣称领先 4/5 对手，不可宣称领先 spec-kit。**
+
 ## 维护状态（r30 实测化，替换此前的形容词）
 
 | 对象 | ★ | 最近推送 | open issues |

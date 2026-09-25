@@ -234,6 +234,49 @@ def main():
     else:
         ck("层b″ 前置：06-benchmark/gate_runs.jsonl 存在", False, "台账缺失，反例侧无从注入")
 
+    # --- M-2（r38 清偿）：棘轮基线 ↔ METRIC_NAMES 集合全等，少一项必红 ---
+    bl_path = HERE.parent / "06-benchmark" / "inject_ratchet_baseline.json"
+    bl = json.loads(bl_path.read_text(encoding="utf-8"))
+    art_bl = contracts["artifacts"]["inject_ratchet_baseline*.json"]
+    v = bcs.validate_doc(bl, art_bl, "ratchet-baseline")
+    ck("t21 棘轮基线原样 → 零违规（含集合全等）", v == [], json.dumps(v, ensure_ascii=False)[:200])
+    cut = json.loads(bl_path.read_text(encoding="utf-8"))
+    dropped = sorted(cut["metrics"].keys())[0]
+    del cut["metrics"][dropped]
+    v = bcs.validate_doc(cut, art_bl, "cut")
+    ck("t22 基线少一项指标 → 必红并点名该指标（回归保护失效）",
+       any("基线缺指标" in x and dropped in x for x in v), "%s | %s" % (dropped, str(v)[:160]))
+    zombie = json.loads(bl_path.read_text(encoding="utf-8"))
+    zombie["metrics"]["zz_not_a_real_metric"] = 1
+    v = bcs.validate_doc(zombie, art_bl, "zombie")
+    ck("t23 基线多出僵尸指标 → 必红", any("僵尸基线" in x for x in v), str(v)[:160])
+    caporphan = json.loads(bl_path.read_text(encoding="utf-8"))
+    caporphan["hard_caps"]["zz_unmetered"] = 10
+    v = bcs.validate_doc(caporphan, art_bl, "cap-orphan")
+    ck("t24 硬顶指向 metrics 之外的键 → 必红（硬顶无主永不触发）",
+       any("HARD-CAP" in x for x in v), str(v)[:160])
+    # --- r38 第十四维：账龄自洽不变式 ---
+    debt = json.loads((HERE.parent / "06-benchmark" / "debt_aging_r38_2026-09-25.json")
+                      .read_text(encoding="utf-8"))
+    art_debt = contracts["artifacts"]["debt_aging_r38_*.json"]
+    ck("t25 账龄件原样 → 零违规", bcs.validate_doc(debt, art_debt, "debt") == [],
+       json.dumps(bcs.validate_doc(debt, art_debt, "debt"), ensure_ascii=False)[:200])
+    leak = json.loads((HERE.parent / "06-benchmark" / "debt_aging_r38_2026-09-25.json")
+                      .read_text(encoding="utf-8"))
+    k0 = sorted(leak["by_class"].keys())[0]
+    leak["by_class"][k0] = max(0, leak["by_class"][k0] - 1)
+    v = bcs.validate_doc(leak, art_debt, "leak")
+    ck("t26 分类之和 != 未闭环条目数 → 必红（判据漏桶 X-7）",
+       any("DEBT-CLASS" in x for x in v), str(v)[:200])
+    hid = json.loads((HERE.parent / "06-benchmark" / "debt_aging_r38_2026-09-25.json")
+                     .read_text(encoding="utf-8"))
+    hid["verdict_taxonomy"] = [x for x in hid["verdict_taxonomy"] if x != "UNDATED"]
+    v = bcs.validate_doc(hid, art_debt, "hide-undated")
+    ck("t27 隐掉 UNDATED 态 → 必红（防把无定年条目静默并入绿态）",
+       any("verdict_taxonomy" in x and "UNDATED" in x for x in v), str(v)[:200])
+    ck("t28 契约 pattern 数 >= 12（覆盖面不得缩水）", len(contracts["artifacts"]) >= 12,
+       str(len(contracts["artifacts"])))
+
     fails = [r for r in RESULTS if not r[0]]
     print("\n夹具合计: %d 项，通过 %d，失败 %d" % (len(RESULTS), len(RESULTS) - len(fails), len(fails)))
     if fails:

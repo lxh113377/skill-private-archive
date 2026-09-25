@@ -7,7 +7,8 @@
   "claim_candidates": 4,
   "drift_ruleish_candidates": 10,
   "desc_over_cap": 0,
-  "username_in_skill_files": 23
+  "username_in_skill_files": 23,
+  "overdue_debt_items": 22
  },
  "hard_caps": {
   "inject_union_bytes": 65536
@@ -19,5 +20,5 @@
   "desc": "C:\\Users\\37533\\Desktop\\workspace\\自建skill优化\\06-benchmark\\description基线_2026-09-24.json",
   "inject_files": "焚诀 truth_constants.inject_budget.files 实测 + 本项目 AGENTS.md"
  },
- "note": "只降不升棘轮；缺项/超顶/无基线一律 exit 非 0（R247）"
+ "note": "只降不升棘轮；缺项/超顶/无基线一律 exit 非 0（R247） ｜r38 人工核定第 7 指标 overdue_debt_items=22（r38 二次核定：账龄尺补上裸 rNN 回落后，原被判 UNDATED 的 27 条里 9 条实为超期，真实敞口 22 而非 0；取值面 06-benchmark/debt_aging_r38_*.json 的 by_class.OVERDUE；本轮 13 条超期已逐条裁决归零，非放宽判据所得）"
 }

@@ -40,7 +40,8 @@ DEFAULT_BASELINE = BENCH / "inject_ratchet_baseline.json"
 TRUTH_CONSTANTS = Path(r"C:\Users\37533\Desktop\workspace\焚诀\eval\truth_constants.json")
 
 METRIC_NAMES = ("catalog_grand_chars", "inject_union_bytes", "claim_candidates",
-                "drift_ruleish_candidates", "desc_over_cap", "username_in_skill_files")
+                "drift_ruleish_candidates", "desc_over_cap", "username_in_skill_files",
+                "overdue_debt_items")
 SCHEMA = "zijian-inject-ratchet-v1"
 
 
@@ -115,6 +116,29 @@ def username_in_skill_files():
     return n if scanned else None
 
 
+def overdue_debt_items():
+    """r38 第十四维落点：**07 待办队列里已超宽限且无裁决标记的条目数**（只降不升）。
+
+    对手实物（`gh api` 实测）：github/spec-kit 27 个 workflow 里有 `Close stale issues and PRs`
+    + 6 条 issue 流转自动化 —— 是唯一有「到期治理」的；其余四家 0 条，
+    代价实测为 anthropics/skills 1290 条 open（最老 2025-10-16）、superpowers 401 条（最老 2026-01-27）。
+    我方的对应敞口：本轮首跑 `05-exec/r38_debt_aging.py` 量得 52 条未闭环里 **13 条超期无裁决**，
+    而 M-1/M-2 这类条目**挂着「挂账 N 轮」的自陈却无任何机器判据**在管 —— 散文式羞耻心不挡增长。
+
+    fail-closed：证据件缺失 / 取不到 OVERDUE / 四分类之和对不上 `open_total`（判据漏桶）
+    ⇒ 一律返回 None，由棘轮按「指标算不出即红」处理，**不得**当作 0 放行（R247）。
+    """
+    d = _read_json(BENCH / "debt_aging_r38_*.json")
+    if not isinstance(d, dict):
+        return None
+    by, ev = d.get("by_class") or {}, d.get("evidence") or {}
+    if "OVERDUE" not in by or not isinstance(ev.get("open_total"), int):
+        return None
+    if sum(by.values()) != ev["open_total"]:
+        return None
+    return by["OVERDUE"]
+
+
 def inject_union_bytes():
     """C25 注入区清单（**实测磁盘字节**，不取清单里登记的数字）∪ 本项目注入壳，按路径去重求和。
 
@@ -158,7 +182,8 @@ COMPUTE = {"catalog_grand_chars": catalog_grand_chars,
            "claim_candidates": claim_candidates,
            "drift_ruleish_candidates": drift_ruleish_candidates,
            "desc_over_cap": desc_over_cap,
-           "username_in_skill_files": username_in_skill_files}
+           "username_in_skill_files": username_in_skill_files,
+           "overdue_debt_items": overdue_debt_items}
 
 
 def collect_metrics():

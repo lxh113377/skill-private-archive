@@ -226,6 +226,64 @@
     "readonly_true"
    ],
    "note": "r37：噪声门假阳性修前/修后对照件；before 必须来自改动前自动备份原件实跑（防记忆值冒充）"
+  },
+  "inject_ratchet_baseline*.json": {
+   "schema_id": "zijian-inject-ratchet-v1",
+   "required": [
+    "generated_at",
+    "metrics",
+    "hard_caps",
+    "sources",
+    "note",
+    "schema"
+   ],
+   "types": {
+    "metrics": "dict",
+    "hard_caps": "dict",
+    "sources": "dict",
+    "note": "str"
+   },
+   "invariants": [
+    "ratchet_metric_set_matches",
+    "ratchet_hardcap_subset"
+   ],
+   "note": "M-2（r38 清偿挂账 3 轮）：棘轮基线键集合必须与 ratchet_gate.METRIC_NAMES 全等——少一项该指标即无基线、棘轮静默放行（回归保护失效），多一项即僵尸基线"
+  },
+  "debt_aging_r38_*.json": {
+   "schema_id": "debt-aging-v1",
+   "required": [
+    "generated_at",
+    "readonly",
+    "grace_rounds",
+    "current_round",
+    "round_source",
+    "verdict_taxonomy",
+    "files_scanned",
+    "evidence",
+    "by_class",
+    "overdue",
+    "undated",
+    "opponents",
+    "note"
+   ],
+   "types": {
+    "readonly": "bool",
+    "grace_rounds": "int",
+    "current_round": "int",
+    "verdict_taxonomy": "list",
+    "files_scanned": "list",
+    "evidence": "dict",
+    "by_class": "dict",
+    "overdue": "list",
+    "undated": "list",
+    "opponents": "list"
+   },
+   "invariants": [
+    "readonly_true",
+    "debt_class_sum",
+    "debt_taxonomy_complete"
+   ],
+   "note": "r38 第十四维：待办账龄。OVERDUE 数是 ratchet_gate 第 7 指标 overdue_debt_items 的唯一取值面"
   }
  },
  "invariant_docs": {

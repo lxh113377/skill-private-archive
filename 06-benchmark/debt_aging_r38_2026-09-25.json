@@ -1,0 +1,372 @@
+{
+ "schema": "debt-aging-v1",
+ "generated_at": "2026-09-25T10:41:57",
+ "readonly": true,
+ "grace_rounds": 2,
+ "current_round": 37,
+ "round_source": "git log --format=%s -40 中最大 rNN（未硬编码）",
+ "verdict_taxonomy": [
+  "OVERDUE",
+  "ACTIVE",
+  "DECIDED",
+  "UNDATED",
+  "CLOSED"
+ ],
+ "files_scanned": [
+  "memory\\07-next-steps.md",
+  "memory\\07-next-steps.part1.md",
+  "memory\\07-next-steps.part10.md",
+  "memory\\07-next-steps.part11.md",
+  "memory\\07-next-steps.part12.md",
+  "memory\\07-next-steps.part2.md",
+  "memory\\07-next-steps.part3.md",
+  "memory\\07-next-steps.part4.md",
+  "memory\\07-next-steps.part5.md",
+  "memory\\07-next-steps.part6.md",
+  "memory\\07-next-steps.part7.md",
+  "memory\\07-next-steps.part8.md",
+  "memory\\07-next-steps.part9.md"
+ ],
+ "evidence": {
+  "volumes": 13,
+  "items_total": 107,
+  "open_total": 56,
+  "closed_total": 51
+ },
+ "by_class": {
+  "OVERDUE": 22,
+  "ACTIVE": 9,
+  "DECIDED": 12,
+  "UNDATED": 13
+ },
+ "overdue": [
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 105,
+   "priority": "未标",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 27 轮（回落：正文首个裸 rNN=r10）",
+   "title": "**【待授权·mimosa 安全发现 triage（r10）】** mimosa 钩子（焚诀 commit 时跨仓扫描）报本项目 **12-13 处「路径穿越」high**：`01-scan/scan_all.py:32",
+   "first_seen": "2026-09-24"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 106,
+   "priority": "P1",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 27 轮（回落：正文首个裸 rNN=r10）",
+   "title": "**【P1 待授权·对标新增（r10）】** 全量对标报告（`06-benchmark/自建skill体系全量对标分析报告.md`）三角验证出的新差距，待授权落地：**P0-1 hook 机制层探底**（实测 ZC/HM",
+   "first_seen": "2026-09-24"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 86,
+   "priority": "未标",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 19 轮（回落：正文首个裸 rNN=r18）",
+   "title": "**【登记·跨会话夹带反向形态（r19b）】** 我在 `A-memory-start/references/contract.md` 的在途 hunks（八端生效/八端共享）被并行会话提交 **`4b75d80`** ",
+   "first_seen": "2026-09-24"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 111,
+   "priority": "P0",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 19 轮（回落：正文首个裸 rNN=r18）",
+   "title": "**【P0 新账·r18 对标增量】三项（详见 `06-benchmark/全量对标报告_r18_2026-09-24.md` §6）**：① **P0-A 目录税入棘轮（转焚诀归属会话，红线：本项目不代改 `eval/",
+   "first_seen": "2026-09-24"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 114,
+   "priority": "P1",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 19 轮（回落：正文首个裸 rNN=r18）",
+   "title": "**【P1 新账·r18】** P1-A 六段解剖最小规范（只先强制 `Verification` + `Red Flags` 两段；实测六段全含 **0/166**、rationalizations 13.9%、ver",
+   "first_seen": "2026-09-24"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 82,
+   "priority": "P0",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 18 轮（回落：正文首个裸 rNN=r19）",
+   "title": "**【P0 新账·r20b 注入面棘轮落地（本仓自持）+ 一条常驻告警】** `05-exec/ratchet_gate.py` 五项指标只降不升（catalog_grand_chars / inject_union_b",
+   "first_seen": "2026-09-24"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 89,
+   "priority": "未标",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 18 轮（回落：正文首个裸 rNN=r19）",
+   "title": "**【待观察·外部红项·stub（r21c 复跑 22:2x）】** `gates` 现 **`stub=fail`**：唯一失败桩 = `焚诀/eval/stubs/stub_c29_c30_index_routing",
+   "first_seen": "2026-09-24"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 83,
+   "priority": "未标",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 17 轮（回落：正文首个裸 rNN=r20）",
+   "title": "R19-2 转焚诀 C29/C30/C31 判据(目录税棘轮+注入区合一+计数断言内容级门禁)（由 flow 登记；状态: blocked）—— **🔶 部分收口（r20）**：原「建议 rule_editor comm",
+   "first_seen": "2026-09-24"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 112,
+   "priority": "P0",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 17 轮（回落：正文首个裸 rNN=r20）",
+   "title": "**【P0 新账·r20 插件面】** ① **R20-2（高，转焚诀归属会话）**：C29 目录税棘轮的判据面必须定义为 **`D:\\global_skills ∪ ~/.qoder-cn/plugins/instal",
+   "first_seen": "2026-09-24"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 92,
+   "priority": "未标",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 16 轮（回落：正文首个裸 rNN=r21）",
+   "title": "**【待观察·同工作区并行会话（r20b 登记 21:5x）】** `git status --porcelain` 出现本仓外的新未跟踪件 `05-exec/r21b-patches/README.md`（另有 `r2",
+   "first_seen": "2026-09-24"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 90,
+   "priority": "未标",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 13 轮（回落：正文首个裸 rNN=r24）",
+   "title": "**【登记·跨会话夹带第五形态＝本仓内部（r21c 实测 22:1x）】** 本会话按白名单 `git add` 完 8 个 r21c 文件、**尚未及 `git commit`** 的窗口内，同工作区的**定时排程轮 ",
+   "first_seen": "2026-09-24"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 73,
+   "priority": "P0",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 10 轮（回落：正文首个裸 rNN=r27）",
+   "title": "**【P0 自纠·r27 我犯了自己登记过的夹带缺陷】** 提交 `b973917` 用 `git add -A 06-benchmark 05-exec` 卷入并行会话 4 个在途文件（r21d_lessons_lan",
+   "first_seen": "2026-09-24"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 113,
+   "priority": "P0",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 9 轮（回落：正文首个裸 rNN=r28）",
+   "title": "**【P0 新账·r28】** H1 新建技能模板只强制 `Verification` + `Rationalizations` 两段（+H3 破坏性命令作用域守卫）；H2 按 `rubric_ab_2026-09-24",
+   "first_seen": "2026-09-24"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 139,
+   "priority": "未标",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 8 轮（回落：正文首个裸 rNN=r29）",
+   "title": "**【待观察·外部在途使本仓契约门禁变红（r21e 23:4x 实测）】** 必跑链第 3 条 `baseline_contract_scan.py` 现 `[CONTRACT:FAIL]`：并行会话（同日 r29 轮）",
+   "first_seen": "2026-09-25"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 67,
+   "priority": "P0",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 6 轮（回落：正文首个裸 rNN=r31）",
+   "title": "**【P0·待观察 他人归属（r31 复测）】** ① 受管根 `git -C D:\\global_skills status --porcelain` = **32 条**（`dingtalk-*` 15 未跟踪、`i",
+   "first_seen": "2026-09-25"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 68,
+   "priority": "P0",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 6 轮（回落：正文首个裸 rNN=r31）",
+   "title": "**【P0·登记 未认领散件（r31）】** ① 工作区根 0 字节文件 `手动维护。agent`（mtime 2026-09-24 22:39，非本会话创建，内容空）⇒ 归属不明，**不删不改**，待认领；② `05-",
+   "first_seen": "2026-09-25"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 100,
+   "priority": "P1",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 34 轮（回落：正文首个裸 rNN=r3）",
+   "title": "**【P1 待授权·可选】** 性能方案剩余项（2026-09-23，详见 `05-exec/性能瓶颈分析与优化方案.md`）：P1-3a 本项目注入壳瘦身——**✅ 校正注（2026-09-23 r3 裁定：本轮不做，",
+   "first_seen": "2026-09-23"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 62,
+   "priority": "P1",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 3 轮（回落：正文首个裸 rNN=r34）",
+   "title": "**【P1·待办 L-4（r34 dogfood 新发现）】** `rule_conflict_scan.py` 的 `DEFAULT_FILES` 十件里 `D:\\global_memory\\AGENTS.md` 实测",
+   "first_seen": "2026-09-25"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 101,
+   "priority": "未标",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 30 轮（回落：正文首个裸 rNN=r7）",
+   "title": "**【待观察·他人在途（r7 新登记 2026-09-23 15:55）】** 受管根 `D:\\global_skills` 现存 1 条在途：`A-get-memory/SKILL.md`（lessons 分卷定位按数",
+   "first_seen": "2026-09-23"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 102,
+   "priority": "未标",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 29 轮（回落：正文首个裸 rNN=r8）",
+   "title": "**【待裁定·口径漂移（r8 新登记）】** `scan_all.py` 判据修复后 dry-run 复跑 = **HIGH 56 / MID 21** / LOW 30 / EXCLUDE 43，而冻结交付件（scop",
+   "first_seen": "2026-09-23"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 103,
+   "priority": "未标",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 29 轮（回落：正文首个裸 rNN=r8）",
+   "title": "**【登记·焚诀红线（r8）】** `unretire_31.py:51-53` 写入焚诀 `eval/truth_constants.json` `_meta` 的数字失真（硬编码「20 个市场件/11 个 local",
+   "first_seen": "2026-09-23"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 110,
+   "priority": "P2",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 29 轮（回落：正文首个裸 rNN=r8）",
+   "title": "**【P2 待授权·D 批缓办（r8，用户本轮未选）】** ① 11 个一次性脚本归档（B1/B6/B7×2/R272×5/direct_map/unretire_31 → `archive/one-shot-scrip",
+   "first_seen": "2026-09-23"
+  }
+ ],
+ "undated": [
+  {
+   "title": "**【P0·待办 M-3（第十三维不许宣称领先的前提）】** 对手侧同尺分类：给 anthropics/skills(75% failure",
+   "file": "memory\\07-next-steps.md",
+   "line": 56
+  },
+  {
+   "title": "**【P0·待观察 他人归属】** 本轮开工前即存在的两条门禁红：① 焚诀 `C20 技能可移植性棘轮` —— `ican-frontend",
+   "file": "memory\\07-next-steps.md",
+   "line": 70
+  },
+  {
+   "title": "**【P0·待裁定 范围表漂移】** 自建裁定表（2026-09-22 v2，150 目录）与磁盘 167 已差 17 条：`verific",
+   "file": "memory\\07-next-steps.md",
+   "line": 71
+  },
+  {
+   "title": "**【P0 铁律·最高优先（老大 2026-09-24 立规）】** 权威源 `D:\\global_memory\\core\\behavior",
+   "file": "memory\\07-next-steps.md",
+   "line": 75
+  },
+  {
+   "title": "R19-1 注入面失真句批次整改(端数/版本戳10句+流程入描述24条+六段最小规范)（由 flow 登记；状态: blocked）—— *",
+   "file": "memory\\07-next-steps.md",
+   "line": 84
+  },
+  {
+   "title": "**【更正·转办判据编号撞号（r19b 实测）】** 下表 R19-2 所指「C29′ 目录税棘轮」**已不能叫 C29**：焚诀并行会话本",
+   "file": "memory\\07-next-steps.md",
+   "line": 87
+  },
+  {
+   "title": "**【待观察·外部红项（r21c）】** `gates` 现 `mirror=fail` 的 2 处 MISMATCH 均为 `ican-f",
+   "file": "memory\\07-next-steps.md",
+   "line": 88
+  },
+  {
+   "title": "**【待观察·跨会话夹带】** 受管根 `f6f5b0c`（本轮 V3.48.0 提交）**夹带**了并行会话在 `handoff_lib/",
+   "file": "memory\\07-next-steps.md",
+   "line": 99
+  },
+  {
+   "title": "**【r21d 复测闭环·新机器型判据】** 「转办前先复测归属方是否已自落」升格为机器型：判据 （转办登记表 vs 焚诀 verify 注",
+   "file": "memory\\07-next-steps.md",
+   "line": 134
+  },
+  {
+   "title": "**【r21e 控制符扫描（已挂必跑链第 5 条）】** `05-exec/control_char_scan.py` 脏集 = C0 ∪ ",
+   "file": "memory\\07-next-steps.md",
+   "line": 140
+  },
+  {
+   "title": "**【r21e 证据可解析性 + 归因抬基线】** `upgrade_footer_gate.py` 的 `RE_EVID` 原只校形状，形",
+   "file": "memory\\07-next-steps.md",
+   "line": 141
+  },
+  {
+   "title": "**【P0 新立判据·r21d】** 「状态=已闭环」只允许覆盖该条建议的**全部**作用面：一条建议若同时含「动作」与「教训/机制」两半，",
+   "file": "memory\\07-next-steps.md",
+   "line": 142
+  },
+  {
+   "title": "**【待观察·活写入者反复引入的死路径（r21d 实测 22:5x）】** 07 主卷 P0 铁律那条把权威源写成 `D:\\global_m",
+   "file": "memory\\07-next-steps.md",
+   "line": 143
+  }
+ ],
+ "opponents_measured_at": "2026-09-25",
+ "opponents": [
+  {
+   "repo": "github/spec-kit",
+   "open_issues": 287,
+   "workflows": 27,
+   "stale_automation": true,
+   "oldest_open_issue": "2025-09-25",
+   "note": "唯一有到期自动化：Close stale issues and PRs + 6 条 issue 流转 workflow"
+  },
+  {
+   "repo": "obra/superpowers",
+   "open_issues": 401,
+   "workflows": 2,
+   "stale_automation": false,
+   "oldest_open_issue": "2026-01-27"
+  },
+  {
+   "repo": "anthropics/skills",
+   "open_issues": 1290,
+   "workflows": 2,
+   "stale_automation": false,
+   "oldest_open_issue": "2025-10-16"
+  },
+  {
+   "repo": "addyosmani/agent-skills",
+   "open_issues": 118,
+   "workflows": 5,
+   "stale_automation": false,
+   "oldest_open_issue": "2026-04-04"
+  },
+  {
+   "repo": "pre-commit/pre-commit",
+   "open_issues": 25,
+   "workflows": 3,
+   "stale_automation": false,
+   "oldest_open_issue": "2018-07-02",
+   "note": "低积压靠少建待办，最老一条 8 年仍 open —— 到期治理同样缺失"
+  }
+ ],
+ "note": "OVERDUE 数 = ratchet_gate 第 7 指标 overdue_debt_items 的唯一取值面"
+}

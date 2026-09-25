@@ -19,6 +19,7 @@ R247 硬门：契约面为空、或某 pattern 命中 0 个文件 ⇒ 判 FAIL�
 
 import argparse
 import fnmatch
+import importlib.util
 import json
 import sys
 from datetime import datetime
@@ -165,6 +166,66 @@ def inv_scenarios_nonempty(doc, arg):
     return [] if isinstance(sc, list) and sc else ["scenarios 为空（评测集失效）"]
 
 
+def _ratchet_metric_names():
+    """从 ratchet_gate 单源取 METRIC_NAMES；取不到一律抛，交调用方按 R247 判失败（禁当作一致）。"""
+    p = HERE / "ratchet_gate.py"
+    spec = importlib.util.spec_from_file_location("ratchet_gate_for_contract", str(p))
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return set(mod.METRIC_NAMES)
+
+
+def inv_ratchet_metric_set(doc, arg):
+    """M-2（挂账 3 轮，r38 清偿）：基线指标键集合必须与 ratchet_gate.METRIC_NAMES **全等**。
+
+    根因：棘轮只遍历 `METRIC_NAMES`，而基线 JSON 是**另一份**键集合。两者一旦漂移：
+    基线**多**出来的键 = 僵尸基线（没人再产出，白占审计面）；基线**少**出来的键 = 该指标
+    **从此没有基线**，`ratchet_gate` 现场取不到基线时按新值放行 ⇒ **静默失去回归保护**
+    （r34 加第 6 指标时就是靠手工同步两份文件，无机器护栏）。
+    """
+    try:
+        want = _ratchet_metric_names()
+    except Exception as e:
+        return ["RATCHET-SET: 取不到 ratchet_gate.METRIC_NAMES（%s: %s）—— 不得判集合一致（R247）"
+                % (type(e).__name__, e)]
+    got = set((doc.get("metrics") or {}).keys())
+    msgs = []
+    if not got:
+        return ["RATCHET-SET: metrics 为空面，禁判一致（R247）"]
+    missing = sorted(want - got)
+    extra = sorted(got - want)
+    if missing:
+        msgs.append("RATCHET-SET: 基线缺指标 %s（该指标无基线 = 棘轮静默放行，回归保护失效）" % missing)
+    if extra:
+        msgs.append("RATCHET-SET: 基线多指标 %s（ratchet_gate 已不再产出 = 僵尸基线）" % extra)
+    return msgs
+
+
+def inv_ratchet_hardcap_subset(doc, arg):
+    caps = set((doc.get("hard_caps") or {}).keys())
+    metrics = set((doc.get("metrics") or {}).keys())
+    orphan = sorted(caps - metrics)
+    return ["HARD-CAP: %s 设了硬顶却不在 metrics 里（硬顶无主，永不触发）" % orphan] if orphan else []
+
+
+def inv_debt_class_sum(doc, arg):
+    """r38 第十四维：三分类之和必须 == open_total（判据漏桶即红，X-7 同族）。"""
+    ev, by = doc.get("evidence") or {}, doc.get("by_class") or {}
+    total = ev.get("open_total")
+    if total is None or not by:
+        return ["DEBT-CLASS: evidence.open_total 或 by_class 缺失，不得判自洽（R247）"]
+    s = sum(by.values())
+    return [] if s == total else ["DEBT-CLASS: 分类之和 %d != open_total %d（有未闭环条目没被任何一类接住）"
+                                  % (s, total)]
+
+
+def inv_debt_taxonomy_complete(doc, arg):
+    want = {"OVERDUE", "ACTIVE", "DECIDED", "UNDATED"}
+    got = set(doc.get("verdict_taxonomy") or [])
+    return ["debt verdict_taxonomy 缺态 %s（少一类即可能把该态静默并入绿态）" % sorted(want - got)] \
+        if not want <= got else []
+
+
 INVARIANTS = {
     "readonly_true": inv_readonly_true,
     "excluded_have_why": inv_excluded_have_why,
@@ -179,6 +240,10 @@ INVARIANTS = {
     "conflict_input_evidence_nonzero": inv_conflict_input_evidence_nonzero,
     "rubric_pct_within_total": inv_rubric_pct_within_total,
     "scenarios_nonempty": inv_scenarios_nonempty,
+    "ratchet_metric_set_matches": inv_ratchet_metric_set,
+    "ratchet_hardcap_subset": inv_ratchet_hardcap_subset,
+    "debt_class_sum": inv_debt_class_sum,
+    "debt_taxonomy_complete": inv_debt_taxonomy_complete,
 }
 
 
