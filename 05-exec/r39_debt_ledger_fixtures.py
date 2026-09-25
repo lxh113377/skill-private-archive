@@ -212,6 +212,24 @@ def main():
     c10, d10 = da.classify_item(two3, 41)
     ck("t28 目标轮 == 本轮即到期（不是宽限一轮）", c10 == "OVERDUE", "%s %s" % (c10, d10))
 
+    # --- r42 反"延期 treadmill"：多次改期必须显形；宽限期须按优先级分档 ---
+    two_def = ("【P0·待办 A（r31 登记）】 正文 【r38 账龄裁决=挂账至 r40｜旧】 "
+               "【r40 裁决=挂账至 r41｜中】 【r41 裁决=挂账至 r44｜新】")
+    c1, d1 = da.classify_item(two_def, 42)
+    ck("t30 同一条被改期 3 次 → 判 REPEAT（延期堆不得静默滚动）",
+       c1 == "REPEAT", "%s %s" % (c1, d1))
+    one_def = "【P0·待办 B（r41 登记）】 【r41 裁决=挂账至 r44｜首次延期】"
+    c2, d2 = da.classify_item(one_def, 42)
+    ck("t31 反例：只延期 1 次仍算 DEFERRED（不一刀切惩罚）", c2 == "DEFERRED", "%s %s" % (c2, d2))
+    ck("t32 REPEAT 必须进分类枚举（五态之和才等于总数）", "REPEAT" in da.TAXONOMY, str(da.TAXONOMY))
+    p0_over = "【P0·待办 C（r38 登记）】 账龄 3 轮仍未动"
+    c3, _ = da.classify_item(p0_over, 42)
+    c4, _ = da.classify_item(p0_over.replace("P0", "P2"), 42)
+    ck("t33 宽限期按优先级分档：P0 超 2 轮即 OVERDUE、P2 3 轮仍 ACTIVE",
+       (c3, c4) == ("OVERDUE", "ACTIVE"), "%s %s" % (c3, c4))
+    ck("t34 GRACE 分档表可读（值不写死在函数体内）", isinstance(getattr(da, "GRACE_BY_PRIORITY", None), dict),
+       str(getattr(da, "GRACE_BY_PRIORITY", None)))
+
     fails = [r for r in RESULTS if not r[0]]
     print("\n夹具合计: %d 项，通过 %d，失败 %d" % (len(RESULTS), len(RESULTS) - len(fails), len(fails)))
     if fails:
