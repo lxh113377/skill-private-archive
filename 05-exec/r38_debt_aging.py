@@ -34,8 +34,16 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
-TAXONOMY = ["OVERDUE", "ACTIVE", "DECIDED", "UNDATED", "DEFERRED"]   # r39：DEFERRED = 挂账至未来轮，是"看得见但不到期"的第四种状态，不得并入 DECIDED
+TAXONOMY = ["OVERDUE", "ACTIVE", "DECIDED", "UNDATED", "DEFERRED", "REPEAT"]   # r39 加 DEFERRED（看得见但不到期，不得并入 DECIDED）；r43 加 REPEAT（第 31 行说明）
 GRACE_DEFAULT = 2
+# r42 D49 / r43 W-11b：宽限期按优先级分档。统一 2 轮会把 P2 长期项与 P0 同罪判红，
+# 噪音反而稀释 P0 的紧迫感（活证据：本仓 W-2 自己在 r42 被判成 OVERDUE）。
+GRACE_BY_PRIORITY = {"P0": 2, "P1": 4, "P2": 8, "UNMARKED": 2}
+RE_PRIORITY = re.compile(r"【\s*(P[0-2])")
+# r42 D48 / r43 W-11a：同一条目被改期 >= 2 次 ⇒ 判 REPEAT 并强制升级，
+# 堵死「到期就再往后挂一轮」的延期 treadmill（账面一路 DEFERRED，趋势线看不出恶化）。
+RE_DEFERRAL = re.compile(r"挂账至\s*r\d{1,3}")
+REPEAT_AFTER = 2
 RE_ITEM = re.compile(r"^\s*-\s\[( |x)\]\s+(.+)$")
 RE_ROUND_DECL = re.compile(r"(?:r(\d{1,3})\s*(?:登记|立|新增|补记|更新|收尾)|第\s*(\d{1,3})\s*轮|"
                            r"挂账\s*(\d{1,2})\s*轮)")
@@ -78,9 +86,14 @@ def classify_item(text, now_round):
             # r39 W-0：延期不是终局。目标轮未到 → DEFERRED（单列，趋势线可见）；
             # 已到/已过 → 重新判 OVERDUE（到期追讨），防"挂账至 rNN"变成永久免检通道。
             if tgt > now_round:
+                n_def = len(RE_DEFERRAL.findall(text))
+                if n_def >= REPEAT_AFTER:
+                    return ("REPEAT", "第 %d 次延期至 r%d ⇒ 须升级：执行 / 降级为长期看守 / 作废"
+                            % (n_def, tgt))
                 return ("DEFERRED", "挂账至 r%d（尚余 %d 轮）" % (tgt, tgt - now_round))
             return ("OVERDUE", "挂账目标 r%d 已到期（本轮 r%d）" % (tgt, now_round))
         return ("DECIDED", "裁决=" + dec.group(1))
+    grace = GRACE_BY_PRIORITY.get((RE_PRIORITY.search(text) or ["", "UNMARKED"])[1], GRACE_DEFAULT)
     origin, held = None, None
     for m in RE_ROUND_DECL.finditer(text):
         if m.group(1):
@@ -98,10 +111,10 @@ def classify_item(text, now_round):
         bare = re.search(r"\br(\d{1,3})\b", text)
         if bare:
             age = now_round - int(bare.group(1))
-            return (("OVERDUE" if age > GRACE_DEFAULT else "ACTIVE"),
-                    "账龄 %d 轮（回落：正文首个裸 rNN=r%s）" % (age, bare.group(1)))
+            return (("OVERDUE" if age > grace else "ACTIVE"),
+                    "账龄 %d 轮 / 宽限 %d（回落：正文裸 rNN=r%s）" % (age, grace, bare.group(1)))
         return ("UNDATED", "取不到来源轮次")
-    return (("OVERDUE" if age > GRACE_DEFAULT else "ACTIVE"), "账龄 %d 轮" % age)
+    return (("OVERDUE" if age > grace else "ACTIVE"), "账龄 %d 轮 / 宽限 %d" % (age, grace))
 
 
 def scan(files, now_round, grace):
@@ -132,7 +145,7 @@ def scan(files, now_round, grace):
 
 # ---------------------------------------------------------------- W-3：账龄趋势台账
 LEDGER_CLASSES = ("OVERDUE", "ACTIVE", "DECIDED", "UNDATED")   # 必填四态（r39 前既有）
-LEDGER_OPTIONAL = ("DEFERRED",)              # 缺省按 0 记；出现则计入自洽
+LEDGER_OPTIONAL = ("DEFERRED", "REPEAT")     # 缺省按 0 记；出现则计入自洽
 LEDGER_ORIGINS = ("local", "ci")
 
 
@@ -166,7 +179,7 @@ def append_ledger(path, doc, origin="local", head=None):
     row = {"ts": dt.datetime.now().isoformat(timespec="seconds"), "origin": origin,
            "open_total": total, "overdue": by["OVERDUE"], "active": by["ACTIVE"],
            "decided": by["DECIDED"], "undated": by["UNDATED"],
-           "deferred": by.get("DEFERRED", 0),
+           "deferred": by.get("DEFERRED", 0), "repeat": by.get("REPEAT", 0),
            "grace_rounds": doc.get("grace_rounds"), "current_round": doc.get("current_round"),
            "head": head or head_short()}
     io.open(path, "a", encoding="utf-8", newline="").write(

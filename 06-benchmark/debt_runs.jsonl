@@ -15,3 +15,5 @@
 {"ts": "2026-09-25T13:01:57", "origin": "local", "open_total": 59, "overdue": 1, "active": 8, "decided": 15, "undated": 13, "deferred": 22, "grace_rounds": 2, "current_round": 40, "head": "c061bf7"}
 {"ts": "2026-09-25T13:02:16", "origin": "local", "open_total": 59, "overdue": 1, "active": 8, "decided": 15, "undated": 13, "deferred": 22, "grace_rounds": 2, "current_round": 40, "head": "c061bf7"}
 {"ts": "2026-09-25T13:06:14", "origin": "local", "open_total": 61, "overdue": 20, "active": 4, "decided": 16, "undated": 13, "deferred": 8, "grace_rounds": 2, "current_round": 41, "head": "57b4e80"}
+{"ts": "2026-09-25T13:55:02", "origin": "local", "open_total": 62, "overdue": 20, "active": 7, "decided": 16, "undated": 13, "deferred": 0, "repeat": 6, "grace_rounds": 2, "current_round": 42, "head": "d7ca304"}
+{"ts": "2026-09-25T13:55:28", "origin": "local", "open_total": 62, "overdue": 15, "active": 5, "decided": 24, "undated": 12, "deferred": 4, "repeat": 2, "grace_rounds": 2, "current_round": 42, "head": "d7ca304"}
