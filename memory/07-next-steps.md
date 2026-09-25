@@ -52,7 +52,6 @@
 - [ ] **【P1·待办 W-3（r38）】** 账龄趋势落台账：仿 `gate_runs.jsonl` 建 `06-benchmark/debt_runs.jsonl`（ts/overdue/undated/open_total），使 CI 与棘轮能看到**斜率**而非只看到当期值；契约须带取值域（R247 空面判红）。
 - [ ] **【P2·待办 L-6（r38）】** 编号命名空间收敛：X-n / M-n / H-n / W-n 已两次撞车（r33 X-3 与 r35 X-6 同义；r31 M-1/M-2 与本轮 M-1/M-2 同义不同指）。长期方案 = 编号只增不复用 + 在 `memory/AGENTS.md` 建一张"编号 → 含义 → 立规轮"总表。
 - [ ] **【P0·下轮首推 M-1（挂账 4 轮）】** 把 `rule_editor` 写时冲突检查 `--on-write` 挂进写前链 —— **前置：先量近 20 次真实编辑的 CONFLICT 误报率**（取值：`git -C D:\global_skills log --format=%h -20` 后逐提交比对同文件并发窗口），误报率 >0 即**不得默认 fail-closed**（r25 用户否决过拦任务的闸门）。条目内禁硬编码当前值。 【r38 账龄裁决=挂账至 r40｜前置「先量误报率」本轮未做（本轮产能给了 M-2 与账龄尺）；r25 用户否决拦任务闸门 ⇒ 未量出 0 误报前不得接线】
-- [x] **【P0·待办 M-2（挂账 3 轮）→ r38 已执行】** 契约不变式 `set(baseline.metrics) == set(ratchet_gate.METRIC_NAMES)` + 「基线少一项指标必红」夹具 —— 现六项指标靠 `ratchet_gate.py` 单源，`06-benchmark/inject_ratchet_baseline.json` 少键时只报缺文件不报缺项。【r38 执行完毕：契约新增 `inject_ratchet_baseline*.json` pattern + 不变式 `ratchet_metric_set_matches`（集合全等，双向报缺项/僵尸项）+ `ratchet_hardcap_subset`；夹具 t21–t24 实测「删一项必红并点名该指标」，`[GATE:fixture-pass]` 41/41】
 - [ ] **【P0·待办 M-3（第十三维不许宣称领先的前提）】** 对手侧同尺分类：给 anthropics/skills(75% failure) / superpowers(82% failure) / spec-kit(50% action_required) 的红灯**逐条分类「真缺陷 vs 假阳性」**；未做之前本维度结论上限只到「已量化」。4 仓 blob 树已在 06-benchmark/（205/231/419/1235）。
 - [ ] **【P0·待办 H-2′（r36 立，未变）】** 第十二维 **UNLOCATED 80 处**逐处定性（基址归不了类 ≠ 解不开）；未定性前**禁止**把「92.2% 可解析」升级为「领先对手」。
 - [ ] **【P1·待办 H-5（r37 新立，结构性）】** `07-next-steps.md` **摘要与 P0 混排**：实测 `## 最近对话摘要` 只到 r20，而 **r28~r37 共 10 轮摘要全落在 `## P0 — 必须做` 节内**（本轮插 r37 时按锚点命中才发现）。修法须与拆卷配合：摘要归位摘要节或专属分卷，P0 节只留 `- [ ]` 待办；动前先验 `savepoint` 的「P0 非空」判据（致命纪律 #1）不受影响，**禁止**为凑判据形状删待办。
@@ -121,6 +120,8 @@
 - **卷11** `07-next-steps.part11.md` — 07-next-steps 分卷（R199 自动拆卷）
 
 - **卷12** `07-next-steps.part12.md` — 07-next-steps 分卷（R199 自动拆卷）
+
+- **卷13** `07-next-steps.part13.md` — 07-next-steps 分卷（R199 自动拆卷）
 
 ## 分卷目录
 - **卷1** `07-next-steps.part1.md` — 历史待办与已完成条目（2026-09-22 已按实测销账）
