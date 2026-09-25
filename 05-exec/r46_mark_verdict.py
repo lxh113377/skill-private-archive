@@ -8,12 +8,14 @@ r"""r46_mark_verdict.py — 给共享记忆卷写「裁决/状态标记」的唯
 W-13 已经提供 `find_item_line()`，但**约定拦不住我写一次性脚本时图省事**（同一轮又犯一次），
 所以本轮把它做成唯一入口：不接收行号，只接收标题锚点，且命中数 != 1 一律拒写。
 
-五重拒写（每条都有夹具断言，见 r46_mark_verdict_fixtures.py）：
+五重拒写 + 一重对账（每条都有夹具断言，见 r46_mark_verdict_fixtures.py / r49_face_fixtures.py）：
   ① 不提供行号入口（argparse 无 --line，传了就报错退出）；
   ② 锚点命中数 != 1（含 0 命中 = 条目不存在，**绝不退化成追加**）；
   ③ 命中的是 `- [x]` 已闭环条目 ⇒ 禁往别人做完的条目上标裁决；
   ④ 同一轮已有 `rNN 裁决=` ⇒ 拒写（幂等靠**拒绝**实现，不靠静默跳过，#23 同族）；
-  ⑤ 目标卷不在 `<vault>/memory/` 下 ⇒ 拒写（受管根与仓外一律不许经此工具写）。
+  ⑤ 目标卷不在 `<vault>/memory/` 下 ⇒ 拒写（受管根与仓外一律不许经此工具写）；
+  ⑥ W-22（r49）延期型裁决与近期提交主题对账：条目**自身编号**已被宣布落地却还往后挂账 ⇒ 拒写
+     （①~⑤ 只保证"写到唯一命中的那一行"，保证不了"那行是我要裁的那条"）。
 写入后必须 grep 读回验证，读不到就 restore 备份并返回失败（X-8：报 done 之前必须读回）。
 
 退出码：0 = 已写入并读回验证；1 = 被拒写或读回失败；2 = 参数不合法
@@ -32,6 +34,47 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 MARK_RE_TPL = "r%s 裁决="
+
+
+# ---- W-22（r49）：锚点唯一命中 ≠ 裁决对象正确 ------------------------------------
+# 动因（r46 真事故，r49 到期追讨时才发现）：我给 **W-14** 那一行写了「挂账至 r49」，
+# 而原因文本讲的是「契约分代必填」（那是 W-17）；W-14 在 r45 的提交主题里已写明「落地」。
+# 五重拒写拦住了"写到错行"，拦不住"把给 A 的裁决写到正确的 B 行上"——后者只能靠
+# 「条目自己的编号」与「近期提交主题」对账。检测延迟 = 整个延期窗口（3 轮），必须前移到写时。
+RE_ITEM_ID = re.compile(r"([A-Z]-\d+)（r\d{1,3}\s*新立")
+RE_LANDED_WORD = re.compile(r"落地|已落地|执行完毕|已闭环")
+RE_DEFERRAL_TEXT = re.compile(r"挂账至\s*r\d{1,3}")
+
+
+def item_own_id(line):
+    """条目**自我声明**的编号 = 紧跟「（rNN 新立」的那个；正文里引用别条的编号不算自身编号。"""
+    m = RE_ITEM_ID.search(line or "")
+    return m.group(1) if m else None
+
+
+def landed_contradiction(item_id, verdict, subjects):
+    """True = 该延期与近期提交主题矛盾（条目自己已被宣布落地，却还在往后挂账）⇒ 调用方拒写。
+
+    只在「延期型裁决」上生效：终局裁决（执行/作废/保留）指向已落地条目是**正确行为**，
+    拒它就是把判据用反。取不到编号或取不到提交主题时一律不拒（禁凭空造拒写）。
+    """
+    if not item_id or not RE_DEFERRAL_TEXT.search(verdict or ""):
+        return False
+    pat = re.compile(r"\b%s\b" % re.escape(item_id))
+    for subj in (subjects or "").splitlines():
+        if pat.search(subj) and RE_LANDED_WORD.search(subj):
+            return True
+    return False
+
+
+def git_subjects(vault, n=20):
+    """独立取值：近期提交主题（供 landed_contradiction 对账）。取不到返回 ""（不拒写，只告警）。"""
+    try:
+        r = subprocess.run(["git", "-C", str(vault), "log", "--format=%s", "-%d" % n],
+                           capture_output=True, text=True, encoding="utf-8", errors="replace")
+        return r.stdout if r.returncode == 0 else ""
+    except OSError:
+        return ""
 
 
 def find_item_lines(lines, key):
@@ -98,6 +141,17 @@ def main():
         if MARK_RE_TPL % args.round in lines[i]:
             return refuse("④ 本轮已裁过，不重复写（幂等靠拒绝而非静默跳过）",
                           "%s:%d" % (rp.name, i + 1))
+        if RE_DEFERRAL_TEXT.search(args.verdict):                       # ⑥ 只对延期型裁决设卡
+            subj = git_subjects(vault)
+            own = item_own_id(lines[i])
+            if not subj:
+                print("[MARK:FACE-UNVERIFIED] 取不到近期提交主题 ⇒ 「已落地却仍挂账」对账未做，"
+                      "放行但如实记录（r25：判据不得变成拦任务的闸门）")
+            elif landed_contradiction(own, args.verdict, subj):
+                return refuse("⑥ 条目自身编号 %s 已在近期提交主题里被宣布落地，却还往后挂账"
+                              " —— 多半是把另一条的裁决写到了这条上（r46 W-14 事故同族）" % own,
+                              "%s:%d ｜ 取值：git -C %s log --format=%%s -20"
+                              % (rp.name, i + 1, vault))
         marker = "【" + (MARK_RE_TPL % args.round) + args.verdict + "】"
         new_lines = list(lines)
         new_lines[i] = lines[i].rstrip() + " " + marker

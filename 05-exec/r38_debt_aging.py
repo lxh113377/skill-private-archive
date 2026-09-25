@@ -63,6 +63,65 @@ def current_round():
     return max(hits) if hits else None
 
 
+def round_from_tag():
+    """独立轮号锚 = 最近一个 annotated tag（r33 起每轮收尾打 tag）。
+    与 `git log --format=%s -40` 的窗口取值互不依赖，专供 W-20 的轮号面对账。"""
+    out = git("describe", "--tags", "--abbrev=0").stdout.strip()
+    m = re.match(r"^r(\d{1,3})\b", out)
+    return int(m.group(1)) if m else None
+
+
+# ------------------------------------------------------- W-20（r49）：输入面截断自证
+def face_round(round_log, round_tag):
+    """轮号面自证：提交主题窗口（降采样 -40）与 tag 硬锚（不降采样）双向对账。
+
+    存在理由：整把尺子的账龄与到期都以 `now_round` 为原点，而它取的是**最近 40 条提交主题**
+    里的最大 rNN —— 一旦一轮的提交数超过窗口，本轮声明就被截掉，轮号回退到上一轮，
+    于是"到期项"集体少算一轮、账龄集体变浅，报出来的绿只是**局部干净**。
+    返回 (ok, detail)；True=面自证通过 / False=判红 / None=无 tag 锚可对照（首轮，记 UNVERIFIED）。
+    """
+    if round_log is None:
+        return (False, "提交主题窗口取不到轮号（log=None）—— 禁按 0 起算（R247）")
+    if round_tag is None:
+        return (None, "无 tag 锚可对照（首轮未打 tag 或 describe 失败）⇒ UNVERIFIED，不记绿")
+    if round_tag > round_log:
+        return (False, "tag=r%d 晚于 -40 窗口推出的 r%d ⇒ 窗口没覆盖到本轮声明，轮号基准被截断"
+                % (round_tag, round_log))
+    return (True, "log=r%d ≥ tag=r%d（差 %d 轮 = 本轮尚未打 tag，符合每轮收尾打标的既有节奏）"
+            % (round_log, round_tag, round_log - round_tag))
+
+
+def face_dedup(raw_lines, items_total, collisions):
+    """去重面自证：`key = body[:80]` 是**截断键**，两条不同条目撞前缀会被静默吞掉。
+
+    存在理由（r49 立规）：open_total 是台账自洽式（debt_class_sum）的右端，
+    被吞的行不会出现在任何一态里 ⇒ 分类之和仍"自洽"，账却是少的（少算比错算更难发现）。
+    因此守恒必须是**行数 → 条目数**的守恒，而不是只查分类之和。
+    """
+    if raw_lines != items_total:
+        return (False, "RE_ITEM 命中 %d 行，只计入 %d 条 ⇒ 有 %d 行被静默吞掉"
+                % (raw_lines, items_total, raw_lines - items_total))
+    if collisions:
+        return (False, "%d 组 80 字前缀相同但正文不同 ⇒ 去重键在吞不同条目，首例：%s … vs %s …"
+                % (len(collisions), collisions[0]["a"][:36], collisions[0]["b"][:36]))
+    return (True, "%d 行全部计入，80 字前缀键零碰撞" % raw_lines)
+
+
+def face_dating(seen_short, seen_full):
+    """定年面自证：`git log -S` 的 needle 取正文前 70 字（截断串），可能命中更早的同前缀行。
+
+    判据口径（X-21 同族）：两路取值**不等即判红**，禁止"取更保守的那个"把差异吞掉——
+    差异本身就是"截断改变了结论"的证据，需要人看一眼而不是让尺子自选。
+    """
+    if seen_short is None and seen_full is None:
+        return (True, "两路都取不到首现日期（该条目无 git 史，已按 UNDATED 面另行看守）")
+    if seen_short == seen_full:
+        return (True, "截断 needle 与全文 needle 同值 %s ⇒ 截断未改变结论" % seen_short)
+    return (False, "前 70 字取到 %s，全文取到 %s ⇒ 截断改变了定年结论，须人工裁决"
+            % (seen_short, seen_full))
+
+
+
 def volume_files():
     """P0 唯一真相源 = 主壳；分卷里也有在途待办，一并按同一判据计（防"只量主壳"造成覆盖面虚高）。"""
     return sorted(ROOT.glob("memory/07-next-steps*.md"))
@@ -172,9 +231,35 @@ def classify_item(text, now_round):
     return (("OVERDUE" if age > grace else "ACTIVE"), "账龄 %d 轮 / 宽限 %d" % (age, grace))
 
 
+RE_SUGG_ID = re.compile(r"\b([WXMH]-\d{1,2})\b")
+
+
+def face_suggestions(new_ids, todo_text):
+    """建议面自证：本轮报告里新立的建议编号，必须能在待办卷里找到承接行。
+
+    存在理由（r49 实测）：W-20 / W-21 只出现在 r48 报告正文，`07-next-steps.md` 里
+    **一条都没有** ⇒ 账龄尺看不见 ⇒ 永不到期 ⇒ "把报告里的改进建议直接开工执行"这条
+    用户命令在机器层面是空的。报告是产出面，待办卷是承接面，两面对不上就是漏执行。
+    """
+    if not new_ids:
+        return (None, "本轮报告未取到新建议编号 ⇒ 该面对照无意义（记 UNVERIFIED，不记绿）")
+    missing = [i for i in new_ids
+               if not re.search(r"(?<![\w-])%s(?![\w-])" % re.escape(i), todo_text or "")]
+    if missing:
+        return (False, "%d/%d 条新建议没进待办卷（%s）⇒ 建议不落 07 即永不到期，等于免检"
+                % (len(missing), len(new_ids), ", ".join(missing)))
+    return (True, "%d 条新建议全部在待办卷有承接行" % len(new_ids))
+
+
 def scan(files, now_round, grace):
+    """扫全部受检卷，返回 (items, face)。
+
+    face 是 W-20（r49）要求的面自证块：`raw_lines` 用与计入逻辑**无关**的口径重新数
+    （RE_ITEM 命中即数），用来证明 `body[:80]` 去重键没有吞掉不同条目。
+    """
     global GRACE_DEFAULT
-    items, seen_ids = [], set()
+    items, seen = [], {}
+    raw_lines, collisions, dating_fails = 0, [], []
     for fp in files:
         rel = os.path.join("memory", fp.name)
         text = io.open(fp, encoding="utf-8", errors="replace").read()
@@ -182,11 +267,16 @@ def scan(files, now_round, grace):
             m = RE_ITEM.match(line)
             if not m:
                 continue
+            raw_lines += 1
             body = m.group(2).strip()
             key = re.sub(r"\s+", " ", body[:80])
-            if key in seen_ids:
-                continue          # 主壳与分卷可能同条目（拆卷留索引），去重防重复计账
-            seen_ids.add(key)
+            if key in seen:
+                # 主壳与分卷可能同条目（拆卷留索引），去重防重复计账；
+                # 但**正文不同**就不是同一条目 —— 记账行为不变（防静默改数），面自证判红点名。
+                if seen[key] != body:
+                    collisions.append({"key": key, "a": seen[key], "b": body})
+                continue
+            seen[key] = body
             cls, detail = classify_item(body, now_round)
             row = {"file": rel, "line": ln, "priority": "P0" if "【P0" in body else
                    ("P1" if "【P1" in body else ("P2" if "【P2" in body else "未标")),
@@ -197,8 +287,19 @@ def scan(files, now_round, grace):
                    "detail": detail, "title": body[:110]}
             if cls == "OVERDUE" and m.group(1) == " ":
                 row["first_seen"] = first_seen(rel, key)
+                # W-20 定年面：同一问题问两遍（截断 needle vs 全文 needle），不等即判红
+                ok, why = face_dating(row["first_seen"], first_seen(rel, body))
+                row["dating_face"] = "OK" if ok else "FAIL"
+                if not ok:
+                    dating_fails.append({"file": rel, "line": ln, "why": why,
+                                         "title": body[:60]})
+                    row["dating_face_detail"] = why
             items.append(row)
-    return items
+    face = {"raw_lines": raw_lines, "items_total": len(items), "collisions": collisions,
+            "dating_fails": dating_fails,
+            "method": "RE_ITEM 逐行计数（独立于去重计入）+ 截断键碰撞比对 + 定年双路取值"}
+    return items, face
+
 
 
 # ---------------------------------------------------------------- W-3：账龄趋势台账
@@ -289,6 +390,7 @@ def main():
     ap.add_argument("--quiet", action="store_true")
     ap.add_argument("--ledger", help="趋势台账 jsonl 路径（追加一行；自洽不过则一行都不写）")
     ap.add_argument("--origin", default="local", choices=list(LEDGER_ORIGINS))
+    ap.add_argument("--report", help="本轮对标报告路径（W-20 第 4 面：报告新建议须落待办卷）")
     args = ap.parse_args()
     GRACE_DEFAULT = args.grace
 
@@ -301,7 +403,41 @@ def main():
         print("[DEBT:N/A] git log 取不到轮次序列 —— 无法定账龄，禁判绿（R247）")
         return 2
 
-    items = scan(files, now_round, args.grace)
+    items, face = scan(files, now_round, args.grace)
+    # ---- W-20（r49）：三处截断/降采样的面自证。任一判红 ⇒ 本轮所有"零"都要打折读
+    round_tag = round_from_tag()
+    f_round = face_round(now_round, round_tag)
+    f_dedup = face_dedup(face["raw_lines"], face["items_total"], face["collisions"])
+    f_dates = face["dating_fails"]
+    f_dating = ((False, "定年双路取值有 %d 条不等：%s" % (len(f_dates), str(f_dates[0]["why"])[:90]))
+                if f_dates else
+                (True, "%d 条到期项定年两路同值（截断 needle 未改变结论）"
+                 % sum(1 for r in items if r.get("dating_face"))))
+    # W-20 第 4 面：本轮报告新立的建议编号 → 待办卷承接对账
+    sugg_ids, f_sugg = [], (None, "未传 --report ⇒ 建议面未对照（R247 不判绿）")
+    if args.report:
+        try:
+            rpt = io.open(args.report, encoding="utf-8", errors="replace").read()
+            prev = ""
+            for hist in sorted(ROOT.glob("06-benchmark" + os.sep + "全量对标报告_r*.md")):
+                if os.path.abspath(str(hist)) == os.path.abspath(args.report):
+                    continue
+                prev += io.open(hist, encoding="utf-8", errors="replace").read()
+            prev_ids = set(RE_SUGG_ID.findall(prev))
+            sugg_ids = sorted(set(RE_SUGG_ID.findall(rpt)) - prev_ids)
+            todo_text = "".join(io.open(f, encoding="utf-8", errors="replace").read() for f in files)
+            f_sugg = face_suggestions(sugg_ids, todo_text)
+        except OSError as e:
+            f_sugg = (False, "--report 指向的文件读不到：%s（判红，不当作已通过）" % e)
+    input_face = {"round": {"log": now_round, "tag": round_tag, "ok": f_round[0], "detail": f_round[1]},
+                  "dedup": {"ok": f_dedup[0], "detail": f_dedup[1]},
+                  "dating": {"ok": f_dating[0], "detail": f_dating[1], "checked": len(f_dates)},
+                  "suggestions": {"ok": f_sugg[0], "detail": f_sugg[1]},
+                  "raw_lines": face["raw_lines"], "collisions": face["collisions"]}
+    face_red = [k for k in ("round", "dedup", "dating", "suggestions") if input_face[k]["ok"] is False]
+    face_unver = [k for k in ("round", "dedup", "dating", "suggestions") if input_face[k]["ok"] is None]
+    input_face["status"] = ("FAIL" if face_red else
+                            ("UNVERIFIED" if face_unver else "OK"))
     open_items = [r for r in items if r["class"] != "CLOSED"]
     closed = [r for r in items if r["class"] == "CLOSED"]
     by_cls = {c: sum(1 for r in open_items if r["class"] == c) for c in TAXONOMY}
@@ -313,8 +449,8 @@ def main():
     overdue = sorted([r for r in open_items if r["class"] == "OVERDUE"],
                      key=lambda r: -int(re.sub(r"\D", "", r["detail"] or "0") or 0))
     if not args.quiet:
-        print("轮号基准 = r%d（取值：git log --format=%%s -40 里的最大 rNN）｜受检面 %d 卷"
-              % (now_round, len(files)))
+        print("轮号基准 = r%d（取值：git log --format=%%s -40 里的最大 rNN）｜tag 锚 = r%s｜受检面 %d 卷"
+              % (now_round, round_tag if round_tag is not None else "?", len(files)))
         print("未闭环 %d 条：%s ｜ 已闭环 %d 条"
               % (len(open_items), " / ".join("%s %d" % (c, by_cls[c]) for c in TAXONOMY),
                  len(closed)))
@@ -322,6 +458,16 @@ def main():
             print("  OVERDUE %-4s %-11s %s | %s" % (r["priority"], r["detail"],
                                                     r.get("first_seen", "?"), r["title"][:64]))
         print("[DEBT:MEASURED] 宽限 %d 轮｜本尺不阻断（阻断由 ratchet_gate 第 7 指标只降不升承载）" % args.grace)
+        # W-20（r49）：判据读到的面必须先自证不是截断/降采样后的局部面
+        for k, lbl in (("round", "轮号面(-40 窗口 vs tag 硬锚)"), ("dedup", "去重面(80 字前缀键)"),
+                       ("dating", "定年面(70 字 needle)"),
+                       ("suggestions", "建议面(报告新建议→待办卷承接)")):
+            v = input_face[k]
+            print("  %-26s %s ｜ %s" % (lbl, {True: "OK", False: "FAIL", None: "UNVERIFIED"}[v["ok"]],
+                                         v["detail"]))
+        print("[FACE:%s]%s" % (input_face["status"],
+              "" if not face_red else " ← 判红的面上，任何「零」都只适用于被读到的那部分：%s"
+              % ", ".join(face_red)))
 
     cov = coverage_check(now_round)
     print("裁决完整性（W-12）：状态 %s ｜ 上轮 OVERDUE %d 条 → 本轮仍未处理 %d 条%s"
@@ -361,6 +507,8 @@ def main():
     print("归属可机检（W-6）：声明归属但**无可解析路径**的条目 %d 条 —— 逐条核实是不是又是我自己的债（r40 D37 同族）"
           % len(unowned))
     doc["coverage"] = cov
+    doc["input_face"] = input_face
+    doc["evidence"]["raw_item_lines"] = face["raw_lines"]
     doc["unowned_claims"] = unowned
     if args.ledger:
         wrote = append_ledger(args.ledger, doc, origin=args.origin)

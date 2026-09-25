@@ -121,6 +121,20 @@ GATES = [
         "why": "r45 实测 W-9 挂了 5 轮的真因是按行号写标记写到别处；本门锁死该入口不再接受行号、歧义与已闭环一律拒写、写完必须读回",
     },
     {
+        # r49 W-20 + W-22：判据输入面截断自证 + 裁决对象自证
+        "id": "input_face_fixtures",
+        "script": "r49_face_fixtures.py",
+        "argv": [],
+        "pass_token": "[GATE:fixture-pass]",
+        "portable": True,
+        "covers": ["05-exec/r38_debt_aging.py 的 face_round/face_dedup/face_dating",
+                   "05-exec/r46_mark_verdict.py 的 landed_contradiction/item_own_id（第⑥重拒写）",
+                   "真卷输入面守恒（RE_ITEM 行数 == 计入条目数 + 前缀键零碰撞）"],
+        "why": "账龄尺有四处截断/降采样（-40 取轮号、body[:80] 去重、needle[:70] 定年、title[:110] 展示）"
+               "从未自证；且 r46 我把 W-17 的延期裁决写到了已落地的 W-14 行上（锚点唯一命中≠对象正确），"
+               "3 轮后才被到期追讨发现 —— 本锁把两者都变机器判据",
+    },
+    {
         # r40 L-4：冲突扫描器输入面自证（死条目必须红，且不得靠删条目把覆盖面做干净）
         "id": "scan_inputs_fixtures",
         "script": "r40_scan_inputs_fixtures.py",
