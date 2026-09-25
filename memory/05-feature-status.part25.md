@@ -1,0 +1,9 @@
+# 05-feature-status.part25.md
+
+<!-- 本卷为 05-feature-status.part24.md 的延续 -->
+
+- **r32 CI 有效性轮（2026-09-25 第 32 轮）** — 把 r31 第八维往深量一层（run 结论分布 + 心跳，非文件数）：13 仓实测发现 **superpowers 82% failure / anthropics 75% failure 且停摆 6 周无人报警 / spec-kit 50% 卡在 action_required** ⇒ 「搬进 CI 就变强」被对手实物推翻；**推翻并改写 r31 自家 M-1**（仓内 tracked `SKILL.md`=0 ⇒ 参数化造不出语料，复制语料=第二真相源+陈旧假绿 ⇒ 改判设计边界，新立禁止项 X-1）；落地**第 6 门 `gate_run_freshness`**（执行台账 `gate_runs.jsonl` + `origin` 分本机/CI + 空台账/纯CI记录/超期/坏ts 四类不判绿）与 `r32_ci_health.py`（只测不拦），门数 5→**6**、可移植 3/5→**4/6**，用法反转为「**用 CI 盯人**」；夹具 18 例含变异 4/4（**自纠两条**：M1 探针样本形态错致"假拦住"、元判据写回台账致自锁，均真机复现后修）。全文见 `06-benchmark/全量对标报告_r32_CI有效性_2026-09-25.md`；证据 `06-benchmark/{ci_health_r32,gate_run_r32,gate_run_r32_portable,freshness_r32}_2026-09-25.json`。
+
+- **r33 发布面维度 + 台账入契约轮（2026-09-25 第 33 轮）** — 12 对象发布/治理面实测（11/12 有 LICENSE、满配仅 spec-kit/AAS、0 tag 的是不做发布的 anthropics）⇒ 第三连结论「严格度源自外部消费者，非星标」；H-1 把 `gate_runs.jsonl` 纳入契约面（逐字段取值域 + ts 同源格式），夹具 22→**33** 例含真跑反例 3 条；H-2 首次给本仓打 annotated tag（版本锚由文本升级为 git 可查），并立 X-2 禁做（不补 LICENSE/发布流水线）；新登记 H-3 待裁定：焚诀治理三件被 noise 判散落（allowlist 缺治理件口径）。全文见 `06-benchmark/全量对标报告_r33_发布与治理面_2026-09-25.md`。
+
+- **r34 可移植性维度 + 写时检查轮（2026-09-25 第 34 轮）** — 第十一维逐文件实测拿到**第一处可测落后于全部对手**的维度（本体系 49/167=29.3% 含机器专属路径 vs 三家对手 0 命中），改进面精确化：P2 盘符**不清**（junction 承重，立 X-4 禁做），只清 P3 账号名（25 文件）；落地=**复用棘轮**加第 6 指标 `username_in_skill_files`（`$USERNAME` 派生、取不到算 unknown、基线 25 只降不升）；H-1 清偿 r19→r33 挂账四轮的**写时冲突检查** `--on-write`（三态 rc 0/1/2，覆盖为空不得判过）+ 夹具 17 例含变异 4/4；dogfood 自证 CLEAN 并暴露权威面死引用一条（L-4）。自纠四条（含 `memory/AGENTS.md` 被自己的写表达式截成 0 字节后由 Git 基线精确恢复）。全文见 `06-benchmark/全量对标报告_r34_可移植性_2026-09-25.md`。

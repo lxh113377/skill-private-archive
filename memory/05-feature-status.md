@@ -5,8 +5,6 @@
 
 ## ✅ 已完成
 
-- **r34 可移植性维度 + 写时检查轮（2026-09-25 第 34 轮）** — 第十一维逐文件实测拿到**第一处可测落后于全部对手**的维度（本体系 49/167=29.3% 含机器专属路径 vs 三家对手 0 命中），改进面精确化：P2 盘符**不清**（junction 承重，立 X-4 禁做），只清 P3 账号名（25 文件）；落地=**复用棘轮**加第 6 指标 `username_in_skill_files`（`$USERNAME` 派生、取不到算 unknown、基线 25 只降不升）；H-1 清偿 r19→r33 挂账四轮的**写时冲突检查** `--on-write`（三态 rc 0/1/2，覆盖为空不得判过）+ 夹具 17 例含变异 4/4；dogfood 自证 CLEAN 并暴露权威面死引用一条（L-4）。自纠四条（含 `memory/AGENTS.md` 被自己的写表达式截成 0 字节后由 Git 基线精确恢复）。全文见 `06-benchmark/全量对标报告_r34_可移植性_2026-09-25.md`。
-
 - **r21c 还账轮（2026-09-24 第 21 轮 c 段）** — 本仓欠焚诀 C25/C31 的注入超顶已清偿：`A-memory-start/SKILL.md` 29,041→26,593B（长条目换一行摘要，全文归分卷），其余量 220→1,583B；实测 owner 已自落 C31 归因台账 ⇒ 我「注入区合一」建议作废。受管根 `928517a`/V10.70.0。全文见 `05-feature-status.part19.md`。
 - **r20b 棘轮落地轮（第 21 轮 b 段）** — A-get-memory 三条硬判据落地（受管根 `b8966da` V4.30.0，四门禁首次全绿）+ 本仓注入面棘轮 `ratchet_gate.py`（21/21 夹具，两级判定）挂进项目门禁命令。全文见 `05-feature-status.part18.md`。
 - **r20 机制化轮（第 21 轮）** — rule_editor 写前脏源检测落地（受管根 `9a15f4e` V10.69.0，桩 10/10）+ 09 状态机首次真用 + comparison 常驻页。全文见 `05-feature-status.part17.md`。
@@ -39,4 +37,5 @@
 - **卷22** `05-feature-status.part22.md` — 05-feature-status 分卷（R199 自动拆卷）
 - **卷23** `05-feature-status.part23.md` — 05-feature-status 分卷（R199 自动拆卷）
 - **卷24** `05-feature-status.part24.md` — 05-feature-status 分卷（R199 自动拆卷）
+- **卷25** `05-feature-status.part25.md` — 05-feature-status 分卷（R199 自动拆卷）
 
