@@ -7,3 +7,10 @@
 {"ts": "2026-09-25T12:16:53", "origin": "local", "open_total": 58, "overdue": 1, "active": 8, "decided": 11, "undated": 13, "deferred": 25, "grace_rounds": 2, "current_round": 39, "head": "8806743"}
 {"ts": "2026-09-25T12:17:37", "origin": "local", "open_total": 58, "overdue": 1, "active": 8, "decided": 11, "undated": 13, "deferred": 25, "grace_rounds": 2, "current_round": 39, "head": "8806743"}
 {"ts": "2026-09-25T12:18:10", "origin": "local", "open_total": 58, "overdue": 1, "active": 8, "decided": 11, "undated": 13, "deferred": 25, "grace_rounds": 2, "current_round": 39, "head": "8806743"}
+{"ts": "2026-09-25T12:58:17", "origin": "local", "open_total": 60, "overdue": 11, "active": 8, "decided": 12, "undated": 13, "deferred": 16, "grace_rounds": 2, "current_round": 40, "head": "c061bf7"}
+{"ts": "2026-09-25T12:59:50", "origin": "local", "open_total": 60, "overdue": 11, "active": 8, "decided": 12, "undated": 13, "deferred": 16, "grace_rounds": 2, "current_round": 40, "head": "c061bf7"}
+{"ts": "2026-09-25T13:00:12", "origin": "local", "open_total": 59, "overdue": 10, "active": 8, "decided": 12, "undated": 13, "deferred": 16, "grace_rounds": 2, "current_round": 40, "head": "c061bf7"}
+{"ts": "2026-09-25T13:00:46", "origin": "local", "open_total": 59, "overdue": 10, "active": 8, "decided": 12, "undated": 13, "deferred": 16, "grace_rounds": 2, "current_round": 40, "head": "c061bf7"}
+{"ts": "2026-09-25T13:01:25", "origin": "local", "open_total": 59, "overdue": 1, "active": 8, "decided": 15, "undated": 13, "deferred": 22, "grace_rounds": 2, "current_round": 40, "head": "c061bf7"}
+{"ts": "2026-09-25T13:01:57", "origin": "local", "open_total": 59, "overdue": 1, "active": 8, "decided": 15, "undated": 13, "deferred": 22, "grace_rounds": 2, "current_round": 40, "head": "c061bf7"}
+{"ts": "2026-09-25T13:02:16", "origin": "local", "open_total": 59, "overdue": 1, "active": 8, "decided": 15, "undated": 13, "deferred": 22, "grace_rounds": 2, "current_round": 40, "head": "c061bf7"}

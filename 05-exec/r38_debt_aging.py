@@ -68,7 +68,10 @@ def first_seen(rel_path, needle):
 
 def classify_item(text, now_round):
     """返回 (cls, detail) —— 单一条目的判定，供层a 夹具直接调用。"""
-    dec = RE_DECIDED.search(text)
+    # W-8 根因修（r41 实测）：一条待办一生会被多次裁决，标记是**追加**在同一条目里的，
+    # 用 search() 取首个 = 让最早的挂账永久劫持后续终局裁决（11 条到期项因此反复判红）。
+    # 台账语义必须是 last-wins（与本仓 gate_runs / ac-verdicts 的 append-only 口径一致）。
+    dec = list(RE_DECIDED.finditer(text))[-1] if list(RE_DECIDED.finditer(text)) else None
     if dec:
         if dec.group(2):
             tgt = int(dec.group(2))

@@ -198,6 +198,20 @@ def main():
     ck("t25 脏证据（之和 != open_total）→ deferred 指标同样 None（与 overdue 同等 fail-closed）",
        rg.deferred_debt_items() is None if hasattr(rg, "deferred_debt_items") else False, "")
 
+    # --- r41 W-8 真根因：一行有多个裁决标记时必须取最新（last-wins），不得被旧挂账劫持 ---
+    two = ("【P0·待办 X（r31 登记）】 正文 "
+           "【r38 账龄裁决=挂账至 r40｜当时阻塞】 【r41 裁决=作废（被 r35 分类取代）】")
+    c8, d8 = da.classify_item(two, 41)
+    ck("t26 W-8 反例：旧挂账 + 新终局裁决 → 取最新 DECIDED（last-wins）",
+       c8 == "DECIDED", "%s %s" % (c8, d8))
+    two2 = ("【P0·待办 Y（r31 登记）】 【r38 账龄裁决=作废】 【r41 裁决=挂账至 r44｜探针未建】")
+    c9, d9 = da.classify_item(two2, 41)
+    ck("t27 反例方向相反：新标记是延期 → 最新为准判 DEFERRED（不得被旧作废豁免）",
+       c9 == "DEFERRED", "%s %s" % (c9, d9))
+    two3 = ("【P0·待办 Z（r31 登记）】 【r40 裁决=挂账至 r41｜到期未动】")
+    c10, d10 = da.classify_item(two3, 41)
+    ck("t28 目标轮 == 本轮即到期（不是宽限一轮）", c10 == "OVERDUE", "%s %s" % (c10, d10))
+
     fails = [r for r in RESULTS if not r[0]]
     print("\n夹具合计: %d 项，通过 %d，失败 %d" % (len(RESULTS), len(RESULTS) - len(fails), len(fails)))
     if fails:
