@@ -137,6 +137,30 @@ def main():
        and mf.read_bytes().count(b"\r\n") == 3,
        "CRLF=%d" % mf.read_bytes().count(b"\r\n"))
 
+    # ---- t11–t14（r51 W-19）：note 模式 —— 05/06/08 的状态回写走同一入口 ----
+    ndir = Path(tempfile.mkdtemp(prefix="r51_nv_")) / "memory"
+    ndir.mkdir(parents=True)
+    nf = ndir / "06-constraints.md"
+    nf.write_bytes("## 已知 Bug\r\n- [BUG] **甲项 状态：**未修复**（含 - [x] 之外的普通行）** 尾\r\n\r\n- [x] 乙项\r\n".encode("utf-8"))
+    nb = nf.read_bytes()
+    rn = run(["--mode", "note", "--vault", str(ndir.parent), "--file", str(nf), "--key", "甲项", "--round", "51",
+              "--note", "归因校正注：原句未经核验"])
+    nlines = nf.read_bytes().decode("utf-8").split(chr(10))
+    hitn = [l for l in nlines if "r51 补记：" in l]
+    ck("t11 note 模式可写非勾选项行（05/06/08 回写同一入口，禁再手写补丁脚本）",
+       rn.returncode == 0 and len(hitn) == 1 and "甲项" in hitn[0], (rn.stdout + rn.stderr)[-170:])
+    ck("t12 note 模式幂等靠拒绝：同轮二次补记 ⇒ 拒写且字节不变",
+       run(["--mode", "note", "--vault", str(ndir.parent), "--file", str(nf), "--key", "甲项", "--round", "51", "--note", "再来一次"]).returncode != 0
+       and nf.read_bytes().count("r51 补记：".encode("utf-8")) == 1, nf.read_bytes().count(b"r51") )
+    ck("t13 note 模式歧义拒写：锚点命中 2 行 ⇒ 不写（禁挑第一行）",
+       run(["--mode", "note", "--vault", str(ndir.parent), "--file", str(nf), "--key", "项", "--round", "52", "--note", "x"]).returncode != 0
+       and nf.read_bytes().count(b"r52") == 0, (run(["--mode", "note", "--vault", str(ndir.parent), "--file", str(nf), "--key", "项",
+                                                     "--round", "52", "--note", "x"]).stdout or "")[-140:])
+    ck("t14 note 模式 0 命中不得退化成追加：锚点不存在 ⇒ 拒写且文件字节不动",
+       run(["--mode", "note", "--vault", str(ndir.parent), "--file", str(nf), "--key", "根本不存在的锚点", "--round", "53",
+            "--note", "x"]).returncode != 0 and nf.read_bytes() != b"" and nf.read_bytes().count(b"r53") == 0,
+       nf.read_bytes().count(b"r53"))
+
     fails = [x for x in RESULTS if not x[0]]
     print("\n夹具合计: %d 项，通过 %d，失败 %d"
           % (len(RESULTS), len(RESULTS) - len(fails), len(fails)))

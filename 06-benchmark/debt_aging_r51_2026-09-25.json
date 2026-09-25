@@ -1,0 +1,153 @@
+{
+ "schema": "debt-aging-v2",
+ "generated_at": "2026-09-25T16:42:59",
+ "readonly": true,
+ "grace_rounds": 2,
+ "current_round": 51,
+ "round_source": "git log --format=%s -40 中最大 rNN（未硬编码）",
+ "verdict_taxonomy": [
+  "OVERDUE",
+  "ACTIVE",
+  "DECIDED",
+  "UNDATED",
+  "DEFERRED",
+  "REPEAT",
+  "CLOSED"
+ ],
+ "files_scanned": [
+  "memory\\07-next-steps.md",
+  "memory\\07-next-steps.part1.md",
+  "memory\\07-next-steps.part10.md",
+  "memory\\07-next-steps.part11.md",
+  "memory\\07-next-steps.part12.md",
+  "memory\\07-next-steps.part13.md",
+  "memory\\07-next-steps.part14.md",
+  "memory\\07-next-steps.part15.md",
+  "memory\\07-next-steps.part16.md",
+  "memory\\07-next-steps.part2.md",
+  "memory\\07-next-steps.part3.md",
+  "memory\\07-next-steps.part4.md",
+  "memory\\07-next-steps.part5.md",
+  "memory\\07-next-steps.part6.md",
+  "memory\\07-next-steps.part7.md",
+  "memory\\07-next-steps.part8.md",
+  "memory\\07-next-steps.part9.md"
+ ],
+ "evidence": {
+  "volumes": 17,
+  "items_total": 135,
+  "open_total": 80,
+  "closed_total": 55,
+  "raw_item_lines": 135
+ },
+ "by_class": {
+  "OVERDUE": 0,
+  "ACTIVE": 3,
+  "DECIDED": 77,
+  "UNDATED": 0,
+  "DEFERRED": 0,
+  "REPEAT": 0
+ },
+ "overdue": [],
+ "undated": [],
+ "claims_face": "未闭环积压：REST open_issues_count（含 PR）与 search 纯 issue 面并列；workflow 数并给 API 总计面/仓库内面/dynamic 面。r51 起每行带 retrieval",
+ "opponents_measured_at": "2026-09-25",
+ "opponents": [
+  {
+   "repo": "github/spec-kit",
+   "open_issues_pure": 134,
+   "open_issues_incl_pr": 287,
+   "workflows": 18,
+   "workflows_listed": 27,
+   "stale_automation": true,
+   "oldest_open_issue": "2025-09-25",
+   "note": "唯一有到期自动化：Close stale issues and PRs + 6 条 issue 流转 workflow（stale.yml 系仓库自有件）",
+   "retrieval": "gh api \"search/issues?q=repo:github/spec-kit+type:issue+state:open&per_page=1\" --jq .total_count ; gh api repos/github/spec-kit --jq .open_issues_count ; gh api repos/github/spec-kit/actions/workflows --jq '[.workflows[]|select(.path|startswith(\".github/workflows\"))]|length'"
+  },
+  {
+   "repo": "obra/superpowers",
+   "open_issues_pure": 143,
+   "open_issues_incl_pr": 402,
+   "workflows": 0,
+   "workflows_listed": 2,
+   "stale_automation": false,
+   "oldest_open_issue": "2026-01-27",
+   "note": "仓库内 0 个 workflow（.github/workflows 实测 404）；listed=2 全为平台 dynamic 件（r50 校正）",
+   "retrieval": "gh api \"search/issues?q=repo:obra/superpowers+type:issue+state:open&per_page=1\" --jq .total_count ; gh api repos/obra/superpowers --jq .open_issues_count ; gh api repos/obra/superpowers/contents/.github/workflows  # 404"
+  },
+  {
+   "repo": "anthropics/skills",
+   "open_issues_pure": 368,
+   "open_issues_incl_pr": 1292,
+   "workflows": 0,
+   "workflows_listed": 2,
+   "stale_automation": false,
+   "oldest_open_issue": "2025-10-16",
+   "note": "同上：仓库内 0 个自有 workflow，积压规模最大但无到期治理",
+   "retrieval": "gh api \"search/issues?q=repo:anthropics/skills+type:issue+state:open&per_page=1\" --jq .total_count ; gh api repos/anthropics/skills --jq .open_issues_count ; gh api repos/anthropics/skills/contents/.github/workflows  # 404"
+  },
+  {
+   "repo": "addyosmani/agent-skills",
+   "open_issues_pure": 58,
+   "open_issues_incl_pr": 120,
+   "workflows": 2,
+   "workflows_listed": 5,
+   "stale_automation": false,
+   "oldest_open_issue": "2026-04-04",
+   "note": "contents 目录实测 1 件（API 仍报已不存在的 markdownlint.yml）⇒ API 面 ≠ 磁盘面",
+   "retrieval": "gh api \"search/issues?q=repo:addyosmani/agent-skills+type:issue+state:open&per_page=1\" --jq .total_count ; gh api repos/addyosmani/agent-skills/contents/.github/workflows --jq '.[].name'"
+  },
+  {
+   "repo": "pre-commit/pre-commit",
+   "open_issues_pure": 17,
+   "open_issues_incl_pr": 25,
+   "workflows": 2,
+   "workflows_listed": 3,
+   "stale_automation": false,
+   "oldest_open_issue": "2018-07-02",
+   "note": "低积压靠少建待办，最老一条 8 年仍 open（日期已复现）；2 个自有 workflow 均为跨仓 uses: 复用件",
+   "retrieval": "gh api \"search/issues?q=repo:pre-commit/pre-commit+type:issue+state:open&per_page=1\" --jq .total_count ; gh api repos/pre-commit/pre-commit --jq .open_issues_count ; gh api \"search/issues?q=repo:pre-commit/pre-commit+type:issue+state:open&sort=created&order=asc&per_page=1\" --jq '.items[0].created_at'"
+  }
+ ],
+ "note": "OVERDUE 数 = ratchet_gate 第 7 指标 overdue_debt_items 的唯一取值面",
+ "coverage": {
+  "status": "OK",
+  "prev": "debt_aging_r50_2026-09-25.json",
+  "prev_overdue": 0,
+  "missing": [],
+  "method": "adjudication_gap(上一轮 overdue[].title 前 40 字, 当前卷文本, 本轮轮号)"
+ },
+ "input_face": {
+  "round": {
+   "log": 51,
+   "tag": 50,
+   "ok": true,
+   "detail": "log=r51 ≥ tag=r50（差 1 轮：本轮尚未打 tag，属每轮收尾打标的既有节奏）"
+  },
+  "floor": {
+   "ok": true,
+   "detail": "上轮 16 卷全部在本轮 17 卷面内（拆卷只增不减，无需豁免表）"
+  },
+  "dedup": {
+   "ok": true,
+   "detail": "135 行全部计入，80 字前缀键零碰撞"
+  },
+  "dating": {
+   "ok": null,
+   "detail": "本轮无到期项 ⇒ 定年面未行使（不判绿，也不判红）",
+   "checked": 0
+  },
+  "suggestions": {
+   "ok": true,
+   "detail": "6 条新编号全部在各自承接面有登记行（待办 4 条 / 禁止项 2 条）"
+  },
+  "raw_lines": 135,
+  "collisions": [],
+  "status": "UNVERIFIED",
+  "red_faces": [],
+  "unverified_faces": [
+   "dating"
+  ]
+ },
+ "unowned_claims": []
+}

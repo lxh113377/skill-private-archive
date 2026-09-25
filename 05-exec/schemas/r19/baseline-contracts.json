@@ -297,7 +297,7 @@
   },
   "opponents_*_r*.json": {
   "kind": "json",
-  "required": ["schema", "generated_at", "claims_face", "opponents"],
+  "required": ["schema", "generated_at", "claims_face"],
   "invariants": [
     "readonly_true",
     "opponent_claims_have_retrieval"

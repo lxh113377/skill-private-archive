@@ -258,7 +258,12 @@ def main():
     # --- r38 第十四维：账龄自洽不变式 ---
     debt = json.loads((HERE.parent / "06-benchmark" / "debt_aging_r39_2026-09-25.json")
                       .read_text(encoding="utf-8"))
-    art_debt = contracts["artifacts"]["debt_aging_r3*.json"]
+    art_debt = contracts["artifacts"]["debt_aging_r*.json"]   # r51 修陈旧 glob：原 `debt_aging_r3*.json` 只覆盖到 r39
+    ck("t24b 陈旧 pattern 面洞已修：旧键 r3* 不得复活（新件必须落在 r* 面内）",
+       "debt_aging_r3*.json" not in contracts["artifacts"]
+       and any("debt_aging_r5" in k for k in
+               [p.name for p in (HERE.parent / "06-benchmark").glob("debt_aging_r*.json")]),
+       sorted(contracts["artifacts"])[:6])
     ck("t25 账龄件原样 → 零违规", bcs.validate_doc(debt, art_debt, "debt") == [],
        json.dumps(bcs.validate_doc(debt, art_debt, "debt"), ensure_ascii=False)[:200])
     leak = json.loads((HERE.parent / "06-benchmark" / "debt_aging_r39_2026-09-25.json")

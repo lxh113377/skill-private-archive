@@ -120,15 +120,25 @@ def main():
     ap = argparse.ArgumentParser(
         prog="r46_mark_verdict.py",
         description="按标题锚点给记忆卷写裁决标记（唯一入口，禁行号）")
+    ap.add_argument("--mode", choices=("verdict", "note"), default="verdict",
+                    help="verdict=在账龄尺可见的「【rNN 裁决=…】」标记（仅 - [ ] 条目）；"
+                         "note=任意行的「【rNN 补记：…】」校正注（W-19：05/06/08 的状态回写走同一入口）")
     ap.add_argument("--vault", default=str(ROOT), help="项目根（其下 memory/ 才允许写）")
     ap.add_argument("--file", help="指定卷路径（必须位于 <vault>/memory/ 下）")
-    ap.add_argument("--key", required=True, help="条目标题锚点（子串，须在未勾选项中唯一命中）")
+    ap.add_argument("--key", required=True, help="锚点子串（须在目标卷内唯一命中）")
     ap.add_argument("--round", required=True, help="本轮轮号，如 46")
-    ap.add_argument("--verdict", required=True, help="裁决文本，如「降级（转长期看守）｜原因」")
+    ap.add_argument("--verdict", help="裁决文本，如「降级（转长期看守）｜原因」（verdict 模式必填）")
+    ap.add_argument("--note", help="校正注文本（note 模式必填，落为「【rNN 补记：…】」）")
     ap.add_argument("--glob", default="07-next-steps*.md", help="在哪些卷里找锚点（默认 07 全卷）")
     ap.add_argument("--backup-dir", default=None,
                     help="备份目录（默认 <vault>/05-exec/mark_backup；刻意不放记忆卷，见 r35 落点教训）")
     args = ap.parse_args()
+    if args.mode == "verdict" and not args.verdict:
+        return refuse("verdict 模式必须给 --verdict")
+    if args.mode == "note" and not args.note:
+        return refuse("note 模式必须给 --note")
+    body_text = args.verdict if args.mode == "verdict" else args.note
+    mark_head = ("r%s 裁决=" % args.round) if args.mode == "verdict" else ("r%s 补记：" % args.round)
 
     vault = Path(args.vault).resolve()
     mem = vault / "memory"
@@ -148,31 +158,42 @@ def main():
         raw = io.open(rp, encoding="utf-8", newline="").read()
         rows = split_keep_eol(raw)
         lines = [c for c, _ in rows]
-        open_hits, closed_hits = find_item_lines(lines, args.key)
-        if len(open_hits) + len(closed_hits) == 0:
-            continue                                        # 本卷无此锚点，去下一卷找
-        if closed_hits and not open_hits:
-            return refuse("③ 锚点只命中已闭环条目，禁往 - [x] 上标裁决",
-                          "行 %s in %s" % (closed_hits, rp.name))
-        if len(open_hits) != 1:
-            return refuse("② 锚点命中数 != 1（重复登记或跨卷歧义）",
-                          "命中 %s 行 in %s" % (open_hits, rp.name))
-        i = open_hits[0] - 1
-        if MARK_RE_TPL % args.round in lines[i]:
-            return refuse("④ 本轮已裁过，不重复写（幂等靠拒绝而非静默跳过）",
-                          "%s:%d" % (rp.name, i + 1))
-        if RE_DEFERRAL_TEXT.search(args.verdict):                       # ⑥ 只对延期型裁决设卡
-            subj = git_subjects(vault)
-            own = item_own_id(lines[i])
-            if not subj:
-                print("[MARK:FACE-UNVERIFIED] 取不到近期提交主题 ⇒ 「已落地却仍挂账」对账未做，"
-                      "放行但如实记录（r25：判据不得变成拦任务的闸门）")
-            elif landed_contradiction(own, args.verdict, subj):
-                return refuse("⑥ 条目自身编号 %s 已在近期提交主题里被宣布落地，却还往后挂账"
-                              " —— 多半是把另一条的裁决写到了这条上（r46 W-14 事故同族）" % own,
-                              "%s:%d ｜ 取值：git -C %s log --format=%%s -20"
-                              % (rp.name, i + 1, vault))
-        marker = "【" + (MARK_RE_TPL % args.round) + args.verdict + "】"
+        if args.mode == "note":
+            hits = [n for n, c in enumerate(lines, 1) if args.key in c]
+            if not hits:
+                continue                                        # 本卷无此锚点，去下一卷找
+            if len(hits) != 1:
+                return refuse("② note 模式锚点命中数 != 1（歧义即拒写，禁挑第一行）",
+                              "命中 %s 行 in %s" % (hits, rp.name))
+            i = hits[0] - 1
+            if mark_head in lines[i]:
+                return refuse("④ 本轮已在此行写过补记，不重复写（幂等靠拒绝）", "%s:%d" % (rp.name, i + 1))
+        else:
+            open_hits, closed_hits = find_item_lines(lines, args.key)
+            if len(open_hits) + len(closed_hits) == 0:
+                continue
+            if closed_hits and not open_hits:
+                return refuse("③ 锚点只命中已闭环条目，禁往 - [x] 上标裁决",
+                              "行 %s in %s" % (closed_hits, rp.name))
+            if len(open_hits) != 1:
+                return refuse("② 锚点命中数 != 1（重复登记或跨卷歧义）",
+                              "命中 %s 行 in %s" % (open_hits, rp.name))
+            i = open_hits[0] - 1
+            if mark_head in lines[i]:
+                return refuse("④ 本轮已裁过，不重复写（幂等靠拒绝而非静默跳过）",
+                              "%s:%d" % (rp.name, i + 1))
+            if RE_DEFERRAL_TEXT.search(args.verdict or ""):                 # ⑥ 只对延期型裁决设卡
+                subj = git_subjects(vault)
+                own = item_own_id(lines[i])
+                if not subj:
+                    print("[MARK:FACE-UNVERIFIED] 取不到近期提交主题 ⇒ 「已落地却仍挂账」对账未做，"
+                          "放行但如实记录（r25：判据不得变成拦任务的闸门）")
+                elif landed_contradiction(own, args.verdict, subj):
+                    return refuse("⑥ 条目自身编号 %s 已在近期提交主题里被宣布落地，却还往后挂账"
+                                  " —— 多半是把另一条的裁决写到了这条上（r46 W-14 事故同族）" % own,
+                                  "%s:%d ｜ 取值：git -C %s log --format=%%s -20"
+                                  % (rp.name, i + 1, vault))
+        marker = "【" + mark_head + body_text + "】"
         new_rows = list(rows)
         body, tail = lines[i], rows[i][1]
         new_rows[i] = (body.rstrip() + " " + marker, tail)   # 只改目标这一行，行尾原样保留
