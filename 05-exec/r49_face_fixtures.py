@@ -94,6 +94,19 @@ ck("f15 有不等 ⇒ 判红", ok is False, (ok, d))
 ck("f16 有行使且全等 ⇒ 判绿", _safe("face_dating_summary", da, [], 3)[0] is True,
    _safe("face_dating_summary", da, [], 3))
 
+# ------------------------------------ 建议面分路由（r50 自抓假阳性：X 的承接面不是 07）
+ok, d = _safe("face_suggestions", da, ["X-24"], "", "| X-24 | 枚举器不得只做面内自洽 |")
+ck("f17 建议面分流：X 编号落在 memory/AGENTS.md 的禁止项表 ⇒ 判绿（不得要求它进待办卷）",
+   ok is True, (ok, str(d)[:140]))
+ok, d = _safe("face_suggestions", da, ["X-99"], "随便什么待办文本", "无关禁止项表")
+ck("f18 反例：X-99 两面都没有 ⇒ 判红并点名", ok is False and "X-99" in str(d), (ok, str(d)[:140]))
+ok, d = _safe("face_suggestions", da, ["W-30"], "只有别的条目", "| W-30 | 写在禁止项表里的待办 |")
+ck("f19 反例（禁互相顶替）：W 编号只出现在 AGENTS 表而未落待办卷 ⇒ 仍判红",
+   ok is False and "W-30" in str(d), (ok, str(d)[:140]))
+ok, d = _safe("face_suggestions", da, ["W-31", "X-25"], "…W-31 已登记…", "…X-25 已立规…")
+ck("f20 混合面正例：待办与禁止项各归各位 ⇒ 判绿且计数分列",
+   ok is True and "待办 1" in str(d) and "禁止项 1" in str(d), (ok, str(d)[:140]))
+
 # ---------------------------------------------------------------- W-22 裁决对象面
 SUBJ = ("8d7fb56 feat: r45 落地 W-14 反降级免检指标\n"
         "24fd233 docs: r44 savepoint\n")

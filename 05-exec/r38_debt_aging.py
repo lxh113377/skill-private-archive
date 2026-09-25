@@ -275,21 +275,30 @@ def classify_item(text, now_round):
 RE_SUGG_ID = re.compile(r"\b([WXMH]-\d{1,2})\b")
 
 
-def face_suggestions(new_ids, todo_text):
-    """建议面自证：本轮报告里新立的建议编号，必须能在待办卷里找到承接行。
+def face_suggestions(new_ids, todo_text, doctrine_text=""):
+    """建议面自证：本轮报告里新立的编号，必须在**它自己的承接面**上找得到。
 
-    存在理由（r49 实测）：W-20 / W-21 只出现在 r48 报告正文，`07-next-steps.md` 里
-    **一条都没有** ⇒ 账龄尺看不见 ⇒ 永不到期 ⇒ "把报告里的改进建议直接开工执行"这条
-    用户命令在机器层面是空的。报告是产出面，待办卷是承接面，两面对不上就是漏执行。
+    存在理由（r49 实测）：W-20 / W-21 只出现在 r48 报告正文，`07-next-steps.md` 里一条都没有
+    ⇒ 账龄尺看不见 ⇒ 永不到期 ⇒ "把报告里的改进建议直接开工执行"在机器层面是空的。
+
+    r50 分面修（我自己的判据首跑造出的假阳性）：编号有两个承接面，混为一谈会把合规判成违规 ——
+      · `W/M/H/L-nn` = 待办 ⇒ 承接面 = 07 待办卷；
+      · `X-nn`       = 禁止项/立规 ⇒ 承接面 = `memory/AGENTS.md` 的 X 表（**不该**要求它进待办卷）。
+    且不得互相顶替：X 编号写在 07 里不算承接，反之亦然（由 t73 反例锁死）。
     """
     if not new_ids:
         return (None, "本轮报告未取到新建议编号 ⇒ 该面对照无意义（记 UNVERIFIED，不记绿）")
+    faces = {"TODO": todo_text or "", "DOCTRINE": doctrine_text or ""}
+    want = lambda i: "DOCTRINE" if i.startswith("X-") else "TODO"
     missing = [i for i in new_ids
-               if not re.search(r"(?<![\w-])%s(?![\w-])" % re.escape(i), todo_text or "")]
+               if not re.search(r"(?<![\w-])%s(?![\w-])" % re.escape(i), faces[want(i)])]
     if missing:
-        return (False, "%d/%d 条新建议没进待办卷（%s）⇒ 建议不落 07 即永不到期，等于免检"
-                % (len(missing), len(new_ids), ", ".join(missing)))
-    return (True, "%d 条新建议全部在待办卷有承接行" % len(new_ids))
+        return (False, "%d/%d 条新编号未落到各自承接面（%s）⇒ 不落卷即永不到期，等于免检；"
+                       "TODO 面=07 待办卷，DOCTRINE 面=memory/AGENTS.md"
+                       % (len(missing), len(new_ids), ", ".join(missing)))
+    return (True, "%d 条新编号全部在各自承接面有登记行（待办 %d 条 / 禁止项 %d 条）"
+            % (len(new_ids), sum(1 for i in new_ids if want(i) == "TODO"),
+               sum(1 for i in new_ids if want(i) == "DOCTRINE")))
 
 
 def face_floor(cur_volumes, prev_volumes):
@@ -511,7 +520,10 @@ def main():
             prev_ids = set(RE_SUGG_ID.findall(prev))
             sugg_ids = sorted(set(RE_SUGG_ID.findall(rpt)) - prev_ids)
             todo_text = "".join(io.open(f, encoding="utf-8", errors="replace").read() for f in files)
-            f_sugg = face_suggestions(sugg_ids, todo_text)
+            doc_path = ROOT / "memory" / "AGENTS.md"          # X 编号的承接面（r50 分面修）
+            doctrine_text = (io.open(doc_path, encoding="utf-8", errors="replace").read()
+                             if doc_path.is_file() else "")
+            f_sugg = face_suggestions(sugg_ids, todo_text, doctrine_text)
         except OSError as e:
             f_sugg = (False, "--report 指向的文件读不到：%s（判红，不当作已通过）" % e)
     f_floor = face_floor([os.path.join("memory", f.name) for f in files], prev_scanned_volumes())

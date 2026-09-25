@@ -5,6 +5,7 @@
 
 ## ✅ 已完成
 
+r50 扩面与复核轮（2026-09-25 第 50 轮） — W-25：`05-exec/rule_conflict_scan.py` 扫描面 10→26 件（自动发现带极性规则的权威源分卷，极性规则 116→188、互斥候选 6→21）+ `05-exec/ratchet_gate.py` 读取面交叉对账；W-26：混合行尾根因用 `git show` 定死为写卷未传 `newline=""`（06 加归因校正注，立 X-25）；对手取证口径校正：superpowers/anthropics 仓库内 0 CI，`06-benchmark/opponents_workflow_face_r50_2026-09-25.json` 四路取值留证；建议面按前缀分路由（X→AGENTS 禁止项表）修掉自造假阳性，夹具 r49_face 32 例、r50_face 16 例，常驻门 12→13
 r49 输入面五面自证轮（2026-09-25 第 49 轮） — W-20：`05-exec/r38_debt_aging.py` 新增 face_round/face_floor/face_dedup/face_dating/face_suggestions 五面（判据读的面必须自证未被截断/降采样，含 R-ENUM 要求的 floor 集合断言），`face_status` 进台账；W-22/23/24：写入器第⑥重对账 + 混合行尾逐行保留 + 分类器只认标记头部，`05-exec/r49_face_fixtures.py` 25 例、`r39_debt_ledger_fixtures.py` 58 例（含 t70–t72 台账列、t63/t64 多代必填）、`r46_mark_verdict_fixtures.py` 10 例（t9/t10 混合行尾反例）全绿；5 条到期债 OVERDUE 5→0、DECIDED 60→70；常驻门 11→12（**同轮补记 r49**：定年面随后按权威契约 R-ENUM 边界条改为「零到期项 ⇒ 该面未行使」，故末态为 `[FACE:UNVERIFIED]` 而非五面全绿 —— 没检验过不许写成检验通过；夹具加 f14–f16 三态锁死，台账列 face_status 如实记 UNVERIFIED）
 r48 契约分代与归属可机检轮（2026-09-25 第 48 轮） — W-17：契约 row_required_from 按 ts 分叉强制 coverage_* 三列（新行缺即红、历史行豁免），解掉 r45 自挂的两难；W-6：classify_owner + owner 字段 + unowned_claims，声明归属却无可解析路径 ⇒ UNOWNED（动因 r40 D37 自家债外部化挂 4 轮）。D75 自抓：owner 最初用截断 title[:110] 判，3 条 UNOWNED 里 2 条是假的 ⇒ 改判全文；剩 3 条真项逐条经 r46 写入器补路径后归零。D76 一次 Edit 把字典尾部写重复致 SyntaxError（ast 当场拦下）。夹具 53/53、契约 13 pattern/17 件 PASS、[GATES:PASS] PASS=11、W-12 OK。立 X-22。
 

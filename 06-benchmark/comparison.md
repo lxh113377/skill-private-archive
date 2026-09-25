@@ -350,3 +350,20 @@ B3 多 job 并列不短路 / B4 周期心跳档 / B5 `concurrency` 成本自觉 
 3. **本轮由自家判据抓出的 3 处缺陷，比对手结论更该修**（混合行尾并元素错写、标记头部劫持、报告建议不落待办卷）。对标价值不在「对手有多少 workflow」，而在「我的绿灯是否建立在我真读过的面上」。
 
 新增禁止项：**X-23**（判据不得用全文 search 判状态，只认标记头部）、**X-24**（枚举器不得只做面内自洽，须带下限/形状/交叉反向断言，对齐权威契约 R-ENUM：D:/global_skills/A-skill-manager/references/governance.md）。
+
+## 附：r50 校正与扩面（2026-09-25，不开新维度）
+
+**R50-A（口径校正，必读）**：r31/r32 引用对手 workflow 数与 CI 健康度时，取的是`/actions/workflows` 的**总计面**，其中混有 GitHub 平台生成的 `dynamic/*`（Copilot / Dependabot）。四路重取后的真实面（证据件 `opponents_workflow_face_r50_2026-09-25.json`）：
+
+| 仓库 | API 总计 | 仓库内 | dynamic | `.github/workflows` 目录实测 |
+|---|---|---|---|---|
+| github/spec-kit | 27 | 18 | 9 | 26（差额 8 件=放在该目录里的 .md 文档） |
+| addyosmani/agent-skills | 5 | 2 | 3 | 1（API 仍报已不在目录的 markdownlint.yml 为 active） |
+| pre-commit/pre-commit | 3 | 2 | 1 | 2（2 件均为跨仓 `uses:` 复用工作流） |
+| obra/superpowers | 2 | **0** | 2 | **404 目录不存在** |
+| anthropics/skills | 2 | **0** | 2 | **404 目录不存在** |
+
+⇒ 三条结论更新：① 第 8 维「CI 存在性」的对比基数改为 18/2/2/0/0；② r32 的「superpowers 82% failure、anthropics 75% failure 且停摆 6 周」描述的是**平台件**，**不能**用作该两仓 CI 有效性的论据（它们没有自有 CI）；③ 即使撇开枚举面，failure 计数本身还有第二个混淆：数秒即 failure 且 `steps=0` 的 run 是**没拿到 runner**（账号级/分钟配额），不是测试失败 —— 排除法 = 与同仓成功 run 的 steps 数对照，并检查未改动的 workflow。
+历史条目原样保留不改写（R241），校正只以本附节形式追加。
+
+**R50-B（自家判据扩面）**：`rule_conflict_scan` 的手抄 10 件清单扩为 26 件（自动发现带极性规则的权威源分卷）后，极性规则 116→188、自述冲突 6→11、互斥候选 6→21 ⇒ 此前的 `[CONFLICT:CLEAN]` 只覆盖 38% 的面。扩面对照例（只用手抄清单必须判红）见 `05-exec/r50_face_fixtures.py#c6b`。

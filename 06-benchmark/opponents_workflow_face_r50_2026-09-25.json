@@ -1,0 +1,45 @@
+{
+  "schema": "opponents-workflow-face-v1",
+  "generated_at": "2026-09-25T16:18:00",
+  "round": 50,
+  "readonly": true,
+  "why": "r50 W-25/X-26 同族自查：我方账龄尺的输入面刚被抓出 16 件漏扫，遂用两条独立途径复核**对手取证本身**的枚举面，发现 r31/r32 的 workflow 计数把平台 dynamic 件算成了仓库 CI。",
+  "enumeration_sources": {
+    "A_actions_api": "gh api repos/<R>/actions/workflows --jq '.workflows|length'",
+    "B_actions_api_path_filter": "gh api repos/<R>/actions/workflows --jq '[.workflows[]|select(.path|startswith(\".github/workflows\"))]|length'",
+    "C_actions_api_dynamic": "同上但 startswith(\"dynamic\")",
+    "D_contents_dir": "gh api repos/<R>/contents/.github/workflows --jq 'if type==\"array\" then length else 0 end'"
+  },
+  "repos": [
+    {"repo": "github/spec-kit", "actions_total": 27, "in_repo": 18, "dynamic": 9, "contents_dir_files": 26,
+     "note": "contents 26 > in_repo 18：差额 8 件已逐名列出，全部是放在 .github/workflows/ 里的 **Markdown 文档**"
+             "（RELEASE-PROCESS.md、add-community-{bundle,extension,preset}.md、bug-{assess,fix,test}.md、feature-assess.md）"
+             "；反向差集为空（无注册了却不在磁盘的件）。取值：两条 gh api + comm -23/-13（命令见 retrieval 字段）",
+     "retrieval": "gh api repos/github/spec-kit/contents/.github/workflows --jq '.[].name' | sort > a;"
+                  " gh api repos/github/spec-kit/actions/workflows --jq '[.workflows[]|select(.path|startswith(\".github/workflows\"))|.path|split(\"/\")|last]' | sort -u > b;"
+                  " comm -23 a b（未注册）; comm -13 a b（注册但不在磁盘，实测为空）"},
+    {"repo": "obra/superpowers", "actions_total": 2, "in_repo": 0, "dynamic": 2, "contents_dir_files": 0,
+     "note": "**仓库内 0 个 workflow，目录不存在（404）**；r32 测得的 82% failure 属于 Copilot 平台件"},
+    {"repo": "anthropics/skills", "actions_total": 2, "in_repo": 0, "dynamic": 2, "contents_dir_files": 0,
+     "note": "**仓库内 0 个 workflow，目录不存在（404）**；r32 测得的 75% failure 与停摆 6 周同属平台件"},
+    {"repo": "addyosmani/agent-skills", "actions_total": 5, "in_repo": 2, "dynamic": 3, "contents_dir_files": 1,
+     "note": "Actions API 把已不在目录里的 markdownlint.yml 仍报为 active ⇒ API 面 ≠ 磁盘面"},
+    {"repo": "pre-commit/pre-commit", "actions_total": 3, "in_repo": 2, "dynamic": 1, "contents_dir_files": 2,
+     "note": "2 个仓库内件均为 `uses: asottile/workflows/.../tox.yml@v1.8.1` 复用工作流 ⇒ 其输入面定义在**别的仓库**里"}
+  ],
+  "corrections_to_prior_rounds": [
+    {"claim": "r31 第八维：superpowers 2 workflow、anthropics 2 workflow、AAS 5 workflow、spec-kit 27 workflow",
+     "status": "口径错（非数值造假）",
+     "corrected": "仓库自有 workflow = 0 / 0 / 2 / 18；其余为 GitHub 平台 Copilot/Dependabot 的 dynamic 件"},
+    {"claim": "r32 第九维：superpowers 82% failure、anthropics 75% failure 且停摆 6 周无人报警",
+     "status": "结论需限定",
+     "corrected": "所测 run 属平台件而非仓库测试 CI ⇒ 不能用于论证该仓 CI 有效性；'用 CI 盯人' 的对比样本需换成有自有 workflow 的仓库"},
+    {"claim": "r38 第十四维：spec-kit 27 workflow 里含 stale 自动化（唯一有到期治理）",
+     "status": "结论仍成立",
+     "corrected": "stale.yml 实测位于 .github/workflows/ 内（属仓库自有件），只是总数应为 18 而非 27"}
+  ],
+  "face_self_check": {
+    "rule": "凡引用对手数字，须同时给 A（API 总计）与 B/D（仓库内/磁盘实测）两路取值；两路不等必须写明差额归因，禁取其一当事实",
+    "status": "已在本件内执行（四路全量取值，差额逐仓写明）"
+  }
+}
