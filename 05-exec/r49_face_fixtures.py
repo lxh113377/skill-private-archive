@@ -78,6 +78,15 @@ ck("f9 face_dating 反例：短 needle 与全 needle 不同值 ⇒ 判红（禁�
 ok, d = _safe("face_dating", da, None, "2026-09-23")
 ck("f10 face_dating 只有一路取到值 ⇒ 判红（自证本身缺面，不得当作已通过）", ok is False, (ok, d))
 
+# ------------------------------------------------- W-20 第 5 面：规模下限（R-ENUM floor）
+ok, d = _safe("face_floor", da, ["memory/07-a.md", "memory/07-b.md"], ["memory/07-a.md"])
+ck("f11 face_floor 正例：上轮受检卷全部仍在本轮面内（拆卷只增不减）→ OK", ok is True, (ok, d))
+ok, d = _safe("face_floor", da, ["memory/07-a.md"], ["memory/07-a.md", "memory/07-part9.md"])
+ck("f12 face_floor 反例：glob 少收一卷 ⇒ 判红并点名（其余四面在这种情形下仍会全绿）",
+   ok is False and "07-part9" in str(d), (ok, d))
+ok, d = _safe("face_floor", da, ["memory/07-a.md"], [])
+ck("f13 face_floor 边界：无上轮证据 ⇒ UNVERIFIED（不得静默 PASS，R247）", ok is None, (ok, d))
+
 # ---------------------------------------------------------------- W-22 裁决对象面
 SUBJ = ("8d7fb56 feat: r45 落地 W-14 反降级免检指标\n"
         "24fd233 docs: r44 savepoint\n")
@@ -96,6 +105,26 @@ ck("t4 边界：条目正文取不到自身编号 ⇒ 不拒（无从推断，�
 ck("t5 编号提取：只认「W-14（r44 新立」这种**条目自我声明**的编号，不把引用他条的编号当自身编号",
    _safe("item_own_id", mv, "**【P0·下轮首推 W-14（r44 新立，优先级最高）】** 同 W-9 同族缺陷") == "W-14",
    _safe("item_own_id", mv, "**【P0·下轮首推 W-14（r44 新立，优先级最高）】** 同 W-9 同族缺陷"))
+
+# ------------------- 劫持负控（r49 第 2 形态）：原因体里引用旧标记原文不得改变判定 ----
+QUOTED = ("**【P0·下轮首推 W-14（r44 新立）】** 正文 "
+          "【r46 裁决=挂账至 r49｜产能给了 W-16】 "
+          "【r49 裁决=执行完毕（并纠正 r46 误挂）｜r46 却在本条上写了「挂账至 r49」，本轮到期追讨抓到】")
+cls, det = _safe("classify_item", da, QUOTED, 49)
+ck("q1 反例：终局裁决的**原因里引用**了『挂账至 r49』原文 ⇒ 仍判 DECIDED（不得被引号内容劫持回红）",
+   cls == "DECIDED", (cls, det))
+ck("q2 count_deferrals 只数真延期 ⇒ 引用的那次不计（防 REPEAT 第 9 指标虚增）",
+   _safe("count_deferrals", da, QUOTED) == 1, _safe("count_deferrals", da, QUOTED))
+ck("q3 写入器⑥：头部是终局裁决、原因里引用挂账 ⇒ 不得拒写（只在头部为延期时设卡）",
+   _safe("landed_contradiction", mv, "W-14",
+          "执行完毕（并纠正 r46 误挂）｜r46 写了「挂账至 r49」", SUBJ) is False,
+   _safe("landed_contradiction", mv, "W-14", "执行完毕｜引用「挂账至 r49」", SUBJ))
+TRUE_DEFER = "**【P1·待办 W-9（r44 新立）】** 正文 【r49 裁决=挂账至 r52｜原因】"
+cls, det = _safe("classify_item", da, TRUE_DEFER, 49)
+ck("q4 修 hijack 不得修坏 r39 机制：最后一枚标记**真是**延期 ⇒ 未到轮判 DEFERRED",
+   cls == "DEFERRED", (cls, det))
+cls, det = _safe("classify_item", da, TRUE_DEFER.replace("r52", "r49"), 49)
+ck("q5 到期延期 ⇒ 仍判 OVERDUE（延期非终局的口径不变）", cls == "OVERDUE", (cls, det))
 
 # ---------------------------------------------------------------- 真卷集成面（全面守恒）
 files = da.volume_files()

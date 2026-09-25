@@ -268,18 +268,32 @@
     "origin": [
      "local",
      "ci"
+    ],
+    "face_status": [
+     "OK",
+     "FAIL",
+     "UNVERIFIED"
     ]
    },
    "row_ts_format": "%Y-%m-%dT%H:%M:%S",
    "note": "r39 W-3：账龄趋势台账逐行契约。origin 取值域封闭为 local/ci（第三种来源即『本机记录冒充 CI』的入口，同族 gate_runs.jsonl）；行必须带五态计数（含 deferred：延期与终局必须分开看，否则挂账会变成永久免检通道），使斜率可从台账本身重算而不依赖当期证据件。 ｜r48 W-17：coverage_* 三列按 ts 分代必填（分叉点 2026-09-25T15:00）；早于该点的历史行豁免，因台账 append-only 不可回写",
-   "row_required_from": {
-    "from": "2026-09-25T15:00:00",
-    "fields": [
-     "coverage_status",
-     "coverage_prev_overdue",
-     "coverage_missing"
-    ]
-   }
+   "row_required_from": [
+    {
+     "from": "2026-09-25T15:00:00",
+     "fields": [
+      "coverage_status",
+      "coverage_prev_overdue",
+      "coverage_missing"
+     ]
+    },
+    {
+     "from": "2026-09-25T15:50:00",
+     "fields": [
+      "face_status",
+      "face_red_count"
+     ]
+    }
+   ]
   },
   "debt_aging_r3*.json": {
    "schema_id": [

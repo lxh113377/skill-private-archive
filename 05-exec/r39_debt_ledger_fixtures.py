@@ -306,10 +306,16 @@ def main():
         {"ts": "2026-09-25T16:00:00", "origin": "local", "open_total": 67, "overdue": 0,
          "active": 6, "decided": 59, "undated": 0, "deferred": 2, "repeat": 0,
          "grace_rounds": 2, "current_round": 47, "head": "d4e5f6a",
-         "coverage_status": "OK", "coverage_prev_overdue": 0, "coverage_missing": 0},
+         "coverage_status": "OK", "coverage_prev_overdue": 0, "coverage_missing": 0,
+         # r49 第 2 代必填：ts 晚于 15:50 ⇒ 合规行必须同时带齐两代列（缺任一即红）
+         "face_status": "OK", "face_red_count": 0},
         {"ts": "2026-09-25T16:30:00", "origin": "local", "open_total": 67, "overdue": 0,
          "active": 6, "decided": 59, "undated": 0, "deferred": 2, "repeat": 0,
          "grace_rounds": 2, "current_round": 48, "head": "e5f6a7b"},
+        {"ts": "2026-09-25T16:40:00", "origin": "local", "open_total": 67, "overdue": 0,
+         "active": 6, "decided": 59, "undated": 0, "deferred": 2, "repeat": 0,
+         "grace_rounds": 2, "current_round": 49, "head": "f6a7b8c",
+         "coverage_status": "OK", "coverage_prev_overdue": 0, "coverage_missing": 0},
     ]
     io.open(led48, "w", encoding="utf-8", newline="").write(
         chr(10).join(json.dumps(x, ensure_ascii=False) for x in rows48) + chr(10))
@@ -324,6 +330,14 @@ def main():
        not any("coverage" in x for x in v_old_missing), json.dumps(v_old_missing, ensure_ascii=False)[:200])
     ck("t62 反例方向：新代行带齐 coverage 三列 ⇒ 零违规（机制不永远红）",
        v_new_full == [], json.dumps(v_new_full, ensure_ascii=False)[:200])
+    v_face_missing = bcs.validate_jsonl([rows48[3]], art48, "gen2-face-missing")
+    ck("t63 第 2 代必填（多代列表形态）：ts 晚于 15:50 而缺 face_* ⇒ 必红并点名",
+       any("face_status" in x for x in v_face_missing)
+       and not any("coverage" in x for x in v_face_missing),
+       json.dumps(v_face_missing, ensure_ascii=False)[:200])
+    ck("t64 旧代行同时豁免两代：09:00 行既无 coverage 也无 face ⇒ 不得出现任何分代违规",
+       not any("分代必填" in x for x in v_old_missing),
+       json.dumps(v_old_missing, ensure_ascii=False)[:200])
 
     co = getattr(da, "classify_owner", None)
     ck("t6-pre W-6 前置：账龄尺暴露 classify_owner（缺则下面四例全红而非 crash）", co is not None,
@@ -340,6 +354,27 @@ def main():
     ck("t66 绝对路径也算可解析归属（D 盘受管根写法）",
        (co or (lambda x: "MISSING"))("转办 D:/global_skills/A-get-memory/SKILL.md 归属会话") == "OWNERED",
        (co or (lambda x: "MISSING"))("转办 D:/global_skills/A-get-memory/SKILL.md 归属会话"))
+
+    # ---- r49 W-20：判据自身健康度也进趋势线（face_status / face_red_count）----
+    SIX = {"OVERDUE": 0, "ACTIVE": 2, "DECIDED": 3, "UNDATED": 0, "DEFERRED": 1, "REPEAT": 0}
+    led4 = tmp / "face_ledger.jsonl"
+    d_ok = doc(SIX, open_total=6)
+    d_ok["input_face"] = {"status": "OK", "red_faces": []}
+    ck("t70 台账行须承载 face_status/face_red_count（趋势线要能看见判据自己哪天变脏）",
+       da.append_ledger(str(led4), d_ok, origin="local") == 1
+       and json.loads(led4.read_text(encoding="utf-8").splitlines()[-1]).get("face_status") == "OK",
+       led4.read_text(encoding="utf-8")[:170])
+    d_fail = doc(SIX, open_total=6)
+    d_fail["input_face"] = {"status": "FAIL", "red_faces": ["floor"]}
+    n_f = da.append_ledger(str(led4), d_fail, origin="local")
+    rf = json.loads(led4.read_text(encoding="utf-8").splitlines()[-1]) if n_f else {}
+    ck("t71 面判红时台账**仍须写入**（FAIL 进趋势线才有斜率；拒写等于把脏面藏起来）",
+       n_f == 1 and rf.get("face_status") == "FAIL" and rf.get("face_red_count") == 1, str(rf)[:170])
+    led5 = tmp / "face_none.jsonl"
+    n_n = da.append_ledger(str(led5), doc(SIX, open_total=6), origin="local")
+    rn = json.loads(led5.read_text(encoding="utf-8").splitlines()[0]) if n_n else {}
+    ck("t72 反例：doc 里没有 input_face ⇒ 记 UNVERIFIED 而非 OK（自证缺面不得算通过）",
+       n_n == 1 and rn.get("face_status") == "UNVERIFIED", str(rn)[:170])
 
     fails = [r for r in RESULTS if not r[0]]
     print("\n夹具合计: %d 项，通过 %d，失败 %d" % (len(RESULTS), len(RESULTS) - len(fails), len(fails)))

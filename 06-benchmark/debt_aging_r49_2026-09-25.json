@@ -1,0 +1,131 @@
+{
+ "schema": "debt-aging-v2",
+ "generated_at": "2026-09-25T15:50:07",
+ "readonly": true,
+ "grace_rounds": 2,
+ "current_round": 49,
+ "round_source": "git log --format=%s -40 中最大 rNN（未硬编码）",
+ "verdict_taxonomy": [
+  "OVERDUE",
+  "ACTIVE",
+  "DECIDED",
+  "UNDATED",
+  "DEFERRED",
+  "REPEAT",
+  "CLOSED"
+ ],
+ "files_scanned": [
+  "memory\\07-next-steps.md",
+  "memory\\07-next-steps.part1.md",
+  "memory\\07-next-steps.part10.md",
+  "memory\\07-next-steps.part11.md",
+  "memory\\07-next-steps.part12.md",
+  "memory\\07-next-steps.part13.md",
+  "memory\\07-next-steps.part14.md",
+  "memory\\07-next-steps.part15.md",
+  "memory\\07-next-steps.part2.md",
+  "memory\\07-next-steps.part3.md",
+  "memory\\07-next-steps.part4.md",
+  "memory\\07-next-steps.part5.md",
+  "memory\\07-next-steps.part6.md",
+  "memory\\07-next-steps.part7.md",
+  "memory\\07-next-steps.part8.md",
+  "memory\\07-next-steps.part9.md"
+ ],
+ "evidence": {
+  "volumes": 16,
+  "items_total": 129,
+  "open_total": 74,
+  "closed_total": 55,
+  "raw_item_lines": 129
+ },
+ "by_class": {
+  "OVERDUE": 0,
+  "ACTIVE": 4,
+  "DECIDED": 70,
+  "UNDATED": 0,
+  "DEFERRED": 0,
+  "REPEAT": 0
+ },
+ "overdue": [],
+ "undated": [],
+ "opponents_measured_at": "2026-09-25",
+ "opponents": [
+  {
+   "repo": "github/spec-kit",
+   "open_issues": 287,
+   "workflows": 27,
+   "stale_automation": true,
+   "oldest_open_issue": "2025-09-25",
+   "note": "唯一有到期自动化：Close stale issues and PRs + 6 条 issue 流转 workflow"
+  },
+  {
+   "repo": "obra/superpowers",
+   "open_issues": 401,
+   "workflows": 2,
+   "stale_automation": false,
+   "oldest_open_issue": "2026-01-27"
+  },
+  {
+   "repo": "anthropics/skills",
+   "open_issues": 1290,
+   "workflows": 2,
+   "stale_automation": false,
+   "oldest_open_issue": "2025-10-16"
+  },
+  {
+   "repo": "addyosmani/agent-skills",
+   "open_issues": 118,
+   "workflows": 5,
+   "stale_automation": false,
+   "oldest_open_issue": "2026-04-04"
+  },
+  {
+   "repo": "pre-commit/pre-commit",
+   "open_issues": 25,
+   "workflows": 3,
+   "stale_automation": false,
+   "oldest_open_issue": "2018-07-02",
+   "note": "低积压靠少建待办，最老一条 8 年仍 open —— 到期治理同样缺失"
+  }
+ ],
+ "note": "OVERDUE 数 = ratchet_gate 第 7 指标 overdue_debt_items 的唯一取值面",
+ "coverage": {
+  "status": "OK",
+  "prev": "debt_aging_r48_2026-09-25.json",
+  "prev_overdue": 0,
+  "missing": [],
+  "method": "adjudication_gap(上一轮 overdue[].title 前 40 字, 当前卷文本, 本轮轮号)"
+ },
+ "input_face": {
+  "round": {
+   "log": 49,
+   "tag": 48,
+   "ok": true,
+   "detail": "log=r49 ≥ tag=r48（差 1 轮 = 本轮尚未打 tag，符合每轮收尾打标的既有节奏）"
+  },
+  "floor": {
+   "ok": true,
+   "detail": "上轮 16 卷全部在本轮 16 卷面内（拆卷只增不减，无需豁免表）"
+  },
+  "dedup": {
+   "ok": true,
+   "detail": "129 行全部计入，80 字前缀键零碰撞"
+  },
+  "dating": {
+   "ok": true,
+   "detail": "0 条到期项定年两路同值（截断 needle 未改变结论）",
+   "checked": 0
+  },
+  "suggestions": {
+   "ok": true,
+   "detail": "5 条新建议全部在待办卷有承接行"
+  },
+  "raw_lines": 129,
+  "collisions": [],
+  "status": "OK",
+  "red_faces": [],
+  "unverified_faces": []
+ },
+ "unowned_claims": []
+}

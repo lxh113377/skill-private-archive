@@ -5,6 +5,7 @@
 
 ## ✅ 已完成
 
+r49 输入面五面自证轮（2026-09-25 第 49 轮） — W-20：`05-exec/r38_debt_aging.py` 新增 face_round/face_floor/face_dedup/face_dating/face_suggestions 五面（判据读的面必须自证未被截断/降采样，含 R-ENUM 要求的 floor 集合断言），`face_status` 进台账；W-22/23/24：写入器第⑥重对账 + 混合行尾逐行保留 + 分类器只认标记头部，`05-exec/r49_face_fixtures.py` 25 例、`r39_debt_ledger_fixtures.py` 58 例（含 t70–t72 台账列、t63/t64 多代必填）、`r46_mark_verdict_fixtures.py` 10 例（t9/t10 混合行尾反例）全绿；5 条到期债 OVERDUE 5→0、DECIDED 60→70；常驻门 11→12
 r48 契约分代与归属可机检轮（2026-09-25 第 48 轮） — W-17：契约 row_required_from 按 ts 分叉强制 coverage_* 三列（新行缺即红、历史行豁免），解掉 r45 自挂的两难；W-6：classify_owner + owner 字段 + unowned_claims，声明归属却无可解析路径 ⇒ UNOWNED（动因 r40 D37 自家债外部化挂 4 轮）。D75 自抓：owner 最初用截断 title[:110] 判，3 条 UNOWNED 里 2 条是假的 ⇒ 改判全文；剩 3 条真项逐条经 r46 写入器补路径后归零。D76 一次 Edit 把字典尾部写重复致 SyntaxError（ast 当场拦下）。夹具 53/53、契约 13 pattern/17 件 PASS、[GATES:PASS] PASS=11、W-12 OK。立 X-22。
 
 r47 盲区清零轮（2026-09-25 第 47 轮） — 纯还债轮：W-1 十二条 UNDATED 逐条 `git log -S` 取真实首现、逐条经 r46 写入器一次写「定年 + 终局裁决」⇒ UNDATED 12→0、DECIDED 58、OVERDUE 0、REPEAT 0、W-12 OK。限定：6 条定到轮号、6 条只定到日期（如实写 r?）。处置 4 作废 / 6 保留 / 2 降级看守，无一条凭感觉划掉。W-18 dogfood 12/12 经工具、备份不落记忆卷、零行号错写。D74 记半成品命令之失。立 X-21（禁以裁决标记冒充定年）。

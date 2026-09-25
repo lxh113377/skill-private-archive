@@ -43,7 +43,7 @@ MARK_RE_TPL = "r%s 裁决="
 # 「条目自己的编号」与「近期提交主题」对账。检测延迟 = 整个延期窗口（3 轮），必须前移到写时。
 RE_ITEM_ID = re.compile(r"([A-Z]-\d+)（r\d{1,3}\s*新立")
 RE_LANDED_WORD = re.compile(r"落地|已落地|执行完毕|已闭环")
-RE_DEFERRAL_TEXT = re.compile(r"挂账至\s*r\d{1,3}")
+RE_DEFERRAL_TEXT = re.compile(r"^\s*(?:【)?\s*挂账至\s*r\d{1,3}")   # 只看裁决文本**头部**：r49 实测「在原因里引用旧标记原文」会被全文 search 命中，把终局裁决误判成延期（同一劫持第 2 形态）
 
 
 def item_own_id(line):
@@ -91,6 +91,26 @@ def find_item_lines(lines, key):
     return open_hits, closed_hits
 
 
+def split_keep_eol(text):
+    """按**物理行**切分并保留每行自己的行尾，返回 [(内容, 行尾)]。
+
+    r49 根因修：原实现 `eol = "\r\n" if "\r\n" in raw else "\n"` 后整份按单一行尾切 ——
+    而 `memory/07-next-steps.md` 实测是**混合行尾**（178 个 CRLF + 4 个纯 LF，并发写与
+    拆卷产物），那 4 行被并进前一个元素，标记追加到"元素末尾"= 另一条目那一行。
+    行号错位修好了，**元素错位**是同一缺陷的第二形态 ⇒ 必须逐行保留行尾，且只改目标行。
+    """
+    parts = re.split(r"(\r\n|\r|\n)", text)
+    out = []
+    for i in range(0, len(parts) - 1, 2):
+        out.append((parts[i], parts[i + 1]))
+    out.append((parts[-1], ""))
+    return out
+
+
+def join_keep_eol(rows):
+    return "".join(c + e for c, e in rows)
+
+
 def refuse(why, detail=""):
     print("[MARK:REFUSED] %s%s" % (why, (" ｜ " + detail) if detail else ""))
     return 1
@@ -126,8 +146,8 @@ def main():
         if rp.parent != mem:
             return refuse("⑤ 只允许写 <vault>/memory/ 下的卷（受管根与仓外一律拒写）", str(rp))
         raw = io.open(rp, encoding="utf-8", newline="").read()
-        eol = "\r\n" if "\r\n" in raw else "\n"
-        lines = raw.split(eol)
+        rows = split_keep_eol(raw)
+        lines = [c for c, _ in rows]
         open_hits, closed_hits = find_item_lines(lines, args.key)
         if len(open_hits) + len(closed_hits) == 0:
             continue                                        # 本卷无此锚点，去下一卷找
@@ -153,20 +173,25 @@ def main():
                               "%s:%d ｜ 取值：git -C %s log --format=%%s -20"
                               % (rp.name, i + 1, vault))
         marker = "【" + (MARK_RE_TPL % args.round) + args.verdict + "】"
-        new_lines = list(lines)
-        new_lines[i] = lines[i].rstrip() + " " + marker
+        new_rows = list(rows)
+        body, tail = lines[i], rows[i][1]
+        new_rows[i] = (body.rstrip() + " " + marker, tail)   # 只改目标这一行，行尾原样保留
         bdir = Path(args.backup_dir).resolve() if args.backup_dir else (vault / "05-exec" / "mark_backup")
         # r46：备份默认落 05-exec/mark_backup，不落记忆卷（同 r35 的 rule_backup 落点教训）
         bdir.mkdir(parents=True, exist_ok=True)
         bak = bdir / ("%s.r%s_%s.bak" % (rp.name, args.round, time.strftime("%H%M%S")))
         io.open(bak, "w", encoding="utf-8", newline="").write(raw)
-        io.open(rp, "w", encoding="utf-8", newline="").write(eol.join(new_lines))
-        back = io.open(rp, encoding="utf-8", newline="").read()
-        if marker not in back:                              # X-8：读不到就不算写完
+        io.open(rp, "w", encoding="utf-8", newline="").write(join_keep_eol(new_rows))
+        back_rows = [c for c, _ in split_keep_eol(io.open(rp, encoding="utf-8", newline="").read())]
+        # X-8 的**实质**读回：不是"文件里有这个串"，而是"串与锚点在同一物理行"
+        same_line = (i < len(back_rows) and marker in back_rows[i] and args.key in back_rows[i])
+        others = [j for j, c in enumerate(back_rows) if marker in c and j != i]
+        if not same_line or others:
             io.open(rp, "w", encoding="utf-8", newline="").write(raw)
             return refuse("读回验证失败，已回滚（禁在只 return 不写盘的情况下报 done）",
-                          "%s:%d" % (rp.name, i + 1))
-        print("[MARK:OK] %s:%d ｜ 备份 %s ｜ 读回验证通过" % (rp.name, i + 1, bak.name))
+                          ("标记落到非锚点行 %s" % others if others else
+                           "目标行未读到标记（行尾/并元素错位）"))
+        print("[MARK:OK] %s:%d ｜ 备份 %s ｜ 读回验证通过（锚点与标记同行）" % (rp.name, i + 1, bak.name))
         return 0
     return refuse("② 锚点在全部候选卷里 0 命中（不得退化成追加到文件末尾）", args.key)
 

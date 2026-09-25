@@ -109,6 +109,34 @@ def main():
        r4.returncode != 0 and outside.read_text(encoding="utf-8").strip() == "- [ ] 受管根外条目",
        (r4.stdout + r4.stderr)[-160:])
 
+    # ---- t9/t10：混合行尾卷（r49 真事故复现）------------------------------------
+    # 实测根因：memory/07-next-steps.md = 178 个 CRLF + 4 个纯 LF 的**混合行尾**文件。
+    # 写入器原先按「文件里有 \r\n 就整份按 \r\n 切」，于是那 4 个 LF 行被并进前一个元素，
+    # 追加标记落到**元素末尾 = 另一条目那一行**（我把 W-16 的裁决写到了 W-14 行上）。
+    # 夹具样本卷若只用统一行尾，这一类错位**永远测不到** —— 与 W-20 同族：判据的输入面
+    # 不覆盖真实形态时，全绿不代表真机正确。
+    mixdir = Path(tempfile.mkdtemp(prefix="r49_mv_")) / "memory"
+    mixdir.mkdir(parents=True)
+    mf = mixdir / "07-next-steps.md"
+    mf.write_bytes(
+        "## P0 — 必须做\r\n".encode("utf-8") +
+        "- [ ] **【P0·待办 丁（r49 登记）】** 锚点在这一行（本行行尾是纯 LF）\n".encode("utf-8") +
+        "- [ ] **【P0·待办 戊（r49 登记）】** 同元素里的另一条目（行尾 CRLF）\r\n".encode("utf-8") +
+        "- [ ] **【P0·待办 己（r49 登记）】** 尾条目\r\n".encode("utf-8"))
+    mb = mf.read_bytes()
+    rmix = run(["--vault", str(mf.parent.parent), "--key", "待办 丁", "--round", "49",
+                "--verdict", "执行完毕｜混合行尾卷错位复现桩"])
+    after = mf.read_bytes().decode("utf-8").split(chr(10))
+    hit = [l for l in after if "r49 裁决=" in l]
+    ck("t9 混合行尾卷：标记必须落在**锚点自己那一行**（不得并到同元素的另一条目）",
+       rmix.returncode == 0 and len(hit) == 1 and "待办 丁" in hit[0],
+       " ｜ ".join(x[:52] for x in hit) or "无标记")
+    ck("t10 混合行尾卷：同元素内另一条目（待办 戊）必须零污染，且原文其余字节逐字不动",
+       all("待办 戊" not in l or "裁决=" not in l for l in after)
+       and mf.read_bytes().startswith(mb[:40])
+       and mf.read_bytes().count(b"\r\n") == 3,
+       "CRLF=%d" % mf.read_bytes().count(b"\r\n"))
+
     fails = [x for x in RESULTS if not x[0]]
     print("\n夹具合计: %d 项，通过 %d，失败 %d"
           % (len(RESULTS), len(RESULTS) - len(fails), len(fails)))

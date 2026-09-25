@@ -330,3 +330,23 @@ B3 多 job 并列不短路 / B4 周期心跳档 / B5 `concurrency` 成本自觉 
 - `ci_surface_r31_2026-09-25.json` + `ci_evidence/`（8 份对手 workflow 原文） — r31 第八维证据件
 - `自建skill体系全量对标分析报告.md` — r10 首轮（七维矩阵 + 16 项映射，分母 151 已失效见 r18 校正注）
 - `P0-C_累积漂移复核第1批_2026-09-24.md` / `第2批` — 高频改写文件的承重句语义复核
+
+## 附：r49 增补（2026-09-25，第 13/14 维纵深，不开新维度）
+
+**对手取证（gh api 实测于本轮，非记忆）**
+
+| 仓库 / workflow | 是否声明 fetch-depth | 是否用 paths/paths-ignore 收窄 | 是否有「输入面守恒」断言 |
+|---|---|---|---|
+| github/spec-kit test.yml | 无（= 默认 depth 1，降采样） | 无 | 无 |
+| github/spec-kit lint.yml | 显式 fetch-depth: 1 | 无 | 无 |
+| addyosmani/agent-skills markdownlint.yml | 无 | 无 | 无 |
+| pre-commit/pre-commit main.yml | 无 | 无 | 无 |
+| obra/superpowers、anthropics/skills | 无自建 workflow（仅 Copilot dynamic 件） | — | — |
+
+三条结论：
+
+1. **对手的「全面」来自默认值，不是来自证明。** 五家零家写输入面守恒断言；它们靠「根本不收窄」获得全面性。一旦判据开始收窄（我的 -40 窗口、body[:80] 去重键、needle[:70] 定年串、glob），全面性就从「默认成立」变成「需要证明」—— 这是第 13 维此前的空白，也是 face_* 五面的存在理由。
+2. **把 fetch-depth: 1 显式写出来，只证明作者知道自己在降采样，不证明影响可忽略。** 同项对比：spec-kit 判为「有意识但无自证」；我方同类项（-40）此前连「有意识」都没有 —— 现在有了 tag 硬锚对照（face_round）。
+3. **本轮由自家判据抓出的 3 处缺陷，比对手结论更该修**（混合行尾并元素错写、标记头部劫持、报告建议不落待办卷）。对标价值不在「对手有多少 workflow」，而在「我的绿灯是否建立在我真读过的面上」。
+
+新增禁止项：**X-23**（判据不得用全文 search 判状态，只认标记头部）、**X-24**（枚举器不得只做面内自洽，须带下限/形状/交叉反向断言，对齐权威契约 R-ENUM：D:/global_skills/A-skill-manager/references/governance.md）。

@@ -298,18 +298,20 @@ def validate_jsonl(rows, contract, label="doc"):
     fmt = contract.get("row_ts_format")
     # r48 W-17：代际分叉必填。台账是 append-only 不可回写，把新列直接加进 row_required 会把
     # r38–r45 的合法历史行全体判脏（同族 r42 D36）。故按 ts 划代：早于分叉点豁免，晚于分叉点强制。
-    req_from = contract.get("row_required_from") or {}
-    cut = req_from.get("from")
-    extra_req = req_from.get("fields") or []
+    req_from = contract.get("row_required_from") or []
+    if isinstance(req_from, dict):        # 单代写法仍合格；多代（台账列分批加入）用列表
+        req_from = [req_from]
+    gens = [(g.get("from"), g.get("fields") or []) for g in req_from]
     for i, row in enumerate(rows):
         if not isinstance(row, dict):
             msgs.append("%s row %d: 非对象行（JSONL 每行须为一个 JSON 对象）" % (label, i))
             continue
-        if extra_req and (not cut or str(row.get("ts") or "") >= cut):
-            xmiss = [k for k in extra_req if k not in row]
-            if xmiss:
-                msgs.append("%s row %d: 缺分代必填列 %s（ts=%s 晚于分叉点 %s）"
-                            % (label, i, xmiss, row.get("ts"), cut))
+        for cut, extra_req in gens:
+            if extra_req and (not cut or str(row.get("ts") or "") >= cut):
+                xmiss = [k for k in extra_req if k not in row]
+                if xmiss:
+                    msgs.append("%s row %d: 缺分代必填列 %s（ts=%s 晚于分叉点 %s）"
+                                % (label, i, xmiss, row.get("ts"), cut))
         miss = [k for k in req if k not in row]
         if miss:
             msgs.append("%s row %d: 缺键 %s" % (label, i, miss))

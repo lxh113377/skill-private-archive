@@ -6,6 +6,9 @@
 > 注（2026-09-23，A-project-handoff **V3.48.0** 校正注，上一条保留作历史留痕）：本文件已纳入 `trim-shell` **条目归档自愈**（`TRIM_ENTRY_TARGETS`；**仍不入** `SPLIT_TARGETS`）——「已知 Bug / 技术债」两章节内的**已闭环/已修复/已解除**条目前往 `06-constraints.partN.md`；**红线等活载章节**与**未闭环条目**（含含「未修复/未闭环」字样者，fail-safe 保守留守）永久留主卷，故主卷体量可超 4KB 属设计内（不再视为违规）。
 
 ## 已知 Bug
+
+- [BUG] **记忆卷混合行尾 ⇒ 任何「按整份单一行尾切分」的写入器都会并元素错写** — 影响范围：`memory/07-next-steps.md` 实测 178 个 CRLF + 4 个纯 LF（并发工具按 text 模式写入的产物）。2026-09-25 r49 实测：`r46_mark_verdict.py` 首版按「文件里有 
+ 就整份按 CRLF 切」，那 4 行被并进前一元素，标记追加到元素末尾 = **另一条目那一行**（W-16 的裁决落到 W-14 行）。已修写入侧（`split_keep_eol` 逐行保留 + 同行读回断言 + 反例夹具 t9/t10），**根因仍在**：那 4 行由谁写入未定位，统一行尾属 R241 敏感区（禁为让门变绿而整卷重写）⇒ 登记为 W-26 看守 | 状态：**未修复（已缓解）**
 <!-- 格式：- [BUG] 描述 — 影响范围 | 状态：未修复/修复中 -->
 - [BUG→**部分解决**] `.rule_backup/` 全库备份集中落在 `D:\global_skills\A-memory-start\references\.rule_backup\`（内含 `A-project-handoff.*.bak`）— 影响范围：备份与目标 skill 分离，回滚定位成本高；且 32 个 `.bak` 全部未跟踪，污染 `git status` | 状态：**部分解决**（2026-09-22 第 10 轮复测：文件数 **51**；「未跟踪污染」已解决 —— 该目录随 D7 `172eb88` 被仓库跟踪，`git -C D:\global_skills status --porcelain` 实测**零条**；按「文件×日」分组实测**无一组 >5** ⇒ R198.7 不触发；**仅剩「集中落点」未改** ⇒ 见第 10 轮建议 #4）—— **✅ 校正注（2026-09-23 销账）：已闭环** —— B4 已执行（`rule_editor.py` 备份落点迁出受管根至 `global_memory_archive\_trash\rule_backup`，56 份 .bak 全迁，`undo` 双落点兼容）；本轮实测 `A-memory-start/references/.rule_backup` 下 `.bak` = **0**
 

@@ -48,6 +48,35 @@ RE_ITEM = re.compile(r"^\s*-\s\[( |x)\]\s+(.+)$")
 RE_ROUND_DECL = re.compile(r"(?:r(\d{1,3})\s*(?:登记|立|新增|补记|更新|收尾)|第\s*(\d{1,3})\s*轮|"
                            r"挂账\s*(\d{1,2})\s*轮)")
 RE_DECIDED = re.compile(r"裁决\s*=\s*(执行|降级|作废|保留)|挂账至\s*r(\d{1,3})")
+# r49 根因修（第 2 形态）：裁决标记是 `【rNN 裁决=<头部>｜原因】`，而**原因里允许引用旧标记原文**
+# （本轮就在 W-14 上写了「r46 却在本条上写了『挂账至 r49』」）。全文 search 的 last-wins 会被
+# 引号内容劫持 ⇒ 终局裁决被回判成"过期挂账"，凭空造一条 OVERDUE。
+# 判据口径：只认**最后一个标记的头部**（第一个 ｜/】 之前），原因体一律不参与判定。
+RE_MARK_HEAD = re.compile(r"【\s*r(\d{1,3})\s*裁决\s*=\s*([^｜】]*)")
+
+
+def parse_last_verdict(text):
+    """返回 (kind, arg)：kind ∈ "FINAL"/"DEFER"/None；FINAL 的 arg 是裁决词，DEFER 的 arg 是目标轮 int。
+
+    有 `【rNN 裁决=` 标记时**只看最后一个标记的头部**；一个都没有才回退到全文扁平匹配
+    （兼容层a 夹具直接喂无括号裸文本）。头部取不到合法取值 ⇒ 视为未裁（X-10：自造措辞
+    不算裁决，与 r38「部分作废不在取值域即照判 OVERDUE」同口径）。
+    """
+    heads = list(RE_MARK_HEAD.finditer(text or ""))
+    if heads:
+        head = heads[-1].group(2).strip()
+        m = re.match(r"(执行|降级|作废|保留)", head)
+        if m:
+            return ("FINAL", m.group(1))
+        d = re.match(r"挂账至\s*r(\d{1,3})", head)
+        if d:
+            return ("DEFER", int(d.group(1)))
+        return (None, None)
+    flat = list(RE_DECIDED.finditer(text or ""))
+    if not flat:
+        return (None, None)
+    last = flat[-1]
+    return ("DEFER", int(last.group(2))) if last.group(2) else ("FINAL", last.group(1))
 RE_R_IN_SUBJECT = re.compile(r"\br(\d{1,3})\b")
 
 
@@ -172,13 +201,11 @@ def adjudication_gap(prev_keys, lines, round_tag):
     for key in prev_keys:
         hits = find_item_line(lines, key)
         for i in hits:
-            marks = list(RE_DECIDED.finditer(lines[i - 1]))
-            if not marks:
-                missing.append(key)
-                continue
-            last = marks[-1]
-            if last.group(2) and int(last.group(2)) <= cur:
-                missing.append(key)
+            kind, arg = parse_last_verdict(lines[i - 1])
+            if kind is None:
+                missing.append(key)          # 无标记，或有标记但头部不在取值域 ⇒ 不算已裁
+            elif kind == "DEFER" and arg <= cur:
+                missing.append(key)          # 已到期的挂账不算已裁
     return missing
 
 
@@ -188,25 +215,37 @@ def first_seen(rel_path, needle):
     return dates[-1] if dates else None
 
 
+def count_deferrals(text):
+    """真实延期次数 = 头部为「挂账至 rNN」的标记数（原因体里引用的旧标记原文不计）。
+
+    与 parse_last_verdict 同一口径，否则 r49 这种"在原因里引用『挂账至 r49』"会把
+    REPEAT 计数（第 9 指标）虚增 —— 那正是 X-17 禁止的"把延期次数当成绩"的反向形态。
+    """
+    heads = [h.group(2).strip() for h in RE_MARK_HEAD.finditer(text or "")]
+    if heads:
+        return sum(1 for h in heads if re.match(r"挂账至\s*r\d{1,3}", h))
+    return len(RE_DEFERRAL.findall(text or ""))
+
+
 def classify_item(text, now_round):
     """返回 (cls, detail) —— 单一条目的判定，供层a 夹具直接调用。"""
     # W-8 根因修（r41 实测）：一条待办一生会被多次裁决，标记是**追加**在同一条目里的，
     # 用 search() 取首个 = 让最早的挂账永久劫持后续终局裁决（11 条到期项因此反复判红）。
     # 台账语义必须是 last-wins（与本仓 gate_runs / ac-verdicts 的 append-only 口径一致）。
-    dec = list(RE_DECIDED.finditer(text))[-1] if list(RE_DECIDED.finditer(text)) else None
-    if dec:
-        if dec.group(2):
-            tgt = int(dec.group(2))
-            # r39 W-0：延期不是终局。目标轮未到 → DEFERRED（单列，趋势线可见）；
-            # 已到/已过 → 重新判 OVERDUE（到期追讨），防"挂账至 rNN"变成永久免检通道。
-            if tgt > now_round:
-                n_def = len(RE_DEFERRAL.findall(text))
-                if n_def >= REPEAT_AFTER:
-                    return ("REPEAT", "第 %d 次延期至 r%d ⇒ 须升级：执行 / 降级为长期看守 / 作废"
-                            % (n_def, tgt))
-                return ("DEFERRED", "挂账至 r%d（尚余 %d 轮）" % (tgt, tgt - now_round))
-            return ("OVERDUE", "挂账目标 r%d 已到期（本轮 r%d）" % (tgt, now_round))
-        return ("DECIDED", "裁决=" + dec.group(1))
+    kind, arg = parse_last_verdict(text)
+    if kind == "DEFER":
+        tgt = arg
+        # r39 W-0：延期不是终局。目标轮未到 → DEFERRED（单列，趋势线可见）；
+        # 已到/已过 → 重新判 OVERDUE（到期追讨），防"挂账至 rNN"变成永久免检通道。
+        if tgt > now_round:
+            n_def = count_deferrals(text)
+            if n_def >= REPEAT_AFTER:
+                return ("REPEAT", "第 %d 次延期至 r%d ⇒ 须升级：执行 / 降级为长期看守 / 作废"
+                        % (n_def, tgt))
+            return ("DEFERRED", "挂账至 r%d（尚余 %d 轮）" % (tgt, tgt - now_round))
+        return ("OVERDUE", "挂账目标 r%d 已到期（本轮 r%d）" % (tgt, now_round))
+    if kind == "FINAL":
+        return ("DECIDED", "裁决=" + arg)
     grace = GRACE_BY_PRIORITY.get((RE_PRIORITY.search(text) or ["", "UNMARKED"])[1], GRACE_DEFAULT)
     origin, held = None, None
     for m in RE_ROUND_DECL.finditer(text):
@@ -249,6 +288,40 @@ def face_suggestions(new_ids, todo_text):
         return (False, "%d/%d 条新建议没进待办卷（%s）⇒ 建议不落 07 即永不到期，等于免检"
                 % (len(missing), len(new_ids), ", ".join(missing)))
     return (True, "%d 条新建议全部在待办卷有承接行" % len(new_ids))
+
+
+def face_floor(cur_volumes, prev_volumes):
+    """规模下限面（R-ENUM 补条的 floor 形态，r49 第 5 面）。
+
+    存在理由（读权威契约后自查发现的本判据缺口）：前四面都是**面内自洽**，
+    没有一面能发现「受检面整体变小」。若 `memory/07-next-steps*.md` 的 glob 因拆卷改名
+    或权限问题少收一卷（16→15 甚至 16→1），去重守恒、轮号对账、定年双路**全都照样绿**，
+    而"零积压"是在 1/16 的语料上算出来的 —— 与 R-ENUM 实证的 `core.quotepath` 把
+    109 数成 79 同族。口径 = 集合断言而非计数阈值：上轮受检的每一卷本轮必须仍在面内
+    （拆卷只增不减，故无需豁免表）。
+    """
+    if not prev_volumes:
+        return (None, "取不到上一轮受检卷清单 ⇒ 规模面无对照（UNVERIFIED，不判绿）")
+    missing = [v for v in prev_volumes if v not in set(cur_volumes)]
+    if missing:
+        return (False, "上轮受检 %d 卷中有 %d 卷本轮不在面内（%s）⇒ 受检面萎缩，"
+                       "任何「零」都只代表剩余面" % (len(prev_volumes), len(missing),
+                       ", ".join(os.path.basename(m) for m in missing)))
+    return (True, "上轮 %d 卷全部在本轮 %d 卷面内（拆卷只增不减，无需豁免表）"
+            % (len(prev_volumes), len(cur_volumes)))
+
+
+def prev_scanned_volumes():
+    """上一轮证据件里的 files_scanned（取值口径与 coverage_check 同源：mtime 倒数第二）。"""
+    hist = sorted(ROOT.glob("06-benchmark" + os.sep + "debt_aging_r*.json"),
+                  key=lambda p: p.stat().st_mtime)
+    if len(hist) < 2:
+        return []
+    try:
+        prev = json.loads(hist[-2].read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return []
+    return list(prev.get("files_scanned") or [])
 
 
 def scan(files, now_round, grace):
@@ -342,6 +415,10 @@ def append_ledger(path, doc, origin="local", head=None):
            "coverage_status": (doc.get("coverage") or {}).get("status", "UNVERIFIED"),
            "coverage_prev_overdue": (doc.get("coverage") or {}).get("prev_overdue"),
            "coverage_missing": len((doc.get("coverage") or {}).get("missing") or []),
+           # r49 W-20：判据自身健康度也进趋势线 —— 只打印不落账的自证等于半成品（不阻断写入：
+           # FAIL 行必须能进台账，趋势线才看得见"哪天判据自己变脏了"）
+           "face_status": (doc.get("input_face") or {}).get("status", "UNVERIFIED"),
+           "face_red_count": len((doc.get("input_face") or {}).get("red_faces") or []),
            "grace_rounds": doc.get("grace_rounds"), "current_round": doc.get("current_round"),
            "head": head or head_short()}
     io.open(path, "a", encoding="utf-8", newline="").write(
@@ -429,15 +506,20 @@ def main():
             f_sugg = face_suggestions(sugg_ids, todo_text)
         except OSError as e:
             f_sugg = (False, "--report 指向的文件读不到：%s（判红，不当作已通过）" % e)
+    f_floor = face_floor([os.path.join("memory", f.name) for f in files], prev_scanned_volumes())
     input_face = {"round": {"log": now_round, "tag": round_tag, "ok": f_round[0], "detail": f_round[1]},
+                  "floor": {"ok": f_floor[0], "detail": f_floor[1]},
                   "dedup": {"ok": f_dedup[0], "detail": f_dedup[1]},
                   "dating": {"ok": f_dating[0], "detail": f_dating[1], "checked": len(f_dates)},
                   "suggestions": {"ok": f_sugg[0], "detail": f_sugg[1]},
                   "raw_lines": face["raw_lines"], "collisions": face["collisions"]}
-    face_red = [k for k in ("round", "dedup", "dating", "suggestions") if input_face[k]["ok"] is False]
-    face_unver = [k for k in ("round", "dedup", "dating", "suggestions") if input_face[k]["ok"] is None]
+    FACE_KEYS = ("round", "floor", "dedup", "dating", "suggestions")
+    face_red = [k for k in FACE_KEYS if input_face[k]["ok"] is False]
+    face_unver = [k for k in FACE_KEYS if input_face[k]["ok"] is None]
     input_face["status"] = ("FAIL" if face_red else
                             ("UNVERIFIED" if face_unver else "OK"))
+    input_face["red_faces"] = face_red
+    input_face["unverified_faces"] = face_unver
     open_items = [r for r in items if r["class"] != "CLOSED"]
     closed = [r for r in items if r["class"] == "CLOSED"]
     by_cls = {c: sum(1 for r in open_items if r["class"] == c) for c in TAXONOMY}
@@ -459,7 +541,9 @@ def main():
                                                     r.get("first_seen", "?"), r["title"][:64]))
         print("[DEBT:MEASURED] 宽限 %d 轮｜本尺不阻断（阻断由 ratchet_gate 第 7 指标只降不升承载）" % args.grace)
         # W-20（r49）：判据读到的面必须先自证不是截断/降采样后的局部面
-        for k, lbl in (("round", "轮号面(-40 窗口 vs tag 硬锚)"), ("dedup", "去重面(80 字前缀键)"),
+        for k, lbl in (("round", "轮号面(-40 窗口 vs tag 硬锚)"),
+                       ("floor", "规模下限面(上轮受检卷须仍在面内)"),
+                       ("dedup", "去重面(80 字前缀键)"),
                        ("dating", "定年面(70 字 needle)"),
                        ("suggestions", "建议面(报告新建议→待办卷承接)")):
             v = input_face[k]
