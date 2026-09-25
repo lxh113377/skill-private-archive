@@ -5,11 +5,11 @@
 
 ## 从哪读起（新人 / 新会话，按序）
 
-1. `memory/07-next-steps.md` — P0 未完成项（**唯一入口，先读这个**）
-2. `memory/05-feature-status.md` — 已完成 / 进行中 / 阻塞
-3. `05-exec/第3轮执行报告.md` — 最近一轮：四维诊断 + 建议清单 + 待确认破坏性项
-4. `03-audit/自建skill优化审计报告.md` — 阶段3 全量审计结论（P0/P1/P2）
-5. `04-plan/实施计划.md` — 阶段4 分批复核与回滚手段
+1. [memory/07-next-steps.md](memory/07-next-steps.md) — P0 未完成项（**唯一入口，先读这个**）
+2. [memory/05-feature-status.md](memory/05-feature-status.md) — 已完成 / 进行中 / 阻塞
+3. [05-exec/第3轮执行报告.md](05-exec/第3轮执行报告.md) — 最近一轮：四维诊断 + 建议清单 + 待确认破坏性项
+4. [03-audit/自建skill优化审计报告.md](03-audit/自建skill优化审计报告.md) — 阶段3 全量审计结论（P0/P1/P2）
+5. [04-plan/实施计划.md](04-plan/实施计划.md) — 阶段4 分批复核与回滚手段
 
 ## 六阶段产物地图
 

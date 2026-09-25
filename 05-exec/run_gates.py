@@ -121,6 +121,23 @@ GATES = [
         "why": "r45 实测 W-9 挂了 5 轮的真因是按行号写标记写到别处；本门锁死该入口不再接受行号、歧义与已闭环一律拒写、写完必须读回",
     },
     {
+        # r54 W-36：棘轮 9 指标逐个声明再生周期，超期即转 unknown
+        "id": "refresh_budget_fixtures",
+        "script": "r54_refresh_fixtures.py",
+        "argv": [],
+        "pass_token": "[GATE:fixture-pass]",
+        "portable": False,
+        "not_portable_reason":
+            "g8/g9/g10/g11 在真机上核对 9 个指标源件的 mtime 年龄并跑 ratchet CLI；"
+            "换机无 06-benchmark 证据件与焚诀 truth_constants 时全部取不到年龄，判据退化为恒 UNVERIFIED，无意义",
+        "covers": ["05-exec/ratchet_gate.py 的 METRIC_SOURCES/METRIC_REFRESH_DAYS/source_age_days/face_metric_refresh",
+                   "collect_metrics 把 STALE 指标转 unknown（UNVERIFIED 不转，活体扫描本无源件）",
+                   "CLI 打印再生周期行（声明必须在输出里看得见，否则等于没声明）"],
+        "why": "r53 我方差点拿 33 轮前的源件跟现值比（那次报的是命名假阳性，揭开的是"
+               "「没有任何地方声明预算」这个真缺口）；对手侧 r54 实测五家仅 2 家在 workflow 里声明节律 "
+               "（pre-commit 12 行 / spec-kit 7 行）⇒ 周期是被显式声明的对象",
+    },
+    {
         # r53 W-34/W-35：报告数字改引用可再生句柄 + README 证据面可发现性
         "id": "handles_readme_fixtures",
         "script": "r53_handles_fixtures.py",

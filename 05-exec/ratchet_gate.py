@@ -47,6 +47,68 @@ METRIC_NAMES = ("catalog_grand_chars", "inject_union_bytes", "claim_candidates",
 SCHEMA = "zijian-inject-ratchet-v1"
 FACE_NOTES = {}   # r50 W-25：指标取值时的"读取面"自证结果，main() 里如实打印（不算进指标值）
 
+# ---- W-36（r54）：每个指标必须声明"多久必须重算一次" ----
+# 动因（r54 双侧实测）：对手五家只有 2 家在 workflow 里声明节律（pre-commit 12 行 / spec-kit 7 行），
+# 其余 0 —— 说明"多久跑一次"是被显式声明的对象；而我方 r53 差点拿 33 轮前的源件跟现值比
+# （那次报的是命名假阳性，但揭开的是真缺口：没有任何地方声明过预算，源件烂在柜里也照样出数）。
+METRIC_SOURCES = {
+    "catalog_grand_chars": "catalog_attention_tax_*.json",
+    "inject_union_bytes": None,          # 源 = 焚诀 truth_constants.json（活体清单，见 source_age_days）
+    "claim_candidates": "claim_truth_*.json",
+    "drift_ruleish_candidates": "cumulative_drift_*.json",
+    "desc_over_cap": "description*.json",
+    "username_in_skill_files": "LIVE",   # 活体 glob 受管根，无源件 ⇒ UNVERIFIED
+    "overdue_debt_items": "debt_aging_r*.json",
+    "deferred_debt_items": "debt_aging_r*.json",
+    "repeat_debt_items": "debt_aging_r*.json",
+}
+METRIC_REFRESH_DAYS = {
+    "catalog_grand_chars": 30, "inject_union_bytes": 14, "claim_candidates": 30,
+    "drift_ruleish_candidates": 30, "desc_over_cap": 30, "username_in_skill_files": 14,
+    "overdue_debt_items": 3, "deferred_debt_items": 3, "repeat_debt_items": 3,
+}   # 债务三态预算 3 天：账龄尺每轮必跑，超过一轮即说明我漏跑了
+
+
+def source_age_days(metric):
+    """取该指标源件的最新 mtime 年龄（天）；取不到 ⇒ None（活体/缺件），由调用方记 UNVERIFIED。"""
+    import time as _t
+    pat = METRIC_SOURCES.get(metric)
+    if pat == "LIVE":
+        return None
+    if pat is None:
+        cand = [TRUTH_CONSTANTS] if TRUTH_CONSTANTS.exists() else []
+    else:
+        cand = glob.glob(str(BENCH / pat))
+    if not cand:
+        return None
+    try:
+        return (_t.time() - max(os.path.getmtime(f) for f in cand)) / 86400.0
+    except OSError:
+        return None
+
+
+def face_metric_refresh(age_days, budget_days):
+    """三态：OK / STALE / UNVERIFIED。年龄或预算任一取不到 ⇒ UNVERIFIED，**不得当成 OK**。"""
+    if not isinstance(budget_days, (int, float)) or budget_days <= 0:
+        return "UNVERIFIED"
+    if age_days is None:
+        return "UNVERIFIED"
+    return "OK" if age_days <= budget_days else "STALE"
+
+
+def refresh_status():
+    """返回 {指标: (状态, 年龄, 预算)}，并顺带把 STALE 记进 FACE_NOTES 供打印。"""
+    out = {}
+    for k in METRIC_NAMES:
+        age = source_age_days(k)
+        budget = METRIC_REFRESH_DAYS.get(k)
+        st = face_metric_refresh(age, budget)
+        out[k] = (st, age, budget)
+        if st == "STALE":
+            FACE_NOTES[k + "·再生"] = (False, "源件已 %.1f 天未重算（预算 %s 天）⇒ 该指标转 unknown"
+                                       % (age, budget))
+    return out
+
 
 def _read_json(glob_pat):
     """取匹配到的最新一份 JSON（按 mtime）。无文件/解析失败 → None（调用方记 unknown）。"""
@@ -232,9 +294,18 @@ COMPUTE = {"catalog_grand_chars": catalog_grand_chars,
 
 
 def collect_metrics():
-    """现算全部指标。返回 (metrics, unknown)——算不出的进 unknown，绝不填 0 冒充。"""
+    """现算全部指标。返回 (metrics, unknown)——算不出的进 unknown，绝不填 0 冒充。
+
+    W-36（r54）追加一档：源件**超期**（STALE）也算"算不出"⇒ 进 unknown。
+    UNVERIFIED 不进 unknown —— 活体扫描类指标本就没有源件，判它红等于逼我造一个假源件。
+    """
     metrics, unknown = {}, []
+    refresh = refresh_status()
+    globals()["LAST_REFRESH"] = refresh
     for name in METRIC_NAMES:
+        if refresh.get(name, ("",))[0] == "STALE":
+            unknown.append(name)                          # 陈旧源件不配当现值参与棘轮比对
+            continue
         try:
             val = COMPUTE[name]()
         except Exception:
@@ -467,6 +538,13 @@ def main():
     for k, (ok, why) in sorted(FACE_NOTES.items()):     # r50 W-25：读取面自证（全 OK 时不刷屏）
         if ok is not True:
             print("  ⚠️ 读取面 %s ⇒ %s" % (k, why))
+    rf = globals().get("LAST_REFRESH") or {}
+    if rf:                                              # W-36（r54）：声明了周期就得看得见执行结果
+        bad = {k: v for k, v in rf.items() if v[0] != "OK"}
+        print("  再生周期（W-36）：%d/%d 指标在预算内 ｜ 非 OK：%s" % (
+            len(rf) - len(bad), len(rf),
+            " ".join("%s=%s(%.1fd/%sd)" % (k, v[0], v[1] if v[1] is not None else -1, v[2])
+                     for k, v in sorted(bad.items())) or "无"))
     return 0
 
 
