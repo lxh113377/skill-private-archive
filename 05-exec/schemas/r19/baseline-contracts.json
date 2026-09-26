@@ -335,6 +335,26 @@
   "invariants_from": {"triage_counts_consistent": "2026-09-25T19:00:00"},
   "note": "W-27 取值件：r56 起有生成器 05-exec/r56_conflict_triage.py（强制分卷归一，单一来源跑 rule_conflict_scan）。只数不裁——语义裁定仍归人工，件里 decision_needed 写明要谁裁、裁什么"
  },
+ "supply_chain_face_r*.json": {
+  "kind": "json",
+  "schema_id": "supply-chain-face-v1",
+  "required": ["schema", "generated_at", "readonly", "enumerator", "repos", "own_repo_local_face",
+   "face_totals", "cross_check", "claims_face", "retrieval", "decision_needed"],
+  "types": {"repos": "list", "own_repo_local_face": "list", "face_totals": "dict",
+            "cross_check": "dict", "readonly": "bool"},
+  "invariants": ["readonly_true", "opponent_claims_have_retrieval"],
+  "note": "r58 第 17 维（供应链安全面）取值件：生成器 05-exec/r58_supply_chain_face.py。取数必须两路并列——`.github/workflows` contents 目录面（自有文件，逐文件 raw 取正文）与 `/actions/workflows.total_count`（API 总计面，含平台侧条目），差值 face_delta 显式记录；单路必错（r56/r58 两轮实证）。⚠️ 目录列表 API **不内联正文**，据此判 `uses:` 会得到全零假结果（r58 首跑即踩）。"
+ },
+ "generator_coverage_r*.json": {
+  "kind": "json",
+  "schema_id": "generator-coverage-v1",
+  "required": ["schema", "generated_at", "readonly", "source_contract", "enumerator", "patterns",
+   "by_verdict", "cross_check", "dead_handles", "claims_face", "retrieval", "decision_needed"],
+  "types": {"patterns": "list", "by_verdict": "dict", "cross_check": "dict",
+            "dead_handles": "list", "readonly": "bool"},
+  "invariants": ["readonly_true"],
+  "note": "r58 W-46 误报率实测件：生成器 05-exec/r58_generator_coverage.py。cross_check.sum_ok 为分档守恒自证（各态求和 == pattern 总数），不守恒即 [GENCOV:BREAKDOWN-DRIFT] 退出 1。宽/严两口径的差值即「若按 r56 提议的 grep -rl 接线会被误记为有生成器」的数量——新判据首跑先量误报率的实物。"
+ },
  "debt_aging_r*.json": {
    "schema_id": [
     "debt-aging-v1",

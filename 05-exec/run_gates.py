@@ -321,6 +321,30 @@ GATES = [
         "why": "防判据僵尸化（对手实测：spec-kit 50% run 停在 action_required，从未产生判定）",
         "meta": True,   # 元判据：它评的是「台账本身」，不得把它的红写进台账 verdict（否则一次引导期红会永久自锁，r32 实测）
     },
+    {
+        "id": "py_syntax_guard",
+        "script": "r58_py_syntax_guard.py",
+        "argv": [],
+        "pass_token": "[GATE:pysyntax-pass]",
+        "portable": True,
+        "covers": ["05-exec/*.py 全部 99 件（compile exec 模式逐件解析，空面判红）"],
+        "why": "W-46 的下一层：`pattern 有没有生成器` 之外还得问 `生成器能不能加载`。"
+               "r58 实物 = `evidence_resolvability_measure.py:111` 少一个右括号，已入库且长期不可运行，"
+               "其产物成为「生成器跑不起来」的死句柄，而 21 道门没有一道会因为工具加载失败而红",
+    },
+    {
+        "id": "action_pin_guard",
+        "script": "r58_action_pin_guard.py",
+        "argv": [],
+        "pass_token": "[GATE:actionpin-pass]",
+        "portable": True,
+        "covers": [".github/workflows/*.yml 的全部 `uses:` 引用面（含 @main 分支形与截断 SHA 形）",
+                   ".github/dependabot.yml 的 github-actions 生态声明",
+                   "05-exec/r58_action_pin_fixtures.py 的 11 例（层 a 9 + 层 b 真仓对照/变异体各 1）"],
+        "why": "第 17 维供应链面：`checkout` 在 21 道门读盘**之前**决定工作树里是什么字节，未 pin 到不可变 SHA"
+               " = 判据输入面劫持入口（与 r49 劫持族、r56「声明要被机器校验」同族）；"
+               "P2 把「pin 必须配更新器」也钉住，防固定点腐烂成拿不到上游安全修复的更坏形态",
+    },
 ]
 
 # 显式声明本 runner **不覆盖**的面，防止聚合绿被读成「所有门禁都绿」（R20-2）。

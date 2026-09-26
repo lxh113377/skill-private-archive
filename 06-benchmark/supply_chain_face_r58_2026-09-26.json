@@ -1,0 +1,269 @@
+{
+ "schema": "supply-chain-face-v1",
+ "generated_at": "2026-09-26T12:26:38",
+ "readonly": true,
+ "enumerator": "05-exec/r58_supply_chain_face.py::main（contents 目录单次调用取正文 + /actions/workflows 双路）",
+ "repos": [
+  {
+   "repo": "github/spec-kit",
+   "workflow_dir_readable": true,
+   "own_workflow_files": 18,
+   "unreadable_workflows": [],
+   "uses_total": 484,
+   "uses_pinned_sha": 484,
+   "pin_ratio_pct": 100.0,
+   "floating_sample": [],
+   "api_total_face": 27,
+   "face_delta": 9,
+   "dependabot_yml": true,
+   "security_md": true,
+   "vuln_scan_workflows": [
+    "codeql.yml"
+   ],
+   "open_issues_incl_pr": 281,
+   "pure_issue_face": null,
+   "issue_face_delta": null,
+   "default_branch": "main",
+   "pushed_at": "2026-09-25T20:31:03Z",
+   "retrieval": "gh api -H \"Accept: application/vnd.github.raw+json\" \"repos/github/spec-kit/contents/.github/workflows/<file>\"  # 逐文件取正文，本件 uses_total / uses_pinned_sha 即由这些正文数出\ngh api \"repos/github/spec-kit/contents/.github/workflows\" --jq '.[].name'  # 自有 workflow 文件清单面（分母）\ngh api \"repos/github/spec-kit/actions/workflows\" --jq .total_count  # API 总计面（含平台侧条目），对照 api_total_face\ngh api \"repos/github/spec-kit/contents/.github/dependabot.yml\" --jq .name  # 404 即不存在（dependabot_yml 面）"
+  },
+  {
+   "repo": "obra/superpowers",
+   "workflow_dir_readable": false,
+   "wf_error": "gh: Not Found (HTTP 404)",
+   "retrieval": "gh api -H \"Accept: application/vnd.github.raw+json\" \"repos/obra/superpowers/contents/.github/workflows/<file>\"  # 逐文件取正文，本件 uses_total / uses_pinned_sha 即由这些正文数出\ngh api \"repos/obra/superpowers/contents/.github/workflows\" --jq '.[].name'  # 自有 workflow 文件清单面（分母）\ngh api \"repos/obra/superpowers/actions/workflows\" --jq .total_count  # API 总计面（含平台侧条目），对照 api_total_face\ngh api \"repos/obra/superpowers/contents/.github/dependabot.yml\" --jq .name  # 404 即不存在（dependabot_yml 面）"
+  },
+  {
+   "repo": "anthropics/skills",
+   "workflow_dir_readable": false,
+   "wf_error": "gh: Not Found (HTTP 404)",
+   "retrieval": "gh api -H \"Accept: application/vnd.github.raw+json\" \"repos/anthropics/skills/contents/.github/workflows/<file>\"  # 逐文件取正文，本件 uses_total / uses_pinned_sha 即由这些正文数出\ngh api \"repos/anthropics/skills/contents/.github/workflows\" --jq '.[].name'  # 自有 workflow 文件清单面（分母）\ngh api \"repos/anthropics/skills/actions/workflows\" --jq .total_count  # API 总计面（含平台侧条目），对照 api_total_face\ngh api \"repos/anthropics/skills/contents/.github/dependabot.yml\" --jq .name  # 404 即不存在（dependabot_yml 面）"
+  },
+  {
+   "repo": "addyosmani/agent-skills",
+   "workflow_dir_readable": true,
+   "own_workflow_files": 1,
+   "unreadable_workflows": [],
+   "uses_total": 9,
+   "uses_pinned_sha": 0,
+   "pin_ratio_pct": 0.0,
+   "floating_sample": [
+    "test-plugin-install.yml:actions/checkout@v6",
+    "test-plugin-install.yml:actions/setup-node@v6",
+    "test-plugin-install.yml:actions/checkout@v6",
+    "test-plugin-install.yml:actions/setup-node@v6",
+    "test-plugin-install.yml:actions/checkout@v6",
+    "test-plugin-install.yml:actions/setup-node@v6"
+   ],
+   "api_total_face": 5,
+   "face_delta": 4,
+   "dependabot_yml": false,
+   "security_md": false,
+   "vuln_scan_workflows": [],
+   "open_issues_incl_pr": 110,
+   "pure_issue_face": null,
+   "issue_face_delta": null,
+   "default_branch": "main",
+   "pushed_at": "2026-09-26T04:19:38Z",
+   "retrieval": "gh api -H \"Accept: application/vnd.github.raw+json\" \"repos/addyosmani/agent-skills/contents/.github/workflows/<file>\"  # 逐文件取正文，本件 uses_total / uses_pinned_sha 即由这些正文数出\ngh api \"repos/addyosmani/agent-skills/contents/.github/workflows\" --jq '.[].name'  # 自有 workflow 文件清单面（分母）\ngh api \"repos/addyosmani/agent-skills/actions/workflows\" --jq .total_count  # API 总计面（含平台侧条目），对照 api_total_face\ngh api \"repos/addyosmani/agent-skills/contents/.github/dependabot.yml\" --jq .name  # 404 即不存在（dependabot_yml 面）"
+  },
+  {
+   "repo": "ruvnet/ruflo",
+   "workflow_dir_readable": true,
+   "own_workflow_files": 29,
+   "unreadable_workflows": [],
+   "uses_total": 313,
+   "uses_pinned_sha": 0,
+   "pin_ratio_pct": 0.0,
+   "floating_sample": [
+    "adr-166-mcp-bridge-security.yml:actions/checkout@v4",
+    "adr-166-mcp-bridge-security.yml:actions/setup-node@v4",
+    "adr-166-mcp-bridge-security.yml:actions/checkout@v4",
+    "adr-166-mcp-bridge-security.yml:actions/setup-node@v4",
+    "adr-166-mcp-bridge-security.yml:actions/checkout@v4",
+    "adr-166-mcp-bridge-security.yml:actions/checkout@v4"
+   ],
+   "api_total_face": 49,
+   "face_delta": 20,
+   "dependabot_yml": true,
+   "security_md": true,
+   "vuln_scan_workflows": [
+    "codeql.yml",
+    "v3-ci.yml"
+   ],
+   "open_issues_incl_pr": 1036,
+   "pure_issue_face": null,
+   "issue_face_delta": null,
+   "default_branch": "main",
+   "pushed_at": "2026-09-24T23:26:59Z",
+   "retrieval": "gh api -H \"Accept: application/vnd.github.raw+json\" \"repos/ruvnet/ruflo/contents/.github/workflows/<file>\"  # 逐文件取正文，本件 uses_total / uses_pinned_sha 即由这些正文数出\ngh api \"repos/ruvnet/ruflo/contents/.github/workflows\" --jq '.[].name'  # 自有 workflow 文件清单面（分母）\ngh api \"repos/ruvnet/ruflo/actions/workflows\" --jq .total_count  # API 总计面（含平台侧条目），对照 api_total_face\ngh api \"repos/ruvnet/ruflo/contents/.github/dependabot.yml\" --jq .name  # 404 即不存在（dependabot_yml 面）"
+  },
+  {
+   "repo": "mem0ai/mem0",
+   "workflow_dir_readable": true,
+   "own_workflow_files": 34,
+   "unreadable_workflows": [],
+   "uses_total": 152,
+   "uses_pinned_sha": 2,
+   "pin_ratio_pct": 1.3,
+   "floating_sample": [
+    "agent-plugins-python-checks.yml:actions/checkout@v4",
+    "agent-plugins-python-checks.yml:actions/setup-python@v5",
+    "agent-plugins-typescript-checks.yml:actions/checkout@v4",
+    "agent-plugins-typescript-checks.yml:pnpm/action-setup@v4",
+    "agent-plugins-typescript-checks.yml:actions/setup-node@v4",
+    "cd.yml:actions/checkout@v2"
+   ],
+   "api_total_face": 40,
+   "face_delta": 6,
+   "dependabot_yml": false,
+   "security_md": true,
+   "vuln_scan_workflows": [
+    "ci.yml"
+   ],
+   "open_issues_incl_pr": 747,
+   "pure_issue_face": null,
+   "issue_face_delta": null,
+   "default_branch": "main",
+   "pushed_at": "2026-09-25T17:36:35Z",
+   "retrieval": "gh api -H \"Accept: application/vnd.github.raw+json\" \"repos/mem0ai/mem0/contents/.github/workflows/<file>\"  # 逐文件取正文，本件 uses_total / uses_pinned_sha 即由这些正文数出\ngh api \"repos/mem0ai/mem0/contents/.github/workflows\" --jq '.[].name'  # 自有 workflow 文件清单面（分母）\ngh api \"repos/mem0ai/mem0/actions/workflows\" --jq .total_count  # API 总计面（含平台侧条目），对照 api_total_face\ngh api \"repos/mem0ai/mem0/contents/.github/dependabot.yml\" --jq .name  # 404 即不存在（dependabot_yml 面）"
+  },
+  {
+   "repo": "sickn33/agentic-awesome-skills",
+   "workflow_dir_readable": true,
+   "own_workflow_files": 9,
+   "unreadable_workflows": [],
+   "uses_total": 58,
+   "uses_pinned_sha": 58,
+   "pin_ratio_pct": 100.0,
+   "floating_sample": [],
+   "api_total_face": 15,
+   "face_delta": 6,
+   "dependabot_yml": false,
+   "security_md": true,
+   "vuln_scan_workflows": [
+    "codeql.yml",
+    "dependency-review.yml"
+   ],
+   "open_issues_incl_pr": 3,
+   "pure_issue_face": null,
+   "issue_face_delta": null,
+   "default_branch": "main",
+   "pushed_at": "2026-09-25T20:36:55Z",
+   "retrieval": "gh api -H \"Accept: application/vnd.github.raw+json\" \"repos/sickn33/agentic-awesome-skills/contents/.github/workflows/<file>\"  # 逐文件取正文，本件 uses_total / uses_pinned_sha 即由这些正文数出\ngh api \"repos/sickn33/agentic-awesome-skills/contents/.github/workflows\" --jq '.[].name'  # 自有 workflow 文件清单面（分母）\ngh api \"repos/sickn33/agentic-awesome-skills/actions/workflows\" --jq .total_count  # API 总计面（含平台侧条目），对照 api_total_face\ngh api \"repos/sickn33/agentic-awesome-skills/contents/.github/dependabot.yml\" --jq .name  # 404 即不存在（dependabot_yml 面）"
+  },
+  {
+   "repo": "vercel-labs/skills",
+   "workflow_dir_readable": true,
+   "own_workflow_files": 3,
+   "unreadable_workflows": [],
+   "uses_total": 16,
+   "uses_pinned_sha": 6,
+   "pin_ratio_pct": 37.5,
+   "floating_sample": [
+    "agents.yml:actions/checkout@v6",
+    "agents.yml:actions/setup-node@v6",
+    "agents.yml:actions/checkout@v6",
+    "agents.yml:actions/setup-node@v6",
+    "ci.yml:actions/checkout@v6",
+    "ci.yml:actions/setup-node@v6"
+   ],
+   "api_total_face": 7,
+   "face_delta": 4,
+   "dependabot_yml": false,
+   "security_md": false,
+   "vuln_scan_workflows": [],
+   "open_issues_incl_pr": 1229,
+   "pure_issue_face": null,
+   "issue_face_delta": null,
+   "default_branch": "main",
+   "pushed_at": "2026-09-18T21:17:25Z",
+   "retrieval": "gh api -H \"Accept: application/vnd.github.raw+json\" \"repos/vercel-labs/skills/contents/.github/workflows/<file>\"  # 逐文件取正文，本件 uses_total / uses_pinned_sha 即由这些正文数出\ngh api \"repos/vercel-labs/skills/contents/.github/workflows\" --jq '.[].name'  # 自有 workflow 文件清单面（分母）\ngh api \"repos/vercel-labs/skills/actions/workflows\" --jq .total_count  # API 总计面（含平台侧条目），对照 api_total_face\ngh api \"repos/vercel-labs/skills/contents/.github/dependabot.yml\" --jq .name  # 404 即不存在（dependabot_yml 面）"
+  },
+  {
+   "repo": "mycelium-hq/ai-brain-starter",
+   "workflow_dir_readable": true,
+   "own_workflow_files": 11,
+   "unreadable_workflows": [],
+   "uses_total": 20,
+   "uses_pinned_sha": 20,
+   "pin_ratio_pct": 100.0,
+   "floating_sample": [],
+   "api_total_face": 14,
+   "face_delta": 3,
+   "dependabot_yml": true,
+   "security_md": true,
+   "vuln_scan_workflows": [
+    "security-audit.yml"
+   ],
+   "open_issues_incl_pr": 45,
+   "pure_issue_face": null,
+   "issue_face_delta": null,
+   "default_branch": "main",
+   "pushed_at": "2026-09-25T22:18:57Z",
+   "retrieval": "gh api -H \"Accept: application/vnd.github.raw+json\" \"repos/mycelium-hq/ai-brain-starter/contents/.github/workflows/<file>\"  # 逐文件取正文，本件 uses_total / uses_pinned_sha 即由这些正文数出\ngh api \"repos/mycelium-hq/ai-brain-starter/contents/.github/workflows\" --jq '.[].name'  # 自有 workflow 文件清单面（分母）\ngh api \"repos/mycelium-hq/ai-brain-starter/actions/workflows\" --jq .total_count  # API 总计面（含平台侧条目），对照 api_total_face\ngh api \"repos/mycelium-hq/ai-brain-starter/contents/.github/dependabot.yml\" --jq .name  # 404 即不存在（dependabot_yml 面）"
+  },
+  {
+   "repo": "pre-commit/pre-commit",
+   "workflow_dir_readable": true,
+   "own_workflow_files": 2,
+   "unreadable_workflows": [],
+   "uses_total": 8,
+   "uses_pinned_sha": 0,
+   "pin_ratio_pct": 0.0,
+   "floating_sample": [
+    "languages.yaml:actions/checkout@v3",
+    "languages.yaml:actions/setup-python@v4",
+    "languages.yaml:asottile/workflows/.github/actions/fast-checkout@v1.8.1",
+    "languages.yaml:actions/setup-python@v4",
+    "languages.yaml:haskell/actions/setup@v2",
+    "languages.yaml:r-lib/actions/setup-r@v2"
+   ],
+   "api_total_face": 3,
+   "face_delta": 1,
+   "dependabot_yml": false,
+   "security_md": false,
+   "vuln_scan_workflows": [],
+   "open_issues_incl_pr": 25,
+   "pure_issue_face": null,
+   "issue_face_delta": null,
+   "default_branch": "main",
+   "pushed_at": "2026-08-17T23:37:08Z",
+   "retrieval": "gh api -H \"Accept: application/vnd.github.raw+json\" \"repos/pre-commit/pre-commit/contents/.github/workflows/<file>\"  # 逐文件取正文，本件 uses_total / uses_pinned_sha 即由这些正文数出\ngh api \"repos/pre-commit/pre-commit/contents/.github/workflows\" --jq '.[].name'  # 自有 workflow 文件清单面（分母）\ngh api \"repos/pre-commit/pre-commit/actions/workflows\" --jq .total_count  # API 总计面（含平台侧条目），对照 api_total_face\ngh api \"repos/pre-commit/pre-commit/contents/.github/dependabot.yml\" --jq .name  # 404 即不存在（dependabot_yml 面）"
+  }
+ ],
+ "own_repo_local_face": [
+  {
+   "repo": "lxh113377/skill-private-archive",
+   "face_note": "取**本地工作树**而非 origin：push 之前远端仍是改动前的 gates.yml，按 API 取会得出与本报告结论相反的面",
+   "own_workflow_files": 1,
+   "uses_total": 2,
+   "uses_pinned_sha": 2,
+   "pin_ratio_pct": 100.0,
+   "floating_sample": [],
+   "dependabot_yml": true,
+   "security_md": false,
+   "vuln_scan_workflows": [],
+   "retrieval": "grep -rn \"uses:\" .github/workflows/   # lxh113377/skill-private-archive 本地工作树引用面\npython 05-exec/r58_action_pin_guard.py  # 同一面的常驻判据口径（含 P2 配对 / P3 空面）\nls .github/dependabot.yml .github/SECURITY.md  # lxh113377/skill-private-archive 存在性面"
+  }
+ ],
+ "face_totals": {
+  "repos_measured": 8,
+  "with_dependabot": 3,
+  "with_security_md": 5,
+  "with_vuln_workflow": 5,
+  "uses_total": 1060,
+  "uses_pinned_sha": 570
+ },
+ "cross_check": {
+  "repos_requested": 10,
+  "repos_measured": 8,
+  "repos_unreadable": 2
+ },
+ "claims_face": "每仓两路并列：`.github/workflows` contents 目录面（自有文件，含正文）与 `/actions/workflows.total_count`（API 总计面，含平台侧条目）；差值 face_delta 显式记录，不做单路结论",
+ "retrieval": "python 05-exec/r58_supply_chain_face.py --json 06-benchmark/supply_chain_face_r58_2026-09-26.json\n逐仓 retrieval 字段：本件每行自带 ≥2 条独立取值命令（W-28 口径），件顶这条只是重跑入口",
+ "decision_needed": [
+  "本仓 gates.yml 两行浮动 uses 是否 pin 到 SHA（属供应链加固，改动可回滚）",
+  "是否新增 dependabot.yml 盯 github-actions 生态"
+ ]
+}

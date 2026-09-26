@@ -117,6 +117,14 @@ n=166 同一批文件，四档 = 现行尺 / 严格同义 / 功能等价宽写�
 | **sickn33/AAS** | 46,875 | 9 | `ci.yml` 5 独立 job（`pr-policy`/`source-validation`/**`pr-evidence`**/`artifact-preview`/`main-validation-and-sync`）+ `skill-review` + `repo-hygiene` |
 | vercel-labs/skills | 32,414 | 3 | `agents.yml` `ci.yml` `publish.yml` |
 | **mycelium/ai-brain-starter** | **36** | **11** | `behavioral-install-eval`(周) `release-drift-heartbeat`(日) `template-purity` `personal-pii-scrub` `open-core-boundary` `install-canon-live-probe` —— **全数守规则/记忆资产本身** |
+
+> ⚠️ **校正注（r58，2026-09-26，R241 只加注不改写）**：本行与上表其余处的
+> `mycelium/ai-brain-starter` 是**错的 owner**，真名 = `mycelium-hq/ai-brain-starter`
+> （实测 `gh api repos/mycelium-hq/ai-brain-starter --jq .full_name` 连通，36★）。
+> 证据件（`06-benchmark/opponents_*_r*.json`）用的是对的名字，只有面向读者的本页写错 ⇒
+> r58 照本页抄名第一跑即 404，差点把「该仓无 workflows 目录」当成实测结论入表。
+> **通用铁律（本页适用）**：对手全名一律 `gh api` 实测取得，禁从本页表头抄（P0.1 严禁猜测标识符）。
+> 原文保留不改，因其在写入当时为真（登记于 r31）。
 | **本体系** | 私有归档 | r31 起 1 | `gates.yml`：可移植 3/5 门 + 每日心跳 + 覆盖边界自证。**首跑已真机复验**：run `36064668657` = success，Linux 上 3 门 PASS / 234 ms，2 门 SKIPPED-BY-DESIGN 且原因进日志（取值 `gh run view --repo lxh113377/skill-private-archive --job 107851518725 --log`） |
 
 ⇒ **三条可执行结论**

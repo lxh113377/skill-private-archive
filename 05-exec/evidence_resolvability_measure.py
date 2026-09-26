@@ -109,7 +109,7 @@ def main():
     rescue = agg.get("SHAPE_BAD_RESOLVABLE", 0)
     print("-" * 68)
     print("判定：形状合规且可解析=%d | 形状合规但解析不到=%d（%.1f%%，若追溯拦人即误伤面）| 形状不合规=%d"
-          % (upg_hit, fp, 100.0 * fp / max(tot, 1), agg.get("SHAPE_BAD_UNRESOLVABLE", 0) + rescue)
+          % (upg_hit, fp, 100.0 * fp / max(tot, 1), agg.get("SHAPE_BAD_UNRESOLVABLE", 0) + rescue))
     print("样例（每类最多 3 条）：")
     for k in sorted(agg):
         for r in [x for x in rows if x["kind"] == k][:3]:

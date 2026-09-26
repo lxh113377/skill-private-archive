@@ -1,0 +1,22 @@
+# r58 第 17 维（供应链安全面）落地件：把 pin 到 SHA 的**维护成本**接给更新器。
+#
+# 为什么必须与 pin 成对出现：本仓常驻门禁 21 道全部读工作树（见 05-exec/run_gates.py），
+# 而 pin 之后若无人推进 SHA，固定点会腐烂成「永远停在旧 action」——那比浮动更糟，
+# 因为浮动至少还能拿到上游的安全修复。对手实测（06-benchmark/supply_chain_face_r58_2026-09-26.json）：
+# 三家 uses 100% pin 到 SHA 的仓库（spec-kit 484 处 / AAS 58 处 / mycelium-hq 20 处）里，
+# 只有 spec-kit 与 mycelium-hq 同时配了 dependabot —— AAS 就是「pin 了但没人推」的那个。
+# 由 `05-exec/r58_action_pin_guard.py` 把「pin 与更新器必须同时存在」钉成常驻判据。
+version: 2
+
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "tuesday"
+      time: "09:00"
+      timezone: "Asia/Shanghai"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "chore(ci)"
+    # 不设 labels：本仓是私有归档仓，未预建标签，dependabot 建 PR 时打不存在标签会静默失败

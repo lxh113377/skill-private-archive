@@ -1,0 +1,390 @@
+{
+ "schema": "generator-coverage-v1",
+ "generated_at": "2026-09-26T12:08:42",
+ "readonly": true,
+ "source_contract": "05-exec/schemas/r19/baseline-contracts.json",
+ "enumerator": "05-exec/r58_generator_coverage.py::main（ast 字面量三路 A 字面/B 词干+扩展/C 同名工具 + WRITE_RX + 夹具剔除）",
+ "patterns": [
+  {
+   "pattern": "attention_sim_raw_*.json",
+   "stem": "attention_sim_raw_",
+   "artifact_count": 1,
+   "generator_scripts": [],
+   "external_generator_candidates": [],
+   "loose_refs": [],
+   "over_count_divergence": 0,
+   "fixture_refs": [],
+   "read_only_refs": [],
+   "verdict": "DEAD_HANDLE"
+  },
+  {
+   "pattern": "catalog_attention_tax_*.json",
+   "stem": "catalog_attention_tax_",
+   "artifact_count": 2,
+   "generator_scripts": [
+    "baseline_contract_scan.py",
+    "catalog_attention_tax.py",
+    "ratchet_gate.py"
+   ],
+   "external_generator_candidates": [],
+   "loose_refs": [
+    "baseline_contract_scan.py",
+    "catalog_attention_tax.py",
+    "r19_baseline_contract_fixtures.py",
+    "ratchet_gate.py"
+   ],
+   "over_count_divergence": 1,
+   "fixture_refs": [
+    "r19_baseline_contract_fixtures.py"
+   ],
+   "read_only_refs": [],
+   "verdict": "COVERED"
+  },
+  {
+   "pattern": "claim_truth_*.json",
+   "stem": "claim_truth_",
+   "artifact_count": 1,
+   "generator_scripts": [
+    "claim_truth_scan.py",
+    "r19_endpoint_patchgen.py",
+    "r19_feedback_append.py",
+    "r19b_footer_append.py",
+    "r20b_footer_append.py",
+    "ratchet_gate.py"
+   ],
+   "external_generator_candidates": [],
+   "loose_refs": [
+    "claim_truth_scan.py",
+    "r19_endpoint_patchgen.py",
+    "r19_feedback_append.py",
+    "r19b_footer_append.py",
+    "r20b_footer_append.py",
+    "ratchet_gate.py"
+   ],
+   "over_count_divergence": 0,
+   "fixture_refs": [],
+   "read_only_refs": [],
+   "verdict": "COVERED"
+  },
+  {
+   "pattern": "cumulative_drift_*.json",
+   "stem": "cumulative_drift_",
+   "artifact_count": 1,
+   "generator_scripts": [
+    "cumulative_drift_scan.py",
+    "r20b_footer_append.py",
+    "ratchet_gate.py"
+   ],
+   "external_generator_candidates": [],
+   "loose_refs": [
+    "cumulative_drift_scan.py",
+    "r19_baseline_contract_fixtures.py",
+    "r20b_footer_append.py",
+    "ratchet_gate.py"
+   ],
+   "over_count_divergence": 1,
+   "fixture_refs": [
+    "r19_baseline_contract_fixtures.py"
+   ],
+   "read_only_refs": [],
+   "verdict": "COVERED"
+  },
+  {
+   "pattern": "debt_aging_r*.json",
+   "stem": "debt_aging_r",
+   "artifact_count": 18,
+   "generator_scripts": [
+    "r38_debt_aging.py",
+    "ratchet_gate.py"
+   ],
+   "external_generator_candidates": [],
+   "loose_refs": [
+    "r19_baseline_contract_fixtures.py",
+    "r38_debt_aging.py",
+    "r39_debt_ledger_fixtures.py",
+    "ratchet_gate.py"
+   ],
+   "over_count_divergence": 2,
+   "fixture_refs": [
+    "r19_baseline_contract_fixtures.py",
+    "r39_debt_ledger_fixtures.py"
+   ],
+   "read_only_refs": [],
+   "verdict": "COVERED"
+  },
+  {
+   "pattern": "debt_runs.jsonl",
+   "stem": "debt_runs.jsonl",
+   "artifact_count": 1,
+   "generator_scripts": [
+    "r38_debt_aging.py",
+    "run_gates.py"
+   ],
+   "external_generator_candidates": [],
+   "loose_refs": [
+    "r38_debt_aging.py",
+    "r39_debt_ledger_fixtures.py",
+    "r53_handles_fixtures.py",
+    "r56_budget_fixtures.py",
+    "run_gates.py"
+   ],
+   "over_count_divergence": 3,
+   "fixture_refs": [
+    "r39_debt_ledger_fixtures.py",
+    "r53_handles_fixtures.py",
+    "r56_budget_fixtures.py"
+   ],
+   "read_only_refs": [],
+   "verdict": "COVERED"
+  },
+  {
+   "pattern": "description*.json",
+   "stem": "description",
+   "artifact_count": 1,
+   "generator_scripts": [
+    "baseline_contract_scan.py",
+    "claim_truth_scan.py",
+    "description_baseline_scan.py",
+    "r19_endpoint_patchgen.py",
+    "r19_feedback_append.py",
+    "r19b_footer_append.py",
+    "r20b_footer_append.py",
+    "r21c_footer_append.py",
+    "ratchet_gate.py"
+   ],
+   "external_generator_candidates": [],
+   "loose_refs": [
+    "baseline_contract_scan.py",
+    "claim_truth_scan.py",
+    "description_baseline_scan.py",
+    "r19_baseline_contract_fixtures.py",
+    "r19_endpoint_patchgen.py",
+    "r19_feedback_append.py",
+    "r19b_footer_append.py",
+    "r20b_footer_append.py",
+    "r21c_footer_append.py",
+    "ratchet_gate.py"
+   ],
+   "over_count_divergence": 1,
+   "fixture_refs": [
+    "r19_baseline_contract_fixtures.py"
+   ],
+   "read_only_refs": [],
+   "verdict": "COVERED"
+  },
+  {
+   "pattern": "gate_runs.jsonl",
+   "stem": "gate_runs.jsonl",
+   "artifact_count": 1,
+   "generator_scripts": [
+    "baseline_contract_scan.py",
+    "r32_gate_freshness.py",
+    "run_gates.py"
+   ],
+   "external_generator_candidates": [],
+   "loose_refs": [
+    "baseline_contract_scan.py",
+    "r19_baseline_contract_fixtures.py",
+    "r32_freshness_fixtures.py",
+    "r32_gate_freshness.py",
+    "r39_debt_ledger_fixtures.py",
+    "run_gates.py"
+   ],
+   "over_count_divergence": 3,
+   "fixture_refs": [
+    "r19_baseline_contract_fixtures.py",
+    "r32_freshness_fixtures.py",
+    "r39_debt_ledger_fixtures.py"
+   ],
+   "read_only_refs": [],
+   "verdict": "COVERED"
+  },
+  {
+   "pattern": "inject_face_breakdown_r*.json",
+   "stem": "inject_face_breakdown_r",
+   "artifact_count": 2,
+   "generator_scripts": [
+    "r56_inject_face_breakdown.py",
+    "run_gates.py"
+   ],
+   "external_generator_candidates": [],
+   "loose_refs": [
+    "r56_artifact_face_fixtures.py",
+    "r56_inject_face_breakdown.py",
+    "run_gates.py"
+   ],
+   "over_count_divergence": 1,
+   "fixture_refs": [
+    "r56_artifact_face_fixtures.py"
+   ],
+   "read_only_refs": [],
+   "verdict": "COVERED"
+  },
+  {
+   "pattern": "inject_ratchet_baseline*.json",
+   "stem": "inject_ratchet_baseline",
+   "artifact_count": 1,
+   "generator_scripts": [
+    "r20b_footer_append.py",
+    "r21c_fix_evidence.py",
+    "r21c_footer_append.py",
+    "ratchet_gate.py",
+    "run_gates.py"
+   ],
+   "external_generator_candidates": [],
+   "loose_refs": [
+    "r19_baseline_contract_fixtures.py",
+    "r20b_footer_append.py",
+    "r21c_fix_evidence.py",
+    "r21c_footer_append.py",
+    "r55_note_fixtures.py",
+    "r56_budget_fixtures.py",
+    "ratchet_gate.py",
+    "run_gates.py"
+   ],
+   "over_count_divergence": 3,
+   "fixture_refs": [
+    "r19_baseline_contract_fixtures.py",
+    "r55_note_fixtures.py",
+    "r56_budget_fixtures.py"
+   ],
+   "read_only_refs": [],
+   "verdict": "COVERED"
+  },
+  {
+   "pattern": "memory_eval_scenarios*.json",
+   "stem": "memory_eval_scenarios",
+   "artifact_count": 1,
+   "generator_scripts": [
+    "memory_eval_run.py"
+   ],
+   "external_generator_candidates": [],
+   "loose_refs": [
+    "memory_eval_run.py"
+   ],
+   "over_count_divergence": 0,
+   "fixture_refs": [],
+   "read_only_refs": [],
+   "verdict": "COVERED"
+  },
+  {
+   "pattern": "noise_falsepositive_*.json",
+   "stem": "noise_falsepositive_",
+   "artifact_count": 1,
+   "generator_scripts": [],
+   "external_generator_candidates": [],
+   "loose_refs": [],
+   "over_count_divergence": 0,
+   "fixture_refs": [],
+   "read_only_refs": [],
+   "verdict": "DEAD_HANDLE"
+  },
+  {
+   "pattern": "opponents_*_r*.json",
+   "stem": "opponents_",
+   "artifact_count": 2,
+   "generator_scripts": [
+    "run_gates.py"
+   ],
+   "external_generator_candidates": [],
+   "loose_refs": [
+    "r51_retrieval_fixtures.py",
+    "run_gates.py"
+   ],
+   "over_count_divergence": 1,
+   "fixture_refs": [
+    "r51_retrieval_fixtures.py"
+   ],
+   "read_only_refs": [],
+   "verdict": "COVERED"
+  },
+  {
+   "pattern": "rule_conflict_scan_*.json",
+   "stem": "rule_conflict_scan_",
+   "artifact_count": 4,
+   "generator_scripts": [
+    "rule_conflict_scan.py"
+   ],
+   "external_generator_candidates": [],
+   "loose_refs": [
+    "r40_scan_inputs_fixtures.py",
+    "rule_conflict_scan.py"
+   ],
+   "over_count_divergence": 1,
+   "fixture_refs": [
+    "r40_scan_inputs_fixtures.py"
+   ],
+   "read_only_refs": [],
+   "verdict": "COVERED"
+  },
+  {
+   "pattern": "skill_structure_rubric_*.json",
+   "stem": "skill_structure_rubric_",
+   "artifact_count": 3,
+   "generator_scripts": [
+    "r21e_land4.py",
+    "r29_scope_filtered_queue.py",
+    "skill_structure_rubric_scan.py"
+   ],
+   "external_generator_candidates": [],
+   "loose_refs": [
+    "r19_baseline_contract_fixtures.py",
+    "r21e_land4.py",
+    "r29_scope_filtered_queue.py",
+    "skill_structure_rubric_scan.py"
+   ],
+   "over_count_divergence": 1,
+   "fixture_refs": [
+    "r19_baseline_contract_fixtures.py"
+   ],
+   "read_only_refs": [],
+   "verdict": "COVERED"
+  },
+  {
+   "pattern": "w27_conflict_triage_r*.json",
+   "stem": "w27_conflict_triage_r",
+   "artifact_count": 2,
+   "generator_scripts": [
+    "r56_conflict_triage.py",
+    "run_gates.py"
+   ],
+   "external_generator_candidates": [],
+   "loose_refs": [
+    "r56_artifact_face_fixtures.py",
+    "r56_conflict_triage.py",
+    "run_gates.py"
+   ],
+   "over_count_divergence": 1,
+   "fixture_refs": [
+    "r56_artifact_face_fixtures.py"
+   ],
+   "read_only_refs": [],
+   "verdict": "COVERED"
+  }
+ ],
+ "by_verdict": {
+  "DEAD_HANDLE": 2,
+  "COVERED": 14
+ },
+ "cross_check": {
+  "pattern_total": 16,
+  "tally_sum": 16,
+  "sum_ok": true,
+  "loose_hits": 62,
+  "strict_hits": 43,
+  "false_positive_pct": 30.6
+ },
+ "dead_handles": [
+  "attention_sim_raw_*.json",
+  "noise_falsepositive_*.json"
+ ],
+ "unreadable_scripts": [],
+ "claims_face": "本仓 05-exec/*.py 的 ast 字符串常量面（A 字面量 + B 词干 + C 同名工具 三路）与 06-benchmark 文件名面；不含受管根、不含夹具脚本",
+ "retrieval": [
+  "python 05-exec/r58_generator_coverage.py --json 06-benchmark/generator_coverage_r58_2026-09-26.json",
+  "python 05-exec/baseline_contract_scan.py --quiet  (其『pattern 16 个』计数须等于本件 cross_check.pattern_total)"
+ ],
+ "decision_needed": [
+  "W-46：dead_handles 清空后是否把『pattern 必须有生成器』接进 run_gates 判红"
+ ]
+}
