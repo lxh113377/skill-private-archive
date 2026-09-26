@@ -18,6 +18,12 @@
 | **记忆** | 8 节结构化 + 分卷自愈 + 归档 + 回滚 + 召回评测 | 会话内 spec/plan 文件 | 无（规范不含记忆） | 无 durable memory（其 comparison 页自己承认） | 工件即记忆 | RAG 记忆 | 清单即记忆 | **主打项** |
 | **对「注意力税」的态度** | C25 字节棘轮（**只覆盖 5 文件**，r18 实测有盲区） | 未量化 | 描述即预算（≤1024 字符） | description 不写流程（防 agent 只读摘要） | 未量化 | 未量化 | 裁剪安装 = 结构侧解法 | N-F 把省 token 写成可验证标题 |
 | **治理/维护** | 单人 + 多并行会话，四根合计提交数见 `cumulative_drift_scan.py` | 近乎 solo，社区 PR 积压 | 官方团队 | 主动收社区件，每技能带 eval | 一线团队，日推 | 日推 | AAS 日推 + 3 open issues（维护最健康的直接竞品） | E 活跃 / F 停滞 |
+| **动作固定与依赖更新（第 17 维，r58 新开）** | **r58 起 2/2 uses pin 到不可变 SHA + `dependabot.yml`(weekly) + 常驻门 `action_pin_guard`**（实测 `python 05-exec/r58_action_pin_guard.py`） | 无 CI 面（`.github/workflows` 404，实测两轮） | 无 CI 面（同上） | 1 个 workflow，9 处 uses **0% pin**、无 dependabot | 18 个 workflow，484 处 uses **100% pin** + dependabot + SECURITY | 29 个 workflow，313 处 uses **0% pin** + dependabot | 9 个 workflow，58 处 uses **100% pin** 但**无 dependabot**（pin 了没人推＝腐烂形态） | 记忆层项目，CI 面非其赛道 |
+
+> ⚠️ **第 17 维读表纪律（M3 口径）**：对手聚合 pin 率 53.8%（570/1,060，r58 `gh api` 实测）是**按引用数加权**、
+> 被 spec-kit 一家拉高；仓库层面是两极分布 = **3/8 全 pin、1/8=38%、4/8=0%**。
+> 引用时须写「3 家全 pin / 4 家完全未 pin」，**不得**写成「一半对手做了 pin」。
+> 取值：`python 05-exec/r58_supply_chain_face.py --json <out>` 读 `repos[].pin_ratio_pct`。
 | **Best for** | 一个人管多端 agent，要「不重复踩坑 + 记忆不丢 + 规则自证」 | 长链自主编码任务 | 定契约、做兼容 | 把需求一路推到 ship 且有真人检查点 | 需要可追溯规格与收敛判据 | 多 agent 编排 | 目录规模化管理与分发 | 只做记忆层 |
 
 ## 我们领先的面（别被「对标」二字说服着丢掉）
