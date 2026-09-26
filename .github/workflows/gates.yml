@@ -46,7 +46,7 @@ jobs:
       #   而在**判据输入面**：`checkout` 若被替换，它在 21 道门读盘之前就改写了工作树 ⇒ 所有门禁都是在
       #   被劫持的源码上判绿，与 r49「三处劫持根因修」同族。固化后由 dependabot 推新，代价归零。
       #   SHA 取值（实测可解析）：`gh api repos/actions/checkout/git/ref/tags/v4 --jq .object.sha`
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262  # v4，tag `v4` 当前指向（r58 实测）
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v4，tag `v4` 当前指向（r58 实测）
 
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065  # v5，tag `v5` 当前指向（r58 实测）
         with:
