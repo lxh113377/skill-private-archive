@@ -383,3 +383,35 @@ B3 多 job 并列不短路 / B4 周期心跳档 / B5 `concurrency` 成本自觉 
 历史条目原样保留不改写（R241），校正只以本附节形式追加。
 
 **R50-B（自家判据扩面）**：`rule_conflict_scan` 的手抄 10 件清单扩为 26 件（自动发现带极性规则的权威源分卷）后，极性规则 116→188、自述冲突 6→11、互斥候选 6→21 ⇒ 此前的 `[CONFLICT:CLEAN]` 只覆盖 38% 的面。扩面对照例（只用手抄清单必须判红）见 `05-exec/r50_face_fixtures.py#c6b`。
+
+## 附：r60 新开第十八维 — 能力覆盖名册差集（2026-09-30）
+
+> 前十七维全部量「纪律面」（结构/描述/CI/供应链/可移植性/账龄…），**没有一维量过「该有的有没有」**；
+> 本维补上。完整报告 = `全量对标报告_r60_能力覆盖名册差集_2026-09-30.md`。
+
+| 面 | 对手（14 仓实测） | 本体系 | 读法 |
+|---|---|---|---|
+| 技能名册（唯一 slug 名） | **209** | **428** | 本地 2.05×；对手面 79.8% 来自单仓生成式清单，已单独成层剔除 |
+| 域级盲区 | 第一把尺（slug 名面）misc **36.4%** 超阈 ⇒ UNVERIFIED | 第二把尺（描述面）降 **2.7%** | 「分类器看不见」不得读成「没有差距」 |
+| 对手独有且本地无近邻（shared_tokens ≤2） | **37 条** | — | 逐条裁定见报告 §2.2：**0 件**同时满足「可运行+可移植+与本机项目组合有交集」 |
+
+> 取值（上表四行）：`python 05-exec/r60_capability_roster.py --skip-fetch`（209 / 428 / 79.8% / 36.4%/2.7%）与
+> `python 05-exec/r60_capability_roster_describe.py --no-fetch`（37 条 = `items` 中 `nearest_local[0].shared_tokens ≤ 2` 的条数）。
+
+⇒ **三条结论**
+
+1. **「高星 skill」里能直接换装的件 ≈ 0**：37 条真差距候选里，`ast-grep`/`lsp` 缺二进制、
+   `agent-cost-report`/`understand-*`/`babysit` 绑死各自平台运行时、mattpocock 与 ComposioHQ 两族
+   要么同作者更完整的版本已在本机（`grillme-matt`），要么与本机项目组合无交集。
+   ⇒ 对齐 r28/r31/r33 的一贯结论：**选对标对象看机制同构度与可运行性，不看星标**，本轮在
+   「能力名册」这个新维度上第三次复现。
+2. **本维度最值钱的产出不是「装什么」，而是抓出三处前提失效**（R59-5 校验层其实已在盘、docx
+   验证段已 17 条、xlsx 半边才是真缺口）——台账挂账超过一轮，前提必须重跑再裁定
+   （R-CURRENT 第 5 条的第二次实物命中）。
+3. **名册类判据的门槛比结构类高**：结构判据错在措辞，名册判据错在**分母**——本轮首版就因
+   「路径 vs 唯一名」「单仓 864 条生成件」两处把对手面放大近 5 倍。已把该防护固化为契约不变式
+   `roster_partition_sum`（各域之和 == 件级总数）+ 常驻门 `roster_partition_fixtures`（6/6，含四例变异）。
+
+> 取值：`python 05-exec/r60_capability_roster.py --skip-fetch --json 06-benchmark/capability_roster_r60_2026-09-30.json`
+> 与 `python 05-exec/r60_capability_roster_describe.py --no-fetch --json 06-benchmark/capability_gap_r60_2026-09-30.json`；
+> 门禁末态 `python 05-exec/run_gates.py`（25 门 PASS，新增 `roster_partition_fixtures`）。

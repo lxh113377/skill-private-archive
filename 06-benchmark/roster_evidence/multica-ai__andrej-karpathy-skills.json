@@ -1,0 +1,14 @@
+{
+ "repo": "multica-ai/andrej-karpathy-skills",
+ "sha": "2c606141936f1eeef17fa3043a72095b4765b9c2",
+ "truncated": false,
+ "slugs": [
+  "skills/karpathy-guidelines"
+ ],
+ "detail": {
+  "stars": 215867,
+  "pushed_at": "2026-04-20T10:05:04Z",
+  "archived": false,
+  "open_issues": 130
+ }
+}

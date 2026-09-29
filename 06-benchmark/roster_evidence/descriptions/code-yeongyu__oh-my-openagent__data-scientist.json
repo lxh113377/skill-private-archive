@@ -1,0 +1,1 @@
+{"name": "data-scientist", "repo": "code-yeongyu/oh-my-openagent", "description": "\"Processes and analyzes data with resident-kernel engines (DuckDB, Polars) and one-shot tools. Use for CSV/parquet/JSON analysis, group-by/join/aggregation, time series, distributions, cleaning, or plotting a dataset.\""}

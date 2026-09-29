@@ -1,0 +1,22 @@
+{
+ "repo": "Egonex-AI/Understand-Anything",
+ "sha": "b05cc3b20990afca537b4fc0a49b4d7fbdc65bb0",
+ "truncated": false,
+ "slugs": [
+  "understand-anything-plugin/skills/understand-chat",
+  "understand-anything-plugin/skills/understand-dashboard",
+  "understand-anything-plugin/skills/understand-diff",
+  "understand-anything-plugin/skills/understand-domain",
+  "understand-anything-plugin/skills/understand-explain",
+  "understand-anything-plugin/skills/understand-figma",
+  "understand-anything-plugin/skills/understand-knowledge",
+  "understand-anything-plugin/skills/understand-onboard",
+  "understand-anything-plugin/skills/understand"
+ ],
+ "detail": {
+  "stars": 84675,
+  "pushed_at": "2026-09-28T07:55:39Z",
+  "archived": false,
+  "open_issues": 309
+ }
+}

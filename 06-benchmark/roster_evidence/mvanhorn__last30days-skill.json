@@ -1,0 +1,14 @@
+{
+ "repo": "mvanhorn/last30days-skill",
+ "sha": "084662b501fb0dba95bd55eff0c258d35e0dc499",
+ "truncated": false,
+ "slugs": [
+  "skills/last30days"
+ ],
+ "detail": {
+  "stars": 63194,
+  "pushed_at": "2026-09-27T18:43:53Z",
+  "archived": false,
+  "open_issues": 136
+ }
+}

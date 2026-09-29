@@ -1,0 +1,1 @@
+{"name": "standup", "repo": "thedotmack/claude-mem", "description": "Facilitate a read-only standup across git worktrees, branches, or PRs to compare changes and produce one consolidation plan. allowed-tools: - Bash - Read - Edit - Task - AskUserQuestion"}

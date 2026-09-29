@@ -322,6 +322,18 @@ GATES = [
         "meta": True,   # 元判据：它评的是「台账本身」，不得把它的红写进台账 verdict（否则一次引导期红会永久自锁，r32 实测）
     },
     {
+        "id": "roster_partition_fixtures",
+        "script": "r60_roster_fixtures.py",
+        "argv": [],
+        "pass_token": "[GATE:roster-fixture-pass] 6/6",
+        "portable": True,
+        "covers": ["05-exec/baseline_contract_scan.py 的 inv_roster_partition_sum（r60 新增不变式）",
+                   "06-benchmark/capability_roster_r60_2026-09-30.json 与 capability_gap_r60_2026-09-30.json 真件面",
+                   "四例变异：抽 domain 行 / 抽 item retrieval / 零面 / items 长度不符"],
+        "why": "第 18 维名册差集首版把「路径条数」当分母、又让单仓 864 条生成式清单占掉对手面 79.8% "
+               "—— 域内自洽却整体失真。本门把那层防护钉成契约不变式，并按 W-47 同时交出应绿与应红的证据",
+    },
+    {
         "id": "py_syntax_guard",
         "script": "r58_py_syntax_guard.py",
         "argv": [],
@@ -348,14 +360,13 @@ GATES = [
     {
         "id": "retired_face",
         "script": "r59_retired_face.py",
-        "argv": ["--selftest"],   # r59 接线口径：本门在阻断链里跑**自证**（8 例含真件可逆注入）；
-                                  # 活体残留（executing-plans/slides 仍在盘）不进阻断链，原因写进
-                                  # 「本 runner 不覆盖」+ 07 台账 P0（前提=可复算命令）。
-                                  # 依据 = 老大立规「看守默认=报告+只降不升+进台账，禁成拦任务的闸门」，
-                                  # 且本轮实测残留被三重护栏拦下（未入 Git / 宽暂存 21>20 / 并发会话刚提交），
-                                  # 接线即把每轮提交锁死在没有授权通道的债上。
-                                  # 要复算活体面：python 05-exec/r59_retired_face.py（rc=1 即有残留）
-        "pass_token": "[GATE:retired-face-selftest] 8/8",
+        "argv": [],               # r60 起跑**活体面**：r59 接线时因两件残留仍在盘（未入 Git / 宽暂存 21>20 /
+                                  # 并发会话刚提交）只能挂 --selftest，且原因写进「本 runner 不覆盖」；
+                                  # r60 前提已逐个闭合（两件已 git add 并在受管根 12916b7/af4be90 入库，
+                                  # 备份落 D:/global_memory/_trash/r60_retire_* 带 sha256 清单），
+                                  # 故本门改为直接判活体：rc=1 即真有残留。自证夹具仍可单独跑
+                                  # `python 05-exec/r59_retired_face.py --selftest`（8/8）
+        "pass_token": "[GATE:retired-face-pass]",
         "portable": False,
         "not_portable_reason":
             "r7/r8 取真实 retired_skills 名单 x 真实 D:/global_skills 磁盘面；离机若无该根则判据面为空，"

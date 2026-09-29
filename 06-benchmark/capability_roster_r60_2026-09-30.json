@@ -1,0 +1,751 @@
+{
+ "schema": "capability-roster-r60-v2",
+ "generated_at": "2026-09-29T19:18:41Z",
+ "readonly": true,
+ "dimension": 18,
+ "counting_unit": "unique slug basename (not tree paths); generated-catalog dirs excluded",
+ "claims_face": "SKILL.md blob 面（git trees recursive=1，仅未截断仓库，已剔生成式清单目录）；星标为 search 面与 repos 面双路读数（两个时刻，容差 2% 内记一致）；域分类是本轮自定透镜，非各仓官方分类",
+ "search_routes": {
+  "route_topic": {
+   "query": "topic:claude-skills",
+   "total_count": 9436,
+   "returned": 20
+  },
+  "route_name": {
+   "query": "skill in:name claude OR agent",
+   "total_count": 1172965,
+   "returned": 20
+  }
+ },
+ "repos": [
+  {
+   "repo": "mattpocock/skills",
+   "stars_search": 271967,
+   "stars_detail": 271964,
+   "pushed_at": "2026-09-29T12:38:37Z",
+   "skill_md_paths": 37,
+   "tree_truncated": false,
+   "routes": [
+    "route_name"
+   ],
+   "generated_catalog_dirs": {},
+   "retrieval": "gh api \"repos/mattpocock/skills/git/trees/HEAD?recursive=1\" --jq '.tree|map(select(.path|endswith(\"/SKILL.md\")))|length' ; gh api \"repos/mattpocock/skills\" --jq '.stargazers_count'"
+  },
+  {
+   "repo": "multica-ai/andrej-karpathy-skills",
+   "stars_search": 215868,
+   "stars_detail": 215867,
+   "pushed_at": "2026-04-20T10:05:04Z",
+   "skill_md_paths": 1,
+   "tree_truncated": false,
+   "routes": [
+    "route_name"
+   ],
+   "generated_catalog_dirs": {},
+   "retrieval": "gh api \"repos/multica-ai/andrej-karpathy-skills/git/trees/HEAD?recursive=1\" --jq '.tree|map(select(.path|endswith(\"/SKILL.md\")))|length' ; gh api \"repos/multica-ai/andrej-karpathy-skills\" --jq '.stargazers_count'"
+  },
+  {
+   "repo": "anthropics/skills",
+   "stars_search": 178981,
+   "stars_detail": 178981,
+   "pushed_at": "2026-09-29T02:20:07Z",
+   "skill_md_paths": 20,
+   "tree_truncated": false,
+   "routes": [
+    "route_name"
+   ],
+   "generated_catalog_dirs": {},
+   "retrieval": "gh api \"repos/anthropics/skills/git/trees/HEAD?recursive=1\" --jq '.tree|map(select(.path|endswith(\"/SKILL.md\")))|length' ; gh api \"repos/anthropics/skills\" --jq '.stargazers_count'"
+  },
+  {
+   "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
+   "stars_search": 131547,
+   "stars_detail": 131545,
+   "pushed_at": "2026-09-27T11:30:41Z",
+   "skill_md_paths": 13,
+   "tree_truncated": false,
+   "routes": [
+    "route_name"
+   ],
+   "generated_catalog_dirs": {},
+   "retrieval": "gh api \"repos/nextlevelbuilder/ui-ux-pro-max-skill/git/trees/HEAD?recursive=1\" --jq '.tree|map(select(.path|endswith(\"/SKILL.md\")))|length' ; gh api \"repos/nextlevelbuilder/ui-ux-pro-max-skill\" --jq '.stargazers_count'"
+  },
+  {
+   "repo": "addyosmani/agent-skills",
+   "stars_search": 99875,
+   "stars_detail": 99874,
+   "pushed_at": "2026-09-26T04:19:38Z",
+   "skill_md_paths": 25,
+   "tree_truncated": false,
+   "routes": [
+    "route_name"
+   ],
+   "generated_catalog_dirs": {},
+   "retrieval": "gh api \"repos/addyosmani/agent-skills/git/trees/HEAD?recursive=1\" --jq '.tree|map(select(.path|endswith(\"/SKILL.md\")))|length' ; gh api \"repos/addyosmani/agent-skills\" --jq '.stargazers_count'"
+  },
+  {
+   "repo": "thedotmack/claude-mem",
+   "stars_search": 94925,
+   "stars_detail": 94923,
+   "pushed_at": "2026-09-28T22:37:31Z",
+   "skill_md_paths": 35,
+   "tree_truncated": false,
+   "routes": [
+    "route_topic"
+   ],
+   "generated_catalog_dirs": {},
+   "retrieval": "gh api \"repos/thedotmack/claude-mem/git/trees/HEAD?recursive=1\" --jq '.tree|map(select(.path|endswith(\"/SKILL.md\")))|length' ; gh api \"repos/thedotmack/claude-mem\" --jq '.stargazers_count'"
+  },
+  {
+   "repo": "Leonxlnx/taste-skill",
+   "stars_search": 91196,
+   "stars_detail": 91193,
+   "pushed_at": "2026-09-26T09:01:50Z",
+   "skill_md_paths": 13,
+   "tree_truncated": false,
+   "routes": [
+    "route_name"
+   ],
+   "generated_catalog_dirs": {},
+   "retrieval": "gh api \"repos/Leonxlnx/taste-skill/git/trees/HEAD?recursive=1\" --jq '.tree|map(select(.path|endswith(\"/SKILL.md\")))|length' ; gh api \"repos/Leonxlnx/taste-skill\" --jq '.stargazers_count'"
+  },
+  {
+   "repo": "Egonex-AI/Understand-Anything",
+   "stars_search": 84675,
+   "stars_detail": 84675,
+   "pushed_at": "2026-09-28T07:55:39Z",
+   "skill_md_paths": 9,
+   "tree_truncated": false,
+   "routes": [
+    "route_topic"
+   ],
+   "generated_catalog_dirs": {},
+   "retrieval": "gh api \"repos/Egonex-AI/Understand-Anything/git/trees/HEAD?recursive=1\" --jq '.tree|map(select(.path|endswith(\"/SKILL.md\")))|length' ; gh api \"repos/Egonex-AI/Understand-Anything\" --jq '.stargazers_count'"
+  },
+  {
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "stars_search": 75862,
+   "stars_detail": 75862,
+   "pushed_at": "2026-09-18T07:16:11Z",
+   "skill_md_paths": 864,
+   "tree_truncated": false,
+   "routes": [
+    "route_name"
+   ],
+   "generated_catalog_dirs": {
+    "composio-skills": {
+     "members": 832,
+     "shared_suffix": "-automation",
+     "hits": 832
+    }
+   },
+   "retrieval": "gh api \"repos/ComposioHQ/awesome-claude-skills/git/trees/HEAD?recursive=1\" --jq '.tree|map(select(.path|endswith(\"/SKILL.md\")))|length' ; gh api \"repos/ComposioHQ/awesome-claude-skills\" --jq '.stargazers_count'"
+  },
+  {
+   "repo": "code-yeongyu/oh-my-openagent",
+   "stars_search": 69652,
+   "stars_detail": 69652,
+   "pushed_at": "2026-09-29T19:12:32Z",
+   "skill_md_paths": 59,
+   "tree_truncated": false,
+   "routes": [
+    "route_topic"
+   ],
+   "generated_catalog_dirs": {},
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree|map(select(.path|endswith(\"/SKILL.md\")))|length' ; gh api \"repos/code-yeongyu/oh-my-openagent\" --jq '.stargazers_count'"
+  },
+  {
+   "repo": "mvanhorn/last30days-skill",
+   "stars_search": 63194,
+   "stars_detail": 63194,
+   "pushed_at": "2026-09-27T18:43:53Z",
+   "skill_md_paths": 1,
+   "tree_truncated": false,
+   "routes": [
+    "route_name"
+   ],
+   "generated_catalog_dirs": {},
+   "retrieval": "gh api \"repos/mvanhorn/last30days-skill/git/trees/HEAD?recursive=1\" --jq '.tree|map(select(.path|endswith(\"/SKILL.md\")))|length' ; gh api \"repos/mvanhorn/last30days-skill\" --jq '.stargazers_count'"
+  },
+  {
+   "repo": "VoltAgent/awesome-openclaw-skills",
+   "stars_search": 52865,
+   "stars_detail": 52865,
+   "pushed_at": "2026-09-29T19:09:45Z",
+   "skill_md_paths": 0,
+   "tree_truncated": false,
+   "routes": [
+    "route_name"
+   ],
+   "generated_catalog_dirs": {},
+   "retrieval": "gh api \"repos/VoltAgent/awesome-openclaw-skills/git/trees/HEAD?recursive=1\" --jq '.tree|map(select(.path|endswith(\"/SKILL.md\")))|length' ; gh api \"repos/VoltAgent/awesome-openclaw-skills\" --jq '.stargazers_count'"
+  },
+  {
+   "repo": "ayghri/i-have-adhd",
+   "stars_search": 52112,
+   "stars_detail": 52111,
+   "pushed_at": "2026-09-19T16:44:46Z",
+   "skill_md_paths": 2,
+   "tree_truncated": false,
+   "routes": [
+    "route_topic"
+   ],
+   "generated_catalog_dirs": {},
+   "retrieval": "gh api \"repos/ayghri/i-have-adhd/git/trees/HEAD?recursive=1\" --jq '.tree|map(select(.path|endswith(\"/SKILL.md\")))|length' ; gh api \"repos/ayghri/i-have-adhd\" --jq '.stargazers_count'"
+  },
+  {
+   "repo": "Imbad0202/academic-research-skills",
+   "stars_search": 49894,
+   "stars_detail": 49894,
+   "pushed_at": "2026-09-29T03:26:22Z",
+   "skill_md_paths": 4,
+   "tree_truncated": false,
+   "routes": [
+    "route_name"
+   ],
+   "generated_catalog_dirs": {},
+   "retrieval": "gh api \"repos/Imbad0202/academic-research-skills/git/trees/HEAD?recursive=1\" --jq '.tree|map(select(.path|endswith(\"/SKILL.md\")))|length' ; gh api \"repos/Imbad0202/academic-research-skills\" --jq '.stargazers_count'"
+  }
+ ],
+ "totals": {
+  "repos_measured": 14,
+  "repos_complete": 14,
+  "opponent_unique_names": 209,
+  "local_unique_names": 430,
+  "opponent_only_unique": 187
+ },
+ "blind_share_misc": 0.3636,
+ "blind_limit": 0.3,
+ "verdict_state": "UNVERIFIED",
+ "domains": [
+  {
+   "domain": "backend_api",
+   "opponent_unique": 2,
+   "ours_unique": 8,
+   "opponent_only_unique": 2,
+   "coverage_pct": 0.0,
+   "top_contrib_repos": [
+    [
+     "addyosmani/agent-skills",
+     1
+    ],
+    [
+     "anthropics/skills",
+     1
+    ]
+   ],
+   "opponent_only_sample": [
+    "api-and-interface-design",
+    "claude-api"
+   ]
+  },
+  {
+   "domain": "commerce_ops",
+   "opponent_unique": 0,
+   "ours_unique": 2,
+   "opponent_only_unique": 0,
+   "coverage_pct": null,
+   "top_contrib_repos": [],
+   "opponent_only_sample": []
+  },
+  {
+   "domain": "data_analysis",
+   "opponent_unique": 2,
+   "ours_unique": 6,
+   "opponent_only_unique": 2,
+   "coverage_pct": 0.0,
+   "top_contrib_repos": [
+    [
+     "thedotmack/claude-mem",
+     5
+    ],
+    [
+     "code-yeongyu/oh-my-openagent",
+     1
+    ]
+   ],
+   "opponent_only_sample": [
+    "agent-cost-report",
+    "data-scientist"
+   ]
+  },
+  {
+   "domain": "deploy_infra",
+   "opponent_unique": 5,
+   "ours_unique": 19,
+   "opponent_only_unique": 5,
+   "coverage_pct": 0.0,
+   "top_contrib_repos": [
+    [
+     "code-yeongyu/oh-my-openagent",
+     2
+    ],
+    [
+     "thedotmack/claude-mem",
+     1
+    ],
+    [
+     "mattpocock/skills",
+     1
+    ]
+   ],
+   "opponent_only_sample": [
+    "cloud-sync",
+    "get-unpublished-changes",
+    "publish",
+    "scaffold-exercises",
+    "shipping-and-launch"
+   ]
+  },
+  {
+   "domain": "frontend_ui",
+   "opponent_unique": 29,
+   "ours_unique": 23,
+   "opponent_only_unique": 24,
+   "coverage_pct": 17.2,
+   "top_contrib_repos": [
+    [
+     "nextlevelbuilder/ui-ux-pro-max-skill",
+     10
+    ],
+    [
+     "Leonxlnx/taste-skill",
+     9
+    ],
+    [
+     "anthropics/skills",
+     2
+    ]
+   ],
+   "opponent_only_sample": [
+    "academy-guide",
+    "artifacts-builder",
+    "banner-design",
+    "brand",
+    "brandkit",
+    "brutalist-skill",
+    "codebase-design",
+    "design",
+    "design-is",
+    "design-system",
+    "frontend",
+    "frontend-ui-engineering",
+    "gpt-tasteskill",
+    "imagegen-frontend-mobile",
+    "imagegen-frontend-web"
+   ]
+  },
+  {
+   "domain": "local_ai",
+   "opponent_unique": 0,
+   "ours_unique": 11,
+   "opponent_only_unique": 0,
+   "coverage_pct": null,
+   "top_contrib_repos": [],
+   "opponent_only_sample": []
+  },
+  {
+   "domain": "mcp_tooling",
+   "opponent_unique": 2,
+   "ours_unique": 5,
+   "opponent_only_unique": 2,
+   "coverage_pct": 0.0,
+   "top_contrib_repos": [
+    [
+     "addyosmani/agent-skills",
+     1
+    ],
+    [
+     "mattpocock/skills",
+     1
+    ]
+   ],
+   "opponent_only_sample": [
+    "ci-cd-and-automation",
+    "git-guardrails-claude-code"
+   ]
+  },
+  {
+   "domain": "media_generation",
+   "opponent_unique": 7,
+   "ours_unique": 18,
+   "opponent_only_unique": 6,
+   "coverage_pct": 14.3,
+   "top_contrib_repos": [
+    [
+     "ComposioHQ/awesome-claude-skills",
+     4
+    ],
+    [
+     "Leonxlnx/taste-skill",
+     1
+    ],
+    [
+     "anthropics/skills",
+     1
+    ]
+   ],
+   "opponent_only_sample": [
+    "image-enhancer",
+    "image-to-code-skill",
+    "invoice-organizer",
+    "slack-gif-creator",
+    "smart-explore",
+    "video-downloader"
+   ]
+  },
+  {
+   "domain": "memory_context",
+   "opponent_unique": 7,
+   "ours_unique": 14,
+   "opponent_only_unique": 7,
+   "coverage_pct": 0.0,
+   "top_contrib_repos": [
+    [
+     "thedotmack/claude-mem",
+     7
+    ],
+    [
+     "ayghri/i-have-adhd",
+     2
+    ],
+    [
+     "addyosmani/agent-skills",
+     1
+    ]
+   ],
+   "opponent_only_sample": [
+    "context-engineering",
+    "host-observer",
+    "i-have-adhd",
+    "knowledge-agent",
+    "mem-search",
+    "mem-setup",
+    "understand-knowledge"
+   ]
+  },
+  {
+   "domain": "misc",
+   "opponent_unique": 76,
+   "ours_unique": 152,
+   "opponent_only_unique": 72,
+   "coverage_pct": 5.3,
+   "top_contrib_repos": [
+    [
+     "code-yeongyu/oh-my-openagent",
+     27
+    ],
+    [
+     "thedotmack/claude-mem",
+     16
+    ],
+    [
+     "mattpocock/skills",
+     15
+    ]
+   ],
+   "opponent_only_sample": [
+    "ask-matt",
+    "ast-grep",
+    "babysit",
+    "ccs-align",
+    "claude-handoff",
+    "comment-checker",
+    "connect",
+    "connect-apps",
+    "constraint-driven-development",
+    "dag-library",
+    "deprecation-and-migration",
+    "developer-growth-analysis",
+    "do",
+    "doubt-driven-development",
+    "file-organizer"
+   ]
+  },
+  {
+   "domain": "office_documents",
+   "opponent_unique": 4,
+   "ours_unique": 11,
+   "opponent_only_unique": 1,
+   "coverage_pct": 75.0,
+   "top_contrib_repos": [
+    [
+     "anthropics/skills",
+     1
+    ],
+    [
+     "ComposioHQ/awesome-claude-skills",
+     1
+    ]
+   ],
+   "opponent_only_sample": [
+    "pptx"
+   ]
+  },
+  {
+   "domain": "planning_workflow",
+   "opponent_unique": 12,
+   "ours_unique": 18,
+   "opponent_only_unique": 12,
+   "coverage_pct": 0.0,
+   "top_contrib_repos": [
+    [
+     "code-yeongyu/oh-my-openagent",
+     8
+    ],
+    [
+     "mattpocock/skills",
+     4
+    ],
+    [
+     "addyosmani/agent-skills",
+     3
+    ]
+   ],
+   "opponent_only_sample": [
+    "domain-name-brainstormer",
+    "git-workflow-and-versioning",
+    "github-triage",
+    "hyperplan",
+    "implement-spec",
+    "make-plan",
+    "planning-and-task-breakdown",
+    "spec-driven-development",
+    "to-spec",
+    "to-tickets",
+    "triage",
+    "ulw-plan"
+   ]
+  },
+  {
+   "domain": "research_search",
+   "opponent_unique": 13,
+   "ours_unique": 38,
+   "opponent_only_unique": 11,
+   "coverage_pct": 15.4,
+   "top_contrib_repos": [
+    [
+     "code-yeongyu/oh-my-openagent",
+     5
+    ],
+    [
+     "Egonex-AI/Understand-Anything",
+     5
+    ],
+    [
+     "mvanhorn/last30days-skill",
+     1
+    ]
+   ],
+   "opponent_only_sample": [
+    "dev-browser",
+    "last30days",
+    "lead-research-assistant",
+    "research",
+    "security-research",
+    "ulw-research",
+    "understand",
+    "understand-chat",
+    "understand-diff",
+    "understand-domain",
+    "understand-onboard"
+   ]
+  },
+  {
+   "domain": "review_refactoring",
+   "opponent_unique": 5,
+   "ours_unique": 5,
+   "opponent_only_unique": 4,
+   "coverage_pct": 20.0,
+   "top_contrib_repos": [
+    [
+     "code-yeongyu/oh-my-openagent",
+     3
+    ],
+    [
+     "Imbad0202/academic-research-skills",
+     1
+    ],
+    [
+     "addyosmani/agent-skills",
+     1
+    ]
+   ],
+   "opponent_only_sample": [
+    "academic-paper-reviewer",
+    "code-simplification",
+    "pre-publish-review",
+    "refactor"
+   ]
+  },
+  {
+   "domain": "security_privacy",
+   "opponent_unique": 2,
+   "ours_unique": 6,
+   "opponent_only_unique": 2,
+   "coverage_pct": 0.0,
+   "top_contrib_repos": [
+    [
+     "addyosmani/agent-skills",
+     1
+    ],
+    [
+     "code-yeongyu/oh-my-openagent",
+     1
+    ]
+   ],
+   "opponent_only_sample": [
+    "security-and-hardening",
+    "tech-debt-audit"
+   ]
+  },
+  {
+   "domain": "skill_meta",
+   "opponent_unique": 14,
+   "ours_unique": 37,
+   "opponent_only_unique": 12,
+   "coverage_pct": 14.3,
+   "top_contrib_repos": [
+    [
+     "mattpocock/skills",
+     3
+    ],
+    [
+     "Leonxlnx/taste-skill",
+     3
+    ],
+    [
+     "code-yeongyu/oh-my-openagent",
+     2
+    ]
+   ],
+   "opponent_only_sample": [
+    "coding-agent-sessions",
+    "domain-modeling",
+    "grilling",
+    "install",
+    "output-skill",
+    "setup-matt-pocock-skills",
+    "skill",
+    "skill-share",
+    "soft-skill",
+    "stitch-skill",
+    "template-skill",
+    "using-agent-skills"
+   ]
+  },
+  {
+   "domain": "testing_debugging",
+   "opponent_unique": 13,
+   "ours_unique": 9,
+   "opponent_only_unique": 11,
+   "coverage_pct": 15.4,
+   "top_contrib_repos": [
+    [
+     "code-yeongyu/oh-my-openagent",
+     6
+    ],
+    [
+     "addyosmani/agent-skills",
+     3
+    ],
+    [
+     "mattpocock/skills",
+     1
+    ]
+   ],
+   "opponent_only_sample": [
+    "browser-testing-with-devtools",
+    "code-review-and-quality",
+    "codex-qa",
+    "debugging",
+    "debugging-and-error-recovery",
+    "diagnosing-bugs",
+    "opencode-qa",
+    "review-work",
+    "senpi-qa",
+    "visual-qa",
+    "webapp-testing"
+   ]
+  },
+  {
+   "domain": "vertical_domain",
+   "opponent_unique": 4,
+   "ours_unique": 9,
+   "opponent_only_unique": 4,
+   "coverage_pct": 0.0,
+   "top_contrib_repos": [
+    [
+     "Imbad0202/academic-research-skills",
+     2
+    ],
+    [
+     "ComposioHQ/awesome-claude-skills",
+     1
+    ],
+    [
+     "anthropics/skills",
+     1
+    ]
+   ],
+   "opponent_only_sample": [
+    "academic-paper",
+    "academic-pipeline",
+    "competitive-ads-extractor",
+    "discernment-nudge"
+   ]
+  },
+  {
+   "domain": "writing_docs",
+   "opponent_unique": 12,
+   "ours_unique": 39,
+   "opponent_only_unique": 10,
+   "coverage_pct": 16.7,
+   "top_contrib_repos": [
+    [
+     "mattpocock/skills",
+     5
+    ],
+    [
+     "ComposioHQ/awesome-claude-skills",
+     2
+    ],
+    [
+     "addyosmani/agent-skills",
+     1
+    ]
+   ],
+   "opponent_only_sample": [
+    "changelog-generator",
+    "content-research-writer",
+    "documentation-and-adrs",
+    "grill-with-docs",
+    "lcx-doctor",
+    "understand-explain",
+    "writing-beats",
+    "writing-for-agents",
+    "writing-fragments",
+    "writing-shape"
+   ]
+  }
+ ],
+ "local_faces": [
+  {
+   "id": "authority",
+   "count": 171,
+   "error": null
+  },
+  {
+   "id": "marketplace",
+   "count": 268,
+   "error": null
+  },
+  {
+   "id": "plugin",
+   "count": 0,
+   "error": null
+  }
+ ],
+ "problems": [],
+ "note": "同名即记为已覆盖（保守口径，低估差距不低估自己）；PARTIAL 仓不进差集。"
+}

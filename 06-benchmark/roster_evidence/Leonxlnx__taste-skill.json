@@ -1,0 +1,26 @@
+{
+ "repo": "Leonxlnx/taste-skill",
+ "sha": "ce26fc25c0e5e8cab638f883de62d9a86ee5e45b",
+ "truncated": false,
+ "slugs": [
+  "skills/brandkit",
+  "skills/brutalist-skill",
+  "skills/gpt-tasteskill",
+  "skills/image-to-code-skill",
+  "skills/imagegen-frontend-mobile",
+  "skills/imagegen-frontend-web",
+  "skills/minimalist-skill",
+  "skills/output-skill",
+  "skills/redesign-skill",
+  "skills/soft-skill",
+  "skills/stitch-skill",
+  "skills/taste-skill-v1",
+  "skills/taste-skill"
+ ],
+ "detail": {
+  "stars": 91193,
+  "pushed_at": "2026-09-26T09:01:50Z",
+  "archived": false,
+  "open_issues": 73
+ }
+}

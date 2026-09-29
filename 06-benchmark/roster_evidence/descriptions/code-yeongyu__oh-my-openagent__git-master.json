@@ -1,0 +1,1 @@
+{"name": "git-master", "repo": "code-yeongyu/oh-my-openagent", "description": "\"Handles git work: atomic commits, rebase, squash, blame, bisect, reflog, and history questions. Use whenever a task needs a commit or a git-history investigation; skip for ordinary code edits.\""}

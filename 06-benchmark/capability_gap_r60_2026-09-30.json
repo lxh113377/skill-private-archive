@@ -1,0 +1,4200 @@
+{
+ "schema": "capability-gap-r60-v1",
+ "generated_at": "2026-09-29T20:19:40Z",
+ "readonly": true,
+ "first_lens": {
+  "artifact": "capability_roster_r60_2026-09-30.json",
+  "blind_share_misc": 0.3636,
+  "verdict_state": "UNVERIFIED"
+ },
+ "claims_face": "对手 SKILL.md frontmatter description 面（600 字截断）；本地面 = 权威源+市场缓存根 全部 SKILL.md 的 name+description；匹配度 = 共享英文词集基数，未设自动阈值",
+ "counting_unit": "unique slug basename",
+ "totals": {
+  "gap_items": 187,
+  "opponent_unique": 209,
+  "local_corpus": 428
+ },
+ "blind_share_misc_desc": 0.0267,
+ "domains_desc": [
+  [
+   "planning_workflow",
+   35
+  ],
+  [
+   "testing_debugging",
+   21
+  ],
+  [
+   "frontend_ui",
+   19
+  ],
+  [
+   "writing_docs",
+   19
+  ],
+  [
+   "skill_meta",
+   18
+  ],
+  [
+   "memory_context",
+   17
+  ],
+  [
+   "research_search",
+   12
+  ],
+  [
+   "media_generation",
+   8
+  ],
+  [
+   "review_refactoring",
+   7
+  ],
+  [
+   "backend_api",
+   7
+  ],
+  [
+   "deploy_infra",
+   6
+  ],
+  [
+   "misc",
+   5
+  ],
+  [
+   "vertical_domain",
+   4
+  ],
+  [
+   "data_analysis",
+   4
+  ],
+  [
+   "mcp_tooling",
+   2
+  ],
+  [
+   "security_privacy",
+   2
+  ],
+  [
+   "office_documents",
+   1
+  ]
+ ],
+ "items": [
+  {
+   "slug": "dev-browser",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "research_search",
+   "description": "Browser automation with persistent page state. Use when users ask to navigate websites, fill forms, take screenshots, extract web data, test web apps, or automate browser workflows. Trigger phrases include \"go to [url]\", \"click on\", \"fill out the form\", \"take a screenshot\", \"scrape\", \"automate\", \"te",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # dev-browser",
+   "nearest_local": [
+    {
+     "skill": "smooth-browser",
+     "shared_tokens": 19
+    },
+    {
+     "skill": "stagehand-browser-cli",
+     "shared_tokens": 11
+    },
+    {
+     "skill": "browser-use",
+     "shared_tokens": 9
+    }
+   ]
+  },
+  {
+   "slug": "diagnosing-bugs",
+   "repo": "mattpocock/skills",
+   "domain_by_desc": "testing_debugging",
+   "description": "Diagnosis loop for hard bugs and performance regressions. Use when the user says \"diagnose\"/\"debug this\", or reports something broken/throwing/failing/slow.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/mattpocock/skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/mattpocock/skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # diagnosing-bugs",
+   "nearest_local": [
+    {
+     "skill": "diagnose",
+     "shared_tokens": 12
+    },
+    {
+     "skill": "task-implement",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "neodata-financial-search",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "imagegen-frontend-web",
+   "repo": "Leonxlnx/taste-skill",
+   "domain_by_desc": "frontend_ui",
+   "description": "Elite frontend image-direction skill for generating premium, conversion-aware website design references. CRITICAL OUTPUT RULE — generate ONE separate horizontal image FOR EVERY section. A landing page with 8 sections produces 8 images. Never compress multiple sections into one image. Enforces compos",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/Leonxlnx/taste-skill/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/Leonxlnx/taste-skill/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # imagegen-frontend-web",
+   "nearest_local": [
+    {
+     "skill": "landing-page-generator",
+     "shared_tokens": 10
+    },
+    {
+     "skill": "frontend-dev",
+     "shared_tokens": 9
+    },
+    {
+     "skill": "product-showcase-site",
+     "shared_tokens": 6
+    }
+   ]
+  },
+  {
+   "slug": "ui-styling",
+   "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
+   "domain_by_desc": "backend_api",
+   "description": "Create beautiful, accessible user interfaces with shadcn/ui components (built on Radix UI + Tailwind), Tailwind CSS utility-first styling, and canvas-based visual designs. Use when building user interfaces, implementing design systems, creating responsive layouts, adding accessible components (dialo",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/nextlevelbuilder/ui-ux-pro-max-skill/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/nextlevelbuilder/ui-ux-pro-max-skill/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # ui-styling",
+   "nearest_local": [
+    {
+     "skill": "ui-ux-pro-max",
+     "shared_tokens": 9
+    },
+    {
+     "skill": "ios-application-dev",
+     "shared_tokens": 9
+    },
+    {
+     "skill": "tdesign-miniprogram",
+     "shared_tokens": 8
+    }
+   ]
+  },
+  {
+   "slug": "work-with-pr",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "planning_workflow",
+   "description": "\"Full PR lifecycle in a fresh task-owned git worktree: implement via the ulw-loop skill with mandatory evidence-bound manual QA → reviewer-readable English PR → verification loop (CI + Cubic, where Cubic is skipped only when its quota is exhausted) → merge by default → worktree cleanup. Decomposes o",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # work-with-pr",
+   "nearest_local": [
+    {
+     "skill": "task-implement",
+     "shared_tokens": 8
+    },
+    {
+     "skill": "xlsx",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "minimax-docx",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "grilling",
+   "repo": "mattpocock/skills",
+   "domain_by_desc": "skill_meta",
+   "description": "Grill the user relentlessly about a plan, decision, or idea. Use when the user wants to stress-test their thinking, or uses any 'grill' trigger phrases.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/mattpocock/skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/mattpocock/skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # grilling",
+   "nearest_local": [
+    {
+     "skill": "grill-me",
+     "shared_tokens": 7
+    },
+    {
+     "skill": "task-implement",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "task-alignment",
+     "shared_tokens": 4
+    }
+   ]
+  },
+  {
+   "slug": "imagegen-frontend-mobile",
+   "repo": "Leonxlnx/taste-skill",
+   "domain_by_desc": "frontend_ui",
+   "description": "Elite mobile app image-generation skill for creating premium, app-native screen concepts and flows. Designed for iOS, Android, and cross-platform mobile products. Prioritizes clean hierarchy, comfortably readable text, strong multi-screen consistency, controlled color palettes, non-generic creative ",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/Leonxlnx/taste-skill/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/Leonxlnx/taste-skill/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # imagegen-frontend-mobile",
+   "nearest_local": [
+    {
+     "skill": "frontend-skill",
+     "shared_tokens": 7
+    },
+    {
+     "skill": "hyperframes",
+     "shared_tokens": 5
+    },
+    {
+     "skill": "byted-seedream-image-generate",
+     "shared_tokens": 5
+    }
+   ]
+  },
+  {
+   "slug": "interview-me",
+   "repo": "addyosmani/agent-skills",
+   "domain_by_desc": "planning_workflow",
+   "description": "Extracts what the user actually wants instead of what they think they should want. Achieves this through one-question-at-a-time interview until ~95% confidence about the underlying intent. Use when an ask is underspecified (\"build me X\" without \"for whom\" or \"why now\"), when the user explicitly invo",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/addyosmani/agent-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/addyosmani/agent-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # interview-me",
+   "nearest_local": [
+    {
+     "skill": "grill-me",
+     "shared_tokens": 7
+    },
+    {
+     "skill": "task-alignment",
+     "shared_tokens": 6
+    },
+    {
+     "skill": "writing-plans",
+     "shared_tokens": 4
+    }
+   ]
+  },
+  {
+   "slug": "claude-api",
+   "repo": "anthropics/skills",
+   "domain_by_desc": "backend_api",
+   "description": "|- Reference for the Claude API / Anthropic SDK — model ids, pricing, params, streaming, tool use, MCP, agents, caching, token counting, model migration. TRIGGER — read BEFORE opening the target file; don't skip because it \"looks like a one-liner\" — whenever: the prompt names Claude/Anthropic in any",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/anthropics/skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/anthropics/skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # claude-api",
+   "nearest_local": [
+    {
+     "skill": "xlsx",
+     "shared_tokens": 6
+    },
+    {
+     "skill": "local-screenshot-qa",
+     "shared_tokens": 6
+    },
+    {
+     "skill": "task-implement",
+     "shared_tokens": 5
+    }
+   ]
+  },
+  {
+   "slug": "connect-apps",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "domain_by_desc": "writing_docs",
+   "description": "Connect Claude to external apps like Gmail, Slack, GitHub. Use this skill when the user wants to send emails, create issues, post messages, or take actions in external services.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/ComposioHQ/awesome-claude-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/ComposioHQ/awesome-claude-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # connect-apps",
+   "nearest_local": [
+    {
+     "skill": "email-daily-summary",
+     "shared_tokens": 6
+    },
+    {
+     "skill": "xlsx",
+     "shared_tokens": 5
+    },
+    {
+     "skill": "gmail",
+     "shared_tokens": 5
+    }
+   ]
+  },
+  {
+   "slug": "design",
+   "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
+   "domain_by_desc": "frontend_ui",
+   "description": "\"Comprehensive design skill: brand identity, design tokens, UI styling, logo generation (55 styles, Gemini, Atlas Cloud, or MuAPI AI), corporate identity program (50 deliverables, CIP mockups), HTML presentations (Chart.js), banner design (22 styles, social/ads/web/print), icon design (15 styles, SV",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/nextlevelbuilder/ui-ux-pro-max-skill/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/nextlevelbuilder/ui-ux-pro-max-skill/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # design",
+   "nearest_local": [
+    {
+     "skill": "byted-seedream-image-generate",
+     "shared_tokens": 6
+    },
+    {
+     "skill": "minimax-pdf",
+     "shared_tokens": 5
+    },
+    {
+     "skill": "hyperframes",
+     "shared_tokens": 5
+    }
+   ]
+  },
+  {
+   "slug": "design-system",
+   "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
+   "domain_by_desc": "frontend_ui",
+   "description": "Token architecture, component specifications, and slide generation. Three-layer tokens (primitive→semantic→component), CSS variables, spacing/typography scales, component specs, strategic slide creation. Use for design tokens, systematic design, brand-compliant presentations. argument-hint: \"[compon",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/nextlevelbuilder/ui-ux-pro-max-skill/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/nextlevelbuilder/ui-ux-pro-max-skill/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # design-system",
+   "nearest_local": [
+    {
+     "skill": "ui-ux-pro-max",
+     "shared_tokens": 6
+    },
+    {
+     "skill": "tdesign-miniprogram",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "pptx-generator",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "frontend-ui-engineering",
+   "repo": "addyosmani/agent-skills",
+   "domain_by_desc": "frontend_ui",
+   "description": "Builds production-quality, accessible, responsive user-facing UIs. Use when building or modifying interfaces and pages, creating components, implementing layouts, meeting WCAG accessibility requirements, managing state, or when the output needs to look and feel production-quality rather than AI-gene",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/addyosmani/agent-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/addyosmani/agent-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # frontend-ui-engineering",
+   "nearest_local": [
+    {
+     "skill": "ios-application-dev",
+     "shared_tokens": 6
+    },
+    {
+     "skill": "react-native-dev",
+     "shared_tokens": 5
+    },
+    {
+     "skill": "frontend-dev",
+     "shared_tokens": 5
+    }
+   ]
+  },
+  {
+   "slug": "lcx-report-bug",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "planning_workflow",
+   "description": "\"Create a high-signal bug issue or PR in the repo that owns the defect. Use this whenever the user asks to report, file, open, or triage a LazyCodex, lazycodex-ai, omo-codex, Codex plugin, or upstream Codex CLI bug, especially when they need source-backed root cause, reproduction steps, fix guidance",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # lcx-report-bug",
+   "nearest_local": [
+    {
+     "skill": "xlsx",
+     "shared_tokens": 6
+    },
+    {
+     "skill": "cloudflare-worker-builder",
+     "shared_tokens": 5
+    },
+    {
+     "skill": "pdf",
+     "shared_tokens": 4
+    }
+   ]
+  },
+  {
+   "slug": "review-work",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "testing_debugging",
+   "description": "\"Post-implementation gate review: run manual QA on the real surface yourself, then launch ONE gate reviewer (never a panel) to audit goal, constraints, code quality, security, missed context, and QA evidence. Use before a PR handoff or when the user explicitly asks to review completed work.\"",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # review-work",
+   "nearest_local": [
+    {
+     "skill": "security-audit",
+     "shared_tokens": 6
+    },
+    {
+     "skill": "skill-scanner",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "ui-ux-pro-max",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "security-research",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "research_search",
+   "description": "\"Team Mode security research skill. Orchestrates 3 vulnerability hunters and 2 PoC engineers to audit a codebase in parallel, prove exploitability, classify root causes, and calibrate severity by actual exploitability. Use for security review, vulnerability research, exploitability audit, pre-releas",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # security-research",
+   "nearest_local": [
+    {
+     "skill": "security-audit",
+     "shared_tokens": 6
+    },
+    {
+     "skill": "skill-scanner",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "team-ops",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "taste-skill",
+   "repo": "Leonxlnx/taste-skill",
+   "domain_by_desc": "backend_api",
+   "description": "Anti-slop frontend skill for landing pages, portfolios, and redesigns. The agent reads the brief, infers the right design direction, and ships interfaces that do not look templated. Real design systems when applicable, audit-first on redesigns, strict pre-flight check.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/Leonxlnx/taste-skill/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/Leonxlnx/taste-skill/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # taste-skill",
+   "nearest_local": [
+    {
+     "skill": "impeccable",
+     "shared_tokens": 6
+    },
+    {
+     "skill": "frontend-design",
+     "shared_tokens": 6
+    },
+    {
+     "skill": "frontend-dev",
+     "shared_tokens": 5
+    }
+   ]
+  },
+  {
+   "slug": "teammode",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "planning_workflow",
+   "description": "\"Codex-only team orchestration: run a named team of cooperating Codex workers with durable, script-managed state. MUST USE when the user asks Codex to create, run, coordinate, inspect, archive, or delete a team of agents/threads/sessions, or to work on something as a team in parallel. FIRST inspects",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # teammode",
+   "nearest_local": [
+    {
+     "skill": "xlsx",
+     "shared_tokens": 6
+    },
+    {
+     "skill": "things-mac",
+     "shared_tokens": 5
+    },
+    {
+     "skill": "task-implement",
+     "shared_tokens": 5
+    }
+   ]
+  },
+  {
+   "slug": "tech-debt-audit",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "security_privacy",
+   "description": "\"Thorough, file-cited technical debt audit across 9 dimensions using AST-grep (tree-sitter), grep, LSP, and language-native tooling. Produces TECH_DEBT_AUDIT.md with severity, effort estimates, and prioritized fixes. Use when asked for codebase health check, tech debt audit, architecture review, cod",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # tech-debt-audit",
+   "nearest_local": [
+    {
+     "skill": "skill-scanner",
+     "shared_tokens": 6
+    },
+    {
+     "skill": "security-audit",
+     "shared_tokens": 5
+    },
+    {
+     "skill": "yt-competitive-analysis",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "ulw-loop",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "planning_workflow",
+   "description": "\"A goal-like loop that decomposes work into systematic, evidence-bound ultrawork steps. Use when the user wants a goal loop or durable, checkpointed execution.\" metadata: short-description: Goal-like ultrawork loop for systematic decomposition",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # ulw-loop",
+   "nearest_local": [
+    {
+     "skill": "task-implement",
+     "shared_tokens": 6
+    },
+    {
+     "skill": "handoff",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "colleague-skill",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "academic-pipeline",
+   "repo": "Imbad0202/academic-research-skills",
+   "domain_by_desc": "vertical_domain",
+   "description": "\"Orchestrator for the full academic research pipeline: research -> write -> integrity check -> review -> revise -> re-review -> re-revise -> final integrity check -> finalize. Coordinates deep-research, academic-paper, and academic-paper-reviewer into a seamless 10-stage workflow with mandatory, cov",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/Imbad0202/academic-research-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/Imbad0202/academic-research-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # academic-pipeline",
+   "nearest_local": [
+    {
+     "skill": "deep-research",
+     "shared_tokens": 5
+    },
+    {
+     "skill": "skill-scanner",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "consulting-analysis",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "academy-guide",
+   "repo": "anthropics/skills",
+   "domain_by_desc": "frontend_ui",
+   "description": "Stop and check this skill before finishing any reply to a question about how to use Claude or a Claude product — it recommends matching courses, tutorials, and use cases from Claude Academy (academy.claude.com), Anthropic's learning hub. Trigger on: \"how do I\", \"how can I\", \"getting started with\", \"",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/anthropics/skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/anthropics/skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # academy-guide",
+   "nearest_local": [
+    {
+     "skill": "skill-scanner",
+     "shared_tokens": 5
+    },
+    {
+     "skill": "local-screenshot-qa",
+     "shared_tokens": 5
+    },
+    {
+     "skill": "notebooklm-studio",
+     "shared_tokens": 4
+    }
+   ]
+  },
+  {
+   "slug": "banner-design",
+   "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
+   "domain_by_desc": "frontend_ui",
+   "description": "\"Design banners for social media, ads, website heroes, creative assets, and print. Multiple art direction options with optional generated or supplied visuals. Actions: design, create, generate banner. Platforms: Facebook, Twitter/X, LinkedIn, YouTube, Instagram, Google Display, website hero, print. ",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/nextlevelbuilder/ui-ux-pro-max-skill/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/nextlevelbuilder/ui-ux-pro-max-skill/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # banner-design",
+   "nearest_local": [
+    {
+     "skill": "byted-seedream-image-generate",
+     "shared_tokens": 5
+    },
+    {
+     "skill": "notebooklm-studio",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "minimax-pdf",
+     "shared_tokens": 4
+    }
+   ]
+  },
+  {
+   "slug": "claude-handoff",
+   "repo": "mattpocock/skills",
+   "domain_by_desc": "skill_meta",
+   "description": "Hand the current conversation off to a fresh background agent that picks up the work immediately.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/mattpocock/skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/mattpocock/skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # claude-handoff",
+   "nearest_local": [
+    {
+     "skill": "handoff",
+     "shared_tokens": 5
+    },
+    {
+     "skill": "task-implement",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "task-alignment",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "code-simplification",
+   "repo": "addyosmani/agent-skills",
+   "domain_by_desc": "review_refactoring",
+   "description": "Simplifies code for clarity. Use when refactoring code for clarity without changing behavior. Use when code works but is harder to read, maintain, or extend than it should be. Use when reviewing code that has accumulated unnecessary complexity.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/addyosmani/agent-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/addyosmani/agent-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # code-simplification",
+   "nearest_local": [
+    {
+     "skill": "refactoring",
+     "shared_tokens": 5
+    },
+    {
+     "skill": "task-alignment",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "playwright-browser-automation",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "codebase-design",
+   "repo": "mattpocock/skills",
+   "domain_by_desc": "frontend_ui",
+   "description": "Shared vocabulary for designing deep modules. Use when the user wants to design or improve a module's interface, find deepening opportunities, decide where a seam goes, make code more testable or AI-navigable, or when another skill needs the deep-module vocabulary.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/mattpocock/skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/mattpocock/skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # codebase-design",
+   "nearest_local": [
+    {
+     "skill": "awesome-design-md",
+     "shared_tokens": 5
+    },
+    {
+     "skill": "xlsx",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "pdf",
+     "shared_tokens": 4
+    }
+   ]
+  },
+  {
+   "slug": "design-is",
+   "repo": "thedotmack/claude-mem",
+   "domain_by_desc": "frontend_ui",
+   "description": "Audit a design against Dieter Rams' ten \"Good design is...\" principles, then hand off a /make-plan prompt for one of three outcomes — new design, refine design, or redesign. Use when the user says \"audit this design\", \"design review\", \"check this UI against Rams\", \"is this UI good\", \"critique this d",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/thedotmack/claude-mem/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/thedotmack/claude-mem/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # design-is",
+   "nearest_local": [
+    {
+     "skill": "security-audit",
+     "shared_tokens": 5
+    },
+    {
+     "skill": "canvas-design",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "awesome-design-md",
+     "shared_tokens": 4
+    }
+   ]
+  },
+  {
+   "slug": "discernment-nudge",
+   "repo": "anthropics/skills",
+   "domain_by_desc": "vertical_domain",
+   "description": "> After you give a substantive answer or draft that the user may act on — advice or recommendations, drafted artifacts such as goals, plans, pitches, proposals, or emails, estimates or projections, analysis or interpretation of data, factual claims they may rely on, or a multi-step argument — invoke",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/anthropics/skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/anthropics/skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # discernment-nudge",
+   "nearest_local": [
+    {
+     "skill": "xlsx",
+     "shared_tokens": 5
+    },
+    {
+     "skill": "local-screenshot-qa",
+     "shared_tokens": 5
+    },
+    {
+     "skill": "find-skills",
+     "shared_tokens": 5
+    }
+   ]
+  },
+  {
+   "slug": "mode-creator",
+   "repo": "thedotmack/claude-mem",
+   "domain_by_desc": "memory_context",
+   "description": "Interactively create, install, activate, and verify custom claude-mem modes, including domain-specific observation types, concept tags, optional Telegram alerts, bot setup, worker restart, and startup-context verification. Use this whenever someone asks to customize what claude-mem remembers, create",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/thedotmack/claude-mem/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/thedotmack/claude-mem/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # mode-creator",
+   "nearest_local": [
+    {
+     "skill": "minimax-docx",
+     "shared_tokens": 5
+    },
+    {
+     "skill": "xlsx",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "tutor-skills",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "pre-publish-review",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "review_refactoring",
+   "description": "\"Nuclear-grade 12-agent pre-publish release gate. Runs /get-unpublished-changes to detect all changes since last npm release, spawns up to 10 ultrabrain agents for deep per-change analysis, invokes /review-work (orchestrator manual QA plus one gate reviewer) for holistic review, and 1 oracle for ove",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # pre-publish-review",
+   "nearest_local": [
+    {
+     "skill": "skill-scanner",
+     "shared_tokens": 5
+    },
+    {
+     "skill": "task-implement",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "security-audit",
+     "shared_tokens": 4
+    }
+   ]
+  },
+  {
+   "slug": "prototype",
+   "repo": "mattpocock/skills",
+   "domain_by_desc": "frontend_ui",
+   "description": "Build a throwaway prototype to answer a design question. Use when the user wants to sanity-check whether a state model or logic feels right, or explore what a UI should look like.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/mattpocock/skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/mattpocock/skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # prototype",
+   "nearest_local": [
+    {
+     "skill": "task-alignment",
+     "shared_tokens": 5
+    },
+    {
+     "skill": "awesome-design-md",
+     "shared_tokens": 5
+    },
+    {
+     "skill": "cloudbase__skillhub",
+     "shared_tokens": 4
+    }
+   ]
+  },
+  {
+   "slug": "research",
+   "repo": "mattpocock/skills",
+   "domain_by_desc": "research_search",
+   "description": "Investigate a question against high-trust primary sources and capture the findings as a Markdown file in the repo. Use when the user wants a topic researched, docs or API facts gathered, or reading legwork delegated to a background agent.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/mattpocock/skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/mattpocock/skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # research",
+   "nearest_local": [
+    {
+     "skill": "xlsx",
+     "shared_tokens": 5
+    },
+    {
+     "skill": "shippage",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "pdf",
+     "shared_tokens": 4
+    }
+   ]
+  },
+  {
+   "slug": "security-and-hardening",
+   "repo": "addyosmani/agent-skills",
+   "domain_by_desc": "security_privacy",
+   "description": "Hardens code against vulnerabilities. Use when auditing an input handler for vulnerabilities, when handling user input, authentication, data storage, or external integrations, or when checking a login flow is safe against the OWASP Top Ten. Use when building any feature that accepts untrusted data, ",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/addyosmani/agent-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/addyosmani/agent-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # security-and-hardening",
+   "nearest_local": [
+    {
+     "skill": "security-audit",
+     "shared_tokens": 5
+    },
+    {
+     "skill": "ios-application-dev",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "cloudbase",
+     "shared_tokens": 4
+    }
+   ]
+  },
+  {
+   "slug": "stitch-skill",
+   "repo": "Leonxlnx/taste-skill",
+   "domain_by_desc": "skill_meta",
+   "description": "Semantic Design System Skill for Google Stitch. Generates agent-friendly DESIGN.md files that enforce premium, anti-generic UI standards — strict typography, calibrated color, asymmetric layouts, perpetual micro-motion, and hardware-accelerated performance.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/Leonxlnx/taste-skill/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/Leonxlnx/taste-skill/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # stitch-skill",
+   "nearest_local": [
+    {
+     "skill": "minimax-pdf",
+     "shared_tokens": 5
+    },
+    {
+     "skill": "impeccable",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "awesome-design-md",
+     "shared_tokens": 4
+    }
+   ]
+  },
+  {
+   "slug": "timeline-report",
+   "repo": "thedotmack/claude-mem",
+   "domain_by_desc": "writing_docs",
+   "description": "Generate a \"Journey Into [Project]\" narrative report analyzing a project's entire development history from claude-mem's timeline. Use when asked for a timeline report, project history analysis, development journey, or full project report.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/thedotmack/claude-mem/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/thedotmack/claude-mem/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # timeline-report",
+   "nearest_local": [
+    {
+     "skill": "consulting-analysis",
+     "shared_tokens": 5
+    },
+    {
+     "skill": "skill-scanner",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "hyperframes",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "ulw-plan",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "planning_workflow",
+   "description": "\"ACTIVATES ONLY on an explicit user request for the ulw-plan workflow: the user themselves saying ulw-plan, ulw plan, /skill:ulw-plan, or asking in their own words for a work plan before coding. NEVER self-activates: a bare ulw/ultrawork run, an agent-side routing decision, or reading this file is n",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # ulw-plan",
+   "nearest_local": [
+    {
+     "skill": "pdf",
+     "shared_tokens": 5
+    },
+    {
+     "skill": "minimax-xlsx",
+     "shared_tokens": 5
+    },
+    {
+     "skill": "local-screenshot-qa",
+     "shared_tokens": 5
+    }
+   ]
+  },
+  {
+   "slug": "academic-paper",
+   "repo": "Imbad0202/academic-research-skills",
+   "domain_by_desc": "vertical_domain",
+   "description": "\"12-agent academic paper writing pipeline. 11 modes (full/plan/outline/revision/revision-coach/abstract/lit-review/format-convert/citation-check/disclosure/rebuttal-audit). 6 paper types, 5 citation formats, bilingual abstracts, LaTeX/DOCX-via-Pandoc/PDF output. Style Calibration + Writing Quality C",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/Imbad0202/academic-research-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/Imbad0202/academic-research-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # academic-paper",
+   "nearest_local": [
+    {
+     "skill": "skill-scanner",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "skill-creator",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "my-novel-writer",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "academic-paper-reviewer",
+   "repo": "Imbad0202/academic-research-skills",
+   "domain_by_desc": "review_refactoring",
+   "description": "\"Multi-perspective academic paper review with dynamic reviewer personas. Runs a 5-seat, role-separated review panel (Journal-Fit Reviewer + 3 peer-review roles + Devil's Advocate) with field-specific expertise; role separation is not a claim of independent error processes. Supports full review, re-r",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/Imbad0202/academic-research-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/Imbad0202/academic-research-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # academic-paper-reviewer",
+   "nearest_local": [
+    {
+     "skill": "agent-mbti",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "task-implement",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "deep-research",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "agent-cost-report",
+   "repo": "thedotmack/claude-mem",
+   "domain_by_desc": "data_analysis",
+   "description": "Believable agent cost report for any period, default the last 7 full days PT, not counting today. Measured tokens from Claude Code transcripts priced at OpenRouter list prices (ESTIMATED), measured provider spend when a sanctioned source exists, note-taker cost separate, Timing-style HTML/PDF plus r",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/thedotmack/claude-mem/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/thedotmack/claude-mem/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # agent-cost-report",
+   "nearest_local": [
+    {
+     "skill": "skill-scanner",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "story-setup",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "model-usage",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "api-and-interface-design",
+   "repo": "addyosmani/agent-skills",
+   "domain_by_desc": "backend_api",
+   "description": "Guides stable API and interface design. Use when designing APIs, module boundaries, or any public interface. Use when creating REST or GraphQL endpoints, defining type contracts between modules, or establishing boundaries between frontend and backend.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/addyosmani/agent-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/addyosmani/agent-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # api-and-interface-design",
+   "nearest_local": [
+    {
+     "skill": "fullstack-dev",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "agent-team-orchestration",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "mcp-builder",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "artifacts-builder",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "domain_by_desc": "frontend_ui",
+   "description": "Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern frontend web technologies (React, Tailwind CSS, shadcn/ui). Use for complex artifacts requiring state management, routing, or shadcn/ui components - not for simple single-file HTML/JSX artifacts.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/ComposioHQ/awesome-claude-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/ComposioHQ/awesome-claude-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # artifacts-builder",
+   "nearest_local": [
+    {
+     "skill": "react-native-dev",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "impeccable",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "frontend-design",
+     "shared_tokens": 4
+    }
+   ]
+  },
+  {
+   "slug": "browser-testing-with-devtools",
+   "repo": "addyosmani/agent-skills",
+   "domain_by_desc": "testing_debugging",
+   "description": "Tests in real browsers via Chrome DevTools MCP. Use when building or debugging anything that runs in a browser. Use when you need to inspect the DOM, capture console errors, analyze network requests, profile performance, or verify visual output with real runtime data. Requires the chrome-devtools MC",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/addyosmani/agent-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/addyosmani/agent-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # browser-testing-with-devtools",
+   "nearest_local": [
+    {
+     "skill": "web-performance-audit",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "skill-scanner",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "browser-cdp",
+     "shared_tokens": 4
+    }
+   ]
+  },
+  {
+   "slug": "ci-cd-and-automation",
+   "repo": "addyosmani/agent-skills",
+   "domain_by_desc": "mcp_tooling",
+   "description": "Automates CI/CD pipeline setup. Use when setting up or modifying build and deployment pipelines. Use when you need to automate quality gates, configure test runners in CI, or establish deployment strategies.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/addyosmani/agent-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/addyosmani/agent-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # ci-cd-and-automation",
+   "nearest_local": [
+    {
+     "skill": "agent-team-orchestration",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "smooth-browser",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "react-native-dev",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "cloud-sync",
+   "repo": "thedotmack/claude-mem",
+   "domain_by_desc": "deploy_infra",
+   "description": "Set up or check claude-mem cloud sync with cmem.ai Pro. Use when the user says \"set up cloud sync\", \"sync my memories\", \"cmem pro\", \"cloud backup\", \"sync status\", or wants their memory database backed up or synced to their cmem.ai account. allowed-tools: - Bash - Read - AskUserQuestion",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/thedotmack/claude-mem/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/thedotmack/claude-mem/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # cloud-sync",
+   "nearest_local": [
+    {
+     "skill": "xlsx",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "aviationstack-flight-tracker",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "yourself-skill",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "coding-agent-sessions",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "skill_meta",
+   "description": "\"Finds, reads, and reconstructs coding-agent sessions across Codex, Claude, OpenCode, OMO/Senpi, and other local agent logs. Use when asked to find or search past sessions, transcripts, or subagent runs, or to recover what an earlier session did.\"",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # coding-agent-sessions",
+   "nearest_local": [
+    {
+     "skill": "story-setup",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "model-usage",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "coding-agent",
+     "shared_tokens": 4
+    }
+   ]
+  },
+  {
+   "slug": "connect",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "domain_by_desc": "writing_docs",
+   "description": "Connect Claude to any app. Send emails, create issues, post messages, update databases - take real actions across Gmail, Slack, GitHub, Notion, and 1000+ services.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/ComposioHQ/awesome-claude-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/ComposioHQ/awesome-claude-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # connect",
+   "nearest_local": [
+    {
+     "skill": "imap-smtp-email",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "email-daily-summary",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "gmail",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "developer-growth-analysis",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "domain_by_desc": "writing_docs",
+   "description": "Analyzes your recent Claude Code chat history to identify coding patterns, development gaps, and areas for improvement, curates relevant learning resources from HackerNews, and automatically sends a personalized growth report to your Slack DMs.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/ComposioHQ/awesome-claude-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/ComposioHQ/awesome-claude-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # developer-growth-analysis",
+   "nearest_local": [
+    {
+     "skill": "ios-application-dev",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "spec-to-implementation",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "open-lesson",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "file-organizer",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "domain_by_desc": "memory_context",
+   "description": "Intelligently organizes your files and folders across your computer by understanding context, finding duplicates, suggesting better structures, and automating cleanup tasks. Reduces cognitive load and keeps your digital workspace tidy without manual effort.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/ComposioHQ/awesome-claude-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/ComposioHQ/awesome-claude-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # file-organizer",
+   "nearest_local": [
+    {
+     "skill": "computer-use-guidance-windows",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "research-documentation",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "md-to-pdf-cjk",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "git-guardrails-claude-code",
+   "repo": "mattpocock/skills",
+   "domain_by_desc": "mcp_tooling",
+   "description": "Set up Claude Code hooks to block dangerous git commands (push, reset --hard, clean, branch -D, etc.) before they execute. Use when user wants to prevent destructive git operations, add git safety hooks, or block git push/reset in Claude Code.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/mattpocock/skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/mattpocock/skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # git-guardrails-claude-code",
+   "nearest_local": [
+    {
+     "skill": "skill-scanner",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "setup-pre-commit",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "refactoring",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "give-me-tips",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "planning_workflow",
+   "description": "\"Explains any senpi tip in depth, including Tip: lines in the TUI. Use when the user asks about a tip, what a tipped feature does, or which tips they can see.\" metadata: short-description: Deep, verified, brag-worthy explanations of any senpi tip",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # give-me-tips",
+   "nearest_local": [
+    {
+     "skill": "local-screenshot-qa",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "ppt-master",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "news-summary",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "gpt-tasteskill",
+   "repo": "Leonxlnx/taste-skill",
+   "domain_by_desc": "frontend_ui",
+   "description": "Elite UX/UI & Advanced GSAP Motion Engineer. Enforces Python-driven true randomization for layout variance, strict AIDA page structure, wide editorial typography (bans 6-line wraps), gapless bento grids, strict GSAP ScrollTriggers (pinning, stacking, scrubbing), inline micro-images, and massive sect",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/Leonxlnx/taste-skill/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/Leonxlnx/taste-skill/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # gpt-tasteskill",
+   "nearest_local": [
+    {
+     "skill": "frontend-skill",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "web-performance-audit",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "minimax-pdf",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "how-it-works",
+   "repo": "thedotmack/claude-mem",
+   "domain_by_desc": "memory_context",
+   "description": "Explain how claude-mem captures observations, when memory injection kicks in, and where data lives. Use when the user asks \"how does claude-mem work?\" or \"what is this thing doing?\".",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/thedotmack/claude-mem/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/thedotmack/claude-mem/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # how-it-works",
+   "nearest_local": [
+    {
+     "skill": "local-screenshot-qa",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "aviationstack-flight-tracker",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "xlsx",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "idea-refine",
+   "repo": "addyosmani/agent-skills",
+   "domain_by_desc": "planning_workflow",
+   "description": "Refines raw ideas into sharp, actionable concepts through structured divergent and convergent thinking. Use when an idea is still vague, when you need to stress-test assumptions before committing to a plan, or when you want to expand options before converging on one. Triggers on \"ideate\", \"refine th",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/addyosmani/agent-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/addyosmani/agent-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # idea-refine",
+   "nearest_local": [
+    {
+     "skill": "task-alignment",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "doc-coauthoring",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "zoom-out",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "image-to-code-skill",
+   "repo": "Leonxlnx/taste-skill",
+   "domain_by_desc": "media_generation",
+   "description": "Elite website image-to-code skill for Codex. For visually important web tasks, it must first generate the design image(s) itself, deeply analyze them, then implement the website to match them as closely as possible. In Codex, it must prefer large, readable, section-specific images instead of tiny co",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/Leonxlnx/taste-skill/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/Leonxlnx/taste-skill/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # image-to-code-skill",
+   "nearest_local": [
+    {
+     "skill": "minimax-pdf",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "local-txt2img",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "byted-seedream-image-generate",
+     "shared_tokens": 4
+    }
+   ]
+  },
+  {
+   "slug": "knowledge-agent",
+   "repo": "thedotmack/claude-mem",
+   "domain_by_desc": "memory_context",
+   "description": "Build and query AI-powered knowledge bases from claude-mem observations. Use when users want to create focused \"brains\" from their observation history, ask questions about past work patterns, or compile expertise on specific topics.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/thedotmack/claude-mem/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/thedotmack/claude-mem/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # knowledge-agent",
+   "nearest_local": [
+    {
+     "skill": "tutor-skills",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "skill-creator",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "habit-tracker",
+     "shared_tokens": 4
+    }
+   ]
+  },
+  {
+   "slug": "langsmith-fetch",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "domain_by_desc": "memory_context",
+   "description": "Debug LangChain and LangGraph agents by fetching execution traces from LangSmith Studio. Use when debugging agent behavior, investigating errors, analyzing tool calls, checking memory operations, or examining agent performance. Automatically fetches recent traces and analyzes execution patterns. Req",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/ComposioHQ/awesome-claude-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/ComposioHQ/awesome-claude-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # langsmith-fetch",
+   "nearest_local": [
+    {
+     "skill": "agent-mbti",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "obsidian-cli",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "crash-expert-skill",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "lcx-doctor",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "writing_docs",
+   "description": "\"Diagnose LazyCodex and Codex CLI installation health against the latest sources. Use whenever the user asks for a doctor or health check, says LazyCodex, lazycodex-ai, omo-codex, or Codex behaves oddly after an install, update, or config change, suspects a stale, drifted, or broken setup, or wants ",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # lcx-doctor",
+   "nearest_local": [
+    {
+     "skill": "task-implement",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "skill-scanner",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "pdf",
+     "shared_tokens": 4
+    }
+   ]
+  },
+  {
+   "slug": "learn-codebase",
+   "repo": "thedotmack/claude-mem",
+   "domain_by_desc": "media_generation",
+   "description": "Prime a codebase by reading every source file in full. Use when starting work on a new or unfamiliar project, or when the user asks to \"learn the codebase\", \"read the codebase\", \"prime\", or \"get up to speed\".",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/thedotmack/claude-mem/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/thedotmack/claude-mem/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # learn-codebase",
+   "nearest_local": [
+    {
+     "skill": "pdf",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "minimax-xlsx",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "xlsx",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "mass-ulw",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "planning_workflow",
+   "description": "\"Drives dependency-ordered child work through the native workflow tool, one run per phase with retry/amend/send recovery. Use when the user asks for mass-ulw, a DAG of tasks, or fan-out work where some tasks must wait on others.\" argument-hint: \"<task>\" metadata: short-description: Dependency-graph ",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # mass-ulw",
+   "nearest_local": [
+    {
+     "skill": "xlsx",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "things-mac",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "ppt-master",
+     "shared_tokens": 4
+    }
+   ]
+  },
+  {
+   "slug": "mem-search",
+   "repo": "thedotmack/claude-mem",
+   "domain_by_desc": "memory_context",
+   "description": ">- Use this when the user asks to search memory, \"did we already solve this?\", \"how did we do X last time?\", or wants work from previous sessions.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/thedotmack/claude-mem/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/thedotmack/claude-mem/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # mem-search",
+   "nearest_local": [
+    {
+     "skill": "local-realtime-translator",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "yourself-skill",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "xlsx",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "mem-setup",
+   "repo": "thedotmack/claude-mem",
+   "domain_by_desc": "memory_context",
+   "description": "> This skill should be used when the user asks to \"set up claude-mem\", \"pair claude-mem\", \"connect cmem\", \"add my cmem key\", \"set up cloud sync in Cowork\", or provides cmem.ai Connect values (sync token, user id, SyncHub URL) for this plugin. Configures the claude-mem-cowork plugin credentials. meta",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/thedotmack/claude-mem/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/thedotmack/claude-mem/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # mem-setup",
+   "nearest_local": [
+    {
+     "skill": "news-summary",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "local-img2img",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "canvas-design",
+     "shared_tokens": 4
+    }
+   ]
+  },
+  {
+   "slug": "migrate-to-shoehorn",
+   "repo": "mattpocock/skills",
+   "domain_by_desc": "testing_debugging",
+   "description": "Migrate test files from `as` type assertions to @total-typescript/shoehorn. Use when user mentions shoehorn, wants to replace `as` in tests, or needs partial test data.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/mattpocock/skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/mattpocock/skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # migrate-to-shoehorn",
+   "nearest_local": [
+    {
+     "skill": "tdd",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "setup-pre-commit",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "darwin-skill",
+     "shared_tokens": 4
+    }
+   ]
+  },
+  {
+   "slug": "openclaw",
+   "repo": "thedotmack/claude-mem",
+   "domain_by_desc": "memory_context",
+   "description": "# Claude-Mem OpenClaw Plugin — Setup Guide This guide walks through setting up the claude-mem plugin on an OpenClaw gateway. By the end, your agents will have persistent memory across sessions via system prompt context injection, and optionally a real-time observation feed streaming to a messaging c",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/thedotmack/claude-mem/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/thedotmack/claude-mem/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # openclaw",
+   "nearest_local": [
+    {
+     "skill": "skill-scanner",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "task-alignment",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "stealth-browser",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "opencode-qa",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "testing_debugging",
+   "description": "\"QA opencode itself, per case: verify the CLI/terminal (opencode run, db, serve, export), prove a specific plugin hook/action/event fired via the SSE event stream, smoke-test the TUI under tmux, and investigate sessions in opencode's SQLite DB by id, title/name, or message text. Ships tested helper ",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # opencode-qa",
+   "nearest_local": [
+    {
+     "skill": "cloudflare-worker-builder",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "tmux",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "task-implement",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "performance-optimization",
+   "repo": "addyosmani/agent-skills",
+   "domain_by_desc": "planning_workflow",
+   "description": "Optimizes application performance across frontend, backend, queries, and databases. Use when performance requirements exist, when you suspect performance regressions, when Core Web Vitals or load times need improvement, when N+1 query patterns need fixing, or when profiling reveals bottlenecks.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/addyosmani/agent-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/addyosmani/agent-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # performance-optimization",
+   "nearest_local": [
+    {
+     "skill": "web-performance-audit",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "tavily",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "neodata-financial-search",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "planning-and-task-breakdown",
+   "repo": "addyosmani/agent-skills",
+   "domain_by_desc": "planning_workflow",
+   "description": "Breaks work into ordered tasks. Use when you have a spec or clear requirements and need to break work into implementable tasks. Use when a task feels too large to start, when you need to estimate scope, or when parallel work is possible.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/addyosmani/agent-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/addyosmani/agent-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # planning-and-task-breakdown",
+   "nearest_local": [
+    {
+     "skill": "writing-plans",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "spec-to-implementation",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "task-implement",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "pptx",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "domain_by_desc": "office_documents",
+   "description": "\"Presentation creation, editing, and analysis. When Claude needs to work with presentations (.pptx files) for: (1) Creating new presentations, (2) Modifying or editing content, (3) Working with layouts, (4) Adding comments or speaker notes, or any other presentation tasks\"",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/ComposioHQ/awesome-claude-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/ComposioHQ/awesome-claude-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # pptx",
+   "nearest_local": [
+    {
+     "skill": "ppt-master",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "obsidian-bases",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "lark-unified",
+     "shared_tokens": 4
+    }
+   ]
+  },
+  {
+   "slug": "publish",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "deploy_infra",
+   "description": "\"Publish oh-my-opencode to npm by triggering the GitHub Actions publish workflow and verifying its artifacts. Ship-only: never runs pre-publish-review or re-reviews merged code unless the user explicitly asks. Argument: <patch|minor|major|explicit-semver>. Triggers: publish, release, deploy, npm pub",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # publish",
+   "nearest_local": [
+    {
+     "skill": "github-pages-auto-deploy",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "web-deploy",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "shippage",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "redesign-skill",
+   "repo": "Leonxlnx/taste-skill",
+   "domain_by_desc": "review_refactoring",
+   "description": "Upgrades existing websites and apps to premium quality. Audits current design, identifies generic AI patterns, and applies high-end design standards without breaking functionality. Works with any CSS framework or vanilla CSS.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/Leonxlnx/taste-skill/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/Leonxlnx/taste-skill/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # redesign-skill",
+   "nearest_local": [
+    {
+     "skill": "impeccable",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "frontend-design",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "web-performance-audit",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "remove-ai-slops",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "testing_debugging",
+   "description": "\"Removes AI-generated code smells from branch changes or an explicit file list behind regression tests. Use when the user asks to clean up, deslop, or remove AI-slop patterns from recent changes.\"",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # remove-ai-slops",
+   "nearest_local": [
+    {
+     "skill": "ui-ux-pro-max",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "refactoring",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "things-mac",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "remove-deadcode",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "misc",
+   "description": "\"Remove unused code from this project with ultrawork mode, LSP-verified safety, atomic commits. Triggers: remove dead code, dead code, cleanup, remove unused.\"",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # remove-deadcode",
+   "nearest_local": [
+    {
+     "skill": "skill-scanner",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "stealth-browser",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "shadcn",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "rules",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "misc",
+   "description": "Use when the user asks about Codex Rules behavior, injected project rules, supported rule file locations, matching, or environment configuration.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # rules",
+   "nearest_local": [
+    {
+     "skill": "awesome-design-md",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "refactoring",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "pdf",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "scaffold-exercises",
+   "repo": "mattpocock/skills",
+   "domain_by_desc": "deploy_infra",
+   "description": "Create exercise directory structures with sections, problems, solutions, and explainers that pass linting. Use when user wants to scaffold exercises, create exercise stubs, or set up a new course section.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/mattpocock/skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/mattpocock/skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # scaffold-exercises",
+   "nearest_local": [
+    {
+     "skill": "cloudflare-worker-builder",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "yourself-skill",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "xlsx",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "slack-gif-creator",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "domain_by_desc": "media_generation",
+   "description": "Toolkit for creating animated GIFs optimized for Slack, with validators for size constraints and composable animation primitives. This skill applies when users request animated GIFs or emoji animations for Slack from descriptions like \"make me a GIF for Slack of X doing Y\".",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/ComposioHQ/awesome-claude-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/ComposioHQ/awesome-claude-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # slack-gif-creator",
+   "nearest_local": [
+    {
+     "skill": "hyperframes",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "skill-creator",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "remotion-video-toolkit",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "soft-skill",
+   "repo": "Leonxlnx/taste-skill",
+   "domain_by_desc": "skill_meta",
+   "description": "Teaches the AI to design like a high-end agency. Defines the exact fonts, spacing, shadows, card structures, and animations that make a website feel expensive. Blocks all the common defaults that make AI designs look cheap or generic.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/Leonxlnx/taste-skill/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/Leonxlnx/taste-skill/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # soft-skill",
+   "nearest_local": [
+    {
+     "skill": "minimax-pdf",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "awesome-design-md",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "html-ppt",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "source-driven-development",
+   "repo": "addyosmani/agent-skills",
+   "domain_by_desc": "testing_debugging",
+   "description": "Grounds every implementation decision in official documentation. Use when you want to verify an approach against the official docs before implementing it, or when you want authoritative, source-cited code free from outdated patterns. Use when building with any framework or library where correctness ",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/addyosmani/agent-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/addyosmani/agent-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # source-driven-development",
+   "nearest_local": [
+    {
+     "skill": "doc-coauthoring",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "agent-mbti",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "ui-ux-pro-max",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "twitter-algorithm-optimizer",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "domain_by_desc": "writing_docs",
+   "description": "Analyze and optimize tweets for maximum reach using Twitter's open-source algorithm insights. Rewrite and edit user tweets to improve engagement and visibility based on how the recommendation system ranks content.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/ComposioHQ/awesome-claude-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/ComposioHQ/awesome-claude-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # twitter-algorithm-optimizer",
+   "nearest_local": [
+    {
+     "skill": "content-repurposer",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "xurl",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "x-longform-post",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "ulw-execute",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "planning_workflow",
+   "description": "\"Executes a written ulw-plan work plan with Boulder state, evidence ledger, worktree discipline, and parallel subagents. Use when the user says ulw-execute or asks to run a .omo/plans plan.\"",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # ulw-execute",
+   "nearest_local": [
+    {
+     "skill": "task-implement",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "travel-planning",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "canvas-design",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "understand-figma",
+   "repo": "Egonex-AI/Understand-Anything",
+   "domain_by_desc": "memory_context",
+   "description": "Analyze a Figma file via the Figma REST API and generate an interactive design knowledge graph (pages, screens, components, component sets, instances, design tokens) with a kind:\"design\" dashboard.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/Egonex-AI/Understand-Anything/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/Egonex-AI/Understand-Anything/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # understand-figma",
+   "nearest_local": [
+    {
+     "skill": "teachany",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "landing-page-generator",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "ui-ux-pro-max",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "video-downloader",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "domain_by_desc": "media_generation",
+   "description": "Download YouTube videos with customizable quality and format options. Use this skill when the user asks to download, save, or grab YouTube videos. Supports various quality settings (best, 1080p, 720p, 480p, 360p), multiple formats (mp4, webm, mkv), and audio-only downloads as MP3.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/ComposioHQ/awesome-claude-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/ComposioHQ/awesome-claude-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # video-downloader",
+   "nearest_local": [
+    {
+     "skill": "workrally",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "pdf",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "byted-seedream-image-generate",
+     "shared_tokens": 4
+    }
+   ]
+  },
+  {
+   "slug": "wayfinder",
+   "repo": "mattpocock/skills",
+   "domain_by_desc": "planning_workflow",
+   "description": "Plan a huge chunk of work (more than one agent session can hold) as a shared map of decision tickets on your issue tracker, and resolve them one at a time until the way to the destination is clear.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/mattpocock/skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/mattpocock/skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # wayfinder",
+   "nearest_local": [
+    {
+     "skill": "grill-me",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "task-implement",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "task-alignment",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "web-artifacts-builder",
+   "repo": "anthropics/skills",
+   "domain_by_desc": "frontend_ui",
+   "description": "Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern frontend web technologies (React, Tailwind CSS, shadcn/ui). Use for complex artifacts requiring state management, routing, or shadcn/ui components - not for simple single-file HTML/JSX artifacts.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/anthropics/skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/anthropics/skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # web-artifacts-builder",
+   "nearest_local": [
+    {
+     "skill": "react-native-dev",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "impeccable",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "frontend-design",
+     "shared_tokens": 4
+    }
+   ]
+  },
+  {
+   "slug": "what-the",
+   "repo": "thedotmack/claude-mem",
+   "domain_by_desc": "misc",
+   "description": "\"What the? Use when the user wants a plain-English breakdown of something technical — the who, what, where, why, and when.\"",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/thedotmack/claude-mem/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/thedotmack/claude-mem/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # what-the",
+   "nearest_local": [
+    {
+     "skill": "xlsx",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "task-implement",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "local-realtime-translator",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "wowerpoint",
+   "repo": "thedotmack/claude-mem",
+   "domain_by_desc": "memory_context",
+   "description": "Turn one document into a kawaii NotebookLM slide-deck PDF. Use for \"wowerpoint this\", \"make a deck about <file>\", \"turn this report into slides\", or any request to render a single document as shareable narrative slides.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/thedotmack/claude-mem/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/thedotmack/claude-mem/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # wowerpoint",
+   "nearest_local": [
+    {
+     "skill": "minimax-pdf",
+     "shared_tokens": 4
+    },
+    {
+     "skill": "xlsx",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "pptx-generator",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "brand",
+   "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
+   "domain_by_desc": "frontend_ui",
+   "description": "Brand voice, visual identity, messaging frameworks, asset management, brand consistency. Activate for branded content, tone of voice, marketing assets, brand compliance, style guides.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/nextlevelbuilder/ui-ux-pro-max-skill/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/nextlevelbuilder/ui-ux-pro-max-skill/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # brand",
+   "nearest_local": [
+    {
+     "skill": "minimax-pdf",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "frontend-dev",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "content-repurposer",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "brandkit",
+   "repo": "Leonxlnx/taste-skill",
+   "domain_by_desc": "frontend_ui",
+   "description": "Premium brand-kit image generation skill for creating high-end brand-guidelines boards, logo systems, identity decks, and visual-world presentations. Trained for minimalist, cinematic, editorial, dark-tech, luxury, cultural, security, gaming, developer-tool, and consumer-app brand systems. Optimized",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/Leonxlnx/taste-skill/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/Leonxlnx/taste-skill/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # brandkit",
+   "nearest_local": [
+    {
+     "skill": "shader-dev",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "minimax-pdf",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "frontend-skill",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "brutalist-skill",
+   "repo": "Leonxlnx/taste-skill",
+   "domain_by_desc": "frontend_ui",
+   "description": "Raw mechanical interfaces fusing Swiss typographic print with military terminal aesthetics. Rigid grids, extreme type scale contrast, utilitarian color, analog degradation effects. For data-heavy dashboards, portfolios, or editorial sites that need to feel like declassified blueprints.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/Leonxlnx/taste-skill/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/Leonxlnx/taste-skill/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # brutalist-skill",
+   "nearest_local": [
+    {
+     "skill": "impeccable",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "frontend-design",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "data-visualization",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "ccs-align",
+   "repo": "thedotmack/claude-mem",
+   "domain_by_desc": "backend_api",
+   "description": "Run the CCS Align seat's hourly breathing cycle — prove the local claude-mem worker is healthy, pull needle observations through search → timeline → get_observations, land them in a seat-owned middle cache via atomic grab → append → filter exclude-marks → replace, manage exclude marks, and walk hous",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/thedotmack/claude-mem/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/thedotmack/claude-mem/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # ccs-align",
+   "nearest_local": [
+    {
+     "skill": "things-mac",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "task-alignment",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "skill-scanner",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "code-review-and-quality",
+   "repo": "addyosmani/agent-skills",
+   "domain_by_desc": "testing_debugging",
+   "description": "Conducts multi-axis code review. Use before merging any change. Use when reviewing code written by yourself, another agent, or a human. Use when you need to assess code quality across multiple dimensions before it enters the main branch. Use when asked to review a diff or a pull request, even when t",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/addyosmani/agent-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/addyosmani/agent-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # code-review-and-quality",
+   "nearest_local": [
+    {
+     "skill": "zoom-out",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "skill-scanner",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "find-skills",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "codex-qa",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "testing_debugging",
+   "description": "\"QA the omo Codex Light edition (lazycodex / packages/omo-codex) itself, in strict isolation so ONLY our plugin is exercised, never the user's real ~/.codex. The first-party method drives the real `codex app-server` against an isolated CODEX_HOME plus a LOCAL mock model (no real API call), and prove",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # codex-qa",
+   "nearest_local": [
+    {
+     "skill": "model-usage",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "local-txt2img",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "local-realtime-translator",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "constraint-driven-development",
+   "repo": "addyosmani/agent-skills",
+   "domain_by_desc": "testing_debugging",
+   "description": "Establishes a project's quality bar as a written contract and stops agents quietly lowering it. Interviews the user on which dimensions matter, supplies sane default thresholds when they have no number in mind, records everything in CONSTRAINTS.md, and watches the diff for a weakened bar — new @ts-i",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/addyosmani/agent-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/addyosmani/agent-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # constraint-driven-development",
+   "nearest_local": [
+    {
+     "skill": "tdd",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "task-implement",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "task-alignment",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "context-engineering",
+   "repo": "addyosmani/agent-skills",
+   "domain_by_desc": "memory_context",
+   "description": "Optimizes agent context setup. Use when starting a new session, when agent output quality degrades, when switching between tasks, or when you need to configure rules files and context for a project.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/addyosmani/agent-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/addyosmani/agent-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # context-engineering",
+   "nearest_local": [
+    {
+     "skill": "zoom-out",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "content-repurposer",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "xlsx",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "dag-library",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "data_analysis",
+   "description": "\"Stores a DAG definition once and re-runs it by name, instead of pasting the definition into every run. Use when the user wants to save a DAG, run a saved one, or schedule the same multi-agent graph repeatedly.\" metadata: short-description: Store and re-run named dag definitions",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # dag-library",
+   "nearest_local": [
+    {
+     "skill": "xlsx",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "llm-wiki",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "defuddle",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "data-scientist",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "data_analysis",
+   "description": "\"Processes and analyzes data with resident-kernel engines (DuckDB, Polars) and one-shot tools. Use for CSV/parquet/JSON analysis, group-by/join/aggregation, time series, distributions, cleaning, or plotting a dataset.\"",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # data-scientist",
+   "nearest_local": [
+    {
+     "skill": "xlsx",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "multi-search-engine",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "ecomseer",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "deprecation-and-migration",
+   "repo": "addyosmani/agent-skills",
+   "domain_by_desc": "backend_api",
+   "description": "Manages deprecation and migration. Use when removing old systems, APIs, or features. Use when migrating users from one implementation to another. Use when migrating a database schema in production, such as renaming or dropping a column without downtime (expand/contract). Use when deciding whether to",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/addyosmani/agent-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/addyosmani/agent-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # deprecation-and-migration",
+   "nearest_local": [
+    {
+     "skill": "figma",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "cloudbase",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "xlsx",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "documentation-and-adrs",
+   "repo": "addyosmani/agent-skills",
+   "domain_by_desc": "writing_docs",
+   "description": "Records decisions and documentation. Use when you need to document an architecture decision (ADR) or the reasoning behind a design choice, when changing public APIs, shipping features, or when you need to record context that future engineers and agents will need to understand the codebase.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/addyosmani/agent-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/addyosmani/agent-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # documentation-and-adrs",
+   "nearest_local": [
+    {
+     "skill": "zoom-out",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "doc-coauthoring",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "ui-ux-pro-max",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "domain-name-brainstormer",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "domain_by_desc": "planning_workflow",
+   "description": "Generates creative domain name ideas for your project and checks availability across multiple TLDs (.com, .io, .dev, .ai, etc.). Saves hours of brainstorming and manual checking.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/ComposioHQ/awesome-claude-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/ComposioHQ/awesome-claude-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # domain-name-brainstormer",
+   "nearest_local": [
+    {
+     "skill": "content-repurposer",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "skill-scanner",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "research-documentation",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "doubt-driven-development",
+   "repo": "addyosmani/agent-skills",
+   "domain_by_desc": "memory_context",
+   "description": "Subjects every non-trivial decision to a fresh-context adversarial review before it stands. Use when you want every assumption cross-examined before proceeding, when stress-testing a plan for hidden failure modes, when correctness matters more than speed, when working in unfamiliar code, when stakes",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/addyosmani/agent-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/addyosmani/agent-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # doubt-driven-development",
+   "nearest_local": [
+    {
+     "skill": "zoom-out",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "verification-before-completion",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "skill-scanner",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "frontend",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "frontend_ui",
+   "description": "\"Builds, styles, and polishes web UI and UX. Use for any frontend, page, component, styling, layout, animation, or visual-quality task, or when asked to make an interface look or feel a certain way.\"",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # frontend",
+   "nearest_local": [
+    {
+     "skill": "web-performance-audit",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "ui-ux-pro-max",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "minimax-pdf",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "git-master",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "planning_workflow",
+   "description": "\"Handles git work: atomic commits, rebase, squash, blame, bisect, reflog, and history questions. Use whenever a task needs a commit or a git-history investigation; skip for ordinary code edits.\"",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # git-master",
+   "nearest_local": [
+    {
+     "skill": "electron",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "writing-plans",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "task-implement",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "git-workflow-and-versioning",
+   "repo": "addyosmani/agent-skills",
+   "domain_by_desc": "planning_workflow",
+   "description": "Structures git workflow practices. Use when making any code change. Use when committing, branching, resolving conflicts, splitting uncommitted work in a messy working tree into clean atomic commits, opening or reviewing a pull request (PR), pushing to a remote, or when you need to organize work acro",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/addyosmani/agent-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/addyosmani/agent-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # git-workflow-and-versioning",
+   "nearest_local": [
+    {
+     "skill": "web-search-exa",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "ios-application-dev",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "email-skill",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "github-triage",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "planning_workflow",
+   "description": "\"Read-only GitHub triage for issues AND PRs. 1 item = 1 background task (category: quick). Analyzes all open items and writes evidence-backed reports to /tmp/{datetime}/. Every claim requires a GitHub permalink as proof. NEVER takes any action on GitHub - no comments, no merges, no closes, no labels",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # github-triage",
+   "nearest_local": [
+    {
+     "skill": "deep-research",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "xlsx",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "verification-before-completion",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "grill-with-docs",
+   "repo": "mattpocock/skills",
+   "domain_by_desc": "writing_docs",
+   "description": "A relentless interview to sharpen a plan or design, which also creates docs (ADR's and glossary) as we go.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/mattpocock/skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/mattpocock/skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # grill-with-docs",
+   "nearest_local": [
+    {
+     "skill": "grill-me",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "ui-ux-pro-max",
+     "shared_tokens": 1
+    },
+    {
+     "skill": "tutor-skills",
+     "shared_tokens": 1
+    }
+   ]
+  },
+  {
+   "slug": "hyperplan",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "planning_workflow",
+   "description": "\"Adversarial multi-agent planning skill. Self-orchestrates 5 hostile category members (unspecified-low, unspecified-high, deep, ultrabrain, artistry) via team-mode for ruthless cross-critique debate, distills only the defensible insights, then MANDATORILY hands the distilled insight bundle to the `p",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # hyperplan",
+   "nearest_local": [
+    {
+     "skill": "find-skills",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "task-implement",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "task-alignment",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "i-have-adhd",
+   "repo": "ayghri/i-have-adhd",
+   "domain_by_desc": "memory_context",
+   "description": "'Shape output for a reader with ADHD: lead with the next action, number multi-step work, restate state across turns, suppress tangents, give specific time estimates, make wins visible. Invoke with /i-have-adhd; stays on until \"stop adhd mode\".' disable-model-invocation: true license: MIT metadata: t",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/ayghri/i-have-adhd/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/ayghri/i-have-adhd/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # i-have-adhd",
+   "nearest_local": [
+    {
+     "skill": "minimax-pdf",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "minimax-docx",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "computer-use-guidance-windows",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "improve-codebase-architecture",
+   "repo": "mattpocock/skills",
+   "domain_by_desc": "skill_meta",
+   "description": "Scan a codebase for deepening opportunities, present them as a visual HTML report, then grill through whichever one you pick.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/mattpocock/skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/mattpocock/skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # improve-codebase-architecture",
+   "nearest_local": [
+    {
+     "skill": "minimax-pdf",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "frontend-slides",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "xlsx",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "install",
+   "repo": "thedotmack/claude-mem",
+   "domain_by_desc": "skill_meta",
+   "description": ">- Use this when setting up claude-mem on Cursor: local or remote worker, local host-login observer or remote cmem.ai inference.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/thedotmack/claude-mem/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/thedotmack/claude-mem/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # install",
+   "nearest_local": [
+    {
+     "skill": "skill-scanner",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "web-deploy",
+     "shared_tokens": 1
+    },
+    {
+     "skill": "things-mac",
+     "shared_tokens": 1
+    }
+   ]
+  },
+  {
+   "slug": "karpathy-guidelines",
+   "repo": "multica-ai/andrej-karpathy-skills",
+   "domain_by_desc": "review_refactoring",
+   "description": "Behavioral guidelines to reduce common LLM coding mistakes. Use when writing, reviewing, or refactoring code to avoid overcomplication, make surgical changes, surface assumptions, and define verifiable success criteria.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/multica-ai/andrej-karpathy-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/multica-ai/andrej-karpathy-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # karpathy-guidelines",
+   "nearest_local": [
+    {
+     "skill": "ios-application-dev",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "humanizer",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "ui-ux-pro-max",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "last30days",
+   "repo": "mvanhorn/last30days-skill",
+   "domain_by_desc": "research_search",
+   "description": "\"Research what people actually say about any topic in the last 30 days. Pulls posts and engagement from Reddit, X, YouTube, TikTok, Hacker News, Polymarket, GitHub, and the web. Includes a doctor health check to diagnose broken or missing sources.\" argument-hint: 'last30days nvidia earnings reaction",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/mvanhorn/last30days-skill/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/mvanhorn/last30days-skill/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # last30days",
+   "nearest_local": [
+    {
+     "skill": "tavily",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "notebooklm-studio",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "gmail",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "lcx-contribute-bug-fix",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "testing_debugging",
+   "description": "\"Contribute a verified bug fix for LazyCodex, lazycodex-ai, omo-codex, bundled Codex skills, or upstream Codex CLI bugs. Opens a fork PR only for upstream openai/codex; LazyCodex-owned defects become a verified-fix issue on code-yeongyu/lazycodex (never a PR — that repo is a generated distribution m",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # lcx-contribute-bug-fix",
+   "nearest_local": [
+    {
+     "skill": "obsidian-cli",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "minimax-xlsx",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "github-trending-cn",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "lead-research-assistant",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "domain_by_desc": "research_search",
+   "description": "Identifies high-quality leads for your product or service by analyzing your business, searching for target companies, and providing actionable contact strategies. Perfect for sales, business development, and marketing professionals.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/ComposioHQ/awesome-claude-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/ComposioHQ/awesome-claude-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # lead-research-assistant",
+   "nearest_local": [
+    {
+     "skill": "frontend-dev",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "spec-to-implementation",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "product-showcase-site",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "make-plan",
+   "repo": "thedotmack/claude-mem",
+   "domain_by_desc": "planning_workflow",
+   "description": "Create a detailed, phased implementation plan with documentation discovery. Use when asked to plan a feature, task, or multi-step implementation — especially before executing with do.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/thedotmack/claude-mem/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/thedotmack/claude-mem/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # make-plan",
+   "nearest_local": [
+    {
+     "skill": "xlsx",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "writing-plans",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "travel-planning",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "observability-and-instrumentation",
+   "repo": "addyosmani/agent-skills",
+   "domain_by_desc": "testing_debugging",
+   "description": "Instruments code so production behavior is visible and diagnosable. Use when adding logging, metrics, tracing, or alerting. Use when shipping any feature that runs in production and you need evidence it works. Use when production issues are reported but you can't tell what happened from the availabl",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/addyosmani/agent-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/addyosmani/agent-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # observability-and-instrumentation",
+   "nearest_local": [
+    {
+     "skill": "zoom-out",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "web-search-exa",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "web-performance-audit",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "oh-my-issues",
+   "repo": "thedotmack/claude-mem",
+   "domain_by_desc": "planning_workflow",
+   "description": "Cluster a GitHub issue backlog by root cause into a small set of plan-master issues, redirect children with a standardized comment, and bundle architectural-fix PRs that close clusters atomically. Use when an issue tracker has accumulated dozens of reports that share underlying defects, when asked t",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/thedotmack/claude-mem/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/thedotmack/claude-mem/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # oh-my-issues",
+   "nearest_local": [
+    {
+     "skill": "minimax-xlsx",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "github",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "xlsx",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "output-skill",
+   "repo": "Leonxlnx/taste-skill",
+   "domain_by_desc": "skill_meta",
+   "description": "Overrides default LLM truncation behavior. Enforces complete code generation, bans placeholder patterns, and handles token-limit splits cleanly. Apply to any task requiring exhaustive, unabridged output.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/Leonxlnx/taste-skill/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/Leonxlnx/taste-skill/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # output-skill",
+   "nearest_local": [
+    {
+     "skill": "remotion-video-toolkit",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "electron",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "xlsx",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "pathfinder",
+   "repo": "thedotmack/claude-mem",
+   "domain_by_desc": "planning_workflow",
+   "description": "Map a codebase into feature-grouped flowcharts, identify duplicated concerns across features, and propose a unified architecture. Use when asked to \"find the ideal path,\" unify duplicated systems, or audit architecture before a refactor. Emits a proposed unified flowchart plus per-system /make-plan ",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/thedotmack/claude-mem/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/thedotmack/claude-mem/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # pathfinder",
+   "nearest_local": [
+    {
+     "skill": "team-ops",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "excalidraw-diagram",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "cn-ecommerce-search",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "refactor",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "review_refactoring",
+   "description": "\"Guides a refactor, cleanup, or restructure with the right decomposition. Use when the user asks to refactor, simplify, extract, or modernize code.\"",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # refactor",
+   "nearest_local": [
+    {
+     "skill": "stagehand-browser-cli",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "refactoring",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "qq-email",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "senpi-qa",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "testing_debugging",
+   "description": "\"QA the omo Senpi adapter (packages/omo-senpi, packages/senpi-task) against the REAL senpi binary in strict isolation, and write every artifact to the one canonical evidence path .omo/evidence/omo-senpi-adapter/<slug>/. The live drivers under packages/omo-senpi/scripts/qa/ create their own isolated ",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # senpi-qa",
+   "nearest_local": [
+    {
+     "skill": "task-implement",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "minimax-pdf",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "cloudbase",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "setup-matt-pocock-skills",
+   "repo": "mattpocock/skills",
+   "domain_by_desc": "skill_meta",
+   "description": "\"Configure this repo for the engineering skills: set up its issue tracker, triage label vocabulary, and domain doc layout. Run once before first use of the other engineering skills.\"",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/mattpocock/skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/mattpocock/skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # setup-matt-pocock-skills",
+   "nearest_local": [
+    {
+     "skill": "find-skills",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "rag-eval",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "github-pages-auto-deploy",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "skill",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "skill_meta",
+   "description": "\"MUST read before searching X/Twitter with the x_search tool. When xAI is connected: date-bound every time-sensitive query (from_date >= yesterday, widen to 7 days), scope trusted accounts with allowed_x_handles, phrase queries as latest/recent with since:/from:/filter: operators, split into 2-3 sea",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # skill",
+   "nearest_local": [
+    {
+     "skill": "xlsx",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "x-longform-post",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "skill-vetter",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "smart-explore",
+   "repo": "thedotmack/claude-mem",
+   "domain_by_desc": "media_generation",
+   "description": "Token-optimized structural code search using tree-sitter AST parsing. Use instead of reading full files when you need to understand code structure, find functions, or explore a codebase efficiently.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/thedotmack/claude-mem/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/thedotmack/claude-mem/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # smart-explore",
+   "nearest_local": [
+    {
+     "skill": "zoom-out",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "web-search-exa",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "ecomseer",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "spec-driven-development",
+   "repo": "addyosmani/agent-skills",
+   "domain_by_desc": "planning_workflow",
+   "description": "Creates specs before coding. Use when starting a new project, feature, or significant change and no specification exists yet. Use when drafting a PRD or requirements document with objectives and scope, or when requirements are unclear, ambiguous, or only exist as a vague idea. Use when a single requ",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/addyosmani/agent-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/addyosmani/agent-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # spec-driven-development",
+   "nearest_local": [
+    {
+     "skill": "task-alignment",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "find-skills",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "writing-plans",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "standup",
+   "repo": "thedotmack/claude-mem",
+   "domain_by_desc": "planning_workflow",
+   "description": "Facilitate a read-only standup across git worktrees, branches, or PRs to compare changes and produce one consolidation plan. allowed-tools: - Bash - Read - Edit - Task - AskUserQuestion",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/thedotmack/claude-mem/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/thedotmack/claude-mem/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # standup",
+   "nearest_local": [
+    {
+     "skill": "xlsx",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "minimax-xlsx",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "docx",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "template",
+   "repo": "anthropics/skills",
+   "domain_by_desc": "skill_meta",
+   "description": "Replace with description of the skill and when Claude should use it.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/anthropics/skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/anthropics/skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # template",
+   "nearest_local": [
+    {
+     "skill": "internal-comms",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "skill-scanner",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "skill-creator",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "template-skill",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "domain_by_desc": "skill_meta",
+   "description": "Replace with description of the skill and when Claude should use it.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/ComposioHQ/awesome-claude-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/ComposioHQ/awesome-claude-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # template-skill",
+   "nearest_local": [
+    {
+     "skill": "internal-comms",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "skill-scanner",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "skill-creator",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "to-spec",
+   "repo": "mattpocock/skills",
+   "domain_by_desc": "planning_workflow",
+   "description": "\"Turn the current conversation into a spec and publish it to the project issue tracker: no interview, just synthesis of what you've already discussed.\"",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/mattpocock/skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/mattpocock/skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # to-spec",
+   "nearest_local": [
+    {
+     "skill": "task-alignment",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "minimax-pdf",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "local-screenshot-qa",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "to-tickets",
+   "repo": "mattpocock/skills",
+   "domain_by_desc": "planning_workflow",
+   "description": "Break a plan, spec, or the current conversation into a set of tracer-bullet tickets, each declaring its blocking edges, published to the configured tracker (edges as text in one file per ticket locally, or native blocking links on a real tracker).",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/mattpocock/skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/mattpocock/skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # to-tickets",
+   "nearest_local": [
+    {
+     "skill": "task-alignment",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "markitdown-skill",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "local-txt2img",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "triage",
+   "repo": "mattpocock/skills",
+   "domain_by_desc": "planning_workflow",
+   "description": "Move issues and external PRs through a state machine of triage roles, categorise, verify, grill if needed, and write agent-ready briefs.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/mattpocock/skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/mattpocock/skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # triage",
+   "nearest_local": [
+    {
+     "skill": "doc-coauthoring",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "minimax-pdf",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "mcp-builder",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "ultimate-browsing",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "media_generation",
+   "description": "\"Renders, drives, and screenshots web pages: JS-rendered sources, clicks and forms, persistent logins, WAF-blocked hosts (platform-native readers, stealth Chrome), and the browsing lane of a research run, with screenshots as provenance. Not for plain search or unblocked static fetch.\"",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # ultimate-browsing",
+   "nearest_local": [
+    {
+     "skill": "stealth-browser",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "stagehand-browser-cli",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "browser-use",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "ulw-research",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "research_search",
+   "description": "\"Runs maximum-saturation research with a cooperating team, claim-graph gating, and a cited, QA'd deliverable. Use when the user explicitly asks for research or a deep investigation, including any 'ulw' research wording.\" argument-hint: \"<research-topic>\" metadata: short-description: Team-default sat",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # ulw-research",
+   "nearest_local": [
+    {
+     "skill": "ppt-master",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "minimax-docx",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "github-trending-cn",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "understand",
+   "repo": "Egonex-AI/Understand-Anything",
+   "domain_by_desc": "research_search",
+   "description": "Analyze a codebase to produce an interactive knowledge graph for understanding architecture, components, and relationships",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/Egonex-AI/Understand-Anything/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/Egonex-AI/Understand-Anything/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # understand",
+   "nearest_local": [
+    {
+     "skill": "teachany",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "minimax-xlsx",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "infographic-maker",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "understand-chat",
+   "repo": "Egonex-AI/Understand-Anything",
+   "domain_by_desc": "research_search",
+   "description": "Use when you need to ask questions about a codebase or understand code using a knowledge graph",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/Egonex-AI/Understand-Anything/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/Egonex-AI/Understand-Anything/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # understand-chat",
+   "nearest_local": [
+    {
+     "skill": "zoom-out",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "web-search-exa",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "teachany",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "understand-dashboard",
+   "repo": "Egonex-AI/Understand-Anything",
+   "domain_by_desc": "memory_context",
+   "description": "Launch the interactive web dashboard to visualize a codebase's knowledge graph",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/Egonex-AI/Understand-Anything/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/Egonex-AI/Understand-Anything/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # understand-dashboard",
+   "nearest_local": [
+    {
+     "skill": "teachany",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "yourself-skill",
+     "shared_tokens": 1
+    },
+    {
+     "skill": "wps-knowledgebase",
+     "shared_tokens": 1
+    }
+   ]
+  },
+  {
+   "slug": "understand-domain",
+   "repo": "Egonex-AI/Understand-Anything",
+   "domain_by_desc": "research_search",
+   "description": "Extract business domain knowledge from a codebase and generate an interactive domain flow graph. Works standalone (lightweight scan) or derives from an existing /understand knowledge graph.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/Egonex-AI/Understand-Anything/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/Egonex-AI/Understand-Anything/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # understand-domain",
+   "nearest_local": [
+    {
+     "skill": "pptx-generator",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "minimax-pdf",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "algorithmic-art",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "understand-knowledge",
+   "repo": "Egonex-AI/Understand-Anything",
+   "domain_by_desc": "memory_context",
+   "description": "Analyze a Karpathy-pattern LLM wiki knowledge base and generate an interactive knowledge graph with entity extraction, implicit relationships, and topic clustering.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/Egonex-AI/Understand-Anything/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/Egonex-AI/Understand-Anything/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # understand-knowledge",
+   "nearest_local": [
+    {
+     "skill": "teachany",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "llm-wiki",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "wps-knowledgebase",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "using-agent-skills",
+   "repo": "addyosmani/agent-skills",
+   "domain_by_desc": "skill_meta",
+   "description": "Discovers and invokes agent skills. Use when starting a session, or when you need to decide which skill or workflow applies to the piece of work at hand. This is the meta-skill that governs how all other skills are discovered and invoked.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/addyosmani/agent-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/addyosmani/agent-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # using-agent-skills",
+   "nearest_local": [
+    {
+     "skill": "skill-creator",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "find-skills",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "cloudbase__skillhub",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "version-bump",
+   "repo": "thedotmack/claude-mem",
+   "domain_by_desc": "planning_workflow",
+   "description": "Automated semantic versioning and release workflow for Claude Code plugins. Handles version increments across package.json, marketplace.json, plugin.json manifests, build verification, git tagging, GitHub releases, and changelog generation. NPM publishing is the final human-required handoff because ",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/thedotmack/claude-mem/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/thedotmack/claude-mem/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # version-bump",
+   "nearest_local": [
+    {
+     "skill": "web-deploy",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "web-search-exa",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "story-setup",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "webapp-testing",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "domain_by_desc": "testing_debugging",
+   "description": "Toolkit for interacting with and testing local web applications using Playwright. Supports verifying frontend functionality, debugging UI behavior, capturing browser screenshots, and viewing browser logs.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/ComposioHQ/awesome-claude-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/ComposioHQ/awesome-claude-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # webapp-testing",
+   "nearest_local": [
+    {
+     "skill": "playwright-browser-automation",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "gstack",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "clawbrowser",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "weekly-digests",
+   "repo": "thedotmack/claude-mem",
+   "domain_by_desc": "writing_docs",
+   "description": "Generate a serial week-by-week narrative digest of a project's full claude-mem timeline. Splits the timeline into per-ISO-week files, then runs one consecutive subagent per week — each receiving the prior week's carry-forward block — to produce one chapter per ISO week of data. Use when asked for \"w",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/thedotmack/claude-mem/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/thedotmack/claude-mem/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # weekly-digests",
+   "nearest_local": [
+    {
+     "skill": "notebooklm-studio",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "infographic-maker",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "hyperframes",
+     "shared_tokens": 3
+    }
+   ]
+  },
+  {
+   "slug": "wizard",
+   "repo": "mattpocock/skills",
+   "domain_by_desc": "planning_workflow",
+   "description": "Generate an interactive bash wizard that walks a human through steps only they can perform. Use when provisioning infrastructure, setting up credentials or CI secrets, walking an unfamiliar third-party dashboard, or running a one-off migration or cutover. Don't invoke this for steps the agent can pe",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/mattpocock/skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/mattpocock/skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # wizard",
+   "nearest_local": [
+    {
+     "skill": "find-skills",
+     "shared_tokens": 3
+    },
+    {
+     "skill": "zoom-out",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "workrally",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "ask-matt",
+   "repo": "mattpocock/skills",
+   "domain_by_desc": "skill_meta",
+   "description": "Ask which skill or flow fits your situation. A router over the skills in this repo.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/mattpocock/skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/mattpocock/skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # ask-matt",
+   "nearest_local": [
+    {
+     "skill": "wps-knowledgebase",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "the-entrepreneurship-handbook",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "sino-drug-instructions-search",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "ast-grep",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "writing_docs",
+   "description": "\"Searches and rewrites code by AST shape across 25 languages. Use when the target is a syntax pattern (every call/class/import shaped like X, a codemod, a YAML rule) rather than literal text; for plain strings, comments, or filenames, use rg.\"",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # ast-grep",
+   "nearest_local": [
+    {
+     "skill": "research-documentation",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "remotion-video-toolkit",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "local-txt2img",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "babysit",
+   "repo": "thedotmack/claude-mem",
+   "domain_by_desc": "review_refactoring",
+   "description": "Watch a pull request or review cycle until it is ready to merge. Use when asked to babysit, monitor, or keep checking PR comments, reviews, and CI until all actionable issues are resolved.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/thedotmack/claude-mem/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/thedotmack/claude-mem/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # babysit",
+   "nearest_local": [
+    {
+     "skill": "web-performance-audit",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "team-ops",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "yt-competitive-analysis",
+     "shared_tokens": 1
+    }
+   ]
+  },
+  {
+   "slug": "changelog-generator",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "domain_by_desc": "writing_docs",
+   "description": "Automatically creates user-facing changelogs from git commits by analyzing commit history, categorizing changes, and transforming technical commits into clear, customer-friendly release notes. Turns hours of manual changelog writing into minutes of automated generation.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/ComposioHQ/awesome-claude-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/ComposioHQ/awesome-claude-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # changelog-generator",
+   "nearest_local": [
+    {
+     "skill": "us-stock-analysis",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "spec-to-implementation",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "research-documentation",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "comment-checker",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "research_search",
+   "description": "Use when Codex needs to understand or respond to automatic comment-checker feedback emitted after an edit-like PostToolUse hook.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # comment-checker",
+   "nearest_local": [
+    {
+     "skill": "github-pages-auto-deploy",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "zoom-out",
+     "shared_tokens": 1
+    },
+    {
+     "skill": "web-performance-audit",
+     "shared_tokens": 1
+    }
+   ]
+  },
+  {
+   "slug": "competitive-ads-extractor",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "domain_by_desc": "vertical_domain",
+   "description": "Extracts and analyzes competitors' ads from ad libraries (Facebook, LinkedIn, etc.) to understand what messaging, problems, and creative approaches are working. Helps inspire and improve your own ad campaigns.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/ComposioHQ/awesome-claude-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/ComposioHQ/awesome-claude-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # competitive-ads-extractor",
+   "nearest_local": [
+    {
+     "skill": "lark-unified",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "zoom-out",
+     "shared_tokens": 1
+    },
+    {
+     "skill": "yt-competitive-analysis",
+     "shared_tokens": 1
+    }
+   ]
+  },
+  {
+   "slug": "content-research-writer",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "domain_by_desc": "writing_docs",
+   "description": "Assists in writing high-quality content by conducting research, adding citations, improving hooks, iterating on outlines, and providing real-time feedback on each section. Transforms your writing process from solo effort to collaborative partnership.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/ComposioHQ/awesome-claude-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/ComposioHQ/awesome-claude-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # content-research-writer",
+   "nearest_local": [
+    {
+     "skill": "xurl",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "web-search-exa",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "tavily",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "debugging",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "testing_debugging",
+   "description": "\"Runs a hypothesis-driven debugging loop across any language or binary, escalating to orthogonal oracle angles and locking the fix with a failing test. Use for crashes, silent failures, hangs, wrong responses, memory leaks, async misbehavior, or reverse engineering.\"",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # debugging",
+   "nearest_local": [
+    {
+     "skill": "github-trending-cn",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "crash-expert-skill",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "byted-mediakit-shared",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "debugging-and-error-recovery",
+   "repo": "addyosmani/agent-skills",
+   "domain_by_desc": "testing_debugging",
+   "description": "Guides systematic root-cause debugging. Use when tests fail, builds break, something that worked yesterday broke, behavior doesn't match expectations, or you encounter any unexpected error. Use when you need to figure out what broke and why — a systematic approach to finding and fixing the root caus",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/addyosmani/agent-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/addyosmani/agent-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # debugging-and-error-recovery",
+   "nearest_local": [
+    {
+     "skill": "minimax-docx",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "first-principles-decomposer",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "agent-mbti",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "do",
+   "repo": "thedotmack/claude-mem",
+   "domain_by_desc": "planning_workflow",
+   "description": "Execute a phased implementation plan using subagents. Use when asked to execute, run, or carry out a plan — especially one created by make-plan.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/thedotmack/claude-mem/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/thedotmack/claude-mem/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # do",
+   "nearest_local": [
+    {
+     "skill": "task-implement",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "yt-competitive-analysis",
+     "shared_tokens": 1
+    },
+    {
+     "skill": "xlsx",
+     "shared_tokens": 1
+    }
+   ]
+  },
+  {
+   "slug": "domain-modeling",
+   "repo": "mattpocock/skills",
+   "domain_by_desc": "skill_meta",
+   "description": "Build and sharpen a project's domain model. Use when discussing codebase terminology, writing or editing a GLOSSARY.md, or recording or editing an ADR.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/mattpocock/skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/mattpocock/skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # domain-modeling",
+   "nearest_local": [
+    {
+     "skill": "react-native-dev",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "minimax-xlsx",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "humanizer",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "get-unpublished-changes",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "deploy_infra",
+   "description": "\"Compare HEAD with the latest published npm versions and list all unpublished changes by release layer. Triggers: unpublished changes, changelog, what changed, whats new.\"",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # get-unpublished-changes",
+   "nearest_local": [
+    {
+     "skill": "docx",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "yt-competitive-analysis",
+     "shared_tokens": 1
+    },
+    {
+     "skill": "us-stock-analysis",
+     "shared_tokens": 1
+    }
+   ]
+  },
+  {
+   "slug": "host-observer",
+   "repo": "thedotmack/claude-mem",
+   "domain_by_desc": "memory_context",
+   "description": ">- Use this when fulfilling claude-mem observer jobs on Grok Bot: reply only skip_summary or one full observation XML, never prose.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/thedotmack/claude-mem/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/thedotmack/claude-mem/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # host-observer",
+   "nearest_local": [
+    {
+     "skill": "model-usage",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "skill-scanner",
+     "shared_tokens": 1
+    },
+    {
+     "skill": "pptx-generator",
+     "shared_tokens": 1
+    }
+   ]
+  },
+  {
+   "slug": "image-enhancer",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "domain_by_desc": "media_generation",
+   "description": "Improves the quality of images, especially screenshots, by enhancing resolution, sharpness, and clarity. Perfect for preparing images for presentations, documentation, or social media posts.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/ComposioHQ/awesome-claude-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/ComposioHQ/awesome-claude-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # image-enhancer",
+   "nearest_local": [
+    {
+     "skill": "yourself-skill",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "xlsx",
+     "shared_tokens": 1
+    },
+    {
+     "skill": "workrally",
+     "shared_tokens": 1
+    }
+   ]
+  },
+  {
+   "slug": "implement",
+   "repo": "mattpocock/skills",
+   "domain_by_desc": "planning_workflow",
+   "description": "\"Implement a piece of work based on a spec or set of tickets.\"",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/mattpocock/skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/mattpocock/skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # implement",
+   "nearest_local": [
+    {
+     "skill": "task-implement",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "canvas-design",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "writing-plans",
+     "shared_tokens": 1
+    }
+   ]
+  },
+  {
+   "slug": "incremental-implementation",
+   "repo": "addyosmani/agent-skills",
+   "domain_by_desc": "planning_workflow",
+   "description": "Delivers changes incrementally in thin, verifiable slices. Use when implementing any feature or change that touches more than one file, or when picking up the next task from a plan. Use when rolling a change out behind a feature flag, when you're about to write a large amount of code at once, or whe",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/addyosmani/agent-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/addyosmani/agent-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # incremental-implementation",
+   "nearest_local": [
+    {
+     "skill": "xlsx",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "writing-plans",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "task-implement",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "init-deep",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "memory_context",
+   "description": "\"Initializes a hierarchical AGENTS.md knowledge base for a project. Use when a repo needs its structure, commands, and conventions documented for agents.\"",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # init-deep",
+   "nearest_local": [
+    {
+     "skill": "wps-knowledgebase",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "llm-wiki",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "clawbrowser",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "invoice-organizer",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "domain_by_desc": "media_generation",
+   "description": "Automatically organizes invoices and receipts for tax preparation by reading messy files, extracting key information, renaming them consistently, and sorting them into logical folders. Turns hours of manual bookkeeping into minutes of automated organization.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/ComposioHQ/awesome-claude-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/ComposioHQ/awesome-claude-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # invoice-organizer",
+   "nearest_local": [
+    {
+     "skill": "xlsx",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "research-documentation",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "pdf",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "loop-me",
+   "repo": "mattpocock/skills",
+   "domain_by_desc": "planning_workflow",
+   "description": "Grill me about specs for the workflows I want to build, within this workspace.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/mattpocock/skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/mattpocock/skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # loop-me",
+   "nearest_local": [
+    {
+     "skill": "ui-ux-pro-max",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "skill-creator",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "habit-tracker",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "lsp",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "testing_debugging",
+   "description": "Use when Codex needs language-server diagnostics, definitions, references, symbols, or rename safety checks in the current workspace.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # lsp",
+   "nearest_local": [
+    {
+     "skill": "skill-scanner",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "model-usage",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "xlsx",
+     "shared_tokens": 1
+    }
+   ]
+  },
+  {
+   "slug": "lsp-setup",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "testing_debugging",
+   "description": "\"Configures a language server so editor/agent tooling (diagnostics, go-to-definition, references, rename) works. Use when a project needs an LSP installed or wired, or a 'no LSP server configured' error appears.\"",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # lsp-setup",
+   "nearest_local": [
+    {
+     "skill": "jinshuju",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "xlsx",
+     "shared_tokens": 1
+    },
+    {
+     "skill": "web-deploy",
+     "shared_tokens": 1
+    }
+   ]
+  },
+  {
+   "slug": "meeting-insights-analyzer",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "domain_by_desc": "writing_docs",
+   "description": "Analyzes meeting transcripts and recordings to uncover behavioral patterns, communication insights, and actionable feedback. Identifies when you avoid conflict, use filler words, dominate conversations, or miss opportunities to listen. Perfect for professionals seeking to improve their communication",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/ComposioHQ/awesome-claude-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/ComposioHQ/awesome-claude-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # meeting-insights-analyzer",
+   "nearest_local": [
+    {
+     "skill": "xurl",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "knowledge-capture",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "humanizer",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "onboarding",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "planning_workflow",
+   "description": "\"Guides a first-time omo user through setup and the core workflow. Use when a new user asks to get started with omo.\"",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # onboarding",
+   "nearest_local": [
+    {
+     "skill": "workrally",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "wechatpay-product-coupon",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "wechatpay-basic-payment",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "pr",
+   "repo": "mattpocock/skills",
+   "domain_by_desc": "writing_docs",
+   "description": "\"Use when writing a PR body.\" metadata: credits: skill: show-me author: Dex Horthy organisation: Humanlayer url: \"https://github.com/humanlayer/skills/blob/main/plugins/show-me/skills/show-me/SKILL.md\"",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/mattpocock/skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/mattpocock/skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # pr",
+   "nearest_local": [
+    {
+     "skill": "english-exam-writing-reviewer",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "cloudbase__skillhub",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "yingmi-skill",
+     "shared_tokens": 1
+    }
+   ]
+  },
+  {
+   "slug": "programming",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "testing_debugging",
+   "description": "\"Applies strict, modern language practice (typed errors, exhaustive match, tests that can fail) for Python, Rust, TypeScript, and Go. Use for work on .py, .rs, .ts, or .go files.\"",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # programming",
+   "nearest_local": [
+    {
+     "skill": "fullstack-dev",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "xlsx",
+     "shared_tokens": 1
+    },
+    {
+     "skill": "windows-gitbash-chinese-path-pit",
+     "shared_tokens": 1
+    }
+   ]
+  },
+  {
+   "slug": "raffle-winner-picker",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "domain_by_desc": "testing_debugging",
+   "description": "Picks random winners from lists, spreadsheets, or Google Sheets for giveaways, raffles, and contests. Ensures fair, unbiased selection with transparency.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/ComposioHQ/awesome-claude-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/ComposioHQ/awesome-claude-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # raffle-winner-picker",
+   "nearest_local": [
+    {
+     "skill": "gog",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "docx",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "trello",
+     "shared_tokens": 1
+    }
+   ]
+  },
+  {
+   "slug": "setup-ts-deep-modules",
+   "repo": "mattpocock/skills",
+   "domain_by_desc": "frontend_ui",
+   "description": "Wire dependency-cruiser into a TypeScript repo so each package is a deep module, with implementation hidden in subfolders and reachable only through its entry-point files. User-invoked.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/mattpocock/skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/mattpocock/skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # setup-ts-deep-modules",
+   "nearest_local": [
+    {
+     "skill": "responsiveness-check",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "frontend-slides",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "web-search-exa",
+     "shared_tokens": 1
+    }
+   ]
+  },
+  {
+   "slug": "shipping-and-launch",
+   "repo": "addyosmani/agent-skills",
+   "domain_by_desc": "deploy_infra",
+   "description": "Prepares production launches. Use when preparing to deploy to production, or when asking what needs to be in place before shipping. Use when you need a pre-launch checklist, when setting up monitoring, when planning a staged rollout, or when you need a rollback strategy.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/addyosmani/agent-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/addyosmani/agent-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # shipping-and-launch",
+   "nearest_local": [
+    {
+     "skill": "web-deploy-github",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "web-deploy",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "vercel-deploy",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "skill-share",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "domain_by_desc": "skill_meta",
+   "description": "A skill that creates new Claude skills and automatically shares them on Slack using Rube for seamless team collaboration and skill discovery.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/ComposioHQ/awesome-claude-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/ComposioHQ/awesome-claude-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # skill-share",
+   "nearest_local": [
+    {
+     "skill": "wps-knowledgebase",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "the-entrepreneurship-handbook",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "story-setup",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "taste-skill-v1",
+   "repo": "Leonxlnx/taste-skill",
+   "domain_by_desc": "frontend_ui",
+   "description": "The original v1 taste-skill, preserved for projects depending on its exact behavior. The current default is `design-taste-frontend` (v2 experimental), which is a substantial rewrite. Use this v1 install name only if you need exact backward compatibility.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/Leonxlnx/taste-skill/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/Leonxlnx/taste-skill/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # taste-skill-v1",
+   "nearest_local": [
+    {
+     "skill": "web-deploy-github",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "tavily",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "model-usage",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "teach",
+   "repo": "mattpocock/skills",
+   "domain_by_desc": "skill_meta",
+   "description": "Teach the user a new skill or concept, within this workspace.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/mattpocock/skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/mattpocock/skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # teach",
+   "nearest_local": [
+    {
+     "skill": "xlsx",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "pdf",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "news-summary",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "ultrawork",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "data_analysis",
+   "description": "\"The binding ultrawork-mode directive. This file IS the directive; read it only when ultrawork mode is requested and the directive is not already in the conversation.\" metadata: short-description: Binding ultrawork mode directive",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # ultrawork",
+   "nearest_local": [
+    {
+     "skill": "xlsx",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "landing-page-generator",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "weiyun",
+     "shared_tokens": 1
+    }
+   ]
+  },
+  {
+   "slug": "understand-diff",
+   "repo": "Egonex-AI/Understand-Anything",
+   "domain_by_desc": "research_search",
+   "description": "Use when you need to analyze git diffs or pull requests to understand what changed, affected components, and risks",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/Egonex-AI/Understand-Anything/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/Egonex-AI/Understand-Anything/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # understand-diff",
+   "nearest_local": [
+    {
+     "skill": "zoom-out",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "yt-competitive-analysis",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "us-stock-analysis",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "understand-explain",
+   "repo": "Egonex-AI/Understand-Anything",
+   "domain_by_desc": "writing_docs",
+   "description": "Use when you need a deep-dive explanation of a specific file, function, or module in the codebase",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/Egonex-AI/Understand-Anything/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/Egonex-AI/Understand-Anything/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # understand-explain",
+   "nearest_local": [
+    {
+     "skill": "gstack",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "excalidraw-diagram",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "awesome-design-md",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "understand-onboard",
+   "repo": "Egonex-AI/Understand-Anything",
+   "domain_by_desc": "research_search",
+   "description": "Use when you need to generate an onboarding guide for new team members joining a project",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/Egonex-AI/Understand-Anything/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/Egonex-AI/Understand-Anything/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # understand-onboard",
+   "nearest_local": [
+    {
+     "skill": "the-entrepreneurship-handbook",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "react-native-dev",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "product-showcase-site",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "visual-qa",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "testing_debugging",
+   "description": "\"Runs rigorous visual QA across web, terminal, and paginated surfaces with screenshot evidence and a verdict. Use for any UI build or change, or when asked whether a page, component, or TUI looks right.\"",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # visual-qa",
+   "nearest_local": [
+    {
+     "skill": "yt-competitive-analysis",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "web-performance-audit",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "web-deploy",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "writing-beats",
+   "repo": "mattpocock/skills",
+   "domain_by_desc": "writing_docs",
+   "description": "Writing, exploit; assemble raw material into a journey of beats, grounding each term before a beat leans on it.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/mattpocock/skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/mattpocock/skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # writing-beats",
+   "nearest_local": [
+    {
+     "skill": "content-repurposer",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "writing-plans",
+     "shared_tokens": 1
+    },
+    {
+     "skill": "verification-before-completion",
+     "shared_tokens": 1
+    }
+   ]
+  },
+  {
+   "slug": "writing-for-agents",
+   "repo": "mattpocock/skills",
+   "domain_by_desc": "writing_docs",
+   "description": "Writing documents for agents. Use when creating or editing skills, or modifying AGENTS.md or CLAUDE.md.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/mattpocock/skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/mattpocock/skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # writing-for-agents",
+   "nearest_local": [
+    {
+     "skill": "story-setup",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "remotion-video-toolkit",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "minimax-xlsx",
+     "shared_tokens": 2
+    }
+   ]
+  },
+  {
+   "slug": "writing-fragments",
+   "repo": "mattpocock/skills",
+   "domain_by_desc": "writing_docs",
+   "description": "\"Writing, explore: mine raw fragments, no structure yet.\"",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/mattpocock/skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/mattpocock/skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # writing-fragments",
+   "nearest_local": [
+    {
+     "skill": "react-native-dev",
+     "shared_tokens": 2
+    },
+    {
+     "skill": "task-alignment",
+     "shared_tokens": 1
+    },
+    {
+     "skill": "remotion-video-toolkit",
+     "shared_tokens": 1
+    }
+   ]
+  },
+  {
+   "slug": "implement-spec",
+   "repo": "mattpocock/skills",
+   "domain_by_desc": "planning_workflow",
+   "description": "\"Implement the result of /to-spec and /to-tickets in code.\"",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/mattpocock/skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/mattpocock/skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # implement-spec",
+   "nearest_local": [
+    {
+     "skill": "zoom-out",
+     "shared_tokens": 1
+    },
+    {
+     "skill": "task-implement",
+     "shared_tokens": 1
+    },
+    {
+     "skill": "spike",
+     "shared_tokens": 1
+    }
+   ]
+  },
+  {
+   "slug": "minimalist-skill",
+   "repo": "Leonxlnx/taste-skill",
+   "domain_by_desc": "backend_api",
+   "description": "Clean editorial-style interfaces. Warm monochrome palette, typographic contrast, flat bento grids, muted pastels. No gradients, no heavy shadows.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/Leonxlnx/taste-skill/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/Leonxlnx/taste-skill/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # minimalist-skill",
+   "nearest_local": [
+    {
+     "skill": "ui-ux-pro-max",
+     "shared_tokens": 1
+    },
+    {
+     "skill": "tavily",
+     "shared_tokens": 1
+    },
+    {
+     "skill": "refactoring",
+     "shared_tokens": 1
+    }
+   ]
+  },
+  {
+   "slug": "omomomo",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "domain_by_desc": "misc",
+   "description": "\"Easter egg command - about oh-my-opencode. Triggers: omomomo, about, easter egg.\"",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/code-yeongyu/oh-my-openagent/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/code-yeongyu/oh-my-openagent/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # omomomo",
+   "nearest_local": [
+    {
+     "skill": "workrally",
+     "shared_tokens": 1
+    },
+    {
+     "skill": "win-toolchain-pitfalls",
+     "shared_tokens": 1
+    },
+    {
+     "skill": "the-entrepreneurship-handbook",
+     "shared_tokens": 1
+    }
+   ]
+  },
+  {
+   "slug": "retro",
+   "repo": "mattpocock/skills",
+   "domain_by_desc": "planning_workflow",
+   "description": "\"Conduct a retrospective on a coding session.\"",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/mattpocock/skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/mattpocock/skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # retro",
+   "nearest_local": [
+    {
+     "skill": "handoff",
+     "shared_tokens": 1
+    },
+    {
+     "skill": "docx",
+     "shared_tokens": 1
+    },
+    {
+     "skill": "coding-agent",
+     "shared_tokens": 1
+    }
+   ]
+  },
+  {
+   "slug": "tailored-resume-generator",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "domain_by_desc": "skill_meta",
+   "description": "Analyzes job descriptions and generates tailored resumes that highlight relevant experience, skills, and achievements to maximize interview chances",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/ComposioHQ/awesome-claude-skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/ComposioHQ/awesome-claude-skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # tailored-resume-generator",
+   "nearest_local": [
+    {
+     "skill": "zoom-out",
+     "shared_tokens": 1
+    },
+    {
+     "skill": "wps-knowledgebase",
+     "shared_tokens": 1
+    },
+    {
+     "skill": "story-setup",
+     "shared_tokens": 1
+    }
+   ]
+  },
+  {
+   "slug": "to-questionnaire",
+   "repo": "mattpocock/skills",
+   "domain_by_desc": "deploy_infra",
+   "description": "Turn a decision you can't fully answer into a questionnaire for someone else to fill in.",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/mattpocock/skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/mattpocock/skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # to-questionnaire",
+   "nearest_local": [
+    {
+     "skill": "tutor-skills",
+     "shared_tokens": 1
+    },
+    {
+     "skill": "tavily",
+     "shared_tokens": 1
+    },
+    {
+     "skill": "stagehand-browser-cli",
+     "shared_tokens": 1
+    }
+   ]
+  },
+  {
+   "slug": "wait-what",
+   "repo": "mattpocock/skills",
+   "domain_by_desc": "misc",
+   "description": "\"Stop. That last message did not land: re-pitch it.\"",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/mattpocock/skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/mattpocock/skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # wait-what",
+   "nearest_local": [
+    {
+     "skill": "himalaya",
+     "shared_tokens": 1
+    }
+   ]
+  },
+  {
+   "slug": "writing-shape",
+   "repo": "mattpocock/skills",
+   "domain_by_desc": "writing_docs",
+   "description": "\"Writing, exploit: shape raw material into an article, paragraph by paragraph.\"",
+   "desc_suspect": false,
+   "retrieval": "gh api \"repos/mattpocock/skills/git/trees/HEAD?recursive=1\" --jq '.tree[]|select(.path|endswith(\"SKILL.md\"))|.path' ; gh api \"repos/mattpocock/skills/contents/<path>/SKILL.md\" -H \"Accept: application/vnd.github.raw\"  # writing-shape",
+   "nearest_local": [
+    {
+     "skill": "remotion-video-toolkit",
+     "shared_tokens": 1
+    },
+    {
+     "skill": "react-native-dev",
+     "shared_tokens": 1
+    },
+    {
+     "skill": "my-novel-writer",
+     "shared_tokens": 1
+    }
+   ]
+  }
+ ],
+ "problems": [
+  "no cached description for slides@nextlevelbuilder/ui-ux-pro-max-skill"
+ ],
+ "note": "shared_tokens 低 = 本地无近邻 = 真差距候选；高 = 我们已有同能力，只是名字不同。"
+}

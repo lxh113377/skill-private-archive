@@ -1,0 +1,26 @@
+{
+ "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
+ "sha": "09170eec67eefd46a7ae85de61b40c194020f997",
+ "truncated": false,
+ "slugs": [
+  ".claude/skills/banner-design",
+  ".claude/skills/brand",
+  ".claude/skills/design-system",
+  ".claude/skills/design",
+  ".claude/skills/slides",
+  ".claude/skills/ui-styling",
+  ".claude/skills/ui-ux-pro-max",
+  "cli/assets/skills/banner-design",
+  "cli/assets/skills/brand",
+  "cli/assets/skills/design-system",
+  "cli/assets/skills/design",
+  "cli/assets/skills/slides",
+  "cli/assets/skills/ui-styling"
+ ],
+ "detail": {
+  "stars": 131545,
+  "pushed_at": "2026-09-27T11:30:41Z",
+  "archived": false,
+  "open_issues": 82
+ }
+}

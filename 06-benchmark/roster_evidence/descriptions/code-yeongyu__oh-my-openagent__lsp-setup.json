@@ -1,0 +1,1 @@
+{"name": "lsp-setup", "repo": "code-yeongyu/oh-my-openagent", "description": "\"Configures a language server so editor/agent tooling (diagnostics, go-to-definition, references, rename) works. Use when a project needs an LSP installed or wired, or a 'no LSP server configured' error appears.\""}

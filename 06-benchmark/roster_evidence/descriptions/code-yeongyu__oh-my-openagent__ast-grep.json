@@ -1,0 +1,1 @@
+{"name": "ast-grep", "repo": "code-yeongyu/oh-my-openagent", "description": "\"Searches and rewrites code by AST shape across 25 languages. Use when the target is a syntax pattern (every call/class/import shaped like X, a codemod, a YAML rule) rather than literal text; for plain strings, comments, or filenames, use rg.\""}

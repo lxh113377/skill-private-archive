@@ -396,6 +396,72 @@
     "opponent_claims_have_retrieval"
    ],
    "note": "r38/r39 第十四维债务账龄。v2 新增 DEFERRED 态（延期不得冒充已裁决，到期自动回判 OVERDUE）；OVERDUE 数是 ratchet_gate 第 7 指标唯一取值面；deferred 数待 W-4 立第 8 指标"
+  },
+ "capability_roster_r*.json": {
+  "schema_id": "capability-roster-r60-v2",
+  "generated_at_note": "r60 第 18 维名册差集。v1 = 同日首跑（按路径计数且未剔生成式清单，分母被单仓 864 条清单占掉 79.8%）；v2 = 修正计数单位为唯一 slug 名并把 generated_catalog 目录单独成层。v1 件未落盘，故不设逐代授权",
+  "required": [
+   "schema",
+   "generated_at",
+   "readonly",
+   "dimension",
+   "counting_unit",
+   "claims_face",
+   "search_routes",
+   "repos",
+   "totals",
+   "blind_share_misc",
+   "blind_limit",
+   "verdict_state",
+   "domains",
+   "local_faces",
+   "problems",
+   "note"
+  ],
+  "types": {
+   "dimension": "int",
+   "search_routes": "dict",
+   "repos": "list",
+   "totals": "dict",
+   "domains": "list",
+   "local_faces": "list",
+   "blind_share_misc": "num",
+   "blind_limit": "num"
+  },
+  "invariants": [
+   "readonly_true",
+   "roster_partition_sum"
+  ],
+  "note": "第 18 维（能力覆盖名册差集）第一把尺：slug 名面。blind_share_misc 超阈时 verdict_state=UNVERIFIED —— 「分类器看不见」不得读成「没有差距」"
+ },
+ "capability_gap_r*.json": {
+  "schema_id": "capability-gap-r60-v1",
+  "required": [
+   "schema",
+   "generated_at",
+   "readonly",
+   "first_lens",
+   "claims_face",
+   "counting_unit",
+   "totals",
+   "blind_share_misc_desc",
+   "domains_desc",
+   "items",
+   "problems",
+   "note"
+  ],
+  "types": {
+   "first_lens": "dict",
+   "totals": "dict",
+   "domains_desc": "list",
+   "items": "list",
+   "blind_share_misc_desc": "num"
+  },
+  "invariants": [
+   "readonly_true",
+   "roster_partition_sum"
+  ],
+  "note": "第 18 维第二把尺：描述面（第一把尺 misc 盲区 36.4% 超阈时，按本仓「抽取器失明须第二抽取器复算」改用 description 命中，盲区降到 2.7%）。items 逐条带 retrieval，nearest_local 只给共享词排序，不设自动阈值（R236 补注③：未测两侧边界值前参数不得当判据）"
   }
  },
  "invariant_docs": {

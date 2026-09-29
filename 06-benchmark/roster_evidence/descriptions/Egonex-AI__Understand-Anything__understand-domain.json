@@ -1,0 +1,1 @@
+{"name": "understand-domain", "repo": "Egonex-AI/Understand-Anything", "description": "Extract business domain knowledge from a codebase and generate an interactive domain flow graph. Works standalone (lightweight scan) or derives from an existing /understand knowledge graph."}

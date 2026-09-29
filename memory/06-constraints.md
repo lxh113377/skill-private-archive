@@ -84,3 +84,8 @@
 - **卷4** `06-constraints.part4.md` — 06-constraints 分卷（R199 自动拆卷）
 - **卷5** `06-constraints.part5.md` — 06-constraints 分卷（R199 自动拆卷）
 
+
+## 技术债（r60 新登记）
+
+- [DEBT] **W-49 运行态 pycache 落在受管根**（2026-09-30 实测）：`docx|.xlsx/scripts/office/validators/__pycache__/` 下 11 件 `.pyc`（含 cpython-313 代），系直接调用 validators 未设 `PYTHONPYCACHEPREFIX` 所致。非本仓引入，按 R269 只登记不擅动。取值：`find D:/global_skills/docx/scripts/office/validators/__pycache__ -type f | wc -l`
+- [BUG] **W-50 注册表路径死引用**（2026-09-30 实测）：台账与规则卷引用的 `D:/global_skills/skill_content/skill_ids.json` 已不存在（r59 标题所述「根迁移」的后果）。影响：任何「磁盘 vs 注册表差集」判据若按该路径取数会静默落到空面。处置 = 归属方给出新落点前，此类判据一律记 UNVERIFIED（R247）。取值：`ls D:/global_skills/skill_content 2>&1`

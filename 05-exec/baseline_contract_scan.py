@@ -382,6 +382,37 @@ def inv_debt_taxonomy_complete(doc, arg):
     return msgs
 
 
+def inv_roster_partition_sum(doc, arg):
+    """第 18 维名册件：各域计数之和必须等于件级总数（X-24 反向断言进契约）。
+
+    存在理由（r60 一手）：名册生成器首版把「路径条数」当分母、又把 864 条生成式清单算进
+    对手面，域内自洽却整体失真。契约层因此不能只看形状 —— 必须有一条断言把
+    **分区的和** 钉到件级总数上，否则换一个口径改生成器，契约照样放行。
+    入参 arg 同其它不变式：调度器传的是名字串，本函数不依赖 arg。
+    """
+    msgs = []
+    tot = doc.get("totals") if isinstance(doc.get("totals"), dict) else {}
+    dom = doc.get("domains")
+    if isinstance(dom, list) and dom:
+        if "opponent_unique_names" in tot:
+            s = sum(int(r.get("opponent_unique", 0)) for r in dom if isinstance(r, dict))
+            if s != int(tot["opponent_unique_names"]):
+                msgs.append("domains.opponent_unique 之和 %d != totals.opponent_unique_names %d"
+                            % (s, tot["opponent_unique_names"]))
+        else:
+            msgs.append("有 domains 面但缺 totals.opponent_unique_names，分母不可复算")
+    items = doc.get("items")
+    if isinstance(items, list):
+        if "gap_items" in tot and len(items) != int(tot["gap_items"]):
+            msgs.append("items 长度 %d != totals.gap_items %d" % (len(items), int(tot["gap_items"])))
+        for it in items:
+            if isinstance(it, dict) and "repo" in it and not str(it.get("retrieval") or "").strip():
+                msgs.append("items[%s] 缺 retrieval" % it.get("slug"))
+    if not msgs and not isinstance(dom, list) and not isinstance(items, list):
+        msgs.append("roster_partition_sum: 件里既无 domains 也无 items，零面不得判过")
+    return msgs
+
+
 INVARIANTS = {
     "readonly_true": inv_readonly_true,
     "excluded_have_why": inv_excluded_have_why,
@@ -398,6 +429,7 @@ INVARIANTS = {
     "scenarios_nonempty": inv_scenarios_nonempty,
     "ratchet_metric_set_matches": inv_ratchet_metric_set,
     "ratchet_refresh_days_matches": inv_ratchet_refresh_days,
+    "roster_partition_sum": inv_roster_partition_sum,
     "ratchet_hardcap_subset": inv_ratchet_hardcap_subset,
     "debt_class_sum": inv_debt_class_sum,
     "debt_taxonomy_complete": inv_debt_taxonomy_complete,
