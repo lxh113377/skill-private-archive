@@ -345,6 +345,29 @@ GATES = [
                " = 判据输入面劫持入口（与 r49 劫持族、r56「声明要被机器校验」同族）；"
                "P2 把「pin 必须配更新器」也钉住，防固定点腐烂成拿不到上游安全修复的更坏形态",
     },
+    {
+        "id": "retired_face",
+        "script": "r59_retired_face.py",
+        "argv": ["--selftest"],   # r59 接线口径：本门在阻断链里跑**自证**（8 例含真件可逆注入）；
+                                  # 活体残留（executing-plans/slides 仍在盘）不进阻断链，原因写进
+                                  # 「本 runner 不覆盖」+ 07 台账 P0（前提=可复算命令）。
+                                  # 依据 = 老大立规「看守默认=报告+只降不升+进台账，禁成拦任务的闸门」，
+                                  # 且本轮实测残留被三重护栏拦下（未入 Git / 宽暂存 21>20 / 并发会话刚提交），
+                                  # 接线即把每轮提交锁死在没有授权通道的债上。
+                                  # 要复算活体面：python 05-exec/r59_retired_face.py（rc=1 即有残留）
+        "pass_token": "[GATE:retired-face-selftest] 8/8",
+        "portable": False,
+        "not_portable_reason":
+            "r7/r8 取真实 retired_skills 名单 x 真实 D:/global_skills 磁盘面；离机若无该根则判据面为空，"
+            "本件按 R247 走 UNVERIFIED(exit 2) 而不是默认放行",
+        "covers": ["D:/global_skills 磁盘集 ∩ 焚诀 eval/truth_constants.json 的 retired_skills（退役必须已移出扫描树）",
+                   "名单为空 / 磁盘面为空 / 名单文件缺失 三态一律 rc=2，不得读成「无残留」",
+                   "r7 真件可逆注入：真名单首个名字建进临时树必须见红（W-47 两侧证据）"],
+        "why": "r59 实测：executing-plans、slides 早在 retired_skills 里、磁盘仍带 SKILL.md 且能被会话加载；"
+               "而 disk_registry_diff.py 把这个数印出来（「其中磁盘仍在: 2」）却照打 [PASS] ⇒ 看得见不等于拦得住"
+               "（R238 接线面 + 「消不掉的告警等于没有判据」）。本门只判 磁盘∩退役名单 一项事实，"
+               "不重复 disk_registry_diff 的三类差集（一事实一判据）。",
+    },
 ]
 
 # 显式声明本 runner **不覆盖**的面，防止聚合绿被读成「所有门禁都绿」（R20-2）。

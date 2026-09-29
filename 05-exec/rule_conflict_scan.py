@@ -32,7 +32,7 @@ except Exception:  # pragma: no cover - fallback keeps the tool standalone
 
 GS = Path(r"D:\global_skills")
 GM = Path(r"D:\global_memory")
-PROJ = Path(r"C:\Users\37533\Desktop\workspace\自建skill优化")
+PROJ = Path(__file__).resolve().parents[1]  # r59: root moved; derive from __file__ instead of a literal
 
 DEFAULT_FILES = [
     GM / "core" / "behavior_core.md",

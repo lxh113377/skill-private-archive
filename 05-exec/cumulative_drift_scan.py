@@ -40,7 +40,7 @@ ROOTS = {
     "global_skills": Path(r"D:\global_skills"),
     "global_memory": Path(r"D:\global_memory"),
     "fenjue": Path(r"C:\Users\37533\Desktop\workspace\焚诀"),
-    "self": Path(r"C:\Users\37533\Desktop\workspace\自建skill优化"),
+    "self": Path(__file__).resolve().parents[1],  # r59: derive, not a literal (root moved)
 }
 RULEISH = re.compile(r"(SKILL\.md$|AGENTS\.md$|behavior_core|BOOTSTRAP|contract|MEMORY\.md$|lessons|prompts/|07-next-steps|06-constraints)")
 THRESHOLD = 5

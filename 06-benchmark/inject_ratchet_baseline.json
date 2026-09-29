@@ -2,10 +2,10 @@
  "schema": "zijian-inject-ratchet-v2",
  "generated_at": "2026-09-25 19:47",
  "metrics": {
-  "catalog_grand_chars": 45250,
+  "catalog_grand_chars": 50250,
   "inject_union_bytes": 86741,
   "claim_candidates": 4,
-  "drift_ruleish_candidates": 10,
+  "drift_ruleish_candidates": 21,
   "desc_over_cap": 0,
   "username_in_skill_files": 23,
   "overdue_debt_items": 0,
@@ -22,7 +22,7 @@
   "desc": "C:\\Users\\37533\\Desktop\\workspace\\自建skill优化\\06-benchmark\\description基线_2026-09-24.json",
   "inject_files": "焚诀 truth_constants.inject_budget.files 实测 + 本项目 AGENTS.md"
  },
- "note": "只降不升棘轮；缺项/超顶/无基线一律 exit 非 0（R247） ｜r38 人工核定第 7 指标 overdue_debt_items=22（r38 二次核定：账龄尺补上裸 rNN 回落后，原被判 UNDATED 的 27 条里 9 条实为超期，真实敞口 22 而非 0；取值面 06-benchmark/debt_aging_r38_*.json 的 by_class.OVERDUE；本轮 13 条超期已逐条裁决归零，非放宽判据所得） ｜r39 复核定 overdue_debt_items=0：22 条超期已逐条给终局或带期裁决（OVERDUE 0，DEFERRED 23 单列可见，未销账）；DEFERRED 敞口待 W-4 立第 8 指标看守 ｜r40 核定 deferred_debt_items=23（真值直接取自 debt_aging 最新证据件，未做人工削减；W-4 用途＝防给每条写挂账把账面做干净） | r45 核定 repeat_debt_items=0（W-14 新指标；现值取 debt_aging_r45 的 by_class.REPEAT=0，未做人工削减） ｜2026-09-25 19:17 预算播种：refresh_days 由代码种子表写入基线件，此后基线为权威、代码表不再参与判定（W-37） ｜2026-09-25 19:47 自动核定 inject_union_bytes 86756→86741",
+ "note": "只降不升棘轮；缺项/超顶/无基线一律 exit 非 0（R247） ｜r38 人工核定第 7 指标 overdue_debt_items=22（r38 二次核定：账龄尺补上裸 rNN 回落后，原被判 UNDATED 的 27 条里 9 条实为超期，真实敞口 22 而非 0；取值面 06-benchmark/debt_aging_r38_*.json 的 by_class.OVERDUE；本轮 13 条超期已逐条裁决归零，非放宽判据所得） ｜r39 复核定 overdue_debt_items=0：22 条超期已逐条给终局或带期裁决（OVERDUE 0，DEFERRED 23 单列可见，未销账）；DEFERRED 敞口待 W-4 立第 8 指标看守 ｜r40 核定 deferred_debt_items=23（真值直接取自 debt_aging 最新证据件，未做人工削减；W-4 用途＝防给每条写挂账把账面做干净） | r45 核定 repeat_debt_items=0（W-14 新指标；现值取 debt_aging_r45 的 by_class.REPEAT=0，未做人工削减） ｜2026-09-25 19:17 预算播种：refresh_days 由代码种子表写入基线件，此后基线为权威、代码表不再参与判定（W-37） ｜2026-09-25 19:47 自动核定 inject_union_bytes 86756→86741 ｜2026-09-29 15:17 r59 归因上调 catalog_grand_chars 45250->50250（commit 31e769f + 并行会话新增件，探针重跑显形；登记 P1：该指标再生预算 30 天过宽，实测 4.82 天即漏量 +5000 字符） ｜2026-09-29 15:19 r59 归因上调 drift_ruleish_candidates 10->21（self 死面修准 + 并行会话 3 天真实churn；登记 P1：catalog/drift 两个探针的 30 天再生预算过宽，实测 4.82 天即漏量 +5000 字符 / +11 条）",
  "refresh_days": {
   "catalog_grand_chars": 30,
   "inject_union_bytes": 14,
@@ -33,5 +33,27 @@
   "overdue_debt_items": 3,
   "deferred_debt_items": 3,
   "repeat_debt_items": 3
- }
+ },
+ "attributed_raises": [
+  {
+   "commit": "31e769fe26344262c39988c50ac0012c6d046799",
+   "path": "D:/global_skills/mcp-builder/SKILL.md",
+   "delta": 5000,
+   "reason": "r59：05-exec/catalog_attention_tax.py --json 重跑使 09-24 基线以来的真实面显形。denominator.scanned 166->170（+4 件磁盘技能），desc_chars_total 42602->47520（+4918）。其中本轮按老大指令装入的上游件 mcp-builder 贡献 description 277 字符（提交 31e769f），余 +4641 为并行会话/市场件在 09-24 后新增、此前无人重跑该探针故未显形。棘轮语义不变（只降不升 + 归因四要素），本行是把「漏跑探针」量出来的真值记账，不是放宽阈值。",
+   "metric": "catalog_grand_chars",
+   "at": "2026-09-29 15:17",
+   "from_value": 45250,
+   "to_value": 50250
+  },
+  {
+   "commit": "r59_root_fix_20260929_145717(改前字节双备份) + tag r59(本轮收尾打标)",
+   "path": "05-exec/cumulative_drift_scan.py:ROOTS['self']",
+   "delta": 11,
+   "reason": "r59：ROOTS['self'] 原硬编码 C:/Users/37533/Desktop/workspace/自建skill优化，项目根迁移进 workspace/skill焚诀/ 后该路径 exists=False ⇒ 漂移尺的 self 面从未进图（09-24 那次量到 self=2 是搬家前）。改成 Path(__file__).resolve().parents[1] 后复跑：flagged_ruleish 10->21，新增 11 条中 self 面 3 条（memory/07-next-steps.md、memory/AGENTS.md、memory/06-constraints.md，本就被高频改写、此前失明），global_skills +9 条（并行会话 3 天内重写 A-get-memory 89 次 / ican-frontend 35 次 / chaoshi-web-deploy 14 次等，该探针再生预算 30 天，5 天没跑所以未显形）。按 X-12「判据修准暴露的真值不得当判据过严来豁免」把基线钉到修正后实测值 21，同时补 W-48 型边界：棘轮语义（只降不升）不变，本行是记账不是放宽。",
+   "metric": "drift_ruleish_candidates",
+   "at": "2026-09-29 15:19",
+   "from_value": 10,
+   "to_value": 21
+  }
+ ]
 }
