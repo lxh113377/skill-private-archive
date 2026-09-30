@@ -1,0 +1,12 @@
+{
+ "pilot": "R76-3/M-4 takeover claim→complete",
+ "claim_id": "20260930T191736Z-34c4c476",
+ "task": "M-1 on-write看守验证一轮",
+ "V1_rule_editor无on_write引用_hits": 0,
+ "V1_取值": "Select-String on-write|on_write in rule_editor.py",
+ "V2_ratchet": "[RATCHET:PASS] 9 项指标均在棘轮基线内（只降不升）；非阻断告警 1 项",
+ "V2_取值": "python 05-exec/ratchet_gate.py",
+ "V3_onwrite_rc": 1,
+ "V3_取值": "python 05-exec/rule_conflict_scan.py --on-write memory/07-next-steps.md, 全文见同目录takeover_R76-3_M-1_onwrite.txt",
+ "结论": "on-write仍未挂写前链(M-1前置未满足,原任务仍blocked);棘轮面PASS;工具可运行自检报CONFLICT(07自配对噪声,非本轮引入)"
+}
