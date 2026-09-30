@@ -325,7 +325,7 @@ GATES = [
         "id": "roster_partition_fixtures",
         "script": "r60_roster_fixtures.py",
         "argv": [],
-        "pass_token": "[GATE:roster-fixture-pass] 6/6",
+        "pass_token": "[GATE:roster-fixture-pass] 12/12",
         "portable": True,
         "covers": ["05-exec/baseline_contract_scan.py 的 inv_roster_partition_sum（r60 新增不变式）",
                    "06-benchmark/capability_roster_r60_2026-09-30.json 与 capability_gap_r60_2026-09-30.json 真件面",
