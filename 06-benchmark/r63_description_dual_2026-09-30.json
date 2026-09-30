@@ -1,17 +1,17 @@
 {
  "schema": "description-dual-v1",
- "generated_at": "2026-09-30 17:48:23",
+ "generated_at": "2026-09-30 23:29:35",
  "head": {
   "source": "D:/global_skills/*/SKILL.md frontmatter",
-  "commit": "8c1d4f5dd3e629a1b341766c0c8f1050128a848e",
+  "commit": "0f574cf9c038bd956bf38ca626130af5eccda522",
   "method": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\05-exec\\r63_description_audit.py"
  },
  "cap": 1024,
  "summary": {
-  "total": 169,
-  "DUAL": 135,
+  "total": 171,
+  "DUAL": 137,
   "NO_WHEN": 34,
-  "dual_rate_pct": 79.9
+  "dual_rate_pct": 80.1
  },
  "worst_first": [
   {
@@ -755,6 +755,15 @@
    "over_cap": false
   },
   {
+   "skill": "executing-plans",
+   "has_field": true,
+   "chars": 104,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
    "skill": "fenjue-lessons-hitrate",
    "has_field": true,
    "chars": 62,
@@ -1325,6 +1334,15 @@
    "skill": "shell-encoding-pitfalls",
    "has_field": true,
    "chars": 224,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "slides",
+   "has_field": true,
+   "chars": 404,
    "what_signal": true,
    "when_signal": true,
    "verdict": "DUAL",
