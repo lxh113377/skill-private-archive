@@ -8,6 +8,7 @@
 import datetime
 import importlib.util
 import io
+import json
 import os
 import shutil
 import subprocess
@@ -321,6 +322,35 @@ def main():
         n_new4 = sum(1 for p in pick4 if p.startswith("?? new/"))
         check("T27b 边界：老面孔仅 3 条 ⇒ 新面孔得 37 席（名额补回，不空置）",
               len(pick4) == 40 and n_new4 == 37, "n=%d new=%d" % (len(pick4), n_new4))
+
+        # ── T29 坏行不得静默（r72 修①）：2 好 1 坏 ⇒ (2 行, 1 坏)，且 main 遇坏行判 rc=2
+        led_bad = os.path.join(base, "bad_ledger.jsonl")
+        with io.open(led_bad, "w", encoding="utf-8", newline="\n") as f:
+            f.write(json.dumps({"ts": "2026-10-01T12:00:00", "faces": []}) + "\n")
+            f.write("{ this is not json\n")
+            f.write(json.dumps({"ts": "2026-10-01T12:01:00", "faces": []}) + "\n")
+        rr, bad_n = m.read_rows(led_bad)
+        rc29 = m.main(["--trend", "--ledger", led_bad])
+        check("T29 坏行不静默：read_rows 报 (2 行, 1 坏)；--trend 遇坏行判 rc=2（禁当空/当全）",
+              len(rr) == 2 and bad_n == 1 and rc29 == 2,
+              "rows=%d bad=%d rc=%s" % (len(rr), bad_n, rc29))
+
+        # ── T30 陈旧值不得当现状（r72 修②）+ 变异：面转 unreachable 后 latest_dirty_n 必须归 None
+        rows_s = [
+            {"ts": "t1", "faces": [{"root": "A", "state": "pinned", "dirty_n": 7,
+                                    "head": "h", "dirty_digest": "d"}]},
+            {"ts": "t2", "faces": [{"root": "A", "state": "unreachable", "dirty_n": None}]},
+        ]
+        t30 = m.trend_of(rows_s, count_changes=False)["A"]
+        try:
+            m.TREND_STALE_GUARD = False
+            t30_mut = m.trend_of(rows_s, count_changes=False)["A"]
+        finally:
+            m.TREND_STALE_GUARD = True
+        check("T30 陈旧值：面转 unreachable ⇒ latest_dirty_n 归 None 且 state=unreachable；关守卫则留旧值 7",
+              t30["latest_dirty_n"] is None and t30["latest_state"] == "unreachable"
+              and t30_mut["latest_dirty_n"] == 7,
+              "%s / %s" % (t30, t30_mut))
     finally:
         shutil.rmtree(base, ignore_errors=True)
 

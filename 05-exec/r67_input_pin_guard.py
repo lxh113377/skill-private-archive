@@ -316,25 +316,39 @@ def payload_faces(pins, rows):
 
 
 def read_rows(ledger):
-    """读台账全部行；读不到或空 ⇒ []（调用方必须判空，不得当「无变化」）。"""
+    """读台账全部行：返回 `(行, 不可解析行数)`。
+
+    r72 修：不可解析的行**必须计数上报**，不得静默 `continue` —— 静默跳过会让热度分母与
+    趋势行数**一起变小而账面全绿**（R-ENUM 同族：分母静默变小）。台账是 append-only 自产件，
+    坏行只可能来自写崩，属**可自愈**（补齐或用 `--ledger` 指定新本），故调用方按 UNVERIFIED
+    处理合适：既不假装读到全部，也不把「修一行」变成不可完成的事。
+    """
     if not os.path.isfile(ledger):
-        return []
-    out = []
+        return [], 0
+    out, bad = [], 0
     with io.open(ledger, encoding="utf-8") as fh:
         for l in fh:
-            if l.strip():
-                try:
-                    out.append(json.loads(l))
-                except ValueError:
-                    continue
-    return out
+            if not l.strip():
+                continue
+            try:
+                out.append(json.loads(l))
+            except ValueError:
+                bad += 1
+    return out, bad
+
+
+# 变异钩子（r72 夹具 T30 用它证明「不可达面必须清掉陈旧值」；生产恒为 True）
+TREND_STALE_GUARD = True
 
 
 def trend_of(rows, count_changes=None):
-    """跨轮趋势：按面统计 出现行数 / pin 变动次数 / 最近变动时刻 / 最新未提交条数。
+    """跨轮趋势：按面统计 出现行数 / pin 变动次数 / 最近变动时刻 / 最新未提交条数 + 最新状态。
 
     纯函数（不碰盘），可被夹具双向喂样本。`changes` 只在 `count_changes` 为真时累加
     ——夹具用它做变异（关掉后趋势腿必须翻）。空输入 ⇒ 返回 {}（调用方必须判空）。
+
+    r72 修：面**不可达**时 `latest_dirty_n` 必须归 `None`，不得保留上一个可用值 ——
+    否则「最新未提交 N 条」会把一个**陈旧读数**当现状展示（本仓反复踩过的同族）。
     """
     count = TREND_COUNT_CHANGES if count_changes is None else count_changes
     acc, prev = {}, {}
@@ -344,11 +358,15 @@ def trend_of(rows, count_changes=None):
             if not root:
                 continue
             a = acc.setdefault(root, {"root": root, "rows": 0, "pinned": 0, "changes": 0,
-                                      "last_change_ts": "", "latest_dirty_n": None})
+                                      "last_change_ts": "", "latest_dirty_n": None,
+                                      "latest_state": ""})
             a["rows"] += 1
+            a["latest_state"] = f.get("state") or ""
             if f.get("state") == "pinned":
                 a["pinned"] += 1
                 a["latest_dirty_n"] = f.get("dirty_n")
+            elif TREND_STALE_GUARD:
+                a["latest_dirty_n"] = None
             key = (f.get("state"), f.get("head"), f.get("dirty_digest"))
             if root in prev and count and prev[root] != key:
                 a["changes"] += 1
@@ -368,7 +386,10 @@ def main(argv=None):
 
     if a.trend:
         # 只读报告模式：**先于任何落账**执行，故空台账这一支在 CLI 上真实可达（否则永远被本行自己撑开）
-        rows_all = read_rows(a.ledger)
+        rows_all, bad = read_rows(a.ledger)
+        if bad:
+            print("[PIN:UNVERIFIED] 台账含 %d 行不可解析 ⇒ 取数面不完整，不得判过（R247）" % bad)
+            return 2
         if not rows_all:
             print("[PIN:UNVERIFIED] 台账为空 ⇒ 无趋势可比（R247：零输入不得判过）")
             return 2
@@ -377,9 +398,10 @@ def main(argv=None):
         print("跨轮趋势（台账 %d 行 / %d 个输入面 ｜ 热度时间窗=近 %s 小时 ｜ 新面孔配额 %s）："
               % (len(rows_all), len(acc), HEAT_WINDOW_HOURS, NEW_FACE_QUOTA))
         for i, x in enumerate(top, 1):
-            print("  %d. %-34s 变动 %d 次 / 出现 %d 行 ｜ 最近变动 %s ｜ 最新未提交 %s 条"
+            print("  %d. %-34s 变动 %d 次 / 出现 %d 行 ｜ 最近变动 %s ｜ 最新未提交 %s 条（状态=%s）"
                   % (i, x["root"], x["changes"], x["rows"], x["last_change_ts"] or "-",
-                     x["latest_dirty_n"] if x["latest_dirty_n"] is not None else "-"))
+                     x["latest_dirty_n"] if x["latest_dirty_n"] is not None else "-",
+                     x.get("latest_state") or "-"))
         return 0
 
     decl = load_declaration(a.decl)
@@ -405,11 +427,14 @@ def main(argv=None):
 
     # ── P3 pin 落账 + P4 本行自洽 + advisory 变动清单
     # r69：先读全历史 —— 热度索引与「最近一次全量行」都要看历史，不能只看紧邻上一行
-    hist = []
+    hist, hist_bad = [], 0
     try:
-        hist = read_rows(a.ledger)
-    except (OSError, ValueError) as e:
+        hist, hist_bad = read_rows(a.ledger)
+    except OSError as e:
         print("  ⚠️ 台账读不到（%s）⇒ 本行仍落账，但变动清单与热度本轮不可比" % e.__class__.__name__)
+    if hist_bad:
+        print("[PIN:UNVERIFIED] 台账含 %d 行不可解析 ⇒ 取数面不完整，不得判过（R247）" % hist_bad)
+        return 2
     prev = hist[-1] if hist else None
     heat_stats = {}
     heat = heat_index(hist, stats=heat_stats)
@@ -453,7 +478,9 @@ def main(argv=None):
             print("   处置：对该端重建 junction 指向权威源（或跑既有 check-skill-mirror 链路）；"
                   "本门只判「镜像面是否钉在权威源」这一项事实")
             return 1
-        acc = trend_of(read_rows(a.ledger))
+        # r72：read_rows 返回值已改为 (rows, bad)；此处 bad 必为 0（前面 hist_bad 已拦截）
+        rows_for_trend, _bad = read_rows(a.ledger)
+        acc = trend_of(rows_for_trend)
         if acc:
             hot = max(acc.values(), key=lambda x: (x["changes"], x["rows"]))
             print("   ℹ️ 跨轮趋势：最常变面 = %s（变动 %d 次 / 共 %d 行，advisory）"
