@@ -258,6 +258,29 @@ def main():
               pf3.get("diff_inherit") == "tA" and pf3["diff_files"] == []
               and "diff_inherit" not in no_full and no_full["diff_files"] == ["x"],
               "%s / %s" % (pf3, no_full))
+
+        # ── T24/T25 新面孔优先 + 热度滑动窗口（r69 §6①② 的修）
+        heat2 = {" M a/x.md": 9}
+        files2 = [" B m/z.md", " M a/x.md", "?? new/y.md"]
+        # 注：**「新面孔」在窗口口径下就等价于 heat==0**（窗口内没出现过）——所以两条 heat 0 都算新面孔
+        o2 = m.order_diff_files(files2, heat2)
+        check("T24 新面孔优先：heat=0 的两条排最前（内部按路径升序），heat=9 的退居末位",
+              o2 == [" B m/z.md", "?? new/y.md", " M a/x.md"], str(o2))
+        try:
+            m.NEW_FACE_FIRST = False
+            o2_mut = m.order_diff_files(files2, heat2)
+        finally:
+            m.NEW_FACE_FIRST = True
+        check("T24 变异：关掉新面孔优先 ⇒ 新面孔（热度 0）沉到末位（即该规则确在承担排序）",
+              o2_mut[-1] == "?? new/y.md" and o2_mut[0] == " M a/x.md", str(o2_mut))
+
+        rows_w = ([{"faces": [{"diff_files": ["old/x"]}]}] * 3
+                  + [{"faces": [{"diff_files": ["new/y"]}]}])
+        win = m.heat_index(rows_w, window=2)
+        full = m.heat_index(rows_w, window=0)
+        check("T25 滑动窗口：window=2 只计近 2 行（old/x 3 次降为 1）；window=0 记全史",
+              win.get("old/x") == 1 and win.get("new/y") == 1 and full.get("old/x") == 3,
+              "win=%s full=%s" % (win, full))
     finally:
         shutil.rmtree(base, ignore_errors=True)
 

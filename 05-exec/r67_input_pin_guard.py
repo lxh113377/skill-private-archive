@@ -119,30 +119,45 @@ def _git(root, *args):
 DIFF_CAP = 40   # diff_files 的展示上限；超额只截断**清单**，不截断计数与摘要（截断必须显式声明，R-ENUM）
 
 
-def heat_index(rows):
-    """路径 -> 台账历史出现次数（= 变动热度）。纯函数，可被夹具喂样本。"""
+HEAT_WINDOW = 20   # 热度统计窗口（近 N 行）；台账全史会让老路径永远霸榜（r69 §6②）
+
+
+def heat_index(rows, window=HEAT_WINDOW):
+    """路径 -> 统计窗口内出现次数（= 变动热度）。`window<=0` ⇒ 记全史。纯函数。
+
+    窗口必须在**统计之前**切行：先全量统计再截断计数，等于换了口径却没换分母。
+    """
+    rows = list(rows or [])
+    if window and window > 0:
+        rows = rows[-window:]
     acc = {}
-    for r in rows or []:
+    for r in rows:
         for f in r.get("faces") or []:
             for p in f.get("diff_files") or []:
                 acc[p] = acc.get(p, 0) + 1
     return acc
 
 
+# 变异钩子（r70 夹具 T24 用它证明「新面孔优先确实在承担排序」；生产恒为 True）
+NEW_FACE_FIRST = True
 # 变异钩子（r69 夹具 T20 用它证明「热度排序确实在承担清单排序」；生产恒为 True）
 ORDER_BY_HEAT = True
 
 
 def order_diff_files(files, heat=None):
-    """清单排序：热度降序 -> 路径升序（确定性）。
+    """清单排序：**新面孔优先** -> 热度降序 -> 路径升序（确定性）。
 
-    ⚠️ 排序**只影响 `diff_files` 清单**，一律不进 `dirty_digest` —— 热度随历史变化，
+    新面孔 = 统计窗口内从未出现过的路径，它们是本轮**信息量最大**的改动；纯热度序会把它们
+    按热度 0 沉到末位，超 cap 时被整批截断（r69 §6① 的已知口径代价，本轮修）。
+
+    ⚠️ 排序**只影响 `diff_files` 清单**，一律不进 `dirty_digest` —— 热度/窗口随历史变化，
     若混进摘要，同一批未提交字节会在相邻两行产生「假 pin 变动」，把趋势读数污染成噪声。
     """
     files = list(files or [])
     if not (ORDER_BY_HEAT and heat):
         return sorted(files)
-    return sorted(files, key=lambda p: (-heat.get(p, 0), p))
+    return sorted(files, key=lambda p: ((0 if (NEW_FACE_FIRST and heat.get(p, 0) == 0) else 1),
+                                        -heat.get(p, 0), p))
 
 
 def pin_face(root, diff_cap=DIFF_CAP, heat=None):
@@ -310,7 +325,8 @@ def main(argv=None):
             return 2
         acc = trend_of(rows_all)
         top = sorted(acc.values(), key=lambda x: (-x["changes"], -x["rows"], x["root"]))
-        print("跨轮趋势（台账 %d 行 / %d 个输入面）：" % (len(rows_all), len(acc)))
+        print("跨轮趋势（台账 %d 行 / %d 个输入面 ｜ 热度窗口=近 %d 行）："
+              % (len(rows_all), len(acc), HEAT_WINDOW))
         for i, x in enumerate(top, 1):
             print("  %d. %-34s 变动 %d 次 / 出现 %d 行 ｜ 最近变动 %s ｜ 最新未提交 %s 条"
                   % (i, x["root"], x["changes"], x["rows"], x["last_change_ts"] or "-",
