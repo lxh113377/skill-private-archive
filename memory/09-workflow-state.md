@@ -1,7 +1,10 @@
 # 09 - 动态工作流任务状态（状态唯一源）
 
-> schema: fenjue-workflow-state-v1 | 本文件是本项目**任务状态的唯一权威源**。
-> `07-next-steps.md`（主壳 + 分卷）是由 `flow --sync` **单向回写**的派生台账——禁止手工改 07 的状态标记（改了会在下次 sync 被覆盖）。
+> schema: fenjue-workflow-state-v1 | 本文件是**动态工作流引擎读取的任务状态表**（引擎侧唯一取数面）。
+> 与 `07-next-steps.md` 的关系（按实现写，不写愿望）：`flow --sync` **只把 09 的 done/todo 勾选同步到 07**
+> ——匹配到同一条目则改勾选位，匹配不到则在对应章节**追加**一行；若 07 已标完成而 09 不是 done，
+> 它打印冲突并交人工裁决，**不覆盖 07**。任务表为空时 `--sync` 直接返回，此时 07 完全由人工维护。
+> 因此：07 仍是项目台账的权威叙述面（可手工写）；09 只是引擎的任务视图，二者靠 sync 对齐勾选位。
 > 状态枚举：`todo` / `doing` / `done` / `blocked`；批次：`P0` / `P1` / `P2`（`--next` **只在当前批次内取**：本批全 done 才进下一批；本批有 doing/blocked 而无可启动 todo 时**不跨批**，只列未完结项）。
 > 用法：`handoff.py flow <项目路径> --status | --next | --start --id X | --done --id X [--evidence P] | --block --id X --reason R | --sync | --check | --add ...`
 
@@ -25,7 +28,7 @@
 
 | id | 批次 | 标题 | 状态 | 依赖 | 阻塞 | 更新于 | 证据 |
 |----|----|----|----|----|----|----|----|
-| R19-1 | P0 | 注入面失真句批次整改(端数/版本戳10句+流程入描述24条+六段最小规范) | blocked | - | 派生件重建窗口未开且 global_skills 28 条在途 | 2026-09-24 17:57 | - |
+| R19-1 | P0 | 注入面失真句批次整改(端数/版本戳10句+流程入描述24条+六段最小规范) | blocked | - | 轮76 实测窗口未开：焚诀根 42 条在途（其中 5 条已 staged＝他人提交在途），且 build_indexes --apply 的四个输出面 bge_fullbody_embeddings.npy / direct_map.json / truth_constants.json / inject_budget_ledger.jsonl 全部为 M ⇒ 强推必覆盖他人产物并把输出卷进他人那次提交 | 2026-10-01 01:34 | - |
 | R19-2 | P0 | 转焚诀 C29/C30/C31 判据(目录税棘轮+注入区合一+计数断言内容级门禁) | blocked | - | 焚诀 eval 只读红线，待归属会话 | 2026-09-24 17:57 | - |
 | R19-3 | P1 | 本仓9份基线JSON落 schemas/r19 契约族+校验器 | done | - | - | 2026-09-24 18:50 | 06-benchmark/baseline_contract_check_2026-09-24.json |
 | VOL-1BFD2 | P1 | 体量治理[L1 记忆卷] memory/08-ac-obs.md — 非 4KB 拆卷目标：先裁口径（是否入 SPLIT_TARGETS / 加豁免册），禁自动拆 | done | - | - | 2026-09-25 21:30 | D:/global_skills/A-project-handoff/references/version-history.md#V3.57.0 豁免计量册条目 |
@@ -37,6 +40,8 @@
 | VOL-2A600 | P1 | 体量治理[L1 记忆卷] memory/07-next-steps.md — 主卷注入面超告警线：按条数归档（savepoint 摘要归档 / trim-shell）或把长校正注迁分卷；P0 与红线内容禁自动改 | blocked | - | 摘要已按条数归档（主壳 138,304B→119,610B，-18,694B）；余量为 P0 活债 70KB + 分卷目录 36KB，须逐条人工裁决（禁自动改 P0） | 2026-09-25 21:49 | - |
 | W-46b | P1 | 清 noise_falsepositive_*.json 死句柄（补生成器或按 R241 摘牌留注），再把「pattern 必须有生成器」接进 run_gates 判红（r58 误报率 30.6% 已量清，真死句柄仅 1 条） | done | - | - | 2026-09-30 23:42 | 06-benchmark/全量对标报告_r66_W46b生成器面接线判红_2026-09-30.md |
 | R58-1 | P1 | 第17维纵深：把「仓外输入固定」推广到受管根 clone/镜像面（21 道门读本地字节，与 CI 读 checkout 字节同构） | done | - | - | 2026-09-30 23:51 | 06-benchmark/全量对标报告_r67_R58-1仓外输入固定面本地面_2026-09-30.md |
+| R76-1 | P1 | 项目/医 09 头回填收尾：待该文件在途收口后跑 flow <医> --fix-header（V3.115.0 判据会自行显形） | todo | - | - | 2026-10-01 01:34 | - |
+| R76-2 | P1 | 项目/陪聊 09 回填件提交：被其自有 pre-commit 交付件判据拦红（s08.png 从工作树消失 + SoulIsle 品牌分叉，均非本次引入），待归属方处置 | todo | - | - | 2026-10-01 01:34 | - |
 
 ## 推进记录
 
@@ -63,6 +68,9 @@
 - [2026-09-26 12:31] R58-1 新增（P1，todo）
 - [2026-09-30 23:42] W-46b todo → done
 - [2026-09-30 23:51] R58-1 todo → done
+- [2026-10-01 01:34] R19-1 blocked → blocked（轮76 实测窗口未开：焚诀根 42 条在途（其中 5 条已 staged＝他人提交在途），且 build_indexes --apply 的四个输出面 bge_fullbody_embeddings.npy / direct_map.json / truth_constants.json / inject_budget_ledger.jsonl 全部为 M ⇒ 强推必覆盖他人产物并把输出卷进他人那次提交）
+- [2026-10-01 01:34] R76-1 新增（P1，todo）
+- [2026-10-01 01:34] R76-2 新增（P1，todo）
 
 ## 分卷目录
 

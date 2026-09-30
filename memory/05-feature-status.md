@@ -74,7 +74,3 @@ r40 还债轮（2026-09-25 第 40 轮） — 不开新维度、专修判据放�
 
 
 ## ✅ 已完成 · r60（2026-09-30，第 61 轮）
-
-- **第 18 维「能力覆盖名册差集」落地**：两把尺（`05-exec/r60_capability_roster.py` slug 名面 / `r60_capability_roster_describe.py` 描述面）+ 契约入册两 pattern + 不变式 `roster_partition_sum` + 常驻门 `roster_partition_fixtures`（6/6）。
-- **R59-4 退役真执行**：`executing-plans` + `slides` 先入库（受管根 `12916b7` / `af4be90`）再备份验证后移出扫描树；`r59_retired_face` 由自证升级为活体面，实测 `retired_still_on_disk=0`。
-- **reactive 修正**：R59-5 与 R59-6 的 docx 半边经实测前提失效（均已就位）⇒ 销账；仅 xlsx 半边转 R60-3。

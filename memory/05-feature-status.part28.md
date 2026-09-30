@@ -5,3 +5,9 @@
 - **r38 债务到期治理轮（2026-09-25 第 38 轮）** — 第十四维「积压债务的可见性与到期治理」：账龄尺 `05-exec/r38_debt_aging.py`（13 卷全扫 / 正文去重 / 四分类之和自校验 / OVERDUE 用 `git log -S` 复核首现）首跑量出 13 条超期无裁决（最老 30 轮）⇒ 逐条取证裁决至 **OVERDUE 0**（12 DECIDED + 1 执行闭环），并把账龄做成 `ratchet_gate` **第 7 指标** `overdue_debt_items`（只降不升、变异对照 OVERDUE=3 必红、不进 `run_gates` 阻断位）；同时清偿挂账 3 轮的 **M-2**（契约 `inject_ratchet_baseline*.json` + 集合全等不变式双向报缺项/僵尸项 + 硬顶无主检查，夹具 t21–t28 → 41/41），契约 12 pattern / 15 受检件，`[RATCHET:PASS] 7 项`、`[GATES:PASS] PASS=8`。立 X-10（不引入到期自动关闭）/ X-11（待办不外迁 tracker）。被自家判据抓两处：自造裁决措辞不在取值域照判红、M-1/M-2 编号与 r31 撞车（改 W- 前缀）。残余 36 条 UNDATED = 判据盲区（W-1）。**✅ 校正注（同日 r38 二刷）：给账龄尺补上「正文裸 rNN 回落」后盲区 36→13，但真实超期敞口随之从 13 跳到 22（原判 UNDATED 的条目里 9 条其实早已超期只是没定年）⇒ 棘轮基线按实况核定 22 而非 0；本轮「OVERDUE 归 0」的说法只对**首版判据**成立，不成立於修正后判据。教训：尺子变准会让债务变多，这时唯一诚实的做法是把基线钉在真值上（R263 禁改数据凑判据的反向形态：禁改判据凑好看）。**
 
 - **r39 延期与终局拆分轮（2026-09-25 第 39 轮）** — 第十四维纵深 + W-0 清偿。① 账龄判据补 **DEFERRED** 独立态：挂账目标轮未到 → DEFERRED，**已到/已过 → 回判 OVERDUE（到期追讨）**，堵死"写个远期挂账就清零"的自我欺骗；② 新建趋势台账 `06-benchmark/debt_runs.jsonl`（append-only、行契约 origin 取值域封闭 local/ci、五态自洽否则**一行不写**），注册为**第 9 道常驻门**，夹具 **19/19**；③ **W-0**：22 条超期逐条取证裁决，`OVERDUE 22 → 0` 且 `DEFERRED 23 / DECIDED 11 / UNDATED 13` 单列在册（未销账，棘轮基线 note 已记敞口）；④ 四处自抓并修：不变式由写死集合改「声明态 == 计数态」自洽式（v1 历史件不再被实现漂移误杀）、指标 glob 去轮次硬编码（`debt_aging_r3*` + mtime 最新，否则永远读旧证据）、恒真测试 t18 直接删除、台账未定型旧行删除并在 06 留登记。立 **X-13**。下轮首推 **W-4**（DEFERRED 第 8 指标）与 **W-5**（斜率须被人看，三轮不降即停新维度）。
+
+- **第 18 维「能力覆盖名册差集」落地**：两把尺（`05-exec/r60_capability_roster.py` slug 名面 / `r60_capability_roster_describe.py` 描述面）+ 契约入册两 pattern + 不变式 `roster_partition_sum` + 常驻门 `roster_partition_fixtures`（6/6）。
+
+- **R59-4 退役真执行**：`executing-plans` + `slides` 先入库（受管根 `12916b7` / `af4be90`）再备份验证后移出扫描树；`r59_retired_face` 由自证升级为活体面，实测 `retired_still_on_disk=0`。
+
+- **reactive 修正**：R59-5 与 R59-6 的 docx 半边经实测前提失效（均已就位）⇒ 销账；仅 xlsx 半边转 R60-3。

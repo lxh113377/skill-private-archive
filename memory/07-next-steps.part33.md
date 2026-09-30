@@ -9,6 +9,8 @@
 - [x] **阶段4 首批：A族 P0 整改** —— 拆卷 `f8bc12f`（85,508B→3,827B）+ 回归修复 `V3.37.1`；A-get-memory 死链 `5bcb550`；版本号/平台名清理
 
 ## P1 / P2（已全部销账）
+- [ ] R76-2 项目/陪聊 09 回填件提交：被其自有 pre-commit 交付件判据拦红（s08.png 从工作树消失 + SoulIsle 品牌分叉，均非本次引入），待归属方处置（由 flow 登记；状态: todo）
+- [ ] R76-1 项目/医 09 头回填收尾：待该文件在途收口后跑 flow <医> --fix-header（V3.115.0 判据会自行显形）（由 flow 登记；状态: todo）
 - [x] R58-1 第17维纵深：把「仓外输入固定」推广到受管根 clone/镜像面（21 道门读本地字节，与 CI 读 checkout 字节同构）（由 flow 登记；状态: todo）
 - [x] W-46b 清 noise_falsepositive_*.json 死句柄（补生成器或按 R241 摘牌留注），再把「pattern 必须有生成器」接进 run_gates 判红（r58 误报率 30.6% 已量清，真死句柄仅 1 条）（由 flow 登记；状态: todo）
 - [ ] VOL-2A600 体量治理[L1 记忆卷] memory/07-next-steps.md — 主卷注入面超告警线：按条数归档（savepoint 摘要归档 / trim-shell）或把长校正注迁分卷；P0 与红线内容禁自动改（由 flow 登记；状态: todo）
