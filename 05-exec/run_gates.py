@@ -379,6 +379,23 @@ GATES = [
                "（R238 接线面 + 「消不掉的告警等于没有判据」）。本门只判 磁盘∩退役名单 一项事实，"
                "不重复 disk_registry_diff 的三类差集（一事实一判据）。",
     },
+    {
+        "id": "generator_face",
+        "script": "r58_generator_coverage.py",
+        "argv": ["--gate"],        # r66 W-46b 第二步：从「只测量」升为判据（三态 rc）
+        "pass_token": "[GENCOV:PASS]",
+        "portable": False,
+        "not_portable_reason":
+            "覆盖面含 D:/global_skills 与焚诀/audit 两处本机绝对根（EXTERNAL_ROOTS），离机取不到 ⇒ 会判 "
+            "EXTERNAL_CANDIDATE 塌成 DEAD_HANDLE 而误红；本件按 R247 走 UNVERIFIED(exit 2) 而不是默认放行",
+        "covers": ["05-exec/schemas/r19/baseline-contracts.json 的 artifacts 里每个 pattern ⇄ 05-exec/*.py 的生成器面",
+                   "05-exec/r58_generator_coverage.py 的三路识别（A 字面/B 词干+扩展/C 同名工具）+ r66 新增路 D（自产物按工具名）",
+                   "夹具 05-exec/r66_generator_gate_fixtures.py 的 12 例（含 3 条变异腿与 2 条反向腿）"],
+        "why": "W-46b：r56 连踩两份死句柄（裁定依据件在仓里没有生成器）。r58 先只测量并交清单（防带误报上线），"
+               "r66 把误报修到 0 后接线：三态 rc=0/1/2（零输入与解析失败一律 rc=2，禁静默判过，R247）。"
+               "r66 实证三处自身缺陷：① 自排除把本工具自己的产物判死句柄；② all() 过紧把 attention_sim_raw_* 判假阴性；"
+               "③ 摘牌 noise_falsepositive_*（真死句柄，生成器已不存在）。",
+    },
 ]
 
 # 显式声明本 runner **不覆盖**的面，防止聚合绿被读成「所有门禁都绿」（R20-2）。

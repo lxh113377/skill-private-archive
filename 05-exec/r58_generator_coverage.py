@@ -33,6 +33,11 @@ CONTRACT = os.path.join(ROOT, "05-exec", "schemas", "r19", "baseline-contracts.j
 BENCH = os.path.join(ROOT, "06-benchmark")
 SCRIPTS = os.path.join(ROOT, "05-exec")
 SELF = os.path.basename(__file__)
+# r66 路 D 用：本脚本自身源码 —— 判它「到底有没有写盘痕迹」，而不是靠它散文里提到了什么
+try:
+    SELF_SRC = io.open(os.path.join(SCRIPTS, SELF), encoding="utf-8", errors="replace").read()
+except OSError:
+    SELF_SRC = ""
 
 WRITE_RX = re.compile(r"json\.dump|\bopen\([^)]{0,80}[\"'][wa][+b]?\b|--json|newline\s*=")
 FIXTURE_RX = re.compile(r"fixture|stub|_check\b", re.I)
@@ -55,6 +60,35 @@ def stem(pattern):
     return pattern.split("*")[0] or pattern
 
 
+def _norm(s):
+    """剥前导 `r<数字>_` 与尾部 `_r` / `_<数字>`；用于同名工具路的归一化比对（r66 补）。"""
+    s = re.sub(r"^r\d+_", "", s or "")
+    s = re.sub(r"(_r|_\d+)$", "", s)
+    return s.strip("_")
+
+
+def _external_match(st, basename):
+    """外部生成器判定（r66 把假阴性修回来，同时守住已修好的假阳性）。
+
+    历史：原口径 = 「全部 token 命中」。它治好了 `noise_falsepositive_*` 撞上
+    `A-project-handoff/scripts/noise_lint.py` 的**假阳性**（只靠通用词 `noise`），
+    却把 `attention_sim_raw_*` 变成**假阴性** —— `raw` 不在 `attention_sim.py` 里，
+    而那件确由 `python audit/attention_sim.py --json > ...` 生成（该脚本 `--json` 是
+    store_true 开关，件由 stdout 重定向落盘）。
+    现口径 = 全 token 命中 **或**（最长 token 命中 且 命中数 >= 2）：
+      noise_falsepositive → 最长 falsepositive 不命中 ⇒ 仍拒（假阳性不复发）
+      attention_sim_raw   → 最长 attention 命中且命中 2 个 ⇒ 收（假阴性消除）
+    """
+    toks = [t for t in re.split(r"[^a-z]+", (st or "").lower()) if len(t) >= 3]
+    if not toks:
+        return False
+    low = basename.lower()
+    hits = [t for t in toks if t in low]
+    if len(hits) == len(toks):
+        return True
+    return max(toks, key=len) in low and len(hits) >= 2
+
+
 def main():
     argv = sys.argv[1:]
     out_json = argv[argv.index("--json") + 1] if "--json" in argv else None
@@ -70,6 +104,9 @@ def main():
     unparsed = []
     for path in sorted(glob.glob(os.path.join(SCRIPTS, "*.py"))):
         name = os.path.basename(path)
+        # r66：仍排除自身出「生成器语料」——否则它散文里提到的 pattern（如 docstring 举的
+        # `debt_aging_r%d_%s.json` / `rule_conflict_scan_*.json`）会借 SELF 的 WRITE_RX
+        # 冒充生成器（这正是当初排除它的理由）。自产物改由下面的**路 D**按工具名认领。
         if name == SELF:
             continue
         try:
@@ -95,12 +132,10 @@ def main():
         st = stem(pat)
         tokens = [t for t in re.split(r"[^a-z]+", st.lower()) if len(t) >= 5]
         loose, strict_writers, fixtures, readers = [], [], [], []
-        ext_tokens = [t for t in re.split(r"[^a-z]+", st.lower()) if len(t) >= 3]
-        # 必须**全部** token 命中：首跑用 any() 时 `noise_falsepositive_*` 因单词「noise」撞上
-        # `A-project-handoff/scripts/noise_lint.py` 而被误记成『外部有生成器』—— 该件全库 grep
-        # `falsepositive` 零命中，是真死句柄。all() 后复正（判据假通过，比假失败更坏）。
+        # r66：外部判定改调 _external_match（全 token 或「最长 token + 命中>=2」），
+        # 修回 attention_sim_raw_* 的假阴性，同时守住 noise_falsepositive_* 的假阳性不复发。
         external = ["%s/%s" % (lbl, b) for lbl, b in ext_index
-                    if ext_tokens and all(t in b.lower() for t in ext_tokens)]
+                    if _external_match(st, b)]
         for name, (lits, src) in sorted(corpus.items()):
             hit_a = any(fnmatch.fnmatch(l, pat) for l in lits)
             # 路 B 收紧：字面量须同时含词干与扩展名，否则 `"description"` 这类**字典键**会被当成文件名
@@ -108,7 +143,14 @@ def main():
             # 路 C 同名工具路：`rule_conflict_scan.py` 写出 `rule_conflict_scan_*.json` 时，输出文件名
             # 往往由 `--json <path>` 传入、源码里没有该字面量 ⇒ 只走 A/B 会把**真生成器**误判成死句柄。
             # r58 实测：A/B 口径给出的 3 条「死句柄」里有 2 条正是这种假阴性。
-            hit_c = bool(st) and name[:-3].startswith(st.rstrip("_"))
+            # r66 修自排除假阳性：原式只认「脚本名以词干开头」，而 `r58_generator_coverage.py`
+            # 写出的 `generator_coverage_r*.json` 词干是 `generator_coverage_r`（脚本名以 `r58_`
+            # 开头），加上旧实现 L73-74 把本脚本排除出语料 ⇒ 自己的产物被自判 DEAD_HANDLE。
+            # 归一化后（剥前导 r<数字>_ 与尾部 _r）两侧同为 `generator_coverage`。
+            # core 长度 <4 一律不认，防短词干把无关脚本一网打尽（反向对照见 r66 夹具）。
+            core = _norm(st)
+            hit_c = bool(core) and len(core) >= 4 and (
+                name[:-3].startswith(st.rstrip("_")) or _norm(name[:-3]).startswith(core))
             if not (hit_a or hit_b or hit_c):
                 continue
             loose.append(name)
@@ -118,6 +160,13 @@ def main():
                 strict_writers.append(name)
             else:
                 readers.append(name)
+        # 路 D「自产物路」（r66 新增）：本脚本自己写出的件由**工具名**认领 —— 旧实现把本脚本
+        # 排除出语料后它就无人认领，自产物被判 DEAD_HANDLE（自排除假阳性，实测）。
+        # 只认「归一化后完全相等」（不是前缀），且必须真有 WRITE_RX 写盘痕迹；
+        # 散文里提到别的 pattern（core 不等）不会命中 —— 两个方向都有反例腿（见 r66 夹具）。
+        if core and core == _norm(SELF[:-3]) and WRITE_RX.search(SELF_SRC):
+            loose.append(SELF)
+            strict_writers.append(SELF)
         if unparsed:
             verdict = "UNVERIFIED"
         elif strict_writers:
@@ -165,6 +214,27 @@ def main():
     print("[GENCOV:%s] 接线判据：%s" % ("READY" if not dead and not unparsed else "HOLD",
                                         "零命中清单为空 ⇒ 可接线判红" if not dead and not unparsed
                                         else "非空 ⇒ 先补生成器/先修解析，禁带已知误报上线"))
+
+    if "--gate" in argv:
+        # r66 新档：W-46b 第二步「接进 run_gates 判红」的判据出口。三态（R247：零输入不得判过）：
+        #   0 = 在册 pattern 全部有生成器；1 = 存在死句柄/分档漂移；2 = 取数面不完整（零输入或脚本解析失败）
+        if not patterns:
+            print("[GENCOV:UNVERIFIED] 契约 artifacts 面为空 ⇒ 零输入，不得判过（R247）")
+            return 2
+        if unparsed:
+            print("[GENCOV:UNVERIFIED] 有脚本解析失败（%s）⇒ 取数面不完整，不得判过"
+                  % ", ".join(unparsed))
+            return 2
+        if not sum_ok:
+            print("[GENCOV:FAIL] 分档求和 %d != pattern 总数 %d ⇒ 枚举器漏项"
+                  % (sum(tally.values()), len(patterns)))
+            return 1
+        if dead:
+            print("[GENCOV:FAIL] 死句柄 %d 个（在册 pattern 无生成器）: %s"
+                  % (len(dead), ", ".join(dead)))
+            return 1
+        print("[GENCOV:PASS] %d 个 pattern 全有生成器（DEAD_HANDLE=0 / UNVERIFIED=0）" % len(patterns))
+        return 0
 
     doc = {"schema": "generator-coverage-v1",
            "generated_at": datetime.datetime.now().isoformat(timespec="seconds"),

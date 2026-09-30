@@ -27,6 +27,7 @@ python 05-exec/run_gates.py
 > "the identical check runs locally pre-push, in the write-time hook, and here in CI — one source of truth"）。
 > runner 内 `GATES` 表 = 单一真相源，逐门独立执行**不短路**（原 5 段 `&&` 串一段红即后四段不可知），
 > 每门打印**覆盖根清单**（本仓 R20-2），并输出每门耗时（**单点值不可引用**，取值 `python 05-exec/run_gates.py --json <件>.json` 读 `total_ms`/`elapsed_ms`；r31-r32 观测区间 1.78～4.82 s，最慢门恒为 `r19_scan_fixtures`）。
+> **⚠️ 门数以 runner 自述为准（r66 校正注，R242；本节原文一律保留不改）**：下面「r32 起门数 = 6」这条历史口径**已过期** —— 实况取值 `python 05-exec/run_gates.py`（末二行自述「执行 N 门」，r66 实测 **26** 门，新增第 26 门 `generator_face` = W-46b 生成器面）。禁止据本节手数门数或照抄本节那条 6 条展开命令。
 > **r32 起门数 = 6**：新增 `gate_run_freshness`（`05-exec/r32_gate_freshness.py`），它评的是「本仓门禁最近是否还在被真跑」——
 > 依据 `06-benchmark/gate_runs.jsonl` 执行台账（每次 runner 执行追加一行，`origin` 区分 `local`/`ci`）。
 > 三条反假绿要点：① **空台账 ⇒ `UNVERIFIED`**（没跑过 ≠ 跑得干净）；② **只有 CI 记录 ⇒ FAIL**（CI 绿不能替人证明两台机专属门还在跑，这是本仓对 CI 的反向用法：用 CI 盯人）；

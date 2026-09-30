@@ -72,5 +72,5 @@
   "fenjue/SECURITY.md": "governance_file_tracked"
  },
  "gate": "[GATE:noise-pass]",
- "note": "before=修前原件实跑四根；after=在役原件实跑四根；每条 before VIOL 的 provenance 由 git 实测"
+ "note": "before=修前原件实跑四根；after=在役原件实跑四根；每条 before VIOL 的 provenance 由 git 实测｜⚠️ r66 摘牌留注（R241：原 note 原文一字未改，仅追加）：本件已从 05-exec/schemas/r19/baseline-contracts.json 的 artifacts 摘除登记——其 r37 一次性生成器已不存在（r58_generator_coverage.py 实测判 DEAD_HANDLE，且全库 grep falsepositive 三处皆为引用非生成），按 W-46b「无生成器的 pattern 不得留在册」处置。件本身保留在 06-benchmark/ 作历史证据，理由与验收见 06-benchmark/全量对标报告_r66_*.md。"
 }
