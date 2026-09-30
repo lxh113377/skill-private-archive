@@ -329,11 +329,31 @@ def main():
             f.write(json.dumps({"ts": "2026-10-01T12:00:00", "faces": []}) + "\n")
             f.write("{ this is not json\n")
             f.write(json.dumps({"ts": "2026-10-01T12:01:00", "faces": []}) + "\n")
-        rr, bad_n = m.read_rows(led_bad)
+        rr, bad_lines = m.read_rows(led_bad)
         rc29 = m.main(["--trend", "--ledger", led_bad])
-        check("T29 坏行不静默：read_rows 报 (2 行, 1 坏)；--trend 遇坏行判 rc=2（禁当空/当全）",
-              len(rr) == 2 and bad_n == 1 and rc29 == 2,
-              "rows=%d bad=%d rc=%s" % (len(rr), bad_n, rc29))
+        check("T29 坏行不静默：read_rows 报 (2 行, 行号[2])；--trend 遇坏行判 rc=2（禁当空/当全）",
+              len(rr) == 2 and bad_lines == [2] and rc29 == 2,
+              "rows=%d bad=%s rc=%s" % (len(rr), bad_lines, rc29))
+
+        # ── T31 坏行行号渲染（r73 修①）：少则全列，多则列前 BAD_SHOW_MAX 并声明总数（截断即声明）
+        note_small = m.bad_rows_note([2, 7])
+        note_big = m.bad_rows_note(list(range(1, 13)))
+        check("T31 行号渲染：少则全列；12 行坏则列前 %d 且显式声明总数" % m.BAD_SHOW_MAX,
+              note_small == "行号 2, 7" and "共 12 行" in note_big
+              and "行号 1, 2, 3, 4, 5, 6, 7, 8, 9, 10" in note_big,
+              "%s / %s" % (note_small, note_big))
+
+        # ── T32 继承截断标记（r73 修②）：本行未列清单 ⇒ diff_truncated 归 False，真截断态移到 inherited
+        hist_t = [{"ts": "tA", "faces": [{"root": "A", "state": "pinned", "head": "h1",
+                                          "dirty_digest": "d1", "diff_files": ["a"],
+                                          "diff_truncated": True}]}]
+        cur_t = [{"root": "A", "state": "pinned", "head": "h1", "dirty_digest": "d1",
+                  "diff_files": ["a"], "diff_truncated": True}]
+        pf_t = m.payload_faces(cur_t, hist_t)[0]
+        row_trunc_t = m.row_truncated([pf_t])
+        check("T32 继承标记：diff_truncated→False + diff_truncated_inherited=True；行级有效截断仍 True",
+              pf_t["diff_truncated"] is False and pf_t.get("diff_truncated_inherited") is True
+              and row_trunc_t is True, str(pf_t))
 
         # ── T30 陈旧值不得当现状（r72 修②）+ 变异：面转 unreachable 后 latest_dirty_n 必须归 None
         rows_s = [

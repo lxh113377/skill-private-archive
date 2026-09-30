@@ -293,12 +293,13 @@ def payload_faces(pins, rows):
     prev = rows[-1] if rows else {}
     prev_by_root = {f.get("root"): f for f in prev.get("faces") or []}
 
-    def last_full_ts(root):
+    def last_full(root):
+        """最近一次带该面全量清单的行：返回 `(ts, 该面当时的截断态)`；找不到 ⇒ ("", False)。"""
         for r in reversed(rows):
             for f in r.get("faces") or []:
                 if f.get("root") == root and f.get("diff_files"):
-                    return r.get("ts", "")
-        return ""
+                    return r.get("ts", ""), bool(f.get("diff_truncated"))
+        return "", False
 
     out = []
     for f in pins or []:
@@ -307,34 +308,62 @@ def payload_faces(pins, rows):
         same = bool(p) and (p.get("state"), p.get("head"), p.get("dirty_digest")) == \
                            (f.get("state"), f.get("head"), f.get("dirty_digest"))
         if INHERIT_UNCHANGED and same and f.get("state") == "pinned":
-            ts = last_full_ts(f.get("root"))
+            ts, trunc = last_full(f.get("root"))
             if ts:
                 g["diff_files"] = []
                 g["diff_inherit"] = ts
+                # r73：本行**没有**列清单 ⇒ 本面的 diff_truncated 必须归 False（否则读者会以为
+                # 「这次的清单被截断了」）；真正的截断态移到 diff_truncated_inherited。
+                g["diff_truncated"] = False
+                g["diff_truncated_inherited"] = trunc
         out.append(g)
     return out
 
 
+def row_truncated(faces):
+    """行级「有效截断态」= 本行自己列的截断 **或** 继承来的截断（r68 引入该字段时的含义）。
+
+    抽成纯函数是为了让判据与夹具**共用同一份口径**：夹具若自己重写这行表达式，测的是
+    「我记得的逻辑」而不是「跑的那份逻辑」。
+    """
+    return any(bool(f.get("diff_truncated")) or bool(f.get("diff_truncated_inherited"))
+               for f in faces or [])
+
+
 def read_rows(ledger):
-    """读台账全部行：返回 `(行, 不可解析行数)`。
+    """读台账全部行：返回 `(行, 坏行行号列表)`（行号 **1-based**，含空行计数）。
 
     r72 修：不可解析的行**必须计数上报**，不得静默 `continue` —— 静默跳过会让热度分母与
-    趋势行数**一起变小而账面全绿**（R-ENUM 同族：分母静默变小）。台账是 append-only 自产件，
-    坏行只可能来自写崩，属**可自愈**（补齐或用 `--ledger` 指定新本），故调用方按 UNVERIFIED
-    处理合适：既不假装读到全部，也不把「修一行」变成不可完成的事。
+    趋势行数**一起变小而账面全绿**（R-ENUM 同族：分母静默变小）。
+    r73 补：只报**个数**在量大时定位成本高 ⇒ 改为**逐行报行号**（报因里直接给出可跳转的位置）。
+    台账是 append-only 自产件，坏行只可能来自写崩，属**可自愈**（补齐或用 `--ledger` 指定新本），
+    故调用方按 UNVERIFIED 处理合适。
     """
     if not os.path.isfile(ledger):
-        return [], 0
-    out, bad = [], 0
+        return [], []
+    out, bad = [], []
     with io.open(ledger, encoding="utf-8") as fh:
-        for l in fh:
+        for i, l in enumerate(fh, 1):
             if not l.strip():
                 continue
             try:
                 out.append(json.loads(l))
             except ValueError:
-                bad += 1
+                bad.append(i)
     return out, bad
+
+
+BAD_SHOW_MAX = 10   # 报因里最多列出的坏行行号个数；超额显式声明（截断即声明）
+
+
+def bad_rows_note(bad):
+    """把坏行行号列表渲染成报因片段；超过 `BAD_SHOW_MAX` 个则显式声明截断。"""
+    bad = list(bad or [])
+    if not bad:
+        return ""
+    shown = ", ".join(str(n) for n in bad[:BAD_SHOW_MAX])
+    tail = "（共 %d 行，仅列前 %d）" % (len(bad), BAD_SHOW_MAX) if len(bad) > BAD_SHOW_MAX else ""
+    return "行号 %s%s" % (shown, tail)
 
 
 # 变异钩子（r72 夹具 T30 用它证明「不可达面必须清掉陈旧值」；生产恒为 True）
@@ -388,7 +417,8 @@ def main(argv=None):
         # 只读报告模式：**先于任何落账**执行，故空台账这一支在 CLI 上真实可达（否则永远被本行自己撑开）
         rows_all, bad = read_rows(a.ledger)
         if bad:
-            print("[PIN:UNVERIFIED] 台账含 %d 行不可解析 ⇒ 取数面不完整，不得判过（R247）" % bad)
+            print("[PIN:UNVERIFIED] 台账含 %d 行不可解析（%s）⇒ 取数面不完整，不得判过（R247）"
+                  % (len(bad), bad_rows_note(bad)))
             return 2
         if not rows_all:
             print("[PIN:UNVERIFIED] 台账为空 ⇒ 无趋势可比（R247：零输入不得判过）")
@@ -427,13 +457,14 @@ def main(argv=None):
 
     # ── P3 pin 落账 + P4 本行自洽 + advisory 变动清单
     # r69：先读全历史 —— 热度索引与「最近一次全量行」都要看历史，不能只看紧邻上一行
-    hist, hist_bad = [], 0
+    hist, hist_bad = [], []
     try:
         hist, hist_bad = read_rows(a.ledger)
     except OSError as e:
         print("  ⚠️ 台账读不到（%s）⇒ 本行仍落账，但变动清单与热度本轮不可比" % e.__class__.__name__)
     if hist_bad:
-        print("[PIN:UNVERIFIED] 台账含 %d 行不可解析 ⇒ 取数面不完整，不得判过（R247）" % hist_bad)
+        print("[PIN:UNVERIFIED] 台账含 %d 行不可解析（%s）⇒ 取数面不完整，不得判过（R247）"
+              % (len(hist_bad), bad_rows_note(hist_bad)))
         return 2
     prev = hist[-1] if hist else None
     heat_stats = {}
@@ -446,10 +477,12 @@ def main(argv=None):
     row_faces = payload_faces(pins, hist)
     # 行级聚合：契约只校验**行级**键，逐面清单嵌在 faces 里查不到 ⇒ 另立两枚行级事实
     # （本行落账清单条数合计 / 任一面是否被截断），由 row_required_from 代际接管。
+    # 口径（r73 明确，**不因本改而漂移**）：行级 diff_truncated = 「含继承的**有效**截断态」，
+    # 即本行自己列的截断态 **或** 继承来的截断态 —— r68 引入该字段时就是这个含义。
     row = {"schema": "input-pins-v1", "ts": time.strftime("%Y-%m-%dT%H:%M:%S"),
            "decl": os.path.basename(a.decl), "faces": row_faces,
            "diff_files_n": sum(len(f.get("diff_files") or []) for f in row_faces),
-           "diff_truncated": any(bool(f.get("diff_truncated")) for f in row_faces),
+           "diff_truncated": row_truncated(row_faces),
            "mirror_total": len(faces), "mirror_ok": len(faces) - len(viol) - len(rep.get("not_declared", []))}
     try:
         os.makedirs(os.path.dirname(a.ledger), exist_ok=True)
