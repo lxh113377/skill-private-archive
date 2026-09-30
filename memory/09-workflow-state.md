@@ -28,7 +28,7 @@
 
 | id | 批次 | 标题 | 状态 | 依赖 | 阻塞 | 更新于 | 证据 |
 |----|----|----|----|----|----|----|----|
-| R19-1 | P0 | 注入面失真句批次整改(端数/版本戳10句+流程入描述24条+六段最小规范) | blocked | - | 轮76 实测窗口未开：焚诀根 42 条在途（其中 5 条已 staged＝他人提交在途），且 build_indexes --apply 的四个输出面 bge_fullbody_embeddings.npy / direct_map.json / truth_constants.json / inject_budget_ledger.jsonl 全部为 M ⇒ 强推必覆盖他人产物并把输出卷进他人那次提交 | 2026-10-01 01:34 | - |
+| R19-1 | P0 | 注入面失真句批次整改(端数/版本戳10句+流程入描述24条+六段最小规范) | blocked | - | 轮79复查窗口仍关闭:焚诀根57条在途(较轮76的42条增加,其中5条已staged=他人提交在途仍在),build_indexes四个输出面bge_fullbody_embeddings.npy/direct_map.json/truth_constants.json/inject_budget_ledger.jsonl全部仍为M.强推必覆盖他人产物 | 2026-10-01 03:56 | - |
 | R19-2 | P0 | 转焚诀 C29/C30/C31 判据(目录税棘轮+注入区合一+计数断言内容级门禁) | blocked | - | 焚诀 eval 只读红线，待归属会话 | 2026-09-24 17:57 | - |
 | R19-3 | P1 | 本仓9份基线JSON落 schemas/r19 契约族+校验器 | done | - | - | 2026-09-24 18:50 | 06-benchmark/baseline_contract_check_2026-09-24.json |
 | VOL-1BFD2 | P1 | 体量治理[L1 记忆卷] memory/08-ac-obs.md — 非 4KB 拆卷目标：先裁口径（是否入 SPLIT_TARGETS / 加豁免册），禁自动拆 | done | - | - | 2026-09-25 21:30 | D:/global_skills/A-project-handoff/references/version-history.md#V3.57.0 豁免计量册条目 |
@@ -79,6 +79,7 @@
 - [2026-10-01 02:43] R76-5 新增（P1，todo）
 - [2026-10-01 03:16] R76-3 todo → doing
 - [2026-10-01 03:19] R76-3 doing → done
+- [2026-10-01 03:56] R19-1 blocked → blocked（轮79复查窗口仍关闭:焚诀根57条在途(较轮76的42条增加,其中5条已staged=他人提交在途仍在),build_indexes四个输出面bge_fullbody_embeddings.npy/direct_map.json/truth_constants.json/inject_budget_ledger.jsonl全部仍为M.强推必覆盖他人产物）
 
 ## 分卷目录
 
