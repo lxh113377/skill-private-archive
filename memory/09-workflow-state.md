@@ -2,7 +2,7 @@
 
 > schema: fenjue-workflow-state-v1 | 本文件是本项目**任务状态的唯一权威源**。
 > `07-next-steps.md`（主壳 + 分卷）是由 `flow --sync` **单向回写**的派生台账——禁止手工改 07 的状态标记（改了会在下次 sync 被覆盖）。
-> 状态枚举：`todo` / `doing` / `done` / `blocked`；批次：`P0` / `P1` / `P2`（`--next` 按 P0 → P1 → P2 顺序取批）。
+> 状态枚举：`todo` / `doing` / `done` / `blocked`；批次：`P0` / `P1` / `P2`（`--next` **只在当前批次内取**：本批全 done 才进下一批；本批有 doing/blocked 而无可启动 todo 时**不跨批**，只列未完结项）。
 > 用法：`handoff.py flow <项目路径> --status | --next | --start --id X | --done --id X [--evidence P] | --block --id X --reason R | --sync | --check | --add ...`
 
 ## 任务表
