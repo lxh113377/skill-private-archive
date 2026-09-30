@@ -1,0 +1,3693 @@
+{
+ "schema": "semantic-coverage-r61-v1",
+ "generated_at": "2026-09-29T22:38:07Z",
+ "readonly": true,
+ "dimension": 18,
+ "lens": 3,
+ "counting_unit": "r60 词面件 items 逐条（唯一 slug 名）",
+ "claims_face": "语义面 = 生产 unified_router L1 所用同一份 BGE 向量（焚诀 eval/bge_fullbody_embeddings.npy，行已 L2 归一）；档位由**语料自身最近邻 cosine 分布**的 p50/p75 双档划定，非外部拍的阈值",
+ "backend": "bge(onnx)",
+ "corpus": {
+  "face_A_router_index": {
+   "names": 169,
+   "rows": 169,
+   "dim": 512
+  },
+  "face_B_loadable": {
+   "names": 390,
+   "rows": 390
+  }
+ },
+ "calibration": {
+  "face_A_router_index": {
+   "band_n": 169,
+   "p50": 0.8187,
+   "p75": 0.8583,
+   "min": 0.6719,
+   "max": 0.9169
+  },
+  "face_B_loadable": {
+   "band_n": 390,
+   "p50": 0.7791,
+   "p75": 0.8243,
+   "min": 0.5255,
+   "max": 0.9256
+  },
+  "meaning": "各面自身的『一条语料与最近邻他条的 cosine』经验分布；p50/p75 双档做敏感性反算，两档同向才下句子（R236 补注③）"
+ },
+ "tiers": {
+  "face_A_router_index": {
+   "covered_weak": 31,
+   "no_neighbour": 151,
+   "covered_strong": 5
+  },
+  "face_B_loadable": {
+   "covered_strong": 40,
+   "covered_weak": 62,
+   "no_neighbour": 85
+  }
+ },
+ "crosstab": {
+  "lexical_close": {
+   "router_tier": {
+    "covered_weak": 27,
+    "no_neighbour": 108,
+    "covered_strong": 5
+   },
+   "loadable_tier": {
+    "covered_strong": 36,
+    "covered_weak": 50,
+    "no_neighbour": 54
+   }
+  },
+  "lexical_gap": {
+   "router_tier": {
+    "no_neighbour": 43,
+    "covered_weak": 4
+   },
+   "loadable_tier": {
+    "no_neighbour": 31,
+    "covered_strong": 4,
+    "covered_weak": 12
+   }
+  }
+ },
+ "totals": {
+  "items": 187,
+  "lexical_gap_items": 47,
+  "gap_confirmed_both_faces": 31,
+  "gap_only_in_router_index": 12,
+  "gap_double_refuted": 4,
+  "gap_overturned_by_loadable_face": 16
+ },
+ "router_blind_slugs": [
+  "debugging",
+  "debugging-and-error-recovery",
+  "domain-modeling",
+  "init-deep",
+  "invoice-organizer",
+  "lsp-setup",
+  "skill-share",
+  "taste-skill-v1",
+  "visual-qa",
+  "writing-for-agents",
+  "implement-spec",
+  "minimalist-skill"
+ ],
+ "confirmed_gap_slugs": [
+  "ask-matt",
+  "ast-grep",
+  "babysit",
+  "changelog-generator",
+  "comment-checker",
+  "competitive-ads-extractor",
+  "do",
+  "get-unpublished-changes",
+  "host-observer",
+  "implement",
+  "loop-me",
+  "lsp",
+  "onboarding",
+  "pr",
+  "programming",
+  "raffle-winner-picker",
+  "setup-ts-deep-modules",
+  "shipping-and-launch",
+  "teach",
+  "ultrawork",
+  "understand-diff",
+  "understand-explain",
+  "understand-onboard",
+  "writing-beats",
+  "writing-fragments",
+  "omomomo",
+  "retro",
+  "tailored-resume-generator",
+  "to-questionnaire",
+  "wait-what",
+  "writing-shape"
+ ],
+ "gap_double_refuted_slugs": [
+  "content-research-writer",
+  "image-enhancer",
+  "incremental-implementation",
+  "meeting-insights-analyzer"
+ ],
+ "items": [
+  {
+   "slug": "diagnosing-bugs",
+   "repo": "mattpocock/skills",
+   "lexical_tokens": 12,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7244,
+   "router_top": [
+    "obsidian-cli",
+    "test-driven-development",
+    "notion-cli"
+   ],
+   "loadable_tier": "covered_strong",
+   "loadable_score": 0.9446,
+   "loadable_top": [
+    "diagnose",
+    "obsidian-cli",
+    "brainstorming"
+   ]
+  },
+  {
+   "slug": "grilling",
+   "repo": "mattpocock/skills",
+   "lexical_tokens": 7,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7682,
+   "router_top": [
+    "writing-plans",
+    "brainstorming",
+    "first-principles-decomposer"
+   ],
+   "loadable_tier": "covered_strong",
+   "loadable_score": 0.9108,
+   "loadable_top": [
+    "grill-me",
+    "task-alignment",
+    "brainstorming"
+   ]
+  },
+  {
+   "slug": "frontend-ui-engineering",
+   "repo": "addyosmani/agent-skills",
+   "lexical_tokens": 6,
+   "router_tier": "covered_strong",
+   "router_score": 0.8848,
+   "router_top": [
+    "frontend-design",
+    "ui-ux-pro-max",
+    "brainstorming"
+   ],
+   "loadable_tier": "covered_strong",
+   "loadable_score": 0.9032,
+   "loadable_top": [
+    "frontend-design",
+    "brainstorming",
+    "ui-ux-pro-max"
+   ]
+  },
+  {
+   "slug": "frontend",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 3,
+   "router_tier": "covered_strong",
+   "router_score": 0.8739,
+   "router_top": [
+    "frontend-design",
+    "frontend-slides",
+    "frontend-skill"
+   ],
+   "loadable_tier": "covered_strong",
+   "loadable_score": 0.8911,
+   "loadable_top": [
+    "frontend-design",
+    "frontend-slides",
+    "frontend-skill"
+   ]
+  },
+  {
+   "slug": "pptx",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "lexical_tokens": 4,
+   "router_tier": "covered_weak",
+   "router_score": 0.8494,
+   "router_top": [
+    "ppt-master",
+    "html-ppt",
+    "obsidian-bases"
+   ],
+   "loadable_tier": "covered_strong",
+   "loadable_score": 0.8889,
+   "loadable_top": [
+    "pptx-generator",
+    "html-ppt",
+    "docx"
+   ]
+  },
+  {
+   "slug": "ui-styling",
+   "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
+   "lexical_tokens": 9,
+   "router_tier": "covered_strong",
+   "router_score": 0.867,
+   "router_top": [
+    "ui-ux-pro-max",
+    "brainstorming",
+    "frontend-design"
+   ],
+   "loadable_tier": "covered_strong",
+   "loadable_score": 0.8825,
+   "loadable_top": [
+    "ui-ux-pro-max",
+    "frontend-design",
+    "brainstorming"
+   ]
+  },
+  {
+   "slug": "refactor",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 3,
+   "router_tier": "covered_strong",
+   "router_score": 0.872,
+   "router_top": [
+    "refactoring",
+    "brainstorming",
+    "writing-plans"
+   ],
+   "loadable_tier": "covered_strong",
+   "loadable_score": 0.8817,
+   "loadable_top": [
+    "refactoring",
+    "brainstorming",
+    "coding-agent"
+   ]
+  },
+  {
+   "slug": "dev-browser",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 19,
+   "router_tier": "covered_weak",
+   "router_score": 0.823,
+   "router_top": [
+    "byted-bp-cdn-pagesdeploy",
+    "electron",
+    "oracle"
+   ],
+   "loadable_tier": "covered_strong",
+   "loadable_score": 0.8759,
+   "loadable_top": [
+    "browser-use",
+    "smooth-browser",
+    "stagehand-browser-cli"
+   ]
+  },
+  {
+   "slug": "using-agent-skills",
+   "repo": "addyosmani/agent-skills",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.8032,
+   "router_top": [
+    "find-skills",
+    "writing-plans",
+    "internal-comms"
+   ],
+   "loadable_tier": "covered_strong",
+   "loadable_score": 0.8676,
+   "loadable_top": [
+    "skill-creator",
+    "find-skills",
+    "skill-vetter"
+   ]
+  },
+  {
+   "slug": "webapp-testing",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7932,
+   "router_top": [
+    "byted-bp-cdn-pagesdeploy",
+    "electron",
+    "oracle"
+   ],
+   "loadable_tier": "covered_strong",
+   "loadable_score": 0.8656,
+   "loadable_top": [
+    "browser-use",
+    "smooth-browser",
+    "web-deploy"
+   ]
+  },
+  {
+   "slug": "image-enhancer",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "lexical_tokens": 2,
+   "router_tier": "covered_weak",
+   "router_score": 0.8321,
+   "router_top": [
+    "byted-seedream-image-generate",
+    "byted-seedance-video-generate",
+    "hyperframes-media"
+   ],
+   "loadable_tier": "covered_strong",
+   "loadable_score": 0.8608,
+   "loadable_top": [
+    "byted-seedream-image-generate",
+    "openai-image-gen",
+    "byted-seedance-video-generate"
+   ]
+  },
+  {
+   "slug": "image-to-code-skill",
+   "repo": "Leonxlnx/taste-skill",
+   "lexical_tokens": 4,
+   "router_tier": "covered_strong",
+   "router_score": 0.8662,
+   "router_top": [
+    "byted-seedream-image-generate",
+    "chart-visualization",
+    "frontend-skill"
+   ],
+   "loadable_tier": "covered_strong",
+   "loadable_score": 0.8606,
+   "loadable_top": [
+    "byted-seedream-image-generate",
+    "frontend-skill",
+    "frontend-design"
+   ]
+  },
+  {
+   "slug": "taste-skill",
+   "repo": "Leonxlnx/taste-skill",
+   "lexical_tokens": 6,
+   "router_tier": "covered_weak",
+   "router_score": 0.8499,
+   "router_top": [
+    "frontend-skill",
+    "frontend-design",
+    "frontend-slides"
+   ],
+   "loadable_tier": "covered_strong",
+   "loadable_score": 0.8588,
+   "loadable_top": [
+    "frontend-skill",
+    "frontend-design",
+    "landing-page-generator"
+   ]
+  },
+  {
+   "slug": "connect-apps",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "lexical_tokens": 6,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7924,
+   "router_top": [
+    "electron",
+    "byted-bp-cdn-pagesdeploy",
+    "notion-cli"
+   ],
+   "loadable_tier": "covered_strong",
+   "loadable_score": 0.857,
+   "loadable_top": [
+    "gmail",
+    "static-app",
+    "porteden-email"
+   ]
+  },
+  {
+   "slug": "brandkit",
+   "repo": "Leonxlnx/taste-skill",
+   "lexical_tokens": 3,
+   "router_tier": "covered_weak",
+   "router_score": 0.8551,
+   "router_top": [
+    "brand-guidelines",
+    "frontend-design",
+    "theme-factory"
+   ],
+   "loadable_tier": "covered_strong",
+   "loadable_score": 0.8558,
+   "loadable_top": [
+    "brand-guidelines",
+    "awesome-design-md",
+    "infographic-maker"
+   ]
+  },
+  {
+   "slug": "knowledge-agent",
+   "repo": "thedotmack/claude-mem",
+   "lexical_tokens": 4,
+   "router_tier": "covered_weak",
+   "router_score": 0.8333,
+   "router_top": [
+    "knowledge-capture",
+    "brainstorming",
+    "chart-visualization"
+   ],
+   "loadable_tier": "covered_strong",
+   "loadable_score": 0.854,
+   "loadable_top": [
+    "knowledge-capture",
+    "llm-wiki",
+    "agent-mbti"
+   ]
+  },
+  {
+   "slug": "imagegen-frontend-mobile",
+   "repo": "Leonxlnx/taste-skill",
+   "lexical_tokens": 7,
+   "router_tier": "covered_weak",
+   "router_score": 0.836,
+   "router_top": [
+    "byted-seedream-image-generate",
+    "hyperframes-media",
+    "byted-seedance-video-generate"
+   ],
+   "loadable_tier": "covered_strong",
+   "loadable_score": 0.8457,
+   "loadable_top": [
+    "byted-seedream-image-generate",
+    "infographic-maker",
+    "frontend-skill"
+   ]
+  },
+  {
+   "slug": "brand",
+   "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
+   "lexical_tokens": 3,
+   "router_tier": "covered_weak",
+   "router_score": 0.8538,
+   "router_top": [
+    "brand-guidelines",
+    "frontend-design",
+    "brainstorming"
+   ],
+   "loadable_tier": "covered_strong",
+   "loadable_score": 0.8432,
+   "loadable_top": [
+    "brand-guidelines",
+    "content-factory",
+    "marketing-skills"
+   ]
+  },
+  {
+   "slug": "security-and-hardening",
+   "repo": "addyosmani/agent-skills",
+   "lexical_tokens": 5,
+   "router_tier": "covered_weak",
+   "router_score": 0.8226,
+   "router_top": [
+    "security-audit",
+    "figma",
+    "knowledge-capture"
+   ],
+   "loadable_tier": "covered_strong",
+   "loadable_score": 0.8429,
+   "loadable_top": [
+    "security-audit",
+    "clawbrowser",
+    "cloudflare"
+   ]
+  },
+  {
+   "slug": "imagegen-frontend-web",
+   "repo": "Leonxlnx/taste-skill",
+   "lexical_tokens": 10,
+   "router_tier": "covered_weak",
+   "router_score": 0.826,
+   "router_top": [
+    "byted-seedream-image-generate",
+    "frontend-design",
+    "frontend-skill"
+   ],
+   "loadable_tier": "covered_strong",
+   "loadable_score": 0.8418,
+   "loadable_top": [
+    "byted-seedream-image-generate",
+    "frontend-design",
+    "frontend-skill"
+   ]
+  },
+  {
+   "slug": "documentation-and-adrs",
+   "repo": "addyosmani/agent-skills",
+   "lexical_tokens": 3,
+   "router_tier": "covered_weak",
+   "router_score": 0.8382,
+   "router_top": [
+    "doc-coauthoring",
+    "brainstorming",
+    "writing-plans"
+   ],
+   "loadable_tier": "covered_strong",
+   "loadable_score": 0.8406,
+   "loadable_top": [
+    "doc-coauthoring",
+    "research-documentation",
+    "brainstorming"
+   ]
+  },
+  {
+   "slug": "video-downloader",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "lexical_tokens": 4,
+   "router_tier": "covered_weak",
+   "router_score": 0.8434,
+   "router_top": [
+    "hyperframes",
+    "hyperframes-media",
+    "byted-seedance-video-generate"
+   ],
+   "loadable_tier": "covered_strong",
+   "loadable_score": 0.8398,
+   "loadable_top": [
+    "hyperframes",
+    "hyperframes-media",
+    "byted-seedance-video-generate"
+   ]
+  },
+  {
+   "slug": "spec-driven-development",
+   "repo": "addyosmani/agent-skills",
+   "lexical_tokens": 3,
+   "router_tier": "covered_weak",
+   "router_score": 0.8305,
+   "router_top": [
+    "spec-to-implementation",
+    "writing-plans",
+    "brainstorming"
+   ],
+   "loadable_tier": "covered_strong",
+   "loadable_score": 0.8392,
+   "loadable_top": [
+    "spec-to-implementation",
+    "writing-plans",
+    "capability-evolver"
+   ]
+  },
+  {
+   "slug": "design-system",
+   "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
+   "lexical_tokens": 6,
+   "router_tier": "covered_weak",
+   "router_score": 0.8198,
+   "router_top": [
+    "ui-ux-pro-max",
+    "frontend-design",
+    "brainstorming"
+   ],
+   "loadable_tier": "covered_strong",
+   "loadable_score": 0.8391,
+   "loadable_top": [
+    "ui-ux-pro-max",
+    "frontend-design",
+    "brainstorming"
+   ]
+  },
+  {
+   "slug": "security-research",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 6,
+   "router_tier": "no_neighbour",
+   "router_score": 0.8022,
+   "router_top": [
+    "security-audit",
+    "research-documentation",
+    "consulting-analysis"
+   ],
+   "loadable_tier": "covered_strong",
+   "loadable_score": 0.8387,
+   "loadable_top": [
+    "security-audit",
+    "capability-evolver",
+    "deep-research"
+   ]
+  },
+  {
+   "slug": "web-artifacts-builder",
+   "repo": "anthropics/skills",
+   "lexical_tokens": 4,
+   "router_tier": "covered_weak",
+   "router_score": 0.837,
+   "router_top": [
+    "ui-ux-pro-max",
+    "frontend-design",
+    "brainstorming"
+   ],
+   "loadable_tier": "covered_strong",
+   "loadable_score": 0.8372,
+   "loadable_top": [
+    "frontend-design",
+    "ui-ux-pro-max",
+    "web-deploy-github"
+   ]
+  },
+  {
+   "slug": "grill-with-docs",
+   "repo": "mattpocock/skills",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.6972,
+   "router_top": [
+    "brainstorming",
+    "writing-plans",
+    "frontend-skill"
+   ],
+   "loadable_tier": "covered_strong",
+   "loadable_score": 0.8366,
+   "loadable_top": [
+    "grill-me",
+    "brainstorming",
+    "writing-plans"
+   ]
+  },
+  {
+   "slug": "ultimate-browsing",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.8106,
+   "router_top": [
+    "byted-bp-cdn-pagesdeploy",
+    "obsidian-cli",
+    "obsidian-markdown"
+   ],
+   "loadable_tier": "covered_strong",
+   "loadable_score": 0.8352,
+   "loadable_top": [
+    "browser-use",
+    "browserwing",
+    "smooth-browser"
+   ]
+  },
+  {
+   "slug": "understand-knowledge",
+   "repo": "Egonex-AI/Understand-Anything",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7855,
+   "router_top": [
+    "knowledge-capture",
+    "frontend-skill",
+    "brainstorming"
+   ],
+   "loadable_tier": "covered_strong",
+   "loadable_score": 0.8344,
+   "loadable_top": [
+    "knowledge-capture",
+    "llm-wiki",
+    "note-organizer"
+   ]
+  },
+  {
+   "slug": "meeting-insights-analyzer",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "lexical_tokens": 2,
+   "router_tier": "covered_weak",
+   "router_score": 0.838,
+   "router_top": [
+    "meeting-intelligence",
+    "internal-comms",
+    "brainstorming"
+   ],
+   "loadable_tier": "covered_strong",
+   "loadable_score": 0.8335,
+   "loadable_top": [
+    "meeting-intelligence",
+    "internal-comms",
+    "task-alignment"
+   ]
+  },
+  {
+   "slug": "design",
+   "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
+   "lexical_tokens": 6,
+   "router_tier": "covered_weak",
+   "router_score": 0.8389,
+   "router_top": [
+    "frontend-design",
+    "ui-ux-pro-max",
+    "canvas-design"
+   ],
+   "loadable_tier": "covered_strong",
+   "loadable_score": 0.8305,
+   "loadable_top": [
+    "frontend-design",
+    "ui-ux-pro-max",
+    "canvas-design"
+   ]
+  },
+  {
+   "slug": "data-scientist",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 3,
+   "router_tier": "covered_weak",
+   "router_score": 0.8291,
+   "router_top": [
+    "data-analysis",
+    "research-documentation",
+    "chart-visualization"
+   ],
+   "loadable_tier": "covered_strong",
+   "loadable_score": 0.83,
+   "loadable_top": [
+    "data-analysis",
+    "citation-manager",
+    "research-documentation"
+   ]
+  },
+  {
+   "slug": "idea-refine",
+   "repo": "addyosmani/agent-skills",
+   "lexical_tokens": 4,
+   "router_tier": "no_neighbour",
+   "router_score": 0.8094,
+   "router_top": [
+    "brainstorming",
+    "frontend-slides",
+    "frontend-skill"
+   ],
+   "loadable_tier": "covered_strong",
+   "loadable_score": 0.8298,
+   "loadable_top": [
+    "idea-validator",
+    "task-alignment",
+    "brainstorming"
+   ]
+  },
+  {
+   "slug": "redesign-skill",
+   "repo": "Leonxlnx/taste-skill",
+   "lexical_tokens": 4,
+   "router_tier": "covered_weak",
+   "router_score": 0.8339,
+   "router_top": [
+    "frontend-design",
+    "canvas-design",
+    "brainstorming"
+   ],
+   "loadable_tier": "covered_strong",
+   "loadable_score": 0.8297,
+   "loadable_top": [
+    "frontend-design",
+    "brainstorming",
+    "tdesign-miniprogram"
+   ]
+  },
+  {
+   "slug": "performance-optimization",
+   "repo": "addyosmani/agent-skills",
+   "lexical_tokens": 4,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7768,
+   "router_top": [
+    "brainstorming",
+    "frontend-skill",
+    "ppt-master"
+   ],
+   "loadable_tier": "covered_strong",
+   "loadable_score": 0.8283,
+   "loadable_top": [
+    "web-performance-audit",
+    "team-ops",
+    "brainstorming"
+   ]
+  },
+  {
+   "slug": "browser-testing-with-devtools",
+   "repo": "addyosmani/agent-skills",
+   "lexical_tokens": 4,
+   "router_tier": "no_neighbour",
+   "router_score": 0.8076,
+   "router_top": [
+    "github",
+    "browser-cdp",
+    "oracle"
+   ],
+   "loadable_tier": "covered_strong",
+   "loadable_score": 0.8281,
+   "loadable_top": [
+    "browser-cdp",
+    "smooth-browser",
+    "browser-use"
+   ]
+  },
+  {
+   "slug": "content-research-writer",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "lexical_tokens": 2,
+   "router_tier": "covered_weak",
+   "router_score": 0.8254,
+   "router_top": [
+    "research-documentation",
+    "meeting-intelligence",
+    "internal-comms"
+   ],
+   "loadable_tier": "covered_strong",
+   "loadable_score": 0.8278,
+   "loadable_top": [
+    "research-documentation",
+    "content-repurposer",
+    "tavily"
+   ]
+  },
+  {
+   "slug": "api-and-interface-design",
+   "repo": "addyosmani/agent-skills",
+   "lexical_tokens": 4,
+   "router_tier": "covered_weak",
+   "router_score": 0.8268,
+   "router_top": [
+    "brainstorming",
+    "ui-ux-pro-max",
+    "frontend-design"
+   ],
+   "loadable_tier": "covered_strong",
+   "loadable_score": 0.8259,
+   "loadable_top": [
+    "brainstorming",
+    "ui-ux-pro-max",
+    "frontend-design"
+   ]
+  },
+  {
+   "slug": "research",
+   "repo": "mattpocock/skills",
+   "lexical_tokens": 5,
+   "router_tier": "no_neighbour",
+   "router_score": 0.8052,
+   "router_top": [
+    "research-documentation",
+    "knowledge-capture",
+    "doc-coauthoring"
+   ],
+   "loadable_tier": "covered_strong",
+   "loadable_score": 0.8254,
+   "loadable_top": [
+    "research-documentation",
+    "tavily",
+    "knowledge-capture"
+   ]
+  },
+  {
+   "slug": "skill-share",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "lexical_tokens": 2,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7803,
+   "router_top": [
+    "find-skills",
+    "frontend-skill",
+    "internal-comms"
+   ],
+   "loadable_tier": "covered_strong",
+   "loadable_score": 0.8246,
+   "loadable_top": [
+    "skill-creator",
+    "find-skills",
+    "boss-skills"
+   ]
+  },
+  {
+   "slug": "planning-and-task-breakdown",
+   "repo": "addyosmani/agent-skills",
+   "lexical_tokens": 4,
+   "router_tier": "covered_weak",
+   "router_score": 0.8535,
+   "router_top": [
+    "writing-plans",
+    "spec-to-implementation",
+    "taskflow"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.8239,
+   "loadable_top": [
+    "writing-plans",
+    "task-implement",
+    "task-alignment"
+   ]
+  },
+  {
+   "slug": "understand-figma",
+   "repo": "Egonex-AI/Understand-Anything",
+   "lexical_tokens": 4,
+   "router_tier": "no_neighbour",
+   "router_score": 0.8129,
+   "router_top": [
+    "frontend-design",
+    "brainstorming",
+    "frontend-skill"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.823,
+   "loadable_top": [
+    "frontend-design",
+    "landing-page-generator",
+    "figma"
+   ]
+  },
+  {
+   "slug": "claude-handoff",
+   "repo": "mattpocock/skills",
+   "lexical_tokens": 5,
+   "router_tier": "no_neighbour",
+   "router_score": 0.6883,
+   "router_top": [
+    "frontend-slides",
+    "notion-cli",
+    "brainstorming"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.8212,
+   "loadable_top": [
+    "handoff",
+    "cli-anything-hub",
+    "frontend-slides"
+   ]
+  },
+  {
+   "slug": "make-plan",
+   "repo": "thedotmack/claude-mem",
+   "lexical_tokens": 3,
+   "router_tier": "covered_weak",
+   "router_score": 0.8227,
+   "router_top": [
+    "writing-plans",
+    "spec-to-implementation",
+    "brainstorming"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.8209,
+   "loadable_top": [
+    "writing-plans",
+    "spec-to-implementation",
+    "brainstorming"
+   ]
+  },
+  {
+   "slug": "writing-for-agents",
+   "repo": "mattpocock/skills",
+   "lexical_tokens": 2,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7943,
+   "router_top": [
+    "doc-coauthoring",
+    "writing-plans",
+    "algorithmic-art"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.82,
+   "loadable_top": [
+    "coding-agent",
+    "md-to-pdf-cjk",
+    "agent-browser-core"
+   ]
+  },
+  {
+   "slug": "discernment-nudge",
+   "repo": "anthropics/skills",
+   "lexical_tokens": 5,
+   "router_tier": "covered_weak",
+   "router_score": 0.8278,
+   "router_top": [
+    "internal-comms",
+    "brainstorming",
+    "writing-plans"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.8196,
+   "loadable_top": [
+    "internal-comms",
+    "task-alignment",
+    "brainstorming"
+   ]
+  },
+  {
+   "slug": "artifacts-builder",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "lexical_tokens": 4,
+   "router_tier": "covered_weak",
+   "router_score": 0.8239,
+   "router_top": [
+    "brainstorming",
+    "ui-ux-pro-max",
+    "algorithmic-art"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.8179,
+   "loadable_top": [
+    "frontend-design",
+    "ui-ux-pro-max",
+    "brainstorming"
+   ]
+  },
+  {
+   "slug": "incremental-implementation",
+   "repo": "addyosmani/agent-skills",
+   "lexical_tokens": 2,
+   "router_tier": "covered_weak",
+   "router_score": 0.8283,
+   "router_top": [
+    "brainstorming",
+    "writing-plans",
+    "spec-to-implementation"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.8171,
+   "loadable_top": [
+    "brainstorming",
+    "task-alignment",
+    "writing-plans"
+   ]
+  },
+  {
+   "slug": "debugging-and-error-recovery",
+   "repo": "addyosmani/agent-skills",
+   "lexical_tokens": 2,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7831,
+   "router_top": [
+    "python-debugpy",
+    "oracle",
+    "debugging-fixing"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.8152,
+   "loadable_top": [
+    "diagnose",
+    "debugging-fixing",
+    "oracle"
+   ]
+  },
+  {
+   "slug": "domain-name-brainstormer",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "lexical_tokens": 3,
+   "router_tier": "covered_weak",
+   "router_score": 0.8355,
+   "router_top": [
+    "brainstorming",
+    "knowledge-capture",
+    "algorithmic-art"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.8148,
+   "loadable_top": [
+    "brainstorming",
+    "content-factory",
+    "web-search-exa"
+   ]
+  },
+  {
+   "slug": "soft-skill",
+   "repo": "Leonxlnx/taste-skill",
+   "lexical_tokens": 4,
+   "router_tier": "no_neighbour",
+   "router_score": 0.8159,
+   "router_top": [
+    "frontend-skill",
+    "frontend-design",
+    "brainstorming"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.8141,
+   "loadable_top": [
+    "frontend-skill",
+    "frontend-design",
+    "brainstorming"
+   ]
+  },
+  {
+   "slug": "github-triage",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7813,
+   "router_top": [
+    "notion-cli",
+    "github",
+    "obsidian-bases"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.8115,
+   "loadable_top": [
+    "things-mac",
+    "github-pages-auto-deploy",
+    "github-ai-trends"
+   ]
+  },
+  {
+   "slug": "codebase-design",
+   "repo": "mattpocock/skills",
+   "lexical_tokens": 5,
+   "router_tier": "covered_weak",
+   "router_score": 0.82,
+   "router_top": [
+    "writing-plans",
+    "figma",
+    "chart-visualization"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.8108,
+   "loadable_top": [
+    "figma",
+    "awesome-design-md",
+    "ui-ux-pro-max"
+   ]
+  },
+  {
+   "slug": "interview-me",
+   "repo": "addyosmani/agent-skills",
+   "lexical_tokens": 7,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7923,
+   "router_top": [
+    "brainstorming",
+    "internal-comms",
+    "chart-visualization"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.809,
+   "loadable_top": [
+    "task-alignment",
+    "static-app",
+    "internal-comms"
+   ]
+  },
+  {
+   "slug": "setup-matt-pocock-skills",
+   "repo": "mattpocock/skills",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7714,
+   "router_top": [
+    "find-skills",
+    "writing-plans",
+    "frontend-skill"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.8087,
+   "loadable_top": [
+    "find-skills",
+    "skill-creator",
+    "tutor-skills"
+   ]
+  },
+  {
+   "slug": "teammode",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 6,
+   "router_tier": "no_neighbour",
+   "router_score": 0.8155,
+   "router_top": [
+    "notion-cli",
+    "coding-agent",
+    "brainstorming"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.8076,
+   "loadable_top": [
+    "agent-team-orchestration",
+    "coding-agent",
+    "agent-browser-core"
+   ]
+  },
+  {
+   "slug": "banner-design",
+   "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
+   "lexical_tokens": 5,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7913,
+   "router_top": [
+    "frontend-design",
+    "byted-seedream-image-generate",
+    "brainstorming"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.8067,
+   "loadable_top": [
+    "product-showcase-site",
+    "frontend-design",
+    "byted-seedream-image-generate"
+   ]
+  },
+  {
+   "slug": "to-spec",
+   "repo": "mattpocock/skills",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.798,
+   "router_top": [
+    "spec-to-implementation",
+    "brainstorming",
+    "frontend-slides"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.8065,
+   "loadable_top": [
+    "spec-to-implementation",
+    "task-alignment",
+    "tavily"
+   ]
+  },
+  {
+   "slug": "visual-qa",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 2,
+   "router_tier": "no_neighbour",
+   "router_score": 0.799,
+   "router_top": [
+    "brainstorming",
+    "frontend-slides",
+    "ppt-master"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.805,
+   "loadable_top": [
+    "browserwing",
+    "brainstorming",
+    "figma"
+   ]
+  },
+  {
+   "slug": "academic-pipeline",
+   "repo": "Imbad0202/academic-research-skills",
+   "lexical_tokens": 5,
+   "router_tier": "no_neighbour",
+   "router_score": 0.8171,
+   "router_top": [
+    "research-documentation",
+    "spec-to-implementation",
+    "meeting-intelligence"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.8042,
+   "loadable_top": [
+    "research-documentation",
+    "deep-research",
+    "tavily"
+   ]
+  },
+  {
+   "slug": "connect",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "lexical_tokens": 4,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7522,
+   "router_top": [
+    "obsidian-bases",
+    "byted-bp-cdn-pagesdeploy",
+    "electron"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.8042,
+   "loadable_top": [
+    "himalaya",
+    "email-skill",
+    "porteden-email"
+   ]
+  },
+  {
+   "slug": "review-work",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 6,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7954,
+   "router_top": [
+    "spec-to-implementation",
+    "writing-plans",
+    "brainstorming"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.8024,
+   "loadable_top": [
+    "oracle",
+    "spec-to-implementation",
+    "brainstorming"
+   ]
+  },
+  {
+   "slug": "init-deep",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 2,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7969,
+   "router_top": [
+    "knowledge-capture",
+    "writing-plans",
+    "research-documentation"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.8023,
+   "loadable_top": [
+    "knowledge-capture",
+    "citation-manager",
+    "llm-wiki"
+   ]
+  },
+  {
+   "slug": "design-is",
+   "repo": "thedotmack/claude-mem",
+   "lexical_tokens": 5,
+   "router_tier": "no_neighbour",
+   "router_score": 0.8122,
+   "router_top": [
+    "brainstorming",
+    "frontend-design",
+    "ui-ux-pro-max"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.8012,
+   "loadable_top": [
+    "frontend-design",
+    "ui-ux-pro-max",
+    "canvas-design"
+   ]
+  },
+  {
+   "slug": "file-organizer",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "lexical_tokens": 4,
+   "router_tier": "covered_weak",
+   "router_score": 0.8287,
+   "router_top": [
+    "knowledge-capture",
+    "ppt-master",
+    "doc-coauthoring"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.8005,
+   "loadable_top": [
+    "email-skill",
+    "shadcn",
+    "knowledge-capture"
+   ]
+  },
+  {
+   "slug": "lead-research-assistant",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7696,
+   "router_top": [
+    "research-documentation",
+    "consulting-analysis",
+    "internal-comms"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.7988,
+   "loadable_top": [
+    "market-researcher",
+    "marketing-skills",
+    "content-factory"
+   ]
+  },
+  {
+   "slug": "taste-skill-v1",
+   "repo": "Leonxlnx/taste-skill",
+   "lexical_tokens": 2,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7985,
+   "router_top": [
+    "frontend-skill",
+    "brainstorming",
+    "find-skills"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.7988,
+   "loadable_top": [
+    "find-skills",
+    "frontend-skill",
+    "task-alignment"
+   ]
+  },
+  {
+   "slug": "ulw-research",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7769,
+   "router_top": [
+    "research-documentation",
+    "knowledge-capture",
+    "doc-coauthoring"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.7982,
+   "loadable_top": [
+    "tavily",
+    "research-documentation",
+    "deep-research"
+   ]
+  },
+  {
+   "slug": "academic-paper",
+   "repo": "Imbad0202/academic-research-skills",
+   "lexical_tokens": 4,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7801,
+   "router_top": [
+    "research-documentation",
+    "spec-to-implementation",
+    "writing-plans"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.7981,
+   "loadable_top": [
+    "citation-manager",
+    "research-documentation",
+    "outbound-engine"
+   ]
+  },
+  {
+   "slug": "code-simplification",
+   "repo": "addyosmani/agent-skills",
+   "lexical_tokens": 5,
+   "router_tier": "no_neighbour",
+   "router_score": 0.8109,
+   "router_top": [
+    "refactoring",
+    "writing-plans",
+    "coding-agent"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.7973,
+   "loadable_top": [
+    "refactoring",
+    "coding-agent",
+    "writing-plans"
+   ]
+  },
+  {
+   "slug": "git-workflow-and-versioning",
+   "repo": "addyosmani/agent-skills",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.8022,
+   "router_top": [
+    "writing-plans",
+    "ppt-master",
+    "figma"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.797,
+   "loadable_top": [
+    "coding-agent",
+    "things-mac",
+    "web-deploy-github"
+   ]
+  },
+  {
+   "slug": "developer-growth-analysis",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "lexical_tokens": 4,
+   "router_tier": "no_neighbour",
+   "router_score": 0.767,
+   "router_top": [
+    "research-documentation",
+    "brainstorming",
+    "knowledge-capture"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.7967,
+   "loadable_top": [
+    "growth-engine",
+    "research-documentation",
+    "deep-research"
+   ]
+  },
+  {
+   "slug": "implement-spec",
+   "repo": "mattpocock/skills",
+   "lexical_tokens": 1,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7593,
+   "router_top": [
+    "spec-to-implementation",
+    "writing-plans",
+    "figma"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.7965,
+   "loadable_top": [
+    "spec-to-implementation",
+    "writing-plans",
+    "coding-agent"
+   ]
+  },
+  {
+   "slug": "work-with-pr",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 8,
+   "router_tier": "covered_weak",
+   "router_score": 0.8195,
+   "router_top": [
+    "writing-plans",
+    "spec-to-implementation",
+    "notion-cli"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.7946,
+   "loadable_top": [
+    "task-implement",
+    "spec-to-implementation",
+    "agent-team-orchestration"
+   ]
+  },
+  {
+   "slug": "claude-api",
+   "repo": "anthropics/skills",
+   "lexical_tokens": 6,
+   "router_tier": "covered_weak",
+   "router_score": 0.8412,
+   "router_top": [
+    "notion-cli",
+    "obsidian-cli",
+    "openai-whisper-api"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.7943,
+   "loadable_top": [
+    "clawbrowser",
+    "obsidian-cli",
+    "html-deploy"
+   ]
+  },
+  {
+   "slug": "improve-codebase-architecture",
+   "repo": "mattpocock/skills",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7971,
+   "router_top": [
+    "writing-plans",
+    "figma",
+    "chart-visualization"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.7943,
+   "loadable_top": [
+    "figma",
+    "shadcn",
+    "excalidraw-diagram"
+   ]
+  },
+  {
+   "slug": "hyperplan",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7792,
+   "router_top": [
+    "writing-plans",
+    "frontend-skill",
+    "hyperframes-registry"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.7942,
+   "loadable_top": [
+    "agent-team-orchestration",
+    "anti-distill",
+    "colleague-skill"
+   ]
+  },
+  {
+   "slug": "source-driven-development",
+   "repo": "addyosmani/agent-skills",
+   "lexical_tokens": 4,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7991,
+   "router_top": [
+    "writing-plans",
+    "knowledge-capture",
+    "doc-coauthoring"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.7939,
+   "loadable_top": [
+    "tdd",
+    "doc-coauthoring",
+    "github-pages-auto-deploy"
+   ]
+  },
+  {
+   "slug": "coding-agent-sessions",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 4,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7824,
+   "router_top": [
+    "doc-coauthoring",
+    "knowledge-capture",
+    "hyperframes-registry"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.7938,
+   "loadable_top": [
+    "clawbrowser",
+    "coding-agent",
+    "agent-browser-core"
+   ]
+  },
+  {
+   "slug": "understand",
+   "repo": "Egonex-AI/Understand-Anything",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.784,
+   "router_top": [
+    "knowledge-capture",
+    "brainstorming",
+    "algorithmic-art"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.7935,
+   "loadable_top": [
+    "knowledge-capture",
+    "tavily",
+    "figma"
+   ]
+  },
+  {
+   "slug": "wayfinder",
+   "repo": "mattpocock/skills",
+   "lexical_tokens": 4,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7599,
+   "router_top": [
+    "writing-plans",
+    "brainstorming",
+    "notion-cli"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.7926,
+   "loadable_top": [
+    "clawbrowser",
+    "handoff",
+    "responsiveness-check"
+   ]
+  },
+  {
+   "slug": "pathfinder",
+   "repo": "thedotmack/claude-mem",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.8111,
+   "router_top": [
+    "figma",
+    "writing-plans",
+    "algorithmic-art"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.792,
+   "loadable_top": [
+    "figma",
+    "excalidraw-diagram",
+    "brainstorming"
+   ]
+  },
+  {
+   "slug": "invoice-organizer",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "lexical_tokens": 2,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7602,
+   "router_top": [
+    "knowledge-capture",
+    "internal-comms",
+    "meeting-intelligence"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.7907,
+   "loadable_top": [
+    "email-skill",
+    "note-organizer",
+    "knowledge-capture"
+   ]
+  },
+  {
+   "slug": "openclaw",
+   "repo": "thedotmack/claude-mem",
+   "lexical_tokens": 4,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7823,
+   "router_top": [
+    "obsidian-cli",
+    "openai-whisper-api",
+    "notion-cli"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.7894,
+   "loadable_top": [
+    "clawbrowser",
+    "content-repurposer",
+    "browser-cdp"
+   ]
+  },
+  {
+   "slug": "prototype",
+   "repo": "mattpocock/skills",
+   "lexical_tokens": 5,
+   "router_tier": "no_neighbour",
+   "router_score": 0.8041,
+   "router_top": [
+    "brainstorming",
+    "frontend-slides",
+    "notion-cli"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.7882,
+   "loadable_top": [
+    "handoff",
+    "brainstorming",
+    "task-alignment"
+   ]
+  },
+  {
+   "slug": "context-engineering",
+   "repo": "addyosmani/agent-skills",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.8045,
+   "router_top": [
+    "writing-plans",
+    "figma",
+    "mcp-builder"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.7882,
+   "loadable_top": [
+    "agent-browser-core",
+    "clawbrowser",
+    "handoff"
+   ]
+  },
+  {
+   "slug": "template-skill",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7349,
+   "router_top": [
+    "frontend-skill",
+    "find-skills",
+    "A-prompt-better"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.7875,
+   "loadable_top": [
+    "find-skills",
+    "skill-vetter",
+    "anti-distill"
+   ]
+  },
+  {
+   "slug": "mode-creator",
+   "repo": "thedotmack/claude-mem",
+   "lexical_tokens": 5,
+   "router_tier": "no_neighbour",
+   "router_score": 0.8005,
+   "router_top": [
+    "obsidian-cli",
+    "figma",
+    "notion-cli"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.7874,
+   "loadable_top": [
+    "obsidian-cli",
+    "brainstorming",
+    "browserwing"
+   ]
+  },
+  {
+   "slug": "twitter-algorithm-optimizer",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "lexical_tokens": 4,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7338,
+   "router_top": [
+    "obsidian-markdown",
+    "obsidian-bases",
+    "obsidian-cli"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.7864,
+   "loadable_top": [
+    "content-repurposer",
+    "seo-ops",
+    "obsidian-markdown"
+   ]
+  },
+  {
+   "slug": "skill",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7687,
+   "router_top": [
+    "writing-plans",
+    "find-skills",
+    "internal-comms"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.7847,
+   "loadable_top": [
+    "find-skills",
+    "multi-search-engine",
+    "x-longform-post"
+   ]
+  },
+  {
+   "slug": "learn-codebase",
+   "repo": "thedotmack/claude-mem",
+   "lexical_tokens": 4,
+   "router_tier": "no_neighbour",
+   "router_score": 0.8035,
+   "router_top": [
+    "writing-plans",
+    "figma",
+    "notion-cli"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.7846,
+   "loadable_top": [
+    "coding-agent",
+    "obsidian-cli",
+    "figma"
+   ]
+  },
+  {
+   "slug": "minimalist-skill",
+   "repo": "Leonxlnx/taste-skill",
+   "lexical_tokens": 1,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7615,
+   "router_top": [
+    "frontend-slides",
+    "frontend-skill",
+    "frontend-design"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.7841,
+   "loadable_top": [
+    "deck-generator",
+    "frontend-skill",
+    "frontend-slides"
+   ]
+  },
+  {
+   "slug": "lsp-setup",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 2,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7966,
+   "router_top": [
+    "notion-cli",
+    "figma",
+    "ppt-master"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.7839,
+   "loadable_top": [
+    "github-pages-auto-deploy",
+    "agent-browser-core",
+    "coding-agent"
+   ]
+  },
+  {
+   "slug": "code-review-and-quality",
+   "repo": "addyosmani/agent-skills",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.8005,
+   "router_top": [
+    "refactoring",
+    "writing-plans",
+    "spec-to-implementation"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.7828,
+   "loadable_top": [
+    "coding-agent",
+    "refactoring",
+    "code-review"
+   ]
+  },
+  {
+   "slug": "output-skill",
+   "repo": "Leonxlnx/taste-skill",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7682,
+   "router_top": [
+    "refactoring",
+    "writing-plans",
+    "figma"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.7828,
+   "loadable_top": [
+    "find-skills",
+    "refactoring",
+    "skill-vetter"
+   ]
+  },
+  {
+   "slug": "mass-ulw",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 4,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7678,
+   "router_top": [
+    "spec-to-implementation",
+    "writing-plans",
+    "shadcn"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.7815,
+   "loadable_top": [
+    "task-implement",
+    "obsidian-cli",
+    "shadcn"
+   ]
+  },
+  {
+   "slug": "remove-ai-slops",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 4,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7938,
+   "router_top": [
+    "refactoring",
+    "figma",
+    "oracle"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.7814,
+   "loadable_top": [
+    "refactoring",
+    "tdd",
+    "browser"
+   ]
+  },
+  {
+   "slug": "domain-modeling",
+   "repo": "mattpocock/skills",
+   "lexical_tokens": 2,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7852,
+   "router_top": [
+    "figma",
+    "chart-visualization",
+    "writing-plans"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.7814,
+   "loadable_top": [
+    "figma",
+    "model-usage",
+    "github-ai-trends"
+   ]
+  },
+  {
+   "slug": "smart-explore",
+   "repo": "thedotmack/claude-mem",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7819,
+   "router_top": [
+    "refactoring",
+    "chart-visualization",
+    "writing-plans"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.7804,
+   "loadable_top": [
+    "chart-visualization",
+    "refactoring",
+    "obsidian-cli"
+   ]
+  },
+  {
+   "slug": "ulw-loop",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 6,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7717,
+   "router_top": [
+    "obsidian-cli",
+    "writing-plans",
+    "first-principles-decomposer"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.7792,
+   "loadable_top": [
+    "task-alignment",
+    "task-implement",
+    "obsidian-cli"
+   ]
+  },
+  {
+   "slug": "understand-domain",
+   "repo": "Egonex-AI/Understand-Anything",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7636,
+   "router_top": [
+    "knowledge-capture",
+    "chart-visualization",
+    "research-documentation"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.7791,
+   "loadable_top": [
+    "knowledge-capture",
+    "llm-wiki",
+    "tavily"
+   ]
+  },
+  {
+   "slug": "debugging",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 2,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7641,
+   "router_top": [
+    "python-debugpy",
+    "oracle",
+    "obsidian-cli"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.7791,
+   "loadable_top": [
+    "diagnose",
+    "crash-expert-skill",
+    "oracle"
+   ]
+  },
+  {
+   "slug": "stitch-skill",
+   "repo": "Leonxlnx/taste-skill",
+   "lexical_tokens": 5,
+   "router_tier": "no_neighbour",
+   "router_score": 0.786,
+   "router_top": [
+    "frontend-skill",
+    "algorithmic-art",
+    "theme-factory"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7789,
+   "loadable_top": [
+    "frontend-skill",
+    "anti-distill",
+    "stealth-browser"
+   ]
+  },
+  {
+   "slug": "academy-guide",
+   "repo": "anthropics/skills",
+   "lexical_tokens": 5,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7633,
+   "router_top": [
+    "research-documentation",
+    "writing-plans",
+    "knowledge-capture"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7788,
+   "loadable_top": [
+    "tutor-skills",
+    "marketing-skills",
+    "education"
+   ]
+  },
+  {
+   "slug": "observability-and-instrumentation",
+   "repo": "addyosmani/agent-skills",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7922,
+   "router_top": [
+    "writing-plans",
+    "brainstorming",
+    "refactoring"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7786,
+   "loadable_top": [
+    "brainstorming",
+    "note-organizer",
+    "spec-to-implementation"
+   ]
+  },
+  {
+   "slug": "version-bump",
+   "repo": "thedotmack/claude-mem",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7887,
+   "router_top": [
+    "ppt-master",
+    "figma",
+    "refactoring"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7784,
+   "loadable_top": [
+    "github",
+    "obsidian-cli",
+    "json-canvas"
+   ]
+  },
+  {
+   "slug": "publish",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 4,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7896,
+   "router_top": [
+    "figma",
+    "coding-agent",
+    "refactoring"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7766,
+   "loadable_top": [
+    "html-deploy",
+    "github",
+    "coding-agent"
+   ]
+  },
+  {
+   "slug": "programming",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 2,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7942,
+   "router_top": [
+    "writing-plans",
+    "refactoring",
+    "algorithmic-art"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7758,
+   "loadable_top": [
+    "github",
+    "coding-agent",
+    "brainstorming"
+   ]
+  },
+  {
+   "slug": "shipping-and-launch",
+   "repo": "addyosmani/agent-skills",
+   "lexical_tokens": 2,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7469,
+   "router_top": [
+    "writing-plans",
+    "spec-to-implementation",
+    "first-principles-decomposer"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7755,
+   "loadable_top": [
+    "shippage",
+    "product-showcase-site",
+    "edgeone-pages-deploy"
+   ]
+  },
+  {
+   "slug": "deprecation-and-migration",
+   "repo": "addyosmani/agent-skills",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7822,
+   "router_top": [
+    "knowledge-capture",
+    "spec-to-implementation",
+    "writing-plans"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.775,
+   "loadable_top": [
+    "spec-to-implementation",
+    "knowledge-capture",
+    "obsidian-cli"
+   ]
+  },
+  {
+   "slug": "teach",
+   "repo": "mattpocock/skills",
+   "lexical_tokens": 2,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7253,
+   "router_top": [
+    "brainstorming",
+    "theme-factory",
+    "find-skills"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7742,
+   "loadable_top": [
+    "skill-creator",
+    "handoff",
+    "teachany"
+   ]
+  },
+  {
+   "slug": "karpathy-guidelines",
+   "repo": "multica-ai/andrej-karpathy-skills",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7669,
+   "router_top": [
+    "spec-to-implementation",
+    "writing-plans",
+    "obsidian-cli"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.773,
+   "loadable_top": [
+    "obsidian-cli",
+    "spec-to-implementation",
+    "tutor-skills"
+   ]
+  },
+  {
+   "slug": "lcx-report-bug",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 6,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7671,
+   "router_top": [
+    "oracle",
+    "refactoring",
+    "obsidian-cli"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7721,
+   "loadable_top": [
+    "diagnose",
+    "tdd",
+    "oracle"
+   ]
+  },
+  {
+   "slug": "do",
+   "repo": "thedotmack/claude-mem",
+   "lexical_tokens": 2,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7661,
+   "router_top": [
+    "writing-plans",
+    "spec-to-implementation",
+    "first-principles-decomposer"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.772,
+   "loadable_top": [
+    "writing-plans",
+    "task-implement",
+    "capability-evolver"
+   ]
+  },
+  {
+   "slug": "template",
+   "repo": "anthropics/skills",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7408,
+   "router_top": [
+    "frontend-skill",
+    "find-skills",
+    "theme-factory"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7699,
+   "loadable_top": [
+    "anti-distill",
+    "find-skills",
+    "frontend-skill"
+   ]
+  },
+  {
+   "slug": "opencode-qa",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 4,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7838,
+   "router_top": [
+    "oracle",
+    "github",
+    "coding-agent"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7682,
+   "loadable_top": [
+    "oracle",
+    "computer-use-guidance-windows",
+    "browser-cdp"
+   ]
+  },
+  {
+   "slug": "dag-library",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7938,
+   "router_top": [
+    "refactoring",
+    "knowledge-capture",
+    "obsidian-cli"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.767,
+   "loadable_top": [
+    "refactoring",
+    "obsidian-cli",
+    "shadcn"
+   ]
+  },
+  {
+   "slug": "understand-explain",
+   "repo": "Egonex-AI/Understand-Anything",
+   "lexical_tokens": 2,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7743,
+   "router_top": [
+    "refactoring",
+    "figma",
+    "chart-visualization"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7666,
+   "loadable_top": [
+    "excalidraw-diagram",
+    "figma",
+    "tutor-skills"
+   ]
+  },
+  {
+   "slug": "mem-setup",
+   "repo": "thedotmack/claude-mem",
+   "lexical_tokens": 4,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7661,
+   "router_top": [
+    "notion-cli",
+    "chart-visualization",
+    "coding-agent"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7664,
+   "loadable_top": [
+    "find-skills",
+    "chart-visualization",
+    "obsidian-cli"
+   ]
+  },
+  {
+   "slug": "ci-cd-and-automation",
+   "repo": "addyosmani/agent-skills",
+   "lexical_tokens": 4,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7332,
+   "router_top": [
+    "writing-plans",
+    "spec-to-implementation",
+    "figma"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7647,
+   "loadable_top": [
+    "citation-manager",
+    "capability-evolver",
+    "spec-to-implementation"
+   ]
+  },
+  {
+   "slug": "pre-publish-review",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 5,
+   "router_tier": "no_neighbour",
+   "router_score": 0.754,
+   "router_top": [
+    "oracle",
+    "obsidian-cli",
+    "spec-to-implementation"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7644,
+   "loadable_top": [
+    "oracle",
+    "agent-team-orchestration",
+    "obsidian-cli"
+   ]
+  },
+  {
+   "slug": "how-it-works",
+   "repo": "thedotmack/claude-mem",
+   "lexical_tokens": 4,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7765,
+   "router_top": [
+    "knowledge-capture",
+    "writing-plans",
+    "notion-cli"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7644,
+   "loadable_top": [
+    "knowledge-capture",
+    "brainstorming",
+    "task-alignment"
+   ]
+  },
+  {
+   "slug": "i-have-adhd",
+   "repo": "ayghri/i-have-adhd",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7661,
+   "router_top": [
+    "writing-plans",
+    "obsidian-cli",
+    "notion-cli"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7632,
+   "loadable_top": [
+    "task-alignment",
+    "content-repurposer",
+    "diagnose"
+   ]
+  },
+  {
+   "slug": "mem-search",
+   "repo": "thedotmack/claude-mem",
+   "lexical_tokens": 4,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7618,
+   "router_top": [
+    "notion-cli",
+    "obsidian-cli",
+    "internal-comms"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7627,
+   "loadable_top": [
+    "multi-search-engine",
+    "task-alignment",
+    "web-search-exa"
+   ]
+  },
+  {
+   "slug": "scaffold-exercises",
+   "repo": "mattpocock/skills",
+   "lexical_tokens": 4,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7484,
+   "router_top": [
+    "brainstorming",
+    "writing-plans",
+    "notion-cli"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7627,
+   "loadable_top": [
+    "brainstorming",
+    "task-implement",
+    "task-alignment"
+   ]
+  },
+  {
+   "slug": "brutalist-skill",
+   "repo": "Leonxlnx/taste-skill",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7699,
+   "router_top": [
+    "frontend-skill",
+    "frontend-design",
+    "brainstorming"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7626,
+   "loadable_top": [
+    "frontend-skill",
+    "frontend-design",
+    "brainstorming"
+   ]
+  },
+  {
+   "slug": "codex-qa",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7714,
+   "router_top": [
+    "figma",
+    "coding-agent",
+    "refactoring"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7608,
+   "loadable_top": [
+    "coding-agent",
+    "figma",
+    "model-usage"
+   ]
+  },
+  {
+   "slug": "doubt-driven-development",
+   "repo": "addyosmani/agent-skills",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7897,
+   "router_top": [
+    "writing-plans",
+    "brainstorming",
+    "spec-to-implementation"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.76,
+   "loadable_top": [
+    "capability-evolver",
+    "growth-engine",
+    "writing-plans"
+   ]
+  },
+  {
+   "slug": "competitive-ads-extractor",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "lexical_tokens": 2,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7054,
+   "router_top": [
+    "internal-comms",
+    "writing-plans",
+    "brainstorming"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7595,
+   "loadable_top": [
+    "marketing-skills",
+    "seo-ops",
+    "cli-anything-hub"
+   ]
+  },
+  {
+   "slug": "constraint-driven-development",
+   "repo": "addyosmani/agent-skills",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7469,
+   "router_top": [
+    "writing-plans",
+    "brainstorming",
+    "frontend-slides"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7581,
+   "loadable_top": [
+    "clawbrowser",
+    "frontend-slides",
+    "cloudflare-worker-builder"
+   ]
+  },
+  {
+   "slug": "wowerpoint",
+   "repo": "thedotmack/claude-mem",
+   "lexical_tokens": 4,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7496,
+   "router_top": [
+    "notion-cli",
+    "obsidian-cli",
+    "frontend-slides"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7576,
+   "loadable_top": [
+    "md-to-pdf-cjk",
+    "edgeone",
+    "handoff"
+   ]
+  },
+  {
+   "slug": "cloud-sync",
+   "repo": "thedotmack/claude-mem",
+   "lexical_tokens": 4,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7586,
+   "router_top": [
+    "obsidian-cli",
+    "notion-cli",
+    "oracle"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7555,
+   "loadable_top": [
+    "clawbrowser",
+    "obsidian-cli",
+    "computer-use-guidance-windows"
+   ]
+  },
+  {
+   "slug": "loop-me",
+   "repo": "mattpocock/skills",
+   "lexical_tokens": 2,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7414,
+   "router_top": [
+    "spec-to-implementation",
+    "writing-plans",
+    "figma"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7548,
+   "loadable_top": [
+    "spec-to-implementation",
+    "writing-plans",
+    "cloudflare-worker-builder"
+   ]
+  },
+  {
+   "slug": "remove-deadcode",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 4,
+   "router_tier": "no_neighbour",
+   "router_score": 0.747,
+   "router_top": [
+    "refactoring",
+    "coding-agent",
+    "figma"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7543,
+   "loadable_top": [
+    "coding-agent",
+    "figma",
+    "refactoring"
+   ]
+  },
+  {
+   "slug": "git-master",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7534,
+   "router_top": [
+    "coding-agent",
+    "writing-plans",
+    "ppt-master"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7518,
+   "loadable_top": [
+    "coding-agent",
+    "things-mac",
+    "shadcn"
+   ]
+  },
+  {
+   "slug": "migrate-to-shoehorn",
+   "repo": "mattpocock/skills",
+   "lexical_tokens": 4,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7545,
+   "router_top": [
+    "obsidian-cli",
+    "notion-cli",
+    "writing-plans"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7513,
+   "loadable_top": [
+    "obsidian-cli",
+    "tdd",
+    "browser-use"
+   ]
+  },
+  {
+   "slug": "standup",
+   "repo": "thedotmack/claude-mem",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7723,
+   "router_top": [
+    "writing-plans",
+    "notion-cli",
+    "ppt-master"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7511,
+   "loadable_top": [
+    "coding-agent",
+    "web-deploy-github",
+    "email-skill"
+   ]
+  },
+  {
+   "slug": "slack-gif-creator",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "lexical_tokens": 4,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7328,
+   "router_top": [
+    "frontend-slides",
+    "hyperframes-cli",
+    "obsidian-cli"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7508,
+   "loadable_top": [
+    "gifgrep",
+    "frontend-slides",
+    "seo-ops"
+   ]
+  },
+  {
+   "slug": "timeline-report",
+   "repo": "thedotmack/claude-mem",
+   "lexical_tokens": 5,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7305,
+   "router_top": [
+    "research-documentation",
+    "internal-comms",
+    "meeting-intelligence"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7507,
+   "loadable_top": [
+    "research-documentation",
+    "novel",
+    "html-deploy"
+   ]
+  },
+  {
+   "slug": "host-observer",
+   "repo": "thedotmack/claude-mem",
+   "lexical_tokens": 2,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7643,
+   "router_top": [
+    "notion-cli",
+    "obsidian-cli",
+    "internal-comms"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7494,
+   "loadable_top": [
+    "clawbrowser",
+    "outbound-engine",
+    "x-longform-post"
+   ]
+  },
+  {
+   "slug": "onboarding",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 2,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7237,
+   "router_top": [
+    "notion-cli",
+    "brainstorming",
+    "first-principles-decomposer"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7492,
+   "loadable_top": [
+    "github-pages-auto-deploy",
+    "handoff",
+    "apple-notes"
+   ]
+  },
+  {
+   "slug": "ast-grep",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 2,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7762,
+   "router_top": [
+    "notion-cli",
+    "refactoring",
+    "writing-plans"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.749,
+   "loadable_top": [
+    "coding-agent",
+    "obsidian-cli",
+    "html-deploy"
+   ]
+  },
+  {
+   "slug": "lsp",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 2,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7455,
+   "router_top": [
+    "obsidian-cli",
+    "notion-cli",
+    "internal-comms"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7489,
+   "loadable_top": [
+    "obsidian-cli",
+    "tavily",
+    "task-alignment"
+   ]
+  },
+  {
+   "slug": "pr",
+   "repo": "mattpocock/skills",
+   "lexical_tokens": 2,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7409,
+   "router_top": [
+    "chart-visualization",
+    "frontend-skill",
+    "local-ocr-npu"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7487,
+   "loadable_top": [
+    "yourself-skill",
+    "find-skills",
+    "frontend-skill"
+   ]
+  },
+  {
+   "slug": "lcx-contribute-bug-fix",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7494,
+   "router_top": [
+    "coding-agent",
+    "figma",
+    "refactoring"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7481,
+   "loadable_top": [
+    "model-usage",
+    "figma",
+    "diagnose"
+   ]
+  },
+  {
+   "slug": "langsmith-fetch",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "lexical_tokens": 4,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7242,
+   "router_top": [
+    "figma",
+    "github",
+    "writing-plans"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7473,
+   "loadable_top": [
+    "agent-browser-core",
+    "clawbrowser",
+    "figma"
+   ]
+  },
+  {
+   "slug": "tech-debt-audit",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 6,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7503,
+   "router_top": [
+    "security-audit",
+    "ppt-master",
+    "knowledge-capture"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7468,
+   "loadable_top": [
+    "security-audit",
+    "web-performance-audit",
+    "outbound-engine"
+   ]
+  },
+  {
+   "slug": "academic-paper-reviewer",
+   "repo": "Imbad0202/academic-research-skills",
+   "lexical_tokens": 4,
+   "router_tier": "no_neighbour",
+   "router_score": 0.749,
+   "router_top": [
+    "research-documentation",
+    "meeting-intelligence",
+    "spec-to-implementation"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.746,
+   "loadable_top": [
+    "tavily",
+    "research-documentation",
+    "citation-manager"
+   ]
+  },
+  {
+   "slug": "install",
+   "repo": "thedotmack/claude-mem",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7652,
+   "router_top": [
+    "notion-cli",
+    "obsidian-cli",
+    "coding-agent"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7431,
+   "loadable_top": [
+    "obsidian-cli",
+    "things-mac",
+    "setup-pre-commit"
+   ]
+  },
+  {
+   "slug": "implement",
+   "repo": "mattpocock/skills",
+   "lexical_tokens": 2,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7201,
+   "router_top": [
+    "spec-to-implementation",
+    "writing-plans",
+    "frontend-skill"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7431,
+   "loadable_top": [
+    "spec-to-implementation",
+    "sales-playbook",
+    "writing-plans"
+   ]
+  },
+  {
+   "slug": "wait-what",
+   "repo": "mattpocock/skills",
+   "lexical_tokens": 1,
+   "router_tier": "no_neighbour",
+   "router_score": 0.6639,
+   "router_top": [
+    "verification-before-completion",
+    "frontend-slides",
+    "openai-whisper-api"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7415,
+   "loadable_top": [
+    "openai-whisper",
+    "verification-before-completion",
+    "wacli"
+   ]
+  },
+  {
+   "slug": "setup-ts-deep-modules",
+   "repo": "mattpocock/skills",
+   "lexical_tokens": 2,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7546,
+   "router_top": [
+    "figma",
+    "writing-plans",
+    "refactoring"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7409,
+   "loadable_top": [
+    "figma",
+    "tdd",
+    "agent-browser-core"
+   ]
+  },
+  {
+   "slug": "understand-chat",
+   "repo": "Egonex-AI/Understand-Anything",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7303,
+   "router_top": [
+    "writing-plans",
+    "refactoring",
+    "chart-visualization"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7407,
+   "loadable_top": [
+    "zoom-out",
+    "tutor-skills",
+    "coding-agent"
+   ]
+  },
+  {
+   "slug": "ultrawork",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 2,
+   "router_tier": "no_neighbour",
+   "router_score": 0.779,
+   "router_top": [
+    "notion-cli",
+    "obsidian-cli",
+    "ppt-master"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7407,
+   "loadable_top": [
+    "coding-agent",
+    "task-alignment",
+    "content-repurposer"
+   ]
+  },
+  {
+   "slug": "understand-onboard",
+   "repo": "Egonex-AI/Understand-Anything",
+   "lexical_tokens": 2,
+   "router_tier": "no_neighbour",
+   "router_score": 0.6824,
+   "router_top": [
+    "brainstorming",
+    "shadcn",
+    "frontend-design"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7398,
+   "loadable_top": [
+    "github-ai-trends",
+    "team-ops",
+    "edgeone-pages-deploy"
+   ]
+  },
+  {
+   "slug": "to-tickets",
+   "repo": "mattpocock/skills",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.6903,
+   "router_top": [
+    "writing-plans",
+    "spec-to-implementation",
+    "hyperframes-registry"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7382,
+   "loadable_top": [
+    "edgeone",
+    "edgeone-pages-deploy",
+    "aviationstack-flight-tracker"
+   ]
+  },
+  {
+   "slug": "wizard",
+   "repo": "mattpocock/skills",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7368,
+   "router_top": [
+    "frontend-slides",
+    "brainstorming",
+    "frontend-skill"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7373,
+   "loadable_top": [
+    "frontend-slides",
+    "clawbrowser",
+    "goal-tracker"
+   ]
+  },
+  {
+   "slug": "what-the",
+   "repo": "thedotmack/claude-mem",
+   "lexical_tokens": 4,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7361,
+   "router_top": [
+    "first-principles-decomposer",
+    "brainstorming",
+    "frontend-slides"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7371,
+   "loadable_top": [
+    "yourself-skill",
+    "boss-skills",
+    "edgeone-pages-deploy"
+   ]
+  },
+  {
+   "slug": "git-guardrails-claude-code",
+   "repo": "mattpocock/skills",
+   "lexical_tokens": 4,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7543,
+   "router_top": [
+    "coding-agent",
+    "github",
+    "wb-git-commit-recipe"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7368,
+   "loadable_top": [
+    "clawbrowser",
+    "setup-pre-commit",
+    "things-mac"
+   ]
+  },
+  {
+   "slug": "give-me-tips",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 4,
+   "router_tier": "no_neighbour",
+   "router_score": 0.746,
+   "router_top": [
+    "knowledge-capture",
+    "notion-cli",
+    "obsidian-cli"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7368,
+   "loadable_top": [
+    "content-repurposer",
+    "find-skills",
+    "tencent-yuanbao-standard-search"
+   ]
+  },
+  {
+   "slug": "ulw-plan",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 5,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7777,
+   "router_top": [
+    "writing-plans",
+    "doc-coauthoring",
+    "spec-to-implementation"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7357,
+   "loadable_top": [
+    "doc-coauthoring",
+    "coding-agent",
+    "outbound-engine"
+   ]
+  },
+  {
+   "slug": "lcx-doctor",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 4,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7504,
+   "router_top": [
+    "docx",
+    "obsidian-cli",
+    "doc-coauthoring"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7353,
+   "loadable_top": [
+    "tdd",
+    "docx",
+    "obsidian-cli"
+   ]
+  },
+  {
+   "slug": "agent-cost-report",
+   "repo": "thedotmack/claude-mem",
+   "lexical_tokens": 4,
+   "router_tier": "no_neighbour",
+   "router_score": 0.6957,
+   "router_top": [
+    "hyperframes-registry",
+    "notion-cli",
+    "spec-to-implementation"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7345,
+   "loadable_top": [
+    "outbound-engine",
+    "agent-team-orchestration",
+    "clawbrowser"
+   ]
+  },
+  {
+   "slug": "comment-checker",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 2,
+   "router_tier": "no_neighbour",
+   "router_score": 0.6889,
+   "router_top": [
+    "obsidian-cli",
+    "obsidian-markdown",
+    "notion-cli"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.733,
+   "loadable_top": [
+    "apple-reminders",
+    "outbound-engine",
+    "email-daily-summary"
+   ]
+  },
+  {
+   "slug": "rules",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 4,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7007,
+   "router_top": [
+    "brainstorming",
+    "refactoring",
+    "hyperframes-registry"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7326,
+   "loadable_top": [
+    "brainstorming",
+    "edgeone-pages-deploy",
+    "shippage"
+   ]
+  },
+  {
+   "slug": "ask-matt",
+   "repo": "mattpocock/skills",
+   "lexical_tokens": 2,
+   "router_tier": "no_neighbour",
+   "router_score": 0.6994,
+   "router_top": [
+    "frontend-skill",
+    "find-skills",
+    "theme-factory"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7325,
+   "loadable_top": [
+    "skill-vetter",
+    "frontend-skill",
+    "boss-skills"
+   ]
+  },
+  {
+   "slug": "gpt-tasteskill",
+   "repo": "Leonxlnx/taste-skill",
+   "lexical_tokens": 4,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7171,
+   "router_top": [
+    "spec-to-implementation",
+    "obsidian-cli",
+    "obsidian-markdown"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7311,
+   "loadable_top": [
+    "frontend-skill",
+    "content-repurposer",
+    "tavily"
+   ]
+  },
+  {
+   "slug": "weekly-digests",
+   "repo": "thedotmack/claude-mem",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7322,
+   "router_top": [
+    "frontend-slides",
+    "notion-cli",
+    "first-principles-decomposer"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7303,
+   "loadable_top": [
+    "growth-engine",
+    "outbound-engine",
+    "content-repurposer"
+   ]
+  },
+  {
+   "slug": "oh-my-issues",
+   "repo": "thedotmack/claude-mem",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7217,
+   "router_top": [
+    "knowledge-capture",
+    "frontend-slides",
+    "obsidian-cli"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7263,
+   "loadable_top": [
+    "knowledge-capture",
+    "outbound-engine",
+    "obsidian-cli"
+   ]
+  },
+  {
+   "slug": "get-unpublished-changes",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 2,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7396,
+   "router_top": [
+    "obsidian-cli",
+    "notion-cli",
+    "github"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7255,
+   "loadable_top": [
+    "html-deploy",
+    "obsidian-cli",
+    "things-mac"
+   ]
+  },
+  {
+   "slug": "triage",
+   "repo": "mattpocock/skills",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7031,
+   "router_top": [
+    "knowledge-capture",
+    "frontend-slides",
+    "meeting-intelligence"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7228,
+   "loadable_top": [
+    "knowledge-capture",
+    "capability-evolver",
+    "novel"
+   ]
+  },
+  {
+   "slug": "tailored-resume-generator",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "lexical_tokens": 1,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7365,
+   "router_top": [
+    "frontend-skill",
+    "brainstorming",
+    "theme-factory"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7222,
+   "loadable_top": [
+    "frontend-skill",
+    "find-skills",
+    "outbound-engine"
+   ]
+  },
+  {
+   "slug": "changelog-generator",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "lexical_tokens": 2,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7445,
+   "router_top": [
+    "ppt-master",
+    "obsidian-cli",
+    "brainstorming"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7142,
+   "loadable_top": [
+    "byted-seedream-image-generate",
+    "obsidian-cli",
+    "brainstorming"
+   ]
+  },
+  {
+   "slug": "understand-diff",
+   "repo": "Egonex-AI/Understand-Anything",
+   "lexical_tokens": 2,
+   "router_tier": "no_neighbour",
+   "router_score": 0.709,
+   "router_top": [
+    "hyperframes-registry",
+    "notion-cli",
+    "obsidian-cli"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7127,
+   "loadable_top": [
+    "shadcn",
+    "brainstorming",
+    "handoff"
+   ]
+  },
+  {
+   "slug": "understand-dashboard",
+   "repo": "Egonex-AI/Understand-Anything",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.6928,
+   "router_top": [
+    "chart-visualization",
+    "frontend-design",
+    "shadcn"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7122,
+   "loadable_top": [
+    "github-ai-trends",
+    "frontend-design",
+    "frontend-skill"
+   ]
+  },
+  {
+   "slug": "ccs-align",
+   "repo": "thedotmack/claude-mem",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7112,
+   "router_top": [
+    "frontend-skill",
+    "frontend-slides",
+    "writing-plans"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7119,
+   "loadable_top": [
+    "stealth-browser",
+    "frontend-skill",
+    "task-alignment"
+   ]
+  },
+  {
+   "slug": "writing-shape",
+   "repo": "mattpocock/skills",
+   "lexical_tokens": 1,
+   "router_tier": "no_neighbour",
+   "router_score": 0.6808,
+   "router_top": [
+    "frontend-skill",
+    "theme-factory",
+    "byted-seedream-image-generate"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7055,
+   "loadable_top": [
+    "openai-image-gen",
+    "humanizer",
+    "content-ops"
+   ]
+  },
+  {
+   "slug": "to-questionnaire",
+   "repo": "mattpocock/skills",
+   "lexical_tokens": 1,
+   "router_tier": "no_neighbour",
+   "router_score": 0.6691,
+   "router_top": [
+    "brainstorming",
+    "frontend-slides",
+    "first-principles-decomposer"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.6997,
+   "loadable_top": [
+    "task-alignment",
+    "legal-logic-analysis",
+    "html-deploy"
+   ]
+  },
+  {
+   "slug": "senpi-qa",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7142,
+   "router_top": [
+    "obsidian-cli",
+    "notion-cli",
+    "shadcn"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.6963,
+   "loadable_top": [
+    "obsidian-cli",
+    "task-implement",
+    "find-skills"
+   ]
+  },
+  {
+   "slug": "raffle-winner-picker",
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "lexical_tokens": 2,
+   "router_tier": "no_neighbour",
+   "router_score": 0.666,
+   "router_top": [
+    "frontend-slides",
+    "hyperframes",
+    "shadcn"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.6959,
+   "loadable_top": [
+    "edgeone",
+    "sales-pipeline",
+    "handoff"
+   ]
+  },
+  {
+   "slug": "last30days",
+   "repo": "mvanhorn/last30days-skill",
+   "lexical_tokens": 3,
+   "router_tier": "no_neighbour",
+   "router_score": 0.6676,
+   "router_top": [
+    "meeting-intelligence",
+    "frontend-skill",
+    "ppt-master"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.6904,
+   "loadable_top": [
+    "outbound-engine",
+    "news-summary",
+    "growth-engine"
+   ]
+  },
+  {
+   "slug": "writing-beats",
+   "repo": "mattpocock/skills",
+   "lexical_tokens": 2,
+   "router_tier": "no_neighbour",
+   "router_score": 0.658,
+   "router_top": [
+    "frontend-skill",
+    "theme-factory",
+    "first-principles-decomposer"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.6901,
+   "loadable_top": [
+    "humanizer",
+    "imsg",
+    "content-repurposer"
+   ]
+  },
+  {
+   "slug": "retro",
+   "repo": "mattpocock/skills",
+   "lexical_tokens": 1,
+   "router_tier": "no_neighbour",
+   "router_score": 0.637,
+   "router_top": [
+    "hyperframes-registry",
+    "verification-before-completion",
+    "electron"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.6891,
+   "loadable_top": [
+    "perplexity",
+    "browser-cash",
+    "wacli"
+   ]
+  },
+  {
+   "slug": "writing-fragments",
+   "repo": "mattpocock/skills",
+   "lexical_tokens": 2,
+   "router_tier": "no_neighbour",
+   "router_score": 0.6798,
+   "router_top": [
+    "frontend-skill",
+    "algorithmic-art",
+    "first-principles-decomposer"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.6863,
+   "loadable_top": [
+    "frontend-skill",
+    "songsee",
+    "novel"
+   ]
+  },
+  {
+   "slug": "babysit",
+   "repo": "thedotmack/claude-mem",
+   "lexical_tokens": 2,
+   "router_tier": "no_neighbour",
+   "router_score": 0.6464,
+   "router_top": [
+    "verification-before-completion",
+    "obsidian-cli",
+    "gstack"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.6846,
+   "loadable_top": [
+    "browser-cash",
+    "responsiveness-check",
+    "writing-plans"
+   ]
+  },
+  {
+   "slug": "ulw-execute",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 4,
+   "router_tier": "no_neighbour",
+   "router_score": 0.6825,
+   "router_top": [
+    "writing-plans",
+    "spec-to-implementation",
+    "notion-cli"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.682,
+   "loadable_top": [
+    "outbound-engine",
+    "writing-plans",
+    "task-implement"
+   ]
+  },
+  {
+   "slug": "omomomo",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 1,
+   "router_tier": "no_neighbour",
+   "router_score": 0.6406,
+   "router_top": [
+    "openai-whisper-api",
+    "local-tts",
+    "hyperframes-media"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.6509,
+   "loadable_top": [
+    "openai-whisper",
+    "openai-whisper-api",
+    "summarize"
+   ]
+  }
+ ],
+ "problems": [],
+ "note": "面 A = 生产路由索引实际人口（169 件，只覆盖权威源）；面 B = 会话可加载全人口。两档之差 = 能力在盘上但对路由器不可见 ⇒ r60 的『换装 0 件』结论在两档下同向才成立。"
+}

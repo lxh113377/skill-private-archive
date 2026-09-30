@@ -462,6 +462,46 @@
    "roster_partition_sum"
   ],
   "note": "第 18 维第二把尺：描述面（第一把尺 misc 盲区 36.4% 超阈时，按本仓「抽取器失明须第二抽取器复算」改用 description 命中，盲区降到 2.7%）。items 逐条带 retrieval，nearest_local 只给共享词排序，不设自动阈值（R236 补注③：未测两侧边界值前参数不得当判据）"
+  },
+ "semantic_coverage_r*.json": {
+  "schema_id": "semantic-coverage-r61-v1",
+  "required": [
+   "schema",
+   "generated_at",
+   "readonly",
+   "dimension",
+   "lens",
+   "counting_unit",
+   "claims_face",
+   "backend",
+   "corpus",
+   "calibration",
+   "tiers",
+   "crosstab",
+   "totals",
+   "router_blind_slugs",
+   "confirmed_gap_slugs",
+   "items",
+   "problems",
+   "note"
+  ],
+  "types": {
+   "dimension": "int",
+   "lens": "int",
+   "corpus": "dict",
+   "calibration": "dict",
+   "tiers": "dict",
+   "crosstab": "dict",
+   "totals": "dict",
+   "items": "list",
+   "router_blind_slugs": "list",
+   "confirmed_gap_slugs": "list"
+  },
+  "invariants": [
+   "readonly_true",
+   "semantic_face_sum"
+  ],
+  "note": "r61 第 18 维第三把尺（语义面，生产 BGE 向量）。存在理由：r60 两把尺都在词面上，『37 条真差距』从未用语义面复算；本轮实测该数终值为 47，其中仅 31 条被两面同时确认、12 条是路由索引对可加载面的覆盖面盲区、4 条被两把尺双双否证。tiers 必须两个面各一份（单面不得自称覆盖判定）"
   }
  },
  "invariant_docs": {

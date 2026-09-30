@@ -72,6 +72,43 @@ def main():
     m["items"] = m["items"][:5]
     case("b4 items 长度与 totals 不符应报", m, "items 长度")
 
+    # C 第三把尺（语义面）：真件应绿、四类破坏应红
+    sem_path = os.path.join(ROOT, "06-benchmark", "semantic_coverage_r61_2026-09-30.json")
+    if not os.path.isfile(sem_path):
+        sys.stderr.write("[GATE:roster-fixture-fail] 语义面证据件缺失，零面不判过：%s\n" % sem_path)
+        return 2
+    sem = json.loads(io.open(sem_path, encoding="utf-8-sig").read())
+    sfn = mod.INVARIANTS.get("semantic_face_sum")
+    if sfn is None:
+        sys.stderr.write("[GATE:roster-fixture-fail] 契约声明了 semantic_face_sum 但实现缺失\n")
+        return 1
+    cases.append(("c1 真件语义面 0 违规", sfn(sem, "semantic_face_sum") == [],
+                  "got=%r" % sfn(sem, "semantic_face_sum")[:2]))
+    def scase(name, doc, want_substr):
+        msgs = sfn(doc, "semantic_face_sum")
+        hit = any(want_substr in m for m in msgs)
+        cases.append((name, hit, "want=%r got=%r" % (want_substr, msgs[:2])))
+
+    m = copy.deepcopy(sem)
+    m["tiers"] = {"face_A_router_index": m["tiers"]["face_A_router_index"]}
+    scase("c2 只剩一个语料面应点名", m, "只有 1 个语料面")
+    m = copy.deepcopy(sem)
+    m["totals"]["gap_double_refuted"] = 0
+    scase("c3 三桶不守恒应报", m, "三桶不守恒")
+    m = copy.deepcopy(sem)
+    m["tiers"]["face_B_loadable"]["no_neighbour"] += 3
+    scase("c4 档分布之和偏离 items 应报", m, "之和")
+
+    # D 契约自身层级守卫（r60 D-124 与 r61 同形态复发的机器面）
+    contract = json.loads(io.open(mod.CONTRACT_FILE, encoding="utf-8-sig").read())
+    cases.append(("c5 真契约 层级守卫通过", mod.check_contract_nesting(contract) is None,
+                  "got=%r" % mod.check_contract_nesting(contract)))
+    leaked = copy.deepcopy(contract)
+    leaked["capability_gap_r*.json"] = leaked["artifacts"]["capability_gap_r*.json"]
+    cases.append(("c6 条目漏到顶层应被点名", "顶层出现未知键" in (
+        mod.check_contract_nesting(leaked) or ""),
+        "got=%r" % mod.check_contract_nesting(leaked)))
+
     passed = sum(1 for _, ok, _ in cases if ok)
     for name, ok, detail in cases:
         print("  %-40s %s   %s" % (name, "PASS" if ok else "FAIL", "" if ok else detail))

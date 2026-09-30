@@ -33,6 +33,29 @@ DEFAULT_DIR = HERE.parent / "06-benchmark"
 TYPE_MAP = {"str": str, "int": int, "bool": bool, "list": list, "dict": dict, "num": (int, float)}
 
 
+CONTRACT_TOP_KEYS = ("schema", "generated_at", "source_of_truth", "benchmark",
+                     "artifacts", "invariant_docs")
+
+
+def check_contract_nesting(data):
+    """契约文件自身的层级守卫：条目不得漏到顶层（r60 D-124 + r61 同形态复发的机器面）。
+
+    一手两例：r60 把两个 pattern 插到 `artifacts` **外层**，`json.loads` 照样成功、
+    键数仍是 18 ⇒ 契约静默少守两件；r61 重犯同一形状，只是那次运气好——少了一个闭括号
+    让文件解析失败才被发现。**"能解析"不等于"挂对了地方"**，所以顶层键必须锁成白名单。
+    """
+    if not isinstance(data, dict):
+        return "契约根不是对象"
+    extra = [k for k in data if k not in CONTRACT_TOP_KEYS]
+    if extra:
+        return ("顶层出现未知键 %s ⇒ 有条目漏在 artifacts 外层（r60 D-124 同形态）；"
+                "嵌套结构未改好之前，本契约不得被采信" % extra)
+    for key in ("artifacts", "invariant_docs"):
+        if not isinstance(data.get(key), dict):
+            return "契约缺 %s 字典（或层级错位）" % key
+    return None
+
+
 def load_contracts(path=None):
     """读契约；失败时返回带 error 的空 artifacts（调用方必须判空，不得当通过）。"""
     p = Path(path or CONTRACT_FILE)
@@ -40,6 +63,9 @@ def load_contracts(path=None):
         data = json.loads(p.read_text(encoding="utf-8-sig"))
     except (OSError, ValueError) as e:
         return {"schema": "unavailable", "artifacts": {}, "error": "%s: %s" % (type(e).__name__, e)}
+    nesting_err = check_contract_nesting(data)
+    if nesting_err:
+        return {"schema": data.get("schema"), "artifacts": {}, "error": nesting_err}
     if not isinstance(data.get("artifacts"), dict):
         return {"schema": data.get("schema"), "artifacts": {}, "error": "契约缺 artifacts 字典"}
     data["path"] = str(p)
@@ -413,6 +439,40 @@ def inv_roster_partition_sum(doc, arg):
     return msgs
 
 
+def inv_semantic_face_sum(doc, arg):
+    """第 18 维第三把尺（语义面）的分区守恒（r61）。
+
+    审两件事，都是「分母取错面」这一族在语义尺上的形态：
+      1. 两个语料面（生产路由索引 / 会话可加载）的档分布之和各自必须 == 件级总数；
+      2. 词面差距件必须被三桶**不重不漏**地分完：两面都无邻居 / 只缺路由索引（盲区）/
+         两把尺双双否证。少了第三桶就会把「词面尺造的假差距」悄悄折进"真差距"。
+    入参 arg 同其它不变式：调度器传名字串，本函数不依赖它。
+    """
+    msgs = []
+    tot = doc.get("totals") if isinstance(doc.get("totals"), dict) else {}
+    tiers = doc.get("tiers") if isinstance(doc.get("tiers"), dict) else {}
+    n = tot.get("items")
+    if not isinstance(n, int) or n <= 0:
+        return ["totals.items 缺失或为空面，零面不得判过（R247）"]
+    for face, row in tiers.items():
+        if not isinstance(row, dict):
+            msgs.append("tiers.%s 不是字典，档分布不可复算" % face)
+            continue
+        s = sum(int(v) for v in row.values())
+        if s != n:
+            msgs.append("tiers.%s 之和 %d != totals.items %d" % (face, s, n))
+    if len(tiers) < 2:
+        msgs.append("只有 %d 个语料面：单面结论不得自称覆盖判定（路由索引面 ≠ 可加载面）"
+                    % len(tiers))
+    gap = int(tot.get("lexical_gap_items") or 0)
+    three = (int(tot.get("gap_confirmed_both_faces") or 0)
+             + int(tot.get("gap_only_in_router_index") or 0)
+             + int(tot.get("gap_double_refuted") or 0))
+    if gap and three != gap:
+        msgs.append("词面差距三桶不守恒：%d != lexical_gap_items %d" % (three, gap))
+    return msgs
+
+
 INVARIANTS = {
     "readonly_true": inv_readonly_true,
     "excluded_have_why": inv_excluded_have_why,
@@ -430,6 +490,7 @@ INVARIANTS = {
     "ratchet_metric_set_matches": inv_ratchet_metric_set,
     "ratchet_refresh_days_matches": inv_ratchet_refresh_days,
     "roster_partition_sum": inv_roster_partition_sum,
+    "semantic_face_sum": inv_semantic_face_sum,
     "ratchet_hardcap_subset": inv_ratchet_hardcap_subset,
     "debt_class_sum": inv_debt_class_sum,
     "debt_taxonomy_complete": inv_debt_taxonomy_complete,
