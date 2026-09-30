@@ -254,3 +254,7 @@ r42 根因轮（2026-09-25 第 42 轮，第十二次逐字触发 ⇒ 整跑一�
 
 - [ ] **【P2·建议型 G-1′（r60 新立，条件触发）】** 若将来要装 AST 级代码检索能力（对手 `ast-grep`，实测本地无近邻），**必须先落二进制再落技能**：`command -v ast-grep` 无输出时不得装其 SKILL.md（A-skill-manager 准入「可运行性」硬前提）。同理 `lsp` / `lsp-setup` 需逐语言 server。取值：`command -v ast-grep || echo NOT-FOUND`
 - [ ] **【P2·建议型 G-2′（r60 新立，只借形态不借依赖）】** 借鉴 `agent-cost-report`（thedotmack/claude-mem）的**报表三行头**（花费 / 失误成本 / 时间轴），但**不引入其运行时**（实测其 SKILL.md 明写依赖 claude-mem transcripts + Mem Search MCP）。落点建议 = 本仓 `06-benchmark/debt_runs.jsonl` 已有斜率面，增一列「本轮实质门耗时合计」即可，不进棘轮。取值：`grep -c "agent-cost-report" 06-benchmark/capability_gap_r60_2026-09-30.json`（期望 ≥1，证明该判断有取证件）
+
+## P2
+
+> 由 flow --sync 补建的批次落点（09 允许批次 P2，原台账无该章节）
