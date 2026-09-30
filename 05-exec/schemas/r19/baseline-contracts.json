@@ -177,6 +177,24 @@
     "scenarios_nonempty"
    ]
   },
+  "input_pins.jsonl": {
+   "kind": "jsonl",
+   "row_required": [
+    "schema",
+    "ts",
+    "decl",
+    "faces",
+    "mirror_total",
+    "mirror_ok"
+   ],
+   "row_enum": {
+    "schema": [
+     "input-pins-v1"
+    ]
+   },
+   "row_ts_format": "%Y-%m-%dT%H:%M:%S",
+   "note": "r67 R58-1 纳入。本件是第 17 维纵深（仓外输入固定面·本地面）的证据面：每次门禁运行 append 一行，记录各输入面的 pin（HEAD sha + 未提交集摘要），使每个 verdict 可归因到确定的输入状态——这是「pin 到不可变 SHA」在本地的等价物。schema 只允许 input-pins-v1；空文件不得判过（R247）。生成器 05-exec/r67_input_pin_guard.py。"
+  },
   "gate_runs.jsonl": {
    "kind": "jsonl",
    "row_required": [

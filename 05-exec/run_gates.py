@@ -396,6 +396,23 @@ GATES = [
                "r66 实证三处自身缺陷：① 自排除把本工具自己的产物判死句柄；② all() 过紧把 attention_sim_raw_* 判假阴性；"
                "③ 摘牌 noise_falsepositive_*（真死句柄，生成器已不存在）。",
     },
+    {
+        "id": "input_pin_face",
+        "script": "r67_input_pin_guard.py",
+        "argv": ["--gate"],       # r67 R58-1：第 17 维纵深的「本地面」——镜像/克隆面必须钉在权威源
+        "pass_token": "[PIN:PASS]",
+        "portable": False,
+        "not_portable_reason":
+            "取数面是本机七端的 junction 实测与 D:/global_skills / D:/global_memory / 焚诀 三根的 git pin；"
+            "离机这些根不存在 ⇒ 声明面为空，本件按 R247 走 UNVERIFIED(exit 2) 而不是默认放行",
+        "covers": ["焚诀 eval/truth_constants.json 的 paths / junction_paths / endpoints.active 声明面",
+                   "各端 skills|memory junction 是否解析到声明的权威根（形态/存在/目标三项）",
+                   "06-benchmark/input_pins.jsonl 的 pin 落账与「本行自洽」（写哪本/指哪本/比哪本）"],
+        "why": "R58-1：26 道门读的全是本地字节，而这些字节由仓外的受管根本体与各端 junction 决定。"
+               "CI 那一侧 r58 已 pin 到不可变 SHA，本地面此前无人固定 —— junction 断裂或被改成指向别处时，"
+               "某端读到的不是权威源字节而所有门禁照绿（与 r58 D-113 同族，入口在本机）。"
+               "本门只判「镜像面是否钉在权威源」这一项事实；pin 变动清单按 W-32 只报不阻断。",
+    },
 ]
 
 # 显式声明本 runner **不覆盖**的面，防止聚合绿被读成「所有门禁都绿」（R20-2）。
