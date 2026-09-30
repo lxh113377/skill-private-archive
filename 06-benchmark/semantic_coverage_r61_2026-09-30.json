@@ -1,6 +1,6 @@
 {
  "schema": "semantic-coverage-r61-v1",
- "generated_at": "2026-09-29T22:38:07Z",
+ "generated_at": "2026-09-30T04:41:04Z",
  "readonly": true,
  "dimension": 18,
  "lens": 3,
@@ -14,8 +14,8 @@
    "dim": 512
   },
   "face_B_loadable": {
-   "names": 390,
-   "rows": 390
+   "names": 392,
+   "rows": 392
   }
  },
  "calibration": {
@@ -27,9 +27,9 @@
    "max": 0.9169
   },
   "face_B_loadable": {
-   "band_n": 390,
-   "p50": 0.7791,
-   "p75": 0.8243,
+   "band_n": 392,
+   "p50": 0.7815,
+   "p75": 0.8247,
    "min": 0.5255,
    "max": 0.9256
   },
@@ -42,9 +42,9 @@
    "covered_strong": 5
   },
   "face_B_loadable": {
-   "covered_strong": 40,
-   "covered_weak": 62,
-   "no_neighbour": 85
+   "covered_strong": 39,
+   "covered_weak": 58,
+   "no_neighbour": 90
   }
  },
  "crosstab": {
@@ -56,8 +56,8 @@
    },
    "loadable_tier": {
     "covered_strong": 36,
-    "covered_weak": 50,
-    "no_neighbour": 54
+    "covered_weak": 46,
+    "no_neighbour": 58
    }
   },
   "lexical_gap": {
@@ -66,8 +66,8 @@
     "covered_weak": 4
    },
    "loadable_tier": {
-    "no_neighbour": 31,
-    "covered_strong": 4,
+    "no_neighbour": 32,
+    "covered_strong": 3,
     "covered_weak": 12
    }
   }
@@ -75,15 +75,14 @@
  "totals": {
   "items": 187,
   "lexical_gap_items": 47,
-  "gap_confirmed_both_faces": 31,
-  "gap_only_in_router_index": 12,
+  "gap_confirmed_both_faces": 32,
+  "gap_only_in_router_index": 11,
   "gap_double_refuted": 4,
-  "gap_overturned_by_loadable_face": 16
+  "gap_overturned_by_loadable_face": 15
  },
  "router_blind_slugs": [
-  "debugging",
   "debugging-and-error-recovery",
-  "domain-modeling",
+  "do",
   "init-deep",
   "invoice-organizer",
   "lsp-setup",
@@ -101,7 +100,8 @@
   "changelog-generator",
   "comment-checker",
   "competitive-ads-extractor",
-  "do",
+  "debugging",
+  "domain-modeling",
   "get-unpublished-changes",
   "host-observer",
   "implement",
@@ -225,8 +225,8 @@
    "loadable_score": 0.8889,
    "loadable_top": [
     "pptx-generator",
-    "html-ppt",
-    "docx"
+    "slides",
+    "html-ppt"
    ]
   },
   {
@@ -886,7 +886,7 @@
     "frontend-skill",
     "internal-comms"
    ],
-   "loadable_tier": "covered_strong",
+   "loadable_tier": "covered_weak",
    "loadable_score": 0.8246,
    "loadable_top": [
     "skill-creator",
@@ -966,8 +966,8 @@
    "loadable_score": 0.8209,
    "loadable_top": [
     "writing-plans",
-    "spec-to-implementation",
-    "brainstorming"
+    "executing-plans",
+    "spec-to-implementation"
    ]
   },
   {
@@ -1310,6 +1310,25 @@
     "oracle",
     "spec-to-implementation",
     "brainstorming"
+   ]
+  },
+  {
+   "slug": "do",
+   "repo": "thedotmack/claude-mem",
+   "lexical_tokens": 2,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7661,
+   "router_top": [
+    "writing-plans",
+    "spec-to-implementation",
+    "first-principles-decomposer"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.8023,
+   "loadable_top": [
+    "executing-plans",
+    "writing-plans",
+    "task-implement"
    ]
   },
   {
@@ -1807,6 +1826,25 @@
    ]
   },
   {
+   "slug": "ulw-execute",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "lexical_tokens": 4,
+   "router_tier": "no_neighbour",
+   "router_score": 0.6825,
+   "router_top": [
+    "writing-plans",
+    "spec-to-implementation",
+    "notion-cli"
+   ],
+   "loadable_tier": "covered_weak",
+   "loadable_score": 0.7871,
+   "loadable_top": [
+    "executing-plans",
+    "outbound-engine",
+    "writing-plans"
+   ]
+  },
+  {
    "slug": "twitter-algorithm-optimizer",
    "repo": "ComposioHQ/awesome-claude-skills",
    "lexical_tokens": 4,
@@ -1950,7 +1988,7 @@
     "writing-plans",
     "shadcn"
    ],
-   "loadable_tier": "covered_weak",
+   "loadable_tier": "no_neighbour",
    "loadable_score": 0.7815,
    "loadable_top": [
     "task-implement",
@@ -1969,7 +2007,7 @@
     "figma",
     "oracle"
    ],
-   "loadable_tier": "covered_weak",
+   "loadable_tier": "no_neighbour",
    "loadable_score": 0.7814,
    "loadable_top": [
     "refactoring",
@@ -1988,7 +2026,7 @@
     "chart-visualization",
     "writing-plans"
    ],
-   "loadable_tier": "covered_weak",
+   "loadable_tier": "no_neighbour",
    "loadable_score": 0.7814,
    "loadable_top": [
     "figma",
@@ -2007,7 +2045,7 @@
     "chart-visualization",
     "writing-plans"
    ],
-   "loadable_tier": "covered_weak",
+   "loadable_tier": "no_neighbour",
    "loadable_score": 0.7804,
    "loadable_top": [
     "chart-visualization",
@@ -2026,7 +2064,7 @@
     "writing-plans",
     "first-principles-decomposer"
    ],
-   "loadable_tier": "covered_weak",
+   "loadable_tier": "no_neighbour",
    "loadable_score": 0.7792,
    "loadable_top": [
     "task-alignment",
@@ -2045,7 +2083,7 @@
     "chart-visualization",
     "research-documentation"
    ],
-   "loadable_tier": "covered_weak",
+   "loadable_tier": "no_neighbour",
    "loadable_score": 0.7791,
    "loadable_top": [
     "knowledge-capture",
@@ -2064,7 +2102,7 @@
     "oracle",
     "obsidian-cli"
    ],
-   "loadable_tier": "covered_weak",
+   "loadable_tier": "no_neighbour",
    "loadable_score": 0.7791,
    "loadable_top": [
     "diagnose",
@@ -2282,25 +2320,6 @@
    ]
   },
   {
-   "slug": "do",
-   "repo": "thedotmack/claude-mem",
-   "lexical_tokens": 2,
-   "router_tier": "no_neighbour",
-   "router_score": 0.7661,
-   "router_top": [
-    "writing-plans",
-    "spec-to-implementation",
-    "first-principles-decomposer"
-   ],
-   "loadable_tier": "no_neighbour",
-   "loadable_score": 0.772,
-   "loadable_top": [
-    "writing-plans",
-    "task-implement",
-    "capability-evolver"
-   ]
-  },
-  {
    "slug": "template",
    "repo": "anthropics/skills",
    "lexical_tokens": 3,
@@ -2336,6 +2355,25 @@
     "oracle",
     "computer-use-guidance-windows",
     "browser-cdp"
+   ]
+  },
+  {
+   "slug": "wowerpoint",
+   "repo": "thedotmack/claude-mem",
+   "lexical_tokens": 4,
+   "router_tier": "no_neighbour",
+   "router_score": 0.7496,
+   "router_top": [
+    "notion-cli",
+    "obsidian-cli",
+    "frontend-slides"
+   ],
+   "loadable_tier": "no_neighbour",
+   "loadable_score": 0.7677,
+   "loadable_top": [
+    "slides",
+    "md-to-pdf-cjk",
+    "edgeone"
    ]
   },
   {
@@ -2505,8 +2543,8 @@
    "loadable_score": 0.7627,
    "loadable_top": [
     "brainstorming",
-    "task-implement",
-    "task-alignment"
+    "executing-plans",
+    "task-implement"
    ]
   },
   {
@@ -2602,25 +2640,6 @@
     "clawbrowser",
     "frontend-slides",
     "cloudflare-worker-builder"
-   ]
-  },
-  {
-   "slug": "wowerpoint",
-   "repo": "thedotmack/claude-mem",
-   "lexical_tokens": 4,
-   "router_tier": "no_neighbour",
-   "router_score": 0.7496,
-   "router_top": [
-    "notion-cli",
-    "obsidian-cli",
-    "frontend-slides"
-   ],
-   "loadable_tier": "no_neighbour",
-   "loadable_score": 0.7576,
-   "loadable_top": [
-    "md-to-pdf-cjk",
-    "edgeone",
-    "handoff"
    ]
   },
   {
@@ -2753,7 +2772,7 @@
    "loadable_top": [
     "gifgrep",
     "frontend-slides",
-    "seo-ops"
+    "slides"
    ]
   },
   {
@@ -3189,8 +3208,8 @@
    "loadable_score": 0.7357,
    "loadable_top": [
     "doc-coauthoring",
-    "coding-agent",
-    "outbound-engine"
+    "executing-plans",
+    "coding-agent"
    ]
   },
   {
@@ -3647,25 +3666,6 @@
     "browser-cash",
     "responsiveness-check",
     "writing-plans"
-   ]
-  },
-  {
-   "slug": "ulw-execute",
-   "repo": "code-yeongyu/oh-my-openagent",
-   "lexical_tokens": 4,
-   "router_tier": "no_neighbour",
-   "router_score": 0.6825,
-   "router_top": [
-    "writing-plans",
-    "spec-to-implementation",
-    "notion-cli"
-   ],
-   "loadable_tier": "no_neighbour",
-   "loadable_score": 0.682,
-   "loadable_top": [
-    "outbound-engine",
-    "writing-plans",
-    "task-implement"
    ]
   },
   {
