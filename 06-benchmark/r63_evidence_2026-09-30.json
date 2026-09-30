@@ -1,0 +1,71 @@
+{
+ "schema": "r63-evidence-v1",
+ "generated_at": "2026-09-30 15:33:05",
+ "head": {
+  "source": "06-benchmark/全量对标报告_r63_红门修复与描述全量审计_2026-09-30.md",
+  "commit": "cfcb5b01707b225ce2e1f345e615dda27fc73faa",
+  "method": "git ls-remote origin main"
+ },
+ "local": {
+  "skills": 169,
+  "skill_md_bytes": 2147008,
+  "py_files": 585,
+  "entry_bytes": 24816
+ },
+ "opponents": {
+  "obra/superpowers": {
+   "stars": 293124,
+   "forks": 26236,
+   "pushed_at": "2026-09-27T02:37:47Z",
+   "method": "gh api repos/obra/superpowers"
+  },
+  "anthropics/skills": {
+   "stars": 179052,
+   "forks": 21165,
+   "pushed_at": "2026-09-29T02:20:07Z",
+   "method": "gh api repos/anthropics/skills"
+  }
+ },
+ "gates": {
+  "start": "FAIL=6",
+  "end": "PASS=25",
+  "ratchet_baseline": "86741->87598 (attributed 34a1e574 +857B)",
+  "md_claim_uncited": "12->0"
+ },
+ "description_audit": {
+  "total": 169,
+  "dual": 128,
+  "rate_pct": 75.7,
+  "no_when": 41,
+  "thin": 0,
+  "missing": 0,
+  "over_cap": 0,
+  "artifact": "06-benchmark/r63_description_dual_2026-09-30.json",
+  "generator": "05-exec/r63_description_audit.py",
+  "fixed": [
+   "A-ask-questions V2.11.0",
+   "coding-agent V1.1.0"
+  ]
+ },
+ "takeover": {
+  "skill": "A-project-handoff",
+  "version": "3.112.0",
+  "files": [
+   "references/takeover.md",
+   "scripts/takeover.py"
+  ],
+  "selftest": "10/10"
+ },
+ "mirror": {
+  "gate": "[GATE:mirror-pass]",
+  "missing": 0,
+  "mismatch": 0,
+  "extra": 35,
+  "extra_note": "rag-eval 族既有警告级(W-42)"
+ },
+ "deferred": [
+  "M-2 NO_WHEN分批(41件)",
+  "M-3 派生件重建(G-a双采样未开)",
+  "M-4 takeover实战试点"
+ ]
+}

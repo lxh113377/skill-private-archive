@@ -1,0 +1,2 @@
+| **遗留任务自动接管**（STALLED→CLAIMED→IN_TAKEOVER→DONE/RETURNED/RELEASED 状态机 + 停滞判定 + O_EXCL 原子认领防重复 + context_ref 防丢上下文 + append-only 台账可追溯；协议 V1.0，r63 立规） | `references/takeover.md`；执行体 `scripts/takeover.py`（`claim`/`complete`/`returned`/`release`/`list`/`--selftest`，实测 10/10） |
+| 版本历史 | `references/version-history.md` |

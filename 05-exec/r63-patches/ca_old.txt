@@ -1,0 +1,2 @@
+name: coding-agent
+description: "Delegate coding work to Codex, Claude Code, OpenCode, or WorkBuddy (codebuddy) as background workers; not simple edits or read-only code lookup."

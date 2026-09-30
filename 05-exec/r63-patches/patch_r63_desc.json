@@ -1,0 +1,18 @@
+{
+ "A-ask-questions/SKILL.md": [
+  {
+   "old_file": "05-exec/r63-patches/aask_old.txt",
+   "new_file": "05-exec/r63-patches/aask_new.txt"
+  },
+  {
+   "old_file": "05-exec/r63-patches/aask_hist_old.txt",
+   "new_file": "05-exec/r63-patches/aask_hist_new.txt"
+  }
+ ],
+ "coding-agent/SKILL.md": [
+  {
+   "old_file": "05-exec/r63-patches/ca_old.txt",
+   "new_file": "05-exec/r63-patches/ca_new.txt"
+  }
+ ]
+}

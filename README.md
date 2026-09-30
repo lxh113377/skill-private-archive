@@ -74,6 +74,7 @@ Set-Location 'C:\Users\37533\Desktop\workspace\焚诀'; & "C:\Users\37533\.workb
 
 ### 逐轮对标报告（最近 8 轮）
 
+- [全量对标报告_r63_红门修复与描述全量审计_2026-09-30.md](06-benchmark/全量对标报告_r63_红门修复与描述全量审计_2026-09-30.md) — 6 红门全归因闭环（ratchet 归因上调 87598 / md_claim 12 处补命令 / 3 门传染转绿 / freshness 解环）；H-1 真执行：169 件描述双要素全量审计 75.7%（判据 4 处假阴性先修）、A-ask-questions V2.11.0 + coding-agent V1.1.0 修复；新增 A-project-handoff V3.112.0 遗留任务自动接管协议（takeover.py selftest 10/10）
 - [全量对标报告_r60_能力覆盖名册差集_2026-09-30.md](06-benchmark/全量对标报告_r60_能力覆盖名册差集_2026-09-30.md) — 第 18 维新开：14 仓 209 唯一名册 vs 本地 428；37 条真差距候选里 0 件满足「可运行+可移植+与项目组合有交集」；抓出三处前提失效（R59-5 已落地/docx 验证段已 17 条/xlsx 才真缺）；R59-4 退役真执行
 - [全量对标报告_r62_八维结构化_2026-09-30.md](06-benchmark/全量对标报告_r62_八维结构化_2026-09-30.md) — 用户指令直达版：对手双仓实时重测（superpowers 293.1k★/anthropics 179.0k★）+ 本地 fresh（169 技能/2.15MB/585py/入口 24.8KB）+ description 双要素抽样 4/9；P0 四项已执行（报告+证据 JSON+抽样+README 同步）
 - [全量对标报告_r59_根迁移致判据读死面与退役未移出_2026-09-29.md](06-benchmark/全量对标报告_r59_根迁移致判据读死面与退役未移出_2026-09-29.md) — P0：根迁移把两道常驻判据喂成死面；退役登记了没移出；上游 mcp-builder 装入- [全量对标报告_r46_标记写入唯一入口_2026-09-25.md](06-benchmark/全量对标报告_r46_标记写入唯一入口_2026-09-25.md)
@@ -84,6 +85,6 @@ Set-Location 'C:\Users\37533\Desktop\workspace\焚诀'; & "C:\Users\37533\.workb
 - [全量对标报告_r51_取数面两路对账与判据接线自失效_2026-09-25.md](06-benchmark/全量对标报告_r51_取数面两路对账与判据接线自失效_2026-09-25.md)
 - [全量对标报告_r52_md引用面两路对账与契约陈旧自检_2026-09-25.md](06-benchmark/全量对标报告_r52_md引用面两路对账与契约陈旧自检_2026-09-25.md)
 
-本节目链接 21 个 ｜ 06-benchmark 机器可读件 78 ｜ 报告件 49
+本节目链接 22 个 ｜ 06-benchmark 机器可读件 88 ｜ 报告件 52
 > 取值：`python -c "import glob;print(len(glob.glob('06-benchmark/*.json')),len(glob.glob('06-benchmark/*.md')))"` 与 `grep -c '](06-benchmark/' README.md`
 
