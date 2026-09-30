@@ -1,28 +1,19 @@
 {
  "schema": "description-dual-v1",
- "generated_at": "2026-09-30 15:19:11",
+ "generated_at": "2026-09-30 17:48:23",
  "head": {
   "source": "D:/global_skills/*/SKILL.md frontmatter",
-  "commit": "cfcb5b01707b225ce2e1f345e615dda27fc73faa",
+  "commit": "8c1d4f5dd3e629a1b341766c0c8f1050128a848e",
   "method": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\05-exec\\r63_description_audit.py"
  },
  "cap": 1024,
  "summary": {
   "total": 169,
-  "DUAL": 128,
-  "NO_WHEN": 41,
-  "dual_rate_pct": 75.7
+  "DUAL": 135,
+  "NO_WHEN": 34,
+  "dual_rate_pct": 79.9
  },
  "worst_first": [
-  {
-   "skill": "A-ask-questions",
-   "has_field": true,
-   "chars": 29,
-   "what_signal": true,
-   "when_signal": false,
-   "verdict": "NO_WHEN",
-   "over_cap": false
-  },
   {
    "skill": "_my-skills",
    "has_field": true,
@@ -72,33 +63,6 @@
    "skill": "github",
    "has_field": true,
    "chars": 138,
-   "what_signal": true,
-   "when_signal": false,
-   "verdict": "NO_WHEN",
-   "over_cap": false
-  },
-  {
-   "skill": "coding-agent",
-   "has_field": true,
-   "chars": 146,
-   "what_signal": true,
-   "when_signal": false,
-   "verdict": "NO_WHEN",
-   "over_cap": false
-  },
-  {
-   "skill": "hook-analyzer-skill",
-   "has_field": true,
-   "chars": 172,
-   "what_signal": true,
-   "when_signal": false,
-   "verdict": "NO_WHEN",
-   "over_cap": false
-  },
-  {
-   "skill": "win-toolchain-pitfalls",
-   "has_field": true,
-   "chars": 179,
    "what_signal": true,
    "when_signal": false,
    "verdict": "NO_WHEN",
@@ -193,6 +157,42 @@
    "when_signal": false,
    "verdict": "NO_WHEN",
    "over_cap": false
+  },
+  {
+   "skill": "knowledge-capture",
+   "has_field": true,
+   "chars": 262,
+   "what_signal": true,
+   "when_signal": false,
+   "verdict": "NO_WHEN",
+   "over_cap": false
+  },
+  {
+   "skill": "theme-factory",
+   "has_field": true,
+   "chars": 262,
+   "what_signal": true,
+   "when_signal": false,
+   "verdict": "NO_WHEN",
+   "over_cap": false
+  },
+  {
+   "skill": "figma",
+   "has_field": true,
+   "chars": 269,
+   "what_signal": true,
+   "when_signal": false,
+   "verdict": "NO_WHEN",
+   "over_cap": false
+  },
+  {
+   "skill": "byted-mediakit-shared",
+   "has_field": true,
+   "chars": 286,
+   "what_signal": true,
+   "when_signal": false,
+   "verdict": "NO_WHEN",
+   "over_cap": false
   }
  ],
  "items": [
@@ -217,10 +217,10 @@
   {
    "skill": "A-ask-questions",
    "has_field": true,
-   "chars": 29,
+   "chars": 87,
    "what_signal": true,
-   "when_signal": false,
-   "verdict": "NO_WHEN",
+   "when_signal": true,
+   "verdict": "DUAL",
    "over_cap": false
   },
   {
@@ -334,10 +334,10 @@
   {
    "skill": "bigfile-split",
    "has_field": true,
-   "chars": 712,
+   "chars": 732,
    "what_signal": true,
-   "when_signal": false,
-   "verdict": "NO_WHEN",
+   "when_signal": true,
+   "verdict": "DUAL",
    "over_cap": false
   },
   {
@@ -496,10 +496,10 @@
   {
    "skill": "coding-agent",
    "has_field": true,
-   "chars": 146,
+   "chars": 241,
    "what_signal": true,
-   "when_signal": false,
-   "verdict": "NO_WHEN",
+   "when_signal": true,
+   "verdict": "DUAL",
    "over_cap": false
   },
   {
@@ -865,10 +865,10 @@
   {
    "skill": "hook-analyzer-skill",
    "has_field": true,
-   "chars": 172,
+   "chars": 215,
    "what_signal": true,
-   "when_signal": false,
-   "verdict": "NO_WHEN",
+   "when_signal": true,
+   "verdict": "DUAL",
    "over_cap": false
   },
   {
@@ -1009,10 +1009,10 @@
   {
    "skill": "local-ocr-npu",
    "has_field": true,
-   "chars": 692,
+   "chars": 738,
    "what_signal": true,
-   "when_signal": false,
-   "verdict": "NO_WHEN",
+   "when_signal": true,
+   "verdict": "DUAL",
    "over_cap": false
   },
   {
@@ -1054,10 +1054,10 @@
   {
    "skill": "local-vram",
    "has_field": true,
-   "chars": 782,
+   "chars": 814,
    "what_signal": true,
-   "when_signal": false,
-   "verdict": "NO_WHEN",
+   "when_signal": true,
+   "verdict": "DUAL",
    "over_cap": false
   },
   {
@@ -1621,10 +1621,10 @@
   {
    "skill": "win-toolchain-pitfalls",
    "has_field": true,
-   "chars": 179,
+   "chars": 181,
    "what_signal": true,
-   "when_signal": false,
-   "verdict": "NO_WHEN",
+   "when_signal": true,
+   "verdict": "DUAL",
    "over_cap": false
   },
   {
