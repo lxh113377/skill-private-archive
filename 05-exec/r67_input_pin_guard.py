@@ -119,12 +119,38 @@ def _git(root, *args):
 DIFF_CAP = 40   # diff_files 的展示上限；超额只截断**清单**，不截断计数与摘要（截断必须显式声明，R-ENUM）
 
 
-def pin_face(root, diff_cap=DIFF_CAP):
+def heat_index(rows):
+    """路径 -> 台账历史出现次数（= 变动热度）。纯函数，可被夹具喂样本。"""
+    acc = {}
+    for r in rows or []:
+        for f in r.get("faces") or []:
+            for p in f.get("diff_files") or []:
+                acc[p] = acc.get(p, 0) + 1
+    return acc
+
+
+# 变异钩子（r69 夹具 T20 用它证明「热度排序确实在承担清单排序」；生产恒为 True）
+ORDER_BY_HEAT = True
+
+
+def order_diff_files(files, heat=None):
+    """清单排序：热度降序 -> 路径升序（确定性）。
+
+    ⚠️ 排序**只影响 `diff_files` 清单**，一律不进 `dirty_digest` —— 热度随历史变化，
+    若混进摘要，同一批未提交字节会在相邻两行产生「假 pin 变动」，把趋势读数污染成噪声。
+    """
+    files = list(files or [])
+    if not (ORDER_BY_HEAT and heat):
+        return sorted(files)
+    return sorted(files, key=lambda p: (-heat.get(p, 0), p))
+
+
+def pin_face(root, diff_cap=DIFF_CAP, heat=None):
     """算一个输入面的 pin：HEAD sha + 未提交集摘要 + 未提交集清单（≤cap，超额显式声明）。
 
-    摘要（`dirty_digest`，定长）是**判定**用的；清单（`diff_files`，人读）是**归因**用的 ——
-    回答「本轮判绿是对着哪些未提交字节」。清单被 cap 截断时只改清单：`dirty_n` 与 `dirty_digest`
-    仍按全量算，且 `diff_truncated` 显式标出（防「清单短了被读成改动少」）。
+    摘要（`dirty_digest`，定长，**按路径序全量**算）是**判定**用的；清单（`diff_files`，人读，
+    r69 起按**热度降序**）是**归因**用的 —— 回答「本轮判绿是对着哪些未提交字节」。
+    清单被 cap 截断时只改清单：`dirty_n` 与 `dirty_digest` 仍按全量算，且 `diff_truncated` 显式标出。
     """
     if not root or not os.path.isdir(root):
         return {"root": root, "state": "unreachable"}
@@ -134,12 +160,13 @@ def pin_face(root, diff_cap=DIFF_CAP):
     rc2, st = _git(root, "status", "--porcelain")
     if rc2 != 0:
         return {"root": root, "state": "status_failed"}
-    lines = sorted(l for l in st.splitlines() if l.strip())
+    lines = sorted(l for l in st.splitlines() if l.strip())   # 摘要口径：路径序、全量、与热度无关
     digest = hashlib.sha256("\n".join(lines).encode("utf-8")).hexdigest()[:16]
     return {"root": root, "state": "pinned", "head": head.strip()[:12],
             "dirty_n": len(lines), "dirty_digest": digest,
+            "diff_order": "heat" if (ORDER_BY_HEAT and heat) else "path",
             "diff_truncated": len(lines) > diff_cap,
-            "diff_files": lines[:diff_cap]}
+            "diff_files": order_diff_files(lines, heat)[:diff_cap]}
 
 
 def judge(decl, faces):
@@ -185,17 +212,30 @@ TREND_COUNT_CHANGES = True
 INHERIT_UNCHANGED = True
 
 
-def payload_faces(pins, prev):
+def payload_faces(pins, rows):
     """落账用的 faces：**只在相对上一行有变动时**带全量清单，未变面只留指针。
 
     理由（体量）：清单是给人读的归因件，而受管根常年几十上百条未提交；每行都全量落账
     会让台账按「行数 × 面数 × 清单长」线性膨胀（首次实测单行 ≈6KB）。增量式后，
-    稳态每行只带「变动面」的清单，未变面用 `diff_inherit` 指回上一行的 ts（仍可追溯）。
+    稳态每行只带「变动面」的清单。
 
-    纯函数，可被夹具双向喂样本。`prev` 为 None/空 ⇒ 全部全量（首行无父可继承）。
+    r69 修②：指针 `diff_inherit` 指向**最近一次带该面全量清单的行**，不再是紧邻的上一行 ——
+    继承行自身清单为空，指向它会让读者跳进空壳（跨多行未变时要顺着跳很多级）。找不到
+    任何全量行时不写指针（保留清单本身），避免产生「指向空处的假指针」。
+
+    纯函数，可被夹具双向喂样本。`rows` 为空 ⇒ 全部全量（首行无父可继承）。
     """
-    prev_by_root = {f.get("root"): f for f in (prev or {}).get("faces") or []}
-    prev_ts = (prev or {}).get("ts", "")
+    rows = list(rows or [])
+    prev = rows[-1] if rows else {}
+    prev_by_root = {f.get("root"): f for f in prev.get("faces") or []}
+
+    def last_full_ts(root):
+        for r in reversed(rows):
+            for f in r.get("faces") or []:
+                if f.get("root") == root and f.get("diff_files"):
+                    return r.get("ts", "")
+        return ""
+
     out = []
     for f in pins or []:
         g = dict(f)
@@ -203,8 +243,10 @@ def payload_faces(pins, prev):
         same = bool(p) and (p.get("state"), p.get("head"), p.get("dirty_digest")) == \
                            (f.get("state"), f.get("head"), f.get("dirty_digest"))
         if INHERIT_UNCHANGED and same and f.get("state") == "pinned":
-            g["diff_files"] = []
-            g["diff_inherit"] = prev_ts
+            ts = last_full_ts(f.get("root"))
+            if ts:
+                g["diff_files"] = []
+                g["diff_inherit"] = ts
         out.append(g)
     return out
 
@@ -297,18 +339,17 @@ def main(argv=None):
             print("  ❌ %-10s %-44s %s（实测 target=%s）" % (f["label"], f["path"], pr["why"], pr["target"]))
 
     # ── P3 pin 落账 + P4 本行自洽 + advisory 变动清单
-    roots = [canon.get("skills"), canon.get("memory"), FENJUE_ROOT]
-    pins = [pin_face(r) for r in roots if r]
-    prev = None
+    # r69：先读全历史 —— 热度索引与「最近一次全量行」都要看历史，不能只看紧邻上一行
+    hist = []
     try:
-        if os.path.isfile(a.ledger):
-            with io.open(a.ledger, encoding="utf-8") as fh:
-                rows = [json.loads(l) for l in fh if l.strip()]
-            if rows:
-                prev = rows[-1]
+        hist = read_rows(a.ledger)
     except (OSError, ValueError) as e:
-        print("  ⚠️ 台账读不到（%s）⇒ 本行仍落账，但变动清单本轮不可比" % e.__class__.__name__)
-    row_faces = payload_faces(pins, prev)
+        print("  ⚠️ 台账读不到（%s）⇒ 本行仍落账，但变动清单与热度本轮不可比" % e.__class__.__name__)
+    prev = hist[-1] if hist else None
+    heat = heat_index(hist)
+    roots = [canon.get("skills"), canon.get("memory"), FENJUE_ROOT]
+    pins = [pin_face(r, heat=heat) for r in roots if r]
+    row_faces = payload_faces(pins, hist)
     # 行级聚合：契约只校验**行级**键，逐面清单嵌在 faces 里查不到 ⇒ 另立两枚行级事实
     # （本行落账清单条数合计 / 任一面是否被截断），由 row_required_from 代际接管。
     row = {"schema": "input-pins-v1", "ts": time.strftime("%Y-%m-%dT%H:%M:%S"),

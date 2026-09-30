@@ -196,24 +196,68 @@ def main():
 
         # ── T18/T19 增量落账：未变面清单清空 + 留 diff_inherit；已变面全量保留
         prev_row = {"ts": "t1", "faces": [{"root": "A", "state": "pinned", "head": "h1",
-                                           "dirty_digest": "d1"}]}
+                                           "dirty_digest": "d1", "diff_files": ["p"]}]}
         same_f = [{"root": "A", "state": "pinned", "head": "h1", "dirty_digest": "d1",
                    "diff_files": ["x"], "diff_truncated": False}]
         chg_f = [{"root": "A", "state": "pinned", "head": "h2", "dirty_digest": "d9",
                   "diff_files": ["y"], "diff_truncated": False}]
-        pf_same = m.payload_faces(same_f, prev_row)[0]
-        pf_chg = m.payload_faces(chg_f, prev_row)[0]
+        pf_same = m.payload_faces(same_f, [prev_row])[0]
+        pf_chg = m.payload_faces(chg_f, [prev_row])[0]
         check("T18 增量落账：未变面清单清空且留 diff_inherit=t1；已变面清单保留",
               pf_same["diff_files"] == [] and pf_same.get("diff_inherit") == "t1"
               and pf_chg["diff_files"] == ["y"] and "diff_inherit" not in pf_chg,
               "%s / %s" % (pf_same, pf_chg))
         try:
             m.INHERIT_UNCHANGED = False
-            pf_mut = m.payload_faces(same_f, prev_row)[0]
+            pf_mut = m.payload_faces(same_f, [prev_row])[0]
         finally:
             m.INHERIT_UNCHANGED = True
         check("T19 变异：关掉增量钩子 ⇒ 未变面清单不再清空（即 T18 的省体量确由该守卫承担）",
               pf_mut["diff_files"] == ["x"], str(pf_mut))
+
+        # ── T20/T21 热度排序：热度降序 -> 路径升序；关掉钩子退化路径序
+        files = [" B m/z.md", " M a/x.md", "?? c/y.md"]
+        heat = {"?? c/y.md": 5, " M a/x.md": 5, " B m/z.md": 1}
+        ordered = m.order_diff_files(files, heat)
+        check("T20 热度排序：热度 5 的两条在前且按路径升序，热度 1 的在后",
+              ordered == [" M a/x.md", "?? c/y.md", " B m/z.md"], str(ordered))
+        try:
+            m.ORDER_BY_HEAT = False
+            ordered_mut = m.order_diff_files(files, heat)
+        finally:
+            m.ORDER_BY_HEAT = True
+        check("T20 变异：关掉热度钩子 ⇒ 退化为纯路径序（即热度排序确由该守卫承担）",
+              ordered_mut == sorted(files), str(ordered_mut))
+        check("T21 热度索引：同路径跨行出现次数累加",
+              m.heat_index([{"faces": [{"diff_files": ["a", "b"]}]},
+                            {"faces": [{"diff_files": ["a"]}]}]) == {"a": 2, "b": 1})
+
+        # ── T22 关键不变量：热度**不得**进入 dirty_digest（否则热度一变就假报 pin 变动）
+        d_noheat = m.pin_face(small)
+        d_heat = m.pin_face(small, heat={"?? f000.txt": 99})
+        check("T22 不变量：同一批未提交字节，两种热度口径下 dirty_digest 必须相同（但 diff_order 变）",
+              d_noheat["dirty_digest"] == d_heat["dirty_digest"]
+              and d_noheat["diff_order"] == "path" and d_heat["diff_order"] == "heat",
+              "%s / %s" % (d_noheat.get("diff_order"), d_heat.get("diff_order")))
+
+        # ── T23 继承指针指向「最近一次全量行」，不是紧邻上一行；无全量行 ⇒ 保留清单不写空指针
+        hist3 = [
+            {"ts": "tA", "faces": [{"root": "A", "state": "pinned", "head": "h1",
+                                    "dirty_digest": "d1", "diff_files": ["full"]}]},
+            {"ts": "tB", "faces": [{"root": "A", "state": "pinned", "head": "h1",
+                                    "dirty_digest": "d1", "diff_files": [],
+                                    "diff_inherit": "tA"}]},
+        ]
+        same_now = [{"root": "A", "state": "pinned", "head": "h1", "dirty_digest": "d1",
+                     "diff_files": ["x"], "diff_truncated": False}]
+        pf3 = m.payload_faces(same_now, hist3)[0]
+        no_full = m.payload_faces(same_now, [{"ts": "tB", "faces": [
+            {"root": "A", "state": "pinned", "head": "h1", "dirty_digest": "d1",
+             "diff_files": []}]}])[0]
+        check("T23 继承指针指向最近一次全量行 tA（而非紧邻的空壳 tB）；无全量行则保留清单",
+              pf3.get("diff_inherit") == "tA" and pf3["diff_files"] == []
+              and "diff_inherit" not in no_full and no_full["diff_files"] == ["x"],
+              "%s / %s" % (pf3, no_full))
     finally:
         shutil.rmtree(base, ignore_errors=True)
 
