@@ -24,7 +24,14 @@
 **advisory（只报不阻断）**：与上一行台账比，列出 pin 变动的面 —— 这是本维度真正的信号，
   但受管根常年被并行会话改（r66 实测 45 条在途），做成硬闸即「消不掉的告警」（W-32 教训）。
 
-用法：`python 05-exec/r67_input_pin_guard.py [--decl F] [--ledger F] [--gate]`
+r68 增强（回答「本轮的绿是对着哪些未提交字节」与「哪一面最常变」）：
+  · 行内新增 `diff_files`（未提交集清单，cap=40）+ `diff_truncated`（超额显式声明）——
+    **摘要仍是全量算**，只截断清单，防「清单短了被读成改动少」（R-ENUM）。
+  · 新增 `--trend`：读全台账，按面统计「变动次数 / 出现行数 / 最近变动时刻 / 最新未提交条数」，
+    按变动次数降序打印（advisory 报告；空台账 ⇒ rc=2，零输入不得判过）。
+  · `--gate` 额外打印一行趋势摘要（最常变面）。
+
+用法：`python 05-exec/r67_input_pin_guard.py [--decl F] [--ledger F] [--gate] [--trend]`
 退出码：0 全绿 / 1 有违约 / 2 取数面不完整
 """
 import argparse
@@ -109,8 +116,16 @@ def _git(root, *args):
         return 127, str(e)
 
 
-def pin_face(root):
-    """算一个输入面的 pin：HEAD sha + 未提交集摘要。不可达 ⇒ state=unreachable。"""
+DIFF_CAP = 40   # diff_files 的展示上限；超额只截断**清单**，不截断计数与摘要（截断必须显式声明，R-ENUM）
+
+
+def pin_face(root, diff_cap=DIFF_CAP):
+    """算一个输入面的 pin：HEAD sha + 未提交集摘要 + 未提交集清单（≤cap，超额显式声明）。
+
+    摘要（`dirty_digest`，定长）是**判定**用的；清单（`diff_files`，人读）是**归因**用的 ——
+    回答「本轮判绿是对着哪些未提交字节」。清单被 cap 截断时只改清单：`dirty_n` 与 `dirty_digest`
+    仍按全量算，且 `diff_truncated` 显式标出（防「清单短了被读成改动少」）。
+    """
     if not root or not os.path.isdir(root):
         return {"root": root, "state": "unreachable"}
     rc, head = _git(root, "rev-parse", "HEAD")
@@ -122,7 +137,9 @@ def pin_face(root):
     lines = sorted(l for l in st.splitlines() if l.strip())
     digest = hashlib.sha256("\n".join(lines).encode("utf-8")).hexdigest()[:16]
     return {"root": root, "state": "pinned", "head": head.strip()[:12],
-            "dirty_n": len(lines), "dirty_digest": digest}
+            "dirty_n": len(lines), "dirty_digest": digest,
+            "diff_truncated": len(lines) > diff_cap,
+            "diff_files": lines[:diff_cap]}
 
 
 def judge(decl, faces):
@@ -160,12 +177,103 @@ def self_consistent(pins, back_faces):
     return list(back_faces or []) == list(pins or [])
 
 
+# 变异钩子（r68 夹具 T17 用它证明「变动计数确实在承担趋势判定」；生产恒为 True）
+TREND_COUNT_CHANGES = True
+
+
+# 变异钩子（r68 夹具 T19 用它证明「增量落账确实在省体量」；生产恒为 True）
+INHERIT_UNCHANGED = True
+
+
+def payload_faces(pins, prev):
+    """落账用的 faces：**只在相对上一行有变动时**带全量清单，未变面只留指针。
+
+    理由（体量）：清单是给人读的归因件，而受管根常年几十上百条未提交；每行都全量落账
+    会让台账按「行数 × 面数 × 清单长」线性膨胀（首次实测单行 ≈6KB）。增量式后，
+    稳态每行只带「变动面」的清单，未变面用 `diff_inherit` 指回上一行的 ts（仍可追溯）。
+
+    纯函数，可被夹具双向喂样本。`prev` 为 None/空 ⇒ 全部全量（首行无父可继承）。
+    """
+    prev_by_root = {f.get("root"): f for f in (prev or {}).get("faces") or []}
+    prev_ts = (prev or {}).get("ts", "")
+    out = []
+    for f in pins or []:
+        g = dict(f)
+        p = prev_by_root.get(f.get("root"))
+        same = bool(p) and (p.get("state"), p.get("head"), p.get("dirty_digest")) == \
+                           (f.get("state"), f.get("head"), f.get("dirty_digest"))
+        if INHERIT_UNCHANGED and same and f.get("state") == "pinned":
+            g["diff_files"] = []
+            g["diff_inherit"] = prev_ts
+        out.append(g)
+    return out
+
+
+def read_rows(ledger):
+    """读台账全部行；读不到或空 ⇒ []（调用方必须判空，不得当「无变化」）。"""
+    if not os.path.isfile(ledger):
+        return []
+    out = []
+    with io.open(ledger, encoding="utf-8") as fh:
+        for l in fh:
+            if l.strip():
+                try:
+                    out.append(json.loads(l))
+                except ValueError:
+                    continue
+    return out
+
+
+def trend_of(rows, count_changes=None):
+    """跨轮趋势：按面统计 出现行数 / pin 变动次数 / 最近变动时刻 / 最新未提交条数。
+
+    纯函数（不碰盘），可被夹具双向喂样本。`changes` 只在 `count_changes` 为真时累加
+    ——夹具用它做变异（关掉后趋势腿必须翻）。空输入 ⇒ 返回 {}（调用方必须判空）。
+    """
+    count = TREND_COUNT_CHANGES if count_changes is None else count_changes
+    acc, prev = {}, {}
+    for r in rows or []:
+        for f in r.get("faces") or []:
+            root = f.get("root")
+            if not root:
+                continue
+            a = acc.setdefault(root, {"root": root, "rows": 0, "pinned": 0, "changes": 0,
+                                      "last_change_ts": "", "latest_dirty_n": None})
+            a["rows"] += 1
+            if f.get("state") == "pinned":
+                a["pinned"] += 1
+                a["latest_dirty_n"] = f.get("dirty_n")
+            key = (f.get("state"), f.get("head"), f.get("dirty_digest"))
+            if root in prev and count and prev[root] != key:
+                a["changes"] += 1
+                a["last_change_ts"] = r.get("ts", "")
+            prev[root] = key
+    return acc
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description="R58-1 仓外输入固定面（本地面）")
     ap.add_argument("--decl", default=DEFAULT_DECL)
     ap.add_argument("--ledger", default=DEFAULT_LEDGER)
     ap.add_argument("--gate", action="store_true")
+    ap.add_argument("--trend", action="store_true",
+                    help="跨轮趋势：按面统计 pin 变动次数（advisory 报告；空台账 ⇒ rc=2）")
     a = ap.parse_args(argv)
+
+    if a.trend:
+        # 只读报告模式：**先于任何落账**执行，故空台账这一支在 CLI 上真实可达（否则永远被本行自己撑开）
+        rows_all = read_rows(a.ledger)
+        if not rows_all:
+            print("[PIN:UNVERIFIED] 台账为空 ⇒ 无趋势可比（R247：零输入不得判过）")
+            return 2
+        acc = trend_of(rows_all)
+        top = sorted(acc.values(), key=lambda x: (-x["changes"], -x["rows"], x["root"]))
+        print("跨轮趋势（台账 %d 行 / %d 个输入面）：" % (len(rows_all), len(acc)))
+        for i, x in enumerate(top, 1):
+            print("  %d. %-34s 变动 %d 次 / 出现 %d 行 ｜ 最近变动 %s ｜ 最新未提交 %s 条"
+                  % (i, x["root"], x["changes"], x["rows"], x["last_change_ts"] or "-",
+                     x["latest_dirty_n"] if x["latest_dirty_n"] is not None else "-"))
+        return 0
 
     decl = load_declaration(a.decl)
     faces, canon = build_faces(decl)
@@ -200,8 +308,13 @@ def main(argv=None):
                 prev = rows[-1]
     except (OSError, ValueError) as e:
         print("  ⚠️ 台账读不到（%s）⇒ 本行仍落账，但变动清单本轮不可比" % e.__class__.__name__)
+    row_faces = payload_faces(pins, prev)
+    # 行级聚合：契约只校验**行级**键，逐面清单嵌在 faces 里查不到 ⇒ 另立两枚行级事实
+    # （本行落账清单条数合计 / 任一面是否被截断），由 row_required_from 代际接管。
     row = {"schema": "input-pins-v1", "ts": time.strftime("%Y-%m-%dT%H:%M:%S"),
-           "decl": os.path.basename(a.decl), "faces": pins,
+           "decl": os.path.basename(a.decl), "faces": row_faces,
+           "diff_files_n": sum(len(f.get("diff_files") or []) for f in row_faces),
+           "diff_truncated": any(bool(f.get("diff_truncated")) for f in row_faces),
            "mirror_total": len(faces), "mirror_ok": len(faces) - len(viol) - len(rep.get("not_declared", []))}
     try:
         os.makedirs(os.path.dirname(a.ledger), exist_ok=True)
@@ -213,7 +326,7 @@ def main(argv=None):
     back = None
     with io.open(a.ledger, encoding="utf-8") as fh:
         back = [json.loads(l) for l in fh if l.strip()][-1]
-    if not self_consistent(pins, back.get("faces")):
+    if not self_consistent(row_faces, back.get("faces")):
         print("[PIN:FAIL] 本行自洽破：刚写入的 pin 与本次算出的不一致（写一份判另一份，D-108 同族）")
         return 1
     if prev:
@@ -230,6 +343,11 @@ def main(argv=None):
             print("   处置：对该端重建 junction 指向权威源（或跑既有 check-skill-mirror 链路）；"
                   "本门只判「镜像面是否钉在权威源」这一项事实")
             return 1
+        acc = trend_of(read_rows(a.ledger))
+        if acc:
+            hot = max(acc.values(), key=lambda x: (x["changes"], x["rows"]))
+            print("   ℹ️ 跨轮趋势：最常变面 = %s（变动 %d 次 / 共 %d 行，advisory）"
+                  % (hot["root"], hot["changes"], hot["rows"]))
         print("[PIN:PASS] 镜像面 %d 条全部钉在权威源（声明 null %d 条已逐条列出）｜pin 已落账 %d 面"
               % (len(faces) - len(rep.get("not_declared", [])), len(rep.get("not_declared", [])), len(pins)))
     return 0

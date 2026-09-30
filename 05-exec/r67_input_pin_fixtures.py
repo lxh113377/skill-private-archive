@@ -140,6 +140,80 @@ def main():
         ok_fwd, ok_rev = m.self_consistent(a, a), m.self_consistent(a, b)
         check("T12 自洽：同份 True / 差一份 False（写一份判另一份须拒）",
               ok_fwd is True and ok_rev is False, "%s / %s" % (ok_fwd, ok_rev))
+
+        # ── T13/T14 diff_files 清单：截断必须显式声明，且计数与摘要仍按全量算（R-ENUM）
+        def synth_repo(n_dirty):
+            d = tempfile.mkdtemp(prefix="r67_repo_", dir=base)
+            subprocess.run(["git", "init", "-q", d], capture_output=True)
+            with io.open(os.path.join(d, "base.txt"), "w", encoding="utf-8", newline="\n") as f:
+                f.write("base\n")
+            subprocess.run(["git", "-C", d, "add", "base.txt"], capture_output=True)
+            subprocess.run(["git", "-C", d, "-c", "user.email=t@t", "-c", "user.name=t",
+                            "commit", "-q", "-m", "base"], capture_output=True)
+            for i in range(n_dirty):
+                with io.open(os.path.join(d, "f%03d.txt" % i), "w", encoding="utf-8",
+                             newline="\n") as f:
+                    f.write("x\n")
+            return d
+
+        big = synth_repo(45)
+        pb = m.pin_face(big, diff_cap=40)
+        check("T13 截断：45 条未提交 ⇒ diff_files 恰 40 条 + diff_truncated=True + dirty_n 仍 45",
+              pb.get("dirty_n") == 45 and len(pb.get("diff_files") or []) == 40
+              and pb.get("diff_truncated") is True, "%s" % {k: pb.get(k) for k in
+                                                            ("dirty_n", "diff_truncated")})
+        small = synth_repo(3)
+        ps = m.pin_face(small)
+        check("T14 不截断：3 条未提交 ⇒ diff_files 3 条 + diff_truncated=False",
+              ps.get("dirty_n") == 3 and len(ps.get("diff_files") or []) == 3
+              and ps.get("diff_truncated") is False, "%s" % {k: ps.get(k) for k in
+                                                             ("dirty_n", "diff_truncated")})
+
+        # ── T15/T17 跨轮趋势：同一面 pin 变 2 次 ⇒ changes==2；关掉计数钩子 ⇒ 必须归零
+        rows = [
+            {"ts": "t1", "faces": [{"root": "A", "state": "pinned", "head": "h1",
+                                    "dirty_digest": "d1", "dirty_n": 1}]},
+            {"ts": "t2", "faces": [{"root": "A", "state": "pinned", "head": "h1",
+                                    "dirty_digest": "d2", "dirty_n": 2}]},
+            {"ts": "t3", "faces": [{"root": "A", "state": "pinned", "head": "h2",
+                                    "dirty_digest": "d3", "dirty_n": 3}]},
+        ]
+        t = m.trend_of(rows)["A"]
+        check("T15 趋势：pin 变 2 次 / 出现 3 行 / 最新未提交 3 条 / 最近变动 t3",
+              t["changes"] == 2 and t["rows"] == 3 and t["latest_dirty_n"] == 3
+              and t["last_change_ts"] == "t3", str(t))
+        try:
+            m.TREND_COUNT_CHANGES = False
+            t_mut = m.trend_of(rows)["A"]
+        finally:
+            m.TREND_COUNT_CHANGES = True
+        check("T17 变异：关掉变动计数钩子 ⇒ changes 归零（即 T15 的期望确由该判定承担）",
+              t_mut["changes"] == 0, str(t_mut))
+
+        # ── T16 趋势空台账必须 rc=2（只读报告模式先于落账，故该支在 CLI 上真实可达）
+        rc16 = m.main(["--trend", "--ledger", os.path.join(base, "no_such_ledger.jsonl")])
+        check("T16 趋势：空台账 ⇒ rc=2（零输入不得判过 R247）", rc16 == 2, "rc=%s" % rc16)
+
+        # ── T18/T19 增量落账：未变面清单清空 + 留 diff_inherit；已变面全量保留
+        prev_row = {"ts": "t1", "faces": [{"root": "A", "state": "pinned", "head": "h1",
+                                           "dirty_digest": "d1"}]}
+        same_f = [{"root": "A", "state": "pinned", "head": "h1", "dirty_digest": "d1",
+                   "diff_files": ["x"], "diff_truncated": False}]
+        chg_f = [{"root": "A", "state": "pinned", "head": "h2", "dirty_digest": "d9",
+                  "diff_files": ["y"], "diff_truncated": False}]
+        pf_same = m.payload_faces(same_f, prev_row)[0]
+        pf_chg = m.payload_faces(chg_f, prev_row)[0]
+        check("T18 增量落账：未变面清单清空且留 diff_inherit=t1；已变面清单保留",
+              pf_same["diff_files"] == [] and pf_same.get("diff_inherit") == "t1"
+              and pf_chg["diff_files"] == ["y"] and "diff_inherit" not in pf_chg,
+              "%s / %s" % (pf_same, pf_chg))
+        try:
+            m.INHERIT_UNCHANGED = False
+            pf_mut = m.payload_faces(same_f, prev_row)[0]
+        finally:
+            m.INHERIT_UNCHANGED = True
+        check("T19 变异：关掉增量钩子 ⇒ 未变面清单不再清空（即 T18 的省体量确由该守卫承担）",
+              pf_mut["diff_files"] == ["x"], str(pf_mut))
     finally:
         shutil.rmtree(base, ignore_errors=True)
 

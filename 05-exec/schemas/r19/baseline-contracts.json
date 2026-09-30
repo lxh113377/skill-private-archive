@@ -193,7 +193,16 @@
     ]
    },
    "row_ts_format": "%Y-%m-%dT%H:%M:%S",
-   "note": "r67 R58-1 纳入。本件是第 17 维纵深（仓外输入固定面·本地面）的证据面：每次门禁运行 append 一行，记录各输入面的 pin（HEAD sha + 未提交集摘要），使每个 verdict 可归因到确定的输入状态——这是「pin 到不可变 SHA」在本地的等价物。schema 只允许 input-pins-v1；空文件不得判过（R247）。生成器 05-exec/r67_input_pin_guard.py。"
+   "row_required_from": [
+    {
+     "from": "2026-09-30T23:59:00",
+     "fields": [
+      "diff_files_n",
+      "diff_truncated"
+     ]
+    }
+   ],
+   "note": "r67 R58-1 纳入；r68 加分代必填列 diff_files_n/diff_truncated（分叉点 2026-09-30T23:59:00）。⚠️ 形状教训：逐面清单 `faces[].diff_files` 嵌在列表里，而契约只校验**行级**键 ⇒ 首次把 `diff_files` 写进 row_required_from 时，新行被判「缺分代必填列」（实测），故另立两枚**行级**事实：本行落账清单条数合计 + 任一面是否被截断；分叉点取在「含新字段的第一行之前」，故 23:48–23:58 的 4 行按代际豁免（件不可回写，R241）。本件是第 17 维纵深（仓外输入固定面·本地面）的证据面：每次门禁运行 append 一行，记录各输入面的 pin（HEAD sha + 未提交集摘要 + 未提交集清单），使每个 verdict 可归因到确定的输入状态——这是「pin 到不可变 SHA」在本地的等价物。清单 cap=40，超额只截清单、摘要与计数仍全量算（截断显式声明，R-ENUM）。schema 只允许 input-pins-v1；空文件不得判过（R247）。生成器 05-exec/r67_input_pin_guard.py。"
   },
   "gate_runs.jsonl": {
    "kind": "jsonl",
