@@ -5,6 +5,7 @@
   ① 夹具先写先看红；② 变异对照（只翻被测模块的**那一个**开关，期望腿必须翻）；③ 挂执行路径（注册进 run_gates 第 27 门）。
 **不碰真面**：junction 一律造在 mkdtemp 合成面里（`mklink /J` 无需管理员），真机腿（T0）只读调用 `--gate`。
 """
+import datetime
 import importlib.util
 import io
 import os
@@ -228,9 +229,12 @@ def main():
             m.ORDER_BY_HEAT = True
         check("T20 变异：关掉热度钩子 ⇒ 退化为纯路径序（即热度排序确由该守卫承担）",
               ordered_mut == sorted(files), str(ordered_mut))
-        check("T21 热度索引：同路径跨行出现次数累加",
-              m.heat_index([{"faces": [{"diff_files": ["a", "b"]}]},
-                            {"faces": [{"diff_files": ["a"]}]}]) == {"a": 2, "b": 1})
+        # 注（r71）：行必须带**窗内** ts —— 时间窗口径下，无 ts 的行按设计被计数丢弃（T26 已单测该丢弃）
+        now21 = datetime.datetime(2026, 10, 1, 12, 0, 0)
+        h21 = m.heat_index([{"ts": "2026-10-01T11:50:00", "faces": [{"diff_files": ["a", "b"]}]},
+                            {"ts": "2026-10-01T11:55:00", "faces": [{"diff_files": ["a"]}]}],
+                           hours=2, now=now21)
+        check("T21 热度索引：同路径跨行出现次数累加", h21 == {"a": 2, "b": 1}, str(h21))
 
         # ── T22 关键不变量：热度**不得**进入 dirty_digest（否则热度一变就假报 pin 变动）
         d_noheat = m.pin_face(small)
@@ -274,13 +278,49 @@ def main():
         check("T24 变异：关掉新面孔优先 ⇒ 新面孔（热度 0）沉到末位（即该规则确在承担排序）",
               o2_mut[-1] == "?? new/y.md" and o2_mut[0] == " M a/x.md", str(o2_mut))
 
-        rows_w = ([{"faces": [{"diff_files": ["old/x"]}]}] * 3
-                  + [{"faces": [{"diff_files": ["new/y"]}]}])
-        win = m.heat_index(rows_w, window=2)
-        full = m.heat_index(rows_w, window=0)
-        check("T25 滑动窗口：window=2 只计近 2 行（old/x 3 次降为 1）；window=0 记全史",
-              win.get("old/x") == 1 and win.get("new/y") == 1 and full.get("old/x") == 3,
-              "win=%s full=%s" % (win, full))
+        # ── T25/T26 热度**时间窗**（r71 取代行窗）+ 分母可见
+        now = datetime.datetime(2026, 10, 1, 12, 0, 0)
+        rows_w = [
+            {"ts": "2026-10-01T11:30:00", "faces": [{"diff_files": ["old/x"]}]},
+            {"ts": "2026-10-01T11:45:00", "faces": [{"diff_files": ["old/x"]}]},
+            {"ts": "2026-10-01T04:00:00", "faces": [{"diff_files": ["old/x"]}]},   # 8h 前 ⇒ 窗口外
+            {"ts": "2026-10-01T11:55:00", "faces": [{"diff_files": ["new/y"]}]},
+            {"ts": "not-a-ts", "faces": [{"diff_files": ["bad/z"]}]},
+        ]
+        win = m.heat_index(rows_w, hours=2, now=now)
+        check("T25 时间窗：近 2h 只收 3 行（old/x 记 2，窗口外那次不计，不可解析行不进热度）",
+              win.get("old/x") == 2 and win.get("new/y") == 1 and "bad/z" not in win, str(win))
+        st = {}
+        m.heat_index(rows_w, hours=2, now=now, stats=st)
+        check("T26 分母可见：stats 须报 入窗 3 行 / 丢弃不可解析 1 行 / 窗口 2h",
+              st.get("rows_in") == 3 and st.get("rows_dropped") == 1 and st.get("hours") == 2, str(st))
+
+        # ── T27/T28 新面孔配额（r70 §6②）：老面孔不被整批挤掉，且不以空置名额为代价
+        #    刻意让**老面孔数 > cap - 配额**（40 老 / 30 新 / cap 40），配额才会真正咬住
+        heat3 = {(" M old/%02d.md" % i): 5 for i in range(40)}
+        files3 = ["?? new/%02d.md" % i for i in range(30)] + list(heat3)
+        pick = m.order_diff_files(files3, heat3, cap=40)
+        n_new = sum(1 for p in pick if p.startswith("?? new/"))
+        n_old = sum(1 for p in pick if p.startswith(" M old/"))
+        check("T27 配额：cap=40 内新面孔恰 12 条 / 老面孔 28 条 / 凑满且无重复（老面孔未被整批挤掉）",
+              len(pick) == 40 and n_new == 12 and n_old == 28 and len(set(pick)) == 40,
+              "n=%d new=%d old=%d" % (len(pick), n_new, n_old))
+        try:
+            m.QUOTA_ENFORCED = False
+            pick_mut = m.order_diff_files(files3, heat3, cap=40)
+        finally:
+            m.QUOTA_ENFORCED = True
+        n_new_mut = sum(1 for p in pick_mut if p.startswith("?? new/"))
+        check("T28 变异：关掉配额 ⇒ 新面孔占满前 30 席、老面孔只剩 10 席（即配额确在保护旧项）",
+              n_new_mut == 30 and len(pick_mut) == 40, "new=%d n=%d" % (n_new_mut, len(pick_mut)))
+
+        # T27b 边界：老面孔**少于**预留名额时，空出的名额必须补回给新面孔（不浪费 cap）
+        heat4 = {(" M old/%02d.md" % i): 5 for i in range(3)}
+        files4 = ["?? new/%02d.md" % i for i in range(50)] + list(heat4)
+        pick4 = m.order_diff_files(files4, heat4, cap=40)
+        n_new4 = sum(1 for p in pick4 if p.startswith("?? new/"))
+        check("T27b 边界：老面孔仅 3 条 ⇒ 新面孔得 37 席（名额补回，不空置）",
+              len(pick4) == 40 and n_new4 == 37, "n=%d new=%d" % (len(pick4), n_new4))
     finally:
         shutil.rmtree(base, ignore_errors=True)
 

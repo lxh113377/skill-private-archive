@@ -35,6 +35,7 @@ r68 增强（回答「本轮的绿是对着哪些未提交字节」与「哪一�
 退出码：0 全绿 / 1 有违约 / 2 取数面不完整
 """
 import argparse
+import datetime
 import hashlib
 import io
 import json
@@ -116,48 +117,96 @@ def _git(root, *args):
         return 127, str(e)
 
 
-DIFF_CAP = 40   # diff_files 的展示上限；超额只截断**清单**，不截断计数与摘要（截断必须显式声明，R-ENUM）
+HEAT_WINDOW_HOURS = 6   # 热度统计**时间窗**（近 N 小时）。r71 取代行窗=20：行窗在轮次密集时太短、稀疏时太长
+TS_FMT = "%Y-%m-%dT%H:%M:%S"
+NEW_FACE_QUOTA = 12     # cap 内**新面孔最多**占的条数（防新面孔整批挤掉高热度旧项，r70 §6②）
+DIFF_CAP = 40           # diff_files 的展示上限；超额只截断**清单**，不截断计数与摘要（截断必须显式声明，R-ENUM）
+# 变异钩子：生产恒为 True；夹具用它证明「对应守卫确实在承担判定」
+NEW_FACE_FIRST = True   # 关掉 ⇒ 新面孔（热度 0）沉到末位（r70 夹具 T24）
+QUOTA_ENFORCED = True   # 关掉 ⇒ 新面孔可占满 cap（r71 夹具 T29）
+ORDER_BY_HEAT = True    # 关掉 ⇒ 清单退化为纯路径序（r69 夹具 T20）
 
 
-HEAT_WINDOW = 20   # 热度统计窗口（近 N 行）；台账全史会让老路径永远霸榜（r69 §6②）
+def _parse_ts(s):
+    try:
+        return datetime.datetime.strptime((s or "")[:19], TS_FMT)
+    except (ValueError, TypeError):
+        return None
 
 
-def heat_index(rows, window=HEAT_WINDOW):
-    """路径 -> 统计窗口内出现次数（= 变动热度）。`window<=0` ⇒ 记全史。纯函数。
+def window_rows(rows, hours=None, now=None):
+    """按**时间窗**切行：返回 `(入窗行, 丢弃的不可解析行数)`。
 
-    窗口必须在**统计之前**切行：先全量统计再截断计数，等于换了口径却没换分母。
+    解析不出 ts 的行必须**计数丢弃**，不得静默归入任一侧：当成"窗口内"会虚高热度，
+    当成"窗口外"会虚低热度 —— 两种都是静默改分母。`hours<=0` ⇒ 全史（不切）。
     """
     rows = list(rows or [])
-    if window and window > 0:
-        rows = rows[-window:]
-    acc = {}
+    hrs = HEAT_WINDOW_HOURS if hours is None else hours
+    if not hrs or hrs <= 0:
+        return rows, 0
+    cut = (now or datetime.datetime.now()) - datetime.timedelta(hours=hrs)
+    kept, dropped = [], 0
     for r in rows:
+        t = _parse_ts(r.get("ts"))
+        if t is None:
+            dropped += 1
+            continue
+        if t >= cut:
+            kept.append(r)
+    return kept, dropped
+
+
+def heat_index(rows, hours=None, now=None, stats=None):
+    """路径 -> 时间窗内出现次数（= 变动热度）。纯函数。
+
+    `stats` 是可选出参：填 `rows_in` / `rows_dropped` / `hours`，让「这次统计的分母」可见
+    （分母不可见的窗口统计 = 换口径没换尺）。
+    """
+    kept, dropped = window_rows(rows, hours, now)
+    if isinstance(stats, dict):
+        stats.update({"rows_in": len(kept), "rows_dropped": dropped,
+                      "hours": (HEAT_WINDOW_HOURS if hours is None else hours)})
+    acc = {}
+    for r in kept:
         for f in r.get("faces") or []:
             for p in f.get("diff_files") or []:
                 acc[p] = acc.get(p, 0) + 1
     return acc
 
 
-# 变异钩子（r70 夹具 T24 用它证明「新面孔优先确实在承担排序」；生产恒为 True）
-NEW_FACE_FIRST = True
-# 变异钩子（r69 夹具 T20 用它证明「热度排序确实在承担清单排序」；生产恒为 True）
-ORDER_BY_HEAT = True
+def order_diff_files(files, heat=None, cap=None):
+    """清单选取与排序：**新面孔优先** -> 热度降序 -> 路径升序；并按 `NEW_FACE_QUOTA` 配额、按 `cap` 截断。
 
+    新面孔 = 时间窗内从未出现过的路径（等价于 `heat == 0`）。两种失效方向都要防：
+      · **无配额** ⇒ 新面孔整批挤掉高热度旧项（r70 §6②，本轮修）；
+      · **硬顶配额**（如「新面孔一律 ≤12，多出的名额空着」）⇒ 浪费 cap。
+    故 `NEW_FACE_QUOTA` 的语义是**给老面孔预留的名额**：先取 `new[:q]`，再取 `old[:cap-q]`；
+    任一侧不足时**补满 cap**（补的次序仍是「新面孔优先 → 热度降序」）。
+    即：配额保证「老面孔不被整批挤掉」，但不以空置名额为代价。
 
-def order_diff_files(files, heat=None):
-    """清单排序：**新面孔优先** -> 热度降序 -> 路径升序（确定性）。
-
-    新面孔 = 统计窗口内从未出现过的路径，它们是本轮**信息量最大**的改动；纯热度序会把它们
-    按热度 0 沉到末位，超 cap 时被整批截断（r69 §6① 的已知口径代价，本轮修）。
-
-    ⚠️ 排序**只影响 `diff_files` 清单**，一律不进 `dirty_digest` —— 热度/窗口随历史变化，
-    若混进摘要，同一批未提交字节会在相邻两行产生「假 pin 变动」，把趋势读数污染成噪声。
+    ⚠️ 排序/配额**只影响 `diff_files` 清单**，一律不进 `dirty_digest`（见 `pin_face` 红线）。
     """
     files = list(files or [])
     if not (ORDER_BY_HEAT and heat):
-        return sorted(files)
-    return sorted(files, key=lambda p: ((0 if (NEW_FACE_FIRST and heat.get(p, 0) == 0) else 1),
-                                        -heat.get(p, 0), p))
+        ordered = sorted(files)
+        return ordered[:cap] if cap else ordered
+    key = lambda p: ((0 if (NEW_FACE_FIRST and heat.get(p, 0) == 0) else 1), -heat.get(p, 0), p)
+    ordered = sorted(files, key=key)
+    if not (cap and QUOTA_ENFORCED and NEW_FACE_FIRST and NEW_FACE_QUOTA is not None):
+        return ordered[:cap] if cap else ordered
+    new = [p for p in ordered if heat.get(p, 0) == 0]
+    old = [p for p in ordered if heat.get(p, 0) != 0]
+    q = max(0, min(NEW_FACE_QUOTA, cap))
+    picked = new[:q] + old[:max(0, cap - q)]
+    if len(picked) < cap:                      # 配额没用满 ⇒ 补回被让掉的名额
+        seen = set(picked)
+        for p in ordered:
+            if len(picked) >= cap:
+                break
+            if p not in seen:
+                picked.append(p)
+                seen.add(p)
+    return picked
 
 
 def pin_face(root, diff_cap=DIFF_CAP, heat=None):
@@ -181,7 +230,7 @@ def pin_face(root, diff_cap=DIFF_CAP, heat=None):
             "dirty_n": len(lines), "dirty_digest": digest,
             "diff_order": "heat" if (ORDER_BY_HEAT and heat) else "path",
             "diff_truncated": len(lines) > diff_cap,
-            "diff_files": order_diff_files(lines, heat)[:diff_cap]}
+            "diff_files": order_diff_files(lines, heat, cap=diff_cap)}
 
 
 def judge(decl, faces):
@@ -325,8 +374,8 @@ def main(argv=None):
             return 2
         acc = trend_of(rows_all)
         top = sorted(acc.values(), key=lambda x: (-x["changes"], -x["rows"], x["root"]))
-        print("跨轮趋势（台账 %d 行 / %d 个输入面 ｜ 热度窗口=近 %d 行）："
-              % (len(rows_all), len(acc), HEAT_WINDOW))
+        print("跨轮趋势（台账 %d 行 / %d 个输入面 ｜ 热度时间窗=近 %s 小时 ｜ 新面孔配额 %s）："
+              % (len(rows_all), len(acc), HEAT_WINDOW_HOURS, NEW_FACE_QUOTA))
         for i, x in enumerate(top, 1):
             print("  %d. %-34s 变动 %d 次 / 出现 %d 行 ｜ 最近变动 %s ｜ 最新未提交 %s 条"
                   % (i, x["root"], x["changes"], x["rows"], x["last_change_ts"] or "-",
@@ -362,7 +411,11 @@ def main(argv=None):
     except (OSError, ValueError) as e:
         print("  ⚠️ 台账读不到（%s）⇒ 本行仍落账，但变动清单与热度本轮不可比" % e.__class__.__name__)
     prev = hist[-1] if hist else None
-    heat = heat_index(hist)
+    heat_stats = {}
+    heat = heat_index(hist, stats=heat_stats)
+    print("   ℹ️ 热度口径：时间窗 近 %s 小时（入窗 %s 行 / 丢弃不可解析 %s 行）｜新面孔配额 %s"
+          % (heat_stats.get("hours"), heat_stats.get("rows_in"), heat_stats.get("rows_dropped"),
+             NEW_FACE_QUOTA))
     roots = [canon.get("skills"), canon.get("memory"), FENJUE_ROOT]
     pins = [pin_face(r, heat=heat) for r in roots if r]
     row_faces = payload_faces(pins, hist)
