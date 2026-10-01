@@ -130,20 +130,39 @@ def fm_parse(text):
             keys.add(mm.group(1).lower())
     return {"fence": True, "name": "name" in keys, "description": "description" in keys}
 
-# 对手名册：由本窗口 search/repositories 实测星标降序取入（见 raw 缓存 search_face）
-ROSTER = [
-    "obra/superpowers",
-    "mattpocock/skills",
-    "anthropics/skills",
-    "addyosmani/agent-skills",
-    "sickn33/agentic-awesome-skills",
-    "kepano/obsidian-skills",
-    "K-Dense-AI/scientific-agent-skills",
-    "coreyhaines31/marketingskills",
-    "github/awesome-copilot",
-    "affaan-m/ECC",
-]
+# 对手名册由 search_face **现算派生**，源码里不再维护第二份仓名清单。
+# r100 一手：此前 ROSTER 是手抄 10 仓，而同一个工具同轮取回的实测前 25 名里有 15 仓
+# 从未进面（含 140,497★ / 108,698★ / 63,335★ 三仓）——本仓 X-26「禁把手抄清单当扫描分母」
+# 在对手面复发；结论面只有 ~40% 人口时，「换装 0 件」这类判断不具覆盖力。
 SEARCH_QUERY = "agent skills in:name,description stars:>1000"
+ROSTER_TOP_N = 20          # 取实测星标降序前 N 仓入面
+ROSTER_PINNED = []         # 仅供 --roster 追加；默认空。非空时必须在输出 roster_face 里点名
+
+
+def derive_roster(search_face, top_n=ROSTER_TOP_N, pinned=()):
+    """search_face 行形如 [full_name, stars, pushed_at, archived]。
+
+    分母由测量派生：按星标降序取前 top_n，再并上显式 pinned（去重、保序）。
+    星标不可解析的行不进面，但必须计数（不得静默丢，W-47 反例同源）。
+    """
+    ranked, unparsable = [], 0
+    for row in search_face or []:
+        try:
+            name, stars = row[0], int(row[1])
+        except (TypeError, ValueError, IndexError):
+            unparsable += 1
+            continue
+        ranked.append((stars, name))
+    ranked.sort(key=lambda t: (-t[0], t[1]))
+    derived = [n for _s, n in ranked[:top_n]]
+    for extra in pinned or ():
+        if extra not in derived:
+            derived.append(extra)
+    return {"derived": derived,
+            "face_rows": len(search_face or []),
+            "unparsable_rows": unparsable,
+            "top_n": top_n,
+            "pinned": list(pinned or ())}
 
 
 def run(args):
@@ -186,9 +205,9 @@ def days_since(iso):
 
 
 # ------------------------------------------------------------------ 对手面
-def fetch_remote():
+def fetch_remote(roster_top_n=ROSTER_TOP_N, roster_pinned=()):
     raw = {"generated_at": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-           "search_query": SEARCH_QUERY, "roster": ROSTER,
+           "search_query": SEARCH_QUERY,
            "repos": {}, "search_face": []}
     sf = gh_get("search/repositories", (
         "-f", "q=" + SEARCH_QUERY, "-f", "sort=stars",
@@ -199,7 +218,12 @@ def fetch_remote():
     if not raw["search_face"]:
         raise SystemExit("[GATE:r96-abort] search_face 取到零条，禁止把「量不到」读成「没有」")
 
-    for slug in ROSTER:
+    face = derive_roster(raw["search_face"], top_n=roster_top_n, pinned=roster_pinned)
+    raw["roster_face"] = face
+    raw["roster_derived"] = face["derived"]
+    raw["roster_declared"] = list(roster_pinned)
+
+    for slug in face["derived"]:
         meta = gh_get("repos/" + slug)
         if meta is None:
             raw["repos"][slug] = {"available": False}
@@ -398,6 +422,22 @@ def slug_from_skillpath(path):
 
 
 # ------------------------------------------------------------------ 打分
+
+def roster_state(raw, declared, derived):
+    """名册自证：派生面本身可不可信，以及人显式 pin 的仓有没有真的进面。
+
+    注意 matched 的定义不是「declared==derived」——默认真没人 pin 东西，
+    declared 为空而 derived 有 20 仓恰恰是**修好了**的形态；把它判成 mismatched
+    会逼下一个会话去手抄一份名单来「对齐」，正是要根除的那个动作。
+    """
+    if raw.get("roster_cache_pre_r100") or "roster_derived" not in raw:
+        return "UNVERIFIED_stale_cache"
+    if not derived:
+        return "UNVERIFIED_empty_face"
+    return "matched" if set(declared) <= set(derived) else "mismatched"
+
+
+
 def _coverage_from(mine, opponents):
     """逐维自证：这一维两侧各有没有数，缺哪侧必须点名（禁只回状态词冒充覆盖）。"""
     has_opp = {dim for o in opponents.values()
@@ -415,6 +455,8 @@ def _coverage_from(mine, opponents):
 
 def score_dims(local, raw):
     local_slugs = set(local.get("slugs", []))
+    derived = list(raw.get("roster_derived") or raw.get("roster") or [])
+    declared = list(raw.get("roster_declared") or raw.get("roster") or [])
     opp_slugs = {}
     opponents = {}
     for slug, rec in raw.get("repos", {}).items():
@@ -423,6 +465,7 @@ def score_dims(local, raw):
             continue
         opp_slugs[slug] = set(filter(None, (slug_from_skillpath(p)
                                             for p in rec.get("skill_md_paths", []))))
+    skill_face = [s for s in opp_slugs if opp_slugs[s]]
     universe = set().union(*opp_slugs.values()) if opp_slugs else set()
     opp_only_union = universe - local_slugs
     local_only = local_slugs - universe
@@ -536,9 +579,22 @@ def score_dims(local, raw):
                 "open_issues": "GitHub API 的 open_issues_count 含 PR，跨仓只比量级不比名次",
                 "window": "双侧均全文取数；截窗会把尾部 Rationalizations/Red Flags 判 0（r96 一手）",
                 "d12_sampling": "对手 d12 为抽样率（分母=实抽件数），本地 d12 为全量率（分母=%d），不可直接同值比名次，只比是否达 1.0" % nl,
-                "d8_denominator": "d8 的对手面 universe 只覆盖本件 ROSTER 的 %d 仓，非全网能力全集；「opponent_only_union」是相对本名册的差集，不得读成「本地缺这些功能」" % len(opp_slugs),
+                "d8_denominator": "d8 的对手面 universe 只覆盖本件**派生名册**（由 search_face 现算）里的 %d 仓，非全网能力全集；「opponent_only_union」是相对该名册的差集，不得读成「本地缺这些功能」；名册本身的可信度见 roster_face.state" % len(opp_slugs),
                 "d8_local_face": "本地 slug 集 = 全部覆盖根并集（权威源 + 平台插件根），r99 前只扫权威源，把插件里已装的能力（实测 superpowers 6.3.0 的 using-git-worktrees / dispatching-parallel-agents）算成假缺口",
                 "d6_scope": "d6 本地面量的是技能树仓根（D:/global_skills），对手面量的是各自仓根；本仓 X-2 已裁定不为「像一线项目」补 LICENSE 等对外授权件，故 README/CHANGELOG 缺位属有意边界而非缺陷",
+            },
+            "roster_face": {
+                "cn_source": "名册由 gh search/repositories 实测星标降序现算派生（源码零仓名清单）",
+                "derived_n": len(derived),
+                "declared_n": len(declared),
+                "dropped": sorted(set(declared) - set(derived)),
+                "added_not_in_top_n": sorted(set(derived) - set(declared)),
+                "state": roster_state(raw, declared, derived),
+                "face_rows": (raw.get("roster_face") or {}).get("face_rows"),
+                "unparsable_rows": (raw.get("roster_face") or {}).get("unparsable_rows"),
+                "non_skill_repos": sorted(s for s, r in raw.get("repos", {}).items()
+                                          if r.get("available")
+                                          and not r.get("skill_md_paths")),
             },
             "local": local, "local_dims": mine, "opponents": opponents}
 
@@ -602,6 +658,44 @@ def selftest():
         loc["skill_dirs_with_skillmd"] + loc["cross_root_duplicates"]
         >= auth_face + plugin_face, True)
     chk("反例 只看权威源会低估 d1", loc["authority_skillmd"] < loc["skill_dirs_with_skillmd"], True)
+    # r100 名册派生双向证据（W-47：应绿的绿 + 应红的红）
+    f_rows = [["a/x", 300, "t", False], ["b/y", 500, "t", False],
+              ["c/z", 100, "t", False], ["bad/row", None, "t", False]]
+    chk("正例 派生按星标降序取前 N", derive_roster(f_rows, top_n=2)["derived"],
+        ["b/y", "a/x"])
+    chk("接线 不可解析行不进面但必须计数",
+        derive_roster(f_rows, top_n=2)["unparsable_rows"], 1)
+    chk("反例 截断必须可见（top_n 小于可用行数）",
+        len(derive_roster(f_rows, top_n=2)["derived"]) < 3, True)
+    chk("正例 pinned 追加且去重保序",
+        derive_roster(f_rows, top_n=2, pinned=("b/y", "d/w"))["derived"],
+        ["b/y", "a/x", "d/w"])
+    chk("反例 空面不得静默判过", derive_roster([], top_n=5)["derived"], [])
+    chk("反例 空面判据必须给独立态不是 matched",
+        roster_state({"roster_derived": []}, [], []), "UNVERIFIED_empty_face")
+    chk("反例 陈旧缓存不得冒充 matched",
+        roster_state({"roster": ["a"], "roster_cache_pre_r100": True}, ["a"], ["a"]),
+        "UNVERIFIED_stale_cache")
+    chk("接线 同失效形态由缺键派生，不靠调用方传标记",
+        roster_state({"roster": ["a"]}, ["a"], ["a"]), "UNVERIFIED_stale_cache")
+    chk("正例 默认无人 pin 而派生面有仓 = 修好了，判 matched",
+        roster_state({"roster_derived": ["a", "b"]}, [], ["a", "b"]), "matched")
+    chk("反例 pin 了却没进面=漏扫，必须 mismatched 并点名",
+        roster_state({"roster_derived": ["a"]}, ["a", "ghost/z"], ["a"]), "mismatched")
+    # r100 真接线冒烟腿：夹具必须驱动采集→打分这条链，不能只驱动纯函数
+    # （一手：补丁一漏清 `"roster": ROSTER` 使用点，fetch_remote NameError，
+    #  而 35 条纯函数腿全绿 —— 没有这条腿就看不见那次断链）
+    try:
+        _raw = json.load(io.open(os.path.join(HERE, "r96_gh_raw.json"), encoding="utf-8"))
+        _has = "roster_derived" in _raw
+        _doc = score_dims(measure_local(), _raw)
+        _st = _doc["roster_face"]["state"]
+        chk("接线 score_dims 吃真缓存不抛（CLI 主链可达）", isinstance(_st, str), True)
+        chk("反例 旧缓存无派生键必须显 UNVERIFIED 不是 matched",
+            _st, "matched" if _has else "UNVERIFIED_stale_cache")
+        chk("接线 打分产物逐维自证在场", "dim_coverage" in _doc, True)
+    except (OSError, ValueError) as exc:
+        chk("接线 缓存可读（缺件即判未取证，不得静默跳）", str(exc), "cache-present")
     chk("接线 双单位并报且 toplevel<=alllayers",
         0 < loc["authority_toplevel_skillmd"] <= loc["authority_skillmd"], True)
     chk("接线 并集 slug 数>=权威源 slug 数",
@@ -621,6 +715,10 @@ def main():
     ap.add_argument("--offline", action="store_true")
     ap.add_argument("--selftest", action="store_true")
     ap.add_argument("--cache", default=os.path.join(HERE, "r96_gh_raw.json"))
+    ap.add_argument("--roster-top", type=int, default=ROSTER_TOP_N,
+                    help="取实测星标降序前 N 仓入面（名册由测量派生，非手抄）")
+    ap.add_argument("--roster", action="append", default=[], metavar="owner/repo",
+                    help="显式追加仓（会进 roster_face.declared 点名，禁当默认名单用）")
     args = ap.parse_args()
 
     if args.selftest:
@@ -628,8 +726,12 @@ def main():
 
     if args.offline:
         raw = json.load(io.open(args.cache, encoding="utf-8"))
+        if "roster_derived" not in raw:
+            # 缓存早于 r100（只有手抄 roster）⇒ 必须显形为未取证，
+            # 禁止静默拿旧手抄名单冒充「派生面」并照打 matched
+            raw["roster_cache_pre_r100"] = True
     else:
-        raw = fetch_remote()
+        raw = fetch_remote(roster_top_n=args.roster_top, roster_pinned=args.roster)
         json.dump(raw, io.open(args.cache, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 
     doc = score_dims(measure_local(), raw)

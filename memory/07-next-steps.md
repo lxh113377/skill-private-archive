@@ -5,6 +5,142 @@
 > **真相源口径（2026-09-22 实测校准）**：P0 只放经实测确认**未完成**的项；已完成项一律迁入分卷 `- [x]`，不再滞留主卷。
 
 ## 最近对话摘要
+- **2026-10-02（第 100 轮 r100，同一指令逐字重发⇒完整再整跑；对手名册改测量派生 + 两件真换装）** — ① **本轮翻转 r99 结论**：ROSTER 原为源码手抄 10 仓，而同工具同轮 search_face 实测前 25 名里 **15 仓从未进面**（140497★ awesome-llm-apps、108698★ caveman、63335★ last30days-skill 皆在外）⇒ X-26 禁把手抄清单当扫描分母在对手面复发，「换装 0 件」实际只在约四成人口上成立。② 名册改由 derive_roster 现算 top-20 + roster_face 四态（含 UNVERIFIED_stale_cache 防旧缓存冒充派生面），夹具 25 腿→**38 腿全过**（取值：python 05-exec/r96_twelve_face.py --selftest）。③ 扩面后本地缺失 123 个 slug 逐族过 X-29 三门槛 ⇒ **装入 commit-archaeologist 与 scope-creep-detector**（各 4 文件齐装：SKILL.md、README、scripts、references；两脚本 ast.parse 过；无 shell=True；平台当轮即列出=可加载行为回执）；**卸载 0 件**（属缺口补件，无更差的对应本地件，不做无对象删除）。④ 两次自抓假干净：审计用 glob 大括号不展开⇒取到 0 文件却报 0 命中（改 os.walk 并印 scanned_face=8）；补丁一漏清 ROSTER 使用点⇒fetch_remote NameError 而夹具 35/35 全绿（补 3 条主链接线腿，Step 2.7 第 11 条第三次现形）。⑤ 注册表 rebuild 判 **BLOCKED（实测非推断）**：受管根 ?? 计 26 条含 24 个他人未入库件，全量重生必致注册表⇄BGE⇄skill_content 三方脱节；前提=可复算命令 python C:/Users/37533/Desktop/workspace/焚诀/eval/build_registry.py --dry-run。⑥ **回流节律实测**：executing-plans 与 slides 距上轮清零约 47 分钟第三次回到盘面 ⇒ 每小时重清不是自愈型收口，本轮清一次并把它降级为看守项（复算 python 05-exec/r59_retired_face.py），下轮起以节律而非单次绿为准。⑦ 27 门 FAIL=5 与 r99 同因（外部 +12 棘轮 + 元门延迟，不动基线）；焚诀 verify 42 PASS/1 FAIL=C25 同条。报告=06-benchmark/全量对标报告_r100_名册派生与两件换装_2026-10-02.md
+  PASS 正例 red_flags 命中(body) got=True want=True
+  PASS 正例 verification 命中(body) got=True want=True
+  PASS 反例 process 不命中 got=False want=False
+  PASS 反例 rationalizations 不命中 got=False want=False
+  PASS 正例 fm 含 name+desc got=True want=True
+  PASS 正例 fm both got=True want=True
+  PASS 反例 无围栏判 fence=False got=False want=False
+  PASS 反例 缺 description 判 False got=False want=False
+  PASS 反例 缺 description 不得混进 both got=False want=False
+  PASS 正例 slug 取父目录 got='foo-bar' want='foo-bar'
+  PASS 反例 裸 SKILL.md 无 slug got=None want=None
+  PASS 接线 d4 缺本地侧判 PARTIAL 不判 MEASURED got='PARTIAL' want='PARTIAL'
+  PASS 接线 mismatched 清单必须点名缺侧维度 got=True want=True
+  PASS 接线 双侧齐的维判 MEASURED got='MEASURED' want='MEASURED'
+  PASS 接线 本地技能数>0 got=True want=True
+  PASS 接线 入口注入字节>0 got=True want=True
+  PASS 接线 本地 d4 schema 面被读到（>0 或显式 0 但总文件>0） got=True want=True
+  PASS 接线 本地 d12 全量分母==技能数 got=True want=True
+  PASS 接线 插件根被枚举且实到>0 got=True want=True
+  PASS 接线 各根之和 == 去重后 + 跨根重复（分母自洽） got=320 want=320
+  PASS 反例 跨根重复若被静默吞则该项必红 got=True want=True
+  PASS 反例 只看权威源会低估 d1 got=True want=True
+  PASS 正例 派生按星标降序取前 N got=['b/y', 'a/x'] want=['b/y', 'a/x']
+  PASS 接线 不可解析行不进面但必须计数 got=1 want=1
+  PASS 反例 截断必须可见（top_n 小于可用行数） got=True want=True
+  PASS 正例 pinned 追加且去重保序 got=['b/y', 'a/x', 'd/w'] want=['b/y', 'a/x', 'd/w']
+  PASS 反例 空面不得静默判过 got=[] want=[]
+  PASS 反例 空面判据必须给独立态不是 matched got='UNVERIFIED_empty_face' want='UNVERIFIED_empty_face'
+  PASS 反例 陈旧缓存不得冒充 matched got='UNVERIFIED_stale_cache' want='UNVERIFIED_stale_cache'
+  PASS 接线 同失效形态由缺键派生，不靠调用方传标记 got='UNVERIFIED_stale_cache' want='UNVERIFIED_stale_cache'
+  PASS 正例 默认无人 pin 而派生面有仓 = 修好了，判 matched got='matched' want='matched'
+  PASS 反例 pin 了却没进面=漏扫，必须 mismatched 并点名 got='mismatched' want='mismatched'
+  PASS 接线 score_dims 吃真缓存不抛（CLI 主链可达） got=True want=True
+  PASS 反例 旧缓存无派生键必须显 UNVERIFIED 不是 matched got='matched' want='matched'
+  PASS 接线 打分产物逐维自证在场 got=True want=True
+  PASS 接线 双单位并报且 toplevel<=alllayers got=True want=True
+  PASS 接线 并集 slug 数>=权威源 slug 数 got=True want=True
+r96_twelve_face selftest: 38/38 [GATE:r96selftest-pass]）。③ 扩面后本地缺失 123 slug 逐族过 X-29 三门槛 ⇒ **装入 commit-archaeologist + scope-creep-detector**（各 4 文件齐装：SKILL.md/README/scripts/references；ast.parse 过；无 shell=True；平台当轮已列出=可加载行为回执）；**卸载 0 件**（属缺口补件，无更差对应本地件，不做无对象删除）。④ 两次自抓假干净：审计 glob brace 不展开⇒取到 0 文件却报「0 命中」（改 os.walk 并印 scanned_face=8）；补丁一只查 ROSTER 声明未查使用点⇒fetch_remote NameError 而夹具 35/35 全绿（补 3 条主链接线腿，Step 2.7 ⑪ 第三次现形）。⑤ 注册表 rebuild 判 **BLOCKED（实测）**： M A-get-memory/SKILL.md
+ M A-get-memory/references/version_history.md
+ M A-memory-start/SKILL.md
+ M A-memory-start/references/quickref-delivery-consistency.md
+ M A-memory-start/references/version_history.md
+ M A-project-better/SKILL.md
+ M A-project-better/references/benchmark.md
+ M A-project-better/references/version-history.md
+ M A-project-better/references/workflow-s0.md
+ M A-project-better/references/workflow-s0.part1.md
+ M A-project-handoff/references/ci-green-contract.md
+ M A-project-handoff/scripts/greencheck.py
+ M A-project-handoff/scripts/hooks/pre-commit
+ M A-project-handoff/scripts/local_ci_surrogate.py
+ M A-project-handoff/scripts/templates/pre-commit-sharedvol.sh
+ M cloudbase__skillhub/SKILL.md
+ M cloudbase__skillhub/_meta.json
+ M cloudbase__skillhub/_skillhub_meta.json
+ M cloudbase__skillhub/references/ai-model-nodejs/SKILL.md
+ M cloudbase__skillhub/references/ai-model-web/SKILL.md
+ M cloudbase__skillhub/references/ai-model-wechat/SKILL.md
+ M cloudbase__skillhub/references/auth-nodejs-cloudbase/SKILL.md
+ M cloudbase__skillhub/references/auth-tool-cloudbase/SKILL.md
+ M cloudbase__skillhub/references/auth-web-cloudbase/SKILL.md
+ M cloudbase__skillhub/references/auth-wechat-miniprogram/SKILL.md
+ M cloudbase__skillhub/references/cloud-api-operations/SKILL.md
+ M cloudbase__skillhub/references/cloud-api-operations/references/calling-methods.md
+ M cloudbase__skillhub/references/cloud-api-operations/references/recipes/README.md
+ M cloudbase__skillhub/references/cloud-api-operations/references/recipes/icp-filing-readiness.md
+ M cloudbase__skillhub/references/cloud-api-operations/references/recipes/pg-storage-alarm.md
+ M cloudbase__skillhub/references/cloud-functions/SKILL.md
+ M cloudbase__skillhub/references/cloud-storage-web/SKILL.md
+ M cloudbase__skillhub/references/cloudbase-agent/SKILL.md
+ M cloudbase__skillhub/references/cloudbase-agent/py/skill.md
+ M cloudbase__skillhub/references/cloudbase-agent/ts/skill.md
+ M cloudbase__skillhub/references/cloudbase-cli/SKILL.md
+ M cloudbase__skillhub/references/cloudbase-code-review/SKILL.md
+ M cloudbase__skillhub/references/cloudbase-code-review/references/RULES_INDEX.md
+ M cloudbase__skillhub/references/cloudbase-declarative-deploy/SKILL.md
+ M cloudbase__skillhub/references/cloudbase-document-database-in-wechat-miniprogram/SKILL.md
+ M cloudbase__skillhub/references/cloudbase-document-database-web-sdk/SKILL.md
+ M cloudbase__skillhub/references/cloudbase-document-database-web-sdk/crud-operations.md
+ M cloudbase__skillhub/references/cloudbase-document-database-web-sdk/realtime.md
+ M cloudbase__skillhub/references/cloudbase-document-database-web-sdk/security-rules.md
+ M cloudbase__skillhub/references/cloudbase-platform/SKILL.md
+ M cloudbase__skillhub/references/cloudbase-platform/references/protocols/deployment-share.md
+ M cloudbase__skillhub/references/cloudbase-wechat-integration/SKILL.md
+ M cloudbase__skillhub/references/cloudrun-development/SKILL.md
+ M cloudbase__skillhub/references/data-model-creation/SKILL.md
+ M cloudbase__skillhub/references/deployment-workflow.md
+ M cloudbase__skillhub/references/http-api-cloudbase/SKILL.md
+ M cloudbase__skillhub/references/minimal-web-baas-demo/SKILL.md
+ M cloudbase__skillhub/references/miniprogram-development/SKILL.md
+ M cloudbase__skillhub/references/miniprogram-development/references/cloudbase-integration.md
+ M cloudbase__skillhub/references/miniprogram-development/references/pitfalls.md
+ M cloudbase__skillhub/references/ops-inspector/SKILL.md
+ M cloudbase__skillhub/references/postgresql-best-practices-cloudbase/SKILL.md
+ M cloudbase__skillhub/references/postgresql-development-cloudbase/SKILL.md
+ M cloudbase__skillhub/references/postgresql-development-cloudbase/references/index.md
+ M cloudbase__skillhub/references/relational-database-mcp-cloudbase/SKILL.md
+ M cloudbase__skillhub/references/relational-database-web-cloudbase/SKILL.md
+ M cloudbase__skillhub/references/spec-workflow/SKILL.md
+ M cloudbase__skillhub/references/ui-design/SKILL.md
+ M cloudbase__skillhub/references/web-development/SKILL.md
+ M consulting-analysis/SKILL.md
+ D elon-musk-perspective/assets/hero.gif
+ M github/_skillhub_meta.json
+ D html-ppt/docs/readme/hero.gif
+ M sq-cleanmgr-c/_skillhub_meta.json
+ M static-site-batch-audit-fix/SKILL.md
+?? A-memory-start/references/limit
+?? A-project-better/references/version-history.part1.md
+?? A-project-better/references/workflow-s0.part2.md
+?? A-project-handoff/scripts/tools/r39_facet_ab.json
+?? cloudbase__skillhub/references/cloud-api-operations/references/recipes/custom-domain.md
+?? cloudbase__skillhub/references/cloud-api-operations/references/recipes/pg-instance-spec.md
+?? cloudbase__skillhub/references/postgresql-development-cloudbase/references/realtime.md
+?? commit-archaeologist/
+?? dingtalk-aisearch/
+?? dingtalk-aitable/
+?? dingtalk-calendar/
+?? dingtalk-chat/
+?? dingtalk-contact/
+?? dingtalk-doc/
+?? dingtalk-drive/
+?? dingtalk-event/
+?? dingtalk-mail/
+?? dingtalk-minutes/
+?? dingtalk-misc/
+?? dingtalk-shared/
+?? dingtalk-todo/
+?? dingtalk-wiki/
+?? executing-plans/
+?? ppt-master/
+?? rag-eval/
+?? scope-creep-detector/
+?? slides/
+?? sqlalchemy-loader-criteria-pitfalls/ 的 =26（24 为他人未入库件），全量重生必致注册表⇄BGE⇄skill_content 三方脱节；前提=<可复算命令> 。⑥ 27 门 FAIL=5 与 r99 同因（外部 +12 棘轮 + 元门延迟，不动基线）； **保持绿**（无第三次回流）；焚诀 verify 42 PASS/1 FAIL=C25 同条。下轮队列：P1-1 重建窗口、P1-2 走完 A-skill-onboarding 七步（本轮只做了装件+语法+危险形态三步）、P1-3 d10 待裁定。报告 = 
 - **2026-10-02（第 99 轮 r99，十二维补面 + 覆盖根修 + 退役件再清零）** — 用户十二维对标指令整跑（#23 不降格）。① **本轮最大差距在自己尺子上**：`05-exec/r96_twelve_face.py` 名为十二维、实测本地面只到 6 维（d4/d6/d7/d8/d10/d12 为零，d8 两侧皆无、d12 是散文）→ 补六维本地取数 + 对手 d8/d12 + `dim_coverage` 逐维 matched/mismatched，schema 升 `twelve-face-r99-v3`，夹具 5→**25 腿全过**（取值 `python 05-exec/r96_twelve_face.py --selftest`）。② **覆盖根假缺口**：本地面漏平台插件根，superpowers 的 `using-git-worktrees`/`dispatching-parallel-agents` 被算成对手独有（实测就在 `plugins/cache/qoder-marketplace/superpowers/6.3.0/skills/`）；按 `installed_plugins_v2.json` installPath 逐条入面 + realpath 去重 + 18 根分母之和自洽 ⇒ 差集 **10→1**。该自洽腿首跑真红（got=318 want=317）逼出「跨根重复必须显形」，非装饰。③ **换装判定 0 件**：curated 独有 9 slug 逐条过 X-29 三门槛全不齐（与 r60 37→0 同结论，第四次在独立维度复现）⇒ 无下载无卸载。④ **P0-2 真执行**：`executing-plans`/`slides` 被平台重新下发（`git ls-files`=0、`??`），先以 r61 删除前 blob sha256 全等（`57ee0941f8725460`/`a711f83fb762e2ea`）证可回滚，再 `r97_retire_full_egress.py --apply` 双根 21+21 文件读回备份后移出 ⇒ `retired_face` 转绿、27 门 FAIL 6→5（取值 `python 05-exec/r59_retired_face.py`）。⑤ **棘轮 +12 不动基线**：`inject_union_bytes` 87598→87610（同因使焚诀 verify 42 PASS/1 FAIL C25），+12 属并行会话在途（受管根实测 97 条），R59-8 上调通道要求 commit 归因 ⇒ 登记带前提命令不放宽。⑥ 报告数字按退役后面重跑取（d1 并集 316／一级 169／唯一 slug 307），防「先测后删仍引用旧值」。下轮队列：P1-2 d10 可控性三选一待裁定、P1-3 覆盖根名册与 `input_pin_face` 双向对账、P0-3 棘轮 +12 复算。报告 = `06-benchmark/全量对标报告_r99_十二维补面与覆盖根修_2026-10-02.md`
 - **2026-10-01（第 98 轮 r98，授权续作轮：M-2 可修面清零 + R97-7 落地 + 上轮建议落卷）** — 老大「授权继续执行未完成的任务」+ 回贴上轮升级建议行（即批准落卷）。① **mm 收尾核销**：焚诀归属会话已自行收口（HEAD `7656258`，verify 复测 **41 PASS / 0 FAIL**，取值同 r97），C3/C4/C5/C6/C29 五项不再挂本项目账。② **R263 判据假阴性再修两轮（收尾定稿）**：新增 `\bwhen\b` 与 `\btriggers?\b`（实测假阴性 figma "Trigger when..."、shadcn、docx "Triggers include..."），真基线 NO_WHEN 14→**11**（取值 `python 05-exec/r63_description_audit.py`，基线件 desc_baseline_r98.json）。③ **M-2 第二批 5 件**（byted-mediakit-shared/computer-use-guidance-windows/knowledge-capture/research-documentation/spec-to-implementation，rule_editor 白名单提交+镜像定向同步 hash 复验 5/5）：DUAL 155→**163/169=96.4%**、NO_WHEN 11→**6**——剩余 6 件全为受保护(_my-skills)/在途(A-project-handoff、github)/市场件(dingtalk-doc、rag-eval) ⇒ **可修面清零**，M-2 无授权面剩余。④ **R97-7 落地**：`r59_retired_face.py` 输出面加市场缓存根残留警示行（判定面不变、警示不阻断守 r25；JSON 增 `market_root_still_holding` 字段），W-47 双向验证：对照静默/假件见警示 rc=0/复原回静默。⑤ **升级建议落卷**：`A-memory-start/references/quickref-current-state-history.md` 新增「共享活跃文件写前分钟级新鲜度复查」（MM/MM 自伤一手，含 HEAD 活性三闸守不住文件级改动的粒度论证），rule_editor 提交+镜像同源复验。⑥ **27 门全绿**。下轮队列：M-2 转看守（剩余全无授权面）；G7/G8 侧建议=观察 retired_face 警示行是否首次在真回流时报警；twelve_face 季度重测按 P4 节律。报告 = r97 报告增量见本摘要与提交（本轮无独立报告文件，P4 节律下轮次按需出件）
 - **2026-10-01（第 97 轮 r97，全出口退役 + 判据假阴性修正 + mm 端入役核验；承接 r96 中断遗留）** — 用户对标指令逐字触发整跑；中途追加两指令：①「把minnimax code设为新的一端」（并行会话已完成主体：truth_constants active+=mm、双 junction、AGENTS.md+SOUL.md 壳；本轮核验登记面与物理挂载齐备；C3/C4/C5/C6/C29 五项收尾与 wf_mm.ps1 死引用归其归属方，焚诀面本轮退出）；②新立决策规则「非重大自主、重大标注后问」（已入持久记忆 decision-autonomy-rule）。① **r96 遗留收编**（`84c493d`）：twelve_face 证据+retire_mirror 脚本 5 件。② **retired_face 根因收口**（`e710122`）：退役回流生产者=市场缓存根 `.workbuddy/skills`（r60 清权威源、r96 清镜像后 15:24 又回流实证），`r97_retire_full_egress.py --apply` 42 文件 sha256 读回备份后双根清零，门绿 retired_still_on_disk=0；已知边界=平台升级可能再下发。③ **R263 判据假阴性三连修**：WHEN_RE 缺 invoke when/must use/use it when/used when/instead of 五形态，实测假阴性 15 件（byted-seedance/brainstorming/brand-guidelines 等），真基线 NO_WHEN 34→19（取值 `python 05-exec/r63_description_audit.py`，基线件 desc_baseline_r97.json）。④ **M-2 批次 5 件**（openai-whisper-api/mcporter/oracle/byted-bp-cdn-pagesdeploy/meeting-intelligence，rule_editor 白名单提交+镜像定向同步 hash 复验 5/5）：DUAL 150→155=91.7%、NO_WHEN 19→14。⑤ **md_claim 9 处**（r77 报告）补同行取值命令 20/20 绿；r97 报告同判据自证过门。⑥ **27 门全绿**（freshness 自指延迟二跑自愈）。⑦ **自伤登记**：C5 修正脚本与并行会话并发修复撞车致 4 处 `MM/MM` 重复，随即自清归零；教训=共享活跃文件动手前分钟级新鲜度重读。下轮队列：M-2 剩 14（可修面 ≤9，下轮 ≤5）、R97-7 retired_face 市场根警示升级、mm 收尾五项（归属方）。报告 = `06-benchmark/全量对标报告_r97_全出口退役与判据假阴性修正_2026-10-01.md`
