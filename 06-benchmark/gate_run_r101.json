@@ -1,0 +1,358 @@
+{
+ "schema": "gate-run-v1",
+ "generated_at": "2026-10-02 06:10",
+ "readonly": true,
+ "mode": "full",
+ "gates": [
+  {
+   "id": "r19_scan_fixtures",
+   "state": "PASS",
+   "rc": 0,
+   "elapsed_ms": 3147,
+   "portable": false,
+   "covers": [
+    "05-exec/cumulative_drift_scan.py 排除判据",
+    "05-exec/skill_structure_rubric_scan.py 口径",
+    "05-exec/description_baseline_scan.py PROCESS_RE",
+    "05-exec/_lib.py denominator()"
+   ],
+   "tail": "                     | PASS layerb claim 受检面非空（R247）                                    | PASS layerb claim 无未读数错误                                         | 夹具合计: 55 项，通过 55，失败 0 | [GATE:fixture-pass]"
+  },
+  {
+   "id": "r19_baseline_contract_fixtures",
+   "state": "PASS",
+   "rc": 0,
+   "elapsed_ms": 959,
+   "portable": true,
+   "covers": [
+    "05-exec/baseline_contract_scan.py",
+    "05-exec/schemas/r19/baseline-contracts.json"
+   ],
+   "tail": "未知不得当成不陈旧）               | PASS t33 假阳性回归：文件名无轮号但 mtime 刚再生 ⇒ 不得判陈旧，且须标依据=mtime           | PASS t34 反例：40 天未再生 ⇒ 判陈旧（mtime 口径生效，不再依赖命名）                   | 夹具合计: 48 项，通过 48，失败 0 | [GATE:fixture-pass]"
+  },
+  {
+   "id": "baseline_contract_scan",
+   "state": "PASS",
+   "rc": 0,
+   "elapsed_ms": 91,
+   "portable": true,
+   "covers": [
+    "06-benchmark/*.json 机器证据结构（份数/pattern 数不硬编码，取值：该门 --json 输出的 files_checked 与 artifacts 长度）"
+   ],
+   "tail": "contracts.json（21 个 pattern / 受检文件 56 个） |   代际豁免（r56，新增面不追溯判红历史证据件）：8 处 ｜ 涉及件 inject_face_breakdown_r52_2026-09-25.json, w27_conflict_triage_r51_2026-09-25.json | [CONTRACT:PASS] 56 份基线全部合规（结构 + 不变式）"
+  },
+  {
+   "id": "ratchet_gate",
+   "state": "FAIL",
+   "rc": 1,
+   "elapsed_ms": 115,
+   "portable": false,
+   "covers": [
+    "06-benchmark/inject_ratchet_baseline.json",
+    "D:\\global_skills 注入面",
+    "焚诀 truth_constants"
+   ],
+   "tail": "81be4fb5d7314（86741 → 87598，2026-09-30） |   ⚠️ 非阻断告警: inject_union_bytes=87610 超硬顶 65536（+22074） |   - inject_union_bytes=87610 超棘轮基线 87598（+12，只降不升） | [RATCHET:FAIL] 阻断项 1 项（超棘轮/无基线/指标缺失），另有非阻断告警 1 项"
+  },
+  {
+   "id": "control_char_scan",
+   "state": "PASS",
+   "rc": 0,
+   "elapsed_ms": 8167,
+   "portable": true,
+   "covers": [
+    "本仓全部文本面（r31 实测 376 个面）"
+   ],
+   "tail": "=== 控制字符扫描：878 个面 / 脏 0 / 跳过二进制 2 === | [CTRL:CLEAN] 无非法控制符"
+  },
+  {
+   "id": "tracked_empty_check",
+   "state": "PASS",
+   "rc": 0,
+   "elapsed_ms": 88,
+   "portable": true,
+   "covers": [
+    "本仓全部 tracked 文本件（.md/.py/.json/.jsonl/.yml/.txt/.ps1/.sh/.toml 等）",
+    "二进制/未知扩展跳过但如实计数，不静默当通过"
+   ],
+   "tail": "ed 文件门禁（r35 H-1；防 r34 我自己那次写崩事故复发）=== | 仓库: C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化｜tracked 807 件｜受检文本 800 件 | 跳过: 二进制/未知扩展 7 件（登记不静默） | [EMPTY:PASS] 文本面 800 件均非空；跳过二进制/未知扩展 7 件（如实登记，非当作通过）"
+  },
+  {
+   "id": "mark_verdict_fixtures",
+   "state": "PASS",
+   "rc": 0,
+   "elapsed_ms": 1088,
+   "portable": true,
+   "covers": [
+    "05-exec/r46_mark_verdict.py 的锚点定位与拒写分支",
+    "X-19 禁行号写标记（工具化，不靠自觉）"
+   ],
+   "tail": "写且字节不变                       | PASS t13 note 模式歧义拒写：锚点命中 2 行 ⇒ 不写（禁挑第一行）                    | PASS t14 note 模式 0 命中不得退化成追加：锚点不存在 ⇒ 拒写且文件字节不动               | 夹具合计: 14 项，通过 14，失败 0 | [GATE:fixture-pass]"
+  },
+  {
+   "id": "refresh_budget_fixtures",
+   "state": "FAIL",
+   "rc": 1,
+   "elapsed_ms": 164,
+   "portable": false,
+   "covers": [
+    "05-exec/ratchet_gate.py 的 METRIC_SOURCES/METRIC_REFRESH_DAYS/source_age_days/face_metric_refresh",
+    "collect_metrics 把 STALE 指标转 unknown（UNVERIFIED 不转，活体扫描本无源件）",
+    "CLI 打印再生周期行（声明必须在输出里看得见，否则等于没声明）"
+   ],
+   "tail": "] 阻断项 1 项（超棘轮/无基线/指标缺失），另有非阻断告警 1 项 | FAIL g11 真接线：加判据不得把本轮判红（只降不升的口径不变）                              <-- [RATCHET:FAIL] 阻断项 1 项（超棘轮/无基线/指标缺失），另有非阻断告警 1 项 | 夹具合计: 12 项，通过 10，失败 2 | [GATE:fixture-fail]"
+  },
+  {
+   "id": "handles_readme_fixtures",
+   "state": "PASS",
+   "rc": 0,
+   "elapsed_ms": 8028,
+   "portable": true,
+   "covers": [
+    "05-exec/r38_debt_aging.py 的 make_handles/resolve_handle（句柄可解值、死句柄返 None）",
+    "写台账→解句柄的闭环守恒 h7/h7b（源头断了必须显形，不得沿用旧值）",
+    "README 指向 06-benchmark 的链接数 >0 且零死链（h8/h9 + 自检）"
+   ],
+   "tail": "                     | PASS h12 真机端到端：CLI 同一次运行内句柄值 == 本次 by_class（防「报告引用的是上一行」）        | PASS h13 真机无漂移标记：同轮一致性自检不得产生 handles_drift（产生即红）                 | 夹具合计: 13 项，通过 13，失败 0 | [GATE:fixture-pass]"
+  },
+  {
+   "id": "md_claim_face",
+   "state": "FAIL",
+   "rc": 1,
+   "elapsed_ms": 98,
+   "portable": true,
+   "covers": [
+    "06-benchmark/*.md 引用面（数字声明 ±12 行内需有取值命令）",
+    "05-exec/r52_mdclaim_fixtures.py 的 19 例（含标题行排除与分面守恒）"
+   ],
+   "tail": "样数字出现在正文里必须仍被抓（排除标题不得顺手放过正文）                     | FAIL m17 真机接线：可整改面（r≥51 或当日 mtime）必须零敞口 ⇒ 新增无命令数字会红               <-- live=607 uncited=1 历史面=755（不参与判定） | 夹具合计: 20 项，通过 19，失败 1 | [GATE:fixture-fail]"
+  },
+  {
+   "id": "retrieval_fixtures",
+   "state": "PASS",
+   "rc": 0,
+   "elapsed_ms": 90,
+   "portable": true,
+   "covers": [
+    "05-exec/baseline_contract_scan.py 的 inv_opponent_claims_have_retrieval（结构识别，不锁键名）",
+    "契约 debt_aging glob 由 r3* 修成 r*（陈旧 pattern 面洞）",
+    "真机：06-benchmark/opponents_*_r*.json 全部须过判据"
+   ],
+   "tail": "遍 06-benchmark 全部件后，红项必须可逐条解释（本例只容已知项）       |   [INFO] 误报率样本：件数=102 判红=2 → ['semantic_coverage_r61_2026-09-30.json', 'workflow_face_r56_2026-09-25.json'] | 夹具合计: 16 项，通过 16，失败 0 | [GATE:fixture-pass]"
+  },
+  {
+   "id": "root_face_fixtures",
+   "state": "FAIL",
+   "rc": 1,
+   "elapsed_ms": 5854,
+   "portable": false,
+   "covers": [
+    "受管根 noise_lint KNOWN_CORE 对本项目根的登记面（R286，受管根 e93896b）",
+    "登记不放宽判据：植入散落产物仍须判 VIOL + 计数严格 +1 + 清理后复位",
+    "f9 反向对照：未登记同形根上同一谓词必须抓到顶层 strict VIOL（防 f2 成空断言）"
+   ],
+   "tail": "0 R287 正例：`noise .`（相对根）与绝对路径必须给出**同一个面**（修前 13 vs 2） | PASS f11 R287 反例（禁顺手放宽）：未登记的相对根仍须落 strict 判红 | PASS f9 对照（防 f2 空断言）：未登记同形根上，同一谓词必须抓到顶层 strict VIOL | 夹具合计: 11 项，通过 10，失败 1 | [GATE:fixture-fail]"
+  },
+  {
+   "id": "budget_contract_fixtures",
+   "state": "FAIL",
+   "rc": 1,
+   "elapsed_ms": 999,
+   "portable": true,
+   "covers": [
+    "06-benchmark/inject_ratchet_baseline.json 的 refresh_days 声明面（schema v1→v2）",
+    "05-exec/baseline_contract_scan.py 的 inv_ratchet_refresh_days（缺项/多键/越界三向判红）",
+    "ratchet_gate.refresh_status 无静默回落（基线缺预算⇒UNVERIFIED 且不读代码常量）",
+    "--update 不得改写预算面 + 预算与 note 留账同轮存活（D-104 同族再犯防护）"
+   ],
+   "tail": "账必须一起存活（D-104 同族再犯防护）  ← rc=1 rd=9 note= 派发卡自包含规范五要素，焚诀v2对标轮R-1 并行会话合法落盘；棘轮语义不变，本行是归因记账不是放宽） ｜夹具哨兵留账 | PASS b9 代码只读不写：基线预算与代码常量不同（9 vs 3）时 --update 必须保留基线值 | 夹具合计: 10 项，通过 8，失败 2 | [GATE:fixture-fail]"
+  },
+  {
+   "id": "evidence_face_fixtures",
+   "state": "PASS",
+   "rc": 0,
+   "elapsed_ms": 883,
+   "portable": false,
+   "covers": [
+    "06-benchmark 两类新 pattern：inject_face_breakdown_r*.json / w27_conflict_triage_r*.json",
+    "baseline_contract_scan 的两条新不变式（逐件求和自洽 / 三数算术自洽 + 空面不判过）",
+    "代际豁免 required_from + invariants_from：历史证据件不追溯判红，且分叉点后仍须红（e9）",
+    "豁免可见性：扫描输出必须打印「代际豁免」计数行（e10，看不见的豁免=豁免表）"
+   ],
+   "tail": "：只数不呈裁定（decision_needed 空）⇒ 红（交回去的东西必须含裁定问句） | PASS e9 反例（豁免有牙齿）：分叉点**之后**的件缺 by_owner ⇒ 仍须判红（豁免只救历史件） | PASS e10 豁免可见性：扫描输出必须打印「代际豁免」计数行（看不见的豁免=豁免表，R247） | 夹具合计: 11 项，通过 11，失败 0 | [GATE:fixture-pass]"
+  },
+  {
+   "id": "baseline_note_fixtures",
+   "state": "FAIL",
+   "rc": 1,
+   "elapsed_ms": 191,
+   "portable": false,
+   "covers": [
+    "05-exec/ratchet_gate.py 的 merge_note 与 --update 落盘路径（留账只增不减 + attributed_raises 须存活）",
+    "note 缩短即拒写分支（宁可红，不许把留账当装饰刷掉）",
+    "n6 常驻锁：现件 note 仍含 r38/r40/r45 三条归因"
+   ],
+   "tail": " 87598]} |    要接受更大的实测面，须人工改本消息说明理由后手动写文件（棘轮的意义就在于 | PASS n5 零输入：现件 note 必须非空（空 note 不得被当成合格基线） | PASS n6 常驻锁：现件留账须仍含 r38/r40/r45 三条人工核定依据（防再次被 --update 刷掉） | 夹具合计: 6 项，通过 5，失败 1 | [GATE:fixture-fail]"
+  },
+  {
+   "id": "input_face_fixtures",
+   "state": "PASS",
+   "rc": 0,
+   "elapsed_ms": 7940,
+   "portable": true,
+   "covers": [
+    "05-exec/r38_debt_aging.py 的 face_round/face_dedup/face_dating",
+    "05-exec/r46_mark_verdict.py 的 landed_contradiction/item_own_id（第⑥重拒写）",
+    "真卷输入面守恒（RE_ITEM 行数 == 计入条目数 + 前缀键零碰撞）"
+   ],
+   "tail": "吞行） | PASS i3 真卷：80 字前缀键零碰撞（去重键不吞不同条目） | 真卷面 -> C:\\Users\\37533\\AppData\\Local\\Temp\\r49face_qi3a6kj9\\real_face.json |   raw_lines=180 items=180 collisions=0 | 夹具合计: 32 项，通过 32，失败 0 | [GATE:fixture-pass]"
+  },
+  {
+   "id": "authority_face_fixtures",
+   "state": "PASS",
+   "rc": 0,
+   "elapsed_ms": 345,
+   "portable": false,
+   "covers": [
+    "05-exec/rule_conflict_scan.py 的 discover_authority_candidates/face_authority_coverage/effective_files",
+    "05-exec/ratchet_gate.py 的 face_counted_vs_observed（OSError 静默跳过显形）",
+    "05-exec/baseline_contract_scan.py 的 pattern 零命中判红（防回退）"
+   ],
+   "tail": "                     | PASS k5 边界：枚举 0 件 ⇒ UNVERIFIED/判红，绝不判绿（R247）                     | PASS k6 防回退：pattern 命中 0 文件必须被点名（r33 既有能力，本轮锁死）                  | 夹具合计: 16 项，通过 16，失败 0 | [GATE:fixture-pass]"
+  },
+  {
+   "id": "scan_inputs_fixtures",
+   "state": "PASS",
+   "rc": 0,
+   "elapsed_ms": 402,
+   "portable": true,
+   "covers": [
+    "05-exec/rule_conflict_scan.py 的 DEFAULT_FILES 与 input_evidence",
+    "05-exec/baseline_contract_scan.py 的 conflict_no_dead_inputs 不变式"
+   ],
+   "tail": "做干净）                           | PASS t3 真机产物过契约（含新不变式 conflict_no_dead_inputs）               | PASS t4 反例：声明 10 实存 9（有死条目）→ 契约必红并点名                         | 夹具合计: 5 项，通过 5，失败 0 | [GATE:fixture-pass]"
+  },
+  {
+   "id": "debt_ledger_fixtures",
+   "state": "PASS",
+   "rc": 0,
+   "elapsed_ms": 3903,
+   "portable": true,
+   "covers": [
+    "05-exec/r38_debt_aging.py 的 append_ledger 与 classify_item",
+    "05-exec/schemas/r19/baseline-contracts.json 的 debt_runs.jsonl 行契约"
+   ],
+   "tail": "d_count（趋势线要能看见判据自己哪天变脏）  | PASS t71 面判红时台账**仍须写入**（FAIL 进趋势线才有斜率；拒写等于把脏面藏起来）            | PASS t72 反例：doc 里没有 input_face ⇒ 记 UNVERIFIED 而非 OK（自证缺面不得算通过）  | 夹具合计: 61 项，通过 61，失败 0 | [GATE:fixture-pass]"
+  },
+  {
+   "id": "noise_tracked_stub",
+   "state": "PASS",
+   "rc": 0,
+   "elapsed_ms": 9328,
+   "portable": false,
+   "covers": [
+    "D:\\global_skills\\A-project-handoff\\scripts\\noise_lint.py",
+    "受管根 strict allowlist 放行面",
+    "二级深扫 .git 例外"
+   ],
+   "tail": ".md → 非 violation（不再挡 savepoint）  | PASS t13 反例：大写不匹配命名约定 → 仍 VIOL                             | PASS t14 反例：放行面不外溢 —— 焚诀根同名件仍按该根清单判 VIOL                   | 桩合计: 16 项，通过 16，失败 0 | [GATE:fixture-pass]"
+  },
+  {
+   "id": "gate_run_freshness",
+   "state": "FAIL",
+   "rc": 1,
+   "elapsed_ms": 61,
+   "portable": true,
+   "covers": [
+    "06-benchmark/gate_runs.jsonl 执行台账",
+    "间接盯住 ratchet_gate / r19_scan_fixtures 两台机专属门是否仍被人跑"
+   ],
+   "tail": "ns.jsonl（170 条） | 阈值: max_days=7 天｜来源域: ['local', 'ci']｜时间格式: %Y-%m-%dT%H:%M:%S | 覆盖根: 本机专属门 = ratchet_gate / r19_scan_fixtures（仓内无 SKILL.md 语料，CI 永远看不到） | [FRESH:FAIL] 最近一次本机门禁未过（verdict=FAIL，0.1 天前）"
+  },
+  {
+   "id": "roster_partition_fixtures",
+   "state": "PASS",
+   "rc": 0,
+   "elapsed_ms": 65,
+   "portable": true,
+   "covers": [
+    "05-exec/baseline_contract_scan.py 的 inv_roster_partition_sum（r60 新增不变式）",
+    "06-benchmark/capability_roster_r60_2026-09-30.json 与 capability_gap_r60_2026-09-30.json 真件面",
+    "四例变异：抽 domain 行 / 抽 item retrieval / 零面 / items 长度不符"
+   ],
+   "tail": "ASS    |   c4 档分布之和偏离 items 应报                      PASS    |   c5 真契约 层级守卫通过                            PASS    |   c6 条目漏到顶层应被点名                            PASS    | [GATE:roster-fixture-pass] 12/12"
+  },
+  {
+   "id": "py_syntax_guard",
+   "state": "PASS",
+   "rc": 0,
+   "elapsed_ms": 189,
+   "portable": true,
+   "covers": [
+    "05-exec/*.py 全部 99 件（compile exec 模式逐件解析，空面判红）"
+   ],
+   "tail": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\05-exec ｜ .py 共 119 个 | -------------------------------------------------------------- | [GATE:pysyntax-pass] 119/119 全部可解析（compile exec 模式，含缩进/括号配对）"
+  },
+  {
+   "id": "action_pin_guard",
+   "state": "PASS",
+   "rc": 0,
+   "elapsed_ms": 51,
+   "portable": true,
+   "covers": [
+    ".github/workflows/*.yml 的全部 `uses:` 引用面（含 @main 分支形与截断 SHA 形）",
+    ".github/dependabot.yml 的 github-actions 生态声明",
+    "05-exec/r58_action_pin_fixtures.py 的 11 例（层 a 9 + 层 b 真仓对照/变异体各 1）"
+   ],
+   "tail": "已 pin 到 SHA 2 ｜ 浮动或形态非法 0 |   P2 更新器配对: OK ｜ 已声明 github-actions | -------------------------------------------------------------- | [GATE:actionpin-pass] P1 外部引用 2/2 全 pin ｜ P2 dependabot 已配 ｜ P3 输入面非空"
+  },
+  {
+   "id": "retired_face",
+   "state": "PASS",
+   "rc": 0,
+   "elapsed_ms": 75,
+   "portable": false,
+   "covers": [
+    "D:/global_skills 磁盘集 ∩ 焚诀 eval/truth_constants.json 的 retired_skills（退役必须已移出扫描树）",
+    "名单为空 / 磁盘面为空 / 名单文件缺失 三态一律 rc=2，不得读成「无残留」",
+    "r7 真件可逆注入：真名单首个名字建进临时树必须见红（W-47 两侧证据）"
+   ],
+   "tail": "[GATE:retired-face-pass] blacklist=72 disk=171 retired_still_on_disk=0"
+  },
+  {
+   "id": "generator_face",
+   "state": "PASS",
+   "rc": 0,
+   "elapsed_ms": 680,
+   "portable": false,
+   "covers": [
+    "05-exec/schemas/r19/baseline-contracts.json 的 artifacts 里每个 pattern ⇄ 05-exec/*.py 的生成器面",
+    "05-exec/r58_generator_coverage.py 的三路识别（A 字面/B 词干+扩展/C 同名工具）+ r66 新增路 D（自产物按工具名）",
+    "夹具 05-exec/r66_generator_gate_fixtures.py 的 12 例（含 3 条变异腿与 2 条反向腿）"
+   ],
+   "tail": "LE=0 ｜ NO_ARTIFACT=0 ｜ UNVERIFIED=0 | 误报率实测：宽口径命中 86 处，严格口径 62 处 ⇒ 若按宽口径接线，24 处（27.9%）会被误记为『有生成器』 | [GENCOV:READY] 接线判据：零命中清单为空 ⇒ 可接线判红 | [GENCOV:PASS] 21 个 pattern 全有生成器（DEAD_HANDLE=0 / UNVERIFIED=0）"
+  },
+  {
+   "id": "input_pin_face",
+   "state": "PASS",
+   "rc": 0,
+   "elapsed_ms": 278,
+   "portable": false,
+   "covers": [
+    "焚诀 eval/truth_constants.json 的 paths / junction_paths / endpoints.active 声明面",
+    "各端 skills|memory junction 是否解析到声明的权威根（形态/存在/目标三项）",
+    "06-benchmark/input_pins.jsonl 的 pin 落账与「本行自洽」（写哪本/指哪本/比哪本）"
+   ],
+   "tail": "2 |   ℹ️ 与上一行台账比：pin 变动 3 个面：global_skills, global_memory, 焚诀（advisory，只报不阻断） |    ℹ️ 跨轮趋势：最常变面 = D:\\global_memory（变动 29 次 / 共 42 行，advisory） | [PIN:PASS] 镜像面 16 条全部钉在权威源（声明 null 2 条已逐条列出）｜pin 已落账 3 面"
+  }
+ ],
+ "not_covered": [
+  "受管根四门禁 mirror/noise/evolution/stub —— 属 rule_editor 面，取值：python D:\\global_skills\\A-memory-start\\references\\rule_editor.py gates",
+  "焚诀跨产物真值 C1~C33 —— 取值：python 焚诀\\eval\\verify_truth_consistency.py",
+  "判据变异测试（r19_fixture_mutation_check.py）—— 按需跑，非每轮前置"
+ ],
+ "verdict": "FAIL",
+ "verdict_reason": "FAIL=7 UNVERIFIED=0",
+ "total_ms": 53279,
+ "gates_run": 27
+}

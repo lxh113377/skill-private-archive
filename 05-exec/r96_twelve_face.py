@@ -135,7 +135,8 @@ def fm_parse(text):
 # 从未进面（含 140,497★ / 108,698★ / 63,335★ 三仓）——本仓 X-26「禁把手抄清单当扫描分母」
 # 在对手面复发；结论面只有 ~40% 人口时，「换装 0 件」这类判断不具覆盖力。
 SEARCH_QUERY = "agent skills in:name,description stars:>1000"
-ROSTER_TOP_N = 20          # 取实测星标降序前 N 仓入面
+ROSTER_TOP_N = 0           # 0 = 不截断，实测面全量入面（r101：top-20 让 7 席被 SKILL.md<=3 的仓占掉，
+                               # 而 vercel-labs/skills 等真技能仓被截在外面；>0 时 truncated 名单必须落盘）
 ROSTER_PINNED = []         # 仅供 --roster 追加；默认空。非空时必须在输出 roster_face 里点名
 
 
@@ -154,14 +155,20 @@ def derive_roster(search_face, top_n=ROSTER_TOP_N, pinned=()):
             continue
         ranked.append((stars, name))
     ranked.sort(key=lambda t: (-t[0], t[1]))
-    derived = [n for _s, n in ranked[:top_n]]
+    ordered = [n for _s, n in ranked]
+    derived = ordered if not top_n else ordered[:top_n]
+    # 截断必须具名到仓（只报「差了几个」= 上轮形态：计数可见但名单不可审计）
+    truncated = [{"repo": n, "stars": dict((m, s) for s, m in ranked)[n]}
+                 for n in ordered[len(derived):]]
     for extra in pinned or ():
         if extra not in derived:
             derived.append(extra)
     return {"derived": derived,
+            "ranked_all": ordered,
             "face_rows": len(search_face or []),
             "unparsable_rows": unparsable,
             "top_n": top_n,
+            "truncated": truncated,
             "pinned": list(pinned or ())}
 
 
@@ -465,8 +472,18 @@ def score_dims(local, raw):
             continue
         opp_slugs[slug] = set(filter(None, (slug_from_skillpath(p)
                                             for p in rec.get("skill_md_paths", []))))
-    skill_face = [s for s in opp_slugs if opp_slugs[s]]
-    universe = set().union(*opp_slugs.values()) if opp_slugs else set()
+    # r101 分档：无 SKILL.md 的仓是平台/清单壳，不是技能树 —— 不得进 d1/d8/d9/d12 分母。
+    # 唯一谓词 = 该仓 tree 里的 SKILL.md 数（与 non_skill_repos 同一来源）；
+    # 早期版本误用「能否取到父目录 slug」判档，会让根级 SKILL.md 的仓（实测 blader/humanizer）
+    # 被两把尺给出相反档位 —— 同一事实只许一处判。
+    skill_bearing = {s: bool(raw.get("repos", {}).get(s, {}).get("skill_md_paths"))
+                     for s in raw.get("repos", {})}
+    # 「有 SKILL.md 但取不到 slug」另记一件事实，不改档
+    slugless = sorted(s for s in skill_bearing
+                      if skill_bearing[s] and not opp_slugs.get(s))
+    skill_face = [s for s in opp_slugs if skill_bearing.get(s)]
+    universe = set().union(*[v for k, v in opp_slugs.items() if skill_bearing.get(k)]) \
+        if skill_face else set()
     opp_only_union = universe - local_slugs
     local_only = local_slugs - universe
 
@@ -520,6 +537,8 @@ def score_dims(local, raw):
                 "basis": "抽样件前置 YAML 围栏含 name+description 的比例；分母=实抽件数（非全量）",
             },
             "tree_truncated": rec.get("tree_truncated"),
+            "skill_bearing": bool(skill_bearing.get(slug)),
+            "face_role": ("skill_tree" if skill_bearing.get(slug) else "non_skill_repo"),
         }
     nl = max(local["skill_dirs_with_skillmd"], 1)
     rc = local["rubric_counts"]
@@ -567,7 +586,7 @@ def score_dims(local, raw):
     matched = [k for k, v in coverage.items() if v["state"] == "MEASURED"]
     mismatched = [k for k, v in coverage.items() if v["state"] != "MEASURED"]
     return {"generated_at": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-            "schema": "twelve-face-r99-v3",
+            "schema": "twelve-face-r101-v5",
             "rubric_source": "skill_structure_rubric_scan.rubric_hits（本仓单一真相源，非本件自造）",
             "dim_coverage": coverage,
             "dim_coverage_verdict": "matched=%d/12 mismatched=%s"
@@ -595,6 +614,12 @@ def score_dims(local, raw):
                 "non_skill_repos": sorted(s for s, r in raw.get("repos", {}).items()
                                           if r.get("available")
                                           and not r.get("skill_md_paths")),
+                "probed_n": len([1 for r in raw.get("repos", {}).values() if r.get("available")]),
+                "skill_face_n": len(skill_face),
+                "slugless_skill_repos": slugless,
+                "skill_bearing_predicate": "tree 内 SKILL.md 数 > 0（与 non_skill_repos 同源同尺）",
+                "truncated_named": (raw.get("roster_face") or {}).get("truncated"),
+                "quality_note": "d1/d8/d9/d12 只在 skill_face 上取分母；non_skill_repos 仅进 d5/d6/d10（平台仓的维护/文档/CI 面仍可比）",
             },
             "local": local, "local_dims": mine, "opponents": opponents}
 
@@ -696,6 +721,29 @@ def selftest():
         chk("接线 打分产物逐维自证在场", "dim_coverage" in _doc, True)
     except (OSError, ValueError) as exc:
         chk("接线 缓存可读（缺件即判未取证，不得静默跳）", str(exc), "cache-present")
+    # r101 优质面双向证据
+    mix = [["a/noskill", 900, "t", False], ["a/skill", 800, "t", False],
+           ["a/small", 700, "t", False]]
+    chk("正例 top_n=0 不截断（全量入面）",
+        derive_roster(mix, top_n=0)["derived"], ["a/noskill", "a/skill", "a/small"])
+    chk("反例 截断必须具名（含星标），不得只给计数",
+        derive_roster(mix, top_n=1)["truncated"],
+        [{"repo": "a/skill", "stars": 800}, {"repo": "a/small", "stars": 700}])
+    chk("接线 截断计数与名单一致",
+        len(derive_roster(mix, top_n=1)["truncated"]),
+        derive_roster(mix, top_n=1)["face_rows"] - len(derive_roster(mix, top_n=1)["derived"]))
+    chk("反例 全量入面时 truncated 必为空数组不是 None",
+        derive_roster(mix, top_n=0)["truncated"], [])
+    _rp = {"repos": {"a/root": {"available": True, "skill_md_paths": ["SKILL.md"]},
+                     "a/none": {"available": True, "skill_md_paths": []},
+                     "a/dir": {"available": True, "skill_md_paths": ["x/SKILL.md"]}}}
+    _sb = {s: bool(r.get("skill_md_paths")) for s, r in _rp["repos"].items()}
+    chk("正例 根级 SKILL.md 判技能树（不得因取不到 slug 而降档）",
+        _sb["a/root"], True)
+    chk("接线 档位谓词与 non_skill 名单同源（同事实单尺）",
+        sorted(k for k, v in _sb.items() if not v), ["a/none"])
+    chk("反例 slug 缺失另计一件事实，不改档",
+        sorted(s for s, v in _sb.items() if v and s == "a/root"), ["a/root"])
     chk("接线 双单位并报且 toplevel<=alllayers",
         0 < loc["authority_toplevel_skillmd"] <= loc["authority_skillmd"], True)
     chk("接线 并集 slug 数>=权威源 slug 数",
