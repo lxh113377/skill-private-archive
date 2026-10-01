@@ -21,10 +21,14 @@ GS = Path(r"D:\global_skills")
 DESC_CAP = 1024  # anthropics 官方单字段上限（r18 目录税基线同口径）
 
 # "何时用"信号词（r62 同源 + 扩充；对中英 description 双语生效）
+# r97 扩充（R263 修判据不改数据）：invoke when / must use / use this (before|when) / best for /
+# ideal for / use before / call when / intended for / useful (when|for) —— 实测假阴性样本：
+# byted-seedance "Invoke when user wants..."、brainstorming "You MUST use this before..."。
 WHEN_RE = re.compile(
     r"(何时用|什么时候|当.{0,12}(时|的时候)|适用[于在]?|用于|用来|要.{0,6}时|需要.{0,4}时|"
     r"时使用|时触发|时激活|时加载|触发|场景|Use when|When to use|whenever|"
-    r"for use (in|when|with)|if you need|scenario)",
+    r"for use (in|when|with)|if you need|scenario|"
+    r"invoke when|must use|use this|use it when|used when|instead of|use before|call when|best for|ideal for|intended for|useful)",
     re.IGNORECASE,
 )
 # "做什么"信号：以动词性陈述开头（宽松判据：长度 ≥12 且非纯名词罗列）
