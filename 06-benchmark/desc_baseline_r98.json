@@ -1,0 +1,1640 @@
+{
+ "schema": "description-dual-v1",
+ "generated_at": "2026-10-01 16:18:51",
+ "head": {
+  "source": "D:/global_skills/*/SKILL.md frontmatter",
+  "commit": "2fe4916447930a5b11e273fd6bfa40c9a63481e2",
+  "method": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\05-exec\\r63_description_audit.py"
+ },
+ "cap": 1024,
+ "summary": {
+  "total": 169,
+  "DUAL": 158,
+  "NO_WHEN": 11,
+  "dual_rate_pct": 93.5
+ },
+ "worst_first": [
+  {
+   "skill": "_my-skills",
+   "has_field": true,
+   "chars": 73,
+   "what_signal": true,
+   "when_signal": false,
+   "verdict": "NO_WHEN",
+   "over_cap": false
+  },
+  {
+   "skill": "github",
+   "has_field": true,
+   "chars": 138,
+   "what_signal": true,
+   "when_signal": false,
+   "verdict": "NO_WHEN",
+   "over_cap": false
+  },
+  {
+   "skill": "rag-eval",
+   "has_field": true,
+   "chars": 191,
+   "what_signal": true,
+   "when_signal": false,
+   "verdict": "NO_WHEN",
+   "over_cap": false
+  },
+  {
+   "skill": "dingtalk-doc",
+   "has_field": true,
+   "chars": 198,
+   "what_signal": true,
+   "when_signal": false,
+   "verdict": "NO_WHEN",
+   "over_cap": false
+  },
+  {
+   "skill": "research-documentation",
+   "has_field": true,
+   "chars": 255,
+   "what_signal": true,
+   "when_signal": false,
+   "verdict": "NO_WHEN",
+   "over_cap": false
+  },
+  {
+   "skill": "spec-to-implementation",
+   "has_field": true,
+   "chars": 259,
+   "what_signal": true,
+   "when_signal": false,
+   "verdict": "NO_WHEN",
+   "over_cap": false
+  },
+  {
+   "skill": "knowledge-capture",
+   "has_field": true,
+   "chars": 262,
+   "what_signal": true,
+   "when_signal": false,
+   "verdict": "NO_WHEN",
+   "over_cap": false
+  },
+  {
+   "skill": "theme-factory",
+   "has_field": true,
+   "chars": 262,
+   "what_signal": true,
+   "when_signal": false,
+   "verdict": "NO_WHEN",
+   "over_cap": false
+  },
+  {
+   "skill": "byted-mediakit-shared",
+   "has_field": true,
+   "chars": 286,
+   "what_signal": true,
+   "when_signal": false,
+   "verdict": "NO_WHEN",
+   "over_cap": false
+  },
+  {
+   "skill": "A-project-handoff",
+   "has_field": true,
+   "chars": 300,
+   "what_signal": true,
+   "when_signal": false,
+   "verdict": "NO_WHEN",
+   "over_cap": false
+  },
+  {
+   "skill": "computer-use-guidance-windows",
+   "has_field": true,
+   "chars": 353,
+   "what_signal": true,
+   "when_signal": false,
+   "verdict": "NO_WHEN",
+   "over_cap": false
+  }
+ ],
+ "items": [
+  {
+   "skill": "9b-lightworkflow",
+   "has_field": true,
+   "chars": 162,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "_my-skills",
+   "has_field": true,
+   "chars": 73,
+   "what_signal": true,
+   "when_signal": false,
+   "verdict": "NO_WHEN",
+   "over_cap": false
+  },
+  {
+   "skill": "A-ask-questions",
+   "has_field": true,
+   "chars": 87,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "A-get-memory",
+   "has_field": true,
+   "chars": 200,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "A-java-problem",
+   "has_field": true,
+   "chars": 277,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "A-memory-start",
+   "has_field": true,
+   "chars": 936,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "A-project-better",
+   "has_field": true,
+   "chars": 389,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "A-project-handoff",
+   "has_field": true,
+   "chars": 300,
+   "what_signal": true,
+   "when_signal": false,
+   "verdict": "NO_WHEN",
+   "over_cap": false
+  },
+  {
+   "skill": "A-prompt-better",
+   "has_field": true,
+   "chars": 390,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "A-skill-manager",
+   "has_field": true,
+   "chars": 183,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "agent-browser",
+   "has_field": true,
+   "chars": 152,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "ai-video-homework-pipeline",
+   "has_field": true,
+   "chars": 140,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "algorithmic-art",
+   "has_field": true,
+   "chars": 324,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "audio-deliverable-pipeline",
+   "has_field": true,
+   "chars": 137,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "audit-runner-safe-aggregate",
+   "has_field": true,
+   "chars": 182,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "bigfile-split",
+   "has_field": true,
+   "chars": 732,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "brainstorming",
+   "has_field": true,
+   "chars": 200,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "brand-guidelines",
+   "has_field": true,
+   "chars": 236,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "browser-cdp",
+   "has_field": true,
+   "chars": 391,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "byted-bp-cdn-pagesdeploy",
+   "has_field": true,
+   "chars": 338,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "byted-mediakit-shared",
+   "has_field": true,
+   "chars": 286,
+   "what_signal": true,
+   "when_signal": false,
+   "verdict": "NO_WHEN",
+   "over_cap": false
+  },
+  {
+   "skill": "byted-seedance-video-generate",
+   "has_field": true,
+   "chars": 129,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "byted-seedream-image-generate",
+   "has_field": true,
+   "chars": 340,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "c-cleanup",
+   "has_field": true,
+   "chars": 125,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "canvas-design",
+   "has_field": true,
+   "chars": 289,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "chaoshi-admin-inline-edit",
+   "has_field": true,
+   "chars": 181,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "chaoshi-image-optimization",
+   "has_field": true,
+   "chars": 243,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "chaoshi-web-deploy",
+   "has_field": true,
+   "chars": 354,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "chart-visualization",
+   "has_field": true,
+   "chars": 254,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "ci-pipeline-debugging",
+   "has_field": true,
+   "chars": 246,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "cloudbase-db-optimize",
+   "has_field": true,
+   "chars": 239,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "cloudbase__skillhub",
+   "has_field": true,
+   "chars": 981,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "code-review",
+   "has_field": true,
+   "chars": 209,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "coding-agent",
+   "has_field": true,
+   "chars": 241,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "computer-use-guidance-windows",
+   "has_field": true,
+   "chars": 353,
+   "what_signal": true,
+   "when_signal": false,
+   "verdict": "NO_WHEN",
+   "over_cap": false
+  },
+  {
+   "skill": "consulting-analysis",
+   "has_field": true,
+   "chars": 710,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "cross-platform-agent-sync",
+   "has_field": true,
+   "chars": 471,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "data-analysis",
+   "has_field": true,
+   "chars": 356,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "data-visualization",
+   "has_field": true,
+   "chars": 276,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "debugging-fixing",
+   "has_field": true,
+   "chars": 309,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "defuddle",
+   "has_field": true,
+   "chars": 260,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "diagram-maker",
+   "has_field": true,
+   "chars": 165,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "dingtalk-aisearch",
+   "has_field": true,
+   "chars": 164,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "dingtalk-aitable",
+   "has_field": true,
+   "chars": 379,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "dingtalk-calendar",
+   "has_field": true,
+   "chars": 170,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "dingtalk-chat",
+   "has_field": true,
+   "chars": 133,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "dingtalk-contact",
+   "has_field": true,
+   "chars": 145,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "dingtalk-doc",
+   "has_field": true,
+   "chars": 198,
+   "what_signal": true,
+   "when_signal": false,
+   "verdict": "NO_WHEN",
+   "over_cap": false
+  },
+  {
+   "skill": "dingtalk-drive",
+   "has_field": true,
+   "chars": 203,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "dingtalk-event",
+   "has_field": true,
+   "chars": 180,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "dingtalk-mail",
+   "has_field": true,
+   "chars": 169,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "dingtalk-minutes",
+   "has_field": true,
+   "chars": 156,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "dingtalk-misc",
+   "has_field": true,
+   "chars": 894,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "dingtalk-shared",
+   "has_field": true,
+   "chars": 166,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "dingtalk-todo",
+   "has_field": true,
+   "chars": 157,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "dingtalk-wiki",
+   "has_field": true,
+   "chars": 179,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "discover-agent-cli",
+   "has_field": true,
+   "chars": 322,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "doc-coauthoring",
+   "has_field": true,
+   "chars": 428,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "docx",
+   "has_field": true,
+   "chars": 826,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "dogfood",
+   "has_field": true,
+   "chars": 104,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "electron",
+   "has_field": true,
+   "chars": 505,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "elon-musk-perspective",
+   "has_field": true,
+   "chars": 308,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "fenjue-lessons-hitrate",
+   "has_field": true,
+   "chars": 62,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "fenjue-memory-audit",
+   "has_field": true,
+   "chars": 261,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "figma",
+   "has_field": true,
+   "chars": 269,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "find-skills",
+   "has_field": true,
+   "chars": 440,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "first-principles-decomposer",
+   "has_field": true,
+   "chars": 364,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "frontend-design",
+   "has_field": true,
+   "chars": 399,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "frontend-skill",
+   "has_field": true,
+   "chars": 275,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "frontend-slides",
+   "has_field": true,
+   "chars": 311,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "github",
+   "has_field": true,
+   "chars": 138,
+   "what_signal": true,
+   "when_signal": false,
+   "verdict": "NO_WHEN",
+   "over_cap": false
+  },
+  {
+   "skill": "gsap",
+   "has_field": true,
+   "chars": 294,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "gstack",
+   "has_field": true,
+   "chars": 970,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "hermes-installer",
+   "has_field": true,
+   "chars": 159,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "hook-analyzer-skill",
+   "has_field": true,
+   "chars": 215,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "html-ppt",
+   "has_field": true,
+   "chars": 616,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "html-to-docx-win-fix",
+   "has_field": true,
+   "chars": 249,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "hyperframes",
+   "has_field": true,
+   "chars": 826,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "hyperframes-cli",
+   "has_field": true,
+   "chars": 402,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "hyperframes-media",
+   "has_field": true,
+   "chars": 472,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "hyperframes-registry",
+   "has_field": true,
+   "chars": 345,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "ican-deploy",
+   "has_field": true,
+   "chars": 285,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "ican-frontend-design-system",
+   "has_field": true,
+   "chars": 288,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "internal-comms",
+   "has_field": true,
+   "chars": 329,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "json-canvas",
+   "has_field": true,
+   "chars": 225,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "knowledge-capture",
+   "has_field": true,
+   "chars": 262,
+   "what_signal": true,
+   "when_signal": false,
+   "verdict": "NO_WHEN",
+   "over_cap": false
+  },
+  {
+   "skill": "local-asr",
+   "has_field": true,
+   "chars": 783,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "local-computer-use",
+   "has_field": true,
+   "chars": 989,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "local-img2img",
+   "has_field": true,
+   "chars": 455,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "local-mineru",
+   "has_field": true,
+   "chars": 912,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "local-ocr-npu",
+   "has_field": true,
+   "chars": 738,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "local-realtime-translator",
+   "has_field": true,
+   "chars": 973,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "local-screenshot-qa",
+   "has_field": true,
+   "chars": 1019,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "local-tts",
+   "has_field": true,
+   "chars": 694,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "local-txt2img",
+   "has_field": true,
+   "chars": 493,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "local-vram",
+   "has_field": true,
+   "chars": 814,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "mcp-builder",
+   "has_field": true,
+   "chars": 277,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "mcporter",
+   "has_field": true,
+   "chars": 191,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "meeting-intelligence",
+   "has_field": true,
+   "chars": 349,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "nano-pdf",
+   "has_field": true,
+   "chars": 114,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "node-inspect-debugger",
+   "has_field": true,
+   "chars": 186,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "notion-cli",
+   "has_field": true,
+   "chars": 269,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "obsidian-bases",
+   "has_field": true,
+   "chars": 256,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "obsidian-cli",
+   "has_field": true,
+   "chars": 467,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "obsidian-markdown",
+   "has_field": true,
+   "chars": 262,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "oc-dispatch-exec-guard",
+   "has_field": true,
+   "chars": 152,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "office-automation-pro",
+   "has_field": true,
+   "chars": 237,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "openai-whisper-api",
+   "has_field": true,
+   "chars": 189,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "openclaw-dual-gate-quality-audit",
+   "has_field": true,
+   "chars": 268,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "openclaw-fenjue-weekly",
+   "has_field": true,
+   "chars": 186,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "openclaw-task-supervision",
+   "has_field": true,
+   "chars": 173,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "oracle",
+   "has_field": true,
+   "chars": 202,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "pdf",
+   "has_field": true,
+   "chars": 467,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "pixelle-api-ensure",
+   "has_field": true,
+   "chars": 126,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "ppt-master",
+   "has_field": true,
+   "chars": 535,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "prompt-consolidation",
+   "has_field": true,
+   "chars": 303,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "prompt-system-audit",
+   "has_field": true,
+   "chars": 109,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "python-debugpy",
+   "has_field": true,
+   "chars": 173,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "rag-eval",
+   "has_field": true,
+   "chars": 191,
+   "what_signal": true,
+   "when_signal": false,
+   "verdict": "NO_WHEN",
+   "over_cap": false
+  },
+  {
+   "skill": "refactoring",
+   "has_field": true,
+   "chars": 233,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "report-generator-skill",
+   "has_field": true,
+   "chars": 182,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "research-documentation",
+   "has_field": true,
+   "chars": 255,
+   "what_signal": true,
+   "when_signal": false,
+   "verdict": "NO_WHEN",
+   "over_cap": false
+  },
+  {
+   "skill": "screenshot",
+   "has_field": true,
+   "chars": 162,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "security-audit",
+   "has_field": true,
+   "chars": 515,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "shadcn",
+   "has_field": true,
+   "chars": 384,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "shell-encoding-pitfalls",
+   "has_field": true,
+   "chars": 224,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "spec-to-implementation",
+   "has_field": true,
+   "chars": 259,
+   "what_signal": true,
+   "when_signal": false,
+   "verdict": "NO_WHEN",
+   "over_cap": false
+  },
+  {
+   "skill": "spike",
+   "has_field": true,
+   "chars": 143,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "sq-cleanmgr-c",
+   "has_field": true,
+   "chars": 155,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "sqlalchemy-loader-criteria-pitfalls",
+   "has_field": true,
+   "chars": 310,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "static-site-batch-audit-fix",
+   "has_field": true,
+   "chars": 259,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "story",
+   "has_field": true,
+   "chars": 144,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "story-cover",
+   "has_field": true,
+   "chars": 112,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "story-deslop",
+   "has_field": true,
+   "chars": 86,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "story-import",
+   "has_field": true,
+   "chars": 192,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "story-long-analyze",
+   "has_field": true,
+   "chars": 230,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "story-long-write",
+   "has_field": true,
+   "chars": 114,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "story-review",
+   "has_field": true,
+   "chars": 154,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "story-scan",
+   "has_field": true,
+   "chars": 108,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "story-setup",
+   "has_field": true,
+   "chars": 186,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "story-short-analyze",
+   "has_field": true,
+   "chars": 310,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "story-short-write",
+   "has_field": true,
+   "chars": 84,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "taskflow",
+   "has_field": true,
+   "chars": 97,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "taskflow-inbox-triage",
+   "has_field": true,
+   "chars": 133,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "test-driven-development",
+   "has_field": true,
+   "chars": 136,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "testing",
+   "has_field": true,
+   "chars": 198,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "theme-factory",
+   "has_field": true,
+   "chars": 262,
+   "what_signal": true,
+   "when_signal": false,
+   "verdict": "NO_WHEN",
+   "over_cap": false
+  },
+  {
+   "skill": "ui-ux-pro-max",
+   "has_field": true,
+   "chars": 573,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "utf8-encoding-fix",
+   "has_field": true,
+   "chars": 165,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "verification-before-completion",
+   "has_field": true,
+   "chars": 363,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "video-breakdown-skill",
+   "has_field": true,
+   "chars": 324,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "video-frames",
+   "has_field": true,
+   "chars": 149,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "video-whisper-transcribe",
+   "has_field": true,
+   "chars": 101,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "vp-perspective-audit",
+   "has_field": true,
+   "chars": 272,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "wb-git-commit-recipe",
+   "has_field": true,
+   "chars": 279,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "web-design-guidelines",
+   "has_field": true,
+   "chars": 165,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "wechat-automation",
+   "has_field": true,
+   "chars": 160,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "wechat-voice-transcription",
+   "has_field": true,
+   "chars": 190,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "win-toolchain-pitfalls",
+   "has_field": true,
+   "chars": 181,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "windows-bash-cli-interop-pitfalls",
+   "has_field": true,
+   "chars": 262,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "windows-cli-utf8-wrapper",
+   "has_field": true,
+   "chars": 269,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "windows-gitbash-chinese-path-pit",
+   "has_field": true,
+   "chars": 240,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "windows-native-ocr",
+   "has_field": true,
+   "chars": 61,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "workbuddy-mcp",
+   "has_field": true,
+   "chars": 132,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "workflow-preflight-check",
+   "has_field": true,
+   "chars": 277,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "wps-knowledgebase",
+   "has_field": true,
+   "chars": 316,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "writing-plans",
+   "has_field": true,
+   "chars": 84,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "xlsx",
+   "has_field": true,
+   "chars": 979,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  },
+  {
+   "skill": "天眼一下",
+   "has_field": true,
+   "chars": 162,
+   "what_signal": true,
+   "when_signal": true,
+   "verdict": "DUAL",
+   "over_cap": false
+  }
+ ]
+}

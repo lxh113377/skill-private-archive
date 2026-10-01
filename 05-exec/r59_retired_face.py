@@ -88,6 +88,13 @@ def run(argv=None):
         return 2
     hits = sorted(disk & bl)
     doc["retired_still_on_disk"] = hits
+    # R97-7（r98 落地）：生产者可见性——权威源已清但市场缓存根仍持有退役件时，
+    # 清了也会被回流（r97 实证：executing-plans/slides 由 .workbuddy/skills 于 15:24 写回）。
+    # 警示不阻断（守 r25：没量过误报率的闸门不得拦任务）；本门判定面仍只看权威源磁盘 ∩ 名单。
+    MARKET_ROOT = r"C:\Users\37533\.workbuddy\skills"
+    market_hits = sorted(t for t in bl
+                         if os.path.isdir(os.path.join(MARKET_ROOT, t)))
+    doc["market_root_still_holding"] = market_hits
     emit(a.json_out, doc)
     if hits:
         if not a.quiet:
@@ -95,10 +102,18 @@ def run(argv=None):
                   % (len(hits), ", ".join(hits)))
             print("  处置：按铁律 3 双备份移出扫描树（cp->copy/ + mv->moved/，落 "
                   "D:/global_memory/_trash/<tag>_<ts>/），再复跑本门。")
+            if market_hits:
+                print("  ⚠️ 生产者警示：市场缓存根 %s 仍持有 %d 件（%s）——只清权威源会被回流，"
+                      "用 05-exec/r97_retire_full_egress.py --apply 做全出口清理。"
+                      % (MARKET_ROOT, len(market_hits), ", ".join(market_hits)))
         return 1
     if not a.quiet:
         print("[GATE:retired-face-pass] blacklist=%d disk=%d retired_still_on_disk=0"
               % (len(bl), len(disk)))
+        if market_hits:
+            print("  ⚠️ 生产者警示：市场缓存根 %s 仍持有退役件 %d 件（%s）——门绿但回流风险在，"
+                  "建议 r97_retire_full_egress.py --apply 全出口清理。"
+                  % (MARKET_ROOT, len(market_hits), ", ".join(market_hits)))
     return 0
 
 

@@ -28,7 +28,8 @@ WHEN_RE = re.compile(
     r"(何时用|什么时候|当.{0,12}(时|的时候)|适用[于在]?|用于|用来|要.{0,6}时|需要.{0,4}时|"
     r"时使用|时触发|时激活|时加载|触发|场景|Use when|When to use|whenever|"
     r"for use (in|when|with)|if you need|scenario|"
-    r"invoke when|must use|use this|use it when|used when|instead of|use before|call when|best for|ideal for|intended for|useful)",
+    r"invoke when|must use|use this|use it when|used when|instead of|use before|call when|best for|ideal for|intended for|useful|"
+    r"\bwhen\b|\btriggers?\b)",  # r98：英文侧收敛为语义正确形态——when 从句/触发词即"何时用"信号（实测假阴性：figma "Trigger when..."、docx "Triggers include..."）
     re.IGNORECASE,
 )
 # "做什么"信号：以动词性陈述开头（宽松判据：长度 ≥12 且非纯名词罗列）
