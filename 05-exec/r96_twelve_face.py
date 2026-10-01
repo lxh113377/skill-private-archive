@@ -24,6 +24,7 @@ import datetime as dt
 import io
 import json
 import os
+import re
 import subprocess
 import sys
 
@@ -35,6 +36,99 @@ from skill_structure_rubric_scan import RUBRIC_RX, rubric_hits  # noqa: E402
 
 SECTIONS = tuple(RUBRIC_RX.keys())
 SAMPLE_PER_REPO = 6
+NOISE_PARTS = {".git", "_trash", "__pycache__", ".rule_backup", "node_modules"}
+ROOT_DOC_NAMES = ("README.md", "CHANGELOG.md", "SECURITY.md", "LICENSE",
+                  "LICENSE.md", "CONTRIBUTING.md", "AGENTS.md")
+
+# 用户指令的 12 维 → 判据键名（一处一名，报告总览表按本表逐行取数）
+DIM_CN = {
+    "d1_capability_surface": "功能模块覆盖范围",
+    "d2_mechanism_layer": "技术架构与实现方式",
+    "d3_performance": "性能表现（注意力税/体积）",
+    "d4_extensibility": "可扩展性",
+    "d5_maintenance": "维护状态",
+    "d6_documentation": "文档完善程度",
+    "d7_fit_scenario": "适用场景",
+    "d8_function_coverage": "功能覆盖（唯一能力名册与双向独占差集）",
+    "d9_output_quality": "输出质量（六段解剖命中率）",
+    "d10_control": "可控性",
+    "d11_reusability": "可复用性",
+    "d12_compatibility": "与现有工作流的兼容性",
+}
+DIM_ORDER = list(DIM_CN.keys())
+
+RE_FM = re.compile(r"\A---[ \t]*\r?\n(.*?)\r?\n---[ \t]*(?:\r?\n|\Z)", re.S)
+
+# 覆盖根声明（R20-2：任何计数类判据须在输出里自证它看过哪些根）
+# r99 一手：本地面只扫 D:/global_skills 时，superpowers 的 using-git-worktrees /
+# dispatching-parallel-agents 被算成「对手独占、本地没有」，实测二者已在插件根
+# C:/Users/37533/.qoder-cn/plugins/cache/.../superpowers/<ver>/skills/ 装着 —— 假缺口。
+PLUGIN_INDEX = "C:/Users/37533/.qoder-cn/plugins/installed_plugins_v2.json"
+
+
+def declared_roots():
+    """权威源根 + 平台插件根（逐条取自 installed_plugins_v2.json 的 installPath）。
+
+    返回 (roots, notes)；roots = [{path, role, real}]，按 realpath 去重，
+    防 .qoder-cn/skills 这类 junction 指回权威源被重复计数。
+    """
+    roots, notes = [], []
+    real_auth = os.path.realpath(SKILL_ROOT)
+    roots.append({"path": SKILL_ROOT, "role": "authority", "real": real_auth})
+    if not os.path.isfile(PLUGIN_INDEX):
+        notes.append("plugin_index_missing:%s" % PLUGIN_INDEX)
+        return roots, notes
+    try:
+        doc = json.load(io.open(PLUGIN_INDEX, encoding="utf-8-sig"))
+    except (OSError, ValueError) as exc:
+        notes.append("plugin_index_unreadable:%r" % (exc,))
+        return roots, notes
+    seen = {real_auth}
+    for plugin, entries in (doc.get("plugins") or {}).items():
+        items = entries if isinstance(entries, list) else [entries]
+        for e in items:
+            ip = (e or {}).get("installPath")
+            if not ip:
+                notes.append("no_installPath:%s" % plugin)
+                continue
+            real = os.path.realpath(ip)
+            if real in seen:
+                notes.append("deduped_same_real:%s" % plugin)
+                continue
+            if not os.path.isdir(real):
+                notes.append("installPath_absent:%s" % plugin)
+                continue
+            seen.add(real)
+            roots.append({"path": ip.replace(os.sep, "/"), "role": "plugin",
+                          "real": real, "plugin": plugin})
+    return roots, notes
+
+
+def collect_skillmd(root):
+    """该根下所有 SKILL.md（排噪层），返回 [(绝对路径, slug)]。"""
+    out = []
+    for cur, dirs, files in os.walk(root):
+        rel = os.path.relpath(cur, root).replace(os.sep, "/")
+        if any(p in NOISE_PARTS for p in rel.split("/")):
+            dirs[:] = []
+            continue
+        if "SKILL.md" in files:
+            slug = os.path.basename(cur).lower()
+            out.append((os.path.join(cur, "SKILL.md"), slug))
+    return out
+
+
+def fm_parse(text):
+    """前置 YAML 围栏里是否同时有 name 与 description —— 有才可被入册与路由。"""
+    m = RE_FM.match(text)
+    if not m:
+        return {"fence": False, "name": False, "description": False}
+    keys = set()
+    for line in m.group(1).splitlines():
+        mm = re.match(r"^([A-Za-z_][A-Za-z0-9_-]*)[ \t]*:", line)
+        if mm:
+            keys.add(mm.group(1).lower())
+    return {"fence": True, "name": "name" in keys, "description": "description" in keys}
 
 # 对手名册：由本窗口 search/repositories 实测星标降序取入（见 raw 缓存 search_face）
 ROSTER = [
@@ -142,10 +236,12 @@ def fetch_remote():
             continue
         hits = {"body": {k: 0 for k in SECTIONS}, "both": {k: 0 for k in SECTIONS}}
         sizes = []
+        fm_fence = fm_both = fetched = 0
         for p in rec.get("skill_md_paths", [])[:SAMPLE_PER_REPO]:
             t = gh_raw("repos/%s/contents/%s" % (slug, p))
             if not t:
                 continue
+            fetched += 1
             sizes.append(len(t.encode("utf-8")))
             a = anatomy(t)
             for k in SECTIONS:
@@ -153,56 +249,190 @@ def fetch_remote():
                     hits["body"][k] += 1
                 if a["both"][k]:
                     hits["both"][k] += 1
+            f = fm_parse(t)
+            fm_fence += f["fence"]
+            fm_both += (f["name"] and f["description"])
         rec["sampled_skill_md"] = len(sizes)
+        rec["sample_attempted"] = min(len(rec.get("skill_md_paths", [])), SAMPLE_PER_REPO)
+        rec["sample_unreadable"] = rec["sample_attempted"] - fetched
+        rec["sample_fm_fence"] = fm_fence
+        rec["sample_fm_both"] = fm_both
         rec["sample_bytes_mean"] = round(sum(sizes) / len(sizes), 1) if sizes else None
         rec["rubric_hits"] = hits
     return raw
 
 
+def walk_tree_files(root):
+    """全树文件（排除 .git/_trash/__pycache__ 等噪声层），双侧同口径用相对路径。"""
+    out = []
+    for cur, dirs, files in os.walk(root):
+        rel = os.path.relpath(cur, root).replace(os.sep, "/")
+        if any(p in NOISE_PARTS for p in rel.split("/")):
+            dirs[:] = []
+            continue
+        for f in files:
+            out.append(f if rel == "." else "%s/%s" % (rel, f))
+    return out
+
+
 # ------------------------------------------------------------------ 本地面
 def measure_local():
-    dirs = []
-    for name in sorted(os.listdir(SKILL_ROOT)):
-        full = os.path.join(SKILL_ROOT, name)
-        if not os.path.isdir(full):
-            continue
-        sk = os.path.join(full, "SKILL.md")
-        if os.path.isfile(sk):
-            dirs.append(sk)
+    roots, root_notes = declared_roots()
+    entries = []          # (abs SKILL.md path, slug, root_role)
+    root_report = []
+    for r in roots:
+        found = collect_skillmd(r["real"])
+        # 逐根各出一行（不用 role:basename 做键 —— 两个插件根同名的话会互相覆盖，
+        # 分母静默变小而总和照样自洽，是 X-24「漏扫与扫过不得同形」的另一半）
+        root_report.append({"path": r["path"], "role": r["role"], "skill_md": len(found)})
+        for path, slug in found:
+            entries.append((path, slug, r["role"]))
+    seen_file = set()
     sizes, hits = [], {"body": {k: 0 for k in SECTIONS}, "both": {k: 0 for k in SECTIONS}}
-    for sk in dirs:
+    unreadable = 0
+    fm_fence = fm_name = fm_both = 0
+    slugs_auth, slugs_all = set(), set()
+    for path, slug, role in entries:
+        rp = os.path.realpath(path)
+        if rp in seen_file:
+            continue
+        seen_file.add(rp)
+        slugs_all.add(slug)
+        if role == "authority":
+            slugs_auth.add(slug)
         try:
-            b = io.open(sk, "rb").read()
+            b = io.open(path, "rb").read()
         except OSError:
+            unreadable += 1
             continue
         sizes.append(len(b))
-        a = anatomy(b.decode("utf-8", "replace"))
+        text = b.decode("utf-8", "replace")
+        a = anatomy(text)
         for k in SECTIONS:
             if a["body"][k]:
                 hits["body"][k] += 1
             if a["both"][k]:
                 hits["both"][k] += 1
+        f = fm_parse(text)
+        fm_fence += f["fence"]
+        fm_name += f["name"]
+        fm_both += (f["name"] and f["description"])
+    n_files = len(seen_file)
+    # 跨根重复必须显形（R-ENUM/X-24）：各根之和 == 去重后 + 跨根重复，不许静默吞
+    cross_root_dupes = len(entries) - n_files
+    auth_count = sum(1 for p, _s, r in entries
+                     if r == "authority" and os.path.realpath(p) in seen_file)
     entry = os.path.join(SKILL_ROOT, "A-memory-start", "SKILL.md")
-    py = sum(1 for root, _ds, fs in os.walk(SKILL_ROOT) for f in fs if f.endswith(".py"))
+
+    # 文件级维度（d4/d6/d7/d10）量的是「我方那棵树」= 权威源根；插件根是只读产物，
+    # 把它的 schema/workflow 计进来会把「我能改的面」和「我改不动的面」混成一锅。
+    files = walk_tree_files(SKILL_ROOT)
+    # 双单位并报（防取错计数单位致跨轮不可比）：
+    #   toplevel = 权威源一级目录含 SKILL.md 的个数 —— 与焚诀 verify C1「注册表==磁盘」同单位
+    #   alllayers = 递归全深度 —— 本件 d1 用的就是它（会多收嵌套 SKILL.md）
+    toplevel = sum(1 for n in os.listdir(SKILL_ROOT)
+                   if os.path.isfile(os.path.join(SKILL_ROOT, n, "SKILL.md")))
+    mds = [p for p in files if p.endswith(".md")]
+    md_bytes = 0
+    md_unreadable = 0
+    for p in mds:
+        try:
+            md_bytes += os.path.getsize(os.path.join(SKILL_ROOT, p.replace("/", os.sep)))
+        except OSError:
+            md_unreadable += 1
+    wf = [p for p in files
+          if p.startswith(".github/workflows/") and p.endswith((".yml", ".yaml"))]
+
     return {
-        "skill_dirs_with_skillmd": len(dirs),
+        # 覆盖根自证（R20-2）
+        "coverage_roots": root_report,
+        "coverage_root_notes": root_notes,
+        "cross_root_duplicates": cross_root_dupes,
+        "file_dims_scope": "d4/d6/d7/d10 = 权威源根单独口径；d1/d8/d9/d12 = 全部覆盖根并集口径",
+        # d1 / d8
+        "skill_dirs_with_skillmd": n_files,
+        "authority_skillmd": auth_count,
+        "authority_toplevel_skillmd": toplevel,
+        "unique_slugs": len(slugs_all),
+        "authority_unique_slugs": len(slugs_auth),
+        "duplicate_slugs": n_files - len(slugs_all),
+        "slugs": sorted(slugs_all),
+        "skill_md_unreadable": unreadable,
+        # d3
         "skill_md_total_bytes": sum(sizes),
         "skill_md_mean_bytes": round(sum(sizes) / len(sizes), 1) if sizes else None,
         "entry_inject_bytes": os.path.getsize(entry) if os.path.isfile(entry) else None,
-        "py_files": py,
+        # d2
+        "py_files": sum(1 for p in files if p.endswith(".py")),
+        # d4
+        "total_files": len(files),
+        "schema_files": len([p for p in files
+                             if "/schemas/" in p or p.startswith("schemas/")]),
+        "docs_files": len([p for p in files if p.startswith(("docs/", "website/"))]),
+        # d6
+        "root_docs": {n: os.path.isfile(os.path.join(SKILL_ROOT, n))
+                      for n in ROOT_DOC_NAMES},
+        "md_files": len(mds),
+        "md_mean_bytes": round(md_bytes / max(len(mds) - md_unreadable, 1), 1),
+        "md_unreadable": md_unreadable,
+        # d7
+        "windows_scripts": len([p for p in files
+                                if p.lower().endswith((".ps1", ".bat", ".cmd"))]),
+        # d10
+        "workflow_files": len(wf),
+        "has_dependabot": os.path.isfile(os.path.join(SKILL_ROOT, ".github", "dependabot.yml")),
+        # d12
+        "fm_fence": fm_fence,
+        "fm_name": fm_name,
+        "fm_both": fm_both,
         "rubric_counts": hits,
     }
 
 
+def slug_from_skillpath(path):
+    """SKILL.md 的路径 → 能力 slug（其父目录名，小写）；裸 SKILL.md 无 slug。"""
+    parts = [p for p in path.split("/") if p]
+    if len(parts) < 2 or parts[-1].upper() != "SKILL.MD":
+        return None
+    return parts[-2].lower()
+
+
 # ------------------------------------------------------------------ 打分
+def _coverage_from(mine, opponents):
+    """逐维自证：这一维两侧各有没有数，缺哪侧必须点名（禁只回状态词冒充覆盖）。"""
+    has_opp = {dim for o in opponents.values()
+               if o.get("state") == "MEASURED" for dim in o if dim in DIM_CN}
+    cov = {}
+    for dim in DIM_ORDER:
+        l_ok, o_ok = dim in mine, dim in has_opp
+        cov[dim] = {"cn": DIM_CN[dim],
+                    "local": l_ok,
+                    "opponent": o_ok,
+                    "state": ("MEASURED" if (l_ok and o_ok)
+                              else ("PARTIAL" if (l_ok or o_ok) else "UNAVAILABLE"))}
+    return cov
+
+
 def score_dims(local, raw):
+    local_slugs = set(local.get("slugs", []))
+    opp_slugs = {}
     opponents = {}
     for slug, rec in raw.get("repos", {}).items():
         if not rec.get("available"):
             opponents[slug] = {"state": "UNAVAILABLE"}
             continue
+        opp_slugs[slug] = set(filter(None, (slug_from_skillpath(p)
+                                            for p in rec.get("skill_md_paths", []))))
+    universe = set().union(*opp_slugs.values()) if opp_slugs else set()
+    opp_only_union = universe - local_slugs
+    local_only = local_slugs - universe
+
+    for slug, rec in raw.get("repos", {}).items():
+        if not rec.get("available"):
+            continue
         n = max(rec.get("sampled_skill_md", 0), 1)
         h = rec.get("rubric_hits", {})
+        mine_excl = local_slugs - opp_slugs.get(slug, set())
         opponents[slug] = {
             "state": "MEASURED",
             "d1_capability_surface": len(rec.get("skill_md_paths", [])),
@@ -225,7 +455,14 @@ def score_dims(local, raw):
                                  "repo_description_chars": rec.get("description_len")},
             "d7_fit_scenario": {"total_blobs": rec.get("total_blobs"),
                                 "windows_scripts": rec.get("has_windows_scripts")},
+            "d8_function_coverage": {
+                "unique_slugs": len(opp_slugs.get(slug, set())),
+                "opponent_only_vs_local": len(opp_slugs.get(slug, set()) - local_slugs),
+                "local_only_vs_this_opponent": len(mine_excl),
+                "sampled_fm_both": rec.get("sample_fm_both"),
+            },
             "d9_output_quality": {"sampled": rec.get("sampled_skill_md"),
+                                  "sample_unreadable": rec.get("sample_unreadable"),
                                   "ratio_body": {k: round(h["body"][k] / n, 3) for k in SECTIONS},
                                   "ratio_both": {k: round(h["both"][k] / n, 3) for k in SECTIONS}},
             "d10_control": {"dependabot": rec.get("has_dependabot"),
@@ -233,6 +470,12 @@ def score_dims(local, raw):
                             "workflows": len(rec.get("workflow_paths", []))},
             "d11_reusability": {"skill_md_count": len(rec.get("skill_md_paths", [])),
                                 "schema_bundled": len(rec.get("schema_paths", [])) > 0},
+            "d12_compatibility": {
+                "sample_attempted": rec.get("sample_attempted"),
+                "fm_fence_rate": round(rec.get("sample_fm_fence", 0) / n, 3),
+                "fm_both_rate": round(rec.get("sample_fm_both", 0) / n, 3),
+                "basis": "抽样件前置 YAML 围栏含 name+description 的比例；分母=实抽件数（非全量）",
+            },
             "tree_truncated": rec.get("tree_truncated"),
         }
     nl = max(local["skill_dirs_with_skillmd"], 1)
@@ -240,24 +483,62 @@ def score_dims(local, raw):
     mine = {
         "state": "MEASURED",
         "d1_capability_surface": local["skill_dirs_with_skillmd"],
+        "d1_units": {"all_layers_all_roots": local["skill_dirs_with_skillmd"],
+                     "authority_all_layers": local["authority_skillmd"],
+                     "authority_toplevel": local["authority_toplevel_skillmd"],
+                     "note": "跨轮可比只认 authority_toplevel（与焚诀 verify C1 同单位）；本件 d1 取并集全深度口径"},
+        "coverage_roots": local["coverage_roots"],
         "d2_mechanism_layer": {"py_files": local["py_files"], "windows_scripts": True},
         "d3_performance": {"entry_inject_bytes": local["entry_inject_bytes"],
                            "mean_skill_bytes": local["skill_md_mean_bytes"]},
+        "d4_extensibility": {"schema_files": local["schema_files"],
+                             "docs_files": local["docs_files"],
+                             "total_files": local["total_files"]},
         "d5_maintenance": {"push_age_days": 0.0, "archived": False},
+        "d6_documentation": dict(local["root_docs"],
+                                 md_files=local["md_files"],
+                                 md_mean_bytes=local["md_mean_bytes"]),
+        "d7_fit_scenario": {"total_blobs": local["total_files"],
+                            "windows_scripts": local["windows_scripts"]},
+        "d8_function_coverage": {"unique_slugs": local["unique_slugs"],
+                                 "authority_unique_slugs": local["authority_unique_slugs"],
+                                 "duplicate_slugs": local["duplicate_slugs"],
+                                 "opponent_only_union": len(opp_only_union),
+                                 "local_only_vs_universe": len(local_only),
+                                 "opponent_universe_slugs": len(universe)},
         "d9_output_quality": {"n": nl,
+                              "unreadable": local["skill_md_unreadable"],
                               "ratio_body": {k: round(rc["body"][k] / nl, 3) for k in SECTIONS},
                               "ratio_both": {k: round(rc["both"][k] / nl, 3) for k in SECTIONS}},
+        "d10_control": {"dependabot": local["has_dependabot"],
+                        "security_md": local["root_docs"].get("SECURITY.md", False),
+                        "workflows": local["workflow_files"]},
         "d11_reusability": {"skill_md_count": local["skill_dirs_with_skillmd"]},
+        "d12_compatibility": {"n": nl,
+                              "fm_fence_rate": round(local["fm_fence"] / nl, 3),
+                              "fm_name_rate": round(local["fm_name"] / nl, 3),
+                              "fm_both_rate": round(local["fm_both"] / nl, 3),
+                              "basis": "全量 171 口径：前置 YAML 围栏含 name+description 才可被 rule_editor 入册与路由"},
     }
+    coverage = _coverage_from(mine, opponents)
+    matched = [k for k, v in coverage.items() if v["state"] == "MEASURED"]
+    mismatched = [k for k, v in coverage.items() if v["state"] != "MEASURED"]
     return {"generated_at": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-            "schema": "twelve-face-r96-v2",
+            "schema": "twelve-face-r99-v3",
             "rubric_source": "skill_structure_rubric_scan.rubric_hits（本仓单一真相源，非本件自造）",
-            "d12_compatibility": "定性判定，见报告 §2.12；机器判据=该 skill 目录是否含 SKILL.md+frontmatter name/description（可被 rule_editor 入册）",
+            "dim_coverage": coverage,
+            "dim_coverage_verdict": "matched=%d/12 mismatched=%s"
+                                    % (len(matched), mismatched or "none"),
+            "d12_compatibility": "机器判据=前置 YAML 围栏含 name+description（可被 rule_editor 入册）；双侧同尺，见 local_dims.d12 / opponents.*.d12",
             "judge_caveats": {
                 "overview": "两口径下双侧都近满命中，非区分项，禁止用作排名依据",
                 "sampling": "对手面每仓最多抽样 %d 件 SKILL.md（非全量），分母=实抽件数，见 sampled" % SAMPLE_PER_REPO,
                 "open_issues": "GitHub API 的 open_issues_count 含 PR，跨仓只比量级不比名次",
                 "window": "双侧均全文取数；截窗会把尾部 Rationalizations/Red Flags 判 0（r96 一手）",
+                "d12_sampling": "对手 d12 为抽样率（分母=实抽件数），本地 d12 为全量率（分母=%d），不可直接同值比名次，只比是否达 1.0" % nl,
+                "d8_denominator": "d8 的对手面 universe 只覆盖本件 ROSTER 的 %d 仓，非全网能力全集；「opponent_only_union」是相对本名册的差集，不得读成「本地缺这些功能」" % len(opp_slugs),
+                "d8_local_face": "本地 slug 集 = 全部覆盖根并集（权威源 + 平台插件根），r99 前只扫权威源，把插件里已装的能力（实测 superpowers 6.3.0 的 using-git-worktrees / dispatching-parallel-agents）算成假缺口",
+                "d6_scope": "d6 本地面量的是技能树仓根（D:/global_skills），对手面量的是各自仓根；本仓 X-2 已裁定不为「像一线项目」补 LICENSE 等对外授权件，故 README/CHANGELOG 缺位属有意边界而非缺陷",
             },
             "local": local, "local_dims": mine, "opponents": opponents}
 
@@ -279,10 +560,52 @@ def selftest():
     hn = anatomy(no)
     chk("反例 process 不命中", hn["body"]["process"], False)
     chk("反例 rationalizations 不命中", hn["body"]["rationalizations"], False)
+    # r99 新增六维的双向证据（W-47：应绿的绿 + 应红的红）
+    fm_yes = "---\nname: demo-skill\ndescription: 做什么 + 何时用\n---\n\n正文\n"
+    fm_no = "正文直接开始，没有围栏\n"
+    fm_onlyname = "---\nname: demo\ntitle: x\n---\n\n正文\n"
+    chk("正例 fm 含 name+desc", fm_parse(fm_yes)["description"], True)
+    chk("正例 fm both", fm_parse(fm_yes)["name"] and fm_parse(fm_yes)["description"], True)
+    chk("反例 无围栏判 fence=False", fm_parse(fm_no)["fence"], False)
+    chk("反例 缺 description 判 False", fm_parse(fm_onlyname)["description"], False)
+    chk("反例 缺 description 不得混进 both",
+        fm_parse(fm_onlyname)["name"] and fm_parse(fm_onlyname)["description"], False)
+    chk("正例 slug 取父目录", slug_from_skillpath("skills/Foo-Bar/SKILL.md"), "foo-bar")
+    chk("反例 裸 SKILL.md 无 slug", slug_from_skillpath("SKILL.md"), None)
+    # dim_coverage 判据本体：缺哪侧必须点名，不许只回状态词
+    local_stub = {k: {} for k in DIM_ORDER}
+    fake_local = dict(local_stub)
+    fake_local.pop("d4_extensibility")
+    cov = _coverage_from(fake_local, {"x/y": {"state": "MEASURED",
+                                              "d4_extensibility": {}, "d8_function_coverage": {}}})
+    chk("接线 d4 缺本地侧判 PARTIAL 不判 MEASURED",
+        cov["d4_extensibility"]["state"], "PARTIAL")
+    chk("接线 mismatched 清单必须点名缺侧维度",
+        "d6_documentation" in [k for k, v in cov.items() if v["state"] != "MEASURED"], True)
+    chk("接线 双侧齐的维判 MEASURED", cov["d8_function_coverage"]["state"], "MEASURED")
     # 接线自证：本地面必须真读到磁盘（非空），否则整张表是空承诺
     loc = measure_local()
     chk("接线 本地技能数>0", loc["skill_dirs_with_skillmd"] > 0, True)
     chk("接线 入口注入字节>0", (loc["entry_inject_bytes"] or 0) > 0, True)
+    chk("接线 本地 d4 schema 面被读到（>0 或显式 0 但总文件>0）",
+        loc["total_files"] > 0, True)
+    chk("接线 本地 d12 全量分母==技能数", loc["fm_fence"] + loc["skill_md_unreadable"]
+        <= loc["skill_dirs_with_skillmd"], True)
+    # r99 覆盖根自证（R20-2）：插件根必须进面，且分母之和自洽
+    plugin_face = sum(r["skill_md"] for r in loc["coverage_roots"] if r["role"] == "plugin")
+    auth_face = sum(r["skill_md"] for r in loc["coverage_roots"] if r["role"] == "authority")
+    chk("接线 插件根被枚举且实到>0", plugin_face > 0, True)
+    chk("接线 各根之和 == 去重后 + 跨根重复（分母自洽）",
+        auth_face + plugin_face,
+        loc["skill_dirs_with_skillmd"] + loc["cross_root_duplicates"])
+    chk("反例 跨根重复若被静默吞则该项必红",
+        loc["skill_dirs_with_skillmd"] + loc["cross_root_duplicates"]
+        >= auth_face + plugin_face, True)
+    chk("反例 只看权威源会低估 d1", loc["authority_skillmd"] < loc["skill_dirs_with_skillmd"], True)
+    chk("接线 双单位并报且 toplevel<=alllayers",
+        0 < loc["authority_toplevel_skillmd"] <= loc["authority_skillmd"], True)
+    chk("接线 并集 slug 数>=权威源 slug 数",
+        loc["unique_slugs"] >= loc["authority_unique_slugs"], True)
     ok = sum(1 for _, p, _, _ in cases if p)
     for name, p, got, want in cases:
         print("  %s %s got=%r want=%r" % ("PASS" if p else "FAIL", name, got, want))
@@ -316,7 +639,8 @@ def main():
         "opponent_tree": 'gh api -X GET repos/<owner>/<repo>/git/trees/<branch> -f recursive=1',
         "opponent_skill_body": 'gh api -X GET repos/<owner>/<repo>/contents/<path> -H "Accept: application/vnd.github.raw"',
         "local_face": "python 05-exec/r96_twelve_face.py --offline --json <out>",
-        "this_file": "python 05-exec/r96_twelve_face.py --json 06-benchmark/twelve_face_r96_2026-10-01.json",
+        "this_file": "python 05-exec/r96_twelve_face.py --json 06-benchmark/twelve_face_rNN_<YYYY-MM-DD>.json",
+        "selftest": "python 05-exec/r96_twelve_face.py --selftest",
     }
     s = json.dumps(doc, ensure_ascii=False, indent=1)
     if args.out:
