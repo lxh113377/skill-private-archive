@@ -1,0 +1,10 @@
+# 07-next-steps.part52.md
+
+<!-- 本卷为 07-next-steps.part51.md 的延续 -->
+
+- [x] **【P0 新账·r20b 注入面棘轮落地（本仓自持）+ 一条常驻告警】** `05-exec/ratchet_gate.py` 五项指标只降不升（catalog_grand_chars / inject_union_bytes / claim_candidates / drift_ruleish_candidates / desc_over_cap），已挂进本文件同目录 `memory/AGENTS.md`「项目门禁命令」= 每条修改任务动手前实跑。**当前常驻非阻断告警**：`inject_union_bytes` 实测 **87,878B > C25 硬顶 65,536B（+22,342）**，取值 `python 05-exec/ratchet_gate.py`（并集口径 = 焚诀 truth_constants.inject_budget.files **实测磁盘字节** ∪ 本项目注入壳 AGENTS.md 29,293B；刻意不取清单登记 bytes，r19 实测登记值会滞后于盘上真值）。**为什么不默认阻断**：超顶部分是跨项目既有事实（C25 只管它自己那 5 个文件，别的项目注入壳全在预算外），拿它拦本仓每条修改任务只会逼下一个人去放宽判据——故默认告警、`--strict-cap` 升级阻断，且本条留账不销。**消警路径**（按序）：① 焚诀 C32′ 注入区合一落地（转办包见下条）；② 本仓注入壳减重——本轮已用上游既有机制 trim-shell 把 07 主卷 **47,089B → 45,470B**（4 条已销账项翻 `- [x]` 后迁出），`handoff.py handoff .` 实测**拒覆盖**索引壳（保护人工内容），故 AGENTS.md 仍 29,293B，进一步减重须人工精简 07 的「## 分卷目录」行与 06 留痕条目（勿为绿删规则本体）。**⚠️ 校正注（r21c 22:2x 实测更新，原文不改）**：告警现值 = **86,346B**（本轮 `A-memory-start/SKILL.md` 主文件净回吐 1,363B ⇒ 棘轮基线 89,014 → 86,346，`--update` 只降不升已实跑）；**消警路径 ① 已过期**——焚诀已自落 C31（注入预算归因台账）+ C32（空基线台账），我方转办件 `05-exec/r20b_fenjue_wiring/README.md` 停止外推；剩余可行路径 = ② 本仓注入壳减重，以及「把非本仓注入壳纳入统一预算」的**上游口径变更**（归属面动作，本仓不代裁）。 【r39 裁决=作废｜本仓自持部分已落地：ratchet_gate 现 7 指标含 overdue_debt_items，取值 python 05-exec/ratchet_gate.py】
+
+- [x] **【r21d 复测闭环·新机器型判据】** 「转办前先复测归属方是否已自落」升格为机器型：判据 （转办登记表 vs 焚诀 verify 注册面，两下限 AND；取不到真相源 = UNVERIFIED + exit 2，禁默认放行）+ 登记表 （schema ，3 件带 keywords/why）+ 夹具  **26/26**（红阶段实测 ；变异对照 4/4 被拦，含一次「变异设计自身不可证伪」的自纠）。真跑实测：1 件 OBSOLETE（注入区合一，被 C25/C31 覆盖 4/4 词）、2 件 VALID，与 r21c 人工复测一致。挂在 「项目门禁命令」**条件前置**（只在要外推时跑，非每轮必跑）。**取值**：=== 转办件过期检测 (33 条已注册判据 / 3 件待外推) === 【r47 裁决=作废｜定年：r? 登记（git log -S 实测首现 2026-09-24）→ 该判据已落地为常驻机制，条目本身已完成】 【r48 裁决=作废｜判据已落地为 05-exec/transmit_obsolescence_check.py 与 26 例夹具，转办面见 06-benchmark/transmit_proposals.json】
+  VALID      catalog_tax_ratchet    平台技能目录注意力税棘轮 | 最强候选 C20 仅命中 1/3 词（占比 0.33），未达双下限 ⇒ 仍有效
+  OBSOLETE   inject_union_merge     注入区口径合一（多项目注入壳并入统一预算） | 已被 C25、C31 覆盖：命中 4/4 词（如 注入、预算、台账、归因）
+  VALID      claim_truth_gate       计数断言内容级门禁（注入文本里的数字断言与真相源对账） | 最强候选 C29 仅命中 1/3 词（占比 0.33），未达双下限 ⇒ 仍有效
