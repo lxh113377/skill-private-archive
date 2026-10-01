@@ -185,6 +185,8 @@ r42 根因轮（2026-09-25 第 42 轮，第十二次逐字触发 ⇒ 整跑一�
 
 - **卷44** `07-next-steps.part45.md` — 07-next-steps 分卷（R199 自动拆卷）
 
+- **卷45** `07-next-steps.part46.md` — 07-next-steps 分卷（R199 自动拆卷）
+
 ## 分卷目录
 - **卷1** `07-next-steps.part1.md` — 历史待办与已完成条目（2026-09-22 已按实测销账）
 - **卷2** `07-next-steps.part2.md` — 已完成：批2 剩余 P0 与 q-2/q-3 收口
@@ -208,9 +210,6 @@ r42 根因轮（2026-09-25 第 42 轮，第十二次逐字触发 ⇒ 整跑一�
 - [ ] **【P1·待办 W-19（r46 新立）】** 写入器目前只管 07 的裁决标记；把 05/06/08 的状态回写（勾销、校正注）也纳入同一锚点入口，避免又出现「按行号改别的卷」的第二现场。 【r51 裁决=执行完毕｜写入器新增 --mode note（落为「【rNN 补记：…】」），05/06/08 的状态回写与裁决标记共用同一锚点入口、同一逐行保留行尾与同行读回验证；本轮即用该模式写 06 的归因校正注，夹具 t11–t14 四例锁死歧义/0命中/幂等三态】
 - [ ] **【P1·待办 W-17（r45 新立）】** 台账 coverage 三列进契约：按 `ts` 分代必填（r45 之前的行不要求该列，之后必须有三列），否则无法把完整性纳入取值域而不回溯误杀历史行（同族 r42 D36）。 【r50 裁决=执行完毕｜coverage 三列自 2026-09-25T15:00 起分代必填已生效（05-exec/schemas/r19/baseline-contracts.json 的 row_required_from），r50 又把它扩为多代列表以容纳第 2 代 face_* 列；旧行豁免由夹具 t61/t64 锁死】
 - [ ] **【P1·待办 W-15（r44 新立）】** 把 coverage 结果（status / prev_overdue / missing 数）写进 06-benchmark/debt_runs.jsonl 行并纳入契约取值域，让 CI 能看到「上轮欠几条、本轮清几条」的斜率，而不是只看到当期快照。 【r49 裁决=执行完毕｜coverage_status/coverage_prev_overdue/coverage_missing 三列已进台账（实测 8/31 行含该列）并由 r48 row_required_from 分代必填守卫生效，取值命令 git show r48:05-exec/r38_debt_aging.py 后 grep coverage_ 】
-- [ ] **【P0·本轮落地 W-22（r49 新立）】** 裁决写入器加第⑥重对账：条目**自身编号**已被近期提交主题宣布落地却仍写延期 ⇒ 拒写（动因 = r46 我把 W-17 的延期写到已落地的 W-14 行上，3 轮后才被到期追讨抓到）。 【r49 裁决=执行完毕｜第⑥重对账已落地于 05-exec/r46_mark_verdict.py 的 landed_contradiction + item_own_id，且**本轮首跑即拦住我自己的 W-14 裁决**（因由文本引用了旧标记原文，随即加头部锚定修精度）】
-- [ ] **【P0·本轮落地 W-23（r49 新立）】** 写入器按**物理行保留行尾**（混合行尾卷不得并元素后追加到元素末尾），读回验证从「文件里有这个串」升级为「锚点与标记同一物理行」。 【r49 裁决=执行完毕｜split_keep_eol/join_keep_eol 逐行保留行尾，读回改为同行断言；混合行尾反例夹具 r46_mark_verdict_fixtures t9/t10 由红转绿（修前实测把标记写到「待办 戊」行）】
-- [ ] **【P0·本轮落地 W-24（r49 新立）】** 分类器只认**最后一个标记的头部**（第一个 ｜/】 之前）：原因体里引用的旧标记原文不得改变判定，也不得计入延期次数（防 REPEAT 第 9 指标虚增）。 【r49 裁决=执行完毕｜parse_last_verdict 只取最后一个标记的头部，count_deferrals 同口径；负控 q1-q5 五例锁死（引用旧标记不改判定、真延期仍 DEFERRED/到期仍 OVERDUE）】
 - [ ] **【P0·下轮首推 W-20（r49 新立）】** 每个新判据首跑必须自证输入面未被截断/降采样。账龄尺已落四面（轮号面 -40 窗口 vs tag 硬锚、去重面 80 字前缀键、定年面 70 字 needle、建议面 报告→待办卷），取值 `python 05-exec/r38_debt_aging.py --report <本轮报告>`；残余面见 W-25。 【r49 裁决=执行完毕（限定）｜四面已落地于 05-exec/r38_debt_aging.py 的 face_round/face_dedup/face_dating/face_suggestions，夹具 22 例（含真数据反例：--report r48 报告即 [FACE:FAIL] 点名 W-20/W-21 未承接）；残余推广面转 W-25】
 - [ ] **【P0·下轮首推 W-25（r49 新立）】** 把输入面自证推广到其余判据：05-exec/ratchet_gate.py、05-exec/baseline_contract_scan.py、05-exec/rule_conflict_scan.py 各自的 glob/取值窗口未自证；并评估把 face_status 写进 06-benchmark/debt_runs.jsonl 成为趋势列（先进台账观察，不进棘轮）。 【r50 裁决=执行完毕｜三面已推：05-exec/rule_conflict_scan.py 的 discover_authority_candidates/effective_files（扫描面 10→26 件，极性规则 116→188、互斥候选 6→21）+ 05-exec/ratchet_gate.py 的 face_counted_vs_observed；baseline_contract_scan 的 pattern 零命中判红 r33 既有，本轮只补防回退断言；face_status 已于 r49 进台账】
 - [ ] **【P1·待办 W-21（r49 新立）】** 是否把 unowned_claims 升为棘轮第 10 指标：先量误报率再决定，未量出 0 误报前不得接线（r25 用户否决拦任务的闸门）。 【r49 裁决=作废（不接线）｜实测 27 条归属声明全部 OWNERED、UNOWNED=0：恒定 0 的指标是假绿面；且 OWNERED 判据精度低（正文含任意路径 token 即从 UNOWNED 翻成 OWNERED ⇒ 可刷），第 10 指标收益不抵噪声。牙齿已由 r39 夹具 t40-t46 变异桩持有，不重复建】
