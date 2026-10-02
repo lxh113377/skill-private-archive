@@ -1,0 +1,1 @@
+Use when deploying a static site or frontend build to BytePlus edge hosting with CDN acceleration.

@@ -1,0 +1,1 @@
+description: "List, configure, authenticate, call, and inspect MCP servers/tools with mcporter over HTTP or stdio. Use when you need to probe, test, or debug MCP tool connectivity before wiring an agent."

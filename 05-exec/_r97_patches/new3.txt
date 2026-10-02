@@ -1,0 +1,1 @@
+description: "Oracle CLI second-model review/debug/refactor/design with selected files, dry-run token checks, API or browser engine. Use when you want a second model independent opinion on code or design decisions."
