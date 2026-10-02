@@ -1,0 +1,2698 @@
+C:\Users\37533\Desktop\workspace\skill焚诀\自建skill优化\05-exec\r96_twelve_face.py:235: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  return round((dt.datetime.utcnow() - d).total_seconds() / 86400.0, 2)
+{
+ "generated_at": "2026-10-02T17:45:21Z",
+ "schema": "twelve-face-r103-v6",
+ "rubric_source": "skill_structure_rubric_scan.rubric_hits（本仓单一真相源，非本件自造）",
+ "dim_coverage": {
+  "d1_capability_surface": {
+   "cn": "功能模块覆盖范围",
+   "local": true,
+   "opponent": true,
+   "state": "MEASURED"
+  },
+  "d2_mechanism_layer": {
+   "cn": "技术架构与实现方式",
+   "local": true,
+   "opponent": true,
+   "state": "MEASURED"
+  },
+  "d3_performance": {
+   "cn": "性能表现（注意力税/体积）",
+   "local": true,
+   "opponent": true,
+   "state": "MEASURED"
+  },
+  "d4_extensibility": {
+   "cn": "可扩展性",
+   "local": true,
+   "opponent": true,
+   "state": "MEASURED"
+  },
+  "d5_maintenance": {
+   "cn": "维护状态",
+   "local": true,
+   "opponent": true,
+   "state": "MEASURED"
+  },
+  "d6_documentation": {
+   "cn": "文档完善程度",
+   "local": true,
+   "opponent": true,
+   "state": "MEASURED"
+  },
+  "d7_fit_scenario": {
+   "cn": "适用场景",
+   "local": true,
+   "opponent": true,
+   "state": "MEASURED"
+  },
+  "d8_function_coverage": {
+   "cn": "功能覆盖（唯一能力名册与双向独占差集）",
+   "local": true,
+   "opponent": true,
+   "state": "MEASURED"
+  },
+  "d9_output_quality": {
+   "cn": "输出质量（六段解剖命中率）",
+   "local": true,
+   "opponent": true,
+   "state": "MEASURED"
+  },
+  "d10_control": {
+   "cn": "可控性",
+   "local": true,
+   "opponent": true,
+   "state": "MEASURED"
+  },
+  "d11_reusability": {
+   "cn": "可复用性",
+   "local": true,
+   "opponent": true,
+   "state": "MEASURED"
+  },
+  "d12_compatibility": {
+   "cn": "与现有工作流的兼容性",
+   "local": true,
+   "opponent": true,
+   "state": "MEASURED"
+  }
+ },
+ "dim_coverage_verdict": "matched=12/12 mismatched=none",
+ "d12_compatibility": "机器判据=前置 YAML 围栏含 name+description（可被 rule_editor 入册）；双侧同尺，见 local_dims.d12 / opponents.*.d12",
+ "judge_caveats": {
+  "overview": "两口径下双侧都近满命中，非区分项，禁止用作排名依据",
+  "sampling": "对手面每仓最多抽样 6 件 SKILL.md（非全量），分母=实抽件数，见 sampled",
+  "open_issues": "GitHub API 的 open_issues_count 含 PR，跨仓只比量级不比名次",
+  "window": "双侧均全文取数；截窗会把尾部 Rationalizations/Red Flags 判 0（r96 一手）",
+  "d12_sampling": "对手 d12 为抽样率（分母=实抽件数），本地 d12 为全量率（分母=322），不可直接同值比名次，只比是否达 1.0",
+  "d8_denominator": "d8 的对手面 universe 只覆盖本件**派生名册**（由 search_face 现算）里的 24 仓，非全网能力全集；「opponent_only_union」是相对该名册的差集，不得读成「本地缺这些功能」；名册本身的可信度见 roster_face.state",
+  "d8_local_face": "本地 slug 集 = 全部覆盖根并集（权威源 + 平台插件根），r99 前只扫权威源，把插件里已装的能力（实测 superpowers 6.3.0 的 using-git-worktrees / dispatching-parallel-agents）算成假缺口",
+  "d6_scope": "d6 本地面量的是技能树仓根（D:/global_skills），对手面量的是各自仓根；本仓 X-2 已裁定不为「像一线项目」补 LICENSE 等对外授权件，故 README/CHANGELOG 缺位属有意边界而非缺陷"
+ },
+ "roster_face": {
+  "cn_source": "名册由 gh search/repositories 实测星标降序现算派生（源码零仓名清单）",
+  "derived_n": 25,
+  "declared_n": 0,
+  "dropped": [],
+  "added_not_in_top_n": [
+   "JuliusBrussee/caveman",
+   "K-Dense-AI/scientific-agent-skills",
+   "LibreChat-AI/LibreChat",
+   "Shubhamsaboo/awesome-llm-apps",
+   "VoltAgent/awesome-agent-skills",
+   "addyosmani/agent-skills",
+   "affaan-m/ECC",
+   "anthropics/skills",
+   "ayghri/i-have-adhd",
+   "blader/humanizer",
+   "calesthio/OpenMontage",
+   "coreyhaines31/marketingskills",
+   "github/awesome-copilot",
+   "hesreallyhim/awesome-claude-code",
+   "kepano/obsidian-skills",
+   "mattpocock/skills",
+   "mukul975/Anthropic-Cybersecurity-Skills",
+   "mvanhorn/last30days-skill",
+   "obra/superpowers",
+   "sickn33/agentic-awesome-skills",
+   "tt-a1i/archify",
+   "vercel-labs/agent-skills",
+   "vercel-labs/skills",
+   "volcengine/OpenViking",
+   "zhayujie/CowAgent"
+  ],
+  "state": "matched",
+  "face_rows": 25,
+  "unparsable_rows": 0,
+  "non_skill_repos": [
+   "VoltAgent/awesome-agent-skills",
+   "hesreallyhim/awesome-claude-code"
+  ],
+  "unavailable_face": [
+   "vercel-labs/agent-skills|tree|rc=1 Get \"https://api.github.com/repos/vercel-labs/agent-skills/git/trees/main?recursive=1\": unexpected EOF|stars=31843"
+  ],
+  "unavailable_n": 1,
+  "blindness_note": "unavailable_face 是「这一层没量到」的名册（含层名+归因+星标）；unavailable_n>0 时不得对外称面全覆盖，也不得把这些仓折算成 0 分",
+  "probed_n": 25,
+  "tree_ok_n": 24,
+  "skill_face_n": 22,
+  "slugless_skill_repos": [
+   "blader/humanizer"
+  ],
+  "skill_bearing_predicate": "tree 内 SKILL.md 数 > 0，且 tree_state==ok；tree 没量到的仓档位为 unknown（三态），不进任何分母也不判 False",
+  "truncated_named": [],
+  "quality_note": "d1/d8/d9/d12 只在 skill_face 上取分母；non_skill_repos 仅进 d5/d6/d10（平台仓的维护/文档/CI 面仍可比）"
+ },
+ "local": {
+  "coverage_roots": [
+   {
+    "path": "D:/global_skills",
+    "role": "authority",
+    "skill_md": 227
+   },
+   {
+    "path": "C:/Users/37533/.qoder-cn/plugins/cache/qoderapp-bundler/qoder-context/1.0.72.34cf9e2f",
+    "role": "plugin",
+    "skill_md": 0
+   },
+   {
+    "path": "C:/Users/37533/.qoder-cn/plugins/cache/qoder-marketplace/fullstack-dev-expert/1.0.0",
+    "role": "plugin",
+    "skill_md": 8
+   },
+   {
+    "path": "C:/Users/37533/.qoder-cn/plugins/cache/qoder-marketplace/architecture-visualization/0.1.0",
+    "role": "plugin",
+    "skill_md": 13
+   },
+   {
+    "path": "C:/Users/37533/.qoder-cn/plugins/cache/qoder-marketplace/postman/1.3.1",
+    "role": "plugin",
+    "skill_md": 3
+   },
+   {
+    "path": "C:/Users/37533/.qoder-cn/plugins/cache/qoder-marketplace/qoder-cloud-agents/1.2.0",
+    "role": "plugin",
+    "skill_md": 1
+   },
+   {
+    "path": "C:/Users/37533/.qoder-cn/plugins/cache/qoder-marketplace/better-harness/0.2.20",
+    "role": "plugin",
+    "skill_md": 2
+   },
+   {
+    "path": "C:/Users/37533/.qoder-cn/plugins/cache/qoder-marketplace/context7/1.0.0",
+    "role": "plugin",
+    "skill_md": 1
+   },
+   {
+    "path": "C:/Users/37533/.qoder-cn/plugins/cache/qoder-marketplace/alibabacloud-core/1.0.37",
+    "role": "plugin",
+    "skill_md": 10
+   },
+   {
+    "path": "C:/Users/37533/.qoder-cn/plugins/cache/qoder-marketplace/meoo/0.1.0",
+    "role": "plugin",
+    "skill_md": 1
+   },
+   {
+    "path": "C:/Users/37533/.qoder-cn/plugins/cache/qoder-marketplace/mobile-use/0.7.5",
+    "role": "plugin",
+    "skill_md": 2
+   },
+   {
+    "path": "C:/Users/37533/.qoder-cn/plugins/cache/qoder-marketplace/superpowers/6.3.0",
+    "role": "plugin",
+    "skill_md": 14
+   },
+   {
+    "path": "C:/Users/37533/.qoder-cn/plugins/cache/qoder-marketplace/Presentations/0.1.1",
+    "role": "plugin",
+    "skill_md": 1
+   },
+   {
+    "path": "C:/Users/37533/.qoder-cn/plugins/cache/qoder-marketplace/apollo-graphql/1.0.0",
+    "role": "plugin",
+    "skill_md": 15
+   },
+   {
+    "path": "C:/Users/37533/.qoder-cn/plugins/cache/qoder-marketplace/cangjie-skills/1.0.0",
+    "role": "plugin",
+    "skill_md": 6
+   },
+   {
+    "path": "C:/Users/37533/.qoder-cn/plugins/cache/qoder-marketplace/grillme-matt/0.1.0",
+    "role": "plugin",
+    "skill_md": 8
+   },
+   {
+    "path": "C:/Users/37533/.qoder-cn/plugins/cache/qoder-marketplace/qgraphflow/0.0.5",
+    "role": "plugin",
+    "skill_md": 1
+   },
+   {
+    "path": "C:/Users/37533/.qoder-cn/plugins/cache/qoder-marketplace/moonbit-skills/0.1.0",
+    "role": "plugin",
+    "skill_md": 9
+   }
+  ],
+  "coverage_root_notes": [],
+  "cross_root_duplicates": 0,
+  "file_dims_scope": "d4/d6/d7/d10 = 权威源根单独口径；d1/d8/d9/d12 = 全部覆盖根并集口径",
+  "skill_dirs_with_skillmd": 322,
+  "authority_skillmd": 227,
+  "authority_toplevel_skillmd": 175,
+  "unique_slugs": 312,
+  "authority_unique_slugs": 224,
+  "duplicate_slugs": 10,
+  "slugs": [
+   "9b-lightworkflow",
+   "_my-skills",
+   "a-ask-questions",
+   "a-get-memory",
+   "a-java-problem",
+   "a-memory-start",
+   "a-project-better",
+   "a-project-handoff",
+   "a-prompt-better",
+   "a-skill-manager",
+   "agent-browser",
+   "agent-ready-apis",
+   "ai-model-nodejs",
+   "ai-model-web",
+   "ai-model-wechat",
+   "ai-video-homework-pipeline",
+   "algorithmic-art",
+   "alibabacloud-cli-cost-estimation",
+   "alibabacloud-cli-guidance",
+   "alibabacloud-find-skills",
+   "alibabacloud-mcp-core-script-generate",
+   "alibabacloud-sdk-usage",
+   "alibabacloud-suggest-cli",
+   "alibabacloud-terraform-code-generation",
+   "alibabacloud-terraform-import",
+   "api接口设计",
+   "apollo-client",
+   "apollo-connectors",
+   "apollo-federation",
+   "apollo-ios",
+   "apollo-kotlin",
+   "apollo-mcp-server",
+   "apollo-router",
+   "apollo-router-plugin-creator",
+   "apollo-server",
+   "architecture-communicator",
+   "architecture-health",
+   "audio-deliverable-pipeline",
+   "audit-runner-safe-aggregate",
+   "auth-nodejs-cloudbase",
+   "auth-tool-cloudbase",
+   "auth-web-cloudbase",
+   "auth-wechat-miniprogram",
+   "better-harness",
+   "bigfile-split",
+   "brainstorming",
+   "brand-guidelines",
+   "browse",
+   "browser-cdp",
+   "byted-bp-cdn-pagesdeploy",
+   "byted-mediakit-shared",
+   "byted-seedance-video-generate",
+   "byted-seedream-image-generate",
+   "c-cleanup",
+   "c4model",
+   "cangjie-lang-features",
+   "cangjie-original-docs",
+   "cangjie-regulations",
+   "cangjie-std",
+   "cangjie-stdx",
+   "cangjie-toolchains",
+   "canvas-design",
+   "careful",
+   "chaoshi-admin-inline-edit",
+   "chaoshi-image-optimization",
+   "chaoshi-web-deploy",
+   "chart-visualization",
+   "ci-pipeline-debugging",
+   "cloud-api-operations",
+   "cloud-functions",
+   "cloud-storage-web",
+   "cloudbase-agent",
+   "cloudbase-cli",
+   "cloudbase-code-review",
+   "cloudbase-db-optimize",
+   "cloudbase-declarative-deploy",
+   "cloudbase-document-database-in-wechat-miniprogram",
+   "cloudbase-document-database-web-sdk",
+   "cloudbase-platform",
+   "cloudbase-wechat-integration",
+   "cloudbase__skillhub",
+   "cloudrun-development",
+   "code-review",
+   "codebuddy-chat-web",
+   "codex",
+   "coding-agent",
+   "commit-archaeologist",
+   "computer-use-guidance-windows",
+   "consulting-analysis",
+   "context7-mcp",
+   "cross-platform-agent-sync",
+   "data-analysis",
+   "data-model-creation",
+   "data-visualization",
+   "debugging-fixing",
+   "defuddle",
+   "dependency-impact-analyzer",
+   "deployment-topology-analyzer",
+   "design-consultation",
+   "design-review",
+   "dev-router",
+   "diagram-maker",
+   "dingtalk-aisearch",
+   "dingtalk-aitable",
+   "dingtalk-calendar",
+   "dingtalk-chat",
+   "dingtalk-contact",
+   "dingtalk-doc",
+   "dingtalk-drive",
+   "dingtalk-event",
+   "dingtalk-mail",
+   "dingtalk-minutes",
+   "dingtalk-misc",
+   "dingtalk-shared",
+   "dingtalk-todo",
+   "dingtalk-wiki",
+   "discover-agent-cli",
+   "dispatching-parallel-agents",
+   "doc-coauthoring",
+   "docker-e2e-gate",
+   "docx",
+   "dogfood",
+   "domain-modeling",
+   "drawio",
+   "electron",
+   "elon-musk-perspective",
+   "evolution-planner",
+   "executing-plans",
+   "explore",
+   "fenjue-lessons-hitrate",
+   "fenjue-memory-audit",
+   "figma",
+   "find-skills",
+   "finishing-a-development-branch",
+   "first-principles-decomposer",
+   "flow-visualizer",
+   "freeze",
+   "frontend-design",
+   "frontend-skill",
+   "frontend-slides",
+   "github",
+   "graphql-operations",
+   "graphql-schema",
+   "graphviz",
+   "grill-with-docs",
+   "gsap",
+   "gstack",
+   "gstack-document-release",
+   "gstack-upgrade",
+   "guard",
+   "hermes-installer",
+   "hook-analyzer-skill",
+   "html-ppt",
+   "html-to-docx-win-fix",
+   "http-api-cloudbase",
+   "hyperframes",
+   "hyperframes-cli",
+   "hyperframes-media",
+   "hyperframes-registry",
+   "ican-deploy",
+   "ican-frontend-design-system",
+   "implement",
+   "init",
+   "internal-comms",
+   "investigate",
+   "java业务开发",
+   "json-canvas",
+   "knowledge-capture",
+   "legacy-system-visualizer",
+   "local-asr",
+   "local-computer-use",
+   "local-img2img",
+   "local-mineru",
+   "local-ocr-npu",
+   "local-realtime-translator",
+   "local-screenshot-qa",
+   "local-tts",
+   "local-txt2img",
+   "local-vram",
+   "make-moonbit-c-bindings",
+   "mcp-builder",
+   "mcp-core-best-practices",
+   "mcporter",
+   "meeting-intelligence",
+   "meoo-cli",
+   "minimal-web-baas-demo",
+   "miniprogram-development",
+   "mobile-use",
+   "moonbit-agent-guide",
+   "moonbit-c-binding",
+   "moonbit-extract-spec-test",
+   "moonbit-orientation",
+   "moonbit-proof",
+   "moonbit-refactoring",
+   "moonbit-spec-test-development",
+   "multi-account-query",
+   "nano-pdf",
+   "node-inspect-debugger",
+   "notion-cli",
+   "obsidian-bases",
+   "obsidian-cli",
+   "obsidian-markdown",
+   "oc-dispatch-exec-guard",
+   "ocaml2moonbit-migration",
+   "office-automation-pro",
+   "openai-whisper-api",
+   "openclaw-dual-gate-quality-audit",
+   "openclaw-fenjue-weekly",
+   "openclaw-task-supervision",
+   "ops-inspector",
+   "oracle",
+   "pdf",
+   "pixelle-api-ensure",
+   "plan-design-review",
+   "plan-eng-review",
+   "postgresql-best-practices-cloudbase",
+   "postgresql-development-cloudbase",
+   "postman-knowledge",
+   "postman-routing",
+   "ppt-master",
+   "pptx",
+   "prompt-consolidation",
+   "prompt-system-audit",
+   "python-debugpy",
+   "q-flow",
+   "qa",
+   "qa-only",
+   "qoder-cloud-agents",
+   "rag-eval",
+   "receiving-code-review",
+   "refactoring",
+   "relational-database-mcp-cloudbase",
+   "relational-database-web-cloudbase",
+   "report-generator-skill",
+   "requesting-code-review",
+   "research-documentation",
+   "review",
+   "risk-quality-reviewer",
+   "rover",
+   "rust-best-practices",
+   "scope-creep-detector",
+   "screenshot",
+   "security-audit",
+   "setup-browser-cookies",
+   "setup-mobile-use",
+   "shadcn",
+   "shell-encoding-pitfalls",
+   "ship",
+   "skill-creator",
+   "slides",
+   "spec-to-implementation",
+   "spec-workflow",
+   "spike",
+   "sq-cleanmgr-c",
+   "sqlalchemy-loader-criteria-pitfalls",
+   "static-site-batch-audit-fix",
+   "story",
+   "story-cover",
+   "story-deslop",
+   "story-import",
+   "story-long-analyze",
+   "story-long-write",
+   "story-review",
+   "story-scan",
+   "story-setup",
+   "story-short-analyze",
+   "story-short-write",
+   "subagent-driven-development",
+   "system-modeler",
+   "systematic-debugging",
+   "taskflow",
+   "taskflow-inbox-triage",
+   "tdd",
+   "test-driven-development",
+   "testing",
+   "theme-factory",
+   "to-spec",
+   "to-tickets",
+   "ui-design",
+   "ui-ux-pro-max",
+   "unfreeze",
+   "using-git-worktrees",
+   "using-superpowers",
+   "utf8-encoding-fix",
+   "verification-before-completion",
+   "video-breakdown-skill",
+   "video-frames",
+   "video-whisper-transcribe",
+   "vp-perspective-audit",
+   "vue组件开发",
+   "wb-git-commit-recipe",
+   "web-design-guidelines",
+   "web-development",
+   "wechat-automation",
+   "wechat-voice-transcription",
+   "win-toolchain-pitfalls",
+   "windows-bash-cli-interop-pitfalls",
+   "windows-cli-utf8-wrapper",
+   "windows-gitbash-chinese-path-pit",
+   "windows-native-ocr",
+   "workbuddy-mcp",
+   "workflow-preflight-check",
+   "wps-knowledgebase",
+   "writing-plans",
+   "writing-skills",
+   "xlsx",
+   "代码审查",
+   "单元测试",
+   "天眼一下",
+   "性能调优",
+   "数据库设计",
+   "重构建议"
+  ],
+  "skill_md_unreadable": 0,
+  "skill_md_total_bytes": 3948459,
+  "skill_md_mean_bytes": 12262.3,
+  "entry_inject_bytes": 25115,
+  "py_files": 594,
+  "total_files": 15433,
+  "schema_files": 80,
+  "docs_files": 0,
+  "root_docs": {
+   "README.md": false,
+   "CHANGELOG.md": false,
+   "SECURITY.md": false,
+   "LICENSE": false,
+   "LICENSE.md": false,
+   "CONTRIBUTING.md": false,
+   "AGENTS.md": false
+  },
+  "md_files": 1453,
+  "md_mean_bytes": 8907.3,
+  "md_unreadable": 0,
+  "windows_scripts": 37,
+  "workflow_files": 0,
+  "has_dependabot": false,
+  "fm_fence": 321,
+  "fm_name": 321,
+  "fm_both": 321,
+  "rubric_counts": {
+   "body": {
+    "overview": 74,
+    "when_to_use": 100,
+    "process": 142,
+    "rationalizations": 69,
+    "red_flags": 159,
+    "verification": 179
+   },
+   "both": {
+    "overview": 321,
+    "when_to_use": 301,
+    "process": 173,
+    "rationalizations": 69,
+    "red_flags": 160,
+    "verification": 181
+   }
+  }
+ },
+ "local_dims": {
+  "state": "MEASURED",
+  "d1_capability_surface": 322,
+  "d1_units": {
+   "all_layers_all_roots": 322,
+   "authority_all_layers": 227,
+   "authority_toplevel": 175,
+   "note": "跨轮可比只认 authority_toplevel（与焚诀 verify C1 同单位）；本件 d1 取并集全深度口径"
+  },
+  "coverage_roots": [
+   {
+    "path": "D:/global_skills",
+    "role": "authority",
+    "skill_md": 227
+   },
+   {
+    "path": "C:/Users/37533/.qoder-cn/plugins/cache/qoderapp-bundler/qoder-context/1.0.72.34cf9e2f",
+    "role": "plugin",
+    "skill_md": 0
+   },
+   {
+    "path": "C:/Users/37533/.qoder-cn/plugins/cache/qoder-marketplace/fullstack-dev-expert/1.0.0",
+    "role": "plugin",
+    "skill_md": 8
+   },
+   {
+    "path": "C:/Users/37533/.qoder-cn/plugins/cache/qoder-marketplace/architecture-visualization/0.1.0",
+    "role": "plugin",
+    "skill_md": 13
+   },
+   {
+    "path": "C:/Users/37533/.qoder-cn/plugins/cache/qoder-marketplace/postman/1.3.1",
+    "role": "plugin",
+    "skill_md": 3
+   },
+   {
+    "path": "C:/Users/37533/.qoder-cn/plugins/cache/qoder-marketplace/qoder-cloud-agents/1.2.0",
+    "role": "plugin",
+    "skill_md": 1
+   },
+   {
+    "path": "C:/Users/37533/.qoder-cn/plugins/cache/qoder-marketplace/better-harness/0.2.20",
+    "role": "plugin",
+    "skill_md": 2
+   },
+   {
+    "path": "C:/Users/37533/.qoder-cn/plugins/cache/qoder-marketplace/context7/1.0.0",
+    "role": "plugin",
+    "skill_md": 1
+   },
+   {
+    "path": "C:/Users/37533/.qoder-cn/plugins/cache/qoder-marketplace/alibabacloud-core/1.0.37",
+    "role": "plugin",
+    "skill_md": 10
+   },
+   {
+    "path": "C:/Users/37533/.qoder-cn/plugins/cache/qoder-marketplace/meoo/0.1.0",
+    "role": "plugin",
+    "skill_md": 1
+   },
+   {
+    "path": "C:/Users/37533/.qoder-cn/plugins/cache/qoder-marketplace/mobile-use/0.7.5",
+    "role": "plugin",
+    "skill_md": 2
+   },
+   {
+    "path": "C:/Users/37533/.qoder-cn/plugins/cache/qoder-marketplace/superpowers/6.3.0",
+    "role": "plugin",
+    "skill_md": 14
+   },
+   {
+    "path": "C:/Users/37533/.qoder-cn/plugins/cache/qoder-marketplace/Presentations/0.1.1",
+    "role": "plugin",
+    "skill_md": 1
+   },
+   {
+    "path": "C:/Users/37533/.qoder-cn/plugins/cache/qoder-marketplace/apollo-graphql/1.0.0",
+    "role": "plugin",
+    "skill_md": 15
+   },
+   {
+    "path": "C:/Users/37533/.qoder-cn/plugins/cache/qoder-marketplace/cangjie-skills/1.0.0",
+    "role": "plugin",
+    "skill_md": 6
+   },
+   {
+    "path": "C:/Users/37533/.qoder-cn/plugins/cache/qoder-marketplace/grillme-matt/0.1.0",
+    "role": "plugin",
+    "skill_md": 8
+   },
+   {
+    "path": "C:/Users/37533/.qoder-cn/plugins/cache/qoder-marketplace/qgraphflow/0.0.5",
+    "role": "plugin",
+    "skill_md": 1
+   },
+   {
+    "path": "C:/Users/37533/.qoder-cn/plugins/cache/qoder-marketplace/moonbit-skills/0.1.0",
+    "role": "plugin",
+    "skill_md": 9
+   }
+  ],
+  "d2_mechanism_layer": {
+   "py_files": 594,
+   "windows_scripts": true
+  },
+  "d3_performance": {
+   "entry_inject_bytes": 25115,
+   "mean_skill_bytes": 12262.3
+  },
+  "d4_extensibility": {
+   "schema_files": 80,
+   "docs_files": 0,
+   "total_files": 15433
+  },
+  "d5_maintenance": {
+   "push_age_days": 0.0,
+   "archived": false
+  },
+  "d6_documentation": {
+   "README.md": false,
+   "CHANGELOG.md": false,
+   "SECURITY.md": false,
+   "LICENSE": false,
+   "LICENSE.md": false,
+   "CONTRIBUTING.md": false,
+   "AGENTS.md": false,
+   "md_files": 1453,
+   "md_mean_bytes": 8907.3
+  },
+  "d7_fit_scenario": {
+   "total_blobs": 15433,
+   "windows_scripts": 37
+  },
+  "d8_function_coverage": {
+   "unique_slugs": 312,
+   "authority_unique_slugs": 224,
+   "duplicate_slugs": 10,
+   "opponent_only_union": 4449,
+   "local_only_vs_universe": 258,
+   "opponent_universe_slugs": 4503
+  },
+  "d9_output_quality": {
+   "n": 322,
+   "unreadable": 0,
+   "ratio_body": {
+    "overview": 0.23,
+    "when_to_use": 0.311,
+    "process": 0.441,
+    "rationalizations": 0.214,
+    "red_flags": 0.494,
+    "verification": 0.556
+   },
+   "ratio_both": {
+    "overview": 0.997,
+    "when_to_use": 0.935,
+    "process": 0.537,
+    "rationalizations": 0.214,
+    "red_flags": 0.497,
+    "verification": 0.562
+   }
+  },
+  "d10_control": {
+   "dependabot": false,
+   "security_md": false,
+   "workflows": 0
+  },
+  "d11_reusability": {
+   "skill_md_count": 322
+  },
+  "d12_compatibility": {
+   "n": 322,
+   "fm_fence_rate": 0.997,
+   "fm_name_rate": 0.997,
+   "fm_both_rate": 0.997,
+   "basis": "全量 171 口径：前置 YAML 围栏含 name+description 才可被 rule_editor 入册与路由"
+  }
+ },
+ "opponents": {
+  "vercel-labs/agent-skills": {
+   "state": "UNAVAILABLE",
+   "unavailable_layer": "tree",
+   "reason": "rc=1 Get \"https://api.github.com/repos/vercel-labs/agent-skills/git/trees/main?recursive=1\": unexpected EOF",
+   "stars": 31843
+  },
+  "obra/superpowers": {
+   "state": "MEASURED",
+   "d1_capability_surface": 15,
+   "d2_mechanism_layer": {
+    "workflows": 0,
+    "schema_files": 0,
+    "py_files": 6,
+    "windows_scripts": true
+   },
+   "d3_performance": {
+    "mean_sampled_skill_bytes": 10819.8
+   },
+   "d4_extensibility": {
+    "schema_files": 0,
+    "docs_files": 45
+   },
+   "d5_maintenance": {
+    "push_age_days": 5.63,
+    "archived": false,
+    "open_issues_incl_pr": 295,
+    "stars": 294316
+   },
+   "d6_documentation": {
+    "readme": true,
+    "changelog": false,
+    "security_md": false,
+    "docs_dir_files": 45,
+    "license": "MIT",
+    "repo_description_chars": 74
+   },
+   "d7_fit_scenario": {
+    "total_blobs": 229,
+    "windows_scripts": true
+   },
+   "d8_function_coverage": {
+    "unique_slugs": 15,
+    "opponent_only_vs_local": 1,
+    "local_only_vs_this_opponent": 298,
+    "sampled_fm_both": 6
+   },
+   "d9_output_quality": {
+    "sampled": 6,
+    "sample_unreadable": 0,
+    "ratio_body": {
+     "overview": 0.667,
+     "when_to_use": 0.5,
+     "process": 0.333,
+     "rationalizations": 0.5,
+     "red_flags": 0.333,
+     "verification": 0.667
+    },
+    "ratio_both": {
+     "overview": 1.0,
+     "when_to_use": 1.0,
+     "process": 0.333,
+     "rationalizations": 0.5,
+     "red_flags": 0.333,
+     "verification": 0.667
+    }
+   },
+   "d10_control": {
+    "dependabot": false,
+    "security_md": false,
+    "workflows": 0
+   },
+   "d11_reusability": {
+    "skill_md_count": 15,
+    "schema_bundled": false
+   },
+   "d12_compatibility": {
+    "sample_attempted": 6,
+    "fm_fence_rate": 1.0,
+    "fm_both_rate": 1.0,
+    "basis": "抽样件前置 YAML 围栏含 name+description 的比例；分母=实抽件数（非全量）"
+   },
+   "tree_truncated": false,
+   "skill_bearing": true,
+   "face_role": "skill_tree"
+  },
+  "mattpocock/skills": {
+   "state": "MEASURED",
+   "d1_capability_surface": 37,
+   "d2_mechanism_layer": {
+    "workflows": 1,
+    "schema_files": 0,
+    "py_files": 0,
+    "windows_scripts": false
+   },
+   "d3_performance": {
+    "mean_sampled_skill_bytes": 6254.3
+   },
+   "d4_extensibility": {
+    "schema_files": 0,
+    "docs_files": 28
+   },
+   "d5_maintenance": {
+    "push_age_days": 3.21,
+    "archived": false,
+    "open_issues_incl_pr": 544,
+    "stars": 274534
+   },
+   "d6_documentation": {
+    "readme": true,
+    "changelog": true,
+    "security_md": false,
+    "docs_dir_files": 28,
+    "license": "MIT",
+    "repo_description_chars": 62
+   },
+   "d7_fit_scenario": {
+    "total_blobs": 172,
+    "windows_scripts": false
+   },
+   "d8_function_coverage": {
+    "unique_slugs": 37,
+    "opponent_only_vs_local": 30,
+    "local_only_vs_this_opponent": 305,
+    "sampled_fm_both": 6
+   },
+   "d9_output_quality": {
+    "sampled": 6,
+    "sample_unreadable": 0,
+    "ratio_body": {
+     "overview": 0.167,
+     "when_to_use": 0.0,
+     "process": 0.167,
+     "rationalizations": 0.0,
+     "red_flags": 0.0,
+     "verification": 0.167
+    },
+    "ratio_both": {
+     "overview": 1.0,
+     "when_to_use": 0.667,
+     "process": 0.167,
+     "rationalizations": 0.0,
+     "red_flags": 0.0,
+     "verification": 0.167
+    }
+   },
+   "d10_control": {
+    "dependabot": false,
+    "security_md": false,
+    "workflows": 1
+   },
+   "d11_reusability": {
+    "skill_md_count": 37,
+    "schema_bundled": false
+   },
+   "d12_compatibility": {
+    "sample_attempted": 6,
+    "fm_fence_rate": 1.0,
+    "fm_both_rate": 1.0,
+    "basis": "抽样件前置 YAML 围栏含 name+description 的比例；分母=实抽件数（非全量）"
+   },
+   "tree_truncated": false,
+   "skill_bearing": true,
+   "face_role": "skill_tree"
+  },
+  "affaan-m/ECC": {
+   "state": "MEASURED",
+   "d1_capability_surface": 1027,
+   "d2_mechanism_layer": {
+    "workflows": 12,
+    "schema_files": 16,
+    "py_files": 147,
+    "windows_scripts": true
+   },
+   "d3_performance": {
+    "mean_sampled_skill_bytes": 8566.8
+   },
+   "d4_extensibility": {
+    "schema_files": 16,
+    "docs_files": 1520
+   },
+   "d5_maintenance": {
+    "push_age_days": 0.66,
+    "archived": false,
+    "open_issues_incl_pr": 340,
+    "stars": 271044
+   },
+   "d6_documentation": {
+    "readme": true,
+    "changelog": true,
+    "security_md": true,
+    "docs_dir_files": 1520,
+    "license": "MIT",
+    "repo_description_chars": 171
+   },
+   "d7_fit_scenario": {
+    "total_blobs": 4212,
+    "windows_scripts": true
+   },
+   "d8_function_coverage": {
+    "unique_slugs": 296,
+    "opponent_only_vs_local": 295,
+    "local_only_vs_this_opponent": 311,
+    "sampled_fm_both": 6
+   },
+   "d9_output_quality": {
+    "sampled": 6,
+    "sample_unreadable": 0,
+    "ratio_body": {
+     "overview": 0.167,
+     "when_to_use": 1.0,
+     "process": 0.0,
+     "rationalizations": 0.167,
+     "red_flags": 0.0,
+     "verification": 0.5
+    },
+    "ratio_both": {
+     "overview": 1.0,
+     "when_to_use": 1.0,
+     "process": 0.0,
+     "rationalizations": 0.167,
+     "red_flags": 0.0,
+     "verification": 0.5
+    }
+   },
+   "d10_control": {
+    "dependabot": true,
+    "security_md": true,
+    "workflows": 12
+   },
+   "d11_reusability": {
+    "skill_md_count": 1027,
+    "schema_bundled": true
+   },
+   "d12_compatibility": {
+    "sample_attempted": 6,
+    "fm_fence_rate": 1.0,
+    "fm_both_rate": 1.0,
+    "basis": "抽样件前置 YAML 围栏含 name+description 的比例；分母=实抽件数（非全量）"
+   },
+   "tree_truncated": false,
+   "skill_bearing": true,
+   "face_role": "skill_tree"
+  },
+  "anthropics/skills": {
+   "state": "MEASURED",
+   "d1_capability_surface": 20,
+   "d2_mechanism_layer": {
+    "workflows": 0,
+    "schema_files": 117,
+    "py_files": 72,
+    "windows_scripts": false
+   },
+   "d3_performance": {
+    "mean_sampled_skill_bytes": 25669.0
+   },
+   "d4_extensibility": {
+    "schema_files": 117,
+    "docs_files": 0
+   },
+   "d5_maintenance": {
+    "push_age_days": 3.64,
+    "archived": false,
+    "open_issues_incl_pr": 1392,
+    "stars": 179392
+   },
+   "d6_documentation": {
+    "readme": true,
+    "changelog": false,
+    "security_md": false,
+    "docs_dir_files": 0,
+    "license": null,
+    "repo_description_chars": 34
+   },
+   "d7_fit_scenario": {
+    "total_blobs": 430,
+    "windows_scripts": false
+   },
+   "d8_function_coverage": {
+    "unique_slugs": 20,
+    "opponent_only_vs_local": 7,
+    "local_only_vs_this_opponent": 299,
+    "sampled_fm_both": 6
+   },
+   "d9_output_quality": {
+    "sampled": 6,
+    "sample_unreadable": 0,
+    "ratio_body": {
+     "overview": 0.333,
+     "when_to_use": 0.333,
+     "process": 0.0,
+     "rationalizations": 0.167,
+     "red_flags": 0.333,
+     "verification": 0.333
+    },
+    "ratio_both": {
+     "overview": 1.0,
+     "when_to_use": 0.833,
+     "process": 0.167,
+     "rationalizations": 0.167,
+     "red_flags": 0.333,
+     "verification": 0.333
+    }
+   },
+   "d10_control": {
+    "dependabot": false,
+    "security_md": false,
+    "workflows": 0
+   },
+   "d11_reusability": {
+    "skill_md_count": 20,
+    "schema_bundled": true
+   },
+   "d12_compatibility": {
+    "sample_attempted": 6,
+    "fm_fence_rate": 1.0,
+    "fm_both_rate": 1.0,
+    "basis": "抽样件前置 YAML 围栏含 name+description 的比例；分母=实抽件数（非全量）"
+   },
+   "tree_truncated": false,
+   "skill_bearing": true,
+   "face_role": "skill_tree"
+  },
+  "Shubhamsaboo/awesome-llm-apps": {
+   "state": "MEASURED",
+   "d1_capability_surface": 10,
+   "d2_mechanism_layer": {
+    "workflows": 2,
+    "schema_files": 2,
+    "py_files": 553,
+    "windows_scripts": true
+   },
+   "d3_performance": {
+    "mean_sampled_skill_bytes": 8514.8
+   },
+   "d4_extensibility": {
+    "schema_files": 2,
+    "docs_files": 14
+   },
+   "d5_maintenance": {
+    "push_age_days": 1.88,
+    "archived": false,
+    "open_issues_incl_pr": 20,
+    "stars": 140542
+   },
+   "d6_documentation": {
+    "readme": true,
+    "changelog": false,
+    "security_md": false,
+    "docs_dir_files": 14,
+    "license": "Apache-2.0",
+    "repo_description_chars": 65
+   },
+   "d7_fit_scenario": {
+    "total_blobs": 1976,
+    "windows_scripts": true
+   },
+   "d8_function_coverage": {
+    "unique_slugs": 10,
+    "opponent_only_vs_local": 7,
+    "local_only_vs_this_opponent": 309,
+    "sampled_fm_both": 6
+   },
+   "d9_output_quality": {
+    "sampled": 6,
+    "sample_unreadable": 0,
+    "ratio_body": {
+     "overview": 0.167,
+     "when_to_use": 0.667,
+     "process": 0.0,
+     "rationalizations": 0.0,
+     "red_flags": 0.5,
+     "verification": 0.333
+    },
+    "ratio_both": {
+     "overview": 1.0,
+     "when_to_use": 1.0,
+     "process": 0.0,
+     "rationalizations": 0.0,
+     "red_flags": 0.5,
+     "verification": 0.333
+    }
+   },
+   "d10_control": {
+    "dependabot": false,
+    "security_md": false,
+    "workflows": 2
+   },
+   "d11_reusability": {
+    "skill_md_count": 10,
+    "schema_bundled": true
+   },
+   "d12_compatibility": {
+    "sample_attempted": 6,
+    "fm_fence_rate": 1.0,
+    "fm_both_rate": 1.0,
+    "basis": "抽样件前置 YAML 围栏含 name+description 的比例；分母=实抽件数（非全量）"
+   },
+   "tree_truncated": false,
+   "skill_bearing": true,
+   "face_role": "skill_tree"
+  },
+  "JuliusBrussee/caveman": {
+   "state": "MEASURED",
+   "d1_capability_surface": 24,
+   "d2_mechanism_layer": {
+    "workflows": 15,
+    "schema_files": 30,
+    "py_files": 94,
+    "windows_scripts": true
+   },
+   "d3_performance": {
+    "mean_sampled_skill_bytes": 3867.8
+   },
+   "d4_extensibility": {
+    "schema_files": 30,
+    "docs_files": 51
+   },
+   "d5_maintenance": {
+    "push_age_days": 0.91,
+    "archived": false,
+    "open_issues_incl_pr": 158,
+    "stars": 108968
+   },
+   "d6_documentation": {
+    "readme": true,
+    "changelog": true,
+    "security_md": true,
+    "docs_dir_files": 51,
+    "license": "Apache-2.0",
+    "repo_description_chars": 134
+   },
+   "d7_fit_scenario": {
+    "total_blobs": 1597,
+    "windows_scripts": true
+   },
+   "d8_function_coverage": {
+    "unique_slugs": 20,
+    "opponent_only_vs_local": 20,
+    "local_only_vs_this_opponent": 312,
+    "sampled_fm_both": 6
+   },
+   "d9_output_quality": {
+    "sampled": 6,
+    "sample_unreadable": 0,
+    "ratio_body": {
+     "overview": 0.333,
+     "when_to_use": 0.333,
+     "process": 0.167,
+     "rationalizations": 0.0,
+     "red_flags": 0.5,
+     "verification": 0.0
+    },
+    "ratio_both": {
+     "overview": 1.0,
+     "when_to_use": 0.667,
+     "process": 0.167,
+     "rationalizations": 0.0,
+     "red_flags": 0.5,
+     "verification": 0.0
+    }
+   },
+   "d10_control": {
+    "dependabot": true,
+    "security_md": true,
+    "workflows": 15
+   },
+   "d11_reusability": {
+    "skill_md_count": 24,
+    "schema_bundled": true
+   },
+   "d12_compatibility": {
+    "sample_attempted": 6,
+    "fm_fence_rate": 1.0,
+    "fm_both_rate": 1.0,
+    "basis": "抽样件前置 YAML 围栏含 name+description 的比例；分母=实抽件数（非全量）"
+   },
+   "tree_truncated": false,
+   "skill_bearing": true,
+   "face_role": "skill_tree"
+  },
+  "addyosmani/agent-skills": {
+   "state": "MEASURED",
+   "d1_capability_surface": 25,
+   "d2_mechanism_layer": {
+    "workflows": 1,
+    "schema_files": 0,
+    "py_files": 2,
+    "windows_scripts": false
+   },
+   "d3_performance": {
+    "mean_sampled_skill_bytes": 16047.3
+   },
+   "d4_extensibility": {
+    "schema_files": 0,
+    "docs_files": 16
+   },
+   "d5_maintenance": {
+    "push_age_days": 0.59,
+    "archived": false,
+    "open_issues_incl_pr": 120,
+    "stars": 100450
+   },
+   "d6_documentation": {
+    "readme": true,
+    "changelog": false,
+    "security_md": true,
+    "docs_dir_files": 16,
+    "license": "MIT",
+    "repo_description_chars": 57
+   },
+   "d7_fit_scenario": {
+    "total_blobs": 208,
+    "windows_scripts": false
+   },
+   "d8_function_coverage": {
+    "unique_slugs": 25,
+    "opponent_only_vs_local": 24,
+    "local_only_vs_this_opponent": 311,
+    "sampled_fm_both": 6
+   },
+   "d9_output_quality": {
+    "sampled": 6,
+    "sample_unreadable": 0,
+    "ratio_body": {
+     "overview": 1.0,
+     "when_to_use": 1.0,
+     "process": 0.167,
+     "rationalizations": 1.0,
+     "red_flags": 1.0,
+     "verification": 1.0
+    },
+    "ratio_both": {
+     "overview": 1.0,
+     "when_to_use": 1.0,
+     "process": 0.333,
+     "rationalizations": 1.0,
+     "red_flags": 1.0,
+     "verification": 1.0
+    }
+   },
+   "d10_control": {
+    "dependabot": false,
+    "security_md": true,
+    "workflows": 1
+   },
+   "d11_reusability": {
+    "skill_md_count": 25,
+    "schema_bundled": false
+   },
+   "d12_compatibility": {
+    "sample_attempted": 6,
+    "fm_fence_rate": 1.0,
+    "fm_both_rate": 1.0,
+    "basis": "抽样件前置 YAML 围栏含 name+description 的比例；分母=实抽件数（非全量）"
+   },
+   "tree_truncated": false,
+   "skill_bearing": true,
+   "face_role": "skill_tree"
+  },
+  "tt-a1i/archify": {
+   "state": "MEASURED",
+   "d1_capability_surface": 2,
+   "d2_mechanism_layer": {
+    "workflows": 5,
+    "schema_files": 7,
+    "py_files": 1,
+    "windows_scripts": true
+   },
+   "d3_performance": {
+    "mean_sampled_skill_bytes": 6264.0
+   },
+   "d4_extensibility": {
+    "schema_files": 7,
+    "docs_files": 162
+   },
+   "d5_maintenance": {
+    "push_age_days": 0.15,
+    "archived": false,
+    "open_issues_incl_pr": 183,
+    "stars": 76168
+   },
+   "d6_documentation": {
+    "readme": true,
+    "changelog": true,
+    "security_md": true,
+    "docs_dir_files": 162,
+    "license": "MIT",
+    "repo_description_chars": 155
+   },
+   "d7_fit_scenario": {
+    "total_blobs": 725,
+    "windows_scripts": true
+   },
+   "d8_function_coverage": {
+    "unique_slugs": 2,
+    "opponent_only_vs_local": 2,
+    "local_only_vs_this_opponent": 312,
+    "sampled_fm_both": 2
+   },
+   "d9_output_quality": {
+    "sampled": 2,
+    "sample_unreadable": 0,
+    "ratio_body": {
+     "overview": 0.0,
+     "when_to_use": 0.0,
+     "process": 0.5,
+     "rationalizations": 0.0,
+     "red_flags": 0.0,
+     "verification": 0.5
+    },
+    "ratio_both": {
+     "overview": 1.0,
+     "when_to_use": 0.5,
+     "process": 0.5,
+     "rationalizations": 0.0,
+     "red_flags": 0.0,
+     "verification": 0.5
+    }
+   },
+   "d10_control": {
+    "dependabot": false,
+    "security_md": true,
+    "workflows": 5
+   },
+   "d11_reusability": {
+    "skill_md_count": 2,
+    "schema_bundled": true
+   },
+   "d12_compatibility": {
+    "sample_attempted": 2,
+    "fm_fence_rate": 1.0,
+    "fm_both_rate": 1.0,
+    "basis": "抽样件前置 YAML 围栏含 name+description 的比例；分母=实抽件数（非全量）"
+   },
+   "tree_truncated": false,
+   "skill_bearing": true,
+   "face_role": "skill_tree"
+  },
+  "mvanhorn/last30days-skill": {
+   "state": "MEASURED",
+   "d1_capability_surface": 1,
+   "d2_mechanism_layer": {
+    "workflows": 9,
+    "schema_files": 0,
+    "py_files": 342,
+    "windows_scripts": false
+   },
+   "d3_performance": {
+    "mean_sampled_skill_bytes": 259941.0
+   },
+   "d4_extensibility": {
+    "schema_files": 0,
+    "docs_files": 29
+   },
+   "d5_maintenance": {
+    "push_age_days": 1.68,
+    "archived": false,
+    "open_issues_incl_pr": 139,
+    "stars": 63368
+   },
+   "d6_documentation": {
+    "readme": true,
+    "changelog": true,
+    "security_md": true,
+    "docs_dir_files": 29,
+    "license": "MIT",
+    "repo_description_chars": 133
+   },
+   "d7_fit_scenario": {
+    "total_blobs": 497,
+    "windows_scripts": false
+   },
+   "d8_function_coverage": {
+    "unique_slugs": 1,
+    "opponent_only_vs_local": 1,
+    "local_only_vs_this_opponent": 312,
+    "sampled_fm_both": 1
+   },
+   "d9_output_quality": {
+    "sampled": 1,
+    "sample_unreadable": 0,
+    "ratio_body": {
+     "overview": 1.0,
+     "when_to_use": 0.0,
+     "process": 0.0,
+     "rationalizations": 1.0,
+     "red_flags": 1.0,
+     "verification": 1.0
+    },
+    "ratio_both": {
+     "overview": 1.0,
+     "when_to_use": 0.0,
+     "process": 0.0,
+     "rationalizations": 1.0,
+     "red_flags": 1.0,
+     "verification": 1.0
+    }
+   },
+   "d10_control": {
+    "dependabot": true,
+    "security_md": true,
+    "workflows": 9
+   },
+   "d11_reusability": {
+    "skill_md_count": 1,
+    "schema_bundled": false
+   },
+   "d12_compatibility": {
+    "sample_attempted": 1,
+    "fm_fence_rate": 1.0,
+    "fm_both_rate": 1.0,
+    "basis": "抽样件前置 YAML 围栏含 name+description 的比例；分母=实抽件数（非全量）"
+   },
+   "tree_truncated": false,
+   "skill_bearing": true,
+   "face_role": "skill_tree"
+  },
+  "calesthio/OpenMontage": {
+   "state": "MEASURED",
+   "d1_capability_surface": 138,
+   "d2_mechanism_layer": {
+    "workflows": 1,
+    "schema_files": 34,
+    "py_files": 517,
+    "windows_scripts": false
+   },
+   "d3_performance": {
+    "mean_sampled_skill_bytes": 7910.3
+   },
+   "d4_extensibility": {
+    "schema_files": 34,
+    "docs_files": 11
+   },
+   "d5_maintenance": {
+    "push_age_days": 26.53,
+    "archived": false,
+    "open_issues_incl_pr": 340,
+    "stars": 62367
+   },
+   "d6_documentation": {
+    "readme": true,
+    "changelog": false,
+    "security_md": false,
+    "docs_dir_files": 11,
+    "license": "AGPL-3.0",
+    "repo_description_chars": 212
+   },
+   "d7_fit_scenario": {
+    "total_blobs": 2115,
+    "windows_scripts": false
+   },
+   "d8_function_coverage": {
+    "unique_slugs": 90,
+    "opponent_only_vs_local": 85,
+    "local_only_vs_this_opponent": 307,
+    "sampled_fm_both": 6
+   },
+   "d9_output_quality": {
+    "sampled": 6,
+    "sample_unreadable": 0,
+    "ratio_body": {
+     "overview": 0.0,
+     "when_to_use": 0.167,
+     "process": 0.333,
+     "rationalizations": 0.0,
+     "red_flags": 0.0,
+     "verification": 0.0
+    },
+    "ratio_both": {
+     "overview": 1.0,
+     "when_to_use": 0.667,
+     "process": 0.833,
+     "rationalizations": 0.0,
+     "red_flags": 0.0,
+     "verification": 0.0
+    }
+   },
+   "d10_control": {
+    "dependabot": false,
+    "security_md": false,
+    "workflows": 1
+   },
+   "d11_reusability": {
+    "skill_md_count": 138,
+    "schema_bundled": true
+   },
+   "d12_compatibility": {
+    "sample_attempted": 6,
+    "fm_fence_rate": 1.0,
+    "fm_both_rate": 1.0,
+    "basis": "抽样件前置 YAML 围栏含 name+description 的比例；分母=实抽件数（非全量）"
+   },
+   "tree_truncated": false,
+   "skill_bearing": true,
+   "face_role": "skill_tree"
+  },
+  "hesreallyhim/awesome-claude-code": {
+   "state": "MEASURED",
+   "d1_capability_surface": 0,
+   "d2_mechanism_layer": {
+    "workflows": 5,
+    "schema_files": 0,
+    "py_files": 27,
+    "windows_scripts": false
+   },
+   "d3_performance": {
+    "mean_sampled_skill_bytes": null
+   },
+   "d4_extensibility": {
+    "schema_files": 0,
+    "docs_files": 0
+   },
+   "d5_maintenance": {
+    "push_age_days": 0.11,
+    "archived": false,
+    "open_issues_incl_pr": 1188,
+    "stars": 54951
+   },
+   "d6_documentation": {
+    "readme": true,
+    "changelog": false,
+    "security_md": true,
+    "docs_dir_files": 0,
+    "license": "NOASSERTION",
+    "repo_description_chars": 331
+   },
+   "d7_fit_scenario": {
+    "total_blobs": 56,
+    "windows_scripts": false
+   },
+   "d8_function_coverage": {
+    "unique_slugs": 0,
+    "opponent_only_vs_local": 0,
+    "local_only_vs_this_opponent": 312,
+    "sampled_fm_both": 0
+   },
+   "d9_output_quality": {
+    "sampled": 0,
+    "sample_unreadable": 0,
+    "ratio_body": {
+     "overview": 0.0,
+     "when_to_use": 0.0,
+     "process": 0.0,
+     "rationalizations": 0.0,
+     "red_flags": 0.0,
+     "verification": 0.0
+    },
+    "ratio_both": {
+     "overview": 0.0,
+     "when_to_use": 0.0,
+     "process": 0.0,
+     "rationalizations": 0.0,
+     "red_flags": 0.0,
+     "verification": 0.0
+    }
+   },
+   "d10_control": {
+    "dependabot": false,
+    "security_md": true,
+    "workflows": 5
+   },
+   "d11_reusability": {
+    "skill_md_count": 0,
+    "schema_bundled": false
+   },
+   "d12_compatibility": {
+    "sample_attempted": 0,
+    "fm_fence_rate": 0.0,
+    "fm_both_rate": 0.0,
+    "basis": "抽样件前置 YAML 围栏含 name+description 的比例；分母=实抽件数（非全量）"
+   },
+   "tree_truncated": false,
+   "skill_bearing": false,
+   "face_role": "non_skill_repo"
+  },
+  "blader/humanizer": {
+   "state": "MEASURED",
+   "d1_capability_surface": 1,
+   "d2_mechanism_layer": {
+    "workflows": 1,
+    "schema_files": 0,
+    "py_files": 1,
+    "windows_scripts": false
+   },
+   "d3_performance": {
+    "mean_sampled_skill_bytes": 32348.0
+   },
+   "d4_extensibility": {
+    "schema_files": 0,
+    "docs_files": 0
+   },
+   "d5_maintenance": {
+    "push_age_days": 4.49,
+    "archived": false,
+    "open_issues_incl_pr": 4,
+    "stars": 53563
+   },
+   "d6_documentation": {
+    "readme": true,
+    "changelog": true,
+    "security_md": false,
+    "docs_dir_files": 0,
+    "license": "MIT",
+    "repo_description_chars": 64
+   },
+   "d7_fit_scenario": {
+    "total_blobs": 14,
+    "windows_scripts": false
+   },
+   "d8_function_coverage": {
+    "unique_slugs": 0,
+    "opponent_only_vs_local": 0,
+    "local_only_vs_this_opponent": 312,
+    "sampled_fm_both": 1
+   },
+   "d9_output_quality": {
+    "sampled": 1,
+    "sample_unreadable": 0,
+    "ratio_body": {
+     "overview": 1.0,
+     "when_to_use": 0.0,
+     "process": 0.0,
+     "rationalizations": 0.0,
+     "red_flags": 1.0,
+     "verification": 0.0
+    },
+    "ratio_both": {
+     "overview": 1.0,
+     "when_to_use": 1.0,
+     "process": 0.0,
+     "rationalizations": 0.0,
+     "red_flags": 1.0,
+     "verification": 0.0
+    }
+   },
+   "d10_control": {
+    "dependabot": false,
+    "security_md": false,
+    "workflows": 1
+   },
+   "d11_reusability": {
+    "skill_md_count": 1,
+    "schema_bundled": false
+   },
+   "d12_compatibility": {
+    "sample_attempted": 1,
+    "fm_fence_rate": 1.0,
+    "fm_both_rate": 1.0,
+    "basis": "抽样件前置 YAML 围栏含 name+description 的比例；分母=实抽件数（非全量）"
+   },
+   "tree_truncated": false,
+   "skill_bearing": true,
+   "face_role": "skill_tree"
+  },
+  "ayghri/i-have-adhd": {
+   "state": "MEASURED",
+   "d1_capability_surface": 2,
+   "d2_mechanism_layer": {
+    "workflows": 4,
+    "schema_files": 0,
+    "py_files": 11,
+    "windows_scripts": true
+   },
+   "d3_performance": {
+    "mean_sampled_skill_bytes": 7207.0
+   },
+   "d4_extensibility": {
+    "schema_files": 0,
+    "docs_files": 0
+   },
+   "d5_maintenance": {
+    "push_age_days": 13.04,
+    "archived": false,
+    "open_issues_incl_pr": 79,
+    "stars": 52879
+   },
+   "d6_documentation": {
+    "readme": true,
+    "changelog": false,
+    "security_md": false,
+    "docs_dir_files": 0,
+    "license": "MIT",
+    "repo_description_chars": 80
+   },
+   "d7_fit_scenario": {
+    "total_blobs": 73,
+    "windows_scripts": true
+   },
+   "d8_function_coverage": {
+    "unique_slugs": 1,
+    "opponent_only_vs_local": 1,
+    "local_only_vs_this_opponent": 312,
+    "sampled_fm_both": 2
+   },
+   "d9_output_quality": {
+    "sampled": 2,
+    "sample_unreadable": 0,
+    "ratio_body": {
+     "overview": 1.0,
+     "when_to_use": 1.0,
+     "process": 0.0,
+     "rationalizations": 0.0,
+     "red_flags": 0.0,
+     "verification": 1.0
+    },
+    "ratio_both": {
+     "overview": 1.0,
+     "when_to_use": 1.0,
+     "process": 0.0,
+     "rationalizations": 0.0,
+     "red_flags": 0.0,
+     "verification": 1.0
+    }
+   },
+   "d10_control": {
+    "dependabot": false,
+    "security_md": false,
+    "workflows": 4
+   },
+   "d11_reusability": {
+    "skill_md_count": 2,
+    "schema_bundled": false
+   },
+   "d12_compatibility": {
+    "sample_attempted": 2,
+    "fm_fence_rate": 1.0,
+    "fm_both_rate": 1.0,
+    "basis": "抽样件前置 YAML 围栏含 name+description 的比例；分母=实抽件数（非全量）"
+   },
+   "tree_truncated": false,
+   "skill_bearing": true,
+   "face_role": "skill_tree"
+  },
+  "coreyhaines31/marketingskills": {
+   "state": "MEASURED",
+   "d1_capability_surface": 50,
+   "d2_mechanism_layer": {
+    "workflows": 4,
+    "schema_files": 0,
+    "py_files": 0,
+    "windows_scripts": false
+   },
+   "d3_performance": {
+    "mean_sampled_skill_bytes": 19825.5
+   },
+   "d4_extensibility": {
+    "schema_files": 0,
+    "docs_files": 0
+   },
+   "d5_maintenance": {
+    "push_age_days": 0.05,
+    "archived": false,
+    "open_issues_incl_pr": 132,
+    "stars": 52315
+   },
+   "d6_documentation": {
+    "readme": true,
+    "changelog": false,
+    "security_md": false,
+    "docs_dir_files": 0,
+    "license": "MIT",
+    "repo_description_chars": 105
+   },
+   "d7_fit_scenario": {
+    "total_blobs": 471,
+    "windows_scripts": false
+   },
+   "d8_function_coverage": {
+    "unique_slugs": 50,
+    "opponent_only_vs_local": 50,
+    "local_only_vs_this_opponent": 312,
+    "sampled_fm_both": 6
+   },
+   "d9_output_quality": {
+    "sampled": 6,
+    "sample_unreadable": 0,
+    "ratio_body": {
+     "overview": 0.667,
+     "when_to_use": 0.167,
+     "process": 0.167,
+     "rationalizations": 0.0,
+     "red_flags": 0.167,
+     "verification": 0.833
+    },
+    "ratio_both": {
+     "overview": 1.0,
+     "when_to_use": 1.0,
+     "process": 0.167,
+     "rationalizations": 0.0,
+     "red_flags": 0.167,
+     "verification": 0.833
+    }
+   },
+   "d10_control": {
+    "dependabot": false,
+    "security_md": false,
+    "workflows": 4
+   },
+   "d11_reusability": {
+    "skill_md_count": 50,
+    "schema_bundled": false
+   },
+   "d12_compatibility": {
+    "sample_attempted": 6,
+    "fm_fence_rate": 1.0,
+    "fm_both_rate": 1.0,
+    "basis": "抽样件前置 YAML 围栏含 name+description 的比例；分母=实抽件数（非全量）"
+   },
+   "tree_truncated": false,
+   "skill_bearing": true,
+   "face_role": "skill_tree"
+  },
+  "kepano/obsidian-skills": {
+   "state": "MEASURED",
+   "d1_capability_surface": 6,
+   "d2_mechanism_layer": {
+    "workflows": 0,
+    "schema_files": 0,
+    "py_files": 0,
+    "windows_scripts": false
+   },
+   "d3_performance": {
+    "mean_sampled_skill_bytes": 5662.3
+   },
+   "d4_extensibility": {
+    "schema_files": 0,
+    "docs_files": 0
+   },
+   "d5_maintenance": {
+    "push_age_days": 17.13,
+    "archived": false,
+    "open_issues_incl_pr": 74,
+    "stars": 49085
+   },
+   "d6_documentation": {
+    "readme": true,
+    "changelog": false,
+    "security_md": false,
+    "docs_dir_files": 0,
+    "license": "MIT",
+    "repo_description_chars": 120
+   },
+   "d7_fit_scenario": {
+    "total_blobs": 15,
+    "windows_scripts": false
+   },
+   "d8_function_coverage": {
+    "unique_slugs": 6,
+    "opponent_only_vs_local": 1,
+    "local_only_vs_this_opponent": 307,
+    "sampled_fm_both": 6
+   },
+   "d9_output_quality": {
+    "sampled": 6,
+    "sample_unreadable": 0,
+    "ratio_body": {
+     "overview": 0.0,
+     "when_to_use": 0.0,
+     "process": 0.667,
+     "rationalizations": 0.0,
+     "red_flags": 0.667,
+     "verification": 0.167
+    },
+    "ratio_both": {
+     "overview": 1.0,
+     "when_to_use": 0.833,
+     "process": 0.667,
+     "rationalizations": 0.0,
+     "red_flags": 0.667,
+     "verification": 0.167
+    }
+   },
+   "d10_control": {
+    "dependabot": false,
+    "security_md": false,
+    "workflows": 0
+   },
+   "d11_reusability": {
+    "skill_md_count": 6,
+    "schema_bundled": false
+   },
+   "d12_compatibility": {
+    "sample_attempted": 6,
+    "fm_fence_rate": 1.0,
+    "fm_both_rate": 1.0,
+    "basis": "抽样件前置 YAML 围栏含 name+description 的比例；分母=实抽件数（非全量）"
+   },
+   "tree_truncated": false,
+   "skill_bearing": true,
+   "face_role": "skill_tree"
+  },
+  "K-Dense-AI/scientific-agent-skills": {
+   "state": "MEASURED",
+   "d1_capability_surface": 177,
+   "d2_mechanism_layer": {
+    "workflows": 5,
+    "schema_files": 2,
+    "py_files": 771,
+    "windows_scripts": false
+   },
+   "d3_performance": {
+    "mean_sampled_skill_bytes": 15690.0
+   },
+   "d4_extensibility": {
+    "schema_files": 2,
+    "docs_files": 362
+   },
+   "d5_maintenance": {
+    "push_age_days": 0.79,
+    "archived": false,
+    "open_issues_incl_pr": 28,
+    "stars": 47360
+   },
+   "d6_documentation": {
+    "readme": true,
+    "changelog": false,
+    "security_md": true,
+    "docs_dir_files": 362,
+    "license": "MIT",
+    "repo_description_chars": 340
+   },
+   "d7_fit_scenario": {
+    "total_blobs": 2780,
+    "windows_scripts": false
+   },
+   "d8_function_coverage": {
+    "unique_slugs": 177,
+    "opponent_only_vs_local": 177,
+    "local_only_vs_this_opponent": 312,
+    "sampled_fm_both": 6
+   },
+   "d9_output_quality": {
+    "sampled": 6,
+    "sample_unreadable": 0,
+    "ratio_body": {
+     "overview": 0.667,
+     "when_to_use": 0.667,
+     "process": 0.5,
+     "rationalizations": 0.0,
+     "red_flags": 0.5,
+     "verification": 0.333
+    },
+    "ratio_both": {
+     "overview": 1.0,
+     "when_to_use": 0.667,
+     "process": 0.5,
+     "rationalizations": 0.0,
+     "red_flags": 0.5,
+     "verification": 0.333
+    }
+   },
+   "d10_control": {
+    "dependabot": false,
+    "security_md": true,
+    "workflows": 5
+   },
+   "d11_reusability": {
+    "skill_md_count": 177,
+    "schema_bundled": true
+   },
+   "d12_compatibility": {
+    "sample_attempted": 6,
+    "fm_fence_rate": 1.0,
+    "fm_both_rate": 1.0,
+    "basis": "抽样件前置 YAML 围栏含 name+description 的比例；分母=实抽件数（非全量）"
+   },
+   "tree_truncated": false,
+   "skill_bearing": true,
+   "face_role": "skill_tree"
+  },
+  "zhayujie/CowAgent": {
+   "state": "MEASURED",
+   "d1_capability_surface": 3,
+   "d2_mechanism_layer": {
+    "workflows": 9,
+    "schema_files": 0,
+    "py_files": 681,
+    "windows_scripts": true
+   },
+   "d3_performance": {
+    "mean_sampled_skill_bytes": 9194.3
+   },
+   "d4_extensibility": {
+    "schema_files": 0,
+    "docs_files": 297
+   },
+   "d5_maintenance": {
+    "push_age_days": 0.42,
+    "archived": false,
+    "open_issues_incl_pr": 55,
+    "stars": 47206
+   },
+   "d6_documentation": {
+    "readme": true,
+    "changelog": false,
+    "security_md": false,
+    "docs_dir_files": 297,
+    "license": "MIT",
+    "repo_description_chars": 210
+   },
+   "d7_fit_scenario": {
+    "total_blobs": 1290,
+    "windows_scripts": true
+   },
+   "d8_function_coverage": {
+    "unique_slugs": 3,
+    "opponent_only_vs_local": 2,
+    "local_only_vs_this_opponent": 311,
+    "sampled_fm_both": 3
+   },
+   "d9_output_quality": {
+    "sampled": 3,
+    "sample_unreadable": 0,
+    "ratio_body": {
+     "overview": 0.333,
+     "when_to_use": 0.0,
+     "process": 0.667,
+     "rationalizations": 0.0,
+     "red_flags": 0.0,
+     "verification": 0.333
+    },
+    "ratio_both": {
+     "overview": 1.0,
+     "when_to_use": 1.0,
+     "process": 0.667,
+     "rationalizations": 0.0,
+     "red_flags": 0.0,
+     "verification": 0.333
+    }
+   },
+   "d10_control": {
+    "dependabot": false,
+    "security_md": false,
+    "workflows": 9
+   },
+   "d11_reusability": {
+    "skill_md_count": 3,
+    "schema_bundled": false
+   },
+   "d12_compatibility": {
+    "sample_attempted": 3,
+    "fm_fence_rate": 1.0,
+    "fm_both_rate": 1.0,
+    "basis": "抽样件前置 YAML 围栏含 name+description 的比例；分母=实抽件数（非全量）"
+   },
+   "tree_truncated": false,
+   "skill_bearing": true,
+   "face_role": "skill_tree"
+  },
+  "sickn33/agentic-awesome-skills": {
+   "state": "MEASURED",
+   "d1_capability_surface": 8203,
+   "d2_mechanism_layer": {
+    "workflows": 10,
+    "schema_files": 405,
+    "py_files": 2228,
+    "windows_scripts": true
+   },
+   "d3_performance": {
+    "mean_sampled_skill_bytes": 6145.0
+   },
+   "d4_extensibility": {
+    "schema_files": 405,
+    "docs_files": 147
+   },
+   "d5_maintenance": {
+    "push_age_days": 0.17,
+    "archived": false,
+    "open_issues_incl_pr": 2,
+    "stars": 47187
+   },
+   "d6_documentation": {
+    "readme": true,
+    "changelog": true,
+    "security_md": true,
+    "docs_dir_files": 147,
+    "license": "MIT",
+    "repo_description_chars": 226
+   },
+   "d7_fit_scenario": {
+    "total_blobs": 25780,
+    "windows_scripts": true
+   },
+   "d8_function_coverage": {
+    "unique_slugs": 2635,
+    "opponent_only_vs_local": 2596,
+    "local_only_vs_this_opponent": 273,
+    "sampled_fm_both": 6
+   },
+   "d9_output_quality": {
+    "sampled": 6,
+    "sample_unreadable": 0,
+    "ratio_body": {
+     "overview": 0.167,
+     "when_to_use": 1.0,
+     "process": 0.0,
+     "rationalizations": 0.0,
+     "red_flags": 0.167,
+     "verification": 0.167
+    },
+    "ratio_both": {
+     "overview": 1.0,
+     "when_to_use": 1.0,
+     "process": 0.0,
+     "rationalizations": 0.0,
+     "red_flags": 0.167,
+     "verification": 0.167
+    }
+   },
+   "d10_control": {
+    "dependabot": false,
+    "security_md": true,
+    "workflows": 10
+   },
+   "d11_reusability": {
+    "skill_md_count": 8203,
+    "schema_bundled": true
+   },
+   "d12_compatibility": {
+    "sample_attempted": 6,
+    "fm_fence_rate": 1.0,
+    "fm_both_rate": 1.0,
+    "basis": "抽样件前置 YAML 围栏含 name+description 的比例；分母=实抽件数（非全量）"
+   },
+   "tree_truncated": false,
+   "skill_bearing": true,
+   "face_role": "skill_tree"
+  },
+  "LibreChat-AI/LibreChat": {
+   "state": "MEASURED",
+   "d1_capability_surface": 3,
+   "d2_mechanism_layer": {
+    "workflows": 31,
+    "schema_files": 0,
+    "py_files": 2,
+    "windows_scripts": false
+   },
+   "d3_performance": {
+    "mean_sampled_skill_bytes": 4262.7
+   },
+   "d4_extensibility": {
+    "schema_files": 0,
+    "docs_files": 3
+   },
+   "d5_maintenance": {
+    "push_age_days": 0.01,
+    "archived": false,
+    "open_issues_incl_pr": 843,
+    "stars": 45199
+   },
+   "d6_documentation": {
+    "readme": true,
+    "changelog": false,
+    "security_md": true,
+    "docs_dir_files": 3,
+    "license": "MIT",
+    "repo_description_chars": 350
+   },
+   "d7_fit_scenario": {
+    "total_blobs": 5617,
+    "windows_scripts": false
+   },
+   "d8_function_coverage": {
+    "unique_slugs": 3,
+    "opponent_only_vs_local": 3,
+    "local_only_vs_this_opponent": 312,
+    "sampled_fm_both": 3
+   },
+   "d9_output_quality": {
+    "sampled": 3,
+    "sample_unreadable": 0,
+    "ratio_body": {
+     "overview": 0.0,
+     "when_to_use": 0.0,
+     "process": 0.333,
+     "rationalizations": 0.0,
+     "red_flags": 0.333,
+     "verification": 0.333
+    },
+    "ratio_both": {
+     "overview": 1.0,
+     "when_to_use": 0.667,
+     "process": 0.333,
+     "rationalizations": 0.0,
+     "red_flags": 0.333,
+     "verification": 0.333
+    }
+   },
+   "d10_control": {
+    "dependabot": false,
+    "security_md": true,
+    "workflows": 31
+   },
+   "d11_reusability": {
+    "skill_md_count": 3,
+    "schema_bundled": false
+   },
+   "d12_compatibility": {
+    "sample_attempted": 3,
+    "fm_fence_rate": 1.0,
+    "fm_both_rate": 1.0,
+    "basis": "抽样件前置 YAML 围栏含 name+description 的比例；分母=实抽件数（非全量）"
+   },
+   "tree_truncated": false,
+   "skill_bearing": true,
+   "face_role": "skill_tree"
+  },
+  "github/awesome-copilot": {
+   "state": "MEASURED",
+   "d1_capability_surface": 444,
+   "d2_mechanism_layer": {
+    "workflows": 52,
+    "schema_files": 0,
+    "py_files": 56,
+    "windows_scripts": true
+   },
+   "d3_performance": {
+    "mean_sampled_skill_bytes": 6139.3
+   },
+   "d4_extensibility": {
+    "schema_files": 0,
+    "docs_files": 409
+   },
+   "d5_maintenance": {
+    "push_age_days": 0.81,
+    "archived": false,
+    "open_issues_incl_pr": 100,
+    "stars": 39629
+   },
+   "d6_documentation": {
+    "readme": true,
+    "changelog": true,
+    "security_md": true,
+    "docs_dir_files": 409,
+    "license": "MIT",
+    "repo_description_chars": 115
+   },
+   "d7_fit_scenario": {
+    "total_blobs": 2990,
+    "windows_scripts": true
+   },
+   "d8_function_coverage": {
+    "unique_slugs": 444,
+    "opponent_only_vs_local": 442,
+    "local_only_vs_this_opponent": 310,
+    "sampled_fm_both": 6
+   },
+   "d9_output_quality": {
+    "sampled": 6,
+    "sample_unreadable": 0,
+    "ratio_body": {
+     "overview": 0.0,
+     "when_to_use": 0.0,
+     "process": 0.667,
+     "rationalizations": 0.167,
+     "red_flags": 0.167,
+     "verification": 0.333
+    },
+    "ratio_both": {
+     "overview": 1.0,
+     "when_to_use": 0.5,
+     "process": 0.667,
+     "rationalizations": 0.167,
+     "red_flags": 0.167,
+     "verification": 0.333
+    }
+   },
+   "d10_control": {
+    "dependabot": false,
+    "security_md": true,
+    "workflows": 52
+   },
+   "d11_reusability": {
+    "skill_md_count": 444,
+    "schema_bundled": false
+   },
+   "d12_compatibility": {
+    "sample_attempted": 6,
+    "fm_fence_rate": 1.0,
+    "fm_both_rate": 1.0,
+    "basis": "抽样件前置 YAML 围栏含 name+description 的比例；分母=实抽件数（非全量）"
+   },
+   "tree_truncated": false,
+   "skill_bearing": true,
+   "face_role": "skill_tree"
+  },
+  "volcengine/OpenViking": {
+   "state": "MEASURED",
+   "d1_capability_surface": 50,
+   "d2_mechanism_layer": {
+    "workflows": 28,
+    "schema_files": 1,
+    "py_files": 1946,
+    "windows_scripts": false
+   },
+   "d3_performance": {
+    "mean_sampled_skill_bytes": 6587.5
+   },
+   "d4_extensibility": {
+    "schema_files": 1,
+    "docs_files": 744
+   },
+   "d5_maintenance": {
+    "push_age_days": 0.01,
+    "archived": false,
+    "open_issues_incl_pr": 730,
+    "stars": 39126
+   },
+   "d6_documentation": {
+    "readme": true,
+    "changelog": false,
+    "security_md": true,
+    "docs_dir_files": 744,
+    "license": "AGPL-3.0",
+    "repo_description_chars": 91
+   },
+   "d7_fit_scenario": {
+    "total_blobs": 4818,
+    "windows_scripts": false
+   },
+   "d8_function_coverage": {
+    "unique_slugs": 27,
+    "opponent_only_vs_local": 25,
+    "local_only_vs_this_opponent": 310,
+    "sampled_fm_both": 6
+   },
+   "d9_output_quality": {
+    "sampled": 6,
+    "sample_unreadable": 0,
+    "ratio_body": {
+     "overview": 0.0,
+     "when_to_use": 0.0,
+     "process": 0.0,
+     "rationalizations": 0.0,
+     "red_flags": 0.0,
+     "verification": 0.333
+    },
+    "ratio_both": {
+     "overview": 1.0,
+     "when_to_use": 0.333,
+     "process": 0.0,
+     "rationalizations": 0.0,
+     "red_flags": 0.0,
+     "verification": 0.333
+    }
+   },
+   "d10_control": {
+    "dependabot": true,
+    "security_md": true,
+    "workflows": 28
+   },
+   "d11_reusability": {
+    "skill_md_count": 50,
+    "schema_bundled": true
+   },
+   "d12_compatibility": {
+    "sample_attempted": 6,
+    "fm_fence_rate": 1.0,
+    "fm_both_rate": 1.0,
+    "basis": "抽样件前置 YAML 围栏含 name+description 的比例；分母=实抽件数（非全量）"
+   },
+   "tree_truncated": false,
+   "skill_bearing": true,
+   "face_role": "skill_tree"
+  },
+  "VoltAgent/awesome-agent-skills": {
+   "state": "MEASURED",
+   "d1_capability_surface": 0,
+   "d2_mechanism_layer": {
+    "workflows": 0,
+    "schema_files": 0,
+    "py_files": 0,
+    "windows_scripts": false
+   },
+   "d3_performance": {
+    "mean_sampled_skill_bytes": null
+   },
+   "d4_extensibility": {
+    "schema_files": 0,
+    "docs_files": 0
+   },
+   "d5_maintenance": {
+    "push_age_days": 0.01,
+    "archived": false,
+    "open_issues_incl_pr": 43,
+    "stars": 35116
+   },
+   "d6_documentation": {
+    "readme": true,
+    "changelog": false,
+    "security_md": false,
+    "docs_dir_files": 0,
+    "license": "MIT",
+    "repo_description_chars": 151
+   },
+   "d7_fit_scenario": {
+    "total_blobs": 4,
+    "windows_scripts": false
+   },
+   "d8_function_coverage": {
+    "unique_slugs": 0,
+    "opponent_only_vs_local": 0,
+    "local_only_vs_this_opponent": 312,
+    "sampled_fm_both": 0
+   },
+   "d9_output_quality": {
+    "sampled": 0,
+    "sample_unreadable": 0,
+    "ratio_body": {
+     "overview": 0.0,
+     "when_to_use": 0.0,
+     "process": 0.0,
+     "rationalizations": 0.0,
+     "red_flags": 0.0,
+     "verification": 0.0
+    },
+    "ratio_both": {
+     "overview": 0.0,
+     "when_to_use": 0.0,
+     "process": 0.0,
+     "rationalizations": 0.0,
+     "red_flags": 0.0,
+     "verification": 0.0
+    }
+   },
+   "d10_control": {
+    "dependabot": false,
+    "security_md": false,
+    "workflows": 0
+   },
+   "d11_reusability": {
+    "skill_md_count": 0,
+    "schema_bundled": false
+   },
+   "d12_compatibility": {
+    "sample_attempted": 0,
+    "fm_fence_rate": 0.0,
+    "fm_both_rate": 0.0,
+    "basis": "抽样件前置 YAML 围栏含 name+description 的比例；分母=实抽件数（非全量）"
+   },
+   "tree_truncated": false,
+   "skill_bearing": false,
+   "face_role": "non_skill_repo"
+  },
+  "mukul975/Anthropic-Cybersecurity-Skills": {
+   "state": "MEASURED",
+   "d1_capability_surface": 818,
+   "d2_mechanism_layer": {
+    "workflows": 4,
+    "schema_files": 0,
+    "py_files": 1103,
+    "windows_scripts": true
+   },
+   "d3_performance": {
+    "mean_sampled_skill_bytes": 7405.3
+   },
+   "d4_extensibility": {
+    "schema_files": 0,
+    "docs_files": 1
+   },
+   "d5_maintenance": {
+    "push_age_days": 32.55,
+    "archived": false,
+    "open_issues_incl_pr": 51,
+    "stars": 33710
+   },
+   "d6_documentation": {
+    "readme": true,
+    "changelog": false,
+    "security_md": true,
+    "docs_dir_files": 1,
+    "license": "Apache-2.0",
+    "repo_description_chars": 310
+   },
+   "d7_fit_scenario": {
+    "total_blobs": 4532,
+    "windows_scripts": true
+   },
+   "d8_function_coverage": {
+    "unique_slugs": 818,
+    "opponent_only_vs_local": 818,
+    "local_only_vs_this_opponent": 312,
+    "sampled_fm_both": 6
+   },
+   "d9_output_quality": {
+    "sampled": 6,
+    "sample_unreadable": 0,
+    "ratio_body": {
+     "overview": 0.667,
+     "when_to_use": 1.0,
+     "process": 1.0,
+     "rationalizations": 0.0,
+     "red_flags": 0.0,
+     "verification": 0.167
+    },
+    "ratio_both": {
+     "overview": 1.0,
+     "when_to_use": 1.0,
+     "process": 1.0,
+     "rationalizations": 0.0,
+     "red_flags": 0.0,
+     "verification": 0.167
+    }
+   },
+   "d10_control": {
+    "dependabot": false,
+    "security_md": true,
+    "workflows": 4
+   },
+   "d11_reusability": {
+    "skill_md_count": 818,
+    "schema_bundled": false
+   },
+   "d12_compatibility": {
+    "sample_attempted": 6,
+    "fm_fence_rate": 1.0,
+    "fm_both_rate": 1.0,
+    "basis": "抽样件前置 YAML 围栏含 name+description 的比例；分母=实抽件数（非全量）"
+   },
+   "tree_truncated": false,
+   "skill_bearing": true,
+   "face_role": "skill_tree"
+  },
+  "vercel-labs/skills": {
+   "state": "MEASURED",
+   "d1_capability_surface": 2,
+   "d2_mechanism_layer": {
+    "workflows": 3,
+    "schema_files": 0,
+    "py_files": 0,
+    "windows_scripts": false
+   },
+   "d3_performance": {
+    "mean_sampled_skill_bytes": 3354.5
+   },
+   "d4_extensibility": {
+    "schema_files": 0,
+    "docs_files": 0
+   },
+   "d5_maintenance": {
+    "push_age_days": 0.06,
+    "archived": false,
+    "open_issues_incl_pr": 1269,
+    "stars": 32980
+   },
+   "d6_documentation": {
+    "readme": true,
+    "changelog": false,
+    "security_md": false,
+    "docs_dir_files": 0,
+    "license": "MIT",
+    "repo_description_chars": 39
+   },
+   "d7_fit_scenario": {
+    "total_blobs": 129,
+    "windows_scripts": false
+   },
+   "d8_function_coverage": {
+    "unique_slugs": 2,
+    "opponent_only_vs_local": 1,
+    "local_only_vs_this_opponent": 311,
+    "sampled_fm_both": 2
+   },
+   "d9_output_quality": {
+    "sampled": 2,
+    "sample_unreadable": 0,
+    "ratio_body": {
+     "overview": 0.5,
+     "when_to_use": 0.5,
+     "process": 0.0,
+     "rationalizations": 0.0,
+     "red_flags": 0.0,
+     "verification": 0.0
+    },
+    "ratio_both": {
+     "overview": 1.0,
+     "when_to_use": 0.5,
+     "process": 0.0,
+     "rationalizations": 0.0,
+     "red_flags": 0.0,
+     "verification": 0.0
+    }
+   },
+   "d10_control": {
+    "dependabot": false,
+    "security_md": false,
+    "workflows": 3
+   },
+   "d11_reusability": {
+    "skill_md_count": 2,
+    "schema_bundled": false
+   },
+   "d12_compatibility": {
+    "sample_attempted": 2,
+    "fm_fence_rate": 1.0,
+    "fm_both_rate": 1.0,
+    "basis": "抽样件前置 YAML 围栏含 name+description 的比例；分母=实抽件数（非全量）"
+   },
+   "tree_truncated": false,
+   "skill_bearing": true,
+   "face_role": "skill_tree"
+  }
+ },
+ "retrieval_commands": {
+  "hot_face": "gh api -X GET search/repositories -f q=\"agent skills in:name,description stars:>1000\" -f sort=stars -f order=desc -f per_page=25",
+  "opponent_meta": "gh api -X GET repos/<owner>/<repo>",
+  "opponent_tree": "gh api -X GET repos/<owner>/<repo>/git/trees/<branch> -f recursive=1",
+  "opponent_skill_body": "gh api -X GET repos/<owner>/<repo>/contents/<path> -H \"Accept: application/vnd.github.raw\"",
+  "local_face": "python 05-exec/r96_twelve_face.py --offline --json <out>",
+  "this_file": "python 05-exec/r96_twelve_face.py --json 06-benchmark/twelve_face_rNN_<YYYY-MM-DD>.json",
+  "selftest": "python 05-exec/r96_twelve_face.py --selftest"
+ }
+}

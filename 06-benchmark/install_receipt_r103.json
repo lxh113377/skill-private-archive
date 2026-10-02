@@ -1,0 +1,64 @@
+{
+ "repo": "affaan-m/ECC",
+ "ref": "main",
+ "mode": "apply",
+ "items": [
+  {
+   "slug": "healthcare-cdss-patterns",
+   "bytes": 9461,
+   "api_declared_size": "9461",
+   "sha256": "439875d2fff3bbf14e0b46b7310b4c815c2596e54a6cafaafb4b2b93b4865626",
+   "frontmatter": {
+    "fence": true,
+    "name": true,
+    "description": true
+   },
+   "danger_hits": [],
+   "origin": "affaan-m/ECC/skills/healthcare-cdss-patterns",
+   "blockers": [],
+   "staged": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\05-exec\\_r103_stage\\healthcare-cdss-patterns.SKILL.md",
+   "staged_sha_match": true,
+   "written_sha_match": true
+  },
+  {
+   "slug": "healthcare-emr-patterns",
+   "bytes": 6746,
+   "api_declared_size": "6746",
+   "sha256": "117e1861c5313f1874c82791c73798d28e9985cac8964a95d73bed915a8aff39",
+   "frontmatter": {
+    "fence": true,
+    "name": true,
+    "description": true
+   },
+   "danger_hits": [],
+   "origin": "affaan-m/ECC/skills/healthcare-emr-patterns",
+   "blockers": [],
+   "staged": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\05-exec\\_r103_stage\\healthcare-emr-patterns.SKILL.md",
+   "staged_sha_match": true,
+   "written_sha_match": true
+  },
+  {
+   "slug": "healthcare-eval-harness",
+   "bytes": 7849,
+   "api_declared_size": "7849",
+   "sha256": "0c74bb0309d4fb7e3bf04b0f779909156520c73bd6162bd405f7232af19c0a68",
+   "frontmatter": {
+    "fence": true,
+    "name": true,
+    "description": true
+   },
+   "danger_hits": [],
+   "origin": "affaan-m/ECC/skills/healthcare-eval-harness",
+   "blockers": [],
+   "staged": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\05-exec\\_r103_stage\\healthcare-eval-harness.SKILL.md",
+   "staged_sha_match": true,
+   "written_sha_match": true
+  }
+ ],
+ "installed": [
+  "healthcare-cdss-patterns",
+  "healthcare-emr-patterns",
+  "healthcare-eval-harness"
+ ],
+ "refused": []
+}

@@ -1,0 +1,71 @@
+=== 本仓门禁聚合 runner (2026-10-03 02:08) ===
+工作根: C:\Users\37533\Desktop\workspace\skill焚诀\自建skill优化
+r19_scan_fixtures                PASS        rc=0     7265ms  判据可信度：已知答案 36 例 + 真机接线 19 例
+      覆盖根: 05-exec/cumulative_drift_scan.py 排除判据 ; 05-exec/skill_structure_rubric_scan.py 口径 ; 05-exec/description_baseline_scan.py PROCESS_RE ; 05-exec/_lib.py denominator()
+r19_baseline_contract_fixtures   PASS        rc=0     1515ms  契约校验器自身的夹具（含 r31 授权代际列表 t11/t12）
+      覆盖根: 05-exec/baseline_contract_scan.py ; 05-exec/schemas/r19/baseline-contracts.json
+baseline_contract_scan           PASS        rc=0      231ms  产物 schema/必填/类型/不变式事前拒收
+      覆盖根: 06-benchmark/*.json 机器证据结构（份数/pattern 数不硬编码，取值：该门 --json 输出的 files_checked 与 artifacts 长度）
+ratchet_gate                     FAIL        rc=1      175ms  注入面/度量六项只降不升棘轮（r34 加第 6 项 username_in_skill_files）
+      覆盖根: 06-benchmark/inject_ratchet_baseline.json ; D:\global_skills 注入面 ; 焚诀 truth_constants
+      末输出: b9b202acb4e1（87604 → 87610，2026-10-02） |   ⚠️ 非阻断告警: inject_union_bytes=88353 超硬顶 65536（+22817） |   - inject_union_bytes=88353 超棘轮基线 87610（+743，只降不升） | [RATCHET:FAIL] 阻断项 2 项（超棘轮/无基线/指标缺失），另有非阻断告警 1 项
+control_char_scan                PASS        rc=0     8580ms  拦「肉眼看不见、但让引用检索不到」的 C0 ∪ DEL
+      覆盖根: 本仓全部文本面（r31 实测 376 个面）
+tracked_empty_check              PASS        rc=0      131ms  拦「写崩/截断留下的 0 字节件」——r34 我曾把 memory/AGENTS.md 写成 0 字节，靠 Git 基线才恢复
+      覆盖根: 本仓全部 tracked 文本件（.md/.py/.json/.jsonl/.yml/.txt/.ps1/.sh/.toml 等） ; 二进制/未知扩展跳过但如实计数，不静默当通过
+mark_verdict_fixtures            PASS        rc=0     1628ms  r45 实测 W-9 挂了 5 轮的真因是按行号写标记写到别处；本门锁死该入口不再接受行号、歧义与已闭环一律拒写、写完必须读回
+      覆盖根: 05-exec/r46_mark_verdict.py 的锚点定位与拒写分支 ; X-19 禁行号写标记（工具化，不靠自觉）
+refresh_budget_fixtures          FAIL        rc=1      334ms  r53 我方差点拿 33 轮前的源件跟现值比（那次报的是命名假阳性，揭开的是「没有任何地方声明预算」这个真缺口）；对手侧 r54 实测五家仅 2 家在 workflow 里声明节律 （pre-commit 12 行 / spec-kit 7 行）⇒ 周期是被显式声明的对象
+      覆盖根: 05-exec/ratchet_gate.py 的 METRIC_SOURCES/METRIC_REFRESH_DAYS/source_age_days/face_metric_refresh ; collect_metrics 把 STALE 指标转 unknown（UNVERIFIED 不转，活体扫描本无源件） ; CLI 打印再生周期行（声明必须在输出里看得见，否则等于没声明）
+      末输出: L] 阻断项 2 项（超棘轮/无基线/指标缺失），另有非阻断告警 1 项 | FAIL g11 真接线：加判据不得把本轮判红（只降不升的口径不变）                              <-- [RATCHET:FAIL] 阻断项 2 项（超棘轮/无基线/指标缺失），另有非阻断告警 1 项 | 夹具合计: 12 项，通过 9，失败 3 | [GATE:fixture-fail]
+handles_readme_fixtures          PASS        rc=0    15219ms  r53 实测：对手 AAS 一份 README 挂 50 个文件链接、正文数字 0-1 个，而我方 60 份机器可读件在入口文档里链接数为 0；同时 r38 含 PR 的数字在报告里无命令跑了 12 轮 ⇒ 数字必须由产物承载、入口必须可达
+      覆盖根: 05-exec/r38_debt_aging.py 的 make_handles/resolve_handle（句柄可解值、死句柄返 None） ; 写台账→解句柄的闭环守恒 h7/h7b（源头断了必须显形，不得沿用旧值） ; README 指向 06-benchmark 的链接数 >0 且零死链（h8/h9 + 自检）
+md_claim_face                    PASS        rc=0      155ms  r51 实测 JSON 取证件已被判据管住，但真正被读的是报告正文：r38 的 open issues 就在报告里以无命令形态跑了 12 轮。接线口径 = 只判可整改面（r≥51 或 mtime 当日），历史面 755 处敞口如实登记但不判红（R241 禁回改，且拿不可消的警告当判据即 W-32 那个毛病）
+      覆盖根: 06-benchmark/*.md 引用面（数字声明 ±12 行内需有取值命令） ; 05-exec/r52_mdclaim_fixtures.py 的 19 例（含标题行排除与分面守恒）
+retrieval_fixtures               PASS        rc=0      142ms  r51 实测我方引用对手 open issues 取自 REST 含 PR 面（虚高 1.5–3.5 倍）、workflow 数混入平台 dynamic 件；且实跑接线暴露调度器传给不变式的是名字串而非配置值——按名字比较会让全部证据件被字典序静默豁免
+      覆盖根: 05-exec/baseline_contract_scan.py 的 inv_opponent_claims_have_retrieval（结构识别，不锁键名） ; 契约 debt_aging glob 由 r3* 修成 r*（陈旧 pattern 面洞） ; 真机：06-benchmark/opponents_*_r*.json 全部须过判据
+root_face_fixtures               PASS        rc=0    10411ms  r54 我把「savepoint 绿」当「项目根干净」写进了 AGENTS.md 排障表 row 1 首版（未实测的检查命令），r55 定位到根因是同一判据读了两个输入面；修完必须双向取证件——顶层 8→0 只证明变绿，不证明牙齿还在（放宽 allowlist 凑绿是 X-9 的反面形态）
+      覆盖根: 受管根 noise_lint KNOWN_CORE 对本项目根的登记面（R286，受管根 e93896b） ; 登记不放宽判据：植入散落产物仍须判 VIOL + 计数严格 +1 + 清理后复位 ; f9 反向对照：未登记同形根上同一谓词必须抓到顶层 strict VIOL（防 f2 成空断言）
+budget_contract_fixtures         FAIL        rc=1     2038ms  r54 我只做到「代码里逐个声明保质期」，但契约看不见那张表 ⇒ 谁删一项就静默少一项，声明退化成没人看守的注释（当时登记为 D-97/W-37）；对手把节律写在被 CI 解析的文件里，声明即被校验 —— 本门把同一件事在无 CI 条件下做成等价机制
+      覆盖根: 06-benchmark/inject_ratchet_baseline.json 的 refresh_days 声明面（schema v1→v2） ; 05-exec/baseline_contract_scan.py 的 inv_ratchet_refresh_days（缺项/多键/越界三向判红） ; ratchet_gate.refresh_status 无静默回落（基线缺预算⇒UNVERIFIED 且不读代码常量） ; --update 不得改写预算面 + 预算与 note 留账同轮存活（D-104 同族再犯防护）
+      末输出: 账必须一起存活（D-104 同族再犯防护）  ← rc=2 rd=9 note=d 84db1c07 +6B,端数口径七端→九端,老大已批准上调;分两条留账,逐字节相等,棘轮语义不变) ｜夹具哨兵留账 | PASS b9 代码只读不写：基线预算与代码常量不同（9 vs 3）时 --update 必须保留基线值 | 夹具合计: 10 项，通过 8，失败 2 | [GATE:fixture-fail]
+evidence_face_fixtures           PASS        rc=0     2669ms  r52/r51 那两份裁定依据是**一次性内联脚本**产出的，仓里根本没有生成器 ⇒ 它们自己就是解不出的死句柄（另立 W-46 记这条通病）；补生成器时又发现新必填面会回头把历史件判红——台账早就有分代口径，本轮把它推广到 JSON 件并钉成常驻断言
+      覆盖根: 06-benchmark 两类新 pattern：inject_face_breakdown_r*.json / w27_conflict_triage_r*.json ; baseline_contract_scan 的两条新不变式（逐件求和自洽 / 三数算术自洽 + 空面不判过） ; 代际豁免 required_from + invariants_from：历史证据件不追溯判红，且分叉点后仍须红（e9） ; 豁免可见性：扫描输出必须打印「代际豁免」计数行（e10，看不见的豁免=豁免表）
+baseline_note_fixtures           FAIL        rc=1      818ms  指标面有「只降不升」的牙齿，留账面此前完全没有——r55 我跑一次 --update 就蒸发了三条核定依据（含「真实敞口 22 而非 0」），当场自抓，并以变异体复验（改回旧行为 n4 必红）
+      覆盖根: 05-exec/ratchet_gate.py 的 merge_note 与 --update 落盘路径（留账只增不减 + attributed_raises 须存活） ; note 缩短即拒写分支（宁可红，不许把留账当装饰刷掉） ; n6 常驻锁：现件 note 仍含 r38/r40/r45 三条归因
+      末输出: red_debt_items', 'repeat_debt_items'] ⇒ 拒绝写基线（禁止把算 | PASS n5 零输入：现件 note 必须非空（空 note 不得被当成合格基线） | PASS n6 常驻锁：现件留账须仍含 r38/r40/r45 三条人工核定依据（防再次被 --update 刷掉） | 夹具合计: 6 项，通过 5，失败 1 | [GATE:fixture-fail]
+input_face_fixtures              PASS        rc=0    24246ms  账龄尺有四处截断/降采样（-40 取轮号、body[:80] 去重、needle[:70] 定年、title[:110] 展示）从未自证；且 r46 我把 W-17 的延期裁决写到了已落地的 W-14 行上（锚点唯一命中≠对象正确），3 轮后才被到期追讨发现 —— 本锁把两者都变机器判据
+      覆盖根: 05-exec/r38_debt_aging.py 的 face_round/face_dedup/face_dating ; 05-exec/r46_mark_verdict.py 的 landed_contradiction/item_own_id（第⑥重拒写） ; 真卷输入面守恒（RE_ITEM 行数 == 计入条目数 + 前缀键零碰撞）
+authority_face_fixtures          PASS        rc=0      432ms  r50 实测：冲突判据的手抄清单只 10 件，而 GM/core 有 18 件带可配对正负规则的权威源（规则分卷 behavior_core_rules_p1..p8 即 22 锚点正文所在）从未进面 —— 扩面后极性规则 116→188、自述冲突 6→11、互斥候选 6→21，证明「绿灯」曾是 38% 面上的结论
+      覆盖根: 05-exec/rule_conflict_scan.py 的 discover_authority_candidates/face_authority_coverage/effective_files ; 05-exec/ratchet_gate.py 的 face_counted_vs_observed（OSError 静默跳过显形） ; 05-exec/baseline_contract_scan.py 的 pattern 零命中判红（防回退）
+scan_inputs_fixtures             PASS        rc=0     1079ms  r40 实测：DEFAULT_FILES 里有一条指不到文件的权威源，被错标成归属方件挂账 4 轮——本条把『声明==实存』钉成契约判据，防同类债务被错误外部化
+      覆盖根: 05-exec/rule_conflict_scan.py 的 DEFAULT_FILES 与 input_evidence ; 05-exec/baseline_contract_scan.py 的 conflict_no_dead_inputs 不变式
+debt_ledger_fixtures             PASS        rc=0     5035ms  锁死三件：脏测量值不得进趋势线；挂账到期必须回判 OVERDUE；origin 取值域封闭 local/ci
+      覆盖根: 05-exec/r38_debt_aging.py 的 append_ledger 与 classify_item ; 05-exec/schemas/r19/baseline-contracts.json 的 debt_runs.jsonl 行契约
+noise_tracked_stub               FAIL        rc=1    36710ms  锁死「已跟踪根部文件不误判 + .git 运行态不深扫 + 放行面不外溢」三件，防任何一次再为凑绿而放宽判据（R263/R220）
+      覆盖根: D:\global_skills\A-project-handoff\scripts\noise_lint.py ; 受管根 strict allowlist 放行面 ; 二级深扫 .git 例外
+      末输出: 跟踪 mark_backup → 二级不判 VIOL | ['mark_backup', 'mark_backup/07-next-steps.md.r54_173424.bak', 'mark_backup/07-next-steps.md.r56_194044.bak', 'notes_old', 'scratch.md', 'scripts/handoff.py.bak_20260815']
+gate_run_freshness               FAIL        rc=1      589ms  防判据僵尸化（对手实测：spec-kit 50% run 停在 action_required，从未产生判定）
+      覆盖根: 06-benchmark/gate_runs.jsonl 执行台账 ; 间接盯住 ratchet_gate / r19_scan_fixtures 两台机专属门是否仍被人跑
+      末输出: ns.jsonl（178 条） | 阈值: max_days=7 天｜来源域: ['local', 'ci']｜时间格式: %Y-%m-%dT%H:%M:%S | 覆盖根: 本机专属门 = ratchet_gate / r19_scan_fixtures（仓内无 SKILL.md 语料，CI 永远看不到） | [FRESH:FAIL] 最近一次本机门禁未过（verdict=FAIL，0.0 天前）
+roster_partition_fixtures        PASS        rc=0      261ms  第 18 维名册差集首版把「路径条数」当分母、又让单仓 864 条生成式清单占掉对手面 79.8% —— 域内自洽却整体失真。本门把那层防护钉成契约不变式，并按 W-47 同时交出应绿与应红的证据
+      覆盖根: 05-exec/baseline_contract_scan.py 的 inv_roster_partition_sum（r60 新增不变式） ; 06-benchmark/capability_roster_r60_2026-09-30.json 与 capability_gap_r60_2026-09-30.json 真件面 ; 四例变异：抽 domain 行 / 抽 item retrieval / 零面 / items 长度不符
+py_syntax_guard                  PASS        rc=0      585ms  W-46 的下一层：`pattern 有没有生成器` 之外还得问 `生成器能不能加载`。r58 实物 = `evidence_resolvability_measure.py:111` 少一个右括号，已入库且长期不可运行，其产物成为「生成器跑不起来」的死句柄，而 21 道门没有一道会因为工具加载失败而红
+      覆盖根: 05-exec/*.py 全部 99 件（compile exec 模式逐件解析，空面判红）
+action_pin_guard                 PASS        rc=0      102ms  第 17 维供应链面：`checkout` 在 21 道门读盘**之前**决定工作树里是什么字节，未 pin 到不可变 SHA = 判据输入面劫持入口（与 r49 劫持族、r56「声明要被机器校验」同族）；P2 把「pin 必须配更新器」也钉住，防固定点腐烂成拿不到上游安全修复的更坏形态
+      覆盖根: .github/workflows/*.yml 的全部 `uses:` 引用面（含 @main 分支形与截断 SHA 形） ; .github/dependabot.yml 的 github-actions 生态声明 ; 05-exec/r58_action_pin_fixtures.py 的 11 例（层 a 9 + 层 b 真仓对照/变异体各 1）
+retired_face                     FAIL        rc=1      267ms  r59 实测：executing-plans、slides 早在 retired_skills 里、磁盘仍带 SKILL.md 且能被会话加载；而 disk_registry_diff.py 把这个数印出来（「其中磁盘仍在: 2」）却照打 [PASS] ⇒ 看得见不等于拦得住（R238 接线面 + 「消不掉的告警等于没有判据」）。本门只判 磁盘∩退役名单 一项事实，不重复 disk_registry_diff 的三类差集（一事实一判据）。
+      覆盖根: D:/global_skills 磁盘集 ∩ 焚诀 eval/truth_constants.json 的 retired_skills（退役必须已移出扫描树） ; 名单为空 / 磁盘面为空 / 名单文件缺失 三态一律 rc=2，不得读成「无残留」 ; r7 真件可逆注入：真名单首个名字建进临时树必须见红（W-47 两侧证据）
+      末输出: /<tag>_<ts>/），再复跑本门。 |   ℹ️ 第二出口 C:\Users\37533\.workbuddy\skills 经 realpath 判定与本树同一对象（st_ino 相同），不存在「另一个根待清」；已移出却又回流 ⇒ 生产者在这棵树之外，须先定位写入方（git ?? 未跟踪 + mtime 成批跳变即平台重下发），再裁定「撤销退役登记」或「平台侧关下发」，不得再走全出口清理。
+generator_face                   PASS        rc=0     1297ms  W-46b：r56 连踩两份死句柄（裁定依据件在仓里没有生成器）。r58 先只测量并交清单（防带误报上线），r66 把误报修到 0 后接线：三态 rc=0/1/2（零输入与解析失败一律 rc=2，禁静默判过，R247）。r66 实证三处自身缺陷：① 自排除把本工具自己的产物判死句柄；② all() 过紧把 attention_sim_raw_* 判假阴性；③ 摘牌 noise_falsepositive_*（真死句柄，生成器已不存在）。
+      覆盖根: 05-exec/schemas/r19/baseline-contracts.json 的 artifacts 里每个 pattern ⇄ 05-exec/*.py 的生成器面 ; 05-exec/r58_generator_coverage.py 的三路识别（A 字面/B 词干+扩展/C 同名工具）+ r66 新增路 D（自产物按工具名） ; 夹具 05-exec/r66_generator_gate_fixtures.py 的 12 例（含 3 条变异腿与 2 条反向腿）
+input_pin_face                   PASS        rc=0     1362ms  R58-1：26 道门读的全是本地字节，而这些字节由仓外的受管根本体与各端 junction 决定。CI 那一侧 r58 已 pin 到不可变 SHA，本地面此前无人固定 —— junction 断裂或被改成指向别处时，某端读到的不是权威源字节而所有门禁照绿（与 r58 D-113 同族，入口在本机）。本门只判「镜像面是否钉在权威源」这一项事实；pin 变动清单按 W-32 只报不阻断。
+      覆盖根: 焚诀 eval/truth_constants.json 的 paths / junction_paths / endpoints.active 声明面 ; 各端 skills|memory junction 是否解析到声明的权威根（形态/存在/目标三项） ; 06-benchmark/input_pins.jsonl 的 pin 落账与「本行自洽」（写哪本/指哪本/比哪本）
+------------------------------------------------------------------------
+执行 27 门 / 跳过 0 门 / 合计耗时 123276 ms（均值 4565 ms/门）
+本 runner 不覆盖（聚合绿不等于这些也绿）：
+  · 受管根四门禁 mirror/noise/evolution/stub —— 属 rule_editor 面，取值：python D:\global_skills\A-memory-start\references\rule_editor.py gates
+  · 焚诀跨产物真值 C1~C33 —— 取值：python 焚诀\eval\verify_truth_consistency.py
+  · 判据变异测试（r19_fixture_mutation_check.py）—— 按需跑，非每轮前置
+[GATES:FAIL] FAIL=7 UNVERIFIED=0
+JSON -> 06-benchmark/gate_run_r103b.json

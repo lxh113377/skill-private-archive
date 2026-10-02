@@ -1,0 +1,18 @@
+{
+ "schema": "retired-face-v1",
+ "generated_at": "2026-10-03T01:45:06",
+ "truth": "C:\\Users\\37533\\Desktop\\workspace\\焚诀\\eval\\truth_constants.json",
+ "tree": "D:\\global_skills",
+ "blacklist_size": 72,
+ "disk_size": 175,
+ "retired_still_on_disk": [
+  "executing-plans",
+  "slides"
+ ],
+ "unverified": "",
+ "market_root": "C:\\Users\\37533\\.workbuddy\\skills",
+ "market_root_realpath": "D:\\global_skills",
+ "market_root_is_alias_of_tree": true,
+ "market_root_still_holding": [],
+ "market_root_note": "第二出口实测是本扫描树的 junction（realpath 全等）——同一对象，不计持有，也不得据此判「会被回流」"
+}

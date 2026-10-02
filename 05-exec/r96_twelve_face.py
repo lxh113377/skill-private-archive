@@ -174,20 +174,44 @@ def derive_roster(search_face, top_n=ROSTER_TOP_N, pinned=()):
 
 def run(args):
     """直传 argv 列表，不经 shell 解析。"""
+    rc, out, _err = run3(args)
+    return rc, out
+
+
+def run3(args):
     p = subprocess.run(args, capture_output=True, text=True,
                        encoding="utf-8", errors="replace")
-    return p.returncode, p.stdout
+    return p.returncode, p.stdout, p.stderr
+
+
+def gh_get_ex(api_path, params=()):
+    """返回 (data, error)；error 非空 ⇔ 这一层没量到。
+
+    r103 一手：本轮实跑把 `mukul975/Anthropic-Cybersecurity-Skills`（curl 独立通道复算
+    = default_branch main、7286 blob、818 个 SKILL.md、truncated=false）记成 d1=0，
+    并据「SKILL.md 数为 0」这一谓词把档位判成 non_skill_repo —— 于是该仓同时被踢出
+    d1/d8/d9/d12 四个分母。根因是旧 gh_get 失败只回 None，调用方无法把
+    「这次没取到」与「这仓真没有 SKILL.md」区分开。量不到一律显形，不得折算 0。
+    """
+    rc, out, err = run3(["gh", "api", "-X", "GET", api_path] + list(params))
+    if rc != 0:
+        return None, "rc=%d %s" % (rc, (err or "").strip()[:200])
+    if not out.strip():
+        return None, "empty_body"
+    if "Not Found" in out[:400]:
+        # 只在响应头部判 404：对全文做子串匹配会让任何路径含 "Not Found" 的大仓整面被误判取不到
+        return None, "not_found"
+    try:
+        return json.loads(out), ""
+    except ValueError as exc:
+        return None, "json_decode=%s body_len=%d" % (exc, len(out))
 
 
 def gh_get(api_path, params=()):
-    """gh api 带 -f 时默认动词会变 POST，故显式钉 -X GET。"""
-    rc, out = run(["gh", "api", "-X", "GET", api_path] + list(params))
-    if rc != 0 or not out.strip() or "Not Found" in out:
-        return None
-    try:
-        return json.loads(out)
-    except ValueError:
-        return None
+    """gh api 带 -f 时默认动词会变 POST，故显式钉 -X GET。失败回 None（无归因）——
+    需要归因的调用面（tree/meta）一律走 gh_get_ex。"""
+    data, _err = gh_get_ex(api_path, params)
+    return data
 
 
 def gh_raw(api_path):
@@ -231,9 +255,10 @@ def fetch_remote(roster_top_n=ROSTER_TOP_N, roster_pinned=()):
     raw["roster_declared"] = list(roster_pinned)
 
     for slug in face["derived"]:
-        meta = gh_get("repos/" + slug)
+        meta, meta_err = gh_get_ex("repos/" + slug)
         if meta is None:
-            raw["repos"][slug] = {"available": False}
+            raw["repos"][slug] = {"available": False, "unavailable_layer": "meta",
+                                  "unavailable_error": meta_err or "reason_unrecorded"}
             continue
         branch = meta.get("default_branch") or "main"
         rec = {"available": True,
@@ -245,7 +270,11 @@ def fetch_remote(roster_top_n=ROSTER_TOP_N, roster_pinned=()):
                "license": (meta.get("license") or {}).get("spdx_id"),
                "default_branch": branch,
                "description_len": len(meta.get("description") or "")}
-        tr = gh_get("repos/%s/git/trees/%s" % (slug, branch), ("-f", "recursive=1"))
+        tr, tr_err = gh_get_ex("repos/%s/git/trees/%s" % (slug, branch),
+                               ("-f", "recursive=1"))
+        # tree_state=failed ⇒ 这一层没量到，绝不允许下游把 paths 空集读成「该仓无 SKILL.md」
+        rec["tree_state"] = "ok" if tr is not None else "failed"
+        rec["tree_error"] = tr_err or ""
         paths = [t["path"] for t in (tr or {}).get("tree", []) if t.get("type") == "blob"]
         rec["tree_truncated"] = bool((tr or {}).get("truncated"))
         rec["total_blobs"] = len(paths)
@@ -466,9 +495,22 @@ def score_dims(local, raw):
     declared = list(raw.get("roster_declared") or raw.get("roster") or [])
     opp_slugs = {}
     opponents = {}
+    unavailable = {}
     for slug, rec in raw.get("repos", {}).items():
+        # r103：取数失败分两层 —— meta 没取到（整仓不可见）/ tree 没取到（仓可见但文件面盲）。
+        # 旧写法只标 meta 层，tree 层失败会一路走成 d1=0 + non_skill_repo（本轮一手见 §0）。
+        layer = None
         if not rec.get("available"):
-            opponents[slug] = {"state": "UNAVAILABLE"}
+            layer = "meta"
+        elif rec.get("tree_state") == "failed":
+            layer = "tree"
+        if layer:
+            opponents[slug] = {
+                "state": "UNAVAILABLE", "unavailable_layer": layer,
+                "reason": (rec.get("unavailable_error") if layer == "meta"
+                           else rec.get("tree_error")) or "reason_unrecorded",
+                "stars": rec.get("stars")}
+            unavailable[slug] = opponents[slug]
             continue
         opp_slugs[slug] = set(filter(None, (slug_from_skillpath(p)
                                             for p in rec.get("skill_md_paths", []))))
@@ -476,8 +518,14 @@ def score_dims(local, raw):
     # 唯一谓词 = 该仓 tree 里的 SKILL.md 数（与 non_skill_repos 同一来源）；
     # 早期版本误用「能否取到父目录 slug」判档，会让根级 SKILL.md 的仓（实测 blader/humanizer）
     # 被两把尺给出相反档位 —— 同一事实只许一处判。
-    skill_bearing = {s: bool(raw.get("repos", {}).get(s, {}).get("skill_md_paths"))
-                     for s in raw.get("repos", {})}
+    # r103 改三态：tree 没量到 = None（未知），既不判 True 也不判 False ——
+    # 「没量到」写成「不是技能树」会把它一并踢出四个分母，档位即结论。
+    skill_bearing = {}
+    for s, r in raw.get("repos", {}).items():
+        if not r.get("available") or r.get("tree_state") == "failed":
+            skill_bearing[s] = None
+        else:
+            skill_bearing[s] = bool(r.get("skill_md_paths"))
     # 「有 SKILL.md 但取不到 slug」另记一件事实，不改档
     slugless = sorted(s for s in skill_bearing
                       if skill_bearing[s] and not opp_slugs.get(s))
@@ -488,8 +536,8 @@ def score_dims(local, raw):
     local_only = local_slugs - universe
 
     for slug, rec in raw.get("repos", {}).items():
-        if not rec.get("available"):
-            continue
+        if skill_bearing.get(slug) is None:
+            continue          # 已在上面显形为 UNAVAILABLE，此处不得再产出 MEASURED 行
         n = max(rec.get("sampled_skill_md", 0), 1)
         h = rec.get("rubric_hits", {})
         mine_excl = local_slugs - opp_slugs.get(slug, set())
@@ -537,7 +585,7 @@ def score_dims(local, raw):
                 "basis": "抽样件前置 YAML 围栏含 name+description 的比例；分母=实抽件数（非全量）",
             },
             "tree_truncated": rec.get("tree_truncated"),
-            "skill_bearing": bool(skill_bearing.get(slug)),
+            "skill_bearing": skill_bearing.get(slug),
             "face_role": ("skill_tree" if skill_bearing.get(slug) else "non_skill_repo"),
         }
     nl = max(local["skill_dirs_with_skillmd"], 1)
@@ -586,7 +634,7 @@ def score_dims(local, raw):
     matched = [k for k, v in coverage.items() if v["state"] == "MEASURED"]
     mismatched = [k for k, v in coverage.items() if v["state"] != "MEASURED"]
     return {"generated_at": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-            "schema": "twelve-face-r101-v5",
+            "schema": "twelve-face-r103-v6",
             "rubric_source": "skill_structure_rubric_scan.rubric_hits（本仓单一真相源，非本件自造）",
             "dim_coverage": coverage,
             "dim_coverage_verdict": "matched=%d/12 mismatched=%s"
@@ -611,13 +659,21 @@ def score_dims(local, raw):
                 "state": roster_state(raw, declared, derived),
                 "face_rows": (raw.get("roster_face") or {}).get("face_rows"),
                 "unparsable_rows": (raw.get("roster_face") or {}).get("unparsable_rows"),
-                "non_skill_repos": sorted(s for s, r in raw.get("repos", {}).items()
-                                          if r.get("available")
-                                          and not r.get("skill_md_paths")),
+                "non_skill_repos": sorted(s for s in skill_bearing
+                                          if skill_bearing[s] is False),
+                "unavailable_face": sorted(
+                    ("%s|%s|%s|stars=%s" % (s, v["unavailable_layer"], v["reason"], v["stars"]))
+                    for s, v in unavailable.items()),
+                "unavailable_n": len(unavailable),
+                "blindness_note": "unavailable_face 是「这一层没量到」的名册（含层名+归因+星标）；"
+                                  "unavailable_n>0 时不得对外称面全覆盖，也不得把这些仓折算成 0 分",
                 "probed_n": len([1 for r in raw.get("repos", {}).values() if r.get("available")]),
+                "tree_ok_n": len([1 for r in raw.get("repos", {}).values()
+                                  if r.get("tree_state") == "ok"]),
                 "skill_face_n": len(skill_face),
                 "slugless_skill_repos": slugless,
-                "skill_bearing_predicate": "tree 内 SKILL.md 数 > 0（与 non_skill_repos 同源同尺）",
+                "skill_bearing_predicate": "tree 内 SKILL.md 数 > 0，且 tree_state==ok；"
+                                           "tree 没量到的仓档位为 unknown（三态），不进任何分母也不判 False",
                 "truncated_named": (raw.get("roster_face") or {}).get("truncated"),
                 "quality_note": "d1/d8/d9/d12 只在 skill_face 上取分母；non_skill_repos 仅进 d5/d6/d10（平台仓的维护/文档/CI 面仍可比）",
             },
@@ -719,8 +775,9 @@ def selftest():
         chk("反例 旧缓存无派生键必须显 UNVERIFIED 不是 matched",
             _st, "matched" if _has else "UNVERIFIED_stale_cache")
         chk("接线 打分产物逐维自证在场", "dim_coverage" in _doc, True)
-    except (OSError, ValueError) as exc:
-        chk("接线 缓存可读（缺件即判未取证，不得静默跳）", str(exc), "cache-present")
+    except Exception as exc:      # r103：原 (OSError, ValueError) 太窄 —— 真回归若把这条腿
+                                  # 打成异常，整个 selftest 丢 verdict，红因无人可读
+        chk("接线 缓存可读且 score_dims 不抛（缺件/崩溃即判未取证）", "%s: %s" % (type(exc).__name__, exc), "cache-present")
     # r101 优质面双向证据
     mix = [["a/noskill", 900, "t", False], ["a/skill", 800, "t", False],
            ["a/small", 700, "t", False]]
@@ -744,6 +801,56 @@ def selftest():
         sorted(k for k, v in _sb.items() if not v), ["a/none"])
     chk("反例 slug 缺失另计一件事实，不改档",
         sorted(s for s, v in _sb.items() if v and s == "a/root"), ["a/root"])
+    # ---- r103 一手：tree 层取数失败曾被折算成 d1=0 + non_skill_repo，该仓随即被踢出
+    # d1/d8/d9/d12 四个分母（本轮实测：mukul975 仓 curl 复算 818 个 SKILL.md，产物记 0）。
+    # 下面 8 条腿全部驱动 score_dims 本体 —— 上方 _sb 那种「夹具里重写一遍谓词」的腿
+    # 会绿而真链错（r100 同款教训），故不再新增该形态。
+    _rh = {"body": {k: 0 for k in SECTIONS}, "both": {k: 0 for k in SECTIONS}}
+    _r103_raw = {"roster_derived": ["o/broken", "o/real", "o/empty", "o/dead"],
+                 "roster_declared": ["o/broken", "o/real", "o/empty", "o/dead"],
+                 "repos": {
+                     "o/broken": {"available": True, "stars": 900, "tree_state": "failed",
+                                  "tree_error": "rc=1 secondary rate limit",
+                                  "skill_md_paths": [], "rubric_hits": _rh,
+                                  "sampled_skill_md": 0},
+                     "o/real": {"available": True, "stars": 800, "tree_state": "ok",
+                                "skill_md_paths": ["skills/x/SKILL.md"],
+                                "rubric_hits": _rh, "sampled_skill_md": 1},
+                     "o/empty": {"available": True, "stars": 700, "tree_state": "ok",
+                                 "skill_md_paths": [], "rubric_hits": _rh,
+                                 "sampled_skill_md": 0},
+                     "o/dead": {"available": False,
+                                "unavailable_error": "rc=1 not_found"}}}
+    try:
+        _r103 = score_dims(loc, _r103_raw)
+    except Exception as exc:
+        # 回归把打分链打成异常时，本套必须交「哪条腿红」而不是一页 traceback：
+        # 崩掉 = 取证链断了，与「量到红」不是一回事（r103 变异体 M2 一手实测两种形态都出现过）
+        chk("反例 score_dims 遇 tree 失败面不得抛（崩=取证链断，必须显形）",
+            "%s: %s" % (type(exc).__name__, exc), "none")
+        _r103 = {"opponents": {}, "roster_face": {}}
+    _o = _r103["opponents"]
+    _rf = _r103["roster_face"]
+    # 取值一律走 .get()：变异体让记录整条消失时，本腿必须报 FAIL 而不是抛 KeyError
+    # （判据自己崩掉 = 证据链断在取证那一步，r103 变异实测抓到过这一形态）
+    _bk = _o.get("o/broken", {})
+    chk("反例 tree 失败必须 UNAVAILABLE 不得判 MEASURED",
+        _bk.get("state"), "UNAVAILABLE")
+    chk("反例 tree 失败不得留下可读的 d1 数值（禁 0 冒充测量）",
+        "d1_capability_surface" in _bk, False)
+    chk("反例 tree 失败不得进 non_skill_repos（档位是 unknown 不是 False）",
+        "o/broken" in _rf.get("non_skill_repos", []), False)
+    chk("接线 tree 失败必须带层名+归因+星标",
+        (_bk.get("unavailable_layer"), _bk.get("reason"), _bk.get("stars")),
+        ("tree", "rc=1 secondary rate limit", 900))
+    chk("接线 unavailable_face 计数与名册条数一致",
+        _rf.get("unavailable_n"), len(_rf.get("unavailable_face", [])))
+    chk("正例 只有 tree 取到且真无 SKILL.md 才判 non_skill_repo",
+        _rf.get("non_skill_repos"), ["o/empty"])
+    chk("反例 任何 UNAVAILABLE 记录不得无归因（reason 空即判红）",
+        sorted(k for k, v in _o.items() if v.get("state") == "UNAVAILABLE"
+               and not (v.get("reason") or "").strip()), [])
+    chk("接线 tree_ok_n 只数真取到文件面的仓", _rf.get("tree_ok_n"), 2)
     chk("接线 双单位并报且 toplevel<=alllayers",
         0 < loc["authority_toplevel_skillmd"] <= loc["authority_skillmd"], True)
     chk("接线 并集 slug 数>=权威源 slug 数",
