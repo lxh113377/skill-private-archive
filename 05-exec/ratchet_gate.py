@@ -318,6 +318,9 @@ def inject_union_paths():
     for row in files:
         p = (row or {}).get("path")
         if p:
+            # 相对路径相对本仓根解析，不随 cwd 漂移（r102 实测：cwd 非项目根时 realpath("AGENTS.md") 指向他处致 getsize 失败返回 None，而 runner 在项目根跑得 87610，两面不一致）
+            if not os.path.isabs(p):
+                p = os.path.join(str(WS), p)
             paths.add(os.path.realpath(p))
     if PROJ_SHELL.exists():
         paths.add(os.path.realpath(PROJ_SHELL))
@@ -426,6 +429,8 @@ def inject_face():
         for row in ((tc.get("inject_budget") or {}).get("files")) or []:
             p = (row or {}).get("path")
             if p:
+                if not os.path.isabs(p):
+                    p = os.path.join(str(WS), p)
                 paths.add(os.path.realpath(p))
     except (OSError, ValueError, AttributeError):
         pass
