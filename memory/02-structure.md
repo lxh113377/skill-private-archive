@@ -6,8 +6,9 @@
 <!-- SYNC_AUTO_GENERATED_START -->
 ```
 ├── .github/
-│   └── workflows/
-│       └── gates.yml
+│   ├── workflows/
+│   │   └── gates.yml
+│   └── dependabot.yml
 ├── 00-scope/
 │   ├── scope_result.json
 │   ├── 注册表失真条目.md
@@ -34,6 +35,16 @@
 │   ├── 实施计划.md
 │   └── 工作流专项建议.md
 ├── 05-exec/
+│   ├── _r97_patches/
+│   │   ├── new1.txt
+│   │   ├── new2.txt
+│   │   ├── new3.txt
+│   │   ├── old1.txt
+│   │   ├── old2.txt
+│   │   ├── old3.txt
+│   │   ├── README.md
+│   │   ├── tail4.txt
+│   │   └── tail5.txt
 │   ├── B10-patches/
 │   │   ├── patch_B10_build_registry.json
 │   │   ├── patch_B10_legacy_domain.json
@@ -74,24 +85,6 @@
 │   │   ├── r1_skillmd.json
 │   │   ├── r2_vh.json
 │   │   └── r3_footer.txt
-│   ├── mark_backup/
-│   │   ├── 06-constraints.md.r51_163821.bak
-│   │   ├── 07-next-steps.md.r46_144511.bak
-│   │   ├── 07-next-steps.md.r46_144636.bak
-│   │   ├── 07-next-steps.md.r47_150335.bak
-│   │   ├── 07-next-steps.md.r47_150336.bak
-│   │   ├── 07-next-steps.md.r47_150337.bak
-│   │   ├── 07-next-steps.md.r47_150504.bak
-│   │   ├── 07-next-steps.md.r48_151620.bak
-│   │   ├── 07-next-steps.md.r49_153622.bak
-│   │   ├── 07-next-steps.md.r49_154021.bak
-│   │   ├── 07-next-steps.md.r49_154238.bak
-│   │   ├── 07-next-steps.md.r49_154341.bak
-│   │   ├── 07-next-steps.md.r49_register.bak
-│   │   ├── 07-next-steps.md.r49_repair_154007.bak
-│   │   ├── 07-next-steps.md.r50_161123.bak
-│   │   ├── 07-next-steps.md.r51_163821.bak
-│   │   └── 07-next-steps.md.r51_shrink.bak
 │   ├── r19-patches/
 │   │   ├── n1.txt
 │   │   ├── n2.txt
@@ -176,6 +169,22 @@
 │   │   ├── u_old.txt
 │   │   ├── v_new.txt
 │   │   └── v_old.txt
+│   ├── r63-patches/
+│   │   ├── aask_hist_new.txt
+│   │   ├── aask_hist_old.txt
+│   │   ├── aask_new.txt
+│   │   ├── aask_old.txt
+│   │   ├── ah1_new.txt
+│   │   ├── ah1_old.txt
+│   │   ├── ah2_new.txt
+│   │   ├── ah2_old.txt
+│   │   ├── ah3_new.txt
+│   │   ├── ah3_old.txt
+│   │   ├── ca_new.txt
+│   │   ├── ca_old.txt
+│   │   └── patch_r63_desc.json
+│   ├── r99-patches/
+│   │   └── README.md
 │   ├── schemas/
 │   │   └── r19/
 │   │       └── baseline-contracts.json
@@ -193,6 +202,10 @@
 │   ├── mimosa_fp_calibration_request_2026-09-24.md
 │   ├── patch_r19_flow_legend_preserve.json
 │   ├── plugin_skill_security_scan.py
+│   ├── r100_finalize.py
+│   ├── r101_finalize.py
+│   ├── r101_patch.py
+│   ├── r101_patch2.py
 │   ├── r19_baseline_contract_fixtures.py
 │   ├── r19_endpoint_patchgen.py
 │   ├── r19_feedback_append.py
@@ -255,6 +268,42 @@
 │   ├── r49_face_fixtures.py
 │   ├── r50_face_fixtures.py
 │   ├── r51_retrieval_fixtures.py
+│   ├── r52_md_claim_face_scan.py
+│   ├── r52_mdclaim_fixtures.py
+│   ├── r53_handles_fixtures.py
+│   ├── r54_refresh_fixtures.py
+│   ├── r55_note_fixtures.py
+│   ├── r55_rootface_fixtures.py
+│   ├── r56_artifact_face_fixtures.py
+│   ├── r56_budget_fixtures.py
+│   ├── r56_conflict_triage.py
+│   ├── r56_inject_face_breakdown.py
+│   ├── r56_workflow_face.py
+│   ├── r58_action_pin_fixtures.py
+│   ├── r58_action_pin_guard.py
+│   ├── r58_generator_coverage.py
+│   ├── r58_py_syntax_guard.py
+│   ├── r58_supply_chain_face.py
+│   ├── r58_todo_shell_slim.py
+│   ├── r59_retired_face.py
+│   ├── r59_supply_roots.py
+│   ├── r60_capability_roster.py
+│   ├── r60_capability_roster_describe.py
+│   ├── r60_retire_two.py
+│   ├── r60_roster_fixtures.py
+│   ├── r60_upstream_backfill.py
+│   ├── r61_semantic_coverage.py
+│   ├── r62_用户预授权决策记录_2026-09-30.md
+│   ├── r63_description_audit.py
+│   ├── r66_generator_gate_fixtures.py
+│   ├── r67_input_pin_fixtures.py
+│   ├── r67_input_pin_guard.py
+│   ├── r96_gh_raw.json
+│   ├── r96_retire_mirror.py
+│   ├── r96_run_stdout.txt
+│   ├── r96_twelve_face.py
+│   ├── r97_retire_full_egress.py
+│   ├── r99_local_face_probe.py
 │   ├── ratchet_gate.py
 │   ├── README.md
 │   ├── recycle_selftest.py
@@ -284,10 +333,216 @@
 │   │   ├── mycelium_release-drift-heartbeat.yml
 │   │   ├── mycelium_template-purity.yml
 │   │   └── README.md
+│   ├── roster_evidence/
+│   │   ├── descriptions/
+│   │   │   ├── addyosmani__agent-skills__api-and-interface-design.json
+│   │   │   ├── addyosmani__agent-skills__browser-testing-with-devtools.json
+│   │   │   ├── addyosmani__agent-skills__ci-cd-and-automation.json
+│   │   │   ├── addyosmani__agent-skills__code-review-and-quality.json
+│   │   │   ├── addyosmani__agent-skills__code-simplification.json
+│   │   │   ├── addyosmani__agent-skills__constraint-driven-development.json
+│   │   │   ├── addyosmani__agent-skills__context-engineering.json
+│   │   │   ├── addyosmani__agent-skills__debugging-and-error-recovery.json
+│   │   │   ├── addyosmani__agent-skills__deprecation-and-migration.json
+│   │   │   ├── addyosmani__agent-skills__documentation-and-adrs.json
+│   │   │   ├── addyosmani__agent-skills__doubt-driven-development.json
+│   │   │   ├── addyosmani__agent-skills__frontend-ui-engineering.json
+│   │   │   ├── addyosmani__agent-skills__git-workflow-and-versioning.json
+│   │   │   ├── addyosmani__agent-skills__idea-refine.json
+│   │   │   ├── addyosmani__agent-skills__incremental-implementation.json
+│   │   │   ├── addyosmani__agent-skills__interview-me.json
+│   │   │   ├── addyosmani__agent-skills__observability-and-instrumentation.json
+│   │   │   ├── addyosmani__agent-skills__performance-optimization.json
+│   │   │   ├── addyosmani__agent-skills__planning-and-task-breakdown.json
+│   │   │   ├── addyosmani__agent-skills__security-and-hardening.json
+│   │   │   ├── addyosmani__agent-skills__shipping-and-launch.json
+│   │   │   ├── addyosmani__agent-skills__source-driven-development.json
+│   │   │   ├── addyosmani__agent-skills__spec-driven-development.json
+│   │   │   ├── addyosmani__agent-skills__using-agent-skills.json
+│   │   │   ├── anthropics__skills__academy-guide.json
+│   │   │   ├── anthropics__skills__claude-api.json
+│   │   │   ├── anthropics__skills__discernment-nudge.json
+│   │   │   ├── anthropics__skills__template.json
+│   │   │   ├── anthropics__skills__web-artifacts-builder.json
+│   │   │   ├── ayghri__i-have-adhd__i-have-adhd.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__ast-grep.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__codex-qa.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__coding-agent-sessions.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__comment-checker.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__dag-library.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__data-scientist.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__debugging.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__dev-browser.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__frontend.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__get-unpublished-changes.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__git-master.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__github-triage.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__give-me-tips.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__hyperplan.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__init-deep.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__lcx-contribute-bug-fix.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__lcx-doctor.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__lcx-report-bug.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__lsp-setup.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__lsp.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__mass-ulw.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__omomomo.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__onboarding.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__opencode-qa.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__pre-publish-review.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__programming.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__publish.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__refactor.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__remove-ai-slops.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__remove-deadcode.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__review-work.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__rules.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__security-research.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__senpi-qa.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__skill.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__teammode.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__tech-debt-audit.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__ultimate-browsing.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__ultrawork.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__ulw-execute.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__ulw-loop.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__ulw-plan.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__ulw-research.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__visual-qa.json
+│   │   │   ├── code-yeongyu__oh-my-openagent__work-with-pr.json
+│   │   │   ├── ComposioHQ__awesome-claude-skills__artifacts-builder.json
+│   │   │   ├── ComposioHQ__awesome-claude-skills__changelog-generator.json
+│   │   │   ├── ComposioHQ__awesome-claude-skills__competitive-ads-extractor.json
+│   │   │   ├── ComposioHQ__awesome-claude-skills__connect-apps.json
+│   │   │   ├── ComposioHQ__awesome-claude-skills__connect.json
+│   │   │   ├── ComposioHQ__awesome-claude-skills__content-research-writer.json
+│   │   │   ├── ComposioHQ__awesome-claude-skills__developer-growth-analysis.json
+│   │   │   ├── ComposioHQ__awesome-claude-skills__domain-name-brainstormer.json
+│   │   │   ├── ComposioHQ__awesome-claude-skills__file-organizer.json
+│   │   │   ├── ComposioHQ__awesome-claude-skills__image-enhancer.json
+│   │   │   ├── ComposioHQ__awesome-claude-skills__invoice-organizer.json
+│   │   │   ├── ComposioHQ__awesome-claude-skills__langsmith-fetch.json
+│   │   │   ├── ComposioHQ__awesome-claude-skills__lead-research-assistant.json
+│   │   │   ├── ComposioHQ__awesome-claude-skills__meeting-insights-analyzer.json
+│   │   │   ├── ComposioHQ__awesome-claude-skills__pptx.json
+│   │   │   ├── ComposioHQ__awesome-claude-skills__raffle-winner-picker.json
+│   │   │   ├── ComposioHQ__awesome-claude-skills__skill-share.json
+│   │   │   ├── ComposioHQ__awesome-claude-skills__slack-gif-creator.json
+│   │   │   ├── ComposioHQ__awesome-claude-skills__tailored-resume-generator.json
+│   │   │   ├── ComposioHQ__awesome-claude-skills__template-skill.json
+│   │   │   ├── ComposioHQ__awesome-claude-skills__twitter-algorithm-optimizer.json
+│   │   │   ├── ComposioHQ__awesome-claude-skills__video-downloader.json
+│   │   │   ├── ComposioHQ__awesome-claude-skills__webapp-testing.json
+│   │   │   ├── Egonex-AI__Understand-Anything__understand-chat.json
+│   │   │   ├── Egonex-AI__Understand-Anything__understand-dashboard.json
+│   │   │   ├── Egonex-AI__Understand-Anything__understand-diff.json
+│   │   │   ├── Egonex-AI__Understand-Anything__understand-domain.json
+│   │   │   ├── Egonex-AI__Understand-Anything__understand-explain.json
+│   │   │   ├── Egonex-AI__Understand-Anything__understand-figma.json
+│   │   │   ├── Egonex-AI__Understand-Anything__understand-knowledge.json
+│   │   │   ├── Egonex-AI__Understand-Anything__understand-onboard.json
+│   │   │   ├── Egonex-AI__Understand-Anything__understand.json
+│   │   │   ├── Imbad0202__academic-research-skills__academic-paper-reviewer.json
+│   │   │   ├── Imbad0202__academic-research-skills__academic-paper.json
+│   │   │   ├── Imbad0202__academic-research-skills__academic-pipeline.json
+│   │   │   ├── Leonxlnx__taste-skill__brandkit.json
+│   │   │   ├── Leonxlnx__taste-skill__brutalist-skill.json
+│   │   │   ├── Leonxlnx__taste-skill__gpt-tasteskill.json
+│   │   │   ├── Leonxlnx__taste-skill__image-to-code-skill.json
+│   │   │   ├── Leonxlnx__taste-skill__imagegen-frontend-mobile.json
+│   │   │   ├── Leonxlnx__taste-skill__imagegen-frontend-web.json
+│   │   │   ├── Leonxlnx__taste-skill__minimalist-skill.json
+│   │   │   ├── Leonxlnx__taste-skill__output-skill.json
+│   │   │   ├── Leonxlnx__taste-skill__redesign-skill.json
+│   │   │   ├── Leonxlnx__taste-skill__soft-skill.json
+│   │   │   ├── Leonxlnx__taste-skill__stitch-skill.json
+│   │   │   ├── Leonxlnx__taste-skill__taste-skill-v1.json
+│   │   │   ├── Leonxlnx__taste-skill__taste-skill.json
+│   │   │   ├── mattpocock__skills__ask-matt.json
+│   │   │   ├── mattpocock__skills__claude-handoff.json
+│   │   │   ├── mattpocock__skills__codebase-design.json
+│   │   │   ├── mattpocock__skills__diagnosing-bugs.json
+│   │   │   ├── mattpocock__skills__domain-modeling.json
+│   │   │   ├── mattpocock__skills__git-guardrails-claude-code.json
+│   │   │   ├── mattpocock__skills__grill-with-docs.json
+│   │   │   ├── mattpocock__skills__grilling.json
+│   │   │   ├── mattpocock__skills__implement-spec.json
+│   │   │   ├── mattpocock__skills__implement.json
+│   │   │   ├── mattpocock__skills__improve-codebase-architecture.json
+│   │   │   ├── mattpocock__skills__loop-me.json
+│   │   │   ├── mattpocock__skills__migrate-to-shoehorn.json
+│   │   │   ├── mattpocock__skills__pr.json
+│   │   │   ├── mattpocock__skills__prototype.json
+│   │   │   ├── mattpocock__skills__research.json
+│   │   │   ├── mattpocock__skills__retro.json
+│   │   │   ├── mattpocock__skills__scaffold-exercises.json
+│   │   │   ├── mattpocock__skills__setup-matt-pocock-skills.json
+│   │   │   ├── mattpocock__skills__setup-ts-deep-modules.json
+│   │   │   ├── mattpocock__skills__teach.json
+│   │   │   ├── mattpocock__skills__to-questionnaire.json
+│   │   │   ├── mattpocock__skills__to-spec.json
+│   │   │   ├── mattpocock__skills__to-tickets.json
+│   │   │   ├── mattpocock__skills__triage.json
+│   │   │   ├── mattpocock__skills__wait-what.json
+│   │   │   ├── mattpocock__skills__wayfinder.json
+│   │   │   ├── mattpocock__skills__wizard.json
+│   │   │   ├── mattpocock__skills__writing-beats.json
+│   │   │   ├── mattpocock__skills__writing-for-agents.json
+│   │   │   ├── mattpocock__skills__writing-fragments.json
+│   │   │   ├── mattpocock__skills__writing-shape.json
+│   │   │   ├── multica-ai__andrej-karpathy-skills__karpathy-guidelines.json
+│   │   │   ├── mvanhorn__last30days-skill__last30days.json
+│   │   │   ├── nextlevelbuilder__ui-ux-pro-max-skill__banner-design.json
+│   │   │   ├── nextlevelbuilder__ui-ux-pro-max-skill__brand.json
+│   │   │   ├── nextlevelbuilder__ui-ux-pro-max-skill__design-system.json
+│   │   │   ├── nextlevelbuilder__ui-ux-pro-max-skill__design.json
+│   │   │   ├── nextlevelbuilder__ui-ux-pro-max-skill__ui-styling.json
+│   │   │   ├── thedotmack__claude-mem__agent-cost-report.json
+│   │   │   ├── thedotmack__claude-mem__babysit.json
+│   │   │   ├── thedotmack__claude-mem__ccs-align.json
+│   │   │   ├── thedotmack__claude-mem__cloud-sync.json
+│   │   │   ├── thedotmack__claude-mem__design-is.json
+│   │   │   ├── thedotmack__claude-mem__do.json
+│   │   │   ├── thedotmack__claude-mem__host-observer.json
+│   │   │   ├── thedotmack__claude-mem__how-it-works.json
+│   │   │   ├── thedotmack__claude-mem__install.json
+│   │   │   ├── thedotmack__claude-mem__knowledge-agent.json
+│   │   │   ├── thedotmack__claude-mem__learn-codebase.json
+│   │   │   ├── thedotmack__claude-mem__make-plan.json
+│   │   │   ├── thedotmack__claude-mem__mem-search.json
+│   │   │   ├── thedotmack__claude-mem__mem-setup.json
+│   │   │   ├── thedotmack__claude-mem__mode-creator.json
+│   │   │   ├── thedotmack__claude-mem__oh-my-issues.json
+│   │   │   ├── thedotmack__claude-mem__openclaw.json
+│   │   │   ├── thedotmack__claude-mem__pathfinder.json
+│   │   │   ├── thedotmack__claude-mem__smart-explore.json
+│   │   │   ├── thedotmack__claude-mem__standup.json
+│   │   │   ├── thedotmack__claude-mem__timeline-report.json
+│   │   │   ├── thedotmack__claude-mem__version-bump.json
+│   │   │   ├── thedotmack__claude-mem__weekly-digests.json
+│   │   │   ├── thedotmack__claude-mem__what-the.json
+│   │   │   └── thedotmack__claude-mem__wowerpoint.json
+│   │   ├── addyosmani__agent-skills.json
+│   │   ├── anthropics__skills.json
+│   │   ├── ayghri__i-have-adhd.json
+│   │   ├── code-yeongyu__oh-my-openagent.json
+│   │   ├── ComposioHQ__awesome-claude-skills.json
+│   │   ├── Egonex-AI__Understand-Anything.json
+│   │   ├── Imbad0202__academic-research-skills.json
+│   │   ├── Leonxlnx__taste-skill.json
+│   │   ├── mattpocock__skills.json
+│   │   ├── multica-ai__andrej-karpathy-skills.json
+│   │   ├── mvanhorn__last30days-skill.json
+│   │   ├── nextlevelbuilder__ui-ux-pro-max-skill.json
+│   │   ├── thedotmack__claude-mem.json
+│   │   └── VoltAgent__awesome-openclaw-skills.json
 │   ├── attention_sim_raw_2026-09-24.json
 │   ├── baseline_contract_check_2026-09-24.json
+│   ├── capability_gap_r60_2026-09-30.json
+│   ├── capability_roster_r60_2026-09-30.json
 │   ├── catalog_attention_tax_2026-09-24.json
 │   ├── catalog_attention_tax_r20_2026-09-24.json
+│   ├── catalog_attention_tax_r59_2026-09-29.json
 │   ├── ci_health_r32_2026-09-25.json
 │   ├── ci_surface_r31_2026-09-25.json
 │   ├── claim_truth_2026-09-24.json
@@ -296,6 +551,8 @@
 │   ├── cron_tasks_backup_2026-09-24.json
 │   ├── cron_tasks_backup_v2_full_2026-09-24.json
 │   ├── cumulative_drift_2026-09-24.json
+│   ├── cumulative_drift_r59_2026-09-29.json
+│   ├── cumulative_drift_r59b_2026-09-29.json
 │   ├── debt_aging_r38_2026-09-25.json
 │   ├── debt_aging_r39_2026-09-25.json
 │   ├── debt_aging_r40_2026-09-25.json
@@ -309,16 +566,44 @@
 │   ├── debt_aging_r49_2026-09-25.json
 │   ├── debt_aging_r50_2026-09-25.json
 │   ├── debt_aging_r51_2026-09-25.json
+│   ├── debt_aging_r52_2026-09-25.json
+│   ├── debt_aging_r53_2026-09-25.json
+│   ├── debt_aging_r54_2026-09-25.json
+│   ├── debt_aging_r55_2026-09-25.json
+│   ├── debt_aging_r56_2026-09-25.json
+│   ├── debt_aging_r59_2026-09-29.json
+│   ├── debt_aging_r59b_2026-09-29.json
+│   ├── debt_aging_r59c_2026-09-29.json
+│   ├── debt_aging_r59d_2026-09-29.json
+│   ├── debt_aging_r59e_2026-09-29.json
+│   ├── debt_aging_r59f_2026-09-29.json
 │   ├── debt_runs.jsonl
+│   ├── desc_baseline_r97.json
+│   ├── desc_baseline_r98.json
 │   ├── description双要素基线_2026-09-24.md
 │   ├── description基线_2026-09-24.json
 │   ├── evidence_resolvability_measure.json
 │   ├── freshness_r32_2026-09-25.json
+│   ├── gate_run_r100.json
+│   ├── gate_run_r101.json
+│   ├── gate_run_r101b.json
 │   ├── gate_run_r31_2026-09-25.json
 │   ├── gate_run_r32_2026-09-25.json
 │   ├── gate_run_r32_portable_2026-09-25.json
+│   ├── gate_run_r99.json
+│   ├── gate_run_r99b.json
+│   ├── gate_run_r99c.json
 │   ├── gate_runs.jsonl
+│   ├── gate_runs_r55_2026-09-25.json
+│   ├── gate_runs_r56_2026-09-25.json
+│   ├── generator_coverage_r58_2026-09-26.json
+│   ├── inject_face_breakdown_r52_2026-09-25.json
+│   ├── inject_face_breakdown_r56_2026-09-25.json
 │   ├── inject_ratchet_baseline.json
+│   ├── input_pins.jsonl
+│   ├── md_claim_face_r52_2026-09-25.json
+│   ├── md_claim_face_r55_2026-09-25.json
+│   ├── md_claim_face_r56_2026-09-25.json
 │   ├── memory_eval_scenarios_v1.json
 │   ├── memory_eval基线_2026-09-24.md
 │   ├── noise_falsepositive_r37_2026-09-25.json
@@ -331,6 +616,11 @@
 │   ├── portability_r34_2026-09-25.json
 │   ├── r31_section_robustness_2026-09-25.json
 │   ├── r31_section_robustness_after_2026-09-25.json
+│   ├── r62_evidence_2026-09-30.json
+│   ├── r63_description_dual_2026-09-30.json
+│   ├── r63_description_dual_2026-10-01.json
+│   ├── r63_evidence_2026-09-30.json
+│   ├── r77_evidence_2026-10-01.json
 │   ├── rationalizations_robustness_r30_2026-09-25.json
 │   ├── rationalizations_robustness_r30b_2026-09-25.json
 │   ├── release_governance_r33_2026-09-25.json
@@ -342,14 +632,27 @@
 │   ├── rule_conflict_scan_r51_2026-09-25.json
 │   ├── rule_conflict基线_2026-09-24.md
 │   ├── scope_filtered_queue_r29_2026-09-24.json
+│   ├── semantic_coverage_r61_2026-09-30.json
 │   ├── skill_structure_rubric_2026-09-24.json
 │   ├── skill_structure_rubric_r29_2026-09-24.json
+│   ├── skill_structure_rubric_r53_2026-09-25.json
+│   ├── supply_chain_face_r58_2026-09-26.json
+│   ├── takeover_R76-3_M-1_evidence_2026-10-01.json
+│   ├── takeover_R76-3_M-1_onwrite.txt
 │   ├── transmit_proposals.json
+│   ├── twelve_face_r100_2026-10-02.json
+│   ├── twelve_face_r101_2026-10-02.json
+│   ├── twelve_face_r96_2026-10-01.json
+│   ├── twelve_face_r99_2026-10-02.json
 │   ├── username_context_r35_2026-09-25.json
 │   ├── verification_anchor_robustness_r29_2026-09-24.json
 │   ├── verification_anchor_robustness_r29b_2026-09-24.json
 │   ├── verification_robustness_r30_2026-09-25.json
 │   ├── w27_conflict_triage_r51_2026-09-25.json
+│   ├── w27_conflict_triage_r56_2026-09-25.json
+│   ├── workflow_face_r56_2026-09-25.json
+│   ├── 全量对标报告_r100_名册派生与两件换装_2026-10-02.md
+│   ├── 全量对标报告_r101_名册优质半边与同事实单尺_2026-10-02.md
 │   ├── 全量对标报告_r18_2026-09-24.md
 │   ├── 全量对标报告_r19_2026-09-24.md
 │   ├── 全量对标报告_r20_插件面补口径_2026-09-24.md
@@ -379,6 +682,32 @@
 │   ├── 全量对标报告_r49_判据输入面五面自证与三处劫持根因修_2026-09-25.md
 │   ├── 全量对标报告_r50_权威源扫描扩面与对手枚举面复核_2026-09-25.md
 │   ├── 全量对标报告_r51_取数面两路对账与判据接线自失效_2026-09-25.md
+│   ├── 全量对标报告_r52_md引用面两路对账与契约陈旧自检_2026-09-25.md
+│   ├── 全量对标报告_r53_名字不等于新鲜度与句柄化引用落地_2026-09-25.md
+│   ├── 全量对标报告_r54_指标再生预算与对手节律声明实测_2026-09-25.md
+│   ├── 全量对标报告_r55_同一判据两输入面根因收口与对手副本策略实测_2026-09-25.md
+│   ├── 全量对标报告_r56_声明要被机器校验_预算入契约与裁定件配生成器_2026-09-25.md
+│   ├── 全量对标报告_r58_动作固定面与判据自身三处假通过_2026-09-26.md
+│   ├── 全量对标报告_r59_根迁移致判据读死面与退役未移出_2026-09-29.md
+│   ├── 全量对标报告_r60_能力覆盖名册差集_2026-09-30.md
+│   ├── 全量对标报告_r61_八维结构化_2026-09-30.md
+│   ├── 全量对标报告_r62_八维结构化_2026-09-30.md
+│   ├── 全量对标报告_r63_红门修复与描述全量审计_2026-09-30.md
+│   ├── 全量对标报告_r64_M2首批收口与在途产物入库_2026-09-30.md
+│   ├── 全量对标报告_r65_M2范围裁定与自建面达标_2026-09-30.md
+│   ├── 全量对标报告_r66_W46b生成器面接线判红_2026-09-30.md
+│   ├── 全量对标报告_r67_R58-1仓外输入固定面本地面_2026-09-30.md
+│   ├── 全量对标报告_r68_pin台账增量落账与跨轮趋势_2026-09-30.md
+│   ├── 全量对标报告_r69_pin清单热度排序与继承链_2026-10-01.md
+│   ├── 全量对标报告_r70_新面孔优先与热度滑动窗口_2026-10-01.md
+│   ├── 全量对标报告_r71_热度时间窗与新面孔配额_2026-10-01.md
+│   ├── 全量对标报告_r72_逐字重复触发自审与三处缺陷_2026-10-01.md
+│   ├── 全量对标报告_r73_坏行行号与继承截断标记_2026-10-01.md
+│   ├── 全量对标报告_r74_next跨批语义分歧收口_2026-10-01.md
+│   ├── 全量对标报告_r76_存量09回填与头模板一致性判据_2026-10-01.md
+│   ├── 全量对标报告_r77_八维结构化_2026-10-01.md
+│   ├── 全量对标报告_r97_全出口退役与判据假阴性修正_2026-10-01.md
+│   ├── 全量对标报告_r99_十二维补面与覆盖根修_2026-10-02.md
 │   ├── 技能六段解剖基线_2026-09-24.md
 │   ├── 目录注意力税基线_2026-09-24.md
 │   ├── 目录注意力税基线_r20_2026-09-24.md
@@ -388,8 +717,7 @@
 ├── .aiexclude
 ├── AGENTS.md
 ├── README.md
-├── TODO.md
-└── 手动维护。agent
+└── TODO.md
 ```
 <!-- SYNC_AUTO_GENERATED_END -->
 
