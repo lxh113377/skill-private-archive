@@ -1,0 +1,546 @@
+{
+ "gs": "D:/global_skills",
+ "skill_n": 11,
+ "over_soft_limit_n": 0,
+ "over_soft_limit": [],
+ "max_bytes_skill": "story-review",
+ "max_bytes": 11084,
+ "median_bytes": 9007,
+ "fm_version_n": 10,
+ "fm_license_n": 0,
+ "fm_requires_n": 2,
+ "version_history_n": 9,
+ "references_zero_n": 1,
+ "contract_file_n": 3,
+ "lock_file_n": 0,
+ "tests_dir_n": 0,
+ "drive_letter_hits_total": 68,
+ "dup_content_groups": [
+  {
+   "sha256_12": "7577cd541bd9",
+   "copies": [
+    {
+     "skill": "story-deslop",
+     "path": "scripts/check-ai-patterns.js",
+     "bytes": 61309
+    },
+    {
+     "skill": "story-long-write",
+     "path": "scripts/check-ai-patterns.js",
+     "bytes": 61309
+    },
+    {
+     "skill": "story-review",
+     "path": "scripts/check-ai-patterns.js",
+     "bytes": 61309
+    },
+    {
+     "skill": "story-short-write",
+     "path": "scripts/check-ai-patterns.js",
+     "bytes": 61309
+    }
+   ],
+   "bytes_each": 61309,
+   "distinct_skills": [
+    "story-deslop",
+    "story-long-write",
+    "story-review",
+    "story-short-write"
+   ]
+  },
+  {
+   "sha256_12": "b1aeaa88f996",
+   "copies": [
+    {
+     "skill": "story-setup",
+     "path": "references/opencode/story_hook_core.js",
+     "bytes": 36377
+    },
+    {
+     "skill": "story-setup",
+     "path": "references/templates/hooks/story_hook_core.js",
+     "bytes": 36377
+    },
+    {
+     "skill": "story-setup",
+     "path": "references/zcode/hooks/story_hook_core.js",
+     "bytes": 36377
+    }
+   ],
+   "bytes_each": 36377,
+   "distinct_skills": [
+    "story-setup"
+   ]
+  },
+  {
+   "sha256_12": "19ee5799f3df",
+   "copies": [
+    {
+     "skill": "story-deslop",
+     "path": "scripts/check-degeneration.js",
+     "bytes": 14717
+    },
+    {
+     "skill": "story-long-write",
+     "path": "scripts/check-degeneration.js",
+     "bytes": 14717
+    },
+    {
+     "skill": "story-review",
+     "path": "scripts/check-degeneration.js",
+     "bytes": 14717
+    },
+    {
+     "skill": "story-short-write",
+     "path": "scripts/check-degeneration.js",
+     "bytes": 14717
+    }
+   ],
+   "bytes_each": 14717,
+   "distinct_skills": [
+    "story-deslop",
+    "story-long-write",
+    "story-review",
+    "story-short-write"
+   ]
+  },
+  {
+   "sha256_12": "ce368f9d78e8",
+   "copies": [
+    {
+     "skill": "story-deslop",
+     "path": "scripts/normalize-punctuation.js",
+     "bytes": 13493
+    },
+    {
+     "skill": "story-long-write",
+     "path": "scripts/normalize-punctuation.js",
+     "bytes": 13493
+    },
+    {
+     "skill": "story-review",
+     "path": "scripts/normalize-punctuation.js",
+     "bytes": 13493
+    },
+    {
+     "skill": "story-short-write",
+     "path": "scripts/normalize-punctuation.js",
+     "bytes": 13493
+    }
+   ],
+   "bytes_each": 13493,
+   "distinct_skills": [
+    "story-deslop",
+    "story-long-write",
+    "story-review",
+    "story-short-write"
+   ]
+  }
+ ],
+ "dup_content_group_n": 4,
+ "dup_name_groups": [
+  {
+   "basename": "check-ai-patterns.js",
+   "skills": [
+    "story-deslop",
+    "story-long-write",
+    "story-review",
+    "story-short-write"
+   ]
+  },
+  {
+   "basename": "check-degeneration.js",
+   "skills": [
+    "story-deslop",
+    "story-long-write",
+    "story-review",
+    "story-short-write"
+   ]
+  },
+  {
+   "basename": "normalize-punctuation.js",
+   "skills": [
+    "story-deslop",
+    "story-long-write",
+    "story-review",
+    "story-short-write"
+   ]
+  }
+ ],
+ "rows": [
+  {
+   "skill": "story",
+   "skill_md_bytes": 9007,
+   "over_soft_limit": false,
+   "fm_keys": [
+    "name",
+    "description",
+    "metadata"
+   ],
+   "fm_version": null,
+   "fm_license": null,
+   "fm_requires": null,
+   "has_version_history_section": false,
+   "version_lines": [
+    [
+     55,
+     "127.0.0"
+    ]
+   ],
+   "references_count": 0,
+   "script_count": 2,
+   "md_count": 1,
+   "contract_files": [],
+   "meta_json_files": [],
+   "lock_files": [],
+   "progress_files": [],
+   "tests_dir": false,
+   "drive_letter_hits": 8,
+   "dir_bytes": 40207
+  },
+  {
+   "skill": "story-cover",
+   "skill_md_bytes": 1673,
+   "over_soft_limit": false,
+   "fm_keys": [
+    "name",
+    "version",
+    "description",
+    "metadata"
+   ],
+   "fm_version": "\"1.0.1\"",
+   "fm_license": null,
+   "fm_requires": null,
+   "has_version_history_section": true,
+   "version_lines": [
+    [
+     3,
+     "1.0.1"
+    ]
+   ],
+   "references_count": 6,
+   "script_count": 0,
+   "md_count": 7,
+   "contract_files": [],
+   "meta_json_files": [],
+   "lock_files": [],
+   "progress_files": [],
+   "tests_dir": false,
+   "drive_letter_hits": 6,
+   "dir_bytes": 26793
+  },
+  {
+   "skill": "story-deslop",
+   "skill_md_bytes": 10511,
+   "over_soft_limit": false,
+   "fm_keys": [
+    "name",
+    "version",
+    "description",
+    "metadata"
+   ],
+   "fm_version": "\"1.0.1\"",
+   "fm_license": null,
+   "fm_requires": null,
+   "has_version_history_section": true,
+   "version_lines": [
+    [
+     3,
+     "1.0.1"
+    ],
+    [
+     15,
+     "3.3.4"
+    ]
+   ],
+   "references_count": 3,
+   "script_count": 3,
+   "md_count": 4,
+   "contract_files": [],
+   "meta_json_files": [],
+   "lock_files": [],
+   "progress_files": [],
+   "tests_dir": false,
+   "drive_letter_hits": 1,
+   "dir_bytes": 166002
+  },
+  {
+   "skill": "story-import",
+   "skill_md_bytes": 9627,
+   "over_soft_limit": false,
+   "fm_keys": [
+    "name",
+    "requires",
+    "version",
+    "description",
+    "metadata"
+   ],
+   "fm_version": "\"1.0.1\"",
+   "fm_license": null,
+   "fm_requires": "[story-long-analyze]",
+   "has_version_history_section": true,
+   "version_lines": [
+    [
+     4,
+     "1.0.1"
+    ],
+    [
+     16,
+     "3.3.4"
+    ]
+   ],
+   "references_count": 16,
+   "script_count": 0,
+   "md_count": 17,
+   "contract_files": [],
+   "meta_json_files": [],
+   "lock_files": [],
+   "progress_files": [],
+   "tests_dir": false,
+   "drive_letter_hits": 1,
+   "dir_bytes": 92103
+  },
+  {
+   "skill": "story-long-analyze",
+   "skill_md_bytes": 5883,
+   "over_soft_limit": false,
+   "fm_keys": [
+    "name",
+    "version",
+    "description",
+    "metadata"
+   ],
+   "fm_version": "\"1.0.1\"",
+   "fm_license": null,
+   "fm_requires": null,
+   "has_version_history_section": true,
+   "version_lines": [
+    [
+     3,
+     "1.0.1"
+    ],
+    [
+     15,
+     "3.3.4"
+    ]
+   ],
+   "references_count": 8,
+   "script_count": 0,
+   "md_count": 9,
+   "contract_files": [],
+   "meta_json_files": [],
+   "lock_files": [],
+   "progress_files": [],
+   "tests_dir": false,
+   "drive_letter_hits": 1,
+   "dir_bytes": 119561
+  },
+  {
+   "skill": "story-long-write",
+   "skill_md_bytes": 2413,
+   "over_soft_limit": false,
+   "fm_keys": [
+    "name",
+    "version",
+    "description",
+    "metadata"
+   ],
+   "fm_version": "\"1.0.2\"",
+   "fm_license": null,
+   "fm_requires": null,
+   "has_version_history_section": true,
+   "version_lines": [
+    [
+     3,
+     "1.0.2"
+    ],
+    [
+     13,
+     "3.3.4"
+    ]
+   ],
+   "references_count": 45,
+   "script_count": 3,
+   "md_count": 77,
+   "contract_files": [
+    "references/reader-contract-and-progression.md"
+   ],
+   "meta_json_files": [],
+   "lock_files": [],
+   "progress_files": [
+    "references/reader-contract-and-progression.md"
+   ],
+   "tests_dir": false,
+   "drive_letter_hits": 1,
+   "dir_bytes": 902519
+  },
+  {
+   "skill": "story-review",
+   "skill_md_bytes": 11084,
+   "over_soft_limit": false,
+   "fm_keys": [
+    "name",
+    "version",
+    "description",
+    "metadata"
+   ],
+   "fm_version": "\"1.1.1\"",
+   "fm_license": null,
+   "fm_requires": null,
+   "has_version_history_section": true,
+   "version_lines": [
+    [
+     3,
+     "1.1.1"
+    ],
+    [
+     30,
+     "3.3.4"
+    ]
+   ],
+   "references_count": 13,
+   "script_count": 3,
+   "md_count": 16,
+   "contract_files": [],
+   "meta_json_files": [],
+   "lock_files": [],
+   "progress_files": [],
+   "tests_dir": false,
+   "drive_letter_hits": 1,
+   "dir_bytes": 242190
+  },
+  {
+   "skill": "story-scan",
+   "skill_md_bytes": 6213,
+   "over_soft_limit": false,
+   "fm_keys": [
+    "name",
+    "version",
+    "description",
+    "metadata"
+   ],
+   "fm_version": "1.0.0",
+   "fm_license": null,
+   "fm_requires": null,
+   "has_version_history_section": false,
+   "version_lines": [
+    [
+     3,
+     "1.0.0"
+    ]
+   ],
+   "references_count": 8,
+   "script_count": 8,
+   "md_count": 9,
+   "contract_files": [],
+   "meta_json_files": [],
+   "lock_files": [],
+   "progress_files": [],
+   "tests_dir": false,
+   "drive_letter_hits": 25,
+   "dir_bytes": 168524
+  },
+  {
+   "skill": "story-setup",
+   "skill_md_bytes": 6167,
+   "over_soft_limit": false,
+   "fm_keys": [
+    "name",
+    "version",
+    "description",
+    "metadata"
+   ],
+   "fm_version": "\"1.2.9\"",
+   "fm_license": null,
+   "fm_requires": null,
+   "has_version_history_section": true,
+   "version_lines": [
+    [
+     3,
+     "1.2.9"
+    ]
+   ],
+   "references_count": 12,
+   "script_count": 19,
+   "md_count": 108,
+   "contract_files": [],
+   "meta_json_files": [],
+   "lock_files": [],
+   "progress_files": [],
+   "tests_dir": false,
+   "drive_letter_hits": 22,
+   "dir_bytes": 1091413
+  },
+  {
+   "skill": "story-short-analyze",
+   "skill_md_bytes": 9634,
+   "over_soft_limit": false,
+   "fm_keys": [
+    "name",
+    "requires",
+    "version",
+    "description",
+    "metadata"
+   ],
+   "fm_version": "\"3.0.1\"",
+   "fm_license": null,
+   "fm_requires": "[story-short-write]",
+   "has_version_history_section": true,
+   "version_lines": [
+    [
+     4,
+     "3.0.1"
+    ]
+   ],
+   "references_count": 23,
+   "script_count": 0,
+   "md_count": 24,
+   "contract_files": [
+    "references/output-contract.md"
+   ],
+   "meta_json_files": [],
+   "lock_files": [],
+   "progress_files": [],
+   "tests_dir": false,
+   "drive_letter_hits": 1,
+   "dir_bytes": 332273
+  },
+  {
+   "skill": "story-short-write",
+   "skill_md_bytes": 10444,
+   "over_soft_limit": false,
+   "fm_keys": [
+    "name",
+    "version",
+    "description",
+    "metadata"
+   ],
+   "fm_version": "\"1.0.1\"",
+   "fm_license": null,
+   "fm_requires": null,
+   "has_version_history_section": true,
+   "version_lines": [
+    [
+     3,
+     "1.0.1"
+    ],
+    [
+     15,
+     "3.3.4"
+    ]
+   ],
+   "references_count": 21,
+   "script_count": 3,
+   "md_count": 31,
+   "contract_files": [
+    "references/output-contract.md"
+   ],
+   "meta_json_files": [],
+   "lock_files": [],
+   "progress_files": [],
+   "tests_dir": false,
+   "drive_letter_hits": 1,
+   "dir_bytes": 464805
+  }
+ ]
+}

@@ -1,0 +1,32 @@
+{
+ "repo": "vercel-labs/agent-skills",
+ "ref": "main",
+ "prefix": "skills/react-best-practices/",
+ "slug": "react-best-practices",
+ "mode": "apply",
+ "files_n": 76,
+ "bytes_total": 230383,
+ "blob_sha_all_match": true,
+ "danger_hits": [],
+ "next_bound_rules": [
+  "rules/bundle-analyzable-paths.md",
+  "rules/bundle-barrel-imports.md",
+  "rules/bundle-defer-third-party.md",
+  "rules/bundle-dynamic-imports.md",
+  "rules/client-swr-dedup.md",
+  "rules/js-cache-function-results.md",
+  "rules/rendering-hydration-suppress-warning.md",
+  "rules/rendering-resource-hints.md",
+  "rules/rendering-script-defer-async.md",
+  "rules/server-after-nonblocking.md",
+  "rules/server-auth-actions.md",
+  "rules/server-cache-lru.md",
+  "rules/server-cache-react.md",
+  "rules/server-hoist-static-io.md",
+  "rules/server-no-shared-module-state.md",
+  "rules/server-parallel-fetching.md"
+ ],
+ "next_bound_n": 16,
+ "generic_rules_n": 56,
+ "installed_at": "D:\\global_skills\\react-best-practices"
+}

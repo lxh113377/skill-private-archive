@@ -16,6 +16,7 @@ r"""r53_handles_fixtures.py — W-34「报告数字改引用可再生句柄」�
 import importlib.util
 import io
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -47,8 +48,36 @@ hd = mk({"by_class": {"OVERDUE": 0, "ACTIVE": 2, "DECIDED": 80, "UNDATED": 0,
 ck("h1 形状：至少给出 overdue / ledger_rows 两个句柄，且各含 artifact+field+command",
    len(hd) >= 2 and all({"artifact", "field", "command"} <= set(v) for v in hd.values()),
    json.dumps(hd, ensure_ascii=False)[:200])
-ck("h2 可解值：overdue 句柄现场从台账末行取得出（句柄不是装饰，必须能解析）",
-   da.resolve_handle(hd["overdue"]) == 0, da.resolve_handle(hd.get("overdue")))
+
+# --- h2 r105 F-2 返工：夹具不得断言「本项目当下无债」 -------------------
+# 原写法 `da.resolve_handle(hd["overdue"]) == 0` 把两件事焊在一起：①句柄能不能解值 ②本项目
+# 此刻有没有超期债。r105 一手：该腿在 OVERDUE=0 的轮次里长期绿，一旦本项目真出现 1 条超期债
+# （本轮活体尺报 1、台账末行因 r104 顺序颠倒记 25）它就红，而红的是**项目状态**、不是**句柄机制**
+# —— 恰是 memory/AGENTS 排障表 row 5/6 记过的「夹具入参形态与真实派发处不同」家族，也与本仓
+# 既有教训「Fixture must not read machine state」同形。正解 = 自建临时台账（写哪本、指哪本、
+# 比哪本同源，r55 D66），断言「解出的值 == 我种进去的值」，而不是「== 0」。
+import tempfile  # noqa: E402
+_tmpd = tempfile.mkdtemp(prefix="r105_h2_ledger_")
+_seed = 7
+_tmp_ledger = os.path.join(_tmpd, "debt_runs.jsonl")
+with io.open(_tmp_ledger, "w", encoding="utf-8", newline="") as _f:
+    _f.write(json.dumps({"ts": "2026-01-01T00:00:00", "overdue": 1, "decided": 3}) + "\n")
+    _f.write(json.dumps({"ts": "2026-01-02T00:00:00", "overdue": _seed, "decided": 5}) + "\n")
+_hd_seed = mk({"by_class": {"OVERDUE": _seed, "ACTIVE": 0, "DECIDED": 5, "UNDATED": 0,
+                            "DEFERRED": 0, "REPEAT": 0},
+               "evidence": {"open_total": 5}}, _tmp_ledger)
+_got2 = da.resolve_handle(_hd_seed["overdue"])
+ck("h2 可解值：临时台账末行种 %d ⇒ 句柄现场解出 %d（末行取胜，非首行、非常量）" % (_seed, _seed),
+   _got2 == _seed, "got=%r tmp=%s" % (_got2, _tmp_ledger))
+_zero_ledger = os.path.join(_tmpd, "zero.jsonl")
+with io.open(_zero_ledger, "w", encoding="utf-8", newline="") as _fz:
+    _fz.write(json.dumps({"ts": "2026-01-01T00:00:00", "overdue": 0}) + "\n")
+_got2b = da.resolve_handle({"artifact": _zero_ledger, "field": "overdue"})
+ck("h2b 反例：同一字段换一份末行为 0 的台账 ⇒ 必须解出 0（证明值来自台账而非夹具硬编码）",
+   _got2b == 0, "got=%r" % (_got2b,))
+ck("h2c 真台账只做「解得出」不断数值：本项目末行 overdue 必须是 int 或 None，不得为解不出而红",
+   isinstance(da.resolve_handle(hd["overdue"]), int) or da.resolve_handle(hd["overdue"]) is None,
+   "live=%r" % (da.resolve_handle(hd.get("overdue")),))
 ck("h3 死句柄必红：artifact 指不到文件 ⇒ resolve 返回 None 而不是 0（R247 禁把取不到当 0）",
    da.resolve_handle({"artifact": str(ROOT / "nope" / "x.jsonl"), "field": "overdue",
                       "command": "cat"}) is None,

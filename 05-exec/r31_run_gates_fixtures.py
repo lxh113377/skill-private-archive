@@ -177,6 +177,25 @@ def main():
     ck("层d run_gates.py 已写进项目门禁命令（否则又是一条只写不跑的判据）",
        "run_gates.py" in txt, "memory/AGENTS.md 未引用")
 
+    # ---- 层 e：r105 pass_token 列表化（一门多合法绿态时不得把具名看守读成 UNVERIFIED）----
+    th = getattr(rg, "_token_hit", None)
+    ck("e1 判据存在性：run_gates 暴露 _token_hit（缺则本层未接线）", callable(th), type(th).__name__)
+    if callable(th):
+        ck("e2 正例 列表：rc=0 且输出含 -watch ⇒ 命中（r105 一手：单串比对把这判成 UNVERIFIED）",
+           th(["[GATE:retired-face-pass]", "[GATE:retired-face-watch]"],
+              "[GATE:retired-face-watch] 2 retired skill(s) still on disk") is True, "n/a")
+        ck("e3 反例 列表：两个标记都不在输出里 ⇒ 仍不命中（列表不得用来掩盖改名/静默跳过，R247）",
+           th(["[GATE:retired-face-pass]", "[GATE:retired-face-watch]"], "Traceback ...") is False, "n/a")
+        ck("e4 向后兼容：单串形态行为与旧 `in` 判定逐字一致",
+           (th("[X:PASS]", "a [X:PASS] b") is True and th("[X:PASS]", "nothing") is False), "n/a")
+        ck("e5 反例 空列表不得恒真（空面不能当「匹配上了」）",
+           th([], "anything at all") is False, "n/a")
+        _g = [x for x in rg.GATES if x["id"] == "retired_face"]
+        ck("e6 接线：retired_face 门的 pass_token 现值确实含两个标记（不是只加了夹具没改门）",
+           len(_g) == 1 and isinstance(_g[0]["pass_token"], list)
+           and "[GATE:retired-face-watch]" in _g[0]["pass_token"],
+           str(_g[0]["pass_token"]) if _g else "gate 不在表")
+
     fails = [r for r in RESULTS if not r[0]]
     print("\n夹具合计: %d 项，通过 %d，失败 %d" % (len(RESULTS), len(RESULTS) - len(fails), len(fails)))
     if fails:

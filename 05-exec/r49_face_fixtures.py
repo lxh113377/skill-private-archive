@@ -16,6 +16,7 @@ r"""r49_face_fixtures.py — W-20「判据输入面截断自证」+ W-22「裁�
 import io
 import json
 import os
+import re
 import subprocess
 import sys
 import tempfile
@@ -106,6 +107,23 @@ ck("f19 反例（禁互相顶替）：W 编号只出现在 AGENTS 表而未落�
 ok, d = _safe("face_suggestions", da, ["W-31", "X-25"], "…W-31 已登记…", "…X-25 已立规…")
 ck("f20 混合面正例：待办与禁止项各归各位 ⇒ 判绿且计数分列",
    ok is True and "待办 1" in str(d) and "禁止项 1" in str(d), (ok, str(d)[:140]))
+
+# ------------------------- r105 F-7：R 系列命名空间（原式取不到 ⇒ 报告新建议静默逃逸这道检查）
+_ids = da.RE_SUGG_ID.findall("新立 R59-4、R105-10、L-6、W-47、X-26，另有正文里的 R236 补注③")
+ck("f21 命名空间取数：R<轮号>-<序号> / L-nn / W / X 四类都要取得到（漏一类即该族长期免检）",
+   {"R59-4", "R105-10", "L-6", "W-47", "X-26"} <= set(_ids), _ids)
+ck("f22 反例：裸 `R236`（无连字符的既有规则号）不得被当成本轮新建议（防把历史条款判成漏登记）",
+   "R236" not in _ids, _ids)
+ok, d = _safe("face_suggestions", da, ["R105-6"], "…R105-6 已落待办卷…", "")
+ck("f23 建议面正例：R 系列编号落到待办卷 ⇒ 判绿", ok is True, (ok, str(d)[:140]))
+ok, d = _safe("face_suggestions", da, ["R105-7"], "只有别的编号", "无关表")
+ck("f24 反例：R 系列报告立了而待办卷没有 ⇒ 必须判红并点名（不得因新命名空间而隐身）",
+   ok is False and "R105-7" in str(d), (ok, str(d)[:140]))
+ok, d = _safe("face_suggestions", da, [], "任意", "任意")
+ck("f25 边界：new_ids 为空仍走 UNVERIFIED（取不到编号≠已通过，R247）",
+   ok is None, (ok, str(d)[:120]))
+ck("f26 变异体（证明本扩面确有鉴别力）：把正则退回旧式 [WXMH] ⇒ R/L 编号取不到",
+   not re.compile(r"\b([WXMH]-\d{1,2})\b").search("R105-6"), "旧式仍匹配到 ⇒ 扩面没起作用")
 
 # ---------------------------------------------------------------- W-22 裁决对象面
 SUBJ = ("8d7fb56 feat: r45 落地 W-14 反降级免检指标\n"

@@ -1,0 +1,556 @@
+{
+ "schema": "debt-aging-v2",
+ "generated_at": "2026-10-03T16:29:35",
+ "readonly": true,
+ "grace_rounds": 2,
+ "current_round": 103,
+ "round_source": "git log --format=%s -40 中最大 rNN（未硬编码）",
+ "verdict_taxonomy": [
+  "OVERDUE",
+  "ACTIVE",
+  "DECIDED",
+  "UNDATED",
+  "DEFERRED",
+  "REPEAT",
+  "CLOSED"
+ ],
+ "files_scanned": [
+  "memory\\07-next-steps.md",
+  "memory\\07-next-steps.part1.md",
+  "memory\\07-next-steps.part10.md",
+  "memory\\07-next-steps.part11.md",
+  "memory\\07-next-steps.part12.md",
+  "memory\\07-next-steps.part13.md",
+  "memory\\07-next-steps.part14.md",
+  "memory\\07-next-steps.part15.md",
+  "memory\\07-next-steps.part16.md",
+  "memory\\07-next-steps.part17.md",
+  "memory\\07-next-steps.part18.md",
+  "memory\\07-next-steps.part19.md",
+  "memory\\07-next-steps.part2.md",
+  "memory\\07-next-steps.part20.md",
+  "memory\\07-next-steps.part21.md",
+  "memory\\07-next-steps.part22.md",
+  "memory\\07-next-steps.part23.md",
+  "memory\\07-next-steps.part24.md",
+  "memory\\07-next-steps.part25.md",
+  "memory\\07-next-steps.part26.md",
+  "memory\\07-next-steps.part27.md",
+  "memory\\07-next-steps.part28.md",
+  "memory\\07-next-steps.part29.md",
+  "memory\\07-next-steps.part3.md",
+  "memory\\07-next-steps.part30.md",
+  "memory\\07-next-steps.part31.md",
+  "memory\\07-next-steps.part32.md",
+  "memory\\07-next-steps.part33.md",
+  "memory\\07-next-steps.part34.md",
+  "memory\\07-next-steps.part35.md",
+  "memory\\07-next-steps.part36.md",
+  "memory\\07-next-steps.part37.md",
+  "memory\\07-next-steps.part38.md",
+  "memory\\07-next-steps.part39.md",
+  "memory\\07-next-steps.part4.md",
+  "memory\\07-next-steps.part40.md",
+  "memory\\07-next-steps.part41.md",
+  "memory\\07-next-steps.part42.md",
+  "memory\\07-next-steps.part43.md",
+  "memory\\07-next-steps.part44.md",
+  "memory\\07-next-steps.part45.md",
+  "memory\\07-next-steps.part46.md",
+  "memory\\07-next-steps.part47.md",
+  "memory\\07-next-steps.part48.md",
+  "memory\\07-next-steps.part49.md",
+  "memory\\07-next-steps.part5.md",
+  "memory\\07-next-steps.part50.md",
+  "memory\\07-next-steps.part51.md",
+  "memory\\07-next-steps.part52.md",
+  "memory\\07-next-steps.part53.md",
+  "memory\\07-next-steps.part54.md",
+  "memory\\07-next-steps.part6.md",
+  "memory\\07-next-steps.part7.md",
+  "memory\\07-next-steps.part8.md",
+  "memory\\07-next-steps.part9.md"
+ ],
+ "evidence": {
+  "volumes": 55,
+  "items_total": 180,
+  "open_total": 91,
+  "closed_total": 89,
+  "raw_item_lines": 180
+ },
+ "by_class": {
+  "OVERDUE": 25,
+  "ACTIVE": 0,
+  "DECIDED": 60,
+  "UNDATED": 6,
+  "DEFERRED": 0,
+  "REPEAT": 0
+ },
+ "overdue": [
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 366,
+   "priority": "P2",
+   "owner": "NONE",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 48 轮 / 宽限 8（回落：正文裸 rNN=r55）",
+   "title": "**【P2·待裁定 W-39（r55 新立）】** `05-exec/mark_backup` 目录名与二级判据的天然对立：`r46_mark_verdict.py` 默认备份落点名字含 `_backup`，正好命中 `",
+   "first_seen": "2026-09-25",
+   "dating_face": "OK"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 368,
+   "priority": "P2",
+   "owner": "NONE",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 48 轮 / 宽限 8（回落：正文裸 rNN=r55）",
+   "title": "**【P2·上游建议 W-41（r55 新立）】** `rule_editor.py commit` 成功后不做**定向**镜像同步 ⇒ 本轮受管根 `e93896b` 的 3 个文件在镜像侧仍是旧字节，`gates` ",
+   "first_seen": "2026-09-25",
+   "dating_face": "OK"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 367,
+   "priority": "P1",
+   "owner": "NONE",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 48 轮 / 宽限 4（回落：正文裸 rNN=r55）",
+   "title": "**【P1·上游建议 W-40（r55 新立）】** `savepoint` 第 i) 步噪声门禁**不覆盖项目根**：实测该步调 `cmd_noise` 时传的是 `[\"--quiet\"]`（`handoff_lib/",
+   "first_seen": "2026-09-25",
+   "dating_face": "OK"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 369,
+   "priority": "P1",
+   "owner": "NONE",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 48 轮 / 宽限 4（回落：正文裸 rNN=r55）",
+   "title": "**【P1·待裁定 W-42（r55 新立，源自 r55 对标实测）】** 镜像要不要继续做成「物理副本」：r55 实测五家对手 **0/5 存在需要同步的第二份技能树** —— spec-kit/pre-commit ",
+   "first_seen": "2026-09-25",
+   "dating_face": "OK"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 370,
+   "priority": "P1",
+   "owner": "NONE",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 48 轮 / 宽限 4（回落：正文裸 rNN=r55）",
+   "title": "**【P1·待办 W-43（r55 新立）】** 本仓无 `.gitattributes` ⇒ 本次 `git add` 对 8 个文件报「LF will be replaced by CRLF the next tim",
+   "first_seen": "2026-09-25",
+   "dating_face": "OK"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 371,
+   "priority": "P1",
+   "owner": "NONE",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 48 轮 / 宽限 4（回落：正文裸 rNN=r55）",
+   "title": "**【P1·待裁定 W-44（r55 新立）】** R 号是**两个注册表共用一个号段**，而防撞号工具只看得见其中一个：r55 我在受管根用 `rule_editor.py` 依次领用 R286（受管根 `e93896",
+   "first_seen": "2026-09-25",
+   "dating_face": "OK"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 372,
+   "priority": "P2",
+   "owner": "NONE",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 47 轮 / 宽限 8（回落：正文裸 rNN=r56）",
+   "title": "**【P2·待办 W-45（r56 新立）】** A-skill-manager 的**版本行与版本历史未同步** R292 落规：`references/governance.md` 已由 rule_editor 单文",
+   "first_seen": "2026-09-25",
+   "dating_face": "OK"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 373,
+   "priority": "P1",
+   "owner": "NONE",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 47 轮 / 宽限 4（回落：正文裸 rNN=r56）",
+   "title": "**【P1·待办 W-46（r56 新立）】** 通病确诊：「一次性内联脚本产出的证据件」= 解不出的死句柄。r56 连踩两处 —— `inject_face_breakdown_r52_*.json`（W-32 的裁定",
+   "first_seen": "2026-09-25",
+   "dating_face": "OK"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 175,
+   "priority": "P1",
+   "owner": "NONE",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 45 轮 / 宽限 4（回落：正文裸 rNN=r58）",
+   "title": "**【P1·新立铁律 W-47（r58 新立，源自本轮三处自抓）】** 任何**新判据首跑必须同时交两个方向的证据**：「应绿的绿」**且**「应红的红」，且**对照组自身须被证伪过一轮**。r58 实物三条：① 守卫桩",
+   "first_seen": "2026-09-26",
+   "dating_face": "OK"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 176,
+   "priority": "P1",
+   "owner": "NONE",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 45 轮 / 宽限 4（回落：正文裸 rNN=r58）",
+   "title": "**【P1·待裁定 W-48（r58 新立，源自 D-115 实测推翻前轮药方）】** 根 `AGENTS.md` 每轮注入 29,293B > `root_doc_max` 16,384B，**唯一收敛路径 = 逐条人",
+   "first_seen": "2026-09-26",
+   "dating_face": "OK"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 375,
+   "priority": "P1",
+   "owner": "NONE",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 44 轮 / 宽限 4（回落：正文裸 rNN=r59）",
+   "title": "【P1·待办 R59-5（r59 新立，对标 D1 实测缺口）】把上游 `anthropics/skills` 的 OOXML 校验层补进本地 `docx`/`xlsx`（本地是超集、但校验面为空）：`scripts/o",
+   "first_seen": "2026-09-29",
+   "dating_face": "OK"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 376,
+   "priority": "P1",
+   "owner": "NONE",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 44 轮 / 宽限 4（回落：正文裸 rNN=r59）",
+   "title": "【P1·待办 R59-6（r59 新立，对标 D6/D8）】给 `docx`/`xlsx` 的 SKILL.md 补**可跑验证段**（写完必须渲染回看 + XSD 校验），动因实测：`grep -cE \"scripts",
+   "first_seen": "2026-09-29",
+   "dating_face": "OK"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 377,
+   "priority": "P1",
+   "owner": "NONE",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 44 轮 / 宽限 4（回落：正文裸 rNN=r59）",
+   "title": "【P1·待办 R59-7（r59 新立，对标 D9 可控性）】治理面只覆盖 171/439 这件事落件：新增 `05-exec/r59_supply_roots.py` 打印四根计数（权威源 171 / 镜像 171 名",
+   "first_seen": "2026-09-29",
+   "dating_face": "OK"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 378,
+   "priority": "P1",
+   "owner": "NONE",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 44 轮 / 宽限 4（回落：正文裸 rNN=r59）",
+   "title": "【P1·待裁定 R59-8（r59 新立，棘轮形状缺陷）】`ratchet_gate --raise-baseline` 的上调通道**按实现只对接 inject_union_bytes**（脚本内 `metric=\"i",
+   "first_seen": "2026-09-29",
+   "dating_face": "OK"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 381,
+   "priority": "P1",
+   "owner": "NONE",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 44 轮 / 宽限 4（回落：正文裸 rNN=r59）",
+   "title": "【P1·待办 R59-14（r59 新立，footer 未闭环项的台账面）】把 A-skill-manager 铁律 2 的「Git 可回滚」前提改成可机检三态：`git ls-files -- <目标>` = 0 条 ",
+   "first_seen": "2026-09-29",
+   "dating_face": "OK"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 374,
+   "priority": "P0",
+   "owner": "NONE",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 44 轮 / 宽限 2（回落：正文裸 rNN=r59）",
+   "title": "【P0·本轮未执行 待授权 R59-4（r59 新立，源自老大「卸载现有 skill」指令）】把 20 件「在盘可加载但从未 `git add`」的技能纳入版本控制，再执行已登记却没移出的退役（`executing-pl",
+   "first_seen": "2026-09-29",
+   "dating_face": "OK"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 379,
+   "priority": "P0",
+   "owner": "NONE",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 44 轮 / 宽限 2（回落：正文裸 rNN=r59）",
+   "title": "【P0·立规 R59-11（r59 新立）】自写审计/校验脚本禁用 `compile(src,p,\"exec\",doraise=True)` 做语法判据——`doraise` 不是内置 compile 的参数，本轮我给 ",
+   "first_seen": "2026-09-29",
+   "dating_face": "OK"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 380,
+   "priority": "P0",
+   "owner": "NONE",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 44 轮 / 宽限 2（回落：正文裸 rNN=r59）",
+   "title": "【P0·立规 R59-13（r59 新立，本会话一手数据事故已自愈）】改任何文档类文件后，除 grep 读回外必须**比对新旧行数与字节数**；本轮没做删减而行数下降即判为截断，立即停手用 git show / git ",
+   "first_seen": "2026-09-29",
+   "dating_face": "OK"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 390,
+   "priority": "P2",
+   "owner": "NONE",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 43 轮 / 宽限 8（回落：正文裸 rNN=r60）",
+   "title": "**【P2·建议型 G-1′（r60 新立，条件触发）】** 若将来要装 AST 级代码检索能力（对手 `ast-grep`，实测本地无近邻），**必须先落二进制再落技能**：`command -v ast-grep` ",
+   "first_seen": "2026-09-30",
+   "dating_face": "OK"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 391,
+   "priority": "P2",
+   "owner": "NONE",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 43 轮 / 宽限 8（回落：正文裸 rNN=r60）",
+   "title": "**【P2·建议型 G-2′（r60 新立，只借形态不借依赖）】** 借鉴 `agent-cost-report`（thedotmack/claude-mem）的**报表三行头**（花费 / 失误成本 / 时间轴），但*",
+   "first_seen": "2026-09-30",
+   "dating_face": "OK"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 386,
+   "priority": "P1",
+   "owner": "NONE",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 43 轮 / 宽限 4（回落：正文裸 rNN=r60）",
+   "title": "**【P1·新立 R60-3（r60 新立，源自 R59-6 真缺口重测）】** `xlsx/SKILL.md` 补**可跑验证段**（现状实测 `grep -cE \"^(python|node) scripts/\" x",
+   "first_seen": "2026-09-30",
+   "dating_face": "OK"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 387,
+   "priority": "未标",
+   "owner": "NONE",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 43 轮 / 宽限 2（回落：正文裸 rNN=r60）",
+   "title": "**【P3·登记 W-49（r60 新立，非本仓引入）】** 受管根 `docx|.xlsx/scripts/office/validators/__pycache__/*.pyc`（实测 docx 6 件：cpytho",
+   "first_seen": "2026-09-30",
+   "dating_face": "OK"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 388,
+   "priority": "未标",
+   "owner": "OWNERED",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 43 轮 / 宽限 2（回落：正文裸 rNN=r60）",
+   "title": "**【P3·登记 W-50（r60 新立，路径漂移）】** r59 台账与其口径补条反复引用的 `D:/global_skills/skill_content/skill_ids.json` 本轮实测**不存在**（`l",
+   "first_seen": "2026-09-30",
+   "dating_face": "OK"
+  },
+  {
+   "file": "memory\\07-next-steps.part43.md",
+   "line": 8,
+   "priority": "未标",
+   "owner": "NONE",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 29 轮 / 宽限 2（回落：正文裸 rNN=r74）",
+   "title": "R76-4 通用「文档句子⇄行为」一致性判据（r74 §6 遗留 #1；轮76 补轮只把 09 头部引用块这一面机器化，通用面仍敞口。批次回到 P2 = 受管根 V3.116.0 已修「P2 无落点 ⇒ --check ",
+   "first_seen": "2026-10-01",
+   "dating_face": "OK"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 382,
+   "priority": "P1",
+   "owner": "NONE",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 44 轮 / 宽限 4",
+   "title": "【P1·待观察 R59-15（r59 登记，非本轮引入）】`handoff.py savepoint <本项目>` 本轮实跑被拒，红因 = 噪声散射门禁 2 项，且**两项都是既有登记**：① `手动维护。agent`（",
+   "first_seen": "2026-09-29",
+   "dating_face": "OK"
+  }
+ ],
+ "undated": [
+  {
+   "title": "R76-5 C33 类级缺口：焚诀 eval/build_memory_index.py 的 EXCLUDED 名册缺 .tmp 条目 ⇒ ",
+   "file": "memory\\07-next-steps.part43.md",
+   "line": 7
+  },
+  {
+   "title": "R76-2 项目/陪聊 09 回填件提交：被其自有 pre-commit 交付件判据拦红（s08.png 从工作树消失 + SoulIsle",
+   "file": "memory\\07-next-steps.part43.md",
+   "line": 10
+  },
+  {
+   "title": "R76-1 项目/医 09 头回填收尾：待该文件在途收口后跑 flow <医> --fix-header（V3.115.0 判据会自行显形）",
+   "file": "memory\\07-next-steps.part44.md",
+   "line": 7
+  },
+  {
+   "title": "VOL-2A600 体量治理[L1 记忆卷] memory/07-next-steps.md — 主卷注入面超告警线：按条数归档（savep",
+   "file": "memory\\07-next-steps.part44.md",
+   "line": 10
+  },
+  {
+   "title": "R57-3 推荐:注入壳 AGENTS.md 29,293B / TODO.md 31,909B 超 root_doc_max 16KB——",
+   "file": "memory\\07-next-steps.part44.md",
+   "line": 11
+  },
+  {
+   "title": "VOL-858E6 体量治理[L2 根文档] AGENTS.md — 注入壳瘦身：历史条目迁 memory/ 分卷，壳内只留指针（hando",
+   "file": "memory\\07-next-steps.part44.md",
+   "line": 15
+  }
+ ],
+ "claims_face": "未闭环积压：REST open_issues_count（含 PR）与 search 纯 issue 面并列；workflow 数并给 API 总计面/仓库内面/dynamic 面。r51 起每行带 retrieval",
+ "opponents_measured_at": "2026-09-25",
+ "opponents": [
+  {
+   "repo": "github/spec-kit",
+   "open_issues_pure": 134,
+   "open_issues_incl_pr": 287,
+   "workflows": 18,
+   "workflows_listed": 27,
+   "stale_automation": true,
+   "oldest_open_issue": "2025-09-25",
+   "note": "唯一有到期自动化：Close stale issues and PRs + 6 条 issue 流转 workflow（stale.yml 系仓库自有件）",
+   "retrieval": "gh api \"search/issues?q=repo:github/spec-kit+type:issue+state:open&per_page=1\" --jq .total_count ; gh api repos/github/spec-kit --jq .open_issues_count ; gh api repos/github/spec-kit/actions/workflows --jq '[.workflows[]|select(.path|startswith(\".github/workflows\"))]|length'"
+  },
+  {
+   "repo": "obra/superpowers",
+   "open_issues_pure": 143,
+   "open_issues_incl_pr": 402,
+   "workflows": 0,
+   "workflows_listed": 2,
+   "stale_automation": false,
+   "oldest_open_issue": "2026-01-27",
+   "note": "仓库内 0 个 workflow（.github/workflows 实测 404）；listed=2 全为平台 dynamic 件（r50 校正）",
+   "retrieval": "gh api \"search/issues?q=repo:obra/superpowers+type:issue+state:open&per_page=1\" --jq .total_count ; gh api repos/obra/superpowers --jq .open_issues_count ; gh api repos/obra/superpowers/contents/.github/workflows  # 404"
+  },
+  {
+   "repo": "anthropics/skills",
+   "open_issues_pure": 368,
+   "open_issues_incl_pr": 1292,
+   "workflows": 0,
+   "workflows_listed": 2,
+   "stale_automation": false,
+   "oldest_open_issue": "2025-10-16",
+   "note": "同上：仓库内 0 个自有 workflow，积压规模最大但无到期治理",
+   "retrieval": "gh api \"search/issues?q=repo:anthropics/skills+type:issue+state:open&per_page=1\" --jq .total_count ; gh api repos/anthropics/skills --jq .open_issues_count ; gh api repos/anthropics/skills/contents/.github/workflows  # 404"
+  },
+  {
+   "repo": "addyosmani/agent-skills",
+   "open_issues_pure": 58,
+   "open_issues_incl_pr": 120,
+   "workflows": 2,
+   "workflows_listed": 5,
+   "stale_automation": false,
+   "oldest_open_issue": "2026-04-04",
+   "note": "contents 目录实测 1 件（API 仍报已不存在的 markdownlint.yml）⇒ API 面 ≠ 磁盘面",
+   "retrieval": "gh api \"search/issues?q=repo:addyosmani/agent-skills+type:issue+state:open&per_page=1\" --jq .total_count ; gh api repos/addyosmani/agent-skills/contents/.github/workflows --jq '.[].name'"
+  },
+  {
+   "repo": "pre-commit/pre-commit",
+   "open_issues_pure": 17,
+   "open_issues_incl_pr": 25,
+   "workflows": 2,
+   "workflows_listed": 3,
+   "stale_automation": false,
+   "oldest_open_issue": "2018-07-02",
+   "note": "低积压靠少建待办，最老一条 8 年仍 open（日期已复现）；2 个自有 workflow 均为跨仓 uses: 复用件",
+   "retrieval": "gh api \"search/issues?q=repo:pre-commit/pre-commit+type:issue+state:open&per_page=1\" --jq .total_count ; gh api repos/pre-commit/pre-commit --jq .open_issues_count ; gh api \"search/issues?q=repo:pre-commit/pre-commit+type:issue+state:open&sort=created&order=asc&per_page=1\" --jq '.items[0].created_at'"
+  }
+ ],
+ "note": "OVERDUE 数 = ratchet_gate 第 7 指标 overdue_debt_items 的唯一取值面",
+ "coverage": {
+  "status": "OK",
+  "prev": "debt_aging_r59e_2026-09-29.json",
+  "prev_overdue": 0,
+  "missing": [],
+  "method": "adjudication_gap(上一轮 overdue[].title 前 40 字, 当前卷文本, 本轮轮号)"
+ },
+ "input_face": {
+  "round": {
+   "log": 103,
+   "tag": 103,
+   "ok": true,
+   "detail": "log=r103 ≥ tag=r103（差 0 轮：本轮 tag 已打，两源一致）"
+  },
+  "floor": {
+   "ok": true,
+   "detail": "上轮 42 卷全部在本轮 55 卷面内（拆卷只增不减，无需豁免表）"
+  },
+  "dedup": {
+   "ok": true,
+   "detail": "180 行全部计入，80 字前缀键零碰撞"
+  },
+  "dating": {
+   "ok": true,
+   "detail": "25 条到期项定年两路同值（截断 needle 未改变结论）",
+   "checked": 0
+  },
+  "suggestions": {
+   "ok": null,
+   "detail": "未传 --report ⇒ 建议面未对照（R247 不判绿）"
+  },
+  "raw_lines": 180,
+  "collisions": [],
+  "status": "UNVERIFIED",
+  "red_faces": [],
+  "unverified_faces": [
+   "suggestions"
+  ]
+ },
+ "unowned_claims": [
+  {
+   "file": "memory\\07-next-steps.part43.md",
+   "line": 10,
+   "title": "R76-2 项目/陪聊 09 回填件提交：被其自有 pre-commit 交付件判据拦红（s08.png 从工作树消失 + SoulIsle 品牌分叉，均非本次引入），待归属方处置"
+  }
+ ],
+ "refresh_stale_count": 3,
+ "handles": {
+  "overdue": {
+   "artifact": "06-benchmark/debt_runs.jsonl",
+   "field": "overdue",
+   "selector": "末行",
+   "command": "python -c 读 06-benchmark/debt_runs.jsonl 末行取 overdue（本件 resolve_handle 即该实现）"
+  },
+  "ledger_rows": {
+   "artifact": "06-benchmark/debt_runs.jsonl",
+   "field": "#rows",
+   "selector": "行数",
+   "command": "wc -l 06-benchmark/debt_runs.jsonl"
+  },
+  "open_total": {
+   "artifact": "06-benchmark/debt_runs.jsonl",
+   "field": "open_total",
+   "selector": "末行",
+   "command": "python 05-exec/r38_debt_aging.py --json /tmp/x.json 读 by_class 之和"
+  },
+  "decided": {
+   "artifact": "06-benchmark/debt_runs.jsonl",
+   "field": "decided",
+   "selector": "末行",
+   "command": "tail -1 06-benchmark/debt_runs.jsonl"
+  }
+ }
+}

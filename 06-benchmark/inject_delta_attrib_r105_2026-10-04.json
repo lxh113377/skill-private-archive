@@ -1,0 +1,62 @@
+{
+ "schema": "inject-delta-attrib-r105-v2",
+ "baseline_moment": "2026-09-25 19:47",
+ "baseline_commits_by_repo": {
+  "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化": "94e2e8cfbc5886ce7dc3162ac209c50e79cfc3c9",
+  "D:\\global_skills": "471103f1bc7299328b21c7119405d859ebe4e8d8",
+  "D:\\global_memory": "e96cfe6fb0d969b473d3f5a78940bac9db4fa534"
+ },
+ "floor": 87610,
+ "paths_n": 5,
+ "attributable_n": 4,
+ "unattributable": [
+  {
+   "path": "C:\\Users\\37533\\.zcode\\AGENTS.md",
+   "bytes": 2977,
+   "why": "不在三个有历史的根内（仓外件，git 无旧值可比）"
+  }
+ ],
+ "selfcheck_fail": [],
+ "rows": [
+  {
+   "path": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\AGENTS.md",
+   "head_disk": 29293,
+   "baseline_disk": 29293,
+   "delta": 0,
+   "repo": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化",
+   "baseline_commit": "94e2e8cfbc5886ce7dc3162ac209c50e79cfc3c9",
+   "eol_identity": "lf2crlf"
+  },
+  {
+   "path": "D:\\global_skills\\A-memory-start\\references\\contract.md",
+   "head_disk": 20812,
+   "baseline_disk": 19116,
+   "delta": 1696,
+   "repo": "D:\\global_skills",
+   "baseline_commit": "471103f1bc7299328b21c7119405d859ebe4e8d8",
+   "eol_identity": "raw"
+  },
+  {
+   "path": "D:\\global_memory\\core\\behavior_core.md",
+   "head_disk": 10156,
+   "baseline_disk": 8797,
+   "delta": 1359,
+   "repo": "D:\\global_memory",
+   "baseline_commit": "e96cfe6fb0d969b473d3f5a78940bac9db4fa534",
+   "eol_identity": "raw"
+  },
+  {
+   "path": "D:\\global_skills\\A-memory-start\\SKILL.md",
+   "head_disk": 25115,
+   "baseline_disk": 26541,
+   "delta": -1426,
+   "repo": "D:\\global_skills",
+   "baseline_commit": "471103f1bc7299328b21c7119405d859ebe4e8d8",
+   "eol_identity": "raw"
+  }
+ ],
+ "attributable_delta_sum": 1629,
+ "current_total": 88353,
+ "current_total_over_known_paths": 85376,
+ "ratchet_measured_now": 88353
+}

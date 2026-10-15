@@ -1,6 +1,6 @@
 {
  "repo": "addyosmani/agent-skills",
- "sha": "2686b620fc1fed2e8f60c704839c766b8594c6b6",
+ "sha": "a06bc63b3f8b829c14b0bbf53d99fefc39d58092",
  "truncated": false,
  "slugs": [
   "skills/api-and-interface-design",
@@ -30,9 +30,7 @@
   "skills/using-agent-skills"
  ],
  "detail": {
-  "stars": 99874,
-  "pushed_at": "2026-09-26T04:19:38Z",
-  "archived": false,
-  "open_issues": 118
+  "stars": 100763,
+  "pushed_at": "2026-10-03T06:42:25Z"
  }
 }

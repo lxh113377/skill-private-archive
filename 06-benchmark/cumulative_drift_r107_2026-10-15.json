@@ -1,0 +1,2542 @@
+{
+ "schema": "cumulative-drift-scan-v2",
+ "generated_at": "2026-10-15 11:04",
+ "readonly": true,
+ "window_days": 30,
+ "threshold": 5,
+ "exclusions_enabled": true,
+ "verdict_taxonomy": [
+  "drift_detected",
+  "softened",
+  "refinement",
+  "additive",
+  "neutral_rephrase",
+  "uncertain"
+ ],
+ "evidence": {
+  "total_commits": 1925,
+  "roots": {
+   "global_skills": {
+    "commits": 638,
+    "files_touched": 15956,
+    "top5": [
+     [
+      "A-project-handoff/references/version-history.md",
+      101
+     ],
+     [
+      "A-project-handoff/SKILL.md",
+      93
+     ],
+     [
+      "A-get-memory/SKILL.md",
+      92
+     ],
+     [
+      "A-project-handoff/scripts/handoff_lib/volumegov.py",
+      71
+     ],
+     [
+      "A-memory-start/SKILL.md",
+      52
+     ]
+    ],
+    "driftignore_patterns": 0
+   },
+   "global_memory": {
+    "commits": 817,
+    "files_touched": 2746,
+    "top5": [
+     [
+      "memory/07-next-steps.md",
+      94
+     ],
+     [
+      "meta/lessons_usage.jsonl",
+      40
+     ],
+     [
+      "memory/2026-09-25.md",
+      37
+     ],
+     [
+      "memory/2026-09-24.md",
+      24
+     ],
+     [
+      "MEMORY.md",
+      20
+     ]
+    ],
+    "driftignore_patterns": 0
+   },
+   "fenjue": {
+    "commits": 248,
+    "files_touched": 948,
+    "top5": [
+     [
+      "eval/derivative_manifest.json",
+      44
+     ],
+     [
+      "STATUS.part1.md",
+      40
+     ],
+     [
+      "STATUS.md",
+      39
+     ],
+     [
+      "eval/bge_fullbody_embeddings.npy",
+      38
+     ],
+     [
+      "skill/registry/disk_manifest.json",
+      37
+     ]
+    ],
+    "driftignore_patterns": 0
+   },
+   "self": {
+    "commits": 222,
+    "files_touched": 933,
+    "top5": [
+     [
+      "memory/07-next-steps.md",
+      127
+     ],
+     [
+      "06-benchmark/gate_runs.jsonl",
+      69
+     ],
+     [
+      "memory/05-feature-status.md",
+      63
+     ],
+     [
+      "memory/AGENTS.md",
+      34
+     ],
+     [
+      "README.md",
+      29
+     ]
+    ],
+    "driftignore_patterns": 0
+   }
+  }
+ },
+ "flagged_ruleish": [
+  {
+   "path": "memory/07-next-steps.md",
+   "edits": 127,
+   "bytes": 147334,
+   "exists": true,
+   "ruleish": true,
+   "root": "self"
+  },
+  {
+   "path": "memory/07-next-steps.md",
+   "edits": 94,
+   "bytes": 24732,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_memory"
+  },
+  {
+   "path": "A-project-handoff/SKILL.md",
+   "edits": 93,
+   "bytes": 9407,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "A-get-memory/SKILL.md",
+   "edits": 92,
+   "bytes": 218685,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "A-memory-start/SKILL.md",
+   "edits": 52,
+   "bytes": 19508,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "ican-frontend-design-system/SKILL.md",
+   "edits": 36,
+   "bytes": 59503,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "memory/AGENTS.md",
+   "edits": 34,
+   "bytes": 30297,
+   "exists": true,
+   "ruleish": true,
+   "root": "self"
+  },
+  {
+   "path": "A-project-better/SKILL.md",
+   "edits": 26,
+   "bytes": 7931,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "memory/06-constraints.md",
+   "edits": 24,
+   "bytes": 21905,
+   "exists": true,
+   "ruleish": true,
+   "root": "self"
+  },
+  {
+   "path": "A-memory-start/references/contract.md",
+   "edits": 21,
+   "bytes": 19107,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "A-skill-manager/SKILL.md",
+   "edits": 21,
+   "bytes": 8329,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "MEMORY.md",
+   "edits": 20,
+   "bytes": 22130,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_memory"
+  },
+  {
+   "path": "A-memory-start/references/contract-rules-verification.md",
+   "edits": 17,
+   "bytes": 43168,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "consulting-analysis/SKILL.md",
+   "edits": 16,
+   "bytes": 71653,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "chaoshi-web-deploy/SKILL.md",
+   "edits": 15,
+   "bytes": 57300,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "A-project-handoff/references/ci-green-contract.md",
+   "edits": 15,
+   "bytes": 24835,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "A-ask-questions/SKILL.md",
+   "edits": 9,
+   "bytes": 11693,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "win-toolchain-pitfalls/SKILL.md",
+   "edits": 8,
+   "bytes": 11846,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "c-cleanup/SKILL.md",
+   "edits": 8,
+   "bytes": 30234,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "core/behavior_core.md",
+   "edits": 8,
+   "bytes": 16015,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_memory"
+  },
+  {
+   "path": "local-ocr-npu/SKILL.md",
+   "edits": 7,
+   "bytes": 6270,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "chaoshi-image-optimization/SKILL.md",
+   "edits": 6,
+   "bytes": 24491,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "oc-dispatch-exec-guard/SKILL.md",
+   "edits": 6,
+   "bytes": 5298,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "local-vram/SKILL.md",
+   "edits": 6,
+   "bytes": 5666,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "executing-plans/SKILL.md",
+   "edits": 6,
+   "bytes": 2459,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "prompts/workflow_seven_step.md",
+   "edits": 6,
+   "bytes": 3020,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_memory"
+  },
+  {
+   "path": "openclaw-task-supervision/SKILL.md",
+   "edits": 5,
+   "bytes": 34111,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "windows-gitbash-chinese-path-pit/SKILL.md",
+   "edits": 5,
+   "bytes": 6043,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "shell-encoding-pitfalls/SKILL.md",
+   "edits": 5,
+   "bytes": 14022,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "local-realtime-translator/SKILL.md",
+   "edits": 5,
+   "bytes": 8216,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "slides/SKILL.md",
+   "edits": 5,
+   "bytes": 4557,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "core/MEMORY.md",
+   "edits": 5,
+   "bytes": 3105,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_memory"
+  }
+ ],
+ "flagged_all": [
+  {
+   "path": "memory/07-next-steps.md",
+   "edits": 127,
+   "bytes": 147334,
+   "exists": true,
+   "ruleish": true,
+   "root": "self"
+  },
+  {
+   "path": "memory/07-next-steps.md",
+   "edits": 94,
+   "bytes": 24732,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_memory"
+  },
+  {
+   "path": "A-project-handoff/SKILL.md",
+   "edits": 93,
+   "bytes": 9407,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "A-get-memory/SKILL.md",
+   "edits": 92,
+   "bytes": 218685,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "A-memory-start/SKILL.md",
+   "edits": 52,
+   "bytes": 19508,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "ican-frontend-design-system/SKILL.md",
+   "edits": 36,
+   "bytes": 59503,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "memory/AGENTS.md",
+   "edits": 34,
+   "bytes": 30297,
+   "exists": true,
+   "ruleish": true,
+   "root": "self"
+  },
+  {
+   "path": "A-project-better/SKILL.md",
+   "edits": 26,
+   "bytes": 7931,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "memory/06-constraints.md",
+   "edits": 24,
+   "bytes": 21905,
+   "exists": true,
+   "ruleish": true,
+   "root": "self"
+  },
+  {
+   "path": "A-memory-start/references/contract.md",
+   "edits": 21,
+   "bytes": 19107,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "A-skill-manager/SKILL.md",
+   "edits": 21,
+   "bytes": 8329,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "MEMORY.md",
+   "edits": 20,
+   "bytes": 22130,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_memory"
+  },
+  {
+   "path": "A-memory-start/references/contract-rules-verification.md",
+   "edits": 17,
+   "bytes": 43168,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "consulting-analysis/SKILL.md",
+   "edits": 16,
+   "bytes": 71653,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "chaoshi-web-deploy/SKILL.md",
+   "edits": 15,
+   "bytes": 57300,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "A-project-handoff/references/ci-green-contract.md",
+   "edits": 15,
+   "bytes": 24835,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "A-ask-questions/SKILL.md",
+   "edits": 9,
+   "bytes": 11693,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "win-toolchain-pitfalls/SKILL.md",
+   "edits": 8,
+   "bytes": 11846,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "c-cleanup/SKILL.md",
+   "edits": 8,
+   "bytes": 30234,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "core/behavior_core.md",
+   "edits": 8,
+   "bytes": 16015,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_memory"
+  },
+  {
+   "path": "local-ocr-npu/SKILL.md",
+   "edits": 7,
+   "bytes": 6270,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "chaoshi-image-optimization/SKILL.md",
+   "edits": 6,
+   "bytes": 24491,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "oc-dispatch-exec-guard/SKILL.md",
+   "edits": 6,
+   "bytes": 5298,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "local-vram/SKILL.md",
+   "edits": 6,
+   "bytes": 5666,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "executing-plans/SKILL.md",
+   "edits": 6,
+   "bytes": 2459,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "prompts/workflow_seven_step.md",
+   "edits": 6,
+   "bytes": 3020,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_memory"
+  },
+  {
+   "path": "openclaw-task-supervision/SKILL.md",
+   "edits": 5,
+   "bytes": 34111,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "windows-gitbash-chinese-path-pit/SKILL.md",
+   "edits": 5,
+   "bytes": 6043,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "shell-encoding-pitfalls/SKILL.md",
+   "edits": 5,
+   "bytes": 14022,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "local-realtime-translator/SKILL.md",
+   "edits": 5,
+   "bytes": 8216,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "slides/SKILL.md",
+   "edits": 5,
+   "bytes": 4557,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_skills"
+  },
+  {
+   "path": "core/MEMORY.md",
+   "edits": 5,
+   "bytes": 3105,
+   "exists": true,
+   "ruleish": true,
+   "root": "global_memory"
+  },
+  {
+   "path": "A-project-handoff/references/version-history.md",
+   "edits": 101,
+   "bytes": 181563,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "A-project-handoff/scripts/handoff_lib/volumegov.py",
+   "edits": 71,
+   "bytes": 325464,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "06-benchmark/gate_runs.jsonl",
+   "edits": 69,
+   "bytes": 160495,
+   "exists": true,
+   "ruleish": false,
+   "root": "self"
+  },
+  {
+   "path": "memory/05-feature-status.md",
+   "edits": 63,
+   "bytes": 23835,
+   "exists": true,
+   "ruleish": false,
+   "root": "self"
+  },
+  {
+   "path": "eval/derivative_manifest.json",
+   "edits": 44,
+   "bytes": 4711,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "meta/lessons_usage.jsonl",
+   "edits": 40,
+   "bytes": 341863,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "STATUS.md",
+   "edits": 39,
+   "bytes": 1263,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/bge_fullbody_embeddings.npy",
+   "edits": 38,
+   "bytes": 372864,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "A-memory-start/references/version_history.md",
+   "edits": 37,
+   "bytes": 135377,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "skill/registry/disk_manifest.json",
+   "edits": 37,
+   "bytes": 49986,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/verify_truth_consistency.py",
+   "edits": 37,
+   "bytes": 49337,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "A-project-handoff/references/commands.md",
+   "edits": 30,
+   "bytes": 70471,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "README.md",
+   "edits": 29,
+   "bytes": 29896,
+   "exists": true,
+   "ruleish": false,
+   "root": "self"
+  },
+  {
+   "path": "A-project-handoff/scripts/noise_lint.py",
+   "edits": 27,
+   "bytes": 49749,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "eval/truth_constants.json",
+   "edits": 27,
+   "bytes": 24212,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "A-project-handoff/scripts/handoff_lib/savepoint.py",
+   "edits": 25,
+   "bytes": 60695,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "A-project-handoff/scripts/volume_gov_stub.py",
+   "edits": 25,
+   "bytes": 122177,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "06-benchmark/comparison.md",
+   "edits": 25,
+   "bytes": 43766,
+   "exists": true,
+   "ruleish": false,
+   "root": "self"
+  },
+  {
+   "path": "A-skill-manager/references/governance.md",
+   "edits": 24,
+   "bytes": 39826,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "eval/pre_commit_hooks.py",
+   "edits": 24,
+   "bytes": 51092,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/stubs/registry.json",
+   "edits": 24,
+   "bytes": 26976,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "ican-frontend-design-system/references/version-history.md",
+   "edits": 23,
+   "bytes": 87120,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "eval/shared_red_ledger.jsonl",
+   "edits": 23,
+   "bytes": 1066772,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "index.md",
+   "edits": 23,
+   "bytes": 3267,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "05-exec/run_gates.py",
+   "edits": 22,
+   "bytes": 38976,
+   "exists": true,
+   "ruleish": false,
+   "root": "self"
+  },
+  {
+   "path": "06-benchmark/debt_runs.jsonl",
+   "edits": 22,
+   "bytes": 15075,
+   "exists": true,
+   "ruleish": false,
+   "root": "self"
+  },
+  {
+   "path": "ican-frontend-design-system/references/delivery-chain.md",
+   "edits": 20,
+   "bytes": 26589,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "skill/registry/cross_platform_map.json",
+   "edits": 20,
+   "bytes": 71838,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "06-benchmark/input_pins.jsonl",
+   "edits": 20,
+   "bytes": 286225,
+   "exists": true,
+   "ruleish": false,
+   "root": "self"
+  },
+  {
+   "path": "A-project-better/references/version-history.md",
+   "edits": 19,
+   "bytes": 3970,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "memory/09-workflow-state.md",
+   "edits": 19,
+   "bytes": 10649,
+   "exists": true,
+   "ruleish": false,
+   "root": "self"
+  },
+  {
+   "path": "05-exec/schemas/r19/baseline-contracts.json",
+   "edits": 19,
+   "bytes": 18231,
+   "exists": true,
+   "ruleish": false,
+   "root": "self"
+  },
+  {
+   "path": "A-project-handoff/scripts/volume_gov_daily.ps1",
+   "edits": 18,
+   "bytes": 35131,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "A-project-handoff/scripts/handoff_lib/flow.py",
+   "edits": 18,
+   "bytes": 88553,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "ican-frontend-design-system/assets/patch_verify.py",
+   "edits": 18,
+   "bytes": 40553,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "ican-frontend-design-system/assets/test_patch_verify.py",
+   "edits": 17,
+   "bytes": 57852,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "reports/recheck_scorecard.json",
+   "edits": 17,
+   "bytes": 2613,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "skill/registry/unified-skills-index.json",
+   "edits": 17,
+   "bytes": 115148,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": ".github/workflows/ci.yml",
+   "edits": 17,
+   "bytes": 34747,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "A-memory-start/references/reply_footer.md",
+   "edits": 16,
+   "bytes": 20492,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "skill_content/index_manifest.json",
+   "edits": 16,
+   "bytes": 385,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "eval/build_attestation.json",
+   "edits": 16,
+   "bytes": 29014,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/ci_health_state.json",
+   "edits": 16,
+   "bytes": 757,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/verify_checks/governance_layer.py",
+   "edits": 16,
+   "bytes": 35063,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "05-exec/r38_debt_aging.py",
+   "edits": 16,
+   "bytes": 45049,
+   "exists": true,
+   "ruleish": false,
+   "root": "self"
+  },
+  {
+   "path": "A-project-handoff/references/disciplines.md",
+   "edits": 15,
+   "bytes": 46300,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "skill_content/automation.json",
+   "edits": 15,
+   "bytes": 13382,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "skill_content/bge_embeddings.npy",
+   "edits": 15,
+   "bytes": 372864,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "skill_content/memory.json",
+   "edits": 15,
+   "bytes": 4143,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "skill_content/tfidf_matrix.npz",
+   "edits": 15,
+   "bytes": 578128,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "skill_content/tfidf_vectorizer.pkl",
+   "edits": 15,
+   "bytes": 168744,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "skill_content/web.json",
+   "edits": 14,
+   "bytes": 13308,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "06-benchmark/inject_ratchet_baseline.json",
+   "edits": 14,
+   "bytes": 6797,
+   "exists": true,
+   "ruleish": false,
+   "root": "self"
+  },
+  {
+   "path": "05-exec/baseline_contract_scan.py",
+   "edits": 14,
+   "bytes": 38709,
+   "exists": true,
+   "ruleish": false,
+   "root": "self"
+  },
+  {
+   "path": "A-project-handoff/scripts/handoff.py",
+   "edits": 13,
+   "bytes": 17428,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "A-project-handoff/scripts/greencheck.py",
+   "edits": 13,
+   "bytes": 101613,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "A-project-handoff/scripts/shared_vol_commit_guard.py",
+   "edits": 13,
+   "bytes": 67386,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "cross_platform_map.json",
+   "edits": 13,
+   "bytes": 7824,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "skill_content/code.json",
+   "edits": 13,
+   "bytes": 18432,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "skill_content/general_utils.json",
+   "edits": 13,
+   "bytes": 14614,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "skill_content/system.json",
+   "edits": 13,
+   "bytes": 16381,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": ".gitignore",
+   "edits": 13,
+   "bytes": 6988,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/freeze_bulletin.json",
+   "edits": 13,
+   "bytes": 527,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/build_registry.py",
+   "edits": 13,
+   "bytes": 21629,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "A-memory-start/references/upgrade_footer_gate.py",
+   "edits": 12,
+   "bytes": 52842,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "A-project-handoff/references/volume-heartbeat.md",
+   "edits": 12,
+   "bytes": 23806,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "skill_content/local.json",
+   "edits": 12,
+   "bytes": 15400,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "skill_content/research.json",
+   "edits": 12,
+   "bytes": 10627,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "eval/status_report.py",
+   "edits": 12,
+   "bytes": 35561,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/bge_fullbody_skills.json",
+   "edits": 12,
+   "bytes": 15755,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "skill/registry/platform-hm.json",
+   "edits": 12,
+   "bytes": 3368,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "skill/registry/platform-tc.json",
+   "edits": 12,
+   "bytes": 5634,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "skill/registry/platform-wb.json",
+   "edits": 12,
+   "bytes": 5631,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "05-exec/ratchet_gate.py",
+   "edits": 12,
+   "bytes": 39123,
+   "exists": true,
+   "ruleish": false,
+   "root": "self"
+  },
+  {
+   "path": "A-skill-manager/references/version-history.md",
+   "edits": 11,
+   "bytes": 18344,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "skill_content/creative.json",
+   "edits": 11,
+   "bytes": 14208,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "skill_content/data.json",
+   "edits": 11,
+   "bytes": 6252,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "skill_content/design.json",
+   "edits": 11,
+   "bytes": 12803,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "skill_content/doc.json",
+   "edits": 11,
+   "bytes": 11153,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "skill_content/media.json",
+   "edits": 11,
+   "bytes": 9548,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "scripts/hooks/pre-commit",
+   "edits": 11,
+   "bytes": 7561,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "memory/01-goal.md",
+   "edits": 11,
+   "bytes": 899,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "eval/bge_fullbody_meta.json",
+   "edits": 11,
+   "bytes": 309,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "skill/registry/platform-codex.json",
+   "edits": 11,
+   "bytes": 5623,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "A-memory-start/references/rule_editor.py",
+   "edits": 10,
+   "bytes": 91114,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "meta/path_index.md",
+   "edits": 10,
+   "bytes": 8702,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "scripts/fenjue_split/_mirror.json",
+   "edits": 10,
+   "bytes": 671,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "eval/volgov_full_lane.json",
+   "edits": 10,
+   "bytes": 748,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "scripts/noise_lint.py",
+   "edits": 10,
+   "bytes": 15560,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "reports/ci-panel-log.md",
+   "edits": 10,
+   "bytes": 9376,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "skill/registry/platform-oc.json",
+   "edits": 10,
+   "bytes": 5630,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/direct_map.json",
+   "edits": 10,
+   "bytes": 30732,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "TODO.md",
+   "edits": 10,
+   "bytes": 11883,
+   "exists": true,
+   "ruleish": false,
+   "root": "self"
+  },
+  {
+   "path": "A-project-handoff/scripts/volume_gov_budget_family_stub.py",
+   "edits": 9,
+   "bytes": 26326,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "eval/build_indexes.py",
+   "edits": 9,
+   "bytes": 36808,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "README.md",
+   "edits": 9,
+   "bytes": 7138,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/inject_budget_ledger.jsonl",
+   "edits": 9,
+   "bytes": 9506,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/direct_layer.py",
+   "edits": 9,
+   "bytes": 8216,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "05-exec/r39_debt_ledger_fixtures.py",
+   "edits": 9,
+   "bytes": 26572,
+   "exists": true,
+   "ruleish": false,
+   "root": "self"
+  },
+  {
+   "path": "06-benchmark/全量对标报告_r19_2026-09-24.md",
+   "edits": 9,
+   "bytes": 37745,
+   "exists": true,
+   "ruleish": false,
+   "root": "self"
+  },
+  {
+   "path": "A-project-handoff/scripts/volume_gov_r35_stub.py",
+   "edits": 8,
+   "bytes": 31794,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "memory/09-workflow-state.md",
+   "edits": 8,
+   "bytes": 20939,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "scripts/fenjue_split/mutate_removal_readiness.py",
+   "edits": 8,
+   "bytes": 30512,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "scripts/fenjue_split/removal_readiness.py",
+   "edits": 8,
+   "bytes": 120448,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "eval/unified_router.py",
+   "edits": 8,
+   "bytes": 30979,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/part_size_baseline.json",
+   "edits": 8,
+   "bytes": 984,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/derivative_watch.py",
+   "edits": 8,
+   "bytes": 31217,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "skill/registry/platform_tiers.json",
+   "edits": 8,
+   "bytes": 1507,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "reports/2026-09-25_GitHub对标第十七轮_判据的判据.md",
+   "edits": 8,
+   "bytes": 19261,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "05-exec/r19_baseline_contract_fixtures.py",
+   "edits": 8,
+   "bytes": 20221,
+   "exists": true,
+   "ruleish": false,
+   "root": "self"
+  },
+  {
+   "path": "05-exec/第3轮执行报告.md",
+   "edits": 8,
+   "bytes": 43337,
+   "exists": true,
+   "ruleish": false,
+   "root": "self"
+  },
+  {
+   "path": "A-memory-start/references/dag_precheck.py",
+   "edits": 7,
+   "bytes": 28671,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "A-project-handoff/scripts/handoff_lib/recycle.py",
+   "edits": 7,
+   "bytes": 24685,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "A-project-better/references/workflow-s123.md",
+   "edits": 7,
+   "bytes": 4094,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "A-project-better/references/benchmark.md",
+   "edits": 7,
+   "bytes": 2353,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "A-project-better/references/workflow.md",
+   "edits": 7,
+   "bytes": 1911,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "A-project-handoff/scripts/endpoint_injection_roster.py",
+   "edits": 7,
+   "bytes": 35586,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "A-project-handoff/scripts/flow_ledger_face_stub.py",
+   "edits": 7,
+   "bytes": 32617,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "A-project-handoff/scripts/handoff_lib/splitvol.py",
+   "edits": 7,
+   "bytes": 58770,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "conflict_resolution.md",
+   "edits": 7,
+   "bytes": 4928,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "feedback-edit-long-line-ledger.md",
+   "edits": 7,
+   "bytes": 27777,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "feedback-shared-memory-write-discipline.md",
+   "edits": 7,
+   "bytes": 16246,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "meta/family_retention.json",
+   "edits": 7,
+   "bytes": 14237,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "eval/stubs/stub_c16_memory.py",
+   "edits": 7,
+   "bytes": 10464,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "RELEASE-NOTES.md",
+   "edits": 7,
+   "bytes": 11545,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "scripts/.prompt_versions/store.json",
+   "edits": 7,
+   "bytes": 109830,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/tests/test_skill_usage_stats.py",
+   "edits": 7,
+   "bytes": 14427,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/tests/test_truth_consistency.py",
+   "edits": 7,
+   "bytes": 17291,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/truth_constants.py",
+   "edits": 7,
+   "bytes": 8501,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/push_health.py",
+   "edits": 7,
+   "bytes": 11198,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "scripts/run_gate.py",
+   "edits": 7,
+   "bytes": 9588,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "05-exec/r67_input_pin_fixtures.py",
+   "edits": 7,
+   "bytes": 22263,
+   "exists": true,
+   "ruleish": false,
+   "root": "self"
+  },
+  {
+   "path": "05-exec/r67_input_pin_guard.py",
+   "edits": 7,
+   "bytes": 27178,
+   "exists": true,
+   "ruleish": false,
+   "root": "self"
+  },
+  {
+   "path": "01-scan/scan_all.py",
+   "edits": 7,
+   "bytes": 28554,
+   "exists": true,
+   "ruleish": false,
+   "root": "self"
+  },
+  {
+   "path": "05-exec/README.md",
+   "edits": 7,
+   "bytes": 7618,
+   "exists": true,
+   "ruleish": false,
+   "root": "self"
+  },
+  {
+   "path": "A-project-handoff/scripts/mutate_volume_gov_r69.py",
+   "edits": 6,
+   "bytes": 7334,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "A-project-handoff/scripts/volume_gov_r69_stub.py",
+   "edits": 6,
+   "bytes": 24166,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "skill_content/skill_ids.json",
+   "edits": 6,
+   "bytes": 11751,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "feedback-auto-git-push.md",
+   "edits": 6,
+   "bytes": 10003,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "feedback-negative-control-first.md",
+   "edits": 6,
+   "bytes": 18408,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "scripts/sync_global_memory.ps1",
+   "edits": 6,
+   "bytes": 18044,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "scripts/snapshot_delta.py",
+   "edits": 6,
+   "bytes": 58575,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "eval/verify_checks/status_layer.py",
+   "edits": 6,
+   "bytes": 26247,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/verify_checks/skill_layer.py",
+   "edits": 6,
+   "bytes": 13410,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/hooks/post-commit",
+   "edits": 6,
+   "bytes": 4967,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/gate_scope_attribution.py",
+   "edits": 6,
+   "bytes": 37614,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/budget_ceiling_baseline.json",
+   "edits": 6,
+   "bytes": 2223,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/generate_index.py",
+   "edits": 6,
+   "bytes": 6107,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/verify_checks/registry_layer.py",
+   "edits": 6,
+   "bytes": 27874,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/tests/test_static_locks_gate.py",
+   "edits": 6,
+   "bytes": 15445,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/gate_stub_runner.py",
+   "edits": 6,
+   "bytes": 14310,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/tests/test_pre_commit_gates.py",
+   "edits": 6,
+   "bytes": 13030,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/wiring_baseline.json",
+   "edits": 6,
+   "bytes": 3295,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/wiring_census.py",
+   "edits": 6,
+   "bytes": 20051,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "reports/2026-09-25_GitHub对标第十八轮_发布与版本纪律.md",
+   "edits": 6,
+   "bytes": 24904,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "05-exec/第10轮执行报告.md",
+   "edits": 6,
+   "bytes": 37485,
+   "exists": true,
+   "ruleish": false,
+   "root": "self"
+  },
+  {
+   "path": "A-project-handoff/scripts/git_autopush.py",
+   "edits": 5,
+   "bytes": 14219,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "A-memory-start/references/quickref-cli-subprocess.md",
+   "edits": 5,
+   "bytes": 23387,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "slides/LICENSE.txt",
+   "edits": 5,
+   "bytes": 11552,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "slides/agents/openai.yaml",
+   "edits": 5,
+   "bytes": 283,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "slides/assets/pptxgenjs_helpers/code.js",
+   "edits": 5,
+   "bytes": 2288,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "slides/assets/pptxgenjs_helpers/image.js",
+   "edits": 5,
+   "bytes": 9262,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "slides/assets/pptxgenjs_helpers/index.js",
+   "edits": 5,
+   "bytes": 697,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "slides/assets/pptxgenjs_helpers/latex.js",
+   "edits": 5,
+   "bytes": 1815,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "slides/assets/pptxgenjs_helpers/layout.js",
+   "edits": 5,
+   "bytes": 23013,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "slides/assets/pptxgenjs_helpers/layout_builders.js",
+   "edits": 5,
+   "bytes": 10823,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "slides/assets/pptxgenjs_helpers/svg.js",
+   "edits": 5,
+   "bytes": 941,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "slides/assets/pptxgenjs_helpers/text.js",
+   "edits": 5,
+   "bytes": 27274,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "slides/assets/pptxgenjs_helpers/util.js",
+   "edits": 5,
+   "bytes": 373,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "slides/assets/slides-small.svg",
+   "edits": 5,
+   "bytes": 2489,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "slides/assets/slides.png",
+   "edits": 5,
+   "bytes": 1868,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "slides/references/pptxgenjs-helpers.md",
+   "edits": 5,
+   "bytes": 3037,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "slides/scripts/create_montage.py",
+   "edits": 5,
+   "bytes": 10323,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "slides/scripts/detect_font.py",
+   "edits": 5,
+   "bytes": 34800,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "slides/scripts/ensure_raster_image.py",
+   "edits": 5,
+   "bytes": 6364,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "slides/scripts/render_slides.py",
+   "edits": 5,
+   "bytes": 9484,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "slides/scripts/slides_test.py",
+   "edits": 5,
+   "bytes": 6400,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "A-project-handoff/scripts/volume_gov_retention_stub.py",
+   "edits": 5,
+   "bytes": 26694,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "A-project-handoff/scripts/handoff_lib/projcmds.py",
+   "edits": 5,
+   "bytes": 38461,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "A-project-handoff/scripts/handoff_lib/common.py",
+   "edits": 5,
+   "bytes": 11829,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_skills"
+  },
+  {
+   "path": "scripts/scan_skills.ps1",
+   "edits": 5,
+   "bytes": 34975,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": ".gitignore",
+   "edits": 5,
+   "bytes": 3944,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "memory/task-card.md",
+   "edits": 5,
+   "bytes": 3386,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "meta/solution_decisions.jsonl",
+   "edits": 5,
+   "bytes": 6519,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "meta/volume-findings.jsonl",
+   "edits": 5,
+   "bytes": 521976,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "scripts/land_helpers.py",
+   "edits": 5,
+   "bytes": 32572,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "scripts/git_land_receipt.py",
+   "edits": 5,
+   "bytes": 11441,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "meta/volume_ci_triage_handbook.md",
+   "edits": 5,
+   "bytes": 14172,
+   "exists": true,
+   "ruleish": false,
+   "root": "global_memory"
+  },
+  {
+   "path": "documents/known-limitations.md",
+   "edits": 5,
+   "bytes": 5419,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/part_size_lock.py",
+   "edits": 5,
+   "bytes": 12351,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/rsi_perf_ledger.jsonl",
+   "edits": 5,
+   "bytes": 85050,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/rsi_state.json",
+   "edits": 5,
+   "bytes": 69752,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "CONTRIBUTING.md",
+   "edits": 5,
+   "bytes": 6731,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/ci_block_reason.py",
+   "edits": 5,
+   "bytes": 31407,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/tests/test_empty_baseline_ledger.py",
+   "edits": 5,
+   "bytes": 8558,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/tests/test_gate_stub_runner.py",
+   "edits": 5,
+   "bytes": 14364,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/direct_map_fallback_data.py",
+   "edits": 5,
+   "bytes": 34667,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/tests/test_r273_benchmark_round_gates.py",
+   "edits": 5,
+   "bytes": 19999,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": ".hermes.md",
+   "edits": 5,
+   "bytes": 2126,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/tests/test_gate_scope_attribution.py",
+   "edits": 5,
+   "bytes": 9419,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "skill/sync/sync-skills-bridge.ps1",
+   "edits": 5,
+   "bytes": 30439,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/gh_ci_unblock.mjs",
+   "edits": 5,
+   "bytes": 25593,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/memory_layer.py",
+   "edits": 5,
+   "bytes": 12404,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/retire_reconcile.py",
+   "edits": 5,
+   "bytes": 16642,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/check_gate_wiring.py",
+   "edits": 5,
+   "bytes": 9547,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/inject_ledger.py",
+   "edits": 5,
+   "bytes": 12284,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/tests/test_inject_ledger.py",
+   "edits": 5,
+   "bytes": 10327,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "eval/aggregate_status.py",
+   "edits": 5,
+   "bytes": 16590,
+   "exists": true,
+   "ruleish": false,
+   "root": "fenjue"
+  },
+  {
+   "path": "05-exec/r96_gh_raw.json",
+   "edits": 5,
+   "bytes": 948478,
+   "exists": true,
+   "ruleish": false,
+   "root": "self"
+  },
+  {
+   "path": "05-exec/r96_twelve_face.py",
+   "edits": 5,
+   "bytes": 50506,
+   "exists": true,
+   "ruleish": false,
+   "root": "self"
+  },
+  {
+   "path": "05-exec/rule_conflict_scan.py",
+   "edits": 5,
+   "bytes": 16928,
+   "exists": true,
+   "ruleish": false,
+   "root": "self"
+  },
+  {
+   "path": "memory/08-ac-obs.md",
+   "edits": 5,
+   "bytes": 4137,
+   "exists": true,
+   "ruleish": false,
+   "root": "self"
+  }
+ ],
+ "excluded": [
+  {
+   "root": "global_memory",
+   "path": "memory/2026-09-25.md",
+   "edits": 37,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "global_memory",
+   "path": "memory/2026-09-24.md",
+   "edits": 24,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "global_memory",
+   "path": "memory/07-next-steps.part5.md",
+   "edits": 18,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "global_memory",
+   "path": "memory/2026-09-27.md",
+   "edits": 17,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "global_memory",
+   "path": "skill_routing.part1.part3.md",
+   "edits": 11,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "global_memory",
+   "path": "memory/2026-09-22.md",
+   "edits": 11,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "global_memory",
+   "path": "memory/2026-09-26.md",
+   "edits": 10,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "global_memory",
+   "path": "memory/07-next-steps.part8.md",
+   "edits": 9,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "global_memory",
+   "path": "memory/2026-09-29.md",
+   "edits": 8,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "global_memory",
+   "path": "memory/2026-09-23.md",
+   "edits": 8,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "global_memory",
+   "path": "memory/2026-10-02.md",
+   "edits": 7,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "global_memory",
+   "path": "memory/sessions/savepoint-gate.jsonl",
+   "edits": 7,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "global_memory",
+   "path": "startup_per_framework.part1.md",
+   "edits": 7,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "global_memory",
+   "path": "memory/2026-09-30.md",
+   "edits": 6,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "global_memory",
+   "path": "memory/sessions/volume-snapshots.jsonl",
+   "edits": 6,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "global_memory",
+   "path": "core/behavior_core_rules_p8.part1.md",
+   "edits": 5,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "global_memory",
+   "path": "memory/07-next-steps.part28.md",
+   "edits": 5,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "global_memory",
+   "path": "memory/2026-09-21.md",
+   "edits": 5,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "fenjue",
+   "path": "STATUS.part1.md",
+   "edits": 40,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "fenjue",
+   "path": "AGENTS.md",
+   "edits": 8,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "fenjue",
+   "path": "reports/2026-09-24_GitHub对标第六轮_度量效度与自流量.md.part1.md",
+   "edits": 7,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "fenjue",
+   "path": "reports/2026-09-24_GitHub对标第四轮_性能实测与上游漂移.md.part3.md",
+   "edits": 6,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "fenjue",
+   "path": "skill/README.part1.md",
+   "edits": 5,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "fenjue",
+   "path": "skill/README.part2.md",
+   "edits": 5,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "fenjue",
+   "path": "skill/checklist/weekly_maintenance.part1.md",
+   "edits": 5,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "fenjue",
+   "path": "skill/checklist/weekly_maintenance.part4.md",
+   "edits": 5,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "fenjue",
+   "path": "skill/docs/architecture_overview.part2.md",
+   "edits": 5,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "self",
+   "path": "memory/sessions/volume-snapshots.jsonl",
+   "edits": 12,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "self",
+   "path": "memory/07-next-steps.part33.md",
+   "edits": 7,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "self",
+   "path": "memory/05-feature-status.part3.md",
+   "edits": 7,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "self",
+   "path": "memory/07-next-steps.part1.md",
+   "edits": 6,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "self",
+   "path": "AGENTS.md",
+   "edits": 5,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  },
+  {
+   "root": "self",
+   "path": "memory/05-feature-status.part1.md",
+   "edits": 5,
+   "why": "by-design（自动拆卷/日志/生成壳/归档）"
+  }
+ ],
+ "note": "candidates for human re-read, not defects; DELEGATE-52 rationale: ~25% content corruption over 20 LLM edits"
+}

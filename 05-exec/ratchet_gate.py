@@ -187,6 +187,68 @@ def io_open(path):
     return open(str(path), "r", encoding="utf-8-sig")
 
 
+# r105 F-1：账龄三态所测卷集（分母=这一组文件的最新 mtime）。写成模块级可覆盖，
+# 是为了让夹具能整组指到临时卷 —— 写死在函数里就只能靠环境变量绕（r55 D66 同族教训：
+# 测试难写 = 设计难用）。
+DEBT_VOLUME_GLOBS = [str(WS / "memory" / "07-next-steps.md"),
+                     str(WS / "memory" / "07-next-steps.part*.md")]
+
+
+def _print_face_notes():
+    """r50 W-25 读取面自证 + r105 F-1b：全 OK 不刷屏，红/绿两条路径都要能看见非 OK 项。"""
+    for k, (ok, why) in sorted(FACE_NOTES.items()):
+        if ok is not True:
+            print("  ⚠️ 读取面 %s ⇒ %s" % (k, why))
+
+
+# 账龄件里的分类态 ⇄ 棘轮指标名（读取面自证要按指标点名，三个态共用一个谓词但不能共用一个键）
+_DEBT_STATE_TO_METRIC = {"OVERDUE": "overdue_debt_items",
+                         "DEFERRED": "deferred_debt_items",
+                         "REPEAT": "repeat_debt_items"}
+
+
+def _newest_artifact(glob_pat):
+    """返回匹配到的最新一份文件路径（按 mtime）；零命中 → None（R247 不得静默判绿）。"""
+    files = glob.glob(str(glob_pat))
+    if not files:
+        return None
+    # r107：同 mtime 平局按文件名升序取最后（r39 夹具 t17 实测：r38/r39 同秒落盘时
+    # max() 按 glob 顺序取首个最大值，谁后写不一定谁赢 ⇒ 指标抱着旧件值说谎）。
+    return max(files, key=lambda p: (os.path.getmtime(p), p))
+
+
+def _debt_artifact_fresh(art_path, volume_globs=None):
+    """账龄件必须不旧于它所测的卷集 —— 否则件里那个数描述的不是现在这份账。
+
+    返回 (ok, why)。等界放行（用 `>=` 而非 `>`）：判据自己造红是 append_guard 自证口点过的
+    同一形态。三种不可判定形态一律 (False, 具名原因)，不得折算成「没问题」：
+      · 件自身取不到 mtime（OSError）
+      · 所测卷集为空 ⇒ 没有基准可比（该面为空 ≠ 账是新的）
+      · 卷集 mtime 取不到
+    """
+    globs = DEBT_VOLUME_GLOBS if volume_globs is None else list(volume_globs)
+    try:
+        art_mtime = os.path.getmtime(str(art_path))
+    except OSError:
+        return False, "账龄件 mtime 取不到（%s）⇒ 相对新鲜不可判，不得沿用件内值" % art_path
+    mt = []
+    for pat in globs:
+        for p in glob.glob(pat):
+            try:
+                mt.append(os.path.getmtime(p))
+            except OSError:
+                return False, "被量卷 mtime 取不到（%s）⇒ 相对新鲜不可判" % p
+    if not mt:
+        return False, ("所测卷集为空（取数面=%s）⇒ 无基准可比，不得判该件新鲜" % globs)
+    src = max(mt)
+    if art_mtime < src:
+        return False, ("账龄件比它所测的卷旧：件 mtime=%s < 卷集最大 mtime=%s（差 %.0f 秒）"
+                       "⇒ 件内债务分类描述的是写卷之前的账，转 unknown 并重生账龄件"
+                       % (datetime.fromtimestamp(art_mtime).strftime("%H:%M:%S"),
+                          datetime.fromtimestamp(src).strftime("%H:%M:%S"), src - art_mtime))
+    return True, "件不旧于所测卷集（差 %.0f 秒，取数面 %d 卷）" % (art_mtime - src, len(mt))
+
+
 def _latest(pattern):
     files = sorted(glob.glob(str(BENCH / pattern)), key=lambda p: os.path.getmtime(p))
     return files[-1] if files else None
@@ -268,8 +330,28 @@ def _debt_class_state(key):
     刻意不写死轮次：debt_aging_r*.json 按 mtime 取最新（r39 夹具 t17 实测——写死轮次会让
     新证据件永不生效、指标抱着旧值说谎）。分类之和 != open_total 时**两个态一起**失去可信度，
     不得单独放行。
+
+    r105 F-1（一手）：日历龄预算（refresh_days）只答「这件多久没重算」，答不了「这件比它所测
+    的卷新不新」。r104 实测顺序是 16:29 量账 → 16:33 往 07 写裁决 ⇒ 件比被量对象旧 3 分 46 秒，
+    于是棘轮把**已经还掉的债**当成**新长的债**拦红（件内 OVERDUE=25，活体尺同轮报 1），
+    并连带把 4 道读棘轮文本的门一起染红。故此处加**相对新鲜前置**：账龄件的 mtime 必须不旧于
+    它所测卷集（memory/07-next-steps*.md，含分卷）的最大 mtime；旧了即 None —— 判据继续红，
+    但红因写成「件比被量对象旧」这一真实缺陷，而不是伪造出一条并不存在的债务增长。
     """
-    d = _read_json(BENCH / "debt_aging_r*.json")
+    art = _newest_artifact(BENCH / "debt_aging_r*.json")
+    if art is None:
+        return None
+    note_key = "%s·相对新鲜" % _DEBT_STATE_TO_METRIC.get(key, key)
+    ok, why = _debt_artifact_fresh(art)
+    if not ok:
+        FACE_NOTES[note_key] = (False, why)
+        return None
+    FACE_NOTES.pop(note_key, None)
+    try:
+        with io_open(art) as f:
+            d = json.load(f)
+    except (OSError, ValueError):
+        return None
     if not isinstance(d, dict):
         return None
     by, ev = d.get("by_class") or {}, d.get("evidence") or {}
@@ -649,16 +731,16 @@ def main():
     if blocking or unknown:
         for f in blocking:
             print("  - %s" % f)
+        _print_face_notes()   # r105 F-1b：判据红的时候最需要「它读的是哪个面」，此前只在 PASS 后打印
         print("[RATCHET:FAIL] 阻断项 %d 项（超棘轮/无基线/指标缺失），另有非阻断告警 %d 项"
               % (len(blocking) + (1 if unknown else 0), len(advisory)))
         return 1
     if advisory and args.strict_cap:
+        _print_face_notes()
         print("[RATCHET:FAIL] --strict-cap 生效：超硬顶 %d 项按阻断处理" % len(advisory))
         return 1
     print("[RATCHET:PASS] %d 项指标均在棘轮基线内（只降不升）；非阻断告警 %d 项" % (len(metrics), len(advisory)))
-    for k, (ok, why) in sorted(FACE_NOTES.items()):     # r50 W-25：读取面自证（全 OK 时不刷屏）
-        if ok is not True:
-            print("  ⚠️ 读取面 %s ⇒ %s" % (k, why))
+    _print_face_notes()                                       # r50 W-25：读取面自证（全 OK 时不刷屏）
     rf = globals().get("LAST_REFRESH") or {}
     if rf:                                              # W-36（r54）：声明了周期就得看得见执行结果
         bad = {k: v for k, v in rf.items() if v[0] != "OK"}

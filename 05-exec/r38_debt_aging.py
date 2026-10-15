@@ -272,7 +272,15 @@ def classify_item(text, now_round):
     return (("OVERDUE" if age > grace else "ACTIVE"), "账龄 %d 轮 / 宽限 %d" % (age, grace))
 
 
-RE_SUGG_ID = re.compile(r"\b([WXMH]-\d{1,2})\b")
+RE_SUGG_ID = re.compile(r"\b([WXMHRL]-\d{1,2}|R\d{2,3}-\d{1,2})\b")
+# r105 F-7：命名空间补全。原式 `[WXMH]` 有两个洞，且都是**静默**的（不报错，只是看不见）：
+#   ① 本函数自己的 docstring 写着承接面含 `W/M/H/L-nn`，可式里没有 `L` ⇒ L-6 这类待办从登记那日起
+#      就没被「报告新建议必须落待办卷」这条检查扫过；
+#   ② r59 起改用 `R<轮号>-<序号>` 命名新立项（R59-4…R59-15、R60-3、R76-x），整个 R 系列不匹配。
+# 后果正打在用户这条指令的要害上：「把报告里的改进建议按优先级直接开工执行」的机器承接面就是这一条
+# 检查 —— 编号取不到 ⇒ `face_suggestions` 走 `if not new_ids` 分支返回 UNVERIFIED，
+# 于是「报告立了 5 条、待办卷一条没落」与「报告没立新建议」两种情形**同形**（假绿）。
+# 修法=扩命名空间而不是放宽判定：新编号仍必须逐条在其各自承接面找得到，缺任一即 False。
 
 
 def face_suggestions(new_ids, todo_text, doctrine_text=""):

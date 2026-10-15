@@ -59,6 +59,11 @@ def build_repo(tmp):
     (tmp / "docs_dir" / "a.md").write_text("x\n", encoding="utf-8")
     (tmp / "scripts").mkdir()
     (tmp / "scripts" / "handoff.py.bak_20260815").write_text("real scatter\n", encoding="utf-8")
+    # r103：工具安全网备份目录（mark_backup）：r46 mark 工具写前备份落点，内容被 git 跟踪。
+    # t15 要求：全跟踪 ⇒ 二级形状判须跳过（X-9 禁为凑绿迁走已跟踪件）；t17 要求：混入未跟踪件 ⇒ 仍判 VIOL。
+    (tmp / "mark_backup").mkdir()
+    (tmp / "mark_backup" / "07-next-steps.md.r54_173424.bak").write_text("backup1\n", encoding="utf-8")
+    (tmp / "mark_backup" / "07-next-steps.md.r56_194044.bak").write_text("backup2\n", encoding="utf-8")
     git(tmp, "init", "-q")
     git(tmp, "-c", "user.name=stub", "-c", "user.email=stub@local", "add", "-A")
     r = git(tmp, "-c", "user.name=stub", "-c", "user.email=stub@local", "commit", "-q", "-m", "stub")
@@ -146,6 +151,31 @@ def main():
             nl.KNOWN_CORE[os.path.normcase(r"C:\Users\37533\Desktop\workspace\焚诀")])[0] == "violation",
        str(cls2(r"C:\Users\37533\Desktop\workspace\焚诀", "reference-github-pages-blocked.md",
                 nl.KNOWN_CORE[os.path.normcase(r"C:\Users\37533\Desktop\workspace\焚诀")])))
+
+    # --- r105 F-3 收口 r104 遗留的 t15：把「断言上游不存在的行为」改成「钉住现行裁定」 ---
+    # r104 留下的 t15 断言「全跟踪 mark_backup ⇒ 二级不判 VIOL」，而 noise_lint 从未实现该豁免
+    # （QUARANTINE_DIRS 不含 mark_backup，二级只继承一级豁免 + 跳 reparse + 跳名单内目录），
+    # 于是该腿自写下那刻起恒红 —— 属「测试写在前、实现在后」的半成品，且它预设的那条出路正是
+    # W-39 里**待用户三选一**的②（把 mark_backup 变成豁免），而 W-39 现行裁定=①（VIOL 常驻可见，
+    # 禁改名绕判据）。故本腿不猜裁定：改成交**现状的特征刻痕**（characterization）——
+    # 断言「mark_backup 二级仍判 VIOL」。将来若上游真落豁免，本腿会红并逼读它的人重新核对 W-39，
+    # 而不是让一个从未生效过的期望长期伪装成缺陷。反例 t16/t17 原样保留（名单不外溢 + 混入未跟踪仍红）。
+    mb_viol = {v["name"] for v in res["violation"]}
+    mb_hits = sorted(n for n in mb_viol if n.startswith("mark_backup/"))
+    ck("t15′ 现行裁定刻痕：mark_backup 二级**仍判** VIOL（W-39①VIOL 常驻可见；上游若落豁免即红，须回读 W-39 再改本腿）",
+       bool(mb_hits), "hits=%s" % (mb_hits,))
+    (repo / "my_backup").mkdir()
+    (repo / "my_backup" / "untracked.bak").write_text("not on the list\n", encoding="utf-8")
+    res_b = nl.scan_root(str(repo), quiet=True)
+    viol_b = {v["name"] for v in res_b["violation"]}
+    ck("t16 反例：名单外备份名 my_backup/untracked.bak → 仍 VIOL",
+        "my_backup/untracked.bak" in viol_b, str(sorted(viol_b)))
+    repo2 = build_repo(tmp / "repo2")
+    (repo2 / "mark_backup" / "notes_extra.bak").write_text("untracked junk\n", encoding="utf-8")
+    res2 = nl.scan_root(str(repo2), quiet=True)
+    viol2 = {v["name"] for v in res2["violation"]}
+    ck("t17 反例保住：mark_backup 混入未跟踪件 → 仍判 VIOL",
+        "mark_backup/notes_extra.bak" in viol2, str(sorted(viol2)))
 
     fails = [r for r in RESULTS if not r[0]]
     print("\n桩合计: %d 项，通过 %d，失败 %d" % (len(RESULTS), len(RESULTS) - len(fails), len(fails)))

@@ -19,6 +19,7 @@ description 是平台触发技能的第一信号，应同时含「做什么 + �
 """
 
 import argparse
+import io
 import json
 import re
 import sys
@@ -32,6 +33,7 @@ except Exception:  # pragma: no cover - 保持脚本可独立运行
     _lib = None
 
 GS_ROOT = Path(r"D:\global_skills")
+TRUTH_CONSTANTS = Path(r"C:\Users\37533\Desktop\workspace\焚诀\eval\truth_constants.json")
 TRIGGER_RE = re.compile(
     r"触发|适用|用于|何时|使用场景|场景[：:]|不适用|当用户|需要(做|进行|生成|分析|创建|查)|"
     r"use\s+when|use\s+this|when\s+(the\s+)?user|when\s+working|triggers?\b|for\s+\S+\s+(tasks?|work)",
@@ -87,10 +89,30 @@ def is_reparse_dir(p: Path) -> bool:
         return False
 
 
+def retired_names():
+    """r107：退役名册（焚诀 eval/truth_constants.json 的 retired_skills）。
+
+    r107 实测：executing-plans / slides 平台重下发回流（r100 裁定看守项）使磁盘 glob
+    分母 184 != 注册表 182，契约 inv_denominator_glob_eq_registry 判「分母漂移」。
+    修法 = 扫描面与注册表 R198.6 同口径排除退役回流，且逐件具名登记（禁静默）。
+    """
+    try:
+        tc = json.loads(io.open(TRUTH_CONSTANTS, encoding="utf-8").read())
+        rs = tc.get("retired_skills")
+        return set(rs) if isinstance(rs, list) else set()
+    except (OSError, ValueError):
+        return set()
+
+
 def scan():
     skills = []
     junctions = []
+    retired_excluded = []
+    _retired = retired_names()
     for md in sorted(GS_ROOT.glob("*/SKILL.md")):
+        if md.parent.name in _retired:
+            retired_excluded.append(md.parent.name)
+            continue
         if is_reparse_dir(md.parent):
             junctions.append(md.parent.name)
             continue
@@ -113,7 +135,7 @@ def scan():
             "over_cap": len(desc) > DESC_MAX,
             "has_process": bool(PROCESS_RE.search(desc)),
         })
-    return skills, junctions
+    return skills, junctions, retired_excluded
 
 
 def summarize(skills, junctions):
@@ -148,12 +170,13 @@ def main():
     ap.add_argument("--md", help="基线报告 Markdown 输出路径")
     args = ap.parse_args()
 
-    skills, junctions = scan()
+    skills, junctions, retired_excluded = scan()
     s = summarize(skills, junctions)
     denom = (_lib.denominator(s["total"], junctions, []) if _lib
              else {"scanned": s["total"], "glob_total": s["total"], "registry": {"available": False,
                      "error": "_lib 不可用"}, "registry_cmd": "-", "junction_skipped": junctions,
                      "parse_errors": 0})
+    denom["retired_excluded"] = retired_excluded
     print("=== description 双要素基线（{0}，对标 anthropics 官方口径） ===".format(
         datetime.now().strftime("%Y-%m-%d %H:%M")))
     for ln in (_lib.denominator_lines(denom) if _lib else ["口径对账: _lib 不可用"]):

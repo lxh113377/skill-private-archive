@@ -1,6 +1,6 @@
 {
  "repo": "code-yeongyu/oh-my-openagent",
- "sha": "e0c02c00a256be89f3e7b1ac2894c84ca6384cec",
+ "sha": "ae696714f66e75503db9d4c96b6835b124948fc7",
  "truncated": false,
  "slugs": [
   ".agents/skills/codex-qa",
@@ -64,9 +64,7 @@
   "packages/skills-loader-core/src/features/builtin-skills/security-research"
  ],
  "detail": {
-  "stars": 69652,
-  "pushed_at": "2026-09-29T19:12:32Z",
-  "archived": false,
-  "open_issues": 1071
+  "stars": 69766,
+  "pushed_at": "2026-10-03T17:18:44Z"
  }
 }

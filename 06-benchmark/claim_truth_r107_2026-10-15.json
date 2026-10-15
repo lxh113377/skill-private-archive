@@ -1,0 +1,98 @@
+{
+ "schema": "claim-truth-scan-v1",
+ "generated_at": "2026-10-15 11:04",
+ "readonly": true,
+ "truth": {
+  "active": [
+   "wb",
+   "tr",
+   "cx",
+   "hm",
+   "zc",
+   "oc",
+   "qd",
+   "mm",
+   "ds"
+  ],
+  "n": 9
+ },
+ "registry_count": 182,
+ "targets_present": [
+  "D:\\global_skills\\A-memory-start\\SKILL.md",
+  "D:\\global_skills\\A-memory-start\\references\\contract.md",
+  "D:\\global_skills\\A-project-handoff\\SKILL.md",
+  "D:\\global_skills\\A-get-memory\\SKILL.md",
+  "D:\\global_skills\\A-project-better\\SKILL.md",
+  "D:\\global_skills\\A-skill-manager\\SKILL.md",
+  "C:\\Users\\37533\\Desktop\\workspace\\焚诀\\memory\\AGENTS.md"
+ ],
+ "targets_missing": [],
+ "candidates": [
+  {
+   "family": "endpoint_enum",
+   "file": "D:\\global_skills\\A-memory-start\\SKILL.md",
+   "line": 61,
+   "text": "✅ G2 任务类型判定+平台探测: <闲聊/简单/继续/复杂> | <HM/WB/CX/TC/ZC/OC/QD> (统一路径已解析，端数权威 = 焚诀/eval/truth_constants.json 的 endpoints.active)",
+   "claim": "HM/WB/CX/TC/ZC/OC/QD",
+   "truth": "缺 ['ds', 'mm']（真值 9 端）"
+  },
+  {
+   "family": "endpoint_retire_claim",
+   "file": "D:\\global_skills\\A-memory-start\\references\\contract.md",
+   "line": 85,
+   "text": "九端共享 D:\\\\global_memory\\\\（HM/WB/CX/TC/ZC/OC/QD/MM/DS，qw 于 2026-09-26 退役；ZC 于 2026-09-22 入役，代号 oc 于 2026-09-23 由 OpenCode 接管复用【原文「OC 已退役」指 OpenClaw 本体，留痕不改】，qw/qd 于 2026-09-24 入役）；0.1.2-0.1.3 权威启动表与七端速查",
+   "claim": "OC 声称已退役/弃用",
+   "truth": "oc 在 endpoints.active 内（09-23 起由 OpenCode 接管复用）"
+  },
+  {
+   "family": "endpoint_count",
+   "file": "D:\\global_skills\\A-get-memory\\SKILL.md",
+   "line": 176,
+   "text": "⇒ **七端那两轮实际读到的还是旧版，\"改了\"与\"改到位\"差一整条闭环**。",
+   "claim": "七端 = 7",
+   "truth": "active 9 端 ['wb', 'tr', 'cx', 'hm', 'zc', 'oc', 'qd', 'mm', 'ds']"
+  },
+  {
+   "family": "endpoint_count",
+   "file": "D:\\global_skills\\A-get-memory\\SKILL.md",
+   "line": 236,
+   "text": "4. 模板：✅ `scripts/wf_*.ps1` **2026-09-23 实测已恢复**（焚诀 `scripts/` 下 wf_cc/cx/generic/hm/oc/tr/wb/zc 在役端脚本齐全（2026-09-26 千问办公 qw 退役后为 wf_wb/tr/cx/hm/zc/oc/qd 七端），`--check boot` 实跑 PASS）——共享规范见 `D:\\global_me",
+   "claim": "七端 = 7",
+   "truth": "active 9 端 ['wb', 'tr', 'cx', 'hm', 'zc', 'oc', 'qd', 'mm', 'ds']"
+  },
+  {
+   "family": "version_claim",
+   "file": "D:\\global_skills\\A-get-memory\\SKILL.md",
+   "line": 384,
+   "text": "> ⚠️ **平台差异（2026-09-24 QD 端实测反驳上面\"仅限工作目录\"）**：同一套 Edit/Write 工具在 QD（`.qoder-cn`）端**可直写全局记忆区与全局技能区**（本轮 lessons.part50/51 与 chaoshi-web-deploy v3.6.0 四次写入全部落盘并读回验证）。故按\"先试工具直写 → 报 `Access denied` 再退回 ①ju",
+   "claim": "chaoshi-web-deploy V3.6.0",
+   "truth": "frontmatter version: 3.9.5"
+  },
+  {
+   "family": "endpoint_count",
+   "file": "D:\\global_skills\\A-get-memory\\SKILL.md",
+   "line": 403,
+   "text": "每条 = 标题 + trigger 三栏行 + 问题/原因/解法/元，part ≤4096B 轻量规则：写前用 `stat -c%s <file>`（bash）或 `(Get-Item <file>).Length`（powershell）硬校验字节数，>4096B 即新建 `lessons.part{N+1}.md`（**禁止目测，必须以字节数判定**；本轮回填 part23=5672B 超 4",
+   "claim": "四端 = 4",
+   "truth": "active 9 端 ['wb', 'tr', 'cx', 'hm', 'zc', 'oc', 'qd', 'mm', 'ds']"
+  },
+  {
+   "family": "endpoint_count",
+   "file": "D:\\global_skills\\A-get-memory\\SKILL.md",
+   "line": 536,
+   "text": "2. 识别被修改的组件（intent_classifier_canonical.md 路由表 / behavior_core.md / MEMORY.md 等），更新对应四端版本号",
+   "claim": "四端 = 4",
+   "truth": "active 9 端 ['wb', 'tr', 'cx', 'hm', 'zc', 'oc', 'qd', 'mm', 'ds']"
+  },
+  {
+   "family": "endpoint_count",
+   "file": "D:\\global_skills\\A-skill-manager\\SKILL.md",
+   "line": 3,
+   "text": "description: 技能全生命周期唯一总管——增/删/改/合并/上架/四端同步/依赖安装/安全审计/注册漂移/路由命中率一站式。当对话中出现主动增删改技能、装删技能、技能不生效、注册漂移、命中率诊断、技能安全审计等任何技能管理意图时加载。触发：加技能、删技能、改技能、合并技能、装技能、技能上架、skill注册、技能同步、技能漂移、命中率、技能安全、skill依赖、技能清理、退役技能。",
+   "claim": "四端 = 4",
+   "truth": "active 9 端 ['wb', 'tr', 'cx', 'hm', 'zc', 'oc', 'qd', 'mm', 'ds']"
+  }
+ ],
+ "exempt_rule": "含「当时/原为/已作废/原文保留/校正注/历史/瘦身」或版本历史章节的行豁免（R241）",
+ "note": "候选非判决；技能正文此前不在任何内容级对账门禁面上（C3/C13/C16 均不覆盖）"
+}

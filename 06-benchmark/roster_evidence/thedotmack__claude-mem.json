@@ -1,6 +1,6 @@
 {
  "repo": "thedotmack/claude-mem",
- "sha": "ade13f3067d3de486f41dbd8ed90ac5c854de718",
+ "sha": "a1951f2ad247330b2b5d58a1e0c7efeef4a03be5",
  "truncated": false,
  "slugs": [
   "claude-mem-cursor/skills/agent-cost-report",
@@ -23,6 +23,7 @@
   "plugin/skills/cloud-sync",
   "plugin/skills/design-is",
   "plugin/skills/do",
+  "plugin/skills/handoff",
   "plugin/skills/how-it-works",
   "plugin/skills/knowledge-agent",
   "plugin/skills/learn-codebase",
@@ -40,9 +41,7 @@
   "plugin/skills/wowerpoint"
  ],
  "detail": {
-  "stars": 94923,
-  "pushed_at": "2026-09-28T22:37:31Z",
-  "archived": false,
-  "open_issues": 330
+  "stars": 95419,
+  "pushed_at": "2026-10-03T06:33:20Z"
  }
 }

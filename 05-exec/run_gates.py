@@ -366,7 +366,7 @@ GATES = [
                                   # 备份落 D:/global_memory/_trash/r60_retire_* 带 sha256 清单），
                                   # 故本门改为直接判活体：rc=1 即真有残留。自证夹具仍可单独跑
                                   # `python 05-exec/r59_retired_face.py --selftest`（8/8）
-        "pass_token": "[GATE:retired-face-pass]",
+        "pass_token": ["[GATE:retired-face-pass]", "[GATE:retired-face-watch]"],
         "portable": False,
         "not_portable_reason":
             "r7/r8 取真实 retired_skills 名单 x 真实 D:/global_skills 磁盘面；离机若无该根则判据面为空，"
@@ -413,6 +413,39 @@ GATES = [
                "某端读到的不是权威源字节而所有门禁照绿（与 r58 D-113 同族，入口在本机）。"
                "本门只判「镜像面是否钉在权威源」这一项事实；pin 变动清单按 W-32 只报不阻断。",
     },
+    {
+        # r105 F-1：账龄三态指标的输入面必须比「它所测的那本卷」新
+        "id": "debt_face_freshness",
+        "script": "r105_debt_face_freshness_fixtures.py",
+        "argv": [],
+        "pass_token": "[GATE:debt-face-fresh-pass]",
+        "portable": True,
+        "covers": ["05-exec/ratchet_gate.py 的 _debt_artifact_fresh / _newest_artifact（相对新鲜谓词）",
+                   "05-exec/ratchet_gate.py 的 overdue_debt_items()（接线：经谓词把守的真取值路径）",
+                   "两条变异体：摘前置 / 前置恒真，各自必须让陈旧值漏进指标（证明鉴别力来自本前置）"],
+        "why": "r105 一手：日历龄预算（W-36 的 refresh_days）只答「这件多久没重算」，答不了「这件比"
+               "它所测的卷新不新」。r104 在同一轮里 16:29 量账 → 16:33 往 07 写裁决，件比被量对象旧 "
+               "226 秒，棘轮照收 ⇒ 把已还掉的债报成比基线新长的债（实测 25 vs 活体尺 1），并连带把"
+               "读棘轮文本的 4 道门一起染红。本门同时交「应绿的绿」（含等界）与「应红的红」（含空面），"
+               "且对照组被变异体证伪过一轮（W-47）。",
+    },
+    {
+        # r105 F-5：退役件回流的「生产者归属」分堆 —— 看守与阻断的边界由证据画，不按名字豁免
+        "id": "retired_reflow_fixtures",
+        "script": "r59_retired_face.py",
+        "argv": ["--selftest-reflow"],
+        "pass_token": "归属分堆桩",
+        "portable": True,
+        "covers": ["05-exec/r59_retired_face.py 的 attribute_producer / _git_tracked_n（经活体 run() 取数，夹具不重写谓词）",
+                   "正例：git 零跟踪 + mtime 同批 ⇒ rc=0 且 retired_still_on_disk 仍逐件具名（看守不等于失明）",
+                   "反例两向：我方跟踪过 / mtime 相差 90s 超 2s 成批窗口 ⇒ 均须仍 rc=1",
+                   "单件面不得因「无同批可比」静默放行 + 判据口径自证（阈值写进产物，不留散文）"],
+        "why": "r100 已实测并裁定 executing-plans / slides 由平台重下发（节律 ~47min）、降级为看守项；"
+               "可 retired_face 一直留成硬阻断 ⇒ 每轮固定 1 红，把「没人能负责的红」混进「我欠的一次清理」"
+               "里稀释真红（r105 实测该门 rc=1，而两件的证据是 git ?? 未跟踪 + 同一秒 23:29:55 mtime）。"
+               "本门把「谁写回来的」画成有证据的两堆：我方写回必须仍拦，平台回流具名看守；"
+               "窗口只给 2 秒，防豁免吞掉我方隔几分钟自己复制回来的那一份。",
+    },
 ]
 
 # 显式声明本 runner **不覆盖**的面，防止聚合绿被读成「所有门禁都绿」（R20-2）。
@@ -422,6 +455,20 @@ NOT_COVERED = [
     "焚诀跨产物真值 C1~C33 —— 取值：python 焚诀\\eval\\verify_truth_consistency.py",
     "判据变异测试（r19_fixture_mutation_check.py）—— 按需跑，非每轮前置",
 ]
+
+
+def _token_hit(token, out):
+    """pass_token 允许写成 str 或**标记列表**（r105）。
+
+    存在理由：一门可以有多个合法绿态 —— `retired_face` 本轮新增具名看守态 `[GATE:retired-face-watch]`
+    后，单串比对把「rc=0 且逐件说明过的看守态」判成 UNVERIFIED（r105 实测：runner 印
+    `UNVERIFIED retired_face`，而该门自己的输出里事实与归属都写得清清楚楚）。三态口径一个字没动：
+    列表里**全部**标记都取不到时仍判 UNVERIFIED，禁把「没匹配上」读成通过；
+    也不得用列表去掩盖改名 —— 旧标记若被改名，它就不在列表里，照样红。
+    """
+    if isinstance(token, (list, tuple)):
+        return any(t in out for t in token)
+    return token in out
 
 
 def run_gate(gate, timeout):
@@ -442,7 +489,7 @@ def run_gate(gate, timeout):
         state = "UNVERIFIED"          # 门自报「取不到真相源/台账不可判」⇒ 同样不得算绿（R247）
     elif p.returncode != 0:
         state = "FAIL"
-    elif gate["pass_token"] not in out:
+    elif not _token_hit(gate["pass_token"], out):
         state = "UNVERIFIED"          # rc=0 但标记不见 = 静默跳过，不得算绿
     else:
         state = "PASS"

@@ -1,12 +1,10 @@
 {
  "repo": "VoltAgent/awesome-openclaw-skills",
- "sha": "7370c6554fb292c281ff40c05fd5ce44fd530c8a",
+ "sha": "c80f2924fbbc53f0cfd242bfa06b8f8ea8716847",
  "truncated": false,
  "slugs": [],
  "detail": {
-  "stars": 52865,
-  "pushed_at": "2026-09-29T19:09:45Z",
-  "archived": false,
-  "open_issues": 4
+  "stars": 52924,
+  "pushed_at": "2026-10-02T17:28:46Z"
  }
 }

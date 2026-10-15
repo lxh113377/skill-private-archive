@@ -1,17 +1,16 @@
 {
  "repo": "Imbad0202/academic-research-skills",
- "sha": "96a442eb2b4ed29ce6746348714f9632efcf2163",
+ "sha": "6ab4b03bf70a118a1b3ee7f3263ed9f19031061b",
  "truncated": false,
  "slugs": [
   "academic-paper-reviewer",
   "academic-paper",
   "academic-pipeline",
-  "deep-research"
+  "deep-research",
+  "sr-screener"
  ],
  "detail": {
-  "stars": 49894,
-  "pushed_at": "2026-09-29T03:26:22Z",
-  "archived": false,
-  "open_issues": 32
+  "stars": 50280,
+  "pushed_at": "2026-10-03T14:29:44Z"
  }
 }

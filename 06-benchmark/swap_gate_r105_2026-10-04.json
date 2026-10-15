@@ -1,0 +1,299 @@
+{
+ "schema": "swap-gate-r105-v2",
+ "generated_at": "2026-10-04T02:10:30",
+ "face": {
+  "local_desc_face": "权威源 D:\\global_skills 一级 SKILL.md 前置",
+  "local_desc_n": 179,
+  "local_desc_empty_n": 0,
+  "registry_desc_n": 177,
+  "registry_desc_empty_n": 171,
+  "curated_slugs": 228,
+  "candidates_n": 10,
+  "judged_n": 10,
+  "blocked_n": 0
+ },
+ "ceiling": "本轮 18 维名册尺判 [ROSTER:BLIND] misc 36.7%>30% ⇒ 「本地缺这些功能」上限 UNVERIFIED；本件只对逐件取到正文的候选出判，不对 179 条候选出全称结论",
+ "rows": [
+  {
+   "slug": "browser-testing-with-devtools",
+   "repo": "addyosmani/agent-skills",
+   "desc_chars": 326,
+   "nearest_local": "browser-cdp",
+   "idf_overlap": 19.33,
+   "raw_shared_tokens": 5,
+   "local_median_idf": 0,
+   "local_p95_idf": 8.05,
+   "separation": 19.33,
+   "per_item_discriminating": true,
+   "binary_in_dir": 0,
+   "declared_cmds": [
+    "npx"
+   ],
+   "missing_cmds": [],
+   "gates": {
+    "G1_runnable": true,
+    "G2_portable": true,
+    "G4_not_duplicated": null
+   },
+   "verdict": "UNVERIFIED",
+   "verdict_before_calib": "PENDING",
+   "calib_blocked": true
+  },
+  {
+   "slug": "context-engineering",
+   "repo": "addyosmani/agent-skills",
+   "desc_chars": 198,
+   "nearest_local": "xlsx",
+   "idf_overlap": 13.501,
+   "raw_shared_tokens": 4,
+   "local_median_idf": 0,
+   "local_p95_idf": 6.887,
+   "separation": 13.501,
+   "per_item_discriminating": true,
+   "binary_in_dir": 0,
+   "declared_cmds": [],
+   "missing_cmds": [],
+   "gates": {
+    "G1_runnable": true,
+    "G2_portable": true,
+    "G4_not_duplicated": null
+   },
+   "verdict": "UNVERIFIED",
+   "verdict_before_calib": "PENDING",
+   "calib_blocked": true
+  },
+  {
+   "slug": "code-simplification",
+   "repo": "addyosmani/agent-skills",
+   "desc_chars": 244,
+   "nearest_local": "react-best-practices",
+   "idf_overlap": 15.447,
+   "raw_shared_tokens": 4,
+   "local_median_idf": 0,
+   "local_p95_idf": 4.483,
+   "separation": 15.447,
+   "per_item_discriminating": true,
+   "binary_in_dir": 0,
+   "declared_cmds": [],
+   "missing_cmds": [],
+   "gates": {
+    "G1_runnable": true,
+    "G2_portable": true,
+    "G4_not_duplicated": null
+   },
+   "verdict": "UNVERIFIED",
+   "verdict_before_calib": "PENDING",
+   "calib_blocked": true
+  },
+  {
+   "slug": "constraint-driven-development",
+   "repo": "addyosmani/agent-skills",
+   "desc_chars": 880,
+   "nearest_local": "local-realtime-translator",
+   "idf_overlap": 30.168,
+   "raw_shared_tokens": 9,
+   "local_median_idf": 2.18,
+   "local_p95_idf": 12.367,
+   "separation": 27.988,
+   "per_item_discriminating": true,
+   "binary_in_dir": 0,
+   "declared_cmds": [],
+   "missing_cmds": [],
+   "gates": {
+    "G1_runnable": true,
+    "G2_portable": true,
+    "G4_not_duplicated": null
+   },
+   "verdict": "UNVERIFIED",
+   "verdict_before_calib": "PENDING",
+   "calib_blocked": true
+  },
+  {
+   "slug": "idea-refine",
+   "repo": "addyosmani/agent-skills",
+   "desc_chars": 335,
+   "nearest_local": "gstack",
+   "idf_overlap": 14.664,
+   "raw_shared_tokens": 4,
+   "local_median_idf": 0,
+   "local_p95_idf": 7.308,
+   "separation": 14.664,
+   "per_item_discriminating": true,
+   "binary_in_dir": 0,
+   "declared_cmds": [],
+   "missing_cmds": [],
+   "gates": {
+    "G1_runnable": true,
+    "G2_portable": true,
+    "G4_not_duplicated": null
+   },
+   "verdict": "UNVERIFIED",
+   "verdict_before_calib": "PENDING",
+   "calib_blocked": true
+  },
+  {
+   "slug": "copywriting",
+   "repo": "coreyhaines31/marketingskills",
+   "desc_chars": 946,
+   "nearest_local": "xlsx",
+   "idf_overlap": 28.543,
+   "raw_shared_tokens": 10,
+   "local_median_idf": 2.041,
+   "local_p95_idf": 20.001,
+   "separation": 26.502,
+   "per_item_discriminating": true,
+   "binary_in_dir": 0,
+   "declared_cmds": [],
+   "missing_cmds": [],
+   "gates": {
+    "G1_runnable": true,
+    "G2_portable": true,
+    "G4_not_duplicated": null
+   },
+   "verdict": "UNVERIFIED",
+   "verdict_before_calib": "PENDING",
+   "calib_blocked": true
+  },
+  {
+   "slug": "content-strategy",
+   "repo": "coreyhaines31/marketingskills",
+   "desc_chars": 659,
+   "nearest_local": "local-screenshot-qa",
+   "idf_overlap": 18.643,
+   "raw_shared_tokens": 6,
+   "local_median_idf": 0,
+   "local_p95_idf": 11.027,
+   "separation": 18.643,
+   "per_item_discriminating": true,
+   "binary_in_dir": 0,
+   "declared_cmds": [],
+   "missing_cmds": [],
+   "gates": {
+    "G1_runnable": true,
+    "G2_portable": true,
+    "G4_not_duplicated": null
+   },
+   "verdict": "UNVERIFIED",
+   "verdict_before_calib": "PENDING",
+   "calib_blocked": true
+  },
+  {
+   "slug": "diagnosing-bugs",
+   "repo": "mattpocock/skills",
+   "desc_chars": 156,
+   "nearest_local": "xlsx",
+   "idf_overlap": 6.715,
+   "raw_shared_tokens": 2,
+   "local_median_idf": 0,
+   "local_p95_idf": 4.483,
+   "separation": 6.715,
+   "per_item_discriminating": true,
+   "binary_in_dir": 0,
+   "declared_cmds": [
+    "go"
+   ],
+   "missing_cmds": [
+    "go"
+   ],
+   "gates": {
+    "G1_runnable": false,
+    "G2_portable": true,
+    "G4_not_duplicated": null
+   },
+   "verdict": "UNVERIFIED",
+   "verdict_before_calib": "PENDING",
+   "calib_blocked": true
+  },
+  {
+   "slug": "codebase-design",
+   "repo": "mattpocock/skills",
+   "desc_chars": 265,
+   "nearest_local": "local-realtime-translator",
+   "idf_overlap": 12.723,
+   "raw_shared_tokens": 4,
+   "local_median_idf": 0,
+   "local_p95_idf": 8.05,
+   "separation": 12.723,
+   "per_item_discriminating": true,
+   "binary_in_dir": 0,
+   "declared_cmds": [],
+   "missing_cmds": [],
+   "gates": {
+    "G1_runnable": true,
+    "G2_portable": true,
+    "G4_not_duplicated": null
+   },
+   "verdict": "UNVERIFIED",
+   "verdict_before_calib": "PENDING",
+   "calib_blocked": true
+  },
+  {
+   "slug": "composition-patterns",
+   "repo": "vercel-labs/agent-skills",
+   "desc_chars": 75,
+   "nearest_local": "react-best-practices",
+   "idf_overlap": 15.917,
+   "raw_shared_tokens": 4,
+   "local_median_idf": 0,
+   "local_p95_idf": 3.79,
+   "separation": 15.917,
+   "per_item_discriminating": true,
+   "binary_in_dir": 0,
+   "declared_cmds": [],
+   "missing_cmds": [],
+   "gates": {
+    "G1_runnable": true,
+    "G2_portable": true,
+    "G4_not_duplicated": null
+   },
+   "verdict": "UNVERIFIED",
+   "verdict_before_calib": "PENDING",
+   "calib_blocked": true
+  }
+ ],
+ "blocked": [],
+ "calib": {
+  "negatives": [
+   [
+    "copywriting",
+    "xlsx"
+   ],
+   [
+    "content-strategy",
+    "local-vram"
+   ],
+   [
+    "constraint-driven-development",
+    "wechat-automation"
+   ]
+  ],
+  "positives": [
+   [
+    "composition-patterns",
+    "react-best-practices"
+   ],
+   [
+    "code-simplification",
+    "refactoring"
+   ]
+  ],
+  "blind": true,
+  "separable": false,
+  "neg_max": 28.543,
+  "pos_min": 15.447,
+  "dup_threshold": null,
+  "metric": "共有 token 的 IDF 之和（IDF 由本地描述面自报，不拍常数）",
+  "lang_asymmetry": {
+   "local_desc_n": 179,
+   "local_desc_with_cjk": 125,
+   "cjk_share": 0.6983,
+   "opponent_desc_lang": "en"
+  },
+  "failures": [
+   "copywriting↔xlsx IDF=28.543 共同词=['also', 'any', 'convert', 'existing', 'into', 'like', 'my', 'not']",
+   "content-strategy↔local-vram IDF=10.421 共同词=['not', 'user', 'wants', 'writing']",
+   "constraint-driven-development↔wechat-automation IDF=5.747 共同词=['accessibility', 'agent']"
+  ],
+  "note": "控制不可判一律计入 failures（不得把「没跑成」读成「跑过了」）；应拒最高分 >= 应通过最低分 ⇒ 区间重叠，按 R236 补注③ 判该阈值不可作判据"
+ }
+}
