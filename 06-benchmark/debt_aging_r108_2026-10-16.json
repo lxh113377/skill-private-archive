@@ -1,9 +1,9 @@
 {
  "schema": "debt-aging-v2",
- "generated_at": "2026-10-16T16:31:42",
+ "generated_at": "2026-10-16T16:40:11",
  "readonly": true,
  "grace_rounds": 2,
- "current_round": 107,
+ "current_round": 108,
  "round_source": "git log --format=%s -40 中最大 rNN（未硬编码）",
  "verdict_taxonomy": [
   "OVERDUE",
@@ -191,10 +191,10 @@
  },
  "input_face": {
   "round": {
-   "log": 107,
+   "log": 108,
    "tag": 103,
    "ok": true,
-   "detail": "log=r107 ≥ tag=r103（差 4 轮：本轮尚未打 tag，属每轮收尾打标的既有节奏）"
+   "detail": "log=r108 ≥ tag=r103（差 5 轮：本轮尚未打 tag，属每轮收尾打标的既有节奏）"
   },
   "floor": {
    "ok": true,
