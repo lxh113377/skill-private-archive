@@ -1,0 +1,1 @@
+{"error": "rc=1:Get \"https://api.github.com/repos/anthropics/skills/contents/skills/theme-factory/SKILL.md\": EOF", "fetched_epoch": 1792248253.479436, "from_cache": false, "ok": false, "path": "skills/theme-factory/SKILL.md", "repo": "anthropics/skills", "slug": "theme-factory"}

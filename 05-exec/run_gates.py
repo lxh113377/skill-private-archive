@@ -446,6 +446,50 @@ GATES = [
                "本门把「谁写回来的」画成有证据的两堆：我方写回必须仍拦，平台回流具名看守；"
                "窗口只给 2 秒，防豁免吞掉我方隔几分钟自己复制回来的那一份。",
     },
+    {
+        # r112（第 19 维「版本落后面」）：内容寻址升级判据的双向自证 + 变异腿
+        "id": "r112_provenance_fixtures",
+        "script": "r112_provenance_fixtures.py",
+        "argv": [],
+        "pass_token": "[GATE:fixture-pass]",
+        "portable": True,
+        "covers": ["05-exec/r112_upstream_probe.py 的 relation()（六态内容寻址关系）",
+                   "05-exec/r112_swap_gate.py 的 decide()（五态裁决映射）",
+                   "05-exec/r112_provenance_face.py 的 check_ledger_churn()（R306 不变腿）",
+                   "三条变异体：relation 常数化 / decide 常数化 / 空转判据空实现 —— 各自必须被夹具抓住",
+                   "零输入腿：空 bench 目录必须 rc=2 且不印 token（R247）"],
+        "why": "本维前两代尺（r105 词面 / r111 BGE 语义）都是写完即宣布有效，随后被自己的标定控制判死；"
+               "本门把「应绿的绿 + 应红的红」做成常驻，且变异体刻意让被测函数永远给好话（抓不住即夹具无鉴别力）。",
+    },
+    {
+        "id": "provenance_face",
+        "script": "r112_provenance_face.py",
+        "argv": [],
+        "pass_token": "[PROVENANCE:PASS]",
+        "portable": True,
+        "covers": ["06-benchmark/provenance_r112_*.json（三档置信度守恒 + 覆盖根自证）",
+                   "06-benchmark/upstream_pins.jsonl（有身份必入册 / unknown 禁登记 / 无空转）",
+                   "06-benchmark/upstream_r112_*.json（OK+UNVERIFIED 守恒 + 每条 UNVERIFIED 具名带因）",
+                   "06-benchmark/swap_gate_r112_*.json（每条证据都有裁决 + 非 UNVERIFIED 数 == 证据 OK 数）"],
+        "why": "用户痛点「市面上有更好的 skill，我还在用旧的」在本仓此前没有任何判据在看："
+               "182 件里 127 件连上游身份都没有。本门守住第 19 维的结构性事实（离线、不依赖上游可达），"
+               "并强制把盲区与 UNVERIFIED 逐件具名 —— 盲区禁读成「已核对无缺口」。",
+    },
+    {
+        # r112（一手缺陷）：取数失败不得销毁已有证据 —— 与 R247「零输入不得当绿」互为反向
+        "id": "cache_guard_fixtures",
+        "script": "r112_cache_guard_fixtures.py",
+        "argv": [],
+        "pass_token": "[GATE:fixture-pass]",
+        "portable": True,
+        "covers": ["05-exec/r112_upstream_probe.py 的 fetch_candidate 缓存写侧（失败不覆盖已成功的缓存）",
+                   "正向腿 g1：好件在盘后取数失败 ⇒ 旧件内容保留且失败痕迹入 cache_error",
+                   "反向腿 g2：用修复前旧实现跑同一断言必须失败（鉴别力来自守卫本身）",
+                   "g3：成功路径仍覆盖（防修过头变成永不更新）；g4：无旧件时失败照写失败件（不凭空造证据）"],
+        "why": "r112 一手实测：一次网络 EOF 把 14KB 好件覆写成仅 280B 的失败桩，"
+               "随后 --offline 复算把「已升级」件读成 UNVERIFIED（ok_n 24→18）。缓存被自身缺陷毁掉，"
+               "这是「工具把自己唯一的证据源弄没了」这一类，必须有常驻腿看住。",
+    },
 ]
 
 # 显式声明本 runner **不覆盖**的面，防止聚合绿被读成「所有门禁都绿」（R20-2）。

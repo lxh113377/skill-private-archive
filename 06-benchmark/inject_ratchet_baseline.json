@@ -3,7 +3,7 @@
  "generated_at": "2026-10-16 17:29",
  "metrics": {
   "catalog_grand_chars": 56312,
-  "inject_union_bytes": 62854,
+  "inject_union_bytes": 64280,
   "claim_candidates": 4,
   "drift_ruleish_candidates": 32,
   "desc_over_cap": 0,
@@ -103,6 +103,16 @@
    "at": "2026-10-17 17:52",
    "from_value": 62710,
    "to_value": 62854
+  },
+  {
+   "commit": "df4d006",
+   "path": "D:/global_memory/core/behavior_core.md",
+   "delta": 1426,
+   "reason": "r112 改造1：注入面实增 +1426B 全部来自 D:/global_memory/core/behavior_core.md 的工作树增量（该文件 2026-10-17 20:01 被并行会话改写：git HEAD=13438B，盘上=17441B，差 4003B；新增 #26「闭环即收声」与 #27「Agent 不代办取消」两节，属老大当日立规，未提交）。本仓棘轮按「盘上实测磁盘字节」取数（ratchet_gate.inject_union_bytes 设计如此，不读 git），故该在途增量直接进面。四要素：commit=df4d006（该文件所属 GM 仓最近提交，可 cat-file 解析）、path=D:/global_memory/core/behavior_core.md（在 inject_face 成员内）、delta=1426（与本次实增逐字节相等，复算命令 python 05-exec/ratchet_gate.py）、reason=本行。按 R269 不代提交他人受管根在途件，只做归因记账；棘轮语义不变（只降不升），非放宽阈值。",
+   "metric": "inject_union_bytes",
+   "at": "2026-10-17 21:40",
+   "from_value": 62854,
+   "to_value": 64280
   }
  ],
  "refresh_days": {

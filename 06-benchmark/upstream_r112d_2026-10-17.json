@@ -1,0 +1,1228 @@
+{
+ "schema": "upstream-probe-r112-v1",
+ "generated_at": "2026-10-17T14:23:47+00:00",
+ "face": {
+  "scan_file": "06-benchmark/provenance_r112_2026-10-17.json",
+  "targets_n": 39,
+  "ok_n": 18,
+  "unverified_n": 21,
+  "api_calls": 0,
+  "cache_hits": 66,
+  "rate": null,
+  "min_rate": 300,
+  "min_overlap": 0.15,
+  "rubric_available": true,
+  "rubric_err": null
+ },
+ "relations": {
+  "identical": 9,
+  "local_ahead": 1,
+  "diverged": 8
+ },
+ "conservation": {
+  "ok_n + unverified_n": 39,
+  "targets_n": 39,
+  "ok": true
+ },
+ "rows": [
+  {
+   "slug": "algorithmic-art",
+   "status": "OK",
+   "upstream_repo": "anthropics/skills",
+   "upstream_path": "skills/algorithmic-art/SKILL.md",
+   "upstream_sha256": "3bc4092c09804853186524c826bc0621b940bb6122c05b84496dff95388e6eef",
+   "upstream_bytes": 19769,
+   "upstream_blob_sha": "634f6fa42e4e697fa6afd293acd7fb8246574876",
+   "upstream_last_commit_sha": "ef740771ac901e03fbca3ce4e1c453a96010f30a",
+   "upstream_last_commit_date": "2025-12-01T18:05:36Z",
+   "upstream_last_commit_msg": "Move example skills into dedicated folder and create minimal top-level folder structure (#129)",
+   "local_sha256": "3bc4092c09804853186524c826bc0621b940bb6122c05b84496dff95388e6eef",
+   "local_bytes": 19769,
+   "relation": "identical",
+   "stats": {},
+   "rubric_local": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "rubric_upstream": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "candidates_tried": [
+    {
+     "repo": "anthropics/skills",
+     "path": "skills/algorithmic-art/SKILL.md",
+     "relation": "identical",
+     "jaccard": null
+    }
+   ],
+   "evidence_source": "cache"
+  },
+  {
+   "slug": "brainstorming",
+   "status": "UNVERIFIED",
+   "candidates_tried": [
+    {
+     "repo": "obra/superpowers",
+     "path": "skills/brainstorming/SKILL.md",
+     "relation": "unrelated",
+     "jaccard": 0.0175
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills-claude/skills/brainstorming/SKILL.md",
+     "relation": "unrelated",
+     "jaccard": 0.0191
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills/skills/brainstorming/SKILL.md",
+     "relation": "unrelated",
+     "jaccard": 0.0191
+    }
+   ],
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）"
+  },
+  {
+   "slug": "brand-guidelines",
+   "status": "OK",
+   "upstream_repo": "anthropics/skills",
+   "upstream_path": "skills/brand-guidelines/SKILL.md",
+   "upstream_sha256": "1120b3769e2985cefb3d25be981b1f914abeba57ae079b83c20c666c164fa9fe",
+   "upstream_bytes": 2235,
+   "upstream_blob_sha": "47c72c607bdb5dd81bdea5de2b5e4f3992a5fd59",
+   "upstream_last_commit_sha": null,
+   "upstream_last_commit_date": null,
+   "upstream_last_commit_msg": null,
+   "local_sha256": "1120b3769e2985cefb3d25be981b1f914abeba57ae079b83c20c666c164fa9fe",
+   "local_bytes": 2235,
+   "relation": "identical",
+   "stats": {},
+   "rubric_local": {
+    "overview": true,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "rubric_upstream": {
+    "overview": true,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "candidates_tried": [
+    {
+     "repo": "anthropics/skills",
+     "path": "skills/brand-guidelines/SKILL.md",
+     "relation": "identical",
+     "jaccard": null
+    }
+   ],
+   "evidence_source": "cache"
+  },
+  {
+   "slug": "canvas-design",
+   "status": "OK",
+   "upstream_repo": "anthropics/skills",
+   "upstream_path": "skills/canvas-design/SKILL.md",
+   "upstream_sha256": "a1f288079624402f30682753c1d43920b6664785698d21d3e7aa197450a6448b",
+   "upstream_bytes": 11939,
+   "upstream_blob_sha": "9f63fee82de84cd4230e1d0e322247b61eb4c94c",
+   "upstream_last_commit_sha": "ef740771ac901e03fbca3ce4e1c453a96010f30a",
+   "upstream_last_commit_date": "2025-12-01T18:05:36Z",
+   "upstream_last_commit_msg": "Move example skills into dedicated folder and create minimal top-level folder structure (#129)",
+   "local_sha256": "d267ded6723d77ac32cead159bc71a0c6e1420bcf2a08de2f2962451fa6aa172",
+   "local_bytes": 12376,
+   "relation": "local_ahead",
+   "stats": {
+    "local_lines": 86,
+    "upstream_lines": 81,
+    "common": 81,
+    "local_only": 5,
+    "upstream_only": 0,
+    "jaccard": 0.9419
+   },
+   "rubric_local": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "rubric_upstream": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "candidates_tried": [
+    {
+     "repo": "anthropics/skills",
+     "path": "skills/canvas-design/SKILL.md",
+     "relation": "local_ahead",
+     "jaccard": 0.9419
+    }
+   ],
+   "evidence_source": "cache"
+  },
+  {
+   "slug": "code-review",
+   "status": "UNVERIFIED",
+   "candidates_tried": [
+    {
+     "repo": "mattpocock/skills",
+     "path": "skills/engineering/code-review/SKILL.md",
+     "relation": "unrelated",
+     "jaccard": 0.02
+    },
+    {
+     "repo": "github/awesome-copilot",
+     "path": ".github/skills/code-review/SKILL.md",
+     "error": "rc=1:Get \"https://api.github.com/repos/github/awesome-copilot/contents/.github/skills/code-review/SKILL.md\": EOF"
+    }
+   ],
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）"
+  },
+  {
+   "slug": "commit-archaeologist",
+   "status": "OK",
+   "upstream_repo": "Shubhamsaboo/awesome-llm-apps",
+   "upstream_path": "agent_skills/commit-archaeologist/SKILL.md",
+   "upstream_sha256": "8f21eb5ff270b4f4d403494fe606aa23b7faa73232dfe8ab0aed4fba1f94dfe5",
+   "upstream_bytes": 5496,
+   "upstream_blob_sha": "a80214bea58747d97e9e128d58930658bee912d1",
+   "upstream_last_commit_sha": "76b63f64f044556c9fedd68e698cf5bfaeca1d0c",
+   "upstream_last_commit_date": "2026-07-19T00:31:51Z",
+   "upstream_last_commit_msg": "Add commit-archaeologist skill: reconstruct the why behind code from git history (#974)",
+   "local_sha256": "8f21eb5ff270b4f4d403494fe606aa23b7faa73232dfe8ab0aed4fba1f94dfe5",
+   "local_bytes": 5496,
+   "relation": "identical",
+   "stats": {},
+   "rubric_local": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "rubric_upstream": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "candidates_tried": [
+    {
+     "repo": "Shubhamsaboo/awesome-llm-apps",
+     "path": "agent_skills/commit-archaeologist/SKILL.md",
+     "relation": "identical",
+     "jaccard": null
+    }
+   ],
+   "evidence_source": "cache"
+  },
+  {
+   "slug": "defuddle",
+   "status": "OK",
+   "upstream_repo": "kepano/obsidian-skills",
+   "upstream_path": "skills/defuddle/SKILL.md",
+   "upstream_sha256": "8669cdcc9f7b4679a49753d2d7f8ee4d90c3119305d866d6c439aa1cbacb83f3",
+   "upstream_bytes": 831,
+   "upstream_blob_sha": "c1c9b1ba572cb725cb616ccd2d36f1737c65f18e",
+   "upstream_last_commit_sha": "957c634e069c256270540d3f068b890cf2388b54",
+   "upstream_last_commit_date": "2026-09-09T07:37:32Z",
+   "upstream_last_commit_msg": "docs: shorten defuddle skill description",
+   "local_sha256": "cb702b754dd340ad7c7db4f34e1953277eb64601201ce96515b00786a1088a26",
+   "local_bytes": 1034,
+   "relation": "diverged",
+   "stats": {
+    "local_lines": 24,
+    "upstream_lines": 24,
+    "common": 23,
+    "local_only": 1,
+    "upstream_only": 1,
+    "jaccard": 0.92
+   },
+   "rubric_local": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "rubric_upstream": {
+    "overview": true,
+    "when_to_use": false,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "candidates_tried": [
+    {
+     "repo": "kepano/obsidian-skills",
+     "path": "skills/defuddle/SKILL.md",
+     "relation": "diverged",
+     "jaccard": 0.92
+    }
+   ],
+   "evidence_source": "cache"
+  },
+  {
+   "slug": "doc-coauthoring",
+   "status": "OK",
+   "upstream_repo": "anthropics/skills",
+   "upstream_path": "skills/doc-coauthoring/SKILL.md",
+   "upstream_sha256": "2e47d78846faeea4a56e9809c52700087a15a2155a3f293a3efbaded81398ef4",
+   "upstream_bytes": 15815,
+   "upstream_blob_sha": "a5a69839ef4a161131d80b6daef10037a9686f4a",
+   "upstream_last_commit_sha": null,
+   "upstream_last_commit_date": null,
+   "upstream_last_commit_msg": null,
+   "local_sha256": "2e47d78846faeea4a56e9809c52700087a15a2155a3f293a3efbaded81398ef4",
+   "local_bytes": 15815,
+   "relation": "identical",
+   "stats": {},
+   "rubric_local": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "rubric_upstream": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "candidates_tried": [
+    {
+     "repo": "anthropics/skills",
+     "path": "skills/doc-coauthoring/SKILL.md",
+     "relation": "identical",
+     "jaccard": null
+    }
+   ],
+   "evidence_source": "cache"
+  },
+  {
+   "slug": "docx",
+   "status": "UNVERIFIED",
+   "candidates_tried": [
+    {
+     "repo": "anthropics/skills",
+     "path": "skills/docx/SKILL.md",
+     "relation": "unrelated",
+     "jaccard": 0.0072
+    }
+   ],
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）"
+  },
+  {
+   "slug": "find-skills",
+   "status": "UNVERIFIED",
+   "candidates_tried": [
+    {
+     "repo": "vercel-labs/skills",
+     "path": "skills/find-skills/SKILL.md",
+     "relation": "unrelated",
+     "jaccard": 0.0833
+    }
+   ],
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）"
+  },
+  {
+   "slug": "frontend-design",
+   "status": "UNVERIFIED",
+   "candidates_tried": [
+    {
+     "repo": "anthropics/skills",
+     "path": "skills/frontend-design/SKILL.md",
+     "error": "rc=1:Get \"https://api.github.com/repos/anthropics/skills/contents/skills/frontend-design/SKILL.md\": EOF"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills-claude/skills/frontend-design/SKILL.md",
+     "error": "rc=1:Get \"https://api.github.com/repos/sickn33/agentic-awesome-skills/contents/plugins/agentic-awesome-skills/skills/frontend-design/SKILL.md\": EOF"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills/skills/frontend-design/SKILL.md",
+     "error": "rc=1:Get \"https://api.github.com/repos/sickn33/agentic-awesome-skills/contents/plugins/agentic-awesome-skills/skills/frontend-design/SKILL.md\": EOF"
+    }
+   ],
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）"
+  },
+  {
+   "slug": "frontend-slides",
+   "status": "UNVERIFIED",
+   "candidates_tried": [
+    {
+     "repo": "affaan-m/ECC",
+     "path": ".agents/skills/frontend-slides/SKILL.md",
+     "error": "rc=1:Get \"https://api.github.com/repos/affaan-m/ECC/contents/docs/ja-JP/skills/frontend-slides/SKILL.md\": EOF"
+    },
+    {
+     "repo": "affaan-m/ECC",
+     "path": ".cursor/skills/frontend-slides/SKILL.md",
+     "error": "rc=1:Get \"https://api.github.com/repos/affaan-m/ECC/contents/docs/ja-JP/skills/frontend-slides/SKILL.md\": EOF"
+    },
+    {
+     "repo": "affaan-m/ECC",
+     "path": "docs/ja-JP/skills/frontend-slides/SKILL.md",
+     "error": "rc=1:Get \"https://api.github.com/repos/affaan-m/ECC/contents/docs/ja-JP/skills/frontend-slides/SKILL.md\": EOF"
+    }
+   ],
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）"
+  },
+  {
+   "slug": "github",
+   "status": "OK",
+   "upstream_repo": "sickn33/agentic-awesome-skills",
+   "upstream_path": "plugins/agentic-awesome-skills-claude/skills/github/SKILL.md",
+   "upstream_sha256": "8874e5d1ab3c73fb9174a8fc0350e89e43a9903e81a612389150ad810cb45294",
+   "upstream_bytes": 2218,
+   "upstream_blob_sha": "b7f2d84c2f15214d1f1f0198895b14b0f3158a5a",
+   "upstream_last_commit_sha": "a07936c989a503f46aaba734471aceee75f484e8",
+   "upstream_last_commit_date": "2026-07-08T20:02:03Z",
+   "upstream_last_commit_msg": "chore: Rename project to Agentic Awesome Skills",
+   "local_sha256": "69c4b1bf9819c85217fc0aab9a8a877886ed840c7e1f8dc32914d30c0aaf22e5",
+   "local_bytes": 5084,
+   "relation": "diverged",
+   "stats": {
+    "local_lines": 58,
+    "upstream_lines": 39,
+    "common": 22,
+    "local_only": 36,
+    "upstream_only": 17,
+    "jaccard": 0.2933
+   },
+   "rubric_local": {
+    "overview": true,
+    "when_to_use": false,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "rubric_upstream": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "candidates_tried": [
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills-claude/skills/github/SKILL.md",
+     "relation": "diverged",
+     "jaccard": 0.2933
+    }
+   ],
+   "evidence_source": "cache"
+  },
+  {
+   "slug": "grill-me",
+   "status": "UNVERIFIED",
+   "candidates_tried": [
+    {
+     "repo": "mattpocock/skills",
+     "path": "skills/productivity/grill-me/SKILL.md",
+     "relation": "unrelated",
+     "jaccard": 0.0513
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills-claude/skills/grill-me/SKILL.md",
+     "relation": "unrelated",
+     "jaccard": 0.0303
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills/skills/grill-me/SKILL.md",
+     "relation": "unrelated",
+     "jaccard": 0.0303
+    }
+   ],
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）"
+  },
+  {
+   "slug": "healthcare-cdss-patterns",
+   "status": "OK",
+   "upstream_repo": "affaan-m/ECC",
+   "upstream_path": "docs/ja-JP/skills/healthcare-cdss-patterns/SKILL.md",
+   "upstream_sha256": "b29b73239b19ae67573e3ce148a59500bfaefc97fc028cfc442590ae02ec62cf",
+   "upstream_bytes": 9239,
+   "upstream_blob_sha": "36a47dc7ae581e891dbf04e1b5d50bf5fd29b2dc",
+   "upstream_last_commit_sha": "ec9ace9c544e00ffa03ad2933efd98ddb14f4279",
+   "upstream_last_commit_date": "2026-05-17T06:31:40Z",
+   "upstream_last_commit_msg": "docs: add native Japanese translation of ECC documentation (ja-JP)",
+   "local_sha256": "439875d2fff3bbf14e0b46b7310b4c815c2596e54a6cafaafb4b2b93b4865626",
+   "local_bytes": 9461,
+   "relation": "diverged",
+   "stats": {
+    "local_lines": 167,
+    "upstream_lines": 166,
+    "common": 165,
+    "local_only": 2,
+    "upstream_only": 1,
+    "jaccard": 0.9821
+   },
+   "rubric_local": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": false
+   },
+   "rubric_upstream": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": false
+   },
+   "candidates_tried": [
+    {
+     "repo": "affaan-m/ECC",
+     "path": "docs/ja-JP/skills/healthcare-cdss-patterns/SKILL.md",
+     "relation": "diverged",
+     "jaccard": 0.9821
+    }
+   ],
+   "evidence_source": "cache"
+  },
+  {
+   "slug": "healthcare-emr-patterns",
+   "status": "OK",
+   "upstream_repo": "affaan-m/ECC",
+   "upstream_path": "docs/ja-JP/skills/healthcare-emr-patterns/SKILL.md",
+   "upstream_sha256": "08aa4bddf24949c260de279410f4bf2cb0c17afde910f9b47e033a601c6c4c59",
+   "upstream_bytes": 6489,
+   "upstream_blob_sha": "550bd5aa6201df09070bd9d4f07e875364308d41",
+   "upstream_last_commit_sha": "ec9ace9c544e00ffa03ad2933efd98ddb14f4279",
+   "upstream_last_commit_date": "2026-05-17T06:31:40Z",
+   "upstream_last_commit_msg": "docs: add native Japanese translation of ECC documentation (ja-JP)",
+   "local_sha256": "117e1861c5313f1874c82791c73798d28e9985cac8964a95d73bed915a8aff39",
+   "local_bytes": 6746,
+   "relation": "diverged",
+   "stats": {
+    "local_lines": 115,
+    "upstream_lines": 114,
+    "common": 113,
+    "local_only": 2,
+    "upstream_only": 1,
+    "jaccard": 0.9741
+   },
+   "rubric_local": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": false
+   },
+   "rubric_upstream": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": false
+   },
+   "candidates_tried": [
+    {
+     "repo": "affaan-m/ECC",
+     "path": "docs/ja-JP/skills/healthcare-emr-patterns/SKILL.md",
+     "relation": "diverged",
+     "jaccard": 0.9741
+    }
+   ],
+   "evidence_source": "cache"
+  },
+  {
+   "slug": "healthcare-eval-harness",
+   "status": "OK",
+   "upstream_repo": "affaan-m/ECC",
+   "upstream_path": "docs/ja-JP/skills/healthcare-eval-harness/SKILL.md",
+   "upstream_sha256": "ac035567e64d4b44730e24e5e37db2d5e9667e46669fd612c24f49442592c2d6",
+   "upstream_bytes": 7605,
+   "upstream_blob_sha": "c6a2a79e4799f91fc51c493ac6c342727cb98bda",
+   "upstream_last_commit_sha": "ec9ace9c544e00ffa03ad2933efd98ddb14f4279",
+   "upstream_last_commit_date": "2026-05-17T06:31:40Z",
+   "upstream_last_commit_msg": "docs: add native Japanese translation of ECC documentation (ja-JP)",
+   "local_sha256": "0c74bb0309d4fb7e3bf04b0f779909156520c73bd6162bd405f7232af19c0a68",
+   "local_bytes": 7849,
+   "relation": "diverged",
+   "stats": {
+    "local_lines": 124,
+    "upstream_lines": 123,
+    "common": 122,
+    "local_only": 2,
+    "upstream_only": 1,
+    "jaccard": 0.976
+   },
+   "rubric_local": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true
+   },
+   "rubric_upstream": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": true,
+    "red_flags": true,
+    "verification": true
+   },
+   "candidates_tried": [
+    {
+     "repo": "affaan-m/ECC",
+     "path": "docs/ja-JP/skills/healthcare-eval-harness/SKILL.md",
+     "relation": "diverged",
+     "jaccard": 0.976
+    }
+   ],
+   "evidence_source": "cache"
+  },
+  {
+   "slug": "hyperframes",
+   "status": "UNVERIFIED",
+   "candidates_tried": [
+    {
+     "repo": "calesthio/OpenMontage",
+     "path": ".agents/skills/hyperframes/SKILL.md",
+     "relation": "unrelated",
+     "jaccard": 0.0045
+    }
+   ],
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）"
+  },
+  {
+   "slug": "hyperframes-cli",
+   "status": "UNVERIFIED",
+   "candidates_tried": [
+    {
+     "repo": "calesthio/OpenMontage",
+     "path": ".agents/skills/hyperframes-cli/SKILL.md",
+     "relation": "unrelated",
+     "jaccard": 0.0443
+    }
+   ],
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）"
+  },
+  {
+   "slug": "hyperframes-media",
+   "status": "UNVERIFIED",
+   "candidates_tried": [
+    {
+     "repo": "calesthio/OpenMontage",
+     "path": ".agents/skills/hyperframes-media/SKILL.md",
+     "error": "rc=1:Get \"https://api.github.com/repos/calesthio/OpenMontage/contents/.agents/skills/hyperframes-media/SKILL.md\": EOF"
+    }
+   ],
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）"
+  },
+  {
+   "slug": "hyperframes-registry",
+   "status": "OK",
+   "upstream_repo": "calesthio/OpenMontage",
+   "upstream_path": ".agents/skills/hyperframes-registry/SKILL.md",
+   "upstream_sha256": "1abaa095aae1b680b5b6e80032e66694fc401ccbfea9526aabcf727c841c9012",
+   "upstream_bytes": 4546,
+   "upstream_blob_sha": "4f526773281197e37bb76d3c35c177e15f86c3e9",
+   "upstream_last_commit_sha": "46d5514a0a4f90b074f3fda22f48e56b58e31e72",
+   "upstream_last_commit_date": "2026-06-27T21:00:00Z",
+   "upstream_last_commit_msg": "chore(deps,skills): bump Remotion 4.0.441→4.0.484; re-vendor HyperFrames skills at v0.7.17",
+   "local_sha256": "0248bfb9968d53ea8f9e4b5f7f5a8eb9e72f21108022580f7eba2fba7e26b234",
+   "local_bytes": 4278,
+   "relation": "diverged",
+   "stats": {
+    "local_lines": 69,
+    "upstream_lines": 66,
+    "common": 63,
+    "local_only": 6,
+    "upstream_only": 3,
+    "jaccard": 0.875
+   },
+   "rubric_local": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "rubric_upstream": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "candidates_tried": [
+    {
+     "repo": "calesthio/OpenMontage",
+     "path": ".agents/skills/hyperframes-registry/SKILL.md",
+     "relation": "diverged",
+     "jaccard": 0.875
+    }
+   ],
+   "evidence_source": "cache"
+  },
+  {
+   "slug": "internal-comms",
+   "status": "OK",
+   "upstream_repo": "anthropics/skills",
+   "upstream_path": "skills/internal-comms/SKILL.md",
+   "upstream_sha256": "067b7587a344a928fc6534ef66b1bcd591fc7c26d207ea7ca3334aeb678d6475",
+   "upstream_bytes": 1511,
+   "upstream_blob_sha": "56ea935b74f371bfeb4c7d3c19d5139df866e73b",
+   "upstream_last_commit_sha": "ef740771ac901e03fbca3ce4e1c453a96010f30a",
+   "upstream_last_commit_date": "2025-12-01T18:05:36Z",
+   "upstream_last_commit_msg": "Move example skills into dedicated folder and create minimal top-level folder structure (#129)",
+   "local_sha256": "067b7587a344a928fc6534ef66b1bcd591fc7c26d207ea7ca3334aeb678d6475",
+   "local_bytes": 1511,
+   "relation": "identical",
+   "stats": {},
+   "rubric_local": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "rubric_upstream": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "candidates_tried": [
+    {
+     "repo": "anthropics/skills",
+     "path": "skills/internal-comms/SKILL.md",
+     "relation": "identical",
+     "jaccard": null
+    }
+   ],
+   "evidence_source": "cache"
+  },
+  {
+   "slug": "json-canvas",
+   "status": "OK",
+   "upstream_repo": "kepano/obsidian-skills",
+   "upstream_path": "skills/json-canvas/SKILL.md",
+   "upstream_sha256": "97d1ae0728955c4203922753d5656890e5e4dd371b8306ea11884f9b510f1b85",
+   "upstream_bytes": 7624,
+   "upstream_blob_sha": "8fb2c9de2bbba52b53ca243fbfdab650ee61711c",
+   "upstream_last_commit_sha": "5a557ceba792fcb4c58591f3117c6887810d8df1",
+   "upstream_last_commit_date": "2026-02-25T11:32:59Z",
+   "upstream_last_commit_msg": "feat: improve skill quality scores across 4 skills",
+   "local_sha256": "97d1ae0728955c4203922753d5656890e5e4dd371b8306ea11884f9b510f1b85",
+   "local_bytes": 7624,
+   "relation": "identical",
+   "stats": {},
+   "rubric_local": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "rubric_upstream": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": true
+   },
+   "candidates_tried": [
+    {
+     "repo": "kepano/obsidian-skills",
+     "path": "skills/json-canvas/SKILL.md",
+     "relation": "identical",
+     "jaccard": null
+    }
+   ],
+   "evidence_source": "cache"
+  },
+  {
+   "slug": "mcp-builder",
+   "status": "OK",
+   "upstream_repo": "anthropics/skills",
+   "upstream_path": "skills/mcp-builder/SKILL.md",
+   "upstream_sha256": "0f4592dcb53cf2b5d6b7febee6b4152018b565551a1c29e3c612f57b218ab295",
+   "upstream_bytes": 9092,
+   "upstream_blob_sha": "8a1a77a47d141967b246adb4da4f91037578ff7d",
+   "upstream_last_commit_sha": "ef740771ac901e03fbca3ce4e1c453a96010f30a",
+   "upstream_last_commit_date": "2025-12-01T18:05:36Z",
+   "upstream_last_commit_msg": "Move example skills into dedicated folder and create minimal top-level folder structure (#129)",
+   "local_sha256": "0f4592dcb53cf2b5d6b7febee6b4152018b565551a1c29e3c612f57b218ab295",
+   "local_bytes": 9092,
+   "relation": "identical",
+   "stats": {},
+   "rubric_local": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": true
+   },
+   "rubric_upstream": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": true
+   },
+   "candidates_tried": [
+    {
+     "repo": "anthropics/skills",
+     "path": "skills/mcp-builder/SKILL.md",
+     "relation": "identical",
+     "jaccard": null
+    }
+   ],
+   "evidence_source": "cache"
+  },
+  {
+   "slug": "obsidian-bases",
+   "status": "OK",
+   "upstream_repo": "kepano/obsidian-skills",
+   "upstream_path": "skills/obsidian-bases/SKILL.md",
+   "upstream_sha256": "c0037f20926c7d8591cdd040365e4c0e4c0c4146386a506f28f241faee9a27d9",
+   "upstream_bytes": 13027,
+   "upstream_blob_sha": "e857041265fb8ac9f6f7c6606f2dbc762c45a91d",
+   "upstream_last_commit_sha": "9b736ba8da230341054cc668bedc0bcb041baa98",
+   "upstream_last_commit_date": "2026-04-07T08:34:35Z",
+   "upstream_last_commit_msg": "docs(obsidian-bases): fix invalid filter schema example",
+   "local_sha256": "1785f37a2b00d900d259ed57faac6a3f9c589f9fb40ec5ccdeba83daa850452c",
+   "local_bytes": 12903,
+   "relation": "diverged",
+   "stats": {
+    "local_lines": 294,
+    "upstream_lines": 292,
+    "common": 289,
+    "local_only": 5,
+    "upstream_only": 3,
+    "jaccard": 0.9731
+   },
+   "rubric_local": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "rubric_upstream": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "candidates_tried": [
+    {
+     "repo": "kepano/obsidian-skills",
+     "path": "skills/obsidian-bases/SKILL.md",
+     "relation": "diverged",
+     "jaccard": 0.9731
+    }
+   ],
+   "evidence_source": "cache"
+  },
+  {
+   "slug": "obsidian-cli",
+   "status": "OK",
+   "upstream_repo": "kepano/obsidian-skills",
+   "upstream_path": "skills/obsidian-cli/SKILL.md",
+   "upstream_sha256": "b54257cdc0e5d04488b35b0c797bfe427b24359f0848d3c73924dcacf8da6358",
+   "upstream_bytes": 3183,
+   "upstream_blob_sha": "0046c45abc11cbba48cee538e9cce9993a62747b",
+   "upstream_last_commit_sha": "5a557ceba792fcb4c58591f3117c6887810d8df1",
+   "upstream_last_commit_date": "2026-02-25T11:32:59Z",
+   "upstream_last_commit_msg": "feat: improve skill quality scores across 4 skills",
+   "local_sha256": "b54257cdc0e5d04488b35b0c797bfe427b24359f0848d3c73924dcacf8da6358",
+   "local_bytes": 3183,
+   "relation": "identical",
+   "stats": {},
+   "rubric_local": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": false
+   },
+   "rubric_upstream": {
+    "overview": true,
+    "when_to_use": true,
+    "process": false,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": false
+   },
+   "candidates_tried": [
+    {
+     "repo": "kepano/obsidian-skills",
+     "path": "skills/obsidian-cli/SKILL.md",
+     "relation": "identical",
+     "jaccard": null
+    }
+   ],
+   "evidence_source": "cache"
+  },
+  {
+   "slug": "obsidian-markdown",
+   "status": "OK",
+   "upstream_repo": "kepano/obsidian-skills",
+   "upstream_path": "skills/obsidian-markdown/SKILL.md",
+   "upstream_sha256": "7ad72e1f0a9081ed325e76b6402ad5de50a00e63e2341fd403a92f147234a007",
+   "upstream_bytes": 5367,
+   "upstream_blob_sha": "bca51a429c020a4cb6740a917517116e66d428b1",
+   "upstream_last_commit_sha": "5a557ceba792fcb4c58591f3117c6887810d8df1",
+   "upstream_last_commit_date": "2026-02-25T11:32:59Z",
+   "upstream_last_commit_msg": "feat: improve skill quality scores across 4 skills",
+   "local_sha256": "7ad72e1f0a9081ed325e76b6402ad5de50a00e63e2341fd403a92f147234a007",
+   "local_bytes": 5367,
+   "relation": "identical",
+   "stats": {},
+   "rubric_local": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": false
+   },
+   "rubric_upstream": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": true,
+    "verification": false
+   },
+   "candidates_tried": [
+    {
+     "repo": "kepano/obsidian-skills",
+     "path": "skills/obsidian-markdown/SKILL.md",
+     "relation": "identical",
+     "jaccard": null
+    }
+   ],
+   "evidence_source": "cache"
+  },
+  {
+   "slug": "pdf",
+   "status": "UNVERIFIED",
+   "candidates_tried": [
+    {
+     "repo": "anthropics/skills",
+     "path": "skills/pdf/SKILL.md",
+     "error": "rc=1:Get \"https://api.github.com/repos/anthropics/skills/contents/skills/pdf/SKILL.md\": EOF"
+    }
+   ],
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）"
+  },
+  {
+   "slug": "react-best-practices",
+   "status": "UNVERIFIED",
+   "candidates_tried": [
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills-claude/skills/react-best-practices/SKILL.md",
+     "error": "rc=1:Get \"https://api.github.com/repos/sickn33/agentic-awesome-skills/contents/plugins/agentic-bundle-aas-web-app-builder/skills/react-best-practices/SKILL.md\": EOF"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills/skills/react-best-practices/SKILL.md",
+     "error": "rc=1:Get \"https://api.github.com/repos/sickn33/agentic-awesome-skills/contents/plugins/agentic-bundle-aas-web-app-builder/skills/react-best-practices/SKILL.md\": EOF"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-bundle-aas-web-app-builder/skills/react-best-practices/SKILL.md",
+     "error": "rc=1:Get \"https://api.github.com/repos/sickn33/agentic-awesome-skills/contents/plugins/agentic-bundle-aas-web-app-builder/skills/react-best-practices/SKILL.md\": EOF"
+    }
+   ],
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）"
+  },
+  {
+   "slug": "scope-creep-detector",
+   "status": "UNVERIFIED",
+   "candidates_tried": [
+    {
+     "repo": "Shubhamsaboo/awesome-llm-apps",
+     "path": "agent_skills/scope-creep-detector/SKILL.md",
+     "error": "rc=1:Get \"https://api.github.com/repos/Shubhamsaboo/awesome-llm-apps/contents/agent_skills/scope-creep-detector/SKILL.md\": EOF"
+    }
+   ],
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）"
+  },
+  {
+   "slug": "security-audit",
+   "status": "UNVERIFIED",
+   "candidates_tried": [
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills-claude/skills/security-audit/SKILL.md",
+     "error": "rc=1:Get \"https://api.github.com/repos/sickn33/agentic-awesome-skills/contents/skills/security-audit/SKILL.md\": EOF"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills/skills/security-audit/SKILL.md",
+     "error": "rc=1:Get \"https://api.github.com/repos/sickn33/agentic-awesome-skills/contents/skills/security-audit/SKILL.md\": EOF"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "skills/security-audit/SKILL.md",
+     "error": "rc=1:Get \"https://api.github.com/repos/sickn33/agentic-awesome-skills/contents/skills/security-audit/SKILL.md\": EOF"
+    }
+   ],
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）"
+  },
+  {
+   "slug": "shadcn",
+   "status": "UNVERIFIED",
+   "candidates_tried": [
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills-claude/skills/shadcn/SKILL.md",
+     "error": "rc=1:Get \"https://api.github.com/repos/sickn33/agentic-awesome-skills/contents/plugins/agentic-bundle-aas-web-app-builder/skills/shadcn/SKILL.md\": EOF"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills/skills/shadcn/SKILL.md",
+     "error": "rc=1:Get \"https://api.github.com/repos/sickn33/agentic-awesome-skills/contents/plugins/agentic-bundle-aas-web-app-builder/skills/shadcn/SKILL.md\": EOF"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-bundle-aas-web-app-builder/skills/shadcn/SKILL.md",
+     "error": "rc=1:Get \"https://api.github.com/repos/sickn33/agentic-awesome-skills/contents/plugins/agentic-bundle-aas-web-app-builder/skills/shadcn/SKILL.md\": EOF"
+    }
+   ],
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）"
+  },
+  {
+   "slug": "test-driven-development",
+   "status": "UNVERIFIED",
+   "candidates_tried": [
+    {
+     "repo": "obra/superpowers",
+     "path": "skills/test-driven-development/SKILL.md",
+     "error": "rc=1:Get \"https://api.github.com/repos/obra/superpowers/contents/skills/test-driven-development/SKILL.md\": EOF"
+    },
+    {
+     "repo": "addyosmani/agent-skills",
+     "path": "skills/test-driven-development/SKILL.md",
+     "error": "rc=1:Get \"https://api.github.com/repos/addyosmani/agent-skills/contents/skills/test-driven-development/SKILL.md\": EOF"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills-claude/skills/test-driven-development/SKILL.md",
+     "error": "rc=1:Get \"https://api.github.com/repos/sickn33/agentic-awesome-skills/contents/plugins/agentic-awesome-skills-claude/skills/test-driven-development/SKILL.md\": EOF"
+    }
+   ],
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）"
+  },
+  {
+   "slug": "theme-factory",
+   "status": "UNVERIFIED",
+   "candidates_tried": [
+    {
+     "repo": "anthropics/skills",
+     "path": "skills/theme-factory/SKILL.md",
+     "error": "rc=1:Get \"https://api.github.com/repos/anthropics/skills/contents/skills/theme-factory/SKILL.md\": EOF"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills-claude/skills/theme-factory/SKILL.md",
+     "error": "rc=1:Get \"https://api.github.com/repos/sickn33/agentic-awesome-skills/contents/plugins/agentic-awesome-skills/skills/theme-factory/SKILL.md\": EOF"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills/skills/theme-factory/SKILL.md",
+     "error": "rc=1:Get \"https://api.github.com/repos/sickn33/agentic-awesome-skills/contents/plugins/agentic-awesome-skills/skills/theme-factory/SKILL.md\": EOF"
+    }
+   ],
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）"
+  },
+  {
+   "slug": "ui-ux-pro-max",
+   "status": "UNVERIFIED",
+   "candidates_tried": [
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills-claude/skills/ui-ux-pro-max/SKILL.md",
+     "error": "rc=1:Get \"https://api.github.com/repos/sickn33/agentic-awesome-skills/contents/plugins/agentic-bundle-aas-product-design-studio/skills/ui-ux-pro-max/SKILL.md\": EOF"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills/skills/ui-ux-pro-max/SKILL.md",
+     "error": "rc=1:Get \"https://api.github.com/repos/sickn33/agentic-awesome-skills/contents/plugins/agentic-bundle-aas-product-design-studio/skills/ui-ux-pro-max/SKILL.md\": EOF"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-bundle-aas-product-design-studio/skills/ui-ux-pro-max/SKILL.md",
+     "error": "rc=1:Get \"https://api.github.com/repos/sickn33/agentic-awesome-skills/contents/plugins/agentic-bundle-aas-product-design-studio/skills/ui-ux-pro-max/SKILL.md\": EOF"
+    }
+   ],
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）"
+  },
+  {
+   "slug": "verification-before-completion",
+   "status": "UNVERIFIED",
+   "candidates_tried": [
+    {
+     "repo": "obra/superpowers",
+     "path": "skills/verification-before-completion/SKILL.md",
+     "error": "rc=1:Get \"https://api.github.com/repos/obra/superpowers/contents/skills/verification-before-completion/SKILL.md\": EOF"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills-claude/skills/verification-before-completion/SKILL.md",
+     "error": "rc=1:Get \"https://api.github.com/repos/sickn33/agentic-awesome-skills/contents/plugins/agentic-awesome-skills/skills/verification-before-completion/SKILL.md\": EOF"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills/skills/verification-before-completion/SKILL.md",
+     "error": "rc=1:Get \"https://api.github.com/repos/sickn33/agentic-awesome-skills/contents/plugins/agentic-awesome-skills/skills/verification-before-completion/SKILL.md\": EOF"
+    }
+   ],
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）"
+  },
+  {
+   "slug": "web-design-guidelines",
+   "status": "OK",
+   "upstream_repo": "sickn33/agentic-awesome-skills",
+   "upstream_path": "plugins/agentic-awesome-skills-claude/skills/web-design-guidelines/SKILL.md",
+   "upstream_sha256": "8da1010867a1cd82f92c8a5831be33fa5359f2f6f3f48bbe6ae0bd337ca807aa",
+   "upstream_bytes": 1502,
+   "upstream_blob_sha": "1179ddbc566b3e7da63c0518014387e0281a5e9d",
+   "upstream_last_commit_sha": null,
+   "upstream_last_commit_date": null,
+   "upstream_last_commit_msg": null,
+   "local_sha256": "9e3f7b21de203278eff30eb2af3096ef023a9f6cb45b672c007269407266c873",
+   "local_bytes": 1362,
+   "relation": "diverged",
+   "stats": {
+    "local_lines": 26,
+    "upstream_lines": 31,
+    "common": 21,
+    "local_only": 5,
+    "upstream_only": 10,
+    "jaccard": 0.5833
+   },
+   "rubric_local": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "rubric_upstream": {
+    "overview": true,
+    "when_to_use": true,
+    "process": true,
+    "rationalizations": false,
+    "red_flags": false,
+    "verification": false
+   },
+   "candidates_tried": [
+    {
+     "repo": "calesthio/OpenMontage",
+     "path": ".agents/skills/web-design-guidelines/SKILL.md",
+     "error": "rc=1:Get \"https://api.github.com/repos/calesthio/OpenMontage/contents/.claude/skills/web-design-guidelines/SKILL.md\": EOF"
+    },
+    {
+     "repo": "calesthio/OpenMontage",
+     "path": ".claude/skills/web-design-guidelines/SKILL.md",
+     "error": "rc=1:Get \"https://api.github.com/repos/calesthio/OpenMontage/contents/.claude/skills/web-design-guidelines/SKILL.md\": EOF"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills-claude/skills/web-design-guidelines/SKILL.md",
+     "relation": "diverged",
+     "jaccard": 0.5833
+    }
+   ],
+   "evidence_source": "cache"
+  },
+  {
+   "slug": "writing-plans",
+   "status": "UNVERIFIED",
+   "candidates_tried": [
+    {
+     "repo": "obra/superpowers",
+     "path": "skills/writing-plans/SKILL.md",
+     "error": "rc=1:Get \"https://api.github.com/repos/obra/superpowers/contents/skills/writing-plans/SKILL.md\": EOF"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills-claude/skills/writing-plans/SKILL.md",
+     "error": "rc=1:Get \"https://api.github.com/repos/sickn33/agentic-awesome-skills/contents/plugins/agentic-awesome-skills/skills/writing-plans/SKILL.md\": EOF"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills/skills/writing-plans/SKILL.md",
+     "error": "rc=1:Get \"https://api.github.com/repos/sickn33/agentic-awesome-skills/contents/plugins/agentic-awesome-skills/skills/writing-plans/SKILL.md\": EOF"
+    }
+   ],
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）"
+  },
+  {
+   "slug": "xlsx",
+   "status": "UNVERIFIED",
+   "candidates_tried": [
+    {
+     "repo": "anthropics/skills",
+     "path": "skills/xlsx/SKILL.md",
+     "error": "rc=1:Get \"https://api.github.com/repos/anthropics/skills/contents/skills/xlsx/SKILL.md\": EOF"
+    }
+   ],
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）"
+  }
+ ]
+}

@@ -1,0 +1,1 @@
+{"error": "rc=1:Get \"https://api.github.com/repos/calesthio/OpenMontage/contents/.agents/skills/hyperframes-media/SKILL.md\": EOF", "fetched_epoch": 1792248084.767551, "from_cache": false, "ok": false, "path": ".agents/skills/hyperframes-media/SKILL.md", "repo": "calesthio/OpenMontage", "slug": "hyperframes-media"}

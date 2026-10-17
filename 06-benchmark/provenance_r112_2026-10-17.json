@@ -1,0 +1,4028 @@
+{
+ "schema": "provenance-scan-r112-v1",
+ "generated_at": "2026-10-17T12:40:34+00:00",
+ "face": {
+  "roots": [
+   {
+    "path": "C:\\Users\\37533\\.workbuddy\\skills-marketplace\\skills",
+    "skill_n": 268
+   },
+   {
+    "path": "D:\\global_skills",
+    "skill_n": 182
+   }
+  ],
+  "authority_skill_n": 182,
+  "market_skill_n": 268,
+  "market_same_slug_n": 12,
+  "corpus_slugs_n": 3692,
+  "corpus_generated_at": "2026-10-03T17:09:36Z",
+  "registry_n": 182,
+  "notes": []
+ },
+ "tiers": {
+  "declared": 20,
+  "inferred": 35,
+  "unknown": 127
+ },
+ "conservation": {
+  "sum_tiers": 182,
+  "total": 182,
+  "ok": true
+ },
+ "rows": [
+  {
+   "slug": "9b-lightworkflow",
+   "local_sha256": "52a8c4260243d93fcb8cd1cf2959e13ae163cfe2d85aaa7882824f7a7e883782",
+   "local_bytes": 8807,
+   "dir_manifest_sha256": "2a2ae34f11f83c3b097e58df5c124cf5d78891c853d22dc955b8ebbc24dc444c",
+   "dir_file_n": 1,
+   "mtime": "2026-08-14T17:47:50",
+   "fm_version": "1.4.0",
+   "fm_last_updated": null,
+   "registry_source": "user-created",
+   "registry_version": "1.4.0",
+   "registry_user_created": true,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "A-ask-questions",
+   "local_sha256": "8e46f2cfebc25572dd3aeb5d732b3e5522131f6cfc94f8137e27340a4fb72e85",
+   "local_bytes": 11693,
+   "dir_manifest_sha256": "b589d79ba308d807981d04b739e639896d8756deb72e74861a423fd8bbe8b2c8",
+   "dir_file_n": 9,
+   "mtime": "2026-10-15T07:42:07",
+   "fm_version": "3.0.1",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "2.5.0",
+   "registry_user_created": true,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "A-dynamic-workflow",
+   "local_sha256": "476ab4635bcdab6653d961c9b08f4db55495b28bd8f8de937b0e391abcabf002",
+   "local_bytes": 8033,
+   "dir_manifest_sha256": "bfe5fb317c6a193152d286af9c4756254b2438e4f220b7e89deeef8347c95e72",
+   "dir_file_n": 4,
+   "mtime": "2026-10-09T03:56:43",
+   "fm_version": "1.3.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.3.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "A-get-memory",
+   "local_sha256": "c21e21ec1025883515902b5d63847f16cb018aae1b7b2e9f0902c74f6a0460d4",
+   "local_bytes": 12055,
+   "dir_manifest_sha256": "ef3eaa87d500b74ba0d71887f14a93c208b7942649967e4e530c912c1a9592f9",
+   "dir_file_n": 20,
+   "mtime": "2026-10-15T12:12:06",
+   "fm_version": "4.83.0",
+   "fm_last_updated": null,
+   "registry_source": "user-created",
+   "registry_version": "4.30.0",
+   "registry_user_created": true,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "A-java-problem",
+   "local_sha256": "67ff324e87e6bc2382e5d33c72a58f4ad80ef0f1bce8a984b5db3c34c61c29ec",
+   "local_bytes": 14469,
+   "dir_manifest_sha256": "e61acd65f9bb64da1c579aa49226ec1797c18920e84a4c7d862fc7779bda6615",
+   "dir_file_n": 6,
+   "mtime": "2026-10-13T08:44:29",
+   "fm_version": "1.6.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.2.1",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "A-memory-start",
+   "local_sha256": "e072ae821b5bc8a8cf77bb002771a4bc887d2de6380a0922b78d02e32b7c66ff",
+   "local_bytes": 19508,
+   "dir_manifest_sha256": "91d57d750ffa7f8a75f36aef25cebdd4770819e1179ef668c933b2a888b052c8",
+   "dir_file_n": 25,
+   "mtime": "2026-10-15T11:21:43",
+   "fm_version": "10.95.0",
+   "fm_last_updated": "2026-10-12",
+   "registry_source": "user-created",
+   "registry_version": "10.69.0",
+   "registry_user_created": true,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "A-project-better",
+   "local_sha256": "f71b72f57eb2eed81850432517d4ede709a48a5e18b2bd4b1f982fcc40c7f367",
+   "local_bytes": 7931,
+   "dir_manifest_sha256": "55f5f42e2fb6985058247dda32852ea8834bfa4d95360454653a72d5c5b86b8c",
+   "dir_file_n": 53,
+   "mtime": "2026-10-09T04:36:33",
+   "fm_version": "1.24.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.8.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "A-project-handoff",
+   "local_sha256": "d654d79bcd24663356a6f1288a68b296377fca4158f8fa8b1f2b2e872a70a5b0",
+   "local_bytes": 9664,
+   "dir_manifest_sha256": "ebf1f0b98d608d2d22ffc43e3f068cda426257ef69e1ceed2b7656714665ba14",
+   "dir_file_n": 84,
+   "mtime": "2026-10-16T16:56:10",
+   "fm_version": "3.122.0",
+   "fm_last_updated": null,
+   "registry_source": "user-created",
+   "registry_version": "3.52.3",
+   "registry_user_created": true,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "A-prompt-better",
+   "local_sha256": "e000633f82d129be33bf6e01e8cf6d9c629030550183ca1f3fe4b686d9cfb9b5",
+   "local_bytes": 28736,
+   "dir_manifest_sha256": "185f493462b265659f4e60f0401a6802d119ee6f93f367f6385eeecc8f39ed9c",
+   "dir_file_n": 1,
+   "mtime": "2026-09-28T02:05:26",
+   "fm_version": "1.3.0",
+   "fm_last_updated": null,
+   "registry_source": "user-created",
+   "registry_version": "1.3.0",
+   "registry_user_created": true,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "A-skill-manager",
+   "local_sha256": "f211321b458f926ef09c77adc2753927a968ace7e54431359c2cd6a0c9dbe04c",
+   "local_bytes": 11496,
+   "dir_manifest_sha256": "f3dd03d523dcfc82914133d64938d6d1acd9784771b3f222cd8ea68c55aea866",
+   "dir_file_n": 46,
+   "mtime": "2026-10-15T12:12:07",
+   "fm_version": "1.20.0",
+   "fm_last_updated": null,
+   "registry_source": "user-created",
+   "registry_version": "1.5.0",
+   "registry_user_created": true,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "_my-skills",
+   "local_sha256": "adaab2b2f26e8f33c0fe27dca42aaaa782bade91d4a9f1da18a859193bf275bf",
+   "local_bytes": 1062,
+   "dir_manifest_sha256": "966419b700d066c316d383a69d0208db0fc783b13c9bde203a8e36b067214af9",
+   "dir_file_n": 3,
+   "mtime": "2026-09-21T18:42:58",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "user-created",
+   "registry_version": "community",
+   "registry_user_created": true,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "agent-browser",
+   "local_sha256": "8f5028eb62fa1bcb2e43df0952fd091504fb1270fd0e21e4441c6e2b5f960e77",
+   "local_bytes": 29313,
+   "dir_manifest_sha256": "b63c52c24fee49bc0a778244a58efa3602f8bc3841f9ca078286afef3f893a35",
+   "dir_file_n": 11,
+   "mtime": "2026-09-29T11:28:24",
+   "fm_version": "1.0.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "ai-video-homework-pipeline",
+   "local_sha256": "b374d4256f89dbda0ec60a2dd74fe7b6b0f5c79002293c05636d8c5177185d4d",
+   "local_bytes": 6242,
+   "dir_manifest_sha256": "2e537a99181357fedc1b43debba8f9b7628ec27a03785a5945e89766049fd37e",
+   "dir_file_n": 7,
+   "mtime": "2026-09-21T01:12:44",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "algorithmic-art",
+   "local_sha256": "3bc4092c09804853186524c826bc0621b940bb6122c05b84496dff95388e6eef",
+   "local_bytes": 19769,
+   "dir_manifest_sha256": "cee49ead8a916a4c3054863489a94a6300c8ffd20050f0b577d3ef33d7c55377",
+   "dir_file_n": 4,
+   "mtime": "2026-07-05T16:10:21",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [
+    {
+     "repo": "anthropics/skills",
+     "path": "skills/algorithmic-art/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills-claude/skills/algorithmic-art/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills/skills/algorithmic-art/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-bundle-creative-director/skills/algorithmic-art/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-bundle-indie-game-dev/skills/algorithmic-art/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "skills/algorithmic-art/SKILL.md"
+    }
+   ],
+   "in_market_cache": false,
+   "confidence": "inferred"
+  },
+  {
+   "slug": "audio-deliverable-pipeline",
+   "local_sha256": "a659bee9927273c16bdcf8209c751bdc6fc821fd1a4f63de9b021f43f6fc6df8",
+   "local_bytes": 8320,
+   "dir_manifest_sha256": "239ff0338e1702db31a36cc9477fa8b91515a5abdc33bcb5b6690f02b8496647",
+   "dir_file_n": 5,
+   "mtime": "2026-10-14T11:06:52",
+   "fm_version": "1.0.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "audit-runner-safe-aggregate",
+   "local_sha256": "d13d6313767e6d745d23a76bb1f6e688f4cdf22ba48aef73c266517f2d629b1f",
+   "local_bytes": 5654,
+   "dir_manifest_sha256": "43413f79866efb3bec4ec589d1a522afe838e4cf39738a27d991a5d6254013b5",
+   "dir_file_n": 1,
+   "mtime": "2026-09-29T11:28:24",
+   "fm_version": "1.0.0",
+   "fm_last_updated": null,
+   "registry_source": "user-created",
+   "registry_version": "1.0.0",
+   "registry_user_created": true,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "bigfile-split",
+   "local_sha256": "982653806daa4ee763d3964d57672b1d15c509ec921f35cd6c60b8ad9cfc9662",
+   "local_bytes": 4088,
+   "dir_manifest_sha256": "1ede6310a22f0f2e48eccd4387ada07304cf84491b1667ab8bc9ab437b2b5873",
+   "dir_file_n": 16,
+   "mtime": "2026-09-30T17:47:48",
+   "fm_version": "1.4.3",
+   "fm_last_updated": null,
+   "registry_source": "user-created",
+   "registry_version": "1.4.0",
+   "registry_user_created": true,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "brainstorming",
+   "local_sha256": "bba47904a7f6bbee3bf8a107ebbe84e65d392be683bbb898ded736b29e415f90",
+   "local_bytes": 10634,
+   "dir_manifest_sha256": "7f159e5bcfce77e1e3083010531fbdc6793a2129c22916ba711d0fdf6f8226c4",
+   "dir_file_n": 8,
+   "mtime": "2026-09-22T00:44:36",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [
+    {
+     "repo": "obra/superpowers",
+     "path": "skills/brainstorming/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills-claude/skills/brainstorming/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills/skills/brainstorming/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "skills/brainstorming/SKILL.md"
+    }
+   ],
+   "in_market_cache": false,
+   "confidence": "inferred"
+  },
+  {
+   "slug": "brand-guidelines",
+   "local_sha256": "1120b3769e2985cefb3d25be981b1f914abeba57ae079b83c20c666c164fa9fe",
+   "local_bytes": 2235,
+   "dir_manifest_sha256": "97b14303b5d279f09a9578e70a182920e795e22313162f92cd52b7e04f3be43e",
+   "dir_file_n": 2,
+   "mtime": "2026-09-22T00:44:39",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [
+    {
+     "repo": "anthropics/skills",
+     "path": "skills/brand-guidelines/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills-claude/skills/brand-guidelines/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills/skills/brand-guidelines/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "skills/brand-guidelines/SKILL.md"
+    }
+   ],
+   "in_market_cache": true,
+   "confidence": "inferred"
+  },
+  {
+   "slug": "browser-cdp",
+   "local_sha256": "cce02239d7fbc8c8ed780ae1bffa0e322d5fc9c70f235f6aa4c7ea9da8f4aec6",
+   "local_bytes": 6474,
+   "dir_manifest_sha256": "8f905203298933bb80e3fd2eb908ef8eb736468c3fe987a2d1d545392d24ba46",
+   "dir_file_n": 2,
+   "mtime": "2026-08-04T21:38:44",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "browser-voice-call",
+   "local_sha256": "0ad0f455887cbfdbffd24934cfe7fa133483fc778bfad0cf64ef90aca2fd2320",
+   "local_bytes": 10365,
+   "dir_manifest_sha256": "4de102d1521c9b4d685e577d2fcf5368200eab147fdd93e185ac65c3eceae84f",
+   "dir_file_n": 3,
+   "mtime": "2026-10-13T09:46:27",
+   "fm_version": "1.0.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "byted-bp-cdn-pagesdeploy",
+   "local_sha256": "73c72373841a92ae5ef700cd6ed765c42cb172df5051eaa81ce014127c7f1cd1",
+   "local_bytes": 8084,
+   "dir_manifest_sha256": "41856c712a92fa10ef166ca9f06a9b00eef114099854fe52dbddbc371a7a6c92",
+   "dir_file_n": 6,
+   "mtime": "2026-10-01T15:58:15",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "skillhub",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "byted-mediakit-shared",
+   "local_sha256": "318a4f848c3ef8a1d4ecb329d81b6b892e18e949473a1e91ef400e1730fe400c",
+   "local_bytes": 10910,
+   "dir_manifest_sha256": "07cbc1d35a10f862c19788da51df237e23c9534f8229c7f304594e12f862ffc2",
+   "dir_file_n": 3,
+   "mtime": "2026-10-01T16:19:37",
+   "fm_version": "1.0.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "byted-seedance-video-generate",
+   "local_sha256": "763ef64d04b742281e7bee0bf85ac822fd6d5375069fe7a451591d12226cc3d5",
+   "local_bytes": 8305,
+   "dir_manifest_sha256": "8cd129241e8c9bbf09f2405c300404b4360540b56296ee216e622ea77b8becb0",
+   "dir_file_n": 3,
+   "mtime": "2026-08-03T05:56:40",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "byted-seedream-image-generate",
+   "local_sha256": "3eeaad44ac7854549be1a13535e785bc1688c9eedd009b9972e9576030130112",
+   "local_bytes": 8991,
+   "dir_manifest_sha256": "6538d390384359b0ea9324bc23fa387481e106ae9f715c8de28ddb23a42b9225",
+   "dir_file_n": 3,
+   "mtime": "2026-08-03T05:56:40",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "c-cleanup",
+   "local_sha256": "661d252e9b6beb81be798d8141111267e009090077f6735ef62d8b27ff83fa62",
+   "local_bytes": 30234,
+   "dir_manifest_sha256": "ccf66622fd77ef4284bd98860979080c46a651c97cbd340a136948d93e79dd49",
+   "dir_file_n": 7,
+   "mtime": "2026-10-09T07:14:43",
+   "fm_version": "2.5.1",
+   "fm_last_updated": null,
+   "registry_source": "user-created",
+   "registry_version": "2.2.0",
+   "registry_user_created": true,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "canvas-design",
+   "local_sha256": "d267ded6723d77ac32cead159bc71a0c6e1420bcf2a08de2f2962451fa6aa172",
+   "local_bytes": 12376,
+   "dir_manifest_sha256": "d19bd6974287d2842500f5dd4b535e3f8a4c45b1ea5732ee57376efec8dc471e",
+   "dir_file_n": 83,
+   "mtime": "2026-08-15T03:33:30",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [
+    {
+     "repo": "anthropics/skills",
+     "path": "skills/canvas-design/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills-claude/skills/canvas-design/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills/skills/canvas-design/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-bundle-aas-product-design-studio/skills/canvas-design/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-bundle-creative-director/skills/canvas-design/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-bundle-web-designer/skills/canvas-design/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "skills/canvas-design/SKILL.md"
+    }
+   ],
+   "in_market_cache": true,
+   "confidence": "inferred"
+  },
+  {
+   "slug": "chaoshi-admin-inline-edit",
+   "local_sha256": "1b7533332cddfd4ad4851232af8334ba6e2098b9c179a54f4e0d39185b7fbb49",
+   "local_bytes": 6220,
+   "dir_manifest_sha256": "a9b0550626e1ae581d1385bfec01e1481e46da57b18fe40d1f3a0e968528a143",
+   "dir_file_n": 1,
+   "mtime": "2026-08-03T05:56:40",
+   "fm_version": "1.1.0",
+   "fm_last_updated": null,
+   "registry_source": "user-created",
+   "registry_version": "1.1.0",
+   "registry_user_created": true,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "chaoshi-image-optimization",
+   "local_sha256": "68a7d493a45e0b2c90a8eecc9caacbe77ec648c64f067c5c0a884b14b685b26d",
+   "local_bytes": 24491,
+   "dir_manifest_sha256": "a73502b8310762d629d2c35eed419ce61872d3b711fb67f585bc68c206e0547e",
+   "dir_file_n": 2,
+   "mtime": "2026-10-14T11:06:52",
+   "fm_version": "1.5.0",
+   "fm_last_updated": null,
+   "registry_source": "user-created",
+   "registry_version": "1.3.0",
+   "registry_user_created": true,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "chaoshi-web-deploy",
+   "local_sha256": "6da0c777d2e402644969a4fde7127e5168bad534a90f5aa5ee2827b83d6ce2bd",
+   "local_bytes": 57300,
+   "dir_manifest_sha256": "e6bb386437df0bba9d5483896506dec5f9066c5e532612b1d725bae073da4025",
+   "dir_file_n": 1,
+   "mtime": "2026-10-14T11:06:52",
+   "fm_version": "3.9.5",
+   "fm_last_updated": null,
+   "registry_source": "user-created",
+   "registry_version": "3.5.1",
+   "registry_user_created": true,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "chart-visualization",
+   "local_sha256": "76cd9fe631b8d5961117e6a345732908b071ed3ac071b69af0f2fc1253ec8aa1",
+   "local_bytes": 3355,
+   "dir_manifest_sha256": "be1ccf657ac6d3218815396f11d77ed5b0139e441993e79a79fb8e4428e06233",
+   "dir_file_n": 28,
+   "mtime": "2026-09-22T00:44:30",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "ci-pipeline-debugging",
+   "local_sha256": "f4163ff714337f948e2548477d7f9aa7e5354df3e139b4f466d7ddab5af3eee3",
+   "local_bytes": 12926,
+   "dir_manifest_sha256": "2c6cea60e86f8a1dd1511df80cdac441819180256e6f0fe62474c08ce02e61c7",
+   "dir_file_n": 1,
+   "mtime": "2026-10-14T09:01:07",
+   "fm_version": "1.1.2",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "cloudbase",
+   "local_sha256": "fd9bf531c5b78dbe0c040b4aa3264a35dd613ac4ad79af79335911f9436cea86",
+   "local_bytes": 19789,
+   "dir_manifest_sha256": "081494200cfabae0408315e8c116ccaacca0f793db240f38d11ea6a99114ac8e",
+   "dir_file_n": 197,
+   "mtime": "2026-10-14T08:19:49",
+   "fm_version": "2.35.2",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "2.34.8",
+   "registry_user_created": false,
+   "declared": {
+    "_skillhub_meta.json": {
+     "version": "2.35.2",
+     "installedContentHash": null,
+     "md5": null,
+     "source": "skillhub",
+     "author": null,
+     "download_url": null,
+     "installedAt": 1791937189437,
+     "last_modified_time": null
+    },
+    "_meta.json": {
+     "version": "2.35.2",
+     "installedContentHash": null,
+     "md5": null,
+     "source": null,
+     "author": null,
+     "download_url": null,
+     "installedAt": null,
+     "last_modified_time": null
+    }
+   },
+   "inferred_upstreams": [],
+   "in_market_cache": true,
+   "confidence": "declared"
+  },
+  {
+   "slug": "cloudbase-db-optimize",
+   "local_sha256": "3e1af95d5a3523c491a1037a8b8a2a80cfb7da62ccc343999a04a4bcbde2fd08",
+   "local_bytes": 8364,
+   "dir_manifest_sha256": "553b8dc20cf568d1680b62e97ebfbdec3a47bb4722c5c7543e7e3aef778fc1cd",
+   "dir_file_n": 2,
+   "mtime": "2026-08-08T23:20:27",
+   "fm_version": "1.0.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "code-review",
+   "local_sha256": "a5c3621103eddbe40184097fe1544d60f9509dae42419323cb02c4c7e3b01733",
+   "local_bytes": 4954,
+   "dir_manifest_sha256": "f3646acd46ec1debbd0e67a83442cacfcf8eedf3731f8aa1e71fc0482e7ce46f",
+   "dir_file_n": 1,
+   "mtime": "2026-09-29T11:28:24",
+   "fm_version": "1.0.0",
+   "fm_last_updated": null,
+   "registry_source": "user-created",
+   "registry_version": "1.0.0",
+   "registry_user_created": true,
+   "declared": {},
+   "inferred_upstreams": [
+    {
+     "repo": "mattpocock/skills",
+     "path": "skills/engineering/code-review/SKILL.md"
+    },
+    {
+     "repo": "github/awesome-copilot",
+     "path": ".github/skills/code-review/SKILL.md"
+    }
+   ],
+   "in_market_cache": false,
+   "confidence": "inferred"
+  },
+  {
+   "slug": "codebuddy-chat-web",
+   "local_sha256": "559f10b7382038cbd0d955ee718c6d831e7b43f2870827392cbe47fdfab08660",
+   "local_bytes": 5505,
+   "dir_manifest_sha256": "e966e8f4d279e7b466c8aaaa03113754d7db4a558fde6202d0b87c030242580f",
+   "dir_file_n": 5,
+   "mtime": "2026-10-03T00:25:01",
+   "fm_version": "1.0.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "coding-agent",
+   "local_sha256": "136ca4635653ed085d0f5992edf5900b1d11936a97dffaa707493ae4d03acac0",
+   "local_bytes": 4940,
+   "dir_manifest_sha256": "cf1b1eccf5a4f5cf174d6368a98631b4a14ea314e5ed6c2ed5666e687c705691",
+   "dir_file_n": 1,
+   "mtime": "2026-09-30T15:20:21",
+   "fm_version": "1.1.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "commit-archaeologist",
+   "local_sha256": "8f21eb5ff270b4f4d403494fe606aa23b7faa73232dfe8ab0aed4fba1f94dfe5",
+   "local_bytes": 5496,
+   "dir_manifest_sha256": "72ce5ea878677e2351ee74fad76ab8f6b06a118731383386167e1c2d946cfa1f",
+   "dir_file_n": 4,
+   "mtime": "2026-10-02T02:45:38",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [
+    {
+     "repo": "Shubhamsaboo/awesome-llm-apps",
+     "path": "agent_skills/commit-archaeologist/SKILL.md"
+    }
+   ],
+   "in_market_cache": false,
+   "confidence": "inferred"
+  },
+  {
+   "slug": "computer-use-guidance-windows",
+   "local_sha256": "d25e75a9e4a14b4c77172d7c756c30f1e4eed18646213ffb86586db131ad4324",
+   "local_bytes": 28217,
+   "dir_manifest_sha256": "fe3223b27d2c36d44805d8dd427b9ded8c9c337ca4ddc53cc74e4435397b8097",
+   "dir_file_n": 2,
+   "mtime": "2026-10-01T16:19:38",
+   "fm_version": "0.9.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "0.9.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "consulting-analysis",
+   "local_sha256": "04ef09dccdee8557ffce7525020aefa98950086e4cbe8d3a7aa7e641d8c4b277",
+   "local_bytes": 71653,
+   "dir_manifest_sha256": "868cb05afcd83cc5fe93c00885de830306bad04bd25ddd82395d4ef8afa06230",
+   "dir_file_n": 1,
+   "mtime": "2026-09-26T23:40:47",
+   "fm_version": "1.16.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.2.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "cross-platform-agent-sync",
+   "local_sha256": "663955f5704b531185276bf57bbc8e1dcf629e36f4036b1a68130faf2198115d",
+   "local_bytes": 4057,
+   "dir_manifest_sha256": "09164a4fcf9b9ad0fe75bb843b466175db1065d1188ef06fdfc292c291b01bbd",
+   "dir_file_n": 12,
+   "mtime": "2026-09-26T23:20:24",
+   "fm_version": "1.5.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.3.2",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "data-analysis",
+   "local_sha256": "29cb6b54bbe941782bfc714121cc926ec95a954d521e75a9fb60427734d89e88",
+   "local_bytes": 8929,
+   "dir_manifest_sha256": "8ace6e98477e81d2d2329f14899003971befc15ab8a43be7312dcb78b44ba6b5",
+   "dir_file_n": 2,
+   "mtime": "2026-08-03T05:56:40",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "data-visualization",
+   "local_sha256": "b69c3f87a1d43680657612ea9af59cf1036923d9b6fbc4a312b35faa41045836",
+   "local_bytes": 13700,
+   "dir_manifest_sha256": "6e435638f4b35da5050931f7f9b93623bc73ce24616a188b31933ff25a440080",
+   "dir_file_n": 1,
+   "mtime": "2026-08-03T05:56:40",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "debugging-fixing",
+   "local_sha256": "4afc4b52248b62bf23215600191a996b0992c9c05e80530e8fef50f44d12d296",
+   "local_bytes": 4667,
+   "dir_manifest_sha256": "c2152724633d54962d59ef6a88feb162b171e162cb47acd2ea1235cd2eb6c2e4",
+   "dir_file_n": 2,
+   "mtime": "2026-09-29T01:50:46",
+   "fm_version": "2.2.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "2.1.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "defuddle",
+   "local_sha256": "cb702b754dd340ad7c7db4f34e1953277eb64601201ce96515b00786a1088a26",
+   "local_bytes": 1034,
+   "dir_manifest_sha256": "af47ed10970b58ee94648a72897a0d833080d149b8172f9d64867cd7a20329ba",
+   "dir_file_n": 1,
+   "mtime": "2026-09-22T00:44:36",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [
+    {
+     "repo": "kepano/obsidian-skills",
+     "path": "skills/defuddle/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills-claude/skills/defuddle/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills/skills/defuddle/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "skills/defuddle/SKILL.md"
+    }
+   ],
+   "in_market_cache": false,
+   "confidence": "inferred"
+  },
+  {
+   "slug": "diagram-maker",
+   "local_sha256": "5f990385f9368efe24b0897eb2ae98d07730b11e23746d63199aceecba389ae3",
+   "local_bytes": 2582,
+   "dir_manifest_sha256": "21aebad35ff9e7397f90e3404ba5c77cfadbdc1e94a8c2af19b74a2b96edc992",
+   "dir_file_n": 3,
+   "mtime": "2026-09-29T11:28:24",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "dingtalk-aisearch",
+   "local_sha256": "d3542699e8fb145ba7c30121e54ea0118c261035d5fece5ad373cc9534888cb2",
+   "local_bytes": 9238,
+   "dir_manifest_sha256": "dd47bc4672d2fe594be3df1ecbb153df625a3209b8e97fee2e34c4bc2309bdd3",
+   "dir_file_n": 4,
+   "mtime": "2026-09-29T01:41:07",
+   "fm_version": "1.0.62.3",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.62.3",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "dingtalk-aitable",
+   "local_sha256": "1ab9eb754706eaa7b4566813a64463cb1af48153374d53eb2d050229c687406c",
+   "local_bytes": 26977,
+   "dir_manifest_sha256": "14de376adbf6db3013897513db74db70a8b1fbe7f356df925fd5f3c7c7f4393b",
+   "dir_file_n": 44,
+   "mtime": "2026-09-29T01:41:07",
+   "fm_version": "1.0.62.3",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.62.3",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "dingtalk-calendar",
+   "local_sha256": "6854e51257de74bfbe763a8416bff689ffd92cb03b8f730c360f359cb714bb5e",
+   "local_bytes": 13506,
+   "dir_manifest_sha256": "d9fefa4a7beb7967b2fda0b4f2cf7f465b16e433461a9e0a266d59eb518b262c",
+   "dir_file_n": 8,
+   "mtime": "2026-09-29T01:41:07",
+   "fm_version": "1.0.62.3",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.62.3",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "dingtalk-chat",
+   "local_sha256": "005a9c7382f4e6f5860716be421c61d1c5274d4fdbb331c8428e36f505721a16",
+   "local_bytes": 9739,
+   "dir_manifest_sha256": "c5368f48d2514fa81bc5327139c482ba46d6abafbe6db6c0ad0b661555b4b526",
+   "dir_file_n": 19,
+   "mtime": "2026-09-29T01:41:07",
+   "fm_version": "1.0.62.3",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.62.3",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "dingtalk-contact",
+   "local_sha256": "4007d4a4c81ce0cddff04ba14d6fcdcadaca8d4165350823640e3d793a5c1658",
+   "local_bytes": 9640,
+   "dir_manifest_sha256": "3c699be84fc36ecbf146f2c1cd2a6bf84eb3e128c949c4a210d92ed92dcc6271",
+   "dir_file_n": 7,
+   "mtime": "2026-09-29T01:41:07",
+   "fm_version": "1.0.62.3",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.62.3",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "dingtalk-doc",
+   "local_sha256": "cbc69b77418ba33679aa642612bc9ef8fa93a276f6816524336929da0401bd26",
+   "local_bytes": 12239,
+   "dir_manifest_sha256": "dfd3f1b05a3016429fbfb5545a8bdee5ff10d61343f725736f81424b6951d20e",
+   "dir_file_n": 20,
+   "mtime": "2026-09-29T01:41:07",
+   "fm_version": "1.0.62.3",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.62.3",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "dingtalk-drive",
+   "local_sha256": "27b38e5eb562812d14b92f7c096a406b63ce1157086f2164e1735b918a90b532",
+   "local_bytes": 15614,
+   "dir_manifest_sha256": "4d0f7fbb950ec7d5fc3b6b4154404b8b705055049b0b0529d3340a0907e45f96",
+   "dir_file_n": 5,
+   "mtime": "2026-09-29T01:41:07",
+   "fm_version": "1.0.62.3",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.62.3",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "dingtalk-event",
+   "local_sha256": "70e4be28e8ea638dd3e6df1d82cfae56f074cc87f515ba5d0250549c3992e9d8",
+   "local_bytes": 10265,
+   "dir_manifest_sha256": "eb6d98eecad30a7a5baa7f11cc81f1befa169af1856d69f5854e2a32496a6635",
+   "dir_file_n": 10,
+   "mtime": "2026-09-29T01:41:07",
+   "fm_version": "1.0.62.3",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.62.3",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "dingtalk-mail",
+   "local_sha256": "4285af5d081a8f8440beb5f030e5858a3e697b3adef3fd3686ce73fe55ef626d",
+   "local_bytes": 9566,
+   "dir_manifest_sha256": "eb9517a36b3326d9a6711ee9316064f88710d0d5102935f792cc959456e9c17d",
+   "dir_file_n": 8,
+   "mtime": "2026-09-29T01:41:07",
+   "fm_version": "1.0.62.3",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.62.3",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "dingtalk-minutes",
+   "local_sha256": "a00f8d5b473e80863d2325520755bce9eae65793e711aac8b6006478d475233e",
+   "local_bytes": 16740,
+   "dir_manifest_sha256": "66ea421ac7613b99a4b6f5a431a81c7c6f9654e1ff82b9f857bfd6c368bae23c",
+   "dir_file_n": 12,
+   "mtime": "2026-09-29T01:41:07",
+   "fm_version": "1.0.62.3",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.62.3",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "dingtalk-misc",
+   "local_sha256": "6ede58a4cfe09310e8dd41ef72b7f0f6e06f78b8abf0e33cdda3fe48ff9fa819",
+   "local_bytes": 16260,
+   "dir_manifest_sha256": "8b0ad0a2bc204fc0b34fa7fae24378dade946cc3e627f2e7772b4dee505856c4",
+   "dir_file_n": 130,
+   "mtime": "2026-09-29T01:41:07",
+   "fm_version": "1.0.62.3",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.62.3",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "dingtalk-shared",
+   "local_sha256": "c1dc3cc39ad7f65ce284d08e10cc970f71bee8e8a146832e8a547674128c9c57",
+   "local_bytes": 7118,
+   "dir_manifest_sha256": "32d7655a2a99a6428a003a3d25953c0b776571f9f800aab1d738650597ababac",
+   "dir_file_n": 15,
+   "mtime": "2026-09-29T01:41:07",
+   "fm_version": "1.0.62.3",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.62.3",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "dingtalk-todo",
+   "local_sha256": "02966238a32d07cb3145f0dd0aaa3f7778e2b393b1221c4b752ac694e466b230",
+   "local_bytes": 11934,
+   "dir_manifest_sha256": "daaef5c66b6abfc7e6c37027e05b2b3b4fead9e72b29d5358adef841f1236b68",
+   "dir_file_n": 9,
+   "mtime": "2026-09-29T01:41:07",
+   "fm_version": "1.0.62.3",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.62.3",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "dingtalk-wiki",
+   "local_sha256": "86f8a2592107d0098bb698a9f210c6dbc65811f6346ebe2953ebcbb51223451e",
+   "local_bytes": 13707,
+   "dir_manifest_sha256": "b063dfd73c80bacd809c90e771acd91423bc128a68d4990ab90b168bf30a6396",
+   "dir_file_n": 6,
+   "mtime": "2026-09-29T01:41:07",
+   "fm_version": "1.0.62.3",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.62.3",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "discover-agent-cli",
+   "local_sha256": "fd9f14cf74243a346cd39e7a111bd73ed4f81b97e27ba6ea37d88779a35fa993",
+   "local_bytes": 8506,
+   "dir_manifest_sha256": "41aa7df300fac91e60502d86d0382d395c16a1ea2577f267064181bc627f5126",
+   "dir_file_n": 2,
+   "mtime": "2026-09-14T23:21:40",
+   "fm_version": "1.0.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "doc-coauthoring",
+   "local_sha256": "2e47d78846faeea4a56e9809c52700087a15a2155a3f293a3efbaded81398ef4",
+   "local_bytes": 15815,
+   "dir_manifest_sha256": "1dbb8a09fcd5ad4259992f73a2a286a5ee3b88cc0032b02e37769b3e0ac65e4a",
+   "dir_file_n": 1,
+   "mtime": "2026-07-04T18:07:33",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [
+    {
+     "repo": "anthropics/skills",
+     "path": "skills/doc-coauthoring/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills-claude/skills/doc-coauthoring/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills/skills/doc-coauthoring/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "skills/doc-coauthoring/SKILL.md"
+    }
+   ],
+   "in_market_cache": false,
+   "confidence": "inferred"
+  },
+  {
+   "slug": "docker-e2e-gate",
+   "local_sha256": "40d12288a15934ebb170c83d7e071c93ce3164e03923ed924afafd920be116a5",
+   "local_bytes": 3573,
+   "dir_manifest_sha256": "92fcbf5eb2155a9c02b0ca0c39a13c28571e9377ecacda73737f2307c0b13a52",
+   "dir_file_n": 3,
+   "mtime": "2026-10-02T19:00:19",
+   "fm_version": "1.0.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "docx",
+   "local_sha256": "47406d82f5af6c3590b2b6b383ea60dccf46292c004cf17580065f2cc5d6958e",
+   "local_bytes": 28922,
+   "dir_manifest_sha256": "8f1b7499428e59f546fdcb724996a0cb22cf2e3bad60fc8cca00bd249b2959eb",
+   "dir_file_n": 70,
+   "mtime": "2026-07-02T22:34:44",
+   "fm_version": "2.0.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "2.0.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [
+    {
+     "repo": "anthropics/skills",
+     "path": "skills/docx/SKILL.md"
+    }
+   ],
+   "in_market_cache": false,
+   "confidence": "inferred"
+  },
+  {
+   "slug": "dogfood",
+   "local_sha256": "513091d3a261bb9c4c52b77f8faf7f90de1f0843a39394ab662ab05ee7e76934",
+   "local_bytes": 10428,
+   "dir_manifest_sha256": "4e253ac48222c9f5a846b41e520f780576255002e78bbb1bb3a2417f316cb4b7",
+   "dir_file_n": 3,
+   "mtime": "2026-09-24T09:33:37",
+   "fm_version": "1.0.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "electron",
+   "local_sha256": "d97a2bc221b5044184ad0af51376b07bcb94f259622f2af254fb3701e6f01861",
+   "local_bytes": 6727,
+   "dir_manifest_sha256": "05b6a7059c8796af707c4d3c48e8ff1d061ecdda37e26cff584112ab71e128e5",
+   "dir_file_n": 1,
+   "mtime": "2026-08-03T05:56:40",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "elon-musk-perspective",
+   "local_sha256": "c2b86f0c5f3e632199f997ef306c1f0611a04f6fe81f110fbc7c4ccacab4c00d",
+   "local_bytes": 23644,
+   "dir_manifest_sha256": "fb4fdcfb7e20c1070383925f63923ec5d11bc9ba56e55ae4ee3e5b6294c15e85",
+   "dir_file_n": 10,
+   "mtime": "2026-07-05T04:03:56",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {
+    "meta.json": {
+     "version": "1.0.2",
+     "installedContentHash": null,
+     "md5": "3ae57c3d5c839bcea9564de434de45ce",
+     "source": null,
+     "author": "Github",
+     "download_url": "https://down.marvis.qq.com/wupload2/skill-packages/1778578658954_023-elon-musk-perspective.zip",
+     "installedAt": null,
+     "last_modified_time": "2026-07-05 04:03:56"
+    }
+   },
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "declared"
+  },
+  {
+   "slug": "fenjue-lessons-hitrate",
+   "local_sha256": "0129e4ff72291c90d7dab8b2d9f1374325c516ab3e920598b592f0fa207a27f2",
+   "local_bytes": 3250,
+   "dir_manifest_sha256": "aabb040ca78d1fe1b7fe0fb616faa3387baca05e2b3695e7e7d202df21a005a1",
+   "dir_file_n": 1,
+   "mtime": "2026-10-14T11:06:57",
+   "fm_version": "2.0.0",
+   "fm_last_updated": null,
+   "registry_source": "user-created",
+   "registry_version": "2.0.0",
+   "registry_user_created": true,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "fenjue-memory-audit",
+   "local_sha256": "af851879cfc78f09ed30105a2962fe5616d7bbe2810d793184c26b4bef289f0e",
+   "local_bytes": 9743,
+   "dir_manifest_sha256": "d401902a7986dee545be2ca0fcb134b318787f2bb13d8859a466dd017bb1da5d",
+   "dir_file_n": 5,
+   "mtime": "2026-10-14T11:06:57",
+   "fm_version": "1.7.0",
+   "fm_last_updated": null,
+   "registry_source": "user-created",
+   "registry_version": "1.7.0",
+   "registry_user_created": true,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "figma",
+   "local_sha256": "5b11f7c8d0ce4c047b401323e7b8fe6559bd3162a3397bf5248634a5444609d5",
+   "local_bytes": 3170,
+   "dir_manifest_sha256": "5334078fd59e2b16fff4dd7e84c655cadb05f95e77627e02604a34d9356f4a83",
+   "dir_file_n": 8,
+   "mtime": "2026-09-22T00:44:39",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "find-skills",
+   "local_sha256": "52d9c6c971fdd447402326dc7df7afc4c99e92520dfabc744eff3e9ea899836a",
+   "local_bytes": 21192,
+   "dir_manifest_sha256": "16d8d72e7fa0a58af89c26767f6212d2d4468c2f9f0b302328ffdaea326f20d1",
+   "dir_file_n": 4,
+   "mtime": "2026-08-03T05:56:40",
+   "fm_version": "1.0.4",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.4",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [
+    {
+     "repo": "vercel-labs/skills",
+     "path": "skills/find-skills/SKILL.md"
+    }
+   ],
+   "in_market_cache": false,
+   "confidence": "inferred"
+  },
+  {
+   "slug": "first-principles-decomposer",
+   "local_sha256": "1f6d6a42f16629707698c40c891f5369c1e2a815f8a4e41624c789c9d1fc4c0e",
+   "local_bytes": 3034,
+   "dir_manifest_sha256": "b2acdb3c2629f678114ccc54c608849cc762caddade23842741d69afb86557c3",
+   "dir_file_n": 6,
+   "mtime": "2026-09-14T03:33:21",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {
+    "meta.json": {
+     "version": "1.0.2",
+     "installedContentHash": null,
+     "md5": "a500fcb6d1aed513a40fb0887b85ffd5",
+     "source": null,
+     "author": "ClawHub",
+     "download_url": "https://static.pc.yyb.qq.com/wupload2skill-packages/1776694486111_21-First%20Principles%20Decomposer.zip",
+     "installedAt": null,
+     "last_modified_time": "2026-07-05 04:03:57"
+    },
+    "_meta.json": {
+     "version": "1.0.0",
+     "installedContentHash": null,
+     "md5": null,
+     "source": null,
+     "author": null,
+     "download_url": null,
+     "installedAt": null,
+     "last_modified_time": null
+    }
+   },
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "declared"
+  },
+  {
+   "slug": "frontend-design",
+   "local_sha256": "a14836e24bb6308eede8fd7c06c55cc06dfa98db888bee349ef4699bd7ab53ed",
+   "local_bytes": 10173,
+   "dir_manifest_sha256": "0d1556901d72a6cfb81a9993f1c7a111d12306567049d18b7fb96ed4420f317b",
+   "dir_file_n": 2,
+   "mtime": "2026-09-29T00:33:35",
+   "fm_version": "2.1.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [
+    {
+     "repo": "anthropics/skills",
+     "path": "skills/frontend-design/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills-claude/skills/frontend-design/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills/skills/frontend-design/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-bundle-aas-product-design-studio/skills/frontend-design/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-bundle-aas-web-app-builder/skills/frontend-design/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-bundle-creative-director/skills/frontend-design/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-bundle-web-designer/skills/frontend-design/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-bundle-web-wizard/skills/frontend-design/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "skills/frontend-design/SKILL.md"
+    }
+   ],
+   "in_market_cache": false,
+   "confidence": "inferred"
+  },
+  {
+   "slug": "frontend-skill",
+   "local_sha256": "d367b2d22825d74c169475507e7ff109b81c1e9c20b2de3421fb19fcfbe3329b",
+   "local_bytes": 7671,
+   "dir_manifest_sha256": "de8b8e7802675afff094748a3dd5bab389f0bfd7eebf55a38d928f69f020619e",
+   "dir_file_n": 3,
+   "mtime": "2026-08-16T00:41:16",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "frontend-slides",
+   "local_sha256": "41fccbe44d4882f412e141028eb21395bb13327492a512abee6e55c672cb0c5a",
+   "local_bytes": 19654,
+   "dir_manifest_sha256": "5d62be201c34bf3e56db8453b874cfc491afed23a4fdaff0847972d734a9e183",
+   "dir_file_n": 21,
+   "mtime": "2026-07-05T04:04:08",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {
+    "meta.json": {
+     "version": "1.0.2",
+     "installedContentHash": null,
+     "md5": "365a0f9cde5c9d0affd3da6f2f84f2ab",
+     "source": null,
+     "author": "Github",
+     "download_url": "https://down.marvis.qq.com/wupload2/skill-packages/1778578440788_014-frontend-slides.zip",
+     "installedAt": null,
+     "last_modified_time": "2026-07-05 04:04:08"
+    }
+   },
+   "inferred_upstreams": [
+    {
+     "repo": "affaan-m/ECC",
+     "path": ".agents/skills/frontend-slides/SKILL.md"
+    },
+    {
+     "repo": "affaan-m/ECC",
+     "path": ".cursor/skills/frontend-slides/SKILL.md"
+    },
+    {
+     "repo": "affaan-m/ECC",
+     "path": "docs/ja-JP/skills/frontend-slides/SKILL.md"
+    },
+    {
+     "repo": "affaan-m/ECC",
+     "path": "docs/zh-CN/skills/frontend-slides/SKILL.md"
+    },
+    {
+     "repo": "affaan-m/ECC",
+     "path": "skills/frontend-slides/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills-claude/skills/frontend-slides/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills/skills/frontend-slides/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "skills/frontend-slides/SKILL.md"
+    }
+   ],
+   "in_market_cache": false,
+   "confidence": "declared"
+  },
+  {
+   "slug": "github",
+   "local_sha256": "69c4b1bf9819c85217fc0aab9a8a877886ed840c7e1f8dc32914d30c0aaf22e5",
+   "local_bytes": 5084,
+   "dir_manifest_sha256": "a8db0fda39ad763b659de198fa09e00bd9f5ab7288a871635a45cf498d94e4e6",
+   "dir_file_n": 3,
+   "mtime": "2026-09-24T18:42:38",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {
+    "_skillhub_meta.json": {
+     "version": "1.0.0",
+     "installedContentHash": "sha256:ef55efbecc98708156385a914c2c8e3cf5f1fdca47ac8a2f2bb18368e6007eb9",
+     "md5": null,
+     "source": "skillhub",
+     "author": null,
+     "download_url": null,
+     "installedAt": 1779325678991,
+     "last_modified_time": null
+    },
+    "_meta.json": {
+     "version": "1.0.0",
+     "installedContentHash": null,
+     "md5": null,
+     "source": null,
+     "author": null,
+     "download_url": null,
+     "installedAt": null,
+     "last_modified_time": null
+    }
+   },
+   "inferred_upstreams": [
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills-claude/skills/github/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills/skills/github/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "skills/github/SKILL.md"
+    },
+    {
+     "repo": "volcengine/OpenViking",
+     "path": "bot/workspace/skills/github/SKILL.md"
+    }
+   ],
+   "in_market_cache": true,
+   "confidence": "declared"
+  },
+  {
+   "slug": "grill-me",
+   "local_sha256": "6c2247d074eca07cce42663d307fb2e26f49e291b899a1e32ba0c801cf6d14fb",
+   "local_bytes": 2691,
+   "dir_manifest_sha256": "23bb03abb8f5fb61e4babdf8125cc3a8edb6b759e9f901c076d1ac2aaf82ffe4",
+   "dir_file_n": 2,
+   "mtime": "2026-10-15T07:15:23",
+   "fm_version": "1.0.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.0",
+   "registry_user_created": false,
+   "declared": {
+    "_skillhub_meta.json": {
+     "version": "1.0.0",
+     "installedContentHash": null,
+     "md5": null,
+     "source": "marketplace",
+     "author": null,
+     "download_url": null,
+     "installedAt": 1792016031573,
+     "last_modified_time": null
+    }
+   },
+   "inferred_upstreams": [
+    {
+     "repo": "mattpocock/skills",
+     "path": "skills/productivity/grill-me/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills-claude/skills/grill-me/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills/skills/grill-me/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "skills/grill-me/SKILL.md"
+    }
+   ],
+   "in_market_cache": true,
+   "confidence": "declared"
+  },
+  {
+   "slug": "gsap",
+   "local_sha256": "d65cfadd0040f3b72377b43e5ccc088925a1397f19fcd258abcf4ed72100aa16",
+   "local_bytes": 7776,
+   "dir_manifest_sha256": "4d5fb40f8c4efe1655bbe7bcaba04ff8402d8566c3c6ce42f3066796a1c9e7a6",
+   "dir_file_n": 3,
+   "mtime": "2026-08-03T05:56:40",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "gstack",
+   "local_sha256": "7092a2fddcc7bb393b0b266c29468ad398c79b72ae563a7ffa49f468a1d24a62",
+   "local_bytes": 27329,
+   "dir_manifest_sha256": "d6cc9c5764681f0c51517aa07b1b8786d36754328f2ee0e49d63d93a909df869",
+   "dir_file_n": 170,
+   "mtime": "2026-09-23T00:15:46",
+   "fm_version": "1.1.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.1.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "healthcare-cdss-patterns",
+   "local_sha256": "439875d2fff3bbf14e0b46b7310b4c815c2596e54a6cafaafb4b2b93b4865626",
+   "local_bytes": 9461,
+   "dir_manifest_sha256": "053a079bf3dda4aef1c8c2f4d3eb08739004399ca40fc528ce16ffdb5722c149",
+   "dir_file_n": 1,
+   "mtime": "2026-10-03T02:14:08",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [
+    {
+     "repo": "affaan-m/ECC",
+     "path": "docs/ja-JP/skills/healthcare-cdss-patterns/SKILL.md"
+    },
+    {
+     "repo": "affaan-m/ECC",
+     "path": "docs/zh-CN/skills/healthcare-cdss-patterns/SKILL.md"
+    },
+    {
+     "repo": "affaan-m/ECC",
+     "path": "skills/healthcare-cdss-patterns/SKILL.md"
+    }
+   ],
+   "in_market_cache": false,
+   "confidence": "inferred"
+  },
+  {
+   "slug": "healthcare-emr-patterns",
+   "local_sha256": "117e1861c5313f1874c82791c73798d28e9985cac8964a95d73bed915a8aff39",
+   "local_bytes": 6746,
+   "dir_manifest_sha256": "c1d875489175dbc50545e74cc26149361f6bff9ff26f152922f922338362c89f",
+   "dir_file_n": 1,
+   "mtime": "2026-10-03T02:14:10",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [
+    {
+     "repo": "affaan-m/ECC",
+     "path": "docs/ja-JP/skills/healthcare-emr-patterns/SKILL.md"
+    },
+    {
+     "repo": "affaan-m/ECC",
+     "path": "docs/zh-CN/skills/healthcare-emr-patterns/SKILL.md"
+    },
+    {
+     "repo": "affaan-m/ECC",
+     "path": "skills/healthcare-emr-patterns/SKILL.md"
+    }
+   ],
+   "in_market_cache": false,
+   "confidence": "inferred"
+  },
+  {
+   "slug": "healthcare-eval-harness",
+   "local_sha256": "0c74bb0309d4fb7e3bf04b0f779909156520c73bd6162bd405f7232af19c0a68",
+   "local_bytes": 7849,
+   "dir_manifest_sha256": "89f9cbc4e91577d1065c902e16c644ce5b00cc61852f3973ee460559919e3650",
+   "dir_file_n": 1,
+   "mtime": "2026-10-03T02:14:13",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [
+    {
+     "repo": "affaan-m/ECC",
+     "path": "docs/ja-JP/skills/healthcare-eval-harness/SKILL.md"
+    },
+    {
+     "repo": "affaan-m/ECC",
+     "path": "docs/zh-CN/skills/healthcare-eval-harness/SKILL.md"
+    },
+    {
+     "repo": "affaan-m/ECC",
+     "path": "skills/healthcare-eval-harness/SKILL.md"
+    }
+   ],
+   "in_market_cache": false,
+   "confidence": "inferred"
+  },
+  {
+   "slug": "hermes-installer",
+   "local_sha256": "111cf208cc07f6f2d238e25fea9d39bf42bad69df505e75cd0201b04a9247146",
+   "local_bytes": 2512,
+   "dir_manifest_sha256": "71bcbd7bdc4c57ae1d59a00033a5ba135190d4682bd3609d923e5b8d49b573eb",
+   "dir_file_n": 1,
+   "mtime": "2026-10-14T11:06:58",
+   "fm_version": "1.0.0",
+   "fm_last_updated": "2026-08-04",
+   "registry_source": "user-created",
+   "registry_version": "1.0.0",
+   "registry_user_created": true,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "hook-analyzer-skill",
+   "local_sha256": "e87c096d478c6e15b8a34c75c733f51cd6bb5fd878694c2328df074255e2ffc2",
+   "local_bytes": 5446,
+   "dir_manifest_sha256": "d5fe3d88fa0cb68ec7bd5d0130deffef74c84d2d64d555749ea38d7355e31a00",
+   "dir_file_n": 2,
+   "mtime": "2026-09-30T17:47:59",
+   "fm_version": "1.0.3",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.2",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "html-ppt",
+   "local_sha256": "289e1cf2c0fa95b44795ccd557199ea7bc09ab30266a7327108e462e05c9aca8",
+   "local_bytes": 14265,
+   "dir_manifest_sha256": "a219b969a9185c6d00dca2a02fa9f8d1c07004882b3d4609608c1d2c95f29fca",
+   "dir_file_n": 225,
+   "mtime": "2026-07-05T04:04:03",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {
+    "meta.json": {
+     "version": "1.0.0",
+     "installedContentHash": null,
+     "md5": "8619d5ce872dc08b07d7100eab2ebbef",
+     "source": null,
+     "author": "Github",
+     "download_url": "https://down.marvis.qq.com/wupload2/skill-packages/1779249761480_html-ppt-skill.zip",
+     "installedAt": null,
+     "last_modified_time": "2026-07-05 04:04:04"
+    }
+   },
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "declared"
+  },
+  {
+   "slug": "html-to-docx-win-fix",
+   "local_sha256": "27d45ebb177172d52cb0655f01c7478b5a92436fb4d1cead0bf9ac7bafab25b2",
+   "local_bytes": 4554,
+   "dir_manifest_sha256": "362067cd13f63c8419c545baf1b056c1e720a759c9cfb13bd85addf63cb3f050",
+   "dir_file_n": 2,
+   "mtime": "2026-10-14T11:06:58",
+   "fm_version": "1.0.0",
+   "fm_last_updated": "2026-09-21",
+   "registry_source": "community",
+   "registry_version": "1.0.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "hyperframes",
+   "local_sha256": "13bb7e2a3871d0352df8d975e75bb902d265c8514df2b8f82e1124e5027d9e7c",
+   "local_bytes": 33031,
+   "dir_manifest_sha256": "98eb853e1dbbc83a79fbb50c1f54c8f1461af1b32a8fc320fc82da51f68fdd2f",
+   "dir_file_n": 54,
+   "mtime": "2026-08-03T05:56:40",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [
+    {
+     "repo": "calesthio/OpenMontage",
+     "path": ".agents/skills/hyperframes/SKILL.md"
+    }
+   ],
+   "in_market_cache": false,
+   "confidence": "inferred"
+  },
+  {
+   "slug": "hyperframes-cli",
+   "local_sha256": "a7b870543b0b86f71cd2a0c57de80ba5bd3d40616f92a3f9d6b230180780f4d9",
+   "local_bytes": 8949,
+   "dir_manifest_sha256": "cfb8b6e6c78fc493889fb607c5f1055724dd2485bfd210bbf031dcb348288e6b",
+   "dir_file_n": 1,
+   "mtime": "2026-08-03T05:56:40",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [
+    {
+     "repo": "calesthio/OpenMontage",
+     "path": ".agents/skills/hyperframes-cli/SKILL.md"
+    }
+   ],
+   "in_market_cache": false,
+   "confidence": "inferred"
+  },
+  {
+   "slug": "hyperframes-media",
+   "local_sha256": "0fef8d8bf5c2aaab28fe402386a0d58e3f80f2b159f50b14377bed283fa2b961",
+   "local_bytes": 15149,
+   "dir_manifest_sha256": "889b610f5a4f4d469de65d57ea42e12151202683485a358354bbb380ac8131ec",
+   "dir_file_n": 1,
+   "mtime": "2026-08-03T05:56:40",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [
+    {
+     "repo": "calesthio/OpenMontage",
+     "path": ".agents/skills/hyperframes-media/SKILL.md"
+    }
+   ],
+   "in_market_cache": false,
+   "confidence": "inferred"
+  },
+  {
+   "slug": "hyperframes-registry",
+   "local_sha256": "0248bfb9968d53ea8f9e4b5f7f5a8eb9e72f21108022580f7eba2fba7e26b234",
+   "local_bytes": 4278,
+   "dir_manifest_sha256": "84a735470bb235c9ff385299067172854620e2abea3d585823447218853e4a1c",
+   "dir_file_n": 8,
+   "mtime": "2026-08-03T05:56:40",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [
+    {
+     "repo": "calesthio/OpenMontage",
+     "path": ".agents/skills/hyperframes-registry/SKILL.md"
+    }
+   ],
+   "in_market_cache": false,
+   "confidence": "inferred"
+  },
+  {
+   "slug": "ican-deploy",
+   "local_sha256": "07e03f140214dcd0eb3425876716c610dfb0f0e2af98fac79e876955c6aaf87f",
+   "local_bytes": 10261,
+   "dir_manifest_sha256": "4abbec678a7b0a7cfcf557f27cc8ea39ce6fe91133ef746dc8c649855240db18",
+   "dir_file_n": 1,
+   "mtime": "2026-09-25T01:55:15",
+   "fm_version": "1.2.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.2.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "ican-frontend-design-system",
+   "local_sha256": "cf03d4fb58c7ca882244c9fff820d728ec0864c87d30a827be2b14d28189e411",
+   "local_bytes": 59503,
+   "dir_manifest_sha256": "f5685638b8575b53a1d80cd693771ed96e643e95cbd7314833216dd1a82c8062",
+   "dir_file_n": 6,
+   "mtime": "2026-10-14T11:06:59",
+   "fm_version": "4.25.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "4.3.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "internal-comms",
+   "local_sha256": "067b7587a344a928fc6534ef66b1bcd591fc7c26d207ea7ca3334aeb678d6475",
+   "local_bytes": 1511,
+   "dir_manifest_sha256": "0e5fe97f1167b31ed2f70abd9124e6be50441b40be0f53d294ebfe5ed225e092",
+   "dir_file_n": 6,
+   "mtime": "2026-09-22T00:44:35",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [
+    {
+     "repo": "anthropics/skills",
+     "path": "skills/internal-comms/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills-claude/skills/internal-comms/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills/skills/internal-comms/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "skills/internal-comms/SKILL.md"
+    }
+   ],
+   "in_market_cache": false,
+   "confidence": "inferred"
+  },
+  {
+   "slug": "json-canvas",
+   "local_sha256": "97d1ae0728955c4203922753d5656890e5e4dd371b8306ea11884f9b510f1b85",
+   "local_bytes": 7624,
+   "dir_manifest_sha256": "fd14af246dd917b7ff0bee241b0f650466a3808b58d64d2158b7ab3c63c669d1",
+   "dir_file_n": 2,
+   "mtime": "2026-09-22T00:44:36",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [
+    {
+     "repo": "kepano/obsidian-skills",
+     "path": "skills/json-canvas/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills-claude/skills/json-canvas/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills/skills/json-canvas/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "skills/json-canvas/SKILL.md"
+    }
+   ],
+   "in_market_cache": false,
+   "confidence": "inferred"
+  },
+  {
+   "slug": "knowledge-capture",
+   "local_sha256": "956b91397b487aace7514929f786df080dfe08f4c9251ec4a06f256cbf9763c9",
+   "local_bytes": 7337,
+   "dir_manifest_sha256": "74d9f6f465462737384248fe1e50f41eeccf0a6bfe379739b217a001ba9e6fe1",
+   "dir_file_n": 14,
+   "mtime": "2026-10-01T16:19:38",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "local-asr",
+   "local_sha256": "31cbfa3f12806c71f1d63a7985c4d1567a4edaf27487808f49ed3eccd01f2099",
+   "local_bytes": 4882,
+   "dir_manifest_sha256": "6fba6be8e3c97cab85420e51e2e8a7810671fd877b97c50644f1a065132d19df",
+   "dir_file_n": 22,
+   "mtime": "2026-10-06T05:12:32",
+   "fm_version": "1.2.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {
+    "meta.json": {
+     "version": "1.2.0",
+     "installedContentHash": null,
+     "md5": null,
+     "source": null,
+     "author": "Github",
+     "download_url": "https://down.marvis.qq.com/wupload2/skill-packages/1779112330593_local-asr.zip",
+     "installedAt": null,
+     "last_modified_time": null
+    }
+   },
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "declared"
+  },
+  {
+   "slug": "local-computer-use",
+   "local_sha256": "244c284a1c31780155a232a4dfe7e48c424c1074888e1b02f8aee807f91659a8",
+   "local_bytes": 5837,
+   "dir_manifest_sha256": "f2fbaed56938c83375a29e62fecd3de1dff569c527bb69e52bbfbbf0304713c8",
+   "dir_file_n": 21,
+   "mtime": "2026-10-06T05:12:32",
+   "fm_version": "1.2.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {
+    "meta.json": {
+     "version": "1.2.0",
+     "installedContentHash": null,
+     "md5": null,
+     "source": null,
+     "author": "Github",
+     "download_url": "https://down.marvis.qq.com/wupload2/skill-packages/1779112644451_local-computer-use.zip",
+     "installedAt": null,
+     "last_modified_time": null
+    }
+   },
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "declared"
+  },
+  {
+   "slug": "local-img2img",
+   "local_sha256": "9467b51a541922f221a523c07c48f048cef4c413eb2c278222f38a3873d75850",
+   "local_bytes": 3760,
+   "dir_manifest_sha256": "3adccca37316fbba33c1fdadd6e6e2e590c50c125e84b9440a842521424ba6d2",
+   "dir_file_n": 33,
+   "mtime": "2026-10-06T05:12:32",
+   "fm_version": "1.2.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {
+    "meta.json": {
+     "version": "1.2.0",
+     "installedContentHash": null,
+     "md5": null,
+     "source": null,
+     "author": "Github",
+     "download_url": null,
+     "installedAt": null,
+     "last_modified_time": null
+    }
+   },
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "declared"
+  },
+  {
+   "slug": "local-mineru",
+   "local_sha256": "8a7f0900e7efda03c288edb04dafd6a1041bdbe4532028dbf0bc04417a2392ad",
+   "local_bytes": 5729,
+   "dir_manifest_sha256": "81ce62bcf923d060f038ccf316884c5ebced9a236d031d426b3eff25c398d828",
+   "dir_file_n": 31,
+   "mtime": "2026-10-06T05:12:32",
+   "fm_version": "1.2.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {
+    "meta.json": {
+     "version": "1.2.0",
+     "installedContentHash": null,
+     "md5": null,
+     "source": null,
+     "author": "Intel",
+     "download_url": null,
+     "installedAt": null,
+     "last_modified_time": null
+    }
+   },
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "declared"
+  },
+  {
+   "slug": "local-ocr-npu",
+   "local_sha256": "be138e7390ac5900d4435608afe0a2e16e3daad494a47342d452fa4adb8d18af",
+   "local_bytes": 6270,
+   "dir_manifest_sha256": "a808a867efa2b53334acd788476466e47ed6634230c84e7eabbf8731519e4b95",
+   "dir_file_n": 30,
+   "mtime": "2026-10-06T05:56:11",
+   "fm_version": "1.2.1",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {
+    "meta.json": {
+     "version": "1.2.0",
+     "installedContentHash": null,
+     "md5": null,
+     "source": null,
+     "author": "Intel",
+     "download_url": null,
+     "installedAt": null,
+     "last_modified_time": null
+    }
+   },
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "declared"
+  },
+  {
+   "slug": "local-realtime-translator",
+   "local_sha256": "21b84a62c0f4086787542561b59d391e2c274bcfec49895e78377a7fcab47eb0",
+   "local_bytes": 8216,
+   "dir_manifest_sha256": "19dd89c3680b421b731b19bff3a20d2d15f9a8dab71702768bf7aec9121d824b",
+   "dir_file_n": 53,
+   "mtime": "2026-10-06T05:12:32",
+   "fm_version": "1.2.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {
+    "meta.json": {
+     "version": "1.2.0",
+     "installedContentHash": null,
+     "md5": null,
+     "source": null,
+     "author": "Github",
+     "download_url": "",
+     "installedAt": null,
+     "last_modified_time": null
+    }
+   },
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "declared"
+  },
+  {
+   "slug": "local-screenshot-qa",
+   "local_sha256": "52cb09ca240b122cebef5ac7690a22749debe7237816330d7048c784b1914f2c",
+   "local_bytes": 5749,
+   "dir_manifest_sha256": "fbe9a5f9866930ae40533da2b056d0140492784d8f4b194fe99fa789e406f76b",
+   "dir_file_n": 26,
+   "mtime": "2026-10-06T05:12:32",
+   "fm_version": "1.2.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {
+    "meta.json": {
+     "version": "1.2.0",
+     "installedContentHash": null,
+     "md5": null,
+     "source": null,
+     "author": "Intel",
+     "download_url": null,
+     "installedAt": null,
+     "last_modified_time": null
+    }
+   },
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "declared"
+  },
+  {
+   "slug": "local-tts",
+   "local_sha256": "789f1ce2d0da1285f27d9dada43454b9d62317f1f946f1a1503fd7ea0df5d54f",
+   "local_bytes": 6543,
+   "dir_manifest_sha256": "65bd8b9ae9d7c577fe443fb368ae15b11411ffb19beb62a8038458579b9395dd",
+   "dir_file_n": 28,
+   "mtime": "2026-10-06T05:12:32",
+   "fm_version": "1.2.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {
+    "meta.json": {
+     "version": "1.2.0",
+     "installedContentHash": null,
+     "md5": null,
+     "source": null,
+     "author": "Github",
+     "download_url": "https://down.marvis.qq.com/wupload2/skill-packages/1779112538110_local-tts.zip",
+     "installedAt": null,
+     "last_modified_time": null
+    }
+   },
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "declared"
+  },
+  {
+   "slug": "local-txt2img",
+   "local_sha256": "93d9a766676b83ff80ac945004bb0615a5edd79686d031251e32e07fced2ea2f",
+   "local_bytes": 5242,
+   "dir_manifest_sha256": "50b07b5eb0924320990cc25af383b181362952bfa70d5832a30e915eccc3b10b",
+   "dir_file_n": 30,
+   "mtime": "2026-10-06T05:12:32",
+   "fm_version": "1.2.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {
+    "meta.json": {
+     "version": "1.2.0",
+     "installedContentHash": null,
+     "md5": null,
+     "source": null,
+     "author": "Github",
+     "download_url": "https://down.marvis.qq.com/wupload2/skill-packages/1779112426700_local-txt2img.zip",
+     "installedAt": null,
+     "last_modified_time": "2026-05-22 10:54:06"
+    }
+   },
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "declared"
+  },
+  {
+   "slug": "local-vram",
+   "local_sha256": "efbedc4417511db590e097ea3db64b989910d559cec9392e559f6a27c8f4ceb4",
+   "local_bytes": 5666,
+   "dir_manifest_sha256": "c2cda4423b8db5990a735901f114eb301e3a04cb6c0d728e84a0134e73d1f275",
+   "dir_file_n": 9,
+   "mtime": "2026-10-06T05:12:32",
+   "fm_version": "1.2.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {
+    "meta.json": {
+     "version": "1.2.0",
+     "installedContentHash": null,
+     "md5": null,
+     "source": null,
+     "author": "Github",
+     "download_url": null,
+     "installedAt": null,
+     "last_modified_time": null
+    }
+   },
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "declared"
+  },
+  {
+   "slug": "mcp-builder",
+   "local_sha256": "0f4592dcb53cf2b5d6b7febee6b4152018b565551a1c29e3c612f57b218ab295",
+   "local_bytes": 9092,
+   "dir_manifest_sha256": "ce48f0b13b1e9b04f464af975a32fd6dc61400442857bdb4a1ebe2e15cbad102",
+   "dir_file_n": 10,
+   "mtime": "2026-09-29T15:07:32",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [
+    {
+     "repo": "anthropics/skills",
+     "path": "skills/mcp-builder/SKILL.md"
+    },
+    {
+     "repo": "Shubhamsaboo/awesome-llm-apps",
+     "path": "generative_ui_agents/ai-mcp-app-builder/apps/mcp-use-server/.agent/skills/mcp-builder/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills-claude/skills/mcp-builder/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills/skills/mcp-builder/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-bundle-aas-agent-mcp-builder/skills/mcp-builder/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-bundle-aas-automation-builder/skills/mcp-builder/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-bundle-agent-architect/skills/mcp-builder/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-bundle-automation-builder/skills/mcp-builder/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "skills/mcp-builder/SKILL.md"
+    }
+   ],
+   "in_market_cache": true,
+   "confidence": "inferred"
+  },
+  {
+   "slug": "mcporter",
+   "local_sha256": "f7249629397295ca9128e827b55e853c5a8a49eb8f13340da0ba4eef8a8b1db1",
+   "local_bytes": 1701,
+   "dir_manifest_sha256": "77236a10d3ea67d858d667c33fbc9987a67bb3d08a516e3c8e910de75857cc71",
+   "dir_file_n": 1,
+   "mtime": "2026-10-01T15:58:15",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": true,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "meeting-intelligence",
+   "local_sha256": "19c5070c76cac03c27bd321204db3f0fdee3989d3de691f1d6d9ec518547c8e5",
+   "local_bytes": 11299,
+   "dir_manifest_sha256": "8bd48a72619cc8d882f328957676545eeb49f2042bd16240e28838c0b9fb1954",
+   "dir_file_n": 15,
+   "mtime": "2026-10-01T15:58:15",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "nano-pdf",
+   "local_sha256": "e5a1889cddd2cd6840e365d1c085b6dc32e62c7495a0fc061165c5afd4527cb0",
+   "local_bytes": 1118,
+   "dir_manifest_sha256": "f2609764bf8261ebabaad2a1dd6d86b94f305b81bdd7b7988c7e4f93941e7822",
+   "dir_file_n": 1,
+   "mtime": "2026-09-29T11:29:12",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": true,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "no-manual-steps",
+   "local_sha256": "693bc7f2695570416be35498bd6e73b96a223026afdeb9cb89c4906df01431d7",
+   "local_bytes": 3410,
+   "dir_manifest_sha256": "dd0487055cfb9f197bec227e53caaa31b5ff45be7e627997af9d2c5f31a10bc2",
+   "dir_file_n": 2,
+   "mtime": "2026-10-06T04:11:00",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "node-inspect-debugger",
+   "local_sha256": "29061f2c93d6fce61dbc618378fc08de4e91bcf5b54a80669546684fc067d405",
+   "local_bytes": 3827,
+   "dir_manifest_sha256": "8738c7b5287522670d463b8fa2162de56a17a41ba4397cdae56c26c9978858fb",
+   "dir_file_n": 1,
+   "mtime": "2026-09-29T11:28:24",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "notion-cli",
+   "local_sha256": "27a9740604bc5e7b998a84ec957c4681ba3740093c2216a017523a8af1b69de9",
+   "local_bytes": 2371,
+   "dir_manifest_sha256": "28ab055d815d4584d4f93e0c92a2f9c4f9344589c8ead192ee161b0d1a0475ae",
+   "dir_file_n": 2,
+   "mtime": "2026-09-22T00:44:37",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "obsidian-bases",
+   "local_sha256": "1785f37a2b00d900d259ed57faac6a3f9c589f9fb40ec5ccdeba83daa850452c",
+   "local_bytes": 12903,
+   "dir_manifest_sha256": "2f1ec0597f7a8cee526b489e4aeb08c8606f8dfcf291e2c875fe2b353525bf34",
+   "dir_file_n": 2,
+   "mtime": "2026-09-22T00:44:37",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [
+    {
+     "repo": "kepano/obsidian-skills",
+     "path": "skills/obsidian-bases/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills-claude/skills/obsidian-bases/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills/skills/obsidian-bases/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "skills/obsidian-bases/SKILL.md"
+    }
+   ],
+   "in_market_cache": false,
+   "confidence": "inferred"
+  },
+  {
+   "slug": "obsidian-cli",
+   "local_sha256": "b54257cdc0e5d04488b35b0c797bfe427b24359f0848d3c73924dcacf8da6358",
+   "local_bytes": 3183,
+   "dir_manifest_sha256": "739cc96311c8f1c4c64e2462f634ef28b71c306e5a8639078ee1cf8302f567f9",
+   "dir_file_n": 1,
+   "mtime": "2026-09-22T00:44:37",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [
+    {
+     "repo": "kepano/obsidian-skills",
+     "path": "skills/obsidian-cli/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills-claude/skills/obsidian-cli/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills/skills/obsidian-cli/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "skills/obsidian-cli/SKILL.md"
+    }
+   ],
+   "in_market_cache": false,
+   "confidence": "inferred"
+  },
+  {
+   "slug": "obsidian-markdown",
+   "local_sha256": "7ad72e1f0a9081ed325e76b6402ad5de50a00e63e2341fd403a92f147234a007",
+   "local_bytes": 5367,
+   "dir_manifest_sha256": "8433105819a5b2748c62544504e0d9fae8ae289e05d9e7ed327ebc8dabf5d381",
+   "dir_file_n": 4,
+   "mtime": "2026-09-22T00:44:38",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [
+    {
+     "repo": "kepano/obsidian-skills",
+     "path": "skills/obsidian-markdown/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills-claude/skills/obsidian-markdown/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills/skills/obsidian-markdown/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "skills/obsidian-markdown/SKILL.md"
+    }
+   ],
+   "in_market_cache": false,
+   "confidence": "inferred"
+  },
+  {
+   "slug": "oc-dispatch-exec-guard",
+   "local_sha256": "8a1b60b489d6a37d9a7e916f55e4de73c2e0b150c049485337b0b42c1ffad1cf",
+   "local_bytes": 5298,
+   "dir_manifest_sha256": "d16af28584242ebf5384038fa18a1ffd9d1a622b09ed25ed6cb00ba120e66c66",
+   "dir_file_n": 1,
+   "mtime": "2026-10-14T11:07:00",
+   "fm_version": "1.1.1",
+   "fm_last_updated": null,
+   "registry_source": "user-created",
+   "registry_version": "1.1.1",
+   "registry_user_created": true,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "office-automation-pro",
+   "local_sha256": "bf0dc29f58f3fb93806066387b08849f064210d8624d3550d63f03918be13f08",
+   "local_bytes": 3173,
+   "dir_manifest_sha256": "07d21c1ee6b3b87d2cdec2519409fa7e2ee2a46ac8650c8e7a00524e3ee75130",
+   "dir_file_n": 1,
+   "mtime": "2026-09-24T23:12:27",
+   "fm_version": "1.0.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "openai-whisper-api",
+   "local_sha256": "d1f0fd8719b399f90a123306552a547a575120c8ffe992914ffb4a59ae2d1653",
+   "local_bytes": 2171,
+   "dir_manifest_sha256": "b3a852fa3fb7db54bac320941c6c4b0a02aa371dcc30986758ea6c855074f4cc",
+   "dir_file_n": 2,
+   "mtime": "2026-10-01T15:58:14",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": true,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "openclaw-dual-gate-quality-audit",
+   "local_sha256": "0cf291768e468ddc37391ea49f71d7f55b6f3904b5a490ad02d7b4237ee3d39e",
+   "local_bytes": 21562,
+   "dir_manifest_sha256": "e386193df3b054ef1b68560de686aa9792d7ac36f3c0f3a15a0822fa2bb7874d",
+   "dir_file_n": 1,
+   "mtime": "2026-09-21T18:42:58",
+   "fm_version": "1.3.0",
+   "fm_last_updated": null,
+   "registry_source": "user-created",
+   "registry_version": "1.3.0",
+   "registry_user_created": true,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "openclaw-fenjue-weekly",
+   "local_sha256": "e682641cb65d728b5fee6ff3a6bb7a3fabbc551397d1da248facd77d8b851aa8",
+   "local_bytes": 4897,
+   "dir_manifest_sha256": "80ca215d5d5959fde70b6e1ee365cd33094bd2f2b5b78afcd34fe8b17a385194",
+   "dir_file_n": 1,
+   "mtime": "2026-09-29T11:28:24",
+   "fm_version": "2.0.2",
+   "fm_last_updated": null,
+   "registry_source": "user-created",
+   "registry_version": "2.0.2",
+   "registry_user_created": true,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "openclaw-task-supervision",
+   "local_sha256": "fc7fc6afcbc2d253debdcecd36ae6b4e0be968264f412a207670daf38990702c",
+   "local_bytes": 34111,
+   "dir_manifest_sha256": "ce053c286df740a4e5f4d5d45769959fa9b9973b2d6d4759d6d21ebf74c50ccc",
+   "dir_file_n": 1,
+   "mtime": "2026-10-14T11:07:00",
+   "fm_version": "1.3.1",
+   "fm_last_updated": null,
+   "registry_source": "user-created",
+   "registry_version": "1.3.1",
+   "registry_user_created": true,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "oracle",
+   "local_sha256": "fa4a97d58cf5c3caa8d5eda06aa3c6d062c3e764de6443c8b75a4baeee65d3c2",
+   "local_bytes": 4976,
+   "dir_manifest_sha256": "a2e17fd0e17f25fed61b6fcbcd5702ae943ba08c5a8aa060a65a870fb051e0ca",
+   "dir_file_n": 1,
+   "mtime": "2026-10-01T15:58:15",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": true,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "pdf",
+   "local_sha256": "700b11c83662623644df474d31f0c1dcd48a767bba04c467658d44727c6f3137",
+   "local_bytes": 11209,
+   "dir_manifest_sha256": "a372008e1cda52237221ec5533c5b36921959ddc8ec00aa8779768c88618d773",
+   "dir_file_n": 13,
+   "mtime": "2026-10-16T16:57:53",
+   "fm_version": "1.0.2",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.1",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [
+    {
+     "repo": "anthropics/skills",
+     "path": "skills/pdf/SKILL.md"
+    }
+   ],
+   "in_market_cache": false,
+   "confidence": "inferred"
+  },
+  {
+   "slug": "pixelle-api-ensure",
+   "local_sha256": "2eb14f3d8ddbd1388c9818d5acf1a8cf0a6dc32875f83adbf9198ee4987bc969",
+   "local_bytes": 3519,
+   "dir_manifest_sha256": "4c1df75a06edbcd5ebac05329c59ae32920fb53f3c28dbd6be65ed7ca3aa30d9",
+   "dir_file_n": 2,
+   "mtime": "2026-10-14T11:07:00",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "ppt-master",
+   "local_sha256": "dfca4daf5636cc7ee02f139685614bc6f14e42f95ccba6ab1d035b2b3a38b021",
+   "local_bytes": 10339,
+   "dir_manifest_sha256": "89317c001d0b2a5ee50115aa735ad302249209ac5b2831186b332d0ab8073da1",
+   "dir_file_n": 13004,
+   "mtime": "2026-09-29T01:41:07",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "prompt-consolidation",
+   "local_sha256": "1072ab96fb08cc30f968973901e635b04b095e60d2fb33d625940f0fa0ad0698",
+   "local_bytes": 16120,
+   "dir_manifest_sha256": "426d188a8a7040f1555d2b46c035bd34b5e67891c347bd9bf9061333a5cf09cc",
+   "dir_file_n": 1,
+   "mtime": "2026-09-21T18:42:58",
+   "fm_version": "2.1.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "2.1.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "prompt-system-audit",
+   "local_sha256": "8a5655b92a44eee13c531345f123121f8b637b5948ee948a4bd9eab697bb6eb6",
+   "local_bytes": 32998,
+   "dir_manifest_sha256": "5540a0de895db29ba5f75f338481acb7cad9164d491bc9d92fb3c976c8668b1b",
+   "dir_file_n": 1,
+   "mtime": "2026-09-26T19:16:17",
+   "fm_version": "1.5.1",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.5.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "python-debugpy",
+   "local_sha256": "70c03f664eff5a7801c717a4d9c4d953c8486f2cf7532b5727a06269aab29475",
+   "local_bytes": 2802,
+   "dir_manifest_sha256": "bc473e768a535e344e863b89174be899ee454f7ff4357756d666d11263663d77",
+   "dir_file_n": 1,
+   "mtime": "2026-09-29T11:28:24",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "rag-eval",
+   "local_sha256": "930540510338d0e20965f7d8f7c84e7fa6bec4054c227e0bdb3108f3279347fa",
+   "local_bytes": 9706,
+   "dir_manifest_sha256": "eca5be67cee7b1553592a2f4eed0c026da883e36d304da5492aeac25fdcc07d5",
+   "dir_file_n": 10,
+   "mtime": "2026-09-29T01:38:43",
+   "fm_version": "2.6.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "2.6.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "react-best-practices",
+   "local_sha256": "71ed7794962fa6e803ee83030517b5b93a9f70fbfeb431ec4535c5480a8d8355",
+   "local_bytes": 7251,
+   "dir_manifest_sha256": "eaa3ec778426e2049a38077dfe15e7080a04461a85012d2c949d7852a4361d27",
+   "dir_file_n": 76,
+   "mtime": "2026-10-03T07:15:18",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills-claude/skills/react-best-practices/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills/skills/react-best-practices/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-bundle-aas-web-app-builder/skills/react-best-practices/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-bundle-typescript-javascript/skills/react-best-practices/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-bundle-web-wizard/skills/react-best-practices/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "skills/react-best-practices/SKILL.md"
+    },
+    {
+     "repo": "vercel-labs/agent-skills",
+     "path": "skills/react-best-practices/SKILL.md"
+    }
+   ],
+   "in_market_cache": false,
+   "confidence": "inferred"
+  },
+  {
+   "slug": "refactoring",
+   "local_sha256": "bd74e496f0c7097fac50d4894431a7b2014ba1d19172b61bef8b55174ac6aee2",
+   "local_bytes": 4810,
+   "dir_manifest_sha256": "a70d85a1cfae31f714dde7215606b0b268dde7f484ef436935db2b42b71517bf",
+   "dir_file_n": 1,
+   "mtime": "2026-09-29T00:20:46",
+   "fm_version": "2.0.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "report-generator-skill",
+   "local_sha256": "0e071c8e462d558c5fb0811481f8d20dd0ca648ab9494b32d811cc4784a13451",
+   "local_bytes": 5184,
+   "dir_manifest_sha256": "b1f2643801eb0b0172238437a2fbc5af268de5855fa7bd589753f1777d45f371",
+   "dir_file_n": 2,
+   "mtime": "2026-09-25T05:33:18",
+   "fm_version": "1.0.2",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.2",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "research-documentation",
+   "local_sha256": "f166c19f0b1cd6ba78ed0390dab1119fb6c2a171edc8495b3e1145eaed71493a",
+   "local_bytes": 3803,
+   "dir_manifest_sha256": "6647b8befc90584d4af16c8b1870c00cd561354eac4e4a2b24f532a3b0b023ec",
+   "dir_file_n": 19,
+   "mtime": "2026-10-01T16:19:39",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "scope-creep-detector",
+   "local_sha256": "a21a28ce59694554c16ddc19cb3b27620b1e3e5040803df0e40b22f6a34da159",
+   "local_bytes": 5140,
+   "dir_manifest_sha256": "92c1a71e1de87a1ca27846db8da8920cdd8bbffb34668c6b37fc256e11d38c17",
+   "dir_file_n": 4,
+   "mtime": "2026-10-02T02:45:40",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [
+    {
+     "repo": "Shubhamsaboo/awesome-llm-apps",
+     "path": "agent_skills/scope-creep-detector/SKILL.md"
+    }
+   ],
+   "in_market_cache": false,
+   "confidence": "inferred"
+  },
+  {
+   "slug": "screenshot",
+   "local_sha256": "ba15e6b50076dad3fe1c01a5ace39b1ed613104578579d72abe7b5f078fb8445",
+   "local_bytes": 7874,
+   "dir_manifest_sha256": "ad9e799867ec639d990da5f8b006aa5f6253ef73b7acf8b5e5f276a38e45ce34",
+   "dir_file_n": 11,
+   "mtime": "2026-09-29T11:28:24",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "security-audit",
+   "local_sha256": "0b528a3fecf5f706160b45f032c50016f17961300c147a26ff0a8a62856bf24b",
+   "local_bytes": 11841,
+   "dir_manifest_sha256": "c143add12848e9a62d0ad34f13dfaa5be68c36d7e7210d383fa3f31d0f2c8f40",
+   "dir_file_n": 1,
+   "mtime": "2026-09-29T00:47:45",
+   "fm_version": "1.1.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.1.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills-claude/skills/security-audit/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills/skills/security-audit/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "skills/security-audit/SKILL.md"
+    }
+   ],
+   "in_market_cache": false,
+   "confidence": "inferred"
+  },
+  {
+   "slug": "shadcn",
+   "local_sha256": "89ae3bdf17a08fb30dff8571fcbc0918e57821d6aedb6339d147b143f25157cc",
+   "local_bytes": 16472,
+   "dir_manifest_sha256": "b719c226fd3c9797df6e69189bc20dbe41b0a611fda36570ad712f2dbd5d9194",
+   "dir_file_n": 13,
+   "mtime": "2026-08-03T05:56:40",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills-claude/skills/shadcn/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills/skills/shadcn/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-bundle-aas-web-app-builder/skills/shadcn/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "skills/shadcn/SKILL.md"
+    }
+   ],
+   "in_market_cache": false,
+   "confidence": "inferred"
+  },
+  {
+   "slug": "shell-encoding-pitfalls",
+   "local_sha256": "db4707384de231d80a8804f4ad34be38b83b25dda756ad88cdce99c487c48271",
+   "local_bytes": 14022,
+   "dir_manifest_sha256": "f6f2bd13a82a99b12df72559002e1299b1d6909b3751080e55bfab501af553f5",
+   "dir_file_n": 1,
+   "mtime": "2026-10-14T09:03:15",
+   "fm_version": "1.3.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "spec-to-implementation",
+   "local_sha256": "5939ba5076fffc2004c6aefc62a60232bebec7da651a5e445e5ac51aad28d356",
+   "local_bytes": 8808,
+   "dir_manifest_sha256": "85b04e42ecd0e8f8ae67080b5a98991c4db2d81a1a466b941cbf259a3b7af0d9",
+   "dir_file_n": 15,
+   "mtime": "2026-10-01T16:19:39",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "spike",
+   "local_sha256": "4bba6a224a8c3b278b63073f18db15e65d05bce76c5758f049ff1bb6960e044f",
+   "local_bytes": 2075,
+   "dir_manifest_sha256": "2a38f9e3c8748abdc298a0439168445cd4acb85bcc861a9c5927246146bd5694",
+   "dir_file_n": 1,
+   "mtime": "2026-09-29T11:29:12",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "sq-cleanmgr-c",
+   "local_sha256": "fb57dd284c2e2695c0dfe84784b131de5349da7b2894eed518fd0ffb33f8ec45",
+   "local_bytes": 12501,
+   "dir_manifest_sha256": "4232d206388eb6ee34ad4107e985e4108f55aad17fed773dd03cfadd5372fb66",
+   "dir_file_n": 8,
+   "mtime": "2026-09-26T17:19:07",
+   "fm_version": "1.2.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.2.0",
+   "registry_user_created": false,
+   "declared": {
+    "_skillhub_meta.json": {
+     "version": "1.2.0",
+     "installedContentHash": "sha256:7a144e75a2ae8c9f8fd59fc8ce4e19e4eeeada41d0afb99ab3f184f5d1084b23",
+     "md5": null,
+     "source": "marketplace",
+     "author": null,
+     "download_url": null,
+     "installedAt": 1788790511091,
+     "last_modified_time": null
+    },
+    "_meta.json": {
+     "version": "1.2.0",
+     "installedContentHash": null,
+     "md5": null,
+     "source": null,
+     "author": null,
+     "download_url": null,
+     "installedAt": null,
+     "last_modified_time": null
+    }
+   },
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "declared"
+  },
+  {
+   "slug": "sqlalchemy-loader-criteria-pitfalls",
+   "local_sha256": "4b9707cd7be3893949d842e6ece3acd1f841219594ede142a462f11fee540d63",
+   "local_bytes": 4535,
+   "dir_manifest_sha256": "803fa0999903b486b5add1232815ce0850551234172879439cbe5c7cd56e040f",
+   "dir_file_n": 1,
+   "mtime": "2026-09-29T01:37:44",
+   "fm_version": "1.0.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "static-site-batch-audit-fix",
+   "local_sha256": "253152391574c79d08af6b594aa135792ba8b2f23eb15a03608cf4ba743fe104",
+   "local_bytes": 14380,
+   "dir_manifest_sha256": "15d8999c4c7ef16088a560a0ad1648f720e2ba883d299407aad86f3b702591a2",
+   "dir_file_n": 1,
+   "mtime": "2026-09-25T19:42:24",
+   "fm_version": "1.3.0",
+   "fm_last_updated": null,
+   "registry_source": "user-created",
+   "registry_version": "1.1.0",
+   "registry_user_created": true,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "story",
+   "local_sha256": "93f6ea646aabccdd383a4d83299d38f5e7a7e15022fcb09a2cc2e97aefa79b20",
+   "local_bytes": 9007,
+   "dir_manifest_sha256": "1c005dad2d1406e78a154c172470d685fbbebaef683820fd7be3417f9b18bb16",
+   "dir_file_n": 6,
+   "mtime": "2026-09-14T22:22:58",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "story-cover",
+   "local_sha256": "aa2e75190db21ea978f5c0ab31fd6fa36806487c2faeea87c5ae13e6b8959bb3",
+   "local_bytes": 1673,
+   "dir_manifest_sha256": "520936a0f76958f8b7ba331d51e057eaca637f86192b4c504b47fa1bdd91e7c9",
+   "dir_file_n": 7,
+   "mtime": "2026-10-06T06:45:26",
+   "fm_version": "1.0.1",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "story-deslop",
+   "local_sha256": "cd20541ed85787d09452acb3acd29e468731f841c5ae9fef99057c4db2ee9536",
+   "local_bytes": 10511,
+   "dir_manifest_sha256": "7122728328af448e1746b96307cd084b33286fa4db57595facd742343509b458",
+   "dir_file_n": 7,
+   "mtime": "2026-10-06T06:45:26",
+   "fm_version": "1.0.1",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "story-import",
+   "local_sha256": "74ef4fe6013c6d09336dd10f60308309128f5a5ea3ff959bccfb5c4b930effb3",
+   "local_bytes": 9627,
+   "dir_manifest_sha256": "acd755584e92aa29632b75dd3c15e51638f8686b6dab4d323ac279e24d076295",
+   "dir_file_n": 17,
+   "mtime": "2026-10-06T06:45:26",
+   "fm_version": "1.0.1",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "story-long-analyze",
+   "local_sha256": "5e2e98b4419ee01f1b4266617ed8f51e1d3bb05a865954bed97579e06b8b35aa",
+   "local_bytes": 5883,
+   "dir_manifest_sha256": "d5b89bd0ee57c20fc14f4cae1ec32beb34ba92e1c114a021488980d34ac0dc6e",
+   "dir_file_n": 9,
+   "mtime": "2026-10-06T06:45:26",
+   "fm_version": "1.0.1",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "story-long-write",
+   "local_sha256": "effa5c09dc24c472997805c6ae04394291793efc63314bd86e13a27d29a08a96",
+   "local_bytes": 2413,
+   "dir_manifest_sha256": "fb510ba1e0caee862aef25aa13cc4a50427ff039c8c3e3339e0830ea26faf273",
+   "dir_file_n": 80,
+   "mtime": "2026-10-06T06:45:26",
+   "fm_version": "1.0.2",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.1",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "story-review",
+   "local_sha256": "90011936b0a247de0e23f9dcd6dc791ac5b23b97d76d75f7332ab2f9e28631f3",
+   "local_bytes": 11084,
+   "dir_manifest_sha256": "2abdd3acbb5cb37461c1443ce4c8c8b850fe23b3643318b22e8ec1e941da4f61",
+   "dir_file_n": 19,
+   "mtime": "2026-10-06T06:45:26",
+   "fm_version": "1.1.1",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.1.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "story-scan",
+   "local_sha256": "59637c51a804a9c7d6f8b5abc65537fda3e55ec539cd68f0761abb6080ca7be3",
+   "local_bytes": 6213,
+   "dir_manifest_sha256": "4c3bb126a3cffd8a9bb650b7d9e350f3bf6df48b5ae8363d52f931776dee260b",
+   "dir_file_n": 17,
+   "mtime": "2026-09-25T00:59:43",
+   "fm_version": "1.0.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "story-setup",
+   "local_sha256": "bc9cb13ae750cbc1978d1f146236421f979b4da66f561f457f31fb454571b0ef",
+   "local_bytes": 6167,
+   "dir_manifest_sha256": "30b9c55278913ce3419fb144619369acd2824cf3ede4fd1a3e2c51b1571835b9",
+   "dir_file_n": 150,
+   "mtime": "2026-10-06T06:45:26",
+   "fm_version": "1.2.9",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.2.8",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "story-short-analyze",
+   "local_sha256": "3dc998125ed39fb77ea206c85c33f0d84f0de7e5c68b3b09c3d3bfcf7c75ab86",
+   "local_bytes": 9634,
+   "dir_manifest_sha256": "ab91e0ba0dd7d3352cc6af15b8fdeadf7c7c9e5c2f9c84baf92bc62290516492",
+   "dir_file_n": 24,
+   "mtime": "2026-10-06T06:45:26",
+   "fm_version": "3.0.1",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "3.0.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "story-short-write",
+   "local_sha256": "0b678f74549ee681e5186bcb92c249f44bae7706c1b9c9526329b27ad9f47658",
+   "local_bytes": 10444,
+   "dir_manifest_sha256": "274d6507c45f1cd40d1ccca22fbce2e58a3e5e245130733c2631c7c898272d84",
+   "dir_file_n": 34,
+   "mtime": "2026-10-06T06:45:26",
+   "fm_version": "1.0.1",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "taskflow",
+   "local_sha256": "c025dbe4a2343aa5c8fd7d2101a39245a2cf10f2ea6d89a751e7cfa5bf7e548a",
+   "local_bytes": 4893,
+   "dir_manifest_sha256": "0b8a03b802a89ef6313c8693ca581e9616673199b62c2217ac512cb55af7f8ff",
+   "dir_file_n": 3,
+   "mtime": "2026-09-24T09:33:37",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "taskflow-inbox-triage",
+   "local_sha256": "f5437bdb31959ca0dcdce235ae1df5f12691e1e1be83a7c8aaade475c8fce720",
+   "local_bytes": 2751,
+   "dir_manifest_sha256": "9e96193280aed5771b434b5d652d35c8b4848a2e40884e05434b24268f723869",
+   "dir_file_n": 1,
+   "mtime": "2026-09-29T11:29:12",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "test-driven-development",
+   "local_sha256": "65e284d52f345d85e7dd5e8d74f12ccfa4ef7917f253af1ea00a314d26c99f0d",
+   "local_bytes": 10086,
+   "dir_manifest_sha256": "d41e8a7f278c941a66791e548233a88d7e4e26761bd3fc4b333b52599d159ce9",
+   "dir_file_n": 2,
+   "mtime": "2026-09-29T11:29:12",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [
+    {
+     "repo": "obra/superpowers",
+     "path": "skills/test-driven-development/SKILL.md"
+    },
+    {
+     "repo": "addyosmani/agent-skills",
+     "path": "skills/test-driven-development/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills-claude/skills/test-driven-development/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills/skills/test-driven-development/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-bundle-aas-qa-test-automation/skills/test-driven-development/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-bundle-essentials/skills/test-driven-development/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-bundle-qa-testing/skills/test-driven-development/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "skills/test-driven-development/SKILL.md"
+    }
+   ],
+   "in_market_cache": false,
+   "confidence": "inferred"
+  },
+  {
+   "slug": "testing",
+   "local_sha256": "cfc9145f08c7ed88ce011d96fa099765b4cbfe87e60fd3d0913253bb2b7ef792",
+   "local_bytes": 7921,
+   "dir_manifest_sha256": "5f51b36f8284a55a16eb13894143be3dd0852e8478920e823d5edee994ba9812",
+   "dir_file_n": 1,
+   "mtime": "2026-09-29T11:28:24",
+   "fm_version": "2.0.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "theme-factory",
+   "local_sha256": "c35893e221e28895c52143cc11bf30e41a44817796b39d4b15727dadc9796552",
+   "local_bytes": 3124,
+   "dir_manifest_sha256": "349b59bc37fcb833b0f0cfa409b49ad113f9202c186b1474f2b725d37b393c20",
+   "dir_file_n": 13,
+   "mtime": "2026-09-22T00:44:38",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [
+    {
+     "repo": "anthropics/skills",
+     "path": "skills/theme-factory/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills-claude/skills/theme-factory/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills/skills/theme-factory/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "skills/theme-factory/SKILL.md"
+    }
+   ],
+   "in_market_cache": false,
+   "confidence": "inferred"
+  },
+  {
+   "slug": "ui-ux-pro-max",
+   "local_sha256": "c19162b5036a15c31a7338d6777d36c1648e889dd5dfcaa8409ab1609febf849",
+   "local_bytes": 3055,
+   "dir_manifest_sha256": "c45bef1a61e4317b099ce90b794b469be62a780133ce347f6e6e754b0f039660",
+   "dir_file_n": 56,
+   "mtime": "2026-08-15T03:33:26",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {
+    "_meta.json": {
+     "version": "0.1.0",
+     "installedContentHash": null,
+     "md5": null,
+     "source": null,
+     "author": null,
+     "download_url": null,
+     "installedAt": null,
+     "last_modified_time": null
+    }
+   },
+   "inferred_upstreams": [
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills-claude/skills/ui-ux-pro-max/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills/skills/ui-ux-pro-max/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-bundle-aas-product-design-studio/skills/ui-ux-pro-max/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-bundle-web-designer/skills/ui-ux-pro-max/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "skills/ui-ux-pro-max/SKILL.md"
+    }
+   ],
+   "in_market_cache": false,
+   "confidence": "declared"
+  },
+  {
+   "slug": "utf8-encoding-fix",
+   "local_sha256": "7c5255515d6b8ebd400940c70f4be75fa7d9c0d4a281463a6051390797e40bc1",
+   "local_bytes": 8316,
+   "dir_manifest_sha256": "2db6e03c316ba9f087179f7e60664cdb72a1745c052dd86d04f6c4699e969991",
+   "dir_file_n": 1,
+   "mtime": "2026-10-06T05:36:54",
+   "fm_version": "1.1.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "verification-before-completion",
+   "local_sha256": "1ce98a8ad445b33445c5b3678f3b63acd376c4db4f0c984327cf0126d4d4ae8b",
+   "local_bytes": 7128,
+   "dir_manifest_sha256": "7de870e60f4eeafdf29d743fe672c5ba892950fb66f523511b060e8941971006",
+   "dir_file_n": 1,
+   "mtime": "2026-09-29T00:47:52",
+   "fm_version": "1.1.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.1.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [
+    {
+     "repo": "obra/superpowers",
+     "path": "skills/verification-before-completion/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills-claude/skills/verification-before-completion/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills/skills/verification-before-completion/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-bundle-skill-author/skills/verification-before-completion/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "skills/verification-before-completion/SKILL.md"
+    }
+   ],
+   "in_market_cache": false,
+   "confidence": "inferred"
+  },
+  {
+   "slug": "video-breakdown-skill",
+   "local_sha256": "9787eeab5d16b7a87faf75fdfd9f8d9e0da98138ffb51728a594575cfd78299b",
+   "local_bytes": 6867,
+   "dir_manifest_sha256": "230f61f1768a8ea805a984f6907161592eb5495047f9043f79fc2a5f8ff975d1",
+   "dir_file_n": 2,
+   "mtime": "2026-09-25T00:59:44",
+   "fm_version": "1.0.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "video-frames",
+   "local_sha256": "5f3da1c15790a5a6c73bd4cf645e6a21960b383250261fb3497251fc37a36f0d",
+   "local_bytes": 1191,
+   "dir_manifest_sha256": "0eadcff6fcca9d8aa248f45fcf5cb3e119d325ca2ebfe6994fe402f25c04e5e7",
+   "dir_file_n": 2,
+   "mtime": "2026-09-29T11:29:12",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": true,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "video-whisper-transcribe",
+   "local_sha256": "5bf3ddff0c959cd91817e80950051f37ea0c1d756c617005a6ab506dd5909ced",
+   "local_bytes": 5791,
+   "dir_manifest_sha256": "8cdd7dd712409e63425cc635b1d729968155f739cd99db967b9dac79d2cbbc00",
+   "dir_file_n": 1,
+   "mtime": "2026-10-14T11:07:10",
+   "fm_version": "1.1.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.1.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "vp-perspective-audit",
+   "local_sha256": "482f6702bb7d826732934b383d13ecce4be5075c2000aaffd76fa2aca9ca0aa8",
+   "local_bytes": 15282,
+   "dir_manifest_sha256": "f5ab8dc57d1982a477d5245f70b4563872b4a660f536d42a6042c6edc4f2273d",
+   "dir_file_n": 1,
+   "mtime": "2026-10-14T11:07:10",
+   "fm_version": "1.2.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.2.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "wb-git-commit-recipe",
+   "local_sha256": "bbd8937aa5c26c9e6e22b5a996a2772fbdfb2157bb0f434f97e6ccf006dad2d4",
+   "local_bytes": 8894,
+   "dir_manifest_sha256": "f686e963e7e122d48c03c90cbabdc43dadf543a1bc75c815c3dcaf708e6d3c7e",
+   "dir_file_n": 2,
+   "mtime": "2026-10-11T05:40:15",
+   "fm_version": "1.3.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.1.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "web-access",
+   "local_sha256": "8d1f46df0984547ff87ac6eaf4e679d089aaa9652609fc129deeaf188cce2d5b",
+   "local_bytes": 18657,
+   "dir_manifest_sha256": "bc178cdc4ab718144253cb0e5dffa9a0c35b5fe12f9aea753c24d98d294572a4",
+   "dir_file_n": 14,
+   "mtime": "2026-10-15T07:15:39",
+   "fm_version": "2.5.4",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "2.5.4",
+   "registry_user_created": false,
+   "declared": {
+    "_skillhub_meta.json": {
+     "version": "2.5.4",
+     "installedContentHash": null,
+     "md5": null,
+     "source": "marketplace",
+     "author": null,
+     "download_url": null,
+     "installedAt": 1792016014112,
+     "last_modified_time": null
+    }
+   },
+   "inferred_upstreams": [],
+   "in_market_cache": true,
+   "confidence": "declared"
+  },
+  {
+   "slug": "web-design-guidelines",
+   "local_sha256": "9e3f7b21de203278eff30eb2af3096ef023a9f6cb45b672c007269407266c873",
+   "local_bytes": 1362,
+   "dir_manifest_sha256": "4bc0d05e6b970d7b4816822f9c9cde6d9ee88ecbb57273f73c612766d83aa641",
+   "dir_file_n": 1,
+   "mtime": "2026-09-29T11:28:24",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [
+    {
+     "repo": "calesthio/OpenMontage",
+     "path": ".agents/skills/web-design-guidelines/SKILL.md"
+    },
+    {
+     "repo": "calesthio/OpenMontage",
+     "path": ".claude/skills/web-design-guidelines/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills-claude/skills/web-design-guidelines/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills/skills/web-design-guidelines/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "skills/web-design-guidelines/SKILL.md"
+    },
+    {
+     "repo": "vercel-labs/agent-skills",
+     "path": "skills/web-design-guidelines/SKILL.md"
+    }
+   ],
+   "in_market_cache": false,
+   "confidence": "inferred"
+  },
+  {
+   "slug": "wechat-automation",
+   "local_sha256": "8a21d7e75399cdc04e95678a04faf09851d4172ee42638eabd4d6f2ae918520f",
+   "local_bytes": 20184,
+   "dir_manifest_sha256": "07b72fb9d4e8efde78e58f9e40bc65f1ab2f3f8534a703ab06c2a1ff93b800dd",
+   "dir_file_n": 2,
+   "mtime": "2026-09-29T11:28:24",
+   "fm_version": "1.0.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "wechat-voice-transcription",
+   "local_sha256": "2a1c8b6ff08dd2dfd5b23a9fea528d22c0d696da500ad3f782f6c058d1d4f366",
+   "local_bytes": 3483,
+   "dir_manifest_sha256": "bb84965b7129976164c741ae7386be9be6ded6ee3ba914a271fdb5483fba3bac",
+   "dir_file_n": 2,
+   "mtime": "2026-10-14T11:07:10",
+   "fm_version": "1.0.0",
+   "fm_last_updated": null,
+   "registry_source": "user-created",
+   "registry_version": "1.0.0",
+   "registry_user_created": true,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "win-toolchain-pitfalls",
+   "local_sha256": "deeab10595452a30a9384c173e70d677bf8b883976b77017d71ed4ad1ed296a2",
+   "local_bytes": 11846,
+   "dir_manifest_sha256": "9278ad7660f2e27c8962eec842c078408308ab9a3e55bc3c2ae2e69f537d61fe",
+   "dir_file_n": 2,
+   "mtime": "2026-10-14T11:07:10",
+   "fm_version": "1.5.0",
+   "fm_last_updated": "2026-10-14",
+   "registry_source": "community",
+   "registry_version": "1.0.1",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "windows-bash-cli-interop-pitfalls",
+   "local_sha256": "cce2565e7112dc33887eec6de461cced5609ba369a39ea213e7f53a75da1d787",
+   "local_bytes": 7486,
+   "dir_manifest_sha256": "60da435adaf8621666b3a85020639572505398b25595a35e5939ab3e3dd8bfb6",
+   "dir_file_n": 2,
+   "mtime": "2026-10-06T05:41:18",
+   "fm_version": "1.1.0",
+   "fm_last_updated": null,
+   "registry_source": "user-created",
+   "registry_version": "1.0.0",
+   "registry_user_created": true,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "windows-cli-utf8-wrapper",
+   "local_sha256": "85b34bfec77b850f2b67697cafb9b6473bb411f80e814d0c0fcd1493984b0278",
+   "local_bytes": 9537,
+   "dir_manifest_sha256": "93b7a1f812dd935b19750256d52df3c1b61e3ff9ded7cac2deceee4fa520766d",
+   "dir_file_n": 3,
+   "mtime": "2026-10-06T05:42:14",
+   "fm_version": "1.2.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "windows-gitbash-chinese-path-pit",
+   "local_sha256": "8630f5d56867f10fa27b56a438904e47ced0c2a917e6cf85ee23b4ece97d5be5",
+   "local_bytes": 6043,
+   "dir_manifest_sha256": "ee95cae8eee19f0d0391af6c3c0db2be37b3125c787b2025a889b9e35137f287",
+   "dir_file_n": 2,
+   "mtime": "2026-10-14T11:07:10",
+   "fm_version": "1.1.0",
+   "fm_last_updated": null,
+   "registry_source": "user-created",
+   "registry_version": "1.0.0",
+   "registry_user_created": true,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "windows-native-ocr",
+   "local_sha256": "11a5c470d999afe7538e37b14334d220ad076dd546dc6c64f597339958857977",
+   "local_bytes": 2697,
+   "dir_manifest_sha256": "b73c4f5c39082e19a3137b4a575773099561069a669cf79991feebdcb6b5f4e9",
+   "dir_file_n": 2,
+   "mtime": "2026-10-14T11:07:10",
+   "fm_version": "1.0.0",
+   "fm_last_updated": null,
+   "registry_source": "user-created",
+   "registry_version": "1.0.0",
+   "registry_user_created": true,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "workbuddy-mcp",
+   "local_sha256": "05f2b581dd4bc785eaa48ac1ba97987654064f52505688381085ea66ae4657af",
+   "local_bytes": 4274,
+   "dir_manifest_sha256": "5165107e57a77497f05f22b97d8a31f8389b5f3dbd356f9fc7ab7de83ff5b6e6",
+   "dir_file_n": 2,
+   "mtime": "2026-10-14T11:07:10",
+   "fm_version": "1.1.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.1.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "workflow-preflight-check",
+   "local_sha256": "5eaed0ffd71e081b86c30fafca9898c94218b0cf3515681abd26e3a556fe4cee",
+   "local_bytes": 11134,
+   "dir_manifest_sha256": "c2d0418631e3752f877d02d3dc172685eaf8af5d7acafac0809e5efcb8156f6e",
+   "dir_file_n": 2,
+   "mtime": "2026-10-14T11:07:10",
+   "fm_version": "1.1.0",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.0",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "wps-knowledgebase",
+   "local_sha256": "cd4fa73d9e1add6c5eb0873ea6edf3422f04b7a76156ee16a2c87a6ec42f3f86",
+   "local_bytes": 21388,
+   "dir_manifest_sha256": "d555f688ee01278733ccebb9c957cde45aa1ae96dc8b5edeb77547266ab46224",
+   "dir_file_n": 1,
+   "mtime": "2026-09-22T14:36:36",
+   "fm_version": "2.0.3",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "2.0.3",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  },
+  {
+   "slug": "writing-plans",
+   "local_sha256": "90056bad3d5f196fa7c9fec0ffe592e6d9c86bc983e406642a51d1a4198b7024",
+   "local_bytes": 6046,
+   "dir_manifest_sha256": "f85148b9f156bc4438cd07f0d4f52902a6926a7aaea8b9fc8500932289c16170",
+   "dir_file_n": 2,
+   "mtime": "2026-09-22T00:44:33",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [
+    {
+     "repo": "obra/superpowers",
+     "path": "skills/writing-plans/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills-claude/skills/writing-plans/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills/skills/writing-plans/SKILL.md"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "skills/writing-plans/SKILL.md"
+    }
+   ],
+   "in_market_cache": false,
+   "confidence": "inferred"
+  },
+  {
+   "slug": "xlsx",
+   "local_sha256": "70652d55175e46c2befc3b727696433c288da3a352021f25106470a248864506",
+   "local_bytes": 11703,
+   "dir_manifest_sha256": "b928219593d3031ccef2cb98b1c92a5e19bb0c5a00c3310655dbcdef69f81547",
+   "dir_file_n": 56,
+   "mtime": "2026-10-16T16:09:41",
+   "fm_version": "1.0.2",
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "1.0.1",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [
+    {
+     "repo": "anthropics/skills",
+     "path": "skills/xlsx/SKILL.md"
+    }
+   ],
+   "in_market_cache": false,
+   "confidence": "inferred"
+  },
+  {
+   "slug": "天眼一下",
+   "local_sha256": "93251b28c9479c39df9ef62bada6c426af6f1157fabda322443aacf32082a027",
+   "local_bytes": 10331,
+   "dir_manifest_sha256": "feaefbe17de94d6881d3e56cb5e7c342f793002e4cf0e7eb20a0a65dd146f297",
+   "dir_file_n": 1,
+   "mtime": "2026-09-25T05:33:18",
+   "fm_version": null,
+   "fm_last_updated": null,
+   "registry_source": "community",
+   "registry_version": "community",
+   "registry_user_created": false,
+   "declared": {},
+   "inferred_upstreams": [],
+   "in_market_cache": false,
+   "confidence": "unknown"
+  }
+ ]
+}
