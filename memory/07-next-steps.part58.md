@@ -1,0 +1,9 @@
+# 07-next-steps.part58.md
+
+<!-- 本卷为 07-next-steps.md 的延续（r109 I-7 人工重切，零增减） -->
+
+> 上一卷：`07-next-steps.part57.md`；本组首卷 `07-next-steps.part57.md` 含路由。
+
+- [ ] **【P1·新立 R313（r108 一手，并行甩件护栏）】** 受管根任何提交落地后，**必须复算主线可达性**：`git -C D:\global_skills merge-base --is-ancestor <sha> HEAD`（rc=1 即被甩出）。一手实测：改造4 首笔 `b9e5d90e`（9 文件 846 行）落地 3 分钟后被并行会话 16:04–16:05 的 `rebase (start)/reset: moving to 2960ac1b/cherry-pick` 活动甩出主线（`git cat-file -e HEAD:local-asr/scripts/test.ps1` rc=128 ⇒ 文件在 HEAD 树中不存在），数据未丢（对象仍在 `cat-file -t`=commit），配方 = `git checkout <悬空sha> -- <paths>` 回盘重落为 `c984a8aa`。**不做即等于「已交付」判断失真**（与跨会话夹带 f6f5b0c 同族、方向相反：那次是被夹带进来，这次是被甩出去）。取值：`git -C D:\global_skills reflog --date=iso -6` + `git -C D:\global_skills ls-files -- "local-*/scripts/test.ps1" | wc -l`（期望 10） 【r108 登记｜本轮已按该配方自愈】
+- [ ] **【P1·新立 R314（r108，聚合 runner stdout 落点）】** 门禁 runner 的 stdout **禁止落项目根**（顶层扫描面）。一手实测两次自踩：`_temp_r108_gates.txt` 落 `自建skill优化\` 根 ⇒ `root_face_fixtures` f8 判顶层 VIOL「根部意外项」；与 `audit-runner-safe-aggregate` 的反掩盖口径同族（产物落点是判据的一部分）。**本轮二次自踩升级判据**：改落 `06-benchmark/gate_run_r108_stdout.txt` 并入库后，`Out-File` 每次先截零 ⇒ `tracked_empty_check` 抓到「0 字节 tracked 文本件 1 个」判红。正解 = 落 **gitignore 命中目录**（本仓 `_temp/` 在册）或只留 `--json` 快照（机器可读、非空即自证）。R314 终口径 = 聚合 runner 的 stdout 只许落 ①gitignore 命中目录 ②仓外；**禁落项目根**（noise 顶层 VIOL）**与任何 tracked 件**（0 字节竞态）。处置已执行：`git rm --cached` + 删除该件；取值改 `python -c "import json;d=json.load(open('06-benchmark/gate_run_r108_2026-10-16.json',encoding='utf-8-sig'));print(d['verdict'],d['gates_run'])"`取值：`python 05-exec/r55_rootface_fixtures.py` 【r108 登记｜本轮已删自造件并改落点】
+- [ ] **【P1·承接 W-45（r108 执行完毕，余面转看守）】** ASM 版本历史卷 1.19.0/1.20.0 两行已逐字补齐（提交 `f6ac563f`，卷字节 18,344→20,092）。**余面**：同卷存在历史重复行（1.10.0/1.11.0/1.14.0/1.6.0 各两形态、1.3.0 三行），属他方 bump 未回填；按 R241 不改写他人条目，只登记看守。取值：`grep -c "^| 1.1" D:/global_skills/A-skill-manager/references/version-history.md` 与逐行目测重复 【r108 裁决=执行完毕（限定）｜主面闭环，重复行面转长期看守（他人条目禁改）】

@@ -1,0 +1,7 @@
+# 07-next-steps.part66.md
+
+<!-- 本卷为 07-next-steps.md 的延续（r109 I-7 人工重切，零增减） -->
+
+> 上一卷：`07-next-steps.part65.md`；本组首卷 `07-next-steps.part57.md` 含路由。
+
+- **2026-10-02（第 99 轮 r99，十二维补面 + 覆盖根修 + 退役件再清零）** — 用户十二维对标指令整跑（#23 不降格）。① **本轮最大差距在自己尺子上**：`05-exec/r96_twelve_face.py` 名为十二维、实测本地面只到 6 维（d4/d6/d7/d8/d10/d12 为零，d8 两侧皆无、d12 是散文）→ 补六维本地取数 + 对手 d8/d12 + `dim_coverage` 逐维 matched/mismatched，schema 升 `twelve-face-r99-v3`，夹具 5→**25 腿全过**（取值 `python 05-exec/r96_twelve_face.py --selftest`）。② **覆盖根假缺口**：本地面漏平台插件根，superpowers 的 `using-git-worktrees`/`dispatching-parallel-agents` 被算成对手独有（实测就在 `plugins/cache/qoder-marketplace/superpowers/6.3.0/skills/`）；按 `installed_plugins_v2.json` installPath 逐条入面 + realpath 去重 + 18 根分母之和自洽 ⇒ 差集 **10→1**。该自洽腿首跑真红（got=318 want=317）逼出「跨根重复必须显形」，非装饰。③ **换装判定 0 件**：curated 独有 9 slug 逐条过 X-29 三门槛全不齐（与 r60 37→0 同结论，第四次在独立维度复现）⇒ 无下载无卸载。④ **P0-2 真执行**：`executing-plans`/`slides` 被平台重新下发（`git ls-files`=0、`??`），先以 r61 删除前 blob sha256 全等（`57ee0941f8725460`/`a711f83fb762e2ea`）证可回滚，再 `r97_retire_full_egress.py --apply` 双根 21+21 文件读回备份后移出 ⇒ `retired_face` 转绿、27 门 FAIL 6→5（取值 `python 05-exec/r59_retired_face.py`）。⑤ **棘轮 +12 不动基线**：`inject_union_bytes` 87598→87610（同因使焚诀 verify 42 PASS/1 FAIL C25），+12 属并行会话在途（受管根实测 97 条），R59-8 上调通道要求 commit 归因 ⇒ 登记带前提命令不放宽。⑥ 报告数字按退役后面重跑取（d1 并集 316／一级 169／唯一 slug 307），防「先测后删仍引用旧值」。下轮队列：P1-2 d10 可控性三选一待裁定、P1-3 覆盖根名册与 `input_pin_face` 双向对账、P0-3 棘轮 +12 复算。报告 = `06-benchmark/全量对标报告_r99_十二维补面与覆盖根修_2026-10-02.md`

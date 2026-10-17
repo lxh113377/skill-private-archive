@@ -1,6 +1,11 @@
 # 07-next-steps 分卷 57 — r108（2026-10-16）轮次记录与新建待办
 
 > 独占新卷（R199 拆卷口径：主壳只加指针，正文零改写）。上位文件 = `07-next-steps.md`。
+> r109 I-7 人工重切：原件 40,124B ⇒ 本组 15 卷，逐卷 ≤4,096B（R161 硬限），零增减守恒见本轮台账。
+
+# 07-next-steps 分卷 57 — r108（2026-10-16）轮次记录与新建待办
+
+> 独占新卷（R199 拆卷口径：主壳只加指针，正文零改写）。上位文件 = `07-next-steps.md`。
 
 ## r108 轮次记录（摘要，正文留本卷；主壳按 r105 先例逐字节回退）
 
@@ -9,17 +14,3 @@
 - 主壳字节：写前 149,362B → append 后 152,442B（+3,080B，超 shell_max=40,960 既有超限面）⇒ 按 r105 先例把正文迁本卷、主壳逐字节回退（取值：`python -c "import io;print(len(io.open('memory/07-next-steps.md','rb').read()))"`，期望 149,362 + 指针行）。
 
 ## r108 新建待办
-
-- [ ] **【P1·新立 R313（r108 一手，并行甩件护栏）】** 受管根任何提交落地后，**必须复算主线可达性**：`git -C D:\global_skills merge-base --is-ancestor <sha> HEAD`（rc=1 即被甩出）。一手实测：改造4 首笔 `b9e5d90e`（9 文件 846 行）落地 3 分钟后被并行会话 16:04–16:05 的 `rebase (start)/reset: moving to 2960ac1b/cherry-pick` 活动甩出主线（`git cat-file -e HEAD:local-asr/scripts/test.ps1` rc=128 ⇒ 文件在 HEAD 树中不存在），数据未丢（对象仍在 `cat-file -t`=commit），配方 = `git checkout <悬空sha> -- <paths>` 回盘重落为 `c984a8aa`。**不做即等于「已交付」判断失真**（与跨会话夹带 f6f5b0c 同族、方向相反：那次是被夹带进来，这次是被甩出去）。取值：`git -C D:\global_skills reflog --date=iso -6` + `git -C D:\global_skills ls-files -- "local-*/scripts/test.ps1" | wc -l`（期望 10） 【r108 登记｜本轮已按该配方自愈】
-- [ ] **【P1·新立 R314（r108，聚合 runner stdout 落点）】** 门禁 runner 的 stdout **禁止落项目根**（顶层扫描面）。一手实测两次自踩：`_temp_r108_gates.txt` 落 `自建skill优化\` 根 ⇒ `root_face_fixtures` f8 判顶层 VIOL「根部意外项」；与 `audit-runner-safe-aggregate` 的反掩盖口径同族（产物落点是判据的一部分）。**本轮二次自踩升级判据**：改落 `06-benchmark/gate_run_r108_stdout.txt` 并入库后，`Out-File` 每次先截零 ⇒ `tracked_empty_check` 抓到「0 字节 tracked 文本件 1 个」判红。正解 = 落 **gitignore 命中目录**（本仓 `_temp/` 在册）或只留 `--json` 快照（机器可读、非空即自证）。R314 终口径 = 聚合 runner 的 stdout 只许落 ①gitignore 命中目录 ②仓外；**禁落项目根**（noise 顶层 VIOL）**与任何 tracked 件**（0 字节竞态）。处置已执行：`git rm --cached` + 删除该件；取值改 `python -c "import json;d=json.load(open('06-benchmark/gate_run_r108_2026-10-16.json',encoding='utf-8-sig'));print(d['verdict'],d['gates_run'])"`取值：`python 05-exec/r55_rootface_fixtures.py` 【r108 登记｜本轮已删自造件并改落点】
-- [ ] **【P1·承接 W-45（r108 执行完毕，余面转看守）】** ASM 版本历史卷 1.19.0/1.20.0 两行已逐字补齐（提交 `f6ac563f`，卷字节 18,344→20,092）。**余面**：同卷存在历史重复行（1.10.0/1.11.0/1.14.0/1.6.0 各两形态、1.3.0 三行），属他方 bump 未回填；按 R241 不改写他人条目，只登记看守。取值：`grep -c "^| 1.1" D:/global_skills/A-skill-manager/references/version-history.md` 与逐行目测重复 【r108 裁决=执行完毕（限定）｜主面闭环，重复行面转长期看守（他人条目禁改）】
-- [ ] **【P1·承接 R60-3（r108 xlsx 半边执行完毕）】** xlsx 可跑验证腿 1→3（同尺判据 `^(python|node) scripts/` ≥3 成立）+ 2 条实测坏腿如实登记（`validate.py` 对 .xlsx 落 `case _:` 打印不支持、`recalc.py` Windows `AF_UNIX` 崩；根因读自自带源码），版本 1.0.1→1.0.2 并新建 `## 版本历史` 段（改前无该节 ⇒ C13 此前对本件免疫）；主文件被自身新增顶破 12,288B（`skill_size_report.check()` 点名「新增超限技能 xlsx」）⇒ 同轮分卷 `references/verification.md` 收口回 11,703B WITHIN。提交 `2960ac1b`+`7bdf8e6d`。**一手教训**：我先按 docx 形态写 5 条腿，逐条实测后 2 条虚报 ⇒ **验证段每条腿必须自跑并留回执；跑不通的写进「跑不通」小节，禁删掉不提**。取值：`python -c "import io;print(sum(1 for l in io.open(r'D:/global_skills/xlsx/SKILL.md',encoding='utf-8') if l.startswith(('python scripts/','node scripts/'))))"`（期望 ≥3） 【r108 裁决=执行完毕｜pdf 0 条腿的同类缺口另条在册 I-8】
-- [ ] **【P2·新立 I-8（r108 对标同尺）】** `pdf/SKILL.md` 可跑验证段实测 **0 条**（同尺 docx=17 / xlsx 改后=3）。判据与 xlsx 同形态。前提同 R60-3：走 rule_editor + version bump + 历史行 + rebuild 窗口。取值：`python -c "import io;print(sum(1 for l in io.open(r'D:/global_skills/pdf/SKILL.md',encoding='utf-8') if l.startswith(('python scripts/','node scripts/'))))"` 【r108 登记】
-- [ ] **【P2·新立 I-5（r108 对标确定落后项）】** 受管根 `D:\global_skills` 根**实测 0 件 .md**（`readdir` 全量，非搜索命中）vs 对手 spec-kit 根 12 件 .md（含 CONTRIBUTING/SECURITY/SUPPORT/DEVELOPMENT/CHANGELOG）/ anthropics 2 件 ⇒ 「技能仓的规矩」目前只活在 A-skill-manager 铁律与 memory 台账里，新会话或外部贡献者必然漏项（本轮 W-45 就是该缺口的产物）。**不擅立**：CONTRIBUTING 属全库规矩外显，须老大点头口径（谁可改/走什么链/怎么测）。取值：`Get-ChildItem D:\global_skills -Filter *.md -File` 【r108 登记·待裁】
-- [ ] **【P2·新立 I-6（r108 可发现性差距）】** 判据面命名与对手不可比：spec-kit 389 / superpowers 87 个 `tests/` 文件，我方 `05-exec/` 130 个 py（其中 29 个 `*_fixtures.py` 常驻门）**但无 tests/ 目录** ⇒ 功能等价、可发现性差。方案 = 加一份「门⇄夹具⇄判据」索引（README 或 docs/），**禁物理搬迁**（会把 29 道门的 script 路径全打挂）。取值：`ls 05-exec/*_fixtures.py | wc -l`（实测 29） 【r108 登记·待裁】
-- [ ] **【P1·承接 W-32（r108 复算，未动）】** `inject_union_bytes=86,900B` 超硬顶 65,536B（+21,364）。本轮复算：`ratchet_gate.py` 打印同值；焚诀 C31 侧口径余量 1,569B（2.4%）已亮「再有一次技能增长即破硬顶」⇒ 该告警**已从装饰性变成临界面**。三选一仍待老大点名（实减 / 重设硬顶并逐因归因 / 显式豁免）。取值：`python 05-exec/ratchet_gate.py` + managed venv `python 焚诀/eval/verify_truth_consistency.py` 读 C31 行 【r108 裁决=保留（转裁定）｜第 4 轮未消】
-
-## r108 对既有台账的复算校正（R241：原文不改，只在此具名）
-
-- r107 报告 §2 门禁终态「29 门 PASS」当日成立；本轮 2026-10-16 15:18 复跑报 **FAIL=6**，红因全部可归因（账龄件陈旧 / 自造根散件 / 元门自我引证），非 r107 虚报。原文按 R241 保留。
-- 「local 族 9/10 缺 test 腿」自 2026-10-06 立项起持续成立，本轮 15:36 复算 = 1/10，16:20 收口 = 10/10（tracked）。
