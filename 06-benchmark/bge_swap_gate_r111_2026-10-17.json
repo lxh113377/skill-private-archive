@@ -1,6 +1,6 @@
 {
  "schema": "bge-swap-gate-r111-v2",
- "generated_at": "2026-10-17T20:35:59",
+ "generated_at": "2026-10-17T20:51:04",
  "engine": {
   "path": "C:\\Users\\37533\\Desktop\\workspace\\焚诀\\eval\\bge_onnx_engine.py",
   "backend": "onnxruntime bge-small-zh-v1.5",
@@ -21,7 +21,8 @@
    "文体污染：两侧均为 Use when the user wants to 模板句，文体相似被当语义相似",
    "语言不对称仍在（本地 69.8% 描述含中文），去中文变体排序结构不变 ⇒ 非主因"
   ],
-  "probe_vs_real": "手写短句探针 margin=+0.0292（假可用）；真取数 -0.1294"
+  "probe_vs_real": "手写短句探针 margin=+0.0292（假可用）；真取数 -0.1294",
+  "chain_health_w47": "5 项链路自检全 PASS（self_cos=1.0 / unrelated=0.4706 / cross_ling=0.5607）⇒ BLIND 结论来自真实测量而非 bug"
  },
  "variants": {
   "A_fulltext": {

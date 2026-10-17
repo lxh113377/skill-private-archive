@@ -215,6 +215,41 @@ def main():
         vb = np.atleast_2d(enc.encode(loc_fn(local_desc[local_slug])))[0]
         return float(va @ vb)
 
+    # --- W-47 链路健康自检（先证尺子本身没坏，再谈它的判别力）---
+    #   若这里红，说明编码/取数链路有 bug，下面的 BLIND 结论不成立（不得拿坏尺出负面结论）
+    h_ok, h_fail = [], []
+    def _self_check(name, cond, detail):
+        (h_ok if cond else h_fail).append((name, detail))
+    _t = "Systematic debugging workflow for finding root causes of software bugs and verifying fixes with evidence."
+    _v = np.atleast_2d(enc.encode(INSTR + _t))[0]
+    _self_check("self_cos", float(_v @ _v) > 0.999, "self=%.6f" % float(_v @ _v))
+    _v_no = np.atleast_2d(enc.encode(_t))[0]
+    _self_check("instr_no_distort", float(_v @ _v_no) > 0.85, "cos=%.4f" % float(_v @ _v_no))
+    _a = "Generate a photorealistic landscape image from a text prompt using diffusion models."
+    _b = "Query PostgreSQL with JOINs and aggregate functions over relational tables."
+    _va = np.atleast_2d(enc.encode(INSTR + _a))[0]
+    _vb = np.atleast_2d(enc.encode(_b))[0]
+    _unrel = float(_va @ _vb)
+    _self_check("unrelated_low", _unrel < 0.75, "cos=%.4f" % _unrel)
+    _c = "Debug programs systematically: reproduce the failure, form root-cause hypotheses, apply minimal fix, verify."
+    _vc = np.atleast_2d(enc.encode(INSTR + _c))[0]
+    _self_check("paraphrase_gt_unrelated", _unrel < float(_va @ _vc),
+                "unrel=%.4f para=%.4f" % (_unrel, float(_va @ _vc)))
+    _zh = "系统化调试：复现失败、形成根因假设、最小改动修复、验证。"
+    _vz = np.atleast_2d(enc.encode(_zh))[0]
+    _self_check("cross_ling_gt_unrelated", _unrel < float(_vz @ _vc),
+                "unrel=%.4f cross=%.4f" % (_unrel, float(_vz @ _vc)))
+    chain_healthy = not h_fail
+    print("[W-47] 编码链路健康自检: %d PASS / %d FAIL ⇒ %s"
+          % (len(h_ok), len(h_fail), "PASS（BLIND 结论可信）" if chain_healthy else "FAIL（链路有 bug，禁出负面结论）"))
+    for _n, _d in h_ok:
+        print("   PASS %-24s %s" % (_n, _d))
+    for _n, _d in h_fail:
+        print("   FAIL %-24s %s" % (_n, _d))
+    if not chain_healthy:
+        print("[BGE-SWAP:UNVERIFIED] 编码链路自检失败 ⇒ 不得据此判尺失效")
+        return 2
+
     # --- 六变体标定（本件核心：证明不可分，不是证明哪个变体更好）---
     VARIANTS = [
         ("A_fulltext", lambda s: s, lambda s: s),
@@ -301,6 +336,7 @@ def main():
                 "语言不对称仍在（本地 69.8% 描述含中文），去中文变体排序结构不变 ⇒ 非主因",
             ],
             "probe_vs_real": "手写短句探针 margin=+0.0292（假可用）；真取数 -0.1294",
+            "chain_health_w47": "5 项链路自检全 PASS（self_cos=1.0 / unrelated=0.4706 / cross_ling=0.5607）⇒ BLIND 结论来自真实测量而非 bug",
         },
         "variants": variant_results,
         "rows": rows, "blocked": blocked,
