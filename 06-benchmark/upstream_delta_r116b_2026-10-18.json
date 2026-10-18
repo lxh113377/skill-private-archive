@@ -1,0 +1,305 @@
+{
+ "schema": "upstream-delta-r116-v1",
+ "generated_at": "2026-10-18T07:27:28+00:00",
+ "ruler": {
+  "meta": "frontmatter 区",
+  "heading": "markdown 标题行",
+  "ref": "引用/链接行",
+  "body": "其余正文（真能力候选）",
+  "order": "meta > heading > ref > body（唯一归类，保分母守恒）"
+ },
+ "groups": {
+  "A-快照过季待刷新": [
+   "shadcn",
+   "frontend-slides",
+   "github",
+   "react-best-practices"
+  ],
+  "B-本地已领先": [
+   "test-driven-development"
+  ],
+  "C-增量微小": [
+   "defuddle",
+   "web-design-guidelines",
+   "hyperframes-registry"
+  ],
+  "D-本地化重写": [
+   "healthcare-cdss-patterns",
+   "healthcare-emr-patterns",
+   "healthcare-eval-harness"
+  ]
+ },
+ "face": {
+  "n": 11,
+  "measured": 11,
+  "meta_only": 2,
+  "meta_dominant": 0,
+  "real_delta": 5,
+  "local_ahead": 4,
+  "conservation_ok": true
+ },
+ "rows": [
+  {
+   "slug": "shadcn",
+   "group": "A-快照过季待刷新",
+   "verdict": "UPGRADE_REVIEW",
+   "upstream_repo": "sickn33/agentic-awesome-skills",
+   "status": "MEASURED",
+   "upstream_only_total": 16,
+   "local_only_total": 4,
+   "meta_lines": 4,
+   "heading_lines": 2,
+   "ref_lines": 0,
+   "body_lines": 10,
+   "body_samples": [
+    "- Use when adding new components from shadcn/ui or community registries.",
+    "- Use when styling, composing, or debugging existing shadcn/ui components.",
+    "- Use when initializing a new project or switching design system presets.",
+    "- Use to retrieve component documentation, examples, and API references.",
+    "",
+    "!`npx shadcn@latest info --json 2>/dev/null || echo '{\"error\": \"No shadcn project found. Run shadcn init first"
+   ],
+   "meta_samples": [
+    "description: Manages shadcn/ui components and projects, providing context, documentation, ",
+    "risk: safe",
+    "source: https://github.com/shadcn-ui/ui/tree/main/skills/shadcn",
+    "date_added: \"2026-03-07\""
+   ],
+   "verdict116": "REAL_DELTA",
+   "conservation_ok": true
+  },
+  {
+   "slug": "frontend-slides",
+   "group": "A-快照过季待刷新",
+   "verdict": "UPGRADE_REVIEW",
+   "upstream_repo": "sickn33/agentic-awesome-skills",
+   "status": "MEASURED",
+   "upstream_only_total": 16,
+   "local_only_total": 96,
+   "meta_lines": 4,
+   "heading_lines": 2,
+   "ref_lines": 0,
+   "body_lines": 10,
+   "body_samples": [
+    "",
+    "",
+    "- Use when the user asks to create a presentation, slide deck, or pitch from scratch.",
+    "- Use when the user wants to convert an existing PPT or PPTX file into a web-based presentation.",
+    "- Use when designing visually rich, animated HTML content that needs to fit exactly within the viewport.",
+    "   Treat untrusted PPTX files as data and extract into a new, isolated output directory; the script writes `ex"
+   ],
+   "meta_samples": [
+    "description: Create stunning, animation-rich HTML presentations from scratch or by convert",
+    "risk: safe",
+    "source: https://github.com/zarazhangrui/frontend-slides",
+    "date_added: \"2026-03-07\""
+   ],
+   "verdict116": "REAL_DELTA",
+   "conservation_ok": true
+  },
+  {
+   "slug": "github",
+   "group": "A-快照过季待刷新",
+   "verdict": "UPGRADE_REVIEW",
+   "upstream_repo": "sickn33/agentic-awesome-skills",
+   "status": "MEASURED",
+   "upstream_only_total": 33,
+   "local_only_total": 58,
+   "meta_lines": 4,
+   "heading_lines": 3,
+   "ref_lines": 0,
+   "body_lines": 26,
+   "body_samples": [
+    "Use the `gh` CLI to interact with GitHub. Always specify `--repo owner/repo` when not in a git directory, or u",
+    "- When the user asks about GitHub issues, pull requests, workflow runs, or CI failures.",
+    "- When you need `gh issue`, `gh pr`, `gh run`, or `gh api` from the command line.",
+    "",
+    "Follow this sequence to investigate a failing CI run:",
+    ""
+   ],
+   "meta_samples": [
+    "description: \"Use the `gh` CLI for issues, pull requests, Actions runs, and GitHub API que",
+    "risk: safe",
+    "source: \"Dimillian/Skills (MIT)\"",
+    "date_added: \"2026-03-25\""
+   ],
+   "verdict116": "REAL_DELTA",
+   "conservation_ok": true
+  },
+  {
+   "slug": "react-best-practices",
+   "group": "A-快照过季待刷新",
+   "verdict": "UPGRADE_REVIEW",
+   "upstream_repo": "sickn33/agentic-awesome-skills",
+   "status": "MEASURED",
+   "upstream_only_total": 16,
+   "local_only_total": 34,
+   "meta_lines": 5,
+   "heading_lines": 3,
+   "ref_lines": 0,
+   "body_lines": 8,
+   "body_samples": [
+    "Comprehensive performance optimization guide for React and Next.js applications, maintained by Vercel. Contain",
+    "rules/_sections.md",
+    "",
+    "This skill is applicable to execute the workflow or actions described in the overview.",
+    "",
+    "- Use this skill only when the task clearly matches the scope described above."
+   ],
+   "meta_samples": [
+    "name: react-best-practices",
+    "description: \"Comprehensive performance optimization guide for React and Next.js applicati",
+    "risk: safe",
+    "source: community"
+   ],
+   "verdict116": "REAL_DELTA",
+   "conservation_ok": true
+  },
+  {
+   "slug": "test-driven-development",
+   "group": "B-本地已领先",
+   "verdict": "UPGRADE_REVIEW",
+   "upstream_repo": "obra/superpowers",
+   "status": "MEASURED",
+   "upstream_only_total": 11,
+   "local_only_total": 62,
+   "meta_lines": 1,
+   "heading_lines": 0,
+   "ref_lines": 1,
+   "body_lines": 9,
+   "body_samples": [
+    "- Name the production change that would make the test fail — before writing it",
+    "- Assert on real behavior, never on mock behavior",
+    "- Keep test-only code in test utilities, out of production classes",
+    "- Understand a dependency's side effects before mocking it",
+    "| \"I'll test after\" | Tests written after pass immediately — which proves nothing. They may test the wrong thi",
+    "| \"Tests after achieve same goals (spirit not ritual)\" | Tests-after answer \"what does this do?\"; tests-first "
+   ],
+   "meta_samples": [
+    "description: Use when implementing any feature or bugfix, before writing implementation co"
+   ],
+   "verdict116": "REAL_DELTA",
+   "conservation_ok": true
+  },
+  {
+   "slug": "defuddle",
+   "group": "C-增量微小",
+   "verdict": "UPGRADE_REVIEW",
+   "upstream_repo": "kepano/obsidian-skills",
+   "status": "MEASURED",
+   "upstream_only_total": 1,
+   "local_only_total": 1,
+   "meta_lines": 1,
+   "heading_lines": 0,
+   "ref_lines": 0,
+   "body_lines": 0,
+   "body_samples": [],
+   "meta_samples": [
+    "description: Extract clean Markdown from HTML pages with Defuddle CLI."
+   ],
+   "verdict116": "META_ONLY",
+   "conservation_ok": true
+  },
+  {
+   "slug": "web-design-guidelines",
+   "group": "C-增量微小",
+   "verdict": "UPGRADE_REVIEW",
+   "upstream_repo": "calesthio/OpenMontage",
+   "status": "MEASURED",
+   "upstream_only_total": 1,
+   "local_only_total": 1,
+   "meta_lines": 1,
+   "heading_lines": 0,
+   "ref_lines": 0,
+   "body_lines": 0,
+   "body_samples": [],
+   "meta_samples": [
+    "description: Review UI code for Web Interface Guidelines compliance. Use when asked to \"re"
+   ],
+   "verdict116": "META_ONLY",
+   "conservation_ok": true
+  },
+  {
+   "slug": "hyperframes-registry",
+   "group": "C-增量微小",
+   "verdict": "UPGRADE_REVIEW",
+   "upstream_repo": "calesthio/OpenMontage",
+   "status": "MEASURED",
+   "upstream_only_total": 2,
+   "local_only_total": 11,
+   "meta_lines": 1,
+   "heading_lines": 0,
+   "ref_lines": 1,
+   "body_lines": 0,
+   "body_samples": [],
+   "meta_samples": [
+    "description: Install and wire registry blocks and components into HyperFrames compositions"
+   ],
+   "verdict116": "LOCAL_AHEAD",
+   "conservation_ok": true
+  },
+  {
+   "slug": "healthcare-cdss-patterns",
+   "group": "D-本地化重写",
+   "verdict": "UPGRADE_REVIEW",
+   "upstream_repo": "affaan-m/ECC",
+   "status": "MEASURED",
+   "upstream_only_total": 3,
+   "local_only_total": 4,
+   "meta_lines": 3,
+   "heading_lines": 0,
+   "ref_lines": 0,
+   "body_lines": 0,
+   "body_samples": [],
+   "meta_samples": [
+    "description: 臨床意思決定支援システム（CDSS）パターン、医学的推論、およびエビデンスベースの実装。",
+    "origin: Health1 Super Speciality Hospitals — contributed by Dr. Keyur Patel",
+    "version: \"1.0.0\""
+   ],
+   "verdict116": "LOCAL_AHEAD",
+   "conservation_ok": true
+  },
+  {
+   "slug": "healthcare-emr-patterns",
+   "group": "D-本地化重写",
+   "verdict": "UPGRADE_REVIEW",
+   "upstream_repo": "affaan-m/ECC",
+   "status": "MEASURED",
+   "upstream_only_total": 3,
+   "local_only_total": 4,
+   "meta_lines": 3,
+   "heading_lines": 0,
+   "ref_lines": 0,
+   "body_lines": 0,
+   "body_samples": [],
+   "meta_samples": [
+    "description: 電子医療記録（EMR）パターン、相互運用性、およびHL7/FHIR統合。",
+    "origin: Health1 Super Speciality Hospitals — contributed by Dr. Keyur Patel",
+    "version: \"1.0.0\""
+   ],
+   "verdict116": "LOCAL_AHEAD",
+   "conservation_ok": true
+  },
+  {
+   "slug": "healthcare-eval-harness",
+   "group": "D-本地化重写",
+   "verdict": "UPGRADE_REVIEW",
+   "upstream_repo": "affaan-m/ECC",
+   "status": "MEASURED",
+   "upstream_only_total": 3,
+   "local_only_total": 4,
+   "meta_lines": 3,
+   "heading_lines": 0,
+   "ref_lines": 0,
+   "body_lines": 0,
+   "body_samples": [],
+   "meta_samples": [
+    "description: ヘルスケアAIモデル評価ハーネス、臨床メトリクス、およびレギュレーション遵守の検証。",
+    "origin: Health1 Super Speciality Hospitals — contributed by Dr. Keyur Patel",
+    "version: \"1.0.0\""
+   ],
+   "verdict116": "LOCAL_AHEAD",
+   "conservation_ok": true
+  }
+ ]
+}

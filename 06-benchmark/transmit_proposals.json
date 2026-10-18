@@ -1,7 +1,7 @@
 {
  "schema": "zijian-transmit-proposal-v1",
  "note": "本仓拟外推给焚诀归属会话的判据建议登记表。外推前必须先跑 `python 05-exec/transmit_obsolescence_check.py`：被判 OBSOLETE 的条目=对方已自落，禁止再外推（推过期件=让人做无用功）；UNVERIFIED=取不到真相源，不得当作已过期或未过期。",
- "updated": "2026-09-25",
+ "updated": "2026-10-18",
  "source": "06-benchmark/全量对标报告_r19_2026-09-24.md §9/§10 + 06-benchmark/计数断言基线_2026-09-24.md",
  "proposals": [
   {
@@ -54,6 +54,21 @@
     "工作区"
    ],
    "why": "r31 实测：`handoff.py noise <项目绝对路径>` 对本项目报 17 条 VIOL，含 .git / memory/ / AGENTS.md / 00-scope…06-benchmark 六个编号目录 / archive/，逐条建议「迁往 <项目>\\_trash\\<同名>」⇒ 照字面执行即把仓库自身搬进回收站。根因=受管根 allowlist 被复用到任意工作区。修法=非受管根拒绝执行或改用项目结构白名单；本轮仅登记，未代改（该 skill 归属会话在途）。"
+  },
+  {
+   "pid": "skill_hitrate_stale_expectations",
+   "title": "layered 盲测集 6 个期望 skill 已不在册/不在盘（题面过期）",
+   "target": "焚诀 eval/layered_testset.json（题集维护方）",
+   "proposed_at": "2026-10-18",
+   "keywords": [
+    "题集",
+    "期望",
+    "过期",
+    "退役",
+    "盲测"
+   ],
+   "why": "r117 一手实测：eval/frozen_blind_eval.py --set layered 的 291 条里 20 条 miss，其中 8 条的 expected_skill 既不在 skill/registry/unified-skills-index.json（182 名）也不在 D:/global_skills 盘上，即题面写的是一门已退役技能 ⇒ 这 8 条对任何路由实现都不可达。具名：deep-research-pro、fenjue-advisor-scoring、fenjue-cc-audit-cycle、multi-search-engine、tencent-cos-skill__skillhub、weather。处置权在题集维护方（本仓 eval 只读，未代改一处）；本仓同步给出的不是『提升』而是『脏分母规模』——8/291=2.7%，remap 后理论上限 98.6%（83 亿分之一口径见 r117 报告 §2.2）。",
+   "evidence": "06-benchmark/route_miss_attr_r117_2026-10-18.json"
   }
  ]
 }

@@ -1,6 +1,6 @@
 {
  "schema": "replacement-matrix-r114-v1",
- "generated_at": "2026-10-18T04:59:22+00:00",
+ "generated_at": "2026-10-18T07:29:30+00:00",
  "cmd": "python 05-exec/r114_replacement_scan.py",
  "face": {
   "local_n": 182,
@@ -11,7 +11,7 @@
   "api_calls": 0,
   "cache_hits": 392,
   "cache_miss": 0,
-  "offline": false
+  "offline": true
  },
  "conservation": {
   "sum_verdicts": 182,

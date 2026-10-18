@@ -1,16 +1,14 @@
 {
  "schema": "upstream-probe-r112-v1",
- "generated_at": "2026-10-18T04:59:16+00:00",
+ "generated_at": "2026-10-18T07:29:24+00:00",
  "face": {
   "scan_file": "06-benchmark/quarterly/2026Q4/provenance.json",
   "targets_n": 39,
   "ok_n": 24,
   "unverified_n": 15,
-  "api_calls": 10,
-  "cache_hits": 44,
-  "rate": {
-   "core_remaining": 4111
-  },
+  "api_calls": 0,
+  "cache_hits": 54,
+  "rate": null,
   "min_rate": 300,
   "min_overlap": 0.15,
   "rubric_available": true,
@@ -526,7 +524,7 @@
      "jaccard": 0.9821
     }
    ],
-   "evidence_source": "api"
+   "evidence_source": "cache"
   },
   {
    "slug": "healthcare-emr-patterns",
@@ -1130,7 +1128,7 @@
      "jaccard": 0.9062
     }
    ],
-   "evidence_source": "api"
+   "evidence_source": "cache"
   },
   {
    "slug": "test-driven-development",
@@ -1178,7 +1176,7 @@
      "jaccard": 0.7915
     }
    ],
-   "evidence_source": "api"
+   "evidence_source": "cache"
   },
   {
    "slug": "theme-factory",
@@ -1219,7 +1217,7 @@
      "jaccard": null
     }
    ],
-   "evidence_source": "api"
+   "evidence_source": "cache"
   },
   {
    "slug": "ui-ux-pro-max",
@@ -1317,7 +1315,7 @@
      "jaccard": 0.9259
     }
    ],
-   "evidence_source": "api"
+   "evidence_source": "cache"
   },
   {
    "slug": "writing-plans",
@@ -1365,7 +1363,7 @@
      "jaccard": 0.9054
     }
    ],
-   "evidence_source": "api"
+   "evidence_source": "cache"
   },
   {
    "slug": "xlsx",

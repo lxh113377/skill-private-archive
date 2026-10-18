@@ -13,6 +13,10 @@ r'''r113_quarterly_audit.py -- 季度 skill 巡检一键入口（需求 5：长�
     · r112_swap_gate.py         五态裁决 + 盲区具名
     · r112_provenance_face.py   常驻门（离线结构判据）
     · gh api repos/<R>          上游仓元数据（stars/pushed/license/issues）
+    · r114_replacement_scan.py  替代候选面（第 ⑥ 段；r114 建）
+    · r114_quality_ab.py        eval 内三方法对照（第 ⑦ 段；r115 起降级为旁证）
+    · r117_route_miss_attr.py   生产路由 miss 归因（第 ⑧ 段；r117 建）
+    · r115_quality_truth.py     质量主指标四层（第 ⑨ 段；r115 起为唯一质量口径）
 
   反「取数失败销毁证据」（r112 cache-guard 范式，本件是 K-4 推广的第一件）：
     巡检产物写**同一路径**（quarterly/<季度>/audit.json）⇒ 一次网络抖动不得把上一季
@@ -142,15 +146,27 @@ def main():
     if args.offline:
         repl_argv.append("--offline")
     steps.append(run_step("replacement_scan", repl_argv))
-    # r114 第 ⑦ 段：任务级质量基准（需求 6 的主指标，跨季可比）
+    # r114 第 ⑦ 段：eval 内三方法对照（**口径降级**：r115 已证它不是生产路由读数，
+    # 保留只为跨季观察「轻量匹配」而存在；质量主指标看第 ⑨ 段 r115_quality_truth.py）
     qual_argv = [PY, os.path.join(HERE, "r114_quality_ab.py"), "--json", qual, "--quiet"]
     steps.append(run_step("quality_ab", qual_argv))
+    # r117 第 ⑧ 段：生产路由 miss 归因（STALE_EXPECT / UNREGISTERED / REAL_MISS / UNDECIDABLE）
+    # 离线也跑：评分与注册表都在本机，不依赖网络（只在 eval 侧现算，焚诀 eval 只读）
+    rmiss = os.path.join(qdir, "route_miss_attr.json")
+    steps.append(run_step("route_miss_attr",
+                          [PY, os.path.join(HERE, "r117_route_miss_attr.py"),
+                           "--json", rmiss, "--quiet"]))
+    # r117 第 ⑨ 段：质量主指标（r115 起 = 生产路由 L1/L2/L3/L4 四层，权威件读数）
+    truth = os.path.join(qdir, "quality_truth.json")
+    steps.append(run_step("quality_truth",
+                          [PY, os.path.join(HERE, "r115_quality_truth.py"),
+                           "--json", truth, "--quiet"]))
 
     meta = fetch_meta(offline=args.offline)
     failed = [s["step"] for s in steps if s["rc"] != 0]
     meta_unv = sorted([r for r, v in meta.items() if v.get("state") == "UNVERIFIED"])
 
-    face_ok = all(os.path.isfile(p) for p in (prov, up, swap, repl, qual)) and not failed
+    face_ok = all(os.path.isfile(p) for p in (prov, up, swap, repl, qual, rmiss, truth)) and not failed
     face_reason = None
     if not os.path.isfile(prov):
         face_ok = False
@@ -168,7 +184,8 @@ def main():
         "upstream_meta": meta,
         "upstream_meta_unverified": meta_unv,
         "artifacts": {"provenance": prov, "upstream": up, "swap_gate": swap,
-                      "replacement_matrix": repl, "quality_ab": qual},
+                      "replacement_matrix": repl, "quality_ab": qual,
+                      "route_miss_attr": rmiss, "quality_truth": truth},
         "face_ok": face_ok,
         "face_reason": face_reason,
     }
@@ -187,8 +204,8 @@ def main():
     if os.path.isfile(err_out):
         os.remove(err_out)
     if not args.quiet:
-        print("季度巡检 %s 完成：六步全通过 ｜ 上游元数据 OK=%d UNVERIFIED=%d"
-              % (q, len(UPSTREAM_REPOS) - len(meta_unv), len(meta_unv)))
+        print("季度巡检 %s 完成：%d 步全通过 ｜ 上游元数据 OK=%d UNVERIFIED=%d"
+              % (q, len(steps), len(UPSTREAM_REPOS) - len(meta_unv), len(meta_unv)))
         if meta_unv:
             print("  具名 UNVERIFIED: %s" % ", ".join(meta_unv))
         print("JSON -> %s" % main_out)

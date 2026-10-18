@@ -531,6 +531,20 @@ GATES = [
         "why": "门自身两次失真的教训必须固化成腿：判据的『绿』可能来自匹配不到而不是判过。"
                "变异体刻意让豁免/守卫识别失效，抓不住即本夹具无鉴别力。",
     },
+    {
+        "id": "r117_upstream_delta_fixtures",
+        "script": "r117_upstream_delta_fixtures.py",
+        "argv": [],
+        "pass_token": "[GATE:fixture-pass]",
+        "portable": True,
+        "covers": ["05-exec/r116_upstream_delta_classify.py 的四类唯一归类与分母守恒（含 r117 修的正则支）",
+                   "05-exec/r117_route_miss_attr.py 的四态归因（STALE_EXPECT / UNREGISTERED / REAL_MISS / UNDECIDABLE）与守恒",
+                   "两份真件复算：upstream_delta_r116*（11 件逐行加总）与 route_miss_attr_r117（20 条 miss 逐行重判）",
+                   "变异腿 m1-m3：还原 r116 原正则 / 归因恒判 REAL / 归因恒判 STALE，三条都必须被夹具抓住"],
+        "why": "r117 一手两条都属『应绿的绿也是假的』：① 分类器的 conservation_ok 对正则缺陷零鉴别力"
+               "（分母没变，只是归类错了）；② 归因引擎若把 STALE 与 REAL 弄反，改进靶子会被虚增或被掩盖，"
+               "两个方向都必须有夹具看着（W-47 双向 + 变异腿）。",
+    },
 ]
 
 # 显式声明本 runner **不覆盖**的面，防止聚合绿被读成「所有门禁都绿」（R20-2）。
