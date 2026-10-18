@@ -1,6 +1,6 @@
 {
  "schema": "swap-gate-r112-v1",
- "generated_at": "2026-10-18T03:57:11+00:00",
+ "generated_at": "2026-10-18T04:59:17+00:00",
  "ruler": {
   "kind": "content_addressed",
   "q1": "同源已证（内容寻址，非相似度）",
@@ -863,14 +863,14 @@
    "evidence": {
     "upstream_sha256": "a21a28ce59694554c16ddc19cb3b27620b1e3e5040803df0e40b22f6a34da159",
     "local_sha256": "a21a28ce59694554c16ddc19cb3b27620b1e3e5040803df0e40b22f6a34da159",
-    "upstream_last_commit_date": "2026-07-16T15:57:32Z"
+    "upstream_last_commit_date": null
    },
    "relation": "identical",
    "stats": {},
    "upstream_repo": "Shubhamsaboo/awesome-llm-apps",
    "upstream_path": "agent_skills/scope-creep-detector/SKILL.md",
-   "upstream_last_commit_date": "2026-07-16T15:57:32Z",
-   "upstream_last_commit_msg": "skill metadata: set author to the contributor",
+   "upstream_last_commit_date": null,
+   "upstream_last_commit_msg": null,
    "provenance_tier": "inferred"
   },
   {

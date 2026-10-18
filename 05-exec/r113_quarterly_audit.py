@@ -122,6 +122,8 @@ def main():
     prov = os.path.join(qdir, "provenance.json")
     up = os.path.join(qdir, "upstream.json")
     swap = os.path.join(qdir, "swap_gate.json")
+    repl = os.path.join(qdir, "replacement_matrix.json")
+    qual = os.path.join(qdir, "quality_ab.json")
 
     steps = []
     steps.append(run_step("provenance_scan",
@@ -135,12 +137,20 @@ def main():
                            "--scan", prov, "--probe", up, "--json", swap]))
     steps.append(run_step("provenance_face",
                           [PY, os.path.join(HERE, "r112_provenance_face.py")]))
+    # r114 第 ⑥ 段：替代候选面（需求 2「每个 skill 3-5 个候选」的季度重扫）
+    repl_argv = [PY, os.path.join(HERE, "r114_replacement_scan.py"), "--json", repl]
+    if args.offline:
+        repl_argv.append("--offline")
+    steps.append(run_step("replacement_scan", repl_argv))
+    # r114 第 ⑦ 段：任务级质量基准（需求 6 的主指标，跨季可比）
+    qual_argv = [PY, os.path.join(HERE, "r114_quality_ab.py"), "--json", qual, "--quiet"]
+    steps.append(run_step("quality_ab", qual_argv))
 
     meta = fetch_meta(offline=args.offline)
     failed = [s["step"] for s in steps if s["rc"] != 0]
     meta_unv = sorted([r for r, v in meta.items() if v.get("state") == "UNVERIFIED"])
 
-    face_ok = all(os.path.isfile(p) for p in (prov, up, swap)) and not failed
+    face_ok = all(os.path.isfile(p) for p in (prov, up, swap, repl, qual)) and not failed
     face_reason = None
     if not os.path.isfile(prov):
         face_ok = False
@@ -157,7 +167,8 @@ def main():
         "failed_steps": failed,
         "upstream_meta": meta,
         "upstream_meta_unverified": meta_unv,
-        "artifacts": {"provenance": prov, "upstream": up, "swap_gate": swap},
+        "artifacts": {"provenance": prov, "upstream": up, "swap_gate": swap,
+                      "replacement_matrix": repl, "quality_ab": qual},
         "face_ok": face_ok,
         "face_reason": face_reason,
     }
@@ -176,7 +187,7 @@ def main():
     if os.path.isfile(err_out):
         os.remove(err_out)
     if not args.quiet:
-        print("季度巡检 %s 完成：四步全通过 ｜ 上游元数据 OK=%d UNVERIFIED=%d"
+        print("季度巡检 %s 完成：六步全通过 ｜ 上游元数据 OK=%d UNVERIFIED=%d"
               % (q, len(UPSTREAM_REPOS) - len(meta_unv), len(meta_unv)))
         if meta_unv:
             print("  具名 UNVERIFIED: %s" % ", ".join(meta_unv))

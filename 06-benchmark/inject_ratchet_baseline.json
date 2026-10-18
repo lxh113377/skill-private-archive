@@ -3,7 +3,7 @@
  "generated_at": "2026-10-16 17:29",
  "metrics": {
   "catalog_grand_chars": 56312,
-  "inject_union_bytes": 66665,
+  "inject_union_bytes": 66762,
   "claim_candidates": 4,
   "drift_ruleish_candidates": 32,
   "desc_over_cap": 0,
@@ -123,6 +123,16 @@
    "at": "2026-10-18 08:06",
    "from_value": 64280,
    "to_value": 66665
+  },
+  {
+   "commit": "a3595095",
+   "path": "D:/global_skills/A-memory-start/references/contract.md",
+   "delta": 97,
+   "reason": "r114 归因：受管根 a3595095（auto-commit）把 A-memory-start/references/contract.md 19107->19204（+97，git cat-file -s 逐字节复算成立），该件在焚诀 truth_constants.inject_budget.files 注入面成员内；+97 与棘轮实增 66762-66665 逐字节相等。按 R269 不代改他人权威规则文件，只做归因记账；棘轮语义不变（只降不升），非放宽阈值。副作用如实登记：注入区现值 66,762B 仍超硬顶 65,536B（+1,226），该条为非阻断告警，P0 待办 R113-4 继续在册呈老大三选一。",
+   "metric": "inject_union_bytes",
+   "at": "2026-10-18 12:05",
+   "from_value": 66665,
+   "to_value": 66762
   }
  ],
  "refresh_days": {

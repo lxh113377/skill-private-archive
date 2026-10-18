@@ -1,6 +1,6 @@
 {
  "schema": "provenance-scan-r112-v2",
- "generated_at": "2026-10-18T03:57:10+00:00",
+ "generated_at": "2026-10-18T04:58:38+00:00",
  "face": {
   "roots": [
    {
@@ -162,7 +162,7 @@
    "slug": "A-project-handoff",
    "local_sha256": "d654d79bcd24663356a6f1288a68b296377fca4158f8fa8b1f2b2e872a70a5b0",
    "local_bytes": 9664,
-   "dir_manifest_sha256": "8f678b972fbb9d5cc7645c2daef11aa1d72e7e0e0343000045c820689b33dd30",
+   "dir_manifest_sha256": "8c3165c1693525b1ed34aaf5066e1872eb659606343f46903f415c98714e8b22",
    "dir_file_n": 85,
    "mtime": "2026-10-16T16:56:10",
    "fm_version": "3.122.0",
@@ -953,12 +953,12 @@
   },
   {
    "slug": "debugging-fixing",
-   "local_sha256": "4afc4b52248b62bf23215600191a996b0992c9c05e80530e8fef50f44d12d296",
-   "local_bytes": 4667,
-   "dir_manifest_sha256": "c2152724633d54962d59ef6a88feb162b171e162cb47acd2ea1235cd2eb6c2e4",
-   "dir_file_n": 2,
-   "mtime": "2026-09-29T01:50:46",
-   "fm_version": "2.2.0",
+   "local_sha256": "c5440356eab9b740ce6174e1462ec25bbc63aeb72dd2bb6cc2a1727d6012aad9",
+   "local_bytes": 6395,
+   "dir_manifest_sha256": "22fd6330ffd571523f9b29bcb56848b720bb1db338782aab3e6095247c90c209",
+   "dir_file_n": 3,
+   "mtime": "2026-10-18T12:50:20",
+   "fm_version": "2.3.0",
    "fm_last_updated": null,
    "registry_source": "community",
    "registry_version": "2.1.0",

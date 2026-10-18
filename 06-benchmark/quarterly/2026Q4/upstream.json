@@ -1,14 +1,16 @@
 {
  "schema": "upstream-probe-r112-v1",
- "generated_at": "2026-10-18T03:57:11+00:00",
+ "generated_at": "2026-10-18T04:59:16+00:00",
  "face": {
   "scan_file": "06-benchmark/quarterly/2026Q4/provenance.json",
   "targets_n": 39,
   "ok_n": 24,
   "unverified_n": 15,
-  "api_calls": 0,
-  "cache_hits": 54,
-  "rate": null,
+  "api_calls": 10,
+  "cache_hits": 44,
+  "rate": {
+   "core_remaining": 4111
+  },
   "min_rate": 300,
   "min_overlap": 0.15,
   "rubric_available": true,
@@ -524,7 +526,7 @@
      "jaccard": 0.9821
     }
    ],
-   "evidence_source": "cache"
+   "evidence_source": "api"
   },
   {
    "slug": "healthcare-emr-patterns",
@@ -1024,9 +1026,9 @@
    "upstream_sha256": "a21a28ce59694554c16ddc19cb3b27620b1e3e5040803df0e40b22f6a34da159",
    "upstream_bytes": 5140,
    "upstream_blob_sha": "302718a69b41bee9abd2c1dc09585767c0de1b40",
-   "upstream_last_commit_sha": "01bedf5bcd9c8ab8058e371fd22a629577255a56",
-   "upstream_last_commit_date": "2026-07-16T15:57:32Z",
-   "upstream_last_commit_msg": "skill metadata: set author to the contributor",
+   "upstream_last_commit_sha": null,
+   "upstream_last_commit_date": null,
+   "upstream_last_commit_msg": null,
    "local_sha256": "a21a28ce59694554c16ddc19cb3b27620b1e3e5040803df0e40b22f6a34da159",
    "local_bytes": 5140,
    "relation": "identical",
@@ -1128,7 +1130,7 @@
      "jaccard": 0.9062
     }
    ],
-   "evidence_source": "cache"
+   "evidence_source": "api"
   },
   {
    "slug": "test-driven-development",
@@ -1176,7 +1178,7 @@
      "jaccard": 0.7915
     }
    ],
-   "evidence_source": "cache"
+   "evidence_source": "api"
   },
   {
    "slug": "theme-factory",
@@ -1217,7 +1219,7 @@
      "jaccard": null
     }
    ],
-   "evidence_source": "cache"
+   "evidence_source": "api"
   },
   {
    "slug": "ui-ux-pro-max",
@@ -1315,7 +1317,7 @@
      "jaccard": 0.9259
     }
    ],
-   "evidence_source": "cache"
+   "evidence_source": "api"
   },
   {
    "slug": "writing-plans",
@@ -1363,7 +1365,7 @@
      "jaccard": 0.9054
     }
    ],
-   "evidence_source": "cache"
+   "evidence_source": "api"
   },
   {
    "slug": "xlsx",

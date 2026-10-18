@@ -550,7 +550,13 @@ def attribute_raise(now_m, base_m, attr):
         return False, "缺 commit"
     if int(a.get("delta") or -1) != delta:
         return False, "归因 delta=%s 与实增 %s 不符" % (a.get("delta"), delta)
-    rp = os.path.realpath(str(a.get("path") or ""))
+    # r114 自抓（路径相对性缺陷，与 r55「noise . vs 绝对路径」同族）：原实现对非绝对路径按
+    # **调用方 CWD** 解析，而 inject_face() 对同类相对路径按 WS 解析 ==> 同一归因两种写法两个面。
+    # 修法 = 解析口径统一到 WS（只治「怎么解析」，**不放宽**成员判定）。
+    rp = str(a.get("path") or "")
+    if not os.path.isabs(rp):
+        rp = os.path.join(str(WS), rp)
+    rp = os.path.realpath(rp)
     if rp not in inject_face():
         return False, "path 不在注入面成员内: %s" % a.get("path")
     if not _commit_exists(rp, str(a["commit"])):

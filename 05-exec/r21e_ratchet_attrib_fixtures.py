@@ -48,8 +48,17 @@ def main():
         return 1
     m = load()
     FACE = r"D:\global_memory\core\behavior_core.md"
-    base = {"inject_union_bytes": 86346, "catalog_grand_chars": 45250}
-    old = {"inject_union_bytes": 86793, "catalog_grand_chars": 45250}   # 只有一项长大 = +447
+    # r114 修（真机耦合，与 R113-5 / r105 F-2 同族）：原写死 base={"inject_union_bytes": 86346,
+    # "catalog_grand_chars": 45250}，而 b08 走**真实 CLI**且 CLI 会就地 collect_metrics()。盘上真实 catalog 已到
+    # 56312，于是 _grow 多出 catalog_grand_chars → attribute_raise 判「指标不可按文件归因」→ b08 恒红，与待测机制无关。
+    # 修法 = 从**真实测量派生**基线（只把 inject 压低 447，其它项与现状逐字相等），确保唯一长大项 = inject。
+    _now, _unk = m.collect_metrics()
+    base = dict(_now)
+    if not isinstance(base.get("inject_union_bytes"), (int, float)):
+        base["inject_union_bytes"] = 86346
+        base.setdefault("catalog_grand_chars", 45250)
+    base["inject_union_bytes"] = int(base["inject_union_bytes"]) - 447
+    old = dict(base); old["inject_union_bytes"] = base["inject_union_bytes"] + 447
     good = [{"commit": "055f9b5", "path": FACE, "delta": 447, "reason": "立 #23 用户命令绝对优先"}]
 
     ck("① 增量被一条归因完整解释 → 放行", m.attribute_raise(old, base, good)[0] is True,
@@ -62,9 +71,24 @@ def main():
        [{"commit": "abc", "path": FACE, "delta": 447}])[0])
     ck("⑤ 无归因记录 → 拒绝（默认仍阻断）", not m.attribute_raise(old, base, [])[0])
     ck("⑥ 两项同时长大、只归因一项 → 拒绝", not m.attribute_raise(
-       {"inject_union_bytes": 86793, "catalog_grand_chars": 45260}, base, good)[0])
+       {"inject_union_bytes": old["inject_union_bytes"], "catalog_grand_chars": base["catalog_grand_chars"] + 10}, base, good)[0])
     ck("⑦ 指标变小（合法下调）不需要归因", m.attribute_raise({"inject_union_bytes": 1, "catalog_grand_chars": 1},
                                                             base, [])[0] is True)
+    # r114 新增腿（W-47 应红的红）：相对路径与绝对路径必须同结论（本轮缺陷本体）。
+    # 修前实测：相对写法被 realpath 按【调用方 CWD】解析 ⇒ 与 inject_face() 按 WS 解析不同面 ⇒ 合法归因被判失败。
+    # FACE 在 D: 盘、WS 在 C: 盘 ⇒ 跨盘 relpath 必抛；改用注入面内的**本项目壳**
+    # （inject_face() 明确把 PROJ_SHELL 计入成员），相对写法即 "AGENTS.md"。
+    _shell = str(getattr(m, "PROJ_SHELL", "") or "")
+    _commit = subprocess.run(["git", "-C", str(m.WS), "rev-parse", "--short", "HEAD"],
+                             capture_output=True, text=True, encoding="utf-8",
+                             errors="replace").stdout.strip() or "055f9b5"
+    _rel = os.path.relpath(_shell, str(m.WS)).replace("\\", "/")
+    _good_rel = [dict(good[0], path=_rel, commit=_commit)]
+    ck("⑧ 相对路径可归因（与绝对路径同结论）", m.attribute_raise(old, base,
+        _good_rel)[0] is True,
+        "%s => %s" % (_rel, m.attribute_raise(old, base, _good_rel)))
+    ck("⑨ 反例：不在面的相对路径仍须拒（防修过头把成员判定放宽）",
+       not m.attribute_raise(old, base, [dict(_good_rel[0], path="nonexistent/x.md")])[0])
 
     # 层 b：真实接线（CLI 写基线 + 永久留账）
     d = tempfile.mkdtemp(prefix="rg_")
@@ -76,7 +100,7 @@ def main():
                         "--reason", "立 #23 用户命令绝对优先（他仓合法增长）"],
                        capture_output=True, text=True, encoding="utf-8", errors="replace")
     j = json.loads(io.open(bl, encoding="utf-8").read())
-    ck("b08 CLI 归因抬基线成功且写账", p.returncode == 0 and j["metrics"]["inject_union_bytes"] == 86793
+    ck("b08 CLI 归因抬基线成功且写账", p.returncode == 0 and j["metrics"]["inject_union_bytes"] == old["inject_union_bytes"]
        and len(j.get("attributed_raises", [])) == 1, (p.stdout or "")[:120])
     ck("b09 账目含 commit/path/delta/reason 四要素",
        set(j["attributed_raises"][0]) >= {"commit", "path", "delta", "reason"}, str(j["attributed_raises"][0])[:110])
@@ -84,7 +108,7 @@ def main():
                          "--commit", "deadbeef", "--path", FACE, "--delta", "99999",
                          "--reason", "随便"], capture_output=True, text=True, encoding="utf-8", errors="replace")
     ck("b10 delta 不符 → exit 1 且不改基线不写账",
-       p2.returncode == 1 and json.loads(io.open(bl, encoding="utf-8").read())["metrics"]["inject_union_bytes"] == 86793,
+       p2.returncode == 1 and json.loads(io.open(bl, encoding="utf-8").read())["metrics"]["inject_union_bytes"] == old["inject_union_bytes"],
        (p2.stdout or "")[:110])
     p3 = subprocess.run([sys.executable, str(TARGET), "--baseline", bl], capture_output=True,
                         text=True, encoding="utf-8", errors="replace")
@@ -97,14 +121,16 @@ def main():
         ("注入面成员校验失效", "if rp not in inject_face():", "if False:"),
         ("必须恰好一条归因失效", "if len(cands) != 1:", "if False:"),
         ("多项增长拒绝失效", "if len(grows) > 1:", "if False:"),
+        ("路径归一到 WS 失效（r114 缺陷本体）", "        rp = os.path.join(str(WS), rp)\n", "        rp = rp\n"),
     ]
     probes = [
         lambda mm: mm.attribute_raise(old, base, [dict(good[0], delta=1)])[0] is True,
         lambda mm: mm.attribute_raise(old, base,
                                       [dict(good[0], path=r"D:\elsewhere\x.md")])[0] is True,
         lambda mm: mm.attribute_raise(old, base, [])[0] is True,
-        lambda mm: mm.attribute_raise({"inject_union_bytes": 86793, "catalog_grand_chars": 45260},
+        lambda mm: mm.attribute_raise({"inject_union_bytes": old["inject_union_bytes"], "catalog_grand_chars": base["catalog_grand_chars"] + 10},
                                       base, good)[0] is True,
+        lambda mm: mm.attribute_raise(old, base, _good_rel)[0] is True,
     ]
     flipped = 0
     for (name, bad_s, rep), probe in zip(muts, probes):
@@ -123,7 +149,7 @@ def main():
             ck("变异被拦：%s" % name, True, "变异后不可用 %s" % type(e).__name__)
         finally:
             os.unlink(mp)
-    ck("变异组 4/4 全部使结论改变（未变异对照组 = 上面 ①-⑦）", flipped == 4, "%d/4" % flipped)
+    ck("变异组 5/5 全部使结论改变（未变异对照组 = 上面 ①-⑨）", flipped == 5, "%d/5" % flipped)
     print("-" * 66)
     bad = R.count(False)
     print("%s r21e 归因抬基线夹具 %d/%d" % ("[GATE:fixture-pass]" if not bad else "[GATE:fixture-fail]",
