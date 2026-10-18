@@ -1,34 +1,34 @@
 {
  "schema": "quarterly-skill-audit-v1",
  "quarter": "2026Q4",
- "generated_at": "2026-10-18T11:05:26+0800",
+ "generated_at": "2026-10-18T11:57:11+0800",
  "cmd": "python 05-exec/r113_quarterly_audit.py --quarter 2026Q4",
  "steps": [
   {
    "step": "provenance_scan",
    "rc": 0,
-   "ms": 1458,
+   "ms": 1483,
    "stdout_tail": "JSON -> C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\06-benchmark\\quarterly\\2026Q4\\provenance.json\n面：权威源 182 件 ｜ 市场缓存 268 件（同名 12）｜ 语料 slug 3692\n置信四档：declared=28 inferred=32 self_built=66 unknown=56 ｜ 守恒 OK ｜ 自建名册面 77\n[PROVENANCE:SCAN] declared=28 inferred=32 self_built=66 unknown=56\n",
    "stderr_tail": ""
   },
   {
    "step": "upstream_probe",
    "rc": 0,
-   "ms": 144166,
+   "ms": 295,
    "stdout_tail": "      diverged       local_only=33    upstream_only=14    上游最后提交 2026-07-08 chore: Rename project to Agentic Awesome Skills\n  scope-creep-detector                     identical      local_only=None  upstream_only=None  上游最后提交 2026-07-16 skill metadata: set author to the contributor\n  security-audit                           UNVERIFIED 无可识别同源候选（全部 unrelated 或取不到）\n  shadcn                                   diverged       local_only=4     upstream_only=14    上游最后提交 2026-07-08 chore: Rename project to Agentic Awesome Skills\n  test-driven-development                  diverged       local_only=43    upstream_only=11    上游最后提交 2026-09-19 Release v6.4.1: diagnosing-superpowers, Native plan executio\n  theme-factory                            identical      local_only=None  upstream_only=None  上游最后提交 2025-12-01 Move example skills into dedicated folder and create minimal\n  ui-ux-pro-max                            UNVERIFIED 无可识别同源候选（全部 unrelated 或取不到）\n  verification-before-completion           UNVERIFIED 无可识别同源候选（全部 unrelated 或取不到）\n  web-design-guidelines                    diverged       local_only=1     upstream_only=1     上游最后提交 2026-03-29 Initial release — OpenMontage: the first open-source agentic\n  writing-plans                            local_ahead    local_only=14    upstream_only=0     上游最后提交 2026-09-25 Release v6.4.2: leaner plans from writing-plans (#2384)\n  xlsx                                     UNVERIFIED 无可识别同源候选（全部 unrelated 或取不到）\n[UPSTREAM:PROBE] ok=24 unverified=15\n",
    "stderr_tail": ""
   },
   {
    "step": "swap_gate",
    "rc": 0,
-   "ms": 239,
+   "ms": 173,
    "stdout_tail": "IFIED\": 15, \"LOCAL_AHEAD_KEEP\": 2, \"UPGRADE_REVIEW\": 10}\n上游有本地没有的内容（待比对/可升级）10 件：\n  github                                 UPGRADE_REVIEW upstream_only=17   local_only=36   上游提交 2026-07-08\n  react-best-practices                   UPGRADE_REVIEW upstream_only=14   local_only=33   上游提交 2026-07-08\n  shadcn                                 UPGRADE_REVIEW upstream_only=14   local_only=4    上游提交 2026-07-08\n  test-driven-development                UPGRADE_REVIEW upstream_only=11   local_only=43   上游提交 2026-09-19\n  hyperframes-registry                   UPGRADE_REVIEW upstream_only=2    local_only=9    上游提交 2026-06-27\n  defuddle                               UPGRADE_REVIEW upstream_only=1    local_only=1    上游提交 2026-09-09\n  healthcare-cdss-patterns               UPGRADE_REVIEW upstream_only=1    local_only=2    上游提交 2026-05-17\n  healthcare-emr-patterns                UPGRADE_REVIEW upstream_only=1    local_only=2    上游提交 2026-05-17\n  healthcare-eval-harness                UPGRADE_REVIEW upstream_only=1    local_only=2    上游提交 2026-05-17\n  web-design-guidelines                  UPGRADE_REVIEW upstream_only=1    local_only=1    上游提交 2026-03-29\nUNVERIFIED（同名但非同源/取不到，禁读成已核对）15 件：brainstorming, code-review, docx, find-skills, frontend-design, frontend-slides, grill-me, hyperframes, hyperframes-cli, hyperframes-media, pdf, security-audit, ui-ux-pro-max, verification-before-completion, xlsx\n[SWAP:GATE] counts={\"UP_TO_DATE\": 12, \"UNVERIFIED\": 15, \"LOCAL_AHEAD_KEEP\": 2, \"UPGRADE_REVIEW\": 10}\n",
    "stderr_tail": ""
   },
   {
    "step": "provenance_face",
    "rc": 0,
-   "ms": 231,
+   "ms": 161,
    "stdout_tail": "覆盖根自证：[{\"path\": \"C:\\\\Users\\\\37533\\\\.workbuddy\\\\skills-marketplace\\\\skills\", \"skill_n\": 268}, {\"path\": \"D:\\\\global_skills\", \"skill_n\": 182}]\n总面 182 ｜ 同源可判 39 ｜ 盲区 143（盲区禁读成「无缺口」）\n四档：{\"declared\": 28, \"inferred\": 32, \"self_built\": 66, \"unknown\": 56} ｜ pin 台账 130 行 / 126 slug ｜ 上游证据 OK=25 UNVERIFIED=14\n裁决：{\"UP_TO_DATE\": 12, \"UNVERIFIED\": 14, \"LOCAL_AHEAD_KEEP\": 2, \"UPGRADE_REVIEW\": 11}\n具名 UNVERIFIED（上游证据面）: brainstorming, code-review, docx, find-skills, frontend-design, grill-me, hyperframes, hyperframes-cli, hyperframes-media, pdf, security-audit, ui-ux-pro-max, verification-before-completion, xlsx\n具名 UNVERIFIED（裁决面）: brainstorming, code-review, docx, find-skills, frontend-design, grill-me, hyperframes, hyperframes-cli, hyperframes-media, pdf, security-audit, ui-ux-pro-max, verification-before-completion, xlsx\n[PROVENANCE:PASS]\n",
    "stderr_tail": ""
   }
@@ -36,92 +36,37 @@
  "failed_steps": [],
  "upstream_meta": {
   "anthropics/skills": {
-   "state": "OK",
-   "stars": 181814,
-   "pushed_at": "2026-10-09",
-   "license": "UNLICENSED",
-   "open_issues": 1426,
-   "archived": false
+   "state": "SKIPPED_OFFLINE"
   },
   "obra/superpowers": {
-   "state": "OK",
-   "stars": 301253,
-   "pushed_at": "2026-10-10",
-   "license": "MIT",
-   "open_issues": 378,
-   "archived": false
+   "state": "SKIPPED_OFFLINE"
   },
   "addyosmani/agent-skills": {
-   "state": "OK",
-   "stars": 107878,
-   "pushed_at": "2026-10-13",
-   "license": "MIT",
-   "open_issues": 133,
-   "archived": false
+   "state": "SKIPPED_OFFLINE"
   },
   "github/spec-kit": {
-   "state": "OK",
-   "stars": 141690,
-   "pushed_at": "2026-10-16",
-   "license": "MIT",
-   "open_issues": 187,
-   "archived": false
+   "state": "SKIPPED_OFFLINE"
   },
   "sickn33/agentic-awesome-skills": {
-   "state": "OK",
-   "stars": 47779,
-   "pushed_at": "2026-10-17",
-   "license": "MIT",
-   "open_issues": 7,
-   "archived": false
+   "state": "SKIPPED_OFFLINE"
   },
   "kepano/obsidian-skills": {
-   "state": "OK",
-   "stars": 49696,
-   "pushed_at": "2026-09-15",
-   "license": "MIT",
-   "open_issues": 73,
-   "archived": false
+   "state": "SKIPPED_OFFLINE"
   },
   "mattpocock/skills": {
-   "state": "OK",
-   "stars": 295191,
-   "pushed_at": "2026-10-13",
-   "license": "MIT",
-   "open_issues": 189,
-   "archived": false
+   "state": "SKIPPED_OFFLINE"
   },
   "vercel-labs/skills": {
-   "state": "OK",
-   "stars": 35385,
-   "pushed_at": "2026-10-09",
-   "license": "MIT",
-   "open_issues": 1152,
-   "archived": false
+   "state": "SKIPPED_OFFLINE"
   },
   "calesthio/OpenMontage": {
-   "state": "OK",
-   "stars": 69212,
-   "pushed_at": "2026-10-16",
-   "license": "AGPL-3.0",
-   "open_issues": 408,
-   "archived": false
+   "state": "SKIPPED_OFFLINE"
   },
   "affaan-m/ECC": {
-   "state": "OK",
-   "stars": 282587,
-   "pushed_at": "2026-10-15",
-   "license": "MIT",
-   "open_issues": 239,
-   "archived": false
+   "state": "SKIPPED_OFFLINE"
   },
   "composiohq/awesome-claude-skills": {
-   "state": "OK",
-   "stars": 77318,
-   "pushed_at": "2026-09-18",
-   "license": "UNLICENSED",
-   "open_issues": 1778,
-   "archived": false
+   "state": "SKIPPED_OFFLINE"
   }
  },
  "upstream_meta_unverified": [],

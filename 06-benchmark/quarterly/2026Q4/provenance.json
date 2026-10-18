@@ -1,6 +1,6 @@
 {
  "schema": "provenance-scan-r112-v2",
- "generated_at": "2026-10-18T03:02:41+00:00",
+ "generated_at": "2026-10-18T03:57:10+00:00",
  "face": {
   "roots": [
    {
@@ -126,7 +126,7 @@
    "slug": "A-memory-start",
    "local_sha256": "e072ae821b5bc8a8cf77bb002771a4bc887d2de6380a0922b78d02e32b7c66ff",
    "local_bytes": 19508,
-   "dir_manifest_sha256": "91d57d750ffa7f8a75f36aef25cebdd4770819e1179ef668c933b2a888b052c8",
+   "dir_manifest_sha256": "edbefc2c264fb89bb137b282f5f25401e9a95ffca4b59ed6457d1de4bc76e649",
    "dir_file_n": 25,
    "mtime": "2026-10-15T11:21:43",
    "fm_version": "10.95.0",
@@ -162,8 +162,8 @@
    "slug": "A-project-handoff",
    "local_sha256": "d654d79bcd24663356a6f1288a68b296377fca4158f8fa8b1f2b2e872a70a5b0",
    "local_bytes": 9664,
-   "dir_manifest_sha256": "ebf1f0b98d608d2d22ffc43e3f068cda426257ef69e1ceed2b7656714665ba14",
-   "dir_file_n": 84,
+   "dir_manifest_sha256": "8f678b972fbb9d5cc7645c2daef11aa1d72e7e0e0343000045c820689b33dd30",
+   "dir_file_n": 85,
    "mtime": "2026-10-16T16:56:10",
    "fm_version": "3.122.0",
    "fm_last_updated": null,
