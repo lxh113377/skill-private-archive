@@ -19,9 +19,7 @@
 - **2026-09-26（第 27 轮 r58，逐字重复触发轮：新开第 17 维「动作固定面（供应链）」+ 自抓判据自身三处假通过）** — 按 #23 用户命令绝对优先整跑一轮不降格。① **第 17 维实测**（`05-exec/r58_supply_chain_face.py` → `06-benchmark/supply_chain_face_r58_2026-09-26.json`）：对手 8/10 仓可测（superpowers / anthropics/skills 的 `.github/workflows` 目录**直接 404**，与 r56 tree 面结论一致），外部 `uses:` 引用 1,060 处、pin 到 40 位 SHA 者 570 处（53.8%），**两极**：spec-kit 484/484、AAS 58/58、mycelium-hq 20/20 = 100%，ruflo 0/313、addyosmani 0/9、pre-commit 0/8 = 0%；`dependabot.yml` 3/8、`SECURITY.md` 5/8。② **D-113 推翻本仓 r31/r32 既定裁定**（原 `gates.yml:42-43`「本仓取 tag：动作面只读」）：论证只覆盖「不涉及密钥」，漏了「CI 里决定 21 道门读到什么字节的那一步」——未固定 checkout = **判据输入面劫持入口**（r49 同族，入口在仓外）。落地：两行 pin 到实测 SHA（`gh api repos/<a>/git/ref/tags/<major>`，**不跨大版本**避免 v4→v7 行为漂移）+ 新建 `.github/dependabot.yml`（github-actions/weekly）+ 新门 `action_pin_guard`（P1 形态 / P2 **pin 必须配更新器** / P3 空面不判过），桩 **11/11**（层 a 9 + 层 b 真仓对照 + 真仓变异体）。`SECURITY.md` 与漏洞扫描面**有意不做**并登记 X-7 边界（私有归档仓无外部攻击面）。③ **D-117 自抓同类**：`evidence_resolvability_measure.py:111` 少一个 `print(` 右括号 ⇒ 该件自 09-24 入库起**根本跑不起来**，其产物是「生成器加载不了」型死句柄，而 21 道门无一道会因工具加载失败而红 ⇒ 修同类不修单例，新增常驻门 `py_syntax_guard`（99/99 绿 + 反例目录红 + 空面红三向）。④ **W-46 误报率实测**（`r58_generator_coverage.py`，三路取数+夹具剔除）：r56 设想的 `grep -rl <前缀>` 口径若接线，**62 → 38 处，30.6% 误报**（被误记者=夹具与只读校验器）；反向假阴性两处已补（`rule_conflict_scan_*` 靠 `--json` 传名、`attention_sim_raw_*` 生成器在受管根外）⇒ 判「**HOLD 不接线**」，真死句柄仅剩 `noise_falsepositive_*.json`（全库三处 grep `falsepositive` 零命中）。⑤ **D-115 实测推翻 r57 药方**：`handoff.py trim-shell` 只作用于 `memory/` 卷，对两条 L2 根文档都不成立——根 `AGENTS.md` 是**生成壳**（体量 = 07 P0 面 70,919B 的函数），TODO.md 是仓根手工索引；前者转 **W-48 呈人工裁定**，后者以专用件收（`r58_todo_shell_slim.py`：**精确多重集**行守恒 丢失=0/无法归因=0，11 节 21,274B 原样迁 `memory/todo-history.part1.md`，新壳 31,685B→**11,883B** 达标，备份在 `_trash/r58_todo_slim_*`）。⑥ **D-114**：`comparison.md` 把对手写成 `mycelium/ai-brain-starter`（真名 `mycelium-hq/…`），照页抄名第一跑即 404 ⇒ 加 R241 校正注 + 铁律「对手全名须 `gh api` 实测」。⑦ `[HANDLE:DRIFT] open_total` 归因（未归因不得写成边界声明）：台账末行停在 r56 19:47，本轮实测已增大 ⇒ **是同轮一致性守卫正常工作**，非缺陷，收口=本轮落账（已随报告执行）。⑧ 本轮**三处自抓的判据自身失... (line truncated to 2000 chars)
 
 ## P0 — 必须做
-- [x] R112-2 余 11 件 UPGRADE_REVIEW 逐件裁决（升级 / 保留本地 / 人工合并三选一并附行号证据）（由 flow 登记；状态: todo）
-- [x] R112-1 补 127 件 unknown 的上游身份（declared 优先，inferred 次之；目标 unknown 127 → <100，守恒仍 182）（由 flow 登记；状态: todo）
-
+- [ ] R113-4 注入面 +97B 外部在途（A-memory-start/references/contract.md 11:37 第三方会话增长致棘轮破线、--update 拒绝）（由 flow 登记；状态: todo）
 - [ ] **【P1·新立铁律 W-47（r58 新立，源自本轮三处自抓）】** 任何**新判据首跑必须同时交两个方向的证据**：「应绿的绿」**且**「应红的红」，且**对照组自身须被证伪过一轮**。r58 实物三条：① 守卫桩对照组路径少一层 `.github` ⇒ 对照组恒红，若只跑正例侧就会把「守卫从未被真仓输入喂过」写成「11 例全过」；② `compile()` 不接受 `doraise` ⇒ 99/99 全假红，而反例目录**恰好也红**，只看反例侧即误判其正常工作；③ 覆盖度判据新路命中被 `and (hit_a or hit_b)` 排除在严格档外 ⇒ 补路白补（函数对、输入集合错）。与 R238（单测掩盖接线错误）、R247（零输入不得记绿）、R220（假通过）同源，但本条补的是**「两侧的『对』可能都是假的」**这一层。**落点**：`05-exec/r58_action_pin_fixtures.py` 已把「真仓原样=对照组」「真仓变异体=应红」做成模板，后续新门照抄两例结构。**取值**：`python 05-exec/r58_action_pin_fixtures.py`（须见 b1 rc=0 与 b2 rc=1 两行且变异命中数 ≥1） 【r104 裁决=执行完毕｜r58模板+r66/r67双向延续：本轮r59自测12/12含真件注入反例，r67 36/36，generator门PASS】
 - [ ] **【P1·待裁定 W-48（r58 新立，源自 D-115 实测推翻前轮药方）】** 根 `AGENTS.md` 每轮注入 29,293B > `root_doc_max` 16,384B，**唯一收敛路径 = 逐条人工裁决 `memory/07` 的 P0 活债**（volume 实测大头 `## P0 — 必须做` 70,919B + `## 分卷目录` 35,417B），而本仓红线与 `VOL-2A600` 均写明**禁自动改 P0** ⇒ 不擅动、不假装解决、不为变绿改判据。三条出路请老大择一：① 逐条销账可闭环的 P0（迁 05 已完成 / 归档），壳随生成器自动缩；② 授权把「分卷目录」节的 41 行索引改由 `handoff.py` 现场生成而非入壳（结构性变更，影响所有端的加载面）；③ 显式接受根壳长期超限并把它加进 `volume` 豁免计量册（像 `08-ac-obs.md` 那样，代价=该维度永久失去看守）。**取值**：`python <handoff.py> volume C:/Users/37533/Desktop/workspace/自建skill优化`（r58 后应剩 2 项：07 主壳 + AGENTS.md） 【r104 裁决=挂账至r105｜三选一未点名，按①逐条销账推进中（本轮31条裁决）；首次挂账，到期未完按REPEAT升级】 【r105 裁决=降级（转长期看守）】
 
@@ -82,7 +80,12 @@
 
 - **卷2** `07-next-steps.part75.md` — 07-next-steps 分卷（R199 自动拆卷）
 
+- **卷3** `07-next-steps.part77.md` — 07-next-steps 分卷（R199 自动拆卷）
+
+- **卷4** `07-next-steps.part78.md` — 07-next-steps 分卷（R199 自动拆卷）
+
 ## P2
+- [ ] R113-5 夹具与真实项目状态耦合（b7/b8/n4 在真债真增长时转红）：按 r105 F-2 先例改自建台账种值（由 flow 登记；状态: todo）
 - [ ] R113-3 AGPL-3.0 上游合入合规口径待裁（hyperframes-registry 引入 calesthio/OpenMontage 正文与两参照件）（由 flow 登记；状态: todo）
 - [ ] R112-5 受管根 rule_editor gates 的 mirror 组件超时（300s skip）+ noise 2 项外部在途，待归属方收口后复跑（由 flow 登记；状态: blocked）
 
