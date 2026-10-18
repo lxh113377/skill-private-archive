@@ -11,11 +11,15 @@ r"""r112_provenance_scan.py — 第 19 维「版本落后面」的来源锚定�
 
 判据面（一项事实只在一处判）：
   * 本件**只做来源锚定**，不判优劣、不判新旧（那是 r112_upstream_probe / r112_swap_gate）。
-  * 三档置信度，禁把「猜」写成「有」：
-      declared  盘上有安装器留下的元数据（_skillhub_meta.json / meta.json / _meta.json 带版本或哈希）
-      inferred  仅**名字**命中对手语料（r96_gh_raw.json 的 slug）——同名不等于同源，故只作候选
-      unknown   两者都没有：承认不知道，不猜
-  * 覆盖根自证（R20-2）：输出必须列出扫了哪些根、各根条数，且 declared∪inferred∪unknown == 总数。
+  * 四档置信度，禁把「猜」写成「有」（r113 加第四档 self_built）：
+      declared    盘上有安装器留下的元数据（权威源或市场缓存根的 _skillhub_meta.json / meta.json /
+                  _meta.json 带版本或哈希）——r113 起市场缓存元数据也算 declared（它是安装器写的，不是猜的）
+      inferred    仅**名字**命中对手语料（r96_gh_raw.json 的 slug）——同名不等于同源，故只作候选
+      self_built  无任何上游信号、但在**自建裁定名册**（00-scope/自建skill清单.md HIGH/MID，用户裁定
+                  冻结件）里 ⇒ 答案就是「本就没有上游」，这不是 unknown（r113 一手：127 件 unknown 里
+                  66 件属 HIGH/MID，把它们留在 unknown 是把已知错标成未知）
+      unknown     四路都没有：承认不知道，不猜
+  * 覆盖根自证（R20-2）：输出必须列出扫了哪些根、各根条数，且 declared∪inferred∪self_built∪unknown == 总数。
   * 零输入面 ⇒ UNVERIFIED（R247），不得静默读成「全部健康」。
 
 用法：
@@ -37,6 +41,7 @@ AUTHORITY = r"D:\global_skills"
 REGISTRY = r"C:\Users\37533\Desktop\workspace\焚诀\skill\registry\unified-skills-index.json"
 CORPUS = os.path.join(HERE, "r96_gh_raw.json")
 MARKET = r"C:\Users\37533\.workbuddy\skills-marketplace\skills"
+SCOPE_LIST = os.path.join(ROOT, "00-scope", "自建skill清单.md")
 
 NOISE_DIRS = {".git", "_trash", "__pycache__", ".rule_backup", "node_modules", ".temp"}
 DECLARED_FILES = ("_skillhub_meta.json", "meta.json", "_meta.json")
@@ -108,6 +113,34 @@ def load_registry():
     return (doc.get("skills") or {}), None
 
 
+def load_scope_selfbuilt():
+    """自建裁定名册（00-scope/自建skill清单.md）的 HIGH/MID slug 集（用户裁定冻结件，只读）。
+
+    r113：这些件的答案是「本就没有上游」，不是「不知道有没有上游」——把已知错标成未知
+    同样是失真。解析失败/0 行 ⇒ 返回空集并在 notes 具名（等价旧行为，禁猜）。
+    """
+    if not os.path.isfile(SCOPE_LIST):
+        return set(), "scope_list_missing:%s" % SCOPE_LIST
+    try:
+        txt = io.open(SCOPE_LIST, encoding="utf-8-sig").read()
+    except OSError as exc:
+        return set(), "scope_list_unreadable:%r" % (exc,)
+    sec = None
+    out = set()
+    for line in txt.splitlines():
+        m = re.match(r"^##\s+(HIGH|MID|LOW|EXCLUDE)", line)
+        if m:
+            sec = m.group(1)
+            continue
+        if sec in ("HIGH", "MID") and line.strip().startswith("|"):
+            mm = re.search(r"^\|\s*`([^`]+)`", line)
+            if mm:
+                out.add(mm.group(1))
+    if not out:
+        return out, "scope_list_zero_rows（解析到 0 个 HIGH/MID slug）"
+    return out, None
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--json", dest="json_out", default=None)
@@ -133,7 +166,11 @@ def main():
     else:
         notes.append("market_missing:%s" % MARKET)
 
-    rows, declared_n, inferred_n, unknown_n = [], 0, 0, 0
+    scope_set, scope_err = load_scope_selfbuilt()
+    if scope_err:
+        notes.append(scope_err)
+
+    rows, declared_n, inferred_n, self_built_n, unknown_n = [], 0, 0, 0, 0
     roots_seen = {args.authority: 0}
     if os.path.isdir(MARKET):
         roots_seen[MARKET] = len(market_slugs)
@@ -154,9 +191,18 @@ def main():
         mh, file_n = dir_manifest_hash(d)
 
         declared = {}
+        # r113：元数据面 = 权威源本件 + 市场缓存同名件（安装器写的元数据属 declared 证据，非猜测）。
+        meta_dirs = [d]
+        if name.lower() in market_slugs:
+            meta_dirs.append(os.path.join(MARKET, name))
         for fn in DECLARED_FILES:
-            fp = os.path.join(d, fn)
-            if not os.path.isfile(fp):
+            fp = None
+            for md_ in meta_dirs:
+                cand_fp = os.path.join(md_, fn)
+                if os.path.isfile(cand_fp):
+                    fp = cand_fp
+                    break
+            if fp is None:
                 continue
             try:
                 meta = json.load(io.open(fp, encoding="utf-8-sig"))
@@ -188,6 +234,9 @@ def main():
         elif inferred_cand:
             conf = "inferred"
             inferred_n += 1
+        elif name in scope_set:
+            conf = "self_built"
+            self_built_n += 1
         else:
             conf = "unknown"
             unknown_n += 1
@@ -208,13 +257,14 @@ def main():
             "declared": declared,
             "inferred_upstreams": inferred_cand,
             "in_market_cache": name.lower() in market_slugs,
+            "self_built_in_scope": name in scope_set,
             "confidence": conf,
         })
 
     total = len(rows)
-    conserved = (declared_n + inferred_n + unknown_n) == total
+    conserved = (declared_n + inferred_n + self_built_n + unknown_n) == total
     doc = {
-        "schema": "provenance-scan-r112-v1",
+        "schema": "provenance-scan-r112-v2",
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "face": {
             "roots": [{"path": k, "skill_n": v} for k, v in sorted(roots_seen.items())],
@@ -227,9 +277,10 @@ def main():
             "registry_n": len(registry),
             "notes": notes,
         },
-        "tiers": {"declared": declared_n, "inferred": inferred_n, "unknown": unknown_n},
-        "conservation": {"sum_tiers": declared_n + inferred_n + unknown_n, "total": total,
-                         "ok": conserved},
+        "tiers": {"declared": declared_n, "inferred": inferred_n,
+                  "self_built": self_built_n, "unknown": unknown_n},
+        "conservation": {"sum_tiers": declared_n + inferred_n + self_built_n + unknown_n,
+                         "total": total, "ok": conserved},
         "rows": rows,
     }
 
@@ -242,8 +293,9 @@ def main():
 
     print("面：权威源 %d 件 ｜ 市场缓存 %d 件（同名 %d）｜ 语料 slug %d"
           % (total, len(market_slugs), doc["face"]["market_same_slug_n"], len(corpus)))
-    print("置信三档：declared=%d inferred=%d unknown=%d ｜ 守恒 %s"
-          % (declared_n, inferred_n, unknown_n, "OK" if conserved else "BROKEN"))
+    print("置信四档：declared=%d inferred=%d self_built=%d unknown=%d ｜ 守恒 %s ｜ 自建名册面 %d"
+          % (declared_n, inferred_n, self_built_n, unknown_n,
+             "OK" if conserved else "BROKEN", len(scope_set)))
     for n in notes:
         print("  注: %s" % n)
     if total < 10:
@@ -252,7 +304,8 @@ def main():
     if not conserved:
         print("[PROVENANCE:BROKEN] 三档之和 != 总数")
         return 1
-    print("[PROVENANCE:SCAN] declared=%d inferred=%d unknown=%d" % (declared_n, inferred_n, unknown_n))
+    print("[PROVENANCE:SCAN] declared=%d inferred=%d self_built=%d unknown=%d"
+          % (declared_n, inferred_n, self_built_n, unknown_n))
     return 0
 
 

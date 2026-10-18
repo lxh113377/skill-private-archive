@@ -1,0 +1,128 @@
+{
+ "docs_office_tfriedel_docx": {
+  "repo": "tfriedel/claude-office-skills",
+  "path": "public/docx/SKILL.md",
+  "bytes": 10294,
+  "lines": 197,
+  "head": "---\nname: docx\ndescription: \"Comprehensive document creation, editing, and analysis with support for tracked changes, comments, formatting preservation, and text extraction. When Claude needs to work with professional documents (.docx files) for: (1) Creating new documents, (2) Modifying or editing content, (3) Working with tracked changes, (4) Adding comments, or any other document tasks\"\n---\n\n# DOCX creation, editing, and analysis"
+ },
+ "docs_genoffice": {
+  "repo": "genspark-ai/genoffice",
+  "path": "skills/genoffice/SKILL.md",
+  "bytes": 78122,
+  "lines": 230,
+  "head": "---\nname: genoffice\ndescription: Create, convert, read and edit Office documents locally with GenOffice's command line. Build a new presentation (pptx) from a brief through a checked outline, per-page spec and render pipeline, a new spreadsheet (xlsx) from CSV or JSON data with formulas, a new Word document (docx) from Markdown or HTML, or a PDF; convert between pdf, docx, xlsx, pptx, md, html and csv; read the structure and text of an existing file (including the user's own docx / xlsx / pptx as source material) and apply structured edits to it. Use whenever the user asks for a slide deck, presentation, spreadsheet, workbook, report, Word document or any real Office file, a format conversion, a rewrite of part of an existing document, or wants the result opened in the GenOffice editor. Documents are processed locally; only search, image and media send the query or the referenced file to the provider configured in GenOffice.\nmetadata:\n  version: 2.67.1\n  cli: '>=0.9.0'"
+ },
+ "front_plugin87_tokens": {
+  "repo": "plugin87/ux-ui-agent-skills",
+  "path": ".claude/skills/design-tokens/SKILL.md",
+  "bytes": 2094,
+  "lines": 28,
+  "head": "---\nname: design-tokens\ndescription: Generate, extend, or audit design tokens in DTCG format with the 3-tier architecture (primitive → semantic → component). Use when the user wants a color palette, type scale, spacing/shadow/radius/motion tokens, multi-brand theming, or wants to validate token files. Covers colors, typography, spacing, shadows, borders, breakpoints, motion, gradients, opacity, blur, sizing, states, theming.\n---\n\n# Skill: Design Tokens"
+ },
+ "front_oil-ui": {
+  "repo": "oil-oil/oil-ui",
+  "path": "SKILL.md",
+  "bytes": 8267,
+  "lines": 140,
+  "head": "---\nname: oil-ui\ndescription: \"Design, improve, and review interfaces for websites, apps, dashboards, and components: explore distinct design directions, compare styles side by side, and refine visual hierarchy against real screenshots. Delivers comparison pages, design notes, mockups, or working interfaces. Use for new interface design, style comparison, visual polish, screenshot recreation, or interface review. Not for business logic, APIs, builds, code cleanup without visible UI changes, or routine edits where the exact change is already specified (changing copy or counts, removing named elements, reusing existing styles), even if phrased as 'optimize'. If oil-ui-pro is installed, use oil-ui-pro instead. 设计、改进和评审网站、App、后台与组件的界面，完成设计方向探索、多风格同屏比较、视觉层级和基于实际画面的迭代；按请求交付对比页、设计说明、设计稿或可运行界面。当用户需要新界面设计、比较不同设计风格、视觉精修、截图还原或界面评审时使用。只负责设计判断，组件归属、数据流、状态正确性和测试等代码实现质量不在范围内。不用于纯业务逻辑、接口、构建部署、无界面行为变化的代码整理、单独绘制普通插画、操作现有网站，以及改文案、调数量、删指定元素、复用现有样式这类已经说清怎么改的日常修改（哪怕带有“优化”字样）。已安装 oil-ui-pro 时交给 oil-ui-pro。\"\nallowed-tools:\n  - Bash(sh *check_update.sh*)\n  - Bash(python3 *check_update.py*)"
+ },
+ "front_webquality_a11y": {
+  "repo": "addyosmani/web-quality-skills",
+  "path": "skills/accessibility/SKILL.md",
+  "bytes": 14729,
+  "lines": 465,
+  "head": "---\nname: accessibility\ndescription: Audit and improve web accessibility following WCAG 2.2 guidelines. Use when asked to \"improve accessibility\", \"a11y audit\", \"WCAG compliance\", \"screen reader support\", \"keyboard navigation\", or \"make accessible\".\nlicense: MIT\nmetadata:\n  author: web-quality-skills"
+ },
+ "media_hyperframes_motion": {
+  "repo": "heygen-com/hyperframes",
+  "path": ".agents/skills/motion-doctrine/SKILL.md",
+  "bytes": 11996,
+  "lines": 176,
+  "head": "---\nname: motion-doctrine\ndescription: \"GATEWAY — load FIRST before composing any HyperFrames animation or video. The high-level motion law that makes a multi-scene video feel like ONE continuous camera move instead of a stack of independently-animated slides. Covers the vector law (how you exit determines how you enter, incl. the Z scale-sign rule), the film's current, carrier elements, causal motion, the Seam Gate (build-gate enforcement), the ban on idle wobble (motion must PERFORM, not breathe), stillness-before-climax, and the sustained-motion routes. Routes to the low-level technique skills (cut-the-curve — the full catalog incl. waterfall entry + nudge curve, oversized-cursor, seam-craft). These rules SUPERSEDE generic / upstream motion guidance. [continuity, direction, vector, momentum, seam, transition, ease, performance, idle-motion, narrative-motion, film-grammar]\"\nmetadata:\n  internal: true\n---"
+ },
+ "media_seedance2": {
+  "repo": "dexhunter/seedance2-skill",
+  "path": "SKILL.md",
+  "bytes": 15605,
+  "lines": 379,
+  "head": "---\nname: seedance-prompt-en\ndescription: Write effective prompts for Jimeng Seedance 2.0 multimodal AI video generation. Use when users want to create video prompts using text, images, videos, and audio inputs with the @ reference system. Covers camera movements, effects replication, video extension, editing, music beat-matching, e-commerce ads, short dramas, and educational content.\n---\n\n# Seedance 2.0 Video Prompt Writing Guide"
+ },
+ "media_openmontage_create": {
+  "repo": "calesthio/OpenMontage",
+  "path": ".agents/skills/create-video/SKILL.md",
+  "bytes": 5421,
+  "lines": 101,
+  "head": "---\nname: create-video\ndescription: |\n  Create videos from a text prompt using HeyGen's Video Agent. Use when: (1) Creating a video from a description or idea, (2) Generating explainer, demo, or marketing videos from a prompt, (3) Making a video without specifying exact avatars, voices, or scenes, (4) Quick video prototyping or drafts, (5) One-shot prompt-to-video generation, (6) User says \"make me a video\" or \"create a video about X\".\nhomepage: https://docs.heygen.com/reference/generate-video-agent\nallowed-tools: mcp__heygen__*"
+ },
+ "test_superpowers_tdd": {
+  "repo": "obra/superpowers",
+  "path": "skills/test-driven-development/SKILL.md",
+  "bytes": 9886,
+  "lines": 331,
+  "head": "---\nname: test-driven-development\ndescription: Use when implementing any feature or bugfix, before writing implementation code\n---\n\n# Test-Driven Development (TDD)"
+ },
+ "test_superpowers_verify": {
+  "repo": "obra/superpowers",
+  "path": "skills/verification-before-completion/SKILL.md",
+  "bytes": 3718,
+  "lines": 121,
+  "head": "---\nname: verification-before-completion\ndescription: Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output before making any success claims; evidence before assertions always\n---\n\n# Verification Before Completion"
+ },
+ "review_cloudflare_sec": {
+  "repo": "cloudflare/security-audit-skill",
+  "path": "skills/security-audit/SKILL.md",
+  "bytes": 22182,
+  "lines": 193,
+  "head": "---\nname: security-audit\ndescription: Security guidance and vulnerability review for codebases, APIs, services, CLI tools, libraries, and daemons. Use for security questions, focused reviews, vulnerability research, security audits, or pen tests. Run the complete workflow only for explicit codebase audit or pen-test requests, full/comprehensive/end-to-end reviews, or requested report artifacts.\n---\n\n# Security Audit"
+ },
+ "review_smellcheck": {
+  "repo": "Zhen-Bo/smell-check",
+  "path": "SKILL.md",
+  "bytes": 5977,
+  "lines": 68,
+  "head": "---\nname: smell-check\ndescription: >\n  Runs a smell-first audit on a user-chosen path set: measures structure metrics,\n  applies a named size profile, and reports code smells and test smells with\n  evidence strength. Use for smell audit, code smell"
+ },
+ "mem_ctxeng_compress": {
+  "repo": "muratcankoylan/Agent-Skills-for-Context-Engineering",
+  "path": "skills/context-compression/SKILL.md",
+  "bytes": 18768,
+  "lines": 282,
+  "head": "---\nname: context-compression\ndescription: \"This skill should be used when long-running agent sessions need context compression, structured summarization, compaction, token-per-task optimization, or durable handoff summaries that preserve decisions, files, risks, and next actions.\"\n---\n\n# Context Compression Strategies"
+ },
+ "mem_proworkflow_learnrule": {
+  "repo": "rohitg00/pro-workflow",
+  "path": "skills/learn-rule/SKILL.md",
+  "bytes": 2335,
+  "lines": 75,
+  "head": "---\nname: learn-rule\ndescription: Capture a correction or lesson as a persistent learning rule with category, mistake, and correction. Stores, categorises, and retrieves rules for future sessions. Use after mistakes or when the user says \"remember this\", \"don't forget\", \"note this\", or \"learn from this\".\nuser-invocable: true\n---\n"
+ },
+ "browser_tencent": {
+  "repo": "Tencent/BrowserSkill",
+  "path": "packages/dsh-plugin-browserskill/skill/SKILL.md",
+  "bytes": 4453,
+  "lines": 82,
+  "head": "---\nname: browser-skill\ndescription: Automate the user's logged-in Chromium through this plugin's injected bsk_* tools. Use to read pages, fill forms, operate tabs, inspect page activity, debug a website, or test a UI.\n---\n\n# browser-skill for DeepSeek Harness"
+ },
+ "browser_act": {
+  "repo": "browser-act/skills",
+  "path": "browser-act/SKILL.md",
+  "bytes": 3726,
+  "lines": 56,
+  "head": "---\nname: browser-act\ndescription: \"Browser automation CLI for AI agents. NEVER run browser-act commands directly via Bash — always invoke this skill first. Use browser-act when a user mentions it by name, includes or asks to run a browser-act CLI command (e.g., browser-act browser list), or to: fetch, view, or extract rendered content from URLs, access pages requiring JavaScript, handle verification prompts, maintain authenticated sessions, fill forms and click through workflows, type, select, upload, take screenshots, capture XHR/fetch/HAR responses, open multiple URLs in parallel, extract content that loads on scroll or click, visually inspect or verify page layout/styling/rendering, automate browser tasks, account isolation across parallel browser environments, advise which browser type fits a use case, or list/check/manage configured browsers and sessions. Prefer browser-act over built-in fetch or web tools.\"\nallowed-tools: Bash(browser-act:*)\nmetadata:\n  author: BrowserAct"
+ },
+ "data_tufte": {
+  "repo": "aref-vc/tufte-claude-skill",
+  "path": "SKILL.md",
+  "bytes": 5162,
+  "lines": 85,
+  "head": "---\nname: tufte\ndescription: Apply Edward Tufte's principles to any data visualization, chart, dashboard, or infographic. Use when the user asks to produce, design, critique, or improve a chart, graph, dashboard, KPI tile, table-with-data, sparkline, small multiple, time series, distribution plot, choropleth, or any other visual that communicates quantitative or categorical information. Also triggers on words like \"visualize\", \"viz\", \"data viz\", \"chart\", \"graph\", \"dashboard\", \"infographic\", \"Tufte\". Outputs Tufte-compliant designs in either self-contained HTML/SVG or React (Recharts/D3). Defaults to Tufte rules; user can opt out per chart.\n---\n\n# Tufte — visual display, by the book"
+ },
+ "data_gongnang_chart": {
+  "repo": "gongnyang/gongnangi-chart-skill",
+  "path": "SKILL.md",
+  "bytes": 11051,
+  "lines": 410,
+  "head": "---\nname: consulting-chart\ndescription: \"공냥이 시각 콘텐츠 스킬 — 컨설팅 차트, 인스타 카드뉴스, 애니메이션 영상을 HTML/CSS 코드로 생성. 5가지 카드뉴스 디자인 테마 선택 가능.\"\nallowed-tools: [Bash, Write, Read, Edit]\n---\n"
+ }
+}

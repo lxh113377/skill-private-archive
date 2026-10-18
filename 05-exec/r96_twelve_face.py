@@ -236,6 +236,41 @@ def days_since(iso):
 
 
 # ------------------------------------------------------------------ 对手面
+def read_json_or_none(path):
+    """旧缓存读回：不存在/不可解析一律 None（无对照基准，不拦）。"""
+    try:
+        if not os.path.isfile(path):
+            return None
+        return json.load(io.open(path, encoding="utf-8"))
+    except (OSError, ValueError):
+        return None
+
+
+def available_n(raw):
+    if not isinstance(raw, dict):
+        return None
+    return sum(1 for v in (raw.get("repos") or {}).values()
+               if isinstance(v, dict) and v.get("available"))
+
+
+def degrade_check(old_raw, new_raw):
+    """r113 K-4（cache-guard 范式推广，r112 一手同族）：整面覆写前的防退化判据。
+
+    单件取数失败 r96 已显形（available:False + unavailable_layer）；这里防的是另一半：
+    **大面积临时失败**（gh 断链/限流）把上次好语料整体覆成一堆 False——旧缓存那一刻比
+    新缓存可信，覆写=销毁已有证据。判据：新面可用仓数 < 旧面的一半 ⇒ 判退化。
+    返回 None = 可覆写；返回 dict = 退化详情（调用方保留旧缓存并显形）。
+    无对照基准（首建/旧件不可读/新面为空）⇒ 不拦，但新面为空由上游零输入判据负责。
+    """
+    _oa = available_n(old_raw)
+    _na = available_n(new_raw)
+    if not _oa or _na is None:
+        return None
+    if _na * 2 < _oa:
+        return {"old_available": _oa, "new_available": _na}
+    return None
+
+
 def fetch_remote(roster_top_n=ROSTER_TOP_N, roster_pinned=()):
     raw = {"generated_at": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
            "search_query": SEARCH_QUERY,
@@ -887,7 +922,20 @@ def main():
             raw["roster_cache_pre_r100"] = True
     else:
         raw = fetch_remote(roster_top_n=args.roster_top, roster_pinned=args.roster)
-        json.dump(raw, io.open(args.cache, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+        # r113 K-4（cache-guard 范式推广，r112 一手同族）：整体覆写缓存前必须过防退化闸。
+        # 大面积临时取数失败（gh 断/限流）会把上次好语料覆成一堆 available:False——
+        # 单件失败 r96 已显形（unavailable_layer），但**整面塌陷**时旧缓存比新缓存可信。
+        # 判据：新面 available 数 < 旧面 available 数的一半 ⇒ 判退化，保留旧缓存不落盘，
+        # 本轮结论仍用新面算（含显形名册），但对外必须知道这是退化轮。
+        deg = degrade_check(read_json_or_none(args.cache), raw)
+        if deg:
+            print("[R96:DEGRADED] 本轮可用仓 %d < 旧缓存 %d 的一半 ⇒ 判大面积取数失败，"
+                  % (deg["new_available"], deg["old_available"]), file=sys.stderr)
+            print("  旧缓存保留不覆写（取数失败不得销毁已有证据）；本轮结论按退化面计算",
+                  file=sys.stderr)
+            raw["degraded_round"] = deg
+        else:
+            json.dump(raw, io.open(args.cache, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 
     doc = score_dims(measure_local(), raw)
     doc["retrieval_commands"] = {

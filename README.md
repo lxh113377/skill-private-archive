@@ -1,15 +1,18 @@
 # 自建 skill 体系优化审计 — 工作区入口
 
-> 更新：2026-10-17（r110）| **跨会话入口 = `memory/07-next-steps.md`（P0 唯一真相源）**
+> 更新：2026-10-18（r113）| **跨会话入口 = `memory/07-next-steps.md`（P0 唯一真相源）**
 > 权威源：`D:\global_skills`（git）→ 镜像 `C:\Users\37533\.agents\skills`
 
 ## 从哪读起（新人 / 新会话，按序）
 
 1. [memory/07-next-steps.md](memory/07-next-steps.md) — P0 未完成项（**唯一入口，先读这个**）
 2. [memory/05-feature-status.md](memory/05-feature-status.md) — 已完成 / 进行中 / 阻塞
-3. 最近一轮对标报告 — 取值：`Get-ChildItem 06-benchmark -Filter '全量对标报告_r*' | Sort-Object Name | Select-Object -Last 1`（当前 r109 补记 + r110，2026-10-17 实测）；历史执行报告见 `05-exec/README.md` 索引
+3. 最近一轮对标报告 — 取值：`Get-ChildItem 06-benchmark -Filter '全量对标报告_r*' | Sort-Object Name | Select-Object -Last 1`（禁硬编码轮号，r110 立规）；历史执行报告见 `05-exec/README.md` 索引
 4. [03-audit/自建skill优化审计报告.md](03-audit/自建skill优化审计报告.md) — 阶段3 全量审计结论（P0/P1/P2）
 5. [04-plan/实施计划.md](04-plan/实施计划.md) — 阶段4 分批复核与回滚手段
+6. [04-plan/迁移替换方案_r113_2026-10-18.md](04-plan/迁移替换方案_r113_2026-10-18.md) — 替换优先级 / 节点 / 验证标准 / 回滚预案（需求 4）
+7. [04-plan/后续维护规范_季度巡检机制_r113_2026-10-18.md](04-plan/后续维护规范_季度巡检机制_r113_2026-10-18.md) — 季度巡检节律与判定规则（需求 5）
+8. [06-benchmark/upstream_research_r113_2026-10-18.md](06-benchmark/upstream_research_r113_2026-10-18.md) — 上游候选检索 + 五维评分矩阵（需求 2/3）
 
 ## 六阶段产物地图
 

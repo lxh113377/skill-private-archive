@@ -1,0 +1,283 @@
+{
+ "schema": "adjudication-r113-v2",
+ "generated_at": "2026-10-17T23:34:22.441Z",
+ "rule": "五档裁决（升级/升级带参照/保留本地/待裁/转档）——每件必须有证据行，禁空判",
+ "face": {
+  "reviewed_n": 12,
+  "upgraded": 3,
+  "kept_local": 7,
+  "deferred": 1,
+  "plus_r112_writing_plans": 1,
+  "unverified_adjudicated_n": 14,
+  "rescued_by_wider_candidates": [
+   "frontend-slides"
+  ]
+ },
+ "rows": [
+  {
+   "slug": "test-driven-development",
+   "verdict": "UPGRADED",
+   "priority": "NORMAL",
+   "up_before": 20,
+   "local_before": 43,
+   "commits": "f01842b0",
+   "note": "合入 Verify GREEN 段「Other tests=项目全套」9 行（上游 2026-09-19）；上游 writing-good-tests.md 指针对本地无该件 ⇒ 不合（R240），5 条规则句本地已由 testing-anti-patterns.md 覆盖；理性化表本地为全 11 行版，上游精简 5 行版不取（R241 不删本地内容）。up_only 中 1 行为 frontmatter description 措辞差，属文体不改"
+  },
+  {
+   "slug": "obsidian-bases",
+   "verdict": "UPGRADED",
+   "priority": "NORMAL",
+   "up_before": 3,
+   "local_before": 5,
+   "commits": "f01842b0",
+   "note": "上游 2026-04-07 bugfix「filters 递归对象恰好一个键」+ 可跑示例两处（global + view-specific）全部合入——本地原示例 and/or/not 三键并存是**错例**，照抄会造出无效 .base 文件，这是本轮最有价值的一行修复"
+  },
+  {
+   "slug": "hyperframes-registry",
+   "verdict": "UPGRADED_WITH_DEPS",
+   "priority": "NORMAL",
+   "up_before": 3,
+   "local_before": 6,
+   "commits": "9b34cea5",
+   "note": "上游作者侧 Contributing 节 + 其引用的 contributing.md(5882B)/templates.md(11450B) 两参照件同笔入库（先取件后引用，零死引用）；本地 refs 由 5 件扩 7 件"
+  },
+  {
+   "slug": "github",
+   "verdict": "KEEP_LOCAL",
+   "priority": "NORMAL",
+   "up_before": 17,
+   "local_before": 36,
+   "note": "上游「Debugging a CI Failure」四步（gh pr checks / gh run list / gh run view / --log-failed）本地件已逐条实测覆盖（本轮取值：四关键字在本件 in 判 True），且本地另有 ci-pipeline-debugging 12926B 专件承载六类根因决策树；上游其余增量 = 包装层 frontmatter（risk/source/date_added）+ 模板 Limitations ⇒ 无信息量"
+  },
+  {
+   "slug": "react-best-practices",
+   "verdict": "KEEP_LOCAL",
+   "priority": "NORMAL",
+   "up_before": 14,
+   "local_before": 33,
+   "note": "本地 68671B/1367 行为 79-rule 全量版（vercel-labs 上游本体在 references/rules/），AAS 包装件增量仅为 frontmatter+模板 When to Use 段 ⇒ 无信息量"
+  },
+  {
+   "slug": "shadcn",
+   "verdict": "DEFER_MID",
+   "priority": "HIGH_FLAG",
+   "up_before": 14,
+   "local_before": 4,
+   "note": "上游确有内容增量（npx shadcn@latest info --json 预检命令 + registries 说明），但本地件带 evals/evals.json 官方评测件（EXCLUDE 名册 -100 分件，市场件非自建）；改本地件=改市场件形态，待老大裁是否纳入维护面。登记为 R113-2 后续"
+  },
+  {
+   "slug": "theme-factory",
+   "verdict": "KEEP_LOCAL",
+   "priority": "NORMAL",
+   "up_before": 10,
+   "local_before": 2,
+   "note": "上游（AAS 包装）10 行 = frontmatter + 模板 When to Use + 模板 Limitations 三段，无一行业务内容 ⇒ 无信息量"
+  },
+  {
+   "slug": "defuddle",
+   "verdict": "KEEP_LOCAL",
+   "priority": "NORMAL",
+   "up_before": 1,
+   "local_before": 1,
+   "note": "上游 2026-09-09 仅缩短 description 一行；本地 description 含触发场景与不适用面（信息量高于上游版）⇒ 不改"
+  },
+  {
+   "slug": "healthcare-cdss-patterns",
+   "verdict": "KEEP_LOCAL",
+   "priority": "NORMAL",
+   "up_before": 1,
+   "local_before": 2,
+   "note": "上游为 ja-JP 译本行（affaan-m/ECC docs/ja-JP），非内容变更 ⇒ 不取译文"
+  },
+  {
+   "slug": "healthcare-emr-patterns",
+   "verdict": "KEEP_LOCAL",
+   "priority": "NORMAL",
+   "up_before": 1,
+   "local_before": 2,
+   "note": "同上（ja-JP 译本行）"
+  },
+  {
+   "slug": "healthcare-eval-harness",
+   "verdict": "KEEP_LOCAL",
+   "priority": "NORMAL",
+   "up_before": 1,
+   "local_before": 2,
+   "note": "同上（ja-JP 译本行）"
+  },
+  {
+   "slug": "web-design-guidelines",
+   "verdict": "KEEP_LOCAL",
+   "priority": "NORMAL",
+   "up_before": 1,
+   "local_before": 1,
+   "note": "上游（OpenMontage 拷贝）description 与本地互有一行差，本地含触发短语集 ⇒ 信息量相当，保留"
+  }
+ ],
+ "rule_unverified": "六档中的 UNVERIFIED 必须逐件给「此问无定义」级结论并附 max_jaccard 与阈值对照，禁笼统写取不到",
+ "unverified_dispositions": [
+  {
+   "slug": "brainstorming",
+   "verdict": "NO_UPSTREAM_SAME_SLUG",
+   "cands_tried": 4,
+   "max_jaccard": 0.0191,
+   "overlap_floor": 0.15,
+   "repos_considered": [
+    "obra/superpowers",
+    "sickn33/agentic-awesome-skills"
+   ],
+   "note": "同名候选全部落在内容寻址 unrelated 区（交集 < 阈值）⇒ 「我这份是不是旧的」对此件不成立：上游同名件与本地件不是同一内容，本地件是自建/深度改写版。禁读成「已核对无缺口」，只能读成「此问无定义」。"
+  },
+  {
+   "slug": "code-review",
+   "verdict": "NO_UPSTREAM_SAME_SLUG",
+   "cands_tried": 2,
+   "max_jaccard": 0.02,
+   "overlap_floor": 0.15,
+   "repos_considered": [
+    "mattpocock/skills",
+    "github/awesome-copilot"
+   ],
+   "note": "同名候选全部落在内容寻址 unrelated 区（交集 < 阈值）⇒ 「我这份是不是旧的」对此件不成立：上游同名件与本地件不是同一内容，本地件是自建/深度改写版。禁读成「已核对无缺口」，只能读成「此问无定义」。"
+  },
+  {
+   "slug": "docx",
+   "verdict": "NO_UPSTREAM_SAME_SLUG",
+   "cands_tried": 1,
+   "max_jaccard": 0.0072,
+   "overlap_floor": 0.15,
+   "repos_considered": [
+    "anthropics/skills"
+   ],
+   "note": "同名候选全部落在内容寻址 unrelated 区（交集 < 阈值）⇒ 「我这份是不是旧的」对此件不成立：上游同名件与本地件不是同一内容，本地件是自建/深度改写版。禁读成「已核对无缺口」，只能读成「此问无定义」。"
+  },
+  {
+   "slug": "find-skills",
+   "verdict": "NO_UPSTREAM_SAME_SLUG",
+   "cands_tried": 1,
+   "max_jaccard": 0.0833,
+   "overlap_floor": 0.15,
+   "repos_considered": [
+    "vercel-labs/skills"
+   ],
+   "note": "同名候选全部落在内容寻址 unrelated 区（交集 < 阈值）⇒ 「我这份是不是旧的」对此件不成立：上游同名件与本地件不是同一内容，本地件是自建/深度改写版。禁读成「已核对无缺口」，只能读成「此问无定义」。"
+  },
+  {
+   "slug": "frontend-design",
+   "verdict": "NO_UPSTREAM_SAME_SLUG",
+   "cands_tried": 8,
+   "max_jaccard": 0.0223,
+   "overlap_floor": 0.15,
+   "repos_considered": [
+    "anthropics/skills",
+    "sickn33/agentic-awesome-skills"
+   ],
+   "note": "同名候选全部落在内容寻址 unrelated 区（交集 < 阈值）⇒ 「我这份是不是旧的」对此件不成立：上游同名件与本地件不是同一内容，本地件是自建/深度改写版。禁读成「已核对无缺口」，只能读成「此问无定义」。"
+  },
+  {
+   "slug": "grill-me",
+   "verdict": "NO_UPSTREAM_SAME_SLUG",
+   "cands_tried": 4,
+   "max_jaccard": 0.0513,
+   "overlap_floor": 0.15,
+   "repos_considered": [
+    "mattpocock/skills",
+    "sickn33/agentic-awesome-skills"
+   ],
+   "note": "同名候选全部落在内容寻址 unrelated 区（交集 < 阈值）⇒ 「我这份是不是旧的」对此件不成立：上游同名件与本地件不是同一内容，本地件是自建/深度改写版。禁读成「已核对无缺口」，只能读成「此问无定义」。"
+  },
+  {
+   "slug": "hyperframes",
+   "verdict": "NO_UPSTREAM_SAME_SLUG",
+   "cands_tried": 1,
+   "max_jaccard": 0.0045,
+   "overlap_floor": 0.15,
+   "repos_considered": [
+    "calesthio/OpenMontage"
+   ],
+   "note": "同名候选全部落在内容寻址 unrelated 区（交集 < 阈值）⇒ 「我这份是不是旧的」对此件不成立：上游同名件与本地件不是同一内容，本地件是自建/深度改写版。禁读成「已核对无缺口」，只能读成「此问无定义」。"
+  },
+  {
+   "slug": "hyperframes-cli",
+   "verdict": "NO_UPSTREAM_SAME_SLUG",
+   "cands_tried": 1,
+   "max_jaccard": 0.0443,
+   "overlap_floor": 0.15,
+   "repos_considered": [
+    "calesthio/OpenMontage"
+   ],
+   "note": "同名候选全部落在内容寻址 unrelated 区（交集 < 阈值）⇒ 「我这份是不是旧的」对此件不成立：上游同名件与本地件不是同一内容，本地件是自建/深度改写版。禁读成「已核对无缺口」，只能读成「此问无定义」。"
+  },
+  {
+   "slug": "hyperframes-media",
+   "verdict": "NO_UPSTREAM_SAME_SLUG",
+   "cands_tried": 1,
+   "max_jaccard": 0.0188,
+   "overlap_floor": 0.15,
+   "repos_considered": [
+    "calesthio/OpenMontage"
+   ],
+   "note": "同名候选全部落在内容寻址 unrelated 区（交集 < 阈值）⇒ 「我这份是不是旧的」对此件不成立：上游同名件与本地件不是同一内容，本地件是自建/深度改写版。禁读成「已核对无缺口」，只能读成「此问无定义」。"
+  },
+  {
+   "slug": "pdf",
+   "verdict": "NO_UPSTREAM_SAME_SLUG",
+   "cands_tried": 1,
+   "max_jaccard": 0.1231,
+   "overlap_floor": 0.15,
+   "repos_considered": [
+    "anthropics/skills"
+   ],
+   "note": "同名候选全部落在内容寻址 unrelated 区（交集 < 阈值）⇒ 「我这份是不是旧的」对此件不成立：上游同名件与本地件不是同一内容，本地件是自建/深度改写版。禁读成「已核对无缺口」，只能读成「此问无定义」。"
+  },
+  {
+   "slug": "security-audit",
+   "verdict": "NO_UPSTREAM_SAME_SLUG",
+   "cands_tried": 3,
+   "max_jaccard": 0.0094,
+   "overlap_floor": 0.15,
+   "repos_considered": [
+    "sickn33/agentic-awesome-skills"
+   ],
+   "note": "同名候选全部落在内容寻址 unrelated 区（交集 < 阈值）⇒ 「我这份是不是旧的」对此件不成立：上游同名件与本地件不是同一内容，本地件是自建/深度改写版。禁读成「已核对无缺口」，只能读成「此问无定义」。"
+  },
+  {
+   "slug": "ui-ux-pro-max",
+   "verdict": "NO_UPSTREAM_SAME_SLUG",
+   "cands_tried": 5,
+   "max_jaccard": 0.0156,
+   "overlap_floor": 0.15,
+   "repos_considered": [
+    "sickn33/agentic-awesome-skills"
+   ],
+   "note": "同名候选全部落在内容寻址 unrelated 区（交集 < 阈值）⇒ 「我这份是不是旧的」对此件不成立：上游同名件与本地件不是同一内容，本地件是自建/深度改写版。禁读成「已核对无缺口」，只能读成「此问无定义」。"
+  },
+  {
+   "slug": "verification-before-completion",
+   "verdict": "NO_UPSTREAM_SAME_SLUG",
+   "cands_tried": 5,
+   "max_jaccard": 0.0223,
+   "overlap_floor": 0.15,
+   "repos_considered": [
+    "obra/superpowers",
+    "sickn33/agentic-awesome-skills"
+   ],
+   "note": "同名候选全部落在内容寻址 unrelated 区（交集 < 阈值）⇒ 「我这份是不是旧的」对此件不成立：上游同名件与本地件不是同一内容，本地件是自建/深度改写版。禁读成「已核对无缺口」，只能读成「此问无定义」。"
+  },
+  {
+   "slug": "xlsx",
+   "verdict": "NO_UPSTREAM_SAME_SLUG",
+   "cands_tried": 1,
+   "max_jaccard": 0.0206,
+   "overlap_floor": 0.15,
+   "repos_considered": [
+    "anthropics/skills"
+   ],
+   "note": "同名候选全部落在内容寻址 unrelated 区（交集 < 阈值）⇒ 「我这份是不是旧的」对此件不成立：上游同名件与本地件不是同一内容，本地件是自建/深度改写版。禁读成「已核对无缺口」，只能读成「此问无定义」。"
+  }
+ ],
+ "retrieval": {
+  "probe": "python 05-exec/r112_upstream_probe.py --scan 06-benchmark/provenance_r112_2026-10-18.json --max-candidates 8 --json <件>",
+  "face": "python 05-exec/r112_provenance_face.py"
+ }
+}

@@ -48,8 +48,13 @@ def check_ledger_churn(recs):
 
 
 def latest(bench, pattern):
-    hits = sorted(glob.glob(os.path.join(bench, pattern)))
-    return hits[-1] if hits else None
+    # r113 修（一手实测）：原按文件名排序取尾，`provenance_r112b_2026-10-17` 会排在
+    # `provenance_r112_2026-10-18` 之后（'b' > '_'），于是**新件被旧件压住**，门读的是
+    # 上一代三档面却自报 PASS。改为按 mtime 取新（平局再按名），与 ratchet_gate._newest_artifact 同口径。
+    hits = glob.glob(os.path.join(bench, pattern))
+    if not hits:
+        return None
+    return max(hits, key=lambda q: (os.path.getmtime(q), q))
 
 
 def load(p):
@@ -82,9 +87,13 @@ def main():
     args = ap.parse_args()
     bench = args.bench
 
-    scan_p = latest(bench, "provenance_r112_*.json")
-    probe_p = latest(bench, "upstream_r112_*.json")
-    swap_p = latest(bench, "swap_gate_r112_*.json")
+    # r113 修面（一手）：原 glob 只认 `_r112_`，任何后续轮次按 `_r1NN_` 命名的新证据件
+    # 对本门**隐形**——门会抱着 r112 陈旧件判绿/判红而看不见盘上更新的那份（本轮实测：
+    # pin 台账已含 self_built 74 行，门仍读三档旧件报 71 条「unknown 被登记」假红）。
+    # 修法 = 扩到 provenance_r1* 全族（按名排序，日期后缀决定现值），不是豁免某轮。
+    scan_p = latest(bench, "provenance_r1*.json")
+    probe_p = latest(bench, "upstream_r1*.json")
+    swap_p = latest(bench, "swap_gate_r1*.json")
     pins_p = os.path.join(bench, "upstream_pins.jsonl")
     missing = [n for n, p in (("scan", scan_p), ("probe", probe_p), ("swap", swap_p), ("pins", pins_p))
                if not p or not os.path.isfile(p)]
@@ -101,7 +110,8 @@ def main():
     fails = []
     # C1
     tiers = scan.get("tiers") or {}
-    t_sum = sum(tiers.get(k, 0) for k in ("declared", "inferred", "unknown"))
+    # r113 四档：v1 件无 self_built 键（get 缺省 0 即自洽），v2 件四键求和
+    t_sum = sum(tiers.get(k, 0) for k in ("declared", "inferred", "self_built", "unknown"))
     total = (scan.get("face") or {}).get("authority_skill_n") or len(scan.get("rows") or [])
     if t_sum != total:
         fails.append("C1 三档之和 %d != 总数 %d" % (t_sum, total))
@@ -111,7 +121,7 @@ def main():
         pinned.setdefault(r.get("slug"), []).append(r)
     need = {r["slug"]: r.get("confidence") for r in (scan.get("rows") or [])}
     for slug, conf in need.items():
-        if conf in ("declared", "inferred") and slug not in pinned:
+        if conf in ("declared", "inferred", "self_built") and slug not in pinned:
             fails.append("C2 有身份但未入 pin 台账: %s" % slug)
         if conf == "unknown" and slug in pinned:
             fails.append("C2 unknown 件被登记（禁猜）: %s" % slug)
@@ -150,7 +160,7 @@ def main():
     print("覆盖根自证：%s" % json.dumps(roots, ensure_ascii=False))
     print("总面 %d ｜ 同源可判 %s ｜ 盲区 %s（盲区禁读成「无缺口」）"
           % (total, same_source, total - (same_source or 0)))
-    print("三档：%s ｜ pin 台账 %d 行 / %d slug ｜ 上游证据 OK=%d UNVERIFIED=%d"
+    print("四档：%s ｜ pin 台账 %d 行 / %d slug ｜ 上游证据 OK=%d UNVERIFIED=%d"
           % (json.dumps(tiers, ensure_ascii=False), len(pins), len(pinned), len(ok), len(unv)))
     print("裁决：%s" % json.dumps(counts, ensure_ascii=False))
     if unv:

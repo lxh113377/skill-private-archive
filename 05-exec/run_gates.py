@@ -490,6 +490,47 @@ GATES = [
                "随后 --offline 复算把「已升级」件读成 UNVERIFIED（ok_n 24→18）。缓存被自身缺陷毁掉，"
                "这是「工具把自己唯一的证据源弄没了」这一类，必须有常驻腿看住。",
     },
+    {
+        # r113 K-4：r96 整面语料缓存的防退化闸（degrade_check）双向自证
+        "id": "r113_degrade_fixtures",
+        "script": "r113_degrade_fixtures.py",
+        "argv": [],
+        "pass_token": "[GATE:fixture-pass]",
+        "portable": True,
+        "covers": ["05-exec/r96_twelve_face.py 的 degrade_check / available_n / read_json_or_none",
+                   "g1 塌陷面（1/5）判退化；g2 正常轮（3/5）不误伤；g3 无对照基准不拦；g4 同面不误伤",
+                   "g5 接线腿：临时缓存文件 + 塌陷面走 main 分支 ⇒ 旧缓存字节必须不变（不只测谓词）",
+                   "m1 摘闸（恒 None）⇒ g1/g5 必须转红；m2 阈值改过严 ⇒ g2 必须转红"],
+        "why": "r96_gh_raw.json 是第 19 维 inferred 身份的来源根。大面积取数失败时整体覆写会把"
+               "好语料塌成一片 available False，而面内不变式照样自洽（X-24：分母静默变小仍全绿）。"
+               "单件形态 r112 已抓，整面形态本轮由自家夹具抓到，两处都得常驻。",
+    },
+    {
+        "id": "cache_guard_face",
+        "script": "r113_cache_guard_face.py",
+        "argv": [],
+        "pass_token": "[CACHEGUARD:PASS]",
+        "portable": True,
+        "covers": ["05-exec/*.py 全量面：远端取数 + 写持久证据路径 的组合形态",
+                   "守卫 token 三型：cache_error（单件不覆盖）/ degrade_check（整面防退化）/ merge_note（留账只增不减）",
+                   "豁免面：临时目录与每轮新产物（args.out / 日期 / 轮号）不进分母",
+                   "零输入面 ⇒ rc=2 UNVERIFIED（R247）"],
+        "why": "同一族缺陷连着两轮各抓一半（r112 单件覆写 / r113 整面覆写），说明逐件修不收敛；"
+               "本门把「取数脚本写可复用证据必须声明守卫」钉成结构判据，新增裸写件当轮即红。",
+    },
+    {
+        "id": "cache_guard_face_fixtures",
+        "script": "r113_cache_guard_face_fixtures.py",
+        "argv": [],
+        "pass_token": "[GATE:fixture-pass]",
+        "portable": True,
+        "covers": ["第 34 门自身的 W-47 双向证据（f1 裸写点名 / f2 带守卫判绿 / f3-f4 两条豁免 / f5 真机接线 / f6 零输入）",
+                   "m1 摘守卫识别 ⇒ f2 转红；m2 摘豁免识别 ⇒ f3 与 f4 同转红",
+                   "本门两次假阳性一手：w[bt] 漏匹配 open(x,w) 造成 f3/f4 的绿来自漏判而非豁免；"
+                   "泛词 + re.I 把夹具小写 bench 误判成违规面（大小写敏感后消）"],
+        "why": "门自身两次失真的教训必须固化成腿：判据的『绿』可能来自匹配不到而不是判过。"
+               "变异体刻意让豁免/守卫识别失效，抓不住即本夹具无鉴别力。",
+    },
 ]
 
 # 显式声明本 runner **不覆盖**的面，防止聚合绿被读成「所有门禁都绿」（R20-2）。

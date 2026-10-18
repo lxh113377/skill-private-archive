@@ -1,0 +1,1484 @@
+{
+ "schema": "gh-search-r113-v1",
+ "cmd": "gh api search/repositories",
+ "queries": {
+  "agent-skills-topic": {
+   "state": "OK",
+   "q": "topic:agent-skills",
+   "total": 34477,
+   "rows": [
+    {
+     "full_name": "morluto/rea",
+     "stars": 309032,
+     "pushed_at": "2026-10-18",
+     "license": "MIT",
+     "archived": false,
+     "description": "Reverse engineer anything with agents, from app behavior down to native binaries."
+    },
+    {
+     "full_name": "anthropics/skills",
+     "stars": 181814,
+     "pushed_at": "2026-10-09",
+     "license": "UNLICENSED",
+     "archived": false,
+     "description": "Public repository for Agent Skills"
+    },
+    {
+     "full_name": "DietrichGebert/ponytail",
+     "stars": 166302,
+     "pushed_at": "2026-10-18",
+     "license": "MIT",
+     "archived": false,
+     "description": "Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote."
+    },
+    {
+     "full_name": "addyosmani/agent-skills",
+     "stars": 107880,
+     "pushed_at": "2026-10-13",
+     "license": "MIT",
+     "archived": false,
+     "description": "Production-grade engineering skills for AI coding agents."
+    },
+    {
+     "full_name": "paperclipai/paperclip",
+     "stars": 103694,
+     "pushed_at": "2026-10-18",
+     "license": "MIT",
+     "archived": false,
+     "description": "The open-source app everyone uses to manage agents at work"
+    },
+    {
+     "full_name": "nexu-io/open-design",
+     "stars": 101977,
+     "pushed_at": "2026-10-18",
+     "license": "Apache-2.0",
+     "archived": false,
+     "description": "The 1st Collaborative AI Design Agent Workspace. Local-first and open source. Create prototypes, websites, apps, dashboards, presentations, "
+    },
+    {
+     "full_name": "Leonxlnx/taste-skill",
+     "stars": 98483,
+     "pushed_at": "2026-10-14",
+     "license": "MIT",
+     "archived": false,
+     "description": "Agent skills that give coding agents taste: art direction, reference images and a browser check instead of generic AI pages"
+    },
+    {
+     "full_name": "tt-a1i/archify",
+     "stars": 84930,
+     "pushed_at": "2026-10-18",
+     "license": "MIT",
+     "archived": false,
+     "description": "Turn any idea, plan, or codebase into a beautiful interactive diagram. An agent skill for Claude Code, Codex, and more."
+    },
+    {
+     "full_name": "ComposioHQ/awesome-claude-skills",
+     "stars": 77318,
+     "pushed_at": "2026-09-18",
+     "license": "UNLICENSED",
+     "archived": false,
+     "description": "A curated list of awesome Claude Skills, resources, and tools for customizing Claude AI workflows"
+    },
+    {
+     "full_name": "career-ops-hq/career-ops",
+     "stars": 75369,
+     "pushed_at": "2026-10-18",
+     "license": "MIT",
+     "archived": false,
+     "description": "Open-source AI job search agent and job finder: scan job boards, score each job 1-5 against your CV before you apply, tailor an ATS-friendly"
+    },
+    {
+     "full_name": "blader/humanizer",
+     "stars": 57864,
+     "pushed_at": "2026-10-16",
+     "license": "MIT",
+     "archived": false,
+     "description": "Agent skill that removes signs of AI-generated writing from text"
+    },
+    {
+     "full_name": "cathrynlavery/diagram-design",
+     "stars": 57084,
+     "pushed_at": "2026-10-16",
+     "license": "MIT",
+     "archived": false,
+     "description": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, and Pi. 44 diagram types. Self-contained HTML + SVG."
+    },
+    {
+     "full_name": "hesreallyhim/awesome-claude-code",
+     "stars": 55914,
+     "pushed_at": "2026-10-18",
+     "license": "NOASSERTION",
+     "archived": false,
+     "description": "A hand-picked collection of the finest of resources for the most awesome of agents, Claude Code, the undisputed champion of coding companion"
+    },
+    {
+     "full_name": "coreyhaines31/marketingskills",
+     "stars": 55262,
+     "pushed_at": "2026-10-15",
+     "license": "MIT",
+     "archived": false,
+     "description": "Marketing skills for Claude Code and AI agents. CRO, copywriting, SEO, analytics, and growth engineering."
+    },
+    {
+     "full_name": "VoltAgent/awesome-openclaw-skills",
+     "stars": 53183,
+     "pushed_at": "2026-10-11",
+     "license": "MIT",
+     "archived": false,
+     "description": "The awesome collection of OpenClaw skills. 5,400+ skills filtered and categorized from the official OpenClaw Skills Registry.🦞"
+    },
+    {
+     "full_name": "CherryHQ/cherry-studio",
+     "stars": 52723,
+     "pushed_at": "2026-10-18",
+     "license": "AGPL-3.0",
+     "archived": false,
+     "description": "AI productivity studio with smart chat, autonomous agents, and 300+ assistants. Unified access to frontier LLMs"
+    },
+    {
+     "full_name": "K-Dense-AI/scientific-agent-skills",
+     "stars": 52317,
+     "pushed_at": "2026-10-15",
+     "license": "MIT",
+     "archived": false,
+     "description": "Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 250,000+ scientists worldwide. 177 ready-to-use val"
+    },
+    {
+     "full_name": "sickn33/agentic-awesome-skills",
+     "stars": 47780,
+     "pushed_at": "2026-10-17",
+     "license": "MIT",
+     "archived": false,
+     "description": "AAS Core is the local, agent-first control plane for complete catalog discovery, agent-owned selection, stack validation, and planning, back"
+    },
+    {
+     "full_name": "alibaba/open-code-review",
+     "stars": 47551,
+     "pushed_at": "2026-10-17",
+     "license": "Apache-2.0",
+     "archived": false,
+     "description": "Secure, fast, efficient, battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precis"
+    },
+    {
+     "full_name": "reactive-resume/reactive-resume",
+     "stars": 44454,
+     "pushed_at": "2026-10-17",
+     "license": "MIT",
+     "archived": false,
+     "description": "A one-of-a-kind resume builder that keeps your privacy in mind. Completely secure, customizable, portable, open-source and free forever. Try"
+    },
+    {
+     "full_name": "wshobson/agents",
+     "stars": 40980,
+     "pushed_at": "2026-10-17",
+     "license": "MIT",
+     "archived": false,
+     "description": "Multi-harness agentic plugin marketplace for Claude Code, Codex, Cursor, OpenCode, GitHub Copilot, Google Antigravity, and Pi"
+    },
+    {
+     "full_name": "github/awesome-copilot",
+     "stars": 40133,
+     "pushed_at": "2026-10-16",
+     "license": "MIT",
+     "archived": false,
+     "description": "Community-contributed instructions, agents, skills, and configurations to help you make the most of GitHub Copilot."
+    },
+    {
+     "full_name": "VoltAgent/awesome-agent-skills",
+     "stars": 35906,
+     "pushed_at": "2026-10-15",
+     "license": "MIT",
+     "archived": false,
+     "description": "A curated collection of 1000+ agent skills from official dev teams and the community, compatible with Claude Code, Codex, Gemini CLI, Cursor"
+    },
+    {
+     "full_name": "virgiliojr94/book-to-skill",
+     "stars": 35168,
+     "pushed_at": "2026-10-12",
+     "license": "MIT",
+     "archived": false,
+     "description": "Turn any technical book PDF into a Claude Code skill — ready to study, reference, and use while you work."
+    },
+    {
+     "full_name": "topoteretes/cognee",
+     "stars": 32445,
+     "pushed_at": "2026-10-16",
+     "license": "Apache-2.0",
+     "archived": false,
+     "description": "Cognee is the open-source AI memory platform for agents. Give your AI agents persistent long-term memory with small models for free"
+    },
+    {
+     "full_name": "feder-cr/invisible_dots",
+     "stars": 32130,
+     "pushed_at": "2026-10-17",
+     "license": "MIT",
+     "archived": false,
+     "description": "Open-source, self-hosted alternative to OpenAI Dots, Grok Bot. Built to be undetectable by anti-bot systems."
+    },
+    {
+     "full_name": "googleworkspace/cli",
+     "stars": 31616,
+     "pushed_at": "2026-10-06",
+     "license": "Apache-2.0",
+     "archived": false,
+     "description": "Google Workspace CLI — one command-line tool for Drive, Gmail, Calendar, Sheets, Docs, Chat, Admin, and more. Dynamically built from Google "
+    },
+    {
+     "full_name": "alirezarezvani/claude-skills",
+     "stars": 28334,
+     "pushed_at": "2026-08-30",
+     "license": "MIT",
+     "archived": false,
+     "description": "380 Claude Code skills & agent skills & plugins (30+ Agents, 70+ custom commands, 380+ skills, customizable references, scripts)for Claude C"
+    },
+    {
+     "full_name": "OthmanAdi/planning-with-files",
+     "stars": 27496,
+     "pushed_at": "2026-10-17",
+     "license": "MIT",
+     "archived": false,
+     "description": "Persistent file-based planning for AI coding agents and long-running tasks. Crash-proof markdown plans, session recovery after /clear and co"
+    },
+    {
+     "full_name": "phuryn/pm-skills",
+     "stars": 27148,
+     "pushed_at": "2026-10-16",
+     "license": "MIT",
+     "archived": false,
+     "description": "PM Skills Marketplace: 100+ agentic skills, commands, and plugins — from discovery to strategy, execution, launch, and growth."
+    }
+   ]
+  },
+  "claude-skills-topic": {
+   "state": "OK",
+   "q": "topic:claude-skills",
+   "total": 11923,
+   "rows": [
+    {
+     "full_name": "paperclipai/paperclip",
+     "stars": 103694,
+     "pushed_at": "2026-10-18",
+     "license": "MIT",
+     "archived": false,
+     "description": "The open-source app everyone uses to manage agents at work"
+    },
+    {
+     "full_name": "thedotmack/claude-mem",
+     "stars": 101437,
+     "pushed_at": "2026-10-18",
+     "license": "Apache-2.0",
+     "archived": false,
+     "description": "Persistent Context Across Sessions for Every Agent –  Captures everything your agent does during sessions, compresses it with AI, and inject"
+    },
+    {
+     "full_name": "Egonex-AI/Understand-Anything",
+     "stars": 86812,
+     "pushed_at": "2026-10-12",
+     "license": "MIT",
+     "archived": false,
+     "description": "Graphs that teach > graphs that impress. Turn any code into an interactive knowledge graph you can explore, search, and ask questions about."
+    },
+    {
+     "full_name": "tt-a1i/archify",
+     "stars": 84930,
+     "pushed_at": "2026-10-18",
+     "license": "MIT",
+     "archived": false,
+     "description": "Turn any idea, plan, or codebase into a beautiful interactive diagram. An agent skill for Claude Code, Codex, and more."
+    },
+    {
+     "full_name": "code-yeongyu/oh-my-openagent",
+     "stars": 70146,
+     "pushed_at": "2026-10-18",
+     "license": "NOASSERTION",
+     "archived": false,
+     "description": "OmO: Just type \"mass ulw\" keyword with your prompt. Now you are the master of graph engineering."
+    },
+    {
+     "full_name": "ayghri/i-have-adhd",
+     "stars": 57573,
+     "pushed_at": "2026-10-11",
+     "license": "MIT",
+     "archived": false,
+     "description": "A skill to stop your coding agent from burying the answer. ADHD-friendly output."
+    },
+    {
+     "full_name": "coreyhaines31/marketingskills",
+     "stars": 55262,
+     "pushed_at": "2026-10-15",
+     "license": "MIT",
+     "archived": false,
+     "description": "Marketing skills for Claude Code and AI agents. CRO, copywriting, SEO, analytics, and growth engineering."
+    },
+    {
+     "full_name": "K-Dense-AI/scientific-agent-skills",
+     "stars": 52318,
+     "pushed_at": "2026-10-15",
+     "license": "MIT",
+     "archived": false,
+     "description": "Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 250,000+ scientists worldwide. 177 ready-to-use val"
+    },
+    {
+     "full_name": "wshobson/agents",
+     "stars": 40980,
+     "pushed_at": "2026-10-17",
+     "license": "MIT",
+     "archived": false,
+     "description": "Multi-harness agentic plugin marketplace for Claude Code, Codex, Cursor, OpenCode, GitHub Copilot, Google Antigravity, and Pi"
+    },
+    {
+     "full_name": "VoltAgent/awesome-agent-skills",
+     "stars": 35906,
+     "pushed_at": "2026-10-15",
+     "license": "MIT",
+     "archived": false,
+     "description": "A curated collection of 1000+ agent skills from official dev teams and the community, compatible with Claude Code, Codex, Gemini CLI, Cursor"
+    },
+    {
+     "full_name": "nanocoai/nanoclaw",
+     "stars": 30960,
+     "pushed_at": "2026-10-17",
+     "license": "MIT",
+     "archived": false,
+     "description": "A lightweight alternative to OpenClaw that runs in containers for security. Connects to WhatsApp, Telegram, Slack, Discord, Gmail and other "
+    },
+    {
+     "full_name": "alirezarezvani/claude-skills",
+     "stars": 28334,
+     "pushed_at": "2026-08-30",
+     "license": "MIT",
+     "archived": false,
+     "description": "380 Claude Code skills & agent skills & plugins (30+ Agents, 70+ custom commands, 380+ skills, customizable references, scripts)for Claude C"
+    },
+    {
+     "full_name": "OthmanAdi/planning-with-files",
+     "stars": 27496,
+     "pushed_at": "2026-10-17",
+     "license": "MIT",
+     "archived": false,
+     "description": "Persistent file-based planning for AI coding agents and long-running tasks. Crash-proof markdown plans, session recovery after /clear and co"
+    },
+    {
+     "full_name": "JimLiu/baoyu-skills",
+     "stars": 26736,
+     "pushed_at": "2026-09-10",
+     "license": "MIT",
+     "archived": false,
+     "description": ""
+    },
+    {
+     "full_name": "titanwings/distilly",
+     "stars": 25733,
+     "pushed_at": "2026-10-13",
+     "license": "MIT",
+     "archived": false,
+     "description": "Distilly — Distill how they think into reusable Skills for any Agent or Bot. Formerly Colleague Skill（原同事 Skill）."
+    },
+    {
+     "full_name": "teng-lin/notebooklm-py",
+     "stars": 19775,
+     "pushed_at": "2026-10-15",
+     "license": "MIT",
+     "archived": false,
+     "description": "Unofficial Python API and agentic skill for Google Gemini Notebook. Full programmatic access to Gemini Notebook's features—including capabil"
+    },
+    {
+     "full_name": "latent-spaces/brag",
+     "stars": 16530,
+     "pushed_at": "2026-10-13",
+     "license": "MIT",
+     "archived": false,
+     "description": "You built it. Now brag. Turn the project you just created into a short, shareable launch video with one command."
+    },
+    {
+     "full_name": "travisvn/awesome-claude-skills",
+     "stars": 15450,
+     "pushed_at": "2026-04-28",
+     "license": "UNLICENSED",
+     "archived": false,
+     "description": "A curated list of awesome Claude Skills, resources, and tools for customizing Claude AI workflows — particularly Claude Code"
+    },
+    {
+     "full_name": "yusufkaraaslan/Skill_Seekers",
+     "stars": 15174,
+     "pushed_at": "2026-09-30",
+     "license": "MIT",
+     "archived": false,
+     "description": "Convert documentation websites, GitHub repositories, and PDFs into Claude AI skills with automatic conflict detection"
+    },
+    {
+     "full_name": "nidhinjs/prompt-master",
+     "stars": 14558,
+     "pushed_at": "2026-10-16",
+     "license": "MIT",
+     "archived": false,
+     "description": "A Claude skill that writes the accurate prompts for any AI tool. Zero tokens or credits wasted. Full context and memory retention"
+    },
+    {
+     "full_name": "NevaMind-AI/memU",
+     "stars": 14551,
+     "pushed_at": "2026-10-17",
+     "license": "NOASSERTION",
+     "archived": false,
+     "description": "Personal memory across agents"
+    },
+    {
+     "full_name": "Orchestra-Research/AI-Research-SKILLs",
+     "stars": 13641,
+     "pushed_at": "2026-10-11",
+     "license": "MIT",
+     "archived": false,
+     "description": "Comprehensive open-source library of AI research and engineering skills for any AI model. Package the skills and your claude code/codex/gemi"
+    },
+    {
+     "full_name": "Vincentwei1021/video-shotcraft",
+     "stars": 12301,
+     "pushed_at": "2026-10-17",
+     "license": "Apache-2.0",
+     "archived": false,
+     "description": "AI video skill for Claude Code & Codex — cinematic product videos with Remotion: 152 shot recipe cards, 209 motion previews, a production-re"
+    },
+    {
+     "full_name": "Jeffallan/claude-skills",
+     "stars": 11920,
+     "pushed_at": "2026-10-16",
+     "license": "MIT",
+     "archived": false,
+     "description": "67 Specialized Skills for Full-Stack Developers. Transform Claude Code into your expert pair programmer."
+    },
+    {
+     "full_name": "nexu-io/html-anything",
+     "stars": 9158,
+     "pushed_at": "2026-10-13",
+     "license": "Apache-2.0",
+     "archived": false,
+     "description": "✨ The agentic HTML editor — your local AI agent writes the HTML, you ship it. 🚀 75 Skills × 9 Surfaces (magazine · deck · poster · XHS / twe"
+    },
+    {
+     "full_name": "anbeime/skill",
+     "stars": 8234,
+     "pushed_at": "2026-10-17",
+     "license": "UNLICENSED",
+     "archived": false,
+     "description": "收录最全、更新最快的技能Skills商店：精选原创技能包（涵盖文档处理、内容创作、编程开发、机器学习、自动化工作流），全部打包好可直接安装使用！同时自动抓取GitHub上万个Skills项目，按分类、更新时间、Star数量整理。The most comprehensive and"
+    },
+    {
+     "full_name": "WenyuChiou/awesome-agentic-ai-zh",
+     "stars": 7721,
+     "pushed_at": "2026-10-17",
+     "license": "MIT",
+     "archived": false,
+     "description": "A trilingual (繁中 / English / 简中) learning roadmap for agentic AI: from LLM basics to multi-agent systems, with 240+ curated resources and ha"
+    },
+    {
+     "full_name": "zenstory-ai/oh-story-claudecode",
+     "stars": 7701,
+     "pushed_at": "2026-10-18",
+     "license": "MIT",
+     "archived": false,
+     "description": "Claude Code / Codex / OpenCode agent skills for writing Chinese web novels (网文): 扫榜、拆文、写作、去AI味、封面全流程，长篇短篇都支持 | 13 skills for novel writing a"
+    },
+    {
+     "full_name": "SnailSploit/Claude-Red",
+     "stars": 7584,
+     "pushed_at": "2026-10-12",
+     "license": "MIT",
+     "archived": false,
+     "description": "claude-red is a curated library of offensive security skills designed for the Claude skills system. Each skill is a structured SKILL.md file"
+    },
+    {
+     "full_name": "deanpeters/Product-Manager-Skills",
+     "stars": 7457,
+     "pushed_at": "2026-10-16",
+     "license": "NOASSERTION",
+     "archived": false,
+     "description": "Product Management skills framework built on battle-tested methods for Claude Code, Cowork, Codex, and AI agents."
+    }
+   ]
+  },
+  "skill-md-readme": {
+   "state": "OK",
+   "q": "SKILL.md in:readme",
+   "total": 1794133,
+   "rows": [
+    {
+     "full_name": "public-apis/public-apis",
+     "stars": 489814,
+     "pushed_at": "2026-10-17",
+     "license": "MIT",
+     "archived": false,
+     "description": "A collective list of free APIs"
+    },
+    {
+     "full_name": "openclaw/openclaw",
+     "stars": 392291,
+     "pushed_at": "2026-10-18",
+     "license": "MIT",
+     "archived": false,
+     "description": "The AI that really does things. Any OS. Any Platform. The lobster way. 🦞 "
+    },
+    {
+     "full_name": "awesome-selfhosted/awesome-selfhosted",
+     "stars": 327748,
+     "pushed_at": "2026-10-16",
+     "license": "NOASSERTION",
+     "archived": false,
+     "description": "A list of Free Software network services and web applications which can be hosted on your own servers"
+    },
+    {
+     "full_name": "morluto/rea",
+     "stars": 309035,
+     "pushed_at": "2026-10-18",
+     "license": "MIT",
+     "archived": false,
+     "description": "Reverse engineer anything with agents, from app behavior down to native binaries."
+    },
+    {
+     "full_name": "obra/superpowers",
+     "stars": 301257,
+     "pushed_at": "2026-10-10",
+     "license": "MIT",
+     "archived": false,
+     "description": "An agentic skills framework & software development methodology that works."
+    },
+    {
+     "full_name": "mattpocock/skills",
+     "stars": 295200,
+     "pushed_at": "2026-10-13",
+     "license": "MIT",
+     "archived": false,
+     "description": "Skills for Real Engineers. Straight from my .agents directory."
+    },
+    {
+     "full_name": "practical-tutorials/project-based-learning",
+     "stars": 287076,
+     "pushed_at": "2026-10-12",
+     "license": "MIT",
+     "archived": false,
+     "description": "Curated list of project-based tutorials"
+    },
+    {
+     "full_name": "affaan-m/ECC",
+     "stars": 282595,
+     "pushed_at": "2026-10-15",
+     "license": "MIT",
+     "archived": false,
+     "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Code"
+    },
+    {
+     "full_name": "NousResearch/hermes-agent",
+     "stars": 254720,
+     "pushed_at": "2026-10-18",
+     "license": "MIT",
+     "archived": false,
+     "description": "The agent that grows with you"
+    },
+    {
+     "full_name": "trimstray/the-book-of-secret-knowledge",
+     "stars": 250959,
+     "pushed_at": "2024-11-19",
+     "license": "MIT",
+     "archived": false,
+     "description": "A collection of inspiring lists, manuals, cheatsheets, blogs, hacks, one-liners, cli/web tools and more."
+    },
+    {
+     "full_name": "multica-ai/andrej-karpathy-skills",
+     "stars": 220691,
+     "pushed_at": "2026-04-20",
+     "license": "UNLICENSED",
+     "archived": false,
+     "description": "A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy's observations on LLM coding pitfalls."
+    },
+    {
+     "full_name": "ultraworkers/claw-code",
+     "stars": 194921,
+     "pushed_at": "2026-10-13",
+     "license": "MIT",
+     "archived": false,
+     "description": "An agent-managed museum exhibit, built in Rust with Gajae-Code / LazyCodex — developed and maintained with no human intervention."
+    },
+    {
+     "full_name": "firecrawl/firecrawl",
+     "stars": 192527,
+     "pushed_at": "2026-10-18",
+     "license": "AGPL-3.0",
+     "archived": false,
+     "description": "Supercharge your AI agents with data from the web and beyond. Building the library for superintelligence. 🔥"
+    },
+    {
+     "full_name": "avelino/awesome-go",
+     "stars": 188965,
+     "pushed_at": "2026-10-15",
+     "license": "MIT",
+     "archived": false,
+     "description": "A curated list of awesome Go frameworks, libraries and software"
+    },
+    {
+     "full_name": "anthropics/skills",
+     "stars": 181814,
+     "pushed_at": "2026-10-09",
+     "license": "UNLICENSED",
+     "archived": false,
+     "description": "Public repository for Agent Skills"
+    },
+    {
+     "full_name": "DietrichGebert/ponytail",
+     "stars": 166302,
+     "pushed_at": "2026-10-18",
+     "license": "MIT",
+     "archived": false,
+     "description": "Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote."
+    },
+    {
+     "full_name": "jlevy/the-art-of-command-line",
+     "stars": 162532,
+     "pushed_at": "2024-06-25",
+     "license": "UNLICENSED",
+     "archived": false,
+     "description": "Master the command line, in one page"
+    },
+    {
+     "full_name": "msitarzewski/agency-agents",
+     "stars": 160927,
+     "pushed_at": "2026-10-15",
+     "license": "MIT",
+     "archived": false,
+     "description": "A complete AI agency at your fingertips - From frontend wizards to Reddit community ninjas, from whimsy injectors to reality checkers. Each "
+    },
+    {
+     "full_name": "farion1231/cc-switch",
+     "stars": 145581,
+     "pushed_at": "2026-10-18",
+     "license": "MIT",
+     "archived": false,
+     "description": "A cross-platform desktop All-in-One assistant for Claude Code, Codex, OpenCode, OpenClaw, Grok Build & Hermes Agent. Only official website: "
+    },
+    {
+     "full_name": "nextlevelbuilder/ui-ux-pro-max-skill",
+     "stars": 136920,
+     "pushed_at": "2026-10-15",
+     "license": "MIT",
+     "archived": false,
+     "description": "An AI skill that provides design intelligence for building professional UI/UX across multiple platforms."
+    },
+    {
+     "full_name": "garrytan/gstack",
+     "stars": 136793,
+     "pushed_at": "2026-10-18",
+     "license": "MIT",
+     "archived": false,
+     "description": "Use Garry Tan's exact Claude Code setup: 23 opinionated tools that serve as CEO, Designer, Eng Manager, Release Manager, Doc Engineer, and Q"
+    },
+    {
+     "full_name": "harry0703/MoneyPrinterTurbo",
+     "stars": 132421,
+     "pushed_at": "2026-10-17",
+     "license": "MIT",
+     "archived": false,
+     "description": "利用 AI 大模型和自动化工作流，根据主题或关键词一键生成高清短视频。Generate HD short videos from a topic or keyword with an automated AI workflow."
+    },
+    {
+     "full_name": "Graphify-Labs/graphify",
+     "stars": 127827,
+     "pushed_at": "2026-10-16",
+     "license": "Apache-2.0",
+     "archived": false,
+     "description": "Turn any codebase, with its docs, SQL schemas, configs, and PDFs, into a queryable knowledge graph. A /graphify skill for Claude Code, Curso"
+    },
+    {
+     "full_name": "Hack-with-Github/Awesome-Hacking",
+     "stars": 122903,
+     "pushed_at": "2026-07-26",
+     "license": "CC0-1.0",
+     "archived": false,
+     "description": "A collection of various awesome lists for hackers, pentesters and security researchers"
+    },
+    {
+     "full_name": "browser-use/browser-use",
+     "stars": 118346,
+     "pushed_at": "2026-10-17",
+     "license": "MIT",
+     "archived": false,
+     "description": "Open-source Python library for AI browser agents, plus Browser Use Cloud: stealth browsers and a hosted agent API."
+    },
+    {
+     "full_name": "earendil-works/pi",
+     "stars": 115982,
+     "pushed_at": "2026-10-18",
+     "license": "MIT",
+     "archived": false,
+     "description": "AI agent toolkit: unified LLM API, agent loop, TUI, coding agent CLI"
+    },
+    {
+     "full_name": "JuliusBrussee/caveman",
+     "stars": 113318,
+     "pushed_at": "2026-10-17",
+     "license": "Apache-2.0",
+     "archived": false,
+     "description": "🪨 why use many token when few token do trick. Viral skill + proxy for coding agents that cuts 65% of tokens by talking like a caveman."
+    },
+    {
+     "full_name": "addyosmani/agent-skills",
+     "stars": 107880,
+     "pushed_at": "2026-10-13",
+     "license": "MIT",
+     "archived": false,
+     "description": "Production-grade engineering skills for AI coding agents."
+    },
+    {
+     "full_name": "paperclipai/paperclip",
+     "stars": 103694,
+     "pushed_at": "2026-10-18",
+     "license": "MIT",
+     "archived": false,
+     "description": "The open-source app everyone uses to manage agents at work"
+    },
+    {
+     "full_name": "nexu-io/open-design",
+     "stars": 101977,
+     "pushed_at": "2026-10-18",
+     "license": "Apache-2.0",
+     "archived": false,
+     "description": "The 1st Collaborative AI Design Agent Workspace. Local-first and open source. Create prototypes, websites, apps, dashboards, presentations, "
+    }
+   ]
+  },
+  "claude-code-skills-name": {
+   "state": "OK",
+   "q": "skills in:name claude",
+   "total": 13248,
+   "rows": [
+    {
+     "full_name": "ComposioHQ/awesome-claude-skills",
+     "stars": 77318,
+     "pushed_at": "2026-09-18",
+     "license": "UNLICENSED",
+     "archived": false,
+     "description": "A curated list of awesome Claude Skills, resources, and tools for customizing Claude AI workflows"
+    },
+    {
+     "full_name": "alirezarezvani/claude-skills",
+     "stars": 28334,
+     "pushed_at": "2026-08-30",
+     "license": "MIT",
+     "archived": false,
+     "description": "380 Claude Code skills & agent skills & plugins (30+ Agents, 70+ custom commands, 380+ skills, customizable references, scripts)for Claude C"
+    },
+    {
+     "full_name": "travisvn/awesome-claude-skills",
+     "stars": 15450,
+     "pushed_at": "2026-04-28",
+     "license": "UNLICENSED",
+     "archived": false,
+     "description": "A curated list of awesome Claude Skills, resources, and tools for customizing Claude AI workflows — particularly Claude Code"
+    },
+    {
+     "full_name": "Jeffallan/claude-skills",
+     "stars": 11920,
+     "pushed_at": "2026-10-16",
+     "license": "MIT",
+     "archived": false,
+     "description": "67 Specialized Skills for Full-Stack Developers. Transform Claude Code into your expert pair programmer."
+    },
+    {
+     "full_name": "BehiSecc/awesome-claude-skills",
+     "stars": 10263,
+     "pushed_at": "2026-09-21",
+     "license": "UNLICENSED",
+     "archived": false,
+     "description": "A curated list of Claude Skills."
+    },
+    {
+     "full_name": "zLanqing/codex-claude-academic-skills",
+     "stars": 5015,
+     "pushed_at": "2026-05-14",
+     "license": "MIT",
+     "archived": false,
+     "description": "本仓库包含三个面向学术科研人员的Skills，覆盖从文献阅读、论文写作到科学计算的完整研究工作流。office-academic-skill 负责论文阅读报告与学术 PPT/Word 文档生成；research-writing-skill 提供论文写作、润色与审稿回复辅助；sci"
+    },
+    {
+     "full_name": "tradermonty/claude-trading-skills",
+     "stars": 3036,
+     "pushed_at": "2026-10-18",
+     "license": "MIT",
+     "archived": false,
+     "description": "Claude Code skills for equity investors and traders — market analysis, technical charting, economic calendars, screeners, and trading strate"
+    },
+    {
+     "full_name": "aiwithremy/claude-skills-llm-council",
+     "stars": 2548,
+     "pushed_at": "2026-04-26",
+     "license": "UNLICENSED",
+     "archived": false,
+     "description": "LLM Council — a Claude Code skill that runs your decisions through 5 AI advisors with peer review"
+    },
+    {
+     "full_name": "mrgoonie/claudekit-skills",
+     "stars": 2225,
+     "pushed_at": "2026-04-03",
+     "license": "UNLICENSED",
+     "archived": false,
+     "description": "All powerful skills of ClaudeKit.cc!"
+    },
+    {
+     "full_name": "daymade/claude-code-skills",
+     "stars": 1472,
+     "pushed_at": "2026-10-17",
+     "license": "MIT",
+     "archived": false,
+     "description": "Professional Claude Code skills marketplace featuring production-ready skills for enhanced development workflows."
+    },
+    {
+     "full_name": "mohitagw15856/pm-claude-skills",
+     "stars": 1468,
+     "pushed_at": "2026-10-17",
+     "license": "MIT",
+     "archived": false,
+     "description": "1255 professional Agent Skills for Claude, ChatGPT, Gemini, Cursor & Codex — PRDs, postmortems, leases, medical bills, layoffs, go-bags, new"
+    },
+    {
+     "full_name": "abubakarsiddik31/claude-skills-collection",
+     "stars": 1100,
+     "pushed_at": "2026-09-12",
+     "license": "UNLICENSED",
+     "archived": false,
+     "description": "A curated collection of official and community-built Claude Skills – extend Anthropic's Claude with powerful, modular capabilities for produ"
+    },
+    {
+     "full_name": "jezweb/claude-skills",
+     "stars": 1069,
+     "pushed_at": "2026-10-09",
+     "license": "MIT",
+     "archived": false,
+     "description": "Skills for Claude Code CLI such as full stack dev Cloudflare, React, Tailwind v4, and AI integrations."
+    },
+    {
+     "full_name": "rampstackco/claude-skills",
+     "stars": 972,
+     "pushed_at": "2026-10-17",
+     "license": "MIT",
+     "archived": false,
+     "description": "Stack-agnostic Claude Skills covering the full website lifecycle: brand, design, content, SEO, dev, ops, growth, and research. Build, ship, "
+    },
+    {
+     "full_name": "Sushegaad/Claude-Skills-Governance-Risk-and-Compliance",
+     "stars": 965,
+     "pushed_at": "2026-10-10",
+     "license": "MIT",
+     "archived": false,
+     "description": "Claude Skills for Governance, Risk, & Compliance (GRC): Expert-level compliance guidance for ISO 27001, SOC 2, FedRAMP, GDPR, HIPAA, NIST CS"
+    },
+    {
+     "full_name": "borghei/Claude-Skills",
+     "stars": 939,
+     "pushed_at": "2026-10-07",
+     "license": "NOASSERTION",
+     "archived": false,
+     "description": "385 AI skills, 77 expert agents, and 900 stdlib Python tools for every team: engineering, PM, marketing, C-level, compliance, business ops, "
+    },
+    {
+     "full_name": "simonw/claude-skills",
+     "stars": 929,
+     "pushed_at": "2025-12-12",
+     "license": "UNLICENSED",
+     "archived": false,
+     "description": "The contents of /mnt/skills in Claude's code interpreter environment"
+    },
+    {
+     "full_name": "laolaoshiren/claude-code-skills-zh",
+     "stars": 892,
+     "pushed_at": "2026-10-17",
+     "license": "MIT",
+     "archived": false,
+     "description": "面向中文开发者的 Claude Code Skills / Agents / Plugins 精选与原创技能库｜按场景分类｜复制即装｜持续更新"
+    },
+    {
+     "full_name": "tfriedel/claude-office-skills",
+     "stars": 839,
+     "pushed_at": "2026-04-01",
+     "license": "UNLICENSED",
+     "archived": false,
+     "description": "Office document creation and editing skills for Claude Code - PPTX, DOCX, XLSX, and PDF workflows with automation support"
+    },
+    {
+     "full_name": "rshankras/claude-code-apple-skills",
+     "stars": 810,
+     "pushed_at": "2026-07-24",
+     "license": "MIT",
+     "archived": false,
+     "description": "Claude Code skills for Apple platform development (iOS, macOS, iPadOS) — product validation, code generation, App Store optimization, and mo"
+    },
+    {
+     "full_name": "staruhub/ClaudeSkills",
+     "stars": 728,
+     "pushed_at": "2026-08-13",
+     "license": "MIT",
+     "archived": false,
+     "description": "13 curated Agent Skills for research, product decisions, decks, publishing, audits, and more — portable across skills-compatible agents."
+    },
+    {
+     "full_name": "zhuyansen/awesome-claude-video-skills",
+     "stars": 696,
+     "pushed_at": "2026-10-17",
+     "license": "NOASSERTION",
+     "archived": false,
+     "description": "Open-source skills and toolkits that let Claude Code, Codex and other coding agents make video. 180 repos by type, each security-graded. Eng"
+    },
+    {
+     "full_name": "mhattingpete/claude-skills-marketplace",
+     "stars": 684,
+     "pushed_at": "2026-07-25",
+     "license": "Apache-2.0",
+     "archived": false,
+     "description": "Claude Code Skills for software engineering workflows - Git automation, testing, and code review"
+    },
+    {
+     "full_name": "emotixco/claude-skills-founder",
+     "stars": 664,
+     "pushed_at": "2026-10-17",
+     "license": "MIT",
+     "archived": false,
+     "description": "Claude Code skills for startup founders — product briefs, competitor analysis, pricing strategy, pitch decks, and GTM plans from your termin"
+    },
+    {
+     "full_name": "LeastBit/Claude_skills_zh-CN",
+     "stars": 594,
+     "pushed_at": "2026-01-19",
+     "license": "UNLICENSED",
+     "archived": false,
+     "description": "Anthropics/skills中文学习版本 来自：https://github.com/anthropics/skills"
+    },
+    {
+     "full_name": "levnikolaevich/claude-code-skills",
+     "stars": 581,
+     "pushed_at": "2026-10-12",
+     "license": "MIT",
+     "archived": false,
+     "description": "Standalone skills for Claude Code and Codex: product discovery, architecture, implementation, technical foundations, reviews and delivery, w"
+    },
+    {
+     "full_name": "bitwize-music-studio/claude-ai-music-skills",
+     "stars": 569,
+     "pushed_at": "2026-10-15",
+     "license": "CC0-1.0",
+     "archived": false,
+     "description": "Human + AI music production workflow for Suno - skills, templates, and tools"
+    },
+    {
+     "full_name": "karanb192/awesome-claude-skills",
+     "stars": 552,
+     "pushed_at": "2026-10-02",
+     "license": "MIT",
+     "archived": false,
+     "description": "🎯 The definitive collection of 50+ verified Awesome Claude Skills for Claude Code, Claude.ai, and API. Boost productivity with TDD, debuggin"
+    },
+    {
+     "full_name": "EpicGames/unreal-engine-skills-for-claude-code-plugin",
+     "stars": 552,
+     "pushed_at": "2026-09-17",
+     "license": "MIT",
+     "archived": false,
+     "description": ""
+    },
+    {
+     "full_name": "claude-office-skills/skills",
+     "stars": 526,
+     "pushed_at": "2026-01-31",
+     "license": "MIT",
+     "archived": false,
+     "description": "A curated collection of practical Claude Skills for real-world office tasks"
+    }
+   ]
+  },
+  "anthropic-skills": {
+   "state": "OK",
+   "q": "skills in:name anthropic",
+   "total": 227,
+   "rows": [
+    {
+     "full_name": "mukul975/Anthropic-Cybersecurity-Skills",
+     "stars": 34623,
+     "pushed_at": "2026-08-31",
+     "license": "Apache-2.0",
+     "archived": false,
+     "description": "817 structured cybersecurity skills for AI agents · Mapped to 6 frameworks: MITRE ATT&CK, NIST CSF 2.0, MITRE ATLAS, D3FEND, NIST AI RMF & M"
+    },
+    {
+     "full_name": "datawhalechina/agent-skills-with-anthropic",
+     "stars": 1542,
+     "pushed_at": "2026-08-27",
+     "license": "UNLICENSED",
+     "archived": false,
+     "description": "本项目围绕吴恩达老师在DeepLearning.AI出品的agent-skills-with-anthropic系列课程，为学习者打造中文翻译与知识整理教程。项目提供课程内容翻译、知识点梳理和示例代码解读等内容，欢迎大家Star!"
+    },
+    {
+     "full_name": "costrict-plugins-repo/mukul975-anthropic-cybersecurity-skills-cybersecurity-skills",
+     "stars": 74,
+     "pushed_at": "2026-09-01",
+     "license": "Apache-2.0",
+     "archived": false,
+     "description": "costrict-plugins mirror of mukul975-anthropic-cybersecurity-skills-cybersecurity-skills (auto-generated, do not edit)"
+    },
+    {
+     "full_name": "CooperUncouple/r03-anthropics-skills-devops",
+     "stars": 53,
+     "pushed_at": "2026-04-28",
+     "license": "UNLICENSED",
+     "archived": false,
+     "description": "☁️ DevOps & Cloud Infrastructure skill suite derived from anthropics/skills."
+    },
+    {
+     "full_name": "guardtrailclip/r03-anthropics-skills-datascience",
+     "stars": 51,
+     "pushed_at": "2026-04-28",
+     "license": "UNLICENSED",
+     "archived": false,
+     "description": "🤖 Data Science & AI/ML skill suite derived from anthropics/skills."
+    },
+    {
+     "full_name": "gracecrusader4893/r03-anthropics-skills-ecommerce",
+     "stars": 50,
+     "pushed_at": "2026-04-28",
+     "license": "UNLICENSED",
+     "archived": false,
+     "description": "🛒 E-commerce & Retail skill suite derived from anthropics/skills."
+    },
+    {
+     "full_name": "TeamArtisanThrive/r03-anthropics-skills-security",
+     "stars": 48,
+     "pushed_at": "2026-04-28",
+     "license": "UNLICENSED",
+     "archived": false,
+     "description": "🔒 Security & Compliance skill suite derived from anthropics/skills."
+    },
+    {
+     "full_name": "Datalocastle/r03-anthropics-skills-seo",
+     "stars": 45,
+     "pushed_at": "2026-04-28",
+     "license": "UNLICENSED",
+     "archived": false,
+     "description": "📈 SEO & Content Marketing skill suite derived from anthropics/skills."
+    },
+    {
+     "full_name": "SteelMorgan/cursor-anthropic-skills",
+     "stars": 26,
+     "pushed_at": "2026-03-24",
+     "license": "MIT",
+     "archived": false,
+     "description": "Comprehensive framework for integrating Anthropic Skills into Cursor IDE, ensuring AI agents consistently apply specialized knowledge and do"
+    },
+    {
+     "full_name": "adryanmoldokkr32-pixel/anthropics-skills",
+     "stars": 11,
+     "pushed_at": "2026-05-15",
+     "license": "UNLICENSED",
+     "archived": false,
+     "description": "Official Anthropic Agent Skills — frontend-design, claude-api, docx, pptx, xlsx, pdf, canvas-design, mcp-builder and more"
+    },
+    {
+     "full_name": "instantX-research/anthropic-anti-hallucinate-skills",
+     "stars": 11,
+     "pushed_at": "2026-04-18",
+     "license": "MIT",
+     "archived": false,
+     "description": "Anti-hallucination guidelines for Claude Code — teach AI to say \"I don't know\" instead of guessing."
+    },
+    {
+     "full_name": "bkootaz/https-github.com-anthropics-skills",
+     "stars": 9,
+     "pushed_at": "2025-10-22",
+     "license": "UNLICENSED",
+     "archived": false,
+     "description": ""
+    },
+    {
+     "full_name": "mukul975/BHUSA-Anthropic-CyberSecurity-Skills",
+     "stars": 9,
+     "pushed_at": "2026-08-23",
+     "license": "UNLICENSED",
+     "archived": false,
+     "description": ""
+    },
+    {
+     "full_name": "sausi-7/anthropic-claude-skills",
+     "stars": 6,
+     "pushed_at": "2026-02-02",
+     "license": "UNLICENSED",
+     "archived": false,
+     "description": ""
+    },
+    {
+     "full_name": "rahmaglobalnur-boop/https-github.com-anthropics-skills-tree-main-skills-frontend-design",
+     "stars": 4,
+     "pushed_at": "2026-06-26",
+     "license": "UNLICENSED",
+     "archived": false,
+     "description": "https://github.com/anthropics/skills/tree/main/skills/frontend-design"
+    },
+    {
+     "full_name": "jeffrey1205/Anthropic-Cybersecurity-Skills-cn",
+     "stars": 3,
+     "pushed_at": "2026-05-27",
+     "license": "Apache-2.0",
+     "archived": false,
+     "description": "Anthropic-Cybersecurity-Skills 中文翻译"
+    },
+    {
+     "full_name": "veyhthan/anthropic-skills",
+     "stars": 2,
+     "pushed_at": "2026-08-10",
+     "license": "UNLICENSED",
+     "archived": false,
+     "description": "17 official Anthropic agent skills (pdf, docx, pptx, xlsx, webapp-testing, algorithmic-art, etc.)"
+    },
+    {
+     "full_name": "dayfinggg/anthropic-claude-code-agent-skills",
+     "stars": 2,
+     "pushed_at": "2026-10-16",
+     "license": "MIT",
+     "archived": false,
+     "description": "18 engineering skills, 14 specialist agents, the Brief output style, two mods, and settings for Claude Code, with cross-platform installers,"
+    },
+    {
+     "full_name": "fabiotoniati/skills-anthropic",
+     "stars": 1,
+     "pushed_at": "2026-04-24",
+     "license": "UNLICENSED",
+     "archived": false,
+     "description": ""
+    },
+    {
+     "full_name": "kaykay377-expert/AnthropicSkills",
+     "stars": 1,
+     "pushed_at": "2026-01-14",
+     "license": "UNLICENSED",
+     "archived": false,
+     "description": "Clone of the skills repo by Anthropics"
+    },
+    {
+     "full_name": "hugokml/Anthropic-Skills",
+     "stars": 1,
+     "pushed_at": "2026-03-25",
+     "license": "UNLICENSED",
+     "archived": false,
+     "description": ""
+    },
+    {
+     "full_name": "laoqin1234/anthropics-skills",
+     "stars": 1,
+     "pushed_at": "2026-04-30",
+     "license": "UNLICENSED",
+     "archived": false,
+     "description": ""
+    },
+    {
+     "full_name": "jackkoat/Anthropic-Cybersecurity-Skills",
+     "stars": 1,
+     "pushed_at": "2026-04-26",
+     "license": "Apache-2.0",
+     "archived": false,
+     "description": "Anthropic-Cybersecurity-Skills"
+    },
+    {
+     "full_name": "costrict-plugins-repo/anthropic-apollo-skills",
+     "stars": 1,
+     "pushed_at": "2026-08-10",
+     "license": "MIT",
+     "archived": false,
+     "description": "costrict-plugins mirror of anthropic-apollo-skills (auto-generated, do not edit)"
+    },
+    {
+     "full_name": "toby510/anthropics-skills-main",
+     "stars": 1,
+     "pushed_at": "2026-04-10",
+     "license": "UNLICENSED",
+     "archived": false,
+     "description": "anthropics的官方github的skills源码"
+    },
+    {
+     "full_name": "an5hT/Anthropic-Cybersecurity-Skills",
+     "stars": 1,
+     "pushed_at": "2026-08-08",
+     "license": "Apache-2.0",
+     "archived": false,
+     "description": "817 structured cybersecurity skills for AI agents · Mapped to 6 frameworks: MITRE ATT&CK, NIST CSF 2.0, MITRE ATLAS, D3FEND, NIST AI RMF & M"
+    },
+    {
+     "full_name": "DanyVaic18/anthropic-learning-skills",
+     "stars": 1,
+     "pushed_at": "2026-08-06",
+     "license": "UNLICENSED",
+     "archived": false,
+     "description": "Through the Antropica SKILLS course, I learned how to start using these tools and gained a deeper understanding of them, while also reinforc"
+    },
+    {
+     "full_name": "RUSHYOP/mirror-anthropic-cybersecurity-skills",
+     "stars": 1,
+     "pushed_at": "2026-07-12",
+     "license": "Apache-2.0",
+     "archived": false,
+     "description": "Private mirror of https://github.com/mukul975/Anthropic-Cybersecurity-Skills.git (DR for rushy marketplace)"
+    },
+    {
+     "full_name": "rossijavagithub/https-github.com-anthropics-skills",
+     "stars": 1,
+     "pushed_at": "2026-04-20",
+     "license": "UNLICENSED",
+     "archived": false,
+     "description": ""
+    },
+    {
+     "full_name": "coveritall26/-plugin-marketplace-add-anthropics-skills",
+     "stars": 1,
+     "pushed_at": "2026-02-28",
+     "license": "UNLICENSED",
+     "archived": false,
+     "description": ""
+    }
+   ]
+  }
+ },
+ "union_n": 132,
+ "union_top": [
+  [
+   "public-apis/public-apis",
+   489814
+  ],
+  [
+   "openclaw/openclaw",
+   392291
+  ],
+  [
+   "awesome-selfhosted/awesome-selfhosted",
+   327748
+  ],
+  [
+   "morluto/rea",
+   309032
+  ],
+  [
+   "obra/superpowers",
+   301257
+  ],
+  [
+   "mattpocock/skills",
+   295200
+  ],
+  [
+   "practical-tutorials/project-based-learning",
+   287076
+  ],
+  [
+   "affaan-m/ECC",
+   282595
+  ],
+  [
+   "NousResearch/hermes-agent",
+   254720
+  ],
+  [
+   "trimstray/the-book-of-secret-knowledge",
+   250959
+  ],
+  [
+   "multica-ai/andrej-karpathy-skills",
+   220691
+  ],
+  [
+   "ultraworkers/claw-code",
+   194921
+  ],
+  [
+   "firecrawl/firecrawl",
+   192527
+  ],
+  [
+   "avelino/awesome-go",
+   188965
+  ],
+  [
+   "anthropics/skills",
+   181814
+  ],
+  [
+   "DietrichGebert/ponytail",
+   166302
+  ],
+  [
+   "jlevy/the-art-of-command-line",
+   162532
+  ],
+  [
+   "msitarzewski/agency-agents",
+   160927
+  ],
+  [
+   "farion1231/cc-switch",
+   145581
+  ],
+  [
+   "nextlevelbuilder/ui-ux-pro-max-skill",
+   136920
+  ],
+  [
+   "garrytan/gstack",
+   136793
+  ],
+  [
+   "harry0703/MoneyPrinterTurbo",
+   132421
+  ],
+  [
+   "Graphify-Labs/graphify",
+   127827
+  ],
+  [
+   "Hack-with-Github/Awesome-Hacking",
+   122903
+  ],
+  [
+   "browser-use/browser-use",
+   118346
+  ],
+  [
+   "earendil-works/pi",
+   115982
+  ],
+  [
+   "JuliusBrussee/caveman",
+   113318
+  ],
+  [
+   "addyosmani/agent-skills",
+   107880
+  ],
+  [
+   "paperclipai/paperclip",
+   103694
+  ],
+  [
+   "nexu-io/open-design",
+   101977
+  ],
+  [
+   "thedotmack/claude-mem",
+   101437
+  ],
+  [
+   "Leonxlnx/taste-skill",
+   98483
+  ],
+  [
+   "Egonex-AI/Understand-Anything",
+   86812
+  ],
+  [
+   "tt-a1i/archify",
+   84930
+  ],
+  [
+   "ComposioHQ/awesome-claude-skills",
+   77318
+  ],
+  [
+   "career-ops-hq/career-ops",
+   75369
+  ],
+  [
+   "code-yeongyu/oh-my-openagent",
+   70146
+  ],
+  [
+   "blader/humanizer",
+   57864
+  ],
+  [
+   "ayghri/i-have-adhd",
+   57573
+  ],
+  [
+   "cathrynlavery/diagram-design",
+   57084
+  ],
+  [
+   "hesreallyhim/awesome-claude-code",
+   55914
+  ],
+  [
+   "coreyhaines31/marketingskills",
+   55262
+  ],
+  [
+   "VoltAgent/awesome-openclaw-skills",
+   53183
+  ],
+  [
+   "CherryHQ/cherry-studio",
+   52723
+  ],
+  [
+   "K-Dense-AI/scientific-agent-skills",
+   52317
+  ],
+  [
+   "sickn33/agentic-awesome-skills",
+   47780
+  ],
+  [
+   "alibaba/open-code-review",
+   47551
+  ],
+  [
+   "reactive-resume/reactive-resume",
+   44454
+  ],
+  [
+   "wshobson/agents",
+   40980
+  ],
+  [
+   "github/awesome-copilot",
+   40133
+  ],
+  [
+   "VoltAgent/awesome-agent-skills",
+   35906
+  ],
+  [
+   "virgiliojr94/book-to-skill",
+   35168
+  ],
+  [
+   "mukul975/Anthropic-Cybersecurity-Skills",
+   34623
+  ],
+  [
+   "topoteretes/cognee",
+   32445
+  ],
+  [
+   "feder-cr/invisible_dots",
+   32130
+  ],
+  [
+   "googleworkspace/cli",
+   31616
+  ],
+  [
+   "nanocoai/nanoclaw",
+   30960
+  ],
+  [
+   "alirezarezvani/claude-skills",
+   28334
+  ],
+  [
+   "OthmanAdi/planning-with-files",
+   27496
+  ],
+  [
+   "phuryn/pm-skills",
+   27148
+  ]
+ ]
+}

@@ -90,6 +90,13 @@ def main():
         if conf == "declared":
             decl = r.get("declared") or {}
             identity = {"kind": "marketplace_declared", "meta": decl}
+        elif conf == "self_built":
+            # r113：自建裁定名册（HIGH/MID）件的答案是「本就没有上游」，不是「不知道」。
+            # 这是有出处的结论（00-scope 用户裁定冻结件），不是猜——故可入册；
+            # 但入册不等于送上游比对：r112_upstream_probe 只吃 inferred_upstreams，不碰本档。
+            identity = {"kind": "self_built_no_upstream",
+                        "authority": "00-scope/自建skill清单.md（HIGH/MID，用户裁定 v2）",
+                        "same_source_proven": False}
         else:
             cands = r.get("inferred_upstreams") or []
             identity = {"kind": "github_name_inferred",
@@ -123,7 +130,7 @@ def main():
     total = len(rows)
     non_unknown = sum(1 for r in rows if r.get("confidence") != "unknown")
     print("台账：%s" % args.ledger)
-    print("扫描面 %d 件 ｜ 有身份（declared+inferred）%d ｜ unknown 跳过 %d"
+    print("扫描面 %d 件 ｜ 有身份（declared+inferred+self_built）%d ｜ unknown 跳过 %d"
           % (total, non_unknown, skipped))
     print("本轮：新增/变更 %d ｜ 内容未变（不写盘）%d %s"
           % (len(new_recs), unchanged, "[DRY-RUN]" if args.dry_run else ""))

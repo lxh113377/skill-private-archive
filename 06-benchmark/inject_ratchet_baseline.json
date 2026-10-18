@@ -3,7 +3,7 @@
  "generated_at": "2026-10-16 17:29",
  "metrics": {
   "catalog_grand_chars": 56312,
-  "inject_union_bytes": 64280,
+  "inject_union_bytes": 66665,
   "claim_candidates": 4,
   "drift_ruleish_candidates": 32,
   "desc_over_cap": 0,
@@ -113,6 +113,16 @@
    "at": "2026-10-17 21:40",
    "from_value": 62854,
    "to_value": 64280
+  },
+  {
+   "commit": "937beff",
+   "path": "D:/global_memory/core/behavior_core.md",
+   "delta": 2385,
+   "reason": "r113 改造1配套：注入面 +2385B 全部来自 D:/global_memory/core/behavior_core.md（17,441B→19,826B）。成因两步：① 老大 2026-10-18 07:38 立规 #28 代决制（GM 提交 937beff，取代 #25② 事前征询制）；② r112 归因时该件 #26/#27 两段仍是并行会话工作树在途（未提交，盘上 17,441B 已含），本轮复测 git HEAD 与盘上同为 19,826B ⇒ 在途内容已入库固化。四要素：commit=937beff（该文件所属 GM 仓提交，可 cat-file 解析）、path 在 inject_face 成员内、delta=2385 与 ratchet 实增逐字节相等（取值 python 05-exec/ratchet_gate.py）、reason=本行。按 R269 不代改他人权威规则文件，只做归因记账；棘轮语义不变（只降不升），非放宽阈值。副作用如实登记：注入区现值 66,665B 已越过硬顶 65,536B（+1,129），该条为非阻断告警，已另立 P0 待办呈老大。",
+   "metric": "inject_union_bytes",
+   "at": "2026-10-18 08:06",
+   "from_value": 64280,
+   "to_value": 66665
   }
  ],
  "refresh_days": {

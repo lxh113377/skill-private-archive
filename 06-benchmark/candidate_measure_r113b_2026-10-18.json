@@ -1,0 +1,186 @@
+{
+ "schema": "candidate-measure-r113b-v1",
+ "cmd": "gh api repos/<R>（绝对路径调用，经 json.loads 解析，不用 --jq）",
+ "repos": {
+  "genspark-ai/genoffice": {
+   "state": "OK",
+   "stars": 9910,
+   "pushed_at": "2026-10-17",
+   "license": "Apache-2.0",
+   "open_issues": 77,
+   "archived": false,
+   "description": "Free, open-source AI Office suite: Docs, Sheets, Slides, PDF, Markdown and HTML editors with a built-in AI agent, plus a `genoffice` CLI and agent ski"
+  },
+  "tfriedel/claude-office-skills": {
+   "state": "OK",
+   "stars": 839,
+   "pushed_at": "2026-04-01",
+   "license": "UNLICENSED",
+   "open_issues": 3,
+   "archived": false,
+   "description": "Office document creation and editing skills for Claude Code - PPTX, DOCX, XLSX, and PDF workflows with automation support"
+  },
+  "cloudflare/security-audit-skill": {
+   "state": "OK",
+   "stars": 30756,
+   "pushed_at": "2026-09-14",
+   "license": "MIT",
+   "open_issues": 66,
+   "archived": false,
+   "description": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings"
+  },
+  "heygen-com/hyperframes": {
+   "state": "OK",
+   "stars": 66062,
+   "pushed_at": "2026-10-18",
+   "license": "Apache-2.0",
+   "open_issues": 352,
+   "archived": false,
+   "description": "Write HTML. Render video. Built for agents."
+  },
+  "addyosmani/web-quality-skills": {
+   "state": "OK",
+   "stars": 2956,
+   "pushed_at": "2026-08-24",
+   "license": "MIT",
+   "open_issues": 8,
+   "archived": false,
+   "description": "Agent Skills for optimizing web quality based on Lighthouse and Core Web Vitals."
+  },
+  "oil-oil/oil-ui": {
+   "state": "OK",
+   "stars": 1695,
+   "pushed_at": "2026-10-17",
+   "license": "MIT",
+   "open_issues": 0,
+   "archived": false,
+   "description": "UI design skill for Claude Code, Codex and other AI agents: explore distinct directions, compare them side by side, refine against real screenshots. 给"
+  },
+  "plugin87/ux-ui-agent-skills": {
+   "state": "OK",
+   "stars": 2040,
+   "pushed_at": "2026-10-10",
+   "license": "MIT",
+   "open_issues": 9,
+   "archived": false,
+   "description": "Turn Claude into a senior design architect: DTCG tokens, 52 components, WCAG 2.2 AA-AAA, 138 design systems, any-framework code, and 50 objective gate"
+  },
+  "Tencent/BrowserSkill": {
+   "state": "OK",
+   "stars": 9115,
+   "pushed_at": "2026-10-15",
+   "license": "MIT",
+   "open_issues": 100,
+   "archived": false,
+   "description": "Let AI agents use your real, logged-in browser without interrupting your work. CLI + extension for browser automation across any shell-capable AI agen"
+  },
+  "browser-act/skills": {
+   "state": "OK",
+   "stars": 6156,
+   "pushed_at": "2026-08-24",
+   "license": "MIT",
+   "open_issues": 9,
+   "archived": false,
+   "description": "Browser automation CLI built for AI agents. Break through anti-bot walls, hand off to humans across platforms when stuck. Parallel multi-task executio"
+  },
+  "muratcankoylan/Agent-Skills-for-Context-Engineering": {
+   "state": "OK",
+   "stars": 18158,
+   "pushed_at": "2026-10-12",
+   "license": "MIT",
+   "open_issues": 58,
+   "archived": false,
+   "description": "A comprehensive collection of Agent Skills for context engineering, multi-agent architectures, and production agent systems. Use when building, optimi"
+  },
+  "dexhunter/seedance2-skill": {
+   "state": "OK",
+   "stars": 4334,
+   "pushed_at": "2026-09-19",
+   "license": "MIT",
+   "open_issues": 2,
+   "archived": false,
+   "description": "skill to create best prompts for generating videos with seedance2.0"
+  },
+  "gongnyang/gongnangi-chart-skill": {
+   "state": "OK",
+   "stars": 70,
+   "pushed_at": "2026-07-30",
+   "license": "MIT",
+   "open_issues": 0,
+   "archived": false,
+   "description": "Claude Code skill: McKinsey/Bain consulting-style HTML chart generator with Chrome headless PNG export"
+  },
+  "aref-vc/tufte-claude-skill": {
+   "state": "OK",
+   "stars": 311,
+   "pushed_at": "2026-06-15",
+   "license": "MIT",
+   "open_issues": 1,
+   "archived": false,
+   "description": "Claude Code skill that turns 'make me a chart' into a Tufte-compliant chart. Distilled from Edward Tufte's three foundational books."
+  },
+  "rohitg00/pro-workflow": {
+   "state": "OK",
+   "stars": 2917,
+   "pushed_at": "2026-09-29",
+   "license": "UNLICENSED",
+   "open_issues": 32,
+   "archived": false,
+   "description": "Claude Code learns from your corrections: self-correcting memory that compounds over 50+ sessions. Context engineering, parallel worktrees, agent team"
+  },
+  "Zhen-Bo/smell-check": {
+   "state": "OK",
+   "stars": 240,
+   "pushed_at": "2026-08-29",
+   "license": "MIT",
+   "open_issues": 0,
+   "archived": false,
+   "description": "Agent Skill for code and test smell audits. Evidence-ranked findings from Refactoring, Clean Code, and the test-smell literature. Formerly pragmatic-c"
+  },
+  "hugohe3/ppt-master": {
+   "state": "OK",
+   "stars": 63193,
+   "pushed_at": "2026-10-17",
+   "license": "MIT",
+   "open_issues": 1,
+   "archived": false,
+   "description": "AI turns documents or topics into real, native PowerPoint decks—with native shapes, transitions and animations, data-backed charts and tables on deman"
+  },
+  "bitjaru/styleseed": {
+   "state": "OK",
+   "stars": 978,
+   "pushed_at": "2026-10-14",
+   "license": "MIT",
+   "open_issues": 11,
+   "archived": false,
+   "description": "Open-source design-method engine for Claude Code, Codex & Cursor. 23 agent skills for fixed design judgment, multiple grammars, semantic palettes, ref"
+  },
+  "luoluoluo22/jianying-editor-skill": {
+   "state": "OK",
+   "stars": 4188,
+   "pushed_at": "2026-09-11",
+   "license": "NOASSERTION",
+   "open_issues": 6,
+   "archived": false,
+   "description": "Skill for Agent automating JianYing (CapCut Chinese version) video editing."
+  },
+  "microsoft/waza": {
+   "state": "OK",
+   "stars": 1420,
+   "pushed_at": "2026-10-17",
+   "license": "MIT",
+   "open_issues": 14,
+   "archived": false,
+   "description": "CLI / Framework for Agent Skills - create, test, measure and improve skill quality and effectiveness"
+  },
+  "athola/claude-night-market": {
+   "state": "OK",
+   "stars": 342,
+   "pushed_at": "2026-10-16",
+   "license": "MIT",
+   "open_issues": 22,
+   "archived": false,
+   "description": "23 Claude Code plugins: TDD enforcement hooks, git/PR workflows, spec-driven development, code review, project lifecycle, fix-from-error, maintenance "
+  }
+ }
+}
