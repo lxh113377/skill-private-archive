@@ -30,6 +30,20 @@ HEALTH = os.path.join(HERE, 'r138_hook_health.py')
 TARGETS = [('pre-commit.sh', 'pre-commit'), ('post-commit.sh', 'post-commit')]
 
 
+def next_seq(dst):
+    # r142：从 .installed.log 现有行数推下一个序号（单调增，删日志会重排 —— 见 R142-4）
+    logp = dst + '.installed.log'
+    try:
+        n = 0
+        with io.open(logp, encoding='utf-8', errors='replace') as f:
+            for line in f:
+                if line.strip():
+                    n += 1
+        return n + 1
+    except Exception:
+        return 1
+
+
 def invoker_info():
     # r141：取「谁调的安装」三个可自动获得的标识（R140-4 落地）。
     # 原则：全部自动取，取不到留空并显式说明，禁猜、禁硬编码。
@@ -88,8 +102,15 @@ def install(src, dst):
             "reason": os.environ.get("HOOK_INSTALL_REASON") or "(未说明)",
             "note": "本印记由 r138_install_hooks.py 写入；漂移判定见 r140_hook_trace.py",
         }
+        # r142 追加安装历史（R141-4 落地）：.installed 快照每装一次就被覆盖，
+        # 只能归因到最近一次安装，更早的记录彻底丢失（r142 量化坐实：装 2 次后
+        # 第 1 次的 reason 在整套 .git/hooks/ 里搜不到）。
+        # 解法 = 快照保留（兼容第 52/53 门）+ 追加 JSONL 历史（本项新增）。
         with io.open(dst + '.installed', 'w', encoding='utf-8', newline=chr(10)) as f:
             json.dump(stamp, f, ensure_ascii=False, indent=1)
+        stamp["seq"] = next_seq(dst)
+        with io.open(dst + '.installed.log', 'a', encoding='utf-8', newline=chr(10)) as f:
+            f.write(json.dumps(stamp, ensure_ascii=False) + chr(10))
     except Exception:
         pass
     return os.path.getsize(dst)

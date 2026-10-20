@@ -48,6 +48,19 @@ ORIGIN = "ci" if os.environ.get("GITHUB_ACTIONS") == "true" else "local"
 # 单一真相源：门禁清单只在这里维护。AGENTS.md / CI / 会话内手工跑，都走本表。
 GATES = [
     {
+        # r142：安装历史可回溯面（R141-4 落地 —— .installed 快照每装一次就被覆盖，
+        # 只能归因到最近一次；本面断言追加式历史 .installed.log 可用）
+        "id": "install_history_face",
+        "script": "r142_install_history.py",
+        "argv": [],
+        "pass_token": "[HIST]",
+        "portable": False,
+        "not_portable_reason": "读 .git/hooks/*.installed.log（换机后形态取决于是否重装）",
+        "covers": ["历史存在非空（H1）/ 每行 seq+installed_at+invoker+reason 四要素齐（H2）",
+                   "seq 严格单调增（H3）/ 末行与快照一致（H4）/ 至少 2 条证明追加在发生（H5）"],
+        "why": "R141-4：.installed 是快照，每装一次就被覆盖，只能归因到最近一次安装。r142 量化坐实：装 2 次后第 1 次的 reason 在整套 .git/hooks/ 里搜不到。解法 = 快照保留（兼容第 52/53 门）+ 追加 JSONL 历史。r142 反向验证四态：删历史 5 项 FAIL / 只剩 1 条 H5 精准 / seq 乱序 H3+H4 / 坏 JSON 行 H2+H4，真实状态 0 项。",
+    },
+    {
         # r141：归因到人与次（R140-4 落地 —— 第 52 门只答「哪次安装」，本门答「谁、为什么」）
         "id": "hook_attribution_face",
         "script": "r141_hook_attribution.py",

@@ -1,0 +1,59 @@
+{
+ "schema": "install-history-r142-v1",
+ "cmd": "python 05-exec/r142_install_history.py --json <out>",
+ "face": {
+  "pairs_n": 2,
+  "bad_n": 0,
+  "reading": {
+   "bad_n": [
+    "不通过的断言数。任一不通 = 安装历史不可回溯，判红。",
+    "H1 历史存在非空 / H2 每行四要素齐 / H3 seq 单调增 /",
+    "H4 末行与快照一致 / H5 至少 2 条（证明追加真的在发生）"
+   ],
+   "h5_at_least_two": [
+    "刻意要求 >= 2：只装过一次时机历史与快照等价，",
+    "看不出「追加」是否真的工作；装过两次才能证伪"
+   ]
+  }
+ },
+ "rows": [
+  {
+   "hook": "pre-commit",
+   "log_lines": 2,
+   "h1_history_exists": true,
+   "h2_rows_complete": true,
+   "h3_seq_monotonic": true,
+   "h4_last_matches_snapshot": true,
+   "h5_at_least_two": true,
+   "seqs": [
+    1,
+    2
+   ],
+   "reasons": [
+    "r142 第一次",
+    "r142 第二次"
+   ],
+   "last_reason": "r142 第二次"
+  },
+  {
+   "hook": "post-commit",
+   "log_lines": 2,
+   "h1_history_exists": true,
+   "h2_rows_complete": true,
+   "h3_seq_monotonic": true,
+   "h4_last_matches_snapshot": true,
+   "h5_at_least_two": true,
+   "seqs": [
+    1,
+    2
+   ],
+   "reasons": [
+    "r142 第一次",
+    "r142 第二次"
+   ],
+   "last_reason": "r142 第二次"
+  }
+ ],
+ "bad": [],
+ "generated_at": "2026-10-20 21:16"
+}
