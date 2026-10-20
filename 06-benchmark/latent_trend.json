@@ -1,0 +1,19 @@
+{
+ "schema": "latent-trend-r130-v1",
+ "history": [
+  {
+   "at": "2026-10-20 17:16",
+   "source": "reconcile_latent_r130_2026-10-20.json",
+   "rescued_n": 58,
+   "realized_n": 7,
+   "rescued_ratio": 0.8923
+  }
+ ],
+ "latest": {
+  "rescued_n": 58,
+  "realized_n": 7,
+  "rescued_ratio": 0.8923,
+  "delta_vs_prev": null,
+  "direction": null
+ }
+}

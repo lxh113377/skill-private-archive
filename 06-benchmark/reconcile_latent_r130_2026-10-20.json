@@ -1,0 +1,66 @@
+{
+ "schema": "ruler-reconcile-r128-v1",
+ "cmd": "python 05-exec/r128_ruler_reconcile.py --face domain_mismatch_r120_2026-10-20.json --verdict-field mismatch",
+ "face": "06-benchmark/domain_mismatch_r120_2026-10-20.json",
+ "verdict_field": "mismatch",
+ "counts": {
+  "rows_n": 269,
+  "checked_n": 269,
+  "agree_n": 261,
+  "false_red_n": 8,
+  "false_green_n": 0,
+  "latent_rescued_n": 58,
+  "latent_realized_n": 7
+ },
+ "false_red": [
+  {
+   "query": "灵感枯竭帮我发散一波点子",
+   "expected": "brainstorming",
+   "route_top1": "story"
+  },
+  {
+   "query": "帮我做一个动画丰富的 HTML 演示文稿",
+   "expected": "frontend-slides",
+   "route_top1": "ppt-master"
+  },
+  {
+   "query": "Notion 会议准备",
+   "expected": "meeting-intelligence",
+   "route_top1": "NONE"
+  },
+  {
+   "query": "新技能装之前先安全审查",
+   "expected": "A-skill-manager",
+   "route_top1": "security-audit"
+  },
+  {
+   "query": "wttr 天气查询",
+   "expected": "weather",
+   "route_top1": "cloudbase-db-optimize"
+  },
+  {
+   "query": "录音转文字",
+   "expected": "video-whisper-transcribe",
+   "route_top1": "local-asr"
+  },
+  {
+   "query": "同步技能",
+   "expected": "A-skill-manager",
+   "route_top1": "cross-platform-agent-sync"
+  },
+  {
+   "query": "深度调研",
+   "expected": "deep-research-pro",
+   "route_top1": "research-documentation"
+  }
+ ],
+ "false_green": [],
+ "reading": {
+  "false_red_n": "判据说未命中而 route() 命中 = 假红（判据过严，最危险：会把可救的题当没救）",
+  "false_green_n": "判据说命中而 route() 未命中 = 假绿（判据漏抓：会把没救的题当救回了）",
+  "agree_n": "判据与生产实测逐条一致的条数",
+  "latent_rescued_n": "latent 语义专用：判脆弱但真命中（被 tag 掩护或 L1.5 兜底救回）",
+  "latent_realized_n": "latent 语义专用：判脆弱且真未命中（脆弱面兑现成真失败）",
+  "latent_calibration": "latent 的两态计数是实测而非硬编码结论；r120 当时的「多数被救回」只是这两数在那时的取值，不是判据的前提假设"
+ }
+}
