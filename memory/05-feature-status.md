@@ -1,5 +1,22 @@
 # 05 - 功能状态
 
+## r119（2026-10-20）— 需求 6 首次真实正向 delta + 语料改造路径耗尽
+
+| 项 | 状态 | 证据 |
+|---|---|---|
+| 语料区分度改造 4 件（pdf / python-debugpy / brainstorming / A-skill-manager） | ✅ 已落地 | 受管根 `981d625`（已入主线并推送）；只改 frontmatter description，正文零改写 |
+| 沙箱「先证后改」 | ✅ 常驻判据 | `05-exec/r119_corpus_gate.py`；负控 wins=0 / 正控 1 flip / 4 候选各 WIN 1 LOSE 0 |
+| 生产路由 L1 | 88.3% → **90.1%**（271→276/291） | `cd 焚诀 && python eval/frozen_blind_eval.py --json --set layered` |
+| REAL_MISS | 12 → **7** | `python 05-exec/r117_route_miss_attr.py --json 06-benchmark/route_miss_attr_r119b_2026-10-20.json` |
+| STALE_EXPECT | 8 → 8（不增，达标判据满足） | 同上 |
+| 剩余 7 条失败层 | **全部短路层，oracle 全 UNREACHABLE** | `python 05-exec/r118_layer_attr.py --json 06-benchmark/layer_attr_r119b_2026-10-20.json` |
+| 需求 6「≥30%」 | ⚠️ **未达**（+1.8pp / 相对 2.0%） | 机制解释见 r118；语料路径已耗尽 ⇒ 后续须转办 eval 侧 |
+| 债务裁决 | OVERDUE 11 → **0**（DEFERRED 3 带到期日） | `python 05-exec/r38_debt_aging.py --json 06-benchmark/debt_aging_r119e_2026-10-20.json`；棘轮 `[RATCHET:PASS]` |
+| 季度巡检 | 8 步 → **9 步 10 段**（新增 ⑩ 改进影响量） | `04-plan/后续维护规范_季度巡检机制_r113_2026-10-18.md` |
+| 迁移方案 | 补 C7-C9 判据 + E 档优先级（只加注） | `04-plan/迁移替换方案_r114_2026-10-18.md` §9 |
+| 新判据缺陷登记 | [BUG] noise_lint 二级扫描对目录级 gitignore 不豁免 | `memory/06-constraints.md`（R269 不擅改） |
+| handoff review | 10/14（71%），警告 4→1（仅 AC-OBS-04 历史遗留） | `handoff.py review` |
+
 > 本文件记录功能/任务的完成状态。
 > 归档类型：增量（已完成项归档时移入 archive/）
 
