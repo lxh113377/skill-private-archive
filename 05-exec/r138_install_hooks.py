@@ -163,6 +163,34 @@ def install(src, dst):
                 json.dump(ledger, f, ensure_ascii=False, indent=1)
         except Exception:
             pass
+        # r146 pending 标记件（R145-4 落地）：跨会话窗口期的凭证。
+        # 窗口期 = 装了但台账未提交。本会话宽限靠 env session；跨会话/跨人时
+        # 会话 B 无法从 env 得知缺行是谁装的 => 误红（r146 量化坐实）。
+        # 解法 = 安装时同步写 git 可跟踪的 pending 标记件，记录「已装未提交」行的
+        # line_hash + invoker；台账提交时 pending 一并提交（自然过期：下次安装覆盖，
+        # 提交后行数对上 => 宽限条件不再触发 => pending 内容不影响判定）。
+        try:
+            pending_path = os.path.join(ROOT, '06-benchmark', 'hook_install_pending.json')
+            pend = {}
+            if os.path.isfile(pending_path):
+                try:
+                    pend = json.load(io.open(pending_path, encoding='utf-8-sig')) or {}
+                except Exception:
+                    pend = {}
+            pend.setdefault('schema', 'hook-install-pending-r146-v1')
+            pend.setdefault('hook', {})
+            pend['hook'][os.path.basename(dst)] = {'line_hash': stamp['line_hash'],
+                                                   'lines': stamp['seq'],
+                                                   'invoker': stamp.get('invoker'),
+                                                   'reason': stamp.get('reason'),
+                                                   'written_at': stamp['installed_at']}
+            pend['updated_at'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            with io.open(pending_path, 'w', encoding='utf-8', newline=chr(10)) as f:
+                json.dump(pend, f, ensure_ascii=False, indent=1)
+        except Exception:
+            pass
+        except Exception:
+            pass
         with io.open(dst + '.installed.log', 'a', encoding='utf-8', newline=chr(10)) as f:
             f.write(json.dumps(stamp, ensure_ascii=False) + chr(10))
     except Exception:

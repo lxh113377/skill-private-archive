@@ -183,6 +183,32 @@ def main():
                 h7 = True
                 h7_warning = ('台账落后 1 行且缺行系本会话所装（session/user 匹配）'
                               '=> 窗口期宽限，安装后请尽快提交台账')
+        # r146 pending 通道（R145-4 落地）：跨会话/跨人窗口期的凭证。
+        # 会话 B 的 env 里没有会话 A 的 session 且 git_user 也不同 => 三条件宽限失效 => 误红
+        # （r146 量化坐实：_temp/v30_probe.py 跨人跨会话 rc=1）。
+        # 解法 = 安装脚本同步写 git 可跟踪的 pending 标记件（记录缺行 line_hash/lines/invoker）；
+        # 对账时 pending.line_hash == 实际末行、pending.lines == 实际行数、
+        # 且台账 lines == 实际-1 且台账 last_line_hash == 倒数第二行 => 缺行系「已装未提交」=> 宽限。
+        # 反向仍紧：伪造 pending 需改工作区 git 跟踪件 => 与伪造台账同强度（留 git 痕迹）。
+        if not h7:
+            try:
+                pend_path = os.path.join(ROOT, '06-benchmark', 'hook_install_pending.json')
+                pend = json.load(io.open(pend_path, encoding='utf-8-sig')) or {}
+                pent = (pend.get('hook') or {}).get(name) or {}
+                last_hash = ((log[-1][1].get('line_hash')
+                              if log and isinstance(log[-1][1], dict) else '') or '')
+                prev_hash = ((log[-2][1].get('line_hash')
+                              if len(log) >= 2 and isinstance(log[-2][1], dict) else '') or '')
+                if (pent.get('line_hash') == last_hash
+                        and pent.get('lines') == len(log)
+                        and isinstance(ent.get('lines'), int)
+                        and len(log) - ent['lines'] == 1
+                        and ent.get('last_line_hash') == prev_hash):
+                    h7 = True
+                    h7_warning = ('pending 标记件证实缺行系已装未提交（line_hash/lines 对上）'
+                                  '=> 跨会话窗口期宽限，请尽快提交台账与 pending')
+            except Exception:
+                pass
         rows.append({'hook': name, 'log_lines': len(log),
                      'h1_history_exists': h1, 'h2_rows_complete': h2,
                      'h3_seq_monotonic': h3, 'h4_last_matches_snapshot': h4,

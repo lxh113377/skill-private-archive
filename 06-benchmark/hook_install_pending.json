@@ -1,0 +1,30 @@
+{
+ "schema": "hook-install-pending-r146-v1",
+ "hook": {
+  "pre-commit": {
+   "line_hash": "a8a21259eac868de3cfe4404cf269d7162136efa3bc68338eab245e5c3444582",
+   "lines": 5,
+   "invoker": {
+    "git_user": "lxh113377",
+    "git_email": "3753318894@qq.com",
+    "session": "session-284bcbbe-db1a-4495-8b5b-b0db804bd685",
+    "pid": "37988"
+   },
+   "reason": "r146 pending 首条",
+   "written_at": "2026-10-20 22:33:22"
+  },
+  "post-commit": {
+   "line_hash": "b93210d530583b8a9ea6ae8421783d74a56da1bcef83012c030bf079a46aa870",
+   "lines": 5,
+   "invoker": {
+    "git_user": "lxh113377",
+    "git_email": "3753318894@qq.com",
+    "session": "session-284bcbbe-db1a-4495-8b5b-b0db804bd685",
+    "pid": "37988"
+   },
+   "reason": "r146 pending 首条",
+   "written_at": "2026-10-20 22:33:22"
+  }
+ },
+ "updated_at": "2026-10-20 22:33:22"
+}
