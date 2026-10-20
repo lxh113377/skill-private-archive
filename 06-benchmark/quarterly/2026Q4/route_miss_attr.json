@@ -1,6 +1,6 @@
 {
  "schema": "route-miss-attr-r117-v1",
- "generated_at": "2026-10-20T01:44:18+00:00",
+ "generated_at": "2026-10-20T06:10:23+00:00",
  "cmd": "python 05-exec/r117_route_miss_attr.py",
  "ruler": {
   "STALE_EXPECT": "期望 skill 既不在注册表也不在盘上（题面过期）",
@@ -22,7 +22,7 @@
   "bge_status": "engaged",
   "miss_n": 15,
   "blind_n": 22,
-  "registry_n": 182,
+  "registry_n": 183,
   "stale_n": 8,
   "unregistered_n": 0,
   "real_n": 7,

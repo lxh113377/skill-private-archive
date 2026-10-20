@@ -1,0 +1,552 @@
+{
+ "schema": "c2-omni-r127-v1",
+ "note": "R125-2 批量预判；判据 = 共享度>=7（ruflo×11/ECC×9 实证形态），抽验 4/4 证实为万金油仓",
+ "rows": [
+  {
+   "slug": "9b-lightworkflow",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "A-ask-questions",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "A-dynamic-workflow",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "A-get-memory",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "A-memory-start",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "A-project-better",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "A-project-handoff",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "A-skill-manager",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "_my-skills",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "ai-video-homework-pipeline",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "audio-deliverable-pipeline",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "audit-runner-safe-aggregate",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "bigfile-split",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "brainstorming",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "brand-guidelines",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "byted-mediakit-shared",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "canvas-design",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "chaoshi-admin-inline-edit",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "chaoshi-image-optimization",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "chaoshi-web-deploy",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "cloudbase",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "cloudbase-db-optimize",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "commit-archaeologist",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "dingtalk-aisearch",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "dingtalk-aitable",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "dingtalk-chat",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "dingtalk-contact",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "dingtalk-drive",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "dingtalk-event",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "dingtalk-minutes",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "dingtalk-misc",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "dingtalk-shared",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "dingtalk-todo",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "dingtalk-wiki",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "dogfood",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "electron",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "fenjue-lessons-hitrate",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "fenjue-memory-audit",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "find-skills",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "first-principles-decomposer",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "frontend-design",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "grill-me",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "healthcare-cdss-patterns",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "healthcare-emr-patterns",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "healthcare-eval-harness",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "hermes-installer",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "hyperframes",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "hyperframes-cli",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "hyperframes-media",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "hyperframes-registry",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "ican-deploy",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "ican-frontend-design-system",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "json-canvas",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "knowledge-capture",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "local-asr",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "local-img2img",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "local-mineru",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "local-ocr-npu",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "local-realtime-translator",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "local-tts",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "local-txt2img",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "local-vram",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "mcporter",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "meeting-intelligence",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "no-manual-steps",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "node-inspect-debugger",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "oracle",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "pixelle-api-ensure",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "rag-eval",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "research-documentation",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "security-audit",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "sqlalchemy-loader-criteria-pitfalls",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "static-site-batch-audit-fix",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "story-long-analyze",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "story-setup",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "taskflow",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "test-driven-development",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "theme-factory",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "ui-ux-pro-max",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "verification-before-completion",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "video-breakdown-skill",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "video-frames",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "video-whisper-transcribe",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "vp-perspective-audit",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "wb-git-commit-recipe",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "web-access",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "web-design-guidelines",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "win-toolchain-pitfalls",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "workflow-preflight-check",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "wps-knowledgebase",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  },
+  {
+   "slug": "天眼一下",
+   "verdict": "KEEP",
+   "blocked_by": "C2-OMNI",
+   "reason": "候选被 >=7 本地件的 top3 共享 ⇒ 话题级误配（万金油仓），非针对性替代（R125-2 批量预判；抽验 9b-lightworkflow→open-design / A-ask-questions→ECC 实证）"
+  }
+ ]
+}

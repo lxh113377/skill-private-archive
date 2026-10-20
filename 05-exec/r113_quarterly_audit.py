@@ -163,6 +163,33 @@ def _read_domain_face(path):
     }
 
 
+def _read_tag_closure(path):
+    """从 tag_closure.json 读第 9 类失败层四数（句柄化，禁抄值）。
+
+    三态：件缺失/解析失败 ⇒ None（禁当 0 引用）。
+    tag_closed_n 与 domain_closed_n 是**结构不可达**的两种成因，禁并成单数：
+    前者更靠前（tag 闭包在 bge_recall 之前），影响面更窄但每条都更致命。
+    """
+    import io as _io
+    import json as _json
+    if not os.path.isfile(path):
+        return None
+    try:
+        with _io.open(path, encoding="utf-8") as f:
+            d = _json.load(f)
+    except Exception:
+        return None
+    fa = d.get("face") or {}
+    return {
+        "questions_n": fa.get("questions_n"),
+        "reachable_n": fa.get("reachable_n"),
+        "unreachable_n": fa.get("unreachable_n"),
+        "tag_closed_n": fa.get("tag_closed_n"),
+        "domain_closed_n": fa.get("domain_closed_n"),
+        "tag_trap_n": fa.get("tag_trap_n"),
+        "source": os.path.relpath(path, ROOT).replace(os.sep, "/"),
+    }
+
 def _read_trace_face(path):
     """从 trace_face.json 读生产流量面五数（句柄化，禁抄值）。
 
@@ -268,6 +295,14 @@ def main():
     # 而生产流量每日新增 ⇒ 不常驻就等于结论永远停在 10-20。本段只读 jsonl，零网络。
     # ⚠️ 该文件会被轮换（r120 当时 23,630 行 / 15 天，本轮实测 894 行 / 0.03 天）⇒
     #   freshness_days 与 span_days 必须同列输出，禁只报 unique_n 让人以为一直是那个规模。
+    # r126 第 ⑬ 段（第 9 类失败层「Tag 闭包」常驻读数）。
+    # 存在理由：r120 立了第 8 类（域过滤），r126 发现同族更靠前的一层 —— tag_hits 非空时
+    # bge_recall 只在 tag 命中的 skill 内搜，于是 tag 判错一个，期望件连 BGE 的边都碰不到。
+    # 一手：279 题 79 题不可达（tag 27 / domain 51），15 题 tag_trap（raw_rank<=5 却结构不可达）。
+    tag_closure = os.path.join(qdir, "tag_closure.json")
+    steps.append(run_step("tag_closure",
+                          [PY, os.path.join(HERE, "r126_tag_closure.py"),
+                           "--json", tag_closure]))
     trace_face = os.path.join(qdir, "trace_face.json")
     steps.append(run_step("trace_face",
                           [PY, os.path.join(HERE, "r120_trace_face.py"),
@@ -288,6 +323,7 @@ def main():
                           timeout=1800))
     _r120b_domain_reading = _read_domain_face(domain_face)
     _r120b_trace_reading = _read_trace_face(trace_face)
+    _r126_tag_reading = _read_tag_closure(tag_closure)
 
     meta = fetch_meta(offline=args.offline)
     failed = [s["step"] for s in steps if s["rc"] != 0]
@@ -295,7 +331,7 @@ def main():
 
     face_ok = (all(os.path.isfile(p) for p in
                    (prov, up, swap, repl, qual, rmiss, truth, swap_impact, domain_face,
-                    trace_face))
+                    trace_face, tag_closure))
                and not failed)
     face_reason = None
     if not os.path.isfile(prov):
@@ -317,10 +353,11 @@ def main():
                       "replacement_matrix": repl, "quality_ab": qual,
                       "route_miss_attr": rmiss, "quality_truth": truth,
                       "swap_impact": swap_impact, "domain_face": domain_face,
-                      "trace_face": trace_face},
+                      "trace_face": trace_face, "tag_closure": tag_closure},
         "swap_impact_reading": _read_swap_impact(swap_impact),
         "domain_face_reading": _r120b_domain_reading,
         "trace_face_reading": _r120b_trace_reading,
+        "tag_closure_reading": _r126_tag_reading,
         "face_ok": face_ok,
         "face_reason": face_reason,
     }

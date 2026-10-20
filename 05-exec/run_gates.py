@@ -193,6 +193,26 @@ GATES = [
                "不证明牙齿还在（放宽 allowlist 凑绿是 X-9 的反面形态）",
     },
     {
+        # r126：第 9 类失败层 Tag 闭包 读数面的双向取证件（W-47：应绿+应红+对照组被证伪）
+        "id": "tag_closure_fixtures",
+        "script": "r126_tag_closure_fixtures.py",
+        "argv": [],
+        "pass_token": "[GATE:fixture-pass]",
+        "portable": False,
+        "not_portable_reason":
+            "n7 真题面小样需真跑 r126_tag_closure.py，而它读焚诀 eval 的语料与统一注册表；"
+            "换机既无该语料也无该索引，本门会因输入面缺失判 UNVERIFIED",
+        "covers": ["可搜索面判定的三条正向（期望件在 tag 内 / 域匹配 / 全量面）",
+                   "两条反向（tag 闭包挡住期望件 / 域失配）",
+                   "n6 变异对照：判定改成恒真时应红前提失效（反证不是恒真断言）",
+                   "n8 守恒：reachable_n + unreachable_n == questions_n"],
+        "why": ("r126 一手实测：unified_router 的 bge_recall 在 tag_hits 非空时只在 tag "
+                "命中的 skill 内搜索，于是 tag 判错一个，期望件连 BGE 的边都碰不到。"
+                "实测 279 题里 79 题（28.3%）期望件结构上不可达，其中 15 题 raw_rank<=5 "
+                "却不可达（tag_trap）—— 比 r120 的域过滤（第 8 类）更靠前、每条更致命，"
+                "故必须留双向证件。"),
+    },
+    {
         # r123 R120b-8：区间归因通道（新增基线上调后门）的双向取证件
         "id": "range_attr_fixtures",
         "script": "r123_range_attr_fixtures.py",

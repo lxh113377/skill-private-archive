@@ -1,0 +1,439 @@
+{
+ "schema": "tag-closure-r126-v1",
+ "cmd": "python 05-exec/r126_tag_closure.py --json <out>",
+ "source": "C:\\Users\\37533\\Desktop\\workspace\\焚诀\\eval",
+ "face": {
+  "questions_n": 279,
+  "unreachable_n": 79,
+  "reachable_n": 200,
+  "tag_closed_n": 27,
+  "domain_closed_n": 51,
+  "tag_trap_n": 15,
+  "reading": {
+   "tag_closed_n": "期望件不在 tag 命中集合内 ⇒ bge_recall 结构上搜不到它",
+   "tag_trap_n": "被 tag 闭包挡住、但原始 BGE 排名 <=5（纯 tag 误判，语料可救但进不了面）",
+   "domain_closed_n": "域失配（第 8 类失败层，r120 已立常驻面）"
+  }
+ },
+ "tag_trap": [
+  {
+   "set": "layered",
+   "query": "写项目交接文档",
+   "expected": "A-project-handoff",
+   "gate": "TAG",
+   "reachable": false,
+   "tag_hits": [
+    "dingtalk-doc",
+    "doc-coauthoring",
+    "docx",
+    "html-to-docx-win-fix",
+    "json-canvas",
+    "knowledge-capture",
+    "nano-pdf",
+    "notion-cli",
+    "obsidian-bases",
+    "pdf",
+    "report-generator-skill",
+    "spec-to-implementation"
+   ],
+   "domain": "doc",
+   "raw_rank": 1,
+   "raw_score": 0.6251
+  },
+  {
+   "set": "layered",
+   "query": "给视频加背景音乐和动画",
+   "expected": "byted-mediakit-shared",
+   "gate": "TAG",
+   "reachable": false,
+   "tag_hits": [
+    "A-prompt-better",
+    "frontend-slides",
+    "html-ppt",
+    "hyperframes",
+    "hyperframes-cli",
+    "hyperframes-media",
+    "hyperframes-registry",
+    "story",
+    "story-cover",
+    "story-deslop",
+    "story-import",
+    "story-long-analyze",
+    "story-long-write",
+    "story-review",
+    "story-setup",
+    "story-short-analyze",
+    "story-short-write"
+   ],
+   "domain": "creative",
+   "raw_rank": 2,
+   "raw_score": 0.6053
+  },
+  {
+   "set": "layered",
+   "query": "超市网站部署上线",
+   "expected": "chaoshi-web-deploy",
+   "gate": "TAG",
+   "reachable": false,
+   "tag_hits": [
+    "ican-deploy"
+   ],
+   "domain": "web",
+   "raw_rank": 1,
+   "raw_score": 0.6714
+  },
+  {
+   "set": "layered",
+   "query": "帮我在技能市场搜索技能",
+   "expected": "A-skill-manager",
+   "gate": "TAG",
+   "reachable": false,
+   "tag_hits": [
+    "consulting-analysis",
+    "defuddle",
+    "dingtalk-aisearch",
+    "dingtalk-chat",
+    "dingtalk-contact",
+    "dingtalk-mail",
+    "dingtalk-wiki",
+    "meeting-intelligence",
+    "oracle",
+    "research-documentation",
+    "spike",
+    "天眼一下"
+   ],
+   "domain": "research",
+   "raw_rank": 2,
+   "raw_score": 0.5404
+  },
+  {
+   "set": "layered",
+   "query": "帮我自动化操作 Windows 桌面",
+   "expected": "computer-use-guidance-windows",
+   "gate": "TAG",
+   "reachable": false,
+   "tag_hits": [
+    "9b-lightworkflow",
+    "A-project-handoff",
+    "dingtalk-shared",
+    "dogfood",
+    "hook-analyzer-skill",
+    "office-automation-pro",
+    "pixelle-api-ensure",
+    "taskflow",
+    "taskflow-inbox-triage",
+    "vp-perspective-audit",
+    "wechat-automation",
+    "workflow-preflight-check"
+   ],
+   "domain": "automation",
+   "raw_rank": 1,
+   "raw_score": 0.6639
+  },
+  {
+   "set": "layered",
+   "query": "figma 设计稿转代码",
+   "expected": "figma",
+   "gate": "TAG",
+   "reachable": false,
+   "tag_hits": [
+    "algorithmic-art",
+    "canvas-design",
+    "chart-visualization",
+    "diagram-maker",
+    "frontend-skill",
+    "ican-frontend-design-system",
+    "ui-ux-pro-max",
+    "web-design-guidelines",
+    "writing-plans"
+   ],
+   "domain": "design",
+   "raw_rank": 1,
+   "raw_score": 0.563
+  },
+  {
+   "set": "layered",
+   "query": "帮我分析视频前三秒的钩子吸引力",
+   "expected": "hook-analyzer-skill",
+   "gate": "TAG",
+   "reachable": false,
+   "tag_hits": [
+    "ai-video-homework-pipeline",
+    "audio-deliverable-pipeline",
+    "byted-mediakit-shared",
+    "byted-seedance-video-generate",
+    "byted-seedream-image-generate",
+    "dingtalk-calendar",
+    "openai-whisper-api",
+    "video-breakdown-skill",
+    "video-frames",
+    "video-whisper-transcribe",
+    "wechat-voice-transcription"
+   ],
+   "domain": "media",
+   "raw_rank": 1,
+   "raw_score": 0.7324
+  },
+  {
+   "set": "layered",
+   "query": "帮我把分镜和钩子数据生成分析报告",
+   "expected": "report-generator-skill",
+   "gate": "TAG",
+   "reachable": false,
+   "tag_hits": [
+    "data-analysis"
+   ],
+   "domain": "data",
+   "raw_rank": 1,
+   "raw_score": 0.715
+  },
+  {
+   "set": "layered",
+   "query": "shadcn 组件安装管理",
+   "expected": "shadcn",
+   "gate": "TAG",
+   "reachable": false,
+   "tag_hits": [
+    "A-skill-manager"
+   ],
+   "domain": "system",
+   "raw_rank": 1,
+   "raw_score": 0.6495
+  },
+  {
+   "set": "layered",
+   "query": "帮我批量审计并修复静态站点",
+   "expected": "static-site-batch-audit-fix",
+   "gate": "TAG",
+   "reachable": false,
+   "tag_hits": [
+    "debugging-fixing",
+    "cloudbase"
+   ],
+   "domain": "code",
+   "raw_rank": 1,
+   "raw_score": 0.714
+  }
+ ],
+ "unreachable": [
+  {
+   "set": "layered",
+   "query": "写项目交接文档",
+   "expected": "A-project-handoff",
+   "gate": "TAG",
+   "reachable": false,
+   "tag_hits": [
+    "dingtalk-doc",
+    "doc-coauthoring",
+    "docx",
+    "html-to-docx-win-fix",
+    "json-canvas",
+    "knowledge-capture",
+    "nano-pdf",
+    "notion-cli",
+    "obsidian-bases",
+    "pdf",
+    "report-generator-skill",
+    "spec-to-implementation"
+   ],
+   "domain": "doc",
+   "raw_rank": 1,
+   "raw_score": 0.6251
+  },
+  {
+   "set": "layered",
+   "query": "给视频加背景音乐和动画",
+   "expected": "byted-mediakit-shared",
+   "gate": "TAG",
+   "reachable": false,
+   "tag_hits": [
+    "A-prompt-better",
+    "frontend-slides",
+    "html-ppt",
+    "hyperframes",
+    "hyperframes-cli",
+    "hyperframes-media",
+    "hyperframes-registry",
+    "story",
+    "story-cover",
+    "story-deslop",
+    "story-import",
+    "story-long-analyze",
+    "story-long-write",
+    "story-review",
+    "story-setup",
+    "story-short-analyze",
+    "story-short-write"
+   ],
+   "domain": "creative",
+   "raw_rank": 2,
+   "raw_score": 0.6053
+  },
+  {
+   "set": "layered",
+   "query": "超市网站部署上线",
+   "expected": "chaoshi-web-deploy",
+   "gate": "TAG",
+   "reachable": false,
+   "tag_hits": [
+    "ican-deploy"
+   ],
+   "domain": "web",
+   "raw_rank": 1,
+   "raw_score": 0.6714
+  },
+  {
+   "set": "layered",
+   "query": "帮我在技能市场搜索技能",
+   "expected": "A-skill-manager",
+   "gate": "TAG",
+   "reachable": false,
+   "tag_hits": [
+    "consulting-analysis",
+    "defuddle",
+    "dingtalk-aisearch",
+    "dingtalk-chat",
+    "dingtalk-contact",
+    "dingtalk-mail",
+    "dingtalk-wiki",
+    "meeting-intelligence",
+    "oracle",
+    "research-documentation",
+    "spike",
+    "天眼一下"
+   ],
+   "domain": "research",
+   "raw_rank": 2,
+   "raw_score": 0.5404
+  },
+  {
+   "set": "layered",
+   "query": "帮我自动化操作 Windows 桌面",
+   "expected": "computer-use-guidance-windows",
+   "gate": "TAG",
+   "reachable": false,
+   "tag_hits": [
+    "9b-lightworkflow",
+    "A-project-handoff",
+    "dingtalk-shared",
+    "dogfood",
+    "hook-analyzer-skill",
+    "office-automation-pro",
+    "pixelle-api-ensure",
+    "taskflow",
+    "taskflow-inbox-triage",
+    "vp-perspective-audit",
+    "wechat-automation",
+    "workflow-preflight-check"
+   ],
+   "domain": "automation",
+   "raw_rank": 1,
+   "raw_score": 0.6639
+  },
+  {
+   "set": "layered",
+   "query": "跨平台 skill 同步",
+   "expected": "A-skill-manager",
+   "gate": "TAG",
+   "reachable": false,
+   "tag_hits": [
+    "cross-platform-agent-sync"
+   ],
+   "domain": "system",
+   "raw_rank": 13,
+   "raw_score": 0.5309
+  },
+  {
+   "set": "layered",
+   "query": "搜索网上资料写研究报告",
+   "expected": "deep-research-pro",
+   "gate": "TAG",
+   "reachable": false,
+   "tag_hits": [
+    "consulting-analysis",
+    "defuddle",
+    "dingtalk-aisearch",
+    "dingtalk-chat",
+    "dingtalk-contact",
+    "dingtalk-mail",
+    "dingtalk-wiki",
+    "meeting-intelligence",
+    "oracle",
+    "research-documentation",
+    "spike",
+    "天眼一下"
+   ],
+   "domain": "research",
+   "raw_rank": null,
+   "raw_score": null
+  },
+  {
+   "set": "layered",
+   "query": "Electron 桌面应用自动化操作",
+   "expected": "electron",
+   "gate": "TAG",
+   "reachable": false,
+   "tag_hits": [
+    "9b-lightworkflow",
+    "A-project-handoff",
+    "dingtalk-shared",
+    "dogfood",
+    "hook-analyzer-skill",
+    "office-automation-pro",
+    "pixelle-api-ensure",
+    "taskflow",
+    "taskflow-inbox-triage",
+    "vp-perspective-audit",
+    "wechat-automation",
+    "workflow-preflight-check"
+   ],
+   "domain": "automation",
+   "raw_rank": 6,
+   "raw_score": 0.5777
+  },
+  {
+   "set": "layered",
+   "query": "figma 设计稿转代码",
+   "expected": "figma",
+   "gate": "TAG",
+   "reachable": false,
+   "tag_hits": [
+    "algorithmic-art",
+    "canvas-design",
+    "chart-visualization",
+    "diagram-maker",
+    "frontend-skill",
+    "ican-frontend-design-system",
+    "ui-ux-pro-max",
+    "web-design-guidelines",
+    "writing-plans"
+   ],
+   "domain": "design",
+   "raw_rank": 1,
+   "raw_score": 0.563
+  },
+  {
+   "set": "layered",
+   "query": "帮我分析视频前三秒的钩子吸引力",
+   "expected": "hook-analyzer-skill",
+   "gate": "TAG",
+   "reachable": false,
+   "tag_hits": [
+    "ai-video-homework-pipeline",
+    "audio-deliverable-pipeline",
+    "byted-mediakit-shared",
+    "byted-seedance-video-generate",
+    "byted-seedream-image-generate",
+    "dingtalk-calendar",
+    "openai-whisper-api",
+    "video-breakdown-skill",
+    "video-frames",
+    "video-whisper-transcribe",
+    "wechat-voice-transcription"
+   ],
+   "domain": "media",
+   "raw_rank": 1,
+   "raw_score": 0.7324
+  }
+ ]
+}

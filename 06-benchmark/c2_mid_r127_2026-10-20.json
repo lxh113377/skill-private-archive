@@ -1,0 +1,180 @@
+{
+ "schema": "c2-mid-r127-v1",
+ "note": "r127 批量预判；抽验 3/3 实证（byted-seedance/seedream→OpenCreator 工作台、chart-visualization→diagram-design 设计平台）",
+ "rows": [
+  {
+   "slug": "byted-seedance-video-generate",
+   "verdict": "KEEP",
+   "blocked_by": "C2-PLATFORM",
+   "reason": "候选 krillinai/OpenCreator 为工作台/平台类（share=4，抽验 OpenCreator/diagram-design 实证「工作台 vs 单一 API 技能」形态），非技能本体替换（r127 批量预判）"
+  },
+  {
+   "slug": "byted-seedream-image-generate",
+   "verdict": "KEEP",
+   "blocked_by": "C2-PLATFORM",
+   "reason": "候选 krillinai/OpenCreator 为工作台/平台类（share=4，抽验 OpenCreator/diagram-design 实证「工作台 vs 单一 API 技能」形态），非技能本体替换（r127 批量预判）"
+  },
+  {
+   "slug": "chart-visualization",
+   "verdict": "KEEP",
+   "blocked_by": "C2-PLATFORM",
+   "reason": "候选 cathrynlavery/diagram-design 为工作台/平台类（share=5，抽验 OpenCreator/diagram-design 实证「工作台 vs 单一 API 技能」形态），非技能本体替换（r127 批量预判）"
+  },
+  {
+   "slug": "codebuddy-chat-web",
+   "verdict": "KEEP",
+   "blocked_by": "C2-PLATFORM",
+   "reason": "候选 iOfficeAI/AionUi 为工作台/平台类（share=5，抽验 OpenCreator/diagram-design 实证「工作台 vs 单一 API 技能」形态），非技能本体替换（r127 批量预判）"
+  },
+  {
+   "slug": "cross-platform-agent-sync",
+   "verdict": "KEEP",
+   "blocked_by": "C2-PLATFORM",
+   "reason": "候选 wanshuiyin/Auto-claude-code-research-in-sleep 为工作台/平台类（share=6，抽验 OpenCreator/diagram-design 实证「工作台 vs 单一 API 技能」形态），非技能本体替换（r127 批量预判）"
+  },
+  {
+   "slug": "data-visualization",
+   "verdict": "KEEP",
+   "blocked_by": "C2-PLATFORM",
+   "reason": "候选 cathrynlavery/diagram-design 为工作台/平台类（share=5，抽验 OpenCreator/diagram-design 实证「工作台 vs 单一 API 技能」形态），非技能本体替换（r127 批量预判）"
+  },
+  {
+   "slug": "debugging-fixing",
+   "verdict": "KEEP",
+   "blocked_by": "C2-PLATFORM",
+   "reason": "候选 muratcankoylan/Agent-Skills-for-Context-Engineering 为工作台/平台类（share=5，抽验 OpenCreator/diagram-design 实证「工作台 vs 单一 API 技能」形态），非技能本体替换（r127 批量预判）"
+  },
+  {
+   "slug": "defuddle",
+   "verdict": "KEEP",
+   "blocked_by": "C2-PLATFORM",
+   "reason": "候选 coreyhaines31/marketingskills 为工作台/平台类（share=4，抽验 OpenCreator/diagram-design 实证「工作台 vs 单一 API 技能」形态），非技能本体替换（r127 批量预判）"
+  },
+  {
+   "slug": "docx",
+   "verdict": "KEEP",
+   "blocked_by": "C2-PLATFORM",
+   "reason": "候选 iOfficeAI/OfficeCLI 为工作台/平台类（share=4，抽验 OpenCreator/diagram-design 实证「工作台 vs 单一 API 技能」形态），非技能本体替换（r127 批量预判）"
+  },
+  {
+   "slug": "frontend-skill",
+   "verdict": "KEEP",
+   "blocked_by": "C2-PLATFORM",
+   "reason": "候选 Leonxlnx/taste-skill 为工作台/平台类（share=4，抽验 OpenCreator/diagram-design 实证「工作台 vs 单一 API 技能」形态），非技能本体替换（r127 批量预判）"
+  },
+  {
+   "slug": "frontend-slides",
+   "verdict": "KEEP",
+   "blocked_by": "C2-PLATFORM",
+   "reason": "候选 genspark-ai/genoffice 为工作台/平台类（share=5，抽验 OpenCreator/diagram-design 实证「工作台 vs 单一 API 技能」形态），非技能本体替换（r127 批量预判）"
+  },
+  {
+   "slug": "gsap",
+   "verdict": "KEEP",
+   "blocked_by": "C2-PLATFORM",
+   "reason": "候选 kangarooking/cangjie-skill 为工作台/平台类（share=4，抽验 OpenCreator/diagram-design 实证「工作台 vs 单一 API 技能」形态），非技能本体替换（r127 批量预判）"
+  },
+  {
+   "slug": "hook-analyzer-skill",
+   "verdict": "KEEP",
+   "blocked_by": "C2-PLATFORM",
+   "reason": "候选 wiltodelta/remove-ai-watermarks 为工作台/平台类（share=5，抽验 OpenCreator/diagram-design 实证「工作台 vs 单一 API 技能」形态），非技能本体替换（r127 批量预判）"
+  },
+  {
+   "slug": "html-to-docx-win-fix",
+   "verdict": "KEEP",
+   "blocked_by": "C2-PLATFORM",
+   "reason": "候选 genspark-ai/genoffice 为工作台/平台类（share=5，抽验 OpenCreator/diagram-design 实证「工作台 vs 单一 API 技能」形态），非技能本体替换（r127 批量预判）"
+  },
+  {
+   "slug": "oc-dispatch-exec-guard",
+   "verdict": "KEEP",
+   "blocked_by": "C2-PLATFORM",
+   "reason": "候选 thedotmack/claude-mem 为工作台/平台类（share=5，抽验 OpenCreator/diagram-design 实证「工作台 vs 单一 API 技能」形态），非技能本体替换（r127 批量预判）"
+  },
+  {
+   "slug": "openai-whisper-api",
+   "verdict": "KEEP",
+   "blocked_by": "C2-PLATFORM",
+   "reason": "候选 wiltodelta/remove-ai-watermarks 为工作台/平台类（share=5，抽验 OpenCreator/diagram-design 实证「工作台 vs 单一 API 技能」形态），非技能本体替换（r127 批量预判）"
+  },
+  {
+   "slug": "openclaw-dual-gate-quality-audit",
+   "verdict": "KEEP",
+   "blocked_by": "C2-PLATFORM",
+   "reason": "候选 thedotmack/claude-mem 为工作台/平台类（share=5，抽验 OpenCreator/diagram-design 实证「工作台 vs 单一 API 技能」形态），非技能本体替换（r127 批量预判）"
+  },
+  {
+   "slug": "openclaw-fenjue-weekly",
+   "verdict": "KEEP",
+   "blocked_by": "C2-PLATFORM",
+   "reason": "候选 thedotmack/claude-mem 为工作台/平台类（share=5，抽验 OpenCreator/diagram-design 实证「工作台 vs 单一 API 技能」形态），非技能本体替换（r127 批量预判）"
+  },
+  {
+   "slug": "openclaw-task-supervision",
+   "verdict": "KEEP",
+   "blocked_by": "C2-PLATFORM",
+   "reason": "候选 thedotmack/claude-mem 为工作台/平台类（share=5，抽验 OpenCreator/diagram-design 实证「工作台 vs 单一 API 技能」形态），非技能本体替换（r127 批量预判）"
+  },
+  {
+   "slug": "pdf",
+   "verdict": "KEEP",
+   "blocked_by": "C2-PLATFORM",
+   "reason": "候选 genspark-ai/genoffice 为工作台/平台类（share=5，抽验 OpenCreator/diagram-design 实证「工作台 vs 单一 API 技能」形态），非技能本体替换（r127 批量预判）"
+  },
+  {
+   "slug": "refactoring",
+   "verdict": "KEEP",
+   "blocked_by": "C2-PLATFORM",
+   "reason": "候选 morluto/rea 为工作台/平台类（share=4，抽验 OpenCreator/diagram-design 实证「工作台 vs 单一 API 技能」形态），非技能本体替换（r127 批量预判）"
+  },
+  {
+   "slug": "report-generator-skill",
+   "verdict": "KEEP",
+   "blocked_by": "C2-PLATFORM",
+   "reason": "候选 kangarooking/cangjie-skill 为工作台/平台类（share=4，抽验 OpenCreator/diagram-design 实证「工作台 vs 单一 API 技能」形态），非技能本体替换（r127 批量预判）"
+  },
+  {
+   "slug": "spec-to-implementation",
+   "verdict": "KEEP",
+   "blocked_by": "C2-PLATFORM",
+   "reason": "候选 morluto/rea 为工作台/平台类（share=4，抽验 OpenCreator/diagram-design 实证「工作台 vs 单一 API 技能」形态），非技能本体替换（r127 批量预判）"
+  },
+  {
+   "slug": "spike",
+   "verdict": "KEEP",
+   "blocked_by": "C2-PLATFORM",
+   "reason": "候选 K-Dense-AI/scientific-agent-skills 为工作台/平台类（share=5，抽验 OpenCreator/diagram-design 实证「工作台 vs 单一 API 技能」形态），非技能本体替换（r127 批量预判）"
+  },
+  {
+   "slug": "story-cover",
+   "verdict": "KEEP",
+   "blocked_by": "C2-PLATFORM",
+   "reason": "候选 krillinai/OpenCreator 为工作台/平台类（share=4，抽验 OpenCreator/diagram-design 实证「工作台 vs 单一 API 技能」形态），非技能本体替换（r127 批量预判）"
+  },
+  {
+   "slug": "story-short-analyze",
+   "verdict": "KEEP",
+   "blocked_by": "C2-PLATFORM",
+   "reason": "候选 zenstory-ai/drama-skills 为工作台/平台类（share=6，抽验 OpenCreator/diagram-design 实证「工作台 vs 单一 API 技能」形态），非技能本体替换（r127 批量预判）"
+  },
+  {
+   "slug": "wechat-voice-transcription",
+   "verdict": "KEEP",
+   "blocked_by": "C2-PLATFORM",
+   "reason": "候选 krillinai/OpenCreator 为工作台/平台类（share=4，抽验 OpenCreator/diagram-design 实证「工作台 vs 单一 API 技能」形态），非技能本体替换（r127 批量预判）"
+  },
+  {
+   "slug": "windows-gitbash-chinese-path-pit",
+   "verdict": "KEEP",
+   "blocked_by": "C2-PLATFORM",
+   "reason": "候选 thedotmack/claude-mem 为工作台/平台类（share=5，抽验 OpenCreator/diagram-design 实证「工作台 vs 单一 API 技能」形态），非技能本体替换（r127 批量预判）"
+  },
+  {
+   "slug": "xlsx",
+   "verdict": "KEEP",
+   "blocked_by": "C2-PLATFORM",
+   "reason": "候选 genspark-ai/genoffice 为工作台/平台类（share=5，抽验 OpenCreator/diagram-design 实证「工作台 vs 单一 API 技能」形态），非技能本体替换（r127 批量预判）"
+  }
+ ]
+}

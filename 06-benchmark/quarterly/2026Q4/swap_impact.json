@@ -2,7 +2,7 @@
  "schema": "swap-sim-r118-v1",
  "cmd": "python 05-exec/r118_swap_sim.py --json <out>",
  "face": {
-  "index_rows": 182,
+  "index_rows": 183,
   "evidence_slugs": 39,
   "substitutable_slugs": 39,
   "questions_n": 279,

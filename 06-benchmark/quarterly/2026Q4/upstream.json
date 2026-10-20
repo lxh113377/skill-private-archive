@@ -1,11 +1,11 @@
 {
  "schema": "upstream-probe-r112-v1",
- "generated_at": "2026-10-20T01:44:00+00:00",
+ "generated_at": "2026-10-20T06:10:04+00:00",
  "face": {
   "scan_file": "06-benchmark/quarterly/2026Q4/provenance.json",
-  "targets_n": 39,
+  "targets_n": 40,
   "ok_n": 24,
-  "unverified_n": 15,
+  "unverified_n": 16,
   "api_calls": 0,
   "cache_hits": 54,
   "rate": null,
@@ -19,8 +19,8 @@
   "diverged": 10
  },
  "conservation": {
-  "ok_n + unverified_n": 39,
-  "targets_n": 39,
+  "ok_n + unverified_n": 40,
+  "targets_n": 40,
   "ok": true
  },
  "rows": [
@@ -415,19 +415,19 @@
      "repo": "affaan-m/ECC",
      "path": ".agents/skills/frontend-slides/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.0151
+     "jaccard": 0.015
     },
     {
      "repo": "affaan-m/ECC",
      "path": ".cursor/skills/frontend-slides/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.0151
+     "jaccard": 0.015
     },
     {
      "repo": "affaan-m/ECC",
      "path": "docs/ja-JP/skills/frontend-slides/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.0151
+     "jaccard": 0.015
     }
    ],
    "reason": "无可识别同源候选（全部 unrelated 或取不到）"
@@ -1207,6 +1207,28 @@
    "evidence_source": "cache"
   },
   {
+   "slug": "subagent-driven-development",
+   "status": "UNVERIFIED",
+   "candidates_tried": [
+    {
+     "repo": "obra/superpowers",
+     "path": "skills/subagent-driven-development/SKILL.md",
+     "error": "offline_no_cache"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills-claude/skills/subagent-driven-development/SKILL.md",
+     "error": "offline_no_cache"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills/skills/subagent-driven-development/SKILL.md",
+     "error": "offline_no_cache"
+    }
+   ],
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）"
+  },
+  {
    "slug": "test-driven-development",
    "status": "OK",
    "upstream_repo": "obra/superpowers",
@@ -1217,16 +1239,16 @@
    "upstream_last_commit_sha": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
    "upstream_last_commit_date": "2026-09-19T00:31:35Z",
    "upstream_last_commit_msg": "Release v6.4.1: diagnosing-superpowers, Native plan execution, OpenCode 2.0 and Muse support (#2338)",
-   "local_sha256": "0580819211ecc996804d11eba81a12f41c8d18691aae27c0af8e040d90f40330",
-   "local_bytes": 10689,
+   "local_sha256": "5583fb6a1a56b90bc72519d78ef2a51af6847b357f52e6753973e5f60d48b058",
+   "local_bytes": 11466,
    "relation": "diverged",
    "stats": {
-    "local_lines": 250,
+    "local_lines": 254,
     "upstream_lines": 216,
     "common": 205,
-    "local_only": 45,
+    "local_only": 49,
     "upstream_only": 11,
-    "jaccard": 0.7854
+    "jaccard": 0.7736
    },
    "rubric_local": {
     "overview": true,
@@ -1249,7 +1271,7 @@
      "repo": "obra/superpowers",
      "path": "skills/test-driven-development/SKILL.md",
      "relation": "diverged",
-     "jaccard": 0.7854
+     "jaccard": 0.7736
     }
    ],
    "evidence_source": "cache"
