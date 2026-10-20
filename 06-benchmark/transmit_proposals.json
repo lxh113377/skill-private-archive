@@ -182,6 +182,25 @@
    "evidence": "python eval/verify_truth_consistency.py --json 后读 C10/C16 的 detail；build_indexes.py 的 DOMAIN_FILE_SKIPS 常量（含 r114 注释）；derivative_watch.py collect_artifacts 的豁免元组",
    "fix_hint": "把 tfidf_vocab_idf.json 加进 collect_artifacts 的豁免元组（与 build_indexes.DOMAIN_FILE_SKIPS 对齐）；更稳的做法是让两处共用同一常量，防再漂。",
    "scope": "本仓红线：焚诀 eval/ 只读不代改，故只登记提案。"
+  },
+  {
+   "pid": "domain_filter_latent_exposure",
+   "title": "L0 域过滤 latent exposure：59 题域失配，仅 4 题真实暴露、1 题真失败（prompt-consolidation）",
+   "target": "焚诀 eval/domain_classifier.py（DOMAIN_KEYWORDS）+ skill/registry/unified-skills-index.json（domain 归属）",
+   "proposed_at": "2026-10-20",
+   "keywords": [
+    "domain",
+    "域过滤",
+    "域失配",
+    "classify_domain",
+    "prompt",
+    "提示词",
+    " latent"
+   ],
+   "why": "r120 一手实测：layered 269 题（expected 非空）中 59 题（21.9%）的 query 分类域 != 期望件注册域，即 L0 域过滤把它们排除在 BGE 搜索范围外。但逐条跑 route() 证明：55 题有 tag_hits 或 direct_hit 掩护（bge_recall 的 domain 限制只在 tag_hits 为空时生效），期望件仍在候选且 top1 命中；仅 4 题真实暴露，其中 3 题靠语料质量仍命中，只有 1 题真失败——prompt-consolidation（domain=system，query「帮我清理提示词里堆积的补丁」被判 code，因 DOMAIN_KEYWORDS.code 含「清理」而 system 表只有英文 prompt、不含中文「提示词」）。反事实实验：把该件 domain 对齐 query 域 ⇒ BGE 分 0.565→0.694 直接登顶；但全局关掉域过滤反而降分（94.41%→92.92%，WIN 1 / LOSE 5）⇒ 域过滤是净有益的兜底，失效模式是「脆弱」而非「有害」，不能关。",
+   "evidence": "06-benchmark/domain_mismatch_r120_2026-10-20.json（59 题全量）；06-benchmark/domain_exposure_r120_2026-10-20.json（暴露/掩护二分）；06-benchmark/domain_cf_r120_2026-10-20.json（单件反事实 1 FLIP）",
+   "fix_hint": "二选一（都属归属方面）：① domain_classifier.DOMAIN_KEYWORDS.system 补中文「提示词」（与 creative 表的「提示词」并存需评估串味）；② 注册表把 prompt-consolidation 的 domain 从 system 改为 creative（其语义邻居 A-prompt-better 即 creative）。改后须复跑 r117_route_miss_attr 证 real_n 7→6 且 stale_n 不增。",
+   "scope": "本仓红线：焚诀 eval/ 与注册表只读不代改，故只登记提案。"
   }
  ]
 }

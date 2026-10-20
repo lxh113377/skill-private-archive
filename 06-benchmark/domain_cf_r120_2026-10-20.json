@@ -1,0 +1,77 @@
+{
+ "schema": "domain-cf-r120-v1",
+ "rows": [
+  {
+   "q": "灵感枯竭帮我发散一波点子",
+   "slug": "brainstorming",
+   "qdomain": null,
+   "base_top1": "story",
+   "cf_top1": "story",
+   "flipped": false,
+   "base_score": 1.0,
+   "cf_score": 1.0
+  },
+  {
+   "q": "帮我做一个动画丰富的 HTML 演示文稿",
+   "slug": "frontend-slides",
+   "qdomain": null,
+   "base_top1": "ppt-master",
+   "cf_top1": "ppt-master",
+   "flipped": false,
+   "base_score": 1.0,
+   "cf_score": 1.0
+  },
+  {
+   "q": "Notion 会议准备",
+   "slug": "meeting-intelligence",
+   "qdomain": null,
+   "base_top1": "NONE",
+   "cf_top1": "NONE",
+   "flipped": false,
+   "base_score": 1.0,
+   "cf_score": 1.0
+  },
+  {
+   "q": "帮我清理提示词里堆积的补丁",
+   "slug": "prompt-consolidation",
+   "qdomain": "code",
+   "base_top1": "sq-cleanmgr-c",
+   "cf_top1": "prompt-consolidation",
+   "flipped": true,
+   "base_score": 0.565,
+   "cf_score": 0.694
+  },
+  {
+   "q": "新技能装之前先安全审查",
+   "slug": "A-skill-manager",
+   "qdomain": null,
+   "base_top1": "security-audit",
+   "cf_top1": "security-audit",
+   "flipped": false,
+   "base_score": 1.0,
+   "cf_score": 1.0
+  },
+  {
+   "q": "录音转文字",
+   "slug": "video-whisper-transcribe",
+   "qdomain": null,
+   "base_top1": "local-asr",
+   "cf_top1": "local-asr",
+   "flipped": false,
+   "base_score": 1.0,
+   "cf_score": 1.0
+  },
+  {
+   "q": "同步技能",
+   "slug": "A-skill-manager",
+   "qdomain": null,
+   "base_top1": "cross-platform-agent-sync",
+   "cf_top1": "cross-platform-agent-sync",
+   "flipped": false,
+   "base_score": 0.549,
+   "cf_score": 0.549
+  }
+ ],
+ "flipped_n": 1,
+ "total_n": 7
+}

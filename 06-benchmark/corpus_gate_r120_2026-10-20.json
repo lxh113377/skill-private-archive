@@ -1,0 +1,14 @@
+{
+ "schema": "fullface-probe-r119-v1",
+ "baseline": {
+  "n": 279,
+  "w": 277.75,
+  "top1_pct": 93.52
+ },
+ "results": [],
+ "summary": {
+  "wins_n": 0,
+  "loses_n": 0,
+  "net": 0
+ }
+}
