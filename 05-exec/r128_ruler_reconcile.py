@@ -69,6 +69,14 @@ def main():
     ap.add_argument('--expect-field', default='expected')
     ap.add_argument('--truthy', default='hit,reachable,actually_hit,pass,ok',
                     help='逗号分隔的「真」值（默认按字段名与真值判定）')
+    ap.add_argument('--semantics', default='hit', choices=['hit', 'closure', 'latent'],
+                    help=("hit = 该字段为真表示「这条命中了」（默认）；"
+                          "closure = 该字段为真表示「这条被某道闭包挡住了」，"
+                          "与命中互为补集，须反号后才对账；"
+                          "latent = 该字段为真表示「这是潜在脆弱面（域失配）」，"
+                          "**与命中不互斥** —— r120 已证域失配 55/59 仍命中，"
+                          "此时只能验「判红 ⇒ 真未命中」单向，"
+                          "反向（判绿 ⇒ 真命中）不成立，工具据此只对账单向。"))
     ap.add_argument('--json', dest='out')
     ap.add_argument('--limit', type=int, default=20)
     args = ap.parse_args()
@@ -121,6 +129,26 @@ def main():
         except Exception:  # noqa: BLE001
             continue
         judge_hit = is_hit(v)
+        if args.semantics == 'closure':
+            judge_hit = not judge_hit   # 「被挡住」=>「没命中」
+        if args.semantics == 'latent':
+            # latent（潜在脆弱面）与命中**不互斥** —— 这正是「latent」的含义。
+            # r120 一手结论：65 条域失配里多数仍命中（tag/direct 掩护或 L1.5 兜底救回）。
+            # 故 latent 语义下**不存在「假红」**：判脆弱 + 真命中 = 正常的潜在暴露面，
+            #      判脆弱 + 真未命中 = 真问题（脆弱面确实兑现成了失败），记 false_red。
+            #      判不脆弱 + 真未命中 = 尺漏抓，记 false_red（同样是问题）。
+            _latent = judge_hit
+            if _latent:
+                if truth_hit:
+                    agree += 1          # 潜在但未兑现（正常）
+                else:
+                    agree += 1          # 潜在且已兑现（真失败，仍是尺说对了）
+            elif not truth_hit:
+                false_red.append({'query': q, 'expected': exp,
+                                  'route_top1': rt.get('top1')})
+            else:
+                agree += 1
+            continue
         if judge_hit == truth_hit:
             agree += 1
         elif judge_hit:

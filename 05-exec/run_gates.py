@@ -176,6 +176,23 @@ GATES = [
                "且实跑接线暴露调度器传给不变式的是名字串而非配置值——按名字比较会让全部证据件被字典序静默豁免",
     },
     {
+        # r128：W-47 第四腿（判据与生产实测逐条一致）的机检
+        "id": "w47_reconcile_fixtures",
+        "script": "r128_w47_reconcile_fixtures.py",
+        "argv": [],
+        "pass_token": "[GATE:fixture-pass]",
+        "portable": False,
+        "not_portable_reason":
+            "四条腿都要真跑 r128_ruler_reconcile.py，而它 import 焚诀 eval 的 unified_router 并逐题 route()；换机既无该路由面也无 r127 修正产物，本门会因输入面缺失判 UNVERIFIED",
+        "covers": ["t1 正控：对齐口径（actually_hit）零不一致",
+                   "t2 反控：错口径（reachable）必须抓出假红（即 r126 的病）",
+                   "t3 反向对照：另一错口径（expected_in_tag）必须抓出不一致",
+                   "t4 变异对照：窄口径（rescued_by_l15）必须抓出假红",
+                   "t5 输入面：产物无逐条读数须 UNVERIFIED（rc=2），禁按 0 记绿",
+                   "t6 变异对照：证明 t2/t4 的应红前提不是恒真"],
+        "why": "W-47（r58 立）原有三腿（应绿/应红/对照组被证伪）。r128 加第四腿：判据输出必须与 route() 实测逐条一致。动因是 r126 到 r127 两轮一手代价：r126 的可达性判定只建模 bge_recall 的第一次候选集构造，漏了 L1.5 域限制兜底 union 合并，稳定产出 45 条假红且静态推导每一步都看着合理；r127 用本腿复核后确认假红数正是 45。",
+    },
+    {
         # r55 D-100：同一判据两输入面（未注册根 strict 误判）修完的「登记不放宽判据」双向取证件
         "id": "root_face_fixtures",
         "script": "r55_rootface_fixtures.py",

@@ -36,19 +36,27 @@ def ck(name, cond, detail=''):
 def run(field, extra=None, face=None):
     env = dict(os.environ)
     env['PYTHONPYCACHEPREFIX'] = os.path.join(env.get('TEMP', 'C:/Temp'), 'pyc_w47')
-    args = [sys.executable, TOOL, '--face', face or FACE, '--verdict-field', field]
+    # r128 自抓：初版从 stdout 解析中文键（「一致=279 假红=0」）⇒ 键名是中文，
+    # 断言里却按 false_red_n 取值 ⇒ 三条腿假红而实际读数全对。
+    # 修法 = 让工具出 JSON，夹具读结构化 counts，禁解析人类可读输出。
+    tmpj = tempfile.mkstemp(prefix='w47_out_', suffix='.json')[1]
+    args = [sys.executable, TOOL, '--face', face or FACE, '--verdict-field', field,
+            '--json', tmpj]
     if extra:
         args += extra
     p = subprocess.run(args, capture_output=True, text=True, encoding='utf-8',
                       errors='replace', env=env, cwd=HERE, timeout=3600)
     out = (p.stdout or '') + (p.stderr or '')
     counts = {}
-    for line in out.splitlines():
-        if '已对账' in line and '一致=' in line:
-            for seg in line.split('一致=')[1].split():
-                if '=' in seg:
-                    k, v = seg.split('=', 1)
-                    counts[k] = int(v)
+    try:
+        with io.open(tmpj, encoding='utf-8-sig') as f:
+            counts = (json.load(f) or {}).get('counts') or {}
+    except Exception:  # noqa: BLE001
+        counts = {}
+    try:
+        os.unlink(tmpj)
+    except OSError:
+        pass
     return p.returncode, out, counts
 
 

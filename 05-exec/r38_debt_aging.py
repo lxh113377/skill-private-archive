@@ -47,7 +47,10 @@ REPEAT_AFTER = 2
 RE_ITEM = re.compile(r"^\s*-\s\[( |x)\]\s+(.+)$")
 RE_ROUND_DECL = re.compile(r"(?:r(\d{1,3})\s*(?:登记|立|新增|补记|更新|收尾)|第\s*(\d{1,3})\s*轮|"
                            r"挂账\s*(\d{1,2})\s*轮)")
-RE_DECIDED = re.compile(r"裁决\s*=\s*(执行|降级|作废|保留)|挂账至\s*r(\d{1,3})")
+# r128 自抓（词表缺口）：「销账」是多轮沿用的自然表述（已完成并核销），但不在终局词表里，
+# 于是写了 `裁决=销账` 仍被判 OVERDUE —— 判据不认我自己的裁决词。
+# 修法 = 把该词**收进取值域**（扩枚举，不是放宽判定）：销账与「执行」同义，都表示已闭环。
+RE_DECIDED = re.compile(r"裁决\s*=\s*(执行|降级|作废|保留|销账)|挂账至\s*r(\d{1,3})")
 # r49 根因修（第 2 形态）：裁决标记是 `【rNN 裁决=<头部>｜原因】`，而**原因里允许引用旧标记原文**
 # （本轮就在 W-14 上写了「r46 却在本条上写了『挂账至 r49』」）。全文 search 的 last-wins 会被
 # 引号内容劫持 ⇒ 终局裁决被回判成"过期挂账"，凭空造一条 OVERDUE。
@@ -70,7 +73,7 @@ def parse_last_verdict(text):
     heads = list(RE_MARK_HEAD.finditer(text or ""))
     if heads:
         head = heads[-1].group(2).strip()
-        m = re.match(r"(执行|降级|作废|保留)", head)
+        m = re.match(r"(执行|降级|作废|保留|销账)", head)
         if m:
             return ("FINAL", m.group(1))
         d = re.match(r"挂账至\s*r(\d{1,3})", head)
@@ -304,6 +307,16 @@ def classify_item(text, now_round):
     elif held is not None:
         age = held
     if age is None:
+        # r128 自抓（定年回退被正文引用劫持，同 R120b-6 / R126-6 同族第 4 次复发）：
+        # 原式取正文**第一个**裸 rNN。实测 R123-1 的正文引用了 r118/r120/r105 等历史轮号，
+        # 于是本条（r123 登记、账龄应为 0）被判「账龄 5 轮」⇒ 假 OVERDUE。
+        # 修法：先认**标题里的登记轮号**（`R123-1（r123 登记` 这类自身编号），
+        # 它才是条目的真实来源；只有标题没有可识别编号时才退回裸 rNN。
+        own = re.match(r"\s*-\s*\[[ x]\]\s*\**\s*R(\d{2,3})[a-z]?-\d+", text)
+        if own:
+            age = now_round - int(own.group(1))
+            return (("OVERDUE" if age > grace else "ACTIVE"),
+                    "账龄 %d 轮 / 宽限 %d（定年取标题自身编号 R%s-）" % (age, grace, own.group(1)))
         bare = re.search(r"\br(\d{1,3})\b", text)
         if bare:
             age = now_round - int(bare.group(1))
