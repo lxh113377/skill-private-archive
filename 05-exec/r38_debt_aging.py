@@ -52,7 +52,12 @@ RE_DECIDED = re.compile(r"裁决\s*=\s*(执行|降级|作废|保留)|挂账至\s
 # （本轮就在 W-14 上写了「r46 却在本条上写了『挂账至 r49』」）。全文 search 的 last-wins 会被
 # 引号内容劫持 ⇒ 终局裁决被回判成"过期挂账"，凭空造一条 OVERDUE。
 # 判据口径：只认**最后一个标记的头部**（第一个 ｜/】 之前），原因体一律不参与判定。
-RE_MARK_HEAD = re.compile(r"【\s*r(\d{1,3})\s*裁决\s*=\s*([^｜】]*)")
+RE_MARK_HEAD = re.compile(r"【\s*r(\d{1,3}(?:[a-z])?)\s*裁决\s*=\s*([^｜】]*)")
+   # r120b: 裁决头轮号补字母后缀（r119b / r120b 这类同轮多支线编号）。
+   # 原式 r(\d{1,3}) 匹配不到 r120b ⇒ 支线轮裁决头静默不可见，
+   # 最后头部回退到上一轮旧标记（本轮实测：R114-3 的 r120b 降级没被读到，
+   # 尺子仍按 r119「挂账至 r122」判 OVERDUE）。
+   # 与 RE_SUGG_ID 同族第 3 次：命名空间不认后缀轮号 ⇒ 修尺不放宽判定。
 
 
 def parse_last_verdict(text):
@@ -296,7 +301,11 @@ def classify_item(text, now_round):
     return (("OVERDUE" if age > grace else "ACTIVE"), "账龄 %d 轮 / 宽限 %d" % (age, grace))
 
 
-RE_SUGG_ID = re.compile(r"\b([WXMHRL]-\d{1,2}|R\d{2,3}-\d{1,2})\b")
+RE_SUGG_ID = re.compile(r"\b([WXMHRL]-\d{1,2}|R\d{2,3}(?:[a-z])?-\d{1,2})\b")
+   # r120b: 命名空间补字母后缀轮号（R119b-1 / R120b-5 这类同轮多支线编号）。
+   # 原式只认 R\d{2,3}-\d，带后缀的编号静默逃逸「报告新建议必须落待办卷」检查
+   # （r119b 首次发现、当时只登记 UNVERIFIED；r120b 按 #30 硬门禁要求修尺而非改编号）。
+   # 先例 = r105 F-7 补 L 命名空间：扩面，不放宽判定。
 # r105 F-7：命名空间补全。原式 `[WXMH]` 有两个洞，且都是**静默**的（不报错，只是看不见）：
 #   ① 本函数自己的 docstring 写着承接面含 `W/M/H/L-nn`，可式里没有 `L` ⇒ L-6 这类待办从登记那日起
 #      就没被「报告新建议必须落待办卷」这条检查扫过；
