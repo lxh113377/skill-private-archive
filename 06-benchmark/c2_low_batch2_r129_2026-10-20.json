@@ -1,0 +1,348 @@
+{
+ "schema": "c2-low-batch2-r129-v1",
+ "note": "R127-1 第二批（剩余 38 件，按 22 候选仓分组批量定性；README 在线实证 21/22 仓 200，apify 404 但仓性质可判）",
+ "rows": [
+  {
+   "slug": "A-java-problem",
+   "repo": "Snailclimb/JavaGuide",
+   "score": 18,
+   "share": 0,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "Java 学习课程仓——对 A-java-problem（课程作业入口）同域但形态不同（学习资料 vs 作业调度入口，r128 已初判）"
+  },
+  {
+   "slug": "agent-browser",
+   "repo": "browser-act/skills",
+   "score": 18,
+   "share": 0,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "BrowserAct 云平台技能集（依赖 browseract.com）——对 agent-browser（本地 npx CLI）依赖哲学相反，且 r127 并行会话已做上游对齐薄壳化 v3.0.0"
+  },
+  {
+   "slug": "algorithmic-art",
+   "repo": "apify/apify-mcp-server",
+   "score": 19,
+   "share": 2,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "Apify MCP server（爬虫云平台）——对 algorithmic-art（p5.js 生成艺术）域不同"
+  },
+  {
+   "slug": "browser-cdp",
+   "repo": "platonai/Browser4",
+   "score": 21,
+   "share": 0,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "Browser4（AI 浏览器自动化）——对 browser-cdp（CDP 复用登录态技能）域有重叠但形态为平台级产品，本仓 skill 是 CDP 操作手册"
+  },
+  {
+   "slug": "browser-voice-call",
+   "repo": "vercel-labs/agent-browser",
+   "score": 18,
+   "share": 0,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "Vercel agent-browser（正是本地件的上游本体！r127 并行会话已对齐 v0.39.1/v3.0.0）——非替代而是**上游已同源**，KEEP"
+  },
+  {
+   "slug": "c-cleanup",
+   "repo": "parcadei/Continuous-Claude-v3",
+   "score": 18,
+   "share": 2,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "Claude 连续运行指南——对 c-cleanup（C 盘清理）/ windows-bash-cli-interop-pitfalls（bash 互操作坑）域不同"
+  },
+  {
+   "slug": "coding-agent",
+   "repo": "OrchestratorInc/agent-orchestrator",
+   "score": 21,
+   "share": 2,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "编码代理编排台——对 coding-agent（派发子代理技能）域重叠但形态为独立产品（GUI/平台），本仓是操作规程技能"
+  },
+  {
+   "slug": "dingtalk-calendar",
+   "repo": "larksuite/cli",
+   "score": 21,
+   "share": 3,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "Lark/飞书 CLI——对 dingtalk-calendar/mail（钉钉 API 技能）是**竞品平台**（飞书 vs 钉钉），能力域近似但目标平台不同，替换=换平台非升级"
+  },
+  {
+   "slug": "dingtalk-doc",
+   "repo": "inkeep/open-knowledge",
+   "score": 20,
+   "share": 3,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "markdown 知识库编辑器——对 dingtalk-doc（钉钉文档 API 技能）域不同"
+  },
+  {
+   "slug": "dingtalk-mail",
+   "repo": "larksuite/cli",
+   "score": 21,
+   "share": 3,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "Lark/飞书 CLI——对 dingtalk-calendar/mail（钉钉 API 技能）是**竞品平台**（飞书 vs 钉钉），能力域近似但目标平台不同，替换=换平台非升级"
+  },
+  {
+   "slug": "docker-e2e-gate",
+   "repo": "iflytek/skillhub",
+   "score": 22,
+   "share": 2,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "企业级 skill 注册表（发布/发现/管理）——对 docker-e2e-gate（Docker 干净容器验收技能）域不同"
+  },
+  {
+   "slug": "figma",
+   "repo": "mvschwarz/openrig",
+   "score": 21,
+   "share": 0,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "OpenRig CLI（agent 运行框架）——对 figma（Figma MCP 设计技能）域不同"
+  },
+  {
+   "slug": "gstack",
+   "repo": "pinchtab/pinchtab",
+   "score": 22,
+   "share": 0,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "PinchTab（Go 浏览器控制 HTTP server）——对 gstack（无头浏览器 QA 技能）域重叠但形态为独立 server 产品"
+  },
+  {
+   "slug": "internal-comms",
+   "repo": "xberg-io/xberg",
+   "score": 20,
+   "share": 3,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "Xberg（数据交换格式）——对 internal-comms（公司内部通讯写作）/ nano-pdf（PDF 编辑）域不同"
+  },
+  {
+   "slug": "mcp-builder",
+   "repo": "googleapis/mcp-toolbox",
+   "score": 21,
+   "share": 0,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "Google MCP Toolbox（DB 连接工具箱）——对 mcp-builder（MCP 服务器构建指南）/ workbuddy-mcp（腾讯系连接器总控）域不同"
+  },
+  {
+   "slug": "nano-pdf",
+   "repo": "xberg-io/xberg",
+   "score": 20,
+   "share": 3,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "Xberg（数据交换格式）——对 internal-comms（公司内部通讯写作）/ nano-pdf（PDF 编辑）域不同"
+  },
+  {
+   "slug": "notion-cli",
+   "repo": "AgriciDaniel/claude-obsidian",
+   "score": 19,
+   "share": 3,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "Obsidian 知识库构建指南——对 notion-cli（Notion API 技能）平台不同"
+  },
+  {
+   "slug": "obsidian-bases",
+   "repo": "Ar9av/obsidian-wiki",
+   "score": 20,
+   "share": 0,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "Obsidian 数字大脑（AI agent 记忆连接）——对 obsidian-bases/cli/markdown（三件 Obsidian 格式与 CLI 操作技能）是产品而非技能本体，且本仓三件已被 r126 上游对齐过"
+  },
+  {
+   "slug": "obsidian-cli",
+   "repo": "Ar9av/obsidian-wiki",
+   "score": 20,
+   "share": 0,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "Obsidian 数字大脑（AI agent 记忆连接）——对 obsidian-bases/cli/markdown（三件 Obsidian 格式与 CLI 操作技能）是产品而非技能本体，且本仓三件已被 r126 上游对齐过"
+  },
+  {
+   "slug": "obsidian-markdown",
+   "repo": "Ar9av/obsidian-wiki",
+   "score": 20,
+   "share": 0,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "Obsidian 数字大脑（AI agent 记忆连接）——对 obsidian-bases/cli/markdown（三件 Obsidian 格式与 CLI 操作技能）是产品而非技能本体，且本仓三件已被 r126 上游对齐过"
+  },
+  {
+   "slug": "react-best-practices",
+   "repo": "FlorianBruniaux/claude-code-ultimate-guide",
+   "score": 22,
+   "share": 0,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "Claude Code 使用指南（博客/教程）——对 react-best-practices（React 性能规范）域不同"
+  },
+  {
+   "slug": "shadcn",
+   "repo": "getsentry/MobileBuildMCP",
+   "score": 20,
+   "share": 2,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "Sentry iOS/macOS 构建 MCP——对 shadcn（UI 组件）/ utf8-encoding-fix（编码修复）域不同"
+  },
+  {
+   "slug": "shell-encoding-pitfalls",
+   "repo": "siddsachar/row-bot",
+   "score": 21,
+   "share": 2,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "row-bot（推文/rows 自动化 bot）——对 shell-encoding-pitfalls（编码坑）/ wechat-automation（微信自动化）/ windows-cli-utf8-wrapper（subprocess 包装）能力域不同"
+  },
+  {
+   "slug": "sq-cleanmgr-c",
+   "repo": "kucherenko/jscpd",
+   "score": 19,
+   "share": 0,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "jscpd 复制粘贴检测器——对 sq-cleanmgr-c（C 盘清理技能）域不同"
+  },
+  {
+   "slug": "story",
+   "repo": "Imbad0202/academic-research-skills",
+   "score": 23,
+   "share": 3,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "学术研究技能集（CC BY-NC 非商业）——对 story 系网文创作/审校/扫榜（番茄/起点等中文网文域）完全别域"
+  },
+  {
+   "slug": "story-deslop",
+   "repo": "Imbad0202/academic-research-skills",
+   "score": 23,
+   "share": 3,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "学术研究技能集（CC BY-NC 非商业）——对 story 系网文创作/审校/扫榜（番茄/起点等中文网文域）完全别域"
+  },
+  {
+   "slug": "story-import",
+   "repo": "Imbad0202/academic-research-skills",
+   "score": 23,
+   "share": 3,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "学术研究技能集（CC BY-NC 非商业）——对 story 系网文创作/审校/扫榜（番茄/起点等中文网文域）完全别域"
+  },
+  {
+   "slug": "story-long-write",
+   "repo": "Imbad0202/academic-research-skills",
+   "score": 23,
+   "share": 3,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "学术研究技能集（CC BY-NC 非商业）——对 story 系网文创作/审校/扫榜（番茄/起点等中文网文域）完全别域"
+  },
+  {
+   "slug": "story-review",
+   "repo": "Imbad0202/academic-research-skills",
+   "score": 23,
+   "share": 3,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "学术研究技能集（CC BY-NC 非商业）——对 story 系网文创作/审校/扫榜（番茄/起点等中文网文域）完全别域"
+  },
+  {
+   "slug": "story-scan",
+   "repo": "Imbad0202/academic-research-skills",
+   "score": 23,
+   "share": 3,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "学术研究技能集（CC BY-NC 非商业）——对 story 系网文创作/审校/扫榜（番茄/起点等中文网文域）完全别域"
+  },
+  {
+   "slug": "story-short-write",
+   "repo": "Imbad0202/academic-research-skills",
+   "score": 23,
+   "share": 3,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "学术研究技能集（CC BY-NC 非商业）——对 story 系网文创作/审校/扫榜（番茄/起点等中文网文域）完全别域"
+  },
+  {
+   "slug": "utf8-encoding-fix",
+   "repo": "getsentry/MobileBuildMCP",
+   "score": 20,
+   "share": 2,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "Sentry iOS/macOS 构建 MCP——对 shadcn（UI 组件）/ utf8-encoding-fix（编码修复）域不同"
+  },
+  {
+   "slug": "wechat-automation",
+   "repo": "siddsachar/row-bot",
+   "score": 21,
+   "share": 2,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "row-bot（推文/rows 自动化 bot）——对 shell-encoding-pitfalls（编码坑）/ wechat-automation（微信自动化）/ windows-cli-utf8-wrapper（subprocess 包装）能力域不同"
+  },
+  {
+   "slug": "windows-bash-cli-interop-pitfalls",
+   "repo": "parcadei/Continuous-Claude-v3",
+   "score": 18,
+   "share": 2,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "Claude 连续运行指南——对 c-cleanup（C 盘清理）/ windows-bash-cli-interop-pitfalls（bash 互操作坑）域不同"
+  },
+  {
+   "slug": "windows-cli-utf8-wrapper",
+   "repo": "siddsachar/row-bot",
+   "score": 21,
+   "share": 2,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "row-bot（推文/rows 自动化 bot）——对 shell-encoding-pitfalls（编码坑）/ wechat-automation（微信自动化）/ windows-cli-utf8-wrapper（subprocess 包装）能力域不同"
+  },
+  {
+   "slug": "windows-native-ocr",
+   "repo": "Anionex/agent-vision-toolkit",
+   "score": 16,
+   "share": 2,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "agent 视觉工具包——对 windows-native-ocr（Windows 原生 OCR）域有重叠但本仓是零下载 NPU 原生方案，候选是云/模型方案（依赖哲学不同）"
+  },
+  {
+   "slug": "workbuddy-mcp",
+   "repo": "googleapis/mcp-toolbox",
+   "score": 21,
+   "share": 0,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "Google MCP Toolbox（DB 连接工具箱）——对 mcp-builder（MCP 服务器构建指南）/ workbuddy-mcp（腾讯系连接器总控）域不同"
+  },
+  {
+   "slug": "writing-plans",
+   "repo": "Imbad0202/academic-research-skills",
+   "score": 23,
+   "share": 3,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "学术研究技能集（CC BY-NC 非商业）——对 story 系网文创作/审校/扫榜（番茄/起点等中文网文域）完全别域"
+  }
+ ]
+}
