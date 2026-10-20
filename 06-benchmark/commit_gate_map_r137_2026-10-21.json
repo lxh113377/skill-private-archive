@@ -1,0 +1,28 @@
+{
+ "schema": "commit-gate-map-r137-v1",
+ "cmd": "python 05-exec/r137_commit_gate_map.py --json <out>",
+ "staged_n": 2,
+ "staged": [
+  "05-exec/r137_commit_gate_map.py",
+  "06-benchmark/gate_run_r136_final.json"
+ ],
+ "required_gates": {
+  "proposal_evidence_face": {
+   "gates": [
+    "05-exec/r137_commit_gate_map.py"
+   ],
+   "why": "改了 05-exec/ 下的判据/工具 ⇒ 新判据须过入库准入门（提案证据面同步）",
+   "in_gates_table": true
+  }
+ },
+ "required_gate_ids": [
+  "proposal_evidence_face"
+ ],
+ "in_scope_n": 1,
+ "reading": {
+  "in_scope_n": "本次提交落在本仓纪律面的门数（0 = 不属本仓判据面，不阻断）",
+  "required_gate_ids": "本次提交**必须过**的门 id 列表 —— pre-commit 依此逐门跑并按结果阻断",
+  "staged_n": "本次暂存文件数"
+ },
+ "generated_at": "2026-10-20 19:10"
+}

@@ -48,6 +48,18 @@ ORIGIN = "ci" if os.environ.get("GITHUB_ACTIONS") == "true" else "local"
 # 单一真相源：门禁清单只在这里维护。AGENTS.md / CI / 会话内手工跑，都走本表。
 GATES = [
     {
+        # r137：本次提交该过哪道门（纪律强制点的判定面 —— pre-commit 据此分级阻断）
+        "id": "commit_gate_map_face",
+        "script": "r137_commit_gate_map.py",
+        "argv": ["--json", "_temp/commit_gate_map.json"],
+        "pass_token": "[GATEMAP]",
+        "portable": False,
+        "not_portable_reason": "读 git 暂存区（换机无本仓暂存态时检查失去对象）",
+        "covers": ["按暂存文件判定本次提交落在哪些纪律面门（05-exec/ / 提案台账 / 报告 / AGENTS.md / 07 台账 / 门表）",
+                   "不在纪律面 ⇒ in_scope=0 ⇒ pre-commit 不阻断（不挡并行会话的活）"],
+        "why": "r136 盘点出本仓 5 条强制条目全部没有流程强制点（门只跑不阻断、hook 全部 exit 0）。r130 的 pre-commit 刻意不阻断，理由正当：并行会话也在改同一个仓，无差别阻断 = 把判据变成「别人的活干不下去」（R269 反面）。本门给出第三条路：**分级阻断** —— 只跑本次变更触发的门、只阻断这些门的红，并留逃生阀 SKIP_COMMIT_GATES=1。r137 反向验证 6/6：改 07=>debt_aging、改 AGENTS=>门表闸、写报告=>因果面、改提案=>提案证据面、改门表=>门表闸、非纪律面=>不触发。",
+    },
+    {
         # r136：提案证据自覆盖面（纪律作用到自己身上 —— 提案入册前必过）
         "id": "proposal_evidence_face",
         "script": "r136_proposal_evidence.py",

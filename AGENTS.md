@@ -129,6 +129,36 @@ r135 收尾发现一个刺眼事实：**第 11 条提案自己的处方，没被
 （其中 4 条连 evidence / acceptance 字段都没有）。r136 逐条处理后 11/11 完整。
 ⇒ 这不是别人的问题，是**我自己写提案时没走自己立的纪律**。
 
+## ⚠️ 纪律须有阻断点（#35，2026-10-21 立规）
+
+立了纪律却没有**阻断点**，等于没立。r136 盘点：本仓 5 条强制条目**全部没有流程强制点**
+（门只跑不阻断、`.git/hooks` 三个 hook 全部 `exit 0`）。
+
+**机器判据**：本次提交若落在纪律面（改 `05-exec/` / 转办提案 / 对标报告 / `AGENTS.md` /
+`memory/07-next-steps.md` / `run_gates.py`），则**对应的门必须过**，否则**阻断提交**。
+判定由 `python 05-exec/r137_commit_gate_map.py --json <件>`（第 49 门）给出
+`required_gate_ids` / `in_scope_n`；`pre-commit` 依此逐门跑（`run_gates.py --gate <id> --no-ledger`）并按结果阻断。
+
+**分级原则（R137 定）**：
+- **不在纪律面**（`in_scope_n = 0`）⇒ **不阻断** —— 并行会话也在改同一个仓，
+  无差别阻断 = 把我的判据变成「别人的活干不下去」（R269 反面）。这是 r130 老 hook 一直 exit 0 的正当理由，保留。
+- **在纪律面** ⇒ 逐门跑，只阻断**这些门**的红；不连带阻断其他门（避免把无关的历史红算到本次头上）。
+- **逃生阀**：`SKIP_COMMIT_GATES=1 git commit ...` 可放行，但**必须在提交说明里写明为何先落盘**。
+- **台账不污染**：hook 用 `--no-ledger` 试跑，不写门禁台账（新鲜度门读的是完整跑的台账）。
+
+**5 条强制条目的阻断点现状（r137 实测）**：
+
+| 条目 | 触发条件 | 阻断的门 | 状态 |
+|---|---|---|---|
+| #30 落盘强制 | 改 `memory/07-next-steps.md` | `debt_aging`（账龄件重生） | 有阻断点 |
+| #31 处方必先实测 | 改转办提案台账 | `proposal_evidence_face` | 有阻断点 |
+| #32 判据面必先实测 | 改 `05-exec/` 下的判据 | `proposal_evidence_face` + 门表对账闸 | 有阻断点 |
+| #33 结论层推理须标注 | 写/改对标报告 | `causal_evidence_face` | 有阻断点 |
+| #34 纪律自用 | 改提案 / 改 `AGENTS.md` | `proposal_evidence_face` + `gate_table_reconcile` | 有阻断点 |
+
+> 取值：`python 05-exec/r137_commit_gate_map.py --json <件>` 的 `required_gate_ids`；
+> 阻断行为实测见 `_temp/v23_redprobe.py`（造一条无支撑提案 ⇒ 门面报「无读数支撑 1」⇒ 该门红 ⇒ hook 阻断）。
+
 ## ⚠️ 每轮收尾强制（#30，2026-10-20 老大立规）
 
 本轮产生的**任何**建议/待办/改进项，必须在本轮内自动落盘到 `memory/07-next-steps.md`（或分卷），
