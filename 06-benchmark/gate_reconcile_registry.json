@@ -2,6 +2,7 @@
  "schema": "gate-reconcile-registry-r130-v1",
  "gates": {
   "_snapshot_gate_ids": [
+   "causal_evidence_face",
    "direct_fix_efficacy_face",
    "closure_layers_face",
    "gate_table_reconcile",
@@ -48,7 +49,7 @@
    "r117_upstream_delta_fixtures",
    "direct_closure_face"
   ],
-  "_snapshot_at": "2026-10-20 18:09",
+  "_snapshot_at": "2026-10-20 18:32",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
@@ -64,6 +65,10 @@
   "direct_fix_efficacy_face": {
    "evidence": "06-benchmark/direct_fix_efficacy_r132_2026-10-20.json",
    "at": "2026-10-20 17:56"
+  },
+  "causal_evidence_face": {
+   "evidence": "06-benchmark/causal_census_r134_2026-10-21.json",
+   "at": "2026-10-20 18:32"
   }
  }
 }

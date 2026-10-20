@@ -1,0 +1,26 @@
+{
+ "schema": "causal-evidence-r134-v1",
+ "cmd": "python 05-exec/r134_causal_evidence.py --report <report> --json <out>",
+ "report": "全量对标报告_r133_第11类语料语言不匹配与判据面三形态_2026-10-21.md",
+ "window": 14,
+ "face": {
+  "causal_lines_n": 4,
+  "evidenced_n": 4,
+  "inferred_n": 0,
+  "falsified_n": 0,
+  "evidence_line_n": 15,
+  "reading": {
+   "inferred_n": [
+    "有因果表述但同报告 ±window 行内无实测支撑 = **仅推理**。",
+    "这不是红，是清单：它们的正确处理是标注「未实测」或补一次实测。"
+   ],
+   "falsified_n": [
+    "报告里同时记下了「该假设被实测推翻」—— 这类是最诚实的写法，",
+    "判为合规（诚实记下证伪强于假装对）。"
+   ],
+   "evidenced_n": "同报告 ±window 行内有取值命令 / 逐条读数表支撑"
+  }
+ },
+ "inferred": [],
+ "generated_at": "2026-10-20 18:30"
+}

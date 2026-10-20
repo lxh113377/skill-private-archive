@@ -48,6 +48,19 @@ ORIGIN = "ci" if os.environ.get("GITHUB_ACTIONS") == "true" else "local"
 # 单一真相源：门禁清单只在这里维护。AGENTS.md / CI / 会话内手工跑，都走本表。
 GATES = [
     {
+        # r134：因果结论的证据面（结论层推理须标注或实测 —— R133-5 落地）
+        "id": "causal_evidence_face",
+        "script": "r134_causal_evidence.py",
+        "argv": ["--report", "06-benchmark/全量对标报告_r*.md"],
+        "pass_token": "[CAUSAL]",
+        "portable": False,
+        "not_portable_reason":
+            "读本仓 06-benchmark/ 下的对标报告（换机无该批报告时检查失去对象）",
+        "covers": ["因果句逐条分类：EVIDENCED（同报告 ±window 行内有可复算证据）/ INFERRED（仅推理）/ FALSIFIED（诚实记下被证伪）",
+                   "证据口径：只认可复算的东西（取值命令 / 逐条读数 / 复算），「实测」二字不算证据"], 
+        "why": "R133-5 缺口：#31 管处方、#32 管判据面，都管不到结论层推理。r133 一手：推理「超长语料会稀释语义重心」并差点写进报告，实测差值仅 0.0004 被证伪。r52_md_claim_face 只管数字有无可复算命令，不管因果结论有无实测支撑 —— 本门补这一腿。r134 全量普查：93 份报告 958 条因果行，仅推理 182 条（19%）。",
+    },
+    {
         # r132：转办处方的实测效力面（提案必先实测，不许未验证外推）
         "id": "direct_fix_efficacy_face",
         "script": "r132_direct_fix_efficacy.py",

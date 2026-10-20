@@ -1,0 +1,664 @@
+{
+ "schema": "causal-census-r134-v1",
+ "cmd": "对 06-benchmark/全量对标报告_r*.md 逐份跑 r134_causal_evidence.py",
+ "face": {
+  "reports_n": 93,
+  "causal_n": 958,
+  "evidenced_n": 758,
+  "inferred_n": 182,
+  "falsified_n": 18
+ },
+ "rows": [
+  {
+   "report": "全量对标报告_r100_名册派生与两件换装_2026-10-02.md",
+   "causal": 15,
+   "evidenced": 13,
+   "inferred": 0,
+   "falsified": 2
+  },
+  {
+   "report": "全量对标报告_r101_名册优质半边与同事实单尺_2026-10-02.md",
+   "causal": 5,
+   "evidenced": 4,
+   "inferred": 0,
+   "falsified": 1
+  },
+  {
+   "report": "全量对标报告_r102_门禁六红清零_2026-10-02.md",
+   "causal": 3,
+   "evidenced": 3,
+   "inferred": 0,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r103_假零面修复与换装首次成立_2026-10-03.md",
+   "causal": 13,
+   "evidenced": 11,
+   "inferred": 1,
+   "falsified": 1
+  },
+  {
+   "report": "全量对标报告_r105_换装尺自我证伪与陈旧输入面返工_2026-10-04.md",
+   "causal": 18,
+   "evidenced": 16,
+   "inferred": 0,
+   "falsified": 2
+  },
+  {
+   "report": "全量对标报告_r107_四项改造与棘轮归因终局_2026-10-15.md",
+   "causal": 5,
+   "evidenced": 5,
+   "inferred": 0,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r108_四项改造与并行甩件回收_2026-10-16.md",
+   "causal": 10,
+   "evidenced": 10,
+   "inferred": 0,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r109_四项改造与AGENTS索引壳化_2026-10-16.md",
+   "causal": 5,
+   "evidenced": 4,
+   "inferred": 1,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r111_语义尺工程负面结论与W32闭环_2026-10-17.md",
+   "causal": 9,
+   "evidenced": 7,
+   "inferred": 2,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r112_第19维版本落后面与四项改造_2026-10-17.md",
+   "causal": 10,
+   "evidenced": 10,
+   "inferred": 0,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r113_r112中断轮回收与第19维收口及季度巡检首立_2026-10-18.md",
+   "causal": 32,
+   "evidenced": 32,
+   "inferred": 0,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r114_替代矩阵与质量基准_2026-10-18.md",
+   "causal": 13,
+   "evidenced": 11,
+   "inferred": 1,
+   "falsified": 1
+  },
+  {
+   "report": "全量对标报告_r117_中断轮收口与路由miss归因_2026-10-18.md",
+   "causal": 16,
+   "evidenced": 16,
+   "inferred": 0,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r118_换装影响上界与miss失败层归因_2026-10-18.md",
+   "causal": 10,
+   "evidenced": 10,
+   "inferred": 0,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r119_语料区分度改造首次产生真实质量提升_2026-10-20.md",
+   "causal": 15,
+   "evidenced": 15,
+   "inferred": 0,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r119b_陈旧输入面返工与唯一可达件修复_2026-10-20.md",
+   "causal": 25,
+   "evidenced": 25,
+   "inferred": 0,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r120_第8类失败层L0域过滤latent_exposure_2026-10-20.md",
+   "causal": 9,
+   "evidenced": 8,
+   "inferred": 0,
+   "falsified": 1
+  },
+  {
+   "report": "全量对标报告_r120b_三项判据常驻化与控件语义修正_2026-10-20.md",
+   "causal": 24,
+   "evidenced": 20,
+   "inferred": 3,
+   "falsified": 1
+  },
+  {
+   "report": "全量对标报告_r121_需求6判定链补齐与同号多副本面_2026-10-20.md",
+   "causal": 16,
+   "evidenced": 14,
+   "inferred": 2,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r122_域暴露题加固做了但应回滚_2026-10-20.md",
+   "causal": 8,
+   "evidenced": 5,
+   "inferred": 3,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r123_回滚决策被生产实测翻转与沙箱偏差根因_2026-10-20.md",
+   "causal": 11,
+   "evidenced": 11,
+   "inferred": 0,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r123b_入口不一致根治与区间归因通道_2026-10-20.md",
+   "causal": 29,
+   "evidenced": 29,
+   "inferred": 0,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r124_时序坑机械化与债务追讨轮_2026-10-20.md",
+   "causal": 6,
+   "evidenced": 6,
+   "inferred": 0,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r125_替代候选机器腿全量与共享度分层_2026-10-20.md",
+   "causal": 9,
+   "evidenced": 9,
+   "inferred": 0,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r125_连续三轮假红根治与自指门收口_2026-10-20.md",
+   "causal": 12,
+   "evidenced": 11,
+   "inferred": 1,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r126_独占14件C2人读全KEEP_2026-10-20.md",
+   "causal": 1,
+   "evidenced": 1,
+   "inferred": 0,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r126_第9类失败层Tag闭包_2026-10-20.md",
+   "causal": 8,
+   "evidenced": 5,
+   "inferred": 3,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r127_批量预判120件与债务追讨二轮_2026-10-20.md",
+   "causal": 4,
+   "evidenced": 4,
+   "inferred": 0,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r127_推翻r126结论与沙箱前置门_2026-10-20.md",
+   "causal": 12,
+   "evidenced": 11,
+   "inferred": 0,
+   "falsified": 1
+  },
+  {
+   "report": "全量对标报告_r128_W47第四腿与全仓判据普查_2026-10-20.md",
+   "causal": 5,
+   "evidenced": 5,
+   "inferred": 0,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r128_低共享批1全KEEP_2026-10-20.md",
+   "causal": 1,
+   "evidenced": 1,
+   "inferred": 0,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r129_R1141全面闭环182件全KEEP_2026-10-20.md",
+   "causal": 3,
+   "evidenced": 3,
+   "inferred": 0,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r129_建议变机器约束与第41门_2026-10-20.md",
+   "causal": 6,
+   "evidenced": 5,
+   "inferred": 1,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r130_盲区抽查发现真盲区结论加固_2026-10-20.md",
+   "causal": 4,
+   "evidenced": 3,
+   "inferred": 1,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r130_纪律变机制与门表对账闸_2026-10-20.md",
+   "causal": 8,
+   "evidenced": 7,
+   "inferred": 1,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r131_第10类失败层direct_map抢答与三层闭包_2026-10-21.md",
+   "causal": 5,
+   "evidenced": 4,
+   "inferred": 1,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r132_处方效力实测与AGENTS31_2026-10-21.md",
+   "causal": 1,
+   "evidenced": 1,
+   "inferred": 0,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r133_第11类语料语言不匹配与判据面三形态_2026-10-21.md",
+   "causal": 4,
+   "evidenced": 4,
+   "inferred": 0,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r18_2026-09-24.md",
+   "causal": 3,
+   "evidenced": 1,
+   "inferred": 2,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r19_2026-09-24.md",
+   "causal": 39,
+   "evidenced": 24,
+   "inferred": 14,
+   "falsified": 1
+  },
+  {
+   "report": "全量对标报告_r20_插件面补口径_2026-09-24.md",
+   "causal": 5,
+   "evidenced": 0,
+   "inferred": 5,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r21_重复轮次闸门_2026-09-24.md",
+   "causal": 11,
+   "evidenced": 8,
+   "inferred": 3,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r27_2026-09-24.md",
+   "causal": 2,
+   "evidenced": 0,
+   "inferred": 2,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r28_六段解剖AB_2026-09-24.md",
+   "causal": 7,
+   "evidenced": 3,
+   "inferred": 4,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r29_双口径与范围过滤_2026-09-24.md",
+   "causal": 11,
+   "evidenced": 6,
+   "inferred": 5,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r30_四档稳健性与反理性化首批_2026-09-25.md",
+   "causal": 7,
+   "evidenced": 1,
+   "inferred": 5,
+   "falsified": 1
+  },
+  {
+   "report": "全量对标报告_r31_自动化验收面_2026-09-25.md",
+   "causal": 29,
+   "evidenced": 12,
+   "inferred": 17,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r32_CI有效性_2026-09-25.md",
+   "causal": 21,
+   "evidenced": 14,
+   "inferred": 7,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r33_发布与治理面_2026-09-25.md",
+   "causal": 16,
+   "evidenced": 11,
+   "inferred": 5,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r34_可移植性_2026-09-25.md",
+   "causal": 17,
+   "evidenced": 11,
+   "inferred": 6,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r35_可移植性纵深_2026-09-25.md",
+   "causal": 15,
+   "evidenced": 7,
+   "inferred": 8,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r36_引用可解析性_2026-09-25.md",
+   "causal": 11,
+   "evidenced": 10,
+   "inferred": 1,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r37_门禁假阳性治理_2026-09-25.md",
+   "causal": 11,
+   "evidenced": 9,
+   "inferred": 2,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r38_债务到期治理_2026-09-25.md",
+   "causal": 11,
+   "evidenced": 10,
+   "inferred": 1,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r39_延期与终局分离_2026-09-25.md",
+   "causal": 6,
+   "evidenced": 4,
+   "inferred": 2,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r40_延期看守与归属反转_2026-09-25.md",
+   "causal": 8,
+   "evidenced": 7,
+   "inferred": 1,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r41_裁决时间序与结构归位_2026-09-25.md",
+   "causal": 8,
+   "evidenced": 1,
+   "inferred": 7,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r42_反弹根因与延期treadmill_2026-09-25.md",
+   "causal": 6,
+   "evidenced": 6,
+   "inferred": 0,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r43_反延期treadmill与分档宽限_2026-09-25.md",
+   "causal": 3,
+   "evidenced": 0,
+   "inferred": 3,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r44_裁决完整性落地_2026-09-25.md",
+   "causal": 8,
+   "evidenced": 6,
+   "inferred": 2,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r45_反降级免检与标记错位真因_2026-09-25.md",
+   "causal": 10,
+   "evidenced": 2,
+   "inferred": 8,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r46_标记写入唯一入口_2026-09-25.md",
+   "causal": 14,
+   "evidenced": 3,
+   "inferred": 11,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r47_无法定年盲区清零_2026-09-25.md",
+   "causal": 3,
+   "evidenced": 3,
+   "inferred": 0,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r48_契约分代与归属可机检_2026-09-25.md",
+   "causal": 8,
+   "evidenced": 1,
+   "inferred": 7,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r49_判据输入面五面自证与三处劫持根因修_2026-09-25.md",
+   "causal": 15,
+   "evidenced": 10,
+   "inferred": 5,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r50_权威源扫描扩面与对手枚举面复核_2026-09-25.md",
+   "causal": 7,
+   "evidenced": 2,
+   "inferred": 5,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r51_取数面两路对账与判据接线自失效_2026-09-25.md",
+   "causal": 9,
+   "evidenced": 2,
+   "inferred": 7,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r52_md引用面两路对账与契约陈旧自检_2026-09-25.md",
+   "causal": 9,
+   "evidenced": 0,
+   "inferred": 9,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r53_名字不等于新鲜度与句柄化引用落地_2026-09-25.md",
+   "causal": 13,
+   "evidenced": 10,
+   "inferred": 3,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r54_指标再生预算与对手节律声明实测_2026-09-25.md",
+   "causal": 13,
+   "evidenced": 12,
+   "inferred": 1,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r55_同一判据两输入面根因收口与对手副本策略实测_2026-09-25.md",
+   "causal": 23,
+   "evidenced": 23,
+   "inferred": 0,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r56_声明要被机器校验_预算入契约与裁定件配生成器_2026-09-25.md",
+   "causal": 6,
+   "evidenced": 6,
+   "inferred": 0,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r58_动作固定面与判据自身三处假通过_2026-09-26.md",
+   "causal": 15,
+   "evidenced": 14,
+   "inferred": 1,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r59_根迁移致判据读死面与退役未移出_2026-09-29.md",
+   "causal": 46,
+   "evidenced": 42,
+   "inferred": 1,
+   "falsified": 3
+  },
+  {
+   "report": "全量对标报告_r60_能力覆盖名册差集_2026-09-30.md",
+   "causal": 14,
+   "evidenced": 12,
+   "inferred": 1,
+   "falsified": 1
+  },
+  {
+   "report": "全量对标报告_r61_八维结构化_2026-09-30.md",
+   "causal": 1,
+   "evidenced": 1,
+   "inferred": 0,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r62_八维结构化_2026-09-30.md",
+   "causal": 2,
+   "evidenced": 2,
+   "inferred": 0,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r63_红门修复与描述全量审计_2026-09-30.md",
+   "causal": 5,
+   "evidenced": 4,
+   "inferred": 0,
+   "falsified": 1
+  },
+  {
+   "report": "全量对标报告_r64_M2首批收口与在途产物入库_2026-09-30.md",
+   "causal": 2,
+   "evidenced": 2,
+   "inferred": 0,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r65_M2范围裁定与自建面达标_2026-09-30.md",
+   "causal": 10,
+   "evidenced": 10,
+   "inferred": 0,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r66_W46b生成器面接线判红_2026-09-30.md",
+   "causal": 10,
+   "evidenced": 10,
+   "inferred": 0,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r67_R58-1仓外输入固定面本地面_2026-09-30.md",
+   "causal": 7,
+   "evidenced": 7,
+   "inferred": 0,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r68_pin台账增量落账与跨轮趋势_2026-09-30.md",
+   "causal": 3,
+   "evidenced": 3,
+   "inferred": 0,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r69_pin清单热度排序与继承链_2026-10-01.md",
+   "causal": 3,
+   "evidenced": 3,
+   "inferred": 0,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r70_新面孔优先与热度滑动窗口_2026-10-01.md",
+   "causal": 5,
+   "evidenced": 5,
+   "inferred": 0,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r71_热度时间窗与新面孔配额_2026-10-01.md",
+   "causal": 8,
+   "evidenced": 8,
+   "inferred": 0,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r72_逐字重复触发自审与三处缺陷_2026-10-01.md",
+   "causal": 4,
+   "evidenced": 4,
+   "inferred": 0,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r73_坏行行号与继承截断标记_2026-10-01.md",
+   "causal": 7,
+   "evidenced": 7,
+   "inferred": 0,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r74_next跨批语义分歧收口_2026-10-01.md",
+   "causal": 13,
+   "evidenced": 13,
+   "inferred": 0,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r76_存量09回填与头模板一致性判据_2026-10-01.md",
+   "causal": 17,
+   "evidenced": 17,
+   "inferred": 0,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r77_八维结构化_2026-10-01.md",
+   "causal": 4,
+   "evidenced": 4,
+   "inferred": 0,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r97_全出口退役与判据假阴性修正_2026-10-01.md",
+   "causal": 3,
+   "evidenced": 3,
+   "inferred": 0,
+   "falsified": 0
+  },
+  {
+   "report": "全量对标报告_r99_十二维补面与覆盖根修_2026-10-02.md",
+   "causal": 4,
+   "evidenced": 3,
+   "inferred": 0,
+   "falsified": 1
+  }
+ ]
+}

@@ -3,7 +3,7 @@
  "generated_at": "2026-10-20 09:54",
  "metrics": {
   "catalog_grand_chars": 56312,
-  "inject_union_bytes": 67967,
+  "inject_union_bytes": 69636,
   "claim_candidates": 4,
   "drift_ruleish_candidates": 32,
   "desc_over_cap": 0,
@@ -195,6 +195,17 @@
    "commit": "r133-rule32-and-proposal11",
    "path": "(range-attribution)",
    "reason": "r133 range attribution: inject_union_bytes 66411->67967 (+1556). Cause: AGENTS.md gained rule #32 (corpus-face three-form must be measured, ~900 chars) plus rule #31 expansion from r132, and transmit_proposals.json gained proposal #11 (corpus_lang_mismatch) which is part of the injected surface. Both are intentional content additions (governance rules + a validated transfer proposal), not injection leakage. Ratchet only-down semantics unchanged.",
+   "kind": "range"
+  },
+  {
+   "metric": "inject_union_bytes",
+   "from_value": 67967,
+   "to_value": 69636,
+   "delta": 1669,
+   "at": "2026-10-20 18:36",
+   "commit": "r134-rule33",
+   "path": "(range-attribution)",
+   "reason": "r134 attribution: inject_union_bytes 67967 to 69636 (+1669). Cause: AGENTS.md gained rule #33 (causal-layer reasoning must be marked or measured) plus #32 expansion, and the r134 report itself is in the injected surface. Intentional content additions; ratchet only-down semantics unchanged.",
    "kind": "range"
   }
  ],
