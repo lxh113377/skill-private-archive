@@ -1,9 +1,9 @@
 {
  "schema": "debt-aging-v2",
- "generated_at": "2026-10-20T18:49:13",
+ "generated_at": "2026-10-20T18:52:39",
  "readonly": true,
  "grace_rounds": 2,
- "current_round": 134,
+ "current_round": 135,
  "round_source": "git log --format=%s -40 中最大 rNN（未硬编码）",
  "verdict_taxonomy": [
   "OVERDUE",
@@ -101,12 +101,12 @@
   "items_total": 197,
   "open_total": 72,
   "closed_total": 125,
-  "raw_item_lines": 201
+  "raw_item_lines": 197
  },
  "by_class": {
   "OVERDUE": 0,
-  "ACTIVE": 17,
-  "DECIDED": 42,
+  "ACTIVE": 14,
+  "DECIDED": 45,
   "UNDATED": 13,
   "DEFERRED": 0,
   "REPEAT": 0
@@ -116,22 +116,22 @@
   {
    "title": "R113-6 本仓远端实测为 public（记忆 15 处声称「私有归档仓」）：核实并裁定 X-2/AGPL 合入的合规前提（由 flow ",
    "file": "memory\\07-next-steps.md",
-   "line": 76
+   "line": 72
   },
   {
    "title": "R113-4 注入面 +97B 外部在途（A-memory-start/references/contract.md 11:37 第三方会话",
    "file": "memory\\07-next-steps.md",
-   "line": 77
+   "line": 73
   },
   {
    "title": "R113-3 AGPL-3.0 上游合入合规口径待裁（hyperframes-registry 引入 calesthio/OpenMonta",
    "file": "memory\\07-next-steps.md",
-   "line": 178
+   "line": 174
   },
   {
    "title": "R112-5 受管根 rule_editor gates 的 mirror 组件超时（300s skip）+ noise 2 项外部在途，待",
    "file": "memory\\07-next-steps.md",
-   "line": 179
+   "line": 175
   },
   {
    "title": "R113-7 需求2 字面缺口：余 56 件 unknown + 143 件盲区仍无替代检索面（每一个现有 skill 都应有候选清单）（由",
@@ -248,22 +248,22 @@
  },
  "input_face": {
   "round": {
-   "log": 134,
+   "log": 135,
    "tag": 134,
    "ok": true,
-   "detail": "log=r134 ≥ tag=r134（差 0 轮：本轮 tag 已打，两源一致）"
+   "detail": "log=r135 ≥ tag=r134（差 1 轮：本轮尚未打 tag，属每轮收尾打标的既有节奏）"
   },
   "floor": {
    "ok": true,
    "detail": "上轮 80 卷全部在本轮 80 卷面内（拆卷只增不减，无需豁免表）"
   },
   "dedup": {
-   "ok": false,
-   "detail": "RE_ITEM 命中 201 行，只计入 197 条 ⇒ 有 4 行被静默吞掉"
+   "ok": true,
+   "detail": "197 行全部计入，80 字前缀键零碰撞"
   },
   "dup": {
    "ok": false,
-   "detail": "5 组同号多副本存在未勾销副本（首例 R133-1：2 处，跨 1 卷 07-next-steps.md）⇒ 疑似漏勾销致重复计账"
+   "detail": "1 组同号多副本存在未勾销副本（首例 R133-1：2 处，跨 1 卷 07-next-steps.md）⇒ 疑似漏勾销致重复计账"
   },
   "dating": {
    "ok": null,
@@ -274,11 +274,10 @@
    "ok": true,
    "detail": "4 条新编号全部在各自承接面有登记行（待办 4 条 / 禁止项 0 条）"
   },
-  "raw_lines": 201,
+  "raw_lines": 197,
   "collisions": [],
   "status": "FAIL",
   "red_faces": [
-   "dedup",
    "dup"
   ],
   "unverified_faces": [
@@ -288,42 +287,37 @@
  "unowned_claims": [
   {
    "file": "memory\\07-next-steps.md",
-   "line": 49,
-   "title": "**R132-2（r132 登记，P0·转办焚诀侧）** 4 条 B_NEIGHBOR_RANK 需要**第二道处方**（排序面或语料面），本轮未给出方案。已知线索：① `录音转文"
-  },
-  {
-   "file": "memory\\07-next-steps.md",
-   "line": 58,
+   "line": 54,
    "title": "R127-2（r127 登记，P0）** **判据只建模半条链就会产出假红**：`bge_recall` 有两次候选集构造（tag/域受限 + L1.5 union 兜底），只看第"
   },
   {
    "file": "memory\\07-next-steps.md",
-   "line": 59,
+   "line": 55,
    "title": "R127-3（r127 登记，P1）** 域失配 51 条里实测只有 6 条期望件真不在候选集，另 4 条在候选集内只是排序问题（top 0.57-0.62），其中 3 条的期望件"
   },
   {
    "file": "memory\\07-next-steps.md",
-   "line": 60,
+   "line": 56,
    "title": "R127-4（r127 登记，P1）** 转办台账的 `noise_scope_footgun`（r31 的 17 条 VIOL）实则已被受管根 R286 登记面闭环（f2 腿全过"
   },
   {
    "file": "memory\\07-next-steps.md",
-   "line": 65,
+   "line": 61,
    "title": "R126-3（r126 登记，P1）** 27 条 tag_closed 与 51 条 domain_closed 需**分级**：本轮只把 `raw_rank<=5` 的 15 "
   },
   {
    "file": "memory\\07-next-steps.md",
-   "line": 67,
+   "line": 63,
    "title": "R126-5（r126 登记，P2）** 本轮证实：`直接_route → normalize → classify_domain → tag_filter → bge_recal"
   },
   {
    "file": "memory\\07-next-steps.md",
-   "line": 148,
+   "line": 144,
    "title": "R125-5（r125 登记，P2）** 本轮四项改造全部是**判据/基础设施层**的，未触碰任何质量面（路由/语料/债务）。这是对的选择（先让判据可信再谈质量），但连续两轮基础设"
   },
   {
    "file": "memory\\07-next-steps.md",
-   "line": 179,
+   "line": 175,
    "title": "R112-5 受管根 rule_editor gates 的 mirror 组件超时（300s skip）+ noise 2 项外部在途，待归属方收口后复跑（由 flow 登记；状"
   },
   {
