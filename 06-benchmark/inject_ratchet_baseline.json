@@ -3,12 +3,12 @@
  "generated_at": "2026-10-20 11:54",
  "metrics": {
   "catalog_grand_chars": 56312,
-  "inject_union_bytes": 87033,
+  "inject_union_bytes": 88829,
   "claim_candidates": 4,
   "drift_ruleish_candidates": 32,
   "desc_over_cap": 0,
   "username_in_skill_files": 0,
-  "overdue_debt_items": 9,
+  "overdue_debt_items": 10,
   "deferred_debt_items": 0,
   "repeat_debt_items": 0
  },
@@ -294,6 +294,17 @@
    "commit": "r144-R144-4-registration",
    "path": "(range-attribution)",
    "reason": "r144 range attribution: overdue_debt_items 8->9 (+1). Cause: R144-4 registered this round (P2 leftover: ledger/install atomicity window for H7) - it is a deliberately open tracking item with a due date, not overdue debt from neglect. Ratchet baseline to be reconciled by owner-side aging.",
+   "kind": "range"
+  },
+  {
+   "metric": "overdue_debt_items",
+   "from_value": 9,
+   "to_value": 10,
+   "delta": 1,
+   "at": "2026-10-20 22:20",
+   "commit": "r145-R145-4-registration",
+   "path": "(range-attribution)",
+   "reason": "r145 range attribution: overdue_debt_items 9->10 (+1). Cause: R145-4 registered this round (P2 leftover: cross-session grace window falls back to git_user match; thorough fix needs a git-internal pending marker). Deliberately open tracking item with due date, not neglect.",
    "kind": "range"
   }
  ],

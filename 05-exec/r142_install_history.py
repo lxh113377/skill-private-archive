@@ -21,6 +21,7 @@ import argparse
 import io
 import json
 import os
+import subprocess
 from datetime import datetime
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -133,6 +134,7 @@ def main():
         anchor_path = os.path.join(ROOT, '06-benchmark', 'hook_install_ledger.json')
         h7 = False
         h7_note = ""
+        ent = {}  # r145 防御：except 路径上 ent 可能未定义（宽限判别引用它）
         try:
             ledger = json.load(io.open(anchor_path, encoding="utf-8-sig")) or {}
             ent = (ledger.get("hook") or {}).get(name) or {}
@@ -151,12 +153,43 @@ def main():
         except Exception as e:
             h7 = False
             h7_note = "台账不可读: %r" % (e,)
+        # r145 H7 宽限判别（R144-4 落地）：台账落后但落后的那一行是**本会话自己装的**
+        # ⇒ 这是「装了还没提交」的窗口期，非篡改 ⇒ WARNING 不判红。
+        # 判别式：台账 lines == 实际行数-1 且 缺的那行 invoker.session ∈ 本机会话标识集。
+        # 会话标识集 = 当前 env 会话 + git config user（同人多会话时 pid 不同 session 同）。
+        # 反向仍紧：落后 >1 行、或缺的行来自别的会话 ⇒ 维持判红（那不是窗口期）。
+        h7_warning = ''
+        if not h7 and ent and isinstance(ent.get('lines'), int):
+            missing = len(log) - ent['lines']
+            last_o = log[-1][1] if log and isinstance(log[-1][1], dict) else {}
+            cur_sessions = set()
+            for k in ('DSH_SESSION_ID', 'CLAUDE_SESSION_ID', 'TERM_SESSION_ID'):
+                if os.environ.get(k):
+                    cur_sessions.add(os.environ.get(k))
+            cur_users = set()
+            try:
+                gu = subprocess.run(['git', 'config', 'user.name'], cwd=ROOT,
+                                    capture_output=True, text=True, encoding='utf-8',
+                                    errors='replace', timeout=60).stdout.strip()
+                if gu:
+                    cur_users.add(gu)
+            except Exception:
+                pass
+            last_sess = ((last_o.get('invoker') or {}).get('session') or '')
+            last_user = ((last_o.get('invoker') or {}).get('git_user') or '')
+            same_actor = (last_sess in cur_sessions) if cur_sessions else (last_user in cur_users)
+            if missing == 1 and same_actor and ent.get('last_line_hash') == (
+                    log[-2][1].get('line_hash') if len(log) >= 2 and isinstance(log[-2][1], dict) else ''):
+                h7 = True
+                h7_warning = ('台账落后 1 行且缺行系本会话所装（session/user 匹配）'
+                              '=> 窗口期宽限，安装后请尽快提交台账')
         rows.append({'hook': name, 'log_lines': len(log),
                      'h1_history_exists': h1, 'h2_rows_complete': h2,
                      'h3_seq_monotonic': h3, 'h4_last_matches_snapshot': h4,
                      'h5_at_least_two': h5,
                      'h6_chain_intact': h6,
                      'h7_anchor_match': h7,
+                     'h7_warning': h7_warning,
                      'h7_note': h7_note,
                      'chain_note': chain_note,
                      'legacy_lines_n': legacy_n,
