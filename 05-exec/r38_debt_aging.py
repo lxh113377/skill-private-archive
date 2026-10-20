@@ -259,13 +259,14 @@ def count_deferrals(text):
     """
     heads = [h.group(2).strip() for h in RE_MARK_HEAD.finditer(text or "")]
     if heads:
-        # ② 从后往前找最后一个终局裁决，只数它之后的挂账
-        last_final = -1
-        for i, h in enumerate(heads):
-            if re.match(r"(执行|降级|作废|保留)", h):
-                last_final = i
-        active = heads[last_final + 1:]
-        return sum(1 for h in active if re.match(r"挂账至\s*r\d{1,3}", h))
+        # r123 自抓（q2 腿抓出）：口径② 原实现「终局后清零」把**终局前的历史改期也抹成 0**，
+        # 与第 43 行规则「同一条目被改期 >= 2 次 ⇒ REPEAT」直接冲突 ——
+        # 实例：条目「挂账 r49 → 执行完毕」只改期 1 次，按规则不该 REPEAT，
+        # 但按「数活跃链」得 0 次会把真实发生过的改期从账上抹掉（反向失真）。
+        # 正确口径 = **历史改期总数**（终局前的挂账全部计入）+ 终局后的挂账计入新一轮，
+        # 两者相加才是「这条目一共被改过几次期」。
+        total = sum(1 for h in heads if re.match(r"挂账至\s*r\d{1,3}", h))
+        return total
     return len(RE_DEFERRAL.findall(text or ""))
 
 

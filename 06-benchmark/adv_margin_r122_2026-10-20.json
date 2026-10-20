@@ -4,27 +4,27 @@
   {
    "slug": "pixelle-api-ensure",
    "old_normal": 0.1219,
-   "new_normal": 0.1073,
+   "new_normal": 0.0596,
    "old_adv": 0.1219,
-   "new_adv": 0.1073,
+   "new_adv": 0.0596,
    "old_adv_hit": true,
    "new_adv_hit": true
   },
   {
    "slug": "data-visualization",
    "old_normal": 0.0711,
-   "new_normal": 0.1434,
+   "new_normal": 0.0533,
    "old_adv": 0.0711,
-   "new_adv": 0.1434,
+   "new_adv": 0.0533,
    "old_adv_hit": true,
    "new_adv_hit": true
   },
   {
    "slug": "brainstorming",
    "old_normal": 0.1443,
-   "new_normal": 0.0865,
+   "new_normal": 0.0991,
    "old_adv": 0.1443,
-   "new_adv": 0.0865,
+   "new_adv": 0.0991,
    "old_adv_hit": true,
    "new_adv_hit": true
   }

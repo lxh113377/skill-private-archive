@@ -1,0 +1,95 @@
+{
+ "schema": "margin-cf-r123-v1",
+ "results": [
+  {
+   "slug": "pixelle-api-ensure",
+   "query": "帮我检测并启动本地 Pixelle 视频服务",
+   "baseline": {
+    "top1": "pixelle-api-ensure",
+    "exp_score": 0.5956,
+    "margin": 0.0596,
+    "hit": true
+   },
+   "candidate": {
+    "top1": "pixelle-api-ensure",
+    "exp_score": 0.6433,
+    "margin": 0.1073,
+    "hit": true
+   },
+   "candidate_adversarial": {
+    "top1": "pixelle-api-ensure",
+    "exp_score": 0.6433,
+    "margin": 0.1073,
+    "hit": true
+   },
+   "negative_control": {
+    "top1": "dogfood",
+    "exp_score": null,
+    "margin": null,
+    "hit": false
+   },
+   "margin_delta": 0.047700000000000006,
+   "verdict": "HARDENED_AND_ROBUST"
+  },
+  {
+   "slug": "data-visualization",
+   "query": "python 画 matplotlib 交互图",
+   "baseline": {
+    "top1": "data-visualization",
+    "exp_score": 0.6506,
+    "margin": 0.0533,
+    "hit": true
+   },
+   "candidate": {
+    "top1": "data-visualization",
+    "exp_score": 0.7421,
+    "margin": 0.1448,
+    "hit": true
+   },
+   "candidate_adversarial": {
+    "top1": "data-visualization",
+    "exp_score": 0.7421,
+    "margin": 0.1448,
+    "hit": true
+   },
+   "negative_control": {
+    "top1": "diagram-maker",
+    "exp_score": null,
+    "margin": null,
+    "hit": false
+   },
+   "margin_delta": 0.09150000000000001,
+   "verdict": "HARDENED_AND_ROBUST"
+  },
+  {
+   "slug": "brainstorming",
+   "query": "头脑风暴",
+   "baseline": {
+    "top1": "brainstorming",
+    "exp_score": 0.5132,
+    "margin": 0.0991,
+    "hit": true
+   },
+   "candidate": {
+    "top1": "brainstorming",
+    "exp_score": 0.5006,
+    "margin": 0.0865,
+    "hit": true
+   },
+   "candidate_adversarial": {
+    "top1": "brainstorming",
+    "exp_score": 0.5006,
+    "margin": 0.0865,
+    "hit": true
+   },
+   "negative_control": {
+    "top1": "A-skill-manager",
+    "exp_score": null,
+    "margin": null,
+    "hit": false
+   },
+   "margin_delta": -0.0126,
+   "verdict": "NO_GAIN"
+  }
+ ]
+}

@@ -54,8 +54,8 @@
    "query": "头脑风暴",
    "baseline": {
     "top1": "brainstorming",
-    "exp_score": 0.5191,
-    "margin": 0.105,
+    "exp_score": 0.5132,
+    "margin": 0.0991,
     "hit": true
    },
    "candidate": {
@@ -70,7 +70,7 @@
     "margin": null,
     "hit": false
    },
-   "margin_delta": 0.03580000000000001,
+   "margin_delta": 0.041700000000000015,
    "verdict": "HARDENED"
   }
  ]
