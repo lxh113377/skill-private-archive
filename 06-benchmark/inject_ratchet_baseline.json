@@ -8,9 +8,9 @@
   "drift_ruleish_candidates": 32,
   "desc_over_cap": 0,
   "username_in_skill_files": 0,
-  "overdue_debt_items": 1,
-  "deferred_debt_items": 11,
-  "repeat_debt_items": 3
+  "overdue_debt_items": 0,
+  "deferred_debt_items": 12,
+  "repeat_debt_items": 0
  },
  "hard_caps": {
   "inject_union_bytes": 65536
@@ -173,6 +173,17 @@
    "commit": "r123-parallel",
    "path": "(range-attribution)",
    "reason": "r123 range attribution: overdue_debt_items 0->8 (+8). All 8 items are newly registered P0/P1 todos from parallel session r123 (r123_deferral_chain_fixtures.py + R122-1/R123-* registrations in 07-next-steps.md), which are genuinely unfinished, not missed. Ratchet semantics unchanged (only-down): this is an attribution record for a legitimate external growth, not a threshold relaxation. Range covered 11:18->13:09 in one entry instead of 8 sequential --raise-baseline calls.",
+   "kind": "range"
+  },
+  {
+   "metric": "deferred_debt_items",
+   "from_value": 11,
+   "to_value": 12,
+   "delta": 1,
+   "at": "2026-10-20 17:43",
+   "commit": "r131-adjudication",
+   "path": "(range-attribution)",
+   "reason": "r131 range attribution: deferred_debt_items 11->12 (+1). Cause: R128-5 (venv unavailable during r128) was adjudicated with an explicit deferral target r133 pending a one-shot verification of whether managed venv has recovered. It is a genuine open item, not a threshold relaxation (ratchet only-down semantics unchanged).",
    "kind": "range"
   }
  ],

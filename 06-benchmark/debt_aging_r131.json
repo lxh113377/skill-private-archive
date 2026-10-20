@@ -1,6 +1,6 @@
 {
  "schema": "debt-aging-v2",
- "generated_at": "2026-10-20T17:40:09",
+ "generated_at": "2026-10-20T17:43:06",
  "readonly": true,
  "grace_rounds": 2,
  "current_round": 131,
@@ -104,63 +104,14 @@
   "raw_item_lines": 178
  },
  "by_class": {
-  "OVERDUE": 4,
+  "OVERDUE": 0,
   "ACTIVE": 1,
-  "DECIDED": 24,
+  "DECIDED": 27,
   "UNDATED": 13,
-  "DEFERRED": 11,
+  "DEFERRED": 12,
   "REPEAT": 0
  },
- "overdue": [
-  {
-   "file": "memory\\07-next-steps.md",
-   "line": 27,
-   "priority": "未标",
-   "owner": "UNOWNED",
-   "checked": false,
-   "class": "OVERDUE",
-   "detail": "账龄 3 轮 / 宽限 2",
-   "title": "R128-2（r128 登记，P1）** 对账器需要在**新判据首次落盘时**就跑（而不是等下一轮普查），否则假红会像 r126 那样先流到报告与转办提案里。落点：`A-project-better` 的「新判据」流程加",
-   "first_seen": "2026-10-20",
-   "dating_face": "OK"
-  },
-  {
-   "file": "memory\\07-next-steps.md",
-   "line": 28,
-   "priority": "未标",
-   "owner": "NONE",
-   "checked": false,
-   "class": "OVERDUE",
-   "detail": "账龄 3 轮 / 宽限 2",
-   "title": "R128-3（r128 登记，P1）** `route_miss_attr_r117`（20 条里 5 条假红）已被 r119 取代但产物仍在 `06-benchmark/`，会被误取为最新证据。取值：产物按 mtime",
-   "first_seen": "2026-10-20",
-   "dating_face": "OK"
-  },
-  {
-   "file": "memory\\07-next-steps.md",
-   "line": 29,
-   "priority": "未标",
-   "owner": "NONE",
-   "checked": false,
-   "class": "OVERDUE",
-   "detail": "账龄 3 轮 / 宽限 2",
-   "title": "R128-4（r128 登记，P2）** 对账器的 `latent` 语义目前是**硬编码 r120 的结论**（「域失配的题多数仍命中」⇒ 判脆弱+真命中算正常）。若未来 L1.5 兜底被改，这条会过期。落点：`lat",
-   "first_seen": "2026-10-20",
-   "dating_face": "OK"
-  },
-  {
-   "file": "memory\\07-next-steps.md",
-   "line": 30,
-   "priority": "未标",
-   "owner": "NONE",
-   "checked": false,
-   "class": "OVERDUE",
-   "detail": "账龄 3 轮 / 宽限 2",
-   "title": "R128-5（r128 登记，P2）** 本轮 venv（`~/.workbuddy/binaries/python/envs/default`）在并行会话升级期间**不可用**（versions/3.13.12 目录被",
-   "first_seen": "2026-10-20",
-   "dating_face": "OK"
-  }
- ],
+ "overdue": [],
  "undated": [
   {
    "title": "R113-6 本仓远端实测为 public（记忆 15 处声称「私有归档仓」）：核实并裁定 X-2/AGPL 合入的合规前提（由 flow ",
@@ -315,8 +266,8 @@
    "detail": "4 组同号多副本但全部已勾销（拆卷留痕，不判红）"
   },
   "dating": {
-   "ok": true,
-   "detail": "4 条到期项定年两路同值（截断 needle 未改变结论）",
+   "ok": null,
+   "detail": "本轮无到期项 ⇒ 定年面未行使（不判绿，也不判红）",
    "checked": 0
   },
   "suggestions": {
@@ -325,16 +276,13 @@
   },
   "raw_lines": 178,
   "collisions": [],
-  "status": "OK",
+  "status": "UNVERIFIED",
   "red_faces": [],
-  "unverified_faces": []
+  "unverified_faces": [
+   "dating"
+  ]
  },
  "unowned_claims": [
-  {
-   "file": "memory\\07-next-steps.md",
-   "line": 27,
-   "title": "R128-2（r128 登记，P1）** 对账器需要在**新判据首次落盘时**就跑（而不是等下一轮普查），否则假红会像 r126 那样先流到报告与转办提案里。落点：`A-proje"
-  },
   {
    "file": "memory\\07-next-steps.md",
    "line": 34,
@@ -381,5 +329,9 @@
    "selector": "末行",
    "command": "tail -1 06-benchmark/debt_runs.jsonl"
   }
- }
+ },
+ "handles_drift": [
+  "open_total",
+  "decided"
+ ]
 }
