@@ -18,6 +18,7 @@
 # 退出码: 0 完成 / 2 输入面不可用（R247 禁按 0 记绿）
 import argparse
 import io
+import re
 import json
 import os
 import subprocess
@@ -68,8 +69,16 @@ def main():
         dirty = subprocess.run(['git', 'status', '--porcelain'], cwd=ROOT,
                                capture_output=True, text=True, encoding="utf-8",
                                errors='replace', timeout=120)
-        if not (dirty.stdout or '').strip():
-            print('[GATEMAP] SKIP 工作区干净且无暂存活动（无提交进行中，本门不适用）')
+        dirty_files = [x.strip() for x in (dirty.stdout or '').splitlines() if x.strip()]
+        # r139 二次修（自抓）：「工作区干净」在收尾稳态下恒不成立——每次跑完全门都会
+        # 产生 debt autoregen + gate json + gate_runs.jsonl 等收尾产物。故判据改为：
+        # 未提交文件**全部**是收尾产物形态（06-benchmark/*.json 或 *.jsonl）⇒ 仍属稳态。
+        CLOSING_PAT = re.compile(r'^(\?\?| M|M |MM) (06-benchmark/[^ ]+\.(json|jsonl)|05-exec/_r55probe_tmp/.*)$')
+        is_closing = dirty_files and all(CLOSING_PAT.match(x) for x in dirty_files)
+        if not dirty_files or is_closing:
+            print('[GATEMAP] SKIP 无暂存活动且未提交件全为收尾产物形态（06-benchmark/*.json[l]）——本门不适用）')
+            print('[GATEMAP:SKIP]')
+            return 0
             print('[GATEMAP:SKIP]')
             return 0
         print('[GATEMAP] UNVERIFIED 有未提交改动但暂存清单为空（漏 add？r133 第 ④ 种形态）')
