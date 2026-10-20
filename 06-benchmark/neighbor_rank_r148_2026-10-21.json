@@ -1,0 +1,76 @@
+{
+ "schema": "neighbor-rank-observation-r148-v1",
+ "cmd": "python 05-exec/r135_lang_boost_efficacy.py --slug <s> --rival <r> --query <q> --json <件>",
+ "why": "#46：第 11 类「语言不匹配」标签盖住 3 种不同根因，r135 处方（补中文触发词）只对「英文件被中文件抢」有效；以下 2 对逐靶复测 0/2 有效且 margin 更差，未照搬执行（#34），转本观察项。根因均为近邻语义竞争 / 期望归属存疑，非语言。",
+ "pairs": [
+  {
+   "slug": "github",
+   "rival": "code-review",
+   "query": "给一个GitHub项目写代码审查意见",
+   "baseline": {
+    "margin": -0.1476,
+    "top1": "code-review",
+    "rank": null,
+    "self_sim": 0.5691,
+    "rival_sim": 0.7167
+   },
+   "variants": [
+    {
+     "variant": "处方①-末尾追加中文触发词",
+     "margin": -0.1476,
+     "top1": "code-review",
+     "verdict": "NO_EFFECT"
+    },
+    {
+     "variant": "处方②-改 frontmatter 加中文",
+     "margin": -0.1725,
+     "top1": "code-review",
+     "verdict": "PARTIAL"
+    },
+    {
+     "variant": "处方③-短中文摘要替换全文",
+     "margin": -0.278,
+     "top1": "code-review",
+     "verdict": "PARTIAL"
+    }
+   ],
+   "root_cause_hypo": "期望归属存疑：query 真实职责更近 code-review（代码审查），github 件只是承载仓库；语言加权补中文反而把正确归属 code-review 挤得更远（处方③ margin -0.2780）。"
+  },
+  {
+   "slug": "video-whisper-transcribe",
+   "rival": "local-asr",
+   "query": "录音转文字",
+   "baseline": {
+    "margin": -0.0965,
+    "top1": "local-asr",
+    "rank": null,
+    "self_sim": 0.5618,
+    "rival_sim": 0.6583
+   },
+   "variants": [
+    {
+     "variant": "处方①-末尾追加中文触发词",
+     "margin": -0.0965,
+     "top1": "local-asr",
+     "verdict": "NO_EFFECT"
+    },
+    {
+     "variant": "处方②-改 frontmatter 加中文",
+     "margin": -0.1084,
+     "top1": "local-asr",
+     "verdict": "PARTIAL"
+    },
+    {
+     "variant": "处方③-短中文摘要替换全文",
+     "margin": -0.2364,
+     "top1": "local-asr",
+     "verdict": "PARTIAL"
+    }
+   ],
+   "root_cause_hypo": "近邻语义竞争（B_NEIGHBOR_RANK 类）：两件都能「录音转文字」，local-asr 是 Intel 本地 ASR、video-whisper 是 ffmpeg+whisper，语义高度重叠；补中文触发词使期望件 margin 反降（处方② -0.0119）。"
+  }
+ ],
+ "acceptance": "本观察项不挂语料侧验收（补中文对这两对无效）。真正的验收 = 期望侧对账：query 的 expected 归属是否该改（github->code-review / vwt<->local-asr 二者取一或都收）。归属判定权在焚诀 eval 侧（本仓 eval 只读，R269/红线6），故只登记不代改训练集。",
+ "boundary_of_r135_fix": "r135 处方适用边界 = 仅「description 通篇英文 且 抢答件为中文 且 期望归属无争议」；三条件缺一即可能 0 效或反效。",
+ "generated_at": "2026-10-20 23:54"
+}

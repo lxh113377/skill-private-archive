@@ -89,6 +89,12 @@ def main():
         e2 = bool(ev.strip())
         e3 = bool(acc.strip() or acc2.strip())
         e4 = bool(live_refs) or bool(prods) or labeled_unver or has_cmd
+        # r148（#46）：处方由**效力面**（efficacy，即「改 X 救几条」型读数面）支撑的，
+        # 必须带 `适用边界` 字段 —— 单靶实测有效 ≠ 适用面有效（r148 一手：r135 处方推广
+        # 到其余 2 靶 0/2 有效且 margin 更差）。非效力面支撑（如纯计数/清单面）不强制。
+        efficacy_backed = any('efficacy' in x for x in live_refs)
+        has_boundary = bool(str(p.get('适用边界') or '').strip())
+        boundary_missing = efficacy_backed and not has_boundary
         if e1 and e2 and e3 and e4:
             cls = 'COMPLETE'
         elif not e4:
@@ -103,6 +109,8 @@ def main():
                      'class': cls, 'has_fix_hint': e1, 'has_evidence': e2,
                      'has_acceptance': e3, 'has_cmd': has_cmd, 'backed_by': live_refs,
                      'backed_by_prods': prods, 'labeled_unverified': labeled_unver,
+                     'efficacy_backed': efficacy_backed, 'has_boundary': has_boundary,
+                     'boundary_missing': boundary_missing,
                      'dead_refs': dead_refs})
     from collections import Counter
     cnt = Counter(r['class'] for r in rows)
@@ -114,11 +122,14 @@ def main():
                      'unbacked_n': cnt.get('UNBACKED', 0),
                      'no_acceptance_n': cnt.get('NO_ACCEPTANCE', 0),
                      'no_evidence_n': cnt.get('NO_EVIDENCE', 0),
+                     'boundary_missing_n': sum(1 for r in rows if r.get('boundary_missing')),
                      'reading': {
                          'unbacked_n': ('处方追不到任何现存的 05-exec/r1*_*.py 读数面 ⇒ **最该补**。',
                                        '这正是 r135 那条观察的可复算形态：纪律立了，但它作用不到自己。'),
                          'no_acceptance_n': '有处方有证据但缺验收标准 ⇒ 归属方无法判闭环',
                          'no_evidence_n': '有处方但缺证据字段',
+                         'boundary_missing_n': ('处方由效力面（efficacy 型读数面）支撑却无 `适用边界` 字段 ⇒ 判红。',
+                                               '#46：单靶实测有效 != 适用面有效；推广到第 2 个靶前须逐靶复测。'),
                          'complete_n': '四项齐备（fix_hint + evidence + acceptance + 读数面支撑）',
                      }},
             'rows': rows,

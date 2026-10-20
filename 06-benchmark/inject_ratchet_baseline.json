@@ -3,7 +3,7 @@
  "generated_at": "2026-10-20 11:54",
  "metrics": {
   "catalog_grand_chars": 56312,
-  "inject_union_bytes": 92648,
+  "inject_union_bytes": 95268,
   "claim_candidates": 4,
   "drift_ruleish_candidates": 32,
   "desc_over_cap": 0,
@@ -327,6 +327,17 @@
    "commit": "r147-rule45-and-report",
    "path": "(range-attribution)",
    "reason": "r147 range attribution: inject_union_bytes 90791->92648 (+1857). Cause: AGENTS.md gained rule #45 (evidence write order: source-of-truth first, ~1500 chars incl. crash-prefix table) and the r147 report is itself in the injected surface. Intentional content additions; ratchet only-down semantics unchanged.",
+   "kind": "range"
+  },
+  {
+   "metric": "inject_union_bytes",
+   "from_value": 92648,
+   "to_value": 95268,
+   "delta": 2620,
+   "at": "2026-10-21 00:04",
+   "commit": "r148-rule46-and-report",
+   "path": "(range-attribution)",
+   "reason": "r148 range attribution: inject_union_bytes 92648->95268 (+2620). Cause: AGENTS.md gained rule #46 (prescriptions must declare applicability boundary, ~1800 chars incl. three-target efficacy table and boundary-leg spec) and the r148 report is itself in the injected surface. Intentional content additions; ratchet only-down semantics unchanged.",
    "kind": "range"
   }
  ],
