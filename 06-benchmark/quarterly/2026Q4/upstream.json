@@ -1,6 +1,6 @@
 {
  "schema": "upstream-probe-r112-v1",
- "generated_at": "2026-10-20T00:03:38+00:00",
+ "generated_at": "2026-10-20T01:44:00+00:00",
  "face": {
   "scan_file": "06-benchmark/quarterly/2026Q4/provenance.json",
   "targets_n": 39,
@@ -15,8 +15,7 @@
   "rubric_err": null
  },
  "relations": {
-  "identical": 12,
-  "local_ahead": 2,
+  "local_ahead": 14,
   "diverged": 10
  },
  "conservation": {
@@ -36,10 +35,17 @@
    "upstream_last_commit_sha": "ef740771ac901e03fbca3ce4e1c453a96010f30a",
    "upstream_last_commit_date": "2025-12-01T18:05:36Z",
    "upstream_last_commit_msg": "Move example skills into dedicated folder and create minimal top-level folder structure (#129)",
-   "local_sha256": "3bc4092c09804853186524c826bc0621b940bb6122c05b84496dff95388e6eef",
-   "local_bytes": 19769,
-   "relation": "identical",
-   "stats": {},
+   "local_sha256": "e19281fa14049fa54126d76dd56a6370547a65d4a0de0f823af531f770b5a073",
+   "local_bytes": 19809,
+   "relation": "local_ahead",
+   "stats": {
+    "local_lines": 284,
+    "upstream_lines": 282,
+    "common": 282,
+    "local_only": 2,
+    "upstream_only": 0,
+    "jaccard": 0.993
+   },
    "rubric_local": {
     "overview": true,
     "when_to_use": true,
@@ -60,8 +66,8 @@
     {
      "repo": "anthropics/skills",
      "path": "skills/algorithmic-art/SKILL.md",
-     "relation": "identical",
-     "jaccard": null
+     "relation": "local_ahead",
+     "jaccard": 0.993
     }
    ],
    "evidence_source": "cache"
@@ -74,19 +80,19 @@
      "repo": "obra/superpowers",
      "path": "skills/brainstorming/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.0149
+     "jaccard": 0.0172
     },
     {
      "repo": "sickn33/agentic-awesome-skills",
      "path": "plugins/agentic-awesome-skills-claude/skills/brainstorming/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.016
+     "jaccard": 0.0187
     },
     {
      "repo": "sickn33/agentic-awesome-skills",
      "path": "plugins/agentic-awesome-skills/skills/brainstorming/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.016
+     "jaccard": 0.0187
     }
    ],
    "reason": "无可识别同源候选（全部 unrelated 或取不到）"
@@ -102,10 +108,17 @@
    "upstream_last_commit_sha": "ef740771ac901e03fbca3ce4e1c453a96010f30a",
    "upstream_last_commit_date": "2025-12-01T18:05:36Z",
    "upstream_last_commit_msg": "Move example skills into dedicated folder and create minimal top-level folder structure (#129)",
-   "local_sha256": "1120b3769e2985cefb3d25be981b1f914abeba57ae079b83c20c666c164fa9fe",
-   "local_bytes": 2235,
-   "relation": "identical",
-   "stats": {},
+   "local_sha256": "237563704691cce36fc8c0eb20334d1ec0f835efb89c3c71f3307e0ca9c7d7c1",
+   "local_bytes": 2275,
+   "relation": "local_ahead",
+   "stats": {
+    "local_lines": 50,
+    "upstream_lines": 48,
+    "common": 48,
+    "local_only": 2,
+    "upstream_only": 0,
+    "jaccard": 0.96
+   },
    "rubric_local": {
     "overview": true,
     "when_to_use": false,
@@ -126,8 +139,8 @@
     {
      "repo": "anthropics/skills",
      "path": "skills/brand-guidelines/SKILL.md",
-     "relation": "identical",
-     "jaccard": null
+     "relation": "local_ahead",
+     "jaccard": 0.96
     }
    ],
    "evidence_source": "cache"
@@ -143,16 +156,16 @@
    "upstream_last_commit_sha": "ef740771ac901e03fbca3ce4e1c453a96010f30a",
    "upstream_last_commit_date": "2025-12-01T18:05:36Z",
    "upstream_last_commit_msg": "Move example skills into dedicated folder and create minimal top-level folder structure (#129)",
-   "local_sha256": "d267ded6723d77ac32cead159bc71a0c6e1420bcf2a08de2f2962451fa6aa172",
-   "local_bytes": 12376,
+   "local_sha256": "ba6c9078b89f37f9ae6876adb8b8bb76cfdc88ab79dcde07957290b18bbf8fb1",
+   "local_bytes": 12416,
    "relation": "local_ahead",
    "stats": {
-    "local_lines": 86,
+    "local_lines": 88,
     "upstream_lines": 81,
     "common": 81,
-    "local_only": 5,
+    "local_only": 7,
     "upstream_only": 0,
-    "jaccard": 0.9419
+    "jaccard": 0.9205
    },
    "rubric_local": {
     "overview": true,
@@ -175,7 +188,7 @@
      "repo": "anthropics/skills",
      "path": "skills/canvas-design/SKILL.md",
      "relation": "local_ahead",
-     "jaccard": 0.9419
+     "jaccard": 0.9205
     }
    ],
    "evidence_source": "cache"
@@ -188,13 +201,13 @@
      "repo": "mattpocock/skills",
      "path": "skills/engineering/code-review/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.02
+     "jaccard": 0.0194
     },
     {
      "repo": "github/awesome-copilot",
      "path": ".github/skills/code-review/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.0109
+     "jaccard": 0.0108
     }
    ],
    "reason": "无可识别同源候选（全部 unrelated 或取不到）"
@@ -210,10 +223,17 @@
    "upstream_last_commit_sha": "76b63f64f044556c9fedd68e698cf5bfaeca1d0c",
    "upstream_last_commit_date": "2026-07-19T00:31:51Z",
    "upstream_last_commit_msg": "Add commit-archaeologist skill: reconstruct the why behind code from git history (#974)",
-   "local_sha256": "8f21eb5ff270b4f4d403494fe606aa23b7faa73232dfe8ab0aed4fba1f94dfe5",
-   "local_bytes": 5496,
-   "relation": "identical",
-   "stats": {},
+   "local_sha256": "5b39f07c746e561616f97c78a4f99315529ca6155326c5a8bf4935f3aa061796",
+   "local_bytes": 5536,
+   "relation": "local_ahead",
+   "stats": {
+    "local_lines": 99,
+    "upstream_lines": 97,
+    "common": 97,
+    "local_only": 2,
+    "upstream_only": 0,
+    "jaccard": 0.9798
+   },
    "rubric_local": {
     "overview": true,
     "when_to_use": true,
@@ -234,8 +254,8 @@
     {
      "repo": "Shubhamsaboo/awesome-llm-apps",
      "path": "agent_skills/commit-archaeologist/SKILL.md",
-     "relation": "identical",
-     "jaccard": null
+     "relation": "local_ahead",
+     "jaccard": 0.9798
     }
    ],
    "evidence_source": "cache"
@@ -251,16 +271,16 @@
    "upstream_last_commit_sha": "957c634e069c256270540d3f068b890cf2388b54",
    "upstream_last_commit_date": "2026-09-09T07:37:32Z",
    "upstream_last_commit_msg": "docs: shorten defuddle skill description",
-   "local_sha256": "cb702b754dd340ad7c7db4f34e1953277eb64601201ce96515b00786a1088a26",
-   "local_bytes": 1034,
+   "local_sha256": "9e63158d9ea498fa453530f2d7680d6972e172c4b549f10ccd569c98cb1fd972",
+   "local_bytes": 2608,
    "relation": "diverged",
    "stats": {
-    "local_lines": 24,
+    "local_lines": 43,
     "upstream_lines": 24,
-    "common": 23,
-    "local_only": 1,
-    "upstream_only": 1,
-    "jaccard": 0.92
+    "common": 22,
+    "local_only": 21,
+    "upstream_only": 2,
+    "jaccard": 0.4889
    },
    "rubric_local": {
     "overview": true,
@@ -283,7 +303,7 @@
      "repo": "kepano/obsidian-skills",
      "path": "skills/defuddle/SKILL.md",
      "relation": "diverged",
-     "jaccard": 0.92
+     "jaccard": 0.4889
     }
    ],
    "evidence_source": "cache"
@@ -299,10 +319,17 @@
    "upstream_last_commit_sha": "00756142ab04c82a447693cf373c4e0c554d1005",
    "upstream_last_commit_date": "2025-12-04T17:01:46Z",
    "upstream_last_commit_msg": "Add doc-coauthoring skill and update example skills (#134)",
-   "local_sha256": "2e47d78846faeea4a56e9809c52700087a15a2155a3f293a3efbaded81398ef4",
-   "local_bytes": 15815,
-   "relation": "identical",
-   "stats": {},
+   "local_sha256": "b6c395bdda306dbd05bd20e88dc72e8782215301a451253958a444c1079bbf27",
+   "local_bytes": 15855,
+   "relation": "local_ahead",
+   "stats": {
+    "local_lines": 231,
+    "upstream_lines": 229,
+    "common": 229,
+    "local_only": 2,
+    "upstream_only": 0,
+    "jaccard": 0.9913
+   },
    "rubric_local": {
     "overview": true,
     "when_to_use": true,
@@ -323,8 +350,8 @@
     {
      "repo": "anthropics/skills",
      "path": "skills/doc-coauthoring/SKILL.md",
-     "relation": "identical",
-     "jaccard": null
+     "relation": "local_ahead",
+     "jaccard": 0.9913
     }
    ],
    "evidence_source": "cache"
@@ -350,7 +377,7 @@
      "repo": "vercel-labs/skills",
      "path": "skills/find-skills/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.0833
+     "jaccard": 0.0357
     }
    ],
    "reason": "无可识别同源候选（全部 unrelated 或取不到）"
@@ -363,19 +390,19 @@
      "repo": "anthropics/skills",
      "path": "skills/frontend-design/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.0158
+     "jaccard": 0.0157
     },
     {
      "repo": "sickn33/agentic-awesome-skills",
      "path": "plugins/agentic-awesome-skills-claude/skills/frontend-design/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.0223
+     "jaccard": 0.0222
     },
     {
      "repo": "sickn33/agentic-awesome-skills",
      "path": "plugins/agentic-awesome-skills/skills/frontend-design/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.0223
+     "jaccard": 0.0222
     }
    ],
    "reason": "无可识别同源候选（全部 unrelated 或取不到）"
@@ -388,19 +415,19 @@
      "repo": "affaan-m/ECC",
      "path": ".agents/skills/frontend-slides/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.0152
+     "jaccard": 0.0151
     },
     {
      "repo": "affaan-m/ECC",
      "path": ".cursor/skills/frontend-slides/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.0152
+     "jaccard": 0.0151
     },
     {
      "repo": "affaan-m/ECC",
      "path": "docs/ja-JP/skills/frontend-slides/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.0152
+     "jaccard": 0.0151
     }
    ],
    "reason": "无可识别同源候选（全部 unrelated 或取不到）"
@@ -416,16 +443,16 @@
    "upstream_last_commit_sha": "a07936c989a503f46aaba734471aceee75f484e8",
    "upstream_last_commit_date": "2026-07-08T20:02:03Z",
    "upstream_last_commit_msg": "chore: Rename project to Agentic Awesome Skills",
-   "local_sha256": "69c4b1bf9819c85217fc0aab9a8a877886ed840c7e1f8dc32914d30c0aaf22e5",
-   "local_bytes": 5084,
+   "local_sha256": "ca31bd37fbfc1587fb226d53a508d9fa91b2e5944087dcd97238ce9f62261ea1",
+   "local_bytes": 5124,
    "relation": "diverged",
    "stats": {
-    "local_lines": 58,
+    "local_lines": 60,
     "upstream_lines": 39,
     "common": 22,
-    "local_only": 36,
+    "local_only": 38,
     "upstream_only": 17,
-    "jaccard": 0.2933
+    "jaccard": 0.2857
    },
    "rubric_local": {
     "overview": true,
@@ -448,7 +475,7 @@
      "repo": "sickn33/agentic-awesome-skills",
      "path": "plugins/agentic-awesome-skills-claude/skills/github/SKILL.md",
      "relation": "diverged",
-     "jaccard": 0.2933
+     "jaccard": 0.2857
     }
    ],
    "evidence_source": "cache"
@@ -461,19 +488,19 @@
      "repo": "mattpocock/skills",
      "path": "skills/productivity/grill-me/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.0513
+     "jaccard": 0.05
     },
     {
      "repo": "sickn33/agentic-awesome-skills",
      "path": "plugins/agentic-awesome-skills-claude/skills/grill-me/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.0303
+     "jaccard": 0.0299
     },
     {
      "repo": "sickn33/agentic-awesome-skills",
      "path": "plugins/agentic-awesome-skills/skills/grill-me/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.0303
+     "jaccard": 0.0299
     }
    ],
    "reason": "无可识别同源候选（全部 unrelated 或取不到）"
@@ -489,16 +516,16 @@
    "upstream_last_commit_sha": "ec9ace9c544e00ffa03ad2933efd98ddb14f4279",
    "upstream_last_commit_date": "2026-05-17T06:31:40Z",
    "upstream_last_commit_msg": "docs: add native Japanese translation of ECC documentation (ja-JP)",
-   "local_sha256": "439875d2fff3bbf14e0b46b7310b4c815c2596e54a6cafaafb4b2b93b4865626",
-   "local_bytes": 9461,
+   "local_sha256": "538b6110c2007c8f137aa5bcd14d63bbfc3e322d84fb8d16d7dc78adb3319b3c",
+   "local_bytes": 9501,
    "relation": "diverged",
    "stats": {
-    "local_lines": 167,
+    "local_lines": 169,
     "upstream_lines": 166,
     "common": 165,
-    "local_only": 2,
+    "local_only": 4,
     "upstream_only": 1,
-    "jaccard": 0.9821
+    "jaccard": 0.9706
    },
    "rubric_local": {
     "overview": true,
@@ -521,7 +548,7 @@
      "repo": "affaan-m/ECC",
      "path": "docs/ja-JP/skills/healthcare-cdss-patterns/SKILL.md",
      "relation": "diverged",
-     "jaccard": 0.9821
+     "jaccard": 0.9706
     }
    ],
    "evidence_source": "cache"
@@ -537,16 +564,16 @@
    "upstream_last_commit_sha": "ec9ace9c544e00ffa03ad2933efd98ddb14f4279",
    "upstream_last_commit_date": "2026-05-17T06:31:40Z",
    "upstream_last_commit_msg": "docs: add native Japanese translation of ECC documentation (ja-JP)",
-   "local_sha256": "117e1861c5313f1874c82791c73798d28e9985cac8964a95d73bed915a8aff39",
-   "local_bytes": 6746,
+   "local_sha256": "b9abcbc04aeaeb441e06cbff660a8f5b4687512e0dffcd0c5a56cd0ee4fb5710",
+   "local_bytes": 6786,
    "relation": "diverged",
    "stats": {
-    "local_lines": 115,
+    "local_lines": 117,
     "upstream_lines": 114,
     "common": 113,
-    "local_only": 2,
+    "local_only": 4,
     "upstream_only": 1,
-    "jaccard": 0.9741
+    "jaccard": 0.9576
    },
    "rubric_local": {
     "overview": true,
@@ -569,7 +596,7 @@
      "repo": "affaan-m/ECC",
      "path": "docs/ja-JP/skills/healthcare-emr-patterns/SKILL.md",
      "relation": "diverged",
-     "jaccard": 0.9741
+     "jaccard": 0.9576
     }
    ],
    "evidence_source": "cache"
@@ -585,16 +612,16 @@
    "upstream_last_commit_sha": "ec9ace9c544e00ffa03ad2933efd98ddb14f4279",
    "upstream_last_commit_date": "2026-05-17T06:31:40Z",
    "upstream_last_commit_msg": "docs: add native Japanese translation of ECC documentation (ja-JP)",
-   "local_sha256": "0c74bb0309d4fb7e3bf04b0f779909156520c73bd6162bd405f7232af19c0a68",
-   "local_bytes": 7849,
+   "local_sha256": "65e645bc0ead696fc313af14a4e100b6dc3ae3ab30e30339ad6ee0a5b347ce90",
+   "local_bytes": 7889,
    "relation": "diverged",
    "stats": {
-    "local_lines": 124,
+    "local_lines": 126,
     "upstream_lines": 123,
     "common": 122,
-    "local_only": 2,
+    "local_only": 4,
     "upstream_only": 1,
-    "jaccard": 0.976
+    "jaccard": 0.9606
    },
    "rubric_local": {
     "overview": true,
@@ -617,7 +644,7 @@
      "repo": "affaan-m/ECC",
      "path": "docs/ja-JP/skills/healthcare-eval-harness/SKILL.md",
      "relation": "diverged",
-     "jaccard": 0.976
+     "jaccard": 0.9606
     }
    ],
    "evidence_source": "cache"
@@ -643,7 +670,7 @@
      "repo": "calesthio/OpenMontage",
      "path": ".agents/skills/hyperframes-cli/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.0443
+     "jaccard": 0.0437
     }
    ],
    "reason": "无可识别同源候选（全部 unrelated 或取不到）"
@@ -656,7 +683,7 @@
      "repo": "calesthio/OpenMontage",
      "path": ".agents/skills/hyperframes-media/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.0188
+     "jaccard": 0.0186
     }
    ],
    "reason": "无可识别同源候选（全部 unrelated 或取不到）"
@@ -672,16 +699,16 @@
    "upstream_last_commit_sha": "46d5514a0a4f90b074f3fda22f48e56b58e31e72",
    "upstream_last_commit_date": "2026-06-27T21:00:00Z",
    "upstream_last_commit_msg": "chore(deps,skills): bump Remotion 4.0.441→4.0.484; re-vendor HyperFrames skills at v0.7.17",
-   "local_sha256": "59a1131fbcd5a4a2cc7a49ca6919f9819f88695a5eabb281b35ffa54868182a5",
-   "local_bytes": 4763,
+   "local_sha256": "d1d4d72e57f5c2b207c49616995dc6cb9f73c7fc69990e11cc7b68e083a6e71d",
+   "local_bytes": 4803,
    "relation": "diverged",
    "stats": {
-    "local_lines": 73,
+    "local_lines": 75,
     "upstream_lines": 66,
     "common": 64,
-    "local_only": 9,
+    "local_only": 11,
     "upstream_only": 2,
-    "jaccard": 0.8533
+    "jaccard": 0.8312
    },
    "rubric_local": {
     "overview": true,
@@ -704,7 +731,7 @@
      "repo": "calesthio/OpenMontage",
      "path": ".agents/skills/hyperframes-registry/SKILL.md",
      "relation": "diverged",
-     "jaccard": 0.8533
+     "jaccard": 0.8312
     }
    ],
    "evidence_source": "cache"
@@ -720,10 +747,17 @@
    "upstream_last_commit_sha": "ef740771ac901e03fbca3ce4e1c453a96010f30a",
    "upstream_last_commit_date": "2025-12-01T18:05:36Z",
    "upstream_last_commit_msg": "Move example skills into dedicated folder and create minimal top-level folder structure (#129)",
-   "local_sha256": "067b7587a344a928fc6534ef66b1bcd591fc7c26d207ea7ca3334aeb678d6475",
-   "local_bytes": 1511,
-   "relation": "identical",
-   "stats": {},
+   "local_sha256": "749dd44a71d7f05702fcd9aa8c6e8e8ba37b9aaceffa5d0f6ca2396ff63b0a0b",
+   "local_bytes": 1551,
+   "relation": "local_ahead",
+   "stats": {
+    "local_lines": 27,
+    "upstream_lines": 25,
+    "common": 25,
+    "local_only": 2,
+    "upstream_only": 0,
+    "jaccard": 0.9259
+   },
    "rubric_local": {
     "overview": true,
     "when_to_use": true,
@@ -744,8 +778,8 @@
     {
      "repo": "anthropics/skills",
      "path": "skills/internal-comms/SKILL.md",
-     "relation": "identical",
-     "jaccard": null
+     "relation": "local_ahead",
+     "jaccard": 0.9259
     }
    ],
    "evidence_source": "cache"
@@ -761,10 +795,17 @@
    "upstream_last_commit_sha": "5a557ceba792fcb4c58591f3117c6887810d8df1",
    "upstream_last_commit_date": "2026-02-25T11:32:59Z",
    "upstream_last_commit_msg": "feat: improve skill quality scores across 4 skills",
-   "local_sha256": "97d1ae0728955c4203922753d5656890e5e4dd371b8306ea11884f9b510f1b85",
-   "local_bytes": 7624,
-   "relation": "identical",
-   "stats": {},
+   "local_sha256": "01d2c68d2d4e6498da7a0f252b03f2baf9f3ef3862d91888ea2ceb45e9fa8d79",
+   "local_bytes": 7664,
+   "relation": "local_ahead",
+   "stats": {
+    "local_lines": 156,
+    "upstream_lines": 154,
+    "common": 154,
+    "local_only": 2,
+    "upstream_only": 0,
+    "jaccard": 0.9872
+   },
    "rubric_local": {
     "overview": true,
     "when_to_use": true,
@@ -785,8 +826,8 @@
     {
      "repo": "kepano/obsidian-skills",
      "path": "skills/json-canvas/SKILL.md",
-     "relation": "identical",
-     "jaccard": null
+     "relation": "local_ahead",
+     "jaccard": 0.9872
     }
    ],
    "evidence_source": "cache"
@@ -802,10 +843,17 @@
    "upstream_last_commit_sha": "ef740771ac901e03fbca3ce4e1c453a96010f30a",
    "upstream_last_commit_date": "2025-12-01T18:05:36Z",
    "upstream_last_commit_msg": "Move example skills into dedicated folder and create minimal top-level folder structure (#129)",
-   "local_sha256": "0f4592dcb53cf2b5d6b7febee6b4152018b565551a1c29e3c612f57b218ab295",
-   "local_bytes": 9092,
-   "relation": "identical",
-   "stats": {},
+   "local_sha256": "32f54257ab8bf84f5b140cf86c19c6d7d7453401c032958961626982530ee518",
+   "local_bytes": 9132,
+   "relation": "local_ahead",
+   "stats": {
+    "local_lines": 159,
+    "upstream_lines": 157,
+    "common": 157,
+    "local_only": 2,
+    "upstream_only": 0,
+    "jaccard": 0.9874
+   },
    "rubric_local": {
     "overview": true,
     "when_to_use": true,
@@ -826,8 +874,8 @@
     {
      "repo": "anthropics/skills",
      "path": "skills/mcp-builder/SKILL.md",
-     "relation": "identical",
-     "jaccard": null
+     "relation": "local_ahead",
+     "jaccard": 0.9874
     }
    ],
    "evidence_source": "cache"
@@ -843,10 +891,17 @@
    "upstream_last_commit_sha": "9b736ba8da230341054cc668bedc0bcb041baa98",
    "upstream_last_commit_date": "2026-04-07T08:34:35Z",
    "upstream_last_commit_msg": "docs(obsidian-bases): fix invalid filter schema example",
-   "local_sha256": "c0037f20926c7d8591cdd040365e4c0e4c0c4146386a506f28f241faee9a27d9",
-   "local_bytes": 13027,
-   "relation": "identical",
-   "stats": {},
+   "local_sha256": "b9bb892552adfabb12b69365636a2b5e55a02709e73043824f2cbf514654c434",
+   "local_bytes": 13067,
+   "relation": "local_ahead",
+   "stats": {
+    "local_lines": 294,
+    "upstream_lines": 292,
+    "common": 292,
+    "local_only": 2,
+    "upstream_only": 0,
+    "jaccard": 0.9932
+   },
    "rubric_local": {
     "overview": true,
     "when_to_use": true,
@@ -867,8 +922,8 @@
     {
      "repo": "kepano/obsidian-skills",
      "path": "skills/obsidian-bases/SKILL.md",
-     "relation": "identical",
-     "jaccard": null
+     "relation": "local_ahead",
+     "jaccard": 0.9932
     }
    ],
    "evidence_source": "cache"
@@ -884,10 +939,17 @@
    "upstream_last_commit_sha": "5a557ceba792fcb4c58591f3117c6887810d8df1",
    "upstream_last_commit_date": "2026-02-25T11:32:59Z",
    "upstream_last_commit_msg": "feat: improve skill quality scores across 4 skills",
-   "local_sha256": "b54257cdc0e5d04488b35b0c797bfe427b24359f0848d3c73924dcacf8da6358",
-   "local_bytes": 3183,
-   "relation": "identical",
-   "stats": {},
+   "local_sha256": "155995f2a9df87654fd44e0085c26021a9dfd84ef55cae76d77a3ac2cf35f2ea",
+   "local_bytes": 3223,
+   "relation": "local_ahead",
+   "stats": {
+    "local_lines": 56,
+    "upstream_lines": 54,
+    "common": 54,
+    "local_only": 2,
+    "upstream_only": 0,
+    "jaccard": 0.9643
+   },
    "rubric_local": {
     "overview": true,
     "when_to_use": true,
@@ -908,8 +970,8 @@
     {
      "repo": "kepano/obsidian-skills",
      "path": "skills/obsidian-cli/SKILL.md",
-     "relation": "identical",
-     "jaccard": null
+     "relation": "local_ahead",
+     "jaccard": 0.9643
     }
    ],
    "evidence_source": "cache"
@@ -925,10 +987,17 @@
    "upstream_last_commit_sha": "5a557ceba792fcb4c58591f3117c6887810d8df1",
    "upstream_last_commit_date": "2026-02-25T11:32:59Z",
    "upstream_last_commit_msg": "feat: improve skill quality scores across 4 skills",
-   "local_sha256": "7ad72e1f0a9081ed325e76b6402ad5de50a00e63e2341fd403a92f147234a007",
-   "local_bytes": 5367,
-   "relation": "identical",
-   "stats": {},
+   "local_sha256": "14581e4812679ff1cbcf726d9aebe3741e979d3596089b36af73cdb7f5d76fb0",
+   "local_bytes": 5407,
+   "relation": "local_ahead",
+   "stats": {
+    "local_lines": 108,
+    "upstream_lines": 106,
+    "common": 106,
+    "local_only": 2,
+    "upstream_only": 0,
+    "jaccard": 0.9815
+   },
    "rubric_local": {
     "overview": true,
     "when_to_use": true,
@@ -949,8 +1018,8 @@
     {
      "repo": "kepano/obsidian-skills",
      "path": "skills/obsidian-markdown/SKILL.md",
-     "relation": "identical",
-     "jaccard": null
+     "relation": "local_ahead",
+     "jaccard": 0.9815
     }
    ],
    "evidence_source": "cache"
@@ -963,7 +1032,7 @@
      "repo": "anthropics/skills",
      "path": "skills/pdf/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.1231
+     "jaccard": 0.1227
     }
    ],
    "reason": "无可识别同源候选（全部 unrelated 或取不到）"
@@ -979,16 +1048,16 @@
    "upstream_last_commit_sha": "a07936c989a503f46aaba734471aceee75f484e8",
    "upstream_last_commit_date": "2026-07-08T20:02:03Z",
    "upstream_last_commit_msg": "chore: Rename project to Agentic Awesome Skills",
-   "local_sha256": "71ed7794962fa6e803ee83030517b5b93a9f70fbfeb431ec4535c5480a8d8355",
-   "local_bytes": 7251,
+   "local_sha256": "6acf9f9a806708674dc270582f99d3b73f467e414c6f88826b0732ef9b2170b7",
+   "local_bytes": 7291,
    "relation": "diverged",
    "stats": {
-    "local_lines": 118,
+    "local_lines": 120,
     "upstream_lines": 99,
     "common": 85,
-    "local_only": 33,
+    "local_only": 35,
     "upstream_only": 14,
-    "jaccard": 0.6439
+    "jaccard": 0.6343
    },
    "rubric_local": {
     "overview": true,
@@ -1011,7 +1080,7 @@
      "repo": "sickn33/agentic-awesome-skills",
      "path": "plugins/agentic-awesome-skills-claude/skills/react-best-practices/SKILL.md",
      "relation": "diverged",
-     "jaccard": 0.6439
+     "jaccard": 0.6343
     }
    ],
    "evidence_source": "cache"
@@ -1027,10 +1096,17 @@
    "upstream_last_commit_sha": null,
    "upstream_last_commit_date": null,
    "upstream_last_commit_msg": null,
-   "local_sha256": "a21a28ce59694554c16ddc19cb3b27620b1e3e5040803df0e40b22f6a34da159",
-   "local_bytes": 5140,
-   "relation": "identical",
-   "stats": {},
+   "local_sha256": "e16b44c798b4dfe4fb2de5054130b045703bc679932b755ba177aa2c809fc05e",
+   "local_bytes": 5180,
+   "relation": "local_ahead",
+   "stats": {
+    "local_lines": 94,
+    "upstream_lines": 92,
+    "common": 92,
+    "local_only": 2,
+    "upstream_only": 0,
+    "jaccard": 0.9787
+   },
    "rubric_local": {
     "overview": true,
     "when_to_use": true,
@@ -1051,8 +1127,8 @@
     {
      "repo": "Shubhamsaboo/awesome-llm-apps",
      "path": "agent_skills/scope-creep-detector/SKILL.md",
-     "relation": "identical",
-     "jaccard": null
+     "relation": "local_ahead",
+     "jaccard": 0.9787
     }
    ],
    "evidence_source": "cache"
@@ -1065,19 +1141,19 @@
      "repo": "sickn33/agentic-awesome-skills",
      "path": "plugins/agentic-awesome-skills-claude/skills/security-audit/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.0094
+     "jaccard": 0.0093
     },
     {
      "repo": "sickn33/agentic-awesome-skills",
      "path": "plugins/agentic-awesome-skills/skills/security-audit/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.0094
+     "jaccard": 0.0093
     },
     {
      "repo": "sickn33/agentic-awesome-skills",
      "path": "skills/security-audit/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.0094
+     "jaccard": 0.0093
     }
    ],
    "reason": "无可识别同源候选（全部 unrelated 或取不到）"
@@ -1093,16 +1169,16 @@
    "upstream_last_commit_sha": "a07936c989a503f46aaba734471aceee75f484e8",
    "upstream_last_commit_date": "2026-07-08T20:02:03Z",
    "upstream_last_commit_msg": "chore: Rename project to Agentic Awesome Skills",
-   "local_sha256": "89ae3bdf17a08fb30dff8571fcbc0918e57821d6aedb6339d147b143f25157cc",
-   "local_bytes": 16472,
+   "local_sha256": "c1da1ee86e5acb8ba251b79485a3003936d1d27e7a7f9f09a636c2f486a5c638",
+   "local_bytes": 16512,
    "relation": "diverged",
    "stats": {
-    "local_lines": 178,
+    "local_lines": 180,
     "upstream_lines": 188,
     "common": 174,
-    "local_only": 4,
+    "local_only": 6,
     "upstream_only": 14,
-    "jaccard": 0.9062
+    "jaccard": 0.8969
    },
    "rubric_local": {
     "overview": true,
@@ -1125,7 +1201,7 @@
      "repo": "sickn33/agentic-awesome-skills",
      "path": "plugins/agentic-awesome-skills-claude/skills/shadcn/SKILL.md",
      "relation": "diverged",
-     "jaccard": 0.9062
+     "jaccard": 0.8969
     }
    ],
    "evidence_source": "cache"
@@ -1141,16 +1217,16 @@
    "upstream_last_commit_sha": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
    "upstream_last_commit_date": "2026-09-19T00:31:35Z",
    "upstream_last_commit_msg": "Release v6.4.1: diagnosing-superpowers, Native plan execution, OpenCode 2.0 and Muse support (#2338)",
-   "local_sha256": "e77636df17f5beefc21c6cef628f8fff768ec8a16d9a5fd519ffe51c9a0a1eaf",
-   "local_bytes": 10649,
+   "local_sha256": "0580819211ecc996804d11eba81a12f41c8d18691aae27c0af8e040d90f40330",
+   "local_bytes": 10689,
    "relation": "diverged",
    "stats": {
-    "local_lines": 248,
+    "local_lines": 250,
     "upstream_lines": 216,
     "common": 205,
-    "local_only": 43,
+    "local_only": 45,
     "upstream_only": 11,
-    "jaccard": 0.7915
+    "jaccard": 0.7854
    },
    "rubric_local": {
     "overview": true,
@@ -1173,7 +1249,7 @@
      "repo": "obra/superpowers",
      "path": "skills/test-driven-development/SKILL.md",
      "relation": "diverged",
-     "jaccard": 0.7915
+     "jaccard": 0.7854
     }
    ],
    "evidence_source": "cache"
@@ -1189,10 +1265,17 @@
    "upstream_last_commit_sha": "ef740771ac901e03fbca3ce4e1c453a96010f30a",
    "upstream_last_commit_date": "2025-12-01T18:05:36Z",
    "upstream_last_commit_msg": "Move example skills into dedicated folder and create minimal top-level folder structure (#129)",
-   "local_sha256": "c35893e221e28895c52143cc11bf30e41a44817796b39d4b15727dadc9796552",
-   "local_bytes": 3124,
-   "relation": "identical",
-   "stats": {},
+   "local_sha256": "c77a0fea43818cf245d691b7e373ecd1fdda67640106db0d3eaa28d0e7ac7747",
+   "local_bytes": 3164,
+   "relation": "local_ahead",
+   "stats": {
+    "local_lines": 43,
+    "upstream_lines": 41,
+    "common": 41,
+    "local_only": 2,
+    "upstream_only": 0,
+    "jaccard": 0.9535
+   },
    "rubric_local": {
     "overview": true,
     "when_to_use": false,
@@ -1213,8 +1296,8 @@
     {
      "repo": "anthropics/skills",
      "path": "skills/theme-factory/SKILL.md",
-     "relation": "identical",
-     "jaccard": null
+     "relation": "local_ahead",
+     "jaccard": 0.9535
     }
    ],
    "evidence_source": "cache"
@@ -1227,19 +1310,19 @@
      "repo": "sickn33/agentic-awesome-skills",
      "path": "plugins/agentic-awesome-skills-claude/skills/ui-ux-pro-max/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.0156
+     "jaccard": 0.0155
     },
     {
      "repo": "sickn33/agentic-awesome-skills",
      "path": "plugins/agentic-awesome-skills/skills/ui-ux-pro-max/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.0156
+     "jaccard": 0.0155
     },
     {
      "repo": "sickn33/agentic-awesome-skills",
      "path": "plugins/agentic-bundle-aas-product-design-studio/skills/ui-ux-pro-max/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.0156
+     "jaccard": 0.0155
     }
    ],
    "reason": "无可识别同源候选（全部 unrelated 或取不到）"
@@ -1252,19 +1335,19 @@
      "repo": "obra/superpowers",
      "path": "skills/verification-before-completion/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.1391
+     "jaccard": 0.1385
     },
     {
      "repo": "sickn33/agentic-awesome-skills",
      "path": "plugins/agentic-awesome-skills-claude/skills/verification-before-completion/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.1275
+     "jaccard": 0.127
     },
     {
      "repo": "sickn33/agentic-awesome-skills",
      "path": "plugins/agentic-awesome-skills/skills/verification-before-completion/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.1275
+     "jaccard": 0.127
     }
    ],
    "reason": "无可识别同源候选（全部 unrelated 或取不到）"
@@ -1280,16 +1363,16 @@
    "upstream_last_commit_sha": "a3e735cc7abb7f5c703944d763bd1d847ead544b",
    "upstream_last_commit_date": "2026-03-29T15:25:17Z",
    "upstream_last_commit_msg": "Initial release — OpenMontage: the first open-source agentic video production system",
-   "local_sha256": "9e3f7b21de203278eff30eb2af3096ef023a9f6cb45b672c007269407266c873",
-   "local_bytes": 1362,
+   "local_sha256": "4a37a5a7b608c87d2b6876b01040c727d2b598c32a2ae71f94dd588b091d1f6f",
+   "local_bytes": 1402,
    "relation": "diverged",
    "stats": {
-    "local_lines": 26,
+    "local_lines": 28,
     "upstream_lines": 26,
     "common": 25,
-    "local_only": 1,
+    "local_only": 3,
     "upstream_only": 1,
-    "jaccard": 0.9259
+    "jaccard": 0.8621
    },
    "rubric_local": {
     "overview": true,
@@ -1312,7 +1395,7 @@
      "repo": "calesthio/OpenMontage",
      "path": ".agents/skills/web-design-guidelines/SKILL.md",
      "relation": "diverged",
-     "jaccard": 0.9259
+     "jaccard": 0.8621
     }
    ],
    "evidence_source": "cache"
@@ -1328,16 +1411,16 @@
    "upstream_last_commit_sha": "8ca22dba9a94f28898bbce59f2537ff4d87c747d",
    "upstream_last_commit_date": "2026-09-25T18:06:27Z",
    "upstream_last_commit_msg": "Release v6.4.2: leaner plans from writing-plans (#2384)",
-   "local_sha256": "6e259633b1939ed44c24c0b0b3e6aa121a35d1c9b26264393f8254bc52d8b66c",
-   "local_bytes": 11226,
+   "local_sha256": "ba9a85f8d8d3383713d28c5bff441cd9846260b4a52270e3b674de1be6bbefd9",
+   "local_bytes": 11266,
    "relation": "local_ahead",
    "stats": {
-    "local_lines": 148,
+    "local_lines": 150,
     "upstream_lines": 134,
     "common": 134,
-    "local_only": 14,
+    "local_only": 16,
     "upstream_only": 0,
-    "jaccard": 0.9054
+    "jaccard": 0.8933
    },
    "rubric_local": {
     "overview": true,
@@ -1360,7 +1443,7 @@
      "repo": "obra/superpowers",
      "path": "skills/writing-plans/SKILL.md",
      "relation": "local_ahead",
-     "jaccard": 0.9054
+     "jaccard": 0.8933
     }
    ],
    "evidence_source": "cache"
@@ -1373,7 +1456,7 @@
      "repo": "anthropics/skills",
      "path": "skills/xlsx/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.0206
+     "jaccard": 0.0205
     }
    ],
    "reason": "无可识别同源候选（全部 unrelated 或取不到）"

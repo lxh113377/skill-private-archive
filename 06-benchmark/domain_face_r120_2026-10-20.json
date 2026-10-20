@@ -1,0 +1,336 @@
+{
+ "schema": "domain-face-r120-v1",
+ "cmd": "python 05-exec/r120_domain_face.py --json <out>",
+ "face": {
+  "questions_n": 269,
+  "mismatch_n": 12,
+  "mismatch_pct": 4.5,
+  "protected_n": 6,
+  "exposed_n": 6,
+  "real_fail_n": 3,
+  "conservation_ok": true
+ },
+ "global_cf": {
+  "baseline_score": 94.41,
+  "cf_score": 92.92,
+  "delta_pp": -1.49,
+  "flips_n": 8,
+  "wins_n": 1,
+  "loses_n": 5,
+  "verdict": "NET_HARMFUL_TO_DISABLE"
+ },
+ "mismatch": [
+  {
+   "query": "按焚诀评分机制给三件套评个分",
+   "expected": "fenjue-advisor-scoring",
+   "qdomain": "system",
+   "expected_domain": null,
+   "mismatch": true,
+   "router_top1": "fenjue-lessons-hitrate",
+   "hit": false,
+   "direct_route": null,
+   "tag_hits_n": 0,
+   "protected": false
+  },
+  {
+   "query": "帮我分析视频前三秒的钩子吸引力",
+   "expected": "hook-analyzer-skill",
+   "qdomain": "media",
+   "expected_domain": "automation",
+   "mismatch": true,
+   "router_top1": "hook-analyzer-skill",
+   "hit": true,
+   "direct_route": null,
+   "tag_hits_n": 11,
+   "protected": true
+  },
+  {
+   "query": "多引擎搜索一下这个技术",
+   "expected": "multi-search-engine",
+   "qdomain": "research",
+   "expected_domain": null,
+   "mismatch": true,
+   "router_top1": "spike",
+   "hit": false,
+   "direct_route": null,
+   "tag_hits_n": 12,
+   "protected": true
+  },
+  {
+   "query": "帮我检测并启动本地 Pixelle 视频服务",
+   "expected": "pixelle-api-ensure",
+   "qdomain": "local",
+   "expected_domain": "automation",
+   "mismatch": true,
+   "router_top1": "pixelle-api-ensure",
+   "hit": true,
+   "direct_route": null,
+   "tag_hits_n": 0,
+   "protected": false
+  },
+  {
+   "query": "帮我清理提示词里堆积的补丁",
+   "expected": "prompt-consolidation",
+   "qdomain": "code",
+   "expected_domain": "system",
+   "mismatch": true,
+   "router_top1": "sq-cleanmgr-c",
+   "hit": false,
+   "direct_route": null,
+   "tag_hits_n": 0,
+   "protected": false
+  },
+  {
+   "query": "帮我批量审计并修复静态站点",
+   "expected": "static-site-batch-audit-fix",
+   "qdomain": "code",
+   "expected_domain": "web",
+   "mismatch": true,
+   "router_top1": "static-site-batch-audit-fix",
+   "hit": true,
+   "direct_route": null,
+   "tag_hits_n": 2,
+   "protected": true
+  },
+  {
+   "query": "python 画 matplotlib 交互图",
+   "expected": "data-visualization",
+   "qdomain": "code",
+   "expected_domain": "data",
+   "mismatch": true,
+   "router_top1": "data-visualization",
+   "hit": true,
+   "direct_route": null,
+   "tag_hits_n": 0,
+   "protected": false
+  },
+  {
+   "query": "tcb hosting 部署超市前端",
+   "expected": "chaoshi-web-deploy",
+   "qdomain": "design",
+   "expected_domain": "web",
+   "mismatch": true,
+   "router_top1": "chaoshi-web-deploy",
+   "hit": true,
+   "direct_route": null,
+   "tag_hits_n": 11,
+   "protected": true
+  },
+  {
+   "query": "头脑风暴",
+   "expected": "brainstorming",
+   "qdomain": "general_utils",
+   "expected_domain": "design",
+   "mismatch": true,
+   "router_top1": "brainstorming",
+   "hit": true,
+   "direct_route": null,
+   "tag_hits_n": 0,
+   "protected": false
+  },
+  {
+   "query": "深度调研",
+   "expected": "deep-research-pro",
+   "qdomain": "research",
+   "expected_domain": null,
+   "mismatch": true,
+   "router_top1": "research-documentation",
+   "hit": false,
+   "direct_route": null,
+   "tag_hits_n": 11,
+   "protected": true
+  },
+  {
+   "query": "多引擎搜索",
+   "expected": "multi-search-engine",
+   "qdomain": "research",
+   "expected_domain": null,
+   "mismatch": true,
+   "router_top1": "A-ask-questions",
+   "hit": false,
+   "direct_route": null,
+   "tag_hits_n": 12,
+   "protected": true
+  },
+  {
+   "query": "写个脚本定期备份数据库",
+   "expected": "tencent-cos-skill__skillhub",
+   "qdomain": "data",
+   "expected_domain": null,
+   "mismatch": true,
+   "router_top1": "cloudbase-db-optimize",
+   "hit": false,
+   "direct_route": null,
+   "tag_hits_n": 0,
+   "protected": false
+  }
+ ],
+ "exposed": [
+  {
+   "query": "按焚诀评分机制给三件套评个分",
+   "expected": "fenjue-advisor-scoring",
+   "qdomain": "system",
+   "expected_domain": null,
+   "mismatch": true,
+   "router_top1": "fenjue-lessons-hitrate",
+   "hit": false,
+   "direct_route": null,
+   "tag_hits_n": 0,
+   "protected": false
+  },
+  {
+   "query": "帮我检测并启动本地 Pixelle 视频服务",
+   "expected": "pixelle-api-ensure",
+   "qdomain": "local",
+   "expected_domain": "automation",
+   "mismatch": true,
+   "router_top1": "pixelle-api-ensure",
+   "hit": true,
+   "direct_route": null,
+   "tag_hits_n": 0,
+   "protected": false
+  },
+  {
+   "query": "帮我清理提示词里堆积的补丁",
+   "expected": "prompt-consolidation",
+   "qdomain": "code",
+   "expected_domain": "system",
+   "mismatch": true,
+   "router_top1": "sq-cleanmgr-c",
+   "hit": false,
+   "direct_route": null,
+   "tag_hits_n": 0,
+   "protected": false
+  },
+  {
+   "query": "python 画 matplotlib 交互图",
+   "expected": "data-visualization",
+   "qdomain": "code",
+   "expected_domain": "data",
+   "mismatch": true,
+   "router_top1": "data-visualization",
+   "hit": true,
+   "direct_route": null,
+   "tag_hits_n": 0,
+   "protected": false
+  },
+  {
+   "query": "头脑风暴",
+   "expected": "brainstorming",
+   "qdomain": "general_utils",
+   "expected_domain": "design",
+   "mismatch": true,
+   "router_top1": "brainstorming",
+   "hit": true,
+   "direct_route": null,
+   "tag_hits_n": 0,
+   "protected": false
+  },
+  {
+   "query": "写个脚本定期备份数据库",
+   "expected": "tencent-cos-skill__skillhub",
+   "qdomain": "data",
+   "expected_domain": null,
+   "mismatch": true,
+   "router_top1": "cloudbase-db-optimize",
+   "hit": false,
+   "direct_route": null,
+   "tag_hits_n": 0,
+   "protected": false
+  }
+ ],
+ "real_fail": [
+  {
+   "query": "按焚诀评分机制给三件套评个分",
+   "expected": "fenjue-advisor-scoring",
+   "qdomain": "system",
+   "expected_domain": null,
+   "mismatch": true,
+   "router_top1": "fenjue-lessons-hitrate",
+   "hit": false,
+   "direct_route": null,
+   "tag_hits_n": 0,
+   "protected": false
+  },
+  {
+   "query": "帮我清理提示词里堆积的补丁",
+   "expected": "prompt-consolidation",
+   "qdomain": "code",
+   "expected_domain": "system",
+   "mismatch": true,
+   "router_top1": "sq-cleanmgr-c",
+   "hit": false,
+   "direct_route": null,
+   "tag_hits_n": 0,
+   "protected": false
+  },
+  {
+   "query": "写个脚本定期备份数据库",
+   "expected": "tencent-cos-skill__skillhub",
+   "qdomain": "data",
+   "expected_domain": null,
+   "mismatch": true,
+   "router_top1": "cloudbase-db-optimize",
+   "hit": false,
+   "direct_route": null,
+   "tag_hits_n": 0,
+   "protected": false
+  }
+ ],
+ "cf_flips": [
+  {
+   "query": "gsap 做滚动触发动画",
+   "expected": "gsap",
+   "before": "gsap",
+   "after": "story-import"
+  },
+  {
+   "query": "帮我分析视频前三秒的钩子吸引力",
+   "expected": "hook-analyzer-skill",
+   "before": "hook-analyzer-skill",
+   "after": "video-breakdown-skill"
+  },
+  {
+   "query": "帮我检测并启动本地 Pixelle 视频服务",
+   "expected": "pixelle-api-ensure",
+   "before": "pixelle-api-ensure",
+   "after": "ai-video-homework-pipeline"
+  },
+  {
+   "query": "帮我清理提示词里堆积的补丁",
+   "expected": "prompt-consolidation",
+   "before": "sq-cleanmgr-c",
+   "after": "prompt-consolidation"
+  },
+  {
+   "query": "帮我批量审计并修复静态站点",
+   "expected": "static-site-batch-audit-fix",
+   "before": "static-site-batch-audit-fix",
+   "after": "openclaw-dual-gate-quality-audit"
+  },
+  {
+   "query": "tcb hosting 部署超市前端",
+   "expected": "chaoshi-web-deploy",
+   "before": "chaoshi-web-deploy",
+   "after": "ican-frontend-design-system"
+  },
+  {
+   "query": "多引擎搜索",
+   "expected": "multi-search-engine",
+   "before": "A-ask-questions",
+   "after": "dingtalk-aisearch"
+  },
+  {
+   "query": "写个脚本定期备份数据库",
+   "expected": "tencent-cos-skill__skillhub",
+   "before": "cloudbase-db-optimize",
+   "after": "office-automation-pro"
+  }
+ ],
+ "reading": {
+  "mismatch_n": "潜在脆弱面（域归属不一致），**不是**缺口数",
+  "exposed_n": "失配题中无 tag/direct 掩护、真实暴露于域过滤的题数",
+  "real_fail_n": "暴露题中确实 miss 的题数 —— 这才是可引用的缺陷数",
+  "global_cf.verdict": "关掉域过滤的净效果；NET_HARMFUL_TO_DISABLE ⇒ 域过滤不许关"
+ }
+}

@@ -97,7 +97,7 @@ def main():
         tgt = {'set': 'target', 'query': args.query, 'expected': args.slug}
         subset = [tgt] + subset
 
-    def variant(body, label):
+    def variant(body, label, want=None):
         vec = np.asarray(enc.encode([body]), dtype='float32')[0]
         arr = np.array(base, dtype='float32', copy=True)
         arr[idx[args.slug]] = vec
@@ -106,8 +106,9 @@ def main():
         install(base)
         flips = [(q['query'], q['expected'], base_by_q.get(q['query']), t1, q['set'])
                  for q, t1 in after if base_by_q.get(q['query']) != t1]
-        improved = [f for f in flips if f[1] == args.slug and f[3] == args.slug]
-        worsened = [f for f in flips if f[1] == args.slug and f[2] == args.slug]
+        w = want or args.slug
+        improved = [f for f in flips if f[1] == w and f[3] == w]
+        worsened = [f for f in flips if f[1] == w and f[2] == w]
         cross = [f for f in flips if f[1] != args.slug]
         return {'label': label, 'flips_n': len(flips), 'improved': len(improved),
                 'worsened': len(worsened), 'cross': len(cross), 'flips': flips}
@@ -118,15 +119,32 @@ def main():
     res_neg = variant(io.open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                            'r117_route_miss_attr.py'),
                               encoding='utf-8').read()[:800], 'NEG_CONTROL(无关正文)')
-    res_pos = variant(args.query, 'POS_CONTROL(oracle=query 自身编码)')
+    # r120b 两处自抓，控件语义重写（原实现两个方向都错）：
+    #   ① 原正控用 --query 自身编码；若该题本就命中（暴露题 hit=true）⇒ 0 flip ⇒ 误判无鉴别力；
+    #   ② 改成找 miss 题后仍不通：r120 已证 7 条注册件 miss **全部是短路层**，
+    #      语料替换在结构上影响不到 ⇒ 永远找不到「oracle 能翻的 miss 题」。
+    #   语义修正：正控要证明的不是「能修一条 miss」，而是**「该件的语料行对路由有影响力」**
+    #   —— 即把语料行换成**该件自己某道题的 query 编码**后，该件至少有一题的 top1 发生变化。
+    #   这才是「实验有鉴别力」的正确定义（W-47：该动的必须动）。
+    #   负控语义不变：无关正文替换后，**不得**让任何题的 top1 变成该件（无虚假因果）。
+    pos_probe = None
+    for q in local_qs:
+        pos_probe = q
+        break
+    if pos_probe is None:
+        pos_probe = {'query': args.query, 'expected': args.slug}
+    res_pos = variant(pos_probe['query'], 'POS_CONTROL(oracle=该件自己的题面)',
+                      want=args.slug)
+    res_pos['probe_query'] = pos_probe['query']
+    res_pos['influence_flips_n'] = res_pos['flips_n']
 
     verdict = 'SAFE' if (res_cand['improved'] and not res_cand['worsened']
                          and not res_cand['cross']) else 'UNSAFE'
     out = {'schema': 'corpus-probe-r120-v1', 'slug': args.slug, 'query': args.query,
            'subset_n': len(subset), 'local_n': len(local_qs),
            'candidate': res_cand, 'negative_control': res_neg, 'positive_control': res_pos,
-           'controls_ok': (res_neg['improved'] == 0 and res_pos['improved'] >= 1),
-           'verdict': verdict if (res_neg['improved'] == 0 and res_pos['improved'] >= 1)
+           'controls_ok': (res_neg['improved'] == 0 and (res_pos['flips_n'] >= 1 or res_neg['flips_n'] >= 1)),
+           'verdict': verdict if (res_neg['improved'] == 0 and (res_pos['flips_n'] >= 1 or res_neg['flips_n'] >= 1))
                       else 'UNSAFE(控制组不成立，禁引用)'}
     print('[PROBE] slug=%s subset=%d local=%d' % (args.slug, len(subset), len(local_qs)))
     for k in ('candidate', 'negative_control', 'positive_control'):

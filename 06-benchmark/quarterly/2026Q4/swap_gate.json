@@ -1,6 +1,6 @@
 {
  "schema": "swap-gate-r112-v1",
- "generated_at": "2026-10-20T00:03:38+00:00",
+ "generated_at": "2026-10-20T01:44:01+00:00",
  "ruler": {
   "kind": "content_addressed",
   "q1": "同源已证（内容寻址，非相似度）",
@@ -23,9 +23,8 @@
   "blind_n": 143
  },
  "counts": {
-  "UP_TO_DATE": 12,
+  "LOCAL_AHEAD_KEEP": 14,
   "UNVERIFIED": 15,
-  "LOCAL_AHEAD_KEEP": 2,
   "UPGRADE_REVIEW": 10
  },
  "behind_list": [
@@ -34,7 +33,7 @@
    "verdict": "UPGRADE_REVIEW",
    "priority": "NORMAL",
    "upstream_only": 17,
-   "local_only": 36,
+   "local_only": 38,
    "upstream": "sickn33/agentic-awesome-skills/plugins/agentic-awesome-skills-claude/skills/github/SKILL.md",
    "upstream_last_commit_date": "2026-07-08T20:02:03Z"
   },
@@ -43,7 +42,7 @@
    "verdict": "UPGRADE_REVIEW",
    "priority": "NORMAL",
    "upstream_only": 14,
-   "local_only": 33,
+   "local_only": 35,
    "upstream": "sickn33/agentic-awesome-skills/plugins/agentic-awesome-skills-claude/skills/react-best-practices/SKILL.md",
    "upstream_last_commit_date": "2026-07-08T20:02:03Z"
   },
@@ -52,7 +51,7 @@
    "verdict": "UPGRADE_REVIEW",
    "priority": "HIGH",
    "upstream_only": 14,
-   "local_only": 4,
+   "local_only": 6,
    "upstream": "sickn33/agentic-awesome-skills/plugins/agentic-awesome-skills-claude/skills/shadcn/SKILL.md",
    "upstream_last_commit_date": "2026-07-08T20:02:03Z"
   },
@@ -61,34 +60,34 @@
    "verdict": "UPGRADE_REVIEW",
    "priority": "NORMAL",
    "upstream_only": 11,
-   "local_only": 43,
+   "local_only": 45,
    "upstream": "obra/superpowers/skills/test-driven-development/SKILL.md",
    "upstream_last_commit_date": "2026-09-19T00:31:35Z"
+  },
+  {
+   "slug": "defuddle",
+   "verdict": "UPGRADE_REVIEW",
+   "priority": "NORMAL",
+   "upstream_only": 2,
+   "local_only": 21,
+   "upstream": "kepano/obsidian-skills/skills/defuddle/SKILL.md",
+   "upstream_last_commit_date": "2026-09-09T07:37:32Z"
   },
   {
    "slug": "hyperframes-registry",
    "verdict": "UPGRADE_REVIEW",
    "priority": "NORMAL",
    "upstream_only": 2,
-   "local_only": 9,
+   "local_only": 11,
    "upstream": "calesthio/OpenMontage/.agents/skills/hyperframes-registry/SKILL.md",
    "upstream_last_commit_date": "2026-06-27T21:00:00Z"
-  },
-  {
-   "slug": "defuddle",
-   "verdict": "UPGRADE_REVIEW",
-   "priority": "NORMAL",
-   "upstream_only": 1,
-   "local_only": 1,
-   "upstream": "kepano/obsidian-skills/skills/defuddle/SKILL.md",
-   "upstream_last_commit_date": "2026-09-09T07:37:32Z"
   },
   {
    "slug": "healthcare-cdss-patterns",
    "verdict": "UPGRADE_REVIEW",
    "priority": "NORMAL",
    "upstream_only": 1,
-   "local_only": 2,
+   "local_only": 4,
    "upstream": "affaan-m/ECC/docs/ja-JP/skills/healthcare-cdss-patterns/SKILL.md",
    "upstream_last_commit_date": "2026-05-17T06:31:40Z"
   },
@@ -97,7 +96,7 @@
    "verdict": "UPGRADE_REVIEW",
    "priority": "NORMAL",
    "upstream_only": 1,
-   "local_only": 2,
+   "local_only": 4,
    "upstream": "affaan-m/ECC/docs/ja-JP/skills/healthcare-emr-patterns/SKILL.md",
    "upstream_last_commit_date": "2026-05-17T06:31:40Z"
   },
@@ -106,7 +105,7 @@
    "verdict": "UPGRADE_REVIEW",
    "priority": "NORMAL",
    "upstream_only": 1,
-   "local_only": 2,
+   "local_only": 4,
    "upstream": "affaan-m/ECC/docs/ja-JP/skills/healthcare-eval-harness/SKILL.md",
    "upstream_last_commit_date": "2026-05-17T06:31:40Z"
   },
@@ -115,7 +114,7 @@
    "verdict": "UPGRADE_REVIEW",
    "priority": "NORMAL",
    "upstream_only": 1,
-   "local_only": 1,
+   "local_only": 3,
    "upstream": "calesthio/OpenMontage/.agents/skills/web-design-guidelines/SKILL.md",
    "upstream_last_commit_date": "2026-03-29T15:25:17Z"
   }
@@ -123,7 +122,7 @@
  "rows": [
   {
    "slug": "algorithmic-art",
-   "verdict": "UP_TO_DATE",
+   "verdict": "LOCAL_AHEAD_KEEP",
    "priority": null,
    "reason": null,
    "q": {
@@ -133,12 +132,18 @@
     "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
    },
    "evidence": {
-    "upstream_sha256": "3bc4092c09804853186524c826bc0621b940bb6122c05b84496dff95388e6eef",
-    "local_sha256": "3bc4092c09804853186524c826bc0621b940bb6122c05b84496dff95388e6eef",
-    "upstream_last_commit_date": "2025-12-01T18:05:36Z"
+    "local_only": 2,
+    "upstream_only": 0
    },
-   "relation": "identical",
-   "stats": {},
+   "relation": "local_ahead",
+   "stats": {
+    "local_lines": 284,
+    "upstream_lines": 282,
+    "common": 282,
+    "local_only": 2,
+    "upstream_only": 0,
+    "jaccard": 0.993
+   },
    "upstream_repo": "anthropics/skills",
    "upstream_path": "skills/algorithmic-art/SKILL.md",
    "upstream_last_commit_date": "2025-12-01T18:05:36Z",
@@ -167,7 +172,7 @@
   },
   {
    "slug": "brand-guidelines",
-   "verdict": "UP_TO_DATE",
+   "verdict": "LOCAL_AHEAD_KEEP",
    "priority": null,
    "reason": null,
    "q": {
@@ -177,12 +182,18 @@
     "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
    },
    "evidence": {
-    "upstream_sha256": "1120b3769e2985cefb3d25be981b1f914abeba57ae079b83c20c666c164fa9fe",
-    "local_sha256": "1120b3769e2985cefb3d25be981b1f914abeba57ae079b83c20c666c164fa9fe",
-    "upstream_last_commit_date": "2025-12-01T18:05:36Z"
+    "local_only": 2,
+    "upstream_only": 0
    },
-   "relation": "identical",
-   "stats": {},
+   "relation": "local_ahead",
+   "stats": {
+    "local_lines": 50,
+    "upstream_lines": 48,
+    "common": 48,
+    "local_only": 2,
+    "upstream_only": 0,
+    "jaccard": 0.96
+   },
    "upstream_repo": "anthropics/skills",
    "upstream_path": "skills/brand-guidelines/SKILL.md",
    "upstream_last_commit_date": "2025-12-01T18:05:36Z",
@@ -201,17 +212,17 @@
     "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
    },
    "evidence": {
-    "local_only": 5,
+    "local_only": 7,
     "upstream_only": 0
    },
    "relation": "local_ahead",
    "stats": {
-    "local_lines": 86,
+    "local_lines": 88,
     "upstream_lines": 81,
     "common": 81,
-    "local_only": 5,
+    "local_only": 7,
     "upstream_only": 0,
-    "jaccard": 0.9419
+    "jaccard": 0.9205
    },
    "upstream_repo": "anthropics/skills",
    "upstream_path": "skills/canvas-design/SKILL.md",
@@ -241,7 +252,7 @@
   },
   {
    "slug": "commit-archaeologist",
-   "verdict": "UP_TO_DATE",
+   "verdict": "LOCAL_AHEAD_KEEP",
    "priority": null,
    "reason": null,
    "q": {
@@ -251,12 +262,18 @@
     "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
    },
    "evidence": {
-    "upstream_sha256": "8f21eb5ff270b4f4d403494fe606aa23b7faa73232dfe8ab0aed4fba1f94dfe5",
-    "local_sha256": "8f21eb5ff270b4f4d403494fe606aa23b7faa73232dfe8ab0aed4fba1f94dfe5",
-    "upstream_last_commit_date": "2026-07-19T00:31:51Z"
+    "local_only": 2,
+    "upstream_only": 0
    },
-   "relation": "identical",
-   "stats": {},
+   "relation": "local_ahead",
+   "stats": {
+    "local_lines": 99,
+    "upstream_lines": 97,
+    "common": 97,
+    "local_only": 2,
+    "upstream_only": 0,
+    "jaccard": 0.9798
+   },
    "upstream_repo": "Shubhamsaboo/awesome-llm-apps",
    "upstream_path": "agent_skills/commit-archaeologist/SKILL.md",
    "upstream_last_commit_date": "2026-07-19T00:31:51Z",
@@ -275,8 +292,8 @@
     "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
    },
    "evidence": {
-    "upstream_only": 1,
-    "local_only": 1,
+    "upstream_only": 2,
+    "local_only": 21,
     "upstream_repo": "kepano/obsidian-skills",
     "upstream_path": "skills/defuddle/SKILL.md",
     "upstream_last_commit_date": "2026-09-09T07:37:32Z",
@@ -284,12 +301,12 @@
    },
    "relation": "diverged",
    "stats": {
-    "local_lines": 24,
+    "local_lines": 43,
     "upstream_lines": 24,
-    "common": 23,
-    "local_only": 1,
-    "upstream_only": 1,
-    "jaccard": 0.92
+    "common": 22,
+    "local_only": 21,
+    "upstream_only": 2,
+    "jaccard": 0.4889
    },
    "upstream_repo": "kepano/obsidian-skills",
    "upstream_path": "skills/defuddle/SKILL.md",
@@ -299,7 +316,7 @@
   },
   {
    "slug": "doc-coauthoring",
-   "verdict": "UP_TO_DATE",
+   "verdict": "LOCAL_AHEAD_KEEP",
    "priority": null,
    "reason": null,
    "q": {
@@ -309,12 +326,18 @@
     "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
    },
    "evidence": {
-    "upstream_sha256": "2e47d78846faeea4a56e9809c52700087a15a2155a3f293a3efbaded81398ef4",
-    "local_sha256": "2e47d78846faeea4a56e9809c52700087a15a2155a3f293a3efbaded81398ef4",
-    "upstream_last_commit_date": "2025-12-04T17:01:46Z"
+    "local_only": 2,
+    "upstream_only": 0
    },
-   "relation": "identical",
-   "stats": {},
+   "relation": "local_ahead",
+   "stats": {
+    "local_lines": 231,
+    "upstream_lines": 229,
+    "common": 229,
+    "local_only": 2,
+    "upstream_only": 0,
+    "jaccard": 0.9913
+   },
    "upstream_repo": "anthropics/skills",
    "upstream_path": "skills/doc-coauthoring/SKILL.md",
    "upstream_last_commit_date": "2025-12-04T17:01:46Z",
@@ -414,7 +437,7 @@
    },
    "evidence": {
     "upstream_only": 17,
-    "local_only": 36,
+    "local_only": 38,
     "upstream_repo": "sickn33/agentic-awesome-skills",
     "upstream_path": "plugins/agentic-awesome-skills-claude/skills/github/SKILL.md",
     "upstream_last_commit_date": "2026-07-08T20:02:03Z",
@@ -422,12 +445,12 @@
    },
    "relation": "diverged",
    "stats": {
-    "local_lines": 58,
+    "local_lines": 60,
     "upstream_lines": 39,
     "common": 22,
-    "local_only": 36,
+    "local_only": 38,
     "upstream_only": 17,
-    "jaccard": 0.2933
+    "jaccard": 0.2857
    },
    "upstream_repo": "sickn33/agentic-awesome-skills",
    "upstream_path": "plugins/agentic-awesome-skills-claude/skills/github/SKILL.md",
@@ -468,7 +491,7 @@
    },
    "evidence": {
     "upstream_only": 1,
-    "local_only": 2,
+    "local_only": 4,
     "upstream_repo": "affaan-m/ECC",
     "upstream_path": "docs/ja-JP/skills/healthcare-cdss-patterns/SKILL.md",
     "upstream_last_commit_date": "2026-05-17T06:31:40Z",
@@ -476,12 +499,12 @@
    },
    "relation": "diverged",
    "stats": {
-    "local_lines": 167,
+    "local_lines": 169,
     "upstream_lines": 166,
     "common": 165,
-    "local_only": 2,
+    "local_only": 4,
     "upstream_only": 1,
-    "jaccard": 0.9821
+    "jaccard": 0.9706
    },
    "upstream_repo": "affaan-m/ECC",
    "upstream_path": "docs/ja-JP/skills/healthcare-cdss-patterns/SKILL.md",
@@ -502,7 +525,7 @@
    },
    "evidence": {
     "upstream_only": 1,
-    "local_only": 2,
+    "local_only": 4,
     "upstream_repo": "affaan-m/ECC",
     "upstream_path": "docs/ja-JP/skills/healthcare-emr-patterns/SKILL.md",
     "upstream_last_commit_date": "2026-05-17T06:31:40Z",
@@ -510,12 +533,12 @@
    },
    "relation": "diverged",
    "stats": {
-    "local_lines": 115,
+    "local_lines": 117,
     "upstream_lines": 114,
     "common": 113,
-    "local_only": 2,
+    "local_only": 4,
     "upstream_only": 1,
-    "jaccard": 0.9741
+    "jaccard": 0.9576
    },
    "upstream_repo": "affaan-m/ECC",
    "upstream_path": "docs/ja-JP/skills/healthcare-emr-patterns/SKILL.md",
@@ -536,7 +559,7 @@
    },
    "evidence": {
     "upstream_only": 1,
-    "local_only": 2,
+    "local_only": 4,
     "upstream_repo": "affaan-m/ECC",
     "upstream_path": "docs/ja-JP/skills/healthcare-eval-harness/SKILL.md",
     "upstream_last_commit_date": "2026-05-17T06:31:40Z",
@@ -544,12 +567,12 @@
    },
    "relation": "diverged",
    "stats": {
-    "local_lines": 124,
+    "local_lines": 126,
     "upstream_lines": 123,
     "common": 122,
-    "local_only": 2,
+    "local_only": 4,
     "upstream_only": 1,
-    "jaccard": 0.976
+    "jaccard": 0.9606
    },
    "upstream_repo": "affaan-m/ECC",
    "upstream_path": "docs/ja-JP/skills/healthcare-eval-harness/SKILL.md",
@@ -630,7 +653,7 @@
    },
    "evidence": {
     "upstream_only": 2,
-    "local_only": 9,
+    "local_only": 11,
     "upstream_repo": "calesthio/OpenMontage",
     "upstream_path": ".agents/skills/hyperframes-registry/SKILL.md",
     "upstream_last_commit_date": "2026-06-27T21:00:00Z",
@@ -638,12 +661,12 @@
    },
    "relation": "diverged",
    "stats": {
-    "local_lines": 73,
+    "local_lines": 75,
     "upstream_lines": 66,
     "common": 64,
-    "local_only": 9,
+    "local_only": 11,
     "upstream_only": 2,
-    "jaccard": 0.8533
+    "jaccard": 0.8312
    },
    "upstream_repo": "calesthio/OpenMontage",
    "upstream_path": ".agents/skills/hyperframes-registry/SKILL.md",
@@ -653,7 +676,7 @@
   },
   {
    "slug": "internal-comms",
-   "verdict": "UP_TO_DATE",
+   "verdict": "LOCAL_AHEAD_KEEP",
    "priority": null,
    "reason": null,
    "q": {
@@ -663,12 +686,18 @@
     "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
    },
    "evidence": {
-    "upstream_sha256": "067b7587a344a928fc6534ef66b1bcd591fc7c26d207ea7ca3334aeb678d6475",
-    "local_sha256": "067b7587a344a928fc6534ef66b1bcd591fc7c26d207ea7ca3334aeb678d6475",
-    "upstream_last_commit_date": "2025-12-01T18:05:36Z"
+    "local_only": 2,
+    "upstream_only": 0
    },
-   "relation": "identical",
-   "stats": {},
+   "relation": "local_ahead",
+   "stats": {
+    "local_lines": 27,
+    "upstream_lines": 25,
+    "common": 25,
+    "local_only": 2,
+    "upstream_only": 0,
+    "jaccard": 0.9259
+   },
    "upstream_repo": "anthropics/skills",
    "upstream_path": "skills/internal-comms/SKILL.md",
    "upstream_last_commit_date": "2025-12-01T18:05:36Z",
@@ -677,7 +706,7 @@
   },
   {
    "slug": "json-canvas",
-   "verdict": "UP_TO_DATE",
+   "verdict": "LOCAL_AHEAD_KEEP",
    "priority": null,
    "reason": null,
    "q": {
@@ -687,12 +716,18 @@
     "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
    },
    "evidence": {
-    "upstream_sha256": "97d1ae0728955c4203922753d5656890e5e4dd371b8306ea11884f9b510f1b85",
-    "local_sha256": "97d1ae0728955c4203922753d5656890e5e4dd371b8306ea11884f9b510f1b85",
-    "upstream_last_commit_date": "2026-02-25T11:32:59Z"
+    "local_only": 2,
+    "upstream_only": 0
    },
-   "relation": "identical",
-   "stats": {},
+   "relation": "local_ahead",
+   "stats": {
+    "local_lines": 156,
+    "upstream_lines": 154,
+    "common": 154,
+    "local_only": 2,
+    "upstream_only": 0,
+    "jaccard": 0.9872
+   },
    "upstream_repo": "kepano/obsidian-skills",
    "upstream_path": "skills/json-canvas/SKILL.md",
    "upstream_last_commit_date": "2026-02-25T11:32:59Z",
@@ -701,7 +736,7 @@
   },
   {
    "slug": "mcp-builder",
-   "verdict": "UP_TO_DATE",
+   "verdict": "LOCAL_AHEAD_KEEP",
    "priority": null,
    "reason": null,
    "q": {
@@ -711,12 +746,18 @@
     "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
    },
    "evidence": {
-    "upstream_sha256": "0f4592dcb53cf2b5d6b7febee6b4152018b565551a1c29e3c612f57b218ab295",
-    "local_sha256": "0f4592dcb53cf2b5d6b7febee6b4152018b565551a1c29e3c612f57b218ab295",
-    "upstream_last_commit_date": "2025-12-01T18:05:36Z"
+    "local_only": 2,
+    "upstream_only": 0
    },
-   "relation": "identical",
-   "stats": {},
+   "relation": "local_ahead",
+   "stats": {
+    "local_lines": 159,
+    "upstream_lines": 157,
+    "common": 157,
+    "local_only": 2,
+    "upstream_only": 0,
+    "jaccard": 0.9874
+   },
    "upstream_repo": "anthropics/skills",
    "upstream_path": "skills/mcp-builder/SKILL.md",
    "upstream_last_commit_date": "2025-12-01T18:05:36Z",
@@ -725,7 +766,7 @@
   },
   {
    "slug": "obsidian-bases",
-   "verdict": "UP_TO_DATE",
+   "verdict": "LOCAL_AHEAD_KEEP",
    "priority": null,
    "reason": null,
    "q": {
@@ -735,12 +776,18 @@
     "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
    },
    "evidence": {
-    "upstream_sha256": "c0037f20926c7d8591cdd040365e4c0e4c0c4146386a506f28f241faee9a27d9",
-    "local_sha256": "c0037f20926c7d8591cdd040365e4c0e4c0c4146386a506f28f241faee9a27d9",
-    "upstream_last_commit_date": "2026-04-07T08:34:35Z"
+    "local_only": 2,
+    "upstream_only": 0
    },
-   "relation": "identical",
-   "stats": {},
+   "relation": "local_ahead",
+   "stats": {
+    "local_lines": 294,
+    "upstream_lines": 292,
+    "common": 292,
+    "local_only": 2,
+    "upstream_only": 0,
+    "jaccard": 0.9932
+   },
    "upstream_repo": "kepano/obsidian-skills",
    "upstream_path": "skills/obsidian-bases/SKILL.md",
    "upstream_last_commit_date": "2026-04-07T08:34:35Z",
@@ -749,7 +796,7 @@
   },
   {
    "slug": "obsidian-cli",
-   "verdict": "UP_TO_DATE",
+   "verdict": "LOCAL_AHEAD_KEEP",
    "priority": null,
    "reason": null,
    "q": {
@@ -759,12 +806,18 @@
     "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
    },
    "evidence": {
-    "upstream_sha256": "b54257cdc0e5d04488b35b0c797bfe427b24359f0848d3c73924dcacf8da6358",
-    "local_sha256": "b54257cdc0e5d04488b35b0c797bfe427b24359f0848d3c73924dcacf8da6358",
-    "upstream_last_commit_date": "2026-02-25T11:32:59Z"
+    "local_only": 2,
+    "upstream_only": 0
    },
-   "relation": "identical",
-   "stats": {},
+   "relation": "local_ahead",
+   "stats": {
+    "local_lines": 56,
+    "upstream_lines": 54,
+    "common": 54,
+    "local_only": 2,
+    "upstream_only": 0,
+    "jaccard": 0.9643
+   },
    "upstream_repo": "kepano/obsidian-skills",
    "upstream_path": "skills/obsidian-cli/SKILL.md",
    "upstream_last_commit_date": "2026-02-25T11:32:59Z",
@@ -773,7 +826,7 @@
   },
   {
    "slug": "obsidian-markdown",
-   "verdict": "UP_TO_DATE",
+   "verdict": "LOCAL_AHEAD_KEEP",
    "priority": null,
    "reason": null,
    "q": {
@@ -783,12 +836,18 @@
     "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
    },
    "evidence": {
-    "upstream_sha256": "7ad72e1f0a9081ed325e76b6402ad5de50a00e63e2341fd403a92f147234a007",
-    "local_sha256": "7ad72e1f0a9081ed325e76b6402ad5de50a00e63e2341fd403a92f147234a007",
-    "upstream_last_commit_date": "2026-02-25T11:32:59Z"
+    "local_only": 2,
+    "upstream_only": 0
    },
-   "relation": "identical",
-   "stats": {},
+   "relation": "local_ahead",
+   "stats": {
+    "local_lines": 108,
+    "upstream_lines": 106,
+    "common": 106,
+    "local_only": 2,
+    "upstream_only": 0,
+    "jaccard": 0.9815
+   },
    "upstream_repo": "kepano/obsidian-skills",
    "upstream_path": "skills/obsidian-markdown/SKILL.md",
    "upstream_last_commit_date": "2026-02-25T11:32:59Z",
@@ -828,7 +887,7 @@
    },
    "evidence": {
     "upstream_only": 14,
-    "local_only": 33,
+    "local_only": 35,
     "upstream_repo": "sickn33/agentic-awesome-skills",
     "upstream_path": "plugins/agentic-awesome-skills-claude/skills/react-best-practices/SKILL.md",
     "upstream_last_commit_date": "2026-07-08T20:02:03Z",
@@ -836,12 +895,12 @@
    },
    "relation": "diverged",
    "stats": {
-    "local_lines": 118,
+    "local_lines": 120,
     "upstream_lines": 99,
     "common": 85,
-    "local_only": 33,
+    "local_only": 35,
     "upstream_only": 14,
-    "jaccard": 0.6439
+    "jaccard": 0.6343
    },
    "upstream_repo": "sickn33/agentic-awesome-skills",
    "upstream_path": "plugins/agentic-awesome-skills-claude/skills/react-best-practices/SKILL.md",
@@ -851,7 +910,7 @@
   },
   {
    "slug": "scope-creep-detector",
-   "verdict": "UP_TO_DATE",
+   "verdict": "LOCAL_AHEAD_KEEP",
    "priority": null,
    "reason": null,
    "q": {
@@ -861,12 +920,18 @@
     "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
    },
    "evidence": {
-    "upstream_sha256": "a21a28ce59694554c16ddc19cb3b27620b1e3e5040803df0e40b22f6a34da159",
-    "local_sha256": "a21a28ce59694554c16ddc19cb3b27620b1e3e5040803df0e40b22f6a34da159",
-    "upstream_last_commit_date": null
+    "local_only": 2,
+    "upstream_only": 0
    },
-   "relation": "identical",
-   "stats": {},
+   "relation": "local_ahead",
+   "stats": {
+    "local_lines": 94,
+    "upstream_lines": 92,
+    "common": 92,
+    "local_only": 2,
+    "upstream_only": 0,
+    "jaccard": 0.9787
+   },
    "upstream_repo": "Shubhamsaboo/awesome-llm-apps",
    "upstream_path": "agent_skills/scope-creep-detector/SKILL.md",
    "upstream_last_commit_date": null,
@@ -906,7 +971,7 @@
    },
    "evidence": {
     "upstream_only": 14,
-    "local_only": 4,
+    "local_only": 6,
     "upstream_repo": "sickn33/agentic-awesome-skills",
     "upstream_path": "plugins/agentic-awesome-skills-claude/skills/shadcn/SKILL.md",
     "upstream_last_commit_date": "2026-07-08T20:02:03Z",
@@ -914,12 +979,12 @@
    },
    "relation": "diverged",
    "stats": {
-    "local_lines": 178,
+    "local_lines": 180,
     "upstream_lines": 188,
     "common": 174,
-    "local_only": 4,
+    "local_only": 6,
     "upstream_only": 14,
-    "jaccard": 0.9062
+    "jaccard": 0.8969
    },
    "upstream_repo": "sickn33/agentic-awesome-skills",
    "upstream_path": "plugins/agentic-awesome-skills-claude/skills/shadcn/SKILL.md",
@@ -940,7 +1005,7 @@
    },
    "evidence": {
     "upstream_only": 11,
-    "local_only": 43,
+    "local_only": 45,
     "upstream_repo": "obra/superpowers",
     "upstream_path": "skills/test-driven-development/SKILL.md",
     "upstream_last_commit_date": "2026-09-19T00:31:35Z",
@@ -948,12 +1013,12 @@
    },
    "relation": "diverged",
    "stats": {
-    "local_lines": 248,
+    "local_lines": 250,
     "upstream_lines": 216,
     "common": 205,
-    "local_only": 43,
+    "local_only": 45,
     "upstream_only": 11,
-    "jaccard": 0.7915
+    "jaccard": 0.7854
    },
    "upstream_repo": "obra/superpowers",
    "upstream_path": "skills/test-driven-development/SKILL.md",
@@ -963,7 +1028,7 @@
   },
   {
    "slug": "theme-factory",
-   "verdict": "UP_TO_DATE",
+   "verdict": "LOCAL_AHEAD_KEEP",
    "priority": null,
    "reason": null,
    "q": {
@@ -973,12 +1038,18 @@
     "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
    },
    "evidence": {
-    "upstream_sha256": "c35893e221e28895c52143cc11bf30e41a44817796b39d4b15727dadc9796552",
-    "local_sha256": "c35893e221e28895c52143cc11bf30e41a44817796b39d4b15727dadc9796552",
-    "upstream_last_commit_date": "2025-12-01T18:05:36Z"
+    "local_only": 2,
+    "upstream_only": 0
    },
-   "relation": "identical",
-   "stats": {},
+   "relation": "local_ahead",
+   "stats": {
+    "local_lines": 43,
+    "upstream_lines": 41,
+    "common": 41,
+    "local_only": 2,
+    "upstream_only": 0,
+    "jaccard": 0.9535
+   },
    "upstream_repo": "anthropics/skills",
    "upstream_path": "skills/theme-factory/SKILL.md",
    "upstream_last_commit_date": "2025-12-01T18:05:36Z",
@@ -1038,7 +1109,7 @@
    },
    "evidence": {
     "upstream_only": 1,
-    "local_only": 1,
+    "local_only": 3,
     "upstream_repo": "calesthio/OpenMontage",
     "upstream_path": ".agents/skills/web-design-guidelines/SKILL.md",
     "upstream_last_commit_date": "2026-03-29T15:25:17Z",
@@ -1046,12 +1117,12 @@
    },
    "relation": "diverged",
    "stats": {
-    "local_lines": 26,
+    "local_lines": 28,
     "upstream_lines": 26,
     "common": 25,
-    "local_only": 1,
+    "local_only": 3,
     "upstream_only": 1,
-    "jaccard": 0.9259
+    "jaccard": 0.8621
    },
    "upstream_repo": "calesthio/OpenMontage",
    "upstream_path": ".agents/skills/web-design-guidelines/SKILL.md",
@@ -1071,17 +1142,17 @@
     "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
    },
    "evidence": {
-    "local_only": 14,
+    "local_only": 16,
     "upstream_only": 0
    },
    "relation": "local_ahead",
    "stats": {
-    "local_lines": 148,
+    "local_lines": 150,
     "upstream_lines": 134,
     "common": 134,
-    "local_only": 14,
+    "local_only": 16,
     "upstream_only": 0,
-    "jaccard": 0.9054
+    "jaccard": 0.8933
    },
    "upstream_repo": "obra/superpowers",
    "upstream_path": "skills/writing-plans/SKILL.md",

@@ -94,39 +94,6 @@
    "flips_cross": []
   },
   {
-   "label": "POS_CONTROL(oracle 语料)",
-   "slug": "chaoshi-web-deploy",
-   "repo": null,
-   "kind": "positive_control",
-   "subset_n": 24,
-   "local_n": 4,
-   "before": {
-    "n": 24,
-    "hits": 23,
-    "top1_pct": 95.83,
-    "weighted_pct": 95.79
-   },
-   "after": {
-    "n": 24,
-    "hits": 22,
-    "top1_pct": 91.67,
-    "weighted_pct": 91.58
-   },
-   "delta_local_pp": -25.0,
-   "delta_subset_pp": -4.16,
-   "flips_n": 1,
-   "flips_local": [
-    {
-     "q": "tcb hosting 部署超市前端",
-     "expected": "chaoshi-web-deploy",
-     "before": "chaoshi-web-deploy",
-     "after": "chaoshi-admin-inline-edit",
-     "set": "layered"
-    }
-   ],
-   "flips_cross": []
-  },
-  {
    "label": "algorithmic-art<-anthropics/skills",
    "slug": "algorithmic-art",
    "repo": "anthropics/skills",
@@ -178,7 +145,7 @@
      "q": "头脑风暴",
      "expected": "brainstorming",
      "before": "brainstorming",
-     "after": "A-get-memory",
+     "after": "A-skill-manager",
      "set": "layered"
     }
    ],
@@ -211,7 +178,7 @@
      "q": "头脑风暴",
      "expected": "brainstorming",
      "before": "brainstorming",
-     "after": "A-get-memory",
+     "after": "A-skill-manager",
      "set": "layered"
     }
    ],
@@ -957,22 +924,14 @@
    },
    "after": {
     "n": 23,
-    "hits": 21,
-    "top1_pct": 91.3,
-    "weighted_pct": 91.21
+    "hits": 22,
+    "top1_pct": 95.65,
+    "weighted_pct": 95.6
    },
-   "delta_local_pp": -25.0,
-   "delta_subset_pp": -4.35,
-   "flips_n": 1,
-   "flips_local": [
-    {
-     "q": "读PDF",
-     "expected": "pdf",
-     "before": "pdf",
-     "after": "local-tts",
-     "set": "layered"
-    }
-   ],
+   "delta_local_pp": 0.0,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
    "flips_cross": []
   },
   {
@@ -1329,8 +1288,8 @@
  "summary": {
   "variants_n": 47,
   "local_improved_n": 0,
-  "local_degraded_n": 3,
-  "subnet_changed_n": 3,
+  "local_degraded_n": 2,
+  "subnet_changed_n": 2,
   "cross_flips_n": 0,
   "negative_control": {
    "slug": "algorithmic-art",
@@ -1338,10 +1297,10 @@
    "pass": true
   },
   "positive_control": {
-   "slug": "chaoshi-web-deploy",
-   "flips_n": 1,
-   "pass": true
+   "slug": null,
+   "flips_n": null,
+   "pass": false
   },
-  "discriminating_power": true
+  "discriminating_power": false
  }
 }

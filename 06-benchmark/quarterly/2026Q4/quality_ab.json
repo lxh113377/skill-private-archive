@@ -1,6 +1,6 @@
 {
  "schema": "quality-ab-r114-v1",
- "generated_at": "2026-10-20T00:04:09+00:00",
+ "generated_at": "2026-10-20T01:44:14+00:00",
  "cmd": "python 05-exec/r114_quality_ab.py",
  "benchmark": {
   "script": "C:\\Users\\37533\\Desktop\\workspace\\焚诀\\eval\\skill_hitrate_eval_v2.py",
@@ -28,21 +28,21 @@
    },
    "tfidf": {
     "top1": 27.0,
-    "top3": 38.2,
+    "top3": 42.7,
     "hit_rate": 96.6,
     "precision": 27.9,
     "recall": 88.9,
     "f1": 42.5,
-    "fp_rate": 28.6
+    "fp_rate": 14.3
    },
    "hybrid": {
     "top1": 47.2,
-    "top3": 55.1,
+    "top3": 58.4,
     "hit_rate": 97.8,
     "precision": 48.3,
     "recall": 95.5,
     "f1": 64.1,
-    "fp_rate": 28.6
+    "fp_rate": 14.3
    }
   },
   "ci": {
@@ -81,7 +81,7 @@
   "delta_pp": 9.0,
   "delta_rel_pct": 23.6,
   "base_top3": 50.6,
-  "now_top3": 55.1,
+  "now_top3": 58.4,
   "base_f1": 55.3,
   "now_f1": 64.1,
   "top1_ci_base": [

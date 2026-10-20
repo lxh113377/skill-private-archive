@@ -78,6 +78,8 @@ def parse_last_verdict(text):
     last = flat[-1]
     return ("DEFER", int(last.group(2))) if last.group(2) else ("FINAL", last.group(1))
 RE_R_IN_SUBJECT = re.compile(r"\br(\d{1,3})\b")
+# R121（R119b-5）：条目编号（R\d{2,3}-\d{1,2}），用于跨分卷同号多副本检测。
+RE_ID_SUBJECT = re.compile(r"^\*{0,2}【?[^】]{0,24}?\b(R\d{2,3}-\d{1,2})\b")
 
 
 def git(*args):
@@ -137,6 +139,28 @@ def face_dedup(raw_lines, items_total, collisions):
                 % (len(collisions), collisions[0]["a"][:36], collisions[0]["b"][:36]))
     return (True, "%d 行全部计入，80 字前缀键零碰撞" % raw_lines)
 
+
+def face_dup_ids(dup_ids):
+    """R121（R119b-5）：同号多副本面自证。
+
+    存在理由（r119 一手实证）：R112-1/2/3/4 在 part78 已 `[x]` 闭环，而 part75 留旧副本
+    未勾销 ⇒ 同一笔债被算两次，overdue 从 0 虚增到 11（其中 4 条是这么来的）。
+    现去重键是 80 字前缀，**跨分卷同号但正文不同的副本前缀不同 ⇒ 漏检**。
+
+    判据口径（不静默、不代裁）：
+      - 一个编号出现在 >1 个分卷 ⇒ 判红点名（可能是漏勾销，也可能是同号不同义）；
+      - 全部副本都已 `[x]` ⇒ 只报不判红（无害，属拆卷留痕）；
+      - 同卷内多行同号 ⇒ 同样点名（可能是重复登记）。
+    本面**不改记账行为**（不自动去重、不自动勾销），只把「该看一眼」的显形。
+    """
+    if not dup_ids:
+        return (True, "同号多副本 0 组（按条目编号聚合，跨分卷可见）")
+    bad = [d for d in dup_ids if not d["all_checked"]]
+    if bad:
+        d = bad[0]
+        return (False, "%d 组同号多副本存在未勾销副本（首例 %s：%d 处，跨 %d 卷 %s）⇒ 疑似漏勾销致重复计账" % (len(bad), d["id"], d["n"], len(d["files"]),
+                       ", ".join(os.path.basename(f) for f in d["files"])))
+    return (True, "%d 组同号多副本但全部已勾销（拆卷留痕，不判红）" % len(dup_ids))
 
 def face_dating(seen_short, seen_full):
     """定年面自证：`git log -S` 的 needle 取正文前 70 字（截断串），可能命中更早的同前缀行。
@@ -406,6 +430,12 @@ def scan(files, now_round, grace):
     global GRACE_DEFAULT
     items, seen = [], {}
     raw_lines, collisions, dating_fails = 0, [], []
+    # R121（R119b-5）：同号多副本检测。r119 实测 R112-1/2/3/4 在 part78 已 [x]
+    # 而 part75 留旧副本 ⇒ 同一笔债被算两次（overdue 11 里有 4 条是这么来的）。
+    # 现判据只按 80 字前缀键去重，**跨分卷同号但正文不同的副本前缀不同 ⇒ 漏检**。
+    # 本块按「条目编号」聚合（RE_R_IN_SUBJECT 取 Rd{2,3}-d{1,2}），
+    # 一个编号出现在多个分卷即入 dup_ids，由面自证判红点名（不改记账行为）。
+    by_id = {}
     for fp in files:
         rel = os.path.join("memory", fp.name)
         text = io.open(fp, encoding="utf-8", errors="replace").read()
@@ -416,6 +446,14 @@ def scan(files, now_round, grace):
             raw_lines += 1
             body = m.group(2).strip()
             key = re.sub(r"\s+", " ", body[:80])
+            # R121（R119b-5）：编号登记必须**早于**去重 continue，且只取**标题首部**编号。
+            # r121 两轮实测：① 登记点在 continue 之后 ⇒ 被 80 字前缀去重跳过的副本不登记（漏 5 组）；
+            #   ② 用全文 findall 会把正文里**引用的**编号也算成副本（14 组里 9 组是这种误报）。
+            # 故正则锚定标题首部（形态见 RE_ID_SUBJECT 定义），并改用 match 取第一个。
+            _m_id = RE_ID_SUBJECT.match(body)
+            if _m_id:
+                by_id.setdefault(_m_id.group(1), []).append(
+                    {"file": rel, "line": ln, "checked": m.group(1) == "x"})
             if key in seen:
                 # 主壳与分卷可能同条目（拆卷留索引），去重防重复计账；
                 # 但**正文不同**就不是同一条目 —— 记账行为不变（防静默改数），面自证判红点名。
@@ -441,7 +479,15 @@ def scan(files, now_round, grace):
                                          "title": body[:60]})
                     row["dating_face_detail"] = why
             items.append(row)
+    dup_ids = []
+    for _mid, _locs in sorted(by_id.items()):
+        _files = sorted(set(x["file"] for x in _locs))
+        if len(_locs) > 1:
+            dup_ids.append({"id": _mid, "n": len(_locs), "files": _files,
+                            "locs": _locs,
+                            "all_checked": all(x["checked"] for x in _locs)})
     face = {"raw_lines": raw_lines, "items_total": len(items), "collisions": collisions,
+            "dup_ids": dup_ids,
             "dating_fails": dating_fails,
             "method": "RE_ITEM 逐行计数（独立于去重计入）+ 截断键碰撞比对 + 定年双路取值"}
     return items, face
@@ -579,6 +625,7 @@ def main():
     round_tag = round_from_tag()
     f_round = face_round(now_round, round_tag)
     f_dedup = face_dedup(face["raw_lines"], face["items_total"], face["collisions"])
+    f_dup = face_dup_ids(face.get("dup_ids") or [])   # R121（R119b-5）
     f_dates = face["dating_fails"]
     f_dating = face_dating_summary(f_dates, sum(1 for r in items if r.get("dating_face")))
     # W-20 第 4 面：本轮报告新立的建议编号 → 待办卷承接对账
@@ -604,10 +651,11 @@ def main():
     input_face = {"round": {"log": now_round, "tag": round_tag, "ok": f_round[0], "detail": f_round[1]},
                   "floor": {"ok": f_floor[0], "detail": f_floor[1]},
                   "dedup": {"ok": f_dedup[0], "detail": f_dedup[1]},
+                  "dup": {"ok": f_dup[0], "detail": f_dup[1]},  # R121（R119b-5）
                   "dating": {"ok": f_dating[0], "detail": f_dating[1], "checked": len(f_dates)},
                   "suggestions": {"ok": f_sugg[0], "detail": f_sugg[1]},
                   "raw_lines": face["raw_lines"], "collisions": face["collisions"]}
-    FACE_KEYS = ("round", "floor", "dedup", "dating", "suggestions")
+    FACE_KEYS = ("round", "floor", "dedup", "dup", "dating", "suggestions")
     face_red = [k for k in FACE_KEYS if input_face[k]["ok"] is False]
     face_unver = [k for k in FACE_KEYS if input_face[k]["ok"] is None]
     input_face["status"] = ("FAIL" if face_red else
@@ -638,6 +686,7 @@ def main():
         for k, lbl in (("round", "轮号面(-40 窗口 vs tag 硬锚)"),
                        ("floor", "规模下限面(上轮受检卷须仍在面内)"),
                        ("dedup", "去重面(80 字前缀键)"),
+                       ("dup", "同号多副本面(条目编号聚合)"),
                        ("dating", "定年面(70 字 needle)"),
                        ("suggestions", "建议面(报告新建议→待办卷承接)")):
             v = input_face[k]

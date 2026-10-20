@@ -131,6 +131,68 @@ def _read_swap_impact(path):
     }
 
 
+def _read_domain_face(path):
+    """从 domain_face.json 读 L0 域过滤面五数（句柄化，禁抄值）。
+
+    三态：件缺失/解析失败 ⇒ None（禁当 0 引用）。
+    口径红线（r120 §2.3）：mismatch_n 是**潜在脆弱面**，不是缺口数；
+    可引用的缺陷数 = real_fail_n。两个数必须同列，禁只报一个。
+    """
+    import io as _io
+    import json as _json
+    if not os.path.isfile(path):
+        return None
+    try:
+        with _io.open(path, encoding="utf-8") as f:
+            d = _json.load(f)
+    except Exception:
+        return None
+    f = d.get("face") or {}
+    g = d.get("global_cf") or {}
+    return {
+        "questions_n": f.get("questions_n"),
+        "mismatch_n": f.get("mismatch_n"),
+        "mismatch_pct": f.get("mismatch_pct"),
+        "mismatch_raw_n": f.get("mismatch_raw_n"),
+        "calibration_diff_n": f.get("calibration_diff_n"),
+        "exposed_n": f.get("exposed_n"),
+        "real_fail_n": f.get("real_fail_n"),
+        "domain_filter_net_pp": g.get("delta_pp"),
+        "domain_filter_verdict": g.get("verdict"),
+        "source": os.path.relpath(path, ROOT).replace(os.sep, "/"),
+    }
+
+
+def _read_trace_face(path):
+    """从 trace_face.json 读生产流量面五数（句柄化，禁抄值）。
+
+    三态：件缺失/解析失败 ⇒ None（禁当 0 引用）。
+    ⚠️ 该文件会被轮换：r120 实测 23,630 行/15 天，后续实测 894 行/0.03 天 ⇒
+    span_days 与 freshness_days 必须与 unique_n 同列，禁只报一个规模数。
+    """
+    import io as _io
+    import json as _json
+    if not os.path.isfile(path):
+        return None
+    try:
+        with _io.open(path, encoding="utf-8") as f:
+            d = _json.load(f)
+    except Exception:
+        return None
+    f = d.get("face") or {}
+    return {
+        "rows_n": f.get("rows_n"),
+        "unique_n": f.get("unique_n"),
+        "noise_n": f.get("noise_n"),
+        "empty_q_n": f.get("empty_q_n"),
+        "low_n": f.get("low_n"),
+        "span_days": f.get("span_days"),
+        "freshness_days": f.get("freshness_days"),
+        "conservation_ok": f.get("conservation_ok"),
+        "source": os.path.relpath(path, ROOT).replace(os.sep, "/"),
+    }
+
+
 def atomic_write_json(path, doc):
     tmp = path + ".tmp"
     with io.open(tmp, "w", encoding="utf-8", newline="\n") as fh:
@@ -191,6 +253,25 @@ def main():
     steps.append(run_step("quality_truth",
                           [PY, os.path.join(HERE, "r115_quality_truth.py"),
                            "--json", truth, "--quiet"]))
+    # r120b 第 ⑪ 段（R120-1 落地）：L0 域过滤面常驻读数。
+    # 存在理由：r120 首析即量出 25.7% 题面域失配（生产口径），但**当时是一次性脚本**，
+    # 而域归属会随注册表增删持续漂移 ⇒ 不常驻就等于「量过一次就永远信那一次」。
+    # 本段只读 eval/ 与注册表，零网络；口径校准（raw vs norm）同列输出，
+    # 防下一轮把「潜在脆弱面」当「缺口数」引用（r120 §2.3 已立该口径红线）。
+    domain_face = os.path.join(qdir, "domain_face.json")
+    steps.append(run_step("domain_face",
+                          [PY, os.path.join(HERE, "r120_domain_face.py"),
+                           "--json", domain_face],
+                          timeout=900))
+    # r120b 第 ⑫ 段（R120-4 落地）：生产流量面常驻读数。
+    # 存在理由：r120 首析 route_trace 即证「路由缺口在合成题面不在真实使用」，但属一次性脚本，
+    # 而生产流量每日新增 ⇒ 不常驻就等于结论永远停在 10-20。本段只读 jsonl，零网络。
+    # ⚠️ 该文件会被轮换（r120 当时 23,630 行 / 15 天，本轮实测 894 行 / 0.03 天）⇒
+    #   freshness_days 与 span_days 必须同列输出，禁只报 unique_n 让人以为一直是那个规模。
+    trace_face = os.path.join(qdir, "trace_face.json")
+    steps.append(run_step("trace_face",
+                          [PY, os.path.join(HERE, "r120_trace_face.py"),
+                           "--json", trace_face]))
     # r119 第 ⑩ 段（S-4 落地）：换装影响量常驻读数。
     # 存在理由：r118 实测「换装对生产路由影响 0」是需求 6 的机制判据，但它此前只活在
     # r118 报告里 —— 下一季换装队列重新开工时，没有人会复跑这个沙箱，
@@ -205,13 +286,16 @@ def main():
                           [PY, os.path.join(HERE, "r118_swap_sim.py"),
                            "--json", swap_impact],
                           timeout=1800))
+    _r120b_domain_reading = _read_domain_face(domain_face)
+    _r120b_trace_reading = _read_trace_face(trace_face)
 
     meta = fetch_meta(offline=args.offline)
     failed = [s["step"] for s in steps if s["rc"] != 0]
     meta_unv = sorted([r for r, v in meta.items() if v.get("state") == "UNVERIFIED"])
 
     face_ok = (all(os.path.isfile(p) for p in
-                   (prov, up, swap, repl, qual, rmiss, truth, swap_impact))
+                   (prov, up, swap, repl, qual, rmiss, truth, swap_impact, domain_face,
+                    trace_face))
                and not failed)
     face_reason = None
     if not os.path.isfile(prov):
@@ -232,8 +316,11 @@ def main():
         "artifacts": {"provenance": prov, "upstream": up, "swap_gate": swap,
                       "replacement_matrix": repl, "quality_ab": qual,
                       "route_miss_attr": rmiss, "quality_truth": truth,
-                      "swap_impact": swap_impact},
+                      "swap_impact": swap_impact, "domain_face": domain_face,
+                      "trace_face": trace_face},
         "swap_impact_reading": _read_swap_impact(swap_impact),
+        "domain_face_reading": _r120b_domain_reading,
+        "trace_face_reading": _r120b_trace_reading,
         "face_ok": face_ok,
         "face_reason": face_reason,
     }

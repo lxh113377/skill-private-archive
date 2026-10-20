@@ -1,6 +1,6 @@
 {
  "schema": "quality-truth-r115-v1",
- "generated_at": "2026-10-20T00:04:41+00:00",
+ "generated_at": "2026-10-20T01:44:26+00:00",
  "cmd": "python 05-exec/r115_quality_truth.py",
  "r114_correction": {
   "what_was_wrong": "r114 取 eval/skill_hitrate_eval_v2.py 的 hybrid_match Top-1=38.2% 当作「现役任务质量」；该函数只是三方法对照的近似实现，不读 direct_map/tags/BGE/memory 任何一层",
@@ -17,7 +17,16 @@
    "n": 291,
    "hits": 276,
    "semantic_layer": "bge",
-   "bge_status": "engaged"
+   "bge_status": "engaged",
+   "ci95": [
+    91.7,
+    96.9
+   ],
+   "sampling": [
+    276,
+    291
+   ],
+   "ci_note": "Wilson 95%（eval/interval_stats.py，D-162）"
   },
   "L2_frozen": {
    "score": 65.0,
@@ -25,7 +34,16 @@
    "n": 10,
    "hits": 7,
    "semantic_layer": "bge",
-   "bge_status": "engaged"
+   "bge_status": "engaged",
+   "ci95": [
+    39.7,
+    89.2
+   ],
+   "sampling": [
+    7,
+    10
+   ],
+   "ci_note": "Wilson 95%（eval/interval_stats.py，D-162）"
   },
   "L3_holdout": {
    "status": "PASS",
@@ -90,5 +108,23 @@
   },
   "L4_error": null
  },
- "errors": {}
+ "errors": {},
+ "requirement6": {
+  "baseline_file": "quality_truth_r115_2026-10-18.json",
+  "baseline_available": true,
+  "baseline_score": 88.3,
+  "current_score": 90.1,
+  "baseline_ci95": [
+   89.6,
+   95.5
+  ],
+  "current_ci95": [
+   91.7,
+   96.9
+  ],
+  "r2_comparability": "区间重叠(幅度落在抽样抖动内)",
+  "relative_gain_pct": 2.0,
+  "r1_threshold_met": false,
+  "r1_r2_r3_all_met": false
+ }
 }

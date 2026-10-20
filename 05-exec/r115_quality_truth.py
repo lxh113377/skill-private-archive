@@ -62,6 +62,9 @@ ROOT = os.path.dirname(HERE)
 BENCH = os.path.join(ROOT, "06-benchmark")
 FENJUE = r"C:\Users\37533\Desktop\workspace\焚诀"
 EVAL = os.path.join(FENJUE, "eval")
+# R121（R119b-4）：Wilson 区间口径复用仓内权威实现（D-162），禁自造尺。
+sys.path.insert(0, EVAL)
+from interval_stats import wilson_interval, format_ci_only  # noqa: E402
 PY_CANDIDATES = [
     os.path.expanduser(r"~\.workbuddy\binaries\python\envs\default\Scripts\python.exe"),
     r"C:\Program Files\Python312\python.exe",
@@ -240,6 +243,23 @@ def main():
         return 2
 
     clean, clean_err = clean_face(layered, holdout)
+    # R121（R119b-4）：为各面补 Wilson 95% 区间，并把需求 6 的 R2 条件
+    # 「区间分离」变成机器可判。口径复用 eval/interval_stats.py（D-162 权威实现），
+    # 不重造尺；n<=0 一律 None（禁把零样本当 0% 或当已核验）。
+    def with_ci(face):
+        """给一个含 hits/n 的面补 ci95 与 sampling 说明。"""
+        n = face.get("n")
+        hits = face.get("hits")
+        if not isinstance(n, int) or not isinstance(hits, int) or n <= 0:
+            return {"ci95": None, "sampling": None,
+                    "ci_note": "n 不可用（禁记区间，R247）"}
+        ci = wilson_interval(hits, n)
+        if ci is None:
+            return {"ci95": None, "sampling": (hits, n),
+                    "ci_note": "n<=0（禁记区间，R247）"}
+        return {"ci95": [round(100.0 * ci[0], 1), round(100.0 * ci[1], 1)],
+                "sampling": (hits, n),
+                "ci_note": "Wilson 95%（eval/interval_stats.py，D-162）"}
     doc = {
         "schema": "quality-truth-r115-v1",
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S+00:00"),
@@ -257,18 +277,72 @@ def main():
         "metric_note": ("L1(layered) 含泄漏题加成，引用须同屏给 L4 干净面；"
                         "L2(frozen) 仅 10 条，只作哨兵不作趋势"),
         "faces": {
-            "L1_layered": {k: layered.get(k) for k in
+            "L1_layered": dict({k: layered.get(k) for k in
                            ("score", "max_achievable", "n", "hits",
-                            "semantic_layer", "bge_status")},
-            "L2_frozen": {k: frozen.get(k) for k in
+                            "semantic_layer", "bge_status")}, **with_ci(layered)),
+            "L2_frozen": dict({k: frozen.get(k) for k in
                           ("score", "max_achievable", "n", "hits",
-                           "semantic_layer", "bge_status")},
+                           "semantic_layer", "bge_status")}, **with_ci(frozen)),
             "L3_holdout": holdout,
             "L4_clean": clean,
             "L4_error": clean_err,
         },
         "errors": {k: v for k, v in errs.items() if v},
     }
+    # R121：需求 6 的 R2 条件（区间分离）机器可判化。
+    # 基线 = 06-benchmark/quality_truth_r115_2026-10-18.json（r115 登记的基线件）。
+    base_doc = None
+    base_path = os.path.join(BENCH, "quality_truth_r115_2026-10-18.json")
+    if os.path.exists(base_path):
+        try:
+            with io.open(base_path, encoding="utf-8") as fh:
+                base_doc = json.load(fh)
+        except Exception:  # noqa: BLE001
+            base_doc = None
+    req6 = {"baseline_file": os.path.basename(base_path), "baseline_available": bool(base_doc)}
+    if base_doc:
+        b = (base_doc.get("faces") or {}).get("L1_layered") or {}
+        c = (doc["faces"]["L1_layered"])
+        # R121：基线件可能是旧格式（无 ci95 字段）⇒ 用其 hits/n 现算，
+        # 不因「基线件没存区间」就判「区间不可得」（那会让 R2 永远不可判）。
+        def _ci_of(face):
+            ci = face.get("ci95")
+            if ci:
+                return ci
+            n = face.get("n")
+            h = face.get("hits")
+            if isinstance(n, int) and isinstance(h, int) and n > 0:
+                w = wilson_interval(h, n)
+                if w:
+                    return [round(100.0 * w[0], 1), round(100.0 * w[1], 1)]
+            return None
+        b_ci, c_ci = _ci_of(b), _ci_of(c)
+        b_s, c_s = b.get("score"), c.get("score")
+        req6["baseline_score"] = b_s
+        req6["current_score"] = c_s
+        req6["baseline_ci95"] = b_ci
+        req6["current_ci95"] = c_ci
+        if b_ci and c_ci:
+            if c_ci[0] > b_ci[1]:
+                req6["r2_comparability"] = "区间分离(可判为提升)"
+            elif c_ci[1] < b_ci[0]:
+                req6["r2_comparability"] = "区间分离(可判为下降)"
+            else:
+                req6["r2_comparability"] = "区间重叠(幅度落在抽样抖动内)"
+        else:
+            req6["r2_comparability"] = "区间不可得(n=0/缺分母)"
+        if isinstance(b_s, (int, float)) and isinstance(c_s, (int, float)) and b_s > 0:
+            req6["relative_gain_pct"] = round((c_s - b_s) / b_s * 100.0, 1)
+            req6["r1_threshold_met"] = req6["relative_gain_pct"] >= 30.0
+        else:
+            req6["relative_gain_pct"] = None
+            req6["r1_threshold_met"] = False
+        req6["r1_r2_r3_all_met"] = bool(
+            req6["r1_threshold_met"]
+            and req6["r2_comparability"] == "区间分离(可判为提升)")
+    else:
+        req6["note"] = "基线件不可得 ⇒ R1/R2 均不得判定（R247 禁当绿）"
+    doc["requirement6"] = req6
     out = args.json_out or os.path.join(
         BENCH, "quality_truth_r115_%s.json" % datetime.now().strftime("%Y-%m-%d"))
     tmp = out + ".tmp"
@@ -284,8 +358,27 @@ def main():
               % (l1.get("semantic_layer"), l1.get("score") or 0, l1.get("hits"),
                  l1.get("n"), l1.get("max_achievable")))
         print("  L2 frozen （%s 层）: %.1f%% （%s/%s 条）"
+
               % (l2.get("semantic_layer"), l2.get("score") or 0,
                  l2.get("hits"), l2.get("n")))
+
+        for _k, _lbl in (("L1_layered", "L1 layered"), ("L2_frozen", "L2 frozen")):
+            _f = doc["faces"][_k]
+            _ci = _f.get("ci95")
+            if _ci:
+                print("  %-11s Wilson 95%%: [%.1f, %.1f]（n=%s）"
+                      % (_lbl, _ci[0], _ci[1], _f.get("n")))
+            else:
+                print("  %-11s Wilson 95%%: 不可得（%s）" % (_lbl, _f.get("ci_note")))
+        _r6 = doc.get("requirement6") or {}
+        if _r6.get("baseline_available"):
+            print("  需求6 R1 相对提升: %s%%（阈值 30%%）⇒ %s"
+                  % (_r6.get("relative_gain_pct"),
+                     "达标" if _r6.get("r1_threshold_met") else "未达"))
+            print("  需求6 R2 区间判定: %s" % _r6.get("r2_comparability"))
+            print("  需求6 总判定  : %s" % ("R1/R2 均满足" if _r6.get("r1_r2_r3_all_met") else "未满足"))
+        else:
+            print("  需求6 判定     : %s" % _r6.get("note", "基线不可得"))
         if holdout:
             ts = holdout.get("testset") or {}
             pool = holdout.get("pool") or {}
