@@ -85,10 +85,18 @@ def main():
             cls = 'DRIFT_OLD_TEMPLATE'
         else:
             cls = 'DRIFT_AFTER_INSTALL'
+        # r141 扩展（R140-4 落地）：把印记里的 invoker / reason 也读出来，
+        # 让归因从「哪次安装」细化到「谁、为什么装」。
+        inv = stamp.get('invoker') or {}
         rows.append({'hook': name, 'class': cls,
                      'template_sha': tsha[:16], 'installed_sha': hsha[:16],
                      'stamp_template_sha': ssha[:16],
                      'installed_at': stamp.get('installed_at') or '',
+                     'invoker': inv,
+                     'invoker_desc': ('%s@%s' % (inv.get('git_user') or '?',
+                                                 (inv.get('git_email') or '?').split('@')[0])
+                                      if inv else '(无印记或无 invoker 字段)'),
+                     'reason': stamp.get('reason') or '(未说明)',
                      'attribution': {
                          'IN_SYNC': '实装件与模板一致，无漂移',
                          'DRIFT_AFTER_INSTALL': '实装件与印记不同（装后被人改了 .git/hooks/）',
@@ -130,6 +138,8 @@ def main():
         print('  %-12s %-22s %s' % (r['hook'], r['class'], r['attribution'][:52]))
         if r['installed_at']:
             print('               installed_at=%s stamp_sha=%s' % (r['installed_at'], r['stamp_template_sha']))
+            # r141：归因到人与次（R140-4 落地）
+            print('               invoker=%s reason=%s' % (r.get('invoker_desc'), r.get('reason')))
         else:
             print('               (无印记 —— 下次漂移将无法归因，建议重装)')
     if no_stamp:

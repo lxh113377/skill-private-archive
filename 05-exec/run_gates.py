@@ -48,6 +48,19 @@ ORIGIN = "ci" if os.environ.get("GITHUB_ACTIONS") == "true" else "local"
 # 单一真相源：门禁清单只在这里维护。AGENTS.md / CI / 会话内手工跑，都走本表。
 GATES = [
     {
+        # r141：归因到人与次（R140-4 落地 —— 第 52 门只答「哪次安装」，本门答「谁、为什么」）
+        "id": "hook_attribution_face",
+        "script": "r141_hook_attribution.py",
+        "argv": [],
+        "pass_token": "[ATTR]",
+        "portable": False,
+        "not_portable_reason": "读 .git/hooks/*.installed 印记（换机后形态取决于是否重装）",
+        "covers": ["印记含 invoker 三要素（git_user / git_email / session）",
+                   "印记含 reason（安装原因，缺省显式「未说明」而非空泛）",
+                   "无 invoker 字段的旧印记会被显式标出（不崩溃、不静默）"],
+        "why": "R140-4：r140 的印记只记模板 sha + 安装时间，多会话/多人装 hook 时无法归因到「哪次安装、谁装的」。r141 给印记加 invoker（git user / git email / session / pid）与 reason 两字段，并让 r140_hook_trace.py 读出来。r141 反向验证三态：带 invoker 正常读出 / 旧印记无该字段显式说明 / 无印记提示重装。",
+    },
+    {
         # r140：漂移可归因面（R139-4 落地 —— 第 51 门只报不一致，本面回答怎么造成的）
         "id": "hook_trace_face",
         "script": "r140_hook_trace.py",

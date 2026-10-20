@@ -240,6 +240,38 @@ r130 与 r137 两次装 hook，装完都没再核过 ——
 `installed == stamp` 说明实装件就是当初装的模板（变的是模板），`installed != stamp`
 说明实装件被改过。若不先造变体复跑，这个反态会直接写进 #38 的判据。
 
+## ⚠️ 归因须到人与次（#39，2026-10-21 立规）
+
+#38（漂移须可归因）立了之后，r140 收尾发现归因还差一环：印记只记「模板 sha + 安装时间」，
+**回答不了「谁装的、为什么装」**。多会话 / 多人装 hook 时，仍无法归因到具体那次安装。
+
+**解法 = 印记加 invoker 与 reason 两字段**（`r138_install_hooks.py` 写入）：
+
+| 字段 | 内容 | 取不到时 |
+|---|---|---|
+| `invoker.git_user` | `git config user.name` | 留空 |
+| `invoker.git_email` | `git config user.email` | 留空 |
+| `invoker.session` | `DSH_SESSION_ID` / `CLAUDE_SESSION_ID` / `TERM_SESSION_ID` | 留空 |
+| `invoker.pid` | 进程 pid | 必有 |
+| `reason` | 环境变量 `HOOK_INSTALL_REASON` | 记为「(未说明)」 |
+
+**原则：全部自动取，取不到留空并显式说明，禁猜、禁硬编码。**
+
+**机器判据**：第 53 门（`r141_hook_attribution.py`）四项断言 ——
+A1 印记存在 / A2 有 `git_user` / A3 有 `session`（**多会话归因的关键**）/ A4 有 `reason`。
+任一不通判红；`reason` 为「(未说明)」不判红但单列告警。
+
+**分工（与第 52 门）**：第 52 门答「**哪次安装、怎么漂移的**」（六态），
+第 53 门答「**谁、为什么装**」（invoker + reason）。两者互补，不重叠。
+
+**反向验证（r141 实测，三态）**：
+
+| 变体 | 读数 | 判定 |
+|---|---|---|
+| 旧印记（无 invoker/reason） | `a2` / `a3` / `a4` 精准 FAIL | 有牙 |
+| 完全无印记 | `a1` ~ `a4` 全 FAIL | 有牙 |
+| 真实状态 | 0 项 FAIL | 不冤枉 |
+
 ## ⚠️ 每轮收尾强制（#30，2026-10-20 老大立规）
 
 本轮产生的**任何**建议/待办/改进项，必须在本轮内自动落盘到 `memory/07-next-steps.md`（或分卷），

@@ -30,6 +30,32 @@ HEALTH = os.path.join(HERE, 'r138_hook_health.py')
 TARGETS = [('pre-commit.sh', 'pre-commit'), ('post-commit.sh', 'post-commit')]
 
 
+def invoker_info():
+    # r141：取「谁调的安装」三个可自动获得的标识（R140-4 落地）。
+    # 原则：全部自动取，取不到留空并显式说明，禁猜、禁硬编码。
+    info = {}
+    try:
+        info["git_user"] = subprocess.run(
+            ["git", "config", "user.name"], cwd=ROOT,
+            capture_output=True, text=True, encoding="utf-8",
+            errors="replace", timeout=60).stdout.strip()
+    except Exception:
+        info["git_user"] = ""
+    try:
+        info["git_email"] = subprocess.run(
+            ["git", "config", "user.email"], cwd=ROOT,
+            capture_output=True, text=True, encoding="utf-8",
+            errors="replace", timeout=60).stdout.strip()
+    except Exception:
+        info["git_email"] = ""
+    info["session"] = (os.environ.get("DSH_SESSION_ID")
+                        or os.environ.get("CLAUDE_SESSION_ID")
+                        or os.environ.get("TERM_SESSION_ID")
+                        or "")
+    info["pid"] = str(os.getpid())
+    return info
+
+
 def install(src, dst):
     os.makedirs(os.path.dirname(dst), exist_ok=True)
     shutil.copyfile(src, dst)
@@ -48,12 +74,20 @@ def install(src, dst):
         with io.open(src, 'rb') as f:
             for chunk in iter(lambda: f.read(65536), b''):
                 h.update(chunk)
-        stamp = {'schema': 'hook-installed-stamp-r140-v1',
-                 'hook': os.path.basename(dst),
-                 'template': os.path.basename(src),
-                 'template_sha256': h.hexdigest(),
-                 'installed_at': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-                 'note': '本印记由 r138_install_hooks.py 写入；漂移判定见 r140_hook_trace.py'}
+        # r141 加 invoker（R140-4 落地）：印记原先只有模板 sha + 安装时间，
+        # 多会话/多人装 hook 时无法归因到「哪次安装、谁装的」。
+        # 取三个可自动获得的标识：git user.name / git user.email / 会话标识；
+        # 都不硬编码 —— 取不到就留空并显式说明，禁猜。
+        stamp = {
+            "schema": "hook-installed-stamp-r141-v1",
+            "hook": os.path.basename(dst),
+            "template": os.path.basename(src),
+            "template_sha256": h.hexdigest(),
+            "installed_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "invoker": invoker_info(),
+            "reason": os.environ.get("HOOK_INSTALL_REASON") or "(未说明)",
+            "note": "本印记由 r138_install_hooks.py 写入；漂移判定见 r140_hook_trace.py",
+        }
         with io.open(dst + '.installed', 'w', encoding='utf-8', newline=chr(10)) as f:
             json.dump(stamp, f, ensure_ascii=False, indent=1)
     except Exception:

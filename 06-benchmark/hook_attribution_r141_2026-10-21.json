@@ -1,0 +1,43 @@
+{
+ "schema": "hook-attribution-r141-v1",
+ "cmd": "python 05-exec/r141_hook_attribution.py --json <out>",
+ "face": {
+  "pairs_n": 2,
+  "bad_n": 0,
+  "reason_vague_n": 0,
+  "reading": {
+   "bad_n": [
+    "不通过的断言数。任一不通 = 归因链缺一环，判红。",
+    "A1 印记存在 / A2 有 git_user / A3 有 session / A4 有 reason"
+   ],
+   "reason_vague_n": "reason 为「(未说明)」的 hook 数 —— 不判红（字段在），但建议补安装原因",
+   "session": "会话标识是多会话归因的关键：同一个人在不同会话装 hook，靠它区分"
+  }
+ },
+ "rows": [
+  {
+   "hook": "pre-commit",
+   "a1_stamp_exists": true,
+   "a2_has_git_user": true,
+   "a3_has_session": true,
+   "a4_has_reason": true,
+   "reason_vague": false,
+   "invoker_desc": "lxh113377@3753318894",
+   "session": "session-284bcbbe-db1a-4495-8b5b-b0db804bd685",
+   "reason": "r141 验证 invoker 字段"
+  },
+  {
+   "hook": "post-commit",
+   "a1_stamp_exists": true,
+   "a2_has_git_user": true,
+   "a3_has_session": true,
+   "a4_has_reason": true,
+   "reason_vague": false,
+   "invoker_desc": "lxh113377@3753318894",
+   "session": "session-284bcbbe-db1a-4495-8b5b-b0db804bd685",
+   "reason": "r141 验证 invoker 字段"
+  }
+ ],
+ "bad": [],
+ "generated_at": "2026-10-20 21:01"
+}
