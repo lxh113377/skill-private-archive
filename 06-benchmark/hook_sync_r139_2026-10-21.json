@@ -1,0 +1,40 @@
+{
+ "schema": "hook-sync-r139-v1",
+ "cmd": "python 05-exec/r139_hook_sync.py --json <out>",
+ "face": {
+  "pairs_n": 2,
+  "bad_n": 0,
+  "reading": {
+   "bad_n": [
+    "不通过的断言数。任一不通 = 恢复源与实装件已漂移（或源丢失）",
+    "=> 下次一键恢复会装出旧版，属于「自检绿但恢复错」类隐患"
+   ],
+   "s3_byte_identical": "模板与实装件 SHA256 逐字节相同",
+   "s4_source_git_tracked": "恢复源在 git 内被跟踪（否则 clone 后无源可恢复）"
+  }
+ },
+ "rows": [
+  {
+   "hook": "pre-commit",
+   "template": "pre-commit.sh",
+   "s1_source_exists": true,
+   "s2_installed_exists": true,
+   "s3_byte_identical": true,
+   "s4_source_git_tracked": true,
+   "template_sha": "737bed38b7394cfb",
+   "installed_sha": "737bed38b7394cfb"
+  },
+  {
+   "hook": "post-commit",
+   "template": "post-commit.sh",
+   "s1_source_exists": true,
+   "s2_installed_exists": true,
+   "s3_byte_identical": true,
+   "s4_source_git_tracked": true,
+   "template_sha": "8b09c49bc4a0c175",
+   "installed_sha": "8b09c49bc4a0c175"
+  }
+ ],
+ "bad": [],
+ "generated_at": "2026-10-20 20:15"
+}

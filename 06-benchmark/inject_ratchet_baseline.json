@@ -3,13 +3,13 @@
  "generated_at": "2026-10-20 11:54",
  "metrics": {
   "catalog_grand_chars": 56312,
-  "inject_union_bytes": 74859,
+  "inject_union_bytes": 76375,
   "claim_candidates": 4,
   "drift_ruleish_candidates": 32,
   "desc_over_cap": 0,
   "username_in_skill_files": 0,
   "overdue_debt_items": 0,
-  "deferred_debt_items": 17,
+  "deferred_debt_items": 16,
   "repeat_debt_items": 6
  },
  "hard_caps": {
@@ -228,6 +228,17 @@
    "commit": "r138-rule36-and-report",
    "path": "(range-attribution)",
    "reason": "r138 range attribution: inject_union_bytes 73394->74859 (+1465). Cause: AGENTS.md gained rule #36 (blocking mechanisms must be recoverable, ~1100 chars incl. the three-variant table) and the r138 report is itself in the injected surface. Intentional content additions; ratchet only-down semantics unchanged.",
+   "kind": "range"
+  },
+  {
+   "metric": "inject_union_bytes",
+   "from_value": 74859,
+   "to_value": 76375,
+   "delta": 1516,
+   "at": "2026-10-20 20:25",
+   "commit": "r139-rule37-and-report",
+   "path": "(range-attribution)",
+   "reason": "r139 range attribution: inject_union_bytes 74859->76375 (+1516). Cause: AGENTS.md gained rule #37 (recovery source must match installed copy, ~1200 chars incl. the three-variant table and the design tradeoff note) and the r139 report is itself in the injected surface. Intentional content additions; ratchet only-down semantics unchanged.",
    "kind": "range"
   }
  ],

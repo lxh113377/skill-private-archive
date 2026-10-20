@@ -18,5 +18,9 @@
  "r138_install_hooks.py": {
   "evidence": "06-benchmark/hook_install_r138_2026-10-21.json",
   "registered_at": "2026-10-20 19:55"
+ },
+ "r139_hook_sync.py": {
+  "evidence": "06-benchmark/hook_sync_r139_2026-10-21.json",
+  "registered_at": "2026-10-20 20:16"
  }
 }

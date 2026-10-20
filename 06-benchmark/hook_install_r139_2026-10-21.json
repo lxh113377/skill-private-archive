@@ -1,0 +1,31 @@
+{
+ "schema": "install-hooks-r138-v1",
+ "cmd": "python 05-exec/r138_install_hooks.py --json <out>",
+ "face": {
+  "installed_n": 2,
+  "rows_n": 2,
+  "self_check_rc": 0,
+  "self_check_line": "[HOOKHEALTH] 8/8 通过｜不通过 0",
+  "sync_check_rc": 0,
+  "sync_check_line": "[HOOKSYNC] 2 对 hook｜不通过断言 0",
+  "reading": {
+   "self_check_rc": "装完立刻跑 hook 健在性自检的退出码；非 0 = 装好了但缺件，须判红",
+   "sync_check_rc": "装完再跑「恢复源与实装件逐字节一致」自检的退出码；非 0 = 模板与实装已漂移，须判红（r139 接入）",
+   "installed_n": "实际安装成功的 hook 数"
+  }
+ },
+ "rows": [
+  {
+   "hook": "pre-commit",
+   "template": "pre-commit.sh",
+   "installed": true,
+   "size": 3976
+  },
+  {
+   "hook": "post-commit",
+   "template": "post-commit.sh",
+   "installed": true,
+   "size": 324
+  }
+ ]
+}

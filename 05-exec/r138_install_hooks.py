@@ -89,14 +89,35 @@ def main():
         if l.startswith('[HOOKHEALTH]'):
             line = l.strip()
             break
+    # r139 接入（R138-4）：装完除了健在性自检，还要跑「恢复源与实装件逐字节一致」自检。
+    # 只跑前者会出现「自检绿但模板与实装已漂移」—— r139 实测坐实过。
+    SYNC = os.path.join(HERE, 'r139_hook_sync.py')
+    src_rc = 2
+    sout = ''
+    if os.path.isfile(SYNC):
+        try:
+            q = subprocess.run([sys.executable, SYNC], cwd=ROOT, capture_output=True,
+                               text=True, encoding='utf-8', errors='replace', timeout=300)
+            src_rc = q.returncode
+            sout = (q.stdout or '') + (q.stderr or '')
+        except Exception as e:
+            sout = repr(e)
+    sline = ''
+    for l in sout.splitlines():
+        if l.startswith('[HOOKSYNC]'):
+            sline = l.strip()
+            break
     doc = {'schema': 'install-hooks-r138-v1',
            'cmd': 'python 05-exec/r138_install_hooks.py --json <out>',
            'face': {'installed_n': sum(1 for r in rows if r.get('installed')),
                      'rows_n': len(rows),
                      'self_check_rc': rc,
                      'self_check_line': line,
+                     'sync_check_rc': src_rc,
+                     'sync_check_line': sline,
                      'reading': {
                          'self_check_rc': '装完立刻跑 hook 健在性自检的退出码；非 0 = 装好了但缺件，须判红',
+                         'sync_check_rc': '装完再跑「恢复源与实装件逐字节一致」自检的退出码；非 0 = 模板与实装已漂移，须判红（r139 接入）',
                          'installed_n': '实际安装成功的 hook 数',
                      }},
            'rows': rows}
@@ -104,13 +125,17 @@ def main():
         with io.open(args.out, 'w', encoding='utf-8', newline=chr(10)) as f:
             json.dump(doc, f, ensure_ascii=False, indent=1)
     fa = doc['face']
-    print('[INSTALL] 安装 %d/%d | 自证 rc=%d | %s'
-          % (fa['installed_n'], fa['rows_n'], fa['self_check_rc'], line or '(无读数)'))
+    print('[INSTALL] 安装 %d/%d | 健在性自证 rc=%d | 同步自证 rc=%d'
+          % (fa['installed_n'], fa['rows_n'], fa['self_check_rc'], fa['sync_check_rc']))
+    if line:
+        print('  ' + line)
+    if sline:
+        print('  ' + sline)
     for r in rows:
         print('  %-12s %s %s' % (r['hook'], 'INSTALLED' if r.get('installed') else 'SKIPPED', r.get('note', '')))
     if args.out:
         print('[INSTALL] JSON -> %s' % args.out)
-    return 0 if rc == 0 else 1
+    return 0 if (rc == 0 and src_rc == 0) else 1
 
 
 if __name__ == '__main__':

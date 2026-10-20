@@ -48,6 +48,20 @@ ORIGIN = "ci" if os.environ.get("GITHUB_ACTIONS") == "true" else "local"
 # 单一真相源：门禁清单只在这里维护。AGENTS.md / CI / 会话内手工跑，都走本表。
 GATES = [
     {
+        # r139：恢复源与实装件逐字节一致面（R138-4 落地）
+        "id": "hook_sync_face",
+        "script": "r139_hook_sync.py",
+        "argv": [],
+        "pass_token": "[HOOKSYNC]",
+        "portable": False,
+        "not_portable_reason":
+            "读 05-exec/hook_templates/ 与 .git/hooks/（换机后 hooks 形态取决于是否重装）",
+        "covers": ["恢复源存在（pre-commit.sh / post-commit.sh）",
+                   "实装件存在；两者 SHA256 逐字节一致（s3）",
+                   "恢复源在 git 内被跟踪（否则 clone 后无源可恢复）"],
+        "why": "R138-4：r138 建了 hook 健在性自检（第 50 门）与脚本化恢复，但模板与实装件是两份拷贝、无判据守着一致。r139 实测坐实该风险：往 .git/hooks/pre-commit 追加一行 => 第 50 门仍报 8/8 通过，而模板与实装 match=False => 会出现「自检绿但下次恢复装出旧版」，比 hook 丢失更隐蔽。本门补这一腿。r139 反向验证：只改实装件 => s3 精准 FAIL；模板被删 => s1/s3/s4 三项 FAIL；真实状态 0 项。",
+    },
+    {
         # r138：阻断机制健在性自检面（R137-4 落地 —— hook 不在 git 里，须自检）
         "id": "hook_health_face",
         "script": "r138_hook_health.py",
