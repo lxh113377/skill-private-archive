@@ -22,5 +22,9 @@
  "r139_hook_sync.py": {
   "evidence": "06-benchmark/hook_sync_r139_2026-10-21.json",
   "registered_at": "2026-10-20 20:16"
+ },
+ "r140_hook_trace.py": {
+  "evidence": "06-benchmark/hook_trace_r140_2026-10-21.json",
+  "registered_at": "2026-10-20 20:40"
  }
 }

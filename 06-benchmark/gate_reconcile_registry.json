@@ -2,6 +2,7 @@
  "schema": "gate-reconcile-registry-r130-v1",
  "gates": {
   "_snapshot_gate_ids": [
+   "hook_trace_face",
    "hook_sync_face",
    "hook_health_face",
    "commit_gate_map_face",
@@ -54,7 +55,7 @@
    "r117_upstream_delta_fixtures",
    "direct_closure_face"
   ],
-  "_snapshot_at": "2026-10-20 20:27",
+  "_snapshot_at": "2026-10-20 20:44",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
@@ -94,6 +95,10 @@
   "hook_sync_face": {
    "evidence": "06-benchmark/hook_sync_r139_2026-10-21.json",
    "at": "2026-10-20 20:16"
+  },
+  "hook_trace_face": {
+   "evidence": "06-benchmark/hook_trace_r140_2026-10-21.json",
+   "at": "2026-10-20 20:40"
   }
  }
 }

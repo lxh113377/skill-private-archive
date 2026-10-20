@@ -48,6 +48,18 @@ ORIGIN = "ci" if os.environ.get("GITHUB_ACTIONS") == "true" else "local"
 # 单一真相源：门禁清单只在这里维护。AGENTS.md / CI / 会话内手工跑，都走本表。
 GATES = [
     {
+        # r140：漂移可归因面（R139-4 落地 —— 第 51 门只报不一致，本面回答怎么造成的）
+        "id": "hook_trace_face",
+        "script": "r140_hook_trace.py",
+        "argv": [],
+        "pass_token": "[TRACE]",
+        "portable": False,
+        "not_portable_reason": "读 05-exec/hook_templates/、.git/hooks/ 与 .installed 印记（换机后形态取决于是否重装）",
+        "covers": ["六态归因：IN_SYNC / DRIFT_AFTER_INSTALL（装后改实装件）/ DRIFT_OLD_TEMPLATE（装的是旧模板）/ NO_STAMP / MISSING / TEMPLATE_MISSING",
+                   "印记存在性告警（无印记不影响本次判定，但下次漂移无法归因）"],
+        "why": "R139-4：第 51 门（r139_hook_sync.py）能发现模板与实装件不一致，但回答不了怎么造成的 —— r140 实测量化：漂移时只有两个 sha + 两个 mtime，无法区分「装了旧模板」还是「装后被人改」，且实装件不在 git 内无历史可查。解法 = 安装时留 .installed 印记（模板 sha + 安装时间），漂移时做三态归因。r140 反向验证当场抓出条件写反（V1/V2 全判反），修正后四态全对。",
+    },
+    {
         # r139：恢复源与实装件逐字节一致面（R138-4 落地）
         "id": "hook_sync_face",
         "script": "r139_hook_sync.py",

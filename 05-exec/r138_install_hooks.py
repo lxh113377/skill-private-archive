@@ -20,6 +20,7 @@ import shutil
 import stat
 import subprocess
 import sys
+from datetime import datetime
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -35,6 +36,26 @@ def install(src, dst):
     try:
         mode = os.stat(dst).st_mode
         os.chmod(dst, mode | stat.S_IEXEC | stat.S_IREAD | stat.S_IWRITE)
+    except Exception:
+        pass
+    # r140 加印记（R139-4 落地）：把「模板 sha + 安装时间」写进实装件旁的 .installed 印记。
+    # 没有它，漂移时只能看到两个 sha 和两个 mtime，无法回答：
+    #   ① 实装件是哪个模板版本装的？② 装完之后有没有被改？
+    # （实装件不在 git 内，无历史可查 —— 这是 R139-4 的核心缺口）
+    try:
+        import hashlib as _hl
+        h = _hl.sha256()
+        with io.open(src, 'rb') as f:
+            for chunk in iter(lambda: f.read(65536), b''):
+                h.update(chunk)
+        stamp = {'schema': 'hook-installed-stamp-r140-v1',
+                 'hook': os.path.basename(dst),
+                 'template': os.path.basename(src),
+                 'template_sha256': h.hexdigest(),
+                 'installed_at': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                 'note': '本印记由 r138_install_hooks.py 写入；漂移判定见 r140_hook_trace.py'}
+        with io.open(dst + '.installed', 'w', encoding='utf-8', newline=chr(10)) as f:
+            json.dump(stamp, f, ensure_ascii=False, indent=1)
     except Exception:
         pass
     return os.path.getsize(dst)

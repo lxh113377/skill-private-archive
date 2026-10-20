@@ -1,0 +1,40 @@
+{
+ "schema": "hook-trace-r140-v1",
+ "cmd": "python 05-exec/r140_hook_trace.py --json <out>",
+ "face": {
+  "pairs_n": 2,
+  "by_class": {
+   "IN_SYNC": 2
+  },
+  "drift_n": 0,
+  "reading": {
+   "drift_n": "非 IN_SYNC 的 hook 数。任一非 IN_SYNC 即判红。",
+   "by_class": [
+    "六态：IN_SYNC 无漂移 / DRIFT_AFTER_INSTALL 装后被人改 /",
+    "DRIFT_OLD_TEMPLATE 装了旧模板 / NO_STAMP 无印记 / MISSING / TEMPLATE_MISSING"
+   ],
+   "attribution": "每行的归因说明 —— 这是本面相对于第 51 门（只报不一致）的核心增量：能回答「怎么造成的」"
+  }
+ },
+ "rows": [
+  {
+   "hook": "pre-commit",
+   "class": "IN_SYNC",
+   "template_sha": "737bed38b7394cfb",
+   "installed_sha": "737bed38b7394cfb",
+   "stamp_template_sha": "737bed38b7394cfb",
+   "installed_at": "2026-10-20 20:35:32",
+   "attribution": "实装件与模板一致，无漂移"
+  },
+  {
+   "hook": "post-commit",
+   "class": "IN_SYNC",
+   "template_sha": "8b09c49bc4a0c175",
+   "installed_sha": "8b09c49bc4a0c175",
+   "stamp_template_sha": "8b09c49bc4a0c175",
+   "installed_at": "2026-10-20 20:35:32",
+   "attribution": "实装件与模板一致，无漂移"
+  }
+ ],
+ "generated_at": "2026-10-20 20:36"
+}
