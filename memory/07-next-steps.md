@@ -157,4 +157,5 @@ R120b-1（r120b 登记，P2）** 域失配**三口径差**（`calibration_diff` 
 - [ ] R113-3 AGPL-3.0 上游合入合规口径待裁（hyperframes-registry 引入 calesthio/OpenMontage 正文与两参照件）（由 flow 登记；状态: todo）
 - [ ] R112-5 受管根 rule_editor gates 的 mirror 组件超时（300s skip）+ noise 2 项外部在途，待归属方收口后复跑（由 flow 登记；状态: blocked）
 
+- [ ] **R133-1（r133 登记，P1）** W-47 对账 t1 假绿 1 条（gsap 做滚动触发动画：exp=gsap，route=libreoffice-draw）：**根因 = 并行会话今日注册的 LibreOffice 系 5 件改变了 tag/bge 打分**（「Draw/流程图」触发词抢答），判据快照 tag_closure_r127 是旧语料时代产物。归属：LibreOffice 5 件注册方（并行会话）——需重跑 tag_closure 对账快照 + 判据面同步。取值：`python 05-exec/r128_ruler_reconcile.py --face 06-benchmark/tag_closure_r127_2026-10-20.json --verdict-field actually_hit --json <件>`（实测 一致=278 假绿=1）。R269 不代修。
 > 由 flow --sync 补建的批次落点（09 允许批次 P2，原台账无该章节）
