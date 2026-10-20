@@ -1,0 +1,172 @@
+{
+ "schema": "platform-probe-r132-v1",
+ "generated_at": "2026-10-20T17:48:42",
+ "kws": [
+  "byted",
+  "dingtalk",
+  "notion",
+  "obsidian",
+  "wechat",
+  "workbuddy",
+  "wps"
+ ],
+ "findings": [
+  {
+   "kw": "byted",
+   "total": 167,
+   "top": [
+    {
+     "repo": "tigicion/dao-code",
+     "stars": 789,
+     "desc": "Open-source TypeScript terminal coding agent for DeepSeek-V4 — builds on DeepSeek's strong price-per"
+    },
+    {
+     "repo": "lllllllama/RigorPilot-Skills",
+     "stars": 485,
+     "desc": "README-first research reproduction skills with bounded execution, auditable evidence, and byte-prese"
+    },
+    {
+     "repo": "cosmicstack-labs/lazy-frames",
+     "stars": 166,
+     "desc": "Lazy Frames — agentic video generation. Feed the skill URL to your AI agent; it captures, authors, r"
+    }
+   ]
+  },
+  {
+   "kw": "dingtalk",
+   "total": 73,
+   "top": [
+    {
+     "repo": "NanmiCoder/cc-haha",
+     "stars": 15081,
+     "desc": "本地优先的跨平台 Claude Code / AI Agent 桌面工作台：多 Agent 协作、Git Worktree、代码 Diff、技能市场、多模型、Computer Use、桌面宠物；支持微"
+    },
+    {
+     "repo": "zhimaAi/ChatClaw",
+     "stars": 309,
+     "desc": "ChatClaw: Get OpenClaw-like knowledge base personal AI agent in 5 mins. Sandbox-secured, ultra-small"
+    },
+    {
+     "repo": "stvlynn/dingtalk-wukong-skills",
+     "stars": 121,
+     "desc": "钉钉生态与专业文档处理的 Agent 技能精选集。A curated collection of Agent Skills for DingTalk and professional document"
+    }
+   ]
+  },
+  {
+   "kw": "notion",
+   "total": 772,
+   "top": [
+    {
+     "repo": "nashsu/autocli-skill",
+     "stars": 925,
+     "desc": "The perfect companion for ClaudeCode/OpenClaw/Agent, Give your AI Agent the ability to reach informa"
+    },
+    {
+     "repo": "extrastu/readneo",
+     "stars": 183,
+     "desc": "你的微信读书数据面板 -- 连接微信读书 Skill API，可视化书架、阅读统计、笔记划线，一键导出到 Notion 和 Flomo。"
+    },
+    {
+     "repo": "makenotion/skills",
+     "stars": 175,
+     "desc": "Notion skills for agents"
+    }
+   ]
+  },
+  {
+   "kw": "obsidian",
+   "total": 2537,
+   "top": [
+    {
+     "repo": "kepano/obsidian-skills",
+     "stars": 49799,
+     "desc": "Agent skills for Obsidian. Teach your agent to use Obsidian CLI and open formats including Markdown,"
+    },
+    {
+     "repo": "axtonliu/axton-obsidian-visual-skills",
+     "stars": 3656,
+     "desc": "Visual Skills Pack for Obsidian: generate Canvas, Excalidraw, and Mermaid diagrams from text with Cl"
+    },
+    {
+     "repo": "bevibing/tutor-skills",
+     "stars": 1357,
+     "desc": "A Claude Code skill that turns PDFs, docs, and codebases into Obsidian study vaults"
+    }
+   ]
+  },
+  {
+   "kw": "wechat",
+   "total": 1674,
+   "top": [
+    {
+     "repo": "NanmiCoder/cc-haha",
+     "stars": 15081,
+     "desc": "本地优先的跨平台 Claude Code / AI Agent 桌面工作台：多 Agent 协作、Git Worktree、代码 Diff、技能市场、多模型、Computer Use、桌面宠物；支持微"
+    },
+    {
+     "repo": "qiye45/wechatDownload",
+     "stars": 9819,
+     "desc": "微信公众号文章批量下载工具，支持评论、合集下载，支持保存html/mhtml/md/pdf/docx/csv文件，保存文章内图片、视频、音频文件，支持MCP/Skill调用"
+    },
+    {
+     "repo": "nexu-io/html-anything",
+     "stars": 9186,
+     "desc": "✨ The agentic HTML editor — your local AI agent writes the HTML, you ship it. 🚀 75 Skills × 9 Surfac"
+    }
+   ]
+  },
+  {
+   "kw": "workbuddy",
+   "total": 2166,
+   "top": [
+    {
+     "repo": "AlephAITech/WorkBuddyGuide",
+     "stars": 3540,
+     "desc": "A practical, open-source guide to mastering WorkBuddy through real-world workflows.开源的 WorkBuddy 实战蓝"
+    },
+    {
+     "repo": "liangdabiao/ecom-details-image",
+     "stars": 1424,
+     "desc": "一个面向workbuddy / Codex 等agent 的跨境电商和国内电商通用视觉创作 Skill。我精选25个高质量案例，涵盖纯色底产品主图、场景化生活图、平铺图、电商详情图、真实场景等等，全部"
+    },
+    {
+     "repo": "feichanggege/ecommerce-visual-copywriting-skill",
+     "stars": 923,
+     "desc": "电商视觉文案设计SOP Skill - 让电商设计小白也能一键做出5年资深设计经验的商品图片.兼容 Claude / Codex / Cursor / Workbuddy 等 SKILL.md Age"
+    }
+   ]
+  },
+  {
+   "kw": "wps",
+   "total": 102,
+   "top": [
+    {
+     "repo": "yb2460/harness-anything",
+     "stars": 2335,
+     "desc": "Harness Anything - AI agent control hub: WPS, MS Office, Zotero, Photoshop, 47 CLI commands, 27 acad"
+    },
+    {
+     "repo": "lc2panda/wps-skills",
+     "stars": 657,
+     "desc": "WPS Skills | WPS Office 智能助手 | WPS Office AI Assistant"
+    },
+    {
+     "repo": "akashblackhat/wifi-hacking.py",
+     "stars": 546,
+     "desc": "Cyber Security Tool For Hacking Wireless Connections Using Built-In Kali Tools. Supports All Securit"
+    }
+   ]
+  }
+ ],
+ "kws_with_ecosystem": [
+  "byted",
+  "dingtalk",
+  "notion",
+  "obsidian",
+  "wechat",
+  "workbuddy",
+  "wps"
+ ],
+ "note": "有生态仓的平台即登记为下季 C2 候选面来源；本件只探测不裁决"
+}

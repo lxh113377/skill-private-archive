@@ -1,0 +1,108 @@
+{
+ "schema": "direct-fix-efficacy-r132-v1",
+ "cmd": "python 05-exec/r132_direct_fix_efficacy.py --json <out>",
+ "upstream": "direct_closure_r131_2026-10-20.json",
+ "face": {
+  "closed_n": 6,
+  "by_class": {
+   "A_DIRECT_ONLY": 2,
+   "B_NEIGHBOR_RANK": 4
+  },
+  "exp_in_tags_n": 1,
+  "fix1_effective_n": 6,
+  "reading": {
+   "fix1_effective_n": "处方①(direct 放行到 tag/bge 层)实测能救的条数 = A_DIRECT_ONLY + B_NEIGHBOR_RANK。B 类还需额外的排序/语料面处方，D 类则完全无效（期望件连候选集都进不去）。",
+   "exp_in_tags_n": "direct 与 tag 串谋的量化：期望件不在 tag_hits 里的条数。占比高 => 处方①对大多数条目是死路，须先修 tag/domain 层。",
+   "A_DIRECT_ONLY": "关掉 direct 即救回（期望件上 top1）",
+   "B_NEIGHBOR_RANK": "关掉 direct 后期望件浮上来但被语义邻居压（需排序面处方）",
+   "C_STALE": "期望件已退役 => 题面问题，不是路由问题",
+   "D_UNREACHABLE": "关掉 direct 仍完全浮不上来 => 须先修 tag/domain 层"
+  }
+ },
+ "rows": [
+  {
+   "query": "灵感枯竭帮我发散一波点子",
+   "expected": "brainstorming",
+   "on_disk": true,
+   "domain": "general_utils",
+   "tag_hits": null,
+   "exp_in_tags": false,
+   "would_top1": "brainstorming",
+   "would_rank": 1,
+   "class": "A_DIRECT_ONLY"
+  },
+  {
+   "query": "帮我做一个动画丰富的 HTML 演示文稿",
+   "expected": "frontend-slides",
+   "on_disk": true,
+   "domain": "creative",
+   "tag_hits": [
+    "A-prompt-better",
+    "frontend-slides",
+    "html-ppt",
+    "hyperframes",
+    "hyperframes-cli",
+    "hyperframes-media",
+    "hyperframes-registry",
+    "story",
+    "story-cover",
+    "story-deslop",
+    "story-import",
+    "story-long-analyze",
+    "story-long-write",
+    "story-review",
+    "story-setup",
+    "story-short-analyze",
+    "story-short-write"
+   ],
+   "exp_in_tags": true,
+   "would_top1": "html-ppt",
+   "would_rank": 2,
+   "class": "B_NEIGHBOR_RANK"
+  },
+  {
+   "query": "Notion 会议准备",
+   "expected": "meeting-intelligence",
+   "on_disk": true,
+   "domain": "research",
+   "tag_hits": null,
+   "exp_in_tags": false,
+   "would_top1": "dingtalk-calendar",
+   "would_rank": 2,
+   "class": "B_NEIGHBOR_RANK"
+  },
+  {
+   "query": "新技能装之前先安全审查",
+   "expected": "A-skill-manager",
+   "on_disk": true,
+   "domain": "system",
+   "tag_hits": null,
+   "exp_in_tags": false,
+   "would_top1": "A-skill-manager",
+   "would_rank": 1,
+   "class": "A_DIRECT_ONLY"
+  },
+  {
+   "query": "录音转文字",
+   "expected": "video-whisper-transcribe",
+   "on_disk": true,
+   "domain": null,
+   "tag_hits": null,
+   "exp_in_tags": false,
+   "would_top1": "local-asr",
+   "would_rank": 4,
+   "class": "B_NEIGHBOR_RANK"
+  },
+  {
+   "query": "给一个GitHub项目写代码审查意见",
+   "expected": "github",
+   "on_disk": true,
+   "domain": "web",
+   "tag_hits": null,
+   "exp_in_tags": false,
+   "would_top1": "static-site-batch-audit-fix",
+   "would_rank": 2,
+   "class": "B_NEIGHBOR_RANK"
+  }
+ ]
+}

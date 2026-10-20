@@ -47,7 +47,7 @@
    "r117_upstream_delta_fixtures",
    "direct_closure_face"
   ],
-  "_snapshot_at": "2026-10-20 17:46",
+  "_snapshot_at": "2026-10-20 17:49",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
