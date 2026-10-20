@@ -56,7 +56,7 @@ def load_ledger(path):
     return rows
 
 
-def judge(rows, now=None, max_days=7):
+def judge(rows, now=None, max_days=7, exclude_after=None):
     """返回 (state, why)。rows 为台账逐条 dict。"""
     now = now or datetime.now()
     rows = list(rows)
@@ -75,6 +75,15 @@ def judge(rows, now=None, max_days=7):
         except ValueError:
             return "UNVERIFIED", "ts 不可解析=%r（既不当作很新，也不当作很旧）" % r.get("ts")
     local = [r for r in rows if r.get("origin") == "local"]
+    # R125 修（R123-5 自抓）：本门是自指门 —— 它读台账最后一条，而 runner 会在本轮结束时
+    # 追加本轮记录，于是它读到的是上一轮的结论。任何一轮 FAIL 都会让它下一轮再红一次，
+    # 表现为「38 门里唯一红的是上一轮的残留」，逼人连跑两次才能拿到绿。
+    # 修法：排除「晚于 exclude_after（本进程启动时刻）」的记录 —— 那些不是「上一次」，
+    # 是「这一次的并发写入」。这不放松判据：上一轮的 FAIL 仍会照红（除非它是本轮自己写的）。
+    if exclude_after is not None:
+        _before = [r for r in local if r["_t"] <= exclude_after]
+        if _before:
+            local = _before
     if not local:
         return "FAIL", "台账只有 CI 记录、无本机记录 ⇒ 本机专属门无人执行（CI 绿不能替人证明，%d 条全为 ci）" % len(rows)
     last = max(local, key=lambda r: r["_t"])
@@ -103,7 +112,10 @@ def main():
     args = ap.parse_args()
 
     rows = load_ledger(args.ledger)
-    state, why = judge(rows, now=datetime.now(), max_days=args.max_days)
+    # R125：把本进程启动时刻作为 exclude_after 传下去，使本门只对「本轮之前」的记录负责，
+    # 免得每一轮的自身残留把下一轮染红（自指门的自我实现缺陷，见 judge 的注释）。
+    _boot = datetime.now()
+    state, why = judge(rows, now=_boot, max_days=args.max_days, exclude_after=_boot)
     print("=== 门禁执行新鲜度判据（r32 H-2）===")
     print("台账: %s（%d 条）" % (args.ledger, len(rows)))
     print("阈值: max_days=%d 天｜来源域: %s｜时间格式: %s" % (args.max_days, list(ORIGIN_DOMAIN), TS_FMT))

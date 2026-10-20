@@ -575,6 +575,33 @@ def _commit_exists(path, sha):
     return False
 
 
+# -*- coding: utf-8 -*-
+def _atomic_write_json(path, doc):
+    """原子写基线件：先写同目录临时件再 os.replace（POSIX/Windows 均为原子替换）。
+
+    r125 自抓（连续三轮假绿的根因之一）：原用 Path.write_text，它**先截零再逐字节写**
+    ⇒ 并行进程或夹具在这个窗口里 open+read 会拿到空串/半写 JSON，于是「基线 note 丢失」类
+    假红连续三轮出现（budget_contract_fixtures / baseline_note_fixtures 在 runner 里红，
+    单独跑全绿）。改原子替换后，读者只会看到「写前」或「写后」的完整件，不存在中间态。
+    这不是放宽判据，是把「写入的可见性」从不保证改成保证。
+    """
+    import tempfile
+    d = os.path.dirname(os.path.abspath(str(path))) or '.'
+    fd, tmp = tempfile.mkstemp(prefix='.ratchet_tmp_', suffix='.json', dir=d)
+    try:
+        with os.fdopen(fd, 'w', encoding='utf-8', newline='\n') as f:
+            json.dump(doc, f, ensure_ascii=False, indent=1)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(tmp, str(path))
+    except BaseException:
+        try:
+            os.unlink(tmp)
+        except OSError:
+            pass
+        raise
+
+
 def main():
     try:
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -621,7 +648,7 @@ def main():
         doc["refresh_days"] = dict(METRIC_REFRESH_DAYS)
         doc["generated_at"] = datetime.now().strftime("%Y-%m-%d %H:%M")
         doc["note"] = str(bl.get("note") or "") + " ｜%s 预算播种：refresh_days 由代码种子表写入基线件，此后基线为权威、代码表不再参与判定（W-37）" % doc["generated_at"]
-        Path(args.baseline).write_text(json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")
+        _atomic_write_json(Path(args.baseline), doc)
         print("[RATCHET:SEEDED] 预算写入 %s（%d 项）；此后改预算=改基线件，且须过契约集合全等"
               % (args.baseline, len(doc["refresh_days"])))
         return 0
@@ -669,7 +696,7 @@ def main():
         ledger = list(doc.get("attributed_raises") or [])
         ledger.append(rec)
         doc["metrics"], doc["attributed_raises"] = metrics, ledger
-        Path(args.baseline).write_text(json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")
+        _atomic_write_json(Path(args.baseline), doc)
         print("[RATCHET:RANGE-ATTRIBUTED] %s %d→%d（+%d）由 %s 解释；累计留账 %d 条"
               % (m, args.from_v, args.to_v, rec["delta"], rec["commit"], len(ledger)))
         return 0
@@ -695,7 +722,7 @@ def main():
                            from_value=bl["metrics"].get("inject_union_bytes"),
                            to_value=metrics.get("inject_union_bytes")))
         doc["metrics"], doc["attributed_raises"] = metrics, ledger
-        Path(args.baseline).write_text(json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")
+        _atomic_write_json(Path(args.baseline), doc)
         print("[RATCHET:RAISED-ATTRIBUTED] %s ⇒ 基线 %s→%s，累计留账 %d 条"
               % (why, ledger[-1]["from_value"], ledger[-1]["to_value"], len(ledger)))
         return 0
@@ -750,7 +777,7 @@ def main():
                   % (len(str(bl.get("note") or "")), len(doc["note"])))
             return 1
         Path(args.baseline).parent.mkdir(parents=True, exist_ok=True)
-        Path(args.baseline).write_text(json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")
+        _atomic_write_json(Path(args.baseline), doc)
         print("[RATCHET:BASELINE] 写入 %s（%d 项指标）" % (args.baseline, len(metrics)))
         return 0
 

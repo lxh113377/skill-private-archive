@@ -76,16 +76,31 @@ def main():
                                        len(after.get("attributed_raises") or []), p.stdout[-160:]))
     os.remove(tmp)
 
+    # r125 自抓（输入面与被写面重叠 ⇒ 假红）：n5 与 n6 原各独立 json.loads 读真基线件，
+    # runner 跑 38 门耗时数分钟，期间并行会话改棘轮 note（r124 即在改 debt 指标与留账），
+    # 两次读之间文件被换掉 ⇒ n5 通过而 n6 读到半写状态 ⇒ 假红（已连续三轮出现）。
+    # 修法：单次读取 + 重试到拿到**自洽**内容（note 非空且三条依据齐全），
+    # 仍不满足才判红 —— 这是读取侧重试，不是放宽判据（判据本身一条没动）。
+    _doc = None
+    for _try in range(6):
+        try:
+            _cand = json.loads(io.open(BASE, encoding="utf-8-sig").read()) or {}
+        except Exception:
+            _cand = None
+        if isinstance(_cand, dict) and isinstance(_cand.get("note"), str) and _cand["note"]:
+            _doc = _cand
+            break
+    _note = (_doc or {}).get("note") or ""
+
     # n5 零输入不得记 PASS：读不到 note 就当失败，不许默认"没有留账=正常"
     ck("n5 零输入：现件 note 必须非空（空 note 不得被当成合格基线）",
-       bool((json.loads(io.open(BASE, encoding='utf-8-sig').read()) or {}).get("note")) is True,
-       "note 缺失")
+       bool(_note) is True,
+       "note 缺失（重试 6 次仍读不到自洽内容）")
 
     # n6 常驻回归锁：本轮恢复的三条人工核定依据必须仍在（将来任何再刷留账的行为当场红）
-    live = json.loads(io.open(BASE, encoding='utf-8-sig').read())["note"]
     ck("n6 常驻锁：现件留账须仍含 r38/r40/r45 三条人工核定依据（防再次被 --update 刷掉）",
-       all(k in live for k in ("r38 人工核定", "r40 核定", "r45 核定")),
-       "len=%d note=%s" % (len(live), live[:180]))
+       all(k in _note for k in ("r38 人工核定", "r40 核定", "r45 核定")),
+       "len=%d note=%s" % (len(_note), _note[:180]))
 
     fails = [r for r in RESULTS if not r[0]]
     print("\n夹具合计: %d 项，通过 %d，失败 %d"

@@ -1,0 +1,741 @@
+{
+ "schema": "c16-tiered-r125-v1",
+ "tiers": {
+  "exclusive": [
+   {
+    "slug": "taskflow-inbox-triage",
+    "repo": "stablyai/orca",
+    "score": 24,
+    "share": 1,
+    "md_n": 11
+   },
+   {
+    "slug": "data-analysis",
+    "repo": "yusufkaraaslan/Skill_Seekers",
+    "score": 23,
+    "share": 1,
+    "md_n": 31
+   },
+   {
+    "slug": "doc-coauthoring",
+    "repo": "yusufkaraaslan/Skill_Seekers",
+    "score": 23,
+    "share": 1,
+    "md_n": 31
+   },
+   {
+    "slug": "github",
+    "repo": "yusufkaraaslan/Skill_Seekers",
+    "score": 23,
+    "share": 1,
+    "md_n": 31
+   },
+   {
+    "slug": "office-automation-pro",
+    "repo": "yusufkaraaslan/Skill_Seekers",
+    "score": 23,
+    "share": 1,
+    "md_n": 31
+   },
+   {
+    "slug": "python-debugpy",
+    "repo": "aden-hive/hive",
+    "score": 23,
+    "share": 1,
+    "md_n": 24
+   },
+   {
+    "slug": "screenshot",
+    "repo": "aden-hive/hive",
+    "score": 23,
+    "share": 1,
+    "md_n": 24
+   },
+   {
+    "slug": "byted-bp-cdn-pagesdeploy",
+    "repo": "topoteretes/cognee",
+    "score": 22,
+    "share": 1,
+    "md_n": 23
+   },
+   {
+    "slug": "computer-use-guidance-windows",
+    "repo": "NanmiCoder/cc-haha",
+    "score": 22,
+    "share": 1,
+    "md_n": 4
+   },
+   {
+    "slug": "diagram-maker",
+    "repo": "tt-a1i/archify",
+    "score": 22,
+    "share": 1,
+    "md_n": 5
+   },
+   {
+    "slug": "local-computer-use",
+    "repo": "NanmiCoder/cc-haha",
+    "score": 22,
+    "share": 1,
+    "md_n": 4
+   },
+   {
+    "slug": "local-screenshot-qa",
+    "repo": "NanmiCoder/cc-haha",
+    "score": 22,
+    "share": 1,
+    "md_n": 4
+   },
+   {
+    "slug": "testing",
+    "repo": "modelcontextprotocol/inspector",
+    "score": 22,
+    "share": 1,
+    "md_n": 12
+   },
+   {
+    "slug": "html-ppt",
+    "repo": "ningzimu/codex-ppt-skill",
+    "score": 17,
+    "share": 1,
+    "md_n": 1
+   }
+  ],
+  "low": [
+   {
+    "slug": "A-java-problem",
+    "repo": "Snailclimb/JavaGuide",
+    "score": 18,
+    "share": 0,
+    "md_n": 1
+   },
+   {
+    "slug": "A-prompt-better",
+    "repo": "code-yeongyu/oh-my-openagent",
+    "score": 24,
+    "share": 2,
+    "md_n": 64
+   },
+   {
+    "slug": "agent-browser",
+    "repo": "browser-act/skills",
+    "score": 18,
+    "share": 0,
+    "md_n": 103
+   },
+   {
+    "slug": "algorithmic-art",
+    "repo": "apify/apify-mcp-server",
+    "score": 19,
+    "share": 2,
+    "md_n": 3
+   },
+   {
+    "slug": "browser-cdp",
+    "repo": "platonai/Browser4",
+    "score": 21,
+    "share": 0,
+    "md_n": 24
+   },
+   {
+    "slug": "browser-voice-call",
+    "repo": "vercel-labs/agent-browser",
+    "score": 18,
+    "share": 0,
+    "md_n": 10
+   },
+   {
+    "slug": "c-cleanup",
+    "repo": "parcadei/Continuous-Claude-v3",
+    "score": 18,
+    "share": 2,
+    "md_n": 160
+   },
+   {
+    "slug": "ci-pipeline-debugging",
+    "repo": "Imbad0202/academic-research-skills",
+    "score": 23,
+    "share": 3,
+    "md_n": 5
+   },
+   {
+    "slug": "code-review",
+    "repo": "code-yeongyu/oh-my-openagent",
+    "score": 24,
+    "share": 2,
+    "md_n": 64
+   },
+   {
+    "slug": "coding-agent",
+    "repo": "OrchestratorInc/agent-orchestrator",
+    "score": 21,
+    "share": 2,
+    "md_n": 7
+   },
+   {
+    "slug": "consulting-analysis",
+    "repo": "Imbad0202/academic-research-skills",
+    "score": 23,
+    "share": 3,
+    "md_n": 5
+   },
+   {
+    "slug": "dingtalk-calendar",
+    "repo": "larksuite/cli",
+    "score": 21,
+    "share": 3,
+    "md_n": 37
+   },
+   {
+    "slug": "dingtalk-doc",
+    "repo": "inkeep/open-knowledge",
+    "score": 20,
+    "share": 3,
+    "md_n": 18
+   },
+   {
+    "slug": "dingtalk-mail",
+    "repo": "larksuite/cli",
+    "score": 21,
+    "share": 3,
+    "md_n": 37
+   },
+   {
+    "slug": "discover-agent-cli",
+    "repo": "Yeachan-Heo/oh-my-claudecode",
+    "score": 23,
+    "share": 3,
+    "md_n": 49
+   },
+   {
+    "slug": "docker-e2e-gate",
+    "repo": "iflytek/skillhub",
+    "score": 22,
+    "share": 2,
+    "md_n": 24
+   },
+   {
+    "slug": "elon-musk-perspective",
+    "repo": "Imbad0202/academic-research-skills",
+    "score": 23,
+    "share": 3,
+    "md_n": 5
+   },
+   {
+    "slug": "figma",
+    "repo": "mvschwarz/openrig",
+    "score": 21,
+    "share": 0,
+    "md_n": 94
+   },
+   {
+    "slug": "gstack",
+    "repo": "pinchtab/pinchtab",
+    "score": 22,
+    "share": 0,
+    "md_n": 7
+   },
+   {
+    "slug": "internal-comms",
+    "repo": "xberg-io/xberg",
+    "score": 20,
+    "share": 3,
+    "md_n": 75
+   },
+   {
+    "slug": "mcp-builder",
+    "repo": "googleapis/mcp-toolbox",
+    "score": 21,
+    "share": 0,
+    "md_n": 6
+   },
+   {
+    "slug": "nano-pdf",
+    "repo": "xberg-io/xberg",
+    "score": 20,
+    "share": 3,
+    "md_n": 75
+   },
+   {
+    "slug": "notion-cli",
+    "repo": "AgriciDaniel/claude-obsidian",
+    "score": 19,
+    "share": 3,
+    "md_n": 16
+   },
+   {
+    "slug": "obsidian-bases",
+    "repo": "Ar9av/obsidian-wiki",
+    "score": 20,
+    "share": 0,
+    "md_n": 40
+   },
+   {
+    "slug": "obsidian-cli",
+    "repo": "Ar9av/obsidian-wiki",
+    "score": 20,
+    "share": 0,
+    "md_n": 40
+   },
+   {
+    "slug": "obsidian-markdown",
+    "repo": "Ar9av/obsidian-wiki",
+    "score": 20,
+    "share": 0,
+    "md_n": 40
+   },
+   {
+    "slug": "ppt-master",
+    "repo": "code-yeongyu/oh-my-openagent",
+    "score": 24,
+    "share": 2,
+    "md_n": 64
+   },
+   {
+    "slug": "prompt-consolidation",
+    "repo": "Imbad0202/academic-research-skills",
+    "score": 23,
+    "share": 3,
+    "md_n": 5
+   },
+   {
+    "slug": "prompt-system-audit",
+    "repo": "Imbad0202/academic-research-skills",
+    "score": 23,
+    "share": 3,
+    "md_n": 5
+   },
+   {
+    "slug": "react-best-practices",
+    "repo": "FlorianBruniaux/claude-code-ultimate-guide",
+    "score": 22,
+    "share": 0,
+    "md_n": 104
+   },
+   {
+    "slug": "scope-creep-detector",
+    "repo": "career-ops-hq/career-ops",
+    "score": 23,
+    "share": 2,
+    "md_n": 13
+   },
+   {
+    "slug": "shadcn",
+    "repo": "getsentry/MobileBuildMCP",
+    "score": 20,
+    "share": 2,
+    "md_n": 13
+   },
+   {
+    "slug": "shell-encoding-pitfalls",
+    "repo": "siddsachar/row-bot",
+    "score": 21,
+    "share": 2,
+    "md_n": 45
+   },
+   {
+    "slug": "sq-cleanmgr-c",
+    "repo": "kucherenko/jscpd",
+    "score": 19,
+    "share": 0,
+    "md_n": 5
+   },
+   {
+    "slug": "story",
+    "repo": "Imbad0202/academic-research-skills",
+    "score": 23,
+    "share": 3,
+    "md_n": 5
+   },
+   {
+    "slug": "story-deslop",
+    "repo": "Imbad0202/academic-research-skills",
+    "score": 23,
+    "share": 3,
+    "md_n": 5
+   },
+   {
+    "slug": "story-import",
+    "repo": "Imbad0202/academic-research-skills",
+    "score": 23,
+    "share": 3,
+    "md_n": 5
+   },
+   {
+    "slug": "story-long-write",
+    "repo": "Imbad0202/academic-research-skills",
+    "score": 23,
+    "share": 3,
+    "md_n": 5
+   },
+   {
+    "slug": "story-review",
+    "repo": "Imbad0202/academic-research-skills",
+    "score": 23,
+    "share": 3,
+    "md_n": 5
+   },
+   {
+    "slug": "story-scan",
+    "repo": "Imbad0202/academic-research-skills",
+    "score": 23,
+    "share": 3,
+    "md_n": 5
+   },
+   {
+    "slug": "story-short-write",
+    "repo": "Imbad0202/academic-research-skills",
+    "score": 23,
+    "share": 3,
+    "md_n": 5
+   },
+   {
+    "slug": "utf8-encoding-fix",
+    "repo": "getsentry/MobileBuildMCP",
+    "score": 20,
+    "share": 2,
+    "md_n": 13
+   },
+   {
+    "slug": "wechat-automation",
+    "repo": "siddsachar/row-bot",
+    "score": 21,
+    "share": 2,
+    "md_n": 45
+   },
+   {
+    "slug": "windows-bash-cli-interop-pitfalls",
+    "repo": "parcadei/Continuous-Claude-v3",
+    "score": 18,
+    "share": 2,
+    "md_n": 160
+   },
+   {
+    "slug": "windows-cli-utf8-wrapper",
+    "repo": "siddsachar/row-bot",
+    "score": 21,
+    "share": 2,
+    "md_n": 45
+   },
+   {
+    "slug": "windows-native-ocr",
+    "repo": "Anionex/agent-vision-toolkit",
+    "score": 16,
+    "share": 2,
+    "md_n": 1
+   },
+   {
+    "slug": "workbuddy-mcp",
+    "repo": "googleapis/mcp-toolbox",
+    "score": 21,
+    "share": 0,
+    "md_n": 6
+   },
+   {
+    "slug": "writing-plans",
+    "repo": "Imbad0202/academic-research-skills",
+    "score": 23,
+    "share": 3,
+    "md_n": 5
+   }
+  ],
+  "mid": [
+   {
+    "slug": "byted-seedance-video-generate",
+    "repo": "krillinai/OpenCreator",
+    "score": 22,
+    "share": 4,
+    "md_n": 15
+   },
+   {
+    "slug": "byted-seedream-image-generate",
+    "repo": "krillinai/OpenCreator",
+    "score": 22,
+    "share": 4,
+    "md_n": 15
+   },
+   {
+    "slug": "chart-visualization",
+    "repo": "cathrynlavery/diagram-design",
+    "score": 18,
+    "share": 5,
+    "md_n": 1
+   },
+   {
+    "slug": "codebuddy-chat-web",
+    "repo": "iOfficeAI/AionUi",
+    "score": 22,
+    "share": 5,
+    "md_n": 6
+   },
+   {
+    "slug": "cross-platform-agent-sync",
+    "repo": "wanshuiyin/Auto-claude-code-research-in-sleep",
+    "score": 23,
+    "share": 6,
+    "md_n": 191
+   },
+   {
+    "slug": "data-visualization",
+    "repo": "cathrynlavery/diagram-design",
+    "score": 18,
+    "share": 5,
+    "md_n": 1
+   },
+   {
+    "slug": "debugging-fixing",
+    "repo": "muratcankoylan/Agent-Skills-for-Context-Engineering",
+    "score": 19,
+    "share": 5,
+    "md_n": 24
+   },
+   {
+    "slug": "defuddle",
+    "repo": "coreyhaines31/marketingskills",
+    "score": 21,
+    "share": 4,
+    "md_n": 52
+   },
+   {
+    "slug": "docx",
+    "repo": "iOfficeAI/OfficeCLI",
+    "score": 18,
+    "share": 4,
+    "md_n": 12
+   },
+   {
+    "slug": "frontend-skill",
+    "repo": "Leonxlnx/taste-skill",
+    "score": 18,
+    "share": 4,
+    "md_n": 14
+   },
+   {
+    "slug": "frontend-slides",
+    "repo": "genspark-ai/genoffice",
+    "score": 18,
+    "share": 5,
+    "md_n": 1
+   },
+   {
+    "slug": "gsap",
+    "repo": "kangarooking/cangjie-skill",
+    "score": 20,
+    "share": 4,
+    "md_n": 47
+   },
+   {
+    "slug": "hook-analyzer-skill",
+    "repo": "wiltodelta/remove-ai-watermarks",
+    "score": 20,
+    "share": 5,
+    "md_n": 4
+   },
+   {
+    "slug": "html-to-docx-win-fix",
+    "repo": "genspark-ai/genoffice",
+    "score": 18,
+    "share": 5,
+    "md_n": 1
+   },
+   {
+    "slug": "oc-dispatch-exec-guard",
+    "repo": "thedotmack/claude-mem",
+    "score": 24,
+    "share": 5,
+    "md_n": 41
+   },
+   {
+    "slug": "openai-whisper-api",
+    "repo": "wiltodelta/remove-ai-watermarks",
+    "score": 20,
+    "share": 5,
+    "md_n": 4
+   },
+   {
+    "slug": "openclaw-dual-gate-quality-audit",
+    "repo": "thedotmack/claude-mem",
+    "score": 24,
+    "share": 5,
+    "md_n": 41
+   },
+   {
+    "slug": "openclaw-fenjue-weekly",
+    "repo": "thedotmack/claude-mem",
+    "score": 24,
+    "share": 5,
+    "md_n": 41
+   },
+   {
+    "slug": "openclaw-task-supervision",
+    "repo": "thedotmack/claude-mem",
+    "score": 24,
+    "share": 5,
+    "md_n": 41
+   },
+   {
+    "slug": "pdf",
+    "repo": "genspark-ai/genoffice",
+    "score": 18,
+    "share": 5,
+    "md_n": 1
+   },
+   {
+    "slug": "refactoring",
+    "repo": "morluto/rea",
+    "score": 23,
+    "share": 4,
+    "md_n": 5
+   },
+   {
+    "slug": "report-generator-skill",
+    "repo": "kangarooking/cangjie-skill",
+    "score": 20,
+    "share": 4,
+    "md_n": 47
+   },
+   {
+    "slug": "spec-to-implementation",
+    "repo": "morluto/rea",
+    "score": 23,
+    "share": 4,
+    "md_n": 5
+   },
+   {
+    "slug": "spike",
+    "repo": "K-Dense-AI/scientific-agent-skills",
+    "score": 25,
+    "share": 5,
+    "md_n": 178
+   },
+   {
+    "slug": "story-cover",
+    "repo": "krillinai/OpenCreator",
+    "score": 22,
+    "share": 4,
+    "md_n": 15
+   },
+   {
+    "slug": "story-short-analyze",
+    "repo": "zenstory-ai/drama-skills",
+    "score": 20,
+    "share": 6,
+    "md_n": 12
+   },
+   {
+    "slug": "wechat-voice-transcription",
+    "repo": "krillinai/OpenCreator",
+    "score": 22,
+    "share": 4,
+    "md_n": 15
+   },
+   {
+    "slug": "windows-gitbash-chinese-path-pit",
+    "repo": "thedotmack/claude-mem",
+    "score": 24,
+    "share": 5,
+    "md_n": 41
+   },
+   {
+    "slug": "xlsx",
+    "repo": "genspark-ai/genoffice",
+    "score": 18,
+    "share": 5,
+    "md_n": 1
+   }
+  ],
+  "omni": [
+   "9b-lightworkflow",
+   "A-ask-questions",
+   "A-dynamic-workflow",
+   "A-get-memory",
+   "A-memory-start",
+   "A-project-better",
+   "A-project-handoff",
+   "A-skill-manager",
+   "_my-skills",
+   "ai-video-homework-pipeline",
+   "audio-deliverable-pipeline",
+   "audit-runner-safe-aggregate",
+   "bigfile-split",
+   "brainstorming",
+   "brand-guidelines",
+   "byted-mediakit-shared",
+   "canvas-design",
+   "chaoshi-admin-inline-edit",
+   "chaoshi-image-optimization",
+   "chaoshi-web-deploy",
+   "cloudbase",
+   "cloudbase-db-optimize",
+   "commit-archaeologist",
+   "dingtalk-aisearch",
+   "dingtalk-aitable",
+   "dingtalk-chat",
+   "dingtalk-contact",
+   "dingtalk-drive",
+   "dingtalk-event",
+   "dingtalk-minutes",
+   "dingtalk-misc",
+   "dingtalk-shared",
+   "dingtalk-todo",
+   "dingtalk-wiki",
+   "dogfood",
+   "electron",
+   "fenjue-lessons-hitrate",
+   "fenjue-memory-audit",
+   "find-skills",
+   "first-principles-decomposer",
+   "frontend-design",
+   "grill-me",
+   "healthcare-cdss-patterns",
+   "healthcare-emr-patterns",
+   "healthcare-eval-harness",
+   "hermes-installer",
+   "hyperframes",
+   "hyperframes-cli",
+   "hyperframes-media",
+   "hyperframes-registry",
+   "ican-deploy",
+   "ican-frontend-design-system",
+   "json-canvas",
+   "knowledge-capture",
+   "local-asr",
+   "local-img2img",
+   "local-mineru",
+   "local-ocr-npu",
+   "local-realtime-translator",
+   "local-tts",
+   "local-txt2img",
+   "local-vram",
+   "mcporter",
+   "meeting-intelligence",
+   "no-manual-steps",
+   "node-inspect-debugger",
+   "oracle",
+   "pixelle-api-ensure",
+   "rag-eval",
+   "research-documentation",
+   "security-audit",
+   "sqlalchemy-loader-criteria-pitfalls",
+   "static-site-batch-audit-fix",
+   "story-long-analyze",
+   "story-setup",
+   "taskflow",
+   "test-driven-development",
+   "theme-factory",
+   "ui-ux-pro-max",
+   "verification-before-completion",
+   "video-breakdown-skill",
+   "video-frames",
+   "video-whisper-transcribe",
+   "vp-perspective-audit",
+   "wb-git-commit-recipe",
+   "web-access",
+   "web-design-guidelines",
+   "win-toolchain-pitfalls",
+   "workflow-preflight-check",
+   "wps-knowledgebase",
+   "天眼一下"
+  ]
+ }
+}

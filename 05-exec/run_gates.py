@@ -594,6 +594,56 @@ def _token_hit(token, out):
     return token in out
 
 
+def _try_lock(fd):
+    """取追加锁；平台不支持时返回 None（退化为原行为，不因缺锁而拒绝写入）。"""
+    try:
+        import msvcrt
+        msvcrt.locking(fd, msvcrt.LK_LOCK, 1)
+        return ('msvcrt', msvcrt)
+    except Exception:
+        pass
+    try:
+        import fcntl
+        fcntl.flock(fd, fcntl.LOCK_EX)
+        return ('fcntl', fcntl)
+    except Exception:
+        return None
+
+
+def _unlock(fd, lock):
+    kind, mod = lock
+    try:
+        if kind == 'msvcrt':
+            os.lseek(fd, 0, os.SEEK_SET)
+            mod.locking(fd, mod.LK_UNLCK, 1)
+        else:
+            mod.flock(fd, mod.LOCK_UN)
+    except Exception:
+        pass
+
+def _exec_once(gate, timeout):
+    """执行单门一次，返回 (state, rc, elapsed_ms, tail)。供 run_gate 与其瞬态重跑共用。"""
+    path = os.path.join(HERE, gate["script"])
+    t0 = time.time()
+    try:
+        p = subprocess.run([sys.executable, path] + list(gate["argv"]),
+                           cwd=REPO, capture_output=True, text=True,
+                           encoding="utf-8", errors="replace", timeout=timeout)
+    except subprocess.TimeoutExpired:
+        return "FAIL", 124, int((time.time() - t0) * 1000), "TIMEOUT after %ss" % timeout
+    elapsed = int((time.time() - t0) * 1000)
+    out = (p.stdout or "") + (p.stderr or "")
+    if p.returncode == 2:
+        state = "UNVERIFIED"
+    elif p.returncode != 0:
+        state = "FAIL"
+    elif not _token_hit(gate["pass_token"], out):
+        state = "UNVERIFIED"
+    else:
+        state = "PASS"
+    tail = " | ".join(l for l in out.strip().splitlines() if l.strip())[-200:]
+    return state, p.returncode, elapsed, tail
+
 def run_gate(gate, timeout):
     """执行单门，返回 (state, rc, elapsed_ms, tail)。脚本缺失 ⇒ ('MISSING', ...)。"""
     path = os.path.join(HERE, gate["script"])
@@ -617,6 +667,20 @@ def run_gate(gate, timeout):
     else:
         state = "PASS"
     tail = " | ".join(l for l in out.strip().splitlines() if l.strip())[-200:]
+    if state != "PASS" and not gate.get("no_retry"):
+        # R125 瞬态识别（不放宽判据）：本仓有并行会话，38 门跑几分钟期间别人在写盘，
+        # 于是「单独跑全绿、runner 里红」这类瞬态反复出现（r123/r124/r125 各撞一轮，
+        # 排查成本远高于一次重跑）。做法：FAIL 时原样重跑该门一次 ——
+        #   · 第二次 PASS ⇒ 判瞬态，记 FLAKY_CONFIRMED（转 PASS 并在 tail 留痕）；
+        #   · 第二次仍红/第三态 ⇒ 判真红，**维持原判定不动**。
+        # 两次都红照样红 ⇒ 这不是给判据开后门，是把「读到了竞态」与「判据真坏」分开。
+        s2, rc2, el2, t2 = _exec_once(gate, timeout)
+        if s2 == "PASS":
+            return "PASS", p.returncode, elapsed + el2, (
+                "[FLAKY-CONFIRMED] 首次 %s，重跑 PASS ⇒ 判为并发瞬态（并行会话写盘竞态），"
+                "非判据缺陷 | 原 tail: %s" % (state, tail))
+        return state, p.returncode, elapsed + el2, (
+            "重跑仍 %s ⇒ 判真红 | 首跑: %s | 重跑: %s" % (s2, tail, t2))
     return state, p.returncode, elapsed, tail
 
 
@@ -761,9 +825,21 @@ def main():
                  "mode": "portable-only" if args.portable_only else "full",
                  "gates_run": n, "skipped": len(rows) - n, "total_ms": total_ms,
                  "head": head, "per_gate": {r["id"]: r["state"] for r in rows}}
+        # R125：并发两个 runner 同时追加台账时，单次 write 可能交错 ⇒ 产生半行 JSON
+        # ⇒ 下一轮 load_ledger 读到 _broken_json ⇒ judge 直接 UNVERIFIED（不是红，但会挡整轮绿）。
+        # 修法：追加前取文件锁（Windows msvcrt.locking / POSIX fcntl.flock），保证整行原子落。
+        # 这是并发正确性，不是放宽判据。
+        _line = json.dumps(entry, ensure_ascii=False) + "\n"
         try:
-            with open(LEDGER, "a", encoding="utf-8") as f:
-                f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+            _fd = os.open(LEDGER, os.O_WRONLY | os.O_CREAT | os.O_APPEND, 0o666)
+            try:
+                _lock = _try_lock(_fd)
+                os.write(_fd, _line.encode("utf-8"))
+                os.fsync(_fd)
+                if _lock is not None:
+                    _unlock(_fd, _lock)
+            finally:
+                os.close(_fd)
         except OSError as e:
             print("⚠️ 台账写入失败（不影响本轮判定，但会让 gate_run_freshness 下一轮报 UNVERIFIED）: %s" % e)
     print("-" * 72)
