@@ -6,5 +6,13 @@
  "r131_closure_layers": {
   "evidence": "06-benchmark/closure_layers_r131_2026-10-20.json",
   "registered_at": "2026-10-20 17:33"
+ },
+ "r133_new_skill_ingress": {
+  "evidence": "06-benchmark/new_skill_ingress_r133_2026-10-21.json",
+  "registered_at": "2026-10-20 18:21"
+ },
+ "r133_new_skill_ingress.py": {
+  "evidence": "06-benchmark/new_skill_ingress_r133_2026-10-21.json",
+  "registered_at": "2026-10-20 18:22"
  }
 }

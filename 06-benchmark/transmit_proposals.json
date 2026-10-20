@@ -268,6 +268,29 @@
    "r132_correction": "【r132 实测校正注，2026-10-21】本条提案的 fix_hint 原写于 r131，未实测过能救几条。 r132 建 05-exec/r132_direct_fix_efficacy.py 做效力实测（复算命令 python 05-exec/r132_direct_fix_efficacy.py --json 06-benchmark/direct_fix_efficacy_r132_2026-10-20.json）。 读数：闭包 6 条，处方①（direct 放行到 tag/bge 层）有效 6/6，但一步到位只有 2 条。 A_DIRECT_ONLY = 2（灵感枯竭帮我发散一波点子 / 新技能装之前先安全审查）：关掉 direct 即救回。 B_NEIGHBOR_RANK = 4：期望件能浮上来但被语义邻居压（HTML 演示文稿 rank2、Notion 会议准备 rank2、录音转文字 rank4、GitHub 代码审查意见 rank2），还需第二道排序面或语料面处方。 C_STALE = 0，D_UNREACHABLE = 0 ⇒ 本层没有彻底救不回的条目。 结论修正：若按 r131 的 fix_hint 字面执行（只做处方①），6 条里只解决 2 条的 top1，另 4 条会从「被 direct 抢答」退化为「被语义邻居压」——是进步但不是闭环，验收标准必须改。",
    "acceptance_r132": "【r132 修正后的验收标准】分两步，禁止一次性判过。 第一步（处方① direct 放行）：跑 python 05-exec/r131_direct_closure.py，要求 face.direct_closed_n 由 6 降到 0。 第二步（排序面或语料面，治 B_NEIGHBOR_RANK 4 条）：跑 python 05-exec/r132_direct_fix_efficacy.py，要求 face.by_class 里 B_NEIGHBOR_RANK 归 0 且 A_DIRECT_ONLY 不得回退。 两步都必须满足；只做第一步不判闭环。",
    "r132_corrected_at": "2026-10-21"
+  },
+  {
+   "pid": "corpus_lang_mismatch",
+   "title": "第 11 类失败层：语料语言/表述不匹配致语义排序错位（新建件抢答，非闭包）",
+   "target": "受管根自建件的 SKILL.md description 语言 + 焚诀 bge_layer 检索加权",
+   "proposed_at": "2026-10-21",
+   "keywords": [
+    "语料",
+    "语言",
+    "中英",
+    "description",
+    "BGE",
+    "语义",
+    "排序",
+    "libreoffice",
+    "gsap",
+    "抢答"
+   ],
+   "why": "r133 一手实测（第 11 类失败层：语料语言/表述不匹配）。 r132 观测到 w47 正控红 1 条假绿：query「gsap 做滚动触发动画」期望 gsap、实得 libreoffice-draw。 r133 追查结论：不是闭包（tag_hits 为空、走全量召回），是纯语义排序 —— libreoffice-draw raw_rank=1 (0.5569) 压过 gsap raw_rank=8 (0.4969)。 长度假设已被实测证伪：gsap 全文 7754 字符 vs 仅 frontmatter 366 字符，对该 query 的相似度差仅 0.0004（0.4983 vs 0.4979）⇒ 不是「超长语料稀释」。 真因是**语言**：gsap 的 description 通篇英文（GSAP animation reference for HyperFrames...），而 libreoffice-draw 是中文； 中文 query「做滚动触发动画」对两者都不匹配（query 自相似仅 0.88），谁的中文词面更沾边谁就赢。 同类面实测：语料 190 件、受检 311 题，语言不一致 7 条（去重 3 条 query），新建件抢答 7 条（去重 2 条 query）。",
+   "evidence": "06-benchmark/new_skill_ingress_r133_2026-10-21.json（face：语料 190 / 受检 311 / 新建件抢答 7 / 语言不一致 7 + 逐条具名）；复算命令 python 05-exec/r133_new_skill_ingress.py --json <件>",
+   "fix_hint": "两步（都属归属方面）：① 语料侧补中文触发词 —— 对 description 全英文的自建件，在 triggers 或 description 末尾补中文用途词（gsap 那件可补「动画、滚动触发、缓动、时间轴、tween」等）， 改动须走 rule_editor.py（受管根红线），改后重建 BGE 派生件再复跑本面； ② 检索侧考虑加权 —— 若 encode 时对中英混排查询做归一或对「查询语言 vs description 语言」做一致性加权，让语言不匹配时降权而非直接靠词面碰运气。",
+   "acceptance": "【r133 验收标准】两步，禁止一次性判过。 第一步（语料补中文触发词）：跑 python 05-exec/r133_new_skill_ingress.py --json <件>，要求 face.lang_mismatch_n 归 0。 第二步（新建件抢答面复查）：同件 face.new_skill_preempt_n 归 0（注意去重：同一 query 在多个上游面各出现一次，读数含重复）。 另须复跑 python 05-exec/r128_w47_reconcile_fixtures.py 要求 6/6 归绿（该面是本条假绿的发现处）。",
+   "scope": "本仓红线：受管根改 skill 唯一途径 rule_editor.py、焚诀 eval/ 只读不代改，故本条只登记提案与读数面。"
   }
  ]
 }

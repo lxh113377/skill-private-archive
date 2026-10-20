@@ -108,10 +108,15 @@ def main():
         if not os.path.isfile(full):
             print('[ADMIT] REFUSE 证据文件不存在: %s' % ev)
             return 1
-        reg[args.register] = {'evidence': ev, 'registered_at': __import__('datetime').datetime.now().strftime('%Y-%m-%d %H:%M')}
+        # r133 修真 bug：`--register` 收的键与检查时的文件名形态不一致
+        # （我传 r133_new_skill_ingress，文件名是 r133_new_skill_ingress.py）
+        # ⇒ 登记写了、检查永远不命中 ⇒ 报 UNDECLARED。r131 那次同症状被我误判成「并行会话干扰」，
+        # 这次抓到根：键必须**归一到带 .py 的文件名形态**。
+        key = args.register if args.register.endswith('.py') else (args.register + '.py')
+        reg[key] = {'evidence': ev, 'registered_at': __import__('datetime').datetime.now().strftime('%Y-%m-%d %H:%M')}
         with io.open(reg_path, 'w', encoding='utf-8', newline='\n') as f:
             json.dump(reg, f, ensure_ascii=False, indent=1)
-        print('[ADMIT] REGISTERED %s（证据 %s）' % (args.register, ev))
+        print('[ADMIT] REGISTERED %s（证据 %s）' % (key, ev))
         return 0
     qsrc = io.open(QUARTERLY, encoding='utf-8').read() if os.path.isfile(QUARTERLY) else ''
     quarterly = set(m.group(1) for m in re.finditer(r'"(r\d+_[A-Za-z0-9_]+\.py)"', qsrc))
@@ -171,7 +176,7 @@ def main():
             continue
         if exempt.search(f):
             continue
-        if f in reg:
+        if f in reg or (f[:-3] in reg if f.endswith('.py') else False):
             continue
         try:
             src = io.open(os.path.join(HERE, f), encoding='utf-8').read()
