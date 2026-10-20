@@ -164,6 +164,24 @@
     ]
    },
    "redline": "repo redline: 焚诀 eval/ read-only; register only, never edit eval files."
+  },
+  {
+   "pid": "derivative_watch_domain_skip_drift",
+   "title": "derivative_watch.collect_artifacts 域 JSON 豁免名单漏 tfidf_vocab_idf.json ⇒ C10/C16 假红",
+   "target": "焚诀 eval/derivative_watch.py（C10/C16 判据本体）",
+   "proposed_at": "2026-10-20",
+   "keywords": [
+    "derivative_watch",
+    "tfidf_vocab_idf",
+    "C10",
+    "C16",
+    "域 JSON",
+    "豁免"
+   ],
+   "why": "r114 给 build_indexes.py 的 DOMAIN_FILE_SKIPS 加了 tfidf_vocab_idf.json（防\"删非白名单域 JSON\"清理循环把它当场删掉），但同源的 derivative_watch.py::collect_artifacts() 豁免名单仍只有 (skill_ids.json, index_manifest.json) ⇒ 该件被算进 domain_paths，域桶数 13→14。r119 跑 build_indexes --apply 后 C10 报「域 JSON 桶 != 注册表 domain 集 (14 vs 13) 多:[tfidf_vocab_idf]」，C16 连带报「01-goal.part1.md:9 域数过期: 13 vs 域桶实测 14」。属判据-生成器漂移（数据本身正确：13 个真域桶 + 1 个词表投影），非数据缺陷。",
+   "evidence": "python eval/verify_truth_consistency.py --json 后读 C10/C16 的 detail；build_indexes.py 的 DOMAIN_FILE_SKIPS 常量（含 r114 注释）；derivative_watch.py collect_artifacts 的豁免元组",
+   "fix_hint": "把 tfidf_vocab_idf.json 加进 collect_artifacts 的豁免元组（与 build_indexes.DOMAIN_FILE_SKIPS 对齐）；更稳的做法是让两处共用同一常量，防再漂。",
+   "scope": "本仓红线：焚诀 eval/ 只读不代改，故只登记提案。"
   }
  ]
 }
