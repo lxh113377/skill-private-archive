@@ -141,28 +141,13 @@ def install(src, dst):
         prev_hash = last_line_hash(dst)
         stamp["prev_hash"] = prev_hash
         stamp["line_hash"] = sha256_json(stamp)
-        # r144 外部锚点（R143-4 落地）：把「行数 + 末行 line_hash」同步进 git 跟踪的台账。
-        # 全套自洽伪造（快照+历史一起改）只能骗过 git 外的自洽判据（H4/H5/H6），
-        # 骗不过 git 内台账 —— 台账在版本历史里，改它 = 留下 git 记录（提交者/时间可查）。
-        try:
-            anchor_path = os.path.join(ROOT, '06-benchmark', 'hook_install_ledger.json')
-            ledger = {}
-            if os.path.isfile(anchor_path):
-                try:
-                    ledger = json.load(io.open(anchor_path, encoding='utf-8-sig')) or {}
-                except Exception:
-                    ledger = {}
-            key = os.path.basename(dst)
-            ledger.setdefault('schema', 'hook-install-ledger-r144-v1')
-            ledger.setdefault('hook', {})
-            ledger['hook'][key] = {'lines': stamp['seq'], 'last_line_hash': stamp['line_hash'],
-                                   'installed_at': stamp['installed_at'], 'invoker': stamp.get('invoker'),
-                                   'reason': stamp.get('reason')}
-            ledger['updated_at'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-            with io.open(anchor_path, 'w', encoding='utf-8', newline=chr(10)) as f:
-                json.dump(ledger, f, ensure_ascii=False, indent=1)
-        except Exception:
-            pass
+        # r147 写入顺序（R146-4 落地）：崩溃窗口必须落在可宽限侧。
+        # 顺序 = 日志追加（真相源，先写）=> pending 凭证 => 台账锚点（最后写）。
+        # 不变式：台账 lines 永远 <= 日志行数（台账超前 => missing<0 => 无宽限通道 => 永久误红）；
+        #   pending 记录 == 日志末行（pending 超前 => 凭证失效 => 下次安装覆盖自愈）。
+        # 旧序（台账先写）的崩溃前缀会产生超前台账 —— r147 造景验证（_temp/v31_crash.py）。
+        with io.open(dst + '.installed.log', 'a', encoding='utf-8', newline=chr(10)) as f:
+            f.write(json.dumps(stamp, ensure_ascii=False) + chr(10))
         # r146 pending 标记件（R145-4 落地）：跨会话窗口期的凭证。
         # 窗口期 = 装了但台账未提交。本会话宽限靠 env session；跨会话/跨人时
         # 会话 B 无法从 env 得知缺行是谁装的 => 误红（r146 量化坐实）。
@@ -189,10 +174,28 @@ def install(src, dst):
                 json.dump(pend, f, ensure_ascii=False, indent=1)
         except Exception:
             pass
+        # r144 外部锚点（R143-4 落地）：把「行数 + 末行 line_hash」同步进 git 跟踪的台账。
+        # 全套自洽伪造（快照+历史一起改）只能骗过 git 外的自洽判据（H4/H5/H6），
+        # 骗不过 git 内台账 —— 台账在版本历史里，改它 = 留下 git 记录（提交者/时间可查）。
+        try:
+            anchor_path = os.path.join(ROOT, '06-benchmark', 'hook_install_ledger.json')
+            ledger = {}
+            if os.path.isfile(anchor_path):
+                try:
+                    ledger = json.load(io.open(anchor_path, encoding='utf-8-sig')) or {}
+                except Exception:
+                    ledger = {}
+            key = os.path.basename(dst)
+            ledger.setdefault('schema', 'hook-install-ledger-r144-v1')
+            ledger.setdefault('hook', {})
+            ledger['hook'][key] = {'lines': stamp['seq'], 'last_line_hash': stamp['line_hash'],
+                                   'installed_at': stamp['installed_at'], 'invoker': stamp.get('invoker'),
+                                   'reason': stamp.get('reason')}
+            ledger['updated_at'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            with io.open(anchor_path, 'w', encoding='utf-8', newline=chr(10)) as f:
+                json.dump(ledger, f, ensure_ascii=False, indent=1)
         except Exception:
             pass
-        with io.open(dst + '.installed.log', 'a', encoding='utf-8', newline=chr(10)) as f:
-            f.write(json.dumps(stamp, ensure_ascii=False) + chr(10))
     except Exception:
         pass
     return os.path.getsize(dst)

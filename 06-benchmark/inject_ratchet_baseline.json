@@ -3,7 +3,7 @@
  "generated_at": "2026-10-20 11:54",
  "metrics": {
   "catalog_grand_chars": 56312,
-  "inject_union_bytes": 90791,
+  "inject_union_bytes": 92648,
   "claim_candidates": 4,
   "drift_ruleish_candidates": 32,
   "desc_over_cap": 0,
@@ -316,6 +316,17 @@
    "commit": "r146-rule44-and-report",
    "path": "(range-attribution)",
    "reason": "r146 range attribution: inject_union_bytes 88829->90791 (+1962). Cause: AGENTS.md gained rule #44 (cross-session grace needs install evidence, ~1750 chars incl. four-state table and trust-strength declaration) and the r146 report is itself in the injected surface. Intentional content additions; ratchet only-down semantics unchanged.",
+   "kind": "range"
+  },
+  {
+   "metric": "inject_union_bytes",
+   "from_value": 90791,
+   "to_value": 92648,
+   "delta": 1857,
+   "at": "2026-10-20 23:10",
+   "commit": "r147-rule45-and-report",
+   "path": "(range-attribution)",
+   "reason": "r147 range attribution: inject_union_bytes 90791->92648 (+1857). Cause: AGENTS.md gained rule #45 (evidence write order: source-of-truth first, ~1500 chars incl. crash-prefix table) and the r147 report is itself in the injected surface. Intentional content additions; ratchet only-down semantics unchanged.",
    "kind": "range"
   }
  ],

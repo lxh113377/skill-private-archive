@@ -1,0 +1,81 @@
+{
+ "schema": "write-order-sweep-r147-v1",
+ "cmd": "python 05-exec/r147_write_order_sweep.py --json <out>",
+ "face": {
+  "l1_source_order": true,
+  "source_idx": [
+   5430,
+   5958,
+   7273
+  ],
+  "new_prefixes": [
+   {
+    "crash": 0,
+    "missing": 0,
+    "rc": 0,
+    "h7": true,
+    "via": ""
+   },
+   {
+    "crash": 1,
+    "missing": 1,
+    "rc": 0,
+    "h7": true,
+    "via": "env"
+   },
+   {
+    "crash": 2,
+    "missing": 1,
+    "rc": 0,
+    "h7": true,
+    "via": "env"
+   },
+   {
+    "crash": 3,
+    "missing": 0,
+    "rc": 0,
+    "h7": true,
+    "via": ""
+   }
+  ],
+  "old_prefixes": [
+   {
+    "crash": 0,
+    "missing": 0,
+    "rc": 0,
+    "h7": true,
+    "via": ""
+   },
+   {
+    "crash": 1,
+    "missing": -1,
+    "rc": 1,
+    "h7": false,
+    "via": ""
+   },
+   {
+    "crash": 2,
+    "missing": -1,
+    "rc": 1,
+    "h7": false,
+    "via": ""
+   },
+   {
+    "crash": 3,
+    "missing": 0,
+    "rc": 0,
+    "h7": true,
+    "via": ""
+   }
+  ],
+  "new_dead_n": 0,
+  "old_dead_n": 2,
+  "all_new_pass": true,
+  "reading": {
+   "l1_source_order": "安装脚本源码中 日志<pending<台账 的出现顺序（防回退）",
+   "new_dead_n": "新序穷举下 missing<0（台账超前=死窗）的崩溃前缀数，必须 0",
+   "old_dead_n": "旧序穷举下 missing<0 的前缀数，必须 >0（探针有牙的反向案）"
+  }
+ },
+ "generated_at": "2026-10-20 22:58"
+}

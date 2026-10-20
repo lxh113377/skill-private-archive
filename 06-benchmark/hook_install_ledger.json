@@ -2,29 +2,29 @@
  "schema": "hook-install-ledger-r144-v1",
  "hook": {
   "pre-commit": {
-   "lines": 5,
-   "last_line_hash": "a8a21259eac868de3cfe4404cf269d7162136efa3bc68338eab245e5c3444582",
-   "installed_at": "2026-10-20 22:33:22",
+   "lines": 6,
+   "last_line_hash": "4bffb0c625debc25bf5804ad7002c7b7d3a49e0210829168f42e138707a07b9e",
+   "installed_at": "2026-10-20 22:55:51",
    "invoker": {
     "git_user": "lxh113377",
     "git_email": "3753318894@qq.com",
     "session": "session-284bcbbe-db1a-4495-8b5b-b0db804bd685",
-    "pid": "37988"
+    "pid": "42284"
    },
-   "reason": "r146 pending 首条"
+   "reason": "r147 新写入顺序首验（日志->pending->台账）"
   },
   "post-commit": {
-   "lines": 5,
-   "last_line_hash": "b93210d530583b8a9ea6ae8421783d74a56da1bcef83012c030bf079a46aa870",
-   "installed_at": "2026-10-20 22:33:22",
+   "lines": 6,
+   "last_line_hash": "80d3c1ecba21d4ed8dbebe8f831ca73a1e9209afefa0533e05411a1401e516ba",
+   "installed_at": "2026-10-20 22:55:51",
    "invoker": {
     "git_user": "lxh113377",
     "git_email": "3753318894@qq.com",
     "session": "session-284bcbbe-db1a-4495-8b5b-b0db804bd685",
-    "pid": "37988"
+    "pid": "42284"
    },
-   "reason": "r146 pending 首条"
+   "reason": "r147 新写入顺序首验（日志->pending->台账）"
   }
  },
- "updated_at": "2026-10-20 22:33:22"
+ "updated_at": "2026-10-20 22:55:51"
 }

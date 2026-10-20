@@ -34,5 +34,9 @@
  "r142_install_history.py": {
   "evidence": "06-benchmark/install_history_r142_2026-10-21.json",
   "registered_at": "2026-10-20 21:18"
+ },
+ "r147_write_order_sweep.py": {
+  "evidence": "06-benchmark/write_order_r147_2026-10-21.json",
+  "registered_at": "2026-10-20 23:01"
  }
 }

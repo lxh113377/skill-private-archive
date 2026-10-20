@@ -2,6 +2,7 @@
  "schema": "gate-reconcile-registry-r130-v1",
  "gates": {
   "_snapshot_gate_ids": [
+   "write_order_sweep_face",
    "install_history_face",
    "hook_attribution_face",
    "hook_trace_face",
@@ -57,7 +58,7 @@
    "r117_upstream_delta_fixtures",
    "direct_closure_face"
   ],
-  "_snapshot_at": "2026-10-20 22:44",
+  "_snapshot_at": "2026-10-20 23:06",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
@@ -109,6 +110,10 @@
   "install_history_face": {
    "evidence": "06-benchmark/install_history_r142_2026-10-21.json",
    "at": "2026-10-20 21:18"
+  },
+  "write_order_sweep_face": {
+   "evidence": "06-benchmark/write_order_r147_2026-10-21.json",
+   "at": "2026-10-20 23:01"
   }
  }
 }

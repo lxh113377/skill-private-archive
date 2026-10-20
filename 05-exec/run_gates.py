@@ -48,6 +48,19 @@ ORIGIN = "ci" if os.environ.get("GITHUB_ACTIONS") == "true" else "local"
 # 单一真相源：门禁清单只在这里维护。AGENTS.md / CI / 会话内手工跑，都走本表。
 GATES = [
     {
+        # r147：证据写入顺序穷举面（#45 落地 —— 崩溃前缀缺 dead-window 证明）
+        "id": "write_order_sweep_face",
+        "script": "r147_write_order_sweep.py",
+        "argv": [],
+        "pass_token": "[ORDER]",
+        "portable": False,
+        "not_portable_reason": "穷举时会临时改写 .git/hooks 与两份 git 台账件（finally 还原）；并发窗口=门自身时长",
+        "covers": ["L1 源码顺序：安装脚本中 日志<pending<台账 的出现位置（防回退）",
+                   "L2 新序崩溃前缀穷举：missing<0（台账超前=死窗）前缀数必须 0 且各前缀门全 PASS",
+                   "L3 反向案：旧序穷举 missing<0 前缀数必须 >0（探针无牙则本面读数不可信）"],
+        "why": "R146-4 登记时说「双写顺序崩溃下次重装补齐」—— r147 读码发现比登记的重：旧序（台账先写）崩溃在第 1/2 步 => 台账 lines 超前日志行数（missing<0）=> 三条件宽限与 pending 通道都只覆盖 missing==1（滞后侧）=> 超前侧无任何通道可救 = 永久误红。已重排为 日志追加->pending->台账（#45：真相源先行），本门三条腿把该顺序钉死：旧序 2 个死窗前缀 / 新序 0 个（VERDICT 实测）。",
+    },
+    {
         # r142：安装历史可回溯面（R141-4 落地 —— .installed 快照每装一次就被覆盖，
         # 只能归因到最近一次；本面断言追加式历史 .installed.log 可用）
         "id": "install_history_face",
