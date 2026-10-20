@@ -62,8 +62,18 @@ def main():
     else:
         files = staged_files()
     if not files:
-        print('[GATEMAP] UNVERIFIED 取不到暂存文件清单（git diff --cached 为空且未给 --staged）')
-        print('          禁按 0 记绿 —— 空清单会让「该过哪道门」恒为空集（r133 第 ④ 种形态）')
+        # r139 修：暂存为空有两形态——① 有提交进行中但漏 add（r133 第④形态，禁按 0 记绿）；
+        # ② 工作区干净、无提交进行中（合法稳态，如收尾轮全部已 commit 后）。
+        # 判别 = 有无未提交改动：无 ⇒ SKIP（无暂存活动属稳态）；有 ⇒ 维持 UNVERIFIED（漏 add）。
+        dirty = subprocess.run(['git', 'status', '--porcelain'], cwd=ROOT,
+                               capture_output=True, text=True, encoding="utf-8",
+                               errors='replace', timeout=120)
+        if not (dirty.stdout or '').strip():
+            print('[GATEMAP] SKIP 工作区干净且无暂存活动（无提交进行中，本门不适用）')
+            print('[GATEMAP:SKIP]')
+            return 0
+        print('[GATEMAP] UNVERIFIED 有未提交改动但暂存清单为空（漏 add？r133 第 ④ 种形态）')
+        print('          禁按 0 记绿 —— 空清单会让「该过哪道门」恒为空集')
         return 2
     runner_src = io.open(args.runner, encoding='utf-8').read()
     gates = {}
