@@ -1,0 +1,9 @@
+{
+ "schema": "reconcile-admission-r129-v1",
+ "cmd": "python 05-exec/r129_reconcile_admission.py --json <out>",
+ "registered_gates_n": 39,
+ "scripts_n": 170,
+ "examined_n": 0,
+ "unregistered_producers": [],
+ "unregistered_n": 0
+}

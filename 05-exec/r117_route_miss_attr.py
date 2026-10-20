@@ -217,6 +217,11 @@ def main():
         "schema": "route-miss-attr-r117-v1",
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S+00:00"),
         "cmd": "python 05-exec/r117_route_miss_attr.py",
+        # r129（R128-3 落地）：本尺的分类口径在 r119 被修正过 —— r128 对账实测 r117 的 state 字段
+        # 与当时的 route() 实测有 5 条不一致（20 条中 15 一致 / 5 条假红）。
+        # 写清取代关系，避免后人「按 mtime 取最新文件」时把 r117 的件当成现行结论。
+        "superseded_by": "route_miss_attr_r119_*.json（r119 起改用实测口径；r117 仅作历史留痕）",
+        "superseded_reason": "r128 对账实测 5 条假红（state 与 route() 顶层 top1 不一致）",
         "ruler": {
             "STALE_EXPECT": "期望 skill 既不在注册表也不在盘上（题面过期）",
             "UNREGISTERED": "期望 skill 在盘上但不在注册表（漏注册，单列）",

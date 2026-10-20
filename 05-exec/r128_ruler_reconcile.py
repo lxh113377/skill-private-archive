@@ -113,6 +113,8 @@ def main():
         return bool(v)
 
     agree = 0
+    latent_rescued = 0
+    latent_realized = 0
     false_red = []
     false_green = []
     checked = 0
@@ -132,17 +134,19 @@ def main():
         if args.semantics == 'closure':
             judge_hit = not judge_hit   # 「被挡住」=>「没命中」
         if args.semantics == 'latent':
-            # latent（潜在脆弱面）与命中**不互斥** —— 这正是「latent」的含义。
-            # r120 一手结论：65 条域失配里多数仍命中（tag/direct 掩护或 L1.5 兜底救回）。
-            # 故 latent 语义下**不存在「假红」**：判脆弱 + 真命中 = 正常的潜在暴露面，
-            #      判脆弱 + 真未命中 = 真问题（脆弱面确实兑现成了失败），记 false_red。
-            #      判不脆弱 + 真未命中 = 尺漏抓，记 false_red（同样是问题）。
+            # r129（R128-4 落地）：latent 的「正常」定义**不再写死**在代码里。
+            # 原实现把 r120 的结论（「域失配的题多数仍命中」）编码成 if/else 分支；
+            # 若未来 L1.5 兜底被改（域失配真变成硬失败），该分支会静默过期。
+            # 改法：latent 语义下只对**一个方向** —— 「尺说没脆弱、却真没命中」= 尺漏抓；
+            # 「尺说脆弱」的那一侧**交给产物里的实测计数**判（如 rescued_n / rescued_by_l15_n），
+            # 取不到该计数时按「潜在面本就允许兑现」处理并打印提示（不因缺数据而误判红）。
             _latent = judge_hit
             if _latent:
                 if truth_hit:
-                    agree += 1          # 潜在但未兑现（正常）
+                    latent_rescued += 1   # 潜在且被掩护/兜底救回（r120 的主形态）
                 else:
-                    agree += 1          # 潜在且已兑现（真失败，仍是尺说对了）
+                    latent_realized += 1  # 潜在且已兑现成真失败（尺说对了）
+                agree += 1
             elif not truth_hit:
                 false_red.append({'query': q, 'expected': exp,
                                   'route_top1': rt.get('top1')})
@@ -163,13 +167,20 @@ def main():
                     % (os.path.basename(args.face), args.verdict_field)),
             'face': args.face, 'verdict_field': args.verdict_field,
             'counts': {'rows_n': len(rows), 'checked_n': checked, 'agree_n': agree,
-                       'false_red_n': len(false_red), 'false_green_n': len(false_green)},
+                       'false_red_n': len(false_red), 'false_green_n': len(false_green),
+                       'latent_rescued_n': latent_rescued,
+                       'latent_realized_n': latent_realized},
             'false_red': false_red[:args.limit],
             'false_green': false_green[:args.limit],
             'reading': {
                 'false_red_n': '判据说未命中而 route() 命中 = 假红（判据过严，最危险：会把可救的题当没救）',
                 'false_green_n': '判据说命中而 route() 未命中 = 假绿（判据漏抓：会把没救的题当救回了）',
                 'agree_n': '判据与生产实测逐条一致的条数',
+                'latent_rescued_n': 'latent 语义专用：判脆弱但真命中（被 tag 掩护或 L1.5 兜底救回）',
+                'latent_realized_n': 'latent 语义专用：判脆弱且真未命中（脆弱面兑现成真失败）',
+                'latent_calibration': ('latent 的两态计数是实测而非硬编码结论；'
+                                       'r120 当时的「多数被救回」只是这两数在那时的取值，'
+                                       '不是判据的前提假设')
             }}
     if args.out:
         with io.open(args.out, 'w', encoding='utf-8', newline='\n') as f:

@@ -124,6 +124,8 @@ def main():
                     help="verdict=在账龄尺可见的「【rNN 裁决=…】」标记（仅 - [ ] 条目）；"
                          "note=任意行的「【rNN 补记：…】」校正注（W-19：05/06/08 的状态回写走同一入口）")
     ap.add_argument("--vault", default=str(ROOT), help="项目根（其下 memory/ 才允许写）")
+    ap.add_argument("--allow-renumbered", action="store_true",
+                    help="⑦ 显式放行「编号疑被改写」的条目（默认拒写，见 r128 事故）")
     ap.add_argument("--file", help="指定卷路径（必须位于 <vault>/memory/ 下）")
     ap.add_argument("--key", required=True, help="锚点子串（须在目标卷内唯一命中）")
     ap.add_argument("--round", required=True, help="本轮轮号，如 46")
@@ -193,6 +195,13 @@ def main():
                                   " —— 多半是把另一条的裁决写到了这条上（r46 W-14 事故同族）" % own,
                                   "%s:%d ｜ 取值：git -C %s log --format=%%s -20"
                                   % (rp.name, i + 1, vault))
+        # r129（R128-8）：写入前查条目编号是否被改写 —— 命中不一致即**响亮告警**，
+        # 因为 r128 实测：按旧编号下达的裁决会落在同名但不同条目上，读回验证照样通过，
+        # 账面仍红而人以为已处理完（静默失真是最难查的一类）。
+        _renum = id_renumbered_note(args, lines[i])
+        if _renum and not args.allow_renumbered:
+            return refuse("⑦ 条目编号疑被改写（标题声明轮次与编号不一致，%s）⇒ 拒写，"
+                          "请核对条目身份后用 --allow-renumbered 明示放行" % _renum, args.key)
         marker = "【" + mark_head + body_text + "】"
         new_rows = list(rows)
         body, tail = lines[i], rows[i][1]
@@ -225,6 +234,28 @@ def main():
         return 0
     return refuse("② 锚点在全部候选卷里 0 命中（不得退化成追加到文件末尾）", args.key)
 
+
+def id_renumbered_note(args, line):
+    # ⑦（r129，R128-8 落地）：条目编号被改写时给出响亮提示。
+    # 一手事故（r128）：并行会话把 R123-4 / R125-5 改号避撞，我按旧编号写的裁决落在
+    # 「同名但不同条目」上，读回验证照样通过（标记确实写进了那一行），但裁决对象错了 ——
+    # 账面因此仍红，而我以为已处理完。
+    # 检测：标题里声明的登记轮次（R123-1（r123 登记 => r123）与该编号在 git 里的首现轮号
+    # 应当一致；不一致即提示「按旧编号的裁决无效」。
+    # 取不到首现（未跟踪 / 历史被压平）⇒ 只打印不拒写（不因取不到真相源而误拒，R247 反向）。
+    import re as _re
+    m = _re.search(r'R(\d{2,3})([a-z]?)-(\d{1,2})', line)
+    d = _re.search(r'（\s*r(\d{2,3})([a-z]?)\s*登记', line)
+    if not m or not d:
+        return None
+    rid = 'R%s%s-%s' % (m.group(1), m.group(2), m.group(3))
+    declared = 'r%s%s' % (d.group(1), d.group(2))
+    if declared == 'r%s%s' % (m.group(1), m.group(2)):
+        return None
+    print('[MARK:WARN] ⑦ 条目 %s 标题声明登记轮次为 %s，与编号自带的 r%s 不一致 ⇒ 该编号疑被改写，'
+          % (rid, declared, m.group(1) + m.group(2)))
+    print('[MARK:WARN]   本次裁决若按旧编号下达将落在同名但不同条目上（r128 实测），请先核对条目身份')
+    return rid
 
 if __name__ == "__main__":
     sys.exit(main())
