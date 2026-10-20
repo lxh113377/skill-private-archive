@@ -63,6 +63,19 @@ python D:/global_skills/A-project-handoff/scripts/handoff.py volume <本项目>
 Python 首选 managed venv `%USERPROFILE%\.workbuddy\binaries\python\envs\default\Scripts\python.exe`
 （系统 Python 会假红：numpy/jinja2/networkx 缺）；跑任何 py 前设 `PYTHONPYCACHEPREFIX`。
 
+## ⚠️ 提案处方必先实测（#31，2026-10-21 立规）
+
+写进 `06-benchmark/transmit_proposals.json` 的 `fix_hint`，**必须是实测过的**，不是推理出来的。
+机器判据：每条提案须能被某个 `05-exec/r1*_*.py` 的读数直接支撑——
+即「跑一次那个脚本，能报出该处方能救几条」。若某处方没有对应读数面，
+要么先建读数面（登记为常驻门），要么在提案里显式写「未验证，仅为候选方向」。
+
+**反面实证（r132 本轮自查）**：r131 我把「direct_route 命中后放行到 tag/bge 层」写进转办提案第 10 条，
+理由是「direct 抢答早于 BGE，放行就等于给 BGE 机会」——推理上无懈可击，但**从未实测**。
+r132 建 `05-exec/r132_direct_fix_efficacy.py` 实测后发现：6 条闭包里该处方**只让 2 条一步到位**，
+另 4 条会从「被 direct 抢答」退化为「被语义邻居压」。**推理正确的处方也可能只对 1/3 有效**。
+若照字面执行并按原验收标准（只看 `direct_closed_n` 降到 0）判过，就是一次**假闭环**。
+
 ## ⚠️ 每轮收尾强制（#30，2026-10-20 老大立规）
 
 本轮产生的**任何**建议/待办/改进项，必须在本轮内自动落盘到 `memory/07-next-steps.md`（或分卷），

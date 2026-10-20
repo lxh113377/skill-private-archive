@@ -48,6 +48,18 @@ ORIGIN = "ci" if os.environ.get("GITHUB_ACTIONS") == "true" else "local"
 # 单一真相源：门禁清单只在这里维护。AGENTS.md / CI / 会话内手工跑，都走本表。
 GATES = [
     {
+        # r132：转办处方的实测效力面（提案必先实测，不许未验证外推）
+        "id": "direct_fix_efficacy_face",
+        "script": "r132_direct_fix_efficacy.py",
+        "argv": [],
+        "pass_token": "[EFFICACY]",
+        "portable": False,
+        "not_portable_reason": "读焚诀 eval 路由与 D:/global_skills 盘面（换机无这两个面）",
+        "covers": ["逐条给出 DIRECT_CLOSED 能被哪类处方救（A_DIRECT_ONLY / B_NEIGHBOR_RANK / C_STALE / D_UNREACHABLE）",
+                   "处方①实测有效条数（fix1_effective_n）——堵「写了处方没验证就外推」"],
+        "why": "r132 一手：r131 写进转办提案的处方①未实测即外推。实测发现 6 条里只 2 条一步到位，另 4 条会从「被 direct 抢答」退化为「被语义邻居压」——是进步但不是闭环。常驻后可观测「处方效力」而非只看「闭包数降没降」。",
+    },
+    {
         # r131（r130 代入册——准入门 UNDECLARED 抓到）：三层闭包统一面与修复优先级序
         "id": "closure_layers_face",
         "script": "r131_closure_layers.py",
