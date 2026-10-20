@@ -66,5 +66,6 @@ Python 首选 managed venv `%USERPROFILE%\.workbuddy\binaries\python\envs\defaul
 ## 已知坑（本壳级必读三条；其余见 `06-constraints.md`）
 
 - 聚合 runner 的 stdout **禁落项目根**（noise 顶层 VIOL）**也禁落 tracked 件**（Out-File 截零 → `tracked_empty_check` 判红）；正解 = gitignore 命中的 `_temp/` 或只留 `--json` 快照。
-- **写记忆卷之后必须重算账龄件**，否则「相对新鲜前置」把三门再次染红。
+- **写记忆卷之后必须重算账龄件**，否则「相对新鲜前置」把三门再次染红。⚠️ **本条已连踩 3 轮（r119/r121/r122）**：症状 = 棘轮报「overdue/deferred/repeat 指标缺失」+ `r55_note_fixtures` 的 n4 腿必现 FAIL（3/3 复现）。正确顺序 = **先改 07 台账 → 后跑 `r38_debt_aging.py`**；已踩后补救 = 原样重跑一次 `r38_debt_aging.py`（件 mtime 即新于卷集），ratchet / note fixtures / 同号多副本面三项随之转绿。
 - 受管根提交落地 ≠ 交付：必复算 `git merge-base --is-ancestor <sha> HEAD`（并行 rebase 会把你的提交甩出主线，一手 `b9e5d90e`）。
+

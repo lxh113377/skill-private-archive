@@ -1,0 +1,38 @@
+{
+ "schema": "exposure-margin-r122-v1",
+ "rows": [
+  {
+   "query": "帮我检测并启动本地 Pixelle 视频服务",
+   "expected": "pixelle-api-ensure",
+   "top1": "pixelle-api-ensure",
+   "top1_score": 0.6433,
+   "top2": "dogfood",
+   "top2_score": 0.536,
+   "gap": 0.1073,
+   "expected_score": 0.6433,
+   "margin": 0.1073
+  },
+  {
+   "query": "python 画 matplotlib 交互图",
+   "expected": "data-visualization",
+   "top1": "data-visualization",
+   "top1_score": 0.7407,
+   "top2": "diagram-maker",
+   "top2_score": 0.5973,
+   "gap": 0.1434,
+   "expected_score": 0.7407,
+   "margin": 0.1434
+  },
+  {
+   "query": "头脑风暴",
+   "expected": "brainstorming",
+   "top1": "brainstorming",
+   "top1_score": 0.5006,
+   "top2": "A-skill-manager",
+   "top2_score": 0.4141,
+   "gap": 0.0865,
+   "expected_score": 0.5006,
+   "margin": 0.0865
+  }
+ ]
+}
