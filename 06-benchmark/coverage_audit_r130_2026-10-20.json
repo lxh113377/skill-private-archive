@@ -1,0 +1,30 @@
+{
+ "schema": "r114-3-coverage-audit-r130-v1",
+ "note": "R114-3（候选池域覆盖盲区抽查）：14 条 topic 查询 vs 桶 0 的 14 件。补充检索 3 组发现 dingtalk 生态 3 个专门 skill 仓（r114 查询无 dingtalk 专查 ⇒ 真盲区）；其余补充检索命中均为平台/框架级（与 r126-r129 同构）",
+ "findings": [
+  {
+   "domain": "dingtalk 细分（6 件桶 0）",
+   "found": [
+    "stvlynn/dingtalk-wukong-skills ★121（Wukong v0.9.2 抽取，dws 全家桶覆盖 OA/Todo/Calendar/Doc + docx/xlsx/pptx/pdf）",
+    "aliramw/dingtalk-ai-table ★110（钉钉 AI 表格单技能）",
+    "breath57/dingtalk-skills ★102（钉钉 Skill 库）"
+   ],
+   "c2_verdict": "KEEP",
+   "c2_reason": "dws = opinionated 全家桶（1 skill 管全部），本地 = 按产品细分 9 件 + 中文触发词路由配套；合入 = 9 并 1 粒度哲学相反 + 路由配套丢失 ⇒ C2 不完全覆盖不满足；wukong license 页面 JS 渲染取不到（C3-UNKNOWN 亦挡）；commit 2026-03-19（C4 过，7 个月）",
+   "actions": "KEEP + 域覆盖盲区登记（季度巡检 R120b-1 的 domain_face 加 dingtalk 专查一条）"
+  },
+  {
+   "domain": "workflow orchestration / knowledge base（桶 0 其余 8 件）",
+   "found": [
+    "foryourhealth111-pixel/Vibe-Skills ★3729（skill 路由编排平台）",
+    "Astro-Han/karpathy-llm-wiki ★2541（LLM wiki 技能）",
+    "lewislulu/llm-wiki-skill ★656",
+    "undefined-ui/second-brain-os ★1104（第二大脑 OS）",
+    "zhimaAi/ChatClaw ★309"
+   ],
+   "c2_verdict": "KEEP",
+   "c2_reason": "全部为平台/框架/产品级（与 r126-r129 万金油/平台层同构），对本仓桶 0 件（A-skill-manager/no-manual-steps/taskflow/天眼一下等单一职责规程件）无针对性替代"
+  }
+ ],
+ "conclusion": "R114 查询面确有 dingtalk 专查缺失（真盲区）；补查后新增候选仍全 KEEP（C2/C3 挡）⇒ R114-1 的 182/182 KEEP 结论**加固而非推翻**；盲区已闭环（季度巡检加专查）"
+}
