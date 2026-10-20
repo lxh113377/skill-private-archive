@@ -247,14 +247,25 @@ def first_seen(rel_path, needle):
 
 
 def count_deferrals(text):
-    """真实延期次数 = 头部为「挂账至 rNN」的标记数（原因体里引用的旧标记原文不计）。
+    """真实延期次数 = **当前生效延期链**上的「挂账至 rNN」标记数。
 
-    与 parse_last_verdict 同一口径，否则 r49 这种"在原因里引用『挂账至 r49』"会把
-    REPEAT 计数（第 9 指标）虚增 —— 那正是 X-17 禁止的"把延期次数当成绩"的反向形态。
+    两条口径（缺一即错）：
+    ① 只数**头部**，原因体里引用的旧标记原文不计 —— 否则 r49 那种"在原因里引用
+       『挂账至 r49』"会把 REPEAT 计数（第 9 指标）虚增（X-17 反向形态）。
+    ② **终局裁决中断延期链**：终局（执行/降级/作废/保留）之后的挂账才计入，
+       终局之前的挂账已被「清零」—— r120b 实测残留：一条目「挂账 r121 → 降级
+       → 挂账 r125」被数成 2 次延期，误增 REPEAT 1（终局明明已把它转长期看守，
+       后面的挂账是新一轮而非第 2 次改期）。
     """
     heads = [h.group(2).strip() for h in RE_MARK_HEAD.finditer(text or "")]
     if heads:
-        return sum(1 for h in heads if re.match(r"挂账至\s*r\d{1,3}", h))
+        # ② 从后往前找最后一个终局裁决，只数它之后的挂账
+        last_final = -1
+        for i, h in enumerate(heads):
+            if re.match(r"(执行|降级|作废|保留)", h):
+                last_final = i
+        active = heads[last_final + 1:]
+        return sum(1 for h in active if re.match(r"挂账至\s*r\d{1,3}", h))
     return len(RE_DEFERRAL.findall(text or ""))
 
 
