@@ -14,5 +14,9 @@
  "r133_new_skill_ingress.py": {
   "evidence": "06-benchmark/new_skill_ingress_r133_2026-10-21.json",
   "registered_at": "2026-10-20 18:22"
+ },
+ "r138_install_hooks.py": {
+  "evidence": "06-benchmark/hook_install_r138_2026-10-21.json",
+  "registered_at": "2026-10-20 19:55"
  }
 }

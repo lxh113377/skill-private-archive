@@ -48,6 +48,20 @@ ORIGIN = "ci" if os.environ.get("GITHUB_ACTIONS") == "true" else "local"
 # 单一真相源：门禁清单只在这里维护。AGENTS.md / CI / 会话内手工跑，都走本表。
 GATES = [
     {
+        # r138：阻断机制健在性自检面（R137-4 落地 —— hook 不在 git 里，须自检）
+        "id": "hook_health_face",
+        "script": "r138_hook_health.py",
+        "argv": [],
+        "pass_token": "[HOOKHEALTH]",
+        "portable": False,
+        "not_portable_reason":
+            "读 .git/hooks/ 与 05-exec/r137_commit_gate_map.py（换机/clone 后 hooks 目录形态取决于是否重装）",
+        "covers": ["pre-commit 存在且含 exit 1（有阻断能力，否则等于没装）",
+                   "pre-commit 含分级判定入口 / 逃生阀 SKIP_COMMIT_GATES / --no-ledger",
+                   "post-commit 存在（自动推送链）；判定面脚本存在且可跑"],
+        "why": "R137-4：r137 装了分级阻断的 pre-commit，但 .git/hooks/ 不在 git 里（tracked=0）=> 换机/clone/重装即全丢，而当时没有任何判据能发现。r130/r137 两次装 hook 都没再核过 —— 阻断机制不可恢复比没有阻断机制更危险，因为它让人以为有。配套 r138_install_hooks.py 从 git 跟踪的模板一条命令重装并自证。r138 反向验证：空 hooks 目录 6 项 FAIL、exit 1 被抹掉 H2 精准 FAIL、真实 hooks 8/8。",
+    },
+    {
         # r137：本次提交该过哪道门（纪律强制点的判定面 —— pre-commit 据此分级阻断）
         "id": "commit_gate_map_face",
         "script": "r137_commit_gate_map.py",

@@ -1,0 +1,57 @@
+{
+ "schema": "hook-health-r138-v1",
+ "cmd": "python 05-exec/r138_hook_health.py --json <out>",
+ "face": {
+  "checks_n": 8,
+  "ok_n": 8,
+  "bad_n": 0,
+  "hooks_tracked_in_git": 0,
+  "reading": {
+   "bad_n": "不通过项数。任一不通 = 阻断机制缺一件，判红。",
+   "hooks_tracked_in_git": "恒 0（.git/hooks 不在 git 内）—— 这是本门存在的理由：hook 健在性必须被自检，因为它不可被 git 恢复。"
+  }
+ },
+ "rows": [
+  {
+   "id": "pre_exists",
+   "name": "H1 pre-commit 存在且非空",
+   "ok": true
+  },
+  {
+   "id": "pre_exit1",
+   "name": "H2 pre-commit 含 exit 1（有阻断能力）",
+   "ok": true
+  },
+  {
+   "id": "pre_map",
+   "name": "H3 pre-commit 含分级判定入口",
+   "ok": true
+  },
+  {
+   "id": "pre_skip",
+   "name": "H4 pre-commit 含逃生阀 SKIP_COMMIT_GATES",
+   "ok": true
+  },
+  {
+   "id": "pre_noledger",
+   "name": "H5 pre-commit 用 --no-ledger 试跑",
+   "ok": true
+  },
+  {
+   "id": "post_exists",
+   "name": "H6 post-commit 存在（自动推送链）",
+   "ok": true
+  },
+  {
+   "id": "map_exists",
+   "name": "H7 判定面脚本存在",
+   "ok": true
+  },
+  {
+   "id": "map_runnable",
+   "name": "H8 判定面可跑",
+   "ok": true
+  }
+ ],
+ "generated_at": "2026-10-20 19:50"
+}
