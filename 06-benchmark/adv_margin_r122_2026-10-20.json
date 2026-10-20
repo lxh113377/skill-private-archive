@@ -1,0 +1,32 @@
+{
+ "schema": "adv-margin-r122-v1",
+ "results": [
+  {
+   "slug": "pixelle-api-ensure",
+   "old_normal": 0.1219,
+   "new_normal": 0.1073,
+   "old_adv": 0.1219,
+   "new_adv": 0.1073,
+   "old_adv_hit": true,
+   "new_adv_hit": true
+  },
+  {
+   "slug": "data-visualization",
+   "old_normal": 0.0711,
+   "new_normal": 0.1434,
+   "old_adv": 0.0711,
+   "new_adv": 0.1434,
+   "old_adv_hit": true,
+   "new_adv_hit": true
+  },
+  {
+   "slug": "brainstorming",
+   "old_normal": 0.1443,
+   "new_normal": 0.0865,
+   "old_adv": 0.1443,
+   "new_adv": 0.0865,
+   "old_adv_hit": true,
+   "new_adv_hit": true
+  }
+ ]
+}

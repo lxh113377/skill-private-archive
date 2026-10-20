@@ -1,0 +1,31 @@
+{
+ "schema": "adversarial-r122-v1",
+ "wrong_domain": {
+  "pixelle-api-ensure": "code",
+  "data-visualization": "media",
+  "brainstorming": "code"
+ },
+ "results": [
+  {
+   "slug": "pixelle-api-ensure",
+   "query": "帮我检测并启动本地 Pixelle 视频服务",
+   "normal_hit": true,
+   "adversarial_hit": true,
+   "robust": true
+  },
+  {
+   "slug": "data-visualization",
+   "query": "python 画 matplotlib 交互图",
+   "normal_hit": true,
+   "adversarial_hit": true,
+   "robust": true
+  },
+  {
+   "slug": "brainstorming",
+   "query": "头脑风暴",
+   "normal_hit": true,
+   "adversarial_hit": true,
+   "robust": true
+  }
+ ]
+}

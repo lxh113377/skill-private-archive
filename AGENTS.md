@@ -63,6 +63,13 @@ python D:/global_skills/A-project-handoff/scripts/handoff.py volume <本项目>
 Python 首选 managed venv `%USERPROFILE%\.workbuddy\binaries\python\envs\default\Scripts\python.exe`
 （系统 Python 会假红：numpy/jinja2/networkx 缺）；跑任何 py 前设 `PYTHONPYCACHEPREFIX`。
 
+## ⚠️ 每轮收尾强制（#30，2026-10-20 老大立规）
+
+本轮产生的**任何**建议/待办/改进项，必须在本轮内自动落盘到 `memory/07-next-steps.md`（或分卷），
+**不等老大提醒**。落盘的机器判据 = 编号可 grep + 带判据/到期日 + 被 `r38_debt_aging.py --report <本轮报告>`
+的建议面承认已承接（否则该门判 FAIL）。
+没执行的建议也要落盘并标状态（⏳/✅/❌），禁只写在回复里。
+反面实证：r122 主任务做完后 4 条新建议只在回复里，被建议面抓 FAIL 才补落。
 ## 已知坑（本壳级必读三条；其余见 `06-constraints.md`）
 
 - 聚合 runner 的 stdout **禁落项目根**（noise 顶层 VIOL）**也禁落 tracked 件**（Out-File 截零 → `tracked_empty_check` 判红）；正解 = gitignore 命中的 `_temp/` 或只留 `--json` 快照。
