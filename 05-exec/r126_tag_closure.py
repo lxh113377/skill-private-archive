@@ -90,16 +90,34 @@ def main():
         nq = R.normalize_query(it['query'])
         dom = R.classify_domain(nq)
         tags = R.tag_filter(nq, dom)
-        # 可搜索面：tag 非空时 = tag 集合；否则 = 同域（或全量）
+        # r127 自抓（假红的根因）：原判定只建模 bge_recall 的**第一次**调用，
+        # 漏了同一函数里的 L1.5「域限制兜底」union 合并（bge_layer.py:566-589）。
+        # 该兜底在 `domain` 非空且首候选 < 0.55 时把全量 top-k 并进候选集 ⇒
+        # 大量「tag 内没有期望件」的题**实际被兜底救回**。实测反例：
+        #   `写项目交接文档` tag_hits 有 12 件但不含 A-project-handoff，
+        #   而 route().top1 就是 A-project-handoff（dom='doc' 触发兜底，bge 全量 rank=1）。
+        # 原判据说它不可达 ⇒ 假红，且据此提的「tag 闭包改 union」处方在沙箱里
+        # 反而把 10 条里 3 条从命中改成不命中（10/10 → 7/10）。
+        #
+        # r127 修正 = 区分三种情形，且**只有无兜底可救时才算真闭包**：
+        #   TAG  : tag 非空且期望件不在 tag 内 —— 但若 dom 非空，L1.5 兜底可能救 ⇒ 记 rescued
+        #   DOMAIN: tag 空且域失配 —— 同样可能被兜底救
+        #   OPEN : tag 空且域空 ⇒ 全量面，必可达
+        # 「不可达」只统计**兜底也救不回**的情形（首候选 >= 0.55 或 dom 为空）。
+        tag_has_exp = exp in set(tags or [])
         if tags:
-            reachable = exp in set(tags)
             gate = 'TAG'
+            # 兜底可救条件：dom 非空（触发 L1.5 的 `if domain`）且首候选分 < 0.55
+            fallback_possible = bool(dom)
+            reachable = tag_has_exp or fallback_possible
         elif dom:
-            reachable = (ei is not None and sk[ei].get('domain') == dom)
             gate = 'DOMAIN'
+            fallback_possible = True
+            reachable = (ei is not None and sk[ei].get('domain') == dom)
         else:
-            reachable = (ei is not None)
             gate = 'OPEN'
+            fallback_possible = False
+            reachable = (ei is not None)
         # 无过滤原始排名
         raw_rank = None
         raw_score = None
@@ -109,15 +127,29 @@ def main():
             order = np.argsort(-sims)
             raw_rank = int(list(order).index(ei)) + 1
             raw_score = round(float(sims[ei]), 4)
+        # r127：对账用**实测**而非推断 —— 「是否真被 L1.5 兜底救回」只认 route() 的结果。
+        # 推断（dom 非空即认为兜底可救）会把大量实际未救回的题算成可达 ⇒ 又一次假绿。
+        try:
+            _rt = R.route(it['query'], enable_memory=False) or {}
+            _got = _rt.get('top1')
+        except Exception:
+            _got = None
+        actually_hit = (_got == exp)
         rows.append({'set': it['set'], 'query': it['query'], 'expected': exp,
                      'gate': gate, 'reachable': reachable,
+                     'rescued_by_l15': (not tag_has_exp) and fallback_possible and actually_hit,
+                     'route_top1': _got,
+                     'actually_hit': actually_hit,
                      'tag_hits': list(tags or []), 'domain': dom,
                      'raw_rank': raw_rank, 'raw_score': raw_score})
 
     closed = [r for r in rows if not r['reachable']]
-    # tag_trap = 被 tag 闭包挡住，且原始 BGE 排名本该命中（<=5）
-    traps = [r for r in closed if r['gate'] == 'TAG'
+    # r127 自抓：真闭包 = **实测未命中** 且原始 BGE 排名本该命中（<=5）。
+    # 原版只看「不在 tag 内」⇒ 把被 L1.5 兜底救回的题也算成闭包 ⇒ 15 条假红，实测真闭包 0。
+    traps = [r for r in rows if r['gate'] == 'TAG'
+             and not r['actually_hit']
              and r['raw_rank'] is not None and r['raw_rank'] <= 5]
+    rescued = [r for r in rows if r.get('rescued_by_l15')]
     doc = {'schema': 'tag-closure-r126-v1',
            'cmd': 'python 05-exec/r126_tag_closure.py --json <out>',
            'source': EVAL,
@@ -127,13 +159,20 @@ def main():
                      'tag_closed_n': len([r for r in closed if r['gate'] == 'TAG']),
                      'domain_closed_n': len([r for r in closed if r['gate'] == 'DOMAIN']),
                      'tag_trap_n': len(traps),
+                     'rescued_by_l15_n': len(rescued),
+                     'miss_n': len([r for r in rows if not r['actually_hit']]),
                      'reading': {
                          'tag_closed_n': '期望件不在 tag 命中集合内 ⇒ bge_recall 结构上搜不到它',
-                         'tag_trap_n': '被 tag 闭包挡住、但原始 BGE 排名 <=5（纯 tag 误判，语料可救但进不了面）',
+                         'tag_trap_n': '真闭包：实测未命中 且 原始 BGE 排名 <=5（r127 起改为实测口径）',
+                         'rescued_by_l15_n': 'tag 内没有期望件、但被 L1.5 域限制兜底 union 救回（r127 新增）',
+                         'miss_n': '实测未命中总数（对账口径，与 route() 直接一致）',
                          'domain_closed_n': '域失配（第 8 类失败层，r120 已立常驻面）',
                      }},
            'tag_trap': traps[:args.top],
-           'unreachable': [r for r in closed if r['gate'] == 'TAG'][:args.top]}
+           'unreachable': [r for r in closed if r['gate'] == 'TAG'][:args.top],
+           # r127：rows 落盘是复核必需 —— 上一轮产物只有 face 汇总与两个截断列表，
+           # 导致「真闭包到底几条」无法离线复算，只能重跑工具。rows 给全量逐条读数。
+           'rows': rows}
     if args.out:
         with io.open(args.out, 'w', encoding='utf-8', newline='\n') as f:
             json.dump(doc, f, ensure_ascii=False, indent=1)

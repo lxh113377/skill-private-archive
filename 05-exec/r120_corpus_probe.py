@@ -113,6 +113,50 @@ def main():
         return {'label': label, 'flips_n': len(flips), 'improved': len(improved),
                 'worsened': len(worsened), 'cross': len(cross), 'flips': flips}
 
+    # r127 流程前置（R126-5 落地）：先查闭包可达性，结构不可达直接拒跑。
+    # 动因：r120 与 r126 各浪费一轮 —— 在「期望件结构上不在可搜索面」的题上做语料沙箱，
+    # candidate 必然 0 flip，而 0 flip 会被误读成「语料已最优，无实施面」。
+    # 本前置把两种 0 flip 明确分开：真不可达 ⇒ 拒跑并指名成因；可达但无改善 ⇒ 才进沙箱。
+    _nq = R.normalize_query(args.query)
+    _dom = R.classify_domain(_nq)
+    _tags = R.tag_filter(_nq, _dom)
+    _exp = args.slug
+    _in_tag = _exp in set(_tags or [])
+    # r127 自抓第二处（静态推导不可信）：域失配**不等于**结构不可达 ——
+    # 实测 pixelle-api-ensure（dom=local 而件注册 automa）与 data-visualization（code vs data）
+    # 都是域失配，但 bge_recall 仍返回 0.64 / 0.74 的高分候选且 route() 真命中。
+    # 原因：`indices` 受域限时，L1.5 与负标签兜底仍可能把期望件捞进来。
+    # ⇒ 「可不可达」只认**实测**：期望件是否真在 bge_recall 的候选集里（不是注册域相等）。
+    if _tags:
+        _gate = 'TAG'
+    elif _dom:
+        _gate = 'DOMAIN'
+    else:
+        _gate = 'OPEN'
+    try:
+        _cand = bge_layer.bge_recall(_nq, _tags or None, _dom, 5, raw_query=args.query)
+    except Exception:
+        _cand = None
+    _cand_names = [c.get('name') for c in (_cand or [])]
+    _reachable = _exp in _cand_names
+    _top = float(_cand[0]['score']) if _cand else 0.0
+    _note = ('结构不可达：期望件不在可搜索面（tag 闭包或域失配），语料改造对其必然 0 flip，'
+             '禁在此题上判「语料已最优」') if not _reachable else '可达：可进语料沙箱'
+    out = {'schema': 'corpus-probe-r120-v1', 'slug': args.slug, 'query': args.query,
+           'precheck': {'gate': _gate, 'domain': _dom,
+                        'tag_hits': list(_tags or []), 'expected_in_tag': _in_tag,
+                        'reachable': _reachable, 'note': _note}}
+    if not _reachable:
+        print('[PROBE] REFUSE-PRECHECK %s | gate=%s domain=%r tags=%d 条'
+              % (args.slug, _gate, _dom, len(_tags or [])))
+        print('[PROBE] 期望件 %r 不在可搜索面内（%s）⇒ 语料改造必然无效，禁把 0 flip 读成「语料已最优」'
+              % (_exp, 'tag 闭包' if _gate == 'TAG' else '域失配'))
+        print('[PROBE] 修法：走闭包面修复（转办 eval 侧），不是改语料')
+        if args.out:
+            with io.open(args.out, 'w', encoding='utf-8', newline='\n') as _f:
+                _f.write(json.dumps(out, ensure_ascii=False, indent=1))
+            print('[PROBE] JSON -> %s' % args.out)
+        return 3
     body = args.body or io.open(os.path.join(GS, args.slug, 'SKILL.md'),
                                 encoding='utf-8').read()[:800]
     res_cand = variant(body, 'candidate')

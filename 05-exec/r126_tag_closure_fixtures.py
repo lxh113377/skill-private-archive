@@ -29,10 +29,13 @@ def ck(name, cond, detail=''):
 
 
 def reachable(tags, exp, dom, skill_dom):
-    # 与 r126_tag_closure.py 同形的可搜索面判定（纯函数，便于喂反例）
+    # 与 r127 修正后的 r126_tag_closure.py 同形（纯函数，便于喂反例）
+    # r127 修正：原版只建模 bge_recall 的第一次调用，漏了 L1.5「域限制兜底」union 合并
+    #（bge_layer.py:566-589，触发条件 `if domain`）⇒ 把大量被兜底救回的题误判成闭包
+    #（15 条假红）。修正 = tag 路径下若 domain 非空，兜底可救 ⇒ 记可达。
     gate = 'TAG' if tags else ('DOMAIN' if dom else 'OPEN')
     if gate == 'TAG':
-        return exp in set(tags), gate
+        return (exp in set(tags)) or bool(dom), gate
     if gate == 'DOMAIN':
         return skill_dom == dom, gate
     return True, gate
@@ -43,9 +46,15 @@ def main():
     ck('n1 正例：期望件在 tag_hits 内 => reachable=True',
        ok is True and gate == 'TAG', (ok, gate))
 
-    ok2, gate2 = reachable(['cross-platform-agent-sync'], 'A-skill-manager', None, 'system')
-    ck('n2 反例：tag_hits 非空但不含期望件 => reachable=False（tag 闭包成立）',
-       ok2 is False and gate2 == 'TAG', (ok2, gate2))
+    # n2a 真闭包：tag 不含期望件 **且** domain 为空 ⇒ L1.5 兜底不触发 ⇒ 闭包成立
+    ok2a, gate2a = reachable(['cross-platform-agent-sync'], 'A-skill-manager', None, 'system')
+    ck('n2a 反例：tag 不含期望件 + domain 空（兜底不触发）=> reachable=False（真闭包）',
+       ok2a is False and gate2a == 'TAG', (ok2a, gate2a))
+
+    # n2b 兜底救回：tag 不含期望件，但 domain 非空 ⇒ L1.5 union 会把全量并进来 => 可达
+    ok2b, gate2b = reachable(['cross-platform-agent-sync'], 'A-skill-manager', 'doc', 'system')
+    ck('n2b 反例修正：tag 不含期望件但 domain 非空 => reachable=True（L1.5 兜底救回）',
+       ok2b is True and gate2b == 'TAG', (ok2b, gate2b))
 
     ok3, gate3 = reachable(None, 'prompt-consolidation', 'system', 'system')
     ck('n3 正例：tag 空 + 域匹配 => reachable=True（走 DOMAIN 面）',

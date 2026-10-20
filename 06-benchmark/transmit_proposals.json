@@ -53,7 +53,8 @@
     "allowlist",
     "工作区"
    ],
-   "why": "r31 实测：`handoff.py noise <项目绝对路径>` 对本项目报 17 条 VIOL，含 .git / memory/ / AGENTS.md / 00-scope…06-benchmark 六个编号目录 / archive/，逐条建议「迁往 <项目>\\_trash\\<同名>」⇒ 照字面执行即把仓库自身搬进回收站。根因=受管根 allowlist 被复用到任意工作区。修法=非受管根拒绝执行或改用项目结构白名单；本轮仅登记，未代改（该 skill 归属会话在途）。"
+   "why": "r31 实测：`handoff.py noise <项目绝对路径>` 对本项目报 17 条 VIOL，含 .git / memory/ / AGENTS.md / 00-scope…06-benchmark 六个编号目录 / archive/，逐条建议「迁往 <项目>\\_trash\\<同名>」⇒ 照字面执行即把仓库自身搬进回收站。根因=受管根 allowlist 被复用到任意工作区。修法=非受管根拒绝执行或改用项目结构白名单；本轮仅登记，未代改（该 skill 归属会话在途）。",
+   "scope": " ｜ r127 判定：**已由受管根 R286 登记面闭环**，证据 `python 05-exec/r55_rootface_fixtures.py` 的 f2 腿「顶层治理目录无一被判 strict VIOL」全过（r31 报的 17 条 VIOL 现为 0）。关键词匹配判 VALID 只是因为该判据按词命中、不看行为，故本条**停止外推**，改为只还自己那半（不得再列入待外推清单）。"
   },
   {
    "pid": "skill_hitrate_stale_expectations",
@@ -201,6 +202,49 @@
    "evidence": "06-benchmark/domain_mismatch_r120_2026-10-20.json（59 题全量）；06-benchmark/domain_exposure_r120_2026-10-20.json（暴露/掩护二分）；06-benchmark/domain_cf_r120_2026-10-20.json（单件反事实 1 FLIP）",
    "fix_hint": "二选一（都属归属方面）：① domain_classifier.DOMAIN_KEYWORDS.system 补中文「提示词」（与 creative 表的「提示词」并存需评估串味）；② 注册表把 prompt-consolidation 的 domain 从 system 改为 creative（其语义邻居 A-prompt-better 即 creative）。改后须复跑 r117_route_miss_attr 证 real_n 7→6 且 stale_n 不增。",
    "scope": "本仓红线：焚诀 eval/ 与注册表只读不代改，故只登记提案。"
+  },
+  {
+   "pid": "tag_closure_true_blocked",
+   "title": "Tag 闭包真闭包 2 题（r127 实测口径；r126 报的 15 条是漏建模 L1.5 兜底的假红）",
+   "target": "焚诀 eval/bge_layer.py（bge_recall 的 tag_hits 搜索范围）+ build_skill_tags.py / tag_filter",
+   "proposed_at": "2026-10-20",
+   "keywords": [
+    "tag",
+    "tag_filter",
+    "tag_hits",
+    "闭包",
+    "bge_recall",
+    "L1.5",
+    "兜底",
+    "同步技能",
+    "frontend-slides"
+   ],
+   "why": [
+    "r127 一手实测（修正 r126 的错判）：r126 的可达性判定只建模 bge_recall 的第一次调用，",
+    "漏了同函数内的 L1.5「域限制兜底」union 合并（bge_layer.py:566-589），",
+    "于是把大量「tag 内没有期望件、但被兜底救回」的题误判成闭包（15 条假红）。",
+    "r127 改用**实测对账**（逐题跑 route() 看 top1 是否真等于期望件）后：",
+    "279 题里真实未命中 18 条（DOMAIN 10 / TAG 6 / OPEN 2），",
+    "其中**真闭包且原始 BGE 排名 <=5 的只有 2 条**：",
+    "  ① 同步技能 → 期望 A-skill-manager（raw_rank=1，0.5619 vs 对方 0.5468，",
+    "     rerank 后 0.7371 vs 0.5945）但 domain=None ⇒ L1.5 兜底不触发（该分支条件是 if domain）",
+    "     ⇒ tag_filter 把 query 判给 cross-platform-agent-sync 后，期望件结构上不可检索；",
+    "  ② 帮我做一个动画丰富的 HTML 演示文稿 → 期望 frontend-slides（raw_rank=5），domain=creative。",
+    "⚠️ 沙箱已证伪「把 tag 命中集与全量 top-k 取并集」这一处方：在 10 条 tag_trap 上做 union 后",
+    "  命中率从 10/10 掉到 7/10（无兜底可救的那 2 条反而被噪声候选挤掉）⇒ 不可直接照搬 L1.5 的做法。"
+   ],
+   "evidence": [
+    "06-benchmark/tag_closure_r127_2026-10-20.json（face 五数 + rows 全量逐条读数，含 route_top1 / actually_hit / rescued_by_l15 三列可离线复算）；对照件 06-benchmark/tag_closure_r126_2026-10-20.json",
+    "（修正前，79 不可达 / 15 tag_trap）；复算命令 python 05-exec/r126_tag_closure.py --json <件>"
+   ],
+   "fix_hint": [
+    "两步（都属归属方面）：① 先把 L1.5 兜底的触发条件从 `if domain` 放宽到 `if domain or tag_hits`，",
+    "使 tag 路径也享受同样的全量 union 救回（这是最小改动，且与域路径已有先例同形）；",
+    "② 若 ① 会拉低既有命中，则改为**只在 tag_hits 的首候选分 < 0.55 时**触发（复用 L1.5 的现有阈值口径，",
+    "避免把 tag 判对的题也拖进全量搜索）。改后须复跑 python 05-exec/r126_tag_closure.py，",
+    "要求 face.tag_trap_n 由 2 降到 0 且 face.miss_n 由 18 降到 16，stale 不增。"
+   ],
+   "scope": "本仓红线：焚诀 eval/ 只读不代改，故只登记提案；本轮未做任何 eval 侧写入。"
   }
  ]
 }

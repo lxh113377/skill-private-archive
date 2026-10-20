@@ -768,7 +768,25 @@ def _ensure_debt_fresh():
     except OSError as e:
         return ("REGEN-FAILED", "新件 mtime 取不到：%s" % e)
     if new_m < vol_m:
-        return ("STALE-REGEN", "已重生但件仍旧于卷（卷在再生期间被写）⇒ 需再跑一轮")
+        # R124-1（r127 收口）：重生期间卷又被写 ⇒ 再重生一次（上限 2 次防循环）。
+        # r127 实测频率低（全程 1 次），重试一次足够覆盖「并行写紧跟」窗口。
+        stamp2 = datetime.now().strftime("%Y%m%d_%H%M%S")
+        out_json2 = os.path.join(REPO, "06-benchmark", "debt_aging_r_autoregen_%s.json" % stamp2)
+        try:
+            r2 = _sp.run([sys.executable, os.path.join(HERE, "r38_debt_aging.py"), "--json", out_json2],
+                         cwd=str(REPO), capture_output=True, text=True,
+                         encoding="utf-8", errors="replace", timeout=180)
+        except Exception as e:
+            return ("REGEN-FAILED", "重试调用异常：%s" % e)
+        if r2.returncode != 0:
+            return ("REGEN-FAILED", "重试 rc=%s：%s" % (r2.returncode, (r2.stderr or "")[-160:]))
+        try:
+            new_m2 = os.path.getmtime(out_json2)
+        except OSError as e:
+            return ("REGEN-FAILED", "重试件 mtime 取不到：%s" % e)
+        if new_m2 >= vol_m:
+            return ("OK", "首次重生遇并发写 ⇒ 重试成功（%s，差 %.0f 秒）" % (os.path.basename(out_json2), new_m2 - vol_m))
+        return ("STALE-REGEN", "重试一次后件仍旧于卷（并行写入持续）⇒ 放弃重试，下轮前置腿会再触发")
     return ("OK", "件比卷旧 %.0f 秒 ⇒ 已重生为 %s" % (vol_m - art_m, os.path.basename(out_json)))
 
 def main():
