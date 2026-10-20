@@ -1,0 +1,74 @@
+{
+ "schema": "install-history-r142-v1",
+ "cmd": "python 05-exec/r142_install_history.py --json <out>",
+ "face": {
+  "pairs_n": 2,
+  "bad_n": 2,
+  "reading": {
+   "bad_n": [
+    "不通过的断言数。任一不通 = 安装历史不可回溯，判红。",
+    "H1 历史存在非空 / H2 每行四要素齐 / H3 seq 单调增 /",
+    "H4 末行与快照一致 / H5 至少 2 条（证明追加真的在发生）"
+   ],
+   "h5_at_least_two": [
+    "刻意要求 >= 2：只装过一次时机历史与快照等价，",
+    "看不出「追加」是否真的工作；装过两次才能证伪"
+   ]
+  }
+ },
+ "rows": [
+  {
+   "hook": "pre-commit",
+   "log_lines": 3,
+   "h1_history_exists": true,
+   "h2_rows_complete": true,
+   "h3_seq_monotonic": true,
+   "h4_last_matches_snapshot": true,
+   "h5_at_least_two": true,
+   "h6_chain_intact": false,
+   "seqs": [
+    1,
+    2,
+    3
+   ],
+   "reasons": [
+    "r142 第一次",
+    "r142 第二次",
+    "r143 哈希链首条"
+   ],
+   "last_reason": "r143 哈希链首条"
+  },
+  {
+   "hook": "post-commit",
+   "log_lines": 3,
+   "h1_history_exists": true,
+   "h2_rows_complete": true,
+   "h3_seq_monotonic": true,
+   "h4_last_matches_snapshot": true,
+   "h5_at_least_two": true,
+   "h6_chain_intact": false,
+   "seqs": [
+    1,
+    2,
+    3
+   ],
+   "reasons": [
+    "r142 第一次",
+    "r142 第二次",
+    "r143 哈希链首条"
+   ],
+   "last_reason": "r143 哈希链首条"
+  }
+ ],
+ "bad": [
+  {
+   "hook": "pre-commit",
+   "check": "h6_chain_intact"
+  },
+  {
+   "hook": "post-commit",
+   "check": "h6_chain_intact"
+  }
+ ],
+ "generated_at": "2026-10-20 21:39"
+}

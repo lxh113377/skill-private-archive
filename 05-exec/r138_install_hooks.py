@@ -30,6 +30,30 @@ HEALTH = os.path.join(HERE, 'r138_hook_health.py')
 TARGETS = [('pre-commit.sh', 'pre-commit'), ('post-commit.sh', 'post-commit')]
 
 
+def sha256_json(obj):
+    # r143：对 stamp 的规范化 JSON 求 sha256（keys 排序，保证可复算）
+    import hashlib as _hl
+    payload = json.dumps(obj, ensure_ascii=False, sort_keys=True)
+    return _hl.sha256(payload.encode("utf-8")).hexdigest()
+
+
+def last_line_hash(dst):
+    # r143：取 .installed.log 末行的 line_hash；无文件/无行/无该字段 => GENESIS
+    logp = dst + '.installed.log'
+    try:
+        last = ''
+        with io.open(logp, encoding='utf-8', errors='replace') as f:
+            for line in f:
+                if line.strip():
+                    last = line
+        if last:
+            o = json.loads(last)
+            return o.get('line_hash') or 'GENESIS'
+        return 'GENESIS'
+    except Exception:
+        return 'GENESIS'
+
+
 def next_seq(dst):
     # r142：从 .installed.log 现有行数推下一个序号（单调增，删日志会重排 —— 见 R142-4）
     logp = dst + '.installed.log'
@@ -108,7 +132,15 @@ def install(src, dst):
         # 解法 = 快照保留（兼容第 52/53 门）+ 追加 JSONL 历史（本项新增）。
         with io.open(dst + '.installed', 'w', encoding='utf-8', newline=chr(10)) as f:
             json.dump(stamp, f, ensure_ascii=False, indent=1)
+        # r143 哈希链（R142-4 落地）：prev_hash = 上一行的 line_hash（首行 = GENESIS）。
+        # 篡改/重排任意一行 => 该行 line_hash 变 => 后续行的 prev_hash 对不上 => 链断。
+        # ⚠ 载荷约定（r143 自抓：初版把 line_hash 算在 seq 赋值之前，且验证端排除
+        #   载荷 = 除 line_hash 外的全部字段（**含 seq**，seq 必须先定）。
+        #   写入顺序 = seq 先定 => prev_hash 再定 => line_hash 最后算。
         stamp["seq"] = next_seq(dst)
+        prev_hash = last_line_hash(dst)
+        stamp["prev_hash"] = prev_hash
+        stamp["line_hash"] = sha256_json(stamp)
         with io.open(dst + '.installed.log', 'a', encoding='utf-8', newline=chr(10)) as f:
             f.write(json.dumps(stamp, ensure_ascii=False) + chr(10))
     except Exception:

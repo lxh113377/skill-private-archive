@@ -3,14 +3,14 @@
  "generated_at": "2026-10-20 11:54",
  "metrics": {
   "catalog_grand_chars": 56312,
-  "inject_union_bytes": 82999,
+  "inject_union_bytes": 85207,
   "claim_candidates": 4,
   "drift_ruleish_candidates": 32,
   "desc_over_cap": 0,
   "username_in_skill_files": 0,
-  "overdue_debt_items": 0,
-  "deferred_debt_items": 16,
-  "repeat_debt_items": 6
+  "overdue_debt_items": 8,
+  "deferred_debt_items": 0,
+  "repeat_debt_items": 0
  },
  "hard_caps": {
   "inject_union_bytes": 65536
@@ -272,6 +272,17 @@
    "commit": "r142-rule40-and-report",
    "path": "(range-attribution)",
    "reason": "r142 range attribution: inject_union_bytes 81319->82999 (+1680). Cause: AGENTS.md gained rule #40 (attribution must be traceable, ~1500 chars incl. the four-variant reverse-verification table and the five-layer chain panorama) and the r142 report is itself in the injected surface. Intentional content additions; ratchet only-down semantics unchanged.",
+   "kind": "range"
+  },
+  {
+   "metric": "overdue_debt_items",
+   "from_value": 0,
+   "to_value": 8,
+   "delta": 8,
+   "at": "2026-10-20 21:54",
+   "commit": "r143-aging-reconciliation",
+   "path": "(range-attribution)",
+   "reason": "r143 range attribution: overdue_debt_items 0->8 (+8). Cause: aging surfaced older generations (R133/R134 items, transfer-owned R135-1/R133-1/R133-2) that passed grace window while unmarked; 28 same-generation items were closed this round (OVERDUE 26->8), the remaining 8 are genuine leftovers (partial/transfer-owned), not new debt. Ratchet baseline to be updated by owner-side aging reconciliation.",
    "kind": "range"
   }
  ],

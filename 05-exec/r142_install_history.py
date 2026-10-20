@@ -28,6 +28,7 @@ ROOT = os.path.dirname(HERE)
 HOOKS = os.path.join(ROOT, '.git', 'hooks')
 PAIRS = [('pre-commit',), ('post-commit',)]
 REQ = ('seq', 'installed_at', 'invoker', 'reason')
+GENESIS = 'GENESIS'  # r143：哈希链起点（旧无链行视为链首）
 
 
 def read_json(p):
@@ -42,7 +43,10 @@ def read_log(p):
     rows = []
     try:
         with io.open(p, encoding='utf-8', errors='replace') as f:
-            for i, line in enumerate(f, 1):
+            # r143 修（#32 抓出「坐标系不一致面」）：原 enumerate(f, 1) 用 1-based 行号，
+            # 链验证却按 0-based 索引 —— first_idx=1 时 range(1)=[0] 把**自己**当「之前的行」
+            # 自我对照 => 误判「链裂开」。统一 0-based（log 内部索引）。
+            for i, line in enumerate(f):
                 s = line.strip()
                 if not s:
                     continue
@@ -79,17 +83,64 @@ def main():
             h4 = (last.get('installed_at') == snap.get('installed_at')
                   and last.get('template_sha256') == snap.get('template_sha256'))
         h5 = len(log) >= 2
+        # r143 H6 哈希链完整性（R142-4 落地）：逐行复算 line_hash 且 prev_hash 串联。
+        # 任何一行被改 => 该行 line_hash 对不上 => 链断；整体重排/重写同理。
+        # 语义裁定（r143 二次收紧，V2 反向验证抓出的漏洞）：
+        #   · 初版「全 legacy 不判红」太宽 —— 攻击者删光链字段就能把伪造历史洗成 legacy。
+        #   · 收紧为：**末行必须带链，无条件**。新安装永远带链 => 末行无链 =
+        #     有人删链/截断/重写（含「全 legacy」态）=> 判红，逼重装补链。
+        #   · 中段 legacy 行（仅换机后短期存在）不判红，但 chain_note 显形提醒。
+        import hashlib as _hl
+        chained = [(idx, o) for idx, o in log
+                   if isinstance(o, dict) and o.get('line_hash')]
+        legacy_n = len(log) - len(chained)
+        h6 = True
+        chain_note = ''
+        if not log:
+            h6 = False
+            chain_note = '历史为空'
+        elif not chained:
+            # 全 legacy：末行必无链 => 判红（初版这里不判红，被 V2 伪造绕过 —— 已收紧）
+            h6 = False
+            chain_note = '全部 %d 行为 legacy 无链 —— 历史可被整体伪造，须重装补链' % legacy_n
+        else:
+            first_idx, first = chained[0]
+            prev = 'GENESIS'
+            if any(isinstance(log[j][1], dict) and log[j][1].get('line_hash')
+                   for j in range(first_idx)):
+                h6 = False
+                chain_note = '带链行之前还有带链行却接不上（链裂开）'
+            if h6:
+                for idx, o in chained:
+                    if o.get('prev_hash') != prev:
+                        h6 = False
+                        chain_note = 'L%d prev_hash 不接（链断）' % idx
+                        break
+                    expect = json.dumps({k: v for k, v in o.items() if k != 'line_hash'},
+                                        ensure_ascii=False, sort_keys=True)
+                    if o.get('line_hash') != _hl.sha256(expect.encode('utf-8')).hexdigest():
+                        h6 = False
+                        chain_note = 'L%d line_hash 复算不符（行被改）' % idx
+                        break
+                    prev = o.get('line_hash')
+            # 末行必须带链（无条件 —— 防删链洗历史、防截断落回旧版）
+            if h6 and chained[-1][0] != log[-1][0]:
+                h6 = False
+                chain_note = '末行无链（历史被截断/删链洗白/重写后落回旧版）'
         rows.append({'hook': name, 'log_lines': len(log),
                      'h1_history_exists': h1, 'h2_rows_complete': h2,
                      'h3_seq_monotonic': h3, 'h4_last_matches_snapshot': h4,
                      'h5_at_least_two': h5,
+                     'h6_chain_intact': h6,
+                     'chain_note': chain_note,
+                     'legacy_lines_n': legacy_n,
                      'seqs': seqs,
                      'reasons': [o.get('reason') for _, o in log if isinstance(o, dict)],
                      'last_reason': (log[-1][1].get('reason') if log and isinstance(log[-1][1], dict) else '')})
     bad = []
     for r in rows:
         for k in ('h1_history_exists', 'h2_rows_complete', 'h3_seq_monotonic',
-                  'h4_last_matches_snapshot', 'h5_at_least_two'):
+                  'h4_last_matches_snapshot', 'h5_at_least_two', 'h6_chain_intact'):
             if not r[k]:
                 bad.append({'hook': r['hook'], 'check': k})
     doc = {'schema': 'install-history-r142-v1',
@@ -112,10 +163,13 @@ def main():
     fa = doc['face']
     print('[HIST] %d 对 hook｜不通过 %d' % (fa['pairs_n'], fa['bad_n']))
     for r in rows:
-        print('  %-12s lines=%d seq=%s H1=%s H2=%s H3=%s H4=%s H5=%s'
+        print('  %-12s lines=%d seq=%s H1=%s H2=%s H3=%s H4=%s H5=%s H6=%s'
               % (r['hook'], r['log_lines'], r['seqs'], r['h1_history_exists'],
                  r['h2_rows_complete'], r['h3_seq_monotonic'],
-                 r['h4_last_matches_snapshot'], r['h5_at_least_two']))
+                 r['h4_last_matches_snapshot'], r['h5_at_least_two'],
+                 r['h6_chain_intact']))
+        if r.get('chain_note'):
+            print('               chain_note=%s (legacy_lines=%s)' % (r['chain_note'], r.get('legacy_lines_n')))
         if r['reasons']:
             print('               reasons=%s' % r['reasons'])
     for b in bad:
