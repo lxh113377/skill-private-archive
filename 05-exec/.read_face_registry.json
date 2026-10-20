@@ -38,5 +38,9 @@
  "r147_write_order_sweep.py": {
   "evidence": "06-benchmark/write_order_r147_2026-10-21.json",
   "registered_at": "2026-10-20 23:01"
+ },
+ "r149_derived_freshness.py": {
+  "evidence": "06-benchmark/derived_freshness_r149_2026-10-21.json",
+  "registered_at": "2026-10-21 00:21"
  }
 }

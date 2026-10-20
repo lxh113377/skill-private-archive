@@ -3,7 +3,7 @@
  "generated_at": "2026-10-20 11:54",
  "metrics": {
   "catalog_grand_chars": 56312,
-  "inject_union_bytes": 95268,
+  "inject_union_bytes": 97884,
   "claim_candidates": 4,
   "drift_ruleish_candidates": 32,
   "desc_over_cap": 0,
@@ -338,6 +338,17 @@
    "commit": "r148-rule46-and-report",
    "path": "(range-attribution)",
    "reason": "r148 range attribution: inject_union_bytes 92648->95268 (+2620). Cause: AGENTS.md gained rule #46 (prescriptions must declare applicability boundary, ~1800 chars incl. three-target efficacy table and boundary-leg spec) and the r148 report is itself in the injected surface. Intentional content additions; ratchet only-down semantics unchanged.",
+   "kind": "range"
+  },
+  {
+   "metric": "inject_union_bytes",
+   "from_value": 95268,
+   "to_value": 97884,
+   "delta": 2616,
+   "at": "2026-10-21 00:28",
+   "commit": "r149-rule47-and-report",
+   "path": "(range-attribution)",
+   "reason": "r149 range attribution: inject_union_bytes 95268->97884 (+2616). Cause: AGENTS.md gained rule #47 (transfers need a resident recompute face, ~2100 chars incl. relay-vs-check adjudication table) and the r149 report is itself in the injected surface. Intentional content additions; ratchet only-down semantics unchanged.",
    "kind": "range"
   }
  ],

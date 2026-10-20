@@ -1,0 +1,21 @@
+{
+ "schema": "derived-freshness-r149-v1",
+ "cmd": "python 05-exec/r149_derived_freshness.py --json <out>",
+ "face": {
+  "stale_n": 1,
+  "stale_gsap": true,
+  "stale_gsap_lag_s": 7339.3,
+  "others_n": 0,
+  "class_11_closed": false,
+  "relay": "只读 import 归属方 stale_sources；重建动作归焚诀侧（R269）",
+  "closed_reading": "第 11 类生产终判闭环的机器读数 = stale_gsap 由 True 转 False 当天"
+ },
+ "rows": [
+  {
+   "source": "gsap",
+   "artifact": "bge_fullbody_embeddings.npy",
+   "lag_s": 7339.3
+  }
+ ],
+ "generated_at": "2026-10-21 00:18"
+}

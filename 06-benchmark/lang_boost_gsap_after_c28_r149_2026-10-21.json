@@ -1,0 +1,68 @@
+{
+ "schema": "lang-boost-efficacy-r135-v1",
+ "cmd": "python 05-exec/r135_lang_boost_efficacy.py --json <out>",
+ "target": {
+  "slug": "gsap",
+  "rival": "libreoffice-draw",
+  "query": "gsap 做滚动触发动画"
+ },
+ "face": {
+  "variants_n": 4,
+  "baseline_margin": 0.0843,
+  "effective_n": 3,
+  "no_effect_n": 0,
+  "reading": {
+   "effective_n": "能把 top1 真正翻转成期望件的变体数",
+   "no_effect_n": "**完全无效果**的变体数 —— 本轮实测「末尾追加中文触发词」属此类：连 margin 都不动",
+   "baseline_margin": "基线 margin（期望件相似度 - 抢答件相似度），负数=期望件输"
+  }
+ },
+ "rows": [
+  {
+   "variant": "BASELINE 原语料",
+   "body_len": 7804,
+   "self_sim": 0.6412,
+   "rival_sim": 0.5569,
+   "margin": 0.0843,
+   "slug_rank": 1,
+   "top1": "gsap",
+   "flipped": true
+  },
+  {
+   "variant": "处方①-末尾追加中文触发词",
+   "body_len": 7843,
+   "self_sim": 0.6412,
+   "rival_sim": 0.5569,
+   "margin": 0.0843,
+   "slug_rank": 1,
+   "top1": "gsap",
+   "flipped": true,
+   "margin_delta": 0.0,
+   "verdict": "EFFECTIVE"
+  },
+  {
+   "variant": "处方②-改 frontmatter 加中文",
+   "body_len": 7845,
+   "self_sim": 0.6549,
+   "rival_sim": 0.5569,
+   "margin": 0.098,
+   "slug_rank": 1,
+   "top1": "gsap",
+   "flipped": true,
+   "margin_delta": 0.0137,
+   "verdict": "EFFECTIVE"
+  },
+  {
+   "variant": "处方③-短中文摘要替换全文",
+   "body_len": 85,
+   "self_sim": 0.7396,
+   "rival_sim": 0.5569,
+   "margin": 0.1827,
+   "slug_rank": 1,
+   "top1": "gsap",
+   "flipped": true,
+   "margin_delta": 0.0984,
+   "verdict": "EFFECTIVE"
+  }
+ ]
+}

@@ -48,6 +48,19 @@ ORIGIN = "ci" if os.environ.get("GITHUB_ACTIONS") == "true" else "local"
 # 单一真相源：门禁清单只在这里维护。AGENTS.md / CI / 会话内手工跑，都走本表。
 GATES = [
     {
+        # r149：派生件新鲜度转诊面（#47 落地 —— 第 11 类终判常驻面）
+        "id": "derived_freshness_face",
+        "script": "r149_derived_freshness.py",
+        "argv": [],
+        "pass_token": "[FRESH-D]",
+        "portable": False,
+        "not_portable_reason": "只读 import 焚诀 eval/derivative_watch.stale_sources()（路径写死归属方仓）",
+        "covers": ["转诊读数：归属方陈旧判据点名的过期件（现算：gsap lag=7339s 唯一 1 条）",
+                   "六态消费：含gsap=告警未闭环 / []=第11类生产终判闭环 / 取不到数=None/异常=UNVERIFIED（R247）",
+                   "他人漂移不连坐（others_n 单列，不影响本仓转办线判定）"],
+        "why": "R148-4：第 11 类源侧已修（b6b784d6），生产翻绿唯一残因=BGE 派生件未重建；但重建发生在哪天，本仓没有任何常驻面能自动发现（归属方的 stale_sources 在焚诀 pre-commit 第 7 闸，本仓看不到）。r149 核验：官方 --check 的 BGE 维只比件数（190=190 判齐），检不出件数不变内容已变的向量陈旧 —— 转诊归属方权威函数（只读 import 零写入，重建动作仍归对方 R269），第 11 类生产终判的机器读数 = stale_gsap 由 True 转 False 当天。r149 反向验证：六态消费全对 + lag 交叉复算一致（7339.3s=自算值）+ 源侧真测性（临时假件喂 mtime：新1h点名/回过去不报/空源 None）。",
+    },
+    {
         # r147：证据写入顺序穷举面（#45 落地 —— 崩溃前缀缺 dead-window 证明）
         "id": "write_order_sweep_face",
         "script": "r147_write_order_sweep.py",
