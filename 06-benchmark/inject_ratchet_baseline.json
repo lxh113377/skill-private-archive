@@ -3,7 +3,7 @@
  "generated_at": "2026-10-20 10:37",
  "metrics": {
   "catalog_grand_chars": 56312,
-  "inject_union_bytes": 69636,
+  "inject_union_bytes": 70707,
   "claim_candidates": 4,
   "drift_ruleish_candidates": 32,
   "desc_over_cap": 0,
@@ -206,6 +206,17 @@
    "commit": "r134-rule33",
    "path": "(range-attribution)",
    "reason": "r134 attribution: inject_union_bytes 67967 to 69636 (+1669). Cause: AGENTS.md gained rule #33 (causal-layer reasoning must be marked or measured) plus #32 expansion, and the r134 report itself is in the injected surface. Intentional content additions; ratchet only-down semantics unchanged.",
+   "kind": "range"
+  },
+  {
+   "metric": "inject_union_bytes",
+   "from_value": 69636,
+   "to_value": 70707,
+   "delta": 1071,
+   "at": "2026-10-20 19:03",
+   "commit": "r136-rule34",
+   "path": "(range-attribution)",
+   "reason": "r136 range attribution: inject_union_bytes 69636->70707 (+1071). Cause: AGENTS.md gained rule #34 (discipline must apply to oneself, ~900 chars) plus the r136 report itself is in the injected surface. Intentional content addition; ratchet only-down semantics unchanged.",
    "kind": "range"
   }
  ],
