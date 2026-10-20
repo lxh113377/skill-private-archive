@@ -1,0 +1,96 @@
+{
+ "schema": "c2-low-batch1-r128-v1",
+ "note": "R127-1 第一批（分数 top10）；候选仓 README 在线实证（oh-my-openagent 404→master 200 / 其余全 200）",
+ "rows": [
+  {
+   "slug": "A-prompt-better",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "score": 24,
+   "share": 2,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "OmO 多模型 agent 增强框架（memory/CodeMode/DAG 工作流），非单一技能本体——对 A-prompt-better（prompt 优化器）/ code-review（五维审查）/ ppt-master（PPT 生成）能力域不同"
+  },
+  {
+   "slug": "code-review",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "score": 24,
+   "share": 2,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "OmO 多模型 agent 增强框架（memory/CodeMode/DAG 工作流），非单一技能本体——对 A-prompt-better（prompt 优化器）/ code-review（五维审查）/ ppt-master（PPT 生成）能力域不同"
+  },
+  {
+   "slug": "ppt-master",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "score": 24,
+   "share": 2,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "OmO 多模型 agent 增强框架（memory/CodeMode/DAG 工作流），非单一技能本体——对 A-prompt-better（prompt 优化器）/ code-review（五维审查）/ ppt-master（PPT 生成）能力域不同"
+  },
+  {
+   "slug": "ci-pipeline-debugging",
+   "repo": "Imbad0202/academic-research-skills",
+   "score": 23,
+   "share": 3,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "学术研究技能集（CC BY-NC 4.0 非商业许可，C3 亦隐患）——对 ci-pipeline-debugging（CI 排障）/ consulting-analysis（商业咨询）/ elon-musk-perspective / prompt-consolidation / prompt-system-audit 域不同"
+  },
+  {
+   "slug": "consulting-analysis",
+   "repo": "Imbad0202/academic-research-skills",
+   "score": 23,
+   "share": 3,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "学术研究技能集（CC BY-NC 4.0 非商业许可，C3 亦隐患）——对 ci-pipeline-debugging（CI 排障）/ consulting-analysis（商业咨询）/ elon-musk-perspective / prompt-consolidation / prompt-system-audit 域不同"
+  },
+  {
+   "slug": "discover-agent-cli",
+   "repo": "Yeachan-Heo/oh-my-claudecode",
+   "score": 23,
+   "share": 3,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "Claude Code 增强插件框架（npm sisyphus），对 discover-agent-cli（桌面应用隐藏 CLI 发现指南）域不同"
+  },
+  {
+   "slug": "elon-musk-perspective",
+   "repo": "Imbad0202/academic-research-skills",
+   "score": 23,
+   "share": 3,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "学术研究技能集（CC BY-NC 4.0 非商业许可，C3 亦隐患）——对 ci-pipeline-debugging（CI 排障）/ consulting-analysis（商业咨询）/ elon-musk-perspective / prompt-consolidation / prompt-system-audit 域不同"
+  },
+  {
+   "slug": "prompt-consolidation",
+   "repo": "Imbad0202/academic-research-skills",
+   "score": 23,
+   "share": 3,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "学术研究技能集（CC BY-NC 4.0 非商业许可，C3 亦隐患）——对 ci-pipeline-debugging（CI 排障）/ consulting-analysis（商业咨询）/ elon-musk-perspective / prompt-consolidation / prompt-system-audit 域不同"
+  },
+  {
+   "slug": "prompt-system-audit",
+   "repo": "Imbad0202/academic-research-skills",
+   "score": 23,
+   "share": 3,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "学术研究技能集（CC BY-NC 4.0 非商业许可，C3 亦隐患）——对 ci-pipeline-debugging（CI 排障）/ consulting-analysis（商业咨询）/ elon-musk-perspective / prompt-consolidation / prompt-system-audit 域不同"
+  },
+  {
+   "slug": "scope-creep-detector",
+   "repo": "career-ops-hq/career-ops",
+   "score": 23,
+   "share": 2,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "AI 求职代理（CV 筛选/投递），对 scope-creep-detector（git diff 范围蔓延检测）完全不同域"
+  }
+ ]
+}
