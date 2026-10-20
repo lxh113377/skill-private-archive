@@ -197,12 +197,21 @@ def main():
         new_rows = list(rows)
         body, tail = lines[i], rows[i][1]
         new_rows[i] = (body.rstrip() + " " + marker, tail)   # 只改目标这一行，行尾原样保留
-        bdir = Path(args.backup_dir).resolve() if args.backup_dir else (vault / "05-exec" / "mark_backup")
-        # r46：备份默认落 05-exec/mark_backup，不落记忆卷（同 r35 的 rule_backup 落点教训）
+        # r125（R123-4 收口·堵产生源）：原默认落 05-exec/mark_backup —— r57 清过 20 份后，
+        # 该目录又无声攒到 40 份（35 未跟踪 + 5 被 git 跟踪），root_face 的 f12 二级盲区腿
+        # 一度把它抓红。项目红线 #25④ 本就写明「散落项只迁 _trash，禁 .bak 作落点」，
+        # 而 _trash 已被 noise 判据登记为「设计内指定回收区」⇒ 落 _trash 既合规又不产生敞口。
+        # 同时保留 --backup-dir 覆盖能力（旧流程与夹具仍可用显式路径）。
+        _trash = vault / "_trash" / ("mark_backup_r%s" % args.round)
+        bdir = Path(args.backup_dir).resolve() if args.backup_dir else _trash
         bdir.mkdir(parents=True, exist_ok=True)
         bak = bdir / ("%s.r%s_%s.bak" % (rp.name, args.round, time.strftime("%H%M%S")))
         io.open(bak, "w", encoding="utf-8", newline="").write(raw)
-        io.open(rp, "w", encoding="utf-8", newline="").write(join_keep_eol(new_rows))
+        # r125：目标文件改原子写（先截零再逐字节写的窗口会让并行读方拿到空串/半写，
+        # 已导致连续三轮假红）。与 ratchet_gate 的 _atomic_write_json 同理。
+        _tmp = rp.with_suffix(rp.suffix + ".r125tmp")
+        io.open(_tmp, "w", encoding="utf-8", newline="").write(join_keep_eol(new_rows))
+        os.replace(str(_tmp), str(rp))
         back_rows = [c for c, _ in split_keep_eol(io.open(rp, encoding="utf-8", newline="").read())]
         # X-8 的**实质**读回：不是"文件里有这个串"，而是"串与锚点在同一物理行"
         same_line = (i < len(back_rows) and marker in back_rows[i] and args.key in back_rows[i])

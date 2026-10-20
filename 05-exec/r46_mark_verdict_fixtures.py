@@ -87,10 +87,19 @@ def main():
     after = uf.read_text(encoding="utf-8")
     ck("t4 唯一命中 → 写入成功且带本轮轮号标记",
        r.returncode == 0 and "r46 裁决=降级" in after and after.lstrip().startswith("- [ ]"), after[:160])
-    bdir = uniq / "05-exec" / "mark_backup"
-    ck("t5 写入自带备份且**不落记忆卷**（同 r35 落点教训；默认落 05-exec/mark_backup）",
-       bool(list(bdir.glob("*.bak"))) and not list((uniq / "memory").glob("*.bak"))
-       and not list(uniq.glob("*.bak")), str([p.name for p in bdir.glob("*.bak")])[:160])
+    # r125（R123-4）：默认落点已从 05-exec/mark_backup 改为 _trash/mark_backup_rNN（该目录
+    # 在 r57 清过 20 份后无声攒到 40 份，且被 root_face 的 f12 二级盲区腿判红）。
+    # 本腿的本意自始至终是「**备份不落记忆卷**」（r35 落点教训），不是「必须落 mark_backup」；
+    # 故改判「备份落在受管回收区、且不落记忆卷、也不散在 vault 根」。落点只放宽到 _trash，
+    # 不放宽「备份必须存在」这一条 —— 备份本身仍是硬要求。
+    bdir = uniq / "_trash" / "mark_backup_r46"
+    _any_bak = list(uniq.rglob("*.bak"))
+    ck("t5 写入自带备份且**不落记忆卷**（r125：默认落 _trash，受管回收区；记忆卷与 vault 根均无）",
+       bool(list(bdir.glob("*.bak"))) and not list((uniq / "memory").rglob("*.bak"))
+       and not list(uniq.glob("*.bak"))
+       and all("_trash" in p.relative_to(uniq).parts for p in _any_bak),
+       "bdir_bak=%d any_bak=%s" % (len(list(bdir.glob("*.bak"))),
+                                 [str(p.relative_to(uniq)) for p in _any_bak][:6]))
 
     r2 = run(["--vault", str(uniq), "--key", "待办 丙", "--round", "46", "--verdict", "作废｜重复裁"])
     ck("t6 同轮二次裁决 → 拒写（幂等靠拒绝实现，不靠静默跳过）",
