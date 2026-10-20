@@ -1,0 +1,30 @@
+{
+ "schema": "hook-install-ledger-r144-v1",
+ "hook": {
+  "pre-commit": {
+   "lines": 4,
+   "last_line_hash": "5168476b23a3667ff98e415c321e9249ee6fc876572bb6f198175c15a64fd6f1",
+   "installed_at": "2026-10-20 22:01:08",
+   "invoker": {
+    "git_user": "lxh113377",
+    "git_email": "3753318894@qq.com",
+    "session": "session-284bcbbe-db1a-4495-8b5b-b0db804bd685",
+    "pid": "3552"
+   },
+   "reason": "r144 外部锚点首条"
+  },
+  "post-commit": {
+   "lines": 4,
+   "last_line_hash": "a64df56b567ec90e6e8b847f99ad00f08a4ad21afc5783b35196aa1527f520fa",
+   "installed_at": "2026-10-20 22:01:08",
+   "invoker": {
+    "git_user": "lxh113377",
+    "git_email": "3753318894@qq.com",
+    "session": "session-284bcbbe-db1a-4495-8b5b-b0db804bd685",
+    "pid": "3552"
+   },
+   "reason": "r144 外部锚点首条"
+  }
+ },
+ "updated_at": "2026-10-20 22:01:09"
+}

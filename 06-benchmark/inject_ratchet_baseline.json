@@ -3,12 +3,12 @@
  "generated_at": "2026-10-20 11:54",
  "metrics": {
   "catalog_grand_chars": 56312,
-  "inject_union_bytes": 85207,
+  "inject_union_bytes": 87033,
   "claim_candidates": 4,
   "drift_ruleish_candidates": 32,
   "desc_over_cap": 0,
   "username_in_skill_files": 0,
-  "overdue_debt_items": 8,
+  "overdue_debt_items": 9,
   "deferred_debt_items": 0,
   "repeat_debt_items": 0
  },
@@ -283,6 +283,17 @@
    "commit": "r143-aging-reconciliation",
    "path": "(range-attribution)",
    "reason": "r143 range attribution: overdue_debt_items 0->8 (+8). Cause: aging surfaced older generations (R133/R134 items, transfer-owned R135-1/R133-1/R133-2) that passed grace window while unmarked; 28 same-generation items were closed this round (OVERDUE 26->8), the remaining 8 are genuine leftovers (partial/transfer-owned), not new debt. Ratchet baseline to be updated by owner-side aging reconciliation.",
+   "kind": "range"
+  },
+  {
+   "metric": "overdue_debt_items",
+   "from_value": 8,
+   "to_value": 9,
+   "delta": 1,
+   "at": "2026-10-20 22:06",
+   "commit": "r144-R144-4-registration",
+   "path": "(range-attribution)",
+   "reason": "r144 range attribution: overdue_debt_items 8->9 (+1). Cause: R144-4 registered this round (P2 leftover: ledger/install atomicity window for H7) - it is a deliberately open tracking item with a due date, not overdue debt from neglect. Ratchet baseline to be reconciled by owner-side aging.",
    "kind": "range"
   }
  ],

@@ -127,11 +127,37 @@ def main():
             if h6 and chained[-1][0] != log[-1][0]:
                 h6 = False
                 chain_note = '末行无链（历史被截断/删链洗白/重写后落回旧版）'
+        # r144 H7 外部锚点对账（R143-4 落地）：git 内台账 vs git 外日志。
+        # 全套自洽伪造（快照+历史一起改）骗得过 H4/H5/H6（都是 git 外状态），
+        # 骗不过 H7 —— 台账在 git 里，改它 = 版本历史留痕（提交者/时间可查）。
+        anchor_path = os.path.join(ROOT, '06-benchmark', 'hook_install_ledger.json')
+        h7 = False
+        h7_note = ""
+        try:
+            ledger = json.load(io.open(anchor_path, encoding="utf-8-sig")) or {}
+            ent = (ledger.get("hook") or {}).get(name) or {}
+            if not ent:
+                h7 = False
+                h7_note = "台账无该 hook 条目（台账缺失或被删）"
+            elif ent.get("lines") != len(log):
+                h7 = False
+                h7_note = "台账 lines=%s != 实际日志行数=%s（历史被截断/伪造）" % (ent.get("lines"), len(log))
+            elif ent.get("last_line_hash") != ((log[-1][1].get("line_hash") if log and isinstance(log[-1][1], dict) else "") or ""):
+                h7 = False
+                h7_note = "台账 last_line_hash 与实际末行不符（历史被重写）"
+            else:
+                h7 = True
+                h7_note = "台账与日志一致（外部锚点确认）"
+        except Exception as e:
+            h7 = False
+            h7_note = "台账不可读: %r" % (e,)
         rows.append({'hook': name, 'log_lines': len(log),
                      'h1_history_exists': h1, 'h2_rows_complete': h2,
                      'h3_seq_monotonic': h3, 'h4_last_matches_snapshot': h4,
                      'h5_at_least_two': h5,
                      'h6_chain_intact': h6,
+                     'h7_anchor_match': h7,
+                     'h7_note': h7_note,
                      'chain_note': chain_note,
                      'legacy_lines_n': legacy_n,
                      'seqs': seqs,
@@ -140,7 +166,8 @@ def main():
     bad = []
     for r in rows:
         for k in ('h1_history_exists', 'h2_rows_complete', 'h3_seq_monotonic',
-                  'h4_last_matches_snapshot', 'h5_at_least_two', 'h6_chain_intact'):
+                  'h4_last_matches_snapshot', 'h5_at_least_two', 'h6_chain_intact',
+                  'h7_anchor_match'):
             if not r[k]:
                 bad.append({'hook': r['hook'], 'check': k})
     doc = {'schema': 'install-history-r142-v1',
