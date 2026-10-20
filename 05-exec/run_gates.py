@@ -193,6 +193,18 @@ GATES = [
                "不证明牙齿还在（放宽 allowlist 凑绿是 X-9 的反面形态）",
     },
     {
+        # r123 R120b-8：区间归因通道（新增基线上调后门）的双向取证件
+        "id": "range_attr_fixtures",
+        "script": "r123_range_attr_fixtures.py",
+        "argv": [],
+        "pass_token": "[GATE:fixture-pass]",
+        "portable": True,
+        "covers": ["ratchet_gate --range-attribute 五道反例（--from 不接真实基线 / --to 预支 / --commits 空 / --range-reason 空 / --metric 未知）",
+                   "合法区间正例：留账 kind=range 且指标落到 --to",
+                   "守恒：被拒的归因不得在基线件留任何痕（防把留账当装饰刷条数）"],
+        "why": "r123 给棘轮加了累计区间归因通道；新通道天然是只降不升棘轮的上调后门，若不留证件，后人加空 reason 或把 --to 写成实测+1 就能把棘轮变成只升不降（X-9 反向形态）",
+    },
+    {
         # r56 W-37：再生预算从代码常量升为被契约看守的声明面
         "id": "budget_contract_fixtures",
         "script": "r56_budget_fixtures.py",
@@ -622,6 +634,59 @@ def aggregate(results):
     return 0, "PASS=%d（无 FAIL / 无 UNVERIFIED / 无 MISSING）" % n_pass
 
 
+def _ensure_debt_fresh():
+    """R122-1（r124）：账龄件相对新鲜前置再生。
+
+    连踩 4 轮的根因 = 先跑 r38_debt_aging 后改 07 台账，件比卷旧 ⇒
+    `ratchet_gate._debt_artifact_fresh` 把 debt 三指标转 unknown ⇒
+    报「指标缺失」+ note fixtures n4 必现 FAIL。
+
+    口径与 ratchet_gate 完全一致（同函数同入参，防两处漂移）：
+    卷集 = memory/07-next-steps.md + memory/07-next-steps.part*.md，取最大 mtime；
+    件 = 06-benchmark/debt_aging_r*.json 里 mtime 最新那份。件 < 卷 ⇒ 重生一次。
+
+    返回 (state, detail)。state ∈ OK / STALE-REGEN / NO-ARTIFACT / NO-VOLUME /
+    REGEN-FAILED。**任何非 OK 都不阻断**（本腿是消时序坑，不是新卡点）。
+    """
+    import glob as _glob, subprocess as _sp
+    vols = _glob.glob(os.path.join(REPO, "memory", "07-next-steps.md")) + \
+        _glob.glob(os.path.join(REPO, "memory", "07-next-steps.part*.md"))
+    if not vols:
+        return ("NO-VOLUME", "取不到 07 待办卷（memory/07-next-steps*.md）")
+    try:
+        vol_m = max(os.path.getmtime(v) for v in vols)
+    except OSError as e:
+        return ("NO-VOLUME", "卷 mtime 取不到：%s" % e)
+    arts = _glob.glob(os.path.join(REPO, "06-benchmark", "debt_aging_r*.json"))
+    if not arts:
+        return ("NO-ARTIFACT", "无 debt_aging_r*.json ⇒ 先生成一份")
+    try:
+        art = max(arts, key=os.path.getmtime)
+        art_m = os.path.getmtime(art)
+    except OSError as e:
+        return ("NO-ARTIFACT", "件 mtime 取不到：%s" % e)
+    if art_m >= vol_m:
+        return ("OK", "件 %s 不旧于卷集（差 %.0f 秒）" % (os.path.basename(art), art_m - vol_m))
+    # 件比卷旧 ⇒ 重生（r38 自带 --json，输出到带日期的固定名，防并行会话同名互踩）
+    stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    out_json = os.path.join(REPO, "06-benchmark", "debt_aging_r_autoregen_%s.json" % stamp)
+    try:
+        r = _sp.run([sys.executable, os.path.join(HERE, "r38_debt_aging.py"), "--json", out_json],
+                     cwd=str(REPO), capture_output=True, text=True,
+                     encoding="utf-8", errors="replace", timeout=180)
+    except Exception as e:
+        return ("REGEN-FAILED", "重生调用异常：%s" % e)
+    if r.returncode != 0:
+        return ("REGEN-FAILED", "重生 rc=%s：%s" % (r.returncode, (r.stderr or "")[-160:]))
+    # 复验：新件必须新于卷集（否则说明卷又被 concurrent 写了，如实报）
+    try:
+        new_m = os.path.getmtime(str(out_json))
+    except OSError as e:
+        return ("REGEN-FAILED", "新件 mtime 取不到：%s" % e)
+    if new_m < vol_m:
+        return ("STALE-REGEN", "已重生但件仍旧于卷（卷在再生期间被写）⇒ 需再跑一轮")
+    return ("OK", "件比卷旧 %.0f 秒 ⇒ 已重生为 %s" % (vol_m - art_m, os.path.basename(out_json)))
+
 def main():
     try:
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -636,6 +701,18 @@ def main():
                     help="不追加执行台账（只读试跑用；默认追加，供 gate_run_freshness 判新鲜度）")
     args = ap.parse_args()
 
+    # ---- R122-1（r124 落地）：账龄件相对新鲜前置，机械化「先改台账后跑账龄」 ----
+    # 连踩 4 轮（r119/r121/r122×2）的根因：先跑 r38_debt_aging 后改 07 台账 ⇒ 件比卷旧 ⇒
+    # `_debt_artifact_fresh` 把 debt 三指标转 unknown ⇒ 棘轮报「指标缺失」+ note fixtures n4 FAIL。
+    # 规则原在 AGENTS.md 已知坑第 2 条（散文），无机械强制点。此处加**前置再生**：
+    # 检测到 debt 件 mtime 旧于 07 卷集最大 mtime，先重生一次再跑后续门。
+    # 不阻断（判红只报不拦）：机械化的目的是消除时序坑，不是新增一道能卡死runner的门。
+    _debt_guard = _ensure_debt_fresh()
+    if _debt_guard[0] != "OK":
+        print("  ⚠️ 前置腿·账龄件相对新鲜: %s（%s）⇒ 不阻断，但本轮 debt 三指标可能仍转 unknown"
+              % (_debt_guard[0], _debt_guard[1]))
+    else:
+        print("  ✅ 前置腿·账龄件相对新鲜: %s" % _debt_guard[1])
     rows = []
     total_ms = 0
     print("=== 本仓门禁聚合 runner (%s) ===" % datetime.now().strftime("%Y-%m-%d %H:%M"))

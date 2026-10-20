@@ -1,9 +1,9 @@
 {
  "schema": "debt-aging-v2",
- "generated_at": "2026-10-20T11:18:26",
+ "generated_at": "2026-10-20T13:10:27",
  "readonly": true,
  "grace_rounds": 2,
- "current_round": 122,
+ "current_round": 123,
  "round_source": "git log --format=%s -40 中最大 rNN（未硬编码）",
  "verdict_taxonomy": [
   "OVERDUE",
@@ -99,19 +99,116 @@
  "evidence": {
   "volumes": 80,
   "items_total": 189,
-  "open_total": 82,
-  "closed_total": 107,
+  "open_total": 81,
+  "closed_total": 108,
   "raw_item_lines": 189
  },
  "by_class": {
-  "OVERDUE": 0,
-  "ACTIVE": 9,
+  "OVERDUE": 8,
+  "ACTIVE": 5,
   "DECIDED": 49,
-  "UNDATED": 18,
-  "DEFERRED": 6,
+  "UNDATED": 17,
+  "DEFERRED": 2,
   "REPEAT": 0
  },
- "overdue": [],
+ "overdue": [
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 28,
+   "priority": "未标",
+   "owner": "OWNERED",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "挂账目标 r123 已到期（本轮 r123）",
+   "title": "**R117-1（r117 登记，P0；r119/r120 部分完成）** 生产路由 REAL_MISS **12 → 7 条**（r119 修 4 条：`读PDF` / `python 脚本下断点单步调试` / `头脑",
+   "first_seen": "2026-10-20",
+   "dating_face": "OK"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 29,
+   "priority": "未标",
+   "owner": "OWNERED",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "挂账目标 r123 已到期（本轮 r123）",
+   "title": "**R117-2（r117 登记，P0→转办）** 8 条过期期望（`deep-research-pro` / `fenjue-advisor-scoring` / `fenjue-cc-audit-cycle` / `",
+   "first_seen": "2026-10-18",
+   "dating_face": "OK"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 30,
+   "priority": "未标",
+   "owner": "OWNERED",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "挂账目标 r123 已到期（本轮 r123）",
+   "title": "**R117-3（r117 登记，P1）** 季度巡检的路由归因段目前只出**单季快照**，没有跨季可比（差值阈值 + 趋势未建）；S-4。取值：`python 05-exec/r113_quarterly_audit.",
+   "first_seen": "2026-10-18",
+   "dating_face": "OK"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 32,
+   "priority": "未标",
+   "owner": "NONE",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "挂账目标 r123 已到期（本轮 r123）",
+   "title": "**R114-2（r114 登记，P0；r119 推进 / r121 补 R2 判定）** 任务质量提升：r119 已产生真实正向 delta（生产路由 L1 88.3%→90.1%，+1.8pp；REAL_MISS 1",
+   "first_seen": "2026-10-20",
+   "dating_face": "OK"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 107,
+   "priority": "未标",
+   "owner": "UNOWNED",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 3 轮 / 宽限 2（回落：正文裸 rNN=r120）",
+   "title": "**R120b-3（r120b 登记，P1·转办）** `DOMAIN_KEYWORDS.system` 补中文「提示词」（r120 定位的域失配根因：中文「提示词」在 creative 表不在 system 表）。属焚",
+   "first_seen": "2026-10-20",
+   "dating_face": "OK"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 111,
+   "priority": "未标",
+   "owner": "NONE",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 3 轮 / 宽限 2",
+   "title": "**R120-1（r120 登记，P2）** 把「域失配面」纳入季度巡检常驻段（现为一次性脚本 `_temp/r120_dom_partition.py`）：21.9% 是结构性面，会随注册表增删漂移，一次性量过即过期。",
+   "first_seen": "2026-10-20",
+   "dating_face": "OK"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 118,
+   "priority": "未标",
+   "owner": "NONE",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 3 轮 / 宽限 2",
+   "title": "**R120-2（r120 登记，P2）** `domain_exposure` 二分判据（掩护/暴露）常驻：区分「潜在脆弱」与「真实伤害」，防下轮又拿 21.9% 当缺口数（r120 实测 59 题域失配里仅 4 题真",
+   "first_seen": "2026-10-20",
+   "dating_face": "OK"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 120,
+   "priority": "未标",
+   "owner": "NONE",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 3 轮 / 宽限 2",
+   "title": "**R120-4（r120 登记，P2）** `route_trace` 生产面纳入巡检：r120 首次分析即证明「缺口在合成题面不在真实使用」（332 唯一真实 query / LOW 仅 3），该面应每季复量。",
+   "first_seen": "2026-10-20",
+   "dating_face": "OK"
+  }
+ ],
  "undated": [
   {
    "title": "R113-6 本仓远端实测为 public（记忆 15 处声称「私有归档仓」）：核实并裁定 X-2/AGPL 合入的合规前提（由 flow ",
@@ -122,11 +219,6 @@
    "title": "R113-4 注入面 +97B 外部在途（A-memory-start/references/contract.md 11:37 第三方会话",
    "file": "memory\\07-next-steps.md",
    "line": 35
-  },
-  {
-   "title": "**R120b-7（r120b 登记，P2）** `root_face_fixtures` 在 runner 内跑与单独跑结论不一致（本轮实",
-   "file": "memory\\07-next-steps.md",
-   "line": 104
   },
   {
    "title": "**R120b-8（r120b 登记，P2）** 注入面 `inject_union_bytes` 在并行会话活跃治理期持续增长（本轮内观测",
@@ -273,7 +365,7 @@
  },
  "input_face": {
   "round": {
-   "log": 122,
+   "log": 123,
    "tag": null,
    "ok": null,
    "detail": "无 tag 锚可对照（首轮未打 tag 或 describe 失败）⇒ UNVERIFIED，不记绿"
@@ -291,8 +383,8 @@
    "detail": "4 组同号多副本但全部已勾销（拆卷留痕，不判红）"
   },
   "dating": {
-   "ok": null,
-   "detail": "本轮无到期项 ⇒ 定年面未行使（不判绿，也不判红）",
+   "ok": true,
+   "detail": "8 条到期项定年两路同值（截断 needle 未改变结论）",
    "checked": 0
   },
   "suggestions": {
@@ -305,7 +397,6 @@
   "red_faces": [],
   "unverified_faces": [
    "round",
-   "dating",
    "suggestions"
   ]
  },
@@ -353,6 +444,7 @@
   }
  },
  "handles_drift": [
+  "overdue",
   "open_total",
   "decided"
  ]

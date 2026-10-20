@@ -44,7 +44,7 @@ def ck(name, cond, detail=""):
 def _extract_summary(text):
     """从 handoff.py 输出里提取「汇总：」后的 JSON 字典（括号配平，非正则）。
 
-    r123 修：原用正则 `\{.*?\}`，stdout 里「汇总」之后还有其它行时非贪婪会跨行
+    r123 修：原用正则花括号通配，stdout 里「汇总」之后还有其它行时非贪婪会跨行
     匹配到错误闭合点（实测 JSONDecodeError column 71），且原贪婪式在多字典时串味。
     正则对嵌套结构本就不可靠 ⇒ 改为从「汇总：」起逐字符配平花括号。
     """

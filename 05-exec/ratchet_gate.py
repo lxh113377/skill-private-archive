@@ -597,6 +597,17 @@ def main():
     ap.add_argument("--path", default="")
     ap.add_argument("--delta", type=int, default=-1)
     ap.add_argument("--reason", default="")
+    # r123 R120b-8：累计区间归因通道（只补记账形态，不放宽任何判定）。
+    # 动因：并行会话活跃治理期 inject_union_bytes 一轮内涨 4 次（66483→66885→69706→70123），
+    # 逐笔 --raise-baseline 追不上；且 attribute_raise 硬编码只认 inject_union_bytes，
+    # debt 三指标的增长只能手工改基线件（无留账、无复算）。
+    ap.add_argument("--range-attribute", action="store_true", dest="range_attribute",
+                    help="累计区间归因：须同时给 --metric/--from/--to/--commits/--range-reason")
+    ap.add_argument("--metric", default="")
+    ap.add_argument("--from", dest="from_v", type=int, default=-1)
+    ap.add_argument("--to", dest="to_v", type=int, default=-1)
+    ap.add_argument("--commits", default="", help="逗号分隔的 commit 区间")
+    ap.add_argument("--range-reason", default="")
     args = ap.parse_args()
 
     # W-37（r56）：基线必须先装载 —— 再生预算的权威声明面在基线件里，
@@ -618,6 +629,50 @@ def main():
     metrics, unknown = collect_metrics()
     caps = hard_caps()
 
+    if args.range_attribute:
+        # r123 R120b-8：累计区间归因（防把留账本当装饰刷条数 ⇒ 仍须逐项校验）
+        if not bl.get("metrics"):
+            print("[RATCHET:REFUSE] 基线不可用，无从归因")
+            return 2
+        m = str(args.metric or "").strip()
+        if m not in METRIC_NAMES:
+            print("[RATCHET:REFUSE] --metric 必须是已知指标之一：%s" % ",".join(METRIC_NAMES))
+            return 2
+        if args.from_v < 0 or args.to_v < 0 or args.to_v <= args.from_v:
+            print("[RATCHET:REFUSE] --from/--to 须为非负且 to > from（禁把无变化记成归因）")
+            return 2
+        if not str(args.commits or "").strip() or not str(args.range_reason or "").strip():
+            print("[RATCHET:REFUSE] 缺 --commits 或 --range-reason（归因须可复算）")
+            return 2
+        cur = bl["metrics"].get(m)
+        if not isinstance(cur, (int, float)):
+            print("[RATCHET:REFUSE] 基线缺指标 %s" % m)
+            return 2
+        if int(cur) != args.from_v:
+            print("[RATCHET:REFUSE] --from 与基线现值不符（%s vs %s）：区间归因必须接在真实基线上"
+                  % (args.from_v, cur))
+            return 1
+        # 终态校验：--to 必须等于实测现值（禁把区间归因当「预支」用）
+        now_v = metrics.get(m)
+        if not isinstance(now_v, (int, float)) or int(now_v) != args.to_v:
+            print("[RATCHET:REFUSE] --to 与实测现值不符（%s vs %s）：禁预支归因"
+                  % (args.to_v, now_v))
+            return 1
+        rec = {"metric": m, "from_value": args.from_v, "to_value": args.to_v,
+               "delta": args.to_v - args.from_v,
+               "at": datetime.now().strftime("%Y-%m-%d %H:%M"),
+               "commit": str(args.commits).strip(),
+               "path": "(range-attribution)",
+               "reason": str(args.range_reason).strip(),
+               "kind": "range"}
+        doc = dict(bl)
+        ledger = list(doc.get("attributed_raises") or [])
+        ledger.append(rec)
+        doc["metrics"], doc["attributed_raises"] = metrics, ledger
+        Path(args.baseline).write_text(json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")
+        print("[RATCHET:RANGE-ATTRIBUTED] %s %d→%d（+%d）由 %s 解释；累计留账 %d 条"
+              % (m, args.from_v, args.to_v, rec["delta"], rec["commit"], len(ledger)))
+        return 0
     if args.raise_baseline:
         if not bl.get("metrics"):
             print("[RATCHET:REFUSE] 基线不可用，无从归因")
