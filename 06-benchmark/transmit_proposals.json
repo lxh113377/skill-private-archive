@@ -1,7 +1,7 @@
 {
  "schema": "zijian-transmit-proposal-v1",
  "note": "本仓拟外推给焚诀归属会话的判据建议登记表。外推前必须先跑 `python 05-exec/transmit_obsolescence_check.py`：被判 OBSOLETE 的条目=对方已自落，禁止再外推（推过期件=让人做无用功）；UNVERIFIED=取不到真相源，不得当作已过期或未过期。",
- "updated": "2026-10-18",
+ "updated": "2026-10-20",
  "source": "06-benchmark/全量对标报告_r19_2026-09-24.md §9/§10 + 06-benchmark/计数断言基线_2026-09-24.md",
  "proposals": [
   {
@@ -69,6 +69,101 @@
    ],
    "why": "r117 一手实测：eval/frozen_blind_eval.py --set layered 的 291 条里 20 条 miss，其中 8 条的 expected_skill 既不在 skill/registry/unified-skills-index.json（182 名）也不在 D:/global_skills 盘上，即题面写的是一门已退役技能 ⇒ 这 8 条对任何路由实现都不可达。具名：deep-research-pro、fenjue-advisor-scoring、fenjue-cc-audit-cycle、multi-search-engine、tencent-cos-skill__skillhub、weather。处置权在题集维护方（本仓 eval 只读，未代改一处）；本仓同步给出的不是『提升』而是『脏分母规模』——8/291=2.7%，remap 后理论上限 98.6%（83 亿分之一口径见 r117 报告 §2.2）。",
    "evidence": "06-benchmark/route_miss_attr_r117_2026-10-18.json"
+  },
+  {
+   "pid": "route_miss_shortcircuit_layer",
+   "title": "route miss short-circuit layer belongs to eval/; SKILL.md cannot reach it structurally",
+   "target": "焚诀 eval/ (direct_layer.py / direct_map.json / build_skill_tags.py / unified_router.py)",
+   "proposed_at": "2026-10-20",
+   "keywords": [
+    "direct",
+    "short-circuit",
+    "direct_map",
+    "tag",
+    "NONE",
+    "route",
+    "miss"
+   ],
+   "why": "r118 built failure-layer attribution: REAL_MISS items whose failure layer is direct_route non-None (DIRECT_SHORT) / NONE (DIRECT_NONE) / unique tag (TAG_SHORT) short-circuit before recall, so swapping SKILL.md corpus cannot structurally reach them. r119 re-ran: REAL_MISS 12 to 8, short-circuit layer still 6 plus 1 BGE item that even oracle cannot flip.",
+   "evidence": {
+    "layer_attr_source": "06-benchmark/layer_attr_r119_2026-10-20.json",
+    "real_miss_n": 8,
+    "layers": {
+     "DIRECT_SHORT": 4,
+     "DIRECT_NONE": 1,
+     "BGE_RECALL": 2,
+     "TAG_SHORT": 1
+    },
+    "oracle": {
+     "UNREACHABLE_BY_CORPUS": 7,
+     "REACHABLE": 1
+    },
+    "items": [
+     {
+      "expected": "brainstorming",
+      "query": "灵感枯竭帮我发散一波点子",
+      "router_top1": "story",
+      "layer": "DIRECT_SHORT",
+      "direct_route": "story",
+      "tag_hits_n": 0,
+      "oracle": "UNREACHABLE_BY_CORPUS"
+     },
+     {
+      "expected": "frontend-slides",
+      "query": "帮我做一个动画丰富的 HTML 演示文稿",
+      "router_top1": "ppt-master",
+      "layer": "DIRECT_SHORT",
+      "direct_route": "ppt-master",
+      "tag_hits_n": 17,
+      "oracle": "UNREACHABLE_BY_CORPUS"
+     },
+     {
+      "expected": "meeting-intelligence",
+      "query": "Notion 会议准备",
+      "router_top1": "NONE",
+      "layer": "DIRECT_NONE",
+      "direct_route": "NONE",
+      "tag_hits_n": 0,
+      "oracle": "UNREACHABLE_BY_CORPUS"
+     },
+     {
+      "expected": "A-skill-manager",
+      "query": "新技能装之前先安全审查",
+      "router_top1": "security-audit",
+      "layer": "DIRECT_SHORT",
+      "direct_route": "security-audit",
+      "tag_hits_n": 0,
+      "oracle": "UNREACHABLE_BY_CORPUS"
+     },
+     {
+      "expected": "video-whisper-transcribe",
+      "query": "录音转文字",
+      "router_top1": "local-asr",
+      "layer": "DIRECT_SHORT",
+      "direct_route": "local-asr",
+      "tag_hits_n": 0,
+      "oracle": "UNREACHABLE_BY_CORPUS"
+     },
+     {
+      "expected": "A-skill-manager",
+      "query": "同步技能",
+      "router_top1": "cross-platform-agent-sync",
+      "layer": "TAG_SHORT",
+      "direct_route": null,
+      "tag_hits_n": 1,
+      "oracle": "UNREACHABLE_BY_CORPUS"
+     },
+     {
+      "expected": "prompt-consolidation",
+      "query": "帮我清理提示词里堆积的补丁",
+      "router_top1": "sq-cleanmgr-c",
+      "layer": "BGE_RECALL",
+      "oracle": "UNREACHABLE_BY_CORPUS",
+      "note": "BGE_RECALL layer but oracle also cannot flip"
+     }
+    ]
+   },
+   "redline": "repo redline: 焚诀 eval/ read-only; register only, never edit eval files."
   }
  ]
 }

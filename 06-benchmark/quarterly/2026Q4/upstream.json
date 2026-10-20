@@ -1,6 +1,6 @@
 {
  "schema": "upstream-probe-r112-v1",
- "generated_at": "2026-10-18T07:29:24+00:00",
+ "generated_at": "2026-10-20T00:03:38+00:00",
  "face": {
   "scan_file": "06-benchmark/quarterly/2026Q4/provenance.json",
   "targets_n": 39,
@@ -74,19 +74,19 @@
      "repo": "obra/superpowers",
      "path": "skills/brainstorming/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.0175
+     "jaccard": 0.0149
     },
     {
      "repo": "sickn33/agentic-awesome-skills",
      "path": "plugins/agentic-awesome-skills-claude/skills/brainstorming/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.0191
+     "jaccard": 0.016
     },
     {
      "repo": "sickn33/agentic-awesome-skills",
      "path": "plugins/agentic-awesome-skills/skills/brainstorming/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.0191
+     "jaccard": 0.016
     }
    ],
    "reason": "无可识别同源候选（全部 unrelated 或取不到）"
@@ -1252,19 +1252,19 @@
      "repo": "obra/superpowers",
      "path": "skills/verification-before-completion/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.0223
+     "jaccard": 0.1391
     },
     {
      "repo": "sickn33/agentic-awesome-skills",
      "path": "plugins/agentic-awesome-skills-claude/skills/verification-before-completion/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.02
+     "jaccard": 0.1275
     },
     {
      "repo": "sickn33/agentic-awesome-skills",
      "path": "plugins/agentic-awesome-skills/skills/verification-before-completion/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.02
+     "jaccard": 0.1275
     }
    ],
    "reason": "无可识别同源候选（全部 unrelated 或取不到）"

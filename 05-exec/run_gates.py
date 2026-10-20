@@ -532,6 +532,18 @@ GATES = [
                "变异体刻意让豁免/守卫识别失效，抓不住即本夹具无鉴别力。",
     },
     {
+        # r119 改造 3：把 r118 立的 W-1 硬边界从散文升级为结构判据
+        "id": "migration_guard",
+        "script": "r119_plan_boundary_gate.py",
+        "argv": [],
+        "pass_token": "[MIGGUARD:PASS]",
+        "portable": True,
+        "covers": ["04-plan/迁移替换方案_r114 必须含 W-1 四 token（W-1 / r118_swap_sim.py / 正向 delta / 短路先于召回）",
+                   "同一方案必须含 r119 复算加注（0 影响从当时实测更新为当前复算仍成立）",
+                   "自带 --selftest：正例现件应 PASS + 反例摘 token 应 FAIL（W-47 双向）"],
+        "why": "r118 实测换装对生产路由影响 0 并立硬边界 W-1，但那条边界只活在报告与方案的散文里，没有任何判据在看方案还在不在说这件事。r119 把它钉成常驻门：缺 token 即红。",
+    },
+    {
         "id": "r117_upstream_delta_fixtures",
         "script": "r117_upstream_delta_fixtures.py",
         "argv": [],

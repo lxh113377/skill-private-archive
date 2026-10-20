@@ -70,6 +70,11 @@ def main():
     ck("f3 覆盖面自证：ok 计数须 ≥ 受检顶层目录数（登记面没有截断）",
        base.get("ok", 0) >= len(GOVERNED), "ok=%d 面=%d" % (base.get("ok", 0), len(GOVERNED)))
 
+    # r117 一手：夹具进程被 kill / 超时时 finally 不执行，PROBE 会残留在工作树里，
+    # 于是「夹具没收干净」被下一轮的 git status 读成「新产物」（本轮实测：16:27 残留，
+    # gate_run_r118a 因 noise_tracked_stub 300s 超时被打断后留下的）。启动时先清一次：
+    # 该目录只可能由本夹具创建（PROBE 名带 _r55probe_tmp 前缀，仓内无其它引用）。
+    shutil.rmtree(PROBE, ignore_errors=True)
     try:
         os.makedirs(PROBE)
         with io.open(os.path.join(PROBE, "seed.txt"), "w", encoding="utf-8") as f:

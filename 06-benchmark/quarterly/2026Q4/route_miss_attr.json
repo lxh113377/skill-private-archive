@@ -1,6 +1,6 @@
 {
  "schema": "route-miss-attr-r117-v1",
- "generated_at": "2026-10-18T07:29:50+00:00",
+ "generated_at": "2026-10-20T00:04:20+00:00",
  "cmd": "python 05-exec/r117_route_miss_attr.py",
  "ruler": {
   "STALE_EXPECT": "期望 skill 既不在注册表也不在盘上（题面过期）",
@@ -16,22 +16,21 @@
  },
  "face": {
   "n": 291,
-  "hits": 271,
-  "score_pct": 88.3,
+  "hits": 276,
+  "score_pct": 90.1,
   "semantic_layer": "bge",
   "bge_status": "engaged",
-  "miss_n": 20,
+  "miss_n": 15,
   "blind_n": 22,
   "registry_n": 182,
   "stale_n": 8,
   "unregistered_n": 0,
-  "real_n": 12,
+  "real_n": 7,
   "undecidable_n": 0,
   "conservation_ok": true
  },
  "states_by_expected": {
   "brainstorming": [
-   "REAL_MISS",
    "REAL_MISS"
   ],
   "deep-research-pro": [
@@ -57,22 +56,12 @@
   "prompt-consolidation": [
    "REAL_MISS"
   ],
-  "python-debugpy": [
-   "REAL_MISS"
-  ],
   "A-skill-manager": [
-   "REAL_MISS",
    "REAL_MISS",
    "REAL_MISS"
   ],
   "weather": [
    "STALE_EXPECT"
-  ],
-  "chaoshi-web-deploy": [
-   "REAL_MISS"
-  ],
-  "pdf": [
-   "REAL_MISS"
   ],
   "video-whisper-transcribe": [
    "REAL_MISS"
@@ -90,17 +79,12 @@
   "meeting-intelligence->NONE": 1,
   "multi-search-engine->spike": 1,
   "prompt-consolidation->sq-cleanmgr-c": 1,
-  "python-debugpy->node-inspect-debugger": 1,
-  "A-skill-manager->A-get-memory": 1,
   "A-skill-manager->security-audit": 1,
   "weather->cloudbase-db-optimize": 1,
-  "chaoshi-web-deploy->cloudbase-db-optimize": 1,
-  "pdf->local-tts": 1,
   "video-whisper-transcribe->local-asr": 1,
-  "brainstorming->A-get-memory": 1,
   "A-skill-manager->cross-platform-agent-sync": 1,
   "deep-research-pro->research-documentation": 1,
-  "multi-search-engine->A-ask-questions": 1,
+  "multi-search-engine->A-dynamic-workflow": 1,
   "tencent-cos-skill__skillhub->cloudbase-db-optimize": 1
  },
  "rows": [
@@ -177,24 +161,6 @@
    "pair": "prompt-consolidation->sq-cleanmgr-c"
   },
   {
-   "query": "python 脚本下断点单步调试",
-   "expected": "python-debugpy",
-   "router_top1": "node-inspect-debugger",
-   "judge": "exact",
-   "state": "REAL_MISS",
-   "reason": "in_registry",
-   "pair": "python-debugpy->node-inspect-debugger"
-  },
-  {
-   "query": "路由触发词质量差需要重生",
-   "expected": "A-skill-manager",
-   "router_top1": "A-get-memory",
-   "judge": "exact",
-   "state": "REAL_MISS",
-   "reason": "in_registry",
-   "pair": "A-skill-manager->A-get-memory"
-  },
-  {
    "query": "新技能装之前先安全审查",
    "expected": "A-skill-manager",
    "router_top1": "security-audit",
@@ -213,24 +179,6 @@
    "pair": "weather->cloudbase-db-optimize"
   },
   {
-   "query": "cloudbase 云函数部署后订单不显示",
-   "expected": "chaoshi-web-deploy",
-   "router_top1": "cloudbase-db-optimize",
-   "judge": "exact",
-   "state": "REAL_MISS",
-   "reason": "in_registry",
-   "pair": "chaoshi-web-deploy->cloudbase-db-optimize"
-  },
-  {
-   "query": "读PDF",
-   "expected": "pdf",
-   "router_top1": "local-tts",
-   "judge": "exact",
-   "state": "REAL_MISS",
-   "reason": "in_registry",
-   "pair": "pdf->local-tts"
-  },
-  {
    "query": "录音转文字",
    "expected": "video-whisper-transcribe",
    "router_top1": "local-asr",
@@ -238,15 +186,6 @@
    "state": "REAL_MISS",
    "reason": "in_registry",
    "pair": "video-whisper-transcribe->local-asr"
-  },
-  {
-   "query": "头脑风暴",
-   "expected": "brainstorming",
-   "router_top1": "A-get-memory",
-   "judge": "exact",
-   "state": "REAL_MISS",
-   "reason": "in_registry",
-   "pair": "brainstorming->A-get-memory"
   },
   {
    "query": "同步技能",
@@ -269,11 +208,11 @@
   {
    "query": "多引擎搜索",
    "expected": "multi-search-engine",
-   "router_top1": "A-ask-questions",
+   "router_top1": "A-dynamic-workflow",
    "judge": "exact",
    "state": "STALE_EXPECT",
    "reason": "absent_from_disk_and_registry",
-   "pair": "multi-search-engine->A-ask-questions"
+   "pair": "multi-search-engine->A-dynamic-workflow"
   },
   {
    "query": "写个脚本定期备份数据库",

@@ -1,5 +1,33 @@
 # 06 - 已知约束
 
+## [BUG] noise_lint 二级扫描对目录级 gitignore 不豁免（r119 实测）
+
+**现象**：`05-exec/mark_backup/` 被 `.gitignore:35` 整目录忽略（35 项未跟踪 + 5 项历史入库），
+`handoff.py noise` 仍把它判 `VIOL 子目录内部散落`，且该 VIOL 会让 `root_face_fixtures` 的 f8 腿转红。
+
+**根因**（实测，非猜测）：二级扫描的「gitignore 命中即跳过」豁免只对**文件级** ignore 生效；
+目录级 ignore（`05-exec/mark_backup/`）未被识别为豁免 ⇒ 目录下所有文件重新成为散落候选。
+`git check-ignore -v` 可复现：返回 `.gitignore:35:05-exec/mark_backup/`。
+
+**为何 r117/r118 PASS 而 r119 转红**：r117 tag 时该目录只有 5 项（全部 git 已跟踪 ⇒ 走「Git 已跟踪」分支判 OK）；
+此后多轮累积到 40 项（最老 2026-09-25，最新 2026-10-18 08:01，非单轮批次），35 项转为「未跟踪但目录级忽略」态，
+首次落入二级扫描的判红区间。
+
+**本轮处置**：R269 登记不擅改（noise_lint 在受管根，改它 = 改全库判据，须归属方裁决）。
+本轮自查自纠部分：本人放入 `mark_backup/` 的 1 个备份已按铁律迁 `_trash`（备份落点本就该是 _trash 不是 mark_backup），
+复跑 `root_face_fixtures` 11/11 PASS。
+
+**复算**：
+```powershell
+git check-ignore -v "05-exec/mark_backup/07-next-steps.md.r104_163213.bak"   # 目录级忽略实证
+python D:/global_skills/A-project-handoff/scripts/handoff.py noise <本仓根>  # 该 VIOL 仍报
+python 05-exec/r55_rootface_fixtures.py                                       # 11/11 PASS（已迁走我的备份）
+```
+
+**待裁口径（三选一，禁自行放宽判据）**：① 受管根 noise_lint 二级扫描补「目录级 gitignore 也算豁免」；
+② 把 `mark_backup/` 的 35 项迁 `_trash`（属历史备份，迁前须确认无在途引用）；
+③ 维持现状并在夹具 f8 腿显式登记该项为例外（会削弱 f8 的牙齿，不推荐）。
+
 > 本文件记录已知问题、技术债和约束。
 > 归档类型：增量（已解决的问题移入归档）
 > 注（2026-09-22）：本文件**不是** `SPLIT_TARGETS` 注册目标（本项目默认仅 `07-next-steps` + `05-feature-status` 参与 4KB 语义，见 R199/R226），故体量可超 4KB；确需纳入时用 `handoff.py split "<项目>" --target 06-constraints.md`。
@@ -7,6 +35,7 @@
 
 ## 已知 Bug
 
+- [BUG] **「为了让工作树变干净」而加 .gitignore 条目，会静默拆掉判据的反例腿**（2026-10-18 r117 实测，同一件事连踩两下） — 影响范围：`05-exec/r55_rootface_fixtures.py` 的 f4/f5 两条反例腿靠「植入 `05-exec/_r55probe_tmp/` → 被 noise 判 VIOL」成立；而 `noise_lint` 二级扫描在 **被该根 .gitignore 命中即跳过**（r2026-09-26 加的合法豁免）。我为了消掉夹具被 kill 后残留的 `_r55probe_tmp/`，往 `.gitignore` 加了 `05-exec/_r55probe_tmp/` ⇒ 反例腿当场转红（f4 报「植入后 VIOL 只剩 mark_backup 一条」），**这才是正确的红**：我为了好看改的是豁免面，不是残留问题本身。**修法分两层**：① 残留根因修在夹具本体（启动时先 `shutil.rmtree(PROBE)` 一次，进程被 kill 也不会把脏树留给下一轮）；② `.gitignore` 那一行必须**撤掉**——把反例目标登记进豁免面等于让判据自己失明（X-9 同族）。教训：**「工作树干净」与「判据有牙齿」冲突时，永远是前者让路**；夹具残留该由夹具自己收，不该由 gitignore 盖住。 | 状态：**已修**（r117：夹具幂等清理 + .gitignore 撤回 + 11/11 复跑绿）
 - [BUG] **记忆卷混合行尾 ⇒ 任何「按整份单一行尾切分」的写入器都会并元素错写** — 影响范围：`memory/07-next-steps.md` 实测 178 个 CRLF + 4 个纯 LF（并发工具按 text 模式写入的产物）。2026-09-25 r49 实测：`r46_mark_verdict.py` 首版按「文件里有 
  就整份按 CRLF 切」，那 4 行被并进前一元素，标记追加到元素末尾 = **另一条目那一行**（W-16 的裁决落到 W-14 行）。已修写入侧（`split_keep_eol` 逐行保留 + 同行读回断言 + 反例夹具 t9/t10），**根因仍在**：那 4 行由谁写入未定位，统一行尾属 R241 敏感区（禁为让门变绿而整卷重写）⇒ 登记为 W-26 看守 | 状态：**未修复（已缓解）** —— **✅ 归因校正注（2026-09-25 r50，实测非推测）**：原句把成因写成「并发工具按 text 模式写入」当时**未经核验**。实测口径 = `git show r43..r49:memory/07-next-steps.md` 各历史版本**全部行均为纯 LF**（r49 版 190 行、0 个 CRLF），而工作树为 187 CRLF + 4 纯 LF ⇒ 混合行尾由**本仓写卷脚本未传 `newline=""`** 造成（Windows text 模式把 LF 前补 CR），与并行会话无关。判据侧已按物理行处理（W-23）故不再受影响；写入侧约定立为 X-25。原句保留不改写（R241）。 【r51 补记：本条校正注即由写入器 note 模式写入（W-19 落地自证）：05/06/08 的状态回写不再走手写补丁脚本，取值 python 05-exec/r46_mark_verdict_fixtures.py 的 t11–t14】
 <!-- 格式：- [BUG] 描述 — 影响范围 | 状态：未修复/修复中 -->

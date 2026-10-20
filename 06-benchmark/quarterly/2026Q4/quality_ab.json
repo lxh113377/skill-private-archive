@@ -1,6 +1,6 @@
 {
  "schema": "quality-ab-r114-v1",
- "generated_at": "2026-10-18T07:29:40+00:00",
+ "generated_at": "2026-10-20T00:04:09+00:00",
  "cmd": "python 05-exec/r114_quality_ab.py",
  "benchmark": {
   "script": "C:\\Users\\37533\\Desktop\\workspace\\焚诀\\eval\\skill_hitrate_eval_v2.py",
@@ -18,52 +18,52 @@
  "now": {
   "methods": {
    "keyword": {
-    "top1": 29.2,
-    "top3": 37.1,
-    "hit_rate": 56.2,
-    "precision": 52.0,
-    "recall": 40.0,
-    "f1": 45.2,
+    "top1": 34.8,
+    "top3": 38.2,
+    "hit_rate": 48.3,
+    "precision": 72.1,
+    "recall": 40.3,
+    "f1": 51.7,
     "fp_rate": 0.0
    },
    "tfidf": {
-    "top1": 24.7,
+    "top1": 27.0,
     "top3": 38.2,
     "hit_rate": 96.6,
-    "precision": 25.6,
-    "recall": 88.0,
-    "f1": 39.6,
+    "precision": 27.9,
+    "recall": 88.9,
+    "f1": 42.5,
     "fp_rate": 28.6
    },
    "hybrid": {
-    "top1": 37.1,
-    "top3": 50.6,
+    "top1": 47.2,
+    "top3": 55.1,
     "hit_rate": 97.8,
-    "precision": 37.9,
-    "recall": 94.3,
-    "f1": 54.1,
+    "precision": 48.3,
+    "recall": 95.5,
+    "f1": 64.1,
     "fp_rate": 28.6
    }
   },
   "ci": {
    "keyword": {
     "top1": [
-     20.8,
-     39.4,
+     25.7,
+     45.2,
      89
     ]
    },
    "tfidf": {
     "top1": [
-     16.9,
-     34.6,
+     18.8,
+     37.0,
      89
     ]
    },
    "hybrid": {
     "top1": [
-     27.8,
-     47.5,
+     37.2,
+     57.5,
      89
     ]
    }
@@ -77,21 +77,21 @@
  "comparison": {
   "method": "hybrid",
   "base_top1": 38.2,
-  "now_top1": 37.1,
-  "delta_pp": -1.1,
-  "delta_rel_pct": -2.9,
+  "now_top1": 47.2,
+  "delta_pp": 9.0,
+  "delta_rel_pct": 23.6,
   "base_top3": 50.6,
-  "now_top3": 50.6,
+  "now_top3": 55.1,
   "base_f1": 55.3,
-  "now_f1": 54.1,
+  "now_f1": 64.1,
   "top1_ci_base": [
    28.8,
    48.6,
    89
   ],
   "top1_ci_now": [
-   27.8,
-   47.5,
+   37.2,
+   57.5,
    89
   ],
   "top1_comparability": "区间重叠(幅度落在抽样抖动内)",

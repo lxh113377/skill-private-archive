@@ -101,6 +101,36 @@ def fetch_meta(offline=False):
     return out
 
 
+def _read_swap_impact(path):
+    """从 swap_impact.json 读「换装影响量」四数（句柄化，禁抄值）。
+
+    三态：件缺失/解析失败 ⇒ None（禁当 0 影响引用）；
+    正控未翻转 ⇒ discriminating_power=False，此时任何「0 影响」读数都不得引用
+    （实验无鉴别力，R247/W-47 同族）。
+    """
+    import io as _io
+    import json as _json
+    if not os.path.isfile(path):
+        return None
+    try:
+        with _io.open(path, encoding="utf-8") as f:
+            d = _json.load(f)
+    except Exception:
+        return None
+    s = d.get("summary") or {}
+    return {
+        "variants_n": s.get("variants_n"),
+        "local_improved_n": s.get("local_improved_n"),
+        "local_degraded_n": s.get("local_degraded_n"),
+        "subnet_changed_n": s.get("subnet_changed_n"),
+        "cross_flips_n": s.get("cross_flips_n"),
+        "negative_control_pass": (s.get("negative_control") or {}).get("pass"),
+        "positive_control_pass": (s.get("positive_control") or {}).get("pass"),
+        "discriminating_power": s.get("discriminating_power"),
+        "source": os.path.relpath(path, ROOT).replace(os.sep, "/"),
+    }
+
+
 def atomic_write_json(path, doc):
     tmp = path + ".tmp"
     with io.open(tmp, "w", encoding="utf-8", newline="\n") as fh:
@@ -161,12 +191,28 @@ def main():
     steps.append(run_step("quality_truth",
                           [PY, os.path.join(HERE, "r115_quality_truth.py"),
                            "--json", truth, "--quiet"]))
+    # r119 第 ⑩ 段（S-4 落地）：换装影响量常驻读数。
+    # 存在理由：r118 实测「换装对生产路由影响 0」是需求 6 的机制判据，但它此前只活在
+    # r118 报告里 —— 下一季换装队列重新开工时，没有人会复跑这个沙箱，
+    # 「0 影响」会退化成一句没人验证的传说。本段把沙箱接进季度巡检：
+    #   · 每季现跑 r118_swap_sim.py（47 变体全量，本地 eval 面，零网络）；
+    #   · 读数写进主产物 swap_impact 段（local_improved / local_degraded / 正负控判别力）；
+    #   · 负控不通过或正控不翻转 ⇒ 该段 UNVERIFIED，禁把「无影响」当结论引用（R247）。
+    # 口径：沙箱较慢（~2-4 分钟），故给 1800s 超时；失败不阻塞其余段，
+    #       但 face_ok 会把失败步具名（见下方 failed 计算，本段已并入 steps）。
+    swap_impact = os.path.join(qdir, "swap_impact.json")
+    steps.append(run_step("swap_impact",
+                          [PY, os.path.join(HERE, "r118_swap_sim.py"),
+                           "--json", swap_impact],
+                          timeout=1800))
 
     meta = fetch_meta(offline=args.offline)
     failed = [s["step"] for s in steps if s["rc"] != 0]
     meta_unv = sorted([r for r, v in meta.items() if v.get("state") == "UNVERIFIED"])
 
-    face_ok = all(os.path.isfile(p) for p in (prov, up, swap, repl, qual, rmiss, truth)) and not failed
+    face_ok = (all(os.path.isfile(p) for p in
+                   (prov, up, swap, repl, qual, rmiss, truth, swap_impact))
+               and not failed)
     face_reason = None
     if not os.path.isfile(prov):
         face_ok = False
@@ -185,7 +231,9 @@ def main():
         "upstream_meta_unverified": meta_unv,
         "artifacts": {"provenance": prov, "upstream": up, "swap_gate": swap,
                       "replacement_matrix": repl, "quality_ab": qual,
-                      "route_miss_attr": rmiss, "quality_truth": truth},
+                      "route_miss_attr": rmiss, "quality_truth": truth,
+                      "swap_impact": swap_impact},
+        "swap_impact_reading": _read_swap_impact(swap_impact),
         "face_ok": face_ok,
         "face_reason": face_reason,
     }
