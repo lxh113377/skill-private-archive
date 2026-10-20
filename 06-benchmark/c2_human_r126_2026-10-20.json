@@ -1,0 +1,100 @@
+[
+ {
+  "slug": "taskflow-inbox-triage",
+  "repo": "stablyai/orca",
+  "verdict": "KEEP",
+  "blocked_by": "C2",
+  "reason": "Orca 是多代理编排桌面 GUI（Codex/ClaudeCode 多 worktree 监控），本地件是 TaskFlow 状态机样例教学（非生产）。能力域不同层（桌面编排器 vs 状态机样例文档）"
+ },
+ {
+  "slug": "data-analysis",
+  "repo": "yusufkaraaslan/Skill_Seekers",
+  "verdict": "KEEP",
+  "blocked_by": "C2",
+  "reason": "Skill_Seekers 是「从 18 种数据源自动生成 skill」的工具，非数据分析技能本体；候选是元工具，替换后本地 Excel/CSV/SQL 六维分析能力无对应承载"
+ },
+ {
+  "slug": "doc-coauthoring",
+  "repo": "yusufkaraaslan/Skill_Seekers",
+  "verdict": "KEEP",
+  "blocked_by": "C2",
+  "reason": "同上：元工具非文档协作工作流本体"
+ },
+ {
+  "slug": "github",
+  "repo": "yusufkaraaslan/Skill_Seekers",
+  "verdict": "KEEP",
+  "blocked_by": "C2",
+  "reason": "同上：gh CLI 操作技能 vs skill 生成工具，能力域不同"
+ },
+ {
+  "slug": "office-automation-pro",
+  "repo": "yusufkaraaslan/Skill_Seekers",
+  "verdict": "KEEP",
+  "blocked_by": "C2",
+  "reason": "同上：办公自动化脚本族（smtplib/openpyxl/PowerShell）无对应承载"
+ },
+ {
+  "slug": "python-debugpy",
+  "repo": "aden-hive/hive",
+  "verdict": "KEEP",
+  "blocked_by": "C2",
+  "reason": "hive 是多代理运行时（queen agent + 并行 worker），非 Python 调试技能；pdb/debugpy 断点调试能力域不同"
+ },
+ {
+  "slug": "screenshot",
+  "repo": "aden-hive/hive",
+  "verdict": "KEEP",
+  "blocked_by": "C2",
+  "reason": "同上：桌面截图技能 vs 多代理运行时"
+ },
+ {
+  "slug": "byted-bp-cdn-pagesdeploy",
+  "repo": "topoteretes/cognee",
+  "verdict": "KEEP",
+  "blocked_by": "C2",
+  "reason": "cognee 是 AI 记忆/知识管道（ECL：extract-cognify-load），与 BytePlus Edge Pages 部署完全不同域"
+ },
+ {
+  "slug": "computer-use-guidance-windows",
+  "repo": "NanmiCoder/cc-haha",
+  "verdict": "KEEP",
+  "blocked_by": "C2",
+  "reason": "cc-haha 是 Claude Code 桌面客户端应用，非 Computer Use 操作指南技能"
+ },
+ {
+  "slug": "diagram-maker",
+  "repo": "tt-a1i/archify",
+  "verdict": "KEEP",
+  "blocked_by": "C2",
+  "reason": "部分重叠但产物哲学相反：archify=交互式探索 HTML 应用（平台级、在线服务），本地=SVG/Excalidraw 架构图交付件；合入会丢交付件形态"
+ },
+ {
+  "slug": "local-computer-use",
+  "repo": "NanmiCoder/cc-haha",
+  "verdict": "KEEP",
+  "blocked_by": "C2",
+  "reason": "同 computer-use-guidance-windows：桌面应用非技能"
+ },
+ {
+  "slug": "local-screenshot-qa",
+  "repo": "NanmiCoder/cc-haha",
+  "verdict": "KEEP",
+  "blocked_by": "C2",
+  "reason": "同上"
+ },
+ {
+  "slug": "testing",
+  "repo": "modelcontextprotocol/inspector",
+  "verdict": "KEEP",
+  "blocked_by": "C2",
+  "reason": "inspector 是 MCP 服务器调试工具（Web/CLI/TUI），与测试编写六阶段流程（pytest/jest/mutation/property-based）能力域不同；且仓根无 SKILL.md（404 实证）"
+ },
+ {
+  "slug": "html-ppt",
+  "repo": "ningzimu/codex-ppt-skill",
+  "verdict": "KEEP",
+  "blocked_by": "C2",
+  "reason": "**同域真候选但产物哲学相反**：候选走整页图片式（依赖 gpt-image 生图 API，外部依赖+花费），本地走真 HTML 演示（交互/动画/键盘导航为本地独有能力）；合入丢本地独有能力 ⇒ C2「不完全覆盖」条件不满足"
+ }
+]

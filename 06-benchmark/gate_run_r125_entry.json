@@ -1,6 +1,6 @@
 {
  "schema": "gate-run-v1",
- "generated_at": "2026-10-20 13:47",
+ "generated_at": "2026-10-20 14:01",
  "readonly": true,
  "mode": "full",
  "gates": [
@@ -8,7 +8,7 @@
    "id": "r19_scan_fixtures",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 3681,
+   "elapsed_ms": 3471,
    "portable": false,
    "covers": [
     "05-exec/cumulative_drift_scan.py 排除判据",
@@ -22,7 +22,7 @@
    "id": "r19_baseline_contract_fixtures",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 1714,
+   "elapsed_ms": 1773,
    "portable": true,
    "covers": [
     "05-exec/baseline_contract_scan.py",
@@ -34,18 +34,18 @@
    "id": "baseline_contract_scan",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 406,
+   "elapsed_ms": 396,
    "portable": true,
    "covers": [
     "06-benchmark/*.json 机器证据结构（份数/pattern 数不硬编码，取值：该门 --json 输出的 files_checked 与 artifacts 长度）"
    ],
-   "tail": "ntracts.json（21 个 pattern / 受检文件 148 个） |   代际豁免（r56，新增面不追溯判红历史证据件）：8 处 ｜ 涉及件 inject_face_breakdown_r52_2026-09-25.json, w27_conflict_triage_r51_2026-09-25.json | [CONTRACT:PASS] 148 份基线全部合规（结构 + 不变式）"
+   "tail": "ntracts.json（21 个 pattern / 受检文件 152 个） |   代际豁免（r56，新增面不追溯判红历史证据件）：8 处 ｜ 涉及件 inject_face_breakdown_r52_2026-09-25.json, w27_conflict_triage_r51_2026-09-25.json | [CONTRACT:PASS] 152 份基线全部合规（结构 + 不变式）"
   },
   {
    "id": "ratchet_gate",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 357,
+   "elapsed_ms": 371,
    "portable": false,
    "covers": [
     "06-benchmark/inject_ratchet_baseline.json",
@@ -58,30 +58,30 @@
    "id": "control_char_scan",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 1890,
+   "elapsed_ms": 2085,
    "portable": true,
    "covers": [
     "本仓全部文本面（r31 实测 376 个面）"
    ],
-   "tail": "=== 控制字符扫描：2464 个面 / 脏 0 / 跳过二进制 15 === | [CTRL:CLEAN] 无非法控制符"
+   "tail": "=== 控制字符扫描：2488 个面 / 脏 0 / 跳过二进制 15 === | [CTRL:CLEAN] 无非法控制符"
   },
   {
    "id": "tracked_empty_check",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 352,
+   "elapsed_ms": 353,
    "portable": true,
    "covers": [
     "本仓全部 tracked 文本件（.md/.py/.json/.jsonl/.yml/.txt/.ps1/.sh/.toml 等）",
     "二进制/未知扩展跳过但如实计数，不静默当通过"
    ],
-   "tail": "文件门禁（r35 H-1；防 r34 我自己那次写崩事故复发）=== | 仓库: C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化｜tracked 1320 件｜受检文本 1317 件 | 跳过: 二进制/未知扩展 3 件（登记不静默） | [EMPTY:PASS] 文本面 1317 件均非空；跳过二进制/未知扩展 3 件（如实登记，非当作通过）"
+   "tail": "文件门禁（r35 H-1；防 r34 我自己那次写崩事故复发）=== | 仓库: C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化｜tracked 1337 件｜受检文本 1334 件 | 跳过: 二进制/未知扩展 3 件（登记不静默） | [EMPTY:PASS] 文本面 1334 件均非空；跳过二进制/未知扩展 3 件（如实登记，非当作通过）"
   },
   {
    "id": "mark_verdict_fixtures",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 4792,
+   "elapsed_ms": 4396,
    "portable": true,
    "covers": [
     "05-exec/r46_mark_verdict.py 的锚点定位与拒写分支",
@@ -93,7 +93,7 @@
    "id": "refresh_budget_fixtures",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 660,
+   "elapsed_ms": 702,
    "portable": false,
    "covers": [
     "05-exec/ratchet_gate.py 的 METRIC_SOURCES/METRIC_REFRESH_DAYS/source_age_days/face_metric_refresh",
@@ -106,7 +106,7 @@
    "id": "handles_readme_fixtures",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 1520,
+   "elapsed_ms": 1068,
    "portable": true,
    "covers": [
     "05-exec/r38_debt_aging.py 的 make_handles/resolve_handle（句柄可解值、死句柄返 None）",
@@ -119,7 +119,7 @@
    "id": "md_claim_face",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 359,
+   "elapsed_ms": 361,
    "portable": true,
    "covers": [
     "06-benchmark/*.md 引用面（数字声明 ±12 行内需有取值命令）",
@@ -131,7 +131,7 @@
    "id": "retrieval_fixtures",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 436,
+   "elapsed_ms": 480,
    "portable": true,
    "covers": [
     "05-exec/baseline_contract_scan.py 的 inv_opponent_claims_have_retrieval（结构识别，不锁键名）",
@@ -144,7 +144,7 @@
    "id": "root_face_fixtures",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 19356,
+   "elapsed_ms": 19263,
    "portable": false,
    "covers": [
     "受管根 noise_lint KNOWN_CORE 对本项目根的登记面（R286，受管根 e93896b）",
@@ -157,7 +157,7 @@
    "id": "range_attr_fixtures",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 3200,
+   "elapsed_ms": 3371,
    "portable": true,
    "covers": [
     "ratchet_gate --range-attribute 五道反例（--from 不接真实基线 / --to 预支 / --commits 空 / --range-reason 空 / --metric 未知）",
@@ -170,7 +170,7 @@
    "id": "budget_contract_fixtures",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 3695,
+   "elapsed_ms": 3876,
    "portable": true,
    "covers": [
     "06-benchmark/inject_ratchet_baseline.json 的 refresh_days 声明面（schema v1→v2）",
@@ -184,7 +184,7 @@
    "id": "evidence_face_fixtures",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 3565,
+   "elapsed_ms": 3584,
    "portable": false,
    "covers": [
     "06-benchmark 两类新 pattern：inject_face_breakdown_r*.json / w27_conflict_triage_r*.json",
@@ -198,7 +198,7 @@
    "id": "baseline_note_fixtures",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 811,
+   "elapsed_ms": 716,
    "portable": false,
    "covers": [
     "05-exec/ratchet_gate.py 的 merge_note 与 --update 落盘路径（留账只增不减 + attributed_raises 须存活）",
@@ -211,20 +211,20 @@
    "id": "input_face_fixtures",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 997,
+   "elapsed_ms": 410,
    "portable": true,
    "covers": [
     "05-exec/r38_debt_aging.py 的 face_round/face_dedup/face_dating",
     "05-exec/r46_mark_verdict.py 的 landed_contradiction/item_own_id（第⑥重拒写）",
     "真卷输入面守恒（RE_ITEM 行数 == 计入条目数 + 前缀键零碰撞）"
    ],
-   "tail": "中行数 == 计入条目数（零静默吞行） | PASS i3 真卷：80 字前缀键零碰撞（去重键不吞不同条目） | 真卷面 -> D:\\app-cache\\temp\\r49face_0ib3xmtk\\real_face.json |   raw_lines=193 items=193 collisions=0 | 夹具合计: 38 项，通过 38，失败 0 | [GATE:fixture-pass]"
+   "tail": "中行数 == 计入条目数（零静默吞行） | PASS i3 真卷：80 字前缀键零碰撞（去重键不吞不同条目） | 真卷面 -> D:\\app-cache\\temp\\r49face_7g_l3uym\\real_face.json |   raw_lines=193 items=193 collisions=0 | 夹具合计: 38 项，通过 38，失败 0 | [GATE:fixture-pass]"
   },
   {
    "id": "authority_face_fixtures",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 1197,
+   "elapsed_ms": 1127,
    "portable": false,
    "covers": [
     "05-exec/rule_conflict_scan.py 的 discover_authority_candidates/face_authority_coverage/effective_files",
@@ -237,7 +237,7 @@
    "id": "scan_inputs_fixtures",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 1350,
+   "elapsed_ms": 1302,
    "portable": true,
    "covers": [
     "05-exec/rule_conflict_scan.py 的 DEFAULT_FILES 与 input_evidence",
@@ -249,7 +249,7 @@
    "id": "debt_ledger_fixtures",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 4960,
+   "elapsed_ms": 5068,
    "portable": true,
    "covers": [
     "05-exec/r38_debt_aging.py 的 append_ledger 与 classify_item",
@@ -261,7 +261,7 @@
    "id": "noise_tracked_stub",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 30201,
+   "elapsed_ms": 29966,
    "portable": false,
    "covers": [
     "D:\\global_skills\\A-project-handoff\\scripts\\noise_lint.py",
@@ -274,19 +274,19 @@
    "id": "gate_run_freshness",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 280,
+   "elapsed_ms": 271,
    "portable": true,
    "covers": [
     "06-benchmark/gate_runs.jsonl 执行台账",
     "间接盯住 ratchet_gate / r19_scan_fixtures 两台机专属门是否仍被人跑"
    ],
-   "tail": "days=7 天｜来源域: ['local', 'ci']｜时间格式: %Y-%m-%dT%H:%M:%S | 覆盖根: 本机专属门 = ratchet_gate / r19_scan_fixtures（仓内无 SKILL.md 语料，CI 永远看不到） | [FRESH:PASS] 最近本机 PASS 距今 0.00 天 ≤ max_days=7；台账共 360 条（本机 360 / CI 0）"
+   "tail": "days=7 天｜来源域: ['local', 'ci']｜时间格式: %Y-%m-%dT%H:%M:%S | 覆盖根: 本机专属门 = ratchet_gate / r19_scan_fixtures（仓内无 SKILL.md 语料，CI 永远看不到） | [FRESH:PASS] 最近本机 PASS 距今 0.00 天 ≤ max_days=7；台账共 368 条（本机 368 / CI 0）"
   },
   {
    "id": "roster_partition_fixtures",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 332,
+   "elapsed_ms": 300,
    "portable": true,
    "covers": [
     "05-exec/baseline_contract_scan.py 的 inv_roster_partition_sum（r60 新增不变式）",
@@ -299,7 +299,7 @@
    "id": "py_syntax_guard",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 473,
+   "elapsed_ms": 477,
    "portable": true,
    "covers": [
     "05-exec/*.py 全部 99 件（compile exec 模式逐件解析，空面判红）"
@@ -310,7 +310,7 @@
    "id": "action_pin_guard",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 207,
+   "elapsed_ms": 177,
    "portable": true,
    "covers": [
     ".github/workflows/*.yml 的全部 `uses:` 引用面（含 @main 分支形与截断 SHA 形）",
@@ -323,7 +323,7 @@
    "id": "retired_face",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 313,
+   "elapsed_ms": 258,
    "portable": false,
    "covers": [
     "D:/global_skills 磁盘集 ∩ 焚诀 eval/truth_constants.json 的 retired_skills（退役必须已移出扫描树）",
@@ -336,7 +336,7 @@
    "id": "generator_face",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 1275,
+   "elapsed_ms": 1167,
    "portable": false,
    "covers": [
     "05-exec/schemas/r19/baseline-contracts.json 的 artifacts 里每个 pattern ⇄ 05-exec/*.py 的生成器面",
@@ -349,20 +349,20 @@
    "id": "input_pin_face",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 829,
+   "elapsed_ms": 714,
    "portable": false,
    "covers": [
     "焚诀 eval/truth_constants.json 的 paths / junction_paths / endpoints.active 声明面",
     "各端 skills|memory junction 是否解析到声明的权威根（形态/存在/目标三项）",
     "06-benchmark/input_pins.jsonl 的 pin 落账与「本行自洽」（写哪本/指哪本/比哪本）"
    ],
-   "tail": "）｜新面孔配额 12 |   ℹ️ 与上一行台账比：pin 变动 1 个面：焚诀（advisory，只报不阻断） |    ℹ️ 跨轮趋势：最常变面 = C:\\Users\\37533\\Desktop\\workspace\\焚诀（变动 131 次 / 共 230 行，advisory） | [PIN:PASS] 镜像面 16 条全部钉在权威源（声明 null 2 条已逐条列出）｜pin 已落账 3 面"
+   "tail": "0 行）｜新面孔配额 12 |   ℹ️ 与上一行台账比：pin 变动 0 个面（advisory，只报不阻断） |    ℹ️ 跨轮趋势：最常变面 = C:\\Users\\37533\\Desktop\\workspace\\焚诀（变动 135 次 / 共 238 行，advisory） | [PIN:PASS] 镜像面 16 条全部钉在权威源（声明 null 2 条已逐条列出）｜pin 已落账 3 面"
   },
   {
    "id": "debt_face_freshness",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 351,
+   "elapsed_ms": 295,
    "portable": true,
    "covers": [
     "05-exec/ratchet_gate.py 的 _debt_artifact_fresh / _newest_artifact（相对新鲜谓词）",
@@ -375,7 +375,7 @@
    "id": "retired_reflow_fixtures",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 2353,
+   "elapsed_ms": 2105,
    "portable": true,
    "covers": [
     "05-exec/r59_retired_face.py 的 attribute_producer / _git_tracked_n（经活体 run() 取数，夹具不重写谓词）",
@@ -389,7 +389,7 @@
    "id": "r112_provenance_fixtures",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 641,
+   "elapsed_ms": 615,
    "portable": true,
    "covers": [
     "05-exec/r112_upstream_probe.py 的 relation()（六态内容寻址关系）",
@@ -404,7 +404,7 @@
    "id": "provenance_face",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 249,
+   "elapsed_ms": 218,
    "portable": true,
    "covers": [
     "06-benchmark/provenance_r112_*.json（三档置信度守恒 + 覆盖根自证）",
@@ -418,7 +418,7 @@
    "id": "cache_guard_fixtures",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 493,
+   "elapsed_ms": 398,
    "portable": true,
    "covers": [
     "05-exec/r112_upstream_probe.py 的 fetch_candidate 缓存写侧（失败不覆盖已成功的缓存）",
@@ -432,7 +432,7 @@
    "id": "r113_degrade_fixtures",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 410,
+   "elapsed_ms": 350,
    "portable": true,
    "covers": [
     "05-exec/r96_twelve_face.py 的 degrade_check / available_n / read_json_or_none",
@@ -446,7 +446,7 @@
    "id": "cache_guard_face",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 265,
+   "elapsed_ms": 480,
    "portable": true,
    "covers": [
     "05-exec/*.py 全量面：远端取数 + 写持久证据路径 的组合形态",
@@ -460,7 +460,7 @@
    "id": "cache_guard_face_fixtures",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 939,
+   "elapsed_ms": 781,
    "portable": true,
    "covers": [
     "第 34 门自身的 W-47 双向证据（f1 裸写点名 / f2 带守卫判绿 / f3-f4 两条豁免 / f5 真机接线 / f6 零输入）",
@@ -473,7 +473,7 @@
    "id": "migration_guard",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 218,
+   "elapsed_ms": 201,
    "portable": true,
    "covers": [
     "04-plan/迁移替换方案_r114 必须含 W-1 四 token（W-1 / r118_swap_sim.py / 正向 delta / 短路先于召回）",
@@ -486,7 +486,7 @@
    "id": "r117_upstream_delta_fixtures",
    "state": "PASS",
    "rc": 0,
-   "elapsed_ms": 302,
+   "elapsed_ms": 275,
    "portable": true,
    "covers": [
     "05-exec/r116_upstream_delta_classify.py 的四类唯一归类与分母守恒（含 r117 修的正则支）",
@@ -504,6 +504,6 @@
  ],
  "verdict": "PASS",
  "verdict_reason": "PASS=38（无 FAIL / 无 UNVERIFIED / 无 MISSING）",
- "total_ms": 95429,
+ "total_ms": 93221,
  "gates_run": 38
 }
