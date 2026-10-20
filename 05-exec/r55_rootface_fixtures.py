@@ -18,6 +18,12 @@ import shutil
 import subprocess
 import sys
 
+# r123 自抓（判据输入面污染：夹具自己的 __pycache__ 反咬自己）：runner 不设
+# PYTHONPYCACHEPREFIX，子进程把 pycache 写进 05-exec/__pycache__，而 noise 的
+# 「子目录内部散落（二级扫描）」把它判成 VIOL，于是 f7 计数复位 / f10 同面比对必失败。
+# 实测：同一夹具带 prefix 跑 12/12，不带 prefix 跑 8/12（f7/f10/f4/f9 红）。
+# 修法：夹具进程启动即把 pycache 指到系统临时区，禁让它落在受检面内。
+os.environ.setdefault("PYTHONPYCACHEPREFIX", os.path.join(os.environ.get("TEMP", "C:/Temp"), "pyc_r55"))
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 HANDOFF = r"D:/global_skills/A-project-handoff/scripts/handoff.py"
@@ -35,14 +41,46 @@ def ck(name, cond, detail=""):
                          ("  ← " + str(detail)[:150]) if detail and not cond else ""))
 
 
+def _extract_summary(text):
+    """从 handoff.py 输出里提取「汇总：」后的 JSON 字典（括号配平，非正则）。
+
+    r123 修：原用正则 `\{.*?\}`，stdout 里「汇总」之后还有其它行时非贪婪会跨行
+    匹配到错误闭合点（实测 JSONDecodeError column 71），且原贪婪式在多字典时串味。
+    正则对嵌套结构本就不可靠 ⇒ 改为从「汇总：」起逐字符配平花括号。
+    """
+    if not text:
+        return None
+    i = text.find("汇总：")
+    if i < 0:
+        return None
+    j = text.find("{", i)
+    if j < 0:
+        return None
+    depth = 0
+    for k in range(j, len(text)):
+        c = text[k]
+        if c == "{":
+            depth += 1
+        elif c == "}":
+            depth -= 1
+            if depth == 0:
+                try:
+                    return json.loads(text[j:k + 1])
+                except ValueError:
+                    return None
+    return None
+
 def _run_noise_on(target):
+    # r123 修（时序缺陷）：f10 跑在 f4/f7 之后，此刻夹具自身的 __pycache__ 已生成，
+    # 而 noise 的二级扫描把它计成 VIOL ⇒ 相对根比绝对根多一个 violation（假红）。
+    # 修法：比对前清掉受检面内的 pycache，确保两侧读到同一状态。
+    shutil.rmtree(os.path.join(HERE, "__pycache__"), ignore_errors=True)
     env = dict(os.environ, PYTHONPYCACHEPREFIX=r"C:/tmp/pyc_r55")
     p = subprocess.run([sys.executable, HANDOFF, "noise", target],
                        capture_output=True, text=True, encoding="utf-8",
                        errors="replace", env=env, cwd=ROOT)
     out = (p.stdout or "") + (p.stderr or "")
-    m = re.search(r"汇总：\s*(\{.*\})", out)
-    summary = json.loads(m.group(1)) if m else None
+    m = None; summary = _extract_summary(out)
     items = []
     for l in out.splitlines():
         parts = l.split(None, 3)
@@ -97,17 +135,31 @@ def main():
        back.get("violation") == base.get("violation")
        and not any("probe" in n for k, n, r in viol2),
        "before=%s after=%s VIOL=%s" % (base.get("violation"), back.get("violation"), viol2))
-    ck("f8 残留项可逐条解释：当前 VIOL 只容 R269 登记项与 W-39 待裁定项",
-       all(("手动维护" in n) or ("mark_backup" in n) for k, n, r in viol2), "VIOL=%s" % viol2)
-
-    # f10/f11 = R287（查表键绝对化）双向锁：相对路径不得换面，未登记根仍须 strict。
+    # r123 自抓（X-9 同族：判据为存量违规开永久豁免）：原白名单写死 mark_backup，
+    # 等于该目录的散落永不判红。实测后果 —— r57 清理过 20 份后，之后又无声攒到 40 份
+    # （5 份被 git 跟踪 + 35 份未跟踪），root_face 全程放行；本轮清理（备份入 _trash 后
+    # git rm --cached + 删目录）才让 f8 重新有牙。
+    # 修法：豁免改为带轮次上限的登记项，禁写死目录名（写死 = 该目录今后永远免检）。
+    EXEMPT = ("手动维护",)
+    LIVE_EXEMPT_CAP = 0
+    live_exempt = [v for v in viol2 if any(e in v[1] for e in EXEMPT)]
+    ck("f8 残留项可逐条解释：当前 VIOL 只容 R269 登记项（带轮次上限），禁写死目录名豁免（仅覆盖 noise 可见面，二级盲区由 f12 守）",
+       len(live_exempt) <= LIVE_EXEMPT_CAP,
+       "VIOL=%s live_exempt=%d cap=%d" % (viol2, len(live_exempt), LIVE_EXEMPT_CAP))
     env = dict(os.environ, PYTHONPYCACHEPREFIX=r"C:/tmp/pyc_r55")
-    p_rel = subprocess.run([sys.executable, NL, "."], capture_output=True, text=True,
+    # r123 修（X-28：一律走真实派发入口）：f10 原先直调 NL（noise_lint.py），而基线 sum0
+    # 走的是 HANDOFF（handoff.py noise）。两个入口的汇总 key 生成规则不同 ⇒ 同面被读成两个面。
+    # 改为与基线同一入口，只把参数换成相对根 ""。
+    p_rel = subprocess.run([sys.executable, HANDOFF, "noise", "."], capture_output=True, text=True,
                            encoding="utf-8", errors="replace", env=env, cwd=ROOT)
-    m = re.search(r"汇总：\s*(\{.*\})", p_rel.stdout or "")
-    same = bool(m) and json.loads(m.group(1)).get(".") == (sum0 or {}).get("自建skill优化")
+    rel_sum = _extract_summary(p_rel.stdout or "")
+    # r123 修：handoff.py 的汇总键是**传入参数原样**（"." vs "自建skill优化"），
+    # 属显示层不是判定层。原判据要求键名相同 ⇒ 恒假红。改为比较**值**（同一面 = 值相同）。
+    rel_val = list(rel_sum.values())[0] if rel_sum else None
+    abs_val = list((sum0 or {}).values())[0] if sum0 else None
+    same = rel_val is not None and rel_val == abs_val
     ck("f10 R287 正例：`noise .`（相对根）与绝对路径必须给出**同一个面**（修前 13 vs 2）",
-       same, "dot=%s abs=%s" % (m.group(1) if m else None, sum0))
+       same, "dot=%s abs=%s" % (rel_val, abs_val))
 
     tmp2 = os.path.join(r"C:/tmp", "r55_unreg_rel_root")
     try:
@@ -117,12 +169,11 @@ def main():
         p_rel2 = subprocess.run([sys.executable, NL, "r55_unreg_rel_root"], capture_output=True,
                                 text=True, encoding="utf-8", errors="replace",
                                 env=env, cwd=r"C:/tmp")
-        mm = re.search(r"汇总：\s*(\{.*\})", p_rel2.stdout or "")
-        s2 = json.loads(mm.group(1)) if mm else {}
-        got = list(s2.values())[0] if s2 else {}
+        rel2_sum = _extract_summary(p_rel2.stdout or "")
+        got = list(rel2_sum.values())[0] if rel2_sum else {}
         ck("f11 R287 反例（禁顺手放宽）：未登记的相对根仍须落 strict 判红",
            got.get("violation", 0) >= 2 and p_rel2.returncode != 0,
-           "out=%s rc=%s" % (s2, p_rel2.returncode))
+            "out=%s rc=%s" % (rel2_sum, p_rel2.returncode))
     finally:
         shutil.rmtree(tmp2, ignore_errors=True)
 
@@ -140,6 +191,22 @@ def main():
            "顶层 VIOL=%s rc=%s" % (top9, rc9))
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
+    # r123 f12（二级目录盲区）：handoff.py noise 只扫项目根顶层，05-exec 下二级目录散落它结构上看不见。
+    # r123 一手实证：mark_backup 从 r57 清理后无声攒到 40 份（35 未跟踪 + 5 被 git 跟踪），
+    # noise 全程报 violation=0；f8 白名单还写死 mark_backup 给它永久免检，双重失效。
+    # 修法：直接扫 05-exec/06-benchmark 二级目录的备份形态，零容忍。
+    import glob as _glob
+    _stray_pat = ["*.bak", "*.orig", "*.tmp", "*~", "*.bak.*"]
+    _strays = []
+    for _sub in ("05-exec", "06-benchmark"):
+        for _pat in _stray_pat:
+            for _f in _glob.glob(os.path.join(ROOT, _sub, "**", _pat), recursive=True):
+                _rel = os.path.relpath(_f, ROOT).replace(os.sep, "/")
+                if _rel.startswith("_trash/") or "/_trash/" in _rel:
+                    continue
+                _strays.append(_rel)
+    ck("f12 二级盲区：05-exec/06-benchmark 下不得有备份形态散落（r57 后 mark_backup 无声攒到 40 份的一手教训）",
+       not _strays, "strays=%s" % _strays[:8])
     return finish()
 
 
