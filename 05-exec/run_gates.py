@@ -48,6 +48,20 @@ ORIGIN = "ci" if os.environ.get("GITHUB_ACTIONS") == "true" else "local"
 # 单一真相源：门禁清单只在这里维护。AGENTS.md / CI / 会话内手工跑，都走本表。
 GATES = [
     {
+        # r130：门表变更对账闸（R129-5 落地）—— 新增门必须留对账痕迹
+        "id": "gate_table_reconcile",
+        "script": "r130_gate_table_reconcile.py",
+        "argv": [],
+        "pass_token": "[GATETABLE]",
+        "portable": False,
+        "not_portable_reason":
+            "读本仓 05-exec/run_gates.py 的 GATES 表与 06-benchmark/gate_reconcile_registry.json 快照台账；换机无本仓门表时检查失去对象",
+        "covers": ["新增门 vs 上次快照的差集（抓「刚加的门没对账就进表」）",
+                   "移除门具名告警（门禁数减少须人工确认，防误删）",
+                   "快照机制：全部新增门已登记才写回快照，避免与 git 历史重复计数"],
+        "why": "r126 新判据直接进巡检直接出报告数字，45 条假红流进两份文档；r128 做了对账机器（第 40 门）、r129 做了入库准入门（第 41 门），但两者都只是「跑的时候报」，没有要求新增门留下对账痕迹。本门补这一环。r130 首跑连续自抓三次（比 git 历史抓不到已提交的新门 / 解析把 rows.append 当门 / 冷启动不写快照），与 r126 同族的「判据自身先假红」形态。",
+    },
+    {
         "id": "r19_scan_fixtures",
         "script": "r19_scan_fixtures.py",
         "argv": [],
