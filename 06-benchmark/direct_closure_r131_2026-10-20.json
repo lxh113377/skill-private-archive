@@ -1,0 +1,180 @@
+{
+ "schema": "direct-closure-r131-v1",
+ "cmd": "python 05-exec/r131_direct_closure.py --json <out>",
+ "face": {
+  "questions_n": 279,
+  "hit_n": 261,
+  "direct_closed_n": 6,
+  "stale_n": 10,
+  "recoverable_n": 2,
+  "reading": {
+   "direct_closed_n": "期望件在册但 direct_route 正则抢答成别的 => 语料改造无效（第 10 类失败层）",
+   "stale_n": "期望件已退役（不在盘不在语料）=> STALE 题面，不是路由缺陷",
+   "recoverable_n": "期望件在册且未被抢答，纯粹排序错 => 语料/排序面可救"
+  }
+ },
+ "direct_closed": [
+  {
+   "set": "layered",
+   "query": "灵感枯竭帮我发散一波点子",
+   "expected": "brainstorming",
+   "got": "story",
+   "direct_hit": true,
+   "on_disk": true,
+   "in_corpus": true,
+   "cls": "DIRECT_CLOSED"
+  },
+  {
+   "set": "layered",
+   "query": "帮我做一个动画丰富的 HTML 演示文稿",
+   "expected": "frontend-slides",
+   "got": "ppt-master",
+   "direct_hit": true,
+   "on_disk": true,
+   "in_corpus": true,
+   "cls": "DIRECT_CLOSED"
+  },
+  {
+   "set": "layered",
+   "query": "Notion 会议准备",
+   "expected": "meeting-intelligence",
+   "got": "NONE",
+   "direct_hit": true,
+   "on_disk": true,
+   "in_corpus": true,
+   "cls": "DIRECT_CLOSED"
+  },
+  {
+   "set": "layered",
+   "query": "新技能装之前先安全审查",
+   "expected": "A-skill-manager",
+   "got": "security-audit",
+   "direct_hit": true,
+   "on_disk": true,
+   "in_corpus": true,
+   "cls": "DIRECT_CLOSED"
+  },
+  {
+   "set": "layered",
+   "query": "录音转文字",
+   "expected": "video-whisper-transcribe",
+   "got": "local-asr",
+   "direct_hit": true,
+   "on_disk": true,
+   "in_corpus": true,
+   "cls": "DIRECT_CLOSED"
+  },
+  {
+   "set": "frozen",
+   "query": "给一个GitHub项目写代码审查意见",
+   "expected": "github",
+   "got": "code-review",
+   "direct_hit": true,
+   "on_disk": true,
+   "in_corpus": true,
+   "cls": "DIRECT_CLOSED"
+  }
+ ],
+ "stale": [
+  {
+   "set": "layered",
+   "query": "搜索网上资料写研究报告",
+   "expected": "deep-research-pro",
+   "got": "consulting-analysis",
+   "direct_hit": true,
+   "on_disk": false,
+   "in_corpus": false,
+   "cls": "STALE"
+  },
+  {
+   "set": "layered",
+   "query": "按焚诀评分机制给三件套评个分",
+   "expected": "fenjue-advisor-scoring",
+   "got": "openclaw-fenjue-weekly",
+   "direct_hit": false,
+   "on_disk": false,
+   "in_corpus": false,
+   "cls": "STALE"
+  },
+  {
+   "set": "layered",
+   "query": "跑一轮 CC 审计闭环把分数推到达标线",
+   "expected": "fenjue-cc-audit-cycle",
+   "got": "fenjue-memory-audit",
+   "direct_hit": true,
+   "on_disk": false,
+   "in_corpus": false,
+   "cls": "STALE"
+  },
+  {
+   "set": "layered",
+   "query": "多引擎搜索一下这个技术",
+   "expected": "multi-search-engine",
+   "got": "spike",
+   "direct_hit": false,
+   "on_disk": false,
+   "in_corpus": false,
+   "cls": "STALE"
+  },
+  {
+   "set": "layered",
+   "query": "wttr 天气查询",
+   "expected": "weather",
+   "got": "cloudbase-db-optimize",
+   "direct_hit": false,
+   "on_disk": false,
+   "in_corpus": false,
+   "cls": "STALE"
+  },
+  {
+   "set": "layered",
+   "query": "深度调研",
+   "expected": "deep-research-pro",
+   "got": "research-documentation",
+   "direct_hit": false,
+   "on_disk": false,
+   "in_corpus": false,
+   "cls": "STALE"
+  },
+  {
+   "set": "layered",
+   "query": "多引擎搜索",
+   "expected": "multi-search-engine",
+   "got": "web-access",
+   "direct_hit": false,
+   "on_disk": false,
+   "in_corpus": false,
+   "cls": "STALE"
+  },
+  {
+   "set": "layered",
+   "query": "写个脚本定期备份数据库",
+   "expected": "tencent-cos-skill__skillhub",
+   "got": "cloudbase-db-optimize",
+   "direct_hit": false,
+   "on_disk": false,
+   "in_corpus": false,
+   "cls": "STALE"
+  },
+  {
+   "set": "frozen",
+   "query": "把PPT里的文字提取出来做成演讲稿",
+   "expected": "pptx",
+   "got": "ppt-master",
+   "direct_hit": true,
+   "on_disk": false,
+   "in_corpus": false,
+   "cls": "STALE"
+  },
+  {
+   "set": "frozen",
+   "query": "写个脚本定期备份数据库",
+   "expected": "tencent-cos-skill__skillhub",
+   "got": "cloudbase-db-optimize",
+   "direct_hit": false,
+   "on_disk": false,
+   "in_corpus": false,
+   "cls": "STALE"
+  }
+ ]
+}

@@ -79,12 +79,40 @@ QUARTERLY = os.path.join(HERE, 'r113_quarterly_audit.py')
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--json', dest='out')
+    # r131 补（门会抓你却没给你登记通道）：本门首跑就把 r131 新建的
+    # r131_closure_layers.py / r131_direct_closure.py 判成 UNDECLARED，
+    # 但工具没有 --record，只能改脚本名或手改台账 —— 「有牙齿但没钥匙」同样 unusable。
+    ap.add_argument('--register', default='', help='把该脚本登记为「只读面豁免」（须带 --evidence 对账/夹具产物）')
+    ap.add_argument('--evidence', default='', help='--register 的证据产物路径（必填，禁无证据登记）')
+    REG = os.path.join(ROOT, '05-exec', '.read_face_registry.json')
     args = ap.parse_args()
     if not os.path.isfile(RUNNER):
         print('[ADMIT] UNVERIFIED runner 不存在: %s' % RUNNER)
         return 2
     runner_src = io.open(RUNNER, encoding='utf-8').read()
     registered = set(m.group(1) for m in SCRIPT_RE.finditer(runner_src))
+    # --register 形态：把一个只读面脚本登记豁免（必须带真实证据产物）
+    reg_path = REG
+    reg = {}
+    if os.path.isfile(reg_path):
+        try:
+            reg = json.loads(io.open(reg_path, encoding='utf-8').read()) or {}
+        except Exception:
+            reg = {}
+    if args.register:
+        if not args.evidence:
+            print('[ADMIT] REFUSE --register 须同时给 --evidence（无证据的登记等于装饰）')
+            return 1
+        ev = args.evidence
+        full = ev if os.path.isabs(ev) else os.path.join(ROOT, ev)
+        if not os.path.isfile(full):
+            print('[ADMIT] REFUSE 证据文件不存在: %s' % ev)
+            return 1
+        reg[args.register] = {'evidence': ev, 'registered_at': __import__('datetime').datetime.now().strftime('%Y-%m-%d %H:%M')}
+        with io.open(reg_path, 'w', encoding='utf-8', newline='\n') as f:
+            json.dump(reg, f, ensure_ascii=False, indent=1)
+        print('[ADMIT] REGISTERED %s（证据 %s）' % (args.register, ev))
+        return 0
     qsrc = io.open(QUARTERLY, encoding='utf-8').read() if os.path.isfile(QUARTERLY) else ''
     quarterly = set(m.group(1) for m in re.finditer(r'"(r\d+_[A-Za-z0-9_]+\.py)"', qsrc))
     print('[ADMIT] runner 已登记门脚本 %d 个 / 季度巡检已登记 %d 个' % (len(registered), len(quarterly)))
@@ -142,6 +170,8 @@ def main():
         if f in quarterly:
             continue
         if exempt.search(f):
+            continue
+        if f in reg:
             continue
         try:
             src = io.open(os.path.join(HERE, f), encoding='utf-8').read()

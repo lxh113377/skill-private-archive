@@ -1,0 +1,10 @@
+{
+ "r131_direct_closure": {
+  "evidence": "06-benchmark/direct_closure_r131_2026-10-20.json",
+  "registered_at": "2026-10-20 17:33"
+ },
+ "r131_closure_layers": {
+  "evidence": "06-benchmark/closure_layers_r131_2026-10-20.json",
+  "registered_at": "2026-10-20 17:33"
+ }
+}

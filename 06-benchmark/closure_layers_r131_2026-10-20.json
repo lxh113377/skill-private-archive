@@ -1,0 +1,115 @@
+{
+ "schema": "closure-layers-r131-v1",
+ "cmd": "python 05-exec/r131_closure_layers.py --json <out>",
+ "upstream": {
+  "direct": "",
+  "tag": ""
+ },
+ "face": {
+  "miss_n": 17,
+  "by_first_layer": {
+   "DOMAIN": 5,
+   "DIRECT": 6,
+   "TAG": 5,
+   "OPEN": 1
+  },
+  "layer_order": [
+   "DIRECT",
+   "TAG",
+   "DOMAIN",
+   "OPEN"
+  ],
+  "reading": {
+   "by_first_layer": "按「**最先**挡住期望件的那一层」归类；同一题可能同时被多层挡，只记最早的一层",
+   "layer_order": "修哪层收益最大：DIRECT > TAG > DOMAIN（越靠前越早出局，且 L1.5 已给域路径留了兜底）",
+   "STALE": "期望件已退役 ⇒ 属题面维护问题，不是路由缺陷（禁算进路由质量）"
+  }
+ },
+ "rows": [
+  {
+   "query": "Notion 会议准备",
+   "first_blocking_layer": "DIRECT",
+   "expected": "meeting-intelligence"
+  },
+  {
+   "query": "帮我做一个动画丰富的 HTML 演示文稿",
+   "first_blocking_layer": "DIRECT",
+   "expected": "frontend-slides"
+  },
+  {
+   "query": "录音转文字",
+   "first_blocking_layer": "DIRECT",
+   "expected": "video-whisper-transcribe"
+  },
+  {
+   "query": "新技能装之前先安全审查",
+   "first_blocking_layer": "DIRECT",
+   "expected": "A-skill-manager"
+  },
+  {
+   "query": "灵感枯竭帮我发散一波点子",
+   "first_blocking_layer": "DIRECT",
+   "expected": "brainstorming"
+  },
+  {
+   "query": "给一个GitHub项目写代码审查意见",
+   "first_blocking_layer": "DIRECT",
+   "expected": "github"
+  },
+  {
+   "query": "同步技能",
+   "first_blocking_layer": "TAG",
+   "expected": "A-skill-manager"
+  },
+  {
+   "query": "多引擎搜索",
+   "first_blocking_layer": "TAG",
+   "expected": "multi-search-engine"
+  },
+  {
+   "query": "多引擎搜索一下这个技术",
+   "first_blocking_layer": "TAG",
+   "expected": "multi-search-engine"
+  },
+  {
+   "query": "搜索网上资料写研究报告",
+   "first_blocking_layer": "TAG",
+   "expected": "deep-research-pro"
+  },
+  {
+   "query": "深度调研",
+   "first_blocking_layer": "TAG",
+   "expected": "deep-research-pro"
+  },
+  {
+   "query": "写个脚本定期备份数据库",
+   "first_blocking_layer": "DOMAIN",
+   "expected": "tencent-cos-skill__skillhub"
+  },
+  {
+   "query": "帮我清理提示词里堆积的补丁",
+   "first_blocking_layer": "DOMAIN",
+   "expected": "prompt-consolidation"
+  },
+  {
+   "query": "把PPT里的文字提取出来做成演讲稿",
+   "first_blocking_layer": "DOMAIN",
+   "expected": "pptx"
+  },
+  {
+   "query": "按焚诀评分机制给三件套评个分",
+   "first_blocking_layer": "DOMAIN",
+   "expected": "fenjue-advisor-scoring"
+  },
+  {
+   "query": "跑一轮 CC 审计闭环把分数推到达标线",
+   "first_blocking_layer": "DOMAIN",
+   "expected": "fenjue-cc-audit-cycle"
+  },
+  {
+   "query": "wttr 天气查询",
+   "first_blocking_layer": "OPEN",
+   "expected": "weather"
+  }
+ ]
+}

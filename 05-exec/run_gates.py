@@ -48,6 +48,18 @@ ORIGIN = "ci" if os.environ.get("GITHUB_ACTIONS") == "true" else "local"
 # 单一真相源：门禁清单只在这里维护。AGENTS.md / CI / 会话内手工跑，都走本表。
 GATES = [
     {
+        # r131（r130 代入册——准入门 UNDECLARED 抓到）：三层闭包统一面与修复优先级序
+        "id": "closure_layers_face",
+        "script": "r131_closure_layers.py",
+        "argv": [],
+        "pass_token": "[LAYERS]",
+        "portable": False,
+        "not_portable_reason": "建立在 direct_closure 与 tag_closure 两个上游面之上，须真跑焚诀路由与语料",
+        "covers": ["未命中题按「最先挡住期望件的那一层」归类（DIRECT / TAG / DOMAIN / OPEN）",
+                   "修复优先级序 DIRECT > TAG > DOMAIN（越靠前越早出局，且域路径已有 L1.5 兜底）"],
+        "why": "r120 立域过滤（第 8 类）、r126 立 tag 闭包（第 9 类）、r131 立 direct 抢答（第 10 类），三张面各自成件但读者无法一眼看出哪些 miss 是闭包、哪些是可救的排序错。本件把三层合成一张表 + 一个优先级序。r131 实测：未命中 17 题 = DIRECT 6 / TAG 5 / DOMAIN 5 / OPEN 1，且三层交叉验证交集 6、差集 0（互相印证，无一层给另一层制造假绿）。",
+    },
+    {
         # r130：门表变更对账闸（R129-5 落地）—— 新增门必须留对账痕迹
         "id": "gate_table_reconcile",
         "script": "r130_gate_table_reconcile.py",
@@ -634,6 +646,18 @@ GATES = [
         "why": "r117 一手两条都属『应绿的绿也是假的』：① 分类器的 conservation_ok 对正则缺陷零鉴别力"
                "（分母没变，只是归类错了）；② 归因引擎若把 STALE 与 REAL 弄反，改进靶子会被虚增或被掩盖，"
                "两个方向都必须有夹具看着（W-47 双向 + 变异腿）。",
+    },
+    {
+        # r131（并行会话登记，r130 代入册——准入门 UNDECLARED 抓到）：第 10 类失败层常驻读数
+        "id": "direct_closure_face",
+        "script": "r131_direct_closure.py",
+        "argv": [],
+        "pass_token": "[DIRECTCLOSE]",
+        "portable": False,
+        "not_portable_reason": "读 L2 frozen 盲测集与 eval/direct_map.json（焚诀仓内路径）",
+        "covers": ["第 10 类失败层 direct_map 正则抢答常驻读数（L2 frozen 3 条 miss 逐层复盘）",
+                   "STALE 题面（已退役件）与 DIRECT-CLOSED 逐条列名"],
+        "why": "r131 一手：direct_route 是生产链路第一环，正则命中即短路返回，BGE 根本不参与——期望件连候选集都进不去（比 tag 闭包第 9 类更靠前）。常驻后可观测该层 miss 增减。",
     },
 ]
 
