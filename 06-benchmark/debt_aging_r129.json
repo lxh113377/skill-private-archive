@@ -1,6 +1,6 @@
 {
  "schema": "debt-aging-v2",
- "generated_at": "2026-10-20T16:55:26",
+ "generated_at": "2026-10-20T17:02:14",
  "readonly": true,
  "grace_rounds": 2,
  "current_round": 129,
@@ -334,5 +334,9 @@
    "selector": "末行",
    "command": "tail -1 06-benchmark/debt_runs.jsonl"
   }
- }
+ },
+ "handles_drift": [
+  "open_total",
+  "decided"
+ ]
 }
