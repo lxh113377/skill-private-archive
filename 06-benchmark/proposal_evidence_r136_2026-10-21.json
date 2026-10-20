@@ -1,0 +1,200 @@
+{
+ "schema": "proposal-evidence-r136-v1",
+ "cmd": "python 05-exec/r136_proposal_evidence.py --json <out>",
+ "face": {
+  "proposals_n": 11,
+  "by_class": {
+   "COMPLETE": 11
+  },
+  "complete_n": 11,
+  "unbacked_n": 0,
+  "no_acceptance_n": 0,
+  "no_evidence_n": 0,
+  "reading": {
+   "unbacked_n": [
+    "处方追不到任何现存的 05-exec/r1*_*.py 读数面 ⇒ **最该补**。",
+    "这正是 r135 那条观察的可复算形态：纪律立了，但它作用不到自己。"
+   ],
+   "no_acceptance_n": "有处方有证据但缺验收标准 ⇒ 归属方无法判闭环",
+   "no_evidence_n": "有处方但缺证据字段",
+   "complete_n": "四项齐备（fix_hint + evidence + acceptance + 读数面支撑）"
+  }
+ },
+ "rows": [
+  {
+   "pid": "catalog_tax_ratchet",
+   "title": "平台技能目录注意力税棘轮",
+   "class": "COMPLETE",
+   "has_fix_hint": false,
+   "has_evidence": true,
+   "has_acceptance": true,
+   "has_cmd": false,
+   "backed_by": [],
+   "backed_by_prods": [],
+   "labeled_unverified": true,
+   "dead_refs": []
+  },
+  {
+   "pid": "inject_union_merge",
+   "title": "注入区口径合一（多项目注入壳并入统一预算）",
+   "class": "COMPLETE",
+   "has_fix_hint": false,
+   "has_evidence": true,
+   "has_acceptance": true,
+   "has_cmd": false,
+   "backed_by": [],
+   "backed_by_prods": [],
+   "labeled_unverified": true,
+   "dead_refs": []
+  },
+  {
+   "pid": "claim_truth_gate",
+   "title": "计数断言内容级门禁（注入文本里的数字断言与真相源对账）",
+   "class": "COMPLETE",
+   "has_fix_hint": false,
+   "has_evidence": true,
+   "has_acceptance": true,
+   "has_cmd": false,
+   "backed_by": [],
+   "backed_by_prods": [],
+   "labeled_unverified": true,
+   "dead_refs": []
+  },
+  {
+   "pid": "noise_scope_footgun",
+   "title": "noise 门禁把「任意工作区自身结构」判成散落项并建议迁 _trash",
+   "class": "COMPLETE",
+   "has_fix_hint": false,
+   "has_evidence": true,
+   "has_acceptance": true,
+   "has_cmd": false,
+   "backed_by": [],
+   "backed_by_prods": [],
+   "labeled_unverified": true,
+   "dead_refs": []
+  },
+  {
+   "pid": "skill_hitrate_stale_expectations",
+   "title": "layered 盲测集 6 个期望 skill 已不在册/不在盘（题面过期）",
+   "class": "COMPLETE",
+   "has_fix_hint": false,
+   "has_evidence": true,
+   "has_acceptance": true,
+   "has_cmd": false,
+   "backed_by": [
+    "r131_direct_closure.py"
+   ],
+   "backed_by_prods": [
+    "route_miss_attr_r117_2026-10-18.json"
+   ],
+   "labeled_unverified": false,
+   "dead_refs": []
+  },
+  {
+   "pid": "route_miss_shortcircuit_layer",
+   "title": "route miss short-circuit layer belongs to eval/; SKILL.md cannot reach",
+   "class": "COMPLETE",
+   "has_fix_hint": false,
+   "has_evidence": true,
+   "has_acceptance": true,
+   "has_cmd": false,
+   "backed_by": [
+    "r131_closure_layers.py"
+   ],
+   "backed_by_prods": [
+    "layer_attr_r119_2026-10-20.json"
+   ],
+   "labeled_unverified": false,
+   "dead_refs": []
+  },
+  {
+   "pid": "derivative_watch_domain_skip_drift",
+   "title": "derivative_watch.collect_artifacts 域 JSON 豁免名单漏 tfidf_vocab_idf.json ⇒",
+   "class": "COMPLETE",
+   "has_fix_hint": true,
+   "has_evidence": true,
+   "has_acceptance": true,
+   "has_cmd": true,
+   "backed_by": [],
+   "backed_by_prods": [],
+   "labeled_unverified": false,
+   "dead_refs": []
+  },
+  {
+   "pid": "domain_filter_latent_exposure",
+   "title": "L0 域过滤 latent exposure：59 题域失配，仅 4 题真实暴露、1 题真失败（prompt-consolidation）",
+   "class": "COMPLETE",
+   "has_fix_hint": true,
+   "has_evidence": true,
+   "has_acceptance": true,
+   "has_cmd": false,
+   "backed_by": [],
+   "backed_by_prods": [
+    "domain_mismatch_r120_2026-10-20.json",
+    "domain_exposure_r120_2026-10-20.json",
+    "domain_cf_r120_2026-10-20.json"
+   ],
+   "labeled_unverified": false,
+   "dead_refs": []
+  },
+  {
+   "pid": "tag_closure_true_blocked",
+   "title": "Tag 闭包真闭包 2 题（r127 实测口径；r126 报的 15 条是漏建模 L1.5 兜底的假红）",
+   "class": "COMPLETE",
+   "has_fix_hint": true,
+   "has_evidence": true,
+   "has_acceptance": true,
+   "has_cmd": true,
+   "backed_by": [
+    "r126_tag_closure.py",
+    "r131_closure_layers.py"
+   ],
+   "backed_by_prods": [
+    "tag_closure_r127_2026-10-20.json",
+    "tag_closure_r126_2026-10-20.json"
+   ],
+   "labeled_unverified": false,
+   "dead_refs": []
+  },
+  {
+   "pid": "direct_map_regex_preempt",
+   "title": "第 10 类失败层：direct_map 正则抢答 6 条（链路第一环，语料改造对它完全无效）",
+   "class": "COMPLETE",
+   "has_fix_hint": true,
+   "has_evidence": true,
+   "has_acceptance": true,
+   "has_cmd": true,
+   "backed_by": [
+    "r131_direct_closure.py",
+    "r132_direct_fix_efficacy.py"
+   ],
+   "backed_by_prods": [
+    "direct_closure_r131_2026-10-20.json",
+    "direct_fix_efficacy_r132_2026-10-20.json"
+   ],
+   "labeled_unverified": false,
+   "dead_refs": []
+  },
+  {
+   "pid": "corpus_lang_mismatch",
+   "title": "第 11 类失败层：语料语言/表述不匹配致语义排序错位（新建件抢答，非闭包）",
+   "class": "COMPLETE",
+   "has_fix_hint": true,
+   "has_evidence": true,
+   "has_acceptance": true,
+   "has_cmd": true,
+   "backed_by": [
+    "r128_w47_reconcile_fixtures.py",
+    "r133_new_skill_ingress.py",
+    "r135_lang_boost_efficacy.py"
+   ],
+   "backed_by_prods": [
+    "new_skill_ingress_r133_2026-10-21.json",
+    "lang_boost_efficacy_r135_2026-10-21.json"
+   ],
+   "labeled_unverified": false,
+   "dead_refs": []
+  }
+ ],
+ "generated_at": "2026-10-20 18:58"
+}

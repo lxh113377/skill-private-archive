@@ -50,7 +50,7 @@
    "r117_upstream_delta_fixtures",
    "direct_closure_face"
   ],
-  "_snapshot_at": "2026-10-20 18:47",
+  "_snapshot_at": "2026-10-20 18:55",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
@@ -74,6 +74,10 @@
   "lang_boost_efficacy_face": {
    "evidence": "06-benchmark/lang_boost_efficacy_r135_2026-10-21.json",
    "at": "2026-10-20 18:45"
+  },
+  "proposal_evidence_face": {
+   "evidence": "06-benchmark/proposal_evidence_r136_2026-10-21.json",
+   "at": "2026-10-20 18:58"
   }
  }
 }

@@ -48,6 +48,18 @@ ORIGIN = "ci" if os.environ.get("GITHUB_ACTIONS") == "true" else "local"
 # 单一真相源：门禁清单只在这里维护。AGENTS.md / CI / 会话内手工跑，都走本表。
 GATES = [
     {
+        # r136：提案证据自覆盖面（纪律作用到自己身上 —— 提案入册前必过）
+        "id": "proposal_evidence_face",
+        "script": "r136_proposal_evidence.py",
+        "argv": [],
+        "pass_token": "[PROPEV]",
+        "portable": False,
+        "not_portable_reason": "读本仓 06-benchmark/transmit_proposals.json（换机无该台账时检查失去对象）",
+        "covers": ["逐条判四件事：有 fix_hint / 有 evidence / 有 acceptance / 处方被读数面支撑",
+                   "支撑来源三型：现存读数脚本名 / 在盘产物 / 显式标注「未验证」（按 #31 处置）"],
+        "why": "r135 收尾写下「本仓已有 #31/#32/#33 三道纪律，但第 11 条自己的处方没被自己的纪律覆盖」。r136 把它量出来：11 条提案里只有 3 条能追到读数面，8 条追不到。建本门让「提案的处方有据」成为可复算的常驻读数，而不是靠自觉。r136 实测：补齐后 11/11 完整（无支撑 0 / 缺验收 0 / 缺证据 0）。",
+    },
+    {
         # r135：语料语言类处方的实测效力面（第 11 类的第二道腿）
         "id": "lang_boost_efficacy_face",
         "script": "r135_lang_boost_efficacy.py",
