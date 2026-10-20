@@ -1887,5 +1887,8 @@
    "edomain": "memory",
    "mismatch": false
   }
- ]
+ ],
+ "superseded_by": "tag_closure_r127_*.json（r127 指出 r120 用 raw classify_domain 会高估脆弱面）",
+ "superseded_reason": "r130 批量标注：r128 对账普查已实证本件有假红或口径被取代",
+ "superseded_at": "2026-10-20 17:17"
 }

@@ -178,5 +178,8 @@
   "DIRECT_NONE": "direct_route 判「无需 skill」⇒ 负向直连规则问题，同样不在 SKILL.md",
   "TAG_SHORT": "tag 精确过滤唯一命中 ⇒ 失败层在 skill_tags 派生件（禁手改，须重建）",
   "BGE_RECALL": "走到召回层，语料（SKILL.md 前 800 字）参与打分 ⇒ 换装理论上可影响"
- }
+ },
+ "superseded_by": "tag_closure_r127_*.json（同上）",
+ "superseded_reason": "r130 批量标注：r128 对账普查已实证本件有假红或口径被取代",
+ "superseded_at": "2026-10-20 17:17"
 }

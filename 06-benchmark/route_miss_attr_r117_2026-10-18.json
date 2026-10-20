@@ -284,5 +284,8 @@
    "reason": "absent_from_disk_and_registry",
    "pair": "tencent-cos-skill__skillhub->cloudbase-db-optimize"
   }
- ]
+ ],
+ "superseded_by": "route_miss_attr_r123_*.json（r119 起改用实测口径；r117 有 5 条假红）",
+ "superseded_reason": "r130 批量标注：r128 对账普查已实证本件有假红或口径被取代",
+ "superseded_at": "2026-10-20 17:17"
 }

@@ -2,6 +2,7 @@
  "schema": "gate-reconcile-registry-r130-v1",
  "gates": {
   "_snapshot_gate_ids": [
+   "closure_layers_face",
    "gate_table_reconcile",
    "r19_scan_fixtures",
    "r19_baseline_contract_fixtures",
@@ -43,12 +44,21 @@
    "cache_guard_face",
    "cache_guard_face_fixtures",
    "migration_guard",
-   "r117_upstream_delta_fixtures"
+   "r117_upstream_delta_fixtures",
+   "direct_closure_face"
   ],
-  "_snapshot_at": "2026-10-20 17:21",
+  "_snapshot_at": "2026-10-20 17:40",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
+  },
+  "direct_closure_face": {
+   "evidence": "06-benchmark/direct_closure_r131_2026-10-20.json",
+   "at": "2026-10-20 17:39"
+  },
+  "closure_layers_face": {
+   "evidence": "06-benchmark/closure_layers_r131_2026-10-20.json",
+   "at": "2026-10-20 17:39"
   }
  }
 }
