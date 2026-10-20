@@ -2,6 +2,7 @@
  "schema": "gate-reconcile-registry-r130-v1",
  "gates": {
   "_snapshot_gate_ids": [
+   "proposal_evidence_face",
    "lang_boost_efficacy_face",
    "causal_evidence_face",
    "direct_fix_efficacy_face",
@@ -50,7 +51,7 @@
    "r117_upstream_delta_fixtures",
    "direct_closure_face"
   ],
-  "_snapshot_at": "2026-10-20 18:55",
+  "_snapshot_at": "2026-10-20 18:59",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
