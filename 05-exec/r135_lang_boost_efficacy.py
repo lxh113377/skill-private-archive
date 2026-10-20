@@ -1,0 +1,140 @@
+# -*- coding: utf-8 -*-
+# r135_lang_boost_efficacy.py -- 「语料补中文」处方的实测效力面（第 11 类的第二道腿）。
+#
+# 存在理由（r135 一手）：r133 我把「给全英文 description 的自建件补中文触发词」写进转办提案第 11 条，
+# 但**没实测过补在哪里才有效**。r135 沙箱实测（跑 python 05-exec/r135_lang_boost_efficacy.py）：
+#   基线（gsap 原始语料）                  gsap_sim=0.4983  libreoffice-draw=0.5569  margin=-0.0586  top1=libreoffice-draw
+#   处方①原样照搬                            同上                                                       margin=-0.0586
+#   处方①**末尾追加**中文触发词（+39 字符）   同上                                                       margin=-0.0586  <= **完全无效**
+#   **只改 frontmatter** 加中文触发词         gsap_sim=0.5785                                             margin=+0.0216  <= 翻转
+#   **短中文摘要**替换全文（85 字符）         gsap_sim=0.7389                                             margin=+0.1820  <= 翻转更强
+#
+# 结论：**BGE 只取前 N token，尾部追加的内容进不了向量** ⇒ 处方①若按字面「在末尾补触发词」执行，
+# 跑完仍会判为假闭环（与 r132「处方只对 1/3 有效」同族，但这次更隐蔽：它连「有变化」都不显示）。
+#
+# 本件把该结论固化为常驻可复算面：任何「语料语言类处方」在写进提案前，先跑本面看 margin 是否真的动了。
+#
+# 用法: python 05-exec/r135_lang_boost_efficacy.py [--json 06-benchmark/lang_boost_efficacy_r135_2026-10-21.json]
+# 退出码: 0 完成 / 2 输入面不可用（R247 禁按 0 记绿）
+import argparse
+import io
+import json
+import os
+import sys
+
+FW = r'C:\Users\37533\Desktop\workspace\焚诀'
+EVAL = os.path.join(FW, 'eval')
+GS = r'D:\global_skills'
+HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(HERE)
+
+# r135 实测靶：期望件 gsap（description 全英文），抢答件 libreoffice-draw（中文）
+SLUG = 'gsap'
+RIVAL = 'libreoffice-draw'
+QUERY = 'gsap 做滚动触发动画'
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--json', dest='out')
+    ap.add_argument('--slug', default=SLUG)
+    ap.add_argument('--rival', default=RIVAL)
+    ap.add_argument('--query', default=QUERY)
+    args = ap.parse_args()
+    sys.path.insert(0, EVAL)
+    os.environ['FENJUE_ROUTE_TRACE'] = '0'
+    try:
+        import numpy as np
+        import bge_onnx_engine
+        import bge_layer
+    except Exception as e:  # noqa: BLE001
+        print('[LANGBOOST] FATAL 判据面不可用: %r' % (e,))
+        return 2
+    sp = os.path.join(EVAL, 'bge_fullbody_skills.json')
+    if not os.path.isfile(sp):
+        print('[LANGBOOST] UNVERIFIED 语料面不存在: %s' % sp)
+        return 2
+    sk = json.loads(io.open(sp, encoding='utf-8-sig').read())
+    names = [str(s.get('name') if isinstance(s, dict) else s) for s in sk]
+    if args.slug not in names or args.rival not in names:
+        print('[LANGBOOST] UNVERIFIED 目标件不在语料: slug=%s rival=%s' % (args.slug in names, args.rival in names))
+        return 2
+    idx = {n: i for i, n in enumerate(names)}
+    ep = os.path.join(EVAL, 'bge_fullbody_embeddings.npy')
+    if not os.path.isfile(ep):
+        print('[LANGBOOST] UNVERIFIED 嵌入面不存在: %s' % ep)
+        return 2
+    emb0 = np.asarray(np.load(ep, mmap_mode='r'), dtype='float32')
+    enc = bge_onnx_engine.BgeOnnxEncoder()
+    qv = np.asarray(enc.encode([args.query]), dtype='float32')[0]
+    fp = os.path.join(GS, args.slug, 'SKILL.md')
+    if not os.path.isfile(fp):
+        print('[LANGBOOST] UNVERIFIED 期望件不在盘: %s' % fp)
+        return 2
+    orig = io.open(fp, encoding='utf-8').read()
+
+    def trial(tag, body):
+        v = np.asarray(enc.encode([body]), dtype='float32')[0]
+        arr = np.array(emb0, dtype='float32', copy=True)
+        arr[idx[args.slug]] = v
+        bge_layer._bge_emb = arr
+        bge_layer._bge_skills = sk
+        bge_layer._bge_model = enc
+        bge_layer._BGE_PROBE_DONE = True
+        bge_layer._bge_backend = 'onnx-sim'
+        bge_layer._QEMB_CACHE.clear()
+        s_self = float(arr[idx[args.slug]] @ qv)
+        s_riv = float(arr[idx[args.rival]] @ qv)
+        order = list(np.argsort(-(arr @ qv)))
+        rank = order.index(idx[args.slug]) + 1
+        top1 = names[order[0]]
+        bge_layer._bge_emb = emb0
+        bge_layer._QEMB_CACHE.clear()
+        return {'variant': tag, 'body_len': len(body), 'self_sim': round(s_self, 4),
+                'rival_sim': round(s_riv, 4), 'margin': round(s_self - s_riv, 4),
+                'slug_rank': rank, 'top1': top1, 'flipped': (top1 == args.slug)}
+
+    parts = orig.split('---')
+    fm = ('---' + parts[1] + '---') if len(parts) >= 3 else orig[:500]
+    tail_cn = ' 动画 滚动触发 缓动 时间轴 tween 补间 滚动触发动画 GSAP动画库'
+    short_cn = (args.slug + ' 技能：' + args.slug + ' 动画库。用于滚动触发动画、缓动、时间轴、stagger、补间动画、Tween、ScrollTrigger。触发词：动画、滚动触发、缓动、时间轴。')
+    fm_cn = fm.rstrip() + chr(10) + 'triggers_cn: ["动画", "滚动触发", "缓动", "时间轴"]'
+    rows = []
+    rows.append(trial('BASELINE 原语料', orig))
+    rows.append(trial('处方①-末尾追加中文触发词', orig.rstrip() + chr(10) + tail_cn))
+    rows.append(trial('处方②-改 frontmatter 加中文', orig.replace(fm, fm_cn, 1)))
+    rows.append(trial('处方③-短中文摘要替换全文', short_cn))
+    base = rows[0]
+    for r in rows[1:]:
+        r['margin_delta'] = round(r['margin'] - base['margin'], 4)
+        r['verdict'] = 'EFFECTIVE' if r['flipped'] else ('NO_EFFECT' if r['margin_delta'] == 0 else 'PARTIAL')
+    doc = {'schema': 'lang-boost-efficacy-r135-v1',
+           'cmd': 'python 05-exec/r135_lang_boost_efficacy.py --json <out>',
+           'target': {'slug': args.slug, 'rival': args.rival, 'query': args.query},
+           'face': {'variants_n': len(rows),
+                     'baseline_margin': base['margin'],
+                     'effective_n': sum(1 for r in rows[1:] if r['verdict'] == 'EFFECTIVE'),
+                     'no_effect_n': sum(1 for r in rows[1:] if r['verdict'] == 'NO_EFFECT'),
+                     'reading': {
+                         'effective_n': '能把 top1 真正翻转成期望件的变体数',
+                         'no_effect_n': '**完全无效果**的变体数 —— 本轮实测「末尾追加中文触发词」属此类：连 margin 都不动',
+                         'baseline_margin': '基线 margin（期望件相似度 - 抢答件相似度），负数=期望件输',
+                     }},
+           'rows': rows}
+    if args.out:
+        with io.open(args.out, 'w', encoding='utf-8', newline='\n') as f:
+            json.dump(doc, f, ensure_ascii=False, indent=1)
+    fa = doc['face']
+    print('[LANGBOOST] 基线 margin=%s｜有效变体 %d｜无效果 %d'
+          % (fa['baseline_margin'], fa['effective_n'], fa['no_effect_n']))
+    for r in rows:
+        print('  %-28s len=%-5d self=%.4f rival=%.4f margin=%+.4f rank=%d top1=%-20s %s'
+              % (r['variant'][:26], r['body_len'], r['self_sim'], r['rival_sim'],
+                 r['margin'], r['slug_rank'], r['top1'][:18], r.get('verdict', 'BASELINE')))
+    if args.out:
+        print('[LANGBOOST] JSON -> %s' % args.out)
+    return 0
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())

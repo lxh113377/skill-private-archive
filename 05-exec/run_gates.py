@@ -48,6 +48,19 @@ ORIGIN = "ci" if os.environ.get("GITHUB_ACTIONS") == "true" else "local"
 # 单一真相源：门禁清单只在这里维护。AGENTS.md / CI / 会话内手工跑，都走本表。
 GATES = [
     {
+        # r135：语料语言类处方的实测效力面（第 11 类的第二道腿）
+        "id": "lang_boost_efficacy_face",
+        "script": "r135_lang_boost_efficacy.py",
+        "argv": [],
+        "pass_token": "[LANGBOOST]",
+        "portable": False,
+        "not_portable_reason":
+            "读焚诀 eval 语料/嵌入面 + 受管根 D:/global_skills 盘面（换机无这两个面）",
+        "covers": ["四个语料变体逐个实测 margin（期望件相似度 - 抢答件相似度）与 top1 翻转与否",
+                   "变体判定：EFFECTIVE / NO_EFFECT / PARTIAL —— 落点错误（末尾追加）会被明确标出"], 
+        "why": "r133 我把「在 description 末尾补中文触发词」写进转办提案第 11 条，r135 沙箱实测该写法**完全无效**（margin -0.0586 一动不动）—— 因为 BGE 只取前 N token，尾部内容进不了向量。实测有效的是「改 frontmatter」（margin -> +0.0216）与「短中文摘要替换全文」（-> +0.1827）。本门把「语料类处方先测效力」固化为常驻可复算面。",
+    },
+    {
         # r134：因果结论的证据面（结论层推理须标注或实测 —— R133-5 落地）
         "id": "causal_evidence_face",
         "script": "r134_causal_evidence.py",
