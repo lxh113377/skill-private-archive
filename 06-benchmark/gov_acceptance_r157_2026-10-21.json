@@ -1,0 +1,63 @@
+{
+ "schema": "fj-gov-acceptance-v1",
+ "generated_at": "2026-10-21T21:36:29",
+ "root": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化",
+ "criteria": [
+  {
+   "status": "PASS",
+   "detail": "rc=0 token=命中",
+   "id": "A1",
+   "name": "契约登记册结构自洽（各态之和==契约数）",
+   "owner": "our",
+   "advisory": false
+  },
+  {
+   "status": "PASS",
+   "detail": "common_days=9; gate age=0.0; vol age=0.03",
+   "id": "A2",
+   "name": "联动样本量>=3 且两侧读数未陈旧",
+   "owner": "our",
+   "advisory": false
+  },
+  {
+   "status": "PASS",
+   "detail": "rc=0 token=命中",
+   "id": "A3",
+   "name": "体量三层覆盖率 1.0 且未分类 0",
+   "owner": "our",
+   "advisory": false
+  },
+  {
+   "status": "PASS",
+   "detail": "rc=0 token=命中",
+   "id": "A4",
+   "name": "三面夹具全过且变异对照有牙",
+   "owner": "our",
+   "advisory": false
+  },
+  {
+   "status": "PASS",
+   "detail": "unbacked=0 no_acceptance=0 no_evidence=0 boundary_missing=0",
+   "id": "A5",
+   "name": "转办提案四计数为 0（含适用边界）",
+   "owner": "our",
+   "advisory": false
+  },
+  {
+   "status": "PASS",
+   "detail": "归属方侧缺陷 3 条：['NO_SHARED_KEY', 'VOL_FIELD_EMPTY']（advisory，不计总判）",
+   "id": "A6",
+   "name": "归属方侧联动缺陷（advisory，不计总判）",
+   "owner": "owner",
+   "advisory": true
+  }
+ ],
+ "summary": {
+  "n": 6,
+  "judged_n": 5,
+  "pass_n": 5,
+  "fail_ids": [],
+  "unverified_ids": [],
+  "overall": "PASS"
+ }
+}
