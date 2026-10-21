@@ -42,5 +42,17 @@
  "r149_derived_freshness.py": {
   "evidence": "06-benchmark/derived_freshness_r149_2026-10-21.json",
   "registered_at": "2026-10-21 00:21"
+ },
+ "r150_contract_lifecycle.py": {
+  "evidence": "06-benchmark/gov_lifecycle_r150_2026-10-21.json",
+  "registered_at": "2026-10-21 20:15"
+ },
+ "r150_volume_tiers.py": {
+  "evidence": "06-benchmark/gov_tiers_r150_2026-10-21.json",
+  "registered_at": "2026-10-21 20:15"
+ },
+ "r150_gov_link.py": {
+  "evidence": "06-benchmark/gov_link_r150_2026-10-21.json",
+  "registered_at": "2026-10-21 20:15"
  }
 }

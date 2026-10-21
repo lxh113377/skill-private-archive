@@ -70,6 +70,30 @@ python 05-exec/r55_rootface_fixtures.py                                       # 
 - [DEBT] **技能正文缺「反理性化表」与「证据要求」两段（r28 首次同尺实测量化）** —— 同一把尺（`05-exec/rubric_ab_compare.py` 复用 `skill_structure_rubric_scan.RUBRIC_RX`）量双方真实文件：本体系 rationalizations **13.9%** / verification **59.0%**，而 addyosmani/agent-skills 实测 **96.0% / 100.0%**（n=25）；superpowers 66.7% / 80.0%（n=15）；**anthropics 官方仓自己只有 5.0% / 25.0%**（n=20）⇒ 修正旧推断：六段解剖不是 Anthropic 官方标准（官方只强制 name+description），全行业仅 addyosmani 真执行。本体系 process 42.2% 为全场最高，短板精确到这两段。 | 还债方式：H1 模板只强制这两段 + H2 按 `verification=false` 队列补存量（需 `rule_editor` + 派生件重建，待 A 族无并行在途窗口）| 状态：**未修复**（⚠️ 引用本组数字时必须同时声明：overview/when_to_use 两列因我们习惯把「做什么/何时用」写进 frontmatter 而存在系统性假阴性，修正路径 M2 双口径重跑）
 - [规范候选·r28 H3] **破坏性命令必须带作用域守卫**：技能正文/脚本内出现的删除或覆盖命令（递归删、强制覆盖、批量重定向写）必须显式限定作用域前缀或白名单目录，并附反例（越界即拒绝执行）。实物范本 = superpowers `skills/brainstorming/scripts/stop-server.sh:112-114` 的 `if [[ "$SESSION_DIR" == /tmp/* ]]; then rm -rf ...`（r27 逐行核实）。现状：本体系技能侧脚本无此条规范，C27 只按模式告警不判有无守卫。| 落点：待与 H1 同批进新建技能模板（`A-skill-manager`/`A-skill-onboarding` 侧，须走 rule_editor）
 
+## 体量预算（R150-5，2026-10-21）
+
+> 口径来源：A-project-handoff `handoff.py volume` 的阈值覆盖面（每行一项 `- 体量预算 <key>=<value>`）。
+> 本仓此前**无任何声明行** ⇒ 60 个阈值全吃归属方 `DEFAULT_BUDGET`，项目侧既看不见也调不动。
+> 本节把与本仓实际相关的 15 个 key **显式声明为当前生效值**（等于代码默认，**零行为变更**），
+> 目的是把「阈值归谁、改了什么」变成可审计的项目侧决策，而不是隐藏在受管根代码里。
+> ⛔ 只许在这里声明；**禁止**为把 Volume warn 变绿而放宽阈值（R263 的反向形态）。
+> ⚠️ `<!-- -->` 注释里的用法示例会被解析器当配置（归属方已修的旧缺陷），本节**不放注释内示例**。
+
+- 体量预算 memory_md_max=4096
+- 体量预算 shell_max=40960
+- 体量预算 root_doc_max=16384
+- 体量预算 artifact_max=262144
+- 体量预算 any_file_max=1048576
+- 体量预算 dir_max=5242880
+- 体量预算 repo_max=10485760
+- 体量预算 corpus_max=6291456
+- 体量预算 growth_ratio=0.3
+- 体量预算 bak_keep=3
+- 体量预算 bak_age_days=7
+- 体量预算 trash_max_age_days=7
+- 体量预算 trash_red_age_days=21
+- 体量预算 snapshot_max_age_days=3
+- 体量预算 heartbeat_max_age_days=2
 ## 红线（不能改）
 <!-- 绝对不能修改的模块/约定 -->
 - 阶段 0-3 **只读取证**：不改 `D:\global_skills` 下任何 skill 源文件，只在本工作区写报告（`memory/AGENTS.md` 铁律）

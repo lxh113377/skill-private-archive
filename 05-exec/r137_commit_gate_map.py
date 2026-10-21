@@ -36,6 +36,11 @@ TRIGGERS = [
     ('AGENTS.md', 'gate_table_reconcile', '改了 AGENTS.md 纪律条目 ⇒ 门表对账闸须过（新增门须留对账痕）'),
     ('memory/07-next-steps.md', 'debt_aging', '改了 07 台账 ⇒ 账龄件须重生（写记忆后必算账龄）'),
     ('05-exec/run_gates.py', 'gate_table_reconcile', '改了门表 ⇒ 新增门须有对账登记行（#31 门表闸）'),
+    # r152（R150-6 分级阻断）：契约纪律面变更 ⇒ 契约风险预警必须 P0=0（本门 P0>0 即 rc=1）。
+    #   刻意**只**挂契约纪律面，不做无差别阻断（R269 反面）。
+    (('05-exec/', '06-benchmark/transmit_proposals.json', 'AGENTS.md', 'memory/07-next-steps.md'),
+     'contract_lifecycle_face',
+     '改了契约纪律面（判据/转办/纪律条目/P0 台账）⇒ 契约全生命周期风险预警须为 P0=0（R152 分级阻断）'),
 ]
 
 
@@ -87,7 +92,10 @@ def main():
     runner_src = io.open(args.runner, encoding='utf-8').read()
     gates = {}
     for prefix, gid, why in TRIGGERS:
-        hit = [f for f in files if f.startswith(prefix) or f == prefix]
+        # r152：prefix 允许为 tuple —— 一门可挂多个触发前缀（gates 以 gid 为键，
+        #   同 gid 写两条会互相覆盖 => 想一门多面只能走 tuple）。
+        prefixes = prefix if isinstance(prefix, tuple) else (prefix,)
+        hit = [f for f in files if any(f.startswith(p) or f == p for p in prefixes)]
         if not hit:
             continue
         needle = chr(34) + 'id' + chr(34) + ': ' + chr(34) + gid + chr(34)

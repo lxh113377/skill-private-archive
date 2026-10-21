@@ -48,6 +48,67 @@ ORIGIN = "ci" if os.environ.get("GITHUB_ACTIONS") == "true" else "local"
 # 单一真相源：门禁清单只在这里维护。AGENTS.md / CI / 会话内手工跑，都走本表。
 GATES = [
     {
+        # r153：治理考核校验面（目标④ 落地 —— A1-A6 一键复跑）
+        "id": "gov_acceptance_face",
+        "script": "r153_gov_acceptance.py",
+        "argv": [],
+        "pass_token": "[GOVACC:PASS]",
+        "portable": False,
+        "not_portable_reason": "内部复跑各面，其中 A3 须调归属方 handoff.py --print-budget（受管根绝对路径）=> 离机该腿 UNVERIFIED(rc=2)，不得算绿（R247）",
+        "covers": [
+            "A1 契约登记册结构自洽 / A2 联动样本量>=3 且两侧读数未陈旧（阈值引用 06-constraints 声明的 heartbeat 2 天与 snapshot 3 天，不另立）",
+            "A3 体量三层覆盖率 1.0 / A4 三面夹具全过且变异有牙 / A5 转办提案四计数为 0",
+            "A6 归属方侧联动缺陷（advisory，不计总判 —— #47 ③ 他人漂移不连坐）",
+            "三态与 run_gates 同口径：rc=0 但 pass_token 缺 = UNVERIFIED（静默跳过不得算绿，R247）",
+        ],
+        "why": "r150 框架报告 §5.2 把考核标准写成了一张表，但没有任何一条命令能一键跑完它 —— 表在报告里、人在会话里记得才跑，于是「可验证/可迭代」没有机器承载。本门把 A1-A6 落成常驻复跑面：每轮一次即出逐条三态与总判。r153 实测：A2 因体量册末条 3.91 天 > 3 天判红 => 执行归属方文档规定的收尾动作 volume --snapshot 后 A2 转绿、A6 的 VOL_LEDGER_STALE 随之消失（4 条降到 3 条），证明该腿对我们自己的进程缺口有判别力而非恒红。夹具 05-exec/r150_gov_fixtures.py 的 a6a-e 五腿 + 内联变异 m7（把假绿分支注回 => 静默跳过被算绿）担保。",
+    },
+    {
+        # r150b：契约全生命周期登记册与履约读数面（目标① 落地）
+        "id": "contract_lifecycle_face",
+        "script": "r150_contract_lifecycle.py",
+        "argv": [],
+        "pass_token": "[GOVREG:PASS]",
+        "portable": False,
+        "not_portable_reason": "读受管根绝对路径（governance.md / greencheck.py / ci-green-contract.md / contract.md）；离机缺件 => rc=2 UNVERIFIED（R247/X-24 禁在缩小分母上判绿）",
+        "covers": [
+            "契约登记册五处权威：判据 56 门 / 规则 9 条（R272 + 8 补条）/ 基线 24 不变式 / CI 四态 / 执行契约",
+            "五环节三态逐契约：起草-审核-签署-履约监控-归档（UNVERIFIED = 本体系无该环节读数面，R247）",
+            "履约读数取自 06-benchmark/gate_runs.jsonl 的 per_gate 逐门历史（轮次 / PASS / FAIL / UNVERIFIED / 率 / 末次）",
+            "风险预警分级：P0=MISSING_DRAFT|NO_REVIEW；P1=NO_PERFORM_FACE|LAST_NOT_PASS；P2=LOW_RATE|THIN_LIFECYCLE",
+        ],
+        "why": "r150 现状核验：本体系有五处契约权威却没有任何一张表把它们放进同一条生命周期（谁起草/谁审核/谁签署/履约率多少/何时归档全靠报告叙事）。本门把五环节落成逐契约可复算三态，并暴露「12 条非门禁契约的履约监控环节没有机器面」这一 item1 缺口。夹具 05-exec/r150_gov_fixtures.py 24 例含变异 5 项。",
+    },
+    {
+        # r150b：体量治理三层指标归口面（目标② 落地）
+        "id": "volume_tiers_face",
+        "script": "r150_volume_tiers.py",
+        "argv": [],
+        "pass_token": "[GOVTIER:PASS]",
+        "portable": False,
+        "not_portable_reason": "阈值须调归属方 handoff.py volume --print-budget（受管根绝对路径），离机不可达 => rc=2 UNVERIFIED",
+        "covers": [
+            "阈值 60 个 key 按声明归口表分三层：T1 业务体量 15 / T2 资源承载体量 19 / T3 运营规模体量 26",
+            "未分类 key 必须具名判红（上游加 key 不得静默忽略 —— X-24 分母自证）",
+            "三层计数之和必须等于阈值总数（各态之和 == 分母）",
+        ],
+        "why": "r150 实测：体量阈值有 60 个 key 却零分层 —— 问「业务体量/资源承载体量/运营规模体量各自的标尺是哪几个」只能逐个 key 猜。本门把扁平阈值表变成可审计的三层指标体系，并把「加 key 即判红并具名」钉成不变式。",
+    },
+    {
+        # r150b：契约履约 x 体量变化联动读数面（目标③ 落地）
+        "id": "gov_link_face",
+        "script": "r150_gov_link.py",
+        "argv": [],
+        "pass_token": "[GOVLINK:PASS]",
+        "portable": True,
+        "covers": [
+            "按日联结：契约册 06-benchmark/gate_runs.jsonl x 体量册 memory/sessions/volume-snapshots.jsonl",
+            "联结诊断四条具名：NO_SHARED_KEY / VOL_FIELD_EMPTY / VOL_LEDGER_STALE / FEW_COMMON_DAYS（advisory）",
+            "零分母（任一侧空或共同日 0）=> rc=2 UNVERIFIED，禁按绿记（R247）",
+        ],
+        "why": "r150 实测：两类治理各有 append-only 台账（契约 478 轮/15 日、体量 41 快照/11 日），却没有任何一处放在同一条时间轴上。本门首次联结并测出 4 条结构缺陷（两侧无共享主键 => 只能按日窗口粗联结；files/growth_ratio 覆盖 0/41；体量册末条陈旧 3.89 天）。同时是体量侧 2 条转办提案的常驻复算面（#47 三件套）。",
+    },
+    {
         # r149：派生件新鲜度转诊面（#47 落地 —— 第 11 类终判常驻面）
         "id": "derived_freshness_face",
         "script": "r149_derived_freshness.py",
@@ -55,10 +116,12 @@ GATES = [
         "pass_token": "[FRESH-D]",
         "portable": False,
         "not_portable_reason": "只读 import 焚诀 eval/derivative_watch.stale_sources()（路径写死归属方仓）",
-        "covers": ["转诊读数：归属方陈旧判据点名的过期件（现算：gsap lag=7339s 唯一 1 条）",
-                   "六态消费：含gsap=告警未闭环 / []=第11类生产终判闭环 / 取不到数=None/异常=UNVERIFIED（R247）",
-                   "他人漂移不连坐（others_n 单列，不影响本仓转办线判定）"],
-        "why": "R148-4：第 11 类源侧已修（b6b784d6），生产翻绿唯一残因=BGE 派生件未重建；但重建发生在哪天，本仓没有任何常驻面能自动发现（归属方的 stale_sources 在焚诀 pre-commit 第 7 闸，本仓看不到）。r149 核验：官方 --check 的 BGE 维只比件数（190=190 判齐），检不出件数不变内容已变的向量陈旧 —— 转诊归属方权威函数（只读 import 零写入，重建动作仍归对方 R269），第 11 类生产终判的机器读数 = stale_gsap 由 True 转 False 当天。r149 反向验证：六态消费全对 + lag 交叉复算一致（7339.3s=自算值）+ 源侧真测性（临时假件喂 mtime：新1h点名/回过去不报/空源 None）。",
+        "covers": ["转诊读数：归属方陈旧判据点名的过期件（现算取值：python 05-exec/r149_derived_freshness.py --json <件> 读 face.stale_n / stale_gsap / others_n）",
+                   "八态消费逐腿断言（--selftest，且每次真实跑前先自证，失配即不出读数）：含gsap=未闭环告警 / []=终判闭环 / 只他人漂移=闭环不连坐 / None·异常·不可达=UNVERIFIED rc=2（R247） / 对方改字段名或改返回类型=UNVERIFIED rc=2（r151 禁假闭环）",
+                   "他人漂移不连坐（r151 根治）：class_11_closed 只看 source==gsap；others_n 单列告警不判红（#35）",
+                   "判据无牙即不出读数：反向验证失配 ⇒ 本门 rc=1（#32 第四形态常驻化）",
+                   "归属方口径形状守卫（r151）：条目缺 source 键 / 非 list[dict] ⇒ 不认识的面 = UNVERIFIED，绝不判闭环"],
+        "why": "R148-4：第 11 类源侧已修（b6b784d6），生产翻绿唯一残因=BGE 派生件未重建；但重建发生在哪天，本仓没有任何常驻面能自动发现（归属方的 stale_sources 在焚诀 pre-commit 第 7 闸，本仓看不到）。r149 核验：官方 --check 的 BGE 维只比件数（190=190 判齐），检不出件数不变内容已变的向量陈旧 —— 转诊归属方权威函数（只读 import 零写入，重建动作仍归对方 R269），第 11 类生产终判的机器读数 = stale_gsap 由 True 转 False 当天。r149 反向验证：六态消费全对 + lag 交叉复算一致（7339.3s=自算值）+ 源侧真测性（临时假件喂 mtime：新1h点名/回过去不报/空源 None）。【r151 校正】r149 那句「六态消费全对」是**无牙读数**：探针只 print want 不与 got 比对（allok 算了不用），T3 腿根本没断言 class_11_closed ⇒ 代码里 (not gsap) and (not others) 的连坐判定活过了验证，且与 covers 自述的「不连坐」互相矛盾。r151 真实态（归属方 19:39 重建 BGE、gsap 转新鲜、面上剩他人陈旧）把它暴露为「已闭环读成未闭环」。已改 closed=not gsap + 八态断言做进门本体（失配即 rc=1），并补归属方口径形状守卫（S7 假闭环腿：对方 source→slug 改名由 rc=0 放行改判 rc=2 UNVERIFIED）。",
     },
     {
         # r147：证据写入顺序穷举面（#45 落地 —— 崩溃前缀缺 dead-window 证明）

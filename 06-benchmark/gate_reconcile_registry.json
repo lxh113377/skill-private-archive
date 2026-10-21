@@ -2,6 +2,10 @@
  "schema": "gate-reconcile-registry-r130-v1",
  "gates": {
   "_snapshot_gate_ids": [
+   "gov_acceptance_face",
+   "contract_lifecycle_face",
+   "volume_tiers_face",
+   "gov_link_face",
    "derived_freshness_face",
    "write_order_sweep_face",
    "install_history_face",
@@ -59,7 +63,7 @@
    "r117_upstream_delta_fixtures",
    "direct_closure_face"
   ],
-  "_snapshot_at": "2026-10-21 00:25",
+  "_snapshot_at": "2026-10-21 20:58",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
@@ -119,6 +123,22 @@
   "derived_freshness_face": {
    "evidence": "06-benchmark/derived_freshness_r149_2026-10-21.json",
    "at": "2026-10-21 00:21"
+  },
+  "contract_lifecycle_face": {
+   "evidence": "06-benchmark/gov_lifecycle_r150_2026-10-21.json",
+   "at": "2026-10-21 20:29"
+  },
+  "volume_tiers_face": {
+   "evidence": "06-benchmark/gov_tiers_r150_2026-10-21.json",
+   "at": "2026-10-21 20:29"
+  },
+  "gov_link_face": {
+   "evidence": "06-benchmark/gov_link_r150_2026-10-21.json",
+   "at": "2026-10-21 20:29"
+  },
+  "gov_acceptance_face": {
+   "evidence": "06-benchmark/gov_acceptance_r153_2026-10-21.json",
+   "at": "2026-10-21 20:51"
   }
  }
 }

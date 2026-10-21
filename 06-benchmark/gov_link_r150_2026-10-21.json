@@ -1,0 +1,392 @@
+{
+ "schema": "fj-gov-contract-volume-link-v1",
+ "generated_at": "2026-10-21T20:30:30",
+ "root": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化",
+ "gate_ledger": {
+  "path": "06-benchmark/gate_runs.jsonl",
+  "rows": 480,
+  "bad_rows": 0,
+  "days": 15,
+  "last_ts": "2026-10-21T20:24:23",
+  "age_days": 0.0,
+  "keys": [
+   "gates_run",
+   "head",
+   "mode",
+   "origin",
+   "overall",
+   "per_gate",
+   "skipped",
+   "total_ms",
+   "ts",
+   "verdict",
+   "verdict_reason"
+  ]
+ },
+ "vol_ledger": {
+  "path": "memory/sessions/volume-snapshots.jsonl",
+  "rows": 41,
+  "bad_rows": 0,
+  "days": 11,
+  "last_ts": "2026-10-17T22:53:46",
+  "age_days": 3.9,
+  "keys": [
+   "auto_freed",
+   "auto_held",
+   "auto_moved",
+   "cache_bytes",
+   "dry_run",
+   "exempt_bytes",
+   "file_count",
+   "findings",
+   "proj",
+   "schema",
+   "top_files",
+   "total_bytes",
+   "trash_bytes",
+   "ts"
+  ],
+  "field_coverage": {
+   "files": 0,
+   "growth_ratio": 0,
+   "auto_moved": 38,
+   "auto_freed": 38,
+   "total_bytes": 41
+  },
+  "field_denominator": 41
+ },
+ "joined": [
+  {
+   "day": "2026-09-25",
+   "gate_runs": 85,
+   "gate_overall": {
+    "FAIL": 26,
+    "PASS": 59
+   },
+   "gate_nongreen_top": [
+    "gate_run_freshness",
+    "ratchet_gate",
+    "r19_baseline_contract_fixtures"
+   ],
+   "vol_bytes": 4851351,
+   "vol_moved": null,
+   "vol_freed": null,
+   "linked": true,
+   "vol_delta_pct": null
+  },
+  {
+   "day": "2026-09-26",
+   "gate_runs": 7,
+   "gate_overall": {
+    "PASS": 2,
+    "FAIL": 5
+   },
+   "gate_nongreen_top": [
+    "gate_run_freshness",
+    "r19_baseline_contract_fixtures",
+    "baseline_contract_scan"
+   ],
+   "vol_bytes": 14914926,
+   "vol_moved": 0,
+   "vol_freed": 0,
+   "linked": true,
+   "vol_delta_pct": 207.44
+  },
+  {
+   "day": "2026-09-27",
+   "gate_runs": 0,
+   "gate_overall": null,
+   "gate_nongreen_top": [],
+   "vol_bytes": 14919036,
+   "vol_moved": 0,
+   "vol_freed": 0,
+   "linked": false,
+   "vol_delta_pct": 0.03
+  },
+  {
+   "day": "2026-09-28",
+   "gate_runs": 0,
+   "gate_overall": null,
+   "gate_nongreen_top": [],
+   "vol_bytes": 14924293,
+   "vol_moved": 0,
+   "vol_freed": 0,
+   "linked": false,
+   "vol_delta_pct": 0.04
+  },
+  {
+   "day": "2026-09-29",
+   "gate_runs": 17,
+   "gate_overall": {
+    "FAIL": 6,
+    "PASS": 11
+   },
+   "gate_nongreen_top": [
+    "gate_run_freshness",
+    "md_claim_face",
+    "ratchet_gate"
+   ],
+   "vol_bytes": 15582133,
+   "vol_moved": 0,
+   "vol_freed": 0,
+   "linked": true,
+   "vol_delta_pct": 4.41
+  },
+  {
+   "day": "2026-09-30",
+   "gate_runs": 32,
+   "gate_overall": {
+    "PASS": 9,
+    "FAIL": 23
+   },
+   "gate_nongreen_top": [
+    "gate_run_freshness",
+    "retired_face",
+    "md_claim_face"
+   ],
+   "vol_bytes": 19206434,
+   "vol_moved": 0,
+   "vol_freed": 0,
+   "linked": true,
+   "vol_delta_pct": 23.26
+  },
+  {
+   "day": "2026-10-01",
+   "gate_runs": 23,
+   "gate_overall": {
+    "FAIL": 20,
+    "PASS": 3
+   },
+   "gate_nongreen_top": [
+    "gate_run_freshness",
+    "retired_face",
+    "md_claim_face"
+   ],
+   "vol_bytes": 20859092,
+   "vol_moved": 0,
+   "vol_freed": 0,
+   "linked": true,
+   "vol_delta_pct": 8.6
+  },
+  {
+   "day": "2026-10-02",
+   "gate_runs": 13,
+   "gate_overall": {
+    "FAIL": 13
+   },
+   "gate_nongreen_top": [
+    "ratchet_gate",
+    "refresh_budget_fixtures",
+    "budget_contract_fixtures"
+   ],
+   "vol_bytes": 23783849,
+   "vol_moved": 0,
+   "vol_freed": 0,
+   "linked": true,
+   "vol_delta_pct": 14.02
+  },
+  {
+   "day": "2026-10-03",
+   "gate_runs": 5,
+   "gate_overall": {
+    "FAIL": 5
+   },
+   "gate_nongreen_top": [
+    "ratchet_gate",
+    "refresh_budget_fixtures",
+    "budget_contract_fixtures"
+   ],
+   "vol_bytes": 25772128,
+   "vol_moved": 0,
+   "vol_freed": 0,
+   "linked": true,
+   "vol_delta_pct": 8.36
+  },
+  {
+   "day": "2026-10-04",
+   "gate_runs": 4,
+   "gate_overall": {
+    "FAIL": 4
+   },
+   "gate_nongreen_top": [
+    "ratchet_gate",
+    "refresh_budget_fixtures",
+    "budget_contract_fixtures"
+   ],
+   "vol_bytes": null,
+   "vol_moved": null,
+   "vol_freed": null,
+   "linked": false,
+   "vol_delta_pct": null
+  },
+  {
+   "day": "2026-10-08",
+   "gate_runs": 1,
+   "gate_overall": {
+    "FAIL": 1
+   },
+   "gate_nongreen_top": [
+    "ratchet_gate",
+    "refresh_budget_fixtures",
+    "md_claim_face"
+   ],
+   "vol_bytes": null,
+   "vol_moved": null,
+   "vol_freed": null,
+   "linked": false,
+   "vol_delta_pct": null
+  },
+  {
+   "day": "2026-10-10",
+   "gate_runs": 0,
+   "gate_overall": null,
+   "gate_nongreen_top": [],
+   "vol_bytes": 28878616,
+   "vol_moved": 0,
+   "vol_freed": 0,
+   "linked": false,
+   "vol_delta_pct": 12.05
+  },
+  {
+   "day": "2026-10-15",
+   "gate_runs": 6,
+   "gate_overall": {
+    "FAIL": 5,
+    "PASS": 1
+   },
+   "gate_nongreen_top": [
+    "gate_run_freshness",
+    "retired_face",
+    "ratchet_gate"
+   ],
+   "vol_bytes": null,
+   "vol_moved": null,
+   "vol_freed": null,
+   "linked": false,
+   "vol_delta_pct": null
+  },
+  {
+   "day": "2026-10-16",
+   "gate_runs": 24,
+   "gate_overall": {
+    "FAIL": 9,
+    "PASS": 15
+   },
+   "gate_nongreen_top": [
+    "gate_run_freshness",
+    "ratchet_gate",
+    "refresh_budget_fixtures"
+   ],
+   "vol_bytes": null,
+   "vol_moved": null,
+   "vol_freed": null,
+   "linked": false,
+   "vol_delta_pct": null
+  },
+  {
+   "day": "2026-10-17",
+   "gate_runs": 16,
+   "gate_overall": {
+    "PASS": 6,
+    "FAIL": 10
+   },
+   "gate_nongreen_top": [
+    "ratchet_gate",
+    "refresh_budget_fixtures",
+    "budget_contract_fixtures"
+   ],
+   "vol_bytes": 34088318,
+   "vol_moved": 0,
+   "vol_freed": 0,
+   "linked": true,
+   "vol_delta_pct": 18.04
+  },
+  {
+   "day": "2026-10-18",
+   "gate_runs": 32,
+   "gate_overall": {
+    "PASS": 14,
+    "FAIL": 18
+   },
+   "gate_nongreen_top": [
+    "gate_run_freshness",
+    "budget_contract_fixtures",
+    "baseline_note_fixtures"
+   ],
+   "vol_bytes": null,
+   "vol_moved": null,
+   "vol_freed": null,
+   "linked": false,
+   "vol_delta_pct": null
+  },
+  {
+   "day": "2026-10-20",
+   "gate_runs": 208,
+   "gate_overall": {
+    "FAIL": 162,
+    "PASS": 46
+   },
+   "gate_nongreen_top": [
+    "gate_run_freshness",
+    "budget_contract_fixtures",
+    "baseline_note_fixtures"
+   ],
+   "vol_bytes": null,
+   "vol_moved": null,
+   "vol_freed": null,
+   "linked": false,
+   "vol_delta_pct": null
+  },
+  {
+   "day": "2026-10-21",
+   "gate_runs": 7,
+   "gate_overall": {
+    "FAIL": 7
+   },
+   "gate_nongreen_top": [
+    "commit_gate_map_face",
+    "gate_run_freshness",
+    "ratchet_gate"
+   ],
+   "vol_bytes": null,
+   "vol_moved": null,
+   "vol_freed": null,
+   "linked": false,
+   "vol_delta_pct": null
+  }
+ ],
+ "common_days": 8,
+ "defects": [
+  {
+   "kind": "NO_SHARED_KEY",
+   "level": "P1",
+   "detail": "契约册项目键=无 / 体量册提交键=无 => 只能按日窗口粗联结，无法唯一定位哪一轮契约读数配哪一份体量快照"
+  },
+  {
+   "kind": "VOL_FIELD_EMPTY",
+   "level": "P1",
+   "detail": "体量册字段 files 覆盖 0/41 => 联动分析缺该维度"
+  },
+  {
+   "kind": "VOL_FIELD_EMPTY",
+   "level": "P1",
+   "detail": "体量册字段 growth_ratio 覆盖 0/41 => 联动分析缺该维度"
+  },
+  {
+   "kind": "VOL_LEDGER_STALE",
+   "level": "P1",
+   "detail": "体量册末条 2026-10-17T22:53:46（3.90 天前 > 2.0 天）=> 联动表右列停更、左列每天在动"
+  }
+ ],
+ "summary": {
+  "common_days": 8,
+  "gate_days": 15,
+  "vol_days": 11,
+  "defects_n": 4,
+  "defects_by_level": {
+   "P0": 0,
+   "P1": 4,
+   "P2": 0
+  }
+ }
+}

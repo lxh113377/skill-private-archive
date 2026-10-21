@@ -2,29 +2,29 @@
  "schema": "hook-install-pending-r146-v1",
  "hook": {
   "pre-commit": {
-   "line_hash": "a8a21259eac868de3cfe4404cf269d7162136efa3bc68338eab245e5c3444582",
-   "lines": 5,
+   "line_hash": "62e35458bf36f66b6115d3e5dd1cd97bf522b3c46a59e56a41a60a965527c201",
+   "lines": 7,
    "invoker": {
     "git_user": "lxh113377",
     "git_email": "3753318894@qq.com",
-    "session": "session-284bcbbe-db1a-4495-8b5b-b0db804bd685",
-    "pid": "37988"
+    "session": "session-988ad876-6aa9-46e1-a1ef-687e9b29f9a9",
+    "pid": "10224"
    },
-   "reason": "r146 pending 首条",
-   "written_at": "2026-10-20 22:33:22"
+   "reason": "r151 修解释器 spawn 自检（LibreOffice python-core 假红阻断）",
+   "written_at": "2026-10-21 20:51:05"
   },
   "post-commit": {
-   "line_hash": "b93210d530583b8a9ea6ae8421783d74a56da1bcef83012c030bf079a46aa870",
-   "lines": 5,
+   "line_hash": "c2b62ba1b4e140ddce863220ea1b2de106dcabcd909acd9e950b2e41c71e4803",
+   "lines": 7,
    "invoker": {
     "git_user": "lxh113377",
     "git_email": "3753318894@qq.com",
-    "session": "session-284bcbbe-db1a-4495-8b5b-b0db804bd685",
-    "pid": "37988"
+    "session": "session-988ad876-6aa9-46e1-a1ef-687e9b29f9a9",
+    "pid": "10224"
    },
-   "reason": "r146 pending 首条",
-   "written_at": "2026-10-20 22:33:22"
+   "reason": "r151 修解释器 spawn 自检（LibreOffice python-core 假红阻断）",
+   "written_at": "2026-10-21 20:51:05"
   }
  },
- "updated_at": "2026-10-20 22:33:22"
+ "updated_at": "2026-10-21 20:51:05"
 }

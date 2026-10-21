@@ -2,29 +2,29 @@
  "schema": "hook-install-ledger-r144-v1",
  "hook": {
   "pre-commit": {
-   "lines": 6,
-   "last_line_hash": "4bffb0c625debc25bf5804ad7002c7b7d3a49e0210829168f42e138707a07b9e",
-   "installed_at": "2026-10-20 22:55:51",
+   "lines": 7,
+   "last_line_hash": "62e35458bf36f66b6115d3e5dd1cd97bf522b3c46a59e56a41a60a965527c201",
+   "installed_at": "2026-10-21 20:51:05",
    "invoker": {
     "git_user": "lxh113377",
     "git_email": "3753318894@qq.com",
-    "session": "session-284bcbbe-db1a-4495-8b5b-b0db804bd685",
-    "pid": "42284"
+    "session": "session-988ad876-6aa9-46e1-a1ef-687e9b29f9a9",
+    "pid": "10224"
    },
-   "reason": "r147 新写入顺序首验（日志->pending->台账）"
+   "reason": "r151 修解释器 spawn 自检（LibreOffice python-core 假红阻断）"
   },
   "post-commit": {
-   "lines": 6,
-   "last_line_hash": "80d3c1ecba21d4ed8dbebe8f831ca73a1e9209afefa0533e05411a1401e516ba",
-   "installed_at": "2026-10-20 22:55:51",
+   "lines": 7,
+   "last_line_hash": "c2b62ba1b4e140ddce863220ea1b2de106dcabcd909acd9e950b2e41c71e4803",
+   "installed_at": "2026-10-21 20:51:05",
    "invoker": {
     "git_user": "lxh113377",
     "git_email": "3753318894@qq.com",
-    "session": "session-284bcbbe-db1a-4495-8b5b-b0db804bd685",
-    "pid": "42284"
+    "session": "session-988ad876-6aa9-46e1-a1ef-687e9b29f9a9",
+    "pid": "10224"
    },
-   "reason": "r147 新写入顺序首验（日志->pending->台账）"
+   "reason": "r151 修解释器 spawn 自检（LibreOffice python-core 假红阻断）"
   }
  },
- "updated_at": "2026-10-20 22:55:51"
+ "updated_at": "2026-10-21 20:51:05"
 }
