@@ -13,6 +13,7 @@ import io
 import json
 import os
 import contextlib
+import datetime
 import shutil
 import subprocess
 import sys
@@ -61,7 +62,7 @@ def w(path, text):
 
 
 def make_root(tmp, gate_rows=2, vol_rows=2, vol_files=None, vol_growth=None,
-              reconcile=None, gate_ledger=True, vol_ledger=True, bad_lines=0):
+              reconcile=None, gate_ledger=True, vol_ledger=True, bad_lines=0, ts_day_offset=0):
     w(os.path.join(tmp, "05-exec", "run_gates.py"), MINI_GATES)
     w(os.path.join(tmp, "05-exec", "a.py"), "# fixture gate A body\n")
     w(os.path.join(tmp, "05-exec", "baseline_contract_scan.py"),
@@ -72,7 +73,8 @@ def make_root(tmp, gate_rows=2, vol_rows=2, vol_files=None, vol_growth=None,
     if gate_ledger:
         lines = []
         for i in range(gate_rows):
-            lines.append(json.dumps({"ts": "2026-10-2%dT10:00:00" % (i % 10), "origin": "local",
+            _d = datetime.datetime(2026, 10, 21) - datetime.timedelta(days=ts_day_offset)
+            lines.append(json.dumps({"ts": _d.strftime("%Y-%m-%dT10:00:00"), "origin": "local",
                                      "verdict": "PASS" if i == 0 else "FAIL",
                                      "overall": "PASS" if i == 0 else "FAIL", "gates_run": 2,
                                      "total_ms": 100, "head": "abc1234",
@@ -162,6 +164,20 @@ def part1_lifecycle(tmp):
     doc3 = build(r3)
     check("f8 边界：零契约 ⇒ contracts_n==0（供 rc=2 判定）",
           len([x for x in doc3["contracts"] if x["family"] == "判据契约"]) == 0)
+    # f9 STALE_PERFORM 腿（r156b 新增）：先证它能报出来，再信默认面 0 命中（#32）
+    r4 = make_root(os.path.join(tmp, "case_stale"), gate_rows=2,
+                   reconcile={"_snapshot_gate_ids": ["gate_a", "gate_b"], "_snapshot_at": ""},
+                   ts_day_offset=40)
+    w(os.path.join(r4, "05-exec", "missing_b.py"), "# present\n")
+    doc4 = build(r4)
+    stale = [a for a in doc4["alerts"] if a["kind"] == "STALE_PERFORM"]
+    check("f9 违规样本：台账末次履约 40 天前 ⇒ STALE_PERFORM 具名（>30 天）",
+          len(stale) >= 1, "stale_n=%d" % len(stale))
+    check("f9b 对照：默认新鲜台账（0 天前）不出 STALE_PERFORM（非恒真）",
+          not any(a["kind"] == "STALE_PERFORM" for a in doc["alerts"]))
+    # f10 权责机读面：summary.roles 必须三段齐
+    check("f10 权责机读：summary.roles 含 stage_roles/non_gate_review_owner/authority",
+          all(k in doc["summary"]["roles"] for k in ("stage_roles", "non_gate_review_owner", "authority")))
     return ns, build
 
 

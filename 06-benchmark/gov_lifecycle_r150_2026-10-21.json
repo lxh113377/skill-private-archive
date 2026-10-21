@@ -1,9 +1,83 @@
 {
  "schema": "fj-gov-contract-lifecycle-v1",
  "missing_sources": [],
- "generated_at": "2026-10-21T20:40:40",
+ "generated_at": "2026-10-21T21:28:58",
  "root": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化",
  "contracts": [
+  {
+   "cid": "GATE:selftest_census_face",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r155_selftest_census.py (11732B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 selftest_census_face 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 4 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：4 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[CENSUS:PASS]；留痕轮次=4"
+    }
+   },
+   "perform": {
+    "runs_seen": 4,
+    "pass": 4,
+    "fail": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "last_ts": "2026-10-21T21:26:18",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:gov_acceptance_face",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": false,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r153_gov_acceptance.py (9243B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 gov_acceptance_face 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 4 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：12 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[GOVACC:PASS]；留痕轮次=12"
+    }
+   },
+   "perform": {
+    "runs_seen": 12,
+    "pass": 12,
+    "fail": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "last_ts": "2026-10-21T21:26:18",
+    "last_verdict": "PASS"
+   }
+  },
   {
    "cid": "GATE:contract_lifecycle_face",
    "family": "判据契约",
@@ -12,7 +86,7 @@
    "stages": {
     "draft": {
      "status": "PASS",
-     "evidence": "脚本 r150_contract_lifecycle.py (19574B) + why 字段非空"
+     "evidence": "脚本 r150_contract_lifecycle.py (21318B) + why 字段非空"
     },
     "review": {
      "status": "PASS",
@@ -24,20 +98,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：3 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：16 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[GOVREG:PASS]；留痕轮次=3"
+     "evidence": "pass_token=[GOVREG:PASS]；留痕轮次=16"
     }
    },
    "perform": {
-    "runs_seen": 3,
-    "pass": 3,
+    "runs_seen": 16,
+    "pass": 16,
     "fail": 0,
     "unverified": 0,
     "rate": 1.0,
-    "last_ts": "2026-10-21T20:38:17",
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -61,20 +135,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：3 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：16 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[GOVTIER:PASS]；留痕轮次=3"
+     "evidence": "pass_token=[GOVTIER:PASS]；留痕轮次=16"
     }
    },
    "perform": {
-    "runs_seen": 3,
-    "pass": 3,
+    "runs_seen": 16,
+    "pass": 16,
     "fail": 0,
     "unverified": 0,
     "rate": 1.0,
-    "last_ts": "2026-10-21T20:38:17",
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -98,20 +172,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：3 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：16 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[GOVLINK:PASS]；留痕轮次=3"
+     "evidence": "pass_token=[GOVLINK:PASS]；留痕轮次=16"
     }
    },
    "perform": {
-    "runs_seen": 3,
-    "pass": 3,
+    "runs_seen": 16,
+    "pass": 16,
     "fail": 0,
     "unverified": 0,
     "rate": 1.0,
-    "last_ts": "2026-10-21T20:38:17",
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -135,20 +209,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：9 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：22 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[FRESH-D]；留痕轮次=9"
+     "evidence": "pass_token=[FRESH-D]；留痕轮次=22"
     }
    },
    "perform": {
-    "runs_seen": 9,
-    "pass": 9,
+    "runs_seen": 22,
+    "pass": 22,
     "fail": 0,
     "unverified": 0,
     "rate": 1.0,
-    "last_ts": "2026-10-21T20:38:17",
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -172,20 +246,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：13 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：26 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[ORDER]；留痕轮次=13"
+     "evidence": "pass_token=[ORDER]；留痕轮次=26"
     }
    },
    "perform": {
-    "runs_seen": 13,
-    "pass": 13,
+    "runs_seen": 26,
+    "pass": 26,
     "fail": 0,
     "unverified": 0,
     "rate": 1.0,
-    "last_ts": "2026-10-21T20:38:17",
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -209,20 +283,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：24 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：37 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[HIST]；留痕轮次=24"
+     "evidence": "pass_token=[HIST]；留痕轮次=37"
     }
    },
    "perform": {
-    "runs_seen": 24,
-    "pass": 24,
+    "runs_seen": 37,
+    "pass": 37,
     "fail": 0,
     "unverified": 0,
     "rate": 1.0,
-    "last_ts": "2026-10-21T20:38:17",
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -246,20 +320,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：26 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：39 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[ATTR]；留痕轮次=26"
+     "evidence": "pass_token=[ATTR]；留痕轮次=39"
     }
    },
    "perform": {
-    "runs_seen": 26,
-    "pass": 26,
+    "runs_seen": 39,
+    "pass": 39,
     "fail": 0,
     "unverified": 0,
     "rate": 1.0,
-    "last_ts": "2026-10-21T20:38:17",
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -283,20 +357,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：28 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：41 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[TRACE]；留痕轮次=28"
+     "evidence": "pass_token=[TRACE]；留痕轮次=41"
     }
    },
    "perform": {
-    "runs_seen": 28,
-    "pass": 28,
+    "runs_seen": 41,
+    "pass": 41,
     "fail": 0,
     "unverified": 0,
     "rate": 1.0,
-    "last_ts": "2026-10-21T20:38:17",
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -320,20 +394,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：30 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：43 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[HOOKSYNC]；留痕轮次=30"
+     "evidence": "pass_token=[HOOKSYNC]；留痕轮次=43"
     }
    },
    "perform": {
-    "runs_seen": 30,
-    "pass": 30,
+    "runs_seen": 43,
+    "pass": 43,
     "fail": 0,
     "unverified": 0,
     "rate": 1.0,
-    "last_ts": "2026-10-21T20:38:17",
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -357,20 +431,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：33 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：46 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[HOOKHEALTH]；留痕轮次=33"
+     "evidence": "pass_token=[HOOKHEALTH]；留痕轮次=46"
     }
    },
    "perform": {
-    "runs_seen": 33,
-    "pass": 33,
+    "runs_seen": 46,
+    "pass": 46,
     "fail": 0,
     "unverified": 0,
     "rate": 1.0,
-    "last_ts": "2026-10-21T20:38:17",
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -382,7 +456,7 @@
    "stages": {
     "draft": {
      "status": "PASS",
-     "evidence": "脚本 r137_commit_gate_map.py (6939B) + why 字段非空"
+     "evidence": "脚本 r137_commit_gate_map.py (7693B) + why 字段非空"
     },
     "review": {
      "status": "PASS",
@@ -394,20 +468,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：45 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：58 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[GATEMAP]；留痕轮次=45"
+     "evidence": "pass_token=[GATEMAP]；留痕轮次=58"
     }
    },
    "perform": {
-    "runs_seen": 45,
+    "runs_seen": 58,
     "pass": 7,
     "fail": 1,
-    "unverified": 37,
-    "rate": 0.1556,
-    "last_ts": "2026-10-21T20:38:17",
+    "unverified": 50,
+    "rate": 0.1207,
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "UNVERIFIED"
    }
   },
@@ -431,20 +505,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：46 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：59 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[PROPEV]；留痕轮次=46"
+     "evidence": "pass_token=[PROPEV]；留痕轮次=59"
     }
    },
    "perform": {
-    "runs_seen": 46,
-    "pass": 46,
+    "runs_seen": 59,
+    "pass": 59,
     "fail": 0,
     "unverified": 0,
     "rate": 1.0,
-    "last_ts": "2026-10-21T20:38:17",
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -468,20 +542,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：51 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：64 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[LANGBOOST]；留痕轮次=51"
+     "evidence": "pass_token=[LANGBOOST]；留痕轮次=64"
     }
    },
    "perform": {
-    "runs_seen": 51,
-    "pass": 51,
+    "runs_seen": 64,
+    "pass": 64,
     "fail": 0,
     "unverified": 0,
     "rate": 1.0,
-    "last_ts": "2026-10-21T20:38:17",
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -505,20 +579,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：54 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：67 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[CAUSAL]；留痕轮次=54"
+     "evidence": "pass_token=[CAUSAL]；留痕轮次=67"
     }
    },
    "perform": {
-    "runs_seen": 54,
-    "pass": 52,
+    "runs_seen": 67,
+    "pass": 65,
     "fail": 0,
     "unverified": 2,
-    "rate": 0.963,
-    "last_ts": "2026-10-21T20:38:17",
+    "rate": 0.9701,
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -542,20 +616,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：59 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：72 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[EFFICACY]；留痕轮次=59"
+     "evidence": "pass_token=[EFFICACY]；留痕轮次=72"
     }
    },
    "perform": {
-    "runs_seen": 59,
-    "pass": 59,
+    "runs_seen": 72,
+    "pass": 72,
     "fail": 0,
     "unverified": 0,
     "rate": 1.0,
-    "last_ts": "2026-10-21T20:38:17",
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -579,20 +653,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：66 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：79 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[LAYERS]；留痕轮次=66"
+     "evidence": "pass_token=[LAYERS]；留痕轮次=79"
     }
    },
    "perform": {
-    "runs_seen": 66,
-    "pass": 66,
+    "runs_seen": 79,
+    "pass": 79,
     "fail": 0,
     "unverified": 0,
     "rate": 1.0,
-    "last_ts": "2026-10-21T20:38:17",
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -616,20 +690,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：72 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：85 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[GATETABLE]；留痕轮次=72"
+     "evidence": "pass_token=[GATETABLE]；留痕轮次=85"
     }
    },
    "perform": {
-    "runs_seen": 72,
-    "pass": 68,
+    "runs_seen": 85,
+    "pass": 81,
     "fail": 4,
     "unverified": 0,
-    "rate": 0.9444,
-    "last_ts": "2026-10-21T20:38:17",
+    "rate": 0.9529,
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -653,20 +727,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：475 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：488 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=475"
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=488"
     }
    },
    "perform": {
-    "runs_seen": 475,
-    "pass": 469,
+    "runs_seen": 488,
+    "pass": 482,
     "fail": 0,
     "unverified": 6,
-    "rate": 0.9874,
-    "last_ts": "2026-10-21T20:38:17",
+    "rate": 0.9877,
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -690,20 +764,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：475 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：488 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=475"
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=488"
     }
    },
    "perform": {
-    "runs_seen": 475,
-    "pass": 466,
+    "runs_seen": 488,
+    "pass": 479,
     "fail": 9,
     "unverified": 0,
-    "rate": 0.9811,
-    "last_ts": "2026-10-21T20:38:17",
+    "rate": 0.9816,
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -727,20 +801,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：475 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：488 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[CONTRACT:PASS]；留痕轮次=475"
+     "evidence": "pass_token=[CONTRACT:PASS]；留痕轮次=488"
     }
    },
    "perform": {
-    "runs_seen": 475,
-    "pass": 470,
+    "runs_seen": 488,
+    "pass": 483,
     "fail": 5,
     "unverified": 0,
-    "rate": 0.9895,
-    "last_ts": "2026-10-21T20:38:17",
+    "rate": 0.9898,
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -764,21 +838,21 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：475 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：488 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[RATCHET:PASS]；留痕轮次=475"
+     "evidence": "pass_token=[RATCHET:PASS]；留痕轮次=488"
     }
    },
    "perform": {
-    "runs_seen": 475,
-    "pass": 370,
-    "fail": 99,
+    "runs_seen": 488,
+    "pass": 376,
+    "fail": 106,
     "unverified": 6,
-    "rate": 0.7789,
-    "last_ts": "2026-10-21T20:38:17",
-    "last_verdict": "FAIL"
+    "rate": 0.7705,
+    "last_ts": "2026-10-21T21:26:18",
+    "last_verdict": "PASS"
    }
   },
   {
@@ -801,20 +875,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：475 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：488 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[CTRL:CLEAN]；留痕轮次=475"
+     "evidence": "pass_token=[CTRL:CLEAN]；留痕轮次=488"
     }
    },
    "perform": {
-    "runs_seen": 475,
-    "pass": 470,
+    "runs_seen": 488,
+    "pass": 483,
     "fail": 5,
     "unverified": 0,
-    "rate": 0.9895,
-    "last_ts": "2026-10-21T20:38:17",
+    "rate": 0.9898,
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -838,20 +912,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：464 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：477 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[EMPTY:PASS]；留痕轮次=464"
+     "evidence": "pass_token=[EMPTY:PASS]；留痕轮次=477"
     }
    },
    "perform": {
-    "runs_seen": 464,
-    "pass": 463,
+    "runs_seen": 477,
+    "pass": 476,
     "fail": 1,
     "unverified": 0,
-    "rate": 0.9978,
-    "last_ts": "2026-10-21T20:38:17",
+    "rate": 0.9979,
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -875,20 +949,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：430 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：443 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=430"
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=443"
     }
    },
    "perform": {
-    "runs_seen": 430,
-    "pass": 430,
+    "runs_seen": 443,
+    "pass": 443,
     "fail": 0,
     "unverified": 0,
     "rate": 1.0,
-    "last_ts": "2026-10-21T20:38:17",
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -912,21 +986,21 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：410 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：423 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=410"
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=423"
     }
    },
    "perform": {
-    "runs_seen": 410,
-    "pass": 316,
-    "fail": 90,
+    "runs_seen": 423,
+    "pass": 321,
+    "fail": 98,
     "unverified": 4,
-    "rate": 0.7707,
-    "last_ts": "2026-10-21T20:38:17",
-    "last_verdict": "FAIL"
+    "rate": 0.7589,
+    "last_ts": "2026-10-21T21:26:18",
+    "last_verdict": "PASS"
    }
   },
   {
@@ -949,20 +1023,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：415 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：428 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=415"
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=428"
     }
    },
    "perform": {
-    "runs_seen": 415,
-    "pass": 412,
+    "runs_seen": 428,
+    "pass": 425,
     "fail": 3,
     "unverified": 0,
-    "rate": 0.9928,
-    "last_ts": "2026-10-21T20:38:17",
+    "rate": 0.993,
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -986,20 +1060,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：416 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：429 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=416"
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=429"
     }
    },
    "perform": {
-    "runs_seen": 416,
-    "pass": 337,
+    "runs_seen": 429,
+    "pass": 350,
     "fail": 79,
     "unverified": 0,
-    "rate": 0.8101,
-    "last_ts": "2026-10-21T20:38:17",
+    "rate": 0.8159,
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -1023,20 +1097,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：421 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：434 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=421"
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=434"
     }
    },
    "perform": {
-    "runs_seen": 421,
-    "pass": 421,
+    "runs_seen": 434,
+    "pass": 434,
     "fail": 0,
     "unverified": 0,
     "rate": 1.0,
-    "last_ts": "2026-10-21T20:38:17",
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -1060,20 +1134,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：93 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：106 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=93"
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=106"
     }
    },
    "perform": {
-    "runs_seen": 93,
-    "pass": 42,
+    "runs_seen": 106,
+    "pass": 55,
     "fail": 51,
     "unverified": 0,
-    "rate": 0.4516,
-    "last_ts": "2026-10-21T20:38:17",
+    "rate": 0.5189,
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -1097,20 +1171,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：81 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：94 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[ADMIT]；留痕轮次=81"
+     "evidence": "pass_token=[ADMIT]；留痕轮次=94"
     }
    },
    "perform": {
-    "runs_seen": 81,
-    "pass": 76,
-    "fail": 5,
+    "runs_seen": 94,
+    "pass": 87,
+    "fail": 7,
     "unverified": 0,
-    "rate": 0.9383,
-    "last_ts": "2026-10-21T20:38:17",
+    "rate": 0.9255,
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -1134,20 +1208,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：410 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：423 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=410"
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=423"
     }
    },
    "perform": {
-    "runs_seen": 410,
-    "pass": 359,
+    "runs_seen": 423,
+    "pass": 372,
     "fail": 47,
     "unverified": 4,
-    "rate": 0.8756,
-    "last_ts": "2026-10-21T20:38:17",
+    "rate": 0.8794,
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -1171,20 +1245,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：110 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：123 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=110"
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=123"
     }
    },
    "perform": {
-    "runs_seen": 110,
-    "pass": 110,
+    "runs_seen": 123,
+    "pass": 123,
     "fail": 0,
     "unverified": 0,
     "rate": 1.0,
-    "last_ts": "2026-10-21T20:38:17",
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -1208,20 +1282,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：140 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：153 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=140"
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=153"
     }
    },
    "perform": {
-    "runs_seen": 140,
-    "pass": 137,
+    "runs_seen": 153,
+    "pass": 150,
     "fail": 3,
     "unverified": 0,
-    "rate": 0.9786,
-    "last_ts": "2026-10-21T20:38:17",
+    "rate": 0.9804,
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -1245,21 +1319,21 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：394 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：407 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=394"
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=407"
     }
    },
    "perform": {
-    "runs_seen": 394,
-    "pass": 289,
-    "fail": 105,
+    "runs_seen": 407,
+    "pass": 295,
+    "fail": 112,
     "unverified": 0,
-    "rate": 0.7335,
-    "last_ts": "2026-10-21T20:38:17",
-    "last_verdict": "FAIL"
+    "rate": 0.7248,
+    "last_ts": "2026-10-21T21:26:18",
+    "last_verdict": "PASS"
    }
   },
   {
@@ -1282,20 +1356,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：393 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：406 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=393"
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=406"
     }
    },
    "perform": {
-    "runs_seen": 393,
-    "pass": 389,
+    "runs_seen": 406,
+    "pass": 402,
     "fail": 0,
     "unverified": 4,
-    "rate": 0.9898,
-    "last_ts": "2026-10-21T20:38:17",
+    "rate": 0.9901,
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -1319,21 +1393,21 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：405 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：418 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=405"
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=418"
     }
    },
    "perform": {
-    "runs_seen": 405,
-    "pass": 299,
-    "fail": 102,
+    "runs_seen": 418,
+    "pass": 305,
+    "fail": 109,
     "unverified": 4,
-    "rate": 0.7383,
-    "last_ts": "2026-10-21T20:38:17",
-    "last_verdict": "FAIL"
+    "rate": 0.7297,
+    "last_ts": "2026-10-21T21:26:18",
+    "last_verdict": "PASS"
    }
   },
   {
@@ -1356,20 +1430,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：424 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：437 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=424"
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=437"
     }
    },
    "perform": {
-    "runs_seen": 424,
-    "pass": 420,
+    "runs_seen": 437,
+    "pass": 433,
     "fail": 4,
     "unverified": 0,
-    "rate": 0.9906,
-    "last_ts": "2026-10-21T20:38:17",
+    "rate": 0.9908,
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -1393,20 +1467,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：422 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：435 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=422"
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=435"
     }
    },
    "perform": {
-    "runs_seen": 422,
-    "pass": 418,
+    "runs_seen": 435,
+    "pass": 431,
     "fail": 0,
     "unverified": 4,
-    "rate": 0.9905,
-    "last_ts": "2026-10-21T20:38:17",
+    "rate": 0.9908,
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -1430,20 +1504,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：440 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：453 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=440"
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=453"
     }
    },
    "perform": {
-    "runs_seen": 440,
-    "pass": 438,
+    "runs_seen": 453,
+    "pass": 451,
     "fail": 2,
     "unverified": 0,
-    "rate": 0.9955,
-    "last_ts": "2026-10-21T20:38:17",
+    "rate": 0.9956,
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -1467,20 +1541,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：446 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：459 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=446"
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=459"
     }
    },
    "perform": {
-    "runs_seen": 446,
-    "pass": 441,
+    "runs_seen": 459,
+    "pass": 454,
     "fail": 5,
     "unverified": 0,
-    "rate": 0.9888,
-    "last_ts": "2026-10-21T20:38:17",
+    "rate": 0.9891,
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -1504,20 +1578,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：457 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：470 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=457"
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=470"
     }
    },
    "perform": {
-    "runs_seen": 457,
-    "pass": 442,
+    "runs_seen": 470,
+    "pass": 455,
     "fail": 8,
     "unverified": 7,
-    "rate": 0.9672,
-    "last_ts": "2026-10-21T20:38:17",
+    "rate": 0.9681,
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -1541,20 +1615,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：475 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：488 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[FRESH:PASS]；留痕轮次=475"
+     "evidence": "pass_token=[FRESH:PASS]；留痕轮次=488"
     }
    },
    "perform": {
-    "runs_seen": 475,
+    "runs_seen": 488,
     "pass": 222,
-    "fail": 252,
+    "fail": 265,
     "unverified": 1,
-    "rate": 0.4674,
-    "last_ts": "2026-10-21T20:38:17",
+    "rate": 0.4549,
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "FAIL"
    }
   },
@@ -1578,20 +1652,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：364 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：377 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[GATE:roster-fixture-pass] 12/12；留痕轮次=364"
+     "evidence": "pass_token=[GATE:roster-fixture-pass] 12/12；留痕轮次=377"
     }
    },
    "perform": {
-    "runs_seen": 364,
-    "pass": 359,
+    "runs_seen": 377,
+    "pass": 372,
     "fail": 0,
     "unverified": 5,
-    "rate": 0.9863,
-    "last_ts": "2026-10-21T20:38:17",
+    "rate": 0.9867,
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -1615,20 +1689,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：389 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：402 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[GATE:pysyntax-pass]；留痕轮次=389"
+     "evidence": "pass_token=[GATE:pysyntax-pass]；留痕轮次=402"
     }
    },
    "perform": {
-    "runs_seen": 389,
-    "pass": 388,
+    "runs_seen": 402,
+    "pass": 401,
     "fail": 1,
     "unverified": 0,
-    "rate": 0.9974,
-    "last_ts": "2026-10-21T20:38:17",
+    "rate": 0.9975,
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -1652,20 +1726,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：389 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：402 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[GATE:actionpin-pass]；留痕轮次=389"
+     "evidence": "pass_token=[GATE:actionpin-pass]；留痕轮次=402"
     }
    },
    "perform": {
-    "runs_seen": 389,
-    "pass": 389,
+    "runs_seen": 402,
+    "pass": 402,
     "fail": 0,
     "unverified": 0,
     "rate": 1.0,
-    "last_ts": "2026-10-21T20:38:17",
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -1689,20 +1763,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：380 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：393 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[GATE:retired-face-pass] | [GATE:retired-face-watch]；留痕轮次=380"
+     "evidence": "pass_token=[GATE:retired-face-pass] | [GATE:retired-face-watch]；留痕轮次=393"
     }
    },
    "perform": {
-    "runs_seen": 380,
-    "pass": 334,
+    "runs_seen": 393,
+    "pass": 347,
     "fail": 42,
     "unverified": 4,
-    "rate": 0.8789,
-    "last_ts": "2026-10-21T20:38:17",
+    "rate": 0.883,
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -1726,20 +1800,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：338 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：351 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[GENCOV:PASS]；留痕轮次=338"
+     "evidence": "pass_token=[GENCOV:PASS]；留痕轮次=351"
     }
    },
    "perform": {
-    "runs_seen": 338,
-    "pass": 334,
+    "runs_seen": 351,
+    "pass": 347,
     "fail": 0,
     "unverified": 4,
-    "rate": 0.9882,
-    "last_ts": "2026-10-21T20:38:17",
+    "rate": 0.9886,
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -1763,20 +1837,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：336 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：349 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[PIN:PASS]；留痕轮次=336"
+     "evidence": "pass_token=[PIN:PASS]；留痕轮次=349"
     }
    },
    "perform": {
-    "runs_seen": 336,
-    "pass": 333,
+    "runs_seen": 349,
+    "pass": 346,
     "fail": 0,
     "unverified": 3,
-    "rate": 0.9911,
-    "last_ts": "2026-10-21T20:38:17",
+    "rate": 0.9914,
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -1800,20 +1874,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：292 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：305 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[GATE:debt-face-fresh-pass]；留痕轮次=292"
+     "evidence": "pass_token=[GATE:debt-face-fresh-pass]；留痕轮次=305"
     }
    },
    "perform": {
-    "runs_seen": 292,
-    "pass": 292,
+    "runs_seen": 305,
+    "pass": 305,
     "fail": 0,
     "unverified": 0,
     "rate": 1.0,
-    "last_ts": "2026-10-21T20:38:17",
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -1837,20 +1911,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：292 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：305 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=归属分堆桩；留痕轮次=292"
+     "evidence": "pass_token=归属分堆桩；留痕轮次=305"
     }
    },
    "perform": {
-    "runs_seen": 292,
-    "pass": 292,
+    "runs_seen": 305,
+    "pass": 305,
     "fail": 0,
     "unverified": 0,
     "rate": 1.0,
-    "last_ts": "2026-10-21T20:38:17",
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -1874,20 +1948,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：250 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：263 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=250"
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=263"
     }
    },
    "perform": {
-    "runs_seen": 250,
-    "pass": 250,
+    "runs_seen": 263,
+    "pass": 263,
     "fail": 0,
     "unverified": 0,
     "rate": 1.0,
-    "last_ts": "2026-10-21T20:38:17",
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -1911,20 +1985,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：250 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：263 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[PROVENANCE:PASS]；留痕轮次=250"
+     "evidence": "pass_token=[PROVENANCE:PASS]；留痕轮次=263"
     }
    },
    "perform": {
-    "runs_seen": 250,
-    "pass": 250,
+    "runs_seen": 263,
+    "pass": 263,
     "fail": 0,
     "unverified": 0,
     "rate": 1.0,
-    "last_ts": "2026-10-21T20:38:17",
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -1948,20 +2022,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：246 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：259 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=246"
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=259"
     }
    },
    "perform": {
-    "runs_seen": 246,
-    "pass": 246,
+    "runs_seen": 259,
+    "pass": 259,
     "fail": 0,
     "unverified": 0,
     "rate": 1.0,
-    "last_ts": "2026-10-21T20:38:17",
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -1985,20 +2059,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：241 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：254 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=241"
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=254"
     }
    },
    "perform": {
-    "runs_seen": 241,
-    "pass": 241,
+    "runs_seen": 254,
+    "pass": 254,
     "fail": 0,
     "unverified": 0,
     "rate": 1.0,
-    "last_ts": "2026-10-21T20:38:17",
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -2022,20 +2096,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：241 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：254 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[CACHEGUARD:PASS]；留痕轮次=241"
+     "evidence": "pass_token=[CACHEGUARD:PASS]；留痕轮次=254"
     }
    },
    "perform": {
-    "runs_seen": 241,
-    "pass": 241,
+    "runs_seen": 254,
+    "pass": 254,
     "fail": 0,
     "unverified": 0,
     "rate": 1.0,
-    "last_ts": "2026-10-21T20:38:17",
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -2059,20 +2133,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：241 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：254 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=241"
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=254"
     }
    },
    "perform": {
-    "runs_seen": 241,
-    "pass": 241,
+    "runs_seen": 254,
+    "pass": 254,
     "fail": 0,
     "unverified": 0,
     "rate": 1.0,
-    "last_ts": "2026-10-21T20:38:17",
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -2096,20 +2170,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：210 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：223 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[MIGGUARD:PASS]；留痕轮次=210"
+     "evidence": "pass_token=[MIGGUARD:PASS]；留痕轮次=223"
     }
    },
    "perform": {
-    "runs_seen": 210,
-    "pass": 210,
+    "runs_seen": 223,
+    "pass": 223,
     "fail": 0,
     "unverified": 0,
     "rate": 1.0,
-    "last_ts": "2026-10-21T20:38:17",
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -2133,20 +2207,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：217 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：230 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=217"
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=230"
     }
    },
    "perform": {
-    "runs_seen": 217,
-    "pass": 217,
+    "runs_seen": 230,
+    "pass": 230,
     "fail": 0,
     "unverified": 0,
     "rate": 1.0,
-    "last_ts": "2026-10-21T20:38:17",
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -2170,20 +2244,20 @@
     },
     "perform": {
      "status": "PASS",
-     "evidence": "gate_runs.jsonl 逐门历史：68 轮"
+     "evidence": "gate_runs.jsonl 逐门历史：81 轮"
     },
     "archive": {
      "status": "PASS",
-     "evidence": "pass_token=[DIRECTCLOSE]；留痕轮次=68"
+     "evidence": "pass_token=[DIRECTCLOSE]；留痕轮次=81"
     }
    },
    "perform": {
-    "runs_seen": 68,
-    "pass": 68,
+    "runs_seen": 81,
+    "pass": 81,
     "fail": 0,
     "unverified": 0,
     "rate": 1.0,
-    "last_ts": "2026-10-21T20:38:17",
+    "last_ts": "2026-10-21T21:26:18",
     "last_verdict": "PASS"
    }
   },
@@ -2541,55 +2615,25 @@
    "cid": "GATE:commit_gate_map_face",
    "level": "P1",
    "kind": "LAST_NOT_PASS",
-   "detail": "末次履约 UNVERIFIED @ 2026-10-21T20:38:17"
+   "detail": "末次履约 UNVERIFIED @ 2026-10-21T21:26:18"
   },
   {
    "cid": "GATE:commit_gate_map_face",
    "level": "P2",
    "kind": "LOW_RATE",
-   "detail": "履约率 0.16（7/45）"
-  },
-  {
-   "cid": "GATE:ratchet_gate",
-   "level": "P1",
-   "kind": "LAST_NOT_PASS",
-   "detail": "末次履约 FAIL @ 2026-10-21T20:38:17"
-  },
-  {
-   "cid": "GATE:refresh_budget_fixtures",
-   "level": "P1",
-   "kind": "LAST_NOT_PASS",
-   "detail": "末次履约 FAIL @ 2026-10-21T20:38:17"
-  },
-  {
-   "cid": "GATE:w47_reconcile_fixtures",
-   "level": "P2",
-   "kind": "LOW_RATE",
-   "detail": "履约率 0.45（42/93）"
-  },
-  {
-   "cid": "GATE:budget_contract_fixtures",
-   "level": "P1",
-   "kind": "LAST_NOT_PASS",
-   "detail": "末次履约 FAIL @ 2026-10-21T20:38:17"
-  },
-  {
-   "cid": "GATE:baseline_note_fixtures",
-   "level": "P1",
-   "kind": "LAST_NOT_PASS",
-   "detail": "末次履约 FAIL @ 2026-10-21T20:38:17"
+   "detail": "履约率 0.12（7/58）"
   },
   {
    "cid": "GATE:gate_run_freshness",
    "level": "P1",
    "kind": "LAST_NOT_PASS",
-   "detail": "末次履约 FAIL @ 2026-10-21T20:38:17"
+   "detail": "末次履约 FAIL @ 2026-10-21T21:26:18"
   },
   {
    "cid": "GATE:gate_run_freshness",
    "level": "P2",
    "kind": "LOW_RATE",
-   "detail": "履约率 0.47（222/475）"
+   "detail": "履约率 0.45（222/488）"
   },
   {
    "cid": "RULE:新判据交付契约",
@@ -2665,9 +2709,9 @@
   }
  ],
  "summary": {
-  "contracts_n": 71,
+  "contracts_n": 73,
   "families": {
-   "判据契约": 59,
+   "判据契约": 61,
    "规则契约": 9,
    "基线契约": 1,
    "CI 全绿契约": 1,
@@ -2675,39 +2719,50 @@
   },
   "stages": {
    "draft": {
-    "PASS": 71,
+    "PASS": 73,
     "FAIL": 0,
     "UNVERIFIED": 0
    },
    "review": {
-    "PASS": 60,
+    "PASS": 62,
     "FAIL": 0,
     "UNVERIFIED": 11
    },
    "sign": {
-    "PASS": 71,
+    "PASS": 73,
     "FAIL": 0,
     "UNVERIFIED": 0
    },
    "perform": {
-    "PASS": 59,
+    "PASS": 61,
     "FAIL": 0,
     "UNVERIFIED": 12
    },
    "archive": {
-    "PASS": 71,
+    "PASS": 73,
     "FAIL": 0,
     "UNVERIFIED": 0
    }
   },
-  "gate_runs_n": 484,
-  "reconcile_registry_n": 18,
-  "reconcile_snapshot_n": 59,
-  "alerts_n": 21,
+  "gate_runs_n": 497,
+  "reconcile_registry_n": 20,
+  "reconcile_snapshot_n": 61,
+  "alerts_n": 16,
   "alerts_by_level": {
    "P0": 0,
-   "P1": 18,
-   "P2": 3
+   "P1": 14,
+   "P2": 2
+  },
+  "roles": {
+   "stage_roles": {
+    "draft": "契约作者（本仓会话 / 归属方会话）",
+    "review": "对账闸 r130_gate_table_reconcile（机判）+ 作者（交夹具证据）",
+    "sign": "门表维护者（run_gates.py#GATES 单一真相源入口）",
+    "perform": "聚合 runner run_gates.py（每轮真跑）+ pre-commit 分级阻断（r137 判定面）",
+    "archive": "台账（gate_runs.jsonl / memory 分卷，append-only 不可回写）"
+   },
+   "non_gate_review_owner": "受管根归属方会话（A-skill-manager / A-project-handoff 侧；本仓只有转诊面）",
+   "authority": "本面为权责的机器载体；正文权威=06-benchmark/契约治理与体量治理联动框架_r150_2026-10-21.md §2.1"
   }
  }
 }

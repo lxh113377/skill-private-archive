@@ -43,6 +43,17 @@ CI_CONTRACT_MD = os.environ.get("R150_CI_CONTRACT_MD") or r"D:\global_skills\A-p
 EXEC_CONTRACT_MD = os.environ.get("R150_EXEC_CONTRACT_MD") or r"D:\global_skills\A-memory-start\references\contract.md"
 STALE_DAYS = 30   # 履约陈旧阈值：末次履约超过此天数即预警
 
+# 权责划分（机读表，目标①「明确各节点权责」的机器载体；正文权威=框架报告 §2.1）
+STAGE_ROLES = {
+    "draft": "契约作者（本仓会话 / 归属方会话）",
+    "review": "对账闸 r130_gate_table_reconcile（机判）+ 作者（交夹具证据）",
+    "sign": "门表维护者（run_gates.py#GATES 单一真相源入口）",
+    "perform": "聚合 runner run_gates.py（每轮真跑）+ pre-commit 分级阻断（r137 判定面）",
+    "archive": "台账（gate_runs.jsonl / memory 分卷，append-only 不可回写）",
+}
+# 非门禁族（规则/基线/CI/执行）的审核与履约责任位不同 —— 具名单列，防把门禁权责错扣到它们头上
+NON_GATE_REVIEW_OWNER = "受管根归属方会话（A-skill-manager / A-project-handoff 侧；本仓只有转诊面）"
+
 
 def read_text(path):
     if not path or not os.path.isfile(path):
@@ -311,6 +322,17 @@ def build(root):
             alerts.append({"cid": c["cid"], "level": "P2", "kind": "THIN_LIFECYCLE",
                            "detail": "五环节里 %d FAIL + %d UNVERIFIED" % (len(missing), len(unver))})
 
+    # 履约陈旧腿（用上 STALE_DAYS；此前是死常量——常量存在但无腿=判据半截，r156b 补）
+    for c in contracts:
+        pf = c.get("perform")
+        if pf and pf.get("last_ts"):
+            try:
+                age = (datetime.now() - datetime.strptime(pf["last_ts"][:19], "%Y-%m-%dT%H:%M:%S")).days
+                if age > STALE_DAYS:
+                    alerts.append({"cid": c["cid"], "level": "P1", "kind": "STALE_PERFORM",
+                                   "detail": "末次履约 %s（%d 天前 > %d）" % (pf["last_ts"], age, STALE_DAYS)})
+            except ValueError:
+                pass
     family_cnt = {}
     for c in contracts:
         family_cnt[c["family"]] = family_cnt.get(c["family"], 0) + 1
@@ -337,6 +359,9 @@ def build(root):
             "reconcile_snapshot_n": None if recon is None else len(recon["snapshot_ids"]),
             "alerts_n": len(alerts),
             "alerts_by_level": {lv: sum(1 for a in alerts if a["level"] == lv) for lv in ("P0", "P1", "P2")},
+            "roles": {"stage_roles": STAGE_ROLES,
+                      "non_gate_review_owner": NON_GATE_REVIEW_OWNER,
+                      "authority": "本面为权责的机器载体；正文权威=06-benchmark/契约治理与体量治理联动框架_r150_2026-10-21.md §2.1"},
         },
     }
 
