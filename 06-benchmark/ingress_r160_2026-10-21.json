@@ -1,0 +1,113 @@
+{
+ "schema": "new-skill-ingress-r133-v1",
+ "cmd": "python 05-exec/r133_new_skill_ingress.py --json <out>",
+ "face": {
+  "corpus_n": 190,
+  "baseline_n": 182,
+  "new_slugs_n": 6,
+  "new_slugs": [
+   "libreoffice-base",
+   "libreoffice-calc",
+   "libreoffice-draw",
+   "libreoffice-headless-win",
+   "libreoffice-impress",
+   "libreoffice-writer"
+  ],
+  "examined_n": 311,
+  "new_skill_preempt_n": 6,
+  "lang_mismatch_n": 6,
+  "reading": {
+   "new_skill_preempt_n": "新建件抢答了本该给老件的题 —— 语料扩容的副作用，每轮复跑可观测增减",
+   "lang_mismatch_n": "期望件与实得件的 description 语言不一致（一方无中文）⇒ 中文 query 下英文语料天然吃亏",
+   "new_slugs": "相对基线 182 件新增的件清单（r133 实测为 6 件 libreoffice-*）"
+  }
+ },
+ "new_skill_preempt": [
+  {
+   "query": "写个脚本定期备份数据库",
+   "expected": "tencent-cos-skill__skillhub",
+   "got": "libreoffice-base",
+   "is_new_skill": true,
+   "group": "stale"
+  },
+  {
+   "query": "写个脚本定期备份数据库",
+   "expected": "tencent-cos-skill__skillhub",
+   "got": "libreoffice-base",
+   "is_new_skill": true,
+   "group": "stale"
+  },
+  {
+   "query": "写个脚本定期备份数据库",
+   "expected": "tencent-cos-skill__skillhub",
+   "got": "libreoffice-base",
+   "is_new_skill": true,
+   "group": "stale"
+  },
+  {
+   "query": "写个脚本定期备份数据库",
+   "expected": "tencent-cos-skill__skillhub",
+   "got": "libreoffice-base",
+   "is_new_skill": true,
+   "group": "stale"
+  },
+  {
+   "query": "写个脚本定期备份数据库",
+   "expected": "tencent-cos-skill__skillhub",
+   "got": "libreoffice-base",
+   "is_new_skill": true,
+   "group": "tag_rows"
+  },
+  {
+   "query": "写个脚本定期备份数据库",
+   "expected": "tencent-cos-skill__skillhub",
+   "got": "libreoffice-base",
+   "is_new_skill": true,
+   "group": "tag_rows"
+  }
+ ],
+ "lang_mismatch": [
+  {
+   "query": "录音转文字",
+   "expected": "video-whisper-transcribe",
+   "got": "local-asr",
+   "expected_has_cjk": true,
+   "got_has_cjk": false
+  },
+  {
+   "query": "给一个GitHub项目写代码审查意见",
+   "expected": "github",
+   "got": "code-review",
+   "expected_has_cjk": false,
+   "got_has_cjk": true
+  },
+  {
+   "query": "录音转文字",
+   "expected": "video-whisper-transcribe",
+   "got": "local-asr",
+   "expected_has_cjk": true,
+   "got_has_cjk": false
+  },
+  {
+   "query": "给一个GitHub项目写代码审查意见",
+   "expected": "github",
+   "got": "code-review",
+   "expected_has_cjk": false,
+   "got_has_cjk": true
+  },
+  {
+   "query": "录音转文字",
+   "expected": "video-whisper-transcribe",
+   "got": "local-asr",
+   "expected_has_cjk": true,
+   "got_has_cjk": false
+  },
+  {
+   "query": "给一个GitHub项目写代码审查意见",
+   "expected": "github",
+   "got": "code-review",
+   "expected_has_cjk": false,
+   "got_has_cjk": true
+  }
+ ]
+}
