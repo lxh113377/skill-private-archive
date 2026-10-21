@@ -1,0 +1,20 @@
+{
+ "schema": "bounce-back-face-evidence-r161-v1",
+ "cmd": "python 05-exec/r161_bounce_back.py --selftest ｜ python 05-exec/run_gates.py --gate bounce_back_face --no-ledger",
+ "face": {
+  "patterns_parsed_from_rule": 7,
+  "positive": 11,
+  "negative": 6,
+  "mismatch": 0,
+  "verdict": "SELFTEST-PASS",
+  "single_gate_rc": 0,
+  "mutation_rule_stub_rc": 2,
+  "mutation_empty_fixtures_rc": 2,
+  "selfscan_hits": 1,
+  "selfscan_note": "hit p2 on my own previous closing line (asked boss to pick a direction); the compliant line in the same file was not flagged"
+ },
+ "selftest_stdout": "[BOUNCE] patterns parsed 7 | positive 11 | negative 6 | mismatch 0\r\n[BOUNCE:SELFTEST-PASS] 11 positives all hit / 6 negatives zero false-positive / mutation leg covered",
+ "selfscan_stdout": "[BOUNCE] scanned r161_selfscan.txt | hits 1 (patterns 7)\r\n  L1     p2  接下来想请老大定个方向 —— 可选：① 修 R159-1/R159-2 消掉固定红；② 找真缺陷提上游 issue；",
+ "gate": "bounce_back_face (62nd)",
+ "generated_at": "2026-10-21 15:19"
+}

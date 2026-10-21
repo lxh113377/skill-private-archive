@@ -1,0 +1,25 @@
+{
+ "schema": "bounce-back-fixtures-r161-v1",
+ "note": "positive = bounce-back sentences actually said by me (incl. the 3 rule37 admits its prose form missed); negative = compliant sentences",
+ "positive": [
+  "我该继续吗？",
+  "我可以跑一次完整构建吗？",
+  "你先确认一下这个改动。",
+  "要不要我把改动提交 git？",
+  "这有两种理解，你倾向哪种？",
+  "需要你提供 API key 才能继续。",
+  "请问我是否可以开始？",
+  "等你回复后再推进。",
+  "接下来你想怎么做？",
+  "由你来决定选哪个方案。",
+  "想征求你的意见再动手。"
+ ],
+ "negative": [
+  "我直接做了，理由：可回滚，回滚方式 = git reset。",
+  "已决：选 A 方案，B 方案在回执里一句带过。",
+  "办不到，卡在缺凭据；已列待办并写实测证据。",
+  "下一步动作是复跑该门，我先跑。",
+  "本轮做完并落盘，无需老大介入。",
+  "我实测后发现根因是代理截 TLS，已绕行。"
+ ]
+}
