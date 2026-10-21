@@ -3,13 +3,13 @@
  "generated_at": "2026-10-20 11:54",
  "metrics": {
   "catalog_grand_chars": 56312,
-  "inject_union_bytes": 100106,
+  "inject_union_bytes": 68484,
   "claim_candidates": 4,
   "drift_ruleish_candidates": 32,
   "desc_over_cap": 0,
   "username_in_skill_files": 0,
-  "overdue_debt_items": 1,
-  "deferred_debt_items": 0,
+  "overdue_debt_items": 0,
+  "deferred_debt_items": 1,
   "repeat_debt_items": 0
  },
  "hard_caps": {
@@ -371,6 +371,17 @@
    "commit": "dd67102",
    "path": "(range-attribution)",
    "reason": "r151 range attribution: overdue_debt_items 0->1 (+1). Cause: parallel session (r150b) registered R150-8 which aged past grace; its adjudication belongs to that session (R269 do-not-collect), so this session cannot close it. r151 itself cut OVERDUE 9->1 (DECIDED 63->71). Only-down semantics unchanged; baseline stays measured truth.",
+   "kind": "range"
+  },
+  {
+   "metric": "deferred_debt_items",
+   "from_value": 0,
+   "to_value": 1,
+   "delta": 1,
+   "at": "2026-10-21 23:30",
+   "commit": "12d7a89..HEAD",
+   "path": "(range-attribution)",
+   "reason": "r160 裁决 R157-2 挂账至 r163（G8 机器校验时机错第 2 次复发，接线前置误报率未量）产生 1 条 DEFERRED；属本轮自认复发的合法记账，非掩盖：X-13 要求 DEFERRED 独立成态且到期自动回判 OVERDUE，r163 轮若未执行将自动越线。",
    "kind": "range"
   }
  ],
