@@ -2,6 +2,29 @@
 
 > 更新：2026-09-22 | 本目录 = 阶段4/5 的**执行证据**（补丁 JSON + 轮次报告），不含计划文档（计划在 `04-plan/`）。
 
+## 轮次证据可追溯链（r158 追加指针；本行以上为 09-22 原状，按 R241 不改写）
+
+> 本表上方那张「轮次报告」表**只覆盖到第 10 轮**，此后 140+ 轮的证据不在这里手抄 ——
+> 手抄必然陈旧（本文件正是活样本：标题写着"更新 2026-09-22"却一直在产轮次）。
+> 现行可复算口径 = 三条命令，任一条即可定位「哪轮 ↔ 哪份报告 ↔ 哪个 commit ↔ 哪个 P0 编号」：
+
+```powershell
+# ① 全部对标轮次报告（逐轮一件，名字含轮号与主题）
+Get-ChildItem 06-benchmark -Filter '全量对标报告_r*' | Sort-Object Name | Select-Object -Last 5 -ExpandProperty Name
+# ② 提交史（每轮 feat/chore 行自带轮号与四项改造摘要）
+git log --oneline -8 --format='%h %ad %s' --date=format:'%m-%d %H:%M'
+# ③ 轮号 ⇄ commit ⇄ tag 三向对齐（r33 起每实质轮打 annotated tag）
+git tag -l --sort=-v:refname | Select-Object -First 5; git describe --tags
+```
+
+| 本轮线（r149→r158）证据锚点 | 落点 |
+|---|---|
+| r151 四项改造（第 56 门八态逐腿 + #48 + 第 11 类终判 + 裁账） | commit `dd67102` + `0cc77fa`，报告 `06-benchmark/全量对标报告_r151_反向验证无牙与转诊假闭环_2026-10-21.md`，tag `r151` |
+| r151/r157 追记与跨会话账 | commit `2b00fd0` |
+| r158 学习计划（知识盲区 G-1..G-6，含被证伪的四条上游候选） | commit `8f2e432`，件 `06-benchmark/学习计划_r157_知识盲区清单_2026-10-21.md` |
+
+> ⚠️ 诚实边界：上表的 commit 号是**当时实测**值（取值 `git log --oneline -8`），
+> 后续会话引用前须复算 —— 本仓并行会话同时在主线追加提交，硬编码即陈旧（AGENTS 铁律）。
 ## 轮次报告
 
 | 报告 | 覆盖轮次 | 执行内容 | 收口 commit |
