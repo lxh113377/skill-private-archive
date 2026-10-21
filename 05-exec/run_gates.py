@@ -48,6 +48,21 @@ ORIGIN = "ci" if os.environ.get("GITHUB_ACTIONS") == "true" else "local"
 # 单一真相源：门禁清单只在这里维护。AGENTS.md / CI / 会话内手工跑，都走本表。
 GATES = [
     {
+        # r156：#48 反向验证普查面（静态候选线索）
+        "id": "selftest_census_face",
+        "script": "r155_selftest_census.py",
+        "argv": [],
+        "pass_token": "[CENSUS:PASS]",
+        "portable": True,
+        "covers": [
+            "静态扫 05-exec 自测/夹具件，三条线索：C1 打印 want 却零比对 / C2 判定旗仅赋值未引用 / C3 旗未挂退出路径",
+            "候选=线索不是判决（#32）：件头显式声明处置=逐个复核或补比对；弱信号（族名撞车非计数器）advisory 单列",
+            "自证三腿常驻：无齿面 SUSPECT_NO_TEETH / 死旗面 SUSPECT_DEAD_FLAG / 对照面 OK —— 任一不符 SELFTEST-FAIL（输出 0 之前先证报得出非 0）",
+            "零输入面 rc=2 UNVERIFIED（R247 禁按干净记）",
+        ],
+        "why": "R151-5 登记『历轮大量夹具是打印 want 不看 got 同族形态』但一直没人扫。本面把 #48 做成常驻候选面（48 件/候选 0/弱信号 10）。本面自身四轮假阳自抓史（候选 6→3→1→0：文本行判接线→AST 守卫→计数器家族→数值 += 专属）正是『年轻判据不该立即上阻断』的实证——故本门候选不判红（rc=0 恒过，只有自证失败/零输入才红），进门表只为让普查**每轮真的跑**，防 R151-5 那样挂着没人动。",
+    },
+    {
         # r153：治理考核校验面（目标④ 落地 —— A1-A6 一键复跑）
         "id": "gov_acceptance_face",
         "script": "r153_gov_acceptance.py",

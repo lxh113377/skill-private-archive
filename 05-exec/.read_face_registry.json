@@ -54,5 +54,9 @@
  "r150_gov_link.py": {
   "evidence": "06-benchmark/gov_link_r150_2026-10-21.json",
   "registered_at": "2026-10-21 20:15"
+ },
+ "r155_selftest_census.py": {
+  "evidence": "06-benchmark/selftest_census_r155_2026-10-21.json",
+  "registered_at": "2026-10-21 21:16"
  }
 }
