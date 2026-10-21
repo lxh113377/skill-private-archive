@@ -1,9 +1,9 @@
 {
  "schema": "debt-aging-v2",
- "generated_at": "2026-10-21T21:14:48",
+ "generated_at": "2026-10-21T21:18:54",
  "readonly": true,
  "grace_rounds": 2,
- "current_round": 154,
+ "current_round": 156,
  "round_source": "git log --format=%s -40 中最大 rNN（未硬编码）",
  "verdict_taxonomy": [
   "OVERDUE",
@@ -98,15 +98,15 @@
  ],
  "evidence": {
   "volumes": 80,
-  "items_total": 281,
-  "open_total": 112,
+  "items_total": 282,
+  "open_total": 113,
   "closed_total": 169,
-  "raw_item_lines": 281
+  "raw_item_lines": 282
  },
  "by_class": {
-  "OVERDUE": 10,
-  "ACTIVE": 7,
-  "DECIDED": 80,
+  "OVERDUE": 7,
+  "ACTIVE": 4,
+  "DECIDED": 87,
   "UNDATED": 15,
   "DEFERRED": 0,
   "REPEAT": 0
@@ -114,122 +114,86 @@
  "overdue": [
   {
    "file": "memory\\07-next-steps.md",
-   "line": 71,
+   "line": 72,
    "priority": "未标",
    "owner": "NONE",
    "checked": false,
    "class": "OVERDUE",
-   "detail": "账龄 24 轮 / 宽限 2（回落：正文裸 rNN=r130）",
+   "detail": "账龄 26 轮 / 宽限 2（回落：正文裸 rNN=r130）",
    "title": "**R150-8（r150b 登记，P0·已落地）** **R150-2 完成**：三面已入册为**第 57/58/59 门**（`contract_lifecycle_face` / `volume_tiers_fac",
    "first_seen": "2026-10-21",
    "dating_face": "OK"
   },
   {
    "file": "memory\\07-next-steps.md",
-   "line": 83,
+   "line": 84,
    "priority": "未标",
    "owner": "OWNERED",
    "checked": false,
    "class": "OVERDUE",
-   "detail": "账龄 5 轮 / 宽限 2",
+   "detail": "账龄 7 轮 / 宽限 2",
    "title": "**R149-4（r149 登记，P2）** **残留：转诊面依赖归属方函数名**。stale_sources 若被改名/删除，本面 rc=2 UNVERIFIED（已处理，不会假绿），但**没人被通知去改适配**——转",
    "first_seen": "2026-10-21",
    "dating_face": "OK"
   },
   {
    "file": "memory\\07-next-steps.md",
-   "line": 74,
+   "line": 75,
    "priority": "未标",
    "owner": "NONE",
    "checked": false,
    "class": "OVERDUE",
-   "detail": "账龄 4 轮 / 宽限 2",
+   "detail": "账龄 6 轮 / 宽限 2",
    "title": "**R150-1（r150 登记，P0·已落地）** 三件机器面已建并实测：`05-exec/r150_contract_lifecycle.py`（契约 68 条 / 五环节三态 / 履约逐门历史 / 风险预警 P0=",
    "first_seen": "2026-10-21",
    "dating_face": "OK"
   },
   {
    "file": "memory\\07-next-steps.md",
-   "line": 76,
+   "line": 77,
    "priority": "未标",
    "owner": "OWNERED",
    "checked": false,
    "class": "OVERDUE",
-   "detail": "账龄 4 轮 / 宽限 2",
+   "detail": "账龄 6 轮 / 宽限 2",
    "title": "**R150-3（r150 登记，P1·待归属方）** 体量册 4 条结构缺陷**转办 A-project-handoff**（写入侧在 `handoff_lib/volumegov.py`，R269 不代改）：① `N",
    "first_seen": "2026-10-21",
    "dating_face": "OK"
   },
   {
    "file": "memory\\07-next-steps.md",
-   "line": 65,
+   "line": 61,
    "priority": "未标",
    "owner": "NONE",
    "checked": false,
    "class": "OVERDUE",
-   "detail": "账龄 3 轮 / 宽限 2",
-   "title": "**R151-5（r151 登记，P1，到期 r153）** **其余门的反向验证按 #48 普查**：本轮只治第 56 门；历轮大量夹具是「打印 want 不看 got」同族形态（r149 六态、r134 两次反向验证",
+   "detail": "账龄 4 轮 / 宽限 2",
+   "title": "**R150-10（r152 登记，P1）** **反向验证体检普查（#48 同族）**：本轮给三面补齐常驻断言（`python 05-exec/r150_gov_fixtures.py` → **29/29 含变异 6",
    "first_seen": "2026-10-21",
    "dating_face": "OK"
   },
   {
    "file": "memory\\07-next-steps.md",
-   "line": 66,
+   "line": 59,
    "priority": "未标",
    "owner": "OWNERED",
    "checked": false,
    "class": "OVERDUE",
    "detail": "账龄 3 轮 / 宽限 2",
-   "title": "**R151-6（r151 登记，P2·转办焚诀 eval 侧，到期=季度巡检）** **ingress 新建件抢答 6 条**（query「写个脚本定期备份数据库」exp=tencent-cos-skill__skil",
+   "title": "**R153-1（r153 登记，P0·已落地）** **治理考核校验面落成 = 第 60 门** `gov_acceptance_face`（`05-exec/r153_gov_acceptance.py`）：A1-A",
    "first_seen": "2026-10-21",
    "dating_face": "OK"
   },
   {
    "file": "memory\\07-next-steps.md",
-   "line": 67,
+   "line": 60,
    "priority": "未标",
-   "owner": "NONE",
+   "owner": "OWNERED",
    "checked": false,
    "class": "OVERDUE",
    "detail": "账龄 3 轮 / 宽限 2",
-   "title": "**R151-7（r151 登记，P2，到期=季度巡检）** **归属判据可达性仍无告警链**（R149-4 同族）：函数改名/删除时本面 rc=2 显形但不通知适配，靠人肉发现。建议并入 `r113_quarterly",
+   "title": "**R153-2（r153 登记，P1·部分落地，含归因更正）** **A2 时效腿判红归因更正**：联动面 `VOL_LEDGER_STALE` 原被我在 R150-3 记成**归属方缺陷**，实测**是我方进程缺口*",
    "first_seen": "2026-10-21",
-   "dating_face": "OK"
-  },
-  {
-   "file": "memory\\07-next-steps.md",
-   "line": 68,
-   "priority": "未标",
-   "owner": "NONE",
-   "checked": false,
-   "class": "OVERDUE",
-   "detail": "账龄 3 轮 / 宽限 2",
-   "title": "**R151-8（r151 登记，P1，到期 r153）** **引用面补「取值命令须真出产物」腿**：本轮自抓——报告与提案里把条件③的取值写成 `python 05-exec/r128_w47_reconcile_f",
-   "first_seen": "2026-10-21",
-   "dating_face": "OK"
-  },
-  {
-   "file": "memory\\07-next-steps.md",
-   "line": 69,
-   "priority": "未标",
-   "owner": "NONE",
-   "checked": false,
-   "class": "OVERDUE",
-   "detail": "账龄 3 轮 / 宽限 2",
-   "title": "**R151-9（r151 登记，P1，到期 r153）** **推送通路须走代理绕行**：本轮 git push 三连失败（TLS connect error 0A000126 unexpected eof）。取证 =",
-   "first_seen": null,
-   "dating_face": "OK"
-  },
-  {
-   "file": "memory\\07-next-steps.md",
-   "line": 70,
-   "priority": "未标",
-   "owner": "NONE",
-   "checked": false,
-   "class": "OVERDUE",
-   "detail": "账龄 3 轮 / 宽限 2",
-   "title": "**R151-10（r151 登记，P2，到期=季度巡检）** **点名技能缺「本轮是否需要」前置判据**：点名清单里的 agent-browser / A-dynamic-workflow 本轮实际无浏览器驱动、无子代",
-   "first_seen": null,
    "dating_face": "OK"
   }
  ],
@@ -237,32 +201,32 @@
   {
    "title": "**R150-9（r150b 登记，P0·已落地）** **R150-5 完成**：`memory/06-constraints.md` 新",
    "file": "memory\\07-next-steps.md",
-   "line": 72
+   "line": 73
   },
   {
    "title": "**R150-7（r150b 登记，P1·归因已更正）** **注入面棘轮红**：`inject_union_bytes` 97,884 →",
    "file": "memory\\07-next-steps.md",
-   "line": 73
+   "line": 74
   },
   {
    "title": "R113-6 本仓远端实测为 public（记忆 15 处声称「私有归档仓」）：核实并裁定 X-2/AGPL 合入的合规前提（由 flow ",
    "file": "memory\\07-next-steps.md",
-   "line": 178
+   "line": 179
   },
   {
    "title": "R113-4 注入面 +97B 外部在途（A-memory-start/references/contract.md 11:37 第三方会话",
    "file": "memory\\07-next-steps.md",
-   "line": 179
+   "line": 180
   },
   {
    "title": "R113-3 AGPL-3.0 上游合入合规口径待裁（hyperframes-registry 引入 calesthio/OpenMonta",
    "file": "memory\\07-next-steps.md",
-   "line": 280
+   "line": 281
   },
   {
    "title": "R112-5 受管根 rule_editor gates 的 mirror 组件超时（300s skip）+ noise 2 项外部在途，待",
    "file": "memory\\07-next-steps.md",
-   "line": 281
+   "line": 282
   },
   {
    "title": "R113-7 需求2 字面缺口：余 56 件 unknown + 143 件盲区仍无替代检索面（每一个现有 skill 都应有候选清单）（由",
@@ -372,8 +336,8 @@
  "note": "OVERDUE 数 = ratchet_gate 第 7 指标 overdue_debt_items 的唯一取值面",
  "coverage": {
   "status": "INCOMPLETE",
-  "prev": "debt_aging_r151e_2026-10-21.json",
-  "prev_overdue": 17,
+  "prev": "debt_aging_r156_2026-10-21.json",
+  "prev_overdue": 10,
   "missing": [
    {
     "file": "memory\\07-next-steps.md",
@@ -390,40 +354,16 @@
    {
     "file": "memory\\07-next-steps.md",
     "key": "**R150-3（r150 登记，P1·待归属方）** 体量册 4 条结构缺陷*"
-   },
-   {
-    "file": "memory\\07-next-steps.md",
-    "key": "**R151-5（r151 登记，P1，到期 r153）** **其余门的反向验"
-   },
-   {
-    "file": "memory\\07-next-steps.md",
-    "key": "**R151-6（r151 登记，P2·转办焚诀 eval 侧，到期=季度巡检）"
-   },
-   {
-    "file": "memory\\07-next-steps.md",
-    "key": "**R151-7（r151 登记，P2，到期=季度巡检）** **归属判据可达性"
-   },
-   {
-    "file": "memory\\07-next-steps.md",
-    "key": "**R151-8（r151 登记，P1，到期 r153）** **引用面补「取值"
-   },
-   {
-    "file": "memory\\07-next-steps.md",
-    "key": "**R151-9（r151 登记，P1，到期 r153）** **推送通路须走代"
-   },
-   {
-    "file": "memory\\07-next-steps.md",
-    "key": "**R151-10（r151 登记，P2，到期=季度巡检）** **点名技能缺「"
    }
   ],
   "method": "adjudication_gap(上一轮 overdue[].title 前 40 字, 当前卷文本, 本轮轮号)"
  },
  "input_face": {
   "round": {
-   "log": 154,
+   "log": 156,
    "tag": 151,
    "ok": true,
-   "detail": "log=r154 ≥ tag=r151（差 3 轮：本轮尚未打 tag，属每轮收尾打标的既有节奏）"
+   "detail": "log=r156 ≥ tag=r151（差 5 轮：本轮尚未打 tag，属每轮收尾打标的既有节奏）"
   },
   "floor": {
    "ok": true,
@@ -431,7 +371,7 @@
   },
   "dedup": {
    "ok": true,
-   "detail": "281 行全部计入，80 字前缀键零碰撞"
+   "detail": "282 行全部计入，80 字前缀键零碰撞"
   },
   "dup": {
    "ok": false,
@@ -439,60 +379,62 @@
   },
   "dating": {
    "ok": true,
-   "detail": "10 条到期项定年两路同值（截断 needle 未改变结论）",
+   "detail": "7 条到期项定年两路同值（截断 needle 未改变结论）",
    "checked": 0
   },
   "suggestions": {
-   "ok": true,
-   "detail": "8 条新编号全部在各自承接面有登记行（待办 8 条 / 禁止项 0 条）"
+   "ok": null,
+   "detail": "未传 --report ⇒ 建议面未对照（R247 不判绿）"
   },
-  "raw_lines": 281,
+  "raw_lines": 282,
   "collisions": [],
   "status": "FAIL",
   "red_faces": [
    "dup"
   ],
-  "unverified_faces": []
+  "unverified_faces": [
+   "suggestions"
+  ]
  },
  "unowned_claims": [
   {
    "file": "memory\\07-next-steps.md",
-   "line": 87,
+   "line": 88,
    "title": "**R148-4（r148 登记，P2）** **残留：第 11 类生产面翻绿依赖归属方重建**。gsap 源侧已达标但生产 route 仍读旧 BGE 向量（本仓 eval 只读"
   },
   {
    "file": "memory\\07-next-steps.md",
-   "line": 160,
+   "line": 161,
    "title": "R127-2（r127 登记，P0）** **判据只建模半条链就会产出假红**：`bge_recall` 有两次候选集构造（tag/域受限 + L1.5 union 兜底），只看第"
   },
   {
    "file": "memory\\07-next-steps.md",
-   "line": 161,
+   "line": 162,
    "title": "R127-3（r127 登记，P1）** 域失配 51 条里实测只有 6 条期望件真不在候选集，另 4 条在候选集内只是排序问题（top 0.57-0.62），其中 3 条的期望件"
   },
   {
    "file": "memory\\07-next-steps.md",
-   "line": 162,
+   "line": 163,
    "title": "R127-4（r127 登记，P1）** 转办台账的 `noise_scope_footgun`（r31 的 17 条 VIOL）实则已被受管根 R286 登记面闭环（f2 腿全过"
   },
   {
    "file": "memory\\07-next-steps.md",
-   "line": 167,
+   "line": 168,
    "title": "R126-3（r126 登记，P1）** 27 条 tag_closed 与 51 条 domain_closed 需**分级**：本轮只把 `raw_rank<=5` 的 15 "
   },
   {
    "file": "memory\\07-next-steps.md",
-   "line": 169,
+   "line": 170,
    "title": "R126-5（r126 登记，P2）** 本轮证实：`直接_route → normalize → classify_domain → tag_filter → bge_recal"
   },
   {
    "file": "memory\\07-next-steps.md",
-   "line": 250,
+   "line": 251,
    "title": "R125-5（r125 登记，P2）** 本轮四项改造全部是**判据/基础设施层**的，未触碰任何质量面（路由/语料/债务）。这是对的选择（先让判据可信再谈质量），但连续两轮基础设"
   },
   {
    "file": "memory\\07-next-steps.md",
-   "line": 281,
+   "line": 282,
    "title": "R112-5 受管根 rule_editor gates 的 mirror 组件超时（300s skip）+ noise 2 项外部在途，待归属方收口后复跑（由 flow 登记；状"
   },
   {
@@ -501,6 +443,7 @@
    "title": "R76-2 项目/陪聊 09 回填件提交：被其自有 pre-commit 交付件判据拦红（s08.png 从工作树消失 + SoulIsle 品牌分叉，均非本次引入），待归属方处置"
   }
  ],
+ "refresh_stale_count": 0,
  "handles": {
   "overdue": {
    "artifact": "06-benchmark/debt_runs.jsonl",
@@ -526,8 +469,5 @@
    "selector": "末行",
    "command": "tail -1 06-benchmark/debt_runs.jsonl"
   }
- },
- "handles_drift": [
-  "decided"
- ]
+ }
 }
