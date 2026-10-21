@@ -3,12 +3,12 @@
  "generated_at": "2026-10-20 11:54",
  "metrics": {
   "catalog_grand_chars": 56312,
-  "inject_union_bytes": 100166,
+  "inject_union_bytes": 100106,
   "claim_candidates": 4,
   "drift_ruleish_candidates": 32,
   "desc_over_cap": 0,
   "username_in_skill_files": 0,
-  "overdue_debt_items": 0,
+  "overdue_debt_items": 1,
   "deferred_debt_items": 0,
   "repeat_debt_items": 0
  },
@@ -360,6 +360,17 @@
    "commit": "b2942ba",
    "path": "(range-attribution)",
    "reason": "r151 range attribution: inject_union_bytes 97884->100166 (+2282). Cause: AGENTS.md gained rule #48 (reverse-verification legs must compare want vs got, incl. mutation-proof and relay shape-guard sections). Intentional content addition; only-down semantics unchanged. @r151-rule48-and-report",
+   "kind": "range"
+  },
+  {
+   "metric": "overdue_debt_items",
+   "from_value": 0,
+   "to_value": 1,
+   "delta": 1,
+   "at": "2026-10-21 20:56",
+   "commit": "dd67102",
+   "path": "(range-attribution)",
+   "reason": "r151 range attribution: overdue_debt_items 0->1 (+1). Cause: parallel session (r150b) registered R150-8 which aged past grace; its adjudication belongs to that session (R269 do-not-collect), so this session cannot close it. r151 itself cut OVERDUE 9->1 (DECIDED 63->71). Only-down semantics unchanged; baseline stays measured truth.",
    "kind": "range"
   }
  ],

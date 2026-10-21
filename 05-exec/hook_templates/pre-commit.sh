@@ -21,18 +21,27 @@
 cd "$(git rev-parse --show-toplevel)" || exit 0
 
 PY=""
-for c in "$PYTHON" python python3 py; do
+# r151 修：候选顺序 = 「能通过 spawn 自检的解释器」优先，不是「先找到的」优先。
+# 一手事故：hook 里 PATH 的 python 解析到 LibreOffice 内嵌 python-core，它自身能跑，
+# 但 subprocess.Popen 抛 PermissionError(WinError 5) ⇒ 三道门全成「跑不起来」并被判红阻断
+#（判据跑不起来 ≠ 判据没过 —— INFRA 态不得读成 FAIL，对标 mycelium 的 loud INFRA error）。
+# 治法 = 逐候选跑一次真实 spawn，能 spawn 才选中；全不行则显式留痕并按不阻断处理。
+for c in "$FENJUE_PY" "$HOME/.workbuddy/binaries/python/envs/default/Scripts/python.exe" \
+         "$LOCALAPPDATA/fj-actions-runner/_work/_tool/Python/3.12.10/x64/python.exe" \
+         "/d/fj-actions-runner/_work/_tool/Python/3.12.10/x64/python.exe" \
+         "$PYTHON" python python3 py; do
   [ -z "$c" ] && continue
-  if command -v "$c" >/dev/null 2>&1; then PY="$c"; break; fi
+  command -v "$c" >/dev/null 2>&1 || continue
+  if "$c" -c 'import sys,subprocess;sys.exit(0 if subprocess.run([sys.executable,"-c","pass"],capture_output=True).returncode==0 else 1)' >/dev/null 2>&1; then
+    PY="$c"; break
+  fi
 done
 if [ -z "$PY" ]; then
-  for c in "$HOME/.workbuddy/binaries/python/envs/default/Scripts/python.exe" \
-           "$LOCALAPPDATA/fj-actions-runner/_work/_tool/Python/3.12.10/x64/python.exe" \
-           "/d/fj-actions-runner/_work/_tool/Python/3.12.10/x64/python.exe"; do
-    [ -x "$c" ] && { PY="$c"; break; }
-  done
+  echo "[pre-commit] 无可用解释器（全部候选的 spawn 自检失败）—— 按不阻断处理，读数留痕：见 _temp/precommit_interp.log"
+  mkdir -p _temp
+  echo "candidates: $FENJUE_PY $PYTHON python python3 py" > _temp/precommit_interp.log
+  exit 0
 fi
-[ -z "$PY" ] && exit 0
 
 mkdir -p _temp
 MAPJ=_temp/commit_gate_map.json
