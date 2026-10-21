@@ -3,12 +3,12 @@
  "generated_at": "2026-10-20 11:54",
  "metrics": {
   "catalog_grand_chars": 56312,
-  "inject_union_bytes": 97884,
+  "inject_union_bytes": 100166,
   "claim_candidates": 4,
   "drift_ruleish_candidates": 32,
   "desc_over_cap": 0,
   "username_in_skill_files": 0,
-  "overdue_debt_items": 10,
+  "overdue_debt_items": 0,
   "deferred_debt_items": 0,
   "repeat_debt_items": 0
  },
@@ -349,6 +349,17 @@
    "commit": "r149-rule47-and-report",
    "path": "(range-attribution)",
    "reason": "r149 range attribution: inject_union_bytes 95268->97884 (+2616). Cause: AGENTS.md gained rule #47 (transfers need a resident recompute face, ~2100 chars incl. relay-vs-check adjudication table) and the r149 report is itself in the injected surface. Intentional content additions; ratchet only-down semantics unchanged.",
+   "kind": "range"
+  },
+  {
+   "metric": "inject_union_bytes",
+   "from_value": 97884,
+   "to_value": 100166,
+   "delta": 2282,
+   "at": "2026-10-21 20:33",
+   "commit": "b2942ba",
+   "path": "(range-attribution)",
+   "reason": "r151 range attribution: inject_union_bytes 97884->100166 (+2282). Cause: AGENTS.md gained rule #48 (reverse-verification legs must compare want vs got, incl. mutation-proof and relay shape-guard sections). Intentional content addition; only-down semantics unchanged. @r151-rule48-and-report",
    "kind": "range"
   }
  ],
