@@ -135,7 +135,8 @@
    "state": "READY",
    "note": {
     "embedded_version": "3.53.1",
-    "standalone_cli": false
+    "standalone_cli": false,
+    "attempts": 1
    }
   },
   {
@@ -172,5 +173,5 @@
   }
  ],
  "rule": "仅 BROKEN 判红；GAP_CRED/GAP_CLI 是诚实显形（外部凭据/平台形态缺口，#29③）",
- "generated_at": "2026-10-22 18:39"
+ "generated_at": "2026-10-22 18:59"
 }

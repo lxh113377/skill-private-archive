@@ -173,12 +173,22 @@ def _probe_wrangler_once():
 
 
 def probe_sqlite():
-    """SQLite：Python 内置即够用（无独立 CLI 不算缺口 —— 判据要区分「没有」与「不必有」）。"""
+    """SQLite：Python 内置即够用（无独立 CLI 不算缺口 —— 判据要区分「没有」与「不必有」）。
+
+    r163 自抓（瞬态被当固定红）：收尾验收时本门突然报 BROKEN: SQLite，而直测
+    `python -c "import sqlite3"` 正常、连跑 3 次名册全 READY ⇒ 那是一次子进程启动抖动
+    （进程创建失败/超时），不是 SQLite 坏。**单次探针失败不得直接判 BROKEN**（否则本门
+    会随机咬人、变成不稳定红）；失败重试一次，两次都失败才 BROKEN，并在 note 里写明次数。"""
     rc, out = _sh([sys.executable, '-c', 'import sqlite3;print(sqlite3.sqlite_version)'])
+    attempts = 1
     if rc != 0:
-        return 'BROKEN', {'detail': 'py_sqlite_unusable', 'out': out[:120]}
+        rc, out = _sh([sys.executable, '-c', 'import sqlite3;print(sqlite3.sqlite_version)'])
+        attempts = 2
+    if rc != 0:
+        return 'BROKEN', {'detail': 'py_sqlite_unusable', 'attempts': attempts, 'out': (out or '')[:120]}
     has_cli = bool(shutil.which('sqlite3'))
-    return 'READY', {'embedded_version': (out or '').strip()[:20], 'standalone_cli': has_cli}
+    return 'READY', {'embedded_version': (out or '').strip()[:20],
+                      'standalone_cli': has_cli, 'attempts': attempts}
 
 
 def probe_http_only(name, env_keys):
