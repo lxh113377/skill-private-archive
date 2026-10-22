@@ -127,7 +127,13 @@ def main():
         import subprocess
         # r129 四修（本仓 git 版本下 --pretty=format: 仍回吐全部文件名，-n 与 --pretty 不同时生效；
         # 改用 `--format=`（空格式串）才真正只取近 N 次提交的文件名）
-        _g = subprocess.run(['git', 'log', '-n', '4', '--name-only',
+        # r163 修（分母口径 bug，X-24 同族）：本门自述只检「最近 N 轮**新增**的判据」，但 --name-only
+        #   不带 --diff-filter 会把近 4 次提交里**被修改的历史件**一并拉进「新增面」⇒ 改一个 2026-09-24
+        #   入库的老脚本也要它「首次入册」。实测触发：r163d 只给 17 个历史件换 gh 调用形态，
+        #   本门即报 8 条 UNDECLARED（其首次入库提交 ef411af/78d9eb4/b71857f/73c2344/
+        #   27664b4/effe8c2/8f88c50 全是 9 月历史件）。修法 = 取新增(A) 而非「碰过」；
+        #   未跟踪面另算（r129 六修守的「刚写完未入库」窗口不受影响）。
+        _g = subprocess.run(['git', 'log', '-n', '4', '--name-only', '--diff-filter=A',
                            '--format=', '--', '05-exec/'],
                            cwd=ROOT, capture_output=True, text=True, encoding='utf-8',
                            errors='replace', timeout=120)
@@ -162,7 +168,7 @@ def main():
     except Exception:
         untracked = set()
     recent = recent | untracked
-    print('[ADMIT] 新增面 = git 近 4 次提交 %d 个 ∪ 未跟踪 %d 个（历史件本轮不动）'
+    print('[ADMIT] 新增面 = git 近 4 次提交**新增(A)** %d 个 ∪ 未跟踪 %d 个（被修改的历史件不入面）'
           % (len(recent) - len(untracked), len(untracked)))
     exempt = re.compile('|'.join(EXEMPT_PATTERNS))
     unregistered = []
