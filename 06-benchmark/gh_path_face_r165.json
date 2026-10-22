@@ -1,0 +1,29 @@
+{
+ "schema": "gh-path-face-r163-v1",
+ "cmd": "python 05-exec/r163_gh_path_face.py --json <out>",
+ "state": "PASS",
+ "detail": {
+  "gh_on_path": "C:\\Program Files\\GitHub CLI\\gh.EXE",
+  "gh_real": "C:\\Program Files\\GitHub CLI\\gh.exe",
+  "version_rc": 0,
+  "version_out": [
+   "gh version 2.95.0 (2026-06-17)"
+  ],
+  "auth_rc": 0,
+  "auth_tail": "e:packages', 'delete_repo', 'gist', 'notifications', 'project', 'repo', 'user', 'workflow', 'write:discussion', 'write:network_configurations', 'write:packages'",
+  "logged_in": true,
+  "path_entry_size": 41483064,
+  "path_entry_is_reparse": false,
+  "path_entry_run_rc": 0,
+  "path_entry_run_out": [
+   "gh version 2.95.0 (2026-06-17)"
+  ],
+  "path_entry_runnable": true,
+  "ps_resolved": "C:\\Program Files\\GitHub CLI\\gh.exe",
+  "ps_size": 41483064,
+  "ps_bare_call_ok": true,
+  "api_rc": 0,
+  "api_out": "{\"limit\":5000,\"remaining\":4908,\"reset\":1792682058,\"used\":92}"
+ },
+ "generated_at": "2026-10-22 22:48"
+}

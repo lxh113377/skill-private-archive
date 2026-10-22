@@ -168,8 +168,21 @@ def check():
     if rc2 is None:
         return 'UNVERIFIED', dict(d, reason='auth_probe_unavailable',
                                   fix='gh auth status 子进程未返回（超时或无法启动），非登录态问题')
+    # r165 自抓（并发挤占致假 UNVERIFIED）：聚合跑（run_gates 68 门并发）时本门一度报
+    #   `not_logged_in`，而**单跑 3 次全 rc=0 且 logged_in=True**（`gh auth status` 直跑也 rc=0、
+    #   keyring 登录态完好）。真凶是并发挤占让 auth 探针拿到**非零 rc**，
+    #   旧式直接判 not_logged_in ⇒ 引着人去查登录态（真凶是子进程，同 r163 那条）。
+    #   修法 = 非零 rc 时**重试一次**；仍非零才判 not_logged_in，并把 attempts 具名。
     if not d['logged_in']:
-        return 'UNVERIFIED', dict(d, reason='not_logged_in')
+        rc2b, out2b = _run([real, 'auth', 'status'], timeout=150)
+        d['auth_rc_retry'] = rc2b
+        d['auth_tail_retry'] = (out2b or '').strip()[-160:]
+        d['logged_in'] = (rc2b == 0 and 'Logged in' in (out2b or ''))
+        d['auth_attempts'] = 2
+    if not d['logged_in']:
+        return 'UNVERIFIED', dict(d, reason='not_logged_in',
+                                  fix='两次 auth status 均未拿到登录态（rc=%s/%s）；请先单跑 gh auth status 复核，排除并发挤占后再判登录态'
+                                  % (rc2, d.get('auth_rc_retry')))
     # r163 自抓（本面首版是瞎的）：只查 Python 侧 shutil.which，而修复前
     #   Python 侧解析到真实 gh（判 PASS），PowerShell 侧解析到 0 字节空壳（裸调必失败）
     #   ⇒ 面在缺陷真实存在的那一轮打了绿。补跨解释器一致性腿：
@@ -292,6 +305,33 @@ def selftest():
                  and ps.get('call_ok') is True and same,
                  'py=%s ps=%s size=%s call_ok=%s' % (py_path, ps.get('path'),
                                                      ps.get('size'), ps.get('call_ok'))))
+    # 腿 4（r165 自抓，并发挤占致假 UNVERIFIED）——**单元级验证重试逻辑**，不靠 PATH 注入。
+    #   一手事故：聚合跑（68 门并发）时本门报 not_logged_in，而单跑 3 次全 rc=0、
+    #   gh auth status 直跑也 rc=0（keyring 登录态完好）⇒ 真凶是并发挤占致 auth 探针拿到
+    #   非零 rc，旧式直接判 not_logged_in（引着人查登录态，真凶是子进程）。
+    #   修法 = 非零 rc 先重试一次；本腿直接驱动那段逻辑：把 _run 换成「首次非零、二次 0」
+    #   的假函数，断言重试后必须拿到登录态。
+    #   （首版试过用 PATH 注入假 gh.cmd，但解析优先级不受控 ⇒ 跑到真 gh ⇒ **假验证**，已废。）
+    import r163_gh_path_face as _self
+    calls = {'n': 0}
+    def _fake_run(argv, timeout=60):
+        if argv[-2:] == ['auth', 'status'] or (len(argv) >= 2 and argv[1] == 'auth'):
+            calls['n'] += 1
+            if calls['n'] == 1:
+                return 1, 'git: command not found (simulated contention)'
+            return 0, 'github.com' + chr(10) + '  Logged in to github.com account test (keyring)'
+        return 0, 'gh version 9.9.9 (test)'
+    saved_run = _self._run
+    _self._run = _fake_run
+    try:
+        st4, dd4 = _self.check()
+    finally:
+        _self._run = saved_run
+    legs.append(('s5_auth_retry_recovers_from_flake',
+                 calls['n'] >= 2 and dd4.get('logged_in') is True
+                 and dd4.get('auth_attempts') == 2,
+                 'auth 调用 %d 次 logged_in=%s attempts=%s（非零 rc 必须先重试再判未登录）'
+                 % (calls['n'], dd4.get('logged_in'), dd4.get('auth_attempts'))))
     for name, ok, note in legs:
         print('%s %-32s %s' % ('PASS' if ok else 'FAIL', name, note))
     n_ok = sum(1 for _, ok, _ in legs if ok)
