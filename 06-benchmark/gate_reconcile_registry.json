@@ -69,7 +69,7 @@
    "free_tools_face",
    "debt_fresh_fixtures"
   ],
-  "_snapshot_at": "2026-10-22 17:52",
+  "_snapshot_at": "2026-10-22 17:55",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
