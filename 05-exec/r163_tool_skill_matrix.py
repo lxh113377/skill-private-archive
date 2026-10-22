@@ -25,9 +25,14 @@ import sys
 from datetime import datetime
 
 # 工具 → 命令级/施工级正则（不是产品名匹配）
+# 引号字符类：用常量拼，避免正则字符类里同时出现双引号与单引号（撞字符串边界）。
+QUOTE_CHARS = chr(34) + chr(39)
+
 TOOLS = {
     'GitHub': r'gh\s+(?:api|pr|issue|run|auth|repo|release|workflow)\b|actions/checkout|workflow_dispatch|uses:\s*actions/',
-    'Cloudflare-D1': r'wrangler\s+d1|d1\s+execute|d1_database|\.prepare\(',
+    # D1 同族收紧：裸 d1_database 与无 SQL 关键词的 .prepare( 会把无关绑定算成引用。
+    'Cloudflare-D1': (r'wrangler\s+d1|d1\s+execute|d1_databases'
+                      r'|\.prepare\(\s*[' + QUOTE_CHARS + r']\s*(SELECT|INSERT|UPDATE|DELETE|CREATE)'),
     'Cloudflare-R2': r'wrangler\s+r2|R2Bucket|r2\.dev',
     'Cloudflare-Pages': r'wrangler\s+pages|pages\s+deploy|pages\.dev',
     'Cloudflare-Workers': r'wrangler\s+deploy|workers\.dev|export\s+default\s*\{[\s\S]{0,80}fetch',
@@ -36,7 +41,14 @@ TOOLS = {
     # 这两项没有 CLI，靠 env key / API host / SDK 调用形态识别。
     'Resend': r'RESEND_API_KEY|api\.resend\.com|resend\.emails\.send|new\s+Resend\(',
     'Upstash-Redis': r'UPSTASH_REDIS|upstash\.io|@upstash/redis|new\s+Redis\(\s*\{',
-    'SQLite': r'sqlite3|SQLite|\.db\b',
+    # r168 自抓（假引用）：旧式 sqlite3|SQLite|\.db\b 太宽，把三类非用法算成引用：
+    #   1) 正文举例（A-ask-questions：如「用 SQLite 存储」）
+    #   2) 无关注释（browser-cdp：SQLite 一致，指 Chrome profile 的 cookie DB）
+    #   3) 路径后缀（任意 .db 文件名）
+    #   => 矩阵曾虚报 SQLite 12 件；收紧后实测 2 件。
+    'SQLite': (r'import\s+sqlite3|sqlite3\.connect|CREATE\s+TABLE|PRAGMA\s+table_info'
+               r'|node:sqlite|DatabaseSync'
+               r'|\.execute\(\s*[' + QUOTE_CHARS + r']\s*(SELECT|INSERT|UPDATE|DELETE|CREATE)'),
     'Pages-Functions': r'Pages\s+Functions|onRequest\s*[:(]',
 }
 RX = {k: re.compile(v, re.I) for k, v in TOOLS.items()}
@@ -175,6 +187,20 @@ def selftest():
     finally:
         RX.clear()
         RX.update(saved)
+    # 腿 1o/1p（r168 自抓，假引用）：收紧后的 SQLite/D1 正则必须双向有效。
+    _true_cases = ['import sqlite3' + chr(10) + 'conn = sqlite3.connect("x.db")',
+                   'db.execute("CREATE TABLE orders (id INTEGER)")',
+                   'wrangler d1 execute supermarket --remote']
+    _false_cases = ['SQLite is a great embedded database',
+                    chr(47) + chr(47) + ' copy profile when SQLite is consistent',
+                    'backup to C:' + chr(92) + 'data' + chr(92) + 'app.db then done']
+    _hit = lambda s: bool(RX['SQLite'].search(s) or RX['Cloudflare-D1'].search(s))
+    t_ok = all(_hit(s) for s in _true_cases)
+    f_ok = all(not _hit(s) for s in _false_cases)
+    legs.append(('f1o_tightened_regex_still_catches_real_usage', t_ok,
+                 '3/3 真用法全部命中=%s（防收紧变假绿）' % t_ok))
+    legs.append(('f1p_tightened_regex_rejects_mentions', f_ok,
+                 '3/3 非用法全部拒掉=%s（举例/注释/路径后缀）' % f_ok))
     for n, ok, d_ in legs:
         print('%s %-34s %s' % ('PASS' if ok else 'FAIL', n, d_))
     n_ok = sum(1 for _, ok, _ in legs if ok)

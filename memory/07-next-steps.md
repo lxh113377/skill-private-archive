@@ -122,6 +122,23 @@ Upstash 同属真外部凭据缺口（需 upstash.com 账号的 REST URL+token�
 ⚠️ 本轮未修的原因：并行会话同时在拆卷（未提交件 317 个、part80..99 新建），门禁无法可靠收敛，
 此时改判据会把「我的改动」与「并行活动的干扰」混在一起，违反「一次只改一件事」。
 取值：`python 05-exec/r163_gh_path_face.py`（单跑应 PASS）+ `run_gates.py`（聚合应复现）。
+- [ ] **R168-1（r168 登记，P1，到期 r170）** **Cloudflare Email Sending 可能是 Resend 的免费替代（本机当前不可用，两条路都堵）**。 【r168 裁决=挂账至 r170｜本机两条路都堵且**均为平台侧限制**（非方法错、非我可自动化）：① Email Sending 是 open beta，账号未被纳入（`code 2036`，而 token 已有 `email_sending (write)` scope ⇒ 排除 scope 缺失）；② 账号下 0 个 zone，`enable <domain>` 要求域名托管在 CF。按 X-17 挂账而非封顶：解除条件已写死（账号纳入 beta **或** 有域名托管到 CF），满足其一即可再评估；落地方案也已写好（mailer.py 加 `cf_email` 腿，优先级置于 resend 后、smtp 前）。⚠️ 不做 `wrangler login` 重新授权 —— 那会改动用户现有登录态，属需用户拍板项（#29③ 外部凭据/授权不属可自动化项），且 scope 本就在，重登大概率无效。】
+r168 新发现：`wrangler email sending` 是 **open beta** 的 Cloudflare 原生发信通道，子命令含
+`enable <domain>` / `send` / `send-raw` / `dns` —— 若可用则发信不再需要 resend.com 账号，
+用已登录的 Cloudflare 凭据即可（与 Turnstile 同族：平台侧可做）。
+
+**本机实测两条路都堵**（都是平台侧限制，非方法错）：
+① `wrangler email sending list` ⇒ `Unauthorized [code: 2036]`。注意 token 里**已有**
+`email_sending (write)` scope（`wrangler whoami` 可见）⇒ 不是 scope 缺失，是 open beta 未纳入本账号。
+② 账号下 **0 个 zone**（`GET /zones` `total_count: 0`）⇒ 即便有权限，`enable <domain>` 也要求域名托管在 CF。
+
+**解除条件（两条并列，满足其一即可再评估）**：
+A. 账号被纳入 Email Sending beta（需在 CF 控制台申请，属外部动作）；
+B. 有域名托管到本账号（zone 非空），再走 `wrangler email sending enable <domain>` + `dns`。
+
+**若打通，落点已现成**：`office-automation-pro/scripts/mailer.py` 的 `backend_state()` 加第三条腿
+（`cf_email`），优先级建议置于 resend 之后、smtp 之前；现有六腿自证与「未配置即放行」纪律不变。
+取值：`wrangler email sending --help`、`wrangler email sending list`、`wrangler whoami`（看 scopes）。
 - [ ] **R166-1（r166 登记，P3，不封顶）** **Upstash-Redis 结论=本仓无落点（「不适用」而非「待办」）**。 【r166 裁决=降级（转长期看守）｜结论不是「暂不做」而是**「本仓无落点」**，且触发条件已写死（见本条）：Upstash 的价值在跨进程/跨实例共享状态，本仓门禁全为单机进程内计算、已有两层进程内缓存，不满足触发条件。三个候选均以实测排除（负收益/破坏确定性/瓶颈在固定开销），并记录一次失败的并行化实验及回滚。按 X-17 转长期看守而非封顶：若将来出现多机跑同一门的场景，按本条写明的触发条件再评估。】
 r166 为最后一项零引用工具专程取证，三个候选全部排除：
 ① **query 向量缓存**（`r126_tag_closure.py`）：台账前提被实测推翻 —— 全脚本 **4.1s** 而非「约 40 秒」；
