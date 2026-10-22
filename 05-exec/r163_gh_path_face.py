@@ -202,11 +202,24 @@ def check():
                             fix='Python 解析=%s 而 PowerShell 解析=%s（PATH 序遮蔽）'
                                 % (on_path, ps.get('path')))
 
-    rc3, out3 = _run([real, 'api', 'rate_limit', '--jq', '.rate'])
+    # r167 自抓（R166-2 的真因，我上轮归因错了）：聚合跑时本门报的是 **api_unreachable**，
+    #   不是 not_logged_in —— 上轮在 R166-2 里写「各分支都显示 not_logged_in」是**误判**，
+    #   真凶是这最后一步 `gh api rate_limit` 在 68 门并发下偶发拿不到数（GitHub API 网络抖动，
+    #   与 gh 登录态无关：纯 gh 并发压测 12/12 全成功）。
+    #   修法同 auth：非零 rc 先重试一次；仍失败才 UNVERIFIED 且 attempts 具名。
+    rc3, out3 = _run([real, 'api', 'rate_limit', '--jq', '.rate'], timeout=150)
     d['api_rc'] = rc3
     d['api_out'] = (out3 or '').strip()[:120]
     if rc3 != 0:
-        return 'UNVERIFIED', dict(d, reason='api_unreachable')
+        rc3, out3 = _run([real, 'api', 'rate_limit', '--jq', '.rate'], timeout=150)
+        d['api_rc_retry'] = rc3
+        d['api_out_retry'] = (out3 or '').strip()[:120]
+        d['api_attempts'] = 2
+    if rc3 != 0:
+        return 'UNVERIFIED', dict(d, reason='api_unreachable',
+                                  fix='gh api rate_limit 两次均未返回（rc=%s/%s）；这是 GitHub API '
+                                      '网络抖动，与 gh 登录态无关，勿去查登录态'
+                                      % (d.get('api_rc'), d.get('api_rc_retry')))
     return 'PASS', d
 
 
@@ -332,6 +345,30 @@ def selftest():
                  and dd4.get('auth_attempts') == 2,
                  'auth 调用 %d 次 logged_in=%s attempts=%s（非零 rc 必须先重试再判未登录）'
                  % (calls['n'], dd4.get('logged_in'), dd4.get('auth_attempts'))))
+    # 腿 5（r167 自抓，R166-2 真因的自证）：api rate_limit 非零 rc 先重试。
+    #   R166-2 的真凶是这最后一步在并发下偶发失败（reason=api_unreachable），
+    #   与登录态无关 —— 上轮归因成 not_logged_in 是误判，本腿锁住正确归因。
+    import r163_gh_path_face as _self2
+    api_calls = {'n': 0}
+    def _fake_run2(argv, timeout=60):
+        if len(argv) >= 2 and argv[1] == 'api':
+            api_calls['n'] += 1
+            if api_calls['n'] == 1:
+                return 1, 'simulated api flake'
+            return 0, '{"rate": {"remaining": 4926}}'
+        if len(argv) >= 2 and argv[1] == 'auth':
+            return 0, 'github.com' + chr(10) + '  Logged in to github.com account test (keyring)'
+        return 0, 'gh version 9.9.9 (test)'
+    saved2 = _self2._run
+    _self2._run = _fake_run2
+    try:
+        st6, d6 = _self2.check()
+    finally:
+        _self2._run = saved2
+    legs.append(('s6_api_retry_recovers_from_flake',
+                 api_calls['n'] >= 2 and st6 == 'PASS' and d6.get('api_attempts') == 2,
+                 'api 调用 %d 次 state=%s attempts=%s（并发抖动须重试，勿报 api_unreachable）'
+                 % (api_calls['n'], st6, d6.get('api_attempts'))))
     for name, ok, note in legs:
         print('%s %-32s %s' % ('PASS' if ok else 'FAIL', name, note))
     n_ok = sum(1 for _, ok, _ in legs if ok)

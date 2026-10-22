@@ -1100,6 +1100,12 @@ def run_gate(gate, timeout):
         #   · 第二次 PASS ⇒ 判瞬态，记 FLAKY_CONFIRMED（转 PASS 并在 tail 留痕）；
         #   · 第二次仍红/第三态 ⇒ 判真红，**维持原判定不动**。
         # 两次都红照样红 ⇒ 这不是给判据开后门，是把「读到了竞态」与「判据真坏」分开。
+        # r167 自抓（即时重试仍在竞态窗口内）：R125 的「原样重跑一次」对**读盘型**门够用，
+        #   但对**子进程写盘型**门不够 —— root_face_fixtures 跑 handoff.py noise（会写盘），
+        #   即时重跑时并行会话的写盘竞态还没消散 ⇒ 两次都红被判真红，而单跑 3/3 全过。
+        #   修法 = 重试前**退避 3 秒**（让竞态窗口过去），不改判据、不放宽口径。
+        import time as _time
+        _time.sleep(3)
         s2, rc2, el2, t2 = _exec_once(gate, timeout)
         if s2 == "PASS":
             return "PASS", p.returncode, elapsed + el2, (
