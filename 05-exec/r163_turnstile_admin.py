@@ -1,4 +1,16 @@
 # -*- coding: utf-8 -*-
+# ⚠️ RETIRED（r173 退役，未删文件）—— 请改用官方 CLI：`wrangler turnstile widget <list|create|get|update|delete> [alpha]`
+#
+# 退役理由（r173 一手实测）：wrangler 4.151.2 已内置 Turnstile widget 管理（alpha），
+#   五个子命令覆盖本件全部功能且输出更规整（含 clearance_level / bot_fight_mode / created_on）。
+#   实测对账：`wrangler turnstile widget list` rc=0 列出 r163 所建 widget（sitekey
+#   0x4AAAAAAFgp4grsBDhuMqpl）；`wrangler turnstile widget get <sitekey>` rc=0 同源。
+#   ⇒ 按「转诊优先、不重复造」（r149 同向），本件（裸 API 封装）退役。
+#
+# 保留原因：R281 零物理删除；且准入门仍登记其为产读数脚本（直接删会造成登记面悬空）。
+# 本件仍可运行（API 未变），但**新代码/新 skill 一律走官方 CLI**。
+#
+# ── 以下为退役前原文 ────────────────────────────────────────────────
 # r163_turnstile_admin.py -- Cloudflare Turnstile widget 管理（纯 API，无 GUI）。
 #
 # 存在理由（goal 第 11 轮）：第 67 门矩阵实测 Turnstile **零引用**，且 r163 早前把它归为
