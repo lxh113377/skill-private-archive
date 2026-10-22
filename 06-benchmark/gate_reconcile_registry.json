@@ -70,7 +70,7 @@
    "debt_fresh_fixtures",
    "tool_skill_matrix"
   ],
-  "_snapshot_at": "2026-10-22 19:22",
+  "_snapshot_at": "2026-10-22 19:27",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
