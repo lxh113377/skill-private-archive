@@ -68,9 +68,10 @@
    "gh_path_face",
    "free_tools_face",
    "debt_fresh_fixtures",
-   "tool_skill_matrix"
+   "tool_skill_matrix",
+   "turnstile_face"
   ],
-  "_snapshot_at": "2026-10-22 19:27",
+  "_snapshot_at": "2026-10-22 19:45",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
@@ -174,6 +175,10 @@
   "tool_skill_matrix": {
    "evidence": "06-benchmark/tool_skill_matrix_r163_2026-10-22.json",
    "at": "2026-10-22 19:09"
+  },
+  "turnstile_face": {
+   "evidence": "06-benchmark/turnstile_face_r163_2026-10-22.json",
+   "at": "2026-10-22 19:40"
   }
  }
 }

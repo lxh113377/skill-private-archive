@@ -981,6 +981,20 @@ GATES = [
                    "变异对照：把正则降级成产品名匹配 ⇒ 只提产品名的假 skill 必须被误算（证明命令级正则有牙）"],
         "why": "goal 目标原话是「把这些免费开发者工具与我现有工作流与相关 skill 进行**合理搭配**」。此前第 65 门只答「工具有没有、能不能用」，**没有任何面回答谁在用它、搭配够不够** —— 那正是目标本体。首跑实测缺口：191 件 skill 只有 31 件引用过这批工具，其中 Cloudflare-R2 / Turnstile / Resend / Upstash **四项零引用**（名册有、无人用）。本门把这个缺口做成每轮可复算的矩阵。r163 自抓一处：初版把 Resend/Upstash 写成纯产品名正则，自证 f3 腿当场抓到「只提一句产品名就被算成搭配」⇒ 收紧为 env key / API host / SDK 调用形态（无 CLI 的工具靠这些识别）。",
     },
+    {
+        # r163：Turnstile 开通面三态（第 68 门 —— 防「以为做不了」的永久放弃）
+        "id": "turnstile_face",
+        "script": "r163_turnstile_face.py",
+        "argv": [],
+        "pass_token": "[TURNSTILEFACE:PASS]",
+        "portable": False,
+        "not_portable_reason":
+            "读本机 wrangler OAuth 凭证与 Cloudflare API（换机无该登录态时按 UNVERIFIED，不判绿）",
+        "covers": ["三态：READY（有 widget 可接入）/ CAPABLE（无 widget 但能建）/ UNVERIFIED（取不到面）",
+                   "CAPABLE ≠ READY：无 widget 时不得读成「已开通」（变异腿锁住）",
+                   "取不到 API 面一律 rc=2（R247 禁按「没有 widget」记绿）"],
+        "why": "r163 早前把 Turnstile 归为「外部凭据缺口（无账号无 key）」，第 11 轮实测**推翻**：wrangler 已登录 OAuth token 具备 challenge-widgets.write，纯 API POST /accounts/<id>/challenges/widgets 直接建成 widget（无 Dashboard/GUI）；曾报 401 是自己用 PowerShell 给 GET 附 Content-Type 致鉴权失败，同 token 下 Python urllib 返 200。这类「以为做不了、其实平台侧就能做」的误判会让人永久放弃一条搭配 ⇒ 做成常驻三态读数。已建 supermarket-web-login（managed / supermarket-web.pages.dev，sitekey 0x4AAAAAAFgp4grsBDhuMqpl，secret 未落仓）。",
+    },
 ]
 
 # 显式声明本 runner **不覆盖**的面，防止聚合绿被读成「所有门禁都绿」（R20-2）。

@@ -1,0 +1,16 @@
+{
+ "schema": "turnstile-admin-r163-v1",
+ "cmd": "python 05-exec/r163_turnstile_admin.py <--list|--create|--delete>",
+ "generated_at": "2026-10-22 19:37",
+ "widgets": [
+  {
+   "name": "supermarket-web-login",
+   "sitekey": "0x4AAAAAAFgp4grsBDhuMqpl",
+   "mode": "managed",
+   "domains": [
+    "supermarket-web.pages.dev"
+   ]
+  }
+ ],
+ "state": "LISTED"
+}

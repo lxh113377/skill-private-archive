@@ -3,7 +3,7 @@
  "cmd": "python 05-exec/r163_tool_skill_matrix.py --json <out>",
  "tools_n": 10,
  "note": "命令级匹配（非产品名）；零引用不判红，具名显形供人决定是否补搭配",
- "generated_at": "2026-10-22 19:09",
+ "generated_at": "2026-10-22 19:38",
  "gs_root": "D:\\global_skills",
  "skills_scanned": 191,
  "skills_with_tools": 31,
@@ -35,7 +35,9 @@
    "chaoshi-web-deploy",
    "hyperframes"
   ],
-  "Cloudflare-R2": [],
+  "Cloudflare-R2": [
+   "chaoshi-image-optimization"
+  ],
   "Cloudflare-Pages": [
    "A-project-handoff",
    "byted-bp-cdn-pagesdeploy",
@@ -45,7 +47,9 @@
   "Cloudflare-Workers": [
    "chaoshi-web-deploy"
   ],
-  "Cloudflare-Turnstile": [],
+  "Cloudflare-Turnstile": [
+   "chaoshi-image-optimization"
+  ],
   "Resend": [],
   "Upstash-Redis": [],
   "SQLite": [
@@ -98,7 +102,9 @@
   },
   "chaoshi-image-optimization": {
    "GitHub": 1,
-   "Cloudflare-Pages": 2
+   "Cloudflare-R2": 1,
+   "Cloudflare-Pages": 4,
+   "Cloudflare-Turnstile": 13
   },
   "chaoshi-web-deploy": {
    "GitHub": 9,
@@ -171,8 +177,6 @@
   }
  },
  "zero_ref_tools": [
-  "Cloudflare-R2",
-  "Cloudflare-Turnstile",
   "Resend",
   "Upstash-Redis"
  ]

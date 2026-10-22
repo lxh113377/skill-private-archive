@@ -1,0 +1,19 @@
+{
+ "schema": "turnstile-face-r163-v1",
+ "cmd": "python 05-exec/r163_turnstile_face.py --json <out>",
+ "state": "READY",
+ "detail": {
+  "widgets_n": 1,
+  "widgets": [
+   {
+    "name": "supermarket-web-login",
+    "sitekey": "0x4AAAAAAFgp4grsBDhuMqpl",
+    "mode": "managed",
+    "domains": [
+     "supermarket-web.pages.dev"
+    ]
+   }
+  ]
+ },
+ "generated_at": "2026-10-22 19:40"
+}

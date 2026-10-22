@@ -62,5 +62,9 @@
  "r163_r2_assets_sync.py": {
   "evidence": "06-benchmark/r2_assets_sync_dryrun_r163_2026-10-22.json",
   "registered_at": "2026-10-22 19:24"
+ },
+ "r163_turnstile_admin.py": {
+  "evidence": "06-benchmark/turnstile_widgets_r163_2026-10-22.json",
+  "registered_at": "2026-10-22 19:41"
  }
 }
