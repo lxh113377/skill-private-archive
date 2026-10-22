@@ -14,10 +14,14 @@ BOM/行尾保持读写 2 份**且语义不一致**（repair_lines 旧版不处�
   registry_denominator()         焚诀注册表口径（disk_manifest.json，读不到返回 error 不猜 0）
   denominator(scanned, ...)      技能统计三口径对账（纳入 / 磁盘 glob / 注册表），r19 P1-C 单一真相源
 """
+import glob
 import json
 import os
 import shutil
+import subprocess
+import time
 import sys
+from datetime import datetime
 
 
 def force_utf8_stdout():
@@ -164,3 +168,91 @@ def gh_cli():
         except OSError:
             continue
     return None
+
+
+FUTURE_TOLERANCE_SEC = 120  # 卷 mtime 超前当下多少秒即判「基准不可能达成」（容忍 NTP 微漂）
+
+# ---- 账龄件相对新鲜前置再生（r122-1 立，r163 从 run_gates 抽到此处共用）------------
+# 为什么抽上来：这份逻辑原先只活在 run_gates._ensure_debt_fresh 里，而**单独直调 ratchet_gate**
+#   （以及 r55_note_fixtures / r56_budget_fixtures 这类直调棘轮的夹具）不走 runner ⇒ 件比卷旧时
+#   棘轮把 debt 三指标转 unknown，三条夹具腿判红。AGENTS 已知坑第 2 条本轮第 5 次踩。
+#   复制一份到 ratchet 会造第二真相源（本仓禁），故抽到共用库，两处同函数同入参。
+# 契约：返回 (state, detail)，state ∈ OK / STALE-REGEN / NO-ARTIFACT / NO-VOLUME / REGEN-FAILED。
+#   **任何非 OK 都不阻断** —— 本腿是消时序坑，不是新卡点。
+def ensure_debt_fresh(repo, exec_dir, sys_executable=None):
+    """账龄件相对新鲜前置再生（r122-1 立，r163 从 run_gates 抽到 _lib 共用）。
+
+    连踩 4 轮的根因 = 先跑 r38_debt_aging 后改 07 台账，件比卷旧 ⇒
+    `ratchet_gate._debt_artifact_fresh` 把 debt 三指标转 unknown ⇒
+    报「指标缺失」+ note fixtures n4 必现 FAIL。
+
+    口径与 ratchet_gate 完全一致（同函数同入参，防两处漂移）：
+    卷集 = memory/07-next-steps.md + memory/07-next-steps.part*.md，取最大 mtime；
+    件 = 06-benchmark/debt_aging_r*.json 里 mtime 最新那份。件 < 卷 ⇒ 重生一次。
+
+    返回 (state, detail)。state ∈ OK / STALE-REGEN / NO-ARTIFACT / NO-VOLUME /
+    REGEN-FAILED。**任何非 OK 都不阻断**（本腿是消时序坑，不是新卡点）。
+    """
+    import glob as _glob, subprocess as _sp
+    vols = _glob.glob(os.path.join(repo, "memory", "07-next-steps.md")) + \
+        _glob.glob(os.path.join(repo, "memory", "07-next-steps.part*.md"))
+    if not vols:
+        return ("NO-VOLUME", "取不到 07 待办卷（memory/07-next-steps*.md）")
+    try:
+        vol_m = max(os.path.getmtime(v) for v in vols)
+    except OSError as e:
+        return ("NO-VOLUME", "卷 mtime 取不到：%s" % e)
+    arts = _glob.glob(os.path.join(repo, "06-benchmark", "debt_aging_r*.json"))
+    if not arts:
+        return ("NO-ARTIFACT", "无 debt_aging_r*.json ⇒ 先生成一份")
+    try:
+        art = max(arts, key=os.path.getmtime)
+        art_m = os.path.getmtime(art)
+    except OSError as e:
+        return ("NO-ARTIFACT", "件 mtime 取不到：%s" % e)
+    if art_m >= vol_m:
+        return ("OK", "件 %s 不旧于卷集（差 %.0f 秒）" % (os.path.basename(art), art_m - vol_m))
+    # r163 自抓（造陈旧用例时撞出）：卷集 mtime **晚于当下**（时钟漂移，或测试把人造未来戳写进卷）
+    #   ⇒ 任何重生出来的件都不可能新于它，稳定落入 STALE-REGEN 且每次白跑两趟 r38（约 2× 耗时）。
+    #   这不是「件陈旧」而是「基准不可能达成」，须具名分开，禁混报成重生失败。
+    _future = vol_m - time.time()
+    if _future > FUTURE_TOLERANCE_SEC:
+        return ("FUTURE-VOL", "所测卷集 mtime 晚于当下 %.0f 秒（基准不可能达成）⇒ 不生搬重生；"
+                              "先查系统时钟或该卷是否有未来时间戳" % _future)
+    # 件比卷旧 ⇒ 重生（r38 自带 --json，输出到带日期的固定名，防并行会话同名互踩）
+    stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    out_json = os.path.join(repo, "06-benchmark", "debt_aging_r_autoregen_%s.json" % stamp)
+    try:
+        r = _sp.run([(sys_executable or sys.executable), os.path.join(exec_dir, "r38_debt_aging.py"), "--json", out_json],
+                     cwd=str(repo), capture_output=True, text=True,
+                     encoding="utf-8", errors="replace", timeout=180)
+    except Exception as e:
+        return ("REGEN-FAILED", "重生调用异常：%s" % e)
+    if r.returncode != 0:
+        return ("REGEN-FAILED", "重生 rc=%s：%s" % (r.returncode, (r.stderr or "")[-160:]))
+    # 复验：新件必须新于卷集（否则说明卷又被 concurrent 写了，如实报）
+    try:
+        new_m = os.path.getmtime(str(out_json))
+    except OSError as e:
+        return ("REGEN-FAILED", "新件 mtime 取不到：%s" % e)
+    if new_m < vol_m:
+        # R124-1（r127 收口）：重生期间卷又被写 ⇒ 再重生一次（上限 2 次防循环）。
+        # r127 实测频率低（全程 1 次），重试一次足够覆盖「并行写紧跟」窗口。
+        stamp2 = datetime.now().strftime("%Y%m%d_%H%M%S")
+        out_json2 = os.path.join(repo, "06-benchmark", "debt_aging_r_autoregen_%s.json" % stamp2)
+        try:
+            r2 = _sp.run([(sys_executable or sys.executable), os.path.join(exec_dir, "r38_debt_aging.py"), "--json", out_json2],
+                         cwd=str(repo), capture_output=True, text=True,
+                         encoding="utf-8", errors="replace", timeout=180)
+        except Exception as e:
+            return ("REGEN-FAILED", "重试调用异常：%s" % e)
+        if r2.returncode != 0:
+            return ("REGEN-FAILED", "重试 rc=%s：%s" % (r2.returncode, (r2.stderr or "")[-160:]))
+        try:
+            new_m2 = os.path.getmtime(out_json2)
+        except OSError as e:
+            return ("REGEN-FAILED", "重试件 mtime 取不到：%s" % e)
+        if new_m2 >= vol_m:
+            return ("OK", "首次重生遇并发写 ⇒ 重试成功（%s，差 %.0f 秒）" % (os.path.basename(out_json2), new_m2 - vol_m))
+        return ("STALE-REGEN", "重试一次后件仍旧于卷（并行写入持续）⇒ 放弃重试，下轮前置腿会再触发")
+    return ("OK", "件比卷旧 %.0f 秒 ⇒ 已重生为 %s" % (vol_m - art_m, os.path.basename(out_json)))

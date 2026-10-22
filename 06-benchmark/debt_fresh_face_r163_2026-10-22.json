@@ -1,0 +1,45 @@
+{
+ "schema": "debt-fresh-fixtures-r163-v1",
+ "cmd": "python 05-exec/r163_debt_fresh_fixtures.py --json <out>",
+ "legs": [
+  {
+   "name": "s6 前置腿提示不算 stdout 首行（防再撞「首行当判定行」的夹具）",
+   "ok": true,
+   "detail": "stdout 首行='=== 注入面/度量棘轮门禁 (2026-10-22 17:51) ==='"
+  },
+  {
+   "name": "s1 无 07 卷 => NO-VOLUME（不得判新鲜）",
+   "ok": true,
+   "detail": "NO-VOLUME | 取不到 07 待办卷（memory/07-next-steps*.md）"
+  },
+  {
+   "name": "s2 无账龄件 => NO-ARTIFACT",
+   "ok": true,
+   "detail": "NO-ARTIFACT | 无 debt_aging_r*.json ⇒ 先生成一份"
+  },
+  {
+   "name": "s3 件新于卷 => OK（等界放行）",
+   "ok": true,
+   "detail": "OK | 件 debt_aging_r1.json 不旧于卷集（差 600 秒）"
+  },
+  {
+   "name": "s4 卷 mtime 在未来 => FUTURE-VOL 且不白跑重生（耗时<3s）",
+   "ok": true,
+   "detail": "FUTURE-VOL | 0.00s | 所测卷集 mtime 晚于当下 3600 秒（基准不可能达成）⇒ 不生搬重生；先查系统时钟或该卷是否有未来时间戳"
+  },
+  {
+   "name": "s5 缺 r38 生成器 => REGEN-FAILED 具名（非 OK/非 STALE-REGEN 混淆）",
+   "ok": true,
+   "detail": "REGEN-FAILED | 重生 rc=2：envs\\default\\Scripts\\python.exe: can't open file 'D:\\\\app-cache\\\\temp\\\\r163_debt_fresh_fx\\\\no_such_dir\\\\r38_debt_aging.py': [Errno 2] No such file or directory\n"
+  },
+  {
+   "name": "m1 变异对照：摘 FUTURE 护栏 => s4 形态退化为 STALE-REGEN（证明 s4 的绿来自护栏）",
+   "ok": true,
+   "detail": "STALE-REGEN | 重试一次后件仍旧于卷（并行写入持续）⇒ 放弃重试，下轮前置腿会再触发"
+  }
+ ],
+ "n_pass": 7,
+ "n_total": 7,
+ "verdict": "PASS",
+ "target": "05-exec/_lib.py::ensure_debt_fresh"
+}

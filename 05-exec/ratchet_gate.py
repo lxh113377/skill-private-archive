@@ -637,6 +637,28 @@ def main():
     ap.add_argument("--range-reason", default="")
     args = ap.parse_args()
 
+    # r163（R163-6）：账龄件相对新鲜自愈（放在 args 解析之后，因为要看 --quiet）。
+    #   AGENTS 已知坑第 2 条（先改 07 → 后跑 r38_debt_aging）此前只由 run_gates 的前置腿兜住，
+    #   **单独直调本门**（及 r55/r56 这类直调棘轮的夹具）不走那条腿 ⇒ 件比卷旧时 debt 三指标
+    #   转 unknown、夹具腿判红。此处调共用库同一实现（不复制，防第二真相源）；任何非 OK 都**不阻断**
+    #   —— 自愈失败时仍按原逻辑把指标转 unknown 判红，读数照样真实，不外推成「没事」。
+    try:
+        import _lib  # 同目录共用库
+    except Exception:
+        _lib = None
+    if _lib is not None and hasattr(_lib, "ensure_debt_fresh"):
+        try:
+            _st, _why = _lib.ensure_debt_fresh(str(BENCH.parent), str(BENCH.parent / "05-exec"))
+        except Exception as _e:                      # 自愈异常不得把门打挂
+            _st, _why = "REGEN-FAILED", "调用异常 %r" % (_e,)
+        if not args.quiet:
+            # r163 自抓（回归）：这行**不能走 stdout** —— r123_range_attr_fixtures 的 run() 取
+            #   「stdout 首个非空行」当判定行，我把它插成首行 ⇒ 6 条腿全判红（真回归，非夹具错）。
+            #   前置腿是**诊断提示**，不是机器读数：走 stderr（人可见、管道不混），
+            #   stdout 保持委托给原有的判定行。同族纪律：机器读的那条通道不得掺人读提示。
+            import sys as _sys
+            print("[RATCHET] 前置腿·账龄件相对新鲜: %s（%s）" % (_st, _why), file=_sys.stderr)
+
     # W-37（r56）：基线必须先装载 —— 再生预算的权威声明面在基线件里，
     # 而 collect_metrics → refresh_status 就要用它（原先顺序是"先判定后读基线"）。
     bl = load_baseline(args.baseline)

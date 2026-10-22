@@ -130,7 +130,8 @@ def main():
     ap.add_argument("--key", required=True, help="锚点子串（须在目标卷内唯一命中）")
     ap.add_argument("--round", required=True, help="本轮轮号，如 46")
     ap.add_argument("--verdict", help="裁决文本，如「降级（转长期看守）｜原因」（verdict 模式必填）")
-    ap.add_argument("--note", help="校正注文本（note 模式必填，落为「【rNN 补记：…】」）")
+    ap.add_argument("--note", help="校正注文本（note 模式必填，落为「【rNN 补记：…】」）；"
+                    "verdict 模式下可选，会并入同一裁决标记内（r163 起，禁静默丢弃）")
     ap.add_argument("--glob", default="07-next-steps*.md", help="在哪些卷里找锚点（默认 07 全卷）")
     ap.add_argument("--backup-dir", default=None,
                     help="备份目录（默认 <vault>/05-exec/mark_backup；刻意不放记忆卷，见 r35 落点教训）")
@@ -139,7 +140,23 @@ def main():
         return refuse("verdict 模式必须给 --verdict")
     if args.mode == "note" and not args.note:
         return refuse("note 模式必须给 --note")
-    body_text = args.verdict if args.mode == "verdict" else args.note
+    # r163 修（R163-5，X-8 同族：return 了成功却没写盘的东西）：
+    #   旧式 verdict 模式下 --note **完全不参与拼接** ⇒ 长理由蒸发、零告警，而
+    #   读回验证只验「裁决标记与锚点同行」⇒ 照样打 [MARK:OK]（假交付面）。
+    #   一手取证：本轮四条裁决带长 --note 调用全 OK，事后 grep 理由正文在 07 卷 0 命中。
+    #   修法 = verdict 模式**也**接受 --note，并入同一 marker（同物理行，禁拆两行凑绿）；
+    #   换行/连续空白压成单空格 —— 标记是行内追加物，带换行会把后续内容顶到下一行。
+    def _one_line(s):
+        return " ".join((s or "").split())
+
+    if args.mode == "verdict":
+        body_text = _one_line(args.verdict)
+        _nt = _one_line(args.note)
+        if _nt:
+            # 已有内联「｜原因」形态（老调用方）则不重复分隔
+            body_text = body_text + ("" if ("｜" in body_text) else "｜") + _nt
+    else:
+        body_text = args.note
     mark_head = ("r%s 裁决=" % args.round) if args.mode == "verdict" else ("r%s 补记：" % args.round)
 
     vault = Path(args.vault).resolve()

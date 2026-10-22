@@ -170,6 +170,51 @@ def main():
             "--note", "x"]).returncode != 0 and nf.read_bytes() != b"" and nf.read_bytes().count(b"r53") == 0,
        nf.read_bytes().count(b"r53"))
 
+    # ---- t15/t16（r163，R163-5）：verdict 模式给 --note，理由必须**真的落盘** ----
+    # 一手事故：本轮四条裁决都用 `--verdict X --note 长理由` 调用，四条全打 [MARK:OK] 且读回
+    # 验证通过 —— 但实现里 `body_text = args.verdict if mode==verdict else args.note` ⇒ verdict
+    # 模式下 --note **根本不参与拼接**，长理由蒸发且零告警（X-8：return 了成功却没写盘的东西）。
+    # 取证：写完后 grep 理由正文（70.8% / 命中 15 处 / autoregen 件名）在 07 卷 0 命中。
+    sdir = Path(tempfile.mkdtemp(prefix="r163_note_")) / "memory"
+    sdir.mkdir(parents=True)
+    sf = sdir / "07-next-steps.md"
+    sf.write_text("- [ ] **【P0·待办 庚（r163 登记）】** 唯一正文\n", encoding="utf-8", newline="")
+    REASON = "误报率实测 70.8% 且 autoregen 件为证"
+    r15 = run(["--vault", str(sdir.parent), "--key", "待办 庚", "--round", "163",
+               "--verdict", "执行（终局）", "--note", REASON])
+    body15 = sf.read_text(encoding="utf-8")
+    ck("t15 verdict 模式带 --note：理由必须原样落盘（禁 [MARK:OK] 却把 note 丢掉）",
+       r15.returncode == 0 and REASON in body15,
+       "rc=%d ｜ 落盘含理由=%s ｜ %s" % (r15.returncode, REASON in body15, (r15.stdout or "")[-120:]))
+    ck("t16 verdict 模式带 --note：裁决标记与理由必须在**同一物理行**（禁拆两行凑绿）",
+       (lambda ls: any(("r163 裁决=" in l and REASON in l) for l in ls))(body15.splitlines()),
+       " ｜ ".join(l[:60] for l in body15.splitlines() if "裁决=" in l) or "无标记")
+
+    # ---- m1（#48 变异对照）：把旧行为注回（verdict 模式丢弃 --note）⇒ t15/t16 必须转红 ----
+    #    恒绿的夹具等于没测：本条证明 t15/t16 的绿来自修复本身，不是断言写松了。
+    src = (HERE / "r46_mark_verdict.py").read_text(encoding="utf-8")
+    old_expr = "body_text = _one_line(args.verdict)"
+    md = Path(tempfile.mkdtemp(prefix="r163_mut_"))
+    (md / "memory").mkdir(parents=True)
+    mut_tool = md / "r46_mark_verdict_mut.py"
+    if old_expr in src:
+        # 注入「丢弃 note」的旧语义
+        mut_src = src.replace(
+            "        _nt = _one_line(args.note)\n        if _nt:",
+            "        _nt = ''  # MUTATED: 旧行为，丢弃 note\n        if _nt:")
+        mut_tool.write_text(mut_src, encoding="utf-8", newline="")
+        mf = md / "memory" / "07-next-steps.md"
+        mf.write_text("- [ ] **【P0·待办 辛（r163 登记）】** 唯一正文\n", encoding="utf-8", newline="")
+        mr = subprocess.run([sys.executable, str(mut_tool), "--vault", str(md), "--key", "待办 辛",
+                             "--round", "163", "--verdict", "执行（终局）", "--note", REASON],
+                            capture_output=True, text=True, encoding="utf-8",
+                            errors="replace", cwd=str(HERE.parent))
+        mbody = mf.read_text(encoding="utf-8")
+        ck("m1 变异对照：注回「丢弃 note」旧行为 ⇒ 理由必须再次消失（证明 t15 的绿来自修复）",
+           REASON not in mbody, "rc=%d ｜ 含理由=%s" % (mr.returncode, REASON in mbody))
+    else:
+        ck("m1 变异对照：找不到注入锚点（判据实现已变，须同步更新变异体）", False, "anchor missing")
+
     fails = [x for x in RESULTS if not x[0]]
     print("\n夹具合计: %d 项，通过 %d，失败 %d"
           % (len(RESULTS), len(RESULTS) - len(fails), len(fails)))

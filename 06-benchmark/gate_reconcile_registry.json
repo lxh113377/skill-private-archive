@@ -66,9 +66,10 @@
    "bounce_back_face",
    "gatemap_closing_face",
    "gh_path_face",
-   "free_tools_face"
+   "free_tools_face",
+   "debt_fresh_fixtures"
   ],
-  "_snapshot_at": "2026-10-22 17:31",
+  "_snapshot_at": "2026-10-22 17:48",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
@@ -164,6 +165,10 @@
   "free_tools_face": {
    "evidence": "06-benchmark/free_tools_face_r163_2026-10-22.json",
    "at": "2026-10-22 10:53"
+  },
+  "debt_fresh_fixtures": {
+   "evidence": "06-benchmark/debt_fresh_face_r163_2026-10-22.json",
+   "at": "2026-10-22 17:47"
   }
  }
 }
