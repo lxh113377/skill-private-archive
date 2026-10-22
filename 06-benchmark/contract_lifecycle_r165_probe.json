@@ -1,0 +1,3015 @@
+{
+ "schema": "fj-gov-contract-lifecycle-v1",
+ "missing_sources": [],
+ "generated_at": "2026-10-22T22:37:21",
+ "root": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化",
+ "contracts": [
+  {
+   "cid": "GATE:selftest_census_face",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r155_selftest_census.py (11732B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 selftest_census_face 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 4 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：72 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[CENSUS:PASS]；留痕轮次=72"
+    }
+   },
+   "perform": {
+    "runs_seen": 72,
+    "pass": 72,
+    "fail": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:gov_acceptance_face",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": false,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r153_gov_acceptance.py (9243B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 gov_acceptance_face 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 4 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：80 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[GOVACC:PASS]；留痕轮次=80"
+    }
+   },
+   "perform": {
+    "runs_seen": 80,
+    "pass": 80,
+    "fail": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:contract_lifecycle_face",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": false,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r150_contract_lifecycle.py (21318B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 contract_lifecycle_face 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 4 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：84 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[GOVREG:PASS]；留痕轮次=84"
+    }
+   },
+   "perform": {
+    "runs_seen": 84,
+    "pass": 84,
+    "fail": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:volume_tiers_face",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": false,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r150_volume_tiers.py (7442B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 volume_tiers_face 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 3 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：84 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[GOVTIER:PASS]；留痕轮次=84"
+    }
+   },
+   "perform": {
+    "runs_seen": 84,
+    "pass": 84,
+    "fail": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:gov_link_face",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r150_gov_link.py (9923B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 gov_link_face 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 3 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：84 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[GOVLINK:PASS]；留痕轮次=84"
+    }
+   },
+   "perform": {
+    "runs_seen": 84,
+    "pass": 84,
+    "fail": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:derived_freshness_face",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": false,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r149_derived_freshness.py (11915B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 derived_freshness_face 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 5 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：90 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[FRESH-D]；留痕轮次=90"
+    }
+   },
+   "perform": {
+    "runs_seen": 90,
+    "pass": 90,
+    "fail": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:write_order_sweep_face",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": false,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r147_write_order_sweep.py (8656B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 write_order_sweep_face 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 3 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：94 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[ORDER]；留痕轮次=94"
+    }
+   },
+   "perform": {
+    "runs_seen": 94,
+    "pass": 94,
+    "fail": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:install_history_face",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": false,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r142_install_history.py (14697B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 install_history_face 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 2 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：105 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[HIST]；留痕轮次=105"
+    }
+   },
+   "perform": {
+    "runs_seen": 105,
+    "pass": 105,
+    "fail": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:hook_attribution_face",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": false,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r141_hook_attribution.py (4810B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 hook_attribution_face 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 3 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：107 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[ATTR]；留痕轮次=107"
+    }
+   },
+   "perform": {
+    "runs_seen": 107,
+    "pass": 107,
+    "fail": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:hook_trace_face",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": false,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r140_hook_trace.py (7941B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 hook_trace_face 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 2 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：109 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[TRACE]；留痕轮次=109"
+    }
+   },
+   "perform": {
+    "runs_seen": 109,
+    "pass": 109,
+    "fail": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:hook_sync_face",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": false,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r139_hook_sync.py (4910B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 hook_sync_face 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 3 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：111 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[HOOKSYNC]；留痕轮次=111"
+    }
+   },
+   "perform": {
+    "runs_seen": 111,
+    "pass": 111,
+    "fail": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:hook_health_face",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": false,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r138_hook_health.py (4887B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 hook_health_face 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 3 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：114 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[HOOKHEALTH]；留痕轮次=114"
+    }
+   },
+   "perform": {
+    "runs_seen": 114,
+    "pass": 114,
+    "fail": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:commit_gate_map_face",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": false,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r137_commit_gate_map.py (10511B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 commit_gate_map_face 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 2 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：126 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[GATEMAP]；留痕轮次=126"
+    }
+   },
+   "perform": {
+    "runs_seen": 126,
+    "pass": 42,
+    "fail": 1,
+    "unverified": 83,
+    "rate": 0.3333,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:proposal_evidence_face",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": false,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r136_proposal_evidence.py (8583B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 proposal_evidence_face 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 2 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：127 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[PROPEV]；留痕轮次=127"
+    }
+   },
+   "perform": {
+    "runs_seen": 127,
+    "pass": 127,
+    "fail": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:lang_boost_efficacy_face",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": false,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r135_lang_boost_efficacy.py (7541B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 lang_boost_efficacy_face 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 2 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：132 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[LANGBOOST]；留痕轮次=132"
+    }
+   },
+   "perform": {
+    "runs_seen": 132,
+    "pass": 132,
+    "fail": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:causal_evidence_face",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": false,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r134_causal_evidence.py (9735B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 causal_evidence_face 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 2 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：135 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[CAUSAL]；留痕轮次=135"
+    }
+   },
+   "perform": {
+    "runs_seen": 135,
+    "pass": 133,
+    "fail": 0,
+    "unverified": 2,
+    "rate": 0.9852,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:direct_fix_efficacy_face",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": false,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r132_direct_fix_efficacy.py (5835B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 direct_fix_efficacy_face 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 2 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：140 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[EFFICACY]；留痕轮次=140"
+    }
+   },
+   "perform": {
+    "runs_seen": 140,
+    "pass": 140,
+    "fail": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:closure_layers_face",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": false,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r131_closure_layers.py (4691B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 closure_layers_face 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 2 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：147 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[LAYERS]；留痕轮次=147"
+    }
+   },
+   "perform": {
+    "runs_seen": 147,
+    "pass": 147,
+    "fail": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:gate_table_reconcile",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": false,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r130_gate_table_reconcile.py (6025B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 gate_table_reconcile 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 3 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：153 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[GATETABLE]；留痕轮次=153"
+    }
+   },
+   "perform": {
+    "runs_seen": 153,
+    "pass": 149,
+    "fail": 4,
+    "unverified": 0,
+    "rate": 0.9739,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:r19_scan_fixtures",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": false,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r19_scan_fixtures.py (14218B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 r19_scan_fixtures 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 4 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：556 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=556"
+    }
+   },
+   "perform": {
+    "runs_seen": 556,
+    "pass": 550,
+    "fail": 0,
+    "unverified": 6,
+    "rate": 0.9892,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:r19_baseline_contract_fixtures",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r19_baseline_contract_fixtures.py (20221B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 r19_baseline_contract_fixtures 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 2 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：556 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=556"
+    }
+   },
+   "perform": {
+    "runs_seen": 556,
+    "pass": 547,
+    "fail": 9,
+    "unverified": 0,
+    "rate": 0.9838,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:baseline_contract_scan",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 baseline_contract_scan.py (38709B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 baseline_contract_scan 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 1 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：556 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[CONTRACT:PASS]；留痕轮次=556"
+    }
+   },
+   "perform": {
+    "runs_seen": 556,
+    "pass": 551,
+    "fail": 5,
+    "unverified": 0,
+    "rate": 0.991,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:ratchet_gate",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": false,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 ratchet_gate.py (45886B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 ratchet_gate 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 3 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：556 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[RATCHET:PASS]；留痕轮次=556"
+    }
+   },
+   "perform": {
+    "runs_seen": 556,
+    "pass": 440,
+    "fail": 110,
+    "unverified": 6,
+    "rate": 0.7914,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:control_char_scan",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 control_char_scan.py (5219B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 control_char_scan 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 1 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：556 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[CTRL:CLEAN]；留痕轮次=556"
+    }
+   },
+   "perform": {
+    "runs_seen": 556,
+    "pass": 550,
+    "fail": 6,
+    "unverified": 0,
+    "rate": 0.9892,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:tracked_empty_check",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r35_tracked_empty.py (6173B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 tracked_empty_check 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 2 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：545 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[EMPTY:PASS]；留痕轮次=545"
+    }
+   },
+   "perform": {
+    "runs_seen": 545,
+    "pass": 544,
+    "fail": 1,
+    "unverified": 0,
+    "rate": 0.9982,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:mark_verdict_fixtures",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r46_mark_verdict_fixtures.py (14252B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 mark_verdict_fixtures 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 2 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：511 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=511"
+    }
+   },
+   "perform": {
+    "runs_seen": 511,
+    "pass": 511,
+    "fail": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:refresh_budget_fixtures",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": false,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r54_refresh_fixtures.py (4591B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 refresh_budget_fixtures 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 3 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：491 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=491"
+    }
+   },
+   "perform": {
+    "runs_seen": 491,
+    "pass": 385,
+    "fail": 102,
+    "unverified": 4,
+    "rate": 0.7841,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:handles_readme_fixtures",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r53_handles_fixtures.py (9592B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 handles_readme_fixtures 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 3 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：496 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=496"
+    }
+   },
+   "perform": {
+    "runs_seen": 496,
+    "pass": 493,
+    "fail": 3,
+    "unverified": 0,
+    "rate": 0.994,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:md_claim_face",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r52_mdclaim_fixtures.py (6987B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 md_claim_face 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 2 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：497 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=497"
+    }
+   },
+   "perform": {
+    "runs_seen": 497,
+    "pass": 416,
+    "fail": 81,
+    "unverified": 0,
+    "rate": 0.837,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:retrieval_fixtures",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r51_retrieval_fixtures.py (8094B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 retrieval_fixtures 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 3 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：502 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=502"
+    }
+   },
+   "perform": {
+    "runs_seen": 502,
+    "pass": 502,
+    "fail": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:w47_reconcile_fixtures",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": false,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r128_w47_reconcile_fixtures.py (6292B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 w47_reconcile_fixtures 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 6 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：174 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=174"
+    }
+   },
+   "perform": {
+    "runs_seen": 174,
+    "pass": 123,
+    "fail": 51,
+    "unverified": 0,
+    "rate": 0.7069,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:reconcile_admission",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": false,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r129_reconcile_admission.py (12605B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 reconcile_admission 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 4 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：162 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[ADMIT]；留痕轮次=162"
+    }
+   },
+   "perform": {
+    "runs_seen": 162,
+    "pass": 153,
+    "fail": 9,
+    "unverified": 0,
+    "rate": 0.9444,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:root_face_fixtures",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": false,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r55_rootface_fixtures.py (12304B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 root_face_fixtures 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 3 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：491 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=491"
+    }
+   },
+   "perform": {
+    "runs_seen": 491,
+    "pass": 439,
+    "fail": 48,
+    "unverified": 4,
+    "rate": 0.8941,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:tag_closure_fixtures",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": false,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r126_tag_closure_fixtures.py (5405B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 tag_closure_fixtures 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 4 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：191 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=191"
+    }
+   },
+   "perform": {
+    "runs_seen": 191,
+    "pass": 191,
+    "fail": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:range_attr_fixtures",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r123_range_attr_fixtures.py (9789B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 range_attr_fixtures 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 3 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：221 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=221"
+    }
+   },
+   "perform": {
+    "runs_seen": 221,
+    "pass": 215,
+    "fail": 6,
+    "unverified": 0,
+    "rate": 0.9729,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:budget_contract_fixtures",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r56_budget_fixtures.py (8384B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 budget_contract_fixtures 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 4 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：475 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=475"
+    }
+   },
+   "perform": {
+    "runs_seen": 475,
+    "pass": 358,
+    "fail": 117,
+    "unverified": 0,
+    "rate": 0.7537,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:evidence_face_fixtures",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": false,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r56_artifact_face_fixtures.py (5987B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 evidence_face_fixtures 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 4 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：474 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=474"
+    }
+   },
+   "perform": {
+    "runs_seen": 474,
+    "pass": 470,
+    "fail": 0,
+    "unverified": 4,
+    "rate": 0.9916,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:baseline_note_fixtures",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": false,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r55_note_fixtures.py (6200B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 baseline_note_fixtures 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 3 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：486 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=486"
+    }
+   },
+   "perform": {
+    "runs_seen": 486,
+    "pass": 368,
+    "fail": 114,
+    "unverified": 4,
+    "rate": 0.7572,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:input_face_fixtures",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r49_face_fixtures.py (12476B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 input_face_fixtures 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 3 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：505 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=505"
+    }
+   },
+   "perform": {
+    "runs_seen": 505,
+    "pass": 501,
+    "fail": 4,
+    "unverified": 0,
+    "rate": 0.9921,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:authority_face_fixtures",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": false,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r50_face_fixtures.py (6110B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 authority_face_fixtures 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 3 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：503 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=503"
+    }
+   },
+   "perform": {
+    "runs_seen": 503,
+    "pass": 499,
+    "fail": 0,
+    "unverified": 4,
+    "rate": 0.992,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:scan_inputs_fixtures",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r40_scan_inputs_fixtures.py (3845B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 scan_inputs_fixtures 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 2 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：521 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=521"
+    }
+   },
+   "perform": {
+    "runs_seen": 521,
+    "pass": 519,
+    "fail": 2,
+    "unverified": 0,
+    "rate": 0.9962,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:debt_ledger_fixtures",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r39_debt_ledger_fixtures.py (26572B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 debt_ledger_fixtures 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 2 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：527 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=527"
+    }
+   },
+   "perform": {
+    "runs_seen": 527,
+    "pass": 522,
+    "fail": 5,
+    "unverified": 0,
+    "rate": 0.9905,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:noise_tracked_stub",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": false,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r37_noise_tracked_stub.py (11748B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 noise_tracked_stub 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 3 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：538 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=538"
+    }
+   },
+   "perform": {
+    "runs_seen": 538,
+    "pass": 523,
+    "fail": 8,
+    "unverified": 7,
+    "rate": 0.9721,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:gate_run_freshness",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r32_gate_freshness.py (7071B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 gate_run_freshness 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 2 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：556 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[FRESH:PASS]；留痕轮次=556"
+    }
+   },
+   "perform": {
+    "runs_seen": 556,
+    "pass": 254,
+    "fail": 301,
+    "unverified": 1,
+    "rate": 0.4568,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:roster_partition_fixtures",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r60_roster_fixtures.py (5839B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 roster_partition_fixtures 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 3 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：445 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[GATE:roster-fixture-pass] 12/12；留痕轮次=445"
+    }
+   },
+   "perform": {
+    "runs_seen": 445,
+    "pass": 440,
+    "fail": 0,
+    "unverified": 5,
+    "rate": 0.9888,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:py_syntax_guard",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r58_py_syntax_guard.py (3006B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 py_syntax_guard 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 1 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：470 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[GATE:pysyntax-pass]；留痕轮次=470"
+    }
+   },
+   "perform": {
+    "runs_seen": 470,
+    "pass": 468,
+    "fail": 2,
+    "unverified": 0,
+    "rate": 0.9957,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:action_pin_guard",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r58_action_pin_guard.py (5640B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 action_pin_guard 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 3 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：470 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[GATE:actionpin-pass]；留痕轮次=470"
+    }
+   },
+   "perform": {
+    "runs_seen": 470,
+    "pass": 470,
+    "fail": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:retired_face",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": false,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r59_retired_face.py (22433B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 retired_face 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 3 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：461 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[GATE:retired-face-pass] | [GATE:retired-face-watch]；留痕轮次=461"
+    }
+   },
+   "perform": {
+    "runs_seen": 461,
+    "pass": 415,
+    "fail": 42,
+    "unverified": 4,
+    "rate": 0.9002,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:generator_face",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": false,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r58_generator_coverage.py (15091B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 generator_face 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 3 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：419 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[GENCOV:PASS]；留痕轮次=419"
+    }
+   },
+   "perform": {
+    "runs_seen": 419,
+    "pass": 414,
+    "fail": 0,
+    "unverified": 5,
+    "rate": 0.9881,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:input_pin_face",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": false,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r67_input_pin_guard.py (27178B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 input_pin_face 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 3 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：417 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[PIN:PASS]；留痕轮次=417"
+    }
+   },
+   "perform": {
+    "runs_seen": 417,
+    "pass": 414,
+    "fail": 0,
+    "unverified": 3,
+    "rate": 0.9928,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:debt_face_freshness",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r105_debt_face_freshness_fixtures.py (7489B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 debt_face_freshness 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 3 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：373 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[GATE:debt-face-fresh-pass]；留痕轮次=373"
+    }
+   },
+   "perform": {
+    "runs_seen": 373,
+    "pass": 373,
+    "fail": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:retired_reflow_fixtures",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r59_retired_face.py (22433B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 retired_reflow_fixtures 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 4 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：373 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=归属分堆桩；留痕轮次=373"
+    }
+   },
+   "perform": {
+    "runs_seen": 373,
+    "pass": 373,
+    "fail": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:r112_provenance_fixtures",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r112_provenance_fixtures.py (7041B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 r112_provenance_fixtures 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 5 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：331 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=331"
+    }
+   },
+   "perform": {
+    "runs_seen": 331,
+    "pass": 331,
+    "fail": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:provenance_face",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r112_provenance_face.py (8101B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 provenance_face 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 4 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：331 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[PROVENANCE:PASS]；留痕轮次=331"
+    }
+   },
+   "perform": {
+    "runs_seen": 331,
+    "pass": 331,
+    "fail": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:cache_guard_fixtures",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r112_cache_guard_fixtures.py (7451B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 cache_guard_fixtures 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 4 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：327 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=327"
+    }
+   },
+   "perform": {
+    "runs_seen": 327,
+    "pass": 327,
+    "fail": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:r113_degrade_fixtures",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r113_degrade_fixtures.py (5624B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 r113_degrade_fixtures 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 4 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：322 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=322"
+    }
+   },
+   "perform": {
+    "runs_seen": 322,
+    "pass": 322,
+    "fail": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:cache_guard_face",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r113_cache_guard_face.py (7404B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 cache_guard_face 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 4 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：322 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[CACHEGUARD:PASS]；留痕轮次=322"
+    }
+   },
+   "perform": {
+    "runs_seen": 322,
+    "pass": 322,
+    "fail": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:cache_guard_face_fixtures",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r113_cache_guard_face_fixtures.py (7140B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 cache_guard_face_fixtures 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 3 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：322 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=322"
+    }
+   },
+   "perform": {
+    "runs_seen": 322,
+    "pass": 322,
+    "fail": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:migration_guard",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r119_plan_boundary_gate.py (4372B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 migration_guard 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 3 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：291 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[MIGGUARD:PASS]；留痕轮次=291"
+    }
+   },
+   "perform": {
+    "runs_seen": 291,
+    "pass": 291,
+    "fail": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:r117_upstream_delta_fixtures",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r117_upstream_delta_fixtures.py (11682B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 r117_upstream_delta_fixtures 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 4 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：298 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=298"
+    }
+   },
+   "perform": {
+    "runs_seen": 298,
+    "pass": 298,
+    "fail": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:direct_closure_face",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": false,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r131_direct_closure.py (5927B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 direct_closure_face 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 2 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：149 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[DIRECTCLOSE]；留痕轮次=149"
+    }
+   },
+   "perform": {
+    "runs_seen": 149,
+    "pass": 149,
+    "fail": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:bounce_back_face",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": false,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r161_bounce_back.py (6735B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 bounce_back_face 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 4 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：59 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[BOUNCE:SELFTEST-PASS]；留痕轮次=59"
+    }
+   },
+   "perform": {
+    "runs_seen": 59,
+    "pass": 59,
+    "fail": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:gatemap_closing_face",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": false,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r162_gatemap_fixtures.py (9805B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 gatemap_closing_face 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 4 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：52 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[GATEMAPFIX]；留痕轮次=52"
+    }
+   },
+   "perform": {
+    "runs_seen": 52,
+    "pass": 52,
+    "fail": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:gh_path_face",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": false,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r163_gh_path_face.py (15630B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 gh_path_face 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 4 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：45 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[GHPATH:PASS]；留痕轮次=45"
+    }
+   },
+   "perform": {
+    "runs_seen": 45,
+    "pass": 44,
+    "fail": 0,
+    "unverified": 1,
+    "rate": 0.9778,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:free_tools_face",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": false,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r163_free_tools_face.py (34706B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 free_tools_face 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 4 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：45 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[FREETOOLS:PASS]；留痕轮次=45"
+    }
+   },
+   "perform": {
+    "runs_seen": 45,
+    "pass": 45,
+    "fail": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:debt_fresh_fixtures",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": false,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r163_debt_fresh_fixtures.py (7001B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 debt_fresh_fixtures 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 3 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：31 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[GATE:fixture-pass]；留痕轮次=31"
+    }
+   },
+   "perform": {
+    "runs_seen": 31,
+    "pass": 31,
+    "fail": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:tool_skill_matrix",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": false,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r163_tool_skill_matrix.py (8879B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 tool_skill_matrix 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 4 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：20 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[TOOLMATRIX:PASS]；留痕轮次=20"
+    }
+   },
+   "perform": {
+    "runs_seen": 20,
+    "pass": 20,
+    "fail": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "GATE:turnstile_face",
+   "family": "判据契约",
+   "authority": "05-exec/run_gates.py#GATES",
+   "portable": false,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "脚本 r163_turnstile_face.py (5173B) + why 字段非空"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "gate_reconcile_registry.json 有无 turnstile_face 的对账行"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "covers 声明 3 条"
+    },
+    "perform": {
+     "status": "PASS",
+     "evidence": "gate_runs.jsonl 逐门历史：17 轮"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "pass_token=[TURNSTILEFACE:PASS]；留痕轮次=17"
+    }
+   },
+   "perform": {
+    "runs_seen": 17,
+    "pass": 17,
+    "fail": 0,
+    "unverified": 0,
+    "rate": 1.0,
+    "last_ts": "2026-10-22T22:37:10",
+    "last_verdict": "PASS"
+   }
+  },
+  {
+   "cid": "RULE:新判据交付契约",
+   "family": "规则契约",
+   "authority": "A-skill-manager/references/governance.md",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "正文 2411 字符"
+    },
+    "review": {
+     "status": "UNVERIFIED",
+     "evidence": "规则契约无独立对账面（本体系只见正文；正文含夹具/正例/反例/变异关键词）"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "标题含立规日期"
+    },
+    "perform": {
+     "status": "UNVERIFIED",
+     "evidence": "规则契约无逐条履约读数面（本体系缺该环节机器面）"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "version-history.md 是否提及该条"
+    }
+   },
+   "perform": null
+  },
+  {
+   "cid": "RULE:新判据交付契约 · 补条 R-ENUM",
+   "family": "规则契约",
+   "authority": "A-skill-manager/references/governance.md",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "正文 1004 字符"
+    },
+    "review": {
+     "status": "UNVERIFIED",
+     "evidence": "规则契约无独立对账面（本体系只见正文；正文亦无上述关键词）"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "标题含立规日期"
+    },
+    "perform": {
+     "status": "UNVERIFIED",
+     "evidence": "规则契约无逐条履约读数面（本体系缺该环节机器面）"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "version-history.md 是否提及该条"
+    }
+   },
+   "perform": null
+  },
+  {
+   "cid": "RULE:新判据交付契约 · 补条 R-ATTR",
+   "family": "规则契约",
+   "authority": "A-skill-manager/references/governance.md",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "正文 547 字符"
+    },
+    "review": {
+     "status": "UNVERIFIED",
+     "evidence": "规则契约无独立对账面（本体系只见正文；正文亦无上述关键词）"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "标题含立规日期"
+    },
+    "perform": {
+     "status": "UNVERIFIED",
+     "evidence": "规则契约无逐条履约读数面（本体系缺该环节机器面）"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "version-history.md 是否提及该条"
+    }
+   },
+   "perform": null
+  },
+  {
+   "cid": "RULE:新判据交付契约 · 补条 R297",
+   "family": "规则契约",
+   "authority": "A-skill-manager/references/governance.md",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "正文 1468 字符"
+    },
+    "review": {
+     "status": "UNVERIFIED",
+     "evidence": "规则契约无独立对账面（本体系只见正文；正文含夹具/正例/反例/变异关键词）"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "标题含立规日期"
+    },
+    "perform": {
+     "status": "UNVERIFIED",
+     "evidence": "规则契约无逐条履约读数面（本体系缺该环节机器面）"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "version-history.md 是否提及该条"
+    }
+   },
+   "perform": null
+  },
+  {
+   "cid": "RULE:新判据交付契约 · 补条 R298",
+   "family": "规则契约",
+   "authority": "A-skill-manager/references/governance.md",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "正文 1082 字符"
+    },
+    "review": {
+     "status": "UNVERIFIED",
+     "evidence": "规则契约无独立对账面（本体系只见正文；正文含夹具/正例/反例/变异关键词）"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "标题含立规日期"
+    },
+    "perform": {
+     "status": "UNVERIFIED",
+     "evidence": "规则契约无逐条履约读数面（本体系缺该环节机器面）"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "version-history.md 是否提及该条"
+    }
+   },
+   "perform": null
+  },
+  {
+   "cid": "RULE:新判据交付契约 · 补条 R299",
+   "family": "规则契约",
+   "authority": "A-skill-manager/references/governance.md",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "正文 748 字符"
+    },
+    "review": {
+     "status": "UNVERIFIED",
+     "evidence": "规则契约无独立对账面（本体系只见正文；正文含夹具/正例/反例/变异关键词）"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "标题含立规日期"
+    },
+    "perform": {
+     "status": "UNVERIFIED",
+     "evidence": "规则契约无逐条履约读数面（本体系缺该环节机器面）"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "version-history.md 是否提及该条"
+    }
+   },
+   "perform": null
+  },
+  {
+   "cid": "RULE:新判据交付契约 · 补条 R300",
+   "family": "规则契约",
+   "authority": "A-skill-manager/references/governance.md",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "正文 1285 字符"
+    },
+    "review": {
+     "status": "UNVERIFIED",
+     "evidence": "规则契约无独立对账面（本体系只见正文；正文含夹具/正例/反例/变异关键词）"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "标题含立规日期"
+    },
+    "perform": {
+     "status": "UNVERIFIED",
+     "evidence": "规则契约无逐条履约读数面（本体系缺该环节机器面）"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "version-history.md 是否提及该条"
+    }
+   },
+   "perform": null
+  },
+  {
+   "cid": "RULE:新判据交付契约 · 补条 R-TRI",
+   "family": "规则契约",
+   "authority": "A-skill-manager/references/governance.md",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "正文 2260 字符"
+    },
+    "review": {
+     "status": "UNVERIFIED",
+     "evidence": "规则契约无独立对账面（本体系只见正文；正文含夹具/正例/反例/变异关键词）"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "标题含立规日期"
+    },
+    "perform": {
+     "status": "UNVERIFIED",
+     "evidence": "规则契约无逐条履约读数面（本体系缺该环节机器面）"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "version-history.md 是否提及该条"
+    }
+   },
+   "perform": null
+  },
+  {
+   "cid": "RULE:新判据交付契约 · 补充四 R-LEGS",
+   "family": "规则契约",
+   "authority": "A-skill-manager/references/governance.md",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "正文 2479 字符"
+    },
+    "review": {
+     "status": "UNVERIFIED",
+     "evidence": "规则契约无独立对账面（本体系只见正文；正文含夹具/正例/反例/变异关键词）"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "标题含立规日期"
+    },
+    "perform": {
+     "status": "UNVERIFIED",
+     "evidence": "规则契约无逐条履约读数面（本体系缺该环节机器面）"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "version-history.md 是否提及该条"
+    }
+   },
+   "perform": null
+  },
+  {
+   "cid": "BASELINE:invariants",
+   "family": "基线契约",
+   "authority": "05-exec/baseline_contract_scan.py#INVARIANTS",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "不变式 24 条"
+    },
+    "review": {
+     "status": "UNVERIFIED",
+     "evidence": "无独立于本体的对账面（与 C 族同源）"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "扫描器在盘"
+    },
+    "perform": {
+     "status": "UNVERIFIED",
+     "evidence": "整族单列读数，无逐条不变式履约面"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "input_pins.jsonl 留痕"
+    }
+   },
+   "perform": null
+  },
+  {
+   "cid": "CI:greencheck",
+   "family": "CI 全绿契约",
+   "authority": "A-project-handoff/scripts/greencheck.py",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "四态齐备 ['GREEN', 'RED', 'BLOCKED', 'UNKNOWN']"
+    },
+    "review": {
+     "status": "PASS",
+     "evidence": "references/ci-green-contract.md 15725B"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "契约文件形态已在文档中定义"
+    },
+    "perform": {
+     "status": "UNVERIFIED",
+     "evidence": "本仓未接 CI 契约（tracked SKILL.md 恒 0 的有意设计，X-1）"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "文档在盘即留痕"
+    }
+   },
+   "perform": null
+  },
+  {
+   "cid": "EXEC:memory-start-contract",
+   "family": "执行契约",
+   "authority": "A-memory-start/references/contract.md",
+   "portable": true,
+   "stages": {
+    "draft": {
+     "status": "PASS",
+     "evidence": "正文 9520B"
+    },
+    "review": {
+     "status": "UNVERIFIED",
+     "evidence": "无独立对账面"
+    },
+    "sign": {
+     "status": "PASS",
+     "evidence": "权威源在盘"
+    },
+    "perform": {
+     "status": "UNVERIFIED",
+     "evidence": "履约由会话自述承担，无机器面"
+    },
+    "archive": {
+     "status": "PASS",
+     "evidence": "权威源在盘即留痕"
+    }
+   },
+   "perform": null
+  }
+ ],
+ "alerts": [
+  {
+   "cid": "GATE:commit_gate_map_face",
+   "level": "P2",
+   "kind": "LOW_RATE",
+   "detail": "履约率 0.33（42/126）"
+  },
+  {
+   "cid": "GATE:gate_run_freshness",
+   "level": "P2",
+   "kind": "LOW_RATE",
+   "detail": "履约率 0.46（254/556）"
+  },
+  {
+   "cid": "RULE:新判据交付契约",
+   "level": "P1",
+   "kind": "NO_PERFORM_FACE",
+   "detail": "无履约读数面 ⇒ 履约监控在本体系不可算（item1 缺口）"
+  },
+  {
+   "cid": "RULE:新判据交付契约 · 补条 R-ENUM",
+   "level": "P1",
+   "kind": "NO_PERFORM_FACE",
+   "detail": "无履约读数面 ⇒ 履约监控在本体系不可算（item1 缺口）"
+  },
+  {
+   "cid": "RULE:新判据交付契约 · 补条 R-ATTR",
+   "level": "P1",
+   "kind": "NO_PERFORM_FACE",
+   "detail": "无履约读数面 ⇒ 履约监控在本体系不可算（item1 缺口）"
+  },
+  {
+   "cid": "RULE:新判据交付契约 · 补条 R297",
+   "level": "P1",
+   "kind": "NO_PERFORM_FACE",
+   "detail": "无履约读数面 ⇒ 履约监控在本体系不可算（item1 缺口）"
+  },
+  {
+   "cid": "RULE:新判据交付契约 · 补条 R298",
+   "level": "P1",
+   "kind": "NO_PERFORM_FACE",
+   "detail": "无履约读数面 ⇒ 履约监控在本体系不可算（item1 缺口）"
+  },
+  {
+   "cid": "RULE:新判据交付契约 · 补条 R299",
+   "level": "P1",
+   "kind": "NO_PERFORM_FACE",
+   "detail": "无履约读数面 ⇒ 履约监控在本体系不可算（item1 缺口）"
+  },
+  {
+   "cid": "RULE:新判据交付契约 · 补条 R300",
+   "level": "P1",
+   "kind": "NO_PERFORM_FACE",
+   "detail": "无履约读数面 ⇒ 履约监控在本体系不可算（item1 缺口）"
+  },
+  {
+   "cid": "RULE:新判据交付契约 · 补条 R-TRI",
+   "level": "P1",
+   "kind": "NO_PERFORM_FACE",
+   "detail": "无履约读数面 ⇒ 履约监控在本体系不可算（item1 缺口）"
+  },
+  {
+   "cid": "RULE:新判据交付契约 · 补充四 R-LEGS",
+   "level": "P1",
+   "kind": "NO_PERFORM_FACE",
+   "detail": "无履约读数面 ⇒ 履约监控在本体系不可算（item1 缺口）"
+  },
+  {
+   "cid": "BASELINE:invariants",
+   "level": "P1",
+   "kind": "NO_PERFORM_FACE",
+   "detail": "无履约读数面 ⇒ 履约监控在本体系不可算（item1 缺口）"
+  },
+  {
+   "cid": "CI:greencheck",
+   "level": "P1",
+   "kind": "NO_PERFORM_FACE",
+   "detail": "无履约读数面 ⇒ 履约监控在本体系不可算（item1 缺口）"
+  },
+  {
+   "cid": "EXEC:memory-start-contract",
+   "level": "P1",
+   "kind": "NO_PERFORM_FACE",
+   "detail": "无履约读数面 ⇒ 履约监控在本体系不可算（item1 缺口）"
+  }
+ ],
+ "summary": {
+  "contracts_n": 80,
+  "families": {
+   "判据契约": 68,
+   "规则契约": 9,
+   "基线契约": 1,
+   "CI 全绿契约": 1,
+   "执行契约": 1
+  },
+  "stages": {
+   "draft": {
+    "PASS": 80,
+    "FAIL": 0,
+    "UNVERIFIED": 0
+   },
+   "review": {
+    "PASS": 69,
+    "FAIL": 0,
+    "UNVERIFIED": 11
+   },
+   "sign": {
+    "PASS": 80,
+    "FAIL": 0,
+    "UNVERIFIED": 0
+   },
+   "perform": {
+    "PASS": 68,
+    "FAIL": 0,
+    "UNVERIFIED": 12
+   },
+   "archive": {
+    "PASS": 80,
+    "FAIL": 0,
+    "UNVERIFIED": 0
+   }
+  },
+  "gate_runs_n": 565,
+  "reconcile_registry_n": 27,
+  "reconcile_snapshot_n": 68,
+  "alerts_n": 14,
+  "alerts_by_level": {
+   "P0": 0,
+   "P1": 12,
+   "P2": 2
+  },
+  "roles": {
+   "stage_roles": {
+    "draft": "契约作者（本仓会话 / 归属方会话）",
+    "review": "对账闸 r130_gate_table_reconcile（机判）+ 作者（交夹具证据）",
+    "sign": "门表维护者（run_gates.py#GATES 单一真相源入口）",
+    "perform": "聚合 runner run_gates.py（每轮真跑）+ pre-commit 分级阻断（r137 判定面）",
+    "archive": "台账（gate_runs.jsonl / memory 分卷，append-only 不可回写）"
+   },
+   "non_gate_review_owner": "受管根归属方会话（A-skill-manager / A-project-handoff 侧；本仓只有转诊面）",
+   "authority": "本面为权责的机器载体；正文权威=06-benchmark/契约治理与体量治理联动框架_r150_2026-10-21.md §2.1"
+  }
+ }
+}

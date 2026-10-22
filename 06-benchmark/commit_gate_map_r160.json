@@ -1,0 +1,44 @@
+{
+ "schema": "commit-gate-map-r137-v1",
+ "cmd": "python 05-exec/r137_commit_gate_map.py --json <out>",
+ "staged_n": 10,
+ "staged": [
+  "06-benchmark/debt_aging_r160_final_2026-10-21.json",
+  "06-benchmark/debt_runs.jsonl",
+  "06-benchmark/gate_reconcile_registry.json",
+  "06-benchmark/gate_run_r160.json",
+  "06-benchmark/gate_runs.jsonl",
+  "06-benchmark/ingress_r160_2026-10-21.json",
+  "06-benchmark/input_pins.jsonl",
+  "06-benchmark/ratchet_r160_2026-10-21.json",
+  "\"06-benchmark/\\345\\205\\250\\351\\207\\217\\345\\257\\271\\346\\240\\207\\346\\212\\245\\345\\221\\212_r160_\\346\\225\\243\\350\\220\\275\\351\\241\\271\\346\\262\\273\\347\\220\\206\\344\\270\\216\\350\\267\\250\\344\\274\\232\\350\\257\\235\\350\\264\\246\\346\\224\\266\\345\\217\\243_2026-10-21.md\"",
+  "memory/07-next-steps.md"
+ ],
+ "required_gates": {
+  "debt_aging": {
+   "gates": [
+    "memory/07-next-steps.md"
+   ],
+   "why": "改了 07 台账 ⇒ 账龄件须重生（写记忆后必算账龄）",
+   "in_gates_table": false
+  },
+  "contract_lifecycle_face": {
+   "gates": [
+    "memory/07-next-steps.md"
+   ],
+   "why": "改了契约纪律面（判据/转办/纪律条目/P0 台账）⇒ 契约全生命周期风险预警须为 P0=0（R152 分级阻断）",
+   "in_gates_table": true
+  }
+ },
+ "required_gate_ids": [
+  "contract_lifecycle_face",
+  "debt_aging"
+ ],
+ "in_scope_n": 2,
+ "reading": {
+  "in_scope_n": "本次提交落在本仓纪律面的门数（0 = 不属本仓判据面，不阻断）",
+  "required_gate_ids": "本次提交**必须过**的门 id 列表 —— pre-commit 依此逐门跑并按结果阻断",
+  "staged_n": "本次暂存文件数"
+ },
+ "generated_at": "2026-10-21 22:27"
+}
