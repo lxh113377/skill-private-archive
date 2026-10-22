@@ -31,8 +31,11 @@ QUOTE_CHARS = chr(34) + chr(39)
 TOOLS = {
     'GitHub': r'gh\s+(?:api|pr|issue|run|auth|repo|release|workflow)\b|actions/checkout|workflow_dispatch|uses:\s*actions/',
     # D1 同族收紧：裸 d1_database 与无 SQL 关键词的 .prepare( 会把无关绑定算成引用。
+    # D1 同族：r168 去掉裸 d1_database；r169 再修 —— `.prepare(` **太通用**，
+    #   会把 hyperframes 的 `window.__hyperframes.pretext.prepare(text, font)`
+    #   （Canvas 前置文本 API）误判成 D1 绑定。故要求 D1 语境：DB 前缀或 D1 字样同现。
     'Cloudflare-D1': (r'wrangler\s+d1|d1\s+execute|d1_databases'
-                      r'|\.prepare\(\s*[' + QUOTE_CHARS + r']\s*(SELECT|INSERT|UPDATE|DELETE|CREATE)'),
+                      r'|(?:env\.|\b)DB\.prepare\('),
     'Cloudflare-R2': r'wrangler\s+r2|R2Bucket|r2\.dev',
     'Cloudflare-Pages': r'wrangler\s+pages|pages\s+deploy|pages\.dev',
     'Cloudflare-Workers': r'wrangler\s+deploy|workers\.dev|export\s+default\s*\{[\s\S]{0,80}fetch',
@@ -46,11 +49,27 @@ TOOLS = {
     #   2) 无关注释（browser-cdp：SQLite 一致，指 Chrome profile 的 cookie DB）
     #   3) 路径后缀（任意 .db 文件名）
     #   => 矩阵曾虚报 SQLite 12 件；收紧后实测 2 件。
+    # r168 收紧（三类非用法：正文举例/无关注释/路径后缀）；
+    # r169 再修（收紧过度）：漏了 `web-access` 的**真用法** —— scripts/find-url.mjs
+    #   直接 spawn `sqlite3` CLI 查浏览器历史（execFileSync('sqlite3', [...])）。
+    #   旧紧式只认 import sqlite3 / node:sqlite，漏掉 CLI 形态。
+    #   故补回 CLI 调用形态（带参数才算，防散文里的 'sqlite3' 字样）。
+    # r168 收紧（三类非用法：正文举例/无关注释/路径后缀）；
+    # r169 补两口（都是收紧过度的漏判）：
+    #   ① web-access：scripts/find-url.mjs 直接 spawn `sqlite3` CLI 查浏览器历史
+    #      （execFileSync('sqlite3', [...]) / `sqlite3 -separator`）—— 旧紧式只认 import 形态。
+    #   ② ican-deploy：真配 `DATABASE_URL=sqlite:////home/<u>/ican/data/ican.db` 连接串。
+    #   踩坑记录（consulting-analysis / win-toolchain-pitfalls）由下列 CREATE TABLE /
+    #   sqlite3.connect / PRAGMA 等形态自然覆盖，无需单开。
     'SQLite': (r'import\s+sqlite3|sqlite3\.connect|CREATE\s+TABLE|PRAGMA\s+table_info'
                r'|node:sqlite|DatabaseSync'
+               r'|execFileSync\(\s*[' + QUOTE_CHARS + r']sqlite3[' + QUOTE_CHARS + r']'
+               r'|\bsqlite3\b\s+-separator|\bsqlite3\b\s+'
+               r'|sqlite:///|sqlite:///'
                r'|\.execute\(\s*[' + QUOTE_CHARS + r']\s*(SELECT|INSERT|UPDATE|DELETE|CREATE)'),
     'Pages-Functions': r'Pages\s+Functions|onRequest\s*[:(]',
 }
+
 RX = {k: re.compile(v, re.I) for k, v in TOOLS.items()}
 
 GS_DEFAULT = r'D:\global_skills'
