@@ -83,18 +83,33 @@ _WRANGLER_CACHE = {}
 _WRANGLER_CALLS = {'n': 0}
 
 
-def probe_wrangler():
+def probe_wrangler(service=None):
     """wrangler（覆盖 Cloudflare D1 / R2 / Pages / Workers 的 CLI 面）。
 
     r163 自抓（成本面）：名册里四个 Cloudflare 条目各调一次本探针，每次 spawn 一个 node
     进程（实测单跑 ~6s）⇒ 进门表后本门在聚合里耗 32.8s，占全轮 1/4。四个条目读的是
     **同一个事实**（wrangler 在不在、登没登录），故按进程内缓存复用一次读数：
     探针语义不变、判据不变，只是不重复 spawn（同 r149「转诊优先、不重复造」同向）。"""
-    if 'state' in _WRANGLER_CACHE:
-        return _WRANGLER_CACHE['state'], dict(_WRANGLER_CACHE['note'])
-    st, note = _probe_wrangler_once()
-    _WRANGLER_CACHE['state'], _WRANGLER_CACHE['note'] = st, note
-    return st, dict(note)
+    if 'state' not in _WRANGLER_CACHE:
+        st, note = _probe_wrangler_once()
+        _WRANGLER_CACHE['state'], _WRANGLER_CACHE['note'] = st, note
+    st = _WRANGLER_CACHE['state']
+    note = dict(_WRANGLER_CACHE['note'])
+    # r163 自抓（粒度错误）：四个 Cloudflare 条目共用一条探针，旧式把**任一**服务未开通
+    #   报成四条全 GAP_SERVICE ⇒ D1/Pages 明明 ready 也被连坐。按条目只判自己那项。
+    if service and st == 'GAP_SERVICE':
+        svc = (note.get('services') or {}).get(service) or {}
+        if svc.get('state') == 'ready':
+            return 'READY', dict(note, judged_service=service)
+        if svc.get('state') in ('not_probed', 'probe_timeout'):
+            # 未探测 ≠ 未开通（禁把「我没测」写成「平台没开」）
+            return 'GAP_CRED', dict(note, judged_service=service,
+                                    detail='service_not_probed', svc_state=svc.get('state'))
+        return 'GAP_SERVICE', dict(note, judged_service=service,
+                                  detail='service_not_enabled', code=svc.get('code'))
+    if service:
+        note['judged_service'] = service
+    return st, note
 
 
 def _probe_wrangler_once():
@@ -112,7 +127,49 @@ def _probe_wrangler_once():
         return 'BROKEN', {'detail': 'wrangler_not_runnable', 'out': out[:120]}
     rc2, out2 = _sh([exe, 'whoami'])
     logged = 'logged in' in (out2 or '').lower()
-    return ('READY' if logged else 'GAP_CRED'), {'version': ver, 'logged_in': logged}
+    if not logged:
+        return 'GAP_CRED', {'version': ver, 'logged_in': False}
+    # r163 自抓（假绿，本轮 R163-2 一手）：CLI 能跑 + 已登录 **不等于** 服务面可用。
+    #   实测：R2 服务未开通时本门仍判 READY，而 wrangler r2 bucket list 回
+    #   `403 code 10042 Please enable R2 through the Cloudflare Dashboard`。
+    #   「工具装好了、登录了」与「这项服务能不能用」是两件事，混判就是假绿（R247 同向）。
+    #   修法 = 登录后再**逐服务真调一次只读接口**，把不可用态具名成 GAP_SERVICE（不是 BROKEN：
+    #   不是工具坏，是服务未开通）。
+    svc = {}
+    probes = (
+        ('d1', [exe, 'd1', 'list', '--json']),
+        ('r2', [exe, 'r2', 'bucket', 'list']),
+        ('pages', [exe, 'pages', 'project', 'list']),
+        # Workers：wrangler 的 deployments 子命令要 --name，故直接查账户下脚本清单（只读）
+        ('workers', [exe, 'deployments', 'list', '--name', '__probe__']),
+    )
+    for name, argv in probes:
+        rc3, out3 = _sh(argv, timeout=120)
+        blob = (out3 or '')
+        low = blob.lower()
+        enabled = (rc3 == 0)
+        # 具名归因：服务未开通有稳定错误码，不得与网络失败混为「不可用」
+        code = ''
+        for cand in ('10042', '10015', '10000', '10001'):
+            if cand in blob:
+                code = cand
+                break
+        if not enabled and ('enable' in low and 'dashboard' in low):
+            svc[name] = {'state': 'not_enabled', 'code': code or '10042'}
+        elif not enabled and code:
+            svc[name] = {'state': 'api_error', 'code': code}
+        elif rc3 is None:
+            svc[name] = {'state': 'probe_timeout'}
+        elif 'couldn' in low and 'name' in low:
+            # 命令形态不适用（如 --name 占位）——属**未探测**，不是「服务未开通」（禁混判）
+            svc[name] = {'state': 'not_probed'}
+        else:
+            svc[name] = {'state': 'ready'}
+    not_enabled = [k for k, v in svc.items() if v.get('state') == 'not_enabled']
+    note = {'version': ver, 'logged_in': True, 'services': svc}
+    if not_enabled:
+        return 'GAP_SERVICE', dict(note, detail='service_not_enabled', services_not_enabled=not_enabled)
+    return 'READY', note
 
 
 def probe_sqlite():
@@ -136,10 +193,10 @@ def probe_http_only(name, env_keys):
 
 PROBES = [
     ('GitHub', probe_gh),
-    ('Cloudflare-D1', probe_wrangler),
-    ('Cloudflare-R2', probe_wrangler),
-    ('Cloudflare-Pages', probe_wrangler),
-    ('Cloudflare-Workers', probe_wrangler),
+    ('Cloudflare-D1', lambda: probe_wrangler('d1')),
+    ('Cloudflare-R2', lambda: probe_wrangler('r2')),
+    ('Cloudflare-Pages', lambda: probe_wrangler('pages')),
+    ('Cloudflare-Workers', lambda: probe_wrangler('workers')),
     ('SQLite', probe_sqlite),
     ('Cloudflare-Turnstile', lambda: probe_http_only('turnstile', ['CF_TURNSTILE_SITE_KEY', 'CF_TURNSTILE_SECRET_KEY'])),
     ('Resend', lambda: probe_http_only('resend', ['RESEND_API_KEY'])),
@@ -167,7 +224,7 @@ def selftest():
     rows = run_probes()
     legs.append(('f1_roster_nonempty', len(rows) == len(PROBES) and len(rows) > 0,
                  'rows=%d probes=%d' % (len(rows), len(PROBES))))
-    legal = {'READY', 'GAP_CRED', 'GAP_CLI', 'BROKEN'}
+    legal = {'READY', 'GAP_CRED', 'GAP_CLI', 'GAP_SERVICE', 'BROKEN'}
     bad = [r['tool'] for r in rows if r['state'] not in legal]
     legs.append(('f2_state_enum_closed', not bad, 'illegal=%s' % (bad or '[]')))
     saved = list(PROBES)
@@ -186,6 +243,28 @@ def selftest():
     n2 = _WRANGLER_CALLS['n']
     legs.append(('f1b_wrangler_probe_cached_once', n2 == n1 and n1 >= 1,
                  'spawn 次数 first=%d second=%d（应相等）' % (n1, n2)))
+    # 腿 1c（r163 自抓，假绿修正的自证）：GAP_SERVICE 必须**按服务分别判** ——
+    #   一手事故：R2 未开通（403 code 10042）时本门仍判 READY（假绿），因为旧式只查
+    #   「CLI 能跑 + 已登录」。修后另抓到粒度错误：四个 Cloudflare 条目共用一条探针 ⇒
+    #   D1/Pages 明明 ready 也被连坐成 GAP_SERVICE。本腿锁住「同一探针下按 service 分流」。
+    _WRANGLER_CACHE.clear()
+    st_r2, n_r2 = probe_wrangler('r2')
+    st_d1, n_d1 = probe_wrangler('d1')
+    legs.append(('f1c_service_granularity',
+                 st_d1 == 'READY' and (st_r2 in ('GAP_SERVICE', 'READY')),
+                 'd1=%s r2=%s（同一探针下 d1 必须 READY，未被 r2 连坐）' % (st_d1, st_r2)))
+    # 腿 1d：未探测 != 未开通（禁把「我没测」写成「平台没开」）
+    #   r163 自抓：这条腿首版只查「源码里有 not_probed 字样」= 无齿（打印 want 不看 got）。
+    #   改为**真注一条假探针读数**走同一分流函数，断言返回 GAP_CRED 而非 GAP_SERVICE。
+    _WRANGLER_CACHE.clear()
+    _WRANGLER_CACHE['state'] = 'GAP_SERVICE'
+    _WRANGLER_CACHE['note'] = {'services': {'workers': {'state': 'not_probed'}}}
+    st_np, n_np = probe_wrangler('workers')
+    legs.append(('f1d_not_probed_not_reported_as_disabled',
+                 st_np == 'GAP_CRED' and n_np.get('svc_state') == 'not_probed',
+                 'state=%s svc_state=%s（未探测必须显形为 GAP_CRED 不得报「平台未开通」）'
+                 % (st_np, n_np.get('svc_state'))))
+    _WRANGLER_CACHE.clear()
     # 零输入腿：名册空 => 不得判绿（R247）
     try:
         PROBES[:] = []

@@ -3,7 +3,8 @@
  "cmd": "python 05-exec/r163_free_tools_face.py --json <out>",
  "roster_n": 9,
  "counts": {
-  "READY": 6,
+  "READY": 5,
+  "GAP_SERVICE": 1,
   "GAP_CRED": 3
  },
  "rows": [
@@ -21,15 +22,56 @@
    "state": "READY",
    "note": {
     "version": "4.151.2",
-    "logged_in": true
+    "logged_in": true,
+    "services": {
+     "d1": {
+      "state": "ready"
+     },
+     "r2": {
+      "state": "not_enabled",
+      "code": "10042"
+     },
+     "pages": {
+      "state": "ready"
+     },
+     "workers": {
+      "state": "ready"
+     }
+    },
+    "detail": "service_not_enabled",
+    "services_not_enabled": [
+     "r2"
+    ],
+    "judged_service": "d1"
    }
   },
   {
    "tool": "Cloudflare-R2",
-   "state": "READY",
+   "state": "GAP_SERVICE",
    "note": {
     "version": "4.151.2",
-    "logged_in": true
+    "logged_in": true,
+    "services": {
+     "d1": {
+      "state": "ready"
+     },
+     "r2": {
+      "state": "not_enabled",
+      "code": "10042"
+     },
+     "pages": {
+      "state": "ready"
+     },
+     "workers": {
+      "state": "ready"
+     }
+    },
+    "detail": "service_not_enabled",
+    "services_not_enabled": [
+     "r2"
+    ],
+    "judged_service": "r2",
+    "code": "10042"
    }
   },
   {
@@ -37,7 +79,27 @@
    "state": "READY",
    "note": {
     "version": "4.151.2",
-    "logged_in": true
+    "logged_in": true,
+    "services": {
+     "d1": {
+      "state": "ready"
+     },
+     "r2": {
+      "state": "not_enabled",
+      "code": "10042"
+     },
+     "pages": {
+      "state": "ready"
+     },
+     "workers": {
+      "state": "ready"
+     }
+    },
+    "detail": "service_not_enabled",
+    "services_not_enabled": [
+     "r2"
+    ],
+    "judged_service": "pages"
    }
   },
   {
@@ -45,7 +107,27 @@
    "state": "READY",
    "note": {
     "version": "4.151.2",
-    "logged_in": true
+    "logged_in": true,
+    "services": {
+     "d1": {
+      "state": "ready"
+     },
+     "r2": {
+      "state": "not_enabled",
+      "code": "10042"
+     },
+     "pages": {
+      "state": "ready"
+     },
+     "workers": {
+      "state": "ready"
+     }
+    },
+    "detail": "service_not_enabled",
+    "services_not_enabled": [
+     "r2"
+    ],
+    "judged_service": "workers"
    }
   },
   {
@@ -90,5 +172,5 @@
   }
  ],
  "rule": "仅 BROKEN 判红；GAP_CRED/GAP_CLI 是诚实显形（外部凭据/平台形态缺口，#29③）",
- "generated_at": "2026-10-22 13:55"
+ "generated_at": "2026-10-22 18:39"
 }
