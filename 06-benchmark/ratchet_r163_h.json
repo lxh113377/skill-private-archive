@@ -1,0 +1,27 @@
+{
+ "schema": "zijian-inject-ratchet-v2",
+ "generated_at": "2026-10-22T17:21:28",
+ "baseline_file": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\06-benchmark\\inject_ratchet_baseline.json",
+ "metrics": {
+  "catalog_grand_chars": 56312,
+  "inject_union_bytes": 68484,
+  "claim_candidates": 4,
+  "drift_ruleish_candidates": 32,
+  "desc_over_cap": 0,
+  "username_in_skill_files": 0,
+  "overdue_debt_items": 0,
+  "deferred_debt_items": 0,
+  "repeat_debt_items": 0
+ },
+ "unknown": [],
+ "hard_caps": {
+  "inject_union_bytes": 65536
+ },
+ "findings": [
+  "inject_union_bytes=68484 超硬顶 65536（+2948）"
+ ],
+ "blocking": [],
+ "advisory": [
+  "inject_union_bytes=68484 超硬顶 65536（+2948）"
+ ]
+}

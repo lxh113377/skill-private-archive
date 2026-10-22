@@ -68,7 +68,7 @@
    "gh_path_face",
    "free_tools_face"
   ],
-  "_snapshot_at": "2026-10-22 14:35",
+  "_snapshot_at": "2026-10-22 17:21",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
