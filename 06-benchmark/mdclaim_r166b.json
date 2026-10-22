@@ -1,5 +1,5 @@
 {
- "claims": 3007,
+ "claims": 3048,
  "uncited": 167,
  "status": "EXPOSED",
  "uncited_list": [
@@ -1173,14 +1173,14 @@
    "historical": true
   }
  ],
- "files": 138,
- "live_claims": 2252,
+ "files": 139,
+ "live_claims": 2293,
  "live_uncited": 0,
  "historical_claims": 755,
  "window_lines": 12,
  "live_from_round": 51,
  "schema": "md-claim-face-v1",
- "generated_at": "2026-10-22T23:36:12",
+ "generated_at": "2026-10-22T23:44:15",
  "readonly": true,
  "scope": "06-benchmark/*.md",
  "rule": "数字（条/份/例/组/行/B/倍/百分比/个）须在同节 ±12 行内带取值途径",
