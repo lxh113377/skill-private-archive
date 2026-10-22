@@ -30,9 +30,13 @@ ROOT = os.path.dirname(HERE)
 
 
 def _sh(argv, timeout=90):
+    # r164：NO_COLOR=1 关 ANSI 色码。wrangler 默认上色，色码混进读数里会
+    #   ① 干扰形状判定（首字符不再是预期字符）② 污染仓内快照件。
+    env = dict(os.environ, NO_COLOR='1')
     try:
         p = subprocess.run(argv, capture_output=True, text=True,
-                           encoding='utf-8', errors='replace', timeout=timeout)
+                           encoding='utf-8', errors='replace', timeout=timeout,
+                           env=env)
         return p.returncode, (p.stdout or '') + (p.stderr or '')
     except (OSError, subprocess.SubprocessError) as e:
         return None, 'EXC %r' % e
@@ -99,17 +103,90 @@ def probe_wrangler(service=None):
     #   报成四条全 GAP_SERVICE ⇒ D1/Pages 明明 ready 也被连坐。按条目只判自己那项。
     if service and st == 'GAP_SERVICE':
         svc = (note.get('services') or {}).get(service) or {}
+        # 自己那项 ready 且别的项不 ready ⇒ 本条仍 READY（不被连坐，见 f1c）
         if svc.get('state') == 'ready':
             return 'READY', dict(note, judged_service=service)
-        if svc.get('state') in ('not_probed', 'probe_timeout'):
-            # 未探测 ≠ 未开通（禁把「我没测」写成「平台没开」）
-            return 'GAP_CRED', dict(note, judged_service=service,
-                                    detail='service_not_probed', svc_state=svc.get('state'))
-        return 'GAP_SERVICE', dict(note, judged_service=service,
-                                  detail='service_not_enabled', code=svc.get('code'))
+        if svc.get('state') == 'not_enabled':
+            return 'GAP_SERVICE', dict(note, judged_service=service,
+                                      detail='service_not_enabled', code=svc.get('code'))
+        # 未探测/超时/探测报错/API 错误：都属「我没读到」，不是「平台没开」（禁混判）
+        return 'GAP_CRED', dict(note, judged_service=service,
+                                detail='service_not_probed', svc_state=svc.get('state'))
     if service:
         note['judged_service'] = service
     return st, note
+
+
+def _workers_api(timeout=60):
+    """Workers 只读面：GET /accounts/<id>/workers/scripts（复用 wrangler 的 OAuth token）。
+
+    返回 (rc, text) 形态以便与 CLI 探针共用 classify_service：
+      取到 JSON => (0, raw)；未登录/取不到 => (None, reason)。
+    """
+    tok, err = _wrangler_token()
+    if tok is None:
+        return None, 'no_wrangler_token: ' + (err or '')
+    import urllib.request
+    import urllib.error
+    req = urllib.request.Request(
+        'https://api.cloudflare.com/client/v4/accounts/%s/workers/scripts' % CF_ACCT,
+        headers={'Authorization': 'Bearer ' + tok})
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            return 0, r.read().decode('utf-8', 'replace')
+    except urllib.error.HTTPError as e:
+        return e.code, (e.read()[:400].decode('utf-8', 'replace') or '')
+    except Exception as e:
+        return None, 'NET %r' % (e,)
+
+
+# 服务只读探针的**输出形状**判据（标记取自 2026-10-22 真实输出，见 classify_service 头注）。
+# 抽成模块级表：变异对照 m2 可整表替换 ⇒ 证明「rc=0 帮助文本被判 not_probed」来自这把尺。
+_SHAPE_OK = {
+    # d1 --json 成功回 JSON 数组且含 name 字段（实测：'[{"uuid"..., "name": "donggu-analytics"...}]'）
+    'd1': lambda s: s.lstrip().startswith('[') and '"name"' in s,
+    # r2 成功回 'Listing buckets...'（未开通时 rc=1 且带 code 10042）
+    'r2': lambda s: 'listing buckets' in s.lower(),
+    # pages 成功回表格含 'Project Name'；'No Pages projects' 是**空集合**（面通了、没数据）
+    'pages': lambda s: ('project name' in s.lower()
+                        or 'no pages projects' in s.lower()),
+    # workers 走 API 只读面（_workers_api）：Cloudflare 信封含 success + result 才算形状对
+    'workers': lambda s: 'success' in s and 'result' in s,
+}
+
+
+def classify_service(name, rc, blob):
+    """把一个服务只读探针的 (rc, 输出) 归到具名态。**纯函数**（便于夹具与变异对照）。
+
+    r164 自抓（反向假绿，比假红更危险）：判据原先只看 rc==0 ⇒ ready。连跑 8 次时
+    try3 出现 `GAP_SERVICE 消失 / READY=7` —— R2 明明未开通（403 code 10042）却被读成
+    READY。根因 = r2 bucket list 抖动成 rc=0，而**输出根本不是桶清单**（帮助文本/告警）。
+    wrangler 存在「rc=0 但打的是帮助或告警」的形态（R151-8 家族）。
+    ⇒ rc 不足以证明服务可用，必须**校验输出形状**；形状不符记 not_probed
+      （未探测，不得冒充 ready）。
+
+    形状标记取自真实输出（2026-10-22 实测）：
+      d1    => JSON 数组（'[' 起头，含 uuid/name）
+      r2    => 'Listing buckets...'（成功 rc=0；未开通 rc=1 且带 10042）
+      pages => 表格 'Project Name'（成功）/ 'No Pages projects'（空集合=已开通，非未探测）
+      workers => deployments 命令要求真实 Worker 名，占位名必失败 ⇒ 恒 not_probed
+    """
+    low = (blob or '').lower()
+    if '10042' in (blob or '') or ('enable' in low and 'dashboard' in low):
+        return {'state': 'not_enabled', 'code': '10042'}
+    if rc is None:
+        return {'state': 'probe_timeout'}
+    if 'couldn' in low and 'name' in low:
+        # 命令形态不适用（如 --name 占位）——属未探测，不是「服务未开通」（禁混判）
+        return {'state': 'not_probed', 'reason': 'command_shape_not_applicable'}
+    if rc == 0:
+        shape_ok = _SHAPE_OK.get(name, lambda s: True)(blob or '')
+        return {'state': 'ready' if shape_ok else 'not_probed',
+                'reason': None if shape_ok else 'rc_zero_but_shape_mismatch'}
+    for cand in ('10015', '10000', '10001'):
+        if cand in (blob or ''):
+            return {'state': 'api_error', 'code': cand}
+    return {'state': 'probe_error', 'tail': (blob or '')[-160:]}
 
 
 def _probe_wrangler_once():
@@ -141,34 +218,31 @@ def _probe_wrangler_once():
         ('r2', [exe, 'r2', 'bucket', 'list']),
         ('pages', [exe, 'pages', 'project', 'list']),
         # Workers：wrangler 的 deployments 子命令要 --name，故直接查账户下脚本清单（只读）
-        ('workers', [exe, 'deployments', 'list', '--name', '__probe__']),
+        # Workers：wrangler 的 deployments 子命令必须给真实 Worker 名，占位名必失败；
+        #   且 rc=0 也可能是帮助文本（r151-8 家族）。故走 API 只读面 GET /workers/scripts，
+        #   形状可直接校验（JSON + success/result 键），不再拿 rc 冒充可用。
+        ('workers', ['__workers_api__']),
     )
     for name, argv in probes:
-        rc3, out3 = _sh(argv, timeout=120)
-        blob = (out3 or '')
-        low = blob.lower()
-        enabled = (rc3 == 0)
-        # 具名归因：服务未开通有稳定错误码，不得与网络失败混为「不可用」
-        code = ''
-        for cand in ('10042', '10015', '10000', '10001'):
-            if cand in blob:
-                code = cand
-                break
-        if not enabled and ('enable' in low and 'dashboard' in low):
-            svc[name] = {'state': 'not_enabled', 'code': code or '10042'}
-        elif not enabled and code:
-            svc[name] = {'state': 'api_error', 'code': code}
-        elif rc3 is None:
-            svc[name] = {'state': 'probe_timeout'}
-        elif 'couldn' in low and 'name' in low:
-            # 命令形态不适用（如 --name 占位）——属**未探测**，不是「服务未开通」（禁混判）
-            svc[name] = {'state': 'not_probed'}
+        if argv == ['__workers_api__']:
+            rc3, out3 = _workers_api()
         else:
-            svc[name] = {'state': 'ready'}
+            rc3, out3 = _sh(argv, timeout=120)
+        blob = (out3 or '')
+        # 分类交给纯函数（形状校验 + 具名归因），见 classify_service 头注
+        svc[name] = classify_service(name, rc3, blob)
     not_enabled = [k for k, v in svc.items() if v.get('state') == 'not_enabled']
+    # r164 修结构（假绿残留）：顶层旧式只看 not_enabled ⇒ 若某服务抖成 rc=0 但形状不符
+    #   （not_probed）或被网络/超时打成不可判定，顶层仍返回 READY —— 那还是把「没读到」
+    #   冒充成「都能用」。正解 = 只要有**任何一项不是 ready**，顶层就不给 READY；
+    #   具体归 GAP_SERVICE（未开通）还是 GAP_CRED（未探测）交由 probe_wrangler(service)
+    #   按**自己那项**的 svc_state 精确分流（见 f1c/f1d 腿），聚合层只负责不越权判绿。
+    not_ready = [k for k, v in svc.items() if v.get('state') != 'ready']
     note = {'version': ver, 'logged_in': True, 'services': svc}
-    if not_enabled:
-        return 'GAP_SERVICE', dict(note, detail='service_not_enabled', services_not_enabled=not_enabled)
+    if not_ready:
+        return 'GAP_SERVICE', dict(
+            note, detail='service_not_enabled' if not_enabled else 'service_unverifiable',
+            services_not_enabled=not_enabled, services_not_ready=not_ready)
     return 'READY', note
 
 
@@ -387,6 +461,59 @@ def selftest():
                         by['dead']['state'], (by['dead']['note'] or {}).get('attempts'))))
     finally:
         PROBES[:] = saved2
+    # 腿 1g~1l（r164 反向假绿的自证）：classify_service 的形状校验与聚合层不越权。
+    #   一手事故：连跑第 3 次时 r2 抖成 rc=0 而打的根本不是桶清单 ⇒ 旧式判 ready
+    #   ⇒ GAP_SERVICE 消失、READY=7（R2 明明未开通）。这类假绿比假红危险：它会让
+    #   「缺口」在某轮凭空蒸发，下一轮再也对不上账。
+    help_like = ' ⛅ wrangler 4.151.2' + chr(10) + 'Usage: wrangler r2 bucket [command]' + chr(10)
+    g_rc0_help = classify_service('r2', 0, help_like)
+    g_rc1 = classify_service('r2', 1, 'ERROR code: 10042 ... Please enable R2 through the Cloudflare Dashboard')
+    g_d1 = classify_service('d1', 0, '[{"uuid": "x", "name": "db1"}]')
+    g_r2ok = classify_service('r2', 0, 'Listing buckets...' + chr(10))
+    g_pempty = classify_service('pages', 0, 'No Pages projects found')
+    legs.append(('f1g_rc0_help_text_not_ready',
+                 g_rc0_help['state'] == 'not_probed',
+                 'rc=0 但帮助文本 => %s（旧式误判 ready）' % g_rc0_help['state']))
+    legs.append(('f1h_real_shapes_still_ready',
+                 g_d1['state'] == 'ready' and g_r2ok['state'] == 'ready',
+                 '真形状 d1=%s r2=%s' % (g_d1['state'], g_r2ok['state'])))
+    legs.append(('f1i_not_enabled_named_with_code',
+                 g_rc1['state'] == 'not_enabled' and g_rc1.get('code') == '10042',
+                 '10042 => %s code=%s' % (g_rc1['state'], g_rc1.get('code'))))
+    # 空集合 ≠ 未探测：面通了只是没数据（区分「没读到」与「读到但没有」）
+    legs.append(('f1j_empty_result_is_ready',
+                 g_pempty['state'] == 'ready',
+                 '空清单 => %s（必须 ready：面通了）' % g_pempty['state']))
+    # 聚合层不越权判绿：任一服务非 ready ⇒ 顶层不得 READY；同时各条不被连坐
+    _WRANGLER_CACHE.clear()
+    _WRANGLER_CACHE['state'] = 'GAP_SERVICE'
+    _WRANGLER_CACHE['note'] = {'services': {
+        'd1': {'state': 'ready'}, 'r2': {'state': 'not_enabled', 'code': '10042'},
+        'pages': {'state': 'ready'}, 'workers': {'state': 'not_probed'}}}
+    st_all, _a = probe_wrangler()
+    st_d1, _d = probe_wrangler('d1')
+    st_r2, _r = probe_wrangler('r2')
+    st_wk, n_wk = probe_wrangler('workers')
+    legs.append(('f1k_aggregate_refuses_ready_when_any_not_ready',
+                 st_all == 'GAP_SERVICE' and st_d1 == 'READY' and st_r2 == 'GAP_SERVICE',
+                 '聚合=%s d1=%s r2=%s（聚合不得判绿、d1 不得连坐）'
+                 % (st_all, st_d1, st_r2)))
+    legs.append(('f1l_unverifiable_is_gap_cred',
+                 st_wk == 'GAP_CRED' and n_wk.get('svc_state') == 'not_probed',
+                 'workers not_probed => %s（未读到 ≠ 平台没开）' % st_wk))
+    _WRANGLER_CACHE.clear()
+    # 变异对照 m2：整表关掉形状尺 ⇒ rc=0 的帮助文本必须被误算 ready（证明 f1g 有牙）
+    saved_shapes = dict(_SHAPE_OK)
+    try:
+        for _k in _SHAPE_OK:
+            _SHAPE_OK[_k] = lambda s: True
+        bad = classify_service('r2', 0, help_like)
+        legs.append(('m2_shape_removal_passes_help_text',
+                     bad['state'] == 'ready',
+                     '关掉形状尺后帮助文本 => %s（期望 ready）' % bad['state']))
+    finally:
+        _SHAPE_OK.clear()
+        _SHAPE_OK.update(saved_shapes)
     # 零输入腿：名册空 => 不得判绿（R247）
     try:
         PROBES[:] = []
