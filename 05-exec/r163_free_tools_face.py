@@ -272,12 +272,26 @@ BROKEN_STATES = ('BROKEN',)
 
 
 def run_probes():
+    """统一重试收口（r164 自抓，第二次瞬态）：收尾验收时本门突然报 BROKEN=1、READY 6→5，
+    连跑 5 次却全 READY=6 —— 又是子进程/网络抖动被当固定红。
+
+    r163 只给 SQLite 探针加过重试，**其余 8 项没有** —— 那是补丁式修法，不是收口。
+    本轮把重试上移到本函数：探针落到 BROKEN 时重试一次，两次都 BROKEN 才算真坏，
+    并在 note 记 attempts（禁把「抖了」写成「坏了」）。
+    重试**只针对 BROKEN**：GAP_* 是确定性读数，重试它们没有信息增益、白增耗时。"""
     rows = []
     for name, fn in PROBES:
-        try:
-            st, note = fn()
-        except Exception as e:  # 探针自身异常 => 记 BROKEN 具名，禁静默跳过
-            st, note = 'BROKEN', {'detail': 'probe_exception', 'exc': repr(e)[:160]}
+        st, note, attempts = None, None, 0
+        for attempt in (1, 2):
+            attempts = attempt
+            try:
+                st, note = fn()
+            except Exception as e:  # 探针自身异常 => 记 BROKEN 具名，禁静默跳过
+                st, note = 'BROKEN', {'detail': 'probe_exception', 'exc': repr(e)[:160]}
+            if st != 'BROKEN':
+                break
+        if attempts > 1:
+            note = dict(note or {}, attempts=attempts)
         rows.append({'tool': name, 'state': st, 'note': note})
     return rows
 
@@ -351,6 +365,28 @@ def selftest():
                  no_env and st_ts in ('READY', 'GAP_CRED')
                  and ('judged_by' in note_ts or now_env_ok(note_ts)),
                  'state=%s judged_by=%s' % (st_ts, note_ts.get('judged_by') or note_ts.get('detail'))))
+    # 腿 1f（r164 自抓，瞬态收口的自证）：注入一个「第一次 BROKEN、第二次 READY」的抖动探针
+    #   ⇒ 必须**收口到 READY 且 note.attempts=2**；注入一个「两次都 BROKEN」的探针 ⇒ 必须 BROKEN。
+    #   这条腿锁住「重试真的发生在 run_probes，而不是零散补丁」。
+    saved2 = list(PROBES)
+    calls = {'n': 0}
+    def flaky_once():
+        calls['n'] += 1
+        return ('BROKEN', {'detail': 'simulated-flake'}) if calls['n'] == 1 else ('READY', {'ok': 1})
+    def always_broken():
+        return 'BROKEN', {'detail': 'genuinely-broken'}
+    try:
+        PROBES[:] = [('flaky', flaky_once), ('dead', always_broken)]
+        rr = run_probes()
+        by = {r['tool']: r for r in rr}
+        ok_flaky = by['flaky']['state'] == 'READY' and (by['flaky']['note'] or {}).get('attempts') == 2
+        ok_dead = by['dead']['state'] == 'BROKEN' and (by['dead']['note'] or {}).get('attempts') == 2
+        legs.append(('f1f_transient_retried_once_not_twice', ok_flaky and ok_dead,
+                     'flaky=%s(attempts=%s) dead=%s(attempts=%s)'
+                     % (by['flaky']['state'], (by['flaky']['note'] or {}).get('attempts'),
+                        by['dead']['state'], (by['dead']['note'] or {}).get('attempts'))))
+    finally:
+        PROBES[:] = saved2
     # 零输入腿：名册空 => 不得判绿（R247）
     try:
         PROBES[:] = []
