@@ -71,7 +71,7 @@
    "tool_skill_matrix",
    "turnstile_face"
   ],
-  "_snapshot_at": "2026-10-22 23:47",
+  "_snapshot_at": "2026-10-22 23:52",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
