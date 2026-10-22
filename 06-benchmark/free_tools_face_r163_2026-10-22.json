@@ -3,17 +3,17 @@
  "cmd": "python 05-exec/r163_free_tools_face.py --json <out>",
  "roster_n": 9,
  "counts": {
-  "READY": 6,
-  "GAP_SERVICE": 1,
-  "GAP_CRED": 2
+  "GAP_CRED": 3,
+  "READY": 5,
+  "GAP_SERVICE": 1
  },
  "rows": [
   {
    "tool": "GitHub",
-   "state": "READY",
+   "state": "GAP_CRED",
    "note": {
     "version": "gh version 2.95.0 (2026-06-17)",
-    "logged_in": true,
+    "logged_in": false,
     "cross_interpreter_agree": true
    }
   },
@@ -171,7 +171,10 @@
     "sitekeys": [
      "0x4AAAAAAFgp4grsBDhuMqpl"
     ],
-    "judged_by": "cloudflare_widget_exists（不是本机 env）"
+    "used_in_repo": false,
+    "used_why": "hits=[]",
+    "project_root": "C:\\\\Users\\\\37533\\\\Desktop\\\\workspace\\\\超市web\\\\supermarket-web",
+    "judged_by": "cloudflare_widget_exists（不是本机 env）; used_in_repo=仓内是否仍引用"
    }
   },
   {
@@ -197,5 +200,5 @@
   }
  ],
  "rule": "仅 BROKEN 判红；GAP_CRED/GAP_CLI 是诚实显形（外部凭据/平台形态缺口，#29③）",
- "generated_at": "2026-10-22 21:49"
+ "generated_at": "2026-10-22 22:17"
 }

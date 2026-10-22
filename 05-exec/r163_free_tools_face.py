@@ -266,6 +266,9 @@ def probe_sqlite():
 
 
 CF_ACCT = '04b1466b2606b678a332fe6f26aa87ec'
+REPO_ROOT_HINT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# 真正消费这些工具的项目仓（Turnstile/Resend/Upstash 的落点）；不在本机时记 UNKNOWN。
+SUPERMARKET_ROOT = r'C:\\Users\\37533\\Desktop\\workspace\\超市web\\supermarket-web'
 _WRANGLER_CFG = os.path.expanduser(r'~\\AppData\\Roaming\\xdg.config\\.wrangler\\config\\default.toml')
 
 
@@ -319,10 +322,31 @@ def probe_turnstile():
     except Exception as e:
         return 'GAP_CRED', {'detail': 'api_unreachable', 'err': repr(e)[:80]}
     ws = d.get('result') or []
+    # r164：加第二把尺 —— 本仓代码是否还在引用（Turnstile 已于 b20075e 按用户要求移除）。
+    #   「账号有 widget」只说明**建过**，不说明**在用**；两把尺分开印，禁合成一个布尔。
+    # r164 自抓：这把尺原本指向**本仓**（05-exec 的上级），而本仓自己有
+    #   r163_turnstile_admin.py / r163_turnstile_face.py ⇒ 恒 used_in_repo=True，等于没量。
+    #   正解 = 指向**真正用它的项目仓**（supermarket-web），并显式声明路径来源，
+    #   目标仓不存在时记 UNKNOWN 而不是 False（禁把「找不到仓」写成「没在用」）。
+    proj = SUPERMARKET_ROOT
+    used_in_repo, used_why = None, 'project_root_not_found: %s' % proj
+    if os.path.isdir(proj):
+        import glob
+        hits = []
+        for pat in ('**/turnstile.js', '**/turnstile.ts'):
+            for _fp in glob.glob(os.path.join(proj, pat), recursive=True):
+                if 'node_modules' in _fp or '_trash' in _fp:
+                    continue
+                hits.append(os.path.basename(_fp))
+        used_in_repo = bool(hits)
+        used_why = 'hits=%s' % (sorted(set(hits))[:3] or '[]')
     return ('READY' if ws else 'GAP_CRED'), {
         'widgets_n': len(ws),
         'sitekeys': [w.get('sitekey') for w in ws][:3],
-        'judged_by': 'cloudflare_widget_exists（不是本机 env）',
+        'used_in_repo': used_in_repo,
+        'used_why': used_why,
+        'project_root': SUPERMARKET_ROOT,
+        'judged_by': 'cloudflare_widget_exists（不是本机 env）; used_in_repo=仓内是否仍引用',
     }
 
 
@@ -337,6 +361,10 @@ PROBES = [
     #   但本轮实测它**已在生产启用**（widget 建好 + Pages secret 已配 + 部署后写接口回 captcha_failed）。
     #   凭据既不在本机 env、也不该在本机 env —— 它的正确归宿是 Cloudflare widget + Pages secret。
     #   判据改为「widget 是否真存在于账号下」：与第 68 门同源，但本门只做名册级别的一行读数。
+    # r164：判据从「查本机 env」改为「查账号下有无 widget」；
+    # r164 第二轮：Turnstile 已按用户要求移除（supermarket-web b20075e）⇒ 本机**不再使用**它，
+    #   但账号下 widget 可能仍在（未确认已删）。故新判据 = widget 是否存在 + 本仓是否还有引用，
+    #   两者都要印出来：单独看任一个都会得出片面结论（「账号有 widget」≠「项目在用」）。
     ('Cloudflare-Turnstile', probe_turnstile),
     ('Resend', lambda: probe_http_only('resend', ['RESEND_API_KEY'])),
     ('Upstash-Redis', lambda: probe_http_only('upstash', ['UPSTASH_REDIS_REST_URL', 'UPSTASH_REDIS_REST_TOKEN'])),
@@ -514,6 +542,20 @@ def selftest():
     finally:
         _SHAPE_OK.clear()
         _SHAPE_OK.update(saved_shapes)
+    # 腿 1m（r164 第二轮，防「建过」被读成「在用」）：Turnstile 已按用户要求移除
+    #   （supermarket-web b20075e）。这把尺必须指向**真正用它的项目仓**，不是本仓
+    #   （本仓自己有 r163_turnstile_admin.py，量本仓恒 True = 没量）。
+    st_ts2, n_ts2 = probe_turnstile()
+    legs.append(('f1m_usage_measured_in_project_repo',
+                 n_ts2.get('used_in_repo') in (True, False, None)
+                 and 'project_root' in n_ts2
+                 and n_ts2.get('project_root') == SUPERMARKET_ROOT,
+                 'used_in_repo=%s why=%s' % (n_ts2.get('used_in_repo'), n_ts2.get('used_why'))))
+    # 两把尺必须同时印出来：widgets_n（账号层）与 used_in_repo（项目层）
+    legs.append(('f1n_two_scales_not_merged',
+                 'widgets_n' in n_ts2 and 'used_in_repo' in n_ts2 and 'judged_by' in n_ts2,
+                 'widgets_n=%s used_in_repo=%s（禁合成单一布尔）'
+                 % (n_ts2.get('widgets_n'), n_ts2.get('used_in_repo'))))
     # 零输入腿：名册空 => 不得判绿（R247）
     try:
         PROBES[:] = []
