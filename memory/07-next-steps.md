@@ -279,6 +279,17 @@ R114-3（r114 登记，P2）** 候选面语义质量有人判面：桶 2/3 候�
 未把 token 作为 `payload.captchaToken` 发送。⇒ 当前部署走 `not_configured` 放行路径，**等价于无操作**。
 降级方向刻意定成「不挡站」（未配置/上游异常均放行）：人机验证一旦成为可用性单点，代价（顾客下不了单）比被刷更严重。
 前端待做建议：只挂公开写接口的组件，不动登录链路（该仓已明确不做账号体系）。取值：`git -C <supermarket-web> show --stat 2b6c1fa`、`npm run verify`。
+- [ ] **R165-1（r165 登记，P1，到期 r167）** **Resend 待配 `RESEND_API_KEY`；Upstash 仍是唯一零引用工具**。 【r165 裁决=降级（转长期看守）｜Resend 的**代码侧已做完**（mailer.py 六腿自证 6/6、受管根 V1.1.0、矩阵 0→1 件），剩下的是**纯凭据动作**：拿 Resend 账号 API key + 设 `RESEND_API_KEY` + 设 `MAIL_FROM` 并在 Resend 侧验证发件地址。按 X-17 转长期看守而非滚到期日：① 这属 #29③ 外部凭据缺口（需用户账号，非本机可自动化项），本轮已**取证**（CF 凭据无路由 `/addons`、`/redis` 400 code 7003；Email Routing 因无 zone 也不通），不是「懒得做」；② 判据已常驻 —— 第 65 门每轮读 `backend_state`，配上 key 自动转 READY，无需人盯；③ 启用的三件条件已写进台账与 skill，不会出现「开了却不知道往哪接」。Upstash 同属真外部凭据缺口且**暂无明确落点**，下一轮候选是给它找真实场景（现有 `rate:write:*` 已走 KV/D1 够用，禁为凑引用硬接）。】
+本轮已把 Resend 从「零引用」变成「有明确落点」：新增 `office-automation-pro/scripts/mailer.py`（Resend ⇄ SMTP 可切换，
+六腿自证 6/6），受管根 V1.1.0（`9f62bf1e` + 脚本 `f8cd7c9e`），矩阵 Resend 0→1 件、零引用 2→1 项。
+**本机实测 `backend_state=none`**（`RESEND_API_KEY` 与 `SMTP_*` 均未配置）⇒ 当前不改变任何现有行为。
+**启用条件（三件，缺一不生效）**：① Resend 账号拿 API key（免费 3000 封/月）；② 设环境变量 `RESEND_API_KEY`；
+③ 设 `MAIL_FROM` 且该发件地址已在 Resend 侧验证。配上即自动切换，**无需改代码**。
+「真外部凭据缺口」本轮已取证（非想当然）：Cloudflare API 探 `/addons`、`/redis` 均 `400 code 7003` 无路由；
+`/email/routing/addresses` 虽 200 但 `/zones` `total_count: 0`（无域名托管在 CF）⇒ Email Routing 也不通。
+Upstash 同属真外部凭据缺口（需 upstash.com 账号的 REST URL+token），且**暂无明确落点**——
+下一轮候选：给它找一个真实场景（如限流计数的跨实例共享，现有 `rate:write:*` 走 KV/D1 已够用，勿为凑引用硬接）。
+取值：`python 05-exec/r163_tool_skill_matrix.py`（看 Resend/Upstash 行）、`python mailer.py --selfcheck`。
 - **卷5** `07-next-steps.part79.md` — 07-next-steps 分卷（R199 自动拆卷）
 
 ## P2
