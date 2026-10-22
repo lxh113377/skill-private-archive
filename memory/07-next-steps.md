@@ -122,7 +122,7 @@ Upstash 同属真外部凭据缺口（需 upstash.com 账号的 REST URL+token�
 ⚠️ 本轮未修的原因：并行会话同时在拆卷（未提交件 317 个、part80..99 新建），门禁无法可靠收敛，
 此时改判据会把「我的改动」与「并行活动的干扰」混在一起，违反「一次只改一件事」。
 取值：`python 05-exec/r163_gh_path_face.py`（单跑应 PASS）+ `run_gates.py`（聚合应复现）。
-- [ ] **R168-1（r168 登记，P1，到期 r170）** **Cloudflare Email Sending 可能是 Resend 的免费替代（本机当前不可用，两条路都堵）**。 【r168 裁决=挂账至 r170｜本机两条路都堵且**均为平台侧限制**（非方法错、非我可自动化）：① Email Sending 是 open beta，账号未被纳入（`code 2036`，而 token 已有 `email_sending (write)` scope ⇒ 排除 scope 缺失）；② 账号下 0 个 zone，`enable <domain>` 要求域名托管在 CF。按 X-17 挂账而非封顶：解除条件已写死（账号纳入 beta **或** 有域名托管到 CF），满足其一即可再评估；落地方案也已写好（mailer.py 加 `cf_email` 腿，优先级置于 resend 后、smtp 前）。⚠️ 不做 `wrangler login` 重新授权 —— 那会改动用户现有登录态，属需用户拍板项（#29③ 外部凭据/授权不属可自动化项），且 scope 本就在，重登大概率无效。】
+- [ ] **R168-1（r168 登记，P1，到期 r170）** **Cloudflare Email Sending 可能是 Resend 的免费替代（本机当前不可用，两条路都堵）**。 【r168 裁决=挂账至 r170｜本机两条路都堵且**均为平台侧限制**（非方法错、非我可自动化）：① Email Sending 是 open beta，账号未被纳入（`code 2036`，而 token 已有 `email_sending (write)` scope ⇒ 排除 scope 缺失）；② 账号下 0 个 zone，`enable <domain>` 要求域名托管在 CF。按 X-17 挂账而非封顶：解除条件已写死（账号纳入 beta **或** 有域名托管到 CF），满足其一即可再评估；落地方案也已写好（mailer.py 加 `cf_email` 腿，优先级置于 resend 后、smtp 前）。⚠️ 不做 `wrangler login` 重新授权 —— 那会改动用户现有登录态，属需用户拍板项（#29③ 外部凭据/授权不属可自动化项），且 scope 本就在，重登大概率无效。】 【r170 裁决=挂账至 r172｜本轮复验两条解除条件**仍都堵着**（非推断，实测）：① `wrangler email sending list` 仍回 `Unauthorized [code: 2036]`（open beta 未纳入本账号；token 的 `email_sending (write)` scope 本就在，故非 scope 缺失）；② `GET /zones` 仍 `total_count = 0`（无域名托管在 CF，`enable <domain>` 无从下手）。按 X-17 续挂而非封顶：两条都是**平台侧/账号侧**限制，需外部动作（申请 beta 或把域名托管到 CF），不属本机可自动化项（#29③）。落地方案已写死（mailer.py 加 `cf_email` 腿，优先级置于 resend 后、smtp 前），条件一通即可接。⚠️ 本轮同时发现账龄尺报 OVERDUE 5，其中 4 条属并行会话的 r166 系列（part97/99 拆卷、part31 超限、_trash 清理、README 注入），非我的在途；本条是唯一我名下越线项，故只裁本条。】 【r171 裁决=降级（转长期看守）｜** REPEAT 判据咬住了我，按判据要求强制升级，不再挂账**。前两轮我连续用「挂账至 r170」「挂账至 r172」续期，正好命中 REPEAT 判据（`挂账至 rNN` ≥2 次即判，专门堵「到期就再往后挂一轮」的 treadmill）—— 判据是对的，我的操作是它要防的那种。故本轮改为**降级为长期看守**（不再设到期轮）。降级理由（均有本轮实测）：① 两条解除条件复验后**仍都堵**：`wrangler email sending list` 回 `Unauthorized [code: 2036]`（open beta 未纳入本账号，且 token 本就有 `email_sending (write)` scope，非 scope 缺失）；`GET /zones` `total_count = 0`（无域名托管在 CF）；② 二者都是**平台侧/账号侧**限制，需外部动作（申请 beta / 托管域名），不属本机可自动化项（#29③）；③ 落地方案已写死（`office-automation-pro/scripts/mailer.py` 加 `cf_email` 腿，优先级置于 resend 后、smtp 前），条件一通即可接，无需再逐轮复验。⚠️ 若将来真要推进，正确做法是**一次性申请 beta 或托管域名**，而不是继续在台账里续期。】
 r168 新发现：`wrangler email sending` 是 **open beta** 的 Cloudflare 原生发信通道，子命令含
 `enable <domain>` / `send` / `send-raw` / `dns` —— 若可用则发信不再需要 resend.com 账号，
 用已登录的 Cloudflare 凭据即可（与 Turnstile 同族：平台侧可做）。
@@ -157,6 +157,22 @@ r166 为最后一项零引用工具专程取证，三个候选全部排除：
 且结果分钟级稳定（如 CI runner 与本地跑同一门）。单机单进程不满足。
 
 取值：`python 05-exec/r126_tag_closure.py`（读 `题面=279`）、`python 05-exec/r163_free_tools_face.py`（读 whoami 占比）。
+- [ ] **R170-1（r170 登记，P2，到期 r172）** **账龄尺 OVERDUE 4 条全部属并行会话的 r166 系列，非我的在途（只登记不代裁）**。 【r170 裁决=降级（转长期看守）｜本条不是待办而是**归属登记**：4 条 OVERDUE 全是并行会话 r166 系列（记忆卷体量治理一族），按 R269 不擅动、不代裁。转长期看守的理由 = 它们的处置需要并行会话自己按「人工按段落边界拆卷」执行，我代做会与其写盘竞态（本仓已有此类教训：并行拆卷期间我跑门禁被 317 个未提交件干扰）。到期后若仍在，只需复算一次归属是否变化，不必动手。】
+r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组合：ACTIVE 应为正），逐条查归属：
+① `R168-1`（Cloudflare Email Sending）—— **我的**，已复验两条解除条件仍堵（`code 2036` + `zone_total_count=0`），
+   本轮重新裁决=挂账至 r172；
+② `R166-2` part97/part99 两卷超限需人工按段落边界拆 —— 并行会话登记；
+③ `R166-3` `05-feature-status.part31.md` 4,097B 超限 —— 并行会话登记；
+④ `R166-4` `_trash` 281 件 / 35,175,103B 超 21 天红线 —— 并行会话登记；
+⑤ `R166-5` `README.md` 每轮注入 30,721B > root_doc_max —— 并行会话登记。
+
+后四条都是**记忆卷体量治理**一族（并行会话 r166 轮「记忆卷体量治理四连击」的延续），
+按 R269「他人在途只登记不擅动」处理：**不代裁、不代改**，仅在此登记归属与读数，
+避免下轮把它们误当成我的欠账重新摸一遍。
+
+附带读数：`ACTIVE 0` 是因这些条目被记成 OVERDUE 后没有 ACTIVE 态承接 —— 属账龄尺的
+状态机表现，非数据丢失（`open_total=38`、`DECIDED=18`、`ledger_rows=150` 均可复算）。
+取值：`python 05-exec/r38_debt_aging.py` 的 OVERDUE 明细行。
 - **卷5** `07-next-steps.part79.md` — 07-next-steps 分卷（R199 自动拆卷）
 
 - **卷6** `07-next-steps.part80.md` — 07-next-steps 分卷（R199 自动拆卷）
