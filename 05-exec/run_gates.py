@@ -922,6 +922,36 @@ GATES = [
                    "变异腿：摘 CLOSING_ALLOW ⇒ 应 SKIP 面转红；摘 CLOSING_DENY ⇒ 提案台账被洗成假绿（证明原判据有牙）"],
         "why": "R159-1 登记的两面在本轮都实测复现：① 收尾跑 handoff.py volume --snapshot 后 memory/sessions/volume-snapshots.jsonl 变脏，旧 CLOSING_PAT 不认它 ⇒ 空暂存分支从 SKIP 掉到 UNVERIFIED rc=2；② 旧正则 06-benchmark/[^ ]+\\.(json|jsonl) 过宽，把纪律面 06-benchmark/transmit_proposals.json 漏 add 也洗成 closing ⇒ 假 SKIP。修法 = 白名单制（CLOSING_ALLOW/CLOSING_DENY + is_closing_form 纯函数 + --dirty 测试缝）。r162 自抓两处：首版 is_closing_form 漏吃 porcelain 的 XY 状态位导致 t1 假红；变异体写进系统 TEMP（本机 TEMP 指向不存在路径，R161-2 同族）致 m2 腿原因失真，改写到 HERE 同级。",
     },
+    {
+        # r163：免费开发者工具 PATH 可达性（gh 空壳遮蔽实证，第 64 门）
+        "id": "gh_path_face",
+        "script": "r163_gh_path_face.py",
+        "argv": [],
+        "pass_token": "[GHPATH:PASS]",
+        "portable": False,
+        "not_portable_reason":
+            "读本机 PATH 与 PowerShell 命令解析（换机无 GitHub CLI 安装态时检查失去对象，且刻意按 UNVERIFIED 不判绿）",
+        "covers": ["PATH 里的 gh 可执行且非 0 字节（空壳 = 裸调静默失败，读数缺失会被读成「无上游」假绿）",
+                   "真实 gh 在位（按多候选路径探测，不写死单一版本号）",
+                   "gh auth 已登录且 gh api 可达（取不到数 = UNVERIFIED，R247 禁按干净记）",
+                   "跨解释器一致性：Python shutil.which 与 PowerShell Get-Command 必须解析到同一非空件"],
+        "why": "r163 一手：本机 PATH 第 20 位 C:/Users/37533/.local/bin/gh 是 0 字节空壳（2026-08-08 遗留），遮蔽了第 24 位的真实 GitHub CLI 2.95.0 ⇒ PowerShell 裸调 gh 必报「Cannot run a document in the middle of a pipeline」，而 Python 侧 shutil.which 解析到真实件照常可用 —— 同一命令名两个解释器结论相反。本面首版只查 Python 侧，于是在缺陷真实存在的那一轮打了绿（假阴性，X-7 同族），当场自抓后补跨解释器腿；另抓到 FAIL 文案把 Python 侧路径印成空壳本体的归因失真。同轮另有第三个同名实现 D:/npm-global/gh（npm 第三方包 2.8.9，连 --help 都抛 TypeError）⇒ 命令名被三方争夺，凡依赖 gh 的判据（r112 上游探针 / r113 季度巡检 / r157 上游 issue 三门）都必须按解析后真实路径调用。",
+    },
+    {
+        # r163：免费开发者工具可达性名册（第 65 门）
+        "id": "free_tools_face",
+        "script": "r163_free_tools_face.py",
+        "argv": [],
+        "pass_token": "[FREETOOLS:PASS]",
+        "portable": False,
+        "not_portable_reason":
+            "读本机 CLI 安装态与登录凭据（换机/CI 无登录态时全部落 GAP_*，检查失去对象）",
+        "covers": ["9 项免费工具逐个给三态读数（READY / GAP_CRED / GAP_CLI），缺口具名禁读成干净（R247）",
+                   "仅 BROKEN 判红：CLI 在位但不可用（遮蔽 / 空壳 / 同名劫持），GAP_* 是诚实显形不连坐",
+                   "gh 探针按解析后真实路径调用并校验跨解释器一致（r163 一手：Python 侧好、PowerShell 侧坏）",
+                   "自证四腿：名册非空 / 态枚举闭合 / 注入 BROKEN 必被抓 / 空名册 main 返回 rc=2"],
+        "why": "截图那批「独立开发者穷鬼套餐」工具（D1/R2/Pages/Workers/Turnstile/Resend/Upstash/SQLite/GitHub）在本机到底能不能用、有没有登录，此前只活在单次会话记忆里；换会话就得重摸，且极易把「取不到数」读成「没有该工具」—— r163 一手实证：gh 被 0 字节空壳遮蔽，连取证脚本自身都中招，差点写成「本机没有 gh」。本门把现状变成每轮真跑的读数面。r163 自抓两处：① 元组返回漏括号致 IndentationError；② f4 腿原只断言 rows==0、把「main 返回 rc=2」当读码推断（#33 结论层推理），改成真调 main([]) 实测。",
+    },
 ]
 
 # 显式声明本 runner **不覆盖**的面，防止聚合绿被读成「所有门禁都绿」（R20-2）。

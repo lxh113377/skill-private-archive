@@ -64,9 +64,11 @@
    "r117_upstream_delta_fixtures",
    "direct_closure_face",
    "bounce_back_face",
-   "gatemap_closing_face"
+   "gatemap_closing_face",
+   "gh_path_face",
+   "free_tools_face"
   ],
-  "_snapshot_at": "2026-10-22 10:25",
+  "_snapshot_at": "2026-10-22 10:58",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
@@ -154,6 +156,14 @@
   "gatemap_closing_face": {
    "evidence": "06-benchmark/gatemap_closing_face_r162_2026-10-22.json",
    "at": "2026-10-22 09:46"
+  },
+  "gh_path_face": {
+   "evidence": "06-benchmark/gh_path_face_r163_2026-10-22.json",
+   "at": "2026-10-22 10:45"
+  },
+  "free_tools_face": {
+   "evidence": "06-benchmark/free_tools_face_r163_2026-10-22.json",
+   "at": "2026-10-22 10:53"
   }
  }
 }
