@@ -1,0 +1,179 @@
+{
+ "schema": "tool-skill-matrix-r163-v1",
+ "cmd": "python 05-exec/r163_tool_skill_matrix.py --json <out>",
+ "tools_n": 10,
+ "note": "命令级匹配（非产品名）；零引用不判红，具名显形供人决定是否补搭配",
+ "generated_at": "2026-10-22 19:09",
+ "gs_root": "D:\\global_skills",
+ "skills_scanned": 191,
+ "skills_with_tools": 31,
+ "unreadable": [],
+ "per_tool": {
+  "GitHub": [
+   "A-get-memory",
+   "A-memory-start",
+   "A-project-better",
+   "A-project-handoff",
+   "A-skill-manager",
+   "chaoshi-image-optimization",
+   "chaoshi-web-deploy",
+   "ci-pipeline-debugging",
+   "consulting-analysis",
+   "doc-coauthoring",
+   "docker-e2e-gate",
+   "github",
+   "gstack",
+   "healthcare-eval-harness",
+   "hyperframes-registry",
+   "security-audit",
+   "shell-encoding-pitfalls",
+   "story",
+   "ui-ux-pro-max",
+   "verification-before-completion"
+  ],
+  "Cloudflare-D1": [
+   "chaoshi-web-deploy",
+   "hyperframes"
+  ],
+  "Cloudflare-R2": [],
+  "Cloudflare-Pages": [
+   "A-project-handoff",
+   "byted-bp-cdn-pagesdeploy",
+   "chaoshi-image-optimization",
+   "chaoshi-web-deploy"
+  ],
+  "Cloudflare-Workers": [
+   "chaoshi-web-deploy"
+  ],
+  "Cloudflare-Turnstile": [],
+  "Resend": [],
+  "Upstash-Redis": [],
+  "SQLite": [
+   "A-ask-questions",
+   "A-project-handoff",
+   "A-prompt-better",
+   "browser-cdp",
+   "chaoshi-web-deploy",
+   "consulting-analysis",
+   "fenjue-memory-audit",
+   "ican-deploy",
+   "ican-frontend-design-system",
+   "oracle",
+   "web-access",
+   "win-toolchain-pitfalls"
+  ],
+  "Pages-Functions": [
+   "chaoshi-web-deploy"
+  ]
+ },
+ "per_skill": {
+  "A-ask-questions": {
+   "SQLite": 1
+  },
+  "A-get-memory": {
+   "GitHub": 2
+  },
+  "A-memory-start": {
+   "GitHub": 3
+  },
+  "A-project-better": {
+   "GitHub": 1
+  },
+  "A-project-handoff": {
+   "GitHub": 9,
+   "Cloudflare-Pages": 10,
+   "SQLite": 5
+  },
+  "A-prompt-better": {
+   "SQLite": 5
+  },
+  "A-skill-manager": {
+   "GitHub": 1
+  },
+  "browser-cdp": {
+   "SQLite": 1
+  },
+  "byted-bp-cdn-pagesdeploy": {
+   "Cloudflare-Pages": 4
+  },
+  "chaoshi-image-optimization": {
+   "GitHub": 1,
+   "Cloudflare-Pages": 2
+  },
+  "chaoshi-web-deploy": {
+   "GitHub": 9,
+   "Cloudflare-D1": 3,
+   "Cloudflare-Pages": 51,
+   "Cloudflare-Workers": 1,
+   "SQLite": 2,
+   "Pages-Functions": 5
+  },
+  "ci-pipeline-debugging": {
+   "GitHub": 8
+  },
+  "consulting-analysis": {
+   "GitHub": 1,
+   "SQLite": 2
+  },
+  "doc-coauthoring": {
+   "GitHub": 5
+  },
+  "docker-e2e-gate": {
+   "GitHub": 2
+  },
+  "fenjue-memory-audit": {
+   "SQLite": 23
+  },
+  "github": {
+   "GitHub": 16
+  },
+  "gstack": {
+   "GitHub": 4
+  },
+  "healthcare-eval-harness": {
+   "GitHub": 2
+  },
+  "hyperframes": {
+   "Cloudflare-D1": 1
+  },
+  "hyperframes-registry": {
+   "GitHub": 2
+  },
+  "ican-deploy": {
+   "SQLite": 5
+  },
+  "ican-frontend-design-system": {
+   "SQLite": 1
+  },
+  "oracle": {
+   "SQLite": 1
+  },
+  "security-audit": {
+   "GitHub": 1
+  },
+  "shell-encoding-pitfalls": {
+   "GitHub": 1
+  },
+  "story": {
+   "GitHub": 2
+  },
+  "ui-ux-pro-max": {
+   "GitHub": 1
+  },
+  "verification-before-completion": {
+   "GitHub": 1
+  },
+  "web-access": {
+   "SQLite": 7
+  },
+  "win-toolchain-pitfalls": {
+   "SQLite": 4
+  }
+ },
+ "zero_ref_tools": [
+  "Cloudflare-R2",
+  "Cloudflare-Turnstile",
+  "Resend",
+  "Upstash-Redis"
+ ]
+}

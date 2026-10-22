@@ -966,6 +966,21 @@ GATES = [
                    "变异对照：摘掉 FUTURE 护栏 ⇒ s4 形态必须退化为 STALE-REGEN（证明该腿有牙）"],
         "why": "R163-6：账龄件相对新鲜前置再生的实现原先**只活在 run_gates**（约 71 行），而单独直调 ratchet_gate、以及 r55/r56 这类直调棘轮的夹具都不走那条腿 ⇒ 件比卷旧时 debt 三指标转 unknown、三条夹具腿判红（AGENTS 已知坑第 2 条本轮第 5 次踩）。r163 把实现抽到 _lib.ensure_debt_fresh 并把 runner 改成委托（71 行→20 行，消除第二真相源）+ 在 ratchet_gate 进门前自愈；本门是抽库后的状态机自证。自抓一处：造陈旧用例时把人造**未来时间戳**写进卷，导致重生件永远追不上、每次白跑两趟 r38 ⇒ 新增 FUTURE-VOL 分叉具名（实测 300s 未来戳 => FUTURE-VOL 且不重生）。",
     },
+    {
+        # r163：免费工具 × 在册 skill 搭配矩阵（第 67 门，goal 目标本体）
+        "id": "tool_skill_matrix",
+        "script": "r163_tool_skill_matrix.py",
+        "argv": [],
+        "pass_token": "[TOOLMATRIX:PASS]",
+        "portable": False,
+        "not_portable_reason":
+            "读 D:/global_skills 全部 SKILL.md 与 references/scripts（换机无该受管根时面为空，按 rc=2 不判绿）",
+        "covers": ["10 项免费工具 × 191 在册 skill 的引用矩阵（命令级匹配，非产品名）",
+                   "零引用工具具名显形（ADVISORY 不判红 —— 凑引用即造需求）",
+                   "空面/不可读面一律 rc=2 UNVERIFIED（R247 禁按「零引用」记绿）",
+                   "变异对照：把正则降级成产品名匹配 ⇒ 只提产品名的假 skill 必须被误算（证明命令级正则有牙）"],
+        "why": "goal 目标原话是「把这些免费开发者工具与我现有工作流与相关 skill 进行**合理搭配**」。此前第 65 门只答「工具有没有、能不能用」，**没有任何面回答谁在用它、搭配够不够** —— 那正是目标本体。首跑实测缺口：191 件 skill 只有 31 件引用过这批工具，其中 Cloudflare-R2 / Turnstile / Resend / Upstash **四项零引用**（名册有、无人用）。本门把这个缺口做成每轮可复算的矩阵。r163 自抓一处：初版把 Resend/Upstash 写成纯产品名正则，自证 f3 腿当场抓到「只提一句产品名就被算成搭配」⇒ 收紧为 env key / API host / SDK 调用形态（无 CLI 的工具靠这些识别）。",
+    },
 ]
 
 # 显式声明本 runner **不覆盖**的面，防止聚合绿被读成「所有门禁都绿」（R20-2）。

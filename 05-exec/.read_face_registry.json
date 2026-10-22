@@ -58,5 +58,9 @@
  "r155_selftest_census.py": {
   "evidence": "06-benchmark/selftest_census_r155_2026-10-21.json",
   "registered_at": "2026-10-21 21:16"
+ },
+ "r163_r2_assets_sync.py": {
+  "evidence": "06-benchmark/r2_assets_sync_dryrun_r163_2026-10-22.json",
+  "registered_at": "2026-10-22 19:24"
  }
 }

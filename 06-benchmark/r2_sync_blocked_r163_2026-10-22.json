@@ -1,0 +1,16 @@
+{
+ "schema": "r2-assets-sync-r163-v1",
+ "cmd": "python 05-exec/r163_r2_assets_sync.py --src <public/images> [--apply]",
+ "src": "C:\\Users\\37533\\Desktop\\workspace\\超市web\\supermarket-web\\public\\images",
+ "bucket": "supermarket-assets",
+ "prefix": "images",
+ "assets_n": 128,
+ "total_bytes": 4165666,
+ "r2_state": "NOT_ENABLED",
+ "r2_detail": {
+  "code": "10042",
+  "detail": "R2 服务未开通（需 Dashboard/控制台开通）"
+ },
+ "mode": "apply",
+ "generated_at": "2026-10-22 19:11"
+}
