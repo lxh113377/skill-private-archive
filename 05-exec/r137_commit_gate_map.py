@@ -44,6 +44,50 @@ TRIGGERS = [
 ]
 
 
+# r162（R159-1 + r137 真缺陷）：closing 形态白名单。
+#   · 旧正则过宽：把 06-benchmark/transmit_proposals.json（纪律面，TRIGGERS 第 2 条）未 add 也洗成 closing
+#     => 假 SKIP，击穿 r133 第④形态「有未提交改动但暂存为空 = 漏 add，禁按 0 记绿」。
+#   · 旧正则又过窄：memory/sessions/volume-snapshots.jsonl（append-only 台账，收尾跑
+#     handoff.py volume --snapshot 的必然产物）不在内 => 稳态从 SKIP 掉到 UNVERIFIED rc=2。
+#   修法 = 白名单制：只认 append-only 台账族，且纪律面具名件永不进白名单。
+CLOSING_ALLOW = (
+    '06-benchmark/',
+    'memory/sessions/',
+    '05-exec/_r55probe_tmp/',
+)
+CLOSING_DENY = (
+    '06-benchmark/transmit_proposals.json',
+    '06-benchmark/全量对标报告_',
+    'AGENTS.md',
+    'memory/07-next-steps.md',
+    '05-exec/run_gates.py',
+)
+
+
+def is_closing_form(line):
+    """判定一行 git porcelain 输出是否属「收尾产物」形态。
+
+    返回 True/False；line 形态必须是 '<XY> <path>'（git status --porcelain v1）。
+    设计约束（r162，X-28 同族：参数形态必须显式校验，禁把任意串当配置）：
+      · 只在白名单前缀内认 json/jsonl（append-only 台账或每轮快照）；
+      · 命中 DENY（纪律面）一律 False —— 白名单永远不能让纪律面静默过关；
+      · 路径含空格或异常形态 => False（不猜）。
+    """
+    if not line or not isinstance(line, str):
+        return False
+    # git status --porcelain v1 形态为 XY + 空格 + path，两个状态字符必须先吃掉，
+    # 否则 path 仍带状态位（r162 自抓：首版漏吃 XY 导致 t1 假红）。
+    if len(line) < 4 or line[2] != ' ':
+        return False
+    path = line[3:].strip()
+    if not path or ' ' in path:
+        return False
+    if any(path == d or path.startswith(d) for d in CLOSING_DENY):
+        return False
+    if not path.startswith(CLOSING_ALLOW):
+        return False
+    return path.endswith('.json') or path.endswith('.jsonl')
+
 def staged_files():
     try:
         p = subprocess.run(['git', 'diff', '--cached', '--name-only'],
@@ -59,6 +103,7 @@ def main():
     ap.add_argument('--staged', default='', help='已暂存文件清单（每行一个）；缺省用 git diff --cached')
     ap.add_argument('--json', dest='out')
     ap.add_argument('--runner', default=RUNNER)
+    ap.add_argument('--dirty', default='', help='r162 测试缝：伪造的 git status --porcelain 清单文件（每行一条）；缺省跑真 git')
     args = ap.parse_args()
     if not os.path.isfile(args.runner):
         print('[GATEMAP] UNVERIFIED runner 不存在: %s' % args.runner)
@@ -71,15 +116,24 @@ def main():
         # r139 修：暂存为空有两形态——① 有提交进行中但漏 add（r133 第④形态，禁按 0 记绿）；
         # ② 工作区干净、无提交进行中（合法稳态，如收尾轮全部已 commit 后）。
         # 判别 = 有无未提交改动：无 ⇒ SKIP（无暂存活动属稳态）；有 ⇒ 维持 UNVERIFIED（漏 add）。
-        dirty = subprocess.run(['git', 'status', '--porcelain'], cwd=ROOT,
-                               capture_output=True, text=True, encoding="utf-8",
-                               errors='replace', timeout=120)
-        dirty_files = [x.rstrip() for x in (dirty.stdout or '').splitlines() if x.strip()]
+        if args.dirty:
+            # r162 测试缝：夹具注入伪造的 porcelain 清单（形态校验：必须是已存在文件）。
+            # 缺省仍走真 git —— 生产路径零改动。
+            if not os.path.isfile(args.dirty):
+                print('[GATEMAP] UNVERIFIED --dirty 指定的文件不存在: %s' % args.dirty)
+                return 2
+            dirty_files = [x.rstrip() for x in io.open(args.dirty, encoding='utf-8').read().splitlines() if x.strip()]
+        else:
+            dirty = subprocess.run(['git', 'status', '--porcelain'], cwd=ROOT,
+                                   capture_output=True, text=True, encoding="utf-8",
+                                   errors='replace', timeout=120)
+            dirty_files = [x.rstrip() for x in (dirty.stdout or '').splitlines() if x.strip()]
         # r139 二次修（自抓）：「工作区干净」在收尾稳态下恒不成立——每次跑完全门都会
         # 产生 debt autoregen + gate json + gate_runs.jsonl 等收尾产物。故判据改为：
-        # 未提交文件**全部**是收尾产物形态（06-benchmark/*.json 或 *.jsonl）⇒ 仍属稳态。
-        CLOSING_PAT = re.compile(r'^(\?\?|.M|M.|MM) (06-benchmark/[^ ]+\.(json|jsonl)|05-exec/_r55probe_tmp/.*)$')
-        is_closing = dirty_files and all(CLOSING_PAT.match(x) for x in dirty_files)
+        # 未提交文件**全部**是收尾产物形态 ⇒ 仍属稳态。
+        # r162：形态判定收窄为白名单（is_closing_form）—— 旧正则既过宽（洗掉提案台账漏 add）
+        # 又过窄（漏掉 memory/sessions/*.jsonl 收尾台账），两端都实测复现过。
+        is_closing = dirty_files and all(is_closing_form(x) for x in dirty_files)
         if not dirty_files or is_closing:
             print('[GATEMAP] SKIP 无暂存活动且未提交件全为收尾产物形态（06-benchmark/*.json[l]）——本门不适用）')
             print('[GATEMAP:SKIP]')

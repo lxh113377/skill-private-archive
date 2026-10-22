@@ -62,9 +62,11 @@
    "cache_guard_face_fixtures",
    "migration_guard",
    "r117_upstream_delta_fixtures",
-   "direct_closure_face"
+   "direct_closure_face",
+   "bounce_back_face",
+   "gatemap_closing_face"
   ],
-  "_snapshot_at": "2026-10-21 22:23",
+  "_snapshot_at": "2026-10-22 10:08",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
@@ -144,6 +146,14 @@
   "selftest_census_face": {
    "evidence": "06-benchmark/selftest_census_r155_2026-10-21.json",
    "at": "2026-10-21 21:15"
+  },
+  "bounce_back_face": {
+   "evidence": "06-benchmark/bounce_back_face_r161_2026-10-21.json",
+   "at": "2026-10-21 23:19"
+  },
+  "gatemap_closing_face": {
+   "evidence": "06-benchmark/gatemap_closing_face_r162_2026-10-22.json",
+   "at": "2026-10-22 09:46"
   }
  }
 }

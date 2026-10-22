@@ -907,6 +907,21 @@ GATES = [
                    "变异腿：pronoun 替换前置确有依赖样本；规则缺判据块/夹具空 ⇒ rc=2 UNVERIFIED（R247 禁按 0 记绿）"],
         "why": "#37 立规当轮自称回抛识别 18/18，但全盘扫描无任何脚本承载那 6 条正则（bounce 命中全是 ppt-master 图标）⇒ 18/18 是一次性跑、无常驻面，下一轮回抛了我自己也发现不了（#35：纪律无阻断点=没立）。本门把它变成每轮真跑的读数：收尾前先自证有牙，再对回执文本扫回施行。r161 自抓三次（英文锚点先于中文命中 → 单行只取首个反引号丢 2 条 → for 后跟 elif 语法错）后收敛。",
     },
+    {
+        # r162：R159-1 稳态歧义 + r137 closing 面过宽的真缺陷修复（第 63 门）
+        "id": "gatemap_closing_face",
+        "script": "r162_gatemap_fixtures.py",
+        "argv": [],
+        "pass_token": "[GATEMAPFIX]",
+        "portable": False,
+        "not_portable_reason":
+            "经 --dirty 测试缝注入伪造 porcelain 清单，并跑 05-exec/ 下的变异体副本（依赖本仓 05-exec 与 git 工作树形态）",
+        "covers": ["append-only 台账族（06-benchmark/*.json[l] + memory/sessions/*.jsonl）在空暂存时判 SKIP（R159-1：volume 收尾产物不再把稳态打成 UNVERIFIED）",
+                   "纪律面（提案台账 / 07 台账 / AGENTS.md / 门表 / 报告 .md）漏 add 必须 UNVERIFIED（r137 旧正则把它们洗成假 SKIP，击穿 R133 第④形态）",
+                   "DENY 压过 ALLOW：白名单件与纪律面同时脏以纪律面优先",
+                   "变异腿：摘 CLOSING_ALLOW ⇒ 应 SKIP 面转红；摘 CLOSING_DENY ⇒ 提案台账被洗成假绿（证明原判据有牙）"],
+        "why": "R159-1 登记的两面在本轮都实测复现：① 收尾跑 handoff.py volume --snapshot 后 memory/sessions/volume-snapshots.jsonl 变脏，旧 CLOSING_PAT 不认它 ⇒ 空暂存分支从 SKIP 掉到 UNVERIFIED rc=2；② 旧正则 06-benchmark/[^ ]+\\.(json|jsonl) 过宽，把纪律面 06-benchmark/transmit_proposals.json 漏 add 也洗成 closing ⇒ 假 SKIP。修法 = 白名单制（CLOSING_ALLOW/CLOSING_DENY + is_closing_form 纯函数 + --dirty 测试缝）。r162 自抓两处：首版 is_closing_form 漏吃 porcelain 的 XY 状态位导致 t1 假红；变异体写进系统 TEMP（本机 TEMP 指向不存在路径，R161-2 同族）致 m2 腿原因失真，改写到 HERE 同级。",
+    },
 ]
 
 # 显式声明本 runner **不覆盖**的面，防止聚合绿被读成「所有门禁都绿」（R20-2）。

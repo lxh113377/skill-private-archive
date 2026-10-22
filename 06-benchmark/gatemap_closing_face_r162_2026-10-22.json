@@ -1,0 +1,98 @@
+{
+ "schema": "gatemap-closing-fixtures-r162-v1",
+ "cmd": "python 05-exec/r162_gatemap_fixtures.py --json <out>",
+ "legs": [
+  {
+   "name": "t1_append_only_ledgers_skip",
+   "ok": true,
+   "want_rc": 0,
+   "got_rc": 0,
+   "want_token": "[GATEMAP:SKIP]",
+   "note": "volume-snapshots.jsonl 必须被认成收尾台账（R159-1 实况复现面）"
+  },
+  {
+   "name": "t2_proposal_ledger_unverified",
+   "ok": true,
+   "want_rc": 2,
+   "got_rc": 2,
+   "want_token": null,
+   "note": "提案台账是纪律面：漏 add 必须 UNVERIFIED，禁洗成 SKIP"
+  },
+  {
+   "name": "t3_07_ledger_unverified",
+   "ok": true,
+   "want_rc": 2,
+   "got_rc": 2,
+   "want_token": null,
+   "note": "07 台账漏 add"
+  },
+  {
+   "name": "t4_agents_unverified",
+   "ok": true,
+   "want_rc": 2,
+   "got_rc": 2,
+   "want_token": null,
+   "note": "AGENTS.md 漏 add"
+  },
+  {
+   "name": "t5_runner_unverified",
+   "ok": true,
+   "want_rc": 2,
+   "got_rc": 2,
+   "want_token": null,
+   "note": "门表漏 add"
+  },
+  {
+   "name": "t6_report_md_unverified",
+   "ok": true,
+   "want_rc": 2,
+   "got_rc": 2,
+   "want_token": null,
+   "note": "报告 .md 不在 json 白名单"
+  },
+  {
+   "name": "t7_clean_tree_skip",
+   "ok": true,
+   "want_rc": 0,
+   "got_rc": 0,
+   "want_token": "[GATEMAP:SKIP]",
+   "note": "干净树稳态"
+  },
+  {
+   "name": "t8_deny_beats_allow",
+   "ok": true,
+   "want_rc": 2,
+   "got_rc": 2,
+   "want_token": null,
+   "note": "白名单件与纪律面同时脏时以纪律面优先（all() 语义天然如此，本条锁住它）"
+  },
+  {
+   "name": "m1_strip_allow_breaks_t1",
+   "ok": true,
+   "want_rc": 2,
+   "got_rc": 2,
+   "want_token": null,
+   "note": "摘白名单 => 应 SKIP 面必须转 UNVERIFIED"
+  },
+  {
+   "name": "m2_strip_deny_makes_t2_falsely_green",
+   "ok": true,
+   "want_rc": 0,
+   "got_rc": 0,
+   "want_token": "[GATEMAP:SKIP]",
+   "note": "摘 DENY => 提案台账被洗成 SKIP（变异体确实更坏）"
+  },
+  {
+   "name": "m3_missing_dirty_seam_unverified",
+   "ok": true,
+   "want_rc": 2,
+   "got_rc": 2,
+   "want_token": null,
+   "note": "测试缝指向不存在文件 => UNVERIFIED，禁静默走真 git"
+  }
+ ],
+ "n_pass": 11,
+ "n_total": 11,
+ "verdict": "PASS",
+ "target": "05-exec/r137_commit_gate_map.py"
+}
