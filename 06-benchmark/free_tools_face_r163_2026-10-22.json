@@ -3,9 +3,9 @@
  "cmd": "python 05-exec/r163_free_tools_face.py --json <out>",
  "roster_n": 9,
  "counts": {
-  "READY": 5,
+  "READY": 6,
   "GAP_SERVICE": 1,
-  "GAP_CRED": 3
+  "GAP_CRED": 2
  },
  "rows": [
   {
@@ -141,13 +141,13 @@
   },
   {
    "tool": "Cloudflare-Turnstile",
-   "state": "GAP_CRED",
+   "state": "READY",
    "note": {
-    "kind": "http_api_no_cli",
-    "cred_env_checked": {
-     "CF_TURNSTILE_SITE_KEY": false,
-     "CF_TURNSTILE_SECRET_KEY": false
-    }
+    "widgets_n": 1,
+    "sitekeys": [
+     "0x4AAAAAAFgp4grsBDhuMqpl"
+    ],
+    "judged_by": "cloudflare_widget_exists（不是本机 env）"
    }
   },
   {
@@ -173,5 +173,5 @@
   }
  ],
  "rule": "仅 BROKEN 判红；GAP_CRED/GAP_CLI 是诚实显形（外部凭据/平台形态缺口，#29③）",
- "generated_at": "2026-10-22 18:59"
+ "generated_at": "2026-10-22 21:05"
 }

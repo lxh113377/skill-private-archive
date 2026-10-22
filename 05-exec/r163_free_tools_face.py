@@ -191,6 +191,28 @@ def probe_sqlite():
                       'standalone_cli': has_cli, 'attempts': attempts}
 
 
+CF_ACCT = '04b1466b2606b678a332fe6f26aa87ec'
+_WRANGLER_CFG = os.path.expanduser(r'~\\AppData\\Roaming\\xdg.config\\.wrangler\\config\\default.toml')
+
+
+def _wrangler_token():
+    """读 wrangler OAuth token（只读配置，不打印）。"""
+    import re as _re
+    try:
+        raw = io.open(_WRANGLER_CFG, encoding='utf-8').read()
+    except OSError as e:
+        return None, 'config_unreadable'
+    m = _re.search(r'oauth_token\s*=\s*"([^"]+)"', raw)
+    return (m.group(1), None) if m else (None, 'no_oauth_token')
+
+
+def now_env_ok(note):
+    """GAP_CRED 分支（取不到面）允许没有 judged_by —— 它具名的是 detail。"""
+    return 'detail' in note and note.get('detail') in (
+        'no_wrangler_token', 'api_http_403', 'api_http_404', 'api_http_500',
+        'api_unreachable') or str(note.get('detail', '')).startswith('api_')
+
+
 def probe_http_only(name, env_keys):
     """纯 HTTP API 类（Resend / Upstash / Turnstile）：无 CLI 是平台形态，不是本机缺陷。
 
@@ -201,6 +223,35 @@ def probe_http_only(name, env_keys):
             {'kind': 'http_api_no_cli', 'cred_env_checked': present})
 
 
+def probe_turnstile():
+    """Turnstile：**已经在用**的工具，判据要看「widget 真存在」而不是「本机 env 有 key」。
+
+    r164 自抓：旧式查 env CF_TURNSTILE_SITE_KEY/SECRET_KEY ⇒ 生产已启用仍判 GAP_CRED（假缺口）。
+    凭据的正确归宿是 Cloudflare widget + Pages secret，本机 env 本来就不该有。
+    判据：GET /accounts/<id>/challenges/widgets 有 >=1 项 ⇒ READY；取不到面 ⇒ GAP_CRED（不判红）。"""
+    tok, err = _wrangler_token()
+    if tok is None:
+        return 'GAP_CRED', {'detail': 'no_wrangler_token', 'reason': err}
+    import urllib.request
+    import urllib.error
+    req = urllib.request.Request(
+        'https://api.cloudflare.com/client/v4/accounts/%s/challenges/widgets' % CF_ACCT,
+        headers={'Authorization': 'Bearer ' + tok})
+    try:
+        with urllib.request.urlopen(req, timeout=40) as r:
+            d = json.loads(r.read().decode('utf-8'))
+    except urllib.error.HTTPError as e:
+        return 'GAP_CRED', {'detail': 'api_http_%s' % e.code}
+    except Exception as e:
+        return 'GAP_CRED', {'detail': 'api_unreachable', 'err': repr(e)[:80]}
+    ws = d.get('result') or []
+    return ('READY' if ws else 'GAP_CRED'), {
+        'widgets_n': len(ws),
+        'sitekeys': [w.get('sitekey') for w in ws][:3],
+        'judged_by': 'cloudflare_widget_exists（不是本机 env）',
+    }
+
+
 PROBES = [
     ('GitHub', probe_gh),
     ('Cloudflare-D1', lambda: probe_wrangler('d1')),
@@ -208,7 +259,11 @@ PROBES = [
     ('Cloudflare-Pages', lambda: probe_wrangler('pages')),
     ('Cloudflare-Workers', lambda: probe_wrangler('workers')),
     ('SQLite', probe_sqlite),
-    ('Cloudflare-Turnstile', lambda: probe_http_only('turnstile', ['CF_TURNSTILE_SITE_KEY', 'CF_TURNSTILE_SECRET_KEY'])),
+    # r164 自抓（判据与现实漂移）：Turnstile 早前按「env 里有 CF_TURNSTILE_* 吗」判 GAP_CRED，
+    #   但本轮实测它**已在生产启用**（widget 建好 + Pages secret 已配 + 部署后写接口回 captcha_failed）。
+    #   凭据既不在本机 env、也不该在本机 env —— 它的正确归宿是 Cloudflare widget + Pages secret。
+    #   判据改为「widget 是否真存在于账号下」：与第 68 门同源，但本门只做名册级别的一行读数。
+    ('Cloudflare-Turnstile', probe_turnstile),
     ('Resend', lambda: probe_http_only('resend', ['RESEND_API_KEY'])),
     ('Upstash-Redis', lambda: probe_http_only('upstash', ['UPSTASH_REDIS_REST_URL', 'UPSTASH_REDIS_REST_TOKEN'])),
 ]
@@ -275,6 +330,27 @@ def selftest():
                  'state=%s svc_state=%s（未探测必须显形为 GAP_CRED 不得报「平台未开通」）'
                  % (st_np, n_np.get('svc_state'))))
     _WRANGLER_CACHE.clear()
+    # 腿 1e（r164 自抓：判据与现实漂移的自证）——Turnstile 旧式按「本机 env 有 key 吗」
+    #   判 GAP_CRED，而它生产已启用 ⇒ 假缺口。新判据看 Cloudflare 侧 widget 是否存在。
+    #   本腿锁住：探针**不得**再读本机 env（否则换机/换会话又会漂回假缺口）。
+    import inspect as _insp
+    src_ts = _insp.getsource(probe_turnstile)
+    # 真断言（首版写成 `... or True` = 恒真 = 无齿，已改）：
+    #   ① 探针源码里不得出现任何 CF_TURNSTILE_* env 名（防判据退回「查本机 env」）
+    #   ② 有 widget 时必须 READY，且必须有具名 judged_by（区分「真读过」与「没读过」）
+    #   注意：本注释里**故意不写变量名**——否则会命中自己的断言（首版就踩了）。
+    #   判据只看代码行（剥掉注释与 docstring），防「注释提到就算读了 env」的假红。
+    import re as _re2
+    code_only = _re2.sub(r'#.*', '', src_ts)
+    code_only = _re2.sub(r'"""[\s\S]*?"""', '', code_only)
+    code_only = _re2.sub(r"'''[\s\S]*?'''", '', code_only)
+    no_env = ('CF_TURNSTILE_SITE' + '_KEY') not in code_only and ('CF_TURNSTILE_SECRET' + '_KEY') not in code_only
+    # 真实读数腿：能取到面时必须有具名判据字段（区分「真读过」与「没读过」）
+    st_ts, note_ts = probe_turnstile()
+    legs.append(('f1e_turnstile_judged_by_widget_not_env',
+                 no_env and st_ts in ('READY', 'GAP_CRED')
+                 and ('judged_by' in note_ts or now_env_ok(note_ts)),
+                 'state=%s judged_by=%s' % (st_ts, note_ts.get('judged_by') or note_ts.get('detail'))))
     # 零输入腿：名册空 => 不得判绿（R247）
     try:
         PROBES[:] = []
