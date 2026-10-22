@@ -935,7 +935,7 @@ GATES = [
                    "真实 gh 在位（按多候选路径探测，不写死单一版本号）",
                    "gh auth 已登录且 gh api 可达（取不到数 = UNVERIFIED，R247 禁按干净记）",
                    "跨解释器一致性：Python shutil.which 与 PowerShell Get-Command 必须解析到同一非空件"],
-        "why": "r163 一手：本机 PATH 第 20 位 C:/Users/37533/.local/bin/gh 是 0 字节空壳（2026-08-08 遗留），遮蔽了第 24 位的真实 GitHub CLI 2.95.0 ⇒ PowerShell 裸调 gh 必报「Cannot run a document in the middle of a pipeline」，而 Python 侧 shutil.which 解析到真实件照常可用 —— 同一命令名两个解释器结论相反。本面首版只查 Python 侧，于是在缺陷真实存在的那一轮打了绿（假阴性，X-7 同族），当场自抓后补跨解释器腿；另抓到 FAIL 文案把 Python 侧路径印成空壳本体的归因失真。同轮另有第三个同名实现 D:/npm-global/gh（npm 第三方包 2.8.9，连 --help 都抛 TypeError）⇒ 命令名被三方争夺，凡依赖 gh 的判据（r112 上游探针 / r113 季度巡检 / r157 上游 issue 三门）都必须按解析后真实路径调用。",
+        "why": "r163 一手：本机 PATH 第 20 位 C:/Users/37533/.local/bin/gh 是**指向 WSL 形态路径的 junction**（fsutil: Reparse Tag 0xa000001d，目标 /mnt/c/Program Files/GitHub CLI/gh.exe；Windows 侧 getsize 抛 WinError 1920），遮蔽了第 24 位的真实 GitHub CLI 2.95.0。⚠️ 首版我把它读成「0 字节空壳」——junction 的 Length 恒 0，属字段语义误读（并行会话纠偏 + 我独立复算坐实），谓词已改为判**可跑性**而非判 size ⇒ PowerShell 裸调 gh 必报「Cannot run a document in the middle of a pipeline」，而 Python 侧 shutil.which 解析到真实件照常可用 —— 同一命令名两个解释器结论相反。本面首版只查 Python 侧，于是在缺陷真实存在的那一轮打了绿（假阴性，X-7 同族），当场自抓后补跨解释器腿；另抓到 FAIL 文案把 Python 侧路径印成空壳本体的归因失真。同轮另有第三个同名实现 D:/npm-global/gh（npm 第三方包 2.8.9，连 --help 都抛 TypeError）⇒ 命令名被三方争夺，凡依赖 gh 的判据（r112 上游探针 / r113 季度巡检 / r157 上游 issue 三门）都必须按解析后真实路径调用。",
     },
     {
         # r163：免费开发者工具可达性名册（第 65 门）

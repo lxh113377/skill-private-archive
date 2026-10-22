@@ -2,7 +2,11 @@
 # r163_gh_path_face.py -- gh（GitHub CLI）PATH 可达性判据面（第 64 门）。
 #
 # 存在理由（r163 一手实测）：本机 PATH 中 `gh` 解析到
-#   C:/Users/37533/.local/bin/gh —— 该件是 **0 字节空文件**（2026-08-08 遗留），
+#   C:/Users/37533/.local/bin/gh —— 该件是**指向 WSL 形态路径的 junction**
+#   （fsutil Reparse Tag 0xa000001d，目标 /mnt/c/Program Files/GitHub CLI/gh.exe；
+#    Windows 侧 os.path.getsize 抛 WinError 1920「系统无法访问此文件」），
+#   ⚠️ 首版记作「0 字节空文件」是字段语义误读（junction 的 Length 恒 0），
+#      谓词已改为判**可跑性**（见 check() 内 r163 校正注）；
 #   而真实可用件在 C:/Program Files/GitHub CLI/gh.exe（2.95.0，已登录 keyring）。
 # 后果：凡经 PATH 调 `gh` 的判据/脚本都会静默失败（rc 空、零输出），
 # 读数缺失被读成「无候选 / 无上游」=> 假绿（R247 同族：取不到数不得按干净记）。
@@ -45,6 +49,16 @@ def _run(argv, timeout=60):
         return None, 'EXC %r' % e
 
 
+def is_reparse(path):
+    """是否重解析点（junction / symlink）。r163：junction 的 getsize 恒 0，不可当「空文件」。"""
+    try:
+        import stat as _stat
+        st = os.lstat(path)
+        return bool(getattr(st, "st_file_attributes", 0) & _stat.FILE_ATTRIBUTE_REPARSE_POINT)
+    except (OSError, AttributeError):
+        return False
+
+
 def find_real_gh():
     """返回第一个存在且非空的真实 gh 路径；找不到返回 None。"""
     for c in GH_CANDIDATES:
@@ -61,14 +75,17 @@ def ps_which_gh():
 
     为什么必须单独查：Windows 下 PATH 遮蔽对两个解释器表现不同 ——
     shutil.which 按 PATHEXT 找可执行扩展名，PowerShell 的 Get-Command 会把
-    **无扩展名的 0 字节文件**也当命令命中，裸调才报
-    「Cannot run a document in the middle of a pipeline」。
+    **无扩展名的条目（含指向不可解析目标的 junction）**也当命令命中，
+    裸调才报「Cannot run a document in the middle of a pipeline」。
+    r163g：判据是**可跑性**（CALL=），SIZE 只作诊断 —— junction 的 Length 恒 0
+    且不可解析时 Get-Item 直接抛错，拿 SIZE 当判据会双向失真（与 Python 侧同族）。
     """
     script = (
         "$c = Get-Command gh -ErrorAction SilentlyContinue; "
         "if (-not $c) { Write-Output 'NOPATH'; exit 0 }; "
         "Write-Output ('SOL=' + $c.Source); "
-        "Write-Output ('SIZE=' + (Get-Item $c.Source).Length); "
+        "try { Write-Output ('SIZE=' + (Get-Item $c.Source).Length) } "
+        "catch { Write-Output 'SIZE=NA' }; "
         "try { $v = (gh --version 2>&1 | Select-Object -First 1); "
         "if ($LASTEXITCODE -eq 0 -and $v -match 'gh version') { Write-Output 'CALL=OK' } "
         "else { Write-Output ('CALL=BAD:' + $v) } } catch { Write-Output ('CALL=EXC:' + $_.Exception.Message) }"
@@ -122,15 +139,32 @@ def check():
     d['auth_tail'] = (out2 or '').strip()[-160:]
     d['logged_in'] = (rc2 == 0 and 'Logged in' in (out2 or ''))
     if on_path:
+        # r163 校正（并行会话纠偏 + 我独立复算坐实）：旧谓词用 getsize<=0 判「空壳」是错的 ——
+        #   C:/Users/37533/.local/bin/gh 实为 **junction**（fsutil: Reparse Tag 0xa000001d
+        #   Name Surrogate，目标 /mnt/c/Program Files/GitHub CLI/gh.exe 是 WSL 形态路径，
+        #   Windows 侧解析不到），而 junction 的 getsize 恒为 0 ⇒ 该谓词会把**合法 junction**
+        #   误判成空壳，同时把「size>0 但跑不起来」的真坏件放过去（双向失真）。
+        #   正解 = 判**可跑性**：按 PATH 解析到的那个件真跑一次 --version。
+        size = -1
         try:
             size = os.path.getsize(on_path)
         except OSError:
             size = -1
         d['path_entry_size'] = size
-        if size <= 0:
-            # 空壳：PATH 调它必静默失败 —— 这是本门要抓的形态
-            return 'FAIL', dict(d, reason='path_entry_is_empty_stub',
-                                fix='把 %s 加入 PATH，或删除空壳 %s' % (os.path.dirname(real), on_path))
+        d['path_entry_is_reparse'] = is_reparse(on_path)
+        rc_p, out_p = _run([on_path, '--version'], timeout=120)
+        d['path_entry_run_rc'] = rc_p
+        d['path_entry_run_out'] = (out_p or '').strip().splitlines()[:1]
+        runnable = (rc_p == 0 and 'gh version' in (out_p or ''))
+        d['path_entry_runnable'] = runnable
+        if not runnable:
+            return 'FAIL', dict(d, reason='path_entry_not_runnable',
+                                fix='PATH 解析到的 gh 跑不起来（%s%s）；真实件在位 %s。'
+                                    '旧形态处置：把该件从 PATH 前位移除或重命名为 .disabled'
+                                    % (on_path,
+                                       "，且它是 junction/重解析点，目标 Windows 侧不可解析"
+                                       if d['path_entry_is_reparse'] else "",
+                                       real))
     if rc2 is None:
         return 'UNVERIFIED', dict(d, reason='auth_probe_unavailable',
                                   fix='gh auth status 子进程未返回（超时或无法启动），非登录态问题')
@@ -146,10 +180,10 @@ def check():
     d['ps_bare_call_ok'] = ps.get('call_ok')
     if ps.get('path') is None:
         return 'UNVERIFIED', dict(d, reason='ps_resolution_unavailable')
-    if (ps.get('size') or 0) <= 0 or not ps.get('call_ok'):
+    if ps.get('call_ok') is not True:
         return 'FAIL', dict(d, reason='ps_side_broken',
-                            fix='PowerShell 侧 gh 解析到空壳或不可执行: %s（size=%s）'
-                                % (ps.get('path'), ps.get('size')))
+                            fix='PowerShell 侧 gh 跑不起来: %s（size=%s call=%s）'
+                                % (ps.get('path'), ps.get('size'), ps.get('call_ok')))
     if os.path.normcase(str(ps.get('path'))) != os.path.normcase(str(on_path)):
         return 'FAIL', dict(d, reason='cross_interpreter_mismatch',
                             fix='Python 解析=%s 而 PowerShell 解析=%s（PATH 序遮蔽）'
@@ -180,20 +214,32 @@ def main(argv=None):
         with io.open(args.out, 'w', encoding='utf-8', newline='\n') as f:
             json.dump(doc, f, ensure_ascii=False, indent=1)
     if state == 'PASS':
-        print('[GHPATH] %s | on_path=%s size=%s | real=%s | logged_in=%s | api=%s'
+        print('[GHPATH] %s | on_path=%s size=%s runnable=%s reparse=%s | real=%s '
+              '| logged_in=%s | api=%s'
               % (PASS_TOKEN, d.get('gh_on_path'), d.get('path_entry_size'),
+                 d.get('path_entry_runnable'), d.get('path_entry_is_reparse'),
                  d.get('gh_real'), d.get('logged_in'), d.get('api_rc')))
-        print('[GHPATH:PASS] gh 可达且已登录（PATH 件非空壳）')
+        # r163g：旧文案「PATH 件非空壳」随谓词改为可跑性同步措辞（禁留失真标签）
+        print('[GHPATH:PASS] gh 可达且已登录（PATH 解析件可跑，与真实件同指一处）')
         return 0
     if state == 'FAIL':
         # r163 自抓：首版把「Python 侧解析路径」印成空壳本体（真凶在 PS 侧时归因失真）
         # ⇒ 按 reason 点名真正坏掉的那一侧。
-        bad = (d.get('gh_on_path') if d.get('reason') == 'path_entry_is_empty_stub'
-               else d.get('ps_resolved'))
-        print('[GHPATH:FAIL] %s | 坏的一侧解析到: %s (size=%s)' % (
-            d.get('reason'), bad,
-            d.get('path_entry_size') if d.get('reason') == 'path_entry_is_empty_stub'
-            else d.get('ps_size')))
+        # r163g 自抓：谓词改名后这里仍写旧 reason 字符串 ⇒ 条件恒 False，
+        #   会把「PATH 侧跑不起来」也归因到 PS 侧（同码不同因的镜像形态）。
+        #   改为按 reason 显式映射，未知 reason 一律点名两侧不猜。
+        r_ = d.get('reason')
+        PATH_SIDE = ('path_entry_not_runnable', 'path_entry_is_empty_stub')
+        if r_ in PATH_SIDE:
+            bad, bsize, side = d.get('gh_on_path'), d.get('path_entry_size'), 'PATH 解析侧'
+        elif r_ in ('ps_side_broken', 'cross_interpreter_mismatch'):
+            bad, bsize, side = d.get('ps_resolved'), d.get('ps_size'), 'PowerShell 解析侧'
+        else:
+            bad, bsize, side = '(未知 reason，两侧并列)', None, '未归类'
+            print('[GHPATH:FAIL] %s | PATH=%s(size=%s runnable=%s) PS=%s(size=%s)'
+                  % (r_, d.get('gh_on_path'), d.get('path_entry_size'),
+                     d.get('path_entry_runnable'), d.get('ps_resolved'), d.get('ps_size')))
+        print('[GHPATH:FAIL] %s | 坏的一侧(%s): %s (size=%s)' % (r_, side, bad, bsize))
         print('           真实件在位: %s' % d.get('gh_real'))
         print('           修复指引: %s' % d.get('fix'))
         return 1
@@ -224,7 +270,7 @@ def selftest():
         st2, d2 = check()
     finally:
         os.environ['PATH'] = old_path
-    legs.append(('s2_empty_stub_must_fail', st2 == 'FAIL', 'state=%s reason=%s' % (st2, d2.get('reason'))))
+    legs.append(('s2_unrunnable_path_entry_fails', st2 == 'FAIL', 'state=%s reason=%s' % (st2, d2.get('reason'))))
     # 腿 3：把 PATH 与候选面都抽掉 => 必须 UNVERIFIED（禁按干净记）
     old_cands = list(GH_CANDIDATES)
     del GH_CANDIDATES[:]
