@@ -79,8 +79,26 @@ def probe_gh():
     return st, note
 
 
+_WRANGLER_CACHE = {}
+_WRANGLER_CALLS = {'n': 0}
+
+
 def probe_wrangler():
-    """wrangler（覆盖 Cloudflare D1 / R2 / Pages / Workers / Turnstile 的 CLI 面）。"""
+    """wrangler（覆盖 Cloudflare D1 / R2 / Pages / Workers 的 CLI 面）。
+
+    r163 自抓（成本面）：名册里四个 Cloudflare 条目各调一次本探针，每次 spawn 一个 node
+    进程（实测单跑 ~6s）⇒ 进门表后本门在聚合里耗 32.8s，占全轮 1/4。四个条目读的是
+    **同一个事实**（wrangler 在不在、登没登录），故按进程内缓存复用一次读数：
+    探针语义不变、判据不变，只是不重复 spawn（同 r149「转诊优先、不重复造」同向）。"""
+    if 'state' in _WRANGLER_CACHE:
+        return _WRANGLER_CACHE['state'], dict(_WRANGLER_CACHE['note'])
+    st, note = _probe_wrangler_once()
+    _WRANGLER_CACHE['state'], _WRANGLER_CACHE['note'] = st, note
+    return st, dict(note)
+
+
+def _probe_wrangler_once():
+    _WRANGLER_CALLS['n'] += 1
     exe = shutil.which('wrangler') or shutil.which('wrangler.cmd')
     if not exe:
         return 'GAP_CLI', {'detail': 'wrangler_not_on_path'}
@@ -160,6 +178,14 @@ def selftest():
         legs.append(('f3_injected_broken_detected', broke, 'states=%s' % [r['state'] for r in rows2]))
     finally:
         PROBES[:] = saved
+    # 腿 1b：wrangler 探针缓存生效 —— 同进程内第二次调用不得再 spawn（成本腿，防退回 32s）
+    _WRANGLER_CACHE.clear()
+    probe_wrangler()
+    n1 = _WRANGLER_CALLS['n']
+    probe_wrangler()
+    n2 = _WRANGLER_CALLS['n']
+    legs.append(('f1b_wrangler_probe_cached_once', n2 == n1 and n1 >= 1,
+                 'spawn 次数 first=%d second=%d（应相等）' % (n1, n2)))
     # 零输入腿：名册空 => 不得判绿（R247）
     try:
         PROBES[:] = []

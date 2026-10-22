@@ -110,8 +110,16 @@ def check():
     d['version_out'] = (out or '').strip().splitlines()[:1]
     if rc != 0:
         return 'UNVERIFIED', dict(d, reason='real_gh_not_runnable')
-    rc2, out2 = _run([real, 'auth', 'status'])
+    # r163 自抓真因：聚合跑时并发挤占，auth 探针在默认 60s 内没返回 => _run 返回 (None, EXC)
+    #   ⇒ 本门在 runner 里判 UNVERIFIED，而单跑 8 次 rc 恒 0（间歇性失效，非登录态问题）。
+    #   放宽到 150s 并失败重试一次；仍取不到数才 UNVERIFIED（禁按干净记，也禁把超时写成未登录）。
+    rc2, out2 = _run([real, 'auth', 'status'], timeout=150)
+    if rc2 is None:
+        rc2, out2 = _run([real, 'auth', 'status'], timeout=150)
     d['auth_rc'] = rc2
+    # r163 自抓：原式把「探针取不到数」（rc=None，超时/进程起不来）与「确实未登录」
+    #   （rc!=0）混成同一个 not_logged_in ⇒ 归因失真，会引着人去查登录态而真凶是子进程。
+    d['auth_tail'] = (out2 or '').strip()[-160:]
     d['logged_in'] = (rc2 == 0 and 'Logged in' in (out2 or ''))
     if on_path:
         try:
@@ -123,6 +131,9 @@ def check():
             # 空壳：PATH 调它必静默失败 —— 这是本门要抓的形态
             return 'FAIL', dict(d, reason='path_entry_is_empty_stub',
                                 fix='把 %s 加入 PATH，或删除空壳 %s' % (os.path.dirname(real), on_path))
+    if rc2 is None:
+        return 'UNVERIFIED', dict(d, reason='auth_probe_unavailable',
+                                  fix='gh auth status 子进程未返回（超时或无法启动），非登录态问题')
     if not d['logged_in']:
         return 'UNVERIFIED', dict(d, reason='not_logged_in')
     # r163 自抓（本面首版是瞎的）：只查 Python 侧 shutil.which，而修复前

@@ -135,3 +135,32 @@ def denominator_lines(d):
                      % reg.get("error"))
     lines.append("取值命令: %s" % d.get("registry_cmd", REGISTRY_CMD))
     return lines
+
+
+# ---- gh（GitHub CLI）解析（r163，与第 64 门 gh_path_face 同源口径）-------------
+# 存在理由：本机 gh 这个命令名被三方争夺 —— 官方 CLI（Program Files\GitHub CLI）、
+# npm 第三方包（D:\npm-global\gh，2.8.9，连 --help 都抛 TypeError 而 rc=0）、
+# 以及曾是 0 字节空壳的 C:\Users\37533\.local\bin\gh（r163 已重命名移除）。
+# 裸 subprocess.run(["gh", ...]) 在 PATH 序漂移时会静默跑到错的实现上
+# ⇒ 取数面一律用 gh_cli() 拿绝对路径。
+GH_CANDIDATES = (
+    os.path.join(os.environ.get("ProgramFiles", r"C:\\Program Files"),
+                 "GitHub CLI", "gh.exe"),
+    os.path.join(os.environ.get("ProgramFiles(x86)", r"C:\\Program Files (x86)"),
+                 "GitHub CLI", "gh.exe"),
+    os.path.expanduser(r"~\\scoop\\shims\\gh.exe"),
+)
+
+
+def gh_cli():
+    """返回可用的 gh 可执行文件绝对路径；取不到返回 None（调用方须记 UNVERIFIED）。
+
+    只认存在且非空的官方安装位；不回退裸名 —— 裸名正是被劫持的入口。
+    """
+    for c in GH_CANDIDATES:
+        try:
+            if os.path.isfile(c) and os.path.getsize(c) > 0:
+                return c
+        except OSError:
+            continue
+    return None

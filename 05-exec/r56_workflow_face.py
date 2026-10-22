@@ -24,8 +24,33 @@ YAML = re.compile(r"\.ya?ml$")
 VALIDATE = re.compile(r"pre-commit run|--check\b|validate|schema|\blint\b", re.I)
 
 
+
+# r163：gh 解析（与第 64 门 gh_path_face / _lib.gh_cli 同源）。
+#   本机 gh 命令名被三方争夺（官方 CLI / npm 第三方包 2.8.9 / 曾经的 0 字节空壳），
+#   裸 subprocess.run(["gh", ...]) 在 PATH 序漂移时会静默跑到错实现上 => 取数面按绝对路径调。
+def _gh_exe():
+    try:
+        import _lib
+        g = _lib.gh_cli()
+        if g:
+            return g
+    except Exception:
+        pass
+    import os as _os
+    for c in (
+        _os.path.join(_os.environ.get("ProgramFiles", r"C:\\Program Files"),
+                      "GitHub CLI", "gh.exe"),
+        _os.path.expanduser(r"~\\scoop\\shims\\gh.exe"),
+    ):
+        try:
+            if _os.path.isfile(c) and _os.path.getsize(c) > 0:
+                return c
+        except OSError:
+            pass
+    return "gh"  # 兜底裸名（调用方若取到非零/异常须具名，不得折算 0）
+
 def gh(args):
-    p = subprocess.run(["gh"] + args, capture_output=True, text=True,
+    p = subprocess.run([_gh_exe()] + args, capture_output=True, text=True,
                        encoding="utf-8", errors="replace")
     return p.returncode, p.stdout, p.stderr
 
