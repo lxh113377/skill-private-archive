@@ -1,6 +1,6 @@
 {
  "schema": "ci-health-v1",
- "generated_at": "2026-10-24 02:08",
+ "generated_at": "2026-10-24 03:24",
  "readonly": true,
  "benchmark": "r32 第九维 CI 有效性（run 结论分布 + 心跳，非 workflow 文件数）",
  "provenance_cmd": "gh api repos/<slug>/actions/runs?per_page=50 --jq .workflow_runs",
@@ -11,24 +11,26 @@
   "repo": "lxh113377/skill-private-archive",
   "runs": 50,
   "conclusions": {
-   "success": 13,
-   "failure": 37
+   "failure": 37,
+   "success": 13
   },
   "recent": {
    "n": 5,
-   "success": 5,
-   "rate": 1.0
+   "success": 0,
+   "rate": 0.0
   },
   "success_rate": 0.26,
   "failure_rate": 0.74,
   "action_required_rate": 0.0,
   "skipped_rate": 0.0,
-  "median_duration_s": 31.0,
-  "last_run_at": "2026-10-23T18:04:51Z",
+  "median_duration_s": 25.0,
+  "last_run_at": "2026-10-23T18:57:55Z",
   "branches": 3
  },
- "self_state": "PASS",
- "self_reasons": [],
+ "self_state": "FAIL",
+ "self_reasons": [
+  "最近 5 个已完成 run 里 success=0 < 下限 1 ⇒ CI 判据近期不出绿，疑重新变僵尸"
+ ],
  "opposites": [],
  "note": "本工具只测不拦：网络/鉴权失败不得阻断本地落盘；强制面由 r32_gate_freshness.py 承担"
 }

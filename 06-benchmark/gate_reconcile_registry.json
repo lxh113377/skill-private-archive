@@ -72,9 +72,10 @@
    "turnstile_face",
    "cf_deploy_face",
    "ci_effectiveness_face",
-   "est_selector_fixtures"
+   "est_selector_fixtures",
+   "quota_face"
   ],
-  "_snapshot_at": "2026-10-24 02:48",
+  "_snapshot_at": "2026-10-24 03:30",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
@@ -194,6 +195,10 @@
   "est_selector_fixtures": {
    "evidence": "05-exec/r195_est_fixtures.py",
    "at": "2026-10-24 02:36"
+  },
+  "quota_face": {
+   "evidence": "05-exec/r196_quota_fixtures.py",
+   "at": "2026-10-24 03:19"
   }
  }
 }

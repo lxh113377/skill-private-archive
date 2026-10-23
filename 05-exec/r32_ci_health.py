@@ -154,6 +154,7 @@ def main():
     if me["last_run_at"]:
         age_h = round((datetime.now(timezone.utc) - ts(me["last_run_at"])).total_seconds() / 3600.0, 2)
     reasons = []
+    _quiet = []   # r196：只陈述不判红的读数（如「近期无绿」）
     _rc = me.get("recent") or {}
     if age_h is None:
         reasons.append("无 last_run_at")
@@ -172,12 +173,21 @@ def main():
         # face 模式（进门表）：评的是 r32 原始靶子「判据是否还在真出结论」，
         # 不是「历史胜率」。全窗口连红会随时间自然消化，把它当 FAIL 依据就等于
         # 每轮必然红（正是本仓刚立的 R193-1 要防的：不能把已修好读成还在坏）。
-        # 判红条件 = 判据停止产出健康结论：近期窗口里 success 数 < 下限（僵尸/全挂）。
+        # 判红条件 = 判据停止产出**判定**。
+        # r196 纠正我上一轮的语义错误：僵尸（r32 原靶，spec-kit 实测形态）= 跑而不产出判定，
+        #   取值域是 conclusion ∈ {action_required, null}；「全是 failure」恰恰说明判据在正常
+        #   工作 —— 本仓 338 连红期间 conclusion 也全是 failure 而非 action_required，故用
+        #   「近期无绿」当僵尸信号会造成假阳性：债没清完时永远红，反而把这个门读废。
+        _cons = me.get("conclusions") or {}
+        _st = _cons.get("action_required", 0) + _cons.get("unknown", 0)
         if _rc.get("n", 0) < 1:
             reasons.append("近期窗口无已完成 run ⇒ 判据未产出可判结论（僵尸化，R247）")
+        elif _st:
+            reasons.append("近窗有未产出判定的 run（action_required+无结论=%d）⇒ 真·僵尸化，r32 原靶" % _st)
         elif _rc.get("success", 0) < args.recent_success_min:
-            reasons.append("最近 %d 个已完成 run 里 success=%d < 下限 %d ⇒ CI 判据近期不出绿，疑重新变僵尸"
-                           % (_rc.get("n", 0), _rc.get("success", 0), args.recent_success_min))
+            _quiet.append("近期 %d 个已完成 run 无绿（success=%d）⇒ 判据仍在判定、属债未清，"
+                          "额度与健康全景见 report 模式（按地板 %.0f%% 判）"
+                          % (_rc.get("n", 0), _rc.get("success", 0), 100 * SUCCESS_FLOOR))
     state = "FAIL" if reasons else "PASS"
     print("-" * 72)
     _rc = me.get("recent") or {}
@@ -188,12 +198,14 @@ def main():
     if reasons:
         _msg = "；".join(reasons)
     elif args.mode == "face":
-        _msg = "心跳 %.1f h 内 + 最近 %d 个已完成 run 有 %d 个 success ⇒ 判据仍在真出结论（全窗口 %.0f%% 属历史连红，仅打印不判红）" % (
-            age_h, _rc.get("n", 0), _rc.get("success", 0), 100 * me["success_rate"])
+        _msg = "心跳 %.1f h 内 + 近窗 %d 个已完成 run 均产出判定（无 action_required）⇒ 判据没僵尸化（全窗口 %.0f%% 属历史连红，仅打印不判红）" % (
+            age_h, _rc.get("n", 0), 100 * me["success_rate"])
     else:
         _msg = "心跳 %.1f h 内且 success=%.0f%% ≥ 地板" % (age_h, 100 * me["success_rate"])
     print("[CI-HEALTH:%s] %s" % (state, _msg))
     print("[运行模式:%s]" % args.mode)
+    for _q in _quiet:                      # r196：只陈述不判红的读数也要可见
+        print("  （读数）%s" % _q)
 
     if args.json:
         doc = {"schema": "ci-health-v1", "generated_at": datetime.now().strftime("%Y-%m-%d %H:%M"),

@@ -1,0 +1,29 @@
+{
+ "schema": "quota-face-v1",
+ "readonly": true,
+ "generated_at": "2026-10-24 03:13",
+ "provenance_cmd": "python 05-exec/r196_quota_face.py --json <件>",
+ "rows": [
+  {
+   "tool": "cloudflare_d1",
+   "state": "MEASURED",
+   "why": "",
+   "instances": 3,
+   "bytes": 9306112,
+   "mib": 8.88,
+   "limit_label": "5 GiB 存储",
+   "limit_bytes": 5368709120,
+   "pct_of_roster_limit": 0.173,
+   "note": "分母为名册声称值（截图来源），非 CF 官方文档；num_tables 实测恒 0 不可信，不得据此读成「库是空的」"
+  },
+  {
+   "tool": "github_actions_minutes",
+   "login": "lxh113377",
+   "state": "GAP_PLATFORM",
+   "why": "两态端点皆不可用（404 / 410），官方已于 2025-09-26 关停产品级 billing API：github.blog/changelog/2025-09-26-product-specific-billing-apis-are-closing-down"
+  }
+ ],
+ "over_limit_count": 0,
+ "gap_platform_count": 1,
+ "unverified_count": 0
+}

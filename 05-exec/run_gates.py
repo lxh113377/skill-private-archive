@@ -1077,6 +1077,27 @@ GATES = [
                 "名清场（R189-2 / R191-1 两度在册教训）=> 选件口径的回归无人拦，本轮才以假红形式"
                 "爆出来。故固化为常驻门：估界法=min(名字上界, mtime)，跨机与本机同结论。"),
     },
+    {
+        # r196：免费层额度面（第 72 门）—— 名册工具的额度还剩多少、能否被机器读到
+        "id": "quota_face",
+        "script": "r196_quota_face.py",
+        "argv": ["--json", "06-benchmark/quota_face_latest.json"],
+        "pass_token": "[QUOTA:PASS]",
+        "portable": False,
+        "not_portable_reason":
+            "吃本机 wrangler OAuth 登录态 + gh 登录态（无则 UNVERIFIED，不猜额度）",
+        "covers": ["实测绝对用量：wrangler d1 list --json 求和 file_size",
+                   "三态分开：MEASURED / GAP_PLATFORM（平台下线，附官方依据）/ UNVERIFIED（本轮取不到）",
+                   "额度比例的分母须标出处（名册声称值，非官方文档值）",
+                   "wrangler --json 混 ANSI 告警尾巴 => 用括号平衡扫描取数组（NO_COLOR 对其无效）"],
+        "why": ("名册 9 项工具的「合理搭配」有个隐含前提：用法得留在免费额度内。前 71 门没有"
+                "任何一面回答「这么用下去会不会悄悄吃穿额度」。r196 实测两类读数并存：Cloudflare "
+                "D1 可测（wrangler d1 list 三实例合计 8.88 MiB，占名册声称 5 GiB 的 0.173%）；"
+                "GitHub Actions 分钟数端点实测 404/410，官方 2025-09-26 changelog 明写关停产品级 "
+                "billing API => 属平台能力缺口而非凭据缺口（#29 要求区分二者，故强制 GAP_PLATFORM "
+                "必带依据）。另实测 num_tables 恒 0 却有 6.8MB，该字段不可信，件内已注明禁止据"
+                "此读成「库是空的」。"),
+    },
 ]
 
 # 显式声明本 runner **不覆盖**的面，防止聚合绿被读成「所有门禁都绿」（R20-2）。
