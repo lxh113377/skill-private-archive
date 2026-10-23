@@ -67,7 +67,11 @@ def ts(s):
     return datetime.fromisoformat(s.replace("Z", "+00:00"))
 
 
-def sample(slug, per_page):
+def sample(slug, per_page, recent_n=5):
+    # r193：recent_n = 「近期趋势」窗口。全窗口均线会被**历史**连红长期拖住，
+    # 修复后即便连续 N 个绿也判不出「已好转」—— 那会让下一轮把「已修好的事」
+    # 继续读成「判据在跑但长期不绿」（本轮实测：全窗口 14%，而最近 5 个 push 全绿）。
+    # 只作**辅助读数**，不替代、不放宽 SUCCESS_FLOOR（地板仍按全窗口判）。
     p = gh(["api", "repos/%s/actions/runs?per_page=%d" % (slug, per_page), "--jq", ".workflow_runs"])
     if p.returncode != 0 or not p.stdout.strip():
         return None
@@ -92,7 +96,13 @@ def sample(slug, per_page):
     durs.sort()
     latest = max((r.get("created_at") for r in runs if r.get("created_at")), default=None)
     tot = len(runs)
-    return {"repo": slug, "runs": tot, "conclusions": c,
+    # 近期趋势：按创建时间倒序取最近 recent_n 个**已完成**的 run
+    _done = sorted((r for r in runs if r.get("status") == "completed"),
+                   key=lambda r: r.get("created_at") or "", reverse=True)[:recent_n]
+    _rc = sum(1 for r in _done if r.get("conclusion") == "success")
+    recent = {"n": len(_done), "success": _rc,
+              "rate": round(_rc / len(_done), 3) if _done else None}
+    return {"repo": slug, "runs": tot, "conclusions": c, "recent": recent,
             "success_rate": round(c.get("success", 0) / tot, 3),
             "failure_rate": round(c.get("failure", 0) / tot, 3),
             "action_required_rate": round(c.get("action_required", 0) / tot, 3),
@@ -111,6 +121,7 @@ def main():
     ap.add_argument("--per-page", type=int, default=50)
     ap.add_argument("--max-age-hours", type=int, default=36, help="本仓心跳阈值（gates.yml 为每日 cron）")
     ap.add_argument("--skip-opposites", action="store_true")
+    ap.add_argument("--recent-n", type=int, default=5, help="近期趋势窗口（已完成 run 数）")
     ap.add_argument("--json")
     args = ap.parse_args()
 
@@ -121,7 +132,7 @@ def main():
     rows = []
     targets = ([SELF] if args.skip_opposites else [SELF] + OPPOSITES)
     for slug in targets:
-        r = sample(slug, args.per_page)
+        r = sample(slug, args.per_page, args.recent_n)
         if r is None:
             print("%-42s 无可读 run（跳过，不计入判定）" % slug)
             rows.append({"repo": slug, "error": "no_runs"})
@@ -146,12 +157,19 @@ def main():
     elif age_h > args.max_age_hours:
         reasons.append("心跳断：最近 run 距今 %.1f h > 阈值 %d h（cron 每日档已失效？）" % (age_h, args.max_age_hours))
     if me["success_rate"] < SUCCESS_FLOOR:
-        reasons.append("success=%.0f%% < 地板 %.0f%% ⇒ 判据在跑但长期不绿" % (
-            100 * me["success_rate"], 100 * SUCCESS_FLOOR))
+        _rc = me.get("recent") or {}
+        _hint = ""
+        if _rc.get("rate") == 1.0 and _rc.get("n"):
+            _hint = ("｜但近期趋势：最近 %d 个已完成 run 全绿 ⇒ 与「长期不绿」不同，"
+                     "是历史连红把全窗口均线拖住，属**已修复待观察**，不是新故障" % _rc["n"])
+        reasons.append("success=%.0f%% < 地板 %.0f%% ⇒ 判据在跑但长期不绿%s" % (
+            100 * me["success_rate"], 100 * SUCCESS_FLOOR, _hint))
     state = "FAIL" if reasons else "PASS"
     print("-" * 72)
-    print("覆盖根: gh api（只读 GET）｜窗口=近 %d run｜心跳阈值=%d h｜成功率地板=%.0f%%" % (
-        args.per_page, args.max_age_hours, 100 * SUCCESS_FLOOR))
+    _rc = me.get("recent") or {}
+    print("覆盖根: gh api（只读 GET）｜全窗口=近 %d run｜近期趋势=最近 %d 个已完成 run（success %d/%d）｜心跳阈值=%d h｜成功率地板=%.0f%%" % (
+        args.per_page, _rc.get("n", 0), _rc.get("success", 0), _rc.get("n", 0),
+        args.max_age_hours, 100 * SUCCESS_FLOOR))
     print("判据面: 仅 %s 参与 verdict；对手行只作对照，不参与本仓判定" % SELF)
     print("[CI-HEALTH:%s] %s" % (state, "；".join(reasons) if reasons else
                                  "心跳 %.1f h 内且 success=%.0f%% ≥ 地板" % (age_h, 100 * me["success_rate"])))
