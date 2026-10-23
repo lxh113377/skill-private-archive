@@ -326,6 +326,19 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
 - **第一代卷·范围登记（part1..73、76，共 74 卷）** `07-next-steps.part1.md…07-next-steps.part73.md`、`07-next-steps.part76.md` — 第一代 74 卷（R199 前代拆卷产物：早期轮次摘要/归档；含仅存于这些卷的 4 条 R 号 R19-3 / R20-2 / R97-7 / R105-6）。逐卷覆盖率判据 = `python 05-exec/r191_volume_coverage.py`（[COVERAGE:SELFTEST-PASS] 四腿自证；2026-10-23 r191 补登，收 R183-1 存量面）。
 
 
+- [ ] **R193-1（r193 登记，P2·已落地）** **「已修好」被全窗口均线读成「还在坏」—— 判据须区分二者**： 【r193 裁决=已落地｜recent 趋势口径与夹具 5 腿均在本轮完成；读数：① 本地 69 门 [GATES:PASS] PASS=69；② r32_ci_health 全窗口 14%（FAIL 保持，证明未放宽）+ recent 5/5 全绿；③ CI run 392 head=94cf04d success，连续 6 个 push run 全绿。本条不设目标轮：它是口径补强，不是待办。】
+  r32_ci_health 用「近 50 run」单一均线判 CI 有效性。本仓 338 连红的四个根因修完后，
+  连续 5 个 push run 全绿，但均线仍 14% ⇒ 判据继续报「判据在跑但长期不绿」。
+  那不是新故障，是**历史把均线拖住**；不区分，下一轮会把已修好的事读成坏的，
+  甚至诱发放宽地板（把牙齿磨掉）—— 与 r191「为抓变异堵死生产路径」同族：修法本身制造新假象。
+  修法：sample() 增补 recent = 按 created_at 倒序取最近 N 个**已完成** run，
+  与全窗口并列打印；全窗口低于地板且 recent 全绿时，理由里点名「已修复待观察，不是新故障」。
+  纪律：recent 只作**辅助读数**，SUCCESS_FLOOR 仍按全窗口判 —— 红历史照样 FAIL，不放宽。
+  夹具 r193_ci_health_fixtures.py 5 腿锁住：全窗口数不变 / 趋势取最近 N 个已完成 /
+  未完成不计入 / 趋势不放宽地板。
+  实测：全窗口 14%（FAIL 保持）+ recent 5/5 全绿；本地 69 门 [GATES:PASS]；
+  CI run 392（head=94cf04d）success ⇒ 连续 6 个 push run 全绿。
+
 - [ ] **R192-1（r192 登记，P1·已落地）** **为抓夹具变异把生产路径堵死 —— 密闭性修在错误的支上**： 【r192 裁决=已落地（无需降级/挂账）｜三项修复均在本轮内完成，两处独立读数：① 本地 69 门 [GATES:PASS] PASS=69（无 FAIL/UNVERIFIED/MISSING）；② CI run 389 head=bba7a77 conclusion=success、红门 0，终结自 2026-09-25 起连续 338 个红 run。反哺面：受管根 R801 = win-toolchain-pitfalls 9.13（判别口诀 + 注入面回退 + 验证顺序三步）。】
   r191 为防「夹具摘 --staged 后静默回落读真仓」，把**缺省分支**也改成 files=None + rc=2；
   但门表 argv 未同步传 --staged => commit_gate_map_face 在正常跑时恒 UNVERIFIED
