@@ -995,6 +995,31 @@ GATES = [
                    "取不到 API 面一律 rc=2（R247 禁按「没有 widget」记绿）"],
         "why": "r163 早前把 Turnstile 归为「外部凭据缺口（无账号无 key）」，第 11 轮实测**推翻**：wrangler 已登录 OAuth token 具备 challenge-widgets.write，纯 API POST /accounts/<id>/challenges/widgets 直接建成 widget（无 Dashboard/GUI）；曾报 401 是自己用 PowerShell 给 GET 附 Content-Type 致鉴权失败，同 token 下 Python urllib 返 200。这类「以为做不了、其实平台侧就能做」的误判会让人永久放弃一条搭配 ⇒ 做成常驻三态读数。已建 supermarket-web-login（managed / supermarket-web.pages.dev，sitekey 0x4AAAAAAFgp4grsBDhuMqpl，secret 未落仓）。",
     },
+    {
+        # r179/r180：CF Pages 部署面可追溯 + 镜像一致性（第 69 门）
+        "id": "cf_deploy_face",
+        "script": "r179_dual_face.py",
+        "argv": [],
+        "pass_token": "[DUALFACE:PASS]",
+        "portable": False,
+        "not_portable_reason":
+            "吃本机 wrangler 登录态 + 公网两手（无则 rc=2 UNVERIFIED，不判绿）",
+        "covers": ["CF 部署可追溯：Production 的 commit_hash 必须在产出仓实际可达（孤儿 commit 抓得到）",
+                   "镜像一致性：kind=mirror 的线两站 sha256 必须逐字节相同（不看时间戳）",
+                   "kind=distinct 的线是不同前端，禁比内容（否则把正常异构误报成漂移）",
+                   "取不到数一律 rc=2，且与 DRIFT 分开归口（禁把取数失败洗成内容问题）"],
+        "why": ("r178 一手实测：hub 的 CF Production Source 指向 GitHub 已不存在的孤儿 commit a60aa83"
+                "（远端 gh api 回 422，reflog 有 forced-update）—— 线上与仓历史脱钩却无人发现，"
+                "是靠手工排查才抓到的。第 65 门只答「工具有没有」、第 67 门只答「谁在引用」，"
+                "都没有面回答「部署出去的那一面是否可溯源、镜像是否与主站一致」。本门把它做成每轮读数。"
+                "r179/r180 自抓四处（全是「猜」出来的）：① CF API 顶层 source 实测为 null，真值在"
+                "deployment_trigger.metadata.commit_hash；② 拿名册 key 拼 API 项目名（hub vs"
+                " global-memory-hub）致 404；③ 超市 GH 侧照抄 hub 的 project-page 形态拼出"
+                " lxh113377.github.io/supermarket-web，实测 404；④ **架构误判** —— 把超市当成"
+                "「两面同产物」比 sha，实测差异只有两个 asset 文件名，查权威 chaoshi-web-deploy"
+                " 才知两端本就是不同前端（CF=管理后台+API、GH=微信顾客端）。另自抓聚合 bug："
+                "把 UNVERIFIED 也算进 DRIFT ⇒ 限流被报成内容漂移。此四处均已有对应自证腿锁住。"),
+    },
 ]
 
 # 显式声明本 runner **不覆盖**的面，防止聚合绿被读成「所有门禁都绿」（R20-2）。
