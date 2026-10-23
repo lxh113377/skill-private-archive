@@ -75,7 +75,7 @@
    "est_selector_fixtures",
    "quota_face"
   ],
-  "_snapshot_at": "2026-10-24 03:31",
+  "_snapshot_at": "2026-10-24 03:56",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"

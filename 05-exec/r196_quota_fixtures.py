@@ -128,6 +128,74 @@ def main():
        (ESC in pre_tail) and (ESC not in tail) and ("Proxy" in tail),
        "pre有ESC=%s post有ESC=%s" % (ESC in pre_tail, ESC in tail))
 
+    # ================ r197 代理分钟：口径与覆盖度纪律 ================
+    import datetime as _dt
+    M0 = _dt.datetime(2026, 10, 1, tzinfo=_dt.timezone.utc)
+
+    def R(start, upd, status="completed"):
+        return {"run_started_at": start, "updated_at": upd, "status": status}
+
+    # E1 只计 completed 且双时间戳齐的，其余进 skipped
+    runs = [R("2026-10-05T00:00:00Z", "2026-10-05T00:10:00Z"),          # 10 min
+            R("2026-10-05T00:00:00Z", "2026-10-05T00:05:00Z"),          # 5 min
+            R("2026-10-05T00:00:00Z", None, status="in_progress"),
+            R(None, "2026-10-05T00:01:00Z")]
+    mn, cnt, skp = m.run_minutes(runs, M0)
+    ck("E1 只累加 completed 且双时间戳齐的 run（10+5=15min，跳过 2）",
+       mn == 15.0 and cnt == 2 and skp == 2, (mn, cnt, skp))
+
+    # E2 月初边界：早于 since 的不计入（防把上月消耗算进本月）
+    runs2 = [R("2026-09-30T23:50:00Z", "2026-10-01T00:20:00Z"),          # 起点在月前
+              R("2026-10-01T00:00:00Z", "2026-10-01T00:20:00Z")]          # 正好月初
+    mn2, cnt2, _ = m.run_minutes(runs2, M0)
+    ck("E2 起点早于月初的 run 不计入本月", mn2 == 20.0 and cnt2 == 1, (mn2, cnt2))
+
+    # E3 负时长（时间戳异常）不得倒扣额度
+    mn3, cnt3, skp3 = m.run_minutes([R("2026-10-05T00:20:00Z", "2026-10-05T00:00:00Z")], M0)
+    ck("E3 时钟倒挂按 0 计，不得产生负分钟", mn3 == 0.0, (mn3, cnt3, skp3))
+
+    # E4 month_start_utc 取到自然月 1 号 00:00 UTC（口径地基）
+    ms = m.month_start_utc(_dt.datetime(2026, 10, 23, 19, 39, tzinfo=_dt.timezone.utc))
+    ck("E4 month_start_utc = 当月 1 日 00:00Z",
+       (ms.day == 1 and ms.hour == 0 and ms.minute == 0
+        and ms.month == 10 and ms.year == 2026), ms.isoformat())
+
+    # E5 覆盖度纪律：翻页未及月初 ⇒ UNVERIFIED，不得把部分当全量（R247）
+    orig_fetch = m.fetch_runs_page
+    def fake_pages(pages):
+        def f(repo, page):
+            if page <= len(pages):
+                return pages[page - 1]
+            return []
+        return f
+    SEP = "2026-10-20T00:00:00Z"
+    EARLY = "2026-10-21T00:00:00Z"
+    # 两页都停在月中（最早 created_at 晚于月初）且后续页非空 => 永不到月初
+    m.fetch_runs_page = fake_pages([[R(EARLY, EARLY) for _ in range(3)]] * 2
+                                    + [[R(SEP, SEP)] for _ in range(3)] * 40)
+    try:
+        st5, info5, why5 = m.read_minutes_proxy("x/y", month=M0, max_pages=6)
+    finally:
+        m.fetch_runs_page = orig_fetch
+    ck("E5 覆盖不到月初 ⇒ UNVERIFIED 且不报分钟（不把部分当全量）",
+       st5 == "UNVERIFIED" and info5 is None, (st5, why5, info5))
+
+    # E6 覆盖完整时才出 MEASURED，且**不带任何 pct 字段**（锁死「不折算百分比」）
+    OKP1 = [R("2026-10-10T00:00:00Z", "2026-10-10T00:10:00Z")] * 3
+    OKP2 = [R("2026-09-28T00:00:00Z", "2026-09-28T00:01:00Z")] * 2   # 早于月初 => 触发停止
+    m.fetch_runs_page = fake_pages([OKP1, OKP2])
+    try:
+        st6, info6, why6 = m.read_minutes_proxy("x/y", month=M0, max_pages=6)
+    finally:
+        m.fetch_runs_page = orig_fetch
+    has_pct = bool(info6) and any("pct" in k for k in info6)
+    ck("E6 覆盖完整才 MEASURED，且结果不含 pct 字段（无可靠分母就不折算）",
+       st6 == "MEASURED" and info6.get("coverage_complete") is True and not has_pct,
+       (st6, info6 if not info6 else sorted(info6.keys())))
+    ck("E6b 只计本月内的（3 个 10min = 30min，9 月那条不计）",
+       bool(info6) and info6.get("minutes_all_workflows") == 30.0,
+       info6.get("minutes_all_workflows") if info6 else None)
+
     fails = [r for r in RESULTS if not r[0]]
     print("")
     print("夹具合计: %d 项，通过 %d，失败 %d" % (len(RESULTS), len(RESULTS) - len(fails), len(fails)))

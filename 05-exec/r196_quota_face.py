@@ -25,6 +25,7 @@ import io
 import json
 import os
 import re
+import datetime as _dt
 import subprocess
 import sys
 
@@ -105,10 +106,95 @@ def read_gh_billing(login):
     return "MEASURED", rows, ""
 
 
+def month_start_utc(now=None):
+    """本自然月起点（UTC）。单独成函数是为了可被夹具钉住。"""
+    now = now or _dt.datetime.now(_dt.timezone.utc)
+    return now.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
+
+
+def _parse_iso(s):
+    if not s:
+        return None
+    try:
+        return _dt.datetime.fromisoformat(s.replace("Z", "+00:00"))
+    except ValueError:
+        return None
+
+
+def run_minutes(runs, since):
+    """对 status=completed 且有 run_started_at/updated_at 的 run，累加墙上分钟。
+
+    返回 (minutes, counted, skipped)。skipped = 缺时间戳或非 completed 的条数，
+    必须回传：覆盖度不完整时读数不得被当成「本月的全部消耗」。
+    """
+    mins, counted, skipped = 0.0, 0, 0
+    for x in runs or []:
+        a = _parse_iso(x.get("run_started_at"))
+        b = _parse_iso(x.get("updated_at"))
+        if x.get("status") != "completed" or not a or not b:
+            skipped += 1
+            continue
+        if a < since:
+            continue
+        d = (b - a).total_seconds() / 60.0
+        mins += d if d > 0 else 0.0
+        counted += 1
+    return round(mins, 2), counted, skipped
+
+
+def fetch_runs_page(repo, page):
+    rc, out = sh(["gh", "api",
+                  "repos/%s/actions/runs?per_page=100&page=%d" % (repo, page)])
+    if rc != 0:
+        return None
+    try:
+        d = json.loads(out)
+    except ValueError:
+        return None
+    return d.get("workflow_runs") or []
+
+
+def read_minutes_proxy(repo, month=None, max_pages=8):
+    """翻页取到本月初为止的全部 run，返回 (state, info|None, why)。
+
+    翻页停止条件：某页最早 created_at 已早于月初，或页空/取失败。
+    取失败时不得只把已取部分当全量 ⇒ 返回 UNVERIFIED 并说明覆盖不全。
+    """
+    since = month or month_start_utc()
+    allr, complete = [], False
+    for page in range(1, max_pages + 1):
+        rs = fetch_runs_page(repo, page)
+        if rs is None:
+            return "UNVERIFIED", None, "第 %d 页取不到（限流/网络），覆盖不完整 ⇒ 不折算用量" % page
+        if not rs:
+            complete = True
+            break
+        allr += rs
+        lo = min((x.get("created_at") or "") for x in rs)
+        if lo and _parse_iso(lo) and _parse_iso(lo) < since:
+            complete = True
+            break
+    else:
+        return "UNVERIFIED", None, "翻满 %d 页仍未覆盖到月初 ⇒ 覆盖度不足，不折算" % max_pages
+    if not allr:
+        return "UNVERIFIED", None, "无任何 run 记录"
+    m, counted, skipped = run_minutes(allr, since)
+    gates = [x for x in allr if x.get("name") == "gates"]
+    mg, cg, sg = run_minutes(gates, since)
+    return "MEASURED", {"minutes_all_workflows": m, "counted": counted,
+                        "skipped_no_ts": skipped, "pages": len(allr),
+                        "gates_minutes": mg, "gates_counted": cg,
+                        "since": since.strftime("%Y-%m-%d"),
+                        "coverage_complete": bool(complete)}, ""
+
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--json", dest="out", default="")
     ap.add_argument("--login", default="", help="缺省用 gh api user 解析")
+    ap.add_argument("--repo", default="lxh113377/skill-private-archive",
+                    help="代理分钟作用域仓库（额度是账号级，此处只到 repo 级）")
     args = ap.parse_args()
 
     out_rows = []
@@ -130,18 +216,37 @@ def main():
             over += 1
     out_rows.append(entry)
 
-    # --- GitHub Actions 分钟数 ---
+    # --- GitHub Actions 分钟数：两条独立读数，不合并 ---
+    # r197 纠正 r196 的定性：官方 billing 端点确实被关停（GAP_PLATFORM 仍成立，它指的是
+    # 「拿不到官方 billable 分钟与官方额度值」）；但 run 的 run_started_at / updated_at
+    # 时间戳一直都在 ⇒ 「自己算这个月烧了多少墙钟分钟」其实做得到。上一轮我把两个不同
+    # 命题混成一行，等于用「官方端点没了」顺带否掉「代理可测」，把缺口报大了。
     login = args.login
     if not login:
         rc, who = sh(["gh", "api", "user", "--jq", ".login"])
         login = who.strip() if rc == 0 and who.strip() else ""
-    g = {"tool": "github_actions_minutes", "login": login}
+    off = {"tool": "github_actions_minutes_official", "login": login}
     if not login:
-        g.update({"state": "UNVERIFIED", "why": "gh 未登录或取不到 login"})
+        off.update({"state": "UNVERIFIED", "why": "gh 未登录或取不到 login"})
     else:
-        st2, rows2, why2 = read_gh_billing(login)
-        g.update({"state": st2, "why": why2})
-    out_rows.append(g)
+        st2, _r2, why2 = read_gh_billing(login)
+        off.update({"state": st2, "why": why2})
+    out_rows.append(off)
+
+    px = {"tool": "github_actions_minutes_proxy", "repo": args.repo}
+    if not login:
+        px.update({"state": "UNVERIFIED", "why": "gh 未登录，翻页取不到 run"})
+    else:
+        st3, info3, why3 = read_minutes_proxy(args.repo)
+        px.update({"state": st3, "why": why3})
+        if info3:
+            px.update(info3)
+            px["caveat"] = (
+                "墙钟分钟 != billable 分钟（GitHub 按 runner 类型与 OS 加权计费，并发 job 各计时）；"
+                "作用域是本仓库 != 账号级额度；官方免费分钟数本轮未取到可靠出处"
+                "（docs 页面为 JS 壳，服务端渲染取不到表格）⇒ 依 r196 自立的规矩："
+                "分母无可靠出处就只报绝对值，不折算百分比。")
+    out_rows.append(px)
 
     doc = {"schema": "quota-face-v1", "readonly": True,
            "generated_at": __import__("datetime").datetime.now().strftime("%Y-%m-%d %H:%M"),
@@ -156,6 +261,13 @@ def main():
                      r["pct_of_roster_limit"]))
         elif r["state"] == "GAP_PLATFORM":
             print("  %-24s GAP_PLATFORM %s" % (r["tool"], r["why"][:150]))
+        elif r["state"] == "MEASURED" and "gates_minutes" in r:
+            print("  %-24s MEASURED     本月（%s 起）本仓 gates run %d 个 = %.1f 墙钟分钟；"
+                  % (r["tool"], r["since"], r["gates_counted"], r["gates_minutes"]))
+            print("           %-18s 全部 workflow = %.1f 分钟（计入 %d，缺时间戳 %d）｜覆盖到月初=%s"
+                  % ("", r["minutes_all_workflows"], r["counted"],
+                     r["skipped_no_ts"], r["coverage_complete"]))
+            print("           口径声明：%s" % r.get("caveat", "")[:190])
         elif r["state"] == "MEASURED":
             print("  %-24s MEASURED     %s" % (r["tool"], json.dumps(r, ensure_ascii=False)[:150]))
         else:

@@ -1088,7 +1088,9 @@ GATES = [
             "吃本机 wrangler OAuth 登录态 + gh 登录态（无则 UNVERIFIED，不猜额度）",
         "covers": ["实测绝对用量：wrangler d1 list --json 求和 file_size",
                    "三态分开：MEASURED / GAP_PLATFORM（平台下线，附官方依据）/ UNVERIFIED（本轮取不到）",
-                   "额度比例的分母须标出处（名册声称值，非官方文档值）",
+                   "额度比例的分母须标出处；无可靠分母只报绝对值不折算（E6 腿锁：结果不得含 pct 字段）",
+                   "GitHub 分钟数拆两行：官方 billing 端点 GAP_PLATFORM ＋ 自算代理墙钟分钟 MEASURED",
+                   "覆盖度纪律：翻页未及月初 ⇒ UNVERIFIED 且不报分钟（E5 腿，不把部分当全量）",
                    "wrangler --json 混 ANSI 告警尾巴 => 用括号平衡扫描取数组（NO_COLOR 对其无效）"],
         "why": ("名册 9 项工具的「合理搭配」有个隐含前提：用法得留在免费额度内。前 71 门没有"
                 "任何一面回答「这么用下去会不会悄悄吃穿额度」。r196 实测两类读数并存：Cloudflare "
@@ -1096,7 +1098,13 @@ GATES = [
                 "GitHub Actions 分钟数端点实测 404/410，官方 2025-09-26 changelog 明写关停产品级 "
                 "billing API => 属平台能力缺口而非凭据缺口（#29 要求区分二者，故强制 GAP_PLATFORM "
                 "必带依据）。另实测 num_tables 恒 0 却有 6.8MB，该字段不可信，件内已注明禁止据"
-                "此读成「库是空的」。"),
+                "此读成「库是空的」。"
+                "r197 再纠正一处定性（我自己的）：官方 billing 端点确被关停，但 run 的"
+                "run_started_at/updated_at 一直在 ⇒ 代理墙钟分钟其实可自算。上一轮把"
+                "「拿不到官方 billable/额度值」与「算不出消耗」混成一行读数，等于把缺口报大；"
+                "现拆成 official=GAP_PLATFORM 与 proxy=MEASURED 两行。又因官方免费分钟数"
+                "未取到可靠出处（docs 该页为 JS 壳、服务端渲染无表格），依 r196 自立的规矩："
+                "分母不可靠就只报绝对值，不折算百分比（E6 腿把这条锁进夹具）。"),
     },
 ]
 
