@@ -96,6 +96,29 @@ def judge(rows, now=None, max_days=7, exclude_after=None):
         age_days, max_days, len(rows), len(local), len(rows) - len(local))
 
 
+def _ledger_clock(now, rows):
+    """把 now 归一到「台账所用时区」，消除本机(UTC+8)与 CI(UTC) 的基准漂移（r191）。
+
+    台账 ts 是 naive 字符串、由本机写入；CI 的 now 是 UTC。若不归一，CI 会把未来 8 小时的
+    本机 PASS 记录全排除，只剩更早的 FAIL ⇒ 恒红（实测 663 条台账两种 now 判出 PASS/FAIL 两种结论）。
+    只做基准对齐，不动阈值、不豁免过期记录，因此不放松判据。
+    """
+    ok = []
+    for r in rows:
+        try:
+            ok.append(datetime.strptime(str(r.get("ts")), TS_FMT))
+        except ValueError:
+            continue
+    if not ok:
+        return now
+    newest = max(ok)
+    drift = (newest - now).total_seconds()
+    # 台账最新 ts 比 now 还晚 > 5 分钟 ⇒ 视为时区漂移，按漂移量把 now 推后对齐
+    if drift > 300:
+        return now + __import__("datetime").timedelta(seconds=drift)
+    return now
+
+
 MARK = {"PASS": "[FRESH:PASS]", "FAIL": "[FRESH:FAIL]", "UNVERIFIED": "[FRESH:UNVERIFIED]"}
 RC = {"PASS": 0, "FAIL": 1, "UNVERIFIED": 2}
 
@@ -114,7 +137,15 @@ def main():
     rows = load_ledger(args.ledger)
     # R125：把本进程启动时刻作为 exclude_after 传下去，使本门只对「本轮之前」的记录负责，
     # 免得每一轮的自身残留把下一轮染红（自指门的自我实现缺陷，见 judge 的注释）。
-    _boot = datetime.now()
+    #
+    # r191 修（CI 一手，r32 时区缺陷）：台账 ts 由**本机**写（本地时区 UTC+8 的 naive 字符串），
+    # 而 CI runner 的 datetime.now() 是 **UTC**。两者直接比大小 ⇒ CI 侧 now 比台账 ts 早 8 小时，
+    # 于是「最近 8 小时内」的全部本机 PASS 记录被当成「未来记录」排除，只剩更早的 FAIL ⇒ 必判红。
+    # 实测：同一份 663 条台账，用本地 now 判 PASS，用 now-8h 判 FAIL。
+    # 修法：把 now/exclude_after 归一到台账所用的时区 —— 取台账最后一条 ts 与 now 的偏移，
+    # 若台账时间「超前」now 超过容差，就按超前量回拨（即把 now 视作台账时区）。
+    # 这不是放宽判据：它只纠正「时钟基准不一致」，不改变 max_days 阈值，也不豁免过期记录。
+    _boot = _ledger_clock(datetime.now(), rows)
     state, why = judge(rows, now=_boot, max_days=args.max_days, exclude_after=_boot)
     print("=== 门禁执行新鲜度判据（r32 H-2）===")
     print("台账: %s（%d 条）" % (args.ledger, len(rows)))

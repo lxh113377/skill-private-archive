@@ -187,6 +187,29 @@ def main():
             print("     %-50s 变异致不可加载（也算拦住）: %s" % (label, type(e).__name__))
     ck("层c 变异 4 项全部被拦（对照=已取）", caught == 4, "caught=%d/4" % caught)
 
+    # ---- 层 d：时区基准漂移（r191 CI 一手，本轮最后一个 CI 红根因） ----
+    # 台账 ts 由本机写（本地时区 naive 串），而 CI 的 datetime.now() 是 UTC。直接比大小会让
+    # CI 把「未来 8 小时」的本机 PASS 记录全排除、只剩更早的 FAIL ⇒ 恒红。
+    # 实测证据：同一份 663 条台账，本地 now 判 PASS；now-8h 判 FAIL。
+    # 本腿锁住 _ledger_clock 的归一行为：UTC 视角下也须判 PASS，且不得把过期记录洗绿。
+    if hasattr(gf, "_ledger_clock"):
+        p = write_ledger(tmp, [row(d(0)), row(d(1))])
+        rows_tz = gf.load_ledger(p)
+        utc_now = now - timedelta(hours=8)
+        fixed = gf._ledger_clock(utc_now, rows_tz)
+        s_fix, why_fix = gf.judge(rows_tz, now=fixed, max_days=7, exclude_after=fixed)[:2]
+        s_raw, _ = gf.judge(rows_tz, now=utc_now, max_days=7, exclude_after=utc_now)[:2]
+        ck("d1 UTC 时钟下经 _ledger_clock 归一后仍判 PASS（修复前该形态恒 FAIL）",
+           s_fix == "PASS", "fixed=%s raw=%s | %s" % (s_fix, s_raw, why_fix))
+        # 反假绿：归一不得把真正过期的记录洗绿
+        p = write_ledger(tmp, [row(d(30))])
+        rows_old = gf.load_ledger(p)
+        fixed_old = gf._ledger_clock(utc_now, rows_old)
+        s_old, _ = gf.judge(rows_old, now=fixed_old, max_days=7, exclude_after=fixed_old)[:2]
+        ck("d2 归一不得洗绿过期记录（30 天前 PASS 仍判 FAIL）", s_old == "FAIL", str(s_old))
+    else:
+        ck("d1 判据须提供 _ledger_clock（时区归一）", False, "缺函数 ⇒ 无法锁住 CI 下的红")
+
     fails = [r for r in RESULTS if not r[0]]
     print("\n夹具合计: %d 项，通过 %d，失败 %d" % (len(RESULTS), len(RESULTS) - len(fails), len(fails)))
     if fails:
