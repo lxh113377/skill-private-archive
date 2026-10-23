@@ -221,7 +221,12 @@ GATES = [
         # r137：本次提交该过哪道门（纪律强制点的判定面 —— pre-commit 据此分级阻断）
         "id": "commit_gate_map_face",
         "script": "r137_commit_gate_map.py",
-        "argv": ["--json", "_temp/commit_gate_map.json"],
+        # r192：本门读暂存区，而门禁自身会写 _temp/ 与台账 ⇒ 若直接读真仓，
+        # 「门禁跑动即产生脏件」会让它恒判「有改动但暂存为空」（UNVERIFIED，生产路径被堵）。
+        # 正解 = runner 在调用前把真仓暂存清单落成文件，再用 --staged 传进来
+        # （与夹具 t9 共用同一条缝，生产与测试不再各写一套）。
+        "argv": ["--json", "_temp/commit_gate_map.json",
+                 "--staged", "_temp/_gatemap_staged.txt"],
         "pass_token": "[GATEMAP]",
         "portable": False,
         "not_portable_reason": "读 git 暂存区（换机无本仓暂存态时检查失去对象）",
@@ -1212,6 +1217,20 @@ def main():
     total_ms = 0
     print("=== 本仓门禁聚合 runner (%s) ===" % datetime.now().strftime("%Y-%m-%d %H:%M"))
     print("工作根: %s" % REPO)
+    # r192：commit_gate_map_face 的 --staged 注入面 —— 在跑门之前把真仓暂存清单落成文件。
+    # 不这么做，该门读到的是「门禁自己刚写出的 _temp/ 与台账脏件」⇒ 恒判「有改动但暂存为空」。
+    # 落盘放在跑门之前，保证注入面反映的是**本次提交**的暂存态（与夹具 t9 同一条缝）。
+    _staged_p = os.path.join(REPO, "_temp", "_gatemap_staged.txt")
+    try:
+        os.makedirs(os.path.dirname(_staged_p), exist_ok=True)
+        _c = subprocess.run(["git", "diff", "--cached", "--name-only"], cwd=REPO,
+                            capture_output=True, text=True, encoding="utf-8",
+                            errors="replace", timeout=120)
+        with open(_staged_p, "w", encoding="utf-8") as _f:
+            _f.write((_c.stdout or ""))
+    except OSError as _e:
+        print("⚠️ 暂存清单落盘失败（commit_gate_map_face 将判 UNVERIFIED）: %s" % _e)
+
     for g in GATES:
         if args.gate and g["id"] not in args.gate:
             continue
