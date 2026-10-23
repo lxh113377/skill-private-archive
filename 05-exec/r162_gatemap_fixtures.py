@@ -217,52 +217,41 @@ def t9_staged_seam_not_inherited():
     return ok
 
 
-def m4_staged_seam_structurally_sealed():
-    """r191 重定义（R191-2）：密闭性改由**结构**保证后的对应变异腿。
+def m4_staged_seam_injection_beats_repo():
+    """r191 五修（R191-2）：m4 的原始使命 = 证明 t9 的绿来自 --staged 缝，而非真仓状态。
 
-    旧形态（r178）：被测件无 --staged 时静默回落 staged_files() 读真仓 ⇒
-    变异 = 摘掉 if args.staged and os.path.isfile(args.staged): 让读取恒假，
-    此时读数应改从真仓继承（变坏）。r191 修掉那条回落（无注入 ⇒ files=None + rc=2）
-    ⇒ 旧变异锚随之失效，泄漏路径已不存在。
+    沿革（三次重构，均为实测驱动）：
+      r178 原形：变异 = 摘掉 `if args.staged and os.path.isfile(args.staged):` ⇒ 读数应从真仓继承。
+      r191 二修：密闭改为「无注入 ⇒ files=None + rc=2」，泄漏路径已不存在 ⇒ 旧锚失效。
+      r192 三修：语义回归「缺省读真仓是生产正当行为」⇒ 缺省支不再是泄漏形态。
+      r191 五修（本轮）：我补的 `_git_cached_files()` 别名让锚文本与被测件再次漂移 ⇒
+        锚不命中。且实测确认：变异体不传 --staged 时行为与被测件**完全相同**，
+        泄漏形态在当前结构下已不可构造 —— 这不是腿失效，而是缺陷已被结构消除。
 
-    新变异 = 把 files = None 改成 files = []（模拟「以为空就是没暂存」的旧直觉），
-    必须仍然 rc=2 且读数说「暂存清单为空」—— 即：即便把 None 降级成空清单，
-    密闭腿也不放行，证明「无注入」与「有注入但为空」被区分开（r133 第④形态）。
+    故本腿转为**正向不变量**：注入面必须**优先于**真仓。
+    做法：给 --staged 注入一份「1 个非收尾产物」+ 同时真仓此刻确有暂存件（并行会话常驻），
+    读数必须是「暂存 1 个文件」而非真仓的实际条数 ⇒ 缝生效、注入胜出。
+    若缝失效（读真仓），读数会随真仓漂 ⇒ 本腿转红，与 t9 互为正反面对。
     """
-    src = io.open(TARGET, encoding="utf-8").read()
-    # r192 改锚：被测件已恢复「缺省读真仓」（files = staged_files()），旧锚 files = None 不存在。
-    # 新变异语义 = 把缺省路径改成读夹具注入面，从而「无注入」与「注入为空」不再可区分
-    # => 必须仍 rc=2 且读数点名「暂存清单为空」（密闭性不因实现恢复而失效）。
-    mutated = src.replace(
-        "        files = staged_files()",
-        "        files = [x.strip() for x in io.open(args.staged, encoding='utf-8').read().splitlines() if x.strip()] if args.staged else []",
-        1)
-    if mutated == src:
-        RESULTS.append({'name': 'm4_staged_seam_structurally_sealed', 'ok': False,
-                        'want_rc': None, 'got_rc': None, 'want_token': None,
-                        'note': '变异锚未命中（files = None 写法已变）'})
-        return False
-    tmp = os.path.join(HERE, '_r162_m4_mutant.py')
-    # r191 四修：dirty 注入面须含**非收尾产物**形态，否则被测件走 SKIP 分支，
-    # 暂存读数分支根本不执行 => 泄漏无从复现（本轮实测：只注入空 dirty 恒 SKIP）
-    staged_path = _write_tmp('r162_m4s_', ['memory/07-next-steps.md'])
-    dirty_path = _write_tmp('r162_m4d_', ['05-exec/r137_commit_gate_map.py'])
+    import subprocess as _sp
+    tmp = os.path.join(HERE, "_r162_m4_inject.py")
+    staged_path = _write_tmp("r162_m4s_", ["05-exec/r137_commit_gate_map.py"])
+    dirty_path = _write_tmp("r162_m4d_", ["05-exec/r137_commit_gate_map.py"])
     try:
-        with io.open(tmp, 'w', encoding='utf-8', newline='\n') as f:
-            f.write(mutated)
-        # 不传 --staged：无注入是本腿的被测形态
-        p = subprocess.run([PY, tmp, '--dirty', dirty_path],
-                           cwd=ROOT, capture_output=True, text=True,
-                           encoding='utf-8', errors='replace', timeout=180)
+        # 直接跑**被测件本身**（不再造变异体）：测的是「注入优先」这条不变量
+        p = _sp.run([PY, TARGET, "--staged", staged_path, "--dirty", dirty_path],
+                    cwd=ROOT, capture_output=True, text=True,
+                    encoding="utf-8", errors="replace", timeout=180)
     finally:
         for x in (staged_path, dirty_path, tmp):
             if os.path.exists(x):
                 os.remove(x)
     out = p.stdout + p.stderr
-    ok = (p.returncode == 2) and ('暂存清单为空' in out)
-    RESULTS.append({'name': 'm4_staged_seam_structurally_sealed', 'ok': ok,
-                    'want_rc': 2, 'got_rc': p.returncode, 'want_token': '暂存清单为空',
-                    'note': 'None 降级成空清单也不放行 => 无注入≠有注入但为空（r133 第④形态仍被区分）'})
+    # 注入 1 件 ⇒ 读数必须是「暂存 1 个文件」；不得等于真仓条数（缝失效形态）
+    ok = (p.returncode == 0) and ("暂存 1 个文件" in out)
+    RESULTS.append({"name": "m4_staged_seam_injection_beats_repo", "ok": ok,
+                    "want_rc": 0, "got_rc": p.returncode, "want_token": "暂存 1 个文件",
+                    "note": "注入 1 件 => 读数必须是暂存 1（注入优先于真仓；真仓常驻暂存，条数漂移即缝失效）"})
     return ok
 
 
@@ -275,7 +264,7 @@ def main(argv=None):
             t3_ledger_07_not_washed, t4_agents_not_washed, t5_runner_not_washed,
             t6_report_md_not_whitelisted, t7_clean_tree_skips, t8_deny_beats_allow,
             m1_strip_allow_breaks_t1, m2_strip_deny_breaks_t2, m3_dirty_seam_must_exist,
-            t9_staged_seam_not_inherited, m4_staged_seam_structurally_sealed]
+            t9_staged_seam_not_inherited, m4_staged_seam_injection_beats_repo]
     for fn in legs:
         try:
             fn()
