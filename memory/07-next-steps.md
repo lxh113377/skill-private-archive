@@ -326,6 +326,19 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
 - **第一代卷·范围登记（part1..73、76，共 74 卷）** `07-next-steps.part1.md…07-next-steps.part73.md`、`07-next-steps.part76.md` — 第一代 74 卷（R199 前代拆卷产物：早期轮次摘要/归档；含仅存于这些卷的 4 条 R 号 R19-3 / R20-2 / R97-7 / R105-6）。逐卷覆盖率判据 = `python 05-exec/r191_volume_coverage.py`（[COVERAGE:SELFTEST-PASS] 四腿自证；2026-10-23 r191 补登，收 R183-1 存量面）。
 
 
+- [ ] **R194-1（r194 登记，P1·已落地）** **r32 写下靶子却六年没挂门 —— 免费工具「配了」不等于「被盯着」**： 【r194 裁决=已落地（双模式判据 + 门表登记 + 夹具证据均已入库）｜读数：① face rc=0 且 report rc=1 证明地板未放宽；② 全量 70 门 [GATES:PASS] PASS=70；③ r130 登记生效（gate_table_reconcile 转绿）。不设目标轮：判据本身即常驻盯梢面。】
+  r32_ci_health.py 2026-09-25 就建好，存在理由写明「有 workflow != 判据在起作用」并拿对手
+  spec-kit 50% run 停 action_required 作靶，但它**从未进 GATES 门表** ⇒ GitHub Actions 这个
+  名册免费工具从没被常驻判据盯过。本仓实付：CI 连续 338 个 push run 全红（六条根因），
+  全靠手工逐条挖。r194 把它接成第 70 门 ci_effectiveness_face（portable=False，本机门）。
+  接入关键 = **不能把 report 模式的 60% 全窗口地板直接挂硬门**：本仓刚修好时全窗口仅
+  14~20% 且要数周才消化，直接挂等于重造「每轮必红」，正是 R193-1 要防的反模式。
+  解法：同一脚本双模式 —— report（人读体检，地板原样，实测仍 FAIL 如实记账）／
+  face（进门，判「CI 此刻是否还在真出结论」= 心跳<=36h ∧ 最近 5 个已完成 run 有 >=1 绿，
+  全窗口只打印不判红）。僵尸信号仍在：cron 断或近期全无绿照样 face 判红，牙齿没磨。
+  门表 69->70 走 r130 --record 登记（证据=r193_ci_health_fixtures.py 5 腿），
+  gate_table_reconcile 随之下绿。实测：face rc=0（心跳 0.2h + 最近 5 run 全绿）、
+  report rc=1（20% < 60%，附「历史连红拖住均线」提示）、全量 [GATES:PASS] PASS=70。
 - [ ] **R193-1（r193 登记，P2·已落地）** **「已修好」被全窗口均线读成「还在坏」—— 判据须区分二者**： 【r193 裁决=已落地｜recent 趋势口径与夹具 5 腿均在本轮完成；读数：① 本地 69 门 [GATES:PASS] PASS=69；② r32_ci_health 全窗口 14%（FAIL 保持，证明未放宽）+ recent 5/5 全绿；③ CI run 392 head=94cf04d success，连续 6 个 push run 全绿。本条不设目标轮：它是口径补强，不是待办。】
   r32_ci_health 用「近 50 run」单一均线判 CI 有效性。本仓 338 连红的四个根因修完后，
   连续 5 个 push run 全绿，但均线仍 14% ⇒ 判据继续报「判据在跑但长期不绿」。
