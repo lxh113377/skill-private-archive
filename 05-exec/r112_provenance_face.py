@@ -20,6 +20,7 @@ import glob
 import io
 import json
 import os
+import re
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -47,14 +48,30 @@ def check_ledger_churn(recs):
     return bad
 
 
+_NAME_DATE = re.compile(r'(20\d\d-\d\d-\d\d)')
+
+
 def latest(bench, pattern):
     # r113 修（一手实测）：原按文件名排序取尾，`provenance_r112b_2026-10-17` 会排在
     # `provenance_r112_2026-10-18` 之后（'b' > '_'），于是**新件被旧件压住**，门读的是
-    # 上一代三档面却自报 PASS。改为按 mtime 取新（平局再按名），与 ratchet_gate._newest_artifact 同口径。
+    # 上一代三档面却自报 PASS。当时改用 mtime 取新。
+    #
+    # r189 补（一手实测，CI 连续判红的根因之一）：**mtime 在全新 clone / CI 里全部相同**
+    # （checkout 统一打时间戳）⇒ 平局又退化回按名排序，r113 那个 bug 在 CI 必然复发。
+    # 实测：工作区 latest() 选 provenance_r112_2026-10-18（对），clone 选
+    # provenance_r112b_2026-10-17（错，上一代）——同一门本地绿、CI 报 127 条 unknown 假红。
+    # 名字里的日期是这份命名法自带的时间轴，且跨 checkout 稳定 ⇒ 作第一级；mtime 降为
+    # 第二级（无日期的件仍要能排），名字最后兜底。保守方向不变：仍然取"新"，不放宽判据。
     hits = glob.glob(os.path.join(bench, pattern))
     if not hits:
         return None
-    return max(hits, key=lambda q: (os.path.getmtime(q), q))
+
+    def _key(q):
+        b = os.path.basename(q)
+        m = _NAME_DATE.search(b)
+        return (m.group(1) if m else "", os.path.getmtime(q), b)
+
+    return max(hits, key=_key)
 
 
 def load(p):

@@ -18,6 +18,7 @@ r"""r112_provenance_fixtures.py — 第 19 维判据的夹具（W-47 双向证�
 """
 import io
 import os
+import re
 import subprocess
 import sys
 import tempfile
@@ -134,6 +135,45 @@ def legs_mutation():
     return 3
 
 
+# ---------------- F 组：latest() 取新必须跨 checkout 稳定（r189 CI 根因） ----------------
+# 存在理由（r189 一手）：本门在 CI 连续判红而本地绿。全新 clone 复现证明 —— checkout
+# 把所有证据件的 mtime 打成同一刻，r113 那次「按 mtime 取新」的修法当场失效，
+# latest() 退化回按名排序并选中上一代件（provenance_r112b_2026-10-17），
+# 于是门抱着旧三档面报 127 条「unknown 被登记」假红。名字里的日期是这份命名法
+# 自带的时间轴且跨 checkout 稳定，故提为第一级；mtime 降为第二级。
+def legs_latest():
+    flat = 1700000000  # 模拟 CI checkout：全部同一时间戳
+    with tempfile.TemporaryDirectory() as td:
+        names = ["provenance_r112_2026-10-17.json",
+                 "provenance_r112b_2026-10-17.json",
+                 "provenance_r112_2026-10-18.json"]
+        for n in names:
+            io.open(os.path.join(td, n), "w", encoding="utf-8").write("x")
+            os.utime(os.path.join(td, n), (flat, flat))
+        got = F.latest(td, "provenance_r1*.json")
+        check("F1 mtime 全平时按名字日期取新",
+              os.path.basename(got or ""), "provenance_r112_2026-10-18.json")
+        # 变异：摘掉日期级 => 必须退回 r113 那个错件（证明第一级真有牙，非装饰）
+        orig_re = F._NAME_DATE
+        F._NAME_DATE = re.compile("(?!x)x")
+        try:
+            bad = os.path.basename(F.latest(td, "provenance_r1*.json") or "")
+        finally:
+            F._NAME_DATE = orig_re
+        check("F2 变异(摘日期级)退化为上一代件",
+              bad != "provenance_r112_2026-10-18.json", True)
+    with tempfile.TemporaryDirectory() as td2:
+        # 无日期名的件也要能选出来（日期级不得把老命名法挤掉）：两件都设 mtime，
+        # 否则未设的那件保留真实当前时间戳（远大于模拟值），测的就不是兜底逻辑了。
+        io.open(os.path.join(td2, "provenance_alpha.json"), "w", encoding="utf-8").write("y")
+        io.open(os.path.join(td2, "provenance_beta.json"), "w", encoding="utf-8").write("y")
+        os.utime(os.path.join(td2, "provenance_alpha.json"), (flat, flat))
+        os.utime(os.path.join(td2, "provenance_beta.json"), (flat + 10, flat + 10))
+        check("F3 无日期名仍按 mtime 兜底",
+              os.path.basename(F.latest(td2, "provenance_*.json") or ""),
+              "provenance_beta.json")
+    return 3
+
 # ---------------- E 组：零输入不得判绿（R247） ----------------
 def leg_zero_input():
     with tempfile.TemporaryDirectory() as td:
@@ -151,14 +191,15 @@ def main():
     n += legs_decide()
     n += legs_churn()
     n += legs_mutation()
+    n += legs_latest()
     n += leg_zero_input()
     if FAILS:
         for f in FAILS:
             print("  FAIL %s" % f)
         print("[GATE:fixture-fail] %d/%d 腿失败" % (len(FAILS), n))
         return 1
-    print("腿数 %d（含变异 3、零输入 3）" % n)
-    print("[GATE:fixture-pass] r112 判据双向自证（应绿的绿 %d 腿 + 应红的红 3 变异）" % (n - 3))
+    print("腿数 %d（含变异 4、零输入 3）" % n)
+    print("[GATE:fixture-pass] r112 判据双向自证（应绿的绿 %d 腿 + 应红的红 4 变异）" % (n - 4))
     return 0
 
 
