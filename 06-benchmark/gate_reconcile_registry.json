@@ -219,6 +219,10 @@
   "probe_cost_face": {
    "evidence": "05-exec/r200_probe_cost_measure.py",
    "at": "2026-10-24 06:09"
+  },
+  "r2_enable_face": {
+   "evidence": "05-exec/r201_r2_fixtures.py",
+   "at": "2026-10-24 06:59"
   }
  }
 }

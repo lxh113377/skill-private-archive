@@ -1190,6 +1190,27 @@ GATES = [
                 "这个数。它无声增长的结局是两头假：判据把自己饿死（拿不到读数），而读数"
                 "缺失又被读成「额度很安全」。本面把调用足迹变成每轮可见、可对账的读数。"),
     },
+    {
+        # r201：R2 启用状态面（第 78 门）—— 带活性对照组的四路探测，三态强制分开
+        "id": "r2_enable_face",
+        "script": "r201_r2_enable_face.py",
+        "argv": ["--json", "06-benchmark/r2_enable_latest.json"],
+        "pass_token": "[R2FACE:JUDGED]",
+        "portable": False,
+        "not_portable_reason":
+            "吃本机 wrangler OAuth 凭据 + 公网 CF API（对照端点非 200 即 UNVERIFIED，不猜）",
+        "covers": [
+            "活性对照 /accounts 必须 200，否则整体 UNVERIFIED（不得把凭据失效记成平台缺口）",
+            "四路各记 HTTP 码与 CF error code：对照 / buckets / subscriptions / wrangler",
+            "GAP_SERVICE 需 10042 + 订阅通路不通 双证据；单证据不硬判",
+            "空桶列表是真值 0 桶（MEASURED），不得当取不到（F5 腿）"],
+        "why": ("R2 是名册里唯一「代码备好但服务开不了」的项，r163 记成 GAP_SERVICE"
+                "时只试过 wrangler 一条路。r199/r200 已证同一 OAuth token 能查 CF GraphQL，"
+                "故本轮重探并加对照组：/accounts=200（凭据活着）＋ buckets=10042 ＋ "
+                "subscriptions=10000 ⇒ GAP_SERVICE 成立且证据升级；浏览器路另证 dashboard"
+                "无网页会话凭据（Turnstile 可过但停在 /login）。三态混记的代价是让这一项"
+                "从此不再被重探 —— 本面每轮重判，平台一旦放开即自动转 MEASURED。"),
+    },
 ]
 
 # 显式声明本 runner **不覆盖**的面，防止聚合绿被读成「所有门禁都绿」（R20-2）。

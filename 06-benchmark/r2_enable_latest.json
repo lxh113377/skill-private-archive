@@ -1,0 +1,35 @@
+{
+ "schema": "r2-enable-v1",
+ "readonly": true,
+ "state": "GAP_SERVICE",
+ "why": "R2 未在账号启用（10042），且 API 订阅这条路也不通（subscriptions HTTP 403 / code 10000）⇒ 属平台+人工条款同意缺口，非凭据缺口（对照 /accounts=200 已证凭据活着）",
+ "detail": {
+  "control": "alive",
+  "buckets_http": 403,
+  "buckets_code": 10042,
+  "subs_http": 403,
+  "subs_code": 10000,
+  "wrangler_rc": 1,
+  "wrangler_code": null
+ },
+ "paths": {
+  "accounts": [
+   200,
+   null
+  ],
+  "buckets": [
+   403,
+   10042
+  ],
+  "subscriptions": [
+   403,
+   10000
+  ],
+  "wrangler": [
+   1,
+   null
+  ]
+ },
+ "note": "三态里 GAP_SERVICE 必须有 /accounts=200 背书，否则降级为 UNVERIFIED —— 防止把「凭据失效」误记成「平台没开通」，那会让这一项永远不再被重探。",
+ "provenance_cmd": "python 05-exec/r201_r2_enable_face.py --json <件>"
+}

@@ -1,7 +1,7 @@
 {
  "schema": "probe-cost-v5",
  "readonly": true,
- "gate_table_count": 76,
+ "gate_table_count": 77,
  "rows": [
   {
    "gate": "cache_guard_face",
@@ -187,12 +187,29 @@
     "github": 0
    },
    "state": "NO_EXTERNAL_CALLS"
+  },
+  {
+   "gate": "r2_enable_face",
+   "script": "r201_r2_enable_face.py",
+   "apis": [
+    "cloudflare"
+   ],
+   "portable": false,
+   "declared": {
+    "cloudflare": 3,
+    "github": 0
+   },
+   "measured": {
+    "cloudflare": 3,
+    "github": 0
+   },
+   "state": "OK"
   }
  ],
  "problems": [],
  "worst_case_per_run": {
   "github": 8,
-  "cloudflare": 10
+  "cloudflare": 13
  },
  "ci_per_run": {},
  "manifest": "probe_cost_measure_latest.json",

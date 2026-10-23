@@ -372,6 +372,25 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   额外验证：新 portable 门 probe_cost_face 与 struct_recount_face 在 CI 实测 PASS ⇒ 成本台账
   在 CI 也可复核，新增联网门不记账会在 CI 直接红。
   本族七次共同形态：**把手上的信号直接写成结论，不检查信号是否真的取到了**。
+- [ ] **R201-1（r201 登记，P1·已落地）** **R2 的 GAP_SERVICE 重探：证据从「只试过 wrangler」升级为「四路 + 活性对照」**： 【r201 裁决=执行（当日重探、当日接成第 77 门、当日被第 76 门纠错并修行为）｜读数：A /accounts=200（活性对照）、B buckets=403 code 10042、C subscriptions=403 code 10000、D wrangler 同码；声明=实测=3 对账 OK；夹具 10/10。dashboard 网页会话属外部凭据缺口（已实测 headless 循环挑战与 --headed 过挑战后落 /login），非可自动化缺口。】
+  r163 把 R2 记成 GAP_SERVICE 时只试过 wrangler 一条路；r199/r200 已证同一 OAuth token 能查 CF
+  GraphQL ⇒ 必须分清 ①服务真没启用 ②客户端问题 ③凭据失效（三者处置完全不同，把 ②③ 记成 ①
+  会让这一项永远不再被重探）。本轮四路实测（第 77 门 r2_enable_face）：
+  A /accounts **200 success=True**（活性对照：凭据活着）｜B /r2/buckets 403 code **10042**（需在
+  Dashboard 启用）｜C /subscriptions 403 code **10000**（该 token 无订阅权限）｜D wrangler 同码。
+  浏览器路按 #29 自己走完：agent-browser 自带 Chrome 155 在位（setup-cdp-chrome.js --detect-only
+  报 CHROME_INSTALLED=no 只查系统 Chrome，是它检查面窄）；headless 撞 Turnstile 循环挑战（点复选框
+  后页面重载再挑战、Ray ID 变更），--headed 过了挑战但落到 /login ⇒ 我有 API 层 OAuth token、没有
+  dashboard 网页会话凭据，属**外部凭据缺口**而非可自动化缺口。另抓到 PowerShell 把 @e18 当
+  splatting 吞掉（click 报用法错，加引号即通）。
+  **第 76 门首跑即抓到我自己的错（这正是它存在的意义）**：我声明 cloudflare=4 是读代码估的，实测
+  10 —— 差值来自「测量器模拟全断网时 A/B/C 各重试 3 次」。修法不是把数字改成 10，而是**修行为**：
+  对照端点未通过即早退（判不出任何东西时不该再打 B/C）⇒ 正常路径 4 次不变、断网路径 10→3。
+  现声明=实测=3 对账 OK；每轮最坏足迹 cloudflare=13 / github=8。
+  夹具 r201_r2_fixtures 10 腿（judge 是纯函数 ⇒ 零联网测全部形态）：F2 锁命门「对照不活绝不得记
+  GAP_SERVICE」、F8 变异证明对照承重、F5 锁空桶=真值 0 而非取不到。
+  取值：python 05-exec/r201_r2_enable_face.py --json <件>；python 05-exec/r200_probe_cost_face.py。
+  另修一处标注与事实不符：run_gates 注释写「第 78 门」，门表实数 77。
 - [ ] **R200-1（r200 登记，P1·已落地）** **监控免费额度的门自己也在消耗免费额度，且无人记账**： 【r200 裁决=执行（当日发现、当日做成常驻门）｜读数：① 第 76 门 probe_cost_face 单跑 rc=0 且 [PROBECOST:PASS]；② 实测每轮最坏足迹 cloudflare=10 / github=8，CI portable 子集=0；③ 夹具 14/14 含 F12 变异腿锁 re.I 承重（漏了就 10 件全判未声明）；④ 门表 76（基线 76 由 run_gates 自写收敛）。不设目标轮：记账面已在位，任何联网门悄悄变贵即 MISMATCH 判红。】
   一手触发：r200_pages_face 连打 4 次做恢复性验证，第 2 次撞回 CF GraphQL「Rate limiter budget
   depleted」⇒ 我这几轮新增 4 个打外部 API 的门，每轮成本一直在涨，却没有任何面在看这个数。
