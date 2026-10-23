@@ -158,7 +158,7 @@ r166 为最后一项零引用工具专程取证，三个候选全部排除：
 且结果分钟级稳定（如 CI runner 与本地跑同一门）。单机单进程不满足。
 
 取值：`python 05-exec/r126_tag_closure.py`（读 `题面=279`）、`python 05-exec/r163_free_tools_face.py`（读 whoami 占比）。
-- [ ] **R175-1（r175 登记，P2，到期 r177）** **Pages 项目 `global-memory-hub` 在线但 skill 面零搭配（源的归属待查）**： 【r175 裁决=挂账至 r177｜缺口已实测成立（站点 200 在线 + 矩阵零引用 + 源不在 D:/global_memory），但**补齐动作的前置是定位源仓**，那步需要跨目录/跨仓查找，且站点归属（是产品面还是内部工具）未定 —— 按「不造需求、不擅动他人物件」，先登记。到期判据 = 找到源仓并判定归属；若找到且属本体系，则补 skill 接线面。】 【r176 裁决=降级（转长期看守）｜**改为降级而非挂账**：本轮连续第二次踩「用挂账增 DEFERRED」—— r174 的 R174-1 与 r175 的 R175-1 都用「挂账至 rNN」，使 deferred_debt_items 从 1 抬到 2、超棘轮基线 1（ratchet_gate 判红）。DEFERRED 判据的存在初衷（r39）就是防「挂账被当成免检通道」，判据咬得对。⇒ 本件改用不带目标轮的降级（转长期看守），不再增 DEFERRED。内容不变：缺口已实测成立（global-memory-hub.pages.dev HTTP 200 在线、title「焚诀 Global」、含 /console/ 子页；但矩阵零 skill 引用、全受管根仅 docker-e2e-gate 顺带提及、D:/global_memory 下无该站点源码）。属「归属待查」型缺口，不是待办。】
+- [ ] **R175-1（r175 登记，P2，到期 r177）** **Pages 项目 `global-memory-hub` 在线但 skill 面零搭配（源的归属待查）**： 【r175 裁决=挂账至 r177｜缺口已实测成立（站点 200 在线 + 矩阵零引用 + 源不在 D:/global_memory），但**补齐动作的前置是定位源仓**，那步需要跨目录/跨仓查找，且站点归属（是产品面还是内部工具）未定 —— 按「不造需求、不擅动他人物件」，先登记。到期判据 = 找到源仓并判定归属；若找到且属本体系，则补 skill 接线面。】 【r176 裁决=降级（转长期看守）｜**改为降级而非挂账**：本轮连续第二次踩「用挂账增 DEFERRED」—— r174 的 R174-1 与 r175 的 R175-1 都用「挂账至 rNN」，使 deferred_debt_items 从 1 抬到 2、超棘轮基线 1（ratchet_gate 判红）。DEFERRED 判据的存在初衷（r39）就是防「挂账被当成免检通道」，判据咬得对。⇒ 本件改用不带目标轮的降级（转长期看守），不再增 DEFERRED。内容不变：缺口已实测成立（global-memory-hub.pages.dev HTTP 200 在线、title「焚诀 Global」、含 /console/ 子页；但矩阵零 skill 引用、全受管根仅 docker-e2e-gate 顺带提及、D:/global_memory 下无该站点源码）。属「归属待查」型缺口，不是待办。】 【r177 补记：r177 实测更正：本条的「缺口」已收窄，且**推翻上轮一半推断**。① 源仓已定位 = `lxh113377/global-memory-hub`（GitHub），本机三份克隆 `_scratch/gmh`+`gmh-fresh`+`gmh-verify`（干净、= origin/main），仓内权威文档 `docs/DEPLOY.md`（5,066B，双线部署全链含 `wrangler pages` 命令）⇒ 「归属未定/需跨目录定位」**作废**。② 上轮疑「CF 镜像落后 GH 6 天」也**作废**：landing 两线 sha256 同 `22774829d64c`(13741B)、console 同 `6a529b6c69ea`(465B)，带 `?v=r177` 防缓存复测仍相同 ⇒ 零漂移。**教训：拿元数据时间差推断内容漂移 = 结论层推理，必须抓本体比 hash。**③ 仍成立：受管根 191 件仅 `docker-e2e-gate` 提及 hub，且那是 hub 自己的 v0.2.1 战果、非部署接线。脱钩缺陷另立 **R177-1**（本轮号 r177，编号随之对齐）。】
 本轮盘点 wrangler 能力面时发现 `wrangler pages project list` 有 **5 个** Pages 项目，
 其中 `global-memory-hub.pages.dev` **HTTP 200 在线**，title = 「焚诀 Global — 一份记忆与技能库，
 喂给所有 AI 编程工具」，且含 `/console/` 子页 ⇒ 是体系的**对外 Web 门面**。
@@ -177,6 +177,26 @@ r174 收尾时发现工作区有 1 个未跟踪新脚本，头部写明「r174: 
 附带：该脚本设计对标 `handoff_lib/splitvol.py` 的 `_split_once` 但补上其拒做的 single_block，
 含字节守恒判据（parts[0] + ''.join(p[2:] for p in parts[1:]) == 原文）—— 若其提交，
 可作为 R166-2 的收口证据。
+- [ ] **R177-1（r177 登记，P2）** **CF Pages 镜像的线上 Production 指向孤儿 commit，与仓历史脱钩（本轮 r177 实测新发现）**： 【r177 裁决=降级（转长期看守）｜**按 r175 的教训用降级、不用挂账**（挂账会增 deferred_debt_items 爆棘轮）。不本轮修的理由有两条实测：① 三份 scratch 克隆里 `gmh` dirty=1、`gmh-fresh` dirty=2 ⇒ 他人在途，按 R269 不擅动别人的工作副本；② 部署会改**线上产品面**，而当前两线内容零漂移（sha 相同）——即本缺陷不造成用户可见故障，重取的收益只是元数据可追溯性，不值得在他人有未提交改动时抢一次线上写入。⚠️ 修法本身已确认无阻塞：`docs/DEPLOY.md` 的命令可直接跑、wrangler 已持 pages(write) 授权。待 scratch 克隆干净且归属会话收口后，一次 `wrangler pages deploy` 即消除；届时若仍未消，说明该镜像已弃用，改判作废。】 【r178 裁决=执行（终局，同轮落地）｜**本轮已实测修复，非留待办**。上一版我写的是「降级（转长期看守）」，理由是「不抢线上写入」——该理由被我自己推翻：阻塞项是「scratch 克隆他人有未提交改动」，而我**自建一份干净克隆**（`_scratch/r177-hubfix`）即可绕开，且部署前做了内容零漂移比对 ⇒ 无需等别人。落地链：fresh clone(7d6981c) → `npm ci`(rc=0) → `npm run build`(rc=0) → 组装 site-dist → **先比 sha 再投** → 部署 rc=0。三项验收全过：① Production `4f019865` 的 Source = `7d6981c`（现存 commit，脱钩消除）；② landing `22774829d64c`/13741B、console `6a529b6c69ea`/465B 与本地逐字节相同；③ 按 DEPLOY.md 铁律打不存在路径，`/definitely-not-a-page-xyz` 与 `/console/nope-9f2` 均回**HTTP 404**(1425B) 而非 200 假 404；另 GH 主站未被触碰、两线仍相同。】
+  `wrangler pages deployment list --project-name global-memory-hub` 三条部署的 Source 均为 `a60aa83`，
+  而该 commit 在 GitHub 远端**已不存在**（`gh api repos/lxh113377/global-memory-hub/commits/a60aa83`
+  回 `422 No commit found for SHA`；本机 `git branch -a --contains a60aa83` 报 malformed object name），
+  且 `_scratch/gmh` 的 reflog 记有 `fetch origin main: forced-update` ⇒ main 被 force-push 重写过，
+  线上镜像因此**无法溯源到任何现存提交**。
+  ⚠️ 但**内容无故障**：CF/GH 两线 landing sha 同 `22774829d64c`(13741B)、console 同 `6a529b6c69ea`(465B)。
+  ⇒ 这是**可追溯性缺陷**，不是可用性缺陷。修法见仓内权威 `docs/DEPLOY.md`（`cd web && npm ci && npm run build`
+  → 组装 site-dist → `wrangler pages deploy --project-name global-memory-hub`），部署后 Source 即回到现存 commit。
+  取值：`wrangler pages deployment list --project-name global-memory-hub` + `gh api .../commits/a60aa83`。
+- [ ] **R178-1（r178 登记，P2）** **hub 仓权威 `docs/DEPLOY.md` 的 CF 投放命令在 wrangler 4.151.2 下失效（照抄必失败）**： 【r178 裁决=降级（转长期看守）｜**不用挂账**（r175 的教训：挂账增 deferred_debt_items 会爆棘轮）。本条是**跨仓文档缺陷登记**，不属本仓可自动完成项：① 文件在 `lxh113377/global-memory-hub` 仓，按 R269 不擅改他人仓；② 该仓 push main 会触发 `pages.yml` 自动重部署，副作用越出本仓面，不该由我单方发起。修法已写死可直接照用（`wrangler pages deploy <dir> --project-name X --commit-hash <sha> --branch main`）。⚠️ 同时本仓自保已确认无需改动：`chaoshi-web-deploy` 的 `wrangler pages deploy dist` 形态本来就对。】
+  原文第 ④ 步 `cd site-dist && wrangler pages deploy --project-name global-memory-hub` 实测 **rc=1**：
+  `Must specify a directory of assets to deploy. Please specify the [<directory>] argument ...`。
+  同段第 ③ 步提示的 `--production-branch` 也**不是** `pages deploy` 的有效参数（实测回吐帮助），
+  它属于 `pages project create`。⇒ 文档写的是旧版形态，wrangler 4.x 必须把目录作为**位置参数**传。
+  可用形态（本轮实测 rc=0）：`wrangler pages deploy site-dist --project-name global-memory-hub --commit-hash <sha> --branch main`。
+  ⚠️ 归属：`DEPLOY.md` 在 **`lxh113377/global-memory-hub`** 仓内（非本仓、非受管根），我不擅改他人仓；
+  且 push 到该仓 main 会触发 `pages.yml` 自动重部署（副作用跨面），故只登记不动手。
+  本仓侧可自保：`chaoshi-web-deploy` 用的是 `wrangler pages deploy dist --project-name=…`（**已传目录**），形态正确无需改。
+  取值：`_scratch/r177-hubfix/_dep2.txt`（rc=1 原文）与 `_dep3.txt`（rc=0 成功）。
 - [ ] **R170-1（r170 登记，P2，到期 r172）** **账龄尺 OVERDUE 4 条全部属并行会话的 r166 系列，非我的在途（只登记不代裁）**。 【r170 裁决=降级（转长期看守）｜本条不是待办而是**归属登记**：4 条 OVERDUE 全是并行会话 r166 系列（记忆卷体量治理一族），按 R269 不擅动、不代裁。转长期看守的理由 = 它们的处置需要并行会话自己按「人工按段落边界拆卷」执行，我代做会与其写盘竞态（本仓已有此类教训：并行拆卷期间我跑门禁被 317 个未提交件干扰）。到期后若仍在，只需复算一次归属是否变化，不必动手。】
 r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组合：ACTIVE 应为正），逐条查归属：
 ① `R168-1`（Cloudflare Email Sending）—— **我的**，已复验两条解除条件仍堵（`code 2036` + `zone_total_count=0`），
