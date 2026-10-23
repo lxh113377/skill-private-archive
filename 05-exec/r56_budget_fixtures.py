@@ -130,7 +130,11 @@ def main():
        "预算来源" in o7, o7[-300:])
 
     # b8/b9 --update 的两条口径：预算随基线存活 + 代码常量改了也不得覆盖基线（代码只读不写）
-    tmp = os.path.join(r"C:/tmp", "r56_update_baseline.json")
+    # r190 修（CI 一手，clone 复现）：原写死 `C:/tmp/...` —— Linux runner 无 C:/tmp，
+    #   --update 写不进临时件 ⇒ rc!=0 ⇒ b8/b9 恒红。用 tempfile 取当前平台临时目录，
+    #   并在 finally 里清（跨平台；不假设任何盘符）。
+    _tmpdir = tempfile.mkdtemp(prefix="r56_budget_")
+    tmp = os.path.join(_tmpdir, "r56_update_baseline.json")
     d = base_doc()
     d["note"] = str(d.get("note", "")) + " ｜夹具哨兵留账"
     d["refresh_days"]["overdue_debt_items"] = 9
@@ -151,7 +155,7 @@ def main():
        and rg.METRIC_REFRESH_DAYS.get("overdue_debt_items") != 9,
        "基线=%s 代码=%s" % ((after.get("refresh_days") or {}).get("overdue_debt_items"),
                             rg.METRIC_REFRESH_DAYS.get("overdue_debt_items")))
-    os.remove(tmp)
+    shutil.rmtree(_tmpdir, ignore_errors=True)
 
     fails = [r for r in RESULTS if not r[0]]
     print("\n夹具合计: %d 项，通过 %d，失败 %d"

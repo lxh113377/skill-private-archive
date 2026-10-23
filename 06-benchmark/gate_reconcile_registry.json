@@ -72,7 +72,7 @@
    "turnstile_face",
    "cf_deploy_face"
   ],
-  "_snapshot_at": "2026-10-23 16:28",
+  "_snapshot_at": "2026-10-23 18:37",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"

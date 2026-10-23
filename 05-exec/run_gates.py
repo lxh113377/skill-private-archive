@@ -520,7 +520,11 @@ GATES = [
         "script": "r56_budget_fixtures.py",
         "argv": [],
         "pass_token": "[GATE:fixture-pass]",
-        "portable": True,
+        "portable": False,
+        # r190 改标（Linux 等价 clone + CI 日志双证）：b7/b8 两腿真跑 ratchet_gate，而
+        #   inject_union_bytes 取 D:/global_skills、C:/Users/.../.zcode 等本机根；CI 上这些
+        #   根不存在 → 指标 return None → RATCHET:FAIL 早退、不印「预算来源」→ b7/b8 恒红。
+        "not_portable_reason": "b7/b8 真跑 ratchet_gate，其 inject_union_bytes 取 D:/global_skills 与 .zcode 等本机根（CI 无这些根 ⇒ 指标缺失 ⇒ 该腿恒红）",
         "covers": ["06-benchmark/inject_ratchet_baseline.json 的 refresh_days 声明面（schema v1→v2）",
                    "05-exec/baseline_contract_scan.py 的 inv_ratchet_refresh_days（缺项/多键/越界三向判红）",
                    "ratchet_gate.refresh_status 无静默回落（基线缺预算⇒UNVERIFIED 且不读代码常量）",
@@ -599,7 +603,8 @@ GATES = [
         "script": "r40_scan_inputs_fixtures.py",
         "argv": [],
         "pass_token": "[GATE:fixture-pass]",
-        "portable": True,
+        "portable": False,
+        "not_portable_reason": "读 D:/global_memory/AGENTS.md 等本机根（换机不存在 ⇒ 声明面失真）",
         "covers": ["05-exec/rule_conflict_scan.py 的 DEFAULT_FILES 与 input_evidence",
                    "05-exec/baseline_contract_scan.py 的 conflict_no_dead_inputs 不变式"],
         "why": "r40 实测：DEFAULT_FILES 里有一条指不到文件的权威源，被错标成归属方件挂账 4 轮"
@@ -870,7 +875,8 @@ GATES = [
         "script": "r117_upstream_delta_fixtures.py",
         "argv": [],
         "pass_token": "[GATE:fixture-pass]",
-        "portable": True,
+        "portable": False,
+        "not_portable_reason": "读本机绝对路径 C:/Users/.../焚诀 与 D:/global_skills（换机该根不存在 ⇒ 夹具期望的真号取不到，必红）",
         "covers": ["05-exec/r116_upstream_delta_classify.py 的四类唯一归类与分母守恒（含 r117 修的正则支）",
                    "05-exec/r117_route_miss_attr.py 的四态归因（STALE_EXPECT / UNREGISTERED / REAL_MISS / UNDECIDABLE）与守恒",
                    "两份真件复算：upstream_delta_r116*（11 件逐行加总）与 route_miss_attr_r117（20 条 miss 逐行重判）",

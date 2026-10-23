@@ -39,6 +39,7 @@ PROJ_SHELL = WS / "AGENTS.md"
 DEFAULT_BASELINE = BENCH / "inject_ratchet_baseline.json"
 TRUTH_CONSTANTS = Path(r"C:\Users\37533\Desktop\workspace\焚诀\eval\truth_constants.json")
 
+_NAME_DATE_RE = re.compile(r'(20\d\d-\d\d-\d\d)([a-z]?)')
 METRIC_NAMES = ("catalog_grand_chars", "inject_union_bytes", "claim_candidates",
                 "drift_ruleish_candidates", "desc_over_cap", "username_in_skill_files",
                 "overdue_debt_items",
@@ -172,12 +173,18 @@ def refresh_status():
 
 
 def _read_json(glob_pat):
-    """取匹配到的最新一份 JSON（按 mtime）。无文件/解析失败 → None（调用方记 unknown）。"""
-    files = sorted(glob.glob(str(glob_pat)), key=lambda p: os.path.getmtime(p))
-    if not files:
+    """取匹配到的最新一份 JSON。无文件/解析失败 → None（调用方记 unknown）。
+
+    r190 五修：本文件原先有**三份**「取最新件」实现（_newest_artifact / 此处按 mtime
+    排序 / 下面的 _latest），而九项指标全部走这份旧的 ⇒ r190 四修只改到 _newest_artifact
+    时 claim_candidates 仍在 clone 里挑到 claim_truth_r107（8 条）而非 _r107b（4 条）。
+    同一文件两份算法必漂移（本仓 R130 为此立过「单源枚举器」）。现统一委托 _newest_artifact。
+    """
+    newest = _newest_artifact(glob_pat)
+    if newest is None:
         return None
     try:
-        with io_open(files[-1]) as f:
+        with io_open(newest) as f:
             return json.load(f)
     except (OSError, ValueError):
         return None
@@ -208,13 +215,34 @@ _DEBT_STATE_TO_METRIC = {"OVERDUE": "overdue_debt_items",
 
 
 def _newest_artifact(glob_pat):
-    """返回匹配到的最新一份文件路径（按 mtime）；零命中 → None（R247 不得静默判绿）。"""
+    """返回匹配到的最新一份文件路径；零命中 -> None（R247 不得静默判绿）。
+
+    口径演进（r190，四次全部由 clone 复现驱动，每次都被实测推翻上一版）：
+      1) r39 t17 —— 同秒落盘时 glob 顺序不确定，名字必须进键；
+      2) r107 前后 —— 只按 mtime：CI 里 checkout 会重打全部 mtime，选中件随落盘顺序漂；
+      3) r190 一修 —— 把名字日期置首：无日期的新件被带日期的旧件压住
+         （debt_aging_r189_final2.json 输给 debt_aging_r162b_2026-10-22.json）；
+      4) r190 二修 —— 改「mtime 优先、仅全平才看日期」：checkout 各件 mtime 相差毫秒，
+         并非严格全等，于是仍走 mtime，catalog 选中 r59_2026-09-29 而非 r107_2026-10-15
+         （实测两边选件不同 -> clone 棘轮多 2 项红）。
+    终版：两个量纲归一到「日期」再比 —— 名字里有 YYYY-MM-DD 用它，没有则取文件
+    mtime 的日期；同日期比字母后缀（claim_truth_r107b 是 r107 的后写修正版，实测
+    candidates 4 优于 8）；最后按名兜底。跨机稳定，且与本机现值一致。
+    保守方向不变：仍取最新，不放宽任何判据。
+    """
     files = glob.glob(str(glob_pat))
     if not files:
         return None
-    # r107：同 mtime 平局按文件名升序取最后（r39 夹具 t17 实测：r38/r39 同秒落盘时
-    # max() 按 glob 顺序取首个最大值，谁后写不一定谁赢 ⇒ 指标抱着旧件值说谎）。
-    return max(files, key=lambda p: (os.path.getmtime(p), p))
+
+    def _key(q):
+        b = os.path.basename(q)
+        m = _NAME_DATE_RE.search(b)
+        if m:
+            return (m.group(1), m.group(2) or "", b)
+        d = datetime.fromtimestamp(os.path.getmtime(q)).strftime("%Y-%m-%d")
+        return (d, "", b)
+
+    return max(files, key=_key)
 
 
 def _debt_artifact_fresh(art_path, volume_globs=None):
@@ -250,8 +278,8 @@ def _debt_artifact_fresh(art_path, volume_globs=None):
 
 
 def _latest(pattern):
-    files = sorted(glob.glob(str(BENCH / pattern)), key=lambda p: os.path.getmtime(p))
-    return files[-1] if files else None
+    # r190 五修：第三份纯 mtime 实现，同样委托 _newest_artifact（消除口径漂移）
+    return _newest_artifact(BENCH / pattern)
 
 
 def catalog_grand_chars():
