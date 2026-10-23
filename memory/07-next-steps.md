@@ -344,6 +344,20 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   门表 69->70 走 r130 --record 登记（证据=r193_ci_health_fixtures.py 5 腿），
   gate_table_reconcile 随之下绿。实测：face rc=0（心跳 0.2h + 最近 5 run 全绿）、
   report rc=1（20% < 60%，附「历史连红拖住均线」提示）、全量 [GATES:PASS] PASS=70。
+- [ ] **R197-1（r197 登记，P1·已落地）** **我把一个免费工具的整条路报成「没了」—— 缺口报大与缺口报小同样有害**： 【r197 裁决=执行（r197 当日纠正并落地）｜读数：① 额度面 proxy=MEASURED 219.8 墙钟分钟（gates 297 run，覆盖到月初 True、缺时间戳 0）；② official 仍 GAP_PLATFORM 附官方依据；③ 夹具 17/17 含 E5/E6 双向与「不得含 pct 字段」的机器约束；④ 72 门全跑、quota_face PASS。不设目标轮：纠正已完成，后续由该门每轮看守。】
+  r196 读到 gh billing 端点 404/410 + 官方 changelog 关停产品级 billing API，就把「GitHub Actions
+  分钟数」整行定成 GAP_PLATFORM。这一步跨过界：关停的是**官方计费报表端点**，不是**用量数据本身**；
+  run 对象的 run_started_at/updated_at 一直在（实测字段清单含之）⇒ 本月墙钟分钟可自算。
+  两个不同命题被我合成一行，等于用「官方端点没了」顺带否掉「代理可测」。
+  修法：拆成 official=GAP_PLATFORM 与 proxy=MEASURED 两行；实测 219.8 分钟（gates 297 run）／
+  全部 workflow 223.1（计入 302、缺时间戳 0）。取值：python 05-exec/r196_quota_face.py --json <件>。
+  并拒绝折算百分比（守住 r196 自立的规矩）：墙钟 != billable（按 runner 类型加权、并发 job 各计时）、
+  本仓库作用域 != 账号级额度、官方 Free 档分钟数未取到可靠出处（docs 页为 JS 壳无服务端表格）；
+  夹具 E6 腿直接断言结果不得含 pct 字段 ⇒ 把「不折算」钉成机器约束而非自觉。对照 D1 可算百分比：
+  其分母有名册出处且与分子同量纲（file_size vs 存储额度）。
+  覆盖度纪律（E5 腿）：翻页未及月初 ⇒ UNVERIFIED 且不报分钟，不把部分当全量；E5/E6 构成双向。
+  夹具 10->17 腿全过；门表 covers/why 同步更新（防门表描述与实件行为漂成两份真相源）。
+  元教训：报缺口时要同样严格地问「是真整个没了，还是只是我常用的那条路没了」。
 - [ ] **R196-1（r196 登记，P1·已落地）** **我把「近期无绿」当僵尸信号 —— 既误报又漏报的语义错**： 【r196 裁决=执行（r196 当日纠正并双向实测）｜取值：face rc=0 且附（读数）行、report rc=1（地板未放宽）；r193_ci_health_fixtures 5 腿全过。不挂账：语义已改对，残留风险由该门与夹具看守。】
   r195 接第 70 门时，face 模式写成「最近 5 个已完成 run 无 success ⇒ 疑重新变僵尸」。
   r196 真实数据当场证伪：近 12 run = 6 success + 6 failure、action_required=0 ⇒ CI 在正常
