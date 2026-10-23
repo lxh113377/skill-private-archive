@@ -326,6 +326,18 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
 - **第一代卷·范围登记（part1..73、76，共 74 卷）** `07-next-steps.part1.md…07-next-steps.part73.md`、`07-next-steps.part76.md` — 第一代 74 卷（R199 前代拆卷产物：早期轮次摘要/归档；含仅存于这些卷的 4 条 R 号 R19-3 / R20-2 / R97-7 / R105-6）。逐卷覆盖率判据 = `python 05-exec/r191_volume_coverage.py`（[COVERAGE:SELFTEST-PASS] 四腿自证；2026-10-23 r191 补登，收 R183-1 存量面）。
 
 
+- [ ] **R192-1（r192 登记，P1·已落地）** **为抓夹具变异把生产路径堵死 —— 密闭性修在错误的支上**： 【r192 裁决=已落地（无需降级/挂账）｜三项修复均在本轮内完成，两处独立读数：① 本地 69 门 [GATES:PASS] PASS=69（无 FAIL/UNVERIFIED/MISSING）；② CI run 389 head=bba7a77 conclusion=success、红门 0，终结自 2026-09-25 起连续 338 个红 run。反哺面：受管根 R801 = win-toolchain-pitfalls 9.13（判别口诀 + 注入面回退 + 验证顺序三步）。】
+  r191 为防「夹具摘 --staged 后静默回落读真仓」，把**缺省分支**也改成 files=None + rc=2；
+  但门表 argv 未同步传 --staged => commit_gate_map_face 在正常跑时恒 UNVERIFIED
+  （夹具 13/13 全绿、生产路径全红 —— 我只看夹具，漏了「直接跑被测件」这一步）。
+  修法三处（均已落地）：① 缺省恢复读真仓 staged_files()；
+  ② runner 跑门前把 git diff --cached --name-only 落成 _temp/_gatemap_staged.txt，argv 以 --staged 传入（与夹具 t9 同一条缝）；
+  ③ 注入面带回退：提交后暂存为空 => 回退到 git diff --name-only HEAD~1 HEAD。
+  判别口诀：先问「防的是**显式传入**参数失效，还是**缺省**取值不可信」——前者只堵「传了但文件不存在」那一支。
+  验证顺序 = 夹具全过 -> 直接跑被测件 -> 跑整套餐。另：本轮两次被 pre-commit 拦下（runner 里 io_open / NL 未定义）。
+  终态：本地 69 门 [GATES:PASS]；CI run 389（head=bba7a77）success，红门 0 ——
+  这是本仓 CI 自 2026-09-25 起连续 338 个红 run 后的第一次绿。反哺：受管根 R801（win-toolchain-pitfalls 9.13）。
+
 - [ ] **R189-2（r189 登记，P1）** **我清理自造临时件时越界：按扩展名无差别删 _temp，动了并行会话的在途取证件（本轮自查，非被抓）**： 【r189 裁决=降级（转长期看守）｜用降级不用挂账（r175 教训：挂账增 deferred_debt_items 会爆棘轮）。本条自查出的越界无法回滚（_temp 无版本）也无需补救：被删者若真需要，重跑对应流程即可再生。看守价值 = 把「共享临时目录按扩展名扫射」这个反例留在册上；下次清理必须先按自己的命名前缀白名单。若并行会话后续报「某轮取证件不见」，本条即归因入口。】
   收尾时为防 control_char_scan 被我的日志污染，我对 _temp/*.{py,log,txt} 做了无差别删除，共删 212 件。
   事后自查发现 _temp 是多会话共用目录（并行会话也在写）：现存件里 debt_now.json、precommit_*.json、
