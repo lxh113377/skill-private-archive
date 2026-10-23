@@ -89,7 +89,7 @@
     "cloudflare": 0,
     "github": 0
    },
-   "state": "rc=1"
+   "state": "rc=0"
   }
  },
  "provenance_cmd": "python 05-exec/r200_probe_cost_measure.py --json <件>"
