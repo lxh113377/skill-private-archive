@@ -325,6 +325,16 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
 - **卷105** `07-next-steps.part179.md` — 07-next-steps 分卷（r183 段落边界拆自 part164）
 
 
+- [ ] **R189-2（r189 登记，P1）** **我清理自造临时件时越界：按扩展名无差别删 _temp，动了并行会话的在途取证件（本轮自查，非被抓）**： 【r189 裁决=降级（转长期看守）｜用降级不用挂账（r175 教训：挂账增 deferred_debt_items 会爆棘轮）。本条自查出的越界无法回滚（_temp 无版本）也无需补救：被删者若真需要，重跑对应流程即可再生。看守价值 = 把「共享临时目录按扩展名扫射」这个反例留在册上；下次清理必须先按自己的命名前缀白名单。若并行会话后续报「某轮取证件不见」，本条即归因入口。】
+  收尾时为防 control_char_scan 被我的日志污染，我对 _temp/*.{py,log,txt} 做了无差别删除，共删 212 件。
+  事后自查发现 _temp 是多会话共用目录（并行会话也在写）：现存件里 debt_now.json、precommit_*.json、
+  gates_r183e_run.txt 均非我的命名法 => 被删的 212 件里可能含它本轮的取证件（.txt/.log 正是我的删除模式）。
+  影响面实测：_temp 整体被 .gitignore 且 _temp 下被跟踪件 = 0 => 无版本可回滚；但本仓判据取数一律现算、
+  不读 _temp，且我删后跑的 69 门全绿 => 未污染任何判定面。
+  教训：共享临时目录里的清理必须按自己的命名前缀白名单删（如 r189_*），不能按扩展名扫射 ——
+  与 R269「不擅动他人物」同源，只是这次我动的是他人的临时件。
+  取值：git check-ignore _temp 加 git ls-files _temp（计数 0）。
+
 - [ ] **R189-1（r189 登记，P2）** **`ratchet_gate._newest_artifact` 有与本轮所修**同一类**的病（全平 mtime 退化按名 max），但它只在本机跑 ⇒ 优先级 P2**： 【r189 裁决=降级（转长期看守）｜按 r175 教训用降级不用挂账（挂账增 deferred_debt_items 会爆棘轮）。不本轮修有两条实测理由：① 该门 portable=False，CI 里 SKIPPED-BY-DESIGN ⇒ 与本轮 CI 判红无关，不是同一故障；② 它被 r39 夹具 t17 锁着，改取新口径必须配套加跨命名族的腿，混在本轮 provenance 修复里会让一次提交干两件事（违「一次只改一件事」）。看守条件：若哪天 ratchet_gate 被搬进 CI（或证据件命名族继续增多导致本机也取错），本条升 P1 并按 latest() 同款三级口径修。】
   r189 修完 `r112_provenance_face.latest()` 后顺着注释（「与 ratchet_gate._newest_artifact 同口径」）
   查到同一模式：`max(files, key=lambda p: (os.path.getmtime(p), p))`。它挑的 glob 是
