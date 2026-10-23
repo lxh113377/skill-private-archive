@@ -1,0 +1,340 @@
+可移植门禁子集（4/6）	UNKNOWN STEP	﻿2026-10-23T07:00:41.1637525Z Current runner version: '2.338.0'
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.1656101Z ##[group]Runner Image Provisioner
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.1656649Z Hosted Compute Agent
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.1657003Z Version: 20261012.601
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.1657464Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.1657899Z Build Date: 2026-10-12T17:48:21Z
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.1658299Z Worker ID: {adf12776-f266-4ed6-af09-faf468c9f0da}
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.1659056Z Region: southcentralus
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.1659413Z Cloud: Azure
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.1659813Z ##[endgroup]
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.1660619Z ##[group]Operating System
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.1661043Z Ubuntu
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.1661414Z 24.04.5
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.1661730Z LTS
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.1662095Z ##[endgroup]
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.1662443Z ##[group]Runner Image
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.1662826Z Image: ubuntu-24.04
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.1663227Z Version: 20261012.334.1
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.1664028Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261012.334/images/ubuntu/Ubuntu2404-Readme.md
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.1664940Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261012.334
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.1665498Z ##[endgroup]
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.1666214Z ##[group]GITHUB_TOKEN Permissions
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.1667427Z Contents: read
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.1668169Z Metadata: read
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.1668510Z ##[endgroup]
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.1670291Z Secret source: Actions
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.1670901Z Cache mode: write
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.1671354Z Prepare workflow directory
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.1905135Z Prepare all required actions
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.1945493Z Getting action download info
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.4271084Z Download action repository 'actions/checkout@11d5960a326750d5838078e36cf38b85af677262' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.5263354Z Download action repository 'actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.6765801Z Complete job name: 可移植门禁子集（4/6）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.7237800Z ##[group]Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.7238317Z with:
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.7238712Z   repository: lxh113377/skill-private-archive
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.7240779Z   token: ***
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.7241048Z   ssh-strict: true
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.7241296Z   ssh-user: git
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.7241543Z   persist-credentials: true
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.7241811Z   clean: true
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.7242061Z   sparse-checkout-cone-mode: true
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.7242345Z   fetch-depth: 1
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.7242589Z   fetch-tags: false
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.7242837Z   show-progress: true
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.7243085Z   lfs: false
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.7243312Z   submodules: false
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.7243559Z   set-safe-directory: true
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.7243891Z   allow-unsafe-pr-checkout: false
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.7244444Z ##[endgroup]
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.7921219Z Syncing repository: lxh113377/skill-private-archive
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.7922925Z ##[group]Getting Git version info
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.7923668Z Working directory is '/home/runner/work/skill-private-archive/skill-private-archive'
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.7924671Z [command]/usr/bin/git version
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.8000112Z git version 2.55.0
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.8022375Z ##[endgroup]
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.8031637Z Temporarily overriding HOME='/home/runner/work/_temp/87aa7c37-806d-4b29-b2fa-9cf6a50025dc' before making global git config changes
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.8032979Z Adding repository directory to the temporary git global config as a safe directory
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.8036362Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/skill-private-archive/skill-private-archive
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.8085104Z Deleting the contents of '/home/runner/work/skill-private-archive/skill-private-archive'
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.8087001Z ##[group]Initializing the repository
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.8090799Z [command]/usr/bin/git init /home/runner/work/skill-private-archive/skill-private-archive
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.8181701Z hint: Using 'master' as the name for the initial branch. This default branch name
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.8183036Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.8184041Z hint: to use in all of your new repositories, which will suppress this warning,
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.8185255Z hint: call:
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.8186081Z hint:
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.8187070Z hint: 	git config --global init.defaultBranch <name>
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.8188205Z hint:
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.8189169Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.8190640Z hint: 'development'. The just-created branch can be renamed via this command:
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.8191679Z hint:
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.8192294Z hint: 	git branch -m <name>
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.8192979Z hint:
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.8193857Z hint: Disable this message with "git config set advice.defaultBranchName false"
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.8195270Z Initialized empty Git repository in /home/runner/work/skill-private-archive/skill-private-archive/.git/
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.8211252Z [command]/usr/bin/git remote add origin https://github.com/lxh113377/skill-private-archive
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.8264222Z ##[endgroup]
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.8264812Z ##[group]Disabling automatic garbage collection
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.8269175Z [command]/usr/bin/git config --local gc.auto 0
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.8300741Z ##[endgroup]
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.8301155Z ##[group]Setting up auth
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.8307134Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.8340184Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.8646540Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.8675384Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.8851658Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.8883404Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.9081658Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.9118125Z ##[endgroup]
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.9118891Z ##[group]Fetching the repository
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:41.9124860Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +df44b1d02186d882b074d967ccaee71e2a3fb4e8:refs/remotes/origin/main
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:43.3052011Z From https://github.com/lxh113377/skill-private-archive
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:43.3053738Z  * [new ref]         df44b1d02186d882b074d967ccaee71e2a3fb4e8 -> origin/main
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:43.3057227Z ##[endgroup]
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:43.3058252Z ##[group]Determining the checkout info
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:43.3059667Z ##[endgroup]
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:43.3060932Z [command]/usr/bin/git sparse-checkout disable
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:43.3109156Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:43.3139653Z ##[group]Checking out the ref
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:43.3147567Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:43.4776313Z Switched to a new branch 'main'
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:43.4780237Z branch 'main' set up to track 'origin/main'.
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:43.4805425Z ##[endgroup]
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:43.4848040Z [command]/usr/bin/git log -1 --format=%H
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:43.4873183Z df44b1d02186d882b074d967ccaee71e2a3fb4e8
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:43.5160511Z ##[group]Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:43.5161622Z with:
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:43.5162343Z   python-version: 3.12
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:43.5162981Z   check-latest: false
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:43.5169310Z   token: ***
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:43.5169919Z   update-environment: true
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:43.5170628Z   allow-prereleases: false
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:43.5171312Z   freethreaded: false
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:43.5171931Z ##[endgroup]
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:43.6108899Z ##[group]Installed versions
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:43.6176449Z (node:2747) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:43.6179294Z (Use `node --trace-deprecation ...` to show where the warning was created)
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:43.6180871Z Successfully set up CPython (3.12.15)
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:43.6182530Z ##[endgroup]
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:43.6377463Z ##[group]Run python 05-exec/run_gates.py --portable-only --json gate_run_ci.json
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:43.6380042Z ^[[36;1mpython 05-exec/run_gates.py --portable-only --json gate_run_ci.json^[[0m
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:43.6650143Z shell: /usr/bin/bash -e {0}
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:43.6650959Z env:
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:43.6651701Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:43.6652896Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:43.6654103Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:43.6655174Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:43.6656259Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:43.6657331Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:43.6658246Z ##[endgroup]
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:49.3355464Z   ⚠️ 前置腿·账龄件相对新鲜: REGEN-FAILED（重生 rc=2：）⇒ 不阻断，但本轮 debt 三指标可能仍转 unknown
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:49.3356079Z === 本仓门禁聚合 runner (2026-10-23 07:00) ===
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:49.3356529Z 工作根: /home/runner/work/skill-private-archive/skill-private-archive
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:49.3357429Z selftest_census_face             PASS        rc=0      357ms  R151-5 登记『历轮大量夹具是打印 want 不看 got 同族形态』但一直没人扫。本面把 #48 做成常驻候选面（48 件/候选 0/弱信号 10）。本面自身四轮假阳自抓史（候选 6→3→1→0：文本行判接线→AST 守卫→计数器家族→数值 += 专属）正是『年轻判据不该立即上阻断』的实证——故本门候选不判红（rc=0 恒过，只有自证失败/零输入才红），进门表只为让普查**每轮真的跑**，防 R151-5 那样挂着没人动。
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:49.3358474Z       覆盖根: 静态扫 05-exec 自测/夹具件，三条线索：C1 打印 want 却零比对 / C2 判定旗仅赋值未引用 / C3 旗未挂退出路径 ; 候选=线索不是判决（#32）：件头显式声明处置=逐个复核或补比对；弱信号（族名撞车非计数器）advisory 单列 ; 自证三腿常驻：无齿面 SUSPECT_NO_TEETH / 死旗面 SUSPECT_DEAD_FLAG / 对照面 OK —— 任一不符 SELFTEST-FAIL（输出 0 之前先证报得出非 0） ; 零输入面 rc=2 UNVERIFIED（R247 禁按干净记）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:49.3359425Z gov_acceptance_face              SKIPPED-BY-DESIGN  内部复跑各面，其中 A3 须调归属方 handoff.py --print-budget（受管根绝对路径）=> 离机该腿 UNVERIFIED(rc=2)，不得算绿（R247）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:49.3360138Z contract_lifecycle_face          SKIPPED-BY-DESIGN  读受管根绝对路径（governance.md / greencheck.py / ci-green-contract.md / contract.md）；离机缺件 => rc=2 UNVERIFIED（R247/X-24 禁在缩小分母上判绿）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:49.3360802Z volume_tiers_face                SKIPPED-BY-DESIGN  阈值须调归属方 handoff.py volume --print-budget（受管根绝对路径），离机不可达 => rc=2 UNVERIFIED
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:49.3361614Z gov_link_face                    PASS        rc=0       40ms  r150 实测：两类治理各有 append-only 台账（契约 478 轮/15 日、体量 41 快照/11 日），却没有任何一处放在同一条时间轴上。本门首次联结并测出 4 条结构缺陷（两侧无共享主键 => 只能按日窗口粗联结；files/growth_ratio 覆盖 0/41；体量册末条陈旧 3.89 天）。同时是体量侧 2 条转办提案的常驻复算面（#47 三件套）。
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:49.3362499Z       覆盖根: 按日联结：契约册 06-benchmark/gate_runs.jsonl x 体量册 memory/sessions/volume-snapshots.jsonl ; 联结诊断四条具名：NO_SHARED_KEY / VOL_FIELD_EMPTY / VOL_LEDGER_STALE / FEW_COMMON_DAYS（advisory） ; 零分母（任一侧空或共同日 0）=> rc=2 UNVERIFIED，禁按绿记（R247）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:49.3363193Z derived_freshness_face           SKIPPED-BY-DESIGN  只读 import 焚诀 eval/derivative_watch.stale_sources()（路径写死归属方仓）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:49.3364164Z write_order_sweep_face           SKIPPED-BY-DESIGN  穷举时会临时改写 .git/hooks 与两份 git 台账件（finally 还原）；并发窗口=门自身时长
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:49.3364611Z install_history_face             SKIPPED-BY-DESIGN  读 .git/hooks/*.installed.log（换机后形态取决于是否重装）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:49.3365438Z hook_attribution_face            SKIPPED-BY-DESIGN  读 .git/hooks/*.installed 印记（换机后形态取决于是否重装）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:49.3366169Z hook_trace_face                  SKIPPED-BY-DESIGN  读 05-exec/hook_templates/、.git/hooks/ 与 .installed 印记（换机后形态取决于是否重装）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:49.3366652Z hook_sync_face                   SKIPPED-BY-DESIGN  读 05-exec/hook_templates/ 与 .git/hooks/（换机后 hooks 形态取决于是否重装）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:49.3367152Z hook_health_face                 SKIPPED-BY-DESIGN  读 .git/hooks/ 与 05-exec/r137_commit_gate_map.py（换机/clone 后 hooks 目录形态取决于是否重装）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:49.3367594Z commit_gate_map_face             SKIPPED-BY-DESIGN  读 git 暂存区（换机无本仓暂存态时检查失去对象）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:49.3368006Z proposal_evidence_face           SKIPPED-BY-DESIGN  读本仓 06-benchmark/transmit_proposals.json（换机无该台账时检查失去对象）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:49.3368478Z lang_boost_efficacy_face         SKIPPED-BY-DESIGN  读焚诀 eval 语料/嵌入面 + 受管根 D:/global_skills 盘面（换机无这两个面）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:49.3369257Z causal_evidence_face             SKIPPED-BY-DESIGN  读本仓 06-benchmark/ 下的对标报告（换机无该批报告时检查失去对象）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:49.3369828Z direct_fix_efficacy_face         SKIPPED-BY-DESIGN  读焚诀 eval 路由与 D:/global_skills 盘面（换机无这两个面）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:49.3370430Z closure_layers_face              SKIPPED-BY-DESIGN  建立在 direct_closure 与 tag_closure 两个上游面之上，须真跑焚诀路由与语料
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:49.3371158Z gate_table_reconcile             SKIPPED-BY-DESIGN  读本仓 05-exec/run_gates.py 的 GATES 表与 06-benchmark/gate_reconcile_registry.json 快照台账；换机无本仓门表时检查失去对象
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:49.3372136Z r19_scan_fixtures                SKIPPED-BY-DESIGN  层b 真机接线 subprocess 调 cumulative_drift_scan.py / description_baseline_scan.py / claim_truth_scan.py，三者读 D:\global_skills ∪ 焚诀 ∪ D:\global_memory（r31 静态实测：各含 1-2 处本机绝对根）⇒ 离机必红，刻意不入 CI
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:49.3372943Z r19_baseline_contract_fixtures   PASS        rc=0      285ms  契约校验器自身的夹具（含 r31 授权代际列表 t11/t12）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:49.3373495Z       覆盖根: 05-exec/baseline_contract_scan.py ; 05-exec/schemas/r19/baseline-contracts.json
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:49.3374041Z baseline_contract_scan           PASS        rc=0      104ms  产物 schema/必填/类型/不变式事前拒收
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:49.3374670Z       覆盖根: 06-benchmark/*.json 机器证据结构（份数/pattern 数不硬编码，取值：该门 --json 输出的 files_checked 与 artifacts 长度）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:49.3375398Z ratchet_gate                     SKIPPED-BY-DESIGN  取值需读 焚诀 eval/truth_constants.json 与 D:\global_skills 实测字节，跨机不可复现
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:49.3376032Z control_char_scan                PASS        rc=0     1119ms  拦「肉眼看不见、但让引用检索不到」的 C0 ∪ DEL
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:49.3376413Z       覆盖根: 本仓全部文本面（r31 实测 376 个面）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:49.3376993Z tracked_empty_check              PASS        rc=0       40ms  拦「写崩/截断留下的 0 字节件」——r34 我曾把 memory/AGENTS.md 写成 0 字节，靠 Git 基线才恢复
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:49.3377606Z       覆盖根: 本仓全部 tracked 文本件（.md/.py/.json/.jsonl/.yml/.txt/.ps1/.sh/.toml 等） ; 二进制/未知扩展跳过但如实计数，不静默当通过
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:49.3378407Z mark_verdict_fixtures            PASS        rc=0      443ms  r45 实测 W-9 挂了 5 轮的真因是按行号写标记写到别处；本门锁死该入口不再接受行号、歧义与已闭环一律拒写、写完必须读回
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:49.3379257Z       覆盖根: 05-exec/r46_mark_verdict.py 的锚点定位与拒写分支 ; X-19 禁行号写标记（工具化，不靠自觉）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:49.3379913Z refresh_budget_fixtures          SKIPPED-BY-DESIGN  g8/g9/g10/g11 在真机上核对 9 个指标源件的 mtime 年龄并跑 ratchet CLI；换机无 06-benchmark 证据件与焚诀 truth_constants 时全部取不到年龄，判据退化为恒 UNVERIFIED，无意义
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:49.3380604Z handles_readme_fixtures          FAIL        rc=1      145ms  r53 实测：对手 AAS 一份 README 挂 50 个文件链接、正文数字 0-1 个，而我方 60 份机器可读件在入口文档里链接数为 0；同时 r38 含 PR 的数字在报告里无命令跑了 12 轮 ⇒ 数字必须由产物承载、入口必须可达
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:00:49.3381243Z       覆盖根: 05-exec/r38_debt_aging.py 的 make_handles/resolve_handle（句柄可解值、死句柄返 None） ; 写台账→解句柄的闭环守恒 h7/h7b（源头断了必须显形，不得沿用旧值） ; README 指向 06-benchmark 的链接数 >0 且零死链（h8/h9 + 自检）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:04.7431958Z       末输出: 重跑仍 FAIL ⇒ 判真红 | 首跑: 用的是上一行」）         <-- {'rc': 2, 'handle_overdue': None, 'by_class': None, 'drift': None} | PASS h13 真机无漂移标记：同轮一致性自检不得产生 handles_drift（产生即红）                 | 夹具合计: 15 项，通过 14，失败 1 | [GATE:fixture-fail] | 重跑: 用的是上一行」）         <-- {'rc': 2, 'handle_overdue': None, 'by_class': None, 'drift': None} | PASS h13 真机无漂移标记：同轮一致性自检不得产生 handles_drift（产生即红）                 | 夹具合计: 15 项，通过 14，失败 1 | [GATE:fixture-fail]
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:04.7433248Z md_claim_face                    FAIL        rc=1      167ms  r51 实测 JSON 取证件已被判据管住，但真正被读的是报告正文：r38 的 open issues 就在报告里以无命令形态跑了 12 轮。接线口径 = 只判可整改面（r≥51 或 mtime 当日），历史面 755 处敞口如实登记但不判红（R241 禁回改，且拿不可消的警告当判据即 W-32 那个毛病）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:04.7433831Z       覆盖根: 06-benchmark/*.md 引用面（数字声明 ±12 行内需有取值命令） ; 05-exec/r52_mdclaim_fixtures.py 的 19 例（含标题行排除与分面守恒）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:04.7434927Z       末输出: 重跑仍 FAIL ⇒ 判真红 | 首跑: 数字出现在正文里必须仍被抓（排除标题不得顺手放过正文）                     | FAIL m17 真机接线：可整改面（r≥51 或当日 mtime）必须零敞口 ⇒ 新增无命令数字会红               <-- live=2438 uncited=3 历史面=700（不参与判定） | 夹具合计: 20 项，通过 19，失败 1 | [GATE:fixture-fail] | 重跑: 数字出现在正文里必须仍被抓（排除标题不得顺手放过正文）                     | FAIL m17 真机接线：可整改面（r≥51 或当日 mtime）必须零敞口 ⇒ 新增无命令数字会红               <-- live=2438 uncited=3 历史面=700（不参与判定） | 夹具合计: 20 项，通过 19，失败 1 | [GATE:fixture-fail]
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:04.7435891Z retrieval_fixtures               PASS        rc=0      132ms  r51 实测我方引用对手 open issues 取自 REST 含 PR 面（虚高 1.5–3.5 倍）、workflow 数混入平台 dynamic 件；且实跑接线暴露调度器传给不变式的是名字串而非配置值——按名字比较会让全部证据件被字典序静默豁免
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:04.7437008Z       覆盖根: 05-exec/baseline_contract_scan.py 的 inv_opponent_claims_have_retrieval（结构识别，不锁键名） ; 契约 debt_aging glob 由 r3* 修成 r*（陈旧 pattern 面洞） ; 真机：06-benchmark/opponents_*_r*.json 全部须过判据
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:04.7437795Z w47_reconcile_fixtures           SKIPPED-BY-DESIGN  四条腿都要真跑 r128_ruler_reconcile.py，而它 import 焚诀 eval 的 unified_router 并逐题 route()；换机既无该路由面也无 r127 修正产物，本门会因输入面缺失判 UNVERIFIED
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:04.7438421Z reconcile_admission              SKIPPED-BY-DESIGN  判据面取自 git log 近 4 次提交 + 未跟踪 .py，依赖 .git 与工作区状态；换机无本仓提交史时新增面为空，检查失去意义（只余空断言）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:04.7439442Z root_face_fixtures               SKIPPED-BY-DESIGN  整条夹具走真实 `handoff.py noise <项目根>` 子进程并核对本机受管根登记面（R286 的 KNOWN_CORE 键是绝对路径）；换机既无该登记也无本项目根，f2/f8 的残留项集合不成立
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:04.7440101Z tag_closure_fixtures             SKIPPED-BY-DESIGN  n7 真题面小样需真跑 r126_tag_closure.py，而它读焚诀 eval 的语料与统一注册表；换机既无该语料也无该索引，本门会因输入面缺失判 UNVERIFIED
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:04.7440699Z range_attr_fixtures              PASS        rc=0     1384ms  r123 给棘轮加了累计区间归因通道；新通道天然是只降不升棘轮的上调后门，若不留证件，后人加空 reason 或把 --to 写成实测+1 就能把棘轮变成只升不降（X-9 反向形态）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:04.7441383Z       覆盖根: ratchet_gate --range-attribute 五道反例（--from 不接真实基线 / --to 预支 / --commits 空 / --range-reason 空 / --metric 未知） ; 合法区间正例：留账 kind=range 且指标落到 --to ; 守恒：被拒的归因不得在基线件留任何痕（防把留账当装饰刷条数）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:04.7442132Z budget_contract_fixtures         FAIL        rc=1     1076ms  r54 我只做到「代码里逐个声明保质期」，但契约看不见那张表 ⇒ 谁删一项就静默少一项，声明退化成没人看守的注释（当时登记为 D-97/W-37）；对手把节律写在被 CI 解析的文件里，声明即被校验 —— 本门把同一件事在无 CI 条件下做成等价机制
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:04.7443112Z       覆盖根: 06-benchmark/inject_ratchet_baseline.json 的 refresh_days 声明面（schema v1→v2） ; 05-exec/baseline_contract_scan.py 的 inv_ratchet_refresh_days（缺项/多键/越界三向判红） ; ratchet_gate.refresh_status 无静默回落（基线缺预算⇒UNVERIFIED 且不读代码常量） ; --update 不得改写预算面 + 预算与 note 留账同轮存活（D-104 同族再犯防护）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:04.7444479Z       末输出: 重跑仍 FAIL ⇒ 判真红 | 首跑: 账必须一起存活（D-104 同族再犯防护）  ← rc=2 rd=9 note=轮到期追讨后合规续挂至 r142（REPEAT 判据继续正确计数，升级动作归归属方）；⚠️ 非放宽阈值。 ｜夹具哨兵留账 | PASS b9 代码只读不写：基线预算与代码常量不同（9 vs 3）时 --update 必须保留基线值 | 夹具合计: 10 项，通过 8，失败 2 | [GATE:fixture-fail] | 重跑: 账必须一起存活（D-104 同族再犯防护）  ← rc=2 rd=9 note=轮到期追讨后合规续挂至 r142（REPEAT 判据继续正确计数，升级动作归归属方）；⚠️ 非放宽阈值。 ｜夹具哨兵留账 | PASS b9 代码只读不写：基线预算与代码常量不同（9 vs 3）时 --update 必须保留基线值 | 夹具合计: 10 项，通过 8，失败 2 | [GATE:fixture-fail]
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:04.7445376Z evidence_face_fixtures           SKIPPED-BY-DESIGN  断言对象是本项目 06-benchmark 里的 r56 实测件与受管根规则扫描结果（换机无同源件）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:04.7445901Z baseline_note_fixtures           SKIPPED-BY-DESIGN  n4/n5/n6 读写本项目 06-benchmark/inject_ratchet_baseline.json 的现件留账（r38/r40/r45 三条人工核定依据是本轮恢复的历史事实，换机不存在）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:04.7446643Z input_face_fixtures              PASS        rc=0       47ms  账龄尺有四处截断/降采样（-40 取轮号、body[:80] 去重、needle[:70] 定年、title[:110] 展示）从未自证；且 r46 我把 W-17 的延期裁决写到了已落地的 W-14 行上（锚点唯一命中≠对象正确），3 轮后才被到期追讨发现 —— 本锁把两者都变机器判据
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:04.7447309Z       覆盖根: 05-exec/r38_debt_aging.py 的 face_round/face_dedup/face_dating ; 05-exec/r46_mark_verdict.py 的 landed_contradiction/item_own_id（第⑥重拒写） ; 真卷输入面守恒（RE_ITEM 行数 == 计入条目数 + 前缀键零碰撞）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:04.7448001Z authority_face_fixtures          SKIPPED-BY-DESIGN  c5–c8 在真机权威源 D:\global_memory\core 上跑发现器并断言扫描面无漏扫件；换机无该根则候选集为空，覆盖面断言失去意义（只余纯函数例）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:04.7448510Z scan_inputs_fixtures             FAIL        rc=1      138ms  r40 实测：DEFAULT_FILES 里有一条指不到文件的权威源，被错标成归属方件挂账 4 轮——本条把『声明==实存』钉成契约判据，防同类债务被错误外部化
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:04.7449238Z       覆盖根: 05-exec/rule_conflict_scan.py 的 DEFAULT_FILES 与 input_evidence ; 05-exec/baseline_contract_scan.py 的 conflict_no_dead_inputs 不变式
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:04.7450290Z       末输出: 重跑仍 FAIL ⇒ 判真红 | 首跑:                        2 vs 10 | PASS t3 真机产物过契约（含新不变式 conflict_no_dead_inputs）               | PASS t4 反例：声明 10 实存 9（有死条目）→ 契约必红并点名                         | 夹具合计: 5 项，通过 3，失败 2 | [GATE:fixture-fail] | 重跑:                        2 vs 10 | PASS t3 真机产物过契约（含新不变式 conflict_no_dead_inputs）               | PASS t4 反例：声明 10 实存 9（有死条目）→ 契约必红并点名                         | 夹具合计: 5 项，通过 3，失败 2 | [GATE:fixture-fail]
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:04.7451013Z debt_ledger_fixtures             PASS        rc=0     3424ms  锁死三件：脏测量值不得进趋势线；挂账到期必须回判 OVERDUE；origin 取值域封闭 local/ci
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:04.7451490Z       覆盖根: 05-exec/r38_debt_aging.py 的 append_ledger 与 classify_item ; 05-exec/schemas/r19/baseline-contracts.json 的 debt_runs.jsonl 行契约
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:04.7452065Z noise_tracked_stub               SKIPPED-BY-DESIGN  层a 需在 %TEMP% 建真实 git 仓并 git commit（要 git 身份），层b 断言两个真实受管根（焚诀 / global_memory）的已知假阳性必须清零 —— 换机无这两根即无意义
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:08.3606741Z gate_run_freshness               PASS        rc=0       32ms  防判据僵尸化（对手实测：spec-kit 50% run 停在 action_required，从未产生判定）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:08.3607590Z       覆盖根: 06-benchmark/gate_runs.jsonl 执行台账 ; 间接盯住 ratchet_gate / r19_scan_fixtures 两台机专属门是否仍被人跑
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:08.3608472Z roster_partition_fixtures        PASS        rc=0       31ms  第 18 维名册差集首版把「路径条数」当分母、又让单仓 864 条生成式清单占掉对手面 79.8% —— 域内自洽却整体失真。本门把那层防护钉成契约不变式，并按 W-47 同时交出应绿与应红的证据
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:08.3610219Z       覆盖根: 05-exec/baseline_contract_scan.py 的 inv_roster_partition_sum（r60 新增不变式） ; 06-benchmark/capability_roster_r60_2026-09-30.json 与 capability_gap_r60_2026-09-30.json 真件面 ; 四例变异：抽 domain 行 / 抽 item retrieval / 零面 / items 长度不符
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:08.3611634Z py_syntax_guard                  PASS        rc=0      256ms  W-46 的下一层：`pattern 有没有生成器` 之外还得问 `生成器能不能加载`。r58 实物 = `evidence_resolvability_measure.py:111` 少一个右括号，已入库且长期不可运行，其产物成为「生成器跑不起来」的死句柄，而 21 道门没有一道会因为工具加载失败而红
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:08.3612349Z       覆盖根: 05-exec/*.py 全部 99 件（compile exec 模式逐件解析，空面判红）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:08.3613357Z action_pin_guard                 PASS        rc=0       19ms  第 17 维供应链面：`checkout` 在 21 道门读盘**之前**决定工作树里是什么字节，未 pin 到不可变 SHA = 判据输入面劫持入口（与 r49 劫持族、r56「声明要被机器校验」同族）；P2 把「pin 必须配更新器」也钉住，防固定点腐烂成拿不到上游安全修复的更坏形态
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:08.3614101Z       覆盖根: .github/workflows/*.yml 的全部 `uses:` 引用面（含 @main 分支形与截断 SHA 形） ; .github/dependabot.yml 的 github-actions 生态声明 ; 05-exec/r58_action_pin_fixtures.py 的 11 例（层 a 9 + 层 b 真仓对照/变异体各 1）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:08.3614751Z retired_face                     SKIPPED-BY-DESIGN  r7/r8 取真实 retired_skills 名单 x 真实 D:/global_skills 磁盘面；离机若无该根则判据面为空，本件按 R247 走 UNVERIFIED(exit 2) 而不是默认放行
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:08.3615443Z generator_face                   SKIPPED-BY-DESIGN  覆盖面含 D:/global_skills 与焚诀/audit 两处本机绝对根（EXTERNAL_ROOTS），离机取不到 ⇒ 会判 EXTERNAL_CANDIDATE 塌成 DEAD_HANDLE 而误红；本件按 R247 走 UNVERIFIED(exit 2) 而不是默认放行
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:08.3616110Z input_pin_face                   SKIPPED-BY-DESIGN  取数面是本机七端的 junction 实测与 D:/global_skills / D:/global_memory / 焚诀 三根的 git pin；离机这些根不存在 ⇒ 声明面为空，本件按 R247 走 UNVERIFIED(exit 2) 而不是默认放行
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:08.3616979Z debt_face_freshness              PASS        rc=0       25ms  r105 一手：日历龄预算（W-36 的 refresh_days）只答「这件多久没重算」，答不了「这件比它所测的卷新不新」。r104 在同一轮里 16:29 量账 → 16:33 往 07 写裁决，件比被量对象旧 226 秒，棘轮照收 ⇒ 把已还掉的债报成比基线新长的债（实测 25 vs 活体尺 1），并连带把读棘轮文本的 4 道门一起染红。本门同时交「应绿的绿」（含等界）与「应红的红」（含空面），且对照组被变异体证伪过一轮（W-47）。
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:08.3617745Z       覆盖根: 05-exec/ratchet_gate.py 的 _debt_artifact_fresh / _newest_artifact（相对新鲜谓词） ; 05-exec/ratchet_gate.py 的 overdue_debt_items()（接线：经谓词把守的真取值路径） ; 两条变异体：摘前置 / 前置恒真，各自必须让陈旧值漏进指标（证明鉴别力来自本前置）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:08.3618834Z retired_reflow_fixtures          PASS        rc=0       84ms  r100 已实测并裁定 executing-plans / slides 由平台重下发（节律 ~47min）、降级为看守项；可 retired_face 一直留成硬阻断 ⇒ 每轮固定 1 红，把「没人能负责的红」混进「我欠的一次清理」里稀释真红（r105 实测该门 rc=1，而两件的证据是 git ?? 未跟踪 + 同一秒 23:29:55 mtime）。本门把「谁写回来的」画成有证据的两堆：我方写回必须仍拦，平台回流具名看守；窗口只给 2 秒，防豁免吞掉我方隔几分钟自己复制回来的那一份。
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:08.3619770Z       覆盖根: 05-exec/r59_retired_face.py 的 attribute_producer / _git_tracked_n（经活体 run() 取数，夹具不重写谓词） ; 正例：git 零跟踪 + mtime 同批 ⇒ rc=0 且 retired_still_on_disk 仍逐件具名（看守不等于失明） ; 反例两向：我方跟踪过 / mtime 相差 90s 超 2s 成批窗口 ⇒ 均须仍 rc=1 ; 单件面不得因「无同批可比」静默放行 + 判据口径自证（阈值写进产物，不留散文）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:08.3620496Z r112_provenance_fixtures         PASS        rc=0       65ms  本维前两代尺（r105 词面 / r111 BGE 语义）都是写完即宣布有效，随后被自己的标定控制判死；本门把「应绿的绿 + 应红的红」做成常驻，且变异体刻意让被测函数永远给好话（抓不住即夹具无鉴别力）。
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:08.3621280Z       覆盖根: 05-exec/r112_upstream_probe.py 的 relation()（六态内容寻址关系） ; 05-exec/r112_swap_gate.py 的 decide()（五态裁决映射） ; 05-exec/r112_provenance_face.py 的 check_ledger_churn()（R306 不变腿） ; 三条变异体：relation 常数化 / decide 常数化 / 空转判据空实现 —— 各自必须被夹具抓住 ; 零输入腿：空 bench 目录必须 rc=2 且不印 token（R247）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:08.3622179Z provenance_face                  FAIL        rc=1       51ms  用户痛点「市面上有更好的 skill，我还在用旧的」在本仓此前没有任何判据在看：182 件里 127 件连上游身份都没有。本门守住第 19 维的结构性事实（离线、不依赖上游可达），并强制把盲区与 UNVERIFIED 逐件具名 —— 盲区禁读成「已核对无缺口」。
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:08.3623096Z       覆盖根: 06-benchmark/provenance_r112_*.json（三档置信度守恒 + 覆盖根自证） ; 06-benchmark/upstream_pins.jsonl（有身份必入册 / unknown 禁登记 / 无空转） ; 06-benchmark/upstream_r112_*.json（OK+UNVERIFIED 守恒 + 每条 UNVERIFIED 具名带因） ; 06-benchmark/swap_gate_r112_*.json（每条证据都有裁决 + 非 UNVERIFIED 数 == 证据 OK 数）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:08.3624390Z       末输出: 重跑仍 FAIL ⇒ 判真红 | 首跑: C2 unknown 件被登记（禁猜）: workbuddy-mcp |   FAIL: C2 unknown 件被登记（禁猜）: workflow-preflight-check |   FAIL: C2 unknown 件被登记（禁猜）: wps-knowledgebase |   FAIL: C2 unknown 件被登记（禁猜）: 天眼一下 | [PROVENANCE:FAIL] 71 项 | 重跑: C2 unknown 件被登记（禁猜）: workbuddy-mcp |   FAIL: C2 unknown 件被登记（禁猜）: workflow-preflight-check |   FAIL: C2 unknown 件被登记（禁猜）: wps-knowledgebase |   FAIL: C2 unknown 件被登记（禁猜）: 天眼一下 | [PROVENANCE:FAIL] 71 项
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:08.3625442Z cache_guard_fixtures             PASS        rc=0       39ms  r112 一手实测：一次网络 EOF 把 14KB 好件覆写成仅 280B 的失败桩，随后 --offline 复算把「已升级」件读成 UNVERIFIED（ok_n 24→18）。缓存被自身缺陷毁掉，这是「工具把自己唯一的证据源弄没了」这一类，必须有常驻腿看住。
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:08.3626127Z       覆盖根: 05-exec/r112_upstream_probe.py 的 fetch_candidate 缓存写侧（失败不覆盖已成功的缓存） ; 正向腿 g1：好件在盘后取数失败 ⇒ 旧件内容保留且失败痕迹入 cache_error ; 反向腿 g2：用修复前旧实现跑同一断言必须失败（鉴别力来自守卫本身） ; g3：成功路径仍覆盖（防修过头变成永不更新）；g4：无旧件时失败照写失败件（不凭空造证据）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:08.3626826Z r113_degrade_fixtures            PASS        rc=0       41ms  r96_gh_raw.json 是第 19 维 inferred 身份的来源根。大面积取数失败时整体覆写会把好语料塌成一片 available False，而面内不变式照样自洽（X-24：分母静默变小仍全绿）。单件形态 r112 已抓，整面形态本轮由自家夹具抓到，两处都得常驻。
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6423651Z       覆盖根: 05-exec/r96_twelve_face.py 的 degrade_check / available_n / read_json_or_none ; g1 塌陷面（1/5）判退化；g2 正常轮（3/5）不误伤；g3 无对照基准不拦；g4 同面不误伤 ; g5 接线腿：临时缓存文件 + 塌陷面走 main 分支 ⇒ 旧缓存字节必须不变（不只测谓词） ; m1 摘闸（恒 None）⇒ g1/g5 必须转红；m2 阈值改过严 ⇒ g2 必须转红
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6425039Z cache_guard_face                 PASS        rc=0       65ms  同一族缺陷连着两轮各抓一半（r112 单件覆写 / r113 整面覆写），说明逐件修不收敛；本门把「取数脚本写可复用证据必须声明守卫」钉成结构判据，新增裸写件当轮即红。
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6425943Z       覆盖根: 05-exec/*.py 全量面：远端取数 + 写持久证据路径 的组合形态 ; 守卫 token 三型：cache_error（单件不覆盖）/ degrade_check（整面防退化）/ merge_note（留账只增不减） ; 豁免面：临时目录与每轮新产物（args.out / 日期 / 轮号）不进分母 ; 零输入面 ⇒ rc=2 UNVERIFIED（R247）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6426778Z cache_guard_face_fixtures        PASS        rc=0      113ms  门自身两次失真的教训必须固化成腿：判据的『绿』可能来自匹配不到而不是判过。变异体刻意让豁免/守卫识别失效，抓不住即本夹具无鉴别力。
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6427827Z       覆盖根: 第 34 门自身的 W-47 双向证据（f1 裸写点名 / f2 带守卫判绿 / f3-f4 两条豁免 / f5 真机接线 / f6 零输入） ; m1 摘守卫识别 ⇒ f2 转红；m2 摘豁免识别 ⇒ f3 与 f4 同转红 ; 本门两次假阳性一手：w[bt] 漏匹配 open(x,w) 造成 f3/f4 的绿来自漏判而非豁免；泛词 + re.I 把夹具小写 bench 误判成违规面（大小写敏感后消）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6428785Z migration_guard                  PASS        rc=0       17ms  r118 实测换装对生产路由影响 0 并立硬边界 W-1，但那条边界只活在报告与方案的散文里，没有任何判据在看方案还在不在说这件事。r119 把它钉成常驻门：缺 token 即红。
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6429693Z       覆盖根: 04-plan/迁移替换方案_r114 必须含 W-1 四 token（W-1 / r118_swap_sim.py / 正向 delta / 短路先于召回） ; 同一方案必须含 r119 复算加注（0 影响从当时实测更新为当前复算仍成立） ; 自带 --selftest：正例现件应 PASS + 反例摘 token 应 FAIL（W-47 双向）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6430665Z r117_upstream_delta_fixtures     FAIL        rc=1       64ms  r117 一手两条都属『应绿的绿也是假的』：① 分类器的 conservation_ok 对正则缺陷零鉴别力（分母没变，只是归类错了）；② 归因引擎若把 STALE 与 REAL 弄反，改进靶子会被虚增或被掩盖，两个方向都必须有夹具看着（W-47 双向 + 变异腿）。
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6432045Z       覆盖根: 05-exec/r116_upstream_delta_classify.py 的四类唯一归类与分母守恒（含 r117 修的正则支） ; 05-exec/r117_route_miss_attr.py 的四态归因（STALE_EXPECT / UNREGISTERED / REAL_MISS / UNDECIDABLE）与守恒 ; 两份真件复算：upstream_delta_r116*（11 件逐行加总）与 route_miss_attr_r117（20 条 miss 逐行重判） ; 变异腿 m1-m3：还原 r116 原正则 / 归因恒判 REAL / 归因恒判 STALE，三条都必须被夹具抓住
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6434021Z       末输出: 重跑仍 FAIL ⇒ 判真红 | 首跑:  PASS  |   m2_mutate_always_real_caught                               PASS  |   m3_mutate_always_stale_caught                              PASS  | [GATE:fixture-fail] 1/20 腿失败: r8_row_state_consistent | 重跑:  PASS  |   m2_mutate_always_real_caught                               PASS  |   m3_mutate_always_stale_caught                              PASS  | [GATE:fixture-fail] 1/20 腿失败: r8_row_state_consistent
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6435341Z direct_closure_face              SKIPPED-BY-DESIGN  读 L2 frozen 盲测集与 eval/direct_map.json（焚诀仓内路径）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6436067Z bounce_back_face                 SKIPPED-BY-DESIGN  读 D:/global_memory/core/rule37_never_bounce_back_any_conversation.md（路径写死全局记忆根）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6436854Z gatemap_closing_face             SKIPPED-BY-DESIGN  经 --dirty 测试缝注入伪造 porcelain 清单，并跑 05-exec/ 下的变异体副本（依赖本仓 05-exec 与 git 工作树形态）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6437610Z gh_path_face                     SKIPPED-BY-DESIGN  读本机 PATH 与 PowerShell 命令解析（换机无 GitHub CLI 安装态时检查失去对象，且刻意按 UNVERIFIED 不判绿）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6438272Z free_tools_face                  SKIPPED-BY-DESIGN  读本机 CLI 安装态与登录凭据（换机/CI 无登录态时全部落 GAP_*，检查失去对象）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6439156Z debt_fresh_fixtures              SKIPPED-BY-DESIGN  在临时目录造最小仓逐态验证 _lib.ensure_debt_fresh（换机同样可跑，但重点守本仓时序坑）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6439869Z tool_skill_matrix                SKIPPED-BY-DESIGN  读 D:/global_skills 全部 SKILL.md 与 references/scripts（换机无该受管根时面为空，按 rc=2 不判绿）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6440609Z turnstile_face                   SKIPPED-BY-DESIGN  读本机 wrangler OAuth 凭证与 Cloudflare API（换机无该登录态时按 UNVERIFIED，不判绿）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6441254Z cf_deploy_face                   SKIPPED-BY-DESIGN  吃本机 wrangler 登录态 + 公网两手（无则 rc=2 UNVERIFIED，不判绿）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6441688Z ------------------------------------------------------------------------
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6442253Z 执行 29 门 / 跳过 40 门 / 合计耗时 9803 ms（均值 338 ms/门）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6442540Z 本 runner 不覆盖（聚合绿不等于这些也绿）：
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6443094Z   · 受管根四门禁 mirror/noise/evolution/stub —— 属 rule_editor 面，取值：python D:\global_skills\A-memory-start\references\rule_editor.py gates
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6443729Z   · 焚诀跨产物真值 C1~C33 —— 取值：python 焚诀\eval\verify_truth_consistency.py
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6444113Z   · 判据变异测试（r19_fixture_mutation_check.py）—— 按需跑，非每轮前置
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6444384Z [GATES:FAIL] FAIL=6 UNVERIFIED=0
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6444603Z JSON -> gate_run_ci.json
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6486810Z ##[error]Process completed with exit code 1.
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6524954Z ##[group]Run python - <<'PY'
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6525143Z ^[[36;1mpython - <<'PY'^[[0m
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6525271Z ^[[36;1mimport json, os^[[0m
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6525401Z ^[[36;1mp = "gate_run_ci.json"^[[0m
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6525541Z ^[[36;1mif not os.path.exists(p):^[[0m
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6525705Z ^[[36;1m    # 覆盖自证这一步本身不得静默：产物没出来就是 UNVERIFIED，不能读成绿^[[0m
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6525938Z ^[[36;1m    print("::error title=覆盖自证失败::runner 未产出 gate_run_ci.json（判据没跑成 ≠ 判据通过）")^[[0m
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6526154Z ^[[36;1m    raise SystemExit(2)^[[0m
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6526310Z ^[[36;1md = json.load(open(p, encoding="utf-8"))^[[0m
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6526506Z ^[[36;1mran = [g for g in d["gates"] if g["state"] != "SKIPPED"]^[[0m
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6526736Z ^[[36;1msk = [g for g in d["gates"] if g["state"] == "SKIPPED"]^[[0m
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6526909Z ^[[36;1mlines = ["## 门禁覆盖自证",^[[0m
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6527089Z ^[[36;1m         "- verdict: `%s`（%s）" % (d["verdict"], d["verdict_reason"]),^[[0m
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6527355Z ^[[36;1m         "- 本次执行 **%d** 门：%s" % (len(ran), ", ".join(g["id"] for g in ran)),^[[0m
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6527556Z ^[[36;1m         "- 本机专属（**未跑**，非通过）：**%d** 门" % len(sk)]^[[0m
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6527732Z ^[[36;1mlines += ["  - `%s`" % g["id"] for g in sk]^[[0m
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6527938Z ^[[36;1mlines += ["- 本 runner 不覆盖："] + ["  - %s" % s for s in d["not_covered"]]^[[0m
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6528224Z ^[[36;1mopen(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8").write("\n".join(lines) + "\n")^[[0m
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6528464Z ^[[36;1mprint("\n".join(lines))^[[0m
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6528797Z ^[[36;1mPY^[[0m
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6582020Z shell: /usr/bin/bash -e {0}
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6582296Z env:
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6582446Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6582700Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6582929Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6583138Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6583337Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6583541Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6583714Z ##[endgroup]
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6772742Z ## 门禁覆盖自证
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6773019Z - verdict: `FAIL`（FAIL=6 UNVERIFIED=0）
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6775301Z - 本次执行 **29** 门：selftest_census_face, gov_link_face, r19_baseline_contract_fixtures, baseline_contract_scan, control_char_scan, tracked_empty_check, mark_verdict_fixtures, handles_readme_fixtures, md_claim_face, retrieval_fixtures, range_attr_fixtures, budget_contract_fixtures, input_face_fixtures, scan_inputs_fixtures, debt_ledger_fixtures, gate_run_freshness, roster_partition_fixtures, py_syntax_guard, action_pin_guard, debt_face_freshness, retired_reflow_fixtures, r112_provenance_fixtures, provenance_face, cache_guard_fixtures, r113_degrade_fixtures, cache_guard_face, cache_guard_face_fixtures, migration_guard, r117_upstream_delta_fixtures
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6776500Z - 本机专属（**未跑**，非通过）：**40** 门
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6776644Z   - `gov_acceptance_face`
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6776780Z   - `contract_lifecycle_face`
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6776915Z   - `volume_tiers_face`
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6777044Z   - `derived_freshness_face`
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6777178Z   - `write_order_sweep_face`
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6777309Z   - `install_history_face`
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6777443Z   - `hook_attribution_face`
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6777571Z   - `hook_trace_face`
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6777688Z   - `hook_sync_face`
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6777806Z   - `hook_health_face`
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6777936Z   - `commit_gate_map_face`
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6778065Z   - `proposal_evidence_face`
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6778198Z   - `lang_boost_efficacy_face`
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6778328Z   - `causal_evidence_face`
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6778454Z   - `direct_fix_efficacy_face`
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6778728Z   - `closure_layers_face`
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6779089Z   - `gate_table_reconcile`
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6779217Z   - `r19_scan_fixtures`
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6779335Z   - `ratchet_gate`
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6779452Z   - `refresh_budget_fixtures`
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6779584Z   - `w47_reconcile_fixtures`
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6779717Z   - `reconcile_admission`
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6779842Z   - `root_face_fixtures`
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6779966Z   - `tag_closure_fixtures`
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6780091Z   - `evidence_face_fixtures`
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6780220Z   - `baseline_note_fixtures`
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6780351Z   - `authority_face_fixtures`
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6780480Z   - `noise_tracked_stub`
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6780626Z   - `retired_face`
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6780745Z   - `generator_face`
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6780861Z   - `input_pin_face`
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6780981Z   - `direct_closure_face`
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6781103Z   - `bounce_back_face`
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6781224Z   - `gatemap_closing_face`
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6781344Z   - `gh_path_face`
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6781462Z   - `free_tools_face`
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6781581Z   - `debt_fresh_fixtures`
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6781704Z   - `tool_skill_matrix`
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6781821Z   - `turnstile_face`
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6781934Z   - `cf_deploy_face`
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6782069Z - 本 runner 不覆盖：
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6782409Z   - 受管根四门禁 mirror/noise/evolution/stub —— 属 rule_editor 面，取值：python D:\global_skills\A-memory-start\references\rule_editor.py gates
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6782787Z   - 焚诀跨产物真值 C1~C33 —— 取值：python 焚诀\eval\verify_truth_consistency.py
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6783048Z   - 判据变异测试（r19_fixture_mutation_check.py）—— 按需跑，非每轮前置
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.6891377Z Post job cleanup.
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.7454984Z [command]/usr/bin/git version
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.7487493Z git version 2.55.0
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.7512037Z Temporarily overriding HOME='/home/runner/work/_temp/d01668c7-57e6-4c2e-b278-09cb5b694a18' before making global git config changes
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.7512786Z Adding repository directory to the temporary git global config as a safe directory
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.7515696Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/skill-private-archive/skill-private-archive
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.7552670Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.7583411Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.7795717Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.7819351Z http.https://github.com/.extraheader
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.7827828Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.7860128Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.8054663Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.8084449Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.8379160Z Cleaning up orphan processes
+可移植门禁子集（4/6）	UNKNOWN STEP	2026-10-23T07:01:11.8584924Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11d5960a326750d5838078e36cf38b85af677262, actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
