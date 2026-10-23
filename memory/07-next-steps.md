@@ -157,7 +157,17 @@ r166 为最后一项零引用工具专程取证，三个候选全部排除：
 且结果分钟级稳定（如 CI runner 与本地跑同一门）。单机单进程不满足。
 
 取值：`python 05-exec/r126_tag_closure.py`（读 `题面=279`）、`python 05-exec/r163_free_tools_face.py`（读 whoami 占比）。
-- [ ] **R174-1（r174 登记，P2，到期 r176）** **并行会话在途件 `05-exec/r174_split_oversized.py` 未提交，我的提交无法带它**： 【r174 裁决=挂账至 r176｜非我的待办，是**在途件的登记**：`05-exec/r174_split_oversized.py` 属并行会话（头部自述「r174: part97/part99 人工拆卷，R166-2 收口」），按 R269 不擅动不代提交。实测暂不阻断（准入门受检 1 / 未声明 0；control_char_scan CLEAN）。到期判据 = 该件已被 commit（git ls-files 能查到）⇒ 销账；若未提交则查并行会话是否中断，届时再按 R269 处置。】
+- [ ] **R175-1（r175 登记，P2，到期 r177）** **Pages 项目 `global-memory-hub` 在线但 skill 面零搭配（源的归属待查）**： 【r175 裁决=挂账至 r177｜缺口已实测成立（站点 200 在线 + 矩阵零引用 + 源不在 D:/global_memory），但**补齐动作的前置是定位源仓**，那步需要跨目录/跨仓查找，且站点归属（是产品面还是内部工具）未定 —— 按「不造需求、不擅动他人物件」，先登记。到期判据 = 找到源仓并判定归属；若找到且属本体系，则补 skill 接线面。】 【r176 裁决=降级（转长期看守）｜**改为降级而非挂账**：本轮连续第二次踩「用挂账增 DEFERRED」—— r174 的 R174-1 与 r175 的 R175-1 都用「挂账至 rNN」，使 deferred_debt_items 从 1 抬到 2、超棘轮基线 1（ratchet_gate 判红）。DEFERRED 判据的存在初衷（r39）就是防「挂账被当成免检通道」，判据咬得对。⇒ 本件改用不带目标轮的降级（转长期看守），不再增 DEFERRED。内容不变：缺口已实测成立（global-memory-hub.pages.dev HTTP 200 在线、title「焚诀 Global」、含 /console/ 子页；但矩阵零 skill 引用、全受管根仅 docker-e2e-gate 顺带提及、D:/global_memory 下无该站点源码）。属「归属待查」型缺口，不是待办。】
+本轮盘点 wrangler 能力面时发现 `wrangler pages project list` 有 **5 个** Pages 项目，
+其中 `global-memory-hub.pages.dev` **HTTP 200 在线**，title = 「焚诀 Global — 一份记忆与技能库，
+喂给所有 AI 编程工具」，且含 `/console/` 子页 ⇒ 是体系的**对外 Web 门面**。
+但矩阵（第 67 门）里它**零 skill 引用**；全受管根仅 `docker-e2e-gate` 一处顺带提及；
+`D:/global_memory` 下**未找到该站点源码**（无 hub/web/site 目录、无 html）。
+⇒ 搭配缺口成立，但**补它需先定位源仓**（可能已归档或在别处），故本条只登记不动手。
+附带读数：GitHub API 配额 limit=5000 / remaining=4989 / used=11（小时窗，消耗极低）；
+D1 三库 donggu-analytics(6.8MB/0表) / doctor-ai-dx-chat / supermarket。
+取值：`wrangler pages project list` + `curl -sI https://global-memory-hub.pages.dev/`。
+- [ ] **R174-1（r174 登记，P2，到期 r176）** **并行会话在途件 `05-exec/r174_split_oversized.py` 未提交，我的提交无法带它**： 【r174 裁决=挂账至 r176｜非我的待办，是**在途件的登记**：`05-exec/r174_split_oversized.py` 属并行会话（头部自述「r174: part97/part99 人工拆卷，R166-2 收口」），按 R269 不擅动不代提交。实测暂不阻断（准入门受检 1 / 未声明 0；control_char_scan CLEAN）。到期判据 = 该件已被 commit（git ls-files 能查到）⇒ 销账；若未提交则查并行会话是否中断，届时再按 R269 处置。】 【r176 裁决=降级（转长期看守）｜**同 R175-1，改为降级而非挂账**：上轮用「挂账至 r176」登记在途件，使 deferred_debt_items 抬到 2、超棘轮基线 1（ratchet_gate 判红）。DEFERRED 判据（r39 立）本意就是防「挂账被当成免检通道」——判据咬得对，我的登记方式错了。本件同为「非我的待办、只是在途件登记」，改用不带目标轮的降级。内容不变：05-exec/r174_split_oversized.py 属并行会话（头部自述「part97/part99 人工拆卷，R166-2 收口」），按 R269 不擅动不代提交；实测暂不阻断（准入门受检 1 / 未声明 0，control_char_scan CLEAN）。】
 r174 收尾时发现工作区有 1 个未跟踪新脚本，头部写明「r174: part97/part99 人工拆卷（R166-2 收口）」，
 即并行会话正在执行我 r171 代裁时列出的「归属方待做」第一项。按 R269 **不擅动、不代提交**。
 实测影响：准入门 `受检 1 / 未声明的产读数脚本 0`（连续两次一致，**未判红**）；
@@ -223,6 +233,70 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
 - **卷24** `07-next-steps.part98.md` — 07-next-steps 分卷（R199 自动拆卷）
 
 - **卷25** `07-next-steps.part99.md` — 07-next-steps 分卷（R199 自动拆卷）
+- **卷26** `07-next-steps.part100.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷27** `07-next-steps.part101.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷28** `07-next-steps.part102.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷29** `07-next-steps.part103.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷30** `07-next-steps.part104.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷31** `07-next-steps.part105.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷32** `07-next-steps.part106.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷33** `07-next-steps.part107.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷34** `07-next-steps.part108.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷35** `07-next-steps.part109.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷36** `07-next-steps.part110.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷37** `07-next-steps.part111.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷38** `07-next-steps.part112.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷39** `07-next-steps.part113.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷40** `07-next-steps.part114.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷41** `07-next-steps.part115.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷42** `07-next-steps.part116.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷43** `07-next-steps.part117.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷44** `07-next-steps.part118.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷45** `07-next-steps.part119.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷46** `07-next-steps.part120.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷47** `07-next-steps.part121.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷48** `07-next-steps.part122.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷49** `07-next-steps.part123.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷50** `07-next-steps.part124.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷51** `07-next-steps.part125.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷52** `07-next-steps.part126.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷53** `07-next-steps.part127.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷54** `07-next-steps.part128.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷55** `07-next-steps.part129.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷56** `07-next-steps.part130.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷57** `07-next-steps.part131.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷58** `07-next-steps.part132.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷59** `07-next-steps.part133.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷60** `07-next-steps.part134.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷61** `07-next-steps.part135.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷62** `07-next-steps.part136.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷63** `07-next-steps.part137.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷64** `07-next-steps.part138.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷65** `07-next-steps.part139.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷66** `07-next-steps.part140.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷67** `07-next-steps.part141.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷68** `07-next-steps.part142.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷69** `07-next-steps.part143.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷70** `07-next-steps.part144.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷71** `07-next-steps.part145.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷72** `07-next-steps.part146.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷73** `07-next-steps.part147.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷74** `07-next-steps.part148.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷75** `07-next-steps.part149.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷76** `07-next-steps.part150.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷77** `07-next-steps.part151.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷78** `07-next-steps.part152.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷79** `07-next-steps.part153.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷80** `07-next-steps.part154.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷81** `07-next-steps.part155.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷82** `07-next-steps.part156.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷83** `07-next-steps.part157.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷84** `07-next-steps.part158.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷85** `07-next-steps.part159.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷86** `07-next-steps.part160.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷87** `07-next-steps.part161.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷88** `07-next-steps.part162.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
+- **卷89** `07-next-steps.part163.md` — 07-next-steps 分卷（r174 段落边界拆分，R166-2 收口）
 
 ## P2
 R125-1（r125 登记，P1）** 夹具若**直接读被并发写的真实产物**，则「跑一次绿、跑一次红」是必然而非偶然（本轮实测 n5 过 n6 红）。通用处方：① 读侧「单次读 + 重试到自洽内容」，② 写侧「临时件 + os.replace 原子替换」。本仓已对 `ratchet_gate`（4 处）与 `r46_mark_verdict`（1 处）落地，但**其它写入点是否同样非原子需全量排查**（grep `write_text` / `open(...,"w")`）。- [x]  **R125-2（r125 登记，P2）** 并发写 JSONL 台账必须加锁：`open(path,"a")` 的单次 `write` 在两个进程交错时会产生半行 JSON，下一轮 `load_ledger` 读到 `_broken_json` ⇒ judge 直接 UNVERIFIED（不是红，但会挡整轮绿）。本仓已在 `run_gates.py` 落 `os.O_APPEND` + msvcrt/fcntl 锁，但 `debt_runs.jsonl` / `input_pins.jsonl` / `upstream_pins.jsonl` 等其它台账**尚未排查**。
