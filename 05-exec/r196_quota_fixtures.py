@@ -196,6 +196,45 @@ def main():
        bool(info6) and info6.get("minutes_all_workflows") == 30.0,
        info6.get("minutes_all_workflows") if info6 else None)
 
+    # ========= r197 归因守卫：网络瞬态与平台关停不得互相冒充 =========
+    # 本轮实测两次误判：① gh 因网络整体失败（输出无 HTTP 状态码）却报了 GAP_PLATFORM；
+    # ② wrangler 失败被写成「未登录/网络/限流？」。两处都是把瞬态读成状态、把未知读成结论。
+    orig_sh = m.sh
+    m.sh = lambda cmd: (1, 'Get https://api.github.com/x: EOF')
+    try:
+        stF1, _i1, whyF1 = m.read_gh_billing('someuser')
+    finally:
+        m.sh = orig_sh
+    ck('F1 gh 失败但无 HTTP 状态码 => UNVERIFIED（不得读成平台关停）',
+       stF1 == 'UNVERIFIED' and '不得读成平台关停' in whyF1, (stF1, whyF1[:80]))
+
+    def fake_status(cmd):
+        joined = ' '.join(cmd)
+        return (1, '{status 410}'.replace('status 410', chr(34) + 'status' + chr(34) + ': ' + chr(34) + '410' + chr(34))) if 'billing/actions' in joined else (1, '{status 404}'.replace('status 404', chr(34) + 'status' + chr(34) + ': ' + chr(34) + '404' + chr(34)))
+    m.sh = fake_status
+    try:
+        stF2, _i2, whyF2 = m.read_gh_billing('someuser')
+    finally:
+        m.sh = orig_sh
+    ck('F2 确有 404/410 状态码 => 才判 GAP_PLATFORM 并带官方依据',
+       stF2 == 'GAP_PLATFORM' and '404' in whyF2 and 'github.blog' in whyF2,
+       (stF2, whyF2[:70]))
+
+    ck('F3 网络类 stderr 归到 网络/代理 类别',
+       '网络/代理' in m.classify_cli_error('A fetch request failed, connectivity issue'),
+       m.classify_cli_error('A fetch request failed'))
+    _u = m.classify_cli_error('totally unrelated text')
+    ck('F4 命不中关键词 => 如实报未识别，不猜成未登录',
+       '未识别' in _u and '登录' not in _u, _u)
+
+    _orig_tbl = m.ERR_CLASS
+    try:
+        m.ERR_CLASS = []
+        ck('F5 变异：清空关键词表后仍报未识别（退化不产出假类别）',
+           '未识别' in m.classify_cli_error('some random text'))
+    finally:
+        m.ERR_CLASS = _orig_tbl
+
     fails = [r for r in RESULTS if not r[0]]
     print("")
     print("夹具合计: %d 项，通过 %d，失败 %d" % (len(RESULTS), len(RESULTS) - len(fails), len(fails)))

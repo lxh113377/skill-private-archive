@@ -1,7 +1,7 @@
 {
  "schema": "quota-face-v1",
  "readonly": true,
- "generated_at": "2026-10-24 04:00",
+ "generated_at": "2026-10-24 04:06",
  "provenance_cmd": "python 05-exec/r196_quota_face.py --json <件>",
  "rows": [
   {

@@ -68,11 +68,29 @@ def first_json_array(s):
     return None
 
 
+ERR_CLASS = [
+    ("fetch request failed", "网络/代理取不到（本机走 HTTP 代理，代理不稳即此态）"),
+    ("not authorized", "凭据失效，需重新 wrangler login"),
+    ("Missing API token", "缺 API token"),
+    ("exceed your account", "账号额度/限流"),
+    ("10429", "Cloudflare API 限流（实测本仓常被此挡）"),
+]
+
+
+def classify_cli_error(out):
+    """按 stderr 关键词给类别；匹配不到就如实说未识别，绝不猜成「未登录」。"""
+    low = (out or "").lower()
+    for needle, label in ERR_CLASS:
+        if needle.lower() in low:
+            return label
+    return "未识别的失败形态（原文含 WARNING/fetch 等线索，须人工读一次）"
+
+
 def read_d1():
     """返回 (state, rows|None, why)。rows = [{name,file_size}]。"""
     rc, raw = sh("wrangler d1 list --json", shell=True)
     if rc != 0:
-        return "UNVERIFIED", None, "wrangler d1 list rc=%s（未登录/网络/限流？）" % rc
+        return ("UNVERIFIED", None, "wrangler d1 list rc=%s：%s" % (rc, classify_cli_error(raw)))
     clean = ANSI_RE.sub("", raw)
     seg = first_json_array(clean)
     if not seg:
@@ -95,9 +113,16 @@ def read_gh_billing(login):
     s1 = m1.group(1) if m1 else ("rc%d" % rc1)
     s2 = m2.group(1) if m2 else ("rc%d" % rc2)
     # 官方 changelog（2025-09-26）明写关停 Actions/Packages/共享存储的产品级 billing API
-    if rc1 != 0 and rc2 != 0:
-        return "GAP_PLATFORM", None, ("两态端点皆不可用（%s / %s），官方已于 2025-09-26 关停产品级 "
+    # 必须**确实看到 HTTP 状态码**才判平台下线：gh 因网络/限流整体失败时 out 里没有 status，
+    # s1/s2 会是 rc1 —— 那种情况判 UNVERIFIED，绝不把网络故障读成「平台关停了端点」。
+    # （本轮实测出现过一次 rc1/rc1 却报 GAP_PLATFORM 的误判，即此。）
+    codes = {s1, s2}
+    if codes <= {"404", "410"} and rc1 != 0 and rc2 != 0:
+        return "GAP_PLATFORM", None, ("两态端点分别返回 %s / %s，官方已于 2025-09-26 关停产品级 "
                                       "billing API：%s" % (s1, s2, GH_BILLING_DOC))
+    if rc1 != 0 and rc2 != 0:
+        return "UNVERIFIED", None, ("两态端点调用均失败但**未见 HTTP 状态码**（%s / %s）⇒ 属网络/限流" 
+                                   "类瞬态，不得读成平台关停" % (s1, s2))
     rows = {}
     try:
         rows = json.loads(out2) if out2.strip().startswith("{") else {}
@@ -189,6 +214,52 @@ def read_minutes_proxy(repo, month=None, max_pages=8):
 
 
 
+def gh_auth_ok():
+    """区分「真未登录」与「网络/限流导致的调用失败」。取不到 ⇒ None（不可判）。"""
+    rc, out = sh(["gh", "auth", "status"])
+    txt = out or ""
+    if rc == 0 and "Logged in" in txt:
+        return True
+    if rc != 0 and ("not login" in txt.lower() or "no github hosts" in txt.lower()):
+        return False
+    return None
+
+
+def why_gh_failed(action):
+    """把失败原因写准：登录态可判时点名，不可判时如实说不可判（不得甩锅「未登录」）。"""
+    a = gh_auth_ok()
+    if a is True:
+        return "%s 取不到，但 gh auth status 正常 => 判为网络/限流类瞬态（非凭据问题）" % action
+    if a is False:
+        return "%s 取不到，且 gh auth status 显示未登录 => 凭据缺口" % action
+    return "%s 取不到，且 auth status 本身也取不到 => 不可判（R247 不得当作未登录或健康）" % action
+
+
+def gh_login_retry(tries=2):
+    """取 login，失败退避重试一次（R125 同族：瞬态与真故障要分开，不放宽判据）。"""
+    import time as _t
+    for k in range(tries):
+        rc, who = sh(["gh", "api", "user", "--jq", ".login"])
+        s = (who or "").strip()
+        if rc == 0 and s:
+            return s
+        if k + 1 < tries:
+            _t.sleep(3)
+    return ""
+
+
+def read_d1_retry(tries=2):
+    """同上一条：wrangler 与 gh 会在同一刻一起抖（本轮实测第 2 次连 wrangler 也 rc=1）。"""
+    import time as _t
+    st, rows, why = read_d1_retry()
+    for k in range(tries - 1):
+        if st != "UNVERIFIED":
+            break
+        _t.sleep(3)
+        st, rows, why = read_d1()
+    return st, rows, why
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--json", dest="out", default="")
@@ -223,11 +294,10 @@ def main():
     # 命题混成一行，等于用「官方端点没了」顺带否掉「代理可测」，把缺口报大了。
     login = args.login
     if not login:
-        rc, who = sh(["gh", "api", "user", "--jq", ".login"])
-        login = who.strip() if rc == 0 and who.strip() else ""
+        login = gh_login_retry()
     off = {"tool": "github_actions_minutes_official", "login": login}
     if not login:
-        off.update({"state": "UNVERIFIED", "why": "gh 未登录或取不到 login"})
+        off.update({"state": "UNVERIFIED", "why": why_gh_failed("gh api user")})
     else:
         st2, _r2, why2 = read_gh_billing(login)
         off.update({"state": st2, "why": why2})
@@ -235,7 +305,7 @@ def main():
 
     px = {"tool": "github_actions_minutes_proxy", "repo": args.repo}
     if not login:
-        px.update({"state": "UNVERIFIED", "why": "gh 未登录，翻页取不到 run"})
+        px.update({"state": "UNVERIFIED", "why": why_gh_failed("gh 翻页取 run")})
     else:
         st3, info3, why3 = read_minutes_proxy(args.repo)
         px.update({"state": st3, "why": why3})
