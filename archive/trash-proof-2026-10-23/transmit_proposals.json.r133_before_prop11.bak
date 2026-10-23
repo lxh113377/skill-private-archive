@@ -1,0 +1,273 @@
+{
+ "schema": "zijian-transmit-proposal-v1",
+ "note": "本仓拟外推给焚诀归属会话的判据建议登记表。外推前必须先跑 `python 05-exec/transmit_obsolescence_check.py`：被判 OBSOLETE 的条目=对方已自落，禁止再外推（推过期件=让人做无用功）；UNVERIFIED=取不到真相源，不得当作已过期或未过期。",
+ "updated": "2026-10-21",
+ "source": "06-benchmark/全量对标报告_r19_2026-09-24.md §9/§10 + 06-benchmark/计数断言基线_2026-09-24.md",
+ "proposals": [
+  {
+   "pid": "catalog_tax_ratchet",
+   "title": "平台技能目录注意力税棘轮",
+   "target": "焚诀 eval/verify_checks（原让号 C31′ 目录税棘轮）",
+   "proposed_at": "2026-09-24",
+   "keywords": [
+    "目录",
+    "注意力",
+    "棘轮"
+   ],
+   "why": "r18 实测平台技能目录每轮注入 45,173 字符≈128k 窗口 35.3%，为 C25 硬顶 2.07 倍且零棘轮覆盖"
+  },
+  {
+   "pid": "inject_union_merge",
+   "title": "注入区口径合一（多项目注入壳并入统一预算）",
+   "target": "焚诀 eval/verify_checks（原让号 C32′ 注入区口径合一）",
+   "proposed_at": "2026-09-24",
+   "keywords": [
+    "注入",
+    "预算",
+    "台账",
+    "归因"
+   ],
+   "why": "C25 只管它那 5 个文件，其他项目注入壳全在预算外，实测并集 86,346B > 硬顶 65,536B 而 C25 判 PASS"
+  },
+  {
+   "pid": "claim_truth_gate",
+   "title": "计数断言内容级门禁（注入文本里的数字断言与真相源对账）",
+   "target": "焚诀 eval/verify_checks（原让号 C33′ 计数断言内容级门禁）",
+   "proposed_at": "2026-09-24",
+   "keywords": [
+    "计数",
+    "断言",
+    "对账"
+   ],
+   "why": "端数/版本戳类失真句此前只能靠本仓 claim_truth_scan 抓，全局层无等价判据"
+  },
+  {
+   "pid": "noise_scope_footgun",
+   "title": "noise 门禁把「任意工作区自身结构」判成散落项并建议迁 _trash",
+   "target": "A-project-handoff/scripts/handoff_lib（noise 二级扫描的根判定）",
+   "proposed_at": "2026-09-25",
+   "keywords": [
+    "噪声",
+    "散射",
+    "散落",
+    "allowlist",
+    "工作区"
+   ],
+   "why": "r31 实测：`handoff.py noise <项目绝对路径>` 对本项目报 17 条 VIOL，含 .git / memory/ / AGENTS.md / 00-scope…06-benchmark 六个编号目录 / archive/，逐条建议「迁往 <项目>\\_trash\\<同名>」⇒ 照字面执行即把仓库自身搬进回收站。根因=受管根 allowlist 被复用到任意工作区。修法=非受管根拒绝执行或改用项目结构白名单；本轮仅登记，未代改（该 skill 归属会话在途）。",
+   "scope": " ｜ r127 判定：**已由受管根 R286 登记面闭环**，证据 `python 05-exec/r55_rootface_fixtures.py` 的 f2 腿「顶层治理目录无一被判 strict VIOL」全过（r31 报的 17 条 VIOL 现为 0）。关键词匹配判 VALID 只是因为该判据按词命中、不看行为，故本条**停止外推**，改为只还自己那半（不得再列入待外推清单）。"
+  },
+  {
+   "pid": "skill_hitrate_stale_expectations",
+   "title": "layered 盲测集 6 个期望 skill 已不在册/不在盘（题面过期）",
+   "target": "焚诀 eval/layered_testset.json（题集维护方）",
+   "proposed_at": "2026-10-18",
+   "keywords": [
+    "题集",
+    "期望",
+    "过期",
+    "退役",
+    "盲测"
+   ],
+   "why": "r117 一手实测：eval/frozen_blind_eval.py --set layered 的 291 条里 20 条 miss，其中 8 条的 expected_skill 既不在 skill/registry/unified-skills-index.json（182 名）也不在 D:/global_skills 盘上，即题面写的是一门已退役技能 ⇒ 这 8 条对任何路由实现都不可达。具名：deep-research-pro、fenjue-advisor-scoring、fenjue-cc-audit-cycle、multi-search-engine、tencent-cos-skill__skillhub、weather。处置权在题集维护方（本仓 eval 只读，未代改一处）；本仓同步给出的不是『提升』而是『脏分母规模』——8/291=2.7%，remap 后理论上限 98.6%（83 亿分之一口径见 r117 报告 §2.2）。",
+   "evidence": "06-benchmark/route_miss_attr_r117_2026-10-18.json"
+  },
+  {
+   "pid": "route_miss_shortcircuit_layer",
+   "title": "route miss short-circuit layer belongs to eval/; SKILL.md cannot reach it structurally",
+   "target": "焚诀 eval/ (direct_layer.py / direct_map.json / build_skill_tags.py / unified_router.py)",
+   "proposed_at": "2026-10-20",
+   "keywords": [
+    "direct",
+    "short-circuit",
+    "direct_map",
+    "tag",
+    "NONE",
+    "route",
+    "miss"
+   ],
+   "why": "r118 built failure-layer attribution: REAL_MISS items whose failure layer is direct_route non-None (DIRECT_SHORT) / NONE (DIRECT_NONE) / unique tag (TAG_SHORT) short-circuit before recall, so swapping SKILL.md corpus cannot structurally reach them. r119 re-ran: REAL_MISS 12 to 8, short-circuit layer still 6 plus 1 BGE item that even oracle cannot flip.",
+   "evidence": {
+    "layer_attr_source": "06-benchmark/layer_attr_r119_2026-10-20.json",
+    "real_miss_n": 8,
+    "layers": {
+     "DIRECT_SHORT": 4,
+     "DIRECT_NONE": 1,
+     "BGE_RECALL": 2,
+     "TAG_SHORT": 1
+    },
+    "oracle": {
+     "UNREACHABLE_BY_CORPUS": 7,
+     "REACHABLE": 1
+    },
+    "items": [
+     {
+      "expected": "brainstorming",
+      "query": "灵感枯竭帮我发散一波点子",
+      "router_top1": "story",
+      "layer": "DIRECT_SHORT",
+      "direct_route": "story",
+      "tag_hits_n": 0,
+      "oracle": "UNREACHABLE_BY_CORPUS"
+     },
+     {
+      "expected": "frontend-slides",
+      "query": "帮我做一个动画丰富的 HTML 演示文稿",
+      "router_top1": "ppt-master",
+      "layer": "DIRECT_SHORT",
+      "direct_route": "ppt-master",
+      "tag_hits_n": 17,
+      "oracle": "UNREACHABLE_BY_CORPUS"
+     },
+     {
+      "expected": "meeting-intelligence",
+      "query": "Notion 会议准备",
+      "router_top1": "NONE",
+      "layer": "DIRECT_NONE",
+      "direct_route": "NONE",
+      "tag_hits_n": 0,
+      "oracle": "UNREACHABLE_BY_CORPUS"
+     },
+     {
+      "expected": "A-skill-manager",
+      "query": "新技能装之前先安全审查",
+      "router_top1": "security-audit",
+      "layer": "DIRECT_SHORT",
+      "direct_route": "security-audit",
+      "tag_hits_n": 0,
+      "oracle": "UNREACHABLE_BY_CORPUS"
+     },
+     {
+      "expected": "video-whisper-transcribe",
+      "query": "录音转文字",
+      "router_top1": "local-asr",
+      "layer": "DIRECT_SHORT",
+      "direct_route": "local-asr",
+      "tag_hits_n": 0,
+      "oracle": "UNREACHABLE_BY_CORPUS"
+     },
+     {
+      "expected": "A-skill-manager",
+      "query": "同步技能",
+      "router_top1": "cross-platform-agent-sync",
+      "layer": "TAG_SHORT",
+      "direct_route": null,
+      "tag_hits_n": 1,
+      "oracle": "UNREACHABLE_BY_CORPUS"
+     },
+     {
+      "expected": "prompt-consolidation",
+      "query": "帮我清理提示词里堆积的补丁",
+      "router_top1": "sq-cleanmgr-c",
+      "layer": "BGE_RECALL",
+      "oracle": "UNREACHABLE_BY_CORPUS",
+      "note": "BGE_RECALL layer but oracle also cannot flip"
+     }
+    ]
+   },
+   "redline": "repo redline: 焚诀 eval/ read-only; register only, never edit eval files."
+  },
+  {
+   "pid": "derivative_watch_domain_skip_drift",
+   "title": "derivative_watch.collect_artifacts 域 JSON 豁免名单漏 tfidf_vocab_idf.json ⇒ C10/C16 假红",
+   "target": "焚诀 eval/derivative_watch.py（C10/C16 判据本体）",
+   "proposed_at": "2026-10-20",
+   "keywords": [
+    "derivative_watch",
+    "tfidf_vocab_idf",
+    "C10",
+    "C16",
+    "域 JSON",
+    "豁免"
+   ],
+   "why": "r114 给 build_indexes.py 的 DOMAIN_FILE_SKIPS 加了 tfidf_vocab_idf.json（防\"删非白名单域 JSON\"清理循环把它当场删掉），但同源的 derivative_watch.py::collect_artifacts() 豁免名单仍只有 (skill_ids.json, index_manifest.json) ⇒ 该件被算进 domain_paths，域桶数 13→14。r119 跑 build_indexes --apply 后 C10 报「域 JSON 桶 != 注册表 domain 集 (14 vs 13) 多:[tfidf_vocab_idf]」，C16 连带报「01-goal.part1.md:9 域数过期: 13 vs 域桶实测 14」。属判据-生成器漂移（数据本身正确：13 个真域桶 + 1 个词表投影），非数据缺陷。",
+   "evidence": "python eval/verify_truth_consistency.py --json 后读 C10/C16 的 detail；build_indexes.py 的 DOMAIN_FILE_SKIPS 常量（含 r114 注释）；derivative_watch.py collect_artifacts 的豁免元组",
+   "fix_hint": "把 tfidf_vocab_idf.json 加进 collect_artifacts 的豁免元组（与 build_indexes.DOMAIN_FILE_SKIPS 对齐）；更稳的做法是让两处共用同一常量，防再漂。",
+   "scope": "本仓红线：焚诀 eval/ 只读不代改，故只登记提案。"
+  },
+  {
+   "pid": "domain_filter_latent_exposure",
+   "title": "L0 域过滤 latent exposure：59 题域失配，仅 4 题真实暴露、1 题真失败（prompt-consolidation）",
+   "target": "焚诀 eval/domain_classifier.py（DOMAIN_KEYWORDS）+ skill/registry/unified-skills-index.json（domain 归属）",
+   "proposed_at": "2026-10-20",
+   "keywords": [
+    "domain",
+    "域过滤",
+    "域失配",
+    "classify_domain",
+    "prompt",
+    "提示词",
+    " latent"
+   ],
+   "why": "r120 一手实测：layered 269 题（expected 非空）中 59 题（21.9%）的 query 分类域 != 期望件注册域，即 L0 域过滤把它们排除在 BGE 搜索范围外。但逐条跑 route() 证明：55 题有 tag_hits 或 direct_hit 掩护（bge_recall 的 domain 限制只在 tag_hits 为空时生效），期望件仍在候选且 top1 命中；仅 4 题真实暴露，其中 3 题靠语料质量仍命中，只有 1 题真失败——prompt-consolidation（domain=system，query「帮我清理提示词里堆积的补丁」被判 code，因 DOMAIN_KEYWORDS.code 含「清理」而 system 表只有英文 prompt、不含中文「提示词」）。反事实实验：把该件 domain 对齐 query 域 ⇒ BGE 分 0.565→0.694 直接登顶；但全局关掉域过滤反而降分（94.41%→92.92%，WIN 1 / LOSE 5）⇒ 域过滤是净有益的兜底，失效模式是「脆弱」而非「有害」，不能关。",
+   "evidence": "06-benchmark/domain_mismatch_r120_2026-10-20.json（59 题全量）；06-benchmark/domain_exposure_r120_2026-10-20.json（暴露/掩护二分）；06-benchmark/domain_cf_r120_2026-10-20.json（单件反事实 1 FLIP）",
+   "fix_hint": "二选一（都属归属方面）：① domain_classifier.DOMAIN_KEYWORDS.system 补中文「提示词」（与 creative 表的「提示词」并存需评估串味）；② 注册表把 prompt-consolidation 的 domain 从 system 改为 creative（其语义邻居 A-prompt-better 即 creative）。改后须复跑 r117_route_miss_attr 证 real_n 7→6 且 stale_n 不增。",
+   "scope": "本仓红线：焚诀 eval/ 与注册表只读不代改，故只登记提案。"
+  },
+  {
+   "pid": "tag_closure_true_blocked",
+   "title": "Tag 闭包真闭包 2 题（r127 实测口径；r126 报的 15 条是漏建模 L1.5 兜底的假红）",
+   "target": "焚诀 eval/bge_layer.py（bge_recall 的 tag_hits 搜索范围）+ build_skill_tags.py / tag_filter",
+   "proposed_at": "2026-10-20",
+   "keywords": [
+    "tag",
+    "tag_filter",
+    "tag_hits",
+    "闭包",
+    "bge_recall",
+    "L1.5",
+    "兜底",
+    "同步技能",
+    "frontend-slides"
+   ],
+   "why": [
+    "r127 一手实测（修正 r126 的错判）：r126 的可达性判定只建模 bge_recall 的第一次调用，",
+    "漏了同函数内的 L1.5「域限制兜底」union 合并（bge_layer.py:566-589），",
+    "于是把大量「tag 内没有期望件、但被兜底救回」的题误判成闭包（15 条假红）。",
+    "r127 改用**实测对账**（逐题跑 route() 看 top1 是否真等于期望件）后：",
+    "279 题里真实未命中 18 条（DOMAIN 10 / TAG 6 / OPEN 2），",
+    "其中**真闭包且原始 BGE 排名 <=5 的只有 2 条**：",
+    "  ① 同步技能 → 期望 A-skill-manager（raw_rank=1，0.5619 vs 对方 0.5468，",
+    "     rerank 后 0.7371 vs 0.5945）但 domain=None ⇒ L1.5 兜底不触发（该分支条件是 if domain）",
+    "     ⇒ tag_filter 把 query 判给 cross-platform-agent-sync 后，期望件结构上不可检索；",
+    "  ② 帮我做一个动画丰富的 HTML 演示文稿 → 期望 frontend-slides（raw_rank=5），domain=creative。",
+    "⚠️ 沙箱已证伪「把 tag 命中集与全量 top-k 取并集」这一处方：在 10 条 tag_trap 上做 union 后",
+    "  命中率从 10/10 掉到 7/10（无兜底可救的那 2 条反而被噪声候选挤掉）⇒ 不可直接照搬 L1.5 的做法。"
+   ],
+   "evidence": [
+    "06-benchmark/tag_closure_r127_2026-10-20.json（face 五数 + rows 全量逐条读数，含 route_top1 / actually_hit / rescued_by_l15 三列可离线复算）；对照件 06-benchmark/tag_closure_r126_2026-10-20.json",
+    "（修正前，79 不可达 / 15 tag_trap）；复算命令 python 05-exec/r126_tag_closure.py --json <件>"
+   ],
+   "fix_hint": [
+    "两步（都属归属方面）：① 先把 L1.5 兜底的触发条件从 `if domain` 放宽到 `if domain or tag_hits`，",
+    "使 tag 路径也享受同样的全量 union 救回（这是最小改动，且与域路径已有先例同形）；",
+    "② 若 ① 会拉低既有命中，则改为**只在 tag_hits 的首候选分 < 0.55 时**触发（复用 L1.5 的现有阈值口径，",
+    "避免把 tag 判对的题也拖进全量搜索）。改后须复跑 python 05-exec/r126_tag_closure.py，",
+    "要求 face.tag_trap_n 由 2 降到 0 且 face.miss_n 由 18 降到 16，stale 不增。"
+   ],
+   "scope": "本仓红线：焚诀 eval/ 只读不代改，故只登记提案；本轮未做任何 eval 侧写入。"
+  },
+  {
+   "pid": "direct_map_regex_preempt",
+   "title": "第 10 类失败层：direct_map 正则抢答 6 条（链路第一环，语料改造对它完全无效）",
+   "target": "焚诀 eval/direct_map.json（273 条正则表）+ direct_layer.direct_route + tag_filter",
+   "proposed_at": "2026-10-21",
+   "keywords": [
+    "direct",
+    "direct_map",
+    "direct_route",
+    "正则",
+    "抢答",
+    "短路",
+    "code-review",
+    "github"
+   ],
+   "why": "r131 一手实测：279 题（layered 269 + frozen 10）逐题跑 route() 后分四类：HIT 261 / DIRECT_CLOSED 6 / STALE 10（期望件已退役）/ RECOVERABLE 2。 其中 6 条属全新的第 10 类失败层：期望件在册，但 direct_route 在生产链路的第一环就短路返回， 先于 normalize / classify_domain / tag_filter / bge_recall，BGE 根本没参与（candidates 里只有抢答的那一个） => 语料改造对这类条目必然无效（本轮已实测：给 github 件换成含「代码审查意见」的候选语料， top1 仍是 code-review，candidates 仍只有 code-review 一个）。 典型一条：query「给一个GitHub项目写代码审查意见」期望 github，实得 code-review；根因是 eval/direct_map.json 第 196 条 [\"全面审查|代码审查|审查.*代码|代码.*审查|code.*review|...\", \"code-review\"]， query 含「代码审查」=> 正则命中 => 短路。 其余 5 条同族：灵感枯竭帮我发散一波点子(exp=brainstorming got=story)、 帮我做一个动画丰富的 HTML 演示文稿(exp=frontend-slides got=ppt-master)、 Notion 会议准备(exp=meeting-intelligence got=NONE)、 新技能装之前先安全审查(exp=A-skill-manager got=security-audit)、 录音转文字(exp=video-whisper-transcribe got=local-asr)。",
+   "evidence": "06-benchmark/direct_closure_r131_2026-10-20.json（face 四数 + direct_closed 逐条具名，每条含 on_disk/in_corpus/direct_hit 三列可离线复算）；复算命令 python 05-exec/r131_direct_closure.py --json <件>",
+   "fix_hint": "两步（都属归属方面）：① direct_route 命中后不立即返回，先看该题是否同时语义匹配另一个在册技能； 若否（默认）则放行到 tag/bge 层（对齐 r120 对域过滤做过的 union 合并先例：域判错时用全量兜底救回）。 ② 若要保留 direct 快路径，则把「抢答」降级为候选加权而非硬返回，并给 direct_map 的每条正则加一个 「被本正则抢答但在册的兄弟技能」白名单（如 code-review 那条把 github 列入）。 改后须复跑 python 05-exec/r131_direct_closure.py，要求 face.direct_closed_n 由 6 降到 0， 且 RECOVERABLE 与 HIT 都不减（净收益，不是把题打散）。",
+   "scope": "本仓红线：焚诀 eval/ 只读不代改，故只登记提案；本轮未做任何 eval 侧写入。",
+   "r132_correction": "【r132 实测校正注，2026-10-21】本条提案的 fix_hint 原写于 r131，未实测过能救几条。 r132 建 05-exec/r132_direct_fix_efficacy.py 做效力实测（复算命令 python 05-exec/r132_direct_fix_efficacy.py --json 06-benchmark/direct_fix_efficacy_r132_2026-10-20.json）。 读数：闭包 6 条，处方①（direct 放行到 tag/bge 层）有效 6/6，但一步到位只有 2 条。 A_DIRECT_ONLY = 2（灵感枯竭帮我发散一波点子 / 新技能装之前先安全审查）：关掉 direct 即救回。 B_NEIGHBOR_RANK = 4：期望件能浮上来但被语义邻居压（HTML 演示文稿 rank2、Notion 会议准备 rank2、录音转文字 rank4、GitHub 代码审查意见 rank2），还需第二道排序面或语料面处方。 C_STALE = 0，D_UNREACHABLE = 0 ⇒ 本层没有彻底救不回的条目。 结论修正：若按 r131 的 fix_hint 字面执行（只做处方①），6 条里只解决 2 条的 top1，另 4 条会从「被 direct 抢答」退化为「被语义邻居压」——是进步但不是闭环，验收标准必须改。",
+   "acceptance_r132": "【r132 修正后的验收标准】分两步，禁止一次性判过。 第一步（处方① direct 放行）：跑 python 05-exec/r131_direct_closure.py，要求 face.direct_closed_n 由 6 降到 0。 第二步（排序面或语料面，治 B_NEIGHBOR_RANK 4 条）：跑 python 05-exec/r132_direct_fix_efficacy.py，要求 face.by_class 里 B_NEIGHBOR_RANK 归 0 且 A_DIRECT_ONLY 不得回退。 两步都必须满足；只做第一步不判闭环。",
+   "r132_corrected_at": "2026-10-21"
+  }
+ ]
+}

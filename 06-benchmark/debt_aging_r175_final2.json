@@ -1,9 +1,9 @@
 {
  "schema": "debt-aging-v2",
- "generated_at": "2026-10-23T10:27:52",
+ "generated_at": "2026-10-23T10:35:19",
  "readonly": true,
  "grace_rounds": 2,
- "current_round": 174,
+ "current_round": 175,
  "round_source": "git log --format=%s -40 中最大 rNN（未硬编码）",
  "verdict_taxonomy": [
   "OVERDUE",
@@ -190,9 +190,9 @@
  "by_class": {
   "OVERDUE": 0,
   "ACTIVE": 0,
-  "DECIDED": 25,
+  "DECIDED": 26,
   "UNDATED": 15,
-  "DEFERRED": 1,
+  "DEFERRED": 0,
   "REPEAT": 0
  },
  "overdue": [],
@@ -335,17 +335,17 @@
  "note": "OVERDUE 数 = ratchet_gate 第 7 指标 overdue_debt_items 的唯一取值面",
  "coverage": {
   "status": "OK",
-  "prev": "debt_aging_r175_final.json",
+  "prev": "debt_aging_r175_final3.json",
   "prev_overdue": 0,
   "missing": [],
   "method": "adjudication_gap(上一轮 overdue[].title 前 40 字, 当前卷文本, 本轮轮号)"
  },
  "input_face": {
   "round": {
-   "log": 174,
+   "log": 175,
    "tag": 174,
    "ok": true,
-   "detail": "log=r174 ≥ tag=r174（差 0 轮：本轮 tag 已打，两源一致）"
+   "detail": "log=r175 ≥ tag=r174（差 1 轮：本轮尚未打 tag，属每轮收尾打标的既有节奏）"
   },
   "floor": {
    "ok": true,
@@ -394,7 +394,6 @@
    "title": "R76-2 项目/陪聊 09 回填件提交：被其自有 pre-commit 交付件判据拦红（s08.png 从工作树消失 + SoulIsle 品牌分叉，均非本次引入），待归属方处置"
   }
  ],
- "refresh_stale_count": 0,
  "handles": {
   "overdue": {
    "artifact": "06-benchmark/debt_runs.jsonl",

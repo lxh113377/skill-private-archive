@@ -1,0 +1,14 @@
+﻿{
+    "new_name":  "C:/Users/37533/.local/bin/gh.stub-0byte.disabled-20261022",
+    "action":  "rename_only_not_delete",
+    "resolved_before":  "C:\\Users\\37533\\.local\\bin\\gh",
+    "stub_mtime":  "2026-08-08T04:18:52.0882383+08:00",
+    "ts":  "2026-10-22T10:43:13.6743571+08:00",
+    "companion":  "C:/Users/37533/.local/bin/gh.txt (also 0-byte, left in place - no PATHEXT conflict)",
+    "real_gh":  "C:/Program Files/GitHub CLI/gh.exe",
+    "rollback":  "Rename-Item -LiteralPath $dis -NewName gh",
+    "real_version":  "2.95.0",
+    "stub_path":  "C:/Users/37533/.local/bin/gh",
+    "reason":  "0-byte stub shadowed the real GitHub CLI for PowerShell (Machine PATH index 20 vs 24); bare gh =\u003e \"Cannot run a document in the middle of a pipeline\"",
+    "stub_size":  0
+}

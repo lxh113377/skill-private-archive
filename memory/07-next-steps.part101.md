@@ -1,0 +1,6 @@
+# 07-next-steps.part101.md
+
+<!-- 本卷为 07-next-steps.part97.md 的段落边界拆分（R241：原文字句零改写；超长行按句号边界切分，逐字节拼接等于原文） -->
+
+- **2026-10-22（第 163 轮 r163，免费开发者工具可达性对账：gh 命令名三方争夺与 PATH 空壳遮蔽）** — 一句话：① 目标「把截图那批免费开发者工具与现有工作流/skill 合理搭配」的第一步不是写建议，是**可达性对账**：实测 gh 2.95.0 已登录（keyring，scopes 含 repo/workflow）、wrangler 4.151.2 已登录（D1 三库 / Pages 三站 / R2 零桶）、SQLite 走 Python 内置 3.53.1、Turnstile/Resend/Upstash 属外部凭据缺口（无 key，#29③）；并 grep 出现有 skill 的引用分布（D1/Pages/Workers→chaoshi-web-deploy，SQLite→6 件，Actions→6 件，**R2/Turnstile/Upstash→0 件**）。② **对账当场抓出真缺口**：Machine PATH 第 20 位 `C:/Users/37533/.local/bin/gh` 是 **0 字节空壳**，遮蔽第 24 位真实 GitHub CLI ⇒ PowerShell 裸调 gh 必报「Cannot run a document in the middle of a pipeline」，而 Python 侧 shutil.which 解析到真实件 —— **同一命令名两个解释器结论相反**；另有第三实现 `D:/npm-global/gh`（npm 第三方包 2.8.9，连 --help 都抛 TypeError 而 rc=0）。③ 处置 = 空壳重命名（**未删除**，manifest + 回滚命令落 `_trash/r163_gh_stub_manifest.json`）+ 落**第 64 门 gh_path_face**（三态 + 4 腿，含跨解释器一致腿；真机变异：放回空壳 rc=1 具名 PS 侧、还原 rc=0）。④ 再把「工具现状」做成**第 65 门 free_tools_face**（9 项三态读数，判红只 BROKEN，GAP_CRED/GAP_CLI 具名不连坐；自证 4/4）。⑤ **本轮自抓六处**，三处最值得记：首版门只查 Python 侧，**在缺陷真实存在的那一轮打了绿**（假阴性，X-7 同族）；连**取证脚本自身**也用裸 gh 名，若不做第二通路对账结论会写成「本机没有 gh」而真相是「有两个 gh，坏的那个挡住了好的」；同轮产出两个轮次前缀（门 65 误写 r164_）⇒ 四处同步改名复跑对账。⑥ 新增 R163-2（R2 建桶接图片资产链路，到期 r166）/ R163-3（gh 依赖件调用点未逐个改真实路径解析，第 64 门只判可达性不判调用点，到期 r165）。报告 `06-benchmark/全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md`。
+

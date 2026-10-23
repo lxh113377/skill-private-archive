@@ -1,0 +1,362 @@
+{
+ "schema": "debt-aging-v2",
+ "generated_at": "2026-10-23T10:07:11",
+ "readonly": true,
+ "grace_rounds": 2,
+ "current_round": 174,
+ "round_source": "git log --format=%s -40 中最大 rNN（未硬编码）",
+ "verdict_taxonomy": [
+  "OVERDUE",
+  "ACTIVE",
+  "DECIDED",
+  "UNDATED",
+  "DEFERRED",
+  "REPEAT",
+  "CLOSED"
+ ],
+ "files_scanned": [
+  "memory\\07-next-steps.md",
+  "memory\\07-next-steps.part1.md",
+  "memory\\07-next-steps.part10.md",
+  "memory\\07-next-steps.part11.md",
+  "memory\\07-next-steps.part12.md",
+  "memory\\07-next-steps.part13.md",
+  "memory\\07-next-steps.part14.md",
+  "memory\\07-next-steps.part15.md",
+  "memory\\07-next-steps.part16.md",
+  "memory\\07-next-steps.part17.md",
+  "memory\\07-next-steps.part18.md",
+  "memory\\07-next-steps.part19.md",
+  "memory\\07-next-steps.part2.md",
+  "memory\\07-next-steps.part20.md",
+  "memory\\07-next-steps.part21.md",
+  "memory\\07-next-steps.part22.md",
+  "memory\\07-next-steps.part23.md",
+  "memory\\07-next-steps.part24.md",
+  "memory\\07-next-steps.part25.md",
+  "memory\\07-next-steps.part26.md",
+  "memory\\07-next-steps.part27.md",
+  "memory\\07-next-steps.part28.md",
+  "memory\\07-next-steps.part29.md",
+  "memory\\07-next-steps.part3.md",
+  "memory\\07-next-steps.part30.md",
+  "memory\\07-next-steps.part31.md",
+  "memory\\07-next-steps.part32.md",
+  "memory\\07-next-steps.part33.md",
+  "memory\\07-next-steps.part34.md",
+  "memory\\07-next-steps.part35.md",
+  "memory\\07-next-steps.part36.md",
+  "memory\\07-next-steps.part37.md",
+  "memory\\07-next-steps.part38.md",
+  "memory\\07-next-steps.part39.md",
+  "memory\\07-next-steps.part4.md",
+  "memory\\07-next-steps.part40.md",
+  "memory\\07-next-steps.part41.md",
+  "memory\\07-next-steps.part42.md",
+  "memory\\07-next-steps.part43.md",
+  "memory\\07-next-steps.part44.md",
+  "memory\\07-next-steps.part45.md",
+  "memory\\07-next-steps.part46.md",
+  "memory\\07-next-steps.part47.md",
+  "memory\\07-next-steps.part48.md",
+  "memory\\07-next-steps.part49.md",
+  "memory\\07-next-steps.part5.md",
+  "memory\\07-next-steps.part50.md",
+  "memory\\07-next-steps.part51.md",
+  "memory\\07-next-steps.part52.md",
+  "memory\\07-next-steps.part53.md",
+  "memory\\07-next-steps.part54.md",
+  "memory\\07-next-steps.part55.md",
+  "memory\\07-next-steps.part56.md",
+  "memory\\07-next-steps.part57.md",
+  "memory\\07-next-steps.part58.md",
+  "memory\\07-next-steps.part59.md",
+  "memory\\07-next-steps.part6.md",
+  "memory\\07-next-steps.part60.md",
+  "memory\\07-next-steps.part61.md",
+  "memory\\07-next-steps.part62.md",
+  "memory\\07-next-steps.part63.md",
+  "memory\\07-next-steps.part64.md",
+  "memory\\07-next-steps.part65.md",
+  "memory\\07-next-steps.part66.md",
+  "memory\\07-next-steps.part67.md",
+  "memory\\07-next-steps.part68.md",
+  "memory\\07-next-steps.part69.md",
+  "memory\\07-next-steps.part7.md",
+  "memory\\07-next-steps.part70.md",
+  "memory\\07-next-steps.part71.md",
+  "memory\\07-next-steps.part72.md",
+  "memory\\07-next-steps.part73.md",
+  "memory\\07-next-steps.part74.md",
+  "memory\\07-next-steps.part75.md",
+  "memory\\07-next-steps.part76.md",
+  "memory\\07-next-steps.part77.md",
+  "memory\\07-next-steps.part78.md",
+  "memory\\07-next-steps.part79.md",
+  "memory\\07-next-steps.part8.md",
+  "memory\\07-next-steps.part80.md",
+  "memory\\07-next-steps.part81.md",
+  "memory\\07-next-steps.part82.md",
+  "memory\\07-next-steps.part83.md",
+  "memory\\07-next-steps.part84.md",
+  "memory\\07-next-steps.part85.md",
+  "memory\\07-next-steps.part86.md",
+  "memory\\07-next-steps.part87.md",
+  "memory\\07-next-steps.part88.md",
+  "memory\\07-next-steps.part89.md",
+  "memory\\07-next-steps.part9.md",
+  "memory\\07-next-steps.part90.md",
+  "memory\\07-next-steps.part91.md",
+  "memory\\07-next-steps.part92.md",
+  "memory\\07-next-steps.part93.md",
+  "memory\\07-next-steps.part94.md",
+  "memory\\07-next-steps.part95.md",
+  "memory\\07-next-steps.part96.md",
+  "memory\\07-next-steps.part97.md",
+  "memory\\07-next-steps.part98.md",
+  "memory\\07-next-steps.part99.md"
+ ],
+ "evidence": {
+  "volumes": 100,
+  "items_total": 315,
+  "open_total": 40,
+  "closed_total": 275,
+  "raw_item_lines": 315
+ },
+ "by_class": {
+  "OVERDUE": 0,
+  "ACTIVE": 0,
+  "DECIDED": 24,
+  "UNDATED": 15,
+  "DEFERRED": 1,
+  "REPEAT": 0
+ },
+ "overdue": [],
+ "undated": [
+  {
+   "title": "**R156b-1（r156b 登记，P1·已落地）** **权责划分机读化（目标①「明确各节点权责」的机器载体）**：`r150_cont",
+   "file": "memory\\07-next-steps.md",
+   "line": 21
+  },
+  {
+   "title": "**R150-9（r150b 登记，P0·已落地）** **R150-5 完成**：`memory/06-constraints.md` 新",
+   "file": "memory\\07-next-steps.md",
+   "line": 25
+  },
+  {
+   "title": "R113-6 本仓远端实测为 public（记忆 15 处声称「私有归档仓」）：核实并裁定 X-2/AGPL 合入的合规前提（由 flow ",
+   "file": "memory\\07-next-steps.md",
+   "line": 28
+  },
+  {
+   "title": "R113-4 注入面 +97B 外部在途（A-memory-start/references/contract.md 11:37 第三方会话",
+   "file": "memory\\07-next-steps.md",
+   "line": 29
+  },
+  {
+   "title": "R113-3 AGPL-3.0 上游合入合规口径待裁（hyperframes-registry 引入 calesthio/OpenMonta",
+   "file": "memory\\07-next-steps.md",
+   "line": 235
+  },
+  {
+   "title": "R112-5 受管根 rule_editor gates 的 mirror 组件超时（300s skip）+ noise 2 项外部在途，待",
+   "file": "memory\\07-next-steps.md",
+   "line": 236
+  },
+  {
+   "title": "R113-7 需求2 字面缺口：余 56 件 unknown + 143 件盲区仍无替代检索面（每一个现有 skill 都应有候选清单）（由",
+   "file": "memory\\07-next-steps.part42.md",
+   "line": 10
+  },
+  {
+   "title": "R113-2 本地升级可机查：把「本地是否升过级」接进可复算面（pin content_key 不含本地哈希的盲区）（由 flow 登记；状",
+   "file": "memory\\07-next-steps.part42.md",
+   "line": 11
+  },
+  {
+   "title": "R113-1 季度巡检节律：每季度跑 r113_quarterly_audit.py 并按维护规范 05 节规则裁决（由 flow 登记；状",
+   "file": "memory\\07-next-steps.part42.md",
+   "line": 12
+  },
+  {
+   "title": "R76-5 C33 类级缺口：焚诀 eval/build_memory_index.py 的 EXCLUDED 名册缺 .tmp 条目 ⇒ ",
+   "file": "memory\\07-next-steps.part43.md",
+   "line": 7
+  },
+  {
+   "title": "R76-2 项目/陪聊 09 回填件提交：被其自有 pre-commit 交付件判据拦红（s08.png 从工作树消失 + SoulIsle",
+   "file": "memory\\07-next-steps.part43.md",
+   "line": 10
+  },
+  {
+   "title": "R76-1 项目/医 09 头回填收尾：待该文件在途收口后跑 flow <医> --fix-header（V3.115.0 判据会自行显形）",
+   "file": "memory\\07-next-steps.part44.md",
+   "line": 7
+  },
+  {
+   "title": "VOL-2A600 体量治理[L1 记忆卷] memory/07-next-steps.md — 主卷注入面超告警线：按条数归档（savep",
+   "file": "memory\\07-next-steps.part44.md",
+   "line": 10
+  },
+  {
+   "title": "R57-3 推荐:注入壳 AGENTS.md 29,293B / TODO.md 31,909B 超 root_doc_max 16KB——",
+   "file": "memory\\07-next-steps.part44.md",
+   "line": 11
+  },
+  {
+   "title": "VOL-858E6 体量治理[L2 根文档] AGENTS.md — 注入壳瘦身：历史条目迁 memory/ 分卷，壳内只留指针（hando",
+   "file": "memory\\07-next-steps.part44.md",
+   "line": 15
+  }
+ ],
+ "claims_face": "未闭环积压：REST open_issues_count（含 PR）与 search 纯 issue 面并列；workflow 数并给 API 总计面/仓库内面/dynamic 面。r51 起每行带 retrieval",
+ "opponents_measured_at": "2026-09-25",
+ "opponents": [
+  {
+   "repo": "github/spec-kit",
+   "open_issues_pure": 134,
+   "open_issues_incl_pr": 287,
+   "workflows": 18,
+   "workflows_listed": 27,
+   "stale_automation": true,
+   "oldest_open_issue": "2025-09-25",
+   "note": "唯一有到期自动化：Close stale issues and PRs + 6 条 issue 流转 workflow（stale.yml 系仓库自有件）",
+   "retrieval": "gh api \"search/issues?q=repo:github/spec-kit+type:issue+state:open&per_page=1\" --jq .total_count ; gh api repos/github/spec-kit --jq .open_issues_count ; gh api repos/github/spec-kit/actions/workflows --jq '[.workflows[]|select(.path|startswith(\".github/workflows\"))]|length'"
+  },
+  {
+   "repo": "obra/superpowers",
+   "open_issues_pure": 143,
+   "open_issues_incl_pr": 402,
+   "workflows": 0,
+   "workflows_listed": 2,
+   "stale_automation": false,
+   "oldest_open_issue": "2026-01-27",
+   "note": "仓库内 0 个 workflow（.github/workflows 实测 404）；listed=2 全为平台 dynamic 件（r50 校正）",
+   "retrieval": "gh api \"search/issues?q=repo:obra/superpowers+type:issue+state:open&per_page=1\" --jq .total_count ; gh api repos/obra/superpowers --jq .open_issues_count ; gh api repos/obra/superpowers/contents/.github/workflows  # 404"
+  },
+  {
+   "repo": "anthropics/skills",
+   "open_issues_pure": 368,
+   "open_issues_incl_pr": 1292,
+   "workflows": 0,
+   "workflows_listed": 2,
+   "stale_automation": false,
+   "oldest_open_issue": "2025-10-16",
+   "note": "同上：仓库内 0 个自有 workflow，积压规模最大但无到期治理",
+   "retrieval": "gh api \"search/issues?q=repo:anthropics/skills+type:issue+state:open&per_page=1\" --jq .total_count ; gh api repos/anthropics/skills --jq .open_issues_count ; gh api repos/anthropics/skills/contents/.github/workflows  # 404"
+  },
+  {
+   "repo": "addyosmani/agent-skills",
+   "open_issues_pure": 58,
+   "open_issues_incl_pr": 120,
+   "workflows": 2,
+   "workflows_listed": 5,
+   "stale_automation": false,
+   "oldest_open_issue": "2026-04-04",
+   "note": "contents 目录实测 1 件（API 仍报已不存在的 markdownlint.yml）⇒ API 面 ≠ 磁盘面",
+   "retrieval": "gh api \"search/issues?q=repo:addyosmani/agent-skills+type:issue+state:open&per_page=1\" --jq .total_count ; gh api repos/addyosmani/agent-skills/contents/.github/workflows --jq '.[].name'"
+  },
+  {
+   "repo": "pre-commit/pre-commit",
+   "open_issues_pure": 17,
+   "open_issues_incl_pr": 25,
+   "workflows": 2,
+   "workflows_listed": 3,
+   "stale_automation": false,
+   "oldest_open_issue": "2018-07-02",
+   "note": "低积压靠少建待办，最老一条 8 年仍 open（日期已复现）；2 个自有 workflow 均为跨仓 uses: 复用件",
+   "retrieval": "gh api \"search/issues?q=repo:pre-commit/pre-commit+type:issue+state:open&per_page=1\" --jq .total_count ; gh api repos/pre-commit/pre-commit --jq .open_issues_count ; gh api \"search/issues?q=repo:pre-commit/pre-commit+type:issue+state:open&sort=created&order=asc&per_page=1\" --jq '.items[0].created_at'"
+  }
+ ],
+ "note": "OVERDUE 数 = ratchet_gate 第 7 指标 overdue_debt_items 的唯一取值面",
+ "coverage": {
+  "status": "OK",
+  "prev": "debt_aging_r170_final5.json",
+  "prev_overdue": 4,
+  "missing": [],
+  "method": "adjudication_gap(上一轮 overdue[].title 前 40 字, 当前卷文本, 本轮轮号)"
+ },
+ "input_face": {
+  "round": {
+   "log": 174,
+   "tag": 174,
+   "ok": true,
+   "detail": "log=r174 ≥ tag=r174（差 0 轮：本轮 tag 已打，两源一致）"
+  },
+  "floor": {
+   "ok": true,
+   "detail": "上轮 100 卷全部在本轮 100 卷面内（拆卷只增不减，无需豁免表）"
+  },
+  "dedup": {
+   "ok": true,
+   "detail": "315 行全部计入，80 字前缀键零碰撞"
+  },
+  "dup": {
+   "ok": true,
+   "detail": "6 组同号多副本但全部已勾销（拆卷留痕，不判红）"
+  },
+  "dating": {
+   "ok": null,
+   "detail": "本轮无到期项 ⇒ 定年面未行使（不判绿，也不判红）",
+   "checked": 0
+  },
+  "suggestions": {
+   "ok": null,
+   "detail": "未传 --report ⇒ 建议面未对照（R247 不判绿）"
+  },
+  "raw_lines": 315,
+  "collisions": [],
+  "status": "UNVERIFIED",
+  "red_faces": [],
+  "unverified_faces": [
+   "dating",
+   "suggestions"
+  ]
+ },
+ "unowned_claims": [
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 113,
+   "title": "**R166-6（r166 登记，P1，到期 r172；原编号 R166-2，与并行会话同号条目撞车，按 git 首现时序让位改号）** **`gh_path_face` 聚合并发"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 236,
+   "title": "R112-5 受管根 rule_editor gates 的 mirror 组件超时（300s skip）+ noise 2 项外部在途，待归属方收口后复跑（由 flow 登记；状"
+  },
+  {
+   "file": "memory\\07-next-steps.part43.md",
+   "line": 10,
+   "title": "R76-2 项目/陪聊 09 回填件提交：被其自有 pre-commit 交付件判据拦红（s08.png 从工作树消失 + SoulIsle 品牌分叉，均非本次引入），待归属方处置"
+  }
+ ],
+ "handles": {
+  "overdue": {
+   "artifact": "06-benchmark/debt_runs.jsonl",
+   "field": "overdue",
+   "selector": "末行",
+   "command": "python -c 读 06-benchmark/debt_runs.jsonl 末行取 overdue（本件 resolve_handle 即该实现）"
+  },
+  "ledger_rows": {
+   "artifact": "06-benchmark/debt_runs.jsonl",
+   "field": "#rows",
+   "selector": "行数",
+   "command": "wc -l 06-benchmark/debt_runs.jsonl"
+  },
+  "open_total": {
+   "artifact": "06-benchmark/debt_runs.jsonl",
+   "field": "open_total",
+   "selector": "末行",
+   "command": "python 05-exec/r38_debt_aging.py --json /tmp/x.json 读 by_class 之和"
+  },
+  "decided": {
+   "artifact": "06-benchmark/debt_runs.jsonl",
+   "field": "decided",
+   "selector": "末行",
+   "command": "tail -1 06-benchmark/debt_runs.jsonl"
+  }
+ },
+ "handles_drift": [
+  "open_total"
+ ]
+}

@@ -1,0 +1,6 @@
+# 07-next-steps.part156.md
+
+<!-- 本卷为 07-next-steps.part99.md 的段落边界拆分（R241：原文字句零改写；超长行按句号边界切分，逐字节拼接等于原文） -->
+
+- [x] **R163-5（r163 登记，P1，到期 r165）** **r46_mark_verdict 的 verdict 模式静默丢弃 --note（假交付面）**：本轮四条裁决用 `--verdict X --note 长理由` 调用，四条全部 `[MARK:OK]` 且读回验证通过 —— 但读回只验「裁决标记与锚点同行」，而实现里 `body_text = args.verdict if mode==verdict else args.note` ⇒ **verdict 模式下 --note 根本不参与拼接，长理由蒸发且零告警**（X-8 同族：return 了成功却没写盘的东西）。实测取证：写完后 grep 理由正文（70.8% / 命中 15 处 / autoregen 件名）在 07 卷全部 0 命中 ⇒ 已改走 `--mode note` 三条补落（[MARK:OK] :77/:87/:88），第四条 R160-3 用 `裁决｜原因` 一体形态落 :89。修法（属本仓件，可直接改）：verdict 模式下若同时给了 --note，要么拒写要么把 note 拼进同一 marker，禁静默丢弃；须自带反向验证腿（给 --note 而理由不在盘 ⇒ 夹具必须红）。取值：`Select-String -Path 05-exec/r46_mark_verdict.py -Pattern 'body_text = args.verdict'`；`python 05-exec/r46_mark_verdict_fixtures.py`。 【r163 裁决=执行（终局，同轮落地）｜真 bug 已修：verdict 模式下 --note 原**完全不参与拼接**（body_text 只在 else 分支取 note）⇒ 长理由蒸发且零告警，而读回验证只验「裁决标记与锚点同行」⇒ 照样打 [MARK:OK]（X-8 假交付面）。修法 = verdict 模式也接受 --note 并入**同一 marker**，且换行/连续空白压成单空格（行内追加物带换行会把后续内容顶到下一行）。验证三层：① 夹具先 RED（t15/t16 首跑 FAIL，打 OK 而盘上无理由）后 GREEN，17/17 含变异对照 m1（把旧语义注回 ⇒ 理由必须再次消失，证明 t15 的绿来自修复而非断言写松）；② 端到端真调带多行 note ⇒ 落盘为单行且两段理由俱全（70.8% / autoregen 件）；③ 既有 t1-t14 全部仍绿（未回归）。取值：python 05-exec/r46_mark_verdict_fixtures.py → [GATE:fixture-pass]。】
+

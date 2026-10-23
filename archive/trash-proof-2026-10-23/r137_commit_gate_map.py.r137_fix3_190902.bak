@@ -1,0 +1,107 @@
+# -*- coding: utf-8 -*-
+# r137_commit_gate_map.py -- 「本次提交该过哪道门」的判定面（第 49 门）。
+#
+# 存在理由（r137 一手）：r136 盘点出本仓 5 条强制条目（#30 落盘 / #31 处方 / #32 判据面 /
+# #33 结论层 / #34 纪律自用）**全部没有流程强制点** —— 门只跑不阻断，hook 全部 exit 0。
+# 而 r130 的 pre-commit 刻意不阻断，理由正当：**并行会话也在改同一个仓**，
+# 无差别阻断会把我的判据变成「别人的活干不下去」（R269 反面）。
+#
+# 本件给出第三条路：**按本次变更的归属分级**。
+#   ① 变更涉及 05-exec/ 或 06-benchmark/ 或 memory/ 或 AGENTS.md ⇒ 属于「本仓纪律面」，
+#      须过对应门；
+#   ② 变更只涉及别的面（受管根镜像、_trash 迁移等）⇒ 不属本仓判据面，不阻断。
+#
+# 本件只做**判定**（本次变更应过哪些门），不自己跑门、不自己阻断 ——
+# 执行与阻断留给 pre-commit hook（r130 已装，只是不阻断）。
+#
+# 用法: python 05-exec/r137_commit_gate_map.py [--staged <件>] [--json <件>]
+# 退出码: 0 完成 / 2 输入面不可用（R247 禁按 0 记绿）
+import argparse
+import io
+import json
+import os
+import subprocess
+from datetime import datetime
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(HERE)
+RUNNER = os.path.join(HERE, 'run_gates.py')
+
+# 纪律面文件前缀 ⇒ 触发对应门
+TRIGGERS = [
+    ('05-exec/', 'proposal_evidence_face', '改了 05-exec/ 下的判据/工具 ⇒ 新判据须过入库准入门（提案证据面同步）'),
+    ('06-benchmark/transmit_proposals.json', 'proposal_evidence_face', '改了转办提案 ⇒ 提案的处方须有读数面支撑（#31/#34）'),
+    ('06-benchmark/全量对标报告_', 'causal_evidence_face', '写了报告 ⇒ 因果结论须有实测支撑或显式标注（#33）'),
+    ('AGENTS.md', 'gate_table_reconcile', '改了 AGENTS.md 纪律条目 ⇒ 门表对账闸须过（新增门须留对账痕）'),
+    ('memory/07-next-steps.md', 'debt_aging', '改了 07 台账 ⇒ 账龄件须重生（写记忆后必算账龄）'),
+    ('05-exec/run_gates.py', 'gate_table_reconcile', '改了门表 ⇒ 新增门须有对账登记行（#31 门表闸）'),
+]
+
+
+def staged_files():
+    try:
+        p = subprocess.run(['git', 'diff', '--cached', '--name-only'],
+                           cwd=ROOT, capture_output=True, text=True, encoding='utf-8',
+                           errors='replace', timeout=120)
+        return [x for x in (p.stdout or '').splitlines() if x.strip()]
+    except Exception:
+        return []
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--staged', default='', help='已暂存文件清单（每行一个）；缺省用 git diff --cached')
+    ap.add_argument('--json', dest='out')
+    ap.add_argument('--runner', default=RUNNER)
+    args = ap.parse_args()
+    if not os.path.isfile(args.runner):
+        print('[GATEMAP] UNVERIFIED runner 不存在: %s' % args.runner)
+        return 2
+    if args.staged and os.path.isfile(args.staged):
+        files = [x.strip() for x in io.open(args.staged, encoding='utf-8').read().splitlines() if x.strip()]
+    else:
+        files = staged_files()
+    if not files:
+        print('[GATEMAP] UNVERIFIED 取不到暂存文件清单（git diff --cached 为空且未给 --staged）')
+        print('          禁按 0 记绿 —— 空清单会让「该过哪道门」恒为空集（r133 第 ④ 种形态）')
+        return 2
+    runner_src = io.open(args.runner, encoding='utf-8').read()
+    gates = {}
+    for prefix, gid, why in TRIGGERS:
+        hit = [f for f in files if f.startswith(prefix) or f == prefix]
+        if not hit:
+            continue
+        needle = chr(34) + 'id' + chr(34) + ': ' + chr(34) + gid + chr(34)
+        if needle not in runner_src and not os.path.isfile(os.path.join(HERE, gid + '.py')):
+            gates[gid] = {'gates': sorted(set(hit)), 'why': why, 'in_gates_table': False}
+        else:
+            gates[gid] = {'gates': sorted(set(hit)), 'why': why,
+                          'in_gates_table': needle in runner_src}
+    doc = {'schema': 'commit-gate-map-r137-v1',
+           'cmd': 'python 05-exec/r137_commit_gate_map.py --json <out>',
+           'staged_n': len(files),
+           'staged': files,
+           'required_gates': gates,
+           'required_gate_ids': sorted(gates.keys()),
+           'in_scope_n': len(gates),
+           'reading': {
+               'in_scope_n': '本次提交落在本仓纪律面的门数（0 = 不属本仓判据面，不阻断）',
+               'required_gate_ids': '本次提交**必须过**的门 id 列表 —— pre-commit 依此逐门跑并按结果阻断',
+               'staged_n': '本次暂存文件数',
+           }},
+           'generated_at': datetime.now().strftime('%Y-%m-%d %H:%M')}
+    }
+    if args.out:
+        with io.open(args.out, 'w', encoding='utf-8', newline='\n') as f:
+            json.dump(doc, f, ensure_ascii=False, indent=1)
+    print('[GATEMAP] 暂存 %d 个文件｜纪律面门 %d：%s'
+          % (len(files), len(gates), ', '.join(sorted(gates.keys())) or '(不在纪律面)'))
+    for gid, v in sorted(gates.items()):
+        print('  %-26s 触发文件 %s' % (gid, v['gates'][:3]))
+    if args.out:
+        print('[GATEMAP] JSON -> %s' % args.out)
+    return 0
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())

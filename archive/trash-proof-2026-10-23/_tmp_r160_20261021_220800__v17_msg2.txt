@@ -1,0 +1,5 @@
+chore(r139): 门禁终态 [GATES:FAIL] FAIL=2（w47 t1b 假绿 R135-1 转办中 + freshness 自指门）；第 51 门自身 PASS
+
+51 门全量跑通，本轮新增的 hook_sync_face PASS。
+我方线全绿：准入门未声明 0 / 门表对账未登记 0 / md_claim 敞口 0。
+棘轮 inject 增长已归因（留账 21 条）。

@@ -1,0 +1,352 @@
+# -*- coding: utf-8 -*-
+r'''r113_quarterly_audit.py -- 季度 skill 巡检一键入口（需求 5：长效定期巡检机制）。
+
+存在理由（本仓形态，不是通用 template）：
+  第 19 维（版本落后面）到 r113 才建起可判面（39/182），但此前**没有巡检节律**：
+  r97 §4 P4 只把「twelve_face 季度重测」写在散文里，无人可复跑、无产物落点。
+  本件把「每季度扫一遍：身份 / 上游关系 / 裁决 / 元数据」钉成**单命令 + 落盘产物**，
+  使「是否出现更优开源替代」这个问题每季度被机器问一次，而不是靠谁想起来。
+
+  判据链（复用，不重造）：本件只做编排与落盘，判定全部调用既有件 --
+    · r112_provenance_scan.py   身份四档（declared/inferred/self_built/unknown）
+    · r112_upstream_probe.py    六态内容寻址关系（可 --offline 复用缓存）
+    · r112_swap_gate.py         五态裁决 + 盲区具名
+    · r112_provenance_face.py   常驻门（离线结构判据）
+    · gh api repos/<R>          上游仓元数据（stars/pushed/license/issues）
+    · r114_replacement_scan.py  替代候选面（第 ⑥ 段；r114 建）
+    · r114_quality_ab.py        eval 内三方法对照（第 ⑦ 段；r115 起降级为旁证）
+    · r117_route_miss_attr.py   生产路由 miss 归因（第 ⑧ 段；r117 建）
+    · r115_quality_truth.py     质量主指标四层（第 ⑨ 段；r115 起为唯一质量口径）
+
+  反「取数失败销毁证据」（r112 cache-guard 范式，本件是 K-4 推广的第一件）：
+    巡检产物写**同一路径**（quarterly/<季度>/audit.json）⇒ 一次网络抖动不得把上一季
+    好产物覆盖成失败桩。守卫 = 任一步失败即**保留旧产物**并把失败痕迹写 sidecar
+    audit.error.json（cache_error 同族）；只有全部步骤可用才原子替换主产物。
+    零输入/全失败 ⇒ rc=2（R247）。
+
+用法：
+  python 05-exec/r113_quarterly_audit.py
+  python 05-exec/r113_quarterly_audit.py --offline
+  python 05-exec/r113_quarterly_audit.py --quarter 2026Q4 --json <件>
+退出码：0 全步通过 / 1 保留旧产物（本实现用 2 表示面不可用）/ 2 面不可用（零输入，禁记绿）。
+'''
+import argparse
+import io
+import json
+import os
+import subprocess
+import sys
+import time
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(HERE)
+BENCH = os.path.join(ROOT, "06-benchmark")
+PY = sys.executable
+GH = os.environ.get("GH_BIN") or r"C:\Program Files\GitHub CLI\gh.exe"
+
+# 季度巡检的上游候选源（与本仓 r112/r113 实测在册者同源；禁手抄扩张，扩面须带取证）
+UPSTREAM_REPOS = [
+    "anthropics/skills", "obra/superpowers", "addyosmani/agent-skills",
+    "github/spec-kit", "sickn33/agentic-awesome-skills", "kepano/obsidian-skills",
+    "mattpocock/skills", "vercel-labs/skills", "calesthio/OpenMontage",
+    "affaan-m/ECC", "composiohq/awesome-claude-skills",
+]
+
+
+def current_quarter(t=None):
+    t = t or time.localtime()
+    return "%dQ%d" % (t.tm_year, (t.tm_mon - 1) // 3 + 1)
+
+
+def run_step(name, argv, timeout=900):
+    """跑一步并原样保留 stdout/stderr（失败不得静默）。"""
+    t0 = time.time()
+    try:
+        p = subprocess.run(argv, capture_output=True, text=True, encoding="utf-8",
+                           errors="replace", timeout=timeout, cwd=ROOT)
+    except Exception as exc:  # noqa: BLE001 - 任何异常都记为该步失败，不冒泡吞掉
+        return {"step": name, "rc": None, "error": repr(exc), "ms": int((time.time() - t0) * 1000),
+                "stdout_tail": "", "stderr_tail": ""}
+    return {"step": name, "rc": p.returncode, "ms": int((time.time() - t0) * 1000),
+            "stdout_tail": (p.stdout or "")[-1500:], "stderr_tail": (p.stderr or "")[-1500:]}
+
+
+def fetch_meta(offline=False):
+    """上游仓元数据（gh api）。失败逐仓具名 UNVERIFIED，禁留空。"""
+    out = {}
+    for r in UPSTREAM_REPOS:
+        if offline:
+            out[r] = {"state": "SKIPPED_OFFLINE"}
+            continue
+        try:
+            p = subprocess.run([GH, "api", "repos/" + r], capture_output=True, text=True,
+                               encoding="utf-8", errors="replace", timeout=60)
+        except Exception as exc:  # noqa: BLE001
+            out[r] = {"state": "UNVERIFIED", "error": repr(exc)}
+            continue
+        if p.returncode != 0:
+            out[r] = {"state": "UNVERIFIED", "rc": p.returncode,
+                      "stderr": (p.stderr or "")[:200]}
+            continue
+        try:
+            d = json.loads(p.stdout)
+        except ValueError as exc:
+            out[r] = {"state": "UNVERIFIED", "error": "json:" + repr(exc)}
+            continue
+        out[r] = {"state": "OK", "stars": d.get("stargazers_count"),
+                  "pushed_at": (d.get("pushed_at") or "")[:10],
+                  "license": (d.get("license") or {}).get("spdx_id") or "UNLICENSED",
+                  "open_issues": d.get("open_issues_count"), "archived": d.get("archived")}
+        time.sleep(0.3)
+    return out
+
+
+def _read_swap_impact(path):
+    """从 swap_impact.json 读「换装影响量」四数（句柄化，禁抄值）。
+
+    三态：件缺失/解析失败 ⇒ None（禁当 0 影响引用）；
+    正控未翻转 ⇒ discriminating_power=False，此时任何「0 影响」读数都不得引用
+    （实验无鉴别力，R247/W-47 同族）。
+    """
+    import io as _io
+    import json as _json
+    if not os.path.isfile(path):
+        return None
+    try:
+        with _io.open(path, encoding="utf-8") as f:
+            d = _json.load(f)
+    except Exception:
+        return None
+    s = d.get("summary") or {}
+    return {
+        "variants_n": s.get("variants_n"),
+        "local_improved_n": s.get("local_improved_n"),
+        "local_degraded_n": s.get("local_degraded_n"),
+        "subnet_changed_n": s.get("subnet_changed_n"),
+        "cross_flips_n": s.get("cross_flips_n"),
+        "negative_control_pass": (s.get("negative_control") or {}).get("pass"),
+        "positive_control_pass": (s.get("positive_control") or {}).get("pass"),
+        "discriminating_power": s.get("discriminating_power"),
+        "source": os.path.relpath(path, ROOT).replace(os.sep, "/"),
+    }
+
+
+def _read_domain_face(path):
+    """从 domain_face.json 读 L0 域过滤面五数（句柄化，禁抄值）。
+
+    三态：件缺失/解析失败 ⇒ None（禁当 0 引用）。
+    口径红线（r120 §2.3）：mismatch_n 是**潜在脆弱面**，不是缺口数；
+    可引用的缺陷数 = real_fail_n。两个数必须同列，禁只报一个。
+    """
+    import io as _io
+    import json as _json
+    if not os.path.isfile(path):
+        return None
+    try:
+        with _io.open(path, encoding="utf-8") as f:
+            d = _json.load(f)
+    except Exception:
+        return None
+    f = d.get("face") or {}
+    g = d.get("global_cf") or {}
+    return {
+        "questions_n": f.get("questions_n"),
+        "mismatch_n": f.get("mismatch_n"),
+        "mismatch_pct": f.get("mismatch_pct"),
+        "mismatch_raw_n": f.get("mismatch_raw_n"),
+        "calibration_diff_n": f.get("calibration_diff_n"),
+        "exposed_n": f.get("exposed_n"),
+        "real_fail_n": f.get("real_fail_n"),
+        "domain_filter_net_pp": g.get("delta_pp"),
+        "domain_filter_verdict": g.get("verdict"),
+        "source": os.path.relpath(path, ROOT).replace(os.sep, "/"),
+    }
+
+
+def _read_trace_face(path):
+    """从 trace_face.json 读生产流量面五数（句柄化，禁抄值）。
+
+    三态：件缺失/解析失败 ⇒ None（禁当 0 引用）。
+    ⚠️ 该文件会被轮换：r120 实测 23,630 行/15 天，后续实测 894 行/0.03 天 ⇒
+    span_days 与 freshness_days 必须与 unique_n 同列，禁只报一个规模数。
+    """
+    import io as _io
+    import json as _json
+    if not os.path.isfile(path):
+        return None
+    try:
+        with _io.open(path, encoding="utf-8") as f:
+            d = _json.load(f)
+    except Exception:
+        return None
+    f = d.get("face") or {}
+    return {
+        "rows_n": f.get("rows_n"),
+        "unique_n": f.get("unique_n"),
+        "noise_n": f.get("noise_n"),
+        "empty_q_n": f.get("empty_q_n"),
+        "low_n": f.get("low_n"),
+        "span_days": f.get("span_days"),
+        "freshness_days": f.get("freshness_days"),
+        "conservation_ok": f.get("conservation_ok"),
+        "source": os.path.relpath(path, ROOT).replace(os.sep, "/"),
+    }
+
+
+def atomic_write_json(path, doc):
+    tmp = path + ".tmp"
+    with io.open(tmp, "w", encoding="utf-8", newline="\n") as fh:
+        json.dump(doc, fh, ensure_ascii=False, indent=1)
+    os.replace(tmp, path)
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--quarter", default=None, help="季度标识，缺省按当前日期算")
+    ap.add_argument("--out-dir", default=os.path.join(BENCH, "quarterly"))
+    ap.add_argument("--json", dest="json_out", default=None)
+    ap.add_argument("--offline", action="store_true", help="不联网，复用上游缓存")
+    ap.add_argument("--quiet", action="store_true")
+    args = ap.parse_args()
+
+    q = args.quarter or current_quarter()
+    qdir = os.path.join(args.out_dir, q)
+    os.makedirs(qdir, exist_ok=True)
+    main_out = args.json_out or os.path.join(qdir, "audit.json")
+    err_out = os.path.join(qdir, "audit.error.json")
+
+    prov = os.path.join(qdir, "provenance.json")
+    up = os.path.join(qdir, "upstream.json")
+    swap = os.path.join(qdir, "swap_gate.json")
+    repl = os.path.join(qdir, "replacement_matrix.json")
+    qual = os.path.join(qdir, "quality_ab.json")
+
+    steps = []
+    steps.append(run_step("provenance_scan",
+                          [PY, os.path.join(HERE, "r112_provenance_scan.py"), "--json", prov]))
+    probe_argv = [PY, os.path.join(HERE, "r112_upstream_probe.py"), "--scan", prov, "--json", up]
+    if args.offline:
+        probe_argv.append("--offline")
+    steps.append(run_step("upstream_probe", probe_argv))
+    steps.append(run_step("swap_gate",
+                          [PY, os.path.join(HERE, "r112_swap_gate.py"),
+                           "--scan", prov, "--probe", up, "--json", swap]))
+    steps.append(run_step("provenance_face",
+                          [PY, os.path.join(HERE, "r112_provenance_face.py")]))
+    # r114 第 ⑥ 段：替代候选面（需求 2「每个 skill 3-5 个候选」的季度重扫）
+    repl_argv = [PY, os.path.join(HERE, "r114_replacement_scan.py"), "--json", repl]
+    if args.offline:
+        repl_argv.append("--offline")
+    steps.append(run_step("replacement_scan", repl_argv))
+    # r114 第 ⑦ 段：eval 内三方法对照（**口径降级**：r115 已证它不是生产路由读数，
+    # 保留只为跨季观察「轻量匹配」而存在；质量主指标看第 ⑨ 段 r115_quality_truth.py）
+    qual_argv = [PY, os.path.join(HERE, "r114_quality_ab.py"), "--json", qual, "--quiet"]
+    steps.append(run_step("quality_ab", qual_argv))
+    # r117 第 ⑧ 段：生产路由 miss 归因（STALE_EXPECT / UNREGISTERED / REAL_MISS / UNDECIDABLE）
+    # 离线也跑：评分与注册表都在本机，不依赖网络（只在 eval 侧现算，焚诀 eval 只读）
+    rmiss = os.path.join(qdir, "route_miss_attr.json")
+    steps.append(run_step("route_miss_attr",
+                          [PY, os.path.join(HERE, "r117_route_miss_attr.py"),
+                           "--json", rmiss, "--quiet"]))
+    # r117 第 ⑨ 段：质量主指标（r115 起 = 生产路由 L1/L2/L3/L4 四层，权威件读数）
+    truth = os.path.join(qdir, "quality_truth.json")
+    steps.append(run_step("quality_truth",
+                          [PY, os.path.join(HERE, "r115_quality_truth.py"),
+                           "--json", truth, "--quiet"]))
+    # r120b 第 ⑪ 段（R120-1 落地）：L0 域过滤面常驻读数。
+    # 存在理由：r120 首析即量出 25.7% 题面域失配（生产口径），但**当时是一次性脚本**，
+    # 而域归属会随注册表增删持续漂移 ⇒ 不常驻就等于「量过一次就永远信那一次」。
+    # 本段只读 eval/ 与注册表，零网络；口径校准（raw vs norm）同列输出，
+    # 防下一轮把「潜在脆弱面」当「缺口数」引用（r120 §2.3 已立该口径红线）。
+    domain_face = os.path.join(qdir, "domain_face.json")
+    steps.append(run_step("domain_face",
+                          [PY, os.path.join(HERE, "r120_domain_face.py"),
+                           "--json", domain_face],
+                          timeout=900))
+    # r120b 第 ⑫ 段（R120-4 落地）：生产流量面常驻读数。
+    # 存在理由：r120 首析 route_trace 即证「路由缺口在合成题面不在真实使用」，但属一次性脚本，
+    # 而生产流量每日新增 ⇒ 不常驻就等于结论永远停在 10-20。本段只读 jsonl，零网络。
+    # ⚠️ 该文件会被轮换（r120 当时 23,630 行 / 15 天，本轮实测 894 行 / 0.03 天）⇒
+    #   freshness_days 与 span_days 必须同列输出，禁只报 unique_n 让人以为一直是那个规模。
+    trace_face = os.path.join(qdir, "trace_face.json")
+    steps.append(run_step("trace_face",
+                          [PY, os.path.join(HERE, "r120_trace_face.py"),
+                           "--json", trace_face]))
+    # r119 第 ⑩ 段（S-4 落地）：换装影响量常驻读数。
+    # 存在理由：r118 实测「换装对生产路由影响 0」是需求 6 的机制判据，但它此前只活在
+    # r118 报告里 —— 下一季换装队列重新开工时，没有人会复跑这个沙箱，
+    # 「0 影响」会退化成一句没人验证的传说。本段把沙箱接进季度巡检：
+    #   · 每季现跑 r118_swap_sim.py（47 变体全量，本地 eval 面，零网络）；
+    #   · 读数写进主产物 swap_impact 段（local_improved / local_degraded / 正负控判别力）；
+    #   · 负控不通过或正控不翻转 ⇒ 该段 UNVERIFIED，禁把「无影响」当结论引用（R247）。
+    # 口径：沙箱较慢（~2-4 分钟），故给 1800s 超时；失败不阻塞其余段，
+    #       但 face_ok 会把失败步具名（见下方 failed 计算，本段已并入 steps）。
+    swap_impact = os.path.join(qdir, "swap_impact.json")
+    steps.append(run_step("swap_impact",
+                          [PY, os.path.join(HERE, "r118_swap_sim.py"),
+                           "--json", swap_impact],
+                          timeout=1800))
+    _r120b_domain_reading = _read_domain_face(domain_face)
+    _r120b_trace_reading = _read_trace_face(trace_face)
+
+    meta = fetch_meta(offline=args.offline)
+    failed = [s["step"] for s in steps if s["rc"] != 0]
+    meta_unv = sorted([r for r, v in meta.items() if v.get("state") == "UNVERIFIED"])
+
+    face_ok = (all(os.path.isfile(p) for p in
+                   (prov, up, swap, repl, qual, rmiss, truth, swap_impact, domain_face,
+                    trace_face))
+               and not failed)
+    face_reason = None
+    if not os.path.isfile(prov):
+        face_ok = False
+        face_reason = "provenance 产物缺失（零输入面）"
+    elif failed:
+        face_reason = "失败步: " + ",".join(failed)
+
+    doc = {
+        "schema": "quarterly-skill-audit-v1",
+        "quarter": q,
+        "generated_at": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
+        "cmd": "python 05-exec/r113_quarterly_audit.py --quarter " + q,
+        "steps": steps,
+        "failed_steps": failed,
+        "upstream_meta": meta,
+        "upstream_meta_unverified": meta_unv,
+        "artifacts": {"provenance": prov, "upstream": up, "swap_gate": swap,
+                      "replacement_matrix": repl, "quality_ab": qual,
+                      "route_miss_attr": rmiss, "quality_truth": truth,
+                      "swap_impact": swap_impact, "domain_face": domain_face,
+                      "trace_face": trace_face},
+        "swap_impact_reading": _read_swap_impact(swap_impact),
+        "domain_face_reading": _r120b_domain_reading,
+        "trace_face_reading": _r120b_trace_reading,
+        "face_ok": face_ok,
+        "face_reason": face_reason,
+    }
+
+    if not face_ok:
+        # 守卫（cache_error 同族）：主产物是「上一季的好件」时原样保留，本轮痕迹只进 sidecar
+        doc["kept_previous_main"] = os.path.isfile(main_out)
+        atomic_write_json(err_out, doc)
+        print("  取数面不完整（%s）⇒ 主产物未覆写（旧件保留），痕迹入 %s"
+              % (face_reason, os.path.relpath(err_out, ROOT)))
+        if not args.quiet:
+            print("[QUARTERLY:DEGRADED] 面不可用 ⇒ rc=2（R247：零输入/全失败不得记绿）")
+        return 2
+
+    atomic_write_json(main_out, doc)
+    if os.path.isfile(err_out):
+        os.remove(err_out)
+    if not args.quiet:
+        print("季度巡检 %s 完成：%d 步全通过 ｜ 上游元数据 OK=%d UNVERIFIED=%d"
+              % (q, len(steps), len(UPSTREAM_REPOS) - len(meta_unv), len(meta_unv)))
+        if meta_unv:
+            print("  具名 UNVERIFIED: %s" % ", ".join(meta_unv))
+        print("JSON -> %s" % main_out)
+        print("[QUARTERLY:PASS] 产物=%s" % os.path.relpath(main_out, ROOT))
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

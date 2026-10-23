@@ -1,0 +1,5 @@
+# 07-next-steps.part164.md
+
+<!-- 本卷为 07-next-steps.part163.md 的延续 -->
+
+- [x] **R166-5（r166 登记，P2）** **README.md 每轮注入 30,721B > root_doc_max 16,384B**：L2 根文档瘦身（历史条目迁 memory/ 分卷，壳内只留指针）。属 `trim-shell` 的 L2 面，未列入本轮四项（本轮四项全部来自 volume 的 L1/L3 实测）。取值：`python <handoff.py> volume <根>` 的 `[L2 根文档]` 行。 【r171 裁决=降级（转长期看守）｜**本条由主轮代裁（R269 只禁迁删文件，不禁写裁决；内容零改动）**。理由同 R166-4：`volume` 门是 `[GATE:volume-warn]` 不阻断，但账龄尺持续报 OVERDUE 会让 `ratchet_gate` 的 `overdue_debt_items` 超棘轮。**本轮实测读数（与登记时一致，未恶化也未解决）**：`handoff.py volume` 报 `⚠️ [L2 根文档] README.md 每轮注入 30,721B > 16,384B`，处置建议 = `handoff.py trim-shell`（历史条目迁 memory/ 分卷，壳内只留指针）。**主轮未做**：`trim-shell` 会改写 README 结构（属文件内容改动，且 README 是注入壳、拆它可能打断 A-memory-start Step 3.5 加载 —— volume 的「豁免计量」行里 AGENTS.md 正因同类原因保留不拆）。⚠️ 注意：本条与 R166-4 有**共同的上游根因** = 每轮注入只增不减；若归属方要治本，应治「注入量」而非逐个瘦身。】 【r175 裁决=执行（终局，同轮落地）｜README 注入壳瘦身（老大点名的三项之三）：30,721B 降到 7,401B（-75.9%，root_doc_max 16,384B 达标）。做法 = 把「逐轮对标报告」节（23,830B，占 README 78%）零改写迁到 memory/readme-benchmark-reports.md，README 只留指针与取数口径行（禁硬编码轮号，r110 立规保留）。迁移件本身 24,215B 又超 4KB，同脚本再拆 6 卷（part1..6 各 ≤4KB）。复跑 volume：L2 根文档 0 项、L1 无 readme-benchmark 超限项。】

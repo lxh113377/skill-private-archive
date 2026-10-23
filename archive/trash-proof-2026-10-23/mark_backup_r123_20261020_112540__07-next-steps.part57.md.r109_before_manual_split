@@ -1,0 +1,216 @@
+# 07-next-steps 分卷 57 — r108（2026-10-16）轮次记录与新建待办
+
+> 独占新卷（R199 拆卷口径：主壳只加指针，正文零改写）。上位文件 = `07-next-steps.md`。
+
+## r108 轮次记录（摘要，正文留本卷；主壳按 r105 先例逐字节回退）
+
+**2026-10-16（第 108 轮 r108，自动化指令 goal round2/256：六红归零 + 四项改造 + 并行甩件回收）** — ① 入场复算 29 门 FAIL=6：4 红同源于账龄件陈旧（件 mtime 11:04:10 < 所测卷 12:49:09，r105 相对新鲜前置正确拒陈旧件）⇒ `r38_debt_aging.py --json 06-benchmark/debt_aging_r108_2026-10-16.json --ledger` 重算+续诊落账（台账 55→56 行），复跑收口 `handles_drift`（三值漂移→None）；1 红是我自造的 `_temp_r108_gates.txt` 落项目根（root_face f8）⇒ 删除并改落 06-benchmark（新立 I-6/R314）；元门 gate_run_freshness 自我引证随真绿转绿。终态 `[GATES:PASS] PASS=29`（快照 gate_run_r108_2026-10-16.json）+ 焚诀 verify **49 PASS/0 FAIL/1 SKIP**（SKIP=当日日志锚点）。② 对手面 gh 双路实测 6 仓：anthropics 181,455★/pushed 10-09、superpowers 300,186★/10-10、addyosmani 107,144★/10-13、spec-kit 141,477★/10-15（对手最新）、pre-commit 15,637★、composio 77,213★/09-18；SKILL.md 计数 20/15/25/2/864（生成式）；我方 GS 近 7 日 **31 提交、最后 10-16** ⇒ 维护节律我方最快，代价=并行竞争（本轮实证）。③ **改造1（高）**输入面续诊；**改造2（高）**ASM 版本历史卷补 1.19.0/1.20.0 逐字两行（`f6ac563f`，卷 18,344→20,092B，W-45 主面闭环）；**改造3（中）**xlsx 验证腿 1→3 + 2 条实测坏腿如实登记 + 新建版本历史段 + 分卷 `references/verification.md`（**一手自抓**：我先写 5 腿版，逐条实测后 validate.py 对 .xlsx 落 `case _:` rc=1、recalc.py Windows `AF_UNIX` AttributeError 必崩 ⇒ 2 条虚报，遂重写并立规「每条腿须自跑留回执，跑不通写进坏腿小节，禁删掉不提」；13,718B 超软限→11,703B WITHIN；`2960ac1b`+`7bdf8e6d`）；**改造4（中）**local 族静态契约判据腿 9 件铺齐（六类断言、权重缺失=SKIP 非 FAIL；**W-47 双向**：真件注入 6 FAIL rc=1 / 干净对照 9 PASS rc=0；10/10 实测绿）——**并行甩件回收**：首笔 `b9e5d90e` 被他人 16:04–16:05 rebase/reset/cherry-pick 甩出主线（`cat-file -e HEAD:…` rc=128），对象未丢，`git checkout <悬空> -- <paths>` 重落 `c984a8aa`（tracked 10/10）⇒ 新立 R313 护栏「提交后必复算 merge-base --is-ancestor」。④ 我方 3 件已定向镜像同步 + sha256 同源（W-41 配方，**未跑全局 -Fix** 以免吞他人在途）；受管根三门禁本轮红**全部属他人**（mirror greencheck.py 盘 ` M` / noise 焚诀 `.wflow` / evolution A-project-handoff V3.120.0 锚点），R269 只登记。⑤ `build_indexes --apply` 报 `PermissionError WinError 5`（`bge_fullbody_embeddings.npy` 被并行进程占，`os.replace` 拒）⇒ 派生件本轮**未重建、索引未提交**，待占用释放补跑。报告 = `06-benchmark/全量对标报告_r108_四项改造与并行甩件回收_2026-10-16.md`；新立/承接待办 8 条落本卷。
+
+- 主壳字节：写前 149,362B → append 后 152,442B（+3,080B，超 shell_max=40,960 既有超限面）⇒ 按 r105 先例把正文迁本卷、主壳逐字节回退（取值：`python -c "import io;print(len(io.open('memory/07-next-steps.md','rb').read()))"`，期望 149,362 + 指针行）。
+
+## r108 新建待办
+
+- [ ] **【P1·新立 R313（r108 一手，并行甩件护栏）】** 受管根任何提交落地后，**必须复算主线可达性**：`git -C D:\global_skills merge-base --is-ancestor <sha> HEAD`（rc=1 即被甩出）。一手实测：改造4 首笔 `b9e5d90e`（9 文件 846 行）落地 3 分钟后被并行会话 16:04–16:05 的 `rebase (start)/reset: moving to 2960ac1b/cherry-pick` 活动甩出主线（`git cat-file -e HEAD:local-asr/scripts/test.ps1` rc=128 ⇒ 文件在 HEAD 树中不存在），数据未丢（对象仍在 `cat-file -t`=commit），配方 = `git checkout <悬空sha> -- <paths>` 回盘重落为 `c984a8aa`。**不做即等于「已交付」判断失真**（与跨会话夹带 f6f5b0c 同族、方向相反：那次是被夹带进来，这次是被甩出去）。取值：`git -C D:\global_skills reflog --date=iso -6` + `git -C D:\global_skills ls-files -- "local-*/scripts/test.ps1" | wc -l`（期望 10） 【r108 登记｜本轮已按该配方自愈】
+- [ ] **【P1·新立 R314（r108，聚合 runner stdout 落点）】** 门禁 runner 的 stdout **禁止落项目根**（顶层扫描面）。一手实测两次自踩：`_temp_r108_gates.txt` 落 `自建skill优化\` 根 ⇒ `root_face_fixtures` f8 判顶层 VIOL「根部意外项」；与 `audit-runner-safe-aggregate` 的反掩盖口径同族（产物落点是判据的一部分）。**本轮二次自踩升级判据**：改落 `06-benchmark/gate_run_r108_stdout.txt` 并入库后，`Out-File` 每次先截零 ⇒ `tracked_empty_check` 抓到「0 字节 tracked 文本件 1 个」判红。正解 = 落 **gitignore 命中目录**（本仓 `_temp/` 在册）或只留 `--json` 快照（机器可读、非空即自证）。R314 终口径 = 聚合 runner 的 stdout 只许落 ①gitignore 命中目录 ②仓外；**禁落项目根**（noise 顶层 VIOL）**与任何 tracked 件**（0 字节竞态）。处置已执行：`git rm --cached` + 删除该件；取值改 `python -c "import json;d=json.load(open('06-benchmark/gate_run_r108_2026-10-16.json',encoding='utf-8-sig'));print(d['verdict'],d['gates_run'])"`取值：`python 05-exec/r55_rootface_fixtures.py` 【r108 登记｜本轮已删自造件并改落点】
+- [ ] **【P1·承接 W-45（r108 执行完毕，余面转看守）】** ASM 版本历史卷 1.19.0/1.20.0 两行已逐字补齐（提交 `f6ac563f`，卷字节 18,344→20,092）。**余面**：同卷存在历史重复行（1.10.0/1.11.0/1.14.0/1.6.0 各两形态、1.3.0 三行），属他方 bump 未回填；按 R241 不改写他人条目，只登记看守。取值：`grep -c "^| 1.1" D:/global_skills/A-skill-manager/references/version-history.md` 与逐行目测重复 【r108 裁决=执行完毕（限定）｜主面闭环，重复行面转长期看守（他人条目禁改）】
+- [ ] **【P1·承接 R60-3（r108 xlsx 半边执行完毕）】** xlsx 可跑验证腿 1→3（同尺判据 `^(python|node) scripts/` ≥3 成立）+ 2 条实测坏腿如实登记（`validate.py` 对 .xlsx 落 `case _:` 打印不支持、`recalc.py` Windows `AF_UNIX` 崩；根因读自自带源码），版本 1.0.1→1.0.2 并新建 `## 版本历史` 段（改前无该节 ⇒ C13 此前对本件免疫）；主文件被自身新增顶破 12,288B（`skill_size_report.check()` 点名「新增超限技能 xlsx」）⇒ 同轮分卷 `references/verification.md` 收口回 11,703B WITHIN。提交 `2960ac1b`+`7bdf8e6d`。**一手教训**：我先按 docx 形态写 5 条腿，逐条实测后 2 条虚报 ⇒ **验证段每条腿必须自跑并留回执；跑不通的写进「跑不通」小节，禁删掉不提**。取值：`python -c "import io;print(sum(1 for l in io.open(r'D:/global_skills/xlsx/SKILL.md',encoding='utf-8') if l.startswith(('python scripts/','node scripts/'))))"`（期望 ≥3） 【r108 裁决=执行完毕｜pdf 0 条腿的同类缺口另条在册 I-8】
+- [ ] **【P2·新立 I-8（r108 对标同尺）】** `pdf/SKILL.md` 可跑验证段实测 **0 条**（同尺 docx=17 / xlsx 改后=3）。判据与 xlsx 同形态。前提同 R60-3：走 rule_editor + version bump + 历史行 + rebuild 窗口。取值：`python -c "import io;print(sum(1 for l in io.open(r'D:/global_skills/pdf/SKILL.md',encoding='utf-8') if l.startswith(('python scripts/','node scripts/'))))"` 【r108 登记】
+- [ ] **【P2·新立 I-5（r108 对标确定落后项）】** 受管根 `D:\global_skills` 根**实测 0 件 .md**（`readdir` 全量，非搜索命中）vs 对手 spec-kit 根 12 件 .md（含 CONTRIBUTING/SECURITY/SUPPORT/DEVELOPMENT/CHANGELOG）/ anthropics 2 件 ⇒ 「技能仓的规矩」目前只活在 A-skill-manager 铁律与 memory 台账里，新会话或外部贡献者必然漏项（本轮 W-45 就是该缺口的产物）。**不擅立**：CONTRIBUTING 属全库规矩外显，须老大点头口径（谁可改/走什么链/怎么测）。取值：`Get-ChildItem D:\global_skills -Filter *.md -File` 【r108 登记·待裁】
+- [ ] **【P2·新立 I-6（r108 可发现性差距）】** 判据面命名与对手不可比：spec-kit 389 / superpowers 87 个 `tests/` 文件，我方 `05-exec/` 130 个 py（其中 29 个 `*_fixtures.py` 常驻门）**但无 tests/ 目录** ⇒ 功能等价、可发现性差。方案 = 加一份「门⇄夹具⇄判据」索引（README 或 docs/），**禁物理搬迁**（会把 29 道门的 script 路径全打挂）。取值：`ls 05-exec/*_fixtures.py | wc -l`（实测 29） 【r108 登记·待裁】
+- [ ] **【P1·承接 W-32（r108 复算，未动）】** `inject_union_bytes=86,900B` 超硬顶 65,536B（+21,364）。本轮复算：`ratchet_gate.py` 打印同值；焚诀 C31 侧口径余量 1,569B（2.4%）已亮「再有一次技能增长即破硬顶」⇒ 该告警**已从装饰性变成临界面**。三选一仍待老大点名（实减 / 重设硬顶并逐因归因 / 显式豁免）。取值：`python 05-exec/ratchet_gate.py` + managed venv `python 焚诀/eval/verify_truth_consistency.py` 读 C31 行 【r108 裁决=保留（转裁定）｜第 4 轮未消】
+
+## r108 对既有台账的复算校正（R241：原文不改，只在此具名）
+
+- r107 报告 §2 门禁终态「29 门 PASS」当日成立；本轮 2026-10-16 15:18 复跑报 **FAIL=6**，红因全部可归因（账龄件陈旧 / 自造根散件 / 元门自我引证），非 r107 虚报。原文按 R241 保留。
+- 「local 族 9/10 缺 test 腿」自 2026-10-06 立项起持续成立，本轮 15:36 复算 = 1/10，16:20 收口 = 10/10（tracked）。
+
+- **2026-10-15（第 107 轮 r107，自动化指令 goal round6/256：四项工程改造 + 门禁终局）** — ① 报告过期校正两条：story 族「9/11 超12KB」「版本漂移1.2.8vs1.2.7」均已由 79d2400f 闭环，r107 实测 0/11 超限、两侧 1.2.9；story-* 属 community 上游件（metadata.openclaw.source=worldwonderer/oh-story-claudecode）不立项。② **改造1**：A-get-memory 主文件 218,685B→11,996B WITHIN(12288)（无损守恒切片，7 节迁 references 新卷 7 个 + 版本历史旧条目逐字迁入既有卷 +99 行，C13 锚点 V4.83.0 单行留守；commit 58c3439a）。③ **改造2/3**：A-skill-manager 补反理性化表 9 行（REQ token 强校验首跑即抓「铁律3」无空格真形态，W-47 两侧证据）+ description 四端→九端 + A-get-memory:126 七端句改述（wf_*.ps1 实测 11 件/在役 9 端）；claim_candidates 8→4（余 4 处全在 A-memory-start 他人在途面，R269 不代改）；commit eb343fdc + 2d12b8cc。④ **改造4 判据三修**：ratchet _newest_artifact 同秒平局按 (mtime,name)；description_baseline_scan 补退役回流排除面（具名 retired_excluded，glob 184→182=registry）；棘轮基线两项归因上调（catalog 50250→56312 = a1f5d799 批量入库 31 新技能 / drift 21→32 = 滚动窗口并行 churn，attributed_raises +2 note 只增不减）。⑤ **退役回流终局**：executing-plans/slides 实为第三态——retired_on 09-27/28 → 平台重下发 → a1f5d799 批量入库误收进 git ⇒ tracked_n>0 判我方写入；处置=xcopy 21 文件备份 _trash/retired-reflow-r107_20261015_124800 + git rm（commit 49815c4e），复验 retired_still_on_disk=0。⑥ **终态**：29 门 [GATES:PASS] PASS=29；焚诀 verify（managed venv）49 PASS/0 FAIL（系统 Python 假红 4 项=numpy/jinja2/networkx 解释器缺，非真缺陷）；三门禁 mirror-pass ×3；build_indexes 24 派生件重建。报告=06-benchmark/全量对标报告_r107_四项改造与棘轮归因终局_2026-10-15.md
+
+- **2026-10-02（第 101 轮 r101，同一指令第三次逐字重发⇒再整跑；名册补「优质」半边 + 同事实单尺返工）** — ① 实测 20 席名册里 **7 席** 为 SKILL.md<=3 的仓（含 1 席为 0 件），真技能仓被 top-20 截在外面 ⇒ 用户「高星且优质」只实现了前半句：ROSTER_TOP_N 默认 0 全量入面 + 截断必须具名含星标 + skill_bearing 分档（d1/d8/d9/d12 只在 23 个技能树取分母）。② **自抓同事实两把尺**：第一版档位谓词=「能否取到父目录 slug」，而 non_skill_repos=「有无 SKILL.md」⇒ blader/humanizer 双档矛盾；改单尺后 skill 面 22→23，slug 缺失降为另一件事实单列 slugless_skill_repos。③ **schema 号虚报补账**：r100 报告与提交说明写 v4 而代码从未 bump（产物仍 r99-v3）⇒ 声明先于证据，本轮 bump 到 twelve-face-r101-v5 并在 r101 报告 §0/§4 留痕（r100 原文按 R241 不改）。④ 夹具 38→**45 腿全过**（含根级 SKILL.md 不得降档、truncated 具名、[]≠None 三向）；同缓存离线复算 state=matched / skill_face_n=23 / humanizer=skill_tree。⑤ 换装判定 0 件、卸载 0 件（新入面 mukul975 818 件与 OpenViking 50 件逐族过 X-29 三门槛不成立）；r100 装的两件原状。⑥ 三闸复算：GS 脏 96、??=26（24 他人件）⇒ rebuild 前提仍未开窗；retired_face 保持绿（无第四次回流）；27 门红门全为外部 +12 棘轮同因，不动基线。报告=06-benchmark/全量对标报告_r101_名册优质半边与同事实单尺_2026-10-02.md
+
+- **2026-10-02（第 100 轮 r100，同一指令逐字重发⇒完整再整跑；对手名册改测量派生 + 两件真换装）** — ① **本轮翻转 r99 结论**：ROSTER 原为源码手抄 10 仓，而同工具同轮 search_face 实测前 25 名里 **15 仓从未进面**（140497★ awesome-llm-apps、108698★ caveman、63335★ last30days-skill 皆在外）⇒ X-26 禁把手抄清单当扫描分母在对手面复发，「换装 0 件」实际只在约四成人口上成立。② 名册改由 derive_roster 现算 top-20 + roster_face 四态（含 UNVERIFIED_stale_cache 防旧缓存冒充派生面），夹具 25 腿→**38 腿全过**（取值：python 05-exec/r96_twelve_face.py --selftest）。③ 扩面后本地缺失 123 个 slug 逐族过 X-29 三门槛 ⇒ **装入 commit-archaeologist 与 scope-creep-detector**（各 4 文件齐装：SKILL.md、README、scripts、references；两脚本 ast.parse 过；无 shell=True；平台当轮即列出=可加载行为回执）；**卸载 0 件**（属缺口补件，无更差的对应本地件，不做无对象删除）。④ 两次自抓假干净：审计用 glob 大括号不展开⇒取到 0 文件却报 0 命中（改 os.walk 并印 scanned_face=8）；补丁一漏清 ROSTER 使用点⇒fetch_remote NameError 而夹具 35/35 全绿（补 3 条主链接线腿，Step 2.7 第 11 条第三次现形）。⑤ 注册表 rebuild 判 **BLOCKED（实测非推断）**：受管根 ?? 计 26 条含 24 个他人未入库件，全量重生必致注册表⇄BGE⇄skill_content 三方脱节；前提=可复算命令 python C:/Users/37533/Desktop/workspace/焚诀/eval/build_registry.py --dry-run。⑥ **回流节律实测**：executing-plans 与 slides 距上轮清零约 47 分钟第三次回到盘面 ⇒ 每小时重清不是自愈型收口，本轮清一次并把它降级为看守项（复算 python 05-exec/r59_retired_face.py），下轮起以节律而非单次绿为准。⑦ 27 门 FAIL=5 与 r99 同因（外部 +12 棘轮 + 元门延迟，不动基线）；焚诀 verify 42 PASS/1 FAIL=C25 同条。报告=06-benchmark/全量对标报告_r100_名册派生与两件换装_2026-10-02.md
+  PASS 正例 red_flags 命中(body) got=True want=True
+  PASS 正例 verification 命中(body) got=True want=True
+  PASS 反例 process 不命中 got=False want=False
+  PASS 反例 rationalizations 不命中 got=False want=False
+  PASS 正例 fm 含 name+desc got=True want=True
+  PASS 正例 fm both got=True want=True
+  PASS 反例 无围栏判 fence=False got=False want=False
+  PASS 反例 缺 description 判 False got=False want=False
+  PASS 反例 缺 description 不得混进 both got=False want=False
+  PASS 正例 slug 取父目录 got='foo-bar' want='foo-bar'
+  PASS 反例 裸 SKILL.md 无 slug got=None want=None
+  PASS 接线 d4 缺本地侧判 PARTIAL 不判 MEASURED got='PARTIAL' want='PARTIAL'
+  PASS 接线 mismatched 清单必须点名缺侧维度 got=True want=True
+  PASS 接线 双侧齐的维判 MEASURED got='MEASURED' want='MEASURED'
+  PASS 接线 本地技能数>0 got=True want=True
+  PASS 接线 入口注入字节>0 got=True want=True
+  PASS 接线 本地 d4 schema 面被读到（>0 或显式 0 但总文件>0） got=True want=True
+  PASS 接线 本地 d12 全量分母==技能数 got=True want=True
+  PASS 接线 插件根被枚举且实到>0 got=True want=True
+  PASS 接线 各根之和 == 去重后 + 跨根重复（分母自洽） got=320 want=320
+  PASS 反例 跨根重复若被静默吞则该项必红 got=True want=True
+  PASS 反例 只看权威源会低估 d1 got=True want=True
+  PASS 正例 派生按星标降序取前 N got=['b/y', 'a/x'] want=['b/y', 'a/x']
+  PASS 接线 不可解析行不进面但必须计数 got=1 want=1
+  PASS 反例 截断必须可见（top_n 小于可用行数） got=True want=True
+  PASS 正例 pinned 追加且去重保序 got=['b/y', 'a/x', 'd/w'] want=['b/y', 'a/x', 'd/w']
+  PASS 反例 空面不得静默判过 got=[] want=[]
+  PASS 反例 空面判据必须给独立态不是 matched got='UNVERIFIED_empty_face' want='UNVERIFIED_empty_face'
+  PASS 反例 陈旧缓存不得冒充 matched got='UNVERIFIED_stale_cache' want='UNVERIFIED_stale_cache'
+  PASS 接线 同失效形态由缺键派生，不靠调用方传标记 got='UNVERIFIED_stale_cache' want='UNVERIFIED_stale_cache'
+  PASS 正例 默认无人 pin 而派生面有仓 = 修好了，判 matched got='matched' want='matched'
+  PASS 反例 pin 了却没进面=漏扫，必须 mismatched 并点名 got='mismatched' want='mismatched'
+  PASS 接线 score_dims 吃真缓存不抛（CLI 主链可达） got=True want=True
+  PASS 反例 旧缓存无派生键必须显 UNVERIFIED 不是 matched got='matched' want='matched'
+  PASS 接线 打分产物逐维自证在场 got=True want=True
+  PASS 接线 双单位并报且 toplevel<=alllayers got=True want=True
+  PASS 接线 并集 slug 数>=权威源 slug 数 got=True want=True
+
+r96_twelve_face selftest: 38/38 [GATE:r96selftest-pass]）。③ 扩面后本地缺失 123 slug 逐族过 X-29 三门槛 ⇒ **装入 commit-archaeologist + scope-creep-detector**（各 4 文件齐装：SKILL.md/README/scripts/references；ast.parse 过；无 shell=True；平台当轮已列出=可加载行为回执）；**卸载 0 件**（属缺口补件，无更差对应本地件，不做无对象删除）。④ 两次自抓假干净：审计 glob brace 不展开⇒取到 0 文件却报「0 命中」（改 os.walk 并印 scanned_face=8）；补丁一只查 ROSTER 声明未查使用点⇒fetch_remote NameError 而夹具 35/35 全绿（补 3 条主链接线腿，Step 2.7 ⑪ 第三次现形）。⑤ 注册表 rebuild 判 **BLOCKED（实测）**： M A-get-memory/SKILL.md
+ M A-get-memory/references/version_history.md
+ M A-memory-start/SKILL.md
+ M A-memory-start/references/quickref-delivery-consistency.md
+ M A-memory-start/references/version_history.md
+ M A-project-better/SKILL.md
+ M A-project-better/references/benchmark.md
+ M A-project-better/references/version-history.md
+ M A-project-better/references/workflow-s0.md
+ M A-project-better/references/workflow-s0.part1.md
+ M A-project-handoff/references/ci-green-contract.md
+ M A-project-handoff/scripts/greencheck.py
+ M A-project-handoff/scripts/hooks/pre-commit
+ M A-project-handoff/scripts/local_ci_surrogate.py
+ M A-project-handoff/scripts/templates/pre-commit-sharedvol.sh
+ M cloudbase__skillhub/SKILL.md
+ M cloudbase__skillhub/_meta.json
+ M cloudbase__skillhub/_skillhub_meta.json
+ M cloudbase__skillhub/references/ai-model-nodejs/SKILL.md
+ M cloudbase__skillhub/references/ai-model-web/SKILL.md
+ M cloudbase__skillhub/references/ai-model-wechat/SKILL.md
+ M cloudbase__skillhub/references/auth-nodejs-cloudbase/SKILL.md
+ M cloudbase__skillhub/references/auth-tool-cloudbase/SKILL.md
+ M cloudbase__skillhub/references/auth-web-cloudbase/SKILL.md
+ M cloudbase__skillhub/references/auth-wechat-miniprogram/SKILL.md
+ M cloudbase__skillhub/references/cloud-api-operations/SKILL.md
+ M cloudbase__skillhub/references/cloud-api-operations/references/calling-methods.md
+ M cloudbase__skillhub/references/cloud-api-operations/references/recipes/README.md
+ M cloudbase__skillhub/references/cloud-api-operations/references/recipes/icp-filing-readiness.md
+ M cloudbase__skillhub/references/cloud-api-operations/references/recipes/pg-storage-alarm.md
+ M cloudbase__skillhub/references/cloud-functions/SKILL.md
+ M cloudbase__skillhub/references/cloud-storage-web/SKILL.md
+ M cloudbase__skillhub/references/cloudbase-agent/SKILL.md
+ M cloudbase__skillhub/references/cloudbase-agent/py/skill.md
+ M cloudbase__skillhub/references/cloudbase-agent/ts/skill.md
+ M cloudbase__skillhub/references/cloudbase-cli/SKILL.md
+ M cloudbase__skillhub/references/cloudbase-code-review/SKILL.md
+ M cloudbase__skillhub/references/cloudbase-code-review/references/RULES_INDEX.md
+ M cloudbase__skillhub/references/cloudbase-declarative-deploy/SKILL.md
+ M cloudbase__skillhub/references/cloudbase-document-database-in-wechat-miniprogram/SKILL.md
+ M cloudbase__skillhub/references/cloudbase-document-database-web-sdk/SKILL.md
+ M cloudbase__skillhub/references/cloudbase-document-database-web-sdk/crud-operations.md
+ M cloudbase__skillhub/references/cloudbase-document-database-web-sdk/realtime.md
+ M cloudbase__skillhub/references/cloudbase-document-database-web-sdk/security-rules.md
+ M cloudbase__skillhub/references/cloudbase-platform/SKILL.md
+ M cloudbase__skillhub/references/cloudbase-platform/references/protocols/deployment-share.md
+ M cloudbase__skillhub/references/cloudbase-wechat-integration/SKILL.md
+ M cloudbase__skillhub/references/cloudrun-development/SKILL.md
+ M cloudbase__skillhub/references/data-model-creation/SKILL.md
+ M cloudbase__skillhub/references/deployment-workflow.md
+ M cloudbase__skillhub/references/http-api-cloudbase/SKILL.md
+ M cloudbase__skillhub/references/minimal-web-baas-demo/SKILL.md
+ M cloudbase__skillhub/references/miniprogram-development/SKILL.md
+ M cloudbase__skillhub/references/miniprogram-development/references/cloudbase-integration.md
+ M cloudbase__skillhub/references/miniprogram-development/references/pitfalls.md
+ M cloudbase__skillhub/references/ops-inspector/SKILL.md
+ M cloudbase__skillhub/references/postgresql-best-practices-cloudbase/SKILL.md
+ M cloudbase__skillhub/references/postgresql-development-cloudbase/SKILL.md
+ M cloudbase__skillhub/references/postgresql-development-cloudbase/references/index.md
+ M cloudbase__skillhub/references/relational-database-mcp-cloudbase/SKILL.md
+ M cloudbase__skillhub/references/relational-database-web-cloudbase/SKILL.md
+ M cloudbase__skillhub/references/spec-workflow/SKILL.md
+ M cloudbase__skillhub/references/ui-design/SKILL.md
+ M cloudbase__skillhub/references/web-development/SKILL.md
+ M consulting-analysis/SKILL.md
+ D elon-musk-perspective/assets/hero.gif
+ M github/_skillhub_meta.json
+ D html-ppt/docs/readme/hero.gif
+ M sq-cleanmgr-c/_skillhub_meta.json
+ M static-site-batch-audit-fix/SKILL.md
+
+?? A-memory-start/references/limit
+
+?? A-project-better/references/version-history.part1.md
+
+?? A-project-better/references/workflow-s0.part2.md
+
+?? A-project-handoff/scripts/tools/r39_facet_ab.json
+
+?? cloudbase__skillhub/references/cloud-api-operations/references/recipes/custom-domain.md
+
+?? cloudbase__skillhub/references/cloud-api-operations/references/recipes/pg-instance-spec.md
+
+?? cloudbase__skillhub/references/postgresql-development-cloudbase/references/realtime.md
+
+?? commit-archaeologist/
+
+?? dingtalk-aisearch/
+
+?? dingtalk-aitable/
+
+?? dingtalk-calendar/
+
+?? dingtalk-chat/
+
+?? dingtalk-contact/
+
+?? dingtalk-doc/
+
+?? dingtalk-drive/
+
+?? dingtalk-event/
+
+?? dingtalk-mail/
+
+?? dingtalk-minutes/
+
+?? dingtalk-misc/
+
+?? dingtalk-shared/
+
+?? dingtalk-todo/
+
+?? dingtalk-wiki/
+
+?? executing-plans/
+
+?? ppt-master/
+
+?? rag-eval/
+
+?? scope-creep-detector/
+
+?? slides/
+
+?? sqlalchemy-loader-criteria-pitfalls/ 的 =26（24 为他人未入库件），全量重生必致注册表⇄BGE⇄skill_content 三方脱节；前提=<可复算命令> 。⑥ 27 门 FAIL=5 与 r99 同因（外部 +12 棘轮 + 元门延迟，不动基线）； **保持绿**（无第三次回流）；焚诀 verify 42 PASS/1 FAIL=C25 同条。下轮队列：P1-1 重建窗口、P1-2 走完 A-skill-onboarding 七步（本轮只做了装件+语法+危险形态三步）、P1-3 d10 待裁定。报告 = 
+
+- **2026-10-02（第 99 轮 r99，十二维补面 + 覆盖根修 + 退役件再清零）** — 用户十二维对标指令整跑（#23 不降格）。① **本轮最大差距在自己尺子上**：`05-exec/r96_twelve_face.py` 名为十二维、实测本地面只到 6 维（d4/d6/d7/d8/d10/d12 为零，d8 两侧皆无、d12 是散文）→ 补六维本地取数 + 对手 d8/d12 + `dim_coverage` 逐维 matched/mismatched，schema 升 `twelve-face-r99-v3`，夹具 5→**25 腿全过**（取值 `python 05-exec/r96_twelve_face.py --selftest`）。② **覆盖根假缺口**：本地面漏平台插件根，superpowers 的 `using-git-worktrees`/`dispatching-parallel-agents` 被算成对手独有（实测就在 `plugins/cache/qoder-marketplace/superpowers/6.3.0/skills/`）；按 `installed_plugins_v2.json` installPath 逐条入面 + realpath 去重 + 18 根分母之和自洽 ⇒ 差集 **10→1**。该自洽腿首跑真红（got=318 want=317）逼出「跨根重复必须显形」，非装饰。③ **换装判定 0 件**：curated 独有 9 slug 逐条过 X-29 三门槛全不齐（与 r60 37→0 同结论，第四次在独立维度复现）⇒ 无下载无卸载。④ **P0-2 真执行**：`executing-plans`/`slides` 被平台重新下发（`git ls-files`=0、`??`），先以 r61 删除前 blob sha256 全等（`57ee0941f8725460`/`a711f83fb762e2ea`）证可回滚，再 `r97_retire_full_egress.py --apply` 双根 21+21 文件读回备份后移出 ⇒ `retired_face` 转绿、27 门 FAIL 6→5（取值 `python 05-exec/r59_retired_face.py`）。⑤ **棘轮 +12 不动基线**：`inject_union_bytes` 87598→87610（同因使焚诀 verify 42 PASS/1 FAIL C25），+12 属并行会话在途（受管根实测 97 条），R59-8 上调通道要求 commit 归因 ⇒ 登记带前提命令不放宽。⑥ 报告数字按退役后面重跑取（d1 并集 316／一级 169／唯一 slug 307），防「先测后删仍引用旧值」。下轮队列：P1-2 d10 可控性三选一待裁定、P1-3 覆盖根名册与 `input_pin_face` 双向对账、P0-3 棘轮 +12 复算。报告 = `06-benchmark/全量对标报告_r99_十二维补面与覆盖根修_2026-10-02.md`
+
+- **2026-10-01（第 98 轮 r98，授权续作轮：M-2 可修面清零 + R97-7 落地 + 上轮建议落卷）** — 老大「授权继续执行未完成的任务」+ 回贴上轮升级建议行（即批准落卷）。① **mm 收尾核销**：焚诀归属会话已自行收口（HEAD `7656258`，verify 复测 **41 PASS / 0 FAIL**，取值同 r97），C3/C4/C5/C6/C29 五项不再挂本项目账。② **R263 判据假阴性再修两轮（收尾定稿）**：新增 `\bwhen\b` 与 `\btriggers?\b`（实测假阴性 figma "Trigger when..."、shadcn、docx "Triggers include..."），真基线 NO_WHEN 14→**11**（取值 `python 05-exec/r63_description_audit.py`，基线件 desc_baseline_r98.json）。③ **M-2 第二批 5 件**（byted-mediakit-shared/computer-use-guidance-windows/knowledge-capture/research-documentation/spec-to-implementation，rule_editor 白名单提交+镜像定向同步 hash 复验 5/5）：DUAL 155→**163/169=96.4%**、NO_WHEN 11→**6**——剩余 6 件全为受保护(_my-skills)/在途(A-project-handoff、github)/市场件(dingtalk-doc、rag-eval) ⇒ **可修面清零**，M-2 无授权面剩余。④ **R97-7 落地**：`r59_retired_face.py` 输出面加市场缓存根残留警示行（判定面不变、警示不阻断守 r25；JSON 增 `market_root_still_holding` 字段），W-47 双向验证：对照静默/假件见警示 rc=0/复原回静默。⑤ **升级建议落卷**：`A-memory-start/references/quickref-current-state-history.md` 新增「共享活跃文件写前分钟级新鲜度复查」（MM/MM 自伤一手，含 HEAD 活性三闸守不住文件级改动的粒度论证），rule_editor 提交+镜像同源复验。⑥ **27 门全绿**。下轮队列：M-2 转看守（剩余全无授权面）；G7/G8 侧建议=观察 retired_face 警示行是否首次在真回流时报警；twelve_face 季度重测按 P4 节律。报告 = r97 报告增量见本摘要与提交（本轮无独立报告文件，P4 节律下轮次按需出件）
+
+- **2026-10-01（第 97 轮 r97，全出口退役 + 判据假阴性修正 + mm 端入役核验；承接 r96 中断遗留）** — 用户对标指令逐字触发整跑；中途追加两指令：①「把minnimax code设为新的一端」（并行会话已完成主体：truth_constants active+=mm、双 junction、AGENTS.md+SOUL.md 壳；本轮核验登记面与物理挂载齐备；C3/C4/C5/C6/C29 五项收尾与 wf_mm.ps1 死引用归其归属方，焚诀面本轮退出）；②新立决策规则「非重大自主、重大标注后问」（已入持久记忆 decision-autonomy-rule）。① **r96 遗留收编**（`84c493d`）：twelve_face 证据+retire_mirror 脚本 5 件。② **retired_face 根因收口**（`e710122`）：退役回流生产者=市场缓存根 `.workbuddy/skills`（r60 清权威源、r96 清镜像后 15:24 又回流实证），`r97_retire_full_egress.py --apply` 42 文件 sha256 读回备份后双根清零，门绿 retired_still_on_disk=0；已知边界=平台升级可能再下发。③ **R263 判据假阴性三连修**：WHEN_RE 缺 invoke when/must use/use it when/used when/instead of 五形态，实测假阴性 15 件（byted-seedance/brainstorming/brand-guidelines 等），真基线 NO_WHEN 34→19（取值 `python 05-exec/r63_description_audit.py`，基线件 desc_baseline_r97.json）。④ **M-2 批次 5 件**（openai-whisper-api/mcporter/oracle/byted-bp-cdn-pagesdeploy/meeting-intelligence，rule_editor 白名单提交+镜像定向同步 hash 复验 5/5）：DUAL 150→155=91.7%、NO_WHEN 19→14。⑤ **md_claim 9 处**（r77 报告）补同行取值命令 20/20 绿；r97 报告同判据自证过门。⑥ **27 门全绿**（freshness 自指延迟二跑自愈）。⑦ **自伤登记**：C5 修正脚本与并行会话并发修复撞车致 4 处 `MM/MM` 重复，随即自清归零；教训=共享活跃文件动手前分钟级新鲜度重读。下轮队列：M-2 剩 14（可修面 ≤9，下轮 ≤5）、R97-7 retired_face 市场根警示升级、mm 收尾五项（归属方）。报告 = `06-benchmark/全量对标报告_r97_全出口退役与判据假阴性修正_2026-10-01.md`
+
+- **2026-09-30（第 64 轮 r64，收口轮：承接 r63 §6 — M-2 首批 5 件 description 双要素修复收口入库）** — 用户指令「继续执行未完成的任务」，范围选定「收口 r64 轮」。① 受管根 `fece2b9d`（前置轮）已修 5 件（bigfile-split V1.4.3 / hook-analyzer V1.0.3 / win-toolchain V1.1.1 / local-ocr-npu V1.0.0 首立 / local-vram V1.0.0 首立）；描述基线 `DUAL 128→135`、`NO_WHEN 41→34`、`75.7%→79.9%`（取值 `python 05-exec/r63_description_audit.py --json`）。② 本轮补齐**项目侧**账目：在途 4 项（r63_description_dual 基线 / gate_runs / volume-snapshots / r62 决策记录）+ 新建 r64 报告 + README 索引行。③ 门禁现状 25 门，唯一红 `retired_face`（executing-plans / slides 于 23:12:59 被重建且未跟踪）**归因为外部在途**，按 R269 只登记不擅动；受管根在途 45 条。④ 下一轮队列：M-2 剩 34 件（≤5/轮）、M-3 派生件重建（待双采样稳定）、M-4 takeover 试点；待裁定 W-48 / VOL-2A600。报告 = `06-benchmark/全量对标报告_r64_M2首批收口与在途产物入库_2026-09-30.md`
+
+- **2026-09-25（第 46 轮 r46，W-16 固化：把「禁按行号写标记」变成不可绕过的接口）** — 同一指令第十六次逐字触发 ⇒ 整跑一轮。r45 我立了 X-19/W-16 却**当轮就仍在按行号写** ⇒ 本轮不再靠自觉，落地唯一写入器 `05-exec/r46_mark_verdict.py`：**不接收 --line**、锚点命中数 != 1 拒写、0 命中拒写且**不退化为追加**、只准写 `- [ ]`、同轮二次裁决拒写（幂等靠拒绝）、写完必须 grep 读回否则回滚、备份默认落 `05-exec/mark_backup` 且可 `--backup-dir` 注入。**真实卷冒烟即证明有效**：`--key 待办 H-3` 命中 [87,90] ⇒ 拒写，而这正是 W-9 挂 5 轮的机制学解释（歧义锚点不拒写就会安静写到第一行）。三处自抓并修：**D66** 我首版把备份目录写死在仓库路径导致夹具看不到、又想用环境变量绕过 ⇒ 改依赖注入（测试难写=设计难用）；**D67** 再写出弱断言 t9（与 t5 重复且打断 t7）⇒ 删除（此类错第三次复发，D33→D61→D67）；**D68** 冒烟时用真实 07 写进一条 `裁决=冒烟测试` ⇒ 当场回滚并把 2 个 `.bak` 迁出记忆卷 ⇒ 立 **X-20**（禁拿真实记忆卷做冒烟，自证一律在临时 vault）。注册为**第 11 道常驻门**，`[GATES:PASS] PASS=11` 连跑两次稳定；并 dogfood 裁掉本轮唯一到期项 W-6 ⇒ `OVERDUE 1→0`、`DECIDED 46`、`REPEAT 0`。**W-15 只做一半如实记**：coverage 三列进台账但未进契约 row_required（会让 r38-r45 历史行全体违规且行不可回写，同族 D36）⇒ W-17 分代必填，挂账 r49，不虚报完成。
+
+- **2026-09-25（第 45 轮 r45，W-14 反降级免检 + W-9 真因归位）** — 同一指令第十五次逐字触发 ⇒ 整跑一轮。① **W-14 落地**：棘轮新增第 9 指标 `repeat_debt_items`（读 `by_class.REPEAT`，与 overdue/deferred 共用同一自洽门），动因是 r44 的 D59 —— 那轮把 OVERDUE 从 16 压到 1，其中 11 条靠「降级为长期看守」实现；降级虽属合法终局裁决，但**没有独立指标时它就是新的免检通道**（全降级比真还债还干净）。TDD 先红 6 例（t50–t55）后绿 **45/45**；顺带删掉我自己刚写出的**恒真断言 t53**（`or True`，与 D33 同族复发）。② **W-15 部分落地并如实记边界**：趋势台账行新增 `coverage_status/coverage_prev_overdue/coverage_missing` 三列（W-12 结果进斜率）；但**未把它们加进契约 row_required** —— 加进去会让 r38–r44 的既有历史行全体违规，而行是 append-only 不可回写；这正是 r42 D36「代际豁免」的同族问题，需先设计按 ts 分代必填，故留下一轮。③ **W-9 真因归位（不是鬼影）**：那条 H-3 项此前**裁决标记数为 0** —— 说明我 r40/r41/r43 写标记时**按行号定位**，行号一漂就把标记写到了别的行，条目从未被真正标注。这是 W-13（标题锚点）存在的实证据，也暴露我自己：落地了 find_item_line 却在临时脚本里继续沿用行号。④ 到期追讨第 3 次真响（轮号推进让 W-5/W-10/H-3″ 三条 r44 到期）⇒ 按 X-17 全部降级看守并写明外部条件，账面 `OVERDUE 3 → 0`、`DECIDED 46`、`REPEAT 0`，W-12 完整性首报 **OK｜上轮 1 条已处理 0 缺**。新立 **W-16**（临时脚本禁按行号写记忆标记，必须复用 find_item_line，命中!=1 即拒写）。
+
+
+r42 根因轮（2026-09-25 第 42 轮，第十二次逐字触发 ⇒ 整跑一轮） — 用系统化调试四阶段查清 OVERDUE 1→20 反弹，结论：**没有判据缺陷、也不是我上轮替换正文造成的扰动**。真因两条：① current_round 随 r41 提交 40→41，我 r39 写的 15 条「挂账至 r41」**如期到期**（14 条计入）；② 我上轮只裁「当期到期清单」，漏裁 r38 自立项 W-0~W-3/L-6，它们账龄涨到 3 轮 > 宽限 2 ⇒ 新越线 6 条。据此定性为**流程缺陷 + 机制缺口**：延期可无限滚（同一条反复改期无人显形）、宽限期不分优先级。Phase 4 已按 TDD 写失败测试 t30–t34（REPEAT 态 + 分档宽限 + 分档表可读），**实现本轮未落地**（heredoc 吞反斜杠致补丁中途断言失败，未写盘即中止），如实挂红不谎报：夹具 28/32。
+
+
+
+
+
+ - **2026-09-25（第 31 轮 r31，新增第八维「自动化验收面」并把敞口队列真执行掉）** — 同一对标指令再触发 ⇒ 按 #23 不降格：先实测 13 轮从未量过的维度「**对手的判据到底在哪里执行**」（`05-exec/r31_ci_surface.py` 逐仓 `gh api` 数 `.github/workflows/*.yml`，15 对象 / 112 workflow / 原文 8 份留档 `06-benchmark/ci_evidence/`），三条结论：① **星标与 CI 严格度无关**（Spearman ρ=−0.114，星标前 4 名里 3 个 ≤1 workflow，superpowers 与 anthropics **各 0**）⇒ r28「结构纪律与星标无关」在第二个独立维度复现；② **推翻常驻页落后项 #6 的依据**——「addyosmani 三层 eval 在 CI」是 README 宣称，实物只有 1 个 `test-plugin-install.yml`，这是「拿对手宣称当实物」在新维度第二次复现（已按 R241 只加校正注，原文不改）；③ **与我们最同构的参照系（mycelium 36★）恰是 CI 最严者**（11 个 workflow 全守规则资产，零构建件）⇒ 我们 42 项判据却只有「会话内有人记得跑」。**当场按优先级执行**：H-1 反理性化第二批 **8 条**落地（受管根 `93107ca`，98 行纯新增零夹带，档1 16.9%→**21.7%**、真队列 **9→1**，`check_tokens` 机器把关「反驳句必须指向该技能正文实测存在的 token」）；H-2 借 B1/B2/B3/B5 四条机制落 `05-exec/run_gates.py`（门禁单一真相源 + 逐门不短路 + **`UNVERIFIED` 第三态**「rc=0 但标记不见一律不算绿」+ 每门覆盖根自证 + 首个自家门禁耗时基线 **5 门 1,781 ms / 可移植 3 门 561 ms**），配套夹具 17 例**含变异 4/4 被拦**；H-3 解除常驻红项 `CONTRACT:FAIL`——根因不是「契约没跟上 v2」而是**「一个 glob 只能挂一个 schema 字面量」的形状缺陷**（同技能两代产物并存，填 v1 或 v2 都必红），改**逐代枚举授权** `[v1,v2]`，未登记 v3 仍拦（夹具 t12 反例），校验器 + 契约 + 夹具三处同改，夹具 18→**22** 例；H-4 落 `.github/workflows/gates.yml`（push/PR/**日 cron 心跳** + `concurrency` 只对 PR 取消，均照抄对手实物并注明出处）。**三条自纠**：① 初版给 `r19_scan_fixtures` 写了未经核实的 `portable: True`，静态读码实测其层b subprocess 调的 3 个 scan 工具各含本机绝对根 ⇒ 离机必红，**若在写 yml 前不复核，CI 首跑红的会是配置而不是判据**（改 False + 写死原因，禁后来者再猜）；② 夹具首跑 5 红，其中两处是我夹具自己的缺陷（假门没把被测模块 `HERE` 指到临时目录 ⇒ 三门全 MISSING；变异探针只喂 FAIL 不喂 UNVERIFIED ⇒ **M1 逃检**），补反例后 4/4；③ 报告「本仓 workflow 数 = 1」在 push 前是不可断言值，已改为「待 §6 V-1 回填，push 前不得引用」。**镜像面按 r21c 口径只同步自己的 8 个文件**（SHA256 手工复验 8/8，mismatch 30→22），不跑全局 `-Fix`。开工前把 **r21e/r30 遗留未提交件 20 文件**单独做归属提交（`chore(归位)`，含 8 个一次性脚本待轮转），r31 改动另起提交，两笔归属互不混淆。报告 = `06-benchmark/全量对标报告_r31_自动化验收面_2026-09-25.md`。

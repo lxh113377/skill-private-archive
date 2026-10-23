@@ -1,0 +1,164 @@
+# 迁移替换方案 r114 — 从「有候选」到「该换哪个」
+
+> 项目：自建skill优化 ｜ 权威源：D:\global_skills（182 件）｜ 生成：2026-10-18（第 114 轮）
+> 上游：`06-benchmark/替代检索与五维评估矩阵_r114_2026-10-18.md`（候选面）+ `06-benchmark/adjudication_r113_2026-10-18.json`（裁决面）
+> 取代关系：本件**不取代** `04-plan/迁移替换方案_r113_2026-10-18.md`（R241 历史留痕不改写），
+> 是把 r113「同源升级」那一半与 r114「异名替代」那一半**合起来**的可执行版。
+> 本文只写「怎么换」；「现状是什么」见 r114 对标报告。
+
+## 0. 三条前置红线（继承，不得绕过）
+
+| # | 红线 | 依据 |
+|---|---|---|
+| R1 | 改 `D:\global_skills` 任何 skill 文件唯一途径 = `A-memory-start/references/rule_editor.py`（禁 write 整体重写） | memory/AGENTS.md 铁律 2 |
+| R2 | LOCAL_AHEAD_KEEP 件禁止自动覆盖（本地已增强，换上游版会冲掉本地修复） | r112 §1.2 护栏 |
+| R3 | 破坏性动作须「备份已落 `_trash` + Git 可回滚」双硬前提，缺任一回落待确认 | memory/AGENTS.md 红线 7 |
+| **R4（本轮新立）** | **桶 2/3 候选禁止直接换装**：它们不是真 skill 仓或只是同族，换装等于把不同形态硬套（r114 矩阵 §4-D2） | 本轮实测：桶 2 含通用工具仓，形态与 SKILL.md 件不兼容 |
+
+## 1. 两个问题、两条队列（不得混成一条）
+
+r113 与 r114 建的是两面，替换路径也分两条：
+
+| 队列 | 问题 | 输入面 | 件数 | 动作 |
+|---|---|---|---|---|
+| **Q-同源升级** | 「我这份是不是上游旧版」 | r112 内容寻址（六态关系） | 39 件可判 | 按上游增量合入（`rule_editor.py` 逐段） |
+| **Q-异名替代** | 「有没有别的更好」 | r114 替代矩阵（四态） | 182 件全覆盖 | 先裁决「是否真更优」，再决定是否换装 |
+
+> ⚠️ **两面不重叠也不互相替代**：Q-同源升级里 UP_TO_DATE 的件仍可能在 Q-异名替代里有更优候选；
+> Q-异名替代里 MATCHED 的件也不一定同源。两队列各自独立判定，**禁止**用一面结论覆盖另一面。
+
+## 2. 分阶段迁移计划（按优先级 / 时间节点 / 验证标准 / 回滚预案）
+
+### 阶段 A（P0，已完成 3 件 · 本轮复核）
+
+r113 已在受管根落地三笔同源升级，本轮复算验证仍在主线：
+
+| 件 | 上游 | 增量 | 复算（本轮） | 回滚 |
+|---|---|---|---|---|
+| test-driven-development | obra/superpowers@2026-09-19 | upstream_only 20→11（合入 9 行） | local_only 43→43（零丢失） | `git revert` + 镜像 SHA 回旧值 |
+| obsidian-bases | kepano/obsidian-skills@2026-04-07 | upstream_only 3→0（转 UP_TO_DATE） | local_only 5→0（移除的是原错误示例） | 同上 |
+| hyperframes-registry | calesthio/OpenMontage@2026-06-27 | upstream_only 3→2 | local_only 6→9（净增 3 行） | 同上 + 删两参照件 |
+
+> 取值：`python 05-exec/r112_swap_gate.py --scan 06-benchmark/provenance_r112_2026-10-18.json --probe 06-benchmark/upstream_r112_2026-10-18d.json --json <件>`
+> 主线性：`git -C D:\global_skills merge-base --is-ancestor f01842b0 HEAD`（rc=0）
+
+### 阶段 B（P1，本轮新增：Q-异名替代的候选裁决）
+
+**范围**：r114 矩阵里 **MATCHED=152 件**中，桶 0（真 skill 仓 + 身份词命中仓名）非空的件。
+**动作**：逐件人读前 3 候选，判「是否真的更优」。**本轮不自动换装**——理由：五维分里 eff/community 是代理量（矩阵 §1.4 边界），单靠分数不足以支撑破坏性动作。
+
+| 步骤 | 具体动作 | 产出 | 时间节点 |
+|---|---|---|---|
+| B1 | 从矩阵筛桶 0 非空的件（机读可算） | 候选裁决清单 | 本轮（见 §2.1） |
+| B2 | 逐件读候选仓 SKILL.md 与本地件的**能力边界差异** | 每件 1 行结论 | 下轮起逐批（每轮 ≤10 件） |
+| B3 | 判「更优」的件进升级队列，按 Q-同源流程或新装流程走 | 升级批次 | 逐批 |
+| B4 | 判「不换」的件写 KEEP 理由并登记 | 裁决件 | 逐批 |
+
+**B1 本轮实测规模**（不编造轮次外的数）：
+
+| 桶 | 件数（MATCHED 内） | 处置 |
+|---|---|---|
+| 桶 0 非空 | 待机读件现算 | 进 B2 队列 |
+| 仅桶 1+ | 待机读件现算 | 降级：候选只在描述里撞词，不改 |
+| FAMILY_ONLY 16 件 | — | 不进队列（没有对应件） |
+| NO_OS_CANDIDATE 14 件 | — | 禁进队列（D4） |
+
+> 取值（现算，禁抄本表）：`python -c "import json,io;d=json.load(io.open('06-benchmark/replacement_matrix_r114_2026-10-18.json',encoding='utf-8'));rows=[r for r in d['rows'] if r['verdict']=='MATCHED'];print(len(rows), sum(1 for r in rows if r['candidates'] and (r['candidates'][0].get('skill_md_n') or 0)>0))"`
+
+### 阶段 C（P2，观察队列）
+
+| 件组 | 处置 | 理由 |
+|---|---|---|
+| `shadcn`（DEFER_MID） | 待老大点名 | 本地件带 `evals/evals.json`，属市场件形态；改它 = 改市场件形态 |
+| FAMILY_ONLY 16 件 | 只登记不换 | 无对应件，改进只能自建 |
+| 桶 2/3 候选 | 只登记不换 | R4 |
+
+### 阶段 D（P3，禁换）
+
+| 件组 | 理由 |
+|---|---|
+| `canvas-design` / `writing-plans`（LOCAL_AHEAD_KEEP） | R2：上游行集 ⊂ 本地行集 |
+| 所有 UNVERIFIED（r113 面 14 件） | 此问无定义，禁按「无候选」当缺口 |
+
+## 3. 替换优先级口径（可复算，不按感觉排）
+
+优先级分数 = 下述四档顺序判断，**前档优先**：
+
+| 档 | 条件 | 优先级 |
+|---|---|---|
+| A | 同源关系 = UPGRADE_SAFE（本地 ⊆ 上游，升级零丢失）**且** 上游增量 > 0 | **P0**：零风险且纯收益 |
+| B | 同源关系 = UPGRADE_REVIEW **且** upstream_only > local_only | **P1**：有净收益，需人工合并 |
+| C | r114 MATCHED 且桶 0 非空（有真 skill 仓同名/近名） | **P2**：先裁决再动 |
+| D | 其余（FAMILY_ONLY / NO_OS / UNVERIFIED / LOCAL_AHEAD） | **P3**：不动 |
+
+> 取值：A/B 档由 `r112_swap_gate.py` 的 `verdict` 现算；C 档由 r114 矩阵 `bucket_of()` 现算。
+
+## 4. 「是否真的更优」的裁决判据（本轮新立，防 D3 被违反）
+
+单靠五维总分 **不得** 判更优。必须同时满足：
+
+| # | 条件 | 检查方式 |
+|---|---|---|
+| C1 | 候选是真 skill 仓（`skill_md_n > 0`） | 矩阵 `candidates[].skill_md_n` |
+| C2 | 候选与本地件**能力边界重叠但不完全覆盖**（若是超集则本地独有能力会丢） | 人读两份 SKILL.md 的「何时用 / 不适用」两节 |
+| C3 | 候选 license 允许合入（非 UNLICENSED；AGPL 须先裁，见 R113-3） | 矩阵 `candidates[].license` |
+| C4 | 候选最近推送 ≥ 12 个月内（防拿停摆仓当替代） | 矩阵 `candidates[].pushed_at` |
+| C5 | 合入后 inject_union_bytes 不越硬顶 | `python 05-exec/ratchet_gate.py` |
+| C6 | 无死引用（只合本地已有引用的件，R240） | `python 05-exec/r36_ref_resolvability.py` |
+
+六条**全部满足**才可写「更优」；任一不满足 ⇒ 记 KEEP 并写清是哪条挡住的。
+
+## 5. 兼容性保护（需求 6 后半句）
+
+| 保护项 | 手段 | 复算命令 | 本轮实测 |
+|---|---|---|---|
+| 本地独有内容零丢失 | 只合上游增量逐段，锚点命中数 == 1 才写 | `r112_upstream_probe.py` 复算 local_only | TDD 43 / registry 9 / obsidian 5 |
+| 引用可达性 | 不入本地不存在的引用件 | `r36_ref_resolvability.py` | PASS |
+| 运行面不回退 | 35 门常驻 | `run_gates.py` | PASS=35 / 0 FAIL |
+| 注入面不越顶 | 棘轮 | `ratchet_gate.py` | PASS（1 项非阻断告警：66,762B 超硬顶 65,536B，外部在途已归因） |
+| 主线可达性 | 受管根提交必在主线 | `merge-base --is-ancestor <sha> HEAD` | f01842b0 / 9b34cea5 / 7749bdf0 全 rc=0 |
+| 镜像不陈旧 | 只同步自家文件 + SHA256 复验（禁全局 `-Fix`） | memory/AGENTS.md 排障速查 row 14 | 4 件 SHA 全等 |
+
+## 6. 回滚预案（逐级）
+
+| 级别 | 触发 | 动作 | 验证 |
+|---|---|---|---|
+| L1 单件回滚 | 单件换装后 35 门任一门转红 | `rule_editor.py undo` + 镜像 SHA 回旧值 | 复跑 `run_gates.py` 至 PASS |
+| L2 批次回滚 | 一批（≤10 件）换装后累计 ≥2 门红，或 inject 面越棘轮 | `git -C D:\global_skills revert <批次起..止>` + 重建派生件 | `disk_registry_diff.py` 三类全 0 |
+| L3 镜像回滚 | 镜像与权威源 SHA 不一致且无法定向修 | 从 `D:\global_skills` 逐件 `cp -p` 覆写镜像（只覆自家文件） | `check-skill-mirror.ps1` 只读 PASS |
+| L4 全量回滚 | 受管根主线被污染 | 按 tag 回退（`r33` 起每轮有 annotate tag） | `git describe --tags` 可解析 + 35 门 PASS |
+
+> 硬前提（R3）：任何 L2 以上回滚执行前，确认①备份已落 `_trash` ②目标在 Git 版本控制内且可回滚。缺任一 ⇒ 呈老大待确认。
+
+## 7. 未决与不擅动
+
+| # | 事项 | 状态 |
+|---|---|---|
+| U-1 | `shadcn` 是否纳入维护面 | 待老大点名（DEFER_MID） |
+| U-2 | inject_union_bytes 66,762B 超硬顶 65,536B（+1,226） | 归因已留账（ratchet 第 11 条），口径三选一待裁（R113-4 已转 done=归因完成，口径仍待） |
+| U-3 | AGPL-3.0 上游合入合规（OpenMontage 正文已合入 hyperframes-registry） | 待裁（R113-3）；本方案 §4-C3 已把「AGPL 须先裁」写进判据 |
+| U-4 | 本仓远端实测为 public（记忆 15 处称「私有」） | 待裁（R113-6）；影响 §4-C3 的合入前提 |
+| U-5 | r114 候选面**只到「有候选」**，未逐件判更优 | 阶段 B 逐批推进（R114-2） |
+
+
+## 8. ⚠️ 校正注（r118，2026-10-18，R241 只加注不改写；本节为新增，不改上文任何一字）
+
+> **本方案 §4（「是否真的更优」的裁决判据）在 r118 被补上一条更硬的**验证前提前置**，
+> 六条 C1-C6 仍然有效，但**单靠它们不足以支撑换装**。取值见
+> `06-benchmark/全量对标报告_r118_换装影响上界与miss失败层归因_2026-10-18.md`。
+
+| 项 | r118 实测 | 取值 |
+|---|---|---|
+| 换装对生产路由的影响量 | **0**（47 变体：改善 0 / 退化 0 / 翻转 0） | `python 05-exec/r118_swap_sim.py --json 06-benchmark/swap_sim_r118_2026-10-18.json` |
+| 判别力证据 | 正控 1 flip（`python-debugpy` oracle 语料）/ 负控 0 flip（通过） | 同上的 `summary.positive_control` / `negative_control` |
+| 12 条 REAL_MISS 的可换装面 | **5 条可达 / 7 条结构性不可达**（4 直连短路 + 1 负向直连 + 1 tag 短路 + 1 语料翻不动） | `python 05-exec/r118_layer_attr.py --json 06-benchmark/layer_attr_r118_2026-10-18.json` |
+
+**新增硬边界 W-1（r118 立）**：任何替换动作**不得以「提升任务质量」为理由**，
+除非先复跑 `r118_swap_sim.py` 并给出**该件专属**的正向 delta（> 0 且带正控判别力）。
+理由：实测换装对这条主指标的边际影响为 0，且 7/12 条 miss 的失败层在直连/标签短路，
+**改 SKILL.md 在结构上到不了那一层**（短路先于召回）。
+
+**同时修正 r117 §8 的靶子口径**：r117 提的 S-1/S-2「描述面拆解」若按 12 条整块执行，
+其中 **4 条（DIRECT_SHORT 层）会白做** —— 靶子应收缩为该件所在的失败层，
+而非「描述写得好不好」。
+
