@@ -138,8 +138,6 @@ def main():
             print('[GATEMAP] SKIP 无暂存活动且未提交件全为收尾产物形态（06-benchmark/*.json[l]）——本门不适用）')
             print('[GATEMAP:SKIP]')
             return 0
-            print('[GATEMAP:SKIP]')
-            return 0
         print('[GATEMAP] UNVERIFIED 有未提交改动但暂存清单为空（漏 add？r133 第 ④ 种形态）')
         print('          禁按 0 记绿 —— 空清单会让「该过哪道门」恒为空集')
         return 2

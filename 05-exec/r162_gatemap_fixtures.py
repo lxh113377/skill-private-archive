@@ -44,16 +44,32 @@ def record(name, want_rc, got_rc, want_token, got_out, note=''):
     return ok
 
 
-def run_with_dirty(lines, extra_argv=None):
-    """把 dirty 清单写临时文件，经 --dirty 测试缝喂给被测脚本。"""
-    fd, path = tempfile.mkstemp(prefix='r162_dirty_', suffix='.txt')
+def _write_tmp(prefix, lines):
+    fd, path = tempfile.mkstemp(prefix=prefix, suffix='.txt')
     os.close(fd)
     with io.open(path, 'w', encoding='utf-8', newline='\n') as f:
         f.write('\n'.join(lines) + ('\n' if lines else ''))
-    argv = [PY, TARGET, '--dirty', path] + list(extra_argv or [])
-    p = subprocess.run(argv, cwd=ROOT, capture_output=True, text=True,
-                       encoding='utf-8', errors='replace', timeout=180)
-    os.remove(path)
+    return path
+
+
+def run_with_dirty(lines, extra_argv=None, staged=None):
+    """把 dirty 清单写临时文件，经 --dirty 测试缝喂给被测脚本。
+
+    r178 修（R178-2 一手）：**同时注入 --staged**。原实现只封 --dirty 一条缝，
+    暂存清单仍走真 git ⇒ 本机工作区有没有暂存件会直接改变 11 条腿的读数
+    （实测：收尾件 git add 未 commit 的窗口内夹具 0/11 全 FAIL，want=2 got=0）。
+    staged=None ⇒ 注入空清单（「无暂存活动」这一被测形态），而非继承真仓状态。
+    """
+    path = _write_tmp('r162_dirty_', lines)
+    spath = _write_tmp('r162_staged_', [] if staged is None else staged)
+    argv = [PY, TARGET, '--dirty', path, '--staged', spath] + list(extra_argv or [])
+    try:
+        p = subprocess.run(argv, cwd=ROOT, capture_output=True, text=True,
+                           encoding='utf-8', errors='replace', timeout=180)
+    finally:
+        for x in (path, spath):
+            if os.path.exists(x):
+                os.remove(x)
     return p.returncode, (p.stdout or '') + (p.stderr or '')
 
 
@@ -127,16 +143,16 @@ def m1_strip_allow_breaks_t1():
     mutated = _re.sub(r"CLOSING_ALLOW = \([^)]*\)", "CLOSING_ALLOW = ()", mutated, count=1)
     with io.open(tmp, 'w', encoding='utf-8', newline='\n') as f:
         f.write(mutated)
-    fd2, dirty_path = tempfile.mkstemp(prefix='r162_m1d_', suffix='.txt')
-    os.close(fd2)
-    with io.open(dirty_path, 'w', encoding='utf-8', newline='\n') as f:
-        f.write('?? 06-benchmark/gate_run_r162_probe.json\n')
-    p = subprocess.run([PY, tmp, '--dirty', dirty_path], cwd=ROOT,
-                       capture_output=True, text=True, encoding='utf-8',
-                       errors='replace', timeout=180)
-    os.remove(dirty_path)
-    if os.path.exists(tmp):
-        os.remove(tmp)
+    dirty_path = _write_tmp('r162_m1d_', ['?? 06-benchmark/gate_run_r162_probe.json'])
+    staged_path = _write_tmp('r162_m1s_', [])
+    try:
+        p = subprocess.run([PY, tmp, '--dirty', dirty_path, '--staged', staged_path],
+                           cwd=ROOT, capture_output=True, text=True,
+                           encoding='utf-8', errors='replace', timeout=180)
+    finally:
+        for x in (dirty_path, staged_path, tmp):
+            if os.path.exists(x):
+                os.remove(x)
     return record('m1_strip_allow_breaks_t1', 2, p.returncode, None, p.stdout + p.stderr,
                   '摘白名单 => 应 SKIP 面必须转 UNVERIFIED')
 
@@ -150,16 +166,16 @@ def m2_strip_deny_breaks_t2():
 
     with io.open(tmp, 'w', encoding='utf-8', newline='\n') as f:
         f.write(mutated)
-    fd2, dirty_path = tempfile.mkstemp(prefix='r162_m2d_', suffix='.txt')
-    os.close(fd2)
-    with io.open(dirty_path, 'w', encoding='utf-8', newline='\n') as f:
-        f.write(' M 06-benchmark/transmit_proposals.json\n')
-    p = subprocess.run([PY, tmp, '--dirty', dirty_path], cwd=ROOT,
-                       capture_output=True, text=True, encoding='utf-8',
-                       errors='replace', timeout=180)
-    os.remove(dirty_path)
-    if os.path.exists(tmp):
-        os.remove(tmp)
+    dirty_path = _write_tmp('r162_m2d_', [' M 06-benchmark/transmit_proposals.json'])
+    staged_path = _write_tmp('r162_m2s_', [])
+    try:
+        p = subprocess.run([PY, tmp, '--dirty', dirty_path, '--staged', staged_path],
+                           cwd=ROOT, capture_output=True, text=True,
+                           encoding='utf-8', errors='replace', timeout=180)
+    finally:
+        for x in (dirty_path, staged_path, tmp):
+            if os.path.exists(x):
+                os.remove(x)
     # 摘 DENY 后提案台账落进 ALLOW => 假 SKIP rc=0 —— 变异体「变坏」即证明原判据有牙
     return record('m2_strip_deny_makes_t2_falsely_green', 0, p.returncode, '[GATEMAP:SKIP]',
                   p.stdout + p.stderr,
@@ -167,11 +183,67 @@ def m2_strip_deny_breaks_t2():
 
 
 def m3_dirty_seam_must_exist():
-    p = subprocess.run([PY, TARGET, '--dirty', os.path.join(ROOT, 'no_such_file_r162.txt')],
-                       cwd=ROOT, capture_output=True, text=True, encoding='utf-8',
-                       errors='replace', timeout=180)
+    """--dirty 指向不存在文件 => rc=2。
+
+    r178 补（R178-2）：必须同时注入**空暂存清单** —— 被测件的 dirty 形态校验只在
+    「暂存为空」分支内；真仓若有暂存件则该分支根本进不去 ⇒ 本腿会「通过但没测到东西」。
+    """
+    staged_path = _write_tmp('r162_m3s_', [])
+    try:
+        p = subprocess.run([PY, TARGET, '--staged', staged_path,
+                            '--dirty', os.path.join(ROOT, 'no_such_file_r162.txt')],
+                           cwd=ROOT, capture_output=True, text=True, encoding='utf-8',
+                           errors='replace', timeout=180)
+    finally:
+        if os.path.exists(staged_path):
+            os.remove(staged_path)
     return record('m3_missing_dirty_seam_unverified', 2, p.returncode, None,
                   p.stdout + p.stderr, '测试缝指向不存在文件 => UNVERIFIED，禁静默走真 git')
+
+
+def t9_staged_seam_not_inherited():
+    """r178 新增常驻腿（R178-2 一手）：暂存面必须被接管，不得继承真仓状态。
+
+    注入 staged=1（纪律面 07 台账）+ dirty 空 ⇒ 被测件须走「有暂存」路径，
+    输出首行必须是「暂存 1 个文件」。若 --staged 缝失效（继承真仓），这个数字会跟着
+    工作区变 —— 那正是本轮 0/11 全 FAIL 的形态。
+    """
+    rc, out = run_with_dirty([], staged=['memory/07-next-steps.md'])
+    ok = rc == 0 and '暂存 1 个文件' in (out or '')
+    RESULTS.append({'name': 't9_staged_seam_not_inherited', 'ok': ok,
+                    'want_rc': 0, 'got_rc': rc, 'want_token': '暂存 1 个文件',
+                    'note': '注入 staged=1 => 读数必须写「暂存 1 个文件」（--staged 缝生效）'})
+    return ok
+
+
+def m4_strip_staged_seam_leaks_real():
+    """变异：把被测件的 --staged 读取摘掉（恒假）=> t9 必须转红，证明 t9 的绿来自缝本身。"""
+    src = io.open(TARGET, encoding='utf-8').read()
+    mutated = src.replace('if args.staged and os.path.isfile(args.staged):', 'if False:', 1)
+    if mutated == src:
+        RESULTS.append({'name': 'm4_strip_staged_seam_leaks_real', 'ok': False,
+                        'want_rc': None, 'got_rc': None, 'want_token': None,
+                        'note': '变异锚未命中（被测件暂存分支写法已变，须同步本腿）'})
+        return False
+    tmp = os.path.join(HERE, '_r162_m4_mutant.py')
+    staged_path = _write_tmp('r162_m4s_', ['memory/07-next-steps.md'])
+    dirty_path = _write_tmp('r162_m4d_', [])
+    try:
+        with io.open(tmp, 'w', encoding='utf-8', newline='\n') as f:
+            f.write(mutated)
+        p = subprocess.run([PY, tmp, '--staged', staged_path, '--dirty', dirty_path],
+                           cwd=ROOT, capture_output=True, text=True,
+                           encoding='utf-8', errors='replace', timeout=180)
+    finally:
+        for x in (staged_path, dirty_path, tmp):
+            if os.path.exists(x):
+                os.remove(x)
+    out = p.stdout + p.stderr
+    ok = p.returncode == 0 and '暂存 1 个文件' not in out
+    RESULTS.append({'name': 'm4_strip_staged_seam_leaks_real', 'ok': ok,
+                    'want_rc': 0, 'got_rc': p.returncode, 'want_token': None,
+                    'note': '摘 --staged 注入 => 读数不得再是「暂存 1 个文件」（变异体确实更坏）'})
+    return ok
 
 
 def main(argv=None):
@@ -182,7 +254,8 @@ def main(argv=None):
     legs = [t1_closing_whitelist_skips, t2_proposal_ledger_not_washed,
             t3_ledger_07_not_washed, t4_agents_not_washed, t5_runner_not_washed,
             t6_report_md_not_whitelisted, t7_clean_tree_skips, t8_deny_beats_allow,
-            m1_strip_allow_breaks_t1, m2_strip_deny_breaks_t2, m3_dirty_seam_must_exist]
+            m1_strip_allow_breaks_t1, m2_strip_deny_breaks_t2, m3_dirty_seam_must_exist,
+            t9_staged_seam_not_inherited, m4_strip_staged_seam_leaks_real]
     for fn in legs:
         try:
             fn()
