@@ -1,0 +1,31 @@
+{
+ "schema": "ci-health-v1",
+ "generated_at": "2026-10-23 15:42",
+ "readonly": true,
+ "benchmark": "r32 第九维 CI 有效性（run 结论分布 + 心跳，非 workflow 文件数）",
+ "provenance_cmd": "gh api repos/<slug>/actions/runs?per_page=50 --jq .workflow_runs",
+ "window_runs": 12,
+ "heartbeat_max_age_hours": 36,
+ "success_floor": 0.6,
+ "self": {
+  "repo": "lxh113377/skill-private-archive",
+  "runs": 12,
+  "conclusions": {
+   "in_progress": 2,
+   "failure": 10
+  },
+  "success_rate": 0.0,
+  "failure_rate": 0.833,
+  "action_required_rate": 0.0,
+  "skipped_rate": 0.0,
+  "median_duration_s": 39.0,
+  "last_run_at": "2026-10-23T07:42:08Z",
+  "branches": 1
+ },
+ "self_state": "FAIL",
+ "self_reasons": [
+  "success=0% < 地板 60% ⇒ 判据在跑但长期不绿"
+ ],
+ "opposites": [],
+ "note": "本工具只测不拦：网络/鉴权失败不得阻断本地落盘；强制面由 r32_gate_freshness.py 承担"
+}
