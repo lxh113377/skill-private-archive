@@ -70,9 +70,10 @@
    "debt_fresh_fixtures",
    "tool_skill_matrix",
    "turnstile_face",
-   "cf_deploy_face"
+   "cf_deploy_face",
+   "ci_effectiveness_face"
   ],
-  "_snapshot_at": "2026-10-24 01:11",
+  "_snapshot_at": "2026-10-24 01:42",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
@@ -184,6 +185,10 @@
   "cf_deploy_face": {
    "evidence": "06-benchmark/cf_deploy_face_r181.json",
    "at": "2026-10-23 13:19"
+  },
+  "ci_effectiveness_face": {
+   "evidence": "05-exec/r193_ci_health_fixtures.py",
+   "at": "2026-10-24 01:39"
   }
  }
 }

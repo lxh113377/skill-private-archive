@@ -1034,6 +1034,30 @@ GATES = [
                 " 才知两端本就是不同前端（CF=管理后台+API、GH=微信顾客端）。另自抓聚合 bug："
                 "把 UNVERIFIED 也算进 DRIFT ⇒ 限流被报成内容漂移。此四处均已有对应自证腿锁住。"),
     },
+    {
+        # r194：GitHub Actions 有效性判据进门（第 70 门）—— r32 的原始靶子终于有了常驻面
+        "id": "ci_effectiveness_face",
+        "script": "r32_ci_health.py",
+        "argv": ["--skip-opposites", "--mode", "face", "--recent-n", "5",
+                 "--json", "06-benchmark/ci_health_latest.json"],
+        "pass_token": "[CI-HEALTH:PASS]",
+        "portable": False,
+        "not_portable_reason":
+            "吃本机 gh keyring 登录态 + actions:read（CI 里 gh 未登录 => rc=2 UNVERIFIED，不得判绿）",
+        "covers": ["心跳：最近 run 距今 <= max-age-hours（cron 每日档断了要响）",
+                   "真出结论：最近 N 个已完成 run 里 success >= recent-success-min（僵尸化要响）",
+                   "全窗口 success 率只打印不判红（历史连红不能把已修好的仓每轮染红，R193-1）",
+                   "gh 不可用 / 取不到 run 一律 rc=2 UNVERIFIED（R247 禁把取不到读成健康或不健康）"],
+        "why": (
+            "r32 早在 2026-09-25 就写下「有 workflow != 判据在起作用」，拿对手 spec-kit 50% run "
+            "停在 action_required 作靶，但 r32_ci_health 长期不在门表（只有 r32_gate_freshness "
+            "那条读本机台账的 meta 门）=> GitHub Actions 这个名册工具其实从没被常驻判据盯过。"
+            "r187-r194 一手：本仓 CI 自 2026-09-25 起连续 338 个 push run 全红（浅克隆、checkout "
+            "重置 mtime、latest() 平局退化按名、三门误标 portable、freshness 时钟基准漂移、gatemap "
+            "生产路径被密闭性堵死），全靠手工逐条挖——正是 r32 说的「判据在跑但没人看它是否在判定」。"
+            "修复后接成第 70 门：face 模式判「CI 此刻是否还在真出结论」（心跳 + 近期窗口有绿），"
+            "绿时不因 338 历史连红误报；report 模式的 60% 地板原样保留，人读体检仍判 FAIL 如实记账。"),
+    },
 ]
 
 # 显式声明本 runner **不覆盖**的面，防止聚合绿被读成「所有门禁都绿」（R20-2）。

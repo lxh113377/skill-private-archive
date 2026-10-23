@@ -122,6 +122,8 @@ def main():
     ap.add_argument("--max-age-hours", type=int, default=36, help="本仓心跳阈值（gates.yml 为每日 cron）")
     ap.add_argument("--skip-opposites", action="store_true")
     ap.add_argument("--recent-n", type=int, default=5, help="近期趋势窗口（已完成 run 数）")
+    ap.add_argument("--mode", choices=("report", "face"), default="report", help="report=人读体检(按全窗口地板判, 默认, 行为与历史一致); face=进门表当判据(判CI此刻是否还在起作用, 全窗口只打印不判红)")
+    ap.add_argument("--recent-success-min", type=int, default=1, help="face 模式: 近期窗口里至少这么多个 success 才算判据在起作用(防僵尸)")
     ap.add_argument("--json")
     args = ap.parse_args()
 
@@ -152,18 +154,30 @@ def main():
     if me["last_run_at"]:
         age_h = round((datetime.now(timezone.utc) - ts(me["last_run_at"])).total_seconds() / 3600.0, 2)
     reasons = []
+    _rc = me.get("recent") or {}
     if age_h is None:
         reasons.append("无 last_run_at")
     elif age_h > args.max_age_hours:
         reasons.append("心跳断：最近 run 距今 %.1f h > 阈值 %d h（cron 每日档已失效？）" % (age_h, args.max_age_hours))
-    if me["success_rate"] < SUCCESS_FLOOR:
-        _rc = me.get("recent") or {}
-        _hint = ""
-        if _rc.get("rate") == 1.0 and _rc.get("n"):
-            _hint = ("｜但近期趋势：最近 %d 个已完成 run 全绿 ⇒ 与「长期不绿」不同，"
-                     "是历史连红把全窗口均线拖住，属**已修复待观察**，不是新故障" % _rc["n"])
-        reasons.append("success=%.0f%% < 地板 %.0f%% ⇒ 判据在跑但长期不绿%s" % (
-            100 * me["success_rate"], 100 * SUCCESS_FLOOR, _hint))
+    if args.mode == "report":
+        # 人读体检：按全窗口地板判（与 r32 至今行为一致，地板不放宽）。
+        if me["success_rate"] < SUCCESS_FLOOR:
+            _hint = ""
+            if _rc.get("rate") == 1.0 and _rc.get("n"):
+                _hint = ("｜但近期趋势：最近 %d 个已完成 run 全绿 ⇒ 与「长期不绿」不同，"
+                         "是历史连红把全窗口均线拖住，属**已修复待观察**，不是新故障" % _rc["n"])
+            reasons.append("success=%.0f%% < 地板 %.0f%% ⇒ 判据在跑但长期不绿%s" % (
+                100 * me["success_rate"], 100 * SUCCESS_FLOOR, _hint))
+    else:
+        # face 模式（进门表）：评的是 r32 原始靶子「判据是否还在真出结论」，
+        # 不是「历史胜率」。全窗口连红会随时间自然消化，把它当 FAIL 依据就等于
+        # 每轮必然红（正是本仓刚立的 R193-1 要防的：不能把已修好读成还在坏）。
+        # 判红条件 = 判据停止产出健康结论：近期窗口里 success 数 < 下限（僵尸/全挂）。
+        if _rc.get("n", 0) < 1:
+            reasons.append("近期窗口无已完成 run ⇒ 判据未产出可判结论（僵尸化，R247）")
+        elif _rc.get("success", 0) < args.recent_success_min:
+            reasons.append("最近 %d 个已完成 run 里 success=%d < 下限 %d ⇒ CI 判据近期不出绿，疑重新变僵尸"
+                           % (_rc.get("n", 0), _rc.get("success", 0), args.recent_success_min))
     state = "FAIL" if reasons else "PASS"
     print("-" * 72)
     _rc = me.get("recent") or {}
@@ -171,8 +185,15 @@ def main():
         args.per_page, _rc.get("n", 0), _rc.get("success", 0), _rc.get("n", 0),
         args.max_age_hours, 100 * SUCCESS_FLOOR))
     print("判据面: 仅 %s 参与 verdict；对手行只作对照，不参与本仓判定" % SELF)
-    print("[CI-HEALTH:%s] %s" % (state, "；".join(reasons) if reasons else
-                                 "心跳 %.1f h 内且 success=%.0f%% ≥ 地板" % (age_h, 100 * me["success_rate"])))
+    if reasons:
+        _msg = "；".join(reasons)
+    elif args.mode == "face":
+        _msg = "心跳 %.1f h 内 + 最近 %d 个已完成 run 有 %d 个 success ⇒ 判据仍在真出结论（全窗口 %.0f%% 属历史连红，仅打印不判红）" % (
+            age_h, _rc.get("n", 0), _rc.get("success", 0), 100 * me["success_rate"])
+    else:
+        _msg = "心跳 %.1f h 内且 success=%.0f%% ≥ 地板" % (age_h, 100 * me["success_rate"])
+    print("[CI-HEALTH:%s] %s" % (state, _msg))
+    print("[运行模式:%s]" % args.mode)
 
     if args.json:
         doc = {"schema": "ci-health-v1", "generated_at": datetime.now().strftime("%Y-%m-%d %H:%M"),
