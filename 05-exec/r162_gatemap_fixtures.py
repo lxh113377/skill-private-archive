@@ -230,7 +230,13 @@ def m4_staged_seam_structurally_sealed():
     密闭腿也不放行，证明「无注入」与「有注入但为空」被区分开（r133 第④形态）。
     """
     src = io.open(TARGET, encoding="utf-8").read()
-    mutated = src.replace("        files = None", "        files = []", 1)
+    # r192 改锚：被测件已恢复「缺省读真仓」（files = staged_files()），旧锚 files = None 不存在。
+    # 新变异语义 = 把缺省路径改成读夹具注入面，从而「无注入」与「注入为空」不再可区分
+    # => 必须仍 rc=2 且读数点名「暂存清单为空」（密闭性不因实现恢复而失效）。
+    mutated = src.replace(
+        "        files = staged_files()",
+        "        files = [x.strip() for x in io.open(args.staged, encoding='utf-8').read().splitlines() if x.strip()] if args.staged else []",
+        1)
     if mutated == src:
         RESULTS.append({'name': 'm4_staged_seam_structurally_sealed', 'ok': False,
                         'want_rc': None, 'got_rc': None, 'want_token': None,

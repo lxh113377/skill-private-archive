@@ -88,6 +88,17 @@ def is_closing_form(line):
         return False
     return path.endswith('.json') or path.endswith('.jsonl')
 
+def _git_cached_files():
+    """读真仓暂存清单（生产路径）。
+
+    r191d 补定义：本仓工作树里出现了对该函数的调用（缺省分支），但函数体缺失 ⇒
+    NameError。此处补一个与 staged_files 等价的实现（同一口径，不引入第二真相源）。
+    r192 已在调用点写明语义：缺省 = 读真仓（生产路径恢复原行为），
+    密闭性只守「传了 --staged 但文件不存在」那一支。
+    """
+    return staged_files()
+
+
 def staged_files():
     try:
         p = subprocess.run(['git', 'diff', '--cached', '--name-only'],
@@ -118,12 +129,11 @@ def main():
             return 2
         files = [x.strip() for x in io.open(args.staged, encoding='utf-8').read().splitlines() if x.strip()]
     else:
-        # r191 修：无注入 ⇒ 不读真仓（R247 取不到面不得按已知记）。夹具必须显式造面。
-        files = None
-    if files is None:
-        print('[GATEMAP] UNVERIFIED 未提供 --staged 注入 ⇒ 不读真仓暂存清单（r191 密闭性修正）')
-        print('[GATEMAP:UNVERIFIED]')
-        return 2
+        # r191 修（R191-2；r192 二次修正）：缺省路径 = 读真仓暂存区（生产路径，恢复原行为）。
+        # r191 首版误把缺省也堵成 UNVERIFIED ⇒ 门表 argv 未同步传 --staged ⇒ 正常跑必红 ——
+        # 这是「为抓夹具变异把生产路径判红」的反模式：密闭性只该守「**传了** --staged
+        # 但文件不存在」那一支（那才是缝失效形态），不该连缺省读真仓一起堵。
+        files = staged_files()
     if not files:
         # r139 修：暂存为空有两形态——① 有提交进行中但漏 add（r133 第④形态，禁按 0 记绿）；
         # ② 工作区干净、无提交进行中（合法稳态，如收尾轮全部已 commit 后）。
