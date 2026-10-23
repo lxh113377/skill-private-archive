@@ -30,6 +30,7 @@ import tempfile
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 TARGET = os.path.join(HERE, 'r137_commit_gate_map.py')
+TARGET_RUNNER = os.path.join(HERE, 'run_gates.py')
 PY = sys.executable
 
 RESULTS = []
@@ -216,22 +217,35 @@ def t9_staged_seam_not_inherited():
     return ok
 
 
-def m4_strip_staged_seam_leaks_real():
-    """变异：把被测件的 --staged 读取摘掉（恒假）=> t9 必须转红，证明 t9 的绿来自缝本身。"""
-    src = io.open(TARGET, encoding='utf-8').read()
-    mutated = src.replace('if args.staged and os.path.isfile(args.staged):', 'if False:', 1)
+def m4_staged_seam_structurally_sealed():
+    """r191 重定义（R191-2）：密闭性改由**结构**保证后的对应变异腿。
+
+    旧形态（r178）：被测件无 --staged 时静默回落 staged_files() 读真仓 ⇒
+    变异 = 摘掉 if args.staged and os.path.isfile(args.staged): 让读取恒假，
+    此时读数应改从真仓继承（变坏）。r191 修掉那条回落（无注入 ⇒ files=None + rc=2）
+    ⇒ 旧变异锚随之失效，泄漏路径已不存在。
+
+    新变异 = 把 files = None 改成 files = []（模拟「以为空就是没暂存」的旧直觉），
+    必须仍然 rc=2 且读数说「暂存清单为空」—— 即：即便把 None 降级成空清单，
+    密闭腿也不放行，证明「无注入」与「有注入但为空」被区分开（r133 第④形态）。
+    """
+    src = io.open(TARGET, encoding="utf-8").read()
+    mutated = src.replace("        files = None", "        files = []", 1)
     if mutated == src:
-        RESULTS.append({'name': 'm4_strip_staged_seam_leaks_real', 'ok': False,
+        RESULTS.append({'name': 'm4_staged_seam_structurally_sealed', 'ok': False,
                         'want_rc': None, 'got_rc': None, 'want_token': None,
-                        'note': '变异锚未命中（被测件暂存分支写法已变，须同步本腿）'})
+                        'note': '变异锚未命中（files = None 写法已变）'})
         return False
     tmp = os.path.join(HERE, '_r162_m4_mutant.py')
+    # r191 四修：dirty 注入面须含**非收尾产物**形态，否则被测件走 SKIP 分支，
+    # 暂存读数分支根本不执行 => 泄漏无从复现（本轮实测：只注入空 dirty 恒 SKIP）
     staged_path = _write_tmp('r162_m4s_', ['memory/07-next-steps.md'])
-    dirty_path = _write_tmp('r162_m4d_', [])
+    dirty_path = _write_tmp('r162_m4d_', ['05-exec/r137_commit_gate_map.py'])
     try:
         with io.open(tmp, 'w', encoding='utf-8', newline='\n') as f:
             f.write(mutated)
-        p = subprocess.run([PY, tmp, '--staged', staged_path, '--dirty', dirty_path],
+        # 不传 --staged：无注入是本腿的被测形态
+        p = subprocess.run([PY, tmp, '--dirty', dirty_path],
                            cwd=ROOT, capture_output=True, text=True,
                            encoding='utf-8', errors='replace', timeout=180)
     finally:
@@ -239,10 +253,10 @@ def m4_strip_staged_seam_leaks_real():
             if os.path.exists(x):
                 os.remove(x)
     out = p.stdout + p.stderr
-    ok = p.returncode == 0 and '暂存 1 个文件' not in out
-    RESULTS.append({'name': 'm4_strip_staged_seam_leaks_real', 'ok': ok,
-                    'want_rc': 0, 'got_rc': p.returncode, 'want_token': None,
-                    'note': '摘 --staged 注入 => 读数不得再是「暂存 1 个文件」（变异体确实更坏）'})
+    ok = (p.returncode == 2) and ('暂存清单为空' in out)
+    RESULTS.append({'name': 'm4_staged_seam_structurally_sealed', 'ok': ok,
+                    'want_rc': 2, 'got_rc': p.returncode, 'want_token': '暂存清单为空',
+                    'note': 'None 降级成空清单也不放行 => 无注入≠有注入但为空（r133 第④形态仍被区分）'})
     return ok
 
 
@@ -255,7 +269,7 @@ def main(argv=None):
             t3_ledger_07_not_washed, t4_agents_not_washed, t5_runner_not_washed,
             t6_report_md_not_whitelisted, t7_clean_tree_skips, t8_deny_beats_allow,
             m1_strip_allow_breaks_t1, m2_strip_deny_breaks_t2, m3_dirty_seam_must_exist,
-            t9_staged_seam_not_inherited, m4_strip_staged_seam_leaks_real]
+            t9_staged_seam_not_inherited, m4_staged_seam_structurally_sealed]
     for fn in legs:
         try:
             fn()

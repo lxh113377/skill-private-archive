@@ -108,10 +108,22 @@ def main():
     if not os.path.isfile(args.runner):
         print('[GATEMAP] UNVERIFIED runner 不存在: %s' % args.runner)
         return 2
-    if args.staged and os.path.isfile(args.staged):
+    if args.staged:
+        # r191 修（R191-2）：--staged 给的文件不存在 ⇒ UNVERIFIED，不再静默回落真仓。
+        # 原实现「文件不存在就当没传」⇒ 夹具 m4 摘注入后读到真仓暂存清单，
+        # 变异体读数与正例相同 ⇒ 检不出「缝失效」（r178 同族缝的一次漏修）。
+        if not os.path.isfile(args.staged):
+            print('[GATEMAP] UNVERIFIED --staged 指定的文件不存在: %s' % args.staged)
+            print('[GATEMAP:UNVERIFIED]')
+            return 2
         files = [x.strip() for x in io.open(args.staged, encoding='utf-8').read().splitlines() if x.strip()]
     else:
-        files = staged_files()
+        # r191 修：无注入 ⇒ 不读真仓（R247 取不到面不得按已知记）。夹具必须显式造面。
+        files = None
+    if files is None:
+        print('[GATEMAP] UNVERIFIED 未提供 --staged 注入 ⇒ 不读真仓暂存清单（r191 密闭性修正）')
+        print('[GATEMAP:UNVERIFIED]')
+        return 2
     if not files:
         # r139 修：暂存为空有两形态——① 有提交进行中但漏 add（r133 第④形态，禁按 0 记绿）；
         # ② 工作区干净、无提交进行中（合法稳态，如收尾轮全部已 commit 后）。
