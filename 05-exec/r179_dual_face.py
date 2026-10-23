@@ -41,6 +41,7 @@ import hashlib
 import io
 import json
 import os
+import shutil
 import re
 import subprocess
 import sys
@@ -235,11 +236,33 @@ def _cf_production_deploy(label):
                                    "metadata": {"commit_hash": sha, "branch": branch}}}
 
 
+# 只有这些签名才是「commit 确实不存在」的定论；其余 rc!=0 一律不可判定。
+ABSENT_MARKS = ("No commit found", '"status":422', '"status": 422')
+
+
 def _gh_commit_exists(repo, sha):
-    r = subprocess.run(["gh", "api", "repos/%s/commits/%s" % (repo, sha), "--jq", ".sha"],
+    """定论式三态：存在 True / 确证不存在 False / **不可判定则 raise**（→ UNVERIFIED）。
+
+    r184 自抓（假红根因）：原实现只写 returncode == 0，于是 gh 超时、限流、网络失败、
+    登录态抖动统统被算成「commit 不存在」⇒ 判据自己造成假脱钩红。实测复现：同一
+    commit 5106dac 单独跑 PINNED、进全量门禁跑 ORPHAN。「调用失败」与「取到否值」
+    必须分开（r163 反向假绿同族）。另按 §9.1 走绝对路径 + 验非零字节，防 PATH 序漂移
+    把真 gh 换成空壳/同名第三方件。"""
+    import shutil
+    exe = shutil.which("gh") or shutil.which("gh.exe")
+    if not exe:
+        raise RuntimeError("gh 不在 PATH（不等于 commit 不存在）")
+    if os.path.getsize(exe) == 0:
+        raise RuntimeError("gh 解析到 0 字节残件 %s（§9.1 形态）" % exe)
+    r = subprocess.run([exe, "api", "repos/%s/commits/%s" % (repo, sha), "--jq", ".sha"],
                        capture_output=True, text=True, encoding="utf-8",
                        errors="replace", timeout=90)
-    return r.returncode == 0
+    if r.returncode == 0:
+        return True
+    blob = (r.stderr or "") + (r.stdout or "")
+    if any(k in blob for k in ABSENT_MARKS):
+        return False
+    raise RuntimeError("gh 探测失败（非定论）: %s" % blob[:80])
 
 
 def run_all():
@@ -354,6 +377,59 @@ def selftest():
                      lambda r, s: True)
     run("t15 distinct 面单侧 HTTP 失败 => UNVERIFIED（抓 r181 尾行矛盾）",
         t["verdict"] == "UNVERIFIED" and len(t["fetch_errors"]) >= 1, t["verdict"])
+
+    # r184 假红腿：_gh_commit_exists 必须分清「不存在」与「探测失败」。
+    #   桩掉 subprocess.run / shutil.which / os.path.getsize ⇒ 不依赖本机是否装 gh。
+    m_call = _gh_commit_exists
+    import types as _tp
+
+    class _Rc:
+        def __init__(self, rc, stderr, stdout=""):
+            self.returncode, self.stderr, self.stdout = rc, stderr, stdout
+
+    def _mk(res):
+        return lambda *a, **k: res
+
+    _real = (subprocess.run, shutil.which, os.path.getsize, list(globals()["ABSENT_MARKS"]))
+    try:
+        shutil.which = lambda n: "C:/fake/gh.exe"
+        os.path.getsize = lambda p: 12345
+        # 定论否值 => False
+        subprocess.run = _mk(_Rc(1, "gh: No commit found for SHA: deadbee (HTTP 422)", ""))
+        run("t16 定论否值（No commit found / 422）=> False",
+            m_call("lxh/x", "deadbee") is False)
+        # 限流 => raise（不得折算成脱钩）
+        subprocess.run = _mk(_Rc(1, "HTTP 429: Too Many Requests", ""))
+        try:
+            m_call("lxh/x", "abc1234")
+            r429 = "NO-RAISE"
+        except RuntimeError:
+            r429 = "RAISE"
+        run("t17 限流 429 不得判不存在 => 必须 raise（防假红）", r429 == "RAISE", r429)
+        # 网络失败 => raise
+        subprocess.run = _mk(_Rc(1, "connection reset by peer", ""))
+        try:
+            m_call("lxh/x", "abc1234")
+            rn = "NO-RAISE"
+        except RuntimeError:
+            rn = "RAISE"
+        run("t18 网络失败 => 必须 raise（不可折算成脱钩）", rn == "RAISE", rn)
+        # rc=0 => True
+        subprocess.run = _mk(_Rc(0, "", "0123456789abcdef"))
+        run("t19 rc=0 => True（存在）", m_call("lxh/x", "abc1234") is True)
+        # 变异：清空定论词表 => 真·不存在也退化成 raise（证明词表有牙、不是装饰）
+        globals()["ABSENT_MARKS"] = []
+        subprocess.run = _mk(_Rc(1, "gh: No commit found for SHA: deadbee (HTTP 422)", ""))
+        try:
+            m_call("lxh/x", "deadbee")
+            mut = "NO-RAISE"
+        except RuntimeError:
+            mut = "RAISE"
+        run("t20 变异(清空定论词表) => 定论否值退化为 raise（词表非装饰）", mut == "RAISE", mut)
+    finally:
+        subprocess.run, shutil.which, os.path.getsize = _real[0], _real[1], _real[2]
+        globals()["ABSENT_MARKS"] = _real[3]
+
 
     n = sum(1 for _, ok in results if ok)
     print("[DUALFACE:SELFTEST] %d/%d" % (n, len(results)))
