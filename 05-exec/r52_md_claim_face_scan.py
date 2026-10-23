@@ -19,7 +19,9 @@ r"""r52_md_claim_face_scan.py — W-30：Markdown 引用面的数字是否自带
 import argparse
 import io
 import json
+import os
 import re
+import subprocess
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -43,6 +45,42 @@ def _round_of(name):
     return int(m.group(1)) if m else None
 
 
+# r188：CI 侧定面失真的根治件。checkout 会把所有文件 mtime 重置为当天，
+#   使「按 mtime 兜底定面」的第三级离机失真 —— 本地 141 份 md 里只有 1 份靠 mtime
+#   定面（自建skill体系全量对标分析报告.md，55 处声明），它在 CI 被误判成可整改面，
+#   于是 md_claim_face 的 m17「可整改面须零敞口」在 CI 长期判红、本地全绿。
+#   git 末次提交日与工作树 mtime 在本仓同值（实测两份都 2026-09-24），但跨 checkout 稳定
+#   ⇒ 第三级改用 git 日，mtime 退为兜底；两者都取不到仍归历史面（保守方向不变，R247）。
+_GIT_DATE_CACHE = None
+
+
+def git_last_dates():
+    """一次 git 调用建 {仓内相对路径: 末次提交日 YYYY-MM-DD}。失败回空 dict（不抛）。"""
+    global _GIT_DATE_CACHE
+    if _GIT_DATE_CACHE is not None:
+        return _GIT_DATE_CACHE
+    out = {}
+    try:
+        r = subprocess.run(["git", "-c", "core.quotePath=false", "-C", str(ROOT), "log", "--name-only",
+                            "--format=%ad", "--date=short"],
+                           capture_output=True, text=True,
+                           encoding="utf-8", errors="replace", timeout=180)
+        if r.returncode == 0:
+            day = None
+            for raw in (r.stdout or "").splitlines():
+                line = raw.strip()
+                if not line:
+                    continue
+                if re.match(r"^20\d\d-\d\d-\d\d$", line):
+                    day = line
+                    continue
+                if day:
+                    out.setdefault(line.replace(chr(92), "/"), day)
+    except Exception:
+        pass
+    _GIT_DATE_CACHE = out
+    return out
+
 def is_live(name, path=None):
     """可整改面判定：轮次号 → 名字里的日期 → 文件 mtime 日期（三级兜底）。
 
@@ -56,6 +94,18 @@ def is_live(name, path=None):
     d = re.search(r"(20\d{2}-\d{2}-\d{2})", name)
     if d:
         return d.group(1) >= LIVE_FROM_DATE
+    # 第三级：git 末次提交日优先（跨 checkout 稳定），取不到才退 mtime（r188）
+    rel = None
+    if path is not None:
+        try:
+            rel = str(Path(str(path)).resolve().relative_to(ROOT))
+            rel = rel.replace(chr(92), "/")
+        except (OSError, ValueError):
+            rel = None
+    if rel:
+        gd = git_last_dates().get(rel)
+        if gd:
+            return gd >= LIVE_FROM_DATE
     try:
         if path is None:
             return False
