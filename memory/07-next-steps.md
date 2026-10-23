@@ -336,9 +336,35 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   解法：同一脚本双模式 —— report（人读体检，地板原样，实测仍 FAIL 如实记账）／
   face（进门，判「CI 此刻是否还在真出结论」= 心跳<=36h ∧ 最近 5 个已完成 run 有 >=1 绿，
   全窗口只打印不判红）。僵尸信号仍在：cron 断或近期全无绿照样 face 判红，牙齿没磨。
+  > **【r196 校正注】** 上文「僵尸信号仍在：cron 断或近期全无绿照样 face 判红」中的
+  > **「近期全无绿」这半句已被 r196 推翻并删除** —— 僵尸的定义是「跑而不产出判定」
+  > （conclusion ∈ {action_required, null}），用「无绿」当信号会在有真实到期债时永远误报，
+  > 且对 338 连红那种「全是 failure」的形态反而无效。现 face 判红只看无已完成 run /
+  > 存在未产出判定；「近期无绿」降为只陈述不判红的（读数）行。原句按 R241 保留不改。
   门表 69->70 走 r130 --record 登记（证据=r193_ci_health_fixtures.py 5 腿），
   gate_table_reconcile 随之下绿。实测：face rc=0（心跳 0.2h + 最近 5 run 全绿）、
   report rc=1（20% < 60%，附「历史连红拖住均线」提示）、全量 [GATES:PASS] PASS=70。
+- [ ] **R196-1（r196 登记，P1·已落地）** **我把「近期无绿」当僵尸信号 —— 既误报又漏报的语义错**： 【r196 裁决=执行（r196 当日纠正并双向实测）｜取值：face rc=0 且附（读数）行、report rc=1（地板未放宽）；r193_ci_health_fixtures 5 腿全过。不挂账：语义已改对，残留风险由该门与夹具看守。】
+  r195 接第 70 门时，face 模式写成「最近 5 个已完成 run 无 success ⇒ 疑重新变僵尸」。
+  r196 真实数据当场证伪：近 12 run = 6 success + 6 failure、action_required=0 ⇒ CI 在正常
+  判定，只因有真实到期债而红，却被读成僵尸。
+  僵尸（r32 原靶，spec-kit 实测形态）的定义是**跑而不产出判定**，取值域 conclusion ∈
+  {action_required, null}；「全是 failure」恰恰证明判据在工作。
+  更该记的一点：本仓 338 连红期间 conclusion 也全是 failure ⇒ 「要求近期有绿」当时**也拦不住
+  那个僵尸** —— 这个口径同时误报（有债时永远红）与漏报（真僵尸期反而可能不红）。
+  修法：判红只看「无已完成 run」或「存在 action_required/无结论」；「近期无绿」降级为
+  只陈述不判红的（读数）行并指向 report 模式。取值：face rc=0（附读数）+ report rc=1（地板未放宽）。
+  元教训：接判据进门之前，先拿它去跑一段已知为真的历史数据 —— 我这门是自己写的那天就红的，
+  说明口径不对，而不是 CI 不对。
+
+- [ ] **R196-2（r196 登记，P2·已落地）** **GitHub Actions 分钟数额度属平台能力缺口（#29 第二实证）**： 【r196 裁决=作废（作为待办）转常驻读数｜依据已取到：官方 2025-09-26 changelog 明写关停产品级 billing API，属平台能力缺口（#29 第二类），不属「加凭据可解」。quota_face 第 72 门每轮以 GAP_PLATFORM 态记录并强制附依据；若平台重开该 API，门会自动转 MEASURED，无需人工重开条目。】
+  gh api users/<login>/settings/billing -> 404；.../billing/actions -> 410 This endpoint has been
+  moved + documentation_url gh.io/billing-api-updates-user。照该 documentation 查到官方 changelog
+  《Product-specific billing APIs are closing down》(2025-09-26)：关停 Actions/Packages/共享存储
+  的产品级 billing API ⇒ 不属「加凭据就能解」，也不是待办。已做成 quota_face 的 GAP_PLATFORM
+  态（强制携带依据串，夹具 C2 腿锁）。取值：python 05-exec/r196_quota_face.py --json <件>。
+  副产物两处实测坑：wrangler 在 Windows 是 .CMD shim（须 shell=True）；wrangler --json 会
+  在 JSON 后追加 ANSI 告警且 NO_COLOR 无效 ⇒ 括号平衡扫描截数组。
 - [ ] **R194-2 → 已修（r195）** **宽限识别只认「【P0」形态，标题括号里的优先级认不出 ⇒ 宽限静默退化成 2，制造假 OVERDUE**： 【r194 裁决=降级（转长期看守）｜按 r175 教训用降级、不用挂账（挂账至会增 deferred_debt_items 爆棘轮）。不本轮修有两条实测理由：① 改 RE_PRIORITY 词表会同时改变全部历史条目的宽限，须按 X-12 先把新基线钉成实测值再改判据，混进本轮会让一次提交干两件事；② 当前它只造成偏严的假 OVERDUE（宽限 2 小于应有的 4/8），方向保守、不会漏判真债。看守条件：若因宽限退化导致 OVERDUE 反复挤占裁决清单或诱发放宽基线，本条升 P1，并按标题圆括号形态扩 RE_PRIORITY、同时重钉 overdue_debt_items 基线。】 【r195 裁决=执行（r195 落地）｜三处改动：① 宽限取值改走新增 grace_for()，只看条目标题段（第一个全角冒号前）的 P 级，无则退全文 —— 顺手堵住同族第 6 次劫持：我登记本条时正文写了「只认【P0」，被全文 search 读成 P0，把本条宽限从应有的 8 压成 2；② 影响面经只读测量件 r195_grace_impact.py 量化后才动手（全量 OVERDUE 75→73、ACTIVE 0→2，DECIDED/DEFERRED/REPEAT/UNDATED 全不动，方向保守）；③ 棘轮 overdue_debt_items 由 3 降到真值 1。并行会话的 R183-1 仍 OVERDUE = 牙齿在咬，不代裁。取值：python 05-exec/r195_grace_impact.py。】
   一手（本轮修定年劫持时顺带撞出）：RE_PRIORITY = r 方括号 P0/P1/P2 只匹配方括号形态，
   而本仓主流条目写法是 圆括号内（r194 登记，P1·已落地）。实测三行：R194-1 行与 R183-1 行均返回
