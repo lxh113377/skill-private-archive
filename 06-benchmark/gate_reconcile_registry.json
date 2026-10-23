@@ -73,7 +73,7 @@
    "cf_deploy_face",
    "ci_effectiveness_face"
   ],
-  "_snapshot_at": "2026-10-24 01:47",
+  "_snapshot_at": "2026-10-24 02:05",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
