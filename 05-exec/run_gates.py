@@ -1217,17 +1217,26 @@ def main():
     total_ms = 0
     print("=== 本仓门禁聚合 runner (%s) ===" % datetime.now().strftime("%Y-%m-%d %H:%M"))
     print("工作根: %s" % REPO)
-    # r192：commit_gate_map_face 的 --staged 注入面 —— 在跑门之前把真仓暂存清单落成文件。
-    # 不这么做，该门读到的是「门禁自己刚写出的 _temp/ 与台账脏件」⇒ 恒判「有改动但暂存为空」。
-    # 落盘放在跑门之前，保证注入面反映的是**本次提交**的暂存态（与夹具 t9 同一条缝）。
+    # r192：commit_gate_map_face 的 --staged 注入面 —— 跑门前把「本次提交涉及的文件」落成文件。
+    # 不注入，该门读到的是「门禁自己刚写出的 _temp/ 与台账脏件」⇒ 恒判「有改动但暂存为空」。
+    # r192b 补：**暂存清单本身可能为空**（收尾轮全部 commit 后跑门禁，git diff --cached 无输出）
+    #   ⇒ 注入面变成空文件，该门仍判 UNVERIFIED。故：暂存非空就用暂存；为空则回落到
+    #   HEAD~1..HEAD（本次提交实际改了什么）—— 门要判的是「这次提交该过哪道门」，
+    #   而「提交后跑门禁」这一形态下，能回答这个问题的只有提交本身。
     _staged_p = os.path.join(REPO, "_temp", "_gatemap_staged.txt")
     try:
         os.makedirs(os.path.dirname(_staged_p), exist_ok=True)
-        _c = subprocess.run(["git", "diff", "--cached", "--name-only"], cwd=REPO,
-                            capture_output=True, text=True, encoding="utf-8",
-                            errors="replace", timeout=120)
+
+        def _names(*a):
+            _r = subprocess.run(list(a), cwd=REPO, capture_output=True, text=True,
+                                encoding="utf-8", errors="replace", timeout=120)
+            return [x for x in (_r.stdout or "").splitlines() if x.strip()]
+
+        _files = _names("git", "diff", "--cached", "--name-only")
+        if not _files:
+            _files = _names("git", "diff", "--name-only", "HEAD~1", "HEAD")
         with open(_staged_p, "w", encoding="utf-8") as _f:
-            _f.write((_c.stdout or ""))
+            _f.write("\n".join(_files) + ("\n" if _files else ""))
     except OSError as _e:
         print("⚠️ 暂存清单落盘失败（commit_gate_map_face 将判 UNVERIFIED）: %s" % _e)
 
