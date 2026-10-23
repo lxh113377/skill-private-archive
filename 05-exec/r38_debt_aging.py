@@ -50,7 +50,16 @@ RE_ROUND_DECL = re.compile(r"(?:r(\d{1,3})\s*(?:登记|立|新增|补记|更新|
 # r128 自抓（词表缺口）：「销账」是多轮沿用的自然表述（已完成并核销），但不在终局词表里，
 # 于是写了 `裁决=销账` 仍被判 OVERDUE —— 判据不认我自己的裁决词。
 # 修法 = 把该词**收进取值域**（扩枚举，不是放宽判定）：销账与「执行」同义，都表示已闭环。
-RE_DECIDED = re.compile(r"裁决\s*=\s*(执行|降级|作废|保留|销账)|挂账至\s*r(\d{1,3})")
+RE_TITLE_OWN = re.compile(r"\s*-\s*\[[ x]\]\s*\**\s*R(\d{2,3})[a-z]?-\d+")
+    # r194：条目标题自身的编号（R194-1（r194 登记…）里的 194）= 登记的唯一权威来源。
+    # 此前它只存在于 age is None 的回退支（r128），主循环一旦被正文引用先命中就再也轮不到它。
+# r194：裁决取值域**单源化**。此前 RE_DECIDED 与 parse_last_verdict 的头部匹配各写一份词表，
+# 改一处漏一处 ⇒ 与本轮 ratchet_gate「同一文件三份取最新件实现」同族的漂移风险。新增词只加这一处。
+VERDICT_TERMS = ("执行", "降级", "作废", "保留", "销账", "已落地")
+    # r194 收词（按 r128 收「销账」的先例**扩枚举**，不是放宽判定）：本仓 r192/r193/r194
+    # 三轮都用「已落地」表示改动已入库且复验过，语义等同「执行」；仍要求头部出现明确
+    # 终局词，自造措辞照旧不算裁决（X-10）。我这三条此前全被判 OVERDUE = 判据不认我的词。
+RE_DECIDED = re.compile(r"裁决\s*=\s*(" + "|".join(VERDICT_TERMS) + r")|挂账至\s*r(\d{1,3})")
 # r49 根因修（第 2 形态）：裁决标记是 `【rNN 裁决=<头部>｜原因】`，而**原因里允许引用旧标记原文**
 # （本轮就在 W-14 上写了「r46 却在本条上写了『挂账至 r49』」）。全文 search 的 last-wins 会被
 # 引号内容劫持 ⇒ 终局裁决被回判成"过期挂账"，凭空造一条 OVERDUE。
@@ -73,7 +82,7 @@ def parse_last_verdict(text):
     heads = list(RE_MARK_HEAD.finditer(text or ""))
     if heads:
         head = heads[-1].group(2).strip()
-        m = re.match(r"(执行|降级|作废|保留|销账)", head)
+        m = re.match("(" + "|".join(VERDICT_TERMS) + ")", head)   # r194 并轨单源词表
         if m:
             return ("FINAL", m.group(1))
         d = re.match(r"挂账至\s*r(\d{1,3})", head)
@@ -294,13 +303,23 @@ def classify_item(text, now_round):
         return ("DECIDED", "裁决=" + arg)
     grace = GRACE_BY_PRIORITY.get((RE_PRIORITY.search(text) or ["", "UNMARKED"])[1], GRACE_DEFAULT)
     origin, held = None, None
-    for m in RE_ROUND_DECL.finditer(text):
-        if m.group(1):
-            origin = int(m.group(1))
-        elif m.group(2):
-            origin = int(m.group(2))
-        elif m.group(3):
-            held = int(m.group(3))
+    # r194 根因修（正文引用劫持定年 · 同族第 5 次复发，X-23）：r128 当年把「先认标题自身
+    # 编号」只写在 **age is None 的回退支**里，于是只要正文里任何一处出现 rNN+登记词，
+    # 主循环就已把 origin 填上，回退支永远轮不到 ⇒ 修了个寂寞。本仓一手实测：r194 登记的
+    # R194-1 正文写了「③ r130 登记生效」（r130 是**另一件事**的对账器名），标题真值 r194 被
+    # 顶掉 ⇒ 账龄算成 194-130 = 64 轮 ⇒ 刚登记的条目当场被判 OVERDUE、W-12 完整性转红。
+    # 正解 = 把「标题自身编号」提到主路径**之前**并优先采用；无编号条目仍走原循环（不放宽）。
+    _own_title = RE_TITLE_OWN.search(text)
+    if _own_title:
+        origin = int(_own_title.group(1))
+    else:
+        for m in RE_ROUND_DECL.finditer(text):
+            if m.group(1):
+                origin = int(m.group(1))
+            elif m.group(2):
+                origin = int(m.group(2))
+            elif m.group(3):
+                held = int(m.group(3))
     age = None
     if origin is not None:
         age = now_round - origin
@@ -312,7 +331,7 @@ def classify_item(text, now_round):
         # 于是本条（r123 登记、账龄应为 0）被判「账龄 5 轮」⇒ 假 OVERDUE。
         # 修法：先认**标题里的登记轮号**（`R123-1（r123 登记` 这类自身编号），
         # 它才是条目的真实来源；只有标题没有可识别编号时才退回裸 rNN。
-        own = re.match(r"\s*-\s*\[[ x]\]\s*\**\s*R(\d{2,3})[a-z]?-\d+", text)
+        own = RE_TITLE_OWN.match(text)   # r194：与主路径同一常量，两处不漂移
         if own:
             age = now_round - int(own.group(1))
             return (("OVERDUE" if age > grace else "ACTIVE"),

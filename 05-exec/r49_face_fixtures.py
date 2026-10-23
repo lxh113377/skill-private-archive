@@ -164,6 +164,47 @@ ck("q4 修 hijack 不得修坏 r39 机制：最后一枚标记**真是**延期 �
 cls, det = _safe("classify_item", da, TRUE_DEFER.replace("r52", "r49"), 49)
 ck("q5 到期延期 ⇒ 仍判 OVERDUE（延期非终局的口径不变）", cls == "OVERDUE", (cls, det))
 
+# ------------- 定年劫持（X-23 第 5 次复发 · r194 一手）：正文引用他事轮号不得顶掉标题 ----
+# 本仓实物：r194 登记 R194-1 时，裁决原因体写了「③ r130 登记生效」（r130 = 对账器，另一件事），
+# RE_ROUND_DECL 主循环逐次覆盖 origin ⇒ 标题真值 r194 被 r130 顶掉 ⇒ 账龄 194-130 = 64 轮，
+# 刚登记的条目当场判 OVERDUE 并把 W-12 完整性染红。r128 当年只把「标题优先」写进 age is None
+# 的回退支，主循环一命中就轮不到它 ⇒ 修了个寂寞。
+H194 = ("- [ ] **R194-1（r194 登记，P1）** 门表 69->70 已用 r130 登记生效" + chr(12304) + "对账，" + chr(12305) + "读数略。")
+cls, det = _safe("classify_item", da, H194, 194)
+ck("q6 标题自身编号优先：正文含他事「r130 登记」不得顶掉标题 r194（账龄应为 0）",
+   "账龄 0 轮" in (det or ""), (cls, det))
+ck("q7 同条目在 now=194 下 ⇒ ACTIVE（修复前是 64 轮假 OVERDUE）",
+   cls == "ACTIVE", (cls, det))
+# 真到期的老条目不受影响（修 hijack 不得修坏过期追讨）
+OLD120 = "- [ ] **R120-3（r120 登记，P2）** 一手见 r105 登记 与 r118 更新。"
+cls, det = _safe("classify_item", da, OLD120, 194)
+ck("q8 老条目仍按自身编号追讨：账龄 74 > 宽限 ⇒ OVERDUE（不放宽）",
+   cls == "OVERDUE", (cls, det))
+# 取值域单源化（r194）：VERDICT_TERMS 一处定义，RE_DECIDED 与头部匹配两处引用
+ck("q9a 取值域含新收词已落地 ⇒ 判 DECIDED",
+   _safe("classify_item", da, "- [ ] **R194-2（r194 登记，P1）** 【r194 裁决=已落地｜x】", 194)[0] == "DECIDED",
+   _safe("classify_item", da, "- [ ] **R194-2（r194 登记，P1）** 【r194 裁决=已落地｜x】", 194))
+ck("q9b 取值域外自造措辞照旧不算裁决（X-10：扩枚举不等同于放宽判定）",
+   _safe("classify_item", da, "- [ ] **R194-3（r194 登记，P1）** 【r194 裁决=差不多弄好了｜x】", 194)[0] != "DECIDED",
+   _safe("classify_item", da, "- [ ] **R194-3（r194 登记，P1）** 【r194 裁决=差不多弄好了｜x】", 194))
+ck("q9c 单源：RE_DECIDED 与 parse_last_verdict 用的是同一 VERDICT_TERMS（两处不漂移）",
+   all(("裁决=" + t + "｜x") and _safe("parse_last_verdict", da, "【r9 裁决=" + t + "｜x】")[0] == "FINAL"
+       for t in getattr(da, "VERDICT_TERMS", ())),
+   getattr(da, "VERDICT_TERMS", None))
+# 变异腿（W-47 双向：证明 q6 真有牙）：摘掉标题优先 ⇒ 必须退回 64 轮假 OVERDUE
+import re as _re49
+_orig_own = getattr(da, "RE_TITLE_OWN", None)
+if _orig_own is None:
+    ck("q10 变异：摘标题优先后须退回劫持形态", False, "RE_TITLE_OWN 不在（主路径未修）")
+else:
+    try:
+        da.RE_TITLE_OWN = _re49.compile(r"(?!x)x\s*\[[ x]\]")   # 永不命中的同型式
+        cls_m, det_m = _safe("classify_item", da, H194, 194)
+        ck("q10 变异：摘掉标题优先 ⇒ q6 该条重新被 r130 劫持（账龄 64、判 OVERDUE）",
+           cls_m == "OVERDUE" and "账龄 64 轮" in (det_m or ""), (cls_m, det_m))
+    finally:
+        da.RE_TITLE_OWN = _orig_own
+
 # ---------------------------------------------------------------- 真卷集成面（全面守恒）
 files = da.volume_files()
 if not files:
