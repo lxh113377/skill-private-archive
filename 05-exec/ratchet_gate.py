@@ -40,6 +40,10 @@ DEFAULT_BASELINE = BENCH / "inject_ratchet_baseline.json"
 TRUTH_CONSTANTS = Path(r"C:\Users\37533\Desktop\workspace\焚诀\eval\truth_constants.json")
 
 _NAME_DATE_RE = re.compile(r'(20\d\d-\d\d-\d\d)([a-z]?)')
+# r195：本仓另一族命名把时间戳写成紧凑形态（debt_aging_r_autoregen_20261024_021326.json），
+# 不含连字符故 _NAME_DATE_RE 取不到 => 旧实现让它退化到「按名比字符」并把 '_' 排在数字前，
+# 当场选错件（实测报 overdue=3，真值 1）。补一条紧凑式，与 dash 式共用同一估界口径。
+_NAME_STAMP_RE = re.compile(r'(20\d\d)(\d\d)(\d\d)_(\d\d)(\d\d)(\d\d)')
 METRIC_NAMES = ("catalog_grand_chars", "inject_union_bytes", "claim_candidates",
                 "drift_ruleish_candidates", "desc_over_cap", "username_in_skill_files",
                 "overdue_debt_items",
@@ -227,18 +231,29 @@ def _newest_artifact_glob(pattern):
 def _newest_artifact(glob_pat):
     """返回匹配到的最新一份文件路径；零命中 -> None（R247 不得静默判绿）。
 
-    口径演进（r190，四次全部由 clone 复现驱动，每次都被实测推翻上一版）：
+    口径演进（五次，全部由 clone 复现 / 真实误选驱动，每一次都被实测推翻上一版）：
       1) r39 t17 —— 同秒落盘时 glob 顺序不确定，名字必须进键；
       2) r107 前后 —— 只按 mtime：CI 里 checkout 会重打全部 mtime，选中件随落盘顺序漂；
-      3) r190 一修 —— 把名字日期置首：无日期的新件被带日期的旧件压住
+      3) r190 一修 —— 名字日期置首：无日期的新件被带日期的旧件压住
          （debt_aging_r189_final2.json 输给 debt_aging_r162b_2026-10-22.json）；
-      4) r190 二修 —— 改「mtime 优先、仅全平才看日期」：checkout 各件 mtime 相差毫秒，
-         并非严格全等，于是仍走 mtime，catalog 选中 r59_2026-09-29 而非 r107_2026-10-15
-         （实测两边选件不同 -> clone 棘轮多 2 项红）。
-    终版：两个量纲归一到「日期」再比 —— 名字里有 YYYY-MM-DD 用它，没有则取文件
-    mtime 的日期；同日期比字母后缀（claim_truth_r107b 是 r107 的后写修正版，实测
-    candidates 4 优于 8）；最后按名兜底。跨机稳定，且与本机现值一致。
-    保守方向不变：仍取最新，不放宽任何判据。
+      4) r190 二修 —— 「mtime 优先、仅全平才看日期」：checkout 各件 mtime 相差毫秒、
+         并非严格全等，仍走 mtime，catalog 选中 r59_2026-09-29 而非 r107_2026-10-15；
+      5) r190 终修（日期归一 + 字母后缀 + 按名兜底）在 r195 被**实测证伪**：本仓同 glob
+         下混两种命名族 —— 手工件 debt_aging_r195_fix.json（名字无日期、mtime 02:20，
+         OVERDUE=1）与自研件 debt_aging_r_autoregen_20261024_021326.json（名字只有
+         紧凑无连字符时间戳、mtime 02:13，OVERDUE=3）。两者都取不到 YYYY-MM-DD 故都退回
+         mtime-day（同一日），进而按名比字符：'_'(0x5F) > '1'(0x31) ⇒ **选中旧件**，
+         棘轮据此报 overdue=3 超基线（真实值 1）。选错件不是理论风险，是当场造出假红。
+
+    r195 终版（估界法，替代「谁优先」）：给每个件算一个**时间上界**再取 max ——
+      · 名字里能解析出日期（YYYY-MM-DD 或 YYYYMMDD[_HHMMSS]）就用它，并以其**精度**定上界：
+        仅日期 ⇒ 当天 23:59:59；带时分 ⇒ 该时刻；
+      · 名字无时间信息 ⇒ 上界 = 文件 mtime；
+      · 取 min(名字上界, mtime) 作最终估计值：mtime 永远不晚于「文件真实落盘时刻」，而名字
+        时间戳是它声称的生成时刻，两者取小既不会被旧名字的晚声称骗到，也不会被 checkout
+        重打的晚 mtime 骗到（CI 上 mtime 全平 ⇒ 退化为名字序，仍指向最新一代）。
+      · 估界相同再比字母后缀（claim_truth_r107b 是 r107 的后写修正版，实测 4 优于 8），
+        最后按名兜底。保守方向不变：仍取最新，不放宽任何判据。
     """
     files = glob.glob(str(glob_pat))
     if not files:
@@ -246,11 +261,29 @@ def _newest_artifact(glob_pat):
 
     def _key(q):
         b = os.path.basename(q)
+        mt = os.path.getmtime(q)
+        ub = None
+        suf = ""
         m = _NAME_DATE_RE.search(b)
         if m:
-            return (m.group(1), m.group(2) or "", b)
-        d = datetime.fromtimestamp(os.path.getmtime(q)).strftime("%Y-%m-%d")
-        return (d, "", b)
+            try:
+                d = datetime.strptime(m.group(1), "%Y-%m-%d")
+                ub = d.timestamp() + 86399.0      # 只到日期 ⇒ 上界取当天末
+                suf = m.group(2) or ""
+            except ValueError:
+                ub = None
+        else:
+            s = _NAME_STAMP_RE.search(b)
+            if s:
+                try:
+                    d = datetime(int(s.group(1)), int(s.group(2)), int(s.group(3)),
+                                 int(s.group(4)), int(s.group(5)), int(s.group(6)))
+                    ub = d.timestamp() + 59.0     # 带时分秒 ⇒ 上界取该分钟末
+                except ValueError:
+                    ub = None
+        est = mt if ub is None else min(ub, mt)   # 名字说「我最晚这么新」，mtime 说「文件系统
+                                                  # 实测这么新」—— 取两者较小者作保守估计
+        return (est, suf, b)
 
     return max(files, key=_key)
 

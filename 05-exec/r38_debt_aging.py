@@ -40,6 +40,22 @@ GRACE_DEFAULT = 2
 # 噪音反而稀释 P0 的紧迫感（活证据：本仓 W-2 自己在 r42 被判成 OVERDUE）。
 GRACE_BY_PRIORITY = {"P0": 2, "P1": 4, "P2": 8, "UNMARKED": 2}
 RE_PRIORITY = re.compile(r"【\s*(P[0-2])")
+# r195 修 R194-2（宽限表长期是死代码）：旧 RE_PRIORITY 只认「【P0」方括号形态，而本仓主流
+# 条目写法是圆括号（r194 登记，P1·已落地）⇒ 全量 339 条里 209 条读不到 P 级，GRACE_BY_PRIORITY
+# 的 P1=4 / P2=8 从不生效，一律走 GRACE_DEFAULT=2。实测三行：R194-1、R183-1 标题均返回 None，
+# 只有【P0·…】命中。修法 = 只看**条目标题段**（第一个全角冒号之前，无冒号退整条），用通用
+# 边界式匹配 P0/P1/P2；标题段无 P 级再回退全文（保守，绝不比现状更宽松）。
+# 只看标题段是为堵同族劫持（X-23 第 6 次复发，本轮我自抓）：R194-2 正文写了「只认「【P0」形态」,
+# 被全文 search 读成 P0 ⇒ 宽限从应有的 8 塌成 2 —— 我登记这条缺陷的字，自己触发了这条缺陷。
+RE_GRACE = re.compile(r"(?:^|[^0-9A-Za-z])(P[0-2])(?:[^0-9]|$)")
+FULLWIDTH_COLON = chr(65306)
+
+
+def grace_for(text):
+    """条目的宽限轮数：优先看标题段（第一个全角冒号前）的 P 级，无则退全文，再无则默认。"""
+    head = (text or "").split(FULLWIDTH_COLON)[0]
+    mm = RE_GRACE.search(head) or RE_GRACE.search(text or "")
+    return GRACE_BY_PRIORITY.get(mm.group(1) if mm else "UNMARKED", GRACE_DEFAULT)
 # r42 D48 / r43 W-11a：同一条目被改期 >= 2 次 ⇒ 判 REPEAT 并强制升级，
 # 堵死「到期就再往后挂一轮」的延期 treadmill（账面一路 DEFERRED，趋势线看不出恶化）。
 RE_DEFERRAL = re.compile(r"挂账至\s*r\d{1,3}")
@@ -301,7 +317,7 @@ def classify_item(text, now_round):
         return ("OVERDUE", "挂账目标 r%d 已到期（本轮 r%d）" % (tgt, now_round))
     if kind == "FINAL":
         return ("DECIDED", "裁决=" + arg)
-    grace = GRACE_BY_PRIORITY.get((RE_PRIORITY.search(text) or ["", "UNMARKED"])[1], GRACE_DEFAULT)
+    grace = grace_for(text)   # r195：走标题段取值器（修 R194-2，堵正文 P 级引用劫持）
     origin, held = None, None
     # r194 根因修（正文引用劫持定年 · 同族第 5 次复发，X-23）：r128 当年把「先认标题自身
     # 编号」只写在 **age is None 的回退支**里，于是只要正文里任何一处出现 rNN+登记词，
