@@ -74,7 +74,7 @@
    "ci_effectiveness_face",
    "est_selector_fixtures"
   ],
-  "_snapshot_at": "2026-10-24 02:45",
+  "_snapshot_at": "2026-10-24 02:48",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
