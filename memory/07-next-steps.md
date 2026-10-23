@@ -344,6 +344,44 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   门表 69->70 走 r130 --record 登记（证据=r193_ci_health_fixtures.py 5 腿），
   gate_table_reconcile 随之下绿。实测：face rc=0（心跳 0.2h + 最近 5 run 全绿）、
   report rc=1（20% < 60%，附「历史连红拖住均线」提示）、全量 [GATES:PASS] PASS=70。
+- [ ] **R200-2（r200 登记，P2·已落地）** **我把 401 的因果编了出来（同一族第四次）：错误码是事实，因果句要第二条独立通路**： 【r200 裁决=降级（转长期看守）｜因果句已删除、文案只报事实；本仓同族四次已并案记在本条内，作为「登记做不到时的强制格式」依据。不挂账：错误归因已修，后续由 r200_pages_face 文案与第 76 门足迹台账看守。】
+  实测翻盘链（成本 4 次外部调用，已计入 probe_cost 台账）：① wrangler d1 list rc=0；② GET
+  /user/tokens/verify → 401 code 1000 Invalid API Token；③ GET /accounts **同 token HTTP 200**；
+  ④ GraphQL 隔 20s 再打 → **200，取到 171470 次**。②③ 互相矛盾说明 verify 端点是另一条校验
+  通路（CF 该端点为 API Token 设计，对 OAuth 不适用），③④ 合起来证明凭据没死 ⇒ 那个 401
+  （code 10000 Authentication error）是 CF GraphQL 侧**偶发**，不是授权失败。
+  而我上一轮文案写的是「401/403：凭据或 scope 问题…需 wrangler login 或换 token」—— 因果句
+  无任何实测支撑，会把下一轮引去折腾登录（本仓已有 GH_TOKEN 类无效动作的登记先例）。
+  修法：文案只报事实与下一步，不断言要重新登录；本件对 401 不自行重试（省 CF 预算，正是第 76
+  门要防的无声增长），run_gates 层的第二次重跑机会仍保留；两次都撞则判红，语义是「本轮不可得」
+  而非「额度超限」，件内已写明。取值：python 05-exec/r200_pages_face.py（实测 rc=0 MEASURED）。
+  同族四次一并记（避免下一轮把这当成偶发孤立事件）：① gh「未登录或取不到 login」（真因 api
+  EOF）② wrangler「未登录/网络/限流？」（stderr 明写 connectivity）③ rc1/rc1 却报「官方已关停」
+  ④ 本轮 401→「需重新登录」。**共同形态：手上只有一个错误码，却写出一个因果句。**
+  另记准入面抓到的一处：探针件 r200_cf_introspect.py 未入库被 reconcile_admission 判红 ⇒ 按其
+  covers 明写的只读豁免形态改名 *_probe（读判定机制，不猜修法），并去掉我误用的 [QUOTA:PASS]
+  token（那是 quota_face 的门禁 token，探针复用会让 grep 把「探针跑过」读成「额度门通过」）。
+- [ ] **R200-1（r200 登记，P1·已落地）** **监控免费额度的门自己也在消耗免费额度，且无人记账**： 【r200 裁决=执行（当日发现、当日做成常驻门）｜读数：① 第 76 门 probe_cost_face 单跑 rc=0 且 [PROBECOST:PASS]；② 实测每轮最坏足迹 cloudflare=10 / github=8，CI portable 子集=0；③ 夹具 14/14 含 F12 变异腿锁 re.I 承重（漏了就 10 件全判未声明）；④ 门表 76（基线 76 由 run_gates 自写收敛）。不设目标轮：记账面已在位，任何联网门悄悄变贵即 MISMATCH 判红。】
+  一手触发：r200_pages_face 连打 4 次做恢复性验证，第 2 次撞回 CF GraphQL「Rate limiter budget
+  depleted」⇒ 我这几轮新增 4 个打外部 API 的门，每轮成本一直在涨，却没有任何面在看这个数。
+  无声增长的结局是两头假：① 判据把自己饿死（拿不到读数）；② 读数缺失被印成 0 ⇒ 读成「额度安全」。
+  落地：第 76 门 probe_cost_face = 声明 ⇄ 零联网实测对账。测量器 r200_probe_cost_measure.py 拦
+  subprocess.run/urlopen，记意图后返回 rc=1/抛 URLError，让被测门自己退化成 UNVERIFIED ⇒ 在不发
+  任何外部请求的前提下数出真实足迹（副产品：同时自证这些门断网走 UNVERIFIED 而非崩或假绿）。
+  对账五态：OK / UNDECLARED / **MISMATCH（改了联网门没重测即判红，这是牙齿）** / UNMEASURED /
+  NO_EXTERNAL_CALLS（静态假阳性不计成本）。portable=True ⇒ 只读本地件与 manifest，CI 同轮盯成本。
+  实测足迹：cloudflare=10 次/轮、github=8 次/轮（含 pages 的 1 次逻辑调用 × 3 次退避重试 = 最坏值，
+  按逻辑调用记账会低估预算消耗，限流按实际请求计）；CI portable 子集=0。
+  建这面过程中我错六处，全由实测纠出并留在件头注释：① 扫全目录当分母（虚增）② 只认 GraphQL 主机
+  字面量（整件漏计 2 个 wrangler 门）③ 裸子串 'gh'（把只起本地子进程的 r113 误拉进台账）
+  ④ read_script 统一 lower() 而 DECL_RE 漏 re.I ⇒ 10 个已声明件全读成未声明，**成本面自己少算比
+  没有这个面更坏** ⑤ 手写候选清单漏 r163_gh_path_face（少计 1 次 GitHub）⑥ 夹具 mk() 缺
+  subprocess.run 字面量 ⇒ F1-F6 空返回集体 FAIL（夹具失效要响，不能哑通过）。
+  设计岔口：本面进门表后自己成了静态候选（件内含 needle 字面量）⇒ 判红。我没写排除名单（那是
+  第二真相源），而是让它测量自己：实测 0 次外部调用 ⇒ NO_EXTERNAL_CALLS，台账诚实含它（F14 腿）。
+  取值：python 05-exec/r200_probe_cost_measure.py --json <件>；python 05-exec/r200_probe_cost_face.py；
+  夹具 14 腿 python 05-exec/r200_probe_cost_fixtures.py（F12 变异腿锁 re.I 承重）。
+  manifest 是快照不是实时数，过期不静默：件改而快照未重测 ⇒ MISMATCH/UNMEASURED 判红，逼一次重测。
 - [ ] **R199-1（r199 登记，P1·已落地）** **我用 replace 无 count 把一节复制成 18 份，连续 10 轮全绿 —— 因为没有门管「标题被复制」**： 【r199 裁决=执行（当日发现、当日修复、当日常驻化）｜读数：① 报告 2499→1873 行、交付物锚 18→1、粘连 0（python 05-exec/r199_struct_recount.py rc=0）；② 第 74 门 struct_recount_face 已登记且 portable=True，门表 74（基线 74，未登记 0）；③ 夹具 11/11 含 t9/t10 两条变异腿，并抓出检测器自身漏检一处（search→finditer 已修）。不设目标轮：结构损坏已清、回归由该门看守。】
   根因：`t.replace(anchor, add + anchor)` 未传 count，而「## 9. 交付物」在文中有多个出现点，
   一次插入把 §34 整节追加到每个锚前 ⇒ 18 个锚 + 17 份 §34 副本（697 行）。r189 当轮我只清了

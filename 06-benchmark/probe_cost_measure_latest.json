@@ -1,0 +1,96 @@
+{
+ "schema": "probe-cost-measure-v3",
+ "zero_network": true,
+ "candidates": 11,
+ "results": {
+  "r113_cache_guard_face.py": {
+   "gate": "cache_guard_face",
+   "calls": {
+    "cloudflare": 0,
+    "github": 0
+   },
+   "state": "rc=0"
+  },
+  "r113_cache_guard_face_fixtures.py": {
+   "gate": "cache_guard_face_fixtures",
+   "calls": {
+    "cloudflare": 0,
+    "github": 0
+   },
+   "state": "rc=1 (未归类进程/HTTP 调用 2)"
+  },
+  "r163_gh_path_face.py": {
+   "gate": "gh_path_face",
+   "calls": {
+    "cloudflare": 0,
+    "github": 1
+   },
+   "state": "rc=2"
+  },
+  "r163_free_tools_face.py": {
+   "gate": "free_tools_face",
+   "calls": {
+    "cloudflare": 2,
+    "github": 2
+   },
+   "state": "rc=1 (未归类进程/HTTP 调用 4)"
+  },
+  "r163_turnstile_face.py": {
+   "gate": "turnstile_face",
+   "calls": {
+    "cloudflare": 1,
+    "github": 0
+   },
+   "state": "rc=2"
+  },
+  "r179_dual_face.py": {
+   "gate": "cf_deploy_face",
+   "calls": {
+    "cloudflare": 2,
+    "github": 0
+   },
+   "state": "rc=2 (未归类进程/HTTP 调用 4)"
+  },
+  "r32_ci_health.py": {
+   "gate": "ci_effectiveness_face",
+   "calls": {
+    "cloudflare": 0,
+    "github": 1
+   },
+   "state": "rc=2"
+  },
+  "r196_quota_face.py": {
+   "gate": "quota_face",
+   "calls": {
+    "cloudflare": 1,
+    "github": 4
+   },
+   "state": "rc=0"
+  },
+  "r199_workers_face.py": {
+   "gate": "workers_quota_face",
+   "calls": {
+    "cloudflare": 1,
+    "github": 0
+   },
+   "state": "rc=2"
+  },
+  "r200_pages_face.py": {
+   "gate": "pages_http_face",
+   "calls": {
+    "cloudflare": 3,
+    "github": 0
+   },
+   "state": "rc=2"
+  },
+  "r200_probe_cost_face.py": {
+   "gate": "probe_cost_face",
+   "calls": {
+    "cloudflare": 0,
+    "github": 0
+   },
+   "state": "rc=1"
+  }
+ },
+ "provenance_cmd": "python 05-exec/r200_probe_cost_measure.py --json <件>"
+}

@@ -20,6 +20,7 @@
 用法：python 05-exec/r196_quota_face.py [--json 件]
 退出：0 = 无红（含 UNVERIFIED，因为读不到不等于超限）/ 1 = 有用量超过所声明额度
 """
+# CALLS_PER_RUN: cloudflare=1 github=4   (实测：python 05-exec/r200_probe_cost_measure.py；最坏足迹含退避重试)
 import argparse
 import io
 import json

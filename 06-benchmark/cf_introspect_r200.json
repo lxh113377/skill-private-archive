@@ -1,0 +1,11 @@
+{
+ "schema": "cf-introspect-v1",
+ "readonly": true,
+ "result": {
+  "state": "UNVERIFIED",
+  "why": "调用失败 <HTTPError 401: 'Unauthorized'>（网络/代理瞬态，与凭据无关）",
+  "type_count": null,
+  "inputs": {}
+ },
+ "provenance_cmd": "python 05-exec/r200_cf_introspect_probe.py --json <件>"
+}

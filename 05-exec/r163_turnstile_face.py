@@ -12,6 +12,7 @@
 #
 # 用法: python 05-exec/r163_turnstile_face.py [--json <件>] [--selftest]
 # 退出码: 0 三态之一成功判定 / 2 取不到面
+# CALLS_PER_RUN: cloudflare=1 github=0   (实测：python 05-exec/r200_probe_cost_measure.py；最坏足迹含退避重试)
 import argparse
 import io
 import json

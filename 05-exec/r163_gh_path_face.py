@@ -18,6 +18,7 @@
 #
 # 用法: python 05-exec/r163_gh_path_face.py [--json <件>] [--selftest]
 # 退出码: 0 PASS / 1 FAIL / 2 UNVERIFIED
+# CALLS_PER_RUN: cloudflare=0 github=1   (实测：python 05-exec/r200_probe_cost_measure.py；最坏足迹含退避重试)
 import argparse
 import io
 import json

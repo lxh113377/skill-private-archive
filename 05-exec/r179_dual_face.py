@@ -36,6 +36,7 @@ r179 自抓四处（首跑即错，全是「猜」出来的）：
 退出码：0 = 全部可溯源（且 mirror 面一致）；1 = 脱钩或镜像漂移；2 = UNVERIFIED。
 """
 
+# CALLS_PER_RUN: cloudflare=2 github=0   (实测：python 05-exec/r200_probe_cost_measure.py；最坏足迹含退避重试)  # (未归类进程调用 4)
 import argparse
 import hashlib
 import io

@@ -1149,6 +1149,47 @@ GATES = [
                 "未实测的设计假设 —— 真实粘连恰好发生在引用行内，放过引用行会让检测器"
                 "对自己找到的损坏失明。"),
     },
+    {
+        # r200：Pages / 账号级 HTTP 请求量面（第 75 门）—— 生产在用的 Pages 到底跑了多少流量
+        "id": "pages_http_face",
+        "script": "r200_pages_face.py",
+        "argv": ["--json", "06-benchmark/pages_http_latest.json"],
+        "pass_token": "[QUOTA:PASS]",
+        "portable": False,
+        "not_portable_reason":
+            "吃本机 wrangler OAuth 凭据 + 公网 GraphQL（取不到即 rc=2 UNVERIFIED，不折算用量）",
+        "covers": [
+            "账号级 httpRequests1dGroups 求和 requests（本月窗口 date_geq/date_leq）",
+            "1d 用 date_geq/date_leq（Date 型 YYYY-MM-DD），与 adaptive 的 datetime_geq 不同名",
+            "真值 0 与 取不到 严格分开：空数据集=0（P5）/ 任一行结构不符=整批 None（P3、P4）",
+            "口径声明：账号级含所有 zone/Pages 流量，与名册 Workers 10 万/天不同量纲不折算"],
+        "why": ("r199 打通 Workers 调用数后，名册里 Cloudflare Pages 这一项仍只有"
+                "「部署可溯源」没有流量读数，而 Pages 恰是本仓生产在用的那个。参数名不猜："
+                "date_geq/date_leq 由 GraphQL introspection 的 AccountHttpRequests1dGroups"
+                "Filter_InputObject.inputFields 自报（实测 10 字段）。它跟 workersInvocations"
+                "Adaptive 的 datetime_geq 不同名，照抄官方 examples 会把 1d 打挂（实测 unknown"
+                " arg）。夹具 19 腿锁住 P3/P4/P5：额度面最坏的假绿就是把「取不到」印成「0 次」，"
+                "看着像远低于额度。"),
+    },
+    {
+        # r200：探针自成本面（第 76 门）—— 监控系统自己每轮花掉多少外部 API 调用
+        "id": "probe_cost_face",
+        "script": "r200_probe_cost_face.py",
+        "argv": ["--json", "06-benchmark/probe_cost_latest.json"],
+        "pass_token": "[PROBECOST:PASS]",
+        "portable": True,   # 纯读本地件与 manifest，无登录无网络 ⇒ CI 同轮盯成本
+        "covers": [
+            "联网门声明 CALLS_PER_RUN ⇄ 零联网实测值对账；改件不重测即 MISMATCH 判红",
+            "无实测记录 ⇒ UNMEASURED 判红；manifest 缺失 ⇒ rc=2 UNVERIFIED（R247 不记绿）",
+            "静态假阳性（实测 0 次外部调用）不计成本、不要求声明（r113 两件为证）",
+            "汇总每轮最坏足迹（本机 与 CI portable 子集 分列）",
+            "声明比对大小写无关：漏 re.I 会让 10 件全读成未声明，成本面自己少算（r200 实测）"],
+        "why": ("本轮 r200_pages_face 连打 4 次，第 2 次撞到 Cloudflare GraphQL 的"
+                "Rate limiter budget depleted ⇒ 监控免费额度这件事本身在消耗免费额度。"
+                "我这几轮陆续新增了 4 个会打外部 API 的门，每轮成本上升却没有任何面在看"
+                "这个数。它无声增长的结局是两头假：判据把自己饿死（拿不到读数），而读数"
+                "缺失又被读成「额度很安全」。本面把调用足迹变成每轮可见、可对账的读数。"),
+    },
 ]
 
 # 显式声明本 runner **不覆盖**的面，防止聚合绿被读成「所有门禁都绿」（R20-2）。

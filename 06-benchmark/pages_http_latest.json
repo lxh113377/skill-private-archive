@@ -1,0 +1,28 @@
+{
+ "schema": "pages-http-v1",
+ "readonly": true,
+ "row": {
+  "tool": "cloudflare_pages_http_requests",
+  "state": "MEASURED",
+  "why": "",
+  "window": "2026-10-01~2026-10-24",
+  "requests_total": 171478,
+  "days": 23,
+  "top_days": [
+   [
+    "2026-10-17",
+    27991
+   ],
+   [
+    "2026-10-22",
+    21464
+   ],
+   [
+    "2026-10-21",
+    19941
+   ]
+  ],
+  "caveat": "账号级 httpRequests（含该账号所有 zone/Pages 流量），与名册「Workers 10 万请求/天」不同量纲不同归属 ⇒ 不折算百分比；Workers 侧本月调用数见 workers_quota_face。"
+ },
+ "provenance_cmd": "python 05-exec/r200_pages_face.py --json <件>"
+}

@@ -17,6 +17,7 @@ r31 量的是**存在性**（workflow 文件数）。本轮发现那格数字会
 退出码：0 本仓 CI 健康 / 1 不健康（心跳断 或 成功率低于阈值）/ 2 UNVERIFIED（gh 不可用、无 run、取不到）
 """
 
+# CALLS_PER_RUN: cloudflare=0 github=1   (实测：python 05-exec/r200_probe_cost_measure.py；最坏足迹含退避重试)
 import argparse
 import json
 import subprocess

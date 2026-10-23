@@ -1,0 +1,201 @@
+{
+ "schema": "probe-cost-v5",
+ "readonly": true,
+ "gate_table_count": 76,
+ "rows": [
+  {
+   "gate": "cache_guard_face",
+   "script": "r113_cache_guard_face.py",
+   "apis": [
+    "github"
+   ],
+   "portable": true,
+   "declared": null,
+   "measured": {
+    "cloudflare": 0,
+    "github": 0
+   },
+   "state": "NO_EXTERNAL_CALLS"
+  },
+  {
+   "gate": "cache_guard_face_fixtures",
+   "script": "r113_cache_guard_face_fixtures.py",
+   "apis": [
+    "github"
+   ],
+   "portable": true,
+   "declared": null,
+   "measured": {
+    "cloudflare": 0,
+    "github": 0
+   },
+   "state": "NO_EXTERNAL_CALLS"
+  },
+  {
+   "gate": "gh_path_face",
+   "script": "r163_gh_path_face.py",
+   "apis": [
+    "github"
+   ],
+   "portable": false,
+   "declared": {
+    "cloudflare": 0,
+    "github": 1
+   },
+   "measured": {
+    "cloudflare": 0,
+    "github": 1
+   },
+   "state": "OK"
+  },
+  {
+   "gate": "free_tools_face",
+   "script": "r163_free_tools_face.py",
+   "apis": [
+    "cloudflare",
+    "github"
+   ],
+   "portable": false,
+   "declared": {
+    "cloudflare": 2,
+    "github": 2
+   },
+   "measured": {
+    "cloudflare": 2,
+    "github": 2
+   },
+   "state": "OK"
+  },
+  {
+   "gate": "turnstile_face",
+   "script": "r163_turnstile_face.py",
+   "apis": [
+    "cloudflare"
+   ],
+   "portable": false,
+   "declared": {
+    "cloudflare": 1,
+    "github": 0
+   },
+   "measured": {
+    "cloudflare": 1,
+    "github": 0
+   },
+   "state": "OK"
+  },
+  {
+   "gate": "cf_deploy_face",
+   "script": "r179_dual_face.py",
+   "apis": [
+    "cloudflare",
+    "github"
+   ],
+   "portable": false,
+   "declared": {
+    "cloudflare": 2,
+    "github": 0
+   },
+   "measured": {
+    "cloudflare": 2,
+    "github": 0
+   },
+   "state": "OK"
+  },
+  {
+   "gate": "ci_effectiveness_face",
+   "script": "r32_ci_health.py",
+   "apis": [
+    "github"
+   ],
+   "portable": false,
+   "declared": {
+    "cloudflare": 0,
+    "github": 1
+   },
+   "measured": {
+    "cloudflare": 0,
+    "github": 1
+   },
+   "state": "OK"
+  },
+  {
+   "gate": "quota_face",
+   "script": "r196_quota_face.py",
+   "apis": [
+    "cloudflare",
+    "github"
+   ],
+   "portable": false,
+   "declared": {
+    "cloudflare": 1,
+    "github": 4
+   },
+   "measured": {
+    "cloudflare": 1,
+    "github": 4
+   },
+   "state": "OK"
+  },
+  {
+   "gate": "workers_quota_face",
+   "script": "r199_workers_face.py",
+   "apis": [
+    "cloudflare"
+   ],
+   "portable": false,
+   "declared": {
+    "cloudflare": 1,
+    "github": 0
+   },
+   "measured": {
+    "cloudflare": 1,
+    "github": 0
+   },
+   "state": "OK"
+  },
+  {
+   "gate": "pages_http_face",
+   "script": "r200_pages_face.py",
+   "apis": [
+    "cloudflare"
+   ],
+   "portable": false,
+   "declared": {
+    "cloudflare": 3,
+    "github": 0
+   },
+   "measured": {
+    "cloudflare": 3,
+    "github": 0
+   },
+   "state": "OK"
+  },
+  {
+   "gate": "probe_cost_face",
+   "script": "r200_probe_cost_face.py",
+   "apis": [
+    "cloudflare",
+    "github"
+   ],
+   "portable": true,
+   "declared": {
+    "cloudflare": 3,
+    "github": 0
+   },
+   "measured": {
+    "cloudflare": 0,
+    "github": 0
+   },
+   "state": "NO_EXTERNAL_CALLS"
+  }
+ ],
+ "problems": [],
+ "worst_case_per_run": {
+  "github": 8,
+  "cloudflare": 10
+ },
+ "ci_per_run": {},
+ "manifest": "probe_cost_measure_latest.json",
+ "note": "口径见件头：分母=门表已注册＋有外部机械＋命中厂商标记；以零联网实测 manifest 对账，静态假阳性不计成本。本轮实测撞过一次 CF GraphQL 限流（Rate limiter budget depleted），故监控自身的调用足迹必须可见。",
+ "provenance_cmd": "python 05-exec/r200_probe_cost_face.py --json <件>"
+}

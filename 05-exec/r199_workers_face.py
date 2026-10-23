@@ -9,6 +9,7 @@
 # broader claim (analytics unreadable). Probe the real surface before writing a gap into the book.
 #
 # Exit: 0 measured (any value, including 0) / 2 unverified (never treated as "no usage").
+# CALLS_PER_RUN: cloudflare=1 github=0   (实测：python 05-exec/r200_probe_cost_measure.py；最坏足迹含退避重试)
 import json
 import os
 import sys

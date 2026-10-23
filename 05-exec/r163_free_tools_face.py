@@ -16,6 +16,7 @@
 # 判红只一条：BROKEN。GAP_* 是诚实显形不是缺陷（否则每轮固定红，稀释真红）。
 # 用法: python 05-exec/r163_free_tools_face.py [--json <件>] [--selftest]
 # 退出码: 0 无 BROKEN / 1 有 BROKEN / 2 探针面不可用
+# CALLS_PER_RUN: cloudflare=2 github=2   (实测：python 05-exec/r200_probe_cost_measure.py；最坏足迹含退避重试)  # (未归类进程调用 4)
 import argparse
 import io
 import json
