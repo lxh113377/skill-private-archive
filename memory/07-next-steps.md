@@ -372,6 +372,16 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   额外验证：新 portable 门 probe_cost_face 与 struct_recount_face 在 CI 实测 PASS ⇒ 成本台账
   在 CI 也可复核，新增联网门不记账会在 CI 直接红。
   本族七次共同形态：**把手上的信号直接写成结论，不检查信号是否真的取到了**。
+- [ ] **R201-2（r201 登记，P2·看守中）** **新建分卷 powershell-cli-silent-failures.md 缺 SKILL.md 指针（有意不补）**： 【r201 裁决=挂账至 r206｜理由：补指针的前提是 SKILL.md 干净，而那取决于并行会话何时提交自己的 §10 与 version 改动 —— 不由我控制，也不是我能单方闭合的动作（代改会裹走他人未提交内容，违 R269）。到期复算：git -C D:/global_skills status --porcelain -- win-toolchain-pitfalls/SKILL.md 为空即补指针并闭环。】
+  r201 把 PowerShell 驱动 CLI 三条静默坑（@ref 被 splatting 吞、detect-only 看不见 agent-browser
+  自带 Chromium、无 list 子命令）落成 win-toolchain-pitfalls 第 4 分卷（R804，1829B）。
+  为什么不顺手补指针：SKILL.md 当前有并行会话未提交内容（§10 路径分隔符那节 + version 1.9.1→
+  1.10.0），我若改它，commit 会把他人未提交改动一并带走（违 R269/G-b，r188 已为此重做过两个提交）。
+  代价如实说：新分卷在归属方提交 SKILL.md 之前**不在路由面上**，等于内容在库、入口缺一行。
+  看守：待 SKILL.md 变干净（git status 无该文件）后补「## 11. PowerShell 驱动 CLI 的静默失败 →
+  references/powershell-cli-silent-failures.md」指针 + 版本行；或由归属方自行合并时带上。
+  取值：git -C D:/global_skills status --porcelain -- win-toolchain-pitfalls/SKILL.md（非空即未落地）；
+  分卷本体已在库：git -C D:/global_skills log --oneline -1 --grep R804。
 - [ ] **R201-1（r201 登记，P1·已落地）** **R2 的 GAP_SERVICE 重探：证据从「只试过 wrangler」升级为「四路 + 活性对照」**： 【r201 裁决=执行（当日重探、当日接成第 77 门、当日被第 76 门纠错并修行为）｜读数：A /accounts=200（活性对照）、B buckets=403 code 10042、C subscriptions=403 code 10000、D wrangler 同码；声明=实测=3 对账 OK；夹具 10/10。dashboard 网页会话属外部凭据缺口（已实测 headless 循环挑战与 --headed 过挑战后落 /login），非可自动化缺口。】
   r163 把 R2 记成 GAP_SERVICE 时只试过 wrangler 一条路；r199/r200 已证同一 OAuth token 能查 CF
   GraphQL ⇒ 必须分清 ①服务真没启用 ②客户端问题 ③凭据失效（三者处置完全不同，把 ②③ 记成 ①

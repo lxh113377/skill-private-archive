@@ -77,9 +77,10 @@
    "workers_quota_face",
    "struct_recount_face",
    "pages_http_face",
-   "probe_cost_face"
+   "probe_cost_face",
+   "r2_enable_face"
   ],
-  "_snapshot_at": "2026-10-24 06:39",
+  "_snapshot_at": "2026-10-24 07:03",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
