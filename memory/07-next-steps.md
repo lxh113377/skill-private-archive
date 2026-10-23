@@ -361,6 +361,17 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   另记准入面抓到的一处：探针件 r200_cf_introspect.py 未入库被 reconcile_admission 判红 ⇒ 按其
   covers 明写的只读豁免形态改名 *_probe（读判定机制，不猜修法），并去掉我误用的 [QUOTA:PASS]
   token（那是 quota_face 的门禁 token，探针复用会让 grep 把「探针跑过」读成「额度门通过」）。
+- [ ] **R200-3（r200 登记，P1·已落地）** **同族第七次：把 404 的空日志读成「无红门」（编号当 id 传 API）**： 【r200 裁决=降级（转长期看守）｜取数已按 run_id 走通（rc=0、日志 59167 字节），并给每条取数加 rc 与 len 两个反常值检查；CI 真值确认新 portable 门在 CI PASS。同族七次已在报告 §44.2 并案，作为「取数必须自证取到了」的格式依据。不挂账：读法已纠正，残留风险由 §44 与台账看守。】
+  取 CI 结论时 `gh run view 414` ⇒ 404 Not Found（414 是 run_number，API 要 run_id=40033907384）。
+  更危险的是下一步：我把 rc=1、正文仅 146 字节的失败输出喂正则，得到「红门: (无)」—— 那不是
+  事实，是拿空文本算出来的。若非先看到「日志字节=146」这个反常值，这条会被写成「CI 无红门」
+  即假绿入库。GitHub 对无权限请求返回 404 而非 403，故 rc≠0 必须当取数失败处理。
+  修法：先 gh api …/actions/runs?per_page=3 取 id 字段，再用 id 查 jobs/log；每条取数都打印
+  rc 与 len 两个反常值。取值（用真 id 已跑通）：rc=0、日志 59167 字节、执行 29 门/跳过 47 门，
+  唯一红门 gate_run_freshness（读本机 verdict=FAIL，与并行会话 R183-1 到期同链条，不代裁）。
+  额外验证：新 portable 门 probe_cost_face 与 struct_recount_face 在 CI 实测 PASS ⇒ 成本台账
+  在 CI 也可复核，新增联网门不记账会在 CI 直接红。
+  本族七次共同形态：**把手上的信号直接写成结论，不检查信号是否真的取到了**。
 - [ ] **R200-1（r200 登记，P1·已落地）** **监控免费额度的门自己也在消耗免费额度，且无人记账**： 【r200 裁决=执行（当日发现、当日做成常驻门）｜读数：① 第 76 门 probe_cost_face 单跑 rc=0 且 [PROBECOST:PASS]；② 实测每轮最坏足迹 cloudflare=10 / github=8，CI portable 子集=0；③ 夹具 14/14 含 F12 变异腿锁 re.I 承重（漏了就 10 件全判未声明）；④ 门表 76（基线 76 由 run_gates 自写收敛）。不设目标轮：记账面已在位，任何联网门悄悄变贵即 MISMATCH 判红。】
   一手触发：r200_pages_face 连打 4 次做恢复性验证，第 2 次撞回 CF GraphQL「Rate limiter budget
   depleted」⇒ 我这几轮新增 4 个打外部 API 的门，每轮成本一直在涨，却没有任何面在看这个数。
