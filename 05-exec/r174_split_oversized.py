@@ -10,6 +10,7 @@
 """
 import io
 import os
+import re
 import sys
 
 MEM = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "memory")
@@ -91,6 +92,76 @@ def _part_name(base, n):
     return "%s.part%d.md" % (base, n)
 
 
+def register_in_shell(new_part_names, base_name="07-next-steps.md", desc=None):
+    """把新卷登记进主卷「## 分卷目录」节（对齐归属方 splitvol._register_in_shell 语义）。
+
+    r183 一手：本工具此前只写卷不登记 ⇒ 拆出的卷成**孤儿卷**（主卷无任何指向）。
+    去重只认「已作为目录行存在」——旧式判「卷名出现在全文」会把正文里一句普通引用误判成
+    已登记 ⇒ 漏登记、卷号错位（归属方 2026-09-12 iCAN 同坑）。卷号 = 现有最大 +1；
+    无目录节则建节；只追加，绝不改他人既有行。
+    """
+    path = os.path.join(MEM, base_name)
+    if not os.path.isfile(path):
+        return "REFUSED 主卷不存在: %s" % base_name
+    with io.open(path, encoding="utf-8") as f:
+        lines = f.read().split(NL)
+    dir_re = re.compile(r"^- \*\*卷(\d+)\*\* `(.+?)`")
+    idxs = [i for i, ln in enumerate(lines) if dir_re.match(ln)]
+    named = {}
+    for i in idxs:
+        mm = dir_re.match(lines[i])
+        named[mm.group(2)] = int(mm.group(1))
+    todo = [n for n in new_part_names if n not in named]
+    if not todo:
+        return "SKIP 已登记（幂等）%d 卷" % len(new_part_names)
+    nxt = (max(named.values()) if named else 0) + 1
+    d = desc or "r174 段落边界拆分（R241 原文零改写）"
+    add = ["- **卷%d** `%s` — %s" % (nxt + k, nm, d) for k, nm in enumerate(todo)]
+    if idxs:
+        lines[idxs[-1] + 1:idxs[-1] + 1] = add
+    else:
+        block = ["## 分卷目录", ""] + add
+        pos = max([i for i, ln in enumerate(lines) if ln.startswith("## ")], default=len(lines) - 1)
+        lines[pos:pos] = block + [""]
+    with io.open(path, "w", encoding="utf-8", newline="") as f:
+        f.write(NL.join(lines))
+    return "REGISTERED %d 卷（卷%d..卷%d）" % (len(todo), nxt, nxt + len(todo) - 1)
+
+
+def rewrite_source_shell(src, header_seg_count, new_names, result=None):
+    """源卷改成指针壳（r183 一手：只写新卷不改源卷 ⇒ 源卷与新卷**内容重复**，
+    被账龄尺去重面判红 `RE_ITEM 命中 333 行、只计入 331 ⇒ 2 行被静默吞掉`）。
+    迁出的每段必须能在新卷里逐字找到首行，否则拒写（防「壳写了、内容丢了」）。
+    """
+    path = os.path.join(MEM, src)
+    if not os.path.isfile(path):
+        return False, "REFUSED 源卷不存在: %s" % src
+    with io.open(path, encoding="utf-8") as f:
+        orig = f.read()
+    if not result:
+        return False, "REFUSED 缺 do_split 结果（无法核对迁出内容）"
+    segs = parse_segments(orig)
+    moved = group_moved_parts(result)
+    bad = []
+    for seg, parts in moved:
+        cov, note = cover_ok(seg, parts)
+        if not cov:
+            bad.append("%s | %s" % (seg[:28], note))
+    if bad:
+        return False, "REFUSED 迁出内容与原段不守恒: %s" % bad[:2]
+    # 覆盖数须等于源卷正文段数（漏迁就不许改壳）
+    if len(moved) != len(segs) - header_seg_count:
+        return False, "REFUSED 迁出段数 %d != 源卷正文段数 %d" % (
+            len(moved), len(segs) - header_seg_count)
+    head_txt = NL.join(s["text"] for s in segs[:header_seg_count])
+    listed = "、".join("`" + n + "`" for n in new_names)
+    note = ("> **拆卷说明**：本卷正文已按段落边界拆至 " + listed +"；源卷只留标题与注记，"
+            "正文不与新卷重复（重复会被账龄尺去重面判红）。")
+    out_txt = head_txt + NL + NL + note + NL
+    with io.open(path, "w", encoding="utf-8", newline="") as f:
+        f.write(out_txt)
+    return True, "SHELL %s -> %dB（迁出 %d 段，全部在新卷中命中）" % (src, _blen(out_txt), len(moved))
+
 def do_split(src, header_seg_count, start_num, base=None):
     with io.open(os.path.join(MEM, src), encoding="utf-8") as f:
         orig = f.read()
@@ -144,18 +215,12 @@ def do_split(src, header_seg_count, start_num, base=None):
             "expanded": expanded, "prov": prov, "next": n}
 
 
-def _reconstruct(orig_seg_text, parts):
-    """把一个原段的全部 parts 还原成原文；规则见 split_long_line/split_segment docstring。"""
-    if NL in orig_seg_text:
-        return NL.join(parts)
-    return parts[0] + "".join(p[2:] if p.startswith("- ") else p for p in parts[1:])
+def group_moved_parts(result):
+    """从已写出的新卷里，按 do_split 记好的 placement 归组每个原段的 parts。
 
-
-def verify(result):
-    """三重判据：① 每原段字节级可还原 ② 卷体合规 ③ 无空卷。不通即拒落盘。"""
-    orig_segs = [s["text"] for s in parse_segments(result["orig"])]
-    kept = [s["text"] for s in result["header_segs"]]
-    # 按「原段文本 + 第几次出现」归组（键在 do_split 已定好，直接用它）
+    返回 [(原段文本, [片...])]，顺序稳定。verify 与 rewrite_source_shell 共用同一份归组，
+    避免两处各写一套判据（漂移源）。
+    """
     groups = {}
     order = []
     for v in result["volumes"]:
@@ -165,15 +230,58 @@ def verify(result):
                 groups[k] = []
                 order.append(k)
             groups[k].append(s["text"])
+    return [(k[0], groups[k]) for k in order]
+
+def _reconstruct(orig_seg_text, parts):
+    """把一个原段的全部 parts 还原成原文；规则见 split_long_line/split_segment docstring。"""
+    if NL in orig_seg_text:
+        return NL.join(parts)
+    return parts[0] + "".join(p[2:] if p.startswith("- ") else p for p in parts[1:])
+
+def cover_ok(orig_seg_text, parts):
+    """不猜还原规则的守恒判据（r183 一手，替代旧 verify 的猜规则实现）。
+
+    要求：每片都是原段的**有序不重叠子串**，且「片长合计 − 切分时写入的前缀」== 原段长度
+    ⇒ 既没丢字也没多字。与切分动作的实现细节无关，所以不受「猜错规则」影响。
+
+    旧实现缺陷（实测）：按「段里有没有换行」猜规则，混合形态（多行 + 首行超长）猜错 ——
+    3 片 [814, 817, 25] 对原段 1655 字，按文档规则还原得 1658 != 1655，而 verify 仍报
+    ok_bytes=True ⇒ 这条腿自己会假绿（#32 / R247 同族）。
+    """
+    if not parts:
+        return False, "零片（不得当已守恒）"
+    pos = 0
+    stripped = 0
+    for i, part in enumerate(parts):
+        body = part[2:] if (i > 0 and part.startswith("- ")) else part
+        stripped += len(part) - len(body)
+        j = orig_seg_text.find(body, pos)
+        if j < 0:
+            return False, "第 %d 片不在原段中（自 %d 起找）" % (i, pos)
+        pos = j + len(body)
+    if pos != len(orig_seg_text):
+        return False, "有序覆盖到 %d，原段 %d ⇒ 有缺口" % (pos, len(orig_seg_text))
+    total = sum(len(x) for x in parts) - stripped
+    if total != len(orig_seg_text):
+        return False, "片长合计 %d != 原段 %d" % (total, len(orig_seg_text))
+    return True, "有序覆盖 %d/%d 字｜写入前缀 %d 字" % (pos, len(orig_seg_text), stripped)
+
+
+def verify(result):
+    """三重判据：① 每原段字节级可还原 ② 卷体合规 ③ 无空卷。不通即拒落盘。"""
+    orig_segs = [s["text"] for s in parse_segments(result["orig"])]
+    kept = [s["text"] for s in result["header_segs"]]
+    # 按「原段文本 + 第几次出现」归组（键在 do_split 已定好，直接用它）
+    moved = group_moved_parts(result)
     ok_bytes = True
     bad = []
-    for key in order:
-        seg = key[0]
-        rebuilt = _reconstruct(seg, groups[key])
-        if rebuilt != seg:
+    for seg, parts in moved:
+        # 主判据：有序覆盖 + 长度守恒（不猜还原规则）；旧 _reconstruct 仅留作对照参考
+        cov, note = cover_ok(seg, parts)
+        if not cov:
             ok_bytes = False
-            bad.append(seg[:40])
-    moved_all = [k[0] for k in order]
+            bad.append("%s | %s" % (seg[:28], note))
+    moved_all = [seg for seg, _ in moved]
     ok_sets = sorted(kept + moved_all) == sorted(orig_segs)
     sizes_ok = all(_blen(v["content"]) <= CAP for v in result["volumes"])
     nonempty = all(v["content"].strip() for v in result["volumes"])
@@ -210,3 +318,10 @@ if __name__ == "__main__":
         with io.open(os.path.join(MEM, v["name"]), "w", encoding="utf-8", newline="") as f:
             f.write(v["content"])
     print("[SPLIT:APPLIED] 写入 %d 卷" % len(r["volumes"]))
+    base_name = (src.split(".part")[0] + ".md") if ".part" in src else src
+    print("[SPLIT:REGISTER] %s" % register_in_shell(
+        [v["name"] for v in r["volumes"]], base_name))
+    ok_sh, msg_sh = rewrite_source_shell(src, hdr, [v["name"] for v in r["volumes"]], r)
+    print("[SPLIT:SHELL] %s" % msg_sh)
+    if not ok_sh:
+        raise SystemExit(1)

@@ -1,6 +1,6 @@
 {
  "schema": "bounce-back-fixtures-r161-v1",
- "note": "positive = bounce-back sentences actually said by me (incl. the 3 rule37 admits its prose form missed); negative = compliant sentences",
+ "note": "positive = bounce-back sentences actually said by me (incl. the 3 rule37 admits its prose form missed); negative = compliant sentences | r183: +3 sentences from my own r175 closing message (gate missed 3 of 4 real bounces then; patterns extended to 10, negatives re-verified zero false-positive)",
  "positive": [
   "我该继续吗？",
   "我可以跑一次完整构建吗？",
@@ -12,7 +12,10 @@
   "等你回复后再推进。",
   "接下来你想怎么做？",
   "由你来决定选哪个方案。",
-  "想征求你的意见再动手。"
+  "想征求你的意见再动手。",
+  "需要老大拍板 / 复查的三件事",
+  "要清就给一句授权",
+  "若老大认为这 2 笔该复核，我按指示回滚或补验"
  ],
  "negative": [
   "我直接做了，理由：可回滚，回滚方式 = git reset。",
