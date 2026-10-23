@@ -352,6 +352,16 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   取值：python 05-exec/wprobe.py 思路（wrangler workers --help; wrangler analytics-engine --help 各取 rc）。
   附带自抓：探针里用 find('[')+rfind(']') 截 `pages project list --json` 报 Extra data（输出含多数组），
   而我已有括号平衡扫描 first_json_array 能正确处理 —— 探路脚本绕过了自家已锁实现，属重犯。
+  > **【r199 勘误·两层原因皆不成立】** 上句两项实测均被推翻：① 凭据**找得到** ——
+  > `wrangler whoami` 明打路径 `%APPDATA%\xdg.config\.wrangler\config\default.toml`
+  > （目录名是带点的 xdg.config，我 r198 探针写成 xdg-config 才误报「四个候选路径都没找到」）；
+  > ② 该 OAuth token **可直接查** GraphQL Analytics：`workersInvocationsAdaptive`
+  > 返回 HTTP 200、errors=null，本月真值 0 次（原句「分析类 API 需 API token」属把
+  > 「不能铸 token」外推成「分析读不到」，无实测支撑）。原文按 R241 保留不改。
+  > 落地：第 73 门 workers_quota_face（MEASURED 0 与 UNVERIFIED 严格分开，rc=0/2），
+  > 取值 `python 05-exec/r199_workers_face.py --json <件>`；夹具 8 腿
+  > （`python 05-exec/r199_workers_fixtures.py`）—— 其中 t4 接门时抓出一个真实假绿 bug：
+  > 首版畸形 sum 会返回 0，会在 schema 变更或 scope 失效时打印 MEASURED 0（看着像远低于额度）。
 - [ ] **R197-1（r197 登记，P1·已落地）** **我把一个免费工具的整条路报成「没了」—— 缺口报大与缺口报小同样有害**： 【r197 裁决=执行（r197 当日纠正并落地）｜读数：① 额度面 proxy=MEASURED 219.8 墙钟分钟（gates 297 run，覆盖到月初 True、缺时间戳 0）；② official 仍 GAP_PLATFORM 附官方依据；③ 夹具 17/17 含 E5/E6 双向与「不得含 pct 字段」的机器约束；④ 72 门全跑、quota_face PASS。不设目标轮：纠正已完成，后续由该门每轮看守。】
   r196 读到 gh billing 端点 404/410 + 官方 changelog 关停产品级 billing API，就把「GitHub Actions
   分钟数」整行定成 GAP_PLATFORM。这一步跨过界：关停的是**官方计费报表端点**，不是**用量数据本身**；

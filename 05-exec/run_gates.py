@@ -1106,6 +1106,28 @@ GATES = [
                 "未取到可靠出处（docs 该页为 JS 壳、服务端渲染无表格），依 r196 自立的规矩："
                 "分母不可靠就只报绝对值，不折算百分比（E6 腿把这条锁进夹具）。"),
     },
+    {
+        # r199：Workers 调用数量面（第 73 门）—— 推翻 r198 把它记成缺口的登记
+        "id": "workers_quota_face",
+        "script": "r199_workers_face.py",
+        "argv": ["--json", "06-benchmark/workers_quota_latest.json"],
+        "pass_token": "MEASURED",   # rc=0 必含 MEASURED；rc=2 由 run_gate 先判 UNVERIFIED
+        "portable": False,
+        "not_portable_reason":
+            "吃本机 wrangler OAuth 凭据（xdg.config 下 default.toml）+ CF GraphQL（无凭据即 UNVERIFIED）",
+        "covers": [
+            "跨 accounts 求和 workersInvocationsAdaptive.sum.requests（本月窗口）",
+            "真值 0 与 取不到 严格分开：MEASURED 0 rc=0 / UNVERIFIED rc=2（t2、t4 八种畸形结构）",
+            "requests 字段缺失或非数值一律 None，不得折算成 0（t3/t4 抓到过真实假绿 bug）",
+            "窗口=自然月（datetime_geq/leq 官方 schema，不猜参数名）"],
+        "why": ("r198 我曾把这项额度登记成「两层不可测」，r199 实测两层皆错："
+                "凭据其实找得到（wrangler whoami 明打印径是带点的 xdg.config，我探针写成 "
+                "xdg-config 才误判找不到），且该 OAuth token 直接能查 GraphQL Analytics。"
+                "教训：不要把一个实测到的限制（不能铸 API token）外推成更宽的说法（分析读不到）。"
+                "接门时夹具 t4 又抓出一个真实假绿 bug——首版畸形 sum 会返回 0，"
+                "会在 schema 变更或 scope 失效时打印 MEASURED 0（看着像远低于额度）。"
+                "现非数值 requests 直接判不可得；取值见 --json 件与 r199_workers_fixtures 8 腿。"),
+    },
 ]
 
 # 显式声明本 runner **不覆盖**的面，防止聚合绿被读成「所有门禁都绿」（R20-2）。

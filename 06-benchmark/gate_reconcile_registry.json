@@ -75,7 +75,7 @@
    "est_selector_fixtures",
    "quota_face"
   ],
-  "_snapshot_at": "2026-10-24 04:31",
+  "_snapshot_at": "2026-10-24 04:38",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
@@ -199,6 +199,10 @@
   "quota_face": {
    "evidence": "05-exec/r196_quota_fixtures.py",
    "at": "2026-10-24 03:19"
+  },
+  "workers_quota_face": {
+   "evidence": "05-exec/r199_workers_fixtures.py",
+   "at": "2026-10-24 04:55"
   }
  }
 }
