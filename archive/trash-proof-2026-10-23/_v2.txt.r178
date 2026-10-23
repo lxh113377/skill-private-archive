@@ -1,0 +1,1 @@
+降级（转长期看守）｜**不用挂账**（r175 的教训：挂账增 deferred_debt_items 会爆棘轮）。本条是**跨仓文档缺陷登记**，不属本仓可自动完成项：① 文件在 `lxh113377/global-memory-hub` 仓，按 R269 不擅改他人仓；② 该仓 push main 会触发 `pages.yml` 自动重部署，副作用越出本仓面，不该由我单方发起。修法已写死可直接照用（`wrangler pages deploy <dir> --project-name X --commit-hash <sha> --branch main`）。⚠️ 同时本仓自保已确认无需改动：`chaoshi-web-deploy` 的 `wrangler pages deploy dist` 形态本来就对。
