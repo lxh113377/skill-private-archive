@@ -1,6 +1,6 @@
 {
  "schema": "debt-aging-v2",
- "generated_at": "2026-10-23T15:15:16",
+ "generated_at": "2026-10-23T15:40:11",
  "readonly": true,
  "grace_rounds": 2,
  "current_round": 185,
@@ -201,7 +201,7 @@
   "items_total": 331,
   "open_total": 32,
   "closed_total": 299,
-  "raw_item_lines": 333
+  "raw_item_lines": 331
  },
  "by_class": {
   "OVERDUE": 0,
@@ -351,7 +351,7 @@
  "note": "OVERDUE 数 = ratchet_gate 第 7 指标 overdue_debt_items 的唯一取值面",
  "coverage": {
   "status": "OK",
-  "prev": "debt_aging_r184_face.json",
+  "prev": "debt_aging_r_autoregen_20261023_153536.json",
   "prev_overdue": 0,
   "missing": [],
   "method": "adjudication_gap(上一轮 overdue[].title 前 40 字, 当前卷文本, 本轮轮号)"
@@ -368,12 +368,12 @@
    "detail": "上轮 180 卷全部在本轮 180 卷面内（拆卷只增不减，无需豁免表）"
   },
   "dedup": {
-   "ok": false,
-   "detail": "RE_ITEM 命中 333 行，只计入 331 条 ⇒ 有 2 行被静默吞掉"
+   "ok": true,
+   "detail": "331 行全部计入，80 字前缀键零碰撞"
   },
   "dup": {
    "ok": true,
-   "detail": "8 组同号多副本但全部已勾销（拆卷留痕，不判红）"
+   "detail": "6 组同号多副本但全部已勾销（拆卷留痕，不判红）"
   },
   "dating": {
    "ok": null,
@@ -384,18 +384,10 @@
    "ok": true,
    "detail": "4 条新编号全部在各自承接面有登记行（待办 4 条 / 禁止项 0 条）"
   },
-  "raw_lines": 333,
-  "collisions": [
-   {
-    "key": "**R161-2（r161 登记，P1，到期 r163）** **本机 TEMP 指向不存在路径，致 Node/Python 侧临时写入静默失败**：本轮一手实",
-    "a": "**R161-2（r161 登记，P1，到期 r163）** **本机 TEMP 指向不存在路径，致 Node/Python 侧临时写入静默失败**：本轮一手实测 —— `process.env.TEMP` 未定义（PowerShell 里 `$env:TEMP` = `D:\\app-cache\\temp`，该目录不存在），后果两类：① Node `fs.writeFileSync(_temp/...)` 与 `write` 工具报成功但 `statSync`立刻 ENOENT（三次重试 + existsSync=true 仍丢）；② Python `os.remove(os.environ[\"TEMP\"]+...)` 抛 FileNotFoundError。另连带发现：门禁 `upgrade_footer_gate` 按**系统当天**找 `YYYY-MM-DD.md`，跨日会话必须把 footer 落到新日期卷（本轮 00:21 后落 10-22 卷才转绿）。建议：在 win-toolchain-pitfalls 技能补一条「TEMP 不存在 ⇒ 先 `New-Item -ItemType Directory -Force` 或改用 `C:\\Users\\<u>\\AppData\\Local\\Temp`」；并把「跨日轮的 footer 落点 = 新日期卷」写进 A-memory-start 收尾步骤。取值：`python 05-exec/r161_bounce_back.py --selftest`（本机可跑即环境正常）。 【r163 补记：r163 补记两条：① 本条尾段「推送链路补测」给出的绕行形态（清 env + 空值代理）在 11:0x 时段实测失败，失败方向与该段相反（须设代理而非清代理）⇒ 同一网络面在不同时段给出相反处方，属环境漂移，禁把任一方向当固定解。② 本条登记的 TEMP 不存在坑在 r163 再次实证：夹具/变异体用 tempfile.mkstemp 生成**可执行**脚本时落点即该不存在目录，表现为「同码不同因」（r162 已记一次，本轮第 65 门自证腿同样差点中招）⇒ 临时可执行件一律写仓内已知存在目录。】 【r167 裁决=执行（终局，同轮落地）｜**触发条件已被外部修复，纪律已入 skill**。① 实测：`TEMP=D:\\app-cache\\temp`，`Test-Path` **True**，`tempfile.gettempdir()` 同值且 `isdir` True ⇒ r161 登记时「TEMP 指向不存在路径」的状态**后已修复**（非我的改动）。② 建议已执行：`win-toolchain-pitfalls` **V1.9.0**（受管根 `348487b5`，ancestor rc=0，镜像 same=True）新增「临时可执行文件不落系统 TEMP」条目，与 R162-1 同族合并，并写明故障形态是**原因失真**而非报错（副本 `__file__` 变 TEMP ⇒ 以 `HERE` 推导的同级件解不到 ⇒ rc=2 与「变异体真被抓住」同码不同因）。③ 仓内现状：`05-exec/*.py` 已无 `tempfile.mkstemp/NamedTemporaryFile/mkdtemp` 生成 `.py` 再跑的位点（0 命中）。⚠️ 教训：**台账「到期未处理」会被动的外部修复打断** —— 到期不等于仍有问题，也可能是问题已被别的原因修掉；处置前应先复验触发条件是否还在。】 【r166 裁决=执行（终局，同轮落地）｜本机 TEMP 现状实测：TEMP=D:\\app-cache\\temp，Test-Path True，tempfile.gettempdir() 同值且 isdir True ⇒ R161-2 登记时「TEMP 不存在」状态已被外部修复；纪律已入 win-toolchain-pitfalls V1.9.0（348487b5）。本条触发条件不复存在，销账。】",
-    "b": "**R161-2（r161 登记，P1，到期 r163）** **本机 TEMP 指向不存在路径，致 Node/Python 侧临时写入静默失败**：本轮一手实测 —— `process.env.TEMP` 未定义（PowerShell 里 `$env:TEMP` = `D:\\app-cache\\temp`，该目录不存在），后果两类：① Node `fs.writeFileSync(_temp/...)` 与 `write` 工具报成功但 `statSync`立刻 ENOENT（三次重试 + existsSync=true 仍丢）；② Python `os.remove(os.environ[\"TEMP\"]+...)` 抛 FileNotFoundError。另连带发现：门禁 `upgrade_footer_gate` 按**系统当天**找 `YYYY-MM-DD.md`，跨日会话必须把 footer 落到新日期卷（本轮 00:21 后落 10-22 卷才转绿）。建议：在 win-toolchain-pitfalls 技能补一条「TEMP 不存在 ⇒ 先 `New-Item -ItemType Directory -Force` 或改用 `C:\\Users\\<u>\\AppData\\Local\\Temp`」；并把「跨日轮的 footer 落点 = 新日期卷」写进 A-memory-start 收尾步骤。取值：`python 05-exec/r161_bounce_back.py --selftest`（本机可跑即环境正常）。 【r163 补记：r163 补记两条：① 本条尾段「推送链路补测」给出的绕行形态（清 env + 空值代理）在 11:0x 时段实测失败，失败方向与该段相反（须设代理而非清代理）⇒ 同一网络面在不同时段给出相反处方，属环境漂移，禁把任一方向当固定解。"
-   }
-  ],
-  "status": "FAIL",
-  "red_faces": [
-   "dedup"
-  ],
+  "raw_lines": 331,
+  "collisions": [],
+  "status": "UNVERIFIED",
+  "red_faces": [],
   "unverified_faces": [
    "dating"
   ]
