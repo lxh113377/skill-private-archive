@@ -36,3 +36,8 @@ _temp/
 
 # wrangler CLI 运行态缓存（含 account_id，属环境态不入库；r163 实测会落在项目根）
 .wrangler/
+
+# r178：副本证明镜像目录内的 .log 件必须入库（.gitignore:11 的 *.log 会静默吞掉它们 ⇒
+# 「镜像已入库」的断言会假；证明按 sha256 内容对账，文件名保持与 _trash 键 1:1，不改名）。
+!archive/trash-proof-*/**/*.log
+!archive/trash-proof-*/*.log
