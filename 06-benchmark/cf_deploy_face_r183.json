@@ -1,0 +1,63 @@
+{
+ "schema": "dual-tier-face-r180-v2",
+ "cmd": "python 05-exec/r179_dual_face.py --json <out>",
+ "note": "kind=mirror 才比 sha；commit 取 deployment_trigger.metadata.commit_hash（顶层 source 实测为 null）；取不到数判 UNVERIFIED",
+ "tiers": [
+  {
+   "label": "hub",
+   "kind": "mirror",
+   "cf_project": "global-memory-hub",
+   "rows": [
+    {
+     "path": "/",
+     "cf_sha": "22774829d64c",
+     "gh_sha": "22774829d64c",
+     "cf_bytes": 13741,
+     "gh_bytes": 13741,
+     "same": true
+    },
+    {
+     "path": "/console/",
+     "cf_sha": "6a529b6c69ea",
+     "gh_sha": "6a529b6c69ea",
+     "cf_bytes": 465,
+     "gh_bytes": 465,
+     "same": true
+    }
+   ],
+   "verdict": "OK",
+   "cf_commit": "03acb8d",
+   "trigger_type": "cli",
+   "source_state": "PINNED",
+   "cf_trace_repo": "lxh113377/global-memory-hub",
+   "problems": [],
+   "fetch_errors": []
+  },
+  {
+   "label": "supermarket",
+   "kind": "distinct",
+   "cf_project": "supermarket-web",
+   "rows": [
+    {
+     "side": "cf",
+     "bytes": 2284,
+     "sha": "1f3bfd310f9f",
+     "up": true
+    },
+    {
+     "side": "gh",
+     "bytes": 2284,
+     "sha": "1f3bfd310f9f",
+     "up": true
+    }
+   ],
+   "verdict": "OK",
+   "cf_commit": "b0b2dd3",
+   "trigger_type": "cli",
+   "source_state": "PINNED",
+   "cf_trace_repo": "lxh113377/supermarket-web",
+   "problems": [],
+   "fetch_errors": []
+  }
+ ]
+}
