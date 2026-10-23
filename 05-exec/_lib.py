@@ -21,7 +21,8 @@ import shutil
 import subprocess
 import time
 import sys
-from datetime import datetime
+import re
+from datetime import datetime, timedelta
 
 
 def force_utf8_stdout():
@@ -205,8 +206,19 @@ def ensure_debt_fresh(repo, exec_dir, sys_executable=None):
     arts = _glob.glob(os.path.join(repo, "06-benchmark", "debt_aging_r*.json"))
     if not arts:
         return ("NO-ARTIFACT", "无 debt_aging_r*.json ⇒ 先生成一份")
+    # r191 修（R191-2 一手）：此处原先按 **mtime** 选件，而 ratchet_gate._newest_artifact 按
+    # 「文件名日期 → 字母序」选件。两套口径 ⇒ 自愈腿判 OK 的那一件，棘轮判据根本不看；
+    # 且棘轮看的那份更旧 ⇒ 它永远走 unknown + 重生，自愈则永远认为已 OK，两侧都不自愈。
+    # 修法：与 ratchet_gate 同键选件（import 它的实现，不复制第二份）。
     try:
-        art = max(arts, key=os.path.getmtime)
+        sys.path.insert(0, exec_dir)
+        import ratchet_gate as _rg
+        art = _rg._newest_artifact_glob(os.path.join(repo, "06-benchmark", "debt_aging_r*.json"))
+    except Exception:
+        art = max(arts, key=os.path.getmtime)   # 取不到判据实现时退回 mtime（fail-open 具名）
+    if not art:
+        return ("NO-ARTIFACT", "选件为空（_newest_artifact 返回 None）")
+    try:
         art_m = os.path.getmtime(art)
     except OSError as e:
         return ("NO-ARTIFACT", "件 mtime 取不到：%s" % e)
@@ -220,7 +232,27 @@ def ensure_debt_fresh(repo, exec_dir, sys_executable=None):
         return ("FUTURE-VOL", "所测卷集 mtime 晚于当下 %.0f 秒（基准不可能达成）⇒ 不生搬重生；"
                               "先查系统时钟或该卷是否有未来时间戳" % _future)
     # 件比卷旧 ⇒ 重生（r38 自带 --json，输出到带日期的固定名，防并行会话同名互踩）
-    stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    # r191 修（R191-2 一手）：stamp 不能只取当前时刻 —— `ratchet_gate._newest_artifact` 的选件键是
+    # 「文件名日期 → 同日期比字母后缀 → 按名兜底」，同日候选按**名字字典序**取最大。
+    # 若已存在字典序更大的件（如 ..._233000.json），本函数用当前时刻生成的 ..._232040.json
+    # 就**永不被选中** ⇒ 自愈白跑（实测：重生后同进程仍读旧件，三指标继续缺失、夹具 g11 判红）。
+    # 修法：stamp 取「max(当前时刻, 现有最大 stamp + 1 秒)」，保证新件字典序严格大于一切现存件。
+    _existing = []
+    for _a in arts:
+        _m = re.search(r"debt_aging_r_autoregen_(\d{8}_\d{6})\.json$", os.path.basename(_a))
+        if _m:
+            _existing.append(_m.group(1))
+    _now = datetime.now()
+    _stamp = _now.strftime("%Y%m%d_%H%M%S")
+    if _existing:
+        _mx = max(_existing)
+        try:
+            _mx_dt = datetime.strptime(_mx, "%Y%m%d_%H%M%S")
+            if _stamp <= _mx:
+                _stamp = (_mx_dt + timedelta(seconds=1)).strftime("%Y%m%d_%H%M%S")
+        except ValueError:
+            pass
+    stamp = _stamp
     out_json = os.path.join(repo, "06-benchmark", "debt_aging_r_autoregen_%s.json" % stamp)
     try:
         r = _sp.run([(sys_executable or sys.executable), os.path.join(exec_dir, "r38_debt_aging.py"), "--json", out_json],

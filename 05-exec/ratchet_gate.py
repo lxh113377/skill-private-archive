@@ -214,6 +214,16 @@ _DEBT_STATE_TO_METRIC = {"OVERDUE": "overdue_debt_items",
                          "REPEAT": "repeat_debt_items"}
 
 
+def _newest_artifact_glob(pattern):
+    """_lib.ensure_debt_fresh 用的同键选件包装（r191 修 R191-2：禁止两套口径）。
+
+    收一个 glob 字符串，转成 Path 后委托 _newest_artifact —— 与 ratchet_gate 自身
+    用的选件键完全一致（文件名日期 → 字母序 → 按名兜底），避免「自愈认为 OK、
+    判据认为陈旧」的双口径漂移。
+    """
+    return _newest_artifact(Path(pattern))
+
+
 def _newest_artifact(glob_pat):
     """返回匹配到的最新一份文件路径；零命中 -> None（R247 不得静默判绿）。
 
