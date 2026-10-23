@@ -344,6 +344,14 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   门表 69->70 走 r130 --record 登记（证据=r193_ci_health_fixtures.py 5 腿），
   gate_table_reconcile 随之下绿。实测：face rc=0（心跳 0.2h + 最近 5 run 全绿）、
   report rc=1（20% < 60%，附「历史连红拖住均线」提示）、全量 [GATES:PASS] PASS=70。
+- [ ] **R198-1（r198 登记，P2）** **Workers 10 万请求/天 这项额度读不到，且是「CLI 无入口 ＋ 凭据不可铸」两层合取**： 【r198 裁决=降级（转长期看守）｜两层原因均已实测且互不替代：CLI 无入口（wrangler 4.151.2 两条 --help 均 rc=1）+ 分析 API 需 token 而本账号 OAuth 不能铸 token（R182-1 实测 403 code 9109）。故 quota_face 不为其造读数行（无源可读时不得造面，R247）。看守条件：若 wrangler 后续版本补上 workers/analytics 子命令，或取得可用 API token，本条升 P1 并新增读数；反之不重复投入探测（已登记两层证据，避免下轮再翻 CLI）。】
+  实测：wrangler 4.151.2 无 workers / analytics-engine 顶层子命令（两条 --help 均 rc=1）；
+  分析类 API 需 API token，而本账号 wrangler OAuth 不能铸 token（R182-1 已实测 403 code 9109）。
+  ⇒ 登记成两层原因而非笼统「读不到」：只报前者会诱导下轮再翻 CLI，只报后者会误以为买 token 可解。
+  结论：本项维持不可测，quota_face 不为其增设读数行（无源可读时不得造面，R247）。
+  取值：python 05-exec/wprobe.py 思路（wrangler workers --help; wrangler analytics-engine --help 各取 rc）。
+  附带自抓：探针里用 find('[')+rfind(']') 截 `pages project list --json` 报 Extra data（输出含多数组），
+  而我已有括号平衡扫描 first_json_array 能正确处理 —— 探路脚本绕过了自家已锁实现，属重犯。
 - [ ] **R197-1（r197 登记，P1·已落地）** **我把一个免费工具的整条路报成「没了」—— 缺口报大与缺口报小同样有害**： 【r197 裁决=执行（r197 当日纠正并落地）｜读数：① 额度面 proxy=MEASURED 219.8 墙钟分钟（gates 297 run，覆盖到月初 True、缺时间戳 0）；② official 仍 GAP_PLATFORM 附官方依据；③ 夹具 17/17 含 E5/E6 双向与「不得含 pct 字段」的机器约束；④ 72 门全跑、quota_face PASS。不设目标轮：纠正已完成，后续由该门每轮看守。】
   r196 读到 gh billing 端点 404/410 + 官方 changelog 关停产品级 billing API，就把「GitHub Actions
   分钟数」整行定成 GAP_PLATFORM。这一步跨过界：关停的是**官方计费报表端点**，不是**用量数据本身**；

@@ -1,28 +1,44 @@
 {
  "schema": "quota-face-v1",
  "readonly": true,
- "generated_at": "2026-10-24 04:06",
+ "generated_at": "2026-10-24 04:34",
  "provenance_cmd": "python 05-exec/r196_quota_face.py --json <件>",
  "rows": [
   {
    "tool": "cloudflare_d1",
-   "state": "UNVERIFIED",
-   "why": "wrangler d1 list rc=1（未登录/网络/限流？）"
+   "state": "MEASURED",
+   "why": "",
+   "instances": 3,
+   "bytes": 9306112,
+   "mib": 8.88,
+   "limit_label": "5 GiB 存储",
+   "limit_bytes": 5368709120,
+   "pct_of_roster_limit": 0.173,
+   "note": "分母为名册声称值（截图来源），非 CF 官方文档；num_tables 实测恒 0 不可信，不得据此读成「库是空的」"
   },
   {
    "tool": "github_actions_minutes_official",
-   "login": "",
-   "state": "UNVERIFIED",
-   "why": "gh 未登录或取不到 login"
+   "login": "lxh113377",
+   "state": "GAP_PLATFORM",
+   "why": "两态端点分别返回 404 / 410，官方已于 2025-09-26 关停产品级 billing API：github.blog/changelog/2025-09-26-product-specific-billing-apis-are-closing-down"
   },
   {
    "tool": "github_actions_minutes_proxy",
    "repo": "lxh113377/skill-private-archive",
-   "state": "UNVERIFIED",
-   "why": "gh 未登录，翻页取不到 run"
+   "state": "MEASURED",
+   "why": "",
+   "minutes_all_workflows": 224.42,
+   "counted": 305,
+   "skipped_no_ts": 0,
+   "pages": 400,
+   "gates_minutes": 221.08,
+   "gates_counted": 300,
+   "since": "2026-10-01",
+   "coverage_complete": true,
+   "caveat": "墙钟分钟 != billable 分钟（GitHub 按 runner 类型与 OS 加权计费，并发 job 各计时）；作用域是本仓库 != 账号级额度；官方免费分钟数本轮未取到可靠出处（docs 页面为 JS 壳，服务端渲染取不到表格）⇒ 依 r196 自立的规矩：分母无可靠出处就只报绝对值，不折算百分比。"
   }
  ],
  "over_limit_count": 0,
- "gap_platform_count": 0,
- "unverified_count": 3
+ "gap_platform_count": 1,
+ "unverified_count": 0
 }

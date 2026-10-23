@@ -235,6 +235,29 @@ def main():
     finally:
         m.ERR_CLASS = _orig_tbl
 
+    # ---- G 组（r198）：输出含多个 JSON 块时的取法（pages project list --json 实测） ----
+    # 一手：我用 find('[')+rfind(']') 的朴素截法解 `wrangler pages project list --json`
+    #   当场报 Extra data: line 33 column 1（该输出在数组之后还有内容），
+    #   而 first_json_array 同一段解出 5 项。教训：探路脚本也必须复用已锁实现。
+    NL = chr(10)   # 本模块顶层没有 NL（前几轮我在别的文件里也栽过一次同名问题）
+    MULTI = '[{"a": 1}, {"b": 2}]' + NL + 'trailing note [not json]' + NL
+    segM = m.first_json_array(MULTI)
+    parsedM = None
+    try:
+        parsedM = json.loads(segM)
+    except ValueError:
+        parsedM = None
+    ck("G1 输出含多数组时取第一个平衡数组（不越界到尾部）",
+       parsedM == [{"a": 1}, {"b": 2}], repr(parsedM)[:70])
+    naive_bad = False
+    try:
+        i2 = MULTI.find('[')
+        j2 = MULTI.rfind(']')
+        json.loads(MULTI[i2:j2 + 1])
+    except ValueError:
+        naive_bad = True
+    ck("G2 朴素 find/rfind 截法在该形态下确实失败（证明 G1 非装饰）", naive_bad)
+
     fails = [r for r in RESULTS if not r[0]]
     print("")
     print("夹具合计: %d 项，通过 %d，失败 %d" % (len(RESULTS), len(RESULTS) - len(fails), len(fails)))
