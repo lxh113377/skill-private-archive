@@ -73,9 +73,11 @@
    "cf_deploy_face",
    "ci_effectiveness_face",
    "est_selector_fixtures",
-   "quota_face"
+   "quota_face",
+   "workers_quota_face",
+   "struct_recount_face"
   ],
-  "_snapshot_at": "2026-10-24 04:38",
+  "_snapshot_at": "2026-10-24 05:16",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
@@ -203,6 +205,10 @@
   "workers_quota_face": {
    "evidence": "05-exec/r199_workers_fixtures.py",
    "at": "2026-10-24 04:55"
+  },
+  "struct_recount_face": {
+   "evidence": "05-exec/r199_struct_fixtures.py",
+   "at": "2026-10-24 05:11"
   }
  }
 }
