@@ -372,6 +372,49 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   额外验证：新 portable 门 probe_cost_face 与 struct_recount_face 在 CI 实测 PASS ⇒ 成本台账
   在 CI 也可复核，新增联网门不记账会在 CI 直接红。
   本族七次共同形态：**把手上的信号直接写成结论，不检查信号是否真的取到了**。
+- [ ] **R201-4（r201 登记，P1·已落地）** **我自己把全仓轮号推进了 5 轮：提交主题写「挂账 r206」被 current_round 当成本轮声明**： 【r201 裁决=执行（当日取证、当日修尺子、当日补 8 腿）｜读数：修复前 current_round=206（被我的提交主题污染），修复后 =201 且与 tag 锚一致；OVERDUE 4→3（我那条回到 DEFERRED 尚余 5 轮）；r49_face_fixtures 52/52 含 f4b 判红 / f4c 不误伤 / f4e~f4h 取号四例。不设目标轮：尺子原点已不可被记账话术挪动，残留风险由 face_round 的领先上限看守。】
+  一手（我造成的，不是环境）：r38 的 current_round() 取「git log --format=%s -40 里任意 rNN 的最大
+  值」。我在提交主题写「chore(r201c): … 挂账 r206」⇒ 轮号基准从 r201 跳到 r206，后果是**所有挂账
+  条目集体提前 5 轮到期**：OVERDUE 3→4（第 4 条正是我自己那条 R201-2）、DEFERRED 1→0。反证已取：
+  去掉我那条提交后最大 rNN = 201。整把账龄尺的原点被一句记账话术挪走，而我上一轮还把它当成
+  「并行会话的债变多了」来汇报 —— 归因完全错。
+  修法（两级 + 排除）：① 优先只认**作用域**形态 (rNNN) / rNNN 登记|立|新增|补记|更新|收尾 / 第 N 轮；
+  ② 一个都没有才回退旧口径并打印 [ROUND:FALLBACK] 告警；③ 明确不认「挂账至 rNN」「见 §41」这类
+  引用。三分支捕获组互斥，取号须遍历 groups() 挑非 None（我第一版写 m.group(1) 会 int(None) 崩）。
+  更深一层：face_round 原本**只防轮号被算少**（tag>log 的窗口截断），不防被算多 —— 而「被算多」
+  恰好伪装成完全合法的形态（本轮尚未打 tag ⇒ log 领先 tag）。补上领先 >=3 轮即判红；实测
+  face_round(206,201) 判红、(203,201) 不误伤、(201,201) OK。
+  夹具 r49_face_fixtures 加 8 腿（f4b~f4h + 边界），合计 52/52 通过。修复后实测：轮号基准=r201、
+  OVERDUE 3（全属并行会话：R183-1 OWNERED、R191-1/R191-2 自然成熟）、DEFERRED 1（我的 R201-2，
+  尚余 5 轮）—— 这才是真实状态。
+  元教训（与本条同族第 9 次）：**凡是「从文本里推出来的数」，都要问一句「谁会往这文本里写数」**。
+  轮号本该由提交行为决定，却被记账话术决定；我上轮刚写「聚合摘要会把不同性质的东西压成一句话」，
+  这轮发现我自己就是那个把数写进摘要的人。取值：python 05-exec/r38_debt_aging.py（读轮号基准行）；
+  python 05-exec/r49_face_fixtures.py（52 腿）。
+- [ ] **R201-3（r201 登记，P2·已落地）** **我上一轮把 5 红压成「一条链」，纠正时又犯了第 8 次同类错（按文件名猜门→脚本映射）**： 【r201 裁决=执行（当日取证到失败腿级并撤掉我上一轮的错误归因）｜读数：① ratchet 阻断项 1 个（overdue=3），union 超硬顶为非阻断告警且 r191 已归因 behavior_core.md（25665B 实测）；② 三门失败腿原文各自取到（r55 n4 / r56 b7,b8 / r54 g10,g11），同根不同腿；③ 两次连续全量 77 门非 PASS 稳定 5，无新增红。规矩已落报告 §45.3（门→脚本须读门表不许 glob 猜）。】
+  取证（python 05-exec/ratchet_gate.py 全量输出，非 tail 摘要）：阻断项只有 1 个 =
+  overdue_debt_items=3 超基线 0；inject_union_bytes=69824 超硬顶 65536(+4288) 是 **非阻断告警**，
+  且 r191 已留账归因给 D:/global_memory/core/behavior_core.md（24265→25665B，并行会话在途
+  编辑，本会话未提交过该件）。我上轮把这条已归因的独立告警也塞进「债链条」——危害不是
+  措辞不准，而是下轮看见「都是债」就不会去查 union 超限的真实来源，那正是 union 能长上去的缝。
+  **纠正过程中的第二个错（更阴）**：我先下结论「baseline_note_fixtures 单跑 rc=0 ⇒ 上轮 FAIL 是
+  顺序效应」。这句是错的，取证方式也错：我用 glob 猜文件名（*note*fixtures*），命中的却是
+  r19_baseline_contract_fixtures.py（rc=0，属另一个门的同族件），而 baseline_note_fixtures 的真实
+  脚本是 r55_note_fixtures.py（单跑 rc=1，n4 腿 FAIL）。读门表 g['script'] 后才看清三门各挂哪条腿：
+  r55 n4 真实 CLI --update 被 [RATCHET:REFUSE] 拒；r56 b7/b8、r54 g10/g11 都是真实 CLI rc=1 连带。
+  准确说法：1 个根（overdue=3 令 ratchet 拒绝，级联到 4 个门的「真实 CLI」腿）＋ 1 条独立非阻断
+  告警（union 超硬顶，已归因）。既不是「三个独立缺陷」，也不是我说的「顺序效应」。
+  两条规矩：① 报「N 红同因」必须逐个取证到失败腿级，并读判据自己的阻断/非阻断分类行；
+  ② **门→脚本映射必须读门表 g['script']，不许按文件名 glob 猜** —— 本仓门名与脚本名不同源，
+  glob 会命中同族另一个门的件并给出一个真实但属于别人的 rc；这种错最阴，因为它「取到了数」，
+  只是数不是那个门的。同族第八次（前七次见报告 §44.2 与 §41）。
+  另查清并留档：C25-inject-budget 判红（W3 66804>65536）不怪我这几轮 —— 真实注入清单是
+  truth_constants.INJECT_BUDGET 的 5 个文件（A-memory-start/SKILL.md 16333、contract.md 18379、
+  behavior_core.md 25665、.zcode/AGENTS.md 3121、AGENTS.md 3306），win-toolchain-pitfalls 不在其中；
+  git 定责 behavior_core 最后是 10-24 00:14 V55/#38（另一工作流）。按红线 6 我不改 eval 阈值。
+  取值：python 05-exec/ratchet_gate.py；python -c 读 run_gates.GATES 取 id→script 映射；
+  python 05-exec/r55_note_fixtures.py／r56_budget_fixtures.py／r54_refresh_fixtures.py 失败腿原文。
+  两次连续全量复跑：77 门、非 PASS 稳定 5（同一根），无新增红。
 - [ ] **R201-2（r201 登记，P2·看守中）** **新建分卷 powershell-cli-silent-failures.md 缺 SKILL.md 指针（有意不补）**： 【r201 裁决=挂账至 r206｜理由：补指针的前提是 SKILL.md 干净，而那取决于并行会话何时提交自己的 §10 与 version 改动 —— 不由我控制，也不是我能单方闭合的动作（代改会裹走他人未提交内容，违 R269）。到期复算：git -C D:/global_skills status --porcelain -- win-toolchain-pitfalls/SKILL.md 为空即补指针并闭环。】
   r201 把 PowerShell 驱动 CLI 三条静默坑（@ref 被 splatting 吞、detect-only 看不见 agent-browser
   自带 Chromium、无 list 子命令）落成 win-toolchain-pitfalls 第 4 分卷（R804，1829B）。

@@ -6,7 +6,7 @@
   "state": "MEASURED",
   "why": "",
   "window": "2026-10-01~2026-10-24",
-  "requests_total": 171508,
+  "requests_total": 171528,
   "days": 23,
   "top_days": [
    [
@@ -19,7 +19,7 @@
    ],
    [
     "2026-10-23",
-    19953
+    19973
    ]
   ],
   "caveat": "账号级 httpRequests（含该账号所有 zone/Pages 流量），与名册「Workers 10 万请求/天」不同量纲不同归属 ⇒ 不折算百分比；Workers 侧本月调用数见 workers_quota_face。"

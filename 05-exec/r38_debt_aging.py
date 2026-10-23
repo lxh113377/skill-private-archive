@@ -48,6 +48,14 @@ RE_PRIORITY = re.compile(r"【\s*(P[0-2])")
 # 只看标题段是为堵同族劫持（X-23 第 6 次复发，本轮我自抓）：R194-2 正文写了「只认「【P0」形态」,
 # 被全文 search 读成 P0 ⇒ 宽限从应有的 8 塌成 2 —— 我登记这条缺陷的字，自己触发了这条缺陷。
 RE_GRACE = re.compile(r"(?:^|[^0-9A-Za-z])(P[0-2])(?:[^0-9]|$)")
+# r201：轮号只认「提交自身作用域」的形态，三选一分支各占一个捕获组，取号时须跳过 None。
+#   ① 主题前缀式 chore(r201c): / feat(r201): —— 括号内才是本轮声明；
+#   ② 声明式 r201 登记|立|新增|补记|更新|收尾；③ 中文「第 201 轮」。
+# 刻意不认裸 rNNN（那会命中「挂账至 r206」「见 §41」等引用），也不认数字前紧邻挂账语境。
+RE_SCOPED_ROUND = re.compile(
+    r"[a-z]+\(r(\d{1,3})[a-z]?\)"
+    + r"|(?<![至挂])(?<!挂账 )(?<!续挂 )(?<!目标 )r(\d{1,3})\s*(?:登记|立|新增|补记|更新|收尾)"
+    + r"|第\s*(\d{1,3})\s*轮")
 FULLWIDTH_COLON = chr(65306)
 
 
@@ -111,6 +119,7 @@ def parse_last_verdict(text):
     last = flat[-1]
     return ("DEFER", int(last.group(2))) if last.group(2) else ("FINAL", last.group(1))
 RE_R_IN_SUBJECT = re.compile(r"\br(\d{1,3})\b")
+# 作用域轮号：(r201) / (r201c) 前缀式，或 r201 登记|立|新增|补记|更新|收尾、第 201 轮； NL + "# 但排除紧邻「挂账/续挂/至/目标」的未来轮号引用（那是账期，不是本轮声明）。" + NL + RE_SCOPED_ROUND = re.compile('^(?:[a-z]+()?r(d{1,3})[a-z]?)'|'(?<!挂账 )(?<!续挂 )(?<!至 )(?<!目标 )r(d{1,3})s*(?:登记|立|新增|补记|更新|收尾)'|'第s*(d{1,3})s*轮')
 # R121（R119b-5）：条目编号（R\d{2,3}-\d{1,2}），用于跨分卷同号多副本检测。
 RE_ID_SUBJECT = re.compile(r"^\*{0,2}【?[^】]{0,24}?\b(R\d{2,3}-\d{1,2})\b")
 
@@ -121,9 +130,30 @@ def git(*args):
 
 
 def current_round():
-    """本轮轮号 = 近期提交主题里出现过的最大 rNN（取值命令随结果走，不硬编码）。"""
+    """本轮轮号 = 近期提交**自身作用域**里的最大 rNN（取值命令随结果走，不硬编码）。
+
+    r201 修（我自己造的缺陷）：旧实现取主题里任意 rNN 的最大值，于是提交主题里写
+    「挂账至 r206」会把全仓轮号从 r201 推到 r206 —— 尺子的原点被一句记账话术往前挪，
+    后果是所有挂账条目集体提前到期（实测 overdue 3→4，且第 4 条就是我自己那条）。
+    现按两级取号：① 优先只认作用域形态 (rNNN) / rNNN 登记|立|新增|补记|更新|收尾 / 第 N 轮；
+    ② 一个都没有才回退到旧的任意 rNN（保持对历史提交主题的兼容），并在回退时告警。
+    排除项：数字前紧邻「挂账/续挂/至/目标/hang/defer」的一律不算本轮声明。
+    """
     out = git("log", "--format=%s", "-40").stdout
+    # 三分支捕获组互斥：每个 match 只有一个组非 None，必须挑出来而不是 group(1)
+    scoped = []
+    for m in RE_SCOPED_ROUND.finditer(out):
+        for g in m.groups():
+            if g:
+                scoped.append(int(g))
+                break
+    if scoped:
+        return max(scoped)
     hits = [int(m.group(1)) for m in RE_R_IN_SUBJECT.finditer(out)]
+    if hits:
+        print("[ROUND:FALLBACK] 近 40 条提交主题里没有作用域轮号 (rNNN)，"
+              "回退取任意 rNN 最大值 = r%d（若该值来自「挂账至 rNN」等引用，轮号已失真）"
+              % max(hits))
     return max(hits) if hits else None
 
 
@@ -151,6 +181,14 @@ def face_round(round_log, round_tag):
     if round_tag > round_log:
         return (False, "tag=r%d 晚于 -40 窗口推出的 r%d ⇒ 窗口没覆盖到本轮声明，轮号基准被截断"
                 % (round_tag, round_log))
+    # r201 补：原实现只防「被算少」（窗口截断），不防「被算多」。而「被算多」会伪装成
+    # 完全合法的形态（本轮尚未打 tag ⇒ log 比 tag 大），所以必须给差值设上限：
+    # 一轮内可以有多个提交，但轮号最多领先 tag 一轮；领先 >=3 轮只可能是主题里出现了
+    # 未来轮号（如「挂账至 r206」），此时整把尺子的原点已经不可信。
+    if round_log - round_tag >= 3:
+        return (False, "log=r%d 比 tag=r%d 领先 %d 轮 ⇒ 轮号疑被提交主题里的未来轮号污染"
+                "（例：主题写「挂账至 rNN」），尺子原点不可信"
+                % (round_log, round_tag, round_log - round_tag))
     return (True, "log=r%d ≥ tag=r%d（差 %d 轮：%s）"
             % (round_log, round_tag, round_log - round_tag,
                "本轮 tag 已打，两源一致" if round_log == round_tag
@@ -742,7 +780,8 @@ def main():
     overdue = sorted([r for r in open_items if r["class"] == "OVERDUE"],
                      key=lambda r: -int(re.sub(r"\D", "", r["detail"] or "0") or 0))
     if not args.quiet:
-        print("轮号基准 = r%d（取值：git log --format=%%s -40 里的最大 rNN）｜tag 锚 = r%s｜受检面 %d 卷"
+        print("轮号基准 = r%d（取值：git log --format=%%s -40 里**作用域**最大 rNN，"
+              "不含「挂账至 rNN」等未来引用）｜tag 锚 = r%s｜受检面 %d 卷"
               % (now_round, round_tag if round_tag is not None else "?", len(files)))
         print("未闭环 %d 条：%s ｜ 已闭环 %d 条"
               % (len(open_items), " / ".join("%s %d" % (c, by_cls[c]) for c in TAXONOMY),
@@ -774,7 +813,7 @@ def main():
     doc = {"schema": "debt-aging-v2",   # v2（r39）新增 DEFERRED 态；v1 历史件按自洽式不变式仍合格
            "generated_at": dt.datetime.now().isoformat(timespec="seconds"),
            "readonly": True, "grace_rounds": args.grace, "current_round": now_round,
-           "round_source": "git log --format=%s -40 中最大 rNN（未硬编码）",
+           "round_source": "git log --format=%s -40 中**作用域**最大 rNN（未硬编码；排除「挂账至 rNN」等未来轮号引用）",
            "verdict_taxonomy": TAXONOMY + ["CLOSED"],
            "files_scanned": [os.path.join("memory", f.name) for f in files],
            "evidence": {"volumes": len(files), "items_total": len(items),

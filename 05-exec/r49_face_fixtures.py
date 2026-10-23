@@ -60,6 +60,40 @@ ck("f3 face_round 取不到轮号 ⇒ 判红，禁按 0 处理（R247）", ok is
 ok, d = _safe("face_round", da, 49, None)
 ck("f4 face_round 无 tag 锚（首轮未打标）⇒ 记 UNVERIFIED 不记 FAIL 也不记绿", ok is None or ok is True, (ok, d))
 
+# ---- r201 新增：轮号被「算多」方向的守卫（原实现只防被算少）----
+# 一手：我在提交主题写「挂账至 r206」，current_round 从 r201 被推到 r206 ⇒ 全体挂账条目
+# 集体提前到期（实测 overdue 3→4，且第 4 条就是我自己那条）。旧 face_round 只查 tag>log
+# （窗口截断＝被算少），而「被算多」恰好伪装成合法形态（本轮尚未打 tag ⇒ log 领先）。
+ok, d = _safe("face_round", da, 206, 201)
+ck("f4b face_round 反例：log 领先 tag >=3 轮 ⇒ 判红（轮号疑被未来引用污染）",
+   ok is False and "污染" in str(d), (ok, str(d)[:90]))
+ok, d = _safe("face_round", da, 203, 201)
+ck("f4c face_round 边界：领先 2 轮仍属「本轮未打 tag」的正常节奏，不误伤",
+   ok is True, (ok, str(d)[:70]))
+ok, d = _safe("face_round", da, 201, 201)
+ck("f4d face_round 两源一致 ⇒ OK", ok is True, (ok, str(d)[:70]))
+
+# 作用域取号：只认提交自身轮号，不认「挂账至 rNN」「见 §41」这类引用
+def _pick(text):
+    res = []
+    for mm in da.RE_SCOPED_ROUND.finditer(text):
+        for g in mm.groups():
+            if g:
+                res.append(int(g))
+                break
+    return res
+
+ck("f4e 取号：chore(r201c) 与 挂账 r206 同句 ⇒ 只取 201（未来引用不入尺）",
+   _pick("chore(r201c): register 挂账 r206") == [201],
+   _pick("chore(r201c): register 挂账 r206"))
+ck("f4f 取号：纯挂账句不得产生轮号",
+   _pick("挂账至 r206 到期追讨") == [], _pick("挂账至 r206 到期追讨"))
+ck("f4g 取号：r188 登记 / 第 205 轮 两种声明式都认",
+   _pick("r188 登记：修 CI") == [188] and _pick("第 205 轮收尾") == [205],
+   (_pick("r188 登记：修 CI"), _pick("第 205 轮收尾")))
+ck("f4h 取号：正文引用「见 §41 与 r191 留账」不产生轮号",
+   _pick("见 §41 与 r191 留账") == [], _pick("见 §41 与 r191 留账"))
+
 # ---------------------------------------------------------------- W-20 去重面
 ck("f5 face_dedup 全面守恒：行数 == 计入数 且零前缀碰撞 → OK",
    _safe("face_dedup", da, 10, 10, [])[0] is True, _safe("face_dedup", da, 10, 10, []))
