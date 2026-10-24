@@ -372,6 +372,23 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   额外验证：新 portable 门 probe_cost_face 与 struct_recount_face 在 CI 实测 PASS ⇒ 成本台账
   在 CI 也可复核，新增联网门不记账会在 CI 直接红。
   本族七次共同形态：**把手上的信号直接写成结论，不检查信号是否真的取到了**。
+- [ ] **R201-6（r201 登记，P1·已落地）** **runner 的瞬态重跑对配额类信号是放大回路；另修一处 PASS 配 rc=2 的自相矛盾显示**： 【r201 裁决=执行（当日发现、当日分流修掉、8 用例自证、配额恢复后复测 PASS rc=0）｜不设目标轮：runner 层已按信号性质分流，残留风险由 _quota_limited 与第 76 门足迹台账共同看守。】
+  一手：本轮为建 Pages/R2 门反复打 Cloudflare GraphQL ⇒ 配额耗尽，全量里 workers_quota_face /
+  turnstile_face / cf_deploy_face 三门同轮 UNVERIFIED。而 run_gates「非 PASS 一律退避 3 秒重跑
+  一次」（R125 竞态识别）对配额类有害：CF 明写「5 分钟后再试」，3 秒后重跑必然再失败 ——
+  既白烧配额又把一次探测放大成两次。第 76 门只覆盖门自身足迹，没覆盖 runner 这一层。
+  修：加 _quota_limited(tail) 分流 —— 限流/配额/授权/服务未开通（rate limiter、budget depleted、
+  429、403、10042、10000、quota、too many requests）不重跑；SSL/EOF/超时/不可达/连接重置照旧
+  重跑（R125 FLAKY 识别不放宽）；两类同时出现按瞬态处理（保守，宁可多跑一次）。判定本身不变。
+  401 刻意留在可重跑侧：本轮实测 401 是 CF GraphQL 偶发（同 token 打 REST /accounts=200、
+  隔 20s 再打 GraphQL 也 200），当确定性拒绝会失去 FLAKY 识别（报告 §45.4）。分类器 8 用例全过。
+  顺带抓出显示层缺陷：FLAKY 转 PASS 时状态取第二次、rc 却返回首跑的 p.returncode ⇒ 日志印成
+  「workers_quota_face PASS rc=2」，我本轮差点读成「PASS 但 rc 非 0 = 有问题」。原则：报告里的
+  rc 必须是**决定该状态那一次**的 rc（「重跑仍红」分支维持原判定，继续用 p.returncode 自洽，不改）。
+  元教训：任何「失败就重试」的机制，先问「这个失败重试有用吗、代价是什么」—— 重试对竞态是
+  止损，对配额是加速耗尽；同一开关服务两种性质相反的场景时必须分类。
+  取值：python 05-exec/run_gates.py --gate workers_quota_face --no-ledger（配额恢复后实测 PASS rc=0，
+  5.8s；修复前同命令曾显示 PASS rc=2）。
 - [ ] **R201-5（r201 登记，P3·看守中）** **跨端 skill 反哺暂缓：注入预算面已超硬顶，此时加字节会加剧 C25 红**： 【r201 裁决=挂账至 r212｜理由：解锁条件是注入面归属方把 union 收回 65536 硬顶内（C25 转绿），那不由我控制 —— 我若此刻把新坑写进注入面任一文件或其入口分卷，只会把已超限的预算推得更远。教训已在报告 §46、台账 R201-4、r38 件内注释与 r49_face_fixtures 8 腿四处本地固化，不丢。到期复算：python D:/global_skills/A-memory-start/references/rule_editor.py gates 读 C25 行。】
   本轮「凡从文本正则捞出来的数当权威，先问谁会往这文本里写数」这条教训有跨项目价值，
   常规做法是进 D:/global_skills 或 D:/global_memory 的受管件。但实测 C25-inject-budget 已判红

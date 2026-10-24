@@ -1350,7 +1350,11 @@ def run_gate(gate, timeout):
         _time.sleep(3)
         s2, rc2, el2, t2 = _exec_once(gate, timeout)
         if s2 == "PASS":
-            return "PASS", p.returncode, elapsed + el2, (
+            # r201 修显示层自相矛盾：状态取第二次（PASS），rc 却返回首跑的 p.returncode，
+            # 于是日志印成「workers_quota_face PASS  rc=2」—— 我本轮差点把它读成
+            # 「PASS 但 rc 非 0 = 有问题」。原则：报告里的 rc 必须是**决定该状态的那一次**的 rc。
+            # 下方「重跑仍红」分支维持原判定，故那里继续用 p.returncode 是自洽的，不改。
+            return "PASS", rc2, elapsed + el2, (
                 "[FLAKY-CONFIRMED] 首次 %s，重跑 PASS ⇒ 判为并发瞬态（并行会话写盘竞态），"
                 "非判据缺陷 | 原 tail: %s" % (state, tail))
         return state, p.returncode, elapsed + el2, (
