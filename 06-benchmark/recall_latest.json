@@ -2,12 +2,14 @@
  "schema": "recall-face-v1",
  "readonly": true,
  "window": 800,
- "checked": 2,
+ "checked": 3,
  "gaps": [
-  "win-toolchain-pitfalls::CF/GitHub 免费工具额度读数与自动化链静默失败（R805 §9.16 / R810 §9.17 在 references）|探针=Cloudflare/wrangler/GitHub"
+  "win-toolchain-pitfalls::CF/GitHub 免费额度读数与自动化链静默失败（R805 §9.16 / R810 §9.17 在 references）|探针=Cloudflare/wrangler/GitHub",
+  "win-toolchain-pitfalls::工具链静默失败速查（description 原词，实测仅排第 2/未进前列 ⇒ 区分度不足）|路由真值未召回 rank=None top1=scope-creep-detector"
  ],
  "baseline": [
-  "win-toolchain-pitfalls::CF/GitHub 免费工具额度读数与自动化链静默失败（R805 §9.16 / R810 §9.17 在 references）|探针=Cloudflare/wrangler/GitHub"
+  "win-toolchain-pitfalls::CF/GitHub 免费额度读数与自动化链静默失败（R805 §9.16 / R810 §9.17 在 references）|探针=Cloudflare/wrangler/GitHub",
+  "win-toolchain-pitfalls::工具链静默失败速查（description 原词，实测仅排第 2/未进前列 ⇒ 区分度不足）|路由真值未召回 rank=None top1=scope-creep-detector"
  ],
  "new_gaps": [],
  "k4_teeth": true,

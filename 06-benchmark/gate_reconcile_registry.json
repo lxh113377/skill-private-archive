@@ -89,9 +89,10 @@
    "runner_internals_fixtures",
    "skill_wiring_face",
    "push_autopush_face",
-   "recall_face"
+   "recall_face",
+   "volume_coverage_face"
   ],
-  "_snapshot_at": "2026-10-25 00:26",
+  "_snapshot_at": "2026-10-25 00:36",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
@@ -279,6 +280,10 @@
   "recall_face": {
    "evidence": "05-exec/r208_recall_face.py",
    "at": "2026-10-24 23:54"
+  },
+  "volume_coverage_face": {
+   "evidence": "06-benchmark/gate_run_r209_volume_cov.json",
+   "at": "2026-10-25 00:30"
   }
  }
 }

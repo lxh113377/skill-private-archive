@@ -1,0 +1,138 @@
+{
+ "schema": "route-truth-v1",
+ "readonly": true,
+ "router": "C:/Users/37533/Desktop/workspace/焚诀/eval\\unified_router.py",
+ "measured_at": "2026-10-25 00:34:18",
+ "rows": [
+  {
+   "skill": "win-toolchain-pitfalls",
+   "topic": "CF/GitHub 免费额度读数与自动化链静默失败（R805 §9.16 / R810 §9.17 在 references）",
+   "query": "wrangler 读 Cloudflare 免费额度 date_geq 过滤字段 Rate limiter budget depleted 怎么查",
+   "top1": "local-mineru",
+   "direct_hit": false,
+   "rank_of_skill": null,
+   "candidates": [
+    {
+     "name": "local-mineru",
+     "score": 0.6065,
+     "keyword": 0.0701
+    },
+    {
+     "name": "wps-knowledgebase",
+     "score": 0.6031,
+     "keyword": 0.0397
+    },
+    {
+     "name": "local-realtime-translator",
+     "score": 0.5927,
+     "keyword": 0.0769
+    },
+    {
+     "name": "local-txt2img",
+     "score": 0.59,
+     "keyword": 0.0737
+    },
+    {
+     "name": "pdf",
+     "score": 0.5889,
+     "keyword": 0.0664
+    }
+   ],
+   "llm_reason": "Top-3几乎并列 (diff=0.0034)",
+   "elapsed_s": 5.4
+  },
+  {
+   "skill": "win-toolchain-pitfalls",
+   "topic": "工具链静默失败速查（description 原词，实测仅排第 2/未进前列 ⇒ 区分度不足）",
+   "query": "post-commit 钩子推送失败 || true 吞掉 零留痕 git push 代理没配 工具链静默无输出",
+   "top1": "scope-creep-detector",
+   "direct_hit": false,
+   "rank_of_skill": null,
+   "candidates": [
+    {
+     "name": "scope-creep-detector",
+     "score": 0.6534,
+     "keyword": 0.0652
+    },
+    {
+     "name": "commit-archaeologist",
+     "score": 0.6548,
+     "keyword": 0.1819
+    },
+    {
+     "name": "workbuddy-mcp",
+     "score": 0.6185,
+     "keyword": 0.0697
+    },
+    {
+     "name": "dingtalk-todo",
+     "score": 0.6112,
+     "keyword": 0.0177
+    },
+    {
+     "name": "figma",
+     "score": 0.6109,
+     "keyword": 0.0371
+    }
+   ],
+   "llm_reason": "Top-3几乎并列 (diff=-0.0014)",
+   "elapsed_s": 6.0
+  },
+  {
+   "skill": "chaoshi-web-deploy",
+   "topic": "正控：Cloudflare Pages/D1 部署（description 已含关键词，实测走 L0.1 直连表 direct_hit=True）",
+   "query": "超市web部署与部署排障 wrangler pages deploy D1 迁移",
+   "top1": "chaoshi-web-deploy",
+   "direct_hit": true,
+   "rank_of_skill": 1,
+   "candidates": [
+    {
+     "name": "chaoshi-web-deploy",
+     "score": 1.0,
+     "keyword": 0.0
+    }
+   ],
+   "llm_reason": "",
+   "elapsed_s": 0.3
+  },
+  {
+   "skill": "ci-pipeline-debugging",
+   "topic": "run_id 与 run_number 混用致 404（不在自建口径，预期被跳过不判）",
+   "query": "GitHub Actions run_id run_number 混用 404 log-failed 空日志",
+   "top1": "github",
+   "direct_hit": false,
+   "rank_of_skill": null,
+   "candidates": [
+    {
+     "name": "github",
+     "score": 0.6246,
+     "keyword": 0.2476
+    },
+    {
+     "name": "browser-cdp",
+     "score": 0.5741,
+     "keyword": 0.0694
+    },
+    {
+     "name": "web-access",
+     "score": 0.5578,
+     "keyword": 0.0683
+    },
+    {
+     "name": "gstack",
+     "score": 0.5557,
+     "keyword": 0.0619
+    },
+    {
+     "name": "electron",
+     "score": 0.541,
+     "keyword": 0.0412
+    }
+   ],
+   "llm_reason": "",
+   "elapsed_s": 3.4
+  }
+ ],
+ "note": "路由真值：窗口命中只是入场券（必要非充分）。rank_of_skill=null 表示该 skill 未进 router 返回的候选前列 —— 即实测召不回。",
+ "provenance_cmd": "python 05-exec/r209_route_truth_measure.py --json <件>"
+}

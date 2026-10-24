@@ -1,32 +1,49 @@
 {
- "schema": "recall-probe-registry-v1",
- "note": "声明「哪个自建 skill 承载哪个主题的实测知识」+ 探针词；探针词须出现在该 skill SKILL.md 前 CORPUS_CHARS 字符（召回语料窗口）才算可召回。正控条目与待修条目并存，防判据恒真。",
- "updated_at": "2026-10-24 23:35",
+ "schema": "recall-probe-registry-v2",
+ "note": "声明「哪个自建 skill 承载哪个主题的实测知识」+ 探针词 + 真值查询。窗口（SKILL.md 前 CORPUS_CHARS）判的是入场资格（必要非充分）；expect=recalled 的条目还须路由真值 rank<=5，否则判据红。正控/边界/待修三类并存，防判据恒真。",
+ "updated_at": "2026-10-25 00:40",
  "probes": [
   {
    "skill": "win-toolchain-pitfalls",
-   "topic": "CF/GitHub 免费工具额度读数与自动化链静默失败（R805 §9.16 / R810 §9.17 在 references）",
+   "topic": "CF/GitHub 免费额度读数与自动化链静默失败（R805 §9.16 / R810 §9.17 在 references）",
+   "expect": "entry-gap",
    "probes": [
     "Cloudflare",
     "wrangler",
     "GitHub"
-   ]
+   ],
+   "query": "wrangler 读 Cloudflare 免费额度 date_geq 过滤字段 Rate limiter budget depleted 怎么查"
+  },
+  {
+   "skill": "win-toolchain-pitfalls",
+   "topic": "工具链静默失败速查（description 原词，实测仅排第 2/未进前列 ⇒ 区分度不足）",
+   "expect": "recalled",
+   "probes": [
+    "静默",
+    "exit code",
+    "command not found"
+   ],
+   "query": "post-commit 钩子推送失败 || true 吞掉 零留痕 git push 代理没配 工具链静默无输出"
   },
   {
    "skill": "chaoshi-web-deploy",
-   "topic": "正控：Cloudflare Pages/D1 部署（description 已含关键词，预期可召回）",
+   "topic": "正控：Cloudflare Pages/D1 部署（description 已含关键词，实测走 L0.1 直连表 direct_hit=True）",
+   "expect": "recalled",
    "probes": [
     "Cloudflare",
     "wrangler",
     "D1"
-   ]
+   ],
+   "query": "超市web部署与部署排障 wrangler pages deploy D1 迁移"
   },
   {
    "skill": "ci-pipeline-debugging",
    "topic": "run_id 与 run_number 混用致 404（不在自建口径，预期被跳过不判）",
+   "expect": "boundary",
    "probes": [
     "run_id"
-   ]
+   ],
+   "query": "GitHub Actions run_id run_number 混用 404 log-failed 空日志"
   }
  ]
 }

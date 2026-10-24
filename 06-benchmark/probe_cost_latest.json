@@ -1,7 +1,7 @@
 {
  "schema": "probe-cost-v5",
  "readonly": true,
- "gate_table_count": 87,
+ "gate_table_count": 89,
  "rows": [
   {
    "gate": "cache_guard_face",

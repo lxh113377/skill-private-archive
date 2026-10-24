@@ -42,6 +42,8 @@ EVAL_DIR = "C:/Users/37533/Desktop/workspace/\u711a\u8bc0/eval"
 ROSTER = os.path.join(ROOT, "00-scope", "\u81ea\u5efaskill\u6e05\u5355.md")
 PROBES = os.path.join(ROOT, "06-benchmark", "recall_probe_registry.json")
 BASELINE = os.path.join(ROOT, "06-benchmark", "recall_wiring_baseline.json")
+ROUTE = os.path.join(ROOT, "06-benchmark", "route_truth_latest.json")
+TOP_N = 5
 TOKEN = "[RECALL:PASS]"
 BT = chr(96)
 
@@ -103,6 +105,42 @@ def evaluate(n, own, reg):
     return gaps, checked
 
 
+def route_layer(own, reg):
+    """第二层（r209）：路由真值。窗口命中只是入场资格（必要非充分）—— 本轮实跑证伪了
+    「窗口含探针 ⇒ 会被召回」：用 win-toolchain 自己 description 的原词查询（必然在窗口内）
+    top1=commit-archaeologist、rank=None；换措辞查同主题 rank 仍 None；而 chaoshi 靠 L0.1
+    直连表 direct_hit=True 稳过（与窗口无关）。故 expect=recalled 的声明必须拿真值件验。
+    真值件缺失/不可析/名册比真值件新 ⇒ err（判据不自己实跑 router，避免绑死焚诀可用性）。"""
+    if not os.path.isfile(ROUTE):
+        return None, "路由真值件缺失（先跑 r209_route_truth_measure.py --json <件>）"
+    try:
+        rt = json.load(io.open(ROUTE, encoding="utf-8"))
+    except Exception as e:
+        return None, "真值件不可解析：%s" % str(e)[:60]
+    if os.path.getmtime(PROBES) > os.path.getmtime(ROUTE) + 5:
+        return None, "探针名册比真值件新 ⇒ 改过声明却没重测（同第 76 门那族失效）"
+    rows = {}
+    for r in rt.get("rows", []):
+        rows[(r.get("skill"), r.get("topic"))] = r
+    gaps, judged = [], 0
+    for item in reg.get("probes", []):
+        if item.get("expect") != "recalled":
+            continue
+        skill = item.get("skill", "")
+        if skill not in own:
+            continue          # 市场件/EXCLUDE 不为它负责，也不给它报红
+        judged += 1
+        r = rows.get((skill, item.get("topic")))
+        if r is None:
+            gaps.append("%s::%s|真值件缺此行（重测）" % (skill, item.get("topic", "?")))
+            continue
+        rank = r.get("rank_of_skill")
+        if r.get("direct_hit") or (isinstance(rank, int) and rank <= TOP_N):
+            continue
+        gaps.append("%s::%s|路由真值未召回 rank=%s top1=%s" % (
+                    skill, item.get("topic", "?"), rank, r.get("top1")))
+    return gaps, judged
+
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--json", dest="out", default="")
@@ -121,9 +159,15 @@ def main(argv=None):
         return 2
     reg = json.load(io.open(PROBES, encoding="utf-8"))
     gaps, checked = evaluate(n, own, reg)
+    # 第二层：路由真值（窗口只是入场券）
+    rgaps, rjudged = route_layer(own, reg)
+    if rgaps is None:
+        print("[RECALL:UNVERIFIED] 路由真值层不可用：%s ⇒ 不折算成可召回，不按绿记（R247）" % rjudged)
+        return 2
+    gaps = gaps + rgaps
     print("=== 实测知识可召回面（r208·本机专属）===")
     print("  召回窗口 = SKILL.md 前 %d 字符（源 eval/build_indexes.py CORPUS_CHARS）" % n)
-    print("  探针条目（自建口径内）= %d，其中不可召回 = %d" % (checked, len(gaps)))
+    print("  窗口层判 %d 条 / 真值层判 %d 条，不可召回 = %d" % (checked, rjudged, len(gaps)))
     if not os.path.isfile(BASELINE):
         print("[RECALL:UNVERIFIED] 基线件缺失 ⇒ 无法判增量，不按绿记（R247）")
         return 2
