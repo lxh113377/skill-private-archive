@@ -1,0 +1,98 @@
+[
+ {
+  "repo": "yusufkaraaslan/Skill_Seekers",
+  "prod_n": 31,
+  "correct_n": 26,
+  "ghost_n": 5,
+  "ghost_sample": [
+   "distribution/claude-plugin/commands/create-skill.md",
+   "distribution/claude-plugin/commands/install-skill.md",
+   "docs/features/BOOTSTRAP_SKILL.md"
+  ],
+  "truncated": false
+ },
+ {
+  "repo": "plugin87/ux-ui-agent-skills",
+  "prod_n": 27,
+  "correct_n": 27,
+  "ghost_n": 0,
+  "ghost_sample": [],
+  "truncated": false
+ },
+ {
+  "repo": "arjun988/blender-skills",
+  "prod_n": 188,
+  "correct_n": 188,
+  "ghost_n": 0,
+  "ghost_sample": [],
+  "truncated": false
+ },
+ {
+  "repo": "affaan-m/ECC",
+  "prod_n": 1062,
+  "correct_n": 1062,
+  "ghost_n": 0,
+  "ghost_sample": [],
+  "truncated": false
+ },
+ {
+  "repo": "genspark-ai/genoffice",
+  "prod_n": 43,
+  "correct_n": 43,
+  "ghost_n": 0,
+  "ghost_sample": [],
+  "truncated": false
+ },
+ {
+  "repo": "scenario-labs/skills",
+  "prod_n": 173,
+  "correct_n": 173,
+  "ghost_n": 0,
+  "ghost_sample": [],
+  "truncated": false
+ },
+ {
+  "repo": "wiltodelta/remove-ai-watermarks",
+  "prod_n": 4,
+  "correct_n": 3,
+  "ghost_n": 1,
+  "ghost_sample": [
+   "docs/agent-skill.md"
+  ],
+  "truncated": false
+ },
+ {
+  "repo": "obra/superpowers",
+  "prod_n": 15,
+  "correct_n": 15,
+  "ghost_n": 0,
+  "ghost_sample": [],
+  "truncated": false
+ },
+ {
+  "repo": "iOfficeAI/OfficeCLI",
+  "prod_n": 12,
+  "correct_n": 12,
+  "ghost_n": 0,
+  "ghost_sample": [],
+  "truncated": false
+ },
+ {
+  "repo": "EL4CTEO/blender-skills",
+  "prod_n": 22,
+  "correct_n": 22,
+  "ghost_n": 0,
+  "ghost_sample": [],
+  "truncated": false
+ },
+ {
+  "repo": "RobLe3/cc-blender-skill",
+  "prod_n": 32,
+  "correct_n": 31,
+  "ghost_n": 1,
+  "ghost_sample": [
+   "docs/WIREFRAME_SKILL.md"
+  ],
+  "truncated": false
+ }
+]

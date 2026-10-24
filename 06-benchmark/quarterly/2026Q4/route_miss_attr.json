@@ -1,7 +1,9 @@
 {
  "schema": "route-miss-attr-r117-v1",
- "generated_at": "2026-10-20T06:10:23+00:00",
+ "generated_at": "2026-10-24T18:43:29+00:00",
  "cmd": "python 05-exec/r117_route_miss_attr.py",
+ "superseded_by": "route_miss_attr_r119_*.json（r119 起改用实测口径；r117 仅作历史留痕）",
+ "superseded_reason": "r128 对账实测 5 条假红（state 与 route() 顶层 top1 不一致）",
  "ruler": {
   "STALE_EXPECT": "期望 skill 既不在注册表也不在盘上（题面过期）",
   "UNREGISTERED": "期望 skill 在盘上但不在注册表（漏注册，单列）",
@@ -22,7 +24,7 @@
   "bge_status": "engaged",
   "miss_n": 15,
   "blind_n": 22,
-  "registry_n": 183,
+  "registry_n": 191,
   "stale_n": 8,
   "unregistered_n": 0,
   "real_n": 7,
@@ -85,7 +87,7 @@
   "A-skill-manager->cross-platform-agent-sync": 1,
   "deep-research-pro->research-documentation": 1,
   "multi-search-engine->web-access": 1,
-  "tencent-cos-skill__skillhub->cloudbase-db-optimize": 1
+  "tencent-cos-skill__skillhub->libreoffice-base": 1
  },
  "rows": [
   {
@@ -217,11 +219,11 @@
   {
    "query": "写个脚本定期备份数据库",
    "expected": "tencent-cos-skill__skillhub",
-   "router_top1": "cloudbase-db-optimize",
+   "router_top1": "libreoffice-base",
    "judge": "exact",
    "state": "STALE_EXPECT",
    "reason": "absent_from_disk_and_registry",
-   "pair": "tencent-cos-skill__skillhub->cloudbase-db-optimize"
+   "pair": "tencent-cos-skill__skillhub->libreoffice-base"
   }
  ]
 }

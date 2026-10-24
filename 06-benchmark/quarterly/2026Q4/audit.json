@@ -1,90 +1,97 @@
 {
  "schema": "quarterly-skill-audit-v1",
  "quarter": "2026Q4",
- "generated_at": "2026-10-20T14:10:48+0800",
+ "generated_at": "2026-10-25T02:44:04+0800",
  "cmd": "python 05-exec/r113_quarterly_audit.py --quarter 2026Q4",
  "steps": [
   {
    "step": "provenance_scan",
    "rc": 0,
-   "ms": 2295,
-   "stdout_tail": "JSON -> C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\06-benchmark\\quarterly\\2026Q4\\provenance.json\n面：权威源 183 件 ｜ 市场缓存 268 件（同名 12）｜ 语料 slug 3692\n置信四档：declared=28 inferred=33 self_built=66 unknown=56 ｜ 守恒 OK ｜ 自建名册面 77\n[PROVENANCE:SCAN] declared=28 inferred=33 self_built=66 unknown=56\n",
+   "ms": 261805,
+   "stdout_tail": "JSON -> C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\06-benchmark\\quarterly\\2026Q4\\provenance.json\n面：权威源 191 件 ｜ 市场缓存 268 件（同名 12）｜ 语料 slug 3692\n置信四档：declared=28 inferred=33 self_built=66 unknown=64 ｜ 守恒 OK ｜ 自建名册面 77\n[PROVENANCE:SCAN] declared=28 inferred=33 self_built=66 unknown=64\n",
    "stderr_tail": ""
   },
   {
    "step": "upstream_probe",
    "rc": 0,
-   "ms": 396,
-   "stdout_tail": "nly=35    upstream_only=14    上游最后提交 2026-07-08 chore: Rename project to Agentic Awesome Skills\n  scope-creep-detector                     local_ahead    local_only=2     upstream_only=0     上游最后提交 ? \n  security-audit                           UNVERIFIED 无可识别同源候选（全部 unrelated 或取不到）\n  shadcn                                   diverged       local_only=6     upstream_only=14    上游最后提交 2026-07-08 chore: Rename project to Agentic Awesome Skills\n  subagent-driven-development              UNVERIFIED 无可识别同源候选（全部 unrelated 或取不到）\n  test-driven-development                  diverged       local_only=49    upstream_only=11    上游最后提交 2026-09-19 Release v6.4.1: diagnosing-superpowers, Native plan executio\n  theme-factory                            local_ahead    local_only=2     upstream_only=0     上游最后提交 2025-12-01 Move example skills into dedicated folder and create minimal\n  ui-ux-pro-max                            UNVERIFIED 无可识别同源候选（全部 unrelated 或取不到）\n  verification-before-completion           UNVERIFIED 无可识别同源候选（全部 unrelated 或取不到）\n  web-design-guidelines                    diverged       local_only=3     upstream_only=1     上游最后提交 2026-03-29 Initial release — OpenMontage: the first open-source agentic\n  writing-plans                            local_ahead    local_only=16    upstream_only=0     上游最后提交 2026-09-25 Release v6.4.2: leaner plans from writing-plans (#2384)\n  xlsx                                     UNVERIFIED 无可识别同源候选（全部 unrelated 或取不到）\n[UPSTREAM:PROBE] ok=24 unverified=16\n",
+   "ms": 263,
+   "stdout_tail": "nly=35    upstream_only=14    上游最后提交 2026-07-08 chore: Rename project to Agentic Awesome Skills\n  scope-creep-detector                     local_ahead    local_only=2     upstream_only=0     上游最后提交 ? \n  security-audit                           UNVERIFIED 无可识别同源候选（全部 unrelated 或取不到）\n  shadcn                                   diverged       local_only=6     upstream_only=14    上游最后提交 2026-07-08 chore: Rename project to Agentic Awesome Skills\n  subagent-driven-development              UNVERIFIED 无可识别同源候选（全部 unrelated 或取不到）\n  test-driven-development                  diverged       local_only=49    upstream_only=11    上游最后提交 2026-09-19 Release v6.4.1: diagnosing-superpowers, Native plan executio\n  theme-factory                            local_ahead    local_only=2     upstream_only=0     上游最后提交 2025-12-01 Move example skills into dedicated folder and create minimal\n  ui-ux-pro-max                            UNVERIFIED 无可识别同源候选（全部 unrelated 或取不到）\n  verification-before-completion           UNVERIFIED 无可识别同源候选（全部 unrelated 或取不到）\n  web-design-guidelines                    diverged       local_only=3     upstream_only=1     上游最后提交 2026-03-29 Initial release — OpenMontage: the first open-source agentic\n  writing-plans                            local_ahead    local_only=16    upstream_only=0     上游最后提交 2026-09-25 Release v6.4.2: leaner plans from writing-plans (#2384)\n  xlsx                                     UNVERIFIED 无可识别同源候选（全部 unrelated 或取不到）\n[UPSTREAM:PROBE] ok=23 unverified=17\n",
    "stderr_tail": ""
   },
   {
    "step": "swap_gate",
    "rc": 0,
-   "ms": 316,
-   "stdout_tail": " 14, \"UNVERIFIED\": 16, \"UPGRADE_REVIEW\": 10}\n上游有本地没有的内容（待比对/可升级）10 件：\n  github                                 UPGRADE_REVIEW upstream_only=17   local_only=38   上游提交 2026-07-08\n  react-best-practices                   UPGRADE_REVIEW upstream_only=14   local_only=35   上游提交 2026-07-08\n  shadcn                                 UPGRADE_REVIEW upstream_only=14   local_only=6    上游提交 2026-07-08\n  test-driven-development                UPGRADE_REVIEW upstream_only=11   local_only=49   上游提交 2026-09-19\n  defuddle                               UPGRADE_REVIEW upstream_only=2    local_only=21   上游提交 2026-09-09\n  hyperframes-registry                   UPGRADE_REVIEW upstream_only=2    local_only=11   上游提交 2026-06-27\n  healthcare-cdss-patterns               UPGRADE_REVIEW upstream_only=1    local_only=4    上游提交 2026-05-17\n  healthcare-emr-patterns                UPGRADE_REVIEW upstream_only=1    local_only=4    上游提交 2026-05-17\n  healthcare-eval-harness                UPGRADE_REVIEW upstream_only=1    local_only=4    上游提交 2026-05-17\n  web-design-guidelines                  UPGRADE_REVIEW upstream_only=1    local_only=3    上游提交 2026-03-29\nUNVERIFIED（同名但非同源/取不到，禁读成已核对）16 件：brainstorming, code-review, docx, find-skills, frontend-design, frontend-slides, grill-me, hyperframes, hyperframes-cli, hyperframes-media, pdf, security-audit, subagent-driven-development, ui-ux-pro-max, verification-before-completion, xlsx\n[SWAP:GATE] counts={\"LOCAL_AHEAD_KEEP\": 14, \"UNVERIFIED\": 16, \"UPGRADE_REVIEW\": 10}\n",
+   "ms": 205,
+   "stdout_tail": ": 17, \"UPGRADE_REVIEW\": 10}\n上游有本地没有的内容（待比对/可升级）10 件：\n  github                                 UPGRADE_REVIEW upstream_only=17   local_only=38   上游提交 2026-07-08\n  react-best-practices                   UPGRADE_REVIEW upstream_only=14   local_only=35   上游提交 2026-07-08\n  shadcn                                 UPGRADE_REVIEW upstream_only=14   local_only=6    上游提交 2026-07-08\n  test-driven-development                UPGRADE_REVIEW upstream_only=11   local_only=49   上游提交 2026-09-19\n  defuddle                               UPGRADE_REVIEW upstream_only=2    local_only=21   上游提交 2026-09-09\n  hyperframes-registry                   UPGRADE_REVIEW upstream_only=2    local_only=11   上游提交 2026-06-27\n  healthcare-cdss-patterns               UPGRADE_REVIEW upstream_only=1    local_only=4    上游提交 2026-05-17\n  healthcare-emr-patterns                UPGRADE_REVIEW upstream_only=1    local_only=4    上游提交 2026-05-17\n  healthcare-eval-harness                UPGRADE_REVIEW upstream_only=1    local_only=4    上游提交 2026-05-17\n  web-design-guidelines                  UPGRADE_REVIEW upstream_only=1    local_only=3    上游提交 2026-03-29\nUNVERIFIED（同名但非同源/取不到，禁读成已核对）17 件：brainstorming, code-review, doc-coauthoring, docx, find-skills, frontend-design, frontend-slides, grill-me, hyperframes, hyperframes-cli, hyperframes-media, pdf, security-audit, subagent-driven-development, ui-ux-pro-max, verification-before-completion, xlsx\n[SWAP:GATE] counts={\"LOCAL_AHEAD_KEEP\": 13, \"UNVERIFIED\": 17, \"UPGRADE_REVIEW\": 10}\n",
    "stderr_tail": ""
   },
   {
    "step": "provenance_face",
    "rc": 0,
-   "ms": 285,
+   "ms": 173,
    "stdout_tail": "覆盖根自证：[{\"path\": \"C:\\\\Users\\\\37533\\\\.workbuddy\\\\skills-marketplace\\\\skills\", \"skill_n\": 268}, {\"path\": \"D:\\\\global_skills\", \"skill_n\": 182}]\n总面 182 ｜ 同源可判 39 ｜ 盲区 143（盲区禁读成「无缺口」）\n四档：{\"declared\": 28, \"inferred\": 32, \"self_built\": 66, \"unknown\": 56} ｜ pin 台账 130 行 / 126 slug ｜ 上游证据 OK=25 UNVERIFIED=14\n裁决：{\"UP_TO_DATE\": 12, \"UNVERIFIED\": 14, \"LOCAL_AHEAD_KEEP\": 2, \"UPGRADE_REVIEW\": 11}\n具名 UNVERIFIED（上游证据面）: brainstorming, code-review, docx, find-skills, frontend-design, grill-me, hyperframes, hyperframes-cli, hyperframes-media, pdf, security-audit, ui-ux-pro-max, verification-before-completion, xlsx\n具名 UNVERIFIED（裁决面）: brainstorming, code-review, docx, find-skills, frontend-design, grill-me, hyperframes, hyperframes-cli, hyperframes-media, pdf, security-audit, ui-ux-pro-max, verification-before-completion, xlsx\n[PROVENANCE:PASS]\n",
+   "stderr_tail": ""
+  },
+  {
+   "step": "local_fm",
+   "rc": 0,
+   "ms": 169,
+   "stdout_tail": "[LOCALFM:PASS] n=191 -> 06-benchmark\\local_frontmatter.json\n",
    "stderr_tail": ""
   },
   {
    "step": "replacement_scan",
    "rc": 0,
-   "ms": 3029,
-   "stdout_tail": "池：716 仓（14 条查询，api=0 cache=392）｜ 候选实测 378 仓\n四态：MATCHED=152 FAMILY_ONLY=16 NO_OS_CANDIDATE=14 UNVERIFIED=0 ｜ 守恒 182==182 OK\n  a-meta       A-族：记忆/交接/技能治理/编排            件= 17 族池=656\n  office       文档办公族：docx/xlsx/pdf/ppt/办公自动 件= 13 族池= 75\n  frontend     前端/UI/设计族                    件= 13 族池=266\n  browser      浏览器/桌面自动化族                   件= 11 族池=140\n  quality      调试/测试/评审/计划族                 件= 27 族池=616\n  media        视频/音频/图像/图表族                 件= 30 族池= 87\n  local-ai     本地 AI 能力族（Intel AIPC / 离线模型） 件=  4 族池= 74\n  cloud        云平台/部署/数据库族                  件= 14 族池= 74\n  im           IM/协同办公族（钉钉/微信/Notion/知识）    件= 19 族池= 54\n  story        网文/创意写作族                     件= 19 族池= 60\n  win          Windows 本机运维族                件=  6 族池=165\n  knowledge    MCP/工程基建/发现族                 件=  9 族池=671\nJSON -> C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\06-benchmark\\quarterly\\2026Q4\\replacement_matrix.json\n[REPL:PASS] 逐件候选面守恒 182==182 ｜ MATCHED=152 FAMILY_ONLY=16 NO_OS_CANDIDATE=14 UNVERIFIED=0\n",
+   "ms": 6306,
+   "stdout_tail": "池：743 仓（15 条查询，api=0 cache=404）｜ 候选实测 392 仓\n四态：MATCHED=167 FAMILY_ONLY=11 NO_OS_CANDIDATE=13 UNVERIFIED=0 ｜ 守恒 191==191 OK\n  a-meta       A-族：记忆/交接/技能治理/编排            件= 19 族池=682\n  office       文档办公族：docx/xlsx/pdf/ppt/办公自动 件= 21 族池= 80\n  frontend     前端/UI/设计族                    件= 16 族池=276\n  browser      浏览器/桌面自动化族                   件= 11 族池=144\n  quality      调试/测试/评审/计划族                 件= 27 族池=645\n  media        视频/音频/图像/图表族                 件= 30 族池=104\n  local-ai     本地 AI 能力族（Intel AIPC / 离线模型） 件=  4 族池= 77\n  cloud        云平台/部署/数据库族                  件= 12 族池= 74\n  im           IM/协同办公族（钉钉/微信/Notion/知识）    件= 18 族池= 52\n  story        网文/创意写作族                     件= 18 族池= 63\n  win          Windows 本机运维族                件=  6 族池=164\n  knowledge    MCP/工程基建/发现族                 件=  8 族池=698\n  3d           3D/Blender 生产族（建模/渲染/装配/交付）  件=  1 族池= 26\nJSON -> C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\06-benchmark\\quarterly\\2026Q4\\replacement_matrix.json\n[REPL:PASS] 逐件候选面守恒 191==191 ｜ MATCHED=167 FAMILY_ONLY=11 NO_OS_CANDIDATE=13 UNVERIFIED=0\n",
    "stderr_tail": ""
   },
   {
    "step": "quality_ab",
    "rc": 0,
-   "ms": 10097,
-   "stdout_tail": "JSON -> C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\06-benchmark\\quarterly\\2026Q4\\quality_ab.json\n[QUALITY:MEASURED] method=hybrid top1=47.2 top3=58.4 hit=97.8 queries=99\n",
+   "ms": 15023,
+   "stdout_tail": "JSON -> C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\06-benchmark\\quarterly\\2026Q4\\quality_ab.json\n[QUALITY:MEASURED] method=hybrid top1=47.2 top3=59.6 hit=97.8 queries=99\n",
    "stderr_tail": ""
   },
   {
    "step": "route_miss_attr",
    "rc": 0,
-   "ms": 4440,
+   "ms": 4450,
    "stdout_tail": "JSON -> C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\06-benchmark\\quarterly\\2026Q4\\route_miss_attr.json\n[ROUTEMISS:PASS] miss=15 归因守恒（stale=8 unregistered=0 real=7 undecidable=0）\n",
    "stderr_tail": ""
   },
   {
    "step": "quality_truth",
    "rc": 0,
-   "ms": 8366,
+   "ms": 8945,
    "stdout_tail": "JSON -> C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\06-benchmark\\quarterly\\2026Q4\\quality_truth.json\n[QUALITY:PROD] L1=90.1% L2=65.0% L4=87.5%\n",
    "stderr_tail": ""
   },
   {
    "step": "domain_face",
    "rc": 0,
-   "ms": 4339,
-   "stdout_tail": "[DOMAINFACE] n=269 qdomain_none=67 mismatch=69(25.7%) live=62 stale=7 protected=57 exposed=5 real_fail=2\n[DOMAINFACE] 口径校准: r120原口径(raw)=65 ｜ 生产口径(norm)=69 ｜ 结论不同的题=4\n[DOMAINFACE] global_cf: 94.41% -> 92.54% (-1.87pp) flips=9 W/L=1/6 => NET_HARMFUL_TO_DISABLE\n[DOMAINFACE] JSON -> C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\06-benchmark\\quarterly\\2026Q4\\domain_face.json\n",
+   "ms": 5063,
+   "stdout_tail": "[DOMAINFACE] n=269 qdomain_none=67 mismatch=69(25.7%) live=62 stale=7 protected=57 exposed=5 real_fail=2\n[DOMAINFACE] 口径校准: r120原口径(raw)=65 ｜ 生产口径(norm)=69 ｜ 结论不同的题=4\n[DOMAINFACE] global_cf: 94.41% -> 92.54% (-1.87pp) flips=8 W/L=1/6 => NET_HARMFUL_TO_DISABLE\n[DOMAINFACE] JSON -> C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\06-benchmark\\quarterly\\2026Q4\\domain_face.json\n",
    "stderr_tail": ""
   },
   {
    "step": "tag_closure",
    "rc": 0,
-   "ms": 2801,
-   "stdout_tail": "[TAGCLOSE] 题面=279 可达=200 不可达=79（tag 27 / domain 51） tag_trap=15\n  TRAP 写项目交接文档                            exp=A-project-handoff        raw_rank=1\n  TRAP 给视频加背景音乐和动画                        exp=byted-mediakit-shared    raw_rank=2\n  TRAP 超市网站部署上线                           exp=chaoshi-web-deploy       raw_rank=1\n  TRAP 帮我在技能市场搜索技能                        exp=A-skill-manager          raw_rank=2\n  TRAP 帮我自动化操作 Windows 桌面                 exp=computer-use-guidance-windows raw_rank=1\n  TRAP figma 设计稿转代码                       exp=figma                    raw_rank=1\n  TRAP 帮我分析视频前三秒的钩子吸引力                    exp=hook-analyzer-skill      raw_rank=1\n  TRAP 帮我把分镜和钩子数据生成分析报告                   exp=report-generator-skill   raw_rank=1\n  TRAP shadcn 组件安装管理                      exp=shadcn                   raw_rank=1\n  TRAP 帮我批量审计并修复静态站点                      exp=static-site-batch-audit-fix raw_rank=1\n[TAGCLOSE] JSON -> C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\06-benchmark\\quarterly\\2026Q4\\tag_closure.json\n",
+   "ms": 8916,
+   "stdout_tail": "[TAGCLOSE] 题面=279 可达=225 不可达=54（tag 2 / domain 51） tag_trap=1\n  TRAP 同步技能                               exp=A-skill-manager          raw_rank=1\n[TAGCLOSE] JSON -> C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\06-benchmark\\quarterly\\2026Q4\\tag_closure.json\n",
    "stderr_tail": ""
   },
   {
    "step": "trace_face",
    "rc": 0,
-   "ms": 314,
-   "stdout_tail": "[TRACEFACE] rows=2288 bad=0 noise=69 unique=150 span=0.22days fresh=0.0days\n[TRACEFACE] confidence={\"HIGH\": 2128, \"MEDIUM\": 94, \"LOW\": 66} low=66 src={\"production\": 1262, \"regression\": 660, \"guard-test\": 276, \"adversarial\": 90}\n[TRACEFACE] conservation_ok=True\n[TRACEFACE] JSON -> C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\06-benchmark\\quarterly\\2026Q4\\trace_face.json\n",
+   "ms": 539,
+   "stdout_tail": "[TRACEFACE] rows=25236 bad=0 noise=686 unique=226 span=4.74days fresh=0.0days\n[TRACEFACE] confidence={\"HIGH\": 23512, \"MEDIUM\": 998, \"LOW\": 726} low=726 src={\"production\": 15306, \"regression\": 6810, \"guard-test\": 2760, \"adversarial\": 360}\n[TRACEFACE] conservation_ok=True\n[TRACEFACE] JSON -> C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\06-benchmark\\quarterly\\2026Q4\\trace_face.json\n",
    "stderr_tail": ""
   },
   {
    "step": "swap_impact",
    "rc": 0,
-   "ms": 9077,
+   "ms": 10855,
    "stdout_tail": "_n': 20, 'sentinel_seed': 20261018}\n[SWAPSIM] baseline full face: {'n': 279, 'hits': 261, 'top1_pct': 93.55, 'weighted_pct': 93.52}\n[SWAPSIM] variants=47 local_improved=0 local_degraded=2 subnet_changed=2 cross_flips=0\n[SWAPSIM] neg_control(slug=algorithmic-art) flips=0 pass=True | pos_control(slug=None) flips=None pass=False\n   algorithmic-art<-anthropics/skills             local    0.0 pp  subset    0.0 pp  flips=0\n   brainstorming<-obra/superpowers                local  -50.0 pp  subset  -4.55 pp  flips=1\n   brainstorming<-sickn33/agentic-awesome-skills  local  -50.0 pp  subset  -4.55 pp  flips=1\n   brand-guidelines<-anthropics/skills            local    0.0 pp  subset    0.0 pp  flips=0\n   canvas-design<-anthropics/skills               local    0.0 pp  subset    0.0 pp  flips=0\n   code-review<-github/awesome-copilot            local   None pp  subset    0.0 pp  flips=0\n   code-review<-mattpocock/skills                 local   None pp  subset    0.0 pp  flips=0\n   commit-archaeologist<-Shubhamsaboo/awesome-llm local   None pp  subset    0.0 pp  flips=0\n   defuddle<-kepano/obsidian-skills               local    0.0 pp  subset    0.0 pp  flips=0\n   doc-coauthoring<-anthropics/skills             local    0.0 pp  subset    0.0 pp  flips=0\n   docx<-anthropics/skills                        local    0.0 pp  subset    0.0 pp  flips=0\n   find-skills<-vercel-labs/skills                local    0.0 pp  subset    0.0 pp  flips=0\n[SWAPSIM] WARNING 正控未翻转 ⇒ 本实验无鉴别力，结论不得引用（负控 0 flip 属通过）\n",
    "stderr_tail": ""
   }
@@ -163,23 +170,23 @@
   "source": "06-benchmark/quarterly/2026Q4/domain_face.json"
  },
  "trace_face_reading": {
-  "rows_n": 2288,
-  "unique_n": 150,
-  "noise_n": 69,
-  "empty_q_n": 100,
-  "low_n": 66,
-  "span_days": 0.22,
+  "rows_n": 25236,
+  "unique_n": 226,
+  "noise_n": 686,
+  "empty_q_n": 956,
+  "low_n": 726,
+  "span_days": 4.74,
   "freshness_days": 0.0,
   "conservation_ok": true,
   "source": "06-benchmark/quarterly/2026Q4/trace_face.json"
  },
  "tag_closure_reading": {
   "questions_n": 279,
-  "reachable_n": 200,
-  "unreachable_n": 79,
-  "tag_closed_n": 27,
+  "reachable_n": 225,
+  "unreachable_n": 54,
+  "tag_closed_n": 2,
   "domain_closed_n": 51,
-  "tag_trap_n": 15,
+  "tag_trap_n": 1,
   "source": "06-benchmark/quarterly/2026Q4/tag_closure.json"
  },
  "face_ok": true,

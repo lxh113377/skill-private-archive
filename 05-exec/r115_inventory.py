@@ -135,19 +135,72 @@ def dir_stats(slug):
     return n, b
 
 
+def newest_replacement():
+    """选最新替代候选面（与 newest_provenance 同口径：季度产物 ⇄ 历史件比 mtime）。"""
+    cands = []
+    qdir = os.path.join(BENCH, "quarterly")
+    if os.path.isdir(qdir):
+        for q in os.listdir(qdir):
+            p = os.path.join(qdir, q, "replacement_matrix.json")
+            if os.path.isfile(p):
+                cands.append(p)
+    try:
+        for f in os.listdir(BENCH):
+            if f.startswith("replacement_matrix_r") and f.endswith(".json"):
+                cands.append(os.path.join(BENCH, f))
+    except OSError:
+        pass
+    if not cands:
+        return None
+    return max(cands, key=lambda p: (os.path.getmtime(p), p))
+
+
+def newest_provenance():
+    """选最新 provenance 面：季度巡检产物与 06-benchmark 历史件同池比 mtime。
+
+    取不到任何一份返回 None（调用方走 UNVERIFIED，禁回落到写死的旧面 —— 那正是本轮修的病）。
+    """
+    cands = []
+    qdir = os.path.join(BENCH, "quarterly")
+    if os.path.isdir(qdir):
+        for q in os.listdir(qdir):
+            p = os.path.join(qdir, q, "provenance.json")
+            if os.path.isfile(p):
+                cands.append(p)
+    try:
+        for f in os.listdir(BENCH):
+            # 不用 re：本件 import 块里没有 re（首跑即 NameError，实测抓到；py_compile 抓不到）
+            if f.startswith("provenance_r") and f.endswith(".json"):
+                cands.append(os.path.join(BENCH, f))
+    except OSError:
+        pass
+    if not cands:
+        return None
+    return max(cands, key=lambda p: (os.path.getmtime(p), p))
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--json", dest="json_out", default=None)
     ap.add_argument("--quiet", action="store_true")
+    ap.add_argument("--replacement", default=None,
+                    help="替代候选面（缺省 = 季度巡检 replacement_matrix.json 与 06-benchmark/replacement_matrix_r*.json 里最新一份）")
+    ap.add_argument("--provenance", default=None,
+                    help="在册面件（缺省 = 季度巡检 provenance.json 与 06-benchmark/provenance_r*.json 里最新一份）")
     args = ap.parse_args()
     try:
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     except Exception:  # noqa: BLE001
         pass
 
-    # --- 输入面 1：在册 skill 列表（取自 r114 provenance 面，182 件） ---
-    prov_path = os.path.join(BENCH, "provenance_r112_2026-10-18.json")
-    if not os.path.isfile(prov_path):
+    # --- 输入面 1：在册 skill 列表（取自 provenance 面） ---
+    # r211 修（同族第 4 处「输入面写死日期件」）：原写死 provenance_r112_2026-10-18.json
+    # ⇒ 权威源从 182 涨到 191 之后，本盘点**永远只看 182 件**，且不会报任何异常
+    # （件数守恒是按它自己读到的 rows0 算的，不是按权威源算的）。这与 r118 修 r118_layer_attr
+    # 硬编码 r117 归因件、r191 修棘轮选件口径同族。现改为 --provenance 可指 +
+    # 缺省取「季度巡检产物 ⇄ 06-benchmark 历史件」里 mtime 最新的一份，并**显形选了哪份**。
+    prov_path = args.provenance or newest_provenance()
+    if not prov_path or not os.path.isfile(prov_path):
         print("[INV:UNVERIFIED] 缺在册面: %s" % prov_path)
         return 2
     prov = json.load(io.open(prov_path, encoding="utf-8"))
@@ -172,15 +225,27 @@ def main():
     if layered:
         cases = layered.get("results") or []
 
-    # --- 输入面 4：替代候选面（r114 产物，判「有没有更好的」） ---
-    repl_path = os.path.join(BENCH, "replacement_matrix_r114_2026-10-18.json")
+    # --- 输入面 4：替代候选面（判「有没有更好的」） ---
+    # r211 修（同族第 5 处）：原写死 replacement_matrix_r114_2026-10-18.json
+    # ⇒ 权威源 191 件里有 9 件在该面**根本不存在**，其替代列会静默留空，
+    # 读起来像「这 9 件无候选」，真相是「读的是上一代面」。现取最新面 +
+    # 缺行数显形（不静默），并给处置指引。
+    repl_path = args.replacement or newest_replacement()
     repl = {}
-    if os.path.isfile(repl_path):
+    repl_note = None
+    if repl_path and os.path.isfile(repl_path):
         try:
             rj = json.load(io.open(repl_path, encoding="utf-8"))
             repl = {r["slug"]: r for r in (rj.get("rows") or [])}
-        except Exception:  # noqa: BLE001
+        except Exception as exc:  # noqa: BLE001
+            repl_note = "候选面不可读 %r ⇒ 替代列全空（不得读成无候选）" % (exc,)
             repl = {}
+    else:
+        repl_note = "候选面缺失 ⇒ 先跑 05-exec/r114_replacement_scan.py"
+    missing_cand = [r0.get("slug") for r0 in rows0 if r0.get("slug") not in repl] if repl else []
+    if missing_cand:
+        repl_note = (repl_note or "") + "｜候选面比在册面少 %d 件（%s）⇒ 重跑候选面再盘" % (
+            len(missing_cand), ",".join(missing_cand[:6]))
 
     # --- 逐件装配 ---
     out_rows = []
@@ -281,6 +346,13 @@ def main():
     os.replace(tmp, out)
 
     if not args.quiet:
+        # r211：本件注释承诺「显形选了哪份输入面」，此前没落地 = 死注释（同族病：
+        # 声明与打印分家，见 W-36）。选面必须可见，否则读到的永远是「某一代」面而看着像现值。
+        print("输入面：在册=%s ｜ 候选=%s" % (
+            os.path.relpath(prov_path, ROOT).replace("\\", "/"),
+            os.path.relpath(repl_path, ROOT).replace("\\", "/") if repl_path else "缺失"))
+        if repl_note:
+            print("  ⚠️ 候选面注记（不静默吞）：%s" % repl_note)
         print("面：在册 %d 件 ｜ 真实调用 %s 次 / %s 个 skill ｜ 路由题面 %d 条 ｜ 替代候选行 %d"
               % (n, total_calls, skills_seen, len(cases), len(repl)))
         print("  0 调用件        : %d" % len(zero_call))

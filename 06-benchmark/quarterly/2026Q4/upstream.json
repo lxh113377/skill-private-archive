@@ -1,11 +1,11 @@
 {
  "schema": "upstream-probe-r112-v1",
- "generated_at": "2026-10-20T06:10:04+00:00",
+ "generated_at": "2026-10-24T18:43:03+00:00",
  "face": {
   "scan_file": "06-benchmark/quarterly/2026Q4/provenance.json",
   "targets_n": 40,
-  "ok_n": 24,
-  "unverified_n": 16,
+  "ok_n": 23,
+  "unverified_n": 17,
   "api_calls": 0,
   "cache_hits": 54,
   "rate": null,
@@ -15,7 +15,7 @@
   "rubric_err": null
  },
  "relations": {
-  "local_ahead": 14,
+  "local_ahead": 13,
   "diverged": 10
  },
  "conservation": {
@@ -310,51 +310,26 @@
   },
   {
    "slug": "doc-coauthoring",
-   "status": "OK",
-   "upstream_repo": "anthropics/skills",
-   "upstream_path": "skills/doc-coauthoring/SKILL.md",
-   "upstream_sha256": "2e47d78846faeea4a56e9809c52700087a15a2155a3f293a3efbaded81398ef4",
-   "upstream_bytes": 15815,
-   "upstream_blob_sha": "a5a69839ef4a161131d80b6daef10037a9686f4a",
-   "upstream_last_commit_sha": "00756142ab04c82a447693cf373c4e0c554d1005",
-   "upstream_last_commit_date": "2025-12-04T17:01:46Z",
-   "upstream_last_commit_msg": "Add doc-coauthoring skill and update example skills (#134)",
-   "local_sha256": "b6c395bdda306dbd05bd20e88dc72e8782215301a451253958a444c1079bbf27",
-   "local_bytes": 15855,
-   "relation": "local_ahead",
-   "stats": {
-    "local_lines": 231,
-    "upstream_lines": 229,
-    "common": 229,
-    "local_only": 2,
-    "upstream_only": 0,
-    "jaccard": 0.9913
-   },
-   "rubric_local": {
-    "overview": true,
-    "when_to_use": true,
-    "process": false,
-    "rationalizations": false,
-    "red_flags": false,
-    "verification": false
-   },
-   "rubric_upstream": {
-    "overview": true,
-    "when_to_use": true,
-    "process": false,
-    "rationalizations": false,
-    "red_flags": false,
-    "verification": false
-   },
+   "status": "UNVERIFIED",
    "candidates_tried": [
     {
      "repo": "anthropics/skills",
      "path": "skills/doc-coauthoring/SKILL.md",
-     "relation": "local_ahead",
-     "jaccard": 0.9913
+     "relation": "unrelated",
+     "jaccard": 0.0064
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills-claude/skills/doc-coauthoring/SKILL.md",
+     "error": "offline_no_cache"
+    },
+    {
+     "repo": "sickn33/agentic-awesome-skills",
+     "path": "plugins/agentic-awesome-skills/skills/doc-coauthoring/SKILL.md",
+     "error": "offline_no_cache"
     }
    ],
-   "evidence_source": "cache"
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）"
   },
   {
    "slug": "docx",
@@ -1032,7 +1007,7 @@
      "repo": "anthropics/skills",
      "path": "skills/pdf/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.1227
+     "jaccard": 0.088
     }
    ],
    "reason": "无可识别同源候选（全部 unrelated 或取不到）"
@@ -1357,19 +1332,19 @@
      "repo": "obra/superpowers",
      "path": "skills/verification-before-completion/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.1385
+     "jaccard": 0.1143
     },
     {
      "repo": "sickn33/agentic-awesome-skills",
      "path": "plugins/agentic-awesome-skills-claude/skills/verification-before-completion/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.127
+     "jaccard": 0.1063
     },
     {
      "repo": "sickn33/agentic-awesome-skills",
      "path": "plugins/agentic-awesome-skills/skills/verification-before-completion/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.127
+     "jaccard": 0.1063
     }
    ],
    "reason": "无可识别同源候选（全部 unrelated 或取不到）"

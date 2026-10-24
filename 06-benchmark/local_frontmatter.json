@@ -1,0 +1,1157 @@
+{
+ "schema": "local-frontmatter-r211-v1",
+ "generated_at": "2026-10-24T18:43:04+00:00",
+ "cmd": "python 05-exec/r211_local_fm.py",
+ "authority": "D:/global_skills",
+ "n": 191,
+ "face_note": null,
+ "parser_source": "r112_provenance_scan.fm_field",
+ "rows": [
+  {
+   "slug": "9b-lightworkflow",
+   "desc": "hermes 中 qwen3.5:9b-agent 干杂活的轻量工作流（agent 能力增强包 + 项目轻记忆）。当用户在项目文件夹下用 hermes 拉起 9b 小模型干杂活（改文件/跑命令/查信息/验证），需要\"轻记忆 + agent 能力\"组合方案时使用。含模型选型铁律、增强包、轻记忆模板、A/B 验证法、踩坑速查。",
+   "desc_len": 162,
+   "local_bytes": 8832
+  },
+  {
+   "slug": "A-ask-questions",
+   "desc": "复杂任务动手前的需求澄清引擎：澄清阶段逐项问透目标/范围/约束/验收四维（宁可多问十个也不漏一个），执行阶段一律自决不打断（四类重大按客观条件分流：能做直接做、做不到就不做并列待办，不再回问老大）——当需求模糊、方案多解、改动≥3文件或含破坏性动作时触发使用。",
+   "desc_len": 130,
+   "local_bytes": 14398
+  },
+  {
+   "slug": "A-dynamic-workflow",
+   "desc": "动态工作流引擎（wflow）的用法与一致接入入口——把\"复杂任务拆成子代理并行干\"从人的口头规程变成机器强制的契约。覆盖五道子代理守卫、DAG 波次调度、三类触发（manual/when/on_event）、8 类 hook 事件、事件流重放与熔断、只读接入体检 doctor、跨项目 workspace 清单、RSI 自循环评分与回写护栏。当用户提到\"动态工作流\"\"子代理编排\"\"多 agent 派发\"\"工作流引擎\"\"wflow\"\"扇出并行\"\"守卫代理树\"\"接入新项目到工作流\"\"skill 自进化\"\"RSI\"时加载。",
+   "desc_len": 260,
+   "local_bytes": 8803
+  },
+  {
+   "slug": "A-get-memory",
+   "desc": "任务后经验反哺引擎。四维度反思+经验分类路由+已有Skill升级检查+漏用Skill审计(根因定位→自解→修复→验证闭环)+用户画像增量更新+项目经验总结(冷启动续接摘要)+技能自我进化(全树自检+经验反哺闭环+进化账本)。每次实质性任务完成后自动触发，确保踩坑经验不流失；V4.6.0 起含 Step9 遗忘/retire 衰减（引用 retire_policy.md，补记忆第四动作防只写不忘）。",
+   "desc_len": 200,
+   "local_bytes": 13020
+  },
+  {
+   "slug": "A-java-problem",
+   "desc": "课程编程作业与练习总入口（Java 主线 + C++ 分支，龙虾自建，2026-09-07；C++ 分支 2026-10-12 并入）。Java 触发词：Java作业、Java练习、写个Java程序、javac、java编译运行报错、语法基础、面向对象/OOP/类与对象、集合/List/Map、异常处理、IO/文件读写、多线程、Swing、Java实验/实训/实验报告。C++ 触发词：C++作业、C++练习、约瑟夫问题、g++、MinGW、WinLibs、clang、dev-cpp、c++编译报错、VSCode 跑 C++、tasks.json、launch.json。强制路由：一切 Java 与 C++ 类作业必须先加载本 skill 再动手，禁止绕过直接作答（用户铁律 #45）。内置：本机环境档案（JDK8/17 与 g++16.2/gdb17.2 实测路径）、两门语言相反的编码铁律、常见错误速查（实测踩坑）、代码模板库、VSCode 接入配方、迭代账本（每次使用后必须回写）。",
+   "desc_len": 447,
+   "local_bytes": 14494
+  },
+  {
+   "slug": "A-memory-start",
+   "desc": "全局记忆入口加载 — 目录索引式按需加载全局记忆。全局记忆启动门禁",
+   "desc_len": 33,
+   "local_bytes": 12680
+  },
+  {
+   "slug": "A-project-better",
+   "desc": "项目方向优化器 — 解决开发者对项目后续开发方向迷茫的问题。强制前置「遗留待办盘点」：先扫 memory/07-next-steps（含分卷）、TODO.md、上次未执行区等未完成事项，逐条实测核验并经用户确认，再五源感知（含「判据输入端」：本机绿而 CI 红先比对两侧输入，别先怀疑判据逻辑）+ 六维诊断（功能/技术债/架构/文档交付/体量/前端），产出 P0/P1/P2 建议清单（对账不漏不重，标执行属性），用户挑选或预授权后执行并回写；破坏性按备份+Git双硬前提自动批准（缺前提回落待确认）。前端为**独立 Step 2.5 专项**（已融合 frontend-design + ui-ux-pro-max），六支柱体检：F-R 响应式布局与多终端适配、F-I 交互流程与反馈一致性、F-F 功能模块完整度（数据展示/状态管理/异常处理）、F-P 性能（加载速度/渲染效率/资源优化）、F-C 可维护性（组件化/模块化/文档注释）、F-U 现代化改造（技术栈/构建/依赖/渐进增强），外加 M1/M2/M3 动效篇（进入动画/Loading→Hero/平滑滚动）；Step 5 直接改写前端代码（逐柱改码+增量验证）。Use when 用户说\"不知道下一步做什么\"、\"项目怎么优化\"、\"帮我规划方向\"、\"下一步建议\"、\"项目体检\"、\"前端重构\"、\"页面现代化改造\"、\"响应式布局\"、\"多终端适配\"、\"交互流程优化\"、\"页面性能优化\"、\"组件化重构\"、\"代码可维护性\"、\"技术栈升级\"、\"页面动效优化\"、\"首屏优化\"、\"滚动动画\"、\"素材库\"、\"动效素材\"、\"有没有现成的动画\"、\"不重复造轮子\"，或明显对项目走向缺乏头绪时。",
+   "desc_len": 717,
+   "local_bytes": 9249
+  },
+  {
+   "slug": "A-project-handoff",
+   "desc": "项目记忆管理系统 — 每个项目内建 memory/ 目录（9个结构化记忆文件）+ 混合模式阶段归档 + 回滚恢复 + AI首次加载引导；并承载跨项目「CI 全绿契约」（greencheck.py：四态 GREEN/RED/BLOCKED/UNKNOWN + .ci/contract.json + pre-push 接线 + 通知静音判据：静音态读回 GitHub、裸静音判红）；并承载**工作区体量治理**（handoff.py volume 五层判据：记忆卷/根文档/产物与可再生缓存/备份残留/自动化链 + 跨项目 --sweep + ⑦savepoint 每轮真扫，advisory 不阻断）；并承载**提交信息字形守卫**（git_autopush 钩子推送前跑 msg_guard：中文串近形变体编辑距离1判 near-miss ⇒ 跳过自动推送并留痕，fail-open 不挡推送底线）",
+   "desc_len": 400,
+   "local_bytes": 9689
+  },
+  {
+   "slug": "A-prompt-better",
+   "desc": "Prompt优化器 — 自动按业界最佳实践优化用户提示词。Prompt自动优化",
+   "desc_len": 39,
+   "local_bytes": 28761
+  },
+  {
+   "slug": "A-skill-manager",
+   "desc": "技能全生命周期唯一总管——增/删/改/合并/上架/九端同步/依赖安装/安全审计、注册漂移、路由命中率一站式；触发词质量差需要重生、触发词重生、路由触发词优化亦属本件。当对话中出现主动增删改技能、装删技能、技能不生效、注册漂移、命中率诊断、技能安全审计等任何技能管理意图时加载。触发：加技能、删技能、改技能、合并技能、装技能、技能上架、skill注册、技能同步、技能漂移、命中率、触发词质量差、触发词重生、技能安全、skill依赖、技能清理、退役技能。不适用：任务后经验反哺（走 A-get-memory）、跨平台行为规则同步（走 cross-platform-agent-sync）。",
+   "desc_len": 292,
+   "local_bytes": 12018
+  },
+  {
+   "slug": "_my-skills",
+   "desc": "用户自建技能保护索引。此技能本身不执行任务，仅作为 registry.json 的保护标记存在。除非用户明确要求，否则不得删除此目录下的注册信息。",
+   "desc_len": 73,
+   "local_bytes": 1087
+  },
+  {
+   "slug": "agent-browser",
+   "desc": "浏览器自动化 CLI（agent-browser / npx agent-browser）。核心用法：snapshot-and-ref 工作流、命令链式执行、登录与鉴权、流式输出、批量跑页面、截图/录像、tab 并行会话、a11y 审计。Use when 需要驱动浏览器完成点击/填表/截图/多页批量操作，或复用已登录会话。不适用：桌面应用自动化（走 electron）。",
+   "desc_len": 186,
+   "local_bytes": 7867
+  },
+  {
+   "slug": "ai-video-homework-pipeline",
+   "desc": "AI 视频作业流水线——图生视频 → TTS 配音 → 无版权算法配乐 → ASS 字幕 → ffmpeg 交叉溶解合成 → 像素级 QA。当用户要求\"用 AI 生成视频并剪辑/加字幕/配音/配乐/导出成片\"、\"视频生成与编辑作业\"、或需要把已有图片做成带字幕配音的短视频时使用。",
+   "desc_len": 140,
+   "local_bytes": 6282
+  },
+  {
+   "slug": "algorithmic-art",
+   "desc": "Creating algorithmic art using p5.js with seeded randomness and interactive parameter exploration. Use this when users request creating art using code, generative art, algorithmic art, flow fields, or particle systems. Create original algorithmic art rather than copying existing artists' work to avoid copyright violations.",
+   "desc_len": 324,
+   "local_bytes": 19809
+  },
+  {
+   "slug": "audio-deliverable-pipeline",
+   "desc": "音频交付流水线（语音旁白 / 主题音乐 / 可选 MP4）— 固化「local-tts 不可用 → edge-tts 降级 + lameenc 编码 + mutagen/波形双核验」链路。触发：生成语音/旁白/TTS、生成音乐/BGM、作业音频交付、要求 MP3 音频文件。",
+   "desc_len": 137,
+   "local_bytes": 8345
+  },
+  {
+   "slug": "audit-runner-safe-aggregate",
+   "desc": "写聚合 runner 的反掩盖范式 — 依次/并行跑多个子脚本再汇总总 PASS/FAIL 时，防全局 any()/聚合把单个失败洗绿。给出反模式（THE BUG）、正确范式（THE FIX）、关键三原则、陷阱清单与写完必做的验真步骤。Use when 新写或改造 audit_all/test runner/批量检查器类聚合脚本。不适用：单个脚本自身的业务判定。",
+   "desc_len": 182,
+   "local_bytes": 5679
+  },
+  {
+   "slug": "bigfile-split",
+   "desc": "拆分超大记忆/知识库markdown文件 — 按标题切块+原文件留索引。当单文件超过 4KB 用户硬限时使用，禁止手写拆分脚本重踩行尾陷阱。",
+   "desc_len": 70,
+   "local_bytes": 4334
+  },
+  {
+   "slug": "blender-pipeline",
+   "desc": "本机 Blender 生产环境唯一入口 — 5.2.2/4.5.13 双版本路径、D 盘用户目录、BLENDER_USER_* 变量、Cycles GPU(OptiX) 切换、headless 渲染、官方扩展仓库与 pip 依赖、BlenderMCP 桥接。当要跑 Blender/bpy/.blend/渲染/建模/绑定/烘焙/导出 glTF 或排查 Blender 环境时使用；触发词 Blender、bpy、blend 文件、Cycles、OptiX、GPU 渲染、无头渲染、headless render、扩展安装、BlenderMCP、mcp-for-blender、3D 资产。",
+   "desc_len": 294,
+   "local_bytes": 18753
+  },
+  {
+   "slug": "brainstorming",
+   "desc": "头脑风暴、发散点子、灵感枯竭、创意激荡、思路发散、来点想法、brainstorm、ideation。You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation. 不适用：任务完成后经验反哺（走 A-get-memory）。",
+   "desc_len": 279,
+   "local_bytes": 11467
+  },
+  {
+   "slug": "brand-guidelines",
+   "desc": "Applies Anthropic's official brand colors and typography to any sort of artifact that may benefit from having Anthropic's look-and-feel. Use it when brand colors or style guidelines, visual formatting, or company design standards apply.",
+   "desc_len": 236,
+   "local_bytes": 2275
+  },
+  {
+   "slug": "browser-cdp",
+   "desc": "Reuse an existing logged-in Chrome via CDP (Chrome DevTools Protocol). Covers launching Chrome in debug mode, opening URLs, waiting for load, evaluating JavaScript, snapshots, extracting auth tokens; deep forensics (network/console/performance traces) is delegated to the official chrome-devtools-mcp. Trigger phrases: browser automation, CDP, agent-browser, 浏览器操作, 操作浏览器, Chrome CDP, 复用登录态, extract token from browser.",
+   "desc_len": 419,
+   "local_bytes": 2858
+  },
+  {
+   "slug": "browser-voice-call",
+   "desc": "Build and debug real-time voice conversations in the browser with the Web Speech API (SpeechRecognition + speechSynthesis) — barge-in / full-duplex interruption, continuous listen→understand→speak→listen loops, echo handling, and n-best transcript reranking. Use when the user wants the assistant to stop mid-sentence the moment they talk over it, complains that voice input is inaccurate, or asks about 语音通话/随时打断/实时双工/连续对话/识别不准.",
+   "desc_len": 429,
+   "local_bytes": 10390
+  },
+  {
+   "slug": "byted-bp-cdn-pagesdeploy",
+   "desc": "One-click deployment of static websites to BytePlus Edge Pages platform, supporting auto project creation, update deployment, custom domain binding, and CDN acceleration. Includes guided onboarding for new users without a BytePlus account. Use when deploying a static site or frontend build to BytePlus edge hosting with CDN acceleration.",
+   "desc_len": 338,
+   "local_bytes": 8124
+  },
+  {
+   "slug": "byted-mediakit-shared",
+   "desc": "1. mediakit-cli: 视频编辑 / 音频处理 / 加背景音乐 / 视频特效 / 动画效果 — supports audio/video processing, editing, and images, with cloud and local modes;2. mediakit-cli shared: environment checks, initialization config, command structure, authentication config, async task responses, and error handling. Use when batch-processing audio or video assets on Windows, or when a media pipeline needs environment checks and authenticated async tasks.",
+   "desc_len": 425,
+   "local_bytes": 10935
+  },
+  {
+   "slug": "byted-seedance-video-generate",
+   "desc": "Generate videos using Seedance models. Invoke when user wants to create videos from text prompts, images, or reference materials.",
+   "desc_len": 129,
+   "local_bytes": 8345
+  },
+  {
+   "slug": "byted-seedream-image-generate",
+   "desc": "Generate high-quality images from text prompts using Volcano Engine Seedream models. Supports multiple artistic styles and aspect ratios. Use this skill when users want to create images from text descriptions, generate artwork in various styles, create visual content for creative projects, or need AI-powered image generation capabilities.",
+   "desc_len": 340,
+   "local_bytes": 9031
+  },
+  {
+   "slug": "c-cleanup",
+   "desc": "Windows C盘空间清理技能。当用户需要释放C盘空间、清理磁盘、删除不必要的文件时使用此技能。支持分析磁盘使用情况、识别大文件夹、删除工作备份、清理临时文件和回收站。触发词：C盘清理、磁盘空间不足、释放空间、清理备份、c-delete、磁盘清理。",
+   "desc_len": 125,
+   "local_bytes": 30259
+  },
+  {
+   "slug": "canvas-design",
+   "desc": "Create beautiful visual art in .png and .pdf documents using design philosophy. You should use this skill when the user asks to create a poster, piece of art, design, or other static piece. Create original visual designs, never copying existing artists' work to avoid copyright violations.",
+   "desc_len": 289,
+   "local_bytes": 12416
+  },
+  {
+   "slug": "chaoshi-admin-inline-edit",
+   "desc": "超市web管理后台商品编辑——禁弹窗/禁抽屉/禁底部面板，唯一交互为InlineEditForm内联展开（条目正下方）。用户连续3轮纠正后确认的强偏好。含搜索+分类筛选+批量操作+快捷上下架开关的完整ProductsTab模式。触发词：内联编辑、inline edit、管理后台编辑、ProductsTab、商品编辑模式、编辑展开、admin CRUD、禁弹窗。",
+   "desc_len": 181,
+   "local_bytes": 6245
+  },
+  {
+   "slug": "chaoshi-image-optimization",
+   "desc": "超市web图片资产优化流水线——审计→ffmpeg批量WebP压缩→响应式srcset小图生成→问题图替换(ImageGen降级ImageSearch)→代码引用更新→build验证。当需要优化supermarket-web商品图片（体积压缩、格式转换、响应式srcset、问题图替换、引用迁移）时使用。触发词：图片优化、WebP压缩、商品图替换、图片资产治理、chaoshi image、图片瘦身、图片审计、响应式srcset、responsive images、小图生成、400w。",
+   "desc_len": 243,
+   "local_bytes": 35277
+  },
+  {
+   "slug": "chaoshi-web-deploy",
+   "desc": "超市web部署与部署排障唯一权威源（v3 新架构：Cloudflare Pages Functions + D1 + GitHub Pages 双前端）。cloudbase 云函数部署后订单不显示、部署后数据不显示、部署故障排查、部署后页面 404。任何 wrangler pages deploy / gh pages 推送 / d1 execute 前必须先加载本 skill 获取对应模式 checklist，禁止凭记忆裸跑。覆盖两种部署目标：①Cloudflare Pages（管理后台+API，supermarket-web.pages.dev）②GitHub Pages（微信顾客端，lxh113377.github.io）。触发词：超市部署、chaoshi deploy、超市上线、部署超市、wrangler pages deploy、gh pages 推送、D1 迁移、部署 Cloudflare。",
+   "desc_len": 407,
+   "local_bytes": 60094
+  },
+  {
+   "slug": "chart-visualization",
+   "desc": "This skill should be used when the user wants to visualize data. It intelligently selects the most suitable chart type from 26 available options, extracts parameters based on detailed specifications, and generates a chart image using a JavaScript script.",
+   "desc_len": 254,
+   "local_bytes": 3395
+  },
+  {
+   "slug": "ci-pipeline-debugging",
+   "desc": "CI/CD 流水线排障决策树 — 把「本地绿但 CI 红」拆成可归因的六类（以 Step 0 表为准）。Use when a CI run is red, stuck, unexpectedly green, or when a check passes locally but fails on the runner. 触发词：CI 红了、流水线挂了、actions 失败、本地绿 CI 红、runner 没启动、CI 判据不生效、浅克隆导致复现不出、缓存污染、job 秒失败、steps 为 0、判据没挂受理面、没人改动却到点变红、读数过期把提交判红、日历型红。",
+   "desc_len": 283,
+   "local_bytes": 12951
+  },
+  {
+   "slug": "cloudbase",
+   "desc": "Use this skill when you develop, design, build, deploy, debug, migrate, or troubleshoot CloudBase (腾讯云开发, 云开发, TCB, 微信云开发) projects — Web, 微信小程序, 小程序, uni-app, mobile (iOS, Android, Flutter, React Native). Covers UI (页面, 界面, 表单, dashboard, prototype, 原型); auth (登录, 注册, OAuth, publishable key); databases (NoSQL 文档数据库, MySQL 关系型数据库, PostgreSQL/CloudBase PG, app.rdb(), queryPgDatabase/managePgDatabase, CRUD, security rules); 云函数/cloud functions (serverless, scf_bootstrap); CloudRun (云托管, Dockerfile); 云存储; built-in AI (内置大模型, AI 对话, streaming, 流式输出, 图片生成, generateText, streamText, createModel, generateImage, TokenHub, Hunyuan, DeepSeek, GLM, Kimi, Token Credits 资源包, 小程序成长计划); third-party/custom model onboarding (第三方大模型接入, 大模型调用, LLM API); AI agent (智能体, AG-UI, LangGraph); ops troubleshooting (巡检, 诊断, 日志); spec workflow (需求文档, 技术方案, requirements, tasks.md). Do NOT use for non-CloudBase projects, pure frontend without CloudBase, or self-hosted backends without CloudBase.",
+   "desc_len": 979,
+   "local_bytes": 19814
+  },
+  {
+   "slug": "cloudbase-db-optimize",
+   "desc": "CloudBase 云开发文档库（MongoDB 兼容）性能优化流水线——诊断五类根因（缺索引/N+1/无投影/无缓存/分页漏算）→建索引→改批量查询→加字段投影→只读数据 TTL 缓存+写操作失效→验证。当 CloudBase/云开发项目出现查询慢、响应时间长、数据库成为瓶颈时使用。触发词：数据库慢、查询慢、数据库优化、DB优化、性能瓶颈、云开发慢、CloudBase 优化、tcb 数据库、集合索引、createIndex、全集合扫描、N+1 查询、云函数慢、接口响应慢。",
+   "desc_len": 239,
+   "local_bytes": 8389
+  },
+  {
+   "slug": "code-review",
+   "desc": "项目代码库全面审查 — 性能瓶颈/代码缺陷/可维护性/安全漏洞/重复代码五维扫描（每维都要过，证据落到 file:line），按 严重程度×影响范围 评定优先级并逐项实施优化，输出六字段报告模板。含经验锚点与「借口→反驳」反理性化清单。Use when 用户要「全面审查/代码审查/体检」或要定位某类异常根因。不适用：安全专项深审（走 security-audit）、改结构不改行为（走 refactoring）。",
+   "desc_len": 207,
+   "local_bytes": 5200
+  },
+  {
+   "slug": "codebuddy-chat-web",
+   "desc": "用 CodeBuddy Agent SDK 构建智能客服类 Web 应用：多轮对话、FAQ 知识库检索、意图识别（退款/查单/技术支持）、自动转人工、会话持久化、管理后台与满意度统计。Use when 需求含『对话/客服/FAQ/知识库/意图识别/转人工/满意度』，或要用 CodeBuddy SDK 驱动 Web 应用。",
+   "desc_len": 161,
+   "local_bytes": 5531
+  },
+  {
+   "slug": "coding-agent",
+   "desc": "Delegate coding work to Codex, Claude Code, OpenCode, or WorkBuddy (codebuddy) as background workers. Use when a task can run independently, needs parallel subtasks, or long-running execution; not for simple edits or read-only code lookup.",
+   "desc_len": 239,
+   "local_bytes": 4965
+  },
+  {
+   "slug": "commit-archaeologist",
+   "desc": ">-",
+   "desc_len": 2,
+   "local_bytes": 5536
+  },
+  {
+   "slug": "computer-use-guidance-windows",
+   "desc": "Operation guidance for automating the Windows desktop via Computer Use: open apps, read on-screen state through the UIA accessibility tree, click / type / press shortcut keys / scroll / drag / invoke semantic UIA actions, and execute platform-specific recipes across apps, windows, files, system settings, terminal, office suites, and developer tools. Use when a Windows automation task must drive real UI elements rather than editing files or calling APIs directly.",
+   "desc_len": 466,
+   "local_bytes": 28242
+  },
+  {
+   "slug": "consulting-analysis",
+   "desc": "研究报告/咨询分析:市场分析、消费者洞察、品牌与财务分析报告。Use this skill when the user requests to generate, create, or write professional research reports including but not limited to market analysis, consumer insights, brand analysis, financial analysis, industry research, competitive intelligence, technical/engineering project benchmarking (技术/工程项目对标), investment due diligence, or any consulting-grade analytical report. This skill operates in two phases — (1) generating a structured analysis framework with chapter skeleton, data query requirements, and analysis logic, and (2) after data collection by other skills, producing the final consulting-grade report with structured narratives, embedded charts, and strategic insights.",
+   "desc_len": 710,
+   "local_bytes": 71678
+  },
+  {
+   "slug": "cross-platform-agent-sync",
+   "desc": "跨平台AI agent行为规则同步方法论。通过junction + 共享文件 + 平台启动文件引用实现\"改一处N端响应\"。在役端清单**只读不抄**：权威 = `焚诀\\eval\\truth_constants.json` endpoints.active（2026-09-26 实测七端 wb/tr/cx/hm/zc/oc/qd；cc 弃用 2026-09-08、OpenClaw 退役 2026-09-21、千问办公 qw 退役 2026-09-26）。当需要新增或修改跨平台铁律、修复启动文件引用链、验证各在役端规则传播、诊断某端不响应问题、**接入或退役一个端（上下架/摘端）**时使用。触发词：agent同步、规则同步、改一处N端响应、多端同步、BOOTSTRAP传播链、启动文件引用、junction规则同步、跨平台铁律、端退役、新增端、摘端、上下架端点、退役端点对账。【边界区分】本 skill 管\"行为规则/铁律\"跨端传播；skill 文件本身的同步与注册表检测由 A-skill-manager 负责，二者职责不重叠，勿混用。",
+   "desc_len": 471,
+   "local_bytes": 5445
+  },
+  {
+   "slug": "data-analysis",
+   "desc": "Excel/CSV数据分析:统计汇总、透视表、SQL查询。Use this skill when the user uploads Excel (.xlsx/.xls) or CSV files and wants to perform data analysis, generate statistics, create summaries, pivot tables, SQL queries, or any form of structured data exploration. Supports multi-sheet Excel workbooks, aggregation, filtering, joins, and exporting results to CSV/JSON/Markdown.",
+   "desc_len": 356,
+   "local_bytes": 8969
+  },
+  {
+   "slug": "data-visualization",
+   "desc": "用 Python 画 matplotlib 交互图、Python 数据可视化。Create effective data visualizations with Python. 优先使用 plotly（交互式图表），seaborn 和 matplotlib 作为备选（静态图表）。Use when building charts, choosing the right chart type for a dataset, creating publication-quality figures, and applying design principles including accessibility and color theory.",
+   "desc_len": 321,
+   "local_bytes": 13809
+  },
+  {
+   "slug": "debugging-fixing",
+   "desc": "系统化诊断并修复 bug/报错/异常行为。覆盖报错栈、测试失败、崩溃、进程卡住不返回、rc=124 恒定超时、daemon 线程或子进程未清理、竞态与共享可变状态、环境变量与路径类失败、页面白屏/本地 HTML 双击无反应/构建产物无内容、进程内引擎故障（wasm/native/Rust FFI/JIT）报错栈短得反常或耗时异常短。Use when 用户说「报错了」「跑不通」「卡住了」「不返回」「白屏」「为什么超时」「crash/闪退/hang」「unreachable」「裸异常」「零产出」「内存泄漏」「触顶卡死」「账号均在限流中」「没有可用账号」「池已耗尽」。流程=先复现取证据→列 2-3 个根因假设→最小改动→修完走验证 Gate→记录根因。不适用：代码规范与性能体检（走 code-review）、编写测试（走 testing）、完工前证据核验（走 verification-before-completion）。",
+   "desc_len": 414,
+   "local_bytes": 53792
+  },
+  {
+   "slug": "defuddle",
+   "desc": "Extract clean markdown content from web pages using Defuddle CLI, removing clutter and navigation to save tokens. Use instead of WebFetch when the user provides a URL to read or analyze, for online documentation, articles, blog posts, or any standard web page. Not usable for JS-rendered-only pages without a browser — fall back to trafilatura (HTML in) or browser skills.",
+   "desc_len": 372,
+   "local_bytes": 2608
+  },
+  {
+   "slug": "diagram-maker",
+   "desc": "生成架构图/流程图/概念图（SVG / HTML / Excalidraw 产出物），先定输出模式再画，图作为交付件而非文字描述。Use when 用户要「画个图/架构图/流程图/示意图/excalidraw」。不适用：数据图表与统计可视化（走 data-visualization / chart-visualization）。",
+   "desc_len": 165,
+   "local_bytes": 2622
+  },
+  {
+   "slug": "dingtalk-aisearch",
+   "desc": "AI搜问：人员语义搜索、跨源内容定位与行为回溯。Use when 按姓名/工号/部门/职责/上下级找人，或在目标对象未知时按主题、语义、来源或行为发现相关内容。搜索结果用于候选定位；命中后需要读取、修改或验证原对象时切换到对象所属产品。完整手机号精确反查走 dingtalk-contact。命令前缀：dws aisearch。",
+   "desc_len": 164,
+   "local_bytes": 9263
+  },
+  {
+   "slug": "dingtalk-aitable",
+   "desc": "钉钉 AI 表格（多维表）。Use when 用户说 AI表格/多维表/数据表/base/table/应用模式/App 页面/Widget/建表/查记录/写数据/字段/记录增删改查/记录评论/评论回复/SQL/PostgreSQL/SELECT/JOIN/跨表关联查询/筛选/排序/公式/模板搜索/批量导入CSV或JSON/导出/仪表盘/图表/上传附件到表格/按字段类型建表/数据源/创建数据源/更新数据源配置/触发数据源同步/按任务 ID 查询同步状态/获取数据源配置/列出数据源可用来源/获取数据源可同步字段/审批数据同步。不做电子表格单元格读写或单元格批注（走 dingtalk-misc）、文档编辑（走 dingtalk-doc）；听记待办入表先用 dingtalk-minutes 提取，再由本 skill 写入。命令前缀：dws aitable。",
+   "desc_len": 379,
+   "local_bytes": 27002
+  },
+  {
+   "slug": "dingtalk-calendar",
+   "desc": "钉钉日历与会议室。Use when 用户说 约会议/查日程/订会议室/查闲忙/加参会人/改期/取消会议/今天的日程/本周日程/共同空闲。不做视频会议发起/邀请入会/会中控制（走 dingtalk-misc）、AI 听记（走 dingtalk-minutes）、待办任务（走 dingtalk-todo）。命令前缀：dws calendar。",
+   "desc_len": 170,
+   "local_bytes": 13531
+  },
+  {
+   "slug": "dingtalk-chat",
+   "desc": "钉钉群聊与消息。Use when 收发/搜索消息、建群、群治理、Bot/Webhook、文件，或仅限 IM 的消息谓词筛选。跨源主题/行为轨迹走 dingtalk-aisearch；DING/班级群走 dingtalk-misc；邮件走 dingtalk-mail。",
+   "desc_len": 133,
+   "local_bytes": 9764
+  },
+  {
+   "slug": "dingtalk-contact",
+   "desc": "钉钉通讯录精确查询。Use when 已有 userId 后查详情、部门、职位或邮箱，按完整手机号反查用户，或查询自己、部门成员及角色。姓名模糊搜索、工号、职责、上下级走 dingtalk-aisearch，拿到 userId 后用本 skill 补详情。命令前缀：dws contact。",
+   "desc_len": 145,
+   "local_bytes": 9665
+  },
+  {
+   "slug": "dingtalk-doc",
+   "desc": "钉钉在线文字文档（adoc）内容：查找、创建、读取编辑、块、评论、媒体/附件、白板卡片容器、导入导出、版本、模板、权限、分享及 Markdown/JSONML。不做白板图形/原生 .md/电子表格（dingtalk-misc）、文档空间与钉盘存储（dingtalk-drive）、知识库组织（dingtalk-wiki）、AI 表格（dingtalk-aitable）。命令前缀：dws doc。",
+   "desc_len": 198,
+   "local_bytes": 12264
+  },
+  {
+   "slug": "dingtalk-drive",
+   "desc": "钉钉文件管理（存储层，覆盖钉盘与文档空间）。Use when 用户说 钉盘/文档空间/我的文档中的普通文件或文件夹、查找/上传/下载/复制/移动/重命名/删除/回收站/权限/评论/元信息，或本地与钉盘文件夹比较、拉取、推送、双向同步；也承接在线文档节点的存储管理。文档正文编辑与导出走 dingtalk-doc；明确的知识库空间及空间内节点组织走 dingtalk-wiki。命令前缀：dws drive。",
+   "desc_len": 203,
+   "local_bytes": 15639
+  },
+  {
+   "slug": "dingtalk-event",
+   "desc": "钉钉个人 IM、OA 审批、VoIP 通话邀请、待办与互动卡片回调事件长连接监听。Use when 用户说监听消息/@我/某人/某群/全部消息、已读/撤回/reaction、群成员加入/群成员退出/群状态变化，监听审批任务创建/完成/转交、审批实例发起/抄送/终止/完成、VoIP 通话邀请、待办创建/更新/删除，或互动卡片回调。命令前缀：dws event。",
+   "desc_len": 180,
+   "local_bytes": 10290
+  },
+  {
+   "slug": "dingtalk-mail",
+   "desc": "钉钉邮箱读写、搜索、回复与转发。Use when 用户说发邮件/查邮件/回邮件/转发邮件/未读邮件/邮件搜索/邮箱附件。一句话发邮件时先用 dingtalk-contact 解析并确认收件人，再由本 skill 发送；不做钉钉消息（走 dingtalk-chat）、紧急通知（走 dingtalk-misc）。命令前缀：dws mail。",
+   "desc_len": 169,
+   "local_bytes": 9591
+  },
+  {
+   "slug": "dingtalk-minutes",
+   "desc": "钉钉 AI 听记。Use when 查询或修改听记摘要、完整逐字稿、关键词、标签、行动项、录音、上传、思维导图、发言人洞察、ASR 热词/识别词配置或分享权限。写文档走 dingtalk-doc；建待办走 dingtalk-todo；日程走 dingtalk-calendar。命令前缀：dws minutes。",
+   "desc_len": 156,
+   "local_bytes": 16765
+  },
+  {
+   "slug": "dingtalk-misc",
+   "desc": "长尾产品集合技能，覆盖低频钉钉产品：OA审批查询与处理/法务智能合同/考勤/直播/DING紧急消息/开放平台应用与MCP开发/Agoal目标管理/日志日报周报/电子表格/开放平台文档搜索与OpenAPI逃生舱/独立及文档内嵌白板/钉钉招聘/DWS技能市场安装/人事薪酬绩效/组织大脑Hrbrain/原生Markdown/原生HTML/PAT行为授权/多组织profile。Use when 用户提到上述任一产品，尤其是 Agoal/目标管理/战略解码/经营合约及字段配置/计分卡/OKR/目标规则与周期/个人目标/目标模板/周月报规则提交统计/按时/迟交/未提交/跟催，或查询/创建合同台账、批量导入合同、按听记起草合同、发起合同审查、归档合同、管理合同项目/相对方/账款，或查待审批/同意拒绝转交撤销审批/打卡/排班/日报周报内容填报/独立白板带内容创建/白板节点读写/单元格读写/招聘职位/JD/创建职位/搜索安装技能/开发者后台应用/企业内部应用/查应用状态或能否删除/应用管理成员及角色汇总/应用版本历史/企业内部应用机器人配置、消息模式或在线状态/本机机器人连接器/Stream连接/MCP服务或工具/发布或调试MCP/获取或调用已发布MCP/把OpenAPI、Swagger、Postman、curl或HTTP接口做成MCP或给Agent使用/未封装OpenAPI/llms.txt/dws api/人才池/员工档案/职业历程/绩效/薪酬/工资条/人力成本/原生.md文件/Markdown版本比较/本地草稿diff/Markdown评论/原生.html文件/新建HTML页面/PAT授权/切换组织/跨组织/profile 等相关操作。周报/月报内容填报属于 report；规则级按时、迟交、未提交统计与人员跟催属于 Agoal；带审批人、抄送人或审批流的日报、周报、简报提交属于 OA 审批。未来审批任务或实例变化的实时监听不属于本 skill，应使用 dingtalk-event。命中后由本 skill 的「产品索引表」定位具体子产品和命令前缀，再按对应子产品说明执行。",
+   "desc_len": 894,
+   "local_bytes": 16285
+  },
+  {
+   "slug": "dingtalk-shared",
+   "desc": "钉钉(DingTalk) MultiSkill 的轻量共享入口。Use when 用户泛称 DWS/钉钉操作但未明确产品、请求跨产品编排、需要 URL 类型预检或产品边界消歧。清晰的单产品操作优先使用对应 dingtalk-* 子 skill；本 skill 只提供全局执行契约和按需 reference 导航，不承载产品命令全集。",
+   "desc_len": 166,
+   "local_bytes": 7143
+  },
+  {
+   "slug": "dingtalk-todo",
+   "desc": "钉钉待办 / TODO。Use when 用户说 创建待办/TODO/任务提醒/指派任务/标记完成/查待办/紧急待办/循环待办/批量建待办/逾期待办。不做日报周报（走 dingtalk-misc）、审批（走 dingtalk-misc）、日程（走 dingtalk-calendar）。命令前缀：dws todo。",
+   "desc_len": 157,
+   "local_bytes": 11959
+  },
+  {
+   "slug": "dingtalk-wiki",
+   "desc": "钉钉知识库与空间管理。Use when 用户明确说 知识库/wiki/创建、查找或列出知识库/命名的团队知识空间/个人知识库/知识库成员/库内节点创建、列表、搜索、复制、移动、删除或知识库动态。仅说“文档空间/我的文档”不触发：普通存储管理与全局文件搜索走 dingtalk-drive；节点正文读写走 dingtalk-doc。命令前缀：dws wiki。",
+   "desc_len": 179,
+   "local_bytes": 13732
+  },
+  {
+   "slug": "discover-agent-cli",
+   "desc": "发现Electron桌面应用中隐藏的CLI工具。发现桌面应用隐藏CLI",
+   "desc_len": 35,
+   "local_bytes": 8531
+  },
+  {
+   "slug": "doc-coauthoring",
+   "desc": "与人共同起草文档的三阶段工作流：先把背景榨干（元问题+无序倾倒+追问直到问题显示真懂），再逐节搭骨架（发散→取舍→缺口→成文→返工→自检），最后用「零上下文读者代理」实测能不能读懂。当用户要写提案/技术规格/决策记录/需要别人读的产品文档，或说「帮我一起写」「这份文档再磨一下」时使用。不适用：只要排版或格式转换（走 docx / html-ppt）。",
+   "desc_len": 176,
+   "local_bytes": 7273
+  },
+  {
+   "slug": "docker-e2e-gate",
+   "desc": "用 Docker 干净容器（debian glibc + alpine musl 双矩阵）对发布产物做端到端验收：serve/enable/verify/uninstall 全链、静态链接自检、版本一致性、发布资产本体复测。触发词：docker 测试、干净机验证、clean machine e2e、发布前验收、musl/alpine 兼容、跨平台交付、别人机器能不能跑。Use when releasing a cross-platform binary or when asked whether it runs on other machines.",
+   "desc_len": 277,
+   "local_bytes": 3598
+  },
+  {
+   "slug": "docx",
+   "desc": "Comprehensive Word (.docx) skill: create, read, edit, and manipulate Word documents end-to-end. Covers turning Markdown or structured text into polished Word output, filling reusable templates ({{token}} or reference-doc), applying correct Chinese (CJK) typography defaults, generating bespoke docs from scratch with docx-js, and low-level OOXML patching including tracked changes and comments. Triggers include any mention of 'Word doc', 'word document', '.docx', '报告', '备忘录', '信函', '合同', '会议纪要', 'Markdown 转 Word', 'md 转 docx', '套模板生成 Word', '中文 Word 报告', 'tracked changes', '修订标记', 'Word 批注', 'OOXML', or requests to insert/replace images, perform find-and-replace, or convert content into a polished Word document. Do NOT use for PDFs, spreadsheets, Google Docs, or general coding tasks unrelated to document generation.",
+   "desc_len": 824,
+   "local_bytes": 29314
+  },
+  {
+   "slug": "dogfood",
+   "desc": "系统化探索和测试本地Web应用 — 浏览器QA。应用探索测试。适用：本地/开发服务器已启动、需要模拟真实用户走查页面与QA验收时使用；触发词：dogfood、应用探索测试、浏览器QA、页面走查、本地Web测试",
+   "desc_len": 104,
+   "local_bytes": 11882
+  },
+  {
+   "slug": "electron",
+   "desc": "Automate Electron desktop apps (VS Code, Slack, Discord, Figma, Notion, Spotify, etc.). Two lanes: attach to an app that is already open via agent-browser over CDP; launch-and-test from scratch via Playwright _electron (no debug port needed, main-process eval, multi-window, tracing). Use when the user needs to interact with an Electron app, automate a desktop app, connect to a running app, or test an Electron application. Triggers: automate Slack app, control VS Code, test this Electron app, connect to desktop app.",
+   "desc_len": 520,
+   "local_bytes": 2625
+  },
+  {
+   "slug": "elon-musk-perspective",
+   "desc": "|",
+   "desc_len": 1,
+   "local_bytes": 23684
+  },
+  {
+   "slug": "fenjue-lessons-hitrate",
+   "desc": "Use when 涉及焚诀第四主线 lessons 命中率度量——把\"记住教训\"升级为\"用上教训\"，行为指纹扫描+收尾门禁。",
+   "desc_len": 62,
+   "local_bytes": 3275
+  },
+  {
+   "slug": "fenjue-memory-audit",
+   "desc": "焚诀全局记忆三视角融合审计 — 前端体验(40%)+认知工程(40%)+账面健康(20%)=160分制（三视角内部满分各100=维度合计）。覆盖算力消耗感知、skill调用丝滑度、对话舒适度、系统自愈率、版本一致性、大文件分类治理、路由追问能力、经验查找命中率、用户价值占比、可移植性、规则密度等全部维度。30维(D1-D30)测量以 fenjue_measure.py 实跑为准。触发词覆盖原A-memory-align+fenjue-cogrel-scoring+前端体验关键词。agent_created: true",
+   "desc_len": 261,
+   "local_bytes": 9768
+  },
+  {
+   "slug": "figma",
+   "desc": "Use the Figma MCP server to fetch design context, screenshots, variables, and assets from Figma, and to translate Figma nodes into production code. Trigger when a task involves Figma URLs, node IDs, design-to-code implementation, or Figma MCP setup and troubleshooting.",
+   "desc_len": 269,
+   "local_bytes": 3210
+  },
+  {
+   "slug": "find-skills",
+   "desc": "ALWAYS use this skill as the FIRST step before handling any substantive task, even if you believe general capabilities are sufficient — a dedicated skill may still produce better results. Only pure chitchat and trivial factual lookups are exempt. This skill searches the official marketplace, the skills.sh community (npx skills CLI), and optional enterprise skill markets (MCP), then installs the user-chosen skill with mandatory confirmation.",
+   "desc_len": 444,
+   "local_bytes": 2674
+  },
+  {
+   "slug": "first-principles-decomposer",
+   "desc": "Break any problem down to fundamental truths, then rebuild solutions from atoms up. Use when user says \"firstp\", \"first principles\", \"from scratch\", \"what are we assuming\", \"break this down\", \"atomic\", \"fundamental truth\", \"physics thinking\", \"Elon method\", \"bedrock\", \"ground up\", \"core problem\", \"strip away\", or challenges assumptions about how things are done.",
+   "desc_len": 364,
+   "local_bytes": 3517
+  },
+  {
+   "slug": "frontend-asset-library",
+   "desc": "前端页面优化的素材与动效复用库 —— 把 scrolltide/mobbin/fontshare/coolors/spline/lottiefiles/threejs-journey/3dicons 这类站点收敛成一张**实测过**的可取数名册（含被 Cloudflare 拦死的替代通道），配 fetch_assets.py 把动效/图标/字体/模型下载到本地缓存池复用，不重复造轮子。Use when 用户下达\"页面优化/美化/加动效/换图标/做 Landing/首屏 Hero\"类指令，或点名上述任一站点，或问\"有没有现成的 XX\"。不适用：从零写业务组件（走 frontend-design）、GSAP 时间轴语法细节（走 gsap）、视频合成（走 hyperframes）。",
+   "desc_len": 342,
+   "local_bytes": 7658
+  },
+  {
+   "slug": "frontend-design",
+   "desc": "Create distinctive, production-grade frontend interfaces with high design quality. Use this skill when the user asks to build web components, pages, artifacts, posters, or applications (examples include websites, landing pages, dashboards, React components, HTML/CSS/layouts, or when styling/beautifying any web UI). Generates creative, polished code and UI design that avoids generic AI aesthetics.",
+   "desc_len": 399,
+   "local_bytes": 10198
+  },
+  {
+   "slug": "frontend-skill",
+   "desc": "Use when the task asks for a visually strong landing page, website, app, prototype, demo, or game UI. This skill enforces restrained composition, image-led hierarchy, cohesive content structure, and tasteful motion while avoiding generic cards, weak branding, and UI clutter.",
+   "desc_len": 275,
+   "local_bytes": 7711
+  },
+  {
+   "slug": "frontend-slides",
+   "desc": "Create stunning, animation-rich HTML presentations from scratch or by converting PowerPoint files. Use when the user wants to build a presentation, convert a PPT/PPTX to web, or create slides for a talk/pitch. Helps non-designers discover their aesthetic through visual exploration rather than abstract choices.",
+   "desc_len": 311,
+   "local_bytes": 20073
+  },
+  {
+   "slug": "github",
+   "desc": "Interact with GitHub using the `gh` CLI. Use `gh issue`, `gh pr`, `gh run`, and `gh api` for issues, PRs, CI runs, and advanced queries.",
+   "desc_len": 136,
+   "local_bytes": 5124
+  },
+  {
+   "slug": "grill-me",
+   "desc": "Interview the user relentlessly about a plan or design until reaching shared understanding, resolving each branch of the decision tree. Use when user wants to stress-test a plan, get grilled on their design, or mentions \"grill me\".",
+   "desc_len": 231,
+   "local_bytes": 2716
+  },
+  {
+   "slug": "gsap",
+   "desc": "GSAP animation reference for HyperFrames. Covers gsap.to(), from(), fromTo(), easing, stagger, defaults, timelines (gsap.timeline(), position parameter, labels, nesting, playback), and performance (transforms, will-change, quickTo). Use when writing GSAP animations in HyperFrames compositions. 中文触发：动画、滚动触发动画、缓动、时间轴、补间动画、ScrollTrigger、GSAP动画库。",
+   "desc_len": 344,
+   "local_bytes": 7930
+  },
+  {
+   "slug": "gstack",
+   "desc": "|",
+   "desc_len": 1,
+   "local_bytes": 27814
+  },
+  {
+   "slug": "healthcare-cdss-patterns",
+   "desc": "Clinical Decision Support System (CDSS) development patterns. Drug interaction checking, dose validation, clinical scoring (NEWS2, qSOFA), alert severity classification, and integration into EMR workflows. Use when building clinical decision support — drug interaction checks, dose validation, clinical scoring, or alert severity.",
+   "desc_len": 330,
+   "local_bytes": 9501
+  },
+  {
+   "slug": "healthcare-emr-patterns",
+   "desc": "EMR/EHR development patterns for healthcare applications. Clinical safety, encounter workflows, prescription generation, clinical decision support integration, and accessibility-first UI for medical data entry. Use when building EMR or EHR features such as encounter workflows, prescription generation, or clinical data entry UI.",
+   "desc_len": 329,
+   "local_bytes": 6786
+  },
+  {
+   "slug": "healthcare-eval-harness",
+   "desc": "Patient safety evaluation harness for healthcare application deployments. Automated test suites for CDSS accuracy, PHI exposure, clinical workflow integrity, and integration compliance. Blocks deployments on safety failures. Use when a healthcare deployment must be gated on patient-safety tests for CDSS accuracy, PHI exposure, and workflow integrity.",
+   "desc_len": 352,
+   "local_bytes": 7889
+  },
+  {
+   "slug": "hermes-installer",
+   "desc": "安装/下载 Hermes Agent（桌面版与 CLI），含中国大陆 GFW 阻断修复。用于 Hermes 安装失败、下载 Hermes、Hermes-Setup.exe 报 INSTALL DIDN'T FINISH、raw.githubusercontent.com 被拒、git clone 被 RST 等场景。",
+   "desc_len": 159,
+   "local_bytes": 2512
+  },
+  {
+   "slug": "hook-analyzer-skill",
+   "desc": "视频前三秒钩子分析技能。从分镜拆解结果中提取前三秒分镜数据，为钩子吸引力评估提供结构化上下文。运行脚本 `python scripts/analyze_hook_segments.py \"<breakdown_json_file>\"` 或通过 stdin 传入 JSON。输出包含前三秒分镜数量、总时长和每个分镜的详细信息（含关键帧 URL）。触发词：钩子分析、前三秒、hook 分析；当分镜已拆解完成、需要评估开场吸引力时使用。",
+   "desc_len": 215,
+   "local_bytes": 5471
+  },
+  {
+   "slug": "html-ppt",
+   "desc": "HTML PPT Studio — author professional static HTML presentations in many styles, layouts, and animations, all driven by templates. Use when the user asks for a presentation, PPT, slides, keynote, deck, slideshow, \"幻灯片\", \"演讲稿\", \"做一份 PPT\", \"做一份 slides\", a reveal-style HTML deck, a 小红书 图文, or any kind of multi-slide pitch/report/sharing document that should look tasteful and be usable with keyboard navigation. Triggers include keywords like \"presentation\", \"ppt\", \"slides\", \"deck\", \"keynote\", \"reveal\", \"slideshow\", \"幻灯片\", \"演讲稿\", \"分享稿\", \"小红书图文\", \"talk slides\", \"pitch deck\", \"tech sharing\", \"technical presentation\".",
+   "desc_len": 616,
+   "local_bytes": 14305
+  },
+  {
+   "slug": "html-to-docx-win-fix",
+   "desc": "修复 tencent-docx 内置插件的 setup-html-to-docx.sh 在 Windows/Git Bash 下静默失败（uv 把 MSYS 路径 /c/... 当相对路径 → venv 建到 D:\\c\\...，且脚本按 Linux 的 bin/python 探测）。触发场景：html-to-docx 环境准备卡在「▶ Creating venv」后无输出、文档转换报 ModuleNotFoundError、或磁盘上出现 D:\\c\\Users\\... 这类畸形 venv 路径。",
+   "desc_len": 249,
+   "local_bytes": 4554
+  },
+  {
+   "slug": "hyperframes",
+   "desc": "Create video compositions, animations, title cards, overlays, captions, voiceovers, audio-reactive visuals, and scene transitions in HyperFrames HTML. Use when asked to build any HTML-based video content, add captions or subtitles synced to audio, generate text-to-speech narration, create audio-reactive animation (beat sync, glow, pulse driven by music), add animated text highlighting (marker sweeps, hand-drawn circles, burst lines, scribble, sketchout), or add transitions between scenes (crossfades, wipes, reveals, shader transitions). Covers composition authoring, timing, media, and the full video production workflow. For dev-loop CLI commands (init, lint, inspect, preview, render) see the hyperframes-cli skill; for asset preprocessing commands (tts, transcribe, remove-background) see the hyperframes-media skill.",
+   "desc_len": 826,
+   "local_bytes": 33071
+  },
+  {
+   "slug": "hyperframes-cli",
+   "desc": "HyperFrames CLI dev loop — `npx hyperframes` for scaffolding (init), validation (lint, inspect), preview, render, and environment troubleshooting (doctor, browser, info, upgrade). Use when running any of these commands or troubleshooting the HyperFrames build/render environment. For asset preprocessing commands (`tts`, `transcribe`, `remove-background`), invoke the `hyperframes-media` skill instead.",
+   "desc_len": 402,
+   "local_bytes": 8989
+  },
+  {
+   "slug": "hyperframes-media",
+   "desc": "Asset preprocessing for HyperFrames compositions — text-to-speech narration (Kokoro), audio/video transcription (Whisper), and background removal for transparent overlays (u2net). Use when generating voiceover from text, transcribing speech for captions, removing the background from a video or image to use as a transparent overlay, choosing a TTS voice or whisper model, or chaining these (TTS → transcribe → captions). Each command downloads its own model on first run.",
+   "desc_len": 472,
+   "local_bytes": 15189
+  },
+  {
+   "slug": "hyperframes-registry",
+   "desc": "Install and wire registry blocks and components into HyperFrames compositions. Use when running hyperframes add, installing a block or component, wiring an installed item into index.html, or working with hyperframes.json. Covers the add command, install locations, block sub-composition wiring, component snippet merging, and registry discovery.",
+   "desc_len": 345,
+   "local_bytes": 4803
+  },
+  {
+   "slug": "ican-deploy",
+   "desc": "iCAN 门店 AI 管理智能体（Python/Flask）的部署与地址名册。PythonAnywhere 免费层全自动部署通道（API 只认表单编码 / 控制台需浏览器唤醒 / WSGI 导入期引导执行 / 改默认 wsgi 文件）、环境变量与 DeepSeek 在线 AI 配置、上线验证清单，以及「真实系统 vs 静态快照站 vs 本地离线」的地址名册口径（避免混淆）。触发词：iCAN 部署、重部、PythonAnywhere、部署上线、地址名册、ican-demo 快照站、SECRET_KEY / DEEPSEEK_API_KEY 配置、reload 站点。",
+   "desc_len": 285,
+   "local_bytes": 10286
+  },
+  {
+   "slug": "ican-frontend-design-system",
+   "desc": "iCAN 门店 AI 管理智能体（Flask + Jinja + 单 CSS 原生前端）的 V4 设计体系与交付链。含「雾山青」令牌表（色彩/间距/字阶/圆角/高程/动效/图表分类色板）、指标带与分割行范式、44px 触控基线、全站 class 清单，以及「改 dev → 三副本同步 → 重建演示快照集 → quality_gate 第10项」的强制交付命令。触发词：iCAN 前端、门店管理助手界面、改 style.css、V3 设计体系、雾山青、改看板/填报/AI 对话页样式、重建演示快照、交付一致性门禁、三副本同步、批量补丁脚本、锚点失配、假交付对账、控制字符扫描。",
+   "desc_len": 288,
+   "local_bytes": 59528
+  },
+  {
+   "slug": "internal-comms",
+   "desc": "A set of resources to help me write all kinds of internal communications, using the formats that my company likes to use. Claude should use this skill whenever asked to write some sort of internal communications (status reports, leadership updates, 3P updates, company newsletters, FAQs, incident reports, project updates, etc.).",
+   "desc_len": 329,
+   "local_bytes": 1551
+  },
+  {
+   "slug": "json-canvas",
+   "desc": "Create and edit JSON Canvas files (.canvas) with nodes, edges, groups, and connections. Use when working with .canvas files, creating visual canvases, mind maps, flowcharts, or when the user mentions Canvas files in Obsidian.",
+   "desc_len": 225,
+   "local_bytes": 7664
+  },
+  {
+   "slug": "knowledge-capture",
+   "desc": "Transforms conversations and discussions into structured documentation pages in Notion. Captures insights, decisions, and knowledge from chat context, formats appropriately, and saves to wikis or databases with proper organization and linking for easy discovery. Use when a conversation contains decisions or insights that should persist as structured Notion documentation.",
+   "desc_len": 373,
+   "local_bytes": 7377
+  },
+  {
+   "slug": "libreoffice-base",
+   "desc": "LibreOffice Base headless 数据库流水线：ODB 嵌入库（HSQLDB/Firebird）、CSV/表格导入建库、表单报表边界、JDBC/ODBC 对接。触发词：Base、ODB、数据库表单、嵌入数据库、csv导入建库、报表引擎。不适用：服务端数据库工作（走对应 DB 技能）、ReportBuilder 端到端建报表（引擎在位、pyuno 通道未通，见坑1）。",
+   "desc_len": 193,
+   "local_bytes": 2980
+  },
+  {
+   "slug": "libreoffice-calc",
+   "desc": "LibreOffice Calc headless 表格流水线：ODS/XLSX/CSV/PDF 互转、公式重算导出、图表出图、批量转 CSV/PDF。触发词：Calc、ODS、xlsx转pdf、xlsx转csv、csv转xlsx、公式重算、表格批处理、图表导出PDF。不适用：单元格级读写分析（走 xlsx/data-analysis）、PDF 表格抽取（走 pdf）。",
+   "desc_len": 186,
+   "local_bytes": 1985
+  },
+  {
+   "slug": "libreoffice-draw",
+   "desc": "LibreOffice Draw headless 图形流水线：ODG/SVG/PDF/PNG 互转、流程图批量出图、PDF 页面级编辑中转。触发词：Draw、ODG、svg转png、svg转pdf、odg转换、图形批处理、流程图导出。不适用：代码生成 SVG 设计（走 diagram-maker）、位图后期（走 PIL 系）。",
+   "desc_len": 165,
+   "local_bytes": 1754
+  },
+  {
+   "slug": "libreoffice-headless-win",
+   "desc": "Windows 非管理员便携版 LibreOffice 26.8.1 headless 生产环境唯一入口。soffice.com 批处理转换（docx/xlsx/pptx/odt/ods/odp/pdf/html/csv/png）、UNO socket 编程（自带 python 3.13 + uno）、Java 17 桥接（已修补 javavendors 白名单）、D 盘档案隔离与已知告警判读。触发词：LibreOffice、soffice、headless、无头转换、转PDF、PDF导出、批量转换、docx转PDF、UNO 接口、pyuno 连接、UNO socket、soffice 监听、Basic 宏跑批、格式互转、ODT、邮件合并导出、便携版、便携办公。不适用：Word/WPS COM 自动化、纯 Python 读写 Office（走 docx/xlsx/ppt-master）、PDF 后处理编辑（走 pdf）。",
+   "desc_len": 416,
+   "local_bytes": 4222
+  },
+  {
+   "slug": "libreoffice-impress",
+   "desc": "LibreOffice Impress headless 演示流水线：ODP/PPTX/PDF/PNG 互转、逐页出图、母版保真转换。触发词：Impress、ODP、pptx转pdf、pptx转png、幻灯片导出、演示批处理、odp转pptx。不适用：从零生成 deck（走 ppt-master/slides）、PPTX 结构编辑（走 python-pptx）。",
+   "desc_len": 182,
+   "local_bytes": 2040
+  },
+  {
+   "slug": "libreoffice-writer",
+   "desc": "LibreOffice Writer headless 文档流水线：ODT/DOCX/PDF/HTML/RTF/TXT 互转、批量转换、模板套版（docxtpl）、邮件合并导出、中文排版 PDF。触发词：Writer、ODT、docx转pdf、批量转PDF、邮件合并、套模板出PDF、文字处理批处理。不适用：纯 python-docx 结构编辑（走 docx）、PDF 后处理（走 pdf）。",
+   "desc_len": 196,
+   "local_bytes": 2310
+  },
+  {
+   "slug": "local-asr",
+   "desc": "|",
+   "desc_len": 1,
+   "local_bytes": 4908
+  },
+  {
+   "slug": "local-computer-use",
+   "desc": "|",
+   "desc_len": 1,
+   "local_bytes": 5863
+  },
+  {
+   "slug": "local-img2img",
+   "desc": "|",
+   "desc_len": 1,
+   "local_bytes": 3786
+  },
+  {
+   "slug": "local-mineru",
+   "desc": "|",
+   "desc_len": 1,
+   "local_bytes": 5755
+  },
+  {
+   "slug": "local-ocr-npu",
+   "desc": "|",
+   "desc_len": 1,
+   "local_bytes": 6319
+  },
+  {
+   "slug": "local-realtime-translator",
+   "desc": "|",
+   "desc_len": 1,
+   "local_bytes": 8241
+  },
+  {
+   "slug": "local-screenshot-qa",
+   "desc": "|",
+   "desc_len": 1,
+   "local_bytes": 5775
+  },
+  {
+   "slug": "local-tts",
+   "desc": "|",
+   "desc_len": 1,
+   "local_bytes": 6569
+  },
+  {
+   "slug": "local-txt2img",
+   "desc": "|",
+   "desc_len": 1,
+   "local_bytes": 5268
+  },
+  {
+   "slug": "local-vram",
+   "desc": "|",
+   "desc_len": 1,
+   "local_bytes": 5691
+  },
+  {
+   "slug": "mcp-builder",
+   "desc": "Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Use when building MCP servers to integrate external APIs or services, whether in Python (FastMCP) or Node/TypeScript (MCP SDK).",
+   "desc_len": 277,
+   "local_bytes": 9132
+  },
+  {
+   "slug": "mcporter",
+   "desc": "List, configure, authenticate, call, and inspect MCP servers/tools with mcporter over HTTP or stdio. Use when you need to probe, test, or debug MCP tool connectivity before wiring an agent.",
+   "desc_len": 189,
+   "local_bytes": 1741
+  },
+  {
+   "slug": "meeting-intelligence",
+   "desc": "Prepares meeting materials by gathering context from Notion, enriching with Claude research, and creating both an internal pre-read and external agenda saved to Notion. Helps you arrive prepared with comprehensive background and structured meeting docs. Use when preparing for an upcoming meeting that needs context gathering and pre-read documents.",
+   "desc_len": 349,
+   "local_bytes": 11339
+  },
+  {
+   "slug": "nano-pdf",
+   "desc": "用 nano-pdf CLI 以自然语言指令编辑 PDF（改文本、增删页等），含 Quick start 与前置安装。Use when 要按描述修改一个既有 PDF 文件。不适用：PDF 读取/抽取与合并拆分水印（走 pdf）。",
+   "desc_len": 114,
+   "local_bytes": 1158
+  },
+  {
+   "slug": "no-manual-steps",
+   "desc": "老大的常驻硬规则（2026-10-06 立规）——凡是需要老大手动操作的步骤，一律由 AI 在电脑端全自动完成，不得要求老大点击、填表、导航、提交或任何交互。适用：任何工具/网站/桌面应用的按钮点击、表单填写、页面跳转、数据提交、代理或设置切换、以及任何\"请你手动做一下\"的场景。触发：任务卡在需要人工交互处、或 AI 打算说\"请你点一下/你去操作/手动完成\"时。不适用：需要老大账号密码、付款、验证码、或第三方账号授权的环节（那属外部凭据缺口，不是可自动化项）。",
+   "desc_len": 232,
+   "local_bytes": 7283
+  },
+  {
+   "slug": "node-inspect-debugger",
+   "desc": "Node.js 调试：需要 inspector 接入的场景——隐藏局部变量、异步挂起、flaky 测试、子进程、启动期问题，以及 inspect/--inspect/CDP 与堆分析。Use when Node 进程要断点/CDP/heap 取证。不适用：Python 调试（走 python-debugpy）、通用报错定位方法论（走 debugging-fixing）。",
+   "desc_len": 186,
+   "local_bytes": 3867
+  },
+  {
+   "slug": "notion-cli",
+   "desc": ">-",
+   "desc_len": 2,
+   "local_bytes": 2411
+  },
+  {
+   "slug": "obsidian-bases",
+   "desc": "Create and edit Obsidian Bases (.base files) with views, filters, formulas, and summaries. Use when working with .base files, creating database-like views of notes, or when the user mentions Bases, table views, card views, filters, or formulas in Obsidian.",
+   "desc_len": 256,
+   "local_bytes": 13067
+  },
+  {
+   "slug": "obsidian-cli",
+   "desc": "Interact with Obsidian vaults using the Obsidian CLI to read, create, search, and manage notes, tasks, properties, and more. Also supports plugin and theme development with commands to reload plugins, run JavaScript, capture errors, take screenshots, and inspect the DOM. Use when the user asks to interact with their Obsidian vault, manage notes, search vault content, perform vault operations from the command line, or develop and debug Obsidian plugins and themes.",
+   "desc_len": 467,
+   "local_bytes": 3223
+  },
+  {
+   "slug": "obsidian-markdown",
+   "desc": "Create and edit Obsidian Flavored Markdown with wikilinks, embeds, callouts, properties, and other Obsidian-specific syntax. Use when working with .md files in Obsidian, or when the user mentions wikilinks, callouts, frontmatter, tags, embeds, or Obsidian notes.",
+   "desc_len": 262,
+   "local_bytes": 5407
+  },
+  {
+   "slug": "oc-dispatch-exec-guard",
+   "desc": "OpenClaw CLI 派发任务执行护栏 — 防止被派发方秒停零产出。含触发场景、已发生三次的症状与根因、派发前必做检查、标准派发模板与 CC 独立评分提示词。Use when 向 openclaw/CLI 派活、或派发后无产出/立即退出。不适用：任务完成后的经验反哺（走 A-get-memory）。",
+   "desc_len": 152,
+   "local_bytes": 5323
+  },
+  {
+   "slug": "office-automation-pro",
+   "desc": "办公自动化专家 — 编写自动发邮件脚本、定时群发、邮件合并、报表自动推送、Excel/Word 批量处理。当用户说\"自动发邮件的脚本\"\"定时发送邮件\"\"邮件合并\"\"自动生成报表并发送\"\"办公自动化脚本\"\"批量发邮件\"\"用脚本发通知\"时触发。支持 Python（smtplib/email/openpyxl/docx）与 PowerShell 两种实现，含 SMTP 配置、附件、HTML 邮件、计划任务（cron / Windows Task Scheduler）定时执行。",
+   "desc_len": 237,
+   "local_bytes": 4575
+  },
+  {
+   "slug": "openai-whisper-api",
+   "desc": "OpenAI Audio Transcriptions API via curl; gpt-4o-transcribe, mini, diarize, or whisper-1. Use when you need cloud speech-to-text or audio transcription from scripts without a local model.",
+   "desc_len": 187,
+   "local_bytes": 2211
+  },
+  {
+   "slug": "openclaw-dual-gate-quality-audit",
+   "desc": "OpenClaw双门禁质量审计 — 让 openclaw 先自评，再由 Codex 独立逐文件审计验证，发现虚高后要求修复并实测重评，直到双门禁均 ≥85 分或确认已最优（最多 5 轮）。**仅适用于「审计某个交付物或系统的质量评分」场景**（见下方「何时不用本 skill」）；不做任务进度监督（改投 openclaw-task-supervision）、不做周度维护（改投 openclaw-fenjue-weekly）。触发词：双门禁审计、openclaw质量审计、自评加独立审计、逐文件审计、审计员视角、虚高识别、质量评分打分。",
+   "desc_len": 268,
+   "local_bytes": 21587
+  },
+  {
+   "slug": "openclaw-fenjue-weekly",
+   "desc": "每周控制 OpenClaw 执行焚诀三项维护（skill 审计 / 树评分 / 记忆优化）。含唯一权威源指针、本 skill 的附加价值、OC CLI 命令速查、Session 分段策略、Phase 0 子 skill 加载与错误处理速查。Use when 到周维护节点或要重跑焚诀周任务。不适用：单任务派发监督（走 openclaw-task-supervision）。",
+   "desc_len": 186,
+   "local_bytes": 4916
+  },
+  {
+   "slug": "openclaw-task-supervision",
+   "desc": "以 Codex 为监工控制 OpenClaw 执行任务：发送消息或桌面 prompt 文件、审报告、代表用户批准操作、纠错并强制质量门禁，含重试与结果验证。附角色定义、前置条件、流程总览与 CLI 命令参考。Use when 需要把任务派给 openclaw 并盯到验收。不适用：焚诀周度维护（走 openclaw-fenjue-weekly）。",
+   "desc_len": 173,
+   "local_bytes": 34136
+  },
+  {
+   "slug": "oracle",
+   "desc": "Oracle CLI second-model review/debug/refactor/design with selected files, dry-run token checks, API or browser engine (GPT-5.6 Sol / Gemini / Claude). Use when you want a second model independent opinion on code or design decisions. 触发词：第二意见、二审、oracle、神谕、换个模型审、独立评审。",
+   "desc_len": 266,
+   "local_bytes": 8240
+  },
+  {
+   "slug": "pdf",
+   "desc": "读PDF、读个 PDF、打开 PDF、提取 PDF 文字、PDF 转文字、PDF 文件读取/提取文本表格/合并/拆分/旋转/水印/表单填写。Use this skill whenever the user wants to do anything with PDF files. This includes reading or extracting text/tables from PDFs, combining or merging multiple PDFs into one, splitting PDFs apart, rotating pages, adding watermarks, creating new PDFs, filling PDF forms, encrypting/decrypting PDFs, extracting images, and OCR on scanned PDFs to make them searchable. If the user mentions a .pdf file or asks to produce one, use this skill. 不适用：语音合成（走 local-tts）、语音识别转写（走 local-asr）。",
+   "desc_len": 550,
+   "local_bytes": 12687
+  },
+  {
+   "slug": "pixelle-api-ensure",
+   "desc": "检测并启动本地 Pixelle 视频服务、Pixelle-Video API 自动检测与启动。确保 http://localhost:8000 在线，离线则自动后台启动服务器。适用于所有依赖 Pixelle-Video API 的工作流（bridge.py、本地视频生成、3D模型生成等）。",
+   "desc_len": 145,
+   "local_bytes": 3602
+  },
+  {
+   "slug": "ppt-master",
+   "desc": ">",
+   "desc_len": 1,
+   "local_bytes": 10785
+  },
+  {
+   "slug": "prompt-consolidation",
+   "desc": "清理多agent提示词中的append-only补丁 — 输出结构化合并版。提示词补丁清理合并",
+   "desc_len": 47,
+   "local_bytes": 16145
+  },
+  {
+   "slug": "prompt-system-audit",
+   "desc": "多agent提示词系统逻辑一致性审计 + 数据层验证。提示词系统审计。适用：提示词/规则体系改动后需要做逻辑一致性与数据层漂移审计时使用；触发词：提示词审计、一致性审计、prompt-system-audit、规则体检",
+   "desc_len": 109,
+   "local_bytes": 33023
+  },
+  {
+   "slug": "python-debugpy",
+   "desc": "Python 调试：python pdb 断点调试、python 下断点单步调试、python breakpoint、pdb、debugpy 远程附加、python 脚本调试、看隐藏局部变量、单步执行。Python 交互式调试选型与命令：pdb / breakpoint() / debugpy 远程附加，何时选哪种（Choose）与具体命令（Commands）、以及操作规则（Rules）。Use when 需要看隐藏局部变量、状态被谁改写、失败测试、子进程或长任务卡住。不适用：Node 调试（走 node-inspect-debugger）。",
+   "desc_len": 274,
+   "local_bytes": 3025
+  },
+  {
+   "slug": "rag-eval",
+   "desc": ">-",
+   "desc_len": 2,
+   "local_bytes": 9732
+  },
+  {
+   "slug": "react-best-practices",
+   "desc": "React and Next.js performance optimization guidelines from Vercel Engineering. This skill should be used when writing, reviewing, or refactoring React/Next.js code to ensure optimal performance patterns. Triggers on tasks involving React components, Next.js pages, data fetching, bundle optimization, or performance improvements.",
+   "desc_len": 329,
+   "local_bytes": 7291
+  },
+  {
+   "slug": "refactoring",
+   "desc": "Improve code structure without changing behavior. Use when user asks to \"refactor\", \"clean up\", \"optimize\", \"reorganize\", \"重构\", \"优化\", \"整理代码\", \"拆分模块\". Preserves external behavior; improves readability, maintainability, or performance.",
+   "desc_len": 233,
+   "local_bytes": 5055
+  },
+  {
+   "slug": "report-generator-skill",
+   "desc": "视频分析报告生成技能。整合分镜拆解数据和钩子分析结果，生成 Markdown 格式的专业视频分析报告。运行脚本 `python scripts/generate_report.py <breakdown_json> [hook_analysis_json]`，输出完整的 Markdown 报告，包含基本信息、前三秒钩子分析、分镜概览、BGM分析、场景分析等章节。",
+   "desc_len": 182,
+   "local_bytes": 5209
+  },
+  {
+   "slug": "research-documentation",
+   "desc": "Searches across your Notion workspace, synthesizes findings from multiple pages, and creates comprehensive research documentation saved as new Notion pages. Turns scattered information into structured reports with proper citations and actionable insights. Use when research scattered across multiple Notion pages needs consolidation into one documented deliverable.",
+   "desc_len": 365,
+   "local_bytes": 3843
+  },
+  {
+   "slug": "scope-creep-detector",
+   "desc": ">-",
+   "desc_len": 2,
+   "local_bytes": 5180
+  },
+  {
+   "slug": "screenshot",
+   "desc": "桌面截图 / 窗口截屏 / 区域截取。含工具优先级、macOS 权限预检（减少重复弹窗）、macOS 与 Linux 的 Python 辅助脚本、多显示器行为与 Linux 依赖与选区逻辑。Use when 要截取屏幕、某窗口或某区域并存盘。不适用：网页整页截图走浏览器工具（agent-browser / gstack）。",
+   "desc_len": 162,
+   "local_bytes": 7914
+  },
+  {
+   "slug": "security-audit",
+   "desc": "Security-focused code audit and vulnerability analysis. Use when user asks for security review, vulnerability scan, threat modeling, dependency audit, supply chain check, or security hardening. Covers OWASP Top 10, variant analysis, supply chain risk, insecure defaults detection, and post-patch validation. Adapted from Trail of Bits security audit methodology. 触发词：安全审计、安全审查、漏洞扫描、依赖审计、供应链风险、威胁建模、安全加固、OWASP 逐类扫、变体分析、不安全默认值、security audit、vulnerability scan、supply chain audit、threat modeling、security hardening。",
+   "desc_len": 513,
+   "local_bytes": 12084
+  },
+  {
+   "slug": "shadcn",
+   "desc": "Manages shadcn components and projects — adding, searching, fixing, debugging, styling, and composing UI. Provides project context, component docs, and usage examples. Applies when working with shadcn/ui, component registries, presets, --preset codes, or any project with a components.json file. Also triggers for \"shadcn init\", \"create an app with --preset\", or \"switch to --preset\".",
+   "desc_len": 384,
+   "local_bytes": 16512
+  },
+  {
+   "slug": "shell-encoding-pitfalls",
+   "desc": "中文 Windows + Git Bash 下的 shell 编码与编辑坑修复：curl 传中文致请求体乱码、字符串替换不生效、Edit 显示成功但运行仍报旧错、变量名一字之差耗时半小时、Write 把 .ps1 存成 UTF-8 无 BOM 使 PowerShell 解析中文报错、PowerShell 双引号串改 .sh 时 $() 与反引号被当场展开把文件灌成重复嵌套（且 .git/hooks 非跟踪、git 还原不了）、git commit -m 双引号串内反引号被 bash 命令替换把提交信息就地改写而文件本体无辜（正解 git commit -F），并给快速诊断流程与 sh -n 校验。Use when 命令乱码/静默失败/改了没生效/提交信息少了内容/改 shell 脚本。不适用：subprocess 管道编码（走 windows-cli-utf8-wrapper）。",
+   "desc_len": 395,
+   "local_bytes": 16853
+  },
+  {
+   "slug": "spec-to-implementation",
+   "desc": "Turns product or tech specs into concrete Notion tasks that Claude code can implement. Breaks down spec pages into detailed implementation plans with clear tasks, acceptance criteria, and progress tracking to guide development from requirements to completion. Use when an approved spec or design doc must be broken down into implementable tasks with acceptance criteria.",
+   "desc_len": 370,
+   "local_bytes": 8848
+  },
+  {
+   "slug": "spike",
+   "desc": "跑一次性原型验证技术可行性，产出三档结论 VALIDATED / PARTIAL / INVALIDATED。Use when 用户说「先试试/快速原型/这能做到吗/A-B 比较/动手前先验」。不适用：直接进入正式实现（走 writing-plans 或 implement 类技能）。",
+   "desc_len": 143,
+   "local_bytes": 2115
+  },
+  {
+   "slug": "sq-cleanmgr-c",
+   "desc": "C盘深度清理分析技能：分析软件安装与缓存占用，识别可清理项（Windows 临时文件、用户/浏览器/应用/开发工具缓存），生成可视化 HTML 报告并执行安全清理（预览优先 + 前后对比）。触发词：C盘清理、磁盘清理、清理C盘、分析C盘空间、temp清理、缓存清理、释放C盘空间、清理垃圾文件、C盘不够用。",
+   "desc_len": 153,
+   "local_bytes": 12526
+  },
+  {
+   "slug": "sqlalchemy-loader-criteria-pitfalls",
+   "desc": "SQLAlchemy 全局租户守卫（with_loader_criteria + do_orm_execute 行级过滤）的三个缓存/边界坑与排查法：闭包键丢失致跨租户绑定冻结、None 未武装态被固化致登录后漏防、身份表进守卫名单致 strict 态自锁。Use when 用 SQLAlchemy 做多租户/行级安全/全局查询拦截，或排查『换租户数据串号、user_loader 恒 None、登录后 302、隔离时好时坏』。触发词：with_loader_criteria、do_orm_execute、租户拦截器、行级隔离、lambda 缓存、scope 固化、ORM 全局过滤器、tenant guard。",
+   "desc_len": 308,
+   "local_bytes": 4560
+  },
+  {
+   "slug": "static-site-batch-audit-fix",
+   "desc": "纯静态HTML站点批量审计+修复+验证流水线。当需要对多文件HTML/CSS/JS站点做全站扫描、批量文本替换、一致性修复（品牌名/lang/ARIA/favicon/meta）、开源项目对标后的缺陷清单执行、暗色模式与适老化字号改造、并用浏览器复验计算样式时使用。触发词：静态站点审计、批量修复HTML、全站替换、static site audit、batch fix、HTML批量修复、多页面修复、站点一致性修复、全站扫描、多页站改文案、i18n双语字典改键、生成产物漂移、暗色模式对比度、长者字号、审计结论复核。",
+   "desc_len": 259,
+   "local_bytes": 14405
+  },
+  {
+   "slug": "story",
+   "desc": "网络小说工具箱主入口。根据用户需求自动路由到对应 skill，并可启动本地 Dashboard 查看拆文库、写作项目和编辑文本。触发方式：/story、$story、/story dashboard、$story dashboard、/网文、「我想写小说」「打开工作台」「检查更新」。",
+   "desc_len": 142,
+   "local_bytes": 9047
+  },
+  {
+   "slug": "story-cover",
+   "desc": "小说封面生成。根据书名、作者名自动分析题材风格，调用 GPT-Image-2 直接生成含标题和署名的专业级网文封面。触发方式：/story-cover、/封面、「帮我做个封面」「生成封面图」「做个小说封面」「封面设计」。",
+   "desc_len": 110,
+   "local_bytes": 1698
+  },
+  {
+   "slug": "story-deslop",
+   "desc": "网文去AI味。检测并清除文本中的AI写作痕迹，让文字回归自然、非模板化。触发方式：/story-deslop、/去AI味、「去AI味」「这篇太AI了」「网文去AI味」。",
+   "desc_len": 84,
+   "local_bytes": 10537
+  },
+  {
+   "slug": "story-import",
+   "desc": "逆向导入已有小说。将已写好的小说（半成品或完本）反向解析为标准项目目录结构，兼容 story-long-write / story-short-write 后续写作流程；内部复用 story-long-analyze / story-short-analyze 的拆解管道，按篇幅自动分流。触发方式：/story-import、「导入小说」「反向解析」「导入」「把我的书导进来」。",
+   "desc_len": 190,
+   "local_bytes": 9652
+  },
+  {
+   "slug": "story-long-analyze",
+   "desc": "长篇网文拆文。深度拆解爆款长篇小说的黄金三章、人设架构、爽点设计、节奏控制。单一深度拆解管道：跑完黄金三章（Stage 1）后产出快速预览报告并询问是否继续全量拆解，确认后从 Stage 2 续跑逐章摘要、聚合分析、设定关系、汇总报告，全程产物落盘 拆文库/{书名}/。触发方式：/story-long-analyze、/长篇拆文、「帮我拆这本书」「拆这本书」「分析黄金三章」「深度拆解」「完整拆解」「系统拆解」或提供小说文本文件路径——全部进入同一管道。",
+   "desc_len": 228,
+   "local_bytes": 5908
+  },
+  {
+   "slug": "story-long-write",
+   "desc": "长篇网文写作。从大纲到正文，辅助长篇网络小说的创作，包括世界观、人物、情节线管理。触发方式：/story-long-write、/写长篇、「帮我开书」「写大纲」「日更」「续写」「继续写」「修改第X章」「回炉」「重写第X章」。",
+   "desc_len": 112,
+   "local_bytes": 2438
+  },
+  {
+   "slug": "story-review",
+   "desc": "多视角对抗式审查。full/lean 模式在已部署 reviewer agents 时并行 spawn；缺失/异常 agents 或 spawn 失败时自动降级 solo，参考文件不可读时使用内置 rubric fallback。触发方式：/story-review、/审查、「审查一下」「帮我审一下」。",
+   "desc_len": 152,
+   "local_bytes": 11110
+  },
+  {
+   "slug": "story-scan",
+   "desc": "长篇/短篇网文扫榜统一入口。长篇：起点/番茄/七猫/晋江/刺猬猫；短篇：知乎盐言/点众/黑岩/七猫短篇。触发：/story-scan、/扫榜、「长篇什么火」「短篇什么火」「起点排行」「知乎故事排行」「短篇扫榜」。",
+   "desc_len": 106,
+   "local_bytes": 6238
+  },
+  {
+   "slug": "story-setup",
+   "desc": "网文写作工具集基础设施部署。为 Claude Code / OpenCode / Codex / ZCode / OpenClaw / Reasonix 提供内置适配；Web AI / 通用 Agent 可走 skills + AGENTS.md 文件模式。触发方式：/story-setup、$story-setup、「准备写书」「帮我搭一下环境」「配置写作项目」。",
+   "desc_len": 184,
+   "local_bytes": 6192
+  },
+  {
+   "slug": "story-short-analyze",
+   "desc": "短篇网文拆文。拆解爆款短篇小说（番茄短篇 / 故事会 / 知乎盐选 / 追妻 / 世情 / 重生 / 虐渣等通俗题材）的故事核、结构、情感线、反转设计、写作手法、共鸣层次。单一全量拆解管道：跑完 Stage 2-6 产出完整拆文报告，落盘到 拆文库/{书名}/，下游 story-short-write 同时读拆文报告 + 情节节点 + 写作手法 + 原文 + _meta.json 写下一篇。触发方式：/story-short-analyze、/短篇拆文、「拆短篇」「拆这篇短文」「短篇拆文」「精细拆解短篇」「8000 字短篇拆解」「番茄短篇拆文」「故事会拆解」「盐言故事拆解」「分析这篇短篇」——均进入同一管道。",
+   "desc_len": 308,
+   "local_bytes": 9659
+  },
+  {
+   "slug": "story-short-write",
+   "desc": "短篇网文写作。辅助短篇小说创作，从构思到成稿，聚焦情绪拉扯与节奏把控。触发方式：/story-short-write、/写短篇、「帮我写一篇短篇」「写个盐言故事」。",
+   "desc_len": 82,
+   "local_bytes": 10469
+  },
+  {
+   "slug": "subagent-driven-development",
+   "desc": "计划执行段内核（吸收 obra/superpowers executing-plans v6.4+/v7 语义，2026-10-20 新建）。当手上已有一份实施计划（writing-plans 产出）、需要在会话内逐任务执行时使用：自己当执行者、按 TDD 逐任务证明、ledger 落盘保活、最终 whole-branch 评审。触发词：执行计划、按计划实现、plan 落地、逐任务执行、inline execution、Rulings not stalls、计划执行、plan execution、task-by-task、executing plans。**替代已退役的旧技能 executing-plans**（焚诀退役名册在册，旧名不再注册）。不适用：逐任务派子代理评审的 subagent-driven 大队形（那走多代理编排）；写计划本身（走 writing-plans）。",
+   "desc_len": 394,
+   "local_bytes": 3846
+  },
+  {
+   "slug": "taskflow",
+   "desc": "编排多步骤分离任务为持久TaskFlow作业。多步骤任务编排引擎。适用：需要把多步骤任务拆分为可跟踪、可恢复的持久作业并跨会话推进时使用；触发词：taskflow、任务编排、持久作业、多步骤任务",
+   "desc_len": 97,
+   "local_bytes": 6146
+  },
+  {
+   "slug": "taskflow-inbox-triage",
+   "desc": "TaskFlow 收件箱分类示例 — 参考/教学用途，非生产。给出目标、Pattern、建议的 stateJson 形状、最小 runtime 调用与相关示例。Use when 需要照抄一个 taskflow 状态机样例。不适用：真实收件箱自动化（本件明确非生产）。",
+   "desc_len": 133,
+   "local_bytes": 2791
+  },
+  {
+   "slug": "test-driven-development",
+   "desc": "测试驱动开发的红-绿-重构循环：Iron Law、RED 先写失败测试并 Verify RED（亲眼看它失败）、再 GREEN 最小实现。Use when 实现任何新功能或修 bug 且在写实现代码之前。不适用：为既有未测代码补安全网（走 testing 的特征化测试）。",
+   "desc_len": 136,
+   "local_bytes": 11466
+  },
+  {
+   "slug": "testing",
+   "desc": "编写和运行测试验证代码正确性 — 六阶段流程：目标识别、框架选择（pytest/jest/go test/JUnit）、定位与结构、编写（含 Property-based 与 Mutation testing）、运行与覆盖报告。Use when 用户说写测试/增加测试/测试覆盖或行为不稳（flaky）。不适用：完工前证据核验（走 verification-before-completion）。",
+   "desc_len": 198,
+   "local_bytes": 7946
+  },
+  {
+   "slug": "theme-factory",
+   "desc": "Toolkit for styling artifacts with a theme. These artifacts can be slides, docs, reportings, HTML landing pages, etc. There are 10 pre-set themes with colors/fonts that you can apply to any artifact that has been creating, or can generate a new theme on-the-fly.",
+   "desc_len": 262,
+   "local_bytes": 3164
+  },
+  {
+   "slug": "ui-ux-pro-max",
+   "desc": "UI/UX design intelligence and implementation guidance for building polished interfaces. Use when the user asks for UI design, UX flows, information architecture, visual style direction, design systems/tokens, component specs, copy/microcopy, accessibility, or to generate/critique/refine frontend UI (HTML/CSS/JS, React, Next.js, Vue, Svelte, Tailwind). Includes workflows for (1) generating new UI layouts and styling, (2) improving existing UI/UX, (3) producing design-system tokens and component guidelines, and (4) turning UX recommendations into concrete code changes.",
+   "desc_len": 573,
+   "local_bytes": 3095
+  },
+  {
+   "slug": "utf8-encoding-fix",
+   "desc": "修复中文 Windows 下 Write 工具写出 UTF-8 乱码：含概述、检测脚本与检测步骤、修复流程与修复步骤、以及验证步骤（改完必验，不靠肉眼）。Use when 刚写入的中文文件出现乱码/编码异常。不适用：shell 管道编码与 PowerShell BOM 问题（走 shell-encoding-pitfalls）。",
+   "desc_len": 165,
+   "local_bytes": 8341
+  },
+  {
+   "slug": "verification-before-completion",
+   "desc": "Verify claims before marking work complete. Use when about to say \"done\", \"fixed\", \"passing\", or \"complete\" — requires running evidence-gathering commands and confirming output before making any success claims. Evidence before assertions always. 触发词：完工验证、交付前核验、确认真的绿了、别虚报完成、声称已修需复验、证据先于结论、跑一遍验证再报、verify before done、evidence before claim、no unverified completion。",
+   "desc_len": 363,
+   "local_bytes": 17055
+  },
+  {
+   "slug": "video-breakdown-skill",
+   "desc": "视频分镜拆解技能——把视频文件或 URL 拆成分镜（镜头）序列，产出 breakdown.json（时长/分辨率/分镜边界/关键帧/音频电平）。是 hook-analyzer-skill（前三秒钩子提取）与 report-generator-skill（分析报告生成）的共同上游。运行脚本 `python scripts/process_video.py \"<video_path_or_url>\" --json-out breakdown.json`。触发词：分镜拆解、拆镜头、视频拆解、镜头切分、关键帧提取、video breakdown、shot detection、scene detection、视频分析前置、process_video。",
+   "desc_len": 324,
+   "local_bytes": 6892
+  },
+  {
+   "slug": "video-frames",
+   "desc": "用 ffmpeg 从视频抽帧或截取短视频片段，含 Quick start 与注意事项（时间码、精度、常用参数）。Use when 需要抽关键帧、截 GIF/片段、取某一帧图像。不适用：分镜拆解与钩子分析（走 video-breakdown-skill / hook-analyzer-skill）。",
+   "desc_len": 149,
+   "local_bytes": 1231
+  },
+  {
+   "slug": "video-whisper-transcribe",
+   "desc": "用 ffmpeg + OpenAI Whisper 从视频提取音频并转录为文字。支持含特殊字符（中文引号等）的路径，输出 txt + json（含时间戳）。适用于字幕提取、词汇标注、视频内容分析等场景。",
+   "desc_len": 101,
+   "local_bytes": 5816
+  },
+  {
+   "slug": "vp-perspective-audit",
+   "desc": "副总视角审计——预判每个agent的行为模式，而不只是读它的配置文件。通过三层递进模型（信息层→决策层→行为层），构建每个agent的心智模型，预测它收到指令后的完整行为链：会怎么理解、怎么决策、怎么行动、在哪犯错。不是调度员视角（检查流程对不对），是管理者视角（预判每个员工的行为模式）。适用范围仅限于\"需预判 agent 行为链\"的诊断场景（见下方「何时不用本 skill」）。触发词：副总视角、员工思维、VP perspective、站在XX的视角、预判agent行为、用它的眼睛看、工位审计、agent视角审计、行为模式预测、心智模型。",
+   "desc_len": 272,
+   "local_bytes": 15307
+  },
+  {
+   "slug": "wb-git-commit-recipe",
+   "desc": "WorkBuddy Bash 环境下 git commit 触发 pre-commit hook 链必失败的根因诊断与修复配方。典型症状为 FatalError: git failed. Is it installed...，pre-commit 日志内 Executable `git` not found。当在 WB Bash 提交带 pre-commit 钩子的仓库失败、或 hook 链内子进程报 Executable not found 时使用；提供 PATHEXT 注入 + 极简 POSIX PATH 的完整命令序列（逐条注明作用）与验证方法。",
+   "desc_len": 279,
+   "local_bytes": 8919
+  },
+  {
+   "slug": "web-access",
+   "desc": "所有联网操作必须通过此 skill 处理，包括：搜索、网页抓取、登录后操作、网络交互等。 触发场景：用户要求搜索信息、查看网页内容、访问需要登录的网站、操作网页界面、抓取社交媒体内容（小红书、微博、推特等）、读取动态渲染页面、以及任何需要真实浏览器环境的网络任务。",
+   "desc_len": 132,
+   "local_bytes": 20014
+  },
+  {
+   "slug": "web-design-guidelines",
+   "desc": "审查 UI 代码是否符合 Web 界面规范：先取规范源（Guidelines Source），按 How It Works 流程逐条比对 Usage 里列出的用法。Use when 用户要「检查界面规范/可访问性/交互规范」。不适用：从零做视觉设计与风格决策（走 frontend-design / ui-ux-pro-max）。",
+   "desc_len": 165,
+   "local_bytes": 1402
+  },
+  {
+   "slug": "wechat-automation",
+   "desc": "微信自动化（Windows wxauto v4 / macOS Accessibility API）：消息监听与提取、输入框控制、Agent 架构模式与安装配置。Use when 要监听微信消息、提取聊天内容或据此写自动化 Agent。不适用：微信语音转文字（走 wechat-voice-transcription）。",
+   "desc_len": 160,
+   "local_bytes": 20209
+  },
+  {
+   "slug": "wechat-voice-transcription",
+   "desc": "微信语音 .silk 转文字：pilk 解码为裸 PCM → ffmpeg 补 WAV 头 → whisper 转写（必须用 Python312 并清 PYTHONPATH）。含一次性前置条件、一键脚本快速路径与脚本内部逻辑的手动步骤。Use when 拿到 .silk/微信语音要出文字。不适用：通用音频转录（走 local-asr / openai-whisper-api）。",
+   "desc_len": 190,
+   "local_bytes": 3508
+  },
+  {
+   "slug": "win-toolchain-pitfalls",
+   "desc": "本机（Windows + WorkBuddy + Git Bash）工具链陷阱速查与对策。当命令\"静默无输出/exit code 恒 0/返回 0 结果/文件不存在/工具 command not found\"，或需要跑 Python、uv、git、回收站删除、HTML→DOCX 时使用本表速查。每条都含实测证据与对照，避免把\"工具环境问题\"误判成\"代码缺陷\"。",
+   "desc_len": 181,
+   "local_bytes": 19127
+  },
+  {
+   "slug": "windows-bash-cli-interop-pitfalls",
+   "desc": "Windows bash (Git Bash/MSYS2) 调用外部 CLI 或现代构建工具时的语法兼容坑合集。覆盖：bash extglob 吞 PowerShell $_ 变量、Vite 8 Rolldown 拒绝对象式 manualChunks 等。触发词：$_ 被吞、extglob、PowerShell 内联失败、manualChunks 报错、Rolldown、Vite 8 build 失败、bash 调 PowerShell、临时 ps1、manualChunks must be a function。",
+   "desc_len": 260,
+   "local_bytes": 7511
+  },
+  {
+   "slug": "windows-cli-utf8-wrapper",
+   "desc": "Python subprocess 调用外部 CLI 工具的 UTF-8 安全包装。中文 Windows（CP936/GBK）下经 shell 管道或 subprocess 传含中文 prompt 会乱码、静默失败或输出为空；本件列出问题场景与反模式（PowerShell 管道直传、cmd echo 管道、subprocess 不带 encoding、PowerShell Out-File 重定向）及正确包装。不适用：Git Bash 中文路径 argv 问题（走 windows-gitbash-chinese-path-pit）。",
+   "desc_len": 269,
+   "local_bytes": 9562
+  },
+  {
+   "slug": "windows-gitbash-chinese-path-pit",
+   "desc": "Git Bash 调用 Node 系 CLI（openclaw/claude/gemini/codex 等 node launcher）传中文路径必失败的两种模式、根因与三步治本解法（先把目标文件 cp 到全 ASCII 路径、用 Windows 反斜杠传参、CLI 内部读写无需绕）。Use when 经 Git Bash 向 node CLI 传含中文路径参数。不适用：纯 Python subprocess 管道编码（走 windows-cli-utf8-wrapper）。",
+   "desc_len": 240,
+   "local_bytes": 6068
+  },
+  {
+   "slug": "windows-native-ocr",
+   "desc": "Use when 需要 OCR 识图(中文/英文)：Windows 原生 OCR 引擎+零模型下载，装 ocr 命令。",
+   "desc_len": 59,
+   "local_bytes": 2722
+  },
+  {
+   "slug": "workbuddy-mcp",
+   "desc": "WorkBuddy MCP 连接器总控 — 腾讯文档/QQ邮箱/知识星球/轻流/ima/金山文档/WPS/kdocs/canva/mastergo/edgeone/云开发等连接器场景优先调用 mcp__workbuddy__* 工具；含前置自检与桥接故障恢复。",
+   "desc_len": 130,
+   "local_bytes": 4299
+  },
+  {
+   "slug": "workflow-preflight-check",
+   "desc": "多agent工作流预执行验证 — 模拟所有步骤预检。工作流预检",
+   "desc_len": 31,
+   "local_bytes": 11159
+  },
+  {
+   "slug": "wps-knowledgebase",
+   "desc": ">-",
+   "desc_len": 2,
+   "local_bytes": 21413
+  },
+  {
+   "slug": "writing-plans",
+   "desc": "Use when you have a spec or requirements for a multi-step task, before touching code",
+   "desc_len": 84,
+   "local_bytes": 11266
+  },
+  {
+   "slug": "xlsx",
+   "desc": "Excel表格(.xlsx/.xlsm/.csv)读写/编辑/修复。Use this skill any time a spreadsheet file is the primary input or output. This means any task where the user wants to: open, read, edit, or fix an existing .xlsx, .xlsm, .csv, or .tsv file (e.g., adding columns, computing formulas, formatting, charting, cleaning messy data); create a new spreadsheet from scratch or from other data sources; or convert between tabular file formats. Trigger especially when the user references a spreadsheet file by name or path — even casually (like \\\"the xlsx in my downloads\\\") — and wants something done to it or produced from it. Also trigger for cleaning or restructuring messy tabular data files (malformed rows, misplaced headers, junk data) into proper spreadsheets. The deliverable must be a spreadsheet file. Do NOT trigger when the primary deliverable is a Word document, HTML report, standalone Python script, database pipeline, or Google Sheets API integration, even if tabular data is involved.",
+   "desc_len": 977,
+   "local_bytes": 11728
+  },
+  {
+   "slug": "天眼一下",
+   "desc": "使用本地 `tyc` 命令查询天眼查企业数据。适用于企业主体核验、合作方/客户/供应商风险评估、股东和实控人分析、受益所有人、关联关系路径、司法诉讼、执行失信、行政处罚、经营真实性、招投标、资质许可、知识产权、董监高、历史沿革、行业企业发现，以及生成简短商查摘要。查询前使用 `tyc login` 完成 OAuth 鉴权。",
+   "desc_len": 162,
+   "local_bytes": 10371
+  }
+ ]
+}

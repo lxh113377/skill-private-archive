@@ -1,0 +1,207 @@
+{
+ "schema": "c2-delta-r211-v2",
+ "note": "R114-1 的 delta 重裁面：本轮把候选池由 14 条查询扩到 15 条（补 blender 生态专查，带一手取证）+ 新增 3D 族 ⇒ 191 件里 10 件的 top3 成员发生变化（其余 181 件 top3 逐仓等序未变）。本件只裁这 10 件的 delta，不重裁历史面。证据：replacement_matrix_r211.json（扩面前）⇄ r211b.json（扩面后）逐件 top3 对比。 ｜ v2 补：本件首版只裁了 top3 位移集（10 件），漏掉 8 件「新入面件」—— 它们不在位移集里是因为**旧面（182 件）根本没有它们**，而不是它们没变。补裁后 delta 面 = 10 ∪ 8 = 18 件，与「191 − 173 件历史已裁」守恒。",
+ "generated_at": "2026-10-24T18:38:27",
+ "cmd": "python 05-exec/r114_replacement_scan.py --json 06-benchmark/replacement_matrix_r211b.json",
+ "delta_rows": 21,
+ "rows": [
+  {
+   "slug": "blender-pipeline",
+   "repo": "arjun988/blender-skills",
+   "score": 15,
+   "share": 1,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "**已吸收**：一手实测 D:\\Blender\\skills-vault\\blender-skills-arjun988 本地 SKILL.md = 188 个，与上游 api 计数 188 **等数**（EL4CTEO 22/22、scenario-labs 156 同仓在位）⇒ 上游内容已是本地资源；本地件本身是「双版本环境入口」（5.2.2/4.5.13 路径 + BLENDER_USER_* + OptiX 切换 + 无头渲染），上游三个仓都不含本机环境层 ⇒ 换装会丢唯一入口能力"
+  },
+  {
+   "slug": "algorithmic-art",
+   "repo": "scenario-labs/skills",
+   "score": 22,
+   "share": 6,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "scenario-labs/skills = 173 个 SKILL.md 的**多模态供应商 API 封装集**（images/video/audio/3D 调外部模型），本地件是 p5.js + seeded randomness 的**生成算法本体**（能力在代码里不在 API 后面）⇒ 层次不同，换装等于把本地产出改成付费 API 依赖"
+  },
+  {
+   "slug": "audio-deliverable-pipeline",
+   "repo": "scenario-labs/skills",
+   "score": 22,
+   "share": 6,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "同上：候选是供应商 API 封装集（share 6 = 被 6 件同抢，话题级命中）；本地件是 local-tts 降级 + lameenc 编码 + mutagen/波形双核验的**本机离线链**，与「调云端 API」相反方向"
+  },
+  {
+   "slug": "audio-deliverable-pipeline",
+   "repo": "EGSECDA/vocaloid-style-mv-pipeline",
+   "score": 12,
+   "share": 3,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "候选是 Vocaloid 风格**手绘歌词 MV 制作管线**（单一美术项目），非音频交付流水线（旁白/配乐/MP3 核验）⇒ 同族不同职"
+  },
+  {
+   "slug": "ai-video-homework-pipeline",
+   "repo": "EGSECDA/vocaloid-style-mv-pipeline",
+   "score": 12,
+   "share": 3,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "同上：候选产出手绘 MV，本地件产出手工作业视频（图生视频→TTS→无版权配乐→ASS 字幕→ffmpeg 交叉溶解→像素级 QA 五段），流程与验收判据无对应"
+  },
+  {
+   "slug": "byted-mediakit-shared",
+   "repo": "scenario-labs/skills",
+   "score": 22,
+   "share": 6,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "候选是通用多模态 API 封装；本地件绑火山引擎 mediakit-cli 的**初始化/鉴权/异步任务/错误处理**契约（含 Windows 批处理通道），属平台专属规程件"
+  },
+  {
+   "slug": "byted-seedance-video-generate",
+   "repo": "scenario-labs/skills",
+   "score": 22,
+   "share": 6,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "同族抢手候选（share 6）；本地件是 Seedance 模型专项（文生视频/图生视频/参考图），候选不含该模型调用面 ⇒ 能力边界不覆盖"
+  },
+  {
+   "slug": "byted-seedream-image-generate",
+   "repo": "scenario-labs/skills",
+   "score": 22,
+   "share": 6,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "同上：Seedream 出图专项 vs 通用多模态封装；且候选正文 173 件 skill 无一为 Seedream 专项（api 计数实测 md=173 但无本域专件）"
+  },
+  {
+   "slug": "byted-seedream-image-generate",
+   "repo": "calesthio/OpenMontage",
+   "score": 22,
+   "share": 9,
+   "verdict": "KEEP",
+   "blocked_by": "C2+C3",
+   "reason": "AGPL-3.0（C3 须先过 R113-3 合规裁定，未裁 ⇒ 不得换装）；且候选是视频生产系统（12 pipelines），与文生图专项不同职"
+  },
+  {
+   "slug": "chart-visualization",
+   "repo": "viettranx/3dviz-pro-max",
+   "score": 16,
+   "share": 1,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "候选做 Three.js/Blender **创意 3D 可视化**，本地件是 26 种统计图表选型 + 参数抽取 + JS 脚本出图（统计语义完全不同）⇒ 新池查询把 3D 词带进 office/media 族是词面碰撞，非针对性替代"
+  },
+  {
+   "slug": "chart-visualization",
+   "repo": "k-telux/OpticalModeler",
+   "score": 15,
+   "share": 1,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "候选是光子学 2D 原理图重建为物理 3D 模型的证据门控技能，与统计图表可视化无能力交集"
+  },
+  {
+   "slug": "figma",
+   "repo": "scenario-labs/skills",
+   "score": 22,
+   "share": 6,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "本地 figma 件是「Figma MCP 取设计上下文 → 翻译为生产代码」的桥接规程；候选是多模态 API 封装，不含 Figma 节点/变量/MCP 面"
+  },
+  {
+   "slug": "hook-analyzer-skill",
+   "repo": "EL4CTEO/blender-skills",
+   "score": 17,
+   "share": 1,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "词面碰撞实证（本条是本轮最该留下的反例）：本地件只做「从分镜 JSON 提取前三秒分镜」单一职责，候选是 Blender 专业工作流集 ⇒ 3D 族查询扩面把它错误送进 media 族某件的 top3。候选 md=22 与本地 vendored 22 等数，但**能力域不相交**。处置：结论仍 KEEP，但把「族池因新查询扩张 ⇒ 词面碰撞进 top3」登记为矩阵的已知噪声，判据层不得据 top3 名次判替代"
+  },
+  {
+   "slug": "frontend-asset-library",
+   "repo": "wiltodelta/remove-ai-watermarks",
+   "score": 20,
+   "share": 5,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "一手读到真身（根 SKILL.md 404，实际路径 skills/remove-ai-watermarks/SKILL.md）= 去 AI 水印/C2PA 溯源识别，与「前端素材与动效取数名册 + fetch_assets 缓存池」能力域零交集。本条同时证明矩阵的 skill_md_n 含 .claude/skills 与 tests 目录 ⇒ 名次不可单独当替代依据"
+  },
+  {
+   "slug": "libreoffice-base",
+   "repo": "genspark-ai/genoffice",
+   "score": 21,
+   "share": 17,
+   "verdict": "KEEP",
+   "blocked_by": "C2+共享度",
+   "reason": "share=17（本轮实测最抢手仓之一）⇒ 按 r125/r127 万金油规则判话题级命中；且候选是「AI Office 套件（Docs/Sheets/Slides 编辑器）」产品，本地件是 LibreOffice Base 的 ODB 嵌入库/表单报表边界/JDBC-ODBC 对接规程 ⇒ 平台 vs 规程不同层"
+  },
+  {
+   "slug": "libreoffice-calc",
+   "repo": "yusufkaraaslan/Skill_Seekers",
+   "score": 23,
+   "share": 4,
+   "verdict": "KEEP",
+   "blocked_by": "C2",
+   "reason": "一手读到真身 skills/skill-seekers/SKILL.md：name=skill-builder，「把文档站/GitHub 仓/PDF 转成 AI skill」的**元工具**（40 个 MCP 工具），非表格流水线本体 ⇒ 与 r126 对 data-analysis 的裁定同型（元工具不构成对专项技能的替代）"
+  },
+  {
+   "slug": "libreoffice-draw",
+   "repo": "genspark-ai/genoffice",
+   "score": 21,
+   "share": 17,
+   "verdict": "KEEP",
+   "blocked_by": "C2+共享度",
+   "reason": "同 base：万金油层 + 产品级套件；本地件是 ODG/SVG/PDF/PNG 互转与流程图批量出图的 headless 管线，候选无该格式族（其 README 面为 Docs/Sheets/Slides/PDF/Markdown/HTML）"
+  },
+  {
+   "slug": "libreoffice-headless-win",
+   "repo": "genspark-ai/genoffice",
+   "score": 21,
+   "share": 17,
+   "verdict": "KEEP",
+   "blocked_by": "C2+共享度",
+   "reason": "万金油层。注：本件 top3 里 iOfficeAI/OfficeCLI（★32393 / Apache-2.0 / push 2026-10-23 / 12 个 SKILL.md）是**唯一真同域候选**，一手读其根 SKILL.md：定位「AI-friendly CLI for .docx/.xlsx/.pptx，单二进制、无需装 Office」⇒ 与本地件（便携版 LibreOffice + soffice.com + UNO socket + Java 17 桥接补丁 + ODF 全族）**引擎相反**：换装即丢 ODS/ODT/ODG 原生格式与 UNO 编程面。处置=KEEP，并作为「参考件」登记升级建议（其三层策略 L1读→L2 DOM→L3 raw XML 与 help-first 纪律值得借鉴），不当替代"
+  },
+  {
+   "slug": "libreoffice-impress",
+   "repo": "code-yeongyu/oh-my-openagent",
+   "score": 24,
+   "share": 3,
+   "verdict": "KEEP",
+   "blocked_by": "C3",
+   "reason": "license=NOASSERTION ⇒ C3 直接挡（禁合入无明确许可）；且一手查其树内 SKILL.md 路径**零**条含 office/slide/ppt/impress/deck ⇒ 对演示流水线无针对性承载"
+  },
+  {
+   "slug": "libreoffice-writer",
+   "repo": "genspark-ai/genoffice",
+   "score": 21,
+   "share": 17,
+   "verdict": "KEEP",
+   "blocked_by": "C2+共享度",
+   "reason": "同 base/draw：万金油 + 产品套件层；本地件是 ODT/DOCX/PDF/HTML/RTF 互转 + docxtpl 套模板 + 邮件合并导出 + 中文排版 PDF 的 Writer 管线"
+  },
+  {
+   "slug": "subagent-driven-development",
+   "repo": "affaan-m/ECC",
+   "score": 25,
+   "share": 19,
+   "verdict": "KEEP",
+   "blocked_by": "C2+共享度",
+   "reason": "share=19 = 本轮最抢手（1062 个 SKILL.md）⇒ r125/r127 万金油规则直接判话题级误配；本地件是「已有实施计划 ⇒ 会话内逐任务 TDD 执行 + ledger 保活 + whole-branch 评审」的执行段内核，且**已按 R114-1 同源流程吸收** obra/superpowers v6.4+/v7 语义（其 description 自述替代已退役 executing-plans）⇒ 上游同源件归 Q-同源升级队列，不归异名替代"
+  }
+ ],
+ "conservation": {
+  "new_face": 191,
+  "previously_adjudicated": 173,
+  "delta_rows": 18,
+  "sum": 191
+ },
+ "superseded_by": "c2_delta_r211c_2026-10-25.json",
+ "superseded_reason": "v1/v2 的 delta 口径错（按相对扩面前一份的位移算 = 10/18 件），已裁基线应是 r114 的 182 件 ⇒ 真 delta = 110 件。另 v2 里 blender-pipeline 引用的 arjun988/blender-skills 在转义修复后已跌出 top3。",
+ "superseded_at": "2026-10-24T19:11:01"
+}

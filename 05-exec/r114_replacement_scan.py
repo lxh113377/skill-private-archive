@@ -69,6 +69,14 @@ POOL_QUERIES = [
     ("document-skills", "docx xlsx pdf pptx in:description stars:>30"),
     ("browser-automation", "browser automation in:description stars:>800"),
     ("design-ui-skills", "design ui skills in:description stars:>500"),
+    # r211 补（R114-3 同族第二次实证，带取证）：原 14 条查询**没有任何一条能打到 blender 生态**。
+    # 实测（_temp/r114_search_cache 的 14 份池件逐仓反查）：EL4CTEO/blender-skills ★462、
+    # arjun988/blender-skills ★397、XliuXjianX/blender-production-skills ★268、
+    # achimala/dream-loop ★1734、ahujasid/mcp-for-blender ★32230（push 2026-10-24）
+    # ⇒ 5 个候选仓 **全部 NOT IN ANY POOL QUERY**；后果是 blender-pipeline 落 family=OTHER、
+    # 族池 0、判 UNVERIFIED —— 即需求 2「每个 skill 3-5 个候选」对它字面未覆盖。
+    # 禁读成「开源无对应件」（那是 NO_OS_CANDIDATE 的语义，必须有族池非空做前提）。
+    ("blender-3d-skill", "blender skill in:name,description stars:>50"),
 ]
 
 FAMILIES = [
@@ -108,6 +116,11 @@ FAMILIES = [
     ("knowledge", "MCP/工程基建/发现族",
      r"mcp|builder|github|rag|agent|skill|tool|framework|cli",
      r"rag-eval|mcporter|mcp-builder|^github|^oracle|coding-agent|find-skills|bigfile-split|discover-agent-cli|codebuddy-chat-web|healthcare|cross-platform"),
+    ("3d", "3D/Blender 生产族（建模/渲染/装配/交付）",
+     r"blender|\bbpy\b|gltf|\b3d\b|mesh|sculpt|cycles|optix|render",
+     # 追加在表尾 = 最低冲击位：classify() 取**首个** spat 命中，实测前置 12 族的 spat
+     # 均不匹配 blender-pipeline ⇒ 本族只接它一件（全 191 件里正则命中本族 spat 的也只有它）。
+     r"^blender-|blendermcp|blender-modeling"),
 ]
 
 
@@ -528,7 +541,11 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--offline", action="store_true")
     ap.add_argument("--json", dest="json_out", default=None)
-    ap.add_argument("--local-fm", default=os.path.join(ROOT, "_temp", "local_fm_r114.json"))
+    # r211 修（需求 5 长效机制实测断裂）：原缺省指 _temp/local_fm_r114.json —— 那份件
+    # 全史零入库、全仓无生成器（W-46 死句柄），且 _temp 会被并行会话按扩展名清场
+    # （R189-2 实测 212 件）。现缺省改指**入库面**的产物，由 r211_local_fm.py 生成；
+    # 季度巡检已把它接成第 ⑥ 段的前置步，不再依赖任何人手工产物。
+    ap.add_argument("--local-fm", default=os.path.join(BENCH, "local_frontmatter.json"))
     ap.add_argument("--max-cand-per-family", type=int, default=12)
     ap.add_argument("--workers", type=int, default=8,
                     help="候选仓测量的并发度（1 = 串行；GitHub core 5000/h 足够）")
@@ -540,11 +557,16 @@ def main():
         pass
 
     if not os.path.exists(args.local_fm):
-        print("[REPL:UNVERIFIED] 本地 frontmatter 面缺失: %s" % args.local_fm)
+        print("[REPL:UNVERIFIED] 本地 frontmatter 面缺失: %s ⇒ 先跑 "
+              "python 05-exec/r211_local_fm.py 生成（禁再手工造件）" % args.local_fm)
         return 2
-    locals_ = json.load(io.open(args.local_fm, encoding="utf-8"))
+    _doc = json.load(io.open(args.local_fm, encoding="utf-8"))
+    # r211：生成器 r211_local_fm.py 写的是带 schema/generated_at 的**自描述件**（入库面需要出处），
+    # 而 r114 当年的手工件是裸 list。两种形态都收，缺任一侧都会把判据读成 0 件（R247）。
+    locals_ = _doc.get("rows") if isinstance(_doc, dict) else _doc
     if not locals_:
-        print("[REPL:UNVERIFIED] 本地面 0 件 ⇒ 不得读成无缺口（R247）")
+        print("[REPL:UNVERIFIED] 本地面 0 件 ⇒ 不得读成无缺口（R247）｜件内 keys=%s"
+              % (",".join(sorted(_doc.keys())[:6]) if isinstance(_doc, dict) else "裸件"))
         return 2
 
     if not args.offline:

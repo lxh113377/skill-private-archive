@@ -1,6 +1,6 @@
 {
  "schema": "quality-ab-r114-v1",
- "generated_at": "2026-10-20T06:10:18+00:00",
+ "generated_at": "2026-10-24T18:43:25+00:00",
  "cmd": "python 05-exec/r114_quality_ab.py",
  "benchmark": {
   "script": "C:\\Users\\37533\\Desktop\\workspace\\焚诀\\eval\\skill_hitrate_eval_v2.py",
@@ -20,24 +20,24 @@
    "keyword": {
     "top1": 34.8,
     "top3": 38.2,
-    "hit_rate": 48.3,
-    "precision": 72.1,
-    "recall": 40.3,
+    "hit_rate": 49.4,
+    "precision": 70.5,
+    "recall": 40.8,
     "f1": 51.7,
     "fp_rate": 0.0
    },
    "tfidf": {
-    "top1": 27.0,
+    "top1": 25.8,
     "top3": 42.7,
     "hit_rate": 96.6,
-    "precision": 27.9,
-    "recall": 88.9,
-    "f1": 42.5,
+    "precision": 26.7,
+    "recall": 88.5,
+    "f1": 41.1,
     "fp_rate": 14.3
    },
    "hybrid": {
     "top1": 47.2,
-    "top3": 58.4,
+    "top3": 59.6,
     "hit_rate": 97.8,
     "precision": 48.3,
     "recall": 95.5,
@@ -55,8 +55,8 @@
    },
    "tfidf": {
     "top1": [
-     18.8,
-     37.0,
+     17.9,
+     35.8,
      89
     ]
    },
@@ -81,7 +81,7 @@
   "delta_pp": 9.0,
   "delta_rel_pct": 23.6,
   "base_top3": 50.6,
-  "now_top3": 58.4,
+  "now_top3": 59.6,
   "base_f1": 55.3,
   "now_f1": 64.1,
   "top1_ci_base": [

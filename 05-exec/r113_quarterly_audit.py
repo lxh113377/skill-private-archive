@@ -260,11 +260,24 @@ def main():
                            "--scan", prov, "--probe", up, "--json", swap]))
     steps.append(run_step("provenance_face",
                           [PY, os.path.join(HERE, "r112_provenance_face.py")]))
+    # r211 第 ⑥ 段前置：先重生本地输入面（W-46 死句柄补口）。
+    # 动因（实测）：该段原先吃 _temp/local_fm_r114.json —— 全史零入库、全仓无生成器，
+    # 且 _temp 会被并行会话按扩展名清场（R189-2），于是第 ⑥ 段**永久跑不起来**。
+    # 接成前置步而不是「记得先手工跑一次」：长效机制依赖人的记性 = 没有机制。
+    local_fm = os.path.join(BENCH, "local_frontmatter.json")
+    steps.append(run_step("local_fm",
+                          [PY, os.path.join(HERE, "r211_local_fm.py"),
+                           "--json", local_fm, "--quiet"]))
     # r114 第 ⑥ 段：替代候选面（需求 2「每个 skill 3-5 个候选」的季度重扫）
-    repl_argv = [PY, os.path.join(HERE, "r114_replacement_scan.py"), "--json", repl]
+    repl_argv = [PY, os.path.join(HERE, "r114_replacement_scan.py"),
+                 "--local-fm", local_fm, "--json", repl]
     if args.offline:
         repl_argv.append("--offline")
-    steps.append(run_step("replacement_scan", repl_argv))
+    # 冷缓存实测预算（缺省 timeout=900s 不够）：池缓存 _temp/r114_search_cache 同会被清场，
+    # 清场后本步要重打 14 条 search（SEARCH_SLEEP 2.2s）+ 逐仓 measure ~378 仓 × 2 请求
+    # （r114 自记「串行 311 仓 ≈ 83 分钟」，现 --workers 8 ⇒ 下界约 10 分钟，但含限流退避）。
+    # 给 2400s 是量出来的上界余量，不是「为了变绿放宽」——超时与失败在产物里同样具名（rc=None/error 行）。
+    steps.append(run_step("replacement_scan", repl_argv, timeout=2400))
     # r114 第 ⑦ 段：eval 内三方法对照（**口径降级**：r115 已证它不是生产路由读数，
     # 保留只为跨季观察「轻量匹配」而存在；质量主指标看第 ⑨ 段 r115_quality_truth.py）
     qual_argv = [PY, os.path.join(HERE, "r114_quality_ab.py"), "--json", qual, "--quiet"]

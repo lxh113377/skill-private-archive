@@ -20,7 +20,7 @@
   "baseline_score": 94.41,
   "cf_score": 92.54,
   "delta_pp": -1.87,
-  "flips_n": 9,
+  "flips_n": 8,
   "wins_n": 1,
   "loses_n": 6,
   "verdict": "NET_HARMFUL_TO_DISABLE"
@@ -986,7 +986,7 @@
    "expected_domain": null,
    "mismatch": true,
    "expected_in_registry": false,
-   "router_top1": "cloudbase-db-optimize",
+   "router_top1": "libreoffice-base",
    "hit": false,
    "direct_route": null,
    "tag_hits_n": 0,
@@ -2014,7 +2014,7 @@
    "expected_domain": null,
    "mismatch": true,
    "expected_in_registry": false,
-   "router_top1": "cloudbase-db-optimize",
+   "router_top1": "libreoffice-base",
    "hit": false,
    "direct_route": null,
    "tag_hits_n": 0,
@@ -2171,12 +2171,6 @@
    "expected": "multi-search-engine",
    "before": "web-access",
    "after": "spike"
-  },
-  {
-   "query": "写个脚本定期备份数据库",
-   "expected": "tencent-cos-skill__skillhub",
-   "before": "cloudbase-db-optimize",
-   "after": "office-automation-pro"
   }
  ],
  "reading": {

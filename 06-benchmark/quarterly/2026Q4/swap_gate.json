@@ -1,6 +1,6 @@
 {
  "schema": "swap-gate-r112-v1",
- "generated_at": "2026-10-20T06:10:05+00:00",
+ "generated_at": "2026-10-24T18:43:03+00:00",
  "ruler": {
   "kind": "content_addressed",
   "q1": "同源已证（内容寻址，非相似度）",
@@ -9,22 +9,22 @@
   "q4": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
  },
  "face": {
-  "total_skill_n": 183,
+  "total_skill_n": 191,
   "provenance_tiers": {
    "declared": 28,
    "inferred": 33,
    "self_built": 66,
-   "unknown": 56
+   "unknown": 64
   },
   "same_source_judged_n": 40,
-  "coverage_ratio": 0.2186,
+  "coverage_ratio": 0.2094,
   "probe_file": "upstream.json",
   "scan_file": "provenance.json",
-  "blind_n": 143
+  "blind_n": 151
  },
  "counts": {
-  "LOCAL_AHEAD_KEEP": 14,
-  "UNVERIFIED": 16,
+  "LOCAL_AHEAD_KEEP": 13,
+  "UNVERIFIED": 17,
   "UPGRADE_REVIEW": 10
  },
  "behind_list": [
@@ -316,32 +316,22 @@
   },
   {
    "slug": "doc-coauthoring",
-   "verdict": "LOCAL_AHEAD_KEEP",
+   "verdict": "UNVERIFIED",
    "priority": null,
-   "reason": null,
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）",
    "q": {
-    "Q1_same_source": true,
-    "Q2_upstream_has_new": false,
-    "Q3_upstream_delta_dominant": false,
+    "Q1_same_source": null,
+    "Q2_upstream_has_new": null,
+    "Q3_upstream_delta_dominant": null,
     "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
    },
-   "evidence": {
-    "local_only": 2,
-    "upstream_only": 0
-   },
-   "relation": "local_ahead",
-   "stats": {
-    "local_lines": 231,
-    "upstream_lines": 229,
-    "common": 229,
-    "local_only": 2,
-    "upstream_only": 0,
-    "jaccard": 0.9913
-   },
-   "upstream_repo": "anthropics/skills",
-   "upstream_path": "skills/doc-coauthoring/SKILL.md",
-   "upstream_last_commit_date": "2025-12-04T17:01:46Z",
-   "upstream_last_commit_msg": "Add doc-coauthoring skill and update example skills (#134)",
+   "evidence": null,
+   "relation": null,
+   "stats": null,
+   "upstream_repo": null,
+   "upstream_path": null,
+   "upstream_last_commit_date": null,
+   "upstream_last_commit_msg": null,
    "provenance_tier": "inferred"
   },
   {
