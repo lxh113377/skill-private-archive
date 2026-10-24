@@ -643,6 +643,24 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   ⚠️ 由此暴露需求 6 的真实堵点：**不是缺沙箱，是没人提出候选语料**。与 R215-3 合看 = 本面算术封顶 + 上游无候选来源 ⇒ 两者都需老大或归属方点头，本轮写成待决事项而非待办工作量（X-22：已给可解析路径，不外部化）。
   取值：`git log --oneline -S "r119_corpus_gate" -- 05-exec/r113_quarterly_audit.py`（空 = 从未接线）；`python 05-exec/r119_corpus_gate.py`（缺 --candidates 即 argparse 退出）；audit.json 的 steps 步名清单无 corpus_gate。
 
+- [ ] **R217-3（r217 登记，P1·已落地）** **本轮两个自抓：① 我漏跑了自己立的「改门侧件即跑全量」；② 我把并行会话未提交的台账条目以我的提交信息代提交了**： 【r217 裁决=执行（补跑全量 + 新建 hunk 级 stage 护栏并两向实测 + 对 3b6a159 代带 R217-2 做事后声明）｜读数：全量 93 门唯一 FAIL=gate_run_freshness（延迟一轮设计，重跑自愈未动台账）；护栏 SKIP 向暂存区为空、STAGED 向打印携带他人行数；敞口 0、账龄 rc=0。改进方向（门侧件 mtime 触发强制重跑）已登记，未擅改他人归属面。】
+  ① 漏跑全量：本轮新增 `05-exec/r215_gate_check.py`、改写 `r215_free_tool_roster.py`，却只跑了单门就准备
+  收口。r216 我自己把「改门表本体 ⇒ 跑全量」写进过提交信息 ⇒ 规矩在、执行面漏了。补跑 93 门全量
+  （357s）：唯一 FAIL = gate_run_freshness（读上次 verdict、meta 不计入 ⇒ 延迟一轮红，按排障速查 row 7 只重跑
+  不动台账）。元教训：**规矩写进提交信息 ≠ 写进流程**；机械落点应是「门侧件 mtime 晚于上次全量 ⇒ 强制
+  重跑」，本轮先人工兜住、不擅改 gate_run_freshness 归属面。
+  ② 代提交他人条目（越界，比 r214 那次轻但同族）：提交 3b6a159 我按 pathspec `git add -- memory/07-next-steps.md`，
+  而那卷相对 HEAD 的 10 行新增**全是并行会话的 R217-2**（我自己的插入已被撞号预检跳过 ⇒ 那卷里我一行都没有）。
+  结果他们的工作以我的提交信息入库：内容没丢、可回滚，但违反 R269/红线5 同族规矩（不代做代弃他人编辑）。
+  根因：我的暂存检查只做到**文件级**（路径名像不像别人的件），没做到**hunk 级**（新增行是不是我写的）。
+  机械化：新建 `05-exec/r217_shared_stage.py` —— stage 共享卷前先验「本次新增行里有没有我的条目键」，没有
+  就 SKIP（留给作者），有则 STAGED **并打印同时携带的他人行数、强制在提交信息里声明**。实测两向：无我键 ⇒
+  `[STAGE:SKIP]` 且暂存区为空（不偷 stage）；有我键 ⇒ STAGED + 携带计数告警。
+  诚实边界：**共享卷上「只提交自己那几行」当前不可达**（git add 是整文件粒度；`git stash`/`add -p` 在并行
+  会话同写一卷时风险更大 —— pop 冲突可能真损坏他人内容）。所以正解不是回避携带，而是**让携带变成声明出来的
+  事实**。本条即为对 3b6a159 的事后声明：该提交代带了 R217-2 两条。
+  取值：python 05-exec/run_gates.py --json 06-benchmark/gate_run_r217_1.json；git show 3b6a159 -- memory/07-next-steps.md；
+  python 05-exec/r217_shared_stage.py memory/07-next-steps.md --must-contain '<我的条目键>'。
 - [ ] **R217-2（r217 登记，P1·已落地）** **口径 A 的三处机械障碍已全部清掉，但它仍不能自动跑 —— 剩下的不是 bug 而是原则：输入必须是人工提出的候选语料，我不编造候选把验收口径「跑绿」**： 【r217 裁决=执行｜三处机械障碍全清（--cases required / --json 可指 / 已存在即 REFUSE / 原子写），四路径实测通过且 happy path 刻意不跑；判定逻辑与三道控制组一字未动；口径推荐仍为 B（理由已从「A 跑不了」更新为「A 每季需人工交候选」）｜取值：python 05-exec/r123_margin_cf.py 与 --cases _temp/no_such.json；git status --porcelain -- 06-benchmark/margin_cf_r123_2026-10-20.json 须为空】
   一手（本轮为需求 6 做口径对照件时实测，见 `04-plan/需求6口径对照与决策件_r216_2026-10-25.md` §2/§5）：口径 A（路由稳健性 margin，实测 +80%/+169%，本轮最漂亮的数子）的测量件 `05-exec/r123_margin_cf.py` 有三处机械障碍 ——
   ① 无 argparse（`--json` 参数不存在）；② 输入面写死 `_temp/r123_cf_cases.json`，实测**不存在**且 `git grep r123_cf_cases` 只有读侧一行、全仓无生成器（= W-46 死句柄，与我今早已修的 R211-7 同一形态）；③ 输出写死 `margin_cf_r123_2026-10-20.json`（tracked ⇒ 重跑原地覆盖历史证据，同 r211 我在 c16 上撞的那条）。
