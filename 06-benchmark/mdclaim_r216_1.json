@@ -1,6 +1,6 @@
 {
- "claims": 3478,
- "uncited": 167,
+ "claims": 3477,
+ "uncited": 174,
  "status": "EXPOSED",
  "uncited_list": [
   {
@@ -380,6 +380,55 @@
    "file": "全量对标报告_r20_插件面补口径_2026-09-24.md",
    "has_cmd": false,
    "historical": true
+  },
+  {
+   "line": 196,
+   "token": "3,578B",
+   "file": "全量对标报告_r211_八维对标与四项工程改造_2026-10-25.md",
+   "has_cmd": false,
+   "historical": false
+  },
+  {
+   "line": 196,
+   "token": "64,244B",
+   "file": "全量对标报告_r211_八维对标与四项工程改造_2026-10-25.md",
+   "has_cmd": false,
+   "historical": false
+  },
+  {
+   "line": 198,
+   "token": "2,748B",
+   "file": "全量对标报告_r211_八维对标与四项工程改造_2026-10-25.md",
+   "has_cmd": false,
+   "historical": false
+  },
+  {
+   "line": 198,
+   "token": "1,456B",
+   "file": "全量对标报告_r211_八维对标与四项工程改造_2026-10-25.md",
+   "has_cmd": false,
+   "historical": false
+  },
+  {
+   "line": 199,
+   "token": "900B",
+   "file": "全量对标报告_r211_八维对标与四项工程改造_2026-10-25.md",
+   "has_cmd": false,
+   "historical": false
+  },
+  {
+   "line": 199,
+   "token": "2,748B",
+   "file": "全量对标报告_r211_八维对标与四项工程改造_2026-10-25.md",
+   "has_cmd": false,
+   "historical": false
+  },
+  {
+   "line": 202,
+   "token": "3,814B",
+   "file": "全量对标报告_r211_八维对标与四项工程改造_2026-10-25.md",
+   "has_cmd": false,
+   "historical": false
   },
   {
    "line": 54,
@@ -1174,16 +1223,16 @@
   }
  ],
  "files": 145,
- "live_claims": 2723,
- "live_uncited": 0,
+ "live_claims": 2722,
+ "live_uncited": 7,
  "historical_claims": 755,
  "window_lines": 12,
  "live_from_round": 51,
  "schema": "md-claim-face-v1",
- "generated_at": "2026-10-25T04:51:19",
+ "generated_at": "2026-10-25T06:07:22",
  "readonly": true,
  "scope": "06-benchmark/*.md",
  "rule": "数字（条/份/例/组/行/B/倍/百分比/个）须在同节 ±12 行内带取值途径",
  "note": "默认只报告不阻断（r25 否决）；接线判据只看 live_uncited（历史面按 R241 不回改）",
- "live_status": "PASS"
+ "live_status": "EXPOSED"
 }
