@@ -456,6 +456,27 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   references/powershell-cli-silent-failures.md」指针 + 版本行；或由归属方自行合并时带上。
   取值：git -C D:/global_skills status --porcelain -- win-toolchain-pitfalls/SKILL.md（非空即未落地）；
   分卷本体已在库：git -C D:/global_skills log --oneline -1 --grep R804。
+- [ ] **R205-1（r205 登记，P1·已落地）** **GitHub 自动推送链一直在跑、但每次 push 失败都被 || true 全吞、零留痕**： 【r205 裁决=执行（两次错判后用 reflog + --dry-run 拿到真相，当日端到端实证修复）｜读数：钩子留痕 ts=…rc=0 head=ea1a425 且 remote=local 一致；第 87 门 rc=0 PASS；r138 8/8、r140 IN_SYNC、r141 含糊 0。不设目标轮：留痕由第 87 门守，推送失败即 FAIL、无留痕即 UNVERIFIED。】
+  我连错两次：①判「钩子没跑」——reflog 证伪（提交后约 10 秒 origin/main 确实更新过）；
+  ②判「push 失败」但根因未证——--dry-run 实测后成立：裸 push rc=128/21.3s（连不上 github:443），
+  带代理 rc=0/2.5s。根因是钩子那行 git push --quiet origin HEAD >/dev/null 2>&1 || true
+  成败全吞、零留痕。本会话几十轮一直以为「提交即自动推送」，实际每轮都是又手工带代理推一遍。
+  既有三条 hook 判据（r138 查存在与阻断能力/r140 查模板漂移/r141 查归属）全绿，却答不了
+  「这次推成没成」——判据查存在不查结果的盲区（与 §49 夹具语义漂移、§52 分卷无指针同洞三面）。
+  落地：R807 给 skill 侧 HOOK 模板与本仓 hook_templates/post-commit.sh 补结果留痕
+  （printf ts/rc/head >> .git/autopush.log，仍 fail-open 不挡提交）+ 第 87 门 push_autopush_face
+  （portable=False；P1~P6；留痕缺失=UNVERIFIED 不按绿记，R247）+ 本仓配 http.proxy
+  （代理是本机网络属性，不写进跨项目模板）。端到端实证：提交 ea1a425 后钩子自动产出
+  ts=…rc=0 head=ea1a425、remote=local 一致，第 87 门 rc=0 PASS。
+  途中我造的三个问题当场修：①门里留痕路径与模板不符（改为消费方适配生产方）；②P2 扫到
+  钩子注释里的史料 || true（假阳性，与 r31 守卫同型）改只扫非注释行；③--install-hook 未设
+  HOOK_INSTALL_REASON 致 r141「含糊 2」（我引入的回归），改走官方 r138 通道带 reason 重装⇒0。
+  另查出 post-commit 模板有两个真相源（skill HOOK 43 行含守卫 / 本仓 7 行缺守卫），我一度
+  用后者覆盖前者差点丢掉 2026-10-16 近形字事故的守卫；改为本仓模板由 skill 侧程序化生成。
+  元教训：带 || true / 2>/dev/null / except: pass 的自动化，落地时必须配留痕，否则它把
+  「失败」和「没配」压成同一个「看起来没事」。
+  取值：type .git/autopush.log；python 05-exec/r205_push_autopush_face.py；
+  python 05-exec/r138_install_hooks.py（先设 HOOK_INSTALL_REASON）。
 - [ ] **R204-1（r204 登记，P1·已落地）** **把「写了没人读」搬到 skill 侧：建第 86 门前先纠两个分母错**： 【r204 裁决=执行（建门前两次自抓分母/可达性错、建完即验有牙且不碰真实基线件）｜读数：门表 86、自建 HIGH+MID=77、340 分卷、真孤儿 10（朴素判据曾误报 83）；内存法临时删 powershell 基线条→rc=1 抓到、真实基线在位→rc=0、基线文件未被改。不设目标轮：新增无指针分卷即 FAIL，历史 10 条由基线追踪、补一个指针删一条。】
   一手：上轮给 win-toolchain-pitfalls 加的 R804 分卷 powershell-cli-silent-failures.md 是**无指针孤儿**
   （补指针卡在它 SKILL.md 被并行会话 dirty），手工扫才发现 SKILL 侧同型失效零常驻判据。建第 86 门

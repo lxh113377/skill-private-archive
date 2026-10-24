@@ -1,0 +1,12 @@
+{
+ "schema": "autopush-face-v1",
+ "readonly": true,
+ "hook_autopush": true,
+ "silent_swallow": false,
+ "log_rows": 1,
+ "last_rc": 0,
+ "notes": [
+  "PROXY_UNSET：钩子未显式配代理；全局 http.proxy 与钩子裸跑是两件事，P4 会抓真实失败"
+ ],
+ "provenance_cmd": "python 05-exec/r205_push_autopush_face.py"
+}
