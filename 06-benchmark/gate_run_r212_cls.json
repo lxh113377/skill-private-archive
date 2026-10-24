@@ -1,0 +1,34 @@
+{
+ "schema": "gate-run-v1",
+ "generated_at": "2026-10-25 03:09",
+ "readonly": true,
+ "mode": "full",
+ "gates": [
+  {
+   "id": "classify_reds_fixtures",
+   "state": "PASS",
+   "rc": 0,
+   "elapsed_ms": 377,
+   "portable": true,
+   "covers": [
+    "c1 元门红只进 design_inherent、不进 real（分类方向正确）",
+    "c2/c3 普通 FAIL 与 UNVERIFIED 都进 real（不得因『只是没测到』消音，R247）",
+    "c4/c5 PASS/SKIPPED 不入桶 + 两桶之和 == 红门数（枚举守恒，X-24）",
+    "c6 rc 语义未改：aggregate 仍按全量含 meta 判 FAIL（摘掉 meta 即消音真信号）",
+    "m1/m1b 变异：摘 meta 标记 ⇒ c1 转红；复原后分桶回原状（变异不残留）"
+   ],
+   "tail": "| PASS c5 守恒：两桶之和 == 红门数（不重不漏） | PASS c6 rc 语义未改：aggregate 仍按全量含 meta 判 FAIL | PASS m1 变异：摘掉 meta 标记 ⇒ 元门落进 real（证 c1 测分桶本身，非恒真） | PASS m1b 复原后分桶回到原状（变异不残留） | 夹具合计: 9 项，通过 9，失败 0 | [GATE:fixture-pass]"
+  }
+ ],
+ "not_covered": [
+  "受管根四门禁 mirror/noise/evolution/stub —— 属 rule_editor 面，取值：python D:\\global_skills\\A-memory-start\\references\\rule_editor.py gates",
+  "焚诀跨产物真值 C1~C33 —— 取值：python 焚诀\\eval\\verify_truth_consistency.py",
+  "判据变异测试（r19_fixture_mutation_check.py）—— 按需跑，非每轮前置"
+ ],
+ "verdict": "PASS",
+ "verdict_reason": "PASS=1（无 FAIL / 无 UNVERIFIED / 无 MISSING）",
+ "total_ms": 377,
+ "gates_run": 1,
+ "real_red": [],
+ "design_inherent_red": []
+}

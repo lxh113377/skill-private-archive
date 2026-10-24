@@ -1401,6 +1401,24 @@ GATES = [
                 "（origin/main 已含 HEAD），但留痕不补记手工推送 ⇒ 旧 P4 拿旧失败判当前提交。"),
     },
     {
+        # r212：第 91 门 —— 红门分类的行为级双向夹具（落 R211-3：CI 页面别再拿设计内红当故障红）
+        "id": "classify_reds_fixtures",
+        "script": "r211_classify_reds_fixtures.py",
+        "argv": [],
+        "pass_token": "[GATE:fixture-pass]",
+        "portable": True,   # 只 import 本 runner + 合成 rows，零网络零本机根（实测 import 100ms）
+        "covers": [
+            "c1 元门红只进 design_inherent、不进 real（分类方向正确）",
+            "c2/c3 普通 FAIL 与 UNVERIFIED 都进 real（不得因『只是没测到』消音，R247）",
+            "c4/c5 PASS/SKIPPED 不入桶 + 两桶之和 == 红门数（枚举守恒，X-24）",
+            "c6 rc 语义未改：aggregate 仍按全量含 meta 判 FAIL（摘掉 meta 即消音真信号）",
+            "m1/m1b 变异：摘 meta 标记 ⇒ c1 转红；复原后分桶回原状（变异不残留）"],
+        "why": ("r211 一手：CI 近 30 run 27 红，逐行归因后红因恒为同一道门 gate_run_freshness" +
+                "（它读本机已提交台账，本机有活债时必红，属职责内），但与真故障红完全同形。" +
+                "分类若写错比没分类更坏 —— 会把真故障读成设计内。本门用合成 rows 锁住分桶方向、" +
+                "守恒与『rc 未被分类改动』三件事。"),
+    },
+    {
         # r208：实测知识可召回面（第 88 门）—— 知识进对 skill 也可能召不回
         "id": "recall_face",
         "script": "r208_recall_face.py",
@@ -1612,6 +1630,24 @@ def aggregate(results):
     return 0, "PASS=%d（无 FAIL / 无 UNVERIFIED / 无 MISSING）" % n_pass
 
 
+def classify_reds(rows):
+    """把红门分成两类，让「谁该红」在输出面上可分辨（r212 落 R211-3）。
+
+    - meta（设计内红）：门表标 meta=True 的门 —— 目前只有 gate_run_freshness，
+      它评的是「本机最近一次全量门禁有没有干净跑完」，读的是**已提交台账**。
+      本机有活债时它必红，这是它的职责，不是 CI 挂了。
+    - real（真故障）：其余所有 FAIL / UNVERIFIED / MISSING。
+
+    ⛔ 只改**展示与记账形态**，不改 rc：rc 仍按 aggregate(rows) 的全量结论（含 meta 门），
+      否则等于把「本机没跑干净」这条真信号消音（R263 反向）。
+    """
+    meta_ids = {g["id"] for g in GATES if g.get("meta")}
+    bad = [r for r in rows if r["state"] in ("FAIL", "UNVERIFIED", "MISSING")]
+    meta_red = [r["id"] for r in bad if r["id"] in meta_ids]
+    real_red = [r["id"] for r in bad if r["id"] not in meta_ids]
+    return real_red, meta_red
+
+
 def _ensure_debt_fresh():
     """账龄件相对新鲜前置腿（r122-1 立；r163 起**实现单一真相源在 _lib.ensure_debt_fresh**）。
 
@@ -1751,6 +1787,12 @@ def main():
     print("本 runner 不覆盖（聚合绿不等于这些也绿）：")
     for s in NOT_COVERED:
         print("  · %s" % s)
+    _real, _meta = classify_reds(rows)
+    if _real or _meta:
+        print("红门分类：真故障 REAL_RED=%d %s｜设计内 DESIGN_INHERENT_RED=%d %s" % (
+              len(_real), ("(%s)" % ", ".join(_real)) if _real else "()",
+              len(_meta), ("(%s)" % ", ".join(_meta)) if _meta else "()")
+        )
     if rc == 0:
         print("[GATES:PASS] %s" % why)
     elif rc == 1:
@@ -1763,7 +1805,8 @@ def main():
                "readonly": True, "mode": "portable-only" if args.portable_only else "full",
                "gates": rows, "not_covered": NOT_COVERED,
                "verdict": "PASS" if rc == 0 else ("FAIL" if rc == 1 else "MISSING"),
-               "verdict_reason": why, "total_ms": total_ms, "gates_run": n}
+               "verdict_reason": why, "total_ms": total_ms, "gates_run": n,
+               "real_red": _real, "design_inherent_red": _meta}
         with open(args.json, "w", encoding="utf-8") as f:
             json.dump(doc, f, ensure_ascii=False, indent=1)
         print("JSON -> %s" % args.json)

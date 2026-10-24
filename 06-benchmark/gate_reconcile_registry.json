@@ -90,10 +90,11 @@
    "skill_wiring_face",
    "push_autopush_face",
    "autopush_fixtures",
+   "classify_reds_fixtures",
    "recall_face",
    "volume_coverage_face"
   ],
-  "_snapshot_at": "2026-10-25 02:18",
+  "_snapshot_at": "2026-10-25 03:20",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
@@ -289,6 +290,10 @@
   "autopush_fixtures": {
    "evidence": "06-benchmark/gate_run_r210_autopush_fixtures.json",
    "at": "2026-10-25 01:59"
+  },
+  "classify_reds_fixtures": {
+   "evidence": "06-benchmark/gate_run_r212_cls.json",
+   "at": "2026-10-25 03:09"
   }
  }
 }

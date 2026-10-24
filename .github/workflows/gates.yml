@@ -77,6 +77,13 @@ jobs:
           sk = [g for g in d["gates"] if g["state"] == "SKIPPED"]
           lines = ["## 门禁覆盖自证",
                    "- verdict: `%s`（%s）" % (d["verdict"], d["verdict_reason"]),
+                   # r212（落 R211-3）：把「设计内红」与「真故障红」分开点名。近 30 run 27 红全来自
+                   # gate_run_freshness（它读本机已提交台账，本机有活债时必红，属职责内），但在页面上
+                   # 与真故障同形。分类只改展示形态，rc 与 SUCCESS_FLOOR 判据一条未放宽。
+                   "- 真故障红 REAL_RED=%d %s ｜ 设计内红 DESIGN_INHERENT_RED=%d %s" % (
+                     len(d.get("real_red") or []), ", ".join(d.get("real_red") or []) or "-",
+                     len(d.get("design_inherent_red") or []),
+                     ", ".join(d.get("design_inherent_red") or []) or "-"),
                    "- 本次执行 **%d** 门：%s" % (len(ran), ", ".join(g["id"] for g in ran)),
                    "- 本机专属（**未跑**，非通过）：**%d** 门" % len(sk)]
           lines += ["  - `%s`" % g["id"] for g in sk]
