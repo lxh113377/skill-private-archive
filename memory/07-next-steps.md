@@ -456,6 +456,29 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   references/powershell-cli-silent-failures.md」指针 + 版本行；或由归属方自行合并时带上。
   取值：git -C D:/global_skills status --porcelain -- win-toolchain-pitfalls/SKILL.md（非空即未落地）；
   分卷本体已在库：git -C D:/global_skills log --oneline -1 --grep R804。
+- [ ] **R209-3（r209 登记，P1·已落地）** **召回机制读数（direct_map 才是主入口）+ 两条残留红的定性 + 同族错第三次**： 【r209 裁决=执行（召回机制读数落 §61.1 + 两条残留红定性 + 同族错第三次记成选择规则）｜读数：direct_map 273/102，win-toolchain 0 pattern（rank=None/2）、chaoshi 10（direct_hit=True）；cf_deploy_face 是外部读数暂不可得（URLError，72s 真跑），gate_run_freshness 经读实现确认诚实（有意保留上轮 FAIL，解法是给干净基线非调口径）。无后续挂账：direct_map 补 pattern 属焚诀侧已写进 R811；干净基线留下一轮 cf 恢复时自然达成。】
+  目标本体侧（§61.1）：取 eval/direct_map.json 本体聚合（273 条 pattern / 102 skill），把「知识写进 skill」
+  拆成三个可各不一致的层 —— 写下来（references 正文）/ 有指针（第 86 门）/ 可召回（direct_map pattern +
+  BGE 名次，第 88 门层二）。相关件 pattern 数：A-skill-manager 29、chaoshi-web-deploy 10（故
+  direct_hit=True score=1.0 短路整条管线）、github 6、A-memory-start 2、ci-pipeline-debugging/
+  cross-platform-agent-sync/chaoshi-image-optimization 各 1、**win-toolchain-pitfalls 0**（只落 BGE，
+  实测 rank=None/2）。⇒ 想某类坑下次真被想起，最低成本 = 承载件 SKILL.md description 加触发词（进窗口）
+  + 进 direct_map（进直连）；direct_map 属焚诀 eval/（红线6 只读），这步只能焚诀侧做，已写进 R811 速查
+  让下次撞墙的人知道该补哪个文件。
+  两条残留红定性（都不放宽阈值）：① cf_deploy_face UNVERIFIED rc=2，tail 实测「cf: URLError」、
+  72s 真跑过、行为正确「不判绿也不指控漂移」—— CF 侧读数暂不可得（限流/网络），非判据问题；
+  ② gate_run_freshness FAIL 读 r32 实现确认**是诚实的**：该门有意保留「上一轮 FAIL 照红」（exclude_after
+  只排本轮并发写入，注释原文「这不放松判据」），而上一次全量确实 FAIL（被本轮已修的 debt_face +
+  cf 限流拖红）。解法是给它一次干净基线（cf 恢复后跑出一轮 PASS），不是调 max_days 或 verdict 口径。
+  第三次同族错（§61.2，说明它不是疏忽是缺闸）：为算「哪些自建件在 direct_map 是 0 pattern」我又写了一遍
+  清单解析（tier 分节 + 反引号取名），结果算出「自建 HIGH+MID=0」，而权威实现 r204 每轮给 **77**。我在
+  r204 注释里早立过「分母必须复用权威实现、禁另写解析」，本轮一边写「逐字节定责」一边下一步就凭「这段
+  解析我记得」重写了它。好在后果可控：机制事实取自 direct_map.json 本身、不依赖那个分母，结论未污染；
+  但若把「0 个自建件」当事实写进报告就造出一条假读数。处置规则（不新开判据，避免撞「只加有牙的门」）：
+  跨件统计 → import/跑 --json 复用已有实现（本轮改用 importlib 载 r32 调它的读取面就是这个正解），
+  只有实现不可达才自写，且必拿权威读数对一遍（本次 0 对 77 当场暴露）。
+  取值：python -c 聚合 焚诀/eval/direct_map.json；06-benchmark/gate_run_r209_2.json 的 cf_deploy_face.tail；
+  r32_gate_freshness.py 的 exclude_after 段（注释「这不放松判据」）。
 - [ ] **R209-2（r209 登记，P1·已落地）** **debt_face_freshness 的红：别人改了契约，但我查出处方是改我自己的消费方（不是修 ratchet、更不是放宽阈值）**： 【r209 裁决=执行（定责后改自己的消费方 n1b 为键前缀筛，语义判据未放宽；不动他人未提交的 ratchet_gate，不放宽阈值）｜读数：桩件 9/9；合法变异（理由挪到别的指标名下）⇒ n1b FAIL 8/9，证明新写法有牙；还原字节一致。reconcile_admission 是我的漏登，已 --register 补齐（未声明 0）。无后续挂账：待对方提交后若键名再变，n1b 的筛法已能自动跟上。】
   全量 89 门剩 3 红，逐条定责：① reconcile_admission 报 UNDECLARED r209_route_truth_measure.py —— 
   **我的**（新测量器产读数未登记准入豁免），r129 --register --evidence 补齐后「未声明 0」。
