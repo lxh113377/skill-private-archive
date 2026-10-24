@@ -1,8 +1,9 @@
 # AGENTS.md — 自建skill优化（索引壳，R161 拆卷）
 
-> 自动生成: 2026-10-16 17:20 | 由 r109 I-7「实减」把全量快照降级为索引壳（原 29,293B > 注入预算）。
 > **本节只放路由与红线；正文权威源在 `memory/`，本壳不含第二真相源。**
-> 备份与回滚：`05-exec/mark_backup/AGENTS.md.r109_before_index_shell`（git 亦可回滚，AGENTS.md 已跟踪）。
+> 降级史与迁移前快照取值：`git log --oneline -- AGENTS.md`（r109 I-7 起；本件已跟踪，git 可回滚）。
+> 分卷份数一律现读：`Get-ChildItem memory -Filter 07-next-steps.part*.md | Measure-Object`（旧注手抄的 part 号实测已漂）。
+> 旧注所引备份路径 `05-exec/mark_backup/AGENTS.md.r109_before_index_shell` 经 r216 实测**已不存在**（死指针已删）。
 
 ## 启动顺序（每次进来先做）
 
@@ -20,9 +21,9 @@
 | 02 结构 | `memory/02-structure.md` | 目录树（sync 自动更新）+ 模块说明 |
 | 03 技术栈 | `memory/03-tech-stack.md` | 运行环境 + 外部依赖 |
 | 04 文件地图 | `memory/04-file-map.md` | 核心逻辑文件/配置表 |
-| 05 功能状态 | `memory/05-feature-status.md`（+ part1…part29） | 已完成/进行中/阻塞 |
-| 06 已知约束 | `memory/06-constraints.md`（+ part1…part16；part6–16 = #30–#48 纪律正文，r154 从本壳归档） | 已知 Bug / 技术债 / 红线全文 |
-| 07 下一步 | `memory/07-next-steps.md`（+ part1…part57） | **P0 真相源** |
+| 05 功能状态 | `memory/05-feature-status.md`（+ partN） | 已完成/进行中/阻塞 |
+| 06 已知约束 | `memory/06-constraints.md`（+ partN；part6–16 = #30–#48 纪律正文） | 已知 Bug / 技术债 / 红线全文 |
+| 07 下一步 | `memory/07-next-steps.md`（+ partN） | **P0 真相源** |
 | 08 验收 | `memory/08-ac-obs.md` | AC-OBS 列表 |
 | 09 工作流态 | `memory/09-workflow-state.md` | 批次与在途 |
 | — | `memory/AGENTS.md` | P-1 项目级 Skill 绑定表（命中即加载） |
@@ -49,30 +50,22 @@
 6. **焚诀 `eval/` 只读调用不改**；派生件（registry/skill_content/BGE）禁手改。
 7. 破坏性动作双硬前提（备份已落 `_trash` + Git 可回滚）满足才可自动批准并留痕，缺任一回落待确认。
 
-## 门禁与取值命令（常驻，禁凭记忆下结论）
+## 门禁与取值命令
 
-```
-python 05-exec/run_gates.py --json 06-benchmark/<新件>.json     # 本仓 29 门聚合
-python 05-exec/ratchet_gate.py                                  # 注入面/度量六+三项只降不升
-python 05-exec/r52_md_claim_face_scan.py --json <件>            # 报告数字须挂取值命令
-python 05-exec/r38_debt_aging.py --json <件> --ledger 06-benchmark/debt_runs.jsonl
-python D:/global_skills/A-memory-start/references/rule_editor.py gates
-python D:/global_skills/A-skill-manager/assets/disk_registry_diff.py
-python D:/global_skills/A-project-handoff/scripts/handoff.py volume <本项目>
-```
+正本 = `memory/AGENTS.md`「项目门禁命令」节（A-memory-start R193 读的就是那一行）+ `05-exec/README.md`。
+本壳**不复制命令清单**：复制即第二真相源（违本壳自身声明），且旧注手抄的「29 门」实测已漂到 93 门。
+门数现读：`python -c` 读 run_gates.GATES 长度；注入面现读：`python 05-exec/ratchet_gate.py`。
 Python 首选 managed venv `%USERPROFILE%\.workbuddy\binaries\python\envs\default\Scripts\python.exe`
 （系统 Python 会假红：numpy/jinja2/networkx 缺）；跑任何 py 前设 `PYTHONPYCACHEPREFIX`。
 
-## 纪律条目正文已归档至 memory 分卷（r154，R150-7）
+## 纪律条目正文（#30..#48）
 
-> r154 归档（R150-7 落地）：下列纪律条目的**正文权威源**已迁 `memory/06-constraints.part6.md` .. `.part16.md`（原文零改写，R241）。
-> 本壳仅留指针 —— 回到 R161 的原设计「本节只放路由与红线；本壳不含第二真相源」。
-> 条目清单：#30..#48（含 #31 全自动完成 / #32 判据面 / #33 结论层 / #35 阻断点 / #45 写入顺序 / #47 转办复算面 / #48 want⇄got …）。
-> ⛔ 新增纪律条目**先落 memory 分卷**，壳内只加指针（防本缺陷复发）。
+正本 = `memory/06-constraints.part6.md`..`.part16.md`（r154 归档，原文零改写）。
+⛔ 新增纪律条目**先落 memory 分卷**，壳内只加指针。
 
 ## 已知坑（本壳级必读三条；其余见 `06-constraints.md`）
 
 - 聚合 runner 的 stdout **禁落项目根**（noise 顶层 VIOL）**也禁落 tracked 件**（Out-File 截零 → `tracked_empty_check` 判红）；正解 = gitignore 命中的 `_temp/` 或只留 `--json` 快照。
-- **写记忆卷之后必须重算账龄件**，否则「相对新鲜前置」把三门再次染红。⚠️ **本条已连踩 3 轮（r119/r121/r122）**：症状 = 棘轮报「overdue/deferred/repeat 指标缺失」+ `r55_note_fixtures` 的 n4 腿必现 FAIL（3/3 复现）。正确顺序 = **先改 07 台账 → 后跑 `r38_debt_aging.py`**；已踩后补救 = 原样重跑一次 `r38_debt_aging.py`（件 mtime 即新于卷集），ratchet / note fixtures / 同号多副本面三项随之转绿。
+- **写记忆卷之后必须重算账龄件**：顺序 = 先改 07 台账 → 后跑 `r38_debt_aging.py`；已连踩 3 轮（r119/r121/r122），症状与补救全文正本 = `memory/07-next-steps.part84.md`（R122-1 已机械化）。
 - 受管根提交落地 ≠ 交付：必复算 `git merge-base --is-ancestor <sha> HEAD`（并行 rebase 会把你的提交甩出主线，一手 `b9e5d90e`）。
 

@@ -136,6 +136,7 @@ python 05-exec/r55_rootface_fixtures.py                                       # 
 - **卷3** `06-constraints.part3.md` — 06-constraints 分卷（R199 自动拆卷）
 - **卷4** `06-constraints.part4.md` — 06-constraints 分卷（R199 自动拆卷）
 - **卷5** `06-constraints.part5.md` — 06-constraints 分卷（R199 自动拆卷）
+- **卷17** `06-constraints.part17.md` — 从根壳 `AGENTS.md` 下沉的原文（r216 注入面腾面 / 对标改造 M-2；壳内已留指针）
 
 
 ## 技术债（r60 新登记）
