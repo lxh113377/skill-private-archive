@@ -93,9 +93,10 @@
    "classify_reds_fixtures",
    "recall_face",
    "volume_coverage_face",
-   "ingress_face"
+   "ingress_face",
+   "tool_carrier_face"
   ],
-  "_snapshot_at": "2026-10-25 03:40",
+  "_snapshot_at": "2026-10-25 04:04",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
@@ -299,6 +300,10 @@
   "ingress_face": {
    "evidence": "05-exec/r213_ingress_face.py",
    "at": "2026-10-25 03:29"
+  },
+  "tool_carrier_face": {
+   "evidence": "05-exec/r214_tool_carrier_face.py",
+   "at": "2026-10-25 03:49"
   }
  }
 }

@@ -1,0 +1,56 @@
+{
+ "schema": "tool-carrier-patterns-v1",
+ "note": "键与 free_tools_latest.json 的 tool 名两侧同过 norm()（去 cloudflare- 前缀、连字符转空格、upstash-redis 归 upstash）。正则集刻意宽松：命中「该工具在 skill 正文里被说过」即可，不要求精确到章节。",
+ "patterns": {
+  "vs code": [
+   "vs\\s*code",
+   "vscode",
+   "code\\.cmd"
+  ],
+  "github": [
+   "github",
+   "gh\\s+api",
+   "\\bactions\\b"
+  ],
+  "sqlite": [
+   "sqlite",
+   "d1\\s+execute",
+   "sqlite3"
+  ],
+  "pages": [
+   "pages\\s+deploy",
+   "pages\\.dev",
+   "\\bpages\\b"
+  ],
+  "workers": [
+   "\\bworkers\\b",
+   "wrangler",
+   "functions"
+  ],
+  "d1": [
+   "\\bd1\\b",
+   "d1 execute",
+   "d1 migrate"
+  ],
+  "r2": [
+   "\\br2\\b",
+   "r2 bucket",
+   "存储桶"
+  ],
+  "turnstile": [
+   "turnstile",
+   "人机验证",
+   "captcha"
+  ],
+  "resend": [
+   "resend",
+   "邮件验证码",
+   "smtp"
+  ],
+  "upstash": [
+   "upstash",
+   "限流",
+   "\\bredis\\b"
+  ]
+ }
+}

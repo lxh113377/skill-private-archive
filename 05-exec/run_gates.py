@@ -1478,6 +1478,23 @@ GATES = [
         ],
         "why": ("r213 一手：第88门量BGE召回(语料=SKILL.md前800字符)，而A-memory-start分派行L111在偏移5594、不在窗口内；第86门只看分卷被任一SKILL.md提过指针没。R813把额度触发词补进L111接通的「任务话术→分派行→quickref额度专章」这条入口链此前无判据守：谁删了那指针，额度知识还在quickref、86门照样绿、88门照样绿——入口断了没人报。本门把它变每轮读数，K5已验有牙。"),
     },
+    {
+        # r214：名册工具↔skill 承载面（第 93 门）—— 搭配的字面断言，此前无门
+        "id": "tool_carrier_face",
+        "script": "r214_tool_carrier_face.py",
+        "argv": ["--json", "06-benchmark/tool_carrier_latest.json"],
+        "pass_token": "[CARRIER:PASS]",
+        "portable": False,
+        "not_portable_reason":
+            "读 D:/global_skills 全根 .md 与名册读数件，均为本机绝对路径",
+        "covers": [
+            "K2 前置：名册每个工具 norm(名) 必须在模式表有键，缺任一 ⇒ UNVERIFIED（先拦分母键错位）",
+            "K3 承载 = 全根扫 .md 按正则集命中去重技能根；计数 0 ⇒ GAP；空面 ⇒ UNVERIFIED",
+            "K5 双向有牙：正例至少一工具真被扫到承载 + 反例假正则必判 0 承载",
+            "基线 tool_carrier_baseline 只拦新增；缺失 ⇒ UNVERIFIED"],
+        "why": ("前 92 门量「工具能不能跑/话术能不能召回/分卷有没有指针」，但没有门断言「每个名册工具至少被一个 skill 承载」——那正是目标「与相关 skill 合理搭配」最字面的可读形态；工具从全部 .md 被删干净今天也全绿。建门前先踩到本门命门：探针模式表键写「Cloudflare D1」空格、名册是「Cloudflare-D1」连字符 ⇒ 四工具静默算成 0 命中，差点当「没人承载」写进报告（X-24/X-26 同族）。故 K2 强制两侧同过 norm()，键缺即 UNVERIFIED，已双向验牙。"),
+    },
+
 ]
 
 # 显式声明本 runner **不覆盖**的面，防止聚合绿被读成「所有门禁都绿」（R20-2）。

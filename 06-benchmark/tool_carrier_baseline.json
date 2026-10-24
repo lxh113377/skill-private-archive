@@ -1,0 +1,5 @@
+{
+ "schema": "tool-carrier-baseline-v1",
+ "known_uncarried": [],
+ "note": "先置空取判据自吐串（本仓多次踩过手抄格式致 KNOWN 永不匹配），再据实回填。（首跑空基线即 0 缺口 ⇒ 本面暂无历史待办；基线保留作只拦增量用）"
+}

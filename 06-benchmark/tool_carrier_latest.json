@@ -1,0 +1,13 @@
+{
+ "schema": "tool-carrier-v1",
+ "readonly": true,
+ "tools": 10,
+ "vols": 1718,
+ "gaps": [],
+ "baseline": [],
+ "new_gaps": [],
+ "k5_teeth": true,
+ "k5_detail": "正例有承载=True 反例假正则判无承载=True",
+ "note": "搭配的字面形态 = 每个名册工具至少被一个 skill 承载；本门前置是模式表键与名册归一化键一一对齐（K2），否则 0 命中是探针错不是发现（r214 踩过）",
+ "provenance_cmd": "python 05-exec/r214_tool_carrier_face.py --json <件>"
+}

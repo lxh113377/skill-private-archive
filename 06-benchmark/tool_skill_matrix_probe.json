@@ -1,0 +1,183 @@
+{
+ "md_files": 1718,
+ "roster_n": 10,
+ "unmatched_keys": [],
+ "tools": [
+  {
+   "tool": "GitHub",
+   "key": "github",
+   "state": "READY",
+   "hit_files": 317,
+   "skill_count": 100,
+   "skills": [
+    "9b-lightworkflow",
+    "A-dynamic-workflow",
+    "A-get-memory",
+    "A-memory-start",
+    "A-project-better",
+    "A-project-handoff",
+    "A-skill-manager",
+    "CONTRIBUTING.md",
+    "agent-browser",
+    "algorithmic-art"
+   ]
+  },
+  {
+   "tool": "Cloudflare-D1",
+   "key": "d1",
+   "state": "READY",
+   "hit_files": 25,
+   "skill_count": 14,
+   "skills": [
+    "A-ask-questions",
+    "A-memory-start",
+    "A-project-better",
+    "A-project-handoff",
+    "A-skill-manager",
+    "chaoshi-web-deploy",
+    "cloudbase",
+    "dingtalk-misc",
+    "fenjue-memory-audit",
+    "ican-deploy"
+   ]
+  },
+  {
+   "tool": "Cloudflare-R2",
+   "key": "r2",
+   "state": "GAP_SERVICE",
+   "hit_files": 25,
+   "skill_count": 14,
+   "skills": [
+    "A-get-memory",
+    "A-memory-start",
+    "A-project-better",
+    "A-project-handoff",
+    "chaoshi-image-optimization",
+    "cloudbase",
+    "dingtalk-aitable",
+    "openclaw-dual-gate-quality-audit",
+    "openclaw-fenjue-weekly",
+    "openclaw-task-supervision"
+   ]
+  },
+  {
+   "tool": "Cloudflare-Pages",
+   "key": "pages",
+   "state": "READY",
+   "hit_files": 306,
+   "skill_count": 59,
+   "skills": [
+    "A-get-memory",
+    "A-memory-start",
+    "A-project-better",
+    "A-project-handoff",
+    "A-skill-manager",
+    "agent-browser",
+    "byted-bp-cdn-pagesdeploy",
+    "canvas-design",
+    "chaoshi-image-optimization",
+    "chaoshi-web-deploy"
+   ]
+  },
+  {
+   "tool": "Cloudflare-Workers",
+   "key": "workers",
+   "state": "READY",
+   "hit_files": 140,
+   "skill_count": 36,
+   "skills": [
+    "A-memory-start",
+    "A-project-better",
+    "A-project-handoff",
+    "A-skill-manager",
+    "agent-browser",
+    "algorithmic-art",
+    "c-cleanup",
+    "chaoshi-image-optimization",
+    "chaoshi-web-deploy",
+    "cloudbase"
+   ]
+  },
+  {
+   "tool": "SQLite",
+   "key": "sqlite",
+   "state": "READY",
+   "hit_files": 13,
+   "skill_count": 11,
+   "skills": [
+    "A-ask-questions",
+    "A-project-handoff",
+    "A-prompt-better",
+    "chaoshi-web-deploy",
+    "consulting-analysis",
+    "dingtalk-aitable",
+    "fenjue-memory-audit",
+    "gstack",
+    "ican-deploy",
+    "oracle"
+   ]
+  },
+  {
+   "tool": "VS Code",
+   "key": "vs code",
+   "state": "READY",
+   "hit_files": 101,
+   "skill_count": 46,
+   "skills": [
+    "A-dynamic-workflow",
+    "A-get-memory",
+    "A-java-problem",
+    "A-memory-start",
+    "A-project-better",
+    "A-project-handoff",
+    "A-skill-manager",
+    "bigfile-split",
+    "blender-pipeline",
+    "c-cleanup"
+   ]
+  },
+  {
+   "tool": "Cloudflare-Turnstile",
+   "key": "turnstile",
+   "state": "READY",
+   "hit_files": 10,
+   "skill_count": 4,
+   "skills": [
+    "chaoshi-image-optimization",
+    "computer-use-guidance-windows",
+    "gstack",
+    "win-toolchain-pitfalls"
+   ]
+  },
+  {
+   "tool": "Resend",
+   "key": "resend",
+   "state": "GAP_CRED",
+   "hit_files": 6,
+   "skill_count": 2,
+   "skills": [
+    "cloudbase",
+    "office-automation-pro"
+   ]
+  },
+  {
+   "tool": "Upstash-Redis",
+   "key": "upstash",
+   "state": "GAP_CRED",
+   "hit_files": 42,
+   "skill_count": 22,
+   "skills": [
+    "A-memory-start",
+    "c-cleanup",
+    "chaoshi-image-optimization",
+    "chaoshi-web-deploy",
+    "cloudbase",
+    "code-review",
+    "debugging-fixing",
+    "dingtalk-aitable",
+    "frontend-asset-library",
+    "gstack"
+   ]
+  }
+ ]
+}
