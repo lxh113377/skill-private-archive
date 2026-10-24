@@ -2,12 +2,8 @@
  "schema": "fixture-wiring-v1",
  "readonly": true,
  "fixtures_total": 51,
- "orphans": [
-  "r31_run_gates_fixtures.py"
- ],
- "baseline": [
-  "r31_run_gates_fixtures.py"
- ],
+ "orphans": [],
+ "baseline": [],
  "new_orphans": [],
  "referenced_by_peers": [
   "r150_gov_fixtures.py",

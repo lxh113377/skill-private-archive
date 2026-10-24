@@ -85,9 +85,10 @@
    "probe_cost_fixtures",
    "onwrite_fixtures",
    "tracked_empty_fixtures",
-   "input_pin_fixtures"
+   "input_pin_fixtures",
+   "runner_internals_fixtures"
   ],
-  "_snapshot_at": "2026-10-24 10:35",
+  "_snapshot_at": "2026-10-24 16:32",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
@@ -259,6 +260,10 @@
   "input_pin_fixtures": {
    "evidence": "05-exec/r67_input_pin_fixtures.py",
    "at": "2026-10-24 09:27"
+  },
+  "runner_internals_fixtures": {
+   "evidence": "05-exec/r31_run_gates_fixtures.py",
+   "at": "2026-10-24 11:13"
   }
  }
 }

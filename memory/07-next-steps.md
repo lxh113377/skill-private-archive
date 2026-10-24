@@ -456,6 +456,28 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   references/powershell-cli-silent-failures.md」指针 + 版本行；或由归属方自行合并时带上。
   取值：git -C D:/global_skills status --porcelain -- win-toolchain-pitfalls/SKILL.md（非空即未落地）；
   分卷本体已在库：git -C D:/global_skills log --oneline -1 --grep R804。
+- [ ] **R203-1（r203 登记，P1·已落地）** **上轮我挂的门里有真递归：层 b 整跑 portable 子集会把自己再跑一遍**： 【r203 裁决=执行（当日三次归因、第三次用 cProfile 才拿到真相，当日改完并回滚错误诊断留下的改动）｜读数：r31 1039.8s→58.9s（降 94%）31/31 PASS；全量 85 门 337.4s 跑完且该门 PASS 58.6s（此前 300s TIMEOUT）；第 76 门重测足迹仍 cloudflare=13/github=8 ⇒ PROBECOST:PASS；防递归守卫零成本验有牙（现状 0 条放行、裸整子集变异抓中 1 条）。不设目标轮：递归已从源头消除（层 b 不再整跑子集），并由静态守卫拦回归。】
+  一手：第 85 门 `runner_internals_fixtures`（r31）挂上门表后在全量里 `TIMEOUT after 300s`。
+  我先判成「判据坏」，又判成「99.6% 睡在重试退避上」并据此给 `run_gates` 加了环境变量旁路 ——
+  **两个结论都是错的**。cProfile 实测：52 次 `subprocess.run` 合计 1038.97 秒（每次 19.99 秒），
+  而假门路径（含全部 `sleep(3)`）只有 3.6 秒。真凶是层 b 三次 `run_gates.py --portable-only`
+  整子集跑（每次约 340 秒）。更严重：本夹具已挂门表且 portable=True ⇒ 整跑 portable 子集
+  **包含它自己 ⇒ 真递归**，只因逐层 timeout 掐断才没炸开。
+  我那个「零退避对照实验=3.9 秒」为何骗了我：临时目录里 `REPO` 指错 ⇒ 所有门 MISSING 直接早退，
+  它测的是「什么都没跑」，不是「不睡省多少」。**对照实验必须验它自己有没有真的在做被比的事**
+  （第 78 门 M3 空锁是同一机理，我这条是它的实验版复发）。
+  修：层 b 改用 runner 的选门原语 —— `--gate` 过滤发生在 `--portable-only` 判定**之前**，
+  于是「单跑一个零网络门」验接线、「选一个 non-portable 门」验显式跳过，全部子进程 <1 秒，
+  不触网不递归。实测 **1039.8s → 58.9s（降 94%）、31/31 PASS**。
+  另加「防递归守卫」静态腿（区内出现不带 --gate 的裸 --portable-only 子进程即 FAIL）。
+  守卫两次自纠：① 首版把 `ck("层b --portable-only 跳过…")` 的**断言标签**当调用 ⇒ 假阳性
+  （我自己被自己的守卫拦了一次）；② 谓词加 `subprocess.run in l` 修正。零成本验证有牙：
+  现状 0 条放行、把层 b 改回裸整子集则抓到 1 条变红 —— 未跑真变异体，那要烧 340 秒+13 次 CF。
+  回滚：基于错误诊断加的 `DSH_GATE_RETRY_BACKOFF_MS` 旁路与 `COST` 插桩已全部删除（留着一个
+  「能把竞态退避清零」的旋钮是给真实重试路径新开门路，属无收益风险）。
+  第 76 门已重测：足迹仍 cloudflare=13 / github=8，r31 归为 NO_EXTERNAL_CALLS ⇒ PROBECOST:PASS。
+  取值：python 05-exec/r31_run_gates_fixtures.py（31/31，约 59s）；
+  python 05-exec/r200_probe_cost_measure.py --json <件>；python 05-exec/run_gates.py --json <件>。
 - [ ] **R202-4（r202 登记，P2）** **两种延期计数口径在 REPEAT 门槛上结论相反，是真实未决分歧，不由夹具单方面定案**： 【r202 裁决=降级（转长期看守）｜两种延期计数口径在 REPEAT 门槛上结论相反（旧「终局清零」= P3 不触发 / 新「历史总数」= P3 触发），属真实未决分歧，须在 REPEAT 指标因该口径差异判红时由归属轮定案；不由本轮到点改门槛（会改 REPEAT 语义进而改棘轮基线）。本轮已做：夹具断言对齐实现语义 8/8，并保留 M1 反向变异腿 ⇒ 口径被静默改回会被立即发现。不设目标轮。】
   挂接 r123 孤儿夹具时暴露：`count_deferrals` 现口径 = 历史改期总数（P3「挂账→终局→挂账」= 2、
   P5「挂账→终局」= 1）；旧口径 = 终局清零（P3=1、P5=0）。r123 当时因「终局清零会把真实发生

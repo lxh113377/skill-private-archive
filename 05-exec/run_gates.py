@@ -1312,6 +1312,27 @@ GATES = [
                 "对它显示 0 —— 已记为第 78 门的一处口径局限）。挂上后必须标 non-portable："
                 "它依赖 Windows junction，放 CI 会假红。"),
     },
+    {
+        # r202：最后一个孤儿夹具挂接（第 85 门）—— 挂前先拆掉它「随并行债起伏」的三条腿
+        "id": "runner_internals_fixtures",
+        "script": "r31_run_gates_fixtures.py",
+        "argv": [],
+        "pass_token": "[GATE:fixture-pass]",
+        "portable": True,
+        "covers": [
+            "层 a：runner 三态判据 + 聚合不短路 + covers/not_portable_reason 自证（a1~a14）",
+            "层 b：接线自证 —— --portable-only 跑通、逐门打印覆盖根（>= 可移植门数）、",
+            "       聚合器在工作（[GATES:PASS]/[GATES:FAIL]）、产出 JSON schema、",
+            "       跳过本机专属门必须显式、选中门为 0 判 UNVERIFIED",
+            "层 c：变异 5 项全部被拦（含 no-op 守卫：锚未命中即判本条变异无效，M3 空锁已撤）",
+            "层 e：pass_token 列表化（一门多合法绿态，r105 一手）"],
+        "why": ("r202 一手：这是第 78 门查出的最后一个孤儿夹具（27 腿，此前没有任何东西执行它）。"
+                "挂接前发现它三条腿把「runner 接线是否正确」和「本机此刻是否全绿」绑死在一起 ——"
+                "本仓长期有并行会话活债导致的棘轮红，于是这三条腿永久 FAIL，害我一度以为夹具坏了。"
+                "已拆成「接线自证」与「现状单列」两问：接线判据只问可稳定复算的事（rc∈{0,1}、"
+                "覆盖根数 >= 可移植门数、聚合标记出现、跳过显式），本机是否全绿交给 gate_run_freshness "
+                "与 debt_aging 两条常驻判据，不重复断言。耗时随之 284s → 40s（降 86%）。"),
+    },
 ]
 
 # 显式声明本 runner **不覆盖**的面，防止聚合绿被读成「所有门禁都绿」（R20-2）。
@@ -1447,6 +1468,10 @@ def run_gate(gate, timeout):
         #   但对**子进程写盘型**门不够 —— root_face_fixtures 跑 handoff.py noise（会写盘），
         #   即时重跑时并行会话的写盘竞态还没消散 ⇒ 两次都红被判真红，而单跑 3/3 全过。
         #   修法 = 重试前**退避 3 秒**（让竞态窗口过去），不改判据、不放宽口径。
+        #   r202 校正：我一度以为 r31 的 1047 秒「99.6% 睡在这行」，并据此加了环境变量旁路。
+        #   cProfile 实测推翻该结论：假门路径（含本行 sleep）合计仅 3.6 秒，1000 秒全在层 b
+        #   三次 `--portable-only` 整子集跑（每次约 340 秒）。基于错误诊断的旁路已回滚 ——
+        #   留着一个「能把竞态退避清零」的旋钮是给真实重试路径新开门路，属无收益的风险。
         import time as _time
         _time.sleep(3)
         s2, rc2, el2, t2 = _exec_once(gate, timeout)

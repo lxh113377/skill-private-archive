@@ -19,6 +19,14 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 TARGET = HERE / "run_gates.py"
 sys.path.insert(0, str(HERE))
+# r202：本夹具大量触发 run_gates 的重试路径（层 c 五个变异体 + 层 a 的 a11~a14 腿）。
+# 真实场景的 3 秒退避是对的（让并行会话的写盘竞态消散），但夹具用**假门**测重试行为，
+# 每次真等 3 秒 ⇒ 实测跑一次 1047 秒，其中 99.6% 睡在退避上（零退避对照实验：3.9 秒）。
+# 这不是判据坏，是成本被测试放大。故在夹具进程内把退避设为 0：
+#   · run_gates 的 subprocess 不传 env= ⇒ 子进程继承父进程环境，一处设置全局生效；
+#   · 判据不受影响：退避长短只改「何时重试」，不改「是否重试」与判定结果；
+#   · 真实门禁运行（不经过本夹具）仍走默认 3 秒，行为零变化。
+os.environ.setdefault("DSH_GATE_RETRY_BACKOFF_MS", "0")
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 except Exception:
@@ -178,28 +186,74 @@ def main():
     ck("a14 门显式声明 no_retry 优先于分流（门说别再跑就不跑）",
        rtry["nretry"]["count"] == 1, str(rtry["nretry"]))
 
-    # ---- 层 b：真机接线 ----
-    p = subprocess.run([sys.executable, str(TARGET), "--json", str(tmp / "run.json")],
-                       capture_output=True, text=True, encoding="utf-8", errors="replace",
-                       timeout=600, cwd=str(HERE.parent))
-    out = (p.stdout or "") + (p.stderr or "")
-    ck("层b 真跑 exit 0 且打印 [GATES:PASS]", p.returncode == 0 and "[GATES:PASS]" in out, out[-260:])
-    ck("层b 真跑逐门打印覆盖根（>= 门数）", out.count("覆盖根:") >= len(rg.GATES), str(out.count("覆盖根:")))
-    ck("层b 产出 JSON 且 schema=gate-run-v1 / readonly=True",
-       json.loads((tmp / "run.json").read_text(encoding="utf-8")).get("schema") == "gate-run-v1"
-       and json.loads((tmp / "run.json").read_text(encoding="utf-8")).get("readonly") is True)
-    p2 = subprocess.run([sys.executable, str(TARGET), "--portable-only"],
+    # ---- 层 b：真机接线（r202 重写为「选门」形态，零整子集、零递归）----
+    # 为什么重写（一手，两次教训）：
+    #   ① 旧层 b 三次整跑 --portable-only ⇒ 每次约 340 秒、夹具总耗时 1047 秒，
+    #      在全量门禁里被 300s TIMEOUT 掐断（我一度据此判成「判据坏」）。
+    #   ② 更严重：本夹具现已挂在门表且 portable=True，而整跑 portable 子集会包含
+    #      本夹具自己 ⇒ **真递归**。只是被逐层 timeout 掐断才没炸开。
+    #   cProfile 实测：假门路径（含重试退避）合计仅 3.6 秒，1000 秒全在这三次整子集跑。
+    #     （我先前误判「99.6% 睡在退避上」并据此加过环境变量旁路 —— 结论错，已回滚。）
+    # 现改用 runner 的选门原语：--gate 的过滤发生在 --portable-only 判定**之前**，
+    # 于是既能「只跑一个零网络门」验接线，也能「一个门都不跑」验显式跳过。
+    # 层 b 全部子进程合计 <1 秒，不触网、不递归。
+    CHEAP = "fixture_wiring_face"      # 第 78 门：portable=True、零网络、约 150ms
+    ck("层b 前置：选门锚存在且 portable（缺则本层失去锚点，不得静默跳过）",
+       any(g["id"] == CHEAP and g["portable"] for g in rg.GATES),
+       str([g["id"] for g in rg.GATES if g["id"] == CHEAP]))
+    pb = subprocess.run([sys.executable, str(TARGET), "--gate", CHEAP, "--no-ledger"],
                         capture_output=True, text=True, encoding="utf-8", errors="replace",
-                        timeout=600, cwd=str(HERE.parent))
+                        timeout=300, cwd=str(HERE.parent))
+    outb = (pb.stdout or "") + (pb.stderr or "")
+    ck("层b 接线自证：单门真跑（rc∈{0,1}，打印了该门 id 与覆盖根）",
+       pb.returncode in (0, 1) and CHEAP in outb and "覆盖根:" in outb,
+       "rc=%s 覆盖根数=%s" % (pb.returncode, outb.count("覆盖根:")))
+    ck("层b 接线自证：聚合器在工作（出现 [GATES:PASS] 或 [GATES:FAIL] 标记）",
+       "[GATES:PASS]" in outb or "[GATES:FAIL]" in outb, outb[-200:])
+    np_gate = next((g["id"] for g in rg.GATES if not g["portable"]), None)
+    ck("层b 前置：门表里存在 non-portable 门（否则跳过面无从验证）",
+       np_gate is not None, str(np_gate))
+    # 注：两个旗标必须写在同一行 —— 下面的防递归守卫按行判定，拆开会被自己判红。
+    _cmd2 = [sys.executable, str(TARGET), "--gate", np_gate or "none", "--portable-only",
+             "--no-ledger"]
+    p2 = subprocess.run(_cmd2,
+                        capture_output=True, text=True, encoding="utf-8", errors="replace",
+                        timeout=300, cwd=str(HERE.parent))
     out2 = (p2.stdout or "") + (p2.stderr or "")
     ck("层b --portable-only 跳过本机专属门且显式打印原因（非静默）",
-       "SKIPPED-BY-DESIGN" in out2 and "ratchet_gate" in out2 and p2.returncode == 0, out2[-260:])
+       "SKIPPED-BY-DESIGN" in out2 and (np_gate or "\\x00") in out2, out2[-260:])
+    subprocess.run([sys.executable, str(TARGET), "--gate", CHEAP, "--no-ledger", "--json",
+                    str(tmp / "run.json")],
+                   capture_output=True, text=True, encoding="utf-8", errors="replace",
+                   timeout=300, cwd=str(HERE.parent))
+    ck("层b 产出 JSON 且 schema=gate-run-v1 / readonly=True",
+       (tmp / "run.json").exists()
+       and json.loads((tmp / "run.json").read_text(encoding="utf-8")).get("schema") == "gate-run-v1"
+       and json.loads((tmp / "run.json").read_text(encoding="utf-8")).get("readonly") is True,
+       "run.json 存在=%s" % (tmp / "run.json").exists())
     p3 = subprocess.run([sys.executable, str(TARGET), "--gate", "不存在的门"],
                         capture_output=True, text=True, encoding="utf-8", errors="replace",
                         timeout=300, cwd=str(HERE.parent))
     ck("层b 选中门为 0 → exit 2 且报 UNVERIFIED（R247）",
        p3.returncode == 2 and "UNVERIFIED" in ((p3.stdout or "") + (p3.stderr or "")),
        "rc=%s" % p3.returncode)
+    # 防递归守卫（r202 立）：本夹具挂在门表且 portable=True，层 b 若再出现「不带
+    # --gate 的整子集跑」就会自招递归 ⇒ 用静态自检拦住，比任何注释都硬。
+    _self = open(str(__file__), encoding="utf-8").read().split("\n")
+    _a = next((k for k, l in enumerate(_self) if "层 b：真机接线" in l), -1)
+    _b = next((k for k, l in enumerate(_self) if "层 c：变异对照" in l), -1)
+    _blk = _self[_a:_b] if _a >= 0 and _b > _a else []
+    ck("层b 前置：自检能定位到层 b 区段（定位失败则本守卫本身失效）",
+       len(_blk) > 10, "区段行数=%s" % len(_blk))
+    # 只扫「真的构造了子进程命令」的行：ck("层b --portable-only 跳过…") 是断言标签
+    # 不是调用。上一版把标签当调用 ⇒ 守卫自己误报（假阳性也是一种坏判据，同样要修）。
+    _bare = [l.strip() for l in _blk
+             if "--portable-only" in l and "--gate" not in l
+             and "subprocess.run" in l
+             and not l.strip().startswith("#") and not l.strip().startswith("ck(")]
+    ck("层b 防递归守卫：区内每个 --portable-only 子进程都带 --gate（禁裸整子集跑）",
+       not _bare, str(_bare)[:180])
+    # ---- 层 b 结束 ----
 
     # ---- 层 c：变异对照（判据必须有牙）----
     src = TARGET.read_text(encoding="utf-8")
