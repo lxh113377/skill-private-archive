@@ -446,7 +446,7 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   取值：python 05-exec/ratchet_gate.py；python -c 读 run_gates.GATES 取 id→script 映射；
   python 05-exec/r55_note_fixtures.py／r56_budget_fixtures.py／r54_refresh_fixtures.py 失败腿原文。
   两次连续全量复跑：77 门、非 PASS 稳定 5（同一根），无新增红。
-- [ ] **R201-2（r201 登记，P2·看守中）** **新建分卷 powershell-cli-silent-failures.md 缺 SKILL.md 指针（有意不补）**： 【r201 裁决=挂账至 r206｜理由：补指针的前提是 SKILL.md 干净，而那取决于并行会话何时提交自己的 §10 与 version 改动 —— 不由我控制，也不是我能单方闭合的动作（代改会裹走他人未提交内容，违 R269）。到期复算：git -C D:/global_skills status --porcelain -- win-toolchain-pitfalls/SKILL.md 为空即补指针并闭环。】
+- [ ] **R201-2（r201 登记，P2·看守中）** **新建分卷 powershell-cli-silent-failures.md 缺 SKILL.md 指针（有意不补）**： 【r201 裁决=挂账至 r206｜理由：补指针的前提是 SKILL.md 干净，而那取决于并行会话何时提交自己的 §10 与 version 改动 —— 不由我控制，也不是我能单方闭合的动作（代改会裹走他人未提交内容，违 R269）。到期复算：git -C D:/global_skills status --porcelain -- win-toolchain-pitfalls/SKILL.md 为空即补指针并闭环。】 【r206 裁决=执行（r206 收口）｜原计划等 win-toolchain-pitfalls/SKILL.md 变干净再加指针，但四轮回看它始终被并行会话 dirty —— 把自己欠账的关闭时间交给别人是错的。改走 r204 判据定义里合法的第二条可达路径：A-memory-start/references/quickref-cli-subprocess.md（CLEAN、被 SKILL.md L111 收录、非 C25 注入五件）加 R808 速查段指向本卷。判据自证 [SKILLWIRING:HEALED]、孤儿 10→9、复跑 PASS。详见同轮 R206-2。】
   r201 把 PowerShell 驱动 CLI 三条静默坑（@ref 被 splatting 吞、detect-only 看不见 agent-browser
   自带 Chromium、无 list 子命令）落成 win-toolchain-pitfalls 第 4 分卷（R804，1829B）。
   为什么不顺手补指针：SKILL.md 当前有并行会话未提交内容（§10 路径分隔符那节 + version 1.9.1→
@@ -456,6 +456,23 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   references/powershell-cli-silent-failures.md」指针 + 版本行；或由归属方自行合并时带上。
   取值：git -C D:/global_skills status --porcelain -- win-toolchain-pitfalls/SKILL.md（非空即未落地）；
   分卷本体已在库：git -C D:/global_skills log --oneline -1 --grep R804。
+- [ ] **R206-2（r206 登记，P1·已落地）** **R201-2 收口：R804 卷补可达指针，走 A-memory-start 收录面绕开并行会话 dirty 的 SKILL.md**： 【r206 裁决=执行（不等他人文件变干净，走判据定义里的第二条可达路径收口；当场 HEALED + 基线 10→9）｜读数：r204 报 [SKILLWIRING:HEALED] 且复跑 PASS；R808 源仓提交仅 1 文件、不含他人在途件。无后续挂账：R201-2 这条欠账已闭合。】
+  这条挂账从 r201 起、本轮被 r38 判到期（OVERDUE 3→4、DEFERRED 2→1），当场处理掉而非再挂。
+  原计划「等 win-toolchain-pitfalls/SKILL.md 干净后加指针」—— 但四轮回看，它与
+  chaoshi-web-deploy/SKILL.md 始终被并行会话 dirty，等下去没有终点。
+  r204 的判据定义本来就允许另一条路：可达 = 本卷 SKILL.md BFS 或 A-memory-start 收录面池命中。
+  于是走第二条：往 A-memory-start/references/quickref-cli-subprocess.md（R806 刚验过：CLEAN、
+  被 SKILL.md L111 收录、非 C25 注入五件、已引用 cli-invocation-pitfalls 同族卷）加一节
+  「PowerShell 驱动外部 CLI 三类静默失败」速查（R808，883B）：detect-only 非权威 /
+  @ref 被 splatting 吞成用法错 / env:TEMP 实为 D 盘 app-cache 而非 AppData。
+  只放指针 + 判语，正文权威仍指 R804 卷本体（防第二真相源）。
+  收口验证（判据自证，非我口头）：r204 报 [SKILLWIRING:HEALED]，孤儿 10→9 基线同步收缩，
+  r204 复跑 [SKILLWIRING:PASS]。R808 源仓提交逐文件核范围 = 1 个文件，不含他人 contract.md/SKILL.md
+  （并行会话 A-memory-start/references/contract.md 同为 dirty，未代提交）。
+  元教训：等一个可能被别人长期占用的文件变干净，是把自己欠账的关闭时间交给别人。可达路径有
+  两条时就该走不依赖他人状态的那条 —— 这不是绕开问题，正是判据定义里写明的合法可达面。
+  取值：python 05-exec/r204_skill_wiring_face.py（HEALED 行 + 孤儿计数）；
+  git -C D:/global_skills diff-tree --no-commit-id --name-only -r HEAD。
 - [ ] **R206-1（r206 登记，P1·已落地）** **名册判据声称 10 项、实装只报 9 项：VS Code 静默漏了十几个轮次**： 【r206 裁决=执行（当日补探针 + 加完整性判据，两向有牙验证）｜读数：名册 10/10 一致、selftest 20/20、VS Code READY 1.141.0、第 76 门 PROBECOST:PASS 足迹未涨。不设目标轮：完整性由 f5/f6 常驻守，下次任何声称与实装不一致即 rc=2。】
   第 65 门 free_tools_face 源码头部注释列 D1/R2/Pages/Workers/Turnstile/Resend/Upstash/SQLite/
   GitHub/VS Code 共 10 项，但 PROBES 只装 9 个探针 —— VS Code 从来没有探针。它不报错、不漏跑，
