@@ -1,8 +1,8 @@
 {
- "schema": "route-truth-v1",
+ "schema": "route-truth-v2",
  "readonly": true,
  "router": "C:/Users/37533/Desktop/workspace/焚诀/eval\\unified_router.py",
- "measured_at": "2026-10-25 00:34:18",
+ "measured_at": "2026-10-25 01:55:00",
  "rows": [
   {
    "skill": "win-toolchain-pitfalls",
@@ -14,32 +14,32 @@
    "candidates": [
     {
      "name": "local-mineru",
-     "score": 0.6065,
-     "keyword": 0.0701
+     "score": 0.6122,
+     "keyword": 0.0739
     },
     {
      "name": "wps-knowledgebase",
-     "score": 0.6031,
-     "keyword": 0.0397
+     "score": 0.608,
+     "keyword": 0.0414
     },
     {
      "name": "local-realtime-translator",
      "score": 0.5927,
-     "keyword": 0.0769
+     "keyword": 0.0797
     },
     {
      "name": "local-txt2img",
      "score": 0.59,
-     "keyword": 0.0737
+     "keyword": 0.0767
     },
     {
      "name": "pdf",
      "score": 0.5889,
-     "keyword": 0.0664
+     "keyword": 0.0695
     }
    ],
-   "llm_reason": "Top-3几乎并列 (diff=0.0034)",
-   "elapsed_s": 5.4
+   "llm_reason": "Top-3几乎并列 (diff=0.0042)",
+   "elapsed_s": 1.9
   },
   {
    "skill": "win-toolchain-pitfalls",
@@ -51,13 +51,13 @@
    "candidates": [
     {
      "name": "scope-creep-detector",
-     "score": 0.6534,
-     "keyword": 0.0652
+     "score": 0.6583,
+     "keyword": 0.0658
     },
     {
      "name": "commit-archaeologist",
-     "score": 0.6548,
-     "keyword": 0.1819
+     "score": 0.6566,
+     "keyword": 0.1822
     },
     {
      "name": "workbuddy-mcp",
@@ -67,16 +67,16 @@
     {
      "name": "dingtalk-todo",
      "score": 0.6112,
-     "keyword": 0.0177
+     "keyword": 0.0176
     },
     {
      "name": "figma",
      "score": 0.6109,
-     "keyword": 0.0371
+     "keyword": 0.0373
     }
    ],
-   "llm_reason": "Top-3几乎并列 (diff=-0.0014)",
-   "elapsed_s": 6.0
+   "llm_reason": "Top-3几乎并列 (diff=0.0017)",
+   "elapsed_s": 1.8
   },
   {
    "skill": "chaoshi-web-deploy",
@@ -105,34 +105,175 @@
    "candidates": [
     {
      "name": "github",
-     "score": 0.6246,
-     "keyword": 0.2476
+     "score": 0.6295,
+     "keyword": 0.2451
     },
     {
      "name": "browser-cdp",
      "score": 0.5741,
-     "keyword": 0.0694
+     "keyword": 0.0692
     },
     {
      "name": "web-access",
      "score": 0.5578,
-     "keyword": 0.0683
+     "keyword": 0.0684
     },
     {
      "name": "gstack",
      "score": 0.5557,
-     "keyword": 0.0619
+     "keyword": 0.0616
     },
     {
      "name": "electron",
      "score": 0.541,
-     "keyword": 0.0412
+     "keyword": 0.041
     }
    ],
    "llm_reason": "",
-   "elapsed_s": 3.4
+   "elapsed_s": 1.7
   }
  ],
+ "tasks": [
+  {
+   "task": "Pages 部署",
+   "want": "chaoshi-web-deploy",
+   "query": "把超市前端部署到 Cloudflare Pages 然后验证线上",
+   "top1": "chaoshi-web-deploy",
+   "direct_hit": true,
+   "top3": [
+    "chaoshi-web-deploy"
+   ],
+   "outcome": "HIT_DIRECT",
+   "elapsed_s": 0.3
+  },
+  {
+   "task": "CI 红了",
+   "want": "ci-pipeline-debugging",
+   "query": "CI 红了 runner 没启动 本地绿 CI 不绿",
+   "top1": "ci-pipeline-debugging",
+   "direct_hit": true,
+   "top3": [
+    "ci-pipeline-debugging"
+   ],
+   "outcome": "HIT_DIRECT",
+   "elapsed_s": 0.3
+  },
+  {
+   "task": "钩子静默推送",
+   "want": "win-toolchain-pitfalls",
+   "query": "提交后自动推送失败但没报错 钩子静默",
+   "top1": "win-toolchain-pitfalls",
+   "direct_hit": false,
+   "top3": [
+    "win-toolchain-pitfalls",
+    "debugging-fixing",
+    "wb-git-commit-recipe"
+   ],
+   "outcome": "HIT",
+   "elapsed_s": 0.2
+  },
+  {
+   "task": "D1 查额度",
+   "want": "win-toolchain-pitfalls",
+   "query": "查看 D1 免费额度用了多少行写入",
+   "top1": "wps-knowledgebase",
+   "direct_hit": false,
+   "top3": [
+    "wps-knowledgebase",
+    "fenjue-memory-audit",
+    "story-setup"
+   ],
+   "outcome": "MISS",
+   "elapsed_s": 0.2
+  },
+  {
+   "task": "R2 开桶",
+   "want": "chaoshi-web-deploy",
+   "query": "开通 Cloudflare R2 存储桶 免费 10GB",
+   "top1": "libreoffice-headless-win",
+   "direct_hit": false,
+   "top3": [
+    "libreoffice-headless-win",
+    "sq-cleanmgr-c",
+    "A-project-handoff"
+   ],
+   "outcome": "MISS",
+   "elapsed_s": 0.3
+  },
+  {
+   "task": "Workers 调用量",
+   "want": "win-toolchain-pitfalls",
+   "query": "Workers 今天调用次数接近免费 10 万了吗",
+   "top1": "chaoshi-image-optimization",
+   "direct_hit": false,
+   "top3": [
+    "chaoshi-image-optimization",
+    "pixelle-api-ensure",
+    "ican-deploy"
+   ],
+   "outcome": "MISS",
+   "elapsed_s": 0.3
+  },
+  {
+   "task": "Turnstile",
+   "want": "chaoshi-web-deploy",
+   "query": "给表单加 Turnstile 人机验证 免费用",
+   "top1": "codebuddy-chat-web",
+   "direct_hit": false,
+   "top3": [
+    "codebuddy-chat-web",
+    "win-toolchain-pitfalls",
+    "dingtalk-aitable"
+   ],
+   "outcome": "MISS",
+   "elapsed_s": 1.9
+  },
+  {
+   "task": "Actions 分钟",
+   "want": "ci-pipeline-debugging",
+   "query": "GitHub Actions 免费分钟用完了怎么查剩余",
+   "top1": "chaoshi-web-deploy",
+   "direct_hit": false,
+   "top3": [
+    "chaoshi-web-deploy",
+    "frontend-asset-library",
+    "screenshot"
+   ],
+   "outcome": "MISS",
+   "elapsed_s": 0.2
+  },
+  {
+   "task": "Resend 发邮",
+   "want": "",
+   "query": "用 Resend 免费发送邮件验证码",
+   "top1": "dingtalk-mail",
+   "direct_hit": false,
+   "top3": [
+    "dingtalk-mail",
+    "office-automation-pro",
+    "codebuddy-chat-web"
+   ],
+   "outcome": "UNOWNED",
+   "elapsed_s": 0.2
+  },
+  {
+   "task": "Upstash 限流",
+   "want": "",
+   "query": "用 Upstash 做接口限流 免费额度 50 万命令",
+   "top1": "codebuddy-chat-web",
+   "direct_hit": false,
+   "top3": [
+    "codebuddy-chat-web",
+    "libreoffice-base",
+    "workbuddy-mcp"
+   ],
+   "outcome": "UNOWNED",
+   "elapsed_s": 0.3
+  }
+ ],
+ "task_judged": 8,
+ "task_hits": 3,
+ "task_note": "第三层召回率：真实任务语句能否把预期承载件带进前 3。HIT_DIRECT=走 L0.1 直连表；MISS=召不回（不代表知识不存在，代表入口没有）",
  "note": "路由真值：窗口命中只是入场券（必要非充分）。rank_of_skill=null 表示该 skill 未进 router 返回的候选前列 —— 即实测召不回。",
  "provenance_cmd": "python 05-exec/r209_route_truth_measure.py --json <件>"
 }

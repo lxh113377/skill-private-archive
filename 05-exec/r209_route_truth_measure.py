@@ -91,15 +91,49 @@ def main(argv=None):
                      "elapsed_s": round(time.time() - t0, 1)})
         print("  %-24s top1=%-24s direct=%s rank=%s %.1fs"
               % (skill[:24], str(top1)[:24], dh, rank, time.time() - t0))
-    doc = {"schema": "route-truth-v1", "readonly": True, "router": ROUTER,
+    # 第三层（r210 一手）：真实任务语句的召回率。名册工具一旦有了承载 skill，
+    # 决定「下次会不会被想起」的是**用户/我会说出的那句任务话**，不是 skill 的术语。
+    # r210 实测 8 条有名册归属的任务查询里只有 3 条把预期件排进前 3（查 D1 额度 top1=
+    # wps-knowledgebase；开 R2 桶 top1=libreoffice-headless-win；Workers 调用量 top1=
+    # chaoshi-image-optimization；加 Turnstile top1=codebuddy-chat-web；Actions 分钟
+    # top1=chaoshi-web-deploy）—— 即「搭配对了但路由认不出来」。
+    tasks = []
+    for item in reg.get("task_probes", []):
+        q = (item.get("query") or "").strip()
+        want = item.get("want") or ""
+        if not q:
+            continue
+        t0 = time.time()
+        top1, dh, cands, note = route(q)
+        names = [c["name"] for c in cands[:3]]
+        if not want:
+            outcome = "UNOWNED"
+        elif dh and top1 == want:
+            outcome = "HIT_DIRECT"
+        elif want in names:
+            outcome = "HIT"
+        else:
+            outcome = "MISS"
+        tasks.append({"task": item.get("task"), "want": want, "query": q, "top1": top1,
+                      "direct_hit": dh, "top3": names, "outcome": outcome,
+                      "elapsed_s": round(time.time() - t0, 1)})
+        print("  [task] %-16s want=%-24s top1=%-26s => %s" % (
+              str(item.get("task"))[:16], (want or "-")[:24], str(top1)[:26], outcome))
+    judged = [x for x in tasks if x["want"]]
+    hits = sum(1 for x in judged if x["outcome"] in ("HIT", "HIT_DIRECT"))
+    doc = {"schema": "route-truth-v2", "readonly": True, "router": ROUTER,
            "measured_at": time.strftime("%Y-%m-%d %H:%M:%S"), "rows": rows,
+           "tasks": tasks, "task_judged": len(judged), "task_hits": hits,
+           "task_note": ("第三层召回率：真实任务语句能否把预期承载件带进前 3。HIT_DIRECT=走 L0.1 "
+                         "直连表；MISS=召不回（不代表知识不存在，代表入口没有）"),
            "note": ("路由真值：窗口命中只是入场券（必要非充分）。rank_of_skill=null 表示"
                     "该 skill 未进 router 返回的候选前列 —— 即实测召不回。"),
            "provenance_cmd": "python 05-exec/r209_route_truth_measure.py --json <件>"}
     op = args.out if os.path.isabs(args.out) else os.path.join(ROOT, args.out)
     with io.open(op, "w", encoding="utf-8") as fh:
         json.dump(doc, fh, ensure_ascii=False, indent=1)
-    print("[ROUTETRUTH:OK] %d 条实测落盘 -> %s" % (len(rows), args.out))
+    print("[ROUTETRUTH:OK] %d 条主题真值 + %d 条任务召回（命中 %d）落盘 -> %s"
+          % (len(rows), len(judged), hits, args.out))
     return 0
 
 

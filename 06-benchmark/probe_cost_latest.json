@@ -1,7 +1,7 @@
 {
  "schema": "probe-cost-v5",
  "readonly": true,
- "gate_table_count": 89,
+ "gate_table_count": 90,
  "rows": [
   {
    "gate": "cache_guard_face",
@@ -223,6 +223,20 @@
   {
    "gate": "push_autopush_face",
    "script": "r205_push_autopush_face.py",
+   "apis": [
+    "github"
+   ],
+   "portable": false,
+   "declared": null,
+   "measured": {
+    "cloudflare": 0,
+    "github": 0
+   },
+   "state": "NO_EXTERNAL_CALLS"
+  },
+  {
+   "gate": "autopush_fixtures",
+   "script": "r210_autopush_fixtures.py",
    "apis": [
     "github"
    ],

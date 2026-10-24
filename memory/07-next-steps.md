@@ -456,6 +456,32 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   references/powershell-cli-silent-failures.md」指针 + 版本行；或由归属方自行合并时带上。
   取值：git -C D:/global_skills status --porcelain -- win-toolchain-pitfalls/SKILL.md（非空即未落地）；
   分卷本体已在库：git -C D:/global_skills log --oneline -1 --grep R804。
+- [ ] **R210-1（r210 登记，P1·已落地）** **第三层召回率：8 条名册任务只有 3 条召回了承载件 —— 搭配的最后一公里是那句现场的话能找到它**： 【r210 裁决=执行（拿 10 条名册真实任务语句跑路由，量出第三层召回率并扩判据到三层）｜读数：8 条有名册归属任务命中 3 （2 条 direct_map 直连 + 1 条 BGE 排1）、MISS 5、UNOWNED 2；三层合计不可召回 7，[RECALL:PASS] rc=0；基线据实回填 7 条。处方已分治：MISS=召回缺口（补 description 触发词 + direct_map，后者属焚诀红线6）；UNOWNED=知识缺口（写 skill），两者不混同一套红。】
+  前两层判据都在量「探针词在不在窗口 / 排第几」，用的是我自己的词汇。真正决定下次会不会想起某条知识的，
+  是任务现场会说出的那句话。拿 10 条名册真实任务语句跑路由（本地 onnx 零外网，约 10s）：
+    HIT_DIRECT：把超市前端部署到 Cloudflare Pages 然后验证线上 → chaoshi-web-deploy；
+               CI 红了 runner 没启动 本地绿 CI 不绿 → ci-pipeline-debugging（两者均 direct_hit=True，
+               靠 direct_map 直连表短路整条管线，与 SKILL.md 前 800 字符无关）
+    HIT：提交后自动推送失败但没报错 钩子静默 → win-toolchain-pitfalls（BGE 语义层排第 1，也是 r209 时
+         唯一能召回它的措辞）
+    MISS：查看 D1 免费额度用了多少行写入 → wps-knowledgebase；开通 Cloudflare R2 存储桶 → libreoffice-
+          headless-win；Workers 今天调用次数 → chaoshi-image-optimization；给表单加 Turnstile → 
+          codebuddy-chat-web；GitHub Actions 免费分钟剩余 → chaoshi-web-deploy
+    UNOWNED：用 Resend 免费发送邮件验证码 / 用 Upstash 做接口限流（名册有工具但无任何 skill 承载）
+  ⇒ 落空 5 条不是「知识没写」而是「入口没有」：D1 额度、R2 开桶、Workers 调用量、Turnstile、Actions
+    分钟全是名册里最常用的日常操作，而我的 CF 读数坑在 references/ 里（R805 §9.16 七条）。
+  落地：探针名册升 v3 增 task_probes（task/want/query/note）；r209_route_truth_measure.py 扩 tasks 段
+  四态落盘（HIT_DIRECT/HIT/MISS/UNOWNED）；第 88 门升三层但**只读真值件不实跑 router**（判据不绑焚诀
+  可用性）。防空转三处：正控条目确保不恒红；want 为空的记 UNOWNED 且**不并入 gaps**（否则永远红、逼人
+  补假指针）；基线据实回填（5 条 MISS 字符串由真值件按门内格式生成，不手抄 —— 本仓已因键形态不一致
+  吃过两次）。终读：窗口层 3 / 真值层 2 / 任务层 8，三层合计不可召回 7，[RECALL:PASS] rc=0。
+  处方分治（写清楚免得下轮混）：MISS 5 条 = 召回缺口，解药是给承载件 SKILL.md 的 description 加任务级
+  触发词（进窗口）并让 direct_map 有 pattern（属焚诀 eval 红线6 只读，须焚诀侧）；UNOWNED 2 条 = 知识缺口，
+  解药是写 skill，两者处方不同故分开记、不混同一套红。
+  元教训：「搭配」的最后一公里不是把工具接进来，是让那句现场的话能找到它；且「没有承载件」与「有承载件
+  但召不回」必须分开记，否则前者会被后者的处方（补入口）错误处理。
+  取值：python 05-exec/r209_route_truth_measure.py --json 06-benchmark/route_truth_latest.json（tasks 段）；
+  python 05-exec/r208_recall_face.py（三层读数）；06-benchmark/recall_probe_registry.json（v3 task_probes）。
 - [ ] **R209-4（r209 登记，P0·已落地）** **我自己把推送链搞断了两轮，判据如实抓到；根因是我把「提交后立刻推 tag」当串行流程**： 【r209 裁决=执行（定责到自己头上：收尾顺序并发抢锁；写进 skill 成 R812/§9.17 第3条，并同步镜像）｜读数：手工 push origin main rc=0 证明非网络问题；r205 当场 FAIL P4 未放过我；留痕 15 行（13×rc=0、2×rc=128，历史不回改 R241）。收尾顺序改为串行：先读 autopush.log 末行 rc=0 再推 tag。】
   r208 批与 r209c 批各出现一次 .git/autopush.log 末行 rc=128：症状是 remote main 落后一个提交、
   tag 却已推上去。第一反应容易读成「网络/代理坏了」，实测不是 —— 手工 push origin main 立即 rc=0

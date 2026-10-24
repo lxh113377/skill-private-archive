@@ -1,7 +1,7 @@
 {
  "schema": "probe-cost-measure-v3",
  "zero_network": true,
- "candidates": 14,
+ "candidates": 15,
  "results": {
   "r113_cache_guard_face.py": {
    "gate": "cache_guard_face",
@@ -89,7 +89,7 @@
     "cloudflare": 0,
     "github": 0
    },
-   "state": "rc=0"
+   "state": "rc=1"
   },
   "r201_r2_enable_face.py": {
    "gate": "r2_enable_face",
@@ -114,6 +114,14 @@
     "github": 0
    },
    "state": "rc=0 (未归类进程/HTTP 调用 1)"
+  },
+  "r210_autopush_fixtures.py": {
+   "gate": "autopush_fixtures",
+   "calls": {
+    "cloudflare": 0,
+    "github": 0
+   },
+   "state": "rc=1 (未归类进程/HTTP 调用 45)"
   }
  },
  "provenance_cmd": "python 05-exec/r200_probe_cost_measure.py --json <件>"

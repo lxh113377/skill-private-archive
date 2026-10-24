@@ -1,7 +1,7 @@
 {
- "schema": "recall-probe-registry-v2",
- "note": "声明「哪个自建 skill 承载哪个主题的实测知识」+ 探针词 + 真值查询。窗口（SKILL.md 前 CORPUS_CHARS）判的是入场资格（必要非充分）；expect=recalled 的条目还须路由真值 rank<=5，否则判据红。正控/边界/待修三类并存，防判据恒真。",
- "updated_at": "2026-10-25 00:40",
+ "schema": "recall-probe-registry-v3",
+ "note": "三层：probes 条目判「窗口入场资格 + 路由真值」；task_probes 条目判「真实任务语句能否召回承载件」。r210 一手实测：8 条有名册归属的任务查询里只有 3 条把预期件排进前 3（查额度/开桶/加验证/算分钟 全落空）。正控与边界条目并存防恒真。",
+ "updated_at": "2026-10-25 01:50",
  "probes": [
   {
    "skill": "win-toolchain-pitfalls",
@@ -44,6 +44,68 @@
     "run_id"
    ],
    "query": "GitHub Actions run_id run_number 混用 404 log-failed 空日志"
+  }
+ ],
+ "task_probes": [
+  {
+   "task": "Pages 部署",
+   "want": "chaoshi-web-deploy",
+   "query": "把超市前端部署到 Cloudflare Pages 然后验证线上",
+   "note": "正控：direct_map 有 10 条 pattern"
+  },
+  {
+   "task": "CI 红了",
+   "want": "ci-pipeline-debugging",
+   "query": "CI 红了 runner 没启动 本地绿 CI 不绿",
+   "note": "正控：description 自带中文触发词"
+  },
+  {
+   "task": "钩子静默推送",
+   "want": "win-toolchain-pitfalls",
+   "query": "提交后自动推送失败但没报错 钩子静默",
+   "note": "实测唯一命中的 win-toolchain 类查询"
+  },
+  {
+   "task": "D1 查额度",
+   "want": "win-toolchain-pitfalls",
+   "query": "查看 D1 免费额度用了多少行写入",
+   "note": "实测 top1=wps-knowledgebase，落空"
+  },
+  {
+   "task": "R2 开桶",
+   "want": "chaoshi-web-deploy",
+   "query": "开通 Cloudflare R2 存储桶 免费 10GB",
+   "note": "实测 top1=libreoffice-headless-win，落空"
+  },
+  {
+   "task": "Workers 调用量",
+   "want": "win-toolchain-pitfalls",
+   "query": "Workers 今天调用次数接近免费 10 万了吗",
+   "note": "实测 top1=chaoshi-image-optimization，落空"
+  },
+  {
+   "task": "Turnstile",
+   "want": "chaoshi-web-deploy",
+   "query": "给表单加 Turnstile 人机验证 免费用",
+   "note": "实测 top1=codebuddy-chat-web，落空"
+  },
+  {
+   "task": "Actions 分钟",
+   "want": "ci-pipeline-debugging",
+   "query": "GitHub Actions 免费分钟用完了怎么查剩余",
+   "note": "实测 top1=chaoshi-web-deploy，落空"
+  },
+  {
+   "task": "Resend 发邮",
+   "want": "",
+   "query": "用 Resend 免费发送邮件验证码",
+   "note": "名册工具但无任何 skill 承载（want 空 ⇒ 记 UNOWNED 不判红）"
+  },
+  {
+   "task": "Upstash 限流",
+   "want": "",
+   "query": "用 Upstash 做接口限流 免费额度 50 万命令",
+   "note": "同上：UNOWNED"
   }
  ]
 }

@@ -171,14 +171,43 @@ def main(argv=None):
         print("[RECALL:UNVERIFIED] 路由真值层不可用：%s ⇒ 不折算成可召回，不按绿记（R247）" % rjudged)
         return 2
     gaps = gaps + rgaps
+    # 第三层（r210 一手）：真实任务语句的召回率。这不是「知识在不在」，而是
+    # 「下次我会不会想起来查它」—— 用户说的那句任务话（「查 D1 额度」「开 R2 桶」）
+    # 能不能把承载件带进前 3。只读真值件的 tasks 段，不实跑 router（判据不绑焚诀可用性）。
+    tasks, tjudged, thits = [], 0, 0
+    if os.path.isfile(ROUTE):
+        try:
+            rt2 = json.load(io.open(ROUTE, encoding="utf-8"))
+            tasks = rt2.get("tasks") or []
+            tjudged = rt2.get("task_judged")
+            thits = rt2.get("task_hits")
+            if tjudged is None:
+                tjudged = len([x for x in tasks if x.get("want")])
+            if thits is None:
+                thits = sum(1 for x in tasks
+                            if x.get("want") and x.get("outcome") in ("HIT", "HIT_DIRECT"))
+        except Exception as e2:
+            print("[RECALL:UNVERIFIED] 任务真值段不可读：%s ⇒ 不折算成可召回" % str(e2)[:70])
+            return 2
+    elif os.path.getmtime(PROBES) > os.path.getmtime(ROUTE) + 5:
+        print("[RECALL:UNVERIFIED] 名册比真值件新 ⇒ 改过声明却没重测（同第 76 门那族失效）")
+        return 2
+    else:
+        print("[RECALL:UNVERIFIED] 真值件缺 task 段 ⇒ 先跑 r209_route_truth_measure.py 重测")
+        return 2
+    tgaps = ["task:%s|期望=%s 实测 top1=%s（任务语句召不回承载件）"
+             % (x.get("task"), x.get("want"), x.get("top1"))
+             for x in tasks if x.get("want") and x.get("outcome") not in ("HIT", "HIT_DIRECT")]
+    print("  任务层：有名册归属 %d 条，命中 %d，落空 %d" % (tjudged, thits, len(tgaps)))
     print("=== 实测知识可召回面（r208·本机专属）===")
     print("  召回窗口 = SKILL.md 前 %d 字符（源 eval/build_indexes.py CORPUS_CHARS）" % n)
-    print("  窗口层判 %d 条 / 真值层判 %d 条，不可召回 = %d" % (checked, rjudged, len(gaps)))
+    print("  窗口层判 %d 条 / 真值层判 %d 条 / 任务层判 %d 条，三层合计不可召回 = %d"
+          % (checked, rjudged, tjudged, len(gaps) + len(tgaps)))
     if not os.path.isfile(BASELINE):
         print("[RECALL:UNVERIFIED] 基线件缺失 ⇒ 无法判增量，不按绿记（R247）")
         return 2
     base = set(json.load(io.open(BASELINE, encoding="utf-8")).get("known_uncallable") or [])
-    cur = set(gaps)
+    cur = set(gaps) | set(tgaps)      # 任务层也进同一基线口径（三层一套增量判据）
     new_ones = sorted(cur - base)
     known = sorted(cur & base)
     for h in sorted(base - cur):
@@ -186,7 +215,7 @@ def main(argv=None):
     for k in known:
         print("  [RECALL:KNOWN] %s 历史不可召回（在基线内）" % k)
     for x in new_ones:
-        print("  [RECALL:GAP] %s 新增：知识在 references，但 SKILL.md 召回窗口内无探针" % x)
+        print("  [RECALL:GAP] %s 新增（三层任一未过 ⇒ 不可召回）" % x)
     # K4 有牙自检：换必然出现在窗口内的词（取该 skill 标题词），必须判可召回
     tooth = False
     for item in reg.get("probes", []):
@@ -202,11 +231,15 @@ def main(argv=None):
         print("  [RECALL:WARN] K4 有牙自检未能构造命中样本（本门可能失去鉴别力）")
     if args.out:
         with io.open(args.out, "w", encoding="utf-8") as fh:
-            json.dump({"schema": "recall-face-v1", "readonly": True, "window": n,
-                       "checked": checked, "gaps": sorted(cur), "baseline": sorted(base),
+            json.dump({"schema": "recall-face-v3", "readonly": True, "window": n,
+                       "checked": checked, "truth_judged": rjudged,
+                       "task_judged": tjudged, "task_hits": thits, "task_gaps": tgaps,
+                       "gaps": sorted(cur), "baseline": sorted(base),
                        "new_gaps": new_ones, "k4_teeth": tooth,
-                       "note": "召回语料=SKILL.md 前 N 字符（BGE/TF-IDF 同源）；"
-                               "写进 references 的知识不在召回面：可达不等于可召回",
+                       "note": "三层召回面：① 语料窗口=SKILL.md 前 N 字符（BGE/TF-IDF 同源），"
+                               "写进 references 的知识不在召回面；② 路由真值：窗口命中只是入场券，"
+                               "真召回看 direct_map（L0.1 直连）与 BGE rank；③ 任务召回率：真实任务"
+                               "语句能否把承载件带进前 3（搭配对了 ≠ 路由认得出）。可达不等于可召回",
                        "provenance_cmd": "python 05-exec/r208_recall_face.py --json <件>"},
                       fh, ensure_ascii=False, indent=1)
         print("JSON -> %s" % args.out)
