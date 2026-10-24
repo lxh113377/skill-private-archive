@@ -642,6 +642,16 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   ④ 残留（登记不夹带修）：规范 §3 表 ⑩ 行与 §3.4 把 `r119_corpus_gate.py` 记为「已入季度巡检」，实测**从未接线** —— `git log -S r119_corpus_gate -- 05-exec/r113_quarterly_audit.py` 零命中、`corpus_gate.json` 不在 quarterly 产物、audit.json 的 steps 无此步。根因不是掉了而是接口性质：它 `--candidates` 为 required 且吃**人工提出的候选语料文本**（示例落 `_temp/r119_candidates.json`，与今早修的死句柄同型），无法作定时步自动跑。已在规范 §3.6 出校正注并归位为「事件驱动前置门」（迁移方案 C7 / E 档在用）。
   ⚠️ 由此暴露需求 6 的真实堵点：**不是缺沙箱，是没人提出候选语料**。与 R215-3 合看 = 本面算术封顶 + 上游无候选来源 ⇒ 两者都需老大或归属方点头，本轮写成待决事项而非待办工作量（X-22：已给可解析路径，不外部化）。
   取值：`git log --oneline -S "r119_corpus_gate" -- 05-exec/r113_quarterly_audit.py`（空 = 从未接线）；`python 05-exec/r119_corpus_gate.py`（缺 --candidates 即 argparse 退出）；audit.json 的 steps 步名清单无 corpus_gate。
+
+- [ ] **R217-2（r217 登记，P1·已落地一处 / 明确不做什么一处）** **口径 A 的三处机械障碍清了两处半，但剩下的不是 bug：它的输入必须是人工提出的候选语料，我不编造候选来把验收口径「跑绿」**：
+  一手（本轮为需求 6 做口径对照件时实测，见 `04-plan/需求6口径对照与决策件_r216_2026-10-25.md` §2/§5）：口径 A（路由稳健性 margin，实测 +80%/+169%，本轮最漂亮的数子）的测量件 `05-exec/r123_margin_cf.py` 有三处机械障碍 ——
+  ① 无 argparse（`--json` 参数不存在）；② 输入面写死 `_temp/r123_cf_cases.json`，实测**不存在**且 `git grep r123_cf_cases` 只有读侧一行、全仓无生成器（= W-46 死句柄，与我今早已修的 R211-7 同一形态）；③ 输出写死 `margin_cf_r123_2026-10-20.json`（tracked ⇒ 重跑原地覆盖历史证据，同 r211 我在 c16 上撞的那条）。
+  已修（只动可复跑性，判定逻辑与三道控制组一字未动）：加 `--cases`（**required**）/ `--json` / `--force`；输出缺省落 `margin_cf_r123_<日期>.json`、**已存在即 REFUSE**；改原子写（r112 cache_guard 同族）。同轮补 `import time`（原文件无 time，我首版差点又一次「py_compile 全过、首跑 NameError」）。
+  四路径实测（happy path 刻意不跑，理由见下）：缺 `--cases` ⇒ argparse required 报错；指不存在件 ⇒ `[MARGINCF:UNVERIFIED] 候选件不存在`；空件 ⇒ 零输入不记绿；输出件已存在 ⇒ `[MARGINCF:REFUSE]`；旧 tracked 证据件 `git status` 全程为空（未被覆盖）。
+  ⚠️ **明确不做什么（比修好更重要）**：`cases` 里的 `candidate`（候选语料）与 `wrong_domain`（错域串）是**人工提出的改造方案**，与 `r119_corpus_gate.py` 的 `--candidates` 同源。我**不编造候选语料把这条口径「跑绿」** —— 那等于自造待验证的假设，比不可跑更坏（R247 的反面形态：拿自己造的输入证明自己想要的结论）。
+  ⇒ 因此口径推荐定成 **B 优先**（`r117_route_miss_attr` 每季可现跑、无需人工输入、自带挪账与缩分母两道反证；本轮实测 12→7 = −41.7%，STALE 8→8，n 291→291）；A 列为「老大给候选语料后即可复跑」的第二选项；C 维持「算术不可达」定论。
+  顺带两条自抓（都写进决策件了，不静默）：① 我首版在决策件里写过一条取值命令「对账腿 `w47_reconcile_fixtures`」，实测该夹具源码不含 margin / exposure_margin / margin_cf 任一串 ⇒ 凭印象的假引用，删除并立规「写进文档的取值命令必须整条复制实跑」；② 我写「剩余 7 条全部在短路层」是过度概括 —— 本轮现跑 `r118_layer_attr --source <live>` 得 6 条短路层 + **1 条在语料召回层**（`帮我清理提示词里堆积的补丁` → sq-cleanmgr-c，domain_face 实测该条 qdomain=code / expected_domain=system 且 cf_flips 显示域对齐后翻转为期望件）⇒ 已按现跑数据纠正。
+  取值：`python 05-exec/r123_margin_cf.py`（须印 argparse required）；`python 05-exec/r123_margin_cf.py --cases _temp/no_such.json`（须 UNVERIFIED 且 rc=2）；`python 05-exec/r118_layer_attr.py --source 06-benchmark/route_miss_attr_r216_live.json --json <件>`（须 layers 含 BGE_RECALL:1）；口径对照全文 `04-plan/需求6口径对照与决策件_r216_2026-10-25.md`。
 - [ ] **R212-4（r212 登记，P1·到期 r215）** **savepoint 被噪声门拒：三条 VIOL 分两类处置（两条我已按 R269 走 gitignore 豁免，一条是 Git 跟踪件 ⇒ 按 X-9 不迁，只登记）**： 【取值：`python D:/global_skills/A-project-handoff/scripts/handoff.py noise <本仓根>` ⇒ violation:3；明细与两条实测证据见下】
   ① `undefined/`（79 项 pycache_verify/** 树，mtime 2026-10-21 22:33，早本会话 3 天）与 ② `%SystemDrive%/`（4 项 1B 空壳链，mtime 10-24 23:33）
   ⇒ 都是**工具产物不是项目内容**：前者 = 某次跑 python 时 TEMP 未解析 ⇒ `PYTHONPYCACHEPREFIX` 落成相对路径；后者 = cmd 风格变量写进 PowerShell 未展开。
