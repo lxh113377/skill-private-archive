@@ -456,6 +456,39 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   references/powershell-cli-silent-failures.md」指针 + 版本行；或由归属方自行合并时带上。
   取值：git -C D:/global_skills status --porcelain -- win-toolchain-pitfalls/SKILL.md（非空即未落地）；
   分卷本体已在库：git -C D:/global_skills log --oneline -1 --grep R804。
+- [x] **R211-5（r211 登记，P1·已落地）** **八维对标 r211 + 四项改造闭环：H-1 副本证明回补 PASS（orphan 54→0，且 54 件镜像入库才算证明）**： 【r211 裁决=执行（对标报告 + 四项闭环 + 未闭环三项编号入账）｜读数：`purge_copy_proof.py _trash --peer .` rc=0（scanned=423 proven=423 orphan=0 unreadable=0）；提交范围逐件核 = 54 件全在镜像目录内、目录外 0 件；`[CTRL:CLEAN]` 3220 面脏 0；报告复跑 `md_claim_face` 敞口 0 + `[STRUCT:PASS]`。】
+  本轮 = 老大「系统学习 + 八维对标 + 结构化报告 + 按优先级做完四项」指令的自动化执行轮。四项闭环：
+  ① 三条夹具接线腿与现状解耦（commit `47f442a`，变异有牙：摘掉 PASS 分支打印 ⇒ g10 转红、g11 仍绿）；
+  ② 第 87 门 P4 三态化 + 第 90 门 `autopush_fixtures` 走满三道入表手续（commit `d9fd868`）；
+  ③ H-1 副本证明回补（commit `b58f7f0`）；④ 台账一致性（R207-2 / R210-2 / R211-2·3·4 按锚点入账 + 改 07 后立即复算账龄）。
+  **对标量化结论一句话**：活动面我方最快（471 commits/30d vs spec-kit 195），但对外可见面为零
+  （0 release / 0 CONTRIBUTING，X-2 有意不做 ⇒ 维持）；真差距在可移植（CI 只跑 36/90 门 = 40%）
+  与 CI 可读性（27 红全来自同一道设计内门）—— 两条分别落到 R211-3 与 L-1。
+  ⚠️ 本轮我自己造的四处错，全部当场纠出并留痕（是操作/实现缺陷，不是判据缺陷）：
+  (a) **同轮号撞号**：并行会话本轮也占 r211 且已用掉 R211-1，我第一版直接写 R211-1 ⇒ 被自家 assert 拦下（没写进去）。
+      R127-2 早立规「登记建议前先 grep 全账编号」，本轮是靠 assert 才没造成重复 ⇒ 把「领号前枚举 R211-x」固化成本条流程动作。
+  (b) **编号链式替换自污**：用三次 split/join 改 R211-x，第二次把刚改好的 2 又推成 3（级联）；改逐行定点替换 + 逐行审计才收敛（§9.17「替换要自证改到了」族）。
+  (c) **gh api 参数形态两次产假 0**：`-F k=v` 把 GET 切成 POST ⇒ 五个 peer 的 commits_30d 全 0；查询串进 argv + shell=False 才拿到 4/4/195/124/44（补条七第②形态复发）。
+  (d) 把 `description:` 误写成 `description =` 四次（同一条手滑；第四次发生在我的代码里、被解析期当场拦下，未落任何错误动作）。
+  取值：`python 05-exec/r178_proof_sync.py`；`python D:/global_skills/A-project-handoff/scripts/purge_copy_proof.py _trash --peer .`；
+  `python 05-exec/control_char_scan.py .`；`python 05-exec/r52_md_claim_face_scan.py --json <件>`；
+  报告 = `06-benchmark/全量对标报告_r211_八维对标与四项工程改造_2026-10-25.md`。
+  下一步落点（已编号在册，不外抛）：R211-2（备份簇收敛）→ R211-3（CI 红因分类）→ R211-4（注入面腾面，阻塞他端在途）。
+- [ ] **R211-2（r211 登记，P0·到期 r215）对标改造 H-2** **mark_backup 簇膨胀是 _trash 与 47MB 的增长引擎：每裁一次 07 就写一份全量 .bak，21 天红线只涨不消**： 【取值：`Get-ChildItem _trash -Recurse -File` = 423 件 / 47,132,429B、最老 2026-09-25（30 天 > 判红 21 天）；`handoff.py volume` 报 `archive/mark_backup_*` 23 份超保留 3 份】
+  八维对标的量化落点：本仓活动面（471 commits/30d）在六个对象里最快，但**同一节律在 _trash 里以「每轮一份 07 全量 .bak」的形态复利** —— r175 建证明链时 338 件，本轮 423 件（+85）。
+  修法方向（**本轮未实施，判为破坏性**）：给产生备份的那条链加 keep 收敛（对位 volume 已有的 `bak_keep=3` 口径），并配双向夹具（超 keep 即不新增 = 正例；未超 keep 不得误删 = 反例）。
+  为什么本轮不做：① 它改的是**生产备份链**（r46_mark_verdict / trim-shell 的落盘前置），属破坏性；② #25④ 里「不删既有件」我守得住，但存量 423 件的清理需人工核（R175-3 已判长期看守，本轮不复用）；③ 本轮产能给了 H-1 的实证闭环（orphan 54→0 并入库）。**「新行为本轮起界、存量不动」是次优解，本轮也未做**，如实留待下一轮。
+  验收（二元）：新一次裁决后备份簇计数 ≤ bak_keep；`handoff.py volume <本仓根>` 的 L4 备份残留条目数下降。
+  回滚方式：只加新增收敛腿，`git revert` 单提交即回原行为；不动任何既有件。归属：本仓自持（不转办，X-22）。
+- [ ] **R211-3（r211 登记，P1·到期 r217）对标改造 M-1** **CI 里「设计内红」与「真故障红」长得一模一样 —— 近 30 run 27 红全来自同一道本机专属门，读起来像 CI 挂了**： 【取值：`gh api repos/lxh113377/skill-private-archive/actions/runs?per_page=30` → 27 failure / 3 success；最新失败 run 40119157840 的 job 日志逐行只有一道门 FAIL = `gate_run_freshness`】
+  该门语义 = 从 CI 反向盯「人还在不在本机完整跑门禁」（r32 立的反向用法），CI 环境无本机台账可读 ⇒ 设计内必红。**不放宽 SUCCESS_FLOOR、不为消红改判据**（X-9 反向 / R263）。
+  修法：gates.yml 的结论步把 FAIL 门按 portable 属性分列具名分类（如 `DESIGN_INHERENT_RED=1 (gate_run_freshness)` 与 `REAL_RED=0`）；判据本身一字不动。
+  验收（二元）：CI job 日志出现分类行且本地可复算（同一步骤读 --json 快照 per_gate + 门表 portable 字段）；地板与判据未改。
+  归属：本仓自持（.github/workflows + 只读门表），不转办。
+- [ ] **R211-4（r211 登记，P1·到期=受管根在途收口后）对标改造 M-2** **注入面超硬顶 +1,453B 常驻 12+ 轮未腾（实测 66,989 vs 硬顶 65,536）**： 【取值：`python 05-exec/ratchet_gate.py` 的非阻断告警行；`inject_union_bytes` 现值由该行读，禁抄本条】
+  八维对标映射：mycelium 把「注入/规则面大小」当被校验的声明面；我方有棘轮看守但**只降不升 ⇒ 存量超限永久告警**，缺一条「腾面处方」的执行路径。处方已在 `core/upgrade_suggestions.md`（2026-10-24 16:35 行：#32/#34/#38 细则进侧车 + #24 压成指针，预计腾 600-900B）。
+  卡点（实测证据，非口径）：`A-memory-start/references/contract.md` 与多处 SKILL.md 被并行会话持续 dirty（本轮 `git -C D:/global_skills status --porcelain` 实测 11 条 ` M` + 2 条 `??`），改注入壳会撞他人在途；且拆注入壳可能打断 A-memory-start Step 3.5 的项目绑定表加载（volume 的豁免计量行正因该原因保留 AGENTS.md 不拆）。⇒ 按 R269 不擅动，登记归属收口后执行。
+  验收（二元）：`inject_union_bytes` ≤ 65,536 **或** 该告警在棘轮件里显式销账并写明新基线；两条任一成立即勾。
 - [ ] **R211-1（r211 登记，P0·已落地）** **我要去修的处方三周前已被自家效力面证伪；更严重的是第三层判据的 want 分母是我凭「知识在哪」拍出来的**： 【r211 裁决=执行（动手前先查效力面，拦下一条无效处方；用全根声称面重建 want 分母，真 MISS 5→3；接线 DISPUTED 与 RELABEL 双向有牙）｜读数：r135 效力面 末尾追加 margin 不动(-0.0586) vs 改 frontmatter +0.0216；Actions分钟 router top1 本就是 chaoshi-web-deploy ⇒ 那条 MISS 是我标错；变异A RELABEL=1/HEALED=0、变异B HEALED=1/RELABEL=0，两文件还原字节一致；基线据实重算 5 条。不外推提案：该处方已被效力面判无效，外推=造噪音（且未跑 transmit_obsolescence_check 前禁外推）。】
   ① 上轮我给自己定的下一步是「等 win-toolchain/SKILL.md 干净就给 description 补任务级触发词（进窗口），
     召回就好了」。动手前按 r148 先测后动查到现成效力面 r135_lang_boost_efficacy.py（第 11 类第二道腿）：
