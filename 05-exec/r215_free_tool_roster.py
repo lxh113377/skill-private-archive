@@ -11,14 +11,19 @@ import argparse
 import io
 import json
 import os
+import re
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 B = os.path.join(ROOT, '06-benchmark')
+sys.path.insert(0, HERE)
+import r214_tool_carrier_face as TF
+import r215_claim_check as CC
 
 SRC = {
     'roster': 'free_tools_latest.json',
+    'patterns': 'tool_carrier_patterns.json',
     'matrix': 'tool_skill_matrix_probe.json',
     'truth': 'route_truth_latest.json',
     'ingress': 'ingress_latest.json',
@@ -42,10 +47,10 @@ TASK2TOOL = {
 
 # 触点只写「已经在用的」，不写「打算怎么用」；缺证据的不填
 TOUCH = {
-    'GitHub': '本仓 post-commit 钩子自动推 + 第 87 门读 autopush 末行 rc；私有仓分钟用满是已付代价',
-    'Cloudflare-D1': 'quota_face 现读行数/写入；quickref 额度专章给取值命令',
+    'GitHub': 'A-project-handoff 的 git_autopush 钩子模板（本仓 post-commit 即其落地）+ 第 87 门读 autopush 末行 rc；私有仓分钟用满是已付代价',
+    'Cloudflare-D1': 'A-memory-start 的 quickref 额度专章（r196_quota_face 现读行数/写入）+ chaoshi-web-deploy 的 d1 execute 部署链',
     'Cloudflare-Pages': 'chaoshi-web-deploy 部署权威入口（direct_map 10 pattern，任务话术直连命中）',
-    'Cloudflare-Workers': 'workers_quota 现读调用数；跨 zone 聚合分母差异已写 §9.16',
+    'Cloudflare-Workers': 'A-memory-start 的 quickref 额度专章（r199_workers_face 现读调用数）；跨 zone 聚合分母差异已写 §9.16',
     'Cloudflare-R2': 'chaoshi-image-optimization 的 R2 外置专章（干跑读数 + 阻断现状）',
     'Cloudflare-Turnstile': '曾在超市 web 全链接通，后按老大要求移除 = 决定而非待搭缺口',
     'SQLite': '第 85 门用 SQLite 做门禁台账派生索引（读面与盲区均实测）',
@@ -85,6 +90,8 @@ def build():
         if v is None:
             return None, '源件缺失或不可析：' + fn
         src[k] = v
+    pat_map = {k.lower(): v for k, v in (src['patterns'].get('patterns') or {}).items()}
+    skills = CC.all_skills()
     rows = src['roster'].get('rows') or []
     if not rows:
         return None, '名册 rows 为空 = 空面不得出册（R247）'
@@ -108,6 +115,9 @@ def build():
             'carrier_skills': mv.get('skill_count'),
             'gates': GATES.get(tool, ''),
             'touchpoint': TOUCH.get(tool, ''),
+            'claims': CC.claims_for(TOUCH.get(tool, ''),
+                                             pat_map.get(TF.norm(tool)) or [], skills),
+            'patterns_n': len(pat_map.get(TF.norm(tool)) or []),
             'tasks': linked,
         })
     c = src['carrier']
@@ -159,6 +169,12 @@ def render_md(doc):
                  % it['tool'])
         L.append('- 守它的判据：' + it['gates'])
         L.append('- 工作流触点：' + it['touchpoint'])
+        cs = it.get('claims') or []
+        if cs:
+            for c in cs:
+                L.append('- 触点提及核验：%s -> %s' % (c['skill'], c['verdict']))
+        else:
+            L.append('- 触点提及核验：本行未点名任何 skill = 纯散文，不可证伪（勿当已核）')
         ts = it['tasks'] or []
         if ts:
             L.append('- 任务语句实测：')

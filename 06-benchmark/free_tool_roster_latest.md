@@ -19,7 +19,8 @@
 - 承载面：317 个文件 / 100 个技能
     （取值：tool_skill_matrix_probe.json 的 tools[] 内 GitHub 项的 hit_files / skill_count）
 - 守它的判据：163 + 87 + 93
-- 工作流触点：本仓 post-commit 钩子自动推 + 第 87 门读 autopush 末行 rc；私有仓分钟用满是已付代价
+- 工作流触点：A-project-handoff 的 git_autopush 钩子模板（本仓 post-commit 即其落地）+ 第 87 门读 autopush 末行 rc；私有仓分钟用满是已付代价
+- 触点提及核验：A-project-handoff -> IN_SKILL_DESC
 - 任务语句实测：
     - CI 红了 -> HIT_DIRECT（top1=ci-pipeline-debugging，期望件=ci-pipeline-debugging）
     - 钩子静默推送 -> HIT（top1=win-toolchain-pitfalls，期望件=win-toolchain-pitfalls）
@@ -30,7 +31,9 @@
 - 承载面：25 个文件 / 14 个技能
     （取值：tool_skill_matrix_probe.json 的 tools[] 内 Cloudflare-D1 项的 hit_files / skill_count）
 - 守它的判据：163 + 88 任务层 + 93
-- 工作流触点：quota_face 现读行数/写入；quickref 额度专章给取值命令
+- 工作流触点：A-memory-start 的 quickref 额度专章（r196_quota_face 现读行数/写入）+ chaoshi-web-deploy 的 d1 execute 部署链
+- 触点提及核验：A-memory-start -> MENTIONS
+- 触点提及核验：chaoshi-web-deploy -> IN_SKILL_DESC
 - 任务语句实测：
     - D1 查额度 -> MISS（top1=wps-knowledgebase，期望件=A-memory-start）
 
@@ -40,6 +43,7 @@
     （取值：tool_skill_matrix_probe.json 的 tools[] 内 Cloudflare-R2 项的 hit_files / skill_count）
 - 守它的判据：163 + 88 任务层 + 93
 - 工作流触点：chaoshi-image-optimization 的 R2 外置专章（干跑读数 + 阻断现状）
+- 触点提及核验：chaoshi-image-optimization -> IN_SKILL_DESC
 - 任务语句实测：
     - R2 开桶 -> MISS（top1=libreoffice-headless-win，期望件=chaoshi-image-optimization）
 
@@ -49,6 +53,7 @@
     （取值：tool_skill_matrix_probe.json 的 tools[] 内 Cloudflare-Pages 项的 hit_files / skill_count）
 - 守它的判据：163 + 92 + 93
 - 工作流触点：chaoshi-web-deploy 部署权威入口（direct_map 10 pattern，任务话术直连命中）
+- 触点提及核验：chaoshi-web-deploy -> IN_SKILL_DESC
 - 任务语句实测：
     - Pages 部署 -> HIT_DIRECT（top1=chaoshi-web-deploy，期望件=chaoshi-web-deploy）
 
@@ -57,7 +62,8 @@
 - 承载面：140 个文件 / 36 个技能
     （取值：tool_skill_matrix_probe.json 的 tools[] 内 Cloudflare-Workers 项的 hit_files / skill_count）
 - 守它的判据：163 + 88 任务层 + 93
-- 工作流触点：workers_quota 现读调用数；跨 zone 聚合分母差异已写 §9.16
+- 工作流触点：A-memory-start 的 quickref 额度专章（r199_workers_face 现读调用数）；跨 zone 聚合分母差异已写 §9.16
+- 触点提及核验：A-memory-start -> MENTIONS
 - 任务语句实测：
     - Workers 调用量 -> MISS（top1=chaoshi-image-optimization，期望件=A-memory-start）
 
@@ -67,6 +73,7 @@
     （取值：tool_skill_matrix_probe.json 的 tools[] 内 SQLite 项的 hit_files / skill_count）
 - 守它的判据：163 + 85 + 93
 - 工作流触点：第 85 门用 SQLite 做门禁台账派生索引（读面与盲区均实测）
+- 触点提及核验：本行未点名任何 skill = 纯散文，不可证伪（勿当已核）
 - 任务语句实测：名册无对应条目（不编造）
 
 ### VS Code - READY
@@ -75,6 +82,7 @@
     （取值：tool_skill_matrix_probe.json 的 tools[] 内 VS Code 项的 hit_files / skill_count）
 - 守它的判据：163 + 93
 - 工作流触点：第 65 名册面本地探针（which + 非 0 字节 + 真跑 --version）
+- 触点提及核验：本行未点名任何 skill = 纯散文，不可证伪（勿当已核）
 - 任务语句实测：名册无对应条目（不编造）
 
 ### Cloudflare-Turnstile - READY
@@ -83,6 +91,7 @@
     （取值：tool_skill_matrix_probe.json 的 tools[] 内 Cloudflare-Turnstile 项的 hit_files / skill_count）
 - 守它的判据：163 + 88 任务层(DISPUTED) + 93
 - 工作流触点：曾在超市 web 全链接通，后按老大要求移除 = 决定而非待搭缺口
+- 触点提及核验：本行未点名任何 skill = 纯散文，不可证伪（勿当已核）
 - 任务语句实测：
     - Turnstile -> DISPUTED（top1=codebuddy-chat-web，期望件=chaoshi-image-optimization）
 
@@ -92,6 +101,7 @@
     （取值：tool_skill_matrix_probe.json 的 tools[] 内 Resend 项的 hit_files / skill_count）
 - 守它的判据：163 + 93
 - 工作流触点：仅 HTTP API 无 CLI；凭据缺，尚未接入任何工作流
+- 触点提及核验：本行未点名任何 skill = 纯散文，不可证伪（勿当已核）
 - 任务语句实测：名册无对应条目（不编造）
 
 ### Upstash-Redis - GAP_CRED
@@ -100,5 +110,6 @@
     （取值：tool_skill_matrix_probe.json 的 tools[] 内 Upstash-Redis 项的 hit_files / skill_count）
 - 守它的判据：163 + 93
 - 工作流触点：仅 REST 无 CLI；凭据缺，尚未接入任何工作流
+- 触点提及核验：本行未点名任何 skill = 纯散文，不可证伪（勿当已核）
 - 任务语句实测：名册无对应条目（不编造）
 

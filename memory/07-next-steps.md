@@ -477,6 +477,23 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   为什么只判 P2 不判 P0：本轮逐仓核验修正后的 md_n **不翻转任何分桶**（所有被引候选修正后仍 >0 ⇒ 桶 0/1 判定不变、四态与守恒不变：MATCHED=167 / FAMILY_ONLY=11 / NO_OS=13 / UNVERIFIED=0，191==191）。按「判据缺陷按影响定级」不夸大成阻断。
   修法（下轮，禁顺手改，独立一件事）：`skill_md_n` 改判「文件名为 SKILL.md（大小写不敏感）」且**排除** `tests/`、`spec/`、`__tests__/`、`golden/`、`fixtures/` 前缀；`.claude/` 与 `distribution/` 保留但单列一维（它们确实是可安装技能，只是不是产品主目录）。改前须先量重排影响（同 X-12：先钉基线再改判据），且必须复跑 c2 各批的 top3 依据是否仍成立。取值：`python 05-exec/r114_replacement_scan.py --json <件>` 后读 `rows[].candidates[].skill_md_n` 与 `06-benchmark/fc_caliber_r211.json` 对照。
 
+- [ ] **R215-2（r215 登记，P1·已落地）** **我建的「可证伪检查」第一次反证就咬不住错断言：从判对错降级为分强度**： 【r215 裁决=执行（第一次反证失败后，把校验从「判对错」降级为「分强度」并同步措辞与不可证伪标注，再证区分成功）｜读数：{IN_SKILL_DESC:4, MENTIONS:2} + 5 行诚实标「纯散文不可证伪」；反证 GitHub 真承载→IN_SKILL_DESC、错点名→MENTIONS（True）；生成器 rc=0、md 6082B。无后续挂账：核验强度已在产物里如实标注。】
+  演进三步（每步由实测驱动）：v1 名册触点栏全是我手写散文，机器复核给出 10 行 (no ref) ⇒ 数字有 r52
+  管着、散文没人能证伪；v2 加「点名的 skill 目录下 .md 是否命中该工具关键词」，跑出 6 条全 HOLDS 看着很好，
+  但按本轮规矩反证：故意把 GitHub 承载件写成 chaoshi-image-optimization ⇒ **仍判 HOLDS，咬不住**。根因：
+  中文技能正文出现 github/actions 字样近乎恒真，「提到过」≠「职责归它」，我那层只能测前者却按后者措辞。
+  v3（r215_claim_check.py）不假装判对错、改如实分级 IN_SKILL_DESC / MENTIONS / NOT_MENTIONED /
+  SKILL_ABSENT / NO_PATTERN（后两者不折算通过，R247），并把消费方措辞降为「触点**提及**核验」、无点名行
+  显式标「纯散文不可证伪（勿当已核）」。再证：GitHub 真承载 A-project-handoff→IN_SKILL_DESC、错点名
+  chaoshi-image→MENTIONS ⇒ 区分成功 = True。名册最终 {IN_SKILL_DESC:4, MENTIONS:2} + 5 行诚实标不可证伪。
+  顺带三处手滑也如实记：① 反证误用 PowerShell 相对路径（Rename-Item/Test-Path）得出「源件已还原=False」
+  虚惊，改 monkeypatch 后结论干净（§69 那条坑的镜像）；② 新生成物 md 里 14 处裸数字被自家 r52 判 EXPOSED，
+  补每行取值后敞口 0（不放宽 r52）；③ 把要输出的文本当裸代码写进 L.append 致 SyntaxError、生成器崩、
+  产物没重生成，敞口才仍 14 —— 修自己错误的动作，半径不能大于错误本身。
+  元教训：**反证是设计输入，不是收尾仪式**。一个咬不住错断言的校验器会把错误洗成通过，比散文更危险，
+  因为它带绿章。
+  取值：06-benchmark/free_tool_roster_latest.json items[].claims（分级分布）；
+  反证 TEMP/teeth215b.py（真承载 IN_SKILL_DESC vs 错点名 MENTIONS）；分级定义 05-exec/r215_claim_check.py 件头。
 - [ ] **R215-1（r215 登记，P1·已落地）** **交付目标本体的可复算产物：免费工具 x 工作流 x skill 搭配名册（生成器，数字全溯源头证据件）**： 【r215 裁决=执行（交付目标本体的可复算产物：搭配名册生成器，数字全溯源头证据件，缺源件即 rc=2 不出册）｜读数：10 工具入册、md 3792B；monkeypatch 抽源件反证得 doc=None + 具名报错且不落半成品；散落件已按红线4 迁 _trash。无后续挂账：名册随证据件再生。】
   前 93 门各量一个切面（163 能不能跑 / 93 有没有承载 / 92 入口派卷 / 88 三层召回 / 86 指针），但没有任何产物把三者按
   工具拼起来 —— 「某工具搭到哪一步、还差什么、凭什么说差」一直只能靠我在对话里临时回忆。本件把那份回忆变成生成物。

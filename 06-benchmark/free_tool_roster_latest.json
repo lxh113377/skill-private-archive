@@ -9,7 +9,14 @@
    "carrier_files": 317,
    "carrier_skills": 100,
    "gates": "163 + 87 + 93",
-   "touchpoint": "本仓 post-commit 钩子自动推 + 第 87 门读 autopush 末行 rc；私有仓分钟用满是已付代价",
+   "touchpoint": "A-project-handoff 的 git_autopush 钩子模板（本仓 post-commit 即其落地）+ 第 87 门读 autopush 末行 rc；私有仓分钟用满是已付代价",
+   "claims": [
+    {
+     "skill": "A-project-handoff",
+     "verdict": "IN_SKILL_DESC"
+    }
+   ],
+   "patterns_n": 3,
    "tasks": [
     {
      "task": "CI 红了",
@@ -37,7 +44,18 @@
    "carrier_files": 25,
    "carrier_skills": 14,
    "gates": "163 + 88 任务层 + 93",
-   "touchpoint": "quota_face 现读行数/写入；quickref 额度专章给取值命令",
+   "touchpoint": "A-memory-start 的 quickref 额度专章（r196_quota_face 现读行数/写入）+ chaoshi-web-deploy 的 d1 execute 部署链",
+   "claims": [
+    {
+     "skill": "A-memory-start",
+     "verdict": "MENTIONS"
+    },
+    {
+     "skill": "chaoshi-web-deploy",
+     "verdict": "IN_SKILL_DESC"
+    }
+   ],
+   "patterns_n": 3,
    "tasks": [
     {
      "task": "D1 查额度",
@@ -54,6 +72,13 @@
    "carrier_skills": 14,
    "gates": "163 + 88 任务层 + 93",
    "touchpoint": "chaoshi-image-optimization 的 R2 外置专章（干跑读数 + 阻断现状）",
+   "claims": [
+    {
+     "skill": "chaoshi-image-optimization",
+     "verdict": "IN_SKILL_DESC"
+    }
+   ],
+   "patterns_n": 3,
    "tasks": [
     {
      "task": "R2 开桶",
@@ -70,6 +95,13 @@
    "carrier_skills": 59,
    "gates": "163 + 92 + 93",
    "touchpoint": "chaoshi-web-deploy 部署权威入口（direct_map 10 pattern，任务话术直连命中）",
+   "claims": [
+    {
+     "skill": "chaoshi-web-deploy",
+     "verdict": "IN_SKILL_DESC"
+    }
+   ],
+   "patterns_n": 3,
    "tasks": [
     {
      "task": "Pages 部署",
@@ -85,7 +117,14 @@
    "carrier_files": 140,
    "carrier_skills": 36,
    "gates": "163 + 88 任务层 + 93",
-   "touchpoint": "workers_quota 现读调用数；跨 zone 聚合分母差异已写 §9.16",
+   "touchpoint": "A-memory-start 的 quickref 额度专章（r199_workers_face 现读调用数）；跨 zone 聚合分母差异已写 §9.16",
+   "claims": [
+    {
+     "skill": "A-memory-start",
+     "verdict": "MENTIONS"
+    }
+   ],
+   "patterns_n": 3,
    "tasks": [
     {
      "task": "Workers 调用量",
@@ -102,6 +141,8 @@
    "carrier_skills": 11,
    "gates": "163 + 85 + 93",
    "touchpoint": "第 85 门用 SQLite 做门禁台账派生索引（读面与盲区均实测）",
+   "claims": [],
+   "patterns_n": 3,
    "tasks": []
   },
   {
@@ -111,6 +152,8 @@
    "carrier_skills": 46,
    "gates": "163 + 93",
    "touchpoint": "第 65 名册面本地探针（which + 非 0 字节 + 真跑 --version）",
+   "claims": [],
+   "patterns_n": 3,
    "tasks": []
   },
   {
@@ -120,6 +163,8 @@
    "carrier_skills": 4,
    "gates": "163 + 88 任务层(DISPUTED) + 93",
    "touchpoint": "曾在超市 web 全链接通，后按老大要求移除 = 决定而非待搭缺口",
+   "claims": [],
+   "patterns_n": 3,
    "tasks": [
     {
      "task": "Turnstile",
@@ -136,6 +181,8 @@
    "carrier_skills": 2,
    "gates": "163 + 93",
    "touchpoint": "仅 HTTP API 无 CLI；凭据缺，尚未接入任何工作流",
+   "claims": [],
+   "patterns_n": 3,
    "tasks": []
   },
   {
@@ -145,6 +192,8 @@
    "carrier_skills": 22,
    "gates": "163 + 93",
    "touchpoint": "仅 REST 无 CLI；凭据缺，尚未接入任何工作流",
+   "claims": [],
+   "patterns_n": 3,
    "tasks": []
   }
  ],
