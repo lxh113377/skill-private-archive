@@ -1,0 +1,133 @@
+{
+ "schema": "roster-recall-v1",
+ "readonly": true,
+ "note": "名册任务查询的路由召回实测（本地 onnx，零外网）",
+ "rows": [
+  {
+   "task": "Pages 部署",
+   "want": "chaoshi-web-deploy",
+   "top1": "chaoshi-web-deploy",
+   "top3": [
+    "chaoshi-web-deploy"
+   ],
+   "direct": true,
+   "hit_expected": true,
+   "s": 6.4
+  },
+  {
+   "task": "D1 查额度",
+   "want": "win-toolchain-pitfalls",
+   "top1": "wps-knowledgebase",
+   "top3": [
+    "wps-knowledgebase",
+    "fenjue-memory-audit",
+    "story-setup"
+   ],
+   "direct": false,
+   "hit_expected": false,
+   "s": 23.7
+  },
+  {
+   "task": "R2 开桶",
+   "want": "chaoshi-web-deploy",
+   "top1": "libreoffice-headless-win",
+   "top3": [
+    "libreoffice-headless-win",
+    "sq-cleanmgr-c",
+    "A-project-handoff"
+   ],
+   "direct": false,
+   "hit_expected": false,
+   "s": 2.9
+  },
+  {
+   "task": "Workers 调用量",
+   "want": "win-toolchain-pitfalls",
+   "top1": "chaoshi-image-optimization",
+   "top3": [
+    "chaoshi-image-optimization",
+    "pixelle-api-ensure",
+    "ican-deploy"
+   ],
+   "direct": false,
+   "hit_expected": false,
+   "s": 4.8
+  },
+  {
+   "task": "Turnstile",
+   "want": "chaoshi-web-deploy",
+   "top1": "codebuddy-chat-web",
+   "top3": [
+    "codebuddy-chat-web",
+    "dingtalk-aitable",
+    "fenjue-memory-audit"
+   ],
+   "direct": false,
+   "hit_expected": false,
+   "s": 3.4
+  },
+  {
+   "task": "Actions 分钟",
+   "want": "ci-pipeline-debugging",
+   "top1": "chaoshi-web-deploy",
+   "top3": [
+    "chaoshi-web-deploy",
+    "frontend-asset-library",
+    "screenshot"
+   ],
+   "direct": false,
+   "hit_expected": false,
+   "s": 5.1
+  },
+  {
+   "task": "CI 红了",
+   "want": "ci-pipeline-debugging",
+   "top1": "ci-pipeline-debugging",
+   "top3": [
+    "ci-pipeline-debugging"
+   ],
+   "direct": true,
+   "hit_expected": true,
+   "s": 0.6
+  },
+  {
+   "task": "Resend 发邮",
+   "want": "",
+   "top1": "dingtalk-mail",
+   "top3": [
+    "dingtalk-mail",
+    "office-automation-pro",
+    "codebuddy-chat-web"
+   ],
+   "direct": false,
+   "hit_expected": null,
+   "s": 2.7
+  },
+  {
+   "task": "Upstash 限流",
+   "want": "",
+   "top1": "codebuddy-chat-web",
+   "top3": [
+    "codebuddy-chat-web",
+    "libreoffice-base",
+    "workbuddy-mcp"
+   ],
+   "direct": false,
+   "hit_expected": null,
+   "s": 2.3
+  },
+  {
+   "task": "钩子推送",
+   "want": "win-toolchain-pitfalls",
+   "top1": "win-toolchain-pitfalls",
+   "top3": [
+    "win-toolchain-pitfalls",
+    "debugging-fixing",
+    "wb-git-commit-recipe"
+   ],
+   "direct": false,
+   "hit_expected": true,
+   "s": 2.2
+  }
+ ]
+}
