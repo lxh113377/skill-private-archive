@@ -1,0 +1,171 @@
+{
+ "schema": "free-tool-roster-v1",
+ "readonly": true,
+ "provenance_cmd": "python 05-exec/r215_free_tool_roster.py --json <件>",
+ "items": [
+  {
+   "tool": "GitHub",
+   "state": "READY",
+   "carrier_files": 317,
+   "carrier_skills": 100,
+   "gates": "163 + 87 + 93",
+   "touchpoint": "本仓 post-commit 钩子自动推 + 第 87 门读 autopush 末行 rc；私有仓分钟用满是已付代价",
+   "tasks": [
+    {
+     "task": "CI 红了",
+     "outcome": "HIT_DIRECT",
+     "top1": "ci-pipeline-debugging",
+     "skill": "ci-pipeline-debugging"
+    },
+    {
+     "task": "钩子静默推送",
+     "outcome": "HIT",
+     "top1": "win-toolchain-pitfalls",
+     "skill": "win-toolchain-pitfalls"
+    },
+    {
+     "task": "Actions 分钟",
+     "outcome": "HIT",
+     "top1": "chaoshi-web-deploy",
+     "skill": "chaoshi-web-deploy"
+    }
+   ]
+  },
+  {
+   "tool": "Cloudflare-D1",
+   "state": "READY",
+   "carrier_files": 25,
+   "carrier_skills": 14,
+   "gates": "163 + 88 任务层 + 93",
+   "touchpoint": "quota_face 现读行数/写入；quickref 额度专章给取值命令",
+   "tasks": [
+    {
+     "task": "D1 查额度",
+     "outcome": "MISS",
+     "top1": "wps-knowledgebase",
+     "skill": "A-memory-start"
+    }
+   ]
+  },
+  {
+   "tool": "Cloudflare-R2",
+   "state": "GAP_SERVICE",
+   "carrier_files": 25,
+   "carrier_skills": 14,
+   "gates": "163 + 88 任务层 + 93",
+   "touchpoint": "chaoshi-image-optimization 的 R2 外置专章（干跑读数 + 阻断现状）",
+   "tasks": [
+    {
+     "task": "R2 开桶",
+     "outcome": "MISS",
+     "top1": "libreoffice-headless-win",
+     "skill": "chaoshi-image-optimization"
+    }
+   ]
+  },
+  {
+   "tool": "Cloudflare-Pages",
+   "state": "READY",
+   "carrier_files": 306,
+   "carrier_skills": 59,
+   "gates": "163 + 92 + 93",
+   "touchpoint": "chaoshi-web-deploy 部署权威入口（direct_map 10 pattern，任务话术直连命中）",
+   "tasks": [
+    {
+     "task": "Pages 部署",
+     "outcome": "HIT_DIRECT",
+     "top1": "chaoshi-web-deploy",
+     "skill": "chaoshi-web-deploy"
+    }
+   ]
+  },
+  {
+   "tool": "Cloudflare-Workers",
+   "state": "READY",
+   "carrier_files": 140,
+   "carrier_skills": 36,
+   "gates": "163 + 88 任务层 + 93",
+   "touchpoint": "workers_quota 现读调用数；跨 zone 聚合分母差异已写 §9.16",
+   "tasks": [
+    {
+     "task": "Workers 调用量",
+     "outcome": "MISS",
+     "top1": "chaoshi-image-optimization",
+     "skill": "A-memory-start"
+    }
+   ]
+  },
+  {
+   "tool": "SQLite",
+   "state": "READY",
+   "carrier_files": 13,
+   "carrier_skills": 11,
+   "gates": "163 + 85 + 93",
+   "touchpoint": "第 85 门用 SQLite 做门禁台账派生索引（读面与盲区均实测）",
+   "tasks": []
+  },
+  {
+   "tool": "VS Code",
+   "state": "READY",
+   "carrier_files": 101,
+   "carrier_skills": 46,
+   "gates": "163 + 93",
+   "touchpoint": "第 65 名册面本地探针（which + 非 0 字节 + 真跑 --version）",
+   "tasks": []
+  },
+  {
+   "tool": "Cloudflare-Turnstile",
+   "state": "READY",
+   "carrier_files": 10,
+   "carrier_skills": 4,
+   "gates": "163 + 88 任务层(DISPUTED) + 93",
+   "touchpoint": "曾在超市 web 全链接通，后按老大要求移除 = 决定而非待搭缺口",
+   "tasks": [
+    {
+     "task": "Turnstile",
+     "outcome": "DISPUTED",
+     "top1": "codebuddy-chat-web",
+     "skill": "chaoshi-image-optimization"
+    }
+   ]
+  },
+  {
+   "tool": "Resend",
+   "state": "GAP_CRED",
+   "carrier_files": 6,
+   "carrier_skills": 2,
+   "gates": "163 + 93",
+   "touchpoint": "仅 HTTP API 无 CLI；凭据缺，尚未接入任何工作流",
+   "tasks": []
+  },
+  {
+   "tool": "Upstash-Redis",
+   "state": "GAP_CRED",
+   "carrier_files": 42,
+   "carrier_skills": 22,
+   "gates": "163 + 93",
+   "touchpoint": "仅 REST 无 CLI；凭据缺，尚未接入任何工作流",
+   "tasks": []
+  }
+ ],
+ "gates_reading": {
+  "carrier": {
+   "tools": 10,
+   "vols": 1718,
+   "uncarried": 0,
+   "k5": true
+  },
+  "ingress": {
+   "checked": 8,
+   "gaps": 0,
+   "k5": true
+  },
+  "recall": {
+   "window": 3,
+   "truth": 2,
+   "task": 7,
+   "hits": 4,
+   "gaps": 5
+  }
+ }
+}

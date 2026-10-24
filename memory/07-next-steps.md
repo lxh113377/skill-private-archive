@@ -477,6 +477,22 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   为什么只判 P2 不判 P0：本轮逐仓核验修正后的 md_n **不翻转任何分桶**（所有被引候选修正后仍 >0 ⇒ 桶 0/1 判定不变、四态与守恒不变：MATCHED=167 / FAMILY_ONLY=11 / NO_OS=13 / UNVERIFIED=0，191==191）。按「判据缺陷按影响定级」不夸大成阻断。
   修法（下轮，禁顺手改，独立一件事）：`skill_md_n` 改判「文件名为 SKILL.md（大小写不敏感）」且**排除** `tests/`、`spec/`、`__tests__/`、`golden/`、`fixtures/` 前缀；`.claude/` 与 `distribution/` 保留但单列一维（它们确实是可安装技能，只是不是产品主目录）。改前须先量重排影响（同 X-12：先钉基线再改判据），且必须复跑 c2 各批的 top3 依据是否仍成立。取值：`python 05-exec/r114_replacement_scan.py --json <件>` 后读 `rows[].candidates[].skill_md_n` 与 `06-benchmark/fc_caliber_r211.json` 对照。
 
+- [ ] **R215-1（r215 登记，P1·已落地）** **交付目标本体的可复算产物：免费工具 x 工作流 x skill 搭配名册（生成器，数字全溯源头证据件）**： 【r215 裁决=执行（交付目标本体的可复算产物：搭配名册生成器，数字全溯源头证据件，缺源件即 rc=2 不出册）｜读数：10 工具入册、md 3792B；monkeypatch 抽源件反证得 doc=None + 具名报错且不落半成品；散落件已按红线4 迁 _trash。无后续挂账：名册随证据件再生。】
+  前 93 门各量一个切面（163 能不能跑 / 93 有没有承载 / 92 入口派卷 / 88 三层召回 / 86 指针），但没有任何产物把三者按
+  工具拼起来 —— 「某工具搭到哪一步、还差什么、凭什么说差」一直只能靠我在对话里临时回忆。本件把那份回忆变成生成物。
+  设计约束（吸取 r214「按印象写分母产出假发现」）：全部数字取自源证据件（free_tools / tool_skill_matrix_probe /
+  route_truth / ingress / recall / carrier 六件），缺任一即 rc=2 不出册，禁按记忆补（R247）。工作流触点只写「已经在用的」
+  不写「打算怎么用」；任务到工具的归属从既有名册读，不另立第二份清单（禁第二真相源）。
+  产物读数：10 工具入册、md 3792B；依据面表内 93「10 工具 / 1718 卷 / 未承载 0」、92「判 8 缺口 0」、88「任务 7 命中 4」。
+  逐工具带出：GitHub 317 文件/100 技能 + 三条任务全命中；D1 25/14 但「D1 查额度」MISS（top1=wps-knowledgebase）等。
+  反证（守卫有效性，monkeypatch 抽掉 carrier 源件）：build() 返回 (None, 源件缺失或不可析…)，不落半成品；还原后 items=10。
+  我上一手用相对路径 Rename/Test-Path 做同一反证，得出「源件已还原=False」的虚惊 —— 恰是本轮 §69 记的那条坑的镜像
+  （pwsh 侧相对路径不可靠，生成器全用绝对路径正是为此）。改绝对路径 + monkeypatch 后结论干净。散落件 _tmp_roster.json
+  按红线4 迁 _trash/r215_stray（.gitignore 命中，禁删）。
+  元教训：给「搭配」这类跨切面目标做产物时，**可复算性优先于表达力** —— 我一开始想写会渲染大段叙述的生成器，
+  结果 JS/Python 引号互吃连崩两次；砍成「只从源件拼结构化字段」后一次通过。少表达，多溯源。
+  取值：python 05-exec/r215_free_tool_roster.py（打印 [ROSTER:OK] 与入册数）；产物 06-benchmark/free_tool_roster_latest.{json,md}；
+  守卫反证 TEMP/guard.py（doc=None + 具名 err）。
 - [ ] **R214-2（r214 登记，P0·已落地）** **我自己的一次处置比错误更危险：为修 5 个共享卷的 CRLF，批量 git checkout 回滚了它们**： 【r214 裁决=执行（把自己批量 checkout 共享卷的事故入账，并用带 newline 与 CR 双检的脚本重做插入）｜读数：还原后 5 卷 CRLF=0；§68/§69 与 R214-1/2 重插后 CR=False；复盘三个 r46 .bak 逐条比对无条目丢失（07.md 262056B 大于最新 bak 255799B）。规矩固化：写共享卷必带 newline=、写坏只回滚自己那一处、禁批量 checkout 共享卷。】
   起因：本轮收尾脚本（纯 ASCII 插入 §68）自身有 NameError（rd 定义在用之后），但崩前已按 text 模式
   重写 5 个卷（未传 newline=""）⇒ LF 变 CRLF，正撞本仓 X-25 禁令。我读回发现后用了
