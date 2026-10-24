@@ -1,0 +1,223 @@
+{
+ "vols": 20,
+ "rows": [
+  {
+   "task": "Pages 部署",
+   "want": "chaoshi-web-deploy",
+   "kw": [
+    "部署",
+    "超市部署",
+    "pages"
+   ],
+   "vols_with_evidence": [
+    "quickref-delivery-consistency.md",
+    "version_history.md",
+    "multi_agent_collab.md"
+   ],
+   "evidence_hits": {
+    "quickref-delivery-consistency.md": [
+     "部署",
+     "pages"
+    ],
+    "version_history.md": [
+     "部署",
+     "pages"
+    ],
+    "multi_agent_collab.md": [
+     "部署"
+    ]
+   }
+  },
+  {
+   "task": "CI 红了",
+   "want": "ci-pipeline-debugging",
+   "kw": [
+    "CI",
+    "流水线",
+    "actions"
+   ],
+   "vols_with_evidence": [
+    "version_history.md",
+    "contract-rules-maintenance.md",
+    "quickref-cli-subprocess.md"
+   ],
+   "evidence_hits": {
+    "version_history.md": [
+     "CI",
+     "流水线",
+     "actions"
+    ],
+    "contract-rules-maintenance.md": [
+     "CI",
+     "流水线"
+    ],
+    "quickref-cli-subprocess.md": [
+     "CI",
+     "actions"
+    ]
+   }
+  },
+  {
+   "task": "钩子静默推送",
+   "want": "win-toolchain-pitfalls",
+   "kw": [
+    "钩子",
+    "post-commit",
+    "推送",
+    "autopush"
+   ],
+   "vols_with_evidence": [
+    "quickref-cli-subprocess.md",
+    "version_history.md",
+    "contract-rules-maintenance.md"
+   ],
+   "evidence_hits": {
+    "quickref-cli-subprocess.md": [
+     "钩子",
+     "post-commit",
+     "推送",
+     "autopush"
+    ],
+    "version_history.md": [
+     "钩子",
+     "post-commit"
+    ],
+    "contract-rules-maintenance.md": [
+     "钩子"
+    ]
+   }
+  },
+  {
+   "task": "Actions 分钟",
+   "want": "chaoshi-web-deploy",
+   "kw": [
+    "分钟",
+    "billing",
+    "额度"
+   ],
+   "vols_with_evidence": [
+    "quickref-cli-subprocess.md",
+    "contract-rules-verification.md",
+    "quickref-current-state-history.md"
+   ],
+   "evidence_hits": {
+    "quickref-cli-subprocess.md": [
+     "分钟",
+     "额度"
+    ],
+    "contract-rules-verification.md": [
+     "分钟"
+    ],
+    "quickref-current-state-history.md": [
+     "分钟"
+    ]
+   }
+  },
+  {
+   "task": "R2 开桶",
+   "want": "chaoshi-image-optimization",
+   "kw": [
+    "R2",
+    "存储桶",
+    "bucket"
+   ],
+   "vols_with_evidence": [
+    "contract-history-notes.md",
+    "contract-rules-maintenance.md",
+    "contract-rules-verification.md"
+   ],
+   "evidence_hits": {
+    "contract-history-notes.md": [
+     "R2"
+    ],
+    "contract-rules-maintenance.md": [
+     "R2"
+    ],
+    "contract-rules-verification.md": [
+     "R2"
+    ]
+   }
+  },
+  {
+   "task": "Turnstile",
+   "want": "chaoshi-image-optimization",
+   "kw": [
+    "Turnstile",
+    "人机验证"
+   ],
+   "vols_with_evidence": [],
+   "evidence_hits": {}
+  },
+  {
+   "task": "D1 查额度",
+   "want": "A-memory-start",
+   "kw": [
+    "额度",
+    "quota",
+    "D1"
+   ],
+   "vols_with_evidence": [
+    "quickref-cli-subprocess.md",
+    "contract-rules-verification.md",
+    "version_history.md"
+   ],
+   "evidence_hits": {
+    "quickref-cli-subprocess.md": [
+     "额度",
+     "quota",
+     "D1"
+    ],
+    "contract-rules-verification.md": [
+     "quota"
+    ],
+    "version_history.md": [
+     "D1"
+    ]
+   }
+  },
+  {
+   "task": "Workers 调用量",
+   "want": "A-memory-start",
+   "kw": [
+    "额度",
+    "quota",
+    "Workers",
+    "调用"
+   ],
+   "vols_with_evidence": [
+    "quickref-cli-subprocess.md",
+    "contract-rules-verification.md",
+    "contract-rules-maintenance.md"
+   ],
+   "evidence_hits": {
+    "quickref-cli-subprocess.md": [
+     "额度",
+     "quota",
+     "Workers",
+     "调用"
+    ],
+    "contract-rules-verification.md": [
+     "quota",
+     "调用"
+    ],
+    "contract-rules-maintenance.md": [
+     "调用"
+    ]
+   }
+  },
+  {
+   "task": "Resend 发邮",
+   "want": "",
+   "kw": [],
+   "vols_with_evidence": [],
+   "evidence_hits": {}
+  },
+  {
+   "task": "Upstash 限流",
+   "want": "",
+   "kw": [],
+   "vols_with_evidence": [],
+   "evidence_hits": {}
+  }
+ ]
+}

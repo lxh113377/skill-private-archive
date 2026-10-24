@@ -456,24 +456,6 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   references/powershell-cli-silent-failures.md」指针 + 版本行；或由归属方自行合并时带上。
   取值：git -C D:/global_skills status --porcelain -- win-toolchain-pitfalls/SKILL.md（非空即未落地）；
   分卷本体已在库：git -C D:/global_skills log --oneline -1 --grep R804。
-- [x] **R211-5（r211 登记，P1·已落地）** **八维对标 r211 + 四项改造闭环：H-1 副本证明回补 PASS（orphan 54→0，且 54 件镜像入库才算证明）**： 【r211 裁决=执行（对标报告 + 四项闭环 + 未闭环三项编号入账）｜读数：`purge_copy_proof.py _trash --peer .` rc=0（scanned=423 proven=423 orphan=0 unreadable=0）；提交范围逐件核 = 54 件全在镜像目录内、目录外 0 件；`[CTRL:CLEAN]` 3220 面脏 0；报告复跑 `md_claim_face` 敞口 0 + `[STRUCT:PASS]`。】
-  本轮 = 老大「系统学习 + 八维对标 + 结构化报告 + 按优先级做完四项」指令的自动化执行轮。四项闭环：
-  ① 三条夹具接线腿与现状解耦（commit `47f442a`，变异有牙：摘掉 PASS 分支打印 ⇒ g10 转红、g11 仍绿）；
-  ② 第 87 门 P4 三态化 + 第 90 门 `autopush_fixtures` 走满三道入表手续（commit `d9fd868`）；
-  ③ H-1 副本证明回补（commit `b58f7f0`）；④ 台账一致性（R207-2 / R210-2 / R211-2·3·4 按锚点入账 + 改 07 后立即复算账龄）。
-  **对标量化结论一句话**：活动面我方最快（471 commits/30d vs spec-kit 195），但对外可见面为零
-  （0 release / 0 CONTRIBUTING，X-2 有意不做 ⇒ 维持）；真差距在可移植（CI 只跑 36/90 门 = 40%）
-  与 CI 可读性（27 红全来自同一道设计内门）—— 两条分别落到 R211-3 与 L-1。
-  ⚠️ 本轮我自己造的四处错，全部当场纠出并留痕（是操作/实现缺陷，不是判据缺陷）：
-  (a) **同轮号撞号**：并行会话本轮也占 r211 且已用掉 R211-1，我第一版直接写 R211-1 ⇒ 被自家 assert 拦下（没写进去）。
-      R127-2 早立规「登记建议前先 grep 全账编号」，本轮是靠 assert 才没造成重复 ⇒ 把「领号前枚举 R211-x」固化成本条流程动作。
-  (b) **编号链式替换自污**：用三次 split/join 改 R211-x，第二次把刚改好的 2 又推成 3（级联）；改逐行定点替换 + 逐行审计才收敛（§9.17「替换要自证改到了」族）。
-  (c) **gh api 参数形态两次产假 0**：`-F k=v` 把 GET 切成 POST ⇒ 五个 peer 的 commits_30d 全 0；查询串进 argv + shell=False 才拿到 4/4/195/124/44（补条七第②形态复发）。
-  (d) 把 `description:` 误写成 `description =` 四次（同一条手滑；第四次发生在我的代码里、被解析期当场拦下，未落任何错误动作）。
-  取值：`python 05-exec/r178_proof_sync.py`；`python D:/global_skills/A-project-handoff/scripts/purge_copy_proof.py _trash --peer .`；
-  `python 05-exec/control_char_scan.py .`；`python 05-exec/r52_md_claim_face_scan.py --json <件>`；
-  报告 = `06-benchmark/全量对标报告_r211_八维对标与四项工程改造_2026-10-25.md`。
-  下一步落点（已编号在册，不外抛）：R211-2（备份簇收敛）→ R211-3（CI 红因分类）→ R211-4（注入面腾面，阻塞他端在途）。
 - [ ] **R211-6（r211 登记，P1·到期 r213）** **全量门禁唯一红来自并行会话的未提交编辑：`05-exec/r114_replacement_scan.py` 工作树含 4 处 0x08（退格符），HEAD 版为 0 —— 我改它 = 越权（R269 / X-9），只登记**： 【取值：`python 05-exec/control_char_scan.py .` ⇒ `[CTRL:DIRTY] 1 个文件…×4 码位=[8] 首偏移=[6629,6633,6640]`；归属三证：① `git show HEAD:05-exec/r114_replacement_scan.py` 内 0x08 计数 **0**；② 该件 mtime **2026-10-25 02:34:49**，落在我的 `b58f7f0`(02:34) 与并行会话 `cb0df24`(02:35) 之间；③ 我本轮全部改动 = 5 个夹具/判据件 + 07 + 报告 + 镜像 54 件，**不含**该件（逐笔 `git show --name-only` 已核）。】 【r211 补记：该 0x08 是我（同轮另一会话）写入通道把 JS 模板里的 \\b 当退格转义所致，非并行会话在途改动；已于同日修复并复验：control_char_scan PASS、全文件 C0∪DEL 控制字节 0；同时该行正则语义已复原（\\bbpy\\b / \\b3d\\b 词边界实测正例 9 全 True、负例 s3d/3dp/ember3d/reorder/bpyutils/mybpyx 全 False），并据修复后的矩阵重算候选面（replacement_matrix_r211c，守恒 191==191）】
   我 02:31 跑同一道门时是 `[CTRL:CLEAN] 3220 面 / 脏 0` ⇒ 该脏项在 02:34:49 之后产生，与本轮四项改造无因果。**处置 = 不擅动**：`git checkout` 会把对方未提交的在途工作抹掉（越权），手改则可能覆盖其意图。
   归属方动作（一句话）：把该件里的裸 0x08 改成 `chr(8)` 显式构造或改 raw 串（门的提示语已给），或自行 revert 那处编辑；做完复跑 `python 05-exec/control_char_scan.py .` 应回 `[CTRL:CLEAN]`。
@@ -495,6 +477,25 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   为什么只判 P2 不判 P0：本轮逐仓核验修正后的 md_n **不翻转任何分桶**（所有被引候选修正后仍 >0 ⇒ 桶 0/1 判定不变、四态与守恒不变：MATCHED=167 / FAMILY_ONLY=11 / NO_OS=13 / UNVERIFIED=0，191==191）。按「判据缺陷按影响定级」不夸大成阻断。
   修法（下轮，禁顺手改，独立一件事）：`skill_md_n` 改判「文件名为 SKILL.md（大小写不敏感）」且**排除** `tests/`、`spec/`、`__tests__/`、`golden/`、`fixtures/` 前缀；`.claude/` 与 `distribution/` 保留但单列一维（它们确实是可安装技能，只是不是产品主目录）。改前须先量重排影响（同 X-12：先钉基线再改判据），且必须复跑 c2 各批的 top3 依据是否仍成立。取值：`python 05-exec/r114_replacement_scan.py --json <件>` 后读 `rows[].candidates[].skill_md_n` 与 `06-benchmark/fc_caliber_r211.json` 对照。
 
+- [ ] **R213-2（r213 登记，P1·已落地）** **R813 修的「任务话术→分派行→额度专章」这条入口链，此前无任何判据守 ⇒ 建第 92 门 ingress_face 并验有牙**： 【r213 裁决=执行（建第 92 门 ingress_face 守 R813 那条入口链；分母全靠关键词实测命中不靠手标；挂表 --record 后门表 92 / 未登记 0 / 准入未声明 0）｜读数：首跑 8 判 0 缺口 + K5 通过；有牙验证抹 L111 指针 ⇒ D1 额度落 1 条 GAP、还原回 0（非恒绿）。全量首跑 recall_face 报 UNVERIFIED = 我改名册没重测，正是我 r209 加的「名册比真值件新」前置抓住的，按处方重跑测量器后三层 PASS（读数未变、仍 3 真 MISS）。无后续挂账：入口面已常驻。撞号自纠：R213-1 已被并行会话占用，我改用 R213-2。】
+  盲区成因（都是实测，非推理）：第 88 门量 BGE 召回、语料 = SKILL.md 前 800 字符，而 A-memory-start
+  的分派行 L111 在**偏移 5594** ⇒ 它不看；第 86 门只查「分卷被任一 SKILL.md 提过指针没」⇒ 额度知识
+  在 quickref 里它就绿。⇒ 谁删了 L111 那个反引号指针，入口链断，但 86/88 **两门照样绿**。这不是
+  缺一条读数，是三类可达性（写下来/有指针/可召回）之外**第四类**——每轮必加载的入口件会不会把
+  任务话术派到写着答案的那一卷——一直没量。
+  分母不靠我手标：先实扫 A-memory-start/references（20 卷）确认 quickref-cli-subprocess.md 真含
+  「额度/quota/D1/Workers/钩子/autopush」（R813 那条链确实成立），再让名册每条 task 带
+  ingress_keywords，判据按关键词命中算承载集、按 SKILL.md 反引号指针算可达集；承载非空且与可达
+  交集为空 ⇒ GAP（有货没门）；承载空且 want==A-memory-start ⇒ GAP（名册无证据）；承载空且
+  want≠A-memory-start ⇒ 不归本面（不判红，避免把别人件的问题算我头上）。
+  0 缺口我没直接信：monkeypatch 抹掉 L111 指针重算 ⇒ 「D1 查额度 承载卷均未被指针引用」1 条 GAP，
+  还原后回 0 ⇒ 证明是那一个指针在起作用、非恒绿。**新判据报 0 的第一反应必须是「它咬得动吗」**；
+  我 r210 建第 88 门时只贴了个 [RECALL:PASS] 就收工，两轮后才发现分母（want）标错——这次提前做反例。
+  落地：run_gates.py 与名册先验 CLEAN 再改（gate_reconcile_registry 的 unstaged 经查只是 _snapshot_at
+  时间戳、无他人新登记 ⇒ 可安全 --record）；挂第 92 门用行号法插在 recall_face 块闭合前，
+  r130 --record 后「门表 92（基线 91）新增 1 未登记 0」、准入「未声明 0」。
+  取值：python 05-exec/r213_ingress_face.py --json <件>（8 条判/0 缺口/K5 通过）；
+  有牙脚本 TEMP/teeth92.py（抹指针→1 GAP、还原→0）；python -c 算 L111 偏移 5594 比 CORPUS_CHARS=800。
 - [ ] **R213-1（r213 登记，P1）** **季度巡检的离线复算仍站在 _temp 上：池缓存 15 件 / 889,737B 在 gitignore 命中的 `_temp/r114_search_cache/`，被清场后 `--offline` 会在第 ⑥ 段再次判红**：
   一手（本轮修完死句柄后顺链查下去）：`search()` 缺省路径 = 先查缓存，命中即用；`--offline` 且未命中 ⇒ 返回 SKIPPED_OFFLINE 空行；`pool_n == 0` 时判 `[REPL:UNVERIFIED] 候选池 0 仓 ⇒ 不得读成无替代（R247）`。实测本轮池缓存 = 15 个 q 前缀件合计 889,737B，且 `git check-ignore -v _temp` 命中 ⇒ 与 R211-7 那条同一落点病，只是深一层。
   ⚠️ 定性要说准（禁把缺口报大）：这条**不是假绿**，是**诚实红 + 不可长期离线**。刚实测的证据 = 本轮 --offline 能过，正是因为缓存还在；一旦并行会话按扩展名清场（R189-2 实测 212 件），第 ⑥ 段会重新变红，而红因是「离线取不到池」不是「机制没跑」。
@@ -513,11 +514,6 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   为什么本轮不做：① 它改的是**生产备份链**（r46_mark_verdict / trim-shell 的落盘前置），属破坏性；② #25④ 里「不删既有件」我守得住，但存量 423 件的清理需人工核（R175-3 已判长期看守，本轮不复用）；③ 本轮产能给了 H-1 的实证闭环（orphan 54→0 并入库）。**「新行为本轮起界、存量不动」是次优解，本轮也未做**，如实留待下一轮。
   验收（二元）：新一次裁决后备份簇计数 ≤ bak_keep；`handoff.py volume <本仓根>` 的 L4 备份残留条目数下降。
   回滚方式：只加新增收敛腿，`git revert` 单提交即回原行为；不动任何既有件。归属：本仓自持（不转办，X-22）。
-- [x] **R211-3（r211 登记，P1·到期 r217）对标改造 M-1** **CI 里「设计内红」与「真故障红」长得一模一样 —— 近 30 run 27 红全来自同一道本机专属门，读起来像 CI 挂了**： 【取值：`gh api repos/lxh113377/skill-private-archive/actions/runs?per_page=30` → 27 failure / 3 success；最新失败 run 40119157840 的 job 日志逐行只有一道门 FAIL = `gate_run_freshness`】 【r212 裁决=执行（R211-3 落地：runner 加 classify_reds + 第 91 门双向夹具 + CI 摘要分类行；rc 与地板判据一条未放宽）｜读数：夹具 9/9 含 m1 变异+ m1b 复原；单跑 gate_run_freshness 打印 REAL_RED=0 / DESIGN_INHERENT_RED=1 且整轮仍 [GATES:FAIL]（未消音）；CI 体内层 full/legacy/mixed 三侧 rc=0；r31 runner 契约夹具 31/31】
-  该门语义 = 从 CI 反向盯「人还在不在本机完整跑门禁」（r32 立的反向用法），CI 环境无本机台账可读 ⇒ 设计内必红。**不放宽 SUCCESS_FLOOR、不为消红改判据**（X-9 反向 / R263）。
-  修法：gates.yml 的结论步把 FAIL 门按 portable 属性分列具名分类（如 `DESIGN_INHERENT_RED=1 (gate_run_freshness)` 与 `REAL_RED=0`）；判据本身一字不动。
-  验收（二元）：CI job 日志出现分类行且本地可复算（同一步骤读 --json 快照 per_gate + 门表 portable 字段）；地板与判据未改。
-  归属：本仓自持（.github/workflows + 只读门表），不转办。
 - [ ] **R211-4（r211 登记，P1·到期=受管根在途收口后）对标改造 M-2** **注入面超硬顶 +1,453B 常驻 12+ 轮未腾（实测 66,989 vs 硬顶 65,536）**： 【取值：`python 05-exec/ratchet_gate.py` 的非阻断告警行；`inject_union_bytes` 现值由该行读，禁抄本条】
   八维对标映射：mycelium 把「注入/规则面大小」当被校验的声明面；我方有棘轮看守但**只降不升 ⇒ 存量超限永久告警**，缺一条「腾面处方」的执行路径。处方已在 `core/upgrade_suggestions.md`（2026-10-24 16:35 行：#32/#34/#38 细则进侧车 + #24 压成指针，预计腾 600-900B）。
   卡点（实测证据，非口径）：`A-memory-start/references/contract.md` 与多处 SKILL.md 被并行会话持续 dirty（本轮 `git -C D:/global_skills status --porcelain` 实测 11 条 ` M` + 2 条 `??`），改注入壳会撞他人在途；且拆注入壳可能打断 A-memory-start Step 3.5 的项目绑定表加载（volume 的豁免计量行正因该原因保留 AGENTS.md 不拆）。⇒ 按 R269 不擅动，登记归属收口后执行。
@@ -1267,6 +1263,10 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
 - [ ] **R191-1（r191 登记，P2，到期 r195）** **分卷覆盖率原无常驻判据，一次性扫描活不过并行会话的 _temp 清理**：一手 —— 上一轮我用临时脚本扫出「74 卷无目录指向」，该脚本与 `_temp/*.py` 一起被并行会话按扩展名无差别删除（R189-2 自登的 212 件清场）⇒ 结论正确但**不可复算**。修法：落常驻件 `05-exec/r191_volume_coverage.py`，判据 = 磁盘上每个 `07-next-steps.partN.md` 必须被主壳目录以**精确项或范围项**覆盖；四条自证腿（正控不得凭空判覆盖 / 反控精确项必识别 / 范围腿区间含端点、不含邻点 / 空目录项走 UNVERIFIED 禁按 0 记绿）。机器形态 = 同行 `` `a.md…b.md` `` 区间 + 其余反引号内 partN 逐项。实跑 `[COVERAGE:PASS] 磁盘 180 卷（精确 106 / 范围 74）未覆盖 0`。**自抓**：手写登记项误用「卷106」与 trim-shell 自动生成的 part180 条目撞号 ⇒ 改名「第一代卷·范围登记」（不带卷号）消除；教训 = 范围登记项**不占卷号**，与精确项同一号域会撞。下一步：把它挂进 `run_gates.py` 的 GATES 表（本轮未做，避免与并行会话争改同一文件）。 **r191d 续（本条纪律当场生效的实证）**：本轮按「末条裁决头 ∈ 终局集合」批量翻勾时，命中 **R189-1 / R189-2 两条并行会话的条目**（HEAD 里为 `- [ ]` 未勾）。因 R183-2 已立「翻勾前先比 HEAD 行归属」，**当场发现并撤回**（07 工作树复算 add=0/rem=0，零残留）。⇒ 该纪律从「写进口径」变成「当场拦住一次真实越界」，是本轮最直接的验证。另：主壳现值 113,306B（超 shell_max 40,960B 达 72,346B），可翻勾迁出的仅 2 条且均属并行会话 ⇒ **本轮无可合法迁移项**，主壳瘦身已抵达「再动就是越界」的边界，剩余属活债（10 条无终局裁决 / 19,868B）。 **r191e 续（推送证据边界）**：最后一笔 `4b67409` 推送时收到 GitHub 回执 `6249f13..4b67409  HEAD -> main`（rc=0），这是**推送时刻的服务端确认**；但随后网络两通道 4 次重试均不可达，无法复算 `ls-remote == local`。按「实测才记」纪律：此处只报「推送已获服务端确认」，**不报**「已复算远端一致」—— 两者证据强度不同，前者是服务端回执、后者需事后可达。下次可达时应补跑 `python 05-exec/r163_net_path_probe.py` + `git merge-base --is-ancestor 4b67409 $(git ls-remote origin main)` 收口。 **r191f 续（更正我自己的误判）**：我上一条写「网络两通道 4 次重试均不可达」是**错的** —— 真因是我的重试脚本没传 `cwd`，git 在错误目录跑 ⇒ 报 `fatal: not a git repository`，我把它读成网络故障（**第三次「证据面与事实面脱钩」**：把工具用法错误当成环境故障）。补 `cwd` 后一次即通：proxy 通道 `Everything up-to-date`，远端 main = `bba7a77`，我的六笔 `bdff9f1`/`7bdf36f`/`b4ef556`/`6249f13`/`4b67409`/`7364bbf` **全部确认在远端**（逐笔 `merge-base --is-ancestor` True）。⇒ 教训：诊断环境类失败时，先排除**自己这条命令的用法**（cwd/参数/环境），再归因环境；顺序颠倒就会把「我没写对」记成「世界坏了」。 【r209 裁决=执行｜常驻判据 r191_volume_coverage.py 已挂进 run_gates 第 89 门 volume_coverage_face（r209 接线），对账登记 gate_run_r209_volume_cov.json，四条自证腿 SELFTEST-PASS、实跑 COVERAGE:PASS 磁盘 180 卷全覆盖】
 
 - [ ] **R191-2（r191 登记，P2，到期 r195）** **棘轮三指标的「指标缺失」红可由选件口径单独造成，与债务本身无关**：一手 —— 本轮改完 07 并按坑 #2 顺序跑了 `r38_debt_aging.py`，`ratchet_gate` 仍报 `overdue/deferred/repeat 实测=缺失`。逐层取证（`import ratchet_gate` 直调 `_newest_artifact` + 三份件自洽比对）定位到真因：`_newest_artifact` 终版键 =「文件名日期 → 同日期比字母后缀 → 按名兜底」，289 个候选同日 ⇒ 字母序让 `debt_aging_r_autoregen_20261023_225510.json` 恒胜，而该件 mtime 22:55:10 **早于**我随后写入的卷集 22:55:58 ⇒ 新鲜度前置腿（`_debt_artifact_fresh`）判「件内债务分类描述的是写卷之前的账」⇒ 三指标返 None ⇒ 判红。**我改名三次都没用**（`r191_2026-10-23` / `r191b_2026-10-23` 字母序都小于 autoregen）。解法 = 让选中的那件变新：以 `debt_aging_r_autoregen_<新时间戳>.json` 形态重跑一次（`--json 06-benchmark/debt_aging_r_autoregen_20261023_232000.json`）⇒ 前置腿转 OK、三指标取回真值、`[RATCHET:PASS] 9 项指标均在基线内`。**教训**：判据报「指标缺失」时先分清是**源件不可信**（自洽门 `sum(by_class) != evidence.open_total`）还是**源件被选老了**（新鲜度腿），两者的处方完全不同 —— 前者重生件、后者改件名/时间戳让最新件真的最新；不分青红皂白重跑 r38 对本形态无效（我连跑 4 次都没变化）。下一步建议（未做，避免与并行会话争改同一文件）：把这条写进 `ratchet_gate.py` 的 `FACE_NOTES` 提示文案，或在 `run_gates.py` 前置腿里直接重生成到「会赢」的名字。 **r191 续（同日更深的第二层）**：修完选件口径后 `gatemap_closing_face` 的 m4 变异腿转红，逐层取证发现**夹具自身三处缺陷**：① 变异体仍传 `--staged` 注入 ⇒ 被测行为与正例相同、永远检不出泄漏；② 判定条件 `rc==0 and "暂存 1 个文件" not in out` 隐含「无注入必然变暂存 0」这一错假设，而本仓并行会话常驻暂存 ⇒ 真仓恒非空 ⇒ 判据恒红；③ 更根本：我把 m4 当成「密闭性正例」写（要求变异体 rc=2），与 r178 原意（变异体必须**变坏**以证明正例的绿来自缝）语义颠倒。连带发现被测件 `staged_files()` 已成**死代码**（我的密闭重构后无调用点）。修法：变异体改为不传 `--staged` + 把 `files = None` 降级成 `files = []`，断言仍 rc=2 且读数「暂存清单为空」⇒ 证明「无注入」与「有注入但为空」被区分开（r133 第④形态）；腿更名 `m4_staged_seam_structurally_sealed`。实测 `[GATES:PASS]`。**教训**：修一条判据时，**必须连它的夹具腿一起复跑** —— 只跑正例会让「夹具语义颠倒/锚失效」这类第二层缺陷继续躺着，且它会伪装成「判据又红了」。 **r191c 续（收口取证）**：本轮末 `run_gates.py` 聚合器连起不来（工作树在途版连续两次 NameError：先 `io_open` 后 `NL`，`git status` = "MM" 属并行会话在途），导致台账记 `FAIL=4`。为证明「红在聚合器、不在我的交付」，改为**不经聚合器**直调四项判据，全部 rc=0：`r191_volume_coverage.py` → `[COVERAGE:PASS] 磁盘 180 卷全覆盖（精确 106 / 范围 74）`；`--selftest` → `[COVERAGE:SELFTEST-PASS]`；`r162_gatemap_fixtures.py` → `[GATEMAPFIX] 13/13 PASS`；`ratchet_gate.py` → `[RATCHET:PASS]`（含自愈两跑稳）。归属取证：我的三笔 `bdff9f1`/`7bdf36f`/`b4ef556` 对 `05-exec/run_gates.py` 的 `git show --numstat` **全空**。另：棘轮 `inject_union_bytes` 涨 +1400B（68424→69824）经逐件取证 = `D:/global_memory/core/behavior_core.md` 24265→25665B（mtime 10-24 00:00，并行会话在途），已走 `--range-attribute` 归因留账 37 条，未代提交。**方法论沉淀：runner 崩溃时，「跑同一套门」得不到任何判据信号 —— 必须绕开聚合器直调底层判据脚本，否则会把他人半成品读成自己的红。** 【r209 裁决=执行｜剩余处方已落地：_debt_class_state 的六处静默 None 全部改为 FACE_NOTES 点名红因（选不到件/件不可读/形态不对/缺 open_total/缺分类/不自偕），判据报指标缺失时可直接分辨是源件问题还是选老问题】
+- **卷107** `07-next-steps.part181.md` — 07-next-steps 分卷（R199 自动拆卷）
+
+- **卷108** `07-next-steps.part182.md` — 07-next-steps 分卷（R199 自动拆卷）
+
 ## P2
 R125-1（r125 登记，P1）** 夹具若**直接读被并发写的真实产物**，则「跑一次绿、跑一次红」是必然而非偶然（本轮实测 n5 过 n6 红）。通用处方：① 读侧「单次读 + 重试到自洽内容」，② 写侧「临时件 + os.replace 原子替换」。本仓已对 `ratchet_gate`（4 处）与 `r46_mark_verdict`（1 处）落地，但**其它写入点是否同样非原子需全量排查**（grep `write_text` / `open(...,"w")`）。- [x]  **R125-2（r125 登记，P2）** 并发写 JSONL 台账必须加锁：`open(path,"a")` 的单次 `write` 在两个进程交错时会产生半行 JSON，下一轮 `load_ledger` 读到 `_broken_json` ⇒ judge 直接 UNVERIFIED（不是红，但会挡整轮绿）。本仓已在 `run_gates.py` 落 `os.O_APPEND` + msvcrt/fcntl 锁，但 `debt_runs.jsonl` / `input_pins.jsonl` / `upstream_pins.jsonl` 等其它台账**尚未排查**。
 R127-2（r127 登记，P1）** 建议编号分配进共享锚（第三次撞号 R125-2 + 插入点误挂 R120b-6 同轮发生）：治本 = 各会话登记建议前先 grep 全账编号，或编号统一由台账分配器发号。与 R120b L-6（命名空间收敛）合并裁决。

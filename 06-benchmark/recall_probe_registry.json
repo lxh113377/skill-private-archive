@@ -1,6 +1,6 @@
 {
- "schema": "recall-probe-registry-v4",
- "note": "三层判据名册。r211 关键校正：task_probes 的 want 必须由【全根声称面搜索】重建（扫 D:/global_skills 全部 .md 找谁真写过该任务），禁止按「我的知识存在哪」想当然标 want。r210 版 8 条 task 的 want 里 4 条标错：Actions分钟 真owner=chaoshi-web-deploy（且 router 本就命中⇒那条 MISS 纯属分母错）、R2/Turnstile 真owner=chaoshi-image-optimization、额度类真owner=A-memory-start quickref。同族 X-24/X-26 枚举器分母错，且正是本仓提案 corpus_lang_mismatch 的 B 段「期望归属存疑 / 验收改挂期望侧对账」所规定的动作——我建第三层时跳过了该处方。owner_evidence 逐条记 file:line 供复算。",
+ "schema": "recall-probe-registry-v5",
+ "note": "三层判据名册。r211 关键校正：task_probes 的 want 必须由【全根声称面搜索】重建（扫 D:/global_skills 全部 .md 找谁真写过该任务），禁止按「我的知识存在哪」想当然标 want。r210 版 8 条 task 的 want 里 4 条标错：Actions分钟 真owner=chaoshi-web-deploy（且 router 本就命中⇒那条 MISS 纯属分母错）、R2/Turnstile 真owner=chaoshi-image-optimization、额度类真owner=A-memory-start quickref。同族 X-24/X-26 枚举器分母错，且正是本仓提案 corpus_lang_mismatch 的 B 段「期望归属存疑 / 验收改挂期望侧对账」所规定的动作——我建第三层时跳过了该处方。owner_evidence 逐条记 file:line 供复算。 r213 加 ingress_keywords 字段（第 92 门入口分派面消费）：任务关键词须出现在 A-memory-start/SKILL.md 的某条分派行（含 → 与 .md 指针的行）内，任一命中即通。",
  "updated_at": "2026-10-25 02:28",
  "probes": [
   {
@@ -52,35 +52,61 @@
    "want": "chaoshi-web-deploy",
    "query": "把超市前端部署到 Cloudflare Pages 然后验证线上",
    "note": "正控：direct_map 有 10 条 pattern",
-   "owner_evidence": "chaoshi-web-deploy/SKILL.md（本件即部署唯一权威入口）"
+   "owner_evidence": "chaoshi-web-deploy/SKILL.md（本件即部署唯一权威入口）",
+   "ingress_keywords": [
+    "部署",
+    "超市部署",
+    "pages"
+   ]
   },
   {
    "task": "CI 红了",
    "want": "ci-pipeline-debugging",
    "query": "CI 红了 runner 没启动 本地绿 CI 不绿",
    "note": "正控：description 自带中文触发词",
-   "owner_evidence": "ci-pipeline-debugging/SKILL.md description「本地绿但 CI 红」"
+   "owner_evidence": "ci-pipeline-debugging/SKILL.md description「本地绿但 CI 红」",
+   "ingress_keywords": [
+    "CI",
+    "流水线",
+    "actions"
+   ]
   },
   {
    "task": "钩子静默推送",
    "want": "win-toolchain-pitfalls",
    "query": "提交后自动推送失败但没报错 钩子静默",
    "note": "实测唯一靠 BGE 召回的 win-toolchain 措辞",
-   "owner_evidence": "win-toolchain-pitfalls/references/cli-invocation-pitfalls.md §9.17(3)"
+   "owner_evidence": "win-toolchain-pitfalls/references/cli-invocation-pitfalls.md §9.17(3)",
+   "ingress_keywords": [
+    "钩子",
+    "post-commit",
+    "推送",
+    "autopush"
+   ]
   },
   {
    "task": "Actions 分钟",
    "want": "chaoshi-web-deploy",
    "query": "GitHub Actions 免费分钟用完了怎么查剩余",
    "note": "r211 改判：r210 误标 ci-pipeline-debugging；router 本就命中 chaoshi-web-deploy ⇒ 那条 MISS 是分母错非召回缺口",
-   "owner_evidence": "chaoshi-web-deploy/SKILL.md:48「Free 计划 2,000 Actions 分钟用满导致私有仓 job 拿不到 runner」"
+   "owner_evidence": "chaoshi-web-deploy/SKILL.md:48「Free 计划 2,000 Actions 分钟用满导致私有仓 job 拿不到 runner」",
+   "ingress_keywords": [
+    "分钟",
+    "billing",
+    "额度"
+   ]
   },
   {
    "task": "R2 开桶",
    "want": "chaoshi-image-optimization",
    "query": "开通 Cloudflare R2 存储桶 免费 10GB",
    "note": "r211 改判：真声称件是图片件的 R2 专章，非 chaoshi-web-deploy",
-   "owner_evidence": "chaoshi-image-optimization/SKILL.md:392「图片资产外置到 Cloudflare R2（免费层…）」"
+   "owner_evidence": "chaoshi-image-optimization/SKILL.md:392「图片资产外置到 Cloudflare R2（免费层…）」",
+   "ingress_keywords": [
+    "R2",
+    "存储桶",
+    "bucket"
+   ]
   },
   {
    "task": "Turnstile",
@@ -88,33 +114,50 @@
    "query": "给表单加 Turnstile 人机验证 免费用",
    "expect": "disputed",
    "note": "r211 降级 DISPUTED：该件 V1.10.0 明确「Turnstile 已按用户要求移除」，只留事实记录、非接入教程 ⇒ 无干净承载件，不判红",
-   "owner_evidence": "chaoshi-image-optimization/SKILL.md:11 V1.10.0 Turnstile 已移除"
+   "owner_evidence": "chaoshi-image-optimization/SKILL.md:11 V1.10.0 Turnstile 已移除",
+   "ingress_keywords": [
+    "Turnstile",
+    "人机验证"
+   ]
   },
   {
    "task": "D1 查额度",
    "want": "A-memory-start",
    "query": "查看 D1 免费额度用了多少行写入",
    "note": "r211 改判：真声称面在入口件 quickref 专章",
-   "owner_evidence": "A-memory-start/references/quickref-cli-subprocess.md:48「读免费额度/流量」:68 r196_quota_face.py（D1）"
+   "owner_evidence": "A-memory-start/references/quickref-cli-subprocess.md:48「读免费额度/流量」:68 r196_quota_face.py（D1）",
+   "ingress_keywords": [
+    "额度",
+    "quota",
+    "D1"
+   ]
   },
   {
    "task": "Workers 调用量",
    "want": "A-memory-start",
    "query": "Workers 今天调用次数接近免费 10 万了吗",
    "note": "r211 改判：同上，quickref 专章含 Workers 读数",
-   "owner_evidence": "A-memory-start/references/quickref-cli-subprocess.md:68 r199_workers_face.py（Workers）"
+   "owner_evidence": "A-memory-start/references/quickref-cli-subprocess.md:68 r199_workers_face.py（Workers）",
+   "ingress_keywords": [
+    "额度",
+    "quota",
+    "Workers",
+    "调用"
+   ]
   },
   {
    "task": "Resend 发邮",
    "want": "",
    "query": "用 Resend 免费发送邮件验证码",
-   "note": "UNOWNED：全根 1713 个 .md 无声称件"
+   "note": "UNOWNED：全根 1713 个 .md 无声称件",
+   "ingress_keywords": []
   },
   {
    "task": "Upstash 限流",
    "want": "",
    "query": "用 Upstash 做接口限流 免费额度 50 万命令",
-   "note": "UNOWNED：同上"
+   "note": "UNOWNED：同上",
+   "ingress_keywords": []
   }
  ]
 }

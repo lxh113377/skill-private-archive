@@ -1461,6 +1461,23 @@ GATES = [
                 "一直没挂进执行路径** —— 本次（r209）接线才让它每轮真的跑。同类前车之鉴：第 78 门查出 7 个" +
                 "孤儿夹具（写在盘上、没有任何东西调用），本门是同一个病在判据件侧的解法。"),
     },
+    {
+        # r213：每轮入口分派可达面（第 92 门）—— R813 修的那一层此前无判据守
+        "id": "ingress_face",
+        "script": "r213_ingress_face.py",
+        "argv": ["--json", "06-benchmark/ingress_latest.json"],
+        "pass_token": "[INGRESS:PASS]",
+        "portable": False,
+        "not_portable_reason":
+            "读 D:/global_skills/A-memory-start 的 SKILL.md 与 references 本机绝对路径，CI 无此树",
+        "covers": [
+            "可达集 = A-memory-start/SKILL.md 反引号 .md 指针；取不到 ⇒ UNVERIFIED（不按绿记）",
+            "承载集 = 各 task 的 ingress_keywords 在 references 各卷的实测命中（不靠手标 want）",
+            "承载卷无一被指针引用 ⇒ GAP 有货没门；K5 反例：抹掉 L111 指针必使 D1 额度落 GAP（已验）",
+            "基线 ingress_wiring_baseline 只拦新增；缺失 ⇒ UNVERIFIED",
+        ],
+        "why": ("r213 一手：第88门量BGE召回(语料=SKILL.md前800字符)，而A-memory-start分派行L111在偏移5594、不在窗口内；第86门只看分卷被任一SKILL.md提过指针没。R813把额度触发词补进L111接通的「任务话术→分派行→quickref额度专章」这条入口链此前无判据守：谁删了那指针，额度知识还在quickref、86门照样绿、88门照样绿——入口断了没人报。本门把它变每轮读数，K5已验有牙。"),
+    },
 ]
 
 # 显式声明本 runner **不覆盖**的面，防止聚合绿被读成「所有门禁都绿」（R20-2）。

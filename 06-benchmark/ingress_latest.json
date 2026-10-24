@@ -1,0 +1,12 @@
+{
+ "schema": "ingress-face-v1",
+ "readonly": true,
+ "checked": 8,
+ "gaps": [],
+ "baseline": [],
+ "new_gaps": [],
+ "k5": true,
+ "k5_detail": "反例判不可达=True 正例有可达承载卷=True",
+ "note": "承载知识所在 references 卷必须被 A-memory-start/SKILL.md 反引号指针引用；否则任务话术到得了额度词、却到不了写着读数的卷",
+ "provenance_cmd": "python 05-exec/r213_ingress_face.py --json <件>"
+}

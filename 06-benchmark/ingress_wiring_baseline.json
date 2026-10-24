@@ -1,0 +1,5 @@
+{
+ "schema": "ingress-wiring-baseline-v1",
+ "known_gaps": [],
+ "note": "先置空以取判据自吐字符串形态（本仓三次踩过手抄格式致 KNOWN 永不匹配），再据实回填。"
+}
