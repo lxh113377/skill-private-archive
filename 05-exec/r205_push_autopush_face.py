@@ -21,7 +21,9 @@ r140 查模板与实装件漂移、r141 查归属。它们全绿而推送链实�
   P2 钩子含 || true 或等价静默吞并 ⇒ 记 SILENT_SWALLOW（本门要补的盲区）
   P3 推送结果有留痕（.git/autopush.log，与模板 $GITDIR/autopush.log 对齐），末行可解析出 rc/ts；
      没留痕 = UNVERIFIED（不按绿记，R247）
-  P4 留痕末次 rc 非 0 ⇒ FAIL（推送链真的断了）
+  P4 当前提交推没推成功（r210 修订）：留痕末行 rc==0 ⇒ PASS；末行 head==HEAD 且 rc!=0 ⇒ FAIL
+     （真失败，牙齿保留）；末行 head!=HEAD ⇒ 留痕不谈论当前提交 ⇒ 改用本地 remote-tracking
+     ref 判（HEAD 是否已是 origin/main 祖先），已推记 TRACE_STALE、未推才 FAIL
   P5 留痕末行时间旧于最近一次 commit ⇒ FAIL（提交了却没留痕 = 没触发）
   P6 代理前提显式化：钩子未引用代理 ⇒ 记 PROXY_UNSET 警告（不判红，但必须可见）
 
@@ -37,7 +39,9 @@ import re
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-ROOT = os.path.dirname(HERE)
+# r210：--root 供夹具在临时仓里隔离验证（不碰真仓）；缺省仍为本仓。
+# 用法与 r138/r141 的 hook 面一致：判据可参数化，但语义不变。
+ROOT = os.environ.get("DSH_AUTOPUSH_ROOT") or os.path.dirname(HERE)
 HOOKS = os.path.join(ROOT, ".git", "hooks")
 PUSH_HOOK = os.path.join(HOOKS, "post-commit")
 PUSH_LOG = os.path.join(ROOT, ".git", "autopush.log")   # 与模板 $GITDIR/autopush.log 对齐
@@ -62,6 +66,31 @@ def git(*a, tt=90):
         return r.returncode, ((r.stdout or "") + (r.stderr or "")).strip()
     except Exception as e:
         return 90, "EXC %r" % (e,)
+
+
+def _cur_head():
+    rc, o = git("rev-parse", "HEAD")
+    return o.strip() if rc == 0 else ""
+
+
+def head_pushed_locally():
+    """HEAD 是否已在远端（只读 remote-tracking ref，零网络）。
+
+    r210 补（P4 假阳性的根因）：留痕末行可能是**别的 head** 的推送结果 ——
+    并行会话提交后钩子那一次 rc=128，而我随后手工带代理推成功（rc=0、origin/main 已含 HEAD），
+    但留痕不会补记手工推送 ⇒ P4 拿旧失败判当前提交，属「留痕末次 ≠ 当前状态」。
+    远端-tracking ref 是本地可读的权威面：HEAD 是 origin/main 的祖先 ⇒ 当前提交确已推。
+    取不到 origin/main ⇒ None（不可判，按 UNVERIFIED 不按绿记，R247）。
+    """
+    rc, o = git("rev-parse", "--verify", "origin/main")
+    if rc != 0 or not o.strip():
+        return None
+    rc2, _ = git("merge-base", "--is-ancestor", "HEAD", "origin/main")
+    if rc2 == 0:
+        return True
+    if rc2 == 1:
+        return False
+    return None
 
 
 def last_commit_ts():
@@ -144,11 +173,31 @@ def main(argv=None):
     except (TypeError, ValueError):
         print("  [AUTOPUSH:UNVERIFIED] 留痕 rc 非整数 %r" % (last.get("rc"),))
         return 2
-    if rc_last != 0:
-        fails.append("P4 末次推送 rc=%d（推送链真的断了）" % rc_last)
-        print("     FAIL P4 末次推送 rc=%d" % rc_last)
-    else:
+    # r210：P4 判的必须是**当前提交**推没推成功，不是留痕末行那一次。
+    # 旧写法只看末行 rc：并行会话的 head 失败一次、我随后手工推成功，留痕不补记 ⇒ 假红。
+    # 三态：① 末行 rc==0 ⇒ PASS；② 末行 head==HEAD 且 rc!=0 ⇒ 真失败，FAIL（牙齿保留）；
+    # ③ 末行 head!=HEAD ⇒ 留痕不谈论当前提交 ⇒ 改用 remote-tracking ref 本地判
+    #    （零网络）：HEAD 已是 origin/main 祖先 ⇒ 已推，记 TRACE_STALE 说明留痕陈旧；
+    #    否则 ⇒ 当前提交没推上去，FAIL（这正是本门存在的理由：安静躺一个未推的提交）。
+    _head = str(last.get("head") or "")
+    if rc_last == 0:
         print("     PASS P4 末次推送 rc=0")
+    elif _head and _head.startswith(_cur_head()):
+        fails.append("P4 末次推送 rc=%d（当前 head %s 的自动推送真的失败了）" % (rc_last, _head[:8]))
+        print("     FAIL P4 末次推送 rc=%d（head=%s 与当前 HEAD 同）" % (rc_last, _head[:8]))
+    else:
+        _pushed = head_pushed_locally()
+        if _pushed is True:
+            notes.append("TRACE_STALE：留痕末行 head=%s 与当前 HEAD 不同，且 HEAD 已是 origin/main 祖先"
+                         " ⇒ 末行失败不描述当前提交（当前提交已推）" % (_head[:8] or "?"))
+            print("     PASS P4（留痕 head=%s 非当前 HEAD；HEAD 已在 origin/main）" % (_head[:8] or "?"))
+        elif _pushed is False:
+            fails.append("P4 当前 HEAD 不在 origin/main（有提交没推上去；留痕末行 head=%s rc=%d）"
+                         % (_head[:8] or "?", rc_last))
+            print("     FAIL P4 当前 HEAD 不在 origin/main")
+        else:
+            print("  [AUTOPUSH:UNVERIFIED] origin/main 取不到 ⇒ 无法判当前提交是否已推（R247 不按绿记）")
+            return 2
 
     cts = last_commit_ts()
     try:
@@ -185,6 +234,10 @@ def main(argv=None):
         print("[AUTOPUSH:FAIL] %d 项：%s" % (len(fails), "；".join(fails)[:200]))
         return 1
     if notes:
+        # r210：附注必须**打印出来**（只进 JSON = 声明看不见，与 r56「预算来源必须可读」同族）。
+        # TRACE_STALE 这类说明「为什么这次 PASS」的注，看不见就会被下一轮读成无故的绿。
+        for _n in notes:
+            print("     NOTE %s" % _n)
         print("  %s（附注 %d 条）" % (TOKEN, len(notes)))
     else:
         print("  %s" % TOKEN)

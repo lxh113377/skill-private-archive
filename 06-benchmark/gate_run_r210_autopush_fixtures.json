@@ -1,0 +1,32 @@
+{
+ "schema": "gate-run-v1",
+ "generated_at": "2026-10-25 01:58",
+ "readonly": true,
+ "mode": "full",
+ "gates": [
+  {
+   "id": "autopush_fixtures",
+   "state": "PASS",
+   "rc": 0,
+   "elapsed_ms": 4407,
+   "portable": false,
+   "covers": [
+    "f1 正例：末行 rc=0 ⇒ PASS",
+    "f2 反例：末行 head==HEAD 且 rc!=0 ⇒ FAIL（真失败的牙齿）",
+    "f3 r210 假阳性面：末行 head!=HEAD 且 rc!=0 但 HEAD 已推 ⇒ PASS + TRACE_STALE",
+    "f4 反例：末行 head!=HEAD、HEAD 也不在 origin/main ⇒ FAIL（未推提交必须红）",
+    "m1 变异：换回旧实现（只看末行 rc）⇒ f3 必须转红（证明新腿承重）"
+   ],
+   "tail": "行 head!=HEAD 且 rc!=0，但 HEAD 已推 ⇒ PASS+TRACE_STALE | PASS f4 反例：末行 head!=HEAD 且 rc!=0，HEAD 也不在 origin/main ⇒ FAIL | PASS m1 变异：摘掉 head 判别后 f3 假阳性必须复现（证明该腿承重） | 夹具合计: 5 项，通过 5，失败 0 | [GATE:fixture-pass]"
+  }
+ ],
+ "not_covered": [
+  "受管根四门禁 mirror/noise/evolution/stub —— 属 rule_editor 面，取值：python D:\\global_skills\\A-memory-start\\references\\rule_editor.py gates",
+  "焚诀跨产物真值 C1~C33 —— 取值：python 焚诀\\eval\\verify_truth_consistency.py",
+  "判据变异测试（r19_fixture_mutation_check.py）—— 按需跑，非每轮前置"
+ ],
+ "verdict": "PASS",
+ "verdict_reason": "PASS=1（无 FAIL / 无 UNVERIFIED / 无 MISSING）",
+ "total_ms": 4407,
+ "gates_run": 1
+}

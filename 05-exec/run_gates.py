@@ -1367,6 +1367,9 @@ GATES = [
         "covers": [
             "P1 钩子存在且为自动推送形态；P2 静默吞并可见（SILENT_SWALLOW 附注）",
             "P3~P5 .git/autopush.log 留痕：可解析 / 末次 rc=0 / 留痕新于最近一次提交",
+            "r210 修订 P4：判**当前提交**推没推成功，不是留痕末行那一次 —— 末行 head==HEAD 且 rc!=0 ⇒ FAIL；"
+            "末行 head!=HEAD ⇒ 改用本地 origin/main tracking ref 判（零网络），已推记 TRACE_STALE、未推才 FAIL",
+            "附注必须打印到 stdout（只进 JSON = 声明看不见，r56 同族）",
             "留痕缺失或不可解析 ⇒ rc=2 UNVERIFIED（不按绿记，R247）",
             "P6 代理前提可见（PROXY_UNSET 附注，不判红）"],
         "why": ("r205 一手：我曾两连错判钩子状态：①以为钩子没跑（reflog 证伪，"
@@ -1376,6 +1379,26 @@ GATES = [
                 "被 || true 全吞、零留痕。三条既有 hook 判据全绿却答不了"
                 "「推送成没成」（查存在/查漂移/查归属，不查结果）。"
                 "本门补这个盲区，配 R807 模板留痕一起生效。"),
+    },
+    {
+        # r210：第 87 门的双向夹具（W-47）—— P4 修订「判当前提交而非留痕末行」必须有隔离证据
+        "id": "autopush_fixtures",
+        "script": "r210_autopush_fixtures.py",
+        "argv": [],
+        "pass_token": "[GATE:fixture-pass]",
+        "portable": False,
+        "not_portable_reason":
+            "夹具内 git init 造临时仓并写 .git/hooks 与 .git/autopush.log；"
+            "CI 上语义虽可跑但本门守的是本机钩子运行态，故随主门一起列本机专属",
+        "covers": [
+            "f1 正例：末行 rc=0 ⇒ PASS",
+            "f2 反例：末行 head==HEAD 且 rc!=0 ⇒ FAIL（真失败的牙齿）",
+            "f3 r210 假阳性面：末行 head!=HEAD 且 rc!=0 但 HEAD 已推 ⇒ PASS + TRACE_STALE",
+            "f4 反例：末行 head!=HEAD、HEAD 也不在 origin/main ⇒ FAIL（未推提交必须红）",
+            "m1 变异：换回旧实现（只看末行 rc）⇒ f3 必须转红（证明新腿承重）"],
+        "why": ("r205 建门时只交真仓证据；r210 修订 P4 时补隔离夹具。"
+                "修订动因是一手假红：并行会话的 head 推送 rc=128，我随后手工带代理推成功"
+                "（origin/main 已含 HEAD），但留痕不补记手工推送 ⇒ 旧 P4 拿旧失败判当前提交。"),
     },
     {
         # r208：实测知识可召回面（第 88 门）—— 知识进对 skill 也可能召不回
