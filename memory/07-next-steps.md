@@ -456,6 +456,22 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   references/powershell-cli-silent-failures.md」指针 + 版本行；或由归属方自行合并时带上。
   取值：git -C D:/global_skills status --porcelain -- win-toolchain-pitfalls/SKILL.md（非空即未落地）；
   分卷本体已在库：git -C D:/global_skills log --oneline -1 --grep R804。
+- [ ] **R203-4（r203 登记，P1·已落地）** **目标里「与相关 skill 搭配」这半边补齐：实测知识反哺进 skill 且坐实在收录路径上**： 【r203 裁决=执行（当日落 R805+R806 两份 skill、镜像 pathspec 同步、三门禁分诊）｜读数：源仓两次提交均 1 文件且不含 SKILL.md；inject_union_bytes 仍 66989 未推高；disk_registry 三类全0；mirror 我三处（R805/R806/R804卷）全消失、剩6属并行会话。不设目标轮：反哺已进收录路径。】
+  六十几轮我只做了「测」（建判据+读额度），漏了「搭」：扫 802 个 skill 文件，CF GraphQL 的
+  date_geq/datetime_geq、Rate limiter 签名、wrangler CMD/ANSI 等一手实测**覆盖=0**。
+  落点选择踩了两个约束后定下：① chaoshi-web-deploy（最相关）SKILL.md 被并行会话 dirty ⇒ 写它
+  就得碰他人未提交件（违 R269）；② 新建 references 卷若无 SKILL.md 指针=孤儿（我上批 R804
+  powershell-cli-silent-failures.md 此刻正是无指针孤儿，即 R201-2 欠账）。故选已有指针的
+  非注入面卷 cli-invocation-pitfalls.md（CLEAN+SKILL.md L138/L162 指向它）落 §9.16（R805，7 条坑），
+  再补 A-memory-start/references/quickref-cli-subprocess.md（CLEAN+SKILL.md L111 指针、非 C25 五件）
+  加「读免费额度速查」指针段（R806，只放最省命三条不复述全文，防第二真相源）。
+  反哺没加重注入面：inject_union_bytes 仍 66989（基线 69824，我加的卷不在 5 注入文件名单）。
+  镜像同步按仓内先例 pathspec 限定（mirror 历史写「pathspec 限定 / 其余在途件未代做收口」），
+  绝不全量 --Fix（那会推平并行会话 8 处在途件 = 越权）。源仓提交逐文件核：R805=1 文件、R806=1 文件、均不含 SKILL.md；镜像 a58da54(2)+51002a6(1)。
+  三门禁分诊：disk_registry PASS(191⇄191 三类全0)/evolution pass/stub pass；noise FAIL 2 全在
+  global_memory 且 mtime/归属证明非我造成⇒不迁（越权）；mirror 我的两处已同步消失、剩 6 属他方。
+  取值：python -c 扫 global_skills 覆盖六正则；python rule_editor.py gates；check-skill-mirror.ps1；
+  python 05-exec/ratchet_gate.py（注入面）；git -C .agents/skills log（pathspec 惯例先例）。
 - [ ] **R203-3（r203 登记，P1·已落地）** **名册项 SQLite 落地为派生台账索引（不是提速，是省掉仓外一次性脚本）**： 【r203 裁决=执行（当日落地、交叉验证 5/5 一致、并自纠两个假结论）｜读数：gate_run 34382 行 / run_meta 760 / input_pin 1029 / report_section 1559 / ledger_item 41；--stale 指纹一致；索引落 _temp（.gitignore 覆盖，不入库）。不设目标轮：索引为派生可重建件，权威仍是原 jsonl/07 卷，漂移由 --stale 拦。】
   动机先自我否决：本仓 942 个 .json + 4 本 .jsonl，实测五个高频查询 0.003~0.013 秒 ⇒ 「SQLite
   提速门禁」是假优化（#36）。真实成本是每个新问题都要写一个采集脚本，本会话已在 TEMP 攒 40 个
