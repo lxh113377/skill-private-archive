@@ -94,9 +94,10 @@
    "recall_face",
    "volume_coverage_face",
    "ingress_face",
-   "tool_carrier_face"
+   "tool_carrier_face",
+   "workflow_usage_face"
   ],
-  "_snapshot_at": "2026-10-25 05:00",
+  "_snapshot_at": "2026-10-25 05:51",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
@@ -304,6 +305,10 @@
   "tool_carrier_face": {
    "evidence": "05-exec/r214_tool_carrier_face.py",
    "at": "2026-10-25 03:49"
+  },
+  "workflow_usage_face": {
+   "evidence": "06-benchmark/workflow_usage_latest.json",
+   "at": "2026-10-25 05:49"
   }
  }
 }

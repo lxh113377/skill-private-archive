@@ -1494,6 +1494,25 @@ GATES = [
             "基线 tool_carrier_baseline 只拦新增；缺失 ⇒ UNVERIFIED"],
         "why": ("前 92 门量「工具能不能跑/话术能不能召回/分卷有没有指针」，但没有门断言「每个名册工具至少被一个 skill 承载」——那正是目标「与相关 skill 合理搭配」最字面的可读形态；工具从全部 .md 被删干净今天也全绿。建门前先踩到本门命门：探针模式表键写「Cloudflare D1」空格、名册是「Cloudflare-D1」连字符 ⇒ 四工具静默算成 0 命中，差点当「没人承载」写进报告（X-24/X-26 同族）。故 K2 强制两侧同过 norm()，键缺即 UNVERIFIED，已双向验牙。"),
     },
+    {
+        # r218：工具↔工作流本体 的命令级真实调用面（第 94 门）—— 目标原话有「工作流」
+        "id": "workflow_usage_face",
+        "script": "r218_workflow_usage_face.py",
+        "argv": ["--json", "06-benchmark/workflow_usage_latest.json"],
+        "pass_token": "[USAGE:PASS]",
+        "portable": False,
+        "not_portable_reason":
+            "工作流面 = 本仓 05-exec + .git/hooks + CI，正则与名册读本机读数件",
+        "covers": [
+            "正则 import 第 67 门 TOOLS、名册读第 163 门 rows ⇒ 禁第二真相源",
+            "None≠0：无权威正则记 NO_PATTERN（未量），不算缺口",
+            "排除定义正则的件（模式文本自匹配）⇒ 防把「定义过」算成「调用过」",
+            "SELF-REF：命中过半来自探针件则具名报警（在位≠工作流在用）",
+            "基线只收门自己发出的串；空面/空名册 ⇒ UNVERIFIED rc=2"],
+        "why": ("前 93 门量 skill 目录与召回，但没有门量我自己的自动化脚本是否真的调用过"
+                  "这些工具；把 Workers 从全部脚本删干净今天照样绿。它实测到的 0 命中属尺的"
+                  "口径盲区（部署形态级 vs 读数型用法），已具名收进基线而非凑调用"),
+    },
 
 ]
 

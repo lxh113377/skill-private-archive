@@ -1,0 +1,9 @@
+{
+ "schema": "workflow-usage-baseline-v1",
+ "known_gaps": [
+  "Cloudflare-Workers|工作流面未见部署/代码形态级调用"
+ ],
+ "why_baseline": "这条不是凑出来的需求，而是尺的口径盲区：第 67 门正则属部署/代码形态级；我 Workers 的真实用法是只读 API 取调用数（05-exec/r199_workers_face.py 走 GraphQL 读 workersInvocationsAdaptive），该口径看不见读数型搭配。不为此写代码去凑 wrangler 调用（凑引用=造需求，第 67 门件头明令禁止）。",
+ "captured_from": "workflow_usage_latest.json 的 new_gaps（门自己发出，非手抄）",
+ "evidence_cmd": "python 05-exec/r218_workflow_usage_face.py --json <件>"
+}

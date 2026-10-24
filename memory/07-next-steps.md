@@ -494,6 +494,62 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   因为它带绿章。
   取值：06-benchmark/free_tool_roster_latest.json items[].claims（分级分布）；
   反证 TEMP/teeth215b.py（真承载 IN_SKILL_DESC vs 错点名 MENTIONS）；分级定义 05-exec/r215_claim_check.py 件头。
+- [ ] **R218-1（r218 登记，P1·已落地）** **建第 94 门 workflow_usage_face：目标原话里的「工作流」此前没有任何门量过**： 【r218 裁决=执行（建第 94 门补上目标里的「工作流」面；口径全复用现成权威源；首跑抓出 Workers 真 0 命中并识破「凑需求」诱惑；SELF-REF 报警暴露我自己写进注释的正则字面量污染并修两处）｜读数：四例齐=True、face_files=256、total_hits=224、NO_PATTERN=[VS Code]、基线 1 条含归因。】
+  缺口面：163 能不能跑 / 67 skill 目录命令级引用 / 93 被 skill 承载 / 92 入口派卷 / 88 召回 —— 唯独没有
+  「我自己的自动化脚本（05-exec + git hooks + CI）里是否真调用过该工具」。把 Workers 从全部脚本删干净，
+  93 门照样绿。第 94 门口径不新造：正则 import 第 67 门 TOOLS、归一化复用 r214 norm、名册读第 163 门 rows
+  （禁第二真相源）；沿用 r217 的 None≠0（无键记 NO_PATTERN 不算缺口，实测 VS Code 落此）。
+  首跑真发现与「差点造需求」：Cloudflare-Workers 命令级命中 0 ⇒ 我第一反应是写代码凑一个 wrangler 调用；
+  查 r199_workers_face.py 才知我的 Workers 用法是只读 GraphQL 取调用数，而 67 门正则属部署/代码形态级
+  ⇒ 那是尺的口径盲区不是搭配缺口。处置：基线收 1 条并把归因写进基线件 why_baseline，不凑调用（第 67 门
+  件头「凑引用就是造需求」我转交给这一面）。
+  本轮最硬一击（判据被解释自己的文字污染）：我为讲清口径，在注释里逐字写了正则的命令样例 ⇒ Workers 由真
+  GAP(0) 被污染成 USED(2)（2/2 全来自我写的说明文字）；SQLite 命中 48 里 20 来自正则定义件自匹配。
+  [USAGE:SELF-REF] 报警让污染当场可见（若不是提前设计的，这次假 USED 会直接进基线）。修两处：面里排除
+  定义正则的件（SQLite 48→28，恰等于剔掉的 20）；本门文字严禁复述正则字面量（文件内留 ⚠ 注释说明原因）。
+  四例验牙全过：正例 rc=0／抽基线 rc=1 且缺口串逐字回得 True／空工作流面 rc=2／空名册 rc=2／还原后 rc=0。
+  元教训：**判据的输入面必须排除「判据自己」**；设计验证器先问「它能不能读到自己的说明书？」
+  取值：python 05-exec/r218_workflow_usage_face.py；workflow_usage_latest.json（face_files=256、total_hits=224、
+  self_ref 名单）；牙测 TEMP/teeth94.py。
+
+- [ ] **R218-2（r218 登记，P1·已落地）** **我读了一次陈旧结果文件就当成新结果报（自抓，纠正「按印象构造」家族的最新形态）**： 【r218 裁决=执行（同轮自抓：修完顺序并先删旧结果再跑，得到四例齐=True）｜读数：旧件已删=True、新结果在位=True。固化：写结果文件的脚本，跑前先 Remove-Item 旧件并断言 ABSENT，跑后再断言在位才读。】
+  一手：牙测脚本我 edit 修了期望值，但重跑前**没删旧结果文件**，脚本其实在修改后的第一行就 NameError 崩了
+  （orig 引用了尚未定义的 blp），我读到的是上一轮留下的 teeth94.txt，于是把「四例齐 = False」当成新结论
+  差点继续追查门的行为。真因是我的 edit 插序错了（把 orig 放到 blp 之前），不是门错。修完顺序 + 先删旧件
+  再跑 ⇒ 四例齐 = True。
+  固化：跑任何「写结果文件」的脚本前，先 Remove-Item 旧结果并断言 ABSENT，再跑、再断言在位后才读；
+  否则读到的可能是陈旧文件（本仓第 N 次栽在「拿旧读数当现值」，X-25/易变量入基线都是同族）。
+  取值：本轮实测命令序列（Remove-Item → 跑 → Test-Path → Get-Content）已入 TEMP 脚本末段。
+- [ ] **R218-4（r218 登记，P1·已落地）** **护栏自己的归属口径错：按「行含键」计数，把我的续行误报成「携带他人 37 行」——若照抄就是假事实**： 【r218 裁决=执行（护栏改条目级归属 + 多键 + 整体重写；三向牙测与真实台账双向复核）｜读数：py_compile rc=0、[STAGEGUARD:PASS] 三向、真实台账「标题 3 个/我的 3 个」代带 0（与手算一致）；敞口经取值补齐后复扫。】
+  一手：r218 落 3 条台账后跑 r217_shared_stage.py，它报「携带他人未提交新增行 39 行」。我按行精算：
+  本次新增 40 行 = 3 行含 R218 标题 + 37 行我的续行/裁决行，**他人条目标题行 = 0**。即护栏的计数指标
+  选错（只认我传入的那一个键，条目其余行都算别人），而它下一步就是要求我把这个数字写进提交信息 ——
+  一个把假数字往交付物里推的护栏，比没有护栏更危险。
+  修（两处口径 + 一次整体重写）：① --must-contain 改 action='append' 支持同批多键；② 归属改按**条目
+  标题行**判（'标题共 N 个，我的 M 个，代带 N-M 个'），不再按行数判；③ 因两次 edit 把文件改出新旧
+  混杂块（SyntaxError: unterminated string literal），停止打补丁、整体重写该件（这是本轮第三次用 edit
+  续写同一文件出问题，教训：改坏两次即整体重写，别堆补丁）。
+  验证：py_compile rc=0；三向牙测 PASS（SKIP/STAGED/NOCHANGE，STAGED 向断言含「携带他人条目 1 个」
+  且「我的 1 个」）；真实台账实测「条目标题共 3 个，我的 3 个」= 代带 0（与我手算一致，口径已对）。
+  牙测首轮 SKIP=False 也是我的错（断言文字与实际措辞不符，行为对、期望错）—— 改断言不改行为。
+  元教训：**护栏的输出会被当成事实抄写，所以护栏的计数口径必须与「事实的单位」一致。** 我这轮的
+  单位是「条目」，它数的是「行」。
+  取值：python -m py_compile 05-exec/r217_shared_stage.py；python 05-exec/r217_shared_stage.py --selftest；
+  python 05-exec/r217_shared_stage.py memory/07-next-steps.md --must-contain '**R218-1（r218 登记'（三键同传）。
+- [ ] **R218-3（r218 登记，P0·已落地）** **我的「编译校验」是空操作：把 py_compile.compile 包在引号里当字符串表达式，rc=0 却什么都没验**： 【r218 裁决=执行（真编译 python -m py_compile 暴露我插入的断字符串并修好；校验方式固化为 -m py_compile + import 实取 len(GATES)）｜读数：py_compile rc=0、GATES=94、全量 316.7s 后 94 门唯一 FAIL=gate_run_freshness（延迟一轮设计，未动台账）、第 94 门 PASS 1002ms。】
+  一手：第 94 门插进 run_gates.py 后我跑了一条校验，输出 `compile rc=0` 就认为挂表安全并继续 --record。
+  实际命令把 `py_compile.compile(r'…',doraise=True)` **整段包在引号里** ⇒ 那是被求值的字符串表达式而非
+  函数调用，`python -c` 什么都没编译，rc=0 只是空操作的成功。真编译（`python -m py_compile`）立刻报出
+  L1512 SyntaxError（我插入的 why 字段写成三行断字符串）。后果链：坏文件已被 --record 写进登记表，
+  全量跑到 **0.1s 秒退**我才回看 —— 若没盯那个反常耗时，本轮会以「门表 94、record 成功」收尾，而仓库里
+  躺着一个语法错的主门禁文件。
+  同轮三件同族错（都是「我以为我校验过了」）：① 用 0 冒充「没被量」（r217 的 None≠0 提前挡住）；
+  ② 拿陈旧结果文件当新结果（修脚本顺序 + 先删旧件再跑才现真值）；③ 校验命令本身是空操作。
+  固化（本轮已生效）：验语法一律 `python -m py_compile <文件>` 并核 rc；门数不读文字，改 import run_gates
+  实取 len(GATES) 并打印末三门 id（实测 94 / ['ingress_face','tool_carrier_face','workflow_usage_face']）。
+  判据级教训：**「校验通过」必须能指出它读了什么、比对了什么**；指不出来的就是空操作穿绿衣。
+  取值：python -m py_compile 05-exec/run_gates.py（rc=0）；python -c "import sys;sys.path.insert(0,'05-exec');
+  import run_gates as R;print(len(R.GATES))"；全量 06-benchmark/gate_run_r218_1.json（94 门）。
 - [ ] **R217-1（r217 登记，P1·已落地）** **上一轮我只换了标签没换数据源；本轮把名册的两把尺真接到第 67 门产物上，并加 None/0 区分与子集自证**： 【r217 裁决=执行（换源到第 67 门产物 + None/0 分开 + 可执行⊆提到自证 + probe 停读打标不删）｜读数：md 8267B、10 工具两把尺全带源件与生成时间；子集校验异常 0；VS Code=absent 而 Upstash=0，二者不再混淆；敞口 0、结构 PASS、第 67/93/92/88 门全 rc=0。R216-2 集合差已由产物字段显形，本条不再需要人工盯。】
   自抓：r216 我写下「标签降级为在位≠已接入」看似处理完第 67 门比我强的问题，但本轮开工先核数据源，
   发现名册的「承载面 N 个文件/M 个技能」**仍在读我自己造的 tool_skill_matrix_probe.json** ⇒ 标签诚实了、
