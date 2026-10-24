@@ -16,8 +16,10 @@
 
 ### GitHub - READY
 
-- 承载面：317 个文件 / 100 个技能
-    （取值：tool_skill_matrix_probe.json 的 tools[] 内 GitHub 项的 hit_files / skill_count）
+- 两把尺：提到 22 件 ｜ 代码真调用 2 件
+    提到 = A-get-memory, A-memory-start, A-project-better, A-project-handoff, A-skill-manager, chaoshi-image-optimization, chaoshi-web-deploy, ci-pipeline-debugging, consulting-analysis, doc-coauthoring, docker-e2e-gate, github, gstack, healthcare-eval-harness, hyperframes-registry, oracle, security-audit, shell-encoding-pitfalls, story, ui-ux-pro-max, verification-before-completion, win-toolchain-pitfalls
+    可执行 = A-project-handoff, gstack
+    （取值：tool_skill_matrix_r216b.json 的 per_tool / per_tool_exec[GitHub]；该件 generated_at=2026-10-25 04:51）
 - 守它的判据：163 + 87 + 93
 - 工作流触点：A-project-handoff 的 git_autopush 钩子模板（本仓 post-commit 即其落地）+ 第 87 门读 autopush 末行 rc；私有仓分钟用满是已付代价
 - 触点在位核验（在位≠已接入）：A-project-handoff -> IN_SKILL_DESC
@@ -28,8 +30,10 @@
 
 ### Cloudflare-D1 - READY
 
-- 承载面：25 个文件 / 14 个技能
-    （取值：tool_skill_matrix_probe.json 的 tools[] 内 Cloudflare-D1 项的 hit_files / skill_count）
+- 两把尺：提到 2 件 ｜ 代码真调用 0 件
+    提到 = chaoshi-web-deploy, win-toolchain-pitfalls
+    可执行 = 无
+    （取值：tool_skill_matrix_r216b.json 的 per_tool / per_tool_exec[Cloudflare-D1]；该件 generated_at=2026-10-25 04:51）
 - 守它的判据：163 + 88 任务层 + 93
 - 工作流触点：A-memory-start 的 quickref 额度专章（r196_quota_face 现读行数/写入）+ chaoshi-web-deploy 的 d1 execute 部署链
 - 触点在位核验（在位≠已接入）：A-memory-start -> MENTIONS
@@ -40,8 +44,10 @@
 
 ### Cloudflare-R2 - GAP_SERVICE
 
-- 承载面：25 个文件 / 14 个技能
-    （取值：tool_skill_matrix_probe.json 的 tools[] 内 Cloudflare-R2 项的 hit_files / skill_count）
+- 两把尺：提到 1 件 ｜ 代码真调用 0 件
+    提到 = chaoshi-image-optimization
+    可执行 = 无
+    （取值：tool_skill_matrix_r216b.json 的 per_tool / per_tool_exec[Cloudflare-R2]；该件 generated_at=2026-10-25 04:51）
 - 守它的判据：163 + 88 任务层 + 93
 - 工作流触点：chaoshi-image-optimization 的 R2 外置专章（干跑读数 + 阻断现状）
 - 触点在位核验（在位≠已接入）：chaoshi-image-optimization -> IN_SKILL_DESC
@@ -50,8 +56,10 @@
 
 ### Cloudflare-Pages - READY
 
-- 承载面：306 个文件 / 59 个技能
-    （取值：tool_skill_matrix_probe.json 的 tools[] 内 Cloudflare-Pages 项的 hit_files / skill_count）
+- 两把尺：提到 5 件 ｜ 代码真调用 2 件
+    提到 = A-project-handoff, byted-bp-cdn-pagesdeploy, chaoshi-image-optimization, chaoshi-web-deploy, verification-before-completion
+    可执行 = A-project-handoff, byted-bp-cdn-pagesdeploy
+    （取值：tool_skill_matrix_r216b.json 的 per_tool / per_tool_exec[Cloudflare-Pages]；该件 generated_at=2026-10-25 04:51）
 - 守它的判据：163 + 92 + 93
 - 工作流触点：chaoshi-web-deploy 部署权威入口（direct_map 10 pattern，任务话术直连命中）
 - 触点在位核验（在位≠已接入）：chaoshi-web-deploy -> IN_SKILL_DESC
@@ -60,8 +68,10 @@
 
 ### Cloudflare-Workers - READY
 
-- 承载面：140 个文件 / 36 个技能
-    （取值：tool_skill_matrix_probe.json 的 tools[] 内 Cloudflare-Workers 项的 hit_files / skill_count）
+- 两把尺：提到 1 件 ｜ 代码真调用 0 件
+    提到 = chaoshi-web-deploy
+    可执行 = 无
+    （取值：tool_skill_matrix_r216b.json 的 per_tool / per_tool_exec[Cloudflare-Workers]；该件 generated_at=2026-10-25 04:51）
 - 守它的判据：163 + 88 任务层 + 93
 - 工作流触点：A-memory-start 的 quickref 额度专章（r199_workers_face 现读调用数）；跨 zone 聚合分母差异已写 §9.16
 - 触点在位核验（在位≠已接入）：A-memory-start -> MENTIONS
@@ -71,8 +81,10 @@
 
 ### SQLite - READY
 
-- 承载面：13 个文件 / 11 个技能
-    （取值：tool_skill_matrix_probe.json 的 tools[] 内 SQLite 项的 hit_files / skill_count）
+- 两把尺：提到 4 件 ｜ 代码真调用 3 件
+    提到 = data-analysis, fenjue-memory-audit, ican-deploy, web-access
+    可执行 = data-analysis, fenjue-memory-audit, web-access
+    （取值：tool_skill_matrix_r216b.json 的 per_tool / per_tool_exec[SQLite]；该件 generated_at=2026-10-25 04:51）
 - 守它的判据：163 + 85 + 93
 - 工作流触点：r203_ledger_index 用 SQLite 做门禁台账派生索引（读面与盲区均实测）
 - 触点在位核验（在位≠已接入）：r203_ledger_index（判据件） -> GATE_FILE_MENTIONS
@@ -80,8 +92,8 @@
 
 ### VS Code - READY
 
-- 承载面：101 个文件 / 46 个技能
-    （取值：tool_skill_matrix_probe.json 的 tools[] 内 VS Code 项的 hit_files / skill_count）
+- 两把尺：该工具不在第 67 门名册内 = 未被量（None，不等于 0）
+    （取值：tool_skill_matrix_r216b.json 的 per_tool / per_tool_exec[VS Code]；该件 generated_at=2026-10-25 04:51）
 - 守它的判据：163 + 93
 - 工作流触点：r163_free_tools_face 的 probe_vscode（which + 非 0 字节 + 真跑 --version）
 - 触点在位核验（在位≠已接入）：r163_free_tools_face（判据件） -> GATE_FILE_MENTIONS
@@ -89,8 +101,10 @@
 
 ### Cloudflare-Turnstile - READY
 
-- 承载面：10 个文件 / 4 个技能
-    （取值：tool_skill_matrix_probe.json 的 tools[] 内 Cloudflare-Turnstile 项的 hit_files / skill_count）
+- 两把尺：提到 2 件 ｜ 代码真调用 0 件
+    提到 = chaoshi-image-optimization, win-toolchain-pitfalls
+    可执行 = 无
+    （取值：tool_skill_matrix_r216b.json 的 per_tool / per_tool_exec[Cloudflare-Turnstile]；该件 generated_at=2026-10-25 04:51）
 - 守它的判据：163 + 88 任务层(DISPUTED) + 93
 - 工作流触点：r163_turnstile_face 与 r163_turnstile_admin 曾全链接通，后按老大要求移除 = 决定而非待搭缺口
 - 触点在位核验（在位≠已接入）：r163_turnstile_admin（判据件） -> GATE_FILE_MENTIONS
@@ -100,8 +114,10 @@
 
 ### Resend - GAP_CRED
 
-- 承载面：6 个文件 / 2 个技能
-    （取值：tool_skill_matrix_probe.json 的 tools[] 内 Resend 项的 hit_files / skill_count）
+- 两把尺：提到 1 件 ｜ 代码真调用 1 件
+    提到 = office-automation-pro
+    可执行 = office-automation-pro
+    （取值：tool_skill_matrix_r216b.json 的 per_tool / per_tool_exec[Resend]；该件 generated_at=2026-10-25 04:51）
 - 守它的判据：163 + 93
 - 工作流触点：r163_tool_skill_matrix 已把它列入零引用核查面；仅 HTTP API 无 CLI，凭据缺 ⇒ 尚未接入任何工作流
 - 触点在位核验（在位≠已接入）：r163_tool_skill_matrix（判据件） -> GATE_FILE_MENTIONS
@@ -109,8 +125,10 @@
 
 ### Upstash-Redis - GAP_CRED
 
-- 承载面：42 个文件 / 22 个技能
-    （取值：tool_skill_matrix_probe.json 的 tools[] 内 Upstash-Redis 项的 hit_files / skill_count）
+- 两把尺：提到 0 件 ｜ 代码真调用 0 件
+    提到 = 无
+    可执行 = 无
+    （取值：tool_skill_matrix_r216b.json 的 per_tool / per_tool_exec[Upstash-Redis]；该件 generated_at=2026-10-25 04:51）
 - 守它的判据：163 + 93
 - 工作流触点：r163_tool_skill_matrix 报其零引用（唯一 ADVISORY 项）；仅 REST 无 CLI，凭据缺 ⇒ 未接入
 - 触点在位核验（在位≠已接入）：r163_tool_skill_matrix（判据件） -> GATE_FILE_MENTIONS

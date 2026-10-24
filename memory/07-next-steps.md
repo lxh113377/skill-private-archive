@@ -494,6 +494,22 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   因为它带绿章。
   取值：06-benchmark/free_tool_roster_latest.json items[].claims（分级分布）；
   反证 TEMP/teeth215b.py（真承载 IN_SKILL_DESC vs 错点名 MENTIONS）；分级定义 05-exec/r215_claim_check.py 件头。
+- [ ] **R217-1（r217 登记，P1·已落地）** **上一轮我只换了标签没换数据源；本轮把名册的两把尺真接到第 67 门产物上，并加 None/0 区分与子集自证**： 【r217 裁决=执行（换源到第 67 门产物 + None/0 分开 + 可执行⊆提到自证 + probe 停读打标不删）｜读数：md 8267B、10 工具两把尺全带源件与生成时间；子集校验异常 0；VS Code=absent 而 Upstash=0，二者不再混淆；敞口 0、结构 PASS、第 67/93/92/88 门全 rc=0。R216-2 集合差已由产物字段显形，本条不再需要人工盯。】
+  自抓：r216 我写下「标签降级为在位≠已接入」看似处理完第 67 门比我强的问题，但本轮开工先核数据源，
+  发现名册的「承载面 N 个文件/M 个技能」**仍在读我自己造的 tool_skill_matrix_probe.json** ⇒ 标签诚实了、
+  底下喂的还是那把弱尺（只有「提到」、无「代码真调用」）。换说法继续用弱证据比不换更糟：会让人以为已解决。
+  三件实事：① 换源 —— 改读第 67 门产物（glob 按 mtime 取最新且**必须含 per_tool_exec**，文件名含 probe
+  一律排除）；先实测两把尺的工具名两边 9 项同名（不猜映射），故无需映射表；probe 打 _status_DEPRECATED
+  但不删（它是 r216 自抓记录与 R216-2 集合差证据）。② None 与 0 分开 —— 工具不在 67 名册则两把尺记
+  None + yardstick_absent=true，不记 0（0 会把「没被量」冒充成「零提到」）；产物里当场可见：
+  Upstash-Redis 提到=0（真零）vs VS Code 提到=None+absent（67 没量它）。③ 加名册自证 ——
+  「可执行 ⊆ 提到」（代码真调用的件必在提到集合内），实测 10 工具全成立、异常 0，能抓住接错尺/串映射。
+  源件与生成时间随读数一起落盘（matrix_src: tool_skill_matrix_r216b.json / 2026-10-25 04:51），陈旧可见。
+  附带收口 R216-2：那条集合差从台账文字变成产物字段（VS Code 的 absent=true 就是运行时证据）。
+  取值：python 05-exec/r215_free_tool_roster.py（md 8267B，[ROSTER:OK] 10 工具）；
+  两把尺读数见 free_tool_roster_latest.json items[].mention_skills/exec_skills；
+  子集校验 TEMP/scan217.py（异常=无）；第 67 门 [TOOLMATRIX:PASS]、敞口 0、结构 PASS。
+  元教训：改口径时**标签是话、数据源才是事实** —— 改了措辞仍吃旧证据＝用新说法给旧结论续命。
 - [ ] **R216-1（r216 登记，P1·已落地）** **我花两轮造了第 67 门早已有的、且更弱的版本；本轮把它降级并接上权威两把尺**： 【r216 裁决=执行（发现自造弱版后：保留两层网、把产物标签降为「在位≠已接入」、四例反证 GC 咬得住、并接入第 67 门两把尺留证）｜读数：第 67 门 [TOOLMATRIX:PASS]，零引用具名 1 项（Upstash）；roster rc=0、md 6737B、10/10 行可证伪；敞口 0；结构 PASS。】
   事实：r214/r215 我为「搭配」写了 tool_skill_matrix_probe（统计每工具被多少 skill 提到）与
   r215_claim_check（判点名 skill 是否提到该工具）。本轮列 05-exec 目录时撞见 r163_tool_skill_matrix.py

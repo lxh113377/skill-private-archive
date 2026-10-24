@@ -179,5 +179,6 @@
     "gstack"
    ]
   }
- ]
+ ],
+ "_status_DEPRECATED": "r217 停读：本件是第 67 门（r163_tool_skill_matrix.py）的弱化重造，只有一把尺（提到=文件命中数），缺 per_tool_exec（代码真调用）。名册与任何对账一律改读tool_skill_matrix_r*.json。保留本件仅为 r216 自抓记录与 R216-2 集合差证据，不得作为数据源。"
 }

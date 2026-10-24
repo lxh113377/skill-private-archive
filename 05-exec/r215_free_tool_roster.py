@@ -8,6 +8,7 @@
 不出册（r214 我刚因按印象写分母产出过一条假发现，故此处禁手抄、禁按记忆补，R247）。
 '''
 import argparse
+import glob
 import io
 import json
 import os
@@ -25,7 +26,10 @@ import r215_gate_check as GC
 SRC = {
     'roster': 'free_tools_latest.json',
     'patterns': 'tool_carrier_patterns.json',
-    'matrix': 'tool_skill_matrix_probe.json',
+    # 两把尺的权威源 = 第 67 门产物（per_tool 提到 / per_tool_exec 代码真调用）。
+    # r216 自抓：我 r214 造的 tool_skill_matrix_probe 是它的弱化重造（只有「提到」一尺），
+    # 故本件不再读自己那份 probe —— 避免第二真相源；按 glob 取最新且含 per_tool_exec 的 67 产物。
+    'matrix*': 'tool_skill_matrix_r*.json',
     'truth': 'route_truth_latest.json',
     'ingress': 'ingress_latest.json',
     'recall': 'recall_latest.json',
@@ -75,33 +79,52 @@ GATES = {
 
 
 def load(n):
-    p = os.path.join(B, n)
-    if not os.path.isfile(p):
-        return None
-    try:
-        return json.load(io.open(p, encoding='utf-8'))
-    except (OSError, ValueError):
-        return None
+    """n 含 * 时按 mtime 取最新一份（且必须是第 67 门产物：含 per_tool_exec）。
+
+    返回 (数据, 实际文件名)。取不到返回 (None, n) —— 调用方据此 UNVERIFIED，
+    不得退回去读我那份弱化 probe（第二真相源）。
+    """
+    def one(f):
+        q = os.path.join(B, f)
+        if not os.path.isfile(q):
+            return None
+        try:
+            return json.load(io.open(q, encoding='utf-8'))
+        except (OSError, ValueError):
+            return None
+    if '*' in n:
+        fs = [f for f in sorted(glob.glob(os.path.join(B, n)), key=os.path.getmtime)
+              if 'probe' not in os.path.basename(f)]
+        for f in reversed(fs):
+            v = one(os.path.basename(f))
+            if isinstance(v, dict) and v.get('per_tool_exec') is not None:
+                return v, os.path.basename(f)
+        return None, n
+    return one(n), n
 
 
 def build():
     src = {}
+    used = {}
     for k, fn in SRC.items():
-        v = load(fn)
+        v, real = load(fn)
         if v is None:
             return None, '源件缺失或不可析：' + fn
-        src[k] = v
+        src[k.rstrip('*')] = v
+        used[k.rstrip('*')] = real
     pat_map = {k.lower(): v for k, v in (src['patterns'].get('patterns') or {}).items()}
     skills = CC.all_skills()
     rows = src['roster'].get('rows') or []
     if not rows:
         return None, '名册 rows 为空 = 空面不得出册（R247）'
-    mat = {x.get('tool'): x for x in (src['matrix'].get('tools') or [])}
+    # 两把尺直接用第 67 门产物（工具名两边一致，无需映射）；probe 那份已停读
+    per_t = src['matrix'].get('per_tool') or {}
+    per_e = src['matrix'].get('per_tool_exec') or {}
     tasks = src['truth'].get('tasks') or []
     items = []
     for r in rows:
         tool = r.get('tool')
-        mv = mat.get(tool) or {}
+        in67 = tool in per_t or tool in per_e
         linked = []
         for x in tasks:
             want = x.get('want')
@@ -112,8 +135,12 @@ def build():
         items.append({
             'tool': tool,
             'state': r.get('state'),
-            'carrier_files': mv.get('hit_files'),
-            'carrier_skills': mv.get('skill_count'),
+            # 两把尺（第 67 门口径）：提到 = 文档或代码出现该工具；可执行 = 代码真调用。
+            # 关键：工具不在第 67 门名册时记 None，不记 0 —— 0 会把「它没被这道门量」
+            # 冒充成「零提到」（R216-2 那处集合差正是此形，VS Code 就命中这一支）。
+            'mention_skills': (sorted(per_t.get(tool)) if tool in per_t else None),
+            'exec_skills': (sorted(per_e.get(tool)) if tool in per_e else None),
+            'yardstick_absent': tool not in per_t and tool not in per_e,
             'gates': GATES.get(tool, ''),
             'touchpoint': TOUCH.get(tool, ''),
             'claims': (CC.claims_for(TOUCH.get(tool, ''),
@@ -134,6 +161,10 @@ def build():
         'recall': {'window': rc.get('checked'), 'truth': rc.get('truth_judged'),
                    'task': rc.get('task_judged'), 'hits': rc.get('task_hits'),
                    'gaps': len(rc.get('gaps') or [])},
+        # 两把尺的出处随读数一起落盘：源件名 + 该件生成时间 ⇒ 陈旧可见，不静默沿用旧矩阵
+        'matrix_src': {'file': used.get('matrix'),
+                       'generated_at': src['matrix'].get('generated_at'),
+                       'cmd': src['matrix'].get('cmd')},
     }
     return {'items': items, 'gates_reading': gates}, None
 
@@ -167,9 +198,16 @@ def render_md(doc):
     for it in doc['items']:
         L.append('### %s - %s' % (it['tool'], it['state']))
         L.append('')
-        L.append('- 承载面：%s 个文件 / %s 个技能' % (it['carrier_files'], it['carrier_skills']))
-        L.append('    （取值：tool_skill_matrix_probe.json 的 tools[] 内 %s 项的 hit_files / skill_count）'
-                 % it['tool'])
+        ms, es = it['mention_skills'], it['exec_skills']
+        if it.get('yardstick_absent'):
+            L.append('- 两把尺：该工具不在第 67 门名册内 = 未被量（None，不等于 0）')
+        else:
+            L.append('- 两把尺：提到 %d 件 ｜ 代码真调用 %d 件' % (len(ms or []), len(es or [])))
+            L.append('    提到 = %s' % (', '.join(ms or []) or '无'))
+            L.append('    可执行 = %s' % (', '.join(es or []) or '无'))
+        L.append('    （取值：%s 的 per_tool / per_tool_exec[%s]；该件 generated_at=%s）' % (
+            doc['gates_reading']['matrix_src'].get('file'), it['tool'],
+            doc['gates_reading']['matrix_src'].get('generated_at')))
         L.append('- 守它的判据：' + it['gates'])
         L.append('- 工作流触点：' + it['touchpoint'])
         cs = it.get('claims') or []
