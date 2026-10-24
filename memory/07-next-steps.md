@@ -456,6 +456,25 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   references/powershell-cli-silent-failures.md」指针 + 版本行；或由归属方自行合并时带上。
   取值：git -C D:/global_skills status --porcelain -- win-toolchain-pitfalls/SKILL.md（非空即未落地）；
   分卷本体已在库：git -C D:/global_skills log --oneline -1 --grep R804。
+- [ ] **R202-1（r202 登记，P1·已落地）** **runner 夹具的 M3 变异锁是空转假锁；重试分流从 TEMP 临时自证升级为常驻行为级腿**： 【r202 裁决=执行（当日发现假锁并撤除、当日把临时自证升级为常驻腿）｜读数：变异 5/5 实测拦住（各用对应检查面）；a11~a14 四腿实测 quota=1 / transient=2 / flaky PASS rc=0 / no_retry=1；caught 计数三处同步为 5。不设目标轮：no-op 守卫已在循环里，任何新写失配锚的变异会被直接判无效而非计入拦住。】
+  一手①（假锁）：r31 层 c 的 M3 用 src.replace('if not g.get("covers")', 'if False') 造变异，但
+  该锚**在 run_gates.py 里根本不存在** —— covers 强制实际只写在夹具自己的 a8 那一行。于是 replace
+  恒为 no-op、变异体 == 原体，而循环里 'if not nc and label.startswith("M3")' 恰好把 no-op 记成
+  「拦住」⇒ 这条锁空转多轮、计数一直含它。取证：AST 提取六个 src.replace 的字面量锚逐个 count
+  （先用非贪婪正则抓，被嵌套括号截断误报两条 —— 那是我的工具错，不是夹具错）。
+  修法：① 循环加 no-op 守卫（patched == src 即打印「本条变异无效」并 continue，不计拦住）；
+  ② 撤 M3 并留注释「要重加须先给 runner 真正的 covers 强制点」；③ 删掉掩盖真相的 M3 特判；
+  ④ 计数 6→5 三处同步（文案/断言/格式）。原则：**变异测试必须先自证改到了源码**，否则测的是空气。
+  一手②（临时自证 = 没有自证）：上轮给 _quota_limited 写的 8 用例只落在 TEMP，本轮核实已随
+  清场消失。改为常驻行为级腿 a11~a14：造会自计次数的假门脚本，用计数器文件测「真 subprocess
+  跑了几次」（读行为不读代码）。实测 quota count=1、transient count=2、flaky PASS 且 rc=0、
+  no_retry count=1。
+  变异实测 5/5 全部拦住，各用对应检查面：M1/M4 用 aggregate、M2 用 run_state_cases 的 ghost、
+  M5/M6 用 run_retry_cases 的计数器。（我前两次把 M2/M5/M6 报成「未拦住」是只喂 aggregate ——
+  检查面不够；第三次因传 str 而它要 Path 而崩。三次都是我的错，非夹具问题。）
+  零成本纪律：全程未跑 r31 层 b（会跑整仓 77 门含 3 个 CF 门 = 白烧 13 次外部调用），
+  接线证明改用 AST（腿在 main 路径上、muts 元素数、caught 计数三处一致）。
+  取值：python 05-exec/r31_run_gates_fixtures.py（完整含层 b，配额充裕时跑）。
 - [ ] **R201-1（r201 登记，P1·已落地）** **R2 的 GAP_SERVICE 重探：证据从「只试过 wrangler」升级为「四路 + 活性对照」**： 【r201 裁决=执行（当日重探、当日接成第 77 门、当日被第 76 门纠错并修行为）｜读数：A /accounts=200（活性对照）、B buckets=403 code 10042、C subscriptions=403 code 10000、D wrangler 同码；声明=实测=3 对账 OK；夹具 10/10。dashboard 网页会话属外部凭据缺口（已实测 headless 循环挑战与 --headed 过挑战后落 /login），非可自动化缺口。】
   r163 把 R2 记成 GAP_SERVICE 时只试过 wrangler 一条路；r199/r200 已证同一 OAuth token 能查 CF
   GraphQL ⇒ 必须分清 ①服务真没启用 ②客户端问题 ③凭据失效（三者处置完全不同，把 ②③ 记成 ①

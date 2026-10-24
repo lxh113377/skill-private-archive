@@ -65,6 +65,68 @@ def run_state_cases(mod, tmp):
     return out
 
 
+
+
+def _gate_src(name, tail_line, exit_code, flaky=False):
+    """造一个会自计次数的假门脚本：计数器文件记录它真被跑了几次（行为级取证，不看代码）。"""
+    NL = chr(10)
+    q = chr(34)
+    lines = [
+        "import os, sys",
+        "D = os.path.dirname(os.path.abspath(__file__))",
+        "CNT = os.path.join(D, " + q + name + ".cnt" + q + ")",
+        "k = 0",
+        "if os.path.isfile(CNT):",
+        "    k = int(open(CNT).read().strip() or 0)",
+        "open(CNT, " + q + "w" + q + ").write(str(k + 1))",
+    ]
+    if flaky:
+        lines.append("if k == 0:")
+        lines.append("    print(" + q + "boom on first run" + q + ")")
+        lines.append("    sys.exit(2)")
+        lines.append("print(" + q + "[GATE:fixture-pass]" + q + ")")
+        lines.append("sys.exit(0)")
+    else:
+        lines.append("print(" + q + tail_line + q + ")")
+        lines.append("sys.exit(%d)" % exit_code)
+    return NL.join(lines) + NL
+
+
+def run_retry_cases(mod, tmpdir):
+    """重试分流 + FLAKY rc 的行为级取证：四类门各跑一次，用计数器判重跑与否。
+
+    存在理由（r201）：本轮我反复打 Cloudflare GraphQL 建门把配额耗光，runner 的
+    「非 PASS 一律退避 3 秒重跑一次」把一次探测放大成两次，三门同轮 UNVERIFIED。
+    上一轮我只在 TEMP 里写了 8 个纯函数用例 —— 件已随清场消失（正是本仓登记过的
+    「临时自证 = 没有自证」）。故改为常驻行为级腿：测的是真 subprocess 跑了几次。
+    """
+    tmp = str(tmpdir)
+    if not os.path.isdir(tmp):
+        os.makedirs(tmp)
+    specs = [
+        ("quota", "q_gate.py",
+         "Rate limiter budget depleted. Please try again after 5 minutes", 2, False, False),
+        ("transient", "t_gate.py",
+         "URLError SSLEOFError EOF occurred in violation of protocol", 2, False, False),
+        ("flaky", "f_gate.py", "", 2, True, False),
+        ("nretry", "n_gate.py",
+         "URLError SSLEOFError EOF occurred in violation of protocol", 2, False, True),
+    ]
+    out = {}
+    for key, script, tail, code, flaky, nretry in specs:
+        open(os.path.join(tmp, script), "w", encoding="utf-8", newline="").write(
+            _gate_src(script, tail, code, flaky))
+        gate = {"id": key, "script": script, "argv": [],
+                "pass_token": "[GATE:fixture-pass]", "portable": True,
+                "covers": ["fake"], "why": "fixture"}
+        if nretry:
+            gate["no_retry"] = True
+        mod.HERE = tmp
+        state, rc, _ms, _tail = mod.run_gate(gate, 60)
+        cp = os.path.join(tmp, script + ".cnt")
+        cnt = int(open(cp).read().strip() or 0) if os.path.isfile(cp) else 0
+        out[key] = {"state": state, "rc": rc, "count": cnt}
+    return out
 def main():
     if not TARGET.exists():
         ck("前置：run_gates.py 存在", False, "红阶段：实现尚未落地")
@@ -102,6 +164,19 @@ def main():
     ck("a9 不可移植门必须写明原因（禁静默跳过）", not np_reason, str(np_reason))
     ck("a10 存在「本 runner 不覆盖」显式清单（防聚合绿被读成全绿）",
        isinstance(rg.NOT_COVERED, list) and len(rg.NOT_COVERED) >= 2, str(len(rg.NOT_COVERED)))
+    # ---- 层 a：重试分流 + FLAKY rc 自证（r201 立）----
+    # 配额类确定性拒绝不得重跑（重跑必再失败且白烧配额）；网络瞬态照旧重跑一次
+    # （R125 竞态识别不放宽）；FLAKY 转 PASS 时 rc 必须是**决定该状态那一次**的值。
+    rtry = run_retry_cases(rg, tmp / "retry_a")
+    ck("a11 配额类确定性拒绝不重跑（一次探测就是一次，禁放大回路）",
+       rtry["quota"]["count"] == 1 and rtry["quota"]["state"] == "UNVERIFIED",
+       str(rtry["quota"]))
+    ck("a12 网络瞬态照旧重跑一次（R125 竞态识别不放宽）",
+       rtry["transient"]["count"] == 2, str(rtry["transient"]))
+    ck("a13 FLAKY 转 PASS 时 rc 必须是第二次实跑值（禁 PASS 配 rc=2）",
+       rtry["flaky"]["state"] == "PASS" and rtry["flaky"]["rc"] == 0, str(rtry["flaky"]))
+    ck("a14 门显式声明 no_retry 优先于分流（门说别再跑就不跑）",
+       rtry["nretry"]["count"] == 1, str(rtry["nretry"]))
 
     # ---- 层 b：真机接线 ----
     p = subprocess.run([sys.executable, str(TARGET), "--json", str(tmp / "run.json")],
@@ -133,14 +208,30 @@ def main():
         ("M2 假成功直接判 PASS（去掉 token 检查）",
          src.replace('state = "UNVERIFIED"          # rc=0 但标记不见 = 静默跳过，不得算绿',
                      'state = "PASS"')),
-        ("M3 覆盖根自证失效（covers 强制为空）",
-         src.replace('if not g.get("covers")', 'if False')),
+        # M3 已撤（r201）：原锚 'if not g.get("covers")' 不在 run_gates.py 内
+        # （covers 强制只存在于本夹具 a8 那一行），replace 恒为 no-op ⇒ 该锁空转多轮。
+        # 要重加须先给 runner 一个真正的 covers 强制点，再针对它写变异。
         ("M4 SKIPPED 也算过 + FAIL 被掩盖（all() 聚合）",
          src.replace("    bad = n_fail + n_unv\n    if bad:",
                      "    bad = 0 if all(r[\"state\"] in (\"PASS\", \"FAIL\") for r in results) else n_unv\n    if bad:")),
+        ("M5 配额分流失效（_quota_limited 恒 False）⇒ 放大回路复活",
+         src.replace("    return any(k in low for k in QUOTA_SIGNALS)", "    return False")),
+        ("M6 FLAKY 转 PASS 仍报首跑 rc（r201 修过的自相矛盾）",
+         src.replace('return "PASS", rc2, elapsed + el2, (',
+                     'return "PASS", p.returncode, elapsed + el2, (')),
     ]
     caught = 0
     for label, patched in muts:
+        # r201 加 no-op 守卫（一手：M3 的锚 'if not g.get("covers")' 在
+        # run_gates.py 里根本不存在 —— covers 强制实际只在夹具自己的 a8 行。于是
+        # src.replace(...) 静默无效、变异体 == 原体，而循环里那条
+        # 'if not nc and label.startswith("M3")' 恰好把 no-op 记成"拦住"，
+        # 这条锁已空转多轮。原则：变异测试必须先自证"变异真的改到了源码"，
+        # 否则它测的是空气，却给出一个通过的计数。
+        if patched == src:
+            print("     %-46s 锚未命中任何源码 ⇒ 本条变异无效（夹具缺陷，不算拦住）"
+                  % label)
+            continue
         mp = tmp / ("mut_%d.py" % abs(hash(label)) )
         mp.write_text(patched, encoding="utf-8")
         try:
@@ -161,15 +252,20 @@ def main():
         rc_u, _why_u = m.aggregate([{"id": "a", "state": "PASS"}, {"id": "b", "state": "UNVERIFIED"}])
         if rc_u == 0:
             bad.append("UNVERIFIED 门被聚合当绿放行")
-        nc = [g["id"] for g in m.GATES if not g.get("covers")]
-        if not nc and label.startswith("M3"):
-            bad.append("覆盖根自证被改空后未报警")
+        # （原 M3 特判已随 M3 一并撤除：它把 no-op 记成拦住）
+        if label.startswith(("M5", "M6")):
+            c2 = run_retry_cases(m, os.path.join(str(tmp), "retry_" + label[:2]))
+            if label.startswith("M5") and c2["quota"]["count"] != 1:
+                bad.append("配额类被重跑（放大回路复活）count=%s" % c2["quota"]["count"])
+            if label.startswith("M6") and not (c2["flaky"]["state"] == "PASS"
+                                               and c2["flaky"]["rc"] == 0):
+                bad.append("FLAKY 转 PASS 但 rc 非第二次实跑值 rc=%s" % c2["flaky"]["rc"])
         if bad:
             caught += 1
             print("     %-46s 拦住：%s" % (label, "; ".join(bad)))
         else:
             print("     %-46s 未被拦住 <<<" % label)
-    ck("层c 变异 4 项全部被拦（对照=已取）", caught == 4, "caught=%d/4" % caught)
+    ck("层c 变异 5 项全部被拦（对照=已取；M5/M6 为 r201 新增，M3 因空锁被撤）", caught == 5, "caught=%d/5" % caught)
 
     # ---- 层 d：挂进执行路径 ----
     ag = (HERE.parent / "memory" / "AGENTS.md")
