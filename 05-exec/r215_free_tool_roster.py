@@ -20,6 +20,7 @@ B = os.path.join(ROOT, '06-benchmark')
 sys.path.insert(0, HERE)
 import r214_tool_carrier_face as TF
 import r215_claim_check as CC
+import r215_gate_check as GC
 
 SRC = {
     'roster': 'free_tools_latest.json',
@@ -52,11 +53,11 @@ TOUCH = {
     'Cloudflare-Pages': 'chaoshi-web-deploy 部署权威入口（direct_map 10 pattern，任务话术直连命中）',
     'Cloudflare-Workers': 'A-memory-start 的 quickref 额度专章（r199_workers_face 现读调用数）；跨 zone 聚合分母差异已写 §9.16',
     'Cloudflare-R2': 'chaoshi-image-optimization 的 R2 外置专章（干跑读数 + 阻断现状）',
-    'Cloudflare-Turnstile': '曾在超市 web 全链接通，后按老大要求移除 = 决定而非待搭缺口',
-    'SQLite': '第 85 门用 SQLite 做门禁台账派生索引（读面与盲区均实测）',
-    'VS Code': '第 65 名册面本地探针（which + 非 0 字节 + 真跑 --version）',
-    'Resend': '仅 HTTP API 无 CLI；凭据缺，尚未接入任何工作流',
-    'Upstash-Redis': '仅 REST 无 CLI；凭据缺，尚未接入任何工作流',
+    'Cloudflare-Turnstile': 'r163_turnstile_face 与 r163_turnstile_admin 曾全链接通，后按老大要求移除 = 决定而非待搭缺口',
+    'SQLite': 'r203_ledger_index 用 SQLite 做门禁台账派生索引（读面与盲区均实测）',
+    'VS Code': 'r163_free_tools_face 的 probe_vscode（which + 非 0 字节 + 真跑 --version）',
+    'Resend': 'r163_tool_skill_matrix 已把它列入零引用核查面；仅 HTTP API 无 CLI，凭据缺 ⇒ 尚未接入任何工作流',
+    'Upstash-Redis': 'r163_tool_skill_matrix 报其零引用（唯一 ADVISORY 项）；仅 REST 无 CLI，凭据缺 ⇒ 未接入',
 }
 
 GATES = {
@@ -115,8 +116,10 @@ def build():
             'carrier_skills': mv.get('skill_count'),
             'gates': GATES.get(tool, ''),
             'touchpoint': TOUCH.get(tool, ''),
-            'claims': CC.claims_for(TOUCH.get(tool, ''),
-                                             pat_map.get(TF.norm(tool)) or [], skills),
+            'claims': (CC.claims_for(TOUCH.get(tool, ''),
+                            pat_map.get(TF.norm(tool)) or [], skills)
+                       + GC.claims_for(TOUCH.get(tool, ''),
+                                         pat_map.get(TF.norm(tool)) or [])),
             'patterns_n': len(pat_map.get(TF.norm(tool)) or []),
             'tasks': linked,
         })
@@ -172,9 +175,10 @@ def render_md(doc):
         cs = it.get('claims') or []
         if cs:
             for c in cs:
-                L.append('- 触点提及核验：%s -> %s' % (c['skill'], c['verdict']))
+                who = c.get('skill') or (str(c.get('gate_file')) + '（判据件）')
+                L.append('- 触点在位核验（在位≠已接入）：%s -> %s' % (who, c['verdict']))
         else:
-            L.append('- 触点提及核验：本行未点名任何 skill = 纯散文，不可证伪（勿当已核）')
+            L.append('- 触点在位核验（在位≠已接入）：本行未点名可核对象（勿当已核）')
         ts = it['tasks'] or []
         if ts:
             L.append('- 任务语句实测：')

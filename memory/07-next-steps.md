@@ -494,6 +494,34 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   因为它带绿章。
   取值：06-benchmark/free_tool_roster_latest.json items[].claims（分级分布）；
   反证 TEMP/teeth215b.py（真承载 IN_SKILL_DESC vs 错点名 MENTIONS）；分级定义 05-exec/r215_claim_check.py 件头。
+- [ ] **R216-1（r216 登记，P1·已落地）** **我花两轮造了第 67 门早已有的、且更弱的版本；本轮把它降级并接上权威两把尺**： 【r216 裁决=执行（发现自造弱版后：保留两层网、把产物标签降为「在位≠已接入」、四例反证 GC 咬得住、并接入第 67 门两把尺留证）｜读数：第 67 门 [TOOLMATRIX:PASS]，零引用具名 1 项（Upstash）；roster rc=0、md 6737B、10/10 行可证伪；敞口 0；结构 PASS。】
+  事实：r214/r215 我为「搭配」写了 tool_skill_matrix_probe（统计每工具被多少 skill 提到）与
+  r215_claim_check（判点名 skill 是否提到该工具）。本轮列 05-exec 目录时撞见 r163_tool_skill_matrix.py
+  = 第 67 门，件头明写「此前只有第 65 门回答能不能用，没有任何面回答谁在用它、搭配够不够」，且口径是
+  「提到≠使用」：用 gh api/actions/workflow_dispatch 等**命令级正则**，还分 per_tool（提到）与
+  per_tool_exec（代码真调用）两把尺。⇒ 我造的那层只到「提到」，比它弱，且它早存在。
+  过程更难看：我为找候选判据件**已把 05-exec 里 quota/workers/ledger/turnstile/sqlite 相关 .py 全列出来
+  过**，输出里就有那个文件名，我扫一眼没认出来就继续自己造 —— **列出清单 ≠ 读过清单**。
+  处置（不拆自己造的，改成诚实降级）：① 第 93 门保留（它测「至少被一个 skill 承载」，比第 67 门的
+  命令级引用松，是另一层网，删了会漏），但分母差异登记见 R216-2；② 产物标签从「触点提及核验」降为
+  「触点在位核验（在位≠已接入）」，r215_gate_check 件头写死强度上限（只证在位且提到，禁写「已接入」），
+  并四例反证它咬得住：在位不提⇒GATE_FILE_SILENT、不存在⇒NO_SUCH_FILE、无模式⇒NO_PATTERN、正例⇒
+  GATE_FILE_MENTIONS（四例齐 True）；③ 跑第 67 门留 tool_skill_matrix_r216.json，两把尺读数：GitHub
+  提到22/可执行2、Pages 5/2、SQLite 4/3、D1 2/0、R2 1/0、Workers 1/0、Turnstile 2/0、Resend 1/1、
+  Upstash 0/0（[TOOLMATRIX:ADVISORY] 零引用具名，不判红：凑引用=造需求）。
+  元教训：**动手前查现成实现，且「列出来」不等于「读过」**；我造的那层弱核验若不接第 67 门两把尺，
+  会把「文档里提到」冒充成「搭配好了」。
+  取值：python 05-exec/r163_tool_skill_matrix.py --json 06-benchmark/tool_skill_matrix_r216.json；
+  python 05-exec/r215_free_tool_roster.py（md 6737B，10/10 行可证伪）；GC 反证 TEMP/gcteeth2.py。
+
+- [ ] **R216-2（r216 登记，P2·看守中）** **两把矩阵名册分母不一致：第 67 门有 Pages-Functions 无 VS Code，第 163 门反之，两边都自称 10 工具**： 【r216 裁决=登记为看守项（本轮不擅改任一方）：两把矩阵 tools_n 都是 10 但集合不同（67 含 Pages-Functions 无 VS Code；163 反之）⇒ 数量相等掩盖集合差；待权威口径定后统一，期间任何按工具数对账须先比集合。取值见条目内两条命令。】
+  一手：r216 接第 67 门产物时逐项比对 —— 第 67 门 TOOLS 键含 'Pages-Functions'，其输出无 'VS Code'；
+  第 163 门 free_tools_latest.json 的 rows 含 'VS Code'，无 'Pages-Functions'。两边 tools_n 都是 10，
+  但**是两套 10** ⇒ 任何「按工具数对账」的下游会静默错位（数字相同、集合不同，最阴的一类不一致）。
+  本轮不擅改任一方：第 67 门与第 163 门都不在我本轮改动范围内，且哪套才是权威口径需要定（163 的 10 项
+  来自截图名册、67 的含 Pages-Functions 是把 Functions 当独立工具）。先登记具名差，避免下游拿 10==10 当一致。
+  取值：python 05-exec/r163_tool_skill_matrix.py --json <件> 读 per_tool 键集合；python -c 读
+  06-benchmark/free_tool_roster_latest.json 的 items[].tool 集合；两者取差即见集合不等（数量相等）。
 - [ ] **R215-1（r215 登记，P1·已落地）** **交付目标本体的可复算产物：免费工具 x 工作流 x skill 搭配名册（生成器，数字全溯源头证据件）**： 【r215 裁决=执行（交付目标本体的可复算产物：搭配名册生成器，数字全溯源头证据件，缺源件即 rc=2 不出册）｜读数：10 工具入册、md 3792B；monkeypatch 抽源件反证得 doc=None + 具名报错且不落半成品；散落件已按红线4 迁 _trash。无后续挂账：名册随证据件再生。】
   前 93 门各量一个切面（163 能不能跑 / 93 有没有承载 / 92 入口派卷 / 88 三层召回 / 86 指针），但没有任何产物把三者按
   工具拼起来 —— 「某工具搭到哪一步、还差什么、凭什么说差」一直只能靠我在对话里临时回忆。本件把那份回忆变成生成物。

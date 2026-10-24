@@ -1,0 +1,195 @@
+{
+ "schema": "tool-skill-matrix-r163-v1",
+ "cmd": "python 05-exec/r163_tool_skill_matrix.py --json <out>",
+ "tools_n": 10,
+ "note": "命令级匹配（非产品名）；零引用不判红，具名显形供人决定是否补搭配。两把尺的解读边界（r185）：per_tool = 提到（文档或代码），per_tool_exec = 代码真调用。**「仅文档」不等于「没搭配」** —— 权威部署手册型 skill（如 chaoshi-web-deploy）本就不自带脚本，其价值是让人正确敲命令；把可执行面当成唯一合格标准会诱导造脚本凑数（r166「凑引用即造需求」同族）。本尺只用于发现「提到却一次都没跑过」的候选，不判红。",
+ "generated_at": "2026-10-25 04:46",
+ "gs_root": "D:\\global_skills",
+ "skills_scanned": 191,
+ "skills_with_tools": 28,
+ "unreadable": [],
+ "per_tool": {
+  "GitHub": [
+   "A-get-memory",
+   "A-memory-start",
+   "A-project-better",
+   "A-project-handoff",
+   "A-skill-manager",
+   "chaoshi-image-optimization",
+   "chaoshi-web-deploy",
+   "ci-pipeline-debugging",
+   "consulting-analysis",
+   "doc-coauthoring",
+   "docker-e2e-gate",
+   "github",
+   "gstack",
+   "healthcare-eval-harness",
+   "hyperframes-registry",
+   "oracle",
+   "security-audit",
+   "shell-encoding-pitfalls",
+   "story",
+   "ui-ux-pro-max",
+   "verification-before-completion",
+   "win-toolchain-pitfalls"
+  ],
+  "Cloudflare-D1": [
+   "chaoshi-web-deploy",
+   "win-toolchain-pitfalls"
+  ],
+  "Cloudflare-R2": [
+   "chaoshi-image-optimization"
+  ],
+  "Cloudflare-Pages": [
+   "A-project-handoff",
+   "byted-bp-cdn-pagesdeploy",
+   "chaoshi-image-optimization",
+   "chaoshi-web-deploy",
+   "verification-before-completion"
+  ],
+  "Cloudflare-Workers": [
+   "chaoshi-web-deploy"
+  ],
+  "Cloudflare-Turnstile": [
+   "chaoshi-image-optimization",
+   "win-toolchain-pitfalls"
+  ],
+  "Resend": [
+   "office-automation-pro"
+  ],
+  "Upstash-Redis": [],
+  "SQLite": [
+   "data-analysis",
+   "fenjue-memory-audit",
+   "ican-deploy",
+   "web-access"
+  ],
+  "Pages-Functions": [
+   "chaoshi-web-deploy"
+  ]
+ },
+ "per_tool_exec": {
+  "GitHub": [
+   "A-project-handoff",
+   "gstack"
+  ],
+  "Cloudflare-D1": [],
+  "Cloudflare-R2": [],
+  "Cloudflare-Pages": [
+   "A-project-handoff",
+   "byted-bp-cdn-pagesdeploy"
+  ],
+  "Cloudflare-Workers": [],
+  "Cloudflare-Turnstile": [],
+  "Resend": [
+   "office-automation-pro"
+  ],
+  "Upstash-Redis": [],
+  "SQLite": [
+   "data-analysis",
+   "fenjue-memory-audit",
+   "web-access"
+  ],
+  "Pages-Functions": []
+ },
+ "per_skill": {
+  "A-get-memory": {
+   "GitHub": 2
+  },
+  "A-memory-start": {
+   "GitHub": 2
+  },
+  "A-project-better": {
+   "GitHub": 1
+  },
+  "A-project-handoff": {
+   "GitHub": 9,
+   "Cloudflare-Pages": 10
+  },
+  "A-skill-manager": {
+   "GitHub": 1
+  },
+  "byted-bp-cdn-pagesdeploy": {
+   "Cloudflare-Pages": 4
+  },
+  "chaoshi-image-optimization": {
+   "GitHub": 1,
+   "Cloudflare-R2": 1,
+   "Cloudflare-Pages": 4,
+   "Cloudflare-Turnstile": 22
+  },
+  "chaoshi-web-deploy": {
+   "GitHub": 14,
+   "Cloudflare-D1": 3,
+   "Cloudflare-Pages": 51,
+   "Cloudflare-Workers": 1,
+   "Pages-Functions": 5
+  },
+  "ci-pipeline-debugging": {
+   "GitHub": 8
+  },
+  "consulting-analysis": {
+   "GitHub": 1
+  },
+  "data-analysis": {
+   "SQLite": 2
+  },
+  "doc-coauthoring": {
+   "GitHub": 5
+  },
+  "docker-e2e-gate": {
+   "GitHub": 2
+  },
+  "fenjue-memory-audit": {
+   "SQLite": 18
+  },
+  "github": {
+   "GitHub": 16
+  },
+  "gstack": {
+   "GitHub": 4
+  },
+  "healthcare-eval-harness": {
+   "GitHub": 2
+  },
+  "hyperframes-registry": {
+   "GitHub": 2
+  },
+  "ican-deploy": {
+   "SQLite": 1
+  },
+  "office-automation-pro": {
+   "Resend": 13
+  },
+  "oracle": {
+   "GitHub": 1
+  },
+  "security-audit": {
+   "GitHub": 1
+  },
+  "shell-encoding-pitfalls": {
+   "GitHub": 1
+  },
+  "story": {
+   "GitHub": 2
+  },
+  "ui-ux-pro-max": {
+   "GitHub": 1
+  },
+  "verification-before-completion": {
+   "GitHub": 1,
+   "Cloudflare-Pages": 1
+  },
+  "web-access": {
+   "SQLite": 2
+  },
+  "win-toolchain-pitfalls": {
+   "GitHub": 5,
+   "Cloudflare-D1": 1,
+   "Cloudflare-Turnstile": 5
+  }
+ },
+ "zero_ref_tools": [
+  "Upstash-Redis"
+ ]
+}

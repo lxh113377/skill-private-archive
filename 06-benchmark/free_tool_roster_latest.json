@@ -53,6 +53,10 @@
     {
      "skill": "chaoshi-web-deploy",
      "verdict": "IN_SKILL_DESC"
+    },
+    {
+     "gate_file": "r196_quota_face",
+     "verdict": "GATE_FILE_MENTIONS"
     }
    ],
    "patterns_n": 3,
@@ -122,6 +126,10 @@
     {
      "skill": "A-memory-start",
      "verdict": "MENTIONS"
+    },
+    {
+     "gate_file": "r199_workers_face",
+     "verdict": "GATE_FILE_MENTIONS"
     }
    ],
    "patterns_n": 3,
@@ -140,8 +148,13 @@
    "carrier_files": 13,
    "carrier_skills": 11,
    "gates": "163 + 85 + 93",
-   "touchpoint": "第 85 门用 SQLite 做门禁台账派生索引（读面与盲区均实测）",
-   "claims": [],
+   "touchpoint": "r203_ledger_index 用 SQLite 做门禁台账派生索引（读面与盲区均实测）",
+   "claims": [
+    {
+     "gate_file": "r203_ledger_index",
+     "verdict": "GATE_FILE_MENTIONS"
+    }
+   ],
    "patterns_n": 3,
    "tasks": []
   },
@@ -151,8 +164,13 @@
    "carrier_files": 101,
    "carrier_skills": 46,
    "gates": "163 + 93",
-   "touchpoint": "第 65 名册面本地探针（which + 非 0 字节 + 真跑 --version）",
-   "claims": [],
+   "touchpoint": "r163_free_tools_face 的 probe_vscode（which + 非 0 字节 + 真跑 --version）",
+   "claims": [
+    {
+     "gate_file": "r163_free_tools_face",
+     "verdict": "GATE_FILE_MENTIONS"
+    }
+   ],
    "patterns_n": 3,
    "tasks": []
   },
@@ -162,8 +180,17 @@
    "carrier_files": 10,
    "carrier_skills": 4,
    "gates": "163 + 88 任务层(DISPUTED) + 93",
-   "touchpoint": "曾在超市 web 全链接通，后按老大要求移除 = 决定而非待搭缺口",
-   "claims": [],
+   "touchpoint": "r163_turnstile_face 与 r163_turnstile_admin 曾全链接通，后按老大要求移除 = 决定而非待搭缺口",
+   "claims": [
+    {
+     "gate_file": "r163_turnstile_admin",
+     "verdict": "GATE_FILE_MENTIONS"
+    },
+    {
+     "gate_file": "r163_turnstile_face",
+     "verdict": "GATE_FILE_MENTIONS"
+    }
+   ],
    "patterns_n": 3,
    "tasks": [
     {
@@ -180,8 +207,13 @@
    "carrier_files": 6,
    "carrier_skills": 2,
    "gates": "163 + 93",
-   "touchpoint": "仅 HTTP API 无 CLI；凭据缺，尚未接入任何工作流",
-   "claims": [],
+   "touchpoint": "r163_tool_skill_matrix 已把它列入零引用核查面；仅 HTTP API 无 CLI，凭据缺 ⇒ 尚未接入任何工作流",
+   "claims": [
+    {
+     "gate_file": "r163_tool_skill_matrix",
+     "verdict": "GATE_FILE_MENTIONS"
+    }
+   ],
    "patterns_n": 3,
    "tasks": []
   },
@@ -191,8 +223,13 @@
    "carrier_files": 42,
    "carrier_skills": 22,
    "gates": "163 + 93",
-   "touchpoint": "仅 REST 无 CLI；凭据缺，尚未接入任何工作流",
-   "claims": [],
+   "touchpoint": "r163_tool_skill_matrix 报其零引用（唯一 ADVISORY 项）；仅 REST 无 CLI，凭据缺 ⇒ 未接入",
+   "claims": [
+    {
+     "gate_file": "r163_tool_skill_matrix",
+     "verdict": "GATE_FILE_MENTIONS"
+    }
+   ],
    "patterns_n": 3,
    "tasks": []
   }
