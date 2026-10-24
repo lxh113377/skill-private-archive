@@ -1,7 +1,7 @@
 {
  "schema": "probe-cost-v5",
  "readonly": true,
- "gate_table_count": 86,
+ "gate_table_count": 87,
  "rows": [
   {
    "gate": "cache_guard_face",
@@ -219,9 +219,22 @@
     "github": 0
    },
    "state": "NO_EXTERNAL_CALLS"
+  },
+  {
+   "gate": "push_autopush_face",
+   "script": "r205_push_autopush_face.py",
+   "apis": [
+    "github"
+   ],
+   "portable": false,
+   "declared": null,
+   "measured": null,
+   "state": "UNMEASURED"
   }
  ],
- "problems": [],
+ "problems": [
+  "r205_push_autopush_face.py 静态判为联网门但 manifest 里没有实测值 ⇒ 先重跑测量器"
+ ],
  "worst_case_per_run": {
   "github": 8,
   "cloudflare": 13
