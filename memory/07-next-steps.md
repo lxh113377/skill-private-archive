@@ -456,6 +456,25 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   references/powershell-cli-silent-failures.md」指针 + 版本行；或由归属方自行合并时带上。
   取值：git -C D:/global_skills status --porcelain -- win-toolchain-pitfalls/SKILL.md（非空即未落地）；
   分卷本体已在库：git -C D:/global_skills log --oneline -1 --grep R804。
+- [ ] **R206-3（r206 登记，P2·已落地）** **第 86 门补四条可达指针（R809），孤儿 9→5，剩下 5 条定性为不代做**： 【r206 裁决=执行（先定性再补：2 卷补指针、A-project-better 5 条定性为 dirty+上游断链不代做）｜读数：r204 四条 HEALED、孤儿 9→5、基线收缩、镜像 pathspec 同步 2 文件；提交范围 = 2 文件不含在途件。5 条留基线追踪不代做（判据报的是候选不是待办）。】
+  对 r204 报的 9 条历史孤儿先定性再动手（不盲目补指针，否则是我造噪音）：
+  ① cross-platform-agent-sync 的 cps.part10/11 —— 该卷 SKILL.md 分卷目录**独缺卷10、卷11**
+     （列了 1-9、12、13），结构上就是漏登，且其 SKILL.md 是 CLEAN ⇒ 补。
+  ② A-skill-manager 的 merge-record.sources / governance-r306 补条 —— SKILL.md CLEAN ⇒ 补指针。
+  ③ A-project-better 的 5 条 —— 其 SKILL.md 被并行会话 dirty（不碰，R269），且**上游链也断**
+     （孤儿提及者 roadmap.md/version-history-archive.part1 自身不被 SKILL.md 引用，链头不可达）
+     ⇒ 不代做，留 r204 基线追踪。
+  走 rule_editor replace --old-file/--new-file（正文含反引号，走文件通道避 shell 吞），
+  锚点刻意选正文区：**我第一版选了版本历史表格的缩进续行做锚 ⇒ 会把独立句插进表格、
+  破坏 markdown 表格结构**（读回时版本历史行数仍=2 未破，是改对后的证据）。三处 dry-run
+  全过后 --no-commit 应用 + 逐文件核提交范围 = 2 文件、不含他人在途件。r204 复跑：
+  四条全 [SKILLWIRING:HEALED]、孤儿 9→5、基线同步收缩。镜像 pathspec 同步两个 SKILL.md。
+  一处自纠：基线 note 我误写轮号 r209（R809 是编号不是轮号），按 r38.current_round 实为
+  r206 修正 —— 编号（R8xx）与轮号（rNN）是两套数，别混。
+  元教训：补可达指针前先分「设计不引用（归档/链头断）」与「该引用而漏」；后者才补，前者补了
+  反而是给判据制造假绿。r204 报的是候选，不是待办清单。
+  取值：python 05-exec/r204_skill_wiring_face.py（HEALED 行 + 孤儿 5）；
+  git -C D:/global_skills log -1 --format=%s（R809 落地）。
 - [ ] **R206-2（r206 登记，P1·已落地）** **R201-2 收口：R804 卷补可达指针，走 A-memory-start 收录面绕开并行会话 dirty 的 SKILL.md**： 【r206 裁决=执行（不等他人文件变干净，走判据定义里的第二条可达路径收口；当场 HEALED + 基线 10→9）｜读数：r204 报 [SKILLWIRING:HEALED] 且复跑 PASS；R808 源仓提交仅 1 文件、不含他人在途件。无后续挂账：R201-2 这条欠账已闭合。】
   这条挂账从 r201 起、本轮被 r38 判到期（OVERDUE 3→4、DEFERRED 2→1），当场处理掉而非再挂。
   原计划「等 win-toolchain-pitfalls/SKILL.md 干净后加指针」—— 但四轮回看，它与
