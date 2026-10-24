@@ -6,7 +6,7 @@ unified_router 才暴露更深一层：A-memory-start 的按需加载靠 Step 0.
 （unified_router --json），其召回语料 = 各 skill 自己 SKILL.md 的前 N 个字符
 （eval/build_indexes.py: "语料 = 磁盘 SKILL.md 前 800 字符（BGE 与 TF-IDF 同源）"，
 bge_fullbody_meta.json 的 encoding 字段同证）。⇒ 写进 references/ 的知识，无论指针多齐，
-都不在召回语料里：路由召不回它，Agent 就不会去读那卷。
+都不在召回语料里：连入场资格都没有（这是必要条件；充分条件见下面 K2 层二）。
 
 本会话实跑证据（unified_router --json 两次，均 rc=0）：
   Q1「wrangler 读 Cloudflare 免费额度 date_geq 过滤字段 Rate limiter budget depleted 怎么查」
@@ -19,11 +19,17 @@ bge_fullbody_meta.json 的 encoding 字段同证）。⇒ 写进 references/ 的
 判据（全部本地只读，零网络）：
   K1 召回窗口取自权威构建件 eval/build_indexes.py 的 CORPUS_CHARS（红线6：只读不改）；
      取不到 ⇒ UNVERIFIED，不硬编 800 当真相。
-  K2 探针名册（recall_probe_registry.json）声明「哪个 skill 承载哪个主题的实测知识」；
-     自建口径 HIGH+MID 复算（以磁盘目录真实存在为准，含中文名 skill，同第 86 门）；
-     探针词若不在该 skill 的 SKILL.md 前 N 字符（与语料严格同源窗口）内 ⇒ GAP_UNCALLABLE。
+  K2 两层判据（r209 校正：别把「窗口命中」读成「会被召回」）：
+     层一（入场券，必要非充分）—— 名册声明「哪个 skill 承载哪个主题的实测知识」，自建口径
+       HIGH+MID 复算（磁盘目录真实存在为准，含中文名 skill，同第 86 门）；探针词不在该 skill
+       SKILL.md 前 N 字符（与语料严格同源窗口）内 ⇒ 连入场资格都没有。
+     层二（真值）—— expect=recalled 的条目须拿 route_truth_latest.json 验：direct_hit=True 或
+       rank_of_skill<=TOP_N 才算召回，否则 GAP。r208 版只有层一且据此断言「窗口含词即可召回」，
+       本轮实测证伪：用 win-toolchain 自己 description 的原词（必在窗口内）查询 top1 仍是别人，
+       而 chaoshi 稳过靠 L0.1 直连表 10 条 pattern（win-toolchain 在 direct_map 里 0 条）。
   K3 基线只拦增量（同 78/86 门）：历史不可召回入基线，新增才 FAIL；基线缺失 ⇒ UNVERIFIED。
-  K4 自证有牙（K4 内存法）：换一个必然出现在窗口内的探针词 ⇒ 必须判可召回，防恒真。
+  K4 自证有牙：构造不出「窗口内必命中」样本就 WARN —— 防判据空转（不是防「误判可召回」，
+     那由层二的真值件负责）；正控条目须能说清凭什么绿（r208 的 chaoshi 正控当时是偶然对的）。
 
 退出码：0 无新增不可召回 / 1 有新增 / 2 基线或权威窗口不可得
 portable=False：读 D:/global_skills 与焚诀 eval（本机绝对路径），CI 的 Linux 无此树。

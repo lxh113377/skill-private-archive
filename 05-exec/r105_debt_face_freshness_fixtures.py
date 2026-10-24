@@ -100,10 +100,20 @@ def main():
         os.utime(art, (os.path.getmtime(globs[0]) - 226,) * 2)
         rg.FACE_NOTES.clear()
         gotn = rg.overdue_debt_items()
-        note = rg.FACE_NOTES.get("overdue_debt_items·相对新鲜")
+        # r209 修（消费方适配生产者，非放宽阈值）：原实现按**字面键**
+        # "overdue_debt_items·相对新鲜" 取 note。并行会话给棘轮加更细的红因分类时把后缀
+        # 改成「·取值面」（键名属实现细节），本腿当场失配报红 —— 但我这腿真正要守的契约是
+        # 「指标转 None 时，FACE_NOTES 里必须有一条属于本指标的具名 False 理由，且理由里带
+        # mtime 差值」。键名换了不该让守卫瞎掉；反过来，若生产者**完全不再具名**（一条都
+        # 没有），本腿照样红。故改为按键前缀筛，语义判据一字未放。
+        note = None
+        for _k, _v in rg.FACE_NOTES.items():
+            if _k.startswith("overdue_debt_items·") and _v and _v[0] is False:
+                note = _v
+                break
         ck("n1 反例：件比卷旧 226s ⇒ 指标转 None（不得沿用件内 12）", gotn is None, "got=%r" % (gotn,))
-        ck("n1b 反例：转 None 时读取面必须具名（含两个 mtime 与差值）",
-           note is not None and note[0] is False and "差 226" in note[1], str(note)[:150])
+        ck("n1b 反例：转 None 时读取面必须具名（含两个 mtime 与差值；键名后缀不锁死）",
+           note is not None and "差 226" in note[1], str(note)[:150])
 
         # ---- n2 卷集为空：无基准可比 ----
         okz, whyz = rg._debt_artifact_fresh(art, [os.path.join(tmp, "nobody*.md")])

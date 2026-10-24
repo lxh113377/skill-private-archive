@@ -456,6 +456,33 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   references/powershell-cli-silent-failures.md」指针 + 版本行；或由归属方自行合并时带上。
   取值：git -C D:/global_skills status --porcelain -- win-toolchain-pitfalls/SKILL.md（非空即未落地）；
   分卷本体已在库：git -C D:/global_skills log --oneline -1 --grep R804。
+- [ ] **R209-2（r209 登记，P1·已落地）** **debt_face_freshness 的红：别人改了契约，但我查出处方是改我自己的消费方（不是修 ratchet、更不是放宽阈值）**： 【r209 裁决=执行（定责后改自己的消费方 n1b 为键前缀筛，语义判据未放宽；不动他人未提交的 ratchet_gate，不放宽阈值）｜读数：桩件 9/9；合法变异（理由挪到别的指标名下）⇒ n1b FAIL 8/9，证明新写法有牙；还原字节一致。reconcile_admission 是我的漏登，已 --register 补齐（未声明 0）。无后续挂账：待对方提交后若键名再变，n1b 的筛法已能自动跟上。】
+  全量 89 门剩 3 红，逐条定责：① reconcile_admission 报 UNDECLARED r209_route_truth_measure.py —— 
+  **我的**（新测量器产读数未登记准入豁免），r129 --register --evidence 补齐后「未声明 0」。
+  ② debt_face_freshness 的 n1b 腿 FAIL 与 ③ gate_run_freshness FAIL 是因果（后者是前者未过的下游）。
+  n1b 根因（逐字节取证，不靠猜）：被测桩件 r105 是我 r107 立的 tracked 件（工作树 CLEAN），
+  n1b 用**字面键** FACE_NOTES["overdue_debt_items·相对新鲜"] 取读取面理由；并行会话未提交改动
+  （git diff 实测 14 行 unstaged，ratchet_gate.py 现仍 M 态）把该后缀键改成「·取值面」（配合
+  R191-2 处方细化红因分类：选不到件/件不可读/非 dict/缺 evidence.open_total/分类和!=open_total）。
+  ⚠ 取证时我自己写错一句：草稿断言「工作树已无「差 %d 秒」字样」，实测真实字面是格式化串
+  「差 %.0f 秒」，HEAD 与工作树**都在** —— 我搜错字面就下结论（又一次按印象构造，栽在自己
+  的取证脚本上）。红因只剩键名一处。
+  处方（按本仓既定规则「消费方适配生产者」）：n1b 真正要守的契约是「指标转 None 时必须有
+  一条**属于本指标**的具名 False 理由，且理由含 mtime 差值」；键名后缀是实现细节，生产者换个
+  后缀就让守卫瞎掉说明我判据写死。改为按键前缀筛（startswith("overdue_debt_items·") + 
+  note[0] is False + "差 226" in note[1]），**语义判据一字未放**；不动 ratchet_gate.py（R269 不
+  把他人 14 行未提交改动连带入库），也不放宽阈值。
+  改完验它有牙（第一版变异非法差点骗过我）：给 dict 实例赋 pop/__setitem__ 使桩件 TypeError 中途
+  崩、连「桩合计」都没有 —— 那次「n1b 没报红」是**假结论**。补两个前置 assert（干净态必须全绿
+  且跑完；变异态必须真落盘且跑完）后换合法变异：把具名理由写到别的指标名下。实测 干净态 rc=0
+  9/9 n1b PASS；变异态 rc=1 8/9 **n1b FAIL <-- None** ⇒ 键无关写法仍有牙（后缀随便换跟得上，
+  但理由不挂本指标名下就红）；还原字节一致、无 MUTATION 残留。
+  元教训两条：① **门变红有两种相反含义** —— 我做的事坏了（一条命令修）vs 别人契约变了（改我
+  消费方而非阈值）；混成一类就养成「红了就调阈值」的手感，那是把判据逐个掏空的开始。
+  ② **变异脚本本身也是被测件**：它非法崩溃会伪装成「判据没抓住变异」的假结论，所以变异测试的
+  两个前置 assert 比结论更重要。
+  取值：python 05-exec/r105_debt_face_freshness_fixtures.py（9/9）；变异验证脚本 TEMP/mut_n1b_v2.py
+  （干净 9/9 vs 变异 8/9 n1b FAIL）；git diff -- 05-exec/ratchet_gate.py（14 行 unstaged，他人）。
 - [ ] **R209-1（r209 登记，P1·已落地）** **第 88 门的代理判据被我自己上轮的数据证伪：窗口命中只是入场券，真召回在 L0.1 直连表**： 【r209 裁决=执行（把路由真值跑全，证伪第 88 门的代理判据，升级为两层判据 + 测量器分离）｜读数：真值 4 条 实测（win-toolchain 三种措辞均未夺冠 rank=None/2；chaoshi direct_hit=True 因其 10 条 pattern，win-toolchain 0 条）；第 88 门首跑抓 2 条（含上轮判据看不见的 1 条）、回填基线后 PASS；R811 落盘后自纠「非每轮必加载」并改正。不设目标轮：direct_map 加 pattern 属焚诀侧（红线6 只读），win-toolchain SKILL.md 属并行会话 dirty，均已在基线 note 记归属方补法与删除条件。】
   r208 判据写的是「探针词在 SKILL.md 前 CORPUS_CHARS 字符内 ⇒ 可召回」。本轮把路由真值跑全
   （本地 onnx 零外网）：Q1 用 win-toolchain 自己 description 的原词（语料本体，必然在窗口内）
