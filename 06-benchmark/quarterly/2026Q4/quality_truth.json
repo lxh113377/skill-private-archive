@@ -1,6 +1,6 @@
 {
  "schema": "quality-truth-r115-v1",
- "generated_at": "2026-10-24T20:27:17+00:00",
+ "generated_at": "2026-10-24T21:47:23+00:00",
  "cmd": "python 05-exec/r115_quality_truth.py",
  "r114_correction": {
   "what_was_wrong": "r114 取 eval/skill_hitrate_eval_v2.py 的 hybrid_match Top-1=38.2% 当作「现役任务质量」；该函数只是三方法对照的近似实现，不读 direct_map/tags/BGE/memory 任何一层",

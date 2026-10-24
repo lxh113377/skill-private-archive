@@ -645,12 +645,12 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
 
 - [ ] **R217-3（r217 登记，P1·已落地）** **本轮两个自抓：① 我漏跑了自己立的「改门侧件即跑全量」；② 我把并行会话未提交的台账条目以我的提交信息代提交了**： 【r217 裁决=执行（补跑全量 + 新建 hunk 级 stage 护栏并两向实测 + 对 3b6a159 代带 R217-2 做事后声明）｜读数：全量 93 门唯一 FAIL=gate_run_freshness（延迟一轮设计，重跑自愈未动台账）；护栏 SKIP 向暂存区为空、STAGED 向打印携带他人行数；敞口 0、账龄 rc=0。改进方向（门侧件 mtime 触发强制重跑）已登记，未擅改他人归属面。】
 
-- [ ] **R217-4（r217 登记，P1·已落地）** **口径 B 的「12→7」此前只由我一次性脚本自证过 ⇒ 建成常驻反造假判据 r217_miss_migration，并在落地当轮就抓出我自己的两条装饰性判据**：
+- [ ] **R217-4（r217 登记，P1·已落地）** **口径 B 的「12→7」此前只由我一次性脚本自证过 ⇒ 建成常驻反造假判据 r217_miss_migration，并在落地当轮就抓出我自己的两条装饰性判据**： 【r217 裁决=执行｜常驻判据 r217_miss_migration 已建并接进季度巡检（步名 miss_migration，rc=1 计失败步）；九腿 selftest 全 OK，含 M4 可触发的变异腿；落地当轮抓出我自己两条装饰性判据（M4 恒等式永不触发 + 改名后残留旧键引用）｜取值：python 05-exec/r217_miss_migration.py --selftest】
   一手：本轮为需求 6 写口径对照件（`04-plan/需求6口径对照与决策件_r216_2026-10-25.md` §3）时，我用一次性 node 脚本逐条比对两份 route_miss_attr 件，证「零条挪账、n 291→291」。但**那次自查本身不可复算** —— `git grep STALE_EXPECT 05-exec` 只命中 r117 的单轮归因与 r113 的步名，全仓无任何件跨轮比较这两份产物 ⇒ 与前几轮同类数字同病（R183-1：一次性脚本产出的结论不可复算）。
   落地：新建 `05-exec/r217_miss_migration.py`（只读两份件 + 只读题集，不重跑评分）并接进季度巡检（步名 `miss_migration`）；红线六条 = M1 挪账（真错→STALE_EXPECT）/ M1b 转不可判（→UNDECIDABLE、UNREGISTERED）/ M2 缩分母（face.n 变小）/ M3 假消失（条目不见且 query 已不在题集）/ M4 重复键缩分母 / M5 face 自数与 rows 逐条不符。rc=1 是**真故障**（与 req6_attainability 的「结论性 rc=1」相反）⇒ 用默认 `run_step` 计入失败步，不洗绿。
   ⚠️ **本轮最值钱的自抓（两条装饰性判据，都在我自己写的件里）**：
   ① 首版 M4 写成「accounted != len(b_real)」，但五类是对同一 dict 的**互斥划分** ⇒ 恒相等、**永不触发**；这不是保守，是假设有守恒检查。改为 X-24 型真检查（同状态内 query|expected 重复 ⇒ 去重后键数 < 原始行数，真会缩小逐条比对的基线），并补变异腿证明可触发。
-  ② 我把 M4 语义换掉后，忘了同步三处：docstring 的 M4 定义、`reading` 键名、打印行 —— 改名 `conservation_ok`→`partition_identity_ok` 后第 316 行仍读旧键，`py_compile` 全过而**首跑必 KeyError**（本仓「编译过≠跑得通」第 N 次现场）。补跑常路径才暴露，随即修；并把打印措辞从「守恒 True」改成「划分恒等 True」（恒真读数不得冒充成就）。
+  ② 我把 M4 语义换掉后，忘了同步三处：docstring 的 M4 定义、`reading` 键名、打印行 —— 改名 `conservation_ok`→`partition_identity_ok` 后打印行仍读旧键，`py_compile` 全过 ⇒ 该 KeyError 只在**非 --quiet 路径**发作（巡检里我用 `--quiet`，恰好绕过），比「必崩」更阴：带 --quiet 的一切调用都正常，手跑一次就崩。发现方式是改完键名后对旧键做一次全文 grep（命中 1 处即修），**该 KeyError 实际未发生过**；本轮在同一条非 --quiet 打印路径上真崩过的是另一处 —— "%s" % 作用于 list 元素（JSON 落盘后是 list 不是 tuple）⇒ TypeError，由首跑实测暴露并已修（tuple(t)）。两条都归一句：改名/改语义后必须 grep 旧引用 + 跑非 quiet 路径。并把打印措辞从「守恒 True」改成「划分恒等 True」（恒真读数不得冒充成就）。
   ③ 我又手抄了一次计数：两处写「七腿」而实际 9 腿 —— 正是我本轮上午刚在规范抬头立规禁止的事。改为自述计数（取 selftest 输出行数）。
   有牙验证（全实测）：`--selftest` 九腿全 [OK]（正控 12→7 零红线 + 六类造假各自判红 + 缺题集不判）；现跑 r117→r216_live 印 `[MIGRATION:CLEAN]`、逐条具名 5 道修好的题；巡检复跑 15 步全通过、face_ok=true、failed_steps 空；七门全 PASS（control_char_scan / py_syntax_guard / md_claim_face / generator_face / reconcile_admission / selftest_census_face / tracked_empty_check）。
   口径要说准：本件**只判改善是否造假**，不判幅度是否达标（幅度与 30% 达标判据的正本在决策件 §3，本条不复制数值以免第二真相源）。基线取法也不是固定锚 = 06-benchmark 根轮号最大件，季产物落子目录不入 glob ⇒ 锚不会自动前进，前进须显式复制新一轮件到根并台账具名（已写进维护规范 §8 第 11 行）。

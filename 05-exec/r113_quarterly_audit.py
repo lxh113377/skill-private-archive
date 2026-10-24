@@ -335,6 +335,21 @@ def main():
     steps.append(run_step("route_miss_attr",
                           [PY, os.path.join(HERE, "r117_route_miss_attr.py"),
                            "--json", rmiss, "--quiet"]))
+    # r217 新增步（需求 6 口径 B 的反造假账）：逐条比较本轮与基线轮的 REAL_MISS 状态迁移。
+    # 存在理由：口径 B 的「REAL_MISS 12→7」此前只由我一次性脚本自证过（R183-1 同族：结论不可复算），
+    # 且「改善」有三条造假通路 —— 挪账（改判 STALE/UNDECIDABLE）、缩分母（删题面）、假消失（题面出集）。
+    # 现件 = 本轮刚产的 rmiss（在 quarterly/<季度>/ 下，不进 glob 面）；
+    # 基线 = 06-benchmark **根目录**里轮号最大的 route_miss_attr_*.json —— 口径要说准：
+    # 那不是「固定锚」，而是「上一次入库到根目录的那一轮」。季产物落在 quarterly/<季度>/ 子目录，
+    # 不参与该 glob ⇒ 若没人把新一轮结果入库到根目录，锚会停在 r216_live。
+    # 这是有意保守（锚不动 ⇒ 跨季可比），但必须知道它不会自动前进，否则「相对基线」会悄悄变成
+    # 「相对半年前」（AGENTS「禁硬编码当下值」同族：这里禁的是假装锚会自己走）。
+    # 前进锚的合法动作 = 把新一轮件显式复制到 06-benchmark 根并在台账具名（本步不自动做）。
+    # rc=1 = 红线破（真故障）⇒ 计入失败步、不把巡检洗绿；rc=2 = 输入面不可用，同样计入失败步。
+    miss_mig = os.path.join(qdir, "miss_migration.json")
+    steps.append(run_step("miss_migration",
+                          [PY, os.path.join(HERE, "r217_miss_migration.py"),
+                           "--current", rmiss, "--json", miss_mig, "--quiet"]))
     # r117 第 ⑨ 段：质量主指标（r115 起 = 生产路由 L1/L2/L3/L4 四层，权威件读数）
     truth = os.path.join(qdir, "quality_truth.json")
     steps.append(run_step("quality_truth",
@@ -407,7 +422,7 @@ def main():
 
     face_ok = (all(os.path.isfile(p) for p in
                    (prov, up, swap, repl, qual, rmiss, truth, swap_impact, domain_face,
-                    trace_face, tag_closure, req6_att))
+                    trace_face, tag_closure, req6_att, miss_mig))
                and not failed)
     face_reason = None
     if not os.path.isfile(prov):
@@ -430,7 +445,8 @@ def main():
                       "route_miss_attr": rmiss, "quality_truth": truth,
                       "swap_impact": swap_impact, "domain_face": domain_face,
                       "trace_face": trace_face, "tag_closure": tag_closure,
-                      "req6_attainability": req6_att},
+                      "req6_attainability": req6_att,
+                      "miss_migration": miss_mig},
         "swap_impact_reading": _read_swap_impact(swap_impact),
         "domain_face_reading": _r120b_domain_reading,
         "trace_face_reading": _r120b_trace_reading,
