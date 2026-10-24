@@ -456,6 +456,35 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   references/powershell-cli-silent-failures.md」指针 + 版本行；或由归属方自行合并时带上。
   取值：git -C D:/global_skills status --porcelain -- win-toolchain-pitfalls/SKILL.md（非空即未落地）；
   分卷本体已在库：git -C D:/global_skills log --oneline -1 --grep R804。
+- [ ] **R211-1（r211 登记，P0·已落地）** **我要去修的处方三周前已被自家效力面证伪；更严重的是第三层判据的 want 分母是我凭「知识在哪」拍出来的**： 【r211 裁决=执行（动手前先查效力面，拦下一条无效处方；用全根声称面重建 want 分母，真 MISS 5→3；接线 DISPUTED 与 RELABEL 双向有牙）｜读数：r135 效力面 末尾追加 margin 不动(-0.0586) vs 改 frontmatter +0.0216；Actions分钟 router top1 本就是 chaoshi-web-deploy ⇒ 那条 MISS 是我标错；变异A RELABEL=1/HEALED=0、变异B HEALED=1/RELABEL=0，两文件还原字节一致；基线据实重算 5 条。不外推提案：该处方已被效力面判无效，外推=造噪音（且未跑 transmit_obsolescence_check 前禁外推）。】
+  ① 上轮我给自己定的下一步是「等 win-toolchain/SKILL.md 干净就给 description 补任务级触发词（进窗口），
+    召回就好了」。动手前按 r148 先测后动查到现成效力面 r135_lang_boost_efficacy.py（第 11 类第二道腿）：
+    基线 margin=-0.0586 / 处方①「末尾追加中文触发词」margin=-0.0586（**完全无效**）/ 只改 frontmatter
+    +0.0216（翻转）/ 短中文摘要替换全文 +0.1820（更强）。结论原文：BGE 只取前 N token，尾部追加进不了
+    向量 ⇒ 按字面「末尾补词」执行会判成假闭环。我那句处方若照最自然写法执行，正是那条无效处方。未照搬（#34），
+    也未据此外推提案（外推前须跑 transmit_obsolescence_check，且这条已被效力面判无效，外推=造噪音）。
+  ② 更硬的一课：第三层每条 task 的 want 我按「我的知识存在哪」标（CF 坑在 win-toolchain ⇒ want=win-
+    toolchain），但召回比的是「谁**声称**承载该任务」。全根搜（D:/global_skills 共 1713 个 .md，逐条读上下文
+    判真伪、不靠命中数）重建分母，结果 5 条 MISS 里：Actions分钟 真声称件=chaoshi-web-deploy:48（Free 2,000
+    Actions 分钟用满致私有仓拿不到 runner）且 **router 当时 top1 就是它** ⇒ 那条 MISS 纯属我标错、实为 HIT；
+    R2开桶 真owner=chaoshi-image-optimization:392 专章；Turnstile 该件 V1.10.0「已按用户要求移除」只留事实
+    记录 ⇒ want 站不住，降级 DISPUTED；D1额度/Workers调用量 真owner=A-memory-start quickref:48 专章+:68 取值。
+    ⇒ 真缺口从 5 收缩到 **3**；上轮那句「8 条只召回 3 条」按正确分母应是「7 条（剔 disputed）召回 4 条」。
+    同族 = X-24/X-26 枚举器分母错；且本仓提案 corpus_lang_mismatch 的 B 段（r148/r149）早写了「期望归属存疑…
+    验收改挂期望侧对账」，我建第三层时**跳过了这条已有处方**，三周后重踩并差点据此外推无效提案。
+  ③ 顺手抓两处「写了没人读」并接线：名册 expect=disputed 字段此前测量器/门都不读 ⇒ 补 DISPUTED 态（不参与
+    召回判定但记 top1 供观察，judged 排除）；改 want 后旧基线串全不匹配，门一口气打 **5 条假 [RECALL:HEALED]**
+    ⇒ 新增 [RECALL:RELABEL] 判别（基线串存的 期望=<want> 比名册当前 want，分得开「真修复」与「我改分母」）。
+    双向有牙验证：变异A 塞回旧期望串 ⇒ RELABEL=1/HEALED=0（不误报成修复）；变异B 真改 D1 召回成功 ⇒
+    HEALED=1/RELABEL=0（真修复仍认得出）；route_truth 与 baseline 两文件还原字节一致。
+  ④ 基线据实重算：保留非 task 条 2 条 + 真 MISS 3 条 = 5 条（旧 5 条 task 串作废，note_r211 写明原因）；
+    registry 升 v4，每条带 owner_evidence（file:line）供复算分母。
+  元教训：**「我要去修 X」之前先查有没有人验过修 X 有没有用**；且**分母（want）必须被证据链覆盖** ——
+  我给判据加了正控和双向有牙，却让最底层的 want 零证据，判据上层越严谨、错分母越危险（输出看起来很可信）。
+  真缺口 3 条的下一步（不在本轮做，理由见取值后）：R2开桶/D1额度/Workers调用量 的承载件 SKILL.md description
+  仍 dirty 或需按 r135「改 frontmatter/短摘要」而非「末尾追加」才有效 —— 先跑效力面验哪一侧有效再动，且要归属方提交。
+  取值：python 05-exec/r135_lang_boost_efficacy.py（margin 四行）；python 05-exec/r208_recall_face.py（三层读数）；
+  python -c 全根扫 .md 计数=1713；06-benchmark/recall_probe_registry.json v4 owner_evidence。
 - [ ] **R210-3（r210 登记，P1·已落地）** **自愈链闭合，但更该记的是：答案早在本仓排障速查第 7 行，我却去读源码**： 【r210 裁决=执行（按排障速查第 7 行的处置再跑一次，实测 gate_run_freshness rc=0 ⇒ 自愈链闭合；同时自抓「已知机制不查表、重新怀疑一遍」）｜读数：ledger 末行 verdict=PASS / overall=FAIL 并存是设计；源码 L1718–1724 与 AGENTS 第 7 行互证。无后续挂账：已实测落定。】
   本轮全量 90 门只剩 gate_run_freshness 一红。我上轮定性「诚实的红、解法是给一次干净基线」时，把
   「它到底能不能自愈」留成了悬念；本轮为闭合悬念去读 run_gates.py L1718–1724，确认台账是双口径：

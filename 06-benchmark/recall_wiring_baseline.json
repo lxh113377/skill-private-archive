@@ -1,13 +1,12 @@
 {
- "schema": "recall-wiring-baseline-v3",
+ "schema": "recall-wiring-baseline-v4",
  "known_uncallable": [
   "win-toolchain-pitfalls::CF/GitHub 免费额度读数与自动化链静默失败（R805 §9.16 / R810 §9.17 在 references）|探针=Cloudflare/wrangler/GitHub",
   "win-toolchain-pitfalls::工具链静默失败速查（description 原词，实测仅排第 2/未进前列 ⇒ 区分度不足）|路由真值未召回 rank=None top1=scope-creep-detector",
-  "task:D1 查额度|期望=win-toolchain-pitfalls 实测 top1=wps-knowledgebase（任务语句召不回承载件）",
-  "task:R2 开桶|期望=chaoshi-web-deploy 实测 top1=libreoffice-headless-win（任务语句召不回承载件）",
-  "task:Workers 调用量|期望=win-toolchain-pitfalls 实测 top1=chaoshi-image-optimization（任务语句召不回承载件）",
-  "task:Turnstile|期望=chaoshi-web-deploy 实测 top1=codebuddy-chat-web（任务语句召不回承载件）",
-  "task:Actions 分钟|期望=ci-pipeline-debugging 实测 top1=chaoshi-web-deploy（任务语句召不回承载件）"
+  "task:R2 开桶|期望=chaoshi-image-optimization 实测 top1=libreoffice-headless-win（任务语句召不回承载件）",
+  "task:D1 查额度|期望=A-memory-start 实测 top1=wps-knowledgebase（任务语句召不回承载件）",
+  "task:Workers 调用量|期望=A-memory-start 实测 top1=chaoshi-image-optimization（任务语句召不回承载件）"
  ],
- "note": "历史不可召回基线（r208 立，r209 按判据自吐字符串回填两条，不手抄格式）。机制根因（只读实测）：eval/direct_map.json 共 273 条 pattern 覆盖 102 个 skill，win-toolchain-pitfalls 有 0 条 ⇒ 召不回的直因是 L0.1 无直连 + BGE 区分度不足；chaoshi-web-deploy 有 10 条故 direct_hit=True 稳过（其召回与窗口无关）。⚠ 诚实标注：r209 首跑打印过一条 [RECALL:HEALED]，那不是修复，是我改了 topic 文案（「免费工具额度」→「免费额度」）导致旧串不匹配 —— 同「键形态不一致」那族坑，已据实回填。补法与删除条件：归属方给 win-toolchain 补 description 关键词 +（焚诀侧）direct_map 加 pattern 后，本条删除；该 SKILL.md 被并行会话 dirty、A-memory-start 在 C25 注入五件内且已超硬顶 +1453 ⇒ 不代做（R269）。（r210 扩第三层「任务召回率」：名册真实任务语句能否把承载件带进前 3。实测 8 条有名册归属的任务里命中 3（Pages 部署 / CI 红了 走 direct_map 直连，钩子静默推送走 BGE）、落空 5（D1 查额度、R2 开桶、Workers 调用量、Turnstile、Actions 分钟）。UNOWNED 2 条（Resend/Upstash）不判红：名册有工具但无任何 skill 承载，属「知识缺口」而非「召回缺口」，另走 defect 面。）（r210 扩第三层「任务召回率」：名册真实任务语句能否把承载件带进前 3。实测 8 条有名册归属的任务里命中 3（Pages 部署 / CI 红了 走 direct_map 直连，钩子静默推送走 BGE）、落空 5（D1 查额度、R2 开桶、Workers 调用量、Turnstile、Actions 分钟）。UNOWNED 2 条（Resend/Upstash）不判红：名册有工具但无任何 skill 承载，属「知识缺口」而非「召回缺口」，另走 defect 面。）"
+ "note": "历史不可召回基线（r208 立，r209 按判据自吐字符串回填两条，不手抄格式）。机制根因（只读实测）：eval/direct_map.json 共 273 条 pattern 覆盖 102 个 skill，win-toolchain-pitfalls 有 0 条 ⇒ 召不回的直因是 L0.1 无直连 + BGE 区分度不足；chaoshi-web-deploy 有 10 条故 direct_hit=True 稳过（其召回与窗口无关）。⚠ 诚实标注：r209 首跑打印过一条 [RECALL:HEALED]，那不是修复，是我改了 topic 文案（「免费工具额度」→「免费额度」）导致旧串不匹配 —— 同「键形态不一致」那族坑，已据实回填。补法与删除条件：归属方给 win-toolchain 补 description 关键词 +（焚诀侧）direct_map 加 pattern 后，本条删除；该 SKILL.md 被并行会话 dirty、A-memory-start 在 C25 注入五件内且已超硬顶 +1453 ⇒ 不代做（R269）。（r210 扩第三层「任务召回率」：名册真实任务语句能否把承载件带进前 3。实测 8 条有名册归属的任务里命中 3（Pages 部署 / CI 红了 走 direct_map 直连，钩子静默推送走 BGE）、落空 5（D1 查额度、R2 开桶、Workers 调用量、Turnstile、Actions 分钟）。UNOWNED 2 条（Resend/Upstash）不判红：名册有工具但无任何 skill 承载，属「知识缺口」而非「召回缺口」，另走 defect 面。）（r210 扩第三层「任务召回率」：名册真实任务语句能否把承载件带进前 3。实测 8 条有名册归属的任务里命中 3（Pages 部署 / CI 红了 走 direct_map 直连，钩子静默推送走 BGE）、落空 5（D1 查额度、R2 开桶、Workers 调用量、Turnstile、Actions 分钟）。UNOWNED 2 条（Resend/Upstash）不判红：名册有工具但无任何 skill 承载，属「知识缺口」而非「召回缺口」，另走 defect 面。）",
+ "note_r211": "r211 据实重算：want 按【全根声称面】重建后，旧 5 条 task 串作废（不是召回变好，是我改分母）。本仓第 88 门新增 [RECALL:RELABEL] 判别（比基线串里的 期望=<want> 与名册当前 want），防止改 want 被当成 HEALED 收掉。保留的非 task 条目 = 2 条。"
 }

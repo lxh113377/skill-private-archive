@@ -108,6 +108,11 @@ def main(argv=None):
         names = [c["name"] for c in cands[:3]]
         if not want:
             outcome = "UNOWNED"
+        elif item.get("expect") == "disputed":
+            # r211：want 本身存疑（如「Turnstile 已按用户要求移除」，只留事实记录、非接入
+            # 教程）⇒ 不判召回，但仍记 top1/top3 供观察。此前我只在名册写了 expect 字段、
+            # 两处都不读 = 「写了没人读」的装饰，正是第 88 门立起来要防的那族。
+            outcome = "DISPUTED"
         elif dh and top1 == want:
             outcome = "HIT_DIRECT"
         elif want in names:
@@ -119,7 +124,7 @@ def main(argv=None):
                       "elapsed_s": round(time.time() - t0, 1)})
         print("  [task] %-16s want=%-24s top1=%-26s => %s" % (
               str(item.get("task"))[:16], (want or "-")[:24], str(top1)[:26], outcome))
-    judged = [x for x in tasks if x["want"]]
+    judged = [x for x in tasks if x["want"] and x["outcome"] != "DISPUTED"]
     hits = sum(1 for x in judged if x["outcome"] in ("HIT", "HIT_DIRECT"))
     doc = {"schema": "route-truth-v2", "readonly": True, "router": ROUTER,
            "measured_at": time.strftime("%Y-%m-%d %H:%M:%S"), "rows": rows,

@@ -184,6 +184,8 @@ def main(argv=None):
             if tjudged is None:
                 tjudged = len([x for x in tasks if x.get("want")])
             if thits is None:
+                tjudged = len([x for x in tasks if x.get("want")
+                              and x.get("outcome") != "DISPUTED"])
                 thits = sum(1 for x in tasks
                             if x.get("want") and x.get("outcome") in ("HIT", "HIT_DIRECT"))
         except Exception as e2:
@@ -197,7 +199,8 @@ def main(argv=None):
         return 2
     tgaps = ["task:%s|期望=%s 实测 top1=%s（任务语句召不回承载件）"
              % (x.get("task"), x.get("want"), x.get("top1"))
-             for x in tasks if x.get("want") and x.get("outcome") not in ("HIT", "HIT_DIRECT")]
+             for x in tasks if x.get("want") and x.get("outcome")
+                         not in ("HIT", "HIT_DIRECT", "DISPUTED")]
     print("  任务层：有名册归属 %d 条，命中 %d，落空 %d" % (tjudged, thits, len(tgaps)))
     print("=== 实测知识可召回面（r208·本机专属）===")
     print("  召回窗口 = SKILL.md 前 %d 字符（源 eval/build_indexes.py CORPUS_CHARS）" % n)
@@ -210,8 +213,30 @@ def main(argv=None):
     cur = set(gaps) | set(tgaps)      # 任务层也进同一基线口径（三层一套增量判据）
     new_ones = sorted(cur - base)
     known = sorted(cur & base)
+    # r211 防伪修复：HEALED 有两种成因，只有一种是好事。基线串里嵌着当时的「期望=<want>」，
+    # 拿来与名册当前 want 一比即可分辨 ——
+    #   同 want 而 gap 消失  = 召回真变好（HEALED，该收缩基线）
+    #   want 被改过 / 条目被删 = 我改了分母（RELABEL/REMOVED，不是修复，r210 的 5 条假 HEALED 即此）
+    mon_task = {}
+    for x in reg.get("task_probes", []):
+        mon_task["task:" + str(x.get("task"))] = x.get("want", "")
+    mon_probe = set()
+    for x in reg.get("probes", []):
+        mon_probe.add("%s::%s" % (x.get("skill"), x.get("topic")))
     for h in sorted(base - cur):
-        print("  [RECALL:HEALED] %s 已进召回面（基线应同步收缩）" % h)
+        key = h.split("|")[0]
+        why = None
+        if key.startswith("task:") and key in mon_task:
+            m_want = re.search("期望=(\\S+)", h)
+            old_want = m_want.group(1) if m_want else ""
+            if old_want != mon_task[key]:
+                why = "want 改判 %s → %s ⇒ 是分母改动非召回改善" % (old_want, mon_task[key])
+        elif not key.startswith("task:") and key not in mon_probe:
+            why = "该条目已不在名册 ⇒ 条目被删/改名，不是召回改善"
+        if why:
+            print("  [RECALL:RELABEL] %s ⇒ %s" % (h, why))
+        else:
+            print("  [RECALL:HEALED] %s 已进召回面（基线应同步收缩）" % h)
     for k in known:
         print("  [RECALL:KNOWN] %s 历史不可召回（在基线内）" % k)
     for x in new_ones:
