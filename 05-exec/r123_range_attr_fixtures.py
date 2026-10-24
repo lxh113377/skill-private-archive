@@ -175,6 +175,13 @@ def main():
             live_x = parse_measured(_fp)
             if live_x is None:
                 return ("SKIP", "实测值解析失败：%s" % _fp[:60])
+            if live_x <= 0:
+                # r212：归属方（并行会话）给 ratchet 新加「to > from（禁把无变化记成归因）」校验
+                # （HEAD 已含，非在途）。实测 deferred_debt_items=0 时 low=max(0,0-2)=0 与 to=0
+                # 相等 ⇒ 环境里**不存在合法区间**，正控腿无对象可测 —— 这是前置不可满足，
+                # 不是夹具逻辑错，也不是判据坏（无债可归因时本就不该有归因）。记第三态；
+                # 一旦债务重新长出（live>0）本腿自动恢复判定，不会长期静音。
+                return ("SKIP", "实测=%d ⇒ 无 to>from 的合法区间（无债可归因，正控腿无对象）" % live_x)
             doc_x = json.loads(io.open(bl, encoding="utf-8").read())
             # r208 修（变异测试实证的空转守卫）：基准若直接取「模板原值」，一旦该指标的
             # 模板值恰好 == 实测值，全量写入的变异后门把旁观指标刷成实测也**看不出来**
@@ -257,10 +264,12 @@ def finish():
     ok = sum(1 for r in RESULTS if r[0] and "第三态" not in r[2])
     sk = sum(1 for r in RESULTS if "第三态" in r[2])
     total = len(RESULTS)
-    print("夹具合计: %d 项，通过 %d，第三态 %d，失败 %d"
-          % (total, ok, sk, total - ok - sk))
-    if total and ok == total:
-        print("[GATE:fixture-pass]")
+    fails = total - ok - sk
+    print("夹具合计: %d 项，通过 %d，第三态 %d，失败 %d" % (total, ok, sk, fails))
+    # r212 修正 rc 口径：第三态**不算通过**（R247 禁把跳过当绿，故单列计数并打 SKIP 标记），
+    # 但也不该把判据永久染红 —— rc 只由「失败」驱动。SKIP 始终在 stdout 可见，不静默。
+    if fails == 0:
+        print("[GATE:fixture-pass]%s" % ("（含第三态 %d 项，见上）" % sk if sk else ""))
         return 0
     print("[GATE:fixture-fail]")
     return 1
