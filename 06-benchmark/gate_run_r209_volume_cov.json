@@ -1,0 +1,31 @@
+{
+ "schema": "gate-run-v1",
+ "generated_at": "2026-10-25 00:30",
+ "readonly": true,
+ "mode": "full",
+ "gates": [
+  {
+   "id": "volume_coverage_face",
+   "state": "PASS",
+   "rc": 0,
+   "elapsed_ms": 119,
+   "portable": false,
+   "covers": [
+    "磁盘每个 07-next-steps.partN.md 必须被主壳目录以精确项（- **卷N** `partN.md`）或范围项（`a.md…b.md` 区间）覆盖",
+    "四条自证腿（--selftest）：正控未登记卷不被判覆盖 / 反控精确项必识别 / 范围腿含端点不含邻点 / 空目录项 UNVERIFIED",
+    "主壳或 memory/ 不可读、磁盘零分卷 ⇒ rc=2 UNVERIFIED（R247 零输入不得记绿）",
+    "未覆盖卷逐个具名（截断到 12 个但不静默吞）"
+   ],
+   "tail": "[COVERAGE:PASS] 磁盘 180 卷全部被目录覆盖（精确 106 / 范围 74） |   磁盘分卷 180 ｜ 目录项 106 ｜ 精确 106 ｜ 范围 74 ｜ 覆盖 180 ｜ 未覆盖 0"
+  }
+ ],
+ "not_covered": [
+  "受管根四门禁 mirror/noise/evolution/stub —— 属 rule_editor 面，取值：python D:\\global_skills\\A-memory-start\\references\\rule_editor.py gates",
+  "焚诀跨产物真值 C1~C33 —— 取值：python 焚诀\\eval\\verify_truth_consistency.py",
+  "判据变异测试（r19_fixture_mutation_check.py）—— 按需跑，非每轮前置"
+ ],
+ "verdict": "PASS",
+ "verdict_reason": "PASS=1（无 FAIL / 无 UNVERIFIED / 无 MISSING）",
+ "total_ms": 119,
+ "gates_run": 1
+}

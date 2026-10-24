@@ -373,7 +373,19 @@ def username_in_skill_files():
       · 账号名由 `os.environ["USERNAME"]` 派生，**不把用户名再写死一遍**（否则本脚本自己成为新的泄漏点）；
       · 取不到账号名或扫不到文件 ⇒ 返回 None 进 unknown（R247：算不出不等于 0 命中）。
     """
+    # r209 修（一手：本机执行面不注入 USERNAME 环境变量 => 该指标恒 unknown =>
+    # 棘轮与四道读它的夹具门恒红，而红因与「技能里有没有泄漏账号名」毫无关系）。
+    # 修法 = 多一路不依赖 USERNAME 的账号名来源（USERPROFILE/LOGNAME/HOME 兜底），
+    # 判据本身一条没动（仍只降不升、仍要求读取面==枚举面）。兜底取不到才返回 None。
     user = (os.environ.get("USERNAME") or "").strip()
+    if not user:
+        for _k in ("USERPROFILE", "LOGNAME", "HOME"):
+            _v = (os.environ.get(_k) or "").strip().rstrip("\\/")
+            if _v:
+                _base = os.path.basename(_v)
+                if _base and len(_base) >= 3 and not _base.lower().startswith("users"):
+                    user = _base
+                    break
     if not user or len(user) < 3:
         return None
     rx = re.compile(re.escape(user), re.IGNORECASE)
@@ -410,9 +422,13 @@ def _debt_class_state(key):
     但红因写成「件比被量对象旧」这一真实缺陷，而不是伪造出一条并不存在的债务增长。
     """
     art = _newest_artifact(BENCH / "debt_aging_r*.json")
+    note_key = "%s·取值面" % _DEBT_STATE_TO_METRIC.get(key, key)
     if art is None:
+        # r209 落地 R191-2 剩余处方：判据报「指标缺失」时，红因必须点名是
+        # 「选不到件」还是「件不可信」—— 两者处方完全不同（前者重跑生成、后者换件/改口径），
+        # 静默 None 会让下一轮把「源件被选老」误读成「债务真的在涨」。
+        FACE_NOTES[note_key] = (False, "debt_aging_r*.json 零命中 ⇒ 选不到件（重跑 r38_debt_aging 生成）")
         return None
-    note_key = "%s·相对新鲜" % _DEBT_STATE_TO_METRIC.get(key, key)
     ok, why = _debt_artifact_fresh(art)
     if not ok:
         FACE_NOTES[note_key] = (False, why)
@@ -421,17 +437,23 @@ def _debt_class_state(key):
     try:
         with io_open(art) as f:
             d = json.load(f)
-    except (OSError, ValueError):
+    except (OSError, ValueError) as exc:
+        FACE_NOTES[note_key] = (False, "件不可读 %s: %r ⇒ 源件损坏，重生而非改阈值" % (art.name, exc))
         return None
     if not isinstance(d, dict):
+        FACE_NOTES[note_key] = (False, "件形态不对（非 dict）%s ⇒ 源件被写坏，重生" % art.name)
         return None
     by, ev = d.get("by_class") or {}, d.get("evidence") or {}
     total = ev.get("open_total")
     if not isinstance(total, int) or isinstance(total, bool):
+        FACE_NOTES[note_key] = (False, "件缺 evidence.open_total ⇒ 自洽门缺分母，重生")
         return None
     if key not in by:
+        FACE_NOTES[note_key] = (False, "件缺 by_class.%s ⇒ 分类面不全，重生" % key)
         return None
     if sum(by.values()) != total:
+        FACE_NOTES[note_key] = (False, "分类和 %d != open_total %d ⇒ 源件不自洽，重生而非改阈值"
+                                % (sum(by.values()), total))
         return None
     return by[key]
 

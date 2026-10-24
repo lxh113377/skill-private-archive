@@ -70,5 +70,9 @@
  "r203_ledger_index.py": {
   "evidence": "06-benchmark/ledger_query_gate_states.json",
   "registered_at": "2026-10-24 22:29"
+ },
+ "r209_route_truth_measure.py": {
+  "evidence": "06-benchmark/route_truth_latest.json",
+  "registered_at": "2026-10-25 00:56"
  }
 }
