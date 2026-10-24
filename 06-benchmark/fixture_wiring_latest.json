@@ -6,7 +6,6 @@
   "r123_deferral_chain_fixtures.py",
   "r200_probe_cost_fixtures.py",
   "r31_run_gates_fixtures.py",
-  "r32_freshness_fixtures.py",
   "r34_onwrite_fixtures.py",
   "r35_tracked_empty_fixtures.py",
   "r67_input_pin_fixtures.py"
@@ -15,7 +14,6 @@
   "r123_deferral_chain_fixtures.py",
   "r200_probe_cost_fixtures.py",
   "r31_run_gates_fixtures.py",
-  "r32_freshness_fixtures.py",
   "r34_onwrite_fixtures.py",
   "r35_tracked_empty_fixtures.py",
   "r67_input_pin_fixtures.py"

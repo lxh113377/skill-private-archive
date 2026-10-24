@@ -456,6 +456,25 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   references/powershell-cli-silent-failures.md」指针 + 版本行；或由归属方自行合并时带上。
   取值：git -C D:/global_skills status --porcelain -- win-toolchain-pitfalls/SKILL.md（非空即未落地）；
   分卷本体已在库：git -C D:/global_skills log --oneline -1 --grep R804。
+- [ ] **R202-3（r202 登记，P1·已落地）** **我用一次 --portable-only（30/78 门）把 CI 的 gate_run_freshness 喂成绿**： 【r202 裁决=执行（当日发现、当日改判据语义、当日挂成第 79 门并收缩孤儿基线 7→6）｜读数：r32_freshness_fixtures 24/24（含 a13~a16 四条新腿）；gate_run_freshness 实跑回到诚实 FAIL 且理由点名「8 条局部跑 mode!=full 已忽略」；第 79 门 freshness_fixtures 单跑 482ms PASS、全量 79 门里 PASS。不设目标轮：自指门已只采信完整面，局部跑无法再冒充。】
+  一手（我造成）：为验证 runner 改动我跑 `run_gates.py --portable-only`，**未带 --no-ledger** ⇒
+  往同一本台账追加 verdict=PASS；而 r32_gate_freshness.judge() 取 max(local) 不筛 mode ⇒ 只覆盖
+  30/78 门的局部结论被当成「最近一次本机门禁」，CI run 425 当场 success（本机实为 5 门红）。
+  本门是自指门：它存在的唯一理由就是从 CI 反向盯「人还在不在本机完整跑门禁」，而它读的台账
+  正是它自己所在的 runner 写的 —— 一个不筛 mode 的 max() 让「跑一次局部」即可伪造全局通过。
+  修 judge 语义（不改我上次的调用）：只采信 mode==full 的本机记录（portable-only 按定义跳过
+  全部不可移植门，其 PASS 不能证明任何本机专属门被执行过）；缺 mode 的历史行按 full 采信（向后
+  兼容）；被忽略的局部跑若晚于采信行则在理由里显式提示（可见性优先于静默）。实跑复验：
+  gate_run_freshness 回到诚实 FAIL，理由含「8 条局部跑 mode!=full 已忽略」。
+  取证中我自己三次同型错（同形：不查权威面、按印象构造）：① 猜判定函数名四个全错（真名 judge，
+  AST 一列即得）；② 非贪婪正则抓 src.replace 锚被嵌套括号截断，把两条好变异误报成锚失配；
+  ③ 夹具里 d(0,2) 传两参 + str(now) 造 ts（空格分隔）落到「ts 不可解析」，被我误读成判据不兼容。
+  落地：r32_freshness_fixtures 加 a13~a16 四条腿（24/24 全过），并把它从孤儿夹具挂成第 79 门
+  （实测 482ms PASS，portable=True：层 b 只跑判据本体不跑 run_gates 全量 ⇒ 无递归）；孤儿基线
+  随之 7→6，证明第 78 门的基线真能收缩、不是一次性快照。
+  元教训：凡「读自己写的东西」的自指判据，必须校验读到的是不是完整面。上轮第 76 门管「每轮
+  花多少外部调用」，本轮发现同族还有「每轮到底跑了几门」—— 局部观测不能冒充全局结论。
+  取值：python 05-exec/r32_gate_freshness.py --json <件>；python 05-exec/r32_freshness_fixtures.py。
 - [ ] **R202-2（r202 登记，P1·已落地）** **常驻文件 ≠ 会被执行：我上轮写的 19 腿夹具和 r31 都是没人调用的孤儿**： 【r202 裁决=执行（当日发现、当日接成第 78 门并 portable 化）｜读数：51 夹具 / 覆盖 44 / 孤儿 7 全在基线内、无新增 ⇒ rc=0；--portable-only 实测新门 PASS 151ms。不设目标轮：新增孤儿夹具即 FAIL，历史 7 条由基线追踪、挂接一个删一个（r31 因层 b 递归限制需先拆分再挂，件内已注明）。】
   一手：本轮我把重试取证升级为常驻夹具 r31，写完顺手核「谁调用 r31」—— 没有任何东西调用它：
   不在门表、不被任何门件引用、pre-commit 也不跑。扩大取证后共 7 个同型孤儿夹具（含我上轮

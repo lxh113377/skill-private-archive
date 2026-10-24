@@ -125,6 +125,29 @@ def main():
        "meta_ids" in src_rg and '"overall"' in src_rg and "rc_sub" in src_rg, "未见实质门分离逻辑")
     ck("a12 新鲜度门被显式标为 meta（漏标即等于把元判据写进事实台账）",
        any(g.get("meta") and g["id"] == "gate_run_freshness" for g in rg.GATES))
+    # ---- 层 a：局部跑不得冒充全量（r202 一手，我本轮亲手撞出来）----
+    # --portable-only 按定义跳过了全部不可移植门（实测 30 跑 / 48 跳），它的 PASS 不能证明
+    # 任何本机专属门被执行过。旧实现 max(local) 不筛 mode ⇒ 我用一次 --portable-only 就把
+    # CI 侧的 gate_run_freshness 喂成绿，而本机当时还有 5 门红。这与本门自己防的是同一件事：
+    # 局部面被当成全局面。缺 mode 字段的历史行按 full 处理（早于该字段引入）。
+    # 全量 FAIL 放 1 天前、局部 PASS 放今日 ⇒ 正是「局部跑更晚但不可采信」的真实形态
+    p_mix = write_ledger(tmp, [row(d(1), verdict="FAIL", mode="full"),
+                               row(d(0), verdict="PASS", mode="portable-only")])
+    s13, why13 = gf.judge(gf.load_ledger(p_mix), now=now, max_days=7)[:2]
+    ck("a13 全量 FAIL 后跟局部 PASS ⇒ 仍判 FAIL（局部跑不得覆盖全量结论）",
+       s13 == "FAIL" and "verdict=FAIL" in str(why13), str(why13)[:120])
+    ck("a14 被忽略的局部跑必须可见（理由里点名 mode!=full 已忽略，禁静默）",
+       "局部跑" in str(why13) and "忽略" in str(why13), str(why13)[:120])
+    p_only = write_ledger(tmp, [row(d(0), verdict="PASS", mode="portable-only")])
+    s15, why15 = gf.judge(gf.load_ledger(p_only), now=now, max_days=7)[:2]
+    ck("a15 本机记录全为局部跑 ⇒ FAIL（不可移植门从未被完整执行）",
+       s15 == "FAIL" and "局部跑" in str(why15), str(why15)[:120])
+    # ts 必须用 d() 造（TS_FMT 要 T 分隔；我上一版写 str(now) 变空格分隔，
+    # 落到「ts 不可解析」分支返回 UNVERIFIED —— 那是我的构造错，不是判据错）
+    p_nomo = write_ledger(tmp, [{"ts": d(0), "origin": "local", "verdict": "PASS"}])
+    s16, _w16 = gf.judge(gf.load_ledger(p_nomo), now=now, max_days=7)[:2]
+    ck("a16 缺 mode 字段的历史行按 full 采信（向后兼容，不把旧台账判成局部跑）",
+       s16 == "PASS", str(s16))
 
     # ---- 层 b：真机接线（写台账的是 runner 自己）----
     rg = load(RUNGATES, "rg_under_test")

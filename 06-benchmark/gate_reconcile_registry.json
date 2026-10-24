@@ -78,9 +78,11 @@
    "struct_recount_face",
    "pages_http_face",
    "probe_cost_face",
-   "r2_enable_face"
+   "r2_enable_face",
+   "fixture_wiring_face",
+   "freshness_fixtures"
   ],
-  "_snapshot_at": "2026-10-24 08:15",
+  "_snapshot_at": "2026-10-24 08:53",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
@@ -228,6 +230,10 @@
   "fixture_wiring_face": {
    "evidence": "05-exec/r202_fixture_wiring_face.py",
    "at": "2026-10-24 08:37"
+  },
+  "freshness_fixtures": {
+   "evidence": "05-exec/r32_freshness_fixtures.py",
+   "at": "2026-10-24 08:51"
   }
  }
 }

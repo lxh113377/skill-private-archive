@@ -1230,6 +1230,24 @@ GATES = [
                 "某行为被锁住（本轮 M3 空锁是同一机理的变异版）。拦增量而非把历史 7 条"
                 "判成永久红，是为了让「新写个没人跑的夹具」这个信号不被既有债淹没。"),
     },
+    {
+        # r202：新鲜度判据的夹具挂接（第 79 门）—— 把孤儿夹具 r32_freshness_fixtures 接上执行路径
+        "id": "freshness_fixtures",
+        "script": "r32_freshness_fixtures.py",
+        "argv": [],
+        "pass_token": "[GATE:fixture-pass]",
+        "portable": True,   # 层 b 只 subprocess 跑判据本体，不跑 run_gates 全量 ⇒ 无递归
+        "covers": [
+            "a13~a16 四条新腿：局部跑（mode!=full）不得覆盖全量结论、被忽略须可见",
+            "全为局部跑 ⇒ FAIL（不可移植门从未被完整执行）",
+            "缺 mode 字段的历史行按 full 采信（向后兼容旧台账）",
+            "层 c 变异对照：判据被改坏时夹具必须变红"],
+        "why": ("r202 一手：我用一次 --portable-only（30 跑/48 跳）把 CI 的 gate_run_freshness "
+                "喂成绿，而本机当时还有 5 门红 —— 根因是 judge() 取 max(local) 不筛 mode，"
+                "局部面被当成全局面，恰是本门自己防的事。修 judge 之后必须把取证挂上执行路径："
+                "本轮第 78 门刚查出 7 个孤儿夹具，r32_freshness_fixtures 就是其一（文件在、"
+                "24 腿全过，但没有任何东西调用它）。挂上它同时验证基线棘轮真能收缩。"),
+    },
 ]
 
 # 显式声明本 runner **不覆盖**的面，防止聚合绿被读成「所有门禁都绿」（R20-2）。
