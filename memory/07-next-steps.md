@@ -502,6 +502,17 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   修法（下轮独立一件事，二选一，禁顺手改）：① 把池缓存迁到入库面（如 `06-benchmark/pool_cache/`）并接受 ~0.9MB 体积代价 —— 须先量 `family_bytes_max=491,520` 与 `repo_max=10,485,760` 两条既有预算（合计 0.87MB 逼近族上限，须按族分批或改件形态）；② 保留 _temp 但在巡检第 ⑥ 段前加「离线池缺失 ⇒ 具名提示联网重跑一次并说明这不是缺陷」的第三态，把它与真故障分开（对位 R211-3 的「设计内红 vs 真故障红」同一处理取向）。
   不本轮夹带的理由：本轮已含五处改动（生成器 / 消费方两形态 / 扩面 / 盘点四写死面 / 机器腿可指），再加 0.9MB 入库决策会让一次提交干两件事且体积代价需单独裁。
   取值：`python -c` 数 _temp/r114_search_cache 下 q 前缀件与合计字节；`git check-ignore -v _temp`；`python 05-exec/r113_quarterly_audit.py --quarter 2026Q4 --offline` 的 replacement_scan 行。
+
+- [ ] **R213-3（r213 登记，P1·已落地一处 / 留一处）** **同一把刀的第二下：执行面不注入 Windows 环境变量，本仓把它误记成「平台/凭据缺口」—— 实测凭据一直在盘上**：
+  一手（本轮，接着 R211 的 username 根因往下查）：本执行面 `APPDATA / USERNAME / LOCALAPPDATA / HOME` **四个全部缺失**，只有 `USERPROFILE` 在。
+  `r199_workers_face.py` 的 `CRED_CANDS` 用 `os.environ.get("APPDATA", "")` 拼路径 ⇒ 拼出的是**相对路径** ⇒ 两个候选 `isfile()` 恒 False ⇒ `oauth_token()` 返空 ⇒
+  `workers_quota_face / pages_http_face / r2_enable_face` **三门同时 UNVERIFIED**，而三门共用这一个函数 = 单点根因，不是三次独立失败。
+  我上一轮把这三道门写进报告 §9 时判成「本机 wrangler OAuth 取不到，属环境/凭据缺口」—— **该结论已被本轮实测证伪**：凭据文件一直在盘上，取不到的是我拼路径用的那个变量。
+  修法（最小、单一事实源）：`_win_appdata()` 先认 APPDATA，缺失时用标准库 `os.path.expanduser("~")` 推出 `AppData/Roaming`（**不新增任何凭据来源、不放宽判据、不硬编用户名**）；取不到仍返空走 UNVERIFIED。
+  有牙验证（零网络）：`python -c` 调 `r199_workers_face.oauth_token()` ⇒ 修复前空串、修复后解析成功且路径为绝对路径（token 93 字），同一次调用里 `APPDATA in os.environ` 仍为 False ⇒ 证明生效点是兜底分支而非环境变化。
+  修后实测三门：`workers_quota_face` 转 HTTP 429（限流，真外部条件）、`pages_http_face` 同 429、`r2_enable_face` HTTP 403 code 9109（活性对照非 200，按判据不得据此断言 R2）⇒ **凭据层已通**，剩下的红是 CF 免费分析预算被我自己反复跑门耗尽（本轮为验证连打多次），非输入面缺陷。归因分开写，禁把 429 再记成「取不到凭据」。
+  同族第三处（本轮扫全 05-exec 的 environ 派生路径，共 3 处命中）：`r35_username_context_audit.py` 第 70 行同类。定性要说准 —— 它**不是假绿**：该件对取不到账号名直接返「不得输出 0 处可清（R247）」= fail-closed，且未挂 GATES 表（人工审计件）⇒ 影响是「这类审计在该执行面跑不出结果」，不是账面说谎。处置 = 登记不夹带改（本轮已含 r199 一处修复与报告校正，避免一次提交干两件事）。
+  取值：三门 `python 05-exec/run_gates.py --gate workers_quota_face --no-ledger` 等；零网络凭据证明 `python -c` 调 `oauth_token()` 打印 path 与 isabs；同族扫描 = 在 05-exec 内正则匹配 `os.environ.get("...")` 的六个 Windows 变量名。
 - [ ] **R212-4（r212 登记，P1·到期 r215）** **savepoint 被噪声门拒：三条 VIOL 分两类处置（两条我已按 R269 走 gitignore 豁免，一条是 Git 跟踪件 ⇒ 按 X-9 不迁，只登记）**： 【取值：`python D:/global_skills/A-project-handoff/scripts/handoff.py noise <本仓根>` ⇒ violation:3；明细与两条实测证据见下】
   ① `undefined/`（79 项 pycache_verify/** 树，mtime 2026-10-21 22:33，早本会话 3 天）与 ② `%SystemDrive%/`（4 项 1B 空壳链，mtime 10-24 23:33）
   ⇒ 都是**工具产物不是项目内容**：前者 = 某次跑 python 时 TEMP 未解析 ⇒ `PYTHONPYCACHEPREFIX` 落成相对路径；后者 = cmd 风格变量写进 PowerShell 未展开。

@@ -16,9 +16,33 @@ import sys
 import urllib.error
 import urllib.request
 
+def _win_appdata():
+    """APPDATA, derived from the user home when the env var is not injected.
+
+    r211 fix (same root cause as username_in_skill_files this round): some execution
+    surfaces do not inject APPDATA/USERNAME/LOCALAPPDATA/HOME at all. The old code then
+    joined "" with the rest, producing a RELATIVE path -> isfile() false for both
+    candidates -> this function's own message "两个候选路径都取不到" -> three CF quota
+    gates UNVERIFIED at once, while the credential file is on disk the whole time.
+    A missing env var is an input-surface defect, not a platform/credential gap, so it
+    must not be booked as one. Home comes from the standard library (never hardcoded),
+    and nothing new is trusted: same file, same field, same single source.
+    """
+    ad = (os.environ.get("APPDATA") or "").strip()
+    if ad and os.path.isabs(ad):
+        return ad
+    home = os.path.expanduser("~")
+    if home and os.path.isabs(home):
+        cand = os.path.join(home, "AppData", "Roaming")
+        if os.path.isdir(cand):
+            return cand
+    return ad
+
+
+_APPDATA = _win_appdata()
 CRED_CANDS = [
-    os.path.join(os.environ.get("APPDATA", ""), "xdg.config", ".wrangler", "config", "default.toml"),
-    os.path.join(os.environ.get("APPDATA", ""), "xdg-config", ".wrangler", "config", "default.toml"),
+    os.path.join(_APPDATA, "xdg.config", ".wrangler", "config", "default.toml"),
+    os.path.join(_APPDATA, "xdg-config", ".wrangler", "config", "default.toml"),
 ]
 ACCOUNT_TAG = "04b1466b2606b678a332fe6f26aa87ec"
 GRAPHQL = "https://api.cloudflare.com/client/v4/graphql"
