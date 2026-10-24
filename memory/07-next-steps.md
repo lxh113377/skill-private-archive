@@ -456,6 +456,25 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   references/powershell-cli-silent-failures.md」指针 + 版本行；或由归属方自行合并时带上。
   取值：git -C D:/global_skills status --porcelain -- win-toolchain-pitfalls/SKILL.md（非空即未落地）；
   分卷本体已在库：git -C D:/global_skills log --oneline -1 --grep R804。
+- [ ] **R210-3（r210 登记，P1·已落地）** **自愈链闭合，但更该记的是：答案早在本仓排障速查第 7 行，我却去读源码**： 【r210 裁决=执行（按排障速查第 7 行的处置再跑一次，实测 gate_run_freshness rc=0 ⇒ 自愈链闭合；同时自抓「已知机制不查表、重新怀疑一遍」）｜读数：ledger 末行 verdict=PASS / overall=FAIL 并存是设计；源码 L1718–1724 与 AGENTS 第 7 行互证。无后续挂账：已实测落定。】
+  本轮全量 90 门只剩 gate_run_freshness 一红。我上轮定性「诚实的红、解法是给一次干净基线」时，把
+  「它到底能不能自愈」留成了悬念；本轮为闭合悬念去读 run_gates.py L1718–1724，确认台账是双口径：
+  verdict 只聚合**实质门**（排除 meta=True 的新鲜度门），overall 如实记全量结论供审计，注释原文
+  「若把它的引导期红写进 verdict，就会出现一次空台账 ⇒ 永久 FAIL 的自锁（r32 实测复现过）」。
+  实测闭合：本轮 ledger 末行 verdict=PASS（PASS=89 无 FAIL/UNVERIFIED/MISSING）而 overall=FAIL（含
+  r32 自身）⇒ 单跑 gate_run_freshness rc=0 PASS，自愈链成立、我上轮那句「给一次干净基线」达成。
+  ⚠ 自抓（本条重点）：这套机制**本仓 memory/AGENTS.md 排障速查第 7 行早就写了** —— 报错特征
+  「[GATES:FAIL] 只有 gate_run_freshness 一道红」→ 根因「元门读上一行台账，本轮修完仍延迟一轮
+  （设计如此）」→ 处置「再跑一次即自愈；别为消除延迟去改台账」。我上轮定性时没查这张表，于是
+  把一条已归档的已知机制重新当成未决问题，还留了悬念给下一轮。同族教训是 X-18 的反面：不止
+  「写完判据不当场真跑」会返工，**「已知机制不查表、重新怀疑一遍」同样返工**，而且更隐蔽，
+  因为读源码看起来像在做严谨取证。
+  处置（不改判据、不改台账，按第 7 行执行）：本轮已按「再跑一次」验证 rc=0；今后凡只此一门红，
+  先查排障速查第 7 行再决定要不要动源码。
+  另记一次手滑：比对临时探测件与正式真值件时连续拿错字段两次（先按 task 标签比、再拿该件根本没
+  存的 query 字段比）。教训：比对两个产物前先读字段名。临时件已按红线4 迁 _trash（禁删）。
+  取值：memory/AGENTS.md 排障速查第 7 行；06-benchmark/gate_runs.jsonl 末两行（verdict 与 overall 并存）；
+  python 05-exec/run_gates.py --gate gate_run_freshness --no-ledger（rc=0）；run_gates.py L1718–1724。
 - [ ] **R210-2（r210 登记，P1·已落地）** **第 87 门 P4 拿「别人那次推送失败」判「我这次提交」—— 留痕末行不谈论当前提交，判据却当成它在说话**： 【r210 裁决=执行（同轮 P4 三态化 + 双向夹具入表 + 门表对账登记）｜读数：夹具 5/5、变异 m1 复现旧假阳性、gate_table_reconcile 与 reconcile_admission 复跑 PASS、账龄 OVERDUE 0。】
   一手（判据没放过我，但这次是我自己的门错）：并行会话提交 c3c56a5 后钩子 push rc=128（连不上 github:443），
   留痕记了那次失败；随后带代理手工推成功 —— **钩子留痕只记钩子那一次，不补记手工推送**。旧 P4「末行 rc≠0 ⇒ 推送
