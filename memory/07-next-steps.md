@@ -456,6 +456,25 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   references/powershell-cli-silent-failures.md」指针 + 版本行；或由归属方自行合并时带上。
   取值：git -C D:/global_skills status --porcelain -- win-toolchain-pitfalls/SKILL.md（非空即未落地）；
   分卷本体已在库：git -C D:/global_skills log --oneline -1 --grep R804。
+- [ ] **R209-4（r209 登记，P0·已落地）** **我自己把推送链搞断了两轮，判据如实抓到；根因是我把「提交后立刻推 tag」当串行流程**： 【r209 裁决=执行（定责到自己头上：收尾顺序并发抢锁；写进 skill 成 R812/§9.17 第3条，并同步镜像）｜读数：手工 push origin main rc=0 证明非网络问题；r205 当场 FAIL P4 未放过我；留痕 15 行（13×rc=0、2×rc=128，历史不回改 R241）。收尾顺序改为串行：先读 autopush.log 末行 rc=0 再推 tag。】
+  r208 批与 r209c 批各出现一次 .git/autopush.log 末行 rc=128：症状是 remote main 落后一个提交、
+  tag 却已推上去。第一反应容易读成「网络/代理坏了」，实测不是 —— 手工 push origin main 立即 rc=0
+  推成功（0be26dc..c3c5e 那次），说明远端与凭据都好。真因：post-commit 钩子在提交瞬间起 push，
+  我紧接着又发 push -f origin <tag>（以及本仓所有 push 走同一 GitHub 仓库接收锁）⇒ 两条 push 并发，
+  钩子那条被顶回 128。同族错第三次是「按印象构造」，这次是同族的**流程**版：我把「钩子会自己推」
+  当成异步可忽略的事，实际它需要我先确认结果再发下一条。
+  判据表现（这次不夸自己）：r205_push_autopush_face 当场 [AUTOPUSH:FAIL] P4 末次推送 rc=128
+  「推送链真的断了」，且我上轮加的 P3 留痕可解析（15 行）也在。它没放过我 —— 这正是 r205 那面
+  该干的事，也是 r208 批那次留痕 rc=128 当时能被发现的原因。
+  正解（写进 skill 成 R812，§9.17 第 3 条）：收尾**串行** —— commit 后先读 autopush.log 末行拿到
+  本次 head 的 rc，确认 rc=0 再推 tag；要手工补推也只补那一次，不在钩子还在跑时叠第二条 push。
+  配套：判据必须读**末行 rc**而不是「有没有留痕」（本仓已是前者）。留痕不回改（历史不可改写，
+  R241），rc=0 由下一次提交自然写出。
+  元教训：**「自动」不等于「不用等它」。** 我把钩子当 fire-and-forget，于是自己发的第二条 push 变成
+  对它的干扰；凡有常驻自动动作，收尾顺序必须包含「读它的结果」。这条对 GitHub Free 的自动推送链
+  是通用的，任何用钩子自动推的仓库都会踩。
+  取值：type .git/autopush.log（15 行，rc=0 占 13、rc=128 占 2）；python 05-exec/r205_push_autopush_face.py
+  （FAIL P4）；git log -1 --format=%s（R812 落地）。
 - [ ] **R209-3（r209 登记，P1·已落地）** **召回机制读数（direct_map 才是主入口）+ 两条残留红的定性 + 同族错第三次**： 【r209 裁决=执行（召回机制读数落 §61.1 + 两条残留红定性 + 同族错第三次记成选择规则）｜读数：direct_map 273/102，win-toolchain 0 pattern（rank=None/2）、chaoshi 10（direct_hit=True）；cf_deploy_face 是外部读数暂不可得（URLError，72s 真跑），gate_run_freshness 经读实现确认诚实（有意保留上轮 FAIL，解法是给干净基线非调口径）。无后续挂账：direct_map 补 pattern 属焚诀侧已写进 R811；干净基线留下一轮 cf 恢复时自然达成。】
   目标本体侧（§61.1）：取 eval/direct_map.json 本体聚合（273 条 pattern / 102 skill），把「知识写进 skill」
   拆成三个可各不一致的层 —— 写下来（references 正文）/ 有指针（第 86 门）/ 可召回（direct_map pattern +

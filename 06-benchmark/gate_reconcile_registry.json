@@ -92,7 +92,7 @@
    "recall_face",
    "volume_coverage_face"
   ],
-  "_snapshot_at": "2026-10-25 01:20",
+  "_snapshot_at": "2026-10-25 01:40",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
