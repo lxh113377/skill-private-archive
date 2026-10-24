@@ -1263,6 +1263,25 @@ def _unlock(fd, lock):
     except Exception:
         pass
 
+QUOTA_SIGNALS = ("rate limiter", "budget depleted", "http 429", "429",
+                 "http 403", "403", "10042", "10000", "insufficient",
+                 "quota", "too many requests")
+TRANSIENT_OK = ("ssl", "eof", "timed out", "timeout", "unreachable",
+                "connection", "reset by peer", "temporarily unavailable")
+
+
+def _quota_limited(tail):
+    """配额/授权类确定性拒绝 ⇒ True（重跑无益且烧预算）；网络瞬态 ⇒ False（照旧重跑）。
+
+    两类信号同时出现时按**瞬态**处理（保守：宁可多跑一次，也不要把真的读盘竞态误判为
+    确定性故障而失去 R125 的 FLAKY 识别）。
+    """
+    low = (tail or "").lower()
+    if any(k in low for k in TRANSIENT_OK):
+        return False
+    return any(k in low for k in QUOTA_SIGNALS)
+
+
 def _exec_once(gate, timeout):
     """执行单门一次，返回 (state, rc, elapsed_ms, tail)。供 run_gate 与其瞬态重跑共用。"""
     path = os.path.join(HERE, gate["script"])
@@ -1309,7 +1328,14 @@ def run_gate(gate, timeout):
     else:
         state = "PASS"
     tail = " | ".join(l for l in out.strip().splitlines() if l.strip())[-200:]
-    if state != "PASS" and not gate.get("no_retry"):
+    # r201 修放大回路：本轮我反复打 Cloudflare GraphQL 建门，把配额耗光，结果
+    # workers_quota_face / turnstile_face / cf_deploy_face 三门同轮 UNVERIFIED。而这里
+    # 「非 PASS 一律退避 3 秒重跑一次」对**配额类**信号是有害的：CF 明写「5 分钟后再试」，
+    # 3 秒后的重跑必然再失败，既白烧一份配额，又把「一次探测」放大成「两次」——判据饿死
+    # 自己的回路正是第 76 门要防的事，而它当时还没防住 runner 这一层。
+    # 做法：确定性拒绝（限流/配额/授权/服务未开通）不重跑；网络瞬态（EOF/超时/不可达）照旧
+    # 重跑一次（R125 的竞态识别不放宽）。判定本身不变：两种情况取不到都记 UNVERIFIED 非绿。
+    if state != "PASS" and not gate.get("no_retry") and not _quota_limited(tail):
         # R125 瞬态识别（不放宽判据）：本仓有并行会话，38 门跑几分钟期间别人在写盘，
         # 于是「单独跑全绿、runner 里红」这类瞬态反复出现（r123/r124/r125 各撞一轮，
         # 排查成本远高于一次重跑）。做法：FAIL 时原样重跑该门一次 ——
