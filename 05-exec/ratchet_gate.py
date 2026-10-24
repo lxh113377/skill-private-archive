@@ -788,7 +788,17 @@ def main():
         doc = dict(bl)
         ledger = list(doc.get("attributed_raises") or [])
         ledger.append(rec)
-        doc["metrics"], doc["attributed_raises"] = metrics, ledger
+        # r201 修后门（我本轮亲自踩到，代价是给出过一次假绿结论）：原写法把**全部实测值**
+        # 一次性写进基线，而上面的校验只针对被点名的那一个指标。后果：我只归因
+        # deferred_debt_items 1→2，overdue_debt_items 的基线却被静默从 0 抬到 3 —— 无留账、
+        # 无告警，ratchet 当场「转绿」。这正是 r123 件头自己警告过的形态：新通道天然是
+        # 基线上调的后门。现只改被点名的指标，其余保留基线原值；别的指标要同步上调必须
+        # 各自再走一次带理由的归因（一笔一证，不许搭车）。
+        # 注：L817 的 --raise-baseline 分支不受此改影响 —— 它由 attribute_raise 对全部
+        # 增长项逐一校验归因，本就是「一笔一证」语义，不是后门。
+        new_metrics = dict(bl.get("metrics") or {})
+        new_metrics[m] = metrics.get(m)
+        doc["metrics"], doc["attributed_raises"] = new_metrics, ledger
         _atomic_write_json(Path(args.baseline), doc)
         print("[RATCHET:RANGE-ATTRIBUTED] %s %d→%d（+%d）由 %s 解释；累计留账 %d 条"
               % (m, args.from_v, args.to_v, rec["delta"], rec["commit"], len(ledger)))

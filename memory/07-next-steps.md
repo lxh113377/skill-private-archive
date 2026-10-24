@@ -372,6 +372,20 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   额外验证：新 portable 门 probe_cost_face 与 struct_recount_face 在 CI 实测 PASS ⇒ 成本台账
   在 CI 也可复核，新增联网门不记账会在 CI 直接红。
   本族七次共同形态：**把手上的信号直接写成结论，不检查信号是否真的取到了**。
+- [ ] **R201-5（r201 登记，P3·看守中）** **跨端 skill 反哺暂缓：注入预算面已超硬顶，此时加字节会加剧 C25 红**： 【r201 裁决=挂账至 r212｜理由：解锁条件是注入面归属方把 union 收回 65536 硬顶内（C25 转绿），那不由我控制 —— 我若此刻把新坑写进注入面任一文件或其入口分卷，只会把已超限的预算推得更远。教训已在报告 §46、台账 R201-4、r38 件内注释与 r49_face_fixtures 8 腿四处本地固化，不丢。到期复算：python D:/global_skills/A-memory-start/references/rule_editor.py gates 读 C25 行。】
+  本轮「凡从文本正则捞出来的数当权威，先问谁会往这文本里写数」这条教训有跨项目价值，
+  常规做法是进 D:/global_skills 或 D:/global_memory 的受管件。但实测 C25-inject-budget 已判红
+  （真实注入五文件 66804B > 硬顶 65536B，+1268B），而 A-memory-start/SKILL.md（16333B）与
+  contract.md（18379B）、behavior_core.md（25665B）都在那五个里 ⇒ 任何一条新坑往这些件或其
+  入口分卷上加字节，都在把已超限的注入面推得更远。
+  决策：本轮不做跨端反哺（不是忘了，是负选择不做）。教训已在三处本地固化，不丢：
+  ① 报告 §46（含反证与 face_round 三例）；② 台账 R201-4 全文；③ r38 件内注释 + r49_face_fixtures
+  8 腿（f4b~f4h）—— 下次任何人改 current_round 都会撞到腿。
+  到期动作：待注入面归属方把 union 收回硬顶内（C25 转绿）后，再把本条以「度量输入面自证」
+  主题补进 win-toolchain-pitfalls 的非注入分卷（如新建 measurement-face-pitfalls.md），
+  并同步 SKILL.md 指针 —— 前提是那文件当时无他人在途未提交改动（R269）。
+  取值：python D:/global_skills/A-memory-start/references/rule_editor.py gates（读 C25 行）；
+  python -c 读 焚诀/eval/truth_constants.py 的 INJECT_BUDGET.files 逐件 os.path.getsize（合计 66804）。
 - [ ] **R201-4（r201 登记，P1·已落地）** **我自己把全仓轮号推进了 5 轮：提交主题写「挂账 r206」被 current_round 当成本轮声明**： 【r201 裁决=执行（当日取证、当日修尺子、当日补 8 腿）｜读数：修复前 current_round=206（被我的提交主题污染），修复后 =201 且与 tag 锚一致；OVERDUE 4→3（我那条回到 DEFERRED 尚余 5 轮）；r49_face_fixtures 52/52 含 f4b 判红 / f4c 不误伤 / f4e~f4h 取号四例。不设目标轮：尺子原点已不可被记账话术挪动，残留风险由 face_round 的领先上限看守。】
   一手（我造成的，不是环境）：r38 的 current_round() 取「git log --format=%s -40 里任意 rNN 的最大
   值」。我在提交主题写「chore(r201c): … 挂账 r206」⇒ 轮号基准从 r201 跳到 r206，后果是**所有挂账

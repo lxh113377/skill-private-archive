@@ -80,7 +80,7 @@
    "probe_cost_face",
    "r2_enable_face"
   ],
-  "_snapshot_at": "2026-10-24 07:25",
+  "_snapshot_at": "2026-10-24 07:44",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"

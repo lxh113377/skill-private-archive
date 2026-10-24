@@ -9,7 +9,7 @@
   "desc_over_cap": 0,
   "username_in_skill_files": 0,
   "overdue_debt_items": 0,
-  "deferred_debt_items": 1,
+  "deferred_debt_items": 2,
   "repeat_debt_items": 0
  },
  "hard_caps": {
@@ -415,6 +415,17 @@
    "commit": "b4ef556,35b8609",
    "path": "(range-attribution)",
    "reason": "r191 一手：inject_union_bytes 增长 +1400B 全部来自 D:/global_memory/core/behavior_core.md（24265->25665B，mtime 10-24 00:00），该件属并行会话在途编辑（本会话未提交过 GM 的 behavior_core.md；gm 侧我的提交为 18fcba2/e159f6f/53793c5/eed641a，均不含该文件）。非本仓 AGENTS.md 增长（6326B 未变）、非 zc 端壳变化（3121B 未变）。处置=经台账留账但不代提交，待归属会话收口。",
+   "kind": "range"
+  },
+  {
+   "metric": "deferred_debt_items",
+   "from_value": 1,
+   "to_value": 2,
+   "delta": 1,
+   "at": "2026-10-24 07:57",
+   "commit": "7a083f0,0506a07",
+   "path": "(range-attribution)",
+   "reason": "r201 本会话登记 R201-5（跨端反哺暂缓，挂账至 r212）使 DEFERRED 1→2；属我造成的合法增长，可复算到上述两笔提交，走区间归因而非 --raise-baseline 抹平",
    "kind": "range"
   }
  ],

@@ -131,10 +131,16 @@ def main():
     # 但 debt 三指标的实测面是账龄件，受「相对新鲜前置」约束（件不得旧于被测卷集）
     # ⇒ 并行会话写卷期间实测恒为 None。此时 t6 必红，而判据行为其实是**正确**的
     # （拒的是预支）。故实测不可读时按第三态 SKIP：不记绿也不记红。
+    # r201 修（本腿脆断的真正根因，比 regex 更深一层）：探测腿原本用 --to=cur+1 去
+    # 「撞一次不符」好从报错里反推实测值。可一旦 cur+1 恰好等于实测（本轮 cur=1、实测=2，
+    # 正是这种），探测腿自己就合法通过了 ⇒ 报错文本不存在 ⇒ 反推路径断裂，live 退回模板值
+    # cur=1，正控腿再用 --to=1 去打实测=2 ⇒ 恒被拒、恒假红。
+    # 与 t2 注释里那条「反例值要与合理实测保持距离」是同一个道理，只是这次踩坑的是正控腿。
+    # 修法：探测腿用一个不可能碰撞的远值（cur+1000），必然被拒，报错里带的就是真实实测值。
     rc_probe, first_probe, _ = run(["--range-attribute", "--metric", M,
-                             "--from", str(int(cur)), "--to", str(int(cur) + 1),
+                             "--from", str(int(cur)), "--to", FAR,
                              "--commits", "probe", "--range-reason", "probe"], bl)
-    measured_readable = ("实测现值不符" not in first_probe)
+    measured_readable = ("实测现值不符" in first_probe)
     reset()
     if not measured_readable:
         ck("t6 正例：合法区间成立且留账递增（kind=range，指标落到 --to）",
@@ -143,8 +149,22 @@ def main():
         # 用**探测腿读到的实时实测值**当 --to（不是模板值 cur）：debt 指标在跑的过程中
         # 可能被并行会话改动，用模板值会让 --to != 实测 ⇒ 正控假红（本轮实测 2 vs 3）。
         import re as _re
-        _m = _re.search(r"实测现值不符[^0-9-]*(-?\d+)", first_probe)
-        live = int(_m.group(1)) if _m else int(cur)
+        # r201 修（本腿脆断的真实原因）：告警原文是「--to 与实测现值不符（1 vs 2）」，
+        # 括号里是 **(--to, 实测)** 两个数。旧 regex 取第一个捕获 ⇒ 抓到的是我自己传的
+        # --to（cur+1），不是实测值；于是 live 恒等于 cur+1，--to 又 == live ⇒ 校验必然
+        # 判「不符」而拒 ⇒ 正控腿假红。现取 vs 后的第二个数（实测），并保留回退。
+        # 括号是全角（本仓告警文案统一用全角括号）：ASCII \\( 匹配不到 ⇒ 会静默走回退，
+        # 而回退抓到的是括号里的**第一个数 = 我传的 --to**，正控腿于是恒假红。
+        # 教训：解析自家文案也要按文案的真实字符写，别按「一般怎么写」写。
+        _m = _re.search(
+            r"实测现值不符[^0-9]*[\(\uff08]\\s*(-?\\d+)\\s+vs\\s+(-?\\d+)\\s*[\\)\uff09]",
+            first_probe)
+        if _m:
+            live = int(_m.group(2))          # 第二个才是实测现值
+        else:
+            # 回退：从文案里抓所有整数，取**最后一个**当实测（--to 在前、实测在后）
+            _nums = [int(x) for x in _re.findall(r"-?\\d+", first_probe)]
+            live = _nums[-1] if _nums else int(cur)
         doc0 = json.loads(io.open(bl, encoding="utf-8").read())
         low = max(0, live - 2)
         doc0["metrics"][M] = low
@@ -160,6 +180,27 @@ def main():
            and len(led) == 1 and led[0].get("kind") == "range"
            and int(doc["metrics"][M]) == tgt,
            (rc, first, len(led), doc.get("metrics", {}).get(M)))
+
+        # t8 搭车守卫（r201 一手）。旧写法有个自己的缺陷，被变异测试抓出来：它把对照
+        # 基准 bystander0 从**已被 t6 跑过的临时基线**里读 —— 变异代码在 t6 那一步就把
+        # 旁观指标刷成实测值了，于是基准本身被污染 ⇒ 守卫恒真、变异漏检。
+        # 现改为：先 reset() 回模板，再从**模板原值**取基准，旁观指标必须原地不动。
+        B = "overdue_debt_items"
+        reset()
+        bystander0 = (tmpl.get("metrics") or {}).get(B)
+        doc_b = json.loads(io.open(bl, encoding="utf-8").read())
+        assert (doc_b.get("metrics") or {}).get(B) == bystander0, "reset 未回到模板值"
+        low8 = max(0, live - 2)
+        doc_b["metrics"][M] = low8
+        io.open(bl, "w", encoding="utf-8", newline=chr(10)).write(
+            json.dumps(doc_b, ensure_ascii=False, indent=1))
+        rc8, first8, doc8 = run(["--range-attribute", "--metric", M,
+                                 "--from", str(low8), "--to", str(live),
+                                 "--commits", "c1+c2",
+                                 "--range-reason", "t8 搭车守卫"], bl)
+        ck("t8 守卫：区间归因后旁观指标保持基线原值（禁搭车上调）",
+           rc8 == 0 and (doc8.get("metrics") or {}).get(B) == bystander0,
+           (rc8, first8[:60], (doc8.get("metrics") or {}).get(B), bystander0))
 
     # t7 守恒：反例腿不得改基线件
     reset()
