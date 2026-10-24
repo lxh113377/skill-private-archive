@@ -456,6 +456,21 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   references/powershell-cli-silent-failures.md」指针 + 版本行；或由归属方自行合并时带上。
   取值：git -C D:/global_skills status --porcelain -- win-toolchain-pitfalls/SKILL.md（非空即未落地）；
   分卷本体已在库：git -C D:/global_skills log --oneline -1 --grep R804。
+- [ ] **R202-2（r202 登记，P1·已落地）** **常驻文件 ≠ 会被执行：我上轮写的 19 腿夹具和 r31 都是没人调用的孤儿**： 【r202 裁决=执行（当日发现、当日接成第 78 门并 portable 化）｜读数：51 夹具 / 覆盖 44 / 孤儿 7 全在基线内、无新增 ⇒ rc=0；--portable-only 实测新门 PASS 151ms。不设目标轮：新增孤儿夹具即 FAIL，历史 7 条由基线追踪、挂接一个删一个（r31 因层 b 递归限制需先拆分再挂，件内已注明）。】
+  一手：本轮我把重试取证升级为常驻夹具 r31，写完顺手核「谁调用 r31」—— 没有任何东西调用它：
+  不在门表、不被任何门件引用、pre-commit 也不跑。扩大取证后共 7 个同型孤儿夹具（含我上轮
+  刚写的 r200_probe_cost_fixtures 19 腿与 r200_pages_fixtures 已挂、其余 6 个未挂）。
+  我上轮刚批评 r32「写下靶子却六年没挂门」，这轮发现自己手上就有 7 个 —— 同型缺陷的复现
+  速度比我以为的快得多。孤儿夹具比没有夹具更坏：它让人以为某个行为被锁住了。
+  落地：第 78 门 fixture_wiring_face（portable=True，零网络 151ms）。孤儿 = 三条件全不满足
+  （不在门表 script/argv、不被任何其它 05-exec 件引用、不在巡检登记面），宁可漏报不误伤。
+  关键取舍：**拦增量不判历史红** —— 基线件 fixture_wiring_baseline.json 记 7 条历史孤儿，
+  新增才 FAIL，已挂接则打印 HEALED 提示收缩基线，基线缺失 ⇒ rc=2 UNVERIFIED（不按全绿记）。
+  理由：直接把 7 条历史债判成永久红，会淹没「新写了个没人跑的夹具」这个真正要拦的信号。
+  已知限制（件内注明，避免后人误挂）：r31 层 b 会 subprocess 跑 run_gates.py 全量 ⇒ 直接挂进
+  门表就是无限递归；须先拆出零成本层 a/c 或改由 pre-commit 调，才能挂。
+  取值：python 05-exec/r202_fixture_wiring_face.py --json <件>（实测 51 夹具 / 覆盖 44 / 孤儿 7 /
+  rc=0）；python 05-exec/run_gates.py --portable-only（新门 PASS 151ms，range_attr_fixtures 亦 PASS）。
 - [ ] **R202-1（r202 登记，P1·已落地）** **runner 夹具的 M3 变异锁是空转假锁；重试分流从 TEMP 临时自证升级为常驻行为级腿**： 【r202 裁决=执行（当日发现假锁并撤除、当日把临时自证升级为常驻腿）｜读数：变异 5/5 实测拦住（各用对应检查面）；a11~a14 四腿实测 quota=1 / transient=2 / flaky PASS rc=0 / no_retry=1；caught 计数三处同步为 5。不设目标轮：no-op 守卫已在循环里，任何新写失配锚的变异会被直接判无效而非计入拦住。】
   一手①（假锁）：r31 层 c 的 M3 用 src.replace('if not g.get("covers")', 'if False') 造变异，但
   该锚**在 run_gates.py 里根本不存在** —— covers 强制实际只写在夹具自己的 a8 那一行。于是 replace

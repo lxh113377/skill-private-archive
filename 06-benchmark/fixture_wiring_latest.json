@@ -1,0 +1,37 @@
+{
+ "schema": "fixture-wiring-v1",
+ "readonly": true,
+ "fixtures_total": 51,
+ "orphans": [
+  "r123_deferral_chain_fixtures.py",
+  "r200_probe_cost_fixtures.py",
+  "r31_run_gates_fixtures.py",
+  "r32_freshness_fixtures.py",
+  "r34_onwrite_fixtures.py",
+  "r35_tracked_empty_fixtures.py",
+  "r67_input_pin_fixtures.py"
+ ],
+ "baseline": [
+  "r123_deferral_chain_fixtures.py",
+  "r200_probe_cost_fixtures.py",
+  "r31_run_gates_fixtures.py",
+  "r32_freshness_fixtures.py",
+  "r34_onwrite_fixtures.py",
+  "r35_tracked_empty_fixtures.py",
+  "r67_input_pin_fixtures.py"
+ ],
+ "new_orphans": [],
+ "referenced_by_peers": [
+  "r150_gov_fixtures.py",
+  "r19_fixture_mutation_check.py",
+  "r20b_ratchet_fixtures.py",
+  "r21d_obsolete_fixtures.py",
+  "r21e_control_char_fixtures.py",
+  "r21e_ratchet_attrib_fixtures.py",
+  "r29_rubric_calibre_fixtures.py",
+  "r58_action_pin_fixtures.py",
+  "r66_generator_gate_fixtures.py"
+ ],
+ "note": "常驻文件 != 会被执行。孤儿夹具比没有夹具更坏：它让人以为某行为被锁住（本轮 M3 空锁是同一机理的变异版）。",
+ "provenance_cmd": "python 05-exec/r202_fixture_wiring_face.py --json <件>"
+}
