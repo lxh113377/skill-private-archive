@@ -494,6 +494,44 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   因为它带绿章。
   取值：06-benchmark/free_tool_roster_latest.json items[].claims（分级分布）；
   反证 TEMP/teeth215b.py（真承载 IN_SKILL_DESC vs 错点名 MENTIONS）；分级定义 05-exec/r215_claim_check.py 件头。
+- [ ] **R219-1（r219 登记，P1·已落地）** **100+ 轮后第一次去修而非再量：A-memory-start 加 77B 合法触发键，翻正门 88 两条 MISS 的窗口口径实测；并纠正 r135 度量面自身口径错**： 【r219 裁决=执行（修而非量：77B 合法触发键落盘并复测翻正；纠正 r135 口径错；留出验证抓出过拟合）｜读数：盘上 T1/T2 rank=1、S1 不退化、S2-S5 零抢活；受管根 d88c5f28（+1 行）；注册表三类全 0；注入面 +77B 与实测吻合。门 88 基线不减（生产读预建 npy，重建归焚诀侧）—— 已如实记账不谎称治好。】
+  为什么现在才修：3 条 task MISS 里有 2 条（D1 查额度、Workers 调用量）want 都指向 A-memory-start，
+  而我一直默认「承载件 dirty、动不了」——**没查过就默认**。本轮实测它 CLEAN（另两件 chaoshi-image-
+  optimization / chaoshi-web-deploy 确实 DIRTY，那两条不动）。
+  修前先纠正度量面：门 88 那句「末尾追加无效、改 frontmatter 也无效」出自 r135_lang_boost_efficacy.py，
+  读其实现发现 trial() 编码**整篇 body**（body_len=6921），而生产语料是 SKILL.md 的 text[:CORPUS_CHARS=800]
+  （一手 焚诀/eval/build_indexes.py:61 定义、:239 切片）⇒ 它测的是引擎截断不是生产窗口，用它指导放置是错的。
+  新写窗口口径探针 05-exec/r219_frontload_probe.py（只读）：V1 desc 后插 T1 rank 29→2、V2 name 后插→1、
+  **V3 末尾追加与 V0 逐位相同**（生产窗口下确证无效）。
+  找最小够用量：SKILL.md 属注入 5 件、现值 66239 超硬顶 65536（+703，老大名下 C25 债）⇒ 做长度梯度扫描
+  05-exec/r219c_sweep.py + **留出验证**（新措辞 H1/H2/H3 + 3 条「必须不赢」探针）：训练集 M5 77B/M6 94B/
+  M2 97B/C6 127B 合格，留出集**全部只到 4/6、无一合格** ⇒ 治好的是「话术含工具名」那一类，翻不正不带
+  工具名的问法（那些归 data-analysis/dingtalk-aitable 也算合理）。按不假装治好全部，落最小合格档 M5=77B、
+  合法 YAML 键 triggers_cn（与既有 triggers 并列；yaml.safe_load 实测通过、值类型 str）。
+  落盘：rule_editor replace --no-commit（备份 rule_backup/A-memory-start.SKILL.md.20261025_065244_103495.bak）
+  → commit → 受管根 d88c5f28（1 文件 +1 行）；盘上复测 T1/T2 均 rank=1、S1 不退化、S2-S5 零抢活；
+  注册表三类全 0 [PASS]；注入面实测 66162→66239（与 +77B 逐字节吻合）。
+  **如实记账**：门 88 基线那两条 MISS 串不会因此减少 —— 生产路由 unified_router.py 的 skill 侧读预建
+  bge_fullbody_embeddings.npy（该文件里 npy/SKILL.md 出现 0 次，只现算 query），重建归焚诀侧、红线6 禁我
+  改派生件；derived_freshness 已具名报 STALE lag=12819s「重建动作归焚诀侧（R269）」。⇒ 写成「盘上已翻正、
+  门 88 待索引重建」，不写「已治好」。
+  自造污染同轮记两笔：① 我第一次把语料件名按印象写成 skills_registry.json（真名 bge_fullbody_skills.json，
+  r135:53 同源可查）⇒ [UNVERIFIED] 而非误判；② 我造扫描脚本时把文案写在 JS 层导致引号互吃连崩 3 次 +
+  两处 SyntaxError 全靠 python -m py_compile 抓出（上一轮立的「验语法必用 -m py_compile」本轮第一次生效）。
+  元教训：**度量面也是被测对象** —— 我用 r135 的结论搁置这条缺口好几轮，而它编码口径与生产不一致；
+  判据说「治不了」之前，先确认判据量的就是生产那条路。
+  取值：python 05-exec/r219_frontload_probe.py（窗口位对照）；python 05-exec/r219c_sweep.py（梯度）；
+  python 05-exec/r219c_sweep.py --spec <留出集>（过拟合检验）；python -c 读 06-benchmark/frontload_*.json。
+
+- [ ] **R219-2（r219 登记，P1·看守中）** **我自己造成的镜像漂移：rule_editor 内嵌校验 180s 超时，需官方 -Fix 给足时间**： 【r219 裁决=看守（漂移由我造成已由官方 -Fix 处置，结果见本轮终态）｜镜像校验件 180s 硬超时阈值属归属方面，本轮不改；若 -Fix 跑完仍不等，则升级为阻断项重登。】
+  一手：改 A-memory-start/SKILL.md 后 hash 对账实测 镜像 == HEAD（caafeba944dc）而工作树 = 09da3ac344ae
+  ⇒ 漂移**只由我造成**（不是并行会话旧账，这点必须先分清再决定谁修）。`rule_editor commit --fix-mirror`
+  两次报 `[mirror] ... timed out after 180 seconds`（该件要扫 191 个 skill），并提示「请手动执行」⇒ 按 #29
+  不留人工步骤：我直接跑官方 check-skill-mirror.ps1 -Fix 并给足超时（不手改镜像，红线2 禁）。
+  看守点：镜像校验件自身超时阈值 180s 是硬编码，随技能数增长会持续误报「补齐未成功」；已具名交焚诀侧
+  或后续由归属方调整，本轮不改它。
+  取值：Get-FileHash 双件对账；powershell -File C:/Users/37533/Desktop/workspace/焚诀/skill/sync/
+  check-skill-mirror.ps1 -Fix（跑完再对 hash，须 源==镜像）。
 - [ ] **R218-1（r218 登记，P1·已落地）** **建第 94 门 workflow_usage_face：目标原话里的「工作流」此前没有任何门量过**： 【r218 裁决=执行（建第 94 门补上目标里的「工作流」面；口径全复用现成权威源；首跑抓出 Workers 真 0 命中并识破「凑需求」诱惑；SELF-REF 报警暴露我自己写进注释的正则字面量污染并修两处）｜读数：四例齐=True、face_files=256、total_hits=224、NO_PATTERN=[VS Code]、基线 1 条含归因。】
   缺口面：163 能不能跑 / 67 skill 目录命令级引用 / 93 被 skill 承载 / 92 入口派卷 / 88 召回 —— 唯独没有
   「我自己的自动化脚本（05-exec + git hooks + CI）里是否真调用过该工具」。把 Workers 从全部脚本删干净，
@@ -665,7 +703,7 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   r130 --record 后「门表 92（基线 91）新增 1 未登记 0」、准入「未声明 0」。
   取值：python 05-exec/r213_ingress_face.py --json <件>（8 条判/0 缺口/K5 通过）；
   有牙脚本 TEMP/teeth92.py（抹指针→1 GAP、还原→0）；python -c 算 L111 偏移 5594 比 CORPUS_CHARS=800。
-- [ ] **R213-1（r213 登记，P1）** **季度巡检的离线复算仍站在 _temp 上：池缓存 15 件 / 889,737B 在 gitignore 命中的 `_temp/r114_search_cache/`，被清场后 `--offline` 会在第 ⑥ 段再次判红**： 【r215 裁决=挂账至 r218｜二选一须先量 family_bytes_max 与 repo_max 两条预算再裁；本轮 --offline 能过仅因缓存未被动过（诚实红非假绿，定性与本条一致）｜取值：数 _temp/r114_search_cache 下 q 前缀件 + git check-ignore -v _temp】
+- [ ] **R213-1（r213 登记，P1）** **季度巡检的离线复算仍站在 _temp 上：池缓存 15 件 / 889,737B 在 gitignore 命中的 `_temp/r114_search_cache/`，被清场后 `--offline` 会在第 ⑥ 段再次判红**： 【r215 裁决=挂账至 r218｜二选一须先量 family_bytes_max 与 repo_max 两条预算再裁；本轮 --offline 能过仅因缓存未被动过（诚实红非假绿，定性与本条一致）｜取值：数 _temp/r114_search_cache 下 q 前缀件 + git check-ignore -v _temp】 【r218 裁决=已落地｜二选一已按实测裁定：打包单件入库（05-exec/r217_pool_pack.py → 06-benchmark/pool_cache_r217.json 762,502B < any_file_max），散件形态因 414 件 > cache_file_max=200 判不可行；消费方内存合并且散件覆盖包。⚠️ 本条原前提引用的 family_bytes_max 属 T1 记忆卷族、不适用于缓存池（r150 TIER_KEYS 实测）⇒ 按错预算会永久搁置。端到端双向实测：模拟清场 --offline 仍 REPL:PASS 且读数一致、印 [POOL:FRESHNESS]；--pool-pack none 才复现原预言的 UNVERIFIED。15 步巡检全通过、14 相关门全 PASS、棘轮 PASS｜取值：python 05-exec/r217_pool_pack.py --check；python 05-exec/r114_replacement_scan.py --offline --cache-dir _temp/empty_cache】
   一手（本轮修完死句柄后顺链查下去）：`search()` 缺省路径 = 先查缓存，命中即用；`--offline` 且未命中 ⇒ 返回 SKIPPED_OFFLINE 空行；`pool_n == 0` 时判 `[REPL:UNVERIFIED] 候选池 0 仓 ⇒ 不得读成无替代（R247）`。实测本轮池缓存 = 15 个 q 前缀件合计 889,737B，且 `git check-ignore -v _temp` 命中 ⇒ 与 R211-7 那条同一落点病，只是深一层。
   ⚠️ 定性要说准（禁把缺口报大）：这条**不是假绿**，是**诚实红 + 不可长期离线**。刚实测的证据 = 本轮 --offline 能过，正是因为缓存还在；一旦并行会话按扩展名清场（R189-2 实测 212 件），第 ⑥ 段会重新变红，而红因是「离线取不到池」不是「机制没跑」。
   修法（下轮独立一件事，二选一，禁顺手改）：① 把池缓存迁到入库面（如 `06-benchmark/pool_cache/`）并接受 ~0.9MB 体积代价 —— 须先量 `family_bytes_max=491,520` 与 `repo_max=10,485,760` 两条既有预算（合计 0.87MB 逼近族上限，须按族分批或改件形态）；② 保留 _temp 但在巡检第 ⑥ 段前加「离线池缺失 ⇒ 具名提示联网重跑一次并说明这不是缺陷」的第三态，把它与真故障分开（对位 R211-3 的「设计内红 vs 真故障红」同一处理取向）。
@@ -700,17 +738,6 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   取值：`git log --oneline -S "r119_corpus_gate" -- 05-exec/r113_quarterly_audit.py`（空 = 从未接线）；`python 05-exec/r119_corpus_gate.py`（缺 --candidates 即 argparse 退出）；audit.json 的 steps 步名清单无 corpus_gate。
 
 - [ ] **R217-3（r217 登记，P1·已落地）** **本轮两个自抓：① 我漏跑了自己立的「改门侧件即跑全量」；② 我把并行会话未提交的台账条目以我的提交信息代提交了**： 【r217 裁决=执行（补跑全量 + 新建 hunk 级 stage 护栏并两向实测 + 对 3b6a159 代带 R217-2 做事后声明）｜读数：全量 93 门唯一 FAIL=gate_run_freshness（延迟一轮设计，重跑自愈未动台账）；护栏 SKIP 向暂存区为空、STAGED 向打印携带他人行数；敞口 0、账龄 rc=0。改进方向（门侧件 mtime 触发强制重跑）已登记，未擅改他人归属面。】
-
-- [ ] **R217-4（r217 登记，P1·已落地）** **口径 B 的「12→7」此前只由我一次性脚本自证过 ⇒ 建成常驻反造假判据 r217_miss_migration，并在落地当轮就抓出我自己的两条装饰性判据**： 【r217 裁决=执行｜常驻判据 r217_miss_migration 已建并接进季度巡检（步名 miss_migration，rc=1 计失败步）；九腿 selftest 全 OK，含 M4 可触发的变异腿；落地当轮抓出我自己两条装饰性判据（M4 恒等式永不触发 + 改名后残留旧键引用）｜取值：python 05-exec/r217_miss_migration.py --selftest】
-  一手：本轮为需求 6 写口径对照件（`04-plan/需求6口径对照与决策件_r216_2026-10-25.md` §3）时，我用一次性 node 脚本逐条比对两份 route_miss_attr 件，证「零条挪账、n 291→291」。但**那次自查本身不可复算** —— `git grep STALE_EXPECT 05-exec` 只命中 r117 的单轮归因与 r113 的步名，全仓无任何件跨轮比较这两份产物 ⇒ 与前几轮同类数字同病（R183-1：一次性脚本产出的结论不可复算）。
-  落地：新建 `05-exec/r217_miss_migration.py`（只读两份件 + 只读题集，不重跑评分）并接进季度巡检（步名 `miss_migration`）；红线六条 = M1 挪账（真错→STALE_EXPECT）/ M1b 转不可判（→UNDECIDABLE、UNREGISTERED）/ M2 缩分母（face.n 变小）/ M3 假消失（条目不见且 query 已不在题集）/ M4 重复键缩分母 / M5 face 自数与 rows 逐条不符。rc=1 是**真故障**（与 req6_attainability 的「结论性 rc=1」相反）⇒ 用默认 `run_step` 计入失败步，不洗绿。
-  ⚠️ **本轮最值钱的自抓（两条装饰性判据，都在我自己写的件里）**：
-  ① 首版 M4 写成「accounted != len(b_real)」，但五类是对同一 dict 的**互斥划分** ⇒ 恒相等、**永不触发**；这不是保守，是假设有守恒检查。改为 X-24 型真检查（同状态内 query|expected 重复 ⇒ 去重后键数 < 原始行数，真会缩小逐条比对的基线），并补变异腿证明可触发。
-  ② 我把 M4 语义换掉后，忘了同步三处：docstring 的 M4 定义、`reading` 键名、打印行 —— 改名 `conservation_ok`→`partition_identity_ok` 后打印行仍读旧键，`py_compile` 全过 ⇒ 该 KeyError 只在**非 --quiet 路径**发作（巡检里我用 `--quiet`，恰好绕过），比「必崩」更阴：带 --quiet 的一切调用都正常，手跑一次就崩。发现方式是改完键名后对旧键做一次全文 grep（命中 1 处即修），**该 KeyError 实际未发生过**；本轮在同一条非 --quiet 打印路径上真崩过的是另一处 —— "%s" % 作用于 list 元素（JSON 落盘后是 list 不是 tuple）⇒ TypeError，由首跑实测暴露并已修（tuple(t)）。两条都归一句：改名/改语义后必须 grep 旧引用 + 跑非 quiet 路径。并把打印措辞从「守恒 True」改成「划分恒等 True」（恒真读数不得冒充成就）。
-  ③ 我又手抄了一次计数：两处写「七腿」而实际 9 腿 —— 正是我本轮上午刚在规范抬头立规禁止的事。改为自述计数（取 selftest 输出行数）。
-  有牙验证（全实测）：`--selftest` 九腿全 [OK]（正控 12→7 零红线 + 六类造假各自判红 + 缺题集不判）；现跑 r117→r216_live 印 `[MIGRATION:CLEAN]`、逐条具名 5 道修好的题；巡检复跑 15 步全通过、face_ok=true、failed_steps 空；七门全 PASS（control_char_scan / py_syntax_guard / md_claim_face / generator_face / reconcile_admission / selftest_census_face / tracked_empty_check）。
-  口径要说准：本件**只判改善是否造假**，不判幅度是否达标（幅度与 30% 达标判据的正本在决策件 §3，本条不复制数值以免第二真相源）。基线取法也不是固定锚 = 06-benchmark 根轮号最大件，季产物落子目录不入 glob ⇒ 锚不会自动前进，前进须显式复制新一轮件到根并台账具名（已写进维护规范 §8 第 11 行）。
-  取值：`python 05-exec/r217_miss_migration.py --selftest`；`python 05-exec/r217_miss_migration.py --baseline 06-benchmark/route_miss_attr_r117_2026-10-18.json --current 06-benchmark/route_miss_attr_r216_live.json --json <件>`；`python 05-exec/r113_quarterly_audit.py --quarter 2026Q4 --offline`。
   ① 漏跑全量：本轮新增 `05-exec/r215_gate_check.py`、改写 `r215_free_tool_roster.py`，却只跑了单门就准备
   收口。r216 我自己把「改门表本体 ⇒ 跑全量」写进过提交信息 ⇒ 规矩在、执行面漏了。补跑 93 门全量
   （357s）：唯一 FAIL = gate_run_freshness（读上次 verdict、meta 不计入 ⇒ 延迟一轮红，按排障速查 row 7 只重跑
@@ -728,6 +755,34 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   事实**。本条即为对 3b6a159 的事后声明：该提交代带了 R217-2 两条。
   取值：python 05-exec/run_gates.py --json 06-benchmark/gate_run_r217_1.json；git show 3b6a159 -- memory/07-next-steps.md；
   python 05-exec/r217_shared_stage.py memory/07-next-steps.md --must-contain '<我的条目键>'。
+
+- [ ] **R217-4（r217 登记，P1·已落地）** **口径 B 的「12→7」此前只由我一次性脚本自证过 ⇒ 建成常驻反造假判据 r217_miss_migration，并在落地当轮就抓出我自己的两条装饰性判据**： 【r217 裁决=执行｜常驻判据 r217_miss_migration 已建并接进季度巡检（步名 miss_migration，rc=1 计失败步）；九腿 selftest 全 OK，含 M4 可触发的变异腿；落地当轮抓出我自己两条装饰性判据（M4 恒等式永不触发 + 改名后残留旧键引用）｜取值：python 05-exec/r217_miss_migration.py --selftest】
+  一手：本轮为需求 6 写口径对照件（`04-plan/需求6口径对照与决策件_r216_2026-10-25.md` §3）时，我用一次性 node 脚本逐条比对两份 route_miss_attr 件，证「零条挪账、n 291→291」。但**那次自查本身不可复算** —— `git grep STALE_EXPECT 05-exec` 只命中 r117 的单轮归因与 r113 的步名，全仓无任何件跨轮比较这两份产物 ⇒ 与前几轮同类数字同病（R183-1：一次性脚本产出的结论不可复算）。
+  落地：新建 `05-exec/r217_miss_migration.py`（只读两份件 + 只读题集，不重跑评分）并接进季度巡检（步名 `miss_migration`）；红线六条 = M1 挪账（真错→STALE_EXPECT）/ M1b 转不可判（→UNDECIDABLE、UNREGISTERED）/ M2 缩分母（face.n 变小）/ M3 假消失（条目不见且 query 已不在题集）/ M4 重复键缩分母 / M5 face 自数与 rows 逐条不符。rc=1 是**真故障**（与 req6_attainability 的「结论性 rc=1」相反）⇒ 用默认 `run_step` 计入失败步，不洗绿。
+  ⚠️ **本轮最值钱的自抓（两条装饰性判据，都在我自己写的件里）**：
+  ① 首版 M4 写成「accounted != len(b_real)」，但五类是对同一 dict 的**互斥划分** ⇒ 恒相等、**永不触发**；这不是保守，是假设有守恒检查。改为 X-24 型真检查（同状态内 query|expected 重复 ⇒ 去重后键数 < 原始行数，真会缩小逐条比对的基线），并补变异腿证明可触发。
+  ② 我把 M4 语义换掉后，忘了同步三处：docstring 的 M4 定义、`reading` 键名、打印行 —— 改名 `conservation_ok`→`partition_identity_ok` 后打印行仍读旧键，`py_compile` 全过 ⇒ 该 KeyError 只在**非 --quiet 路径**发作（巡检里我用 `--quiet`，恰好绕过），比「必崩」更阴：带 --quiet 的一切调用都正常，手跑一次就崩。发现方式是改完键名后对旧键做一次全文 grep（命中 1 处即修），**该 KeyError 实际未发生过**；本轮在同一条非 --quiet 打印路径上真崩过的是另一处 —— "%s" % 作用于 list 元素（JSON 落盘后是 list 不是 tuple）⇒ TypeError，由首跑实测暴露并已修（tuple(t)）。两条都归一句：改名/改语义后必须 grep 旧引用 + 跑非 quiet 路径。并把打印措辞从「守恒 True」改成「划分恒等 True」（恒真读数不得冒充成就）。
+  ③ 我又手抄了一次计数：两处写「七腿」而实际 9 腿 —— 正是我本轮上午刚在规范抬头立规禁止的事。改为自述计数（取 selftest 输出行数）。
+  有牙验证（全实测）：`--selftest` 九腿全 [OK]（正控 12→7 零红线 + 六类造假各自判红 + 缺题集不判）；现跑 r117→r216_live 印 `[MIGRATION:CLEAN]`、逐条具名 5 道修好的题；巡检复跑 15 步全通过、face_ok=true、failed_steps 空；七门全 PASS（control_char_scan / py_syntax_guard / md_claim_face / generator_face / reconcile_admission / selftest_census_face / tracked_empty_check）。
+  口径要说准：本件**只判改善是否造假**，不判幅度是否达标（幅度与 30% 达标判据的正本在决策件 §3，本条不复制数值以免第二真相源）。基线取法也不是固定锚 = 06-benchmark 根轮号最大件，季产物落子目录不入 glob ⇒ 锚不会自动前进，前进须显式复制新一轮件到根并台账具名（已写进维护规范 §8 第 11 行）。
+  取值：`python 05-exec/r217_miss_migration.py --selftest`；`python 05-exec/r217_miss_migration.py --baseline 06-benchmark/route_miss_attr_r117_2026-10-18.json --current 06-benchmark/route_miss_attr_r216_live.json --json <件>`；`python 05-exec/r113_quarterly_audit.py --quarter 2026Q4 --offline`。
+
+- [ ] **R218-5（r218 登记，P1·已落地）** **R213-1 结案：候选池打成入库单件包，离线复算不再站在 _temp 上；但我上轮那条待办的前提引用错了预算面 —— 按它算会得出「不能入库」而永久搁置**：
+  一手（实测否证自己）：R213-1 原写「须先量 `family_bytes_max=491,520` 与 `repo_max=10,485,760` 两条预算再裁」⇒ 池缓存**不属于 family_* 族**：`r150_volume_tiers.TIER_KEYS` 把 family_* 归 **T1（记忆卷族）**，缓存池的闸在 **T2** —— `cache_file_max=200`（件数闸）/ `cache_dir_max=52,428,800B`，产物级另有 `artifact_max=262,144` 与 `any_file_max=1,048,576`（数值现读 `06-benchmark/gov_tiers_r150_2026-10-21.json`）。本仓常引的教训是「缺口报大与报小同样有害」，这是它的**反向形态：约束报错面也会杀死正当动作**。
+  真预算下的实测两态：散件形态**不可入库**（池现 414 件 > `cache_file_max=200`，该闸注释明写为「827 个几十 KB .pyc」而设）；打包单件形态**可入库**（明文 762,502B < `any_file_max=1,048,576B`；deflate 后 208,165B 更省但二进制不可 diff / 不可 grep ⇒ 选明文）。
+  落地：新建 `05-exec/r217_pool_pack.py`（散件目录 → `06-benchmark/pool_cache_r217.json`，带 schema / generated_at / 条目数 / 坏件计数；三态 = 建包 rc=0、`--check` 一致 rc=0 或 DRIFT rc=1、零输入 rc=2 且不写件）；消费方 `r114_replacement_scan.load_cache()` 改**内存合并**「包 + 散件」且**散件后写覆盖包** ⇒ 不回写 414 个散件（不新增件数闸压力）、包陈旧也不会压掉联网新读数；新增 `--cache-dir` / `--pool-pack none` 两开关供复现与对照。
+  有牙验证（双向 + 端到端，全实测）：合并四路单测 = 空散件目录+包 → 414 条 / 空目录+关包 → 0 条 / 只散件 → 414 条 / 两者 → 414 条；覆盖方向单测 = 同名键散件 `FROM_LOOSE` 胜出（loose_wins=true）；端到端**模拟清场** `--offline --cache-dir _temp/empty_cache` ⇒ `[REPL:PASS]` 守恒 191==191、四态 167/11/13/0 与在库散件时**读数完全一致**；反向对照同参数加 `--pool-pack none` ⇒ `[REPL:UNVERIFIED] 候选池 0 仓`（正是 R213-1 预言的清场后果，如今只在显式关包时出现）；打包件三态 = 删一条 `--check` 报 DRIFT rc=1 / 空目录 rc=2 不落半成品 / 逐条一致 rc=0。
+  补一个诚实缺口（不补会留静默风险）：包变陈旧而散件被清时，离线跑仍**成功出件**、读的是旧池，单看 rc 与四态看不出来。按本仓 r120 trace_face 既有范式（新鲜度必须与读数同列）加：产物 `face.cache_provenance`（包路径 / 条目数 / 生成时刻 / 散件数 / 目录是否存在）+ `face.pool_from_stale_pack` 布尔 + `[POOL:FRESHNESS]` 行**在 --quiet 下也打印**（巡检以 --quiet 跑本步，只写 JSON 字段等于把告警藏进没人打开的件里）。反向对照实测：散件 414 件在场时该布尔 False、不告警。
+  体积账（不报大不报小）：本件使 `06-benchmark/` 增 762,502B；该目录本轮实测已 39,082,074B > 5,242,880B 属**既存 L3 VIOL**（1598 文件，早于本件）⇒ 本件不新增**单件级** VIOL（< `any_file_max`），也不改变既存 L3 红的性质。14 道相关门全 PASS（baseline_contract_scan / generator_face / evidence_face_fixtures / control_char_scan / tracked_empty_check / md_claim_face / reconcile_admission / ratchet_gate / py_syntax_guard / handles_readme_fixtures / cache_guard_face / provenance_face / input_face_fixtures / authority_face_fixtures）；季度巡检 15 步全通过、face_ok=true、failed_steps 空。
+  ⚠️ 记一条我自己造成并已修复的台账事故（R269 同族）：我用锚点插入 R217-4 时，把自己那条插进了并行会话 **R217-3 的标题与其正文之间**，把他们一条条目切成「标题 — 我的 10 行 — 他们 17 行正文」，且已随上一提交入 HEAD。本轮用「只搬我自己的块」修复，实测：工作树与 HEAD **行多重集全等**（排序后比对 true、总行数 1538 不变 ⇒ 零内容丢失、他们 17 行正文一字未动），HEAD 里 R217-3「标题后为空行」的体例异例在工作树消失，其余 11 处异例 HEAD 与工作树逐项一致（均既存体例，非我引入）。⇒ 立规入取值行下方：**锚点插入前必须先读锚点之后是否仍是同一条目的续行**，只验锚点唯一命中不够。
+  取值：`python 05-exec/r217_pool_pack.py --check`（须 [POOLPACK:PASS]）；`python 05-exec/r114_replacement_scan.py --offline --cache-dir _temp/empty_cache --json <件>`（须 [REPL:PASS] 且印 [POOL:FRESHNESS]）；同参数加 `--pool-pack none`（须 [REPL:UNVERIFIED]）；预算现读 `python -c` 取 `06-benchmark/gov_tiers_r150_2026-10-21.json`；体例异例对照 = 逐条正则 `^- \[.\] \*\*R` 取后继行形态与工作树/HEAD 各列一遍比对。
+
+- [ ] **R218-6（r218 登记，P1·本轮新立，由我自己 H-1 复核抓出）** **H-1 拿到的 `orphan=0` 只回答「仓内有第二份」，不回答「工作区之外有第二份」；后者实测 orphan=434/438。且代价已现：归档面 68MB 使体量超限项从 20 涨到 21**：
+  【一手对照：同一件 `purge_copy_proof.py _trash` 两次跑 —— 传 `--peer .` 得 scanned=438 proven=438 orphan=0 rc=0（r211 的 H-1 验收读数正是这么拿的）；不传 `--peer` 走件头声明的名册派生面（`peer_roots` 7 面，provenance=roster:GM/meta/path_index.md「治理面」行）得 scanned=438 proven=4 **orphan=434 rc=1**，件自带说明「434 件无副本 ⇒ 禁永久删，要清只能走 recycle（可逆）」】。
+  病灶 = 我的验收判据与被检面同仓：副本被复制进本仓 `archive/trash-proof-2026-10-23/`（423 件 git 跟踪），归属方件排除了「目标目录自身」却没排除「同一仓」⇒ 自证通过而他证不通过，是其件头 L18-19 防护的反向变体。
+  收益不撤销（回收可逆性、常驻增量面 `r178_proof_sync`、防永久丢数据都仍在工作，且现跑确实把 orphan 35→0）。本轮**不删 archive**（破坏性 + 未核名册面是否真覆盖 ⇒ X-9 / #25④），只登记与定方向。
+  下一步二选一（都需老大或归属方点头，不擅改判据）：① 验收判据改归属方名册口径（`--peer` 用名册 7 面），本仓 archive 只留真无副本件，其余 55MB 走可逆回收；② 保留 archive 但把它计入体量治理面并给归档目录定 keep/龄期规则（现在它躲过 `_trash` 的 L4 簇治理，却在 `volume` 里以 68MB 判红）。
+  取值：`python D:/global_skills/A-project-handoff/scripts/purge_copy_proof.py _trash --peer .` 与同件不带 `--peer` 各跑一次对照；`python D:/global_skills/A-project-handoff/scripts/handoff.py volume .`（实测 `[GATE:volume-warn] 超限 21 项`，顶层 archive 68,348,040B 对 dir_max=5,242,880）；`git ls-files archive` 计数（实测 745 总 / 该子目录 423）。
 - [ ] **R217-2（r217 登记，P1·已落地）** **口径 A 的三处机械障碍已全部清掉，但它仍不能自动跑 —— 剩下的不是 bug 而是原则：输入必须是人工提出的候选语料，我不编造候选把验收口径「跑绿」**： 【r217 裁决=执行｜三处机械障碍全清（--cases required / --json 可指 / 已存在即 REFUSE / 原子写），四路径实测通过且 happy path 刻意不跑；判定逻辑与三道控制组一字未动；口径推荐仍为 B（理由已从「A 跑不了」更新为「A 每季需人工交候选」）｜取值：python 05-exec/r123_margin_cf.py 与 --cases _temp/no_such.json；git status --porcelain -- 06-benchmark/margin_cf_r123_2026-10-20.json 须为空】
   一手（本轮为需求 6 做口径对照件时实测，见 `04-plan/需求6口径对照与决策件_r216_2026-10-25.md` §2/§5）：口径 A（路由稳健性 margin，实测 +80%/+169%，本轮最漂亮的数子）的测量件 `05-exec/r123_margin_cf.py` 有三处机械障碍 ——
   ① 无 argparse（`--json` 参数不存在）；② 输入面写死 `_temp/r123_cf_cases.json`，实测**不存在**且 `git grep r123_cf_cases` 只有读侧一行、全仓无生成器（= W-46 死句柄，与我今早已修的 R211-7 同一形态）；③ 输出写死 `margin_cf_r123_2026-10-20.json`（tracked ⇒ 重跑原地覆盖历史证据，同 r211 我在 c16 上撞的那条）。

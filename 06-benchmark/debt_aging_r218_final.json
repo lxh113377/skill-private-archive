@@ -1,9 +1,9 @@
 {
  "schema": "debt-aging-v2",
- "generated_at": "2026-10-25T05:58:59",
+ "generated_at": "2026-10-25T07:46:03",
  "readonly": true,
  "grace_rounds": 2,
- "current_round": 217,
+ "current_round": 218,
  "round_source": "git log --format=%s -40 中**作用域**最大 rNN（未硬编码；排除「挂账至 rNN」等未来轮号引用）",
  "verdict_taxonomy": [
   "OVERDUE",
@@ -201,20 +201,45 @@
  ],
  "evidence": {
   "volumes": 183,
-  "items_total": 408,
-  "open_total": 100,
+  "items_total": 413,
+  "open_total": 105,
   "closed_total": 308,
-  "raw_item_lines": 408
+  "raw_item_lines": 413
  },
  "by_class": {
-  "OVERDUE": 0,
-  "ACTIVE": 2,
-  "DECIDED": 81,
+  "OVERDUE": 2,
+  "ACTIVE": 4,
+  "DECIDED": 84,
   "UNDATED": 15,
-  "DEFERRED": 2,
+  "DEFERRED": 0,
   "REPEAT": 0
  },
- "overdue": [],
+ "overdue": [
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 475,
+   "priority": "未标",
+   "owner": "NONE",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "挂账目标 r218 已到期（本轮 r218）",
+   "title": "**R211-9（r211 登记，P2）** **fc 维（功能完整性）把非技能文件计进 SKILL.md 数：`endswith(\"skill.md\")` 会吃进 create-skill.md / WIREFRAME",
+   "first_seen": "2026-10-25",
+   "dating_face": "OK"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 713,
+   "priority": "未标",
+   "owner": "NONE",
+   "checked": false,
+   "class": "OVERDUE",
+   "detail": "账龄 5 轮 / 宽限 4",
+   "title": "**R213-3（r213 登记，P1·已落地一处 / 留一处）** **同一把刀的第二下：执行面不注入 Windows 环境变量，本仓把它误记成「平台/凭据缺口」—— 实测凭据一直在盘上**：",
+   "first_seen": "2026-10-25",
+   "dating_face": "OK"
+  }
+ ],
  "undated": [
   {
    "title": "**R156b-1（r156b 登记，P1·已落地）** **权责划分机读化（目标①「明确各节点权责」的机器载体）**：`r150_cont",
@@ -239,12 +264,12 @@
   {
    "title": "R113-3 AGPL-3.0 上游合入合规口径待裁（hyperframes-registry 引入 calesthio/OpenMonta",
    "file": "memory\\07-next-steps.md",
-   "line": 1513
+   "line": 1584
   },
   {
    "title": "R112-5 受管根 rule_editor gates 的 mirror 组件超时（300s skip）+ noise 2 项外部在途，待",
    "file": "memory\\07-next-steps.md",
-   "line": 1514
+   "line": 1585
   },
   {
    "title": "R113-7 需求2 字面缺口：余 56 件 unknown + 143 件盲区仍无替代检索面（每一个现有 skill 都应有候选清单）（由",
@@ -353,18 +378,27 @@
  ],
  "note": "OVERDUE 数 = ratchet_gate 第 7 指标 overdue_debt_items 的唯一取值面",
  "coverage": {
-  "status": "OK",
-  "prev": "debt_aging_r217c.json",
-  "prev_overdue": 0,
-  "missing": [],
+  "status": "INCOMPLETE",
+  "prev": "debt_aging_r_autoregen_20261025_073615.json",
+  "prev_overdue": 2,
+  "missing": [
+   {
+    "file": "memory\\07-next-steps.md",
+    "key": "**R211-9（r211 登记，P2）** **fc 维（功能完整性）把非技能"
+   },
+   {
+    "file": "memory\\07-next-steps.md",
+    "key": "**R213-3（r213 登记，P1·已落地一处 / 留一处）** **同一把"
+   }
+  ],
   "method": "adjudication_gap(上一轮 overdue[].title 前 40 字, 当前卷文本, 本轮轮号)"
  },
  "input_face": {
   "round": {
-   "log": 217,
-   "tag": 217,
+   "log": 218,
+   "tag": 218,
    "ok": true,
-   "detail": "log=r217 ≥ tag=r217（差 0 轮：本轮 tag 已打，两源一致）"
+   "detail": "log=r218 ≥ tag=r218（差 0 轮：本轮 tag 已打，两源一致）"
   },
   "floor": {
    "ok": true,
@@ -372,49 +406,53 @@
   },
   "dedup": {
    "ok": true,
-   "detail": "408 行全部计入，80 字前缀键零碰撞"
+   "detail": "413 行全部计入，80 字前缀键零碰撞"
   },
   "dup": {
    "ok": true,
    "detail": "6 组同号多副本但全部已勾销（拆卷留痕，不判红）"
   },
   "dating": {
-   "ok": null,
-   "detail": "本轮无到期项 ⇒ 定年面未行使（不判绿，也不判红）",
+   "ok": true,
+   "detail": "2 条到期项定年两路同值（截断 needle 未改变结论）",
    "checked": 0
   },
   "suggestions": {
    "ok": null,
    "detail": "未传 --report ⇒ 建议面未对照（R247 不判绿）"
   },
-  "raw_lines": 408,
+  "raw_lines": 413,
   "collisions": [],
   "status": "UNVERIFIED",
   "red_faces": [],
   "unverified_faces": [
-   "dating",
    "suggestions"
   ]
  },
  "unowned_claims": [
   {
    "file": "memory\\07-next-steps.md",
-   "line": 686,
+   "line": 526,
+   "title": "**R219-2（r219 登记，P1·看守中）** **我自己造成的镜像漂移：rule_editor 内嵌校验 180s 超时，需官方 -Fix 给足时间**： 【r219 裁决"
+  },
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 740,
    "title": "**R217-3（r217 登记，P1·已落地）** **本轮两个自抓：① 我漏跑了自己立的「改门侧件即跑全量」；② 我把并行会话未提交的台账条目以我的提交信息代提交了**： 【r"
   },
   {
    "file": "memory\\07-next-steps.md",
-   "line": 756,
+   "line": 827,
    "title": "**R212-2（r212 登记，P1·已落地）** **归属方 HEAD 加严 to>from 校验，把我 r208 修的安全夹具变成永久红；处方=第三态+可解除证明，不绕校验*"
   },
   {
    "file": "memory\\07-next-steps.md",
-   "line": 1019,
+   "line": 1090,
    "title": "**R208-1（r208 登记，P1·已落地）** **实跑路由才暴露：知识进对了 skill，仍进不了召回面（可达 ≠ 可召回）**： 【r208 裁决=执行（实跑路由暴露「进"
   },
   {
    "file": "memory\\07-next-steps.md",
-   "line": 1514,
+   "line": 1585,
    "title": "R112-5 受管根 rule_editor gates 的 mirror 组件超时（300s skip）+ noise 2 项外部在途，待归属方收口后复跑（由 flow 登记；状"
   },
   {
@@ -423,7 +461,6 @@
    "title": "R76-2 项目/陪聊 09 回填件提交：被其自有 pre-commit 交付件判据拦红（s08.png 从工作树消失 + SoulIsle 品牌分叉，均非本次引入），待归属方处置"
   }
  ],
- "refresh_stale_count": 0,
  "handles": {
   "overdue": {
    "artifact": "06-benchmark/debt_runs.jsonl",
@@ -449,5 +486,10 @@
    "selector": "末行",
    "command": "tail -1 06-benchmark/debt_runs.jsonl"
   }
- }
+ },
+ "handles_drift": [
+  "overdue",
+  "open_total",
+  "decided"
+ ]
 }

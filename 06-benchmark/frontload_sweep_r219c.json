@@ -1,0 +1,456 @@
+{
+ "schema": "frontload-sweep-r219c-v1",
+ "corpus_chars": 800,
+ "rows": [
+  {
+   "cand": "C0 零注入",
+   "cost_bytes": 0,
+   "query": "H1",
+   "top1": "dingtalk-aitable",
+   "rank": 4,
+   "role": "target",
+   "won": false
+  },
+  {
+   "cand": "C0 零注入",
+   "cost_bytes": 0,
+   "query": "H2",
+   "top1": "dingtalk-todo",
+   "rank": 20,
+   "role": "target",
+   "won": false
+  },
+  {
+   "cand": "C0 零注入",
+   "cost_bytes": 0,
+   "query": "H3",
+   "top1": "data-analysis",
+   "rank": 30,
+   "role": "target",
+   "won": false
+  },
+  {
+   "cand": "C0 零注入",
+   "cost_bytes": 0,
+   "query": "P1",
+   "top1": "wps-knowledgebase",
+   "rank": 29,
+   "role": "target",
+   "won": false
+  },
+  {
+   "cand": "C0 零注入",
+   "cost_bytes": 0,
+   "query": "P2",
+   "top1": "chaoshi-image-optimization",
+   "rank": 15,
+   "role": "target",
+   "won": false
+  },
+  {
+   "cand": "C0 零注入",
+   "cost_bytes": 0,
+   "query": "S1",
+   "top1": "A-memory-start",
+   "rank": 1,
+   "role": "keep",
+   "won": true
+  },
+  {
+   "cand": "C0 零注入",
+   "cost_bytes": 0,
+   "query": "S2",
+   "top1": "chaoshi-web-deploy",
+   "rank": 21,
+   "role": "steal",
+   "won": false
+  },
+  {
+   "cand": "C0 零注入",
+   "cost_bytes": 0,
+   "query": "S3",
+   "top1": "chaoshi-image-optimization",
+   "rank": 80,
+   "role": "steal",
+   "won": false
+  },
+  {
+   "cand": "C0 零注入",
+   "cost_bytes": 0,
+   "query": "S4",
+   "top1": "wps-knowledgebase",
+   "rank": 20,
+   "role": "steal",
+   "won": false
+  },
+  {
+   "cand": "C0 零注入",
+   "cost_bytes": 0,
+   "query": "S5",
+   "top1": "pixelle-api-ensure",
+   "rank": 20,
+   "role": "steal",
+   "won": false
+  },
+  {
+   "cand": "M5 77B",
+   "cost_bytes": 77,
+   "query": "H1",
+   "top1": "dingtalk-aitable",
+   "rank": 2,
+   "role": "target",
+   "won": false
+  },
+  {
+   "cand": "M5 77B",
+   "cost_bytes": 77,
+   "query": "H2",
+   "top1": "A-memory-start",
+   "rank": 1,
+   "role": "target",
+   "won": true
+  },
+  {
+   "cand": "M5 77B",
+   "cost_bytes": 77,
+   "query": "H3",
+   "top1": "data-analysis",
+   "rank": 5,
+   "role": "target",
+   "won": false
+  },
+  {
+   "cand": "M5 77B",
+   "cost_bytes": 77,
+   "query": "P1",
+   "top1": "A-memory-start",
+   "rank": 1,
+   "role": "target",
+   "won": true
+  },
+  {
+   "cand": "M5 77B",
+   "cost_bytes": 77,
+   "query": "P2",
+   "top1": "A-memory-start",
+   "rank": 1,
+   "role": "target",
+   "won": true
+  },
+  {
+   "cand": "M5 77B",
+   "cost_bytes": 77,
+   "query": "S1",
+   "top1": "A-memory-start",
+   "rank": 1,
+   "role": "keep",
+   "won": true
+  },
+  {
+   "cand": "M5 77B",
+   "cost_bytes": 77,
+   "query": "S2",
+   "top1": "chaoshi-web-deploy",
+   "rank": 30,
+   "role": "steal",
+   "won": false
+  },
+  {
+   "cand": "M5 77B",
+   "cost_bytes": 77,
+   "query": "S3",
+   "top1": "chaoshi-image-optimization",
+   "rank": 56,
+   "role": "steal",
+   "won": false
+  },
+  {
+   "cand": "M5 77B",
+   "cost_bytes": 77,
+   "query": "S4",
+   "top1": "wps-knowledgebase",
+   "rank": 9,
+   "role": "steal",
+   "won": false
+  },
+  {
+   "cand": "M5 77B",
+   "cost_bytes": 77,
+   "query": "S5",
+   "top1": "pixelle-api-ensure",
+   "rank": 27,
+   "role": "steal",
+   "won": false
+  },
+  {
+   "cand": "M6 94B",
+   "cost_bytes": 94,
+   "query": "H1",
+   "top1": "dingtalk-aitable",
+   "rank": 4,
+   "role": "target",
+   "won": false
+  },
+  {
+   "cand": "M6 94B",
+   "cost_bytes": 94,
+   "query": "H2",
+   "top1": "A-memory-start",
+   "rank": 1,
+   "role": "target",
+   "won": true
+  },
+  {
+   "cand": "M6 94B",
+   "cost_bytes": 94,
+   "query": "H3",
+   "top1": "data-analysis",
+   "rank": 9,
+   "role": "target",
+   "won": false
+  },
+  {
+   "cand": "M6 94B",
+   "cost_bytes": 94,
+   "query": "P1",
+   "top1": "A-memory-start",
+   "rank": 1,
+   "role": "target",
+   "won": true
+  },
+  {
+   "cand": "M6 94B",
+   "cost_bytes": 94,
+   "query": "P2",
+   "top1": "A-memory-start",
+   "rank": 1,
+   "role": "target",
+   "won": true
+  },
+  {
+   "cand": "M6 94B",
+   "cost_bytes": 94,
+   "query": "S1",
+   "top1": "A-memory-start",
+   "rank": 1,
+   "role": "keep",
+   "won": true
+  },
+  {
+   "cand": "M6 94B",
+   "cost_bytes": 94,
+   "query": "S2",
+   "top1": "chaoshi-web-deploy",
+   "rank": 22,
+   "role": "steal",
+   "won": false
+  },
+  {
+   "cand": "M6 94B",
+   "cost_bytes": 94,
+   "query": "S3",
+   "top1": "chaoshi-image-optimization",
+   "rank": 60,
+   "role": "steal",
+   "won": false
+  },
+  {
+   "cand": "M6 94B",
+   "cost_bytes": 94,
+   "query": "S4",
+   "top1": "wps-knowledgebase",
+   "rank": 15,
+   "role": "steal",
+   "won": false
+  },
+  {
+   "cand": "M6 94B",
+   "cost_bytes": 94,
+   "query": "S5",
+   "top1": "pixelle-api-ensure",
+   "rank": 15,
+   "role": "steal",
+   "won": false
+  },
+  {
+   "cand": "M2 97B",
+   "cost_bytes": 97,
+   "query": "H1",
+   "top1": "dingtalk-aitable",
+   "rank": 4,
+   "role": "target",
+   "won": false
+  },
+  {
+   "cand": "M2 97B",
+   "cost_bytes": 97,
+   "query": "H2",
+   "top1": "A-memory-start",
+   "rank": 1,
+   "role": "target",
+   "won": true
+  },
+  {
+   "cand": "M2 97B",
+   "cost_bytes": 97,
+   "query": "H3",
+   "top1": "data-analysis",
+   "rank": 13,
+   "role": "target",
+   "won": false
+  },
+  {
+   "cand": "M2 97B",
+   "cost_bytes": 97,
+   "query": "P1",
+   "top1": "A-memory-start",
+   "rank": 1,
+   "role": "target",
+   "won": true
+  },
+  {
+   "cand": "M2 97B",
+   "cost_bytes": 97,
+   "query": "P2",
+   "top1": "A-memory-start",
+   "rank": 1,
+   "role": "target",
+   "won": true
+  },
+  {
+   "cand": "M2 97B",
+   "cost_bytes": 97,
+   "query": "S1",
+   "top1": "A-memory-start",
+   "rank": 1,
+   "role": "keep",
+   "won": true
+  },
+  {
+   "cand": "M2 97B",
+   "cost_bytes": 97,
+   "query": "S2",
+   "top1": "chaoshi-web-deploy",
+   "rank": 21,
+   "role": "steal",
+   "won": false
+  },
+  {
+   "cand": "M2 97B",
+   "cost_bytes": 97,
+   "query": "S3",
+   "top1": "chaoshi-image-optimization",
+   "rank": 60,
+   "role": "steal",
+   "won": false
+  },
+  {
+   "cand": "M2 97B",
+   "cost_bytes": 97,
+   "query": "S4",
+   "top1": "wps-knowledgebase",
+   "rank": 10,
+   "role": "steal",
+   "won": false
+  },
+  {
+   "cand": "M2 97B",
+   "cost_bytes": 97,
+   "query": "S5",
+   "top1": "pixelle-api-ensure",
+   "rank": 17,
+   "role": "steal",
+   "won": false
+  },
+  {
+   "cand": "C6 127B",
+   "cost_bytes": 127,
+   "query": "H1",
+   "top1": "dingtalk-aitable",
+   "rank": 3,
+   "role": "target",
+   "won": false
+  },
+  {
+   "cand": "C6 127B",
+   "cost_bytes": 127,
+   "query": "H2",
+   "top1": "A-memory-start",
+   "rank": 1,
+   "role": "target",
+   "won": true
+  },
+  {
+   "cand": "C6 127B",
+   "cost_bytes": 127,
+   "query": "H3",
+   "top1": "data-analysis",
+   "rank": 6,
+   "role": "target",
+   "won": false
+  },
+  {
+   "cand": "C6 127B",
+   "cost_bytes": 127,
+   "query": "P1",
+   "top1": "A-memory-start",
+   "rank": 1,
+   "role": "target",
+   "won": true
+  },
+  {
+   "cand": "C6 127B",
+   "cost_bytes": 127,
+   "query": "P2",
+   "top1": "A-memory-start",
+   "rank": 1,
+   "role": "target",
+   "won": true
+  },
+  {
+   "cand": "C6 127B",
+   "cost_bytes": 127,
+   "query": "S1",
+   "top1": "A-memory-start",
+   "rank": 1,
+   "role": "keep",
+   "won": true
+  },
+  {
+   "cand": "C6 127B",
+   "cost_bytes": 127,
+   "query": "S2",
+   "top1": "chaoshi-web-deploy",
+   "rank": 17,
+   "role": "steal",
+   "won": false
+  },
+  {
+   "cand": "C6 127B",
+   "cost_bytes": 127,
+   "query": "S3",
+   "top1": "chaoshi-image-optimization",
+   "rank": 40,
+   "role": "steal",
+   "won": false
+  },
+  {
+   "cand": "C6 127B",
+   "cost_bytes": 127,
+   "query": "S4",
+   "top1": "wps-knowledgebase",
+   "rank": 10,
+   "role": "steal",
+   "won": false
+  },
+  {
+   "cand": "C6 127B",
+   "cost_bytes": 127,
+   "query": "S5",
+   "top1": "pixelle-api-ensure",
+   "rank": 15,
+   "role": "steal",
+   "won": false
+  }
+ ]
+}
