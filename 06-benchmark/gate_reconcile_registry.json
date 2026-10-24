@@ -88,9 +88,10 @@
    "input_pin_fixtures",
    "runner_internals_fixtures",
    "skill_wiring_face",
-   "push_autopush_face"
+   "push_autopush_face",
+   "recall_face"
   ],
-  "_snapshot_at": "2026-10-24 23:04",
+  "_snapshot_at": "2026-10-25 00:26",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
@@ -274,6 +275,10 @@
   "push_autopush_face": {
    "evidence": "05-exec/r205_push_autopush_face.py",
    "at": "2026-10-24 22:10"
+  },
+  "recall_face": {
+   "evidence": "05-exec/r208_recall_face.py",
+   "at": "2026-10-24 23:54"
   }
  }
 }

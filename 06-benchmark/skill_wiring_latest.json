@@ -8,24 +8,14 @@
   "A-project-better/checklists.md",
   "A-project-better/roadmap.md",
   "A-project-better/version-history-archive.md",
-  "A-project-better/version-history-archive.part1.md",
-  "A-skill-manager/governance-r306-self-updating-ledger.md",
-  "A-skill-manager/merge-record.sources.md",
-  "cross-platform-agent-sync/cps.part10.md",
-  "cross-platform-agent-sync/cps.part11.md",
-  "win-toolchain-pitfalls/powershell-cli-silent-failures.md"
+  "A-project-better/version-history-archive.part1.md"
  ],
  "baseline": [
   "A-project-better/acceptance-patterns.md",
   "A-project-better/checklists.md",
   "A-project-better/roadmap.md",
   "A-project-better/version-history-archive.md",
-  "A-project-better/version-history-archive.part1.md",
-  "A-skill-manager/governance-r306-self-updating-ledger.md",
-  "A-skill-manager/merge-record.sources.md",
-  "cross-platform-agent-sync/cps.part10.md",
-  "cross-platform-agent-sync/cps.part11.md",
-  "win-toolchain-pitfalls/powershell-cli-silent-failures.md"
+  "A-project-better/version-history-archive.part1.md"
  ],
  "new_orphans": [],
  "note": "分卷可达=BFS 链式引用(父引子)+跨skill全局池; 只拦增量。孤儿分卷=写了没人读=等于没写。",

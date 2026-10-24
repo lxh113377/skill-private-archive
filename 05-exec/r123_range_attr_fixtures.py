@@ -28,10 +28,14 @@ RG = os.path.join(HERE, "ratchet_gate.py")
 RESULTS = []
 
 
-def ck(name, cond, detail=""):
-    RESULTS.append((bool(cond), name, str(detail)))
-    print("%-4s %s%s" % ("PASS" if cond else "FAIL", name,
-                       "" if cond else "  <-- got: " + str(detail)[:180]))
+def ck(name, cond, detail="", skipped=False):
+    # r208 修（第二个 bug，由变异测试暴露）：第三态原先记成 PASS —— 变异跑里 t8 其实
+    # 走了 SKIP（哨兵腿未执行），但打印看不出差别，于是「有牙验证」被 SKIP 吞掉、
+    # 给出假阴性结论（我差点据此判定守卫丢牙）。第三态必须有独立标记 SKIP。
+    st = "SKIP" if skipped else ("PASS" if cond else "FAIL")
+    RESULTS.append((bool(cond or skipped), name, str(detail)))
+    print("%-4s %s%s" % (st, name,
+                       "" if (cond and not skipped) else "  <-- " + str(detail)[:200]))
 
 
 def run(args, baseline):
@@ -45,6 +49,33 @@ def run(args, baseline):
     first = next((l.strip() for l in out.splitlines() if l.strip()), "")
     doc = json.loads(io.open(baseline, encoding="utf-8").read())
     return p.returncode, first, doc
+
+
+def parse_measured(msg):
+    # r208：弃 regex 改纯字符串解析。旧写法在 r"...\\s..." 里被写成双反斜杠 ⇒
+    # r-string 里那是「字面反斜杠 + s」，永远匹配不到空白，于是静默走回退分支；
+    # 回退取「最后一个整数」恰好也等于实测，才把 bug 掩盖了三轮。文案本身是稳定的：
+    # 「--to 与实测现值不符（<传入> vs <实测>）」，直接定位 vs 后取数字最稳。
+    key = "实测现值不符"
+    i = (msg or "").find(key)
+    if i < 0:
+        return None
+    seg = msg[i:]
+    j = seg.find("vs")
+    if j < 0:
+        return None
+    # r208 修（第三态化照出来的真 bug）：文案是「vs 1）」，j+2 处是**空格**，
+    # 原先直接从那里开始扫数字 ⇒ 恒返回 None ⇒ t6/t8 长期走 SKIP。而 SKIP 当时又打印
+    # PASS（见 ck 的 r208 注），于是「两条腿一直什么都没测」被两层掩盖：解析漏空格 +
+    # 第三态伪装成通过。先跳过空白再扫。
+    k = j + 2
+    while k < len(seg) and seg[k] == " ":
+        k += 1
+    out = ""
+    while k < len(seg) and (seg[k].isdigit() or seg[k] == "-"):
+        out += seg[k]
+        k += 1
+    return int(out) if out else None
 
 
 def main():
@@ -72,6 +103,7 @@ def main():
     M = "deferred_debt_items"
     cur = tmpl["metrics"].get(M, 0)
     FAR = str(int(cur) + 1000)   # 预支腿专用：保证与任何合理实测不碰撞
+    SENTINEL = int(cur) + 777000   # 旁观指标哨兵（r208）：与合理实测必不等
     reset()
     snapshot = io.open(bl, encoding="utf-8").read()
 
@@ -123,84 +155,84 @@ def main():
     # 正解 = 把临时基线的该指标**压到实测值之下**，造出「实测 > 基线」的真实增长面，
     # 于是 --from（压低后的基线）与 --to（实测）构成一段合法区间。
 
-    # r123 夹具自抓（可移植性）：t6 正控依赖「实测值可读」。debt 三指标的实测面是账龄件，
-    # 而账龄件受「相对新鲜前置」约束（件不得旧于它所测卷集）⇒ 并行会话写卷期间实测恒为 None，
-    # 此时 t6 必红而**判据本身没问题**（拒的是预支，行为正确）。
-    # 修法：实测不可读时记 SKIPPED（第三态，禁当绿也禁当红），并说明原因；可读时才判 PASS/FAIL。
-    # 实测可达性探测（r123 可移植性修）：本夹具声明 portable=True，
-    # 但 debt 三指标的实测面是账龄件，受「相对新鲜前置」约束（件不得旧于被测卷集）
-    # ⇒ 并行会话写卷期间实测恒为 None。此时 t6 必红，而判据行为其实是**正确**的
-    # （拒的是预支）。故实测不可读时按第三态 SKIP：不记绿也不记红。
-    # r201 修（本腿脆断的真正根因，比 regex 更深一层）：探测腿原本用 --to=cur+1 去
-    # 「撞一次不符」好从报错里反推实测值。可一旦 cur+1 恰好等于实测（本轮 cur=1、实测=2，
-    # 正是这种），探测腿自己就合法通过了 ⇒ 报错文本不存在 ⇒ 反推路径断裂，live 退回模板值
-    # cur=1，正控腿再用 --to=1 去打实测=2 ⇒ 恒被拒、恒假红。
-    # 与 t2 注释里那条「反例值要与合理实测保持距离」是同一个道理，只是这次踩坑的是正控腿。
-    # 修法：探测腿用一个不可能碰撞的远值（cur+1000），必然被拒，报错里带的就是真实实测值。
-    rc_probe, first_probe, _ = run(["--range-attribute", "--metric", M,
+    # r208 重构（本轮 t6/t8 交替假红、单跑全过的真实根因）：实测面是**活的** 07 台账，
+    # 由子进程现读 ⇒ 「探测实测」与「使用该实测」之间有 TOCTOU 窗口。并行会话在窗口内
+    # 重算债务（本轮 deferred 2→1）时，拿旧实测当 --to 会被**正确**拒掉：判据没错，
+    # 错在夹具把两次调用间的时间差当静态量。第一版给 t8 单独补了现探（于是 t8 过、t6 又红），
+    # 说明该修的是公共闭包而不是逐腿打补丁。
+    # 修法：探→写→用 封进 attribute_fresh；遇「与实测现值不符」按环境漂移重探重试；
+    #       重试耗尽记第三态 SKIP（不记绿也不记红）；**其它失败仍判 FAIL** ——
+    #       夹具自己的逻辑错必须现形，绝不借 SKIP 掩盖（本仓立的「禁把跳过当通过」）。
+    def attribute_fresh(reason, bystander=None, tries=6):
+        for _att in range(tries):
+            reset()
+            _rc, _fp, _ = run(["--range-attribute", "--metric", M,
                              "--from", str(int(cur)), "--to", FAR,
-                             "--commits", "probe", "--range-reason", "probe"], bl)
-    measured_readable = ("实测现值不符" in first_probe)
-    reset()
-    if not measured_readable:
-        ck("t6 正例：合法区间成立且留账递增（kind=range，指标落到 --to）",
-           True, "SKIPPED(第三态): 实测面不可读（账龄件陈旧/缺件）⇒ 本腿跳过，不记绿也不记红")
-    else:
-        # 用**探测腿读到的实时实测值**当 --to（不是模板值 cur）：debt 指标在跑的过程中
-        # 可能被并行会话改动，用模板值会让 --to != 实测 ⇒ 正控假红（本轮实测 2 vs 3）。
-        import re as _re
-        # r201 修（本腿脆断的真实原因）：告警原文是「--to 与实测现值不符（1 vs 2）」，
-        # 括号里是 **(--to, 实测)** 两个数。旧 regex 取第一个捕获 ⇒ 抓到的是我自己传的
-        # --to（cur+1），不是实测值；于是 live 恒等于 cur+1，--to 又 == live ⇒ 校验必然
-        # 判「不符」而拒 ⇒ 正控腿假红。现取 vs 后的第二个数（实测），并保留回退。
-        # 括号是全角（本仓告警文案统一用全角括号）：ASCII \\( 匹配不到 ⇒ 会静默走回退，
-        # 而回退抓到的是括号里的**第一个数 = 我传的 --to**，正控腿于是恒假红。
-        # 教训：解析自家文案也要按文案的真实字符写，别按「一般怎么写」写。
-        _m = _re.search(
-            r"实测现值不符[^0-9]*[\(\uff08]\\s*(-?\\d+)\\s+vs\\s+(-?\\d+)\\s*[\\)\uff09]",
-            first_probe)
-        if _m:
-            live = int(_m.group(2))          # 第二个才是实测现值
-        else:
-            # 回退：从文案里抓所有整数，取**最后一个**当实测（--to 在前、实测在后）
-            _nums = [int(x) for x in _re.findall(r"-?\\d+", first_probe)]
-            live = _nums[-1] if _nums else int(cur)
-        doc0 = json.loads(io.open(bl, encoding="utf-8").read())
-        low = max(0, live - 2)
-        doc0["metrics"][M] = low
-        io.open(bl, "w", encoding="utf-8", newline=chr(10)).write(
-            json.dumps(doc0, ensure_ascii=False, indent=1))
-        tgt = live
-        rc, first, doc = run(["--range-attribute", "--metric", M, "--from", str(low),
-                              "--to", str(tgt), "--commits", "c1+c2",
-                              "--range-reason", "t6 正控：合法区间归因"], bl)
-        led = doc.get("attributed_raises") or []
-        ck("t6 正例：合法区间成立且留账递增（kind=range，指标落到 --to）",
-           rc == 0 and "RANGE-ATTRIBUTED" in first
-           and len(led) == 1 and led[0].get("kind") == "range"
-           and int(doc["metrics"][M]) == tgt,
-           (rc, first, len(led), doc.get("metrics", {}).get(M)))
+                             "--commits", "probe",
+                             "--range-reason", "probe"], bl)
+            if "实测现值不符" not in _fp:
+                return ("SKIP", "实测面不可读（账龄件陈旧/缺件）")
+            live_x = parse_measured(_fp)
+            if live_x is None:
+                return ("SKIP", "实测值解析失败：%s" % _fp[:60])
+            doc_x = json.loads(io.open(bl, encoding="utf-8").read())
+            # r208 修（变异测试实证的空转守卫）：基准若直接取「模板原值」，一旦该指标的
+            # 模板值恰好 == 实测值，全量写入的变异后门把旁观指标刷成实测也**看不出来**
+            # ⇒ 守卫恒真、丢牙（本轮变异跑 rc=0、t8 PASS 即此）。正解 = 写入与任何合理
+            # 实测都不碰撞的哨兵值，让「搭车上调」必然留下可见差值。
+            if bystander:
+                doc_x["metrics"][bystander] = SENTINEL
+            io.open(bl, "w", encoding="utf-8", newline=chr(10)).write(
+                json.dumps(doc_x, ensure_ascii=False, indent=1))
+            base_by = (doc_x.get("metrics") or {}).get(bystander) if bystander else None
+            low_x = max(0, live_x - 2)
+            doc_x["metrics"][M] = low_x
+            io.open(bl, "w", encoding="utf-8", newline=chr(10)).write(
+                json.dumps(doc_x, ensure_ascii=False, indent=1))
+            rc_x, first_x, doc_fin = run(["--range-attribute", "--metric", M,
+                                          "--from", str(low_x),
+                                          "--to", str(live_x),
+                                          "--commits", "c1+c2",
+                                          "--range-reason", reason], bl)
+            if rc_x == 0 and "RANGE-ATTRIBUTED" in first_x:
+                return ("OK", (live_x, low_x, doc_fin, base_by, first_x))
+            if "与实测现值不符" in first_x:
+                continue          # 环境漂移：重探重试，不猜、不算绿
+            return ("FAIL", (rc_x, first_x[:120], live_x))
+        return ("SKIP", "重试 %d 次仍被并行会话改动" % tries)
 
-        # t8 搭车守卫（r201 一手）。旧写法有个自己的缺陷，被变异测试抓出来：它把对照
-        # 基准 bystander0 从**已被 t6 跑过的临时基线**里读 —— 变异代码在 t6 那一步就把
-        # 旁观指标刷成实测值了，于是基准本身被污染 ⇒ 守卫恒真、变异漏检。
-        # 现改为：先 reset() 回模板，再从**模板原值**取基准，旁观指标必须原地不动。
-        B = "overdue_debt_items"
-        reset()
-        bystander0 = (tmpl.get("metrics") or {}).get(B)
-        doc_b = json.loads(io.open(bl, encoding="utf-8").read())
-        assert (doc_b.get("metrics") or {}).get(B) == bystander0, "reset 未回到模板值"
-        low8 = max(0, live - 2)
-        doc_b["metrics"][M] = low8
-        io.open(bl, "w", encoding="utf-8", newline=chr(10)).write(
-            json.dumps(doc_b, ensure_ascii=False, indent=1))
-        rc8, first8, doc8 = run(["--range-attribute", "--metric", M,
-                                 "--from", str(low8), "--to", str(live),
-                                 "--commits", "c1+c2",
-                                 "--range-reason", "t8 搭车守卫"], bl)
+    kind6, pay6 = attribute_fresh("t6 正控：合法区间归因")
+    if kind6 == "SKIP":
+        ck("t6 正例：合法区间成立且留账递增（kind=range，指标落到 --to）",
+           True, "第三态: %s ⇒ 不记绿也不记红" % pay6, skipped=True)
+    elif kind6 == "FAIL":
+        ck("t6 正例：合法区间成立且留账递增（kind=range，指标落到 --to）",
+           False, "非漂移类失败（夹具逻辑错，不许记 SKIP）：%s" % (pay6,))
+    else:
+        live6, low6, doc6, _b6, first6 = pay6
+        led = doc6.get("attributed_raises") or []
+        ck("t6 正例：合法区间成立且留账递增（kind=range，指标落到 --to）",
+           len(led) == 1 and led[0].get("kind") == "range"
+           and int(doc6["metrics"][M]) == live6,
+           (len(led), doc6.get("metrics", {}).get(M), live6))
+
+    # t8 搭车守卫（r201 一手）：区间归因只准动被点名的指标。第一版把对照基准
+    # bystander0 从「已被 t6 跑过的临时基线」里读 ⇒ 基准自身被污染 ⇒ 守卫恒真、
+    # 变异漏检（变异测试抓出来）。现基准 = 本次 reset 后模板原值，且与 t6 共用同一
+    # 闭包（自带现探），不再有跨调用的时间差。
+    B = "overdue_debt_items"
+    kind8, pay8 = attribute_fresh("t8 搭车守卫", bystander=B)
+    if kind8 == "SKIP":
         ck("t8 守卫：区间归因后旁观指标保持基线原值（禁搭车上调）",
-           rc8 == 0 and (doc8.get("metrics") or {}).get(B) == bystander0,
-           (rc8, first8[:60], (doc8.get("metrics") or {}).get(B), bystander0))
+           True, "第三态: %s" % pay8, skipped=True)
+    elif kind8 == "FAIL":
+        ck("t8 守卫：区间归因后旁观指标保持基线原值（禁搭车上调）",
+           False, "非漂移类失败：%s" % (pay8,))
+    else:
+        live8, low8, doc8, bystander8, first8 = pay8
+        ck("t8 守卫：区间归因后旁观指标保持基线原值（禁搭车上调）",
+           (doc8.get("metrics") or {}).get(B) == bystander8,
+           ((doc8.get("metrics") or {}).get(B), bystander8))
 
     # t7 守恒：反例腿不得改基线件
     reset()
@@ -222,9 +254,11 @@ def main():
 
 
 def finish():
-    ok = sum(1 for r in RESULTS if r[0])
+    ok = sum(1 for r in RESULTS if r[0] and "第三态" not in r[2])
+    sk = sum(1 for r in RESULTS if "第三态" in r[2])
     total = len(RESULTS)
-    print("夹具合计: %d 项，通过 %d，失败 %d" % (total, ok, total - ok))
+    print("夹具合计: %d 项，通过 %d，第三态 %d，失败 %d"
+          % (total, ok, sk, total - ok - sk))
     if total and ok == total:
         print("[GATE:fixture-pass]")
         return 0

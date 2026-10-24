@@ -1,0 +1,32 @@
+{
+ "schema": "recall-probe-registry-v1",
+ "note": "声明「哪个自建 skill 承载哪个主题的实测知识」+ 探针词；探针词须出现在该 skill SKILL.md 前 CORPUS_CHARS 字符（召回语料窗口）才算可召回。正控条目与待修条目并存，防判据恒真。",
+ "updated_at": "2026-10-24 23:35",
+ "probes": [
+  {
+   "skill": "win-toolchain-pitfalls",
+   "topic": "CF/GitHub 免费工具额度读数与自动化链静默失败（R805 §9.16 / R810 §9.17 在 references）",
+   "probes": [
+    "Cloudflare",
+    "wrangler",
+    "GitHub"
+   ]
+  },
+  {
+   "skill": "chaoshi-web-deploy",
+   "topic": "正控：Cloudflare Pages/D1 部署（description 已含关键词，预期可召回）",
+   "probes": [
+    "Cloudflare",
+    "wrangler",
+    "D1"
+   ]
+  },
+  {
+   "skill": "ci-pipeline-debugging",
+   "topic": "run_id 与 run_number 混用致 404（不在自建口径，预期被跳过不判）",
+   "probes": [
+    "run_id"
+   ]
+  }
+ ]
+}

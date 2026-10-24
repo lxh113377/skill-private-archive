@@ -1377,6 +1377,29 @@ GATES = [
                 "「推送成没成」（查存在/查漂移/查归属，不查结果）。"
                 "本门补这个盲区，配 R807 模板留痕一起生效。"),
     },
+    {
+        # r208：实测知识可召回面（第 88 门）—— 知识进对 skill 也可能召不回
+        "id": "recall_face",
+        "script": "r208_recall_face.py",
+        "argv": ["--json", "06-benchmark/recall_latest.json"],
+        "pass_token": "[RECALL:PASS]",
+        "portable": False,
+        "not_portable_reason":
+            "读 D:/global_skills 各 SKILL.md 与焚诀 eval/build_indexes.py（本机绝对路径），" +
+            "CI 的 Linux runner 上没有这两棵树",
+        "covers": [
+            "召回窗口取自 eval/build_indexes.py 的 CORPUS_CHARS（权威现读，取不到即 UNVERIFIED，不硬编）",
+            "探针名册 recall_probe_registry：只判自建 HIGH+MID 口径内的条目（市场件/EXCLUDE 跳过）",
+            "正控 + 边界 + 待修三类条目并存 + K4 自检：防判据恒真或恒假",
+            "棘轮基线 recall_wiring_baseline：只拦新增不可召回；基线缺失 ⇒ rc=2 UNVERIFIED"],
+        "why": ("r208 一手：实跑焚诀 unified_router 两次才暴露 —— 本仓按「按需加载」依赖路由，" +
+                "而召回语料 = 各 skill 自己 SKILL.md 的前 N 字符（build_indexes: 语料 = 磁盘 SKILL.md " +
+                "前 800 字符，BGE 与 TF-IDF 同源）。我 R805/R810 写进 references 的 CF/GitHub 实测坑，" +
+                "指针齐备（第 86 门已守）但物理上不在召回语料里：查询含 date_geq/Rate limiter 时 " +
+                "top1=local-mineru；连用 win-toolchain 自己 description 的原词查询，top1 仍是别人。" +
+                "「写进 skill 才会被读到」这句我以前只做到指针可达，漏了入口可召回 —— 后者没有任何" +
+                "天然信号：不报错、不变红，只是没人会去查它。"),
+    },
 ]
 
 # 显式声明本 runner **不覆盖**的面，防止聚合绿被读成「所有门禁都绿」（R20-2）。

@@ -456,6 +456,56 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   references/powershell-cli-silent-failures.md」指针 + 版本行；或由归属方自行合并时带上。
   取值：git -C D:/global_skills status --porcelain -- win-toolchain-pitfalls/SKILL.md（非空即未落地）；
   分卷本体已在库：git -C D:/global_skills log --oneline -1 --grep R804。
+- [ ] **R208-2（r208 登记，P0·已落地）** **变异测试连环挖出三个我自己的 bug，其中一个让 t6/t8 长期什么都没测**： 【r208 裁决=执行（为验新门跑变异，连环挖出并修掉三个自己的 bug：PowerShell 变异残留、空转守卫基准同值、第三态伪装成 PASS 掩盖解析恒失败）｜读数：干净态 8/8 第三态 0；变异态 rc=1 且 FAIL t8 <-- (3, 777002)；还原后 git diff 空、写入行回到 new_metrics。不设目标轮：规矩已写进 §58.3 与本条。】
+  链条（每一步都有实测输出，不是推理）：
+  ① **事故**：上一轮我用 PowerShell `Set-Content -NoNewline` 做变异注入、事后还原 —— 还原没生效，
+     `ratchet_gate.py` L801 停在了后门版 `= metrics, ledger`（HEAD 是正确的 `new_metrics`）。
+     `git diff` 显示 2 行改动才暴露。**后果**：随后那次「t8 丢牙」的结论是被我自己改坏的文件造的假象。
+     正解：变异注入一律走 Python 字节级 + 前置 assert 工作树==HEAD + finally 还原后 assert 字节一致。
+  ② **真 bug A（空转守卫）**：干净态重跑变异，t8 仍 PASS。重放取证发现 `attribute_fresh` 的旁观基准
+     取的是**模板原值**，而 overdue 的模板值恰好 == 实测值（3 vs 3）⇒ 后门全量写入后与基准相等、
+     看不出来。修法：写入哨兵 `SENTINEL = cur + 777000`（与任何合理实测不碰撞），变异态下旁观指标
+     从 777002 被刷成 3 ⇒ 差值必然可见。这是 r201 那条「基准被污染」的升级版：**基准没被污染，
+     但基准与攻击效果同值，一样是空转**。
+  ③ **真 bug B（第三态伪装成通过）**：`ck()` 只打印 PASS/FAIL，SKIP 也显示 PASS ⇒ 「变异没被抓住」
+     这个信号本身被 SKIP 吞掉。改：`ck(..., skipped=True)` 打独立 `SKIP` 标记，`finish()` 分列计数
+     （通过/第三态/失败），且第三态不再算作通过。
+  ④ **真 bug C（解析恒失败，被 ③ 掩盖）**：第三态化一打开，t6/t8 立刻显形「实测值解析失败」——
+     `parse_measured` 从 "vs" 后第 2 个字符起扫，那里是**空格** ⇒ 恒返回 None ⇒ **这两条腿从我重构
+     那刻起就一直走 SKIP、什么都没验证过**，而打印写着 PASS。修：先跳过空白再扫数字。单测直证：
+     `vs 1 -> 1`、`vs 37 -> 37`、无关键词 -> None。
+  最终证据：干净态 8/8 通过、第三态 0；变异态 rc=1、`FAIL t8 <-- (3, 777002)` ⇒ 抓住变异；
+  还原后 `git diff` 空、写入行回到 new_metrics、COMPILE-OK。
+  元教训（本条最贵）：**「判据报绿」有三种成因 —— 真通过、空转、被当成通过的跳过；后两种的输出
+  与前一种完全相同。** 所以第三态必须有独立视觉标记，且**每次重构判据后必须重跑变异测试**：
+  我这轮若只跑「夹具 8/8」就收工，三个 bug 会全部潜伏下来，其中两个正在让安全判据静默失效。
+  取值：`python 05-exec/r123_range_attr_fixtures.py`（8/8 第三态0）；变异跑见 TEMP/mut_t8_v3.py；
+  `git diff --stat -- 05-exec/ratchet_gate.py`（空=还原干净）。
+- [ ] **R208-1（r208 登记，P1·已落地）** **实跑路由才暴露：知识进对了 skill，仍进不了召回面（可达 ≠ 可召回）**： 【r208 裁决=执行（实跑路由暴露「进对 skill 也召不回」，建第 88 门并挂进门表）｜读数：门表 88、召回窗口 800 取权威源、正控+边界+待修三类的判据非恒真（首跑 FAIL 能变红、回填基线后 PASS）；win-toolchain 这条缺口按 R269/注入硬顶不代做，基线 note 写明归属方补法与删除条件。】
+  第 86 门守「分卷有没有指针」，本轮追问更深一层：A-memory-start 的按需加载靠 Step 0.6 程序化
+  路由（焚诀 eval/unified_router.py --json），实跑两次：
+    Q1「wrangler 读 Cloudflare 免费额度 date_geq 过滤字段 Rate limiter budget depleted 怎么查」
+       -> top1=local-mineru（非 win-toolchain-pitfalls）、direct_hit=False、needs_llm=True（Top3 并列 0.0001）
+    Q2「命令静默无输出 exit code 恒 0 返回 0 结果 文件不存在 工具 command not found」
+       （win-toolchain 的 description 原词）-> top1=commit-archaeologist，**仍未召回它**
+  查召回语料来源（eval/build_indexes.py:「语料 = 磁盘 SKILL.md 前 800 字符（BGE 与 TF-IDF 同源）」，
+  bge_fullbody_meta.json 的 encoding 字段同证，CORPUS_CHARS 常量 = 800）⇒ **写进 references/ 的
+  知识无论指针多齐都不在召回面**：R805 §9.16（CF 额度读数 7 坑）与 R810 §9.17（GitHub/CI 自动化
+  链静默失败）都只活在 references 与报告里，路由召不回、Agent 下次撞墙照样从头踩。
+  落地第 88 门 recall_face（portable=False，零网络）：K1 窗口取权威源不硬编（build_indexes 缺失即
+  UNVERIFIED）；K2 探针名册 recall_probe_registry 声明「哪个自建 skill 承载哪个主题」，只判自建
+  HIGH+MID 口径内条目；K3 基线只拦增量；K4 自证有牙。首跑基线置空拿到真实 gap 字符串再据实
+  写入（不手抄格式，防 KNOWN 永不匹配）；**名册含 1 条正控（chaoshi-web-deploy 预期可召回）+
+  1 条预期被跳过（ci-pipeline-debugging 市场件）**，证明判据既非恒真也非恒假。
+  现状：探针 3 条、自建口径内判 2 条、不可召回 1 条（win-toolchain）、[RECALL:PASS] rc=0。
+  这条缺口的闭合不在我手里：补法是给 win-toolchain/SKILL.md 的 description 加 3 个探针词，但
+  该文件已被并行会话 dirty 四轮回看未解（R269 不代提交他人改动），且不污染注入面 —— A-memory-start
+  虽每轮必加载可绕过路由，但它在 C25 注入五件内、实测已超硬顶 +1453，为召回加字会加剧 C25 红。
+  故：基线 note 写明归属方补法与删除条件，第 88 门常驻盯着它有没有真被补上。
+  元教训：我这十几轮反复说「写进 skill 才会被读到」，但「读」其实分两段 —— ①指针可达（86 门
+  已守）②入口可召回（本轮才有判据）。第二段没有任何天然信号：不报错、不变红，只是没人会去查它。
+  取值：python C:/Users/37533/Desktop/workspace/焚诀/eval/unified_router.py --json "<查询>"；
+  python 05-exec/r208_recall_face.py --json <件>；grep CORPUS_CHARS 焚诀/eval/build_indexes.py。
 - [ ] **R207-1（r207 登记，P1·已落地）** **GitHub/CI 自动化链的两条静默失败实测坑喂进 skill（§9.17/R810）**： 【r207 裁决=执行（扫「关键词×候选skill」矩阵发现两条最狠的 GitHub 坑从没进过该去的 skill；定家排除市场件/EXCLUDE 件后落 win-toolchain cli-invocation §9.17/R810）｜读数：提交范围=1卷不含他人在途件、镜像 pathspec hash 一致、disk_registry 三类全0、r204 复跑孤儿仍5。不设目标轮：这是周期性回查动作，本轮已闭合。】
   本轮回到目标本体：上几轮我把 GitHub/CI 的坑都记进报告与仓内判据，但没查它们进没进真正用它的
   skill。扫描发现：run_id≠run_number、log-failed 无失败返 0 字节两条**已在** ci-pipeline-debugging/

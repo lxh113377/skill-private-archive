@@ -1,0 +1,16 @@
+{
+ "schema": "recall-face-v1",
+ "readonly": true,
+ "window": 800,
+ "checked": 2,
+ "gaps": [
+  "win-toolchain-pitfalls::CF/GitHub 免费工具额度读数与自动化链静默失败（R805 §9.16 / R810 §9.17 在 references）|探针=Cloudflare/wrangler/GitHub"
+ ],
+ "baseline": [
+  "win-toolchain-pitfalls::CF/GitHub 免费工具额度读数与自动化链静默失败（R805 §9.16 / R810 §9.17 在 references）|探针=Cloudflare/wrangler/GitHub"
+ ],
+ "new_gaps": [],
+ "k4_teeth": true,
+ "note": "召回语料=SKILL.md 前 N 字符（BGE/TF-IDF 同源）；写进 references 的知识不在召回面：可达不等于可召回",
+ "provenance_cmd": "python 05-exec/r208_recall_face.py --json <件>"
+}

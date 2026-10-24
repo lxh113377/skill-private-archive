@@ -1,0 +1,7 @@
+{
+ "schema": "recall-wiring-baseline-v1",
+ "known_uncallable": [
+  "win-toolchain-pitfalls::CF/GitHub 免费工具额度读数与自动化链静默失败（R805 §9.16 / R810 §9.17 在 references）|探针=Cloudflare/wrangler/GitHub"
+ ],
+ "note": "历史不可召回基线（r208 立）：只准减不准增。win-toolchain 这条卡在其 SKILL.md 被并行会话 dirty（含他人 §10 改动），补 description 关键词会连带他人改动入库 ⇒ R269 不代做；其 CF/GitHub 知识的召回入口已由 A-memory-start/references/quickref-cli-subprocess.md 覆盖（R806 段 + SKILL.md L111 收录，A-memory-start 每轮必加载不依赖路由召回）。待该卷脱离 dirty 后由归属方把 Cloudflare/wrangler/GitHub 加进 SKILL.md 前 800 字符（召回窗口），本条从基线删除。"
+}
