@@ -1,7 +1,7 @@
 {
  "schema": "probe-cost-v5",
  "readonly": true,
- "gate_table_count": 79,
+ "gate_table_count": 84,
  "rows": [
   {
    "gate": "cache_guard_face",
@@ -204,6 +204,21 @@
     "github": 0
    },
    "state": "OK"
+  },
+  {
+   "gate": "probe_cost_fixtures",
+   "script": "r200_probe_cost_fixtures.py",
+   "apis": [
+    "cloudflare",
+    "github"
+   ],
+   "portable": true,
+   "declared": null,
+   "measured": {
+    "cloudflare": 0,
+    "github": 0
+   },
+   "state": "NO_EXTERNAL_CALLS"
   }
  ],
  "problems": [],

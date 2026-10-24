@@ -1,12 +1,7 @@
 {
  "schema": "fixture-wiring-baseline-v1",
  "known_orphans": [
-  "r123_deferral_chain_fixtures.py",
-  "r200_probe_cost_fixtures.py",
-  "r31_run_gates_fixtures.py",
-  "r34_onwrite_fixtures.py",
-  "r35_tracked_empty_fixtures.py",
-  "r67_input_pin_fixtures.py"
+  "r31_run_gates_fixtures.py"
  ],
- "note": "历史孤儿夹具基线（r202 立）：只准减不准增。挂接一个就从这里删一个。本门拦的是增量 —— 新写一个没人跑的夹具立刻红。（r202 收缩 1 条：r32_freshness_fixtures 已挂为第 79 门）"
+ "note": "历史孤儿夹具基线（r202 立）：只准减不准增。挂接一个就从这里删一个。本门拦的是增量 —— 新写一个没人跑的夹具立刻红。（r202 收缩 1 条：r32_freshness_fixtures 已挂为第 79 门）（r202 再收缩 5 条：80~84 门挂接）"
 }

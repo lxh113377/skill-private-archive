@@ -456,6 +456,21 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   references/powershell-cli-silent-failures.md」指针 + 版本行；或由归属方自行合并时带上。
   取值：git -C D:/global_skills status --porcelain -- win-toolchain-pitfalls/SKILL.md（非空即未落地）；
   分卷本体已在库：git -C D:/global_skills log --oneline -1 --grep R804。
+- [ ] **R202-4（r202 登记，P2）** **两种延期计数口径在 REPEAT 门槛上结论相反，是真实未决分歧，不由夹具单方面定案**： 【r202 裁决=降级（转长期看守）｜两种延期计数口径在 REPEAT 门槛上结论相反（旧「终局清零」= P3 不触发 / 新「历史总数」= P3 触发），属真实未决分歧，须在 REPEAT 指标因该口径差异判红时由归属轮定案；不由本轮到点改门槛（会改 REPEAT 语义进而改棘轮基线）。本轮已做：夹具断言对齐实现语义 8/8，并保留 M1 反向变异腿 ⇒ 口径被静默改回会被立即发现。不设目标轮。】
+  挂接 r123 孤儿夹具时暴露：`count_deferrals` 现口径 = 历史改期总数（P3「挂账→终局→挂账」= 2、
+  P5「挂账→终局」= 1）；旧口径 = 终局清零（P3=1、P5=0）。r123 当时因「终局清零会把真实发生
+  过一次的改期抹成 0，与『改期>=2 即 REPEAT』规则冲突」而放弃旧口径 —— 但旧口径衡量的是
+  「当前这轮 treadmill 有几次」，新口径衡量「这条目一共改过几次期」，两者在 REPEAT_AFTER=2
+  门槛下对 P3 结论相反：旧=不触发 REPEAT（终局已转长期看守），新=触发 REPEAT（须升级）。
+  影响面实测：当前台账 DEFERRED 2 条（R201-5、R202-2 都是我自己的挂账），若按新口径它们
+  未来改期一次即进 REPEAT；按旧口径则须再挂两次。这不是我能单方面定的（会改变 REPEAT 指标
+  语义、进而改变棘轮基线），故登记为分歧项而非直接改门槛。
+  本轮已做的：夹具断言对齐实现语义（8/8 通过），并保留 M1 变异腿反向测「实现若退回终局清零
+  即转红」—— 即口径变更会被立即发现，而不是被静默改回。
+  取值：python 05-exec/r123_deferral_chain_fixtures.py（M1 行显示 reset_chain变体=1 现实现=2）；
+  python 05-exec/r38_debt_aging.py --json <件>（看 REPEAT 指标现值 0）。
+  到期动作：下一次 REPEAT 指标因该口径差异而判红时，由归属轮在「保留新口径 + 承认 treadmill
+  计数偏严」与「区分 active-chain 与 historical-total 两个指标」之间定案，并同步棘轮基线。
 - [ ] **R202-3（r202 登记，P1·已落地）** **我用一次 --portable-only（30/78 门）把 CI 的 gate_run_freshness 喂成绿**： 【r202 裁决=执行（当日发现、当日改判据语义、当日挂成第 79 门并收缩孤儿基线 7→6）｜读数：r32_freshness_fixtures 24/24（含 a13~a16 四条新腿）；gate_run_freshness 实跑回到诚实 FAIL 且理由点名「8 条局部跑 mode!=full 已忽略」；第 79 门 freshness_fixtures 单跑 482ms PASS、全量 79 门里 PASS。不设目标轮：自指门已只采信完整面，局部跑无法再冒充。】
   一手（我造成）：为验证 runner 改动我跑 `run_gates.py --portable-only`，**未带 --no-ledger** ⇒
   往同一本台账追加 verdict=PASS；而 r32_gate_freshness.judge() 取 max(local) 不筛 mode ⇒ 只覆盖

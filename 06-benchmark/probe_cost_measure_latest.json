@@ -1,7 +1,7 @@
 {
  "schema": "probe-cost-measure-v3",
  "zero_network": true,
- "candidates": 12,
+ "candidates": 13,
  "results": {
   "r113_cache_guard_face.py": {
    "gate": "cache_guard_face",
@@ -98,6 +98,14 @@
     "github": 0
    },
    "state": "rc=2"
+  },
+  "r200_probe_cost_fixtures.py": {
+   "gate": "probe_cost_fixtures",
+   "calls": {
+    "cloudflare": 0,
+    "github": 0
+   },
+   "state": "rc=0"
   }
  },
  "provenance_cmd": "python 05-exec/r200_probe_cost_measure.py --json <件>"

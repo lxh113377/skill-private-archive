@@ -1248,6 +1248,70 @@ GATES = [
                 "本轮第 78 门刚查出 7 个孤儿夹具，r32_freshness_fixtures 就是其一（文件在、"
                 "24 腿全过，但没有任何东西调用它）。挂上它同时验证基线棘轮真能收缩。"),
     },
+    {
+        # r202：孤儿夹具挂接（第 80~84 门）—— 让「写了但没人跑」变可见后的实际收缩
+        "id": "deferral_chain_fixtures",
+        "script": "r123_deferral_chain_fixtures.py",
+        "argv": [],
+        "pass_token": "[GATE:fixture-pass]",
+        "portable": True,
+        "covers": ["r38.count_deferrals 的历史改期总数口径（P1~P6）",
+                   "M1 变异：实现退回「终局清零」即转红（证口径承重）",
+                   "M2 变异：实现改成全文扁平计数即转红（只数头部是承重的）"],
+        "why": ("r202 一手：第 78 门查出它是孤儿夹具（文件在、8 腿，但没有任何东西调用它）。"
+                "挂上后立刻跑出 3 条 FAIL —— 取证发现是夹具仍断言 r123 之前的「终局清零」"
+                "口径，而实现已在 r123 主动放弃该口径（会把真实发生过一次的改期抹成 0，"
+                "与「改期>=2 即 REPEAT」冲突）。这正是孤儿夹具的代价：语义漂移无人发现。"
+                "已把断言对齐实现语义，并把两种口径在 REPEAT 门槛上结论相反这一"
+                "真实未决分歧登记为 R202-4，不由夹具单方面定案。"),
+    },
+    {
+        "id": "probe_cost_fixtures",
+        "script": "r200_probe_cost_fixtures.py",
+        "argv": [],
+        "pass_token": "[GATE:fixture-pass]",
+        "portable": True,
+        "covers": ["第 76 门对账逻辑五态：OK/UNDECLARED/MISMATCH/UNMEASURED/NO_EXTERNAL_CALLS",
+                   "F12 变异：DECL_RE 去掉 re.I ⇒ 小写件文本读不到声明（r200 真错过一次）",
+                   "F13 manifest 缺失 ⇒ UNVERIFIED（不记绿也不判红）",
+                   "F14 本面自身被测量 ⇒ 不需排除名单（排除名单是第二真相源）"],
+        "why": ("r200 写的 14 腿夹具，r202 查出是孤儿。它锁的是「改了联网门却不重测即 MISMATCH"
+                "判红」这条牙齿；没人跑就等于第 76 门的对账逻辑本身无守卫。"),
+    },
+    {
+        "id": "onwrite_fixtures",
+        "script": "r34_onwrite_fixtures.py",
+        "argv": [],
+        "pass_token": "[GATE:fixture-pass]",
+        "portable": True,
+        "covers": ["写序面：改 07 台账后必须先重算账龄件（坑 #2，曾连踩 3 轮）",
+                   "17 腿含临时目录隔离，不污染真实台账"],
+        "why": "r202 查出是孤儿夹具。本仓「写完记忆卷必须重算账龄」这条坑靠它守，不跑等于没守。",
+    },
+    {
+        "id": "tracked_empty_fixtures",
+        "script": "r35_tracked_empty_fixtures.py",
+        "argv": [],
+        "pass_token": "[GATE:fixture-pass]",
+        "portable": True,
+        "covers": ["tracked 件被 Out-File 截成 0 字节即判红（防空文件冒充通过）",
+                   "10 腿含临时仓库隔离"],
+        "why": "r202 查出是孤儿夹具。聚合 runner 的 stdout 落 tracked 件是本仓登记过的假绿来源。",
+    },
+    {
+        "id": "input_pin_fixtures",
+        "script": "r67_input_pin_fixtures.py",
+        "argv": [],
+        "pass_token": "[GATE:fixture-pass]",
+        "portable": False,
+        "not_portable_reason":
+            "夹具用 mklink /J 建 junction（Windows 专有），CI 的 Linux 上必假红 ⇒ 本机专属",
+        "covers": ["输入固定面 36 腿：pin 记录、命中判定、失效重钉",
+                   "junction 建链与回退（Windows 语义）"],
+        "why": ("r202 查出是孤儿夹具（36 腿，且用 check() 不用 ck()，所以第 78 门的腿数统计"
+                "对它显示 0 —— 已记为第 78 门的一处口径局限）。挂上后必须标 non-portable："
+                "它依赖 Windows junction，放 CI 会假红。"),
+    },
 ]
 
 # 显式声明本 runner **不覆盖**的面，防止聚合绿被读成「所有门禁都绿」（R20-2）。

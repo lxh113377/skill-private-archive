@@ -80,9 +80,14 @@
    "probe_cost_face",
    "r2_enable_face",
    "fixture_wiring_face",
-   "freshness_fixtures"
+   "freshness_fixtures",
+   "deferral_chain_fixtures",
+   "probe_cost_fixtures",
+   "onwrite_fixtures",
+   "tracked_empty_fixtures",
+   "input_pin_fixtures"
   ],
-  "_snapshot_at": "2026-10-24 08:53",
+  "_snapshot_at": "2026-10-24 10:35",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
@@ -234,6 +239,26 @@
   "freshness_fixtures": {
    "evidence": "05-exec/r32_freshness_fixtures.py",
    "at": "2026-10-24 08:51"
+  },
+  "deferral_chain_fixtures": {
+   "evidence": "05-exec/r123_deferral_chain_fixtures.py",
+   "at": "2026-10-24 09:27"
+  },
+  "probe_cost_fixtures": {
+   "evidence": "05-exec/r200_probe_cost_fixtures.py",
+   "at": "2026-10-24 09:27"
+  },
+  "onwrite_fixtures": {
+   "evidence": "05-exec/r34_onwrite_fixtures.py",
+   "at": "2026-10-24 09:27"
+  },
+  "tracked_empty_fixtures": {
+   "evidence": "05-exec/r35_tracked_empty_fixtures.py",
+   "at": "2026-10-24 09:27"
+  },
+  "input_pin_fixtures": {
+   "evidence": "05-exec/r67_input_pin_fixtures.py",
+   "at": "2026-10-24 09:27"
   }
  }
 }
