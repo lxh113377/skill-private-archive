@@ -46,6 +46,177 @@ RE_LANDED_WORD = re.compile(r"落地|已落地|执行完毕|已闭环")
 RE_DEFERRAL_TEXT = re.compile(r"^\s*(?:【)?\s*挂账至\s*r\d{1,3}")   # 只看裁决文本**头部**：r49 实测「在原因里引用旧标记原文」会被全文 search 命中，把终局裁决误判成延期（同一劫持第 2 形态）
 
 
+# ---- r214（对标改造 H-2 / R211-2）：备份簇 keep 收敛 --------------------------------
+# 一手规模（r214 本轮实测，非估算）：_trash 内 .bak 431 件 / 49,135,862B；最大单簇
+# _trash/r163_mark_backup 100 份；近 3 小时新增 11 份 .bak =>「越认真裁 => 越脏」：每次
+# 裁决都往回收区追加一份**全量** 07 副本（约 250KB/份），而没有任何一侧做 keep 收敛，
+# 于是体量治理 L4 备份簇项与 21 天红线只涨不消（八维对标量化出来的改造点）。
+# 三条设计约束（都是本仓反复判红的同族，写在这里防下轮又走捷径）：
+#   ① 阈值不另立：读体量治理单一真相源 volumegov.DEFAULT_BUDGET 的 bak_keep/bak_age_days，
+#      两个值必须**同源一次读齐** —— 只对齐 keep 不对齐冷却期，会出现「本件收了、体量门
+#      说还在冷却」两套账（同一事实两处判）。
+#   ② 通道不自写：复用归属方 handoff_lib.recycle()，两条出口（系统回收站 / _trash）都可逆
+#      且自带 manifest（可 handoff.py recycle --restore 复原）；本件永不永久删除。
+#   ③ 跟踪件不处置：git 跟踪件由 disposition_guard 默认拒绝（X-9：禁为让门禁变绿而迁走
+#      已跟踪件），本件不放宽、不传 allow_tracked，只把它们计入 skipped_tracked 并点名。
+# 注：正则刻意写成 [.] / [0-9] 形态（不用反斜杠）—— 本仓 §9.18 已记三起「多层转义把
+#     正则吃掉」的事故（JS 模板串 / PowerShell 双引号 / Python 字面量各吃一层）。
+DEFAULT_BAK_KEEP_FALLBACK = 3      # 仅当体量治理真相源取不到时的兜底（与 bak_keep 现值同源）
+DEFAULT_BAK_AGE_FALLBACK = 7.0     # 同上，冷却期兜底（与 bak_age_days 现值同源）
+RE_BAK_NAME = re.compile("^(?P<stem>.+)[.]r(?P<round>[0-9]{1,4})_(?P<hms>[0-9]{6})[.]bak$")
+_BAK_STEM_MODE = ""
+
+
+def _hg_scripts():
+    """归属方脚本根（受管根入口；取不到环境变量时用实测默认值）。"""
+    ap = os.environ.get("A_PROJECT_HANDOFF_SCRIPTS")
+    if not ap or not os.path.isdir(ap):
+        ap = "D:/global_skills/A-project-handoff/scripts"
+    return ap
+
+
+def bak_keep_source():
+    """读体量治理的 bak_keep / bak_age_days（同一真相源，一次读齐）。
+
+    返回 (keep, age_days, 来源说明)；取不到 ⇒ (None, None, 原因)，由调用方走兜底。
+    """
+    try:
+        ap = _hg_scripts()
+        if not os.path.isfile(os.path.join(ap, "handoff_lib", "volumegov.py")):
+            return None, None, "取不到 volumegov（受管根不在位）"
+        if ap not in sys.path:
+            sys.path.insert(0, ap)
+        from handoff_lib import volumegov as _V          # noqa: E402
+        _b = getattr(_V, "DEFAULT_BUDGET", {}) or {}
+        v = _b.get("bak_keep")
+        a = _b.get("bak_age_days")
+        if not (isinstance(v, int) and not isinstance(v, bool) and v >= 1):
+            return None, None, "volumegov 无合法 bak_keep（%r）" % (v,)
+        ok_a = isinstance(a, (int, float)) and not isinstance(a, bool) and a >= 0
+        return v, (a if ok_a else None), "volumegov.bak_keep/bak_age_days"
+    except Exception as e:
+        return None, None, "import volumegov 异常：%r" % (e,)
+
+
+def _recycle_mod():
+    ap = _hg_scripts()
+    if ap not in sys.path:
+        sys.path.insert(0, ap)
+    from handoff_lib import recycle as _R                # noqa: E402
+    return _R
+
+
+def _bak_stem(name):
+    """归一化备份基名 —— 优先用体量治理的**同一个**函数（同一事实只在一处判）。
+
+    一手（volumegov._scan_backups 的原注）：轮次标签夹在中间时只削尾缀，会让 24 份备份
+    各成一组、L4 全漏 => 我再另写一套分组，必然与体量门算出两个簇。取不到真相源时
+    才回落本件正则，并把分组来源标进统计（stem_src=fallback 即显式可见，不冒充同源）。
+    """
+    global _BAK_STEM_MODE
+    low = str(name).lower()
+    try:
+        ap = _hg_scripts()
+        if ap not in sys.path:
+            sys.path.insert(0, ap)
+        from handoff_lib import volumegov as _V          # noqa: E402
+        out = _V._stem_of_backup(low)
+        _BAK_STEM_MODE = "volumegov"
+        return out
+    except Exception:
+        _BAK_STEM_MODE = "fallback"
+        m = RE_BAK_NAME.match(low)
+        if m:
+            return m.group("stem")
+        return low[:-4] if low.endswith(".bak") else low
+
+
+def trim_backup_cluster(scan_dir, stem, keep, max_move=5, age_days=7.0, exclude="", reason=""):
+    """把同一备份簇收敛到最新 keep 份；超出**且已过冷却期**者走可逆回收通道。
+
+    簇口径与体量治理 L4 对齐（volumegov._scan_backups）：分组 = 归一化基名（跨目录，
+    因为默认落点是每轮一个新目录 _trash/mark_backup_rNN，只在目录内分组会「每簇恒 1 份」，
+    跨轮累积这个真正的大头永远管不住）；排序 = mtime 倒序留最新。
+    冷却期不是保守，是防毁他人安全副本：并行会话刚写的 .bak 若被我当垃圾收走，它那一笔
+    改动的唯一旧态副本就没了。exclude = 本轮刚写的那份，任何情况下不回收。
+    keep / max_move / age_days 非法 ⇒ 一律不动（禁把配置写错变成全员清空）。
+    单次上限 max_move：存量簇达 100 份时禁止一把清空，存量清理须人工核后走 volume --apply。
+    """
+    stat = {"attempted": 0, "recycled": 0, "skipped_tracked": 0, "failed": 0,
+            "kept": 0, "cluster_before": 0, "cooled": 0, "capped": 0,
+            "stem_src": "", "disabled": False, "errors": []}
+    if not isinstance(keep, int) or isinstance(keep, bool) or keep < 1:
+        stat["disabled"] = True
+        stat["errors"].append("非法 keep=%r => 一个都不动（禁把配置写错变成全员清空）" % (keep,))
+        return stat
+    if not isinstance(max_move, int) or isinstance(max_move, bool) or max_move < 1:
+        max_move = 1
+    try:
+        age_days = float(age_days)
+    except (TypeError, ValueError):
+        age_days = 7.0
+    if age_days < 0:
+        age_days = 0.0
+    try:
+        want = _bak_stem(stem)
+        stat["stem_src"] = _BAK_STEM_MODE
+        excl = os.path.normcase(str(Path(exclude).resolve())) if exclude else ""
+        cands = []
+        for p in sorted(Path(scan_dir).rglob("*.bak")):
+            if _bak_stem(p.name) != want:
+                continue
+            if excl and os.path.normcase(str(p.resolve())) == excl:
+                continue                      # 本轮刚写的回滚副本，永不回收
+            try:
+                cands.append((p.stat().st_mtime, p))
+            except OSError:
+                continue
+        cands.sort(key=lambda kv: kv[0], reverse=True)
+        files = [p for _m, p in cands]
+        stat["cluster_before"] = len(files) + (1 if excl else 0)
+        stat["kept"] = min(len(files), keep) + (1 if excl else 0)
+        if len(files) <= keep:
+            return stat
+        now = time.time()
+        moved = 0
+        # 遍历顺序必须是**最旧先动**：files 是新->旧，直接 for p in files[keep:] 会从
+        # 「较新的那份受害者」开始收，配 max_move 上限时等于优先毁掉最新备份 —— 与收敛目的相反。
+        for p in reversed(files[keep:]):
+            try:
+                age = (now - p.stat().st_mtime) / 86400.0
+            except OSError:
+                continue
+            if age < age_days:
+                stat["cooled"] += 1
+                continue
+            if moved >= max_move:
+                stat["capped"] += 1
+                continue
+            stat["attempted"] += 1
+            try:
+                rr = _recycle_mod().recycle(
+                    p, reason=reason or "r46 备份簇 keep 收敛（对标改造 H-2 / R211-2）")
+            except Exception as e:
+                stat["failed"] += 1
+                stat["errors"].append("%s: %r" % (p.name, e))
+                continue
+            if rr.get("ok"):
+                stat["recycled"] += 1
+                moved += 1
+            else:
+                err = str(rr.get("error") or "")
+                if "跟踪" in err:
+                    stat["skipped_tracked"] += 1     # X-9：不由本件处置
+                else:
+                    stat["failed"] += 1
+                    stat["errors"].append("%s: %s" % (p.name, err[:120]))
+        return stat
+    except Exception as e:
+        stat["errors"].append("收敛整体异常：%r" % (e,))
+        stat["disabled"] = True
+        return stat
+
+
 def item_own_id(line):
     """条目**自我声明**的编号 = 紧跟「（rNN 新立」的那个；正文里引用别条的编号不算自身编号。"""
     m = RE_ITEM_ID.search(line or "")
@@ -135,6 +306,16 @@ def main():
     ap.add_argument("--glob", default="07-next-steps*.md", help="在哪些卷里找锚点（默认 07 全卷）")
     ap.add_argument("--backup-dir", default=None,
                     help="备份目录（默认 <vault>/05-exec/mark_backup；刻意不放记忆卷，见 r35 落点教训）")
+    # r214（对标改造 H-2 / R211-2）：阈值读体量治理的单一真相源（volumegov），
+    # 本件不另立常量 —— 两处各写一份必漂移（本仓 R263/R280 反复判红的同族）。
+    ap.add_argument("--backup-keep", type=int, default=None,
+                    help="同簇保留最新 N 份（缺省读 volumegov bak_keep，取不到则 3）")
+    ap.add_argument("--backup-age-days", type=float, default=None,
+                    help="冷却期：新于 N 天的备份一律不动（缺省读 volumegov bak_age_days）")
+    ap.add_argument("--backup-trim-max", type=int, default=5,
+                    help="单次最多回收几份（存量簇上百份时禁一把清空）")
+    ap.add_argument("--no-backup-trim", action="store_true", help="关闭收敛（取证用）")
+
     args = ap.parse_args()
     if args.mode == "verdict" and not args.verdict:
         return refuse("verdict 模式必须给 --verdict")
@@ -248,6 +429,35 @@ def main():
                           ("标记落到非锚点行 %s" % others if others else
                            "目标行未读到标记（行尾/并元素错位）"))
         print("[MARK:OK] %s:%d ｜ 备份 %s ｜ 读回验证通过（锚点与标记同行）" % (rp.name, i + 1, bak.name))
+        # r214（对标改造 H-2 / R211-2）：备份簇 keep 收敛。刻意放在读回验证成功之后 ——
+        # 任何 refuse / 回滚路径都不动既有备份（读回失败时那份 raw 还是唯一的旧态副本）。
+        # 收敛结果不参与主判据成败：标记已写成功，回收只是附带卫生动作；异常打 WARN，
+        # 既不把「没清干净」报成「裁决失败」，也不静默吞掉 WARN（R247）。
+        if args.backup_keep is not None:
+            _keep_v = args.backup_keep
+            _age_v = args.backup_age_days if args.backup_age_days is not None else DEFAULT_BAK_AGE_FALLBACK
+            _keep_src = "--backup-keep/--backup-age-days"
+        else:
+            _keep_v, _age_v, _keep_src = bak_keep_source()
+            if _keep_v is None:
+                _keep_v = DEFAULT_BAK_KEEP_FALLBACK
+            if _age_v is None:
+                _age_v = DEFAULT_BAK_AGE_FALLBACK
+        if args.no_backup_trim:
+            print("  [BACKUP-TRIM] --no-backup-trim => 本轮不收敛")
+        else:
+            # 扫描根 = 整个回收区，不是本次那个单轮目录：默认落点每轮一个新目录，
+            # 只在目录内分组会「每簇恒 1 份」，跨轮累积（真正的大头）永远管不住。
+            _ts = trim_backup_cluster(
+                vault / "_trash", rp.name, _keep_v, max_move=args.backup_trim_max,
+                age_days=_age_v, exclude=str(bak),
+                reason="r46 备份簇 keep 收敛（round %s，阈值源=%s）" % (args.round, _keep_src))
+            _warn = " ; ".join(_ts["errors"]) if _ts["errors"] else ""
+            print("  [BACKUP-TRIM] 阈值=%s 冷却=%s天(源:%s 分组:%s) 簇内=%d 留=%d 回收=%d 冷却中=%d 超上限=%d 跳过跟踪件=%d 失败=%d%s"
+                  % (_keep_v, _age_v, _keep_src, _ts["stem_src"], _ts["cluster_before"],
+                     _ts["kept"], _ts["recycled"], _ts["cooled"], _ts["capped"],
+                     _ts["skipped_tracked"], _ts["failed"],
+                     (" WARN: " + _warn) if _warn else ""))
         return 0
     return refuse("② 锚点在全部候选卷里 0 命中（不得退化成追加到文件末尾）", args.key)
 

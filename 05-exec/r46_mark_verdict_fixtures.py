@@ -215,6 +215,133 @@ def main():
     else:
         ck("m1 变异对照：找不到注入锚点（判据实现已变，须同步更新变异体）", False, "anchor missing")
 
+
+    # ---- t17-t22 + m2（r214，对标改造 H-2 / R211-2）：备份簇 keep 收敛的双向证据 ----------
+    # 一手规模（本轮实测，非估算）：_trash 内 .bak 431 件 / 49,135,862B；最大单簇
+    # _trash/r163_mark_backup 100 份；近 3 小时新增 11 份 =>「越认真裁 => 越脏」，
+    # L4 备份簇项与 21 天红线只涨不消（八维对标的量化落点）。
+    # 锁五件事：超 keep 必收敛 / 只动旧份 / 未超 keep 一律不动 / 非法阈值不清空 /
+    #   冷却期内一份都不动（防毁并行会话刚写的唯一旧态副本）。
+    # 夹具置 HANDOFF_RECYCLE_NO_BIN=1 强制走 _trash：否则测试垃圾进用户真实回收站
+    #   （recycle.py 的该开关正是为此而设 —— 治噪声的工具自己别造噪声）。
+    os.environ["HANDOFF_RECYCLE_NO_BIN"] = "1"
+    import time as _time
+
+    def _seed(dirp, stem, n, age_day=30):
+        dirp.mkdir(parents=True, exist_ok=True)
+        names = []
+        for k in range(n):
+            q = dirp / (stem + ".r214_" + "%06d" % k + ".bak")
+            q.write_text("old" + str(k), encoding="utf-8")
+            old = _time.time() - age_day * 86400.0
+            os.utime(str(q), (old, old))        # 过冷却期，才可被处置
+            names.append(q.name)
+        return sorted(names)
+
+    def _mk_vault(label):
+        d = Path(tempfile.mkdtemp(prefix="r214_"))
+        (d / "memory").mkdir(parents=True, exist_ok=True)
+        (d / "memory" / "07-next-steps.md").write_text(
+            "- [ ] **【P0·待办 " + label + "（r214 登记）】** 唯一正文" + chr(10),
+            encoding="utf-8", newline="")
+        return d
+
+    def _hms(name):
+        return name.rsplit("_", 1)[1][:6]
+
+    d17 = _mk_vault("甲")
+    c17 = d17 / "_trash" / "mark_backup_r214"
+    pre17 = _seed(c17, "07-next-steps.md", 6)          # 6 份 > keep=3 => 该收敛
+    r17 = run(["--vault", str(d17), "--key", "待办 甲", "--round", "214",
+               "--verdict", "执行（收敛验证）"])
+    o17 = (r17.stdout or "") + (r17.stderr or "")
+    post17 = sorted(p.name for p in c17.glob("*.bak"))
+    ck("t17 超 keep => 同簇收敛到 keep 份以内，且 [BACKUP-TRIM] 行必须打印（禁静默）",
+       r17.returncode == 0 and len(post17) <= 4 and "[BACKUP-TRIM]" in o17,
+       "rc=%s 前=%d 后=%d ｜ %s" % (r17.returncode, len(pre17), len(post17), o17[-260:]))
+    gone17 = [n for n in pre17 if n not in post17]
+    surv17 = [n for n in post17 if n in pre17]
+    # 注（r214 变异实测）：t18 是**必要但不充分**的 —— 受害者数 <= max_move 时全部被收，
+    # 遍历顺序无从体现，变异态（去掉 reversed）下 t18 照样 PASS。真正鉴别顺序的是 t23
+    # （受害者 > max_move）。别把 t18 当成「顺序已锁」，否则会重演「判据读不到该形态」。
+    ck("t18 收敛只动旧份：被回收的最大时刻必须早于存活的最小时刻（留最新，非随机删）",
+       bool(gone17) and bool(surv17) and max([_hms(x) for x in gone17]) < min([_hms(x) for x in surv17]),
+       "gone=%s surv=%s" % (gone17[:4], surv17[:4]))
+    ck("t21 本轮刚写的回滚副本不被回收（exclude 生效：seed 里最旧那份被收，新的留下）",
+       "r214_000005" not in " ".join(gone17) and bool(gone17),
+       "gone=%s" % (gone17[:6],))
+
+    # 冷却期：全部在 age 内 => 一份都不许动（并行会话刚写的副本受保护）
+    d22 = _mk_vault("乙")
+    c22 = d22 / "_trash" / "mark_backup_r214"
+    pre22 = _seed(c22, "07-next-steps.md", 6, age_day=0)     # 刚写的，冷却中
+    r22 = run(["--vault", str(d22), "--key", "待办 乙", "--round", "214", "--verdict", "执行"])
+    o22 = (r22.stdout or "") + (r22.stderr or "")
+    post22 = sorted(p.name for p in c22.glob("*.bak"))
+    ck("t22 冷却期内（bak_age_days）=> 一份都不动，且打印回收=0 与冷却中计数（禁静默隐身）",
+       r22.returncode == 0 and all(b in post22 for b in pre22) and "回收=0" in o22
+       and "冷却中=" in o22,
+       "before=%d after=%d ｜ %s" % (len(pre22), len(post22), o22[-260:]))
+
+    d19 = _mk_vault("丙")
+    c19 = d19 / "_trash" / "mark_backup_r214"
+    pre19 = _seed(c19, "07-next-steps.md", 2)               # 2 + 本次 1 <= keep => 不动
+    r19 = run(["--vault", str(d19), "--key", "待办 丙", "--round", "214", "--verdict", "执行"])
+    o19 = (r19.stdout or "") + (r19.stderr or "")
+    post19 = sorted(p.name for p in c19.glob("*.bak"))
+    ck("t19 未超 keep => 回收=0 且原有备份一个不少（禁顺手多删）",
+       r19.returncode == 0 and all(b in post19 for b in pre19) and "回收=0" in o19,
+       "before=%d after=%d ｜ %s" % (len(pre19), len(post19), o19[-260:]))
+
+    d20 = _mk_vault("丁")
+    c20 = d20 / "_trash" / "mark_backup_r214"
+    pre20 = _seed(c20, "07-next-steps.md", 5)
+    r20 = run(["--vault", str(d20), "--key", "待办 丁", "--round", "214",
+               "--verdict", "执行", "--backup-keep", "0"])
+    o20 = (r20.stdout or "") + (r20.stderr or "")
+    post20 = sorted(p.name for p in c20.glob("*.bak"))
+    ck("t20 非法阈值 keep=0 => 原有份数一个都不减（禁把配置写错变成全员清空）",
+       all(b in post20 for b in pre20) and "非法 keep" in o20,
+       "before=%d after=%d ｜ %s" % (len(pre20), len(post20), o20[-260:]))
+
+    # t23 上限只吃最旧：9 份 seed + keep=3 => 受害者 6 份 > max_move=5 ⇒ 必须留下「最新的那位本应收走的」
+    # 这条腿是顺序判据：修之前遍历从较新受害者开始收，最旧那份（_000000）反而活下来 => 本腿转红。
+    d23 = _mk_vault("己")
+    c23 = d23 / "_trash" / "mark_backup_r214"
+    pre23 = _seed(c23, "07-next-steps.md", 9)          # 全部 30 天前，都过冷却
+    r23 = run(["--vault", str(d23), "--key", "待办 己", "--round", "214", "--verdict", "执行"])
+    o23 = (r23.stdout or "") + (r23.stderr or "")
+    post23 = sorted(p.name for p in c23.glob("*.bak"))
+    ck("t23 单轮上限只收最旧（最旧的已收走、最新那位受害者因上限留下，且打印超上限=1）",
+       not any("r214_000000" in n for n in post23)
+       and any("r214_000005" in n for n in post23)
+       and "超上限=1" in o23,
+       "before=%d after=%d ｜ %s" % (len(pre23), len(post23), o23[-260:]))
+
+    src46 = (HERE / "r46_mark_verdict.py").read_text(encoding="utf-8")
+    MUT = "            _ts = trim_backup_cluster("
+    if MUT in src46:
+        dm = _mk_vault("戊")
+        mt = dm / "r46_mut.py"
+        # 变异体：把收敛调用换成「返回全零统计」的 lambda —— 插进去的代码一个引号都不带，
+        # 免得再踩「JS 模板串 / Python 字面量」双层转义（本仓 §9.18 已记三起）。
+        stub = ('            _ts = (lambda *a, **k: dict(attempted=0, recycled=0, skipped_tracked=0, '
+                'failed=0, kept=0, cooled=0, capped=0, cluster_before=0, stem_src="mut", disabled=True, '
+                'errors=[]))(')
+        mt.write_text(src46.replace(MUT, stub, 1), encoding="utf-8", newline="")
+        cm = dm / "_trash" / "mark_backup_r214"
+        _seed(cm, "07-next-steps.md", 6)
+        mm = subprocess.run([sys.executable, str(mt), "--vault", str(dm), "--key", "待办 戊",
+                             "--round", "214", "--verdict", "执行"],
+                            capture_output=True, text=True, encoding="utf-8",
+                            errors="replace", cwd=str(HERE.parent))
+        om = (mm.stdout or "") + (mm.stderr or "")
+        left = len(list(cm.glob("*.bak")))
+        ck("m2 变异：摘掉收敛 => 6 份原样留着且打印回收=0（证 t17 的绿来自收敛本身）",
+           left >= 6 and "回收=0" in om, "left=%d ｜ %s" % (left, om[-180:]))
+    else:
+        ck("m2 变异：找不到收敛调用锚点（实现已变，须同步更新变异体）", False, "anchor missing")
+
     fails = [x for x in RESULTS if not x[0]]
     print("\n夹具合计: %d 项，通过 %d，失败 %d"
           % (len(RESULTS), len(RESULTS) - len(fails), len(fails)))
