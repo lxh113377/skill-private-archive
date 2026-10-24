@@ -1,0 +1,16 @@
+{
+ "schema": "skill-wiring-baseline-v1",
+ "known_orphans": [
+  "A-project-better/acceptance-patterns.md",
+  "A-project-better/checklists.md",
+  "A-project-better/roadmap.md",
+  "A-project-better/version-history-archive.md",
+  "A-project-better/version-history-archive.part1.md",
+  "A-skill-manager/governance-r306-self-updating-ledger.md",
+  "A-skill-manager/merge-record.sources.md",
+  "cross-platform-agent-sync/cps.part10.md",
+  "cross-platform-agent-sync/cps.part11.md",
+  "win-toolchain-pitfalls/powershell-cli-silent-failures.md"
+ ],
+ "note": "历史无指针分卷基线（r204 立）：只准减不准增。补一个指针就删一条；新增无人收录的分卷即 FAIL。其中仅 powershell-cli-silent-failures 是本会话造的（R201-2）。"
+}

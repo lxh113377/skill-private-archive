@@ -456,6 +456,19 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   references/powershell-cli-silent-failures.md」指针 + 版本行；或由归属方自行合并时带上。
   取值：git -C D:/global_skills status --porcelain -- win-toolchain-pitfalls/SKILL.md（非空即未落地）；
   分卷本体已在库：git -C D:/global_skills log --oneline -1 --grep R804。
+- [ ] **R204-1（r204 登记，P1·已落地）** **把「写了没人读」搬到 skill 侧：建第 86 门前先纠两个分母错**： 【r204 裁决=执行（建门前两次自抓分母/可达性错、建完即验有牙且不碰真实基线件）｜读数：门表 86、自建 HIGH+MID=77、340 分卷、真孤儿 10（朴素判据曾误报 83）；内存法临时删 powershell 基线条→rc=1 抓到、真实基线在位→rc=0、基线文件未被改。不设目标轮：新增无指针分卷即 FAIL，历史 10 条由基线追踪、补一个指针删一条。】
+  一手：上轮给 win-toolchain-pitfalls 加的 R804 分卷 powershell-cli-silent-failures.md 是**无指针孤儿**
+  （补指针卡在它 SKILL.md 被并行会话 dirty），手工扫才发现 SKILL 侧同型失效零常驻判据。建第 86 门
+  skill_wiring_face（portable=False，读 D:/global_skills）。建门前两次自抓精度错：① 朴素「文件名在不在
+  SKILL.md」报 83 孤儿——错在分卷可由父分卷间接引用，改 BFS 链式可达+跨skill全局池后真孤儿降到 10；
+  ② 自建名正则 ^[A-Za-z0-9] 得分母 76、漏了中文名 skill「天眼一下」（盘上真实存在），改用磁盘 isdir
+  为准回到权威 77。若带②这错建门，所有中文名 skill 分卷永远扫不到（静默漏报）——是追「76 为什么
+  比声明 77 少 1」才揪出的，没接受差不多。三态 PASS/rc=1增量/rc=2基线缺失UNVERIFIED（首跑就如实报
+  UNVERIFIED 没假称全绿）；棘轮基线 10 条历史孤儿只准减（10 里只 1 条是我造的，其余 9 属并行会话
+  R269 不代裁）。建完即验有牙且**不碰真实基线件**：内存法临时删 powershell 那条→rc=1 抓到它、
+  真实基线在位→rc=0、基线文件未被改=Yes。顺带按上轮教训主动重跑第 76 门（第 86 门归 non-portable
+  零网络，足迹仍 cloudflare=13/github=8）。现状：77 名/340 分卷/10 真孤儿/门表 86。
+  取值：python 05-exec/r204_skill_wiring_face.py --json <件>；python 05-exec/r200_probe_cost_face.py。
 - [ ] **R203-4（r203 登记，P1·已落地）** **目标里「与相关 skill 搭配」这半边补齐：实测知识反哺进 skill 且坐实在收录路径上**： 【r203 裁决=执行（当日落 R805+R806 两份 skill、镜像 pathspec 同步、三门禁分诊）｜读数：源仓两次提交均 1 文件且不含 SKILL.md；inject_union_bytes 仍 66989 未推高；disk_registry 三类全0；mirror 我三处（R805/R806/R804卷）全消失、剩6属并行会话。不设目标轮：反哺已进收录路径。】
   六十几轮我只做了「测」（建判据+读额度），漏了「搭」：扫 802 个 skill 文件，CF GraphQL 的
   date_geq/datetime_geq、Rate limiter 签名、wrangler CMD/ANSI 等一手实测**覆盖=0**。

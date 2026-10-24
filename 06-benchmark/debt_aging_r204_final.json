@@ -1,6 +1,6 @@
 {
  "schema": "debt-aging-v2",
- "generated_at": "2026-10-24T21:22:11",
+ "generated_at": "2026-10-24T21:33:03",
  "readonly": true,
  "grace_rounds": 2,
  "current_round": 203,
@@ -199,15 +199,15 @@
  ],
  "evidence": {
   "volumes": 181,
-  "items_total": 361,
-  "open_total": 60,
+  "items_total": 362,
+  "open_total": 61,
   "closed_total": 301,
-  "raw_item_lines": 361
+  "raw_item_lines": 362
  },
  "by_class": {
   "OVERDUE": 3,
   "ACTIVE": 0,
-  "DECIDED": 40,
+  "DECIDED": 41,
   "UNDATED": 15,
   "DEFERRED": 2,
   "REPEAT": 0
@@ -215,7 +215,7 @@
  "overdue": [
   {
    "file": "memory\\07-next-steps.md",
-   "line": 764,
+   "line": 777,
    "priority": "未标",
    "owner": "OWNERED",
    "checked": false,
@@ -227,7 +227,7 @@
   },
   {
    "file": "memory\\07-next-steps.md",
-   "line": 770,
+   "line": 783,
    "priority": "未标",
    "owner": "NONE",
    "checked": false,
@@ -239,7 +239,7 @@
   },
   {
    "file": "memory\\07-next-steps.md",
-   "line": 772,
+   "line": 785,
    "priority": "未标",
    "owner": "NONE",
    "checked": false,
@@ -274,12 +274,12 @@
   {
    "title": "R113-3 AGPL-3.0 上游合入合规口径待裁（hyperframes-registry 引入 calesthio/OpenMonta",
    "file": "memory\\07-next-steps.md",
-   "line": 781
+   "line": 794
   },
   {
    "title": "R112-5 受管根 rule_editor gates 的 mirror 组件超时（300s skip）+ noise 2 项外部在途，待",
    "file": "memory\\07-next-steps.md",
-   "line": 782
+   "line": 795
   },
   {
    "title": "R113-7 需求2 字面缺口：余 56 件 unknown + 143 件盲区仍无替代检索面（每一个现有 skill 都应有候选清单）（由",
@@ -389,7 +389,7 @@
  "note": "OVERDUE 数 = ratchet_gate 第 7 指标 overdue_debt_items 的唯一取值面",
  "coverage": {
   "status": "INCOMPLETE",
-  "prev": "debt_aging_r203d_final.json",
+  "prev": "debt_aging_r203e_final.json",
   "prev_overdue": 3,
   "missing": [
    {
@@ -420,7 +420,7 @@
   },
   "dedup": {
    "ok": true,
-   "detail": "361 行全部计入，80 字前缀键零碰撞"
+   "detail": "362 行全部计入，80 字前缀键零碰撞"
   },
   "dup": {
    "ok": true,
@@ -435,7 +435,7 @@
    "ok": null,
    "detail": "未传 --report ⇒ 建议面未对照（R247 不判绿）"
   },
-  "raw_lines": 361,
+  "raw_lines": 362,
   "collisions": [],
   "status": "UNVERIFIED",
   "red_faces": [],
@@ -446,7 +446,7 @@
  "unowned_claims": [
   {
    "file": "memory\\07-next-steps.md",
-   "line": 782,
+   "line": 795,
    "title": "R112-5 受管根 rule_editor gates 的 mirror 组件超时（300s skip）+ noise 2 项外部在途，待归属方收口后复跑（由 flow 登记；状"
   },
   {

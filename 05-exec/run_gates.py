@@ -1333,6 +1333,28 @@ GATES = [
                 "覆盖根数 >= 可移植门数、聚合标记出现、跳过显式），本机是否全绿交给 gate_run_freshness "
                 "与 debt_aging 两条常驻判据，不重复断言。耗时随之 284s → 40s（降 86%）。"),
     },
+    {
+        # r204：自建 skill 分卷收录面（第 86 门）—— 分卷是否有指针能读到（零改受管根）
+        "id": "skill_wiring_face",
+        "script": "r204_skill_wiring_face.py",
+        "argv": ["--json", "06-benchmark/skill_wiring_latest.json"],
+        "pass_token": "[SKILLWIRING:PASS]",
+        "portable": False,
+        "not_portable_reason":
+            "判据读 D:/global_skills（本机受管根绝对路径），CI 的 Linux runner 上没有这棵树 ⇒ 本机专属",
+        "covers": [
+            "可达=BFS 链式引用（父分卷引子分卷）+ 跨 skill 全局池（A-memory-start 收录面）",
+            "自建口径 HIGH+MID=77（以磁盘目录真实存在为准，含中文名 skill，不靠字符集白名单）",
+            "棘轮式基线：只拦新增无指针分卷，历史 10 条在基线内待补指针",
+            "基线件缺失或自建清单读不到 ⇒ rc=2 UNVERIFIED（不按全绿记，R247）"],
+        "why": ("第 78 门守「05-exec 夹具写了没人跑」，SKILL 侧同型失效无看守。本会话给 "
+                "win-toolchain-pitfalls 加的 R804 分卷此刻就是无指针孤儿（台账 R201-2 欠账），"
+                "我是手工扫才发现。知识写进 skill 但没任何 SKILL.md/A-memory-start 指针指向 "
+                "= Agent 永远加载不到 = 等于没写。建门前两次自抓精度错：① 朴素判据得 83 孤儿，"
+                "错在分卷可被父分卷间接引用，改 BFS 后降到 10；② ^[A-Za-z0-9] 名正则漏掉中文名 "
+                "skill「天眼一下」致分母 76 而非权威 77，改用磁盘 isdir 为准。拦增量不判历史红，"
+                "因 10 条里只 1 条是我的、其余属并行会话（R269 不代裁）。"),
+    },
 ]
 
 # 显式声明本 runner **不覆盖**的面，防止聚合绿被读成「所有门禁都绿」（R20-2）。

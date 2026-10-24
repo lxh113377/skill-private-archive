@@ -1,0 +1,68 @@
+{
+ "schema": "ledger-query-v1",
+ "readonly": true,
+ "sql": "SELECT gate_id, state, COUNT(*) AS n FROM gate_run GROUP BY gate_id, state ORDER BY n DESC LIMIT 12",
+ "rows": [
+  {
+   "gate_id": "baseline_contract_scan",
+   "state": "PASS",
+   "n": 747
+  },
+  {
+   "gate_id": "r19_baseline_contract_fixtures",
+   "state": "PASS",
+   "n": 743
+  },
+  {
+   "gate_id": "tracked_empty_check",
+   "state": "PASS",
+   "n": 740
+  },
+  {
+   "gate_id": "control_char_scan",
+   "state": "PASS",
+   "n": 733
+  },
+  {
+   "gate_id": "debt_ledger_fixtures",
+   "state": "PASS",
+   "n": 718
+  },
+  {
+   "gate_id": "mark_verdict_fixtures",
+   "state": "PASS",
+   "n": 707
+  },
+  {
+   "gate_id": "r19_scan_fixtures",
+   "state": "PASS",
+   "n": 705
+  },
+  {
+   "gate_id": "retrieval_fixtures",
+   "state": "PASS",
+   "n": 698
+  },
+  {
+   "gate_id": "input_face_fixtures",
+   "state": "PASS",
+   "n": 694
+  },
+  {
+   "gate_id": "handles_readme_fixtures",
+   "state": "PASS",
+   "n": 689
+  },
+  {
+   "gate_id": "noise_tracked_stub",
+   "state": "PASS",
+   "n": 678
+  },
+  {
+   "gate_id": "scan_inputs_fixtures",
+   "state": "PASS",
+   "n": 675
+  }
+ ],
+ "provenance_cmd": "python 05-exec/r203_ledger_index.py --build && python 05-exec/r203_ledger_index.py --sql <本条>"
+}

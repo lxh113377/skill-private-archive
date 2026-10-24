@@ -86,9 +86,10 @@
    "onwrite_fixtures",
    "tracked_empty_fixtures",
    "input_pin_fixtures",
-   "runner_internals_fixtures"
+   "runner_internals_fixtures",
+   "skill_wiring_face"
   ],
-  "_snapshot_at": "2026-10-24 16:42",
+  "_snapshot_at": "2026-10-24 21:42",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
@@ -264,6 +265,10 @@
   "runner_internals_fixtures": {
    "evidence": "05-exec/r31_run_gates_fixtures.py",
    "at": "2026-10-24 11:13"
+  },
+  "skill_wiring_face": {
+   "evidence": "05-exec/r204_skill_wiring_face.py",
+   "at": "2026-10-24 21:31"
   }
  }
 }

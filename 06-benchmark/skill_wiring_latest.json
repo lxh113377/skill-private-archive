@@ -1,0 +1,33 @@
+{
+ "schema": "skill-wiring-v1",
+ "readonly": true,
+ "own_count": 77,
+ "refs_total": 340,
+ "orphans": [
+  "A-project-better/acceptance-patterns.md",
+  "A-project-better/checklists.md",
+  "A-project-better/roadmap.md",
+  "A-project-better/version-history-archive.md",
+  "A-project-better/version-history-archive.part1.md",
+  "A-skill-manager/governance-r306-self-updating-ledger.md",
+  "A-skill-manager/merge-record.sources.md",
+  "cross-platform-agent-sync/cps.part10.md",
+  "cross-platform-agent-sync/cps.part11.md",
+  "win-toolchain-pitfalls/powershell-cli-silent-failures.md"
+ ],
+ "baseline": [
+  "A-project-better/acceptance-patterns.md",
+  "A-project-better/checklists.md",
+  "A-project-better/roadmap.md",
+  "A-project-better/version-history-archive.md",
+  "A-project-better/version-history-archive.part1.md",
+  "A-skill-manager/governance-r306-self-updating-ledger.md",
+  "A-skill-manager/merge-record.sources.md",
+  "cross-platform-agent-sync/cps.part10.md",
+  "cross-platform-agent-sync/cps.part11.md",
+  "win-toolchain-pitfalls/powershell-cli-silent-failures.md"
+ ],
+ "new_orphans": [],
+ "note": "分卷可达=BFS 链式引用(父引子)+跨skill全局池; 只拦增量。孤儿分卷=写了没人读=等于没写。",
+ "provenance_cmd": "python 05-exec/r204_skill_wiring_face.py --json <件>"
+}
