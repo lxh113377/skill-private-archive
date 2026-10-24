@@ -1,16 +1,16 @@
 {
  "schema": "replacement-matrix-r114-v1",
- "generated_at": "2026-10-24T18:43:10+00:00",
+ "generated_at": "2026-10-24T20:27:03+00:00",
  "cmd": "python 05-exec/r114_replacement_scan.py",
  "face": {
   "local_n": 191,
   "pool_n": 743,
   "queries_n": 15,
   "families_n": 13,
-  "candidates_measured": 392,
+  "candidates_measured": 394,
   "api_calls": 0,
-  "cache_hits": 404,
-  "cache_miss": 3,
+  "cache_hits": 409,
+  "cache_miss": 0,
   "offline": true
  },
  "conservation": {
@@ -231,10 +231,10 @@
   {
    "id": "3d",
    "name": "3D/Blender 生产族（建模/渲染/装配/交付）",
-   "family_pattern": "blender|\bbpy\b|gltf|\b3d\b|mesh|sculpt|cycles|optix|render",
+   "family_pattern": "blender|\\bbpy\\b|gltf|\\b3d\\b|mesh|sculpt|cycles|optix|render",
    "slug_pattern": "^blender-|blendermcp|blender-modeling",
    "slugs_n": 1,
-   "pool_n": 26
+   "pool_n": 31
   }
  ],
  "errors": [],
@@ -817,7 +817,7 @@
    "slug": "A-memory-start",
    "family": "a-meta",
    "family_name": "A-族：记忆/交接/技能治理/编排",
-   "local_bytes": 12680,
+   "local_bytes": 12617,
    "local_desc_len": 33,
    "keywords": [
     "memory|context|remember",
@@ -2417,96 +2417,46 @@
    "local_bytes": 18753,
    "local_desc_len": 294,
    "keywords": [
+    "blender",
     "pipeline",
     "user",
     "cycles",
     "optix",
     "headless",
     "blendermcp",
-    "blend",
-    "gltf"
+    "blend"
    ],
-   "dropped_tokens": [
-    {
-     "token": "blender",
-     "df": 0.808,
-     "why": "slug 词在池内无鉴别力"
-    }
-   ],
-   "family_pool_n": 26,
+   "dropped_tokens": [],
+   "family_pool_n": 31,
    "candidates_n": 5,
-   "skill_relevant_n": 8,
+   "skill_relevant_n": 12,
    "candidates": [
     {
-     "repo": "EGSECDA/vocaloid-style-mv-pipeline",
+     "repo": "EL4CTEO/blender-skills",
      "rel": "skill",
-     "rel_strength": 21,
-     "score5": {
-      "fc": 2,
-      "eff": 0,
-      "compat": 5,
-      "docs": 3,
-      "community": 2
-     },
-     "score_total": 12,
-     "stars": 206,
-     "pushed_at": "2026-10-04",
-     "license": "MIT",
-     "archived": false,
-     "skill_md_n": 1,
-     "docs_md_n": 0,
-     "test_path_n": 0,
-     "workflow_n": 0,
-     "description": "Production pipeline and Claude Code skill for Vocaloid-style hand-drawn (手書き) lyric music videos: deterministic Canvas2D/WebGL2 animation engine, JIZU"
-    },
-    {
-     "repo": "arjun988/blender-skills",
-     "rel": "skill",
-     "rel_strength": 10,
-     "score5": {
-      "fc": 5,
-      "eff": 0,
-      "compat": 5,
-      "docs": 3,
-      "community": 2
-     },
-     "score_total": 15,
-     "stars": 397,
-     "pushed_at": "2026-07-10",
-     "license": "MIT",
-     "archived": false,
-     "skill_md_n": 188,
-     "docs_md_n": 2,
-     "test_path_n": 0,
-     "workflow_n": 0,
-     "description": "94 specialist Blender skills for Cursor, Claude Code, Kiro & Codex -> MCP-powered production pipeline from blockout to engine export."
-    },
-    {
-     "repo": "heygen-com/hyperframes",
-     "rel": "skill",
-     "rel_strength": 1,
+     "rel_strength": 20,
      "score5": {
       "fc": 4,
-      "eff": 5,
+      "eff": 3,
       "compat": 5,
-      "docs": 4,
-      "community": 5
+      "docs": 3,
+      "community": 2
      },
-     "score_total": 23,
-     "stars": 71343,
-     "pushed_at": "2026-10-24",
-     "license": "Apache-2.0",
+     "score_total": 17,
+     "stars": 462,
+     "pushed_at": "2026-10-19",
+     "license": "MIT",
      "archived": false,
-     "skill_md_n": 26,
-     "docs_md_n": 6,
-     "test_path_n": 745,
-     "workflow_n": 19,
-     "description": "Write HTML. Render video. Built for agents."
+     "skill_md_n": 22,
+     "docs_md_n": 1,
+     "test_path_n": 22,
+     "workflow_n": 1,
+     "description": "Professional Blender 5.2 workflows as Agent Skills for Claude Code, Codex, Gemini CLI, Copilot and Cursor: modeling, UVs, PBR, baking, rigging, animat"
     },
     {
      "repo": "sixtysevenlf/dsh-blender-plugin",
      "rel": "skill",
-     "rel_strength": 1,
+     "rel_strength": 21,
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -2526,26 +2476,70 @@
      "description": "DSH × Blender 直连实时插件：15 个模型工具让 AI 驱动 GUI Blender；v2.5 活动状态置顶并可一键暂停 AI，原生选中/集合/子元素直送 DSH，随包建模 skill，支持 WSL / Windows / macOS。"
     },
     {
-     "repo": "viettranx/3dviz-pro-max",
+     "repo": "RobLe3/cc-blender-skill",
      "rel": "skill",
-     "rel_strength": 1,
+     "rel_strength": 21,
      "score5": {
-      "fc": 2,
-      "eff": 3,
+      "fc": 4,
+      "eff": 1,
       "compat": 5,
       "docs": 4,
       "community": 2
      },
      "score_total": 16,
-     "stars": 887,
-     "pushed_at": "2026-09-11",
+     "stars": 123,
+     "pushed_at": "2026-10-12",
+     "license": "MIT",
+     "archived": false,
+     "skill_md_n": 32,
+     "docs_md_n": 18,
+     "test_path_n": 8,
+     "workflow_n": 0,
+     "description": "Claude Code skill plugin: drive Blender 5.x like a senior 3D artist via natural language. 10 chain-loadable skills (modeling, materials, lighting, cam"
+    },
+    {
+     "repo": "arjun988/blender-skills",
+     "rel": "skill",
+     "rel_strength": 30,
+     "score5": {
+      "fc": 5,
+      "eff": 0,
+      "compat": 5,
+      "docs": 3,
+      "community": 2
+     },
+     "score_total": 15,
+     "stars": 397,
+     "pushed_at": "2026-07-10",
+     "license": "MIT",
+     "archived": false,
+     "skill_md_n": 188,
+     "docs_md_n": 2,
+     "test_path_n": 0,
+     "workflow_n": 0,
+     "description": "94 specialist Blender skills for Cursor, Claude Code, Kiro & Codex -> MCP-powered production pipeline from blockout to engine export."
+    },
+    {
+     "repo": "icesixgod/awesome-astra-blender-characters",
+     "rel": "skill",
+     "rel_strength": 20,
+     "score5": {
+      "fc": 2,
+      "eff": 2,
+      "compat": 5,
+      "docs": 3,
+      "community": 2
+     },
+     "score_total": 14,
+     "stars": 123,
+     "pushed_at": "2026-09-10",
      "license": "MIT",
      "archived": false,
      "skill_md_n": 1,
-     "docs_md_n": 10,
-     "test_path_n": 21,
-     "workflow_n": 2,
-     "description": "Agent skill for creative 3D visualization: turn an idea into a Three.js/Blender scene worth exploring. Claude Code + Codex plugin, 223 recipes, 440 kn"
+     "docs_md_n": 1,
+     "test_path_n": 2,
+     "workflow_n": 1,
+     "description": "An agent skill for Blender character creation and repair, with nine-view references, face and hair workflows, and visual validation."
     }
    ],
    "verdict": "MATCHED",
@@ -17282,7 +17276,7 @@
    ],
    "family_pool_n": 645,
    "candidates_n": 5,
-   "skill_relevant_n": 9,
+   "skill_relevant_n": 12,
    "candidates": [
     {
      "repo": "JuliusBrussee/caveman",
@@ -17351,6 +17345,28 @@
      "description": "Build Agentic workflows, RAG pipelines, with rich AI model and tool support on one collaborative workspace. Deploy on cloud, VPC, or self-hosted, so t"
     },
     {
+     "repo": "LibreChat-AI/LibreChat",
+     "rel": "skill",
+     "rel_strength": 2,
+     "score5": {
+      "fc": 3,
+      "eff": 5,
+      "compat": 5,
+      "docs": 4,
+      "community": 4
+     },
+     "score_total": 21,
+     "stars": 46253,
+     "pushed_at": "2026-10-24",
+     "license": "MIT",
+     "archived": false,
+     "skill_md_n": 3,
+     "docs_md_n": 8,
+     "test_path_n": 1076,
+     "workflow_n": 32,
+     "description": "Enhanced ChatGPT Clone: Features Agents, MCP, Skills, DeepSeek, Anthropic, AWS, OpenAI, Responses API, Azure, Groq, o1, GPT-5, Mistral, OpenRouter, Ve"
+    },
+    {
      "repo": "AgriciDaniel/claude-obsidian",
      "rel": "skill",
      "rel_strength": 2,
@@ -17371,28 +17387,6 @@
      "test_path_n": 84,
      "workflow_n": 2,
      "description": "Self-organizing AI second brain for Obsidian + Claude Code. Drop any source and Claude reads, links, and files it into one connected knowledge graph o"
-    },
-    {
-     "repo": "img2threejs/img2threejs",
-     "rel": "skill",
-     "rel_strength": 2,
-     "score5": {
-      "fc": 2,
-      "eff": 4,
-      "compat": 5,
-      "docs": 4,
-      "community": 4
-     },
-     "score_total": 19,
-     "stars": 19152,
-     "pushed_at": "2026-10-21",
-     "license": "Apache-2.0",
-     "archived": false,
-     "skill_md_n": 2,
-     "docs_md_n": 26,
-     "test_path_n": 111,
-     "workflow_n": 8,
-     "description": "Rebuild the object in a reference image as a code-only, procedural, quality-gated, animation-ready Three.js model. Token-efficient image-to-3D."
     }
    ],
    "verdict": "MATCHED",
@@ -22705,7 +22699,7 @@
    "slug": "verification-before-completion",
    "family": "quality",
    "family_name": "调试/测试/评审/计划族",
-   "local_bytes": 17055,
+   "local_bytes": 19711,
    "local_desc_len": 363,
    "keywords": [
     "verification",
@@ -24040,7 +24034,7 @@
    "slug": "win-toolchain-pitfalls",
    "family": "office",
    "family_name": "文档办公族：docx/xlsx/pdf/ppt/办公自动化",
-   "local_bytes": 19127,
+   "local_bytes": 20776,
    "local_desc_len": 181,
    "keywords": [
     "win",

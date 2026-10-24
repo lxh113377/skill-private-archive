@@ -582,6 +582,22 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   修后实测三门：`workers_quota_face` 转 HTTP 429（限流，真外部条件）、`pages_http_face` 同 429、`r2_enable_face` HTTP 403 code 9109（活性对照非 200，按判据不得据此断言 R2）⇒ **凭据层已通**，剩下的红是 CF 免费分析预算被我自己反复跑门耗尽（本轮为验证连打多次），非输入面缺陷。归因分开写，禁把 429 再记成「取不到凭据」。
   同族第三处（本轮扫全 05-exec 的 environ 派生路径，共 3 处命中）：`r35_username_context_audit.py` 第 70 行同类。定性要说准 —— 它**不是假绿**：该件对取不到账号名直接返「不得输出 0 处可清（R247）」= fail-closed，且未挂 GATES 表（人工审计件）⇒ 影响是「这类审计在该执行面跑不出结果」，不是账面说谎。处置 = 登记不夹带改（本轮已含 r199 一处修复与报告校正，避免一次提交干两件事）。
   取值：三门 `python 05-exec/run_gates.py --gate workers_quota_face --no-ledger` 等；零网络凭据证明 `python -c` 调 `oauth_token()` 打印 path 与 isabs；同族扫描 = 在 05-exec 内正则匹配 `os.environ.get("...")` 的六个 Windows 变量名。
+
+- [ ] **R215-3（r215 登记，P0·已落地）** **需求 6 的「≥30%」不是没做到，是在现役指标面上算术不可达：需 114.8 分 > 该面设计上限 95.2 分（连百分制满分 100 都装不下）**：
+  一手（本轮查现状时发现此前各轮只给定性证明）：阈值 30% 写在 `r115_quality_truth.py` 的 r1 判定行（现读 `relative_gain_pct >= 30.0`），基线 L1=88.3 ⇒ 需要 88.3 x 1.30 = **114.8** 分；而该面「全命中才有的分」由权威评估件自算 = **95.2**（`frozen_blind_eval.py` 的 R165 U1 行 `max_achievable = 权重和/条数`，blindspot 等部分权重类目使 10/10 不可达）⇒ **本面最大可能相对提升仅 7.8%**，距 30% 差 4 倍；绝对百分点读法需 118.3 更不可达。
+  ⇒ 这改变下一步动作的性质：继续在本面磨提升是无效功。出路只有两条 —— 归属方动作（焚诀 eval 的 direct_map / 题面 remap，转办提案在册）或换可验证口径（须向老大登记改口径，本仓不擅自换分母）。
+  落地（不是写一段话，是建常驻可复算面）：新建 `05-exec/r214_req6_attainability.py` 并接进季度巡检（步名 `req6_attainability`）⇒ 每季自动出该结论，读数落 `audit.json` 的 `req6_attainability_reading`。三要点：① 不重实现评分，score/n/hits/max_achievable 全读权威件产物；② 阈值不硬编，从尺子源文件现读（读不到或多值歧义 ⇒ rc=2）；③ 双读一致才下断言（不一致 ⇒ UNVERIFIED，禁挑对自己有利的读法）。
+  有牙验证：`--selftest` 五腿全 OK —— 正控（基线 50、需 65、上限 90 ⇒ ACHIEVABLE）/ 反控（88.3、上限 95.2 ⇒ IMPOSSIBLE）/ 更强一层（满分 100 也装不下 ⇒ 与上限无关，量纲本身不可达）/ 两读不一致 ⇒ UNVERIFIED / 缺输入 ⇒ 不判。**正控腿首版被我写错**（期望 88.3+上限 99 判可达，实际 114.8>99），自测腿当场判 FAIL 才暴露 —— 这条比结论值钱：新判据的「应绿」腿也必须可伪造，否则等于没有对照组。
+  另修一处接线缺陷（同一把刀第三下，本仓第 4 次撞）：`run_step()` 首版把 `conclusion_rc` 写成 `rc not in ok_rc` 方向反了 —— 会把「诚实结论 rc=1」记成失败步（整季巡检被打成 DEGRADED），又把普通步的 rc=1 当合法结论。三条腿反向单测（结论步 / 默认 rc=1 / rc=2）才抓得出来；修后 `--offline` 复跑 **14 步全通过、failed_steps 空**。
+  取值：`python 05-exec/r214_req6_attainability.py --selftest`（须 [REQ6:SELFTEST-PASS]）；`python 05-exec/r214_req6_attainability.py --json <件>`（读 result.verdict / need_score_relative_reading / ceiling_score）；`python 05-exec/r113_quarterly_audit.py --quarter 2026Q4 --offline`（末行 [QUARTERLY:PASS]）。
+
+- [ ] **R215-4（r215 登记，P1）** **维护规范三处失真实测修正；残留一项「第 ⑩ 段从未接线」定性为事件驱动前置门，其上游缺口无人负责**：
+  ① 序号手抄：我上轮给新步的注释写成「第 ⑯ 段」，实际是 steps 第 14 步 ⇒ 已立规「新增步只登记判据、不登记序号」，并把三条计数取值命令写进规范抬头（门数 / 步数 / 在册件数一律现读，禁抄文档内历史值）。
+  ② 字段名凭记忆写错：文档写 `provenance.json` 的 `face.authority_n`，实际该件叫 `face.authority_skill_n`（`authority_n` 是盘点件字段）⇒ KeyError 当场暴露，两处已改并把「字段名现读禁凭记忆」写进注释。
+  ③ 命令可执行性：文档嵌的 `python -c` 首版在 -c 串内嵌转义引号，cmd 不吃反斜杠 ⇒ 看着像样但跑不通；改 `chr(34)` 免引号写法后**四条唯一命令逐字实跑全 OK**。教训：写进文档的取值命令必须整条复制跑一遍。
+  ④ 残留（登记不夹带修）：规范 §3 表 ⑩ 行与 §3.4 把 `r119_corpus_gate.py` 记为「已入季度巡检」，实测**从未接线** —— `git log -S r119_corpus_gate -- 05-exec/r113_quarterly_audit.py` 零命中、`corpus_gate.json` 不在 quarterly 产物、audit.json 的 steps 无此步。根因不是掉了而是接口性质：它 `--candidates` 为 required 且吃**人工提出的候选语料文本**（示例落 `_temp/r119_candidates.json`，与今早修的死句柄同型），无法作定时步自动跑。已在规范 §3.6 出校正注并归位为「事件驱动前置门」（迁移方案 C7 / E 档在用）。
+  ⚠️ 由此暴露需求 6 的真实堵点：**不是缺沙箱，是没人提出候选语料**。与 R215-3 合看 = 本面算术封顶 + 上游无候选来源 ⇒ 两者都需老大或归属方点头，本轮写成待决事项而非待办工作量（X-22：已给可解析路径，不外部化）。
+  取值：`git log --oneline -S "r119_corpus_gate" -- 05-exec/r113_quarterly_audit.py`（空 = 从未接线）；`python 05-exec/r119_corpus_gate.py`（缺 --candidates 即 argparse 退出）；audit.json 的 steps 步名清单无 corpus_gate。
 - [ ] **R212-4（r212 登记，P1·到期 r215）** **savepoint 被噪声门拒：三条 VIOL 分两类处置（两条我已按 R269 走 gitignore 豁免，一条是 Git 跟踪件 ⇒ 按 X-9 不迁，只登记）**： 【取值：`python D:/global_skills/A-project-handoff/scripts/handoff.py noise <本仓根>` ⇒ violation:3；明细与两条实测证据见下】
   ① `undefined/`（79 项 pycache_verify/** 树，mtime 2026-10-21 22:33，早本会话 3 天）与 ② `%SystemDrive%/`（4 项 1B 空壳链，mtime 10-24 23:33）
   ⇒ 都是**工具产物不是项目内容**：前者 = 某次跑 python 时 TEMP 未解析 ⇒ `PYTHONPYCACHEPREFIX` 落成相对路径；后者 = cmd 风格变量写进 PowerShell 未展开。

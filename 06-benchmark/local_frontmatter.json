@@ -1,6 +1,6 @@
 {
  "schema": "local-frontmatter-r211-v1",
- "generated_at": "2026-10-24T18:43:04+00:00",
+ "generated_at": "2026-10-24T20:26:58+00:00",
  "cmd": "python 05-exec/r211_local_fm.py",
  "authority": "D:/global_skills",
  "n": 191,
@@ -41,7 +41,7 @@
    "slug": "A-memory-start",
    "desc": "全局记忆入口加载 — 目录索引式按需加载全局记忆。全局记忆启动门禁",
    "desc_len": 33,
-   "local_bytes": 12680
+   "local_bytes": 12617
   },
   {
    "slug": "A-project-better",
@@ -1031,7 +1031,7 @@
    "slug": "verification-before-completion",
    "desc": "Verify claims before marking work complete. Use when about to say \"done\", \"fixed\", \"passing\", or \"complete\" — requires running evidence-gathering commands and confirming output before making any success claims. Evidence before assertions always. 触发词：完工验证、交付前核验、确认真的绿了、别虚报完成、声称已修需复验、证据先于结论、跑一遍验证再报、verify before done、evidence before claim、no unverified completion。",
    "desc_len": 363,
-   "local_bytes": 17055
+   "local_bytes": 19711
   },
   {
    "slug": "video-breakdown-skill",
@@ -1091,7 +1091,7 @@
    "slug": "win-toolchain-pitfalls",
    "desc": "本机（Windows + WorkBuddy + Git Bash）工具链陷阱速查与对策。当命令\"静默无输出/exit code 恒 0/返回 0 结果/文件不存在/工具 command not found\"，或需要跑 Python、uv、git、回收站删除、HTML→DOCX 时使用本表速查。每条都含实测证据与对照，避免把\"工具环境问题\"误判成\"代码缺陷\"。",
    "desc_len": 181,
-   "local_bytes": 19127
+   "local_bytes": 20776
   },
   {
    "slug": "windows-bash-cli-interop-pitfalls",

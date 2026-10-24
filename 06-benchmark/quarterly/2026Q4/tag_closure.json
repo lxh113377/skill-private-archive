@@ -631,7 +631,7 @@
    "tag_hits": [],
    "domain": "code",
    "raw_rank": 1,
-   "raw_score": 0.6949
+   "raw_score": 0.6951
   },
   {
    "set": "layered",
@@ -1340,7 +1340,7 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "web",
-   "raw_rank": 106,
+   "raw_rank": 105,
    "raw_score": 0.3799
   },
   {
@@ -1479,7 +1479,7 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "data",
-   "raw_rank": 19,
+   "raw_rank": 18,
    "raw_score": 0.5794
   },
   {
@@ -1493,7 +1493,7 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "doc",
-   "raw_rank": 48,
+   "raw_rank": 47,
    "raw_score": 0.4524
   },
   {
@@ -1649,8 +1649,8 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "research",
-   "raw_rank": 2,
-   "raw_score": 0.6291
+   "raw_rank": 1,
+   "raw_score": 0.6743
   },
   {
    "set": "layered",
@@ -1691,7 +1691,7 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "doc",
-   "raw_rank": 28,
+   "raw_rank": 29,
    "raw_score": 0.506
   },
   {
@@ -3093,7 +3093,7 @@
    "tag_hits": [],
    "domain": "research",
    "raw_rank": 1,
-   "raw_score": 0.6846
+   "raw_score": 0.7211
   },
   {
    "set": "layered",
@@ -3521,7 +3521,7 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": null,
-   "raw_rank": 27,
+   "raw_rank": 26,
    "raw_score": 0.4915
   },
   {
@@ -3535,7 +3535,7 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "data",
-   "raw_rank": 3,
+   "raw_rank": 2,
    "raw_score": 0.62
   },
   {
@@ -3549,7 +3549,7 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "code",
-   "raw_rank": 18,
+   "raw_rank": 17,
    "raw_score": 0.6307
   },
   {
@@ -3620,7 +3620,7 @@
    "tag_hits": [],
    "domain": "code",
    "raw_rank": 2,
-   "raw_score": 0.5302
+   "raw_score": 0.5309
   },
   {
    "set": "layered",

@@ -58,8 +58,13 @@ def current_quarter(t=None):
     return "%dQ%d" % (t.tm_year, (t.tm_mon - 1) // 3 + 1)
 
 
-def run_step(name, argv, timeout=900):
-    """跑一步并原样保留 stdout/stderr（失败不得静默）。"""
+def run_step(name, argv, timeout=900, ok_rc=(0,)):
+    """跑一步并原样保留 stdout/stderr（失败不得静默）。
+
+    r214 加 ok_rc（缺省 (0,) ⇒ 全部既有调用方语义不变）：有些步的非零退出码是**结论**
+    而不是故障 —— 需求 6 可达性面判「算术不可达」按设计退 1。不区分就会把诚实结论记成
+    失败步、把整个巡检永久打成 DEGRADED，正是 R211-3 登记的「设计内红与真故障红长得一样」同族。
+    """
     t0 = time.time()
     try:
         p = subprocess.run(argv, capture_output=True, text=True, encoding="utf-8",
@@ -67,7 +72,14 @@ def run_step(name, argv, timeout=900):
     except Exception as exc:  # noqa: BLE001 - 任何异常都记为该步失败，不冒泡吞掉
         return {"step": name, "rc": None, "error": repr(exc), "ms": int((time.time() - t0) * 1000),
                 "stdout_tail": "", "stderr_tail": ""}
-    return {"step": name, "rc": p.returncode, "ms": int((time.time() - t0) * 1000),
+    rc = p.returncode
+    return {"step": name, "rc": rc, "ms": int((time.time() - t0) * 1000),
+            # r214 自抓：首版写成 rc not in ok_rc（方向反了），把「声明过的合法结论」
+            # 判成失败、把默认步的 rc=1 判成结论。正确口径 = 非零且在 ok_rc 白名单内。
+            # 反向验证三条腿（结论步 rc=1 / 默认步 rc=1 / rc=2）才能抓出方向写反；
+            # 常驻守卫 = 本文件里的 req6_attainability 这一步本身：谓词再被写反，它的 rc=1
+            # ⇒ face_ok=False ⇒ 巡检打 DEGRADED（红得可见），不需要再造一个孤儿夹具。
+            "conclusion_rc": rc != 0 and rc in ok_rc,
             "stdout_tail": (p.stdout or "")[-1500:], "stderr_tail": (p.stderr or "")[-1500:]}
 
 
@@ -220,6 +232,41 @@ def _read_trace_face(path):
     }
 
 
+def _read_req6_att(path):
+    """从 req6_attainability.json 读需求 6 阈值可达性结论（句柄化，禁抄值）。
+
+    三态同其余读数：件缺失 / 解析失败 / 无 result ⇒ None（禁当「可达」或「不可达」引用）。
+    存在理由（r214）：结论只活在旁件里 = 下一轮没人打开它，就会继续把需求 6 记成
+    「还没做到」而不是「这条尺子做不到」；写进主产物才每轮可见。
+    """
+    import io as _io
+    import json as _json
+    if not os.path.isfile(path):
+        return None
+    try:
+        with _io.open(path, encoding="utf-8") as f:
+            d = _json.load(f)
+    except Exception:
+        return None
+    r = d.get("result")
+    if not isinstance(r, dict):
+        return None
+    return {
+        "verdict": r.get("verdict"),
+        "threshold_relative_pct": r.get("threshold_relative_pct"),
+        "baseline_score": r.get("baseline_score"),
+        "current_score": r.get("current_score"),
+        "current_relative_gain_pct": r.get("current_relative_gain_pct"),
+        "ceiling_score": r.get("ceiling_score"),
+        "need_score_relative_reading": r.get("need_score_relative_reading"),
+        "max_possible_relative_gain_pct": r.get("max_possible_relative_gain_pct"),
+        "gap_to_need_points": r.get("gap_to_need_points"),
+        "extra_hits_needed_for_threshold": r.get("extra_hits_needed_for_threshold"),
+        "two_readings_agree": r.get("two_readings_agree"),
+        "source": os.path.relpath(path, ROOT).replace(os.sep, "/"),
+    }
+
+
 def atomic_write_json(path, doc):
     tmp = path + ".tmp"
     with io.open(tmp, "w", encoding="utf-8", newline="\n") as fh:
@@ -334,17 +381,33 @@ def main():
                           [PY, os.path.join(HERE, "r118_swap_sim.py"),
                            "--json", swap_impact],
                           timeout=1800))
+    # r214 新增步（需求 6 定量收口）：阈值在本面**算术上可不可达**。
+    # 段号刻意不写在注释里（本仓 r214 一手：我上一版把它标成「第 ⑯ 段」，而实际它是
+    # steps 列表里的第 14 步）—— 步数由产物自述，手抄必漂移（X-24 / AGENTS「禁硬编码计数」）。
+    # 取值：python -c "import json;d=json.load(io.open('06-benchmark/quarterly/2026Q4/audit.json',encoding='utf-8'));print(len(d['steps']))"
+    # 存在理由：需求 6 自 r114 起每轮记「未达 2.0%」，但只给过三重定性证明（r131 §1.2），
+    # 从没把「差多少」算成「能不能到」——于是「继续磨」与「必须换尺子」两种下一步动作
+    # 无法区分。本段读同一次巡检的 quality_truth 产物（零网络，权威件自算的 max_achievable）。
+    # rc=1 = 判「算术不可达」是**结论**不是故障 ⇒ ok_rc=(0, 1)，防把诚实结论记成 DEGRADED。
+    req6_att = os.path.join(qdir, "req6_attainability.json")
+    steps.append(run_step("req6_attainability",
+                          [PY, os.path.join(HERE, "r214_req6_attainability.py"),
+                           "--current", truth, "--json", req6_att, "--quiet"],
+                          ok_rc=(0, 1)))
     _r120b_domain_reading = _read_domain_face(domain_face)
     _r120b_trace_reading = _read_trace_face(trace_face)
     _r126_tag_reading = _read_tag_closure(tag_closure)
 
     meta = fetch_meta(offline=args.offline)
-    failed = [s["step"] for s in steps if s["rc"] != 0]
+    # r214：rc=1 且该步声明了 1 是合法结论（conclusion_rc）⇒ 不计失败步。
+    # rc=None（超时/异常）与 rc>=2 仍一律算失败，判据强度只收紧不放宽。
+    failed = [s["step"] for s in steps
+              if s["rc"] != 0 and not (s["rc"] == 1 and s.get("conclusion_rc"))]
     meta_unv = sorted([r for r, v in meta.items() if v.get("state") == "UNVERIFIED"])
 
     face_ok = (all(os.path.isfile(p) for p in
                    (prov, up, swap, repl, qual, rmiss, truth, swap_impact, domain_face,
-                    trace_face, tag_closure))
+                    trace_face, tag_closure, req6_att))
                and not failed)
     face_reason = None
     if not os.path.isfile(prov):
@@ -366,11 +429,13 @@ def main():
                       "replacement_matrix": repl, "quality_ab": qual,
                       "route_miss_attr": rmiss, "quality_truth": truth,
                       "swap_impact": swap_impact, "domain_face": domain_face,
-                      "trace_face": trace_face, "tag_closure": tag_closure},
+                      "trace_face": trace_face, "tag_closure": tag_closure,
+                      "req6_attainability": req6_att},
         "swap_impact_reading": _read_swap_impact(swap_impact),
         "domain_face_reading": _r120b_domain_reading,
         "trace_face_reading": _r120b_trace_reading,
         "tag_closure_reading": _r126_tag_reading,
+        "req6_attainability_reading": _read_req6_att(req6_att),
         "face_ok": face_ok,
         "face_reason": face_reason,
     }
