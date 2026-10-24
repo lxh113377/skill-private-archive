@@ -247,6 +247,42 @@ def _probe_wrangler_once():
     return 'READY', note
 
 
+# VS Code：r206 一手补漏。本件 docstring 一直声称覆盖 VS Code，但 PROBES 里没有它的探针
+# —— 「注释说 10 项、实装报 9 项」此前无任何判据能发现（静默漏项）。
+# 我一开始还差点把它判成「本机没装」：只查了官方默认路径 %LOCALAPPDATA%\Programs，
+# 而这台机器装在 D 盘。教训同 r163 的 gh：判「有没有」必须走 which 解析真实路径，
+# 且要防 0 字节空壳遮蔽（故校验文件大小与 --version 实际输出）。
+VSCODE_EXT_DIR = os.path.expanduser(r"~\.vscode\extensions")
+
+
+def probe_vscode():
+    """code CLI 在位且可跑 ⇒ READY；装扩展目录只作使用度读数，不参与判态。"""
+    c = shutil.which("code")
+    if not c or not os.path.isfile(c):
+        return "GAP_CLI", {"detail": "no_code_cli_on_path"}
+    sz = os.path.getsize(c)
+    if sz <= 0:
+        return "BROKEN", {"detail": "code_zero_byte_shell", "path": c}
+    rc, out = _sh([c, "--version"])
+    first = ((out or "").strip().splitlines() or [""])[0].strip()
+    if rc != 0 or not first[:1].isdigit():
+        # 重试一次：单次子进程抖动不得判 BROKEN（同 probe_sqlite 的 r163 教训）
+        rc, out = _sh([c, "--version"])
+        first = ((out or "").strip().splitlines() or [""])[0].strip()
+        if rc != 0 or not first[:1].isdigit():
+            return "BROKEN", {"detail": "code_present_but_not_runnable",
+                              "path": c, "out": out[:120]}
+    ext_n = 0
+    try:
+        ext_n = sum(1 for d in os.listdir(VSCODE_EXT_DIR)
+                    if os.path.isdir(os.path.join(VSCODE_EXT_DIR, d))
+                    and not d.startswith("."))
+    except OSError:
+        ext_n = -1
+    return "READY", {"code_version": first[:12], "cli_path": c, "cli_bytes": sz,
+                      "extensions_n": ext_n}
+
+
 def probe_sqlite():
     """SQLite：Python 内置即够用（无独立 CLI 不算缺口 —— 判据要区分「没有」与「不必有」）。
 
@@ -358,6 +394,7 @@ PROBES = [
     ('Cloudflare-Pages', lambda: probe_wrangler('pages')),
     ('Cloudflare-Workers', lambda: probe_wrangler('workers')),
     ('SQLite', probe_sqlite),
+    ('VS Code', probe_vscode),
     # r164 自抓（判据与现实漂移）：Turnstile 早前按「env 里有 CF_TURNSTILE_* 吗」判 GAP_CRED，
     #   但本轮实测它**已在生产启用**（widget 建好 + Pages secret 已配 + 部署后写接口回 captcha_failed）。
     #   凭据既不在本机 env、也不该在本机 env —— 它的正确归宿是 Cloudflare widget + Pages secret。
@@ -372,6 +409,62 @@ PROBES = [
 ]
 
 BROKEN_STATES = ('BROKEN',)
+
+
+# --- 名册完整性（r206 一手）---
+# 声称集取自本件 docstring 那行「工具（D1/R2/Pages/Workers/Turnstile/Resend/Upstash/
+#   SQLite/GitHub/VS Code）」，不手抄成第二份常量 —— 手抄会和 PROBES 一起漂移，
+#   就又是「注释说 10 项、实装 9 项」那个洞。
+_CLAIM_LINE_RE = __import__("re").compile(r"截图那批「独立开发者穷鬼套餐」工具（(.+?)）")
+
+
+def _claimed_tools():
+    """从本件**自身源码头部**解析名册声称集，归一化后返回。
+
+    r206 自抓（我第一版写成读 __doc__，解析出空集）：本件的说明全是 # 注释、
+    __doc__ 是 None ⇒ 拿 docstring 当权威是「按印象构造」。改读自己源码前 60 行，
+    并合并跨行（声称那行在源码里被折成两行）。解析不出 ⇒ None（不得当空集，R247）。
+    """
+    head = ""
+    try:
+        with io.open(__file__, encoding="utf-8", errors="replace") as fh:
+            for i, _l in enumerate(fh):
+                if i >= 60:
+                    break
+                head += _l
+    except OSError:
+        return None
+    flat = head.replace(chr(10) + "#", " ").replace("#", " ")
+    flat = " ".join(flat.split())
+    m = _CLAIM_LINE_RE.search(flat)
+    if not m:
+        return None
+    raw = [x.strip() for x in m.group(1).split("/") if x.strip()]
+    out = set()
+    for x in raw:
+        out.add(_norm_tool(x))
+    return out
+
+
+def _norm_tool(name):
+    """名册项名归一：Cloudflare-D1/D1 同指一项；大小写与空格、连字符统一。"""
+    s = (name or "").strip().lower()
+    s = s.replace("cloudflare-", "").replace("cloudflare ", "").replace("-", " ")
+    s = " ".join(s.split())
+    if s == "upstash redis":
+        s = "upstash"
+    return s.strip()
+
+
+def roster_gaps():
+    """(声称未实装, 实装未声称) —— 供 main 具名打印，禁把「漏项」读成「没有该工具」。"""
+    claimed = _claimed_tools()
+    if claimed is None:
+        return None, None
+    have = set(_norm_tool(t) for t, _ in PROBES)
+    missing = sorted(claimed - have)
+    extra = sorted(have - claimed)
+    return missing, extra
 
 
 def run_probes():
@@ -409,6 +502,20 @@ def selftest():
     legal = {'READY', 'GAP_CRED', 'GAP_CLI', 'GAP_SERVICE', 'BROKEN'}
     bad = [r['tool'] for r in rows if r['state'] not in legal]
     legs.append(('f2_state_enum_closed', not bad, 'illegal=%s' % (bad or '[]')))
+    # f5/f6 名册完整性（r206 一手：docstring 声称 10 项、PROBES 实装 9 项，
+    #   VS Code 静默漏了十几个轮次无人发现，且本门照打 PASS）
+    _mi, _ex = roster_gaps()
+    legs.append(('f5_claimed_impl_consistent', not _mi and not _ex,
+                 'missing=%s extra=%s（声称集取自源码头部注释，非手抄）' % (_mi, _ex)))
+    _saved_p = list(PROBES)
+    try:
+        PROBES[:] = [x for x in _saved_p if x[0] != 'VS Code']
+        _mi2, _ex2 = roster_gaps()
+        legs.append(('f6_gap_detect_has_teeth',
+                     _mi2 == ['vs code'] and not _ex2,
+                     '摘掉 VS Code 探针 => missing=%s（须抓到）' % (_mi2,)))
+    finally:
+        PROBES[:] = _saved_p
     saved = list(PROBES)
     try:
         PROBES[:] = [('injected_broken', lambda: ('BROKEN', {'detail': 'injected'}))]
@@ -582,6 +689,17 @@ def main(argv=None):
     rows = run_probes()
     if not rows:
         print('[FREETOOLS] UNVERIFIED 名册为空，禁判绿（R247）')
+        return 2
+    # 名册完整性（r206）：声称集与实装集不一致 ⇒ 本门读数不可信，判 UNVERIFIED。
+    # 语义刻意思义与 BROKEN 不同：不是「某个工具坏了」，是「这张面撒谎/不完整」。
+    # 曾经 VS Code 在声称里、不在 PROBES 里，本门照旧打 PASS —— 那才是真正要防的形态。
+    missing, extra = roster_gaps()
+    if missing is None:
+        print('[FREETOOLS] UNVERIFIED 名册声称集解析不出（源码头部被改动？）禁按全绿记')
+        return 2
+    if missing or extra:
+        print('[FREETOOLS:UNVERIFIED] 名册不完整：声称未实装=%s ｜ 实装未声称=%s' % (
+              missing or '[]', extra or '[]'))
         return 2
     counts = {}
     for r in rows:

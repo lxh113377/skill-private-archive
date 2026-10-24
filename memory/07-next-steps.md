@@ -456,6 +456,30 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   references/powershell-cli-silent-failures.md」指针 + 版本行；或由归属方自行合并时带上。
   取值：git -C D:/global_skills status --porcelain -- win-toolchain-pitfalls/SKILL.md（非空即未落地）；
   分卷本体已在库：git -C D:/global_skills log --oneline -1 --grep R804。
+- [ ] **R206-1（r206 登记，P1·已落地）** **名册判据声称 10 项、实装只报 9 项：VS Code 静默漏了十几个轮次**： 【r206 裁决=执行（当日补探针 + 加完整性判据，两向有牙验证）｜读数：名册 10/10 一致、selftest 20/20、VS Code READY 1.141.0、第 76 门 PROBECOST:PASS 足迹未涨。不设目标轮：完整性由 f5/f6 常驻守，下次任何声称与实装不一致即 rc=2。】
+  第 65 门 free_tools_face 源码头部注释列 D1/R2/Pages/Workers/Turnstile/Resend/Upstash/SQLite/
+  GitHub/VS Code 共 10 项，但 PROBES 只装 9 个探针 —— VS Code 从来没有探针。它不报错、不漏跑，
+  是根本不在表里，于是每轮照常 [FREETOOLS:PASS]、打「名册 9 项」，十几轮无人对照声称 vs 实装。
+  我自己先差点犯第二个错：查 VS Code 是否存在只试官方默认路径三候选（%LOCALAPPDATA%\Programs…）
+  全未命中，正要写 GAP_CLI 本机未装。穷尽检测后打脸：注册表显示装在 D:\Microsoft VS Code，
+  which(code)=D:\Microsoft VS Code\bin\code.CMD，code --version rc=0（1.141.0），扩展 43 个。
+  与 r163「gh 被 0 字节空壳遮蔽、我差点写成本机没有 gh」同一错的第三副面孔：用自己熟悉的默认
+  形态当唯一形态。正解同样走 which 解析真实路径 + 校验非 0 字节 + 真跑 --version 看输出形状。
+  修法两层（不是只补探针的补丁式修法）：① 补 probe_vscode（READY 带 code_version/cli_path/
+  extensions_n，含单次抖动重试一次、不单次判 BROKEN）；② 加 roster_gaps()：声称集从**本件自身
+  源码头部注释**解析（不手抄第二份常量——手抄会跟 PROBES 一起漂移，等于没有对照），
+  main() 里 missing/extra 任一非空 ⇒ rc=2 UNVERIFIED（语义刻意不同于 BROKEN：不是某工具坏了，
+  是这张面不完整，读数不可信）。第一版我写成读 __doc__ 得空集 —— 本件说明全是 # 注释，
+  __doc__ 是 None，又一次按印象构造；改读自身源码前 60 行并合并折行才对。
+  有牙验证（内存法零外部调用）：摘掉 VS Code 探针 ⇒ missing=['vs code']；加一项名册未声称的 ⇒
+  extra=['fantasy cron']；复原 ⇒ 双空。selftest 加 f5_claimed_impl_consistent + f6_gap_detect_
+  has_teeth，20/20 通过。
+  现状：名册 10 项、READY=7 GAP_CRED=2 GAP_SERVICE=1、[FREETOOLS:PASS]；证据件
+  06-benchmark/free_tools_latest.json 首次落盘（此前该门 argv 为空、读数只在 stdout 没进仓内
+  可复算面 —— 这也是静默漏项能活十几轮的共因之一）。改完主动重跑测量器与第 76 门：
+  cloudflare=2/github=2 声明=实测一致 ⇒ PROBECOST:PASS（本地 code 调用计入未归类进程，不涨外部足迹）。
+  取值：python 05-exec/r163_free_tools_face.py --json 06-benchmark/free_tools_latest.json；
+  python 05-exec/r163_free_tools_face.py --selftest（20/20）。
 - [ ] **R205-1（r205 登记，P1·已落地）** **GitHub 自动推送链一直在跑、但每次 push 失败都被 || true 全吞、零留痕**： 【r205 裁决=执行（两次错判后用 reflog + --dry-run 拿到真相，当日端到端实证修复）｜读数：钩子留痕 ts=…rc=0 head=ea1a425 且 remote=local 一致；第 87 门 rc=0 PASS；r138 8/8、r140 IN_SYNC、r141 含糊 0。不设目标轮：留痕由第 87 门守，推送失败即 FAIL、无留痕即 UNVERIFIED。】
   我连错两次：①判「钩子没跑」——reflog 证伪（提交后约 10 秒 origin/main 确实更新过）；
   ②判「push 失败」但根因未证——--dry-run 实测后成立：裸 push rc=128/21.3s（连不上 github:443），

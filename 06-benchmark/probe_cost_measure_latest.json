@@ -33,7 +33,7 @@
     "cloudflare": 2,
     "github": 2
    },
-   "state": "rc=1 (未归类进程/HTTP 调用 4)"
+   "state": "rc=1 (未归类进程/HTTP 调用 8)"
   },
   "r163_turnstile_face.py": {
    "gate": "turnstile_face",
@@ -89,7 +89,7 @@
     "cloudflare": 0,
     "github": 0
    },
-   "state": "rc=1"
+   "state": "rc=0"
   },
   "r201_r2_enable_face.py": {
    "gate": "r2_enable_face",

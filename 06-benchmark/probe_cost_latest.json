@@ -228,13 +228,14 @@
    ],
    "portable": false,
    "declared": null,
-   "measured": null,
-   "state": "UNMEASURED"
+   "measured": {
+    "cloudflare": 0,
+    "github": 0
+   },
+   "state": "NO_EXTERNAL_CALLS"
   }
  ],
- "problems": [
-  "r205_push_autopush_face.py 静态判为联网门但 manifest 里没有实测值 ⇒ 先重跑测量器"
- ],
+ "problems": [],
  "worst_case_per_run": {
   "github": 8,
   "cloudflare": 13
