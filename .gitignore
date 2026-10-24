@@ -41,3 +41,13 @@ _temp/
 # 「镜像已入库」的断言会假；证明按 sha256 内容对账，文件名保持与 _trash 键 1:1，不改名）。
 !archive/trash-proof-*/**/*.log
 !archive/trash-proof-*/*.log
+# r212：两个工具产物目录豁免（R269 明写的正解通道：gitignore 命中即降级 quarantine）
+# 实测来源两条，均非项目内容面、且会反复再生：
+#   undefined/      = 某次跑 python 时 TEMP 未解析 ⇒ PYTHONPYCACHEPREFIX 落成相对路径，
+#                     在项目根下生成 79 项 pycache_verify/** 树（mtime 2026-10-21 22:33，
+#                     早于本会话 3 天；git ls-files 计数 0 ⇒ 非跟踪内容）
+#   %SystemDrive%/  = 把 cmd 风格变量写进 PowerShell 未展开 ⇒ 按字面量建出 ProgramData 空壳链
+#                     （4 项、每个 1B，mtime 2026-10-24 23:33）
+# 二者都不是「agent 随手散射」，也不该由我迁 _trash（迁进去即成新 orphan，反噬副本证明面）。
+/undefined/
+/%SystemDrive%/

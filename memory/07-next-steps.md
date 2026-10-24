@@ -502,6 +502,22 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   修法（下轮独立一件事，二选一，禁顺手改）：① 把池缓存迁到入库面（如 `06-benchmark/pool_cache/`）并接受 ~0.9MB 体积代价 —— 须先量 `family_bytes_max=491,520` 与 `repo_max=10,485,760` 两条既有预算（合计 0.87MB 逼近族上限，须按族分批或改件形态）；② 保留 _temp 但在巡检第 ⑥ 段前加「离线池缺失 ⇒ 具名提示联网重跑一次并说明这不是缺陷」的第三态，把它与真故障分开（对位 R211-3 的「设计内红 vs 真故障红」同一处理取向）。
   不本轮夹带的理由：本轮已含五处改动（生成器 / 消费方两形态 / 扩面 / 盘点四写死面 / 机器腿可指），再加 0.9MB 入库决策会让一次提交干两件事且体积代价需单独裁。
   取值：`python -c` 数 _temp/r114_search_cache 下 q 前缀件与合计字节；`git check-ignore -v _temp`；`python 05-exec/r113_quarterly_audit.py --quarter 2026Q4 --offline` 的 replacement_scan 行。
+- [ ] **R212-4（r212 登记，P1·到期 r215）** **savepoint 被噪声门拒：三条 VIOL 分两类处置（两条我已按 R269 走 gitignore 豁免，一条是 Git 跟踪件 ⇒ 按 X-9 不迁，只登记）**： 【取值：`python D:/global_skills/A-project-handoff/scripts/handoff.py noise <本仓根>` ⇒ violation:3；明细与两条实测证据见下】
+  ① `undefined/`（79 项 pycache_verify/** 树，mtime 2026-10-21 22:33，早本会话 3 天）与 ② `%SystemDrive%/`（4 项 1B 空壳链，mtime 10-24 23:33）
+  ⇒ 都是**工具产物不是项目内容**：前者 = 某次跑 python 时 TEMP 未解析 ⇒ `PYTHONPYCACHEPREFIX` 落成相对路径；后者 = cmd 风格变量写进 PowerShell 未展开。
+  两条 `git ls-files` 计数 0（无跟踪内容）⇒ 走 R269 明写的正解通道：.gitignore 追加 `/undefined/`、`/%SystemDrive%/` 并在注释里写明实测来源与「不迁 _trash」的理由
+  （迁进去即成新 orphan，反噬本轮刚修好的副本证明面）。`git check-ignore -v` 两条均命中（:52/:53）⇒ 噪声门降级 quarantine。
+  ③ `memory/07-next-steps.md.r128b_162733.bak`（110,669B，199d35b/r129 提交入库，SHA256 6F3769C5…0877B8）**不迁不改名**：
+  它已被 Git 跟踪 ⇒ X-9（r37 立）明禁「为让某道门禁变绿而迁走/删除/改名 Git 已跟踪件」，且该建议本身是破坏性动作。**两条合法出路留给归属轮择一**（本仓不代决改判据）：
+  (a) **改判据不改数据**（R263 正向用法）：`noise_lint.py` 二级扫描（实测 L627-653）目前只查 `git_ignored` 不查 `git_tracked`，
+      而一级 L578/529/543 已查 ⇒ 同一把尺两级口径不一致，正是本文件 L340 自己记过的 R283 假阳性族（CONTRIBUTING.md 形态）在二级复发。
+      补二级 `git_tracked` 即口径归一；须同时补反例腿（非跟踪件仍判 VIOL，否则是放宽）。归属 = A-project-handoff（实测该件当前 CLEAN，无人在途）。
+  (b) **专用轮处理**：走回收站通道迁件（可逆）+ 立刻复跑 `05-exec/r178_proof_sync.py` 保住证明面 PASS，并在 R175-3 长期看守下同步 05 卷状态。
+  本轮判 (a)/(b) 都超出「四项工程改造」范围且 (a) 要动归属方判据、(b) 是破坏性 ⇒ 只登记不擅动。
+  后果如实写：本条不闭环 ⇒ `handoff.py savepoint` 继续被拒（本项目根第 i 步），本轮以显式提交 + GM 日志 + 台账三处留痕代替 savepoint，不谎称已落盘。
+  取值：`git check-ignore -v undefined %SystemDrive%`；`git ls-files --error-unmatch memory/07-next-steps.md.r128b_162733.bak`（rc=0 ⇒ 跟踪态）；
+  `python D:/global_skills/A-project-handoff/scripts/handoff.py noise <本仓根>`；`Get-Content D:/global_skills/A-project-handoff/scripts/noise_lint.py` 的 L578 与 L627-653。
+
 - [ ] **R212-3（r212 登记，P1·到期 r215）** **收口全量 91 门唯一 UNVERIFIED 来自并行会话在途的 v5 名册（加了 ingress_keywords 却没重跑真值件）—— 归属由内容自证，不代做**： 【取值：`python 05-exec/r208_recall_face.py --json <件>` 报 `[RECALL:UNVERIFIED] 探针名册比真值件新 ⇒ 改过声明却没重测`；`git status --porcelain -- 06-benchmark/recall_probe_registry.json` = ` M`，mtime 03:25:11】
   归属判定按**内容自证**而非文件名（r203-2 在册教训，本轮第二次用到）：① 该件 diff 是 `schema: v4 → v5` + 给 task_probes 追加 `ingress_keywords`（部署/超市部署/pages），属第 88 门召回语义；② 我本轮 5 笔提交逐笔 `git show --name-only` = 5/5/54/3/5 文件，**均不含**该件；③ 03:25:11 落在我 `1fe9fa3`(03:2x 提交) 与全量跑之间，同轮另一会话正在推 r212 系列（其 commit `bea6a6d`/`0b4a0d8` 已入库）。⇒ 判为他方在途，**不代提交、不代重测**（重测会替他们把 v5 的读数固化成基线）。
   判据自身表现正确（这次不是假红）：第 88 门拒绝把「改过声明没重测」折算成可召回、不按绿记（R247），且它同时被本轮第 91 门的分类器如实归到 **REAL_RED 桶**（非设计内红）⇒ 分类方向经真数据验证，与我造的三侧合成件（full/legacy/mixed）互不矛盾。
