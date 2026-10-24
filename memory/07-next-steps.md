@@ -456,6 +456,28 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   references/powershell-cli-silent-failures.md」指针 + 版本行；或由归属方自行合并时带上。
   取值：git -C D:/global_skills status --porcelain -- win-toolchain-pitfalls/SKILL.md（非空即未落地）；
   分卷本体已在库：git -C D:/global_skills log --oneline -1 --grep R804。
+- [ ] **R207-1（r207 登记，P1·已落地）** **GitHub/CI 自动化链的两条静默失败实测坑喂进 skill（§9.17/R810）**： 【r207 裁决=执行（扫「关键词×候选skill」矩阵发现两条最狠的 GitHub 坑从没进过该去的 skill；定家排除市场件/EXCLUDE 件后落 win-toolchain cli-invocation §9.17/R810）｜读数：提交范围=1卷不含他人在途件、镜像 pathspec hash 一致、disk_registry 三类全0、r204 复跑孤儿仍5。不设目标轮：这是周期性回查动作，本轮已闭合。】
+  本轮回到目标本体：上几轮我把 GitHub/CI 的坑都记进报告与仓内判据，但没查它们进没进真正用它的
+  skill。扫描发现：run_id≠run_number、log-failed 无失败返 0 字节两条**已在** ci-pipeline-debugging/
+  github/win-toolchain 三处；但我这几轮最值钱的两条**哪都没有** —— ① post-commit 钩子跑了但每次
+  push 都被 `|| true` 全吞、零留痕（我几十轮以为「提交即自动推」，实际每轮手工带代理补推）；
+  ② 聚合 runner 读自己写的台账不筛 mode，一次 --portable-only（只覆盖 30/78 门）把「最近一次
+  全量门禁」喂绿（防别人造假的自指门被我随手绕过）。
+  定家（不盲写）：ci-pipeline-debugging 是市场件、无 references 目录、动它风险大；github 是 EXCLUDE
+  件。正解 = win-toolchain-pitfalls/references/cli-invocation-pitfalls.md（MID 自建、CLEAN、SKILL.md
+  L138 已指它、上轮 R805 §9.16 已在此讲 CF/GitHub 额度读数，§9.17 续讲自动化链坑最顺，且不在
+  C25 注入五件 ⇒ 加 1972B 不动注入面）。
+  §9.17 三条一手：钩子 || true 全吞（修=代理归仓库级配置 + 留痕交判据读结果，两层）；聚合 runner
+  读台账不筛 mode（修=只采信 full，缺 mode 按 full 兼容，被忽略的局部跑要在理由里点名）；
+  对照实验要自证它真在跑（我为退避做的对照实验量到 3.9s 差点据此改生产逻辑，其实它所有门 MISSING
+  直接早退，cProfile 一次才看清假门路径只占 3.6s、1000 秒全在整子集 subprocess）。
+  归因铁律续 §9.14/§9.15/§9.16：任何「失败就重试 / 读自己产出下结论 / 装完就以为在跑」先问三句
+  ——失败重试有用吗、读到的面是不是我要的面、它成功还是在报错被吞了。
+  走 rule_editor append --text-file（48 处反引号，内联会被 shell 吞），--no-commit 后逐文件核范围
+  =1 卷不含他人 SKILL.md/path-separator；镜像 pathspec 同步 hash 一致。
+  验收：rule_editor gates（mirror/noise/evolution）+ disk_registry_diff 三类全0 + r204 复跑孤儿
+  仍 5（没改坏可达）。元教训：反哺不是「写进某个 skill 就行」，要先扫哪几条真没进、再定该进哪个家、
+  写完跑受管根门禁 —— 市场件/EXCLUDE 件不动，别为「知识进了 skill」去改不能改的东西。
 - [ ] **R206-3（r206 登记，P2·已落地）** **第 86 门补四条可达指针（R809），孤儿 9→5，剩下 5 条定性为不代做**： 【r206 裁决=执行（先定性再补：2 卷补指针、A-project-better 5 条定性为 dirty+上游断链不代做）｜读数：r204 四条 HEALED、孤儿 9→5、基线收缩、镜像 pathspec 同步 2 文件；提交范围 = 2 文件不含在途件。5 条留基线追踪不代做（判据报的是候选不是待办）。】
   对 r204 报的 9 条历史孤儿先定性再动手（不盲目补指针，否则是我造噪音）：
   ① cross-platform-agent-sync 的 cps.part10/11 —— 该卷 SKILL.md 分卷目录**独缺卷10、卷11**

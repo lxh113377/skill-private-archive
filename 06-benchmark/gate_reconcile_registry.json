@@ -90,7 +90,7 @@
    "skill_wiring_face",
    "push_autopush_face"
   ],
-  "_snapshot_at": "2026-10-24 22:54",
+  "_snapshot_at": "2026-10-24 23:04",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
