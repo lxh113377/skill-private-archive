@@ -456,6 +456,25 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   references/powershell-cli-silent-failures.md」指针 + 版本行；或由归属方自行合并时带上。
   取值：git -C D:/global_skills status --porcelain -- win-toolchain-pitfalls/SKILL.md（非空即未落地）；
   分卷本体已在库：git -C D:/global_skills log --oneline -1 --grep R804。
+- [ ] **R203-3（r203 登记，P1·已落地）** **名册项 SQLite 落地为派生台账索引（不是提速，是省掉仓外一次性脚本）**： 【r203 裁决=执行（当日落地、交叉验证 5/5 一致、并自纠两个假结论）｜读数：gate_run 34382 行 / run_meta 760 / input_pin 1029 / report_section 1559 / ledger_item 41；--stale 指纹一致；索引落 _temp（.gitignore 覆盖，不入库）。不设目标轮：索引为派生可重建件，权威仍是原 jsonl/07 卷，漂移由 --stale 拦。】
+  动机先自我否决：本仓 942 个 .json + 4 本 .jsonl，实测五个高频查询 0.003~0.013 秒 ⇒ 「SQLite
+  提速门禁」是假优化（#36）。真实成本是每个新问题都要写一个采集脚本，本会话已在 TEMP 攒 40 个
+  仓外一次性脚本（= 没有自证）。SQLite 顶这个位置。
+  落地 `05-exec/r203_ledger_index.py`：索引落 `_temp/gate_index.sqlite`（.gitignore 覆盖⇒派生件、
+  不入库、不成为提交物）；每次 --build 全量重建（结构上不可能索引比源新）；--stale 用 sha256
+  内容指纹判漂移（不用 mtime，并行会话可能同秒写盘）；--sql 只读（拒绝非 SELECT）。
+  连踩两坑（同族：按印象构造）：① 索引器只认 gates 数组⇒gate_run 建成 0 行空表，真相是同一
+  runner 两形态（台账 per_gate={id:state} 仅状态 / --json 快照 gates[] 含 rc·耗时·covers），修
+  双形态后 34,382 行；② 用 --sql 输出算 DISTINCT 门数⇒误得「73 门从未出现」，--sql 只打印前 12
+  行，改 --json 全量后真实 85/85 全覆盖。交叉验证 5/5 逐条一致（总行数/ratchet_gate 751/FAIL 158/
+  UNVERIFIED 173/run_meta 760）。
+  最值钱的教训：我答「哪些门只在 CI 绿」得「85 门全只在本机跑」，看着像发现实为假——台账 origin
+  全是 local、零 ci 行（CI 跑门禁写 --json 快照、不写这本台账；ORIGIN_DOMAIN 的 ci 是给 ci_health
+  面用的）。索引没漏读，是源某维度本就空。派生索引答不了数据里没记的维度，用它下「X 从未发生」
+  否定结论前必须先证「X 若发生会记在哪」，否则空表=假安心，与 0 行 gate_run 是同种危险的两副面孔。
+  交付：gate_run 34382 / input_pin 1029 / report_section 1559 / ledger_item 41 / debt_run 206 /
+  run_meta 760；索引 10.4MB 落 _temp 不入库。取值：python 05-exec/r203_ledger_index.py --build;
+  --stale；--sql "..."（单侧门问题权威版须回 06-benchmark/ci_health_latest.json）。
 - [ ] **R203-2（r203 登记，P1·已落地）** **我把并行会话的证据件扫进了我的提交（违 R269），根因是「按文件名前缀判归属」**： 【r203 裁决=执行（当日自己复核出来并按内容自证定责；不改写已推送历史，按 R241 以校正注留痕）｜读数：git log --diff-filter=A 指向 15eccfa（我的提交）；件内门数 69、无 runner_internals_fixtures、有 commit_gate_map_face ⇒ 三条内容自证全不符 ⇒ 属并行会话。不设目标轮：后续提交已改为只 add 显式列出的路径，不再用前缀正则扫未跟踪件。】
   一手（我造成）：收尾提交时我用一条正则筛「哪些未跟踪件属于我」，其中写了 `gate_run_r20`。
   该前缀把 `06-benchmark/gate_run_r203_1.json` 判成我的并提交了（commit 15eccfa）。
