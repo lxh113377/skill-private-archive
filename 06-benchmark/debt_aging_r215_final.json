@@ -1,9 +1,9 @@
 {
  "schema": "debt-aging-v2",
- "generated_at": "2026-10-25T04:24:59",
+ "generated_at": "2026-10-25T04:43:12",
  "readonly": true,
  "grace_rounds": 2,
- "current_round": 214,
+ "current_round": 215,
  "round_source": "git log --format=%s -40 中**作用域**最大 rNN（未硬编码；排除「挂账至 rNN」等未来轮号引用）",
  "verdict_taxonomy": [
   "OVERDUE",
@@ -201,15 +201,15 @@
  ],
  "evidence": {
   "volumes": 183,
-  "items_total": 396,
-  "open_total": 93,
-  "closed_total": 303,
-  "raw_item_lines": 396
+  "items_total": 399,
+  "open_total": 95,
+  "closed_total": 304,
+  "raw_item_lines": 399
  },
  "by_class": {
-  "OVERDUE": 2,
-  "ACTIVE": 8,
-  "DECIDED": 68,
+  "OVERDUE": 1,
+  "ACTIVE": 10,
+  "DECIDED": 69,
   "UNDATED": 15,
   "DEFERRED": 0,
   "REPEAT": 0
@@ -222,20 +222,8 @@
    "owner": "NONE",
    "checked": false,
    "class": "OVERDUE",
-   "detail": "账龄 3 轮 / 宽限 2",
+   "detail": "账龄 4 轮 / 宽限 2",
    "title": "**R211-7（r211 登记，P0·已落地）** **需求5 的「长效机制」其实早就是断的：季度巡检第 ⑥ 段吃一个全仓无生成器、且落在会被并行会话按扩展名清场的 `_temp` 的手工件**：",
-   "first_seen": "2026-10-25",
-   "dating_face": "OK"
-  },
-  {
-   "file": "memory\\07-next-steps.md",
-   "line": 590,
-   "priority": "未标",
-   "owner": "NONE",
-   "checked": false,
-   "class": "OVERDUE",
-   "detail": "账龄 3 轮 / 宽限 2",
-   "title": "**R211-2（r211 登记，P0·到期 r215）对标改造 H-2** **mark_backup 簇膨胀是 _trash 与 47MB 的增长引擎：每裁一次 07 就写一份全量 .bak，21 天红线只涨不消**",
    "first_seen": "2026-10-25",
    "dating_face": "OK"
   }
@@ -264,12 +252,12 @@
   {
    "title": "R113-3 AGPL-3.0 上游合入合规口径待裁（hyperframes-registry 引入 calesthio/OpenMonta",
    "file": "memory\\07-next-steps.md",
-   "line": 1357
+   "line": 1390
   },
   {
    "title": "R112-5 受管根 rule_editor gates 的 mirror 组件超时（300s skip）+ noise 2 项外部在途，待",
    "file": "memory\\07-next-steps.md",
-   "line": 1358
+   "line": 1391
   },
   {
    "title": "R113-7 需求2 字面缺口：余 56 件 unknown + 143 件盲区仍无替代检索面（每一个现有 skill 都应有候选清单）（由",
@@ -378,18 +366,23 @@
  ],
  "note": "OVERDUE 数 = ratchet_gate 第 7 指标 overdue_debt_items 的唯一取值面",
  "coverage": {
-  "status": "OK",
-  "prev": "debt_aging_r_autoregen_20261025_041542.json",
-  "prev_overdue": 0,
-  "missing": [],
+  "status": "INCOMPLETE",
+  "prev": "debt_aging_r215c_final.json",
+  "prev_overdue": 1,
+  "missing": [
+   {
+    "file": "memory\\07-next-steps.md",
+    "key": "**R211-7（r211 登记，P0·已落地）** **需求5 的「长效机制」"
+   }
+  ],
   "method": "adjudication_gap(上一轮 overdue[].title 前 40 字, 当前卷文本, 本轮轮号)"
  },
  "input_face": {
   "round": {
-   "log": 214,
-   "tag": 214,
+   "log": 215,
+   "tag": 215,
    "ok": true,
-   "detail": "log=r214 ≥ tag=r214（差 0 轮：本轮 tag 已打，两源一致）"
+   "detail": "log=r215 ≥ tag=r215（差 0 轮：本轮 tag 已打，两源一致）"
   },
   "floor": {
    "ok": true,
@@ -397,7 +390,7 @@
   },
   "dedup": {
    "ok": true,
-   "detail": "396 行全部计入，80 字前缀键零碰撞"
+   "detail": "399 行全部计入，80 字前缀键零碰撞"
   },
   "dup": {
    "ok": true,
@@ -405,14 +398,14 @@
   },
   "dating": {
    "ok": true,
-   "detail": "2 条到期项定年两路同值（截断 needle 未改变结论）",
+   "detail": "1 条到期项定年两路同值（截断 needle 未改变结论）",
    "checked": 0
   },
   "suggestions": {
    "ok": null,
    "detail": "未传 --report ⇒ 建议面未对照（R247 不判绿）"
   },
-  "raw_lines": 396,
+  "raw_lines": 399,
   "collisions": [],
   "status": "UNVERIFIED",
   "red_faces": [],
@@ -423,17 +416,17 @@
  "unowned_claims": [
   {
    "file": "memory\\07-next-steps.md",
-   "line": 600,
+   "line": 633,
    "title": "**R212-2（r212 登记，P1·已落地）** **归属方 HEAD 加严 to>from 校验，把我 r208 修的安全夹具变成永久红；处方=第三态+可解除证明，不绕校验*"
   },
   {
    "file": "memory\\07-next-steps.md",
-   "line": 863,
+   "line": 896,
    "title": "**R208-1（r208 登记，P1·已落地）** **实跑路由才暴露：知识进对了 skill，仍进不了召回面（可达 ≠ 可召回）**： 【r208 裁决=执行（实跑路由暴露「进"
   },
   {
    "file": "memory\\07-next-steps.md",
-   "line": 1358,
+   "line": 1391,
    "title": "R112-5 受管根 rule_editor gates 的 mirror 组件超时（300s skip）+ noise 2 项外部在途，待归属方收口后复跑（由 flow 登记；状"
   },
   {
@@ -442,7 +435,6 @@
    "title": "R76-2 项目/陪聊 09 回填件提交：被其自有 pre-commit 交付件判据拦红（s08.png 从工作树消失 + SoulIsle 品牌分叉，均非本次引入），待归属方处置"
   }
  ],
- "refresh_stale_count": 0,
  "handles": {
   "overdue": {
    "artifact": "06-benchmark/debt_runs.jsonl",
@@ -468,5 +460,9 @@
    "selector": "末行",
    "command": "tail -1 06-benchmark/debt_runs.jsonl"
   }
- }
+ },
+ "handles_drift": [
+  "open_total",
+  "decided"
+ ]
 }
