@@ -17,11 +17,16 @@ r"""r54_refresh_fixtures.py — W-36「指标须声明再生周期」的层a 夹
 import importlib.util
 import io
 import json
+import os
+import shutil
 import subprocess
 import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
+ROOT = HERE.parent
+BENCH = ROOT / "06-benchmark"
+PATTERN = "inject_ratchet_baseline.json"
 sys.path.insert(0, str(HERE))
 RESULTS = []
 
@@ -63,15 +68,74 @@ ck("g8 真机：9 指标无一个源件超期（r54 接线时的误报率基线 
 ck("g9 真机：活体扫描类指标（无源件）必须显式记 UNVERIFIED 而非混进 OK",
    set(unver) == {"username_in_skill_files"} or not unver, unver)
 
-rp = subprocess.run([sys.executable, str(HERE / "ratchet_gate.py")], capture_output=True,
-                    text=True, encoding="utf-8", errors="replace")
-out = (rp.stdout or "") + (rp.stderr or "")
-ck("g10 真接线：CLI 输出必须打印再生周期行（否则声明只存在于代码里，没人看得见）",
-   "再生周期" in out, out.strip().splitlines()[-1][:150] if out.strip() else "无输出")
-ck("g11 真接线：加判据不得把本轮判红（只降不升的口径不变）",
-   "[RATCHET:PASS]" in out, out.strip().splitlines()[-1][:150])
+# r208 修（接线腿与现状腿解耦，照 r202 runner_internals 先例）：
+# 原写法直接跑真基线 ⇒ 项目一有真实活债（overdue_debt_items 实测 3 > 基线 0）就走 FAIL 分支，
+# 而「再生周期行」与「[RATCHET:PASS]」**只印在 PASS 分支** ⇒ g10/g11 恒红。
+# 那不是接线缺陷，是夹具把「本项目此刻绿不绿」焊进「打印代码有没有接线」。
+# 本机是否全绿由 ratchet_gate 自身 + gate_run_freshness + debt_aging 三门常驻看守，此处不重复断言。
+# 修法：临时基线 = 真基线骨架 + **现测指标值**（--json 现读）⇒ 无增长面 ⇒ 必走 PASS 分支，
+# 于是断言的是「PASS 分支上声明行确实被打印」这个接线事实，与项目此刻红绿无关。
+def _wire_run():
+    import tempfile
+    _td = tempfile.mkdtemp(prefix="r54_wire_")
+    try:
+        _tb = os.path.join(_td, "inject_ratchet_baseline.json")
+        with io.open(str(BENCH / PATTERN), encoding="utf-8-sig") as f:
+            _doc = json.load(f)
+        # 先把临时基线落盘（否则第一次跑面对的是不存在的基线 ⇒ rc=2 且不产 live.json）
+        with io.open(_tb, "w", encoding="utf-8", newline="") as f:
+            json.dump(_doc, f, ensure_ascii=False, indent=1)
+        # 再跑一次拿现测值（这一步本身也验证 --json 接线）
+        subprocess.run([sys.executable, str(HERE / "ratchet_gate.py"),
+                        "--baseline", _tb, "--json", os.path.join(_td, "live.json")],
+                       capture_output=True, text=True, encoding="utf-8",
+                       errors="replace", cwd=ROOT)
+        try:
+            with io.open(os.path.join(_td, "live.json"), encoding="utf-8-sig") as f:
+                _live = json.load(f)
+            if isinstance(_live.get("metrics"), dict) and _live["metrics"]:
+                _doc["metrics"] = dict(_live["metrics"])
+                with io.open(_tb, "w", encoding="utf-8", newline="") as f:
+                    json.dump(_doc, f, ensure_ascii=False, indent=1)
+        except Exception:
+            pass
+        _p = subprocess.run([sys.executable, str(HERE / "ratchet_gate.py"), "--baseline", _tb],
+                            capture_output=True, text=True, encoding="utf-8",
+                            errors="replace", cwd=ROOT)
+        return _p.returncode, (_p.stdout or "") + (_p.stderr or "")
+    finally:
+        shutil.rmtree(_td, ignore_errors=True)
+
+_rc_w, _out_w = _wire_run()
+# r209 修 R113-5（夹具与真实项目状态耦合的第三种形态）：r208 只解耦了「增长面」，
+# 没解耦「指标缺失面」—— ratchet 只要有任一指标算不出（本机 username_in_skill_files
+# 恒缺失）就走 unknown 分支 rc=1，而 PASS 分支的两行只在该分支打印 ⇒ g10/g11 仍恒红。
+# 那依旧不是接线缺陷：判据按 R247「算不出即红」是**正确设计**，错的是夹具把
+# 「本机此刻能否算出全部指标」焊进「打印代码有没有接线」。
+# 修法 = 三态分流（禁把第三态算通过，照 r208 同文件先例）：
+#   · 输出含「缺失指标」⇒ 本机该指标不可算 ⇒ 接线腿 UNVERIFIED（不判红也不判绿）
+#   · 否则必须走 PASS 分支且两行都在（真接线失败仍红）
+_missing = "缺失指标" in _out_w
+_WIRING_UNVERIFIED = False
+if _missing:
+    # 第三态**不得算通过**（r208 在同文件修掉的病：SKIP 伪装成 PASS 会吞掉「没验证到」的信号）。
+    # 这里既不写 PASS 行也不写 FAIL 行，只打独立视觉标记，末尾汇总改印 UNVERIFIED 令牌。
+    print("SKIP %-56s %s" % ("g10/g11 真接线：指标缺失面未解除（UNVERIFIED，非接线缺陷）",
+                             "  <-- " + (_out_w.strip().splitlines()[-1][:150] if _out_w.strip() else "无输出")))
+    _WIRING_UNVERIFIED = True
+else:
+    ck("g10 真接线：PASS 分支必须打印再生周期行（否则声明只存在于代码里，没人看得见）",
+       "再生周期" in _out_w, _out_w.strip().splitlines()[-1][:150] if _out_w.strip() else "无输出")
+    ck("g11 真接线：无增长面时判据必须判 PASS（证明它拦的是增长，不是恒红）",
+       "[RATCHET:PASS]" in _out_w, _out_w.strip().splitlines()[-1][:150])
 
 print("\n夹具合计: %d 项，通过 %d，失败 %d"
       % (len(RESULTS), sum(1 for r in RESULTS if r[0]), sum(1 for r in RESULTS if not r[0])))
-print("[GATE:fixture-fail]" if any(not r[0] for r in RESULTS) else "[GATE:fixture-pass]")
-sys.exit(1 if any(not r[0] for r in RESULTS) else 0)
+if any(not r[0] for r in RESULTS):
+    print("[GATE:fixture-fail]")
+    sys.exit(1)
+if _WIRING_UNVERIFIED:
+    print("[GATE:fixture-unverified] 接线腿因本机指标缺失面未验证（非判据红，R247 不按绿记）")
+    sys.exit(2)
+print("[GATE:fixture-pass]")
+sys.exit(0)

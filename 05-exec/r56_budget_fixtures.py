@@ -120,14 +120,52 @@ def main():
     finally:
         rg.BASELINE_REFRESH_DAYS = saved
 
+    _B78_UNVERIFIED = False
     # b7 真实派发：预算来源必须在 CLI 输出里看得见（声明看不见 = 等于没声明）
+    # r208 修（接线腿与现状腿解耦，照 r202/r54 先例）：「预算来源」只印在 PASS 分支，
+    # 而项目一有真实活债（overdue 3 > 基线 0）就走 FAIL 分支 ⇒ b7 恒红。
+    # 那不是打印缺陷，是夹具把「本项目此刻绿不绿」焊进「声明行有没有被打印」。
+    # 修法：临时基线 = 真基线骨架 + 现测指标值 ⇒ 无增长面 ⇒ 必走 PASS 分支，
+    # 断言的是「PASS 分支上预算来源行确实被打印」这个接线事实。
     env = dict(os.environ, PYTHONPYCACHEPREFIX=r"C:/tmp/pyc_r56")
-    p7 = subprocess.run([sys.executable, os.path.join(HERE, "ratchet_gate.py")],
-                        capture_output=True, text=True, encoding="utf-8",
-                        errors="replace", env=env, cwd=ROOT)
+    _td7 = tempfile.mkdtemp(prefix="r56_b7_")
+    try:
+        _tb7 = os.path.join(_td7, "inject_ratchet_baseline.json")
+        _d7 = base_doc()
+        with io.open(_tb7, "w", encoding="utf-8", newline="") as f:
+            json.dump(_d7, f, ensure_ascii=False, indent=1)
+        subprocess.run([sys.executable, os.path.join(HERE, "ratchet_gate.py"),
+                        "--baseline", _tb7, "--json", os.path.join(_td7, "live.json")],
+                       capture_output=True, text=True, encoding="utf-8",
+                       errors="replace", env=env, cwd=ROOT)
+        try:
+            with io.open(os.path.join(_td7, "live.json"), encoding="utf-8-sig") as f:
+                _live7 = json.load(f)
+            if isinstance(_live7.get("metrics"), dict) and _live7["metrics"]:
+                _d7["metrics"] = dict(_live7["metrics"])
+                with io.open(_tb7, "w", encoding="utf-8", newline="") as f:
+                    json.dump(_d7, f, ensure_ascii=False, indent=1)
+        except Exception:
+            pass
+        p7 = subprocess.run([sys.executable, os.path.join(HERE, "ratchet_gate.py"),
+                             "--baseline", _tb7],
+                            capture_output=True, text=True, encoding="utf-8",
+                            errors="replace", env=env, cwd=ROOT)
+    finally:
+        shutil.rmtree(_td7, ignore_errors=True)
     o7 = (p7.stdout or "") + (p7.stderr or "")
-    ck("b7 真实 CLI：必须打印「预算来源」（能看见来源才谈得上被谁看守）",
-       "预算来源" in o7, o7[-300:])
+    # r209 修 R113-5 第三种形态：r208 只解耦「增长面」，没解耦「指标缺失面」——
+    # 本机 username_in_skill_files 恒算不出 ⇒ ratchet 走 unknown 分支 rc=1，
+    # 而「预算来源」只印在 PASS 分支 ⇒ b7 恒红，且红因与打印代码无关。
+    # 三态分流（第三态不得算通过，同 r208/r54 教训）：
+    #   含「缺失指标」⇒ 本腿 UNVERIFIED（不判红也不判绿）
+    #   否则必须看到「预算来源」（真打印缺陷仍红）
+    if "缺失指标" in o7:
+        print("SKIP %-56s %s" % ("b7 真实 CLI：指标缺失面未解除（UNVERIFIED，非打印缺陷）", "  <-- " + o7.strip().splitlines()[-1][:150] if o7.strip() else "无输出"))
+        _B78_UNVERIFIED = True
+    else:
+        ck("b7 真实 CLI：PASS 分支必须打印「预算来源」（能看见来源才谈得上被谁看守）",
+           "预算来源" in o7, o7[-300:])
 
     # b8/b9 --update 的两条口径：预算随基线存活 + 代码常量改了也不得覆盖基线（代码只读不写）
     # r190 修（CI 一手，clone 复现）：原写死 `C:/tmp/...` —— Linux runner 无 C:/tmp，
@@ -140,16 +178,44 @@ def main():
     d["refresh_days"]["overdue_debt_items"] = 9
     with io.open(tmp, "w", encoding="utf-8", newline="") as f:
         json.dump(d, f, ensure_ascii=False, indent=1)
+    # r208 修（接线腿与现状腿解耦）：--update 在项目有真实活债时会**正确地**拒绝写入
+    # （[RATCHET:REFUSE] 拒绝抬基线）⇒ rc=1 ⇒ b8 恒红。那不是写入缺陷，是夹具把
+    # 「本项目此刻有没有超基线债」焊进「--update 会不会保留预算与留账」。
+    # 修法：先把临时基线的指标对齐现测值（无增长面 ⇒ 拒写分支不触发），
+    # 再断言预算与留账在写入路径上存活。拒绝写入本身由 ratchet_gate 与
+    # r123 区间归因夹具（t1/t2/t7）专门看守，此处不重复断言。
+    subprocess.run([sys.executable, os.path.join(HERE, "ratchet_gate.py"),
+                    "--baseline", tmp, "--json", os.path.join(_tmpdir, "live8.json")],
+                   capture_output=True, text=True, encoding="utf-8",
+                   errors="replace", env=env, cwd=ROOT)
+    try:
+        with io.open(os.path.join(_tmpdir, "live8.json"), encoding="utf-8-sig") as f:
+            _live8 = json.load(f)
+        if isinstance(_live8.get("metrics"), dict) and _live8["metrics"]:
+            d["metrics"] = dict(_live8["metrics"])
+            with io.open(tmp, "w", encoding="utf-8", newline="") as f:
+                json.dump(d, f, ensure_ascii=False, indent=1)
+    except Exception:
+        pass
     p8 = subprocess.run([sys.executable, os.path.join(HERE, "ratchet_gate.py"),
                          "--baseline", tmp, "--update"],
                         capture_output=True, text=True, encoding="utf-8",
                         errors="replace", env=env, cwd=ROOT)
     after = json.loads(io.open(tmp, encoding="utf-8-sig").read())
-    ck("b8 真实 --update：预算与 note 留账必须一起存活（D-104 同族再犯防护）",
-       p8.returncode == 0 and (after.get("refresh_days") or {}).get("overdue_debt_items") == 9
-       and "夹具哨兵留账" in str(after.get("note")),
-       "rc=%s rd=%s note=%s" % (p8.returncode, (after.get("refresh_days") or {}).get(
-           "overdue_debt_items"), str(after.get("note"))[-60:]))
+    _o8 = (p8.stdout or "") + (p8.stderr or "")
+    # r209 修 R113-5 同族第三种形态：--update 在有算不出的指标时会**正确地**拒绝写基线
+    # （[RATCHET:REFUSE] 禁止把算不出的项写成 0）⇒ rc=1 ⇒ b8 恒红，而红因与
+    # 「预算与留账是否一起存活」无关。三态分流，第三态不算通过。
+    if "缺失指标" in _o8 or "拒绝写基线" in _o8:
+        print("SKIP %-56s %s" % ("b8 真实 --update：指标缺失面触发拒写（UNVERIFIED，非写入缺陷）",
+                                 "  <-- " + (_o8.strip().splitlines()[-1][:150] if _o8.strip() else "无输出")))
+        _B78_UNVERIFIED = True
+    else:
+        ck("b8 真实 --update：预算与 note 留账必须一起存活（D-104 同族再犯防护）",
+           p8.returncode == 0 and (after.get("refresh_days") or {}).get("overdue_debt_items") == 9
+           and "夹具哨兵留账" in str(after.get("note")),
+           "rc=%s rd=%s note=%s" % (p8.returncode, (after.get("refresh_days") or {}).get(
+               "overdue_debt_items"), str(after.get("note"))[-60:]))
     ck("b9 代码只读不写：基线预算与代码常量不同（9 vs 3）时 --update 必须保留基线值",
        (after.get("refresh_days") or {}).get("overdue_debt_items") == 9
        and rg.METRIC_REFRESH_DAYS.get("overdue_debt_items") != 9,
@@ -160,8 +226,14 @@ def main():
     fails = [r for r in RESULTS if not r[0]]
     print("\n夹具合计: %d 项，通过 %d，失败 %d"
           % (len(RESULTS), len(RESULTS) - len(fails), len(fails)))
-    print("[GATE:fixture-fail]" if fails else "[GATE:fixture-pass]")
-    return 1 if fails else 0
+    if fails:
+        print("[GATE:fixture-fail]")
+        return 1
+    if _B78_UNVERIFIED:
+        print("[GATE:fixture-unverified] b7/b8 因本机指标缺失面未验证（非判据红，R247 不按绿记）")
+        return 2
+    print("[GATE:fixture-pass]")
+    return 0
 
 
 if __name__ == "__main__":

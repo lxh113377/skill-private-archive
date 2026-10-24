@@ -13,6 +13,7 @@ import os
 import shutil
 import subprocess
 import sys
+import tempfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -52,8 +53,16 @@ def main():
     ck("n3 边界：changed 为空 ⇒ 不追加空归因段（零输入不得写成有留账）",
        new3 == base_note and "自动核定" not in new3 and not shr3, repr(new3[:120]))
 
+    _N4_UNVERIFIED = False
     # n4 真实派发形态：临时基线跑 CLI --update，留账与 attributed_raises 都必须活下来
-    tmp = os.path.join(r"C:/tmp", "r55_note_baseline.json")
+    # r208 修（接线腿与现状腿解耦，照 r54/r56 先例）：--update 遇到「实测 > 基线」会
+    # **正确地**拒绝写入（[RATCHET:REFUSE]）⇒ rc=1 ⇒ n4 恒红。那不是写入缺陷，是夹具把
+    # 「本项目此刻有没有超基线债」焊进「--update 会不会保留留账」。
+    # 修法：临时基线的指标先对齐现测值（无增长面 ⇒ 拒写分支不触发），
+    # 再断言留账与 attributed_raises 在写入路径上存活。拒写语义由 ratchet_gate 自身
+    # 与 r123 区间归因夹具看守，此处不重复断言。
+    _tmpd = tempfile.mkdtemp(prefix="r55_note_")
+    tmp = os.path.join(_tmpd, "r55_note_baseline.json")
     shutil.copyfile(BASE, tmp)
     with io.open(tmp, encoding='utf-8-sig') as f:
         d = json.load(f)
@@ -63,18 +72,40 @@ def main():
                                "delta": 1, "at": "2026-09-25 00:00"}]
     with io.open(tmp, 'w', encoding='utf-8', newline='') as f:
         json.dump(d, f, ensure_ascii=False, indent=1)
-    env = dict(os.environ, PYTHONPYCACHEPREFIX=r"C:/tmp/pyc_r55")
+    env = dict(os.environ, PYTHONPYCACHEPREFIX=os.path.join(_tmpd, "pyc_r55"))
+    subprocess.run([sys.executable, os.path.join(HERE, "ratchet_gate.py"),
+                    "--baseline", tmp, "--json", os.path.join(_tmpd, "live.json")],
+                   capture_output=True, text=True, encoding="utf-8",
+                   errors="replace", env=env, cwd=ROOT)
+    try:
+        with io.open(os.path.join(_tmpd, "live.json"), encoding="utf-8-sig") as f:
+            _live = json.load(f)
+        if isinstance(_live.get("metrics"), dict) and _live["metrics"]:
+            d["metrics"] = dict(_live["metrics"])
+            with io.open(tmp, 'w', encoding='utf-8', newline='') as f:
+                json.dump(d, f, ensure_ascii=False, indent=1)
+    except Exception:
+        pass
     p = subprocess.run([sys.executable, os.path.join(HERE, "ratchet_gate.py"),
                         "--baseline", tmp, "--update"],
                        capture_output=True, text=True, encoding="utf-8",
                        errors="replace", env=env, cwd=ROOT)
     with io.open(tmp, encoding='utf-8-sig') as f:
         after = json.load(f)
-    ck("n4 真实 CLI（--update）：留账 trail 与 attributed_raises 均须存活且 rc=0",
-       p.returncode == 0 and trail in str(after.get("note")) and len(after.get("attributed_raises") or []) == 1,
-       "rc=%s note=%s ar=%s out=%s" % (p.returncode, str(after.get("note"))[:100],
-                                       len(after.get("attributed_raises") or []), p.stdout[-160:]))
-    os.remove(tmp)
+    _o4 = (p.stdout or "") + (p.stderr or "")
+    # r209 修 R113-5 同族第四种形态：--update 在有算不出的指标时会**正确地**拒绝写基线
+    # （[RATCHET:REFUSE] 禁止把算不出的项写成 0）⇒ rc=2 ⇒ n4 恒红，而红因与
+    # 「留账与 attributed_raises 是否存活」无关。三态分流，第三态不算通过。
+    if "缺失指标" in _o4 or "拒绝写基线" in _o4:
+        print("SKIP %-56s %s" % ("n4 真实 CLI（--update）：指标缺失面触发拒写（UNVERIFIED，非写入缺陷）",
+                                 "  <-- " + (_o4.strip().splitlines()[-1][:150] if _o4.strip() else "无输出")))
+        _N4_UNVERIFIED = True
+    else:
+        ck("n4 真实 CLI（--update）：留账 trail 与 attributed_raises 均须存活且 rc=0",
+           p.returncode == 0 and trail in str(after.get("note")) and len(after.get("attributed_raises") or []) == 1,
+           "rc=%s note=%s ar=%s out=%s" % (p.returncode, str(after.get("note"))[:100],
+                                           len(after.get("attributed_raises") or []), p.stdout[-160:]))
+    shutil.rmtree(_tmpd, ignore_errors=True)
 
     # r125 自抓（输入面与被写面重叠 ⇒ 假红）：n5 与 n6 原各独立 json.loads 读真基线件，
     # runner 跑 38 门耗时数分钟，期间并行会话改棘轮 note（r124 即在改 debt 指标与留账），
@@ -105,8 +136,14 @@ def main():
     fails = [r for r in RESULTS if not r[0]]
     print("\n夹具合计: %d 项，通过 %d，失败 %d"
           % (len(RESULTS), len(RESULTS) - len(fails), len(fails)))
-    print("[GATE:fixture-fail]" if fails else "[GATE:fixture-pass]")
-    return 1 if fails else 0
+    if fails:
+        print("[GATE:fixture-fail]")
+        return 1
+    if _N4_UNVERIFIED:
+        print("[GATE:fixture-unverified] n4 因本机指标缺失面未验证（非判据红，R247 不按绿记）")
+        return 2
+    print("[GATE:fixture-pass]")
+    return 0
 
 
 if __name__ == "__main__":

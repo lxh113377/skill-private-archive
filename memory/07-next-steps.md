@@ -531,6 +531,33 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   已守）②入口可召回（本轮才有判据）。第二段没有任何天然信号：不报错、不变红，只是没人会去查它。
   取值：python C:/Users/37533/Desktop/workspace/焚诀/eval/unified_router.py --json "<查询>"；
   python 05-exec/r208_recall_face.py --json <件>；grep CORPUS_CHARS 焚诀/eval/build_indexes.py。
+- [ ] **R207-2（r207 登记，P1·已落地）** **三条夹具的「真接线」腿把「本项目此刻绿不绿」焊进「代码有没有接线」—— 项目一有他人活债就恒红，我把这当成判据缺陷查了三轮**： 【r207 裁决=执行（同轮定位根因 + 三件夹具解耦 + 变异证明有牙）｜读数：r54 12/12、r56 10/10、r55 6/6、r123 8/8 第三态0；变异实测（摘掉 PASS 分支打印）g10 转红而 g11 仍绿 ⇒ 牙齿在接线腿上不在现状腿上。不设目标轮：这是接线口径修正，本轮已闭合。】
+  开工先核现状（R-CURRENT）：全量 89 门跑出 FAIL=4 —— ratchet_gate（overdue_debt_items 实测 3 > 基线 0，
+  三条 OVERDUE 全属并行会话登记项）、reconcile_admission（并行会话未跟踪的 r209_route_truth_measure.py）、
+  gate_run_freshness（自指元门读上一条全量台账）、debt_face_freshness（n1b 腿）。逐条归因后确认**只有
+  debt_face_freshness 的一条腿与我的改动相关**，其余三条按 R269 不代裁。
+  真根因（三条同型，一次修完）：三个夹具的 g10/g11、b7/b8、n4 共六条「真接线」腿都直接跑**真基线**，
+  而它们断言的三个串（「再生周期」行、「预算来源」行、--update 写入留账）**只印/写在 PASS 路径上**。
+  项目一有真实活债（overdue 3 > 基线 0）就走 FAIL 路径 ⇒ 六条腿恒红。那不是打印缺陷，是夹具把
+  「本项目此刻绿不绿」焊进「打印代码有没有接线」—— 与 r202 修 runner_internals 三条腿、r191/r202
+  修 gate_run_freshness 读局部台账，是同一族错误的第三个实例：**用现状红掩盖接线问句**。
+  修法（照 r202 先例，接线与现状分离）：六条腿改在**临时基线**（真基线骨架 + --json 现测指标值）上跑
+  ⇒ 无增长面 ⇒ 必走 PASS 路径 ⇒ 断言的是「PASS 路径上声明行确实被打印/写入」这个接线事实。
+  项目此刻红绿仍由 ratchet_gate 自身 + gate_run_freshness + debt_aging 三门常驻看守，此处不重复断言
+  （重复断言正是把两问焊成一问的病因）。
+  途中自纠两处（都不是判据缺陷，是我的实现缺陷）：① r54 首版把「先跑 --json 拿现测值」放在「临时基线
+  落盘」之前 ⇒ 第一次跑面对不存在的基线，rc=2 且不产 live.json ⇒ 指标没被对齐 ⇒ 仍然 FAIL；
+  ② r55 用了 tempfile 但漏 import。两次都由「改动后必须重跑」当场抓住，没带着上线。
+  有牙验证（防修成恒绿）：把 ratchet_gate.py 的 PASS 分支打印摘成 no-op（if False and rf）⇒ r54 的
+  g10 立刻转红、g11 仍绿 ⇒ 证明牙齿在接线腿上、且不是把两腿都变成恒真。变异后已还原，
+  `git diff -- 05-exec/ratchet_gate.py` 只余并行会话的 R191-2 在途改动（note_key 改名 + 失败分支具名），
+  我的变异注入零残留。
+  元教训：**「夹具红」先问「它红的是哪一问」**——接线问句必须能在任何项目状态下复现，现状问句必须承认
+  项目此刻可能真红。两问焊在一起时，项目越脏夹具越响，反而把「我该修接线」淹掉。也记一条反面对照：
+  本轮 debt_face_freshness 的 n1b 仍红，根因是并行会话把 FACE_NOTES 键从「·相对新鲜」改名为「·取值面」
+  而夹具没同步 —— 那是**他们**的在途债（R269 不代修），我把它与我的三条清楚分开，没有一并"修好"充读数。
+  取值：python 05-exec/r54_refresh_fixtures.py（12/12）；python 05-exec/r56_budget_fixtures.py（10/10）；
+  python 05-exec/r55_note_fixtures.py（6/6）；python 05-exec/r123_range_attr_fixtures.py（8/8 第三态0）。
 - [ ] **R207-1（r207 登记，P1·已落地）** **GitHub/CI 自动化链的两条静默失败实测坑喂进 skill（§9.17/R810）**： 【r207 裁决=执行（扫「关键词×候选skill」矩阵发现两条最狠的 GitHub 坑从没进过该去的 skill；定家排除市场件/EXCLUDE 件后落 win-toolchain cli-invocation §9.17/R810）｜读数：提交范围=1卷不含他人在途件、镜像 pathspec hash 一致、disk_registry 三类全0、r204 复跑孤儿仍5。不设目标轮：这是周期性回查动作，本轮已闭合。】
   本轮回到目标本体：上几轮我把 GitHub/CI 的坑都记进报告与仓内判据，但没查它们进没进真正用它的
   skill。扫描发现：run_id≠run_number、log-failed 无失败返 0 字节两条**已在** ci-pipeline-debugging/
