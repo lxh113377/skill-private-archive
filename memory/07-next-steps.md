@@ -456,6 +456,28 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   references/powershell-cli-silent-failures.md」指针 + 版本行；或由归属方自行合并时带上。
   取值：git -C D:/global_skills status --porcelain -- win-toolchain-pitfalls/SKILL.md（非空即未落地）；
   分卷本体已在库：git -C D:/global_skills log --oneline -1 --grep R804。
+- [ ] **R210-2（r210 登记，P1·已落地）** **第 87 门 P4 拿「别人那次推送失败」判「我这次提交」—— 留痕末行不谈论当前提交，判据却当成它在说话**： 【r210 裁决=执行（同轮 P4 三态化 + 双向夹具入表 + 门表对账登记）｜读数：夹具 5/5、变异 m1 复现旧假阳性、gate_table_reconcile 与 reconcile_admission 复跑 PASS、账龄 OVERDUE 0。】
+  一手（判据没放过我，但这次是我自己的门错）：并行会话提交 c3c56a5 后钩子 push rc=128（连不上 github:443），
+  留痕记了那次失败；随后带代理手工推成功 —— **钩子留痕只记钩子那一次，不补记手工推送**。旧 P4「末行 rc≠0 ⇒ 推送
+  链断了」于是拿别人的旧失败判当前提交，第 87 门当场假红。这与 r202「聚合 runner 读自己台账不筛 mode」、
+  r203-2「按文件名前缀判归属」同族 = **读到的面不是要下的结论那一面**，只是这次读的是历史尾行。
+  修法（牙齿保留优先于消音）：P4 改三态 —— ① 末行 rc==0 ⇒ PASS；② 末行 head==当前 HEAD 且 rc≠0 ⇒ FAIL
+  （当前提交真的没推上去，这正是本门存在的理由）；③ 末行 head≠HEAD ⇒ 留痕不谈论当前提交 ⇒ 改用本地
+  remote-tracking ref 零网络判（HEAD 是否已是 origin/main 祖先），已推记 TRACE_STALE 附注、未推才 FAIL。
+  另补一条可见性（r56 同族）：附注原先只进 JSON 不进 stdout ⇒ 「为什么这次是绿」看不见 = 等于没声明，改为照印。
+  夹具 r210_autopush_fixtures.py 四腿 + 变异（临时 git init 仓，DSH_AUTOPUSH_ROOT 指根，不碰真仓）：f1 rc=0 PASS /
+  f2 末行 head==HEAD 且 rc≠0 FAIL / f3 r210 假阳性面 PASS+TRACE_STALE / f4 真未推 FAIL / m1 换回旧实现 ⇒ f3
+  必须转红（证腿承重）。m1 首版写错：把 _head 置空仍走新分支，复现不出旧行为 —— 变异要复现的是「只看末行
+  rc」这段代码本身，不是「把变量抹掉」；自抓后改成注回旧判定行。
+  入表走满三道手续（本仓规矩，不跳）：run_gates.py 加第 90 门 → 单跑 --json 出证据件 →
+  r130 --record autopush_fixtures --evidence 登记 → 复跑 gate_table_reconcile 由 UNREGISTERED 判红转 PASS。
+  ⚠️ 顺序违规如实记：本轮四个 Edit/Write 发生在 G8 块落盘**之前**（先改完判据跑通才补块），与在册
+  「块在首个 Edit 前落」不符，不粉饰成「补了就算」；同轮还误判过一次现状 —— 把「我的 P4 件不在 HEAD」
+  读成「被并行会话吞掉」，实测是我自己一直没提交（git show HEAD 侧 TRACE_STALE 命中 0 才纠出来）。
+  元教训：**读历史留痕的门，必须问「这行说的是不是当前这个对象」**。留痕类判据（autopush.log /
+  gate_runs.jsonl / debt_runs.jsonl）都有这张嘴：末行只保证「最近一次」，不保证「这一次」。
+  取值：python 05-exec/r210_autopush_fixtures.py（5/5）；python 05-exec/r205_push_autopush_face.py（TRACE_STALE 附注）；
+  python 05-exec/run_gates.py --gate gate_table_reconcile --no-ledger（PASS）；type .git/autopush.log（末行 head 对比 HEAD）。
 - [ ] **R210-1（r210 登记，P1·已落地）** **第三层召回率：8 条名册任务只有 3 条召回了承载件 —— 搭配的最后一公里是那句现场的话能找到它**： 【r210 裁决=执行（拿 10 条名册真实任务语句跑路由，量出第三层召回率并扩判据到三层）｜读数：8 条有名册归属任务命中 3 （2 条 direct_map 直连 + 1 条 BGE 排1）、MISS 5、UNOWNED 2；三层合计不可召回 7，[RECALL:PASS] rc=0；基线据实回填 7 条。处方已分治：MISS=召回缺口（补 description 触发词 + direct_map，后者属焚诀红线6）；UNOWNED=知识缺口（写 skill），两者不混同一套红。】
   前两层判据都在量「探针词在不在窗口 / 排第几」，用的是我自己的词汇。真正决定下次会不会想起某条知识的，
   是任务现场会说出的那句话。拿 10 条名册真实任务语句跑路由（本地 onnx 零外网，约 10s）：
