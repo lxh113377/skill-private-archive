@@ -4,30 +4,24 @@
  "window": 800,
  "checked": 3,
  "truth_judged": 2,
- "task_judged": 8,
- "task_hits": 3,
+ "task_judged": 7,
+ "task_hits": 4,
  "task_gaps": [
-  "task:D1 查额度|期望=win-toolchain-pitfalls 实测 top1=wps-knowledgebase（任务语句召不回承载件）",
-  "task:R2 开桶|期望=chaoshi-web-deploy 实测 top1=libreoffice-headless-win（任务语句召不回承载件）",
-  "task:Workers 调用量|期望=win-toolchain-pitfalls 实测 top1=chaoshi-image-optimization（任务语句召不回承载件）",
-  "task:Turnstile|期望=chaoshi-web-deploy 实测 top1=codebuddy-chat-web（任务语句召不回承载件）",
-  "task:Actions 分钟|期望=ci-pipeline-debugging 实测 top1=chaoshi-web-deploy（任务语句召不回承载件）"
+  "task:R2 开桶|期望=chaoshi-image-optimization 实测 top1=libreoffice-headless-win（任务语句召不回承载件）",
+  "task:D1 查额度|期望=A-memory-start 实测 top1=wps-knowledgebase（任务语句召不回承载件）",
+  "task:Workers 调用量|期望=A-memory-start 实测 top1=chaoshi-image-optimization（任务语句召不回承载件）"
  ],
  "gaps": [
-  "task:Actions 分钟|期望=ci-pipeline-debugging 实测 top1=chaoshi-web-deploy（任务语句召不回承载件）",
-  "task:D1 查额度|期望=win-toolchain-pitfalls 实测 top1=wps-knowledgebase（任务语句召不回承载件）",
-  "task:R2 开桶|期望=chaoshi-web-deploy 实测 top1=libreoffice-headless-win（任务语句召不回承载件）",
-  "task:Turnstile|期望=chaoshi-web-deploy 实测 top1=codebuddy-chat-web（任务语句召不回承载件）",
-  "task:Workers 调用量|期望=win-toolchain-pitfalls 实测 top1=chaoshi-image-optimization（任务语句召不回承载件）",
+  "task:D1 查额度|期望=A-memory-start 实测 top1=wps-knowledgebase（任务语句召不回承载件）",
+  "task:R2 开桶|期望=chaoshi-image-optimization 实测 top1=libreoffice-headless-win（任务语句召不回承载件）",
+  "task:Workers 调用量|期望=A-memory-start 实测 top1=chaoshi-image-optimization（任务语句召不回承载件）",
   "win-toolchain-pitfalls::CF/GitHub 免费额度读数与自动化链静默失败（R805 §9.16 / R810 §9.17 在 references）|探针=Cloudflare/wrangler/GitHub",
   "win-toolchain-pitfalls::工具链静默失败速查（description 原词，实测仅排第 2/未进前列 ⇒ 区分度不足）|路由真值未召回 rank=None top1=scope-creep-detector"
  ],
  "baseline": [
-  "task:Actions 分钟|期望=ci-pipeline-debugging 实测 top1=chaoshi-web-deploy（任务语句召不回承载件）",
-  "task:D1 查额度|期望=win-toolchain-pitfalls 实测 top1=wps-knowledgebase（任务语句召不回承载件）",
-  "task:R2 开桶|期望=chaoshi-web-deploy 实测 top1=libreoffice-headless-win（任务语句召不回承载件）",
-  "task:Turnstile|期望=chaoshi-web-deploy 实测 top1=codebuddy-chat-web（任务语句召不回承载件）",
-  "task:Workers 调用量|期望=win-toolchain-pitfalls 实测 top1=chaoshi-image-optimization（任务语句召不回承载件）",
+  "task:D1 查额度|期望=A-memory-start 实测 top1=wps-knowledgebase（任务语句召不回承载件）",
+  "task:R2 开桶|期望=chaoshi-image-optimization 实测 top1=libreoffice-headless-win（任务语句召不回承载件）",
+  "task:Workers 调用量|期望=A-memory-start 实测 top1=chaoshi-image-optimization（任务语句召不回承载件）",
   "win-toolchain-pitfalls::CF/GitHub 免费额度读数与自动化链静默失败（R805 §9.16 / R810 §9.17 在 references）|探针=Cloudflare/wrangler/GitHub",
   "win-toolchain-pitfalls::工具链静默失败速查（description 原词，实测仅排第 2/未进前列 ⇒ 区分度不足）|路由真值未召回 rank=None top1=scope-creep-detector"
  ],

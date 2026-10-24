@@ -389,7 +389,7 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   止损，对配额是加速耗尽；同一开关服务两种性质相反的场景时必须分类。
   取值：python 05-exec/run_gates.py --gate workers_quota_face --no-ledger（配额恢复后实测 PASS rc=0，
   5.8s；修复前同命令曾显示 PASS rc=2）。
-- [ ] **R201-5（r201 登记，P3·看守中）** **跨端 skill 反哺暂缓：注入预算面已超硬顶，此时加字节会加剧 C25 红**： 【r201 裁决=挂账至 r212｜理由：解锁条件是注入面归属方把 union 收回 65536 硬顶内（C25 转绿），那不由我控制 —— 我若此刻把新坑写进注入面任一文件或其入口分卷，只会把已超限的预算推得更远。教训已在报告 §46、台账 R201-4、r38 件内注释与 r49_face_fixtures 8 腿四处本地固化，不丢。到期复算：python D:/global_skills/A-memory-start/references/rule_editor.py gates 读 C25 行。】
+- [ ] **R201-5（r201 登记，P3·看守中）** **跨端 skill 反哺暂缓：注入预算面已超硬顶，此时加字节会加剧 C25 红**： 【r201 裁决=挂账至 r212｜理由：解锁条件是注入面归属方把 union 收回 65536 硬顶内（C25 转绿），那不由我控制 —— 我若此刻把新坑写进注入面任一文件或其入口分卷，只会把已超限的预算推得更远。教训已在报告 §46、台账 R201-4、r38 件内注释与 r49_face_fixtures 8 腿四处本地固化，不丢。到期复算：python D:/global_skills/A-memory-start/references/rule_editor.py gates 读 C25 行。】 【r212 裁决=执行（r212 当场闭环，不再续挂）｜挂账前提已自查为假：查 truth_constants.inject_budget.files 实得 5 件清单，references 系卷全部不在注入求和面，_note 明说拆 references 侧车是降注入面的手段；旁证 = 我自己 R805/R806/R808/R810–R812 六次反哺全落非注入卷而 inject_union_bytes 全程 66989 不动。到期动作已执行：R814 把「度量输入面自证」写进 win-toolchain cli-invocation-pitfalls §9.18（该卷非注入面，净增 0 字节）。按 X-17 不再挂新到期日。】
   本轮「凡从文本正则捞出来的数当权威，先问谁会往这文本里写数」这条教训有跨项目价值，
   常规做法是进 D:/global_skills 或 D:/global_memory 的受管件。但实测 C25-inject-budget 已判红
   （真实注入五文件 66804B > 硬顶 65536B，+1268B），而 A-memory-start/SKILL.md（16333B）与
@@ -474,6 +474,12 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   `python 05-exec/control_char_scan.py .`；`python 05-exec/r52_md_claim_face_scan.py --json <件>`；
   报告 = `06-benchmark/全量对标报告_r211_八维对标与四项工程改造_2026-10-25.md`。
   下一步落点（已编号在册，不外抛）：R211-2（备份簇收敛）→ R211-3（CI 红因分类）→ R211-4（注入面腾面，阻塞他端在途）。
+- [ ] **R211-6（r211 登记，P1·到期 r213）** **全量门禁唯一红来自并行会话的未提交编辑：`05-exec/r114_replacement_scan.py` 工作树含 4 处 0x08（退格符），HEAD 版为 0 —— 我改它 = 越权（R269 / X-9），只登记**： 【取值：`python 05-exec/control_char_scan.py .` ⇒ `[CTRL:DIRTY] 1 个文件…×4 码位=[8] 首偏移=[6629,6633,6640]`；归属三证：① `git show HEAD:05-exec/r114_replacement_scan.py` 内 0x08 计数 **0**；② 该件 mtime **2026-10-25 02:34:49**，落在我的 `b58f7f0`(02:34) 与并行会话 `cb0df24`(02:35) 之间；③ 我本轮全部改动 = 5 个夹具/判据件 + 07 + 报告 + 镜像 54 件，**不含**该件（逐笔 `git show --name-only` 已核）。】
+  我 02:31 跑同一道门时是 `[CTRL:CLEAN] 3220 面 / 脏 0` ⇒ 该脏项在 02:34:49 之后产生，与本轮四项改造无因果。**处置 = 不擅动**：`git checkout` 会把对方未提交的在途工作抹掉（越权），手改则可能覆盖其意图。
+  归属方动作（一句话）：把该件里的裸 0x08 改成 `chr(8)` 显式构造或改 raw 串（门的提示语已给），或自行 revert 那处编辑；做完复跑 `python 05-exec/control_char_scan.py .` 应回 `[CTRL:CLEAN]`。
+  为什么这不是「静默丢弃」：本轮全量门禁终态如实写成 **90 门 / FAIL=1**，且唯一红具名到文件、偏移、码位与三方归属证据；不由我代改凑绿（R263 改判据不改数据 / X-9 不为变绿动他件）。
+  验收（二元）：`control_char_scan` rc=0（归属方改完后）；或该件被 revert 回 HEAD 态（0x08 = 0）。
+
 - [ ] **R211-2（r211 登记，P0·到期 r215）对标改造 H-2** **mark_backup 簇膨胀是 _trash 与 47MB 的增长引擎：每裁一次 07 就写一份全量 .bak，21 天红线只涨不消**： 【取值：`Get-ChildItem _trash -Recurse -File` = 423 件 / 47,132,429B、最老 2026-09-25（30 天 > 判红 21 天）；`handoff.py volume` 报 `archive/mark_backup_*` 23 份超保留 3 份】
   八维对标的量化落点：本仓活动面（471 commits/30d）在六个对象里最快，但**同一节律在 _trash 里以「每轮一份 07 全量 .bak」的形态复利** —— r175 建证明链时 338 件，本轮 423 件（+85）。
   修法方向（**本轮未实施，判为破坏性**）：给产生备份的那条链加 keep 收敛（对位 volume 已有的 `bak_keep=3` 口径），并配双向夹具（超 keep 即不新增 = 正例；未超 keep 不得误删 = 反例）。
@@ -489,6 +495,31 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   八维对标映射：mycelium 把「注入/规则面大小」当被校验的声明面；我方有棘轮看守但**只降不升 ⇒ 存量超限永久告警**，缺一条「腾面处方」的执行路径。处方已在 `core/upgrade_suggestions.md`（2026-10-24 16:35 行：#32/#34/#38 细则进侧车 + #24 压成指针，预计腾 600-900B）。
   卡点（实测证据，非口径）：`A-memory-start/references/contract.md` 与多处 SKILL.md 被并行会话持续 dirty（本轮 `git -C D:/global_skills status --porcelain` 实测 11 条 ` M` + 2 条 `??`），改注入壳会撞他人在途；且拆注入壳可能打断 A-memory-start Step 3.5 的项目绑定表加载（volume 的豁免计量行正因该原因保留 AGENTS.md 不拆）。⇒ 按 R269 不擅动，登记归属收口后执行。
   验收（二元）：`inject_union_bytes` ≤ 65,536 **或** 该告警在棘轮件里显式销账并写明新基线；两条任一成立即勾。
+- [ ] **R212-1（r212 登记，P1·已落地）** **字节账只算了一半（承诺 +3 实付 +66）+ R201-5 挂账前提被自己数据推翻，当场执行 R814**： 【r212 裁决=执行（三项：自抓字节账只算一半并当场收到 +3B；把 R813 的边界写成「不动 BGE、只补每轮入口的分派可达性」并拒绝据此删基线；自查 R201-5 前提为假后按 X-17 当场执行 R814 销账）｜读数：inject_union_bytes 66989→67055→66992 三段实测；L111 偏移 5594 > 窗口 800；第 88 门实跑仍 3 task MISS（未谎报闭环）；mirror 10 MISSING/9 MISMATCH 定责并行会话不代修。R201-5 已转 DECIDED。】
+  ① 自抓：R813 给注入件 A-memory-start/SKILL.md L111 加「额度」触发词前，我按规矩算了字节账
+    （浏览器实测→免费额度读数 = +3B），但落盘时顺手多写一句括注示例（63B）**没重新算账**，实测
+    字节 12614→12680、inject_union_bytes 66989→67055（+66）。当场收：删该长括注（示例话术 R811 正文
+    已有，不占注入面）→ 66992，净增 3B。教训收成正向形式：**算账的对象必须是实际写出去的那份文本**，
+    不是我打算写的那份 —— 「按印象构造」这次伪装成「我已经验过了」。
+  ② R813 边界写死（防被读成召回修复）：落笔前实测 L111 在 SKILL.md 字符偏移 **5594**，BGE 语料窗口
+    前 800 ⇒ 一个字不进向量。真机制是：A-memory-start 每轮必加载（P0#20），加载的是 SKILL.md 分派表，
+    而「查 D1 额度」类话术原先不命中任何分派行 ⇒ quickref-cli-subprocess.md 的额度专章（:48 读数、
+    :68 取值 r196/r199）对这类任务实际不可达。R813 接上这条分派路。诚实：第 88 门那 2 条 task MISS 的
+    want=A-memory-start，门量的是 BGE/router 召回 ⇒ 读数不变（实跑仍 3 MISS），故**不删基线那 2 条**
+    （删了就是 §64 刚批过的「改分母冒充修复」）。判据量不到的收益用判据外证据说明并标注不算闭环。
+  ③ R201-5（挂账 11 轮）前提自查：理由写「反哺只能走注入五件、加字加剧 C25 红」，到期动作却写「补进
+    win-toolchain 的**非注入**分卷」。查 truth_constants.inject_budget.files 实得 5 件清单（A-memory-start
+    SKILL/contract、behavior_core、.zcode 壳、本项目 AGENTS.md）⇒ references 系卷都不在求和面，_note 还
+    明说「精简/拆 references 侧车」是**降**注入面的手段；旁证是我自己的数据：R805/R806/R808/R810–R812
+    六次反哺全落非注入卷而 inject_union_bytes 全程 66989 不动。⇒ 挂账前提为假，按 X-17（REPEAT 项禁再
+    挂新到期日）当场执行：**R814 §9.18「度量输入面自证」**（该卷非注入面，净增 0B），原条目补终局裁决。
+    内容即这三周反复栽的那族：r201 记账话术挪动账龄尺原点 + r211/r212 把「我以为的机制」当读数来源，
+    附归因三问（这段文本谁在写／取数规则会被合法措辞命中吗／我引的是实测还是我对实现的理解）。
+  ④ mirror=fail 定责（不顺手 -Fix）：按排障速查第 14 行只读列明细 = 10 MISSING + 9 MISMATCH，清单**不含**
+    我这两轮动过的两卷（已 pathspec 同步、hash 一致），全为并行会话在途件 ⇒ 不代跑 -Fix、不代提交（R269）。
+  取值：python 05-exec/ratchet_gate.py（inject_union_bytes 66989→67055→66992 三段）；python -c 算 L111 偏移
+    =5594 比 CORPUS_CHARS=800；powershell -File 焚诀/skill/sync/check-skill-mirror.ps1（只读）；
+    python 05-exec/r208_recall_face.py（R813 后仍 3 task MISS，未据此改基线）。
 - [ ] **R211-1（r211 登记，P0·已落地）** **我要去修的处方三周前已被自家效力面证伪；更严重的是第三层判据的 want 分母是我凭「知识在哪」拍出来的**： 【r211 裁决=执行（动手前先查效力面，拦下一条无效处方；用全根声称面重建 want 分母，真 MISS 5→3；接线 DISPUTED 与 RELABEL 双向有牙）｜读数：r135 效力面 末尾追加 margin 不动(-0.0586) vs 改 frontmatter +0.0216；Actions分钟 router top1 本就是 chaoshi-web-deploy ⇒ 那条 MISS 是我标错；变异A RELABEL=1/HEALED=0、变异B HEALED=1/RELABEL=0，两文件还原字节一致；基线据实重算 5 条。不外推提案：该处方已被效力面判无效，外推=造噪音（且未跑 transmit_obsolescence_check 前禁外推）。】
   ① 上轮我给自己定的下一步是「等 win-toolchain/SKILL.md 干净就给 description 补任务级触发词（进窗口），
     召回就好了」。动手前按 r148 先测后动查到现成效力面 r135_lang_boost_efficacy.py（第 11 类第二道腿）：

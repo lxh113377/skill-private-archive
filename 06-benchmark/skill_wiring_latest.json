@@ -2,7 +2,7 @@
  "schema": "skill-wiring-v1",
  "readonly": true,
  "own_count": 77,
- "refs_total": 340,
+ "refs_total": 341,
  "orphans": [
   "A-project-better/acceptance-patterns.md",
   "A-project-better/checklists.md",
