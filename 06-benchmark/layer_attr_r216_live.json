@@ -1,0 +1,169 @@
+{
+ "schema": "layer-attr-r118-v1",
+ "cmd": "python 05-exec/r118_layer_attr.py --json <out>",
+ "source": "06-benchmark/route_miss_attr_r216_live.json",
+ "conservation": {
+  "real_miss_n": 7,
+  "rows_n": 7,
+  "layers_sum_n": 7,
+  "ok": true
+ },
+ "layers": {
+  "DIRECT_SHORT": 4,
+  "DIRECT_NONE": 1,
+  "BGE_RECALL": 1,
+  "TAG_SHORT": 1
+ },
+ "oracle": {
+  "UNREACHABLE_BY_CORPUS": 7
+ },
+ "layer_x_oracle": {
+  "DIRECT_SHORT": {
+   "UNREACHABLE_BY_CORPUS": 4
+  },
+  "DIRECT_NONE": {
+   "UNREACHABLE_BY_CORPUS": 1
+  },
+  "BGE_RECALL": {
+   "UNREACHABLE_BY_CORPUS": 1
+  },
+  "TAG_SHORT": {
+   "UNREACHABLE_BY_CORPUS": 1
+  }
+ },
+ "rows": [
+  {
+   "query": "灵感枯竭帮我发散一波点子",
+   "expected": "brainstorming",
+   "router_top1": "story",
+   "direct_route": "story",
+   "tag_hits_n": 0,
+   "tag_hits": [],
+   "layer": "DIRECT_SHORT",
+   "oracle_top1": "story",
+   "oracle": "UNREACHABLE_BY_CORPUS",
+   "neg_control": {
+    "other": "9b-lightworkflow",
+    "before": "story",
+    "after": "story",
+    "changed_to_expected": false
+   }
+  },
+  {
+   "query": "帮我做一个动画丰富的 HTML 演示文稿",
+   "expected": "frontend-slides",
+   "router_top1": "ppt-master",
+   "direct_route": "ppt-master",
+   "tag_hits_n": 17,
+   "tag_hits": [
+    "A-prompt-better",
+    "frontend-slides",
+    "html-ppt",
+    "hyperframes",
+    "hyperframes-cli",
+    "hyperframes-media"
+   ],
+   "layer": "DIRECT_SHORT",
+   "oracle_top1": "ppt-master",
+   "oracle": "UNREACHABLE_BY_CORPUS",
+   "neg_control": {
+    "other": "9b-lightworkflow",
+    "before": "ppt-master",
+    "after": "ppt-master",
+    "changed_to_expected": false
+   }
+  },
+  {
+   "query": "Notion 会议准备",
+   "expected": "meeting-intelligence",
+   "router_top1": "NONE",
+   "direct_route": "NONE",
+   "tag_hits_n": 0,
+   "tag_hits": [],
+   "layer": "DIRECT_NONE",
+   "oracle_top1": "NONE",
+   "oracle": "UNREACHABLE_BY_CORPUS",
+   "neg_control": {
+    "other": "9b-lightworkflow",
+    "before": "NONE",
+    "after": "NONE",
+    "changed_to_expected": false
+   }
+  },
+  {
+   "query": "帮我清理提示词里堆积的补丁",
+   "expected": "prompt-consolidation",
+   "router_top1": "sq-cleanmgr-c",
+   "direct_route": null,
+   "tag_hits_n": 0,
+   "tag_hits": [],
+   "layer": "BGE_RECALL",
+   "oracle_top1": "sq-cleanmgr-c",
+   "oracle": "UNREACHABLE_BY_CORPUS"
+  },
+  {
+   "query": "新技能装之前先安全审查",
+   "expected": "A-skill-manager",
+   "router_top1": "security-audit",
+   "direct_route": "security-audit",
+   "tag_hits_n": 0,
+   "tag_hits": [],
+   "layer": "DIRECT_SHORT",
+   "oracle_top1": "security-audit",
+   "oracle": "UNREACHABLE_BY_CORPUS"
+  },
+  {
+   "query": "录音转文字",
+   "expected": "video-whisper-transcribe",
+   "router_top1": "local-asr",
+   "direct_route": "local-asr",
+   "tag_hits_n": 0,
+   "tag_hits": [],
+   "layer": "DIRECT_SHORT",
+   "oracle_top1": "local-asr",
+   "oracle": "UNREACHABLE_BY_CORPUS"
+  },
+  {
+   "query": "同步技能",
+   "expected": "A-skill-manager",
+   "router_top1": "cross-platform-agent-sync",
+   "direct_route": null,
+   "tag_hits_n": 1,
+   "tag_hits": [
+    "cross-platform-agent-sync"
+   ],
+   "layer": "TAG_SHORT",
+   "oracle_top1": "cross-platform-agent-sync",
+   "oracle": "UNREACHABLE_BY_CORPUS"
+  }
+ ],
+ "negative_control": {
+  "probes": [
+   {
+    "other": "9b-lightworkflow",
+    "before": "story",
+    "after": "story",
+    "changed_to_expected": false
+   },
+   {
+    "other": "9b-lightworkflow",
+    "before": "ppt-master",
+    "after": "ppt-master",
+    "changed_to_expected": false
+   },
+   {
+    "other": "9b-lightworkflow",
+    "before": "NONE",
+    "after": "NONE",
+    "changed_to_expected": false
+   }
+  ],
+  "has_discriminating_power": true
+ },
+ "reading": {
+  "DIRECT_SHORT": "走 direct_route 短路 ⇒ 改 SKILL.md 语料无效，失败层在 焚诀 eval/ direct_map（只读红线）",
+  "DIRECT_NONE": "direct_route 判「无需 skill」⇒ 负向直连规则问题，同样不在 SKILL.md",
+  "TAG_SHORT": "tag 精确过滤唯一命中 ⇒ 失败层在 skill_tags 派生件（禁手改，须重建）",
+  "BGE_RECALL": "走到召回层，语料（SKILL.md 前 800 字）参与打分 ⇒ 换装理论上可影响"
+ }
+}

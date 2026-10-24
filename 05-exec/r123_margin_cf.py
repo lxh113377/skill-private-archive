@@ -20,7 +20,7 @@ r122 用「只 encode description 单行」的沙箱做加固决策，实测**�
 ## 双向对照
   负控（无关正文）必须能把该件弄丢 ⇒ 证语料行确有影响力（非空转）。
 """
-import io, os, sys, json
+import argparse, io, os, sys, json, time   # r216: argparse/time 为新增 CLI 与输出件命名而补（原文件无 time）
 sys.path.insert(0, r'C:\Users\37533\Desktop\workspace\焚诀\eval')
 os.environ['FENJUE_ROUTE_TRACE'] = '0'
 import numpy as np, bge_onnx_engine
@@ -97,8 +97,34 @@ def probe(slug, q, cand_desc, wrong_domain):
             "margin_delta": delta, "verdict": verdict}
 
 
-def main():
-    cfg = json.load(io.open(os.path.join(ROOT, "_temp", "r123_cf_cases.json"), encoding="utf-8"))
+def main(argv=None):
+    # r216 修两处机械缺陷（只改可复跑性；判定逻辑与三道控制组一字未动）：
+    #   ① 输入面原写死 _temp/r123_cf_cases.json —— _temp 被 gitignore 且并行会话按扩展名清过 212 件
+    #      （R189-2），全仓亦无该件生成器 ⇒ 本沙箱当年只能靠手里那份手工件跑一次（W-46 死句柄，同 R211-7）。
+    #   ② 输出原写死 margin_cf_r123_2026-10-20.json（tracked）⇒ 重跑即原地覆盖历史证据（同 r211 我在 c16 上撞的）。
+    # ⚠️ 修完这两处它仍**不能自动跑**：cases 里的 candidate / wrong_domain 是**人工提出的候选语料**
+    #    （与 r119_corpus_gate 的 --candidates 同源）。本仓不替老大编造候选 ⇒ 只补 CLI，不补数据。
+    ap = argparse.ArgumentParser(description="语料改造安全边际反事实沙箱（输入 = 人工候选件）")
+    ap.add_argument("--cases", required=True,
+                    help="JSON: {slug: {query, candidate, wrong_domain}}；候选语料须人工提出")
+    ap.add_argument("--json", dest="out", default=None,
+                    help="输出件（缺省 = 06-benchmark/margin_cf_r123_<日期>.json）")
+    ap.add_argument("--force", action="store_true", help="显式允许覆盖已存在的输出件")
+    args = ap.parse_args(argv)
+    if not os.path.isfile(args.cases):
+        print("[MARGINCF:UNVERIFIED] 候选件不存在: %s ⇒ 禁按「无收益」记（R247）；候选语料须人工提出"
+              % args.cases)
+        return 2
+    out_path = args.out or os.path.join(
+        ROOT, "06-benchmark", "margin_cf_r123_%s.json" % time.strftime("%Y-%m-%d"))
+    if os.path.exists(out_path) and not args.force:
+        print("[MARGINCF:REFUSE] 输出件已存在，拒绝原地覆盖历史证据：%s（重算请另指 --json 或 --force）"
+              % out_path)
+        return 2
+    cfg = json.load(io.open(args.cases, encoding="utf-8"))
+    if not isinstance(cfg, dict) or not cfg:
+        print("[MARGINCF:UNVERIFIED] 候选件为空或形态不对 ⇒ 零输入不得记绿（R247）")
+        return 2
     out = []
     for slug, c in cfg.items():
         r = probe(slug, c["query"], c["candidate"], c["wrong_domain"])
@@ -106,10 +132,12 @@ def main():
         print("%-22s base=%-7s cand=%-7s delta=%-8s adv_hit=%-5s neg_hit=%-5s => %s" % (
             slug, r["baseline"]["margin"], r["candidate"]["margin"], r["margin_delta"],
             r["candidate_adversarial"]["hit"], r["negative_control"]["hit"], r["verdict"]))
-    json.dump({"schema": "margin-cf-r123-v1", "results": out},
-              io.open(os.path.join(ROOT, "06-benchmark", "margin_cf_r123_2026-10-20.json"), "w", encoding="utf-8"),
-              ensure_ascii=False, indent=1)
-    print("JSON -> 06-benchmark/margin_cf_r123_2026-10-20.json")
+    tmp = out_path + ".tmp"
+    json.dump({"schema": "margin-cf-r123-v2", "cases_file": os.path.relpath(args.cases, ROOT),
+               "results": out},
+              io.open(tmp, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    os.replace(tmp, out_path)          # 原子写：禁把证据件写成半截（r112 cache_guard 同族）
+    print("JSON -> %s" % os.path.relpath(out_path, ROOT))
     return 0
 
 

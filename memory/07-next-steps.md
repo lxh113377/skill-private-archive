@@ -643,7 +643,7 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   ⚠️ 由此暴露需求 6 的真实堵点：**不是缺沙箱，是没人提出候选语料**。与 R215-3 合看 = 本面算术封顶 + 上游无候选来源 ⇒ 两者都需老大或归属方点头，本轮写成待决事项而非待办工作量（X-22：已给可解析路径，不外部化）。
   取值：`git log --oneline -S "r119_corpus_gate" -- 05-exec/r113_quarterly_audit.py`（空 = 从未接线）；`python 05-exec/r119_corpus_gate.py`（缺 --candidates 即 argparse 退出）；audit.json 的 steps 步名清单无 corpus_gate。
 
-- [ ] **R217-2（r217 登记，P1·已落地一处 / 明确不做什么一处）** **口径 A 的三处机械障碍清了两处半，但剩下的不是 bug：它的输入必须是人工提出的候选语料，我不编造候选来把验收口径「跑绿」**：
+- [ ] **R217-2（r217 登记，P1·已落地）** **口径 A 的三处机械障碍已全部清掉，但它仍不能自动跑 —— 剩下的不是 bug 而是原则：输入必须是人工提出的候选语料，我不编造候选把验收口径「跑绿」**： 【r217 裁决=执行｜三处机械障碍全清（--cases required / --json 可指 / 已存在即 REFUSE / 原子写），四路径实测通过且 happy path 刻意不跑；判定逻辑与三道控制组一字未动；口径推荐仍为 B（理由已从「A 跑不了」更新为「A 每季需人工交候选」）｜取值：python 05-exec/r123_margin_cf.py 与 --cases _temp/no_such.json；git status --porcelain -- 06-benchmark/margin_cf_r123_2026-10-20.json 须为空】
   一手（本轮为需求 6 做口径对照件时实测，见 `04-plan/需求6口径对照与决策件_r216_2026-10-25.md` §2/§5）：口径 A（路由稳健性 margin，实测 +80%/+169%，本轮最漂亮的数子）的测量件 `05-exec/r123_margin_cf.py` 有三处机械障碍 ——
   ① 无 argparse（`--json` 参数不存在）；② 输入面写死 `_temp/r123_cf_cases.json`，实测**不存在**且 `git grep r123_cf_cases` 只有读侧一行、全仓无生成器（= W-46 死句柄，与我今早已修的 R211-7 同一形态）；③ 输出写死 `margin_cf_r123_2026-10-20.json`（tracked ⇒ 重跑原地覆盖历史证据，同 r211 我在 c16 上撞的那条）。
   已修（只动可复跑性，判定逻辑与三道控制组一字未动）：加 `--cases`（**required**）/ `--json` / `--force`；输出缺省落 `margin_cf_r123_<日期>.json`、**已存在即 REFUSE**；改原子写（r112 cache_guard 同族）。同轮补 `import time`（原文件无 time，我首版差点又一次「py_compile 全过、首跑 NameError」）。
