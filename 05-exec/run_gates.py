@@ -1355,6 +1355,28 @@ GATES = [
                 "skill「天眼一下」致分母 76 而非权威 77，改用磁盘 isdir 为准。拦增量不判历史红，"
                 "因 10 条里只 1 条是我的、其余属并行会话（R269 不代裁）。"),
     },
+    {
+        # r205：自动推送结果面（第 87 门）—— 钩子跑没跑、push 成没成，留痕说话
+        "id": "push_autopush_face",
+        "script": "r205_push_autopush_face.py",
+        "argv": [],
+        "pass_token": "[AUTOPUSH:PASS]",
+        "portable": False,
+        "not_portable_reason":
+            "读 .git/hooks 与 .git/autopush.log（本机仓库运行态）；CI 侧由 workflow 推送，语义不同",
+        "covers": [
+            "P1 钩子存在且为自动推送形态；P2 静默吞并可见（SILENT_SWALLOW 附注）",
+            "P3~P5 .git/autopush.log 留痕：可解析 / 末次 rc=0 / 留痕新于最近一次提交",
+            "留痕缺失或不可解析 ⇒ rc=2 UNVERIFIED（不按绿记，R247）",
+            "P6 代理前提可见（PROXY_UNSET 附注，不判红）"],
+        "why": ("r205 一手：我曾两连错判钩子状态：①以为钩子没跑（reflog 证伪，"
+                "提交后 10 秒 origin/main 确实被更新）；②以为 push 失败但根因说错。"
+                "--dry-run 实测：裸 git push rc=128/21.3s（连不上 github:443），"
+                "带代理 rc=0/2.5s —— 钩子在跑但 push 因缺代理静默失败，"
+                "被 || true 全吞、零留痕。三条既有 hook 判据全绿却答不了"
+                "「推送成没成」（查存在/查漂移/查归属，不查结果）。"
+                "本门补这个盲区，配 R807 模板留痕一起生效。"),
+    },
 ]
 
 # 显式声明本 runner **不覆盖**的面，防止聚合绿被读成「所有门禁都绿」（R20-2）。
