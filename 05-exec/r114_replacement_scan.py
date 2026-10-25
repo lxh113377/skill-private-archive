@@ -149,14 +149,48 @@ def key_of(s):
     return re.sub(r"[^A-Za-z0-9]+", "_", s)[:90]
 
 
-def load_cache():
-    if not os.path.isdir(CACHE_DIR):
-        return {}
+POOL_PACK = os.path.join(BENCH, "pool_cache_r217.json")
+
+
+def load_cache(cache_dir=None, pack_path=None, prov=None):
+    """候选池缓存 = 入库包（POOL_PACK）+ 活散件，且**散件覆盖包**。
+
+    存在理由（r217，解 R213-1）：本函数原先只读 _temp/r114_search_cache/ —— 那目录被 gitignore
+    且并行会话按扩展名清过场（R189-2 实测 212 件），清场当天 --offline 的第 ⑥ 段会判红。
+    池散件 414 个 > cache_file_max=200 ⇒ 不能整目录入库；改由 r217_pool_pack.py 打成单件
+    （762,502B < any_file_max=1,048,576B）入 06-benchmark，这里在内存里合并读，不回写散件
+    ⇒ 不新增 cache_file_max 压力。
+    合并方向 = 散件后写覆盖包 ⇒ 联网跑出的新结果永远优先，包陈旧不会造成假绿；
+    包不可读或缺件时仅用散件（= 回到旧行为），不报错也不静默造命中。
+    """
+    cache_dir = cache_dir or CACHE_DIR
+    pack_path = POOL_PACK if pack_path is None else pack_path
     d = {}
-    for f in sorted(os.listdir(CACHE_DIR)):
+    if prov is None:
+        prov = {}
+    prov.setdefault("pack_path", os.path.relpath(pack_path, ROOT).replace(os.sep, "/") if pack_path else None)
+    prov.setdefault("pack_entries", 0)
+    prov.setdefault("pack_generated_at", None)
+    prov.setdefault("loose_files", 0)
+    prov.setdefault("loose_dir_exists", os.path.isdir(cache_dir))
+    if pack_path and os.path.isfile(pack_path):
+        try:
+            _pk = json.load(io.open(pack_path, encoding="utf-8-sig", errors="replace"))
+            if isinstance(_pk, dict) and isinstance(_pk.get("entries"), dict):
+                d.update(_pk["entries"])
+                # 新鲜度随读数同列（r120 trace_face 同族范式）：包陈旧而散件被清时，
+                # 离线跑仍会成功出件，但读的是旧池 —— 那一刻必须看得见出处，不得静默。
+                prov["pack_entries"] = len(_pk["entries"])
+                prov["pack_generated_at"] = _pk.get("generated_at")
+        except Exception:  # noqa: BLE001 - 包坏了退回散件面，不把整段判死
+            pass
+    if not os.path.isdir(cache_dir):
+        return d
+    for f in sorted(os.listdir(cache_dir)):
         if f.endswith(".json"):
+            prov["loose_files"] += 1
             try:
-                d[f[:-5]] = json.load(io.open(os.path.join(CACHE_DIR, f), encoding="utf-8"))
+                d[f[:-5]] = json.load(io.open(os.path.join(cache_dir, f), encoding="utf-8"))
             except Exception:  # noqa: BLE001 - 坏缓存条目跳过（按 miss 处理，不静默当命中）
                 continue
     return d
@@ -239,10 +273,39 @@ def search(q, cache, offline, stats):
     return doc
 
 
-def measure_repo(full, cache, offline, stats):
-    """仓元数据 + 树形态（skill_md_n / workflow_n / test_path_n / readme_n / docs_md_n）。"""
+def tree_counts(paths):
+    """树形态计数（纯函数，离线可验）。
+
+    抽出理由（r218）：这些计数原先埋在 measure_repo 的 gh 调用之后 ⇒ 唯一验证方式是联网重测 243 仓，
+    于是「严格口径」这一尺子写完就没人能证它算得对（本仓 X-18：判据写完不当场跑 = 无效）。
+    纯函数化后可直接喂合成路径自证，与 r211_fc_caliber 的三条样本路径对账。
+
+    口径（R211-9）：
+      skill_md_n        = 旧口径 endswith("skill.md") —— 会把 docs/agent-skill.md、
+                          distribution/.../create-skill.md、BOOTSTRAP_SKILL.md 计入（高估）；
+      skill_md_exact_n  = 严格口径：路径末段正是 skill.md；
+      skill_md_ghost_n  = 两者之差 = 被旧口径多计的非技能入口。
+    旧口径**保留不动**：它是 C1 硬分桶前置（r116 / r125 都读），改它即作废全部历史候选面。
+    """
+    low = [p.lower() for p in (paths or [])]
+    return {
+        "skill_md_n": sum(1 for x in low if x.endswith("skill.md")),
+        "skill_md_exact_n": sum(1 for x in low if x.rsplit("/", 1)[-1] == "skill.md"),
+        "skill_md_ghost_n": (sum(1 for x in low if x.endswith("skill.md"))
+                             - sum(1 for x in low if x.rsplit("/", 1)[-1] == "skill.md")),
+        "workflow_n": sum(1 for x in low
+                          if x.startswith(".github/workflows/")
+                          and (x.endswith(".yml") or x.endswith(".yaml"))),
+        "test_path_n": sum(1 for x in low if re.search(r"(^|/)(tests?|spec|__tests__)/", x)),
+        "readme_n": sum(1 for x in low if re.match(r"(^|/)readme(\.md|\.rst|\.txt)?$", x)),
+        "docs_md_n": sum(1 for x in low if x.startswith("docs/") and x.endswith(".md")),
+    }
+
+
+def measure_repo(full, cache, offline, stats, remeasure=False):
+    """仓元数据 + 树形态；remeasure=True 时**跳过该仓缓存**重取（严格口径字段靠它补）。"""
     key = "repo__" + key_of(full)
-    if key in cache:
+    if not remeasure and key in cache:
         stats["cache_hits"] += 1
         return cache[key]
     if offline:
@@ -291,20 +354,12 @@ def measure_repo(full, cache, offline, stats):
         else:
             paths = [x.get("path") or "" for x in (t.get("tree") or [])
                      if x.get("type") == "blob"]
-            low = [p.lower() for p in paths]
             doc["tree_state"] = "OK"
             doc["tree_truncated"] = bool(t.get("truncated"))
             doc["blob_n"] = len(paths)
-            doc["skill_md_n"] = sum(1 for p in low if p.endswith("skill.md"))
-            doc["workflow_n"] = sum(1 for p in low
-                                    if p.startswith(".github/workflows/")
-                                    and (p.endswith(".yml") or p.endswith(".yaml")))
-            doc["test_path_n"] = sum(1 for p in low
-                                     if re.search(r"(^|/)(tests?|spec|__tests__)/", p))
-            doc["readme_n"] = sum(1 for p in low
-                                  if re.match(r"(^|/)readme(\.md|\.rst|\.txt)?$", p))
-            doc["docs_md_n"] = sum(1 for p in low
-                                   if p.startswith("docs/") and p.endswith(".md"))
+            # R211-9（r218）：口径计数全部走 tree_counts() 纯函数（双口径同列的说明在该函数 docstring）。
+            # 旧口径 skill_md_n 保留不动 = C1 硬分桶前置（r116 / r125 读它），切判据须另行单独裁。
+            doc.update(tree_counts(paths))
     save_cache(key, doc)
     return doc
 
@@ -549,6 +604,12 @@ def main():
     ap.add_argument("--max-cand-per-family", type=int, default=12)
     ap.add_argument("--workers", type=int, default=8,
                     help="候选仓测量的并发度（1 = 串行；GitHub core 5000/h 足够）")
+    ap.add_argument("--cache-dir", default=None,
+                    help="池散件目录（缺省 _temp/r114_search_cache；可指空目录以模拟被清场）")
+    ap.add_argument("--pool-pack", default=None,
+                    help="入库池包（缺省 06-benchmark/pool_cache_r217.json；传 none = 只用散件）")
+    ap.add_argument("--remeasure", action="store_true",
+                    help="跳过仓级缓存重新取树（严格口径 skill_md_exact_n 靠它补；须联网，离线时该路走不通）")
     ap.add_argument("--quiet", action="store_true")
     args = ap.parse_args()
     try:
@@ -576,7 +637,15 @@ def main():
                   "不写主产物（禁半截面）" % (rem, err))
             return 2
 
-    cache = load_cache()
+    # r217：--pool-pack none 退回「只读散件」的旧行为（有牙验证用）。
+    # 注意 None 与 "" 的区别：None 在 load_cache 里表示「用缺省包」，所以显式关包必须传 ""，
+    # 首版写成 None 会让这个开关静默失效（= 想证明「包起作用」时两边都读了包）。
+    if (args.pool_pack or "").lower() == "none":
+        _pack_arg = ""
+    else:
+        _pack_arg = args.pool_pack
+    _cache_prov = {}
+    cache = load_cache(args.cache_dir, _pack_arg, _cache_prov)
     stats = {"api_calls": 0, "cache_hits": 0, "cache_miss": 0, "errors": []}
 
     pool = {}
@@ -646,10 +715,10 @@ def main():
     todo = [fn for fn in sorted(need_measure) if fn not in measured]
     if args.workers <= 1 or args.offline:
         for fn in todo:
-            measured[fn] = measure_repo(fn, cache, args.offline, stats)
+            measured[fn] = measure_repo(fn, cache, args.offline, stats, args.remeasure)
     else:
         with ThreadPoolExecutor(max_workers=args.workers) as ex:
-            futs = {ex.submit(measure_repo, fn, cache, args.offline, stats): fn
+            futs = {ex.submit(measure_repo, fn, cache, args.offline, stats, args.remeasure): fn
                     for fn in todo}
             done = 0
             for fut in as_completed(futs):
@@ -679,6 +748,12 @@ def main():
                            "stars": m.get("stars"), "pushed_at": m.get("pushed_at"),
                            "license": m.get("license"), "archived": m.get("archived"),
                            "skill_md_n": m.get("skill_md_n"),
+                           # R211-9 双口径同列（见 compute_tree 处注释）。**取不到必须显形为 None**，
+                           # 不得补 0：池缓存里 399 个仓是 r218 之前测的、根本没有这两个字段
+                           # ⇒ 缓存命中路径原样返回旧件（r184 行实测），补 0 会读成「严格口径 = 0 个 SKILL.md」，
+                           #   那是用缺字段造假阴性（R247 反面）。
+                           "skill_md_exact_n": m.get("skill_md_exact_n"),
+                           "skill_md_ghost_n": m.get("skill_md_ghost_n"),
                            "docs_md_n": m.get("docs_md_n"),
                            "test_path_n": m.get("test_path_n"),
                            "workflow_n": m.get("workflow_n"),
@@ -720,6 +795,11 @@ def main():
 
     total = sum(tally.values())
     ok = (total == len(locals_))
+    # 严格口径覆盖率（必显形）：新字段只在**联网重测**时产生，池缓存里的旧件没有 ⇒
+    # 若离线跑，双口径列会几乎全空。不报覆盖率就会让人以为「严格口径 ≈ 生产口径」。
+    _cand_all = [c for ps in rows for c in (ps.get("candidates") or [])]
+    _exact_have = sum(1 for c in _cand_all if isinstance(c.get("skill_md_exact_n"), int))
+    _ghost_n = sum(1 for c in _cand_all if (c.get("skill_md_ghost_n") or 0) > 0)
     doc = {
         "schema": "replacement-matrix-r114-v1",
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S+00:00"),
@@ -727,8 +807,19 @@ def main():
         "face": {"local_n": len(locals_), "pool_n": pool_n,
                  "queries_n": len(POOL_QUERIES), "families_n": len(FAMILIES),
                  "candidates_measured": len(measured),
+                 "strict_caliber_coverage": {"candidates_total": len(_cand_all),
+                                              "with_exact_field": _exact_have,
+                                              "repos_with_ghosts": _ghost_n,
+                                              # 覆盖率 < 1 是**已知且如实**的状态：旧池件无该字段
+                                              "coverage_note": "skill_md_exact_n / skill_md_ghost_n 只在**重取树**时产生"
+                                                               "（--remeasure，须联网）；池缓存旧件无该字段 ⇒ 读成 None。"
+                                                               "禁补 0，禁把「无字段」读成「严格口径=0」（R247）。"},
                  "api_calls": stats["api_calls"], "cache_hits": stats["cache_hits"],
-                 "cache_miss": stats["cache_miss"], "offline": bool(args.offline)},
+                 "cache_miss": stats["cache_miss"], "offline": bool(args.offline),
+                 "cache_provenance": _cache_prov,
+                 # 包陈旧告警：离线跑且散件目录空/不存在，全靠包 ⇒ 读数出自哪一天必须显形
+                 "pool_from_stale_pack": bool(args.offline and not _cache_prov.get("loose_files")
+                                              and _cache_prov.get("pack_entries"))},
         "conservation": {"sum_verdicts": total, "local_n": len(locals_),
                          "ok": ok, "by_verdict": tally},
         "queries": qmeta,
@@ -745,6 +836,14 @@ def main():
     with io.open(tmp, "w", encoding="utf-8", newline="\n") as fh:
         json.dump(doc, fh, ensure_ascii=False, indent=1)
     os.replace(tmp, out)
+
+    # 故意放在 --quiet 门之外（r217）：巡检以 --quiet 跑本步，stdout_tail 会进 audit.json，
+    # 所以「读数出自哪天」必须连静默跑也印得出来 —— 只写进 JSON 字段等于把告警藏进没人打开的件里。
+    if doc["face"]["pool_from_stale_pack"]:
+        print("[POOL:FRESHNESS] ⚠️ 本轮离线且散件缓存为空/不存在 ⇒ 候选面全部取自入库池包："
+              "pack=%s（%d 条，生成于 %s）｜禁把该读数当「今日池」引用（r120 trace_face 同族范式）"
+              % (_cache_prov.get("pack_path"), _cache_prov.get("pack_entries"),
+                 _cache_prov.get("pack_generated_at")))
 
     if not args.quiet:
         print("池：%d 仓（%d 条查询，api=%d cache=%d）｜ 候选实测 %d 仓"

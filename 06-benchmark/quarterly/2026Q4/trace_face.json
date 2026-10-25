@@ -9,7 +9,7 @@
   "empty_q_n": 1012,
   "unique_n": 226,
   "span_days": 4.86,
-  "freshness_days": 0.01,
+  "freshness_days": 0.1,
   "confidence": {
    "HIGH": 24424,
    "MEDIUM": 1038,

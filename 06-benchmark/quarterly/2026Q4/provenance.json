@@ -1,6 +1,6 @@
 {
  "schema": "provenance-scan-r112-v2",
- "generated_at": "2026-10-24T21:47:04+00:00",
+ "generated_at": "2026-10-24T23:43:09+00:00",
  "face": {
   "roots": [
    {
@@ -124,11 +124,11 @@
   },
   {
    "slug": "A-memory-start",
-   "local_sha256": "caafeba944dcd27d62caeb58098ec7a6306a9fe8ab668d67d3acf41f310a4673",
-   "local_bytes": 12617,
-   "dir_manifest_sha256": "fc33629b0c2441324b2972c502e3ba3c6510fcaa553d024ca24554bbdf3fc9f8",
+   "local_sha256": "09da3ac344aee7693d40ebc1458eb18cb72818b15f964f994366bec620fa7342",
+   "local_bytes": 12694,
+   "dir_manifest_sha256": "b4515c1086323075d66bd91aa799980123b21f518c5aad9a09ad76efd85d1fa3",
    "dir_file_n": 27,
-   "mtime": "2026-10-25T02:43:29",
+   "mtime": "2026-10-25T06:53:05",
    "fm_version": "10.95.0",
    "fm_last_updated": "2026-10-12",
    "registry_source": "user-created",
@@ -3765,15 +3765,15 @@
   },
   {
    "slug": "subagent-driven-development",
-   "local_sha256": "df1c6707212fa34872a2d2a20b5279e9aebf50ea815c35f33991d278500695b5",
-   "local_bytes": 3846,
-   "dir_manifest_sha256": "11cec052e93e6b214786443b0c29134ed787765f577f92cdf44ac041f1627c47",
-   "dir_file_n": 3,
-   "mtime": "2026-10-20T11:29:54",
-   "fm_version": "1.0.0",
+   "local_sha256": "c42a06a8a11303a65156841e543f994f1f0c7e06713c2160380de6e8a801e034",
+   "local_bytes": 6243,
+   "dir_manifest_sha256": "93bb2f2aa809879d3e2d83c93a28bd2fed3d1f02df23072d976ae517b54c40e3",
+   "dir_file_n": 10,
+   "mtime": "2026-10-25T07:17:29",
+   "fm_version": "1.1.0",
    "fm_last_updated": null,
    "registry_source": "community",
-   "registry_version": "1.0.0",
+   "registry_version": "1.1.0",
    "registry_user_created": false,
    "declared": {},
    "inferred_upstreams": [
@@ -4016,7 +4016,7 @@
    "fm_version": "1.6.0",
    "fm_last_updated": "2026-10-25",
    "registry_source": "community",
-   "registry_version": "1.5.0",
+   "registry_version": "1.6.0",
    "registry_user_created": false,
    "declared": {},
    "inferred_upstreams": [

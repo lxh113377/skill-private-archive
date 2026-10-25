@@ -20,6 +20,7 @@
 import argparse
 import io
 import os
+import re
 import subprocess
 import sys
 
@@ -49,28 +50,77 @@ def decide(root, rel, keys):
         keys = [keys]
     p = os.path.join(root, rel.replace('/', os.sep))
     if not os.path.isfile(p):
-        return 2, 'ERROR 文件不存在 ' + rel
+        return 2, 'ERROR 文件不存在 ' + rel, []
     add, mine = added_lines(root, rel, keys)
     if add is None:
-        return 2, 'ERROR git diff 失败'
+        return 2, 'ERROR git diff 失败', []
     if not add:
-        return 0, 'NOCHANGE 相对 HEAD 无新增行'
+        return 0, 'NOCHANGE 相对 HEAD 无新增行', []
     titles = [l for l in add if l.strip().startswith(TITLE)]
     theirs = [l for l in titles if not any(k in l for k in keys)]
     if not mine:
         msg = ('SKIP 卷里有 %d 行未提交改动（条目标题 %d 个），但不含我的键 ⇒ 留给其作者，不代提交' % (len(add), len(theirs)))
         for h in theirs[:2]:
             msg += chr(10) + '    他人条目: ' + h.strip()[:44]
-        return 0, msg
+        return 0, msg, theirs
     rc2, o2 = git(root, 'add', '--', rel)
     if rc2 != 0:
-        return 2, 'ERROR git add 失败 rc=%d %s' % (rc2, o2.strip()[:120])
+        return 2, 'ERROR git add 失败 rc=%d %s' % (rc2, o2.strip()[:120]), []
     msg = 'STAGED 新增 %d 行；条目标题共 %d 个，我的 %d 个' % (len(add), len(titles), len(titles) - len(theirs))
     if theirs:
         msg += ('；⚠ 携带他人条目 %d 个（整文件 add 连带入库，共享卷上无法只提交自己那几行）⇒ 必须在提交信息里具名声明代带，不得装作没发生' % len(theirs))
         for h in theirs[:3]:
             msg += chr(10) + '    代带: ' + h.strip()[:44]
-    return 0, msg
+    return 0, msg, theirs
+
+
+def norm_txt(s):
+    """剥 markdown/空白做归一化比较（编号条目仍用原串直配，那条最稳）。"""
+    return re.sub(r'[\s\*\[\]`>_\-]+', '', s)
+
+
+def declare_gate(msgfile, carried):
+    """硬校验：提交信息必须逐条点名被代带的他人条目（编号即点名）。
+
+    存在理由（r219 一手）：护栏只打印「必须具名声明」这句话，靠我记得去执行 —— 结果本轮提交
+    fa7ac3d 代带 4 条他人条目、信息里一条没点名。规矩写给人看会被漏，写成退出码不会。
+    """
+    if not os.path.isfile(msgfile):
+        print('[DECLARE:ERROR] 读不到提交信息文件 ' + msgfile + ' ⇒ 不放行')
+        return 2
+    txt = io.open(msgfile, encoding='utf-8', errors='replace').read()
+    miss = []
+    for x in carried:
+        mm = re.search(r'R\d{2,3}[a-z]?-\d+', x)
+        tag = mm.group(0) if mm else ''
+        body = x.strip()
+        if tag:
+            if tag in txt:
+                continue
+        else:
+            # 无编号条目：取**首个加粗标签**做点名（人类本来就会写 X-other 这种标签）。
+            # 早先两版都错在「要求逐字抄 markdown」：v1 取 body[:12] = '- [ ] **X-'；
+            # v2 归一化后仍留着列表符号 -（'-X-other'）⇒ 永远判未点名，r219 牙测连抓两次。
+            lab = re.search(r'\*\*([^*]{2,40})\*\*', body)
+            keys_ok = []
+            if lab:
+                keys_ok.append(lab.group(1).strip())
+            keys_ok.append(re.sub(r'^[-\[*\s]+', '', body)[:16])
+            low = norm_txt(txt)
+            if any(k and (k in txt or norm_txt(k) in low) for k in keys_ok):
+                continue
+        miss.append((tag or body[:20]) + ' :: ' + body[:56])
+    if miss:
+        print('[DECLARE:FAIL] 提交信息未具名代带他人条目 %d 条 ⇒ 拒绝提交' % len(miss))
+        for y in miss:
+            print('    未点名: ' + y)
+        return 2
+    print('[DECLARE:OK] 代带 %d 条他人条目均已在提交信息中点名' % len(carried))
+    return 0
+
+
+def decide3(root, rel, keys):
+    return decide(root, rel, keys)
 
 
 def selftest():
@@ -84,24 +134,37 @@ def selftest():
     git(repo, *(ident + ['commit', '-q', '-m', 'seed']))
     io.open(base, 'a', encoding='utf-8', newline='').write(
         '- [ ] **X-other** 他人条目' + chr(10))
-    c1, m1 = decide(repo, rel, ['**X-mine**'])
+    c1, m1, k1 = decide(repo, rel, ['**X-mine**'])
     # 断言按实际措辞：SKIP 报「条目标题 N 个」（SKIP 分支无需区分归属，只报数）
-    ok_skip = c1 == 0 and m1.startswith('SKIP') and '条目标题 1 个' in m1
+    # 断言必须是布尔：`and 列表` 会把列表本身当值传出去（r219 实测打印成 ['...'] 而非 True）
+    ok_skip = (c1 == 0 and m1.startswith('SKIP') and '条目标题 1 个' in m1
+                 and len(k1) == 1)
     io.open(base, 'a', encoding='utf-8', newline='').write(
         '  我的条目续行' + chr(10) + '- [ ] **X-mine** 我的条目' + chr(10));
     io.open(base, 'a', encoding='utf-8', newline='').write(chr(10))
-    c2, m2 = decide(repo, rel, ['**X-mine**'])
+    c2, m2, carried = decide(repo, rel, ['**X-mine**'])
     ok_stage = (c2 == 0 and m2.startswith('STAGED') and '携带他人条目 1 个' in m2
                   and '我的 1 个' in m2)
     git(repo, *(ident + ['add', '--', rel]))
     git(repo, *(ident + ['commit', '-q', '-m', 'second']))
-    c3, m3 = decide(repo, rel, ['**X-mine**'])
+    c3, m3, _k3 = decide(repo, rel, ['**X-mine**'])
     ok_clean = c3 == 0 and m3.startswith('NOCHANGE')
     print('[SELFTEST] SKIP   = %s :: %s' % (ok_skip, m1.split(chr(10))[0][:96]))
     print('[SELFTEST] STAGED = %s :: %s' % (ok_stage, m2.split(chr(10))[0][:110]))
     print('[SELFTEST] NOCHANGE = %s :: %s' % (ok_clean, m3[:70]))
-    if ok_skip and ok_stage and ok_clean:
-        print('[STAGEGUARD:PASS] 三向都有牙（归属按条目标题判，续行不误记）')
+    # 第五/六向：硬校验双向 —— 信息没点名代带条目必须拒，点名了必须放行
+    mf = os.path.join(repo, 'msg.txt')
+    io.open(mf, 'w', encoding='utf-8', newline='').write('chore: 故意不点名任何条目' + chr(10))
+    d_bad = declare_gate(mf, carried)
+    # 正向用例必须真按规则点名（写出条目前缀本身）。上一版我写「代带 X-other 一条」
+    # 不含前缀 ⇒ 被判拒 —— 那不是 bug，是硬校验真的在拦不合规的信息。
+    io.open(mf, 'w', encoding='utf-8', newline='').write(
+        'chore: 代带 X-other 他人条目 1 条，已具名' + chr(10))
+    d_ok = declare_gate(mf, carried)
+    ok_decl = (d_bad == 2 and d_ok == 0)
+    print('[SELFTEST] DECLARE  = %s :: 未点名拒=%d 已点名放=%d' % (ok_decl, d_bad, d_ok))
+    if ok_skip and ok_stage and ok_clean and ok_decl:
+        print('[STAGEGUARD:PASS] 五向都有牙（归属按条目标题判、续行不误记、代带未点名硬拒）')
         return 0
     print('[STAGEGUARD:FAIL] 护栏自身没牙，不得投入使用')
     return 2
@@ -112,15 +175,18 @@ def main(argv=None):
     ap.add_argument('file', nargs='?')
     ap.add_argument('--must-contain', dest='key', action='append')
     ap.add_argument('--selftest', action='store_true')
+    ap.add_argument('--require-declared-in', dest='msgfile',
+                    help='给了就硬校验：提交信息文件须逐条点名被代带的他人条目，缺一即 rc=2')
     args = ap.parse_args(argv)
     if args.selftest:
         return selftest()
     if not args.file or not args.key:
         print('用法: r217_shared_stage.py <相对路径> --must-contain <键> | --selftest')
         return 2
-    code, msg = decide(ROOT, args.file, args.key)
+    code, msg, carried = decide3(ROOT, args.file, args.key)
     print('[STAGE:%s] %s :: %s' % (msg.split(' ')[0], args.file, msg))
-    return code
+    if code == 0 and args.msgfile:
+        return declare_gate(args.msgfile, carried)
 
 
 if __name__ == '__main__':
