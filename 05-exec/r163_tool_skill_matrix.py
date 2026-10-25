@@ -34,8 +34,15 @@ TOOLS = {
     # D1 同族：r168 去掉裸 d1_database；r169 再修 —— `.prepare(` **太通用**，
     #   会把 hyperframes 的 `window.__hyperframes.pretext.prepare(text, font)`
     #   （Canvas 前置文本 API）误判成 D1 绑定。故要求 D1 语境：DB 前缀或 D1 字样同现。
+    # r224 补数组参数形态：真实调用常把子命令拆成数组 ——
+    #   supermarket-web/scripts/migrate.mjs L86: const flags = ['d1','execute','supermarket','--json']
+    #   L90: execFileSync(process.execPath, [wrangler, ...flags])（wrangler 是变量非字面量）
+    #   旧式只认字面 wrangler d1 / d1 execute，整条真调用 MISS ⇒ chaoshi-web-deploy 的 D1
+    #   被误记成「仅文档、无代码调用」。与 r169 给 SQLite 补 execFileSync('sqlite3',[..]) 同族，
+    #   当时只补了 SQLite，漏了 D1。
     'Cloudflare-D1': (r'wrangler\s+d1|d1\s+execute|d1_databases'
-                      r'|(?:env\.|\b)DB\.prepare\('),
+                      r'|(?:env\.|\b)DB\.prepare\('
+                      r'|\[\s*[\'"]d1[\'"]\s*,\s*[\'"]execute[\'"]'),
     'Cloudflare-R2': r'wrangler\s+r2|R2Bucket|r2\.dev',
     'Cloudflare-Pages': r'wrangler\s+pages|pages\s+deploy|pages\.dev',
     'Cloudflare-Workers': r'wrangler\s+deploy|workers\.dev|export\s+default\s*\{[\s\S]{0,80}fetch',
@@ -159,7 +166,64 @@ def build_matrix(gs_root):
         'per_tool_exec': {k: sorted(v) for k, v in per_tool_exec.items()},
         'per_skill': per_skill,
         'zero_ref_tools': sorted(k for k in TOOLS if not per_tool[k]),
+        'third_face': third_face(),
     }, None
+
+
+def third_face():
+    """r224：扫描面之外、被 skill 手册指向的项目仓面（third_face）。
+
+    存在理由：手册型 skill（chaoshi-web-deploy）在受管根只有 SKILL.md，其可执行面在
+    它指向的项目仓（scripts/migrate.mjs 的 execFileSync 带 d1/execute 数组参数）。
+    两把尺都只扫受管根，D1 的真调用因此被读成 skill 仅文档。
+
+    不并入扫描根，三条理由：项目仓路径会变（读数随项目兴衰漂移，那是项目状态不是
+    skill 搭配度）；会诱导为凑计数把工具塞进项目；受管根内同类代码仍由主正则负责
+    （r224 已补 D1 数组参数形态）。这里只做显式记录，供人合读。
+
+    取不到（项目仓不在/为空）返回 None，主读数不受影响，禁把取不到记成零。
+    """
+    roots = []
+    env = os.environ.get('FJ_THIRD_FACE_ROOTS', '')
+    if env:
+        roots = [x for x in env.split(';') if x.strip()]
+    else:
+        for cand in (r'C:/Users/37533/Desktop/workspace/超市web/supermarket-web',):
+            if os.path.isdir(cand):
+                roots.append(cand)
+    if not roots:
+        return None
+    skip = ('node_modules', '.git', 'dist', '.wrangler', 'archive', '__pycache__')
+    hits = {}
+    files = 0
+    for root in roots:
+        for dp, dns, fns in os.walk(root):
+            dns[:] = [d for d in dns if d not in skip]
+            for f in fns:
+                if not f.endswith(CODE_EXT):
+                    continue
+                fp = os.path.join(dp, f)
+                try:
+                    if os.path.getsize(fp) > MAX_EXTRA_BYTES:
+                        continue
+                    t = io.open(fp, encoding='utf-8', errors='replace').read()
+                except OSError:
+                    continue
+                files += 1
+                for k in TOOLS:
+                    n = len(RX[k].findall(t))
+                    if n:
+                        d = hits.setdefault(k, {'hits': 0, 'files': []})
+                        d['hits'] += n
+                        d['files'].append(os.path.basename(fp))
+    for k in hits:
+        hits[k]['files'] = sorted(set(hits[k]['files']))[:20]
+    return {'roots': [r.replace(chr(92), '/') for r in roots], 'files_scanned': files,
+            'skip_dirs': list(skip),
+            'provenance_cmd': 'FJ_THIRD_FACE_ROOTS=<仓路径> python 05-exec/r163_tool_skill_matrix.py --json 件',
+            'note': ('扫描面之外的项目仓面，只记录不判红；受管根内同类代码仍由 per_tool_exec 负责',
+                     '（r224 已补 D1 数组参数形态）。None = 项目仓不在，禁读成零。'),
+            'per_tool': hits}
 
 
 def main(argv=None):
@@ -260,6 +324,24 @@ def selftest():
                  '3/3 真用法全部命中=%s（防收紧变假绿）' % t_ok))
     legs.append(('f1p_tightened_regex_rejects_mentions', f_ok,
                  '3/3 非用法全部拒掉=%s（举例/注释/路径后缀）' % f_ok))
+    # 腿 d1a/d1b（r224）：D1 数组参数形态。真实形态 migrate.mjs：
+    #   const flags = ['d1', 'execute', 'supermarket', '--json']
+    #   execFileSync(process.execPath, [wrangler, ...flags])
+    # 旧正则只认字面 wrangler d1 / d1 execute ⇒ 这条真调用整条 MISS（chaoshi-web-deploy
+    # 的 D1 因此被误记成「仅文档」）。加腿锁住：数组形态必须命中、非 D1 数组不得误命中。
+    _d1_true = ["const flags = ['d1', 'execute', 'supermarket', '--json']",
+                'const f = ["d1","execute",db,"--json"]',
+                'wrangler d1 execute supermarket --remote']
+    _d1_false = ["const flags = ['pages', 'deploy', 'dist']",
+                 "const a = ['r2', 'bucket', 'list']",
+                 'const env = ["DB_NAME", "x"] and nothing else']
+    _d1_hit = lambda s: bool(RX['Cloudflare-D1'].search(s))
+    d1a = all(_d1_hit(s) for s in _d1_true)
+    d1b = all(not _d1_hit(s) for s in _d1_false)
+    legs.append(('f1q_d1_array_form_caught', d1a,
+                 '3/3 数组与字面形态命中=%s' % d1a))
+    legs.append(('f1r_d1_array_not_overbroad', d1b,
+                 '3/3 非 D1 数组不误命中=%s' % d1b))
     # 腿 e1/e2/e3 + 变异腿 m2（r185）：第二把尺（可执行面）的三向验。
     # 动因：r185 我先版自写一套代码形态正则，六个形态对 web-access 的
     #   execFileSync('sqlite3', [...]) 全 MISS —— 差点又造一批假阴性。改为复用同一

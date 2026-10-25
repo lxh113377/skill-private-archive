@@ -1,0 +1,351 @@
+{
+ "schema": "tool-skill-matrix-r163-v1",
+ "cmd": "python 05-exec/r163_tool_skill_matrix.py --json <out>",
+ "tools_n": 10,
+ "note": "命令级匹配（非产品名）；零引用不判红，具名显形供人决定是否补搭配。两把尺的解读边界（r185）：per_tool = 提到（文档或代码），per_tool_exec = 代码真调用。**「仅文档」不等于「没搭配」** —— 权威部署手册型 skill（如 chaoshi-web-deploy）本就不自带脚本，其价值是让人正确敲命令；把可执行面当成唯一合格标准会诱导造脚本凑数（r166「凑引用即造需求」同族）。本尺只用于发现「提到却一次都没跑过」的候选，不判红。",
+ "generated_at": "2026-10-25 15:17",
+ "gs_root": "D:\\global_skills",
+ "skills_scanned": 191,
+ "skills_with_tools": 28,
+ "unreadable": [],
+ "per_tool": {
+  "GitHub": [
+   "A-get-memory",
+   "A-memory-start",
+   "A-project-better",
+   "A-project-handoff",
+   "A-skill-manager",
+   "chaoshi-image-optimization",
+   "chaoshi-web-deploy",
+   "ci-pipeline-debugging",
+   "consulting-analysis",
+   "doc-coauthoring",
+   "docker-e2e-gate",
+   "github",
+   "gstack",
+   "healthcare-eval-harness",
+   "hyperframes-registry",
+   "oracle",
+   "security-audit",
+   "shell-encoding-pitfalls",
+   "story",
+   "ui-ux-pro-max",
+   "verification-before-completion",
+   "win-toolchain-pitfalls"
+  ],
+  "Cloudflare-D1": [
+   "chaoshi-web-deploy",
+   "win-toolchain-pitfalls"
+  ],
+  "Cloudflare-R2": [
+   "chaoshi-image-optimization"
+  ],
+  "Cloudflare-Pages": [
+   "A-project-handoff",
+   "byted-bp-cdn-pagesdeploy",
+   "chaoshi-image-optimization",
+   "chaoshi-web-deploy",
+   "verification-before-completion"
+  ],
+  "Cloudflare-Workers": [
+   "chaoshi-web-deploy"
+  ],
+  "Cloudflare-Turnstile": [
+   "chaoshi-image-optimization",
+   "win-toolchain-pitfalls"
+  ],
+  "Resend": [
+   "office-automation-pro"
+  ],
+  "Upstash-Redis": [],
+  "SQLite": [
+   "data-analysis",
+   "fenjue-memory-audit",
+   "ican-deploy",
+   "web-access"
+  ],
+  "Pages-Functions": [
+   "chaoshi-web-deploy"
+  ]
+ },
+ "per_tool_exec": {
+  "GitHub": [
+   "A-project-handoff",
+   "gstack"
+  ],
+  "Cloudflare-D1": [],
+  "Cloudflare-R2": [],
+  "Cloudflare-Pages": [
+   "A-project-handoff",
+   "byted-bp-cdn-pagesdeploy"
+  ],
+  "Cloudflare-Workers": [],
+  "Cloudflare-Turnstile": [],
+  "Resend": [
+   "office-automation-pro"
+  ],
+  "Upstash-Redis": [],
+  "SQLite": [
+   "data-analysis",
+   "fenjue-memory-audit",
+   "web-access"
+  ],
+  "Pages-Functions": []
+ },
+ "per_skill": {
+  "A-get-memory": {
+   "GitHub": 2
+  },
+  "A-memory-start": {
+   "GitHub": 2
+  },
+  "A-project-better": {
+   "GitHub": 1
+  },
+  "A-project-handoff": {
+   "GitHub": 9,
+   "Cloudflare-Pages": 10
+  },
+  "A-skill-manager": {
+   "GitHub": 1
+  },
+  "byted-bp-cdn-pagesdeploy": {
+   "Cloudflare-Pages": 4
+  },
+  "chaoshi-image-optimization": {
+   "GitHub": 1,
+   "Cloudflare-R2": 1,
+   "Cloudflare-Pages": 4,
+   "Cloudflare-Turnstile": 22
+  },
+  "chaoshi-web-deploy": {
+   "GitHub": 14,
+   "Cloudflare-D1": 3,
+   "Cloudflare-Pages": 51,
+   "Cloudflare-Workers": 1,
+   "Pages-Functions": 5
+  },
+  "ci-pipeline-debugging": {
+   "GitHub": 8
+  },
+  "consulting-analysis": {
+   "GitHub": 1
+  },
+  "data-analysis": {
+   "SQLite": 2
+  },
+  "doc-coauthoring": {
+   "GitHub": 5
+  },
+  "docker-e2e-gate": {
+   "GitHub": 2
+  },
+  "fenjue-memory-audit": {
+   "SQLite": 18
+  },
+  "github": {
+   "GitHub": 16
+  },
+  "gstack": {
+   "GitHub": 4
+  },
+  "healthcare-eval-harness": {
+   "GitHub": 2
+  },
+  "hyperframes-registry": {
+   "GitHub": 2
+  },
+  "ican-deploy": {
+   "SQLite": 1
+  },
+  "office-automation-pro": {
+   "Resend": 13
+  },
+  "oracle": {
+   "GitHub": 1
+  },
+  "security-audit": {
+   "GitHub": 1
+  },
+  "shell-encoding-pitfalls": {
+   "GitHub": 1
+  },
+  "story": {
+   "GitHub": 2
+  },
+  "ui-ux-pro-max": {
+   "GitHub": 2
+  },
+  "verification-before-completion": {
+   "GitHub": 1,
+   "Cloudflare-Pages": 1
+  },
+  "web-access": {
+   "SQLite": 2
+  },
+  "win-toolchain-pitfalls": {
+   "GitHub": 5,
+   "Cloudflare-D1": 1,
+   "Cloudflare-Turnstile": 5
+  }
+ },
+ "zero_ref_tools": [
+  "Upstash-Redis"
+ ],
+ "third_face": {
+  "roots": [
+   "C:/Users/37533/Desktop/workspace/超市web/supermarket-web"
+  ],
+  "files_scanned": 1133,
+  "skip_dirs": [
+   "node_modules",
+   ".git",
+   "dist",
+   ".wrangler",
+   "archive",
+   "__pycache__"
+  ],
+  "provenance_cmd": "FJ_THIRD_FACE_ROOTS=<仓路径> python 05-exec/r163_tool_skill_matrix.py --json 件",
+  "note": [
+   "扫描面之外的项目仓面，只记录不判红；受管根内同类代码仍由 per_tool_exec 负责",
+   "（r224 已补 D1 数组参数形态）。None = 项目仓不在，禁读成零。"
+  ],
+  "per_tool": {
+   "Cloudflare-Pages": {
+    "hits": 70,
+    "files": [
+     "check-catalog-facts.mjs",
+     "check-functions-build.mjs",
+     "check-live-shape.mjs",
+     "client-rrUanrL5.js",
+     "collect-live-perf.mjs",
+     "cors.test.js",
+     "deliveryClaims.test.js",
+     "index-VD0DJw6T.js",
+     "livePerf.test.js",
+     "livePerfCollect.test.js",
+     "logger.test.js",
+     "print-tunnel.mjs",
+     "printApp.test.ts",
+     "printApp.ts",
+     "printUpload-F5wRsjFK.js",
+     "quarantinePerf.test.js",
+     "releaseParity.test.js",
+     "report-live-perf.mjs",
+     "security.js",
+     "smoke-deploy.mjs"
+    ]
+   },
+   "Pages-Functions": {
+    "hits": 19,
+    "files": [
+     "[[path]].js",
+     "backend.js",
+     "batchChunkContract.test.ts",
+     "check-functions-build.mjs",
+     "ciWorkflow.test.ts",
+     "cloudbase.ts",
+     "dify.js",
+     "error-codes.ts",
+     "local-api-stub.mjs",
+     "logger.js",
+     "minDeliveryParity.test.ts",
+     "orders.js",
+     "printApp.ts",
+     "printUpload.ts",
+     "services.ts",
+     "vite.config.js"
+    ]
+   },
+   "Cloudflare-D1": {
+    "hits": 217,
+    "files": [
+     "_health.js",
+     "audit-cancellation-local.js",
+     "audit-local.js",
+     "audit-workflow-stage.js",
+     "backup-print-data.mjs",
+     "backup.js",
+     "backupPrintData.test.js",
+     "backupRestore.test.js",
+     "batchProducts.test.js",
+     "cancellation-upgrade.test.js",
+     "check-cancellation-current.js",
+     "check-cancellation-upgrade.js",
+     "check-cli-entrypoints.mjs",
+     "check-d1-remote-usage.mjs",
+     "check-d1-roundtrips.mjs",
+     "check-distribution.js",
+     "check-governance-framework.mjs",
+     "check-upgrade-preconditions.js",
+     "check-workflow-upgrade.js",
+     "cliEntrypoints.test.js"
+    ]
+   },
+   "SQLite": {
+    "hits": 267,
+    "files": [
+     "001-foundation.sql",
+     "002-files.sql",
+     "100-orders.sql",
+     "101-account-security.sql",
+     "102-guest-access.sql",
+     "103-pricing-coupons.sql",
+     "104-merchant-service.sql",
+     "105-workflow-simplification.sql",
+     "106-cancellation-notice.sql",
+     "[[path]].js",
+     "actionAuthz.test.js",
+     "audit-cancellation-boundaries.js",
+     "audit-cancellation-local.js",
+     "audit-local.js",
+     "audit-workflow-boundaries.js",
+     "audit-workflow-stage.js",
+     "backup-print-data.mjs",
+     "backup.js",
+     "backupPrintData.test.js",
+     "backupRestore.test.js"
+    ]
+   },
+   "Cloudflare-Turnstile": {
+    "hits": 3,
+    "files": [
+     "backend.js",
+     "client.ts",
+     "errorSemantics.test.js"
+    ]
+   },
+   "GitHub": {
+    "hits": 36,
+    "files": [
+     "backupLiveness.test.js",
+     "benchmark-peers.mjs",
+     "bracketLexer.test.js",
+     "check-backup-liveness.mjs",
+     "check-branch-protection.mjs",
+     "check-changelog.mjs",
+     "check-cron-health.mjs",
+     "check-d1-remote-usage.mjs",
+     "check-d1-roundtrips.mjs",
+     "check-delivery-claims.mjs",
+     "check-escape-hatch-log.mjs",
+     "check-gate-parity.mjs",
+     "check-head-closure.mjs",
+     "check-limit-provenance.mjs",
+     "check-pr-has-tests.mjs",
+     "check-remote-divergence.mjs",
+     "ciWorkflow.test.ts",
+     "cronHealth.test.js",
+     "deliveryClaims.test.js",
+     "docCommands.test.js"
+    ]
+   },
+   "Cloudflare-Workers": {
+    "hits": 1,
+    "files": [
+     "check-functions-build.mjs"
+    ]
+   }
+  }
+ }
+}
