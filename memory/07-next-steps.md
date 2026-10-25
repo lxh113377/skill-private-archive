@@ -533,6 +533,28 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   取值：python -c 枚举 rule_editor.py 里所有 timeout= 行（改前 13 处、其中 3 处涉镜像）；
   python -m py_compile D:/global_skills/A-memory-start/references/rule_editor.py；
   FENJUE_MIRROR_TIMEOUT=1 python rule_editor.py gates（mirror 腿应快速失败并留痕，不再拖 300s）。
+  【r220 同轮校正，见 R220-4】本条原文「rc=1 且一行 GATE 结论都没打印」**是错的**：日志是 UTF-16LE+BOM，
+  我的解码判据只查 `raw[1]==0`（漏 `FF FE`）⇒ 把满屏 GATE 行读成空输出。原文按 R241 不改写，此处显式更正。
+  更正后的事实：`gates` 确实 rc=1，但输出含 `mirror=skip noise=fail evolution=fail stub=skip` 与
+  `[GATE:noise-fail]` / `[GATE:evolution-fail]` 等 24 行；第三处修复的实效证据是 mirror 腿**5 秒即返回**
+  并打印 `[gates] mirror 运行异常`（改前必拖满 300s 且静默）。
+- [ ] **R220-4（r220 登记，P1·已落地）** **我把「日志是空的」当成事实报了一次：UTF-16LE BOM 不被我的解码判据识别**： 【r220 裁决=执行（同轮更正「日志为空」的假结论：BOM 判据补 FF FE；第二次 -Fix 实测 1867.2s/[GATE:mirror-pass]/missing=0 mismatch=0/源==镜像=True，红线5 镜像腿闭环）｜读数：noise/evolution 两红按 mtime 定归属为并行会话与非受管根，按 R269 不代裁；注册表 191⇄191 三类全 0。】
+  一手：为查 `gates rc=1` 的原因，我读 `*>` 重定向的日志并自认「只打出 gates rc=1 一行、无 GATE 结论」，
+  还据此把 R220-2 写成「一行 GATE 结论都没打印」。实际该文件头两字节是 FF FE（PowerShell `*>` 默认写 
+  UTF-16LE），而我的判据是 `raw[1]===0` ⇒ 命中不到，于是按 UTF-8 解出满屏 NUL 分隔的伪空行，看着像没输出。
+  改用 `raw[0]===0xFF && raw[1]===0xFE` 判 BOM 后一次解出 24 行真内容。**症状是「零产出」时，先怀疑我的
+  读法，再断言对方没写**（本仓 INFRA 态不得读成 FAIL 的同一条，我这次是自己造了个 INFRA 误判）。
+  同条记第二次实测（修好阈值后的真值）：`check-skill-mirror.ps1 -Fix` **rc=0、耗时 1867.2s**（第一次 
+  2848.5s），末行 `[GATE:mirror-pass]` + `全文件树一致（missing=0 mismatch=0）; extra=61（警告级）`，
+  且 `rule_editor.py 源==镜像 = True` ⇒ R816/R817 两处改动已同步到镜像，红线5 的镜像腿闭环。
+  两次实测（2848.5s / 1867.2s）均远超原 300s 共用超时 ⇒ 第三处缺陷坐实；现均在 3600s 档内跑完。
+  另：`noise=fail`（2 项：D:\global_memory\.chain_status_r39.txt 待迁 _trash、D:\global_memory\05-exec 本体），
+  `evolution=fail`（会话块缺 [升级建议] 行的合法写法）——**两项都不在我的受管根**（前者 mtime 10-24 
+  13:07、后者 10-25 09:22 由并行会话写；我只改过 rule_editor.py 与 A-memory-start/SKILL.md），按 R269 不代裁、
+  只具名转告。注册表侧复算 191⇄191 三类全 0 [PASS]（R817 后重跑）。
+  取值：python -c 按 BOM 判 UTF-16LE 解 g220b.log（24 行，含 [GATE:noise-fail]）；
+  第二次 -Fix 的 rc/耗时/[GATE:mirror-pass]/源==镜像 四值同屏输出；python D:/global_skills/A-skill-manager/
+  assets/disk_registry_diff.py。
 - [ ] **R220-1（r220 登记，P1·已落地）** **我上一轮把「能修的假人工步骤」登记成「不改」：锚搞错归属，本轮修 rule_editor 的 180s 超时**： 【r220 裁决=执行（更正上一轮的归属错：timeout=180 在安全区内的 rule_editor，本轮改掉；两处超时分支各按其自陈口径处置）｜读数：四锚各命中 1、备份已落、验牙四例齐（py_compile rc=0、无残留 timeout=180、只读超时→True+状态未知、Fix 超时→False+无需人工、env 覆盖生效）。】
   更正自抓：r219 §74.6/R219-4 我写「阈值在焚诀侧件里，我不改（R269/红线6），只具名登记」——**归属错**。
   本轮定位：`rule_editor.py:93 MIRROR_FIX_PS1` 只是指向 ps1 的**被调用方路径**，真正卡死的 `timeout=180`
