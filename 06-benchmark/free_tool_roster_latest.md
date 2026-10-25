@@ -19,9 +19,9 @@
 | GitHub | 22 / 2 | 23 | 49（注释占比 0.49） | MEASURED | 24235.0 分钟（官方计费·账号级·端点默认窗口） | READY |
 | Cloudflare-D1 | 2 / 0 | 3 | 146（注释占比 0.151） | MEASURED | 8.9 MiB | READY |
 | Cloudflare-R2 | 1 / 0 | 0 | 0 | GAP_SERVICE | 未量 | [平台能力缺口] |
-| Cloudflare-Pages | 5 / 2 | 7 | 239（注释占比 0.148） | MEASURED | 199073 次 | READY |
+| Cloudflare-Pages | 5 / 2 | 7 | 239（注释占比 0.148） | MEASURED | 199115 次 | READY |
 | Cloudflare-Workers | 1 / 0 | 0 | 1（注释占比 1.0·仅注释） | MEASURED | 0 次 | [口径盲区] |
-| SQLite | 4 / 3 | 24 | 127（注释占比 0.139） | MEASURED | 11.94 MiB（本地库体量·非额度） | READY |
+| SQLite | 4 / 3 | 24 | 127（注释占比 0.139） | MEASURED | 11.99 MiB（本地库体量·非额度） | READY |
 | VS Code | 7 / 1 | 0 | 0 | 无读数面 | 未量 | [桌面 GUI 承载（非调用面）] |
 | Cloudflare-Turnstile | 2 / 0 | 25 | 3（注释占比 1.0·仅注释） | MEASURED | 0 次（校验请求） | READY |
 | Resend | 1 / 1 | 0 | 0 | 无读数面 | 未量 | GAP_CRED |
@@ -127,7 +127,7 @@
      ③ 取值：tool_skill_matrix_r244.json 的 third_face.per_tool，4131 件 / 2 仓 / 剪外来面 10 个）
 - 读数型真调用（第 4 层）：**MEASURED**（读得到数）
     （取值：r200_pages_face.py --json pages_http_latest.json 的 row/state）
-- 本月/当前用量：**199073 次**　窗口：2026-10-01~2026-10-26
+- 本月/当前用量：**199115 次**　窗口：2026-10-01~2026-10-26
     （取值：r200_pages_face.py --json pages_http_latest.json 的 row/requests_total）
 - 守它的判据：163 + 92 + 93
 - 工作流触点：chaoshi-web-deploy 部署权威入口（direct_map 10 pattern，任务话术直连命中）
@@ -179,7 +179,7 @@
      ③ 取值：tool_skill_matrix_r244.json 的 third_face.per_tool，4131 件 / 2 仓 / 剪外来面 10 个）
 - 读数型真调用（第 4 层）：**MEASURED**（读得到数）
     （取值：r243_sqlite_usage_face.py --json sqlite_usage_latest.json 的 state）
-- 本月/当前用量：**11.94 MiB（本地库体量·非额度）**（合计行数 42822）　窗口：2026-10-26T00:26:56
+- 本月/当前用量：**11.99 MiB（本地库体量·非额度）**（合计行数 42932）　窗口：2026-10-26T00:55:36
     （取值：r243_sqlite_usage_face.py --json sqlite_usage_latest.json 的 size_mib）
 - 守它的判据：163 + 85 + 93
 - 工作流触点：r203_ledger_index 用 SQLite 做门禁台账派生索引（读面与盲区均实测）

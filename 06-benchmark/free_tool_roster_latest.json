@@ -376,7 +376,7 @@
     ]
    },
    "read_why": null,
-   "usage_value": 199073,
+   "usage_value": 199115,
    "usage_meta": {
     "unit": "次",
     "extra": null,
@@ -534,12 +534,12 @@
     ]
    },
    "read_why": null,
-   "usage_value": 11.94,
+   "usage_value": 11.99,
    "usage_meta": {
     "unit": "MiB（本地库体量·非额度）",
-    "extra": 42822,
+    "extra": 42932,
     "extra_label": "合计行数",
-    "window": "2026-10-26T00:26:56"
+    "window": "2026-10-26T00:55:36"
    },
    "usage_why": null
   },
