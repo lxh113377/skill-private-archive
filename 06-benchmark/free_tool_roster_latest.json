@@ -127,7 +127,7 @@
     ]
    },
    "read_why": null,
-   "usage_value": 438.98,
+   "usage_value": 444.73,
    "usage_meta": {
     "unit": "分钟",
     "extra": null,
@@ -375,7 +375,7 @@
     ]
    },
    "read_why": null,
-   "usage_value": 198588,
+   "usage_value": 198600,
    "usage_meta": {
     "unit": "次",
     "extra": null,
