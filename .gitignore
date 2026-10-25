@@ -51,3 +51,9 @@ _temp/
 # 二者都不是「agent 随手散射」，也不该由我迁 _trash（迁进去即成新 orphan，反噬副本证明面）。
 /undefined/
 /%SystemDrive%/
+
+# r233：账龄自生成快照（r38 每轮写一份带时间戳的 debt_aging_r_autoregen_*.json）。
+#   它们是**每轮再生的过程件**、非交付内容：每跑一次全量门就多一个，导致提交面被 68 个时间戳
+#   文件灌满（r233 实测：一次全量 75 件里 68 件是它）。正本读数件是 debt_aging_*_final.json 与
+#   debt_runs.jsonl，本轮只把再生件移出索引（磁盘文件保留，不删）。
+06-benchmark/debt_aging_r_autoregen_*.json
