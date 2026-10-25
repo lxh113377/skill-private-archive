@@ -520,6 +520,28 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   sync/check-skill-mirror.ps1 -Fix（末行 [GATE:mirror-pass] 与 missing/mismatch 计数）；
   Get-FileHash 双件对账（D:/global_skills 与 C:/Users/37533/.agents/skills 同名件）。
   落点：报告 §74.6（补 74.5 的实测后续，不改上文原话，R241）。
+- [ ] **R220-1（r220 登记，P1·已落地）** **我上一轮把「能修的假人工步骤」登记成「不改」：锚搞错归属，本轮修 rule_editor 的 180s 超时**： 【r220 裁决=执行（更正上一轮的归属错：timeout=180 在安全区内的 rule_editor，本轮改掉；两处超时分支各按其自陈口径处置）｜读数：四锚各命中 1、备份已落、验牙四例齐（py_compile rc=0、无残留 timeout=180、只读超时→True+状态未知、Fix 超时→False+无需人工、env 覆盖生效）。】
+  更正自抓：r219 §74.6/R219-4 我写「阈值在焚诀侧件里，我不改（R269/红线6），只具名登记」——**归属错**。
+  本轮定位：`rule_editor.py:93 MIRROR_FIX_PS1` 只是指向 ps1 的**被调用方路径**，真正卡死的 `timeout=180`
+  在 `D:/global_skills/A-memory-start/references/rule_editor.py` L429（run_mirror_fix）与 L447
+  （_mirror_check_only）——安全区内、rule_editor 可改。⇒ 一条我能修的假人工步骤被我多留了一轮。
+  缺陷机理（实测数据 r219：-Fix 2711s、只读检查亦远超 180s ⇒ 差 ~15 倍）：① 只读检查超时 
+  `except Exception: return False` 把「没查成」读成「有漂移」，而它自己 docstring 就写着「避免把检查
+  不可用误报成镜像漂移」——意图与实现自相矛盾；② 判成漂移就真跑 -Fix → 再超时 → 打印「请手动执行」
+  ⇒ 每次 --fix-mirror 白等 3 分钟 + 一条人工指令（违 #29）。
+  改法（按它自陈口径，不新造规则）：`MIRROR_TIMEOUT_S = int(env FENJUE_MIRROR_TIMEOUT, "3600")`（实测最坏
+  2711s 的 ~1.3 倍余量，env 口是为能测判据本身）；只读检查超时 ⇒ return True + 打印「状态未知·不阻塞·
+  本次不自动 -Fix」（未知就标未知，也不得把未知当已知去触发 45 分钟副作用）；Fix 超时仍 return False
+  （据实失败）但措辞改「下次提交自动重试，无需人工介入」，两处「请手动执行」降为「诊断命令（非必做）」。
+  验牙四例齐：`python -m py_compile` rc=0／盘上无残留 `timeout=180`／env=1 时只读检查超时→True 且印
+  「状态未知」不含「请手动」／monkeypatch 抛 TimeoutExpired→Fix=False 印「无需人工」（零副作用不真跑 -Fix）／
+  env=5 重载 MIRROR_TIMEOUT_S==5。落盘走 rule_editor --patch 四锚（先验命中各 1 次）+ 备份
+  rule_backup/…085807_745238.bak；受管根提交与三门禁见本条取值。
+  过程中又错一次（同族）：#1 锚我照抄终端显示多了个冒号⇒命中 0；随后我**声称**补丁里有未定义函数
+  `mirror_allow_unknown()` 并准备去修——那是脑补，盘上没有此名。读回盘上真实文本才纠正。
+  元教训：**登记「我改不了」之前先确认那常量真在别人手里**；改判据必双向验牙。
+  取值：python -m py_compile D:/global_skills/A-memory-start/references/rule_editor.py；
+  python 05-exec/r220_mirror_teeth.py（本仓留档的四例验牙，零副作用）；git -C D:/global_skills show <sha>。
 - [ ] **R219-1（r219 登记，P1·已落地）** **100+ 轮后第一次去修而非再量：A-memory-start 加 77B 合法触发键，翻正门 88 两条 MISS 的窗口口径实测；并纠正 r135 度量面自身口径错**： 【r219 裁决=执行（修而非量：77B 合法触发键落盘并复测翻正；纠正 r135 口径错；留出验证抓出过拟合）｜读数：盘上 T1/T2 rank=1、S1 不退化、S2-S5 零抢活；受管根 d88c5f28（+1 行）；注册表三类全 0；注入面 +77B 与实测吻合。门 88 基线不减（生产读预建 npy，重建归焚诀侧）—— 已如实记账不谎称治好。】
   为什么现在才修：3 条 task MISS 里有 2 条（D1 查额度、Workers 调用量）want 都指向 A-memory-start，
   而我一直默认「承载件 dirty、动不了」——**没查过就默认**。本轮实测它 CLEAN（另两件 chaoshi-image-
