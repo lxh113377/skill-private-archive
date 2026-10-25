@@ -71,6 +71,8 @@ def main(argv=None):
     ap = argparse.ArgumentParser(description="候选池缓存打包入库（解离线复算对 _temp 的依赖）")
     ap.add_argument("--out", default=PACK_DEFAULT)
     ap.add_argument("--check", action="store_true", help="只比对包与活缓存，不写")
+    ap.add_argument("--ensure", action="store_true",
+                    help="幂等维护（季度巡检前置步）：一致不写；漂移按并集重建；活面空而包在则原包不动")
     ap.add_argument("--cache-dir", default=CACHE_DIR)
     ap.add_argument("--quiet", action="store_true")
     args = ap.parse_args(argv)
@@ -79,6 +81,40 @@ def main(argv=None):
     except Exception:  # noqa: BLE001
         pass
     live, nfiles, bad = read_entries(args.cache_dir)
+    pack_kept = 0
+    if args.ensure:
+        # 幂等维护分支（季度巡检的前置步走这里，不走裸建包路径）。三态：
+        #   一致 ⇒ 不写（mtime 不动，避免每轮一次无意义重写）；
+        #   漂移 ⇒ **并集**重建 merged = 包 ∪ 活，活件覆盖同名（活的是更新的一次实测）；
+        #   活面为空而包仍在 ⇒ 原包不动。
+        # 并集是必须的：若只按活面重建，散件一旦被部分清掉，包里的历史条目就随之消失 ——
+        # 等于「用来保护池的件自己把池杀了」，正是本件要解的病（R213-1）。
+        _pk = load_pack(args.out)
+        pk_e = _pk.get("entries") if isinstance(_pk, dict) else None
+        if not isinstance(pk_e, dict):
+            pk_e = {}
+        if not live:
+            if pk_e:
+                print("%s 活缓存为空（被清场）而包仍在（%d 条）⇒ 不重建、原包不动；离线复算仍靠包"
+                      % (TOK_OK, len(pk_e)))
+                return 0
+            print("%s 活缓存与包同时不可用 ⇒ 离线输入面真缺失，禁读成「无需池」（R247）" % TOK_UNV)
+            return 2
+        # 一致性口径与 --check 同向 = 超集判断（活 ⊆ 包 且逐条等值），**不是长度相等**：
+        # 并集重建后包的条目数本就会 ≥ 活面（保留了包内独有历史）；若按 len 相等判，则每次
+        # --ensure 都「检出漂移」而永久重写 ⇒ mtime 每轮变、幂等性是假的（r217 首版即犯此错）。
+        same = all(k in pk_e and json.dumps(pk_e[k], sort_keys=True) ==
+                   json.dumps(live[k], sort_keys=True) for k in live)
+        if same:
+            print("%s 包覆盖活缓存且逐条等值（活 %d 条 / 包 %d 条）⇒ 幂等不写"
+                  % (TOK_OK, len(live), len(pk_e)))
+            return 0
+        merged = dict(pk_e)
+        merged.update(live)
+        pack_kept = len([k for k in pk_e if k not in live])
+        print("[POOLPACK:ENSURE] 检出漂移 ⇒ 并集重建（包 %d ∪ 活 %d = %d 条，保留包内独有 %d 条）"
+              % (len(pk_e), len(live), len(merged), pack_kept))
+        live = merged
     if not live:
         print("%s 活缓存目录无可用条目（%s；文件 %d 个、坏件 %d）⇒ 零输入不建包也不判绿（R247）"
               % (TOK_UNV, os.path.relpath(args.cache_dir, ROOT), nfiles, bad))
@@ -105,6 +141,10 @@ def main(argv=None):
         "cmd": "python 05-exec/r217_pool_pack.py",
         "source_dir": os.path.relpath(args.cache_dir, ROOT).replace(os.sep, "/"),
         "entries_n": len(live), "skipped_bad_n": bad,
+        # 诚实读数：并集重建时 live = 包 ∪ 活 ⇒ entries_n 会大于散件数 loose_files_n。
+        # 两个数同时打出，否则下一轮看到「入册 420 / 散件 414」会误判成 bug。
+        "loose_files_n": nfiles, "kept_from_previous_pack_n": pack_kept,
+        "built_by": "ensure-union" if args.ensure else "full-rebuild",
         "note": "只读输入面：消费方（r114_replacement_scan.load_cache）在内存里合并「包 + 散件」，散件覆盖包；"
                 "本件不新增凭据、不改判定逻辑；缓存被清场后离线复算仍可用即靠本件。",
         "entries": live,

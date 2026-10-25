@@ -1,6 +1,6 @@
 {
  "schema": "upstream-probe-r112-v1",
- "generated_at": "2026-10-24T23:43:19+00:00",
+ "generated_at": "2026-10-25T01:49:42+00:00",
  "face": {
   "scan_file": "06-benchmark/quarterly/2026Q4/provenance.json",
   "targets_n": 40,

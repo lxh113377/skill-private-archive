@@ -1,13 +1,13 @@
 {
  "schema": "quarterly-skill-audit-v1",
  "quarter": "2026Q4",
- "generated_at": "2026-10-25T07:56:31+0800",
+ "generated_at": "2026-10-25T09:53:54+0800",
  "cmd": "python 05-exec/r113_quarterly_audit.py --quarter 2026Q4",
  "steps": [
   {
    "step": "provenance_scan",
    "rc": 0,
-   "ms": 603724,
+   "ms": 654292,
    "conclusion_rc": false,
    "stdout_tail": "JSON -> C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\06-benchmark\\quarterly\\2026Q4\\provenance.json\n面：权威源 191 件 ｜ 市场缓存 268 件（同名 12）｜ 语料 slug 3692\n置信四档：declared=28 inferred=33 self_built=66 unknown=64 ｜ 守恒 OK ｜ 自建名册面 77\n[PROVENANCE:SCAN] declared=28 inferred=33 self_built=66 unknown=64\n",
    "stderr_tail": ""
@@ -15,7 +15,7 @@
   {
    "step": "upstream_probe",
    "rc": 0,
-   "ms": 11290,
+   "ms": 26342,
    "conclusion_rc": false,
    "stdout_tail": "nly=35    upstream_only=14    上游最后提交 2026-07-08 chore: Rename project to Agentic Awesome Skills\n  scope-creep-detector                     local_ahead    local_only=2     upstream_only=0     上游最后提交 ? \n  security-audit                           UNVERIFIED 无可识别同源候选（全部 unrelated 或取不到）\n  shadcn                                   diverged       local_only=6     upstream_only=14    上游最后提交 2026-07-08 chore: Rename project to Agentic Awesome Skills\n  subagent-driven-development              UNVERIFIED 无可识别同源候选（全部 unrelated 或取不到）\n  test-driven-development                  diverged       local_only=49    upstream_only=11    上游最后提交 2026-09-19 Release v6.4.1: diagnosing-superpowers, Native plan executio\n  theme-factory                            local_ahead    local_only=2     upstream_only=0     上游最后提交 2025-12-01 Move example skills into dedicated folder and create minimal\n  ui-ux-pro-max                            UNVERIFIED 无可识别同源候选（全部 unrelated 或取不到）\n  verification-before-completion           UNVERIFIED 无可识别同源候选（全部 unrelated 或取不到）\n  web-design-guidelines                    diverged       local_only=3     upstream_only=1     上游最后提交 2026-03-29 Initial release — OpenMontage: the first open-source agentic\n  writing-plans                            local_ahead    local_only=16    upstream_only=0     上游最后提交 2026-09-25 Release v6.4.2: leaner plans from writing-plans (#2384)\n  xlsx                                     UNVERIFIED 无可识别同源候选（全部 unrelated 或取不到）\n[UPSTREAM:PROBE] ok=23 unverified=17\n",
    "stderr_tail": ""
@@ -23,7 +23,7 @@
   {
    "step": "swap_gate",
    "rc": 0,
-   "ms": 4729,
+   "ms": 7463,
    "conclusion_rc": false,
    "stdout_tail": ": 17, \"UPGRADE_REVIEW\": 10}\n上游有本地没有的内容（待比对/可升级）10 件：\n  github                                 UPGRADE_REVIEW upstream_only=17   local_only=38   上游提交 2026-07-08\n  react-best-practices                   UPGRADE_REVIEW upstream_only=14   local_only=35   上游提交 2026-07-08\n  shadcn                                 UPGRADE_REVIEW upstream_only=14   local_only=6    上游提交 2026-07-08\n  test-driven-development                UPGRADE_REVIEW upstream_only=11   local_only=49   上游提交 2026-09-19\n  defuddle                               UPGRADE_REVIEW upstream_only=2    local_only=21   上游提交 2026-09-09\n  hyperframes-registry                   UPGRADE_REVIEW upstream_only=2    local_only=11   上游提交 2026-06-27\n  healthcare-cdss-patterns               UPGRADE_REVIEW upstream_only=1    local_only=4    上游提交 2026-05-17\n  healthcare-emr-patterns                UPGRADE_REVIEW upstream_only=1    local_only=4    上游提交 2026-05-17\n  healthcare-eval-harness                UPGRADE_REVIEW upstream_only=1    local_only=4    上游提交 2026-05-17\n  web-design-guidelines                  UPGRADE_REVIEW upstream_only=1    local_only=3    上游提交 2026-03-29\nUNVERIFIED（同名但非同源/取不到，禁读成已核对）17 件：brainstorming, code-review, doc-coauthoring, docx, find-skills, frontend-design, frontend-slides, grill-me, hyperframes, hyperframes-cli, hyperframes-media, pdf, security-audit, subagent-driven-development, ui-ux-pro-max, verification-before-completion, xlsx\n[SWAP:GATE] counts={\"LOCAL_AHEAD_KEEP\": 13, \"UNVERIFIED\": 17, \"UPGRADE_REVIEW\": 10}\n",
    "stderr_tail": ""
@@ -31,7 +31,7 @@
   {
    "step": "provenance_face",
    "rc": 0,
-   "ms": 3690,
+   "ms": 20117,
    "conclusion_rc": false,
    "stdout_tail": "覆盖根自证：[{\"path\": \"C:\\\\Users\\\\37533\\\\.workbuddy\\\\skills-marketplace\\\\skills\", \"skill_n\": 268}, {\"path\": \"D:\\\\global_skills\", \"skill_n\": 182}]\n总面 182 ｜ 同源可判 39 ｜ 盲区 143（盲区禁读成「无缺口」）\n四档：{\"declared\": 28, \"inferred\": 32, \"self_built\": 66, \"unknown\": 56} ｜ pin 台账 130 行 / 126 slug ｜ 上游证据 OK=25 UNVERIFIED=14\n裁决：{\"UP_TO_DATE\": 12, \"UNVERIFIED\": 14, \"LOCAL_AHEAD_KEEP\": 2, \"UPGRADE_REVIEW\": 11}\n具名 UNVERIFIED（上游证据面）: brainstorming, code-review, docx, find-skills, frontend-design, grill-me, hyperframes, hyperframes-cli, hyperframes-media, pdf, security-audit, ui-ux-pro-max, verification-before-completion, xlsx\n具名 UNVERIFIED（裁决面）: brainstorming, code-review, docx, find-skills, frontend-design, grill-me, hyperframes, hyperframes-cli, hyperframes-media, pdf, security-audit, ui-ux-pro-max, verification-before-completion, xlsx\n[PROVENANCE:PASS]\n",
    "stderr_tail": ""
@@ -39,7 +39,7 @@
   {
    "step": "local_fm",
    "rc": 0,
-   "ms": 13111,
+   "ms": 18738,
    "conclusion_rc": false,
    "stdout_tail": "[LOCALFM:PASS] n=191 -> 06-benchmark\\local_frontmatter.json\n",
    "stderr_tail": ""
@@ -47,15 +47,23 @@
   {
    "step": "replacement_scan",
    "rc": 0,
-   "ms": 32456,
+   "ms": 48523,
    "conclusion_rc": false,
    "stdout_tail": "池：743 仓（15 条查询，api=0 cache=409）｜ 候选实测 394 仓\n四态：MATCHED=167 FAMILY_ONLY=11 NO_OS_CANDIDATE=13 UNVERIFIED=0 ｜ 守恒 191==191 OK\n  a-meta       A-族：记忆/交接/技能治理/编排            件= 19 族池=682\n  office       文档办公族：docx/xlsx/pdf/ppt/办公自动 件= 21 族池= 80\n  frontend     前端/UI/设计族                    件= 16 族池=276\n  browser      浏览器/桌面自动化族                   件= 11 族池=144\n  quality      调试/测试/评审/计划族                 件= 27 族池=645\n  media        视频/音频/图像/图表族                 件= 30 族池=104\n  local-ai     本地 AI 能力族（Intel AIPC / 离线模型） 件=  4 族池= 77\n  cloud        云平台/部署/数据库族                  件= 12 族池= 74\n  im           IM/协同办公族（钉钉/微信/Notion/知识）    件= 18 族池= 52\n  story        网文/创意写作族                     件= 18 族池= 63\n  win          Windows 本机运维族                件=  6 族池=164\n  knowledge    MCP/工程基建/发现族                 件=  8 族池=698\n  3d           3D/Blender 生产族（建模/渲染/装配/交付）  件=  1 族池= 31\nJSON -> C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\06-benchmark\\quarterly\\2026Q4\\replacement_matrix.json\n[REPL:PASS] 逐件候选面守恒 191==191 ｜ MATCHED=167 FAMILY_ONLY=11 NO_OS_CANDIDATE=13 UNVERIFIED=0\n",
    "stderr_tail": ""
   },
   {
+   "step": "pool_pack_ensure",
+   "rc": 0,
+   "ms": 81617,
+   "conclusion_rc": false,
+   "stdout_tail": "[POOLPACK:PASS] 包覆盖活缓存且逐条等值（活 414 条 / 包 414 条）⇒ 幂等不写\n",
+   "stderr_tail": ""
+  },
+  {
    "step": "quality_ab",
    "rc": 0,
-   "ms": 196145,
+   "ms": 41139,
    "conclusion_rc": false,
    "stdout_tail": "JSON -> C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\06-benchmark\\quarterly\\2026Q4\\quality_ab.json\n[QUALITY:MEASURED] method=hybrid top1=38.2 top3=55.1 hit=97.8 queries=99\n",
    "stderr_tail": ""
@@ -63,7 +71,7 @@
   {
    "step": "route_miss_attr",
    "rc": 0,
-   "ms": 111174,
+   "ms": 7058,
    "conclusion_rc": false,
    "stdout_tail": "JSON -> C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\06-benchmark\\quarterly\\2026Q4\\route_miss_attr.json\n[ROUTEMISS:PASS] miss=15 归因守恒（stale=8 unregistered=0 real=7 undecidable=0）\n",
    "stderr_tail": ""
@@ -71,7 +79,7 @@
   {
    "step": "miss_migration",
    "rc": 0,
-   "ms": 11025,
+   "ms": 246,
    "conclusion_rc": false,
    "stdout_tail": "JSON -> 06-benchmark\\quarterly\\2026Q4\\miss_migration.json\n[MIGRATION:CLEAN] 未见造假：无挪账、无转不可判、n 未缩、题面未消失、无重复键缩分母、face 与 rows 自洽\n",
    "stderr_tail": ""
@@ -79,7 +87,7 @@
   {
    "step": "quality_truth",
    "rc": 0,
-   "ms": 331177,
+   "ms": 4820,
    "conclusion_rc": false,
    "stdout_tail": "JSON -> C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\06-benchmark\\quarterly\\2026Q4\\quality_truth.json\n[QUALITY:PROD] L1=90.1% L2=65.0% L4=87.5%\n",
    "stderr_tail": ""
@@ -87,7 +95,7 @@
   {
    "step": "domain_face",
    "rc": 0,
-   "ms": 39089,
+   "ms": 2809,
    "conclusion_rc": false,
    "stdout_tail": "[DOMAINFACE] n=269 qdomain_none=67 mismatch=69(25.7%) live=62 stale=7 protected=57 exposed=5 real_fail=2\n[DOMAINFACE] 口径校准: r120原口径(raw)=65 ｜ 生产口径(norm)=69 ｜ 结论不同的题=4\n[DOMAINFACE] global_cf: 94.41% -> 92.54% (-1.87pp) flips=8 W/L=1/6 => NET_HARMFUL_TO_DISABLE\n[DOMAINFACE] JSON -> C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\06-benchmark\\quarterly\\2026Q4\\domain_face.json\n",
    "stderr_tail": ""
@@ -95,7 +103,7 @@
   {
    "step": "tag_closure",
    "rc": 0,
-   "ms": 6354,
+   "ms": 4725,
    "conclusion_rc": false,
    "stdout_tail": "[TAGCLOSE] 题面=279 可达=225 不可达=54（tag 2 / domain 51） tag_trap=1\n  TRAP 同步技能                               exp=A-skill-manager          raw_rank=1\n[TAGCLOSE] JSON -> C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\06-benchmark\\quarterly\\2026Q4\\tag_closure.json\n",
    "stderr_tail": ""
@@ -103,15 +111,15 @@
   {
    "step": "trace_face",
    "rc": 0,
-   "ms": 13078,
+   "ms": 3344,
    "conclusion_rc": false,
-   "stdout_tail": "[TRACEFACE] rows=26236 bad=0 noise=729 unique=226 span=4.86days fresh=0.1days\n[TRACEFACE] confidence={\"HIGH\": 24424, \"MEDIUM\": 1038, \"LOW\": 774} low=774 src={\"production\": 15693, \"regression\": 7230, \"guard-test\": 2953, \"adversarial\": 360}\n[TRACEFACE] conservation_ok=True\n[TRACEFACE] JSON -> C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\06-benchmark\\quarterly\\2026Q4\\trace_face.json\n",
+   "stdout_tail": "[TRACEFACE] rows=26351 bad=0 noise=735 unique=226 span=5.03days fresh=0.01days\n[TRACEFACE] confidence={\"HIGH\": 24525, \"MEDIUM\": 1044, \"LOW\": 782} low=782 src={\"production\": 15699, \"regression\": 7320, \"guard-test\": 2972, \"adversarial\": 360}\n[TRACEFACE] conservation_ok=True\n[TRACEFACE] JSON -> C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\06-benchmark\\quarterly\\2026Q4\\trace_face.json\n",
    "stderr_tail": ""
   },
   {
    "step": "swap_impact",
    "rc": 0,
-   "ms": 27751,
+   "ms": 9764,
    "conclusion_rc": false,
    "stdout_tail": "_n': 20, 'sentinel_seed': 20261018}\n[SWAPSIM] baseline full face: {'n': 279, 'hits': 261, 'top1_pct': 93.55, 'weighted_pct': 93.52}\n[SWAPSIM] variants=47 local_improved=0 local_degraded=2 subnet_changed=2 cross_flips=0\n[SWAPSIM] neg_control(slug=algorithmic-art) flips=0 pass=True | pos_control(slug=None) flips=None pass=False\n   algorithmic-art<-anthropics/skills             local    0.0 pp  subset    0.0 pp  flips=0\n   brainstorming<-obra/superpowers                local  -50.0 pp  subset  -4.55 pp  flips=1\n   brainstorming<-sickn33/agentic-awesome-skills  local  -50.0 pp  subset  -4.55 pp  flips=1\n   brand-guidelines<-anthropics/skills            local    0.0 pp  subset    0.0 pp  flips=0\n   canvas-design<-anthropics/skills               local    0.0 pp  subset    0.0 pp  flips=0\n   code-review<-github/awesome-copilot            local   None pp  subset    0.0 pp  flips=0\n   code-review<-mattpocock/skills                 local   None pp  subset    0.0 pp  flips=0\n   commit-archaeologist<-Shubhamsaboo/awesome-llm local   None pp  subset    0.0 pp  flips=0\n   defuddle<-kepano/obsidian-skills               local    0.0 pp  subset    0.0 pp  flips=0\n   doc-coauthoring<-anthropics/skills             local    0.0 pp  subset    0.0 pp  flips=0\n   docx<-anthropics/skills                        local    0.0 pp  subset    0.0 pp  flips=0\n   find-skills<-vercel-labs/skills                local    0.0 pp  subset    0.0 pp  flips=0\n[SWAPSIM] WARNING 正控未翻转 ⇒ 本实验无鉴别力，结论不得引用（负控 0 flip 属通过）\n",
    "stderr_tail": ""
@@ -119,7 +127,7 @@
   {
    "step": "req6_attainability",
    "rc": 1,
-   "ms": 518,
+   "ms": 276,
    "conclusion_rc": true,
    "stdout_tail": "JSON -> 06-benchmark\\quarterly\\2026Q4\\req6_attainability.json\n[REQ6:IMPOSSIBLE] 阈值在本面算术不可达（需 114.8 > 上限 95.2）\n",
    "stderr_tail": ""
@@ -201,13 +209,13 @@
   "source": "06-benchmark/quarterly/2026Q4/domain_face.json"
  },
  "trace_face_reading": {
-  "rows_n": 26236,
+  "rows_n": 26351,
   "unique_n": 226,
-  "noise_n": 729,
-  "empty_q_n": 1012,
-  "low_n": 774,
-  "span_days": 4.86,
-  "freshness_days": 0.1,
+  "noise_n": 735,
+  "empty_q_n": 1024,
+  "low_n": 782,
+  "span_days": 5.03,
+  "freshness_days": 0.01,
   "conservation_ok": true,
   "source": "06-benchmark/quarterly/2026Q4/trace_face.json"
  },

@@ -1,6 +1,6 @@
 {
  "schema": "route-miss-attr-r117-v1",
- "generated_at": "2026-10-24T23:49:22+00:00",
+ "generated_at": "2026-10-25T01:53:28+00:00",
  "cmd": "python 05-exec/r117_route_miss_attr.py",
  "superseded_by": "route_miss_attr_r119_*.json（r119 起改用实测口径；r117 仅作历史留痕）",
  "superseded_reason": "r128 对账实测 5 条假红（state 与 route() 顶层 top1 不一致）",

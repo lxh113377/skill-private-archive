@@ -1,6 +1,6 @@
 {
  "schema": "provenance-scan-r112-v2",
- "generated_at": "2026-10-24T23:43:09+00:00",
+ "generated_at": "2026-10-25T01:49:13+00:00",
  "face": {
   "roots": [
    {
@@ -126,7 +126,7 @@
    "slug": "A-memory-start",
    "local_sha256": "09da3ac344aee7693d40ebc1458eb18cb72818b15f964f994366bec620fa7342",
    "local_bytes": 12694,
-   "dir_manifest_sha256": "b4515c1086323075d66bd91aa799980123b21f518c5aad9a09ad76efd85d1fa3",
+   "dir_manifest_sha256": "9741ad1e7d67cbed1fed44738db5fb8309427a7dd4e7de61640c83d9ced59ef9",
    "dir_file_n": 27,
    "mtime": "2026-10-25T06:53:05",
    "fm_version": "10.95.0",
@@ -196,15 +196,15 @@
   },
   {
    "slug": "A-skill-manager",
-   "local_sha256": "a7ef56d767993107fef6bca465220ec2f5fd8f222e55706d0acfc6bceac8b2ce",
-   "local_bytes": 12018,
-   "dir_manifest_sha256": "1f383df834b0a73e8d2cf6e0ca2211b582a77531face35bacbfe722a987fec7b",
+   "local_sha256": "0b6475642d2f2153b1a79d2aa0ceea92a09c018403bc79a5bd9b16b6046ba757",
+   "local_bytes": 10712,
+   "dir_manifest_sha256": "abb14378c63a7f15c0d01bcd11f20e407f6727de526293cfcfd6b67e794d0aeb",
    "dir_file_n": 46,
-   "mtime": "2026-10-24T23:02:01",
-   "fm_version": "1.20.0",
-   "fm_last_updated": "2026-10-20",
+   "mtime": "2026-10-25T07:59:33",
+   "fm_version": "1.21.0",
+   "fm_last_updated": "2026-10-25",
    "registry_source": "user-created",
-   "registry_version": "1.20.0",
+   "registry_version": "1.21.0",
    "registry_user_created": true,
    "declared": {},
    "inferred_upstreams": [],
@@ -3767,7 +3767,7 @@
    "slug": "subagent-driven-development",
    "local_sha256": "c42a06a8a11303a65156841e543f994f1f0c7e06713c2160380de6e8a801e034",
    "local_bytes": 6243,
-   "dir_manifest_sha256": "93bb2f2aa809879d3e2d83c93a28bd2fed3d1f02df23072d976ae517b54c40e3",
+   "dir_manifest_sha256": "8b783b299d164bda0e454f6c7a4d9479e1780f27e29d9f3c69e31d4686c3e7fe",
    "dir_file_n": 10,
    "mtime": "2026-10-25T07:17:29",
    "fm_version": "1.1.0",

@@ -325,6 +325,17 @@ def main():
     # （r114 自记「串行 311 仓 ≈ 83 分钟」，现 --workers 8 ⇒ 下界约 10 分钟，但含限流退避）。
     # 给 2400s 是量出来的上界余量，不是「为了变绿放宽」——超时与失败在产物里同样具名（rc=None/error 行）。
     steps.append(run_step("replacement_scan", repl_argv, timeout=2400))
+    # r217 前置步（池包幂等维护）：把「记得每季度手跑一次打包」从人身上拿掉。
+    # 存在理由：05-exec/r217_pool_pack.py 是 R213-1 的生成器，但生成器没人调用 = 死句柄
+    #   （W-46 / 与我今早已修的 R211-7 同一形态）；而机制的输入面 _temp/r114_search_cache/
+    #   被 gitignore 且并行会话按扩展名清过场（R189-2 实测 212 件）⇒ 不自动续池，离线复算
+    #   迟早再红一次。放在 replacement_scan **之后**：联网轮新增的散件条目当轮即并进入库包。
+    # 幂等：包已覆盖活面时 --ensure 不写（mtime 不动）；活面被清空而包在 ⇒ 原包不动（防自杀式重建）。
+    # rc=1 = 漂移后重建失败等真故障 ⇒ 用默认 run_step 计入失败步，不洗绿。
+    pool_pack = os.path.join(BENCH, "pool_cache_r217.json")
+    steps.append(run_step("pool_pack_ensure",
+                          [PY, os.path.join(HERE, "r217_pool_pack.py"),
+                           "--ensure", "--out", pool_pack, "--quiet"]))
     # r114 第 ⑦ 段：eval 内三方法对照（**口径降级**：r115 已证它不是生产路由读数，
     # 保留只为跨季观察「轻量匹配」而存在；质量主指标看第 ⑨ 段 r115_quality_truth.py）
     qual_argv = [PY, os.path.join(HERE, "r114_quality_ab.py"), "--json", qual, "--quiet"]
@@ -422,7 +433,7 @@ def main():
 
     face_ok = (all(os.path.isfile(p) for p in
                    (prov, up, swap, repl, qual, rmiss, truth, swap_impact, domain_face,
-                    trace_face, tag_closure, req6_att, miss_mig))
+                    trace_face, tag_closure, req6_att, miss_mig, pool_pack))
                and not failed)
     face_reason = None
     if not os.path.isfile(prov):
