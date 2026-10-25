@@ -1,0 +1,21 @@
+{
+ "schema": "caliber-flip-r220-v1",
+ "generated_at": "2026-10-25T03:10:54+00:00",
+ "cmd": "python 05-exec/r220_caliber_flip.py",
+ "inputs": {
+  "matrix": "06-benchmark/quarterly/2026Q4/replacement_matrix.json",
+  "producer": "05-exec/r114_replacement_scan.py"
+ },
+ "decision_rule": "覆盖=全部候选行 且 翻转=0 ⇒ 本仓自行把 C1 前置切到 skill_md_exact_n 并留 R241 校正注；否则保持旧口径不动（等数据，不等签字）",
+ "reading": {
+  "candidates_total": 937,
+  "rows_with_both_calibers": 17,
+  "rows_missing_exact": 920,
+  "coverage_pct": 1.8,
+  "bucket_flag_flips": 0,
+  "ghost_positive_rows": 17,
+  "max_ghost_per_row": 5,
+  "flip_examples": [],
+  "state": "CLEAN"
+ }
+}

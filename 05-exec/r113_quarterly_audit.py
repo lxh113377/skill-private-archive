@@ -336,6 +336,15 @@ def main():
     steps.append(run_step("pool_pack_ensure",
                           [PY, os.path.join(HERE, "r217_pool_pack.py"),
                            "--ensure", "--out", pool_pack, "--quiet"]))
+    # r220 新增步（判据切换的前置定量）：严格口径 skill_md_exact_n 会不会改变任何 C1 分桶结论。
+    # 存在理由：我把「是否切换判据」记成「须另行单独裁」后，这句话本身不可复算 —— 没人算过
+    #   翻转数与双读数覆盖率。本步把它钉成读数；输入 = 本轮刚产的 replacement_matrix.json（零网络）。
+    # rc 语义：0 = 零翻转（覆盖满则 READY、不足则 CLEAN）；1 = 检得分桶翻转（真问题，须逐条读）；
+    #   2 = 无任何双读数行 = 切换前置无法量化，属**输入面真缺口**（不是设计内红）⇒ 计入失败步。
+    caliber_flip = os.path.join(qdir, "caliber_flip.json")
+    steps.append(run_step("caliber_flip",
+                          [PY, os.path.join(HERE, "r220_caliber_flip.py"),
+                           "--matrix", repl, "--json", caliber_flip, "--quiet"]))
     # r114 第 ⑦ 段：eval 内三方法对照（**口径降级**：r115 已证它不是生产路由读数，
     # 保留只为跨季观察「轻量匹配」而存在；质量主指标看第 ⑨ 段 r115_quality_truth.py）
     qual_argv = [PY, os.path.join(HERE, "r114_quality_ab.py"), "--json", qual, "--quiet"]
@@ -433,7 +442,7 @@ def main():
 
     face_ok = (all(os.path.isfile(p) for p in
                    (prov, up, swap, repl, qual, rmiss, truth, swap_impact, domain_face,
-                    trace_face, tag_closure, req6_att, miss_mig, pool_pack))
+                    trace_face, tag_closure, req6_att, miss_mig, pool_pack, caliber_flip))
                and not failed)
     face_reason = None
     if not os.path.isfile(prov):
@@ -457,7 +466,8 @@ def main():
                       "swap_impact": swap_impact, "domain_face": domain_face,
                       "trace_face": trace_face, "tag_closure": tag_closure,
                       "req6_attainability": req6_att,
-                      "miss_migration": miss_mig},
+                      "miss_migration": miss_mig,
+                      "caliber_flip": caliber_flip},
         "swap_impact_reading": _read_swap_impact(swap_impact),
         "domain_face_reading": _r120b_domain_reading,
         "trace_face_reading": _r120b_trace_reading,

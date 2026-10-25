@@ -1,13 +1,13 @@
 {
  "schema": "replacement-matrix-r114-v1",
- "generated_at": "2026-10-25T01:51:17+00:00",
+ "generated_at": "2026-10-25T03:31:59+00:00",
  "cmd": "python 05-exec/r114_replacement_scan.py",
  "face": {
   "local_n": 191,
   "pool_n": 743,
   "queries_n": 15,
   "families_n": 13,
-  "candidates_measured": 394,
+  "candidates_measured": 392,
   "strict_caliber_coverage": {
    "candidates_total": 937,
    "with_exact_field": 17,
@@ -15,7 +15,7 @@
    "coverage_note": "skill_md_exact_n / skill_md_ghost_n 只在**重取树**时产生（--remeasure，须联网）；池缓存旧件无该字段 ⇒ 读成 None。禁补 0，禁把「无字段」读成「严格口径=0」（R247）。"
   },
   "api_calls": 0,
-  "cache_hits": 409,
+  "cache_hits": 407,
   "cache_miss": 0,
   "offline": true,
   "cache_provenance": {
@@ -18524,57 +18524,46 @@
    "slug": "oracle",
    "family": "quality",
    "family_name": "调试/测试/评审/计划族",
-   "local_bytes": 8240,
-   "local_desc_len": 266,
+   "local_bytes": 9910,
+   "local_desc_len": 882,
    "keywords": [
     "oracle",
-    "second",
-    "model",
     "review",
     "debug",
     "refactor",
     "design",
-    "selected"
+    "summary",
+    "files",
+    "report"
    ],
-   "dropped_tokens": [
-    {
-     "token": "claude",
-     "df": 0.65,
-     "why": "desc 词过泛"
-    },
-    {
-     "token": "code",
-     "df": 0.555,
-     "why": "desc 词过泛"
-    }
-   ],
+   "dropped_tokens": [],
    "family_pool_n": 645,
    "candidates_n": 5,
    "skill_relevant_n": 12,
    "candidates": [
     {
-     "repo": "JuliusBrussee/caveman",
+     "repo": "Imbad0202/academic-research-skills",
      "rel": "skill",
      "rel_strength": 2,
      "score5": {
-      "fc": 4,
+      "fc": 3,
       "eff": 5,
       "compat": 5,
-      "docs": 4,
+      "docs": 5,
       "community": 5
      },
      "score_total": 23,
-     "stars": 114784,
+     "stars": 53725,
      "pushed_at": "2026-10-24",
-     "license": "Apache-2.0",
+     "license": "NOASSERTION",
      "archived": false,
-     "skill_md_n": 28,
+     "skill_md_n": 5,
      "skill_md_exact_n": null,
      "skill_md_ghost_n": null,
-     "docs_md_n": 37,
-     "test_path_n": 346,
-     "workflow_n": 16,
-     "description": "🪨 why use many token when few token do trick. Viral skill + proxy for coding agents that cuts 65% of tokens by talking like a caveman."
+     "docs_md_n": 120,
+     "test_path_n": 354,
+     "workflow_n": 14,
+     "description": "Academic Research Skills for Claude Code: research → write → review → revise → finalize"
     },
     {
      "repo": "wanshuiyin/Auto-claude-code-research-in-sleep",
@@ -18601,33 +18590,57 @@
      "description": "ARIS ⚔️ (Auto-Research-In-Sleep) — Lightweight Markdown-only skills for autonomous ML research: cross-model review loops, idea discovery, and experime"
     },
     {
-     "repo": "langgenius/dify",
+     "repo": "calesthio/OpenMontage",
      "rel": "skill",
-     "rel_strength": 1,
+     "rel_strength": 2,
      "score5": {
-      "fc": 3,
-      "eff": 5,
+      "fc": 5,
+      "eff": 3,
       "compat": 5,
-      "docs": 5,
+      "docs": 4,
       "community": 5
      },
-     "score_total": 23,
-     "stars": 159431,
+     "score_total": 22,
+     "stars": 71519,
+     "pushed_at": "2026-10-24",
+     "license": "AGPL-3.0",
+     "archived": false,
+     "skill_md_n": 140,
+     "skill_md_exact_n": null,
+     "skill_md_ghost_n": null,
+     "docs_md_n": 9,
+     "test_path_n": 162,
+     "workflow_n": 1,
+     "description": "World's first open-source, agentic video production system. 12 production pipelines, 100+ tools, 700+ agent skill and production-knowledge files. Turn"
+    },
+    {
+     "repo": "mksglu/context-mode",
+     "rel": "skill",
+     "rel_strength": 2,
+     "score5": {
+      "fc": 4,
+      "eff": 5,
+      "compat": 5,
+      "docs": 4,
+      "community": 4
+     },
+     "score_total": 22,
+     "stars": 32110,
      "pushed_at": "2026-10-24",
      "license": "NOASSERTION",
      "archived": false,
-     "skill_md_n": 7,
+     "skill_md_n": 11,
      "skill_md_exact_n": null,
      "skill_md_ghost_n": null,
-     "docs_md_n": 46,
-     "test_path_n": 4233,
-     "workflow_n": 41,
-     "description": "Build Agentic workflows, RAG pipelines, with rich AI model and tool support on one collaborative workspace. Deploy on cloud, VPC, or self-hosted, so t"
+     "docs_md_n": 9,
+     "test_path_n": 252,
+     "workflow_n": 5,
+     "description": "Context window optimization for AI coding agents. Sandboxes tool output (98% reduction), persists session memory, and   enforces routing across 17 pla"
     },
     {
      "repo": "LibreChat-AI/LibreChat",
      "rel": "skill",
-     "rel_strength": 2,
+     "rel_strength": 3,
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -18647,30 +18660,6 @@
      "test_path_n": 1076,
      "workflow_n": 32,
      "description": "Enhanced ChatGPT Clone: Features Agents, MCP, Skills, DeepSeek, Anthropic, AWS, OpenAI, Responses API, Azure, Groq, o1, GPT-5, Mistral, OpenRouter, Ve"
-    },
-    {
-     "repo": "AgriciDaniel/claude-obsidian",
-     "rel": "skill",
-     "rel_strength": 2,
-     "score5": {
-      "fc": 4,
-      "eff": 3,
-      "compat": 5,
-      "docs": 4,
-      "community": 4
-     },
-     "score_total": 20,
-     "stars": 15783,
-     "pushed_at": "2026-10-22",
-     "license": "MIT",
-     "archived": false,
-     "skill_md_n": 16,
-     "skill_md_exact_n": null,
-     "skill_md_ghost_n": null,
-     "docs_md_n": 13,
-     "test_path_n": 84,
-     "workflow_n": 2,
-     "description": "Self-organizing AI second brain for Obsidian + Claude Code. Drop any source and Claude reads, links, and files it into one connected knowledge graph o"
     }
    ],
    "verdict": "MATCHED",
@@ -23219,8 +23208,8 @@
    "slug": "subagent-driven-development",
    "family": "quality",
    "family_name": "调试/测试/评审/计划族",
-   "local_bytes": 6243,
-   "local_desc_len": 394,
+   "local_bytes": 7203,
+   "local_desc_len": 696,
    "keywords": [
     "subagent",
     "driven",
@@ -23229,7 +23218,7 @@
     "superpowers",
     "executing",
     "plans",
-    "v6\\.4\\+"
+    "inline"
    ],
    "dropped_tokens": [],
    "family_pool_n": 645,

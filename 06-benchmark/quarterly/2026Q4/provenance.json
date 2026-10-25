@@ -1,6 +1,6 @@
 {
  "schema": "provenance-scan-r112-v2",
- "generated_at": "2026-10-25T01:49:13+00:00",
+ "generated_at": "2026-10-25T03:28:20+00:00",
  "face": {
   "roots": [
    {
@@ -126,7 +126,7 @@
    "slug": "A-memory-start",
    "local_sha256": "09da3ac344aee7693d40ebc1458eb18cb72818b15f964f994366bec620fa7342",
    "local_bytes": 12694,
-   "dir_manifest_sha256": "9741ad1e7d67cbed1fed44738db5fb8309427a7dd4e7de61640c83d9ced59ef9",
+   "dir_manifest_sha256": "511c831b5b4e06cac2e9292d152aa693dfff3f8e6fbf8635a04aaf6c31307b1e",
    "dir_file_n": 27,
    "mtime": "2026-10-25T06:53:05",
    "fm_version": "10.95.0",
@@ -3070,15 +3070,15 @@
   },
   {
    "slug": "oracle",
-   "local_sha256": "b2f816b3dc79a5131007849c4ecfd49d49ec999fd577fee9f65ddb91d1895488",
-   "local_bytes": 8240,
-   "dir_manifest_sha256": "90b2da06f7409de39a4dc29f5b16546074695ac5a3e91fe3d99c2ef40ea345df",
+   "local_sha256": "7a3014ea5726a4bbde020ac456bd65e5902a97edd3cd49d1d83a7bb2658ba76b",
+   "local_bytes": 9910,
+   "dir_manifest_sha256": "f03959fdabd7774837e357b7d00b0169e6f2d272fb4a3689a8a8815b7d70371a",
    "dir_file_n": 8,
-   "mtime": "2026-10-25T02:30:32",
-   "fm_version": "1.1.0",
+   "mtime": "2026-10-25T11:13:44",
+   "fm_version": "1.2.0",
    "fm_last_updated": "2026-10-25",
    "registry_source": "community",
-   "registry_version": "1.1.0",
+   "registry_version": "1.2.0",
    "registry_user_created": false,
    "declared": {
     "_skillhub_meta.json": {
@@ -3765,15 +3765,15 @@
   },
   {
    "slug": "subagent-driven-development",
-   "local_sha256": "c42a06a8a11303a65156841e543f994f1f0c7e06713c2160380de6e8a801e034",
-   "local_bytes": 6243,
-   "dir_manifest_sha256": "8b783b299d164bda0e454f6c7a4d9479e1780f27e29d9f3c69e31d4686c3e7fe",
+   "local_sha256": "90a7c24e213718529a15d76f21bbe049bc716daaa7afd01ebbe91bc38ca31bb6",
+   "local_bytes": 7203,
+   "dir_manifest_sha256": "808a5fdf095583a30b432800fb26efa6b09ae953aab671d2c951481e90e0e4ed",
    "dir_file_n": 10,
-   "mtime": "2026-10-25T07:17:29",
-   "fm_version": "1.1.0",
+   "mtime": "2026-10-25T11:13:44",
+   "fm_version": "1.2.0",
    "fm_last_updated": null,
    "registry_source": "community",
-   "registry_version": "1.1.0",
+   "registry_version": "1.2.0",
    "registry_user_created": false,
    "declared": {},
    "inferred_upstreams": [
