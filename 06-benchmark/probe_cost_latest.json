@@ -1,7 +1,7 @@
 {
  "schema": "probe-cost-v5",
  "readonly": true,
- "gate_table_count": 97,
+ "gate_table_count": 105,
  "rows": [
   {
    "gate": "cache_guard_face",
@@ -277,14 +277,33 @@
     "github": 0
    },
    "state": "NO_EXTERNAL_CALLS"
+  },
+  {
+   "gate": "gh_billing_face",
+   "script": "r241_gh_billing_face.py",
+   "apis": [
+    "github"
+   ],
+   "portable": true,
+   "declared": {
+    "cloudflare": 0,
+    "github": 1
+   },
+   "measured": {
+    "cloudflare": 0,
+    "github": 1
+   },
+   "state": "OK"
   }
  ],
  "problems": [],
  "worst_case_per_run": {
-  "github": 8,
+  "github": 9,
   "cloudflare": 13
  },
- "ci_per_run": {},
+ "ci_per_run": {
+  "github": 1
+ },
  "manifest": "probe_cost_measure_latest.json",
  "note": "口径见件头：分母=门表已注册＋有外部机械＋命中厂商标记；以零联网实测 manifest 对账，静态假阳性不计成本。本轮实测撞过一次 CF GraphQL 限流（Rate limiter budget depleted），故监控自身的调用足迹必须可见。",
  "provenance_cmd": "python 05-exec/r200_probe_cost_face.py --json <件>"

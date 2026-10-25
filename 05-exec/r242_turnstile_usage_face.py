@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 '''r242_turnstile_usage_face.py - Turnstile 官方用量面（r242 新建，只读）。
+# CALLS_PER_RUN: cloudflare=1 github=0   (实测：python 05-exec/r200_probe_cost_measure.py)
 
 存在理由（r242 一手）：名册对 Turnstile 的第 ④ 层写的是「无读数面」，理由引的是 r228 那句
     「该读数门（r163_turnstile_face）argv 不带 --json、不做额度读数」。

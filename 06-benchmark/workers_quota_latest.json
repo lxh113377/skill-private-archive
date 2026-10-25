@@ -3,11 +3,10 @@
  "readonly": true,
  "row": {
   "tool": "cloudflare_workers_requests",
-  "state": "MEASURED",
-  "why": "",
+  "state": "UNVERIFIED",
+  "why": "GraphQL 报错：[{\"message\": \"Rate limiter budget depleted. Please try again after 5 minutes. Refer to this page for more details about rate limits: https://developer",
   "cred_path": "C:\\Users\\37533\\AppData\\Roaming\\xdg.config\\.wrangler\\config\\default.toml",
-  "window": "2026-10-01~2026-10-26",
-  "invocations_month": 0
+  "window": "2026-10-01~2026-10-26"
  },
  "provenance_cmd": "python 05-exec/r199_workers_face.py --json <件>"
 }

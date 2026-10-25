@@ -5,7 +5,7 @@
  "items": [
   {
    "tool": "GitHub",
-   "state": "READY",
+   "state": "GAP_CRED",
    "mention_skills": [
     "A-get-memory",
     "A-memory-start",
@@ -125,7 +125,7 @@
     ]
    },
    "read_why": null,
-   "usage_value": 24235.0,
+   "usage_value": 24774.0,
    "usage_meta": {
     "unit": "分钟（官方计费·账号级·端点默认窗口）",
     "extra": 0.0,
@@ -139,7 +139,7 @@
   },
   {
    "tool": "Cloudflare-D1",
-   "state": "READY",
+   "state": "GAP_CRED",
    "mention_skills": [
     "chaoshi-web-deploy",
     "win-toolchain-pitfalls"
@@ -243,7 +243,7 @@
   },
   {
    "tool": "Cloudflare-R2",
-   "state": "GAP_SERVICE",
+   "state": "GAP_CRED",
    "mention_skills": [
     "chaoshi-image-optimization"
    ],
@@ -294,7 +294,7 @@
   },
   {
    "tool": "Cloudflare-Pages",
-   "state": "READY",
+   "state": "GAP_CRED",
    "mention_skills": [
     "A-project-handoff",
     "byted-bp-cdn-pagesdeploy",
@@ -376,7 +376,7 @@
     ]
    },
    "read_why": null,
-   "usage_value": 199308,
+   "usage_value": 199353,
    "usage_meta": {
     "unit": "次",
     "extra": null,
@@ -387,7 +387,7 @@
   },
   {
    "tool": "Cloudflare-Workers",
-   "state": "READY",
+   "state": "GAP_CRED",
    "mention_skills": [
     "chaoshi-web-deploy"
    ],
@@ -429,7 +429,7 @@
     "why": "我的真实用法是**读数型**：走 CF GraphQL analytics 读调用数（token 见证据件），而形态级正则只认部署形态的三类写法 ⇒ 它看不见读数型搭配（不为此写假调用凑数）",
     "evidence": "python 05-exec/r199_workers_face.py --json 06-benchmark/workers_quota_latest.json（真跑 MEASURED）；token workersInvocationsAdaptive 见该件 L50/L108"
    },
-   "read_state": "MEASURED",
+   "read_state": "UNVERIFIED",
    "read_face": {
     "script": "r199_workers_face.py",
     "artifact": "workers_quota_latest.json",
@@ -448,14 +448,9 @@
     ]
    },
    "read_why": null,
-   "usage_value": 0,
-   "usage_meta": {
-    "unit": "次",
-    "extra": null,
-    "extra_label": null,
-    "window": "2026-10-01~2026-10-26"
-   },
-   "usage_why": null
+   "usage_value": null,
+   "usage_meta": null,
+   "usage_why": "路径取不到：row/invocations_month"
   },
   {
    "tool": "SQLite",
@@ -534,12 +529,12 @@
     ]
    },
    "read_why": null,
-   "usage_value": 12.15,
+   "usage_value": 12.24,
    "usage_meta": {
     "unit": "MiB（本地库体量·非额度）",
-    "extra": 43265,
+    "extra": 43485,
     "extra_label": "合计行数",
-    "window": "2026-10-26T02:09:32"
+    "window": "2026-10-26T02:58:51"
    },
    "usage_why": null
   },
@@ -604,11 +599,12 @@
    ],
    "exec_skills": [],
    "yardstick_absent": false,
-   "wf_real_hits": 26,
+   "wf_real_hits": 27,
    "wf_real_files": [
     "r163_turnstile_admin.py",
     "r209_route_truth_measure.py",
-    "r247_dup_policy_scan.py"
+    "r247_dup_policy_scan.py",
+    "r250_source_freshness_scan.py"
    ],
    "third_hits": 3,
    "third_files": [
@@ -664,8 +660,8 @@
     "extra": null,
     "extra_label": null,
     "window": [
-     "2026-09-30",
-     "2026-10-25"
+     "2026-10-01",
+     "2026-10-26"
     ]
    },
    "usage_why": null
@@ -764,18 +760,18 @@
   },
   "matrix_src": {
    "file": "tool_skill_matrix_latest.json",
-   "generated_at": "2026-10-26 02:06",
+   "generated_at": "2026-10-26 02:54",
    "cmd": "python 05-exec/r163_tool_skill_matrix.py --json <out>"
   },
   "workflow_src": {
    "file": "workflow_usage_latest.json",
    "generated_at": null,
-   "face_files": 269,
-   "real_face_files": 155,
-   "real_total_hits": 83
+   "face_files": 270,
+   "real_face_files": 156,
+   "real_total_hits": 84
   },
   "third_src": {
-   "files_scanned": 4131,
+   "files_scanned": 4133,
    "roots": [
     "C:/Users/37533/Desktop/workspace/超市web/supermarket-web",
     "C:/Users/37533/Desktop/workspace/项目/新建文件夹"

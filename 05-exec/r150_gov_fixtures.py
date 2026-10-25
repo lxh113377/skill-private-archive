@@ -354,7 +354,8 @@ def part6_acceptance(tmp):
 
 MUTATIONS = [
     ("m1_life_draft_always_true", LIFE_SRC,
-     "drafted = bool(exists and size > 0 and (g.get(\"why\") or \"\").strip())",
+     # r250：r150 的 why 处理已加固（容忍 list/tuple）⇒ 变异锚点同步改到新行；夹具意图不变。
+     "drafted = bool(exists and size > 0 and (_why or \"\").strip())",
      "drafted = True"),
     ("m2_life_review_always_true", LIFE_SRC,
      "reviewed = (gid in recon[\"registered\"]) or (gid in recon[\"snapshot_ids\"])",

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 '''r241_gh_billing_face.py - GitHub 官方计费用量面（r241 新建，只读）。
+# CALLS_PER_RUN: cloudflare=0 github=1   (实测：python 05-exec/r200_probe_cost_measure.py)
 
 存在理由（r241 一手）：配额件 r196 里我自己写下过一条缺口 ——
     「官方免费分钟数本轮未取到可靠出处（docs 页面为 JS 壳，服务端渲染取不到表格）
