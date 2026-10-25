@@ -27,7 +27,7 @@
     ③ 项目仓（第 67 门 r226 third_face，已剪 vendored 外来面）：49
         命中所在件 = backupLiveness.test.js, benchmark-peers.mjs, bracketLexer.test.js, cache_bump_guard.py, check-backup-liveness.mjs, check-branch-protection.mjs, check-changelog.mjs, check-cron-health.mjs, check-d1-remote-usage.mjs, check-d1-roundtrips.mjs, check-delivery-claims.mjs, check-escape-hatch-log.mjs, check-gate-parity.mjs, check-head-closure.mjs, check-limit-provenance.mjs, check-pr-has-tests.mjs, check-remote-divergence.mjs, ciWorkflow.test.ts, ci_diag_r96.py, cronHealth.test.js
         质量拆分：命中行 49，其中注释行 24（占比 0.49）
-    （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/265 件、真调用合计 89；
+    （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/266 件、真调用合计 93；
      ③ 取值：tool_skill_matrix_r231.json 的 third_face.per_tool，4134 件 / 2 仓 / 剪外来面 10 个）
 - 读数型真调用（第 4 层）：**MEASURED**（读得到数）
     （取值：r196_quota_face.py --json quota_face_latest.json 的 rows/github_actions_minutes_proxy/state）
@@ -52,7 +52,7 @@
     ③ 项目仓（第 67 门 r226 third_face，已剪 vendored 外来面）：146
         命中所在件 = _health.js, _middleware.js, backup-print-data.mjs, backupPrintData.test.js, backupRestore.test.js, batchProducts.test.js, check-cli-entrypoints.mjs, check-d1-remote-usage.mjs, check-d1-roundtrips.mjs, check-governance-framework.mjs, cliEntrypoints.test.js, d1RemoteUsage.test.js, d1RoundTrips.test.js, db.js, event_sink.js, events.js, fix_face_claims.py, fix_face_claims2.py, fix_u333.py, fix_verify_cause.py
         质量拆分：命中行 146，其中注释行 22（占比 0.151）
-    （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/265 件、真调用合计 89；
+    （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/266 件、真调用合计 93；
      ③ 取值：tool_skill_matrix_r231.json 的 third_face.per_tool，4134 件 / 2 仓 / 剪外来面 10 个）
 - 读数型真调用（第 4 层）：**MEASURED**（读得到数）
     （取值：r196_quota_face.py --json quota_face_latest.json 的 rows/cloudflare_d1/state）
@@ -74,7 +74,7 @@
     ① skill 目录（第 67 门）：提到 1 ｜ 代码真调用 0
     ② 工作流脚本（第 94 门 r222 第二把尺，探针件不计入）：真调用 0
     ③ 项目仓（第 67 门 r226 third_face，已剪 vendored 外来面）：0
-    （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/265 件、真调用合计 89；
+    （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/266 件、真调用合计 93；
      ③ 取值：tool_skill_matrix_r231.json 的 third_face.per_tool，4134 件 / 2 仓 / 剪外来面 10 个）
 - **零层归因：[平台能力缺口]** R2 未在账号启用（wrangler 与 REST 同回 10042），官方提示需在 Dashboard 启用；属平台+条款同意，非凭据问题（对照 /accounts=200 已证凭据活着）
     （取值：python 05-exec/r201_r2_enable_face.py --json 06-benchmark/r2_enable_latest.json（state=GAP_SERVICE / code=10042））
@@ -99,9 +99,9 @@
     ③ 项目仓（第 67 门 r226 third_face，已剪 vendored 外来面）：239
         命中所在件 = act_part1.py, act_part2.py, add_deploy_note.py, add_ledger109.py, add_rows95.py, add_rows95b.py, admin_contrast_test.py, admin_responsive_test.py, admin_script.js, admin_static_render_test.py, analytics.js, cf_builds.py, cf_check.py, cf_check2.py, cf_check3.py, cf_check4.py, check-catalog-facts.mjs, check-functions-build.mjs, check-live-shape.mjs, check_both_faces.py
         质量拆分：命中行 230，其中注释行 34（占比 0.148）
-    （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/265 件、真调用合计 89；
+    （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/266 件、真调用合计 93；
      ③ 取值：tool_skill_matrix_r231.json 的 third_face.per_tool，4134 件 / 2 仓 / 剪外来面 10 个）
-- 读数型真调用（第 4 层）：**MEASURED**（读得到数）
+- 读数型真调用（第 4 层）：**UNVERIFIED**（读数面真实状态（未读到数））
     （取值：r200_pages_face.py --json pages_http_latest.json 的 row/state）
 - 守它的判据：163 + 92 + 93
 - 工作流触点：chaoshi-web-deploy 部署权威入口（direct_map 10 pattern，任务话术直连命中）
@@ -117,11 +117,12 @@
     （取值：tool_skill_matrix_r231.json 的 per_tool / per_tool_exec[Cloudflare-Workers]；该件 generated_at=2026-10-25 20:00）
 - 三层读数：
     ① skill 目录（第 67 门）：提到 1 ｜ 代码真调用 0
-    ② 工作流脚本（第 94 门 r222 第二把尺，探针件不计入）：真调用 0
+    ② 工作流脚本（第 94 门 r222 第二把尺，探针件不计入）：真调用 2
+        调用它的非探针件 = r215_free_tool_roster.py
     ③ 项目仓（第 67 门 r226 third_face，已剪 vendored 外来面）：1
         命中所在件 = check-functions-build.mjs
         质量拆分：命中行 1，其中注释行 1（占比 1.0）⇒ **仅注释提及，不是在跑它**
-    （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/265 件、真调用合计 89；
+    （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/266 件、真调用合计 93；
      ③ 取值：tool_skill_matrix_r231.json 的 third_face.per_tool，4134 件 / 2 仓 / 剪外来面 10 个）
 - **零层归因：[口径盲区]** 我的真实用法是**读数型**：走 CF GraphQL analytics 读 workersInvocationsAdaptive 取调用数，而形态级正则只认 wrangler deploy / workers.dev / fetch 导出 ⇒ 它看不见读数型搭配（不为此写假调用凑数）
     （取值：python 05-exec/r199_workers_face.py --json 06-benchmark/workers_quota_latest.json（真跑 MEASURED）；token workersInvocationsAdaptive 见该件 L50/L108）
@@ -147,7 +148,7 @@
     ③ 项目仓（第 67 门 r226 third_face，已剪 vendored 外来面）：127
         命中所在件 = 0001_init.sql, 0002_admin.sql, [[path]].js, actionAuthz.test.js, backup-print-data.mjs, backupPrintData.test.js, backupRestore.test.js, catalogFacts.test.js, check-action-authz.mjs, check-d1-roundtrips.mjs, check-governance-framework.mjs, check-pii-inventory.mjs, check-schema-drift.mjs, ciWorkflow.test.ts, d1-quota.mjs, d1RoundTrips.test.js, metered-d1.mjs, migrate-ai-calls.sql, migrate-event-log.sql, migrate-promotions.sql
         质量拆分：命中行 115，其中注释行 16（占比 0.139）
-    （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/265 件、真调用合计 89；
+    （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/266 件、真调用合计 93；
      ③ 取值：tool_skill_matrix_r231.json 的 third_face.per_tool，4134 件 / 2 仓 / 剪外来面 10 个）
 - 读数型真调用（第 4 层）：无读数面 —— 本地嵌入库，无平台额度面 ⇒ （用量由 r203_ledger_index 本地统计）（无读数面 ≠ 0）
 - 守它的判据：163 + 85 + 93
@@ -163,7 +164,7 @@
     ① skill 目录（第 67 门）：提到 未量 ｜ 代码真调用 未量
     ② 工作流脚本（第 94 门 r222 第二把尺，探针件不计入）：真调用 未量（该工具不在第 94 门名册 = None，不等于 0）
     ③ 项目仓（第 67 门 r226 third_face，已剪 vendored 外来面）：0
-    （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/265 件、真调用合计 89；
+    （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/266 件、真调用合计 93；
      ③ 取值：tool_skill_matrix_r231.json 的 third_face.per_tool，4134 件 / 2 仓 / 剪外来面 10 个）
 - **零层归因：[未入尺]** 编辑器本体，不承载判据；第 67 门无该工具正则 ⇒ per_tool 无此键（未量，不等于零提到）
     （取值：python 05-exec/r163_tool_skill_matrix.py --json 件（per_tool 里无 VS Code 键））
@@ -181,12 +182,12 @@
     （取值：tool_skill_matrix_r231.json 的 per_tool / per_tool_exec[Cloudflare-Turnstile]；该件 generated_at=2026-10-25 20:00）
 - 三层读数：
     ① skill 目录（第 67 门）：提到 2 ｜ 代码真调用 0
-    ② 工作流脚本（第 94 门 r222 第二把尺，探针件不计入）：真调用 31
+    ② 工作流脚本（第 94 门 r222 第二把尺，探针件不计入）：真调用 33
         调用它的非探针件 = r163_turnstile_admin.py, r209_route_truth_measure.py, r215_free_tool_roster.py
     ③ 项目仓（第 67 门 r226 third_face，已剪 vendored 外来面）：3
         命中所在件 = backend.js, client.ts, errorSemantics.test.js
         质量拆分：命中行 3，其中注释行 3（占比 1.0）⇒ **仅注释提及，不是在跑它**
-    （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/265 件、真调用合计 89；
+    （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/266 件、真调用合计 93；
      ③ 取值：tool_skill_matrix_r231.json 的 third_face.per_tool，4134 件 / 2 仓 / 剪外来面 10 个）
 - 读数型真调用（第 4 层）：无读数面 —— 该读数门（r163_turnstile_face）的 argv 不带 --json、不做额度读数 ⇒ （无读数面 ≠ 0）
 - 守它的判据：163 + 88 任务层(DISPUTED) + 93
@@ -206,7 +207,7 @@
     ① skill 目录（第 67 门）：提到 1 ｜ 代码真调用 1
     ② 工作流脚本（第 94 门 r222 第二把尺，探针件不计入）：真调用 0
     ③ 项目仓（第 67 门 r226 third_face，已剪 vendored 外来面）：0
-    （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/265 件、真调用合计 89；
+    （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/266 件、真调用合计 93；
      ③ 取值：tool_skill_matrix_r231.json 的 third_face.per_tool，4134 件 / 2 仓 / 剪外来面 10 个）
 - 读数型真调用（第 4 层）：无读数面 —— 有月度额度（免费 3000 封）但无凭据 ⇒ 读不到：属凭据缺口，不是没有读数面（无读数面 ≠ 0）
 - 守它的判据：163 + 93
@@ -224,7 +225,7 @@
     ① skill 目录（第 67 门）：提到 0 ｜ 代码真调用 0
     ② 工作流脚本（第 94 门 r222 第二把尺，探针件不计入）：真调用 0
     ③ 项目仓（第 67 门 r226 third_face，已剪 vendored 外来面）：0
-    （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/265 件、真调用合计 89；
+    （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/266 件、真调用合计 93；
      ③ 取值：tool_skill_matrix_r231.json 的 third_face.per_tool，4134 件 / 2 仓 / 剪外来面 10 个）
 - **零层归因：[外部凭据缺口]** 仅有 REST 无 CLI，且本机未配 UPSTASH_* 凭据 ⇒ 无法接入；这是凭据缺口，不是搭配意愿问题
     （取值：python 05-exec/r163_free_tools_face.py --json 06-benchmark/free_tools_latest.json（该工具 state=GAP_CRED））
