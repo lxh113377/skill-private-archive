@@ -1,0 +1,23 @@
+{
+ "schema": "turnstile-usage-v1",
+ "readonly": true,
+ "provenance_cmd": "python 05-exec/r242_turnstile_usage_face.py --json <件>",
+ "endpoint": "https://api.cloudflare.com/client/v4/graphql",
+ "token_src": "C:\\Users\\37533\\AppData\\Roaming\\xdg.config\\.wrangler\\config\\default.toml",
+ "dataset": "account.turnstileAdaptiveGroups",
+ "filter_inputs_n": 200,
+ "range_args": [
+  "datetime_geq",
+  "datetime_leq"
+ ],
+ "state": "MEASURED",
+ "window": [
+  "2026-09-30",
+  "2026-10-25"
+ ],
+ "count_total": 0,
+ "groups_n": 0,
+ "days_with_data": 0,
+ "dates": [],
+ "why": ""
+}

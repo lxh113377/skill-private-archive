@@ -30,9 +30,11 @@ from r163_tool_skill_matrix import TOOLS  # 只借正则源（权威定义）
 GS = 'D:/global_skills'
 CODE_EXT = ('.py', '.sh', '.ps1', '.mjs', '.js', '.ts', '.sql')
 WEXTS = ('.py', '.sh', '.ps1', '.yml', '.yaml', '.js', '.ts', '.sql', '.toml')
-EXCL = ('r163_tool_skill_matrix.py', 'r214_tool_carrier_face.py',
-        'tool_carrier_patterns.json', 'r218_workflow_usage_face.py', 'r215_free_tool_roster.py')
-PROBE = ('_face', '_fixtures', 'probe', 'matrix', 'check', 'stage', 'debt', 'gate')
+# r242 自抓：本件原先**自带一份 EXCL/PROBE 副本** ⇒ r218 那边加了 r237 自己，这边没跟，
+#   于是审计把自己算进 Turnstile 的命中（28!=25）而门算的是 25 —— 漂移假象由「两份策略副本」造成。
+#   改为**策略单一来源**：排除名单与探针名单一律从第 94 门借（那是「谁算工作流面」的契约），
+#   而本件保留独立的是**遍历 / 计数 / 取值算法**。
+from r218_workflow_usage_face import EXCL, PROBE_HINT as PROBE
 FMARKS = ('.git', 'SKILL.md')
 SKIP = ('node_modules', '.git', 'dist', '.wrangler', 'archive', '__pycache__')
 
@@ -164,6 +166,8 @@ def layer5():
         # r241：GitHub 用量源换成官方计费端点产物（与 r215 的 READ_FACE 同步改，见 §96）
         'GitHub': ('gh_billing_latest.json', ['minutes_total']),
         'Cloudflare-Pages': ('pages_http_latest.json', ['row', 'requests_total']),
+        # r242：Turnstile 用量（官方数据集，参数名运行时自省）
+        'Cloudflare-Turnstile': ('turnstile_usage_latest.json', ['count_total']),
     }
     res = {}
     for tool, (art, path) in specs.items():

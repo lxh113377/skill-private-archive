@@ -48,7 +48,14 @@ CALL_CTX = ('subprocess', 'execFileSync', 'spawn', 'Popen', 'os.system', 'shell=
 CJK = re.compile('[' + chr(0x4e00) + '-' + chr(0x9fff) + ']')
 EXCL = ('r163_tool_skill_matrix.py', 'r214_tool_carrier_face.py',
         'tool_carrier_patterns.json', 'r218_workflow_usage_face.py',
-        'r215_free_tool_roster.py')
+        'r215_free_tool_roster.py',
+        # r242：**度量/审计/报表型**件同样不得进匹配面。实测第三次同族：我给 r237_roster_audit.py
+        #   加了一行 Turnstile 用量规格（含字面量 turnstile）⇒ 本门把它算成 3 次「工作流在用 Turnstile」，
+        #   第 98 门独立复算当场报漂移 28!=25 才暴露。凡是**写着工具名/模式文本的度量件**都属这一族：
+        #   r163（定义正则）、r214（模式表）、r215（名册）、r218（本件）、r237（审计）。
+        'r237_roster_audit.py')
+# 同族护栏：名字里带这些词的件若贡献了真命中 ⇒ 具名报警（新加的度量件忘排除时当场看见）
+MEASURE_HINT = ('roster', 'audit')
 
 
 def load_patterns():
@@ -263,6 +270,10 @@ def main(argv=None):
     body.update(doc)
     io.open(op, 'w', encoding='utf-8', newline=chr(10)).write(
         json.dumps(body, ensure_ascii=False, indent=1))
+    # r242 自抓：我先加了 [USAGE:MEASURE-LEAK] 护栏（按名字含 roster/audit 判），实测**假阳** ——
+    #   r113_quarterly_audit.py / r60_capability_roster.py 都是**真的工作流脚本**（前者就是调 gh 的）。
+    #   按本仓「宁漏不误」的规矩撤掉该护栏（假报警会把我训练成忽略它）；留下的正解是 EXCL 名单本身，
+    #   以及「新加度量件要同步进 EXCL」这条流程纪律。
     print('[USAGE] 工作流面 %d 件（真调用面 %d）/ 名册 %d 工具 / 命令级命中合计 %d（真调用 %d）' % (
           doc['face_files'], doc['real_face_files'], len(doc['tools']),
           doc['total_hits'], doc['real_total_hits']))

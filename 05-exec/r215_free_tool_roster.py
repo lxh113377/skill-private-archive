@@ -148,6 +148,13 @@ READ_FACE = {
                       'path': ['state']},
     # r230：Pages 的产物名从权威源取（run_gates.GATES 的 argv），不猜：
     #   pages_http_face → pages_http_latest.json（row.state）。
+    # r242：Turnstile 的「无读数面」被实测推翻 —— 官方数据集 account.turnstileAdaptiveGroups 存在，
+    #   参数名由读数面在**运行时自省**得到（不猜）。实测窗口 2026-09-30~10-25 校验请求 0 次。
+    'Cloudflare-Turnstile': {'script': 'r242_turnstile_usage_face.py',
+                              'artifact': 'turnstile_usage_latest.json',
+                              'path': ['state'],
+                              'usage': ['count_total'], 'unit': '次（校验请求）',
+                              'window': ['window']},
     'Cloudflare-Pages': {'script': 'r200_pages_face.py',
                          'artifact': 'pages_http_latest.json',
                          'path': ['row', 'state'],
@@ -160,7 +167,7 @@ READ_FACE = {
 NO_READ_FACE = {
     'VS Code': '编辑器本体，无平台额度概念 ⇒ 无读数面',
     'SQLite': '本地嵌入库，无平台额度面 ⇒ 无读数面（用量由 r203_ledger_index 本地统计）',
-    'Cloudflare-Turnstile': '该读数门（r163_turnstile_face）的 argv 不带 --json、不做额度读数 ⇒ 无读数面',
+    # r242：Turnstile 原记「无读数面（该门 argv 不带 --json）」，实测其官方数据集存在 ⇒ 该条已删。
     # r234：两档各证（与 R2 同标准）。档位 1 全机探查无凭据；档位 2 通道可达但需建号+条款 ⇒ 例外类。
     #   证据件 = 06-benchmark/free_tool_credential_probe_2026-10-25.txt（含键名清单与 grep 结果）。
     'Resend': ('有月度额度（免费 3000 封）但**全机无凭据**（env 0 命中、.env/.dev.vars 键名与它无关、'

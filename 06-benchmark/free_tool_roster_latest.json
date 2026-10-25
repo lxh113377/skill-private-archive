@@ -603,12 +603,33 @@
     }
    ],
    "blocker": null,
-   "read_state": null,
-   "read_face": null,
-   "read_why": "无读数面：该读数门（r163_turnstile_face）的 argv 不带 --json、不做额度读数 ⇒ 无读数面",
-   "usage_value": null,
-   "usage_meta": null,
-   "usage_why": "未登记用量路径"
+   "read_state": "MEASURED",
+   "read_face": {
+    "script": "r242_turnstile_usage_face.py",
+    "artifact": "turnstile_usage_latest.json",
+    "path": [
+     "state"
+    ],
+    "usage": [
+     "count_total"
+    ],
+    "unit": "次（校验请求）",
+    "window": [
+     "window"
+    ]
+   },
+   "read_why": null,
+   "usage_value": 0,
+   "usage_meta": {
+    "unit": "次（校验请求）",
+    "extra": null,
+    "extra_label": null,
+    "window": [
+     "2026-09-30",
+     "2026-10-25"
+    ]
+   },
+   "usage_why": null
   },
   {
    "tool": "Resend",
@@ -711,7 +732,7 @@
    "file": "workflow_usage_latest.json",
    "generated_at": null,
    "face_files": 267,
-   "real_face_files": 155,
+   "real_face_files": 154,
    "real_total_hits": 82
   },
   "third_src": {

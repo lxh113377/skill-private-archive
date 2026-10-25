@@ -86,5 +86,9 @@
  "r241_gh_billing_face.py": {
   "evidence": "06-benchmark/gh_billing_latest.json",
   "registered_at": "2026-10-25 22:38"
+ },
+ "r242_turnstile_usage_face.py": {
+  "evidence": "06-benchmark/turnstile_usage_latest.json",
+  "registered_at": "2026-10-25 22:56"
  }
 }

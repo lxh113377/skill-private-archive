@@ -566,6 +566,25 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   必须来自可复算的入口件，不接受「我跑过一次的脚本」当来源。
   取值：git show HEAD:<报告 rel> 与工作树 io.read 比对（长度/章节/数字三项）；
   python 05-exec/r221_dead_regex_scan.py --wide（现值 256 件/959 个/2 处）。
+- [ ] **R242-1（r242 登记，P1·已落地）** **Turnstile「无读数面」被官方自省推翻（实测 0 次校验请求）；新面又被第 98 门抓住自匹配，根因是「策略写了两份」**： 【r242 裁决=执行（新建 Turnstile 官方用量面：运行时自省参数名；名册 ④/⑤ 接入并删旧 NO_READ_FACE 条目；审计改策略单一来源；撤假阳护栏）｜读数：官方校验请求 0 次（窗口 09-30~10-25）；第 98 门曾报漂移 28!=25 并已归零；名册 [ROSTER:OK] md 22759B；审计五层 PASS。】
+  ① 「无读数面」的真相：名册原先引的是 r228 那句「该门 argv 不带 --json」——**那描述的是当时那个门**，
+  不是「Turnstile 查不到用量」。官方自省实测：`__schema.types` 含 AccountTurnstileAdaptiveGroups（及
+  Dimensions/Filter），account 类型 257 字段里有 turnstileAdaptiveGroups ⇒ 官方数据集存在。
+  ② 新面：`05-exec/r242_turnstile_usage_face.py`（只读/三态/provenance），**运行时自省**日期区间参数名
+  （优先 datetime_geq/leq，退回 *_geq/*_leq 家族），自找自用并随产物落盘 ⇒ 名字变了当场可见。
+  实测官方数据：**校验请求 0 次**（窗口 2026-09-30~10-25，有数据天 0）⇒ 「已按老大要求移除」从文字记录
+  升级为量化证据；名册 ④ 变 MEASURED、⑤ 填 0 次，原 NO_READ_FACE 条目删除（理由已被实测推翻）。已登记。
+  ③ 新面接完，第 98 门当场报漂移 `Cloudflare-Turnstile: 层2 28!=25` —— 同族第三次：我给审计件 r237
+  加了一行 Turnstile 用量规格（含字面量 turnstile），而它不在第 94 门排除名单 ⇒ 我的审计脚本被算成
+  「工作流在用 Turnstile」(+3)。**是独立复算这把尺抓到的**（前两次分别靠横向总表、一眼总表：三次都靠新视角）。
+  ④ 根因不在漏排：审计件**自带一份 EXCL 副本**，改了第 94 门那份、审计那份没跟 ⇒ 两边两套「谁算工作流面」。
+  修法 = **策略单一来源**（审计 from r218 import EXCL/PROBE_HINT），**算法仍独立**（遍历/计数/取值自写）⇒ 漂移归零。
+  ⑤ 同轮撤掉我加的假阳护栏 `[USAGE:MEASURE-LEAK]`（按名字含 roster/audit 判）：对 r113_quarterly_audit.py /
+  r60_capability_roster.py 误报（都是真工作流脚本），按「宁漏不误」撤掉。
+  元教训：①「取不到」的第三种形态 = 世界给了我没走对路（要问「官方有没有可取的数」，别把当时那个门的
+  限制写成结论）；② 策略不能有两份 —— 「独立」指算法独立，不包括把「谁算工作流面」这种契约各写一份。
+  取值：python 05-exec/r242_turnstile_usage_face.py --json 06-benchmark/turnstile_usage_latest.json；
+  python 05-exec/r237_roster_audit.py --json 06-benchmark/roster_audit_latest.json。
 - [ ] **R241-1（r241 登记，P1·已落地）** **官方计费端点取代「分母无可靠出处」：Actions 24235 分钟 / 净额 $0；顺带纠正「本仓计费」假设 + 两次自抓**： 【r241 裁决=执行（新建官方计费读数面 + 名册 GitHub 第⑤列换官方数 + 审计第5层同步 + 正规登记）｜读数：[GHBILL:PASS] Actions 24235 分钟、gross $160.349、net $0（全额折扣）；本仓 visibility=public ⇒ 447.92 墙钟分钟不占额度；名册 [ROSTER:OK]、审计五层漂移 0。】
   ① 缺口来源：`quota_face` 的 GitHub 行自己写着「官方免费分钟数本轮未取到可靠出处（docs 是 JS 壳）⇒
   分母无出处就只报绝对值、不折算百分比」。那条规矩对，但它的结论只是**当时的取数方式**造成的。

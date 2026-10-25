@@ -28,6 +28,10 @@
   "Cloudflare-Pages": [
    198662,
    "pages_http_latest.json"
+  ],
+  "Cloudflare-Turnstile": [
+   0,
+   "turnstile_usage_latest.json"
   ]
  },
  "per_tool": {
