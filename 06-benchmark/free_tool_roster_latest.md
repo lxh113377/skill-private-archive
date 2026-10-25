@@ -19,9 +19,9 @@
 | GitHub | 22 / 2 | 23 | 49（注释占比 0.49） | MEASURED | 24235.0 分钟（官方计费·账号级·端点默认窗口） | READY |
 | Cloudflare-D1 | 2 / 0 | 3 | 146（注释占比 0.151） | MEASURED | 8.9 MiB | READY |
 | Cloudflare-R2 | 1 / 0 | 0 | 0 | GAP_SERVICE | 未量 | [平台能力缺口] |
-| Cloudflare-Pages | 5 / 2 | 7 | 239（注释占比 0.148） | MEASURED | 199247 次 | READY |
+| Cloudflare-Pages | 5 / 2 | 7 | 239（注释占比 0.148） | MEASURED | 199308 次 | READY |
 | Cloudflare-Workers | 1 / 0 | 0 | 1（注释占比 1.0·仅注释） | MEASURED | 0 次 | [口径盲区] |
-| SQLite | 4 / 3 | 24 | 127（注释占比 0.139） | MEASURED | 12.09 MiB（本地库体量·非额度） | READY |
+| SQLite | 4 / 3 | 24 | 127（注释占比 0.139） | MEASURED | 12.15 MiB（本地库体量·非额度） | READY |
 | VS Code | 7 / 1 | 0 | 0 | 无读数面 | 未量 | [桌面 GUI 承载（非调用面）] |
 | Cloudflare-Turnstile | 3 / 0 | 26 | 3（注释占比 1.0·仅注释） | MEASURED | 0 次（校验请求） | READY |
 | Resend | 1 / 1 | 0 | 0 | 无读数面 | 未量 | GAP_CRED |
@@ -38,7 +38,7 @@
 - 两把尺：提到 22 件 ｜ 代码真调用 2 件
     提到 = A-get-memory, A-memory-start, A-project-better, A-project-handoff, A-skill-manager, chaoshi-image-optimization, chaoshi-web-deploy, ci-pipeline-debugging, consulting-analysis, doc-coauthoring, docker-e2e-gate, github, gstack, healthcare-eval-harness, hyperframes-registry, oracle, security-audit, shell-encoding-pitfalls, story, ui-ux-pro-max, verification-before-completion, win-toolchain-pitfalls
     可执行 = A-project-handoff, gstack
-    （取值：tool_skill_matrix_latest.json 的 per_tool / per_tool_exec[GitHub]；该件 generated_at=2026-10-26 01:57）
+    （取值：tool_skill_matrix_latest.json 的 per_tool / per_tool_exec[GitHub]；该件 generated_at=2026-10-26 02:06）
 - 三层读数：
     ① skill 目录（第 67 门）：提到 22 ｜ 代码真调用 2
     ② 工作流脚本（第 94 门 r222 第二把尺，探针件不计入）：真调用 23
@@ -65,7 +65,7 @@
 - 两把尺：提到 2 件 ｜ 代码真调用 0 件
     提到 = chaoshi-web-deploy, win-toolchain-pitfalls
     可执行 = 无
-    （取值：tool_skill_matrix_latest.json 的 per_tool / per_tool_exec[Cloudflare-D1]；该件 generated_at=2026-10-26 01:57）
+    （取值：tool_skill_matrix_latest.json 的 per_tool / per_tool_exec[Cloudflare-D1]；该件 generated_at=2026-10-26 02:06）
 - 三层读数：
     ① skill 目录（第 67 门）：提到 2 ｜ 代码真调用 0
     ② 工作流脚本（第 94 门 r222 第二把尺，探针件不计入）：真调用 3
@@ -92,7 +92,7 @@
 - 两把尺：提到 1 件 ｜ 代码真调用 0 件
     提到 = chaoshi-image-optimization
     可执行 = 无
-    （取值：tool_skill_matrix_latest.json 的 per_tool / per_tool_exec[Cloudflare-R2]；该件 generated_at=2026-10-26 01:57）
+    （取值：tool_skill_matrix_latest.json 的 per_tool / per_tool_exec[Cloudflare-R2]；该件 generated_at=2026-10-26 02:06）
 - 三层读数：
     ① skill 目录（第 67 门）：提到 1 ｜ 代码真调用 0
     ② 工作流脚本（第 94 门 r222 第二把尺，探针件不计入）：真调用 0
@@ -115,7 +115,7 @@
 - 两把尺：提到 5 件 ｜ 代码真调用 2 件
     提到 = A-project-handoff, byted-bp-cdn-pagesdeploy, chaoshi-image-optimization, chaoshi-web-deploy, verification-before-completion
     可执行 = A-project-handoff, byted-bp-cdn-pagesdeploy
-    （取值：tool_skill_matrix_latest.json 的 per_tool / per_tool_exec[Cloudflare-Pages]；该件 generated_at=2026-10-26 01:57）
+    （取值：tool_skill_matrix_latest.json 的 per_tool / per_tool_exec[Cloudflare-Pages]；该件 generated_at=2026-10-26 02:06）
 - 三层读数：
     ① skill 目录（第 67 门）：提到 5 ｜ 代码真调用 2
     ② 工作流脚本（第 94 门 r222 第二把尺，探针件不计入）：真调用 7
@@ -127,7 +127,7 @@
      ③ 取值：tool_skill_matrix_latest.json 的 third_face.per_tool，4131 件 / 2 仓 / 剪外来面 10 个）
 - 读数型真调用（第 4 层）：**MEASURED**（读得到数）
     （取值：r200_pages_face.py --json pages_http_latest.json 的 row/state）
-- 本月/当前用量：**199247 次**　窗口：2026-10-01~2026-10-26
+- 本月/当前用量：**199308 次**　窗口：2026-10-01~2026-10-26
     （取值：r200_pages_face.py --json pages_http_latest.json 的 row/requests_total）
 - 守它的判据：163 + 92 + 93
 - 工作流触点：chaoshi-web-deploy 部署权威入口（direct_map 10 pattern，任务话术直连命中）
@@ -140,7 +140,7 @@
 - 两把尺：提到 1 件 ｜ 代码真调用 0 件
     提到 = chaoshi-web-deploy
     可执行 = 无
-    （取值：tool_skill_matrix_latest.json 的 per_tool / per_tool_exec[Cloudflare-Workers]；该件 generated_at=2026-10-26 01:57）
+    （取值：tool_skill_matrix_latest.json 的 per_tool / per_tool_exec[Cloudflare-Workers]；该件 generated_at=2026-10-26 02:06）
 - 三层读数：
     ① skill 目录（第 67 门）：提到 1 ｜ 代码真调用 0
     ② 工作流脚本（第 94 门 r222 第二把尺，探针件不计入）：真调用 0
@@ -167,7 +167,7 @@
 - 两把尺：提到 4 件 ｜ 代码真调用 3 件
     提到 = data-analysis, fenjue-memory-audit, ican-deploy, web-access
     可执行 = data-analysis, fenjue-memory-audit, web-access
-    （取值：tool_skill_matrix_latest.json 的 per_tool / per_tool_exec[SQLite]；该件 generated_at=2026-10-26 01:57）
+    （取值：tool_skill_matrix_latest.json 的 per_tool / per_tool_exec[SQLite]；该件 generated_at=2026-10-26 02:06）
 - 三层读数：
     ① skill 目录（第 67 门）：提到 4 ｜ 代码真调用 3
     ② 工作流脚本（第 94 门 r222 第二把尺，探针件不计入）：真调用 24
@@ -179,7 +179,7 @@
      ③ 取值：tool_skill_matrix_latest.json 的 third_face.per_tool，4131 件 / 2 仓 / 剪外来面 10 个）
 - 读数型真调用（第 4 层）：**MEASURED**（读得到数）
     （取值：r243_sqlite_usage_face.py --json sqlite_usage_latest.json 的 state）
-- 本月/当前用量：**12.09 MiB（本地库体量·非额度）**（合计行数 43154）　窗口：2026-10-26T01:44:49
+- 本月/当前用量：**12.15 MiB（本地库体量·非额度）**（合计行数 43265）　窗口：2026-10-26T02:09:32
     （取值：r243_sqlite_usage_face.py --json sqlite_usage_latest.json 的 size_mib）
 - 守它的判据：163 + 85 + 93
 - 工作流触点：r203_ledger_index 用 SQLite 做门禁台账派生索引（读面与盲区均实测）
@@ -191,7 +191,7 @@
 - 两把尺：提到 7 件 ｜ 代码真调用 1 件
     提到 = A-java-problem, A-project-handoff, c-cleanup, cloudbase, computer-use-guidance-windows, discover-agent-cli, electron
     可执行 = A-project-handoff
-    （取值：tool_skill_matrix_latest.json 的 per_tool / per_tool_exec[VS Code]；该件 generated_at=2026-10-26 01:57）
+    （取值：tool_skill_matrix_latest.json 的 per_tool / per_tool_exec[VS Code]；该件 generated_at=2026-10-26 02:06）
 - 三层读数：
     ① skill 目录（第 67 门）：提到 7 ｜ 代码真调用 1
     ② 工作流脚本（第 94 门 r222 第二把尺，探针件不计入）：真调用 0
@@ -212,7 +212,7 @@
 - 两把尺：提到 3 件 ｜ 代码真调用 0 件
     提到 = A-memory-start, chaoshi-image-optimization, win-toolchain-pitfalls
     可执行 = 无
-    （取值：tool_skill_matrix_latest.json 的 per_tool / per_tool_exec[Cloudflare-Turnstile]；该件 generated_at=2026-10-26 01:57）
+    （取值：tool_skill_matrix_latest.json 的 per_tool / per_tool_exec[Cloudflare-Turnstile]；该件 generated_at=2026-10-26 02:06）
 - 三层读数：
     ① skill 目录（第 67 门）：提到 3 ｜ 代码真调用 0
     ② 工作流脚本（第 94 门 r222 第二把尺，探针件不计入）：真调用 26
@@ -238,7 +238,7 @@
 - 两把尺：提到 1 件 ｜ 代码真调用 1 件
     提到 = office-automation-pro
     可执行 = office-automation-pro
-    （取值：tool_skill_matrix_latest.json 的 per_tool / per_tool_exec[Resend]；该件 generated_at=2026-10-26 01:57）
+    （取值：tool_skill_matrix_latest.json 的 per_tool / per_tool_exec[Resend]；该件 generated_at=2026-10-26 02:06）
 - 三层读数：
     ① skill 目录（第 67 门）：提到 1 ｜ 代码真调用 1
     ② 工作流脚本（第 94 门 r222 第二把尺，探针件不计入）：真调用 0
@@ -257,7 +257,7 @@
 - 两把尺：提到 0 件 ｜ 代码真调用 0 件
     提到 = 无
     可执行 = 无
-    （取值：tool_skill_matrix_latest.json 的 per_tool / per_tool_exec[Upstash-Redis]；该件 generated_at=2026-10-26 01:57）
+    （取值：tool_skill_matrix_latest.json 的 per_tool / per_tool_exec[Upstash-Redis]；该件 generated_at=2026-10-26 02:06）
 - 三层读数：
     ① skill 目录（第 67 门）：提到 0 ｜ 代码真调用 0
     ② 工作流脚本（第 94 门 r222 第二把尺，探针件不计入）：真调用 0

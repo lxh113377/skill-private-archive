@@ -104,7 +104,7 @@
    "roster_audit",
    "dup_policy_scan"
   ],
-  "_snapshot_at": "2026-10-26 01:04",
+  "_snapshot_at": "2026-10-26 02:01",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
