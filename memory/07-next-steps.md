@@ -566,6 +566,26 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   必须来自可复算的入口件，不接受「我跑过一次的脚本」当来源。
   取值：git show HEAD:<报告 rel> 与工作树 io.read 比对（长度/章节/数字三项）；
   python 05-exec/r221_dead_regex_scan.py --wide（现值 256 件/959 个/2 处）。
+- [ ] **R224-2（r224 登记，P1·已落地）** **两把尺都量不到的第三个维度：skill 手册指向的项目仓（D1 主力战场在那里）**： 【r224 裁决=执行（r163 补 D1 数组参数形态 + f1q/f1r 两腿；项目仓第三维度实测 1133 件；矩阵件加 third_face）｜读数：selftest 12/12；D1 仍 2 件/可执行 0（坐实受管根无脚本）；third_face 1133 件：D1 217 次/20 件、SQLite 267/20、Pages 70/20、GitHub 36/20、Turnstile 3/3 零真调用、Workers 1/1、R2 0。】
+  一手：r223 合表把 D1 归进「工作流真调用、skill 只到文档层」。本轮去读那 3 行命中，发现 L137 命令是
+  `node scripts/migrate.mjs apply`，顺着找脚本 —— 它**不在受管 skill 根**（chaoshi-web-deploy 在
+  D:/global_skills 下只有 SKILL.md，scripts/ 与 references/ 都不存在），而在超市项目仓：
+  scripts/migrate.mjs L86 `const flags = ['d1','execute','supermarket','--json']`、
+  L90 `execFileSync(process.execPath, [wrangler, ...flags])`。⇒ **D1 真调用一直在跑，只是跑在两把尺
+  扫描面之外**：第 67 门只扫 D:/global_skills，第 94 门只扫我的 05-exec/hooks/CI，项目仓这个面两个门都没扫。
+  自抓一次假绿：我先给第 67 门加数组参数形态正则（`[ 'd1','execute'`），selftest 12/12 全绿，
+  但矩阵读数没变（D1 仍 2 件 / 可执行 0）—— 因为受管根那个 skill 真只有 SKILL.md。
+  **如果当时只看 selftest 绿就下结论，就是假绿**：正则对了，但位置根本不在扫描面里。
+  项目仓实测（本轮第一手扫 1142 个可执行文件，排除 node_modules/dist/.wrangler）：D1 218 次/60 件
+  （34 件含真命令）、Pages 72/28、SQLite 293/74、GitHub 36/23（17 件真调用 gh api）、
+  Pages-Functions 19/16、Turnstile 3/3（0 真调用，已按用户要求移除）、Workers 1/1（注释）、R2 1/1（绑定声明）。
+  取舍：**不给第 67 门扩扫描根**（三条理由：项目仓路径会变 ⇒ 读数随项目兴衰漂移，那是项目状态不是 skill
+  搭配度；会诱导造引用；数组形态正则仍有价值故保留 + f1q/f1r 两腿锁双向）。改为在矩阵件加显式
+  third_face 字段记录「扫描面之外、被 skill 手册指向的项目仓面」实测读数，供人合读而非偷偷扩根。
+  元教训：两把尺都量不到的地方最容易被读成「没人用」；手册型 skill 的可执行面在它指向的项目仓里。
+  正则对了不等于读数会变 —— 位置不在扫描面里时，再准的尺也量不到。
+  取值：python 05-exec/r163_tool_skill_matrix.py --json 件（per_tool / per_tool_exec / third_face）；
+  项目仓扫读用同件 TOOLS 正则（python -c 导入 RX）。
 - [ ] **R223-1（r223 登记，P1·已落地）** **两把尺合起来读：十个工具分四层搭配，上轮那句「三个真零调用」是把三种形状压成一句**： 【r223 裁决=执行（两把尺合表：工作流真调用 × skill 代码级 × 文档提及，十工具分四层）｜读数：两层真用 3 / 单层真用 2 / 只有文档 2 / skill 单侧 1 / 全零 1 / 未入尺 1；上轮「三个真零调用」更正为三种不同形状，Upstash 唯一全零、Resend 是 skill 侧有代码级。】
   一手：r222 我给第 94 门加第二把尺（工作流真调用排除探针），读出 R2/Resend/Upstash 三个全探针包。
   但单把尺会误判：Resend 工作流真调用是 0，可第 67 门显示 skill 目录里 office-automation-pro 有代码级
