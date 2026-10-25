@@ -20,7 +20,7 @@
 | Cloudflare-D1 | 2 / 0 | 3 | 146（注释占比 0.151） | MEASURED | READY |
 | Cloudflare-R2 | 1 / 0 | 0 | 0 | GAP_SERVICE | [平台能力缺口] |
 | Cloudflare-Pages | 5 / 2 | 7 | 239（注释占比 0.148） | MEASURED | READY |
-| Cloudflare-Workers | 1 / 0 | 0 | 1（注释占比 1.0·仅注释） | MEASURED | [口径盲区] |
+| Cloudflare-Workers | 1 / 0 | 0 | 1（注释占比 1.0·仅注释） | UNVERIFIED | [口径盲区] |
 | SQLite | 4 / 3 | 24 | 127（注释占比 0.139） | 无读数面 | READY |
 | VS Code | 未量 / 未量 | 未量 | 0 | 无读数面 | [未入尺] |
 | Cloudflare-Turnstile | 2 / 0 | 25 | 3（注释占比 1.0·仅注释） | 无读数面 | READY |
@@ -144,7 +144,7 @@
      ③ 取值：tool_skill_matrix_r231.json 的 third_face.per_tool，4134 件 / 2 仓 / 剪外来面 10 个）
 - **零层归因：[口径盲区]** 我的真实用法是**读数型**：走 CF GraphQL analytics 读调用数（token 见证据件），而形态级正则只认部署形态的三类写法 ⇒ 它看不见读数型搭配（不为此写假调用凑数）
     （取值：python 05-exec/r199_workers_face.py --json 06-benchmark/workers_quota_latest.json（真跑 MEASURED）；token workersInvocationsAdaptive 见该件 L50/L108）
-- 读数型真调用（第 4 层）：**MEASURED**（读得到数）
+- 读数型真调用（第 4 层）：**UNVERIFIED**（读数面真实状态（未读到数））
     （取值：r199_workers_face.py --json workers_quota_latest.json 的 row/state）
 - 守它的判据：163 + 88 任务层 + 93
 - 工作流触点：A-memory-start 的 quickref 额度专章（r199_workers_face 现读调用数）；跨 zone 聚合分母差异已写 §9.16

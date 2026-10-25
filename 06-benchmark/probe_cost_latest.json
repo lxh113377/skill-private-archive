@@ -262,6 +262,21 @@
     "github": 0
    },
    "state": "NO_EXTERNAL_CALLS"
+  },
+  {
+   "gate": "workflow_usage_face",
+   "script": "r218_workflow_usage_face.py",
+   "apis": [
+    "cloudflare",
+    "github"
+   ],
+   "portable": false,
+   "declared": null,
+   "measured": {
+    "cloudflare": 0,
+    "github": 0
+   },
+   "state": "NO_EXTERNAL_CALLS"
   }
  ],
  "problems": [],
