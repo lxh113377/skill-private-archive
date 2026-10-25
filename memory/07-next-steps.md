@@ -566,6 +566,19 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   必须来自可复算的入口件，不接受「我跑过一次的脚本」当来源。
   取值：git show HEAD:<报告 rel> 与工作树 io.read 比对（长度/章节/数字三项）；
   python 05-exec/r221_dead_regex_scan.py --wide（现值 256 件/959 个/2 处）。
+- [ ] **R223-1（r223 登记，P1·已落地）** **两把尺合起来读：十个工具分四层搭配，上轮那句「三个真零调用」是把三种形状压成一句**： 【r223 裁决=执行（两把尺合表：工作流真调用 × skill 代码级 × 文档提及，十工具分四层）｜读数：两层真用 3 / 单层真用 2 / 只有文档 2 / skill 单侧 1 / 全零 1 / 未入尺 1；上轮「三个真零调用」更正为三种不同形状，Upstash 唯一全零、Resend 是 skill 侧有代码级。】
+  一手：r222 我给第 94 门加第二把尺（工作流真调用排除探针），读出 R2/Resend/Upstash 三个全探针包。
+  但单把尺会误判：Resend 工作流真调用是 0，可第 67 门显示 skill 目录里 office-automation-pro 有代码级
+  引用 —— 它不是「没搭配」，是「搭配在 skill 侧、没进我的脚本」。两把尺必须合起来。
+  合表读数（三层都从常驻件读）：两层真用 3（GitHub 23/22、Pages 7/5、SQLite 24/4）；工作流真调用而
+  skill 只到文档层 2（D1 4/2、Turnstile 31/2）；只有文档提及 2（R2 0/1、Workers 0/1）；skill 单侧 1
+  （Resend 0/1 但 office-automation-pro 有代码级）；两层全零 1（Upstash per_tool 也是 0）；未入尺 1（VS Code）。
+  更正上轮归因：Upstash 是唯一「名册有、哪儿都没有」；Resend 的缺口在「我的活儿不用它」不在「没有 skill
+  承载」；R2/Workers 是两边都有 skill 提过但都无代码级（卡点分别是平台未启用 10042 与 GraphQL 读数不在
+  部署形态正则口径内）。⇒ 十个工具分四层，每层下一步动作完全不同。
+  元教训：单把尺的「零」会骗人，因为它不问零在哪个层 —— 同一个 0 可以是没承载、没接进活儿、没被尺量到。
+  取值：python 05-exec/r218_workflow_usage_face.py（real_hits）+ python 05-exec/r163_tool_skill_matrix.py
+  （per_tool_exec / per_tool）；落点报告 §78。
 - [ ] **R222-1（r222 登记，P1·已落地）** **探针全包的工具，USED 是有人测它不是有人用它：第 94 门加第二把尺 real_hits**： 【r222 裁决=执行（第 94 门加第二把尺：探针件不计入真调用，三字段 + REAL-GAP advisory + selftest 三四腿）｜读数：真调用 89 / 面 265（探针面 110）；R2/Resend/Upstash 全探针包、Workers 0/0、VS Code NO_PATTERN；selftest 5/5；名册半对归因已补两半。】
   一手：r218 建第 94 门时写了 SELF-REF 腿（命中过半来自探针件则报警），但判定仍是命中大于 0 就算 USED。
   本轮把探针/夹具件全排除后重算：面 265 件里探针占 110 件（41%）；Cloudflare-R2 hits=5 real=0、

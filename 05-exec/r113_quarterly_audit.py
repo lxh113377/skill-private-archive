@@ -390,8 +390,15 @@ def main():
     # 前进锚的合法动作 = 把新一轮件显式复制到 06-benchmark 根并在台账具名（本步不自动做）。
     # rc=1 = 红线破（真故障）⇒ 计入失败步、不把巡检洗绿；rc=2 = 输入面不可用，同样计入失败步。
     miss_mig = os.path.join(qdir, "miss_migration.json")
+    # 基线固定锚 = r117 件（r221 显式钉住）。
+    # 为什么必须钉：该步的自动选件是「候选面内除现件外轮号最大者」，而候选面含 quarterly/ 后，
+    # 首季只有一个季度件 ⇒ 基线会取到与现件同轮号的根目录件，于是每季都报「真错 7 → 7、真修好 0」
+    # —— 不是没进步，是尺子比错了对象（本轮实测踩到：根目录 r123→r216 与季度 r216→r216 同值）。
+    # 口径：锚钉在 r117（需求6 口径 B 的改善就是从那轮量起：真错 12 → 7 = −41.7%），
+    # 换锚须显式改这一行并在台账具名理由，禁让选件器悄悄换尺（R263 同族：尺的变更必须是决定）。
     steps.append(run_step("miss_migration",
                           [PY, os.path.join(HERE, "r217_miss_migration.py"),
+                           "--baseline", os.path.join(BENCH, "route_miss_attr_r117_2026-10-18.json"),
                            "--current", rmiss, "--json", miss_mig, "--quiet"]))
     # r117 第 ⑨ 段：质量主指标（r115 起 = 生产路由 L1/L2/L3/L4 四层，权威件读数）
     truth = os.path.join(qdir, "quality_truth.json")

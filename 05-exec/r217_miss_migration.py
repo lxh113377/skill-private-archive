@@ -259,12 +259,35 @@ def _dated_key(p):
 
 
 def pick_paths(args):
-    cands = sorted(glob.glob(os.path.join(BENCH, "route_miss_attr_*.json")), key=_dated_key)
+    # r221 补：季度产物在 quarterly/<季度>/ 子目录，原 glob 只扫 BENCH 根 ⇒ 巡检跑出来的现件
+    # 永远不在候选面里，基线只能从根目录取，于是「跨轮比较」退化成「拿根目录最近两件互比」，
+    # 而巡检自己的现件反而不参与（本轮实测：根目录 r123 → r216_live，季度件 r216 与 r216 同值
+    # ⇒ 固定报「真错 7 → 7、真修好 0」——不是没进步，是尺子比错了对象）。
+    # 修法：候选面 = 根目录 + quarterly/*/ 的**并集**，且季度件优先（它就是每季的正式读数）。
+    cands = []
+    cands += sorted(glob.glob(os.path.join(BENCH, "route_miss_attr_*.json")), key=_dated_key)
+    for qd in sorted(glob.glob(os.path.join(BENCH, "quarterly", "*"))):
+        if os.path.isdir(qd):
+            cands += [os.path.join(qd, "route_miss_attr.json")]
+    cands = [c for c in cands if os.path.isfile(c)]
     cur = args.current or (cands[-1] if cands else None)
     base = args.baseline
     if not base and len(cands) >= 2:
+        # 基线 = 候选面内**除现件外**轮号最大者；同轮号的季度件优先于根目录件
+        # （同轮号时两件的 route_miss_attr 数值应当一致，取季度件是因为它带当季全链上下文）。
+        def rank(p):
+            m = re.search(r"r(\d+)", os.path.basename(os.path.dirname(p)) if
+                         os.path.basename(os.path.dirname(p)).startswith("20") else os.path.basename(p))
+            quarterly = os.path.basename(p) == "route_miss_attr.json"
+            m2 = re.search(r"r(\d+)", os.path.basename(p))
+            num = 0
+            if m:
+                num = int(m.group(1))
+            if m2:
+                num = max(num, int(m2.group(1)))
+            return (num, 1 if quarterly else 0)
         prev = [p for p in cands if os.path.abspath(p) != os.path.abspath(cur)]
-        base = max(prev, key=_dated_key) if prev else None
+        base = max(prev, key=rank) if prev else None
     return base, cur
 
 
