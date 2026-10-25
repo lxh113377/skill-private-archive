@@ -47,6 +47,12 @@ TOOLS = {
     'Cloudflare-Pages': r'wrangler\s+pages|pages\s+deploy|pages\.dev',
     'Cloudflare-Workers': r'wrangler\s+deploy|workers\.dev|export\s+default\s*\{[\s\S]{0,80}fetch',
     'Cloudflare-Turnstile': r'turnstile|siteverify|cf-turnstile|TURNSTILE_SECRET',
+    # r244：VS Code 是名册第 10 个工具，但**原先在本表里没有模式** ⇒ 名册只能写「未量」。
+    #   实测它确有真实痕迹：技能 A-java-problem 把「交付前在 VS Code GUI 里真跑」写成验收步骤
+    #   （Ctrl+Shift+B 出 exe → F5 停 main() 退出码 0；并记下 preLaunchTask label 必须与 tasks.json
+    #   逐字相同、焦点不在终端时 stdin 被吞两个 GUI-only 坑）。⇒ 入尺；模式取 VS Code 专有词，
+    #   不用裸 code（太通用会误判），要求 .vscode 目录名 / VS Code 字样 / preLaunchTask / code 子命令。
+    'VS Code': r'\.vscode|vs\s*code|\bvscode\b|preLaunchTask|code\s+--(?:diff|goto|reuse-window|new-window)',
     # r163 自抓：纯产品名不算搭配（f3 腿当场抓到 Resend/Upstash 只提一句就被算进去）。
     # 这两项没有 CLI，靠 env key / API host / SDK 调用形态识别。
     'Resend': r'RESEND_API_KEY|api\.resend\.com|resend\.emails\.send|new\s+Resend\(',

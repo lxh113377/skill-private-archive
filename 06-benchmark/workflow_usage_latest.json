@@ -6,19 +6,18 @@
  "roster_source": "free_tools_latest.json rows（第 163 门）",
  "known_gaps_in": 1,
  "new_gaps": [],
- "no_pattern": [
-  "VS Code"
- ],
+ "no_pattern": [],
  "self_ref": [
   "GitHub",
   "Cloudflare-D1",
   "Cloudflare-R2",
   "Cloudflare-Pages",
+  "VS Code",
   "Cloudflare-Turnstile",
   "Resend",
   "Upstash-Redis"
  ],
- "face_files": 267,
+ "face_files": 268,
  "tools": [
   {
    "tool": "GitHub",
@@ -104,8 +103,8 @@
   },
   {
    "tool": "SQLite",
-   "hits": 28,
-   "probe_share": 0.143,
+   "hits": 32,
+   "probe_share": 0.25,
    "real_hits": 24,
    "real_files": [
     "r203_ledger_index.py"
@@ -119,14 +118,21 @@
   },
   {
    "tool": "VS Code",
-   "hits": null,
-   "probe_share": null,
-   "state": "NO_PATTERN"
+   "hits": 18,
+   "probe_share": 1.0,
+   "real_hits": 0,
+   "real_files": [],
+   "line_exec": 0,
+   "line_comment": 0,
+   "line_prose": 0,
+   "line_cjk_prose": 0,
+   "state": "USED",
+   "real_state": "REAL_GAP"
   },
   {
    "tool": "Cloudflare-Turnstile",
-   "hits": 93,
-   "probe_share": 0.731,
+   "hits": 95,
+   "probe_share": 0.737,
    "real_hits": 25,
    "real_files": [
     "r163_turnstile_admin.py",
@@ -166,7 +172,7 @@
    "real_state": "REAL_GAP"
   }
  ],
- "total_hits": 238,
+ "total_hits": 262,
  "real_face_files": 154,
  "real_total_hits": 82
 }

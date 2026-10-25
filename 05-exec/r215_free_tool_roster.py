@@ -101,13 +101,30 @@ BLOCKER = {
         'evidence': 'python 05-exec/r199_workers_face.py --json 06-benchmark/workers_quota_latest.json（真跑 MEASURED）；token workersInvocationsAdaptive 见该件 L50/L108',
     },
     'VS Code': {
-        'class': '未入尺',
-        'why': '编辑器本体，不承载判据；第 67 门无该工具正则 ⇒ per_tool 无此键（未量，不等于零提到）',
-        'evidence': 'python 05-exec/r163_tool_skill_matrix.py --json 件（per_tool 里无 VS Code 键）',
+        # r244：入尺后重写。原记「未入尺（第 67 门无该工具正则）」——那是**我这边没有尺**，不是它不适用；
+        #   实测它有真实承载：技能 A-java-problem 把「交付前在 VS Code GUI 里真跑」写成验收步骤
+        #   （Ctrl+Shift+B 出 exe → F5 停 main() 退出码 0；并记下 preLaunchTask label 须与 tasks.json 逐字相同、
+        #   任务终端失焦时 stdin 被吞两个 GUI-only 坑），另有 .vscode / IDEA 对照的提法。
+        #   归因改为『桌面 GUI 承载（非调用面）』：它被当**人工验证环境**用，而无头工作流没有调用面
+        #   （#29 的 UIA 档位留给「必须自动化的 GUI 步骤」，此处人跑 F5 本身就是验收的一部分）。
+        'class': '桌面 GUI 承载（非调用面）',
+        'why': ('已入尺（第 67 门现含 VS Code 模式）。承载点在技能手册层：A-java-problem 的验收步骤要求人跑',
+                'VS Code GUI（Ctrl+Shift+B → F5 停 main() 退出码 0），并沉淀了两个 GUI-only 坑；',
+                '工作流侧本就无调用面 —— 我的产出是文件与提交，不需要开编辑器。CLI（code）在机，',
+                '但可用不等于该用：不为把计数做非零而写假调用。'),
+        # r244 自抓：首版两串之间**多了个逗号** ⇒ evidence 成了二元组，渲染处 `'...%s' % 元组` 报
+        #   「not all arguments converted during string formatting」。相邻字面量拼接**不能带逗号**。
+        'evidence': ('python 05-exec/r163_tool_skill_matrix.py --json 件（per_tool[\'VS Code\'] = 提到/代码级两把尺）；'
+                     '承载原文：D:/global_skills/A-java-problem/log/iteration-log.md 的 2026-10-12 C++ 条目'),
     },
 }
 
-BLOCKER_CLASSES = ('平台能力缺口', '外部凭据缺口', '口径盲区', '按用户要求移除', '未入尺', '无使用场景')
+# r244：新增『桌面 GUI 承载（非调用面）』—— VS Code 入尺后，它的零调用不再能记成「未入尺」（已入尺），
+#   也不是「无使用场景」（技能 A-java-problem 真把它当交付前验证环境用），而是**它的用法本身就是 GUI 人工步骤**：
+#   无头工作流没有调用面（#29 的 UIA 档位只适用于必须自动化的 GUI 步骤，而这里人跑 F5 正是验收的一部分）。
+#   同族还有 '未入尺'（r244 后暂空置 —— VS Code 已入尺；保留该项以防将来再有未入尺的工具）。
+BLOCKER_CLASSES = ('平台能力缺口', '外部凭据缺口', '口径盲区', '按用户要求移除', '未入尺', '无使用场景',
+                   '桌面 GUI 承载（非调用面）')
 # r229：第 4 层 —— 读数型真调用（读得到数）。
 #   为什么需要它：r228 给 Workers 的归因是「口径盲区」——它的真实用法是走 API 读调用数，而形态级正则
 #     只认部署形态。只留归因，读者仍会把它读成「没在用」。把「读数面真跑出数」单列一层，

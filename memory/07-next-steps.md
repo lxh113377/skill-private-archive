@@ -566,6 +566,25 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   必须来自可复算的入口件，不接受「我跑过一次的脚本」当来源。
   取值：git show HEAD:<报告 rel> 与工作树 io.read 比对（长度/章节/数字三项）；
   python 05-exec/r221_dead_regex_scan.py --wide（现值 256 件/959 个/2 处）。
+- [ ] **R244-2（r244 登记，P1·已落地）** **名册最后一个「未量」工具入尺：VS Code 三把尺实读数（7/1、wf 0、third 0）+ 新归因类『桌面 GUI 承载（非调用面）』**： 【r244 裁决=执行（VS Code 入尺：r163 加专有模式 + 新归因类『桌面 GUI 承载（非调用面）』+ evidence 元组 bug 自抓修复）｜读数：VS Code ① 提到 7/代码级 1、② 0（18 命中全探针）、③ 0；名册牙 12/12 PASS、rc=0、md 23421B；审计五层漂移 0。】
+  ① 「未入尺」说的是谁的问题：原归因写「第 67 门无该工具正则 ⇒ per_tool 无此键（未量，不等于零提到）」——
+  那句话里已经点破：**未量是我没有尺**，不是它不适用。先查真痕迹再决定：code CLI 在
+  （D:\Microsoft VS Code\bin\code）；技能 A-java-problem 的 log/iteration-log.md 与 references/ 共 4 处提到，
+  且非客套 —— 2026-10-12 C++ 条目把「**交付前在 VS Code GUI 里真跑**」写成验收步骤（Ctrl+Shift+B 出 exe →
+  F5 停 main() 退出码 0），并沉淀两个 GUI-only 坑（preLaunchTask label 须与 tasks.json 逐字相同；
+  任务终端失焦时 stdin 被吞）。⇒ 有承载就该有尺。
+  ② 入尺：r163 TOOLS 增模式 `.vscode|vs\s*code|\bvscode\b|preLaunchTask|code --(diff|goto|reuse-window|new-window)`
+  （**不用裸 code**，太通用）。实测：① skill 目录 **提到 7 件 / 代码级 1 件（A-project-handoff）**；
+  ② 工作流真调用 **0**（18 命中全在探针件，SELF-REF 照实单列）；③ 项目仓 0。
+  ③ 归因同步改类：原 `未入尺` 已不成立，也不能记 `无使用场景`（它有使用场景）⇒ 新增类
+  **『桌面 GUI 承载（非调用面）』**（BLOCKER_CLASSES 白名单同加；`未入尺` 保留并注明 r244 后暂空置）。
+  理由：它的用法本身就是 GUI 人工步骤（人跑 F5 即验收的一部分），无头工作流没有调用面；CLI 在机但
+  **可用不等于该用**（凑引用即造需求，不写假调用）。
+  ④ 一次自抓：evidence 的相邻字符串之间**多写一个逗号** ⇒ 成了二元组 ⇒ 渲染 `'...%s' % 元组` 抛
+  TypeError（not all arguments converted），名册 rc=1 但**不是牙红、是渲染先崩**；去逗号即恢复。
+  元教训：「未量」必须写清是谁的问题 —— 把「我这门没正则」写成工具自己的归因，读起来像「它不适用」，
+  而这类句子最危险之处在于**看起来像结论**，所以没人会再去量。补完后名册 10 工具**全部有层①②③实读数**。
+  取值：python 05-exec/r163_tool_skill_matrix.py --json 件（per_tool['VS Code']）；python 05-exec/r215_free_tool_roster.py。
 - [ ] **R243-1（r243 登记，P1·已落地）** **SQLite 补上读数面（体量+新鲜度），并发现其搭配「被搭配了但没被维护」（落后 25.41 小时）⇒ 建成两道门固化**： 【r243 裁决=执行（SQLite 读数面 + 重建链两道门 + 名册/审计同步 + 删旧 NO_READ_FACE 条）｜读数：重建 0.7s、库 11.79 MiB / 42488 行、陈旧度从 25.41 小时 → -0.2 小时（新鲜）；门表 100 门（新增 2、未登记 0）；名册 [ROSTER:OK]；审计五层漂移 0（用量面 6 项）。】
   ① 又一句同病断言：名册原写 SQLite「本地嵌入库，无平台额度面 ⇒ 无读数面（用量由 r203 本地统计）」——
   与 r242 Turnstile 同病：把**没有平台额度**读成**没有可读的数**。本机实测：库在、10.03 MiB、7 表、
@@ -1434,6 +1453,15 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   **残留项（都不是本目标的未完成要求，已逐条移交、不代改）**：① 焚诀仓路由层的 2 条直连错配 + tag 清单 30 项空转（合并移交清单 `06-benchmark/路由层缺陷移交清单_r234_合并版_*.md`，本仓红线 6 定「焚诀 eval/ 只读」⇒ 只移交）；② L1 尚余可及空间 +5.7%（90.1 → 上限 95.2），其推进依赖 ① 的执行方。二者**均不在本仓可执行范围**，非「还有活没干」。
   **复核记录（收口前最后一步）**：上轮我设的触发是「复核归属方是否已修」——本轮实测**仍未改动**（`notion.*会议→NONE`、`灵感.*枯竭→story` 两条规则在位且值不变；`direct_map.json` 仍 273 条），故按上轮承诺作出收口判断，而非继续挂着。
   取值：各项证据命令见 `06-benchmark/需求闭环审计件_r227_七项逐条对照_2026-10-25.md` 与 `04-plan/要求6验收裁决与收口件_r233_*.md` 的 §1/§2；本条不新增读数，只做汇总与判据陈述。
+
+- [ ] **R244-1（r244 登记，P1·已落地）目标「修完两条直连后复测 L1」：前提**尚未发生**（规则值仍 NONE/story、direct_map 三周未动），故用**只读反事实**作答 —— 修后 L1 **90.1 → 90.7（+0.6）**，距上限 95.2 由 5.1 收窄到 4.5**： 【r244 裁决=执行｜前提未发生（两条规则值仍 NONE/story、direct_map 三周未动、273 条）⇒ 用只读反事实作答：复用评测自身口径，先自证脚手架（基线复现 90.1/276/291/95.2）与补丁控件（direct_route NONE→meeting-intelligence、story→brainstorming），再内存改两条规则重算 ⇒ L1 90.1→90.7(+0.6)、hits 276→278、距上限 5.1→4.5；7 条中 2 条修好、5 条不变（3 策略分歧 + 2 走 tag/BGE）⇒ 上限非修这两条可达；零写盘｜取值：python -c 进程内 FBE.evaluate(layered) 前后对比】
+  一手（本轮为带前提的新目标，先核前提再决定怎么做）：① **前提核实**：`notion.*会议…` 的值仍 `NONE`、`灵感.*枯竭…` 仍 `story`、`direct_map.json` 条数仍 273、该件 mtime **2026-10-03**（三周未动）⇒ 归属方**未修**。按 #31/#37 不干等，改做**只读反事实**回答目标之问。
+  方法（复用评测自身口径，不自造尺）：进程内 `import frozen_blind_eval as FBE`，先 `FBE.evaluate('layered')` 取基线；再把 `direct_layer.DIRECT_MAP` 重建为「命中那两条 pattern 的条目换 value 为 meeting-intelligence / brainstorming」的新列表（条目是 **tuple**，首版原地赋值 `e[1]=…` 报 TypeError，改为重建 list），再 `FBE.evaluate('layered')`。
+  **两项先自证（缺一数字不可信）**：① 脚手架校验 —— 基线须复现 `score=90.1 / hits=276 / n=291 / max_achievable=95.2`，**全部复现**；② 补丁控件 —— 补丁后 `DL.direct_route` 的返回值须变，实测 `Notion 会议准备` `NONE`→**meeting-intelligence**、`灵感枯竭帮我发散一波点子` `story`→**brainstorming**。
+  **结果**：weighted score **90.1 → 90.7（+0.6）**、hits **276 → 278**、n 291 不变、上限 95.2 不变 ⇒ **距上限 5.1 → 4.5**。⇒ 答目标之问：**会靠近，但只靠近 0.6 点**，因为 7 条 REAL_MISS 里只有这 2 条能被那两条规则触及。
+  逐条效果：修好 **2 条**（Notion 会议准备、灵感枯竭发散）；余 **5 条不变** —— 3 条属**期望/策略分歧**（动画演示文稿 ppt-master 撞车、安全审查 security-audit、录音转文字 local-asr）需「改期望 or 改映射」的裁决；2 条**无直连、走 tag/BGE**（清理提示词补丁、同步技能）。⇒ **上限 95.2 不是靠修这两条能到的**。
+  边界（防把它读成「修完的复测」）：本件是**反事实**，前提未发生；**真实复测条件** = 当 `direct_map.json` 那两条 value 真变了（或该件 mtime 变），**直接跑 §2 的基线一次即为真实复测，不需打补丁**。全程零写盘（不写焚诀仓任何文件；评测器自身设 `FENJUE_ROUTE_TRACE=0`，评估与 trace 解耦）。
+  取值：`python -c` 进程内 `import frozen_blind_eval as FBE, direct_layer as DL`；`FBE.evaluate('layered')` 取基线（须 90.1/276/291/95.2）；重建 `DL.DIRECT_MAP` 换那两条 value 后再 `FBE.evaluate('layered')`（须 90.7/278）；`DL.direct_route(q)` 前后值作控件。
 
 - [ ] **R218-5（r218 登记，P1·已落地）** **R213-1 结案：候选池打成入库单件包，离线复算不再站在 _temp 上；但我上轮那条待办的前提引用错了预算面 —— 按它算会得出「不能入库」而永久搁置**： 【r220 裁决=执行｜r217_pool_pack.py + pool_cache_r217.json（762,630B < any_file_max）+ r114 内存合并「包∪散件、散件覆盖包」；本条原文引用的 family_bytes_max 属 T1 记忆卷族、不适用缓存池（真闸 = T2 cache_file_max=200 / any_file_max），已按现读原文改写；端到端双向实测：模拟清场 --offline 仍 REPL:PASS 且读数一致、加 --pool-pack none 才复现 UNVERIFIED｜取值：python 05-exec/r217_pool_pack.py --check；python 05-exec/r114_replacement_scan.py --offline --cache-dir _temp/empty_cache】
   一手（实测否证自己）：R213-1 原写「须先量 `family_bytes_max=491,520` 与 `repo_max=10,485,760` 两条预算再裁」⇒ 池缓存**不属于 family_* 族**：`r150_volume_tiers.TIER_KEYS` 把 family_* 归 **T1（记忆卷族）**，缓存池的闸在 **T2** —— `cache_file_max=200`（件数闸）/ `cache_dir_max=52,428,800B`，产物级另有 `artifact_max=262,144` 与 `any_file_max=1,048,576`（数值现读 `06-benchmark/gov_tiers_r150_2026-10-21.json`）。本仓常引的教训是「缺口报大与报小同样有害」，这是它的**反向形态：约束报错面也会杀死正当动作**。

@@ -352,7 +352,7 @@
     }
    ],
    "blocker": null,
-   "read_state": "UNVERIFIED",
+   "read_state": "MEASURED",
    "read_face": {
     "script": "r200_pages_face.py",
     "artifact": "pages_http_latest.json",
@@ -371,9 +371,14 @@
     ]
    },
    "read_why": null,
-   "usage_value": null,
-   "usage_meta": null,
-   "usage_why": "路径取不到：row/requests_total"
+   "usage_value": 198778,
+   "usage_meta": {
+    "unit": "次",
+    "extra": null,
+    "extra_label": null,
+    "window": "2026-10-01~2026-10-26"
+   },
+   "usage_why": null
   },
   {
    "tool": "Cloudflare-Workers",
@@ -419,7 +424,7 @@
     "why": "我的真实用法是**读数型**：走 CF GraphQL analytics 读调用数（token 见证据件），而形态级正则只认部署形态的三类写法 ⇒ 它看不见读数型搭配（不为此写假调用凑数）",
     "evidence": "python 05-exec/r199_workers_face.py --json 06-benchmark/workers_quota_latest.json（真跑 MEASURED）；token workersInvocationsAdaptive 见该件 L50/L108"
    },
-   "read_state": "UNVERIFIED",
+   "read_state": "MEASURED",
    "read_face": {
     "script": "r199_workers_face.py",
     "artifact": "workers_quota_latest.json",
@@ -438,9 +443,14 @@
     ]
    },
    "read_why": null,
-   "usage_value": null,
-   "usage_meta": null,
-   "usage_why": "路径取不到：row/invocations_month"
+   "usage_value": 0,
+   "usage_meta": {
+    "unit": "次",
+    "extra": null,
+    "extra_label": null,
+    "window": "2026-10-01~2026-10-26"
+   },
+   "usage_why": null
   },
   {
    "tool": "SQLite",
@@ -531,11 +541,21 @@
   {
    "tool": "VS Code",
    "state": "READY",
-   "mention_skills": null,
-   "exec_skills": null,
-   "yardstick_absent": true,
-   "wf_real_hits": null,
-   "wf_real_files": null,
+   "mention_skills": [
+    "A-java-problem",
+    "A-project-handoff",
+    "c-cleanup",
+    "cloudbase",
+    "computer-use-guidance-windows",
+    "discover-agent-cli",
+    "electron"
+   ],
+   "exec_skills": [
+    "A-project-handoff"
+   ],
+   "yardstick_absent": false,
+   "wf_real_hits": 0,
+   "wf_real_files": [],
    "third_hits": 0,
    "third_files": [],
    "third_lines": 0,
@@ -553,9 +573,14 @@
    "patterns_n": 3,
    "tasks": [],
    "blocker": {
-    "class": "未入尺",
-    "why": "编辑器本体，不承载判据；第 67 门无该工具正则 ⇒ per_tool 无此键（未量，不等于零提到）",
-    "evidence": "python 05-exec/r163_tool_skill_matrix.py --json 件（per_tool 里无 VS Code 键）"
+    "class": "桌面 GUI 承载（非调用面）",
+    "why": [
+     "已入尺（第 67 门现含 VS Code 模式）。承载点在技能手册层：A-java-problem 的验收步骤要求人跑",
+     "VS Code GUI（Ctrl+Shift+B → F5 停 main() 退出码 0），并沉淀了两个 GUI-only 坑；",
+     "工作流侧本就无调用面 —— 我的产出是文件与提交，不需要开编辑器。CLI（code）在机，",
+     "但可用不等于该用：不为把计数做非零而写假调用。"
+    ],
+    "evidence": "python 05-exec/r163_tool_skill_matrix.py --json 件（per_tool['VS Code'] = 提到/代码级两把尺）；承载原文：D:/global_skills/A-java-problem/log/iteration-log.md 的 2026-10-12 C++ 条目"
    },
    "read_state": null,
    "read_face": null,
@@ -731,8 +756,8 @@
    "gaps": 5
   },
   "matrix_src": {
-   "file": "tool_skill_matrix_r231.json",
-   "generated_at": "2026-10-25 20:00",
+   "file": "tool_skill_matrix_r244.json",
+   "generated_at": "2026-10-25 23:47",
    "cmd": "python 05-exec/r163_tool_skill_matrix.py --json <out>"
   },
   "workflow_src": {
@@ -743,13 +768,13 @@
    "real_total_hits": 82
   },
   "third_src": {
-   "files_scanned": 4134,
+   "files_scanned": 4131,
    "roots": [
     "C:/Users/37533/Desktop/workspace/超市web/supermarket-web",
     "C:/Users/37533/Desktop/workspace/项目/新建文件夹"
    ],
    "pruned_foreign_n": 10,
-   "files": "tool_skill_matrix_r231.json"
+   "files": "tool_skill_matrix_r244.json"
   }
  }
 }

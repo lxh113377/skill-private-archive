@@ -14,7 +14,7 @@
  "drift": [],
  "layer5_usage": {
   "Cloudflare-Workers": [
-   "PATH-MISS",
+   0,
    "workers_quota_latest.json"
   ],
   "Cloudflare-D1": [
@@ -26,7 +26,7 @@
    "gh_billing_latest.json"
   ],
   "Cloudflare-Pages": [
-   "PATH-MISS",
+   198778,
    "pages_http_latest.json"
   ],
   "Cloudflare-Turnstile": [
@@ -94,8 +94,8 @@
    "l3": 0
   },
   "VS Code": {
-   "l1_mention": 0,
-   "l1_exec": 0,
+   "l1_mention": 7,
+   "l1_exec": 1,
    "l2": 0,
    "l3": 0
   }
