@@ -1,0 +1,28 @@
+{
+ "schema": "recall-face-v3",
+ "readonly": true,
+ "window": 800,
+ "checked": 3,
+ "truth_judged": 2,
+ "task_judged": 7,
+ "task_hits": 6,
+ "task_gaps": [
+  "task:R2 开桶|期望=chaoshi-image-optimization 实测 top1=libreoffice-headless-win（任务语句召不回承载件）"
+ ],
+ "gaps": [
+  "task:R2 开桶|期望=chaoshi-image-optimization 实测 top1=libreoffice-headless-win（任务语句召不回承载件）",
+  "win-toolchain-pitfalls::CF/GitHub 免费额度读数与自动化链静默失败（R805 §9.16 / R810 §9.17 在 references）|探针=Cloudflare/wrangler/GitHub",
+  "win-toolchain-pitfalls::工具链静默失败速查（description 原词，实测仅排第 2/未进前列 ⇒ 区分度不足）|路由真值未召回 rank=None top1=scope-creep-detector"
+ ],
+ "baseline": [
+  "task:D1 查额度|期望=A-memory-start 实测 top1=wps-knowledgebase（任务语句召不回承载件）",
+  "task:R2 开桶|期望=chaoshi-image-optimization 实测 top1=libreoffice-headless-win（任务语句召不回承载件）",
+  "task:Workers 调用量|期望=A-memory-start 实测 top1=chaoshi-image-optimization（任务语句召不回承载件）",
+  "win-toolchain-pitfalls::CF/GitHub 免费额度读数与自动化链静默失败（R805 §9.16 / R810 §9.17 在 references）|探针=Cloudflare/wrangler/GitHub",
+  "win-toolchain-pitfalls::工具链静默失败速查（description 原词，实测仅排第 2/未进前列 ⇒ 区分度不足）|路由真值未召回 rank=None top1=scope-creep-detector"
+ ],
+ "new_gaps": [],
+ "k4_teeth": true,
+ "note": "三层召回面：① 语料窗口=SKILL.md 前 N 字符（BGE/TF-IDF 同源），写进 references 的知识不在召回面；② 路由真值：窗口命中只是入场券，真召回看 direct_map（L0.1 直连）与 BGE rank；③ 任务召回率：真实任务语句能否把承载件带进前 3（搭配对了 ≠ 路由认得出）。可达不等于可召回",
+ "provenance_cmd": "python 05-exec/r208_recall_face.py --json <件>"
+}

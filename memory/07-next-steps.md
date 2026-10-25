@@ -583,6 +583,18 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   每一层都不能靠「我记得」，因为漏掉的永远不会报错，只会静默少查。
   取值：python 05-exec/r254_teeth_proof_matrix.py --json 06-benchmark/teeth_proof_latest.json；
   python 05-exec/r254_proof_fixtures.py（11 腿）。
+- [ ] **R255-3（r255 登记，P1·待处理·他人件）** **recall_face 把「router 整轮无返回」读成「新增 9 条不可召回」⇒ 环境性假红**：
+  一手证据：109 门全量里 `recall_face` 报 `[RECALL:FAIL] 新增不可召回 9 条`；明细 9 条的 `top1`/`rank` **全是 None**
+  （7 条 task：Actions 分钟 / CI 红了 / D1 查额度 / Pages 部署 / R2 开桶 / Workers 调用量 / 钩子静默推送；
+  2 条路由真值：chaoshi-web-deploy 正控、win-toolchain-pitfalls），即 router 整轮没返回任何结果。
+  单跑复核：`python 05-exec/r208_recall_face.py --json …` → **rc=0 / 0.3s / [RECALL:PASS] 无新增不可召回（历史 3 条在基线内）**
+  ⇒ 全量那次是环境性假红。
+  为什么算问题：该面自己已有 `[RECALL:UNVERIFIED] 路由真值层不可用` 文案，却把「整体无返回」逐条记成反方向的
+  「真缺口」⇒ 两端都错：既浪费轮次追不存在的缺口，又侵蚀判据可信度（与 R255-2 同文件、同族）。
+  作者归属存疑（r208 末次改动 cb0df24，疑并行会话）⇒ 按 **R269 只登记、不代改**。
+  下一步（属该件归属方）：在逐条判 GAP 之前先做**整体信号判定** —— 若 router 返回率 ≈ 0（或查询异常），
+  整轮记 `UNVERIFIED` + rc=2，不出「新增不可召回」。
+  取值：python 05-exec/r208_recall_face.py --json 06-benchmark/recall_standalone_probe.json（对照全量那次）。
 - [ ] **R255-2（r255 登记，P1·待处理·他人件）** **recall_face / ingress_face 源件读不到时是「崩溃」而非 UNVERIFIED（形态错，非绿错）**：
   一手证据（我的证伪夹具 p5/p6，进程内把 `_read` 换成返回 None）：两面均抛 TypeError（expected string or
   bytes-like object, got NoneType），而它们自己的文档写着「取不到 ⇒ UNVERIFIED」（r208 第 21/156/161/164 行附近、
