@@ -76,7 +76,13 @@ def cf_code(body):
 
 def wrangler_r2():
     try:
-        r = subprocess.run("wrangler r2 bucket list --json", capture_output=True,
+        # r221 修一：原命令带 --json，但 wrangler 4.152 的 **r2 bucket list 子命令**不认它，
+        # 直接以「Unknown argument: json」退出 1 —— 这条被件头称为「客户端侧同码核对」，
+        # 实际从未核对过任何东西：参数错误被当成了服务态证据（结论碰巧对，证据是假的）。
+        # ⚠ 支持与否按**子命令**分，别一概而论（r221 实测：wrangler d1 list --json 与
+        #    wrangler pages project list --json 都 rc=0 且吐 JSON 数组，只有 r2 不认）。
+        #    故这里去掉 --json 走文本态，绝不可据此去删 d1/pages 那两路（那会拆了门）。
+        r = subprocess.run("wrangler r2 bucket list", capture_output=True,
                            text=True, encoding="utf-8", errors="replace",
                            timeout=180, shell=True)
         return r.returncode, ((r.stdout or "") + (r.stderr or ""))
@@ -93,9 +99,17 @@ def judge(a, b, c, wr_rc, wr_out):
     detail = {"control": "alive", "buckets_http": b[0], "buckets_code": cf_code(b[1]),
               "subs_http": c[0], "subs_code": cf_code(c[1]),
               "wrangler_rc": wr_rc, "wrangler_code": None}
-    m = re.search(r'"code"s*:s*(d+)', wr_out or "")
-    if m:
-        detail["wrangler_code"] = int(m.group(1))
+    # r221 修二：上一版的正则字面量是 JS 写 Python 时把反斜杠吃掉留下的死正则
+    # （"s*:s*(d+)" 里的 \s \d 丢了转义），永远匹配不上 ⇒ 产物 wrangler_code 恒为 null，
+    # 看起来像「wrangler 没给码」，实际是解析器坏了。现按 wrangler 真实文案
+    # 「[code: 10042]」取值，并把用法错误单独标成不可用证据。
+    if re.search("Unknown argument|unexpected argument", wr_out or "", re.I):
+        detail["wrangler_usable"] = False
+    else:
+        detail["wrangler_usable"] = True
+        mm = re.search(r"\[code:\s*(\d+)\]", wr_out or "")
+        if mm:
+            detail["wrangler_code"] = int(mm.group(1))
     if b[0] == 200 and isinstance(b[1], dict) and b[1].get("success"):
         rows = b[1].get("result") or []
         return ("MEASURED", "R2 可用（桶数 %d）⇒ 名册 R2 项可接落地代码" % len(rows), detail)

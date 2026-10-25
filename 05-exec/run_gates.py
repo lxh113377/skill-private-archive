@@ -1514,6 +1514,21 @@ GATES = [
                   "口径盲区（部署形态级 vs 读数型用法），已具名收进基线而非凑调用"),
     },
     {
+        # r221：死正则面（门数以 run_gates.GATES 现读为准，不写死编号）——
+        # 丢反斜杠的正则写了等于没写，产物静默恒 null
+        "id": "dead_regex_scan",
+        "script": "r221_dead_regex_scan.py",
+        "argv": ["--json", "06-benchmark/dead_regex_latest.json"],
+        "pass_token": "[DEADRX:PASS]",
+        "portable": True,
+        "covers": [
+            "只判 re.*( 第一个实参里 r 前缀字面量中的裸 d+/s*/w+ 等（宁漏不误）",
+            "自证三向常驻：死正则样本被抓 / 好正则不误报 / 已修件干净",
+            "无牙即 rc=2：扫过且 0 命中不得当结论背书（R247）"],
+        "why": ("r201 的 wrangler 证据解析长期是死正则，产物 wrangler_code 恒 null，"
+                  "被件头当「客户端侧同码核对」背书 GAP_SERVICE；结论碰巧对但证据是假的。"),
+    },
+    {
         # r220：markdown 相对链接死链面（第 95 门）—— 落 R220-3：索引卷迁进 memory/ 后落到所有门面外，30 条死链活了 45 轮
         "id": "md_deadlink_face",
         "script": "r220_md_deadlink.py",

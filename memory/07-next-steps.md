@@ -555,6 +555,31 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   取值：python -c 按 BOM 判 UTF-16LE 解 g220b.log（24 行，含 [GATE:noise-fail]）；
   第二次 -Fix 的 rc/耗时/[GATE:mirror-pass]/源==镜像 四值同屏输出；python D:/global_skills/A-skill-manager/
   assets/disk_registry_diff.py。
+- [ ] **R221-1（r221 登记，P1·已落地）** **一条永远匹配不上的正则替 GAP_SERVICE 背了书；修两处并建第 95 门按结构扫全仓**： 【r221 裁决=执行（修 r201 死正则与 --json 参数错误两处；建第 95 门按结构扫全仓并自证；宽口径交叉核对 1 处按证据定性不改）｜读数：四向牙测全过、真面 D 路 code=10042 usable=True（旧恒 null）、扫描器扫 256 件 0 处、run_gates 15/0 纯新增、GATES=96、门表 96/基线 95/未登记 0、准入未声明 0。】
+  一手：r201 产物 wrangler_code 恒 null，看着像「wrangler 没给码」。真因是其解析正则模式里的反斜杠
+  全被吃掉（JS 写 Python 的老坑），成了一条死正则 —— 从没运行过，不是抓不到。同处第二条：命令带
+  --json 参数，而 wrangler 4.152 的 r2 子命令不认它，直接 Unknown argument 退出 1 ⇒ 被件头称为「客户端
+  侧同码核对（排除只有 REST 被封）」的那条核对连 API 请求都没发出。两处都是参数/解析错误被当成
+  服务态证据（结论本轮碰巧仍对：另跑不带 json 的真调用实测 code 10042）。
+  修复＋四向牙测：真文案 usable=True 且解析出 10042 ／ 用法错误 usable=False code=None ／ 旧死正则对真
+  文案「能匹配 = False」（坐实旧代码必写 null）／ 无活性对照仍早退 UNVERIFIED。重跑真面：D 路 rc=1
+  code=10042 usable=True（旧产物恒 null），判定 GAP_SERVICE 带对照证据 [R2FACE:JUDGED]。
+  按结构扫全仓（执行 r220 那条元教训）：新建第 95 门 05-exec/r221_dead_regex_scan.py，判 re 调用首个
+  r 字面量中的裸量词，宁漏不误。**扫描器首跑自证失败**（我的样本写成 r 双引号形态，真实死正则是
+  r 单引号内含双引号；外层双引号提前闭合不构成 r 字面量）⇒ 扫描器 rc=2 拒发读数，不放宽判据凑绿；
+  改样本后 PASS：扫 256 件 0 处。宽口径交叉核对（全部 519 个 r 字面量）多报 1 处 r120 的 ^zzd+，
+  按证据定性不改：docstring 同条无反斜杠、全仓 zz 前缀皆为故意字面哨兵、真 trace 26547 行 zz 开头 0
+  条 ⇒ 非死正则；但如实记「该噪声白名单项现数据上从不命中（空转）」。
+  挂表时另两次自抓：① 插入块把 dict 收尾多写一个花括号行 ⇒ 括号失衡，且我第一次只打印 rc=1 未打印
+  stderr 就继续施工（把判据失败当已知）⇒ 固化「编译失败必回显 stderr」；修过头又删掉 dict 花括号，
+  第二次报错才看清。② 门注释写死「第 95 门」与并行会话的 md_deadlink_face 撞号 ⇒ 改为「门数以
+  run_gates.GATES 现读为准」。插入后核验 git diff --numstat = 15/0 纯新增（未扰动他人任何行）。
+  元教训：**产物里一个恒为 null 的字段，就是判据在沉默的呼救声。** 只要其值被下游当证据，它就不该
+  有「拿不到」这个选项 —— 要么取到，要么显式 usable=False / UNVERIFIED，绝不允许沉默。
+  取值：python 05-exec/r221_dead_regex_scan.py --json 06-benchmark/dead_regex_latest.json；
+  python 05-exec/r201_r2_enable_face.py --json 06-benchmark/r2_enable_latest.json；
+  python 05-exec/r130_gate_table_reconcile.py 与 python 05-exec/r129_reconcile_admission.py。
+  落点：报告 §76。
 - [ ] **R220-1（r220 登记，P1·已落地）** **我上一轮把「能修的假人工步骤」登记成「不改」：锚搞错归属，本轮修 rule_editor 的 180s 超时**： 【r220 裁决=执行（更正上一轮的归属错：timeout=180 在安全区内的 rule_editor，本轮改掉；两处超时分支各按其自陈口径处置）｜读数：四锚各命中 1、备份已落、验牙四例齐（py_compile rc=0、无残留 timeout=180、只读超时→True+状态未知、Fix 超时→False+无需人工、env 覆盖生效）。】
   更正自抓：r219 §74.6/R219-4 我写「阈值在焚诀侧件里，我不改（R269/红线6），只具名登记」——**归属错**。
   本轮定位：`rule_editor.py:93 MIRROR_FIX_PS1` 只是指向 ps1 的**被调用方路径**，真正卡死的 `timeout=180`
@@ -907,6 +932,13 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   本轮为何不抢做：run_gates.py 是共享件且实测他端正在写（同一轮 py_syntax_guard 抓到它 1512 行 SyntaxError 的中途态，而 HEAD 与工作树当时均 compile-OK ⇒ 判据拒判绿是对的）。现在改它必与在途提交撞车 —— 今天已因共享索引代提交过他们一次（见 R218-7）。落点条件：run_gates.py 连续两次 git status 干净。
   社区协作侧已做：本仓提 issue #3（含现象/根因/影响面/修复/常驻判据五段，gh api 实测 created_at=2026-10-25T02:14:19Z）。对侧 addyosmani/agent-skills、obra/superpowers、github/spec-kit 在本地可证判据下实测**零真缺陷** ⇒ 不编造缺陷去提 issue；且本沙箱出网受限（外部链接 7/20 全 NET），不得据此反判「无死链」。
   取值：python 05-exec/r220_md_deadlink.py --selftest；python 05-exec/r220_md_deadlink.py .；gh api repos/lxh113377/skill-private-archive/issues/3 --jq .created_at；python 05-exec/run_gates.py --gate handles_readme_fixtures --no-ledger。
+- [ ] **R220-6（r220 登记，P1·本轮新立，残件是我自己造的）** **双向 R269 盲区：两会话互相把对方的在途件判成「他人件、不代修」⇒ 没有一个人修，两门持续红。本轮由我承担并处置（残件确实是我造的）**：
+  一手：全量 95 门 `06-benchmark/gate_run_r220_full95.json` 现读 REAL_RED=3（py_syntax_guard / generator_face / bounce_back_face），前两条同一根因点名 `05-exec/r219_md_deadlink.py:44 SyntaxError`。归属三重自证：① mtime 10-25 09:36:28 = 我上轮错号命名时间窗，且同轮我自己打印过 landed bytes 5012，与实测 5,012B 逐字吻合；② 第 44 行正是我那次 ASCII 引号嵌套把 raw 字符串当场截断的产物（字符类里含一个裸双引号，正则未闭合）；③ 未跟踪、`git cat-file -e HEAD:` 判不存在、代码零引用、门表 script 字段零引用。
+  而并行会话在我缺席时写的 L868 把同一件事记成「根因 = 并行会话未跟踪件，属其作者，不代修（R269）」—— 在他们视角那个「并行会话」就是我 ⇒ 同一条 R269 双向生效时双方都判「他人件」，结果谁都不动。这不是谁判断错，是规则固有盲区（缺一条「未跟踪 ∧ 零引用 ∧ 单方可自证作者 ⇒ 归该方」的收敛序）。
+  处置：`handoff_lib.recycle()` 先 dry_run（ok=true / id=20261025-140101）再真处置走系统回收站（method=recycle_bin，可按原路径还原，非 rm ⇒ 不违 X-9 / #25④）；复核 `python 05-exec/r58_py_syntax_guard.py` = 256/256 pass、`python 05-exec/r58_generator_coverage.py --gate` = [GENCOV:PASS]（DEAD_HANDLE=0 / UNVERIFIED=0）。正件 `05-exec/r220_md_deadlink.py`（第 95 门）本轮复跑仍 PASS rc=0，删除无语义损失。
+  待做（本条剩余）：① 给 R269 补一条收敛序（未跟踪 ∧ 零引用 ∧ 单方可自证作者 ⇒ 归该方处置，禁双方互推），落 `core/behavior_core_history.md` 或本仓 06 分卷并挂常驻判据；② `bounce_back_face` 仍红（r161 夹具 vs 今日 #37 收紧不匹配，属并行会话件 + 共享权威面）⇒ 本轮不代修，仅在报告具名登记。
+  另记我自己的两处执行错：a) 排查时按门 id 拼出 `r150_contract_lifecycle_face.py` 与 `*generator_face*`  glob 两次不存在的文件名，拿到 FileNotFoundError 与空结果就几乎误判「别人删了件」——实名必须读门表 script 字段（本轮实测真名 = r58_generator_coverage.py，argv 带 --gate）；b) 处置时 anchor 传成 os.path.dirname(P) ⇒ manifest 落到 `05-exec/_trash/`（实测不存在，recycle_bin 通道不写该目录），还原只能靠系统回收站，如实记不谎称有清单。
+  取值：`python 05-exec/r58_py_syntax_guard.py`；`python 05-exec/r58_generator_coverage.py --gate`；`python -c` 读 run_gates.GATES 的 script 字段；`(Get-Item 05-exec/r220_md_deadlink.py).Length`（正件在位）；`06-benchmark/gate_run_r220_full95.json` 的 real_red 数组。
 - [ ] **R217-2（r217 登记，P1·已落地）** **口径 A 的三处机械障碍已全部清掉，但它仍不能自动跑 —— 剩下的不是 bug 而是原则：输入必须是人工提出的候选语料，我不编造候选把验收口径「跑绿」**： 【r217 裁决=执行｜三处机械障碍全清（--cases required / --json 可指 / 已存在即 REFUSE / 原子写），四路径实测通过且 happy path 刻意不跑；判定逻辑与三道控制组一字未动；口径推荐仍为 B（理由已从「A 跑不了」更新为「A 每季需人工交候选」）｜取值：python 05-exec/r123_margin_cf.py 与 --cases _temp/no_such.json；git status --porcelain -- 06-benchmark/margin_cf_r123_2026-10-20.json 须为空】
   一手（本轮为需求 6 做口径对照件时实测，见 `04-plan/需求6口径对照与决策件_r216_2026-10-25.md` §2/§5）：口径 A（路由稳健性 margin，实测 +80%/+169%，本轮最漂亮的数子）的测量件 `05-exec/r123_margin_cf.py` 有三处机械障碍 ——
   ① 无 argparse（`--json` 参数不存在）；② 输入面写死 `_temp/r123_cf_cases.json`，实测**不存在**且 `git grep r123_cf_cases` 只有读侧一行、全仓无生成器（= W-46 死句柄，与我今早已修的 R211-7 同一形态）；③ 输出写死 `margin_cf_r123_2026-10-20.json`（tracked ⇒ 重跑原地覆盖历史证据，同 r211 我在 c16 上撞的那条）。

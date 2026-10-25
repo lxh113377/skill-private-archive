@@ -10,7 +10,8 @@
   "subs_http": 403,
   "subs_code": 10000,
   "wrangler_rc": 1,
-  "wrangler_code": null
+  "wrangler_code": 10042,
+  "wrangler_usable": true
  },
  "paths": {
   "accounts": [
@@ -27,7 +28,7 @@
   ],
   "wrangler": [
    1,
-   null
+   10042
   ]
  },
  "note": "三态里 GAP_SERVICE 必须有 /accounts=200 背书，否则降级为 UNVERIFIED —— 防止把「凭据失效」误记成「平台没开通」，那会让这一项永远不再被重探。",

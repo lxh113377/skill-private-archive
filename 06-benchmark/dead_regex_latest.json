@@ -1,0 +1,22 @@
+{
+ "schema": "dead-regex-scan-v2",
+ "files_scanned": 256,
+ "provenance_cmd": "python 05-exec/r221_dead_regex_scan.py --json 件",
+ "wide_files": 256,
+ "wide_literals": 959,
+ "wide_suspects": [
+  {
+   "file": "r117_upstream_delta_fixtures.py",
+   "line": 192,
+   "token": "s*",
+   "pattern": "\\]\\([^)]+\\)|\\b(?:references|scripts|assets)/|^s*[-*]\\s+\\[\\w+\\]"
+  },
+  {
+   "file": "r120_trace_face.py",
+   "line": 39,
+   "token": "d+",
+   "pattern": "^zzd+"
+  }
+ ],
+ "hits": []
+}
