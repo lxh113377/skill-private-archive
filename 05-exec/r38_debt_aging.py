@@ -34,6 +34,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
+# [R322 2026-10-26] --ledger-root 生效点：main() 解析参数后把本模块 ROOT 指到指定仓
 TAXONOMY = ["OVERDUE", "ACTIVE", "DECIDED", "UNDATED", "DEFERRED", "REPEAT"]   # r39 加 DEFERRED（看得见但不到期，不得并入 DECIDED）；r43 加 REPEAT（第 31 行说明）
 GRACE_DEFAULT = 2
 # r42 D49 / r43 W-11b：宽限期按优先级分档。统一 2 轮会把 P2 长期项与 P0 同罪判红，
@@ -715,7 +716,11 @@ def main():
     ap.add_argument("--ledger", help="趋势台账 jsonl 路径（追加一行；自洽不过则一行都不写）")
     ap.add_argument("--origin", default="local", choices=list(LEDGER_ORIGINS))
     ap.add_argument("--report", help="本轮对标报告路径（W-20 第 4 面：报告新建议须落待办卷）")
+    ap.add_argument("--ledger-root", help="待办卷/承接面根目录（默认=本脚本所在仓 ROOT；跨仓喂 report 时指被查仓）")
     args = ap.parse_args()
+    if getattr(args, "ledger_root", None):
+        global ROOT
+        ROOT = Path(args.ledger_root).resolve()  # [R322]
     GRACE_DEFAULT = args.grace
 
     files = volume_files()
