@@ -10,5 +10,5 @@
   "r247_dup_policy_scan.py"
  ],
  "problems": [],
- "why": "判据 A：teeth_*.append 里的 Name 必须在该行前已绑定；判据 B：位于吞异常 try 内的未绑定会被静默吞成默认值 ⇒ SILENT（r252 的牙 r10 正是此形态）。"
+ "why": "判据 A：teeth_*.append 里的 Name 必须在该行前已绑定；判据 B：吞异常 try 内的未绑定 ⇒ SILENT；判据 C：except 把空容器赋给判否变量（吞成空结论，r252 的 r10 形态）⇒ r256 实测 0 处。"
 }

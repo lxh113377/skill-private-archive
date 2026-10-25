@@ -211,6 +211,40 @@ def scan_file(path):
     return problems, len(mod)
 
 
+JUDGE_WORDS = __import__('re').compile('problem|gap|bad|miss|drift|conflict|unbound|orphan|violat|fail|wrong|stale|issues|diffs|leftover', __import__('re').I)
+
+
+def scan_empty_conclusion(path):
+    '''判据 C（r256）：**吞成空结论** —— except 把空容器赋给一个「判否」语义的变量。
+
+    为什么单列这一条：r252 那手就是它（`except Exception: _ft_gapcred = set()` ⇒ 冲突列表恒空 ⇒ 永远 PASS）。
+    吞异常本身不都危险（读不到就 `continue` ⇒ 少算 ⇒ 出漂移/UNVERIFIED ⇒ 红，属 fail-closed）；
+    危险的是**吞出一个空结论**，它把「没判」变成「没问题」。r256 全仓实测：0 处。
+    '''
+    text = io.open(path, encoding='utf-8', errors='replace').read()
+    tree = ast.parse(text)
+    hits = []
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.Try):
+            continue
+        for h in node.handlers:
+            for st in h.body:
+                if not isinstance(st, ast.Assign) or not st.targets:
+                    continue
+                tg = st.targets[0]
+                if not isinstance(tg, ast.Name):
+                    continue
+                v = st.value
+                empty = ((isinstance(v, (ast.List, ast.Tuple, ast.Set)) and not v.elts)
+                         or (isinstance(v, ast.Dict) and not v.keys)
+                         or (isinstance(v, ast.Call) and isinstance(v.func, ast.Name)
+                             and v.func.id in ('set', 'list', 'dict', 'tuple')))
+                if empty and JUDGE_WORDS.search(tg.id):
+                    hits.append({'file': os.path.basename(path), 'line': node.lineno,
+                                 'var': tg.id, 'why': '吞成空结论（判否变量被赋空容器）'})
+    return hits
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument('--json', dest='out', default='')
@@ -231,6 +265,12 @@ def main(argv=None):
         except OSError as e:
             print('[JUDGEBIND:UNVERIFIED] %s 读不到：%r' % (os.path.basename(fp), e))
             return 2
+        try:
+            empt = scan_empty_conclusion(fp)
+        except SyntaxError as e:
+            print('[JUDGEBIND:UNVERIFIED] %s 不可析（判据 C）：%r' % (os.path.basename(fp), e))
+            return 2
+        allp.extend(empt)
         scanned.append(os.path.basename(fp))
         allp.extend(probs)
     if not scanned:
@@ -239,19 +279,22 @@ def main(argv=None):
     doc = {'schema': 'judge-binding-scan-v1', 'readonly': True,
            'provenance_cmd': 'python 05-exec/r253_judge_binding_scan.py --json <件>',
            'files': scanned, 'problems': allp,
-           'why': '判据 A：teeth_*.append 里的 Name 必须在该行前已绑定；判据 B：位于吞异常 try 内的未绑定会被静默吞成默认值 ⇒ SILENT（r252 的牙 r10 正是此形态）。'}
+           'why': '判据 A：teeth_*.append 里的 Name 必须在该行前已绑定；判据 B：吞异常 try 内的未绑定 ⇒ SILENT；判据 C：except 把空容器赋给判否变量（吞成空结论，r252 的 r10 形态）⇒ r256 实测 0 处。'}
     if args.out:
         op = args.out if os.path.isabs(args.out) else os.path.join(ROOT, args.out)
         io.open(op, 'w', encoding='utf-8', newline=chr(10)).write(
             json.dumps(doc, ensure_ascii=False, indent=1))
     print('[JUDGEBIND] 扫 %d 件 ｜ 未绑定引用 %d 处' % (len(scanned), len(allp)))
     for pr in allp:
+        if 'var' in pr:
+            print('  %s:%d [判据C] %s ⇒ %s' % (pr['file'], pr['line'], pr['var'], pr['why']))
+            continue
         print('  %s:%d %s 未绑定=%s%s' % (pr['file'], pr['line'], pr['teeth'], pr['unbound'],
                                           '  ← SILENT（吞异常掩盖）' if pr['silent_by_swallow'] else ''))
     if allp:
         print('[JUDGEBIND:FAIL] 有牙引用了未绑定名 ⇒ 该牙要么崩、要么被吞（r252 一手）')
         return 1
-    print('[JUDGEBIND:PASS] 被扫各件的牙引用全部绑定在该行之前（无空转/无崩溃引用）')
+    print('[JUDGEBIND:PASS] A 绑定到位 · B 无静默空转 · C 无「吞成空结论」（r256 实测 C=0 处）')
     return 0
 
 

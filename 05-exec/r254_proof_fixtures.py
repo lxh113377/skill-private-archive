@@ -176,10 +176,31 @@ def p11_route_truth_measure():
        rc != 0 and 'UNVERIFIED' in out, 'rc=%d' % rc)
 
 
+def p12_judge_binding_criterion_c():
+    # r256：判据 C（吞成空结论）也要能被证伪 —— 造一个含 `except: gaps = set()` 的临时件。
+    import r253_judge_binding_scan as M
+    d = tempfile.mkdtemp(prefix='proof256_')
+    fp = os.path.join(d, 'empty_conclusion.py')
+    io.open(fp, 'w', encoding='utf-8', newline=chr(10)).write(
+        'def f():' + chr(10) +
+        '    try:' + chr(10) +
+        '        x = load()' + chr(10) +
+        '    except Exception:' + chr(10) +
+        '        gaps = set()' + chr(10) +
+        '    return gaps' + chr(10))
+    old = list(M.DEFAULT)
+    M.DEFAULT = [fp]
+    rc, out = call_main(M, [])
+    M.DEFAULT = old
+    ck('p12 judge_binding_scan 判据C 吞成空结论 ⇒ 必须 rc≠0 且具名 gaps',
+       rc != 0 and '判据C' in out and 'gaps' in out, 'rc=%d' % rc)
+
+
 def main():
     for fn in (p1_roster_audit, p2_dup_policy, p3_freshness, p4_judge_binding,
                p5_recall_face, p6_ingress_face, p7_tool_carrier_face, p8_sqlite_usage_face,
-               p9_gh_billing_face, p10_turnstile_usage_face, p11_route_truth_measure):
+               p9_gh_billing_face, p10_turnstile_usage_face, p11_route_truth_measure,
+               p12_judge_binding_criterion_c):
         try:
             fn()
         except Exception as e:

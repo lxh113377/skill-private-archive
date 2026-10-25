@@ -566,6 +566,22 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   必须来自可复算的入口件，不接受「我跑过一次的脚本」当来源。
   取值：git show HEAD:<报告 rel> 与工作树 io.read 比对（长度/章节/数字三项）；
   python 05-exec/r221_dead_regex_scan.py --wide（现值 256 件/959 个/2 处）。
+- [ ] **R256-1（r256 登记，P1·已落地）** **结案 R252-2：40 处吞异常全为 fail-closed；危险形态「吞成空结论」全仓 0 处 ⇒ 固化为第 107 门判据 C + 证伪腿 p12**： 【r256 裁决=执行（收窄判据为「吞成空结论」并写进第 107 门判据 C + 加证伪腿 p12；结案 R252-2）｜读数：关键集 40 处吞异常全为 fail-closed（点核 r237 七处）；危险形态全仓 0 处；第 107 门 PASS、证明夹具 12/12 [GATE:prooffix-pass]。】
+  ① 先收窄判据：危险的不是「吞异常」，而是**吞成空结论**（except 把空容器赋给判否变量）——r252 那手正是它
+  （`except Exception: _ft_gapcred = set()` ⇒ 冲突列表恒空 ⇒ 永远 PASS）；而「读不到就 continue」只是**少算** ⇒
+  出漂移/UNVERIFIED ⇒ 红（fail-closed）。
+  ② 关键集（派生，20 脚本）扫出 **40 处**吞异常（pass/continue 33、字面量默认 5、调用默认 2）；抽样核枢门
+  `r237_roster_audit.py` 的 7 处（49/62/101/142 `except OSError: continue` ⇒ 少算 ⇒ 出漂移；116 全取不到 ⇒ UNVERIFIED；
+  180 记 UNPARSABLE ⇒ 与名册不符 ⇒ 漂移；284 与判据无关）⇒ **无一条能把「读不到」变成「没问题」**。
+  ③ 收窄后全仓扫「except 赋空容器给判否变量（problem|gap|bad|miss|drift|conflict|unbound|orphan|violat|fail|…）」= **0 处**。
+  ④ 固化：写进 `r253_judge_binding_scan.py` 为**判据 C**（与 A 绑定、B 吞异常未绑定并列）；给 `r254_proof_fixtures.py`
+  加 **p12**（造含 `except: gaps = set()` 的临时件 ⇒ 必须红且具名 gaps）⇒ 第 107 门复跑 `[JUDGEBIND:PASS]`、
+  证明夹具 **12/12 [GATE:prooffix-pass]**。
+  ⑤ 结案形态：以「判据取代人工」结案 —— 危险类收窄到可机检、实测为零、常驻防线；而非以「我人工看完了」结案。
+  元教训：人工核完 308 处不是结案的正确形态；正确形态是**把危险那一类收到能机检为止**，否则下一轮新写的一行
+  `except: gaps = []` 照样没人拦。
+  取值：python 05-exec/r253_judge_binding_scan.py --json 06-benchmark/judge_binding_latest.json；
+  python 05-exec/r254_proof_fixtures.py（p12）。
 - [ ] **R255-1（r255 登记，P1·已落地）** **关键集改派生（不再手写）＋ 补七道数据源门的进程内证伪 ⇒ 关键集缺证明清零**： 【r255 裁决=执行（矩阵关键集改派生 + 补七道数据源门证伪腿 + 两条腿自抓修正）｜读数：证明夹具 11/11 [GATE:prooffix-pass]；矩阵分布 {mutation 64, selftest 14, fixture 10, NONE 21}、派生关键集缺证明=无 [PROOFMAT:PASS]；门表 109。】
   ① 修上一轮自己会烂的地方：r254 矩阵的 `CRITICAL` 原是我手写 11 个 id（手写名单必然烂）。改为**派生**：
   ① r215 READ_FACE 登记的读数面脚本 ② 产出 r215 SRC 所读件的门（按 argv --json 名对齐）③ 自审计栈
@@ -657,7 +673,7 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   元教训：`try/except` 用错地方会把判据变成装饰品 —— 一条空转的牙比没有牙更危险，它会被清点进「N 条牙全过」里；
   **牙数从来不是可信度，必须逐条喂它一个它该抓的输入**。
   取值：python 05-exec/r215_fixtures.py（8 项）；python 05-exec/r215_free_tool_roster.py（r10 行）。
-- [ ] **R252-2（r252 登记，P1·待处理）** **逐门核「判据路径上的吞异常」：AST 初扫 308 个候选，需人工切出判据那一类**：
+- [ ] **R252-2（r252 登记，P1·待处理）** **逐门核「判据路径上的吞异常」：AST 初扫 308 个候选，需人工切出判据那一类**： 【r256 裁决=结案（r256）：先收窄判据 —— 危险的不是「吞异常」而是「吞成空结论」（except 把空容器赋给判否变量）， 以该判据全仓实测 0 处（关键集 40 处吞异常全为 fail-closed，点核 r237 七处均可证：读不到 ⇒ 少算 ⇒ 出漂移/UNVERIFIED ⇒ 红）。 已固化为第 107 门判据 C + 证明腿 p12（12/12）。以「判据取代人工」结案。 取值：python 05-exec/r253_judge_binding_scan.py --json 06-benchmark/judge_binding_latest.json】
   一手：r252 用 AST 扫 05-exec，条件 = 「except 体是 pass/赋空容器/continue」且「try 体内有赋值或调用（真在取数）」
   ⇒ **308 个块**（样本：_lib.py / baseline_contract_scan.py / control_char_scan.py / plugin_skill_security_scan.py…）。
   为什么不能一刀切：多数是**合法的可选读取**（读不到就用默认值，例如读可选的配置/可选的产物），判红会把门变噪音。
