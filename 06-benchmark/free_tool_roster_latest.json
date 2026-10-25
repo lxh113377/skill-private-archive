@@ -125,7 +125,7 @@
     ]
    },
    "read_why": null,
-   "usage_value": 24820.0,
+   "usage_value": 24835.0,
    "usage_meta": {
     "unit": "分钟（官方计费·账号级·端点默认窗口）",
     "extra": 0.0,
@@ -376,7 +376,7 @@
     ]
    },
    "read_why": null,
-   "usage_value": 199382,
+   "usage_value": 199390,
    "usage_meta": {
     "unit": "次",
     "extra": null,
@@ -534,12 +534,12 @@
     ]
    },
    "read_why": null,
-   "usage_value": 12.33,
+   "usage_value": 12.38,
    "usage_meta": {
     "unit": "MiB（本地库体量·非额度）",
-    "extra": 43717,
+    "extra": 43833,
     "extra_label": "合计行数",
-    "window": "2026-10-26T03:41:36"
+    "window": "2026-10-26T04:02:46"
    },
    "usage_why": null
   },
@@ -643,7 +643,7 @@
     }
    ],
    "blocker": null,
-   "read_state": "MEASURED",
+   "read_state": "UNVERIFIED",
    "read_face": {
     "script": "r242_turnstile_usage_face.py",
     "artifact": "turnstile_usage_latest.json",
@@ -659,17 +659,9 @@
     ]
    },
    "read_why": null,
-   "usage_value": 0,
-   "usage_meta": {
-    "unit": "次（校验请求）",
-    "extra": null,
-    "extra_label": null,
-    "window": [
-     "2026-10-01",
-     "2026-10-26"
-    ]
-   },
-   "usage_why": null
+   "usage_value": null,
+   "usage_meta": null,
+   "usage_why": "路径取不到：count_total"
   },
   {
    "tool": "Resend",
@@ -760,19 +752,19 @@
    "window": 3,
    "truth": 2,
    "task": 7,
-   "hits": 4,
-   "gaps": 5
+   "hits": 6,
+   "gaps": 3
   },
   "matrix_src": {
    "file": "tool_skill_matrix_latest.json",
-   "generated_at": "2026-10-26 03:38",
+   "generated_at": "2026-10-26 03:59",
    "cmd": "python 05-exec/r163_tool_skill_matrix.py --json <out>"
   },
   "workflow_src": {
    "file": "workflow_usage_latest.json",
    "generated_at": null,
-   "face_files": 271,
-   "real_face_files": 156,
+   "face_files": 272,
+   "real_face_files": 157,
    "real_total_hits": 84
   },
   "third_src": {
