@@ -16,7 +16,7 @@
 
 | 工具 | ① skill 提到/代码 | ② 工作流真调用 | ③ 项目仓（剪后·含注释占比） | ④ 读数面 | ⑤ 用量 | 卡点/状态 |
 |---|---|---|---|---|---|---|
-| GitHub | 22 / 2 | 23 | 49（注释占比 0.49） | MEASURED | 447.92 分钟 | READY |
+| GitHub | 22 / 2 | 23 | 49（注释占比 0.49） | MEASURED | 24235.0 分钟（官方计费·账号级·端点默认窗口） | READY |
 | Cloudflare-D1 | 2 / 0 | 3 | 146（注释占比 0.151） | MEASURED | 8.89 MiB | READY |
 | Cloudflare-R2 | 1 / 0 | 0 | 0 | GAP_SERVICE | 未量 | [平台能力缺口] |
 | Cloudflare-Pages | 5 / 2 | 7 | 239（注释占比 0.148） | MEASURED | 198648 次 | READY |
@@ -49,9 +49,9 @@
     （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/266 件、真调用合计 82；
      ③ 取值：tool_skill_matrix_r231.json 的 third_face.per_tool，4134 件 / 2 仓 / 剪外来面 10 个）
 - 读数型真调用（第 4 层）：**MEASURED**（读得到数）
-    （取值：r196_quota_face.py --json quota_face_latest.json 的 rows/github_actions_minutes_proxy/state）
-- 本月/当前用量：**447.92 分钟**　窗口：2026-10-01
-    （取值：r196_quota_face.py --json quota_face_latest.json 的 rows/github_actions_minutes_proxy/minutes_all_workflows）
+    （取值：r241_gh_billing_face.py --json gh_billing_latest.json 的 state）
+- 本月/当前用量：**24235.0 分钟（官方计费·账号级·端点默认窗口）**（折后净额 $ 0.0）　窗口：['2026-08-01', '2026-10-01']
+    （取值：r241_gh_billing_face.py --json gh_billing_latest.json 的 minutes_total）
 - 守它的判据：163 + 87 + 93
 - 工作流触点：A-project-handoff 的 git_autopush 钩子模板（本仓 post-commit 即其落地）+ 第 87 门读 autopush 末行 rc；私有仓分钟用满是已付代价
 - 触点在位核验（在位≠已接入）：A-project-handoff -> IN_SKILL_DESC

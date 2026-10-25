@@ -1,0 +1,79 @@
+{
+ "schema": "gh-billing-usage-v1",
+ "readonly": true,
+ "provenance_cmd": "python 05-exec/r241_gh_billing_face.py --json <件>",
+ "account": "lxh113377",
+ "endpoint": "/users/lxh113377/settings/billing/usage",
+ "window_items_dates": [
+  "2026-08-01",
+  "2026-10-01"
+ ],
+ "state": "MEASURED",
+ "items_n": 12,
+ "minutes_total": 24235.0,
+ "gross_total": 160.349,
+ "net_total": 0.0,
+ "wholly_discounted": true,
+ "per_product": {
+  "actions / Actions Linux": {
+   "quantity": 22080.0,
+   "unitType": "Minutes",
+   "gross": 132.48,
+   "discount": 132.48,
+   "net": 0.0,
+   "items": 3,
+   "repos": [
+    "fenjue-legacy-private",
+    "supermarket-web",
+    "skill-private-archive"
+   ]
+  },
+  "actions / Actions Windows": {
+   "quantity": 2038.0,
+   "unitType": "Minutes",
+   "gross": 20.38,
+   "discount": 20.38,
+   "net": 0.0,
+   "items": 2,
+   "repos": [
+    "skill-hitrate-toolkit",
+    "global-memory-hub"
+   ]
+  },
+  "actions / Actions storage": {
+   "quantity": 686.309273708,
+   "unitType": "GigabyteHours",
+   "gross": 0.230609159,
+   "discount": 0.230609159,
+   "net": 0.0,
+   "items": 3,
+   "repos": [
+    "lxh113377.github.io",
+    "ican"
+   ]
+  },
+  "git_lfs / Git LFS storage": {
+   "quantity": 46.639330248,
+   "unitType": "GigabyteHours",
+   "gross": 0.004386768,
+   "discount": 0.004386768,
+   "net": 0.0,
+   "items": 3,
+   "repos": [
+    "fenjue-private-archive"
+   ]
+  },
+  "actions / Actions macOS 3-core": {
+   "quantity": 117.0,
+   "unitType": "Minutes",
+   "gross": 7.254,
+   "discount": 7.254,
+   "net": 0.0,
+   "items": 1,
+   "repos": [
+    "global-memory-hub"
+   ]
+  }
+ },
+ "note": "官方端点返回的计费用量（非墙钟分钟）。netAmount=0 表示该用量全额折扣 ⇒ 免费额度内、未花钱。仓库可见性决定是否计费：public 仓 Actions 分钟免费。"
+}

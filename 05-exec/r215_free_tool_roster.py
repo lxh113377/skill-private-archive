@@ -130,12 +130,19 @@ READ_FACE = {
                       'extra': ['rows', 'cloudflare_d1', 'pct_of_roster_limit'],
                       'extra_label': '占名册声称上限',
                       'window': ['rows', 'cloudflare_d1', 'limit_label']},
-    'GitHub': {'script': 'r196_quota_face.py',
-               'artifact': 'quota_face_latest.json',
-               'path': ['rows', 'github_actions_minutes_proxy', 'state'],
-               'usage': ['rows', 'github_actions_minutes_proxy', 'minutes_all_workflows'],
-               'unit': '分钟',
-               'window': ['rows', 'github_actions_minutes_proxy', 'since']},
+    # r241：GitHub 的读数面换成**官方计费端点**（/users/{u}/settings/billing/usage）。
+    #   为什么换：quota_face 的 447.92 是「本仓墙钟分钟」，它自己写明「墙钟 != billable、作用域是本仓
+    #   != 账号级、且官方免费分钟数当时未取到可靠出处 ⇒ 不折算百分比」。r241 实测到官方端点直接给
+    #   计费项（quantity/unitType/gross/discount/net/repositoryName）⇒ 这才是权威用量。
+    #   ⚠ 口径差异要写清：官方面是**账号级、端点默认窗口**（现值 2026-08-01~10-01，3 个月），
+    #     不是「本月」；名册第 ⑤ 列单位里注明，窗口随读数一起印。墙钟数仍留在 quota_face 里做交叉核对。
+    'GitHub': {'script': 'r241_gh_billing_face.py',
+               'artifact': 'gh_billing_latest.json',
+               'path': ['state'],
+               'usage': ['minutes_total'],
+               'unit': '分钟（官方计费·账号级·端点默认窗口）',
+               'extra': ['net_total'], 'extra_label': '折后净额 $',
+               'window': ['window_items_dates']},
     'Cloudflare-R2': {'script': 'r201_r2_enable_face.py',
                       'artifact': 'r2_enable_latest.json',
                       'path': ['state']},

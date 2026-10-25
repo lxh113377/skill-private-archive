@@ -82,5 +82,9 @@
  "r237_roster_audit.py": {
   "evidence": "06-benchmark/roster_audit_latest.json",
   "registered_at": "2026-10-25 21:50"
+ },
+ "r241_gh_billing_face.py": {
+  "evidence": "06-benchmark/gh_billing_latest.json",
+  "registered_at": "2026-10-25 22:38"
  }
 }

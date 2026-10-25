@@ -107,32 +107,33 @@
    "blocker": null,
    "read_state": "MEASURED",
    "read_face": {
-    "script": "r196_quota_face.py",
-    "artifact": "quota_face_latest.json",
+    "script": "r241_gh_billing_face.py",
+    "artifact": "gh_billing_latest.json",
     "path": [
-     "rows",
-     "github_actions_minutes_proxy",
      "state"
     ],
     "usage": [
-     "rows",
-     "github_actions_minutes_proxy",
-     "minutes_all_workflows"
+     "minutes_total"
     ],
-    "unit": "分钟",
+    "unit": "分钟（官方计费·账号级·端点默认窗口）",
+    "extra": [
+     "net_total"
+    ],
+    "extra_label": "折后净额 $",
     "window": [
-     "rows",
-     "github_actions_minutes_proxy",
-     "since"
+     "window_items_dates"
     ]
    },
    "read_why": null,
-   "usage_value": 447.92,
+   "usage_value": 24235.0,
    "usage_meta": {
-    "unit": "分钟",
-    "extra": null,
-    "extra_label": null,
-    "window": "2026-10-01"
+    "unit": "分钟（官方计费·账号级·端点默认窗口）",
+    "extra": 0.0,
+    "extra_label": "折后净额 $",
+    "window": [
+     "2026-08-01",
+     "2026-10-01"
+    ]
    },
    "usage_why": null
   },

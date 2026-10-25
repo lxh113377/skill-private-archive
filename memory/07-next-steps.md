@@ -566,6 +566,25 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   必须来自可复算的入口件，不接受「我跑过一次的脚本」当来源。
   取值：git show HEAD:<报告 rel> 与工作树 io.read 比对（长度/章节/数字三项）；
   python 05-exec/r221_dead_regex_scan.py --wide（现值 256 件/959 个/2 处）。
+- [ ] **R241-1（r241 登记，P1·已落地）** **官方计费端点取代「分母无可靠出处」：Actions 24235 分钟 / 净额 $0；顺带纠正「本仓计费」假设 + 两次自抓**： 【r241 裁决=执行（新建官方计费读数面 + 名册 GitHub 第⑤列换官方数 + 审计第5层同步 + 正规登记）｜读数：[GHBILL:PASS] Actions 24235 分钟、gross $160.349、net $0（全额折扣）；本仓 visibility=public ⇒ 447.92 墙钟分钟不占额度；名册 [ROSTER:OK]、审计五层漂移 0。】
+  ① 缺口来源：`quota_face` 的 GitHub 行自己写着「官方免费分钟数本轮未取到可靠出处（docs 是 JS 壳）⇒
+  分母无出处就只报绝对值、不折算百分比」。那条规矩对，但它的结论只是**当时的取数方式**造成的。
+  ② 实测：旧端点 `/users/{u}/settings/billing/actions` 已迁移（HTTP 410 + documentation_url），新端点
+  `/users/{u}/settings/billing/usage` 通了，返回 usageItems（product/sku/quantity/unitType/grossAmount/
+  discountAmount/netAmount/repositoryName）⇒ 权威用量。本轮：Actions Linux 22080 + Windows 2038 +
+  macOS 117 = **24235 分钟**，gross $160.349，**net $0（全额折扣）**；另有 actions storage 686.3 GB·h、
+  git_lfs 46.64 GB·h，net 均 0。
+  ③ 纠正假设：本仓 lxh113377/skill-private-archive **visibility=public** ⇒ 其 Actions 分钟本来就免费，
+  名册里 447.92 墙钟分钟**不占额度**（墙钟 != 计费，r196 caveat 已写）。
+  ④ 接入：新建读数面 05-exec/r241_gh_billing_face.py（只读、三态、provenance，[GHBILL:PASS]）；
+  名册第 ⑤ 列 GitHub 换官方数「24235.0 分钟（官方计费·账号级·端点默认窗口）」，**窗口随读数印**
+  （现值 2026-08-01~2026-10-01，是端点默认窗口、**不是本月**）；墙钟数留 quota_face 做交叉核对；
+  审计第 5 层 GitHub 口径同步改（每改一层必同步独立复核）。已按正规通道 --register 登记（ADMIT）。
+  ⑤ 两次自抓：首版把 '--jq .login' 拼进 path ⇒ gh 当路径一部分返回 404（端点没错，我把 flag 塞进 path）；
+  次版同命令 cmd 里成功、subprocess 里偶发 EOF ⇒ 退避重试 3 次，不把瞬时失败读成端点不可用。
+  元教训：「取不到」有两种 —— 世界不给，和我取的方式不对。r196 的规矩防的是前者，本轮证明当时是后者；
+  规矩不用改，但**结论要重探**，否则一条正确的规矩会被当成「这件事永远查不了」的许可。
+  取值：python 05-exec/r241_gh_billing_face.py --json 06-benchmark/gh_billing_latest.json。
 - [ ] **R240-1（r240 登记，P1·已落地）** **每加一层读数就要同步加一条独立复核：第 5 层（用量）补进第 98 门审计，变异实证**： 【r240 裁决=执行（审计增 layer5：自写用量取值器逐工具对账；未登记用量期望 None 不记 0）｜读数：[ROSTER-AUDIT:PASS] 五层漂移 0（Workers 0 / D1 8.89 / GitHub 444.73 / Pages 198600）；变异伪造 Workers=999 ⇒ rc=1，还原 rc=0。】
   一手（我上一轮自己留的口子）：r239 加第 5 层用量，**但没纳入独立复算** —— 审计当时只覆盖前四层，
   后果是新增那层**只有它自己的实现背书**，而 r237 立审计的全部理由就是「别只用一套实现验自己」。

@@ -161,8 +161,8 @@ def layer5():
         'Cloudflare-Workers': ('workers_quota_latest.json', ['row', 'invocations_month']),
         'Cloudflare-D1': ('quota_face_latest.json',
                          ['rows', 'cloudflare_d1', 'mib']),
-        'GitHub': ('quota_face_latest.json',
-                   ['rows', 'github_actions_minutes_proxy', 'minutes_all_workflows']),
+        # r241：GitHub 用量源换成官方计费端点产物（与 r215 的 READ_FACE 同步改，见 §96）
+        'GitHub': ('gh_billing_latest.json', ['minutes_total']),
         'Cloudflare-Pages': ('pages_http_latest.json', ['row', 'requests_total']),
     }
     res = {}
