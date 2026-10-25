@@ -125,7 +125,7 @@
     ]
    },
    "read_why": null,
-   "usage_value": 24835.0,
+   "usage_value": 24845.0,
    "usage_meta": {
     "unit": "分钟（官方计费·账号级·端点默认窗口）",
     "extra": 0.0,
@@ -376,7 +376,7 @@
     ]
    },
    "read_why": null,
-   "usage_value": 199390,
+   "usage_value": 199398,
    "usage_meta": {
     "unit": "次",
     "extra": null,
@@ -429,7 +429,7 @@
     "why": "我的真实用法是**读数型**：走 CF GraphQL analytics 读调用数（token 见证据件），而形态级正则只认部署形态的三类写法 ⇒ 它看不见读数型搭配（不为此写假调用凑数）",
     "evidence": "python 05-exec/r199_workers_face.py --json 06-benchmark/workers_quota_latest.json（真跑 MEASURED）；token workersInvocationsAdaptive 见该件 L50/L108"
    },
-   "read_state": "MEASURED",
+   "read_state": "UNVERIFIED",
    "read_face": {
     "script": "r199_workers_face.py",
     "artifact": "workers_quota_latest.json",
@@ -448,14 +448,9 @@
     ]
    },
    "read_why": null,
-   "usage_value": 0,
-   "usage_meta": {
-    "unit": "次",
-    "extra": null,
-    "extra_label": null,
-    "window": "2026-10-01~2026-10-26"
-   },
-   "usage_why": null
+   "usage_value": null,
+   "usage_meta": null,
+   "usage_why": "路径取不到：row/invocations_month"
   },
   {
    "tool": "SQLite",
@@ -534,12 +529,12 @@
     ]
    },
    "read_why": null,
-   "usage_value": 12.38,
+   "usage_value": 12.43,
    "usage_meta": {
     "unit": "MiB（本地库体量·非额度）",
-    "extra": 43833,
+    "extra": 43950,
     "extra_label": "合计行数",
-    "window": "2026-10-26T04:02:46"
+    "window": "2026-10-26T04:17:16"
    },
    "usage_why": null
   },
@@ -643,7 +638,7 @@
     }
    ],
    "blocker": null,
-   "read_state": "UNVERIFIED",
+   "read_state": "MEASURED",
    "read_face": {
     "script": "r242_turnstile_usage_face.py",
     "artifact": "turnstile_usage_latest.json",
@@ -659,9 +654,17 @@
     ]
    },
    "read_why": null,
-   "usage_value": null,
-   "usage_meta": null,
-   "usage_why": "路径取不到：count_total"
+   "usage_value": 0,
+   "usage_meta": {
+    "unit": "次（校验请求）",
+    "extra": null,
+    "extra_label": null,
+    "window": [
+     "2026-10-01",
+     "2026-10-26"
+    ]
+   },
+   "usage_why": null
   },
   {
    "tool": "Resend",
@@ -757,13 +760,13 @@
   },
   "matrix_src": {
    "file": "tool_skill_matrix_latest.json",
-   "generated_at": "2026-10-26 03:59",
+   "generated_at": "2026-10-26 04:14",
    "cmd": "python 05-exec/r163_tool_skill_matrix.py --json <out>"
   },
   "workflow_src": {
    "file": "workflow_usage_latest.json",
    "generated_at": null,
-   "face_files": 272,
+   "face_files": 274,
    "real_face_files": 157,
    "real_total_hits": 84
   },
