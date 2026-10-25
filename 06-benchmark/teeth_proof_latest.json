@@ -1,0 +1,951 @@
+{
+ "schema": "teeth-proof-matrix-v1",
+ "readonly": true,
+ "provenance_cmd": "python 05-exec/r254_teeth_proof_matrix.py --json <件>",
+ "gates_n": 109,
+ "fixture_files": [
+  "r105_debt_face_freshness_fixtures.py",
+  "r112_cache_guard_fixtures.py",
+  "r112_provenance_fixtures.py",
+  "r113_cache_guard_face_fixtures.py",
+  "r113_degrade_fixtures.py",
+  "r117_upstream_delta_fixtures.py",
+  "r123_deferral_chain_fixtures.py",
+  "r123_range_attr_fixtures.py",
+  "r126_tag_closure_fixtures.py",
+  "r128_w47_reconcile_fixtures.py",
+  "r150_gov_fixtures.py",
+  "r162_gatemap_fixtures.py",
+  "r163_debt_fresh_fixtures.py",
+  "r193_ci_health_fixtures.py",
+  "r195_est_fixtures.py",
+  "r196_quota_fixtures.py",
+  "r199_struct_fixtures.py",
+  "r199_workers_fixtures.py",
+  "r19_baseline_contract_fixtures.py",
+  "r19_fixture_mutation_check.py",
+  "r19_scan_fixtures.py",
+  "r200_pages_fixtures.py",
+  "r200_probe_cost_fixtures.py",
+  "r201_r2_fixtures.py",
+  "r202_fixture_wiring_face.py",
+  "r20b_ratchet_fixtures.py",
+  "r210_autopush_fixtures.py",
+  "r211_classify_reds_fixtures.py",
+  "r215_fixtures.py",
+  "r21d_obsolete_fixtures.py",
+  "r21e_control_char_fixtures.py",
+  "r21e_ratchet_attrib_fixtures.py",
+  "r254_proof_fixtures.py",
+  "r29_rubric_calibre_fixtures.py",
+  "r31_run_gates_fixtures.py",
+  "r32_freshness_fixtures.py",
+  "r34_onwrite_fixtures.py",
+  "r35_tracked_empty_fixtures.py",
+  "r39_debt_ledger_fixtures.py",
+  "r40_scan_inputs_fixtures.py",
+  "r46_mark_verdict_fixtures.py",
+  "r49_face_fixtures.py",
+  "r50_face_fixtures.py",
+  "r51_retrieval_fixtures.py",
+  "r52_mdclaim_fixtures.py",
+  "r53_handles_fixtures.py",
+  "r54_refresh_fixtures.py",
+  "r55_note_fixtures.py",
+  "r55_rootface_fixtures.py",
+  "r56_artifact_face_fixtures.py",
+  "r56_budget_fixtures.py",
+  "r58_action_pin_fixtures.py",
+  "r60_roster_fixtures.py",
+  "r66_generator_gate_fixtures.py",
+  "r67_input_pin_fixtures.py"
+ ],
+ "critical": [
+  "free_tools_face",
+  "tool_skill_matrix",
+  "workflow_usage_face",
+  "free_tool_roster_face",
+  "roster_audit",
+  "roster_fixtures",
+  "source_freshness_scan",
+  "dup_policy_scan",
+  "judge_binding_scan",
+  "struct_recount_face",
+  "gov_acceptance_face"
+ ],
+ "critical_missing_proof": [],
+ "rows": [
+  {
+   "id": "selftest_census_face",
+   "script": "r155_selftest_census.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": true,
+   "proof": "selftest"
+  },
+  {
+   "id": "gov_acceptance_face",
+   "script": "r153_gov_acceptance.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "contract_lifecycle_face",
+   "script": "r150_contract_lifecycle.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "volume_tiers_face",
+   "script": "r150_volume_tiers.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "gov_link_face",
+   "script": "r150_gov_link.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "derived_freshness_face",
+   "script": "r149_derived_freshness.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": true,
+   "proof": "selftest"
+  },
+  {
+   "id": "write_order_sweep_face",
+   "script": "r147_write_order_sweep.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": false,
+   "proof": "NONE"
+  },
+  {
+   "id": "install_history_face",
+   "script": "r142_install_history.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": false,
+   "proof": "NONE"
+  },
+  {
+   "id": "hook_attribution_face",
+   "script": "r141_hook_attribution.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": false,
+   "proof": "NONE"
+  },
+  {
+   "id": "hook_trace_face",
+   "script": "r140_hook_trace.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": false,
+   "proof": "NONE"
+  },
+  {
+   "id": "hook_sync_face",
+   "script": "r139_hook_sync.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": false,
+   "proof": "NONE"
+  },
+  {
+   "id": "hook_health_face",
+   "script": "r138_hook_health.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": false,
+   "proof": "NONE"
+  },
+  {
+   "id": "commit_gate_map_face",
+   "script": "r137_commit_gate_map.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "proposal_evidence_face",
+   "script": "r136_proposal_evidence.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": false,
+   "proof": "NONE"
+  },
+  {
+   "id": "lang_boost_efficacy_face",
+   "script": "r135_lang_boost_efficacy.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": false,
+   "proof": "NONE"
+  },
+  {
+   "id": "causal_evidence_face",
+   "script": "r134_causal_evidence.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": false,
+   "proof": "NONE"
+  },
+  {
+   "id": "direct_fix_efficacy_face",
+   "script": "r132_direct_fix_efficacy.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": false,
+   "proof": "NONE"
+  },
+  {
+   "id": "closure_layers_face",
+   "script": "r131_closure_layers.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": false,
+   "proof": "NONE"
+  },
+  {
+   "id": "gate_table_reconcile",
+   "script": "r130_gate_table_reconcile.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "r19_scan_fixtures",
+   "script": "r19_scan_fixtures.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "r19_baseline_contract_fixtures",
+   "script": "r19_baseline_contract_fixtures.py",
+   "fixture": true,
+   "mutation": false,
+   "selftest": false,
+   "proof": "fixture"
+  },
+  {
+   "id": "baseline_contract_scan",
+   "script": "baseline_contract_scan.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "ratchet_gate",
+   "script": "ratchet_gate.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "control_char_scan",
+   "script": "control_char_scan.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "tracked_empty_check",
+   "script": "r35_tracked_empty.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "mark_verdict_fixtures",
+   "script": "r46_mark_verdict_fixtures.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "refresh_budget_fixtures",
+   "script": "r54_refresh_fixtures.py",
+   "fixture": true,
+   "mutation": false,
+   "selftest": false,
+   "proof": "fixture"
+  },
+  {
+   "id": "handles_readme_fixtures",
+   "script": "r53_handles_fixtures.py",
+   "fixture": true,
+   "mutation": false,
+   "selftest": false,
+   "proof": "fixture"
+  },
+  {
+   "id": "md_claim_face",
+   "script": "r52_mdclaim_fixtures.py",
+   "fixture": true,
+   "mutation": false,
+   "selftest": false,
+   "proof": "fixture"
+  },
+  {
+   "id": "retrieval_fixtures",
+   "script": "r51_retrieval_fixtures.py",
+   "fixture": true,
+   "mutation": false,
+   "selftest": false,
+   "proof": "fixture"
+  },
+  {
+   "id": "w47_reconcile_fixtures",
+   "script": "r128_w47_reconcile_fixtures.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "reconcile_admission",
+   "script": "r129_reconcile_admission.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": false,
+   "proof": "NONE"
+  },
+  {
+   "id": "root_face_fixtures",
+   "script": "r55_rootface_fixtures.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": false,
+   "proof": "NONE"
+  },
+  {
+   "id": "tag_closure_fixtures",
+   "script": "r126_tag_closure_fixtures.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "range_attr_fixtures",
+   "script": "r123_range_attr_fixtures.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "budget_contract_fixtures",
+   "script": "r56_budget_fixtures.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": false,
+   "proof": "NONE"
+  },
+  {
+   "id": "evidence_face_fixtures",
+   "script": "r56_artifact_face_fixtures.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": false,
+   "proof": "NONE"
+  },
+  {
+   "id": "baseline_note_fixtures",
+   "script": "r55_note_fixtures.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": false,
+   "proof": "NONE"
+  },
+  {
+   "id": "input_face_fixtures",
+   "script": "r49_face_fixtures.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "authority_face_fixtures",
+   "script": "r50_face_fixtures.py",
+   "fixture": true,
+   "mutation": false,
+   "selftest": false,
+   "proof": "fixture"
+  },
+  {
+   "id": "scan_inputs_fixtures",
+   "script": "r40_scan_inputs_fixtures.py",
+   "fixture": true,
+   "mutation": false,
+   "selftest": false,
+   "proof": "fixture"
+  },
+  {
+   "id": "debt_ledger_fixtures",
+   "script": "r39_debt_ledger_fixtures.py",
+   "fixture": true,
+   "mutation": false,
+   "selftest": false,
+   "proof": "fixture"
+  },
+  {
+   "id": "noise_tracked_stub",
+   "script": "r37_noise_tracked_stub.py",
+   "fixture": true,
+   "mutation": false,
+   "selftest": false,
+   "proof": "fixture"
+  },
+  {
+   "id": "gate_run_freshness",
+   "script": "r32_gate_freshness.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "roster_partition_fixtures",
+   "script": "r60_roster_fixtures.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "py_syntax_guard",
+   "script": "r58_py_syntax_guard.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": false,
+   "proof": "NONE"
+  },
+  {
+   "id": "action_pin_guard",
+   "script": "r58_action_pin_guard.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "retired_face",
+   "script": "r59_retired_face.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": true,
+   "proof": "mutation"
+  },
+  {
+   "id": "generator_face",
+   "script": "r58_generator_coverage.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "input_pin_face",
+   "script": "r67_input_pin_guard.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "debt_face_freshness",
+   "script": "r105_debt_face_freshness_fixtures.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "retired_reflow_fixtures",
+   "script": "r59_retired_face.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": true,
+   "proof": "selftest"
+  },
+  {
+   "id": "r112_provenance_fixtures",
+   "script": "r112_provenance_fixtures.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "provenance_face",
+   "script": "r112_provenance_face.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "cache_guard_fixtures",
+   "script": "r112_cache_guard_fixtures.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "r113_degrade_fixtures",
+   "script": "r113_degrade_fixtures.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "cache_guard_face",
+   "script": "r113_cache_guard_face.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "cache_guard_face_fixtures",
+   "script": "r113_cache_guard_face_fixtures.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "migration_guard",
+   "script": "r119_plan_boundary_gate.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": true,
+   "proof": "selftest"
+  },
+  {
+   "id": "r117_upstream_delta_fixtures",
+   "script": "r117_upstream_delta_fixtures.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "direct_closure_face",
+   "script": "r131_direct_closure.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": false,
+   "proof": "NONE"
+  },
+  {
+   "id": "bounce_back_face",
+   "script": "r161_bounce_back.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": true,
+   "proof": "selftest"
+  },
+  {
+   "id": "gatemap_closing_face",
+   "script": "r162_gatemap_fixtures.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "gh_path_face",
+   "script": "r163_gh_path_face.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": true,
+   "proof": "selftest"
+  },
+  {
+   "id": "free_tools_face",
+   "script": "r163_free_tools_face.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": true,
+   "proof": "selftest"
+  },
+  {
+   "id": "debt_fresh_fixtures",
+   "script": "r163_debt_fresh_fixtures.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "tool_skill_matrix",
+   "script": "r163_tool_skill_matrix.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": true,
+   "proof": "selftest"
+  },
+  {
+   "id": "turnstile_face",
+   "script": "r163_turnstile_face.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": true,
+   "proof": "selftest"
+  },
+  {
+   "id": "cf_deploy_face",
+   "script": "r179_dual_face.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": true,
+   "proof": "selftest"
+  },
+  {
+   "id": "ci_effectiveness_face",
+   "script": "r32_ci_health.py",
+   "fixture": true,
+   "mutation": false,
+   "selftest": false,
+   "proof": "fixture"
+  },
+  {
+   "id": "est_selector_fixtures",
+   "script": "r195_est_fixtures.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "quota_face",
+   "script": "r196_quota_face.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "workers_quota_face",
+   "script": "r199_workers_face.py",
+   "fixture": true,
+   "mutation": false,
+   "selftest": false,
+   "proof": "fixture"
+  },
+  {
+   "id": "struct_recount_face",
+   "script": "r199_struct_recount.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "pages_http_face",
+   "script": "r200_pages_face.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "probe_cost_face",
+   "script": "r200_probe_cost_face.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "r2_enable_face",
+   "script": "r201_r2_enable_face.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "fixture_wiring_face",
+   "script": "r202_fixture_wiring_face.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "freshness_fixtures",
+   "script": "r32_freshness_fixtures.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "deferral_chain_fixtures",
+   "script": "r123_deferral_chain_fixtures.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "probe_cost_fixtures",
+   "script": "r200_probe_cost_fixtures.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "onwrite_fixtures",
+   "script": "r34_onwrite_fixtures.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "tracked_empty_fixtures",
+   "script": "r35_tracked_empty_fixtures.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "input_pin_fixtures",
+   "script": "r67_input_pin_fixtures.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": false,
+   "proof": "NONE"
+  },
+  {
+   "id": "runner_internals_fixtures",
+   "script": "r31_run_gates_fixtures.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "skill_wiring_face",
+   "script": "r204_skill_wiring_face.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": false,
+   "proof": "NONE"
+  },
+  {
+   "id": "push_autopush_face",
+   "script": "r205_push_autopush_face.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "autopush_fixtures",
+   "script": "r210_autopush_fixtures.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "classify_reds_fixtures",
+   "script": "r211_classify_reds_fixtures.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "recall_face",
+   "script": "r208_recall_face.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": false,
+   "proof": "NONE"
+  },
+  {
+   "id": "volume_coverage_face",
+   "script": "r191_volume_coverage.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": true,
+   "proof": "selftest"
+  },
+  {
+   "id": "ingress_face",
+   "script": "r213_ingress_face.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": false,
+   "proof": "NONE"
+  },
+  {
+   "id": "tool_carrier_face",
+   "script": "r214_tool_carrier_face.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": false,
+   "proof": "NONE"
+  },
+  {
+   "id": "workflow_usage_face",
+   "script": "r218_workflow_usage_face.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": true,
+   "proof": "selftest"
+  },
+  {
+   "id": "dead_regex_scan",
+   "script": "r221_dead_regex_scan.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": true,
+   "proof": "selftest"
+  },
+  {
+   "id": "md_deadlink_face",
+   "script": "r220_md_deadlink.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": true,
+   "proof": "selftest"
+  },
+  {
+   "id": "ledger_index_build",
+   "script": "r203_ledger_index.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": false,
+   "proof": "NONE"
+  },
+  {
+   "id": "sqlite_usage_face",
+   "script": "r243_sqlite_usage_face.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": false,
+   "proof": "NONE"
+  },
+  {
+   "id": "gh_billing_face",
+   "script": "r241_gh_billing_face.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": false,
+   "proof": "NONE"
+  },
+  {
+   "id": "turnstile_usage_face",
+   "script": "r242_turnstile_usage_face.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": false,
+   "proof": "NONE"
+  },
+  {
+   "id": "route_truth_measure",
+   "script": "r209_route_truth_measure.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": false,
+   "proof": "NONE"
+  },
+  {
+   "id": "free_tool_roster_face",
+   "script": "r215_free_tool_roster.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "roster_audit",
+   "script": "r237_roster_audit.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "dup_policy_scan",
+   "script": "r247_dup_policy_scan.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "source_freshness_scan",
+   "script": "r250_source_freshness_scan.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "roster_fixtures",
+   "script": "r215_fixtures.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "judge_binding_scan",
+   "script": "r253_judge_binding_scan.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "proof_fixtures",
+   "script": "r254_proof_fixtures.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "teeth_proof_matrix",
+   "script": "r254_teeth_proof_matrix.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": true,
+   "proof": "mutation"
+  }
+ ]
+}

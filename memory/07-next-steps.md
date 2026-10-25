@@ -566,6 +566,26 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   必须来自可复算的入口件，不接受「我跑过一次的脚本」当来源。
   取值：git show HEAD:<报告 rel> 与工作树 io.read 比对（长度/章节/数字三项）；
   python 05-exec/r221_dead_regex_scan.py --wide（现值 256 件/959 个/2 处）。
+- [ ] **R254-1（r254 登记，P1·已落地）** **逐门证伪矩阵：关键集四道门从没被证明「能红」⇒ 进程内证伪夹具补齐（门 107→109）**： 【r254 裁决=执行（新建逐门证伪矩阵第 109 门 + 四道关键门的进程内证伪夹具第 108 门；两件均登记进表）｜读数：矩阵首跑关键集缺 4 道 ⇒ 补后关键集缺证明=无、[PROOFMAT:PASS]；夹具 4/4 [GATE:prooffix-pass]；门表 107→109（新增 2、未登记 0）。】
+  ① 上一层问法：107 道门里几道真被证明过能红？「门跑过」「门是绿的」都不算；证明 = 有夹具/自检/变异对照，
+  喂它一个该红的输入并看它红。新建 `05-exec/r254_teeth_proof_matrix.py`（第 109 门）逐门判定证明形态
+  （fixture/mutation/selftest/NONE）并要求**关键集**每道有 mutation 或 selftest。
+  ② 首跑（107 门）：分布 {mutation 50, selftest 14, fixture 11, NONE 32}；
+  **关键集缺证明 = ['roster_audit','dup_policy_scan','source_freshness_scan','judge_binding_scan']** ——
+  恰好是我最近四轮建的四道（r237/r247/r250/r253）：验证当初都做过（变异/回溯），但**只活在某一轮对话里**，
+  没落成仓内可复跑件 ⇒ 矩阵判「没人证伪过」。**一次做过 ≠ 一直有证。**
+  ③ 补法：`05-exec/r254_proof_fixtures.py`（第 108 门），**不碰盘上件**（r251/r252 实测改盘上件会被并发覆盖/被吞异常掩掉），
+  改用进程内 monkeypatch 强制它红：p1 roster_audit（layer1/2/3/5 换空面 ⇒ 必判漂移）／p2 dup_policy_scan（单源名两件 ⇒
+  具名 EXCL）／p3 source_freshness_scan（源表含无门产出件 ⇒ 具名孤儿）／p4 judge_binding_scan（吞异常 try 内未绑定名
+  ⇒ 具名 SILENT）⇒ **4/4 通过 [GATE:prooffix-pass]**。
+  ④ 终态：门 **109** 道、夹具件 55、分布 {mutation 56, selftest 14, fixture 11, NONE 28}、**关键集缺证明 = 无**
+  ⇒ [PROOFMAT:PASS]；门表 107→109（新增 2、未登记 0）。非关键集仍有 28 道 NONE（多为一次性扫描/报表门），
+  这笔账保持可见而不抹平。
+  元教训：**验证不落盘，就会退化成「我记得当时是绿的」**；这条与 r252（空转的牙）、r253（空转的侦测器）
+  是同一条线的第三层：判据 → 判据的侦测器 → **判据证明的存续性**；最后一层还多要求一件事：
+  **那个「看一眼」本身要能被别人重跑**。
+  取值：python 05-exec/r254_teeth_proof_matrix.py --json 06-benchmark/teeth_proof_latest.json；
+  python 05-exec/r254_proof_fixtures.py。
 - [ ] **R253-1（r253 登记，P1·已落地）** **把 r252 教训机械化：判据绑定扫描（第 107 门）＋用已知坏版本回溯验证，途中抓出侦测器自身三错**： 【r253 裁决=执行（新建第 107 门判据绑定扫描：A 绑定 + B 吞异常 SILENT；用 673d7c4 坏版本回溯验证并抓出侦测器三错 + 压两处假阳）｜读数：坏版本具名 r215:717 未绑定=['src'] ⇒ FAIL；当前树 5 件 0 处 ⇒ [JUDGEBIND:PASS]；门表 106→107（未登记 0）。】
   ① 判据：**A（绑定）** teeth_*.append 里的 Name 必须在该行前已绑定；**B（吞异常）** 吞异常 try 体内的未绑定名
   ⇒ 标 SILENT（r252 的 r10 正是此形态）。三态：无问题 PASS / 有问题 FAIL 具名 / 不可析或无被扫件 UNVERIFIED。

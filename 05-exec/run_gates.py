@@ -1713,6 +1713,29 @@ GATES = [
                    "不可析或无被扫件 ⇒ UNVERIFIED rc=2（空面不得判绿）"],
         "why": "r252 的教训是「一条牙全过不算证据」；本门把它变成可复跑判据，并回溯验证过：扫 r252 之前的坏版本 673d7c4 时具名报出 r215:717 未绑定=[src]，当前树 0 处。",
     },
+    # r254：把「谁被证明过能红」机械化 —— 逐门证伪矩阵 + 四道关键门的进程内证伪夹具。
+    {
+        "id": "proof_fixtures",
+        "script": "r254_proof_fixtures.py",
+        "argv": [],
+        "pass_token": "[GATE:prooffix-pass]",
+        "portable": True,
+        "covers": ["p1 roster_audit：把 layer1/2/3/5 换成空面 ⇒ 必判漂移（rc=1 且具名）",
+                   "p2 dup_policy_scan：单源名出现在两件 ⇒ 必判违规（具名 EXCL）",
+                   "p3 source_freshness_scan：源表含无门产出件 ⇒ 必判孤儿（具名该件）",
+                   "p4 judge_binding_scan：吞异常 try 内引用未绑定名 ⇒ 必判 SILENT（具名该名）"],
+        "why": "r254 矩阵实测这四道门 proof=NONE（验证只活在某一轮对话里）；本门把它们的证伪落成仓内可复跑件。",
+    },
+    {
+        "id": "teeth_proof_matrix",
+        "script": "r254_teeth_proof_matrix.py",
+        "argv": ["--json", "06-benchmark/teeth_proof_latest.json"],
+        "pass_token": "[PROOFMAT:PASS]",
+        "portable": True,
+        "covers": ["逐门判定证明形态（fixture / mutation / selftest / NONE）",
+                   "关键集（本目标交付物依赖的度量与判据门）每道必须有 mutation 或 selftest ⇒ 否则 FAIL 具名"],
+        "why": "「门跑过」「门是绿的」都不算证明；证明 = 喂它一个该红的输入并看它红。本门把这件事变成常驻要求。",
+    },
 ]
 
 # 显式声明本 runner **不覆盖**的面，防止聚合绿被读成「所有门禁都绿」（R20-2）。

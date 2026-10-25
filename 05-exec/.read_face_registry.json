@@ -110,5 +110,13 @@
  "r253_judge_binding_scan.py": {
   "evidence": "06-benchmark/judge_binding_latest.json",
   "registered_at": "2026-10-26 03:52"
+ },
+ "r254_proof_fixtures.py": {
+  "evidence": "06-benchmark/teeth_proof_latest.json",
+  "registered_at": "2026-10-26 04:08"
+ },
+ "r254_teeth_proof_matrix.py": {
+  "evidence": "06-benchmark/teeth_proof_latest.json",
+  "registered_at": "2026-10-26 04:08"
  }
 }

@@ -108,9 +108,11 @@
    "dup_policy_scan",
    "source_freshness_scan",
    "roster_fixtures",
-   "judge_binding_scan"
+   "judge_binding_scan",
+   "proof_fixtures",
+   "teeth_proof_matrix"
   ],
-  "_snapshot_at": "2026-10-26 03:55",
+  "_snapshot_at": "2026-10-26 04:08",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
@@ -374,6 +376,14 @@
   "judge_binding_scan": {
    "evidence": "06-benchmark/judge_binding_latest.json",
    "at": "2026-10-26 03:52"
+  },
+  "proof_fixtures": {
+   "evidence": "06-benchmark/teeth_proof_latest.json",
+   "at": "2026-10-26 04:08"
+  },
+  "teeth_proof_matrix": {
+   "evidence": "06-benchmark/teeth_proof_latest.json",
+   "at": "2026-10-26 04:08"
   }
  }
 }
