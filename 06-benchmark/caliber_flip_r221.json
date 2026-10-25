@@ -1,0 +1,28 @@
+{
+ "schema": "caliber-flip-r220-v1",
+ "generated_at": "2026-10-25T05:53:37+00:00",
+ "cmd": "python 05-exec/r220_caliber_flip.py",
+ "inputs": {
+  "matrix": "06-benchmark/replacement_matrix_r221_remeasure.json",
+  "producer": "05-exec/r114_replacement_scan.py"
+ },
+ "decision_rule": "覆盖=全部候选行 且 翻转=0 ⇒ 本仓自行把 C1 前置切到 skill_md_exact_n 并留 R241 校正注；否则保持旧口径不动（等数据，不等签字）",
+ "reading": {
+  "candidates_total": 937,
+  "rows_with_both_calibers": 937,
+  "rows_missing_exact": 0,
+  "coverage_pct": 100.0,
+  "bucket_flag_flips": 1,
+  "ghost_positive_rows": 124,
+  "max_ghost_per_row": 11,
+  "flip_examples": [
+   {
+    "slug": "A-java-problem",
+    "repo": "Snailclimb/JavaGuide",
+    "prod": 1,
+    "exact": 0
+   }
+  ],
+  "state": "DETECTED"
+ }
+}

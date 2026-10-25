@@ -1,6 +1,6 @@
 {
  "schema": "upstream-probe-r112-v1",
- "generated_at": "2026-10-25T03:28:40+00:00",
+ "generated_at": "2026-10-25T06:01:21+00:00",
  "face": {
   "scan_file": "06-benchmark/quarterly/2026Q4/provenance.json",
   "targets_n": 40,
@@ -1307,19 +1307,19 @@
      "repo": "sickn33/agentic-awesome-skills",
      "path": "plugins/agentic-awesome-skills-claude/skills/ui-ux-pro-max/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.0155
+     "jaccard": 0.0153
     },
     {
      "repo": "sickn33/agentic-awesome-skills",
      "path": "plugins/agentic-awesome-skills/skills/ui-ux-pro-max/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.0155
+     "jaccard": 0.0153
     },
     {
      "repo": "sickn33/agentic-awesome-skills",
      "path": "plugins/agentic-bundle-aas-product-design-studio/skills/ui-ux-pro-max/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.0155
+     "jaccard": 0.0153
     }
    ],
    "reason": "无可识别同源候选（全部 unrelated 或取不到）"

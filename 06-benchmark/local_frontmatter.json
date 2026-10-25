@@ -1,6 +1,6 @@
 {
  "schema": "local-frontmatter-r211-v1",
- "generated_at": "2026-10-24T20:26:58+00:00",
+ "generated_at": "2026-10-25T06:01:23+00:00",
  "cmd": "python 05-exec/r211_local_fm.py",
  "authority": "D:/global_skills",
  "n": 191,
@@ -41,7 +41,7 @@
    "slug": "A-memory-start",
    "desc": "全局记忆入口加载 — 目录索引式按需加载全局记忆。全局记忆启动门禁",
    "desc_len": 33,
-   "local_bytes": 12617
+   "local_bytes": 12694
   },
   {
    "slug": "A-project-better",
@@ -65,7 +65,7 @@
    "slug": "A-skill-manager",
    "desc": "技能全生命周期唯一总管——增/删/改/合并/上架/九端同步/依赖安装/安全审计、注册漂移、路由命中率一站式；触发词质量差需要重生、触发词重生、路由触发词优化亦属本件。当对话中出现主动增删改技能、装删技能、技能不生效、注册漂移、命中率诊断、技能安全审计等任何技能管理意图时加载。触发：加技能、删技能、改技能、合并技能、装技能、技能上架、skill注册、技能同步、技能漂移、命中率、触发词质量差、触发词重生、技能安全、skill依赖、技能清理、退役技能。不适用：任务后经验反哺（走 A-get-memory）、跨平台行为规则同步（走 cross-platform-agent-sync）。",
    "desc_len": 292,
-   "local_bytes": 12018
+   "local_bytes": 10712
   },
   {
    "slug": "_my-skills",
@@ -783,9 +783,9 @@
   },
   {
    "slug": "oracle",
-   "desc": "Oracle CLI second-model review/debug/refactor/design with selected files, dry-run token checks, API or browser engine (GPT-5.6 Sol / Gemini / Claude). Use when you want a second model independent opinion on code or design decisions. 触发词：第二意见、二审、oracle、神谕、换个模型审、独立评审。",
-   "desc_len": 266,
-   "local_bytes": 8240
+   "desc": "Oracle CLI 第二模型评审：把提示词与选定文件集打包，让另一个模型带真实仓库上下文做一次独立判断（review/debug/refactor/design），先 --dry-run summary --files-report 估 token 再跑。引擎默认按 OPENAI_API_KEY 选 api／浏览器；浏览器走 GPT-5.6 Sol（gpt-5.6-sol 配 --browser-thinking-time extra-high，Pro 是独立 picker 目标 --browser-thinking-time pro，API 侧用 --reasoning-mode pro 配 --reasoning-effort max），无 GPT-5.6 时退回 gpt-5.5-pro；跑 API 前先 oracle doctor --providers 与 --preflight、--route 验路由不静默走 Azure，多模型用 --allow-partial --write-output 保部分成功；浏览器可 --browser-no-focus 后台不抢焦点、--browser-tab 与 --browser-attach-running、--remote-chrome 复用已有会话、--browser-model-strategy select、--browser-follow-up 同会话追问、--perf-trace 排慢；超时必设 --timeout，会话挂了 reattach 而非重跑，产物在 transcript.md；附件守 .gitignore、拒超 1MB（ORACLE_MAX_FILE_SIZE_BYTES 可调）、总输入约 196k token 内、默认不附密钥。未打补丁的 npm 0.15.2 会把 gpt-5.6 静默降成 gpt-5.2，须显式 --model gpt-5.5-pro 兜底。输出只算建议，须拿代码与测试复核。触发词：第二意见、二审、oracle、神谕、换个模型审、独立评审。",
+   "desc_len": 882,
+   "local_bytes": 9910
   },
   {
    "slug": "pdf",
@@ -981,9 +981,9 @@
   },
   {
    "slug": "subagent-driven-development",
-   "desc": "计划执行段内核（吸收 obra/superpowers executing-plans v6.4+/v7 语义，2026-10-20 新建）。当手上已有一份实施计划（writing-plans 产出）、需要在会话内逐任务执行时使用：自己当执行者、按 TDD 逐任务证明、ledger 落盘保活、最终 whole-branch 评审。触发词：执行计划、按计划实现、plan 落地、逐任务执行、inline execution、Rulings not stalls、计划执行、plan execution、task-by-task、executing plans。**替代已退役的旧技能 executing-plans**（焚诀退役名册在册，旧名不再注册）。不适用：逐任务派子代理评审的 subagent-driven 大队形（那走多代理编排）；写计划本身（走 writing-plans）。",
-   "desc_len": 394,
-   "local_bytes": 3846
+   "desc": "计划执行段内核（吸收 obra/superpowers executing-plans v7 语义，inline 形态）。手上已有实施计划（writing-plans 产出）、要在本会话逐任务执行时用：task-start 定 BASE（评审范围从 BASE 切、不是 HEAD~1）→ 每任务读 brief 不凭记忆 → 按 Expected 三分类处置（一致/代码错走 debugging-fixing/计划错裁最小改动并记 Ruling）→ 按计划 commit → task-done 仅全套通过才写完成行。ledger 首行身份点名计划、跨计划隔离、压缩后信 ledger 与 git log；终审按影响重分级（Critical/Important 一轮 TDD 自证、Minor 走 deferred、不派二次复审、无子代理须声明自评）；收尾上呈 Rulings 与 Deferred minors 两张穷尽清单；含上下文成本纪律（长输出重定向、记账搭提交同一次调用）与 12 条反理性化表。触发词：执行计划、按计划实现、plan 落地、逐任务执行、task-start、task-done、BASE、completion contract、Rulings not stalls、终审重分级、deferred minors、反理性化、inline execution、executing plans。**替代已退役旧名 executing-plans**（退役名册在册，禁以旧名重建）。不适用：逐任务派子代理的大队形（走多代理编排）；写计划本身（走 writing-plans）。",
+   "desc_len": 696,
+   "local_bytes": 7203
   },
   {
    "slug": "taskflow",
@@ -1019,7 +1019,7 @@
    "slug": "ui-ux-pro-max",
    "desc": "UI/UX design intelligence and implementation guidance for building polished interfaces. Use when the user asks for UI design, UX flows, information architecture, visual style direction, design systems/tokens, component specs, copy/microcopy, accessibility, or to generate/critique/refine frontend UI (HTML/CSS/JS, React, Next.js, Vue, Svelte, Tailwind). Includes workflows for (1) generating new UI layouts and styling, (2) improving existing UI/UX, (3) producing design-system tokens and component guidelines, and (4) turning UX recommendations into concrete code changes.",
    "desc_len": 573,
-   "local_bytes": 3095
+   "local_bytes": 4071
   },
   {
    "slug": "utf8-encoding-fix",

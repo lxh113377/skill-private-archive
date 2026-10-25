@@ -1,6 +1,6 @@
 {
  "schema": "provenance-scan-r112-v2",
- "generated_at": "2026-10-25T03:28:20+00:00",
+ "generated_at": "2026-10-25T06:01:21+00:00",
  "face": {
   "roots": [
    {
@@ -3940,12 +3940,12 @@
   },
   {
    "slug": "ui-ux-pro-max",
-   "local_sha256": "5828337245eb6993f3b803be93e715fd96b11d6b38690b05edf9e0f2b372072d",
-   "local_bytes": 3095,
-   "dir_manifest_sha256": "a44319c1ef19990569e19e8bae0c9b42204151d35785d448007ef22697be12d6",
-   "dir_file_n": 56,
-   "mtime": "2026-10-20T09:23:34",
-   "fm_version": "1.0.0",
+   "local_sha256": "93ab6f15dcbeaa80fd60d95e06f36dce0dd1b4024b8a09e0f3b845cf3b3908d3",
+   "local_bytes": 4071,
+   "dir_manifest_sha256": "1efeef042b592fd9f41ad91588307fa9fe598cba8baf2aeb15bdeeb85d91b65d",
+   "dir_file_n": 77,
+   "mtime": "2026-10-25T13:57:13",
+   "fm_version": "1.1.0",
    "fm_last_updated": "2026-09-21",
    "registry_source": "community",
    "registry_version": "1.0.0",

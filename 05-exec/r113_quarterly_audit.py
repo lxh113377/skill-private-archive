@@ -339,12 +339,22 @@ def main():
     # r220 新增步（判据切换的前置定量）：严格口径 skill_md_exact_n 会不会改变任何 C1 分桶结论。
     # 存在理由：我把「是否切换判据」记成「须另行单独裁」后，这句话本身不可复算 —— 没人算过
     #   翻转数与双读数覆盖率。本步把它钉成读数；输入 = 本轮刚产的 replacement_matrix.json（零网络）。
-    # rc 语义：0 = 零翻转（覆盖满则 READY、不足则 CLEAN）；1 = 检得分桶翻转（真问题，须逐条读）；
-    #   2 = 无任何双读数行 = 切换前置无法量化，属**输入面真缺口**（不是设计内红）⇒ 计入失败步。
+    # rc 语义（r221 校正，见下方「为什么 1 不是失败步」）：
+    #   0 = 零翻转（覆盖满 ⇒ READY；覆盖不足 ⇒ CLEAN）
+    #   1 = **检得分桶翻转**（= 结论，不是故障）
+    #   2 = 无任何双读数行 ⇒ 切换前置无法量化 = 输入面真缺口 ⇒ 计入失败步
+    # 为什么 1 不是失败步（本仓第 2 次用 ok_rc，第 1 次是 req6_attainability）：
+    #   本轮真实跑出翻转 1 例 —— A-java-problem 的候选 Snailclimb/JavaGuide，其唯一命中文件是
+    #   docs/ai-coding/practices/drawio-chart-skill.md（627 blob、truncated=false、实测无一条路径末段等于
+    #   skill.md）⇒ 旧口径把一篇文档计成「skill 仓」。翻转的成因在**别人仓库的命名**，本仓无可整改动作；
+    #   若按「rc=1 即失败步」处理，季度巡检会**每季恒红且无人能修**，正是 R211-3 登记的「设计内红与真故障红
+    #   长得一模一样」同族（后果 = 大家学会忽略红）。结论仍必须可见：本件末行 [FLIP:*] 在 --quiet 下也打印 ⇒
+    #   随 stdout_tail 进 audit.json，不会被静默吞掉（W-36）。
     caliber_flip = os.path.join(qdir, "caliber_flip.json")
     steps.append(run_step("caliber_flip",
                           [PY, os.path.join(HERE, "r220_caliber_flip.py"),
-                           "--matrix", repl, "--json", caliber_flip, "--quiet"]))
+                           "--matrix", repl, "--json", caliber_flip, "--quiet"],
+                          ok_rc=(0, 1)))
     # r114 第 ⑦ 段：eval 内三方法对照（**口径降级**：r115 已证它不是生产路由读数，
     # 保留只为跨季观察「轻量匹配」而存在；质量主指标看第 ⑨ 段 r115_quality_truth.py）
     qual_argv = [PY, os.path.join(HERE, "r114_quality_ab.py"), "--json", qual, "--quiet"]
