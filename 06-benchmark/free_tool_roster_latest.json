@@ -71,6 +71,10 @@
     "ci_diag_r96.py",
     "cronHealth.test.js"
    ],
+   "third_lines": 49,
+   "third_comment_lines": 24,
+   "third_comment_share": 0.49,
+   "third_comment_only": false,
    "gates": "163 + 87 + 93",
    "touchpoint": "A-project-handoff 的 git_autopush 钩子模板（本仓 post-commit 即其落地）+ 第 87 门读 autopush 末行 rc；私有仓分钟用满是已付代价",
    "claims": [
@@ -151,6 +155,10 @@
     "fix_u333.py",
     "fix_verify_cause.py"
    ],
+   "third_lines": 146,
+   "third_comment_lines": 22,
+   "third_comment_share": 0.151,
+   "third_comment_only": false,
    "gates": "163 + 88 任务层 + 93",
    "touchpoint": "A-memory-start 的 quickref 额度专章（r196_quota_face 现读行数/写入）+ chaoshi-web-deploy 的 d1 execute 部署链",
    "claims": [
@@ -201,6 +209,10 @@
    "wf_real_files": [],
    "third_hits": 0,
    "third_files": [],
+   "third_lines": 0,
+   "third_comment_lines": 0,
+   "third_comment_share": null,
+   "third_comment_only": null,
    "gates": "163 + 88 任务层 + 93",
    "touchpoint": "chaoshi-image-optimization 的 R2 外置专章（干跑读数 + 阻断现状）",
    "claims": [
@@ -276,6 +288,10 @@
     "check-live-shape.mjs",
     "check_both_faces.py"
    ],
+   "third_lines": 230,
+   "third_comment_lines": 34,
+   "third_comment_share": 0.148,
+   "third_comment_only": false,
    "gates": "163 + 92 + 93",
    "touchpoint": "chaoshi-web-deploy 部署权威入口（direct_map 10 pattern，任务话术直连命中）",
    "claims": [
@@ -319,6 +335,10 @@
    "third_files": [
     "check-functions-build.mjs"
    ],
+   "third_lines": 1,
+   "third_comment_lines": 1,
+   "third_comment_share": 1.0,
+   "third_comment_only": true,
    "gates": "163 + 88 任务层 + 93",
    "touchpoint": "A-memory-start 的 quickref 额度专章（r199_workers_face 现读调用数）；跨 zone 聚合分母差异已写 §9.16",
    "claims": [
@@ -398,6 +418,10 @@
     "migrate-event-log.sql",
     "migrate-promotions.sql"
    ],
+   "third_lines": 115,
+   "third_comment_lines": 16,
+   "third_comment_share": 0.139,
+   "third_comment_only": false,
    "gates": "163 + 85 + 93",
    "touchpoint": "r203_ledger_index 用 SQLite 做门禁台账派生索引（读面与盲区均实测）",
    "claims": [
@@ -423,6 +447,10 @@
    "wf_real_files": null,
    "third_hits": 0,
    "third_files": [],
+   "third_lines": 0,
+   "third_comment_lines": 0,
+   "third_comment_share": null,
+   "third_comment_only": null,
    "gates": "163 + 93",
    "touchpoint": "r163_free_tools_face 的 probe_vscode（which + 非 0 字节 + 真跑 --version）",
    "claims": [
@@ -463,6 +491,10 @@
     "client.ts",
     "errorSemantics.test.js"
    ],
+   "third_lines": 3,
+   "third_comment_lines": 3,
+   "third_comment_share": 1.0,
+   "third_comment_only": true,
    "gates": "163 + 88 任务层(DISPUTED) + 93",
    "touchpoint": "r163_turnstile_face 与 r163_turnstile_admin 曾全链接通，后按老大要求移除 = 决定而非待搭缺口",
    "claims": [
@@ -503,6 +535,10 @@
    "wf_real_files": [],
    "third_hits": 0,
    "third_files": [],
+   "third_lines": 0,
+   "third_comment_lines": 0,
+   "third_comment_share": null,
+   "third_comment_only": null,
    "gates": "163 + 93",
    "touchpoint": "r163_tool_skill_matrix 已把它列入零引用核查面；仅 HTTP API 无 CLI，凭据缺 ⇒ 尚未接入任何工作流",
    "claims": [
@@ -528,6 +564,10 @@
    "wf_real_files": [],
    "third_hits": 0,
    "third_files": [],
+   "third_lines": 0,
+   "third_comment_lines": 0,
+   "third_comment_share": null,
+   "third_comment_only": null,
    "gates": "163 + 93",
    "touchpoint": "r163_tool_skill_matrix 报其零引用（唯一 ADVISORY 项）；仅 REST 无 CLI，凭据缺 ⇒ 未接入",
    "claims": [
@@ -568,8 +608,8 @@
    "gaps": 5
   },
   "matrix_src": {
-   "file": "tool_skill_matrix_r226.json",
-   "generated_at": "2026-10-25 18:47",
+   "file": "tool_skill_matrix_r231.json",
+   "generated_at": "2026-10-25 20:00",
    "cmd": "python 05-exec/r163_tool_skill_matrix.py --json <out>"
   },
   "workflow_src": {
@@ -580,13 +620,13 @@
    "real_total_hits": 89
   },
   "third_src": {
-   "files_scanned": 4130,
+   "files_scanned": 4134,
    "roots": [
     "C:/Users/37533/Desktop/workspace/超市web/supermarket-web",
     "C:/Users/37533/Desktop/workspace/项目/新建文件夹"
    ],
    "pruned_foreign_n": 10,
-   "files": "tool_skill_matrix_r226.json"
+   "files": "tool_skill_matrix_r231.json"
   }
  }
 }

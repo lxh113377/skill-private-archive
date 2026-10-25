@@ -566,6 +566,22 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   必须来自可复算的入口件，不接受「我跑过一次的脚本」当来源。
   取值：git show HEAD:<报告 rel> 与工作树 io.read 比对（长度/章节/数字三项）；
   python 05-exec/r221_dead_regex_scan.py --wide（现值 256 件/959 个/2 处）。
+- [ ] **R231-2（r231 登记，P1·已落地）** **第三层质量拆分：注释提及不是「在跑它」——Workers 与 Turnstile 的第三层命中全是注释**： 【r231 裁决=执行（third_face 增 lines/comment_lines/comment_share/comment_only 四字段 + t3/t4 两腿；名册第③层印质量拆分 + r5 牙）｜读数：Turnstile 3/3 与 Workers 1/1 命中行全为注释（comment_only=True）；Pages-Functions 76.2%、GitHub 49%、Pages 14.8%、D1 15.1%、SQLite 13.9%；r163 自测 16/16、名册牙 10/10。】
+  一手：第三层（项目仓面）此前把注释里的提及也算「这个仓在用」。按目录粒度实测：Turnstile 3/3、
+  Workers 1/1 命中行**全是注释**（comment_only=True）；Pages-Functions 16/21（76.2%）、GitHub 24/49（49%）
+  也是注释；Pages 34/230（14.8%）、D1 22/146（15.1%）、SQLite 16/115（13.9%）。
+  改法：third_face 逐工具增 lines / comment_lines / comment_share / comment_only（注释判据 = 去前导空白后以
+  # * // -- 开头）；**不动 hits 主读数**（保持与 r226 可比），只并列拆出质量。名册第 ③ 层印「质量拆分：
+  命中行 N，其中注释行 M（占比 X）⇒ 仅注释提及，不是在跑它」。
+  牙：r163 自测加 t3（真代码调用 ⇒ comment_only=False、share=0.0）/ t4（只在注释出现 ⇒ True、1.0）⇒ 16/16；
+  名册加 r5（注释标记须与源件一致）⇒ 10/10。t3 首跑是红的：夹具写 subprocess.run(["wrangler","d1","execute"])，
+  token 被引号逗号隔开 ⇒ 正则不命中 ⇒ comment_only=None；改夹具（非放宽判据）才过，并暴露数组形态正则
+  只认 ['d1','execute'] 紧邻写法、不认 ["wrangler","d1",...]（已知窄口，记备查，不为此加宽以免误收）。
+  Workers 三处合起来画像 = 能跑（READY）+ 能读（MEASURED）+ 形态层只留注释；Turnstile = 已按要求移除 + 注释残留。
+  元教训：命中数是一个混合量（在跑 / 在配 / 在写注释）；不拆开最省事，也最容易把「提过」读成「在用」——
+  r222 拆探针、r226 拆 vendored、r231 拆注释，三次同一件事。
+  取值：python 05-exec/r163_tool_skill_matrix.py --json 件的 third_face.per_tool[*].lines/comment_lines/
+  comment_share/comment_only；python 05-exec/r215_free_tool_roster.py 的 md 第 ③ 层「质量拆分」行。
 - [ ] **R230-2（r230 登记，P1·已落地）** **第 4 层补齐 10/10：无读数面的工具也必须具名说明为什么；产物名从门表 argv 取，不猜**： 【r230 裁决=执行（第 4 层补齐 10/10：Pages 从门表 argv 取产物名登记为 MEASURED；五项具名「无读数面/缺凭据」理由；新增牙 r4）｜读数：MEASURED 4 项（Workers/D1/GitHub/Pages）、GAP_SERVICE 1 项（R2）、无读数面 5 项；牙 9/9 PASS；变异（拿掉 VS Code 理由）rc=1、还原 rc=0。】
   一手：r229 第 4 层只覆盖 4/10，其余 6 项记「未量」——看着诚实，实际把「我还没查」包装成「查不到」，
   而这两件事下一步完全不同。本轮逐个核实完，含糊态清零。

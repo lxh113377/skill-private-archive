@@ -258,6 +258,7 @@ def third_face():
                     continue
                 files += 1
                 per_root[rname]['files'] += 1
+                lines = t.split(chr(10))
                 for k in TOOLS:
                     n = len(RX[k].findall(t))
                     if n:
@@ -265,8 +266,24 @@ def third_face():
                         d['hits'] += n
                         d['files'].append(os.path.basename(fp))
                         per_root[rname]['per_tool'][k] = per_root[rname]['per_tool'].get(k, 0) + n
+                        # r231 质量拆分：命中行里有多少是**注释行**。理由：第三层此前把注释提及
+                        #   当「在用」——实测 Workers 的 1 次命中整行是注释、Turnstile 4 行里 3 行是
+                        #   注释、Pages-Functions 23 行里 18 行是注释。注释说明的是「我知道这条路」，
+                        #   不是「我在跑它」，两者混在一个数里读者分不开。
+                        for ln in lines:
+                            if RX[k].search(ln):
+                                q = d.setdefault('lines', 0)
+                                d['lines'] = q + 1
+                                s = ln.strip()
+                                if s[:1] in ('#', '*') or s[:2] in ('//', '--'):
+                                    d['comment_lines'] = d.get('comment_lines', 0) + 1
     for k in hits:
         hits[k]['files'] = sorted(set(hits[k]['files']))[:20]
+        # r231：注释占比与「整块只有注释」的判定（后者单列，供合读时一眼看出它不是在干活）
+        ln_ = hits[k].get('lines') or 0
+        cm_ = hits[k].get('comment_lines') or 0
+        hits[k]['comment_share'] = (round(cm_ / ln_, 3) if ln_ else None)
+        hits[k]['comment_only'] = bool(ln_ and cm_ == ln_)
     return {'roots': [r.replace(chr(92), '/') for r in roots], 'files_scanned': files,
             'per_root': per_root,
             'pruned_foreign': sorted(set(pruned)),
@@ -481,6 +498,37 @@ def selftest():
         finally:
             globals()['read_skill_parts'] = _saved
     shutil.rmtree(fake2, ignore_errors=True)
+    # 腿 t3/t4（r231）：第三层的注释拆分必须有牙 —— 注释-only 必须判 comment_only、
+    #   真代码调用必须判非 comment_only（否则「注释也算在用」这个洞会一直开着）。
+    tf2 = tempfile.mkdtemp(prefix='r231_comment_split_')
+    tf3 = tempfile.mkdtemp(prefix='r231_comment_only_')
+    _TFROOT_OLD = os.environ.get('FJ_THIRD_FACE_ROOTS')
+    try:
+        # A 仓：真代码调用（非注释）
+        with io.open(os.path.join(tf2, 'real.py'), 'w', encoding='utf-8') as f:
+            f.write('subprocess.run("wrangler d1 execute x --remote", shell=True)' + chr(10))
+        os.environ['FJ_THIRD_FACE_ROOTS'] = tf2
+        tfa = third_face() or {}
+        da = (tfa.get('per_tool') or {}).get('Cloudflare-D1') or {}
+        legs.append(('t3_real_call_not_comment_only', da.get('comment_only') is False,
+                     '真代码件 comment_only=%s（期望 False）comment_share=%s' % (
+                         da.get('comment_only'), da.get('comment_share'))))
+        # B 仓：同一工具，但只在注释里出现
+        with io.open(os.path.join(tf3, 'only_comment.py'), 'w', encoding='utf-8') as f:
+            f.write('# 注意：wrangler d1 execute 的用法见别处' + chr(10))
+        os.environ['FJ_THIRD_FACE_ROOTS'] = tf3
+        tfb = third_face() or {}
+        db = (tfb.get('per_tool') or {}).get('Cloudflare-D1') or {}
+        legs.append(('t4_comment_only_flagged', db.get('comment_only') is True,
+                     '注释-only 件 comment_only=%s（期望 True）comment_share=%s' % (
+                         db.get('comment_only'), db.get('comment_share'))))
+    finally:
+        if _TFROOT_OLD is None:
+            os.environ.pop('FJ_THIRD_FACE_ROOTS', None)
+        else:
+            os.environ['FJ_THIRD_FACE_ROOTS'] = _TFROOT_OLD
+        shutil.rmtree(tf2, ignore_errors=True)
+        shutil.rmtree(tf3, ignore_errors=True)
     for n, ok, d_ in legs:
         print('%s %-34s %s' % ('PASS' if ok else 'FAIL', n, d_))
     n_ok = sum(1 for _, ok, _ in legs if ok)

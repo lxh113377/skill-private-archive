@@ -276,6 +276,11 @@ def build():
             'wf_real_files': ((W.get(tool) or {}).get('real_files') if tool in W else None),
             'third_hits': (((THIRD.get(tool) or {}).get('hits') or 0) if TF_ALL is not None else None),
             'third_files': (((THIRD.get(tool) or {}).get('files') or []) if TF_ALL is not None else None),
+            # r231：第三层的质量拆分 —— 命中里有几行是注释，以及「整块只有注释」的判定。
+            'third_lines': (((THIRD.get(tool) or {}).get('lines') or 0) if TF_ALL is not None else None),
+            'third_comment_lines': (((THIRD.get(tool) or {}).get('comment_lines') or 0) if TF_ALL is not None else None),
+            'third_comment_share': ((THIRD.get(tool) or {}).get('comment_share') if TF_ALL is not None else None),
+            'third_comment_only': ((THIRD.get(tool) or {}).get('comment_only') if TF_ALL is not None else None),
             'gates': GATES.get(tool, ''),
             'touchpoint': TOUCH.get(tool, ''),
             'claims': (CC.claims_for(TOUCH.get(tool, ''),
@@ -372,6 +377,12 @@ def render_md(doc):
             thh if thh is not None else '未量（整块 third_face 缺失 = 项目仓没被扫，不等于 0）'))
         if thh:
             L.append('        命中所在件 = %s' % (', '.join(it.get('third_files') or []) or '无'))
+        if thh and it.get('third_lines'):
+            _co = it.get('third_comment_only')
+            L.append('        质量拆分：命中行 %s，其中注释行 %s（占比 %s）%s' % (
+                it.get('third_lines'), it.get('third_comment_lines'),
+                it.get('third_comment_share'),
+                '⇒ **仅注释提及，不是在跑它**' if _co else ''))
         gs_ = doc['gates_reading']
         L.append('    （② 取值：%s 的 tools[].real_hits，窗口面 %s/%s 件、真调用合计 %s；' % (
             gs_.get('workflow_src', {}).get('file'),
@@ -490,6 +501,19 @@ def main(argv=None):
     # 牙 r4（r230）：第 4 层必须**逐个工具**都有交代 —— 要么登记了读数面，要么具名说明无读数面；
     #   「未量」这种含糊态一律算红（它正是 r229 留下的尾巴：6 项没核实就记未量）。
     teeth_n = []
+    # 牙 r5（r231）：第三层的注释拆分必须逐工具传到位（赛源：matrix 产物的 third_face.per_tool）
+    _mfile = doc['gates_reading'].get('third_src', {}).get('files')
+    src_th = ((json.load(io.open(os.path.join(B, _mfile), encoding='utf-8'))
+               .get('third_face') or {}).get('per_tool') or {}) if _mfile else {}
+    bad_q = []
+    for it in doc['items']:
+        v = src_th.get(it['tool'])
+        if v is None:
+            continue
+        if it.get('third_comment_only') != bool(v.get('comment_only')):
+            bad_q.append('%s(%s!=%s)' % (it['tool'], it.get('third_comment_only'), v.get('comment_only')))
+    teeth_n.append(('r5_third_comment_split_propagated', not bad_q,
+                    '注释only标记与源件不一致的工具=%s（期望空）' % bad_q))
     unclear = [it['tool'] for it in doc['items']
                if not READ_FACE.get(it['tool']) and not NO_READ_FACE.get(it['tool'])]
     teeth_n.append(('r4_every_tool_has_read_face_or_reason', not unclear,
