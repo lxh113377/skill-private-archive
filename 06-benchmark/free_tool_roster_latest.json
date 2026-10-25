@@ -125,7 +125,7 @@
     ]
    },
    "read_why": null,
-   "usage_value": 24815.0,
+   "usage_value": 24820.0,
    "usage_meta": {
     "unit": "分钟（官方计费·账号级·端点默认窗口）",
     "extra": 0.0,
@@ -198,8 +198,8 @@
    "tasks": [
     {
      "task": "D1 查额度",
-     "outcome": "MISS",
-     "top1": "wps-knowledgebase",
+     "outcome": "HIT",
+     "top1": "A-memory-start",
      "skill": "A-memory-start"
     }
    ],
@@ -376,7 +376,7 @@
     ]
    },
    "read_why": null,
-   "usage_value": 199375,
+   "usage_value": 199382,
    "usage_meta": {
     "unit": "次",
     "extra": null,
@@ -419,8 +419,8 @@
    "tasks": [
     {
      "task": "Workers 调用量",
-     "outcome": "MISS",
-     "top1": "chaoshi-image-optimization",
+     "outcome": "HIT",
+     "top1": "A-memory-start",
      "skill": "A-memory-start"
     }
    ],
@@ -534,12 +534,12 @@
     ]
    },
    "read_why": null,
-   "usage_value": 12.29,
+   "usage_value": 12.33,
    "usage_meta": {
     "unit": "MiB（本地库体量·非额度）",
-    "extra": 43601,
+    "extra": 43717,
     "extra_label": "合计行数",
-    "window": "2026-10-26T03:25:03"
+    "window": "2026-10-26T03:41:36"
    },
    "usage_why": null
   },
@@ -765,13 +765,13 @@
   },
   "matrix_src": {
    "file": "tool_skill_matrix_latest.json",
-   "generated_at": "2026-10-26 03:22",
+   "generated_at": "2026-10-26 03:38",
    "cmd": "python 05-exec/r163_tool_skill_matrix.py --json <out>"
   },
   "workflow_src": {
    "file": "workflow_usage_latest.json",
    "generated_at": null,
-   "face_files": 270,
+   "face_files": 271,
    "real_face_files": 156,
    "real_total_hits": 84
   },

@@ -109,7 +109,7 @@
    "source_freshness_scan",
    "roster_fixtures"
   ],
-  "_snapshot_at": "2026-10-26 03:33",
+  "_snapshot_at": "2026-10-26 03:35",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
