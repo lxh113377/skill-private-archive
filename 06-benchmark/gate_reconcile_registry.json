@@ -98,10 +98,12 @@
    "workflow_usage_face",
    "dead_regex_scan",
    "md_deadlink_face",
+   "ledger_index_build",
+   "sqlite_usage_face",
    "free_tool_roster_face",
    "roster_audit"
   ],
-  "_snapshot_at": "2026-10-25 23:01",
+  "_snapshot_at": "2026-10-25 23:18",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
@@ -329,6 +331,14 @@
   "roster_audit": {
    "evidence": "06-benchmark/roster_audit_latest.json",
    "at": "2026-10-25 21:56"
+  },
+  "sqlite_usage_face": {
+   "evidence": "06-benchmark/sqlite_usage_latest.json",
+   "at": "2026-10-25 23:17"
+  },
+  "ledger_index_build": {
+   "evidence": "06-benchmark/ledger_index_build_latest.json",
+   "at": "2026-10-25 23:18"
   }
  }
 }

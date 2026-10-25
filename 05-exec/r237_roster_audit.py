@@ -168,6 +168,8 @@ def layer5():
         'Cloudflare-Pages': ('pages_http_latest.json', ['row', 'requests_total']),
         # r242：Turnstile 用量（官方数据集，参数名运行时自省）
         'Cloudflare-Turnstile': ('turnstile_usage_latest.json', ['count_total']),
+        # r243：SQLite 本地体量（非额度）
+        'SQLite': ('sqlite_usage_latest.json', ['size_mib']),
     }
     res = {}
     for tool, (art, path) in specs.items():

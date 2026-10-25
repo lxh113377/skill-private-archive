@@ -46,6 +46,10 @@ LEDGER = os.path.join(REPO, "06-benchmark", "gate_runs.jsonl")
 ORIGIN = "ci" if os.environ.get("GITHUB_ACTIONS") == "true" else "local"
 
 # 单一真相源：门禁清单只在这里维护。AGENTS.md / CI / 会话内手工跑，都走本表。
+# 第 96 门取证用的只读 SQL：列出索引里的表名（chr() 拼接生成引号，避免转义层吃掉）
+SQL_TABLE_LIST = ("select name from sqlite_master where type=" + chr(39) + "table" + chr(39)
+                  + " order by name")
+
 GATES = [
     {
         # r156：#48 反向验证普查面（静态候选线索）
@@ -1548,6 +1552,39 @@ GATES = [
                   "直到 r220 复核自己改造时全仓扫才抓到。本门把「文件迁移后引用面」变成常驻判据，不再靠偶然撞到。"),
     },
 
+    {
+        # r243：SQLite 的搭配**维护链**（两道门）。动因：r203_ledger_index.py 是重建型（DROP+CREATE），
+        #   但它原先**不在门表** ⇒ 索引只新到上一次手工运行（r243 实测落后 25.41 小时），
+        #   而全量门每轮都在往 gate_runs.jsonl 追加 —— 「被搭配了但没被维护」。
+        #   重建实测 0.7s（10.03→11.79 MiB、38215→42488 行）⇒ 便宜到可以常驻。
+        #   排位：重建 → 用量面 → 名册前（名册读用量面产物；用量面读刚重建好的库）。
+        "id": "ledger_index_build",
+        "script": "r203_ledger_index.py",
+        # r243 自抓：r203 的 --json 是**给 --sql 用的**（SQL 结果另存），--build 本身不落盘 ⇒ 首版 argv
+        #   没产出证据件，r130 --record 直接 REFUSE「证据文件不存在」。改为 build 后跟一条只读 SQL 取证
+        #   （类型名用 chr() 拼接，避免把引号写进单行字符串里再被转义层吃掉）。
+        "argv": ["--build", "--sql", SQL_TABLE_LIST, "--json", "06-benchmark/ledger_index_build_latest.json"],
+        "pass_token": "[LEDGERIDX:OK]",
+        "portable": True,
+        "covers": [
+            "重建本地 SQLite 台账索引（七表：src_fingerprint/run_meta/gate_run/debt_run/input_pin/report_section/ledger_item）",
+            "建完自证指纹一致 ⇒ 索引与源件对得上，不是只写了行数"],
+        "why": ("SQLite 是本机嵌入库：没有平台额度，但有**体量与新鲜度**。原先它只在被手工运行时才更新，"
+                  "导致「搭配了却没维护」。本门把重建纳入流水线（0.7s）；新鲜度由紧随其后的第 100 门 r243 用量面读数。"),
+    },
+    {
+        "id": "sqlite_usage_face",
+        "script": "r243_sqlite_usage_face.py",
+        "argv": ["--json", "06-benchmark/sqlite_usage_latest.json"],
+        "pass_token": "[SQLITE:PASS]",
+        "portable": True,
+        "covers": [
+            "SQLite 本地体量：大小 MiB / 表数 / 逐表行数 / 合计行数",
+            "陈旧度：库 mtime vs 最新输入件（gate_runs.jsonl 等）mtime，>1 小时即判【陈旧】",
+            "库缺失或查询异常 ⇒ UNVERIFIED rc=2（R247：取不到不记 0）"],
+        "why": ("名册原先对 SQLite 记「无读数面」，理由是「本地库无平台额度面」——与 Turnstile 同病："
+                  "把**没有额度**读成了**没有可读的数**。本门把本地体量与新鲜度变成每轮读数。"),
+    },
     {
         # r232：名册面（新门）—— 免费工具 × 工作流 × skill 的四层搭配读数 + 十条一致性牙。
         # 为什么进表：r215-r231 逐轮把名册做成四层可复算产物、并把每类失真拆出来（探针件 / vendored

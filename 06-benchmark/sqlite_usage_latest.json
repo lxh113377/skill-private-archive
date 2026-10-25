@@ -1,0 +1,29 @@
+{
+ "schema": "sqlite-usage-v1",
+ "readonly": true,
+ "provenance_cmd": "python 05-exec/r243_sqlite_usage_face.py --json <件>",
+ "db": "_temp/gate_index.sqlite",
+ "builder": "r203_ledger_index.py（重建型：DROP TABLE + CREATE）",
+ "builder_in_gates": true,
+ "note": "本地嵌入库：报体量（非额度）。陈旧度 = 库 mtime vs 最新输入件 mtime；builder 不在 GATES ⇒ 索引不会被全量门自动刷新。",
+ "state": "MEASURED",
+ "size_bytes": 12365824,
+ "size_mib": 11.79,
+ "tables_n": 7,
+ "tables_rows": {
+  "src_fingerprint": 129,
+  "run_meta": 800,
+  "gate_run": 38094,
+  "debt_run": 260,
+  "input_pin": 1179,
+  "report_section": 1884,
+  "ledger_item": 142
+ },
+ "rows_total": 42488,
+ "db_mtime": "2026-10-25T23:18:12",
+ "newest_input": "gate_runs.jsonl",
+ "newest_input_mtime": "2026-10-25T23:06:10",
+ "stale_hours": -0.2,
+ "stale": false,
+ "why": ""
+}

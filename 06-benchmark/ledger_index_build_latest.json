@@ -1,0 +1,29 @@
+{
+ "schema": "ledger-query-v1",
+ "readonly": true,
+ "sql": "select name from sqlite_master where type='table' order by name",
+ "rows": [
+  {
+   "name": "debt_run"
+  },
+  {
+   "name": "gate_run"
+  },
+  {
+   "name": "input_pin"
+  },
+  {
+   "name": "ledger_item"
+  },
+  {
+   "name": "report_section"
+  },
+  {
+   "name": "run_meta"
+  },
+  {
+   "name": "src_fingerprint"
+  }
+ ],
+ "provenance_cmd": "python 05-exec/r203_ledger_index.py --build && python 05-exec/r203_ledger_index.py --sql <本条>"
+}

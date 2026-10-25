@@ -155,6 +155,13 @@ READ_FACE = {
                               'path': ['state'],
                               'usage': ['count_total'], 'unit': '次（校验请求）',
                               'window': ['window']},
+    # r243：SQLite 本地体量面（体量非额度；陈旧度 = 库 mtime vs 最新输入件）
+    'SQLite': {'script': 'r243_sqlite_usage_face.py',
+               'artifact': 'sqlite_usage_latest.json',
+               'path': ['state'],
+               'usage': ['size_mib'], 'unit': 'MiB（本地库体量·非额度）',
+               'extra': ['rows_total'], 'extra_label': '合计行数',
+               'window': ['db_mtime']},
     'Cloudflare-Pages': {'script': 'r200_pages_face.py',
                          'artifact': 'pages_http_latest.json',
                          'path': ['row', 'state'],
@@ -165,8 +172,11 @@ READ_FACE = {
 # r230：无读数面的工具 —— 逐个核实后**具名说明为什么没有**，不留「未量」这种含糊态。
 #   与 READ_FACE 的关系：两者必须覆盖全部入册工具（牙 r4 锁死），否则说明我没逐个核实。
 NO_READ_FACE = {
-    'VS Code': '编辑器本体，无平台额度概念 ⇒ 无读数面',
-    'SQLite': '本地嵌入库，无平台额度面 ⇒ 无读数面（用量由 r203_ledger_index 本地统计）',
+    # r243：SQLite 原记「本地嵌入库，无平台额度面 ⇒ 无读数面」——与 Turnstile 同病：把**没有额度**
+    #   读成**没有可读的数**。实测本机库 11.79 MiB / 7 表 / 42488 行 / 陈旧度可测 ⇒ 已改为读数面。
+    #   该条已删。
+    'VS Code': '编辑器本体，无平台额度概念 ⇒ 无读数面（用量 = 装机与扩展，属桌面侧，未入本尺）',
+
     # r242：Turnstile 原记「无读数面（该门 argv 不带 --json）」，实测其官方数据集存在 ⇒ 该条已删。
     # r234：两档各证（与 R2 同标准）。档位 1 全机探查无凭据；档位 2 通道可达但需建号+条款 ⇒ 例外类。
     #   证据件 = 06-benchmark/free_tool_credential_probe_2026-10-25.txt（含键名清单与 grep 结果）。

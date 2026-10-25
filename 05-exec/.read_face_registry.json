@@ -90,5 +90,9 @@
  "r242_turnstile_usage_face.py": {
   "evidence": "06-benchmark/turnstile_usage_latest.json",
   "registered_at": "2026-10-25 22:56"
+ },
+ "r243_sqlite_usage_face.py": {
+  "evidence": "06-benchmark/sqlite_usage_latest.json",
+  "registered_at": "2026-10-25 23:17"
  }
 }

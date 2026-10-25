@@ -514,12 +514,34 @@
    "patterns_n": 3,
    "tasks": [],
    "blocker": null,
-   "read_state": null,
-   "read_face": null,
-   "read_why": "无读数面：本地嵌入库，无平台额度面 ⇒ 无读数面（用量由 r203_ledger_index 本地统计）",
-   "usage_value": null,
-   "usage_meta": null,
-   "usage_why": "未登记用量路径"
+   "read_state": "MEASURED",
+   "read_face": {
+    "script": "r243_sqlite_usage_face.py",
+    "artifact": "sqlite_usage_latest.json",
+    "path": [
+     "state"
+    ],
+    "usage": [
+     "size_mib"
+    ],
+    "unit": "MiB（本地库体量·非额度）",
+    "extra": [
+     "rows_total"
+    ],
+    "extra_label": "合计行数",
+    "window": [
+     "db_mtime"
+    ]
+   },
+   "read_why": null,
+   "usage_value": 11.79,
+   "usage_meta": {
+    "unit": "MiB（本地库体量·非额度）",
+    "extra": 42488,
+    "extra_label": "合计行数",
+    "window": "2026-10-25T23:18:12"
+   },
+   "usage_why": null
   },
   {
    "tool": "VS Code",
@@ -552,7 +574,7 @@
    },
    "read_state": null,
    "read_face": null,
-   "read_why": "无读数面：编辑器本体，无平台额度概念 ⇒ 无读数面",
+   "read_why": "无读数面：编辑器本体，无平台额度概念 ⇒ 无读数面（用量 = 装机与扩展，属桌面侧，未入本尺）",
    "usage_value": null,
    "usage_meta": null,
    "usage_why": "未登记用量路径"

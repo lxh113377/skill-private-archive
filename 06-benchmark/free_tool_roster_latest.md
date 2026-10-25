@@ -21,13 +21,13 @@
 | Cloudflare-R2 | 1 / 0 | 0 | 0 | GAP_SERVICE | 未量 | [平台能力缺口] |
 | Cloudflare-Pages | 5 / 2 | 7 | 239（注释占比 0.148） | MEASURED | 198687 次 | READY |
 | Cloudflare-Workers | 1 / 0 | 0 | 1（注释占比 1.0·仅注释） | MEASURED | 0 次 | [口径盲区] |
-| SQLite | 4 / 3 | 24 | 127（注释占比 0.139） | 无读数面 | 未量 | READY |
+| SQLite | 4 / 3 | 24 | 127（注释占比 0.139） | MEASURED | 11.79 MiB（本地库体量·非额度） | READY |
 | VS Code | 未量 / 未量 | 未量 | 0 | 无读数面 | 未量 | [未入尺] |
 | Cloudflare-Turnstile | 2 / 0 | 25 | 3（注释占比 1.0·仅注释） | MEASURED | 0 次（校验请求） | READY |
 | Resend | 1 / 1 | 0 | 0 | 无读数面 | 未量 | GAP_CRED |
 | Upstash-Redis | 0 / 0 | 0 | 0 | 无读数面 | 未量 | [外部凭据缺口] |
 
-汇总：四层齐备（有代码级/有工作流调用/项目仓有命中/读数 MEASURED）= **2** 项；有真调用（工作流或代码级任一）= 6 项；带卡点归因 = 4 项；无读数面 = 4 项。
+汇总：四层齐备（有代码级/有工作流调用/项目仓有命中/读数 MEASURED）= **3** 项；有真调用（工作流或代码级任一）= 6 项；带卡点归因 = 4 项；无读数面 = 3 项。
 
 （总表取值：同下各节；每行都由 items 计算，禁手写 —— 牙 r6 校验行数与工具集合。）
 
@@ -177,8 +177,10 @@
         质量拆分：命中行 115，其中注释行 16（占比 0.139）
     （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 154/267 件、真调用合计 82；
      ③ 取值：tool_skill_matrix_r231.json 的 third_face.per_tool，4134 件 / 2 仓 / 剪外来面 10 个）
-- 读数型真调用（第 4 层）：无读数面 —— 本地嵌入库，无平台额度面 ⇒ （用量由 r203_ledger_index 本地统计）（无读数面 ≠ 0）
-- 本月/当前用量：未量（未登记用量路径；未量不等于 0）
+- 读数型真调用（第 4 层）：**MEASURED**（读得到数）
+    （取值：r243_sqlite_usage_face.py --json sqlite_usage_latest.json 的 state）
+- 本月/当前用量：**11.79 MiB（本地库体量·非额度）**（合计行数 42488）　窗口：2026-10-25T23:18:12
+    （取值：r243_sqlite_usage_face.py --json sqlite_usage_latest.json 的 size_mib）
 - 守它的判据：163 + 85 + 93
 - 工作流触点：r203_ledger_index 用 SQLite 做门禁台账派生索引（读面与盲区均实测）
 - 触点在位核验（在位≠已接入）：r203_ledger_index（判据件） -> GATE_FILE_MENTIONS
@@ -196,7 +198,7 @@
      ③ 取值：tool_skill_matrix_r231.json 的 third_face.per_tool，4134 件 / 2 仓 / 剪外来面 10 个）
 - **零层归因：[未入尺]** 编辑器本体，不承载判据；第 67 门无该工具正则 ⇒ per_tool 无此键（未量，不等于零提到）
     （取值：python 05-exec/r163_tool_skill_matrix.py --json 件（per_tool 里无 VS Code 键））
-- 读数型真调用（第 4 层）：无读数面 —— 编辑器本体，无平台额度概念 ⇒ （无读数面 ≠ 0）
+- 读数型真调用（第 4 层）：无读数面 —— 编辑器本体，无平台额度概念 ⇒ （用量 = 装机与扩展，属桌面侧，未入本尺）（无读数面 ≠ 0）
 - 本月/当前用量：未量（未登记用量路径；未量不等于 0）
 - 守它的判据：163 + 93
 - 工作流触点：r163_free_tools_face 的 probe_vscode（which + 非 0 字节 + 真跑 --version）
