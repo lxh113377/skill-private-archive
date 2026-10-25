@@ -20,6 +20,7 @@ import json
 import os
 import re
 import subprocess
+import time
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -283,7 +284,26 @@ def main(argv=None):
             ('层3', th.get(tool, 0), it.get('third_hits') or 0),
             ('层5用量', (p5[0] if p5[0] is not None else None), a5),
         )
-        bad = ['%s %s!=%s' % (k, a, b) for k, a, b in pairs if a != b]
+        # r259：把第⑤层的差异**具名成因** —— 它是活的网络读数，与「上一轮快照」比必然随时间漂，
+        #   那不等于复算错了。首版一律写成「复算与名册不一致」，会把「读数过期」误报成「算错」（r249/r250 同族：
+        #   差异必须带成因，否则排障指错方向）。
+        _bad_l5 = [k for k, a, b in pairs if k == '层5用量' and a != b]
+        _roster_age = None
+        try:
+            _art = os.path.join(B, 'free_tool_roster_latest.json')
+            _d = json.load(io.open(_art, encoding='utf-8'))
+            # r259 自抓：首版只看文件 mtime —— 克隆检出会把 mtime 重置成「刚刚」，于是陈旧快照看起来是新鲜读数。
+            #   改为优先用件自带的 read_at（r259 起写入）；无 read_at（旧件）⇒ 视作无法判定 ⇒ 按「可能陈旧」具名。
+            _ra = _d.get('read_at')
+            if _ra:
+                _roster_age = time.time() - __import__('datetime').datetime.fromisoformat(_ra).timestamp()
+            else:
+                _roster_age = None
+        except (OSError, ValueError):
+            _roster_age = None
+        _stale = bool(_bad_l5) and (_roster_age is None or _roster_age > 900)   # 无 read_at 也算「可能陈旧」
+        bad = ['%s %s!=%s%s' % (k, a, b, '（读数随时间变化，非复算错误）' if (k == '层5用量' and _stale) else '')
+               for k, a, b in pairs if a != b]
         if bad:
             drift.append('%s: %s' % (tool, ' / '.join(bad)))
     doc = {'schema': 'roster-audit-v1', 'readonly': True,

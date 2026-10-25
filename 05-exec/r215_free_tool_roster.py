@@ -488,7 +488,10 @@ def build():
     }
     # r252：把第 65 门的行**随 doc 一起交出去** —— 原先牙 r10 直接够 build() 的局部 src，
     #   而它其实在 main() 里求值 ⇒ NameError 被一个宽 except 吞掉 ⇒ **r10 一直是空转的假绿**。
+    # r259：读数件必须**自带读取时刻** —— 否则「新鲜度」只能靠文件 mtime，而 git 克隆会把 mtime 重置成检出时间，
+    #   于是「陈旧的快照」在别人机器上看起来是「刚刚读过」（冷克隆复现实测）。这是 r250 新鲜度判据的同一族缺口。
     return {'items': items, 'gates_reading': gates,
+            'read_at': __import__('datetime').datetime.now().isoformat(timespec='seconds'),
             'ft_rows': (src['roster'].get('rows') or []),
             'ft_src': used.get('roster')}, None
 

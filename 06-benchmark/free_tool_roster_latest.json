@@ -785,6 +785,7 @@
    "files": "tool_skill_matrix_latest.json"
   }
  },
+ "read_at": "2026-10-26T05:32:51",
  "ft_rows": [
   {
    "tool": "GitHub",
