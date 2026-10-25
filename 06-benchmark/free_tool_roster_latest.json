@@ -204,7 +204,7 @@
     }
    ],
    "blocker": null,
-   "read_state": "MEASURED",
+   "read_state": "UNVERIFIED",
    "read_face": {
     "script": "r196_quota_face.py",
     "artifact": "quota_face_latest.json",
@@ -232,14 +232,9 @@
     ]
    },
    "read_why": null,
-   "usage_value": 8.89,
-   "usage_meta": {
-    "unit": "MiB",
-    "extra": 0.174,
-    "extra_label": "占名册声称上限",
-    "window": "5 GiB 存储"
-   },
-   "usage_why": null
+   "usage_value": null,
+   "usage_meta": null,
+   "usage_why": "路径取不到：rows/cloudflare_d1/mib"
   },
   {
    "tool": "Cloudflare-R2",
@@ -357,7 +352,7 @@
     }
    ],
    "blocker": null,
-   "read_state": "MEASURED",
+   "read_state": "UNVERIFIED",
    "read_face": {
     "script": "r200_pages_face.py",
     "artifact": "pages_http_latest.json",
@@ -376,14 +371,9 @@
     ]
    },
    "read_why": null,
-   "usage_value": 198687,
-   "usage_meta": {
-    "unit": "次",
-    "extra": null,
-    "extra_label": null,
-    "window": "2026-10-01~2026-10-26"
-   },
-   "usage_why": null
+   "usage_value": null,
+   "usage_meta": null,
+   "usage_why": "路径取不到：row/requests_total"
   },
   {
    "tool": "Cloudflare-Workers",
@@ -429,7 +419,7 @@
     "why": "我的真实用法是**读数型**：走 CF GraphQL analytics 读调用数（token 见证据件），而形态级正则只认部署形态的三类写法 ⇒ 它看不见读数型搭配（不为此写假调用凑数）",
     "evidence": "python 05-exec/r199_workers_face.py --json 06-benchmark/workers_quota_latest.json（真跑 MEASURED）；token workersInvocationsAdaptive 见该件 L50/L108"
    },
-   "read_state": "MEASURED",
+   "read_state": "UNVERIFIED",
    "read_face": {
     "script": "r199_workers_face.py",
     "artifact": "workers_quota_latest.json",
@@ -448,14 +438,9 @@
     ]
    },
    "read_why": null,
-   "usage_value": 0,
-   "usage_meta": {
-    "unit": "次",
-    "extra": null,
-    "extra_label": null,
-    "window": "2026-10-01~2026-10-26"
-   },
-   "usage_why": null
+   "usage_value": null,
+   "usage_meta": null,
+   "usage_why": "路径取不到：row/invocations_month"
   },
   {
    "tool": "SQLite",
@@ -534,12 +519,12 @@
     ]
    },
    "read_why": null,
-   "usage_value": 11.79,
+   "usage_value": 11.84,
    "usage_meta": {
     "unit": "MiB（本地库体量·非额度）",
-    "extra": 42488,
+    "extra": 42601,
     "extra_label": "合计行数",
-    "window": "2026-10-25T23:18:12"
+    "window": "2026-10-25T23:34:23"
    },
    "usage_why": null
   },
@@ -753,7 +738,7 @@
   "workflow_src": {
    "file": "workflow_usage_latest.json",
    "generated_at": null,
-   "face_files": 267,
+   "face_files": 268,
    "real_face_files": 154,
    "real_total_hits": 82
   },

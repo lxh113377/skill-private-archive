@@ -1564,7 +1564,11 @@ GATES = [
         #   没产出证据件，r130 --record 直接 REFUSE「证据文件不存在」。改为 build 后跟一条只读 SQL 取证
         #   （类型名用 chr() 拼接，避免把引号写进单行字符串里再被转义层吃掉）。
         "argv": ["--build", "--sql", SQL_TABLE_LIST, "--json", "06-benchmark/ledger_index_build_latest.json"],
-        "pass_token": "[LEDGERIDX:OK]",
+        # r243 自抓：首版我自造了 [LEDGERIDX:OK] ⇒ 100 门首跑该门 **UNVERIFIED**（rc=0 但输出无此 token，
+        #   按 R247 不得算绿——这条门禁自己就是「不得无据记绿」的教科书案例）。
+        #   实测 r203 的成功路径**不印 OK token**，只有四种负向 token（STALE/REFUSE/SQLERR/UNVERIFIED）；
+        #   能作正向判据的是它成功时必印的那句（失败会印「漂移 …」）⇒ 取该句为 pass_token。
+        "pass_token": "自证指纹：一致",
         "portable": True,
         "covers": [
             "重建本地 SQLite 台账索引（七表：src_fingerprint/run_meta/gate_run/debt_run/input_pin/report_section/ledger_item）",
