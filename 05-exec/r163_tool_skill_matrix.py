@@ -221,11 +221,31 @@ def third_face():
     if not roots:
         return None
     skip = ('node_modules', '.git', 'dist', '.wrangler', 'archive', '__pycache__')
+    # r226：仓内的**外来面**必须剪掉，否则第三层被 vendored 副本灌水。
+    #   本轮第一手：donggu-phoenix 仓内 _skill_audit/ 下是内嵌 SKILL.md 的快照与 gstack 副本；
+    #   supermarket-web 仓内 vendor/CampusPrint-V1 是嵌套 .git 的另一个仓 —— 它们的命中不是
+    #   「这个仓在用工具」，是「别的仓碰巧躺在这里」。
+    #   判据用结构标记（嵌套 .git / 同目录 SKILL.md），**不写死目录名**（写死只顾这一台机器）。
+    #   剪掉的面一律记进 pruned_foreign：分丢了多少必须看得见（禁静默丢分母）。
+    FOREIGN_MARKS = ('.git', 'SKILL.md')
     hits = {}
     files = 0
+    pruned = []
+    per_root = {}
     for root in roots:
+        rname = os.path.basename(root) or root
+        per_root[rname] = {'files': 0, 'per_tool': {}}
         for dp, dns, fns in os.walk(root):
-            dns[:] = [d for d in dns if d not in skip]
+            keep = []
+            for d in dns:
+                if d in skip:
+                    continue
+                sub = os.path.join(dp, d)
+                if any(os.path.exists(os.path.join(sub, mk)) for mk in FOREIGN_MARKS):
+                    pruned.append(os.path.relpath(sub, root).replace(chr(92), '/'))
+                    continue
+                keep.append(d)
+            dns[:] = keep
             for f in fns:
                 if not f.endswith(CODE_EXT):
                     continue
@@ -237,15 +257,21 @@ def third_face():
                 except OSError:
                     continue
                 files += 1
+                per_root[rname]['files'] += 1
                 for k in TOOLS:
                     n = len(RX[k].findall(t))
                     if n:
                         d = hits.setdefault(k, {'hits': 0, 'files': []})
                         d['hits'] += n
                         d['files'].append(os.path.basename(fp))
+                        per_root[rname]['per_tool'][k] = per_root[rname]['per_tool'].get(k, 0) + n
     for k in hits:
         hits[k]['files'] = sorted(set(hits[k]['files']))[:20]
     return {'roots': [r.replace(chr(92), '/') for r in roots], 'files_scanned': files,
+            'per_root': per_root,
+            'pruned_foreign': sorted(set(pruned)),
+            'prune_rule': ('嵌套 .git 或同目录 SKILL.md 的子目录视为外来面（vendored 副本 / 内嵌 skill'
+                           '快照），整枝剪掉并记入 pruned_foreign；不写死目录名。'),
             'skip_dirs': list(skip),
             'provenance_cmd': 'FJ_THIRD_FACE_ROOTS=<仓路径> python 05-exec/r163_tool_skill_matrix.py --json 件',
             'note': ('扫描面之外的项目仓面，只记录不判红；受管根内同类代码仍由 per_tool_exec 负责',
@@ -369,6 +395,43 @@ def selftest():
                  '3/3 数组与字面形态命中=%s' % d1a))
     legs.append(('f1r_d1_array_not_overbroad', d1b,
                  '3/3 非 D1 数组不误命中=%s' % d1b))
+    # 腿 t1/t2（r226）：third_face 必须剪掉仓内外来面（vendored 副本 / 内嵌 skill 快照）。
+    # 动因：本轮实测 donggu-phoenix 仓内 _skill_audit/ 下是内嵌 SKILL.md 的快照与 gstack 副本，
+    #   supermarket-web 仓内 vendor/CampusPrint-V1 是嵌套 .git 的另一个仓 —— 它们的命中被
+    #   算成了「本项目在用工具」。用结构标记（嵌套 .git / 同目录 SKILL.md）剪，不写死目录名。
+    tf_root = tempfile.mkdtemp(prefix='r226_third_face_')
+    own = os.path.join(tf_root, 'own')
+    foreign_git = os.path.join(tf_root, 'vendor', 'other-repo')
+    foreign_skill = os.path.join(tf_root, 'audit', 'some-skill')
+    for d in (own, foreign_git, foreign_skill):
+        os.makedirs(d)
+    REAL_HIT = 'wrangler d1 execute supermarket --remote' + chr(10)
+    io.open(os.path.join(own, 'a.py'), 'w', encoding='utf-8').write(REAL_HIT)
+    os.makedirs(os.path.join(foreign_git, '.git'))
+    io.open(os.path.join(foreign_git, 'b.py'), 'w', encoding='utf-8').write(REAL_HIT)
+    io.open(os.path.join(foreign_skill, 'SKILL.md'), 'w', encoding='utf-8').write('x')
+    io.open(os.path.join(foreign_skill, 'c.py'), 'w', encoding='utf-8').write(REAL_HIT)
+    _old_env = os.environ.get('FJ_THIRD_FACE_ROOTS')
+    try:
+        os.environ['FJ_THIRD_FACE_ROOTS'] = tf_root
+        tf = third_face()
+    finally:
+        if _old_env is None:
+            os.environ.pop('FJ_THIRD_FACE_ROOTS', None)
+        else:
+            os.environ['FJ_THIRD_FACE_ROOTS'] = _old_env
+    tf_d1 = ((tf or {}).get('per_tool') or {}).get('Cloudflare-D1', {})
+    tf_files = [f for f in (tf_d1.get('files') or [])]
+    t1 = 'a.py' in tf_files and 'b.py' not in tf_files and 'c.py' not in tf_files
+    legs.append(('t1_third_face_prunes_foreign', t1,
+                 '自己仓命中=%s 外来面文件=%s（期望只有 a.py）' % ('a.py' in tf_files,
+                                                                 [f for f in tf_files if f != 'a.py'])))
+    pr = (tf or {}).get('pruned_foreign') or []
+    t2 = any('other-repo' in p for p in pr) and any('some-skill' in p for p in pr)
+    legs.append(('t2_pruned_recorded', t2,
+                 '剪掉并记录=%s（禁静默丢分母）' % [p for p in pr][:4]))
+    import shutil as _shutil_tf
+    _shutil_tf.rmtree(tf_root, ignore_errors=True)
     # 腿 e1/e2/e3 + 变异腿 m2（r185）：第二把尺（可执行面）的三向验。
     # 动因：r185 我先版自写一套代码形态正则，六个形态对 web-access 的
     #   execFileSync('sqlite3', [...]) 全 MISS —— 差点又造一批假阴性。改为复用同一
