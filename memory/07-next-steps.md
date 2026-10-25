@@ -566,6 +566,27 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   必须来自可复算的入口件，不接受「我跑过一次的脚本」当来源。
   取值：git show HEAD:<报告 rel> 与工作树 io.read 比对（长度/章节/数字三项）；
   python 05-exec/r221_dead_regex_scan.py --wide（现值 256 件/959 个/2 处）。
+- [ ] **R226-2（r226 登记，P1·已落地）** **第三层被 vendored 副本灌水：GitHub 364 里 315 是外来副本贡献的，剪掉后 -86.5%**： 【r226 裁决=执行（third_face 按结构标记剪外来面 + pruned_foreign 记账 + per_root 逐仓 + selftest t1/t2）｜读数：件 6605→4130（-37.5%）；GitHub 364→49、SQLite 321→127、D1 248→146、Pages-Functions 90→21、Pages 不变 239；selftest 14/14；并出跨轮校注更正 §80 的 36→364。】
+  一手：r225 的 third_face 报 6605 件（两仓）。本轮按目录粒度拆开，donggu-phoenix 仓 5471 件里命中
+  集中在 _qa(101) / _skill_audit(99) / _dev；查标记发现 _skill_audit/gstack_up/gstack-main 是同目录带
+  SKILL.md 的外来快照、_skill_audit/scan_test_root/* 是 9 份内嵌 skill 快照，supermarket-web/vendor/
+  CampusPrint-V1 是嵌套 .git 的另一个仓 ⇒ 它们的命中不是「这个仓在用工具」，是别的仓躺在这里。
+  修法：判据用结构标记（嵌套 .git 或同目录 SKILL.md）剪整枝，**不写死目录名**；剪掉的一律记进
+  pruned_foreign（禁静默丢分母）；新增 per_root 逐仓读数；selftest 加 t1（外来面文件不得计入）/
+  t2（剪掉的必须记录）两腿，14/14 全过。
+  剪后读数：文件 6605→4130（-37.5%）；GitHub 364→49（-86.5%）、SQLite 321→127（-60.4%）、
+  D1 248→146、Pages-Functions 90→21、Pages 239 不变（其大头是本项目自己的 _qa 脚本=真用法）；
+  Turnstile 3 / Workers 1 / R2 0 / Resend 0 / Upstash 0 不变。逐仓：supermarket-web 935 件
+  （D1 117/SQLite 117/Pages 70/GitHub 36/Turnstile 3/Workers 1）、新建文件夹 3195 件
+  （Pages 169/D1 29/GitHub 13/SQLite 10/Pages-Functions 2）。
+  【跨轮校注 · R241】§80.3 的「GitHub 36→364」必须打折：364 里 315 来自 vendored 副本，第二个仓
+  自己的 GitHub 命中只有 13。原文不改写，此处显式更正 —— 该仓仍是真仓（wrangler.toml + D1 绑定在），
+  但它对 GitHub 读数的贡献主要是躺在那儿的别人的代码。
+  同族关系：r222 探针件把「有人测它」洗成「有人用它」；r226 vendored 副本把「别的仓在用」洗成
+  「这个仓在用」—— 都是分母里混进了不属于该层的文件，修法一致（显形 + 剪掉 + 锁腿）。
+  元教训：每加一层维度就多一次分母被灌水的机会；r224 加第三层时我只问了「仓在不在」，没问
+  「仓里的东西是不是这个仓的」。
+  取值：python 05-exec/r163_tool_skill_matrix.py --json 件的 third_face.per_root / pruned_foreign / per_tool。
 - [ ] **R225-1（r225 登记，P1·已落地）** **硬编码一个仓 = 换个项目就静默变瞎：第三维度改为按 wrangler 配置自动发现，一发现就多出整整一个 CF 仓**： 【r225 裁决=执行（third_face 根来源改三级：显式 env > 按 wrangler 标记发现 > 硬编码兜底）｜读数：发现 2 个 CF 仓（新增 donggu-phoenix）；6605 件：D1 248、Pages 239、GitHub 364、SQLite 321、Pages-Functions 90、Turnstile 3（0 真调用）、Workers 1（注释）、R2/Resend/Upstash 0；selftest 12/12。】
   一手：r224 给矩阵件加 third_face 字段，但根路径硬编码超市 web 单仓。本轮先想从 SKILL.md 抽路径
   校它全不全 —— 实测抽不到：chaoshi-web-deploy 写的是占位符 C:\Users\<用户名>\...\超市web\supermarket-web
