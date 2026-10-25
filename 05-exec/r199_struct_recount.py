@@ -84,7 +84,10 @@ def recount(text, honor_code=True):
     lines = text.split(chr(10))
     heads = []
     for l in lines:
-        mm = re.match('^## ([0-9]{1,2})[a-z]?', l)
+        # r246 修（我自己的判据缺陷）：原来只吃 1–2 位数字 ⇒ `## 100.` 被截成「10」，与既有的
+        #   `## 10.` 撞成「重复标题」而判红（实测：报告加第 100 节后本门 FAIL，报「二级标题 10 出现 2 次」）。
+        #   本门目的是抓**被复制**的标题；100 与 10 不是复制。加宽到 1–4 位（真复制照旧判红，夹具补正反例）。
+        mm = re.match('^## ([0-9]{1,4})[a-z]?', l)
         if mm:
             heads.append(mm.group(1))
     dup = {k: v for k, v in collections.Counter(heads).items() if v > 1}

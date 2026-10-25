@@ -64,7 +64,18 @@ def main():
     ck('t4 引用行内的 句号+## 也必须计数（真实事故 L1614 即此形态）',
        m.recount(quoted)['glued'] == 1, m.recount(quoted)['glued'])
 
+    # r246 自抓：上一步我用 legit 那行当替换锚点，把它整行换掉了 ⇒ 后面 r4 = m.recount(legit) 直接
+    #   NameError；此处把 legit 定义补回（夹具的样本定义与被测断言必须都在）。
     legit = build(['# x', '## 3. 三', '正文', '## 3b. 三之b', '正文', ANCHOR, ''])
+    # r246：三位数节号不得被截成两位数而误判（实测事故：## 100. 与 ## 10. 撞车）—— 正反两例
+    wide_ok = build(['# x', '## 10. 十', '正文', '## 100. 一百', '正文', ANCHOR, ''])
+    rw = m.recount(wide_ok)
+    ck('t5b ## 10. 与 ## 100. 不是重复（三位节号不得被截位误判；r246 实测事故）',
+       not rw['dup_heads'], rw['dup_heads'])
+    wide_dup = build(['# x', '## 10. 十', '正文', '## 10. 又一次十', '正文', ANCHOR, ''])
+    rw2 = m.recount(wide_dup)
+    ck('t5c 同一编号 ## 10. 出现两次仍判重复（加宽只去误判、不放过真复制）',
+       rw2['dup_heads'].get('10') == 2, rw2['dup_heads'])
     r4 = m.recount(legit)
     ck('t5 ## 3. 与 ## 3b. 属白名单（不误判复制）',
        r4['dup_heads'].get('3') == 2
