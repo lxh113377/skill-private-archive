@@ -35,6 +35,42 @@
     "gstack"
    ],
    "yardstick_absent": false,
+   "wf_real_hits": 23,
+   "wf_real_files": [
+    "r113_quarterly_audit.py",
+    "r19_feedback_append.py",
+    "r31_ci_surface.py",
+    "r32_ci_health.py",
+    "r33_release_governance.py",
+    "r34_portability_surface.py",
+    "r58_action_pin_guard.py",
+    "r60_capability_roster.py",
+    "r60_capability_roster_describe.py",
+    "r60_upstream_backfill.py"
+   ],
+   "third_hits": 49,
+   "third_files": [
+    "backupLiveness.test.js",
+    "benchmark-peers.mjs",
+    "bracketLexer.test.js",
+    "cache_bump_guard.py",
+    "check-backup-liveness.mjs",
+    "check-branch-protection.mjs",
+    "check-changelog.mjs",
+    "check-cron-health.mjs",
+    "check-d1-remote-usage.mjs",
+    "check-d1-roundtrips.mjs",
+    "check-delivery-claims.mjs",
+    "check-escape-hatch-log.mjs",
+    "check-gate-parity.mjs",
+    "check-head-closure.mjs",
+    "check-limit-provenance.mjs",
+    "check-pr-has-tests.mjs",
+    "check-remote-divergence.mjs",
+    "ciWorkflow.test.ts",
+    "ci_diag_r96.py",
+    "cronHealth.test.js"
+   ],
    "gates": "163 + 87 + 93",
    "touchpoint": "A-project-handoff 的 git_autopush 钩子模板（本仓 post-commit 即其落地）+ 第 87 门读 autopush 末行 rc；私有仓分钟用满是已付代价",
    "claims": [
@@ -74,6 +110,35 @@
    ],
    "exec_skills": [],
    "yardstick_absent": false,
+   "wf_real_hits": 4,
+   "wf_real_files": [
+    "r119_cand_regress.py",
+    "r119_cand_sandbox.py",
+    "r215_free_tool_roster.py"
+   ],
+   "third_hits": 146,
+   "third_files": [
+    "_health.js",
+    "_middleware.js",
+    "backup-print-data.mjs",
+    "backupPrintData.test.js",
+    "backupRestore.test.js",
+    "batchProducts.test.js",
+    "check-cli-entrypoints.mjs",
+    "check-d1-remote-usage.mjs",
+    "check-d1-roundtrips.mjs",
+    "check-governance-framework.mjs",
+    "cliEntrypoints.test.js",
+    "d1RemoteUsage.test.js",
+    "d1RoundTrips.test.js",
+    "db.js",
+    "event_sink.js",
+    "events.js",
+    "fix_face_claims.py",
+    "fix_face_claims2.py",
+    "fix_u333.py",
+    "fix_verify_cause.py"
+   ],
    "gates": "163 + 88 任务层 + 93",
    "touchpoint": "A-memory-start 的 quickref 额度专章（r196_quota_face 现读行数/写入）+ chaoshi-web-deploy 的 d1 execute 部署链",
    "claims": [
@@ -108,6 +173,10 @@
    ],
    "exec_skills": [],
    "yardstick_absent": false,
+   "wf_real_hits": 0,
+   "wf_real_files": [],
+   "third_hits": 0,
+   "third_files": [],
    "gates": "163 + 88 任务层 + 93",
    "touchpoint": "chaoshi-image-optimization 的 R2 外置专章（干跑读数 + 阻断现状）",
    "claims": [
@@ -141,6 +210,34 @@
     "byted-bp-cdn-pagesdeploy"
    ],
    "yardstick_absent": false,
+   "wf_real_hits": 7,
+   "wf_real_files": [
+    "r119_cand_regress.py",
+    "r119_cand_sandbox.py"
+   ],
+   "third_hits": 239,
+   "third_files": [
+    "act_part1.py",
+    "act_part2.py",
+    "add_deploy_note.py",
+    "add_ledger109.py",
+    "add_rows95.py",
+    "add_rows95b.py",
+    "admin_contrast_test.py",
+    "admin_responsive_test.py",
+    "admin_script.js",
+    "admin_static_render_test.py",
+    "analytics.js",
+    "cf_builds.py",
+    "cf_check.py",
+    "cf_check2.py",
+    "cf_check3.py",
+    "cf_check4.py",
+    "check-catalog-facts.mjs",
+    "check-functions-build.mjs",
+    "check-live-shape.mjs",
+    "check_both_faces.py"
+   ],
    "gates": "163 + 92 + 93",
    "touchpoint": "chaoshi-web-deploy 部署权威入口（direct_map 10 pattern，任务话术直连命中）",
    "claims": [
@@ -167,6 +264,12 @@
    ],
    "exec_skills": [],
    "yardstick_absent": false,
+   "wf_real_hits": 0,
+   "wf_real_files": [],
+   "third_hits": 1,
+   "third_files": [
+    "check-functions-build.mjs"
+   ],
    "gates": "163 + 88 任务层 + 93",
    "touchpoint": "A-memory-start 的 quickref 额度专章（r199_workers_face 现读调用数）；跨 zone 聚合分母差异已写 §9.16",
    "claims": [
@@ -204,6 +307,33 @@
     "web-access"
    ],
    "yardstick_absent": false,
+   "wf_real_hits": 24,
+   "wf_real_files": [
+    "r203_ledger_index.py"
+   ],
+   "third_hits": 127,
+   "third_files": [
+    "0001_init.sql",
+    "0002_admin.sql",
+    "[[path]].js",
+    "actionAuthz.test.js",
+    "backup-print-data.mjs",
+    "backupPrintData.test.js",
+    "backupRestore.test.js",
+    "catalogFacts.test.js",
+    "check-action-authz.mjs",
+    "check-d1-roundtrips.mjs",
+    "check-governance-framework.mjs",
+    "check-pii-inventory.mjs",
+    "check-schema-drift.mjs",
+    "ciWorkflow.test.ts",
+    "d1-quota.mjs",
+    "d1RoundTrips.test.js",
+    "metered-d1.mjs",
+    "migrate-ai-calls.sql",
+    "migrate-event-log.sql",
+    "migrate-promotions.sql"
+   ],
    "gates": "163 + 85 + 93",
    "touchpoint": "r203_ledger_index 用 SQLite 做门禁台账派生索引（读面与盲区均实测）",
    "claims": [
@@ -221,6 +351,10 @@
    "mention_skills": null,
    "exec_skills": null,
    "yardstick_absent": true,
+   "wf_real_hits": null,
+   "wf_real_files": null,
+   "third_hits": 0,
+   "third_files": [],
    "gates": "163 + 93",
    "touchpoint": "r163_free_tools_face 的 probe_vscode（which + 非 0 字节 + 真跑 --version）",
    "claims": [
@@ -241,6 +375,18 @@
    ],
    "exec_skills": [],
    "yardstick_absent": false,
+   "wf_real_hits": 31,
+   "wf_real_files": [
+    "r163_turnstile_admin.py",
+    "r209_route_truth_measure.py",
+    "r215_free_tool_roster.py"
+   ],
+   "third_hits": 3,
+   "third_files": [
+    "backend.js",
+    "client.ts",
+    "errorSemantics.test.js"
+   ],
    "gates": "163 + 88 任务层(DISPUTED) + 93",
    "touchpoint": "r163_turnstile_face 与 r163_turnstile_admin 曾全链接通，后按老大要求移除 = 决定而非待搭缺口",
    "claims": [
@@ -273,6 +419,10 @@
     "office-automation-pro"
    ],
    "yardstick_absent": false,
+   "wf_real_hits": 0,
+   "wf_real_files": [],
+   "third_hits": 0,
+   "third_files": [],
    "gates": "163 + 93",
    "touchpoint": "r163_tool_skill_matrix 已把它列入零引用核查面；仅 HTTP API 无 CLI，凭据缺 ⇒ 尚未接入任何工作流",
    "claims": [
@@ -290,6 +440,10 @@
    "mention_skills": [],
    "exec_skills": [],
    "yardstick_absent": false,
+   "wf_real_hits": 0,
+   "wf_real_files": [],
+   "third_hits": 0,
+   "third_files": [],
    "gates": "163 + 93",
    "touchpoint": "r163_tool_skill_matrix 报其零引用（唯一 ADVISORY 项）；仅 REST 无 CLI，凭据缺 ⇒ 未接入",
    "claims": [
@@ -305,7 +459,7 @@
  "gates_reading": {
   "carrier": {
    "tools": 10,
-   "vols": 1718,
+   "vols": 1728,
    "uncarried": 0,
    "k5": true
   },
@@ -322,9 +476,25 @@
    "gaps": 5
   },
   "matrix_src": {
-   "file": "tool_skill_matrix_r216b.json",
-   "generated_at": "2026-10-25 04:51",
+   "file": "tool_skill_matrix_r226.json",
+   "generated_at": "2026-10-25 18:47",
    "cmd": "python 05-exec/r163_tool_skill_matrix.py --json <out>"
+  },
+  "workflow_src": {
+   "file": "workflow_usage_latest.json",
+   "generated_at": null,
+   "face_files": 265,
+   "real_face_files": 155,
+   "real_total_hits": 89
+  },
+  "third_src": {
+   "files_scanned": 4130,
+   "roots": [
+    "C:/Users/37533/Desktop/workspace/超市web/supermarket-web",
+    "C:/Users/37533/Desktop/workspace/项目/新建文件夹"
+   ],
+   "pruned_foreign_n": 10,
+   "files": "tool_skill_matrix_r226.json"
   }
  }
 }

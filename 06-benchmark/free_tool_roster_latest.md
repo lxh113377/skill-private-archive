@@ -7,7 +7,7 @@
 | 判据 | 量什么 | 读数 |
 |---|---|---|
 | 163 | 工具在本机能不能跑 | 名册 10 项 |
-| 93 | 每个工具是否至少被一个 skill 承载 | 工具 10 / 扫描 1718 卷 / 未承载 0 |
+| 93 | 每个工具是否至少被一个 skill 承载 | 工具 10 / 扫描 1728 卷 / 未承载 0 |
 | 92 | 每轮入口会不会把话术派到写着答案的卷 | 判 8 / 缺口 0 |
 > 依据面取值：163 见 free_tools_latest.json；93 见 tool_carrier_latest.json 与 tool_skill_matrix_probe.json；92 见 ingress_latest.json；88 见 recall_latest.json 与 route_truth_latest.json。再生命令见文件头。
 | 88 | 窗口 / BGE 真值 / 任务语句三层 | 窗口 3、真值 2、任务 7 命中 4、缺口 5 |
@@ -19,7 +19,15 @@
 - 两把尺：提到 22 件 ｜ 代码真调用 2 件
     提到 = A-get-memory, A-memory-start, A-project-better, A-project-handoff, A-skill-manager, chaoshi-image-optimization, chaoshi-web-deploy, ci-pipeline-debugging, consulting-analysis, doc-coauthoring, docker-e2e-gate, github, gstack, healthcare-eval-harness, hyperframes-registry, oracle, security-audit, shell-encoding-pitfalls, story, ui-ux-pro-max, verification-before-completion, win-toolchain-pitfalls
     可执行 = A-project-handoff, gstack
-    （取值：tool_skill_matrix_r216b.json 的 per_tool / per_tool_exec[GitHub]；该件 generated_at=2026-10-25 04:51）
+    （取值：tool_skill_matrix_r226.json 的 per_tool / per_tool_exec[GitHub]；该件 generated_at=2026-10-25 18:47）
+- 三层读数：
+    ① skill 目录（第 67 门）：提到 22 ｜ 代码真调用 2
+    ② 工作流脚本（第 94 门 r222 第二把尺，探针件不计入）：真调用 23
+        调用它的非探针件 = r113_quarterly_audit.py, r19_feedback_append.py, r31_ci_surface.py, r32_ci_health.py, r33_release_governance.py, r34_portability_surface.py, r58_action_pin_guard.py, r60_capability_roster.py, r60_capability_roster_describe.py, r60_upstream_backfill.py
+    ③ 项目仓（第 67 门 r226 third_face，已剪 vendored 外来面）：49
+        命中所在件 = backupLiveness.test.js, benchmark-peers.mjs, bracketLexer.test.js, cache_bump_guard.py, check-backup-liveness.mjs, check-branch-protection.mjs, check-changelog.mjs, check-cron-health.mjs, check-d1-remote-usage.mjs, check-d1-roundtrips.mjs, check-delivery-claims.mjs, check-escape-hatch-log.mjs, check-gate-parity.mjs, check-head-closure.mjs, check-limit-provenance.mjs, check-pr-has-tests.mjs, check-remote-divergence.mjs, ciWorkflow.test.ts, ci_diag_r96.py, cronHealth.test.js
+    （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/265 件、真调用合计 89；
+     ③ 取值：tool_skill_matrix_r226.json 的 third_face.per_tool，4130 件 / 2 仓 / 剪外来面 10 个）
 - 守它的判据：163 + 87 + 93
 - 工作流触点：A-project-handoff 的 git_autopush 钩子模板（本仓 post-commit 即其落地）+ 第 87 门读 autopush 末行 rc；私有仓分钟用满是已付代价
 - 触点在位核验（在位≠已接入）：A-project-handoff -> IN_SKILL_DESC
@@ -33,7 +41,15 @@
 - 两把尺：提到 2 件 ｜ 代码真调用 0 件
     提到 = chaoshi-web-deploy, win-toolchain-pitfalls
     可执行 = 无
-    （取值：tool_skill_matrix_r216b.json 的 per_tool / per_tool_exec[Cloudflare-D1]；该件 generated_at=2026-10-25 04:51）
+    （取值：tool_skill_matrix_r226.json 的 per_tool / per_tool_exec[Cloudflare-D1]；该件 generated_at=2026-10-25 18:47）
+- 三层读数：
+    ① skill 目录（第 67 门）：提到 2 ｜ 代码真调用 0
+    ② 工作流脚本（第 94 门 r222 第二把尺，探针件不计入）：真调用 4
+        调用它的非探针件 = r119_cand_regress.py, r119_cand_sandbox.py, r215_free_tool_roster.py
+    ③ 项目仓（第 67 门 r226 third_face，已剪 vendored 外来面）：146
+        命中所在件 = _health.js, _middleware.js, backup-print-data.mjs, backupPrintData.test.js, backupRestore.test.js, batchProducts.test.js, check-cli-entrypoints.mjs, check-d1-remote-usage.mjs, check-d1-roundtrips.mjs, check-governance-framework.mjs, cliEntrypoints.test.js, d1RemoteUsage.test.js, d1RoundTrips.test.js, db.js, event_sink.js, events.js, fix_face_claims.py, fix_face_claims2.py, fix_u333.py, fix_verify_cause.py
+    （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/265 件、真调用合计 89；
+     ③ 取值：tool_skill_matrix_r226.json 的 third_face.per_tool，4130 件 / 2 仓 / 剪外来面 10 个）
 - 守它的判据：163 + 88 任务层 + 93
 - 工作流触点：A-memory-start 的 quickref 额度专章（r196_quota_face 现读行数/写入）+ chaoshi-web-deploy 的 d1 execute 部署链
 - 触点在位核验（在位≠已接入）：A-memory-start -> MENTIONS
@@ -47,7 +63,13 @@
 - 两把尺：提到 1 件 ｜ 代码真调用 0 件
     提到 = chaoshi-image-optimization
     可执行 = 无
-    （取值：tool_skill_matrix_r216b.json 的 per_tool / per_tool_exec[Cloudflare-R2]；该件 generated_at=2026-10-25 04:51）
+    （取值：tool_skill_matrix_r226.json 的 per_tool / per_tool_exec[Cloudflare-R2]；该件 generated_at=2026-10-25 18:47）
+- 三层读数：
+    ① skill 目录（第 67 门）：提到 1 ｜ 代码真调用 0
+    ② 工作流脚本（第 94 门 r222 第二把尺，探针件不计入）：真调用 0
+    ③ 项目仓（第 67 门 r226 third_face，已剪 vendored 外来面）：0
+    （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/265 件、真调用合计 89；
+     ③ 取值：tool_skill_matrix_r226.json 的 third_face.per_tool，4130 件 / 2 仓 / 剪外来面 10 个）
 - 守它的判据：163 + 88 任务层 + 93
 - 工作流触点：chaoshi-image-optimization 的 R2 外置专章（干跑读数 + 阻断现状）
 - 触点在位核验（在位≠已接入）：chaoshi-image-optimization -> IN_SKILL_DESC
@@ -59,7 +81,15 @@
 - 两把尺：提到 5 件 ｜ 代码真调用 2 件
     提到 = A-project-handoff, byted-bp-cdn-pagesdeploy, chaoshi-image-optimization, chaoshi-web-deploy, verification-before-completion
     可执行 = A-project-handoff, byted-bp-cdn-pagesdeploy
-    （取值：tool_skill_matrix_r216b.json 的 per_tool / per_tool_exec[Cloudflare-Pages]；该件 generated_at=2026-10-25 04:51）
+    （取值：tool_skill_matrix_r226.json 的 per_tool / per_tool_exec[Cloudflare-Pages]；该件 generated_at=2026-10-25 18:47）
+- 三层读数：
+    ① skill 目录（第 67 门）：提到 5 ｜ 代码真调用 2
+    ② 工作流脚本（第 94 门 r222 第二把尺，探针件不计入）：真调用 7
+        调用它的非探针件 = r119_cand_regress.py, r119_cand_sandbox.py
+    ③ 项目仓（第 67 门 r226 third_face，已剪 vendored 外来面）：239
+        命中所在件 = act_part1.py, act_part2.py, add_deploy_note.py, add_ledger109.py, add_rows95.py, add_rows95b.py, admin_contrast_test.py, admin_responsive_test.py, admin_script.js, admin_static_render_test.py, analytics.js, cf_builds.py, cf_check.py, cf_check2.py, cf_check3.py, cf_check4.py, check-catalog-facts.mjs, check-functions-build.mjs, check-live-shape.mjs, check_both_faces.py
+    （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/265 件、真调用合计 89；
+     ③ 取值：tool_skill_matrix_r226.json 的 third_face.per_tool，4130 件 / 2 仓 / 剪外来面 10 个）
 - 守它的判据：163 + 92 + 93
 - 工作流触点：chaoshi-web-deploy 部署权威入口（direct_map 10 pattern，任务话术直连命中）
 - 触点在位核验（在位≠已接入）：chaoshi-web-deploy -> IN_SKILL_DESC
@@ -71,7 +101,14 @@
 - 两把尺：提到 1 件 ｜ 代码真调用 0 件
     提到 = chaoshi-web-deploy
     可执行 = 无
-    （取值：tool_skill_matrix_r216b.json 的 per_tool / per_tool_exec[Cloudflare-Workers]；该件 generated_at=2026-10-25 04:51）
+    （取值：tool_skill_matrix_r226.json 的 per_tool / per_tool_exec[Cloudflare-Workers]；该件 generated_at=2026-10-25 18:47）
+- 三层读数：
+    ① skill 目录（第 67 门）：提到 1 ｜ 代码真调用 0
+    ② 工作流脚本（第 94 门 r222 第二把尺，探针件不计入）：真调用 0
+    ③ 项目仓（第 67 门 r226 third_face，已剪 vendored 外来面）：1
+        命中所在件 = check-functions-build.mjs
+    （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/265 件、真调用合计 89；
+     ③ 取值：tool_skill_matrix_r226.json 的 third_face.per_tool，4130 件 / 2 仓 / 剪外来面 10 个）
 - 守它的判据：163 + 88 任务层 + 93
 - 工作流触点：A-memory-start 的 quickref 额度专章（r199_workers_face 现读调用数）；跨 zone 聚合分母差异已写 §9.16
 - 触点在位核验（在位≠已接入）：A-memory-start -> MENTIONS
@@ -84,7 +121,15 @@
 - 两把尺：提到 4 件 ｜ 代码真调用 3 件
     提到 = data-analysis, fenjue-memory-audit, ican-deploy, web-access
     可执行 = data-analysis, fenjue-memory-audit, web-access
-    （取值：tool_skill_matrix_r216b.json 的 per_tool / per_tool_exec[SQLite]；该件 generated_at=2026-10-25 04:51）
+    （取值：tool_skill_matrix_r226.json 的 per_tool / per_tool_exec[SQLite]；该件 generated_at=2026-10-25 18:47）
+- 三层读数：
+    ① skill 目录（第 67 门）：提到 4 ｜ 代码真调用 3
+    ② 工作流脚本（第 94 门 r222 第二把尺，探针件不计入）：真调用 24
+        调用它的非探针件 = r203_ledger_index.py
+    ③ 项目仓（第 67 门 r226 third_face，已剪 vendored 外来面）：127
+        命中所在件 = 0001_init.sql, 0002_admin.sql, [[path]].js, actionAuthz.test.js, backup-print-data.mjs, backupPrintData.test.js, backupRestore.test.js, catalogFacts.test.js, check-action-authz.mjs, check-d1-roundtrips.mjs, check-governance-framework.mjs, check-pii-inventory.mjs, check-schema-drift.mjs, ciWorkflow.test.ts, d1-quota.mjs, d1RoundTrips.test.js, metered-d1.mjs, migrate-ai-calls.sql, migrate-event-log.sql, migrate-promotions.sql
+    （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/265 件、真调用合计 89；
+     ③ 取值：tool_skill_matrix_r226.json 的 third_face.per_tool，4130 件 / 2 仓 / 剪外来面 10 个）
 - 守它的判据：163 + 85 + 93
 - 工作流触点：r203_ledger_index 用 SQLite 做门禁台账派生索引（读面与盲区均实测）
 - 触点在位核验（在位≠已接入）：r203_ledger_index（判据件） -> GATE_FILE_MENTIONS
@@ -93,7 +138,13 @@
 ### VS Code - READY
 
 - 两把尺：该工具不在第 67 门名册内 = 未被量（None，不等于 0）
-    （取值：tool_skill_matrix_r216b.json 的 per_tool / per_tool_exec[VS Code]；该件 generated_at=2026-10-25 04:51）
+    （取值：tool_skill_matrix_r226.json 的 per_tool / per_tool_exec[VS Code]；该件 generated_at=2026-10-25 18:47）
+- 三层读数：
+    ① skill 目录（第 67 门）：提到 未量 ｜ 代码真调用 未量
+    ② 工作流脚本（第 94 门 r222 第二把尺，探针件不计入）：真调用 未量（该工具不在第 94 门名册 = None，不等于 0）
+    ③ 项目仓（第 67 门 r226 third_face，已剪 vendored 外来面）：0
+    （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/265 件、真调用合计 89；
+     ③ 取值：tool_skill_matrix_r226.json 的 third_face.per_tool，4130 件 / 2 仓 / 剪外来面 10 个）
 - 守它的判据：163 + 93
 - 工作流触点：r163_free_tools_face 的 probe_vscode（which + 非 0 字节 + 真跑 --version）
 - 触点在位核验（在位≠已接入）：r163_free_tools_face（判据件） -> GATE_FILE_MENTIONS
@@ -104,7 +155,15 @@
 - 两把尺：提到 2 件 ｜ 代码真调用 0 件
     提到 = chaoshi-image-optimization, win-toolchain-pitfalls
     可执行 = 无
-    （取值：tool_skill_matrix_r216b.json 的 per_tool / per_tool_exec[Cloudflare-Turnstile]；该件 generated_at=2026-10-25 04:51）
+    （取值：tool_skill_matrix_r226.json 的 per_tool / per_tool_exec[Cloudflare-Turnstile]；该件 generated_at=2026-10-25 18:47）
+- 三层读数：
+    ① skill 目录（第 67 门）：提到 2 ｜ 代码真调用 0
+    ② 工作流脚本（第 94 门 r222 第二把尺，探针件不计入）：真调用 31
+        调用它的非探针件 = r163_turnstile_admin.py, r209_route_truth_measure.py, r215_free_tool_roster.py
+    ③ 项目仓（第 67 门 r226 third_face，已剪 vendored 外来面）：3
+        命中所在件 = backend.js, client.ts, errorSemantics.test.js
+    （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/265 件、真调用合计 89；
+     ③ 取值：tool_skill_matrix_r226.json 的 third_face.per_tool，4130 件 / 2 仓 / 剪外来面 10 个）
 - 守它的判据：163 + 88 任务层(DISPUTED) + 93
 - 工作流触点：r163_turnstile_face 与 r163_turnstile_admin 曾全链接通，后按老大要求移除 = 决定而非待搭缺口
 - 触点在位核验（在位≠已接入）：r163_turnstile_admin（判据件） -> GATE_FILE_MENTIONS
@@ -117,7 +176,13 @@
 - 两把尺：提到 1 件 ｜ 代码真调用 1 件
     提到 = office-automation-pro
     可执行 = office-automation-pro
-    （取值：tool_skill_matrix_r216b.json 的 per_tool / per_tool_exec[Resend]；该件 generated_at=2026-10-25 04:51）
+    （取值：tool_skill_matrix_r226.json 的 per_tool / per_tool_exec[Resend]；该件 generated_at=2026-10-25 18:47）
+- 三层读数：
+    ① skill 目录（第 67 门）：提到 1 ｜ 代码真调用 1
+    ② 工作流脚本（第 94 门 r222 第二把尺，探针件不计入）：真调用 0
+    ③ 项目仓（第 67 门 r226 third_face，已剪 vendored 外来面）：0
+    （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/265 件、真调用合计 89；
+     ③ 取值：tool_skill_matrix_r226.json 的 third_face.per_tool，4130 件 / 2 仓 / 剪外来面 10 个）
 - 守它的判据：163 + 93
 - 工作流触点：r163_tool_skill_matrix 已把它列入零引用核查面；仅 HTTP API 无 CLI，凭据缺 ⇒ 尚未接入任何工作流
 - 触点在位核验（在位≠已接入）：r163_tool_skill_matrix（判据件） -> GATE_FILE_MENTIONS
@@ -128,7 +193,13 @@
 - 两把尺：提到 0 件 ｜ 代码真调用 0 件
     提到 = 无
     可执行 = 无
-    （取值：tool_skill_matrix_r216b.json 的 per_tool / per_tool_exec[Upstash-Redis]；该件 generated_at=2026-10-25 04:51）
+    （取值：tool_skill_matrix_r226.json 的 per_tool / per_tool_exec[Upstash-Redis]；该件 generated_at=2026-10-25 18:47）
+- 三层读数：
+    ① skill 目录（第 67 门）：提到 0 ｜ 代码真调用 0
+    ② 工作流脚本（第 94 门 r222 第二把尺，探针件不计入）：真调用 0
+    ③ 项目仓（第 67 门 r226 third_face，已剪 vendored 外来面）：0
+    （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/265 件、真调用合计 89；
+     ③ 取值：tool_skill_matrix_r226.json 的 third_face.per_tool，4130 件 / 2 仓 / 剪外来面 10 个）
 - 守它的判据：163 + 93
 - 工作流触点：r163_tool_skill_matrix 报其零引用（唯一 ADVISORY 项）；仅 REST 无 CLI，凭据缺 ⇒ 未接入
 - 触点在位核验（在位≠已接入）：r163_tool_skill_matrix（判据件） -> GATE_FILE_MENTIONS

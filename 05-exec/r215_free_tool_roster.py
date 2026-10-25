@@ -34,6 +34,11 @@ SRC = {
     'ingress': 'ingress_latest.json',
     'recall': 'recall_latest.json',
     'carrier': 'tool_carrier_latest.json',
+    # r227：第三层与第二把工作流尺。名册此前只有「skill 目录」一层，而目标的搭配是三层：
+    #   ① skill 目录两把尺（第 67 门）② 我的工作流脚本真调用（第 94 门 r222 第二把尺，排除探针件）
+    #   ③ skill 手册指向的项目仓（第 67 门 r226 third_face，已剪 vendored 外来面）。
+    #   三层都带 None≠0 语义：源件里没有该工具 ⇒ None（「没被量」），绝不记 0（「量到零」）。
+    'workflow': 'workflow_usage_latest.json',
 }
 
 # 任务 -> 工具：从既有名册读，不另立第二份清单
@@ -120,6 +125,15 @@ def build():
     # 两把尺直接用第 67 门产物（工具名两边一致，无需映射）；probe 那份已停读
     per_t = src['matrix'].get('per_tool') or {}
     per_e = src['matrix'].get('per_tool_exec') or {}
+    # r227：工作流真调用（第 94 门第二把尺）与项目仓面（third_face）也进册。
+    W = {}
+    for x in (src['workflow'].get('tools') or []):
+        W[x.get('tool')] = x
+    TF_ALL = src['matrix'].get('third_face')
+    THIRD = (TF_ALL or {}).get('per_tool') or {}
+    # r227 自抓（None/0 第四次同族）：third_face 的 per_tool **只记 n>0 的工具** ⇒
+    #   「工具不在字典里」= 扫过但零命中（0），不是「没量」。若整块 third_face 为 None，
+    #   才是真的没量（None）。两者必须分开，否则 R2 这种真零会显示成「未量」而躲过审视。
     tasks = src['truth'].get('tasks') or []
     items = []
     for r in rows:
@@ -141,6 +155,11 @@ def build():
             'mention_skills': (sorted(per_t.get(tool)) if tool in per_t else None),
             'exec_skills': (sorted(per_e.get(tool)) if tool in per_e else None),
             'yardstick_absent': tool not in per_t and tool not in per_e,
+            # r227 三层补齐（None≠0：源件缺该工具 ⇒ None，不记 0）
+            'wf_real_hits': ((W.get(tool) or {}).get('real_hits') if tool in W else None),
+            'wf_real_files': ((W.get(tool) or {}).get('real_files') if tool in W else None),
+            'third_hits': (((THIRD.get(tool) or {}).get('hits') or 0) if TF_ALL is not None else None),
+            'third_files': (((THIRD.get(tool) or {}).get('files') or []) if TF_ALL is not None else None),
             'gates': GATES.get(tool, ''),
             'touchpoint': TOUCH.get(tool, ''),
             'claims': (CC.claims_for(TOUCH.get(tool, ''),
@@ -165,6 +184,16 @@ def build():
         'matrix_src': {'file': used.get('matrix'),
                        'generated_at': src['matrix'].get('generated_at'),
                        'cmd': src['matrix'].get('cmd')},
+        # r227：新增两层的出处也随读数落盘（源件名 + 生成时间 + 剪掉的外来面清单长度）
+        'workflow_src': {'file': used.get('workflow'),
+                         'generated_at': src['workflow'].get('generated_at'),
+                         'face_files': src['workflow'].get('face_files'),
+                         'real_face_files': src['workflow'].get('real_face_files'),
+                         'real_total_hits': src['workflow'].get('real_total_hits')},
+        'third_src': {'files_scanned': (src['matrix'].get('third_face') or {}).get('files_scanned'),
+                      'roots': (src['matrix'].get('third_face') or {}).get('roots'),
+                      'pruned_foreign_n': len((src['matrix'].get('third_face') or {}).get('pruned_foreign') or []),
+                      'files': used.get('matrix')},
     }
     return {'items': items, 'gates_reading': gates}, None
 
@@ -208,6 +237,30 @@ def render_md(doc):
         L.append('    （取值：%s 的 per_tool / per_tool_exec[%s]；该件 generated_at=%s）' % (
             doc['gates_reading']['matrix_src'].get('file'), it['tool'],
             doc['gates_reading']['matrix_src'].get('generated_at')))
+        # r227：三层一起印（禁把任一层读成「没搭配」）
+        wfh, thh = it.get('wf_real_hits'), it.get('third_hits')
+        L.append('- 三层读数：')
+        L.append('    ① skill 目录（第 67 门）：提到 %s ｜ 代码真调用 %s' % (
+            (len(ms) if ms is not None else '未量'), (len(es) if es is not None else '未量')))
+        L.append('    ② 工作流脚本（第 94 门 r222 第二把尺，探针件不计入）：真调用 %s' % (
+            wfh if wfh is not None else '未量（该工具不在第 94 门名册 = None，不等于 0）'))
+        if wfh:
+            L.append('        调用它的非探针件 = %s' % (', '.join(it.get('wf_real_files') or []) or '无'))
+        L.append('    ③ 项目仓（第 67 门 r226 third_face，已剪 vendored 外来面）：%s' % (
+            thh if thh is not None else '未量（整块 third_face 缺失 = 项目仓没被扫，不等于 0）'))
+        if thh:
+            L.append('        命中所在件 = %s' % (', '.join(it.get('third_files') or []) or '无'))
+        gs_ = doc['gates_reading']
+        L.append('    （② 取值：%s 的 tools[].real_hits，窗口面 %s/%s 件、真调用合计 %s；' % (
+            gs_.get('workflow_src', {}).get('file'),
+            gs_.get('workflow_src', {}).get('real_face_files'),
+            gs_.get('workflow_src', {}).get('face_files'),
+            gs_.get('workflow_src', {}).get('real_total_hits')))
+        L.append('     ③ 取值：%s 的 third_face.per_tool，%s 件 / %s 仓 / 剪外来面 %s 个）' % (
+            gs_.get('third_src', {}).get('files'),
+            gs_.get('third_src', {}).get('files_scanned'),
+            len(gs_.get('third_src', {}).get('roots') or []),
+            gs_.get('third_src', {}).get('pruned_foreign_n')))
         L.append('- 守它的判据：' + it['gates'])
         L.append('- 工作流触点：' + it['touchpoint'])
         cs = it.get('claims') or []
@@ -237,6 +290,13 @@ def main(argv=None):
                     default='06-benchmark/free_tool_roster_latest.md')
     args = ap.parse_args(argv)
     doc, err = build()
+    src_workflow_tools = None
+    try:
+        import json as _json
+        _wf = _json.load(io.open(os.path.join(B, 'workflow_usage_latest.json'), encoding='utf-8'))
+        src_workflow_tools = _wf.get('tools') or []
+    except (OSError, ValueError):
+        src_workflow_tools = None
     if doc is None:
         print('[ROSTER:UNVERIFIED] ' + str(err) + ' = 不出册（R247 禁按旧记忆补面）')
         return 2
@@ -247,6 +307,26 @@ def main(argv=None):
         {'schema': 'free-tool-roster-v1', 'readonly': True,
          'provenance_cmd': 'python 05-exec/r215_free_tool_roster.py --json <件>',
          **doc}, ensure_ascii=False, indent=1))
+    # r227 牙：三层的 None/0 语义必须自洽，否则册子会把「真零」印成「未量」（或反之）。
+    #   ① third_face 存在 ⇒ 每个入册工具的 third_hits 必须是 int（扫过就有数，零也记 0）
+    #   ② workflow 那层的 None 只允许出现在 state=NO_PATTERN（无正则=没量）的工具上
+    teeth = []
+    third_present = doc['gates_reading'].get('third_src', {}).get('files_scanned') is not None
+    bad_third = [it['tool'] for it in doc['items']
+                 if third_present and not isinstance(it.get('third_hits'), int)]
+    teeth.append(('third_layer_zero_vs_unmeasured', not bad_third,
+                  'third_face 存在时非 int 的工具=%s（期望空）' % bad_third))
+    wfmap = {x.get('tool'): x for x in (src_workflow_tools or [])}
+    bad_wf = [it['tool'] for it in doc['items']
+              if it.get('wf_real_hits') is None
+              and (wfmap.get(it['tool']) or {}).get('state') not in ('NO_PATTERN', None)]
+    teeth.append(('workflow_none_only_when_no_pattern', not bad_wf,
+                  'wf=None 但 state 不是 NO_PATTERN 的工具=%s（期望空）' % bad_wf))
+    for n, ok, d_ in teeth:
+        print('%s %-38s %s' % ('PASS' if ok else 'FAIL', n, d_))
+        if not ok:
+            print('[ROSTER:TEETH-FAIL] 三层语义不自洽 ⇒ 不出册（禁把不自洽的册子当交付）')
+            return 1
     txt = NL.join(render_md(doc)) + NL
     assert chr(13) not in txt, 'introduced CR'
     io.open(mp, 'w', encoding='utf-8', newline=NL).write(txt)
