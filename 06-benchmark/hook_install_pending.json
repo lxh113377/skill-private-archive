@@ -2,29 +2,29 @@
  "schema": "hook-install-pending-r146-v1",
  "hook": {
   "pre-commit": {
-   "line_hash": "62e35458bf36f66b6115d3e5dd1cd97bf522b3c46a59e56a41a60a965527c201",
-   "lines": 7,
+   "line_hash": "9aafd9f56463fddb357de3118634c4e21a425b006013b5419615783e515d4c9b",
+   "lines": 11,
    "invoker": {
     "git_user": "lxh113377",
     "git_email": "3753318894@qq.com",
-    "session": "session-988ad876-6aa9-46e1-a1ef-687e9b29f9a9",
-    "pid": "10224"
+    "session": "session-aacc73fc-aeda-41e9-a89d-292eb9a12616",
+    "pid": "41972"
    },
-   "reason": "r151 修解释器 spawn 自检（LibreOffice python-core 假红阻断）",
-   "written_at": "2026-10-21 20:51:05"
+   "reason": "r205：post-commit 模板补推送结果留痕（|| true 全吞改为写 .git/autopush.log）；由第 87 门 push_autopush_face 判可见性。双 hook 同批重装",
+   "written_at": "2026-10-24 22:15:58"
   },
   "post-commit": {
-   "line_hash": "c2b62ba1b4e140ddce863220ea1b2de106dcabcd909acd9e950b2e41c71e4803",
-   "lines": 7,
+   "line_hash": "0abe8a6f6b4de491266f3d6f1fee6920026cd5899d927bf7e1055a250d411d35",
+   "lines": 11,
    "invoker": {
     "git_user": "lxh113377",
     "git_email": "3753318894@qq.com",
-    "session": "session-988ad876-6aa9-46e1-a1ef-687e9b29f9a9",
-    "pid": "10224"
+    "session": "session-aacc73fc-aeda-41e9-a89d-292eb9a12616",
+    "pid": "41972"
    },
-   "reason": "r151 修解释器 spawn 自检（LibreOffice python-core 假红阻断）",
-   "written_at": "2026-10-21 20:51:05"
+   "reason": "r205：post-commit 模板补推送结果留痕（|| true 全吞改为写 .git/autopush.log）；由第 87 门 push_autopush_face 判可见性。双 hook 同批重装",
+   "written_at": "2026-10-24 22:15:58"
   }
  },
- "updated_at": "2026-10-21 20:51:05"
+ "updated_at": "2026-10-24 22:15:58"
 }

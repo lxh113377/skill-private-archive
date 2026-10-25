@@ -1,9 +1,9 @@
 {
  "schema": "debt-aging-v2",
- "generated_at": "2026-10-25T00:25:33",
+ "generated_at": "2026-10-25T00:42:43",
  "readonly": true,
  "grace_rounds": 2,
- "current_round": 207,
+ "current_round": 208,
  "round_source": "git log --format=%s -40 中**作用域**最大 rNN（未硬编码；排除「挂账至 rNN」等未来轮号引用）",
  "verdict_taxonomy": [
   "OVERDUE",
@@ -199,57 +199,20 @@
  ],
  "evidence": {
   "volumes": 181,
-  "items_total": 369,
-  "open_total": 68,
+  "items_total": 370,
+  "open_total": 69,
   "closed_total": 301,
-  "raw_item_lines": 369
+  "raw_item_lines": 370
  },
  "by_class": {
-  "OVERDUE": 3,
+  "OVERDUE": 0,
   "ACTIVE": 0,
-  "DECIDED": 49,
+  "DECIDED": 53,
   "UNDATED": 15,
   "DEFERRED": 1,
   "REPEAT": 0
  },
- "overdue": [
-  {
-   "file": "memory\\07-next-steps.md",
-   "line": 930,
-   "priority": "未标",
-   "owner": "OWNERED",
-   "checked": false,
-   "class": "OVERDUE",
-   "detail": "挂账目标 r194 已到期（本轮 r207）",
-   "title": "**R183-1（r183 登记，P1，到期 r192）** **拆卷工具三处能力缺口（孤儿卷 / 源卷不瘦 / 守恒判据会假绿）**：一手 ① `trim-shell` 把 19 条迁进 `part164..177` ",
-   "first_seen": "2026-10-23",
-   "dating_face": "OK"
-  },
-  {
-   "file": "memory\\07-next-steps.md",
-   "line": 936,
-   "priority": "未标",
-   "owner": "NONE",
-   "checked": false,
-   "class": "OVERDUE",
-   "detail": "账龄 16 轮 / 宽限 8",
-   "title": "**R191-1（r191 登记，P2，到期 r195）** **分卷覆盖率原无常驻判据，一次性扫描活不过并行会话的 _temp 清理**：一手 —— 上一轮我用临时脚本扫出「74 卷无目录指向」，该脚本与 `_temp",
-   "first_seen": "2026-10-23",
-   "dating_face": "OK"
-  },
-  {
-   "file": "memory\\07-next-steps.md",
-   "line": 938,
-   "priority": "未标",
-   "owner": "NONE",
-   "checked": false,
-   "class": "OVERDUE",
-   "detail": "账龄 16 轮 / 宽限 8",
-   "title": "**R191-2（r191 登记，P2，到期 r195）** **棘轮三指标的「指标缺失」红可由选件口径单独造成，与债务本身无关**：一手 —— 本轮改完 07 并按坑 #2 顺序跑了 `r38_debt_aging.p",
-   "first_seen": "2026-10-23",
-   "dating_face": "OK"
-  }
- ],
+ "overdue": [],
  "undated": [
   {
    "title": "**R156b-1（r156b 登记，P1·已落地）** **权责划分机读化（目标①「明确各节点权责」的机器载体）**：`r150_cont",
@@ -274,12 +237,12 @@
   {
    "title": "R113-3 AGPL-3.0 上游合入合规口径待裁（hyperframes-registry 引入 calesthio/OpenMonta",
    "file": "memory\\07-next-steps.md",
-   "line": 947
+   "line": 972
   },
   {
    "title": "R112-5 受管根 rule_editor gates 的 mirror 组件超时（300s skip）+ noise 2 项外部在途，待",
    "file": "memory\\07-next-steps.md",
-   "line": 948
+   "line": 973
   },
   {
    "title": "R113-7 需求2 字面缺口：余 56 件 unknown + 143 件盲区仍无替代检索面（每一个现有 skill 都应有候选清单）（由",
@@ -388,31 +351,18 @@
  ],
  "note": "OVERDUE 数 = ratchet_gate 第 7 指标 overdue_debt_items 的唯一取值面",
  "coverage": {
-  "status": "INCOMPLETE",
-  "prev": "debt_aging_r_probe_2026-10-24.json",
-  "prev_overdue": 3,
-  "missing": [
-   {
-    "file": "memory\\07-next-steps.md",
-    "key": "**R183-1（r183 登记，P1，到期 r192）** **拆卷工具三处能"
-   },
-   {
-    "file": "memory\\07-next-steps.md",
-    "key": "**R191-1（r191 登记，P2，到期 r195）** **分卷覆盖率原无"
-   },
-   {
-    "file": "memory\\07-next-steps.md",
-    "key": "**R191-2（r191 登记，P2，到期 r195）** **棘轮三指标的「"
-   }
-  ],
+  "status": "OK",
+  "prev": "debt_aging_r209_probe2.json",
+  "prev_overdue": 1,
+  "missing": [],
   "method": "adjudication_gap(上一轮 overdue[].title 前 40 字, 当前卷文本, 本轮轮号)"
  },
  "input_face": {
   "round": {
-   "log": 207,
-   "tag": 207,
+   "log": 208,
+   "tag": 208,
    "ok": true,
-   "detail": "log=r207 ≥ tag=r207（差 0 轮：本轮 tag 已打，两源一致）"
+   "detail": "log=r208 ≥ tag=r208（差 0 轮：本轮 tag 已打，两源一致）"
   },
   "floor": {
    "ok": true,
@@ -420,38 +370,39 @@
   },
   "dedup": {
    "ok": true,
-   "detail": "369 行全部计入，80 字前缀键零碰撞"
+   "detail": "370 行全部计入，80 字前缀键零碰撞"
   },
   "dup": {
    "ok": true,
    "detail": "6 组同号多副本但全部已勾销（拆卷留痕，不判红）"
   },
   "dating": {
-   "ok": true,
-   "detail": "3 条到期项定年两路同值（截断 needle 未改变结论）",
+   "ok": null,
+   "detail": "本轮无到期项 ⇒ 定年面未行使（不判绿，也不判红）",
    "checked": 0
   },
   "suggestions": {
    "ok": null,
    "detail": "未传 --report ⇒ 建议面未对照（R247 不判绿）"
   },
-  "raw_lines": 369,
+  "raw_lines": 370,
   "collisions": [],
   "status": "UNVERIFIED",
   "red_faces": [],
   "unverified_faces": [
+   "dating",
    "suggestions"
   ]
  },
  "unowned_claims": [
   {
    "file": "memory\\07-next-steps.md",
-   "line": 484,
+   "line": 509,
    "title": "**R208-1（r208 登记，P1·已落地）** **实跑路由才暴露：知识进对了 skill，仍进不了召回面（可达 ≠ 可召回）**： 【r208 裁决=执行（实跑路由暴露「进"
   },
   {
    "file": "memory\\07-next-steps.md",
-   "line": 948,
+   "line": 973,
    "title": "R112-5 受管根 rule_editor gates 的 mirror 组件超时（300s skip）+ noise 2 项外部在途，待归属方收口后复跑（由 flow 登记；状"
   },
   {

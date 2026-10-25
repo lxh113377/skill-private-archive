@@ -1,0 +1,18 @@
+{
+ "schema": "gate-freshness-v1",
+ "generated_at": "2026-10-25 00:01",
+ "readonly": true,
+ "benchmark": "r32 判据僵尸化防护",
+ "ledger": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\06-benchmark\\gate_runs.jsonl",
+ "rows": 764,
+ "max_days": 7,
+ "origin_domain": [
+  "local",
+  "ci"
+ ],
+ "state": "FAIL",
+ "why": "最近一次本机门禁未过（verdict=FAIL，0.0 天前）",
+ "coverage": [
+  "06-benchmark/gate_runs.jsonl"
+ ]
+}
