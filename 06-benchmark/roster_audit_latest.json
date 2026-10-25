@@ -18,7 +18,7 @@
    "workers_quota_latest.json"
   ],
   "Cloudflare-D1": [
-   "PATH-MISS",
+   8.89,
    "quota_face_latest.json"
   ],
   "GitHub": [
@@ -26,7 +26,7 @@
    "gh_billing_latest.json"
   ],
   "Cloudflare-Pages": [
-   198778,
+   198963,
    "pages_http_latest.json"
   ],
   "Cloudflare-Turnstile": [
@@ -34,7 +34,7 @@
    "turnstile_usage_latest.json"
   ],
   "SQLite": [
-   11.84,
+   11.88,
    "sqlite_usage_latest.json"
   ]
  },

@@ -204,7 +204,7 @@
     }
    ],
    "blocker": null,
-   "read_state": "UNVERIFIED",
+   "read_state": "MEASURED",
    "read_face": {
     "script": "r196_quota_face.py",
     "artifact": "quota_face_latest.json",
@@ -232,9 +232,14 @@
     ]
    },
    "read_why": null,
-   "usage_value": null,
-   "usage_meta": null,
-   "usage_why": "路径取不到：rows/cloudflare_d1/mib"
+   "usage_value": 8.89,
+   "usage_meta": {
+    "unit": "MiB",
+    "extra": 0.174,
+    "extra_label": "占名册声称上限",
+    "window": "5 GiB 存储"
+   },
+   "usage_why": null
   },
   {
    "tool": "Cloudflare-R2",
@@ -371,7 +376,7 @@
     ]
    },
    "read_why": null,
-   "usage_value": 198778,
+   "usage_value": 198963,
    "usage_meta": {
     "unit": "次",
     "extra": null,
@@ -529,12 +534,12 @@
     ]
    },
    "read_why": null,
-   "usage_value": 11.84,
+   "usage_value": 11.88,
    "usage_meta": {
     "unit": "MiB（本地库体量·非额度）",
-    "extra": 42601,
+    "extra": 42712,
     "extra_label": "合计行数",
-    "window": "2026-10-25T23:34:23"
+    "window": "2026-10-26T00:08:54"
    },
    "usage_why": null
   },
