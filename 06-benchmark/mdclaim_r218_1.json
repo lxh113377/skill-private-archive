@@ -1,6 +1,6 @@
 {
- "claims": 3466,
- "uncited": 168,
+ "claims": 3483,
+ "uncited": 167,
  "status": "EXPOSED",
  "uncited_list": [
   {
@@ -128,13 +128,6 @@
    "file": "rule_conflict基线_2026-09-24.md",
    "has_cmd": false,
    "historical": true
-  },
-  {
-   "line": 3785,
-   "token": "1 条",
-   "file": "全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md",
-   "has_cmd": false,
-   "historical": false
   },
   {
    "line": 85,
@@ -1181,16 +1174,16 @@
   }
  ],
  "files": 145,
- "live_claims": 2711,
- "live_uncited": 1,
+ "live_claims": 2728,
+ "live_uncited": 0,
  "historical_claims": 755,
  "window_lines": 12,
  "live_from_round": 51,
  "schema": "md-claim-face-v1",
- "generated_at": "2026-10-25T05:58:58",
+ "generated_at": "2026-10-25T08:11:58",
  "readonly": true,
  "scope": "06-benchmark/*.md",
  "rule": "数字（条/份/例/组/行/B/倍/百分比/个）须在同节 ±12 行内带取值途径",
  "note": "默认只报告不阻断（r25 否决）；接线判据只看 live_uncited（历史面按 R241 不回改）",
- "live_status": "EXPOSED"
+ "live_status": "PASS"
 }

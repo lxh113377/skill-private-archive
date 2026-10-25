@@ -506,6 +506,20 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   固化口径（本轮第三次印证同一元教训）：**凡「必须做 X」只写成提示或注释，等价于没做；要活下来只能变退出码。**
   取值：python 05-exec/r217_shared_stage.py --selftest（五向都有牙：SKIP／STAGED／NOCHANGE／DECLARE 拒＝2／DECLARE 放＝0）；
   代带清单复算 git show fa7ac3d 的 07 卷新增标题行按「是否含本轮 R219 键」二分。
+- [ ] **R219-4（r219 登记，P1·已落地）** **镜像同步的真实耗时 2711s 对 rule_editor 内嵌硬超时 180s：差 15 倍，等于每次 --fix-mirror 都必然产出一条假「请你手动执行」**： 【r219 裁决=执行（以 560s+ 预算跑官方 -Fix 成功，不留人工步骤；阈值缺陷具名登记、不改他人归属件）｜读数：[GATE:mirror-pass]、missing=0 mismatch=0、源==镜像=True、rc=0、实测 2711.1s 对内嵌 180s ⇒ 差 ~15 倍；本会话镜像漂移已消除。】
+  一手：本轮我改 A-memory-start/SKILL.md 后走 `rule_editor commit --fix-mirror`，两次报 `[mirror] ...
+  timed out after 180 seconds` 并打印「自动补齐未成功 ⇒ 请手动执行 check-skill-mirror.ps1 -Fix」。我按
+  #29（不留人工步骤）以 560s+ 的预算直接跑官方 `-Fix`，结果 **成功**：`[GATE:mirror-pass]`、
+  `missing=0 mismatch=0`、`源==镜像 = True`、rc=0，**实测耗时 2711.1s**。⇒ 内嵌阈值 180s 与真实所需
+  2711s 差 ~15 倍：技能数从几十涨到 191 后，该阈值按小仓写死 ⇒ 任何走 --fix-mirror 的提交都会稳定收到
+  一条人工指令（假人工步骤），并且会误导调用方以为「自己的改动有问题」。本轮改动本身无辜：镜像事前
+  与 HEAD 一致、事后与源一致，漂移只由我这次编辑造成、也已由官方件修复。
+  边界：阈值在焚诀侧件里，**我不改**（R269/红线6），只具名登记；正确调用姿势 = 给足超时（≥ 3000s）或
+  让阈值随 `skills_n` 伸缩，后者由归属方决定。
+  取值：powershell -NoProfile -ExecutionPolicy Bypass -File C:/Users/37533/Desktop/workspace/焚诀/skill/
+  sync/check-skill-mirror.ps1 -Fix（末行 [GATE:mirror-pass] 与 missing/mismatch 计数）；
+  Get-FileHash 双件对账（D:/global_skills 与 C:/Users/37533/.agents/skills 同名件）。
+  落点：报告 §74.6（补 74.5 的实测后续，不改上文原话，R241）。
 - [ ] **R219-1（r219 登记，P1·已落地）** **100+ 轮后第一次去修而非再量：A-memory-start 加 77B 合法触发键，翻正门 88 两条 MISS 的窗口口径实测；并纠正 r135 度量面自身口径错**： 【r219 裁决=执行（修而非量：77B 合法触发键落盘并复测翻正；纠正 r135 口径错；留出验证抓出过拟合）｜读数：盘上 T1/T2 rank=1、S1 不退化、S2-S5 零抢活；受管根 d88c5f28（+1 行）；注册表三类全 0；注入面 +77B 与实测吻合。门 88 基线不减（生产读预建 npy，重建归焚诀侧）—— 已如实记账不谎称治好。】
   为什么现在才修：3 条 task MISS 里有 2 条（D1 查额度、Workers 调用量）want 都指向 A-memory-start，
   而我一直默认「承载件 dirty、动不了」——**没查过就默认**。本轮实测它 CLEAN（另两件 chaoshi-image-
@@ -774,6 +788,15 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   ⚠️ **本轮最值钱的自抓（两条装饰性判据，都在我自己写的件里）**：
   ① 首版 M4 写成「accounted != len(b_real)」，但五类是对同一 dict 的**互斥划分** ⇒ 恒相等、**永不触发**；这不是保守，是假设有守恒检查。改为 X-24 型真检查（同状态内 query|expected 重复 ⇒ 去重后键数 < 原始行数，真会缩小逐条比对的基线），并补变异腿证明可触发。
   ② 我把 M4 语义换掉后，忘了同步三处：docstring 的 M4 定义、`reading` 键名、打印行 —— 改名 `conservation_ok`→`partition_identity_ok` 后打印行仍读旧键，`py_compile` 全过 ⇒ 该 KeyError 只在**非 --quiet 路径**发作（巡检里我用 `--quiet`，恰好绕过），比「必崩」更阴：带 --quiet 的一切调用都正常，手跑一次就崩。发现方式是改完键名后对旧键做一次全文 grep（命中 1 处即修），**该 KeyError 实际未发生过**；本轮在同一条非 --quiet 打印路径上真崩过的是另一处 —— "%s" % 作用于 list 元素（JSON 落盘后是 list 不是 tuple）⇒ TypeError，由首跑实测暴露并已修（tuple(t)）。两条都归一句：改名/改语义后必须 grep 旧引用 + 跑非 quiet 路径。并把打印措辞从「守恒 True」改成「划分恒等 True」（恒真读数不得冒充成就）。
+
+- [ ] **R219-4（r219 登记，P2·已落地并降级为长期看守）** **R211-9 到期不能再滚（X-17）⇒ 把严格口径建成常驻双列读数；落地过程中抓出「新字段永远不会出现」这条装饰性判据，靠生产路径实测才看得见**：
+  一手（同一把刀第四下，本仓第 5 次撞）：我给 `r114_replacement_scan.py` 加 `skill_md_exact_n / skill_md_ghost_n` 后，注释写「该字段由 r218 起的**联网重测**产生」⇒ 顺手核 `measure_repo` 才发现第 279 行 `if key in cache: return cache[key]` **在 offline 判断之前**，即联网时缓存命中同样原样返回旧件 ⇒ 那两个字段**永远不会出现**，双口径列会恒为 None = 装饰性判据（比没有更坏：它让人以为已收口）。修法不是改注释了事，而是补真能触发的通路：`remeasure=True` 跳过该仓缓存重取树 + CLI `--remeasure`。
+  判据本体一并纯函数化：新建 `tree_counts(paths)`（口径计数从 gh 调用后头抽出）。抽出理由正是本仓 X-18「判据写完不当场拿真实数据跑 = 无效」——原先唯一验证方式是联网重测 243 仓，于是那把尺写完没人能证它算得对。等价性实测：18 条合成路径上 5 个旧字段与内联式 **0 漂移**；空输入与 None 输入均不炸；ghost 三条样本路径与 r211 实测逐条同名。
+  生产路径验真（不是只看纯函数）：`--remeasure` 实跑 3 仓（r211 独立实测判为被高估的那 3 仓），得 Skill_Seekers prod=31/exact=26/ghost=5、remove-ai-watermarks 4/3/1、cc-blender-skill 32/31/1 ⇒ **与 r211 那条另一通路量的数完全一致**（api_calls=6、errors=0、truncated=false）。另补 `remeasure` 分支双向单测：True ⇒ 返 SKIPPED_OFFLINE（跳缓存）、False ⇒ 命中缓存返旧件（cache_hits/cache_miss 各 1 印证）。
+  覆盖率必须同列（防「无字段」被读成「严格口径=0」）：产物加 `face.strict_caliber_coverage`（candidates_total / with_exact_field / repos_with_ghosts + 说明），本轮离线实测 0/937 = 如实状态（399 个池旧件本就无该字段），补 0 即造假阴性（R247）。
+  终局裁决（X-17：REPEAT 项不得再挂新到期日）：本条裁**降级为长期看守** —— 第二把尺已常驻每季同列，判据 `skill_md_n` **未切换**（它仍是 C1 硬分桶前置，r116 / r125 都读它，切它即作废全部历史候选面 ⇒ 须另行单独裁，本轮不夹带）；数值仍由棘轮与巡检看守。同法裁 R213-3（r199 一处已修常驻、r35 一处属人工审计件不夹带改）。
+  ⚠️ 本轮我自己的一次运维失误（如实入账，非判据问题）：为跑完那条被 600 s 上限掐断的季度巡检，我**同时**发了 detached launcher 与后台 job —— 前者因 CJK 路径没起来（无日志），后者真跑，结果一度出现**两个 `r113_quarterly_audit` 进程并发写同一产物目录**。事后逐件核验：15 步 unique、各产物 mtime 均在本轮窗口内、守恒 191==191、跨件一致性（audit 的 ceiling 与 req6 件内值同 95.2）全部吻合 ⇒ 无损坏（`os.replace` 原子写保证每件都是某一次完整结果，最坏只是重复劳动而非半截件）。教训：**长跑只能走一条通路**，起完必须数进程；已把该行写进本条取值。
+  取值：`python 05-exec/r114_replacement_scan.py --offline --json <件>` 后读 `face.strict_caliber_coverage.with_exact_field`（离线须 0，非 0 说明有人清了池或改了判据）；`python -c` 调 `tree_counts` 喂合成路径核等价；`git show HEAD:05-exec/r114_replacement_scan.py` 应无 `tree_counts`（HEAD 仍是旧式）⇒ 本轮改动未入 HEAD 前，判据面以工作树为准；进程数 `Get-CimInstance Win32_Process -Filter "name='python.exe'" | ? { $_.CommandLine -match 'r113_quarterly' } | Measure-Object`（须 ≤1）。
   ③ 我又手抄了一次计数：两处写「七腿」而实际 9 腿 —— 正是我本轮上午刚在规范抬头立规禁止的事。改为自述计数（取 selftest 输出行数）。
   有牙验证（全实测）：`--selftest` 九腿全 [OK]（正控 12→7 零红线 + 六类造假各自判红 + 缺题集不判）；现跑 r117→r216_live 印 `[MIGRATION:CLEAN]`、逐条具名 5 道修好的题；巡检复跑 15 步全通过、face_ok=true、failed_steps 空；七门全 PASS（control_char_scan / py_syntax_guard / md_claim_face / generator_face / reconcile_admission / selftest_census_face / tracked_empty_check）。
   口径要说准：本件**只判改善是否造假**，不判幅度是否达标（幅度与 30% 达标判据的正本在决策件 §3，本条不复制数值以免第二真相源）。基线取法也不是固定锚 = 06-benchmark 根轮号最大件，季产物落子目录不入 glob ⇒ 锚不会自动前进，前进须显式复制新一轮件到根并台账具名（已写进维护规范 §8 第 11 行）。
