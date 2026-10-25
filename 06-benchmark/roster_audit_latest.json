@@ -1,0 +1,77 @@
+{
+ "schema": "roster-audit-v1",
+ "readonly": true,
+ "provenance_cmd": "python 05-exec/r237_roster_audit.py --json <件>",
+ "roster_tools": 10,
+ "tools_in_matrix_only": [
+  "Pages-Functions"
+ ],
+ "workflow_face_files": 259,
+ "third_roots": [
+  "C:/Users/37533/Desktop/workspace/超市web/supermarket-web",
+  "C:/Users/37533/Desktop/workspace/项目/新建文件夹"
+ ],
+ "drift": [],
+ "per_tool": {
+  "Cloudflare-D1": {
+   "l1_mention": 2,
+   "l1_exec": 0,
+   "l2": 3,
+   "l3": 146
+  },
+  "Cloudflare-Pages": {
+   "l1_mention": 5,
+   "l1_exec": 2,
+   "l2": 7,
+   "l3": 239
+  },
+  "Cloudflare-R2": {
+   "l1_mention": 1,
+   "l1_exec": 0,
+   "l2": 0,
+   "l3": 0
+  },
+  "Cloudflare-Turnstile": {
+   "l1_mention": 2,
+   "l1_exec": 0,
+   "l2": 25,
+   "l3": 3
+  },
+  "Cloudflare-Workers": {
+   "l1_mention": 1,
+   "l1_exec": 0,
+   "l2": 0,
+   "l3": 1
+  },
+  "GitHub": {
+   "l1_mention": 22,
+   "l1_exec": 2,
+   "l2": 23,
+   "l3": 49
+  },
+  "Resend": {
+   "l1_mention": 1,
+   "l1_exec": 1,
+   "l2": 0,
+   "l3": 0
+  },
+  "SQLite": {
+   "l1_mention": 4,
+   "l1_exec": 3,
+   "l2": 24,
+   "l3": 127
+  },
+  "Upstash-Redis": {
+   "l1_mention": 0,
+   "l1_exec": 0,
+   "l2": 0,
+   "l3": 0
+  },
+  "VS Code": {
+   "l1_mention": 0,
+   "l1_exec": 0,
+   "l2": 0,
+   "l3": 0
+  }
+ }
+}
