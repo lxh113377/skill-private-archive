@@ -22,11 +22,11 @@
    "quota_face_latest.json"
   ],
   "GitHub": [
-   24886.0,
+   24898.0,
    "gh_billing_latest.json"
   ],
   "Cloudflare-Pages": [
-   199423,
+   199431,
    "pages_http_latest.json"
   ],
   "Cloudflare-Turnstile": [
@@ -34,7 +34,7 @@
    "turnstile_usage_latest.json"
   ],
   "SQLite": [
-   12.56,
+   12.6,
    "sqlite_usage_latest.json"
   ]
  },
