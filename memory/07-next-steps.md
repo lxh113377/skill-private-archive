@@ -566,6 +566,24 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   必须来自可复算的入口件，不接受「我跑过一次的脚本」当来源。
   取值：git show HEAD:<报告 rel> 与工作树 io.read 比对（长度/章节/数字三项）；
   python 05-exec/r221_dead_regex_scan.py --wide（现值 256 件/959 个/2 处）。
+- [ ] **R248-1（r248 登记，P1·已落地）** **搭配读数在技能层不可达 ⇒ 走 rule_editor 补登记；并抓到「源件改了镜像没刷」（另一端点读旧版）**： 【r248 裁决=执行（rule_editor 补登记技能层 + 跑官方镜像修复器 + 三门禁与注册表复核）｜读数：append OK/备份落 _trash/git committed/verify PASS；镜像 31947B=源件 31947B 且含新块；global_skills violation 0、evolution pass、注册表 0 漏注册/0 回滚/0 幽灵（191=191）。】
+  ① 缺口实测：技能层只登记了 r196/r199/r200/r201 四个早期读数面；我新建的 r241 官方计费面、r242 Turnstile 面、
+  r243 SQLite 体量面、r215 名册、r237 独立复算、r247 策略双份扫描**全不在其中** ⇒ 未来会话/其它端点不知道它们存在。
+  同卷先例：**召回面只有 SKILL.md 前 800 字符 + 它直接指向的入口卷**，写进没人指的 reference 等于没写。
+  ② 补登记：按唯一合法通道 `rule_editor.py` 向 `A-memory-start/references/quickref-cli-subprocess.md` 追加一块，
+  逐条给复算命令（名册/独立复算/官方计费面/Turnstile 面/SQLite 体量+陈旧度/策略双份扫描）+ 口径三句
+  （产物在 06-benchmark/*_latest.json；None=未量≠0；墙上时间≠计费量）。回执：append OK + 备份落 _trash +
+  git committed + [verify] PASS。两次参数层踩坑：`--file` 须为**相对受管根**路径；`insert --after` 锚点含反引号
+  被 PowerShell 当转义吃掉 ⇒ 改用 `append --text-file`（文本走文件不过 shell）。
+  ③ 真问题（本轮核心）：补完后核「别的端点读到哪一版」——源件含新块，而
+  `C:\Users\37533\.agents\skills\...` 同名文件**不含新块** ⇒ 改完了但那个端点仍是旧版。
+  按 disciplines（改受管目录须 noise + 镜像双绿）跑官方修复器 `check-skill-mirror.ps1 -Fix`（rc=0 / 55.2s），
+  复验镜像 31947B = 源件 31947B 且含新块。
+  ④ 红线 5 四项：镜像已刷平；noise 的 global_skills **violation 0**（2 处在 global_memory，并行会话产物）；
+  evolution pass；disk_registry_diff **0 漏注册 / 0 回滚 / 0 幽灵**（191=191）。
+  元教训：「改完源件」≠「另一端也就有了」—— 另有三个可达性闸门：被入口卷指向 / 镜像已刷 / 入口卷在召回窗口内；
+  三闸缺一，资本就只在写它的那个端点里可见，而「搭配」本身意味着跨面。
+  取值：`python rule_editor.py gates`（镜像/noise/evolution 汇总行）；`python D:/global_skills/A-skill-manager/assets/disk_registry_diff.py`。
 - [ ] **R247-1（r247 登记，P1·已落地）** **把 r242 教训机械化：共用策略不得有两份 ⇒ 新建第 101 门 dup_policy_scan（单源/同值双判据 + 用途豁免）**： 【r247 裁决=执行（新建 r247_dup_policy_scan.py 并进表为第 101 门：单源/同值双判据 + 用途豁免；变异注入重复 EXCL 实证）｜读数：解析 263 件 / 单源 12 名各 1 件 / 同值 2 名一致 / 1.9s PASS；注入 rc=1 具名、还原 rc=0；门表 101（新增 1、未登记 0）。】
   ① 动因：r242 的事故根因是 EXCL 在 r218 与 r237 各写一份、改动不同步 ⇒ 假漂移（28!=25）。当时结论
   「策略单一来源、算法独立」只写在注释与报告里，**没人机械地查**；本轮把它变成判据。
