@@ -1,6 +1,6 @@
 {
  "schema": "upstream-probe-r112-v1",
- "generated_at": "2026-10-25T07:39:25+00:00",
+ "generated_at": "2026-10-25T11:45:32+00:00",
  "face": {
   "scan_file": "06-benchmark/quarterly/2026Q4/provenance.json",
   "targets_n": 40,
@@ -632,7 +632,7 @@
      "repo": "calesthio/OpenMontage",
      "path": ".agents/skills/hyperframes/SKILL.md",
      "relation": "unrelated",
-     "jaccard": 0.0045
+     "jaccard": 0.0118
     }
    ],
    "reason": "无可识别同源候选（全部 unrelated 或取不到）"

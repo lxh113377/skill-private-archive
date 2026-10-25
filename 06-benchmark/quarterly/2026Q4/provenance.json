@@ -1,6 +1,6 @@
 {
  "schema": "provenance-scan-r112-v2",
- "generated_at": "2026-10-25T07:39:24+00:00",
+ "generated_at": "2026-10-25T11:45:31+00:00",
  "face": {
   "roots": [
    {
@@ -2036,15 +2036,15 @@
   },
   {
    "slug": "hyperframes",
-   "local_sha256": "67c77ec8db843a32e1345407229ecf6b05a799b2c954f00b27b281b9f1cd9df0",
-   "local_bytes": 33071,
-   "dir_manifest_sha256": "db048af0a1446756cb6793d566addbe71969c8ba75c3c2f3ac63da810e17f35a",
-   "dir_file_n": 54,
-   "mtime": "2026-10-20T09:23:34",
-   "fm_version": "1.0.0",
-   "fm_last_updated": "2026-09-21",
+   "local_sha256": "275f96263ace954852c5475071f8cb1361edf3a812a1fb0a4ce83705fec8078a",
+   "local_bytes": 8263,
+   "dir_manifest_sha256": "0e48f5a9e563c09dbbc7293cb7837e7e11a0fec7e8d651d211f01772b09b7baf",
+   "dir_file_n": 63,
+   "mtime": "2026-10-25T18:50:09",
+   "fm_version": "1.1.0",
+   "fm_last_updated": "2026-10-25",
    "registry_source": "community",
-   "registry_version": "1.0.0",
+   "registry_version": "1.1.0",
    "registry_user_created": false,
    "declared": {},
    "inferred_upstreams": [

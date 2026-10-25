@@ -432,6 +432,18 @@ def main():
     steps.append(run_step("trace_face",
                           [PY, os.path.join(HERE, "r120_trace_face.py"),
                            "--json", trace_face]))
+    # r230 新增步（tag 层**成因**面；与 r126 tag_closure 的**症状**面互补，不重复）：
+    # 存在理由：r126 量「多少题因 tag 结构不可达」，r229 查出错在哪一层 —— 路由 Tag 层匹配遍历的是
+    #   tag_layer.py 的手写清单 TAG_WEIGHT_TIERS（61 项），不是索引那 469 个键；实测 30 项空转，
+    #   有效面 31/469=6.6%，且 P0 里 13 个正则形项（\bexcel\b 等）当索引键查必然为空。
+    #   该缺陷在**焚诀仓**（本仓红线 6 只读不改）⇒ 不能代修，但必须**能持续看守**（要求 5 长效巡检）。
+    # rc 语义：0 = 全项命中索引且 P0 有生效项；1 = 有空转/P0 无生效（**结论**，缺陷在别人仓）；
+    #   2 = 输入面不可读/零项 = 真缺口 ⇒ 计入失败步（R247：没抓到不得当无空转）。
+    tag_face = os.path.join(qdir, "tag_face.json")
+    steps.append(run_step("tag_face",
+                          [PY, os.path.join(HERE, "r230_tag_face.py"),
+                           "--json", tag_face, "--quiet"],
+                          ok_rc=(0, 1)))
     # r119 第 ⑩ 段（S-4 落地）：换装影响量常驻读数。
     # 存在理由：r118 实测「换装对生产路由影响 0」是需求 6 的机制判据，但它此前只活在
     # r118 报告里 —— 下一季换装队列重新开工时，没有人会复跑这个沙箱，
@@ -473,7 +485,7 @@ def main():
     face_ok = (all(os.path.isfile(p) for p in
                    (prov, up, swap, repl, qual, rmiss, truth, swap_impact, domain_face,
                     trace_face, tag_closure, req6_att, miss_mig, pool_pack, caliber_flip,
-                    caliber_shadow))
+                    caliber_shadow, tag_face))
                and not failed)
     face_reason = None
     if not os.path.isfile(prov):
@@ -499,7 +511,8 @@ def main():
                       "req6_attainability": req6_att,
                       "miss_migration": miss_mig,
                       "caliber_flip": caliber_flip,
-                      "caliber_shadow": caliber_shadow},
+                      "caliber_shadow": caliber_shadow,
+                      "tag_face": tag_face},
         "swap_impact_reading": _read_swap_impact(swap_impact),
         "domain_face_reading": _r120b_domain_reading,
         "trace_face_reading": _r120b_trace_reading,

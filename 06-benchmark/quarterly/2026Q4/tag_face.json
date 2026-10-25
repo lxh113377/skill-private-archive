@@ -1,0 +1,68 @@
+{
+ "schema": "tag-face-r230-v1",
+ "generated_at": "2026-10-25T11:46:01+00:00",
+ "cmd": "python 05-exec/r230_tag_face.py",
+ "inputs": {
+  "tier": "../../焚诀/eval/tag_layer.py",
+  "index": "../../焚诀/eval/skill_tags.json"
+ },
+ "state": "EXPOSED",
+ "reading": {
+  "tier_n": 61,
+  "tier_by_level": {
+   "P0": 27,
+   "P1": 24,
+   "P2": 10
+  },
+  "live_n": 31,
+  "dead_n": 30,
+  "dead_terms": [
+   "\\bexcel\\b",
+   "\\bpdf\\b",
+   "\\bppt\\b",
+   "\\bcsv\\b",
+   "\\bdocx\\b",
+   "\\bobsidian\\b",
+   "\\bnotion\\b",
+   "\\bfigma\\b",
+   "\\bgithub\\b",
+   "\\bgsap\\b",
+   "\\bshadcn\\b",
+   "\\btdd\\b",
+   "\\bp5\\b",
+   "微信自动化",
+   "本地ocr",
+   "本地tts",
+   "文生视频",
+   "全局记忆",
+   "路由健康",
+   "管理",
+   "创建",
+   "生成",
+   "提升",
+   "改进",
+   "简化",
+   "整理",
+   "检查",
+   "查看",
+   "评估",
+   "对比"
+  ],
+  "p0_n": 27,
+  "p0_live_n": 8,
+  "p0_live_terms": [
+   "部署上线",
+   "天眼查",
+   "经验反哺",
+   "项目交接",
+   "大文件拆分",
+   "文生图",
+   "图生图",
+   "提示词优化"
+  ],
+  "index_n": 469,
+  "effective_pct": 50.8,
+  "index_coverage_pct": 6.6
+ },
+ "caveat": "本件只读焚诀仓（红线 6）；缺陷须由焚诀会话按 r229 建议修，本仓不代改。"
+}
