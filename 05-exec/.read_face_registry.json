@@ -102,5 +102,9 @@
  "r250_source_freshness_scan.py": {
   "evidence": "06-benchmark/source_freshness_latest.json",
   "registered_at": "2026-10-26 02:23"
+ },
+ "r215_fixtures.py": {
+  "evidence": "06-benchmark/free_tool_roster_latest.json",
+  "registered_at": "2026-10-26 03:33"
  }
 }

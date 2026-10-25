@@ -23,6 +23,21 @@ import r214_tool_carrier_face as TF
 import r215_claim_check as CC
 import r215_gate_check as GC
 
+def faces_contradiction(items, ft_rows):
+    '''r252：判据本体 —— 「第 65 门判 GAP_CRED」∧「本册第 ④ 层同一工具 MEASURED」= 两面互斥。
+
+    为什么抽成函数：牙要在**进程内构造输入**下自证（r251 实测：对由门逐轮重写的共享产物做
+    注入式变异会被并发门跑覆盖，得假 PASS）。函数化后 r215_fixtures.py 可直接喂合成数据。
+    '''
+    gap = set()
+    for r in (ft_rows or []):
+        if str(r.get('state')) == 'GAP_CRED':
+            gap.add(r.get('tool'))
+    return ['%s(第65门=GAP_CRED, 第④层=%s)' % (it.get('tool'), it.get('read_state'))
+            for it in (items or [])
+            if it.get('tool') in gap and it.get('read_state') == 'MEASURED']
+
+
 SRC = {
     'roster': 'free_tools_latest.json',
     'patterns': 'tool_carrier_patterns.json',
@@ -471,7 +486,11 @@ def build():
                       'pruned_foreign_n': len((src['matrix'].get('third_face') or {}).get('pruned_foreign') or []),
                       'files': used.get('matrix')},
     }
-    return {'items': items, 'gates_reading': gates}, None
+    # r252：把第 65 门的行**随 doc 一起交出去** —— 原先牙 r10 直接够 build() 的局部 src，
+    #   而它其实在 main() 里求值 ⇒ NameError 被一个宽 except 吞掉 ⇒ **r10 一直是空转的假绿**。
+    return {'items': items, 'gates_reading': gates,
+            'ft_rows': (src['roster'].get('rows') or []),
+            'ft_src': used.get('roster')}, None
 
 
 def render_md(doc):
@@ -713,16 +732,11 @@ def main(argv=None):
     #   凭据判成缺口（GAP_CRED），而本册第 ④ 层的读数面实测同一工具 MEASURED（真读到数）⇒ 两面互斥，
     #   必有一面错（实测成因：第 65 门把「探测失败」读成「没凭据」⇒ 假阴性；已修，但牙要常驻）。
     #   这正是 r250 的发现形态：**两个面各自都 PASS**。绿与绿之间也会打架。
-    _ft_gapcred = set()
-    try:
-        for _r in (src['roster'].get('rows') or []):
-            if str(_r.get('state')) == 'GAP_CRED':
-                _ft_gapcred.add(_r.get('tool'))
-    except Exception:
-        _ft_gapcred = set()
-    _conflict = ['%s(第65门=GAP_CRED, 第④层=%s)' % (it['tool'], it.get('read_state'))
-                 for it in doc['items']
-                 if it['tool'] in _ft_gapcred and it.get('read_state') == 'MEASURED']
+    # r252：判据本体已抽成模块级 faces_contradiction()，便于夹具**进程内构造输入**验证
+    #   （r251 教训：对「由门逐轮重写的共享产物」做注入式变异天然有竞态）。
+    _conflict = faces_contradiction(doc['items'], doc.get('ft_rows') or [])
+    if doc.get('ft_src') is None:
+        _conflict = _conflict + ['（第 65 门源件未随 doc 交出 ⇒ 本牙无从判定，不得算绿）']
     teeth_n.append(('r10_faces_not_contradictory', not _conflict,
                     '两面互斥（一绿一绿却互相否认）=%s（期望空）' % _conflict))
     # 牙 r8（r245）：第 ① 层列出的**技能 slug 必须都还在盘上**（带 SKILL.md 的真技能目录）。

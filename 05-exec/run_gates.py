@@ -1688,6 +1688,19 @@ GATES = [
         "why": ("r249 抓到「门跑了 ≠ 产物更新」；r250 枚举同类又抓到四处（free_tools / gh_billing / "
                 "turnstile_usage / route_truth 无门产出）。值全对但源件陈旧照样是错读数 —— 独立成门。"),
     },
+    # r252：名册牙 r10 的夹具进表 —— 「两面具名不许互斥」这条判据必须能被独立证伪。
+    {
+        "id": "roster_fixtures",
+        "script": "r215_fixtures.py",
+        "argv": [],
+        "pass_token": "[GATE:rosterfix-pass]",
+        "portable": True,
+        "covers": ["牙 r10 判据本体（进程内构造输入，不走共享产物）",
+                   "变异对照：把判据的比较反过来 ⇒ t1 必须不再检出（夹具对它要测的判据有牙）",
+                   "回归护栏：build() 必须把第 65 门行随 doc 交出（防 r252 那个空转假绿复发）"],
+        "why": ("r251 加的 r10 是**空转的假绿**：牙在 main() 求值却去够 build() 的局部 src ⇒ NameError 被宽",
+                "except 吞掉 ⇒ 集合恒空 ⇒ 永远 PASS。本门用进程内输入 + 变异对照把这条判据钉死。"),
+    },
 ]
 
 # 显式声明本 runner **不覆盖**的面，防止聚合绿被读成「所有门禁都绿」（R20-2）。

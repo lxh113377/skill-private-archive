@@ -566,6 +566,30 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   必须来自可复算的入口件，不接受「我跑过一次的脚本」当来源。
   取值：git show HEAD:<报告 rel> 与工作树 io.read 比对（长度/章节/数字三项）；
   python 05-exec/r221_dead_regex_scan.py --wide（现值 256 件/959 个/2 处）。
+- [ ] **R252-1（r252 登记，P1·已落地）** **牙 r10 原是空转假绿（宽 except 吞掉 NameError）⇒ 修成看得见输入 + 夹具 8/8 + 第 106 门**： 【r252 裁决=执行（修牙 r10 空转假绿：build 交出源件 + 去吞异常 + 抽 faces_contradiction + 新增夹具第 106 门）｜读数：夹具 8/8 [GATE:rosterfix-pass]；名册 r10 PASS、[ROSTER:OK] md 23594B；门表 105→106（未登记 0）。】
+  ① 发现：给 r10 补夹具时先抽判据成模块级 `faces_contradiction()`，一抽即崩 `NameError: src is not defined`
+  ——牙在 main() 求值却去够 build() 的局部变量；而原写法外包 `try/except Exception: _ft_gapcred = set()`
+  **把错误吞掉** ⇒ 集合恒空 ⇒ 这条牙**从诞生起没判过任何东西**（永远 PASS）。
+  ②【跨轮更正 R241】§106.5 的归因（「注入没咬住 ⇒ 并发门跑覆盖了注入件」）**写错了**：主因就是这个吞异常的
+  except（牙根本没执行到判断）。§106.5 原文不改，此处显式更正：**「变异没咬住」的第一怀疑对象应是
+  「判据自己是否空转」**，再去想环境因素。
+  ③ 修法：build() 把第 65 门行随 doc 交出（ft_rows/ft_src）；牙从 doc 取且**去掉吞异常的 except**
+  （源件没交出 ⇒ 追一条「本牙无从判定」）；新增夹具 05-exec/r215_fixtures.py（第 106 门，进程内构造输入）：
+  t1 检出互斥 / t2 读面 None 不算 / t3 READY+MEASURED 不算 / t4a 变异点可命中 / t4b 变异后不再检出（夹具对判据有牙）/
+  t5a-c build 可跑且 doc 随带 ft_rows/ft_src（防假绿复发）⇒ **8/8 [GATE:rosterfix-pass]**；门表 105→106（未登记 0）。
+  ④ 顺手扫规模：AST 扫 05-exec，**吞异常且 try 体内在取数的块 = 308 个**（多数是合法可选读取 ⇒ 不能一刀切），
+  精确切片 = 「判据路径里的吞异常」；已排下一轮 R252-2 逐门核。
+  元教训：`try/except` 用错地方会把判据变成装饰品 —— 一条空转的牙比没有牙更危险，它会被清点进「N 条牙全过」里；
+  **牙数从来不是可信度，必须逐条喂它一个它该抓的输入**。
+  取值：python 05-exec/r215_fixtures.py（8 项）；python 05-exec/r215_free_tool_roster.py（r10 行）。
+- [ ] **R252-2（r252 登记，P1·待处理）** **逐门核「判据路径上的吞异常」：AST 初扫 308 个候选，需人工切出判据那一类**：
+  一手：r252 用 AST 扫 05-exec，条件 = 「except 体是 pass/赋空容器/continue」且「try 体内有赋值或调用（真在取数）」
+  ⇒ **308 个块**（样本：_lib.py / baseline_contract_scan.py / control_char_scan.py / plugin_skill_security_scan.py…）。
+  为什么不能一刀切：多数是**合法的可选读取**（读不到就用默认值，例如读可选的配置/可选的产物），判红会把门变噪音。
+  精确切片 = **判据路径里的吞异常**（牙/判据在 try 里取数、except 落默认值 ⇒ 判据空转，r10 即此形态）。
+  下一步：按「该判据是否用于出结论」逐门过一遍——该响的改成**具名失败**（参考 r252 对 r10 的修法：
+  输入没交出来就往失败列表追一条），不该响的**标注豁免理由**（写进代码注释，供下轮复扫时排除）。
+  取值：python - <<'PY' 用 ast 扫（脚本见本轮 report §107.4 的方法描述）；或复用 r250_source_freshness_scan.py 的 AST 骨架。
 - [ ] **R251-1（r251 登记，P1·已落地）** **结案 R250-2：两面对立真因是第 65 门**探测假阴性**（把「取不到」读成「没凭据」，R247 同向）⇒ 三态+重试修复 + 新增牙 r10**： 【r251 裁决=执行（第 65 门 gh/wrangler 登录探测改三态+重试；新增牙 r10；结案 R250-2）｜读数：第 65 门稳定 GAP_CRED=2/GAP_SERVICE=1/READY=7（只余真缺口）；名册 r10 PASS、[ROSTER:OK] md 23556B；审计漂移 0。】
   ① 复现：第 65 门连跑两次出现两个答案（全量门内 GAP_CRED=7/READY=3、logged_in=false；单跑 GAP_CRED=2/
   GAP_SERVICE=1/READY=7、logged_in=true）⇒ 不是两面判据冲突，是**其中一面偶发假阴性**。
