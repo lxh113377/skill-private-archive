@@ -22,6 +22,7 @@ import io
 import json
 import os
 import shutil
+import time
 import subprocess
 import sys
 from datetime import datetime
@@ -68,15 +69,41 @@ def probe_gh():
     rc, out = _sh([real, '--version'])
     if rc != 0 or 'gh version' not in out:
         return 'BROKEN', {'detail': 'gh_present_but_not_runnable', 'out': out[:120]}
-    rc2, out2 = _sh([real, 'auth', 'status'])
-    logged = (rc2 == 0 and 'Logged in' in out2)
+    # r251 修（R247 同向）：原式把「命令失败/超时」直接读成「未登录」⇒ 全量并发下偶发假阴性
+    #   （第 65 门曾报 5 个工具 GAP_CRED，而同一时刻 gh api / CF GraphQL 都在通）。
+    #   改为三态：正证（auth status 说 Logged in，或 api user 真返回账号）／负证（明说未登录）／
+    #   取不到（重试后仍不明）⇒ BROKEN 且具名 probe_inconclusive（禁静默记成「没有凭据」）。
+    logged = None
+    _why_login = None
+    for _attempt in (0, 1):
+        rc2, out2 = _sh([real, 'auth', 'status'])
+        _low = (out2 or '').lower()
+        if rc2 == 0 and 'logged in' in _low:
+            logged = True
+            _why_login = 'auth_status_logged_in'
+            break
+        if 'not logged in' in _low or 'no accounts' in _low:
+            logged = False
+            _why_login = 'auth_status_says_not_logged_in'
+            break
+        rc3, out3 = _sh([real, 'api', 'user'])
+        if rc3 == 0 and 'login' in (out3 or ''):
+            logged = True
+            _why_login = 'proved_by_api_user'
+            break
+        time.sleep(2)
     # 跨解释器一致性（r163 教训：Python 侧好、PowerShell 侧坏，只查一侧会打假绿）
     _, ps = _ps("$c=Get-Command gh -EA SilentlyContinue; if(-not $c){'NONE'}else{$c.Source}")
     ps_path = (ps or '').strip().splitlines()[:1]
     same = bool(ps_path) and ps_path[0].upper() != 'NONE' and \
         os.path.normcase(ps_path[0]) == os.path.normcase(shutil.which('gh') or '')
     st = 'READY' if logged else 'GAP_CRED'
+    if logged is None:
+        return 'BROKEN', {'detail': 'probe_inconclusive',
+                          'version': out.strip().splitlines()[0][:40],
+                          'tail': (out2 or '')[-140:]}
     note = {'version': out.strip().splitlines()[0][:40], 'logged_in': logged,
+            'login_why': _why_login,
             'cross_interpreter_agree': same}
     if not same:
         return 'BROKEN', dict(note, detail='cross_interpreter_shadowed',
@@ -203,8 +230,21 @@ def _probe_wrangler_once():
             break
     if rc != 0:
         return 'BROKEN', {'detail': 'wrangler_not_runnable', 'out': out[:120]}
-    rc2, out2 = _sh([exe, 'whoami'])
-    logged = 'logged in' in (out2 or '').lower()
+    # r251（与 gh 同修，R247 同向）：原式把「命令失败/超时」读成「未登录」⇒ 并发下偶发假阴性。
+    #   三态 + 重试；重试后仍不明 ⇒ BROKEN 具名 probe_inconclusive（禁静默记成「没有凭据」）。
+    logged = None
+    for _attempt in (0, 1):
+        rc2, out2 = _sh([exe, 'whoami'])
+        _low = (out2 or '').lower()
+        if 'logged in' in _low or 'oauth token' in _low:
+            logged = True
+            break
+        if 'not logged in' in _low or 'not authenticated' in _low:
+            logged = False
+            break
+        time.sleep(2)
+    if logged is None:
+        return 'BROKEN', {'version': ver, 'detail': 'probe_inconclusive', 'tail': (out2 or '')[-140:]}
     if not logged:
         return 'GAP_CRED', {'version': ver, 'logged_in': False}
     # r163 自抓（假绿，本轮 R163-2 一手）：CLI 能跑 + 已登录 **不等于** 服务面可用。

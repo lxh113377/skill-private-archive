@@ -16,10 +16,10 @@
 
 | 工具 | ① skill 提到/代码 | ② 工作流真调用 | ③ 项目仓（剪后·含注释占比） | ④ 读数面 | ⑤ 用量 | 卡点/状态 |
 |---|---|---|---|---|---|---|
-| GitHub | 22 / 2 | 23 | 49（注释占比 0.49） | MEASURED | 24774.0 分钟（官方计费·账号级·端点默认窗口） | GAP_CRED |
-| Cloudflare-D1 | 2 / 0 | 3 | 146（注释占比 0.151） | MEASURED | 8.9 MiB | GAP_CRED |
+| GitHub | 22 / 2 | 23 | 49（注释占比 0.49） | MEASURED | 24774.0 分钟（官方计费·账号级·端点默认窗口） | READY |
+| Cloudflare-D1 | 2 / 0 | 3 | 146（注释占比 0.151） | MEASURED | 8.9 MiB | READY |
 | Cloudflare-R2 | 1 / 0 | 0 | 0 | GAP_SERVICE | 未量 | [平台能力缺口] |
-| Cloudflare-Pages | 5 / 2 | 7 | 239（注释占比 0.148） | MEASURED | 199353 次 | GAP_CRED |
+| Cloudflare-Pages | 5 / 2 | 7 | 239（注释占比 0.148） | MEASURED | 199353 次 | READY |
 | Cloudflare-Workers | 1 / 0 | 0 | 1（注释占比 1.0·仅注释） | UNVERIFIED | 未量 | [口径盲区] |
 | SQLite | 4 / 3 | 24 | 127（注释占比 0.139） | MEASURED | 12.24 MiB（本地库体量·非额度） | READY |
 | VS Code | 7 / 1 | 0 | 0 | 无读数面 | 未量 | [桌面 GUI 承载（非调用面）] |
@@ -33,7 +33,7 @@
 
 ## 逐工具搭配态
 
-### GitHub - GAP_CRED
+### GitHub - READY
 
 - 两把尺：提到 22 件 ｜ 代码真调用 2 件
     提到 = A-get-memory, A-memory-start, A-project-better, A-project-handoff, A-skill-manager, chaoshi-image-optimization, chaoshi-web-deploy, ci-pipeline-debugging, consulting-analysis, doc-coauthoring, docker-e2e-gate, github, gstack, healthcare-eval-harness, hyperframes-registry, oracle, security-audit, shell-encoding-pitfalls, story, ui-ux-pro-max, verification-before-completion, win-toolchain-pitfalls
@@ -60,7 +60,7 @@
     - 钩子静默推送 -> HIT（top1=win-toolchain-pitfalls，期望件=win-toolchain-pitfalls）
     - Actions 分钟 -> HIT（top1=chaoshi-web-deploy，期望件=chaoshi-web-deploy）
 
-### Cloudflare-D1 - GAP_CRED
+### Cloudflare-D1 - READY
 
 - 两把尺：提到 2 件 ｜ 代码真调用 0 件
     提到 = chaoshi-web-deploy, win-toolchain-pitfalls
@@ -87,7 +87,7 @@
 - 任务语句实测：
     - D1 查额度 -> MISS（top1=wps-knowledgebase，期望件=A-memory-start）
 
-### Cloudflare-R2 - GAP_CRED
+### Cloudflare-R2 - GAP_SERVICE
 
 - 两把尺：提到 1 件 ｜ 代码真调用 0 件
     提到 = chaoshi-image-optimization
@@ -110,7 +110,7 @@
 - 任务语句实测：
     - R2 开桶 -> MISS（top1=libreoffice-headless-win，期望件=chaoshi-image-optimization）
 
-### Cloudflare-Pages - GAP_CRED
+### Cloudflare-Pages - READY
 
 - 两把尺：提到 5 件 ｜ 代码真调用 2 件
     提到 = A-project-handoff, byted-bp-cdn-pagesdeploy, chaoshi-image-optimization, chaoshi-web-deploy, verification-before-completion
@@ -135,7 +135,7 @@
 - 任务语句实测：
     - Pages 部署 -> HIT_DIRECT（top1=chaoshi-web-deploy，期望件=chaoshi-web-deploy）
 
-### Cloudflare-Workers - GAP_CRED
+### Cloudflare-Workers - READY
 
 - 两把尺：提到 1 件 ｜ 代码真调用 0 件
     提到 = chaoshi-web-deploy

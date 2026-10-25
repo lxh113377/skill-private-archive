@@ -5,7 +5,7 @@
  "items": [
   {
    "tool": "GitHub",
-   "state": "GAP_CRED",
+   "state": "READY",
    "mention_skills": [
     "A-get-memory",
     "A-memory-start",
@@ -139,7 +139,7 @@
   },
   {
    "tool": "Cloudflare-D1",
-   "state": "GAP_CRED",
+   "state": "READY",
    "mention_skills": [
     "chaoshi-web-deploy",
     "win-toolchain-pitfalls"
@@ -243,7 +243,7 @@
   },
   {
    "tool": "Cloudflare-R2",
-   "state": "GAP_CRED",
+   "state": "GAP_SERVICE",
    "mention_skills": [
     "chaoshi-image-optimization"
    ],
@@ -294,7 +294,7 @@
   },
   {
    "tool": "Cloudflare-Pages",
-   "state": "GAP_CRED",
+   "state": "READY",
    "mention_skills": [
     "A-project-handoff",
     "byted-bp-cdn-pagesdeploy",
@@ -387,7 +387,7 @@
   },
   {
    "tool": "Cloudflare-Workers",
-   "state": "GAP_CRED",
+   "state": "READY",
    "mention_skills": [
     "chaoshi-web-deploy"
    ],

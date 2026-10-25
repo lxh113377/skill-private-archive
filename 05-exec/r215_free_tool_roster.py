@@ -709,6 +709,22 @@ def main(argv=None):
     # 牙 r4（r230）：第 4 层必须**逐个工具**都有交代 —— 要么登记了读数面，要么具名说明无读数面；
     #   「未量」这种含糊态一律算红（它正是 r229 留下的尾巴：6 项没核实就记未量）。
     teeth_n = []
+    # 牙 r10（r251，落 R250-2）：**判据面之间不得互相矛盾** —— 第 65 门（free_tools_face）若把某工具的
+    #   凭据判成缺口（GAP_CRED），而本册第 ④ 层的读数面实测同一工具 MEASURED（真读到数）⇒ 两面互斥，
+    #   必有一面错（实测成因：第 65 门把「探测失败」读成「没凭据」⇒ 假阴性；已修，但牙要常驻）。
+    #   这正是 r250 的发现形态：**两个面各自都 PASS**。绿与绿之间也会打架。
+    _ft_gapcred = set()
+    try:
+        for _r in (src['roster'].get('rows') or []):
+            if str(_r.get('state')) == 'GAP_CRED':
+                _ft_gapcred.add(_r.get('tool'))
+    except Exception:
+        _ft_gapcred = set()
+    _conflict = ['%s(第65门=GAP_CRED, 第④层=%s)' % (it['tool'], it.get('read_state'))
+                 for it in doc['items']
+                 if it['tool'] in _ft_gapcred and it.get('read_state') == 'MEASURED']
+    teeth_n.append(('r10_faces_not_contradictory', not _conflict,
+                    '两面互斥（一绿一绿却互相否认）=%s（期望空）' % _conflict))
     # 牙 r8（r245）：第 ① 层列出的**技能 slug 必须都还在盘上**（带 SKILL.md 的真技能目录）。
     #   动因：名册把技能名写进交付物，但技能会被改名/退役 —— 那时名册就是**幽灵引用**：
     #   数还在、读起来像证据，实际指向一个不存在的技能（与 r1「登记了读数面却取不到状态」同族）。

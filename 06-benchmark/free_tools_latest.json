@@ -3,52 +3,155 @@
  "cmd": "python 05-exec/r163_free_tools_face.py --json <out>",
  "roster_n": 10,
  "counts": {
-  "GAP_CRED": 7,
-  "READY": 3
+  "READY": 7,
+  "GAP_SERVICE": 1,
+  "GAP_CRED": 2
  },
  "rows": [
   {
    "tool": "GitHub",
-   "state": "GAP_CRED",
+   "state": "READY",
    "note": {
     "version": "gh version 2.95.0 (2026-06-17)",
-    "logged_in": false,
+    "logged_in": true,
+    "login_why": "auth_status_logged_in",
     "cross_interpreter_agree": true
    }
   },
   {
    "tool": "Cloudflare-D1",
-   "state": "GAP_CRED",
+   "state": "READY",
    "note": {
     "version": "4.152.0",
-    "logged_in": false,
+    "logged_in": true,
+    "services": {
+     "d1": {
+      "state": "ready",
+      "reason": null
+     },
+     "r2": {
+      "state": "not_enabled",
+      "code": "10042"
+     },
+     "pages": {
+      "state": "ready",
+      "reason": null
+     },
+     "workers": {
+      "state": "ready",
+      "reason": null
+     }
+    },
+    "detail": "service_not_enabled",
+    "services_not_enabled": [
+     "r2"
+    ],
+    "services_not_ready": [
+     "r2"
+    ],
     "judged_service": "d1"
    }
   },
   {
    "tool": "Cloudflare-R2",
-   "state": "GAP_CRED",
+   "state": "GAP_SERVICE",
    "note": {
     "version": "4.152.0",
-    "logged_in": false,
-    "judged_service": "r2"
+    "logged_in": true,
+    "services": {
+     "d1": {
+      "state": "ready",
+      "reason": null
+     },
+     "r2": {
+      "state": "not_enabled",
+      "code": "10042"
+     },
+     "pages": {
+      "state": "ready",
+      "reason": null
+     },
+     "workers": {
+      "state": "ready",
+      "reason": null
+     }
+    },
+    "detail": "service_not_enabled",
+    "services_not_enabled": [
+     "r2"
+    ],
+    "services_not_ready": [
+     "r2"
+    ],
+    "judged_service": "r2",
+    "code": "10042"
    }
   },
   {
    "tool": "Cloudflare-Pages",
-   "state": "GAP_CRED",
+   "state": "READY",
    "note": {
     "version": "4.152.0",
-    "logged_in": false,
+    "logged_in": true,
+    "services": {
+     "d1": {
+      "state": "ready",
+      "reason": null
+     },
+     "r2": {
+      "state": "not_enabled",
+      "code": "10042"
+     },
+     "pages": {
+      "state": "ready",
+      "reason": null
+     },
+     "workers": {
+      "state": "ready",
+      "reason": null
+     }
+    },
+    "detail": "service_not_enabled",
+    "services_not_enabled": [
+     "r2"
+    ],
+    "services_not_ready": [
+     "r2"
+    ],
     "judged_service": "pages"
    }
   },
   {
    "tool": "Cloudflare-Workers",
-   "state": "GAP_CRED",
+   "state": "READY",
    "note": {
     "version": "4.152.0",
-    "logged_in": false,
+    "logged_in": true,
+    "services": {
+     "d1": {
+      "state": "ready",
+      "reason": null
+     },
+     "r2": {
+      "state": "not_enabled",
+      "code": "10042"
+     },
+     "pages": {
+      "state": "ready",
+      "reason": null
+     },
+     "workers": {
+      "state": "ready",
+      "reason": null
+     }
+    },
+    "detail": "service_not_enabled",
+    "services_not_enabled": [
+     "r2"
+    ],
+    "services_not_ready": [
+     "r2"
+    ],
     "judged_service": "workers"
    }
   },
@@ -108,5 +211,5 @@
   }
  ],
  "rule": "仅 BROKEN 判红；GAP_CRED/GAP_CLI 是诚实显形（外部凭据/平台形态缺口，#29③）",
- "generated_at": "2026-10-26 02:54"
+ "generated_at": "2026-10-26 03:07"
 }

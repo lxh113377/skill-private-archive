@@ -1,0 +1,214 @@
+{
+ "schema": "free-tools-face-r163-v1",
+ "cmd": "python 05-exec/r163_free_tools_face.py --json <out>",
+ "roster_n": 10,
+ "counts": {
+  "READY": 7,
+  "GAP_SERVICE": 1,
+  "GAP_CRED": 2
+ },
+ "rows": [
+  {
+   "tool": "GitHub",
+   "state": "READY",
+   "note": {
+    "version": "gh version 2.95.0 (2026-06-17)",
+    "logged_in": true,
+    "cross_interpreter_agree": true
+   }
+  },
+  {
+   "tool": "Cloudflare-D1",
+   "state": "READY",
+   "note": {
+    "version": "4.152.0",
+    "logged_in": true,
+    "services": {
+     "d1": {
+      "state": "ready",
+      "reason": null
+     },
+     "r2": {
+      "state": "not_enabled",
+      "code": "10042"
+     },
+     "pages": {
+      "state": "ready",
+      "reason": null
+     },
+     "workers": {
+      "state": "ready",
+      "reason": null
+     }
+    },
+    "detail": "service_not_enabled",
+    "services_not_enabled": [
+     "r2"
+    ],
+    "services_not_ready": [
+     "r2"
+    ],
+    "judged_service": "d1"
+   }
+  },
+  {
+   "tool": "Cloudflare-R2",
+   "state": "GAP_SERVICE",
+   "note": {
+    "version": "4.152.0",
+    "logged_in": true,
+    "services": {
+     "d1": {
+      "state": "ready",
+      "reason": null
+     },
+     "r2": {
+      "state": "not_enabled",
+      "code": "10042"
+     },
+     "pages": {
+      "state": "ready",
+      "reason": null
+     },
+     "workers": {
+      "state": "ready",
+      "reason": null
+     }
+    },
+    "detail": "service_not_enabled",
+    "services_not_enabled": [
+     "r2"
+    ],
+    "services_not_ready": [
+     "r2"
+    ],
+    "judged_service": "r2",
+    "code": "10042"
+   }
+  },
+  {
+   "tool": "Cloudflare-Pages",
+   "state": "READY",
+   "note": {
+    "version": "4.152.0",
+    "logged_in": true,
+    "services": {
+     "d1": {
+      "state": "ready",
+      "reason": null
+     },
+     "r2": {
+      "state": "not_enabled",
+      "code": "10042"
+     },
+     "pages": {
+      "state": "ready",
+      "reason": null
+     },
+     "workers": {
+      "state": "ready",
+      "reason": null
+     }
+    },
+    "detail": "service_not_enabled",
+    "services_not_enabled": [
+     "r2"
+    ],
+    "services_not_ready": [
+     "r2"
+    ],
+    "judged_service": "pages"
+   }
+  },
+  {
+   "tool": "Cloudflare-Workers",
+   "state": "READY",
+   "note": {
+    "version": "4.152.0",
+    "logged_in": true,
+    "services": {
+     "d1": {
+      "state": "ready",
+      "reason": null
+     },
+     "r2": {
+      "state": "not_enabled",
+      "code": "10042"
+     },
+     "pages": {
+      "state": "ready",
+      "reason": null
+     },
+     "workers": {
+      "state": "ready",
+      "reason": null
+     }
+    },
+    "detail": "service_not_enabled",
+    "services_not_enabled": [
+     "r2"
+    ],
+    "services_not_ready": [
+     "r2"
+    ],
+    "judged_service": "workers"
+   }
+  },
+  {
+   "tool": "SQLite",
+   "state": "READY",
+   "note": {
+    "embedded_version": "3.53.1",
+    "standalone_cli": false,
+    "attempts": 1
+   }
+  },
+  {
+   "tool": "VS Code",
+   "state": "READY",
+   "note": {
+    "code_version": "1.141.0",
+    "cli_path": "D:\\Microsoft VS Code\\bin\\code.CMD",
+    "cli_bytes": 189,
+    "extensions_n": 43
+   }
+  },
+  {
+   "tool": "Cloudflare-Turnstile",
+   "state": "READY",
+   "note": {
+    "widgets_n": 1,
+    "sitekeys": [
+     "0x4AAAAAAFgp4grsBDhuMqpl"
+    ],
+    "used_in_repo": false,
+    "used_why": "hits=[]",
+    "project_root": "C:\\\\Users\\\\37533\\\\Desktop\\\\workspace\\\\超市web\\\\supermarket-web",
+    "judged_by": "cloudflare_widget_exists（不是本机 env）; used_in_repo=仓内是否仍引用"
+   }
+  },
+  {
+   "tool": "Resend",
+   "state": "GAP_CRED",
+   "note": {
+    "kind": "http_api_no_cli",
+    "cred_env_checked": {
+     "RESEND_API_KEY": false
+    }
+   }
+  },
+  {
+   "tool": "Upstash-Redis",
+   "state": "GAP_CRED",
+   "note": {
+    "kind": "http_api_no_cli",
+    "cred_env_checked": {
+     "UPSTASH_REDIS_REST_URL": false,
+     "UPSTASH_REDIS_REST_TOKEN": false
+    }
+   }
+  }
+ ],
+ "rule": "仅 BROKEN 判红；GAP_CRED/GAP_CLI 是诚实显形（外部凭据/平台形态缺口，#29③）",
+ "generated_at": "2026-10-26 03:03"
+}

@@ -566,6 +566,24 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   必须来自可复算的入口件，不接受「我跑过一次的脚本」当来源。
   取值：git show HEAD:<报告 rel> 与工作树 io.read 比对（长度/章节/数字三项）；
   python 05-exec/r221_dead_regex_scan.py --wide（现值 256 件/959 个/2 处）。
+- [ ] **R251-1（r251 登记，P1·已落地）** **结案 R250-2：两面对立真因是第 65 门**探测假阴性**（把「取不到」读成「没凭据」，R247 同向）⇒ 三态+重试修复 + 新增牙 r10**： 【r251 裁决=执行（第 65 门 gh/wrangler 登录探测改三态+重试；新增牙 r10；结案 R250-2）｜读数：第 65 门稳定 GAP_CRED=2/GAP_SERVICE=1/READY=7（只余真缺口）；名册 r10 PASS、[ROSTER:OK] md 23556B；审计漂移 0。】
+  ① 复现：第 65 门连跑两次出现两个答案（全量门内 GAP_CRED=7/READY=3、logged_in=false；单跑 GAP_CRED=2/
+  GAP_SERVICE=1/READY=7、logged_in=true）⇒ 不是两面判据冲突，是**其中一面偶发假阴性**。
+  ② 根因：`gh` 用 `logged = (rc2 == 0 and 'Logged in' in out2)`、`wrangler` 用 `'logged in' in out2` ——
+  **命令失败/超时 ⇒ logged=False ⇒ 整片工具记成「没有凭据」**；而同时刻 `gh api user` 通、CF GraphQL 通、
+  `gh auth status` 手工 rc=0 且 stdout 含 Logged in。「取不到」与「不存在」混判（R247）。
+  ③ 修法：两处都改**三态 + 重试 2 次**：正证（auth status/api user；whoami 含 logged in）／负证（明说未登录）／
+  仍不明 ⇒ **BROKEN + probe_inconclusive**（禁静默记成「没有」）。修复后稳定 `GAP_CRED=2 GAP_SERVICE=1 READY=7`，
+  只剩真缺口（Resend/Upstash 的 `cred_env_checked=false` 属正证缺席；R2 属服务未开通）。
+  ④ 新增牙 **r10_faces_not_contradictory**：第 65 门判 GAP_CRED 而本册第 ④ 层同一工具 MEASURED ⇒ 红并具名，
+  防的正是「两个面各自 PASS 却互相否认」。
+  ⑤ 诚实边角：先用「改盘上件再跑」验 r10 得假 PASS；加诊断后看清**并发门跑已把注入件重写回原值**
+  （第 65 门每轮重写该件）；独立复算（进程内构造输入）稳定得 `['GitHub']` ⇒ 牙逻辑对、验法错。
+  教训：对「由门逐轮重写的共享产物」做注入式变异天然有竞态；验这类牙要**进程内构造输入**。
+  元教训：「两个面不一致」有三种可能：A 错／B 错／**两面测的不是同一时刻**；本轮是假阴性且**只在并发下出现**，
+  ⇒ 修完还须把「不一致」本身立成判据，否则下次换工具再犯仍靠人偶然撞见。
+  取值：python 05-exec/r163_free_tools_face.py --json 06-benchmark/free_tools_latest.json（连跑两次看是否稳定）；
+  python 05-exec/r215_free_tool_roster.py（r10 行）。
 - [ ] **R250-1（r250 登记，P1·已落地）** **枚举「门跑了≠产物更新」：四处补表（101→105 门）+ 新建第 105 门源件新鲜度审计**： 【r250 裁决=执行（四处补表：free_tools_face 补 argv + 三道新门；新建第 105 门源件新鲜度审计；门表 101→105）｜读数：门声明产出 26 件 / 名册源件 16 件 / 孤儿 0 / 陈旧 0；[SRCFRESH:PASS]；门表 105（新增 4、未登记 0）。】
   ① 做法：把 r249 的个案变成面向**源件**的审计 —— 核名册读的 16 个源件「谁写的、何时写的」，
   实测 **6 个无门声明产出**，四件是真问题：free_tools_latest.json（名册行清单，停 10-24 22:42，产出者
@@ -581,7 +599,7 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   实跑：门声明产出 26 件 / 名册源件 16 件 / 孤儿 0 / 陈旧 0 ⇒ [SRCFRESH:PASS]。
   元教训：「每轮都在跑」的门数不是可信度；进步在于按**源件**核来源与新鲜度。
   取值：python 05-exec/r250_source_freshness_scan.py --json 06-benchmark/source_freshness_latest.json。
-- [ ] **R250-2（r250 登记，P1·待处理）** **判据面互斥：第 65 门报 5 个工具 GAP_CRED，而读数面实测同名工具 MEASURED（两面各自 PASS）**：
+- [ ] **R250-2（r250 登记，P1·待处理）** **判据面互斥：第 65 门报 5 个工具 GAP_CRED，而读数面实测同名工具 MEASURED（两面各自 PASS）**： 【r251 裁决=结案（r251 定位真因并修复）：不是两面判据冲突，是第 65 门把「探测失败」读成「没凭据」的偶发假阴性（R247 同向）；已改三态+重试（gh: auth status/api user；wrangler: whoami），仍不明 ⇒ BROKEN+probe_inconclusive。修复后稳定 GAP_CRED=2/GAP_SERVICE=1/READY=7（只剩 Resend/Upstash 正证缺席与 R2 服务未开通）。并新增牙 r10_faces_not_contradictory 把「两面互斥」本身立成判据。取值：python 05-exec/r163_free_tools_face.py --json 06-benchmark/free_tools_latest.json】
   一手证据（同一时刻两产物对照）：free_tools_latest.json 报 GitHub / D1 / R2 / Pages / Workers = GAP_CRED、
   SQLite / VS Code / Turnstile = READY；free_tool_roster_latest.json 第 ④ 层报 GitHub / D1 / Pages / Workers /
   Turnstile = MEASURED（真读到数：官方计费 24235 分钟 / D1 8.89 MiB / Pages 198687 次 / Workers 0 / Turnstile 0）、
