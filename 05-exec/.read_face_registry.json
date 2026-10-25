@@ -74,5 +74,13 @@
  "r209_route_truth_measure.py": {
   "evidence": "06-benchmark/route_truth_latest.json",
   "registered_at": "2026-10-25 00:56"
+ },
+ "r215_free_tool_roster.py": {
+  "evidence": "06-benchmark/free_tool_roster_latest.json",
+  "registered_at": "2026-10-25 05:00"
+ },
+ "r237_roster_audit.py": {
+  "evidence": "06-benchmark/roster_audit_latest.json",
+  "registered_at": "2026-10-25 21:50"
  }
 }
