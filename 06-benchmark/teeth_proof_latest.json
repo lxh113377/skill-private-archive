@@ -61,17 +61,26 @@
   "r67_input_pin_fixtures.py"
  ],
  "critical": [
-  "free_tools_face",
-  "tool_skill_matrix",
-  "workflow_usage_face",
-  "free_tool_roster_face",
-  "roster_audit",
-  "roster_fixtures",
-  "source_freshness_scan",
   "dup_policy_scan",
+  "free_tools_face",
+  "gh_billing_face",
+  "ingress_face",
   "judge_binding_scan",
-  "struct_recount_face",
-  "gov_acceptance_face"
+  "pages_http_face",
+  "proof_fixtures",
+  "quota_face",
+  "r2_enable_face",
+  "recall_face",
+  "roster_audit",
+  "route_truth_measure",
+  "source_freshness_scan",
+  "sqlite_usage_face",
+  "teeth_proof_matrix",
+  "tool_carrier_face",
+  "tool_skill_matrix",
+  "turnstile_usage_face",
+  "workers_quota_face",
+  "workflow_usage_face"
  ],
  "critical_missing_proof": [],
  "rows": [
@@ -655,9 +664,9 @@
    "id": "workers_quota_face",
    "script": "r199_workers_face.py",
    "fixture": true,
-   "mutation": false,
+   "mutation": true,
    "selftest": false,
-   "proof": "fixture"
+   "proof": "mutation"
   },
   {
    "id": "struct_recount_face",
@@ -790,10 +799,10 @@
   {
    "id": "recall_face",
    "script": "r208_recall_face.py",
-   "fixture": false,
-   "mutation": false,
+   "fixture": true,
+   "mutation": true,
    "selftest": false,
-   "proof": "NONE"
+   "proof": "mutation"
   },
   {
    "id": "volume_coverage_face",
@@ -806,18 +815,18 @@
   {
    "id": "ingress_face",
    "script": "r213_ingress_face.py",
-   "fixture": false,
-   "mutation": false,
+   "fixture": true,
+   "mutation": true,
    "selftest": false,
-   "proof": "NONE"
+   "proof": "mutation"
   },
   {
    "id": "tool_carrier_face",
    "script": "r214_tool_carrier_face.py",
-   "fixture": false,
-   "mutation": false,
+   "fixture": true,
+   "mutation": true,
    "selftest": false,
-   "proof": "NONE"
+   "proof": "mutation"
   },
   {
    "id": "workflow_usage_face",
@@ -854,34 +863,34 @@
   {
    "id": "sqlite_usage_face",
    "script": "r243_sqlite_usage_face.py",
-   "fixture": false,
-   "mutation": false,
+   "fixture": true,
+   "mutation": true,
    "selftest": false,
-   "proof": "NONE"
+   "proof": "mutation"
   },
   {
    "id": "gh_billing_face",
    "script": "r241_gh_billing_face.py",
-   "fixture": false,
-   "mutation": false,
+   "fixture": true,
+   "mutation": true,
    "selftest": false,
-   "proof": "NONE"
+   "proof": "mutation"
   },
   {
    "id": "turnstile_usage_face",
    "script": "r242_turnstile_usage_face.py",
-   "fixture": false,
-   "mutation": false,
+   "fixture": true,
+   "mutation": true,
    "selftest": false,
-   "proof": "NONE"
+   "proof": "mutation"
   },
   {
    "id": "route_truth_measure",
    "script": "r209_route_truth_measure.py",
-   "fixture": false,
-   "mutation": false,
+   "fixture": true,
+   "mutation": true,
    "selftest": false,
-   "proof": "NONE"
+   "proof": "mutation"
   },
   {
    "id": "free_tool_roster_face",

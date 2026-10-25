@@ -49,6 +49,9 @@ def call_main(mod, argv=None):
         rc = mod.main(argv if argv is not None else [])
     except SystemExit as e:
         rc = e.code if isinstance(e.code, int) else 1
+    except Exception as e:
+        rc = 99
+        buf.append('__CRASH__ ' + repr(e))
     finally:
         sys.stdout = old
     return rc, ''.join(buf)
@@ -101,8 +104,82 @@ def p4_judge_binding():
     ck('p4 judge_binding_scan 吞异常+未绑定 ⇒ 必须 rc≠0 且具名 SILENT', ok, 'rc=%d' % rc)
 
 
+def p5_recall_face():
+    # r255 观察（已落待办 R255-2，属他人件不代改）：源件读不到时该面**崩溃**（TypeError）而非报 UNVERIFIED。
+    #   本腿只断言「能不绿」（rc≠0），并把形态记进 detail，供下轮追。
+    import r208_recall_face as M
+    M._read = lambda *a, **k: None
+    rc, out = call_main(M, [])
+    shape = 'CRASH' if '__CRASH__' in out else 'rc=%d' % rc
+    ck('p5 recall_face 源件读不到 ⇒ 必须 rc≠0（形态：%s）' % shape, rc != 0, shape)
+
+
+def p6_ingress_face():
+    # r255 同 p5：崩溃形态，已落待办 R255-2。
+    import r213_ingress_face as M
+    M._read = lambda *a, **k: None
+    rc, out = call_main(M, [])
+    shape = 'CRASH' if '__CRASH__' in out else 'rc=%d' % rc
+    ck('p6 ingress_face 源件读不到 ⇒ 必须 rc≠0（形态：%s）' % shape, rc != 0, shape)
+
+
+def p7_tool_carrier_face():
+    import r214_tool_carrier_face as M
+    M._read = lambda *a, **k: None
+    rc, out = call_main(M, [])
+    ck('p7 tool_carrier_face 源件读不到 ⇒ 必须 rc≠0', rc != 0, 'rc=%d' % rc)
+
+
+def p8_sqlite_usage_face():
+    import r243_sqlite_usage_face as M
+    old = M.DB
+    M.DB = os.path.join(M.ROOT, '_temp', 'proof254_no_such.sqlite')   # 必须同盘（原给 C: 路径触发 relpath ValueError，是我这条腿的 bug）
+    try:
+        rc, out = call_main(M, [])
+    finally:
+        M.DB = old
+    ck('p8 sqlite_usage_face 库不存在 ⇒ 必须 rc≠0 且 UNVERIFIED',
+       rc != 0 and 'UNVERIFIED' in out, 'rc=%d' % rc)
+
+
+def p9_gh_billing_face():
+    import r241_gh_billing_face as M
+    M.gh_api = lambda *a, **k: (1, 'poisoned_by_proof254')
+    rc, out = call_main(M, [])
+    ck('p9 gh_billing_face 端点不可达 ⇒ 必须 rc≠0 且 UNVERIFIED',
+       rc != 0 and 'UNVERIFIED' in out, 'rc=%d' % rc)
+
+
+def p10_turnstile_usage_face():
+    import r242_turnstile_usage_face as M
+    import r199_workers_face as W
+    old = W.oauth_token
+    W.oauth_token = lambda *a, **k: (None, 'poisoned_by_proof254')
+    try:
+        rc, out = call_main(M, [])
+    finally:
+        W.oauth_token = old
+    ck('p10 turnstile_usage_face 凭据取不到 ⇒ 必须 rc≠0 且 UNVERIFIED',
+       rc != 0 and 'UNVERIFIED' in out, 'rc=%d' % rc)
+
+
+def p11_route_truth_measure():
+    # r255 自抓：首版 patch route 无效（那条路在 main 里另有前置判定）⇒ 改打「探针名册缺失」这条 UNVERIFIED 路。
+    import r209_route_truth_measure as M
+    old = M.PROBES
+    M.PROBES = os.path.join(M.ROOT, '06-benchmark', '__no_such_probes__.json')
+    try:
+        rc, out = call_main(M, [])
+    finally:
+        M.PROBES = old
+    ck('p11 route_truth_measure 探针名册缺失 ⇒ 必须 rc≠0 且 UNVERIFIED',
+       rc != 0 and 'UNVERIFIED' in out, 'rc=%d' % rc)
+
+
 def main():
-    for fn in (p1_roster_audit, p2_dup_policy, p3_freshness, p4_judge_binding):
+    for fn in (p1_roster_audit, p2_dup_policy, p3_freshness, p4_judge_binding,
+               p5_recall_face, p6_ingress_face, p7_tool_carrier_face, p8_sqlite_usage_face,
+               p9_gh_billing_face, p10_turnstile_usage_face, p11_route_truth_measure):
         try:
             fn()
         except Exception as e:

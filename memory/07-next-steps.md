@@ -566,6 +566,33 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   必须来自可复算的入口件，不接受「我跑过一次的脚本」当来源。
   取值：git show HEAD:<报告 rel> 与工作树 io.read 比对（长度/章节/数字三项）；
   python 05-exec/r221_dead_regex_scan.py --wide（现值 256 件/959 个/2 处）。
+- [ ] **R255-1（r255 登记，P1·已落地）** **关键集改派生（不再手写）＋ 补七道数据源门的进程内证伪 ⇒ 关键集缺证明清零**： 【r255 裁决=执行（矩阵关键集改派生 + 补七道数据源门证伪腿 + 两条腿自抓修正）｜读数：证明夹具 11/11 [GATE:prooffix-pass]；矩阵分布 {mutation 64, selftest 14, fixture 10, NONE 21}、派生关键集缺证明=无 [PROOFMAT:PASS]；门表 109。】
+  ① 修上一轮自己会烂的地方：r254 矩阵的 `CRITICAL` 原是我手写 11 个 id（手写名单必然烂）。改为**派生**：
+  ① r215 READ_FACE 登记的读数面脚本 ② 产出 r215 SRC 所读件的门（按 argv --json 名对齐）③ 自审计栈
+  （r237/r247/r250/r253/r254）⇒ 以后在 r215 加读数面/源件，关键集自动跟着长。
+  ② 派生后如实暴露缺口 7 道（都是名册层①/④/⑤的数据源）：recall_face / ingress_face / tool_carrier_face /
+  sqlite_usage_face / gh_billing_face / turnstile_usage_face / route_truth_measure。补 7 条进程内证伪腿
+  （第 108 门，**不改它们的文件**）：p5/p6 `_read`→None；p7 同；p8 DB 指向不存在库；p9 `gh_api` 返回失败；
+  p10 `oauth_token` 取不到；p11 PROBES 缺失 ⇒ **11/11 [GATE:prooffix-pass]**。
+  ③ 其中 5 条正确回 rc=2 UNVERIFIED（p7–p11）；p5/p6 形态是**崩溃**（CRASH）⇒ 见 R255-2。
+  ④ 两条腿先照出我自己：p8 首版给 C: 盘路径触发 relpath ValueError（同盘才对）；p11 首版 patch `route` 无效
+  （该路在 main 有前置判定）⇒ 改打 PROBES 缺失路。
+  ⑤ 终态：门 109 / 分布 {mutation 64, selftest 14, fixture 10, NONE 21} / **派生关键集缺证明 = 无** /
+  [PROOFMAT:PASS]。
+  元教训：「谁算关键」也得派生 —— 同族第四个形态：牙 → 牙的侦测器 → 证明的存续性 → **证明对象的名单**；
+  每一层都不能靠「我记得」，因为漏掉的永远不会报错，只会静默少查。
+  取值：python 05-exec/r254_teeth_proof_matrix.py --json 06-benchmark/teeth_proof_latest.json；
+  python 05-exec/r254_proof_fixtures.py（11 腿）。
+- [ ] **R255-2（r255 登记，P1·待处理·他人件）** **recall_face / ingress_face 源件读不到时是「崩溃」而非 UNVERIFIED（形态错，非绿错）**：
+  一手证据（我的证伪夹具 p5/p6，进程内把 `_read` 换成返回 None）：两面均抛 TypeError（expected string or
+  bytes-like object, got NoneType），而它们自己的文档写着「取不到 ⇒ UNVERIFIED」（r208 第 21/156/161/164 行附近、
+  r213 第 13/123/133 行附近均有 UNVERIFIED 文案）。
+  为什么算问题：按 R247「取不到必须显形、不得当绿」，崩溃**也不是绿**，但**形态错** —— 它把「我读不到」报成
+  「脚本坏了」，排障会指错方向（与 r252 吞异常是镜像问题：一个吞掉、一个炸掉，都不该）。
+  作者归属存疑（r208 末次改动 cb0df24、r213 9d7f87d，疑并行会话）⇒ 按 **R269 只登记、不代改**。
+  下一步（属该件归属方）：在 `_read` 返回 None 处改成显式 `[RECALL:UNVERIFIED]` / `[INGRESS:UNVERIFIED]` + rc=2；
+  改完后我的 p5/p6 腿可把断言从「rc≠0」收紧为「rc=2 且含 UNVERIFIED」。
+  取值：python 05-exec/r254_proof_fixtures.py（p5/p6 形态栏会打印 CRASH）。
 - [ ] **R254-1（r254 登记，P1·已落地）** **逐门证伪矩阵：关键集四道门从没被证明「能红」⇒ 进程内证伪夹具补齐（门 107→109）**： 【r254 裁决=执行（新建逐门证伪矩阵第 109 门 + 四道关键门的进程内证伪夹具第 108 门；两件均登记进表）｜读数：矩阵首跑关键集缺 4 道 ⇒ 补后关键集缺证明=无、[PROOFMAT:PASS]；夹具 4/4 [GATE:prooffix-pass]；门表 107→109（新增 2、未登记 0）。】
   ① 上一层问法：107 道门里几道真被证明过能红？「门跑过」「门是绿的」都不算；证明 = 有夹具/自检/变异对照，
   喂它一个该红的输入并看它红。新建 `05-exec/r254_teeth_proof_matrix.py`（第 109 门）逐门判定证明形态
