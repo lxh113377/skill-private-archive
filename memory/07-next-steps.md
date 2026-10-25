@@ -566,6 +566,23 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   必须来自可复算的入口件，不接受「我跑过一次的脚本」当来源。
   取值：git show HEAD:<报告 rel> 与工作树 io.read 比对（长度/章节/数字三项）；
   python 05-exec/r221_dead_regex_scan.py --wide（现值 256 件/959 个/2 处）。
+- [ ] **R230-2（r230 登记，P1·已落地）** **第 4 层补齐 10/10：无读数面的工具也必须具名说明为什么；产物名从门表 argv 取，不猜**： 【r230 裁决=执行（第 4 层补齐 10/10：Pages 从门表 argv 取产物名登记为 MEASURED；五项具名「无读数面/缺凭据」理由；新增牙 r4）｜读数：MEASURED 4 项（Workers/D1/GitHub/Pages）、GAP_SERVICE 1 项（R2）、无读数面 5 项；牙 9/9 PASS；变异（拿掉 VS Code 理由）rc=1、还原 rc=0。】
+  一手：r229 第 4 层只覆盖 4/10，其余 6 项记「未量」——看着诚实，实际把「我还没查」包装成「查不到」，
+  而这两件事下一步完全不同。本轮逐个核实完，含糊态清零。
+  产物名正解 = 读权威源 run_gates.GATES 的 argv（face 脚本都走 --json 件，名字由门表定）：
+  pages_http_face → r200_pages_face.py → pages_http_latest.json（row.state）；r2_enable_face → r201 →
+  r2_enable_latest.json（state）；workers_quota → r199 → workers_quota_latest.json（row.state）；
+  quota_face → r196 → quota_face_latest.json（rows[tool].state）。⇒ 新登记 Pages = MEASURED。
+  无读数面五项具名理由：SQLite（本地嵌入库无平台额度面，用量由 r203_ledger_index 本地统计）/ VS Code
+  （编辑器本体无额度概念）/ Turnstile（该读数门 argv 不带 --json、不做额度读数）/ Resend 与 Upstash
+  （**有**月度额度但无凭据 ⇒ 读不到：属凭据缺口，不是没有读数面）—— 后两者的写法必须与 r228 的归因一致，
+  写成「无读数面」会自相矛盾。
+  新增牙 r4（每个入册工具必须要么登记读数面、要么具名说明无读数面；含糊态即红）9/9 PASS；变异实跑：
+  拿掉 VS Code 理由 ⇒ r4 FAIL rc=1，还原 rc=0。
+  第 4 层现状：MEASURED = Workers / D1 / GitHub / Pages；GAP_SERVICE = R2（读数面被卡）；无读数面 = 
+  SQLite / VS Code / Turnstile / Resend / Upstash。
+  元教训：含糊态不是安全区，是欠账 ——「未量」把「我没查」包装成「查不到」。
+  取值：python 05-exec/r215_free_tool_roster.py（md 第 4 层行）；产物名见 05-exec/run_gates.py 的 argv。
 - [ ] **R229-2（r229 登记，P1·已落地）** **第 4 层「读数型真调用」：把「能读」与「形态层看不见」同时摆出来；牙先咬住了我自己的解析器**： 【r229 裁决=执行（r215 增 READ_FACE 与第 4 层读数 + 三条牙 r1/r2/r3）｜读数：Workers MEASURED、D1 MEASURED、GitHub MEASURED、R2 GAP_SERVICE、其余 6 项未量；牙 8/8 PASS；两个变异（改错归因 rc=1、rows 行键写错被 r1 咬住）均实证。】
   一手：r228 给 Workers 的归因是「口径盲区」（真实用法走 GraphQL analytics 读调用数），但册子里没有
   任何一格把「它真的在读」记下来 ⇒ 读者看到的还是几个 0，归因只是文字说明。

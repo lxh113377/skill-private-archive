@@ -294,9 +294,16 @@
     }
    ],
    "blocker": null,
-   "read_state": null,
-   "read_face": null,
-   "read_why": "未登记读数面（未量）"
+   "read_state": "MEASURED",
+   "read_face": {
+    "script": "r200_pages_face.py",
+    "artifact": "pages_http_latest.json",
+    "path": [
+     "row",
+     "state"
+    ]
+   },
+   "read_why": null
   },
   {
    "tool": "Cloudflare-Workers",
@@ -404,7 +411,7 @@
    "blocker": null,
    "read_state": null,
    "read_face": null,
-   "read_why": "未登记读数面（未量）"
+   "read_why": "无读数面：本地嵌入库，无平台额度面 ⇒ 无读数面（用量由 r203_ledger_index 本地统计）"
   },
   {
    "tool": "VS Code",
@@ -433,7 +440,7 @@
    },
    "read_state": null,
    "read_face": null,
-   "read_why": "未登记读数面（未量）"
+   "read_why": "无读数面：编辑器本体，无平台额度概念 ⇒ 无读数面"
   },
   {
    "tool": "Cloudflare-Turnstile",
@@ -480,7 +487,7 @@
    "blocker": null,
    "read_state": null,
    "read_face": null,
-   "read_why": "未登记读数面（未量）"
+   "read_why": "无读数面：该读数门（r163_turnstile_face）的 argv 不带 --json、不做额度读数 ⇒ 无读数面"
   },
   {
    "tool": "Resend",
@@ -509,7 +516,7 @@
    "blocker": null,
    "read_state": null,
    "read_face": null,
-   "read_why": "未登记读数面（未量）"
+   "read_why": "无读数面：有月度额度（免费 3000 封）但无凭据 ⇒ 读不到：属凭据缺口，不是没有读数面"
   },
   {
    "tool": "Upstash-Redis",
@@ -538,7 +545,7 @@
    },
    "read_state": null,
    "read_face": null,
-   "read_why": "未登记读数面（未量）"
+   "read_why": "无读数面：有月度额度（免费 50 万命令）但无凭据 ⇒ 读不到：属凭据缺口，不是没有读数面"
   }
  ],
  "gates_reading": {

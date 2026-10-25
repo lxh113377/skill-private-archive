@@ -98,7 +98,8 @@
         命中所在件 = act_part1.py, act_part2.py, add_deploy_note.py, add_ledger109.py, add_rows95.py, add_rows95b.py, admin_contrast_test.py, admin_responsive_test.py, admin_script.js, admin_static_render_test.py, analytics.js, cf_builds.py, cf_check.py, cf_check2.py, cf_check3.py, cf_check4.py, check-catalog-facts.mjs, check-functions-build.mjs, check-live-shape.mjs, check_both_faces.py
     （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/265 件、真调用合计 89；
      ③ 取值：tool_skill_matrix_r226.json 的 third_face.per_tool，4130 件 / 2 仓 / 剪外来面 10 个）
-- 读数型真调用（第 4 层）：未量（未登记读数面（未量）；未量不等于 0）
+- 读数型真调用（第 4 层）：**MEASURED**（读得到数）
+    （取值：r200_pages_face.py --json pages_http_latest.json 的 row/state）
 - 守它的判据：163 + 92 + 93
 - 工作流触点：chaoshi-web-deploy 部署权威入口（direct_map 10 pattern，任务话术直连命中）
 - 触点在位核验（在位≠已接入）：chaoshi-web-deploy -> IN_SKILL_DESC
@@ -143,7 +144,7 @@
         命中所在件 = 0001_init.sql, 0002_admin.sql, [[path]].js, actionAuthz.test.js, backup-print-data.mjs, backupPrintData.test.js, backupRestore.test.js, catalogFacts.test.js, check-action-authz.mjs, check-d1-roundtrips.mjs, check-governance-framework.mjs, check-pii-inventory.mjs, check-schema-drift.mjs, ciWorkflow.test.ts, d1-quota.mjs, d1RoundTrips.test.js, metered-d1.mjs, migrate-ai-calls.sql, migrate-event-log.sql, migrate-promotions.sql
     （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/265 件、真调用合计 89；
      ③ 取值：tool_skill_matrix_r226.json 的 third_face.per_tool，4130 件 / 2 仓 / 剪外来面 10 个）
-- 读数型真调用（第 4 层）：未量（未登记读数面（未量）；未量不等于 0）
+- 读数型真调用（第 4 层）：无读数面 —— 本地嵌入库，无平台额度面 ⇒ （用量由 r203_ledger_index 本地统计）（无读数面 ≠ 0）
 - 守它的判据：163 + 85 + 93
 - 工作流触点：r203_ledger_index 用 SQLite 做门禁台账派生索引（读面与盲区均实测）
 - 触点在位核验（在位≠已接入）：r203_ledger_index（判据件） -> GATE_FILE_MENTIONS
@@ -161,7 +162,7 @@
      ③ 取值：tool_skill_matrix_r226.json 的 third_face.per_tool，4130 件 / 2 仓 / 剪外来面 10 个）
 - **零层归因：[未入尺]** 编辑器本体，不承载判据；第 67 门无该工具正则 ⇒ per_tool 无此键（未量，不等于零提到）
     （取值：python 05-exec/r163_tool_skill_matrix.py --json 件（per_tool 里无 VS Code 键））
-- 读数型真调用（第 4 层）：未量（未登记读数面（未量）；未量不等于 0）
+- 读数型真调用（第 4 层）：无读数面 —— 编辑器本体，无平台额度概念 ⇒ （无读数面 ≠ 0）
 - 守它的判据：163 + 93
 - 工作流触点：r163_free_tools_face 的 probe_vscode（which + 非 0 字节 + 真跑 --version）
 - 触点在位核验（在位≠已接入）：r163_free_tools_face（判据件） -> GATE_FILE_MENTIONS
@@ -181,7 +182,7 @@
         命中所在件 = backend.js, client.ts, errorSemantics.test.js
     （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/265 件、真调用合计 89；
      ③ 取值：tool_skill_matrix_r226.json 的 third_face.per_tool，4130 件 / 2 仓 / 剪外来面 10 个）
-- 读数型真调用（第 4 层）：未量（未登记读数面（未量）；未量不等于 0）
+- 读数型真调用（第 4 层）：无读数面 —— 该读数门（r163_turnstile_face）的 argv 不带 --json、不做额度读数 ⇒ （无读数面 ≠ 0）
 - 守它的判据：163 + 88 任务层(DISPUTED) + 93
 - 工作流触点：r163_turnstile_face 与 r163_turnstile_admin 曾全链接通，后按老大要求移除 = 决定而非待搭缺口
 - 触点在位核验（在位≠已接入）：r163_turnstile_admin（判据件） -> GATE_FILE_MENTIONS
@@ -201,7 +202,7 @@
     ③ 项目仓（第 67 门 r226 third_face，已剪 vendored 外来面）：0
     （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/265 件、真调用合计 89；
      ③ 取值：tool_skill_matrix_r226.json 的 third_face.per_tool，4130 件 / 2 仓 / 剪外来面 10 个）
-- 读数型真调用（第 4 层）：未量（未登记读数面（未量）；未量不等于 0）
+- 读数型真调用（第 4 层）：无读数面 —— 有月度额度（免费 3000 封）但无凭据 ⇒ 读不到：属凭据缺口，不是没有读数面（无读数面 ≠ 0）
 - 守它的判据：163 + 93
 - 工作流触点：r163_tool_skill_matrix 已把它列入零引用核查面；仅 HTTP API 无 CLI，凭据缺 ⇒ 尚未接入任何工作流
 - 触点在位核验（在位≠已接入）：r163_tool_skill_matrix（判据件） -> GATE_FILE_MENTIONS
@@ -221,7 +222,7 @@
      ③ 取值：tool_skill_matrix_r226.json 的 third_face.per_tool，4130 件 / 2 仓 / 剪外来面 10 个）
 - **零层归因：[外部凭据缺口]** 仅有 REST 无 CLI，且本机未配 UPSTASH_* 凭据 ⇒ 无法接入；这是凭据缺口，不是搭配意愿问题
     （取值：python 05-exec/r163_free_tools_face.py --json 06-benchmark/free_tools_latest.json（该工具 state=GAP_CRED））
-- 读数型真调用（第 4 层）：未量（未登记读数面（未量）；未量不等于 0）
+- 读数型真调用（第 4 层）：无读数面 —— 有月度额度（免费 50 万命令）但无凭据 ⇒ 读不到：属凭据缺口，不是没有读数面（无读数面 ≠ 0）
 - 守它的判据：163 + 93
 - 工作流触点：r163_tool_skill_matrix 报其零引用（唯一 ADVISORY 项）；仅 REST 无 CLI，凭据缺 ⇒ 未接入
 - 触点在位核验（在位≠已接入）：r163_tool_skill_matrix（判据件） -> GATE_FILE_MENTIONS

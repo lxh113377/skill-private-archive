@@ -120,6 +120,21 @@ READ_FACE = {
     'Cloudflare-R2': {'script': 'r201_r2_enable_face.py',
                       'artifact': 'r2_enable_latest.json',
                       'path': ['state']},
+    # r230：Pages 的产物名从权威源取（run_gates.GATES 的 argv），不猜：
+    #   pages_http_face → pages_http_latest.json（row.state）。
+    'Cloudflare-Pages': {'script': 'r200_pages_face.py',
+                         'artifact': 'pages_http_latest.json',
+                         'path': ['row', 'state']},
+}
+
+# r230：无读数面的工具 —— 逐个核实后**具名说明为什么没有**，不留「未量」这种含糊态。
+#   与 READ_FACE 的关系：两者必须覆盖全部入册工具（牙 r4 锁死），否则说明我没逐个核实。
+NO_READ_FACE = {
+    'VS Code': '编辑器本体，无平台额度概念 ⇒ 无读数面',
+    'SQLite': '本地嵌入库，无平台额度面 ⇒ 无读数面（用量由 r203_ledger_index 本地统计）',
+    'Cloudflare-Turnstile': '该读数门（r163_turnstile_face）的 argv 不带 --json、不做额度读数 ⇒ 无读数面',
+    'Resend': '有月度额度（免费 3000 封）但无凭据 ⇒ 读不到：属凭据缺口，不是没有读数面',
+    'Upstash-Redis': '有月度额度（免费 50 万命令）但无凭据 ⇒ 读不到：属凭据缺口，不是没有读数面',
 }
 READ_STATES = ('MEASURED', 'PARTIAL', 'GAP_SERVICE', 'GAP_CRED', 'GAP_PLATFORM', 'UNVERIFIED')
 
@@ -131,7 +146,8 @@ def read_face_state(tool):
     """
     spec = READ_FACE.get(tool)
     if not spec:
-        return None, None, '未登记读数面（未量）'
+        why = NO_READ_FACE.get(tool)
+        return None, None, ('无读数面：' + why) if why else '未登记读数面（未量：我还没核实）'
     fp = os.path.join(B, spec['artifact'])
     if not os.path.isfile(fp):
         return None, spec, '产物缺失：' + spec['artifact']
@@ -379,7 +395,8 @@ def render_md(doc):
             L.append('    （取值：%s --json %s 的 %s）' % (
                 rf.get('script'), rf.get('artifact'), '/'.join(rf.get('path') or [])))
         else:
-            L.append('- 读数型真调用（第 4 层）：未量（%s；未量不等于 0）' % (it.get('read_why') or '未登记读数面'))
+            _w = (it.get('read_why') or '未登记读数面').replace('无读数面：', '').replace('无读数面', '')
+            L.append('- 读数型真调用（第 4 层）：无读数面 —— %s（无读数面 ≠ 0）' % (_w or '未登记读数面'))
         L.append('- 守它的判据：' + it['gates'])
         L.append('- 工作流触点：' + it['touchpoint'])
         cs = it.get('claims') or []
@@ -470,6 +487,13 @@ def main(argv=None):
                 bad_pair.append('%s(读数=MEASURED, 归因=%s)' % (it['tool'], it['blocker'].get('class')))
     teeth_r.append(('r3_measured_state_vs_blocker_class', not bad_pair,
                     '读数MEASURED但归因非口径盲区的工具=%s（期望空）' % bad_pair))
+    # 牙 r4（r230）：第 4 层必须**逐个工具**都有交代 —— 要么登记了读数面，要么具名说明无读数面；
+    #   「未量」这种含糊态一律算红（它正是 r229 留下的尾巴：6 项没核实就记未量）。
+    teeth_n = []
+    unclear = [it['tool'] for it in doc['items']
+               if not READ_FACE.get(it['tool']) and not NO_READ_FACE.get(it['tool'])]
+    teeth_n.append(('r4_every_tool_has_read_face_or_reason', not unclear,
+                    '既无读数面也无具名理由的工具=%s（期望空：含糊态即红）' % unclear))
     teeth = []
     third_present = doc['gates_reading'].get('third_src', {}).get('files_scanned') is not None
     bad_third = [it['tool'] for it in doc['items']
@@ -482,7 +506,7 @@ def main(argv=None):
               and (wfmap.get(it['tool']) or {}).get('state') not in ('NO_PATTERN', None)]
     teeth.append(('workflow_none_only_when_no_pattern', not bad_wf,
                   'wf=None 但 state 不是 NO_PATTERN 的工具=%s（期望空）' % bad_wf))
-    for n, ok, d_ in teeth + teeth_b + teeth_r:
+    for n, ok, d_ in teeth + teeth_b + teeth_r + teeth_n:
         print('%s %-38s %s' % ('PASS' if ok else 'FAIL', n, d_))
         if not ok:
             print('[ROSTER:TEETH-FAIL] 三层语义不自洽 ⇒ 不出册（禁把不自洽的册子当交付）')
