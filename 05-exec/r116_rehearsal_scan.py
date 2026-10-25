@@ -2,7 +2,7 @@
 """r116: 定稿候选的本地侧复核（离线，零网络）——数据源=已入库的 upstream_evidence 快照。
 
 判据与 C1-C6 的对应关系（本件只算**可用本地证据算的**那几条，缺证据的显式写 UNVERIFIED）：
-  C1 分支齐全（真 skill 仓）：由 r114 矩阵 skill_md_n>0 给出
+  C1 分支齐全（真 skill 仓）：由 r114 矩阵的严格口径 skill_md_exact_n>0 给出（r226 起；旧字段 skill_md_n 仍并列入产物）
   C2 本地文件齐备：本地 SKILL.md + references 目录（引用可达性的静态前置）
   C3 协议面：本地 license / 上游 license 需人工+网络裁决 => 本件写 UNVERIFIED（不假装算过）
   C4 快照新鲜度：上游快照 last_commit_date 距今 <= 365 天
@@ -68,9 +68,12 @@ def main():
             txt = raw.decode('utf-8-sig')
             rec['local_sha256'] = hashlib.sha256(raw).hexdigest()
             rec['local_bytes'] = len(raw)
-            # C1 真 skill 仓（矩阵 skill_md_n>0）
+            # C1 真 skill 仓（矩阵 skill_md_exact_n>0；r226 起严格口径，旧件缺 exact 时回退 skill_md_n）
             cands = [c for c in (mr.get('candidates') or []) if c.get('repo') == r.get('upstream_repo')]
-            rec['c1_skill_repo'] = bool(cands and (cands[0].get('skill_md_n') or 0) > 0) if cands else None
+            _e = cands[0].get('skill_md_exact_n') if cands else None
+            _v = _e if _e is not None else (cands[0].get('skill_md_n') if cands else None)
+            rec['c1_skill_repo'] = bool(cands and (_v or 0) > 0) if cands else None
+            rec['c1_caliber'] = ('strict' if _e is not None else 'legacy_fallback') if cands else None
             # 快照
             p = ev_path(slug, r.get('upstream_repo') or '')
             rec['evidence_path'] = os.path.relpath(p, ROOT) if os.path.exists(p) else None
@@ -119,7 +122,7 @@ def main():
         'schema': 'rehearsal-r116-v1',
         'generated_at': now.isoformat(timespec='seconds'),
         'ruler': {
-            'C1': '真 skill 仓（r114 矩阵 skill_md_n>0）',
+            'C1': '真 skill 仓（r114 矩阵 skill_md_exact_n>0）',
             'C2': '本地文件齐备（SKILL.md 存在）',
             'C3': 'license 合规 —— UNVERIFIED（需网络+人工，本件不假装算过）',
             'C4': '上游快照 last_commit_date 距今 <= 365 天',

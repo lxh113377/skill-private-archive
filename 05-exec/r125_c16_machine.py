@@ -65,7 +65,12 @@ def main(argv=None):
         top3 = ranked[:3]
         best_pass = None
         for c in top3:   # 判读范围 = top3（迁移方案 §R114-1 原文），出界不看
-            c1 = (c.get("skill_md_n") or 0) > 0
+            # r226：C1 改判严格口径（路径末段正好是 skill.md）。
+            # 原判据 endswith("skill.md") 会把 docs/…/xxx-skill.md 这类文档计成技能入口，
+            # 实测曾让一篇发布文章（Snailclimb/JavaGuide 的 drawio-chart-skill.md）成为某行的 C1 依据。
+            # 旧值仍原样入产物（c1_skill_md_n / c1_skill_md_exact_n 并列），历史件可复算。
+            _sm_exact = c.get("skill_md_exact_n")
+            c1 = ((_sm_exact if _sm_exact is not None else c.get("skill_md_n")) or 0) > 0
             lic = (c.get("license") or "").lower()
             c3 = lic not in ("", "unlicensed", "unknown", "other", "none") and "agpl" not in lic
             pa = c.get("pushed_at") or ""
@@ -76,7 +81,10 @@ def main(argv=None):
                 c4 = False
             rec = {"slug": row["slug"], "repo": c.get("repo"),
                    "score_total": c.get("score_total"),
-                   "c1_skill_md_n": c.get("skill_md_n"), "c3_license": c.get("license"),
+                   "c1_skill_md_n": c.get("skill_md_n"),
+            "c1_skill_md_exact_n": c.get("skill_md_exact_n"),
+            "c1_caliber": "strict" if c.get("skill_md_exact_n") is not None else "legacy_fallback",
+            "c3_license": c.get("license"),
                    "c4_pushed_at": pa,
                    "c1": c1, "c3": c3, "c4": c4}
             if c1 and c3 and c4:
@@ -89,7 +97,7 @@ def main(argv=None):
             # 全被机器腿挡 ⇒ 挡路条按**分数最高候选**（ranked[0]）记，与 picked 同源
             c = ranked[0] if ranked else {}
             blocked = []
-            if not (c.get("skill_md_n") or 0) > 0: blocked.append("C1")
+            if not ((c.get("skill_md_exact_n") if c.get("skill_md_exact_n") is not None else c.get("skill_md_n")) or 0) > 0: blocked.append("C1")
             lic = (c.get("license") or "").lower()
             if lic in ("", "unlicensed", "unknown", "other", "none") or "agpl" in lic: blocked.append("C3")
             pa = c.get("pushed_at") or ""
@@ -98,7 +106,7 @@ def main(argv=None):
                 if (now - pd).days > 365: blocked.append("C4")
             except ValueError:
                 blocked.append("C4")
-            if any((x.get("skill_md_n") or 0) > 0 for x in ranked[3:]):
+            if any(((x.get("skill_md_exact_n") if x.get("skill_md_exact_n") is not None else x.get("skill_md_n")) or 0) > 0 for x in ranked[3:]):
                 stats["blocked_top3_but_pool_has_skill"] = stats.get("blocked_top3_but_pool_has_skill", 0) + 1
             stats["c1_fail"] += blocked.count("C1")
             stats["c3_fail"] += blocked.count("C3")

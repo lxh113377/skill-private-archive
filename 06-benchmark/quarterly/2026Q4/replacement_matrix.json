@@ -1,6 +1,6 @@
 {
  "schema": "replacement-matrix-r114-v1",
- "generated_at": "2026-10-25T07:08:11+00:00",
+ "generated_at": "2026-10-25T07:39:31+00:00",
  "cmd": "python 05-exec/r114_replacement_scan.py",
  "face": {
   "local_n": 191,
@@ -273,6 +273,7 @@
      "repo": "rlaope/oh-my-hermes",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -297,6 +298,7 @@
      "repo": "Devin-AXIS/iPolloWork",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -321,6 +323,7 @@
      "repo": "lennney/stop-that-shit",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -364,6 +367,7 @@
      "repo": "Egonex-AI/Understand-Anything",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 3,
@@ -388,6 +392,7 @@
      "repo": "career-ops-hq/career-ops",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -412,6 +417,7 @@
      "repo": "trimstray/test-your-sysadmin-skills",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 0,
       "eff": 0,
@@ -461,6 +467,7 @@
      "repo": "ruvnet/ruflo",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -485,6 +492,7 @@
      "repo": "langgenius/dify",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -509,6 +517,7 @@
      "repo": "NVIDIA/SkillSpector",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -533,6 +542,7 @@
      "repo": "activepieces/activepieces",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -557,6 +567,7 @@
      "repo": "eigent-ai/eigent",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -604,6 +615,7 @@
      "repo": "mksglu/context-mode",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -628,6 +640,7 @@
      "repo": "muratcankoylan/Agent-Skills-for-Context-Engineering",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 2,
@@ -652,6 +665,7 @@
      "repo": "TencentCloud/TencentDB-Agent-Memory",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -676,6 +690,7 @@
      "repo": "affaan-m/ECC",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -700,6 +715,7 @@
      "repo": "ruvnet/ruflo",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -749,14 +765,15 @@
      "repo": "Snailclimb/JavaGuide",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
-      "fc": 2,
+      "fc": 1,
       "eff": 1,
-      "compat": 5,
+      "compat": 3,
       "docs": 5,
       "community": 5
      },
-     "score_total": 18,
+     "score_total": 15,
      "stars": 159237,
      "pushed_at": "2026-10-16",
      "license": "Apache-2.0",
@@ -773,6 +790,7 @@
      "repo": "SeleniumHQ/selenium",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 1,
       "eff": 5,
@@ -797,6 +815,7 @@
      "repo": "ComposioHQ/awesome-claude-skills",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 1,
@@ -821,6 +840,7 @@
      "repo": "HKUSTDial/Supervisor-Skills",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 1,
@@ -845,6 +865,7 @@
      "repo": "hesreallyhim/awesome-claude-code",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 1,
       "eff": 3,
@@ -888,6 +909,7 @@
      "repo": "mksglu/context-mode",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -912,6 +934,7 @@
      "repo": "muratcankoylan/Agent-Skills-for-Context-Engineering",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 2,
@@ -936,6 +959,7 @@
      "repo": "TencentCloud/TencentDB-Agent-Memory",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -960,6 +984,7 @@
      "repo": "affaan-m/ECC",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -984,6 +1009,7 @@
      "repo": "ruvnet/ruflo",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -1033,6 +1059,7 @@
      "repo": "latent-spaces/brag",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -1057,6 +1084,7 @@
      "repo": "nicobailon/visual-explainer",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -1081,6 +1109,7 @@
      "repo": "affaan-m/ECC",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -1105,6 +1134,7 @@
      "repo": "nexu-io/open-design",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -1129,6 +1159,7 @@
      "repo": "ruvnet/ruflo",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -1178,6 +1209,7 @@
      "repo": "mksglu/context-mode",
      "rel": "skill",
      "rel_strength": 21,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -1202,6 +1234,7 @@
      "repo": "muratcankoylan/Agent-Skills-for-Context-Engineering",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 2,
@@ -1226,6 +1259,7 @@
      "repo": "TencentCloud/TencentDB-Agent-Memory",
      "rel": "skill",
      "rel_strength": 21,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -1250,6 +1284,7 @@
      "repo": "affaan-m/ECC",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -1274,6 +1309,7 @@
      "repo": "ruvnet/ruflo",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -1317,6 +1353,7 @@
      "repo": "nidhinjs/prompt-master",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -1341,6 +1378,7 @@
      "repo": "code-yeongyu/oh-my-openagent",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -1365,6 +1403,7 @@
      "repo": "JuliusBrussee/caveman",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -1389,6 +1428,7 @@
      "repo": "Imbad0202/academic-research-skills",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -1413,6 +1453,7 @@
      "repo": "NVIDIA/SkillSpector",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -1459,6 +1500,7 @@
      "repo": "affaan-m/ECC",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -1483,6 +1525,7 @@
      "repo": "ruvnet/ruflo",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -1507,6 +1550,7 @@
      "repo": "thedotmack/claude-mem",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -1531,6 +1575,7 @@
      "repo": "volcengine/OpenViking",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -1555,6 +1600,7 @@
      "repo": "topoteretes/cognee",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -1597,6 +1643,7 @@
      "repo": "affaan-m/ECC",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -1621,6 +1668,7 @@
      "repo": "morluto/rea",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -1645,6 +1693,7 @@
      "repo": "NousResearch/hermes-agent",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -1669,6 +1718,7 @@
      "repo": "langgenius/dify",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -1693,6 +1743,7 @@
      "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -1745,6 +1796,7 @@
      "repo": "browser-act/skills",
      "rel": "skill",
      "rel_strength": 21,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 1,
@@ -1769,6 +1821,7 @@
      "repo": "vercel-labs/agent-browser",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 3,
@@ -1793,6 +1846,7 @@
      "repo": "browser-use/browser-harness",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 2,
@@ -1817,6 +1871,7 @@
      "repo": "mxschmitt/playwright-go",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 4,
@@ -1841,6 +1896,7 @@
      "repo": "SawyerHood/dev-browser",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -1886,6 +1942,7 @@
      "repo": "Vincentwei1021/video-shotcraft",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -1910,6 +1967,7 @@
      "repo": "cclank/lanshu-awesome-ai-video-kit",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 1,
@@ -1934,6 +1992,7 @@
      "repo": "EGSECDA/vocaloid-style-mv-pipeline",
      "rel": "skill",
      "rel_strength": 31,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -1958,6 +2017,7 @@
      "repo": "feicaiclub/video-spec-builder",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -1982,6 +2042,7 @@
      "repo": "sunxiayi/make-blender-education-video-skill",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -2037,6 +2098,7 @@
      "repo": "scenario-labs/skills",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -2061,6 +2123,7 @@
      "repo": "Leonxlnx/taste-skill",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -2085,6 +2148,7 @@
      "repo": "tizzy916/humanities-writing-companion",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -2109,6 +2173,7 @@
      "repo": "nexu-io/open-design",
      "rel": "skill",
      "rel_strength": 3,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -2133,6 +2198,7 @@
      "repo": "krillinai/OpenCreator",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -2181,6 +2247,7 @@
      "repo": "EGSECDA/vocaloid-style-mv-pipeline",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -2205,6 +2272,7 @@
      "repo": "scenario-labs/skills",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -2229,6 +2297,7 @@
      "repo": "wiltodelta/remove-ai-watermarks",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 4,
@@ -2253,6 +2322,7 @@
      "repo": "LnYo-Cly/ai4j",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -2277,6 +2347,7 @@
      "repo": "equalang/equalang-skill",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 1,
@@ -2326,6 +2397,7 @@
      "repo": "cloudflare/security-audit-skill",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -2350,6 +2422,7 @@
      "repo": "JuliusBrussee/caveman",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -2374,6 +2447,7 @@
      "repo": "muratcankoylan/Agent-Skills-for-Context-Engineering",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 2,
@@ -2398,6 +2472,7 @@
      "repo": "webdriverio/webdriverio",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -2422,6 +2497,7 @@
      "repo": "DeusData/codebase-memory-mcp",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 1,
       "eff": 5,
@@ -2466,6 +2542,7 @@
      "repo": "wanshuiyin/Auto-claude-code-research-in-sleep",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 4,
@@ -2490,6 +2567,7 @@
      "repo": "EverMind-AI/EverOS",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -2514,6 +2592,7 @@
      "repo": "genspark-ai/genoffice",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -2538,6 +2617,7 @@
      "repo": "OthmanAdi/planning-with-files",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -2562,6 +2642,7 @@
      "repo": "AgriciDaniel/claude-obsidian",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -2611,6 +2692,7 @@
      "repo": "EL4CTEO/blender-skills",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -2635,6 +2717,7 @@
      "repo": "sixtysevenlf/dsh-blender-plugin",
      "rel": "skill",
      "rel_strength": 21,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -2659,6 +2742,7 @@
      "repo": "RobLe3/cc-blender-skill",
      "rel": "skill",
      "rel_strength": 21,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 1,
@@ -2683,6 +2767,7 @@
      "repo": "arjun988/blender-skills",
      "rel": "skill",
      "rel_strength": 30,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 0,
@@ -2707,6 +2792,7 @@
      "repo": "icesixgod/awesome-astra-blender-characters",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -2756,6 +2842,7 @@
      "repo": "obra/superpowers",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 2,
@@ -2780,6 +2867,7 @@
      "repo": "nexu-io/open-design",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -2804,6 +2892,7 @@
      "repo": "ruvnet/ruflo",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -2828,6 +2917,7 @@
      "repo": "affaan-m/ECC",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -2852,6 +2942,7 @@
      "repo": "paperclipai/paperclip",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -2901,6 +2992,7 @@
      "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -2925,6 +3017,7 @@
      "repo": "luongnv89/claude-howto",
      "rel": "skill",
      "rel_strength": 3,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -2949,6 +3042,7 @@
      "repo": "muratcankoylan/Agent-Skills-for-Context-Engineering",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 2,
@@ -2973,6 +3067,7 @@
      "repo": "asgeirtj/system_prompts_leaks",
      "rel": "skill",
      "rel_strength": 3,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 0,
@@ -2997,6 +3092,7 @@
      "repo": "Donchitos/Claude-Code-Game-Studios",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 0,
@@ -3057,6 +3153,7 @@
      "repo": "Manavarya09/design-extract",
      "rel": "skill",
      "rel_strength": 23,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -3081,6 +3178,7 @@
      "repo": "webdriverio/webdriverio",
      "rel": "skill",
      "rel_strength": 23,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -3105,6 +3203,7 @@
      "repo": "GargantuaX/gemini-watermark-remover",
      "rel": "skill",
      "rel_strength": 23,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 4,
@@ -3129,6 +3228,7 @@
      "repo": "browser-use/browser-harness",
      "rel": "skill",
      "rel_strength": 34,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 2,
@@ -3153,6 +3253,7 @@
      "repo": "mxschmitt/playwright-go",
      "rel": "skill",
      "rel_strength": 31,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 4,
@@ -3208,6 +3309,7 @@
      "repo": "siddsachar/row-bot",
      "rel": "skill",
      "rel_strength": 21,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -3232,6 +3334,7 @@
      "repo": "browser-act/skills",
      "rel": "skill",
      "rel_strength": 21,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 1,
@@ -3256,6 +3359,7 @@
      "repo": "vercel-labs/agent-browser",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 3,
@@ -3280,6 +3384,7 @@
      "repo": "browser-use/browser-harness",
      "rel": "skill",
      "rel_strength": 21,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 2,
@@ -3304,6 +3409,7 @@
      "repo": "zenbu-labs/terminal-browser",
      "rel": "skill",
      "rel_strength": 21,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -3353,6 +3459,7 @@
      "repo": "langgenius/dify",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -3374,33 +3481,10 @@
      "description": "Build Agentic workflows, RAG pipelines, with rich AI model and tool support on one collaborative workspace. Deploy on cloud, VPC, or self-hosted, so t"
     },
     {
-     "repo": "ModelEngine-Group/nexent",
-     "rel": "skill",
-     "rel_strength": 2,
-     "score5": {
-      "fc": 4,
-      "eff": 5,
-      "compat": 5,
-      "docs": 3,
-      "community": 3
-     },
-     "score_total": 20,
-     "stars": 6031,
-     "pushed_at": "2026-10-24",
-     "license": "MIT",
-     "archived": false,
-     "skill_md_n": 11,
-     "skill_md_exact_n": 10,
-     "skill_md_ghost_n": 1,
-     "docs_md_n": 2,
-     "test_path_n": 1081,
-     "workflow_n": 20,
-     "description": "Nexent is a zero-code platform for auto-generating production-grade AI agents using Harness Engineering principles — unified tools, skills, memory, an"
-    },
-    {
      "repo": "farion1231/cc-switch",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 1,
       "eff": 5,
@@ -3422,9 +3506,35 @@
      "description": "A cross-platform desktop All-in-One assistant for Claude Code, Codex, OpenCode, OpenClaw, Grok Build & Hermes Agent. Only official website: ccswitch.i"
     },
     {
+     "repo": "ModelEngine-Group/nexent",
+     "rel": "skill",
+     "rel_strength": 2,
+     "fc_caliber": "strict",
+     "score5": {
+      "fc": 3,
+      "eff": 5,
+      "compat": 5,
+      "docs": 3,
+      "community": 3
+     },
+     "score_total": 19,
+     "stars": 6031,
+     "pushed_at": "2026-10-24",
+     "license": "MIT",
+     "archived": false,
+     "skill_md_n": 11,
+     "skill_md_exact_n": 10,
+     "skill_md_ghost_n": 1,
+     "docs_md_n": 2,
+     "test_path_n": 1081,
+     "workflow_n": 20,
+     "description": "Nexent is a zero-code platform for auto-generating production-grade AI agents using Harness Engineering principles — unified tools, skills, memory, an"
+    },
+    {
      "repo": "browser-act/skills",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 1,
@@ -3449,6 +3559,7 @@
      "repo": "glitternetwork/pinme",
      "rel": "skill",
      "rel_strength": 5,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 3,
@@ -3498,6 +3609,7 @@
      "repo": "nexu-io/open-design",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -3522,6 +3634,7 @@
      "repo": "scenario-labs/skills",
      "rel": "skill",
      "rel_strength": 4,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -3546,6 +3659,7 @@
      "repo": "krillinai/OpenCreator",
      "rel": "skill",
      "rel_strength": 3,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -3570,6 +3684,7 @@
      "repo": "wiltodelta/remove-ai-watermarks",
      "rel": "skill",
      "rel_strength": 4,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 4,
@@ -3594,6 +3709,7 @@
      "repo": "zenstory-ai/drama-skills",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -3643,6 +3759,7 @@
      "repo": "krillinai/OpenCreator",
      "rel": "skill",
      "rel_strength": 23,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -3667,6 +3784,7 @@
      "repo": "scenario-labs/skills",
      "rel": "skill",
      "rel_strength": 23,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -3691,6 +3809,7 @@
      "repo": "wiltodelta/remove-ai-watermarks",
      "rel": "skill",
      "rel_strength": 22,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 4,
@@ -3715,6 +3834,7 @@
      "repo": "Vincentwei1021/video-shotcraft",
      "rel": "skill",
      "rel_strength": 41,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -3739,6 +3859,7 @@
      "repo": "cclank/lanshu-awesome-ai-video-kit",
      "rel": "skill",
      "rel_strength": 40,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 1,
@@ -3788,6 +3909,7 @@
      "repo": "krillinai/OpenCreator",
      "rel": "skill",
      "rel_strength": 24,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -3812,6 +3934,7 @@
      "repo": "scenario-labs/skills",
      "rel": "skill",
      "rel_strength": 24,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -3836,6 +3959,7 @@
      "repo": "calesthio/OpenMontage",
      "rel": "skill",
      "rel_strength": 21,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 3,
@@ -3860,6 +3984,7 @@
      "repo": "wiltodelta/remove-ai-watermarks",
      "rel": "skill",
      "rel_strength": 23,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 4,
@@ -3884,6 +4009,7 @@
      "repo": "img2threejs/img2threejs",
      "rel": "skill",
      "rel_strength": 22,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 4,
@@ -3928,6 +4054,7 @@
      "repo": "OrchestratorInc/agent-orchestrator",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 4,
@@ -3952,6 +4079,7 @@
      "repo": "parcadei/Continuous-Claude-v3",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 2,
@@ -3976,6 +4104,7 @@
      "repo": "xpf0000/FlyEnv",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -4000,6 +4129,7 @@
      "repo": "CursorTouch/Windows-MCP",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -4024,6 +4154,7 @@
      "repo": "sixtysevenlf/dsh-blender-plugin",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -4073,6 +4204,7 @@
      "repo": "nexu-io/open-design",
      "rel": "skill",
      "rel_strength": 22,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -4097,6 +4229,7 @@
      "repo": "Manavarya09/design-extract",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -4121,6 +4254,7 @@
      "repo": "cathrynlavery/diagram-design",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -4145,6 +4279,7 @@
      "repo": "kaankiziltug/logo-design-skill",
      "rel": "skill",
      "rel_strength": 21,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -4169,6 +4304,7 @@
      "repo": "alchaincyf/huashu-design",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 1,
@@ -4217,6 +4353,7 @@
      "repo": "ruvnet/ruflo",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -4241,6 +4378,7 @@
      "repo": "K-Dense-AI/scientific-agent-skills",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -4265,6 +4403,7 @@
      "repo": "langgenius/dify",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -4289,6 +4428,7 @@
      "repo": "volcengine/OpenViking",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -4313,6 +4453,7 @@
      "repo": "Graphify-Labs/graphify",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 5,
@@ -4362,6 +4503,7 @@
      "repo": "ruvnet/ruflo",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -4386,6 +4528,7 @@
      "repo": "langgenius/dify",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -4410,6 +4553,7 @@
      "repo": "Leonxlnx/taste-skill",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -4434,6 +4578,7 @@
      "repo": "homarr-labs/dashboard-icons",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 1,
       "eff": 4,
@@ -4458,6 +4603,7 @@
      "repo": "level09/enferno",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -4507,6 +4653,7 @@
      "repo": "ruvnet/ruflo",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -4531,6 +4678,7 @@
      "repo": "langgenius/dify",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -4555,6 +4703,7 @@
      "repo": "iflytek/skillhub",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -4579,6 +4728,7 @@
      "repo": "agentscope-ai/QwenPaw",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -4603,6 +4753,7 @@
      "repo": "glitternetwork/pinme",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 3,
@@ -4652,6 +4803,7 @@
      "repo": "cathrynlavery/diagram-design",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -4676,6 +4828,7 @@
      "repo": "viettranx/3dviz-pro-max",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -4700,6 +4853,7 @@
      "repo": "k-telux/OpticalModeler",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 2,
@@ -4724,6 +4878,7 @@
      "repo": "larashero3-dotcom/lieflat-charts",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -4748,6 +4903,7 @@
      "repo": "markdown-viewer/skills",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -4797,6 +4953,7 @@
      "repo": "Imbad0202/academic-research-skills",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -4821,6 +4978,7 @@
      "repo": "muratcankoylan/Agent-Skills-for-Context-Engineering",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 2,
@@ -4845,6 +5003,7 @@
      "repo": "JuliusBrussee/caveman",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -4869,6 +5028,7 @@
      "repo": "Leonxlnx/taste-skill",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -4893,6 +5053,7 @@
      "repo": "Agents365-ai/drawio-skill",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -4942,6 +5103,7 @@
      "repo": "ruvnet/ruflo",
      "rel": "skill",
      "rel_strength": 4,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -4966,6 +5128,7 @@
      "repo": "langgenius/dify",
      "rel": "skill",
      "rel_strength": 9,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -4990,6 +5153,7 @@
      "repo": "webiny/webiny-js",
      "rel": "skill",
      "rel_strength": 4,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -5014,6 +5178,7 @@
      "repo": "t8y2/dbx",
      "rel": "skill",
      "rel_strength": 4,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 5,
@@ -5038,6 +5203,7 @@
      "repo": "siteboon/claudecodeui",
      "rel": "skill",
      "rel_strength": 3,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 5,
@@ -5083,6 +5249,7 @@
      "repo": "t8y2/dbx",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 5,
@@ -5107,6 +5274,7 @@
      "repo": "ruvnet/ruflo",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -5131,6 +5299,7 @@
      "repo": "K-Dense-AI/scientific-agent-skills",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -5155,6 +5324,7 @@
      "repo": "langgenius/dify",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -5179,6 +5349,7 @@
      "repo": "volcengine/OpenViking",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -5228,6 +5399,7 @@
      "repo": "code-yeongyu/oh-my-openagent",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -5252,6 +5424,7 @@
      "repo": "CherryHQ/cherry-studio",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -5276,6 +5449,7 @@
      "repo": "wanshuiyin/Auto-claude-code-research-in-sleep",
      "rel": "skill",
      "rel_strength": 30,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 4,
@@ -5300,6 +5474,7 @@
      "repo": "Imbad0202/academic-research-skills",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -5324,6 +5499,7 @@
      "repo": "tirth8205/code-review-graph",
      "rel": "skill",
      "rel_strength": 40,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -5368,6 +5544,7 @@
      "repo": "CherryHQ/cherry-studio",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -5392,6 +5569,7 @@
      "repo": "iOfficeAI/AionUi",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -5416,6 +5594,7 @@
      "repo": "agentscope-ai/QwenPaw",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -5440,6 +5619,7 @@
      "repo": "googleworkspace/cli",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 2,
@@ -5464,6 +5644,7 @@
      "repo": "TencentCloud/TencentDB-Agent-Memory",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -5519,6 +5700,7 @@
      "repo": "Gentleman-Programming/engram",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -5543,6 +5725,7 @@
      "repo": "metalbear-co/mirrord",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -5567,6 +5750,7 @@
      "repo": "zgsm-ai/costrict",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -5591,6 +5775,7 @@
      "repo": "google/agents-cli",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -5615,6 +5800,7 @@
      "repo": "xpf0000/FlyEnv",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -5658,6 +5844,7 @@
      "repo": "affaan-m/ECC",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -5682,6 +5869,7 @@
      "repo": "morluto/rea",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -5706,6 +5894,7 @@
      "repo": "NousResearch/hermes-agent",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -5730,6 +5919,7 @@
      "repo": "langgenius/dify",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -5754,6 +5944,7 @@
      "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -5803,6 +5994,7 @@
      "repo": "virgiliojr94/book-to-skill",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -5827,6 +6019,7 @@
      "repo": "PleasePrompto/notebooklm-skill",
      "rel": "skill",
      "rel_strength": 12,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -5851,6 +6044,7 @@
      "repo": "nexu-io/open-design",
      "rel": "skill",
      "rel_strength": 3,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -5875,6 +6069,7 @@
      "repo": "yusufkaraaslan/Skill_Seekers",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -5899,6 +6094,7 @@
      "repo": "genspark-ai/genoffice",
      "rel": "skill",
      "rel_strength": 4,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -5948,6 +6144,7 @@
      "repo": "Imbad0202/academic-research-skills",
      "rel": "skill",
      "rel_strength": 3,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -5972,6 +6169,7 @@
      "repo": "wanshuiyin/Auto-claude-code-research-in-sleep",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 4,
@@ -5996,6 +6194,7 @@
      "repo": "OthmanAdi/planning-with-files",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -6020,6 +6219,7 @@
      "repo": "virgiliojr94/book-to-skill",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -6044,6 +6244,7 @@
      "repo": "conorbronsdon/avoid-ai-writing",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 2,
@@ -6093,6 +6294,7 @@
      "repo": "wanshuiyin/Auto-claude-code-research-in-sleep",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 4,
@@ -6117,6 +6319,7 @@
      "repo": "topoteretes/cognee",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -6141,6 +6344,7 @@
      "repo": "MemTensor/MemOS",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -6165,6 +6369,7 @@
      "repo": "kubesphere/kubesphere",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -6189,6 +6394,7 @@
      "repo": "alibaba/nacos",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 5,
@@ -6238,6 +6444,7 @@
      "repo": "OpenSenseNova/SenseNova-Skills",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 2,
@@ -6262,6 +6469,7 @@
      "repo": "yusufkaraaslan/Skill_Seekers",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -6286,6 +6494,7 @@
      "repo": "Graphify-Labs/graphify",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 5,
@@ -6310,6 +6519,7 @@
      "repo": "xberg-io/xberg",
      "rel": "skill",
      "rel_strength": 12,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -6334,6 +6544,7 @@
      "repo": "nicobailon/visual-explainer",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -6383,6 +6594,7 @@
      "repo": "cathrynlavery/diagram-design",
      "rel": "skill",
      "rel_strength": 21,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -6407,6 +6619,7 @@
      "repo": "markdown-viewer/skills",
      "rel": "skill",
      "rel_strength": 22,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -6431,6 +6644,7 @@
      "repo": "Gabberflast/academic-pptx-skill",
      "rel": "skill",
      "rel_strength": 22,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -6455,6 +6669,7 @@
      "repo": "larashero3-dotcom/lieflat-charts",
      "rel": "skill",
      "rel_strength": 21,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -6479,6 +6694,7 @@
      "repo": "Akxan/ppt-agent-skill",
      "rel": "skill",
      "rel_strength": 23,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 1,
@@ -6534,6 +6750,7 @@
      "repo": "muratcankoylan/Agent-Skills-for-Context-Engineering",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 2,
@@ -6558,6 +6775,7 @@
      "repo": "ruvnet/ruflo",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -6582,6 +6800,7 @@
      "repo": "morluto/rea",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -6606,6 +6825,7 @@
      "repo": "JuliusBrussee/caveman",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -6630,6 +6850,7 @@
      "repo": "rtk-ai/rtk",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -6685,6 +6906,7 @@
      "repo": "kepano/obsidian-skills",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 0,
@@ -6709,6 +6931,7 @@
      "repo": "wanshuiyin/Auto-claude-code-research-in-sleep",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 4,
@@ -6733,6 +6956,7 @@
      "repo": "coreyhaines31/marketingskills",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -6757,6 +6981,7 @@
      "repo": "EverMind-AI/EverOS",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -6781,6 +7006,7 @@
      "repo": "genspark-ai/genoffice",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -6830,6 +7056,7 @@
      "repo": "cathrynlavery/diagram-design",
      "rel": "skill",
      "rel_strength": 23,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -6854,6 +7081,7 @@
      "repo": "tt-a1i/archify",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -6878,6 +7106,7 @@
      "repo": "TabularisDB/tabularis",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -6902,6 +7131,7 @@
      "repo": "QingYunA/answer-me-with-html",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 4,
@@ -6926,6 +7156,7 @@
      "repo": "Agents365-ai/drawio-skill",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -6972,6 +7203,7 @@
      "repo": "volcengine/OpenViking",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -6996,6 +7228,7 @@
      "repo": "calesthio/OpenMontage",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 3,
@@ -7020,6 +7253,7 @@
      "repo": "Graphify-Labs/graphify",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 5,
@@ -7044,6 +7278,7 @@
      "repo": "Egonex-AI/Understand-Anything",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 3,
@@ -7068,6 +7303,7 @@
      "repo": "tirth8205/code-review-graph",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -7117,6 +7353,7 @@
      "repo": "volcengine/OpenViking",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -7141,6 +7378,7 @@
      "repo": "Vexa-ai/vexa",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -7165,6 +7403,7 @@
      "repo": "Egonex-AI/Understand-Anything",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 3,
@@ -7189,6 +7428,7 @@
      "repo": "larksuite/cli",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -7213,6 +7453,7 @@
      "repo": "xerrors/Yuxi",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -7261,6 +7502,7 @@
      "repo": "larksuite/cli",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -7285,6 +7527,7 @@
      "repo": "googleworkspace/cli",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 2,
@@ -7309,6 +7552,7 @@
      "repo": "taylorwilsdon/google_workspace_mcp",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 4,
@@ -7333,6 +7577,7 @@
      "repo": "Vexa-ai/vexa",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -7382,6 +7627,7 @@
      "repo": "googleworkspace/cli",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 2,
@@ -7406,6 +7652,7 @@
      "repo": "taylorwilsdon/google_workspace_mcp",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 4,
@@ -7430,6 +7677,7 @@
      "repo": "larksuite/cli",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -7477,6 +7725,7 @@
      "repo": "volcengine/OpenViking",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -7501,6 +7750,7 @@
      "repo": "calesthio/OpenMontage",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 3,
@@ -7525,6 +7775,7 @@
      "repo": "Graphify-Labs/graphify",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 5,
@@ -7549,6 +7800,7 @@
      "repo": "Egonex-AI/Understand-Anything",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 3,
@@ -7573,6 +7825,7 @@
      "repo": "tirth8205/code-review-graph",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -7622,6 +7875,7 @@
      "repo": "Egonex-AI/Understand-Anything",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 3,
@@ -7646,6 +7900,7 @@
      "repo": "AgriciDaniel/claude-obsidian",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -7670,6 +7925,7 @@
      "repo": "inkeep/open-knowledge",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -7694,6 +7950,7 @@
      "repo": "Ar9av/obsidian-wiki",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -7718,6 +7975,7 @@
      "repo": "virgiliojr94/book-to-skill",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -7764,6 +8022,7 @@
      "repo": "googleworkspace/cli",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 2,
@@ -7788,6 +8047,7 @@
      "repo": "taylorwilsdon/google_workspace_mcp",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 4,
@@ -7812,6 +8072,7 @@
      "repo": "Egonex-AI/Understand-Anything",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 3,
@@ -7836,6 +8097,7 @@
      "repo": "AgriciDaniel/claude-obsidian",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -7860,6 +8122,7 @@
      "repo": "inkeep/open-knowledge",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -7906,6 +8169,7 @@
      "repo": "volcengine/OpenViking",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -7930,6 +8194,7 @@
      "repo": "calesthio/OpenMontage",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 3,
@@ -7954,6 +8219,7 @@
      "repo": "Graphify-Labs/graphify",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 5,
@@ -7978,6 +8244,7 @@
      "repo": "Egonex-AI/Understand-Anything",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 3,
@@ -8002,6 +8269,7 @@
      "repo": "tirth8205/code-review-graph",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -8050,6 +8318,7 @@
      "repo": "larksuite/cli",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -8074,6 +8343,7 @@
      "repo": "googleworkspace/cli",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 2,
@@ -8098,6 +8368,7 @@
      "repo": "taylorwilsdon/google_workspace_mcp",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 4,
@@ -8145,6 +8416,7 @@
      "repo": "jarrodwatts/claude-hud",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 1,
       "eff": 3,
@@ -8169,6 +8441,7 @@
      "repo": "nexu-io/open-design",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -8193,6 +8466,7 @@
      "repo": "ruvnet/RuView",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -8217,6 +8491,7 @@
      "repo": "heygen-com/hyperframes",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -8241,6 +8516,7 @@
      "repo": "calesthio/OpenMontage",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 3,
@@ -8290,6 +8566,7 @@
      "repo": "AgriciDaniel/claude-obsidian",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -8314,6 +8591,7 @@
      "repo": "inkeep/open-knowledge",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -8338,6 +8616,7 @@
      "repo": "nexu-io/html-anything",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -8362,6 +8641,7 @@
      "repo": "virgiliojr94/book-to-skill",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -8386,6 +8666,7 @@
      "repo": "eugeniughelbur/obsidian-second-brain",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -8433,6 +8714,7 @@
      "repo": "eugeniughelbur/obsidian-second-brain",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -8457,6 +8739,7 @@
      "repo": "virgiliojr94/book-to-skill",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -8481,6 +8764,7 @@
      "repo": "volcengine/OpenViking",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -8505,6 +8789,7 @@
      "repo": "calesthio/OpenMontage",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 3,
@@ -8529,6 +8814,7 @@
      "repo": "Graphify-Labs/graphify",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 5,
@@ -8576,6 +8862,7 @@
      "repo": "larksuite/cli",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -8600,6 +8887,7 @@
      "repo": "googleworkspace/cli",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 2,
@@ -8624,6 +8912,7 @@
      "repo": "taylorwilsdon/google_workspace_mcp",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 4,
@@ -8670,6 +8959,7 @@
      "repo": "Ar9av/obsidian-wiki",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -8694,6 +8984,7 @@
      "repo": "Egonex-AI/Understand-Anything",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 3,
@@ -8718,6 +9009,7 @@
      "repo": "AgriciDaniel/claude-obsidian",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -8742,6 +9034,7 @@
      "repo": "inkeep/open-knowledge",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -8766,6 +9059,7 @@
      "repo": "googleworkspace/cli",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 2,
@@ -8809,6 +9103,7 @@
      "repo": "NanmiCoder/cc-haha",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -8833,6 +9128,7 @@
      "repo": "ThinkInAIXYZ/deepchat",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -8857,6 +9153,7 @@
      "repo": "op7418/CodePilot",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -8881,6 +9178,7 @@
      "repo": "DayuanJiang/next-ai-draw-io",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 1,
       "eff": 4,
@@ -8905,6 +9203,7 @@
      "repo": "opensumi/core",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 1,
       "eff": 5,
@@ -8955,6 +9254,7 @@
      "repo": "genspark-ai/genoffice",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -8979,6 +9279,7 @@
      "repo": "apify/crawlee",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 1,
       "eff": 5,
@@ -9003,6 +9304,7 @@
      "repo": "op7418/guizang-ppt-skill",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 1,
@@ -9027,6 +9329,7 @@
      "repo": "alchaincyf/huashu-design",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 1,
@@ -9051,6 +9354,7 @@
      "repo": "nicobailon/visual-explainer",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -9100,6 +9404,7 @@
      "repo": "t8y2/dbx",
      "rel": "skill",
      "rel_strength": 12,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 5,
@@ -9124,6 +9429,7 @@
      "repo": "xerrors/Yuxi",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -9148,6 +9454,7 @@
      "repo": "Mahanaicoach/google-maps-scraper-kit",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -9172,6 +9479,7 @@
      "repo": "bethington/ghidra-mcp",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 1,
       "eff": 5,
@@ -9196,6 +9504,7 @@
      "repo": "SeleniumHQ/docker-selenium",
      "rel": "skill",
      "rel_strength": 21,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 1,
       "eff": 4,
@@ -9251,6 +9560,7 @@
      "repo": "appautomaton/document-SKILLs",
      "rel": "skill",
      "rel_strength": 25,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 2,
@@ -9275,6 +9585,7 @@
      "repo": "Gostyan/docx-skill-4-cn-paper",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -9299,6 +9610,7 @@
      "repo": "LegalRabbit-AI/legalrabbit-docx-mcp",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 1,
@@ -9323,6 +9635,7 @@
      "repo": "genspark-ai/genoffice",
      "rel": "skill",
      "rel_strength": 14,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -9347,6 +9660,7 @@
      "repo": "xberg-io/xberg",
      "rel": "skill",
      "rel_strength": 15,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -9389,6 +9703,7 @@
      "repo": "stablyai/orca",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -9413,6 +9728,7 @@
      "repo": "ruvnet/RuView",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -9437,6 +9753,7 @@
      "repo": "langgenius/dify",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -9461,6 +9778,7 @@
      "repo": "Yeachan-Heo/oh-my-claudecode",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -9485,6 +9803,7 @@
      "repo": "Panniantong/Agent-Reach",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -9540,6 +9859,7 @@
      "repo": "ThinkInAIXYZ/deepchat",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -9564,6 +9884,7 @@
      "repo": "op7418/CodePilot",
      "rel": "skill",
      "rel_strength": 15,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -9588,6 +9909,7 @@
      "repo": "nexu-io/open-design",
      "rel": "skill",
      "rel_strength": 3,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -9612,6 +9934,7 @@
      "repo": "OrchestratorInc/agent-orchestrator",
      "rel": "skill",
      "rel_strength": 4,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 4,
@@ -9636,6 +9959,7 @@
      "repo": "muratcankoylan/Agent-Skills-for-Context-Engineering",
      "rel": "skill",
      "rel_strength": 3,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 2,
@@ -9680,6 +10004,7 @@
      "repo": "Imbad0202/academic-research-skills",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -9704,6 +10029,7 @@
      "repo": "wanshuiyin/Auto-claude-code-research-in-sleep",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 4,
@@ -9728,6 +10054,7 @@
      "repo": "coreyhaines31/marketingskills",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -9752,6 +10079,7 @@
      "repo": "EverMind-AI/EverOS",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -9776,6 +10104,7 @@
      "repo": "genspark-ai/genoffice",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -9821,6 +10150,7 @@
      "repo": "JuliusBrussee/caveman",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -9845,6 +10175,7 @@
      "repo": "muratcankoylan/Agent-Skills-for-Context-Engineering",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 2,
@@ -9869,6 +10200,7 @@
      "repo": "affaan-m/ECC",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -9893,6 +10225,7 @@
      "repo": "morluto/rea",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -9917,6 +10250,7 @@
      "repo": "NousResearch/hermes-agent",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -9966,6 +10300,7 @@
      "repo": "mksglu/context-mode",
      "rel": "skill",
      "rel_strength": 21,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -9990,6 +10325,7 @@
      "repo": "muratcankoylan/Agent-Skills-for-Context-Engineering",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 2,
@@ -10014,6 +10350,7 @@
      "repo": "TencentCloud/TencentDB-Agent-Memory",
      "rel": "skill",
      "rel_strength": 21,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -10038,6 +10375,7 @@
      "repo": "cloudflare/security-audit-skill",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -10062,6 +10400,7 @@
      "repo": "affaan-m/ECC",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -10117,6 +10456,7 @@
      "repo": "plugin87/ux-ui-agent-skills",
      "rel": "skill",
      "rel_strength": 12,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -10141,6 +10481,7 @@
      "repo": "langgenius/dify",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -10165,6 +10506,7 @@
      "repo": "scenario-labs/skills",
      "rel": "skill",
      "rel_strength": 3,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -10189,6 +10531,7 @@
      "repo": "calesthio/OpenMontage",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 3,
@@ -10213,6 +10556,7 @@
      "repo": "getsentry/MobileBuildMCP",
      "rel": "skill",
      "rel_strength": 4,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -10262,6 +10606,7 @@
      "repo": "affaan-m/ECC",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -10286,6 +10631,7 @@
      "repo": "nexu-io/open-design",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -10310,6 +10656,7 @@
      "repo": "career-ops-hq/career-ops",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -10334,6 +10681,7 @@
      "repo": "NanmiCoder/cc-haha",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -10358,6 +10706,7 @@
      "repo": "calesthio/OpenMontage",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 3,
@@ -10407,6 +10756,7 @@
      "repo": "EverMind-AI/EverOS",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -10431,6 +10781,7 @@
      "repo": "genspark-ai/genoffice",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -10455,6 +10806,7 @@
      "repo": "blader/humanizer",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 1,
@@ -10479,6 +10831,7 @@
      "repo": "eugeniughelbur/obsidian-second-brain",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -10503,6 +10856,7 @@
      "repo": "tizzy916/humanities-writing-companion",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -10552,6 +10906,7 @@
      "repo": "zarazhangrui/frontend-slides",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -10576,6 +10931,7 @@
      "repo": "wiltodelta/remove-ai-watermarks",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 4,
@@ -10600,6 +10956,7 @@
      "repo": "plugin87/ux-ui-agent-skills",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -10624,6 +10981,7 @@
      "repo": "Leonxlnx/taste-skill",
      "rel": "skill",
      "rel_strength": 12,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -10648,6 +11006,7 @@
      "repo": "SnailSploit/Claude-Red",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 2,
@@ -10703,6 +11062,7 @@
      "repo": "nexu-io/open-design",
      "rel": "skill",
      "rel_strength": 23,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -10727,6 +11087,7 @@
      "repo": "Manavarya09/design-extract",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -10751,6 +11112,7 @@
      "repo": "cathrynlavery/diagram-design",
      "rel": "skill",
      "rel_strength": 21,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -10775,6 +11137,7 @@
      "repo": "Leonxlnx/taste-skill",
      "rel": "skill",
      "rel_strength": 24,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -10799,6 +11162,7 @@
      "repo": "JimLiu/baoyu-design",
      "rel": "skill",
      "rel_strength": 22,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -10848,6 +11212,7 @@
      "repo": "zarazhangrui/frontend-slides",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -10872,6 +11237,7 @@
      "repo": "Leonxlnx/taste-skill",
      "rel": "skill",
      "rel_strength": 13,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -10896,6 +11262,7 @@
      "repo": "glitternetwork/pinme",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 3,
@@ -10920,6 +11287,7 @@
      "repo": "Anionex/agent-vision-toolkit",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -10944,6 +11312,7 @@
      "repo": "oil-oil/oil-motion",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -10999,6 +11368,7 @@
      "repo": "zarazhangrui/frontend-slides",
      "rel": "skill",
      "rel_strength": 43,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -11023,6 +11393,7 @@
      "repo": "genspark-ai/genoffice",
      "rel": "skill",
      "rel_strength": 13,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -11047,6 +11418,7 @@
      "repo": "OpenSenseNova/SenseNova-Skills",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 2,
@@ -11071,6 +11443,7 @@
      "repo": "taylorwilsdon/google_workspace_mcp",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 4,
@@ -11095,6 +11468,7 @@
      "repo": "breakstageaxe61/genspark-claw",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 1,
@@ -11144,6 +11518,7 @@
      "repo": "github/awesome-copilot",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 3,
@@ -11168,6 +11543,7 @@
      "repo": "yusufkaraaslan/Skill_Seekers",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -11192,6 +11568,7 @@
      "repo": "wshobson/agents",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 4,
@@ -11216,6 +11593,7 @@
      "repo": "OthmanAdi/planning-with-files",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -11240,6 +11618,7 @@
      "repo": "Panniantong/Agent-Reach",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -11289,6 +11668,7 @@
      "repo": "nexu-io/open-design",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -11313,6 +11693,7 @@
      "repo": "career-ops-hq/career-ops",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -11337,6 +11718,7 @@
      "repo": "JuliusBrussee/caveman",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -11361,6 +11743,7 @@
      "repo": "tt-a1i/archify",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -11385,6 +11768,7 @@
      "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -11434,6 +11818,7 @@
      "repo": "greensock/gsap-skills",
      "rel": "skill",
      "rel_strength": 22,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 0,
@@ -11458,6 +11843,7 @@
      "repo": "heygen-com/hyperframes",
      "rel": "skill",
      "rel_strength": 13,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -11482,6 +11868,7 @@
      "repo": "img2threejs/img2threejs",
      "rel": "skill",
      "rel_strength": 12,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 4,
@@ -11506,6 +11893,7 @@
      "repo": "EL4CTEO/blender-skills",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -11530,6 +11918,7 @@
      "repo": "RobLe3/cc-blender-skill",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 1,
@@ -11572,6 +11961,7 @@
      "repo": "stablyai/orca",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -11596,6 +11986,7 @@
      "repo": "ruvnet/RuView",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -11620,6 +12011,7 @@
      "repo": "langgenius/dify",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -11644,6 +12036,7 @@
      "repo": "Yeachan-Heo/oh-my-claudecode",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -11668,6 +12061,7 @@
      "repo": "Panniantong/Agent-Reach",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -11717,6 +12111,7 @@
      "repo": "NVIDIA/SkillSpector",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -11741,6 +12136,7 @@
      "repo": "greensock/gsap-skills",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 0,
@@ -11765,6 +12161,7 @@
      "repo": "K-Dense-AI/scientific-agent-skills",
      "rel": "skill",
      "rel_strength": 3,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -11789,6 +12186,7 @@
      "repo": "affaan-m/ECC",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -11813,6 +12211,7 @@
      "repo": "ruvnet/ruflo",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -11862,6 +12261,7 @@
      "repo": "NVIDIA/SkillSpector",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -11886,6 +12286,7 @@
      "repo": "greensock/gsap-skills",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 0,
@@ -11910,6 +12311,7 @@
      "repo": "ruvnet/ruflo",
      "rel": "skill",
      "rel_strength": 3,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -11934,6 +12336,7 @@
      "repo": "affaan-m/ECC",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -11958,6 +12361,7 @@
      "repo": "K-Dense-AI/scientific-agent-skills",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -12007,6 +12411,7 @@
      "repo": "browser-use/browser-harness",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 2,
@@ -12031,6 +12436,7 @@
      "repo": "ruvnet/ruflo",
      "rel": "skill",
      "rel_strength": 12,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -12055,6 +12461,7 @@
      "repo": "affaan-m/ECC",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -12079,6 +12486,7 @@
      "repo": "nexu-io/open-design",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -12103,6 +12511,7 @@
      "repo": "lobehub/lobehub",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -12152,6 +12561,7 @@
      "repo": "rlaope/oh-my-hermes",
      "rel": "skill",
      "rel_strength": 21,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -12176,6 +12586,7 @@
      "repo": "Devin-AXIS/iPolloWork",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -12200,6 +12611,7 @@
      "repo": "lennney/stop-that-shit",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -12249,6 +12661,7 @@
      "repo": "xberg-io/xberg",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -12273,6 +12686,7 @@
      "repo": "wiltodelta/remove-ai-watermarks",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 4,
@@ -12297,6 +12711,7 @@
      "repo": "EL4CTEO/blender-skills",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -12321,6 +12736,7 @@
      "repo": "RobLe3/cc-blender-skill",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 1,
@@ -12345,6 +12761,7 @@
      "repo": "liustack/modlens",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 1,
@@ -12394,6 +12811,7 @@
      "repo": "ningzimu/codex-ppt-skill",
      "rel": "skill",
      "rel_strength": 22,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -12418,6 +12836,7 @@
      "repo": "op7418/guizang-ppt-skill",
      "rel": "skill",
      "rel_strength": 34,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 1,
@@ -12442,6 +12861,7 @@
      "repo": "nicobailon/visual-explainer",
      "rel": "skill",
      "rel_strength": 22,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -12466,6 +12886,7 @@
      "repo": "chuspeeism/dashi-ppt-skill",
      "rel": "skill",
      "rel_strength": 33,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -12490,6 +12911,7 @@
      "repo": "zarazhangrui/frontend-slides",
      "rel": "skill",
      "rel_strength": 22,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -12545,6 +12967,7 @@
      "repo": "genspark-ai/genoffice",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -12569,6 +12992,7 @@
      "repo": "bowenliang123/markdown-exporter",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -12593,6 +13017,7 @@
      "repo": "appautomaton/document-SKILLs",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 2,
@@ -12617,6 +13042,7 @@
      "repo": "Gostyan/docx-skill-4-cn-paper",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -12641,6 +13067,7 @@
      "repo": "LegalRabbit-AI/legalrabbit-docx-mcp",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 1,
@@ -12690,6 +13117,7 @@
      "repo": "heygen-com/hyperframes",
      "rel": "skill",
      "rel_strength": 25,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -12714,6 +13142,7 @@
      "repo": "Vincentwei1021/video-shotcraft",
      "rel": "skill",
      "rel_strength": 23,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -12738,6 +13167,7 @@
      "repo": "cclank/lanshu-awesome-ai-video-kit",
      "rel": "skill",
      "rel_strength": 21,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 1,
@@ -12762,6 +13192,7 @@
      "repo": "feicaiclub/video-spec-builder",
      "rel": "skill",
      "rel_strength": 22,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -12786,6 +13217,7 @@
      "repo": "sunxiayi/make-blender-education-video-skill",
      "rel": "skill",
      "rel_strength": 21,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -12835,6 +13267,7 @@
      "repo": "heygen-com/hyperframes",
      "rel": "skill",
      "rel_strength": 22,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -12859,6 +13292,7 @@
      "repo": "Vincentwei1021/video-shotcraft",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -12883,6 +13317,7 @@
      "repo": "cclank/lanshu-awesome-ai-video-kit",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 1,
@@ -12907,6 +13342,7 @@
      "repo": "feicaiclub/video-spec-builder",
      "rel": "skill",
      "rel_strength": 21,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -12931,6 +13367,7 @@
      "repo": "sunxiayi/make-blender-education-video-skill",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -12980,6 +13417,7 @@
      "repo": "heygen-com/hyperframes",
      "rel": "skill",
      "rel_strength": 22,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -13004,6 +13442,7 @@
      "repo": "Vincentwei1021/video-shotcraft",
      "rel": "skill",
      "rel_strength": 21,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -13028,6 +13467,7 @@
      "repo": "ScrapeCreators/social-media-research-skills",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 0,
@@ -13052,6 +13492,7 @@
      "repo": "cclank/lanshu-awesome-ai-video-kit",
      "rel": "skill",
      "rel_strength": 21,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 1,
@@ -13076,6 +13517,7 @@
      "repo": "feicaiclub/video-spec-builder",
      "rel": "skill",
      "rel_strength": 22,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -13125,6 +13567,7 @@
      "repo": "heygen-com/hyperframes",
      "rel": "skill",
      "rel_strength": 21,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -13149,6 +13592,7 @@
      "repo": "Vincentwei1021/video-shotcraft",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -13173,6 +13617,7 @@
      "repo": "cclank/lanshu-awesome-ai-video-kit",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 1,
@@ -13197,6 +13642,7 @@
      "repo": "feicaiclub/video-spec-builder",
      "rel": "skill",
      "rel_strength": 21,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -13221,6 +13667,7 @@
      "repo": "sunxiayi/make-blender-education-video-skill",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -13270,6 +13717,7 @@
      "repo": "ruvnet/ruflo",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -13294,6 +13742,7 @@
      "repo": "langgenius/dify",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -13318,6 +13767,7 @@
      "repo": "iflytek/skillhub",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -13342,6 +13792,7 @@
      "repo": "agentscope-ai/QwenPaw",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -13366,6 +13817,7 @@
      "repo": "glitternetwork/pinme",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 3,
@@ -13415,6 +13867,7 @@
      "repo": "nexu-io/open-design",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -13439,6 +13892,7 @@
      "repo": "Manavarya09/design-extract",
      "rel": "skill",
      "rel_strength": 30,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -13463,6 +13917,7 @@
      "repo": "asgeirtj/system_prompts_leaks",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 0,
@@ -13487,6 +13942,7 @@
      "repo": "cathrynlavery/diagram-design",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -13511,6 +13967,7 @@
      "repo": "Leonxlnx/taste-skill",
      "rel": "skill",
      "rel_strength": 30,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -13566,6 +14023,7 @@
      "repo": "xberg-io/xberg",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -13590,14 +14048,15 @@
      "repo": "tw93/Kami",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
-      "fc": 3,
+      "fc": 2,
       "eff": 3,
       "compat": 5,
       "docs": 3,
       "community": 4
      },
-     "score_total": 18,
+     "score_total": 17,
      "stars": 12077,
      "pushed_at": "2026-10-25",
      "license": "MIT",
@@ -13614,6 +14073,7 @@
      "repo": "nicobailon/visual-explainer",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -13638,6 +14098,7 @@
      "repo": "microsoft/Resource2Skill",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 0,
@@ -13662,6 +14123,7 @@
      "repo": "harshankur/officeParser",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 1,
       "eff": 4,
@@ -13711,6 +14173,7 @@
      "repo": "kepano/obsidian-skills",
      "rel": "skill",
      "rel_strength": 21,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 0,
@@ -13735,6 +14198,7 @@
      "repo": "tigerless-labs/design-harness",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -13759,6 +14223,7 @@
      "repo": "sno-ai/mda",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 3,
@@ -13783,6 +14248,7 @@
      "repo": "bowenliang123/markdown-exporter",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -13807,6 +14273,7 @@
      "repo": "lemomo-ai/lemo-opuscar",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 1,
@@ -13856,6 +14323,7 @@
      "repo": "inkeep/open-knowledge",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -13880,6 +14348,7 @@
      "repo": "volcengine/OpenViking",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -13904,6 +14373,7 @@
      "repo": "calesthio/OpenMontage",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 3,
@@ -13928,6 +14398,7 @@
      "repo": "Egonex-AI/Understand-Anything",
      "rel": "skill",
      "rel_strength": 12,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 3,
@@ -13952,6 +14423,7 @@
      "repo": "Graphify-Labs/graphify",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 5,
@@ -14001,6 +14473,7 @@
      "repo": "genspark-ai/genoffice",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -14025,6 +14498,7 @@
      "repo": "xerrors/Yuxi",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -14049,6 +14523,7 @@
      "repo": "virgiliojr94/book-to-skill",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -14073,6 +14548,7 @@
      "repo": "apify/crawlee",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 1,
       "eff": 5,
@@ -14097,6 +14573,7 @@
      "repo": "developer0hye/office2pdf",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 1,
       "eff": 5,
@@ -14144,6 +14621,7 @@
      "repo": "genspark-ai/genoffice",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -14168,6 +14646,7 @@
      "repo": "yusufkaraaslan/Skill_Seekers",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -14192,6 +14671,7 @@
      "repo": "Graphify-Labs/graphify",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 5,
@@ -14216,6 +14696,7 @@
      "repo": "xberg-io/xberg",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -14240,6 +14721,7 @@
      "repo": "OpenSenseNova/SenseNova-Skills",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 2,
@@ -14286,6 +14768,7 @@
      "repo": "genspark-ai/genoffice",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -14310,6 +14793,7 @@
      "repo": "apify/crawlee",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 1,
       "eff": 5,
@@ -14334,6 +14818,7 @@
      "repo": "developer0hye/office2pdf",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 1,
       "eff": 5,
@@ -14358,6 +14843,7 @@
      "repo": "apify/crawlee-python",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 1,
       "eff": 4,
@@ -14382,6 +14868,7 @@
      "repo": "markdown-viewer/skills",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -14442,6 +14929,7 @@
      "repo": "genspark-ai/genoffice",
      "rel": "skill",
      "rel_strength": 13,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -14466,6 +14954,7 @@
      "repo": "iOfficeAI/OfficeCLI",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 2,
@@ -14490,6 +14979,7 @@
      "repo": "apify/crawlee",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 1,
       "eff": 5,
@@ -14514,6 +15004,7 @@
      "repo": "apify/crawlee-python",
      "rel": "skill",
      "rel_strength": 12,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 1,
       "eff": 4,
@@ -14538,6 +15029,7 @@
      "repo": "developer0hye/office2pdf",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 1,
       "eff": 5,
@@ -14592,6 +15084,7 @@
      "repo": "genspark-ai/genoffice",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -14616,6 +15109,7 @@
      "repo": "code-yeongyu/oh-my-openagent",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -14640,6 +15134,7 @@
      "repo": "evalstate/fast-agent",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -14664,6 +15159,7 @@
      "repo": "OpenSenseNova/SenseNova-Skills",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 2,
@@ -14688,6 +15184,7 @@
      "repo": "apify/crawlee",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 1,
       "eff": 5,
@@ -14741,6 +15238,7 @@
      "repo": "genspark-ai/genoffice",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -14765,6 +15263,7 @@
      "repo": "evalstate/fast-agent",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -14789,6 +15288,7 @@
      "repo": "apify/crawlee",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 1,
       "eff": 5,
@@ -14813,6 +15313,7 @@
      "repo": "op7418/guizang-ppt-skill",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 1,
@@ -14837,6 +15338,7 @@
      "repo": "alchaincyf/huashu-design",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 1,
@@ -14880,6 +15382,7 @@
      "repo": "nexu-io/open-design",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -14904,6 +15407,7 @@
      "repo": "openclaw/Peekaboo",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -14928,6 +15432,7 @@
      "repo": "SharpAI/DeepCamera",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -14952,6 +15457,7 @@
      "repo": "equalang/equalang-skill",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 1,
@@ -14976,6 +15482,7 @@
      "repo": "shaom/brand-to-design-md-skill",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -15020,6 +15527,7 @@
      "repo": "NanmiCoder/cc-haha",
      "rel": "skill",
      "rel_strength": 30,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -15044,6 +15552,7 @@
      "repo": "feder-cr/invisible_dots",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 4,
@@ -15068,6 +15577,7 @@
      "repo": "feder-cr/invisible_playwright_mcp",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 4,
@@ -15092,6 +15602,7 @@
      "repo": "browser-use/browser-harness",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 2,
@@ -15116,6 +15627,7 @@
      "repo": "CursorTouch/Windows-MCP",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -15159,6 +15671,7 @@
      "repo": "nexu-io/open-design",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -15183,6 +15696,7 @@
      "repo": "openclaw/Peekaboo",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -15207,6 +15721,7 @@
      "repo": "SharpAI/DeepCamera",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -15231,6 +15746,7 @@
      "repo": "shaom/brand-to-design-md-skill",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -15255,6 +15771,7 @@
      "repo": "DeusData/codebase-memory-mcp",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 1,
       "eff": 5,
@@ -15298,6 +15815,7 @@
      "repo": "nexu-io/open-design",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -15322,6 +15840,7 @@
      "repo": "openclaw/Peekaboo",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -15346,6 +15865,7 @@
      "repo": "SharpAI/DeepCamera",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -15370,6 +15890,7 @@
      "repo": "shaom/brand-to-design-md-skill",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -15394,6 +15915,7 @@
      "repo": "DeusData/codebase-memory-mcp",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 1,
       "eff": 5,
@@ -15438,6 +15960,7 @@
      "repo": "nexu-io/open-design",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -15462,6 +15985,7 @@
      "repo": "openclaw/Peekaboo",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -15486,6 +16010,7 @@
      "repo": "SharpAI/DeepCamera",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -15510,6 +16035,7 @@
      "repo": "Anionex/agent-vision-toolkit",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -15534,6 +16060,7 @@
      "repo": "liustack/modlens",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 1,
@@ -15578,6 +16105,7 @@
      "repo": "nexu-io/open-design",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -15602,6 +16130,7 @@
      "repo": "sickn33/agentic-awesome-skills",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -15626,6 +16155,7 @@
      "repo": "Graphify-Labs/graphify",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 5,
@@ -15650,6 +16180,7 @@
      "repo": "tirth8205/code-review-graph",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -15674,6 +16205,7 @@
      "repo": "AgriciDaniel/claude-seo",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -15717,6 +16249,7 @@
      "repo": "NanmiCoder/cc-haha",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -15741,6 +16274,7 @@
      "repo": "maziyarpanahi/openmed",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -15765,6 +16299,7 @@
      "repo": "openclaw/Peekaboo",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -15789,6 +16324,7 @@
      "repo": "siddsachar/row-bot",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -15813,6 +16349,7 @@
      "repo": "AgriciDaniel/claude-seo",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -15856,6 +16393,7 @@
      "repo": "nexu-io/open-design",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -15880,6 +16418,7 @@
      "repo": "krillinai/OpenCreator",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -15904,6 +16443,7 @@
      "repo": "openclaw/Peekaboo",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -15928,6 +16468,7 @@
      "repo": "SharpAI/DeepCamera",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -15952,6 +16493,7 @@
      "repo": "equalang/equalang-skill",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 1,
@@ -15995,6 +16537,7 @@
      "repo": "nexu-io/open-design",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -16019,6 +16562,7 @@
      "repo": "openclaw/Peekaboo",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -16043,6 +16587,7 @@
      "repo": "SharpAI/DeepCamera",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -16067,6 +16612,7 @@
      "repo": "shaom/brand-to-design-md-skill",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -16091,6 +16637,7 @@
      "repo": "DeusData/codebase-memory-mcp",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 1,
       "eff": 5,
@@ -16134,6 +16681,7 @@
      "repo": "xerj-org/xerj",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 5,
@@ -16158,6 +16706,7 @@
      "repo": "EverMind-AI/EverOS",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -16182,6 +16731,7 @@
      "repo": "TencentCloud/TencentDB-Agent-Memory",
      "rel": "skill",
      "rel_strength": 30,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -16206,6 +16756,7 @@
      "repo": "nexu-io/open-design",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -16230,6 +16781,7 @@
      "repo": "ruvnet/ruflo",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -16279,6 +16831,7 @@
      "repo": "googleapis/mcp-toolbox",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 4,
@@ -16303,6 +16856,7 @@
      "repo": "mcp-use/mcp-use",
      "rel": "skill",
      "rel_strength": 22,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -16327,6 +16881,7 @@
      "repo": "reactive-resume/reactive-resume",
      "rel": "skill",
      "rel_strength": 22,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 4,
@@ -16351,6 +16906,7 @@
      "repo": "apify/apify-mcp-server",
      "rel": "skill",
      "rel_strength": 21,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 4,
@@ -16375,6 +16931,7 @@
      "repo": "CursorTouch/Windows-MCP",
      "rel": "skill",
      "rel_strength": 21,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -16424,6 +16981,7 @@
      "repo": "affaan-m/ECC",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -16448,6 +17006,7 @@
      "repo": "morluto/rea",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -16472,6 +17031,7 @@
      "repo": "NVIDIA/SkillSpector",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -16496,6 +17056,7 @@
      "repo": "modelcontextprotocol/inspector",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -16520,6 +17081,7 @@
      "repo": "PrefectHQ/fastmcp",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -16575,6 +17137,7 @@
      "repo": "tirth8205/code-review-graph",
      "rel": "skill",
      "rel_strength": 12,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -16599,6 +17162,7 @@
      "repo": "Vexa-ai/vexa",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -16623,6 +17187,7 @@
      "repo": "volcengine/OpenViking",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -16647,6 +17212,7 @@
      "repo": "Graphify-Labs/graphify",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 5,
@@ -16671,6 +17237,7 @@
      "repo": "Egonex-AI/Understand-Anything",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 3,
@@ -16717,6 +17284,7 @@
      "repo": "genspark-ai/genoffice",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -16741,6 +17309,7 @@
      "repo": "xberg-io/xberg",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -16765,6 +17334,7 @@
      "repo": "virgiliojr94/book-to-skill",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -16789,14 +17359,15 @@
      "repo": "tw93/Kami",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
-      "fc": 3,
+      "fc": 2,
       "eff": 3,
       "compat": 5,
       "docs": 3,
       "community": 4
      },
-     "score_total": 18,
+     "score_total": 17,
      "stars": 12077,
      "pushed_at": "2026-10-25",
      "license": "MIT",
@@ -16813,6 +17384,7 @@
      "repo": "chuspeeism/dashi-ppt-skill",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -16856,6 +17428,7 @@
      "repo": "affaan-m/ECC",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -16880,6 +17453,7 @@
      "repo": "morluto/rea",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -16904,6 +17478,7 @@
      "repo": "NousResearch/hermes-agent",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -16928,6 +17503,7 @@
      "repo": "langgenius/dify",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -16952,6 +17528,7 @@
      "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -17001,6 +17578,7 @@
      "repo": "webdriverio/webdriverio",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -17025,6 +17603,7 @@
      "repo": "JuliusBrussee/caveman",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -17049,6 +17628,7 @@
      "repo": "tirth8205/code-review-graph",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -17073,6 +17653,7 @@
      "repo": "PrefectHQ/fastmcp",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -17097,6 +17678,7 @@
      "repo": "muratcankoylan/Agent-Skills-for-Context-Engineering",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 2,
@@ -17139,6 +17721,7 @@
      "repo": "AgriciDaniel/claude-obsidian",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -17163,6 +17746,7 @@
      "repo": "makenotion/notion-mcp-server",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 1,
       "eff": 2,
@@ -17187,6 +17771,7 @@
      "repo": "dontriskit/awesome-ai-system-prompts",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 1,
       "eff": 0,
@@ -17236,6 +17821,7 @@
      "repo": "AgriciDaniel/claude-obsidian",
      "rel": "skill",
      "rel_strength": 21,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -17260,6 +17846,7 @@
      "repo": "Ar9av/obsidian-wiki",
      "rel": "skill",
      "rel_strength": 21,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -17284,6 +17871,7 @@
      "repo": "kepano/obsidian-skills",
      "rel": "skill",
      "rel_strength": 30,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 0,
@@ -17308,6 +17896,7 @@
      "repo": "eugeniughelbur/obsidian-second-brain",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -17332,6 +17921,7 @@
      "repo": "backnotprop/plannotator",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -17381,6 +17971,7 @@
      "repo": "kangarooking/cangjie-skill",
      "rel": "skill",
      "rel_strength": 3,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -17405,6 +17996,7 @@
      "repo": "apify/apify-mcp-server",
      "rel": "skill",
      "rel_strength": 3,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 4,
@@ -17429,6 +18021,7 @@
      "repo": "YaoApp/yao",
      "rel": "skill",
      "rel_strength": 3,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -17453,6 +18046,7 @@
      "repo": "Panniantong/Agent-Reach",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -17477,6 +18071,7 @@
      "repo": "googleworkspace/cli",
      "rel": "skill",
      "rel_strength": 4,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 2,
@@ -17526,6 +18121,7 @@
      "repo": "AgriciDaniel/claude-obsidian",
      "rel": "skill",
      "rel_strength": 31,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -17550,6 +18146,7 @@
      "repo": "Ar9av/obsidian-wiki",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -17574,6 +18171,7 @@
      "repo": "eugeniughelbur/obsidian-second-brain",
      "rel": "skill",
      "rel_strength": 31,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -17598,6 +18196,7 @@
      "repo": "kepano/obsidian-skills",
      "rel": "skill",
      "rel_strength": 30,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 0,
@@ -17622,6 +18221,7 @@
      "repo": "bowenliang123/markdown-exporter",
      "rel": "skill",
      "rel_strength": 21,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -17669,6 +18269,7 @@
      "repo": "affaan-m/ECC",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -17693,6 +18294,7 @@
      "repo": "ruvnet/ruflo",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -17717,6 +18319,7 @@
      "repo": "thedotmack/claude-mem",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -17741,6 +18344,7 @@
      "repo": "JuliusBrussee/caveman",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -17765,6 +18369,7 @@
      "repo": "mvanhorn/last30days-skill",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 5,
@@ -17820,6 +18425,7 @@
      "repo": "OpenSenseNova/SenseNova-Skills",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 2,
@@ -17844,6 +18450,7 @@
      "repo": "tfriedel/claude-office-skills",
      "rel": "skill",
      "rel_strength": 30,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 0,
@@ -17868,6 +18475,7 @@
      "repo": "yusufkaraaslan/Skill_Seekers",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -17892,6 +18500,7 @@
      "repo": "genspark-ai/genoffice",
      "rel": "skill",
      "rel_strength": 12,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -17916,6 +18525,7 @@
      "repo": "iOfficeAI/OfficeCLI",
      "rel": "skill",
      "rel_strength": 12,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 2,
@@ -17965,6 +18575,7 @@
      "repo": "calesthio/OpenMontage",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 3,
@@ -17989,6 +18600,7 @@
      "repo": "LnYo-Cly/ai4j",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -18013,6 +18625,7 @@
      "repo": "wuyoscar/GPT-Image2-Skill",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 1,
@@ -18037,6 +18650,7 @@
      "repo": "equalang/equalang-skill",
      "rel": "skill",
      "rel_strength": 15,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 1,
@@ -18061,6 +18675,7 @@
      "repo": "nexu-io/open-design",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -18110,6 +18725,7 @@
      "repo": "cloudflare/security-audit-skill",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -18134,6 +18750,7 @@
      "repo": "thedotmack/claude-mem",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -18158,6 +18775,7 @@
      "repo": "wanshuiyin/Auto-claude-code-research-in-sleep",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 4,
@@ -18182,6 +18800,7 @@
      "repo": "iOfficeAI/AionUi",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -18206,6 +18825,7 @@
      "repo": "mvanhorn/last30days-skill",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 5,
@@ -18255,6 +18875,7 @@
      "repo": "thedotmack/claude-mem",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -18279,6 +18900,7 @@
      "repo": "wanshuiyin/Auto-claude-code-research-in-sleep",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 4,
@@ -18303,6 +18925,7 @@
      "repo": "iOfficeAI/AionUi",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -18327,6 +18950,7 @@
      "repo": "mvanhorn/last30days-skill",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 5,
@@ -18351,6 +18975,7 @@
      "repo": "nanocoai/nanoclaw",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -18400,6 +19025,7 @@
      "repo": "thedotmack/claude-mem",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -18424,6 +19050,7 @@
      "repo": "wanshuiyin/Auto-claude-code-research-in-sleep",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 4,
@@ -18448,6 +19075,7 @@
      "repo": "iOfficeAI/AionUi",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -18472,6 +19100,7 @@
      "repo": "OrchestratorInc/agent-orchestrator",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 4,
@@ -18496,6 +19125,7 @@
      "repo": "mvanhorn/last30days-skill",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 5,
@@ -18545,6 +19175,7 @@
      "repo": "Imbad0202/academic-research-skills",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -18569,6 +19200,7 @@
      "repo": "wanshuiyin/Auto-claude-code-research-in-sleep",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 4,
@@ -18593,6 +19225,7 @@
      "repo": "calesthio/OpenMontage",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 3,
@@ -18617,6 +19250,7 @@
      "repo": "mksglu/context-mode",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -18641,6 +19275,7 @@
      "repo": "LibreChat-AI/LibreChat",
      "rel": "skill",
      "rel_strength": 3,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -18690,6 +19325,7 @@
      "repo": "genspark-ai/genoffice",
      "rel": "skill",
      "rel_strength": 12,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -18714,6 +19350,7 @@
      "repo": "xberg-io/xberg",
      "rel": "skill",
      "rel_strength": 15,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -18738,6 +19375,7 @@
      "repo": "appautomaton/document-SKILLs",
      "rel": "skill",
      "rel_strength": 12,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 2,
@@ -18762,6 +19400,7 @@
      "repo": "chuspeeism/dashi-ppt-skill",
      "rel": "skill",
      "rel_strength": 12,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -18786,6 +19425,7 @@
      "repo": "apify/crawlee",
      "rel": "skill",
      "rel_strength": 12,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 1,
       "eff": 5,
@@ -18833,6 +19473,7 @@
      "repo": "ruvnet/RuView",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -18857,6 +19498,7 @@
      "repo": "heygen-com/hyperframes",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -18881,6 +19523,7 @@
      "repo": "calesthio/OpenMontage",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 3,
@@ -18905,6 +19548,7 @@
      "repo": "krillinai/OpenCreator",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -18929,6 +19573,7 @@
      "repo": "wiltodelta/remove-ai-watermarks",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 4,
@@ -18972,6 +19617,7 @@
      "repo": "ningzimu/codex-ppt-skill",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -18996,6 +19642,7 @@
      "repo": "op7418/guizang-ppt-skill",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 1,
@@ -19020,6 +19667,7 @@
      "repo": "chuspeeism/dashi-ppt-skill",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -19044,6 +19692,7 @@
      "repo": "Akxan/ppt-agent-skill",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 1,
@@ -19068,6 +19717,7 @@
      "repo": "code-yeongyu/oh-my-openagent",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -19113,6 +19763,7 @@
      "repo": "Imbad0202/academic-research-skills",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -19137,6 +19788,7 @@
      "repo": "zenstory-ai/drama-skills",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -19161,6 +19813,7 @@
      "repo": "blader/humanizer",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 1,
@@ -19185,6 +19838,7 @@
      "repo": "conorbronsdon/avoid-ai-writing",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 2,
@@ -19209,6 +19863,7 @@
      "repo": "Nanako0129/sepia",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 2,
@@ -19253,6 +19908,7 @@
      "repo": "Imbad0202/academic-research-skills",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -19277,6 +19933,7 @@
      "repo": "Ar9av/obsidian-wiki",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -19301,6 +19958,7 @@
      "repo": "zenstory-ai/drama-skills",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -19325,6 +19983,7 @@
      "repo": "blader/humanizer",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 1,
@@ -19349,6 +20008,7 @@
      "repo": "conorbronsdon/avoid-ai-writing",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 2,
@@ -19398,6 +20058,7 @@
      "repo": "aden-hive/hive",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -19422,6 +20083,7 @@
      "repo": "tirth8205/code-review-graph",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -19446,6 +20108,7 @@
      "repo": "PrefectHQ/fastmcp",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -19470,6 +20133,7 @@
      "repo": "Shubhamsaboo/awesome-llm-apps",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 3,
@@ -19494,6 +20158,7 @@
      "repo": "Panniantong/Agent-Reach",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -19537,6 +20202,7 @@
      "repo": "ruvnet/ruflo",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -19561,6 +20227,7 @@
      "repo": "langgenius/dify",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -19585,6 +20252,7 @@
      "repo": "volcengine/OpenViking",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -19609,6 +20277,7 @@
      "repo": "xerrors/Yuxi",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -19633,6 +20302,7 @@
      "repo": "zylon-ai/private-gpt",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 1,
       "eff": 5,
@@ -19688,6 +20358,7 @@
      "repo": "FlorianBruniaux/claude-code-ultimate-guide",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 4,
@@ -19712,6 +20383,7 @@
      "repo": "AvdLee/SwiftUI-Agent-Skill",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -19736,6 +20408,7 @@
      "repo": "siddsachar/row-bot",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -19760,6 +20433,7 @@
      "repo": "plugin87/ux-ui-agent-skills",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -19784,6 +20458,7 @@
      "repo": "reactive-resume/reactive-resume",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 4,
@@ -19839,6 +20514,7 @@
      "repo": "affaan-m/ECC",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -19863,6 +20539,7 @@
      "repo": "morluto/rea",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -19887,6 +20564,7 @@
      "repo": "langgenius/dify",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -19911,6 +20589,7 @@
      "repo": "JuliusBrussee/caveman",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -19935,6 +20614,7 @@
      "repo": "xerj-org/xerj",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 5,
@@ -19984,6 +20664,7 @@
      "repo": "kangarooking/cangjie-skill",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -20008,6 +20689,7 @@
      "repo": "ningzimu/codex-ppt-skill",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -20032,6 +20714,7 @@
      "repo": "chuspeeism/dashi-ppt-skill",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -20056,6 +20739,7 @@
      "repo": "Akxan/ppt-agent-skill",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 1,
@@ -20080,6 +20764,7 @@
      "repo": "wiltodelta/remove-ai-watermarks",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 4,
@@ -20129,6 +20814,7 @@
      "repo": "tigerless-labs/design-harness",
      "rel": "skill",
      "rel_strength": 12,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -20153,6 +20839,7 @@
      "repo": "calesthio/OpenMontage",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 3,
@@ -20177,6 +20864,7 @@
      "repo": "Graphify-Labs/graphify",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 5,
@@ -20201,6 +20889,7 @@
      "repo": "Egonex-AI/Understand-Anything",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 3,
@@ -20225,6 +20914,7 @@
      "repo": "AgriciDaniel/claude-obsidian",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -20269,6 +20959,7 @@
      "repo": "affaan-m/ECC",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -20293,6 +20984,7 @@
      "repo": "morluto/rea",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -20317,6 +21009,7 @@
      "repo": "NousResearch/hermes-agent",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -20341,6 +21034,7 @@
      "repo": "langgenius/dify",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -20365,6 +21059,7 @@
      "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -20418,6 +21113,7 @@
      "repo": "Anionex/agent-vision-toolkit",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -20442,6 +21138,7 @@
      "repo": "ParthJadhav/app-store-screenshots",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -20466,6 +21163,7 @@
      "repo": "oil-oil/draw-ui",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -20490,6 +21188,7 @@
      "repo": "aden-hive/hive",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -20514,6 +21213,7 @@
      "repo": "callstack/agent-device",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -20569,6 +21269,7 @@
      "repo": "cloudflare/security-audit-skill",
      "rel": "skill",
      "rel_strength": 40,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -20593,6 +21294,7 @@
      "repo": "affaan-m/ECC",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -20617,6 +21319,7 @@
      "repo": "NVIDIA/SkillSpector",
      "rel": "skill",
      "rel_strength": 12,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -20641,6 +21344,7 @@
      "repo": "nanocoai/nanoclaw",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -20665,6 +21369,7 @@
      "repo": "mukul975/Anthropic-Cybersecurity-Skills",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 2,
@@ -20714,6 +21419,7 @@
      "repo": "Jpisnice/shadcn-ui-mcp-server",
      "rel": "skill",
      "rel_strength": 24,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -20738,6 +21444,7 @@
      "repo": "wasp-lang/open-saas",
      "rel": "skill",
      "rel_strength": 12,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 3,
@@ -20762,6 +21469,7 @@
      "repo": "nexu-io/open-design",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -20786,6 +21494,7 @@
      "repo": "genspark-ai/genoffice",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -20810,6 +21519,7 @@
      "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -20859,6 +21569,7 @@
      "repo": "siddsachar/row-bot",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -20883,6 +21594,7 @@
      "repo": "Tencent/BrowserSkill",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 5,
@@ -20907,6 +21619,7 @@
      "repo": "SnailSploit/Claude-Red",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 2,
@@ -20931,6 +21644,7 @@
      "repo": "openclaw/lobster",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 4,
@@ -20955,6 +21669,7 @@
      "repo": "mksglu/context-mode",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -21015,6 +21730,7 @@
      "repo": "morluto/rea",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -21039,6 +21755,7 @@
      "repo": "JuliusBrussee/caveman",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -21063,6 +21780,7 @@
      "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -21087,6 +21805,7 @@
      "repo": "Egonex-AI/Understand-Anything",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 3,
@@ -21111,6 +21830,7 @@
      "repo": "OthmanAdi/planning-with-files",
      "rel": "skill",
      "rel_strength": 4,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -21160,6 +21880,7 @@
      "repo": "K-Dense-AI/scientific-agent-skills",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -21184,6 +21905,7 @@
      "repo": "JuliusBrussee/caveman",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -21208,6 +21930,7 @@
      "repo": "Imbad0202/academic-research-skills",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -21232,6 +21955,7 @@
      "repo": "zhayujie/CowAgent",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -21256,6 +21980,7 @@
      "repo": "OthmanAdi/planning-with-files",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -21301,6 +22026,7 @@
      "repo": "OrchestratorInc/agent-orchestrator",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 4,
@@ -21325,6 +22051,7 @@
      "repo": "genspark-ai/genoffice",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -21349,6 +22076,7 @@
      "repo": "kucherenko/jscpd",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 4,
@@ -21373,6 +22101,7 @@
      "repo": "nexu-io/html-anything",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -21397,6 +22126,7 @@
      "repo": "QingYunA/answer-me-with-html",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 4,
@@ -21446,6 +22176,7 @@
      "repo": "level09/enferno",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -21470,6 +22201,7 @@
      "repo": "webiny/webiny-js",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -21494,6 +22226,7 @@
      "repo": "Tencent/AI-Infra-Guard",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -21518,6 +22251,7 @@
      "repo": "zgsm-ai/costrict",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -21567,6 +22301,7 @@
      "repo": "glitternetwork/pinme",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 3,
@@ -21591,6 +22326,7 @@
      "repo": "tirth8205/code-review-graph",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -21615,6 +22351,7 @@
      "repo": "samugit83/redamon",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -21639,6 +22376,7 @@
      "repo": "Jakeschincariol/replica-skill",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 1,
@@ -21663,6 +22401,7 @@
      "repo": "heygen-com/hyperframes",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -21706,6 +22445,7 @@
      "repo": "zenstory-ai/oh-story-claudecode",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -21730,6 +22470,7 @@
      "repo": "Imbad0202/academic-research-skills",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -21754,6 +22495,7 @@
      "repo": "wanshuiyin/Auto-claude-code-research-in-sleep",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 4,
@@ -21778,6 +22520,7 @@
      "repo": "coreyhaines31/marketingskills",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -21802,6 +22545,7 @@
      "repo": "EverMind-AI/EverOS",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -21846,6 +22590,7 @@
      "repo": "calesthio/OpenMontage",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 3,
@@ -21870,6 +22615,7 @@
      "repo": "krillinai/OpenCreator",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -21894,6 +22640,7 @@
      "repo": "wiltodelta/remove-ai-watermarks",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 4,
@@ -21918,6 +22665,7 @@
      "repo": "img2threejs/img2threejs",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 4,
@@ -21942,6 +22690,7 @@
      "repo": "GargantuaX/gemini-watermark-remover",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 4,
@@ -21985,6 +22734,7 @@
      "repo": "zenstory-ai/oh-story-claudecode",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -22009,6 +22759,7 @@
      "repo": "Imbad0202/academic-research-skills",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -22033,6 +22784,7 @@
      "repo": "wanshuiyin/Auto-claude-code-research-in-sleep",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 4,
@@ -22057,6 +22809,7 @@
      "repo": "coreyhaines31/marketingskills",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -22081,6 +22834,7 @@
      "repo": "EverMind-AI/EverOS",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -22128,6 +22882,7 @@
      "repo": "zenstory-ai/oh-story-claudecode",
      "rel": "skill",
      "rel_strength": 21,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -22152,6 +22907,7 @@
      "repo": "Imbad0202/academic-research-skills",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -22176,6 +22932,7 @@
      "repo": "EverMind-AI/EverOS",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -22200,6 +22957,7 @@
      "repo": "OthmanAdi/planning-with-files",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -22224,6 +22982,7 @@
      "repo": "zenstory-ai/drama-skills",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -22269,6 +23028,7 @@
      "repo": "zenstory-ai/oh-story-claudecode",
      "rel": "skill",
      "rel_strength": 30,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -22293,6 +23053,7 @@
      "repo": "EverMind-AI/EverOS",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -22317,6 +23078,7 @@
      "repo": "OthmanAdi/planning-with-files",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -22361,6 +23123,7 @@
      "repo": "zenstory-ai/oh-story-claudecode",
      "rel": "skill",
      "rel_strength": 30,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -22385,6 +23148,7 @@
      "repo": "Imbad0202/academic-research-skills",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -22409,6 +23173,7 @@
      "repo": "EverMind-AI/EverOS",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -22433,6 +23198,7 @@
      "repo": "OthmanAdi/planning-with-files",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -22457,6 +23223,7 @@
      "repo": "realrossmanngroup/no_ai_slop_writing_rules",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 0,
@@ -22506,6 +23273,7 @@
      "repo": "zenstory-ai/oh-story-claudecode",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -22530,6 +23298,7 @@
      "repo": "Imbad0202/academic-research-skills",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -22554,6 +23323,7 @@
      "repo": "wanshuiyin/Auto-claude-code-research-in-sleep",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 4,
@@ -22578,6 +23348,7 @@
      "repo": "backnotprop/plannotator",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -22602,6 +23373,7 @@
      "repo": "zenstory-ai/drama-skills",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -22645,6 +23417,7 @@
      "repo": "zenstory-ai/oh-story-claudecode",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -22669,6 +23442,7 @@
      "repo": "Imbad0202/academic-research-skills",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -22693,6 +23467,7 @@
      "repo": "wanshuiyin/Auto-claude-code-research-in-sleep",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 4,
@@ -22717,6 +23492,7 @@
      "repo": "coreyhaines31/marketingskills",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -22741,6 +23517,7 @@
      "repo": "EverMind-AI/EverOS",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -22801,6 +23578,7 @@
      "repo": "affaan-m/ECC",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -22825,6 +23603,7 @@
      "repo": "thedotmack/claude-mem",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -22849,6 +23628,7 @@
      "repo": "cheaper-inference/OmniRoute",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -22873,6 +23653,7 @@
      "repo": "code-yeongyu/oh-my-openagent",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -22897,6 +23678,7 @@
      "repo": "manaflow-ai/cmux",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -22944,6 +23726,7 @@
      "repo": "zenstory-ai/oh-story-claudecode",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -22968,6 +23751,7 @@
      "repo": "zenstory-ai/drama-skills",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -22992,6 +23776,7 @@
      "repo": "lemomo-ai/lemo-opuscar",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 1,
@@ -23016,6 +23801,7 @@
      "repo": "eternityspring/shuohao-skills",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 0,
@@ -23040,6 +23826,7 @@
      "repo": "Imbad0202/academic-research-skills",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -23084,6 +23871,7 @@
      "repo": "zenstory-ai/oh-story-claudecode",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -23108,6 +23896,7 @@
      "repo": "Imbad0202/academic-research-skills",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -23132,6 +23921,7 @@
      "repo": "zenstory-ai/drama-skills",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -23156,6 +23946,7 @@
      "repo": "lemomo-ai/lemo-opuscar",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 1,
@@ -23180,6 +23971,7 @@
      "repo": "eternityspring/shuohao-skills",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 0,
@@ -23229,6 +24021,7 @@
      "repo": "obra/superpowers",
      "rel": "skill",
      "rel_strength": 32,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 2,
@@ -23253,6 +24046,7 @@
      "repo": "affaan-m/ECC",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -23274,33 +24068,10 @@
      "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencod"
     },
     {
-     "repo": "microsoft/SkillOpt",
-     "rel": "skill",
-     "rel_strength": 10,
-     "score5": {
-      "fc": 4,
-      "eff": 3,
-      "compat": 5,
-      "docs": 4,
-      "community": 4
-     },
-     "score_total": 20,
-     "stars": 18667,
-     "pushed_at": "2026-10-23",
-     "license": "MIT",
-     "archived": false,
-     "skill_md_n": 13,
-     "skill_md_exact_n": 5,
-     "skill_md_ghost_n": 8,
-     "docs_md_n": 22,
-     "test_path_n": 115,
-     "workflow_n": 1,
-     "description": "SkillOpt is a text-space optimizer that trains reusable natural-language skills for frozen LLM agents through trajectory-driven edits, validation-gate"
-    },
-    {
      "repo": "shareAI-lab/learn-claude-code",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 2,
@@ -23325,6 +24096,7 @@
      "repo": "luongnv89/claude-howto",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -23344,6 +24116,31 @@
      "test_path_n": 9,
      "workflow_n": 4,
      "description": "A visual, example-driven guide to Claude Code — from basic concepts to advanced agents, with copy-paste templates that bring immediate value."
+    },
+    {
+     "repo": "microsoft/SkillOpt",
+     "rel": "skill",
+     "rel_strength": 10,
+     "fc_caliber": "strict",
+     "score5": {
+      "fc": 3,
+      "eff": 3,
+      "compat": 5,
+      "docs": 4,
+      "community": 4
+     },
+     "score_total": 19,
+     "stars": 18667,
+     "pushed_at": "2026-10-23",
+     "license": "MIT",
+     "archived": false,
+     "skill_md_n": 13,
+     "skill_md_exact_n": 5,
+     "skill_md_ghost_n": 8,
+     "docs_md_n": 22,
+     "test_path_n": 115,
+     "workflow_n": 1,
+     "description": "SkillOpt is a text-space optimizer that trains reusable natural-language skills for frozen LLM agents through trajectory-driven edits, validation-gate"
     }
    ],
    "verdict": "MATCHED",
@@ -23367,6 +24164,7 @@
      "repo": "affaan-m/ECC",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -23391,6 +24189,7 @@
      "repo": "morluto/rea",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -23415,6 +24214,7 @@
      "repo": "NousResearch/hermes-agent",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -23439,6 +24239,7 @@
      "repo": "langgenius/dify",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -23463,6 +24264,7 @@
      "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -23511,6 +24313,7 @@
      "repo": "stablyai/orca",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -23535,6 +24338,7 @@
      "repo": "JuliusBrussee/caveman",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -23559,6 +24363,7 @@
      "repo": "herdrdev/herdr",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 4,
@@ -23583,6 +24388,7 @@
      "repo": "muratcankoylan/Agent-Skills-for-Context-Engineering",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 2,
@@ -23607,6 +24413,7 @@
      "repo": "op7418/guizang-ppt-skill",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 1,
@@ -23656,6 +24463,7 @@
      "repo": "obra/superpowers",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 2,
@@ -23680,6 +24488,7 @@
      "repo": "affaan-m/ECC",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -23701,33 +24510,10 @@
      "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencod"
     },
     {
-     "repo": "microsoft/SkillOpt",
-     "rel": "skill",
-     "rel_strength": 10,
-     "score5": {
-      "fc": 4,
-      "eff": 3,
-      "compat": 5,
-      "docs": 4,
-      "community": 4
-     },
-     "score_total": 20,
-     "stars": 18667,
-     "pushed_at": "2026-10-23",
-     "license": "MIT",
-     "archived": false,
-     "skill_md_n": 13,
-     "skill_md_exact_n": 5,
-     "skill_md_ghost_n": 8,
-     "docs_md_n": 22,
-     "test_path_n": 115,
-     "workflow_n": 1,
-     "description": "SkillOpt is a text-space optimizer that trains reusable natural-language skills for frozen LLM agents through trajectory-driven edits, validation-gate"
-    },
-    {
      "repo": "shareAI-lab/learn-claude-code",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 2,
@@ -23752,6 +24538,7 @@
      "repo": "luongnv89/claude-howto",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -23771,6 +24558,31 @@
      "test_path_n": 9,
      "workflow_n": 4,
      "description": "A visual, example-driven guide to Claude Code — from basic concepts to advanced agents, with copy-paste templates that bring immediate value."
+    },
+    {
+     "repo": "microsoft/SkillOpt",
+     "rel": "skill",
+     "rel_strength": 10,
+     "fc_caliber": "strict",
+     "score5": {
+      "fc": 3,
+      "eff": 3,
+      "compat": 5,
+      "docs": 4,
+      "community": 4
+     },
+     "score_total": 19,
+     "stars": 18667,
+     "pushed_at": "2026-10-23",
+     "license": "MIT",
+     "archived": false,
+     "skill_md_n": 13,
+     "skill_md_exact_n": 5,
+     "skill_md_ghost_n": 8,
+     "docs_md_n": 22,
+     "test_path_n": 115,
+     "workflow_n": 1,
+     "description": "SkillOpt is a text-space optimizer that trains reusable natural-language skills for frozen LLM agents through trajectory-driven edits, validation-gate"
     }
    ],
    "verdict": "MATCHED",
@@ -23801,6 +24613,7 @@
      "repo": "modelcontextprotocol/inspector",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -23825,6 +24638,7 @@
      "repo": "JuliusBrussee/caveman",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -23849,6 +24663,7 @@
      "repo": "career-ops-hq/career-ops",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -23873,6 +24688,7 @@
      "repo": "NVIDIA/SkillSpector",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -23897,6 +24713,7 @@
      "repo": "OthmanAdi/planning-with-files",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -23946,6 +24763,7 @@
      "repo": "genspark-ai/genoffice",
      "rel": "skill",
      "rel_strength": 3,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -23970,6 +24788,7 @@
      "repo": "Graphify-Labs/graphify",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 5,
@@ -23994,6 +24813,7 @@
      "repo": "taylorwilsdon/google_workspace_mcp",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 4,
@@ -24018,6 +24838,7 @@
      "repo": "timescale/pg-aiguide",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 2,
@@ -24042,6 +24863,7 @@
      "repo": "nicobailon/visual-explainer",
      "rel": "skill",
      "rel_strength": 3,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -24097,6 +24919,7 @@
      "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
      "rel": "skill",
      "rel_strength": 43,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -24121,6 +24944,7 @@
      "repo": "asgeirtj/system_prompts_leaks",
      "rel": "skill",
      "rel_strength": 12,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 0,
@@ -24145,6 +24969,7 @@
      "repo": "Nanako0129/sepia",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 2,
@@ -24169,6 +24994,7 @@
      "repo": "ruvnet/ruflo",
      "rel": "skill",
      "rel_strength": 3,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -24193,6 +25019,7 @@
      "repo": "Manavarya09/design-extract",
      "rel": "skill",
      "rel_strength": 5,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -24242,6 +25069,7 @@
      "repo": "OrchestratorInc/agent-orchestrator",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 4,
@@ -24266,6 +25094,7 @@
      "repo": "getsentry/MobileBuildMCP",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -24290,6 +25119,7 @@
      "repo": "Tencent/BrowserSkill",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 5,
@@ -24314,6 +25144,7 @@
      "repo": "browser-act/skills",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 1,
@@ -24338,6 +25169,7 @@
      "repo": "parcadei/Continuous-Claude-v3",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 2,
@@ -24387,6 +25219,7 @@
      "repo": "career-ops-hq/career-ops",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -24411,6 +25244,7 @@
      "repo": "NVIDIA/SkillSpector",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -24435,6 +25269,7 @@
      "repo": "OthmanAdi/planning-with-files",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -24459,6 +25294,7 @@
      "repo": "nexu-io/open-design",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -24483,6 +25319,7 @@
      "repo": "paperclipai/paperclip",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -24532,6 +25369,7 @@
      "repo": "Vincentwei1021/video-shotcraft",
      "rel": "skill",
      "rel_strength": 21,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -24556,6 +25394,7 @@
      "repo": "cclank/lanshu-awesome-ai-video-kit",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 1,
@@ -24580,6 +25419,7 @@
      "repo": "feicaiclub/video-spec-builder",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -24604,6 +25444,7 @@
      "repo": "sunxiayi/make-blender-education-video-skill",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -24628,6 +25469,7 @@
      "repo": "ruvnet/RuView",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -24677,6 +25519,7 @@
      "repo": "Vincentwei1021/video-shotcraft",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -24701,6 +25544,7 @@
      "repo": "cclank/lanshu-awesome-ai-video-kit",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 1,
@@ -24725,6 +25569,7 @@
      "repo": "feicaiclub/video-spec-builder",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -24749,6 +25594,7 @@
      "repo": "sunxiayi/make-blender-education-video-skill",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -24773,6 +25619,7 @@
      "repo": "heygen-com/hyperframes",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -24821,6 +25668,7 @@
      "repo": "Vincentwei1021/video-shotcraft",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -24845,6 +25693,7 @@
      "repo": "cclank/lanshu-awesome-ai-video-kit",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 1,
@@ -24869,6 +25718,7 @@
      "repo": "equalang/equalang-skill",
      "rel": "skill",
      "rel_strength": 30,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 1,
@@ -24893,6 +25743,7 @@
      "repo": "feicaiclub/video-spec-builder",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -24917,6 +25768,7 @@
      "repo": "sunxiayi/make-blender-education-video-skill",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -24960,6 +25812,7 @@
      "repo": "cloudflare/security-audit-skill",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -24984,6 +25837,7 @@
      "repo": "affaan-m/ECC",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -25008,6 +25862,7 @@
      "repo": "morluto/rea",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -25032,6 +25887,7 @@
      "repo": "NousResearch/hermes-agent",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -25056,6 +25912,7 @@
      "repo": "langgenius/dify",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -25105,6 +25962,7 @@
      "repo": "Kaelio/ktx",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -25129,6 +25987,7 @@
      "repo": "ruvnet/ruflo",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -25153,6 +26012,7 @@
      "repo": "K-Dense-AI/scientific-agent-skills",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -25177,6 +26037,7 @@
      "repo": "langgenius/dify",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -25201,6 +26062,7 @@
      "repo": "volcengine/OpenViking",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -25243,6 +26105,7 @@
      "repo": "eze-is/web-access",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -25267,6 +26130,7 @@
      "repo": "stablyai/orca",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -25291,6 +26155,7 @@
      "repo": "ruvnet/RuView",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -25315,6 +26180,7 @@
      "repo": "langgenius/dify",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -25339,6 +26205,7 @@
      "repo": "Yeachan-Heo/oh-my-claudecode",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -25387,6 +26254,7 @@
      "repo": "nexu-io/open-design",
      "rel": "skill",
      "rel_strength": 21,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -25411,6 +26279,7 @@
      "repo": "Manavarya09/design-extract",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -25435,6 +26304,7 @@
      "repo": "cathrynlavery/diagram-design",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -25459,6 +26329,7 @@
      "repo": "alchaincyf/huashu-design",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 1,
@@ -25483,6 +26354,7 @@
      "repo": "JimLiu/baoyu-design",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -25532,6 +26404,7 @@
      "repo": "siddsachar/row-bot",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -25556,6 +26429,7 @@
      "repo": "zhayujie/CowAgent",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -25580,6 +26454,7 @@
      "repo": "kangarooking/cangjie-skill",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -25604,6 +26479,7 @@
      "repo": "nexu-io/html-anything",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -25628,6 +26504,7 @@
      "repo": "googleworkspace/cli",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 2,
@@ -25677,6 +26554,7 @@
      "repo": "krillinai/OpenCreator",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -25701,6 +26579,7 @@
      "repo": "equalang/equalang-skill",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 1,
@@ -25725,6 +26604,7 @@
      "repo": "nexu-io/open-design",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -25749,6 +26629,7 @@
      "repo": "heygen-com/hyperframes",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -25773,6 +26654,7 @@
      "repo": "calesthio/OpenMontage",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 3,
@@ -25833,6 +26715,7 @@
      "repo": "genspark-ai/genoffice",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -25857,6 +26740,7 @@
      "repo": "evalstate/fast-agent",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -25881,6 +26765,7 @@
      "repo": "Manavarya09/design-extract",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -25905,6 +26790,7 @@
      "repo": "apify/crawlee",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 1,
       "eff": 5,
@@ -25929,6 +26815,7 @@
      "repo": "op7418/guizang-ppt-skill",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 1,
@@ -25978,6 +26865,7 @@
      "repo": "CursorTouch/Windows-MCP",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -26002,6 +26890,7 @@
      "repo": "OrchestratorInc/agent-orchestrator",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 4,
@@ -26026,6 +26915,7 @@
      "repo": "parcadei/Continuous-Claude-v3",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 2,
@@ -26050,6 +26940,7 @@
      "repo": "xpf0000/FlyEnv",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -26074,6 +26965,7 @@
      "repo": "sixtysevenlf/dsh-blender-plugin",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -26123,6 +27015,7 @@
      "repo": "CursorTouch/Windows-MCP",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -26147,6 +27040,7 @@
      "repo": "OrchestratorInc/agent-orchestrator",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 4,
@@ -26171,6 +27065,7 @@
      "repo": "parcadei/Continuous-Claude-v3",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 2,
@@ -26195,6 +27090,7 @@
      "repo": "xpf0000/FlyEnv",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -26219,6 +27115,7 @@
      "repo": "sixtysevenlf/dsh-blender-plugin",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -26274,6 +27171,7 @@
      "repo": "OrchestratorInc/agent-orchestrator",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 4,
@@ -26298,6 +27196,7 @@
      "repo": "tradecatlabs/vibe-coding-cn",
      "rel": "skill",
      "rel_strength": 12,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 0,
@@ -26322,6 +27221,7 @@
      "repo": "thedotmack/claude-mem",
      "rel": "skill",
      "rel_strength": 3,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -26346,6 +27246,7 @@
      "repo": "cheaper-inference/OmniRoute",
      "rel": "skill",
      "rel_strength": 2,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -26370,6 +27271,7 @@
      "repo": "iOfficeAI/AionUi",
      "rel": "skill",
      "rel_strength": 3,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -26415,6 +27317,7 @@
      "repo": "Portwood-Global-Solutions/Portwood",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 2,
@@ -26439,6 +27342,7 @@
      "repo": "Anionex/agent-vision-toolkit",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 3,
@@ -26463,6 +27367,7 @@
      "repo": "liustack/modlens",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 1,
@@ -26487,6 +27392,7 @@
      "repo": "A9T9/RPA",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 1,
       "eff": 1,
@@ -26511,6 +27417,7 @@
      "repo": "TejasS1233/opencode-parser",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 0,
       "eff": 2,
@@ -26558,6 +27465,7 @@
      "repo": "googleapis/mcp-toolbox",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 4,
@@ -26582,6 +27490,7 @@
      "repo": "vibheksoni/stealth-browser-mcp",
      "rel": "skill",
      "rel_strength": 20,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 2,
@@ -26606,6 +27515,7 @@
      "repo": "agentscope-ai/QwenPaw",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -26630,6 +27540,7 @@
      "repo": "t8y2/dbx",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 5,
@@ -26654,6 +27565,7 @@
      "repo": "mukul975/Anthropic-Cybersecurity-Skills",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 2,
@@ -26698,6 +27610,7 @@
      "repo": "ruvnet/ruflo",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -26722,6 +27635,7 @@
      "repo": "langgenius/dify",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -26746,6 +27660,7 @@
      "repo": "NVIDIA/SkillSpector",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -26770,6 +27685,7 @@
      "repo": "activepieces/activepieces",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -26794,6 +27710,7 @@
      "repo": "eigent-ai/eigent",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -26837,6 +27754,7 @@
      "repo": "ruvnet/ruflo",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -26861,6 +27779,7 @@
      "repo": "K-Dense-AI/scientific-agent-skills",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -26885,6 +27804,7 @@
      "repo": "langgenius/dify",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -26909,6 +27829,7 @@
      "repo": "volcengine/OpenViking",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -26933,6 +27854,7 @@
      "repo": "Graphify-Labs/graphify",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 5,
@@ -26988,6 +27910,7 @@
      "repo": "Imbad0202/academic-research-skills",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -27012,6 +27935,7 @@
      "repo": "zhayujie/CowAgent",
      "rel": "skill",
      "rel_strength": 11,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -27036,6 +27960,7 @@
      "repo": "OthmanAdi/planning-with-files",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 3,
@@ -27060,6 +27985,7 @@
      "repo": "backnotprop/plannotator",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 5,
@@ -27084,6 +28010,7 @@
      "repo": "blader/humanizer",
      "rel": "skill",
      "rel_strength": 10,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 2,
       "eff": 1,
@@ -27133,6 +28060,7 @@
      "repo": "genspark-ai/genoffice",
      "rel": "skill",
      "rel_strength": 18,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 4,
@@ -27157,6 +28085,7 @@
      "repo": "iOfficeAI/OfficeCLI",
      "rel": "skill",
      "rel_strength": 16,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 4,
       "eff": 2,
@@ -27181,6 +28110,7 @@
      "repo": "appautomaton/document-SKILLs",
      "rel": "skill",
      "rel_strength": 15,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 2,
@@ -27205,6 +28135,7 @@
      "repo": "harshankur/officeParser",
      "rel": "skill",
      "rel_strength": 15,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 1,
       "eff": 4,
@@ -27229,6 +28160,7 @@
      "repo": "haris-musa/excel-mcp-server",
      "rel": "skill",
      "rel_strength": 25,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 1,
       "eff": 3,
@@ -27273,6 +28205,7 @@
      "repo": "steipete/CodexBar",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -27297,6 +28230,7 @@
      "repo": "casdoor/casdoor",
      "rel": "skill",
      "rel_strength": 1,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 1,
       "eff": 2,
@@ -27321,6 +28255,7 @@
      "repo": "affaan-m/ECC",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
@@ -27345,6 +28280,7 @@
      "repo": "morluto/rea",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 3,
       "eff": 5,
@@ -27369,6 +28305,7 @@
      "repo": "NousResearch/hermes-agent",
      "rel": "family",
      "rel_strength": 0,
+     "fc_caliber": "strict",
      "score5": {
       "fc": 5,
       "eff": 5,
