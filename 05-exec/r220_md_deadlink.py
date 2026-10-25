@@ -83,10 +83,53 @@ def selftest(root):
     print('SELFTEST 反例(围栏外须点名)=%s 正例(围栏内须不点名)=%s 占位符腿(URL不点名且同卷真链点名)=%s' % (ok1, ok2, ok3))
     return ok1 and ok2 and ok3
 
-if '--selftest' in sys.argv:
-    sys.exit(0 if selftest('.') else 1)
-root = sys.argv[1]
-res = dead(root)
-print('md=%d 围栏外可疑相对链接=%d' % (len([1 for dp, _d, fn in os.walk(root) for f in fn if f.endswith('.md') and (os.sep + '.git' + os.sep) not in dp + os.sep]), len(res)))
-for rel, ln, u, norm in res[:40]:
-    print('  %s:%d -> %s [=%s]' % (rel, ln, u, norm))
+def count_md(root):
+    n = 0
+    for dp, _dn, fn in os.walk(root):
+        if (os.sep + '.git' + os.sep) in (dp + os.sep):
+            continue
+        n += sum(1 for f in fn if f.endswith('.md'))
+    return n
+
+def main():
+    import json, time
+    args = sys.argv[1:]
+    if '--selftest' in args:
+        sys.exit(0 if selftest('.') else 1)
+    outp = None
+    if '--json' in args:
+        i = args.index('--json')
+        if i + 1 >= len(args) or args[i + 1].startswith('-'):
+            print('[GATE:deadlink-unverified] --json 缺输出路径'); sys.exit(2)
+        outp = args[i + 1]
+        args = args[:i] + args[i + 1:]
+    pos = [a for a in args if not a.startswith('-')]
+    if not pos:
+        print('[GATE:deadlink-unverified] 无扫描根 ⇒ 无处可比不得判过（R247）'); sys.exit(2)
+    root = pos[0]
+    md = count_md(root)
+    if md == 0:
+        print('[GATE:deadlink-unverified] md=0 ⇒ 零输入不得记 PASS（R247）'); sys.exit(2)
+    res = dead(root)
+    token = '[GATE:deadlink-pass]' if not res else '[GATE:deadlink-fail]'
+    print('md=%d 死链=%d %s' % (md, len(res), token))
+    for rel, ln, u, norm in res[:40]:
+        print('  %s:%d -> %s [=%s]' % (rel, ln, u, norm))
+    if outp:
+        doc = {
+            'schema': 'zijian-md-deadlink-v1',
+            'generated_at': time.strftime('%Y-%m-%dT%H:%M:%S'),
+            'root': os.path.abspath(root),
+            'md_files': md,
+            'dead': len(res),
+            'items': [{'file': r, 'line': l, 'target': u, 'resolved': n} for r, l, u, n in res],
+            'token': token,
+            'status': 'PASS' if not res else 'FAIL',
+            'note': '围栏感知 + 占位符跳过；三腿自证见 --selftest（反例/围栏/占位符）',
+        }
+        io.open(outp, 'w', encoding='utf-8', newline='').write(json.dumps(doc, ensure_ascii=False, indent=1))
+        print('JSON ->', outp)
+    sys.exit(0 if not res else 1)
+
+if __name__ == '__main__':
+    main()

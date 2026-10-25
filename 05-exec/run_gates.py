@@ -1513,6 +1513,25 @@ GATES = [
                   "这些工具；把 Workers 从全部脚本删干净今天照样绿。它实测到的 0 命中属尺的"
                   "口径盲区（部署形态级 vs 读数型用法），已具名收进基线而非凑调用"),
     },
+    {
+        # r220：markdown 相对链接死链面（第 95 门）—— 落 R220-3：索引卷迁进 memory/ 后落到所有门面外，30 条死链活了 45 轮
+        "id": "md_deadlink_face",
+        "script": "r220_md_deadlink.py",
+        "argv": [".", "--json", "06-benchmark/gate_run_md_deadlink_latest.json"],
+        "pass_token": "[GATE:deadlink-pass]",
+        "portable": False,
+        "not_portable_reason":
+            "判据面 = 本仓全部 md（memory/ 183 卷 + 06-benchmark 报告面），CI 无这些卷 ⇒ 只能在有工作区处跑",
+        "covers": [
+            "围栏感知：代码块内的示例链接不点名（此缺陷曾把 obra/superpowers 误判 16 条死链）",
+            "占位符跳过：[Title](URL) 这类模板字面量不点名，且同卷真死链仍须点名（R157-6 阳性对照腿）",
+            "零输入不判过：md=0 或无扫描根 ⇒ rc=2 UNVERIFIED，禁按 0 条记绿（R247）",
+            "--json 缺输出路径 ⇒ rc=2；有死链 ⇒ rc=1 并逐条印 file:line 与规范化目标",
+            "三态退出码 0/1/2 与 r19 runner 聚合口径一致（不短路、不把 SKIP 算失败）"],
+        "why": ("r175 按 R241「原文零改写」把逐轮报告索引拆卷迁进 memory/ 时，仓根相对路径整份搬迁 ⇒ 30 条"
+                  "链接当场失效；既有门 handles_readme_fixtures 只测仓根 README，卷一移就脱离所有门面，存活 45 轮"
+                  "直到 r220 复核自己改造时全仓扫才抓到。本门把「文件迁移后引用面」变成常驻判据，不再靠偶然撞到。"),
+    },
 
 ]
 

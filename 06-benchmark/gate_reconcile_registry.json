@@ -95,9 +95,10 @@
    "volume_coverage_face",
    "ingress_face",
    "tool_carrier_face",
-   "workflow_usage_face"
+   "workflow_usage_face",
+   "md_deadlink_face"
   ],
-  "_snapshot_at": "2026-10-25 05:51",
+  "_snapshot_at": "2026-10-25 11:32",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
@@ -309,6 +310,10 @@
   "workflow_usage_face": {
    "evidence": "06-benchmark/workflow_usage_latest.json",
    "at": "2026-10-25 05:49"
+  },
+  "md_deadlink_face": {
+   "evidence": "06-benchmark/gate_run_md_deadlink_latest.json",
+   "at": "2026-10-25 11:21"
   }
  }
 }
