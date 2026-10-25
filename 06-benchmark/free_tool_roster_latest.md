@@ -209,7 +209,7 @@
     ③ 项目仓（第 67 门 r226 third_face，已剪 vendored 外来面）：0
     （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/266 件、真调用合计 93；
      ③ 取值：tool_skill_matrix_r231.json 的 third_face.per_tool，4134 件 / 2 仓 / 剪外来面 10 个）
-- 读数型真调用（第 4 层）：无读数面 —— 有月度额度（免费 3000 封）但无凭据 ⇒ 读不到：属凭据缺口，不是没有读数面（无读数面 ≠ 0）
+- 读数型真调用（第 4 层）：无读数面 —— 有月度额度（免费 3000 封）但**全机无凭据**（env 0 命中、.env/.dev.vars 键名与它无关、全 workspace grep 只命中我自己的旧门产物）；档位 2 可打开发 signup 但需账号持有人建号+条款同意 ⇒ #29 例外类（凭据缺口 ∧ 第三方账号授权），不是没有读数面（无读数面 ≠ 0）
 - 守它的判据：163 + 93
 - 工作流触点：r163_tool_skill_matrix 已把它列入零引用核查面；仅 HTTP API 无 CLI，凭据缺 ⇒ 尚未接入任何工作流
 - 触点在位核验（在位≠已接入）：r163_tool_skill_matrix（判据件） -> GATE_FILE_MENTIONS
@@ -229,7 +229,7 @@
      ③ 取值：tool_skill_matrix_r231.json 的 third_face.per_tool，4134 件 / 2 仓 / 剪外来面 10 个）
 - **零层归因：[外部凭据缺口]** 仅有 REST 无 CLI，且本机未配 UPSTASH_* 凭据 ⇒ 无法接入；这是凭据缺口，不是搭配意愿问题
     （取值：python 05-exec/r163_free_tools_face.py --json 06-benchmark/free_tools_latest.json（该工具 state=GAP_CRED））
-- 读数型真调用（第 4 层）：无读数面 —— 有月度额度（免费 50 万命令）但无凭据 ⇒ 读不到：属凭据缺口，不是没有读数面（无读数面 ≠ 0）
+- 读数型真调用（第 4 层）：无读数面 —— 有月度额度（免费 50 万命令）但**全机无凭据**（同上探查）；档位 2 console 探查挂起后已终止，该通道结论不依赖它 ⇒ 凭据缺口，不是没有读数面（无读数面 ≠ 0）
 - 守它的判据：163 + 93
 - 工作流触点：r163_tool_skill_matrix 报其零引用（唯一 ADVISORY 项）；仅 REST 无 CLI，凭据缺 ⇒ 未接入
 - 触点在位核验（在位≠已接入）：r163_tool_skill_matrix（判据件） -> GATE_FILE_MENTIONS

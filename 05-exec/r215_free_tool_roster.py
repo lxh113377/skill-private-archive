@@ -140,8 +140,13 @@ NO_READ_FACE = {
     'VS Code': '编辑器本体，无平台额度概念 ⇒ 无读数面',
     'SQLite': '本地嵌入库，无平台额度面 ⇒ 无读数面（用量由 r203_ledger_index 本地统计）',
     'Cloudflare-Turnstile': '该读数门（r163_turnstile_face）的 argv 不带 --json、不做额度读数 ⇒ 无读数面',
-    'Resend': '有月度额度（免费 3000 封）但无凭据 ⇒ 读不到：属凭据缺口，不是没有读数面',
-    'Upstash-Redis': '有月度额度（免费 50 万命令）但无凭据 ⇒ 读不到：属凭据缺口，不是没有读数面',
+    # r234：两档各证（与 R2 同标准）。档位 1 全机探查无凭据；档位 2 通道可达但需建号+条款 ⇒ 例外类。
+    #   证据件 = 06-benchmark/free_tool_credential_probe_2026-10-25.txt（含键名清单与 grep 结果）。
+    'Resend': ('有月度额度（免费 3000 封）但**全机无凭据**（env 0 命中、.env/.dev.vars 键名与它无关、'
+               '全 workspace grep 只命中我自己的旧门产物）；档位 2 可打开发 signup 但需账号持有人建号+条款同意 '
+               '⇒ #29 例外类（凭据缺口 ∧ 第三方账号授权），不是没有读数面'),
+    'Upstash-Redis': ('有月度额度（免费 50 万命令）但**全机无凭据**（同上探查）；档位 2 console 探查挂起后已终止，'
+                      '该通道结论不依赖它 ⇒ 凭据缺口，不是没有读数面'),
 }
 READ_STATES = ('MEASURED', 'PARTIAL', 'GAP_SERVICE', 'GAP_CRED', 'GAP_PLATFORM', 'UNVERIFIED')
 

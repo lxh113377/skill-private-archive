@@ -566,6 +566,24 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   必须来自可复算的入口件，不接受「我跑过一次的脚本」当来源。
   取值：git show HEAD:<报告 rel> 与工作树 io.read 比对（长度/章节/数字三项）；
   python 05-exec/r221_dead_regex_scan.py --wide（现值 256 件/959 个/2 处）。
+- [ ] **R234-2（r234 登记，P1·已落地）** **用 R2 同一把尺量 Resend/Upstash：档位 1 全机探查 0 凭据、档位 2 需建号+条款；「查过了」升级为「有可复算证据」**： 【r234 裁决=执行（Resend/Upstash 补走两档：档位 1 全机探查 0 凭据 + 档位 2 通道可达但需建号/条款；名册理由同步升级并挂证据件）｜读数：env 0 命中、三份键名清单无相关项、全 workspace grep 仅命中我自己的旧门产物；chrome 进程 0；名册 [ROSTER:OK] md 20125B。】
+  一手：r233 我刚给 R2 立了「写归因要写清试到哪一档」的标准，而 Resend/Upstash 记的「外部凭据缺口」是
+  上一轮之前的**记忆型断言**。本轮按同一标准补两档实测。
+  档位 1（全机探查，0 凭据）：env 变量 0 命中；supermarket-web/.env（411B）键名是 VITE_CB_API_BASE /
+  VITE_CB_PUBLIC_API_BASE / VITE_CB_ENV_ID / VITE_CB_REGION；.env.example（1581B）只登记 ADMIN_KEY 与
+  DIFY_*；.dev.vars（962B）键名 ADMIN_KEY / PRINT_ADMIN_PASSWORD / BACKUP_PASSPHRASE / ADMIN_READONLY_KEY；
+  全 workspace 深度 3 grep 'RESEND_API_KEY|UPSTASH_REDIS' 仅命中 _scratch/r189_ci_repro/06-benchmark/ 下
+  **我自己的旧门产物**。⇒ 证据件 06-benchmark/free_tool_credential_probe_2026-10-25.txt（含全部命令 + 键名清单）。
+  档位 2（浏览器自动化）：agent-browser 可打开 resend.com/signup（标题「Sign up · Resend」）⇒ 通道本身通；
+  但前进需账号持有人建号/登录 + 同意服务条款 ⇒ #29 例外类，故不建号、不填表、不作提交。
+  console.upstash.com 探查在 snapshot 阶段挂起 ⇒ **终止该作业并关闭浏览器会话**（chrome 进程复查 0），
+  不为它续烧时间（该档结论不依赖它）。
+  名册 BLOCKER 的 Resend/Upstash 理由同步改为「档位 1 无凭据 + 档位 2 需建号+条款」，并挂证据件路径。
+  归类对照：R2 = 平台条款 ∧ 反机器人质询；Resend/Upstash = 凭据门槛。三者共同点 = 都试过两档且每档一条
+  可复算证据；区别在门槛性质（故名册把 class 分「平台能力缺口」与「外部凭据缺口」两类）。
+  元教训：「查过了」与「有证据」是两回事 —— 此前「未配 key」是记忆型断言（来自旧门产物），本轮换成
+  命令 + 键名清单 + grep 结果，换手的人能复算。
+  取值：cat 06-benchmark/free_tool_credential_probe_2026-10-25.txt；python 05-exec/r215_free_tool_roster.py。
 - [ ] **R233-2（r233 登记，P1·已落地）** **R2 卡点补走浏览器档位：Dashboard 在登录前即返回 CF 安全质询 ⇒ 归因从「平台能力缺口」收窄为双重缺口**： 【r233 裁决=执行（补走浏览器档位只读取证 + 名册 R2 归因改三句叠加 + 显式划出「不代过质询/不代签条款」边界）｜读数：Dashboard 实测返回安全质询页（登录前被挡）；chrome 进程 0 残留；名册 r215 复跑 [ROSTER:OK] md 19788B。】
   一手：R2 此前只记「平台能力缺口（需 Dashboard 启用 10042）」，那是 #29 阶梯**档位 1（CLI/API）**的证据；
   我此前只走完第一档就写了归因。本轮补第二档（浏览器自动化，只读、未做任何点击/条款同意）：
