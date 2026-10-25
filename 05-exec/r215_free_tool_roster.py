@@ -29,6 +29,14 @@ SRC = {
     # 两把尺的权威源 = 第 67 门产物（per_tool 提到 / per_tool_exec 代码真调用）。
     # r216 自抓：我 r214 造的 tool_skill_matrix_probe 是它的弱化重造（只有「提到」一尺），
     # 故本件不再读自己那份 probe —— 避免第二真相源；按 glob 取最新且含 per_tool_exec 的 67 产物。
+    # r249 修（r248 审计抓到）：第 67 门原本**没有 argv** ⇒ 它不落盘；本件按 glob 取「最新 r*.json」，
+    #   而那些 r*.json 全是**我手工跑出来的快照**（最新 r244 是 15:47 的）⇒ 层①会**陈旧**：
+    #   我 01:17 补登记了技能层（A-memory-start 多了一处 turnstile），名册仍按旧件报「提到 2」，
+    #   而独立复算 live 走盘得 3 ⇒ 第 98 门当场 FAIL（"Cloudflare-Turnstile: 层1提到 3!=2"）。
+    #   修法：第 67 门给 argv 落 canonical 件（工具件由门产出，不再依赖我手工跑）；本件**优先读 canonical**。
+    #   顺序：canonical → 退回最新 r*（并记下读的是哪一份，供合读）。
+    'matrix_canonical': 'tool_skill_matrix_latest.json',
+
     'matrix*': 'tool_skill_matrix_r*.json',
     'truth': 'route_truth_latest.json',
     'ingress': 'ingress_latest.json',
@@ -349,12 +357,25 @@ def load(n):
 def build():
     src = {}
     used = {}
+    # r249：canonical 是**可选**源（第 67 门每轮落；首次运行前可能还没有）⇒ 缺它不得判「源件缺失」。
+    OPTIONAL = ('matrix_canonical',)
     for k, fn in SRC.items():
         v, real = load(fn)
         if v is None:
+            if k in OPTIONAL:
+                used[k] = '（未生成）'
+                continue
             return None, '源件缺失或不可析：' + fn
         src[k.rstrip('*')] = v
         used[k.rstrip('*')] = real
+    # r249 优先级：canonical（工具件、每轮由第 67 门落）> 最新 r*（我手工快照）。
+    #   退回时把「读的是手工快照」写进 used，供名册行内合读。
+    _can = src.get('matrix_canonical')
+    if isinstance(_can, dict) and _can.get('per_tool_exec') is not None:
+        src['matrix'] = _can
+        used['matrix'] = used.get('matrix_canonical') or SRC.get('matrix_canonical')
+    elif used.get('matrix'):
+        used['matrix'] = used['matrix'] + '（手工快照，canonical 未生成）'
     pat_map = {k.lower(): v for k, v in (src['patterns'].get('patterns') or {}).items()}
     skills = CC.all_skills()
     rows = src['roster'].get('rows') or []

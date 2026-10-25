@@ -983,9 +983,10 @@ GATES = [
     },
     {
         # r163：免费工具 × 在册 skill 搭配矩阵（第 67 门，goal 目标本体）
+        # r249 fix: argv 原为空 => 本门不落盘，名册只能读手工快照 => 层①陈旧（r248 审计抓到）
         "id": "tool_skill_matrix",
         "script": "r163_tool_skill_matrix.py",
-        "argv": [],
+        "argv": ["--json", "06-benchmark/tool_skill_matrix_latest.json"],
         "pass_token": "[TOOLMATRIX:PASS]",
         "portable": False,
         "not_portable_reason":

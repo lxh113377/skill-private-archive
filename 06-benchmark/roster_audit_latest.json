@@ -26,7 +26,7 @@
    "gh_billing_latest.json"
   ],
   "Cloudflare-Pages": [
-   199183,
+   199247,
    "pages_http_latest.json"
   ],
   "Cloudflare-Turnstile": [
@@ -34,7 +34,7 @@
    "turnstile_usage_latest.json"
   ],
   "SQLite": [
-   12.03,
+   12.09,
    "sqlite_usage_latest.json"
   ]
  },
@@ -58,7 +58,7 @@
    "l3": 0
   },
   "Cloudflare-Turnstile": {
-   "l1_mention": 2,
+   "l1_mention": 3,
    "l1_exec": 0,
    "l2": 26,
    "l3": 3

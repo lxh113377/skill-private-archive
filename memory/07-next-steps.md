@@ -566,6 +566,22 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   必须来自可复算的入口件，不接受「我跑过一次的脚本」当来源。
   取值：git show HEAD:<报告 rel> 与工作树 io.read 比对（长度/章节/数字三项）；
   python 05-exec/r221_dead_regex_scan.py --wide（现值 256 件/959 个/2 处）。
+- [ ] **R249-1（r249 登记，P1·已落地）** **审计抓到真缺陷：名册层①一直读我手工跑的快照（第 67 门 argv 为空、从不落盘）⇒ 补 canonical 源并改优先级**： 【r249 裁决=执行（第 67 门补 argv 落 canonical + 名册/审计改优先级 + canonical 设可选源；§103 一处裸数字补取值）｜读数：第 67 门报 Turnstile 提到 3（与 live 一致）、名册 [ROSTER:OK] md 23563B、审计漂移 0、md_claim 敞口 0。】
+  ① 症状：r248 补登记技能层后，101 门全量里 `roster_audit` 判红 `漂移: Cloudflare-Turnstile: 层1提到 3!=2`
+  （左=审计 live 走盘 3；右=名册读到的 2）。
+  ② 根因：第 67 门条目的 `"argv": []` ⇒ **本门从不落盘**；名册源选择 `'matrix*': 'tool_skill_matrix_r*.json'`
+  按 mtime 取最新含 per_tool_exec 的件 ⇒ 读到的是我**手工跑的** `tool_skill_matrix_r244.json`（generated_at
+  2026-10-25 15:47），早于 01:17 的技能编辑 ⇒ **名册层①会随「我上次何时手工跑」而陈旧**。
+  ③ 修法三处：第 67 门补 argv `--json 06-benchmark/tool_skill_matrix_latest.json`（工具件由门产出）；
+  名册与审计**优先读 canonical**、退回最新 r* 并标注「手工快照」；canonical 设为**可选源**（首次运行前不存在，
+  缺它不得判「源件缺失」，否则一轮都跑不起来）。
+  ④ 修后复核：第 67 门报 Turnstile 提到 3 件（与 live 一致）⇒ 名册 `[ROSTER:OK]` md 23563B ⇒ 审计
+  `[ROSTER-AUDIT:PASS] 漂移 0`。
+  ⑤ 记账：这个缺陷不是我看出来的，是第 98 门（独立复算）看出来的 —— 正是 r237 建它的理由。
+  若无那把尺，名册会一直拿 15:47 的快照自称「实时读数」，且**看起来完全正常**（数字齐、牙全过）。
+  元教训：「每轮都在跑的门」≠「每轮都在更新的产物」；判据自我更新要逐源件核「谁写的、何时写的」。
+  取值：python 05-exec/r163_tool_skill_matrix.py --json 06-benchmark/tool_skill_matrix_latest.json；
+  python 05-exec/r237_roster_audit.py --json 06-benchmark/roster_audit_latest.json。
 - [ ] **R248-1（r248 登记，P1·已落地）** **搭配读数在技能层不可达 ⇒ 走 rule_editor 补登记；并抓到「源件改了镜像没刷」（另一端点读旧版）**： 【r248 裁决=执行（rule_editor 补登记技能层 + 跑官方镜像修复器 + 三门禁与注册表复核）｜读数：append OK/备份落 _trash/git committed/verify PASS；镜像 31947B=源件 31947B 且含新块；global_skills violation 0、evolution pass、注册表 0 漏注册/0 回滚/0 幽灵（191=191）。】
   ① 缺口实测：技能层只登记了 r196/r199/r200/r201 四个早期读数面；我新建的 r241 官方计费面、r242 Turnstile 面、
   r243 SQLite 体量面、r215 名册、r237 独立复算、r247 策略双份扫描**全不在其中** ⇒ 未来会话/其它端点不知道它们存在。
