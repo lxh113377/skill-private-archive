@@ -73,7 +73,7 @@
  },
  "r209_route_truth_measure.py": {
   "evidence": "06-benchmark/route_truth_latest.json",
-  "registered_at": "2026-10-25 00:56"
+  "registered_at": "2026-10-26 02:21"
  },
  "r215_free_tool_roster.py": {
   "evidence": "06-benchmark/free_tool_roster_latest.json",
@@ -98,5 +98,9 @@
  "r247_dup_policy_scan.py": {
   "evidence": "06-benchmark/dup_policy_latest.json",
   "registered_at": "2026-10-26 01:00"
+ },
+ "r250_source_freshness_scan.py": {
+  "evidence": "06-benchmark/source_freshness_latest.json",
+  "registered_at": "2026-10-26 02:23"
  }
 }

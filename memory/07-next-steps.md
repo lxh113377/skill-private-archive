@@ -566,6 +566,33 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   必须来自可复算的入口件，不接受「我跑过一次的脚本」当来源。
   取值：git show HEAD:<报告 rel> 与工作树 io.read 比对（长度/章节/数字三项）；
   python 05-exec/r221_dead_regex_scan.py --wide（现值 256 件/959 个/2 处）。
+- [ ] **R250-1（r250 登记，P1·已落地）** **枚举「门跑了≠产物更新」：四处补表（101→105 门）+ 新建第 105 门源件新鲜度审计**： 【r250 裁决=执行（四处补表：free_tools_face 补 argv + 三道新门；新建第 105 门源件新鲜度审计；门表 101→105）｜读数：门声明产出 26 件 / 名册源件 16 件 / 孤儿 0 / 陈旧 0；[SRCFRESH:PASS]；门表 105（新增 4、未登记 0）。】
+  ① 做法：把 r249 的个案变成面向**源件**的审计 —— 核名册读的 16 个源件「谁写的、何时写的」，
+  实测 **6 个无门声明产出**，四件是真问题：free_tools_latest.json（名册行清单，停 10-24 22:42，产出者
+  free_tools_face 在表但 argv 为空）/ gh_billing_latest.json（r241 建面未进表）/ turnstile_usage_latest.json
+  （同上）/ route_truth_latest.json（产出者 r209 不在表）；另两件豁免（人工配置表 + r* 退回项）。⇒ 同族第四次。
+  ② 修：free_tools_face 补 argv；新增三道门（gh_billing_face / turnstile_usage_face / route_truth_measure，
+  token 取实跑值 [GHBILL:PASS] / [TURNSTILE:PASS] / [ROUTETRUTH:OK]，r209 实跑 30s）；门表 101→104→**105**（未登记 0）。
+  踩坑：插门条目锚点选在 id 行 ⇒ 吃掉条目开头 `{`（语法错）；git checkout 还原后文件是 **CRLF** ⇒ LF 锚点命中 0；
+  两处都修后落定。
+  ③ 新门 05-exec/r250_source_freshness_scan.py（只读）：判据 A 来源（每个源件必须被某门 --json 声明，
+  豁免配置表与 r* 退回项；违例 rc=1）＋判据 B 新鲜度（mtime vs gate_runs.jsonl，超 grace 逐件印【陈旧】不判红）。
+  **与第 98 门分工不重叠**：98 管值对不对，本门管来源与新鲜度（值全对但源件陈旧照样是错读数）。
+  实跑：门声明产出 26 件 / 名册源件 16 件 / 孤儿 0 / 陈旧 0 ⇒ [SRCFRESH:PASS]。
+  元教训：「每轮都在跑」的门数不是可信度；进步在于按**源件**核来源与新鲜度。
+  取值：python 05-exec/r250_source_freshness_scan.py --json 06-benchmark/source_freshness_latest.json。
+- [ ] **R250-2（r250 登记，P1·待处理）** **判据面互斥：第 65 门报 5 个工具 GAP_CRED，而读数面实测同名工具 MEASURED（两面各自 PASS）**：
+  一手证据（同一时刻两产物对照）：free_tools_latest.json 报 GitHub / D1 / R2 / Pages / Workers = GAP_CRED、
+  SQLite / VS Code / Turnstile = READY；free_tool_roster_latest.json 第 ④ 层报 GitHub / D1 / Pages / Workers /
+  Turnstile = MEASURED（真读到数：官方计费 24235 分钟 / D1 8.89 MiB / Pages 198687 次 / Workers 0 / Turnstile 0）、
+  R2 = GAP_SERVICE、Resend/Upstash = 无读数面。
+  性质：不是数字错，是**判据面之间的冲突** —— 第 65 门判据「无 BROKEN、GAP_* 已具名」⇒ PASS；
+  我的面读得出数 ⇒ PASS。两绿互斥，比单点红更需要专门判据。
+  下一步（下一轮）：核第 65 门凭据探测逻辑（很可能在看环境变量/CLI 名，而真实凭据在
+  xdg.config/.wrangler/config/default.toml 与 gh 登录态里），定「谁对」后二选一：修它的探测面（优先，
+  指向与读数面同源的凭据）或把冲突登记成显式判据（禁两绿并存）。
+  取值：python 05-exec/r163_free_tools_face.py --json 06-benchmark/free_tools_latest.json；
+  python 05-exec/r215_free_tool_roster.py --json 06-benchmark/free_tool_roster_latest.json（对照两件）。
 - [ ] **R249-1（r249 登记，P1·已落地）** **审计抓到真缺陷：名册层①一直读我手工跑的快照（第 67 门 argv 为空、从不落盘）⇒ 补 canonical 源并改优先级**： 【r249 裁决=执行（第 67 门补 argv 落 canonical + 名册/审计改优先级 + canonical 设可选源；§103 一处裸数字补取值）｜读数：第 67 门报 Turnstile 提到 3（与 live 一致）、名册 [ROSTER:OK] md 23563B、审计漂移 0、md_claim 敞口 0。】
   ① 症状：r248 补登记技能层后，101 门全量里 `roster_audit` 判红 `漂移: Cloudflare-Turnstile: 层1提到 3!=2`
   （左=审计 live 走盘 3；右=名册读到的 2）。

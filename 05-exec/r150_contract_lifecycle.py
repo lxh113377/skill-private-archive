@@ -174,7 +174,12 @@ def build(root):
                 token = (tok_raw or "").strip()
                 token = token if isinstance(token, str) else str(token)
             pf = perform_face(gid, rows)
-            drafted = bool(exists and size > 0 and (g.get("why") or "").strip())
+            # r250 自抓：原实现对 why 直接 .strip()，而我给新门写成了**元组**（相邻字面量漏去逗号）
+            #   ⇒ AttributeError 把 pre-commit 整体拦下。改为与上面 pass_token 同样的归一化处理。
+            _why = g.get("why")
+            if isinstance(_why, (list, tuple)):
+                _why = " ".join(str(x) for x in _why)
+            drafted = bool(exists and size > 0 and (_why or "").strip())
             if recon is None:
                 reviewed = None
             else:

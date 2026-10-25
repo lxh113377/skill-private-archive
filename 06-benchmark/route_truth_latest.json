@@ -2,7 +2,7 @@
  "schema": "route-truth-v2",
  "readonly": true,
  "router": "C:/Users/37533/Desktop/workspace/焚诀/eval\\unified_router.py",
- "measured_at": "2026-10-25 03:36:19",
+ "measured_at": "2026-10-26 02:21:26",
  "rows": [
   {
    "skill": "win-toolchain-pitfalls",
@@ -14,12 +14,12 @@
    "candidates": [
     {
      "name": "local-mineru",
-     "score": 0.608,
+     "score": 0.6089,
      "keyword": 0.0711
     },
     {
      "name": "wps-knowledgebase",
-     "score": 0.6079,
+     "score": 0.6088,
      "keyword": 0.0408
     },
     {
@@ -39,7 +39,7 @@
     }
    ],
    "llm_reason": "Top-3几乎并列 (diff=0.0001)",
-   "elapsed_s": 2.0
+   "elapsed_s": 2.1
   },
   {
    "skill": "win-toolchain-pitfalls",
@@ -51,7 +51,7 @@
    "candidates": [
     {
      "name": "scope-creep-detector",
-     "score": 0.6582,
+     "score": 0.6591,
      "keyword": 0.0655
     },
     {
@@ -75,8 +75,8 @@
      "keyword": 0.0375
     }
    ],
-   "llm_reason": "Top-3几乎并列 (diff=0.0106)",
-   "elapsed_s": 2.0
+   "llm_reason": "Top-3几乎并列 (diff=0.0115)",
+   "elapsed_s": 2.2
   },
   {
    "skill": "chaoshi-web-deploy",
@@ -105,7 +105,7 @@
    "candidates": [
     {
      "name": "github",
-     "score": 0.6294,
+     "score": 0.6303,
      "keyword": 0.242
     },
     {
@@ -130,7 +130,7 @@
     }
    ],
    "llm_reason": "",
-   "elapsed_s": 2.0
+   "elapsed_s": 2.8
   }
  ],
  "tasks": [
@@ -156,7 +156,7 @@
     "ci-pipeline-debugging"
    ],
    "outcome": "HIT_DIRECT",
-   "elapsed_s": 0.3
+   "elapsed_s": 0.4
   },
   {
    "task": "钩子静默推送",
@@ -170,7 +170,7 @@
     "wb-git-commit-recipe"
    ],
    "outcome": "HIT",
-   "elapsed_s": 2.0
+   "elapsed_s": 2.3
   },
   {
    "task": "Actions 分钟",
@@ -184,7 +184,7 @@
     "screenshot"
    ],
    "outcome": "HIT",
-   "elapsed_s": 2.0
+   "elapsed_s": 2.2
   },
   {
    "task": "R2 开桶",
@@ -198,7 +198,7 @@
     "A-project-handoff"
    ],
    "outcome": "MISS",
-   "elapsed_s": 2.0
+   "elapsed_s": 5.3
   },
   {
    "task": "Turnstile",
@@ -212,7 +212,7 @@
     "dingtalk-aitable"
    ],
    "outcome": "DISPUTED",
-   "elapsed_s": 2.2
+   "elapsed_s": 2.0
   },
   {
    "task": "D1 查额度",
@@ -222,11 +222,11 @@
    "direct_hit": false,
    "top3": [
     "wps-knowledgebase",
-    "fenjue-memory-audit",
-    "story-setup"
+    "story-setup",
+    "fenjue-memory-audit"
    ],
    "outcome": "MISS",
-   "elapsed_s": 2.3
+   "elapsed_s": 0.3
   },
   {
    "task": "Workers 调用量",
@@ -240,7 +240,7 @@
     "ican-deploy"
    ],
    "outcome": "MISS",
-   "elapsed_s": 3.8
+   "elapsed_s": 0.3
   },
   {
    "task": "Resend 发邮",
@@ -254,7 +254,7 @@
     "codebuddy-chat-web"
    ],
    "outcome": "UNOWNED",
-   "elapsed_s": 2.6
+   "elapsed_s": 0.2
   },
   {
    "task": "Upstash 限流",
@@ -268,7 +268,7 @@
     "workbuddy-mcp"
    ],
    "outcome": "UNOWNED",
-   "elapsed_s": 2.3
+   "elapsed_s": 0.3
   }
  ],
  "task_judged": 7,

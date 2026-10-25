@@ -100,11 +100,15 @@
    "md_deadlink_face",
    "ledger_index_build",
    "sqlite_usage_face",
+   "gh_billing_face",
+   "turnstile_usage_face",
+   "route_truth_measure",
    "free_tool_roster_face",
    "roster_audit",
-   "dup_policy_scan"
+   "dup_policy_scan",
+   "source_freshness_scan"
   ],
-  "_snapshot_at": "2026-10-26 02:01",
+  "_snapshot_at": "2026-10-26 02:23",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
@@ -344,6 +348,22 @@
   "dup_policy_scan": {
    "evidence": "06-benchmark/dup_policy_latest.json",
    "at": "2026-10-26 01:00"
+  },
+  "gh_billing_face": {
+   "evidence": "06-benchmark/gh_billing_latest.json",
+   "at": "2026-10-26 02:21"
+  },
+  "turnstile_usage_face": {
+   "evidence": "06-benchmark/turnstile_usage_latest.json",
+   "at": "2026-10-26 02:21"
+  },
+  "route_truth_measure": {
+   "evidence": "06-benchmark/route_truth_latest.json",
+   "at": "2026-10-26 02:21"
+  },
+  "source_freshness_scan": {
+   "evidence": "06-benchmark/source_freshness_latest.json",
+   "at": "2026-10-26 02:23"
   }
  }
 }

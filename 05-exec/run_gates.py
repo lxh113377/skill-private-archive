@@ -956,7 +956,9 @@ GATES = [
         # r163：免费开发者工具可达性名册（第 65 门）
         "id": "free_tools_face",
         "script": "r163_free_tools_face.py",
-        "argv": [],
+        # r250 修（源件新鲜度审计抓到）：argv 原为空 ⇒ 本门**不落盘**，名册读的行清单
+        #   `free_tools_latest.json` 因此停在 10-24 22:42（陈旧两天）。同族第三次（r249/r250）。
+        "argv": ["--json", "06-benchmark/free_tools_latest.json"],
         "pass_token": "[FREETOOLS:PASS]",
         "portable": False,
         "not_portable_reason":
@@ -1590,6 +1592,36 @@ GATES = [
         "why": ("名册原先对 SQLite 记「无读数面」，理由是「本地库无平台额度面」——与 Turnstile 同病："
                   "把**没有额度**读成了**没有可读的数**。本门把本地体量与新鲜度变成每轮读数。"),
     },
+    # r250：三处「产出者在表外」补进表 —— 名册/审计读它们的产物，却没人每轮更新（源件新鲜度审计抓到）。
+    {
+        "id": "gh_billing_face",
+        "script": "r241_gh_billing_face.py",
+        "argv": ["--json", "06-benchmark/gh_billing_latest.json"],
+        "pass_token": "[GHBILL:PASS]",
+        "portable": True,
+        "covers": ["GitHub 官方计费用量（/users/{u}/settings/billing/usage 的 usageItems 聚合）",
+                   "端点不可达/凭据问题 ⇒ UNVERIFIED rc=2；本期无用量 ⇒ MEASURED 且 items=0（不是取不到）"],
+        "why": "r241 建了官方计费面但没进表 ⇒ 产物只在手工跑时更新；名册第 ⑤ 列的 GitHub 数取它（与 r249 同族）。",
+    },
+    {
+        "id": "turnstile_usage_face",
+        "script": "r242_turnstile_usage_face.py",
+        "argv": ["--json", "06-benchmark/turnstile_usage_latest.json"],
+        "pass_token": "[TURNSTILE:PASS]",
+        "portable": True,
+        "covers": ["Turnstile 官方用量（account.turnstileAdaptiveGroups；日期参数名运行时自省）",
+                   "自省失败/端点不可达 ⇒ UNVERIFIED rc=2"],
+        "why": "同 r241：建了面未进表 ⇒ 名册第 ⑤ 列 Turnstile 数会陈旧。",
+    },
+    {
+        "id": "route_truth_measure",
+        "script": "r209_route_truth_measure.py",
+        "argv": ["--json", "06-benchmark/route_truth_latest.json"],
+        "pass_token": "[ROUTETRUTH:OK]",
+        "portable": True,
+        "covers": ["召回真值面（名册的任务↔skill 对照源）"],
+        "why": "名册读 route_truth_latest.json，其产出者 r209 原不在表 ⇒ 该件停在 10-25 03:36（陈旧约一天）；实跑 30s。",
+    },
     {
         # r232：名册面（新门）—— 免费工具 × 工作流 × skill 的四层搭配读数 + 十条一致性牙。
         # 为什么进表：r215-r231 逐轮把名册做成四层可复算产物、并把每类失真拆出来（探针件 / vendored
@@ -1642,6 +1674,19 @@ GATES = [
             "单源名出现在 ≥2 件、或同值名取值不一 ⇒ rc=1；扫不到目标常量 ⇒ rc=2（空面不得判绿）"],
         "why": ("r242 的假漂移（审计把自己算进 Turnstile 命中 28!=25）根因就是 EXCL 被写了两份。"
                   "本门让「两份不同步」在**下一次改动时**当场红，而不是等两边数字对不上再回头查。"),
+    },
+    # r250：源件新鲜度审计进表 —— 管「谁写的、何时写的」，与第 98 门（管值对不对）分工不重叠。
+    {
+        "id": "source_freshness_scan",
+        "script": "r250_source_freshness_scan.py",
+        "argv": ["--json", "06-benchmark/source_freshness_latest.json"],
+        "pass_token": "[SRCFRESH:PASS]",
+        "portable": True,
+        "covers": ["名册读的每个源件是否由某道门逐轮产出（--json 声明）；豁免 = 配置表 + r* 退回项",
+                   "源件 mtime 相对最近一次门跑的陈旧度（逐件印出，不判红）",
+                   "import 面/门表取不到 ⇒ UNVERIFIED rc=2（空面不得判绿）"],
+        "why": ("r249 抓到「门跑了 ≠ 产物更新」；r250 枚举同类又抓到四处（free_tools / gh_billing / "
+                "turnstile_usage / route_truth 无门产出）。值全对但源件陈旧照样是错读数 —— 独立成门。"),
     },
 ]
 
