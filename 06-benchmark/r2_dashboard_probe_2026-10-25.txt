@@ -1,0 +1,23 @@
+R2 启用卡点 · 浏览器通道实测（r233，只读，未做任何点击/条款同意）
+生成时间：2026-10-25（本机）
+命令：agent-browser open https://dash.cloudflare.com/ ; agent-browser snapshot -i
+
+实测快照（节选）：
+  - heading "dash.cloudflare.com" [level=1, ref=e1]
+  - heading "正在进行安全验证" [level=2, ref=e2]
+  - Iframe "包含 Cloudflare 安全质询的小组件" [ref=e5]
+    - link "Cloudflare，在新标签页中打开" [ref=e6]
+    - link "隐私，在新标签页中打开" [ref=e7]
+    - link "帮助，在新标签页中打开" [ref=e8]
+  - link "Cloudflare，在新标签页中打开" [ref=e3]
+  - link "隐私，在新标签页中打开" [ref=e4]
+
+判定：
+· 档位 1（CLI/API）：wrangler 与 REST 同回 10042（需在 Dashboard 启用）；subscriptions 403/10000。
+· 档位 2（浏览器自动化）：打开的即是 **Cloudflare 安全质询页**（heading「正在进行安全验证」+ 质询 iframe），
+  在**到达登录之前**就被挡住 ⇒ 自动化无法前进到「启用 R2」那一步。
+· 结论：R2 属 #29 的例外类（外部凭据缺口 ∧ 平台能力缺口）：既需账号持有人在 Dashboard 完成启用，
+  且自动化通道被平台自身的反机器人质询拦截。此件即该项的实测证据（此前只有 API 侧证据）。
+
+未做且不做的：不代替账号持有人过质询、不代替接受 R2 订阅条款（法律同意属账号持有人）。
+回滚：本件仅为只读取证，无副作用；agent-browser 会话已在取证后关闭。

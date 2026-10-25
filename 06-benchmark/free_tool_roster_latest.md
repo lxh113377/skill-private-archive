@@ -76,8 +76,8 @@
     ③ 项目仓（第 67 门 r226 third_face，已剪 vendored 外来面）：0
     （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/266 件、真调用合计 93；
      ③ 取值：tool_skill_matrix_r231.json 的 third_face.per_tool，4134 件 / 2 仓 / 剪外来面 10 个）
-- **零层归因：[平台能力缺口]** R2 未在账号启用（wrangler 与 REST 同回 10042），官方提示需在 Dashboard 启用；属平台+条款同意，非凭据问题（对照 /accounts=200 已证凭据活着）
-    （取值：python 05-exec/r201_r2_enable_face.py --json 06-benchmark/r2_enable_latest.json（state=GAP_SERVICE / code=10042））
+- **零层归因：[平台能力缺口]** R2 未在账号启用（wrangler 与 REST 同回 10042，官方提示需 Dashboard 启用）；档位 2 实测打开 dash.cloudflare.com 即命中 CF 安全质询页（「正在进行安全验证」+ 质询 iframe），在登录前被挡 ⇒ 属平台+条款同意缺口 ∧ 自动化通道被平台自身反机器人质询拦截，非本机凭据问题（对照 /accounts=200 已证 API 凭据活着）
+    （取值：python 05-exec/r201_r2_enable_face.py --json 06-benchmark/r2_enable_latest.json（state=GAP_SERVICE / code=10042）；浏览器档位取证：06-benchmark/r2_dashboard_probe_2026-10-25.txt（agent-browser 只读快照））
 - 读数型真调用（第 4 层）：**GAP_SERVICE**（读数面真实状态（未读到数））
     （取值：r201_r2_enable_face.py --json r2_enable_latest.json 的 state）
 - 守它的判据：163 + 88 任务层 + 93
@@ -101,7 +101,7 @@
         质量拆分：命中行 230，其中注释行 34（占比 0.148）
     （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/266 件、真调用合计 93；
      ③ 取值：tool_skill_matrix_r231.json 的 third_face.per_tool，4134 件 / 2 仓 / 剪外来面 10 个）
-- 读数型真调用（第 4 层）：**UNVERIFIED**（读数面真实状态（未读到数））
+- 读数型真调用（第 4 层）：**MEASURED**（读得到数）
     （取值：r200_pages_face.py --json pages_http_latest.json 的 row/state）
 - 守它的判据：163 + 92 + 93
 - 工作流触点：chaoshi-web-deploy 部署权威入口（direct_map 10 pattern，任务话术直连命中）

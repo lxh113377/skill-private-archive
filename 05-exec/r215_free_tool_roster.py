@@ -80,8 +80,15 @@ TOUCH = {
 BLOCKER = {
     'Cloudflare-R2': {
         'class': '平台能力缺口',
-        'why': 'R2 未在账号启用（wrangler 与 REST 同回 10042），官方提示需在 Dashboard 启用；属平台+条款同意，非凭据问题（对照 /accounts=200 已证凭据活着）',
-        'evidence': 'python 05-exec/r201_r2_enable_face.py --json 06-benchmark/r2_enable_latest.json（state=GAP_SERVICE / code=10042）',
+        # r233：档位 2（浏览器自动化）也实测过了 —— 打开 Dashboard 直接命中 CF 安全质询页，
+        #   在到达登录之前就被挡住 ⇒ 不是「我没试」，是两条档位都到不了启用那一步。
+        'why': ('R2 未在账号启用（wrangler 与 REST 同回 10042，官方提示需 Dashboard 启用）；'
+                '档位 2 实测打开 dash.cloudflare.com 即命中 CF 安全质询页（「正在进行安全验证」+ 质询 iframe），'
+                '在登录前被挡 ⇒ 属平台+条款同意缺口 ∧ 自动化通道被平台自身反机器人质询拦截，'
+                '非本机凭据问题（对照 /accounts=200 已证 API 凭据活着）'),
+        'evidence': ('python 05-exec/r201_r2_enable_face.py --json 06-benchmark/r2_enable_latest.json'
+                     '（state=GAP_SERVICE / code=10042）；浏览器档位取证：'
+                     '06-benchmark/r2_dashboard_probe_2026-10-25.txt（agent-browser 只读快照）'),
     },
     'Upstash-Redis': {
         'class': '外部凭据缺口',
