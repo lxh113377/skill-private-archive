@@ -472,7 +472,7 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   复验：`python 05-exec/r114_replacement_scan.py --json 06-benchmark/replacement_matrix_r211c.json` 全绿，词边界语义实测（正例 blender/bpy/gltf/3d/mesh/sculpt/cycles/optix/render 9 全 True，负例 s3d/3dp/ember3d/reorder/bpyutils/mybpyx 6 全 False），`control_char_scan` rc=0、全文件控制字节 0。另**当场作废自己上一版结论**：修好转义后重算，blender-pipeline 的 top3 从「vocaloid-mv / arjun988 / hyperframes」换成「EL4CTEO / dsh-blender-plugin / RobLe3」⇒ 我 v2 裁决件里引用的候选仓已跌出 top3（该条理由反而更强，因为 EL4CTEO 已核实本地 vendored 22/22 等数），已出 v3 并把 v2 标 superseded（不删，R241）。取值：`python 05-exec/run_gates.py --gate control_char_scan --no-ledger`。
   未闭环（如实留账）：这条坑属**我的写入通道**，正确落点是受管根速查卷；但 `win-toolchain-pitfalls/SKILL.md` 本轮实测仍被并行会话 dirty（四轮回看未解，同 R201-2 那条病），而 `A-memory-start/references/quickref-cli-subprocess.md` 刚被并行会话写入 R811 ⇒ 两处的 SKILL.md 收录面均不可靠。按 R269 不代改他人件 ⇒ 本条教训**暂只活在台账里**（不假装已入册，也不指向一条不存在的「第三条路径」——我上一句就是这么写的，当场自纠）。看守 = 本条取值行；待任一件脱离 dirty 再把「JS 模板串写 Python：少转义被吃成控制符 / 丢转义成 NameError，py_compile 全过、只有实跑才现形」并入该卷（不造第三份）。取值：`git -C D:/global_skills status --porcelain -- win-toolchain-pitfalls/SKILL.md A-memory-start/references/quickref-cli-subprocess.md`（两行全空 = 可并卷）。
 
-- [ ] **R211-9（r211 登记，P2）** **fc 维（功能完整性）把非技能文件计进 SKILL.md 数：`endswith("skill.md")` 会吃进 create-skill.md / WIREFRAME_SKILL.md / agent-skill.md 这类同名异形文件**： 【r215 裁决=挂账至 r218｜X-12 前置未做（改判据前先钉重排基线）；实测 11 仓中 3 仓被高估但不翻转任何分桶，按影响定级不升 P1｜取值：python 05-exec/r211_fc_caliber.py】
+- [ ] **R211-9（r211 登记，P2）** **fc 维（功能完整性）把非技能文件计进 SKILL.md 数：`endswith("skill.md")` 会吃进 create-skill.md / WIREFRAME_SKILL.md / agent-skill.md 这类同名异形文件**： 【r215 裁决=挂账至 r218｜X-12 前置未做（改判据前先钉重排基线）；实测 11 仓中 3 仓被高估但不翻转任何分桶，按影响定级不升 P1｜取值：python 05-exec/r211_fc_caliber.py】 【r219 裁决=降级为长期看守｜第二把尺已建成并常驻（r114 的 tree_counts() 纯函数出 skill_md_exact_n / skill_md_ghost_n，双口径同列入产物 face.strict_caliber_coverage；等价性实测：5 个旧字段与内联式 0 漂移、ghost 三条样本路径与 r211 实测一致、空输入与 None 输入均不炸），判据 skill_md_n 未切换（它仍是 C1 硬分桶前置，切它即作废全部历史候选面，须另行单独裁）⇒ 不再挂新到期日，数值仍由巡检每季看守｜取值：python -c 读 quarterly/2026Q4/replacement_matrix.json 的 face.strict_caliber_coverage；python 05-exec/r211_fc_caliber.py】
   一手取证（11 仓双口径对账，`python 05-exec/r211_fc_caliber.py`，脚本内注释写明两口径差异；产物 `06-benchmark/fc_caliber_r211.json`）：yusufkaraaslan/Skill_Seekers 生产口径 31 / 正确口径 26（多计 5，样本 distribution/claude-plugin/commands/create-skill.md）；wiltodelta/remove-ai-watermarks 4 / 3；RobLe3/cc-blender-skill 32 / 31。⇒ 11 仓中 3 仓被高估，另有两类**同数不同质**的噪声：`.claude/skills/**` 与 `tests/golden/**` 下的真 SKILL.md 会被计入产品数（plugin87/ux-ui-agent-skills 的 27 件**全部**在 .claude/ 下、product 面实际 0 有效技能）。
   为什么只判 P2 不判 P0：本轮逐仓核验修正后的 md_n **不翻转任何分桶**（所有被引候选修正后仍 >0 ⇒ 桶 0/1 判定不变、四态与守恒不变：MATCHED=167 / FAMILY_ONLY=11 / NO_OS=13 / UNVERIFIED=0，191==191）。按「判据缺陷按影响定级」不夸大成阻断。
   修法（下轮，禁顺手改，独立一件事）：`skill_md_n` 改判「文件名为 SKILL.md（大小写不敏感）」且**排除** `tests/`、`spec/`、`__tests__/`、`golden/`、`fixtures/` 前缀；`.claude/` 与 `distribution/` 保留但单列一维（它们确实是可安装技能，只是不是产品主目录）。改前须先量重排影响（同 X-12：先钉基线再改判据），且必须复跑 c2 各批的 top3 依据是否仍成立。取值：`python 05-exec/r114_replacement_scan.py --json <件>` 后读 `rows[].candidates[].skill_md_n` 与 `06-benchmark/fc_caliber_r211.json` 对照。
@@ -494,6 +494,18 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   因为它带绿章。
   取值：06-benchmark/free_tool_roster_latest.json items[].claims（分级分布）；
   反证 TEMP/teeth215b.py（真承载 IN_SKILL_DESC vs 错点名 MENTIONS）；分级定义 05-exec/r215_claim_check.py 件头。
+- [ ] **R219-3（r219 登记，P0·已落地）** **我立的「具名声明代带」只是一句提示，本轮自己就漏了：把它升级成退出码**： 【r219 裁决=执行（越界事后具名声明 + 把「具名声明代带」从提示升级为退出码 --require-declared-in）｜读数：护栏五向都有牙（SKIP/STAGED/NOCHANGE/DECLARE拒/DECLARE放）；建它时牙测连抓两次同源错（正向用例不含前缀被真拦 / 取 markdown 前缀要求人类逐字抄）。固化：凡「必须做 X」只写成提示等价于没做，要活下来只能变退出码。】
+  一手：r218 我写下「携带他人条目 ⇒ 必须在提交信息里具名声明代带」，但那只印在护栏输出里、靠我执行。
+  本轮提交 fa7ac3d 代带 4 条他人条目（R213-1／R217-4／R218-5／R218-6，逐行精算 `git show` 的新增标题行
+  得出），我的提交信息一条都没点名 ⇒ 规矩写给人看就会被漏。历史不可改写（R241），所以本条是对该
+  提交的事后具名声明，并把规矩机械化。
+  机械化：护栏加 `--require-declared-in <信息文件>` ⇒ 信息未逐条点名代带条目即 rc=2 拒提交。
+  建它时牙测连抓我两次同源错：① 正向用例我写「代带 X-other 一条」不含条目前缀，被硬校验判拒 —— 那
+  不是 bug，是校验真在拦不合规信息；② 点名取值取 `body[:12]`/归一化后仍留着 markdown 列表符号（'-X-other'），
+  等于要求人类逐字抄 markdown ⇒ 永远判未点名。正解是取**首个加粗标签**（人本来就会写 X-other）。
+  固化口径（本轮第三次印证同一元教训）：**凡「必须做 X」只写成提示或注释，等价于没做；要活下来只能变退出码。**
+  取值：python 05-exec/r217_shared_stage.py --selftest（五向都有牙：SKIP／STAGED／NOCHANGE／DECLARE 拒＝2／DECLARE 放＝0）；
+  代带清单复算 git show fa7ac3d 的 07 卷新增标题行按「是否含本轮 R219 键」二分。
 - [ ] **R219-1（r219 登记，P1·已落地）** **100+ 轮后第一次去修而非再量：A-memory-start 加 77B 合法触发键，翻正门 88 两条 MISS 的窗口口径实测；并纠正 r135 度量面自身口径错**： 【r219 裁决=执行（修而非量：77B 合法触发键落盘并复测翻正；纠正 r135 口径错；留出验证抓出过拟合）｜读数：盘上 T1/T2 rank=1、S1 不退化、S2-S5 零抢活；受管根 d88c5f28（+1 行）；注册表三类全 0；注入面 +77B 与实测吻合。门 88 基线不减（生产读预建 npy，重建归焚诀侧）—— 已如实记账不谎称治好。】
   为什么现在才修：3 条 task MISS 里有 2 条（D1 查额度、Workers 调用量）want 都指向 A-memory-start，
   而我一直默认「承载件 dirty、动不了」——**没查过就默认**。本轮实测它 CLEAN（另两件 chaoshi-image-
@@ -710,7 +722,7 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   不本轮夹带的理由：本轮已含五处改动（生成器 / 消费方两形态 / 扩面 / 盘点四写死面 / 机器腿可指），再加 0.9MB 入库决策会让一次提交干两件事且体积代价需单独裁。
   取值：`python -c` 数 _temp/r114_search_cache 下 q 前缀件与合计字节；`git check-ignore -v _temp`；`python 05-exec/r113_quarterly_audit.py --quarter 2026Q4 --offline` 的 replacement_scan 行。
 
-- [ ] **R213-3（r213 登记，P1·已落地一处 / 留一处）** **同一把刀的第二下：执行面不注入 Windows 环境变量，本仓把它误记成「平台/凭据缺口」—— 实测凭据一直在盘上**：
+- [ ] **R213-3（r213 登记，P1·已落地一处 / 留一处）** **同一把刀的第二下：执行面不注入 Windows 环境变量，本仓把它误记成「平台/凭据缺口」—— 实测凭据一直在盘上**： 【r219 裁决=降级为长期看守｜r199 一处已修并常驻（_win_appdata() 先认 APPDATA、缺失时用 os.path.expanduser 推 AppData/Roaming，三门由「拼不出路径」转为真取数）；r35_username_context_audit.py 同类一处**不夹带改**（该件 fail-closed 且未挂 GATES 表 = 人工审计件，影响只是「本执行面跑不出结果」，不是账面说谎）⇒ 登记为长期看守而非新到期日，判据未放宽｜取值：python 05-exec/run_gates.py --gate workers_quota_face --no-ledger；python -c 调 r199_workers_face.oauth_token() 打印 path 与 isabs】
   一手（本轮，接着 R211 的 username 根因往下查）：本执行面 `APPDATA / USERNAME / LOCALAPPDATA / HOME` **四个全部缺失**，只有 `USERPROFILE` 在。
   `r199_workers_face.py` 的 `CRED_CANDS` 用 `os.environ.get("APPDATA", "")` 拼路径 ⇒ 拼出的是**相对路径** ⇒ 两个候选 `isfile()` 恒 False ⇒ `oauth_token()` 返空 ⇒
   `workers_quota_face / pages_http_face / r2_enable_face` **三门同时 UNVERIFIED**，而三门共用这一个函数 = 单点根因，不是三次独立失败。
