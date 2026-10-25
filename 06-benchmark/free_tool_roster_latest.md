@@ -70,6 +70,8 @@
     ③ 项目仓（第 67 门 r226 third_face，已剪 vendored 外来面）：0
     （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/265 件、真调用合计 89；
      ③ 取值：tool_skill_matrix_r226.json 的 third_face.per_tool，4130 件 / 2 仓 / 剪外来面 10 个）
+- **零层归因：[平台能力缺口]** R2 未在账号启用（wrangler 与 REST 同回 10042），官方提示需在 Dashboard 启用；属平台+条款同意，非凭据问题（对照 /accounts=200 已证凭据活着）
+    （取值：python 05-exec/r201_r2_enable_face.py --json 06-benchmark/r2_enable_latest.json（state=GAP_SERVICE / code=10042））
 - 守它的判据：163 + 88 任务层 + 93
 - 工作流触点：chaoshi-image-optimization 的 R2 外置专章（干跑读数 + 阻断现状）
 - 触点在位核验（在位≠已接入）：chaoshi-image-optimization -> IN_SKILL_DESC
@@ -109,6 +111,8 @@
         命中所在件 = check-functions-build.mjs
     （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/265 件、真调用合计 89；
      ③ 取值：tool_skill_matrix_r226.json 的 third_face.per_tool，4130 件 / 2 仓 / 剪外来面 10 个）
+- **零层归因：[口径盲区]** 我的真实用法是**读数型**：走 CF GraphQL analytics 读 workersInvocationsAdaptive 取调用数，而形态级正则只认 wrangler deploy / workers.dev / fetch 导出 ⇒ 它看不见读数型搭配（不为此写假调用凑数）
+    （取值：python 05-exec/r199_workers_face.py --json 06-benchmark/workers_quota_latest.json（真跑 MEASURED）；token workersInvocationsAdaptive 见该件 L50/L108）
 - 守它的判据：163 + 88 任务层 + 93
 - 工作流触点：A-memory-start 的 quickref 额度专章（r199_workers_face 现读调用数）；跨 zone 聚合分母差异已写 §9.16
 - 触点在位核验（在位≠已接入）：A-memory-start -> MENTIONS
@@ -145,6 +149,8 @@
     ③ 项目仓（第 67 门 r226 third_face，已剪 vendored 外来面）：0
     （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/265 件、真调用合计 89；
      ③ 取值：tool_skill_matrix_r226.json 的 third_face.per_tool，4130 件 / 2 仓 / 剪外来面 10 个）
+- **零层归因：[未入尺]** 编辑器本体，不承载判据；第 67 门无该工具正则 ⇒ per_tool 无此键（未量，不等于零提到）
+    （取值：python 05-exec/r163_tool_skill_matrix.py --json 件（per_tool 里无 VS Code 键））
 - 守它的判据：163 + 93
 - 工作流触点：r163_free_tools_face 的 probe_vscode（which + 非 0 字节 + 真跑 --version）
 - 触点在位核验（在位≠已接入）：r163_free_tools_face（判据件） -> GATE_FILE_MENTIONS
@@ -200,6 +206,8 @@
     ③ 项目仓（第 67 门 r226 third_face，已剪 vendored 外来面）：0
     （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/265 件、真调用合计 89；
      ③ 取值：tool_skill_matrix_r226.json 的 third_face.per_tool，4130 件 / 2 仓 / 剪外来面 10 个）
+- **零层归因：[外部凭据缺口]** 仅有 REST 无 CLI，且本机未配 UPSTASH_* 凭据 ⇒ 无法接入；这是凭据缺口，不是搭配意愿问题
+    （取值：python 05-exec/r163_free_tools_face.py --json 06-benchmark/free_tools_latest.json（该工具 state=GAP_CRED））
 - 守它的判据：163 + 93
 - 工作流触点：r163_tool_skill_matrix 报其零引用（唯一 ADVISORY 项）；仅 REST 无 CLI，凭据缺 ⇒ 未接入
 - 触点在位核验（在位≠已接入）：r163_tool_skill_matrix（判据件） -> GATE_FILE_MENTIONS

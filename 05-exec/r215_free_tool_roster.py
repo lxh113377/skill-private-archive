@@ -69,6 +69,39 @@ TOUCH = {
     'Upstash-Redis': 'r163_tool_skill_matrix 报其零引用（唯一 ADVISORY 项）；仅 REST 无 CLI，凭据缺 ⇒ 未接入',
 }
 
+
+# r228：零层归因（每条必须是「有证据的类别」，不是形容词）。
+#   为什么需要它：名册此前只印三层读数，读者看到某个工具三层全零，**分不清是「被卡住」还是
+#     「不适用」** —— 前者要推进，后者要接受。零层归因把这两类分开，且带可复算证据。
+#   允许的类别词（机检白名单，写别的词即 FAIL）：
+#     '平台能力缺口' / '外部凭据缺口' / '口径盲区' / '按用户要求移除' / '未入尺' / '无使用场景'
+#   触发条件（牙腿 b1）：某工具既无 skill 代码级引用、又无工作流真调用 ⇒ 必须有一条归因；
+#     缺归因或类别不在白名单或证据为空 ⇒ rc=1 不出册（禁让「没说清为什么零」的册子当交付）。
+BLOCKER = {
+    'Cloudflare-R2': {
+        'class': '平台能力缺口',
+        'why': 'R2 未在账号启用（wrangler 与 REST 同回 10042），官方提示需在 Dashboard 启用；属平台+条款同意，非凭据问题（对照 /accounts=200 已证凭据活着）',
+        'evidence': 'python 05-exec/r201_r2_enable_face.py --json 06-benchmark/r2_enable_latest.json（state=GAP_SERVICE / code=10042）',
+    },
+    'Upstash-Redis': {
+        'class': '外部凭据缺口',
+        'why': '仅有 REST 无 CLI，且本机未配 UPSTASH_* 凭据 ⇒ 无法接入；这是凭据缺口，不是搭配意愿问题',
+        'evidence': 'python 05-exec/r163_free_tools_face.py --json 06-benchmark/free_tools_latest.json（该工具 state=GAP_CRED）',
+    },
+    'Cloudflare-Workers': {
+        'class': '口径盲区',
+        'why': '我的真实用法是**读数型**：走 CF GraphQL analytics 读 workersInvocationsAdaptive 取调用数，而形态级正则只认 wrangler deploy / workers.dev / fetch 导出 ⇒ 它看不见读数型搭配（不为此写假调用凑数）',
+        'evidence': 'python 05-exec/r199_workers_face.py --json 06-benchmark/workers_quota_latest.json（真跑 MEASURED）；token workersInvocationsAdaptive 见该件 L50/L108',
+    },
+    'VS Code': {
+        'class': '未入尺',
+        'why': '编辑器本体，不承载判据；第 67 门无该工具正则 ⇒ per_tool 无此键（未量，不等于零提到）',
+        'evidence': 'python 05-exec/r163_tool_skill_matrix.py --json 件（per_tool 里无 VS Code 键）',
+    },
+}
+
+BLOCKER_CLASSES = ('平台能力缺口', '外部凭据缺口', '口径盲区', '按用户要求移除', '未入尺', '无使用场景')
+
 GATES = {
     'GitHub': '163 + 87 + 93',
     'Cloudflare-D1': '163 + 88 任务层 + 93',
@@ -168,6 +201,8 @@ def build():
                                          pat_map.get(TF.norm(tool)) or [])),
             'patterns_n': len(pat_map.get(TF.norm(tool)) or []),
             'tasks': linked,
+            # r228：零层归因（None = 该工具不需要归因：至少有一层在干真活）
+            'blocker': BLOCKER.get(tool),
         })
     c = src['carrier']
     i = src['ingress']
@@ -261,6 +296,10 @@ def render_md(doc):
             gs_.get('third_src', {}).get('files_scanned'),
             len(gs_.get('third_src', {}).get('roots') or []),
             gs_.get('third_src', {}).get('pruned_foreign_n')))
+        bl = it.get('blocker')
+        if bl:
+            L.append('- **零层归因：[%s]** %s' % (bl['class'], bl['why']))
+            L.append('    （取值：%s）' % bl['evidence'])
         L.append('- 守它的判据：' + it['gates'])
         L.append('- 工作流触点：' + it['touchpoint'])
         cs = it.get('claims') or []
@@ -310,6 +349,25 @@ def main(argv=None):
     # r227 牙：三层的 None/0 语义必须自洽，否则册子会把「真零」印成「未量」（或反之）。
     #   ① third_face 存在 ⇒ 每个入册工具的 third_hits 必须是 int（扫过就有数，零也记 0）
     #   ② workflow 那层的 None 只允许出现在 state=NO_PATTERN（无正则=没量）的工具上
+    # 牙腿 b1（r228）：零层工具必须带**有证据的**归因 —— 「没说清为什么零」不得当交付。
+    teeth_b = []
+    need_block = []
+    for it in doc['items']:
+        no_exec = not (it.get('exec_skills') or [])
+        no_wf = not it.get('wf_real_hits')
+        if no_exec and no_wf:
+            need_block.append(it['tool'])
+    missing = [t for t in need_block if not doc['items'][[x['tool'] for x in doc['items']].index(t)].get('blocker')]
+    teeth_b.append(('b1_zero_tools_have_blocker', not missing,
+                    '需归因的工具=%s / 缺归因=%s（期望缺为空）' % (need_block, missing)))
+    bad_cls = [it['tool'] for it in doc['items']
+               if it.get('blocker') and it['blocker'].get('class') not in BLOCKER_CLASSES]
+    teeth_b.append(('b2_blocker_class_whitelisted', not bad_cls,
+                    '类别不在白名单的工具=%s（期望空）' % bad_cls))
+    bad_ev = [it['tool'] for it in doc['items']
+              if it.get('blocker') and not (it['blocker'].get('evidence') and it['blocker'].get('why'))]
+    teeth_b.append(('b3_blocker_has_evidence', not bad_ev,
+                    '缺 why 或 evidence 的工具=%s（期望空）' % bad_ev))
     teeth = []
     third_present = doc['gates_reading'].get('third_src', {}).get('files_scanned') is not None
     bad_third = [it['tool'] for it in doc['items']
@@ -322,7 +380,7 @@ def main(argv=None):
               and (wfmap.get(it['tool']) or {}).get('state') not in ('NO_PATTERN', None)]
     teeth.append(('workflow_none_only_when_no_pattern', not bad_wf,
                   'wf=None 但 state 不是 NO_PATTERN 的工具=%s（期望空）' % bad_wf))
-    for n, ok, d_ in teeth:
+    for n, ok, d_ in teeth + teeth_b:
         print('%s %-38s %s' % ('PASS' if ok else 'FAIL', n, d_))
         if not ok:
             print('[ROSTER:TEETH-FAIL] 三层语义不自洽 ⇒ 不出册（禁把不自洽的册子当交付）')
