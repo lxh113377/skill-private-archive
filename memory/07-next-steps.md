@@ -566,6 +566,25 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   必须来自可复算的入口件，不接受「我跑过一次的脚本」当来源。
   取值：git show HEAD:<报告 rel> 与工作树 io.read 比对（长度/章节/数字三项）；
   python 05-exec/r221_dead_regex_scan.py --wide（现值 256 件/959 个/2 处）。
+- [ ] **R225-1（r225 登记，P1·已落地）** **硬编码一个仓 = 换个项目就静默变瞎：第三维度改为按 wrangler 配置自动发现，一发现就多出整整一个 CF 仓**： 【r225 裁决=执行（third_face 根来源改三级：显式 env > 按 wrangler 标记发现 > 硬编码兜底）｜读数：发现 2 个 CF 仓（新增 donggu-phoenix）；6605 件：D1 248、Pages 239、GitHub 364、SQLite 321、Pages-Functions 90、Turnstile 3（0 真调用）、Workers 1（注释）、R2/Resend/Upstash 0；selftest 12/12。】
+  一手：r224 给矩阵件加 third_face 字段，但根路径硬编码超市 web 单仓。本轮先想从 SKILL.md 抽路径
+  校它全不全 —— 实测抽不到：chaoshi-web-deploy 写的是占位符 C:\Users\<用户名>\...\超市web\supermarket-web
+  （L9/L131/L205/L262），任何「抽路径」的自动校都会漏。改按 Cloudflare 项目标记发现：workspace 下
+  最多两层凡含 wrangler.toml/json/jsonc 即候选 ⇒ **发现两个仓**，第二个是 项目/新建文件夹 = donggu-phoenix
+  （wrangler.toml 448 B，含 [[d1_databases]] binding=DB database_name=donggu-analytics）。
+  三级根来源：① FJ_THIRD_FACE_ROOTS 显式指定（最高优先）② 按标记发现（默认 workspace，最多两层）
+③ 兜底保留 r224 硬编码仓。不做「从 SKILL.md 抽路径」的理由：实测抽不到（占位符），且会把文档提过的
+  仓算进来（提到 ≠ 在用的面）。
+  新读数（6605 件 / 2 仓，对比 r224 的 1133 件 / 1 仓）：D1 217→248、Pages 70→239、SQLite 267→321、
+  GitHub 36→364、Pages-Functions 19→90、Turnstile 3（0 真调用）、Workers 1（注释）、R2/Resend/Upstash 0。
+  ⇒ r224 我说「D1 主力战场在第三维」时，那个维本身只覆盖了三分之一。
+  不粉饰的缺口：① 发现规则只认 wrangler 配置 ⇒ 非 CF 项目仓（纯 GitHub/纯 Python）不在第三维，
+  workspace 下 15 个带 git 标记的项只有 2 个带 wrangler，读数不得说成「项目仓全集」；
+② MAX_EXTRA_BYTES 200KB 上限跳过的件数未单独计数。
+  元教训：硬编码的覆盖面会在下次换项目时静默失效 ——「None = 不在，禁读成零」只在有人注意到 None 时
+  才有用，而硬编码单仓在项目还在时永远是绿的，只是绿得越来越少。
+  取值：python 05-exec/r163_tool_skill_matrix.py --json 件的 third_face.roots / files_scanned / per_tool；
+  覆盖范围切换用 FJ_THIRD_FACE_WS / FJ_THIRD_FACE_ROOTS。
 - [ ] **R224-2（r224 登记，P1·已落地）** **两把尺都量不到的第三个维度：skill 手册指向的项目仓（D1 主力战场在那里）**： 【r224 裁决=执行（r163 补 D1 数组参数形态 + f1q/f1r 两腿；项目仓第三维度实测 1133 件；矩阵件加 third_face）｜读数：selftest 12/12；D1 仍 2 件/可执行 0（坐实受管根无脚本）；third_face 1133 件：D1 217 次/20 件、SQLite 267/20、Pages 70/20、GitHub 36/20、Turnstile 3/3 零真调用、Workers 1/1、R2 0。】
   一手：r223 合表把 D1 归进「工作流真调用、skill 只到文档层」。本轮去读那 3 行命中，发现 L137 命令是
   `node scripts/migrate.mjs apply`，顺着找脚本 —— 它**不在受管 skill 根**（chaoshi-web-deploy 在

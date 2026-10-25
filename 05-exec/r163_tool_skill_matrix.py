@@ -188,9 +188,36 @@ def third_face():
     if env:
         roots = [x for x in env.split(';') if x.strip()]
     else:
-        for cand in (r'C:/Users/37533/Desktop/workspace/超市web/supermarket-web',):
-            if os.path.isdir(cand):
-                roots.append(cand)
+        # r225：改为按标记发现，不再硬编码单个仓。
+        #   硬编码的问题：换个项目/换台机器，third_face 就静默变成 None（取不到），
+        #   而 None 与「项目仓里零调用」在读数上极易混淆 —— r224 只写了一句
+        #   「None = 项目仓不在，禁读成零」，但没解决「发现不了」本身。
+        #   发现规则：workspace 下（最多两层）凡含 wrangler.toml/json/jsonc 的目录，
+        #   即 Cloudflare 项目仓候选。这是**可复算的发现**，不是手写清单。
+        ws = os.environ.get('FJ_THIRD_FACE_WS', 'C:/Users/37533/Desktop/workspace')
+        marks = ('wrangler.toml', 'wrangler.json', 'wrangler.jsonc')
+        if os.path.isdir(ws):
+            for name in sorted(os.listdir(ws)):
+                d = os.path.join(ws, name)
+                if not os.path.isdir(d):
+                    continue
+                if any(os.path.isfile(os.path.join(d, mk)) for mk in marks):
+                    roots.append(d)
+                    continue
+                try:
+                    subs = sorted(os.listdir(d))
+                except OSError:
+                    continue
+                for s2 in subs:
+                    sd = os.path.join(d, s2)
+                    if os.path.isdir(sd) and any(
+                            os.path.isfile(os.path.join(sd, mk)) for mk in marks):
+                        roots.append(sd)
+        if not roots:
+            # 兜底：保留 r224 的硬编码候选，避免发现规则失效时连它都丢
+            for cand in (r'C:/Users/37533/Desktop/workspace/超市web/supermarket-web',):
+                if os.path.isdir(cand):
+                    roots.append(cand)
     if not roots:
         return None
     skip = ('node_modules', '.git', 'dist', '.wrangler', 'archive', '__pycache__')
