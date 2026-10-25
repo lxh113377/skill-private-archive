@@ -97,7 +97,7 @@ BLOCKER = {
     },
     'Cloudflare-Workers': {
         'class': '口径盲区',
-        'why': '我的真实用法是**读数型**：走 CF GraphQL analytics 读 workersInvocationsAdaptive 取调用数，而形态级正则只认 wrangler deploy / workers.dev / fetch 导出 ⇒ 它看不见读数型搭配（不为此写假调用凑数）',
+        'why': '我的真实用法是**读数型**：走 CF GraphQL analytics 读调用数（token 见证据件），而形态级正则只认部署形态的三类写法 ⇒ 它看不见读数型搭配（不为此写假调用凑数）',
         'evidence': 'python 05-exec/r199_workers_face.py --json 06-benchmark/workers_quota_latest.json（真跑 MEASURED）；token workersInvocationsAdaptive 见该件 L50/L108',
     },
     'VS Code': {
@@ -361,6 +361,48 @@ def render_md(doc):
         g['recall']['window'], g['recall']['truth'], g['recall']['task'],
         g['recall']['hits'], g['recall']['gaps']))
     L.append('')
+    # r235：搭配总表（一眼可读）。理由：逐工具长节共 20KB，读者要想知道「十个工具到底搭到哪一步、
+    #   被卡的是哪几个」，得自己滚完十节 —— 交付物缺一个执行视图。总表全部由 items 计算得出，
+    #   禁手写（手写必漂）。牙 r6 锁死：总表行数必须等于 items 数，且每个工具恰好出现一次。
+    L.append('## 搭配总表（一眼版）')
+    L.append('')
+    L.append('| 工具 | ① skill 提到/代码 | ② 工作流真调用 | ③ 项目仓（剪后·含注释占比） | ④ 读数面 | 卡点/状态 |')
+    L.append('|---|---|---|---|---|---|')
+    _full = _real = _blocked = _noread = 0
+    for it in doc['items']:
+        ms, es = it['mention_skills'], it['exec_skills']
+        wf = it.get('wf_real_hits')
+        th = it.get('third_hits')
+        cs = it.get('third_comment_share')
+        rq = it.get('read_state')
+        bl = it.get('blocker') or {}
+        c1 = ('%s / %s' % (len(ms) if ms is not None else '未量',
+                           len(es) if es is not None else '未量'))
+        c2 = ('未量' if wf is None else str(wf))
+        if th is None:
+            c3 = '未量'
+        elif th == 0:
+            c3 = '0'
+        else:
+            c3 = '%s（注释占比 %s%s）' % (th, cs, '·仅注释' if it.get('third_comment_only') else '')
+        c4 = rq if rq else '无读数面'
+        note = ('[%s]' % bl.get('class')) if bl else it['state']
+        if (es or []) and (wf or 0) > 0 and (th or 0) > 0 and rq == 'MEASURED':
+            _full += 1
+        if (wf or 0) > 0 or (es or []):
+            _real += 1
+        if bl:
+            _blocked += 1
+        if not rq:
+            _noread += 1
+        L.append('| %s | %s | %s | %s | %s | %s |' % (it['tool'], c1, c2, c3, c4, note))
+    L.append('')
+    L.append('汇总：四层齐备（有代码级/有工作流调用/项目仓有命中/读数 MEASURED）= **%d** 项；'
+             '有真调用（工作流或代码级任一）= %d 项；带卡点归因 = %d 项；无读数面 = %d 项。' % (
+                 _full, _real, _blocked, _noread))
+    L.append('')
+    L.append('（总表取值：同下各节；每行都由 items 计算，禁手写 —— 牙 r6 校验行数与工具集合。）')
+    L.append('')
     L.append('## 逐工具搭配态')
     L.append('')
     for it in doc['items']:
@@ -513,6 +555,34 @@ def main(argv=None):
     # 牙 r4（r230）：第 4 层必须**逐个工具**都有交代 —— 要么登记了读数面，要么具名说明无读数面；
     #   「未量」这种含糊态一律算红（它正是 r229 留下的尾巴：6 项没核实就记未量）。
     teeth_n = []
+    # 牙 r6（r235）：总表必须覆盖每个工具且不重不漏 —— 禁让「一眼版」漏掉某个工具（那比没有总表更糟）。
+    md_lines = render_md(doc)
+    # 只取「搭配总表（一眼版）」那一节的行（r235 自抓：首版把「依据面」表的 5 行也算进来 ⇒ 多出判据/163/93/92/88）
+    try:
+        s0 = next(i for i, l in enumerate(md_lines) if l.startswith('## 搭配总表'))
+    except StopIteration:
+        s0 = None
+    s1 = None
+    if s0 is not None:
+        for i in range(s0 + 1, len(md_lines)):
+            if md_lines[i].startswith('## '):
+                s1 = i
+                break
+    section = md_lines[s0:s1] if s0 is not None else []
+    row_tools = []
+    for l in section:
+        if not (l.startswith('| ') and ' | ' in l):
+            continue
+        cells = [c.strip() for c in l.strip('|').split('|')]
+        if cells and cells[0] and cells[0] not in ('工具',) and not set(cells[0]) <= set('-:'):
+            row_tools.append(cells[0])
+    all_tools = [it['tool'] for it in doc['items']]
+    miss = [t for t in all_tools if t not in row_tools]
+    dup = [t for t in set(row_tools) if row_tools.count(t) > 1]
+    extra = [t for t in row_tools if t not in all_tools]
+    teeth_n.append(('r6_summary_covers_all_tools', not (miss or dup or extra),
+                    '总表 %d 行 / 工具 %d 个；漏=%s 重=%s 多=%s（期望全空）' % (
+                        len(row_tools), len(all_tools), miss, dup, extra)))
     # 牙 r5（r231）：第三层的注释拆分必须逐工具传到位（赛源：matrix 产物的 third_face.per_tool）
     _mfile = doc['gates_reading'].get('third_src', {}).get('files')
     src_th = ((json.load(io.open(os.path.join(B, _mfile), encoding='utf-8'))

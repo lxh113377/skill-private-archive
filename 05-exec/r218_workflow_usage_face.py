@@ -35,6 +35,10 @@ SKIP_DIRS = ('.git', '__pycache__', '_trash', '_bak', 'node_modules', '_temp',
              '06-benchmark', '07-archive', '.venv')
 EXTS = ('.py', '.sh', '.ps1', '.yml', '.yaml', '.js', '.ts', '.sql', '.toml')
 PROBE_HINT = ('_face', '_fixtures', 'probe', 'matrix', 'check', 'stage', 'debt', 'gate')
+# r235：写着模式文本的件不得进匹配面（模块级，便于自测腿直接核对）
+EXCL = ('r163_tool_skill_matrix.py', 'r214_tool_carrier_face.py',
+        'tool_carrier_patterns.json', 'r218_workflow_usage_face.py',
+        'r215_free_tool_roster.py')
 
 
 def load_patterns():
@@ -63,8 +67,7 @@ def workflow_face():
     # 排除定义正则的件：模式文本摆在那儿就必然自匹配（实测 r163_tool_skill_matrix.py
     # 自带 SQLite 20 / GitHub 5 / Turnstile 7 命中），不剔就是把「定义过正则」
     # 算成「调用过工具」。第 93 门的正则表同理（若它出现在面上）。
-    excl = ('r163_tool_skill_matrix.py', 'r214_tool_carrier_face.py',
-            'tool_carrier_patterns.json', os.path.basename(__file__))
+    excl = EXCL
     keep = []
     for p in files:
         if os.path.basename(p) in excl:
@@ -148,10 +151,28 @@ def selftest():
     probe_txt = 'turnstile ' * 40
     ok4 = len(re.findall('turnstile', probe_txt)) == 40 and is_probe('x/r163_free_tools_face.py')
     ok5 = not is_probe('x/r203_ledger_index.py')
-    print('[USAGE:SELFTEST] 正则=%s 空匹配=%s TOOLS=%s 探针不计入=%s 非探针不受影响=%s' % (
-        ok1, ok2, ok3, ok4, ok5))
-    if ok1 and ok2 and ok3 and ok4 and ok5:
-        print('[USAGE:SELFTEST] 通过（正例匹配、反例不匹配、正则源可读、探针件不计入真调用）')
+    # r235 第四腿：**写着模式文本的文档/报表型件**必须被排除在匹配面外。
+    #   动因：名册生成器 r215 的说明文字里引用了部署形态的原样字样 ⇒ 本门把 Workers 的
+    #   「0 调用」读成「有调用（2 次）」（真调用合计 89→82 修回）。此腿造一个同名临时件验证排除生效。
+    import tempfile
+    ok6 = False
+    _d = tempfile.mkdtemp(prefix='r235_excl_')
+    try:
+        _f = os.path.join(_d, 'r215_free_tool_roster.py')
+        io.open(_f, 'w', encoding='utf-8').write('# 说明文字：只认 wrangler deploy 与 workers.dev' + chr(10))
+        _txt = io.open(_f, encoding='utf-8').read()
+        # 面外判定：文件名在 excl 里 ⇒ 不得进入 workflow_face()
+        _kept = workflow_face()
+        ok6 = (os.path.basename(_f) in EXCL
+               and not any(os.path.basename(x) == 'r215_free_tool_roster.py' for x in _kept)
+               and bool(re.search('wrangler' + chr(92) + 's+deploy', _txt)))
+    finally:
+        import shutil as _sh
+        _sh.rmtree(_d, ignore_errors=True)
+    print('[USAGE:SELFTEST] 正则=%s 空匹配=%s TOOLS=%s 探针不计入=%s 非探针不受影响=%s 文档件被排除=%s' % (
+        ok1, ok2, ok3, ok4, ok5, ok6))
+    if ok1 and ok2 and ok3 and ok4 and ok5 and ok6:
+        print('[USAGE:SELFTEST] 通过（正例匹配、反例不匹配、正则源可读、探针件不计入、写着模式的文档件被排除）')
         return True
     return False
 
