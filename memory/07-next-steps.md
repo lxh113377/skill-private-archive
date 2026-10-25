@@ -566,6 +566,22 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   必须来自可复算的入口件，不接受「我跑过一次的脚本」当来源。
   取值：git show HEAD:<报告 rel> 与工作树 io.read 比对（长度/章节/数字三项）；
   python 05-exec/r221_dead_regex_scan.py --wide（现值 256 件/959 个/2 处）。
+- [ ] **R253-1（r253 登记，P1·已落地）** **把 r252 教训机械化：判据绑定扫描（第 107 门）＋用已知坏版本回溯验证，途中抓出侦测器自身三错**： 【r253 裁决=执行（新建第 107 门判据绑定扫描：A 绑定 + B 吞异常 SILENT；用 673d7c4 坏版本回溯验证并抓出侦测器三错 + 压两处假阳）｜读数：坏版本具名 r215:717 未绑定=['src'] ⇒ FAIL；当前树 5 件 0 处 ⇒ [JUDGEBIND:PASS]；门表 106→107（未登记 0）。】
+  ① 判据：**A（绑定）** teeth_*.append 里的 Name 必须在该行前已绑定；**B（吞异常）** 吞异常 try 体内的未绑定名
+  ⇒ 标 SILENT（r252 的 r10 正是此形态）。三态：无问题 PASS / 有问题 FAIL 具名 / 不可析或无被扫件 UNVERIFIED。
+  ② **关键验证**：不是「当前树绿」，而是「拿已知坏版本必须红」。取 r252 修复前的 `673d7c4` 的 r215 来扫，
+  首版竟报 PASS ⇒ 抓出侦测器自身三个错：(a) 只扫 append **参数**（而 NameError 在 append 之前的 try 里）；
+  (b) 吞异常区间起点取「try 体首行」（Try 的 lineno 在其前 ⇒ 包含判定恒假 ⇒ 一条不匹配）；
+  (c) 只认字面量容器（坏版本 except 体是 `_ft_gapcred = set()` 属**调用** ⇒ 认不出）。
+  ③ 修完坏版本具名报出 `r215_bad.py:717 … 未绑定=['src'] ← SILENT`；再压两处假阳（try 体内的 `import json as _json`、
+  推导式目标 `i/l`）⇒ 补全「try 体内自身绑定」的收集（赋值/导入/for 与 with 目标/推导式目标/except as/函数定义）。
+  ④ 终态：**当前树扫 5 件 / 未绑定 0 处 ⇒ [JUDGEBIND:PASS]；坏版本具名 1 处 ⇒ FAIL**。已进表为第 107 门
+  （门表 106→107，未登记 0）。与 R252-2 关系：本轮把最高危子类（吞异常 ∧ 未绑定 ⇒ 必空转）机械化，
+  剩下「名字已绑定但取数失败走默认值」无法纯静态判定，仍需人工逐门核 ⇒ R252-2 保留但范围收窄。
+  元教训：**侦测器也必须拿「已知坏输入」验一次**，否则它只是换了个名字的空转判据 —— 我差点写出一条
+  「永远 PASS 且恰好对目标 bug 报绿」的扫描器；防线只有一条：先构造一个已知该红的输入，看它红不红。
+  取值：python 05-exec/r253_judge_binding_scan.py --json 06-benchmark/judge_binding_latest.json
+  （加 --file <旧版本件> 复现回溯验证）。
 - [ ] **R252-1（r252 登记，P1·已落地）** **牙 r10 原是空转假绿（宽 except 吞掉 NameError）⇒ 修成看得见输入 + 夹具 8/8 + 第 106 门**： 【r252 裁决=执行（修牙 r10 空转假绿：build 交出源件 + 去吞异常 + 抽 faces_contradiction + 新增夹具第 106 门）｜读数：夹具 8/8 [GATE:rosterfix-pass]；名册 r10 PASS、[ROSTER:OK] md 23594B；门表 105→106（未登记 0）。】
   ① 发现：给 r10 补夹具时先抽判据成模块级 `faces_contradiction()`，一抽即崩 `NameError: src is not defined`
   ——牙在 main() 求值却去够 build() 的局部变量；而原写法外包 `try/except Exception: _ft_gapcred = set()`

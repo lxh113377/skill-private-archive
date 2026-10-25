@@ -1701,6 +1701,18 @@ GATES = [
         "why": ("r251 加的 r10 是**空转的假绿**：牙在 main() 求值却去够 build() 的局部 src ⇒ NameError 被宽",
                 "except 吞掉 ⇒ 集合恒空 ⇒ 永远 PASS。本门用进程内输入 + 变异对照把这条判据钉死。"),
     },
+    # r253：判据绑定扫描进表 —— 「牙全过」不算证据，得先证明牙真在执行。
+    {
+        "id": "judge_binding_scan",
+        "script": "r253_judge_binding_scan.py",
+        "argv": ["--json", "06-benchmark/judge_binding_latest.json"],
+        "pass_token": "[JUDGEBIND:PASS]",
+        "portable": True,
+        "covers": ["判据 A：teeth_*.append 里的 Name 必须在该行之前已绑定（未绑定 ⇒ 崩或空转）",
+                   "判据 B：吞异常 try 体内的未绑定名 ⇒ SILENT（r252 的 r10 正是此形态）",
+                   "不可析或无被扫件 ⇒ UNVERIFIED rc=2（空面不得判绿）"],
+        "why": "r252 的教训是「一条牙全过不算证据」；本门把它变成可复跑判据，并回溯验证过：扫 r252 之前的坏版本 673d7c4 时具名报出 r215:717 未绑定=[src]，当前树 0 处。",
+    },
 ]
 
 # 显式声明本 runner **不覆盖**的面，防止聚合绿被读成「所有门禁都绿」（R20-2）。

@@ -107,9 +107,10 @@
    "roster_audit",
    "dup_policy_scan",
    "source_freshness_scan",
-   "roster_fixtures"
+   "roster_fixtures",
+   "judge_binding_scan"
   ],
-  "_snapshot_at": "2026-10-26 03:35",
+  "_snapshot_at": "2026-10-26 03:52",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
@@ -369,6 +370,10 @@
   "roster_fixtures": {
    "evidence": "06-benchmark/free_tool_roster_latest.json",
    "at": "2026-10-26 03:33"
+  },
+  "judge_binding_scan": {
+   "evidence": "06-benchmark/judge_binding_latest.json",
+   "at": "2026-10-26 03:52"
   }
  }
 }

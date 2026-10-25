@@ -106,5 +106,9 @@
  "r215_fixtures.py": {
   "evidence": "06-benchmark/free_tool_roster_latest.json",
   "registered_at": "2026-10-26 03:33"
+ },
+ "r253_judge_binding_scan.py": {
+  "evidence": "06-benchmark/judge_binding_latest.json",
+  "registered_at": "2026-10-26 03:52"
  }
 }
