@@ -376,7 +376,7 @@
     ]
    },
    "read_why": null,
-   "usage_value": 198648,
+   "usage_value": 198662,
    "usage_meta": {
     "unit": "次",
     "extra": null,
@@ -710,7 +710,7 @@
   "workflow_src": {
    "file": "workflow_usage_latest.json",
    "generated_at": null,
-   "face_files": 266,
+   "face_files": 267,
    "real_face_files": 155,
    "real_total_hits": 82
   },
