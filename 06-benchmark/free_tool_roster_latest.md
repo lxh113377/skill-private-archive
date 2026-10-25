@@ -31,6 +31,15 @@
 
 （总表取值：同下各节；每行都由 items 计算，禁手写 —— 牙 r6 校验行数与工具集合。）
 
+## 目标对口（这份册子回答了什么）
+
+- **「这些免费开发者工具」** = **10** 项：GitHub、Cloudflare-D1、Cloudflare-R2、Cloudflare-Pages、Cloudflare-Workers、SQLite、VS Code、Cloudflare-Turnstile、Resend、Upstash-Redis
+- **「搭配上了」**（有真调用：skill 代码级 ∨ 工作流真调用）= **7** 项；四层齐备（含读数 MEASURED）= **3** 项。
+- **「有官方额度读数」**（第 ⑤ 层给出数值）= **6** 项：GitHub 24886.0、Cloudflare-D1 8.9、Cloudflare-Pages 199423、Cloudflare-Workers 0、SQLite 12.56、Cloudflare-Turnstile 0
+- **「合理」= 不能用的都具名了**：带卡点归因 **4** 项 —— Cloudflare-R2[平台能力缺口]；Cloudflare-Workers[口径盲区]；VS Code[桌面 GUI 承载（非调用面）]；Upstash-Redis[外部凭据缺口]
+- **无读数面**（本地/桌面侧，非缺口）= **3** 项；**每一项的零都带取值命令**（见下各节行内「取值」）。
+- 交叉校验：第 ④ 层 MEASURED 而第 ⑤ 层无数值的工具 = **0** 项（牙 r7 要求为 0）。
+
 ## 逐工具搭配态
 
 ### GitHub - READY

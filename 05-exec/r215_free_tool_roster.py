@@ -525,6 +525,9 @@ def render_md(doc):
     L.append('| 工具 | ① skill 提到/代码 | ② 工作流真调用 | ③ 项目仓（剪后·含注释占比） | ④ 读数面 | ⑤ 用量 | 卡点/状态 |')
     L.append('|---|---|---|---|---|---|---|')
     _full = _real = _blocked = _noread = 0
+    _usage_n = sum(1 for it in doc['items'] if it.get('usage_value') is not None)
+    no_usage = [it['tool'] for it in doc['items']
+                if it.get('read_state') == 'MEASURED' and it.get('usage_value') is None]
     for it in doc['items']:
         ms, es = it['mention_skills'], it['exec_skills']
         wf = it.get('wf_real_hits')
@@ -562,6 +565,25 @@ def render_md(doc):
                  _full, _real, _blocked, _noread))
     L.append('')
     L.append('（总表取值：同下各节；每行都由 items 计算，禁手写 —— 牙 r6 校验行数与工具集合。）')
+    L.append('')
+    # r258：目标对口节 —— 用**算出来的数**直接回答目标问的那几件事（禁手写；牙 r11 校验其数与本册 items 一致）。
+    #   为什么加：册子已有五层读数与总表，但读者第一眼仍要自己拼「到底搭没搭上、卡在哪几项」。
+    #   这一节把「免费工具 / 搭配 / 合理」三个词各对应到一条可复算的读数。
+    # r258 自抓：节内计数必须**自算** —— 首版用了 main() 的局部（_usage_n / no_usage），而 render_md 看不到它们
+    #   ⇒ NameError。凡是 render 函数用到的东西，都要在 render 里现算。
+    _u_n = sum(1 for it in doc['items'] if it.get('usage_value') is not None)
+    _nu = [it for it in doc['items']
+           if it.get('read_state') == 'MEASURED' and it.get('usage_value') is None]
+    L.append('## 目标对口（这份册子回答了什么）')
+    L.append('')
+    L.append('- **「这些免费开发者工具」** = **%d** 项：%s' % (len(doc['items']), '、'.join(it['tool'] for it in doc['items'])))
+    L.append('- **「搭配上了」**（有真调用：skill 代码级 ∨ 工作流真调用）= **%d** 项；四层齐备（含读数 MEASURED）= **%d** 项。' % (_real, _full))
+    L.append('- **「有官方额度读数」**（第 ⑤ 层给出数值）= **%d** 项：%s' % (
+        _u_n, '、'.join('%s %s' % (it['tool'], it['usage_value']) for it in doc['items'] if it.get('usage_value') is not None) or '（无）'))
+    L.append('- **「合理」= 不能用的都具名了**：带卡点归因 **%d** 项 —— %s' % (
+        _blocked, '；'.join('%s[%s]' % (it['tool'], (it.get('blocker') or {}).get('class')) for it in doc['items'] if it.get('blocker')) or '（无）'))
+    L.append('- **无读数面**（本地/桌面侧，非缺口）= **%d** 项；**每一项的零都带取值命令**（见下各节行内「取值」）。' % _noread)
+    L.append('- 交叉校验：第 ④ 层 MEASURED 而第 ⑤ 层无数值的工具 = **%d** 项（牙 r7 要求为 0）。' % len(no_usage))
     L.append('')
     L.append('## 逐工具搭配态')
     L.append('')
@@ -737,6 +759,13 @@ def main(argv=None):
     _conflict = faces_contradiction(doc['items'], doc.get('ft_rows') or [])
     if doc.get('ft_src') is None:
         _conflict = _conflict + ['（第 65 门源件未随 doc 交出 ⇒ 本牙无从判定，不得算绿）']
+    # 牙 r11（r258）：目标对口节必须**存在且其数与本册 items 一致** —— 防我手改文案让它与读数脱钩。
+    _md_now = render_md(doc)
+    _oj = [l for l in _md_now if l.startswith('- **「这些免费开发者工具」**')]
+    _oj2 = [l for l in _md_now if l.startswith('- **「搭配上了」**')]
+    _oj_ok = bool(_oj) and ('**%d** 项' % len(doc['items'])) in _oj[0] and bool(_oj2)
+    teeth_n.append(('r11_objective_section_in_sync', _oj_ok,
+                    '目标对口节缺失或数与 items 不一致（期望含 %d 项）' % len(doc['items'])))
     teeth_n.append(('r10_faces_not_contradictory', not _conflict,
                     '两面互斥（一绿一绿却互相否认）=%s（期望空）' % _conflict))
     # 牙 r8（r245）：第 ① 层列出的**技能 slug 必须都还在盘上**（带 SKILL.md 的真技能目录）。
@@ -756,6 +785,7 @@ def main(argv=None):
                     '第①层引用了盘上不存在的技能=%s（期望空：技能改名/退役后名册即成幽灵引用）' % _ghost))
     # 牙 r7（r239）：第 ④ 层判 MEASURED（读得到数）的工具**必须带出用量数值** ——
     #   否则说明第 ⑤ 层的取值路径写错/漂了（读面在跑却拿不到量，等于仪器接了线却没读数）。
+    # r258 自抓：no_usage 刚才被我挪进 render_md 了，而牙 r7 在 main ⇒ 需在此处重新定义（两处各算各的，禁跨作用域够变量）。
     no_usage = [it['tool'] for it in doc['items']
                 if it.get('read_state') == 'MEASURED' and it.get('usage_value') is None]
     teeth_n.append(('r7_measured_implies_usage_number', not no_usage,
