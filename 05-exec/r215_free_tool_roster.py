@@ -688,6 +688,21 @@ def main(argv=None):
     # 牙 r4（r230）：第 4 层必须**逐个工具**都有交代 —— 要么登记了读数面，要么具名说明无读数面；
     #   「未量」这种含糊态一律算红（它正是 r229 留下的尾巴：6 项没核实就记未量）。
     teeth_n = []
+    # 牙 r8（r245）：第 ① 层列出的**技能 slug 必须都还在盘上**（带 SKILL.md 的真技能目录）。
+    #   动因：名册把技能名写进交付物，但技能会被改名/退役 —— 那时名册就是**幽灵引用**：
+    #   数还在、读起来像证据，实际指向一个不存在的技能（与 r1「登记了读数面却取不到状态」同族）。
+    #   实测 r245：34 个被引 slug 全在盘（191 真技能）⇒ 当前零缺失；本牙防的是它下次改名。
+    _gs = 'D:/global_skills'
+    _cited = set()
+    for it in doc['items']:
+        for _s in (it.get('mention_skills') or []):
+            _cited.add(_s)
+        for _s in (it.get('exec_skills') or []):
+            _cited.add(_s)
+    _ghost = sorted(s for s in _cited
+                    if not os.path.isfile(os.path.join(_gs, s, 'SKILL.md')))
+    teeth_n.append(('r8_mention_slugs_resolve', not _ghost,
+                    '第①层引用了盘上不存在的技能=%s（期望空：技能改名/退役后名册即成幽灵引用）' % _ghost))
     # 牙 r7（r239）：第 ④ 层判 MEASURED（读得到数）的工具**必须带出用量数值** ——
     #   否则说明第 ⑤ 层的取值路径写错/漂了（读面在跑却拿不到量，等于仪器接了线却没读数）。
     no_usage = [it['tool'] for it in doc['items']

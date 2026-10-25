@@ -566,6 +566,19 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   必须来自可复算的入口件，不接受「我跑过一次的脚本」当来源。
   取值：git show HEAD:<报告 rel> 与工作树 io.read 比对（长度/章节/数字三项）；
   python 05-exec/r221_dead_regex_scan.py --wide（现值 256 件/959 个/2 处）。
+- [ ] **R245-1（r245 登记，P1·已落地）** **名册引用的技能名加第 8 条牙：r8_mention_slugs_resolve（34 个被引 slug 零缺失，变异实证咬住）**： 【r245 裁决=执行（名册第 8 条牙 r8_mention_slugs_resolve：第①层 slug 必须都在盘上；变异注入幽灵 slug 实证）｜读数：34 被引 slug / 191 真技能 / 缺失 0；注入后 rc=1 具名、还原 rc=0；牙 8 条；名册 [ROSTER:OK]；审计五层漂移 0。】
+  ① 动因：名册第①层把**技能名**写进交付物，而技能会改名/退役/合并 ⇒ 那时那串 slug 是**幽灵引用**
+  （数还在、读起来像证据，实际指向不存在的技能）。与 r1「登记了读数面却取不到状态」同族，但作用面不同：
+  r1 管读数面产物名，本条管**交付物里写下的名字**。
+  ② 先量：34 个被引 slug × D:/global_skills 逐目录查 SKILL.md ⇒ 盘上条目 202（真技能 191），缺失 **0**。
+  ③ 再立牙：r8_mention_slugs_resolve —— 第①层引用的每个 slug 必须在 D:/global_skills/<slug>/SKILL.md 存在；
+  缺失即 rc=1 不出册（名册牙现 8 条）。
+  ④ 变异实证：造含幽灵 slug 的矩阵件（注入 zzz_ghost_skill、命名成更晚的 r999）⇒ 注入后 rc=1 且牙具名
+  该 slug；还原后 rc=0 PASS；变异件已删（复查 r999 残留 = 0）；审计五层漂移 0。
+  元教训：交付物里写下的每个名字都是**将来会过期的引用** —— 我这十几轮给「读数」加了一圈牙
+  （探针件/vendored/注释/None≠0/分母/口径/独立复算），但「名册自己写的名字」这层没人管，
+  而它**不需要任何外部输入就会过期**（技能改名即可）。零缺失不是「不用查」，是「查了，且现在是对的」。
+  取值：python 05-exec/r215_free_tool_roster.py 的 r8_mention_slugs_resolve 行。
 - [ ] **R244-2（r244 登记，P1·已落地）** **名册最后一个「未量」工具入尺：VS Code 三把尺实读数（7/1、wf 0、third 0）+ 新归因类『桌面 GUI 承载（非调用面）』**： 【r244 裁决=执行（VS Code 入尺：r163 加专有模式 + 新归因类『桌面 GUI 承载（非调用面）』+ evidence 元组 bug 自抓修复）｜读数：VS Code ① 提到 7/代码级 1、② 0（18 命中全探针）、③ 0；名册牙 12/12 PASS、rc=0、md 23421B；审计五层漂移 0。】
   ① 「未入尺」说的是谁的问题：原归因写「第 67 门无该工具正则 ⇒ per_tool 无此键（未量，不等于零提到）」——
   那句话里已经点破：**未量是我没有尺**，不是它不适用。先查真痕迹再决定：code CLI 在
@@ -1462,6 +1475,15 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   逐条效果：修好 **2 条**（Notion 会议准备、灵感枯竭发散）；余 **5 条不变** —— 3 条属**期望/策略分歧**（动画演示文稿 ppt-master 撞车、安全审查 security-audit、录音转文字 local-asr）需「改期望 or 改映射」的裁决；2 条**无直连、走 tag/BGE**（清理提示词补丁、同步技能）。⇒ **上限 95.2 不是靠修这两条能到的**。
   边界（防把它读成「修完的复测」）：本件是**反事实**，前提未发生；**真实复测条件** = 当 `direct_map.json` 那两条 value 真变了（或该件 mtime 变），**直接跑 §2 的基线一次即为真实复测，不需打补丁**。全程零写盘（不写焚诀仓任何文件；评测器自身设 `FENJUE_ROUTE_TRACE=0`，评估与 trace 解耦）。
   取值：`python -c` 进程内 `import frozen_blind_eval as FBE, direct_layer as DL`；`FBE.evaluate('layered')` 取基线（须 90.1/276/291/95.2）；重建 `DL.DIRECT_MAP` 换那两条 value 后再 `FBE.evaluate('layered')`（须 90.7/278）；`DL.direct_route(q)` 前后值作控件。
+
+- [ ] **R245-1（r245 登记，P1·已落地）把「修完两条直连后 L1 能否靠近上限」这个目标之问**答到底**：上界性反事实显示 7 条真错**全修**也只到 **92.5**，上限 95.2 靠修真错**够不到**（剩 2.7 挂在题面卫生）**：
+  一手（接着 R244-1 的反事实再做一步，把「能靠近多少」测成有界的数）：R244-1 只答了「修那两条 = +0.6」。本轮加测**上界性反事实**（强行把 7 条 REAL_MISS 的 top1 指定为期望件，只为回答「全修能到多少」，**不是可落地修法**）。三档现读：**现状 90.1（276/291）→ 只修两条真错配 90.7（278）→ 7 条全修 92.5（283）**；评测上限 `max_achievable` **95.2** 不变。
+  **结论（本轮最有信息量的一句）**：距上限 **5.1 → 4.5 → 2.7** —— 即便把 7 条已知真错**全部消除**，仍有 **2.7 点**够不到。这 2.7 **不在 REAL_MISS 里**：`route_miss_attr` 的 `face.stale_n=8` 是 `STALE_EXPECT`（期望件**既不在注册表也不在盘上** = 题面过期）⇒ **剩余缺口属「题面卫生」，不属「路由质量」**。
+  ⇒ 对目标之问的完整回答：**修那两条会让 L1 从 90.1 向 95.2 靠近，但只靠近 0.6；而靠修真错最多也只能到 92.5（+2.4）。上限 95.2 不是靠修路由能到的** —— 要动的是那 8 条过期题面（改期望 or 补件），属测试集/注册面事务。
+  方法自证（与 R244-1 同一套，缺一数字不可信）：基线仍复现 `90.1 / hits 276 / n 291 / max_achievable 95.2`；A 组（重建 DIRECT_MAP 换两条 value）= `90.7 / 278`，与 R244-1 逐项一致（两轮独立复现同数）；B 组用 `UR.direct_route = lambda q: SEVEN.get(q) or orig(q)`（7 条 query→期望件的映射）后 = `92.5 / 283`。
+  边界：B 组是**上界性**反事实（强行指定 top1），**不可落地**；可落地两步仍是「修两条真错配（+0.6）」与「3 条策略分歧裁决 + 2 条 tag/BGE」。全程零写盘（不写焚诀仓任何文件；评测器自身设 `FENJUE_ROUTE_TRACE=0`）。
+  交付核对（本目标第 2 轮，网络仍间歇性不可达）：`git merge-base --is-ancestor` 逐条实测我的 8 个提交（e704065 / a8eb67a / d08aff8 / 55bc80e / bc48124 / c0aef65 / 31870e8 等）**全部是 `origin/main` 的祖先** ⇒ 交付状态由祖先关系证实，**不靠 push 退出码**（本轮 `git push` 报 TLS `unexpected eof`、`ls-remote` 亦失败，属外部网络）。
+  取值：`python -c` 进程内 `import frozen_blind_eval as FBE, unified_router as UR, direct_layer as DL`；基线 `FBE.evaluate('layered')`（须 90.1/276/291/95.2）；A 组重建 `DL.DIRECT_MAP` 换两条 value（须 90.7/278）；B 组 `UR.direct_route = lambda q: SEVEN.get(q) or orig(q)`（须 92.5/283）；8 条过期题面读 `06-benchmark/quarterly/2026Q4/route_miss_attr.json` 的 `face.stale_n`。
 
 - [ ] **R218-5（r218 登记，P1·已落地）** **R213-1 结案：候选池打成入库单件包，离线复算不再站在 _temp 上；但我上轮那条待办的前提引用错了预算面 —— 按它算会得出「不能入库」而永久搁置**： 【r220 裁决=执行｜r217_pool_pack.py + pool_cache_r217.json（762,630B < any_file_max）+ r114 内存合并「包∪散件、散件覆盖包」；本条原文引用的 family_bytes_max 属 T1 记忆卷族、不适用缓存池（真闸 = T2 cache_file_max=200 / any_file_max），已按现读原文改写；端到端双向实测：模拟清场 --offline 仍 REPL:PASS 且读数一致、加 --pool-pack none 才复现 UNVERIFIED｜取值：python 05-exec/r217_pool_pack.py --check；python 05-exec/r114_replacement_scan.py --offline --cache-dir _temp/empty_cache】
   一手（实测否证自己）：R213-1 原写「须先量 `family_bytes_max=491,520` 与 `repo_max=10,485,760` 两条预算再裁」⇒ 池缓存**不属于 family_* 族**：`r150_volume_tiers.TIER_KEYS` 把 family_* 归 **T1（记忆卷族）**，缓存池的闸在 **T2** —— `cache_file_max=200`（件数闸）/ `cache_dir_max=52,428,800B`，产物级另有 `artifact_max=262,144` 与 `any_file_max=1,048,576`（数值现读 `06-benchmark/gov_tiers_r150_2026-10-21.json`）。本仓常引的教训是「缺口报大与报小同样有害」，这是它的**反向形态：约束报错面也会杀死正当动作**。
