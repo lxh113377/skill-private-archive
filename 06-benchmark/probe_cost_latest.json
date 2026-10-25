@@ -1,7 +1,7 @@
 {
  "schema": "probe-cost-v5",
  "readonly": true,
- "gate_table_count": 105,
+ "gate_table_count": 109,
  "rows": [
   {
    "gate": "cache_guard_face",
@@ -294,6 +294,20 @@
     "github": 1
    },
    "state": "OK"
+  },
+  {
+   "gate": "roster_audit",
+   "script": "r237_roster_audit.py",
+   "apis": [
+    "cloudflare"
+   ],
+   "portable": true,
+   "declared": null,
+   "measured": {
+    "cloudflare": 0,
+    "github": 0
+   },
+   "state": "NO_EXTERNAL_CALLS"
   }
  ],
  "problems": [],
