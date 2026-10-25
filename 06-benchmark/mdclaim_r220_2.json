@@ -1,6 +1,6 @@
 {
- "claims": 3487,
- "uncited": 167,
+ "claims": 3499,
+ "uncited": 170,
  "status": "EXPOSED",
  "uncited_list": [
   {
@@ -128,6 +128,27 @@
    "file": "rule_conflict基线_2026-09-24.md",
    "has_cmd": false,
    "historical": true
+  },
+  {
+   "line": 4007,
+   "token": "519 个",
+   "file": "全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md",
+   "has_cmd": false,
+   "historical": false
+  },
+  {
+   "line": 4009,
+   "token": "6547 行",
+   "file": "全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md",
+   "has_cmd": false,
+   "historical": false
+  },
+  {
+   "line": 4010,
+   "token": "0 条",
+   "file": "全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md",
+   "has_cmd": false,
+   "historical": false
   },
   {
    "line": 85,
@@ -1174,16 +1195,16 @@
   }
  ],
  "files": 145,
- "live_claims": 2732,
- "live_uncited": 0,
+ "live_claims": 2744,
+ "live_uncited": 3,
  "historical_claims": 755,
  "window_lines": 12,
  "live_from_round": 51,
  "schema": "md-claim-face-v1",
- "generated_at": "2026-10-25T09:16:11",
+ "generated_at": "2026-10-25T14:11:28",
  "readonly": true,
  "scope": "06-benchmark/*.md",
  "rule": "数字（条/份/例/组/行/B/倍/百分比/个）须在同节 ±12 行内带取值途径",
  "note": "默认只报告不阻断（r25 否决）；接线判据只看 live_uncited（历史面按 R241 不回改）",
- "live_status": "PASS"
+ "live_status": "EXPOSED"
 }
