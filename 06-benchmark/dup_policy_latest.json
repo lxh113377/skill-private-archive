@@ -1,0 +1,56 @@
+{
+ "schema": "dup-policy-scan-v1",
+ "readonly": true,
+ "provenance_cmd": "python 05-exec/r247_dup_policy_scan.py --json <件>",
+ "files_parsed": 263,
+ "single_source": {
+  "EXCL": [
+   "r218_workflow_usage_face.py"
+  ],
+  "PROBE_HINT": [
+   "r218_workflow_usage_face.py"
+  ],
+  "MEASURE_HINT": [
+   "r218_workflow_usage_face.py"
+  ],
+  "CALL_CTX": [
+   "r218_workflow_usage_face.py"
+  ],
+  "READ_FACE": [
+   "r215_free_tool_roster.py"
+  ],
+  "NO_READ_FACE": [
+   "r215_free_tool_roster.py"
+  ],
+  "READ_STATES": [
+   "r215_free_tool_roster.py"
+  ],
+  "BLOCKER": [
+   "r215_free_tool_roster.py"
+  ],
+  "BLOCKER_CLASSES": [
+   "r215_free_tool_roster.py"
+  ],
+  "TOOLS": [
+   "r163_tool_skill_matrix.py"
+  ],
+  "LEGIT_DUP": [
+   "r199_struct_recount.py"
+  ],
+  "INPUT_HINTS": [
+   "r243_sqlite_usage_face.py"
+  ]
+ },
+ "same_value": {
+  "CODE_EXT": [
+   "r163_tool_skill_matrix.py",
+   "r237_roster_audit.py"
+  ],
+  "DB": [
+   "r203_ledger_index.py",
+   "r243_sqlite_usage_face.py"
+  ]
+ },
+ "note": "EXTS/SKIP/ROOTS 不在名单：它们服务不同面，强行统一反而失真。",
+ "violations": []
+}

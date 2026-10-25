@@ -94,5 +94,9 @@
  "r243_sqlite_usage_face.py": {
   "evidence": "06-benchmark/sqlite_usage_latest.json",
   "registered_at": "2026-10-25 23:17"
+ },
+ "r247_dup_policy_scan.py": {
+  "evidence": "06-benchmark/dup_policy_latest.json",
+  "registered_at": "2026-10-26 01:00"
  }
 }

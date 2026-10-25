@@ -101,9 +101,10 @@
    "ledger_index_build",
    "sqlite_usage_face",
    "free_tool_roster_face",
-   "roster_audit"
+   "roster_audit",
+   "dup_policy_scan"
   ],
-  "_snapshot_at": "2026-10-26 00:47",
+  "_snapshot_at": "2026-10-26 01:00",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
@@ -339,6 +340,10 @@
   "ledger_index_build": {
    "evidence": "06-benchmark/ledger_index_build_latest.json",
    "at": "2026-10-25 23:18"
+  },
+  "dup_policy_scan": {
+   "evidence": "06-benchmark/dup_policy_latest.json",
+   "at": "2026-10-26 01:00"
   }
  }
 }
