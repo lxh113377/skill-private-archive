@@ -355,6 +355,19 @@ def main():
                           [PY, os.path.join(HERE, "r220_caliber_flip.py"),
                            "--matrix", repl, "--json", caliber_flip, "--quiet"],
                           ok_rc=(0, 1)))
+    # r221 新增步（切换严格口径的**下游结论**影响）：翻转面只回答「两把尺的布尔值差多少」，
+    # 而「差这些会不会改变既有判定」只能由真实下游判据回答 —— r125 的 C1 只读 ranked[:3]，
+    # 我在 r220 用自造的「行级 any」近似它并据此打出 [FLIP:READY]，被影子复判当场推翻
+    # （A-java-problem: NEED_C2_HUMAN → KEEP|C1）。本步每季复跑 r125 两次并逐 slug 比对，
+    # 把「不改变既有判定」钉成可复算读数，而不是靠我拍脑袋的聚合口径。
+    # rc=1 = 有 slug 结论会变 ⇒ 按**结论**处理（ok_rc），与 caliber_flip 同法：
+    # 成因常在上游命名（*-skill.md 文档被旧口径计成 skill 仓），本仓无可整改动作，
+    # 若按失败步处理会每季恒红且无人能修（R211-3 同族）。
+    caliber_shadow = os.path.join(qdir, "caliber_shadow.json")
+    steps.append(run_step("caliber_shadow",
+                          [PY, os.path.join(HERE, "r221_caliber_shadow.py"),
+                           "--matrix", repl, "--json", caliber_shadow, "--quiet"],
+                          ok_rc=(0, 1)))
     # r114 第 ⑦ 段：eval 内三方法对照（**口径降级**：r115 已证它不是生产路由读数，
     # 保留只为跨季观察「轻量匹配」而存在；质量主指标看第 ⑨ 段 r115_quality_truth.py）
     qual_argv = [PY, os.path.join(HERE, "r114_quality_ab.py"), "--json", qual, "--quiet"]
@@ -452,7 +465,8 @@ def main():
 
     face_ok = (all(os.path.isfile(p) for p in
                    (prov, up, swap, repl, qual, rmiss, truth, swap_impact, domain_face,
-                    trace_face, tag_closure, req6_att, miss_mig, pool_pack, caliber_flip))
+                    trace_face, tag_closure, req6_att, miss_mig, pool_pack, caliber_flip,
+                    caliber_shadow))
                and not failed)
     face_reason = None
     if not os.path.isfile(prov):
@@ -477,7 +491,8 @@ def main():
                       "trace_face": trace_face, "tag_closure": tag_closure,
                       "req6_attainability": req6_att,
                       "miss_migration": miss_mig,
-                      "caliber_flip": caliber_flip},
+                      "caliber_flip": caliber_flip,
+                      "caliber_shadow": caliber_shadow},
         "swap_impact_reading": _read_swap_impact(swap_impact),
         "domain_face_reading": _r120b_domain_reading,
         "trace_face_reading": _r120b_trace_reading,

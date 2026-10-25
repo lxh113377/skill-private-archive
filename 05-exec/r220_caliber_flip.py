@@ -9,9 +9,9 @@ r"""r220_caliber_flip.py — 严格口径 vs 生产口径的「分桶翻转面�
 裁据因此写死在本件：覆盖 = 全部候选行 且 翻转 = 0 ⇒ 本仓自行切换并留 R241 校正注。
 
 四态（禁静默）：
-  FLIP:READY      翻转 0 且覆盖满 ⇒ 可切换（仍须独立提交）
-  FLIP:CLEAN      翻转 0 但覆盖不足 ⇒ 不切换（等数据），具名缺覆盖行数
-  FLIP:DETECTED   翻转 > 0 ⇒ 两口径结论不同，切换会改分桶 ⇒ 先逐条读翻转行
+  FLIP:READY      行级翻转 0 且覆盖满（无未决行）⇒ 可切换（仍须独立提交）
+  FLIP:CLEAN      行级零翻转但有未决行/覆盖不足 ⇒ 不切换（等数据），具名未决数
+  FLIP:DETECTED   **行级**翻转 > 0 ⇒ 切换会改变某行的 MATCHED 结论 ⇒ 先逐条读
   FLIP:UNVERIFIED 矩阵件缺失/无 rows/无任何双读数行（rc=2，禁读成「无翻转」）
 
 口径红线：
@@ -88,14 +88,38 @@ def measure(doc):
     ghosts = [(s, c) for (s, c) in both
               if c["skill_md_n"] - c["skill_md_exact_n"] > 0]
     cover = round(100.0 * len(both) / len(cands), 1)
+    # 行级影响（r221 新增，**只作报告证据、不参与判据**——原因见下方 state 注释：行级 any 比下游 top3 口径宽）：
+    # 逐行算「该行是否 ≥1 个 skill 仓候选」。候选级翻转可能只是旧口径假阳性（实测唯一一例 =
+    # Snailclimb/JavaGuide 的 docs/ai-coding/practices/drawio-chart-skill.md 被 endswith 计成 skill 仓），
+    # 而只要该行另有任一真 skill 仓候选，MATCHED 判定与五维分都不变。
+    # 严格性：行内有任一候选缺 exact 读数 ⇒ 该行记 unresolved，不得当作「已核过无影响」。
+    by_row = {}
+    for s, cx in cands:
+        by_row.setdefault(s, []).append(cx)
+    row_flips, rows_unresolved = [], []
+    for s, cs in by_row.items():
+        got = [cx for cx in cs if is_int(cx.get("skill_md_n"))
+               and is_int(cx.get("skill_md_exact_n"))]
+        if not cs or len(got) != len(cs):
+            rows_unresolved.append(s)
+            continue
+        if any(cx["skill_md_n"] > 0 for cx in got) != any(cx["skill_md_exact_n"] > 0 for cx in got):
+            row_flips.append(s)
+    unresolved_n = len(cands) - len(both)
+    # 判据绑**候选级**翻转（r221 二次修正）。我首版曾改绑「行级 any 候选」并据此打出 READY，
+    # 随即被真实下游判据推翻：r125 的 C1 只看 ranked[:3]（top3），A-java-problem 的 strict 阳性候选
+    # ComposioHQ(864) 排在 top3 之外 ⇒ 影子复判确实改变该行结论（NEED_C2_HUMAN → KEEP/C1）。
+    # 即「行内任一候选仍为正」比下游真实口径**更宽**，用它当切换条件会放行一次真实回归 ⇒ 撤销。
+    # 「候选级零翻转永不可满足」的顾虑另有一解：巡检侧 ok_rc=(0,1) 已把 rc=1 定性为**结论**而非失败步
+    # （R211-3 那条病由 ok_rc 治，不该靠放宽判据治）。未决行仍不给 READY（缺读数不得当「已核过」）。
     if not both:
         state = "UNVERIFIED"
     elif flips:
         state = "DETECTED"
-    elif len(both) == len(cands):
-        state = "READY"
-    else:
+    elif rows_unresolved or unresolved_n:
         state = "CLEAN"
+    else:
+        state = "READY"
     examples = []
     for s, c in flips[:10]:
         examples.append({"slug": s,
@@ -111,6 +135,12 @@ def measure(doc):
             "max_ghost_per_row": (max([c["skill_md_n"] - c["skill_md_exact_n"]
                                        for _, c in both]) if both else 0),
             "flip_examples": examples,
+            "rows_total": len(by_row),
+            "row_flag_flips": len(row_flips),
+            "row_flip_slugs": row_flips[:10],
+            "rows_unresolved": len(rows_unresolved),
+            "rows_unresolved_examples": rows_unresolved[:6],
+            "candidate_rows_unresolved": unresolved_n,
             "state": state}
 
 
@@ -187,7 +217,7 @@ def main(argv=None):
            "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S+00:00"),
            "cmd": "python 05-exec/r220_caliber_flip.py",
            "inputs": {"matrix": rel, "producer": "05-exec/r114_replacement_scan.py"},
-           "decision_rule": "覆盖=全部候选行 且 翻转=0 ⇒ 本仓自行把 C1 前置切到 skill_md_exact_n "
+           "decision_rule": "候选级翻转=0 且无未决行 ⇒ 才考虑把 C1 前置切到 skill_md_exact_n "
                             "并留 R241 校正注；否则保持旧口径不动（等数据，不等签字）",
            "reading": m}
     if not args.quiet:
@@ -195,12 +225,16 @@ def main(argv=None):
         print("  候选行 " + str(m["candidates_total"])
               + " ｜有双读数 " + str(m["rows_with_both_calibers"])
               + "（覆盖 " + str(m["coverage_pct"]) + "%）"
-              + " ｜缺 exact 读数 " + str(m["rows_missing_exact"])
-              + " ｜分桶标志翻转 " + str(m["bucket_flag_flips"])
+              + " ｜候选级标志翻转 " + str(m["bucket_flag_flips"])
               + " ｜ghost>0 行 " + str(m["ghost_positive_rows"])
               + " ｜单行最大 ghost " + str(m["max_ghost_per_row"]))
+        print("  行级：总行 " + str(m["rows_total"])
+              + " ｜结论翻转行 " + str(m["row_flag_flips"])
+              + ("（" + ", ".join(m["row_flip_slugs"]) + "）" if m["row_flip_slugs"] else "")
+              + " ｜未决行 " + str(m["rows_unresolved"])
+              + " ｜无 exact 读数候选行 " + str(m["candidate_rows_unresolved"]))
         for x in m["flip_examples"]:
-            print("  翻转：" + str(x["slug"]) + " " + str(x["repo"])
+            print("  候选级翻转：" + str(x["slug"]) + " " + str(x["repo"])
                   + " prod=" + str(x["prod"]) + " exact=" + str(x["exact"]))
     if args.out:
         tmp = args.out + ".tmp"
@@ -210,14 +244,17 @@ def main(argv=None):
         print("JSON -> " + os.path.relpath(args.out, ROOT))
     st = m["state"]
     if st == "DETECTED":
-        print("[FLIP:DETECTED] 切换会改变分桶 ⇒ 先逐条读翻转行（禁止直接换判据凑整洁）")
+        print("[FLIP:DETECTED] 候选级标志会变（候选翻转 " + str(m["bucket_flag_flips"])
+              + " / 行级仍为正的例外见 row_flip_slugs）⇒ 不切换；先逐条读根因")
         return 1
     if st == "READY":
-        print("[FLIP:READY] 零翻转 + 全覆盖 ⇒ 可切换（仍须独立提交，不与本件混做）")
+        print("[FLIP:READY] 候选级零翻转 + 全覆盖 ⇒ 可考虑切换（须再用 r125 影子复判确认行级无变化，独立提交）")
         return 0
     if st == "CLEAN":
-        print("[FLIP:CLEAN] 零翻转，但覆盖仅 " + str(m["coverage_pct"])
-              + "% ⇒ 保持旧口径；卡点是测量覆盖（需一次联网 --remeasure），不是等人")
+        print("[FLIP:CLEAN] 行级零翻转，但未决行 " + str(m["rows_unresolved"])
+              + " / 无读数候选行 " + str(m["candidate_rows_unresolved"])
+              + "（覆盖 " + str(m["coverage_pct"])
+              + "%）⇒ 不切换；卡点是测量覆盖（一次联网 --remeasure），不是等人")
         return 0
     print("[FLIP:UNVERIFIED] 无任何双口径读数行 ⇒ 不得据此说「严格口径不影响结论」")
     return 2

@@ -1,6 +1,6 @@
 {
  "schema": "provenance-scan-r112-v2",
- "generated_at": "2026-10-25T06:01:21+00:00",
+ "generated_at": "2026-10-25T06:32:19+00:00",
  "face": {
   "roots": [
    {
@@ -3948,7 +3948,7 @@
    "fm_version": "1.1.0",
    "fm_last_updated": "2026-09-21",
    "registry_source": "community",
-   "registry_version": "1.0.0",
+   "registry_version": "1.1.0",
    "registry_user_created": false,
    "declared": {
     "_meta.json": {

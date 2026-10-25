@@ -1,12 +1,12 @@
 {
  "schema": "caliber-flip-r220-v1",
- "generated_at": "2026-10-25T06:01:35+00:00",
+ "generated_at": "2026-10-25T06:32:25+00:00",
  "cmd": "python 05-exec/r220_caliber_flip.py",
  "inputs": {
   "matrix": "06-benchmark/quarterly/2026Q4/replacement_matrix.json",
   "producer": "05-exec/r114_replacement_scan.py"
  },
- "decision_rule": "覆盖=全部候选行 且 翻转=0 ⇒ 本仓自行把 C1 前置切到 skill_md_exact_n 并留 R241 校正注；否则保持旧口径不动（等数据，不等签字）",
+ "decision_rule": "候选级翻转=0 且无未决行 ⇒ 才考虑把 C1 前置切到 skill_md_exact_n 并留 R241 校正注；否则保持旧口径不动（等数据，不等签字）",
  "reading": {
   "candidates_total": 937,
   "rows_with_both_calibers": 929,
@@ -23,6 +23,19 @@
     "exact": 0
    }
   ],
+  "rows_total": 191,
+  "row_flag_flips": 0,
+  "row_flip_slugs": [],
+  "rows_unresolved": 8,
+  "rows_unresolved_examples": [
+   "blender-pipeline",
+   "byted-bp-cdn-pagesdeploy",
+   "chaoshi-web-deploy",
+   "frontend-skill",
+   "gsap",
+   "hook-analyzer-skill"
+  ],
+  "candidate_rows_unresolved": 8,
   "state": "DETECTED"
  }
 }

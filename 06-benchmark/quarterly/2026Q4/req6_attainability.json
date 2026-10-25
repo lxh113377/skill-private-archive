@@ -1,6 +1,6 @@
 {
  "schema": "req6-attainability-r214-v1",
- "generated_at": "2026-10-25T06:02:50+00:00",
+ "generated_at": "2026-10-25T06:32:53+00:00",
  "cmd": "python 05-exec/r214_req6_attainability.py",
  "inputs": {
   "baseline_file": "quality_truth_r115_2026-10-18.json",

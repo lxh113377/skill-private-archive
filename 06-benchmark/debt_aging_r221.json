@@ -1,9 +1,9 @@
 {
  "schema": "debt-aging-v2",
- "generated_at": "2026-10-25T14:06:28",
+ "generated_at": "2026-10-25T14:35:28",
  "readonly": true,
  "grace_rounds": 2,
- "current_round": 220,
+ "current_round": 221,
  "round_source": "git log --format=%s -40 中**作用域**最大 rNN（未硬编码；排除「挂账至 rNN」等未来轮号引用）",
  "verdict_taxonomy": [
   "OVERDUE",
@@ -201,15 +201,15 @@
  ],
  "evidence": {
   "volumes": 183,
-  "items_total": 422,
-  "open_total": 113,
+  "items_total": 426,
+  "open_total": 117,
   "closed_total": 309,
-  "raw_item_lines": 422
+  "raw_item_lines": 426
  },
  "by_class": {
   "OVERDUE": 0,
   "ACTIVE": 5,
-  "DECIDED": 93,
+  "DECIDED": 97,
   "UNDATED": 15,
   "DEFERRED": 0,
   "REPEAT": 0
@@ -239,12 +239,12 @@
   {
    "title": "R113-3 AGPL-3.0 上游合入合规口径待裁（hyperframes-registry 引入 calesthio/OpenMonta",
    "file": "memory\\07-next-steps.md",
-   "line": 1708
+   "line": 1760
   },
   {
    "title": "R112-5 受管根 rule_editor gates 的 mirror 组件超时（300s skip）+ noise 2 项外部在途，待",
    "file": "memory\\07-next-steps.md",
-   "line": 1709
+   "line": 1761
   },
   {
    "title": "R113-7 需求2 字面缺口：余 56 件 unknown + 143 件盲区仍无替代检索面（每一个现有 skill 都应有候选清单）（由",
@@ -354,17 +354,17 @@
  "note": "OVERDUE 数 = ratchet_gate 第 7 指标 overdue_debt_items 的唯一取值面",
  "coverage": {
   "status": "OK",
-  "prev": "debt_aging_r_autoregen_20261025_115715.json",
+  "prev": "debt_aging_r_autoregen_20261025_143035.json",
   "prev_overdue": 0,
   "missing": [],
   "method": "adjudication_gap(上一轮 overdue[].title 前 40 字, 当前卷文本, 本轮轮号)"
  },
  "input_face": {
   "round": {
-   "log": 220,
-   "tag": 220,
+   "log": 221,
+   "tag": 221,
    "ok": true,
-   "detail": "log=r220 ≥ tag=r220（差 0 轮：本轮 tag 已打，两源一致）"
+   "detail": "log=r221 ≥ tag=r221（差 0 轮：本轮 tag 已打，两源一致）"
   },
   "floor": {
    "ok": true,
@@ -372,7 +372,7 @@
   },
   "dedup": {
    "ok": true,
-   "detail": "422 行全部计入，80 字前缀键零碰撞"
+   "detail": "426 行全部计入，80 字前缀键零碰撞"
   },
   "dup": {
    "ok": true,
@@ -387,7 +387,7 @@
    "ok": null,
    "detail": "未传 --report ⇒ 建议面未对照（R247 不判绿）"
   },
-  "raw_lines": 422,
+  "raw_lines": 426,
   "collisions": [],
   "status": "UNVERIFIED",
   "red_faces": [],
@@ -404,27 +404,27 @@
   },
   {
    "file": "memory\\07-next-steps.md",
-   "line": 609,
+   "line": 645,
    "title": "**R219-2（r219 登记，P1·看守中）** **我自己造成的镜像漂移：rule_editor 内嵌校验 180s 超时，需官方 -Fix 给足时间**： 【r219 裁决"
   },
   {
    "file": "memory\\07-next-steps.md",
-   "line": 823,
+   "line": 859,
    "title": "**R217-3（r217 登记，P1·已落地）** **本轮两个自抓：① 我漏跑了自己立的「改门侧件即跑全量」；② 我把并行会话未提交的台账条目以我的提交信息代提交了**： 【r"
   },
   {
    "file": "memory\\07-next-steps.md",
-   "line": 951,
+   "line": 1003,
    "title": "**R212-2（r212 登记，P1·已落地）** **归属方 HEAD 加严 to>from 校验，把我 r208 修的安全夹具变成永久红；处方=第三态+可解除证明，不绕校验*"
   },
   {
    "file": "memory\\07-next-steps.md",
-   "line": 1214,
+   "line": 1266,
    "title": "**R208-1（r208 登记，P1·已落地）** **实跑路由才暴露：知识进对了 skill，仍进不了召回面（可达 ≠ 可召回）**： 【r208 裁决=执行（实跑路由暴露「进"
   },
   {
    "file": "memory\\07-next-steps.md",
-   "line": 1709,
+   "line": 1761,
    "title": "R112-5 受管根 rule_editor gates 的 mirror 组件超时（300s skip）+ noise 2 项外部在途，待归属方收口后复跑（由 flow 登记；状"
   },
   {
@@ -458,5 +458,9 @@
    "selector": "末行",
    "command": "tail -1 06-benchmark/debt_runs.jsonl"
   }
- }
+ },
+ "handles_drift": [
+  "open_total",
+  "decided"
+ ]
 }
