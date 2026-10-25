@@ -3,23 +3,23 @@
  "cmd": "python 05-exec/r120_trace_face.py --json <out>",
  "source": "C:\\Users\\37533\\Desktop\\workspace\\焚诀\\eval\\route_trace.jsonl",
  "face": {
-  "rows_n": 26649,
+  "rows_n": 26925,
   "bad_lines_n": 0,
-  "noise_n": 753,
-  "empty_q_n": 1052,
+  "noise_n": 771,
+  "empty_q_n": 1076,
   "unique_n": 226,
-  "span_days": 5.23,
+  "span_days": 5.26,
   "freshness_days": 0.0,
   "confidence": {
-   "HIGH": 24797,
-   "MEDIUM": 1058,
-   "LOW": 794
+   "HIGH": 25043,
+   "MEDIUM": 1070,
+   "LOW": 812
   },
-  "low_n": 794,
+  "low_n": 812,
   "src": {
-   "production": 15717,
-   "regression": 7530,
-   "guard-test": 3042,
+   "production": 15735,
+   "regression": 7710,
+   "guard-test": 3120,
    "adversarial": 360
   },
   "conservation_ok": true
