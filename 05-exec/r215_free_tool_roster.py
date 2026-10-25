@@ -117,13 +117,25 @@ BLOCKER_CLASSES = ('平台能力缺口', '外部凭据缺口', '口径盲区', '
 READ_FACE = {
     'Cloudflare-Workers': {'script': 'r199_workers_face.py',
                            'artifact': 'workers_quota_latest.json',
-                           'path': ['row', 'state']},
+                           'path': ['row', 'state'],
+                           # r239：第 5 项 —— 用量。第 4 层只说「读得到数」，没说**多少**；
+                           #   而这三个免费工具的额度是真会触顶的东西（5GiB / 2000 分钟 / 免费调用量），
+                           #   不把量印出来，「搭配得合不合理」就少一半依据。
+                           'usage': ['row', 'invocations_month'], 'unit': '次',
+                           'window': ['row', 'window']},
     'Cloudflare-D1': {'script': 'r196_quota_face.py',
                       'artifact': 'quota_face_latest.json',
-                      'path': ['rows', 'cloudflare_d1', 'state']},
+                      'path': ['rows', 'cloudflare_d1', 'state'],
+                      'usage': ['rows', 'cloudflare_d1', 'mib'], 'unit': 'MiB',
+                      'extra': ['rows', 'cloudflare_d1', 'pct_of_roster_limit'],
+                      'extra_label': '占名册声称上限',
+                      'window': ['rows', 'cloudflare_d1', 'limit_label']},
     'GitHub': {'script': 'r196_quota_face.py',
                'artifact': 'quota_face_latest.json',
-               'path': ['rows', 'github_actions_minutes_proxy', 'state']},
+               'path': ['rows', 'github_actions_minutes_proxy', 'state'],
+               'usage': ['rows', 'github_actions_minutes_proxy', 'minutes_all_workflows'],
+               'unit': '分钟',
+               'window': ['rows', 'github_actions_minutes_proxy', 'since']},
     'Cloudflare-R2': {'script': 'r201_r2_enable_face.py',
                       'artifact': 'r2_enable_latest.json',
                       'path': ['state']},
@@ -131,7 +143,9 @@ READ_FACE = {
     #   pages_http_face → pages_http_latest.json（row.state）。
     'Cloudflare-Pages': {'script': 'r200_pages_face.py',
                          'artifact': 'pages_http_latest.json',
-                         'path': ['row', 'state']},
+                         'path': ['row', 'state'],
+                         'usage': ['row', 'requests_total'], 'unit': '次',
+                         'window': ['row', 'window']},
 }
 
 # r230：无读数面的工具 —— 逐个核实后**具名说明为什么没有**，不留「未量」这种含糊态。
@@ -149,6 +163,62 @@ NO_READ_FACE = {
                       '该通道结论不依赖它 ⇒ 凭据缺口，不是没有读数面'),
 }
 READ_STATES = ('MEASURED', 'PARTIAL', 'GAP_SERVICE', 'GAP_CRED', 'GAP_PLATFORM', 'UNVERIFIED')
+
+
+def _pick(data, path):
+    """按路径取值；'rows' 段表示「按下一段作为 tool 键查行」再继续。取不到返回 (None, why)。"""
+    cur = data
+    i = 0
+    while i < len(path):
+        k = path[i]
+        if k == 'rows':
+            if i + 1 >= len(path):
+                return None, '路径写法错（rows 后缺行键）'
+            want = path[i + 1]
+            rows = cur.get('rows') if isinstance(cur, dict) else None
+            m = None
+            for x in (rows or []):
+                if isinstance(x, dict) and x.get('tool') == want:
+                    m = x
+                    break
+            if m is None:
+                return None, '产物里找不到行 tool=%s' % want
+            cur = m
+            i += 2
+            continue
+        if not isinstance(cur, dict) or k not in cur:
+            return None, '路径取不到：%s' % '/'.join(path)
+        cur = cur[k]
+        i += 1
+    return cur, None
+
+
+def read_face_usage(tool):
+    """r239：取用量（第 5 项）。未登记 / 取不到 ⇒ (None, why)，禁记 0。"""
+    spec = READ_FACE.get(tool) or {}
+    up = spec.get('usage')
+    if not up:
+        return None, None, '未登记用量路径'
+    fp = os.path.join(B, spec.get('artifact') or '')
+    if not os.path.isfile(fp):
+        return None, None, '产物缺失：' + str(spec.get('artifact'))
+    try:
+        d = json.load(io.open(fp, encoding='utf-8'))
+    except (OSError, ValueError):
+        return None, None, '产物不可析'
+    v, why = _pick(d, up)
+    if v is None or why:
+        return None, None, why or '用量字段为空'
+    extra = None
+    if spec.get('extra'):
+        ev, _e = _pick(d, spec['extra'])
+        extra = ev
+    win = None
+    if spec.get('window'):
+        wv, _w = _pick(d, spec['window'])
+        win = wv
+    return v, {'unit': spec.get('unit'), 'extra': extra,
+               'extra_label': spec.get('extra_label'), 'window': win}, None
 
 
 def read_face_state(tool):
@@ -274,6 +344,7 @@ def build():
                 linked.append({'task': tk, 'outcome': x.get('outcome'),
                                'top1': x.get('top1'), 'skill': want})
         _rs = read_face_state(tool)
+        _us = read_face_usage(tool)
         items.append({
             'tool': tool,
             'state': r.get('state'),
@@ -307,6 +378,10 @@ def build():
             'read_state': _rs[0],
             'read_face': _rs[1],
             'read_why': _rs[2],
+            # r239 第 5 项：用量（数值 + 单位 + 窗口 + 可选占比）。None = 未量，禁记 0。
+            'usage_value': _us[0],
+            'usage_meta': _us[1],
+            'usage_why': _us[2],
         })
     c = src['carrier']
     i = src['ingress']
@@ -366,8 +441,8 @@ def render_md(doc):
     #   禁手写（手写必漂）。牙 r6 锁死：总表行数必须等于 items 数，且每个工具恰好出现一次。
     L.append('## 搭配总表（一眼版）')
     L.append('')
-    L.append('| 工具 | ① skill 提到/代码 | ② 工作流真调用 | ③ 项目仓（剪后·含注释占比） | ④ 读数面 | 卡点/状态 |')
-    L.append('|---|---|---|---|---|---|')
+    L.append('| 工具 | ① skill 提到/代码 | ② 工作流真调用 | ③ 项目仓（剪后·含注释占比） | ④ 读数面 | ⑤ 用量 | 卡点/状态 |')
+    L.append('|---|---|---|---|---|---|---|')
     _full = _real = _blocked = _noread = 0
     for it in doc['items']:
         ms, es = it['mention_skills'], it['exec_skills']
@@ -395,7 +470,11 @@ def render_md(doc):
             _blocked += 1
         if not rq:
             _noread += 1
-        L.append('| %s | %s | %s | %s | %s | %s |' % (it['tool'], c1, c2, c3, c4, note))
+        um5 = it.get('usage_meta') or {}
+        c5 = ('未量' if it.get('usage_value') is None else
+              '%s %s' % (it.get('usage_value'), um5.get('unit') or ''))
+        L.append('| %s | %s | %s | %s | %s | %s | %s |' % (
+            it['tool'], c1, c2, c3, c4, c5, note))
     L.append('')
     L.append('汇总：四层齐备（有代码级/有工作流调用/项目仓有命中/读数 MEASURED）= **%d** 项；'
              '有真调用（工作流或代码级任一）= %d 项；带卡点归因 = %d 项；无读数面 = %d 项。' % (
@@ -462,6 +541,19 @@ def render_md(doc):
         else:
             _w = (it.get('read_why') or '未登记读数面').replace('无读数面：', '').replace('无读数面', '')
             L.append('- 读数型真调用（第 4 层）：无读数面 —— %s（无读数面 ≠ 0）' % (_w or '未登记读数面'))
+        uv, um = it.get('usage_value'), it.get('usage_meta') or {}
+        if uv is None:
+            L.append('- 本月/当前用量：未量（%s；未量不等于 0）' % (it.get('usage_why') or '未登记用量面'))
+        else:
+            extra = ''
+            if um.get('extra') is not None:
+                extra = '（%s %s）' % (um.get('extra_label') or '占比', um.get('extra'))
+            L.append('- 本月/当前用量：**%s %s**%s%s' % (
+                uv, um.get('unit') or '', extra,
+                ('　窗口：%s' % um.get('window')) if um.get('window') else ''))
+            L.append('    （取值：%s --json %s 的 %s）' % (
+                (it.get('read_face') or {}).get('script'), (it.get('read_face') or {}).get('artifact'),
+                '/'.join([str(z) for z in (READ_FACE.get(it['tool'], {}).get('usage') or [])])))
         L.append('- 守它的判据：' + it['gates'])
         L.append('- 工作流触点：' + it['touchpoint'])
         cs = it.get('claims') or []
@@ -555,6 +647,12 @@ def main(argv=None):
     # 牙 r4（r230）：第 4 层必须**逐个工具**都有交代 —— 要么登记了读数面，要么具名说明无读数面；
     #   「未量」这种含糊态一律算红（它正是 r229 留下的尾巴：6 项没核实就记未量）。
     teeth_n = []
+    # 牙 r7（r239）：第 ④ 层判 MEASURED（读得到数）的工具**必须带出用量数值** ——
+    #   否则说明第 ⑤ 层的取值路径写错/漂了（读面在跑却拿不到量，等于仪器接了线却没读数）。
+    no_usage = [it['tool'] for it in doc['items']
+                if it.get('read_state') == 'MEASURED' and it.get('usage_value') is None]
+    teeth_n.append(('r7_measured_implies_usage_number', not no_usage,
+                    'MEASURED 却无用量数值的工具=%s（期望空）' % no_usage))
     # 牙 r6（r235）：总表必须覆盖每个工具且不重不漏 —— 禁让「一眼版」漏掉某个工具（那比没有总表更糟）。
     md_lines = render_md(doc)
     # 只取「搭配总表（一眼版）」那一节的行（r235 自抓：首版把「依据面」表的 5 行也算进来 ⇒ 多出判据/163/93/92/88）

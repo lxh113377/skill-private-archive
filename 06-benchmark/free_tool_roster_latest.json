@@ -113,9 +113,28 @@
      "rows",
      "github_actions_minutes_proxy",
      "state"
+    ],
+    "usage": [
+     "rows",
+     "github_actions_minutes_proxy",
+     "minutes_all_workflows"
+    ],
+    "unit": "分钟",
+    "window": [
+     "rows",
+     "github_actions_minutes_proxy",
+     "since"
     ]
    },
-   "read_why": null
+   "read_why": null,
+   "usage_value": 438.98,
+   "usage_meta": {
+    "unit": "分钟",
+    "extra": null,
+    "extra_label": null,
+    "window": "2026-10-01"
+   },
+   "usage_why": null
   },
   {
    "tool": "Cloudflare-D1",
@@ -192,9 +211,34 @@
      "rows",
      "cloudflare_d1",
      "state"
+    ],
+    "usage": [
+     "rows",
+     "cloudflare_d1",
+     "mib"
+    ],
+    "unit": "MiB",
+    "extra": [
+     "rows",
+     "cloudflare_d1",
+     "pct_of_roster_limit"
+    ],
+    "extra_label": "占名册声称上限",
+    "window": [
+     "rows",
+     "cloudflare_d1",
+     "limit_label"
     ]
    },
-   "read_why": null
+   "read_why": null,
+   "usage_value": 8.89,
+   "usage_meta": {
+    "unit": "MiB",
+    "extra": 0.174,
+    "extra_label": "占名册声称上限",
+    "window": "5 GiB 存储"
+   },
+   "usage_why": null
   },
   {
    "tool": "Cloudflare-R2",
@@ -242,7 +286,10 @@
      "state"
     ]
    },
-   "read_why": null
+   "read_why": null,
+   "usage_value": null,
+   "usage_meta": null,
+   "usage_why": "未登记用量路径"
   },
   {
    "tool": "Cloudflare-Pages",
@@ -316,9 +363,26 @@
     "path": [
      "row",
      "state"
+    ],
+    "usage": [
+     "row",
+     "requests_total"
+    ],
+    "unit": "次",
+    "window": [
+     "row",
+     "window"
     ]
    },
-   "read_why": null
+   "read_why": null,
+   "usage_value": 198588,
+   "usage_meta": {
+    "unit": "次",
+    "extra": null,
+    "extra_label": null,
+    "window": "2026-10-01~2026-10-26"
+   },
+   "usage_why": null
   },
   {
    "tool": "Cloudflare-Workers",
@@ -364,16 +428,33 @@
     "why": "我的真实用法是**读数型**：走 CF GraphQL analytics 读调用数（token 见证据件），而形态级正则只认部署形态的三类写法 ⇒ 它看不见读数型搭配（不为此写假调用凑数）",
     "evidence": "python 05-exec/r199_workers_face.py --json 06-benchmark/workers_quota_latest.json（真跑 MEASURED）；token workersInvocationsAdaptive 见该件 L50/L108"
    },
-   "read_state": "UNVERIFIED",
+   "read_state": "MEASURED",
    "read_face": {
     "script": "r199_workers_face.py",
     "artifact": "workers_quota_latest.json",
     "path": [
      "row",
      "state"
+    ],
+    "usage": [
+     "row",
+     "invocations_month"
+    ],
+    "unit": "次",
+    "window": [
+     "row",
+     "window"
     ]
    },
-   "read_why": null
+   "read_why": null,
+   "usage_value": 0,
+   "usage_meta": {
+    "unit": "次",
+    "extra": null,
+    "extra_label": null,
+    "window": "2026-10-01~2026-10-26"
+   },
+   "usage_why": null
   },
   {
    "tool": "SQLite",
@@ -434,7 +515,10 @@
    "blocker": null,
    "read_state": null,
    "read_face": null,
-   "read_why": "无读数面：本地嵌入库，无平台额度面 ⇒ 无读数面（用量由 r203_ledger_index 本地统计）"
+   "read_why": "无读数面：本地嵌入库，无平台额度面 ⇒ 无读数面（用量由 r203_ledger_index 本地统计）",
+   "usage_value": null,
+   "usage_meta": null,
+   "usage_why": "未登记用量路径"
   },
   {
    "tool": "VS Code",
@@ -467,7 +551,10 @@
    },
    "read_state": null,
    "read_face": null,
-   "read_why": "无读数面：编辑器本体，无平台额度概念 ⇒ 无读数面"
+   "read_why": "无读数面：编辑器本体，无平台额度概念 ⇒ 无读数面",
+   "usage_value": null,
+   "usage_meta": null,
+   "usage_why": "未登记用量路径"
   },
   {
    "tool": "Cloudflare-Turnstile",
@@ -517,7 +604,10 @@
    "blocker": null,
    "read_state": null,
    "read_face": null,
-   "read_why": "无读数面：该读数门（r163_turnstile_face）的 argv 不带 --json、不做额度读数 ⇒ 无读数面"
+   "read_why": "无读数面：该读数门（r163_turnstile_face）的 argv 不带 --json、不做额度读数 ⇒ 无读数面",
+   "usage_value": null,
+   "usage_meta": null,
+   "usage_why": "未登记用量路径"
   },
   {
    "tool": "Resend",
@@ -550,7 +640,10 @@
    "blocker": null,
    "read_state": null,
    "read_face": null,
-   "read_why": "无读数面：有月度额度（免费 3000 封）但**全机无凭据**（env 0 命中、.env/.dev.vars 键名与它无关、全 workspace grep 只命中我自己的旧门产物）；档位 2 可打开发 signup 但需账号持有人建号+条款同意 ⇒ #29 例外类（凭据缺口 ∧ 第三方账号授权），不是没有读数面"
+   "read_why": "无读数面：有月度额度（免费 3000 封）但**全机无凭据**（env 0 命中、.env/.dev.vars 键名与它无关、全 workspace grep 只命中我自己的旧门产物）；档位 2 可打开发 signup 但需账号持有人建号+条款同意 ⇒ #29 例外类（凭据缺口 ∧ 第三方账号授权），不是没有读数面",
+   "usage_value": null,
+   "usage_meta": null,
+   "usage_why": "未登记用量路径"
   },
   {
    "tool": "Upstash-Redis",
@@ -583,7 +676,10 @@
    },
    "read_state": null,
    "read_face": null,
-   "read_why": "无读数面：有月度额度（免费 50 万命令）但**全机无凭据**（同上探查）；档位 2 console 探查挂起后已终止，该通道结论不依赖它 ⇒ 凭据缺口，不是没有读数面"
+   "read_why": "无读数面：有月度额度（免费 50 万命令）但**全机无凭据**（同上探查）；档位 2 console 探查挂起后已终止，该通道结论不依赖它 ⇒ 凭据缺口，不是没有读数面",
+   "usage_value": null,
+   "usage_meta": null,
+   "usage_why": "未登记用量路径"
   }
  ],
  "gates_reading": {
@@ -613,8 +709,8 @@
   "workflow_src": {
    "file": "workflow_usage_latest.json",
    "generated_at": null,
-   "face_files": 265,
-   "real_face_files": 154,
+   "face_files": 266,
+   "real_face_files": 155,
    "real_total_hits": 82
   },
   "third_src": {
