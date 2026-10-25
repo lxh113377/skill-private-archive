@@ -566,6 +566,21 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   必须来自可复算的入口件，不接受「我跑过一次的脚本」当来源。
   取值：git show HEAD:<报告 rel> 与工作树 io.read 比对（长度/章节/数字三项）；
   python 05-exec/r221_dead_regex_scan.py --wide（现值 256 件/959 个/2 处）。
+- [ ] **R222-1（r222 登记，P1·已落地）** **探针全包的工具，USED 是有人测它不是有人用它：第 94 门加第二把尺 real_hits**： 【r222 裁决=执行（第 94 门加第二把尺：探针件不计入真调用，三字段 + REAL-GAP advisory + selftest 三四腿）｜读数：真调用 89 / 面 265（探针面 110）；R2/Resend/Upstash 全探针包、Workers 0/0、VS Code NO_PATTERN；selftest 5/5；名册半对归因已补两半。】
+  一手：r218 建第 94 门时写了 SELF-REF 腿（命中过半来自探针件则报警），但判定仍是命中大于 0 就算 USED。
+  本轮把探针/夹具件全排除后重算：面 265 件里探针占 110 件（41%）；Cloudflare-R2 hits=5 real=0、
+  Resend 1/0、Upstash-Redis 2/0 —— 这三个工具的 USED 全部来自探针；Turnstile 81 里 27 个来自名册探针，
+  真调用只有 admin 那 23。⇒ 报警印了、判定没改，等于把仪表的影子当成本体。
+  改法：r218_workflow_usage_face.py 增 real_hits / real_files / real_state 三字段与 REAL-GAP 告警行
+  （advisory 不判红：探针在位是好事，第 163 门本来就要读 wrangler 与 whoami；把有探针判成缺陷等于惩罚装仪表）。
+  selftest 加第三、四腿：探针件不计入真调用、非探针件不受影响（5/5 通过）。
+  读数：真调用合计 89 / 面 265（探针面 110）；GitHub 84/23、SQLite 28/24、Pages 15/7、D1 10/4、
+  Turnstile 81/31、Workers 0/0（基线 1 条）；R2/Resend/Upstash REAL-GAP advisory；VS Code NO_PATTERN。
+  顺带修名册口径（r218 埋的半对话）：原先只写「Workers 0 命中属尺的口径盲区」，但真调用面里 D1 4 次、
+  Pages 7 次、Turnstile 31 次都有非探针命中，唯独 Workers 连非探针命中都是 0 —— 口径盲区只覆盖「我的用法是
+  GraphQL 读数」这一半，另一半是「排除读数探针后它确实没进任何非探针脚本」，两半都写进名册。
+  元教训：有人测它和有人用它是两件事，而前者会把后者洗绿。
+  取值：python 05-exec/r218_workflow_usage_face.py --json 件的 real_hits/real_files/real_total_hits 与 REAL-GAP 行。
 - [ ] **R221-1（r221 登记，P1·已落地）** **一条永远匹配不上的正则替 GAP_SERVICE 背了书；修两处并建第 95 门按结构扫全仓**： 【r221 裁决=执行（修 r201 死正则与 --json 参数错误两处；建第 95 门按结构扫全仓并自证；宽口径交叉核对 1 处按证据定性不改）｜读数：四向牙测全过、真面 D 路 code=10042 usable=True（旧恒 null）、扫描器扫 256 件 0 处、run_gates 15/0 纯新增、GATES=96、门表 96/基线 95/未登记 0、准入未声明 0。】
   一手：r201 产物 wrangler_code 恒 null，看着像「wrangler 没给码」。真因是其解析正则模式里的反斜杠
   全被吃掉（JS 写 Python 的老坑），成了一条死正则 —— 从没运行过，不是抓不到。同处第二条：命令带
@@ -922,6 +937,14 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   取值：`python 05-exec/r221_caliber_shadow.py --selftest`（须 [SHADOW:SELFTEST-PASS]）；`python 05-exec/r221_caliber_shadow.py --matrix 06-benchmark/replacement_matrix_r221_remeasure.json --json <件>`（须 [SHADOW:DIVERGENT] 且具名 A-java-problem NEED_C2_HUMAN → KEEP|C1）；`python 05-exec/r220_caliber_flip.py --matrix <件>`（须 [FLIP:DETECTED] 候选翻转 1）；`python 05-exec/r113_quarterly_audit.py --quarter 2026Q4 --offline`（17 步、caliber_flip rc=1 conclusion_rc=true）。
   取值：`python 05-exec/r220_caliber_flip.py`（须 `[FLIP:CLEAN]` + 覆盖 1.8%）；`python 05-exec/r220_caliber_flip.py --selftest`（腿数取 `[OK`/`[FAIL` 行数，勿手数）；`python 05-exec/r113_quarterly_audit.py --quarter 2026Q4 --offline`（17 步）；两门红复核 = `python 05-exec/r58_py_syntax_guard.py` 与 `python -c` 验 `git cat-file -e HEAD:05-exec/r219_md_deadlink.py`。
   ➕ 同轮续做（把 R213-1 真正闭合）：生成器 `r217_pool_pack.py` 建好但**无人调用 = 又是我今早已登记过的死句柄形态（W-46 / R211-7 同型）**，本轮给它补 `--ensure` 幂等模式并接进季度巡检（步名 `pool_pack_ensure`，置于 `replacement_scan` 之后 ⇒ 联网轮新增散件当轮即并进入库包）。三条设计要点全部实测：① **并集重建**（merged = 包 ∪ 活、活件覆盖同名）——若只按活面重建，散件被部分清掉时包里的历史条目会随之消失，等于「保护池的件自己把池杀了」；实测注入 ghost 条目 + 篡改同名条目后重建：ghost 保留 true、活件胜出 true。② **幂等口径必须是超集判断**（活 ⊆ 包且逐条等值），我首版写成 `len(live) == len(pk_e)` ⇒ 并集重建后包恒 ≥ 活面 ⇒ 每次 `--ensure` 都判漂移而永久重写、mtime 每轮变 = 幂等性是假的；第二次跑实测 mtime 不变才算修好。③ 活面为空而包在 ⇒ 原包不动（实测 `[POOLPACK:PASS] …不重建`），活面与包同时不可用才 rc=2。实跑：季度巡检 **16 步全通过**、本步 rc=0（81.6s，输出「包覆盖活缓存且逐条等值（活 414 / 包 414）⇒ 幂等不写」），包未被重写（git status 空）；准入「未声明的产读数脚本 0」。⚠️ 另记一条我自己的操作失控：为给这个件加两处改动我连打 4 次锚点补丁，每次都吃掉相邻行（未闭合字符串 / unmatched ')' / 吞掉 print 首行 / 括号未闭合），直到第 4 次才承认「同一文件连错 3 次就该停止打补丁」⇒ 最终改为**从 HEAD 原文一次性组装**（一次写、AST/编译/四路径实测全过）。教训入规：锚点补丁只许用于局部单行改；多行插入必须整件重建，且 AST 检查要在每次写后立即跑。
+- [ ] **R221-5（r221 登记，P1·已落地）需求6 口径 B 的季度读数被我自己的选件器搞成了「同轮互比」：每季都报真错 7→7、真修好 0 —— 不是没进步，是尺子比错了对象；改为钉基线锚 + 候选面纳入 quarterly/**：
+  一手（本轮终局自查发现，**这条不是别人报的，是我自己复跑季度产物时看出来的**）：`r217_miss_migration` 的 `pick_paths()` 只 glob `06-benchmark` 根目录，而巡检把每季现件写在 `06-benchmark/quarterly/<季度>/` 子目录 ⇒ 现件永远不在候选面里，基线只能从根目录挑，于是季度跑的 `miss_migration` 变成「根目录最近两件互比」（实测 r123 → r216_live，两者真错都是 7）⇒ **固定报「真错 7→7、真修好 0、相对 0.0%」**。而这与事实相反：需求 6 口径 B 的改善是 12→7 = −41.7%（5 条具名修好）。
+  更要紧的是它**看起来完全合法**：`[MIGRATION:CLEAN]` 六条红线全过、守恒 True、rc=0 —— 判据只回答「有没有造假」，不回答「比的对不对」。这是本仓 X-24「枚举器分母静默变小」的同族变种：**分母没错，但对象错了**，且错向是「把真改善报成零改善」（保守方向，所以不红）。
+  修法两件（都做实）：① 候选面改为 **根目录 ∪ quarterly/*/ 的并集**，且季度件优先（它就是每季的正式读数）；② 巡检里 `--baseline` **显式钉在 r117 件**（口径 B 的改善从那轮量起），并在代码注释写明「换锚须显式改这一行 + 台账具名理由，禁让选件器悄悄换尺」（R263 同族：尺的变更必须是决定）。
+  修复后实测：`miss_migration` 季度产物 inputs.baseline = r117 件、current = 季度件，读数回到 **真错 12→7（相对 41.7%）、命中 271→276、真修好 5 条逐条具名**（python-debugpy / A-skill-manager / chaoshi-web-deploy / pdf / brainstorming）、六条红线仍全过、rc=0；季度巡检 18 步全通过、face_ok=true。
+  另记两条本轮实况（不藏）：① 我开工时 HEAD 里的 `06-benchmark/debt_aging_r221.json` 在磁盘上缺失（`git status` 显示 D，非我所为）⇒ 用其原生成器 r38 重算复原，status 回到 M、ratchet 前置腿 OK；未动其他内容。② 终局清点发现**自 r211 之后没有新的对标报告**（r212–r221 共 10 轮无报告）——需求 7 的「问题分析报告」这一类出现空档，已列为待办（见下）。
+  待办（不夹带，独立件）：补一份 r212–r221 的对标报告（十轮的工程改造与自抓汇总），否则需求 7 的交付物在最近十轮没有对应分析报告。
+  取值：`python 05-exec/r217_miss_migration.py`（候选面须含季度件）；`python 05-exec/r217_miss_migration.py --baseline 06-benchmark/route_miss_attr_r117_2026-10-18.json --current 06-benchmark/quarterly/2026Q4/route_miss_attr.json --json <件>`（须 12→7 / 41.7% / 修好 5 条具名）；`python 05-exec/r113_quarterly_audit.py --quarter 2026Q4 --offline`（18 步、该步 rc=0 且 inputs.baseline 为 r117 件）。
 
 - [ ] **R218-5（r218 登记，P1·已落地）** **R213-1 结案：候选池打成入库单件包，离线复算不再站在 _temp 上；但我上轮那条待办的前提引用错了预算面 —— 按它算会得出「不能入库」而永久搁置**： 【r220 裁决=执行｜r217_pool_pack.py + pool_cache_r217.json（762,630B < any_file_max）+ r114 内存合并「包∪散件、散件覆盖包」；本条原文引用的 family_bytes_max 属 T1 记忆卷族、不适用缓存池（真闸 = T2 cache_file_max=200 / any_file_max），已按现读原文改写；端到端双向实测：模拟清场 --offline 仍 REPL:PASS 且读数一致、加 --pool-pack none 才复现 UNVERIFIED｜取值：python 05-exec/r217_pool_pack.py --check；python 05-exec/r114_replacement_scan.py --offline --cache-dir _temp/empty_cache】
   一手（实测否证自己）：R213-1 原写「须先量 `family_bytes_max=491,520` 与 `repo_max=10,485,760` 两条预算再裁」⇒ 池缓存**不属于 family_* 族**：`r150_volume_tiers.TIER_KEYS` 把 family_* 归 **T1（记忆卷族）**，缓存池的闸在 **T2** —— `cache_file_max=200`（件数闸）/ `cache_dir_max=52,428,800B`，产物级另有 `artifact_max=262,144` 与 `any_file_max=1,048,576`（数值现读 `06-benchmark/gov_tiers_r150_2026-10-21.json`）。本仓常引的教训是「缺口报大与报小同样有害」，这是它的**反向形态：约束报错面也会杀死正当动作**。

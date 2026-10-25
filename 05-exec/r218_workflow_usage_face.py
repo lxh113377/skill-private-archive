@@ -114,26 +114,44 @@ def evaluate():
             continue
         hits = 0
         probe_hits = 0
+        real_hits = 0
+        real_files = []
         for p, t in texts:
             c = len(re.findall(pat, t, re.I))
             if c:
                 hits += c
                 if is_probe(p):
                     probe_hits += c
+                else:
+                    # r222 第二把尺：探针/夹具件不算「真调用」—— 它们是为了测这个工具而写的，
+                    # 不是用这个工具干活的。没有这把尺时，面里一堆探针件会让每个工具都显得
+                    # 有人在用（r218 实测 Turnstile 27 命中里 25 个来自 r163_free_tools_face 探针）。
+                    real_hits += c
+                    real_files.append(os.path.basename(p))
         per.append({'tool': tool, 'hits': hits,
                     'probe_share': (round(probe_hits / hits, 3) if hits else None),
-                    'state': ('GAP' if hits == 0 else 'USED')})
+                    'real_hits': real_hits,
+                    'real_files': sorted(set(real_files))[:12],
+                    'state': ('GAP' if hits == 0 else 'USED'),
+                    'real_state': ('REAL_GAP' if real_hits == 0 else 'REAL_USED')})
         total += hits
-    return {'face_files': len(face), 'tools': per, 'total_hits': total}, None
+    return {'face_files': len(face), 'tools': per, 'total_hits': total,
+            'real_face_files': sum(1 for p, _t in texts if not is_probe(p)),
+            'real_total_hits': sum(x.get('real_hits') or 0 for x in per)}, None
 
 
 def selftest():
     ok1 = bool(re.search('gh\\s+(?:api|pr|issue|run|auth)', 'gh api user'))
     ok2 = len(re.findall('zzz_no_such_tool_xyz', 'anything')) == 0
     ok3 = 'GitHub' in load_patterns()
-    print('[USAGE:SELFTEST] 正则可用=%s 空匹配=%s TOOLS可读=%s' % (ok1, ok2, ok3))
-    if ok1 and ok2 and ok3:
-        print('[USAGE:SELFTEST] 通过（正例匹配、反例不匹配、正则源可读）')
+    # r222 第三腿：探针件不得计入真调用（否则 r218 的 USED 会被自家探针喂出来）
+    probe_txt = 'turnstile ' * 40
+    ok4 = len(re.findall('turnstile', probe_txt)) == 40 and is_probe('x/r163_free_tools_face.py')
+    ok5 = not is_probe('x/r203_ledger_index.py')
+    print('[USAGE:SELFTEST] 正则=%s 空匹配=%s TOOLS=%s 探针不计入=%s 非探针不受影响=%s' % (
+        ok1, ok2, ok3, ok4, ok5))
+    if ok1 and ok2 and ok3 and ok4 and ok5:
+        print('[USAGE:SELFTEST] 通过（正例匹配、反例不匹配、正则源可读、探针件不计入真调用）')
         return True
     return False
 
@@ -173,6 +191,10 @@ def main(argv=None):
     npat = [x['tool'] for x in doc['tools'] if x['state'] == 'NO_PATTERN']
     sref = [x['tool'] for x in doc['tools']
             if x['hits'] and (x['probe_share'] or 0) >= 0.5]
+    # r222 第二把尺的告警：探针件贡献过半 ⇒ 该工具的 USED 主要是「有人测它」而非「有人用它」。
+    # 这不算红（探针在位是好事），但必须显形，否则 USED 会被读成「已接入自动化」。
+    rgap = [x['tool'] for x in doc['tools']
+            if x['hits'] and (x.get('real_hits') or 0) == 0]
     op = args.out if os.path.isabs(args.out) else os.path.join(ROOT, args.out)
     body = {'schema': 'workflow-usage-v1', 'readonly': True,
             'provenance_cmd': 'python 05-exec/r218_workflow_usage_face.py --json <件>',
@@ -183,8 +205,9 @@ def main(argv=None):
     body.update(doc)
     io.open(op, 'w', encoding='utf-8', newline=chr(10)).write(
         json.dumps(body, ensure_ascii=False, indent=1))
-    print('[USAGE] 工作流面 %d 件 / 名册 %d 工具 / 命令级命中合计 %d' % (
-          doc['face_files'], len(doc['tools']), doc['total_hits']))
+    print('[USAGE] 工作流面 %d 件（真调用面 %d）/ 名册 %d 工具 / 命令级命中合计 %d（真调用 %d）' % (
+          doc['face_files'], doc['real_face_files'], len(doc['tools']),
+          doc['total_hits'], doc['real_total_hits']))
     for x in sorted(doc['tools'], key=lambda z: str(z['tool'])):
         print('  %-22s %-11s hits=%-6s 探针占比=%s' % (
               x['tool'], x['state'], x['hits'], x['probe_share']))
@@ -192,6 +215,8 @@ def main(argv=None):
         print('[USAGE:NO_PATTERN] 无权威正则（未量 ≠ 没在用）= %s' % npat)
     if sref:
         print('[USAGE:SELF-REF] 命中过半来自测它的探针（在位≠工作流在用）= %s' % sref)
+    if rgap:
+        print('[USAGE:REAL-GAP] 命中全部来自探针件 = 无人用它干活（advisory，不判红）= %s' % rgap)
     if gaps:
         print('[USAGE:FAIL] 新增未接入缺口 %d 条：' % len(gaps))
         for s in gaps:
