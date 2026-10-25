@@ -310,7 +310,7 @@
     }
    ],
    "blocker": null,
-   "read_state": "MEASURED",
+   "read_state": "UNVERIFIED",
    "read_face": {
     "script": "r200_pages_face.py",
     "artifact": "pages_http_latest.json",

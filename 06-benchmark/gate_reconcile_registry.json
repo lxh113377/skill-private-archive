@@ -100,7 +100,7 @@
    "md_deadlink_face",
    "free_tool_roster_face"
   ],
-  "_snapshot_at": "2026-10-25 20:26",
+  "_snapshot_at": "2026-10-25 20:39",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"

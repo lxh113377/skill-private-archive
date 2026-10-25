@@ -101,7 +101,7 @@
         质量拆分：命中行 230，其中注释行 34（占比 0.148）
     （② 取值：workflow_usage_latest.json 的 tools[].real_hits，窗口面 155/266 件、真调用合计 93；
      ③ 取值：tool_skill_matrix_r231.json 的 third_face.per_tool，4134 件 / 2 仓 / 剪外来面 10 个）
-- 读数型真调用（第 4 层）：**MEASURED**（读得到数）
+- 读数型真调用（第 4 层）：**UNVERIFIED**（读数面真实状态（未读到数））
     （取值：r200_pages_face.py --json pages_http_latest.json 的 row/state）
 - 守它的判据：163 + 92 + 93
 - 工作流触点：chaoshi-web-deploy 部署权威入口（direct_map 10 pattern，任务话术直连命中）
