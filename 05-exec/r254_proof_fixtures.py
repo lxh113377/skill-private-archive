@@ -60,7 +60,7 @@ def call_main(mod, argv=None):
 def p1_roster_audit():
     import r237_roster_audit as M
     M.layer1 = lambda: ({}, {})
-    M.layer2 = lambda: ({}, 0)
+    M.layer2 = lambda: ({}, 0, set())
     M.layer3 = lambda: ({}, [])
     M.layer5 = lambda: {}
     rc, out = call_main(M, [])
@@ -196,11 +196,23 @@ def p12_judge_binding_criterion_c():
        rc != 0 and '判据C' in out and 'gaps' in out, 'rc=%d' % rc)
 
 
+def p13_audit_second_denominator():
+    # r257：第 98 门新加的第二分母（只算跟踪件）也要能被证伪 —— 喂一个「未跟踪件贡献真命中」的假面。
+    import r237_roster_audit as M
+    M.layer1 = lambda: ({}, {})
+    M.layer2 = lambda: ({}, 0, {'zzz_untracked_contrib.py'})
+    M.layer3 = lambda: ({}, [])
+    M.layer5 = lambda: {}
+    rc, out = call_main(M, [])
+    ck('p13 roster_audit 未跟踪件贡献第②层 ⇒ 必须 rc≠0 且具名',
+       rc != 0 and '未跟踪件贡献' in out, 'rc=%d' % rc)
+
+
 def main():
     for fn in (p1_roster_audit, p2_dup_policy, p3_freshness, p4_judge_binding,
                p5_recall_face, p6_ingress_face, p7_tool_carrier_face, p8_sqlite_usage_face,
                p9_gh_billing_face, p10_turnstile_usage_face, p11_route_truth_measure,
-               p12_judge_binding_criterion_c):
+               p12_judge_binding_criterion_c, p13_audit_second_denominator):
         try:
             fn()
         except Exception as e:

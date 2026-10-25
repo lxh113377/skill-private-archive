@@ -19,6 +19,7 @@ import io
 import json
 import os
 import re
+import subprocess
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -104,7 +105,19 @@ def layer2():
                 continue
             n += len(re.findall(pat, t, re.I))
         res[tool] = n
-    return res, len(files)
+    # r257：把「贡献真命中的件」一起交出去，供下面「只算跟踪件」的第二分母核对
+    contrib = set()
+    for tool, pat in TOOLS.items():
+        for fp in files:
+            if any(h in os.path.basename(fp).lower() for h in PROBE):
+                continue
+            try:
+                t = io.open(fp, encoding='utf-8', errors='replace').read()
+            except OSError:
+                continue
+            if re.search(pat, t, re.I):
+                contrib.add(os.path.relpath(fp, ROOT).replace(os.sep, '/'))
+    return res, len(files), contrib
 
 
 def layer3():
@@ -226,13 +239,32 @@ def main(argv=None):
         print('[ROSTER-AUDIT:UNVERIFIED] 名册 items 为空 ⇒ 空面不得判对')
         return 2
     men, exe = layer1()
-    wf, wface = layer2()
+    wf, wface, wf_contrib = layer2()
     th, roots = layer3()
     us = layer5()
     if th is None:
         print('[ROSTER-AUDIT:UNVERIFIED] 取不到含 third_face 的矩阵件 ⇒ 层3 无分母（R247）')
         return 2
+    # r257：第二分母 —— **只算 git 已跟踪件**。工作树里未跟踪的散落件若贡献了真命中，就是在本门面外灌数
+    #   （我经常往 05-exec 写临时件）。实测 r257：两面各 265 件、逐工具全等、未跟踪贡献件 = 0。
     drift = []
+    # r257：第二分母 —— 只算 git 已跟踪件（工作树里的未跟踪散落件若贡献真命中，就是本门面外灌数）。
+    untracked_contrib = []
+    tracked = None
+    try:
+        r_ = subprocess.run(['git', '-c', 'core.quotepath=false', 'ls-files'], cwd=ROOT,
+                            capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=200)
+        tracked = set(l.strip() for l in (r_.stdout or '').splitlines() if l.strip())
+    except OSError as _e:
+        # r257 自抓：首版这里写的是 `except Exception`，而本件**没 import subprocess** ⇒ NameError 被吞，
+        #   判据静默失效（rc=1 却没有我期待的那行）。放宽的 except 又一次把判据变成了装饰品。
+        #   现只吞 OSError（二进制缺失），其余如实上抛；取不到跟踪面则显式记一条，禁静默当「核对过了」。
+        tracked = None
+        drift.append('无法核对第二分母（git ls-files 失败：%s）⇒ 本项不得算核对过' % str(_e)[:60])
+    if tracked is not None:
+        untracked_contrib = sorted(wf_contrib - tracked)
+    if untracked_contrib:
+        drift.append('未跟踪件贡献了第②层真命中（工作树灌数）=%s' % untracked_contrib[:5])
     known = []
     for tool in sorted(TOOLS):
         if tool not in rost:
