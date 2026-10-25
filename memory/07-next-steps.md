@@ -520,6 +520,19 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   sync/check-skill-mirror.ps1 -Fix（末行 [GATE:mirror-pass] 与 missing/mismatch 计数）；
   Get-FileHash 双件对账（D:/global_skills 与 C:/Users/37533/.agents/skills 同名件）。
   落点：报告 §74.6（补 74.5 的实测后续，不改上文原话，R241）。
+- [ ] **R220-2（r220 登记，P1·已落地）** **我上一刀只补了两处 `timeout=180` 就收工，漏了第三处（同族缺陷，取值不同）**： 【r220 裁决=执行（补第三处：_run_gate 的 mirror 腿按名分档用 MIRROR_TIMEOUT_S，其余三门不动 300s；受管根 R817 入库）｜读数：py_compile rc=0、备份已落、grep 全部 timeout= 共 13 处其中涉镜像 3 处已全部对齐。元教训：改同族缺陷按调用点枚举，不按旧字面值搜索。】
+  一手：改完 R816（L434 run_mirror_fix / L456 _mirror_check_only）后按 r219 的口径复跑 `rule_editor gates`
+  复验 ⇒ rc=1 且**一行 GATE 结论都没打印**。顺此 grep 全部 `timeout=` 才发现第三处：`_run_gate` L1554
+  `timeout=300` —— 聚合 gates 子命令里 mirror 腿与 noise/evolution/stub 三个 python 门共用 300s；
+  191 技能下镜像只读检查远超 300s ⇒ 必然超时 ⇒ 返回 (None, None) ⇒ 「门禁协议自检」永远查不到镜像真值。
+  根因是**方法错**：我上一刀用「我要改的那个字面值 180」当搜索条件，于是同族但取值不同的那处天然漏网。
+  改法（最小面、按名分档）：mirror 腿用 MIRROR_TIMEOUT_S（env 可覆盖，与 R816 同源），其余三门保持
+  300s（本仓 python 件，本就够）。受管根 R817 入库；备份 rule_backup/…095300_097955.bak；py_compile rc=0。
+  元教训：**改同族缺陷要按「调用点」枚举，不按「旧字面值」搜索。** 同族 = 同一意图的多个实现点，
+  不是同一个字符串；用值当锚会只修到「长得像的那些」。
+  取值：python -c 枚举 rule_editor.py 里所有 timeout= 行（改前 13 处、其中 3 处涉镜像）；
+  python -m py_compile D:/global_skills/A-memory-start/references/rule_editor.py；
+  FENJUE_MIRROR_TIMEOUT=1 python rule_editor.py gates（mirror 腿应快速失败并留痕，不再拖 300s）。
 - [ ] **R220-1（r220 登记，P1·已落地）** **我上一轮把「能修的假人工步骤」登记成「不改」：锚搞错归属，本轮修 rule_editor 的 180s 超时**： 【r220 裁决=执行（更正上一轮的归属错：timeout=180 在安全区内的 rule_editor，本轮改掉；两处超时分支各按其自陈口径处置）｜读数：四锚各命中 1、备份已落、验牙四例齐（py_compile rc=0、无残留 timeout=180、只读超时→True+状态未知、Fix 超时→False+无需人工、env 覆盖生效）。】
   更正自抓：r219 §74.6/R219-4 我写「阈值在焚诀侧件里，我不改（R269/红线6），只具名登记」——**归属错**。
   本轮定位：`rule_editor.py:93 MIRROR_FIX_PS1` 只是指向 ps1 的**被调用方路径**，真正卡死的 `timeout=180`
