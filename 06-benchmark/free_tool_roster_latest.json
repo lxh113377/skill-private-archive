@@ -376,7 +376,7 @@
     ]
    },
    "read_why": null,
-   "usage_value": 199115,
+   "usage_value": 199183,
    "usage_meta": {
     "unit": "次",
     "extra": null,
@@ -534,12 +534,12 @@
     ]
    },
    "read_why": null,
-   "usage_value": 11.99,
+   "usage_value": 12.03,
    "usage_meta": {
     "unit": "MiB（本地库体量·非额度）",
-    "extra": 42932,
+    "extra": 43042,
     "extra_label": "合计行数",
-    "window": "2026-10-26T00:55:36"
+    "window": "2026-10-26T01:11:37"
    },
    "usage_why": null
   },
@@ -603,10 +603,11 @@
    ],
    "exec_skills": [],
    "yardstick_absent": false,
-   "wf_real_hits": 25,
+   "wf_real_hits": 26,
    "wf_real_files": [
     "r163_turnstile_admin.py",
-    "r209_route_truth_measure.py"
+    "r209_route_truth_measure.py",
+    "r247_dup_policy_scan.py"
    ],
    "third_hits": 3,
    "third_files": [
@@ -768,9 +769,9 @@
   "workflow_src": {
    "file": "workflow_usage_latest.json",
    "generated_at": null,
-   "face_files": 268,
-   "real_face_files": 154,
-   "real_total_hits": 82
+   "face_files": 269,
+   "real_face_files": 155,
+   "real_total_hits": 83
   },
   "third_src": {
    "files_scanned": 4131,
