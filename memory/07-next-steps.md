@@ -566,6 +566,25 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   必须来自可复算的入口件，不接受「我跑过一次的脚本」当来源。
   取值：git show HEAD:<报告 rel> 与工作树 io.read 比对（长度/章节/数字三项）；
   python 05-exec/r221_dead_regex_scan.py --wide（现值 256 件/959 个/2 处）。
+- [ ] **R229-2（r229 登记，P1·已落地）** **第 4 层「读数型真调用」：把「能读」与「形态层看不见」同时摆出来；牙先咬住了我自己的解析器**： 【r229 裁决=执行（r215 增 READ_FACE 与第 4 层读数 + 三条牙 r1/r2/r3）｜读数：Workers MEASURED、D1 MEASURED、GitHub MEASURED、R2 GAP_SERVICE、其余 6 项未量；牙 8/8 PASS；两个变异（改错归因 rc=1、rows 行键写错被 r1 咬住）均实证。】
+  一手：r228 给 Workers 的归因是「口径盲区」（真实用法走 GraphQL analytics 读调用数），但册子里没有
+  任何一格把「它真的在读」记下来 ⇒ 读者看到的还是几个 0，归因只是文字说明。
+  改法：r215 增 READ_FACE（script/artifact/path）与第 4 层读数；**只登记核实过产物名与状态路径的读数面**，
+  产物名不可靠一律记 None=未量（不猜、不记 0）。实测：Workers MEASURED（r199→workers_quota_latest.json
+  row.state）、D1 MEASURED（r196→quota_face_latest.json rows[cloudflare_d1]）、GitHub MEASURED（同件
+  rows[github_actions_minutes_proxy]）、R2 **GAP_SERVICE**（r201→r2_enable_latest.json state，读数面被卡）；
+  其余 6 项未量。**关键区分**：Workers 与 R2 在形态层都是零，但一个能读、一个读不了 —— 三层分不开，
+  第 4 层分开了。
+  三条常驻牙：r1（登记了读数面却取不到状态 ⇒ 红，产物改名当场暴露）/ r2（状态白名单）/ r3（读数 MEASURED
+  且带归因 ⇒ 类别只允许「口径盲区」，写成平台或凭据缺口即归因写错）。8/8 PASS。
+  **两个变异实跑**：① Workers 归因改成「平台能力缺口」⇒ r3 FAIL rc=1，还原 rc=0；② 本轮自抓：`rows` 段
+  行键我写成取最后一个元素（state）⇒ r1 当场红、不出册 —— 牙先咬住我自己的解析器，改对才放行。
+  不粉饰：本层只覆盖 4/10，Pages/Turnstile/SQLite/Resend/Upstash/VS Code 记「未量」—— 不是说没在读
+  （SQLite 明明本地读写、Turnstile 有 face 脚本），而是**我还没核实它们的产物名与状态路径**；下一步
+  逐个核实，而不是一次性猜 6 个产物名再让牙去圆。
+  元教训：「有归因」和「有读数」是两件事 —— 只给归因，读者要把文字说明当唯一依据，而文字说明正是
+  最容易被我写得像结论的那类证据。
+  取值：python 05-exec/r215_free_tool_roster.py（md 逐工具「读数型真调用（第 4 层）」行）。
 - [ ] **R228-2（r228 登记，P1·已落地）** **零层归因：把「被卡住」与「不适用」分开，类别走白名单且必须带 why+evidence**： 【r228 裁决=执行（r215 增零层归因 BLOCKER 表 + 类别白名单 + 三条牙 b1/b2/b3）｜读数：触发集 4 项 {R2 平台能力缺口 / Upstash 外部凭据缺口 / Workers 口径盲区 / VS Code 未入尺}，全部带 why 与取值命令；牙 5/5 PASS；变异（拿掉 R2 归因）rc=1、还原 rc=0；册子 md 17200B。】
   一手：r227 起名册逐工具印三层读数，但读者看到三层全零**分不清「被卡住」（要推进）与「不适用」
   （要接受）** —— 两者下一步动作相反，而「零」本身不携带原因，解释只能靠我临场说、不留证据。
@@ -1134,6 +1153,16 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   边界与归属（不回抛、不代改）：产物 `焚诀/eval/skill_tags.json` 与匹配逻辑 `焚诀/eval/tag_layer.py` 均在**焚诀仓**，本仓红线 6 明定「焚诀 eval/ 只读调用不改」⇒ 本件只提供根因、逐条判定与建议，归属方为焚诀会话（R269：不擅动他人在途面）。本轮**未写焚诀仓任何文件**（已核 mtime：那些 M 件全在本轮开工前数小时）。
   口径不夸大：不改变要求 6 结论（口径 C 仍算术不可达、口径 B 仍 −41.7% 达标）。本件的价值是把「剩余 7 条」拆成**可归因的三类**、给出其中 4 类的可复算修复路径与正确归属，并**纠正上一份报告里那条会白费力气的建议**。
   取值：`python -c` 解析 `焚诀/eval/tag_layer.py` 的 `TAG_WEIGHT_TIERS`（须 61 项）并逐项查 `焚诀/eval/skill_tags.json` 的 `index`（须 31 生效 / 30 空转）；`python -c` 核 `'Excel' in index`（须 True）而 `'\\bexcel\\b' in index`（须 False）；`python -c` 对 7 条 REAL_MISS 逐条算「问句是否含任一**生效**清单项」。
+
+- [ ] **R230-1（r230 登记，P1·已落地）把 r229 那条「只报不改」的缺陷做成**常驻判据**（要求 5 长效巡检补强）：新建 `r230_tag_face.py` 接入季度巡检成第 19 步；并**当场推翻我自己 r229 的一个结论**（P0 不是整层零贡献）**： 【r230 裁决=执行｜新建 r230_tag_face.py（8 腿自测 PASS）接入季度巡检成第 19 步（实测 19 步全通过、该步 rc=1 conclusion_rc=true、EXPOSED）；判据三处自身缺陷当场抓到并修（非贪婪正则截断 / 引号内逗号被切 / FENJUE_EVAL 路径少一级）；真跑推翻我自己 r229 的「P0 整层零贡献」⇒ 实为 P0 27 项 = 13 正则(全空转)+14 普通词(8 生效)，已给 r229 补 R241 校正注；只读焚诀仓不代改｜取值：python 05-exec/r230_tag_face.py --json 06-benchmark/tag_face_r230.json】
+  一手（接着 R229-1 的待办做）：r229 我把焚诀 tag 层缺陷查清但只能「只报不改」（红线 6：焚诀 eval 只读）。本轮在**本仓内**补上可持续看守 —— 新建只读判据 `05-exec/r230_tag_face.py`：读 `tag_layer.py` 的 `TAG_WEIGHT_TIERS` + `skill_tags.json` 的 `index`，算「清单项数 / 生效数 / 空转数 / P0 生效数 / 索引面覆盖率」，三态 `PASS / EXPOSED / UNVERIFIED`。
+  判据自身的两处缺陷都是**当场抓到并修**的（不是写完就宣布有效）：① 首版用非贪婪正则解析清单，在嵌套字典处截断 —— 改为**括号配对**解析（`_match_block` 跳过字符串/注释内的括号）；② 自测腿「引号内含逗号」被我首版 `inner.split(",")` 切坏（`"带,逗号"` 被切成两半）⇒ 改为**引号感知的顶层逗号切分**（`_split_top_commas`）。②是自测抓出来的，说明「自测腿本身也必须可证伪」这条纪律有效。
+  ⚠️ 第三处缺陷是**真跑抓出来的**（X-18 同族教训）：首版把 `FENJUE_EVAL` 算成 `dirname(ROOT)/焚诀/eval`（实为 `<ws>/skill焚诀/焚诀/eval`，不存在）⇒ 真跑返回 UNVERIFIED。**判据的 fail-closed 行为正确**（不可读 ⇒ 不明说「无空转」），但路径是我写错的；改为 `dirname(dirname(ROOT))/焚诀/eval`（即 `<ws>/焚诀/eval`，与季度件里 `../../焚诀/eval/layered_testset.json` 的口径一致）后通过。⇒ 教训复述：**判据写完必须拿真实数据跑一遍**，夹具全绿不代表接线对。
+  **当场推翻我自己 r229 的结论**（本条的实质发现）：真跑得 `tier_n=61（P0 27/P1 24/P2 10）、生效 31、空转 30、索引 469、有效面 6.6%` —— 与我 r229 的手工读数**一致**；但 **P0 生效 8 项**（部署上线/天眼查/经验反哺/项目交接/大文件拆分/文生图/图生图/提示词优化），而非我 r229 写的「P0 整层零贡献」。精确构成 = **P0 27 项 = 13 个正则形（全空转）+ 14 个普通词（8 生效 / 6 空转）**。⇒ 正确表述是「**P0 里的正则子集 13/27 全部空转**」，不是「P0 整层零贡献」。已给 r229 原件补 R241 校正注（原文不改写），本条记此自纠。
+  这条自纠的**方法论价值**大于纠错本身：r229 我给的是「读源码 + 逐项 `get()` 计数」的手工读数，其中「P0 有 27 项」是我**只数了正则那 13 项就下了整层结论**（典型的「部分枚举推全称」）。做成常驻判据后，机器逐项算，同一份事实立刻露出我漏掉的 14 项。⇒ 手工读数下全称结论，必须由判据复核。
+  接入方式（与既有非绿退出模式一致）：季度巡检第 **19** 步 `tag_face`，紧接 `trace_face` 之后（`tag_closure` 量**症状**「多少题因 tag 结构不可达」、`tag_face` 量**成因**「有效匹配面」，互补不重复）；`ok_rc=(0,1)` —— rc=1（有空转/P0 无生效）是**关于别人仓数据的结论**，不是本仓故障（与 caliber_flip / caliber_shadow 同法）；**rc=2（输入不可读/零项）仍计入失败步**（R247：没抓到不得当无空转）。产物进 `artifacts` 与 `face_ok`。
+  边界（不越线）：判据只读焚诀仓（`tag_layer.py` / `skill_tags.json`），**不写焚诀仓任何文件**；缺陷本体仍归焚诀会话按 r229 §5 的四条建议修（本仓不代改）。
+  取值：`python 05-exec/r230_tag_face.py --selftest`（须 `[TAGFACE:SELFTEST-PASS]`，8 腿）；`python 05-exec/r230_tag_face.py --json 06-benchmark/tag_face_r230.json`（须 `[TAGFACE:EXPOSED]`、tier_n=61、live=31、dead=30、p0_n=27、p0_live_n=8）；`python 05-exec/r113_quarterly_audit.py --quarter 2026Q4 --offline`（须 19 步、该步 rc=1 且 conclusion_rc=true）。
 
 - [ ] **R218-5（r218 登记，P1·已落地）** **R213-1 结案：候选池打成入库单件包，离线复算不再站在 _temp 上；但我上轮那条待办的前提引用错了预算面 —— 按它算会得出「不能入库」而永久搁置**： 【r220 裁决=执行｜r217_pool_pack.py + pool_cache_r217.json（762,630B < any_file_max）+ r114 内存合并「包∪散件、散件覆盖包」；本条原文引用的 family_bytes_max 属 T1 记忆卷族、不适用缓存池（真闸 = T2 cache_file_max=200 / any_file_max），已按现读原文改写；端到端双向实测：模拟清场 --offline 仍 REPL:PASS 且读数一致、加 --pool-pack none 才复现 UNVERIFIED｜取值：python 05-exec/r217_pool_pack.py --check；python 05-exec/r114_replacement_scan.py --offline --cache-dir _temp/empty_cache】
   一手（实测否证自己）：R213-1 原写「须先量 `family_bytes_max=491,520` 与 `repo_max=10,485,760` 两条预算再裁」⇒ 池缓存**不属于 family_* 族**：`r150_volume_tiers.TIER_KEYS` 把 family_* 归 **T1（记忆卷族）**，缓存池的闸在 **T2** —— `cache_file_max=200`（件数闸）/ `cache_dir_max=52,428,800B`，产物级另有 `artifact_max=262,144` 与 `any_file_max=1,048,576`（数值现读 `06-benchmark/gov_tiers_r150_2026-10-21.json`）。本仓常引的教训是「缺口报大与报小同样有害」，这是它的**反向形态：约束报错面也会杀死正当动作**。

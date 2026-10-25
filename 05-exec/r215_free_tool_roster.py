@@ -101,6 +101,72 @@ BLOCKER = {
 }
 
 BLOCKER_CLASSES = ('平台能力缺口', '外部凭据缺口', '口径盲区', '按用户要求移除', '未入尺', '无使用场景')
+# r229：第 4 层 —— 读数型真调用（读得到数）。
+#   为什么需要它：r228 给 Workers 的归因是「口径盲区」——它的真实用法是走 API 读调用数，而形态级正则
+#     只认部署形态。只留归因，读者仍会把它读成「没在用」。把「读数面真跑出数」单列一层，
+#     就能把「能读」与「形态层看不见」同时摆出来（R2 也有读数面，但它读不到 ⇒ 这一层是 0，区分得开）。
+#   登记口径（只登记**我核实过产物名与状态路径**的读数面；产物名不可靠的一律记 None=未量，不猜）：
+#     script  = 产生读数的脚本；artifact = 其产物件；path = 取 state 的路径（'rows' 段表示按 tool 键查行）。
+READ_FACE = {
+    'Cloudflare-Workers': {'script': 'r199_workers_face.py',
+                           'artifact': 'workers_quota_latest.json',
+                           'path': ['row', 'state']},
+    'Cloudflare-D1': {'script': 'r196_quota_face.py',
+                      'artifact': 'quota_face_latest.json',
+                      'path': ['rows', 'cloudflare_d1', 'state']},
+    'GitHub': {'script': 'r196_quota_face.py',
+               'artifact': 'quota_face_latest.json',
+               'path': ['rows', 'github_actions_minutes_proxy', 'state']},
+    'Cloudflare-R2': {'script': 'r201_r2_enable_face.py',
+                      'artifact': 'r2_enable_latest.json',
+                      'path': ['state']},
+}
+READ_STATES = ('MEASURED', 'PARTIAL', 'GAP_SERVICE', 'GAP_CRED', 'GAP_PLATFORM', 'UNVERIFIED')
+
+
+def read_face_state(tool):
+    """取某工具读数面的真状态。未登记读数面 / 产物缺失 / 路径取不到 ⇒ (None, why)。
+
+    禁把「取不到」记成 0（R247 同族）：未量是未量，零是零。
+    """
+    spec = READ_FACE.get(tool)
+    if not spec:
+        return None, None, '未登记读数面（未量）'
+    fp = os.path.join(B, spec['artifact'])
+    if not os.path.isfile(fp):
+        return None, spec, '产物缺失：' + spec['artifact']
+    try:
+        d = json.load(io.open(fp, encoding='utf-8'))
+    except (OSError, ValueError):
+        return None, spec, '产物不可析：' + spec['artifact']
+    path = spec['path']
+    cur = d
+    i = 0
+    while i < len(path):
+        k = path[i]
+        if k == 'rows':
+            # 取 rows 后面那个元素作为行键（r229 自抓：我先写成取最后一个元素 = state，
+            # 于是 rows/github_actions_minutes_proxy/state 被解成「按 tool=state 查行」⇒ 取不到；
+            # 牙 r1 当场红了才看见）。
+            if i + 1 >= len(path):
+                return None, spec, '路径写法错（rows 后缺行键）'
+            want = path[i + 1]
+            rows = cur.get('rows') if isinstance(cur, dict) else None
+            m = None
+            for x in (rows or []):
+                if isinstance(x, dict) and x.get('tool') == want:
+                    m = x
+                    break
+            if m is None:
+                return None, spec, '产物里找不到行 tool=%s' % want
+            cur = m
+            i += 2
+            continue
+        if not isinstance(cur, dict) or k not in cur:
+            return None, spec, '路径取不到：%s' % '/'.join(path)
+        cur = cur[k]
+        i += 1
+    return (str(cur) if cur is not None else None), spec, None
 
 GATES = {
     'GitHub': '163 + 87 + 93',
@@ -179,6 +245,7 @@ def build():
             if want and TASK2TOOL.get(tk) == tool:
                 linked.append({'task': tk, 'outcome': x.get('outcome'),
                                'top1': x.get('top1'), 'skill': want})
+        _rs = read_face_state(tool)
         items.append({
             'tool': tool,
             'state': r.get('state'),
@@ -203,6 +270,10 @@ def build():
             'tasks': linked,
             # r228：零层归因（None = 该工具不需要归因：至少有一层在干真活）
             'blocker': BLOCKER.get(tool),
+            # r229 第 4 层：读数型真调用（读得到数）。None = 未量（未登记读数面/产物缺），不记 0。
+            'read_state': _rs[0],
+            'read_face': _rs[1],
+            'read_why': _rs[2],
         })
     c = src['carrier']
     i = src['ingress']
@@ -300,6 +371,15 @@ def render_md(doc):
         if bl:
             L.append('- **零层归因：[%s]** %s' % (bl['class'], bl['why']))
             L.append('    （取值：%s）' % bl['evidence'])
+        rstate = it.get('read_state')
+        rf = it.get('read_face') or {}
+        if rstate:
+            rd_note = '读得到数' if rstate == 'MEASURED' else '读数面真实状态（未读到数）'
+            L.append('- 读数型真调用（第 4 层）：**%s**（%s）' % (rstate, rd_note))
+            L.append('    （取值：%s --json %s 的 %s）' % (
+                rf.get('script'), rf.get('artifact'), '/'.join(rf.get('path') or [])))
+        else:
+            L.append('- 读数型真调用（第 4 层）：未量（%s；未量不等于 0）' % (it.get('read_why') or '未登记读数面'))
         L.append('- 守它的判据：' + it['gates'])
         L.append('- 工作流触点：' + it['touchpoint'])
         cs = it.get('claims') or []
@@ -368,6 +448,28 @@ def main(argv=None):
               if it.get('blocker') and not (it['blocker'].get('evidence') and it['blocker'].get('why'))]
     teeth_b.append(('b3_blocker_has_evidence', not bad_ev,
                     '缺 why 或 evidence 的工具=%s（期望空）' % bad_ev))
+    # 牙 r1/r2/r3（r229）：读数面这一层必须真取到数、状态在册，且与归因不矛盾。
+    teeth_r = []
+    unresolved = []
+    for it in doc['items']:
+        rf = READ_FACE.get(it['tool'])
+        if rf and not it.get('read_state'):
+            unresolved.append('%s（%s）' % (it['tool'], it.get('read_why')))
+    teeth_r.append(('r1_registered_read_face_resolves', not unresolved,
+                    '登记了读数面却取不到状态的工具=%s（期望空：产物改名会当场红）' % unresolved))
+    bad_state = [it['tool'] for it in doc['items']
+                 if it.get('read_state') and it['read_state'] not in READ_STATES]
+    teeth_r.append(('r2_read_state_whitelisted', not bad_state,
+                    '状态不在册的工具=%s（期望空）' % bad_state))
+    # r3 交叉一致性：读数面 MEASURED（读得到数）而该工具又带归因 ⇒ 归因只允许是「口径盲区」，
+    #   因为「能读却形态层看不见」正是口径盲区的定义。写成平台/凭据缺口就是归因写错了。
+    bad_pair = []
+    for it in doc['items']:
+        if it.get('read_state') == 'MEASURED' and it.get('blocker'):
+            if it['blocker'].get('class') != '口径盲区':
+                bad_pair.append('%s(读数=MEASURED, 归因=%s)' % (it['tool'], it['blocker'].get('class')))
+    teeth_r.append(('r3_measured_state_vs_blocker_class', not bad_pair,
+                    '读数MEASURED但归因非口径盲区的工具=%s（期望空）' % bad_pair))
     teeth = []
     third_present = doc['gates_reading'].get('third_src', {}).get('files_scanned') is not None
     bad_third = [it['tool'] for it in doc['items']
@@ -380,7 +482,7 @@ def main(argv=None):
               and (wfmap.get(it['tool']) or {}).get('state') not in ('NO_PATTERN', None)]
     teeth.append(('workflow_none_only_when_no_pattern', not bad_wf,
                   'wf=None 但 state 不是 NO_PATTERN 的工具=%s（期望空）' % bad_wf))
-    for n, ok, d_ in teeth + teeth_b:
+    for n, ok, d_ in teeth + teeth_b + teeth_r:
         print('%s %-38s %s' % ('PASS' if ok else 'FAIL', n, d_))
         if not ok:
             print('[ROSTER:TEETH-FAIL] 三层语义不自洽 ⇒ 不出册（禁把不自洽的册子当交付）')

@@ -100,7 +100,18 @@
      "skill": "chaoshi-web-deploy"
     }
    ],
-   "blocker": null
+   "blocker": null,
+   "read_state": "MEASURED",
+   "read_face": {
+    "script": "r196_quota_face.py",
+    "artifact": "quota_face_latest.json",
+    "path": [
+     "rows",
+     "github_actions_minutes_proxy",
+     "state"
+    ]
+   },
+   "read_why": null
   },
   {
    "tool": "Cloudflare-D1",
@@ -165,7 +176,18 @@
      "skill": "A-memory-start"
     }
    ],
-   "blocker": null
+   "blocker": null,
+   "read_state": "MEASURED",
+   "read_face": {
+    "script": "r196_quota_face.py",
+    "artifact": "quota_face_latest.json",
+    "path": [
+     "rows",
+     "cloudflare_d1",
+     "state"
+    ]
+   },
+   "read_why": null
   },
   {
    "tool": "Cloudflare-R2",
@@ -200,7 +222,16 @@
     "class": "平台能力缺口",
     "why": "R2 未在账号启用（wrangler 与 REST 同回 10042），官方提示需在 Dashboard 启用；属平台+条款同意，非凭据问题（对照 /accounts=200 已证凭据活着）",
     "evidence": "python 05-exec/r201_r2_enable_face.py --json 06-benchmark/r2_enable_latest.json（state=GAP_SERVICE / code=10042）"
-   }
+   },
+   "read_state": "GAP_SERVICE",
+   "read_face": {
+    "script": "r201_r2_enable_face.py",
+    "artifact": "r2_enable_latest.json",
+    "path": [
+     "state"
+    ]
+   },
+   "read_why": null
   },
   {
    "tool": "Cloudflare-Pages",
@@ -262,7 +293,10 @@
      "skill": "chaoshi-web-deploy"
     }
    ],
-   "blocker": null
+   "blocker": null,
+   "read_state": null,
+   "read_face": null,
+   "read_why": "未登记读数面（未量）"
   },
   {
    "tool": "Cloudflare-Workers",
@@ -303,7 +337,17 @@
     "class": "口径盲区",
     "why": "我的真实用法是**读数型**：走 CF GraphQL analytics 读 workersInvocationsAdaptive 取调用数，而形态级正则只认 wrangler deploy / workers.dev / fetch 导出 ⇒ 它看不见读数型搭配（不为此写假调用凑数）",
     "evidence": "python 05-exec/r199_workers_face.py --json 06-benchmark/workers_quota_latest.json（真跑 MEASURED）；token workersInvocationsAdaptive 见该件 L50/L108"
-   }
+   },
+   "read_state": "MEASURED",
+   "read_face": {
+    "script": "r199_workers_face.py",
+    "artifact": "workers_quota_latest.json",
+    "path": [
+     "row",
+     "state"
+    ]
+   },
+   "read_why": null
   },
   {
    "tool": "SQLite",
@@ -357,7 +401,10 @@
    ],
    "patterns_n": 3,
    "tasks": [],
-   "blocker": null
+   "blocker": null,
+   "read_state": null,
+   "read_face": null,
+   "read_why": "未登记读数面（未量）"
   },
   {
    "tool": "VS Code",
@@ -383,7 +430,10 @@
     "class": "未入尺",
     "why": "编辑器本体，不承载判据；第 67 门无该工具正则 ⇒ per_tool 无此键（未量，不等于零提到）",
     "evidence": "python 05-exec/r163_tool_skill_matrix.py --json 件（per_tool 里无 VS Code 键）"
-   }
+   },
+   "read_state": null,
+   "read_face": null,
+   "read_why": "未登记读数面（未量）"
   },
   {
    "tool": "Cloudflare-Turnstile",
@@ -427,7 +477,10 @@
      "skill": "chaoshi-image-optimization"
     }
    ],
-   "blocker": null
+   "blocker": null,
+   "read_state": null,
+   "read_face": null,
+   "read_why": "未登记读数面（未量）"
   },
   {
    "tool": "Resend",
@@ -453,7 +506,10 @@
    ],
    "patterns_n": 3,
    "tasks": [],
-   "blocker": null
+   "blocker": null,
+   "read_state": null,
+   "read_face": null,
+   "read_why": "未登记读数面（未量）"
   },
   {
    "tool": "Upstash-Redis",
@@ -479,7 +535,10 @@
     "class": "外部凭据缺口",
     "why": "仅有 REST 无 CLI，且本机未配 UPSTASH_* 凭据 ⇒ 无法接入；这是凭据缺口，不是搭配意愿问题",
     "evidence": "python 05-exec/r163_free_tools_face.py --json 06-benchmark/free_tools_latest.json（该工具 state=GAP_CRED）"
-   }
+   },
+   "read_state": null,
+   "read_face": null,
+   "read_why": "未登记读数面（未量）"
   }
  ],
  "gates_reading": {
