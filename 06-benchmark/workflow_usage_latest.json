@@ -37,6 +37,10 @@
     "r60_capability_roster_describe.py",
     "r60_upstream_backfill.py"
    ],
+   "line_exec": 3,
+   "line_comment": 1,
+   "line_prose": 18,
+   "line_cjk_prose": 6,
    "state": "USED",
    "real_state": "REAL_USED"
   },
@@ -49,6 +53,10 @@
     "r119_cand_regress.py",
     "r119_cand_sandbox.py"
    ],
+   "line_exec": 0,
+   "line_comment": 0,
+   "line_prose": 3,
+   "line_cjk_prose": 3,
    "state": "USED",
    "real_state": "REAL_USED"
   },
@@ -58,6 +66,10 @@
    "probe_share": 1.0,
    "real_hits": 0,
    "real_files": [],
+   "line_exec": 0,
+   "line_comment": 0,
+   "line_prose": 0,
+   "line_cjk_prose": 0,
    "state": "USED",
    "real_state": "REAL_GAP"
   },
@@ -70,6 +82,10 @@
     "r119_cand_regress.py",
     "r119_cand_sandbox.py"
    ],
+   "line_exec": 0,
+   "line_comment": 0,
+   "line_prose": 5,
+   "line_cjk_prose": 5,
    "state": "USED",
    "real_state": "REAL_USED"
   },
@@ -79,6 +95,10 @@
    "probe_share": null,
    "real_hits": 0,
    "real_files": [],
+   "line_exec": 0,
+   "line_comment": 0,
+   "line_prose": 0,
+   "line_cjk_prose": 0,
    "state": "GAP",
    "real_state": "REAL_GAP"
   },
@@ -90,6 +110,10 @@
    "real_files": [
     "r203_ledger_index.py"
    ],
+   "line_exec": 0,
+   "line_comment": 0,
+   "line_prose": 19,
+   "line_cjk_prose": 0,
    "state": "USED",
    "real_state": "REAL_USED"
   },
@@ -108,6 +132,10 @@
     "r163_turnstile_admin.py",
     "r209_route_truth_measure.py"
    ],
+   "line_exec": 0,
+   "line_comment": 12,
+   "line_prose": 12,
+   "line_cjk_prose": 2,
    "state": "USED",
    "real_state": "REAL_USED"
   },
@@ -117,6 +145,10 @@
    "probe_share": 1.0,
    "real_hits": 0,
    "real_files": [],
+   "line_exec": 0,
+   "line_comment": 0,
+   "line_prose": 0,
+   "line_cjk_prose": 0,
    "state": "USED",
    "real_state": "REAL_GAP"
   },
@@ -126,6 +158,10 @@
    "probe_share": 1.0,
    "real_hits": 0,
    "real_files": [],
+   "line_exec": 0,
+   "line_comment": 0,
+   "line_prose": 0,
+   "line_cjk_prose": 0,
    "state": "USED",
    "real_state": "REAL_GAP"
   }

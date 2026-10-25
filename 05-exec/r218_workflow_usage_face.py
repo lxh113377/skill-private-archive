@@ -36,6 +36,16 @@ SKIP_DIRS = ('.git', '__pycache__', '_trash', '_bak', 'node_modules', '_temp',
 EXTS = ('.py', '.sh', '.ps1', '.yml', '.yaml', '.js', '.ts', '.sql', '.toml')
 PROBE_HINT = ('_face', '_fixtures', 'probe', 'matrix', 'check', 'stage', 'debt', 'gate')
 # r235：写着模式文本的件不得进匹配面（模块级，便于自测腿直接核对）
+# r236：命中行三分类 —— 执行行 / 注释行 / 散文行（既非注释也非执行形态）。",
+#   动因（r235 一手）：我曾在自己 r215 的说明文案里引用模式原样字样，被本门算成 2 次调用。
+#   那次靠 EXCL 修掉；本行分类把「同类还有没有」变成常驻读数：若某工具的命中**全由散文撑起**，
+#   就是又一次「说明书被当成调用」，必须具名报警（而不是等下一张总表偶然撞见）。
+#   r236 自抓：首版用「命令名清单」（含 wrangler / gh 等）判执行行 ⇒ 自证腿当场红：**散文里引用的
+#   命令名**（「只认 wrangler deploy 这种写法」）也被判成执行行 —— 那正是 r215 骗过我的形态。
+#   改为**按调用构造判**；散文另按中文识别（中文且无调用构造 = 散文行）。
+CALL_CTX = ('subprocess', 'execFileSync', 'spawn', 'Popen', 'os.system', 'shell=True',
+            '&&', '$(', chr(96))
+CJK = re.compile('[' + chr(0x4e00) + '-' + chr(0x9fff) + ']')
 EXCL = ('r163_tool_skill_matrix.py', 'r214_tool_carrier_face.py',
         'tool_carrier_patterns.json', 'r218_workflow_usage_face.py',
         'r215_free_tool_roster.py')
@@ -119,6 +129,7 @@ def evaluate():
         probe_hits = 0
         real_hits = 0
         real_files = []
+        line_comment = line_exec = line_prose = line_cjk_prose = 0
         for p, t in texts:
             c = len(re.findall(pat, t, re.I))
             if c:
@@ -131,10 +142,30 @@ def evaluate():
                     # 有人在用（r218 实测 Turnstile 27 命中里 25 个来自 r163_free_tools_face 探针）。
                     real_hits += c
                     real_files.append(os.path.basename(p))
+                    # r236 第三把尺：非探针件里再分行别 —— 执行行 / 注释行 / 散文行。
+                    for _ln in t.split(chr(10)):
+                        if not re.search(pat, _ln, re.I):
+                            continue
+                        _s = _ln.strip()
+                        if _s[:1] in ('#', '*') or _s[:2] in ('//', '--'):
+                            line_comment += 1
+                        elif any(h in _s for h in CALL_CTX):
+                            line_exec += 1
+                        else:
+                            line_prose += 1
+                            if CJK.search(_s):
+                                line_cjk_prose += 1
+        # r236：散文撑起的调用 = 假调用（与 r235 同一族）。real_exec=0 且 real_prose>0 ⇒ 具名报警。
+        # r236 自抓二（**撤掉结论，只留计数**）：我先加了 prose_only 布尔并报警，实测它对 D1 / Pages
+        #   假阳 —— 那两个件的命中行虽然是中文（cjk=3/5），但行内确实在跑 wrangler（中文说明混在同一脚本里）。
+        #   按本仓「宁漏不误」的规矩：**假报警比没有报警更糟**（会把我训练成忽略它），故只保留三类原始计数，
+        #   不出布尔结论；组成是否可疑由人合读（名册里印出来）。
         per.append({'tool': tool, 'hits': hits,
                     'probe_share': (round(probe_hits / hits, 3) if hits else None),
                     'real_hits': real_hits,
                     'real_files': sorted(set(real_files))[:12],
+                    'line_exec': line_exec, 'line_comment': line_comment, 'line_prose': line_prose,
+                    'line_cjk_prose': line_cjk_prose,
                     'state': ('GAP' if hits == 0 else 'USED'),
                     'real_state': ('REAL_GAP' if real_hits == 0 else 'REAL_USED')})
         total += hits
@@ -169,9 +200,15 @@ def selftest():
     finally:
         import shutil as _sh
         _sh.rmtree(_d, ignore_errors=True)
-    print('[USAGE:SELFTEST] 正则=%s 空匹配=%s TOOLS=%s 探针不计入=%s 非探针不受影响=%s 文档件被排除=%s' % (
-        ok1, ok2, ok3, ok4, ok5, ok6))
-    if ok1 and ok2 and ok3 and ok4 and ok5 and ok6:
+    # r236 第五腿：行分类必须区分「执行行」与「散文行」（否则 r235 那类会再犯）
+    _exec_line = 'subprocess.run("wrangler d1 execute x", shell=True)'
+    _prose_line = "why_ = '说明：只认 wrangler deploy 这种写法'"
+    # 判据必须是「调用构造」而非「命令名」：散文引用了命令名仍须判为散文（否则 r215 会再骗过一次）
+    ok7 = (any(h in _exec_line for h in CALL_CTX)) and not any(h in _prose_line for h in CALL_CTX) \
+          and bool(CJK.search(_prose_line))
+    print('[USAGE:SELFTEST] 正则=%s 空匹配=%s TOOLS=%s 探针不计入=%s 非探针不受影响=%s 文档件被排除=%s 行分类=%s' % (
+        ok1, ok2, ok3, ok4, ok5, ok6, ok7))
+    if ok1 and ok2 and ok3 and ok4 and ok5 and ok6 and ok7:
         print('[USAGE:SELFTEST] 通过（正例匹配、反例不匹配、正则源可读、探针件不计入、写着模式的文档件被排除）')
         return True
     return False
@@ -238,6 +275,12 @@ def main(argv=None):
         print('[USAGE:SELF-REF] 命中过半来自测它的探针（在位≠工作流在用）= %s' % sref)
     if rgap:
         print('[USAGE:REAL-GAP] 命中全部来自探针件 = 无人用它干活（advisory，不判红）= %s' % rgap)
+    # r236：行别组成随读数一起印（不出结论 —— 见 evaluate 里的撤报警说明）。
+    for x in doc['tools']:
+        if x.get('real_hits'):
+            print('  %-20s 行别组成：调用形态 %d / 注释 %d / 其它 %d（真调用 %d）' % (
+                x['tool'], x.get('line_exec') or 0, x.get('line_comment') or 0,
+                x.get('line_prose') or 0, x['real_hits']))
     if gaps:
         print('[USAGE:FAIL] 新增未接入缺口 %d 条：' % len(gaps))
         for s in gaps:
