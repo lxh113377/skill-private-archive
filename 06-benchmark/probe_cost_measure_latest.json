@@ -1,7 +1,7 @@
 {
  "schema": "probe-cost-measure-v3",
  "zero_network": true,
- "candidates": 15,
+ "candidates": 16,
  "results": {
   "r113_cache_guard_face.py": {
    "gate": "cache_guard_face",
@@ -34,6 +34,14 @@
     "github": 2
    },
    "state": "rc=1 (未归类进程/HTTP 调用 8)"
+  },
+  "r163_tool_skill_matrix.py": {
+   "gate": "tool_skill_matrix",
+   "calls": {
+    "cloudflare": 0,
+    "github": 0
+   },
+   "state": "rc=0"
   },
   "r163_turnstile_face.py": {
    "gate": "turnstile_face",
