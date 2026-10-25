@@ -30,21 +30,38 @@ REGISTRY = os.path.join(ROOT, '06-benchmark', 'gate_reconcile_registry.json')
 
 
 def gate_ids_from_source(src):
-    # 从 runner 源码里抠出 GATES 表的 id（不 import，避免副作用）
-    # r130 自抓三（解析污染）：初版用 startswith('"id":') 把 run_gate 里两处
-    #   rows.append({"id": ...}) 也当成门 ⇒ 43 个「门」里有 2 个是假的。
-    #   收紧为：**行首恰 8 个空格**（GATES 表项的固定缩进）+ **行尾恰为一个逗号**。
-    out = []
-    for line in src.splitlines():
-        if not line.startswith('        "id": '):
+    """取门表 id 集合 —— **AST 解析 GATES 赋值**，不再文本扫缩进。
+
+    为什么改（r232 一手，我自己造成的）：我把新门块误插进 NOT_COVERED（GATES 仍是 96），本件却报
+    「门表 97 门 / 未登记 0」—— 因为旧实现只看「行首 8 空格 + `"id": ` + 结尾逗号」，**文件里任何位置**
+    的 dict 都能被算成一门。分母取自代理量 ⇒ 判据会绿着放过「runner 实际不跑这门」。
+    改为 AST 解析模块级 `GATES = [...]` 的字面量，只认那张表里的 dict。
+
+    取不到（语法错 / 无 GATES 赋值 / 非字面量列表）⇒ 返回 None，调用方按 UNVERIFIED rc=2 处理，
+    禁退回文本扫描（R247 同族：取不到不等于没有）。
+    """
+    import ast
+    try:
+        tree = ast.parse(src)
+    except SyntaxError:
+        return None
+    for node in tree.body:
+        if not isinstance(node, ast.Assign):
             continue
-        s = line.strip()
-        if not s.endswith(','):
+        tgt = node.targets[0] if node.targets else None
+        if not (isinstance(tgt, ast.Name) and tgt.id == 'GATES'):
             continue
-        v = s.split(':', 1)[1].strip().rstrip(',').strip('"')
-        if v:
-            out.append(v)
-    return out
+        if not isinstance(node.value, ast.List):
+            return None
+        out = []
+        for el in node.value.elts:
+            if not isinstance(el, ast.Dict):
+                continue
+            for k, v in zip(el.keys, el.values):
+                if isinstance(k, ast.Constant) and k.value == 'id' and isinstance(v, ast.Constant):
+                    out.append(str(v.value))
+        return out
+    return None
 
 
 def main():
@@ -88,6 +105,10 @@ def main():
     # 闸门要比的不是 git 历史，而是**上一次对账时的门表快照**（本工具自己的台账）。
     # git 只作为「快照缺失时」的冷启动兜底。
     cur = gate_ids_from_source(io.open(RUNNER, encoding='utf-8').read())
+    if cur is None:
+        # r232：取不到 GATES 表（语法错 / 无字面量赋值）⇒ UNVERIFIED，禁退回文本扫描或按 0 记绿。
+        print('[GATETABLE] UNVERIFIED 取不到 GATES 表字面量（AST 解析失败）⇒ 禁按 0 记绿（R247）')
+        return 2
     prev = reg.get('_snapshot_gate_ids') or []
     cold_start = not prev
     if cold_start:
@@ -95,7 +116,7 @@ def main():
             prev_src = subprocess.run(['git', 'show', 'HEAD:05-exec/run_gates.py'],
                                    cwd=ROOT, capture_output=True, text=True,
                                    encoding='utf-8', errors='replace', timeout=120).stdout
-            prev = gate_ids_from_source(prev_src) if prev_src else []
+            prev = (gate_ids_from_source(prev_src) or []) if prev_src else []
             print('[GATETABLE] 冷启动：台账无快照，改用 HEAD 门表做首次比对（之后一律用快照）')
         except Exception:
             prev = []

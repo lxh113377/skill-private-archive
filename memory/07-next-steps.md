@@ -566,6 +566,21 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   必须来自可复算的入口件，不接受「我跑过一次的脚本」当来源。
   取值：git show HEAD:<报告 rel> 与工作树 io.read 比对（长度/章节/数字三项）；
   python 05-exec/r221_dead_regex_scan.py --wide（现值 256 件/959 个/2 处）。
+- [ ] **R232-2（r232 登记，P1·已落地）** **名册进表（第 97 门）+ 门表对账器分母造假：文本扫把任何位置的 dict 都算一门**： 【r232 裁决=执行（名册注册为第 97 门 free_tool_roster_face；r130 门数改 AST 解析 GATES 字面量 + 取不到即 rc=2）｜读数：GATES=97、快照 97、差值空、未登记 0；变异证明：假门塞进 NOT_COVERED 后 AST 不变、旧文本扫虚增 1。】
+  ① 名册进表：r215-r231 把名册做成四层可复算产物 + 十条牙，但牙只在我手动跑时生效 ⇒ 注册为第 97 门
+  free_tool_roster_face（pass_token [ROSTER:OK]，牙咬即 rc=1、源件缺即 rc=2），排在门表末尾以读同轮先跑出的
+  第 67 / 94 门产物。
+  ② 自抓（分母造假）：我首次插入新门时**插错位置**（落进 NOT_COVERED，GATES 仍 96），r130 却报
+  「门表 97 门 / 未登记 0」—— 其分母实现是「行首恰 8 空格 + "id": + 结尾逗号 ⇒ 算一门」，文件里任何
+  位置的 dict 都被算成一门。后果 = 判据能在「runner 实际只跑 96 门」时绿着报「97 门 / 未登记 0」。
+  修法：gate_ids_from_source 改 AST 解析模块级 GATES = [...] 字面量，只认那张表；取不到 ⇒ None ⇒ 调用方
+  rc=2 UNVERIFIED，禁退回文本扫描。
+  ③ 变异证明（实跑）：AST 基线 97 / 旧扫 97；把假门塞进 NOT_COVERED 后 AST 仍 97、旧扫虚增 98；
+  AST 抓到假门=False、旧扫=True ⇒ 牙成立 True。
+  ④ 修后自洽：GATES=97 ｜ 对账快照=97 ｜ 差值空 ｜ NOT_COVERED=3（不含新门）。
+  元教训：**分母的取法比分子的算法更容易出事** —— 前几轮（r222/r226/r231/None-vs-0）全是分子问题，
+  这次是分母：「门表有几门」居然不是问门表，而是问文件里「像门的东西」的个数。
+  取值：python -c 读 run_gates.GATES 长度（97）；python 05-exec/r130_gate_table_reconcile.py（门表行）。
 - [ ] **R231-2（r231 登记，P1·已落地）** **第三层质量拆分：注释提及不是「在跑它」——Workers 与 Turnstile 的第三层命中全是注释**： 【r231 裁决=执行（third_face 增 lines/comment_lines/comment_share/comment_only 四字段 + t3/t4 两腿；名册第③层印质量拆分 + r5 牙）｜读数：Turnstile 3/3 与 Workers 1/1 命中行全为注释（comment_only=True）；Pages-Functions 76.2%、GitHub 49%、Pages 14.8%、D1 15.1%、SQLite 13.9%；r163 自测 16/16、名册牙 10/10。】
   一手：第三层（项目仓面）此前把注释里的提及也算「这个仓在用」。按目录粒度实测：Turnstile 3/3、
   Workers 1/1 命中行**全是注释**（comment_only=True）；Pages-Functions 16/21（76.2%）、GitHub 24/49（49%）

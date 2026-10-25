@@ -97,9 +97,10 @@
    "tool_carrier_face",
    "workflow_usage_face",
    "dead_regex_scan",
-   "md_deadlink_face"
+   "md_deadlink_face",
+   "free_tool_roster_face"
   ],
-  "_snapshot_at": "2026-10-25 14:04",
+  "_snapshot_at": "2026-10-25 20:23",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
@@ -319,6 +320,10 @@
   "dead_regex_scan": {
    "evidence": "06-benchmark/dead_regex_latest.json",
    "at": "2026-10-25 14:02"
+  },
+  "free_tool_roster_face": {
+   "evidence": "06-benchmark/free_tool_roster_latest.json",
+   "at": "2026-10-25 20:18"
   }
  }
 }
