@@ -863,6 +863,13 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   损害评估：4 件 `git diff HEAD` 实测均 0 行 ⇒ 内容逐字节无损，他方后续提交不受影响（他们的 07 仍在写、M 状态）；**已推送历史不改写**（R241 + ff-only，禁 rebase 抹痕）。
   机制改正（本轮已做，可复算）：本项目仓后续所有提交一律 `git commit -F <文件> -- <显式 pathspec>`；且 staged 探针读数**必须读到数字**才允许进入 commit 步骤，读不到就重跑探针而不是提交。
   取值：`git show --name-only --format='' 401e2f2`；`git show HEAD~1:memory/07-next-steps.md | Select-String -Pattern 'R219-'` 与 HEAD 同法对照（3 vs 5）；`git diff HEAD -- <那 4 件>` 行数（实测 0）。
+- [ ] **R220-3（r220 登记，P1·本轮新立）** **30 条真死链已修，但新判据还没进门表 ⇒ 同类缺陷下次仍会静默存活（r175 那次活了 45 轮才被抓）**：
+  一手：全仓 md=497 扫出 32 条可疑，逐条双证后 **30 条真死链**（memory/readme-benchmark-reports.part1..6 = 2/2/3/5/7/11）；根因 = r175 拆卷按 R241「原文零改写」把仓根相对路径整份搬进 memory/ ⇒ 链接基准当场失效。既有门 handles_readme_fixtures 只测仓根 README，卷一迁走就落到所有门的面外 ⇒ 45 轮无人发现，**盲区比死链更值得修**。
+  已做（commit 147f1fc）：30 条逐条双证修复（只改「现目标不存在 ∧ 加 ../ 后存在」，每卷 assert 字节增量 == 3x条数），保留 1 条散文伪链接不改；常驻件 05-exec/r220_md_deadlink.py 三腿自证全 True（反例须点名 / 围栏内不点名 / URL 不点名而同卷真链仍点名 —— 第三条腿 = R157-6 要求的阳性对照，防归零靠一刀切压制）。修后自家复扫归零，h8/h9 仍 PASS，六卷实测 3985/2918/3368/3742/3713/3366B 均 < memory_md_max=4096。
+  待做（本条的全部剩余）：按本仓三重流程接进门表 —— ① 件加 --json；② 单跑留 06-benchmark/gate_run_*.json 证据；③ python 05-exec/r130_gate_table_reconcile.py --record。
+  本轮为何不抢做：run_gates.py 是共享件且实测他端正在写（同一轮 py_syntax_guard 抓到它 1512 行 SyntaxError 的中途态，而 HEAD 与工作树当时均 compile-OK ⇒ 判据拒判绿是对的）。现在改它必与在途提交撞车 —— 今天已因共享索引代提交过他们一次（见 R218-7）。落点条件：run_gates.py 连续两次 git status 干净。
+  社区协作侧已做：本仓提 issue #3（含现象/根因/影响面/修复/常驻判据五段，gh api 实测 created_at=2026-10-25T02:14:19Z）。对侧 addyosmani/agent-skills、obra/superpowers、github/spec-kit 在本地可证判据下实测**零真缺陷** ⇒ 不编造缺陷去提 issue；且本沙箱出网受限（外部链接 7/20 全 NET），不得据此反判「无死链」。
+  取值：python 05-exec/r220_md_deadlink.py --selftest；python 05-exec/r220_md_deadlink.py .；gh api repos/lxh113377/skill-private-archive/issues/3 --jq .created_at；python 05-exec/run_gates.py --gate handles_readme_fixtures --no-ledger。
 - [ ] **R217-2（r217 登记，P1·已落地）** **口径 A 的三处机械障碍已全部清掉，但它仍不能自动跑 —— 剩下的不是 bug 而是原则：输入必须是人工提出的候选语料，我不编造候选把验收口径「跑绿」**： 【r217 裁决=执行｜三处机械障碍全清（--cases required / --json 可指 / 已存在即 REFUSE / 原子写），四路径实测通过且 happy path 刻意不跑；判定逻辑与三道控制组一字未动；口径推荐仍为 B（理由已从「A 跑不了」更新为「A 每季需人工交候选」）｜取值：python 05-exec/r123_margin_cf.py 与 --cases _temp/no_such.json；git status --porcelain -- 06-benchmark/margin_cf_r123_2026-10-20.json 须为空】
   一手（本轮为需求 6 做口径对照件时实测，见 `04-plan/需求6口径对照与决策件_r216_2026-10-25.md` §2/§5）：口径 A（路由稳健性 margin，实测 +80%/+169%，本轮最漂亮的数子）的测量件 `05-exec/r123_margin_cf.py` 有三处机械障碍 ——
   ① 无 argparse（`--json` 参数不存在）；② 输入面写死 `_temp/r123_cf_cases.json`，实测**不存在**且 `git grep r123_cf_cases` 只有读侧一行、全仓无生成器（= W-46 死句柄，与我今早已修的 R211-7 同一形态）；③ 输出写死 `margin_cf_r123_2026-10-20.json`（tracked ⇒ 重跑原地覆盖历史证据，同 r211 我在 c16 上撞的那条）。
