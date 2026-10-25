@@ -374,7 +374,21 @@ def score5(m):
     community 社区  stars 对数档 + 最近推送新鲜度
     """
     s = {}
-    sm = m.get("skill_md_n")
+    # r225：fc / compat 两维改用**严格口径**的 SKILL.md 件数（skill_md_exact_n），
+    # 旧口径 skill_md_n 仅作缺字段时的回退（池缓存旧件没有 exact 字段）。
+    # 为什么必须换：旧口径 endswith("skill.md") 会把 docs/…/xxx-skill.md 这类**文档**计成技能入口，
+    # 于是「功能完整性」这个对外分数能被一篇介绍文章刷高 —— 本轮实测 937 个候选里有 1 例
+    # （Snailclimb/JavaGuide：prod=1 / exact=0，那唯一命中是一篇 drawio-chart Skill 的发布文章），
+    # 它因此拿到 fc=2 并成为 A-java-problem 的 rank0 候选。
+    # ⚠️ 边界：本改动只修**五维评分**的量尺，不改迁移方案 §4 的 C1 判据（那里写的是 skill_md_n > 0，
+    # 属对用户的验收承诺，改它须单独裁定并留 R241 校正注）—— 两件事不夹带。
+    sm = m.get("skill_md_exact_n")
+    # fc_caliber 不能放进 s：score5 末尾是 sum(s.values()) 算五维总分，
+    # 混入字符串会直接把总分算炸（r225 首版就这么炸的，TypeError 当场暴露）。
+    # 放到调用方可见的地方：矩阵行 candidates[].fc_caliber（见 main 里取用点）。
+    fc_caliber = "legacy_fallback" if sm is None else "strict"
+    if sm is None:
+        sm = m.get("skill_md_n")
     if sm is None:
         s["fc"] = 0
     elif sm == 0:
@@ -400,7 +414,7 @@ def score5(m):
     st = m.get("stars") or 0
     s["community"] = min(5, sum(1 for th in (100, 1000, 10000, 50000) if st >= th)
                          + (1 if (m.get("pushed_at") or "") >= "2026-07-01" else 0))
-    return s, sum(s.values())
+    return s, sum(s.values()), fc_caliber
 
 
 def classify(slug, desc):
@@ -742,8 +756,9 @@ def main():
             m = measured.get(c["full_name"])
             if not m or m.get("state") != "OK":
                 continue
-            s, tot = score5(m)
+            s, tot, fc_cal = score5(m)
             scored.append({"repo": c["full_name"], "rel": rel, "rel_strength": rstrength,
+                          "fc_caliber": fc_cal,
                            "score5": s, "score_total": tot,
                            "stars": m.get("stars"), "pushed_at": m.get("pushed_at"),
                            "license": m.get("license"), "archived": m.get("archived"),
