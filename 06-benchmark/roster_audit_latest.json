@@ -12,6 +12,24 @@
   "C:/Users/37533/Desktop/workspace/项目/新建文件夹"
  ],
  "drift": [],
+ "layer5_usage": {
+  "Cloudflare-Workers": [
+   0,
+   "workers_quota_latest.json"
+  ],
+  "Cloudflare-D1": [
+   8.89,
+   "quota_face_latest.json"
+  ],
+  "GitHub": [
+   444.73,
+   "quota_face_latest.json"
+  ],
+  "Cloudflare-Pages": [
+   198600,
+   "pages_http_latest.json"
+  ]
+ },
  "per_tool": {
   "Cloudflare-D1": {
    "l1_mention": 2,

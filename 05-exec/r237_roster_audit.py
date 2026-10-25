@@ -150,6 +150,59 @@ def layer3():
     return res, roots
 
 
+def layer5():
+    '''第 5 层（用量）独立取值：**自己写一套路径解析**，不调 r215 的解析器。
+
+    r240 补：r239 加了第 5 层用量，但没把它纳入独立复算 ⇒ 审计只覆盖前四层（这是我自己留的口子）。
+    每加一层就必须能被独立复核，否则新增的那层只有它自己的实现背书。
+    未登记用量的工具 ⇒ 期望 None（未量），不是 0。
+    '''
+    specs = {
+        'Cloudflare-Workers': ('workers_quota_latest.json', ['row', 'invocations_month']),
+        'Cloudflare-D1': ('quota_face_latest.json',
+                         ['rows', 'cloudflare_d1', 'mib']),
+        'GitHub': ('quota_face_latest.json',
+                   ['rows', 'github_actions_minutes_proxy', 'minutes_all_workflows']),
+        'Cloudflare-Pages': ('pages_http_latest.json', ['row', 'requests_total']),
+    }
+    res = {}
+    for tool, (art, path) in specs.items():
+        fp = os.path.join(B, art)
+        if not os.path.isfile(fp):
+            res[tool] = ('MISSING', 'te artifact absent: ' + art)
+            continue
+        try:
+            d = json.load(io.open(fp, encoding='utf-8'))
+        except (OSError, ValueError):
+            res[tool] = ('UNPARSABLE', art)
+            continue
+        cur = d
+        i = 0
+        ok = True
+        while i < len(path):
+            k = path[i]
+            if k == 'rows':
+                want = path[i + 1] if i + 1 < len(path) else None
+                row = None
+                for x in ((cur.get('rows') if isinstance(cur, dict) else None) or []):
+                    if isinstance(x, dict) and x.get('tool') == want:
+                        row = x
+                        break
+                if row is None:
+                    ok = False
+                    break
+                cur = row
+                i += 2
+                continue
+            if not isinstance(cur, dict) or k not in cur:
+                ok = False
+                break
+            cur = cur[k]
+            i += 1
+        res[tool] = (cur if ok else 'PATH-MISS', art)
+    return res
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument('--json', dest='out', default='')
@@ -169,6 +222,7 @@ def main(argv=None):
     men, exe = layer1()
     wf, wface = layer2()
     th, roots = layer3()
+    us = layer5()
     if th is None:
         print('[ROSTER-AUDIT:UNVERIFIED] 取不到含 third_face 的矩阵件 ⇒ 层3 无分母（R247）')
         return 2
@@ -179,11 +233,17 @@ def main(argv=None):
             known.append(tool)
             continue
         it = rost[tool]
+        u = us.get(tool)
+        a5 = it.get('usage_value')
+        p5 = (None, 'no usage spec')
+        if u is not None:
+            p5 = (u[0], u[1]) if isinstance(u[0], (int, float)) else (None, str(u[0]))
         pairs = (
             ('层1提到', len(men.get(tool) or []), len(it.get('mention_skills') or [])),
             ('层1代码', len(exe.get(tool) or []), len(it.get('exec_skills') or [])),
             ('层2', wf.get(tool, 0), it.get('wf_real_hits') or 0),
             ('层3', th.get(tool, 0), it.get('third_hits') or 0),
+            ('层5用量', (p5[0] if p5[0] is not None else None), a5),
         )
         bad = ['%s %s!=%s' % (k, a, b) for k, a, b in pairs if a != b]
         if bad:
@@ -193,6 +253,7 @@ def main(argv=None):
            'roster_tools': len(rost), 'tools_in_matrix_only': known,
            'workflow_face_files': wface, 'third_roots': roots,
            'drift': drift,
+           'layer5_usage': {k: (v[0], v[1]) for k, v in (us or {}).items()},
            'per_tool': {t: {'l1_mention': len(men.get(t) or []),
                             'l1_exec': len(exe.get(t) or []),
                             'l2': wf.get(t, 0), 'l3': th.get(t, 0)} for t in sorted(rost)}}
@@ -200,8 +261,8 @@ def main(argv=None):
         op = args.out if os.path.isabs(args.out) else os.path.join(ROOT, args.out)
         io.open(op, 'w', encoding='utf-8', newline=chr(10)).write(
             json.dumps(doc, ensure_ascii=False, indent=1))
-    print('[ROSTER-AUDIT] 名册 %d 工具 / 工作流面 %d 件 / 项目仓 %d 个' % (
-        len(rost), wface, len(roots or [])))
+    print('[ROSTER-AUDIT] 名册 %d 工具 / 工作流面 %d 件 / 项目仓 %d 个 / 用量面 %d 项' % (
+        len(rost), wface, len(roots or []), len(us or {})))
     for t in known:
         print('  [已在第 67 门尺内、不在名册] %s（已知分母差，见台账 R216-2，不计漂移）' % t)
     for d in drift:
@@ -209,7 +270,7 @@ def main(argv=None):
     if drift:
         print('[ROSTER-AUDIT:FAIL] 独立复算与名册不一致 %d 项' % len(drift))
         return 1
-    print('[ROSTER-AUDIT:PASS] 四层逐工具独立复算与名册一致（漂移 0；只借正则源，其余全自走盘）')
+    print('[ROSTER-AUDIT:PASS] 五层逐工具独立复算与名册一致（漂移 0；只借正则源，其余全自走盘）')
     return 0
 
 

@@ -566,6 +566,19 @@ r170 收尾复核算账时发现账龄尺报 `OVERDUE 5 / ACTIVE 0`（异常组�
   必须来自可复算的入口件，不接受「我跑过一次的脚本」当来源。
   取值：git show HEAD:<报告 rel> 与工作树 io.read 比对（长度/章节/数字三项）；
   python 05-exec/r221_dead_regex_scan.py --wide（现值 256 件/959 个/2 处）。
+- [ ] **R240-1（r240 登记，P1·已落地）** **每加一层读数就要同步加一条独立复核：第 5 层（用量）补进第 98 门审计，变异实证**： 【r240 裁决=执行（审计增 layer5：自写用量取值器逐工具对账；未登记用量期望 None 不记 0）｜读数：[ROSTER-AUDIT:PASS] 五层漂移 0（Workers 0 / D1 8.89 / GitHub 444.73 / Pages 198600）；变异伪造 Workers=999 ⇒ rc=1，还原 rc=0。】
+  一手（我上一轮自己留的口子）：r239 加第 5 层用量，**但没纳入独立复算** —— 审计当时只覆盖前四层，
+  后果是新增那层**只有它自己的实现背书**，而 r237 立审计的全部理由就是「别只用一套实现验自己」。
+  修法：r237_roster_audit.py 增 layer5()：**自己写路径解析**（不调 r215 解析器），逐工具直接取数对账：
+  Workers=row.invocations_month(0)、D1=rows[cloudflare_d1].mib(8.89)、GitHub=rows[github_actions_minutes_proxy].
+  minutes_all_workflows(444.73)、Pages=row.requests_total(198600)；未登记用量 ⇒ 期望 None（未量）不记 0。
+  结果：[ROSTER-AUDIT:PASS] **五层**逐工具独立复算与名册一致（漂移 0）。
+  变异实证：把 Workers 用量伪造 999 塞进复算端 ⇒ 报「层5用量 999!=0」rc=1；还原 rc=0。
+  顺带说清：用量是**活数** —— §94 写的是当时快照（Actions 438.98 / Pages 198588），本轮复算已是 444.73/198600，
+  因每次全量门都会让读数面重新取数；审计比「活 vs 活」故仍成立，引用历史数字须写明是哪一刻快照。
+  元教训：每加一层读数就要同步加一条独立复核；否则新层只有自己背书自己 —— 而那正是审计要解决的问题。
+  已写进审计件头作为下次加层的前置动作。
+  取值：python 05-exec/r237_roster_audit.py --json 06-benchmark/roster_audit_latest.json。
 - [ ] **R239-1（r239 登记，P1·已落地）** **第 5 项「用量」进册，当场改写 Workers 的结论：能跑能读但本月调用 0 次**： 【r239 裁决=执行（第 5 项用量进册：复用 READ_FACE 加 usage/unit/window + 总表第⑤列 + 牙 r7）｜读数：GitHub 438.98 分钟、D1 8.89 MiB、Pages 198588 次、Workers 0 次（改写其结论为「仪器接好、负载为零」）；牙 12/12。】
   ① 动因：第 4 层只说「读得到数」不说多少，而这三项免费工具额度真会触顶（Actions 分钟 / D1 容量 /
   Pages 请求）——「接入了」不等于「用上了」。取值路径挂在同一份 READ_FACE（复用第 4 层产物与解析器），
