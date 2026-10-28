@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """围栏感知死链扫描 + 内建正反两腿自证。"""
-import io, os, re, sys
+import io, os, re, subprocess, sys
 
 LINK = re.compile(r'\[[^\]]*\]\(\s*([^)\s]+?)(?:\s+"[^"]*")?\s*\)')
 
@@ -32,8 +32,47 @@ def build(root):
             files.add((rel + '/' if rel != '.' else '') + f)
     return files, dirs
 
-def dead(root):
+def shipping_face(root):
+    """发布面 = 一次 clone 之后会存在的文件（git 跟踪 + 未跟踪但未被 ignore）。
+
+    为什么要换面（r261 一手）：原判据 os.walk 整个工作区，_temp/ 里的 966 份草稿 md
+    （照抄上游 README 的卡片、探针、夹具）全被当成品扫 ⇒ 本轮实测 336 条死链 **100%
+    落在 _temp/**、发布面 0 条，整扇门被永不随克隆发布的草稿判红。恒红源与恒绿源
+    同样没有信息量（06-constraints.part20 D-A）：真故障会被淹在这类固定噪声里。
+
+    返回 (files, dirs, None) 或 (None, None, 原因)。**取不到面必须 UNVERIFIED**，
+    禁退化成「扫全部」或「0 条 = 过」—— 那正是 R247 反对的零输入记绿。
+    """
+    try:
+        # core.quotepath=false 是必须的（本仓多处 git 命令都带它）：默认配置下 git 会把非
+        #   ASCII 文件名转成 "\345\205\250…" 八位引号形态，而 build() 用的是 os.walk 的真实名 ⇒
+        #   过滤集里所有 CJK 路径都对不上，**存在**的中文报告链接会被误判成死链（r261 一手：
+        #   我第一版就这么假红了 3 条，三条 ls-files --error-unmatch 全部 EXISTS|tracked）。
+        a = subprocess.run(['git', '-c', 'core.quotepath=false', '-C', root, 'ls-files'],
+                           capture_output=True, text=True, encoding='utf-8', errors='replace')
+        b = subprocess.run(['git', '-c', 'core.quotepath=false', '-C', root, 'ls-files',
+                            '--others', '--exclude-standard'],
+                           capture_output=True, text=True, encoding='utf-8', errors='replace')
+    except Exception as e:
+        return None, None, 'git 不可调用: %r' % (e,)
+    if a.returncode != 0 or b.returncode != 0:
+        return None, None, 'git rc=%s/%s' % (a.returncode, b.returncode)
+    names = set()
+    for src in (a.stdout, b.stdout):
+        for ln in (src or '').splitlines():
+            s = ln.strip().replace(chr(92), '/')
+            if s:
+                names.add(s)
+    if not names:
+        return None, None, '发布面为空（既无跟踪件也无未跟踪非 ignore 件）'
     files, dirs = build(root)
+    keep_f = set(x for x in files if x in names)
+    keep_d = set(dirs) | set('/'.join(x.split('/')[:-1]) for x in keep_f if '/' in x)
+    return keep_f, keep_d, None
+
+
+def dead(root, face=None):
+    files, dirs = build(root) if face is None else face
     res = []
     for rel in sorted(p for p in files if p.endswith('.md')):
         txt = io.open(os.path.join(root, rel.replace('/', os.sep)), encoding='utf-8', errors='replace').read()
@@ -83,6 +122,54 @@ def selftest(root):
     print('SELFTEST 反例(围栏外须点名)=%s 正例(围栏内须不点名)=%s 占位符腿(URL不点名且同卷真链点名)=%s' % (ok1, ok2, ok3))
     return ok1 and ok2 and ok3
 
+def facetest():
+    """发布面自身的正反两腿（r261，D-A：改判据必须当场证明它还能红）。
+
+    怎么运作：在临时目录里建一个**一次性 scratch git 仓**（只 git init + git add 填索引，
+    不 commit、不碰任何项目仓），造三种件：
+      · 跟踪件 a.md 带真死链              ⇒ 必须点名（面有牙）
+      · 跟踪件中文名的目标存在            ⇒ 必须不点名（quotepath 编码坑回归腿：
+                                            git 默认把非 ASCII 名转八位引号，第一版就假红 3 条）
+      · _temp/ 草稿件带死链              ⇒ 必须不点名（草稿永不随克隆发布，不参与判红）
+    返回三条腿是否全对。
+    """
+    import tempfile, shutil
+    d = tempfile.mkdtemp()
+    try:
+        for c in (["init", "-q"], ["add", "a.md", chr(26032) + chr(26118) + chr(25253) + chr(21578) + ".md"]):
+            subprocess.run(["git"] + c, cwd=d, capture_output=True)
+        io.open(os.path.join(d, "a.md"), "w", encoding="utf-8").write(
+            chr(10).join(["# a", "", chr(27491) + chr(27573) + " [x](nope/missing.md)",
+                           chr(27491) + chr(27573) + " [y](" + chr(26032) + chr(26118) + chr(25253) + chr(21578) + ".md)"]))
+        io.open(os.path.join(d, chr(26032) + chr(26118) + chr(25253) + chr(21578) + ".md"), "w",
+                encoding="utf-8").write("# target" + chr(10))
+        # 草稿必须同时被 gitignore：发布面 = 跟踪件 + **未被 ignore** 的未跟踪件，所以只建目录
+        #   不写 .gitignore 的话草稿会合法地留在发布面里、腿三判红是**用例错**而非判据错
+        #   （r261 首跑实测正是如此：FACETEST 草稿不判红=False）。
+        io.open(os.path.join(d, ".gitignore"), "w", encoding="utf-8").write("_temp/" + chr(10))
+        subprocess.run(["git", "add", ".gitignore"], cwd=d, capture_output=True)
+        os.makedirs(os.path.join(d, "_temp"), exist_ok=True)
+        io.open(os.path.join(d, "_temp", "draft.md"), "w", encoding="utf-8").write(
+            chr(10).join(["# draft", "", "[z](nowhere_in_draft.md)"]))
+        subprocess.run(["git", "-c", "core.quotepath=false", "add", "a.md",
+                        chr(26032) + chr(26118) + chr(25253) + chr(21578) + ".md"], cwd=d, capture_output=True)
+        ff, fd, err = shipping_face(d)
+        if ff is None:
+            print("FACETEST 面取不到: %s" % err)
+            return False
+        res = [x for x in dead(d, (ff, fd))]
+        got = set(x[2] for x in res)
+        leg1 = "nope/missing.md" in got
+        leg2 = (chr(26032) + chr(26118) + chr(25253) + chr(21578) + ".md") not in got
+        leg3 = "nowhere_in_draft.md" not in got
+        in_face = sum(1 for x in ff if x.endswith(".md"))
+        print("FACETEST 跟踪死链点名=%s 中文目标不误伤=%s 草稿不判红=%s 面内md=%d" % (
+              leg1, leg2, leg3, in_face))
+        return leg1 and leg2 and leg3
+    finally:
+        shutil.rmtree(d, ignore_errors=True)
+
+
 def count_md(root):
     n = 0
     for dp, _dn, fn in os.walk(root):
@@ -95,7 +182,9 @@ def main():
     import json, time
     args = sys.argv[1:]
     if '--selftest' in args:
-        sys.exit(0 if selftest('.') else 1)
+        # 两件套：dead() 的围栏/占位符三腿 + 发布面的正反三腿，缺一即自证不成立
+        ok = selftest('.') and facetest()
+        sys.exit(0 if ok else 1)
     outp = None
     if '--json' in args:
         i = args.index('--json')
@@ -107,10 +196,16 @@ def main():
     if not pos:
         print('[GATE:deadlink-unverified] 无扫描根 ⇒ 无处可比不得判过（R247）'); sys.exit(2)
     root = pos[0]
-    md = count_md(root)
+    # 面 = 发布面（clone 后存在的件）。草稿面 _temp/ 不参与判红也不参与分母：
+    #   打印的分母必须等于真正扫过的面，否则「md=N 死链=0」里的 N 是虚数（本仓 #32 形态）。
+    face_files, face_dirs, err = shipping_face(root)
+    if face_files is None:
+        print('[GATE:deadlink-unverified] 发布面取不到（%s）⇒ 不得退化成扫全部或记 0 条过（R247）' % err)
+        sys.exit(2)
+    md = sum(1 for x in face_files if x.endswith('.md'))
     if md == 0:
         print('[GATE:deadlink-unverified] md=0 ⇒ 零输入不得记 PASS（R247）'); sys.exit(2)
-    res = dead(root)
+    res = dead(root, (face_files, face_dirs))
     token = '[GATE:deadlink-pass]' if not res else '[GATE:deadlink-fail]'
     print('md=%d 死链=%d %s' % (md, len(res), token))
     for rel, ln, u, norm in res[:40]:
@@ -121,6 +216,8 @@ def main():
             'generated_at': time.strftime('%Y-%m-%dT%H:%M:%S'),
             'root': os.path.abspath(root),
             'md_files': md,
+            'face': 'shipping (git-tracked + non-ignored untracked); drafts excluded',
+            'face_files_total': len(face_files),
             'dead': len(res),
             'items': [{'file': r, 'line': l, 'target': u, 'resolved': n} for r, l, u, n in res],
             'token': token,

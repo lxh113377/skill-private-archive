@@ -127,7 +127,7 @@
     ]
    },
    "read_why": null,
-   "usage_value": 27664.0,
+   "usage_value": 27749.0,
    "usage_meta": {
     "unit": "分钟（官方计费·账号级·端点默认窗口）",
     "extra": 0.0,
@@ -378,7 +378,7 @@
     ]
    },
    "read_why": null,
-   "usage_value": 236283,
+   "usage_value": 236816,
    "usage_meta": {
     "unit": "次",
     "extra": null,
@@ -536,12 +536,12 @@
     ]
    },
    "read_why": null,
-   "usage_value": 13.13,
+   "usage_value": 13.21,
    "usage_meta": {
     "unit": "MiB（本地库体量·非额度）",
-    "extra": 45745,
+    "extra": 45992,
     "extra_label": "合计行数",
-    "window": "2026-10-28T17:13:03"
+    "window": "2026-10-28T18:10:23"
    },
    "usage_why": null
   },
@@ -767,7 +767,7 @@
   },
   "matrix_src": {
    "file": "tool_skill_matrix_latest.json",
-   "generated_at": "2026-10-28 17:10",
+   "generated_at": "2026-10-28 18:07",
    "cmd": "python 05-exec/r163_tool_skill_matrix.py --json <out>"
   },
   "workflow_src": {
@@ -787,7 +787,7 @@
    "files": "tool_skill_matrix_latest.json"
   }
  },
- "read_at": "2026-10-28T17:13:14",
+ "read_at": "2026-10-28T18:10:34",
  "ft_rows": [
   {
    "tool": "GitHub",

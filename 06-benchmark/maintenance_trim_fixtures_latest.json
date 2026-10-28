@@ -48,6 +48,31 @@
    "detail": ""
   },
   {
+   "name": "t8 license_class ordering (13 cases incl. AGPL/LGPL/CC-BY-SA prefix traps)",
+   "ok": true,
+   "detail": "[]"
+  },
+  {
+   "name": "t9 copyleft clamped below permissive (1 vs 5)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "t10 NOASSERTION/unknown clamped strictly below permissive but above copyleft",
+   "ok": true,
+   "detail": "(5, 4, 1)"
+  },
+  {
+   "name": "t11 --no-license-cap restores cap-off score (AGPL 1 -> 5)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "t12 AGPL==GPL (strong copyleft) while LGPL is a separate class (ordering load-bearing)",
+   "ok": true,
+   "detail": ""
+  },
+  {
    "name": "L1 pipeline switch on (disabling it goes red)",
    "ok": true,
    "detail": true
@@ -66,6 +91,34 @@
    "name": "L4 face threshold self-consistent with eval_date",
    "ok": true,
    "detail": "2025-10-28"
+  },
+  {
+   "name": "M1 license cap enabled in the pipeline (switching it off goes red)",
+   "ok": true,
+   "detail": true
+  },
+  {
+   "name": "M2 no copyleft slot keeps compat=5 (R260-1 acceptance target, measured 0)",
+   "ok": true,
+   "detail": 0
+  },
+  {
+   "name": "M3 every emitted candidate carries license_class (939/939, face says 939)",
+   "ok": true,
+   "detail": 939
+  },
+  {
+   "name": "M4 face-level risky list matches per-row flags (2 rows)",
+   "ok": true,
+   "detail": [
+    "knowledge-capture",
+    "react-best-practices"
+   ]
+  },
+  {
+   "name": "M5 every risky rank0 row surfaces a named mergeable alternative (0 missing)",
+   "ok": true,
+   "detail": []
   }
  ],
  "fail_n": 0

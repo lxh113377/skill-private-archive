@@ -365,12 +365,59 @@ def measure_repo(full, cache, offline, stats, remeasure=False):
     return doc
 
 
-def score5(m):
+# ---- 许可风险/能否合入子腿（R260-1 立，r261 落地）---------------------------------------
+# 为什么必须有：compat 原三腿（license 明确 + 非 archived + 有 SKILL.md）对许可证只做**二值**判断
+#   （UNLICENSED / 非 UNLICENSED）⇒ AGPL 与 MIT 拿同样 2 分。r260 实测代价具名：48 个 copyleft 候选
+#   全部 compat=5、9 行把它们排在 rank0（本仓远端 public + 刻意无 LICENSE = X-2 ⇒ 合入 copyleft 直接
+#   产生许可义务冲突，口径见 07 台账 R113-3 自决裁决）⇒ 排序层完全不拦这类风险。
+# 做法 = license_class() 归五档 + score5 给 compat 设**上限 cap**（cap 只降不升，其余腿不动）：
+#   copyleft=1 / weak-copyleft=2 / unknown=4 / permissive=5 / none=5（none 的 3 分由原二值腿自然产生，
+#   不再叠加 cap ⇒ 与 r260 前逐字同分，本改动只影响 copyleft/weak/unknown 三类）。
+LICENSE_CAPS = {"copyleft": 1, "weak-copyleft": 2, "unknown": 4, "permissive": 5, "none": 5}
+
+
+def license_class(lic):
+    """许可证字符串 → 五档归一（copyleft / weak-copyleft / unknown / permissive / none）。
+
+    判序敏感，三处都是实测踩过的坑（夹具里各钉一条反例）：
+      · AGPL 与 LGPL 都含子串 GPL ⇒ 必须先 AGPL、再 LGPL，最后才判 GPL，否则三档全塌成 GPL；
+      · CC-BY-SA-4.0 与 CC-BY-4.0 共享前缀 ⇒ 先判带 -SA 的（share-alike 属 copyleft 类）；
+      · UNLICENSE（theunlicense，公有领域 dedications，**可合入**）与 UNLICENSED（无任何许可，
+        不可合入）只差两个字母 ⇒ 必须全等比较，禁 startswith。
+    只按正证据归档：认不出的 SPDX 串 ⇒ unknown（cap=4，比 permissive 低、比真无许可的风险档高），
+    禁把「我没认出来」读成「安全」（R247）。
+    """
+    u = (lic or "").strip().upper()
+    if not u or u == "UNLICENSED":
+        return "none"
+    if u == "UNLICENSE":
+        return "permissive"
+    if "NOASSERTION" in u:
+        return "unknown"
+    if "AGPL" in u or "AFFERO" in u:
+        return "copyleft"
+    if "LGPL" in u or "MPL" in u or "EPL" in u or "GPL-2.0+ WITH" in u:
+        return "weak-copyleft"
+    if "GPL" in u or "CC-BY-SA" in u or "GNU FREE DOC" in u:
+        return "copyleft"
+    # CC-BY（无 SA）与 CC0 属可合入档：上一行已把 CC-BY-SA 截走，故此处 startswith 安全。
+    if any(k in u for k in ("MIT", "APACHE", "BSD", "ISC", "ZLIB", "CC0", "CC-BY", "ARTISTIC", "POSTGRESQL")):
+        return "permissive"
+    return "unknown"
+
+
+def score5(m, license_cap=True):
     """五维锚定分（各 0-5，合计 25）。每维锚点可复算，不凭印象。
+
+    license_cap=False = 回滚开关（红线4 要求机制化必须带不改数据的退路）：关掉后 compat 退回
+    r260 前的二值口径，既用于对照实验（证明降档确实由这条腿产生、不是别的扰动），也是出问题时退路。
+    默认开 ⇒ 所有既有调用方（r260_local_baseline / r220_caliber_flip 等）行为一致，不需各改一遍。
+
+    原五维锚点：
 
     fc 功能完整性   SKILL.md 件数分档 + 无 SKILL.md 时按 blob 规模
     eff 运行效率    有 tests 与 workflows 为可自动化验证代理（少人工往返）
-    compat 兼容性   license 明确 + 非 archived + 有 SKILL.md 约定
+    compat 兼容性   license 明确 + 非 archived + 有 SKILL.md 约定，**r261 起再按许可档封顶**
     docs 文档完善   根 README + docs/*.md 规模
     community 社区  stars 对数档 + 最近推送新鲜度
     """
@@ -406,8 +453,18 @@ def score5(m):
     wn = m.get("workflow_n") or 0
     s["eff"] = min(5, (min(3, 1 + (tn > 20) + (tn > 200)) if tn else 0)
                    + (min(2, 1 + (wn > 3)) if wn else 0))
+    # compat 三腿原样保留（license 二值 + 非 archived + 有 SKILL.md），r261 起再套许可档上限：
+    #   cap 只降不升 —— permissive 档 cap=5 等于不设限，故 MIT/Apache 等既有分数逐字不变
+    #   （这是「不破坏既有结论」的硬约束，夹具 t3 专门钉它）；copyleft 无论其余腿多好都被压到 <=1。
+    _lic = license_class(m.get("license"))
     s["compat"] = min(5, (2 if (m.get("license") or "UNLICENSED") != "UNLICENSED" else 0)
                       + (0 if m.get("archived") else 1) + (2 if sm else 0))
+    if license_cap:
+        s["compat"] = min(s["compat"], LICENSE_CAPS[_lic])
+    # ⚠️ 许可档**不得**塞进 s：score5 末尾是 sum(s.values()) 算总分，混入字符串直接把总分算炸
+    #   —— 这正是本文件 L387-389 记载的 r225 首版事故（fc_caliber 当年同样被迫移出 s）。
+    #   我 r261 首版犯了同一形态，被自己的 AST/求值复跑抓到（见报告 §13）。落盘字段由调用方
+    #   直接调 license_class(m.get("license")) 现算（同一函数 = 单一口径，零副作用、零签名变更）。
     rn = m.get("readme_n") or 0
     dn = m.get("docs_md_n") or 0
     s["docs"] = min(5, (2 if rn else 0) + (1 if dn > 5 else 0)
@@ -646,6 +703,8 @@ def require_sig(n):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--offline", action="store_true")
+    ap.add_argument("--no-license-cap", action="store_true",
+                    help="回滚开关（红线4）：关掉 compat 的许可档上限，退回 r260 前的二值口径；仅用于对照实验与应急退路"),
     ap.add_argument("--no-maintenance-trim", action="store_true",
                     help="回滚开关（红线4）：关掉 §3.1 维护状态过滤，回到 r260 之前的候选面口径。"
                          "默认不关 —— 关掉后停摆仓会重新进入 rank 与分档。")
@@ -796,9 +855,11 @@ def main():
             m = measured.get(c["full_name"])
             if not m or m.get("state") != "OK":
                 continue
-            s, tot, fc_cal = score5(m)
+            s, tot, fc_cal = score5(m, not args.no_license_cap)
             scored.append({"repo": c["full_name"], "rel": rel, "rel_strength": rstrength,
                           "fc_caliber": fc_cal,
+                          # 许可档现算落盘（与 score5 同一函数 = 单一口径；不从 s 里取，见 score5 注）。
+                          "license_class": license_class(m.get("license")),
                            "score5": s, "score_total": tot,
                            "stars": m.get("stars"), "pushed_at": m.get("pushed_at"),
                            "license": m.get("license"), "archived": m.get("archived"),
@@ -869,6 +930,16 @@ def main():
         else:
             verdict = "FAMILY_ONLY"
             note = "仅族级候选命中（skill 词命中 %d 个），如实降档" % skill_n
+        # r261：许可风险行内显形。cap 只压分数、压不动分桶（桶是硬前置：r114 定「桶只答是不是
+                #   同类、桶内才比质量」）⇒ 实测残余 2 行 copyleft 仍坐 rank0（rel_strength=20 压过
+        #   total 更高的 permissive 对手）。**不改排序**：重排会二次扰动本轮 13 次 rank0 翻转
+        #   与既有证据链，且等于用分数覆盖身份判断。改为把风险 + 具名的可合入替代一起交给
+        #   C2 人读腿（那才是决策位），让风险机器可见而不是被静默推荐。
+        _r0 = (top or [None])[0]
+        _r0lic = license_class(_r0.get("license")) if _r0 else None
+        _risky = _r0lic in ("copyleft", "weak-copyleft")
+        _perm = [c["repo"] for c in top
+                 if c is not _r0 and license_class(c.get("license")) == "permissive"]
         tally[verdict] += 1
         rows.append({"slug": slug, "family": fid, "family_name": fam_name.get(fid, "未归族"),
                      "local_bytes": lf[slug].get("local_bytes"),
@@ -882,7 +953,12 @@ def main():
                      # 全部逐件落进矩阵行 —— 只在面级给个总数就等于没登记。
                      "maintenance_trimmed": trimmed,
                      "maintenance_trim_n": len(trimmed),
-                     "maintenance_unknown_field_n": unknown_field})
+                     "maintenance_unknown_field_n": unknown_field,
+                     # 许可面（r261）：分母 = 该行**已发出**的 top-5 候选，不是剔前全池 ——
+                     #   R260-9 纪律：引用必须点名分母，否则与「全池 82 例」互相打脸。
+                     "rank0_license_class": _r0lic,
+                     "license_risk": bool(_risky),
+                     "permissive_alternatives_emitted": _perm})
 
     total = sum(tally.values())
     ok = (total == len(locals_))
@@ -927,6 +1003,26 @@ def main():
             "unknown_field_total": sum(r.get("maintenance_unknown_field_n") or 0 for r in rows),
             "rows_affected": sum(1 for r in rows if (r.get("maintenance_trim_n") or 0) > 0),
             "verdict_shift": "过滤在 skill_n 之前生效 ⇒ MATCHED/FAMILY_ONLY 分档按剔后计数"},
+        # 许可面子腿（r261 立 R260-1）。分母一律写清楚（R260-9）：
+        #   slots_emitted = 各行已发出的 top-5 候选（≠ 剔前全池）；
+        #   rank0_* = 行级（分母 191）；cap 开关关掉时全部回到 r260 前的二值行为。
+        "license_face": {
+            "rule_source": "07 台账 R113-3 自决口径 + R260-1 待办（compat 缺许可风险子腿）",
+            "caps": LICENSE_CAPS,
+            "enabled": not bool(args.no_license_cap),
+            "slots_emitted": len(_cand_all),
+            "slots_by_class": {k: sum(1 for c in _cand_all
+                                      if license_class(c.get("license")) == k)
+                               for k in ("copyleft", "weak-copyleft", "permissive",
+                                         "unknown", "none")},
+            "rows_at_max": sum(1 for r in _cand_all if r["score5"]["compat"] == 5),
+            "rows_risky_rank0": sum(1 for r in rows if r.get("license_risk")),
+            "risky_rank0_rows": [r["slug"] for r in rows if r.get("license_risk")],
+            "why_rank0_may_stay_risky":
+                "cap 只压分数；分桶是硬前置（rel_strength 决定桶）⇒ 身份更强的 copyleft 仓仍可占 rank0。"
+                "本件不重排（重排会二次扰动 rank0 翻转与证据链），改由 license_risk + "
+                "permissive_alternatives_emitted 两字段把风险与具名替代交给 C2 人读腿决策。",
+        },
         "queries": qmeta,
         "families": [{"id": f[0], "name": f[1], "family_pattern": f[2],
                       "slug_pattern": f[3],

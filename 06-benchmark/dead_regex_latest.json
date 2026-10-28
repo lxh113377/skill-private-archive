@@ -3,7 +3,7 @@
  "files_scanned": 281,
  "provenance_cmd": "python 05-exec/r221_dead_regex_scan.py --json 件",
  "wide_files": 281,
- "wide_literals": 1003,
+ "wide_literals": 1005,
  "wide_suspects": [
   {
    "file": "r117_upstream_delta_fixtures.py",

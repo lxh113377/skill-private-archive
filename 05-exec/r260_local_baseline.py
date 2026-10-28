@@ -407,7 +407,10 @@ def main():
         },
         "compat_teeth": {"dim_distribution_in_matrix": {}, "rank_flip": None, "three_inputs": [], "copleft_at_5": None, "verdict": None},
         "negative_controls": {},
-        "reproduce_selfcheck": {"candidates_recomputed": 0, "mismatches": 0, "mismatch_examples": []},
+        # 两个口径各一个计数器；mismatches = 两者较小值（= 生效口径下的漂移数）。
+        "reproduce_selfcheck": {"candidates_recomputed": 0, "mismatches": 0, "mismatch_examples": [],
+                                  "mismatches_cap_on": 0, "mismatches_cap_off": 0,
+                                  "matrix_caliber": None, "cap_discriminates": None},
         "rows": [],
         "status": "IN_PROGRESS"}
 
@@ -416,15 +419,32 @@ def main():
     for idx, row in enumerate(mrows[:n]):
         slug = row["slug"]
         cands = row.get("candidates") or []
-        # 复现自检（单源证据）：该行每个候选都从池缓存重算，与 r225 记录的 score5/score_total 比对
+        # 复现自检（单源证据）：每个候选从池缓存重算，与矩阵记录的 score5/score_total 比对。
+        # r261 改造（量尺换代后必须做，否则本门永久红）：compat 加了许可档上限后，用今天的
+        #   score5 重算旧矩阵（r225 无档）必然不一致 —— 那是**尺子换代**，不是「双源/漂移」。
+        #   旧写法把两者混进同一个 mismatches ⇒ 只要这条腿动过一次，自证就永远红（恒红门与
+        #   恒绿门同样无信息量；r260 已在第 110 门栽过同族，见 06-constraints.part20 D-A）。
+        # 正解 = 两个已记录口径各重算一次，要求**至少一个**能零漂移复现该矩阵件：
+        #   两个都非 0 ⇒ 未知改动/双源 ⇒ 本门红（这就是牙）；
+        #   两个都 0 ⇒ 档开关对这批样本无差别（如 --limit 小样），复现成立但 cap_discriminates
+        #   记 False，禁把它读成「档有效」。
         for c in cands:
             cm_chk = cand_measure(R, cache, c["repo"])
             if cm_chk is None or c.get("score5") is None:
                 continue
-            s_chk, t_chk, _cal = R.score5(cm_chk)
-            doc["reproduce_selfcheck"]["candidates_recomputed"] += 1
-            if s_chk != c["score5"] or t_chk != c.get("score_total"):
-                doc["reproduce_selfcheck"]["mismatches"] += 1
+            sc = doc["reproduce_selfcheck"]
+            sc["candidates_recomputed"] += 1
+            rec = []
+            for cap_flag in (True, False):
+                s_chk, t_chk, _cal = R.score5(cm_chk, license_cap=cap_flag)
+                bad = (s_chk != c["score5"] or t_chk != c.get("score_total"))
+                sc["mismatches_cap_on" if cap_flag else "mismatches_cap_off"] += 1 if bad else 0
+                rec.append(bad)
+            if all(rec) and len(sc["mismatch_examples"]) < 5:
+                # 两个口径都复现不了 = 真漂移，留样例具名（旧代码在此只留一个口径的样例）
+                sc["mismatch_examples"].append({"slug": slug, "repo": c["repo"],
+                                                "recomputed_cap_on": s_chk,
+                                                "recorded": c["score5"]})
                 if len(doc["reproduce_selfcheck"]["mismatch_examples"]) < 5:
                     doc["reproduce_selfcheck"]["mismatch_examples"].append({"slug": slug, "repo": c["repo"], "recomputed": s_chk, "recorded": c["score5"]})
         lm = locals_map.get(slug)
@@ -703,7 +723,20 @@ def finalize(doc, args, mrows, cache, locals_map, tally):
                            "rows_equal": len(matrix_rows_out) == planned,
                            "states_equal_rows": sum(tally.values()) == len(matrix_rows_out),
                            "selftest_note": "slug 前缀 r260- 的行是自证腿，不计入矩阵守恒；打平行（tie_cmp4）是真读数，计入"}
-    doc["reproduce_selfcheck"]["claim"] = "mismatches==0 即本件与 r225 同一把尺；>0 即双源/漂移，本件当场自证不成立"
+    # 派生字段（r261）：生效口径 = 两个 cap 档里漂移较小的那个；mismatches 取该值 ⇒ 自证的语义
+    #   从「与 r225 同尺」升级为「与该矩阵件**产出时**的尺同」，换代不再假红，而未知改动仍会被抓
+    #   （两个口径都复现不了 ⇒ 两个计数同时非 0 ⇒ mismatches>0 ⇒ 本门红）。
+    _sc = doc["reproduce_selfcheck"]
+    _on, _off = _sc["mismatches_cap_on"], _sc["mismatches_cap_off"]
+    _sc["mismatches"] = min(_on, _off)
+    _sc["matrix_caliber"] = ("license_cap_on" if _on <= _off else "license_cap_off")
+    _sc["cap_discriminates"] = (_on != _off)
+    _sc["caliber_note"] = (
+        "两口径漂移分别记录（cap_on=%d / cap_off=%d）：较小值视为该矩阵件产出时的口径。" % (_on, _off) +
+        "cap_discriminates=False 且两者皆 0 ⇒ 本次样本对 cap 无差别（如 --limit 小样），" +
+        "禁据此判许可档有效；两者皆非 0 ⇒ 未知改动/真双源，本门当场红。")
+    doc["reproduce_selfcheck"]["claim"] = ("mismatches==0 即本件与该矩阵件产出时同一把尺（两个 cap 档至少" +
+                                           "一个能零漂移复现）；两档皆 >0 即双源/未登记换代，自证不成立")
     doc["selfcheck_pass"] = bool(teeth_ok and doc["reproduce_selfcheck"]["mismatches"] == 0
                                    and doc["conservation"]["rows_equal"]
                                    and doc["conservation"]["states_equal_rows"])

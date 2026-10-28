@@ -1,12 +1,12 @@
 {
  "schema": "r260-local-baseline-v1",
- "generated_at": "2026-10-28T09:13:34+00:00",
+ "generated_at": "2026-10-28T10:10:54+00:00",
  "cmd": "python 05-exec/r260_local_baseline.py",
  "rerun": "cd 自建skill优化 && export PYTHONPYCACHEPREFIX=/tmp/pycache_r260b && python 05-exec/r260_local_baseline.py",
  "single_source": {
   "score5_module": "r114_replacement_scan",
   "score5_file": "05-exec/r114_replacement_scan.py",
-  "score5_sha16": "e82d98a9a15e3888",
+  "score5_sha16": "10cddd4add48e764",
   "matrix_file": "06-benchmark/replacement_matrix_r225.json",
   "matrix_sha16": "9c0d382a2168db07",
   "pool_pack_entries": 414,
@@ -100,19 +100,70 @@
   },
   "rank_flip": {
    "rows_checked": 191,
-   "rank0_flips_when_compat_dropped": 0,
-   "rows_with_constant_compat_across_candidates": 160,
-   "control_rank0_flips_when_community_dropped": 30,
+   "rank0_flips_when_compat_dropped": 22,
+   "rows_with_constant_compat_across_candidates": 75,
+   "control_rank0_flips_when_community_dropped": 22,
    "control_slugs": [
     "byted-seedance-video-generate",
     "byted-seedream-image-generate",
     "chart-visualization",
-    "consulting-analysis",
-    "dingtalk-calendar"
+    "code-review",
+    "dingtalk-aisearch"
    ],
    "control_meaning": "对照组测出非零 ⇒ 本函数不是恒 0 的死码；compat=0 是维度性质",
-   "contribution_reading": "零贡献（实测：删掉 compat 后没有任何一行换过 rank0）",
-   "flip_examples": []
+   "contribution_reading": "有贡献：22 行换过 rank0",
+   "flip_examples": [
+    {
+     "slug": "ci-pipeline-debugging",
+     "rank0_with_compat": "JuliusBrussee/caveman",
+     "rank0_without_compat": "Imbad0202/academic-research-skills"
+    },
+    {
+     "slug": "codebuddy-chat-web",
+     "rank0_with_compat": "iOfficeAI/AionUi",
+     "rank0_without_compat": "CherryHQ/cherry-studio"
+    },
+    {
+     "slug": "consulting-analysis",
+     "rank0_with_compat": "wanshuiyin/Auto-claude-code-research-in-sleep",
+     "rank0_without_compat": "Imbad0202/academic-research-skills"
+    },
+    {
+     "slug": "dingtalk-aisearch",
+     "rank0_with_compat": "Graphify-Labs/graphify",
+     "rank0_without_compat": "volcengine/OpenViking"
+    },
+    {
+     "slug": "dingtalk-aitable",
+     "rank0_with_compat": "Vexa-ai/vexa",
+     "rank0_without_compat": "volcengine/OpenViking"
+    },
+    {
+     "slug": "dingtalk-contact",
+     "rank0_with_compat": "Graphify-Labs/graphify",
+     "rank0_without_compat": "volcengine/OpenViking"
+    },
+    {
+     "slug": "dingtalk-event",
+     "rank0_with_compat": "Graphify-Labs/graphify",
+     "rank0_without_compat": "volcengine/OpenViking"
+    },
+    {
+     "slug": "dingtalk-shared",
+     "rank0_with_compat": "Graphify-Labs/graphify",
+     "rank0_without_compat": "volcengine/OpenViking"
+    },
+    {
+     "slug": "discover-agent-cli",
+     "rank0_with_compat": "ThinkInAIXYZ/deepchat",
+     "rank0_without_compat": "NanmiCoder/cc-haha"
+    },
+    {
+     "slug": "elon-musk-perspective",
+     "rank0_with_compat": "wanshuiyin/Auto-claude-code-research-in-sleep",
+     "rank0_without_compat": "Imbad0202/academic-research-skills"
+    }
+   ]
   },
   "three_inputs": [
    {
@@ -162,18 +213,18 @@
     "score5": {
      "fc": 4,
      "eff": 4,
-     "compat": 5,
+     "compat": 1,
      "docs": 4,
      "community": 3
     },
-    "score_total": 20,
-    "compat": 5,
+    "score_total": 16,
+    "compat": 1,
     "fc": 4,
     "eff": 4,
     "docs": 4,
     "community": 3,
-    "expectation_met": false,
-    "verdict": "该形态仍满分（compat 在此形态无判别力）"
+    "expectation_met": true,
+    "verdict": "该形态已判低（compat 有牙）"
    }
   ],
   "copleft_at_5": {
@@ -239,7 +290,7 @@
    ],
    "meaning": "copyleft 候选 48 个里 compat=5 的有 48 个，且 9 行把它排在 rank0 ⇒ 判据不认识许可风险与合并政策冲突"
   },
-  "verdict": "部分判别力：2/3 个应判低分形态被扣分（license 明确性与 SKILL.md 约定两子腿起作用），1 个形态仍满分 ⇒ 缺陷具名到子腿：compat 没有许可风险/能否合入子腿；排序贡献实测：删掉 compat 后 rank0 变化 0/191 行（对照组删 community 变化 30 行） ⇒ 该维对排序零贡献",
+  "verdict": "部分判别力：3/3 个应判低分形态被扣分（license 明确性与 SKILL.md 约定两子腿起作用），0 个形态仍满分 ⇒ 缺陷具名到子腿：compat 没有许可风险/能否合入子腿；排序贡献实测：删掉 compat 后 rank0 变化 22/191 行（对照组删 community 变化 22 行） ⇒ 该维对排序有贡献但被恒满分稀释",
   "subleg_saturation": {
    "license_explicit": {
     "satisfied": 928,
@@ -269,7 +320,7 @@
    "community": 1.9467
   },
   "rows_where_compat_varies_among_candidates": 31,
-  "verdict_short": "排序贡献 0 行 + 满分占比 0.9498 ⇒ 该维在当前语料上是常数项，不参与定名次"
+  "verdict_short": "排序贡献 22 行 + 满分占比 0.9498 ⇒ 该维在当前语料上是常数项，不参与定名次"
  },
  "negative_controls": {
   "stub_empty_skill": {
@@ -302,7 +353,8 @@
    "of_scanned": 191,
    "compat_hist_local_side": {
     "3": 141,
-    "5": 50
+    "5": 44,
+    "4": 6
    },
    "meaning": "本地侧 compat 用同一 score5 打出的分布；与候选侧满分占比对照，看该维是否两侧都压到同一档"
   },
@@ -414,7 +466,12 @@
   "candidates_recomputed": 937,
   "mismatches": 0,
   "mismatch_examples": [],
-  "claim": "mismatches==0 即本件与 r225 同一把尺；>0 即双源/漂移，本件当场自证不成立"
+  "mismatches_cap_on": 131,
+  "mismatches_cap_off": 0,
+  "matrix_caliber": "license_cap_off",
+  "cap_discriminates": true,
+  "caliber_note": "两口径漂移分别记录（cap_on=131 / cap_off=0）：较小值视为该矩阵件产出时的口径。cap_discriminates=False 且两者皆 0 ⇒ 本次样本对 cap 无差别（如 --limit 小样），禁据此判许可档有效；两者皆非 0 ⇒ 未知改动/真双源，本门当场红。",
+  "claim": "mismatches==0 即本件与该矩阵件产出时同一把尺（两个 cap 档至少一个能零漂移复现）；两档皆 >0 即双源/未登记换代，自证不成立"
  },
  "rows": [
   {
@@ -663,12 +720,12 @@
     "score5": {
      "fc": 4,
      "eff": 5,
-     "compat": 5,
+     "compat": 4,
      "docs": 4,
      "community": 4
     },
-    "score_total": 22,
-    "score_cmp4": 18,
+    "score_total": 21,
+    "score_cmp4": 17,
     "fc_caliber": "strict",
     "license": "NOASSERTION",
     "stars": 32150,
@@ -680,18 +737,18 @@
     "docs_md_n": 9,
     "pushed_at": "2026-10-24"
    },
-   "delta_cmp4": -12,
-   "delta_total25": -15,
+   "delta_cmp4": -11,
+   "delta_total25": -14,
    "delta_total25_note": "含 community 腿（本地 stars 缺失）⇒ 仅作对照不作结论",
    "per_dim_delta": {
     "fc": -2,
     "eff": -5,
-    "compat": -2,
+    "compat": -1,
     "docs": -3,
     "community": -3
    },
    "state": "候选更优",
-   "state_reason": "delta_cmp4=-12"
+   "state_reason": "delta_cmp4=-11"
   },
   {
    "slug": "A-java-problem",
@@ -801,12 +858,12 @@
     "score5": {
      "fc": 4,
      "eff": 5,
-     "compat": 5,
+     "compat": 4,
      "docs": 4,
      "community": 4
     },
-    "score_total": 22,
-    "score_cmp4": 18,
+    "score_total": 21,
+    "score_cmp4": 17,
     "fc_caliber": "strict",
     "license": "NOASSERTION",
     "stars": 32150,
@@ -818,18 +875,18 @@
     "docs_md_n": 9,
     "pushed_at": "2026-10-24"
    },
-   "delta_cmp4": -12,
-   "delta_total25": -15,
+   "delta_cmp4": -11,
+   "delta_total25": -14,
    "delta_total25_note": "含 community 腿（本地 stars 缺失）⇒ 仅作对照不作结论",
    "per_dim_delta": {
     "fc": -2,
     "eff": -5,
-    "compat": -2,
+    "compat": -1,
     "docs": -3,
     "community": -3
    },
    "state": "候选更优",
-   "state_reason": "delta_cmp4=-12"
+   "state_reason": "delta_cmp4=-11"
   },
   {
    "slug": "A-project-better",
@@ -939,12 +996,12 @@
     "score5": {
      "fc": 4,
      "eff": 5,
-     "compat": 5,
+     "compat": 4,
      "docs": 4,
      "community": 4
     },
-    "score_total": 22,
-    "score_cmp4": 18,
+    "score_total": 21,
+    "score_cmp4": 17,
     "fc_caliber": "strict",
     "license": "NOASSERTION",
     "stars": 32150,
@@ -956,18 +1013,18 @@
     "docs_md_n": 9,
     "pushed_at": "2026-10-24"
    },
-   "delta_cmp4": -12,
-   "delta_total25": -15,
+   "delta_cmp4": -11,
+   "delta_total25": -14,
    "delta_total25_note": "含 community 腿（本地 stars 缺失）⇒ 仅作对照不作结论",
    "per_dim_delta": {
     "fc": -2,
     "eff": -5,
-    "compat": -2,
+    "compat": -1,
     "docs": -3,
     "community": -3
    },
    "state": "候选更优",
-   "state_reason": "delta_cmp4=-12"
+   "state_reason": "delta_cmp4=-11"
   },
   {
    "slug": "A-prompt-better",
@@ -1974,12 +2031,12 @@
     "score5": {
      "fc": 3,
      "eff": 5,
-     "compat": 5,
+     "compat": 4,
      "docs": 5,
      "community": 5
     },
-    "score_total": 23,
-    "score_cmp4": 18,
+    "score_total": 22,
+    "score_cmp4": 17,
     "fc_caliber": "strict",
     "license": "NOASSERTION",
     "stars": 159463,
@@ -1991,18 +2048,18 @@
     "docs_md_n": 46,
     "pushed_at": "2026-10-25"
    },
-   "delta_cmp4": -12,
-   "delta_total25": -16,
+   "delta_cmp4": -11,
+   "delta_total25": -15,
    "delta_total25_note": "含 community 腿（本地 stars 缺失）⇒ 仅作对照不作结论",
    "per_dim_delta": {
     "fc": -1,
     "eff": -5,
-    "compat": -2,
+    "compat": -1,
     "docs": -4,
     "community": -4
    },
    "state": "候选更优",
-   "state_reason": "delta_cmp4=-12"
+   "state_reason": "delta_cmp4=-11"
   },
   {
    "slug": "byted-mediakit-shared",
@@ -2664,12 +2721,12 @@
     "score5": {
      "fc": 3,
      "eff": 5,
-     "compat": 5,
+     "compat": 4,
      "docs": 5,
      "community": 5
     },
-    "score_total": 23,
-    "score_cmp4": 18,
+    "score_total": 22,
+    "score_cmp4": 17,
     "fc_caliber": "strict",
     "license": "NOASSERTION",
     "stars": 53776,
@@ -2681,18 +2738,18 @@
     "docs_md_n": 120,
     "pushed_at": "2026-10-25"
    },
-   "delta_cmp4": -12,
-   "delta_total25": -16,
+   "delta_cmp4": -11,
+   "delta_total25": -15,
    "delta_total25_note": "含 community 腿（本地 stars 缺失）⇒ 仅作对照不作结论",
    "per_dim_delta": {
     "fc": -1,
     "eff": -5,
-    "compat": -2,
+    "compat": -1,
     "docs": -4,
     "community": -4
    },
    "state": "候选更优",
-   "state_reason": "delta_cmp4=-12"
+   "state_reason": "delta_cmp4=-11"
   },
   {
    "slug": "cloudbase",
@@ -2871,12 +2928,12 @@
     "score5": {
      "fc": 4,
      "eff": 5,
-     "compat": 5,
+     "compat": 4,
      "docs": 5,
      "community": 5
     },
-    "score_total": 24,
-    "score_cmp4": 19,
+    "score_total": 23,
+    "score_cmp4": 18,
     "fc_caliber": "strict",
     "license": "NOASSERTION",
     "stars": 70321,
@@ -2888,18 +2945,18 @@
     "docs_md_n": 47,
     "pushed_at": "2026-10-25"
    },
-   "delta_cmp4": -13,
-   "delta_total25": -17,
+   "delta_cmp4": -12,
+   "delta_total25": -16,
    "delta_total25_note": "含 community 腿（本地 stars 缺失）⇒ 仅作对照不作结论",
    "per_dim_delta": {
     "fc": -2,
     "eff": -5,
-    "compat": -2,
+    "compat": -1,
     "docs": -4,
     "community": -4
    },
    "state": "候选更优",
-   "state_reason": "delta_cmp4=-13"
+   "state_reason": "delta_cmp4=-12"
   },
   {
    "slug": "codebuddy-chat-web",
@@ -2940,12 +2997,12 @@
     "score5": {
      "fc": 4,
      "eff": 5,
-     "compat": 5,
+     "compat": 1,
      "docs": 5,
      "community": 5
     },
-    "score_total": 24,
-    "score_cmp4": 19,
+    "score_total": 20,
+    "score_cmp4": 15,
     "fc_caliber": "strict",
     "license": "AGPL-3.0",
     "stars": 52958,
@@ -2957,18 +3014,18 @@
     "docs_md_n": 151,
     "pushed_at": "2026-10-25"
    },
-   "delta_cmp4": -13,
-   "delta_total25": -17,
+   "delta_cmp4": -9,
+   "delta_total25": -13,
    "delta_total25_note": "含 community 腿（本地 stars 缺失）⇒ 仅作对照不作结论",
    "per_dim_delta": {
     "fc": -2,
     "eff": -5,
-    "compat": -2,
+    "compat": 2,
     "docs": -4,
     "community": -4
    },
    "state": "候选更优",
-   "state_reason": "delta_cmp4=-13"
+   "state_reason": "delta_cmp4=-9"
   },
   {
    "slug": "coding-agent",
@@ -3216,12 +3273,12 @@
     "score5": {
      "fc": 3,
      "eff": 5,
-     "compat": 5,
+     "compat": 4,
      "docs": 5,
      "community": 5
     },
-    "score_total": 23,
-    "score_cmp4": 18,
+    "score_total": 22,
+    "score_cmp4": 17,
     "fc_caliber": "strict",
     "license": "NOASSERTION",
     "stars": 53776,
@@ -3233,18 +3290,18 @@
     "docs_md_n": 120,
     "pushed_at": "2026-10-25"
    },
-   "delta_cmp4": -12,
-   "delta_total25": -16,
+   "delta_cmp4": -11,
+   "delta_total25": -15,
    "delta_total25_note": "含 community 腿（本地 stars 缺失）⇒ 仅作对照不作结论",
    "per_dim_delta": {
     "fc": -1,
     "eff": -5,
-    "compat": -2,
+    "compat": -1,
     "docs": -4,
     "community": -4
    },
    "state": "候选更优",
-   "state_reason": "delta_cmp4=-12"
+   "state_reason": "delta_cmp4=-11"
   },
   {
    "slug": "cross-platform-agent-sync",
@@ -3699,12 +3756,12 @@
     "score5": {
      "fc": 4,
      "eff": 5,
-     "compat": 5,
+     "compat": 1,
      "docs": 5,
      "community": 4
     },
-    "score_total": 23,
-    "score_cmp4": 19,
+    "score_total": 19,
+    "score_cmp4": 15,
     "fc_caliber": "strict",
     "license": "AGPL-3.0",
     "stars": 40762,
@@ -3716,18 +3773,18 @@
     "docs_md_n": 304,
     "pushed_at": "2026-10-24"
    },
-   "delta_cmp4": -13,
-   "delta_total25": -16,
+   "delta_cmp4": -9,
+   "delta_total25": -12,
    "delta_total25_note": "含 community 腿（本地 stars 缺失）⇒ 仅作对照不作结论",
    "per_dim_delta": {
     "fc": -2,
     "eff": -5,
-    "compat": -2,
+    "compat": 2,
     "docs": -4,
     "community": -3
    },
    "state": "候选更优",
-   "state_reason": "delta_cmp4=-13"
+   "state_reason": "delta_cmp4=-9"
   },
   {
    "slug": "dingtalk-aitable",
@@ -3768,12 +3825,12 @@
     "score5": {
      "fc": 4,
      "eff": 5,
-     "compat": 5,
+     "compat": 1,
      "docs": 5,
      "community": 4
     },
-    "score_total": 23,
-    "score_cmp4": 19,
+    "score_total": 19,
+    "score_cmp4": 15,
     "fc_caliber": "strict",
     "license": "AGPL-3.0",
     "stars": 40762,
@@ -3785,18 +3842,18 @@
     "docs_md_n": 304,
     "pushed_at": "2026-10-24"
    },
-   "delta_cmp4": -13,
-   "delta_total25": -16,
+   "delta_cmp4": -9,
+   "delta_total25": -12,
    "delta_total25_note": "含 community 腿（本地 stars 缺失）⇒ 仅作对照不作结论",
    "per_dim_delta": {
     "fc": -2,
     "eff": -5,
-    "compat": -2,
+    "compat": 2,
     "docs": -4,
     "community": -3
    },
    "state": "候选更优",
-   "state_reason": "delta_cmp4=-13"
+   "state_reason": "delta_cmp4=-9"
   },
   {
    "slug": "dingtalk-calendar",
@@ -3975,12 +4032,12 @@
     "score5": {
      "fc": 4,
      "eff": 5,
-     "compat": 5,
+     "compat": 1,
      "docs": 5,
      "community": 4
     },
-    "score_total": 23,
-    "score_cmp4": 19,
+    "score_total": 19,
+    "score_cmp4": 15,
     "fc_caliber": "strict",
     "license": "AGPL-3.0",
     "stars": 40762,
@@ -3992,18 +4049,18 @@
     "docs_md_n": 304,
     "pushed_at": "2026-10-24"
    },
-   "delta_cmp4": -13,
-   "delta_total25": -16,
+   "delta_cmp4": -9,
+   "delta_total25": -12,
    "delta_total25_note": "含 community 腿（本地 stars 缺失）⇒ 仅作对照不作结论",
    "per_dim_delta": {
     "fc": -2,
     "eff": -5,
-    "compat": -2,
+    "compat": 2,
     "docs": -4,
     "community": -3
    },
    "state": "候选更优",
-   "state_reason": "delta_cmp4=-13"
+   "state_reason": "delta_cmp4=-9"
   },
   {
    "slug": "dingtalk-doc",
@@ -4182,12 +4239,12 @@
     "score5": {
      "fc": 4,
      "eff": 5,
-     "compat": 5,
+     "compat": 1,
      "docs": 5,
      "community": 4
     },
-    "score_total": 23,
-    "score_cmp4": 19,
+    "score_total": 19,
+    "score_cmp4": 15,
     "fc_caliber": "strict",
     "license": "AGPL-3.0",
     "stars": 40762,
@@ -4199,18 +4256,18 @@
     "docs_md_n": 304,
     "pushed_at": "2026-10-24"
    },
-   "delta_cmp4": -13,
-   "delta_total25": -16,
+   "delta_cmp4": -9,
+   "delta_total25": -12,
    "delta_total25_note": "含 community 腿（本地 stars 缺失）⇒ 仅作对照不作结论",
    "per_dim_delta": {
     "fc": -2,
     "eff": -5,
-    "compat": -2,
+    "compat": 2,
     "docs": -4,
     "community": -3
    },
    "state": "候选更优",
-   "state_reason": "delta_cmp4=-13"
+   "state_reason": "delta_cmp4=-9"
   },
   {
    "slug": "dingtalk-mail",
@@ -4665,12 +4722,12 @@
     "score5": {
      "fc": 3,
      "eff": 5,
-     "compat": 5,
+     "compat": 4,
      "docs": 5,
      "community": 4
     },
-    "score_total": 22,
-    "score_cmp4": 18,
+    "score_total": 21,
+    "score_cmp4": 17,
     "fc_caliber": "strict",
     "license": "NOASSERTION",
     "stars": 15156,
@@ -4682,18 +4739,18 @@
     "docs_md_n": 116,
     "pushed_at": "2026-10-23"
    },
-   "delta_cmp4": -12,
-   "delta_total25": -15,
+   "delta_cmp4": -11,
+   "delta_total25": -14,
    "delta_total25_note": "含 community 腿（本地 stars 缺失）⇒ 仅作对照不作结论",
    "per_dim_delta": {
     "fc": -1,
     "eff": -5,
-    "compat": -2,
+    "compat": -1,
     "docs": -4,
     "community": -3
    },
    "state": "候选更优",
-   "state_reason": "delta_cmp4=-12"
+   "state_reason": "delta_cmp4=-11"
   },
   {
    "slug": "doc-coauthoring",
@@ -4710,7 +4767,7 @@
     "score5": {
      "fc": 2,
      "eff": 0,
-     "compat": 5,
+     "compat": 4,
      "docs": 1,
      "community": 1
     },
@@ -4726,8 +4783,8 @@
     "pushed_at_mtime": "2026-10-27",
     "tree_truncated": false,
     "community_na": true,
-    "score_total": 9,
-    "score_cmp4": 8,
+    "score_total": 8,
+    "score_cmp4": 7,
     "fc_caliber": "strict"
    },
    "cand": {
@@ -4751,18 +4808,18 @@
     "docs_md_n": 24,
     "pushed_at": "2026-10-24"
    },
-   "delta_cmp4": -9,
-   "delta_total25": -12,
+   "delta_cmp4": -10,
+   "delta_total25": -13,
    "delta_total25_note": "含 community 腿（本地 stars 缺失）⇒ 仅作对照不作结论",
    "per_dim_delta": {
     "fc": -2,
     "eff": -4,
-    "compat": 0,
+    "compat": -1,
     "docs": -3,
     "community": -3
    },
    "state": "候选更优",
-   "state_reason": "delta_cmp4=-9"
+   "state_reason": "delta_cmp4=-10"
   },
   {
    "slug": "docker-e2e-gate",
@@ -4848,7 +4905,7 @@
     "score5": {
      "fc": 2,
      "eff": 0,
-     "compat": 5,
+     "compat": 4,
      "docs": 1,
      "community": 1
     },
@@ -4864,8 +4921,8 @@
     "pushed_at_mtime": "2026-10-27",
     "tree_truncated": false,
     "community_na": true,
-    "score_total": 9,
-    "score_cmp4": 8,
+    "score_total": 8,
+    "score_cmp4": 7,
     "fc_caliber": "strict"
    },
    "cand": {
@@ -4889,18 +4946,18 @@
     "docs_md_n": 0,
     "pushed_at": "2026-10-15"
    },
-   "delta_cmp4": -5,
-   "delta_total25": -6,
+   "delta_cmp4": -6,
+   "delta_total25": -7,
    "delta_total25_note": "含 community 腿（本地 stars 缺失）⇒ 仅作对照不作结论",
    "per_dim_delta": {
     "fc": -1,
     "eff": -2,
-    "compat": 0,
+    "compat": -1,
     "docs": -2,
     "community": -1
    },
    "state": "候选更优",
-   "state_reason": "delta_cmp4=-5"
+   "state_reason": "delta_cmp4=-6"
   },
   {
    "slug": "dogfood",
@@ -5079,12 +5136,12 @@
     "score5": {
      "fc": 3,
      "eff": 5,
-     "compat": 5,
+     "compat": 4,
      "docs": 5,
      "community": 5
     },
-    "score_total": 23,
-    "score_cmp4": 18,
+    "score_total": 22,
+    "score_cmp4": 17,
     "fc_caliber": "strict",
     "license": "NOASSERTION",
     "stars": 53776,
@@ -5096,18 +5153,18 @@
     "docs_md_n": 120,
     "pushed_at": "2026-10-25"
    },
-   "delta_cmp4": -8,
-   "delta_total25": -12,
+   "delta_cmp4": -7,
+   "delta_total25": -11,
    "delta_total25_note": "含 community 腿（本地 stars 缺失）⇒ 仅作对照不作结论",
    "per_dim_delta": {
     "fc": -1,
     "eff": -5,
-    "compat": 0,
+    "compat": 1,
     "docs": -2,
     "community": -4
    },
    "state": "候选更优",
-   "state_reason": "delta_cmp4=-8"
+   "state_reason": "delta_cmp4=-7"
   },
   {
    "slug": "fenjue-lessons-hitrate",
@@ -5217,12 +5274,12 @@
     "score5": {
      "fc": 4,
      "eff": 5,
-     "compat": 5,
+     "compat": 4,
      "docs": 4,
      "community": 4
     },
-    "score_total": 22,
-    "score_cmp4": 18,
+    "score_total": 21,
+    "score_cmp4": 17,
     "fc_caliber": "strict",
     "license": "NOASSERTION",
     "stars": 32150,
@@ -5234,18 +5291,18 @@
     "docs_md_n": 9,
     "pushed_at": "2026-10-24"
    },
-   "delta_cmp4": -12,
-   "delta_total25": -15,
+   "delta_cmp4": -11,
+   "delta_total25": -14,
    "delta_total25_note": "含 community 腿（本地 stars 缺失）⇒ 仅作对照不作结论",
    "per_dim_delta": {
     "fc": -2,
     "eff": -5,
-    "compat": -2,
+    "compat": -1,
     "docs": -3,
     "community": -3
    },
    "state": "候选更优",
-   "state_reason": "delta_cmp4=-12"
+   "state_reason": "delta_cmp4=-11"
   },
   {
    "slug": "figma",
@@ -5262,7 +5319,7 @@
     "score5": {
      "fc": 2,
      "eff": 0,
-     "compat": 5,
+     "compat": 4,
      "docs": 1,
      "community": 1
     },
@@ -5278,8 +5335,8 @@
     "pushed_at_mtime": "2026-10-27",
     "tree_truncated": false,
     "community_na": true,
-    "score_total": 9,
-    "score_cmp4": 8,
+    "score_total": 8,
+    "score_cmp4": 7,
     "fc_caliber": "strict"
    },
    "cand": {
@@ -5303,18 +5360,18 @@
     "docs_md_n": 9,
     "pushed_at": "2026-10-20"
    },
-   "delta_cmp4": -8,
-   "delta_total25": -10,
+   "delta_cmp4": -9,
+   "delta_total25": -11,
    "delta_total25_note": "含 community 腿（本地 stars 缺失）⇒ 仅作对照不作结论",
    "per_dim_delta": {
     "fc": -2,
     "eff": -3,
-    "compat": 0,
+    "compat": -1,
     "docs": -3,
     "community": -2
    },
    "state": "候选更优",
-   "state_reason": "delta_cmp4=-8"
+   "state_reason": "delta_cmp4=-9"
   },
   {
    "slug": "find-skills",
@@ -6711,7 +6768,7 @@
     "score5": {
      "fc": 2,
      "eff": 0,
-     "compat": 5,
+     "compat": 4,
      "docs": 1,
      "community": 1
     },
@@ -6727,8 +6784,8 @@
     "pushed_at_mtime": "2026-10-27",
     "tree_truncated": false,
     "community_na": true,
-    "score_total": 9,
-    "score_cmp4": 8,
+    "score_total": 8,
+    "score_cmp4": 7,
     "fc_caliber": "strict"
    },
    "cand": {
@@ -6752,18 +6809,18 @@
     "docs_md_n": 6,
     "pushed_at": "2026-10-25"
    },
-   "delta_cmp4": -10,
-   "delta_total25": -14,
+   "delta_cmp4": -11,
+   "delta_total25": -15,
    "delta_total25_note": "含 community 腿（本地 stars 缺失）⇒ 仅作对照不作结论",
    "per_dim_delta": {
     "fc": -2,
     "eff": -5,
-    "compat": 0,
+    "compat": -1,
     "docs": -3,
     "community": -4
    },
    "state": "候选更优",
-   "state_reason": "delta_cmp4=-10"
+   "state_reason": "delta_cmp4=-11"
   },
   {
    "slug": "ican-deploy",
@@ -7080,12 +7137,12 @@
     "score5": {
      "fc": 4,
      "eff": 5,
-     "compat": 5,
+     "compat": 1,
      "docs": 3,
      "community": 3
     },
-    "score_total": 20,
-    "score_cmp4": 17,
+    "score_total": 16,
+    "score_cmp4": 13,
     "fc_caliber": "strict",
     "license": "GPL-3.0",
     "stars": 4683,
@@ -7097,18 +7154,18 @@
     "docs_md_n": 2,
     "pushed_at": "2026-10-24"
    },
-   "delta_cmp4": -11,
-   "delta_total25": -13,
+   "delta_cmp4": -7,
+   "delta_total25": -9,
    "delta_total25_note": "含 community 腿（本地 stars 缺失）⇒ 仅作对照不作结论",
    "per_dim_delta": {
     "fc": -2,
     "eff": -5,
-    "compat": -2,
+    "compat": 2,
     "docs": -2,
     "community": -2
    },
    "state": "候选更优",
-   "state_reason": "delta_cmp4=-11"
+   "state_reason": "delta_cmp4=-7"
   },
   {
    "slug": "libreoffice-base",
@@ -7632,12 +7689,12 @@
     "score5": {
      "fc": 3,
      "eff": 5,
-     "compat": 5,
+     "compat": 4,
      "docs": 5,
      "community": 4
     },
-    "score_total": 22,
-    "score_cmp4": 18,
+    "score_total": 21,
+    "score_cmp4": 17,
     "fc_caliber": "strict",
     "license": "NOASSERTION",
     "stars": 15156,
@@ -7649,18 +7706,18 @@
     "docs_md_n": 116,
     "pushed_at": "2026-10-23"
    },
-   "delta_cmp4": -11,
-   "delta_total25": -14,
+   "delta_cmp4": -10,
+   "delta_total25": -13,
    "delta_total25_note": "含 community 腿（本地 stars 缺失）⇒ 仅作对照不作结论",
    "per_dim_delta": {
     "fc": -1,
     "eff": -4,
-    "compat": -2,
+    "compat": -1,
     "docs": -4,
     "community": -3
    },
    "state": "候选更优",
-   "state_reason": "delta_cmp4=-11"
+   "state_reason": "delta_cmp4=-10"
   },
   {
    "slug": "local-img2img",
@@ -7897,7 +7954,7 @@
     "docs_md_n": 0,
     "test_path_n": 2,
     "workflow_n": 0,
-    "pushed_at_mtime": "2026-10-20",
+    "pushed_at_mtime": "2026-10-28",
     "tree_truncated": false,
     "community_na": true,
     "score_total": 8,
@@ -7977,12 +8034,12 @@
     "score5": {
      "fc": 3,
      "eff": 5,
-     "compat": 5,
+     "compat": 4,
      "docs": 5,
      "community": 4
     },
-    "score_total": 22,
-    "score_cmp4": 18,
+    "score_total": 21,
+    "score_cmp4": 17,
     "fc_caliber": "strict",
     "license": "NOASSERTION",
     "stars": 15156,
@@ -7994,18 +8051,18 @@
     "docs_md_n": 116,
     "pushed_at": "2026-10-23"
    },
-   "delta_cmp4": -11,
-   "delta_total25": -14,
+   "delta_cmp4": -10,
+   "delta_total25": -13,
    "delta_total25_note": "含 community 腿（本地 stars 缺失）⇒ 仅作对照不作结论",
    "per_dim_delta": {
     "fc": -1,
     "eff": -4,
-    "compat": -2,
+    "compat": -1,
     "docs": -4,
     "community": -3
    },
    "state": "候选更优",
-   "state_reason": "delta_cmp4=-11"
+   "state_reason": "delta_cmp4=-10"
   },
   {
    "slug": "local-tts",
@@ -9081,12 +9138,12 @@
     "score5": {
      "fc": 5,
      "eff": 3,
-     "compat": 5,
+     "compat": 1,
      "docs": 4,
      "community": 5
     },
-    "score_total": 22,
-    "score_cmp4": 17,
+    "score_total": 18,
+    "score_cmp4": 13,
     "fc_caliber": "strict",
     "license": "AGPL-3.0",
     "stars": 71689,
@@ -9098,18 +9155,18 @@
     "docs_md_n": 9,
     "pushed_at": "2026-10-24"
    },
-   "delta_cmp4": -11,
-   "delta_total25": -15,
+   "delta_cmp4": -7,
+   "delta_total25": -11,
    "delta_total25_note": "含 community 腿（本地 stars 缺失）⇒ 仅作对照不作结论",
    "per_dim_delta": {
     "fc": -3,
     "eff": -3,
-    "compat": -2,
+    "compat": 2,
     "docs": -3,
     "community": -4
    },
    "state": "候选更优",
-   "state_reason": "delta_cmp4=-11"
+   "state_reason": "delta_cmp4=-7"
   },
   {
    "slug": "openclaw-dual-gate-quality-audit",
@@ -9357,12 +9414,12 @@
     "score5": {
      "fc": 3,
      "eff": 5,
-     "compat": 5,
+     "compat": 4,
      "docs": 5,
      "community": 5
     },
-    "score_total": 23,
-    "score_cmp4": 18,
+    "score_total": 22,
+    "score_cmp4": 17,
     "fc_caliber": "strict",
     "license": "NOASSERTION",
     "stars": 53776,
@@ -9374,18 +9431,18 @@
     "docs_md_n": 120,
     "pushed_at": "2026-10-25"
    },
-   "delta_cmp4": -10,
-   "delta_total25": -14,
+   "delta_cmp4": -9,
+   "delta_total25": -13,
    "delta_total25_note": "含 community 腿（本地 stars 缺失）⇒ 仅作对照不作结论",
    "per_dim_delta": {
     "fc": -1,
     "eff": -5,
-    "compat": 0,
+    "compat": 1,
     "docs": -4,
     "community": -4
    },
    "state": "候选更优",
-   "state_reason": "delta_cmp4=-10"
+   "state_reason": "delta_cmp4=-9"
   },
   {
    "slug": "pdf",
@@ -9402,7 +9459,7 @@
     "score5": {
      "fc": 2,
      "eff": 0,
-     "compat": 5,
+     "compat": 4,
      "docs": 1,
      "community": 1
     },
@@ -9418,8 +9475,8 @@
     "pushed_at_mtime": "2026-10-27",
     "tree_truncated": false,
     "community_na": true,
-    "score_total": 9,
-    "score_cmp4": 8,
+    "score_total": 8,
+    "score_cmp4": 7,
     "fc_caliber": "strict"
    },
    "cand": {
@@ -9443,18 +9500,18 @@
     "docs_md_n": 24,
     "pushed_at": "2026-10-24"
    },
-   "delta_cmp4": -9,
-   "delta_total25": -12,
+   "delta_cmp4": -10,
+   "delta_total25": -13,
    "delta_total25_note": "含 community 腿（本地 stars 缺失）⇒ 仅作对照不作结论",
    "per_dim_delta": {
     "fc": -2,
     "eff": -4,
-    "compat": 0,
+    "compat": -1,
     "docs": -3,
     "community": -3
    },
    "state": "候选更优",
-   "state_reason": "delta_cmp4=-9"
+   "state_reason": "delta_cmp4=-10"
   },
   {
    "slug": "pixelle-api-ensure",
@@ -9633,12 +9690,12 @@
     "score5": {
      "fc": 3,
      "eff": 5,
-     "compat": 5,
+     "compat": 4,
      "docs": 5,
      "community": 5
     },
-    "score_total": 23,
-    "score_cmp4": 18,
+    "score_total": 22,
+    "score_cmp4": 17,
     "fc_caliber": "strict",
     "license": "NOASSERTION",
     "stars": 53776,
@@ -9650,18 +9707,18 @@
     "docs_md_n": 120,
     "pushed_at": "2026-10-25"
    },
-   "delta_cmp4": -12,
-   "delta_total25": -16,
+   "delta_cmp4": -11,
+   "delta_total25": -15,
    "delta_total25_note": "含 community 腿（本地 stars 缺失）⇒ 仅作对照不作结论",
    "per_dim_delta": {
     "fc": -1,
     "eff": -5,
-    "compat": -2,
+    "compat": -1,
     "docs": -4,
     "community": -4
    },
    "state": "候选更优",
-   "state_reason": "delta_cmp4=-12"
+   "state_reason": "delta_cmp4=-11"
   },
   {
    "slug": "prompt-system-audit",
@@ -9702,12 +9759,12 @@
     "score5": {
      "fc": 3,
      "eff": 5,
-     "compat": 5,
+     "compat": 4,
      "docs": 5,
      "community": 5
     },
-    "score_total": 23,
-    "score_cmp4": 18,
+    "score_total": 22,
+    "score_cmp4": 17,
     "fc_caliber": "strict",
     "license": "NOASSERTION",
     "stars": 53776,
@@ -9719,18 +9776,18 @@
     "docs_md_n": 120,
     "pushed_at": "2026-10-25"
    },
-   "delta_cmp4": -12,
-   "delta_total25": -16,
+   "delta_cmp4": -11,
+   "delta_total25": -15,
    "delta_total25_note": "含 community 腿（本地 stars 缺失）⇒ 仅作对照不作结论",
    "per_dim_delta": {
     "fc": -1,
     "eff": -5,
-    "compat": -2,
+    "compat": -1,
     "docs": -4,
     "community": -4
    },
    "state": "候选更优",
-   "state_reason": "delta_cmp4=-12"
+   "state_reason": "delta_cmp4=-11"
   },
   {
    "slug": "python-debugpy",
@@ -9909,12 +9966,12 @@
     "score5": {
      "fc": 5,
      "eff": 4,
-     "compat": 5,
+     "compat": 1,
      "docs": 5,
      "community": 3
     },
-    "score_total": 22,
-    "score_cmp4": 19,
+    "score_total": 18,
+    "score_cmp4": 15,
     "fc_caliber": "strict",
     "license": "CC-BY-SA-4.0",
     "stars": 6243,
@@ -9926,18 +9983,18 @@
     "docs_md_n": 230,
     "pushed_at": "2026-10-24"
    },
-   "delta_cmp4": -11,
-   "delta_total25": -13,
+   "delta_cmp4": -7,
+   "delta_total25": -9,
    "delta_total25_note": "含 community 腿（本地 stars 缺失）⇒ 仅作对照不作结论",
    "per_dim_delta": {
     "fc": -3,
     "eff": -4,
-    "compat": -2,
+    "compat": 2,
     "docs": -2,
     "community": -2
    },
    "state": "候选更优",
-   "state_reason": "delta_cmp4=-11"
+   "state_reason": "delta_cmp4=-7"
   },
   {
    "slug": "refactoring",
@@ -10116,12 +10173,12 @@
     "score5": {
      "fc": 2,
      "eff": 2,
-     "compat": 5,
+     "compat": 4,
      "docs": 5,
      "community": 2
     },
-    "score_total": 16,
-    "score_cmp4": 14,
+    "score_total": 15,
+    "score_cmp4": 13,
     "fc_caliber": "strict",
     "license": "NOASSERTION",
     "stars": 233,
@@ -10133,18 +10190,18 @@
     "docs_md_n": 109,
     "pushed_at": "2026-09-01"
    },
-   "delta_cmp4": -8,
-   "delta_total25": -9,
+   "delta_cmp4": -7,
+   "delta_total25": -8,
    "delta_total25_note": "含 community 腿（本地 stars 缺失）⇒ 仅作对照不作结论",
    "per_dim_delta": {
     "fc": 0,
     "eff": -2,
-    "compat": -2,
+    "compat": -1,
     "docs": -4,
     "community": -1
    },
    "state": "候选更优",
-   "state_reason": "delta_cmp4=-8"
+   "state_reason": "delta_cmp4=-7"
   },
   {
    "slug": "scope-creep-detector",
@@ -10944,12 +11001,12 @@
     "score5": {
      "fc": 5,
      "eff": 3,
-     "compat": 5,
+     "compat": 1,
      "docs": 4,
      "community": 5
     },
-    "score_total": 22,
-    "score_cmp4": 17,
+    "score_total": 18,
+    "score_cmp4": 13,
     "fc_caliber": "strict",
     "license": "AGPL-3.0",
     "stars": 71689,
@@ -10961,18 +11018,18 @@
     "docs_md_n": 9,
     "pushed_at": "2026-10-24"
    },
-   "delta_cmp4": -11,
-   "delta_total25": -15,
+   "delta_cmp4": -7,
+   "delta_total25": -11,
    "delta_total25_note": "含 community 腿（本地 stars 缺失）⇒ 仅作对照不作结论",
    "per_dim_delta": {
     "fc": -3,
     "eff": -3,
-    "compat": -2,
+    "compat": 2,
     "docs": -3,
     "community": -4
    },
    "state": "候选更优",
-   "state_reason": "delta_cmp4=-11"
+   "state_reason": "delta_cmp4=-7"
   },
   {
    "slug": "story-deslop",
@@ -11910,12 +11967,12 @@
     "score5": {
      "fc": 4,
      "eff": 5,
-     "compat": 5,
+     "compat": 4,
      "docs": 4,
      "community": 4
     },
-    "score_total": 22,
-    "score_cmp4": 18,
+    "score_total": 21,
+    "score_cmp4": 17,
     "fc_caliber": "strict",
     "license": "NOASSERTION",
     "stars": 11143,
@@ -11927,18 +11984,18 @@
     "docs_md_n": 17,
     "pushed_at": "2026-10-25"
    },
-   "delta_cmp4": -12,
-   "delta_total25": -15,
+   "delta_cmp4": -11,
+   "delta_total25": -14,
    "delta_total25_note": "含 community 腿（本地 stars 缺失）⇒ 仅作对照不作结论",
    "per_dim_delta": {
     "fc": -2,
     "eff": -5,
-    "compat": -2,
+    "compat": -1,
     "docs": -3,
     "community": -3
    },
    "state": "候选更优",
-   "state_reason": "delta_cmp4=-12"
+   "state_reason": "delta_cmp4=-11"
   },
   {
    "slug": "theme-factory",
@@ -13428,12 +13485,12 @@
     "score5": {
      "fc": 3,
      "eff": 5,
-     "compat": 5,
+     "compat": 4,
      "docs": 5,
      "community": 5
     },
-    "score_total": 23,
-    "score_cmp4": 18,
+    "score_total": 22,
+    "score_cmp4": 17,
     "fc_caliber": "strict",
     "license": "NOASSERTION",
     "stars": 53776,
@@ -13445,18 +13502,18 @@
     "docs_md_n": 120,
     "pushed_at": "2026-10-25"
    },
-   "delta_cmp4": -10,
-   "delta_total25": -14,
+   "delta_cmp4": -9,
+   "delta_total25": -13,
    "delta_total25_note": "含 community 腿（本地 stars 缺失）⇒ 仅作对照不作结论",
    "per_dim_delta": {
     "fc": -1,
     "eff": -5,
-    "compat": 0,
+    "compat": 1,
     "docs": -4,
     "community": -4
    },
    "state": "候选更优",
-   "state_reason": "delta_cmp4=-10"
+   "state_reason": "delta_cmp4=-9"
   },
   {
    "slug": "xlsx",
@@ -13473,7 +13530,7 @@
     "score5": {
      "fc": 2,
      "eff": 0,
-     "compat": 5,
+     "compat": 4,
      "docs": 1,
      "community": 1
     },
@@ -13489,8 +13546,8 @@
     "pushed_at_mtime": "2026-10-27",
     "tree_truncated": false,
     "community_na": true,
-    "score_total": 9,
-    "score_cmp4": 8,
+    "score_total": 8,
+    "score_cmp4": 7,
     "fc_caliber": "strict"
    },
    "cand": {
@@ -13514,18 +13571,18 @@
     "docs_md_n": 24,
     "pushed_at": "2026-10-24"
    },
-   "delta_cmp4": -9,
-   "delta_total25": -12,
+   "delta_cmp4": -10,
+   "delta_total25": -13,
    "delta_total25_note": "含 community 腿（本地 stars 缺失）⇒ 仅作对照不作结论",
    "per_dim_delta": {
     "fc": -2,
     "eff": -4,
-    "compat": 0,
+    "compat": -1,
     "docs": -3,
     "community": -3
    },
    "state": "候选更优",
-   "state_reason": "delta_cmp4=-9"
+   "state_reason": "delta_cmp4=-10"
   },
   {
    "slug": "天眼一下",
