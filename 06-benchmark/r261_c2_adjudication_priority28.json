@@ -1,0 +1,1687 @@
+{
+ "schema": "r261.c2_human_adjudication.v1",
+ "round": "r261",
+ "leg": "C2 逐件人读（M3/B2 第一批）— 首次真开跑",
+ "measured_at": "2026-10-28",
+ "head_at_start": "a049ffc",
+ "priority_set": {
+  "rule": "delta_cmp4 >= -4 的 16 件 ∪ rank0_rel=family 的 13 件 − 交集 1 件（gstack）= 28",
+  "expected": 28,
+  "recomputed_by": "本件读取 r260_local_baseline.json rows 现算（非抄日历版文档）"
+ },
+ "inputs_sha8": {
+  "matrix": "4c43eafa",
+  "local_baseline": "a088ab3d",
+  "prefetch": "d09689fd",
+  "repo_cache": "95ea75cc",
+  "local_faces": "31cda850",
+  "plan_r260": "d55cadc9"
+ },
+ "caliber": {
+  "overlap": "r114 §4 C2：候选与本地件能力边界重叠但不完全覆盖 —— 人读两份 SKILL.md 的「何时用 / 不适用」",
+  "license": "R113-3（r260 结案口径）：本仓禁合入 copyleft 上游正文（AGPL-3.0/GPL/LGPL/CC-BY-SA）；NOASSERTION/无 LICENSE = 无可信许可同样禁合入",
+  "maintenance": "r114 §4 C4 / §3.1：archived 或 pushed_at 不在 12 个月（≥2025-10-28）内 ⇒ 不利"
+ },
+ "conservation": {
+  "rows": 28,
+  "verdicts_sum": 28,
+  "expect": 28,
+  "equal": true,
+  "by_verdict": {
+   "KEEP_LOCAL": 13,
+   "NO_OS_EQUIVALENT": 12,
+   "UPGRADE_CANDIDATE": 3
+  },
+  "candidates_face_empty_rows": 0,
+  "note_on_empty_face": "本轮 28 件**无一件**候选面为空（candidates_n 全 = 5）⇒ 退路条款里「候选面为空 ⇒ NO_OS_EQUIVALENT + 候选数为 0 的命令」这条路径本轮未被触发；12 件 NO_OS_EQUIVALENT 的成立条件是「候选面内**同类件 = 0**」，每件附命中数为 0 的取值命令。"
+ },
+ "verification_face": {
+  "need_c2_human_in_matrix_body": {
+   "count": 0,
+   "reading": "0 ⇒ NEED_C2_HUMAN 产自派生腿 r125_c16_machine，不属矩阵本体（与 r260 §1.1(b) 一致，本轮独立复算非引用）",
+   "cmd": "grep -c NEED_C2_HUMAN 06-benchmark/r260_matrix_trimmed.json"
+  },
+  "matrix_verdict_domain": {
+   "by_verdict": {
+    "MATCHED": 166,
+    "FAMILY_ONLY": 12,
+    "NO_OS_CANDIDATE": 13
+   },
+   "sum": 191,
+   "cmd": "python -c 读 06-benchmark/r260_matrix_trimmed.json 的 rows[].verdict 计数"
+  },
+  "priority_set_recompute": {
+   "near": 16,
+   "family": 13,
+   "intersect": [
+    "gstack"
+   ],
+   "union": 28,
+   "cmd": "见 r260 §1.2 第三条命令，本轮同式现跑"
+  },
+  "ruler_no_resolution": {
+   "true_rows_identical_to_stub": 131,
+   "of": 191,
+   "stub_score5": {
+    "fc": 2,
+    "eff": 0,
+    "compat": 3,
+    "docs": 1,
+    "community": 1
+   },
+   "cmd": "python -c 读 r260_local_baseline.json 的 negative_controls.local_side_resolution"
+  },
+  "roster_hmid": {
+   "line": "磁盘目录 150 → HIGH 51 / MID 26 / LOW 30 / EXCLUDE 43",
+   "HIGH_plus_MID": 77,
+   "cmd": "grep -n 'HIGH 51' 00-scope/自建skill清单.md",
+   "found": true
+  },
+  "history_c2_face": {
+   "files": {
+    "c2_human_r126_2026-10-20.json": {
+     "rows": 14,
+     "distinct_reason_prefixes": 14,
+     "rows_with_evidence_cmd_field": 0,
+     "overlap_with_priority28": 1
+    },
+    "c2_mid_r127_2026-10-20.json": {
+     "rows": 29,
+     "distinct_reason_prefixes": 15,
+     "rows_with_evidence_cmd_field": 0,
+     "overlap_with_priority28": 3
+    },
+    "c2_omni_r127_2026-10-20.json": {
+     "rows": 91,
+     "distinct_reason_prefixes": 1,
+     "rows_with_evidence_cmd_field": 0,
+     "overlap_with_priority28": 17
+    },
+    "c2_low_batch1_r128_2026-10-20.json": {
+     "rows": 10,
+     "distinct_reason_prefixes": 4,
+     "rows_with_evidence_cmd_field": 0,
+     "overlap_with_priority28": 4
+    },
+    "c2_low_batch2_r129_2026-10-20.json": {
+     "rows": 38,
+     "distinct_reason_prefixes": 22,
+     "rows_with_evidence_cmd_field": 0,
+     "overlap_with_priority28": 2
+    }
+   },
+   "reading": "c2_omni_r127 的 91 件 reason 只有 1 种句式前缀、五个历史件全无逐件取值命令字段 ⇒ 那些是「批量预判 + 抽验」，不是逐件人读；本轮 r261 是第一轮逐件带三条依据与命令的人读",
+   "cmd": "python -c 读各 c2_*_r12x.json 统计 distinct(reason[:50]) 与 evidence 字段数"
+  },
+  "live_vs_matrix": {
+   "repos_fetched": 41,
+   "fetch_fail": 0,
+   "archived_true": [],
+   "pushed_before_2025_10_28": [],
+   "license_drift_rows": [
+    "A-java-problem|ComposioHQ/awesome-claude-skills|claim=UNLICENSED|live=NONE",
+    "web-access|eze-is/web-access|claim=UNLICENSED|live=NONE"
+   ],
+   "pushed_at_drift_rows": 58,
+   "cmd": "python -c 对 _temp/r261_repo_cache.json 与 _temp/r261_c2_prefetch.json 逐仓对账"
+  }
+ },
+ "rows": [
+  {
+   "slug": "A-java-problem",
+   "verdict": "KEEP_LOCAL",
+   "priority_tier": "NEAR",
+   "overlap": "rank0 = Snailclimb/JavaGuide：递归树实测 SKILL.md 数 = 0（tree_sha=992dae31，628 blob / 455 docs_md），顶层只有 docs、media、scripts、package.json；README 26244B 的标题是「## 后端面试准备」「### 集合」「### IO」「### 并发」「### JVM（必看）」—— 通篇面试知识索引，一句可执行工作流都没有。 ｜ 它只压到本地 §1 职责范围表的知识点层（语法/OOP/集合/异常/IO）。本地有而候选没有的核心能力：§5 本机环境档案的绝对路径（Adoptium jdk-8.0.504.1-hotspot、jdk-17.0.20.101-hotspot、WinLibs MinGW-w64 GCC 16.2.0、GDB 17.2、VS Code 1.124.2 + cpptools 1.34.4、IDEA Community 2025.2.6.2）；§3② 的硬门禁「回复必须输出【档案命中】T:/P:/环境已核: 块，缺块 = ② 未执行」并禁止凭记忆复述查过了；§5 两条相反的编码铁律（Java 走 javac -encoding UTF-8，C++ 反过来必须 main() 开头 SetConsoleOutputCP(CP_UTF8)，明文禁止互相照搬）与 OJ 可移植性铁律（Windows 专有头用 #ifdef _WIN32 守卫、禁 -U_WIN32 因为会炸 MinGW 自己的 _mingw.h）；§6 迭代账本强制回写；T16（回退起点不同结点致死循环实测卡 20s）/T17（fast->next 单判空致 n>=16 越界崩溃）/T19（GDB 17.2 CP65001 无转换器 print 字符串必炸）三个崩溃级实测坑。 ｜ 且本件含整条 C++ 分支（约瑟夫环、Floyd 判环找入口、括号匹配 std::stack），JavaGuide 零 C++ 内容。关系定性：仅 Java 一词撞词，面试知识文档 vs 课程作业交付 skill 根本不同类，不是超集也不是部分重叠。 ｜ 旁核两面：top2 ComposioHQ/awesome-claude-skills 虽有 60 个 SKILL.md，但 contents 顶层 34 项逐个点过（artifacts-builder、brand-guidelines、canvas-design、…、video-downloader、webapp-testing）无 java / cpp 件；top1 SeleniumHQ/selenium 的 README 自述「Automates browsers. That's it!」是浏览器自动化框架，与本件无交集。",
+   "license": "rank0 live license_spdx=「Apache-2.0」，与矩阵 claim「Apache-2.0」一致 ⇒ permissive 本可合入；但对面 SKILL.md 实测为 0，没有上游 skill 正文可搬，许可这条在本件上给不出任何换的理由。顺带点名：top2 awesome-claude-skills live license=null（矩阵 claim 写 UNLICENSED，两者口径一致＝无可信许可），按 R113-3 属禁合入面。",
+   "maintenance": "rank0 pushed_at=2026-10-25、archived=false、stars=159315，落在 12 个月窗口内（切点 2025-10-28 之后），维护面最优；不过维护良好补不了品类缺口 —— 出局点是「对面不是 agent skill」，不是「年久失修」。top1 2026-10-28/34568 同样新鲜，top2 2026-09-18/78131。",
+   "checked_candidates": [
+    {
+     "repo": "Snailclimb/JavaGuide",
+     "role": "rank0",
+     "license_spdx": "Apache-2.0",
+     "pushed_at": "2026-10-25",
+     "archived": false,
+     "tree_sha8": "992dae31",
+     "readme_bytes": 26244,
+     "skill_md_n": 0,
+     "http": "repos=200,readme=200,tree=200"
+    },
+    {
+     "repo": "SeleniumHQ/selenium",
+     "role": "top1",
+     "license_spdx": "Apache-2.0",
+     "pushed_at": "2026-10-28",
+     "archived": false,
+     "tree_sha8": "8a6aefc1",
+     "readme_bytes": 18700,
+     "skill_md_n": 0,
+     "http": "repos=200,readme=200,tree=200"
+    },
+    {
+     "repo": "ComposioHQ/awesome-claude-skills",
+     "role": "top2",
+     "license_spdx": null,
+     "pushed_at": "2026-09-18",
+     "archived": false,
+     "tree_sha8": "be2a4069",
+     "readme_bytes": 40668,
+     "skill_md_n": 60,
+     "http": "repos=200,readme=200,tree=200"
+    }
+   ],
+   "local_skill_md_sha8": "df278338",
+   "evidence_cmd": "gh api 'repos/Snailclimb/JavaGuide/git/trees/main?recursive=1' | grep -c SKILL.md",
+   "verdict_basis_extra": "上述命令实跑回 0（对面零 SKILL.md），无正文可换；本地另有 C++ 分支 + 本机 JDK/g++ 绝对路径档案与迭代回写门禁，两个候选面均未覆盖 ⇒ KEEP_LOCAL。",
+   "measured_at": "2026-10-28T17:51:10+08:00",
+   "group": 1,
+   "family": "a-meta",
+   "machine_sort_key": {
+    "delta_cmp4": -4,
+    "state": "候选更优",
+    "note": "仅供排序：R260-2 实测 131/191 真件本地五维与空壳桩件逐项相同，该尺本地侧无分辨率，禁当结论依据"
+   },
+   "candidates_n_in_matrix": 5,
+   "rank0_rel": "skill",
+   "same_class_candidates_found": null
+  },
+  {
+   "slug": "A-project-better",
+   "verdict": "NO_OS_EQUIVALENT",
+   "priority_tier": "NEAR",
+   "overlap": "rank0 = latent-spaces/brag：skills/brag/SKILL.md 第 3 行 description 原文取回是「Turn the current project website into a short, polished, shareable launch video using Hyperframes」，正文五步（读项目码 → 定 brag 概念 → 写分镜 → 交给 Hyperframes composition brief → 渲染并出 share copy）。交付物是一条发布短视频，与本件的能力链零交集：本件是 Step 0 遗留待办盘点（逐条实测核验，未获用户确认不得进 Step 1，台账是后续唯一基线）→ 五源感知（含第 5 源判据输入端：本机绿而 CI 红先比两侧输入）→ 六维诊断 A 功能/B 债/C 架构/D 交付/E 体量/F 前端 → Step 2.5 前端六支柱 R/I/F/P/C/U + M1/M2/M3 动效篇 → ≤10 条评分卡并与台账对账（不遗漏有效 P0、标「接续遗留 #N」不重复）→ Step 4B 预授权自动执行（备份+Git 双硬前提）→ Step 5 逐柱改码 → Step 6 回写 07-next-steps。 ｜ rank0 的 rel=skill 是「同族 skill 仓」口径而非同类件（card 里 matrix skill_md_exact_n=2 只有 brag 与 brag-slim）。 ｜ 方向规划族的最近邻实测落在 top2 affaan-m/ECC：.agents/skills 取回 46 个条目名（agent-introspection-debugging … verification-loop、video-editing、x-api），其中 plan-canvas 正文真读为「把计划开在本地浏览器 canvas 里由人批注并给 Approve plan / Request changes 裁决」，change-impact 正文真读为「改前做证据化影响面分析（call path/schema/API 契约/测试/文档/回滚），改后再与真实 diff 比对」—— 两者都是单点能力，既没有遗留台账采集与实测核验、没有六支柱 46 条判据（frontend-checkpoints.md）、也没有 M0.5 素材复用闸与 E 维体量治理阈值；top1 nicobailon/visual-explainer 的 SKILL.md 只把 diagram / diff review / plan audit 渲染成 HTML 页面，属呈现层。 ｜ 结论：候选面同类件数 = 0（三仓都活着且都许可友好，但没有一件做「项目下一步方向诊断 + 建议清单 + 执行回写」）。",
+   "license": "三仓 live license_spdx 全为「MIT」，与矩阵 claim 逐项一致（rank0 MIT / top1 MIT / top2 MIT），permissive 可合入；正因为对面没有同类正文，可合入这一条不产生任何收益，本件结论完全由品类缺口给出，不由许可给出。",
+   "maintenance": "brag pushed_at=2026-10-23 / stars=19159；visual-explainer 2026-10-20 / 10663；ECC 2026-10-26 / 291228 —— 三者 archived 均 false 且都在 12 个月内，维护面一个都不反对。落空原因纯粹是候选里没有同类件，而非失修。",
+   "checked_candidates": [
+    {
+     "repo": "latent-spaces/brag",
+     "role": "rank0",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-23",
+     "archived": false,
+     "tree_sha8": "669ab928",
+     "readme_bytes": 6248,
+     "skill_md_paths": "skills/brag-slim/SKILL.md,skills/brag/SKILL.md",
+     "http": "repos=200,readme=200,tree=200"
+    },
+    {
+     "repo": "nicobailon/visual-explainer",
+     "role": "top1",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-20",
+     "archived": false,
+     "tree_sha8": "5f378868",
+     "readme_bytes": 29265,
+     "skill_md_paths": "plugins/visual-explainer/SKILL.md",
+     "http": "repos=200,readme=200,tree=200"
+    },
+    {
+     "repo": "affaan-m/ECC",
+     "role": "top2",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-26",
+     "archived": false,
+     "tree_sha8": "25278e7d",
+     "readme_bytes": 115595,
+     "skill_md_n": 60,
+     "http": "repos=200,readme=200,tree=200"
+    }
+   ],
+   "local_skill_md_sha8": "c57ac8a5",
+   "evidence_cmd": "gh api repos/affaan-m/ECC/contents/.agents/skills --jq length && gh api repos/latent-spaces/brag/contents/skills/brag/SKILL.md --jq .content | base64 -d | sed -n 3p | cut -c1-90",
+   "verdict_basis_extra": "NO_OS_EQUIVALENT 的取值命令 = 上面这条：实测回 46（ECC 全部 skill 名已逐条读过，无「项目方向 / 下一步规划 / 遗留盘点」类件）与 brag 第 3 行「Turn the current project website into a short, polished, shareable launch vid…」，即 rank0+top3 同类件数 0。",
+   "measured_at": "2026-10-28T17:51:10+08:00",
+   "group": 1,
+   "family": "a-meta",
+   "machine_sort_key": {
+    "delta_cmp4": -4,
+    "state": "候选更优",
+    "note": "仅供排序：R260-2 实测 131/191 真件本地五维与空壳桩件逐项相同，该尺本地侧无分辨率，禁当结论依据"
+   },
+   "candidates_n_in_matrix": 5,
+   "rank0_rel": "skill",
+   "same_class_candidates_found": 0
+  },
+  {
+   "slug": "A-prompt-better",
+   "verdict": "UPGRADE_CANDIDATE",
+   "priority_tier": "NEAR",
+   "overlap": "rank0 = nidhinjs/prompt-master：全仓实测 5 个文件（LICENSE、README.md 22550B、SKILL.md 33508B、references/patterns.md、references/templates.md），SKILL.md 正文整篇取回读过。它确实覆盖本地 Step 4「优化 Prompt」的方法层 —— 意图抽取 9 维表（Task / Target tool 均为 Critical=Always）、按目标工具转语法、角色与 few-shot 规则 —— 并带来本地没有的四块增量，行号可复算：第 22-23 行起的高虚构风险技法黑名单（Mixture of Experts / Tree of Thought / Graph of Thought / Universal Self-Consistency / prompt-chaining 在单 prompt 场景只准用户显式点名才用）、同段「Never request hidden chain-of-thought, private reasoning, or a verbatim reasoning trace」只索取结论与证据、第 442 行「Place it in the first 30% of the prompt so it survives attention decay in the target model」（本地只有「最重要的约束放在 </task> 之前（近因效应）」这一半）、第 469 行「### Agentic Output Warning」给面向 Cursor/Codex/Devin 的 prompt 附一段 scope lock 复核提示、第 482 行「Are the most critical constraints in the first 30%」与 token efficiency audit 六问交付前自检。 ｜ 本地有而候选没有：七步闭环 ② 环节衔接（R195，引用记忆侧 workflow_seven_step.md V1.0，并写明门禁项 G6 已于 2026-09-28 废止）、Step 3 的 Level 1/2/3 三级质量预判与 Level 2「只补缺失项不重写结构」、元原则双视角对齐（使用者视角 × AI 执行者视角找错位并填成 <done_criteria>/<anti_patterns>/<context>）、<done_criteria> 必须二元（「功能正常运行」不合格）、<anti_patterns> 与 OpenAI 第 5 条相反的规则（技术/执行类禁止项比正面指令更安全）、文件树 / 阶段检查点 / 上下文预算 / 交付物 vs 运行时产物排除规则、以及整个多模态专项：Lv1-Lv4 字数阈值激活密度、防膨胀裁剪（永不裁 Subject 与 Style）、MJ/SD/FLUX/国内平台语法与权重符号转写（单括号→比较、双括号→非常、三括号→极其）、图生图 ref_weight/ref_stop/redraw_scale 六类参考类型参数表、图片七维 F-SUBJ…F-TECH 与视频六维 F-DYNAMIC…F-TECH 反编译、以及衔接跳转表。 ｜ 定性 = 双向部分重叠，不是超集。换法：A-prompt-better 保留为骨干，把上面四块增量并入 Step 4 的策略选择表与 Step 5 展示前自检；丢什么：候选「Activates only when the user explicitly asks」的触发条件与「Do not ask more than 3 clarifying questions」的问答节奏必须丢弃（与本地「被调用后立即对当前 user query 执行优化、歧义默认列理解不反问」直接冲突），其 references/templates.md 与本地 XML 框架重叠的段落不搬，避免同一约束双写漂移。",
+   "license": "rank0 live license_spdx=「MIT」且仓根实测有 LICENSE 文件，与矩阵 claim「MIT」一致 ⇒ permissive，可合入上游正文（本件结论正是建立在可合入之上）。点名对照：top1 code-yeongyu/oh-my-openagent live「NOASSERTION」（claim 亦 NOASSERTION）= 无可信许可，按 R113-3 禁合入，即便它 skill_md_exact_n=60 也不得搬；top2 JuliusBrussee/caveman「Apache-2.0」可合入但属 token 压缩件、不同类。",
+   "maintenance": "rank0 pushed_at=2026-10-22、archived=false、stars=15177；在 12 个月窗口内，且全仓只有 5 个文件（blob=5），单文件 33508B，维护面读得穿、核得动 —— 不反对合并。",
+   "checked_candidates": [
+    {
+     "repo": "nidhinjs/prompt-master",
+     "role": "rank0",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-22",
+     "archived": false,
+     "tree_sha8": "49b3a724",
+     "readme_bytes": 22550,
+     "skill_md_bytes": 33508,
+     "blob_n": 5,
+     "http": "repos=200,readme=200,tree=200"
+    },
+    {
+     "repo": "code-yeongyu/oh-my-openagent",
+     "role": "top1",
+     "license_spdx": "NOASSERTION",
+     "pushed_at": "2026-10-28",
+     "archived": false,
+     "tree_sha8": "88a2b06e",
+     "readme_bytes": 10779,
+     "skill_md_n": 60,
+     "http": "repos=200,readme=200,tree=200"
+    },
+    {
+     "repo": "JuliusBrussee/caveman",
+     "role": "top2",
+     "license_spdx": "Apache-2.0",
+     "pushed_at": "2026-10-28",
+     "archived": false,
+     "tree_sha8": "9b68f7ed",
+     "readme_bytes": 22657,
+     "skill_md_n": 28,
+     "http": "repos=200,readme=200,tree=200"
+    }
+   ],
+   "local_skill_md_sha8": "01884cd1",
+   "evidence_cmd": "gh api repos/nidhinjs/prompt-master/contents/SKILL.md --jq .content | base64 -d | grep -n -e 'Mixture of Experts' -e 'Tree of Thought' -e 'first 30%' -e 'Agentic Output Warning' | head -n 6",
+   "verdict_basis_extra": "上面命令实跑命中第 22、23、442、469、482 行 ⇒ 四块增量可指行复算；判 UPGRADE_CANDIDATE 是「并入增量」而非整件替换 —— 候选无七步闭环、无三级预判、无 done_criteria/anti_patterns 相反规则、无任何多模态字段拆解与图生图参数表。",
+   "measured_at": "2026-10-28T17:51:10+08:00",
+   "group": 1,
+   "family": "a-meta",
+   "machine_sort_key": {
+    "delta_cmp4": -4,
+    "state": "候选更优",
+    "note": "仅供排序：R260-2 实测 131/191 真件本地五维与空壳桩件逐项相同，该尺本地侧无分辨率，禁当结论依据"
+   },
+   "candidates_n_in_matrix": 5,
+   "rank0_rel": "skill",
+   "same_class_candidates_found": null
+  },
+  {
+   "slug": "audio-deliverable-pipeline",
+   "verdict": "KEEP_LOCAL",
+   "priority_tier": "NEAR",
+   "overlap": "rank0 = EGSECDA/vocaloid-style-mv-pipeline：skills/vocaloid-style-mv/SKILL.md 正文取回，首段声明的输入是「a song from its audio file plus lyrics」、输出是「finished, showreel-quality lyric MV（16:9 master、9:16 vertical、JIZURA typography、Canvas2D/WebGL2 无头浏览器渲染、可选 Blender toon 3D、~70 个 beat-locked 镜头）」，frontmatter 还自带排除句「Not for editing existing footage or clip compilations」。方向与本件相反：它消费音频产出视频，不生产音频。 ｜ 逐条对本件三条链路：链路 A 的「local-tts 在本机 scripts/run.ps1 直接报 This skill requires an Intel AIPC platform.（exit 1）⇒ 不重试不换参数，立即降级 edge-tts，音色 zh-CN-XiaoxiaoNeural，按 4.6 字/秒估文稿、要 ≥20 秒就写到 125-135 字留余量、生成后用 mutagen 读 MP3(out).info.length，<20 必须返工不许口头估」；链路 B 的本地算法作曲（numpy 合成 → wave 写 16bit WAV → lameenc 192kbps 立体声，Karplus-Strong 拨弦 + 钢琴泛音列 + 梳状延迟、C–G/B–Am–F 四小节循环、BPM 84/92-100 与 C 宫五声音阶开关、命名铁律「MP3 路径变量别叫 MP3 否则遮蔽 mutagen.mp3.MP3 报 str object is not callable」）；核验层的波形判据（峰值 <0.1 或 RMS <0.005 判近乎静音 FAIL、频谱重心 <300Hz 判无效音频 FAIL、5 秒分段 RMS 有声占比不满判中段掉音 FAIL）与容器层的 ID3v2 syncsafe 长度 + 首帧同步字节 (b1 & 0xE0)==0xE0 校验 —— rank0 正文一项都没有：grep -c 对 edge-tts / lameenc / mutagen / RMS / spectrum 实测回 0。 ｜ 真碰到音频合成的是 top1 scenario-labs/skills 的 skills/scenario-audio/SKILL.md（真读正文：capability=txt2audio 覆盖 music / SFX / TTS 三车道、recommend 选模、可下载 MP3/WAV），但它整条链走 Scenario MCP，README 自述「price before spending」＝先报价再花钱，而本件的立身前提恰是「MiniMax 音乐 skill 需 API Key 未配置、海绵/Suno 需登录 ⇒ 本机不可用 ⇒ 本地算法作曲才是可靠交付路径」，且候选要求装 MCP 与账号，与「免 API Key、免联网出 MP3」互斥；它可作补充入口，不能换掉本件。top2 wiltodelta/remove-ai-watermarks 做的是去水印/C2PA 元数据清洗，属另一件事。 ｜ 定性与 rank0 的关系 = media 同族大仓里的 MV 制作件，与「音频交付物出片 + 双层核验」仅同门不同类。",
+   "license": "live：rank0「MIT」、top1「MIT」（其 scenario-audio/SKILL.md frontmatter 第 4 行自身也写 license: MIT）、top2「Apache-2.0」，三件均与矩阵 claim 一致、都是 permissive 可合入 ⇒ 本件 KEEP_LOCAL 与许可无关，是能力链与本机可用性结论不可替换。",
+   "maintenance": "rank0 pushed_at=2026-10-04、stars=230、archived=false：在 12 个月内（不构成 r114 §4 C4 不利），但社区极薄；top1 2026-10-27 / 1179（60 个 SKILL.md、test=195、有 CI 与 OpenSSF Scorecard 徽章）；top2 2026-10-28 / 6163。无一因失修出局。",
+   "checked_candidates": [
+    {
+     "repo": "EGSECDA/vocaloid-style-mv-pipeline",
+     "role": "rank0",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-04",
+     "archived": false,
+     "tree_sha8": "13b380da",
+     "readme_bytes": 19569,
+     "skill_md_paths": "skills/vocaloid-style-mv/SKILL.md",
+     "http": "repos=200,readme=200,tree=200"
+    },
+    {
+     "repo": "scenario-labs/skills",
+     "role": "top1",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-27",
+     "archived": false,
+     "tree_sha8": "d44410f0",
+     "readme_bytes": 68980,
+     "skill_md_n": 60,
+     "audio_skill": "skills/scenario-audio/SKILL.md",
+     "http": "repos=200,readme=200,tree=200"
+    },
+    {
+     "repo": "wiltodelta/remove-ai-watermarks",
+     "role": "top2",
+     "license_spdx": "Apache-2.0",
+     "pushed_at": "2026-10-28",
+     "archived": false,
+     "tree_sha8": "2b8390de",
+     "readme_bytes": 26583,
+     "skill_md_n": 3,
+     "http": "repos=200,readme=200,tree=200"
+    }
+   ],
+   "local_skill_md_sha8": "84c60221",
+   "evidence_cmd": "gh api repos/EGSECDA/vocaloid-style-mv-pipeline/contents/skills/vocaloid-style-mv/SKILL.md --jq .content | base64 -d | grep -c -i -e edge-tts -e lameenc -e mutagen -e RMS -e spectrum",
+   "verdict_basis_extra": "上述命令实跑回 0（rank0 正文不含 edge-tts / lameenc / mutagen / RMS / 频谱任何一项）⇒ 无 TTS 降级链、无免 ffmpeg 的 MP3 编码、无音频有效性双层核验，不换；本机不可用前提（无 API Key、禁付费 MCP 出音）也不允许把链路交给 scenario-labs。",
+   "measured_at": "2026-10-28T17:51:10+08:00",
+   "group": 1,
+   "family": "media",
+   "machine_sort_key": {
+    "delta_cmp4": -4,
+    "state": "候选更优",
+    "note": "仅供排序：R260-2 实测 131/191 真件本地五维与空壳桩件逐项相同，该尺本地侧无分辨率，禁当结论依据"
+   },
+   "candidates_n_in_matrix": 5,
+   "rank0_rel": "skill",
+   "same_class_candidates_found": null
+  },
+  {
+   "slug": "audit-runner-safe-aggregate",
+   "verdict": "KEEP_LOCAL",
+   "priority_tier": "NEAR",
+   "overlap": "rank0 = cloudflare/security-audit-skill：真读 skills/security-audit/SKILL.md，六阶段是 Reconnaissance（写 architecture.md 与 coverage-ledger.json）→ Coverage-led hunting（按 ledger 单元派孤立 hunter + coverage critic 找缺口）→ candidate validation → structured output → independent record verification → target-neutral reporting，双模式（Guidance / Full audit）加沙箱与 agent 写隔离纪律。与本地件唯一相邻处是「验真」这一步的精神，但管的对象不同：它审代码库漏洞，本地件审聚合 runner 自己的判定逻辑。 ｜ 本地件的四个硬点候选面零覆盖：① 反模式的具体形态 —— hard_fail 里第三项 (deviation in low and not any(k in out for k in KNOWN_OK)) 用整段输出做全局 any()，只要同段别处出现合法 [MISSING_DECL]，另一个脚本的真 [DEVIATION] 就被一票豁免（焚诀 R84 实录：audit_all.py 聚合 5 个脚本，behavior_core.md 的真偏差被 BOOTSTRAP 合法告警吞掉，报告 5/5 假绿）；② THE FIX 是 aggregate(results) 里 traceback 全局优先、再逐行挑带方括号标签的明细行、白名单只赦命中行，并写明三条关键原则（子脚本严禁只输出汇总计数行，否则 VERSION_DEVIATION_TOTAL=1 被正则误抓；逐行豁免不整段豁免；致命词全局安全但若白名单项本身含 error: 要抽出来单独处理）；③ 陷阱清单还包括子脚本只写 stderr 导致 runner 读不到、以及 rc!=0 且无明确 PASS 标签也要判 hard_fail；④ 验真必须两步注入回归（故意 sed 改基线版本号制造 [FAIL] 断言总评 FAIL，再还原注入合法 [MISSING_DECL] 断言 aggregate 返回空）。 ｜ 取证：该仓只有 22 个 blob，search/code 查 aggregation 实测 total_count=1，唯一命中 skills/security-audit/RESOURCE-EXHAUSTION-AND-AVAILABILITY.md，而那段正文讲的是 scratch/artifacts 目录描述符的九步 no-follow + fstat + link count==1 + byte limit 搬运，不是结果汇总判定。⇒ 属 audit 一词撞词。 ｜ 另两面：top1 JuliusBrussee/caveman 是「say less / read less」的 token 压缩件（README「33.2% fewer input tokens」），不涉判定聚合；top2 muratcankoylan/…Context-Engineering 的 skills/evaluation/SKILL.md 真读为 agent pipeline 的 deterministic checks / regression suites / quality gates / baseline comparison（评什么、怎么量），且其 frontmatter 自限「Do not activate for adjacent work owned by other skills」，并不写聚合 runner 的反掩盖范式 —— 与本地件是相邻而非覆盖。",
+   "license": "live rank0「MIT」（与 claim 一致）、top2「MIT」、top1「Apache-2.0」⇒ 三件许可都可合入，不构成阻碍；本件不合并的原因是候选没有可搬的聚合判定正文，而非许可（尤其不涉及任何 copyleft 上游）。",
+   "maintenance": "pushed_at=2026-09-14 距 2026-10-28 约六周，archived=false、stars=50737，在 12 个月窗口内 ⇒ 维护面合格；top2 2026-10-12 / 18235、top1 2026-10-28 / 115636。三个候选都不是因失修出局，出局原因是不同类。",
+   "checked_candidates": [
+    {
+     "repo": "cloudflare/security-audit-skill",
+     "role": "rank0",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-09-14",
+     "archived": false,
+     "tree_sha8": "c1c8a8c1",
+     "readme_bytes": 6950,
+     "skill_md_paths": "skills/security-audit/SKILL.md",
+     "blob_n": 22,
+     "http": "repos=200,readme=200,tree=200"
+    },
+    {
+     "repo": "JuliusBrussee/caveman",
+     "role": "top1",
+     "license_spdx": "Apache-2.0",
+     "pushed_at": "2026-10-28",
+     "archived": false,
+     "tree_sha8": "9b68f7ed",
+     "readme_bytes": 22657,
+     "skill_md_n": 28,
+     "http": "repos=200,readme=200,tree=200"
+    },
+    {
+     "repo": "muratcankoylan/Agent-Skills-for-Context-Engineering",
+     "role": "top2",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-12",
+     "archived": false,
+     "tree_sha8": "9ff0c991",
+     "readme_bytes": 24668,
+     "skill_md_n": 24,
+     "http": "repos=200,readme=200,tree=200"
+    }
+   ],
+   "local_skill_md_sha8": "4e91a621",
+   "evidence_cmd": "gh api 'search/code?q=repo:cloudflare/security-audit-skill+aggregation' --jq .total_count",
+   "verdict_basis_extra": "该命令实跑回 1，唯一路径是 RESOURCE-EXHAUSTION-AND-AVAILABILITY.md（沙箱资源耗尽文档，非聚合判定）⇒ rank0 无本件核心能力，不换；本件唯一真正的增量候选（ECC 的 verification-loop）不在本组候选面内。",
+   "measured_at": "2026-10-28T17:51:10+08:00",
+   "group": 1,
+   "family": "quality",
+   "machine_sort_key": {
+    "delta_cmp4": -4,
+    "state": "候选更优",
+    "note": "仅供排序：R260-2 实测 131/191 真件本地五维与空壳桩件逐项相同，该尺本地侧无分辨率，禁当结论依据"
+   },
+   "candidates_n_in_matrix": 5,
+   "rank0_rel": "skill",
+   "same_class_candidates_found": null
+  },
+  {
+   "slug": "dingtalk-minutes",
+   "verdict": "NO_OS_EQUIVALENT",
+   "priority_tier": "NEAR",
+   "overlap": "rank0 jarrodwatts/claude-hud 整仓 SKILL.md 计数实测 0（tree cf95a322），README 标题只有 Install / What You See / How It Works / Configuration，正文第一句写 A Claude Code plugin that shows what is happening，是状态栏 HUD；仓内 transcript 命中的 11 个路径全是 dist/transcript.js 与 tests/golden/transcript.jsonl，渲染的是 Claude 会话记录，与本地 SKILL.md Golden Route 表里的 dws minutes +transcript --id taskUuid --direction 1 --single-page（交付前查 data.direction/complete/pages）无一处对应。三个候选里唯二沾 meeting 字样的是 nexu-io/open-design 的 design-templates/meeting-notes/SKILL.md 与 plugins/_official/examples/meeting-notes/SKILL.md，读原文它只产出一张会议纪要 HTML 页（attendees / agenda checklist / action items table / next meeting footer），既不调 dws，也不含本地件的能力面：+search --scope all --page-all 完整性判据、+update --dry-run 标题预览、+summary 整文覆盖、+record-start/pause/resume/stop 真实录音控制、+mindmap 与 +speaker-insights 异步轮询与 --resume、+prepare-asr 热词、+share/+unshare/+apply-permission 的逐成员 ledger。RuView 侧 meeting 命中只有 v2/crates/.../meeting.rs 与 examples/ha-blueprints/05-meeting-lights-presence-mode.yaml（WiFi 会议室人在位检测）。属根本不同类，连名字撞词都算不上。",
+   "license": "候选 live license_spdx 全 permissive：claude-hud=MIT、open-design=Apache-2.0、RuView=MIT，按 R113-3 不构成禁合入条款；但候选面没有承载 dws minutes 契约的任何正文，无对象可合。矩阵对 rank0 的 claim（rel=skill license MIT skill_md_exact_n=0）与本次 live 实测一致（实测 SKILL.md 计数也是 0），不点名矛盾；本件不存在许可冲突，落点在候选数为 0 同类件。",
+   "maintenance": "三件 archived=false 且 pushed_at 全落在 12 个月窗口内（cutoff 2025-10-28）：claude-hud 2026-10-26 / 28968 stars、open-design 2026-10-28 / 104498 stars、RuView 2026-10-28 / 100466 stars ⇒ 按 r114 §3.1 维护面无一不利；不利项在能力面（无同类件），活跃度不足以造出一个等价上游。",
+   "checked_candidates": [
+    {
+     "repo": "jarrodwatts/claude-hud",
+     "role": "rank0",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-26",
+     "archived": false,
+     "tree_sha8": "cf95a322",
+     "readme_bytes": 26807
+    },
+    {
+     "repo": "nexu-io/open-design",
+     "role": "top1",
+     "license_spdx": "Apache-2.0",
+     "pushed_at": "2026-10-28",
+     "archived": false,
+     "tree_sha8": "bf5681a0",
+     "readme_bytes": 55425
+    },
+    {
+     "repo": "ruvnet/RuView",
+     "role": "top2",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-28",
+     "archived": false,
+     "tree_sha8": "3686bc77",
+     "readme_bytes": 76910
+    }
+   ],
+   "local_skill_md_sha8": "b007e956",
+   "verdict_basis_extra": "同类件=0：rank0 SKILL.md 计数 0 的取值命令 = gh api repos/jarrodwatts/claude-hud/git/trees/cf95a322?recursive=1 --jq \"[.tree[].path|select(endswith('SKILL.md'))]|length\" ；全量 meeting 命中仅 open-design 两个 HTML 纪要模板 = gh api repos/nexu-io/open-design/git/trees/bf5681a0?recursive=1 --jq .tree[].path | grep -E \"SKILL.md$\" | grep -Ei \"minute|transcri|asr|meeting|speaker|dingtalk|dws\"",
+   "measured_at": "2026-10-28T17:52:00+08:00",
+   "evidence_cmd": "echo \"claude-hud SKILL.md total = $(gh api repos/jarrodwatts/claude-hud/git/trees/cf95a322?recursive=1 --jq .tree[].path | grep \"SKILL.md$\" | wc -l | tr -d \" \")\"; echo \"open-design minutes-class SKILL.md = $(gh api repos/nexu-io/open-design/git/trees/bf5681a0?recursive=1 --jq .tree[].path | grep \"SKILL.md$\" | grep -Ei \"minute|transcri|asr|meeting|speaker|dingtalk\" | wc -l | tr -d \" \")\"; echo \"RuView minutes-class SKILL.md = $(gh api repos/ruvnet/RuView/git/trees/3686bc77?recursive=1 --jq .tree[].path | grep \"SKILL.md$\" | grep -Ei \"minute|transcri|asr|meeting|speaker|dingtalk\" | wc -l | tr -d \" \")\"",
+   "group": 2,
+   "family": "media",
+   "machine_sort_key": {
+    "delta_cmp4": -4,
+    "state": "候选更优",
+    "note": "仅供排序：R260-2 实测 131/191 真件本地五维与空壳桩件逐项相同，该尺本地侧无分辨率，禁当结论依据"
+   },
+   "candidates_n_in_matrix": 5,
+   "rank0_rel": "skill",
+   "same_class_candidates_found": 0
+  },
+  {
+   "slug": "frontend-asset-library",
+   "verdict": "KEEP_LOCAL",
+   "priority_tier": "NEAR",
+   "overlap": "先看本件的可执行面是什么：assets/registry.json 的 16 项在册资产（每条带 2026-10-21 本机实测 status/bytes/license）加 scripts/fetch_assets.py 的 search / get --into / verify / probe / audit 五动作，配 references/blocked-channels.md 记下 scrolltide DNS 失败、coolors 与 lottiefiles 与 prod.spline.design 全 403 后的 substitute 通道 —— 这是一套取数与版权核验器，不是风格说明。 拿这个尺量三个候选：rank0 zarazhangrui/frontend-slides 与 top1 wiltodelta/remove-ai-watermarks（图片视频去水印）都没碰过素材名册这一层，前者的价值在把 PPT 转成 HTML deck，与本件只共用 frontend 一词的词根。 唯一同题的是 top2 plugin87/ux-ui-agent-skills：它确实把本件点名的站点写成了卷，tree def84a70 里能翻到 design-systems/library/fontshare/DESIGN.md、design-systems/library/lottiefiles/DESIGN.md、design-systems/library/iconsiam/DESIGN.md 与 components/icon-system.md，重叠面止于该去哪些站找料；但在同一棵 tree 上 grep -Ei fetch|registry.json|cache|vendor|sha256|manifest 返回 0 行，说明下载器、缓存池 manifest、sha256 复算与 audit 全缺，本件工作流 ②③④⑥⑦ 五步无一落地。 本地有而候选没有的：把第三方许可逐资产记账的纪律（CC0 的 3dicons 可闭眼用、MIT 要留许可文本、GreenSock 免授权费但禁二次转售、Spline 专有、mobbin 禁入库），以及禁在技能正文写死盘符的可移植约束 —— 判定为部分撞题而非超集，不换。",
+   "license": "三候选 live license_spdx 全 permissive（rank0=MIT、top1 wiltodelta/remove-ai-watermarks=Apache-2.0、top2=MIT），按 R113-3 本可合入，许可不构成不换的理由。反向要点名一处：本件的授权纪律在候选侧零对应——CC0 的 3dicons 可闭眼用、MIT 要留许可文本、GreenSock 免授权费但禁二次转售、Spline 专有、mobbin 截图禁下载禁入库——这种逐资产许可判定正是合入候选会丢掉的东西。",
+   "maintenance": "rank0 pushed_at=2026-06-23（31463 stars，archived=false）虽在 12 个月窗口内但已约 4 个月无推，且与本件不同族；top2 pushed_at=2026-10-27（3042 stars）、top1 2026-10-28 活跃。三者无一触发 archived 或 pushed_at 早于 2025-10-28 的不利条款，所以 KEEP_LOCAL 的落点是能力覆盖缺口，不是活跃度。",
+   "checked_candidates": [
+    {
+     "repo": "zarazhangrui/frontend-slides",
+     "role": "rank0",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-06-23",
+     "archived": false,
+     "tree_sha8": "9906a34d",
+     "readme_bytes": 35554
+    },
+    {
+     "repo": "wiltodelta/remove-ai-watermarks",
+     "role": "top1",
+     "license_spdx": "Apache-2.0",
+     "pushed_at": "2026-10-28",
+     "archived": false,
+     "tree_sha8": "2b8390de",
+     "readme_bytes": 26583
+    },
+    {
+     "repo": "plugin87/ux-ui-agent-skills",
+     "role": "top2",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-27",
+     "archived": false,
+     "tree_sha8": "def84a70",
+     "readme_bytes": 32193
+    }
+   ],
+   "local_skill_md_sha8": "20b4bf41",
+   "evidence_cmd": "gh api repos/plugin87/ux-ui-agent-skills/git/trees/def84a70?recursive=1 --jq .tree[].path | grep -Ei \"fetch|registry\\.json|cache|vendor|sha256|manifest\" | wc -l",
+   "verdict_basis_extra": "不换的成本交代：候选唯一同题面（fontshare/lottiefiles 描述卷）不含取数器，合入等于多一套只读风格说明、仍要自己写 fetch_assets.py，故 KEEP_LOCAL。",
+   "measured_at": "2026-10-28T17:53:00+08:00",
+   "group": 2,
+   "family": "frontend",
+   "machine_sort_key": {
+    "delta_cmp4": -4,
+    "state": "候选更优",
+    "note": "仅供排序：R260-2 实测 131/191 真件本地五维与空壳桩件逐项相同，该尺本地侧无分辨率，禁当结论依据"
+   },
+   "candidates_n_in_matrix": 5,
+   "rank0_rel": "skill",
+   "same_class_candidates_found": null
+  },
+  {
+   "slug": "frontend-skill",
+   "verdict": "UPGRADE_CANDIDATE",
+   "priority_tier": "NEAR",
+   "overlap": "把三候选按能否替代本地这套审美约束逐个对：rank0 zarazhangrui/frontend-slides 的标题树是 Phase 0 Detect Mode 到 Phase 6 Share and Export，产物是 HTML 演示，与本地 landing page / website / app / prototype 的界面美学约束不同类，只有 frontend 词根与本地件撞名； top2 glitternetwork/pinme 的 7 个 SKILL.md 全是 pinme-auth / email / llm / r2 / share / uniwebpay，一条命令式部署件，完全不重叠； 真有增量的是 top1 Leonxlnx/taste-skill：frontmatter 写 Art direction for websites, distilled from a study of 247 curated gallery sites，正文第 1 步用 scripts/draw.mjs 从 20 个已研究方向发牌（对应本地 Working Model 的 visual thesis / content plan / interaction thesis 三件套），第 7 步 Gate 用 scripts/lint.mjs 加 scripts/inspect.mjs 在 1440/768/390 三档实测 headline line counts、contrast、overflow、fonts actually loaded，第 8 步 Look 用 references/critique.md 的 fourteen passes 跑三轮看-改循环，另用 references/app-screens.md 承接本地 Apps 一节——这些都是本地纯散文规则里没有的执行器； 本地有而候选没有的能力：Landing Pages 一节的 Canonical full-bleed rule（hero 必须 edge-to-edge、不得继承 page gutters 或 shared max-width）与 Viewport budget（sticky header 计入 hero，须写 calc(100svh - header-height)）——在候选 39537 B 正文上 grep -Eic 查 full-bleed|100svh|viewport budget 实测 0 命中；另有 agents/openai.yaml 的 Codex 侧接线。结论：部分重叠且候选在可执行判据链上有净增量，不是超集关系。",
+   "license": "top1 live license_spdx=MIT（现取 gh api repos/Leonxlnx/taste-skill 的 .license.spdx_id，LICENSE 正文首行 MIT License / Copyright (c) 2026 Leonxlnx）⇒ permissive，按 R113-3 可合入。两处点名：① rank0 与 top2 也都是 MIT，无 copyleft 阻断；② 本地件目录带的是 10775 B 的 Apache-2.0 LICENSE.txt，与 MIT 正文合入属许可混合，须两份 notice 并存、不能只留 MIT 一份，这是换件时要一并落地的动作。矩阵 claim 的 pushed=2026-10-24 与 live pushed=2026-10-28 有一天级偏差，本判定按卡片 live 面取值。",
+   "maintenance": "top1 archived=false、pushed_at=2026-10-28T06:03:44Z（仓内 .github/workflows/check-skills.yml 在册）、stars=103947，r114 §3.1 完全达标；rank0 pushed_at=2026-06-23 是本组最旧一档（约 4 个月无推，仍在 12 个月内）；top2 pushed_at=2026-09-12。维护面支持从 top1 换入。",
+   "checked_candidates": [
+    {
+     "repo": "zarazhangrui/frontend-slides",
+     "role": "rank0",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-06-23",
+     "archived": false,
+     "tree_sha8": "9906a34d",
+     "readme_bytes": 35554
+    },
+    {
+     "repo": "Leonxlnx/taste-skill",
+     "role": "top1",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-28",
+     "archived": false,
+     "tree_sha8": "12af471f",
+     "readme_bytes": 15088
+    },
+    {
+     "repo": "glitternetwork/pinme",
+     "role": "top2",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-09-12",
+     "archived": false,
+     "tree_sha8": "7822b050",
+     "readme_bytes": 11306
+    }
+   ],
+   "local_skill_md_sha8": "4a87c810",
+   "evidence_cmd": "gh api repos/Leonxlnx/taste-skill/contents/skills/taste-skill/SKILL.md --jq .content | base64 -d | grep -Eic \"full-bleed|100svh|viewport budget\"; gh api repos/Leonxlnx/taste-skill/git/trees/12af471f?recursive=1 --jq .tree[].path | grep -Ec \"^skills/taste-skill/(scripts|library|references)/\"",
+   "verdict_basis_extra": "换成什么/丢什么：把 taste-skill 的 scripts/draw.mjs+inspect.mjs+lint.mjs、library 下 directions/palettes/type/sections/heroes 等 31 个在册文件与 references/app-screens.md 合入，以本地件为壳；须保住本地独有的 Canonical full-bleed rule 与 Viewport budget 两条硬规则及 agents/openai.yaml，并保留 Apache-2.0 与 MIT 双 notice。",
+   "measured_at": "2026-10-28T18:01:00+08:00",
+   "group": 2,
+   "family": "frontend",
+   "machine_sort_key": {
+    "delta_cmp4": -2,
+    "state": "候选更优",
+    "note": "仅供排序：R260-2 实测 131/191 真件本地五维与空壳桩件逐项相同，该尺本地侧无分辨率，禁当结论依据"
+   },
+   "candidates_n_in_matrix": 5,
+   "rank0_rel": "skill",
+   "same_class_candidates_found": null
+  },
+  {
+   "slug": "frontend-slides",
+   "verdict": "KEEP_LOCAL",
+   "priority_tier": "NEAR",
+   "overlap": "先摆同源关系再谈打平：本件目录里的 .upstream 文件逐行写着 zarazhangrui/frontend-slides 与 path: plugins/frontend-slides/skills/frontend-slides，NOTICE 写 本技能含受控吸收的上游开源内容，按 MIT 许可保留署名，LICENSE 是 MIT License / Copyright (c) 2025 Zara Zhang —— 所以 rank0 不是可换的外部候选，它就是本件的上游本体，卡片 state=不可比 的成因在此。 等价性逐面实测：上游 SKILL.md 28187 B / 19 个标题，本地 20574 B / 23 个标题，双方共有 Core Principles、Design Aesthetics、Phase 0 到 Phase 6、6A Deploy to a Live URL (Vercel)、6B Export to PDF、Supporting Files；上游根目录同样有 viewport-base.css 与 scripts/deploy.sh、scripts/export-pdf.sh、scripts/extract-pptx.py，bold-template-pack 的 design.md 模板数上游 34 = 本地 34（两条 grep -cE 互验同值）⇒ 本地 Supporting Files 支持表逐条对得上，四维逐项打平在内容层面成立，不是打分尺的产物。 差异是两条互斥的适配路线而非强弱：本地走 Viewport Fitting Rules（每页 100vh/100dvh 加 overflow:hidden、clamp()、700/600/500px 断点）与 Content Density Limits Per Slide；上游走 Fixed Stage Rules（1920x1080 整台等比缩放、禁响应式重排）与 Content Density Modes（低密度讲授 / 高密度阅读两档）—— 而上游这 4 个独有标题已被本地整卷译写进 references/upstream-frontend-slides.md（grep -Eic 查 Fixed Stage|Content Density Modes|1920 命中 4 行），正文再以 分卷指针 挂着。 另两候选不构成换件理由：top1 的 skills/recommended/course-slides/SKILL.md 原文 delivered as a PowerPoint deck（交付真 .pptx），top2 的 skills/sn-ppt-standard/SKILL.md 原文 生成每页独立 HTML（1600×900）… present.html 并可选出 PPTX，二者交付契约与本件单文件 100vh deck 互斥。按确认打平口径收口：换过去拿到的是本地已经吸收过的同一份内容，且 rank0 pushed_at=2026-06-23 无新内容在等，故不得判候选更优。",
+   "license": "rank0 live license_spdx=MIT，本地 LICENSE 同为 MIT（Copyright (c) 2025 Zara Zhang）并带 NOTICE 署名 ⇒ 两侧同许可、无 copyleft、也无可信许可缺口，按 R113-3 许可不是本案变量。top1 genspark-ai/genoffice=Apache-2.0、top2 OpenSenseNova/SenseNova-Skills=MIT，均 permissive；卡片 matrix_claim 的 rank0 license=MIT 与 live 一致，无矛盾可点名。",
+   "maintenance": "rank0 archived=false、stars=31463、pushed_at=2026-06-23 —— 是本组 12 个候选面里最旧的一档，距 2026-10-28 约 4 个月无推；未触发 r114 §3.1 不利阈值（仍晚于 2025-10-28），但说明上游并无本地缺失的新增内容在等待跟进。top1 genspark-ai/genoffice pushed_at=2026-10-28 / 11155 stars 活跃，其 skills/recommended/course-slides/SKILL.md 原文写 delivered as a PowerPoint deck，交付契约是真 .pptx（skills/genoffice/SKILL.md 里 pptx|html|viewport 类字样命中 32 次，是 Office 套件侧的 pptx 编辑），与本件的零依赖单 HTML 不同交付物。top2 OpenSenseNova/SenseNova-Skills pushed_at=2026-10-26 / 5947 stars，8 个 sn-ppt-* 件（creative/dazzle/doctor/entry/standard/story/tools/workbench）里 sn-ppt-standard 原文写 生成每页独立 HTML（1600×900）、渲染 PNG、逐页讲稿、present.html，并按 static_postprocess 生成 PPTX —— 它也产 HTML，但形态是每页独立文件加 entry→story→standard 三段强制管线与 1600×900 定尺，和本件的单文件多页 deck、100vh 自适应路线互不兼容，属相邻能力而非可替换件。",
+   "checked_candidates": [
+    {
+     "repo": "zarazhangrui/frontend-slides",
+     "role": "rank0",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-06-23",
+     "archived": false,
+     "tree_sha8": "9906a34d",
+     "readme_bytes": 35554
+    },
+    {
+     "repo": "genspark-ai/genoffice",
+     "role": "top1",
+     "license_spdx": "Apache-2.0",
+     "pushed_at": "2026-10-28",
+     "archived": false,
+     "tree_sha8": "b239d2e5",
+     "readme_bytes": 50834
+    },
+    {
+     "repo": "OpenSenseNova/SenseNova-Skills",
+     "role": "top2",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-26",
+     "archived": false,
+     "tree_sha8": "0ee34f37",
+     "readme_bytes": 24319
+    }
+   ],
+   "local_skill_md_sha8": "411bc529",
+   "evidence_cmd": "gh api repos/zarazhangrui/frontend-slides/git/trees/9906a34d?recursive=1 --jq .tree[].path | grep -cE \"^bold-template-pack/templates/[^/]+/design.md$\"; find /d/global_skills/frontend-slides/bold-template-pack/templates -name design.md | wc -l; cat /d/global_skills/frontend-slides/.upstream",
+   "verdict_basis_extra": "确认打平的取值：design.md 模板数 34 对 34、上游独有 4 标题已被本地 references/upstream-frontend-slides.md 全量吸收（4 命中）、本地标题面反而更多（23 对 19，多出 Mode C 细则、Phase 6 踩坑清单、分卷指针与 1.1.0-1.3.0 断链修复版本史）⇒ 不换、不判候选更优，保留本地 100vh 路线，把上游 Fixed Stage 当作已登记的备选卷。",
+   "measured_at": "2026-10-28T18:02:00+08:00",
+   "group": 2,
+   "family": "office",
+   "machine_sort_key": {
+    "delta_cmp4": 0,
+    "state": "不可比",
+    "note": "仅供排序：R260-2 实测 131/191 真件本地五维与空壳桩件逐项相同，该尺本地侧无分辨率，禁当结论依据"
+   },
+   "candidates_n_in_matrix": 5,
+   "rank0_rel": "skill",
+   "same_class_candidates_found": null
+  },
+  {
+   "slug": "gstack",
+   "verdict": "NO_OS_EQUIVALENT",
+   "priority_tier": "NEAR+FAMILY",
+   "overlap": "本件的分量不在散文而在一个编译产物：SKILL.md 第 281-293 行 SETUP 段去找 .claude/skills/gstack/browse/dist/browse 这个可执行文件，此后全部能力是 $B 子命令 —— snapshot 的 -i/-a/-D/-C 与 @e/@c 引用体系、is visible|enabled|checked|editable|focused 断言、responsive 一次出 375x812 / 768x1024 / 1280x720 三档、cookie-import-browser 从 Comet/Chrome/Arc/Brave/Edge 拉真实登录态、chain 从 JSON stdin 跑长链、diff 比两个 URL、handoff 与 resume 把页面交还人工接管（第 538-627 行命令参考表逐条在册）。 再叠一层 18 个开发流程技能目录（/office-hours、/plan-ceo-review、/plan-eng-review、/document-release、/freeze、/guard、/gstack-config，正文 grep -c 查 office-hours|plan-ceo|freeze|guard 命中 8 行）以及 Boil-the-Lake 完整性原则、telemetry 同意流、Contributor Mode 上报模板。 三个候选全是 rel=family，即对面是同族大仓而非同类件，逐个写清实际关系：rank0 stablyai/orca 是一群 agent 的运行台桌面应用，tree 83771490 里 SKILL.md 共 11 个，列名是 orca-cli、orchestration、computer-use、jira-tickets、linear-tickets、orca-emulator、orca-emulator-android、orca-per-workspace-env、orca-jira、orca-linear、orca-chat-visuals；其中 computer-use/SKILL.md 原文自己写 Drives the GUI of a visible local app window 并补一句 Do not use for Orca embedded browser（orca-cli），与本地持久 headless Chromium 加断言式 QA 是相反的取舍。 top1 ruvnet/RuView 的 .claude/skills/browser/SKILL.md 实测只有 5286 B，是对第三方 agent-browser CLI 的薄封装（open / snapshot -i / click @e2 / fill / screenshot），grep -Eic 查 responsive|cookie-import|chain|handoff 命中 0 —— 这四个恰是本地独有面；且本机另有 D:/global_skills/agent-browser 与 browser-cdp、dogfood 三件专管这一形态。 top2 langgenius/dify 的 skills/difyctl/SKILL.md 原文是 Operate a Dify server through difyctl，属平台操作件。结论：候选面里没有一个能承载本件 109 个代码/md 文件与 2 MB 目录的同类件，重叠度=根本不同类。",
+   "license": "rank0 stablyai/orca=MIT、top1 ruvnet/RuView=MIT，按 R113-3 都可合入，但两者都没有承载本件 $B 命令面与 18 个流程技能的正文，无对象可合；top2 langgenius/dify 的 live license_spdx=NOASSERTION（现取 gh api repos/langgenius/dify --jq .license.spdx_id ⇒ NOASSERTION，与卡片同值）⇒ 按口径属无可信许可，禁合入，必须写明：即便将来想借它 .agents/skills/e2e-cucumber-playwright、frontend-testing 那类测试件正文，也不能并入上游正文进本仓。三件 archived 均 false，仅 dify 带单红旗许可。",
+   "maintenance": "三件 archived=false 且 pushed_at 全部极新：orca 2026-10-28T09:52:40Z / 108477 stars、RuView 2026-10-28 / 100466 stars、dify 2026-10-28T09:51:00Z / 159791 stars ⇒ 按 r114 §3.1 无一不利。但活跃度救不了同类件为 0：本件真上游由 .upstream 记为 garrytan/gstack（path: capy/skill/gstack），该仓根本没进候选集，卡片 matrix_verdict=NO_OS_CANDIDATE 与此吻合；SKILL.md 末行 1.3.0 与上游跟版：跟版补齐上游 captain.md 与 scripts/install.sh 也证明本地件跟的是 garrytan/gstack，不是 orca / RuView / dify。",
+   "checked_candidates": [
+    {
+     "repo": "stablyai/orca",
+     "role": "rank0",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-28",
+     "archived": false,
+     "tree_sha8": "83771490",
+     "readme_bytes": 17717
+    },
+    {
+     "repo": "ruvnet/RuView",
+     "role": "top1",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-28",
+     "archived": false,
+     "tree_sha8": "3686bc77",
+     "readme_bytes": 76910
+    },
+    {
+     "repo": "langgenius/dify",
+     "role": "top2",
+     "license_spdx": "NOASSERTION",
+     "pushed_at": "2026-10-28",
+     "archived": false,
+     "tree_sha8": "1f500e52",
+     "readme_bytes": 12132
+    }
+   ],
+   "local_skill_md_sha8": "f3477b0a",
+   "evidence_cmd": "gh api repos/stablyai/orca/git/trees/83771490?recursive=1 --jq .tree[].path | grep -E \"SKILL.md$\" | grep -Eic \"browse|dogfood|annotated|assertion\"; gh api repos/stablyai/orca/git/trees/83771490?recursive=1 --jq .tree[].path | grep -Eic \"office-hours|plan-ceo|document-release|gstack-config\"; gh api repos/ruvnet/RuView/contents/.claude/skills/browser/SKILL.md --jq .size",
+   "verdict_basis_extra": "同类件=0 的取值：上条 evidence_cmd 三段依次返回 0 / 0 / 5286（orca 无 headless-QA 同类件、无 gstack 工作流 bundle 目录名；RuView 的 browser 件仅 5.2 KB 薄封装）；本件真上游身份见 cat /d/global_skills/gstack/.upstream ⇒ garrytan/gstack，未进候选集。",
+   "measured_at": "2026-10-28T18:03:00+08:00",
+   "group": 2,
+   "family": "browser",
+   "machine_sort_key": {
+    "delta_cmp4": -4,
+    "state": "候选更优",
+    "note": "仅供排序：R260-2 实测 131/191 真件本地五维与空壳桩件逐项相同，该尺本地侧无分辨率，禁当结论依据"
+   },
+   "candidates_n_in_matrix": 5,
+   "rank0_rel": "family",
+   "same_class_candidates_found": 0
+  },
+  {
+   "slug": "html-ppt",
+   "verdict": "KEEP_LOCAL",
+   "priority_tier": "NEAR",
+   "overlap": "本地件的可交付能力就五样、SKILL.md「What the skill gives you」逐条列名：assets/themes 36 套 token 主题、templates/single-page 31 个带示例数据的布局、27 个 CSS 入场动画加 20 个 canvas FX、assets/runtime.js 的键盘运行时与 S 键磁卡演讲者视图（CURRENT/NEXT/SPEAKER SCRIPT/TIMER 四卡 + localStorage 记忆卡位）、scripts/render.sh 走无头 Chrome 出 PNG。候选 head 件（skills/codex-ppt/SKILL.md，ningzimu 家）的「Hard Constraints」把这五样整体判死：原文 \"Local drawing, Pillow, SVG, HTML/CSS/canvas screenshots ... are failure modes, not fallbacks\"，「Overview」再补一句 \"Do not use it when every textbox, chart, or shape must remain separately editable\" ⇒ 对面覆盖 0/5，是同一个交付目标下的互斥技术路线，既非超集也非部分重叠。 ｜ 同族的三条腿里唯一真对得上本地能力面的是 top1 op7418/guizang-ppt-skill：其 SKILL.md description 逐字「生成横向翻页网页 PPT（单 HTML 文件），含 WebGL 背景、演讲者视图、观众屏同步、讲稿备注、章节幕封」，正撞本地 references/presenter-mode.md 的磁卡 + 逐字稿一节与 XHS 图文模板；可惜它 live license=AGPL-3.0，按 R113-3 已结案口径出局。top2 nicobailon/visual-explainer（MIT）虽有 README「## Slide Deck Mode」，但其 description 的主语是 \"Generate self-contained HTML visual explanations for systems, code changes, plans, data\"，且正文 \"A terminal table of 4+ rows or 3+ columns becomes a page\" 表明它是图解/评审页工具，没有主题目录、没有逐字稿演讲者视图 ⇒ 结论：够同类的合不进（许可），能合进的不够同类（能力）。",
+   "license": "rank0 license_spdx=MIT（live 与矩阵 claim 一致）本可合入；但唯一真同类的 top1 guizang=AGPL-3.0、top3 dashi=AGPL-3.0，按 R113-3 结案口径（自建skill优化/memory/07-next-steps.md:2637「本仓禁合入 copyleft 上游正文（AGPL-3.0/GPL/LGPL/CC-BY-SA）」）直接出局；visual-explainer=MIT（其 SKILL.md frontmatter 亦自带 license: MIT）可合入但重心不同，不构成换件理由。",
+   "maintenance": "无一 archived。rank0 ningzimu pushed_at=2026-10-13T13:04:15Z、live 7395★；guizang 2026-08-07T03:58:08Z / 28829★（最同类的一条腿已 81 天无推）；dashi 2026-09-12T14:13:08Z / 10117★；visual-explainer 2026-10-20T06:47:07Z / 10663★。全部在 r114 §4 C4 的 12 个月窗内 ⇒ 维护面不构成不利，不利项落在「覆盖不成立 + 同类件许可封死」。",
+   "checked_candidates": [
+    {
+     "repo": "ningzimu/codex-ppt-skill",
+     "role": "rank0",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-13T13:04:15Z",
+     "archived": false,
+     "tree_sha8": "941dcafe",
+     "readme_bytes": 18492
+    },
+    {
+     "repo": "op7418/guizang-ppt-skill",
+     "role": "top1",
+     "license_spdx": "AGPL-3.0",
+     "pushed_at": "2026-08-07T03:58:08Z",
+     "archived": false,
+     "tree_sha8": "c91369c4",
+     "readme_bytes": 24832
+    },
+    {
+     "repo": "nicobailon/visual-explainer",
+     "role": "top2",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-20T06:47:07Z",
+     "archived": false,
+     "tree_sha8": "5f378868",
+     "readme_bytes": 29265
+    },
+    {
+     "repo": "chuspeeism/dashi-ppt-skill",
+     "role": "top3",
+     "license_spdx": "AGPL-3.0",
+     "pushed_at": "2026-09-12T14:13:08Z",
+     "archived": false,
+     "tree_sha8": "21dc7e5f",
+     "readme_bytes": 13414
+    },
+    {
+     "repo": "zarazhangrui/frontend-slides",
+     "role": "top4",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-06-23T20:08:19Z",
+     "archived": false,
+     "tree_sha8": "9906a34d",
+     "readme_bytes": 35554
+    }
+   ],
+   "local_skill_md_sha8": "0e6aba9f",
+   "evidence_cmd": "gh api repos/ningzimu/codex-ppt-skill/contents/skills/codex-ppt/SKILL.md --jq .content | base64 -d | grep -n \"generated image\\|failure modes\\|separately editable\"; gh api repos/op7418/guizang-ppt-skill --jq \"[.license.spdx_id,.pushed_at,.stargazers_count]|@tsv\"",
+   "verdict_basis_extra": "不换：rank0 与本地件在 SKILL.md 正文层面互斥（自述禁 HTML/CSS 截图与 python-pptx 布局），唯一同类 guizang/dashi 均 AGPL-3.0 触 R113-3 禁合线；machine_score 的 delta_cmp4=-4 只当排序键，未进结论。",
+   "measured_at": "2026-10-28T17:52:00+08:00",
+   "group": 3,
+   "family": "office",
+   "machine_sort_key": {
+    "delta_cmp4": -4,
+    "state": "候选更优",
+    "note": "仅供排序：R260-2 实测 131/191 真件本地五维与空壳桩件逐项相同，该尺本地侧无分辨率，禁当结论依据"
+   },
+   "candidates_n_in_matrix": 5,
+   "rank0_rel": "skill",
+   "same_class_candidates_found": null
+  },
+  {
+   "slug": "openclaw-dual-gate-quality-audit",
+   "verdict": "KEEP_LOCAL",
+   "priority_tier": "NEAR",
+   "overlap": "rank0 cloudflare/security-audit-skill 与本地只撞一个 audit 词：其 SKILL.md 首段是 \"Find vulnerabilities that violate a real trust boundary, then give owners the source evidence, safe reproduction, priority, and smallest effective fix\"，六阶段为 reconnaissance → coverage-led hunting → candidate validation → structured output → record verification → target-neutral reporting；本件要的是「被审方先自评、第三方逐文件复评、抓到虚高即返工重测到双门禁达标」这条评分回路。实测该候选全套语料（本地拉下的 6 份正文共 101170 B）grep -ric \"self-score|self assessment|自评\" = 0 ⇒ 没有任何一轮\"让被审对象给自己打分\"的结构，零覆盖、不同子领域。 ｜ 候选面里唯一同机制的是 top2 wanshuiyin/Auto-claude-code-research-in-sleep 的 skills/auto-review-loop/SKILL.md：第 3 行 description 写 \"Implements fixes and re-reviews until a policy-approved positive assessment or max rounds is reached\"，第 25 行 MAX_ROUNDS = 4，确实对上本地 Step 6「最多 5 轮 + 达标即停」。但其评审对象是 ML 研究稿（第 415 行与第 479 行提示词原文 \"Score this work 1-10 for a top venue\"），且第 439-440 行明写反机制：\"Where a rubric or checklist is genuinely needed, do not over-mechanize judgement. A clear sentence a human reads beats a scored table nobody\" —— 而本件的立身段是铁律 #6 维度锁定与 Step 2 三阶段检测（名称集合/数量/顺序/语义漂移四层判定，FAIL 即本轮自评作废）、OC 虚高模式识别（阈值：总分差 >10 且 ≥60% 维度单差 >5 判乐观偏差型）、openclaw CLI 模板（--session-key/--thinking medium/--timeout 600/--json）。实测该候选 75537 B 正文 grep -ci \"dimension\" = 0 ⇒ 它既无维度锁定、也无自评-独立双门禁对照面：部分重叠（仅\"循环评审到收敛\"这一层），换入即丢本件全部独占段。",
+   "license": "rank0 MIT、top1 thedotmack/claude-mem=Apache-2.0、top2 ARIS=MIT、top3 iOfficeAI/AionUi=Apache-2.0、top4 mvanhorn/last30days-skill=MIT（live 逐一核过）⇒ 本组无 copyleft 触 R113-3 禁合线（自建skill优化/memory/07-next-steps.md:2637），许可不是本件的否决项；否决项在覆盖不成立。另 claude-mem 的 openclaw/SKILL.md 实读是 \"Claude-Mem OpenClaw Plugin — Setup Guide\"（装插件的 curl 一行），与本件同前缀词（openclaw）不同用途。",
+   "maintenance": "五候选 archived 全 false。rank0 cloudflare pushed_at=2026-09-14T19:29:02Z / live 50764★；top2 ARIS（唯一同机制件）2026-10-24T15:48:19Z / 18213★；claude-mem 2026-10-28T05:41:16Z / 103839★；AionUi 2026-10-23T14:21:51Z / 33846★；last30days 2026-10-27T09:23:11Z / 65739★ ⇒ 均在 12 个月窗内，维护面对候选有利，但候选更活跃不等于覆盖本件能力。",
+   "checked_candidates": [
+    {
+     "repo": "cloudflare/security-audit-skill",
+     "role": "rank0",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-09-14T19:29:02Z",
+     "archived": false,
+     "tree_sha8": "c1c8a8c1",
+     "readme_bytes": 6950
+    },
+    {
+     "repo": "thedotmack/claude-mem",
+     "role": "top1",
+     "license_spdx": "Apache-2.0",
+     "pushed_at": "2026-10-28T05:41:16Z",
+     "archived": false,
+     "tree_sha8": "8e91e3ab",
+     "readme_bytes": 20457
+    },
+    {
+     "repo": "wanshuiyin/Auto-claude-code-research-in-sleep",
+     "role": "top2",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-24T15:48:19Z",
+     "archived": false,
+     "tree_sha8": "18bceb3c",
+     "readme_bytes": 236002
+    },
+    {
+     "repo": "iOfficeAI/AionUi",
+     "role": "top3",
+     "license_spdx": "Apache-2.0",
+     "pushed_at": "2026-10-23T14:21:51Z",
+     "archived": false,
+     "tree_sha8": "11cd2a9a",
+     "readme_bytes": 0
+    },
+    {
+     "repo": "mvanhorn/last30days-skill",
+     "role": "top4",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-27T09:23:11Z",
+     "archived": false,
+     "tree_sha8": "e06af25a",
+     "readme_bytes": 31812
+    }
+   ],
+   "local_skill_md_sha8": "27dcc108",
+   "evidence_cmd": "gh api repos/cloudflare/security-audit-skill/contents/skills/security-audit/SKILL.md --jq .content | base64 -d | grep -n \"trust boundary\\|Operating modes\"; gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/auto-review-loop/SKILL.md --jq .content | base64 -d | grep -n \"re-reviews until\\|MAX_ROUNDS = \\|top venue\\|over-mechanize\"; gh api repos/wanshuiyin/Auto-claude-code-research-in-sleep/contents/skills/auto-review-loop/SKILL.md --jq .content | base64 -d | grep -ic \"dimension\"",
+   "verdict_basis_extra": "不换（候选无一覆盖本件评分回路）：rank0 属另一子领域（代码漏洞审计，零交集，只撞 audit 词）；唯一同机制的 ARIS auto-review-loop 是「研究稿外部评审」，正文 dimension 计数实测为 0、且第 439-440 行明文反对机械化 rubric，与铁律 #6 维度锁定相反 ⇒ 换入即丢三阶段维度检测、虚高模式阈值与 openclaw CLI 模板。iOfficeAI/AionUi 无 README.md（gh contents 回 HTTP 404 Not Found），readme_bytes 记 0，其仓库元数据另经 repos 端点回 200 取到。",
+   "measured_at": "2026-10-28T17:54:30+08:00",
+   "group": 3,
+   "family": "a-meta",
+   "machine_sort_key": {
+    "delta_cmp4": -4,
+    "state": "候选更优",
+    "note": "仅供排序：R260-2 实测 131/191 真件本地五维与空壳桩件逐项相同，该尺本地侧无分辨率，禁当结论依据"
+   },
+   "candidates_n_in_matrix": 5,
+   "rank0_rel": "skill",
+   "same_class_candidates_found": null
+  },
+  {
+   "slug": "ppt-master",
+   "verdict": "KEEP_LOCAL",
+   "priority_tier": "NEAR",
+   "overlap": "rank0 ningzimu/codex-ppt-skill 与本地件是同一需求（做 PPT）下的反向工程路线：本地 SKILL.md 的「Authored Expression Range」写 \"Geometry — 187 Office presets, Boolean merge, connectors, freeform, page-field and outline-carrier composition\"，「Vocabulary」表把 pptx_structure.mode 定义为 flat/structured 的原生打包路由，「Mandatory Load Order」路由表含 Edit Native PPTX → workflows/edit-native-pptx.md；而 rank0 的 skills/codex-ppt/SKILL.md 把 \"python-pptx/PptxGenJS layouts\" 列为 failure mode，只出整页生成图。 ⇒ 本地独占的原生可编辑 PPTX 三能力（Edit Native、Create Template 的 Brand/Style/Layout/Deck 工作区、Beautify 已有 PPTX）它一条也没有，反过来说本地也不含它的「每页一张 gpt-image 一致性大图 + slide subagent 分发」链路：两份正文互为排除项，重叠只在「最终都能交付一个 .pptx」这一结果层。 ｜ 同类件全被许可封死或不换题：top2 chuspeeism/dashi-ppt-skill 的 skills/dashi-ppt/SKILL.md 第 3 行 description 写「生成可离线打开、可在浏览器编辑的 HTML 演示,支持导出 PPTX / PDF 文件」（候选面里唯一真带 PPTX 出口的一条）但 live license=AGPL-3.0；top3 Akxan/ppt-agent-skill 的 SKILL.md 第 3 行 description 写 \"输出高质量 HTML 格式演示文稿\"，产出是 HTML 不是原生 PPTX，且其五步流（需求调研→资料搜集→大纲→策划稿→设计稿）本地 workflows/generate-pptx.md 已覆盖；本地正文另自证真正的增量不在候选面而在上游：「上游同步状态：真上游 hugohe3/ppt-master（MIT ~64k★）当前 v6.7.2，本地 6.6.0 落后 3 版」——本次实测上游已 v6.7.3（2026-10-22 发布），该回拉属专窗分卷另一通道，五个候选无一承载。",
+   "license": "rank0 MIT（live 与矩阵 claim 一致，可合入但无覆盖）；top1 op7418/guizang-ppt-skill=AGPL-3.0、top2 chuspeeism/dashi-ppt-skill=AGPL-3.0 ⇒ 按 R113-3 结案口径（自建skill优化/memory/07-next-steps.md:2637「本仓禁合入 copyleft 上游正文」）两条 PPTX/HTML 同类腿直接出局；top4 code-yeongyu/oh-my-openagent live=NOASSERTION ⇒ 无可信许可，同条禁合；仅 top3 Akxan=MIT 可合入而不等价（HTML 产出）。本地件自证许可为 MIT（frontmatter metadata.license: \"MIT\"，copyright \"Copyright (c) 2025-2026 Hugo He\"），换入任一 AGPL 件会把本仓许可基线拖成冲突。",
+   "maintenance": "候选无 archived。rank0 2026-10-13T13:04:15Z / 7395★；guizang 2026-08-07T03:58:08Z / 28829★；dashi 2026-09-12T14:13:08Z / 10117★；Akxan 2026-05-11T00:47:17Z / 169★ 且不在 12 个月窗内（r114 §4 C4 判不利，170 天无推 + 星标量级不足以支撑长期维护）；oh-my-openagent 2026-10-28T09:51:13Z / 70425★ 但许可 NOASSERTION。参照面：真上游 hugohe3/ppt-master live 69936★、pushed 2026-10-28T07:07:43Z、release v6.7.3 于 2026-10-22 —— 比四个候选都活跃，说明本件该盯的是上游而不是候选。",
+   "checked_candidates": [
+    {
+     "repo": "ningzimu/codex-ppt-skill",
+     "role": "rank0",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-13T13:04:15Z",
+     "archived": false,
+     "tree_sha8": "941dcafe",
+     "readme_bytes": 18492
+    },
+    {
+     "repo": "op7418/guizang-ppt-skill",
+     "role": "top1",
+     "license_spdx": "AGPL-3.0",
+     "pushed_at": "2026-08-07T03:58:08Z",
+     "archived": false,
+     "tree_sha8": "c91369c4",
+     "readme_bytes": 24832
+    },
+    {
+     "repo": "chuspeeism/dashi-ppt-skill",
+     "role": "top2",
+     "license_spdx": "AGPL-3.0",
+     "pushed_at": "2026-09-12T14:13:08Z",
+     "archived": false,
+     "tree_sha8": "21dc7e5f",
+     "readme_bytes": 13414
+    },
+    {
+     "repo": "Akxan/ppt-agent-skill",
+     "role": "top3",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-05-11T00:47:17Z",
+     "archived": false,
+     "tree_sha8": "01825dee",
+     "readme_bytes": 19051
+    },
+    {
+     "repo": "code-yeongyu/oh-my-openagent",
+     "role": "top4",
+     "license_spdx": "NOASSERTION",
+     "pushed_at": "2026-10-28T09:51:13Z",
+     "archived": false,
+     "tree_sha8": "4c87d16a",
+     "readme_bytes": 10779
+    }
+   ],
+   "local_skill_md_sha8": "5e294a4c",
+   "evidence_cmd": "gh api repos/Akxan/ppt-agent-skill/contents/SKILL.md --jq .content | base64 -d | head -c 600; gh api repos/chuspeeism/dashi-ppt-skill --jq \"[.license.spdx_id,.pushed_at]|@tsv\"; gh api repos/hugohe3/ppt-master/releases/latest --jq \"[.tag_name,.published_at]|@tsv\"",
+   "verdict_basis_extra": "不换：五条候选里 2 条 AGPL-3.0、1 条 NOASSERTION 触 R113-3 禁合线，1 条（Akxan）超 12 个月窗且只出 HTML，rank0 与本地在 SKILL.md 正文层面互斥（原生 PPTX vs 整页生成图）。真增量 = 上游 hugohe3 v6.7.2→v6.7.3 回拉，走本地件已登记的专窗分卷，不属本件换件判定。",
+   "measured_at": "2026-10-28T17:56:20+08:00",
+   "group": 3,
+   "family": "office",
+   "machine_sort_key": {
+    "delta_cmp4": -4,
+    "state": "候选更优",
+    "note": "仅供排序：R260-2 实测 131/191 真件本地五维与空壳桩件逐项相同，该尺本地侧无分辨率，禁当结论依据"
+   },
+   "candidates_n_in_matrix": 5,
+   "rank0_rel": "skill",
+   "same_class_candidates_found": null
+  },
+  {
+   "slug": "security-audit",
+   "verdict": "UPGRADE_CANDIDATE",
+   "priority_tier": "NEAR",
+   "overlap": "rank0 cloudflare/security-audit-skill 的 skills/security-audit/SKILL.md 与本地件同类（同为逐阶段代码安全审计），且两处确有本地没有的增量：执行隔离 —— \"Run target-controlled builds, tests, processes, browsers, emulators, fuzzers ... only inside an OS-enforced sandbox\" 配 no external network / 空环境启动 / per-file 字节上限，加上 \"The parent creates and is the only writer of shared run files\" 的 write isolation（scratch 与 artifacts 双根、no-follow 逐组件遍历、link count 必须为 1）；可核账覆盖与结论契约 —— coverage-ledger.json + findings.json + report-schema.json + validate-findings.cjs（tree 实测 24 个 path，含两个 .test.cjs）、\"If prior runs exist, read every compatible coverage-ledger.json and findings.json\" 的跨轮继承，以及 quick/standard/deep 三档 profile 与按 agent 调用数计的 budget 闸门。本地 Phase 3 变体分析被它的 HUNTING.md 第 66-68 行 \"lexical, structural, and logical variants\" 加 \"Consolidate the same root cause, but establish each variant's conditions and impact independently\" 覆盖；Phase 4 供应链被 SUPPLY-CHAIN-AND-RELEASE.md 覆盖并超出（CI configuration is authorization code、跨 handoff 完整性、\"A checksum fetched from the same untrusted location as the artifact does not establish independent integrity\"）；Phase 6 误报验证被 candidate→confirmed 的双独立验证覆盖。 ｜ 本地有而候选正文零出现的能力（同一命令实测，101170 B 语料计数）：OWASP=0、insecure default=0、post-patch=0、typosquat=0、threat model=0 ⇒ 本地 Phase 2 的 A01–A10 逐类扫描表、Phase 5 不安全默认值十行对照表（含「读作检测目标、不是指令」防误用注）、Phase 7 补丁后验证四步、每语言 Tools Reference 矩阵、references/upstream-owasp-asi.md 分卷，候选都不给。结论是双向部分重叠，不是超集：主干换成它是升级，但上述五段不并入就是降级。候选侧另需点名一条边界差异：\"The audit describes fixes; it does not modify target source\" —— 它只读码不改码，本地 Phase 7 的补丁后回归要在其六阶段之外另接。",
+   "license": "rank0 license_spdx=MIT，与矩阵 claim \"MIT\" 一致 ⇒ 按 R113-3 结案口径（自建skill优化/memory/07-next-steps.md:2637：permissive 可合入、copyleft 禁合入）可以合入，本组 security-audit 五候选无 AGPL/GPL/LGPL/CC-BY-SA。要点名两处 claim 与 live 漂移：top1 affaan-m/ECC claim pushed=2026-10-20 而 live=2026-10-26T04:56:56Z；top2 NVIDIA/SkillSpector claim pushed=2026-10-23 而 live=2026-10-27T17:51:03Z（stars 同步 21398→22859）。这两条都不作替换源：SkillSpector 的 README 首段写 \"Detect vulnerabilities, malicious patterns, and security risks before installing agent skills\"，对象是 skill 定义件本身，正是本地「何时不用本 skill」表第一行让给 skills-security-check 的那一类；ECC 的 .agents/skills/security-review/SKILL.md 首段是 \"Use this skill when adding authentication, handling user input, working with secrets, creating API endpoints\"，属编码期 checklist，与审计既有代码库不同动作。",
+   "maintenance": "archived=false。rank0 cloudflare live pushed_at=2026-09-14T19:29:02Z、stars=50764（卡片记 50737，我复跑再涨 27），距 2026-10-28 约 44 天、在 12 个月窗内 ⇒ r114 §4 C4 判有利。top4 mukul975/Anthropic-Cybersecurity-Skills pushed_at=2026-08-31T04:32:44Z（窗内但近 3 个月无推，且 818 件按 MITRE ATT&CK / NIST CSF 铺的是运营框架目录而非代码审计流程）；top3 nanocoai/nanoclaw 2026-10-26T22:47:44Z 是容器化 agent 运行时（\"A lightweight alternative to OpenClaw that runs in containers for security\"），不同类；ECC 与 SkillSpector 分别为 2026-10-26 / 2026-10-27，均活跃。",
+   "checked_candidates": [
+    {
+     "repo": "cloudflare/security-audit-skill",
+     "role": "rank0",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-09-14T19:29:02Z",
+     "archived": false,
+     "tree_sha8": "c1c8a8c1",
+     "readme_bytes": 6950
+    },
+    {
+     "repo": "affaan-m/ECC",
+     "role": "top1",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-26T04:56:56Z",
+     "archived": false,
+     "tree_sha8": "25278e7d",
+     "readme_bytes": 115595
+    },
+    {
+     "repo": "NVIDIA/SkillSpector",
+     "role": "top2",
+     "license_spdx": "Apache-2.0",
+     "pushed_at": "2026-10-27T17:51:03Z",
+     "archived": false,
+     "tree_sha8": "e7172462",
+     "readme_bytes": 58475
+    },
+    {
+     "repo": "nanocoai/nanoclaw",
+     "role": "top3",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-26T22:47:44Z",
+     "archived": false,
+     "tree_sha8": "acc2b1c8",
+     "readme_bytes": 18669
+    },
+    {
+     "repo": "mukul975/Anthropic-Cybersecurity-Skills",
+     "role": "top4",
+     "license_spdx": "Apache-2.0",
+     "pushed_at": "2026-08-31T04:32:44Z",
+     "archived": false,
+     "tree_sha8": "54a79883",
+     "readme_bytes": 31179
+    }
+   ],
+   "local_skill_md_sha8": "e3f38afe",
+   "evidence_cmd": "gh api repos/cloudflare/security-audit-skill --jq \"[.license.spdx_id,.pushed_at,.stargazers_count,.archived]|@tsv\"; for f in SKILL.md HUNTING.md VALIDATION-AND-REPORTING.md ATTACK-CLASSES.md SUPPLY-CHAIN-AND-RELEASE.md RECONNAISSANCE.md; do gh api repos/cloudflare/security-audit-skill/contents/skills/security-audit/$f --jq .content | base64 -d; done | grep -icE \"owasp|insecure default|post-patch|typosquat\"",
+   "verdict_basis_extra": "换成 cloudflare 六阶段主干（OS 沙箱 + write isolation + coverage-ledger/findings.json 与 validate-findings.cjs 的机器校验 + prior-run 账本继承 + quick/standard/deep 与 agent-budget 闸门 + AI-AND-LLM/MEMORY-SAFETY-AND-BINARY 等攻击类分卷），许可 MIT 可合入；丢的是本地 Phase2 OWASP A01–A10 逐类表、Phase5 不安全默认值表、Phase7 补丁后验证、每语言工具矩阵、upstream-owasp-asi 分卷（实测候选全文四词各 0 命中）⇒ 须把这五段并入新主干方为升级，纯替换即降级。machine_score 的 delta_cmp4=-4/state=候选更优 未用作结论依据。",
+   "measured_at": "2026-10-28T18:00:10+08:00",
+   "group": 3,
+   "family": "quality",
+   "machine_sort_key": {
+    "delta_cmp4": -4,
+    "state": "候选更优",
+    "note": "仅供排序：R260-2 实测 131/191 真件本地五维与空壳桩件逐项相同，该尺本地侧无分辨率，禁当结论依据"
+   },
+   "candidates_n_in_matrix": 5,
+   "rank0_rel": "skill",
+   "same_class_candidates_found": null
+  },
+  {
+   "slug": "vp-perspective-audit",
+   "verdict": "NO_OS_EQUIVALENT",
+   "priority_tier": "NEAR",
+   "overlap": "本件 matrix_verdict=FAMILY_ONLY，逐条看候选面里没有一件做「发任务前预判 agent 行为链」这件事：rank0 cloudflare/security-audit-skill 与本地只撞 audit 一词，它 SKILL.md 的 \"Platform terminology\" 节虽然定义了 Parent / Task tool / research agent / general agent 四种 delegated 角色，但用途是把 hunter 派去 \"find source-grounded security invariant failures\"（HUNTING.md 第 32 行），审的对象是代码信任边界，不是某个 agent 的决策栈；top1 affaan-m/ECC 与 top2 morluto/rea、top3 NousResearch/hermes-agent、top4 langgenius/dify 四件 matrix_claim.rel=family（同族大仓，非同类件）。 ｜ ECC 1062 个 SKILL.md 路径里按名字筛 perspect|mental-model|workstation|employee|behavior-chain 命中 0；hermes-agent 211 个 SKILL.md 同一筛法命中 0；最接近的是 ECC 的 .agents/skills/agent-introspection-debugging/SKILL.md，但它 description 写 \"Structured self-debugging workflow for AI agent failures ... Use when an agent run fails and you need a reproducible diagnosis instead of a retry\" —— 事后诊断单次跑失败，与本地的三层递进（L1 工位快照→L2 决策优先级栈/冲突仲裁/降级策略→L3 指令行为链推演）、12 项巡检清单（死链引用 P0、过时平台名 P1、跨agent行为冲突 P0）、以及跨 agent 写冲突预判方向相反。本地独占且候选全无的还包括本机平台路径名册（OC/WB/TC 的 USER.md 与 AGENTS.md、D:\\global_memory\\core\\BOOTSTRAP.md 注入链）与「何时不用本 skill」负向边界表。",
+   "license": "五候选 live 许可：rank0 MIT、ECC=MIT、rea=MIT、hermes-agent=MIT、dify=NOASSERTION。前四件 permissive 按 R113-3 已结案口径（memory/07-next-steps.md:2637）不构成合入障碍，langgenius/dify 因 NOASSERTION 落「无可信许可 ⇒ 禁合入」；也就是说本件不是被许可挡住的，而是可合入的那几件根本没有对应能力，无人可换。dify 的 7 个 SKILL.md 全是本仓工程件（.agents/skills/backend-code-review、frontend-testing、how-to-write-component、skills/difyctl 等），与本件无关。",
+   "maintenance": "archived 全 false 且全部活跃：rea pushed_at=2026-10-28T09:37:34Z / 399510★、hermes-agent 2026-10-28T09:48:19Z / 257894★、ECC 2026-10-26T04:56:56Z / 291250★、dify 2026-10-28T09:51:00Z / 159791★、rank0 cloudflare 2026-09-14T19:29:02Z / 50764★ —— 按 r114 §4 C4 无一条不利，候选面再活跃也无从替换：维护状态在本件不构成判别项，判据完全落在「候选无一同类」。",
+   "checked_candidates": [
+    {
+     "repo": "cloudflare/security-audit-skill",
+     "role": "rank0",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-09-14T19:29:02Z",
+     "archived": false,
+     "tree_sha8": "c1c8a8c1",
+     "readme_bytes": 6950
+    },
+    {
+     "repo": "affaan-m/ECC",
+     "role": "top1",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-26T04:56:56Z",
+     "archived": false,
+     "tree_sha8": "25278e7d",
+     "readme_bytes": 115595
+    },
+    {
+     "repo": "morluto/rea",
+     "role": "top2",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-28T09:37:34Z",
+     "archived": false,
+     "tree_sha8": "60bad9ed",
+     "readme_bytes": 29447
+    },
+    {
+     "repo": "NousResearch/hermes-agent",
+     "role": "top3",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-28T09:48:19Z",
+     "archived": false,
+     "tree_sha8": "8acb7f65",
+     "readme_bytes": 17490
+    },
+    {
+     "repo": "langgenius/dify",
+     "role": "top4",
+     "license_spdx": "NOASSERTION",
+     "pushed_at": "2026-10-28T09:51:00Z",
+     "archived": false,
+     "tree_sha8": "1f500e52",
+     "readme_bytes": 12132
+    }
+   ],
+   "local_skill_md_sha8": "4b12f2e1",
+   "evidence_cmd": "T=$(gh api repos/affaan-m/ECC/git/trees/25278e7d?recursive=1 --jq \".tree[].path\" | grep \"SKILL.md$\"); echo -n \"ECC_n=\"; printf \"%s\" \"$T\" | grep -c \"SKILL.md$\"; echo -n \"ECC_sameclass=\"; printf \"%s\" \"$T\" | grep -icE \"perspect|mental-model|workstation|employee|behavior-chain\"; H=$(gh api \"repos/NousResearch/hermes-agent/git/trees/main?recursive=1\" --jq \".tree[].path\" | grep \"SKILL.md$\"); echo -n \"HERMES_n=\"; printf \"%s\" \"$H\" | grep -c \"SKILL.md$\"; echo -n \"HERMES_sameclass=\"; printf \"%s\" \"$H\" | grep -icE \"perspect|mental-model|workstation|behavior-chain\"; gh api repos/morluto/rea/git/trees/60bad9ed?recursive=1 --jq \".tree[].path\" | grep \"SKILL.md$\"",
+   "verdict_basis_extra": "同类件计数=0：ECC 1062 个 SKILL.md 里 perspect|mental-model|workstation|employee|behavior-chain 命中 0，hermes-agent 211 个命中 0，rea 只有 5 个（reverse-engineer-anything / rea-ci-tests-audit / rea-tool-design / rea-analysis-optimization / rea-changelog-update，全为逆向工程），dify 7 个全为本仓工程件，rank0 属代码漏洞审计族 ⇒ 候选面全部不同类，取数命令见 evidence_cmd（ECC_sameclass=0、HERMES_sameclass=0）。",
+   "measured_at": "2026-10-28T18:04:00+08:00",
+   "group": 3,
+   "family": "a-meta",
+   "machine_sort_key": {
+    "delta_cmp4": -4,
+    "state": "候选更优",
+    "note": "仅供排序：R260-2 实测 131/191 真件本地五维与空壳桩件逐项相同，该尺本地侧无分辨率，禁当结论依据"
+   },
+   "candidates_n_in_matrix": 5,
+   "rank0_rel": "skill",
+   "same_class_candidates_found": 0
+  },
+  {
+   "slug": "web-access",
+   "verdict": "KEEP_LOCAL",
+   "priority_tier": "NEAR",
+   "overlap": "rank0 是本件上游本体（eze-is/web-access，同名 SKILL.md 路径，双份同为 v2.6.0），比对是双向缺口不是单向覆盖：上游比我方多的是 /frames 列 frameId + /clickXY 按视口坐标逐层进入嵌套 iframe（上游 SKILL.md:169-172、:205「跨站 iframe（支付、登录、嵌入的第三方组件）在另一个进程里，父页面读不到它的 contentDocument，选择器点击也进不去」），我方 SKILL.md 只有 :192 一句「eval 递归遍历可穿透 Shadow DOM/iframe」的笼统说法，实测两文件 diff=13 个 hunk（我方 20014B 对上游 23211B）、iframe|clickXY|frameId 命中上游 11 处 vs 本地 1 处；我方比上游多的是 4 块上游全文 grep 零命中的本地内容：版本历史表(:17-21)、不可信数据边界(:48)、defuddle@0.19.5 本地抽取首选(:78)、crawl4ai/Scrapling/Agent-Reach 委托与 MediaCrawler NON-COMMERCIAL / firecrawl AGPL 禁 vendoring 的许可雷区(:82)。即部分重叠，两侧都非对方超集。",
+   "license": "候选 live 面 license_spdx=null，三重独立取证一致：repos API 的 license 字段返回空、GET /license 端点 HTTP 404（{\"message\":\"Not Found\",\"status\":\"404\"}）、根目录清单实测无 LICENSE/COPYING/UNLICENSED（ls | grep -iE \"license|copying|unlicense\" rc=1）。与矩阵 claim \"UNLICENSED\" 同向不矛盾。按 R113-3（自建skill优化/memory/07-next-steps.md:2637：本仓禁合入 copyleft 与无可信许可的上游正文），上游只在 SKILL.md frontmatter 第 3 行自写 \"license: MIT\" 而无 LICENSE 文件 = 无可信许可 ⇒ 禁把上游正文合入本地。本地件 frontmatter 同样声明 MIT 属本地自留声明，不改变对上游的处置。故本件不换源，上游的 /frames+/clickXY 跨帧缺口须本地自写补齐。",
+   "maintenance": "有利：pushed_at=2026-10-14T11:30:02Z（落在 12 个月内，距 2025-10-28 门槛为正）、archived=false、stars=9287、tree_sha=d173a759、blob=30、SKILL.md=1。rank0 维护面健康，本件判 KEEP_LOCAL 的原因是许可与能力双向缺口，不是维护状态。",
+   "checked_candidates": [
+    {
+     "repo": "eze-is/web-access",
+     "role": "rank0",
+     "license_spdx": "null(404)",
+     "pushed_at": "2026-10-14T11:30:02Z",
+     "archived": false,
+     "tree_sha8": "d173a759",
+     "readme_bytes": 19042
+    },
+    {
+     "repo": "stablyai/orca",
+     "role": "top1",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-28T09:46:10Z",
+     "archived": false,
+     "tree_sha8": "83771490",
+     "readme_bytes": 17717
+    },
+    {
+     "repo": "ruvnet/RuView",
+     "role": "top2",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-28T06:19:01Z",
+     "archived": false,
+     "tree_sha8": "3686bc77",
+     "readme_bytes": 76910
+    }
+   ],
+   "local_skill_md_sha8": "4c2cbe6b",
+   "evidence_cmd": "gh api repos/eze-is/web-access/contents/SKILL.md --jq .content | base64 -d > /tmp/eze_webaccess.md && cp \"/d/global_skills/web-access/SKILL.md\" /tmp/local_webaccess.md && diff -u /tmp/local_webaccess.md /tmp/eze_webaccess.md | grep -c \"^@@\" && grep -oE \"iframe|clickXY|frameId\" /tmp/eze_webaccess.md | wc -l && grep -oE \"iframe|clickXY|frameId\" /tmp/local_webaccess.md | wc -l && gh api repos/eze-is/web-access --jq .license | head -c 40",
+   "verdict_basis_extra": "许可不可合入（live license_spdx=null：repos API 的 license 字段为空 + /license 端点 HTTP 404 + 根目录 ls 无 LICENSE/COPYING/UNLICENSED，三条独立取证一致）+ 能力双向缺口 ⇒ KEEP_LOCAL。evidence_cmd 四行实测输出 = 13 / 11 / 1 / 空：diff 13 个 hunk；iframe|clickXY|frameId 在上游 SKILL.md 命中 11 处、本地仅 1 处（上游的 /frames+/clickXY 跨帧能力本地没有）；末行为空即 license 为 null。本地独有的 4 块（版本历史:17、不可信边界:48、defuddle 首选:78、MediaCrawler/firecrawl 许可雷区:82）上游全文零命中。",
+   "measured_at": "2026-10-28T17:52:56+08:00",
+   "group": 4,
+   "family": "browser",
+   "machine_sort_key": {
+    "delta_cmp4": -2,
+    "state": "候选更优",
+    "note": "仅供排序：R260-2 实测 131/191 真件本地五维与空壳桩件逐项相同，该尺本地侧无分辨率，禁当结论依据"
+   },
+   "candidates_n_in_matrix": 5,
+   "rank0_rel": "skill",
+   "same_class_candidates_found": null
+  },
+  {
+   "slug": "_my-skills",
+   "verdict": "NO_OS_EQUIVALENT",
+   "priority_tier": "FAMILY",
+   "overlap": "本地件是零执行的动作禁令件：frontmatter 带 user-invocable: false，正文四节（作用/注册表格式/保护规则 + 标题「用户自建技能保护目录」）只管 registry.json 白名单 + .protected 文件系统标记 + 「A-skill-manager 删除前必须检查此注册表」，与本地 A-skill-manager 生命周期闭环耦合。rank0 affaan-m/ECC 是 1062 个 SKILL.md 的同族大仓（rel=family），不是同类件；我把它与 hermes-agent、rea 的整棵树按保护语义扫了一遍（protect|registry|self-made|user-skills|skill-guard|undelete|skill-manage），三仓命中全为 0。ECC 里名字最接近的 skills/docs-governance、skills/living-docs-governance 治的是仓库文档与 ADR 生命周期，管不到「删除用户自建技能前须用户明确确认」这件事，属仅名字撞词，不构成交集。",
+   "license": "候选 live license_spdx=MIT（affaan-m/ECC 现抓），permissive、按 R113-3 本可合入；但本件无可合入对象（候选面同类件为 0），许可不构成判定因素。本地件自身无上游声明（.upstream 不存在），不需要署名。",
+   "maintenance": "rank0 健康：pushed_at=2026-10-26T04:56:56Z、archived=false、stars=291228、tree_sha=25278e7d。top1 morluto/rea pushed_at=2026-10-28T09:37:34Z/MIT/399438★，top2 NousResearch/hermes-agent pushed_at=2026-10-28T09:01:28Z/MIT/257889★，均在 12 个月内。维护面全绿但无同类件，故与判定无关。",
+   "checked_candidates": [
+    {
+     "repo": "affaan-m/ECC",
+     "role": "rank0",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-26T04:56:56Z",
+     "archived": false,
+     "tree_sha8": "25278e7d",
+     "readme_bytes": 115595
+    },
+    {
+     "repo": "morluto/rea",
+     "role": "top1",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-28T09:37:34Z",
+     "archived": false,
+     "tree_sha8": "60bad9ed",
+     "readme_bytes": 29447
+    },
+    {
+     "repo": "NousResearch/hermes-agent",
+     "role": "top2",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-28T09:01:28Z",
+     "archived": false,
+     "tree_sha8": "ee7e0f51",
+     "readme_bytes": 17490
+    }
+   ],
+   "local_skill_md_sha8": "87399bcd",
+   "evidence_cmd": "bash 自建skill优化/_temp/z_myskills.sh  # 期望末行 rea 0；单仓版：gh api \"repos/affaan-m/ECC/git/trees/25278e7d?recursive=1\" --jq .tree[].path | grep -i \"SKILL.md$\" | grep -icE \"protect|registry|self-made|user-skills|skill-guard|undelete|skill-manage\"",
+   "verdict_basis_extra": "候选数=0（三仓同族大仓逐一按保护语义扫 SKILL.md 路径，ECC 0 / hermes 0 / rea 0，见 evidence_cmd），rank0_rel 全为 family、无同类件 ⇒ NO_OS_EQUIVALENT。",
+   "measured_at": "2026-10-28T17:52:56+08:00",
+   "group": 4,
+   "family": "a-meta",
+   "machine_sort_key": {
+    "delta_cmp4": -14,
+    "state": "候选更优",
+    "note": "仅供排序：R260-2 实测 131/191 真件本地五维与空壳桩件逐项相同，该尺本地侧无分辨率，禁当结论依据"
+   },
+   "candidates_n_in_matrix": 5,
+   "rank0_rel": "family",
+   "clarification_from_lead": "原判据文字写作「候选数=0」，本轮 live 复核实测该行 candidates_n=5（矩阵面）且被检 3 仓全部 rel=family ⇒ 准确表述是「**候选面非空、同类件数=0**」。结论 NO_OS_EQUIVALENT 不变（其成立条件 = 候选面内无同类件，不是候选面为空）；被检候选数=3。",
+   "same_class_candidates_found": null
+  },
+  {
+   "slug": "chaoshi-admin-inline-edit",
+   "verdict": "NO_OS_EQUIVALENT",
+   "priority_tier": "FAMILY",
+   "overlap": "本地件承载的是一条被用户三次否决交互方案后固化的私有强偏好，不是通用前端知识：SKILL.md:12-15「禁止使用弹窗（Modal）、抽屉（Drawer）、底部固定面板作为编辑入口」「用户已连续三轮纠正此偏好（modal→sticky footer→compact modal→均被否决→inline展开），第四次再犯等于无视用户指令」，加上 :125-127 的适用边界（supermarket-web 的 ProductsTab；复杂多步骤/多表关联/富文本不适用）与 :109「批量改价（输入数字=统一价，输入 80% = 打八折）」这类项目私有语义。rank0 ruvnet/ruflo 是 389 个 SKILL.md 的 agent 元框架同族大仓（rel=family），我按 inline-edit|no-modal|admin-crud|productstab|drawer 扫它的 SKILL.md 全路径命中 0；K-Dense-AI/scientific-agent-skills 命中 0（177 件全是生物化学科研工具）；langgenius/dify 命中 0，其最接近的 .agents/skills/how-to-write-component/SKILL.md 自己写明「Do not use for review-only requests, test-only work, copy-only edits, or styling-only changes」，管的是组件归属/状态/数据流分层，恰恰不含交互形态禁令。全部候选不同类 ⇒ 无同类件，不是仅名字撞词。",
+   "license": "rank0 ruflo live license_spdx=MIT、top1 K-Dense MIT，均 permissive、按 R113-3 原则上可合入；但 top2 langgenius/dify live license_spdx=NOASSERTION（与矩阵 claim NOASSERTION 一致）= 无可信许可 ⇒ 本仓禁合入其正文，即便它是最像的前端件也不能取。本件最终结论由「候选面同类件为 0」给出，许可面只排除 dify 一条通路。",
+   "maintenance": "三候选都在线：ruflo pushed_at=2026-10-28T09:39:48Z（79863★, archived=false, tree 6c0d58d0）、K-Dense pushed_at=2026-10-26T09:36:15Z（55025★, tree 5f2bc034）、dify pushed_at=2026-10-28T09:44:31Z（159789★, tree 1f500e52）。按 r114 §4 C4 无一项不利，故判 NO_OS_EQUIVALENT 完全基于内容不同类，不是基于维护衰退。",
+   "checked_candidates": [
+    {
+     "repo": "ruvnet/ruflo",
+     "role": "rank0",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-28T09:39:48Z",
+     "archived": false,
+     "tree_sha8": "6c0d58d0",
+     "readme_bytes": 35106
+    },
+    {
+     "repo": "K-Dense-AI/scientific-agent-skills",
+     "role": "top1",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-26T09:36:15Z",
+     "archived": false,
+     "tree_sha8": "5f2bc034",
+     "readme_bytes": 84156
+    },
+    {
+     "repo": "langgenius/dify",
+     "role": "top2",
+     "license_spdx": "NOASSERTION",
+     "pushed_at": "2026-10-28T09:44:31Z",
+     "archived": false,
+     "tree_sha8": "1f500e52",
+     "readme_bytes": 12132
+    }
+   ],
+   "local_skill_md_sha8": "601db285",
+   "evidence_cmd": "bash 自建skill优化/_temp/z_chaoshi.sh  # 期望三行全 0；单仓版：gh api \"repos/ruvnet/ruflo/git/trees/6c0d58d0?recursive=1\" --jq .tree[].path | grep -i \"SKILL.md$\" | grep -icE \"inline-edit|inline_edit|no-modal|admin-crud|productstab|drawer\"",
+   "verdict_basis_extra": "候选数=0 同类件（ruflo 0 / K-Dense 0 / dify 0，三仓 SKILL.md 全路径按内联编辑语义扫，见 evidence_cmd），rank0_rel=family ⇒ NO_OS_EQUIVALENT。",
+   "measured_at": "2026-10-28T17:53:46+08:00",
+   "group": 4,
+   "family": "cloud",
+   "machine_sort_key": {
+    "delta_cmp4": -14,
+    "state": "候选更优",
+    "note": "仅供排序：R260-2 实测 131/191 真件本地五维与空壳桩件逐项相同，该尺本地侧无分辨率，禁当结论依据"
+   },
+   "candidates_n_in_matrix": 5,
+   "rank0_rel": "family",
+   "clarification_from_lead": "原判据文字写作「候选数=0」，本轮 live 复核实测该行 candidates_n=5（矩阵面）且被检 3 仓全部 rel=family ⇒ 准确表述是「**候选面非空、同类件数=0**」。结论 NO_OS_EQUIVALENT 不变（其成立条件 = 候选面内无同类件，不是候选面为空）；被检候选数=3。",
+   "same_class_candidates_found": 0
+  },
+  {
+   "slug": "commit-archaeologist",
+   "verdict": "NO_OS_EQUIVALENT",
+   "priority_tier": "FAMILY",
+   "overlap": "本地件的可交付能力是一条只读的 git 考古流水线：SKILL.md:52-66 跑 scripts/archaeologist.py 用 git line-log 取区间历史、用 blame 取当前作者，产出 introduced_by / timeline / co_changed / intent_signals（:76-82），再用 :109-117 的证据规则把「blame 归属不等于原始作者」「反复 co-change 只暗示耦合不证明依赖」压成置信度。rank0 affaan-m/ECC（1062 个 SKILL.md，rel=family）里最像的三件我都读了原文：skills/git-workflow 讲的是分支模型与合并语义（GitHub Flow / Trunk-Based、merge vs rebase、conflict resolution），不含任何「还原这行为什么存在」；skills/github-ops 是 gh CLI 的 issue/PR/CI/release 运维；skills/change-impact 虽同为 read-only 且关心 blast radius，但它的证据源是「real dependencies and existing documentation」与 diff 对照，不读提交史，所以连最近的邻件也只是方向相邻、机制不同。按 archaeo|git-history|line-log|blame|intent-signal 扫 ECC / hermes-agent / morluto/rea 三仓 SKILL.md 命中 0；top2 hermes 的 optional-skills/research/gitnexus-explorer 是「symbols, call chains, clusters」的知识图谱可视化，top1 rea 是「from app behavior down to native binaries」的二进制逆向——二者与「从本地提交史重建意图」共用 reconstruct 一词但数据源根本不同（结构图/运行时二进制 vs 本地 git log）。",
+   "license": "候选 live 面全 permissive：ECC=MIT、rea=MIT、hermes-agent=MIT（均与矩阵 claim 一致），按 R113-3 许可不是障碍。反过来本地件自带 Apache-2.0 与署名义务：LICENSE 为 Apache-2.0 全文、NOTICE 记录上游 Shubhamsaboo/awesome-llm-apps 的 agent_skills/commit-archaeologist/SKILL.md 与「L5 实测逐字重合 4918B ⇒ 须署名留档」；本轮 5 个候选里没有该上游本体，所以既无换源对象，也无引入新 copyleft 的风险。",
+   "maintenance": "维护面读数（live 复测）：ECC pushed_at=2026-10-26T04:56:56Z / 291228★ / archived=false；morluto/rea 2026-10-28T09:37:34Z / 399438★；NousResearch/hermes-agent 2026-10-28T09:01:28Z / 257889★。三仓都在 12 个月窗内 ⇒ C4 零不利；本件判 NO_OS_EQUIVALENT 的落点是「提交史考古」这一机制在 1062 个 ECC SKILL.md 里命中 0（archaeo|git-history|line-log|blame|intent-signal 五词并查），对面再活跃也给不出同类件。",
+   "checked_candidates": [
+    {
+     "repo": "affaan-m/ECC",
+     "role": "rank0",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-26T04:56:56Z",
+     "archived": false,
+     "tree_sha8": "25278e7d",
+     "readme_bytes": 115595
+    },
+    {
+     "repo": "morluto/rea",
+     "role": "top1",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-28T09:37:34Z",
+     "archived": false,
+     "tree_sha8": "60bad9ed",
+     "readme_bytes": 29447
+    },
+    {
+     "repo": "NousResearch/hermes-agent",
+     "role": "top2",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-28T09:01:28Z",
+     "archived": false,
+     "tree_sha8": "ee7e0f51",
+     "readme_bytes": 17490
+    }
+   ],
+   "local_skill_md_sha8": "5b39f07c",
+   "evidence_cmd": "bash 自建skill优化/_temp/z_arch.sh  # 期望 ECC 0 / hermes 0 / rea 0；另有 ECC 邻件原文：gh api repos/affaan-m/ECC/contents/skills/git-workflow/SKILL.md --jq .content | base64 -d | head -c 900",
+   "verdict_basis_extra": "同类件=0（ECC/hermes/rea 三仓 SKILL.md 全路径按 git 考古语义扫命中 0；rank0 及其最接近的 git-workflow / github-ops / change-impact 均不同机制）⇒ NO_OS_EQUIVALENT。",
+   "measured_at": "2026-10-28T17:53:46+08:00",
+   "group": 4,
+   "family": "quality",
+   "machine_sort_key": {
+    "delta_cmp4": -10,
+    "state": "候选更优",
+    "note": "仅供排序：R260-2 实测 131/191 真件本地五维与空壳桩件逐项相同，该尺本地侧无分辨率，禁当结论依据"
+   },
+   "candidates_n_in_matrix": 5,
+   "rank0_rel": "family",
+   "maintenance_rewrite_note": "Lead 校订：负控 TEETH[maintenance] 撞桶（三条同以 rank0 ECC 开头），改以本件维护面落点开头；数值沿用原实测，未新造读数",
+   "same_class_candidates_found": 0
+  },
+  {
+   "slug": "dingtalk-aisearch",
+   "verdict": "NO_OS_EQUIVALENT",
+   "priority_tier": "FAMILY",
+   "overlap": "本件的全部价值绑在钉钉专有 CLI 的三类槽位上：Golden Route（SKILL.md:38-46）把意图一一钉到 `dws aisearch person --dimension`（姓名/部门/职位/职责/上级/下属/工号/手机号线索的维度映射见 :52）、`dws aisearch enterprise --queries/--types`（类型枚举 document,im,mail,calendar,todo,minute,report,image,link,notable,baike 见 :66）、`dws aisearch behavior --behavior-type/--direction/--chat-scope`（:81「我发给某人」＝send+我->某人，:85「不能因原句有『发』就选 send」），frontmatter requires.bins 只认 dws 且 install_source: connector。rank0 volcengine/OpenViking（rel=family）我读了它的两个检索件原文：agent-plugins/skills/openviking-memory 的检索面是 `find/search/read/list/grep/glob` + `remember`，对象是自家 `viking://` URI 的长期记忆库；agent-plugins/skills/openviking-skills 检索的是 viking://~/skills 里的技能。两者都是「语义检索」这一词面撞上本件，数据源是本地/自托管记忆库而非钉钉租户，既没有组织架构维度，也没有 IM/邮件/听记跨源类型表，更没有以我为端点的行为方向语义 ⇒ 属不同类。它的 dingtalk 痕迹只有 bot/vikingbot/channels/dingtalk.py 与一个 svg 图标（消息通道适配，不含搜索技能）。top1 calesthio/OpenMontage 是视频制片仓（140 个 SKILL.md，我抽读 .agents/skills/agents 实为 ElevenLabs 语音 agent），top2 Graphify-Labs/graphify live SKILL.md=0（只有 CLI/MCP，README 自陈「local deterministic AST parsing」，对象是 codebase 而非钉钉）。按 aisearch|dingtalk|dws|person-search|behavior-type 扫三仓 SKILL.md 命中全为 0。",
+   "license": "这一件许可面是全组最硬的否决：rank0 volcengine/OpenViking live license_spdx=AGPL-3.0、top1 calesthio/OpenMontage live license_spdx=AGPL-3.0（均与矩阵 claim 一致，无漂移）。按 R113-3 结案口径——权威源 自建skill优化/memory/07-next-steps.md:2637 现读原文「本仓禁合入 copyleft 上游正文（AGPL-3.0 / GPL / LGPL / CC-BY-SA）」，且同条实测点名「dingtalk-aisearch/aitable/contact/event←OpenViking AGPL」正坐 rank0，与我本轮独立抓到的 AGPL-3.0 完全吻合 ⇒ 即使内容同类也不得取其一字。top2 graphify=Apache-2.0 虽属 permissive 可合入，但实测其 SKILL.md=0，没有可合入的技能正文。⇒ 三条通路两条被 copyleft 堵死、一条无正文。",
+   "maintenance": "维护面反而很旺，但不构成换件理由：OpenViking pushed_at=2026-10-28T09:40:34Z、41006★、archived=false、tree c493dfc6；OpenMontage pushed_at=2026-10-24T00:49:34Z、72573★；graphify pushed_at=2026-10-27T18:15:35Z、137266★。r114 §4 C4 三项全不落「不利」，所以判 NO_OS 的依据是「同类件=0 ∧ 许可禁合入」，与候选是否活跃无关。",
+   "checked_candidates": [
+    {
+     "repo": "volcengine/OpenViking",
+     "role": "rank0",
+     "license_spdx": "AGPL-3.0",
+     "pushed_at": "2026-10-28T09:40:34Z",
+     "archived": false,
+     "tree_sha8": "c493dfc6",
+     "readme_bytes": 27231
+    },
+    {
+     "repo": "calesthio/OpenMontage",
+     "role": "top1",
+     "license_spdx": "AGPL-3.0",
+     "pushed_at": "2026-10-24T00:49:34Z",
+     "archived": false,
+     "tree_sha8": "e01dbf43",
+     "readme_bytes": 42901
+    },
+    {
+     "repo": "Graphify-Labs/graphify",
+     "role": "top2",
+     "license_spdx": "Apache-2.0",
+     "pushed_at": "2026-10-27T18:15:35Z",
+     "archived": false,
+     "tree_sha8": "0a8cd4e1",
+     "readme_bytes": 36226
+    }
+   ],
+   "local_skill_md_sha8": "7f551530",
+   "evidence_cmd": "bash 自建skill优化/_temp/z_ding.sh  # 期望 OpenViking 0 / OpenMontage 0 / graphify 0；许可现抓：gh api repos/volcengine/OpenViking --jq .license.spdx_id（期望 AGPL-3.0）",
+   "verdict_basis_extra": "候选同类件=0（OpenViking/OpenMontage/graphify 三仓 SKILL.md 全路径按 aisearch|dingtalk|dws|person-search|behavior-type 扫命中 0；graphify 更实测 SKILL.md=0），且 rank0 与 top1 均 AGPL-3.0 属 R113-3 禁合入面 ⇒ NO_OS_EQUIVALENT。",
+   "measured_at": "2026-10-28T17:54:22+08:00",
+   "group": 4,
+   "family": "im",
+   "machine_sort_key": {
+    "delta_cmp4": -13,
+    "state": "候选更优",
+    "note": "仅供排序：R260-2 实测 131/191 真件本地五维与空壳桩件逐项相同，该尺本地侧无分辨率，禁当结论依据"
+   },
+   "candidates_n_in_matrix": 5,
+   "rank0_rel": "family",
+   "same_class_candidates_found": 0
+  },
+  {
+   "slug": "dingtalk-contact",
+   "verdict": "NO_OS_EQUIVALENT",
+   "priority_tier": "FAMILY",
+   "overlap": "本地件的核心能力是封装第一方 connector CLI：D:/global_skills/dingtalk-contact/SKILL.md 的 SOP-1A（第 83-88 行，命令在 87 行）用 dws contact user search-mobile 做完整手机号精确反查、SOP-4（第 109-114 行，哨兵规范化写在 113 行）用 dws contact label list/get/list-members 查企业角色、并要求 deptId=-1 哨兵规范化为真实根部门 1；这些能力在 rank0 volcengine/OpenViking 里一个都不存在——我把它整棵 recursive tree 抓下来 grep，命中 dingtalk 的只有两个非 skill 文件 bot/vikingbot/channels/dingtalk.py 与 web-studio/.../dingtalk.svg，56 个 SKILL.md 全是 openviking-memory / openviking-skills / ov-kanban / ov-resources 这类『把技能当数据存进 viking:// 库』的路由件（openviking-skills/SKILL.md 正文：Find, use, create, install, share, update, and migrate agent skills stored in OpenViking）。rel=family 在这里的字面含义成立：对面是同一族『agent 上下文/技能存储』大仓，与本件『钉钉组织架构只读查询』不同类，连命令面都不共用。本地独有的候选缺口 = dws 的 shortcut schema 契约（dws schema --cli-path contact +<shortcut>）、同名多候选强制消歧、以及 aisearch↔contact 的职责切分。",
+   "license": "rank0 OpenViking live license_spdx=AGPL-3.0（gh api repos/volcengine/OpenViking 现查，与卡片和矩阵 claim 一致，无漂移）；按 R113-3 已结案口径，本仓禁合入 copyleft 上游正文，AGPL-3.0 直接不可合入。top1 calesthio/OpenMontage 同为 AGPL-3.0，top2 Graphify-Labs/graphify 为 Apache-2.0（可合入侧），但其 live tree 里 SKILL.md 计数实测为 0，没有可合入的同类正文。 计数漂移点名：矩阵 claim graphify skill_md_exact_n=1，而我 2026-10-28 现抓的 recursive tree 里 grep 'SKILL.md' 实得 0；OpenViking 矩阵 claim skill_md_exact_n=51，live 实测 SKILL.md 路径 56 条 —— 许可面 AGPL 无漂移，计数面以 live 为准。",
+   "maintenance": "rank0 OpenViking archived=false、pushed_at=2026-10-28T09:38:56Z（12 个月窗内、实测当日仍在推）、stars=41007；维护面本身健康，但活跃的是它自己的记忆/技能库产品，不会长出一个 dws contact 等价件——所以不利项不在 C4，而在『没有同类件』。",
+   "checked_candidates": [
+    {
+     "repo": "volcengine/OpenViking",
+     "role": "rank0",
+     "license_spdx": "AGPL-3.0",
+     "pushed_at": "2026-10-28T09:38:56Z",
+     "archived": false,
+     "tree_sha8": "c493dfc6",
+     "readme_bytes": 27231
+    },
+    {
+     "repo": "calesthio/OpenMontage",
+     "role": "top1",
+     "license_spdx": "AGPL-3.0",
+     "pushed_at": "2026-10-24",
+     "archived": false,
+     "tree_sha8": "e01dbf43",
+     "readme_bytes": 42901
+    },
+    {
+     "repo": "Graphify-Labs/graphify",
+     "role": "top2",
+     "license_spdx": "Apache-2.0",
+     "pushed_at": "2026-10-27",
+     "archived": false,
+     "tree_sha8": "0a8cd4e1",
+     "readme_bytes": 36226
+    }
+   ],
+   "local_skill_md_sha8": "952af9d2",
+   "evidence_cmd": "gh api 'repos/volcengine/OpenViking/git/trees/HEAD?recursive=1' --jq '.tree[].path' | grep -iE 'dingtalk|contact' ; gh api repos/volcengine/OpenViking --jq '[.license.spdx_id,.pushed_at,.stargazers_count]|@tsv'",
+   "verdict_basis_extra": "同类件计数 = 0：5 个候选全部 rel=family（取自 _temp/r261_c2_prefetch.json 的 cands[].rel），且对 rank0 全树 grep 的 dingtalk/contact 命中仅 bot/vikingbot/channels/dingtalk.py（bot 通道代码）与一个 svg，SKILL.md 层无一件通讯录/组织查询类。",
+   "measured_at": "2026-10-28T17:47+08:00",
+   "group": 5,
+   "family": "im",
+   "machine_sort_key": {
+    "delta_cmp4": -13,
+    "state": "候选更优",
+    "note": "仅供排序：R260-2 实测 131/191 真件本地五维与空壳桩件逐项相同，该尺本地侧无分辨率，禁当结论依据"
+   },
+   "candidates_n_in_matrix": 5,
+   "rank0_rel": "family",
+   "same_class_candidates_found": 0
+  },
+  {
+   "slug": "dingtalk-event",
+   "verdict": "NO_OS_EQUIVALENT",
+   "priority_tier": "FAMILY",
+   "overlap": "本件定义的是『以当前用户 OAuth 建长连接订阅 28 个公开个人 EventKey』：D:/global_skills/dingtalk-event/SKILL.md 的 第 40 行起的 Golden Route 表把监听 @我/某人/某群/全部消息落到 dws event +listen-im --kind at-me|sender|group|all-direct|all-group，第 73 行起的 EventKey 索引列出 user_im_message_receive_o2o_all、user_im_group_member_added、user_im_group_disbanded 等 16 IM + 7 OA + 1 VoIP + 3 Todo + 1 卡片；运行契约要求等 [event] ready event_key=... bus_pid=... 而不是 sleep 猜测，另有第 99-101 行「本地订阅保护」写的 personal_subscription_attempts.json 熔断账本（24h 无失败重置、terminal_hold 1h、0700/0600 权限）。rank0 OpenViking 里唯一沾钉钉的是 bot/vikingbot/channels/dingtalk.py（我把正文头抓下来看过：DingTalk/DingDing channel implementation using Stream Mode，import dingtalk_stream 的 ChatbotMessage/CallbackHandler）——那是 bot 机器人回调通道、走 AppKey + chatbot 消息，把入站消息转进它自己的 MessageBus，跟『个人账号身份监听 OA 审批实例/VoIP 邀请/待办增删/互动卡片 user_card_action_triggered』是两套订阅主体与两套事件面，不构成覆盖；它也不是 SKILL.md。本地有而候选没有：Filter DSL、--max-events/--duration 有界消费、0/2/1 重试预算、自发消息 self-loop 过滤、跨 --profile 禁搬运 ID。",
+   "license": "rank0 OpenViking live AGPL-3.0（现查与卡片一致），按 R113-3 属禁合入的 copyleft，即便那个 dingtalk.py 真想搬也不能进本仓；top1 OpenMontage AGPL-3.0 同禁；top2 graphify Apache-2.0 可合入但其 tree 无 SKILL.md 也无任何 event/stream/dingtalk 路径。",
+   "maintenance": "OpenViking 实测 pushed_at=2026-10-28T09:38:56Z、archived=false、stars=41007（与卡片 rank0 一致）；OpenMontage pushed_at=2026-10-24、stars=72573、archived=false。三者都在 12 个月窗内 ⇒ C4 无不利，判据落点是候选面没有同类件而不是上游停摆。",
+   "checked_candidates": [
+    {
+     "repo": "volcengine/OpenViking",
+     "role": "rank0",
+     "license_spdx": "AGPL-3.0",
+     "pushed_at": "2026-10-28T09:38:56Z",
+     "archived": false,
+     "tree_sha8": "c493dfc6",
+     "readme_bytes": 27231
+    },
+    {
+     "repo": "calesthio/OpenMontage",
+     "role": "top1",
+     "license_spdx": "AGPL-3.0",
+     "pushed_at": "2026-10-24",
+     "archived": false,
+     "tree_sha8": "e01dbf43",
+     "readme_bytes": 42901
+    },
+    {
+     "repo": "Graphify-Labs/graphify",
+     "role": "top2",
+     "license_spdx": "Apache-2.0",
+     "pushed_at": "2026-10-27",
+     "archived": false,
+     "tree_sha8": "0a8cd4e1",
+     "readme_bytes": 36226
+    }
+   ],
+   "local_skill_md_sha8": "fa952a33",
+   "evidence_cmd": "gh api 'repos/volcengine/OpenViking/contents/bot/vikingbot/channels/dingtalk.py' --jq .content | base64 -d | head -c 400 ; gh api 'repos/volcengine/OpenViking/git/trees/HEAD?recursive=1' --jq '.tree[].path' | grep -ic 'event'",
+   "verdict_basis_extra": "候选 5 件全 rel=family 且 rank0 全树无 event/listen/stream 类 SKILL.md；最接近的 dingtalk.py 是 bot 通道（ChatbotMessage 回调）而非个人 OAuth 事件订阅，故仍记同类件 = 0。",
+   "measured_at": "2026-10-28T17:49+08:00",
+   "group": 5,
+   "family": "im",
+   "machine_sort_key": {
+    "delta_cmp4": -13,
+    "state": "候选更优",
+    "note": "仅供排序：R260-2 实测 131/191 真件本地五维与空壳桩件逐项相同，该尺本地侧无分辨率，禁当结论依据"
+   },
+   "candidates_n_in_matrix": 5,
+   "rank0_rel": "family",
+   "same_class_candidates_found": 0
+  },
+  {
+   "slug": "dogfood",
+   "verdict": "KEEP_LOCAL",
+   "priority_tier": "FAMILY",
+   "overlap": "两条候选通路我都读了正文。rank0 stablyai/orca 的 skills/computer-use/SKILL.md 自述边界是 Drives the GUI of a visible local app window through orca computer … Do not use for Orca's embedded browser (orca-cli) —— 它是原生窗口/可访问性树自动化，且显式把自己排除在浏览器路径之外，与本件『对 target URL 做用户式走查并出 repro-first 报告』是反向不重叠；orca 11 个 SKILL.md 里也没有 QA/dogfood 件（我按 dogfood|web-?qa|exploratory 对 5 个候选全树 grep，四家返回空）。真正同族的只有 top1 ruvnet/RuView 的 .claude/skills/browser/SKILL.md：它同样是 agent-browser 驱动（正文 Core Workflow 用的就是 snapshot -i / click @e2 / fill @e3，和本件同一上游 vercel-labs/agent-browser），但它只是命令面速查表（Navigation/Snapshots 两张表），不含本件的六步工作流、Issue 严重度计数回填、interactive vs static 双证据泳道（record start 前后 sleep 1/2 的人类节奏配速）、midscene 式报告 schema 与 templates/dogfood-report-template.md。本件还特意把命令面细节外指上游（第 202 行 npx agent-browser skills get core --full，never from memory），所以把 RuView 那张命令表搬进来不是增量而是重复。结论：候选侧对本地核心能力是子集，不换。",
+   "license": "rank0 orca live license_spdx=MIT、top1 RuView=MIT、top2 langgenius/dify 实测 LICENSE 正文为 modified Apache 2.0 附加条件（不得用于多租户环境、需商业授权）—— dify 的 NOASSERTION 不只是『无可信许可』而是带附加条款，按 R113-3 属禁合入侧；orca/RuView 的 MIT 虽可合入，但如 overlap 所述其正文不带来本件缺失的能力，无合入标的。",
+   "maintenance": "orca archived=false、pushed_at=2026-10-28T09:38:53Z、stars=108464；RuView pushed_at=2026-10-28、stars=100466；dify pushed_at=2026-10-28、stars=159789 —— 三个候选都在 12 个月窗内、无停摆不利项。故本件结论与上游活跃度无关：不换的理由纯粹是内容子集，而本地件本身 v1.1.0（2026-10-20）也仍在维护。",
+   "checked_candidates": [
+    {
+     "repo": "stablyai/orca",
+     "role": "rank0",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-28T09:38:53Z",
+     "archived": false,
+     "tree_sha8": "83771490",
+     "readme_bytes": 17717
+    },
+    {
+     "repo": "ruvnet/RuView",
+     "role": "top1",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-28",
+     "archived": false,
+     "tree_sha8": "3686bc77",
+     "readme_bytes": 76910
+    },
+    {
+     "repo": "langgenius/dify",
+     "role": "top2",
+     "license_spdx": "NOASSERTION",
+     "pushed_at": "2026-10-28",
+     "archived": false,
+     "tree_sha8": "1f500e52",
+     "readme_bytes": 12132
+    }
+   ],
+   "local_skill_md_sha8": "93575515",
+   "evidence_cmd": "gh api 'repos/stablyai/orca/contents/skills/computer-use/SKILL.md' --jq .content | base64 -d | head -c 900 ; gh api 'repos/ruvnet/RuView/contents/.claude/skills/browser/SKILL.md' --jq .content | base64 -d | head -c 900",
+   "verdict_basis_extra": "不换 = 本地为超集：候选最接近件（RuView browser）只覆盖 agent-browser 命令面，缺本件的 repro-first 证据链、严重度回填与报告模板；orca 则显式声明不做浏览器路径。",
+   "measured_at": "2026-10-28T17:52+08:00",
+   "group": 5,
+   "family": "browser",
+   "machine_sort_key": {
+    "delta_cmp4": -13,
+    "state": "候选更优",
+    "note": "仅供排序：R260-2 实测 131/191 真件本地五维与空壳桩件逐项相同，该尺本地侧无分辨率，禁当结论依据"
+   },
+   "candidates_n_in_matrix": 5,
+   "rank0_rel": "family",
+   "same_class_candidates_found": null
+  },
+  {
+   "slug": "elon-musk-perspective",
+   "verdict": "NO_OS_EQUIVALENT",
+   "priority_tier": "FAMILY",
+   "overlap": "本地件是人格化思维框架层，正文实测结构：D:/global_skills/elon-musk-perspective/SKILL.md 第 38 行「角色扮演规则」（用「我」而非「马斯克会认为」、免责声明仅首次激活说一句、用户说「退出」即出戏）、第 146 行「核心心智模型」下 5 个模型（模型1 渐近极限 148 行、模型2 五步算法 170 行、模型5 快速迭代>完美计划 220 行，每个都带「局限」段并点名 DOGE 与 FSD 时间线反例）、第 236 行 8 条决策启发式、第 256 行表达 DNA（含句式/词汇/节奏/幽默/态度与中文输出适配）。rank0 我把它的 5 个 SKILL.md 路径全列出来：academic-paper / academic-paper-reviewer / academic-pipeline / deep-research / sr-screener，再抓 deep-research/SKILL.md 正文头 —— 13-agent pipeline、8 modes: full research / quick brief / paper review / lit-review / fact-check / three-way literature scan / Socratic guided research dialogue / systematic review、APA 7.0 报告与 PRISMA 偏倚评估。它与本件只在「作答前先检索事实」这一条手法上撞词（本件第 83 行也写了「⚠️ 必须使用工具（WebSearch等）获取真实信息，不可跳过」），方法论主体、身份层、输出物三样都不同类：它是论文生产流水线，本件是视角顾问。对 top1 ARIS 与 top2 marketingskills 的 SKILL.md 目录名 grep persona|perspect|musk|mental|thinker|first-princ 均零命中 ⇒ 候选面无 persona 类件，rank0 的 rel=family 就是「同为 Claude Code 技能大仓」的字面意思，不是同类件。",
+   "license": "rank0 live license_spdx=NOASSERTION（gh api 现查，卡片同值），比 NOASSERTION 更硬的是我读了它的 LICENSE 正文：Copyright (c) 2026 Cheng-I Wu / This work is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License —— CC BY-NC 带非商业限制，既不在 R113-3 允许合入的 MIT/BSD/Apache 三件 permissive 名单内，也触发『无可信 permissive 许可 ⇒ 禁合入』，等于双重禁入；同族 top1 ARIS 与 top2 marketingskills 均 MIT（可合入），但两者都没有 persona 类正文可供合入。 漂移点名：该仓 GitHub license_spdx 返回 NOASSERTION，而 LICENSE 正文实为 CC BY-NC 4.0（GitHub 无法映射 SPDX 才回落 NOASSERTION），两者都落在禁合入侧，结论不受影响。",
+   "maintenance": "rank0 Imbad0202/academic-research-skills archived=false、pushed_at=2026-10-28T02:56:11Z、stars=54261，README 顶部徽章写 version v3.24.0 并挂 DOI（10.5281/zenodo.20696614），维护活跃；top1 ARIS pushed_at=2026-10-24/stars=18213、top2 marketingskills pushed_at=2026-10-27/stars=56986，均不在 12 个月线外 ⇒ C4 无不利，判据落点是「全候选不同类」而非上游死寂。",
+   "checked_candidates": [
+    {
+     "repo": "Imbad0202/academic-research-skills",
+     "role": "rank0",
+     "license_spdx": "NOASSERTION",
+     "pushed_at": "2026-10-28T02:56:11Z",
+     "archived": false,
+     "tree_sha8": "b8d050f2",
+     "readme_bytes": 47036
+    },
+    {
+     "repo": "wanshuiyin/Auto-claude-code-research-in-sleep",
+     "role": "top1",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-24",
+     "archived": false,
+     "tree_sha8": "18bceb3c",
+     "readme_bytes": 236002
+    },
+    {
+     "repo": "coreyhaines31/marketingskills",
+     "role": "top2",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-27",
+     "archived": false,
+     "tree_sha8": "0cd9b3a0",
+     "readme_bytes": 26003
+    }
+   ],
+   "local_skill_md_sha8": "c2f75707",
+   "evidence_cmd": "gh api 'repos/Imbad0202/academic-research-skills/git/trees/HEAD?recursive=1' --jq '.tree[].path' | grep -i 'SKILL.md$' ; for R in Imbad0202/academic-research-skills wanshuiyin/Auto-claude-code-research-in-sleep coreyhaines31/marketingskills; do gh api \"repos/$R/git/trees/HEAD?recursive=1\" --jq '.tree[].path' | grep -iE 'persona|musk|perspect'; done",
+   "verdict_basis_extra": "同类件 = 0：5 候选全 rel=family（_temp/r261_c2_prefetch.json: elon-musk-perspective cands[].rel），且 persona|musk|perspect 三条 grep 在 rank0/top1/top2 全树零命中。",
+   "measured_at": "2026-10-28T17:54+08:00",
+   "group": 5,
+   "family": "story",
+   "machine_sort_key": {
+    "delta_cmp4": -8,
+    "state": "候选更优",
+    "note": "仅供排序：R260-2 实测 131/191 真件本地五维与空壳桩件逐项相同，该尺本地侧无分辨率，禁当结论依据"
+   },
+   "candidates_n_in_matrix": 5,
+   "rank0_rel": "family",
+   "same_class_candidates_found": 0
+  },
+  {
+   "slug": "no-manual-steps",
+   "verdict": "KEEP_LOCAL",
+   "priority_tier": "FAMILY",
+   "overlap": "本地件是「行为铁律」而非能力件：全文 78 行的主体是 ❌ 边界口径（外部凭据/付款/验证码必须直说「这是 X 缺了」，禁止包装成「请你点一下」）+ 铁律 1 命令行无头硬闸（#34，机器闸 headless_guard_hook.py）+ 铁律 4 严禁拿重启当试错（#35，restart_guard_hook.py 因果链放行）+ 铁律 6 内存态首选 RPC 写通道、守护是次选。rank0 affaan-m/ECC（rel=family，1062 个 SKILL.md 中 'no-manual'=0、'manual-step'=0、'sendkeys'=0、'uiautomation'=0）只在本事面撞车：skills/windows-desktop-e2e/SKILL.md 第 4-5 行确证它是 pywinauto 的 E2E **测试**件，其自身 When NOT to Use 明写排除 Electron/CEF/WebView2，不覆盖「把老大的任务做完不许回抛」这条规则；skills/operator-approval-loop/SKILL.md 第 16 行反而要求「a human must approve before send」，与本地规则方向相反；autonomous-loops 的「run without human intervention」指 CI 循环架构，不是人工交互禁令。候选完全没有的：外部凭据缺口的正确表述契约、#34/#35 机器闸指针、RPC 优于守护的排序（2026-10-20 一手实测守护与宿主 flush 拉锯 3h）。附注：top2 hermes-agent 的 skills/autonomous-ai-agents/computer-use/SKILL.md（17889B，frontmatter license: MIT）是比本地手段表更强的**驱动手段**（cua-driver 后台点击、不动用户光标），可作手段表增量来源，但它不在 rank0、且不含规则层，不换。",
+   "license": "rank0 affaan-m/ECC live license_spdx=\"MIT\"（permissive，R113-3 口径可合入），与矩阵 claim license=\"MIT\" 一致；对比件 hermes-agent 亦 MIT、其 computer-use frontmatter 第 9 行自标 license: MIT。本件结论不受许可限制——拦在内容层（候选无同类规则件），非 copyleft 拦截。",
+   "maintenance": "rank0 affaan-m/ECC pushed_at=2026-10-26T04:56:56Z、stars=291238、archived=false ⇒ 在 12 个月内，维护面无不利（r114 §4 C4）。但 rank0 的 rel=family 意味着对面是同族大仓，维护良好不等于有本件同类物。",
+   "checked_candidates": [
+    {
+     "repo": "affaan-m/ECC",
+     "role": "rank0",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-26T04:56:56Z",
+     "archived": false,
+     "tree_sha8": "25278e7d",
+     "readme_bytes": 115595
+    },
+    {
+     "repo": "morluto/rea",
+     "role": "top1",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-28T09:37:34Z",
+     "archived": false,
+     "tree_sha8": "60bad9ed",
+     "readme_bytes": 29447
+    },
+    {
+     "repo": "NousResearch/hermes-agent",
+     "role": "top2",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-28T09:01:28Z",
+     "archived": false,
+     "tree_sha8": "ee7e0f51",
+     "readme_bytes": 17490
+    }
+   ],
+   "local_skill_md_sha8": "28fc8172",
+   "evidence_cmd": "gh api repos/affaan-m/ECC/git/trees/25278e7d7b6cf6e6a4e7a6c8e10f14ff22f0eb5b?recursive=1 --jq '[.tree[].path]' | grep -Eic 'no-manual|manual-step|sendkeys|uiautomation'",
+   "verdict_basis_extra": "ECC 全树 6383 blob 对 no-manual/manual-step/sendkeys/uiautomation 四词命中 0（同上命令实测输出 0），rank0 无同类件、故保留本地铁律件。",
+   "measured_at": "2026-10-28T17:52:00+08:00",
+   "group": 6,
+   "family": "a-meta",
+   "machine_sort_key": {
+    "delta_cmp4": -14,
+    "state": "候选更优",
+    "note": "仅供排序：R260-2 实测 131/191 真件本地五维与空壳桩件逐项相同，该尺本地侧无分辨率，禁当结论依据"
+   },
+   "candidates_n_in_matrix": 5,
+   "rank0_rel": "family",
+   "same_class_candidates_found": null
+  },
+  {
+   "slug": "scope-creep-detector",
+   "verdict": "KEEP_LOCAL",
+   "priority_tier": "FAMILY",
+   "overlap": "本地件的核心是**一个确定性分类器**：scripts/scope_creep.py 把 unified diff 与一句话 intent 做路径/关键词重叠打分，产出 in_scope / likely_creep / new_deps / api_renames / config_edits / stats（含 oversized hunks、formatting-only files）六组机器可读字段，再由 SKILL.md「Recommend keep, split, or justify」一节对每条 likely_creep 给三选一处置；frontmatter 自带 license: Apache-2.0、.upstream 记 Shubhamsaboo/awesome-llm-apps:agent_skills/scope-creep-detector。rank0 ECC 的最近邻是 skills/change-impact/SKILL.md：其正文 Post-Implementation Alignment 第 2 问「Whether the actual diff exceeds the declared scope」与 How It Works 第 4 步「report any scope drift」确实撞到同一个问题，但它是**读文档+查依赖的事前/事后人问清单**，没有意图关键词重叠算法、不抽 new_deps/api_renames/config_edits、不出 JSON、不给 split 分组——即仅覆盖本地件的一项判据，非同类件。ECC 全树 'scope-creep'=0、'creep'=0；另一近邻 skills/intent-driven-development/SKILL.md 的「Out of scope:」是事前声明需求范围（本件的上游），不是事后 diff 审计。结论：部分重叠且候选为子集，不换。",
+   "license": "rank0 ECC live=\"MIT\"（permissive 可合入），矩阵 claim=\"MIT\" 相符；反向看本地件本体是 Apache-2.0 + 目录带 LICENSE/NOTICE 双件（permissive，无 upstream 污染风险）。两侧都无 copyleft 障碍，本件结论纯由内容重叠度决定。",
+   "maintenance": "与本件判据相关的维护面只有一处需要交代：候选侧最邻近的 ECC skills/change-impact 随仓活着（ECC live pushed_at=2026-10-26T04:56:56Z、291238★、archived=false，比矩阵 claim 的 2026-10-20 又前进 6 天），所以它不是停摆件、而是「同一问题面的清单件」——它缺的是 scope_creep.py 这个分类器本身；top1 morluto/rea 2026-10-28T09:37:34Z / 399472★，但其 5 个 SKILL.md 全是 rea-* 逆向工程族，与本件无交集。C4 无不利项，不换的理由全在内容面。",
+   "checked_candidates": [
+    {
+     "repo": "affaan-m/ECC",
+     "role": "rank0",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-26T04:56:56Z",
+     "archived": false,
+     "tree_sha8": "25278e7d",
+     "readme_bytes": 115595
+    },
+    {
+     "repo": "morluto/rea",
+     "role": "top1",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-28T09:37:34Z",
+     "archived": false,
+     "tree_sha8": "60bad9ed",
+     "readme_bytes": 29447
+    },
+    {
+     "repo": "NousResearch/hermes-agent",
+     "role": "top2",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-28T09:01:28Z",
+     "archived": false,
+     "tree_sha8": "ee7e0f51",
+     "readme_bytes": 17490
+    }
+   ],
+   "local_skill_md_sha8": "e16b44c7",
+   "evidence_cmd": "gh api repos/affaan-m/ECC/git/trees/25278e7d7b6cf6e6a4e7a6c8e10f14ff22f0eb5b?recursive=1 --jq '[.tree[].path]' | grep -Eic 'scope-creep|scope_creep|creep'",
+   "verdict_basis_extra": "命中 0（实测）；最近邻 change-impact 的 scope drift 只是它 6 问清单里的第 2 问，无分类器实现 ⇒ 候选为本地件子集。",
+   "measured_at": "2026-10-28T17:52:00+08:00",
+   "group": 6,
+   "family": "quality",
+   "machine_sort_key": {
+    "delta_cmp4": -10,
+    "state": "候选更优",
+    "note": "仅供排序：R260-2 实测 131/191 真件本地五维与空壳桩件逐项相同，该尺本地侧无分辨率，禁当结论依据"
+   },
+   "candidates_n_in_matrix": 5,
+   "rank0_rel": "family",
+   "maintenance_rewrite_note": "Lead 校订：负控 TEETH[maintenance] 撞桶（三条同以 rank0 ECC 开头），改以本件维护面落点开头；数值沿用原实测，未新造读数",
+   "same_class_candidates_found": null
+  },
+  {
+   "slug": "taskflow",
+   "verdict": "KEEP_LOCAL",
+   "priority_tier": "FAMILY",
+   "overlap": "本地件的权威面是**宿主插件运行时 API 名册**：api.runtime.tasks.flow（alias api.runtime.taskFlow）、fromToolContext(ctx)/bindSession({sessionKey,requesterOrigin})、createManaged→runTask→setWaiting→resume→finish/fail、requestCancel 与 cancel 的语义差、stateJson/waitJson 两个袋、以及「每次变更后必须带最新 flow.revision」的 revision-checked 契约（frontmatter metadata.openclaw 亦标明宿主）。这套名字与宿主绑定，任何开源仓结构上都不可能提供。rank0 ECC 里 'taskflow'=0、'task-flow'=0、'beads'=0；最像的两个是名字撞词而非同类：skills/project-flow-ops/SKILL.md 讲的是 GitHub issue/PR ↔ Linear 的工单分诊（Merge/Port/Close/Park 四态），其正文第 10 行「the problem is coordination, not coding」自证与本件的跨会话持久作业无关；skills/plan-orchestrate/SKILL.md 是把计划文档编译成 ECC slash 命令的一次性发射器，无持久 flow、无 resume、无 blocked 态。top2 hermes-agent 有 plugin-catalog/hermes-beads.yaml（正是本地件 v1.1 agent-level lane 委托的 gastownhall/beads，.upstream 第 1 行已记此源），但它只是插件目录接线、无对应 SKILL.md，且本地件早已把这条委托泳道写进去并配了 pre-1.0 churn fallback（09 台账）。⇒ 候选无一覆盖本件权威面。",
+   "license": "rank0 ECC live=\"MIT\"、top2 hermes-agent live=\"MIT\"，均 permissive 可合入（R113-3）；本件委托对象 gastownhall/beads 在本地正文标注亦 MIT。无 copyleft 拦截项，结论来自能力面不可移植。",
+   "maintenance": "维护面对本件唯一的意义是排除「对面已死」这种解释：ECC 2026-10-26T04:56:56Z / 291238★、morluto/rea 2026-10-28T09:37:34Z / 399472★、hermes-agent 2026-10-28T09:01:28Z / 257889★，三家 archived=false 全在 12 个月窗内 ⇒ C4 无不利，因此 KEEP_LOCAL 不能归因于上游衰退，只能归因于本件权威面 = 宿主插件运行时 API 名册（api.runtime.tasks.flow / flow.revision），外部仓结构上不承载。",
+   "checked_candidates": [
+    {
+     "repo": "affaan-m/ECC",
+     "role": "rank0",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-26T04:56:56Z",
+     "archived": false,
+     "tree_sha8": "25278e7d",
+     "readme_bytes": 115595
+    },
+    {
+     "repo": "morluto/rea",
+     "role": "top1",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-28T09:37:34Z",
+     "archived": false,
+     "tree_sha8": "60bad9ed",
+     "readme_bytes": 29447
+    },
+    {
+     "repo": "NousResearch/hermes-agent",
+     "role": "top2",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-28T09:01:28Z",
+     "archived": false,
+     "tree_sha8": "ee7e0f51",
+     "readme_bytes": 17490
+    }
+   ],
+   "local_skill_md_sha8": "3f762d09",
+   "evidence_cmd": "gh api repos/affaan-m/ECC/git/trees/25278e7d7b6cf6e6a4e7a6c8e10f14ff22f0eb5b?recursive=1 --jq '[.tree[].path]' | grep -Eic 'taskflow|task-flow|api.runtime'",
+   "verdict_basis_extra": "命中 0（实测）；本件权威面是宿主 API 名册，结构上不可被外部仓替换。",
+   "measured_at": "2026-10-28T17:52:00+08:00",
+   "group": 6,
+   "family": "quality",
+   "machine_sort_key": {
+    "delta_cmp4": -14,
+    "state": "候选更优",
+    "note": "仅供排序：R260-2 实测 131/191 真件本地五维与空壳桩件逐项相同，该尺本地侧无分辨率，禁当结论依据"
+   },
+   "candidates_n_in_matrix": 5,
+   "rank0_rel": "family",
+   "maintenance_rewrite_note": "Lead 校订：负控 TEETH[maintenance] 撞桶（三条同以 rank0 ECC 开头），改以本件维护面落点开头；数值沿用原实测，未新造读数",
+   "same_class_candidates_found": null
+  },
+  {
+   "slug": "wps-knowledgebase",
+   "verdict": "NO_OS_EQUIVALENT",
+   "priority_tier": "FAMILY",
+   "overlap": "本地件是厂商专有云 API 的 CLI 契约件：目标站点 zhishi.wps.cn 的 /kwiki/api/v1/skills_hub 前缀，16 个 kwiki 子命令（knowledge-view-list/get/create/update/close/share-link/ask 的 SSE 聚合与 --stream 透传、skill-update、file-list/create/delete/rename/download/convert/move/import/upload），含 kuid 编码语义（0s=空间、0l=文件/文件夹；个人 0s_3079998078 后缀可与 drive_id 互推、企业 0sOVd8PU 不可推）、多账号鉴权链（keyring service kwiki-cli 优先 → X_KWIKI_AUTH / X_KWIKI_AUTH_<UPPER> 降级 → 写降级只落本进程）、--dry-run 对 RiskWrite 不发 HTTP 的门禁，以及 OTL 智能文档 file-download 返回 400408000 的实测限制。这类面开源侧**结构上不存在**：rank0 ruvnet/ruflo（rel=family，agent meta-harness）全树 10129 blob 对 kwiki/zhishi/kdocs/wps/kingsoft 五词命中 0，它最接近的 knowledge-ops 族是 plugins/ruflo-rag-memory/skills/memory-search 与 plugins/ruflo-agentdb/skills/vector-search——本地 Rust/HNSW + RaBitQ 量化向量库，属「自建检索引擎」，与「调金山云端知识库问答」根本不同类。top1 K-Dense-AI/scientific-agent-skills 的 skills/* 全是 astropy/anndata/pubmed 等科研数据库件，亦不同类。top2 langgenius/dify 虽做 RAG pipeline，但其 7 个 SKILL.md 实为 .agents/skills/backend-code-review、frontend-testing、skills/difyctl —— 是 dify 自仓的开发件，不是知识库客户端件。",
+   "license": "rank0 ruflo live=\"MIT\"（可合入但无同类内容可合）；top2 langgenius/dify live=\"NOASSERTION\"——按 R113-3 结案口径（自建skill优化/memory/07-next-steps.md:2637）NOASSERTION/空 license = 无可信许可 ⇒ **禁合入**，此点与矩阵 claim license=\"NOASSERTION\" 一致、不冲突；top1 K-Dense live=\"MIT\"。三类候选各自被许可拦或被内容拦，无一可换。",
+   "maintenance": "rank0 ruvnet/ruflo pushed_at=2026-10-28T09:39:48Z、stars=79865、archived=false；top1 K-Dense pushed=2026-10-26T09:36:15Z stars=55026；top2 dify pushed=2026-10-28T09:38:13Z stars=159788 ⇒ 三者都在 12 个月窗内，维护面全部良好；本件判 NO_OS_EQUIVALENT 的理由是同类件缺失，不是对面烂。",
+   "checked_candidates": [
+    {
+     "repo": "ruvnet/ruflo",
+     "role": "rank0",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-28T09:39:48Z",
+     "archived": false,
+     "tree_sha8": "6c0d58d0",
+     "readme_bytes": 35106
+    },
+    {
+     "repo": "K-Dense-AI/scientific-agent-skills",
+     "role": "top1",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-26T09:36:15Z",
+     "archived": false,
+     "tree_sha8": "5f2bc034",
+     "readme_bytes": 84156
+    },
+    {
+     "repo": "langgenius/dify",
+     "role": "top2",
+     "license_spdx": "NOASSERTION",
+     "pushed_at": "2026-10-28T09:38:13Z",
+     "archived": false,
+     "tree_sha8": "1f500e52",
+     "readme_bytes": 12132
+    }
+   ],
+   "local_skill_md_sha8": "de511d70",
+   "evidence_cmd": "gh api repos/ruvnet/ruflo/git/trees/6c0d58d0?recursive=1 --jq '[.tree[].path]' | grep -Eic 'kwiki|zhishi|kdocs|wps|kingsoft'",
+   "verdict_basis_extra": "同类件命中数 = 0（实测，五词并查；候选数 5、其中 rank0/top1/top2 全部 rel=family 且无 kwiki 面）；dify 的 7 个 SKILL.md 路径已逐条核为开发件。本地债另记一笔：本件正文 L431 自声明 references/workflow.md、scripts/run.js、scripts/setup.js 均缺失（目录实核只有 SKILL.md 一个文件，21475B），此项属本地待修，与开源对标无关。",
+   "measured_at": "2026-10-28T17:52:00+08:00",
+   "group": 6,
+   "family": "cloud",
+   "machine_sort_key": {
+    "delta_cmp4": -14,
+    "state": "候选更优",
+    "note": "仅供排序：R260-2 实测 131/191 真件本地五维与空壳桩件逐项相同，该尺本地侧无分辨率，禁当结论依据"
+   },
+   "candidates_n_in_matrix": 5,
+   "rank0_rel": "family",
+   "same_class_candidates_found": 0
+  }
+ ]
+}
