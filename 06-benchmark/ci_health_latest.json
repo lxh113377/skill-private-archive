@@ -1,6 +1,6 @@
 {
  "schema": "ci-health-v1",
- "generated_at": "2026-10-28 18:08",
+ "generated_at": "2026-10-28 18:23",
  "readonly": true,
  "benchmark": "r32 第九维 CI 有效性（run 结论分布 + 心跳，非 workflow 文件数）",
  "provenance_cmd": "gh api repos/<slug>/actions/runs?per_page=50 --jq .workflow_runs",
@@ -24,7 +24,7 @@
   "action_required_rate": 0.0,
   "skipped_rate": 0.0,
   "median_duration_s": 109.0,
-  "last_run_at": "2026-10-28T09:16:44Z",
+  "last_run_at": "2026-10-28T10:19:12Z",
   "branches": 2
  },
  "self_state": "PASS",
