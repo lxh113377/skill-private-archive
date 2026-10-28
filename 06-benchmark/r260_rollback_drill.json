@@ -1,0 +1,239 @@
+{
+  "meta": {
+    "artifact": "r260_rollback_drill",
+    "round": "R260",
+    "produced_at": "2026-10-28T14:33+08:00",
+    "requirement": "需求4：回滚预案 L1-L4 纸面 0 次演练 ⇒ 本轮实演练",
+    "gap_before": {
+      "grep_drill_hits": 1,
+      "hits_file": "05-exec/r96_gh_raw.json（唯一命中，与回滚演练无关）",
+      "levels_exercised": 0,
+      "paper_source": "04-plan/迁移替换方案_r114_2026-10-18.md §6 回滚预案（L1-L4 四级表 L144）",
+      "verdict_before": "纸面（FAIL：需求4 要求演练，实测 0 次）"
+    },
+    "isolation": {
+      "clone_cmd": "git clone --no-hardlinks --no-local . _temp/rollback_drill/clone",
+      "clone_rc": 0,
+      "clone_head": "9e33cce4cf111ab6c296b7fdbbb79707993e32a0",
+      "clone_tags": 164,
+      "clone_git_dir": "15M 独立对象库（无 hardlink 共享 ⇒ 对象写不回流主仓）",
+      "writes_confined_to": [
+        "_temp/rollback_drill/（含 clone）",
+        "06-benchmark/r260_rollback_drill.json",
+        "06-benchmark/回滚演练记录_r260_*.md"
+      ],
+      "main_repo_proved_untouched": {
+        "main_head_before": "9e33cce4cf111ab6c296b7fdbbb79707993e32a0",
+        "main_head_after": "9e33cce4cf111ab6c296b7fdbbb79707993e32a0",
+        "main_describe_after": "r259",
+        "clone_reflog_ops": "revert / reset×2 / checkout（全部只在副本）"
+      },
+      "global_skills_proved_untouched": {
+        "path_exists": 1,
+        "files_newer_than_deliverable": 0,
+        "scripts_with_write_to_gs": 0
+      }
+    }
+  },
+  "levels": {
+    "L1_single_file_restore": {
+      "name": "L1 单文件还原（git show HEAD~1:<file> 覆回 + sha 比对）",
+      "file": "06-benchmark/free_tool_roster_latest.json",
+      "cmd": "printf 'DRILL-CORRUPT-L1' > $F ; git show HEAD~1:$F > $F ; sha256sum + cmp",
+      "rc": 0,
+      "sha_before_worktree": "be805066d8404c77ef74659ab09bd81a47d16ea18dffc720efa415f8422e5fda",
+      "sha_before_normalized_lf": "c803c998147042c34029546aaeb5b89cf685aaafe700bf9df9044a1800692910",
+      "sha_damaged": "7bf671b7e7fc0ecae3778187e824fe41bd662c627980b59d3a31fea6affa4051",
+      "sha_after": "e3f9febf376946ec162d3fa2eaae92036785814f78367aa692d721260ff3b20c",
+      "target_blob_sha_prev_commit": "e3f9febf376946ec162d3fa2eaae92036785814f78367aa692d721260ff3b20c",
+      "equal": true,
+      "cmp_byte_identical": 0,
+      "post_worktree_clean": true,
+      "verdict": "PASS",
+      "trap_found": {
+        "summary": "首跑判 FAIL 是判据错，不是还原错：core.autocrlf=true 时工作树为 CRLF、git show 输出为 LF，拿工作树 sha 对 blob sha 必假红",
+        "core_autocrlf": "true",
+        "crlf_lines_in_worktree": 993,
+        "proof_pairs": [
+          {
+            "wt_sha": "9afb21c297b1b3768656c3c0de292b0eb9d7a9404ed3556a5a6b7d0e8afa7d85",
+            "wt_after_tr_d_cr": "e3f9febf376946ec162d3fa2eaae92036785814f78367aa692d721260ff3b20c",
+            "head_blob_sha": "e3f9febf376946ec162d3fa2eaae92036785814f78367aa692d721260ff3b20c",
+            "match": true
+          }
+        ],
+        "corrected_judge": "目标取 git show <rev>:<F> 的 blob sha（或 cmp -s <(git show <rev>:<F>) <F>），要拿工作树比则先 tr -d CR",
+        "why_it_matters": "L1 纸面验证写的是『复跑 run_gates.py 至 PASS』，本轮实演练暴露：sha 比对这一条若不写清归一化，回滚验收会常年假红/假绿"
+      }
+    },
+    "L2_revert_upgrade_commit": {
+      "name": "L2 批次回滚（revert 一笔升级提交）",
+      "cmd_positive": "git revert --no-edit 9e33cce（升级提交 chore(r259) 读数件批量）",
+      "rc": 0,
+      "reverted_commit": "9e33cce4cf111ab6c296b7fdbbb79707993e32a0",
+      "new_head": "e8e092651a04d2801a6bddd2594444deb92e2bd7",
+      "files_touched": "8 files changed, 43 insertions(+), 1518 deletions(-)（含删回 gate_run_r259_1.json）",
+      "target_file": "06-benchmark/free_tool_roster_latest.json",
+      "sha_after_revert_blob": "c803c998147042c34029546aaeb5b89cf685aaafe700bf9df9044a1800692910",
+      "sha_pre_upgrade_expected": "c803c998147042c34029546aaeb5b89cf685aaafe700bf9df9044a1800692910",
+      "equal": true,
+      "verdict": "PASS",
+      "extra_teeth": {
+        "cmd": "git revert --no-edit bda368a（revert 非 tip 的 feat(r258) 升级提交）",
+        "rc": 1,
+        "outcome": "真冲突（后续提交改了同一段）⇒ git revert --abort 干净回退",
+        "meaning": "L2 不是无条件绿：revert 目标选错会在纸面判据上直接失败，演练有牙"
+      }
+    },
+    "L3_archive_copy_restore": {
+      "name": "L3 镜像/副本回滚（从 archive/ 副本还原一卷）",
+      "cmd": "cp -p archive/trash-proof-2026-10-23/07-next-steps.md.r120_100728.bak memory/07-next-steps.md",
+      "target_volume": "memory/07-next-steps.md（P0 真相源卷）",
+      "source_copy": "archive/trash-proof-2026-10-23/07-next-steps.md.r120_100728.bak（git 跟踪件 423 个在 archive/ 下）",
+      "rc": 0,
+      "sha_before": "2c26486312a50e86280d8e21aeb84afc1d673b352f21c2fee92514fb19e0d31a",
+      "sha_damaged": "f3eb9b5c18e0299c2755e0f604488d248f61175979d92737a70ea6004073ce24",
+      "sha_source": "c5e8de8990ea59c77df5a515ccef7aef7c1a9dd6ac9146bb51ed3a1661b910d3",
+      "sha_after": "c5e8de8990ea59c77df5a515ccef7aef7c1a9dd6ac9146bb51ed3a1661b910d3",
+      "equal": true,
+      "cmp_byte_identical": 0,
+      "honest_read": {
+        "head_blob_id": "fd0fd547ef749f5f4c633ab4110c632c8db7c0c4",
+        "restored_git_blob": "ec136fc10982b699e347e30dc53f143ae24b4f03",
+        "matched_commit_in_last_60": "none",
+        "note": "还原的是 r120 时代的历史副本 ⇒ 与 HEAD 卷必然不等；L3 判据对象只能是『源副本』sha，不是 HEAD。已按此判，未洗绿。"
+      },
+      "verdict": "PASS"
+    },
+    "L4_full_repo_rollback": {
+      "name": "L4 全量回滚（整仓回退到 tag r259）",
+      "target_tag": "r259",
+      "target_commit": "9e33cce4cf111ab6c296b7fdbbb79707993e32a0",
+      "polluted_before": {
+        "dirty_tracked_files": 4,
+        "polluted_combined_sha": "4b02594c9557c8912787bd7f98795db375642166b8c85576f2c7c09d8a878b4f",
+        "also_deleted": "06-benchmark/gate_reconcile_registry.json"
+      },
+      "channel_a": {
+        "cmd": "git checkout r259 -- .",
+        "rc": 0,
+        "restored_combined_sha": "33a124c36004de48a8a5f231285f89d692a773ddb30494e09b612b5f0bdb635a",
+        "deleted_file_back": true,
+        "diff_to_r259_rc": 0,
+        "tracked_dirty_after": 8,
+        "note": "checkout 只回工作树+索引，HEAD 不动 ⇒ 仍显示 8 个相对 revert 后 HEAD 的差异（预期行为，非缺陷）"
+      },
+      "channel_b": {
+        "cmd": "git reset --hard r259",
+        "rc": 0,
+        "head_after": "9e33cce4cf111ab6c296b7fdbbb79707993e32a0",
+        "head_is_r259": true,
+        "git_describe_tags": "r259",
+        "tracked_dirty_after": 0,
+        "files_total": 3136,
+        "index_tree": "241e62ce89a8a918486b71ad7c23ef5f6bdf232f",
+        "r259_tree": "241e62ce89a8a918486b71ad7c23ef5f6bdf232f",
+        "full_tree_match": true,
+        "prior_revert_object_still_reachable": true
+      },
+      "equal": true,
+      "verdict": "PASS",
+      "script_bug_disclosed": "l4.sh 里 L4B_FULLTREE_MATCH_1=0 是我判据写法错（拿 git ls-files -s | git hash-object 冒充树 sha），已在 verify.sh 用 git write-tree vs git rev-parse r259^{tree} 更正为 1；保留原读数不抹",
+      "rc": 0,
+      "rc_channels": {
+        "channel_a_checkout": 0,
+        "channel_b_reset": 0
+      }
+    }
+  },
+  "negative_controls": [
+    {
+      "id": "NEG-L2-a",
+      "cmd": "git revert --no-edit 0000000000000000000000000000000000000000",
+      "rc": 128,
+      "stderr": "fatal: bad object 00000000...",
+      "head_unchanged": true,
+      "revert_head_leak": false,
+      "expected": "rc!=0",
+      "verdict": "FAIL（按要求记 FAIL，证明判据有牙）"
+    },
+    {
+      "id": "NEG-L2-b",
+      "cmd": "git revert --no-edit deadbeefcafebabe1234567890abcdef12345678",
+      "rc": 128,
+      "stderr": "fatal: bad object deadbeef...",
+      "head_unchanged": true,
+      "revert_head_leak": false,
+      "expected": "rc!=0",
+      "verdict": "FAIL（有牙）"
+    },
+    {
+      "id": "NEG-L1",
+      "cmd": "git show HEAD~1:no/such/file_r260.txt > $F",
+      "rc": 128,
+      "stderr": "fatal: path ... does not exist in HEAD~1",
+      "verdict": "FAIL（有牙）"
+    },
+    {
+      "id": "NEG-L3",
+      "cmd": "cp -p archive/trash-proof-2026-10-23/no_such_copy.bak memory/01-goal.md",
+      "rc": 1,
+      "stderr": "cp: cannot stat ... No such file or directory",
+      "target_intact": true,
+      "target_sha_prefix": "821d0df8bea5",
+      "git_status_on_target": "clean",
+      "verdict": "FAIL（有牙，且未损坏目标卷）"
+    },
+    {
+      "id": "NEG-L3b",
+      "cmd": "cmp -s <错误的 .bak> memory/07-next-steps.md",
+      "rc": 1,
+      "meaning": "sha/cmp 比对判据自身负控：换错副本必须判不等 ⇒ 判据不恒绿",
+      "verdict": "FAIL（判据有牙）"
+    },
+    {
+      "id": "NEG-L4-a",
+      "cmd": "git checkout nosuchtag_r260 -- .",
+      "rc": 128,
+      "stderr": "fatal: invalid reference: nosuchtag_r260",
+      "verdict": "FAIL（有牙）"
+    },
+    {
+      "id": "NEG-L4-b",
+      "cmd": "git reset --hard nosuchtag_r260",
+      "rc": 128,
+      "head_stayed": "9e33cce...",
+      "verdict": "FAIL（有牙）"
+    }
+  ],
+  "summary": {
+    "levels_total": 4,
+    "levels_pass": 4,
+    "levels_fail": 0,
+    "threshold": "≥3 级 pass",
+    "requirement4_status": "PASS（0 次 ⇒ 4 级全实演练）",
+    "negative_controls_total": 7,
+    "negative_controls_correctly_red": 7,
+    "remaining_gaps": [
+      "L1 纸面写的动作是 rule_editor.py undo（真换装回滚器），本轮演练的是 git 通道 ⇒ rule_editor undo + 镜像 SHA 回旧值仍 0 次演练",
+      "L2 纸面要求在 D:\\global_skills 上 revert + 重建派生件、L3 纸面要求 check-skill-mirror.ps1 复验 ⇒ 受管根只读红线，本轮只在副本等价演练，真实受管根演练未做",
+      "L4 纸面验证含『35 门 PASS』⇒ 复跑 run_gates.py 为 Lead 独占，本会话未跑（禁跑红线）"
+    ]
+  },
+  "repro_cmds": {
+    "clone": "cd 自建skill优化 && git clone --no-hardlinks --no-local . _temp/rollback_drill/clone",
+    "L1": "bash 自建skill优化/_temp/rollback_drill/l1b.sh   # 期望末行 L1B_RC=0、L1B_CMP=0、L1B_AF==L1B_PB、L1B_POST=[]",
+    "L2": "bash 自建skill优化/_temp/rollback_drill/l2.sh   # 期望 L2B_RC=0、L2B_REVERTED_BLOB==L2B_PREVSTATE_BLOB",
+    "L3": "bash 自建skill优化/_temp/rollback_drill/l3.sh   # 期望 L3_RC=0、L3_CMP=0、L3_AFTER==L3_SRC_SHA",
+    "L4": "bash 自建skill优化/_temp/rollback_drill/l4.sh && bash 自建skill优化/_temp/rollback_drill/verify.sh   # 期望 V_HEAD_IS_R259=1、V_FULLTREE_MATCH=1、V_DESCRIBE=r259",
+    "negatives": "bash 自建skill优化/_temp/rollback_drill/l2_negative.sh   # 期望 NEG1_RC=128、NEG2_RC=128、NEG_HEAD_UNCHANGED=1、NEG_REVERT_HEAD_LEAK=0"
+  },
+  "evidence_class": {
+    "L1": "✅已实测（脚本+sha+cmp）",
+    "L2": "✅已实测（revert 新提交+blob 比对+冲突负例）",
+    "L3": "✅已实测（cp -p+sha+cmp）",
+    "L4": "✅已实测（checkout/reset 双通道+tree sha 全等）",
+    "negative_controls": "✅已实测 7/7 全红",
+    "rule_editor_undo_and_gates_recheck": "❌未实测（受管根只读 + run_gates.py Lead 独占），列待办"
+  }
+}

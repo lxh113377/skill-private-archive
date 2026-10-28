@@ -1,0 +1,2742 @@
+{
+ "schema": "r260-nongithub-face-v1",
+ "generated_at": "2026-10-28T06:30:39+00:00",
+ "cmd": "python _temp/r260_nongithub_probe.py",
+ "purpose": "需求2 缺口：r113/r114/r217 全链只有 GitHub，本件补 npm/PyPI/skills.sh/glama/smithery 面",
+ "negative_control_keyword": "zzzqqxxnotexistr260",
+ "sources": {
+  "npm": {
+   "probe_http": 200,
+   "probe_state": "REACHABLE",
+   "probe_err": null,
+   "neg_state": "OK",
+   "neg_http": 200,
+   "neg_hits": 0,
+   "neg_teeth": "PASS"
+  },
+  "pypi": {
+   "probe_http": 200,
+   "probe_state": "REACHABLE",
+   "probe_err": null,
+   "state": "OK",
+   "index_projects": 924404,
+   "note": "search/?q= 返回 200 但 0 个 package-row（JS/反爬门），改用 /simple/ 全量索引匹配",
+   "neg_state": "OK",
+   "neg_hits": 0,
+   "neg_teeth": "PASS"
+  },
+  "skillssh": {
+   "probe_http": 200,
+   "probe_state": "REACHABLE",
+   "probe_err": null,
+   "neg_state": "OK",
+   "neg_http": 200,
+   "neg_hits": 0,
+   "neg_teeth": "PASS",
+   "neg_hits_limit1000": 0
+  },
+  "smithery": {
+   "probe_http": 200,
+   "probe_state": "REACHABLE",
+   "probe_err": null,
+   "neg_state": "OK",
+   "neg_http": 200,
+   "neg_hits": 0,
+   "neg_teeth": "PASS",
+   "neg_note": "零命中回落默认列表，按 0 计"
+  },
+  "glama": {
+   "probe_http": 200,
+   "probe_state": "REACHABLE",
+   "probe_err": null,
+   "neg_state": "OK",
+   "neg_http": 200,
+   "neg_hits": 24,
+   "neg_teeth": "N/A_源不可查询",
+   "state": "BLOCKED_UNQUERYABLE",
+   "reason": "search/page 对返回集零影响(r260_probe4.py 实测 page1/2/3 同 24 条)"
+  }
+ },
+ "matrix": [
+  {
+   "family": "office_doc",
+   "family_name": "office文档",
+   "source": "npm",
+   "query": "docx",
+   "state": "OK",
+   "http": 200,
+   "hits": 11283,
+   "samples": [
+    "docx",
+    "html-to-docx",
+    "docx-preview",
+    "docx-templates",
+    "@platejs/docx",
+    "@turbodocx/html-to-docx"
+   ],
+   "latest_update": "2026-10-27T17:01:09.673Z",
+   "note": null
+  },
+  {
+   "family": "office_doc",
+   "family_name": "office文档",
+   "source": "npm",
+   "query": "office document",
+   "state": "OK",
+   "http": 200,
+   "hits": 101403,
+   "samples": [
+    "office-oxide-wasm",
+    "@tumblerjs/opc",
+    "@huiliyi37/dsh-office",
+    "office-oxide",
+    "office-mcp",
+    "office-document-properties"
+   ],
+   "latest_update": "2026-10-14T18:01:57.190Z",
+   "note": null
+  },
+  {
+   "family": "xlsx",
+   "family_name": "表格",
+   "source": "npm",
+   "query": "xlsx",
+   "state": "OK",
+   "http": 200,
+   "hits": 6005,
+   "samples": [
+    "xlsx",
+    "xlsx-calc",
+    "json-as-xlsx",
+    "@extend-ai/react-xlsx",
+    "xlsx-write-stream",
+    "xlsx-color"
+   ],
+   "latest_update": "2026-10-27T16:13:48.805Z",
+   "note": null
+  },
+  {
+   "family": "xlsx",
+   "family_name": "表格",
+   "source": "npm",
+   "query": "spreadsheet",
+   "state": "OK",
+   "http": 200,
+   "hits": 5558,
+   "samples": [
+    "spreadsheet",
+    "react-spreadsheet",
+    "xlsx",
+    "ssf",
+    "@e965/xlsx",
+    "@progress/kendo-react-spreadsheet"
+   ],
+   "latest_update": "2026-10-22T12:22:13.103Z",
+   "note": null
+  },
+  {
+   "family": "pdf",
+   "family_name": "PDF",
+   "source": "npm",
+   "query": "pdf",
+   "state": "OK",
+   "http": 200,
+   "hits": 32967,
+   "samples": [
+    "pdf",
+    "pdf-lib",
+    "@react-pdf/types",
+    "@react-pdf/fns",
+    "@react-pdf/pdfkit",
+    "@react-pdf/svg"
+   ],
+   "latest_update": "2026-08-27T22:59:02.722Z",
+   "note": null
+  },
+  {
+   "family": "pdf",
+   "family_name": "PDF",
+   "source": "npm",
+   "query": "pdf extract",
+   "state": "OK",
+   "http": 200,
+   "hits": 53936,
+   "samples": [
+    "pdf-extract",
+    "pdf-extract-image",
+    "pdf-extract-text",
+    "@cantoo/pdf-lib",
+    "snaprender-mcp",
+    "unpdf"
+   ],
+   "latest_update": "2026-10-19T05:47:16.158Z",
+   "note": null
+  },
+  {
+   "family": "browser",
+   "family_name": "浏览器自动化",
+   "source": "npm",
+   "query": "playwright",
+   "state": "OK",
+   "http": 200,
+   "hits": 15598,
+   "samples": [
+    "playwright",
+    "@playwright/mcp",
+    "allure-playwright",
+    "@vitest/browser-playwright",
+    "eslint-plugin-playwright",
+    "@playwright/cli"
+   ],
+   "latest_update": "2026-10-19T10:43:34.204Z",
+   "note": null
+  },
+  {
+   "family": "browser",
+   "family_name": "浏览器自动化",
+   "source": "npm",
+   "query": "browser automation",
+   "state": "OK",
+   "http": 200,
+   "hits": 331577,
+   "samples": [
+    "agent-browser",
+    "popper",
+    "@mastra/stagehand",
+    "nightmare",
+    "@dyyz1993/agent-browser",
+    "@mastra/agent-browser"
+   ],
+   "latest_update": "2026-10-27T21:36:03.865Z",
+   "note": null
+  },
+  {
+   "family": "video",
+   "family_name": "视频合成",
+   "source": "npm",
+   "query": "video composition",
+   "state": "OK",
+   "http": 200,
+   "hits": 59566,
+   "samples": [
+    "@editframe/elements",
+    "@effing/effie",
+    "@modfy/videocontext",
+    "@superhq/webmotion",
+    "videocontext",
+    "@leclap/mcp"
+   ],
+   "latest_update": "2026-10-27T09:46:19.705Z",
+   "note": null
+  },
+  {
+   "family": "video",
+   "family_name": "视频合成",
+   "source": "npm",
+   "query": "ffmpeg video edit",
+   "state": "OK",
+   "http": 200,
+   "hits": 165574,
+   "samples": [
+    "@livekit/av",
+    "ffmpeg",
+    "ffmpeg-static",
+    "video-stitch",
+    "@ffmpeg-installer/ffmpeg",
+    "@hyperframes/engine"
+   ],
+   "latest_update": "2026-10-28T01:25:21.826Z",
+   "note": null
+  },
+  {
+   "family": "tts",
+   "family_name": "语音TTS",
+   "source": "npm",
+   "query": "tts",
+   "state": "OK",
+   "http": 200,
+   "hits": 4163,
+   "samples": [
+    "tts",
+    "node-edge-tts",
+    "google-tts-api",
+    "@lobehub/tts",
+    "@qvac/tts-ggml",
+    "speak-tts"
+   ],
+   "latest_update": "2026-10-26T12:25:48.569Z",
+   "note": null
+  },
+  {
+   "family": "tts",
+   "family_name": "语音TTS",
+   "source": "npm",
+   "query": "text to speech",
+   "state": "OK",
+   "http": 200,
+   "hits": 1976994,
+   "samples": [
+    "@google-cloud/text-to-speech",
+    "expo-speech",
+    "@awesome-cordova-plugins/text-to-speech-advanced",
+    "kokoro-js",
+    "@xapp/stentor-text-to-speech",
+    "google-tts-api"
+   ],
+   "latest_update": "2026-10-26T12:25:48.569Z",
+   "note": null
+  },
+  {
+   "family": "image",
+   "family_name": "图像生成",
+   "source": "npm",
+   "query": "text to image",
+   "state": "OK",
+   "http": 200,
+   "hits": 2001832,
+   "samples": [
+    "@xg4/text2image",
+    "text-image",
+    "text-to-image",
+    "koishi-plugin-text-to-image",
+    "@dingpenghui/agnes-image",
+    "@chaingpt/nft"
+   ],
+   "latest_update": "2026-10-18T03:57:43.235Z",
+   "note": null
+  },
+  {
+   "family": "image",
+   "family_name": "图像生成",
+   "source": "npm",
+   "query": "image generation",
+   "state": "OK",
+   "http": 200,
+   "hits": 162679,
+   "samples": [
+    "nuxt-og-image",
+    "@imgly/plugin-ai-image-generation-web",
+    "@framers/agentos-ext-image-generation",
+    "discord-image-generation",
+    "@ai-agent-forge/plugin-image-generation",
+    "@uppy/image-generator"
+   ],
+   "latest_update": "2026-10-28T05:10:28.346Z",
+   "note": null
+  },
+  {
+   "family": "model3d",
+   "family_name": "3D建模",
+   "source": "npm",
+   "query": "blender",
+   "state": "OK",
+   "http": 200,
+   "hits": 533,
+   "samples": [
+    "blender",
+    "@volter/blender-engine",
+    "@volter/editor-blender",
+    "@spatie/blender-content-blocks",
+    "dsh-blender",
+    "fnf-blender-mcp"
+   ],
+   "latest_update": "2026-10-24T06:45:13.929Z",
+   "note": null
+  },
+  {
+   "family": "model3d",
+   "family_name": "3D建模",
+   "source": "npm",
+   "query": "3d model",
+   "state": "OK",
+   "http": 200,
+   "hits": 204481,
+   "samples": [
+    "react-3d-viewer",
+    "@file-viewer/renderer-3d",
+    "@nodetool-ai/video-nodes",
+    "react-three-viewer",
+    "@egjs/view3d",
+    "@babylonjs/viewer"
+   ],
+   "latest_update": "2026-10-27T07:25:39.460Z",
+   "note": null
+  },
+  {
+   "family": "writing",
+   "family_name": "写作网文",
+   "source": "npm",
+   "query": "novel writing",
+   "state": "OK",
+   "http": 200,
+   "hits": 46670,
+   "samples": [
+    "novelforge-dsh",
+    "claude-novel-writer",
+    "echowite",
+    "novelaid-cli",
+    "dsh-super-novel",
+    "@ccl9295/dsh-novel-platform"
+   ],
+   "latest_update": "2026-10-25T15:00:18.794Z",
+   "note": null
+  },
+  {
+   "family": "writing",
+   "family_name": "写作网文",
+   "source": "npm",
+   "query": "story generator",
+   "state": "OK",
+   "http": 200,
+   "hits": 92712,
+   "samples": [
+    "@tpitre/story-ui",
+    "@takuma-ru/auto-story-generator",
+    "auto-angular-story-generator",
+    "@storybook/csf",
+    "is-generator-function",
+    "generator-function"
+   ],
+   "latest_update": "2026-10-26T13:16:17.581Z",
+   "note": null
+  },
+  {
+   "family": "dingtalk",
+   "family_name": "钉钉协作",
+   "source": "npm",
+   "query": "dingtalk",
+   "state": "OK",
+   "http": 200,
+   "hits": 863,
+   "samples": [
+    "dingtalk-stream",
+    "dingtalk-workspace-cli",
+    "dingtalk",
+    "dingtalk-mcp",
+    "dingtalk-stream-sdk-nodejs",
+    "dingtalk-wiki"
+   ],
+   "latest_update": "2026-10-20T10:00:22.867Z",
+   "note": null
+  },
+  {
+   "family": "dingtalk",
+   "family_name": "钉钉协作",
+   "source": "npm",
+   "query": "ding talk",
+   "state": "OK",
+   "http": 200,
+   "hits": 11691,
+   "samples": [
+    "ding-robot",
+    "@serverless-cd/ding-talk",
+    "cygnus-ide-dingding-project",
+    "react-native-ding-talk-share-testing",
+    "cn-fontsource-ding-talk-jin-bu-ti-regular",
+    "react-native-ding-talk-share"
+   ],
+   "latest_update": "2025-12-29T10:02:38.921Z",
+   "note": null
+  },
+  {
+   "family": "deploy",
+   "family_name": "部署",
+   "source": "npm",
+   "query": "static site deploy",
+   "state": "OK",
+   "http": 200,
+   "hits": 230244,
+   "samples": [
+    "@molecule/api-deploy-target-s3",
+    "@cloudflare/kv-asset-handler",
+    "@sveltejs/adapter-static",
+    "pagefind",
+    "@vercel/analytics",
+    "@vercel/speed-insights"
+   ],
+   "latest_update": "2026-10-24T02:53:07.078Z",
+   "note": null
+  },
+  {
+   "family": "deploy",
+   "family_name": "部署",
+   "source": "npm",
+   "query": "cloudflare pages",
+   "state": "OK",
+   "http": 200,
+   "hits": 82603,
+   "samples": [
+    "@sveltejs/adapter-cloudflare",
+    "@remix-run/cloudflare-pages",
+    "@hono/vite-cloudflare-pages",
+    "@universal-middleware/cloudflare",
+    "vite-plugin-cloudflare-functions",
+    "@hckr_/cloudflare-pages-plugin-rollbar"
+   ],
+   "latest_update": "2026-10-24T18:37:05.491Z",
+   "note": null
+  },
+  {
+   "family": "debug",
+   "family_name": "调试",
+   "source": "npm",
+   "query": "debugger",
+   "state": "OK",
+   "http": 200,
+   "hits": 5522,
+   "samples": [
+    "debugger",
+    "@react-native/debugger-shell",
+    "@react-native/debugger-frontend",
+    "babel-plugin-transform-remove-debugger",
+    "appium-remote-debugger",
+    "@jupyterlab/debugger"
+   ],
+   "latest_update": "2026-10-27T17:15:44.042Z",
+   "note": null
+  },
+  {
+   "family": "debug",
+   "family_name": "调试",
+   "source": "npm",
+   "query": "debugging tool",
+   "state": "OK",
+   "http": 200,
+   "hits": 238742,
+   "samples": [
+    "svelte-render-scan",
+    "@spare/deco-config",
+    "@texting/padder",
+    "@spare/deco-object",
+    "@spare/string",
+    "@spare/deco-vector"
+   ],
+   "latest_update": "2025-07-21T03:56:41.959Z",
+   "note": null
+  },
+  {
+   "family": "office_doc",
+   "family_name": "office文档",
+   "source": "skillssh",
+   "query": "docx",
+   "state": "OK",
+   "http": 200,
+   "hits": 200,
+   "samples": [
+    "anthropics/skills/docx",
+    "claude-office-skills/skills/docx-manipulation",
+    "nexu-io/open-design/docx",
+    "claude-office-skills/skills/pdf-to-docx",
+    "minimax-ai/skills/minimax-docx",
+    "tfriedel/claude-office-skills/docx"
+   ],
+   "latest_update": null,
+   "note": "limit=1000 取真值（默认页仅 100，首轮记的是截断上限）；最高 installs=817840；无时间戳字段 | 200=服务端硬上限，读作「至少200」",
+   "hits_semantic": "at_least_200_page_cap"
+  },
+  {
+   "family": "office_doc",
+   "family_name": "office文档",
+   "source": "skillssh",
+   "query": "office document",
+   "state": "OK",
+   "http": 200,
+   "hits": 200,
+   "samples": [
+    "mukul975/anthropic-cybersecurity-skills/analyzing-macro-malware-in-office-documents",
+    "skills.volces.com/office-document-specialist-suite",
+    "starchild-ai-agent/official-skills/office-document",
+    "skills.volces.com/office-document-assistant",
+    "bighardperson/computer-science-skills-collection/office-document-specialist-suite",
+    "skills.volces.com/office-document-specialist-suite-1-0-2"
+   ],
+   "latest_update": null,
+   "note": "limit=1000 取真值（默认页仅 100，首轮记的是截断上限）；最高 installs=12679；无时间戳字段 | 200=服务端硬上限，读作「至少200」",
+   "hits_semantic": "at_least_200_page_cap"
+  },
+  {
+   "family": "xlsx",
+   "family_name": "表格",
+   "source": "skillssh",
+   "query": "xlsx",
+   "state": "OK",
+   "http": 200,
+   "hits": 200,
+   "samples": [
+    "anthropics/skills/xlsx",
+    "anthropics/financial-services/xlsx-author",
+    "claude-office-skills/skills/xlsx-manipulation",
+    "tfriedel/claude-office-skills/xlsx",
+    "minimax-ai/skills/minimax-xlsx",
+    "appautomaton/document-skills/xlsx"
+   ],
+   "latest_update": null,
+   "note": "limit=1000 取真值（默认页仅 100，首轮记的是截断上限）；最高 installs=189091；无时间戳字段 | 200=服务端硬上限，读作「至少200」",
+   "hits_semantic": "at_least_200_page_cap"
+  },
+  {
+   "family": "xlsx",
+   "family_name": "表格",
+   "source": "skillssh",
+   "query": "spreadsheet",
+   "state": "OK",
+   "http": 200,
+   "hits": 200,
+   "samples": [
+    "openai/skills/spreadsheet",
+    "composio-community/awesome-codex-skills/spreadsheet-formula-helper",
+    "qodex-ai/ai-agent-skills/spreadsheet-processor",
+    "skills.volces.com/spreadsheet",
+    "paulrberg/agent-skills/spreadsheets",
+    "syncfusion/spreadsheet-editor-sdk-skills/syncfusion-react-spreadsheet-editor"
+   ],
+   "latest_update": null,
+   "note": "limit=1000 取真值（默认页仅 100，首轮记的是截断上限）；最高 installs=815761；无时间戳字段 | 200=服务端硬上限，读作「至少200」",
+   "hits_semantic": "at_least_200_page_cap"
+  },
+  {
+   "family": "pdf",
+   "family_name": "PDF",
+   "source": "skillssh",
+   "query": "pdf",
+   "state": "OK",
+   "http": 200,
+   "hits": 200,
+   "samples": [
+    "anthropics/skills/pdf",
+    "vercel-labs/json-render/react-pdf",
+    "openai/skills/pdf",
+    "github/awesome-copilot/pdftk-server",
+    "anthropics/knowledge-work-plugins/view-pdf",
+    "tanis90/pdf-converter-mineru/pdf-converter"
+   ],
+   "latest_update": null,
+   "note": "limit=1000 取真值（默认页仅 100，首轮记的是截断上限）；最高 installs=218096；无时间戳字段 | 200=服务端硬上限，读作「至少200」",
+   "hits_semantic": "at_least_200_page_cap"
+  },
+  {
+   "family": "pdf",
+   "family_name": "PDF",
+   "source": "skillssh",
+   "query": "pdf extract",
+   "state": "OK",
+   "http": 200,
+   "hits": 200,
+   "samples": [
+    "claude-office-skills/skills/pdf-extraction",
+    "claude-office-skills/skills/pdf-ocr-extraction",
+    "guia-matthieu/clawfu-skills/pdf-extractor",
+    "allenai/asta-plugins/pdf-extraction",
+    "redfox-data/redfox-community/pdf-image-text-extractor",
+    "letta-ai/skills/extracting-pdf-text"
+   ],
+   "latest_update": null,
+   "note": "limit=1000 取真值（默认页仅 100，首轮记的是截断上限）；最高 installs=218096；无时间戳字段 | 200=服务端硬上限，读作「至少200」",
+   "hits_semantic": "at_least_200_page_cap"
+  },
+  {
+   "family": "browser",
+   "family_name": "浏览器自动化",
+   "source": "skillssh",
+   "query": "playwright",
+   "state": "OK",
+   "http": 200,
+   "hits": 200,
+   "samples": [
+    "microsoft/playwright-cli/playwright-cli",
+    "currents-dev/playwright-best-practices-skill/playwright-best-practices",
+    "liarjsdev/liarjs-skills/playwright-stealth-verify",
+    "github/awesome-copilot/playwright-generate-test",
+    "openai/skills/playwright",
+    "github/awesome-copilot/playwright-explore-website"
+   ],
+   "latest_update": null,
+   "note": "limit=1000 取真值（默认页仅 100，首轮记的是截断上限）；最高 installs=198172；无时间戳字段 | 200=服务端硬上限，读作「至少200」",
+   "hits_semantic": "at_least_200_page_cap"
+  },
+  {
+   "family": "browser",
+   "family_name": "浏览器自动化",
+   "source": "skillssh",
+   "query": "browser automation",
+   "state": "OK",
+   "http": 200,
+   "hits": 169,
+   "samples": [
+    "sickn33/agentic-awesome-skills/browser-automation",
+    "web-infra-dev/midscene-skills/browser-automation",
+    "claude-office-skills/skills/browser-automation",
+    "sophieguanongit/openclaw-browser-automation/browser-automation",
+    "zhaoxuya520/reverse-skill/browser-automation",
+    "davila7/claude-code-templates/browser-automation"
+   ],
+   "latest_update": null,
+   "note": "limit=1000 取真值（默认页仅 100，首轮记的是截断上限）；最高 installs=1199653；无时间戳字段",
+   "hits_semantic": "exact"
+  },
+  {
+   "family": "video",
+   "family_name": "视频合成",
+   "source": "skillssh",
+   "query": "video composition",
+   "state": "OK",
+   "http": 200,
+   "hits": 200,
+   "samples": [
+    "calesthio/generative-media-skills/hyperframes-video-composition",
+    "calesthio/generative-media-skills/remotion-video-composition",
+    "calesthio/generative-media-skills/audio-reactive-video-composition",
+    "101-skills/superpowers/ai-video-generation",
+    "magentosh/superpowers/ai-video-generation",
+    "qu-skills/superpowers/ai-video-generation"
+   ],
+   "latest_update": null,
+   "note": "limit=1000 取真值（默认页仅 100，首轮记的是截断上限）；最高 installs=889912；无时间戳字段 | 200=服务端硬上限，读作「至少200」",
+   "hits_semantic": "at_least_200_page_cap"
+  },
+  {
+   "family": "video",
+   "family_name": "视频合成",
+   "source": "skillssh",
+   "query": "ffmpeg video edit",
+   "state": "OK",
+   "http": 200,
+   "hits": 200,
+   "samples": [
+    "sundial-org/awesome-openclaw-skills/ffmpeg-video-editor",
+    "bryanwhl/ffmpeg-video-editor/ffmpeg-video-editor",
+    "zenithth/anibon-stream-synthesis/edit-cut-video-ffmpeg",
+    "smithery.ai/ffmpeg-video-editor",
+    "skills.volces.com/ffmpeg-video-editor",
+    "clawhub.ai/ffmpeg-video-editor"
+   ],
+   "latest_update": null,
+   "note": "limit=1000 取真值（默认页仅 100，首轮记的是截断上限）；最高 installs=14434；无时间戳字段 | 200=服务端硬上限，读作「至少200」",
+   "hits_semantic": "at_least_200_page_cap"
+  },
+  {
+   "family": "tts",
+   "family_name": "语音TTS",
+   "source": "skillssh",
+   "query": "tts",
+   "state": "OK",
+   "http": 200,
+   "hits": 61,
+   "samples": [
+    "noizai/skills/tts",
+    "aahl/skills/edge-tts",
+    "qianwen-ai/qianwen-ai/qianwen-audio-tts",
+    "openclaw/openclaw/sherpa-onnx-tts",
+    "marswaveai/skills/tts",
+    "aahl/skills/zai-tts"
+   ],
+   "latest_update": null,
+   "note": "limit=1000 取真值（默认页仅 100，首轮记的是截断上限）；最高 installs=888096；无时间戳字段",
+   "hits_semantic": "exact"
+  },
+  {
+   "family": "tts",
+   "family_name": "语音TTS",
+   "source": "skillssh",
+   "query": "text to speech",
+   "state": "OK",
+   "http": 200,
+   "hits": 99,
+   "samples": [
+    "elevenlabs/skills/text-to-speech",
+    "elevenlabs/skills/speech-to-text",
+    "heygen-com/skills/text-to-speech",
+    "calesthio/openmontage/text-to-speech",
+    "calesthio/openmontage/azure-text-to-speech",
+    "calesthio/openmontage/speech-to-text"
+   ],
+   "latest_update": null,
+   "note": "limit=1000 取真值（默认页仅 100，首轮记的是截断上限）；最高 installs=570019；无时间戳字段",
+   "hits_semantic": "exact"
+  },
+  {
+   "family": "image",
+   "family_name": "图像生成",
+   "source": "skillssh",
+   "query": "text to image",
+   "state": "OK",
+   "http": 200,
+   "hits": 115,
+   "samples": [
+    "anthropics/skills/pdf",
+    "101-skills/superpowers/ai-video-generation",
+    "magentosh/superpowers/ai-video-generation",
+    "qu-skills/superpowers/ai-video-generation",
+    "skills-shell/superpowers/ai-video-generation",
+    "its-a-skill-issue/superpowers/ai-video-generation"
+   ],
+   "latest_update": null,
+   "note": "limit=1000 取真值（默认页仅 100，首轮记的是截断上限）；最高 installs=889912；无时间戳字段",
+   "hits_semantic": "exact"
+  },
+  {
+   "family": "image",
+   "family_name": "图像生成",
+   "source": "skillssh",
+   "query": "image generation",
+   "state": "OK",
+   "http": 200,
+   "hits": 59,
+   "samples": [
+    "prime-skills/runcomfy-agent-skills/ai-image-generation",
+    "gencraft-labs/skills/ai-image-generation",
+    "inference-sh/skills/ai-image-generation",
+    "genmedia-labs/skills/ai-image-generation",
+    "runcomfy-com/skills/ai-image-generation",
+    "doany-ai/skills/ai-image-generation"
+   ],
+   "latest_update": null,
+   "note": "limit=1000 取真值（默认页仅 100，首轮记的是截断上限）；最高 installs=889912；无时间戳字段",
+   "hits_semantic": "exact"
+  },
+  {
+   "family": "model3d",
+   "family_name": "3D建模",
+   "source": "skillssh",
+   "query": "blender",
+   "state": "OK",
+   "http": 200,
+   "hits": 200,
+   "samples": [
+    "affaan-m/ecc/blender-motion-state-inspection",
+    "sfkislev/flue/blender",
+    "freshtechbro/claudedesignskills/blender-web-pipeline",
+    "roble3/cc-blender-skill/blender-modeling",
+    "roble3/cc-blender-skill/blender-materials",
+    "vladmdgolam/agent-skills/blender-mcp"
+   ],
+   "latest_update": null,
+   "note": "limit=1000 取真值（默认页仅 100，首轮记的是截断上限）；最高 installs=522428；无时间戳字段 | 200=服务端硬上限，读作「至少200」",
+   "hits_semantic": "at_least_200_page_cap"
+  },
+  {
+   "family": "model3d",
+   "family_name": "3D建模",
+   "source": "skillssh",
+   "query": "3d model",
+   "state": "OK",
+   "http": 200,
+   "hits": 184,
+   "samples": [
+    "eachlabs/skills/3d-model-generation",
+    "omer-metin/skills-for-antigravity/3d-modeling",
+    "decentraland/sdk-skills/add-3d-models",
+    "mengto/skills/3d-high-poly-models",
+    "alphaonedev/openclaw-graph/3d-modeling",
+    "modelscope.cn/3d-animation-short-generator"
+   ],
+   "latest_update": null,
+   "note": "limit=1000 取真值（默认页仅 100，首轮记的是截断上限）；最高 installs=894723；无时间戳字段",
+   "hits_semantic": "exact"
+  },
+  {
+   "family": "writing",
+   "family_name": "写作网文",
+   "source": "skillssh",
+   "query": "novel writing",
+   "state": "OK",
+   "http": 200,
+   "hits": 200,
+   "samples": [
+    "wgwtest/novel-writing/novel-writing",
+    "dankermu/novel-writer-plugin/novel-writing",
+    "xinganliu/web-novel-writing-skill/web-novel-writing-skill",
+    "skills.volces.com/novel-writer-cp3d",
+    "echoai-design/novel-writing-skill/novel-writing",
+    "hz-kmno/web-novel-writing-guidance-skill/web-novel-writing-guidance-skill"
+   ],
+   "latest_update": null,
+   "note": "limit=1000 取真值（默认页仅 100，首轮记的是截断上限）；最高 installs=493241；无时间戳字段 | 200=服务端硬上限，读作「至少200」",
+   "hits_semantic": "at_least_200_page_cap"
+  },
+  {
+   "family": "writing",
+   "family_name": "写作网文",
+   "source": "skillssh",
+   "query": "story generator",
+   "state": "OK",
+   "http": 200,
+   "hits": 150,
+   "samples": [
+    "jwynia/agent-skills/story-idea-generator",
+    "dmccreary/ibook-skills/story-generator",
+    "googlecloudplatform/genmedia-creative-studio/story-generator",
+    "jeremylongshore/tons-of-skills-marketplace/user-story-generator",
+    "vibeeval/vibecosystem/user-story-generator",
+    "jovd83/backlog-story-generator/backlog-story-generator"
+   ],
+   "latest_update": null,
+   "note": "limit=1000 取真值（默认页仅 100，首轮记的是截断上限）；最高 installs=1860；无时间戳字段",
+   "hits_semantic": "exact"
+  },
+  {
+   "family": "dingtalk",
+   "family_name": "钉钉协作",
+   "source": "skillssh",
+   "query": "dingtalk",
+   "state": "OK",
+   "http": 200,
+   "hits": 200,
+   "samples": [
+    "breath57/dingtalk-skills/dingtalk-document",
+    "breath57/dingtalk-skills/dingtalk-message",
+    "breath57/dingtalk-skills/dingtalk-ai-table",
+    "aliramw/dingtalk-ai-table/dingtalk-ai-table",
+    "xiaomingx/moltbot-connector-feishu-dingtalk/dingtalk-connection",
+    "breath57/dingtalk-skills/dingtalk-todo"
+   ],
+   "latest_update": null,
+   "note": "limit=1000 取真值（默认页仅 100，首轮记的是截断上限）；最高 installs=1816；无时间戳字段 | 200=服务端硬上限，读作「至少200」",
+   "hits_semantic": "at_least_200_page_cap"
+  },
+  {
+   "family": "dingtalk",
+   "family_name": "钉钉协作",
+   "source": "skillssh",
+   "query": "ding talk",
+   "state": "OK",
+   "http": 200,
+   "hits": 200,
+   "samples": [
+    "breath57/dingtalk-skills/dingtalk-document",
+    "breath57/dingtalk-skills/dingtalk-message",
+    "breath57/dingtalk-skills/dingtalk-ai-table",
+    "aliramw/dingtalk-ai-table/dingtalk-ai-table",
+    "xiaomingx/moltbot-connector-feishu-dingtalk/dingtalk-connection",
+    "breath57/dingtalk-skills/dingtalk-todo"
+   ],
+   "latest_update": null,
+   "note": "limit=1000 取真值（默认页仅 100，首轮记的是截断上限）；最高 installs=1816；无时间戳字段 | 200=服务端硬上限，读作「至少200」",
+   "hits_semantic": "at_least_200_page_cap"
+  },
+  {
+   "family": "deploy",
+   "family_name": "部署",
+   "source": "skillssh",
+   "query": "static site deploy",
+   "state": "OK",
+   "http": 200,
+   "hits": 190,
+   "samples": [
+    "astrolicious/agent-skills/astro",
+    "getcargohq/cargo-skills/cargo-hosting",
+    "libukai/awesome-agent-skills/vscode-sftp-config",
+    "adobe/skills/stardust",
+    "adobe/skills/migrate",
+    "tencentcloudbase/skills/cloudbase-cli"
+   ],
+   "latest_update": null,
+   "note": "limit=1000 取真值（默认页仅 100，首轮记的是截断上限）；最高 installs=18337；无时间戳字段",
+   "hits_semantic": "exact"
+  },
+  {
+   "family": "deploy",
+   "family_name": "部署",
+   "source": "skillssh",
+   "query": "cloudflare pages",
+   "state": "OK",
+   "http": 200,
+   "hits": 200,
+   "samples": [
+    "bagelhole/devops-security-agent-skills/cloudflare-pages",
+    "genericservice/claude-skills/cloudflare-pages",
+    "bm629/agent-skills/cloudflare-pages-ops",
+    "itechmeat/llm-code/cloudflare-pages",
+    "serendipityoneinc/srp-claude-code-marketplace/cloudflare-pages",
+    "sickn33/agentic-awesome-skills/cloudflare-pages"
+   ],
+   "latest_update": null,
+   "note": "limit=1000 取真值（默认页仅 100，首轮记的是截断上限）；最高 installs=4298；无时间戳字段 | 200=服务端硬上限，读作「至少200」",
+   "hits_semantic": "at_least_200_page_cap"
+  },
+  {
+   "family": "debug",
+   "family_name": "调试",
+   "source": "skillssh",
+   "query": "debugger",
+   "state": "OK",
+   "http": 200,
+   "hits": 200,
+   "samples": [
+    "software-mansion/argent/argent-metro-debugger",
+    "shubhamsaboo/awesome-llm-apps/debugger",
+    "dimillian/skills/ios-debugger-agent",
+    "botpress/skills/adk-debugger",
+    "zhaono1/agent-playbook/debugger",
+    "posthog/skills/posthog-debugger"
+   ],
+   "latest_update": null,
+   "note": "limit=1000 取真值（默认页仅 100，首轮记的是截断上限）；最高 installs=852326；无时间戳字段 | 200=服务端硬上限，读作「至少200」",
+   "hits_semantic": "at_least_200_page_cap"
+  },
+  {
+   "family": "debug",
+   "family_name": "调试",
+   "source": "skillssh",
+   "query": "debugging tool",
+   "state": "OK",
+   "http": 200,
+   "hits": 200,
+   "samples": [
+    "chromedevtools/chrome-devtools-mcp/memory-leak-debugging",
+    "sickn33/agentic-awesome-skills/debugging-toolkit-smart-debug",
+    "proxymanapp/proxyman-skill.md/proxyman-debugging-tools",
+    "dhruvjainin/absolute/debugging-tools",
+    "heyvhuang/ship-faster/tool-systematic-debugging",
+    "anthropics/skills/webapp-testing"
+   ],
+   "latest_update": null,
+   "note": "limit=1000 取真值（默认页仅 100，首轮记的是截断上限）；最高 installs=852326；无时间戳字段 | 200=服务端硬上限，读作「至少200」",
+   "hits_semantic": "at_least_200_page_cap"
+  },
+  {
+   "family": "office_doc",
+   "family_name": "office文档",
+   "source": "pypi",
+   "query": "docx",
+   "state": "OK",
+   "http": 200,
+   "hits": 367,
+   "samples": [
+    "ak-docx",
+    "aksharamukha-docx",
+    "allure-docx",
+    "athena-python-docx",
+    "auto-docx",
+    "bayoo-docx"
+   ],
+   "latest_update": "2023-02-16T21:52:50",
+   "note": null
+  },
+  {
+   "family": "office_doc",
+   "family_name": "office文档",
+   "source": "pypi",
+   "query": "office document",
+   "state": "OK",
+   "http": 200,
+   "hits": 0,
+   "samples": [],
+   "latest_update": null,
+   "note": null,
+   "gap_evidence": {
+    "all_tokens_in_one_name": false,
+    "per_token": {
+     "office": 331,
+     "document": 677
+    }
+   },
+   "gap_kind": "RULE_OR_FILTER"
+  },
+  {
+   "family": "xlsx",
+   "family_name": "表格",
+   "source": "pypi",
+   "query": "xlsx",
+   "state": "OK",
+   "http": 200,
+   "hits": 294,
+   "samples": [
+    "adactivexlsx2html",
+    "agent-xlsx",
+    "aioxlsxstream",
+    "airflow-provider-xlsx",
+    "alchemymodel-xlsx",
+    "athena-python-xlsx"
+   ],
+   "latest_update": "2022-04-26T06:40:55",
+   "note": null
+  },
+  {
+   "family": "xlsx",
+   "family_name": "表格",
+   "source": "pypi",
+   "query": "spreadsheet",
+   "state": "OK",
+   "http": 200,
+   "hits": 97,
+   "samples": [
+    "apispreadsheets",
+    "apispreadsheets-lib",
+    "arcane-spreadsheet",
+    "bluesky-spreadsheet",
+    "collective-atspreadsheet",
+    "color-spreadsheet"
+   ],
+   "latest_update": "2025-10-23T05:54:21",
+   "note": null
+  },
+  {
+   "family": "pdf",
+   "family_name": "PDF",
+   "source": "pypi",
+   "query": "pdf",
+   "state": "OK",
+   "http": 200,
+   "hits": 4378,
+   "samples": [
+    "10-8moshpdf",
+    "108moshpdf",
+    "20220429-pdfminer-jameslp310",
+    "33pdf",
+    "34pdf",
+    "a4pdf"
+   ],
+   "latest_update": null,
+   "note": null
+  },
+  {
+   "family": "pdf",
+   "family_name": "PDF",
+   "source": "pypi",
+   "query": "pdf extract",
+   "state": "OK",
+   "http": 200,
+   "hits": 61,
+   "samples": [
+    "ceb-pdf-extractor",
+    "cgr-pdfextract",
+    "cmem-plugin-pdf-extract",
+    "credit-mutual-pdf-extractor",
+    "credit-mutuel-pdf-extractor",
+    "credit-pdfextract"
+   ],
+   "latest_update": "2026-01-29T14:24:43",
+   "note": null
+  },
+  {
+   "family": "browser",
+   "family_name": "浏览器自动化",
+   "source": "pypi",
+   "query": "playwright",
+   "state": "OK",
+   "http": 200,
+   "hits": 186,
+   "samples": [
+    "abx-plugin-playwright",
+    "adacs-django-playwright",
+    "auto-playwright",
+    "auto-playwright-web",
+    "autoplaywright-python",
+    "axe-playwright-python"
+   ],
+   "latest_update": "2024-12-19T02:31:20",
+   "note": null
+  },
+  {
+   "family": "browser",
+   "family_name": "浏览器自动化",
+   "source": "pypi",
+   "query": "browser automation",
+   "state": "OK",
+   "http": 200,
+   "hits": 8,
+   "samples": [
+    "browser-automation-cli",
+    "browser-automation-launcher",
+    "browser-automationpy",
+    "browser-control-and-automation-cli",
+    "browser-mcp-automation",
+    "crewai-browser-automation-skills-pack"
+   ],
+   "latest_update": "2026-08-30T23:33:12",
+   "note": null
+  },
+  {
+   "family": "video",
+   "family_name": "视频合成",
+   "source": "pypi",
+   "query": "video composition",
+   "state": "OK",
+   "http": 200,
+   "hits": 0,
+   "samples": [],
+   "latest_update": null,
+   "note": null,
+   "gap_evidence": {
+    "all_tokens_in_one_name": false,
+    "per_token": {
+     "video": 1435,
+     "composition": 73
+    }
+   },
+   "gap_kind": "RULE_OR_FILTER"
+  },
+  {
+   "family": "video",
+   "family_name": "视频合成",
+   "source": "pypi",
+   "query": "ffmpeg video edit",
+   "state": "OK",
+   "http": 200,
+   "hits": 0,
+   "samples": [],
+   "latest_update": null,
+   "note": null,
+   "gap_evidence": {
+    "all_tokens_in_one_name": false,
+    "per_token": {
+     "ffmpeg": 171,
+     "video": 1435,
+     "edit": 1622
+    }
+   },
+   "gap_kind": "RULE_OR_FILTER"
+  },
+  {
+   "family": "tts",
+   "family_name": "语音TTS",
+   "source": "pypi",
+   "query": "tts",
+   "state": "OK",
+   "http": 200,
+   "hits": 937,
+   "samples": [
+    "abdttsslug",
+    "academia-tts",
+    "agents-local-tts",
+    "ahotts-g2p",
+    "ai-tts",
+    "ai-ttsc"
+   ],
+   "latest_update": "2021-04-10T18:34:49",
+   "note": null
+  },
+  {
+   "family": "tts",
+   "family_name": "语音TTS",
+   "source": "pypi",
+   "query": "text to speech",
+   "state": "OK",
+   "http": 200,
+   "hits": 66,
+   "samples": [
+    "abhayspeechtotext",
+    "adityakumarnayak-speech-to-text",
+    "adspeechtotext",
+    "afiz-speech-text",
+    "bach-open-ai-text-to-speech1",
+    "bangla-speech2text2speech"
+   ],
+   "latest_update": "2024-07-17T16:57:15",
+   "note": null
+  },
+  {
+   "family": "image",
+   "family_name": "图像生成",
+   "source": "pypi",
+   "query": "text to image",
+   "state": "OK",
+   "http": 200,
+   "hits": 56,
+   "samples": [
+    "apiverve-imagetotext",
+    "bach-ai-text-to-image-generator-flux-free-api",
+    "byted-overpass-lab-image-text-match-douyin",
+    "code-image-to-text",
+    "collective-contextimage",
+    "collective-contextimageexamples"
+   ],
+   "latest_update": "2026-10-26T14:02:45",
+   "note": null
+  },
+  {
+   "family": "image",
+   "family_name": "图像生成",
+   "source": "pypi",
+   "query": "image generation",
+   "state": "OK",
+   "http": 200,
+   "hits": 16,
+   "samples": [
+    "bach-ghibli-image-generator-api-open-ai-4o-image-generation-free",
+    "celeste-image-generation",
+    "dungle-scrubs-image-generation",
+    "generation-image-gaston",
+    "haiku-skills-image-generation",
+    "image-generation-fastmcp-server"
+   ],
+   "latest_update": "2025-12-07T19:24:47",
+   "note": null
+  },
+  {
+   "family": "model3d",
+   "family_name": "3D建模",
+   "source": "pypi",
+   "query": "blender",
+   "state": "OK",
+   "http": 200,
+   "hits": 146,
+   "samples": [
+    "ageless-blender-mcp",
+    "ajc27-freemocap-blender-addon",
+    "basilisp-blender",
+    "blender",
+    "blender-addon-tester",
+    "blender-asset-tracer"
+   ],
+   "latest_update": "2026-02-09T12:59:22",
+   "note": null
+  },
+  {
+   "family": "model3d",
+   "family_name": "3D建模",
+   "source": "pypi",
+   "query": "3d model",
+   "state": "OK",
+   "http": 200,
+   "hits": 5185,
+   "samples": [
+    "3dmodelxpress",
+    "3tears-models",
+    "4th-ir-ai-models",
+    "a-domain-model",
+    "a-sample-classification-model",
+    "a2lmodel"
+   ],
+   "latest_update": "2025-05-18T16:15:58",
+   "note": null
+  },
+  {
+   "family": "writing",
+   "family_name": "写作网文",
+   "source": "pypi",
+   "query": "novel writing",
+   "state": "OK",
+   "http": 200,
+   "hits": 0,
+   "samples": [],
+   "latest_update": null,
+   "note": null,
+   "gap_evidence": {
+    "all_tokens_in_one_name": false,
+    "per_token": {
+     "novel": 107,
+     "writing": 67
+    }
+   },
+   "gap_kind": "RULE_OR_FILTER"
+  },
+  {
+   "family": "writing",
+   "family_name": "写作网文",
+   "source": "pypi",
+   "query": "story generator",
+   "state": "OK",
+   "http": 200,
+   "hits": 4,
+   "samples": [
+    "forbes-story-angle-generator",
+    "mvs-story-generator",
+    "story-dialogue-generator",
+    "storygenerator"
+   ],
+   "latest_update": "2026-07-29T19:36:03",
+   "note": null
+  },
+  {
+   "family": "dingtalk",
+   "family_name": "钉钉协作",
+   "source": "pypi",
+   "query": "dingtalk",
+   "state": "OK",
+   "http": 200,
+   "hits": 77,
+   "samples": [
+    "alibabacloud-dingtalk",
+    "alibabacloud-gateway-dingtalk",
+    "alibabacloud-gateway-dingtalk-py2",
+    "alicebot-adapter-dingtalk",
+    "ca-dingtalk-sdk",
+    "ca-dingtalk-webhook"
+   ],
+   "latest_update": "2026-10-15T09:44:45",
+   "note": null
+  },
+  {
+   "family": "dingtalk",
+   "family_name": "钉钉协作",
+   "source": "pypi",
+   "query": "ding talk",
+   "state": "OK",
+   "http": 200,
+   "hits": 79,
+   "samples": [
+    "alibabacloud-dingtalk",
+    "alibabacloud-gateway-dingtalk",
+    "alibabacloud-gateway-dingtalk-py2",
+    "alicebot-adapter-dingtalk",
+    "ca-dingtalk-sdk",
+    "ca-dingtalk-webhook"
+   ],
+   "latest_update": "2026-10-15T09:44:45",
+   "note": null
+  },
+  {
+   "family": "deploy",
+   "family_name": "部署",
+   "source": "pypi",
+   "query": "static site deploy",
+   "state": "OK",
+   "http": 200,
+   "hits": 0,
+   "samples": [],
+   "latest_update": null,
+   "note": null,
+   "gap_evidence": {
+    "all_tokens_in_one_name": false,
+    "per_token": {
+     "static": 682,
+     "site": 1910,
+     "deploy": 948
+    }
+   },
+   "gap_kind": "RULE_OR_FILTER"
+  },
+  {
+   "family": "deploy",
+   "family_name": "部署",
+   "source": "pypi",
+   "query": "cloudflare pages",
+   "state": "OK",
+   "http": 200,
+   "hits": 0,
+   "samples": [],
+   "latest_update": null,
+   "note": null,
+   "gap_evidence": {
+    "all_tokens_in_one_name": false,
+    "per_token": {
+     "cloudflare": 154,
+     "pages": 240
+    }
+   },
+   "gap_kind": "RULE_OR_FILTER"
+  },
+  {
+   "family": "debug",
+   "family_name": "调试",
+   "source": "pypi",
+   "query": "debugger",
+   "state": "OK",
+   "http": 200,
+   "hits": 160,
+   "samples": [
+    "actor-debugger",
+    "agent-debugger",
+    "agent-failure-debugger",
+    "agent-replay-debugger-mcp",
+    "agenteval-debugger",
+    "agents-md-debugger"
+   ],
+   "latest_update": "2026-09-22T06:47:20",
+   "note": null
+  },
+  {
+   "family": "debug",
+   "family_name": "调试",
+   "source": "pypi",
+   "query": "debugging tool",
+   "state": "OK",
+   "http": 200,
+   "hits": 2,
+   "samples": [
+    "lztools-debugging",
+    "ntnx-tool-of-debugging"
+   ],
+   "latest_update": "2018-07-26T10:03:29",
+   "note": null
+  },
+  {
+   "family": "office_doc",
+   "family_name": "office文档",
+   "source": "smithery",
+   "query": "docx",
+   "state": "OK",
+   "http": 200,
+   "hits": 145,
+   "samples": [
+    "aurelianflo/core",
+    "useorgx/orgx-mcp",
+    "polytranslator/polytranslator",
+    "interpretai/postagent",
+    "beilin/mineru-markdown-converter",
+    "clearcrawl/clearcrawl"
+   ],
+   "latest_update": "2026-10-17T16:11:12.694Z",
+   "note": null
+  },
+  {
+   "family": "office_doc",
+   "family_name": "office文档",
+   "source": "smithery",
+   "query": "office document",
+   "state": "OK",
+   "http": 200,
+   "hits": 181,
+   "samples": [
+    "sophymarine/openregistry",
+    "OjasKord/document-integrity-validator-mcp",
+    "daldridge/oka-anywhere",
+    "fbalzan20-07mz/mila",
+    "filetopdf/filetopdf",
+    "googledocs"
+   ],
+   "latest_update": "2026-10-03T05:29:44.307Z",
+   "note": null
+  },
+  {
+   "family": "xlsx",
+   "family_name": "表格",
+   "source": "smithery",
+   "query": "xlsx",
+   "state": "OK",
+   "http": 200,
+   "hits": 130,
+   "samples": [
+    "excel",
+    "anthonypuggs/ausecon-mcp",
+    "useorgx/orgx-mcp",
+    "bob-rsef/pdf-toolkit",
+    "googlesheets",
+    "lexy-holdcraft/agent-tools-uk"
+   ],
+   "latest_update": "2026-10-12T11:34:01.812Z",
+   "note": null
+  },
+  {
+   "family": "xlsx",
+   "family_name": "表格",
+   "source": "smithery",
+   "query": "spreadsheet",
+   "state": "OK",
+   "http": 200,
+   "hits": 141,
+   "samples": [
+    "googlesheets",
+    "excel",
+    "airtable",
+    "seatable/seatable-mcp",
+    "flatlandfi/flatland",
+    "fbalzan20-5mxo/mila"
+   ],
+   "latest_update": "2026-10-14T18:11:27.831Z",
+   "note": null
+  },
+  {
+   "family": "pdf",
+   "family_name": "PDF",
+   "source": "smithery",
+   "query": "pdf",
+   "state": "OK",
+   "http": 200,
+   "hits": 149,
+   "samples": [
+    "re-port-flow/reportflow-mcp",
+    "mahiuddinalkamal/pdf-api-mcp",
+    "tj-r4v3/pdfops",
+    "pdfassistant-ai/pdfassistant-mcp",
+    "formfeed-dev/formfeed",
+    "gerardobarrera714/pdfmakerapi"
+   ],
+   "latest_update": "2026-10-17T07:08:15.745Z",
+   "note": null
+  },
+  {
+   "family": "pdf",
+   "family_name": "PDF",
+   "source": "smithery",
+   "query": "pdf extract",
+   "state": "OK",
+   "http": 200,
+   "hits": 152,
+   "samples": [
+    "hello-v9kg/pdf-to-markdown",
+    "velrim/extract",
+    "jesse-dxju/docpull",
+    "db-viteri/ninjadoc",
+    "sawftware-apps/docimprint",
+    "dammyg/callmeter"
+   ],
+   "latest_update": "2026-10-11T16:00:25.573Z",
+   "note": null
+  },
+  {
+   "family": "browser",
+   "family_name": "浏览器自动化",
+   "source": "smithery",
+   "query": "playwright",
+   "state": "OK",
+   "http": 200,
+   "hits": 116,
+   "samples": [
+    "bugagent/bugagent-mcp",
+    "trajectiq/playwright-e2e-mcp",
+    "snack-wrap/bcd",
+    "grabbit/screenshots",
+    "automatelab/ai-seo-mcp",
+    "tofan96you/scrapeforge-mcp"
+   ],
+   "latest_update": "2026-10-09T12:25:49.336Z",
+   "note": null
+  },
+  {
+   "family": "browser",
+   "family_name": "浏览器自动化",
+   "source": "smithery",
+   "query": "browser automation",
+   "state": "OK",
+   "http": 200,
+   "hits": 156,
+   "samples": [
+    "browserbase",
+    "kernel",
+    "apify",
+    "pshivapr/selenium-mcp",
+    "reduck-ai/browser-mcp",
+    "mg-2dit/WebRun"
+   ],
+   "latest_update": "2026-10-06T01:03:15.425Z",
+   "note": null
+  },
+  {
+   "family": "video",
+   "family_name": "视频合成",
+   "source": "smithery",
+   "query": "video composition",
+   "state": "OK",
+   "http": 200,
+   "hits": 162,
+   "samples": [
+    "cueframe/cueframe",
+    "videogen/videogen",
+    "acedatacloud-mcp/mcp-seedance",
+    "hancerkiranmevlut/ai-video-generator",
+    "valmera/video-editor",
+    "mypaintingclub/painting_lessons"
+   ],
+   "latest_update": "2026-10-16T06:33:10.734Z",
+   "note": null
+  },
+  {
+   "family": "video",
+   "family_name": "视频合成",
+   "source": "smithery",
+   "query": "ffmpeg video edit",
+   "state": "OK",
+   "http": 200,
+   "hits": 151,
+   "samples": [
+    "valmera/video-editor",
+    "sharksinternet/vidmoat",
+    "dev-algomax/blitzreels",
+    "nicolas-coutureau/kinopipe",
+    "tofan96you/videoforge-mcp",
+    "very-good-ffmpeg/vgff-mcp"
+   ],
+   "latest_update": "2026-10-15T07:47:31.765Z",
+   "note": null
+  },
+  {
+   "family": "tts",
+   "family_name": "语音TTS",
+   "source": "smithery",
+   "query": "tts",
+   "state": "OK",
+   "http": 200,
+   "hits": 133,
+   "samples": [
+    "info-oin7/freetts",
+    "nicolaseliasarias/narrador",
+    "gdesi159951/CleanAudio",
+    "kagelogic/voiceover",
+    "voicecheap/voicecheap",
+    "aiamindennapokban/fal-ai-mcp"
+   ],
+   "latest_update": "2026-10-17T11:48:03.370Z",
+   "note": null
+  },
+  {
+   "family": "tts",
+   "family_name": "语音TTS",
+   "source": "smithery",
+   "query": "text to speech",
+   "state": "OK",
+   "http": 200,
+   "hits": 157,
+   "samples": [
+    "JigsawStack/jigsawstack-text-to-speech",
+    "axel-belfort/text-to-speech",
+    "jan-metz-software/doc-player",
+    "happyscribe/happyscribe",
+    "kagelogic/voiceover",
+    "support-tsz4/speakvora"
+   ],
+   "latest_update": "2026-10-15T14:17:03.456Z",
+   "note": null
+  },
+  {
+   "family": "image",
+   "family_name": "图像生成",
+   "source": "smithery",
+   "query": "text to image",
+   "state": "OK",
+   "http": 200,
+   "hits": 167,
+   "samples": [
+    "JigsawStack/image-generation",
+    "JigsawStack/vocr",
+    "nanobanana",
+    "JigsawStack/jigsawstack-speech-to-text",
+    "scogg3/doc-convert-mcp",
+    "Svgverseai/svgverseai-mcp"
+   ],
+   "latest_update": "2026-10-16T06:33:10.734Z",
+   "note": null
+  },
+  {
+   "family": "image",
+   "family_name": "图像生成",
+   "source": "smithery",
+   "query": "image generation",
+   "state": "OK",
+   "http": 200,
+   "hits": 144,
+   "samples": [
+    "JigsawStack/image-generation",
+    "nanobanana",
+    "acedatacloud-mcp/mcp-nanobanana-pro",
+    "Svgverseai/svgverseai-mcp",
+    "imaginode-ai/imaginode",
+    "xuxuanzhou2015/claude-imagine"
+   ],
+   "latest_update": "2026-10-14T15:41:48.878Z",
+   "note": null
+  },
+  {
+   "family": "model3d",
+   "family_name": "3D建模",
+   "source": "smithery",
+   "query": "blender",
+   "state": "OK",
+   "http": 200,
+   "hits": 100,
+   "samples": [
+    "mangomunchr/farpy",
+    "jasmylab/janction-render",
+    "sceneplane/sceneplane",
+    "r3js/r3js",
+    "pablobellobarcon/tastepix",
+    "gradients-studio/gradients"
+   ],
+   "latest_update": "2026-10-15T12:59:02.988Z",
+   "note": null
+  },
+  {
+   "family": "model3d",
+   "family_name": "3D建模",
+   "source": "smithery",
+   "query": "3d model",
+   "state": "OK",
+   "http": 200,
+   "hits": 165,
+   "samples": [
+    "evozim-hv/3d-meshweaver",
+    "info-88h7/orbitstudio",
+    "evozim-hv/threejs-weaver",
+    "buck-rackley/3dcms",
+    "hello-1ktd/shopify-3d-ar",
+    "owlcad/com"
+   ],
+   "latest_update": "2026-10-16T16:08:20.088Z",
+   "note": null
+  },
+  {
+   "family": "writing",
+   "family_name": "写作网文",
+   "source": "smithery",
+   "query": "novel writing",
+   "state": "OK",
+   "http": 200,
+   "hits": 169,
+   "samples": [
+    "burnlore/burnlore",
+    "studio2c/ai-ebook-generator",
+    "manavm/zero-slop",
+    "anthra/anthra",
+    "techdpr/moltline-humanizer",
+    "prose-coach/prose-coach"
+   ],
+   "latest_update": "2026-10-15T17:48:13.489Z",
+   "note": null
+  },
+  {
+   "family": "writing",
+   "family_name": "写作网文",
+   "source": "smithery",
+   "query": "story generator",
+   "state": "OK",
+   "http": 200,
+   "hits": 180,
+   "samples": [
+    "benedikt-mh4x/storylenses",
+    "studio2c/ai-ebook-generator",
+    "clipstudioai/clipstudio",
+    "mangii/manga",
+    "orthosie/fungenerators",
+    "lawrence-a-hutchins/continuity"
+   ],
+   "latest_update": "2026-10-11T13:31:33.279Z",
+   "note": null
+  },
+  {
+   "family": "dingtalk",
+   "family_name": "钉钉协作",
+   "source": "smithery",
+   "query": "dingtalk",
+   "state": "OK",
+   "http": 200,
+   "hits": 0,
+   "samples": [
+    "delentia/delta-compressor",
+    "serdaroztetik/call-me",
+    "puzzleinvisible/MockClip",
+    "shteynum/ngx-json-render-ui",
+    "jamesonhussey99/wiggle",
+    "bulktranscripts/askhound"
+   ],
+   "latest_update": "2026-10-17T17:20:08.094Z",
+   "note": "零命中回落默认列表，按 0 计",
+   "gap_evidence": {
+    "returned": 10,
+    "totalCount": 100,
+    "word_in_body": false
+   },
+   "gap_kind": "GAP_REAL"
+  },
+  {
+   "family": "dingtalk",
+   "family_name": "钉钉协作",
+   "source": "smithery",
+   "query": "ding talk",
+   "state": "OK",
+   "http": 200,
+   "hits": 171,
+   "samples": [
+    "audioscrape",
+    "sami-k2i2/magicinterview",
+    "rich-ding/vicsee",
+    "rakeshdavid/tavus-mcp",
+    "weekoon22/agent-companion",
+    "jake-spyder/buildfeed"
+   ],
+   "latest_update": "2026-10-14T04:05:05.241Z",
+   "note": null
+  },
+  {
+   "family": "deploy",
+   "family_name": "部署",
+   "source": "smithery",
+   "query": "static site deploy",
+   "state": "OK",
+   "http": 200,
+   "hits": 154,
+   "samples": [
+    "netlify",
+    "hostsmith/mcp-server",
+    "vercel",
+    "just-done/justpublish",
+    "shipstatic/ship",
+    "bosmdavid/dropthehassle"
+   ],
+   "latest_update": "2026-10-15T06:52:47.930Z",
+   "note": null
+  },
+  {
+   "family": "deploy",
+   "family_name": "部署",
+   "source": "smithery",
+   "query": "cloudflare pages",
+   "state": "OK",
+   "http": 200,
+   "hits": 171,
+   "samples": [
+    "cloudflare",
+    "scrapeunblocker/scrapeunblocker",
+    "bitgate/ship-page",
+    "foura/mcp",
+    "webpeel/webpeel",
+    "kodey_ai/kodey-pdf-mcp"
+   ],
+   "latest_update": "2026-10-16T07:05:28.714Z",
+   "note": null
+  },
+  {
+   "family": "debug",
+   "family_name": "调试",
+   "source": "smithery",
+   "query": "debugger",
+   "state": "OK",
+   "http": 200,
+   "hits": 101,
+   "samples": [
+    "evozim-hv/polyglot-debugger",
+    "Kastalien-Research/thoughtbox",
+    "cameroncooke/xcodebuildmcp",
+    "roib/lightrun",
+    "evozim-hv/stack-trace-medic",
+    "volato/errors"
+   ],
+   "latest_update": "2026-10-09T12:36:23.406Z",
+   "note": null
+  },
+  {
+   "family": "debug",
+   "family_name": "调试",
+   "source": "smithery",
+   "query": "debugging tool",
+   "state": "OK",
+   "http": 200,
+   "hits": 164,
+   "samples": [
+    "evozim-hv/polyglot-debugger",
+    "yos-dabian/vibefix",
+    "cameroncooke/xcodebuildmcp",
+    "vercel",
+    "botoi/botoi-mcp",
+    "evozim-hv/stack-trace-medic"
+   ],
+   "latest_update": "2026-10-09T12:36:23.406Z",
+   "note": null
+  },
+  {
+   "family": "office_doc",
+   "family_name": "office文档",
+   "source": "glama",
+   "query": "docx",
+   "state": "BLOCKED_UNQUERYABLE",
+   "http": 200,
+   "hits": null,
+   "samples": [],
+   "latest_update": null,
+   "note": "实测 ?search= 与 ?page= 返回集不变(固定24条)，过滤在客户端 JS；无服务端可查询面"
+  },
+  {
+   "family": "office_doc",
+   "family_name": "office文档",
+   "source": "glama",
+   "query": "office document",
+   "state": "BLOCKED_UNQUERYABLE",
+   "http": 200,
+   "hits": null,
+   "samples": [],
+   "latest_update": null,
+   "note": "实测 ?search= 与 ?page= 返回集不变(固定24条)，过滤在客户端 JS；无服务端可查询面"
+  },
+  {
+   "family": "xlsx",
+   "family_name": "表格",
+   "source": "glama",
+   "query": "xlsx",
+   "state": "BLOCKED_UNQUERYABLE",
+   "http": 200,
+   "hits": null,
+   "samples": [],
+   "latest_update": null,
+   "note": "实测 ?search= 与 ?page= 返回集不变(固定24条)，过滤在客户端 JS；无服务端可查询面"
+  },
+  {
+   "family": "xlsx",
+   "family_name": "表格",
+   "source": "glama",
+   "query": "spreadsheet",
+   "state": "BLOCKED_UNQUERYABLE",
+   "http": 200,
+   "hits": null,
+   "samples": [],
+   "latest_update": null,
+   "note": "实测 ?search= 与 ?page= 返回集不变(固定24条)，过滤在客户端 JS；无服务端可查询面"
+  },
+  {
+   "family": "pdf",
+   "family_name": "PDF",
+   "source": "glama",
+   "query": "pdf",
+   "state": "BLOCKED_UNQUERYABLE",
+   "http": 200,
+   "hits": null,
+   "samples": [],
+   "latest_update": null,
+   "note": "实测 ?search= 与 ?page= 返回集不变(固定24条)，过滤在客户端 JS；无服务端可查询面"
+  },
+  {
+   "family": "pdf",
+   "family_name": "PDF",
+   "source": "glama",
+   "query": "pdf extract",
+   "state": "BLOCKED_UNQUERYABLE",
+   "http": 200,
+   "hits": null,
+   "samples": [],
+   "latest_update": null,
+   "note": "实测 ?search= 与 ?page= 返回集不变(固定24条)，过滤在客户端 JS；无服务端可查询面"
+  },
+  {
+   "family": "browser",
+   "family_name": "浏览器自动化",
+   "source": "glama",
+   "query": "playwright",
+   "state": "BLOCKED_UNQUERYABLE",
+   "http": 200,
+   "hits": null,
+   "samples": [],
+   "latest_update": null,
+   "note": "实测 ?search= 与 ?page= 返回集不变(固定24条)，过滤在客户端 JS；无服务端可查询面"
+  },
+  {
+   "family": "browser",
+   "family_name": "浏览器自动化",
+   "source": "glama",
+   "query": "browser automation",
+   "state": "BLOCKED_UNQUERYABLE",
+   "http": 200,
+   "hits": null,
+   "samples": [],
+   "latest_update": null,
+   "note": "实测 ?search= 与 ?page= 返回集不变(固定24条)，过滤在客户端 JS；无服务端可查询面"
+  },
+  {
+   "family": "video",
+   "family_name": "视频合成",
+   "source": "glama",
+   "query": "video composition",
+   "state": "BLOCKED_UNQUERYABLE",
+   "http": 200,
+   "hits": null,
+   "samples": [],
+   "latest_update": null,
+   "note": "实测 ?search= 与 ?page= 返回集不变(固定24条)，过滤在客户端 JS；无服务端可查询面"
+  },
+  {
+   "family": "video",
+   "family_name": "视频合成",
+   "source": "glama",
+   "query": "ffmpeg video edit",
+   "state": "BLOCKED_UNQUERYABLE",
+   "http": 200,
+   "hits": null,
+   "samples": [],
+   "latest_update": null,
+   "note": "实测 ?search= 与 ?page= 返回集不变(固定24条)，过滤在客户端 JS；无服务端可查询面"
+  },
+  {
+   "family": "tts",
+   "family_name": "语音TTS",
+   "source": "glama",
+   "query": "tts",
+   "state": "BLOCKED_UNQUERYABLE",
+   "http": 200,
+   "hits": null,
+   "samples": [],
+   "latest_update": null,
+   "note": "实测 ?search= 与 ?page= 返回集不变(固定24条)，过滤在客户端 JS；无服务端可查询面"
+  },
+  {
+   "family": "tts",
+   "family_name": "语音TTS",
+   "source": "glama",
+   "query": "text to speech",
+   "state": "BLOCKED_UNQUERYABLE",
+   "http": 200,
+   "hits": null,
+   "samples": [],
+   "latest_update": null,
+   "note": "实测 ?search= 与 ?page= 返回集不变(固定24条)，过滤在客户端 JS；无服务端可查询面"
+  },
+  {
+   "family": "image",
+   "family_name": "图像生成",
+   "source": "glama",
+   "query": "text to image",
+   "state": "BLOCKED_UNQUERYABLE",
+   "http": 200,
+   "hits": null,
+   "samples": [],
+   "latest_update": null,
+   "note": "实测 ?search= 与 ?page= 返回集不变(固定24条)，过滤在客户端 JS；无服务端可查询面"
+  },
+  {
+   "family": "image",
+   "family_name": "图像生成",
+   "source": "glama",
+   "query": "image generation",
+   "state": "BLOCKED_UNQUERYABLE",
+   "http": 200,
+   "hits": null,
+   "samples": [],
+   "latest_update": null,
+   "note": "实测 ?search= 与 ?page= 返回集不变(固定24条)，过滤在客户端 JS；无服务端可查询面"
+  },
+  {
+   "family": "model3d",
+   "family_name": "3D建模",
+   "source": "glama",
+   "query": "blender",
+   "state": "BLOCKED_UNQUERYABLE",
+   "http": 200,
+   "hits": null,
+   "samples": [],
+   "latest_update": null,
+   "note": "实测 ?search= 与 ?page= 返回集不变(固定24条)，过滤在客户端 JS；无服务端可查询面"
+  },
+  {
+   "family": "model3d",
+   "family_name": "3D建模",
+   "source": "glama",
+   "query": "3d model",
+   "state": "BLOCKED_UNQUERYABLE",
+   "http": 200,
+   "hits": null,
+   "samples": [],
+   "latest_update": null,
+   "note": "实测 ?search= 与 ?page= 返回集不变(固定24条)，过滤在客户端 JS；无服务端可查询面"
+  },
+  {
+   "family": "writing",
+   "family_name": "写作网文",
+   "source": "glama",
+   "query": "novel writing",
+   "state": "BLOCKED_UNQUERYABLE",
+   "http": 200,
+   "hits": null,
+   "samples": [],
+   "latest_update": null,
+   "note": "实测 ?search= 与 ?page= 返回集不变(固定24条)，过滤在客户端 JS；无服务端可查询面"
+  },
+  {
+   "family": "writing",
+   "family_name": "写作网文",
+   "source": "glama",
+   "query": "story generator",
+   "state": "BLOCKED_UNQUERYABLE",
+   "http": 200,
+   "hits": null,
+   "samples": [],
+   "latest_update": null,
+   "note": "实测 ?search= 与 ?page= 返回集不变(固定24条)，过滤在客户端 JS；无服务端可查询面"
+  },
+  {
+   "family": "dingtalk",
+   "family_name": "钉钉协作",
+   "source": "glama",
+   "query": "dingtalk",
+   "state": "BLOCKED_UNQUERYABLE",
+   "http": 200,
+   "hits": null,
+   "samples": [],
+   "latest_update": null,
+   "note": "实测 ?search= 与 ?page= 返回集不变(固定24条)，过滤在客户端 JS；无服务端可查询面"
+  },
+  {
+   "family": "dingtalk",
+   "family_name": "钉钉协作",
+   "source": "glama",
+   "query": "ding talk",
+   "state": "BLOCKED_UNQUERYABLE",
+   "http": 200,
+   "hits": null,
+   "samples": [],
+   "latest_update": null,
+   "note": "实测 ?search= 与 ?page= 返回集不变(固定24条)，过滤在客户端 JS；无服务端可查询面"
+  },
+  {
+   "family": "deploy",
+   "family_name": "部署",
+   "source": "glama",
+   "query": "static site deploy",
+   "state": "BLOCKED_UNQUERYABLE",
+   "http": 200,
+   "hits": null,
+   "samples": [],
+   "latest_update": null,
+   "note": "实测 ?search= 与 ?page= 返回集不变(固定24条)，过滤在客户端 JS；无服务端可查询面"
+  },
+  {
+   "family": "deploy",
+   "family_name": "部署",
+   "source": "glama",
+   "query": "cloudflare pages",
+   "state": "BLOCKED_UNQUERYABLE",
+   "http": 200,
+   "hits": null,
+   "samples": [],
+   "latest_update": null,
+   "note": "实测 ?search= 与 ?page= 返回集不变(固定24条)，过滤在客户端 JS；无服务端可查询面"
+  },
+  {
+   "family": "debug",
+   "family_name": "调试",
+   "source": "glama",
+   "query": "debugger",
+   "state": "BLOCKED_UNQUERYABLE",
+   "http": 200,
+   "hits": null,
+   "samples": [],
+   "latest_update": null,
+   "note": "实测 ?search= 与 ?page= 返回集不变(固定24条)，过滤在客户端 JS；无服务端可查询面"
+  },
+  {
+   "family": "debug",
+   "family_name": "调试",
+   "source": "glama",
+   "query": "debugging tool",
+   "state": "BLOCKED_UNQUERYABLE",
+   "http": 200,
+   "hits": null,
+   "samples": [],
+   "latest_update": null,
+   "note": "实测 ?search= 与 ?page= 返回集不变(固定24条)，过滤在客户端 JS；无服务端可查询面"
+  }
+ ],
+ "anomalies": [
+  {
+   "source": "smithery",
+   "issue": "负控命中非 0，该源 hits 不可信",
+   "neg_hits": 10
+  },
+  {
+   "source": "glama",
+   "issue": "负控命中非 0，该源 hits 不可信",
+   "neg_hits": 24
+  },
+  {
+   "source": "smithery",
+   "issue": "?q= 零命中时回落默认列表(totalCount=100)；已加相关性校验判 0",
+   "fixed": true
+  },
+  {
+   "source": "glama",
+   "issue": "目录检索参数无效，整源 BLOCKED",
+   "fixed": false
+  }
+ ],
+ "updated_at": "2026-10-28T06:34:51+00:00",
+ "patched_at": "2026-10-28T06:41:06+00:00",
+ "caliber_review": {
+  "why": "首轮两处口径存疑，复核后坐实，避免把规则缺陷写成社区无资产",
+  "pypi_strict_rule": "首轮AND口径多词族0命中是规则过严的假阴性",
+  "pypi_broad": [
+   {
+    "family": "video",
+    "family_name": "视频合成",
+    "best_token": "video",
+    "best_hits": 859,
+    "union_hits": 1695,
+    "tokens": {
+     "video": 859,
+     "ffmpeg": 136,
+     "compose": 218,
+     "composition": 48,
+     "render": 252,
+     "subtitle": 57,
+     "clip": 136
+    },
+    "samples": [
+     "3d-video-converter",
+     "absolutely-not-scikit-video",
+     "ada-pip-video-intelligence"
+    ]
+   },
+   {
+    "family": "deploy",
+    "family_name": "部署",
+    "best_token": "deploy",
+    "best_hits": 400,
+    "union_hits": 718,
+    "tokens": {
+     "deploy": 400,
+     "vercel": 69,
+     "netlify": 14,
+     "cloudflare": 134,
+     "wrangler": 44,
+     "surge": 12,
+     "hosting": 45
+    },
+    "samples": [
+     "7lk-ocr-deploy",
+     "ads-deploy",
+     "agent-deploy-mcp"
+    ]
+   },
+   {
+    "family": "writing",
+    "family_name": "写作网文",
+    "best_token": "writer",
+    "best_hits": 196,
+    "union_hits": 346,
+    "tokens": {
+     "novel": 32,
+     "fiction": 8,
+     "story": 54,
+     "writer": 196,
+     "writing": 36,
+     "webnovel": 1,
+     "prose": 20
+    },
+    "samples": [
+     "a1234-text-writer",
+     "abi-writer",
+     "adr-writer"
+    ]
+   },
+   {
+    "family": "office_doc",
+    "family_name": "office文档",
+    "best_token": "doc",
+    "best_hits": 496,
+    "union_hits": 1602,
+    "tokens": {
+     "docx": 240,
+     "word": 297,
+     "office": 158,
+     "document": 434,
+     "doc": 496
+    },
+    "samples": [
+     "aar-doc",
+     "abi2doc",
+     "agent-doc"
+    ]
+   },
+   {
+    "family": "xlsx",
+    "family_name": "表格",
+    "best_token": "excel",
+    "best_hits": 494,
+    "union_hits": 925,
+    "tokens": {
+     "xlsx": 201,
+     "excel": 494,
+     "spreadsheet": 63,
+     "openpyxl": 25,
+     "sheet": 144
+    },
+    "samples": [
+     "a-move-files-by-excel",
+     "a-pandas-ex-excel-edit",
+     "abacus-excel"
+    ]
+   },
+   {
+    "family": "pdf",
+    "family_name": "PDF",
+    "best_token": "pdf",
+    "best_hits": 1632,
+    "union_hits": 1655,
+    "tokens": {
+     "pdf": 1632,
+     "pdftk": 3,
+     "reportlab": 21
+    },
+    "samples": [
+     "33pdf",
+     "34pdf",
+     "a4pdf"
+    ]
+   },
+   {
+    "family": "browser",
+    "family_name": "浏览器自动化",
+    "best_token": "browser",
+    "best_hits": 520,
+    "union_hits": 1141,
+    "tokens": {
+     "playwright": 170,
+     "selenium": 388,
+     "puppeteer": 12,
+     "browser": 520,
+     "cdp": 60
+    },
+    "samples": [
+     "acis-browser",
+     "activity-browser",
+     "ads-browser-sdk"
+    ]
+   },
+   {
+    "family": "tts",
+    "family_name": "语音TTS",
+    "best_token": "tts",
+    "best_hits": 528,
+    "union_hits": 1205,
+    "tokens": {
+     "tts": 528,
+     "speech": 253,
+     "voice": 367,
+     "say": 60
+    },
+    "samples": [
+     "academia-tts",
+     "agents-local-tts",
+     "ai-tts"
+    ]
+   },
+   {
+    "family": "image",
+    "family_name": "图像生成",
+    "best_token": "image",
+    "best_hits": 2077,
+    "union_hits": 2123,
+    "tokens": {
+     "image": 2077,
+     "diffusers": 25,
+     "stable-diffusion": 16,
+     "img2img": 2,
+     "txt2img": 3
+    },
+    "samples": [
+     "3d-to-image",
+     "a-pandas-ex-image-tools",
+     "abstract-image-viewer"
+    ]
+   },
+   {
+    "family": "model3d",
+    "family_name": "3D建模",
+    "best_token": "mesh",
+    "best_hits": 244,
+    "union_hits": 623,
+    "tokens": {
+     "blender": 104,
+     "mesh": 244,
+     "obj": 84,
+     "gltf": 15,
+     "3d": 179
+    },
+    "samples": [
+     "3mesh",
+     "a2a-mesh",
+     "add-mesh"
+    ]
+   },
+   {
+    "family": "dingtalk",
+    "family_name": "钉钉协作",
+    "best_token": "dingtalk",
+    "best_hits": 68,
+    "union_hits": 88,
+    "tokens": {
+     "dingtalk": 68,
+     "ding": 20,
+     "dingtalk-sdk": 3
+    },
+    "samples": [
+     "alibabacloud-dingtalk",
+     "alibabacloud-gateway-dingtalk",
+     "alibabacloud-gateway-dingtalk-py2"
+    ]
+   },
+   {
+    "family": "debug",
+    "family_name": "调试",
+    "best_token": "debug",
+    "best_hits": 296,
+    "union_hits": 499,
+    "tokens": {
+     "debug": 296,
+     "debugger": 122,
+     "pdb": 72,
+     "breakpoint": 9
+    },
+    "samples": [
+     "aaep-cli-debug",
+     "adafruit-circuitpython-debug-i2c",
+     "agent-debug"
+    ]
+   }
+  ],
+  "skillssh_truncation": {
+   "capped_at_100": false,
+   "probes": [
+    {
+     "family": "office_doc",
+     "query": "docx",
+     "count_field": 100,
+     "returned": 100
+    },
+    {
+     "family": "xlsx",
+     "query": "xlsx",
+     "count_field": 100,
+     "returned": 100
+    },
+    {
+     "family": "pdf",
+     "query": "pdf",
+     "count_field": 100,
+     "returned": 100
+    },
+    {
+     "family": "browser",
+     "query": "playwright",
+     "count_field": 100,
+     "returned": 100
+    },
+    {
+     "family": "video",
+     "query": "video composition",
+     "count_field": 100,
+     "returned": 100
+    },
+    {
+     "family": "tts",
+     "query": "tts",
+     "count_field": 61,
+     "returned": 61
+    },
+    {
+     "family": "image",
+     "query": "text to image",
+     "count_field": 100,
+     "returned": 100
+    },
+    {
+     "family": "model3d",
+     "query": "blender",
+     "count_field": 100,
+     "returned": 100
+    },
+    {
+     "family": "writing",
+     "query": "novel writing",
+     "count_field": 100,
+     "returned": 100
+    },
+    {
+     "family": "dingtalk",
+     "query": "dingtalk",
+     "count_field": 100,
+     "returned": 100
+    },
+    {
+     "family": "deploy",
+     "query": "static site deploy",
+     "count_field": 100,
+     "returned": 100
+    },
+    {
+     "family": "debug",
+     "query": "debugger",
+     "count_field": 100,
+     "returned": 100
+    }
+   ],
+   "verdict": "skillssh hits==100 只能读作至少100条(截断)，不可当总量",
+   "resolved": "limit=1000 已取真值，matrix 行为实际命中数",
+   "limit_probe": {
+    "default": 100,
+    "limit500_pdf": 200
+   }
+  },
+  "glama": "整源 BLOCKED_UNQUERYABLE（search/page 对返回集零影响）",
+  "measured_at": "2026-10-28T06:44:51+00:00",
+  "skillssh_provenance": {
+   "sample_sources": {
+    "dingtalk-real-ai/dingtalk-workspace-cli": 27,
+    "roble3/cc-blender-skill": 24,
+    "scenario-labs/skills": 13,
+    "claude-office-skills/skills": 11,
+    "breath57/dingtalk-skills": 9,
+    "anthropics/skills": 3,
+    "yuan1z0825/nature-skills": 3,
+    "affaan-m/ecc": 3,
+    "modelscope.cn": 2,
+    "openclaw/openclaw": 2,
+    "lijigang/ljg-skills": 2,
+    "heygen-com/hyperframes": 2
+   },
+   "finding": "skills.sh 条目 source 字段均为 GitHub 仓库标识（org/repo），即目录入口独立、资产本体托管在 GitHub",
+   "measured_at": "2026-10-28T06:47:06+00:00"
+  }
+ },
+ "face": {
+  "sources_probed": 5,
+  "sources_with_real_counts": 4,
+  "non_github_sources_reporting": 4,
+  "matrix_rows": 120,
+  "families": 12,
+  "queries_per_family": 2,
+  "github_used": false,
+  "negative_controls": {
+   "npm": 0,
+   "pypi": 0,
+   "skillssh": 0,
+   "smithery": 0,
+   "glama": 24
+  },
+  "teeth": {
+   "npm": "PASS",
+   "pypi": "PASS",
+   "skillssh": "PASS",
+   "smithery": "PASS",
+   "glama": "N/A_源不可查询"
+  },
+  "non_github_native_sources": [
+   "npm",
+   "pypi",
+   "smithery"
+  ],
+  "sources_reporting": [
+   "npm",
+   "pypi",
+   "skillssh",
+   "smithery"
+  ]
+ },
+ "finalized_at": "2026-10-28T06:47:06+00:00",
+ "negative_controls": [
+  {
+   "source": "npm",
+   "query": "zzzqqxxnotexistr260",
+   "http": 200,
+   "hits": 0,
+   "teeth": "PASS",
+   "note": null
+  },
+  {
+   "source": "pypi",
+   "query": "zzzqqxxnotexistr260",
+   "http": 200,
+   "hits": 0,
+   "teeth": "PASS",
+   "note": null
+  },
+  {
+   "source": "skillssh",
+   "query": "zzzqqxxnotexistr260",
+   "http": 200,
+   "hits": 0,
+   "teeth": "PASS",
+   "note": null
+  },
+  {
+   "source": "smithery",
+   "query": "zzzqqxxnotexistr260",
+   "http": 200,
+   "hits": 0,
+   "teeth": "PASS",
+   "note": "零命中回落默认列表，按 0 计"
+  },
+  {
+   "source": "glama",
+   "query": "zzzqqxxnotexistr260",
+   "http": 200,
+   "hits": 24,
+   "teeth": "N/A_源不可查询",
+   "note": "search/page 对返回集零影响(r260_probe4.py 实测 page1/2/3 同 24 条)"
+  }
+ ],
+ "family_gaps": {
+  "rows_zero": [
+   {
+    "family": "office_doc",
+    "source": "pypi",
+    "query": "office document",
+    "kind": "RULE_OR_FILTER",
+    "ev": {
+     "all_tokens_in_one_name": false,
+     "per_token": {
+      "office": 331,
+      "document": 677
+     }
+    }
+   },
+   {
+    "family": "video",
+    "source": "pypi",
+    "query": "video composition",
+    "kind": "RULE_OR_FILTER",
+    "ev": {
+     "all_tokens_in_one_name": false,
+     "per_token": {
+      "video": 1435,
+      "composition": 73
+     }
+    }
+   },
+   {
+    "family": "video",
+    "source": "pypi",
+    "query": "ffmpeg video edit",
+    "kind": "RULE_OR_FILTER",
+    "ev": {
+     "all_tokens_in_one_name": false,
+     "per_token": {
+      "ffmpeg": 171,
+      "video": 1435,
+      "edit": 1622
+     }
+    }
+   },
+   {
+    "family": "writing",
+    "source": "pypi",
+    "query": "novel writing",
+    "kind": "RULE_OR_FILTER",
+    "ev": {
+     "all_tokens_in_one_name": false,
+     "per_token": {
+      "novel": 107,
+      "writing": 67
+     }
+    }
+   },
+   {
+    "family": "deploy",
+    "source": "pypi",
+    "query": "static site deploy",
+    "kind": "RULE_OR_FILTER",
+    "ev": {
+     "all_tokens_in_one_name": false,
+     "per_token": {
+      "static": 682,
+      "site": 1910,
+      "deploy": 948
+     }
+    }
+   },
+   {
+    "family": "deploy",
+    "source": "pypi",
+    "query": "cloudflare pages",
+    "kind": "RULE_OR_FILTER",
+    "ev": {
+     "all_tokens_in_one_name": false,
+     "per_token": {
+      "cloudflare": 154,
+      "pages": 240
+     }
+    }
+   },
+   {
+    "family": "dingtalk",
+    "source": "smithery",
+    "query": "dingtalk",
+    "kind": "GAP_REAL",
+    "ev": {
+     "returned": 10,
+     "totalCount": 100,
+     "word_in_body": false
+    }
+   }
+  ],
+  "families_with_no_asset_on_any_reporting_source": [],
+  "verdict_partial": "见报告：需按源分别判，不存在 12 族整族缺失的源",
+  "measured_at": "2026-10-28T06:48:32+00:00"
+ }
+}

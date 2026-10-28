@@ -1,0 +1,188 @@
+{
+ "schema": "r260-quarterly-silent-preview-v1",
+ "round": "r260（任务：修 r113「不可静默预览」）",
+ "run_at_local": "2026-10-28T14:52~14:59+08:00",
+ "target_script": "05-exec/r113_quarterly_audit.py",
+ "verdict_one_line": "修复成立：--no-side-write 开 ⇒ 跑前后 git status --porcelain 逐字相同（最终干净轮 D1 125 行 ↔ D2 125 行，diff 空；首轮 123↔123 同判据复现）；不带开关的旧路径实测改写 3 处 tracked 件（复核点名 2 处 + 新抓 1 处），负控有牙。",
+ "defects_found": [
+  {
+   "id": "①",
+   "line_reported_by_reviewer": "L314",
+   "actual_line_after_patch": "≈361",
+   "face": "06-benchmark/local_frontmatter.json（tracked）",
+   "mechanism": "local_fm = os.path.join(BENCH, \"local_frontmatter.json\") 硬编码，与 --out-dir 无关；r211_local_fm.py 无幂等（每次 atomic_write 全件重写，generated_at 必变）",
+   "status": "✅已实测（旧路径跑一次 sha 61447f8a→b2f38e88，git status 报 M）"
+  },
+  {
+   "id": "②",
+   "line_reported_by_reviewer": "L335",
+   "actual_line_after_patch": "≈378（前移至 r114 调用之前）",
+   "face": "06-benchmark/pool_cache_r217.json（tracked）",
+   "mechanism": "pool_pack = os.path.join(BENCH, \"pool_cache_r217.json\") 硬编码；r217 --ensure 为幂等维护（包覆盖活缓存且逐条等值 ⇒ 不写）",
+   "status": "✅已实测（构造漂移后旧路径 sha 9d754315→a60e0d4f 并报 M；不构造漂移则为幂等不写 ⇒ 单跑一次看不出，见 caveats）"
+  },
+  {
+   "id": "③",
+   "line_reported_by_reviewer": "复核未点名（本次逐子件扫写面新抓）",
+   "actual_line_after_patch": "≈441 围栏 + capture/restore 助手",
+   "face": "06-benchmark/replacement_matrix_shadowstrict.json（tracked）",
+   "mechanism": "r221_caliber_shadow.py:172 shad_matrix = os.path.join(BENCH, basename(matrix)+\"_shadowstrict.json\") —— 目录钉死 BENCH、文件名由 --matrix 推导，编排方无从传参重定向",
+   "status": "✅已实测（旧路径跑一次 sha c0f2f7f8→2bd32234；只修 ①② 则跑完 status 仍非零改动 ⇒ 第三处是真缺陷而非理论风险）"
+  }
+ ],
+ "fix": {
+  "switch": "--no-side-write",
+  "design": "side_dir = qdir（开关开）| BENCH（缺省）；①② 写面随 side_dir 重定向；③ 用 capture_bytes/restore_capture 做字节围栏（r221 不在写面白名单，不能改它）",
+  "backward_compatible": "缺省（不开关）写面与历史逐字节一致；r114 的 --pool-pack 只在重定向分支注入 ⇒ 老路径零差异",
+  "read_side_fix": "缺陷② 必须同时改读面：只重定向 r217 写面而让 r114 继续读 BENCH 旧包 = 「写新读旧」假绿，比原缺陷更坏 ⇒ pool_pack 定义前移并在开关开时显式传 --pool-pack",
+  "self_report_in_artifact": {
+   "no_side_write": true,
+   "side_dir": "06-benchmark/quarterly_r260b/2026Q4",
+   "local_fm_written_to": "06-benchmark/quarterly_r260b/2026Q4/local_frontmatter.json",
+   "pool_pack_written_to": "06-benchmark/quarterly_r260b/2026Q4/pool_cache_r217.json",
+   "shadow_matrix_tracked_target": "06-benchmark/replacement_matrix_shadowstrict.json",
+   "shadow_matrix_fence_action": "restored"
+  }
+ },
+ "zero_change_proof": {
+  "primary": {
+   "before_snapshot": "_temp/r260b_status_BEFORE.txt（123 行 @14:52:04）",
+   "after_snapshot": "_temp/r260b_status_AFTER_FIXED.txt（123 行 @14:52:59）",
+   "diff": "空 ⇒ PORCELAIN_IDENTICAL",
+   "tracked_sha_pair": {
+    "local_frontmatter": "61447f8a == 61447f8a",
+    "pool_cache_r217": "9d754315 == 9d754315",
+    "replacement_matrix_shadowstrict": "c0f2f7f8 == c0f2f7f8"
+   },
+   "zero_change": true,
+   "final_note": "同判据在最终干净轮（D1↔D2，125 ↔ 125 行）复现一次，diff 仍为空。"
+  },
+  "hardened_under_drift": {
+   "why": "主证据里 ② 处于幂等态（包==活缓存 ⇒ 本来就不写），零改动对该面证明力弱 ⇒ 追加一轮「池有漂移」下的复跑",
+   "drift_fixture": "_temp/r114_search_cache/q__r260_drift_fixture.json（测毕已删）",
+   "check_before_run": "[POOLPACK:DRIFT] 包缺条目 1（q__r260_drift_fixture）⇒ 若走旧路径必改写 tracked 包",
+   "before_snapshot": "_temp/r260b_status_B2.txt（122 行 @14:57:51）",
+   "after_snapshot": "_temp/r260b_status_A2.txt（123 行 @14:58:31）",
+   "tracked_sha_pair": {
+    "local_frontmatter": "9396046d == 9396046d",
+    "pool_cache_r217": "9d754315 == 9d754315",
+    "replacement_matrix_shadowstrict": "c0f2f7f8 == c0f2f7f8"
+   },
+   "porcelain_delta": "1 行：?? 06-benchmark/本地同底座基准与compat判断力_r260_2026-10-28.md —— 归因＝并发写者，非本件产出（见 concurrent_writer）",
+   "zero_change_on_tracked_faces": true
+  }
+ },
+ "negative_control": {
+  "purpose": "证明判据有牙：不带 --no-side-write ⇒ 那两个（实为三个）tracked 件必须被改写",
+  "old_path_full_run": "python 05-exec/r113_quarterly_audit.py --offline --out-dir 06-benchmark/quarterly_r260b_neg ⇒ rc=0/19 步全通过，同时 local_fm 与 shadowstrict 被改写（sha 见 defects 表）",
+  "pool_pack_face": "直接跑 r217 --ensure（构造漂移）⇒ tracked 包被改写 a60e0d4f + status M",
+  "result": "三条写面全部复现 ⇒ 修复针对真缺陷",
+  "artifacts_kept": "_temp/r260b_neg_kept/（负控轮产物，已迁出 06-benchmark，避免在 tracked 面留新目录）"
+ },
+ "restoration_log": {
+  "authorized_exception": "本任务例外授权：仅 06-benchmark/local_frontmatter.json 与 06-benchmark/pool_cache_r217.json，仅还原到 HEAD",
+  "command": "git checkout -- 06-benchmark/local_frontmatter.json 06-benchmark/pool_cache_r217.json",
+  "post_state": {
+   "local_frontmatter_sha256_head": "9396046d（现等 HEAD）",
+   "pool_cache_r217_sha256_head": "9d754315（现等 HEAD）"
+  },
+  "honest_note": "local_frontmatter.json 在本会话开工前就已是 M（上一批派工留下的脏态，sha 61447f8a ≠ HEAD 9396046d）；按授权口径还原到 HEAD ⇒ 该既有脏态一并被清掉，不是我写入的内容",
+  "NOT_touched_by_checkout": "06-benchmark/replacement_matrix_shadowstrict.json 不在授权件内 ⇒ 由围栏还原到「跑前原字节」c0f2f7f8（会话开始时即 M，未被本会话改变）"
+ },
+ "concurrent_writer": {
+  "observation": "并发会话在写 tracked 的 06-benchmark/quarterly/2026Q4/（17 件于 14:53–14:54 被改写，miss_migration 读数 real_rows 7→5），并在 06-benchmark 根连续新增 4 个 r260 系列 .md（P0闭环台账_r260_2026-10-28.md / 性能维度_r260_2026-10-28.md / 本地同尺基线与compat判别力_r260_2026-10-28.md / 非GitHub社区检索面_r260_2026-10-28.md，mtime 14:44–15:00）。两者都不在我的 --out-dir（quarterly_r260b / quarterly_r260b_neg）口径内。",
+  "attribution": "同仓并发会话（另一年轻代理正在跑缺省路径巡检）。本件两次固定轮只写 --out-dir 指定目录，产物路径见 self_report_in_artifact",
+  "implication_for_judgement": "主证据（14:52 那对快照）porcelain 逐字相同 ⇒ 该窗内并发者未动 tracked 面；加固轮的 porcelain 多出的 1 行已具名为外来件，不计入本件写面",
+  "grade": "✅已实测（归因用「本链不产 .md」的正则零命中 + 路径不在我 out-dir 双重排除）",
+  "attribution_evidence": "硬证据：对 r113 全链 20 个子件正则搜「写模式 + .md」⇒ 命中 0 个；本件链路根本不产 .md，故那 4 个 .md 必出自同仓另一会话。",
+  "impact_on_primary_evidence": "主证据（14:52 BEFORE ↔ AFTER_FIXED）porcelain 123↔123 行且 diff 空 ⇒ 该窗内并发者未动 tracked 面，判据成立。加固轮（14:57 B2 ↔ 14:58 A2）porcelain 差 1 行 = ?? 06-benchmark/本地同尺基线与compat判别力_r260_2026-10-28.md ⇒ 已具名为外来件；同轮三个 tracked 写面 sha256 全部逐字不变（含漂移态下的 pool_cache_r217），故「tracked 面零改动」成立。"
+ },
+ "quarterly_products": {
+  "dir": "06-benchmark/quarterly_r260b/2026Q4/",
+  "n_files": 20,
+  "files": [
+   "audit.json",
+   "caliber_flip.json",
+   "caliber_shadow.json",
+   "domain_face.json",
+   "local_frontmatter.json",
+   "miss_migration.json",
+   "pool_cache_r217.json",
+   "provenance.json",
+   "quality_ab.json",
+   "quality_truth.json",
+   "replacement_matrix.json",
+   "replacement_matrix_shadowstrict.json.r260_side_write",
+   "req6_attainability.json",
+   "route_miss_attr.json",
+   "swap_gate.json",
+   "swap_impact.json",
+   "tag_closure.json",
+   "tag_face.json",
+   "trace_face.json",
+   "upstream.json"
+  ],
+  "run": "python 05-exec/r113_quarterly_audit.py --offline --no-side-write --out-dir 06-benchmark/quarterly_r260b",
+  "rc": 0,
+  "steps_total": 19,
+  "face_ok": true,
+  "failed_steps": [],
+  "proof_products_normal": "季产物照常出：19 步全 PASS，audit.json + 各分面件（含围栏迁移件 replacement_matrix_shadowstrict.json.r260_side_write）；final_clean_run 为交付口径。"
+ },
+ "caveats": [
+  "②（pool_cache）的静默与「本轮无事可做」在缺省态下不可区分：r217 --ensure 幂等 ⇒ 必须构造漂移才能证伪。下一轮复核请带漂移跑，否则可能拿到假绿。",
+  "围栏（③）是**字节还原**而非重定向：若并发者同时改 shadowstrict，还原会把它的并发改动一并抹掉。本会话已实测窗口内无此类冲突，但跨轮并发须注意（#44 D7.2 多写者纪律）。",
+  "r221 若日后允许改，正解是给它加 --shadow-out 参数并把影子件挪进 qdir；本轮受写面白名单约束只能用围栏。",
+  "我自己的过程污染（已清）：漂移夹具经 ensure-union 进入 side-dir 池包 ⇒ 夹具不能只删散件，还须删已合成的包再重跑。下一轮做同类实证请照此收尾。",
+  "tracked 面本轮开工前即有既有脏态（local_frontmatter.json 与 shadowstrict 均为 M）；按任务例外授权，local_frontmatter.json 与 pool_cache_r217.json 已 git checkout 还原到 HEAD，shadowstrict 未动（不在授权件内，由围栏还原到跑前原字节）。"
+ ],
+ "rerun_commands": [
+  "cd 自建skill优化 && export PYTHONPYCACHEPREFIX=/tmp/pycache_r260b",
+  "PY=/c/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe",
+  "$PY 05-exec/r113_quarterly_audit.py --offline --no-side-write --out-dir 06-benchmark/quarterly_r260b   # 期望末行 [QUARTERLY:PASS] 且 git status --porcelain 前后 diff 空",
+  "bash _temp/r260b_snap.sh X1 && <上行> && bash _temp/r260b_snap.sh X2 && diff _temp/r260b_status_X1.txt _temp/r260b_status_X2.txt && echo ZERO_CHANGE",
+  "$PY 05-exec/r113_quarterly_audit.py --offline --out-dir 06-benchmark/quarterly_r260b_neg   # 负控：local_fm 与 shadowstrict 必被改写（跑完须还原）",
+  "# 复核外来件归因：grep -rlE \"open\\\\([^)]*\\\\.md[^)]*[\\\"']w\" 05-exec/r11*.py 05-exec/r12*.py 05-exec/r117*.py 05-exec/r118*.py 05-exec/r21*.py 05-exec/r22*.py 05-exec/r230*.py ⇒ 期望无输出"
+ ],
+ "self_grading": {
+  "修复代码落地并编译通过": "✅已实测（python -m py_compile COMPILE_OK；--help 列出新开关）",
+  "开关开 ⇒ tracked 面零改动": "✅已实测（主证据 porcelain 逐字相同 + 加固轮三 sha 逐字相同）",
+  "--offline 季产物照常出": "✅已实测（rc=0，19 步全通过，20 件落 06-benchmark/quarterly_r260b/2026Q4/）",
+  "负向对照有牙": "✅已实测（三处写面全部复现改写）",
+  "联网（非 --offline）路径未回归": "❌未实测（本任务离线口径；开关不触碰 fetch_meta，逻辑上无关，但不自报绿）",
+  "围栏四分支逻辑自证": "✅已实测（fence_selftest 四腿 PASS，含主实测未覆盖的 removed-new-file / MISSING-RESTORE）",
+  "缺省（不带开关）行为向后兼容": "⚠️部分实测（负控轮不带开关跑通 19 步 rc=0 且确证改写 tracked 面＝缺省路径仍是旧行为；但未与改动前逐字节对比全部产物，判定依据是 side_dir 缺省=BENCH 且 r114 的 --pool-pack 仅在开关开时注入）"
+ },
+ "final_clean_run": {
+  "why_new_round": "加固轮（A2）的 --out-dir 池包里混进了我的漂移夹具（ensure-union 会把活面并入 ⇒ 415 条含 q__r260_drift_fixture）——'夹具用完即删'只删了散件没删已合成的 side-dir 包。季产物不能带假数据 ⇒ 清污重跑，本轮为最终交付口径。",
+  "command": "python 05-exec/r113_quarterly_audit.py --offline --no-side-write --out-dir 06-benchmark/quarterly_r260b",
+  "before": "_temp/r260b_status_D1.txt（125 行 @15:02:39）",
+  "after": "_temp/r260b_status_D2.txt（125 行 @15:03:26）",
+  "porcelain": "diff 空 ⇒ PORCELAIN_IDENTICAL（125 ↔ 125 逐字相同）",
+  "tracked_sha_unchanged": {
+   "local_frontmatter": "9396046d",
+   "pool_cache_r217": "9d754315",
+   "replacement_matrix_shadowstrict": "c0f2f7f8"
+  },
+  "products": "06-benchmark/quarterly_r260b/2026Q4/ 共 20 件；rc=0，19 步全通过，face_ok=true，failed_steps=[]",
+  "side_pool_pack_purity": "entries=414、fixture_present=False、built_by=ensure-union（与 tracked 包同源，无测试假条目）",
+  "fence_action": "restored（缺陷③ 被 r221 实写 ⇒ 围栏还原 tracked 面并把新内容迁进 qdir 留证）"
+ },
+ "fence_selftest": {
+  "why": "D10.2 判据自证：主实测只走到 restored 一条腿；另三条腿（原文件不存在→新建、内容未变→不写、快照说在但盘上没了）必须单独跑，否则「零改动」可能只在恰好那条路径成立。",
+  "command": "python _temp/r260b_fence_selftest.py",
+  "result": {
+   "absent_new_file": "removed-new-file（新内容迁 keep_dir、tracked 根零新增）",
+   "unchanged": "unchanged（盘不动）",
+   "restored": "restored（还原原字节＋新内容留证）",
+   "missing": "MISSING-RESTORE（具名不静默）"
+  },
+  "verdict": "[FENCE:SELFTEST-PASS] RC=0 ✅已实测（四腿全过；测试目录已清）"
+ },
+ "deliverables": [
+  "05-exec/r113_quarterly_audit.py（+111/-2 行，含 #42 级注释）",
+  "06-benchmark/r260_quarterly_silent.json（本件）",
+  "06-benchmark/quarterly_r260b/2026Q4/（20 件季产物）",
+  "_temp/r260b_status_{BEFORE,AFTER_FIXED,B2,A2,C1,C2,D1,D2}.txt + _temp/r260b_meta_*.txt + _temp/r260b_snap.sh + _temp/r260b_neg_kept/（证据与负控副本）"
+ ]
+}

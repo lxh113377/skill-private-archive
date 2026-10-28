@@ -1,0 +1,130 @@
+{
+ "schema": "r260-upstream-live-v1",
+ "generated_at": "2026-10-27T17:18:04.543Z",
+ "cmd": "gh api repos/<R> + gh api repos/<R>/commits?per_page=1",
+ "source": "gh CLI live (r260 supplemental, offline face is authoritative)",
+ "repos": [
+  {
+   "repo": "anthropics/skills",
+   "state": "OK",
+   "stars": 184185,
+   "pushed_at": "2026-10-09",
+   "last_commit": "2026-10-09T18:45:49Z",
+   "last_sha": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+   "license": "UNLICENSED",
+   "open_issues": 1444,
+   "archived": false
+  },
+  {
+   "repo": "obra/superpowers",
+   "state": "OK",
+   "stars": 306185,
+   "pushed_at": "2026-10-23",
+   "last_commit": "2026-10-21T21:00:49Z",
+   "last_sha": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+   "license": "MIT",
+   "open_issues": 368,
+   "archived": false
+  },
+  {
+   "repo": "addyosmani/agent-skills",
+   "state": "OK",
+   "stars": 111047,
+   "pushed_at": "2026-10-13",
+   "last_commit": "2026-10-13T20:21:06Z",
+   "last_sha": "aeac41d4d005999432bb7312f7ff06383a91d59d",
+   "license": "MIT",
+   "open_issues": 177,
+   "archived": false
+  },
+  {
+   "repo": "github/spec-kit",
+   "state": "OK",
+   "stars": 143233,
+   "pushed_at": "2026-10-27",
+   "last_commit": "2026-10-26T22:23:40Z",
+   "last_sha": "ee94598c3c87ae231027b22fb2be2b5a13e8820f",
+   "license": "MIT",
+   "open_issues": 224,
+   "archived": false
+  },
+  {
+   "repo": "sickn33/agentic-awesome-skills",
+   "state": "OK",
+   "stars": 48601,
+   "pushed_at": "2026-10-27",
+   "last_commit": "2026-10-27T10:13:14Z",
+   "last_sha": "0f1aef1eb17611d3219c713ea615ecdc7080896c",
+   "license": "MIT",
+   "open_issues": 2,
+   "archived": false
+  },
+  {
+   "repo": "kepano/obsidian-skills",
+   "state": "OK",
+   "stars": 50227,
+   "pushed_at": "2026-09-15",
+   "last_commit": "2026-09-15T14:43:57Z",
+   "last_sha": "3ccff5338ea700537839b21900aa5358a0402c98",
+   "license": "MIT",
+   "open_issues": 74,
+   "archived": false
+  },
+  {
+   "repo": "mattpocock/skills",
+   "state": "OK",
+   "stars": 304719,
+   "pushed_at": "2026-10-27",
+   "last_commit": "2026-10-27T07:44:12Z",
+   "last_sha": "59db609eb1e18aaf59b63284d0e52255aff0c63c",
+   "license": "MIT",
+   "open_issues": 201,
+   "archived": false
+  },
+  {
+   "repo": "vercel-labs/skills",
+   "state": "OK",
+   "stars": 36820,
+   "pushed_at": "2026-10-27",
+   "last_commit": "2026-10-27T02:03:05Z",
+   "last_sha": "533c7df02f9b4d913fb8eba553aa99d86103d1d4",
+   "license": "MIT",
+   "open_issues": 1208,
+   "archived": false
+  },
+  {
+   "repo": "calesthio/OpenMontage",
+   "state": "OK",
+   "stars": 72418,
+   "pushed_at": "2026-10-24",
+   "last_commit": "2026-10-24T00:49:34Z",
+   "last_sha": "e01dbf433f46eeb91d39bf905e194162921019a3",
+   "license": "AGPL-3.0",
+   "open_issues": 416,
+   "archived": false
+  },
+  {
+   "repo": "affaan-m/ECC",
+   "state": "OK",
+   "stars": 290584,
+   "pushed_at": "2026-10-26",
+   "last_commit": "2026-10-26T04:03:57Z",
+   "last_sha": "25278e7d7b6cf6e6a4e7a6c8e10f14ff22f0eb5b",
+   "license": "MIT",
+   "open_issues": 253,
+   "archived": false
+  },
+  {
+   "repo": "composiohq/awesome-claude-skills",
+   "state": "OK",
+   "stars": 78070,
+   "pushed_at": "2026-09-18",
+   "last_commit": "2026-07-24T07:48:01Z",
+   "last_sha": "be2a406907dbc61b73e6827ded415c96139d13a2",
+   "license": "UNLICENSED",
+   "open_issues": 1865,
+   "archived": false
+  }
+ ],
+ "unverified": []
+}

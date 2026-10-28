@@ -1,0 +1,100 @@
+{
+ "schema": "quality-ab-r114-v1",
+ "generated_at": "2026-10-27T17:28:22+00:00",
+ "cmd": "python 05-exec/r114_quality_ab.py",
+ "benchmark": {
+  "script": "C:\\Users\\37533\\Desktop\\workspace\\焚诀\\eval\\skill_hitrate_eval_v2.py",
+  "python": "C:\\Users\\37533\\.workbuddy\\binaries\\python\\envs\\default\\Scripts\\python.exe",
+  "queries_n": 99,
+  "tiers": {
+   "easy": 34,
+   "medium": 35,
+   "hard": 18,
+   "extra_hard": 5,
+   "negative": 7
+  }
+ },
+ "metric_note": "Top-1 是路由命中率，不是任务完成好坏；它是任务质量的上游必要条件而非充分条件。区间重叠一律不得写成「提升」（P1-23）。",
+ "now": {
+  "methods": {
+   "keyword": {
+    "top1": 29.2,
+    "top3": 37.1,
+    "hit_rate": 57.3,
+    "precision": 51.0,
+    "recall": 40.6,
+    "f1": 45.2,
+    "fp_rate": 0.0
+   },
+   "tfidf": {
+    "top1": 24.7,
+    "top3": 42.7,
+    "hit_rate": 96.6,
+    "precision": 25.6,
+    "recall": 88.0,
+    "f1": 39.6,
+    "fp_rate": 14.3
+   },
+   "hybrid": {
+    "top1": 38.2,
+    "top3": 55.1,
+    "hit_rate": 97.8,
+    "precision": 39.1,
+    "recall": 94.4,
+    "f1": 55.3,
+    "fp_rate": 14.3
+   }
+  },
+  "ci": {
+   "keyword": {
+    "top1": [
+     20.8,
+     39.4,
+     89
+    ]
+   },
+   "tfidf": {
+    "top1": [
+     16.9,
+     34.6,
+     89
+    ]
+   },
+   "hybrid": {
+    "top1": [
+     28.8,
+     48.6,
+     89
+    ]
+   }
+  },
+  "contaminated": {
+   "keyword": 3,
+   "tfidf": 3,
+   "hybrid": 3
+  }
+ },
+ "comparison": {
+  "method": "hybrid",
+  "base_top1": 38.2,
+  "now_top1": 38.2,
+  "delta_pp": 0.0,
+  "delta_rel_pct": 0.0,
+  "base_top3": 50.6,
+  "now_top3": 55.1,
+  "base_f1": 55.3,
+  "now_f1": 55.3,
+  "top1_ci_base": [
+   28.8,
+   48.6,
+   89
+  ],
+  "top1_ci_now": [
+   28.8,
+   48.6,
+   89
+  ],
+  "top1_comparability": "区间重叠(幅度落在抽样抖动内)",
+  "verdict_rule": "区间分离(可判为提升) 且 delta_rel_pct >= 30 才可写「提升 ≥30%」；区间重叠一律写「幅度落在抽样抖动内」"
+ }
+}

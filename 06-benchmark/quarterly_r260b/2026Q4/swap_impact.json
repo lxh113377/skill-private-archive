@@ -1,0 +1,1306 @@
+{
+ "schema": "swap-sim-r118-v1",
+ "cmd": "python 05-exec/r118_swap_sim.py --json <out>",
+ "face": {
+  "index_rows": 191,
+  "evidence_slugs": 39,
+  "substitutable_slugs": 39,
+  "questions_n": 279,
+  "corpus_chars": 800,
+  "sentinel_n": 20,
+  "sentinel_seed": 20261018
+ },
+ "substitutable": [
+  "algorithmic-art",
+  "brainstorming",
+  "brand-guidelines",
+  "canvas-design",
+  "code-review",
+  "commit-archaeologist",
+  "defuddle",
+  "doc-coauthoring",
+  "docx",
+  "find-skills",
+  "frontend-design",
+  "frontend-slides",
+  "github",
+  "grill-me",
+  "healthcare-cdss-patterns",
+  "healthcare-emr-patterns",
+  "healthcare-eval-harness",
+  "hyperframes",
+  "hyperframes-cli",
+  "hyperframes-media",
+  "hyperframes-registry",
+  "internal-comms",
+  "json-canvas",
+  "mcp-builder",
+  "obsidian-bases",
+  "obsidian-cli",
+  "obsidian-markdown",
+  "pdf",
+  "react-best-practices",
+  "scope-creep-detector",
+  "security-audit",
+  "shadcn",
+  "test-driven-development",
+  "theme-factory",
+  "ui-ux-pro-max",
+  "verification-before-completion",
+  "web-design-guidelines",
+  "writing-plans",
+  "xlsx"
+ ],
+ "baseline_full_face": {
+  "n": 279,
+  "hits": 263,
+  "top1_pct": 94.27,
+  "weighted_pct": 94.24
+ },
+ "ruler": {
+  "route": "eval/unified_router.py::route(enable_memory=False)",
+  "judge_weights": {
+   "exact": 1.0,
+   "usable-suboptimal": 0.75,
+   "wrong": 0.5,
+   "blindspot": 0.4
+  },
+  "subset_rule": "expected==slug OR baseline_top1==slug OR sentinel"
+ },
+ "variants": [
+  {
+   "label": "NEG_CONTROL(无关正文)",
+   "slug": "algorithmic-art",
+   "repo": null,
+   "kind": "negative_control",
+   "subset_n": 22,
+   "local_n": 2,
+   "before": {
+    "n": 22,
+    "hits": 21,
+    "top1_pct": 95.45,
+    "weighted_pct": 95.4
+   },
+   "after": {
+    "n": 22,
+    "hits": 21,
+    "top1_pct": 95.45,
+    "weighted_pct": 95.4
+   },
+   "delta_local_pp": 0.0,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "algorithmic-art<-anthropics/skills",
+   "slug": "algorithmic-art",
+   "repo": "anthropics/skills",
+   "kind": "swap_one",
+   "subset_n": 22,
+   "local_n": 2,
+   "before": {
+    "n": 22,
+    "hits": 21,
+    "top1_pct": 95.45,
+    "weighted_pct": 95.4
+   },
+   "after": {
+    "n": 22,
+    "hits": 21,
+    "top1_pct": 95.45,
+    "weighted_pct": 95.4
+   },
+   "delta_local_pp": 0.0,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "brainstorming<-obra/superpowers",
+   "slug": "brainstorming",
+   "repo": "obra/superpowers",
+   "kind": "swap_one",
+   "subset_n": 22,
+   "local_n": 2,
+   "before": {
+    "n": 22,
+    "hits": 21,
+    "top1_pct": 95.45,
+    "weighted_pct": 95.4
+   },
+   "after": {
+    "n": 22,
+    "hits": 20,
+    "top1_pct": 90.91,
+    "weighted_pct": 90.8
+   },
+   "delta_local_pp": -50.0,
+   "delta_subset_pp": -4.54,
+   "flips_n": 1,
+   "flips_local": [
+    {
+     "q": "头脑风暴",
+     "expected": "brainstorming",
+     "before": "brainstorming",
+     "after": "A-skill-manager",
+     "set": "layered"
+    }
+   ],
+   "flips_cross": []
+  },
+  {
+   "label": "brainstorming<-sickn33/agentic-awesome-skills",
+   "slug": "brainstorming",
+   "repo": "sickn33/agentic-awesome-skills",
+   "kind": "swap_one",
+   "subset_n": 22,
+   "local_n": 2,
+   "before": {
+    "n": 22,
+    "hits": 21,
+    "top1_pct": 95.45,
+    "weighted_pct": 95.4
+   },
+   "after": {
+    "n": 22,
+    "hits": 20,
+    "top1_pct": 90.91,
+    "weighted_pct": 90.8
+   },
+   "delta_local_pp": -50.0,
+   "delta_subset_pp": -4.54,
+   "flips_n": 1,
+   "flips_local": [
+    {
+     "q": "头脑风暴",
+     "expected": "brainstorming",
+     "before": "brainstorming",
+     "after": "A-skill-manager",
+     "set": "layered"
+    }
+   ],
+   "flips_cross": []
+  },
+  {
+   "label": "brand-guidelines<-anthropics/skills",
+   "slug": "brand-guidelines",
+   "repo": "anthropics/skills",
+   "kind": "swap_one",
+   "subset_n": 21,
+   "local_n": 1,
+   "before": {
+    "n": 21,
+    "hits": 20,
+    "top1_pct": 95.24,
+    "weighted_pct": 95.18
+   },
+   "after": {
+    "n": 21,
+    "hits": 20,
+    "top1_pct": 95.24,
+    "weighted_pct": 95.18
+   },
+   "delta_local_pp": 0.0,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "canvas-design<-anthropics/skills",
+   "slug": "canvas-design",
+   "repo": "anthropics/skills",
+   "kind": "swap_one",
+   "subset_n": 21,
+   "local_n": 1,
+   "before": {
+    "n": 21,
+    "hits": 20,
+    "top1_pct": 95.24,
+    "weighted_pct": 95.18
+   },
+   "after": {
+    "n": 21,
+    "hits": 20,
+    "top1_pct": 95.24,
+    "weighted_pct": 95.18
+   },
+   "delta_local_pp": 0.0,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "code-review<-github/awesome-copilot",
+   "slug": "code-review",
+   "repo": "github/awesome-copilot",
+   "kind": "swap_one",
+   "subset_n": 21,
+   "local_n": 0,
+   "before": {
+    "n": 21,
+    "hits": 19,
+    "top1_pct": 90.48,
+    "weighted_pct": 90.36
+   },
+   "after": {
+    "n": 21,
+    "hits": 19,
+    "top1_pct": 90.48,
+    "weighted_pct": 90.36
+   },
+   "delta_local_pp": null,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "code-review<-mattpocock/skills",
+   "slug": "code-review",
+   "repo": "mattpocock/skills",
+   "kind": "swap_one",
+   "subset_n": 21,
+   "local_n": 0,
+   "before": {
+    "n": 21,
+    "hits": 19,
+    "top1_pct": 90.48,
+    "weighted_pct": 90.36
+   },
+   "after": {
+    "n": 21,
+    "hits": 19,
+    "top1_pct": 90.48,
+    "weighted_pct": 90.36
+   },
+   "delta_local_pp": null,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "commit-archaeologist<-Shubhamsaboo/awesome-llm-apps",
+   "slug": "commit-archaeologist",
+   "repo": "Shubhamsaboo/awesome-llm-apps",
+   "kind": "swap_one",
+   "subset_n": 20,
+   "local_n": 0,
+   "before": {
+    "n": 20,
+    "hits": 19,
+    "top1_pct": 95.0,
+    "weighted_pct": 94.94
+   },
+   "after": {
+    "n": 20,
+    "hits": 19,
+    "top1_pct": 95.0,
+    "weighted_pct": 94.94
+   },
+   "delta_local_pp": null,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "defuddle<-kepano/obsidian-skills",
+   "slug": "defuddle",
+   "repo": "kepano/obsidian-skills",
+   "kind": "swap_one",
+   "subset_n": 21,
+   "local_n": 1,
+   "before": {
+    "n": 21,
+    "hits": 20,
+    "top1_pct": 95.24,
+    "weighted_pct": 95.18
+   },
+   "after": {
+    "n": 21,
+    "hits": 20,
+    "top1_pct": 95.24,
+    "weighted_pct": 95.18
+   },
+   "delta_local_pp": 0.0,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "doc-coauthoring<-anthropics/skills",
+   "slug": "doc-coauthoring",
+   "repo": "anthropics/skills",
+   "kind": "swap_one",
+   "subset_n": 24,
+   "local_n": 4,
+   "before": {
+    "n": 24,
+    "hits": 23,
+    "top1_pct": 95.83,
+    "weighted_pct": 95.79
+   },
+   "after": {
+    "n": 24,
+    "hits": 23,
+    "top1_pct": 95.83,
+    "weighted_pct": 95.79
+   },
+   "delta_local_pp": 0.0,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "docx<-anthropics/skills",
+   "slug": "docx",
+   "repo": "anthropics/skills",
+   "kind": "swap_one",
+   "subset_n": 22,
+   "local_n": 3,
+   "before": {
+    "n": 22,
+    "hits": 21,
+    "top1_pct": 95.45,
+    "weighted_pct": 95.4
+   },
+   "after": {
+    "n": 22,
+    "hits": 21,
+    "top1_pct": 95.45,
+    "weighted_pct": 95.4
+   },
+   "delta_local_pp": 0.0,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "find-skills<-vercel-labs/skills",
+   "slug": "find-skills",
+   "repo": "vercel-labs/skills",
+   "kind": "swap_one",
+   "subset_n": 23,
+   "local_n": 4,
+   "before": {
+    "n": 23,
+    "hits": 22,
+    "top1_pct": 95.65,
+    "weighted_pct": 95.56
+   },
+   "after": {
+    "n": 23,
+    "hits": 22,
+    "top1_pct": 95.65,
+    "weighted_pct": 95.56
+   },
+   "delta_local_pp": 0.0,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "frontend-design<-anthropics/skills",
+   "slug": "frontend-design",
+   "repo": "anthropics/skills",
+   "kind": "swap_one",
+   "subset_n": 20,
+   "local_n": 0,
+   "before": {
+    "n": 20,
+    "hits": 19,
+    "top1_pct": 95.0,
+    "weighted_pct": 94.94
+   },
+   "after": {
+    "n": 20,
+    "hits": 19,
+    "top1_pct": 95.0,
+    "weighted_pct": 94.94
+   },
+   "delta_local_pp": null,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "frontend-design<-sickn33/agentic-awesome-skills",
+   "slug": "frontend-design",
+   "repo": "sickn33/agentic-awesome-skills",
+   "kind": "swap_one",
+   "subset_n": 20,
+   "local_n": 0,
+   "before": {
+    "n": 20,
+    "hits": 19,
+    "top1_pct": 95.0,
+    "weighted_pct": 94.94
+   },
+   "after": {
+    "n": 20,
+    "hits": 19,
+    "top1_pct": 95.0,
+    "weighted_pct": 94.94
+   },
+   "delta_local_pp": null,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "frontend-slides<-affaan-m/ECC",
+   "slug": "frontend-slides",
+   "repo": "affaan-m/ECC",
+   "kind": "swap_one",
+   "subset_n": 21,
+   "local_n": 1,
+   "before": {
+    "n": 21,
+    "hits": 19,
+    "top1_pct": 90.48,
+    "weighted_pct": 90.36
+   },
+   "after": {
+    "n": 21,
+    "hits": 19,
+    "top1_pct": 90.48,
+    "weighted_pct": 90.36
+   },
+   "delta_local_pp": 0.0,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "frontend-slides<-sickn33/agentic-awesome-skills",
+   "slug": "frontend-slides",
+   "repo": "sickn33/agentic-awesome-skills",
+   "kind": "swap_one",
+   "subset_n": 21,
+   "local_n": 1,
+   "before": {
+    "n": 21,
+    "hits": 19,
+    "top1_pct": 90.48,
+    "weighted_pct": 90.36
+   },
+   "after": {
+    "n": 21,
+    "hits": 19,
+    "top1_pct": 90.48,
+    "weighted_pct": 90.36
+   },
+   "delta_local_pp": 0.0,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "github<-sickn33/agentic-awesome-skills",
+   "slug": "github",
+   "repo": "sickn33/agentic-awesome-skills",
+   "kind": "swap_one",
+   "subset_n": 28,
+   "local_n": 8,
+   "before": {
+    "n": 28,
+    "hits": 26,
+    "top1_pct": 92.86,
+    "weighted_pct": 92.79
+   },
+   "after": {
+    "n": 28,
+    "hits": 26,
+    "top1_pct": 92.86,
+    "weighted_pct": 92.79
+   },
+   "delta_local_pp": 0.0,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "grill-me<-mattpocock/skills",
+   "slug": "grill-me",
+   "repo": "mattpocock/skills",
+   "kind": "swap_one",
+   "subset_n": 20,
+   "local_n": 0,
+   "before": {
+    "n": 20,
+    "hits": 19,
+    "top1_pct": 95.0,
+    "weighted_pct": 94.94
+   },
+   "after": {
+    "n": 20,
+    "hits": 19,
+    "top1_pct": 95.0,
+    "weighted_pct": 94.94
+   },
+   "delta_local_pp": null,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "grill-me<-sickn33/agentic-awesome-skills",
+   "slug": "grill-me",
+   "repo": "sickn33/agentic-awesome-skills",
+   "kind": "swap_one",
+   "subset_n": 20,
+   "local_n": 0,
+   "before": {
+    "n": 20,
+    "hits": 19,
+    "top1_pct": 95.0,
+    "weighted_pct": 94.94
+   },
+   "after": {
+    "n": 20,
+    "hits": 19,
+    "top1_pct": 95.0,
+    "weighted_pct": 94.94
+   },
+   "delta_local_pp": null,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "healthcare-cdss-patterns<-affaan-m/ECC",
+   "slug": "healthcare-cdss-patterns",
+   "repo": "affaan-m/ECC",
+   "kind": "swap_one",
+   "subset_n": 20,
+   "local_n": 0,
+   "before": {
+    "n": 20,
+    "hits": 19,
+    "top1_pct": 95.0,
+    "weighted_pct": 94.94
+   },
+   "after": {
+    "n": 20,
+    "hits": 19,
+    "top1_pct": 95.0,
+    "weighted_pct": 94.94
+   },
+   "delta_local_pp": null,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "healthcare-emr-patterns<-affaan-m/ECC",
+   "slug": "healthcare-emr-patterns",
+   "repo": "affaan-m/ECC",
+   "kind": "swap_one",
+   "subset_n": 20,
+   "local_n": 0,
+   "before": {
+    "n": 20,
+    "hits": 19,
+    "top1_pct": 95.0,
+    "weighted_pct": 94.94
+   },
+   "after": {
+    "n": 20,
+    "hits": 19,
+    "top1_pct": 95.0,
+    "weighted_pct": 94.94
+   },
+   "delta_local_pp": null,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "healthcare-eval-harness<-affaan-m/ECC",
+   "slug": "healthcare-eval-harness",
+   "repo": "affaan-m/ECC",
+   "kind": "swap_one",
+   "subset_n": 20,
+   "local_n": 0,
+   "before": {
+    "n": 20,
+    "hits": 19,
+    "top1_pct": 95.0,
+    "weighted_pct": 94.94
+   },
+   "after": {
+    "n": 20,
+    "hits": 19,
+    "top1_pct": 95.0,
+    "weighted_pct": 94.94
+   },
+   "delta_local_pp": null,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "hyperframes<-calesthio/OpenMontage",
+   "slug": "hyperframes",
+   "repo": "calesthio/OpenMontage",
+   "kind": "swap_one",
+   "subset_n": 21,
+   "local_n": 1,
+   "before": {
+    "n": 21,
+    "hits": 20,
+    "top1_pct": 95.24,
+    "weighted_pct": 95.18
+   },
+   "after": {
+    "n": 21,
+    "hits": 20,
+    "top1_pct": 95.24,
+    "weighted_pct": 95.18
+   },
+   "delta_local_pp": 0.0,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "hyperframes-cli<-calesthio/OpenMontage",
+   "slug": "hyperframes-cli",
+   "repo": "calesthio/OpenMontage",
+   "kind": "swap_one",
+   "subset_n": 22,
+   "local_n": 2,
+   "before": {
+    "n": 22,
+    "hits": 21,
+    "top1_pct": 95.45,
+    "weighted_pct": 95.4
+   },
+   "after": {
+    "n": 22,
+    "hits": 21,
+    "top1_pct": 95.45,
+    "weighted_pct": 95.4
+   },
+   "delta_local_pp": 0.0,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "hyperframes-media<-calesthio/OpenMontage",
+   "slug": "hyperframes-media",
+   "repo": "calesthio/OpenMontage",
+   "kind": "swap_one",
+   "subset_n": 21,
+   "local_n": 1,
+   "before": {
+    "n": 21,
+    "hits": 20,
+    "top1_pct": 95.24,
+    "weighted_pct": 95.18
+   },
+   "after": {
+    "n": 21,
+    "hits": 20,
+    "top1_pct": 95.24,
+    "weighted_pct": 95.18
+   },
+   "delta_local_pp": 0.0,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "hyperframes-registry<-calesthio/OpenMontage",
+   "slug": "hyperframes-registry",
+   "repo": "calesthio/OpenMontage",
+   "kind": "swap_one",
+   "subset_n": 21,
+   "local_n": 2,
+   "before": {
+    "n": 21,
+    "hits": 20,
+    "top1_pct": 95.24,
+    "weighted_pct": 95.18
+   },
+   "after": {
+    "n": 21,
+    "hits": 20,
+    "top1_pct": 95.24,
+    "weighted_pct": 95.18
+   },
+   "delta_local_pp": 0.0,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "internal-comms<-anthropics/skills",
+   "slug": "internal-comms",
+   "repo": "anthropics/skills",
+   "kind": "swap_one",
+   "subset_n": 24,
+   "local_n": 4,
+   "before": {
+    "n": 24,
+    "hits": 23,
+    "top1_pct": 95.83,
+    "weighted_pct": 95.79
+   },
+   "after": {
+    "n": 24,
+    "hits": 23,
+    "top1_pct": 95.83,
+    "weighted_pct": 95.79
+   },
+   "delta_local_pp": 0.0,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "json-canvas<-kepano/obsidian-skills",
+   "slug": "json-canvas",
+   "repo": "kepano/obsidian-skills",
+   "kind": "swap_one",
+   "subset_n": 21,
+   "local_n": 1,
+   "before": {
+    "n": 21,
+    "hits": 20,
+    "top1_pct": 95.24,
+    "weighted_pct": 95.18
+   },
+   "after": {
+    "n": 21,
+    "hits": 20,
+    "top1_pct": 95.24,
+    "weighted_pct": 95.18
+   },
+   "delta_local_pp": 0.0,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "mcp-builder<-anthropics/skills",
+   "slug": "mcp-builder",
+   "repo": "anthropics/skills",
+   "kind": "swap_one",
+   "subset_n": 20,
+   "local_n": 0,
+   "before": {
+    "n": 20,
+    "hits": 19,
+    "top1_pct": 95.0,
+    "weighted_pct": 94.94
+   },
+   "after": {
+    "n": 20,
+    "hits": 19,
+    "top1_pct": 95.0,
+    "weighted_pct": 94.94
+   },
+   "delta_local_pp": null,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "obsidian-bases<-kepano/obsidian-skills",
+   "slug": "obsidian-bases",
+   "repo": "kepano/obsidian-skills",
+   "kind": "swap_one",
+   "subset_n": 21,
+   "local_n": 1,
+   "before": {
+    "n": 21,
+    "hits": 20,
+    "top1_pct": 95.24,
+    "weighted_pct": 95.18
+   },
+   "after": {
+    "n": 21,
+    "hits": 20,
+    "top1_pct": 95.24,
+    "weighted_pct": 95.18
+   },
+   "delta_local_pp": 0.0,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "obsidian-cli<-kepano/obsidian-skills",
+   "slug": "obsidian-cli",
+   "repo": "kepano/obsidian-skills",
+   "kind": "swap_one",
+   "subset_n": 22,
+   "local_n": 2,
+   "before": {
+    "n": 22,
+    "hits": 21,
+    "top1_pct": 95.45,
+    "weighted_pct": 95.4
+   },
+   "after": {
+    "n": 22,
+    "hits": 21,
+    "top1_pct": 95.45,
+    "weighted_pct": 95.4
+   },
+   "delta_local_pp": 0.0,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "obsidian-markdown<-kepano/obsidian-skills",
+   "slug": "obsidian-markdown",
+   "repo": "kepano/obsidian-skills",
+   "kind": "swap_one",
+   "subset_n": 21,
+   "local_n": 1,
+   "before": {
+    "n": 21,
+    "hits": 20,
+    "top1_pct": 95.24,
+    "weighted_pct": 95.18
+   },
+   "after": {
+    "n": 21,
+    "hits": 20,
+    "top1_pct": 95.24,
+    "weighted_pct": 95.18
+   },
+   "delta_local_pp": 0.0,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "pdf<-anthropics/skills",
+   "slug": "pdf",
+   "repo": "anthropics/skills",
+   "kind": "swap_one",
+   "subset_n": 23,
+   "local_n": 4,
+   "before": {
+    "n": 23,
+    "hits": 22,
+    "top1_pct": 95.65,
+    "weighted_pct": 95.6
+   },
+   "after": {
+    "n": 23,
+    "hits": 22,
+    "top1_pct": 95.65,
+    "weighted_pct": 95.6
+   },
+   "delta_local_pp": 0.0,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "react-best-practices<-sickn33/agentic-awesome-skills",
+   "slug": "react-best-practices",
+   "repo": "sickn33/agentic-awesome-skills",
+   "kind": "swap_one",
+   "subset_n": 20,
+   "local_n": 0,
+   "before": {
+    "n": 20,
+    "hits": 19,
+    "top1_pct": 95.0,
+    "weighted_pct": 94.94
+   },
+   "after": {
+    "n": 20,
+    "hits": 19,
+    "top1_pct": 95.0,
+    "weighted_pct": 94.94
+   },
+   "delta_local_pp": null,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "scope-creep-detector<-Shubhamsaboo/awesome-llm-apps",
+   "slug": "scope-creep-detector",
+   "repo": "Shubhamsaboo/awesome-llm-apps",
+   "kind": "swap_one",
+   "subset_n": 20,
+   "local_n": 0,
+   "before": {
+    "n": 20,
+    "hits": 19,
+    "top1_pct": 95.0,
+    "weighted_pct": 94.94
+   },
+   "after": {
+    "n": 20,
+    "hits": 19,
+    "top1_pct": 95.0,
+    "weighted_pct": 94.94
+   },
+   "delta_local_pp": null,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "security-audit<-sickn33/agentic-awesome-skills",
+   "slug": "security-audit",
+   "repo": "sickn33/agentic-awesome-skills",
+   "kind": "swap_one",
+   "subset_n": 21,
+   "local_n": 0,
+   "before": {
+    "n": 21,
+    "hits": 19,
+    "top1_pct": 90.48,
+    "weighted_pct": 90.36
+   },
+   "after": {
+    "n": 21,
+    "hits": 19,
+    "top1_pct": 90.48,
+    "weighted_pct": 90.36
+   },
+   "delta_local_pp": null,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "shadcn<-sickn33/agentic-awesome-skills",
+   "slug": "shadcn",
+   "repo": "sickn33/agentic-awesome-skills",
+   "kind": "swap_one",
+   "subset_n": 22,
+   "local_n": 2,
+   "before": {
+    "n": 22,
+    "hits": 21,
+    "top1_pct": 95.45,
+    "weighted_pct": 95.4
+   },
+   "after": {
+    "n": 22,
+    "hits": 21,
+    "top1_pct": 95.45,
+    "weighted_pct": 95.4
+   },
+   "delta_local_pp": 0.0,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "test-driven-development<-obra/superpowers",
+   "slug": "test-driven-development",
+   "repo": "obra/superpowers",
+   "kind": "swap_one",
+   "subset_n": 21,
+   "local_n": 1,
+   "before": {
+    "n": 21,
+    "hits": 20,
+    "top1_pct": 95.24,
+    "weighted_pct": 95.18
+   },
+   "after": {
+    "n": 21,
+    "hits": 20,
+    "top1_pct": 95.24,
+    "weighted_pct": 95.18
+   },
+   "delta_local_pp": 0.0,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "theme-factory<-anthropics/skills",
+   "slug": "theme-factory",
+   "repo": "anthropics/skills",
+   "kind": "swap_one",
+   "subset_n": 22,
+   "local_n": 2,
+   "before": {
+    "n": 22,
+    "hits": 21,
+    "top1_pct": 95.45,
+    "weighted_pct": 95.4
+   },
+   "after": {
+    "n": 22,
+    "hits": 21,
+    "top1_pct": 95.45,
+    "weighted_pct": 95.4
+   },
+   "delta_local_pp": 0.0,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "theme-factory<-sickn33/agentic-awesome-skills",
+   "slug": "theme-factory",
+   "repo": "sickn33/agentic-awesome-skills",
+   "kind": "swap_one",
+   "subset_n": 22,
+   "local_n": 2,
+   "before": {
+    "n": 22,
+    "hits": 21,
+    "top1_pct": 95.45,
+    "weighted_pct": 95.4
+   },
+   "after": {
+    "n": 22,
+    "hits": 21,
+    "top1_pct": 95.45,
+    "weighted_pct": 95.4
+   },
+   "delta_local_pp": 0.0,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "ui-ux-pro-max<-sickn33/agentic-awesome-skills",
+   "slug": "ui-ux-pro-max",
+   "repo": "sickn33/agentic-awesome-skills",
+   "kind": "swap_one",
+   "subset_n": 22,
+   "local_n": 2,
+   "before": {
+    "n": 22,
+    "hits": 21,
+    "top1_pct": 95.45,
+    "weighted_pct": 95.4
+   },
+   "after": {
+    "n": 22,
+    "hits": 21,
+    "top1_pct": 95.45,
+    "weighted_pct": 95.4
+   },
+   "delta_local_pp": 0.0,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "verification-before-completion<-obra/superpowers",
+   "slug": "verification-before-completion",
+   "repo": "obra/superpowers",
+   "kind": "swap_one",
+   "subset_n": 20,
+   "local_n": 0,
+   "before": {
+    "n": 20,
+    "hits": 19,
+    "top1_pct": 95.0,
+    "weighted_pct": 94.94
+   },
+   "after": {
+    "n": 20,
+    "hits": 19,
+    "top1_pct": 95.0,
+    "weighted_pct": 94.94
+   },
+   "delta_local_pp": null,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "verification-before-completion<-sickn33/agentic-awesome-skills",
+   "slug": "verification-before-completion",
+   "repo": "sickn33/agentic-awesome-skills",
+   "kind": "swap_one",
+   "subset_n": 20,
+   "local_n": 0,
+   "before": {
+    "n": 20,
+    "hits": 19,
+    "top1_pct": 95.0,
+    "weighted_pct": 94.94
+   },
+   "after": {
+    "n": 20,
+    "hits": 19,
+    "top1_pct": 95.0,
+    "weighted_pct": 94.94
+   },
+   "delta_local_pp": null,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "web-design-guidelines<-calesthio/OpenMontage",
+   "slug": "web-design-guidelines",
+   "repo": "calesthio/OpenMontage",
+   "kind": "swap_one",
+   "subset_n": 21,
+   "local_n": 1,
+   "before": {
+    "n": 21,
+    "hits": 20,
+    "top1_pct": 95.24,
+    "weighted_pct": 95.18
+   },
+   "after": {
+    "n": 21,
+    "hits": 20,
+    "top1_pct": 95.24,
+    "weighted_pct": 95.18
+   },
+   "delta_local_pp": 0.0,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "web-design-guidelines<-sickn33/agentic-awesome-skills",
+   "slug": "web-design-guidelines",
+   "repo": "sickn33/agentic-awesome-skills",
+   "kind": "swap_one",
+   "subset_n": 21,
+   "local_n": 1,
+   "before": {
+    "n": 21,
+    "hits": 20,
+    "top1_pct": 95.24,
+    "weighted_pct": 95.18
+   },
+   "after": {
+    "n": 21,
+    "hits": 20,
+    "top1_pct": 95.24,
+    "weighted_pct": 95.18
+   },
+   "delta_local_pp": 0.0,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "writing-plans<-obra/superpowers",
+   "slug": "writing-plans",
+   "repo": "obra/superpowers",
+   "kind": "swap_one",
+   "subset_n": 22,
+   "local_n": 2,
+   "before": {
+    "n": 22,
+    "hits": 21,
+    "top1_pct": 95.45,
+    "weighted_pct": 95.4
+   },
+   "after": {
+    "n": 22,
+    "hits": 21,
+    "top1_pct": 95.45,
+    "weighted_pct": 95.4
+   },
+   "delta_local_pp": 0.0,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  },
+  {
+   "label": "xlsx<-anthropics/skills",
+   "slug": "xlsx",
+   "repo": "anthropics/skills",
+   "kind": "swap_one",
+   "subset_n": 24,
+   "local_n": 4,
+   "before": {
+    "n": 24,
+    "hits": 23,
+    "top1_pct": 95.83,
+    "weighted_pct": 95.74
+   },
+   "after": {
+    "n": 24,
+    "hits": 23,
+    "top1_pct": 95.83,
+    "weighted_pct": 95.74
+   },
+   "delta_local_pp": 0.0,
+   "delta_subset_pp": 0.0,
+   "flips_n": 0,
+   "flips_local": [],
+   "flips_cross": []
+  }
+ ],
+ "summary": {
+  "variants_n": 47,
+  "local_improved_n": 0,
+  "local_degraded_n": 2,
+  "subnet_changed_n": 2,
+  "cross_flips_n": 0,
+  "negative_control": {
+   "slug": "algorithmic-art",
+   "flips_n": 0,
+   "pass": true
+  },
+  "positive_control": {
+   "slug": null,
+   "flips_n": null,
+   "pass": false
+  },
+  "discriminating_power": false
+ }
+}

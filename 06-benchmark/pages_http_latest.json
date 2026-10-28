@@ -5,9 +5,9 @@
   "tool": "cloudflare_pages_http_requests",
   "state": "MEASURED",
   "why": "",
-  "window": "2026-10-01~2026-10-26",
-  "requests_total": 198778,
-  "days": 25,
+  "window": "2026-10-01~2026-10-29",
+  "requests_total": 235494,
+  "days": 28,
   "top_days": [
    [
     "2026-10-17",

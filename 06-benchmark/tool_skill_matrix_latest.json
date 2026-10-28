@@ -3,10 +3,10 @@
  "cmd": "python 05-exec/r163_tool_skill_matrix.py --json <out>",
  "tools_n": 11,
  "note": "命令级匹配（非产品名）；零引用不判红，具名显形供人决定是否补搭配。两把尺的解读边界（r185）：per_tool = 提到（文档或代码），per_tool_exec = 代码真调用。**「仅文档」不等于「没搭配」** —— 权威部署手册型 skill（如 chaoshi-web-deploy）本就不自带脚本，其价值是让人正确敲命令；把可执行面当成唯一合格标准会诱导造脚本凑数（r166「凑引用即造需求」同族）。本尺只用于发现「提到却一次都没跑过」的候选，不判红。",
- "generated_at": "2026-10-26 02:06",
+ "generated_at": "2026-10-28 15:30",
  "gs_root": "D:\\global_skills",
  "skills_scanned": 191,
- "skills_with_tools": 34,
+ "skills_with_tools": 35,
  "unreadable": [],
  "per_tool": {
   "GitHub": [
@@ -24,6 +24,7 @@
    "github",
    "gstack",
    "healthcare-eval-harness",
+   "hyperframes",
    "hyperframes-registry",
    "oracle",
    "security-audit",
@@ -185,6 +186,9 @@
   "healthcare-eval-harness": {
    "GitHub": 2
   },
+  "hyperframes": {
+   "GitHub": 3
+  },
   "hyperframes-registry": {
    "GitHub": 2
   },
@@ -207,7 +211,7 @@
    "GitHub": 2
   },
   "ui-ux-pro-max": {
-   "GitHub": 2
+   "GitHub": 3
   },
   "verification-before-completion": {
    "GitHub": 1,
@@ -230,14 +234,14 @@
    "C:/Users/37533/Desktop/workspace/超市web/supermarket-web",
    "C:/Users/37533/Desktop/workspace/项目/新建文件夹"
   ],
-  "files_scanned": 4131,
+  "files_scanned": 4358,
   "per_root": {
    "supermarket-web": {
-    "files": 936,
+    "files": 1163,
     "per_tool": {
-     "Cloudflare-Pages": 70,
+     "Cloudflare-Pages": 81,
      "Pages-Functions": 19,
-     "Cloudflare-D1": 117,
+     "Cloudflare-D1": 118,
      "SQLite": 117,
      "Cloudflare-Turnstile": 3,
      "GitHub": 36,
@@ -283,7 +287,7 @@
   ],
   "per_tool": {
    "Cloudflare-Pages": {
-    "hits": 239,
+    "hits": 250,
     "files": [
      "act_part1.py",
      "act_part2.py",
@@ -301,14 +305,14 @@
      "cf_check2.py",
      "cf_check3.py",
      "cf_check4.py",
+     "check-api-native-e2e.mjs",
+     "check-api-parity.mjs",
      "check-catalog-facts.mjs",
-     "check-functions-build.mjs",
-     "check-live-shape.mjs",
-     "check_both_faces.py"
+     "check-functions-build.mjs"
     ],
-    "lines": 230,
-    "comment_lines": 34,
-    "comment_share": 0.148,
+    "lines": 239,
+    "comment_lines": 36,
+    "comment_share": 0.151,
     "comment_only": false
    },
    "Pages-Functions": {
@@ -339,7 +343,7 @@
     "comment_only": false
    },
    "Cloudflare-D1": {
-    "hits": 146,
+    "hits": 147,
     "files": [
      "_health.js",
      "_middleware.js",
@@ -362,9 +366,9 @@
      "fix_u333.py",
      "fix_verify_cause.py"
     ],
-    "lines": 146,
-    "comment_lines": 22,
-    "comment_share": 0.151,
+    "lines": 147,
+    "comment_lines": 23,
+    "comment_share": 0.156,
     "comment_only": false
    },
    "SQLite": {

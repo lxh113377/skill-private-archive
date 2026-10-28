@@ -57,14 +57,23 @@ def load_patterns(rule_path):
         return None, "criterion-1 block not found in rule body"
     pats = []
     # r161 self-catch (3rd): the rule writes a prose line ("判定法 = ...") between the heading and
-    # the first bullet, and packs TWO regexes on one bullet (fullwidth-slash separated). Collect
-    # every backticked span; stop only after we have collected some and hit a non-bullet line.
+    # the first bullet, and packs TWO regexes on one bullet (fullwidth-slash separated).
+    # r260 root-cause fix (form #4, teeth lost by its own success): the OLD loop collected
+    #   backticked spans from ANY line in the window. Rule body line 18 is a prose NOTE
+    #   ("注（r118-H5）…"), and its inline citation `(?<![不需没无])` is a *quote of a fragment*,
+    #   not a criterion. Compiled standalone it is a zero-width lookbehind that matches at every
+    #   position of ANY text => finditer hit on all 6 negative fixtures => selftest said
+    #   "criterion has no teeth" and the face went red (gate 62). The note line also blocked the
+    #   old break branch (found was non-empty), so the poison was invisible.
+    # Fix (tighten, not loosen): only BULLET lines (lstrip startswith '-') contribute patterns.
+    #   Non-bullet prose inside the block (判定法 line, 注 line) is skipped without breaking;
+    #   the block ends at the next bold heading or numbered criterion (r260: stop tokens).
     for ln in lines[start + 1:start + 24]:
-        found = BACKTICK_RX.findall(ln)
-        if found:
-            pats.extend(found)
-        elif pats and ln.strip() and not ln.strip().startswith("-") and "\u5224\u5b9a\u6cd5" not in ln:
-            break
+        s = ln.strip()
+        if s.startswith("-"):
+            pats.extend(BACKTICK_RX.findall(ln))
+        elif pats and (s.startswith("**") or re.match(r"\d+\.", s)):
+            break   # 下一判据块开始（加粗小标题或编号条目），判据 1 到此为止
     return pats, "ok"
 def normalize(text, pats):
     return (text or "").replace(P_FROM, P_TO)

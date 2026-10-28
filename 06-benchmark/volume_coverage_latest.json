@@ -1,12 +1,12 @@
 {
  "state": "PASS",
- "why": "磁盘 182 卷全部被目录覆盖（精确 108 / 范围 74）",
+ "why": "磁盘 186 卷全部被目录覆盖（精确 112 / 范围 74）",
  "detail": {
-  "disk_parts": 182,
-  "dir_entries": 108,
-  "exact": 108,
+  "disk_parts": 186,
+  "dir_entries": 112,
+  "exact": 112,
   "range": 74,
-  "covered": 182,
+  "covered": 186,
   "uncovered": []
  }
 }

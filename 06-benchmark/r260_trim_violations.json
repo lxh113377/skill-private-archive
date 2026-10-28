@@ -1,0 +1,172 @@
+{
+ "schema": "r260c-trim-violations-v1",
+ "generated_at": "2026-10-28T07:36:19+00:00",
+ "cmd": "python _temp/r260c_trim_violations.py",
+ "rule_source": "04-plan/后续维护规范_季度巡检机制_r113_2026-10-18.md §3.1",
+ "rule_text": "候选仓 archived=true 或 pushed_at 超 12 个月 -> 从该件候选面剔除并具名登记",
+ "eval_date": "2026-10-28",
+ "twelve_month_threshold": "2025-10-28",
+ "evidence_files_readonly": [
+  "06-benchmark/quarterly/2026Q4/replacement_matrix.json 只读未改动",
+  "06-benchmark/replacement_matrix_r225.json 只读未改动"
+ ],
+ "disposition_policy": "新增具名剔除登记件；两张证据链矩阵不覆写（历史留痕）；下一季巡检读 trims 做候选面过滤",
+ "trims": [
+  {
+   "slug": "A-ask-questions",
+   "rank": 3,
+   "rank_0based_candidate_index": 2,
+   "repo": "trimstray/test-your-sysadmin-skills",
+   "matrix_reading": {
+    "stars": 11894,
+    "pushed_at": "2024-11-19",
+    "archived": false,
+    "license": "MIT",
+    "score_total": 9,
+    "rel": "skill"
+   },
+   "violation_reason": "pushed_at=2024-11-19 早于 12 月阈值 2025-10-28, 命中 §3.1 条形二",
+   "days_since_push_at_eval": 708,
+   "disposition": "removed_from_candidate",
+   "row_after_trim": {
+    "candidates_n_before": 3,
+    "candidates_n_after": 2,
+    "verdict_before": "MATCHED",
+    "verdict_after_if_recomputed": "FAMILY_ONLY"
+   },
+   "also_present_in_r225": true,
+   "evidence_cmd": "gh api repos/trimstray/test-your-sysadmin-skills --jq .archived",
+   "evidence_cmd_2": "gh api repos/trimstray/test-your-sysadmin-skills --jq .pushed_at",
+   "live_probe": {
+    "cmd": "gh api repos/trimstray/test-your-sysadmin-skills",
+    "ok": true,
+    "stars": 11892,
+    "pushed_at": "2024-11-19T14:07:11Z",
+    "archived": false,
+    "license": "MIT"
+   },
+   "spec_ref": "04-plan/后续维护规范_季度巡检机制_r113_2026-10-18.md §3.1"
+  },
+  {
+   "slug": "computer-use-guidance-windows",
+   "rank": 2,
+   "rank_0based_candidate_index": 1,
+   "repo": "PleasePrompto/notebooklm-skill",
+   "matrix_reading": {
+    "stars": 7787,
+    "pushed_at": "2026-09-10",
+    "archived": true,
+    "license": "MIT",
+    "score_total": 12,
+    "rel": "skill"
+   },
+   "violation_reason": "archived=true, 命中 §3.1 条形一",
+   "days_since_push_at_eval": 48,
+   "disposition": "removed_from_candidate",
+   "row_after_trim": {
+    "candidates_n_before": 5,
+    "candidates_n_after": 4,
+    "verdict_before": "MATCHED",
+    "verdict_after_if_recomputed": "MATCHED"
+   },
+   "also_present_in_r225": true,
+   "evidence_cmd": "gh api repos/PleasePrompto/notebooklm-skill --jq .archived",
+   "evidence_cmd_2": "gh api repos/PleasePrompto/notebooklm-skill --jq .pushed_at",
+   "live_probe": {
+    "cmd": "gh api repos/PleasePrompto/notebooklm-skill",
+    "ok": true,
+    "stars": 7791,
+    "pushed_at": "2026-09-10T07:43:47Z",
+    "archived": true,
+    "license": "MIT"
+   },
+   "spec_ref": "04-plan/后续维护规范_季度巡检机制_r113_2026-10-18.md §3.1"
+  }
+ ],
+ "full_face_sweep": {
+  "rows_n": 191,
+  "candidate_slots": 937,
+  "violations_n": 2,
+  "affected_slugs_n": 2,
+  "named_2_all_covered": true,
+  "violations": [
+   {
+    "slug": "A-ask-questions",
+    "rank": 3,
+    "repo": "trimstray/test-your-sysadmin-skills",
+    "pushed_at": "2024-11-19",
+    "archived": false,
+    "days_since_push": 708,
+    "reason": "pushed_at=2024-11-19 早于 12 月阈值 2025-10-28, 命中 §3.1 条形二"
+   },
+   {
+    "slug": "computer-use-guidance-windows",
+    "rank": 2,
+    "repo": "PleasePrompto/notebooklm-skill",
+    "pushed_at": "2026-09-10",
+    "archived": true,
+    "days_since_push": 48,
+    "reason": "archived=true, 命中 §3.1 条形一"
+   }
+  ]
+ },
+ "negative_controls": {
+  "clean_candidates_not_flagged": [
+   {
+    "slug": "A-ask-questions",
+    "rank": 1,
+    "repo": "Egonex-AI/Understand-Anything",
+    "pushed_at": "2026-10-22",
+    "archived": false,
+    "days_since_push": 6,
+    "judged_violation": false,
+    "expect": false,
+    "teeth": "PASS"
+   },
+   {
+    "slug": "computer-use-guidance-windows",
+    "rank": 1,
+    "repo": "virgiliojr94/book-to-skill",
+    "pushed_at": "2026-10-18",
+    "archived": false,
+    "days_since_push": 10,
+    "judged_violation": false,
+    "expect": false,
+    "teeth": "PASS"
+   },
+   {
+    "slug": "computer-use-guidance-windows",
+    "rank": 3,
+    "repo": "nexu-io/open-design",
+    "pushed_at": "2026-10-25",
+    "archived": false,
+    "days_since_push": 3,
+    "judged_violation": false,
+    "expect": false,
+    "teeth": "PASS"
+   }
+  ],
+  "all_clean_pass": true,
+  "synthetic_stale_must_flag": {
+   "pushed_at": "2020-01-01",
+   "archived": false,
+   "judged_violation": true,
+   "reason": "pushed_at=2020-01-01 早于 12 月阈值 2025-10-28, 命中 §3.1 条形二",
+   "teeth": "PASS"
+  },
+  "synthetic_archived_must_flag": {
+   "archived": true,
+   "pushed_at": "2026-10-28",
+   "judged_violation": true,
+   "reason": "archived=true, 命中 §3.1 条形一",
+   "teeth": "PASS"
+  },
+  "boundary_threshold_day_not_flagged": {
+   "pushed_at": "2025-10-28",
+   "judged_violation": false,
+   "note": "阈值当日不判红（严格早于才红）",
+   "teeth": "PASS"
+  }
+ },
+ "anomalies": []
+}

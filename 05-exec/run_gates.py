@@ -1736,6 +1736,47 @@ GATES = [
                    "关键集（本目标交付物依赖的度量与判据门）每道必须有 mutation 或 selftest ⇒ 否则 FAIL 具名"],
         "why": "「门跑过」「门是绿的」都不算证明；证明 = 喂它一个该红的输入并看它红。本门把这件事变成常驻要求。",
     },
+    {
+        # r260：R269 双向盲区收敛序本体化（R220-6 待做① 的落地；正文 = memory/06-constraints.part18.md）
+        "id": "r269_converge_face",
+        "script": "r260_r269_converge.py",
+        "argv": ["--json", "06-benchmark/r269_converge_latest.json"],
+        "pass_token": "[CONVERGE:PASS]",
+        "portable": False,
+        "not_portable_reason":
+            "live 面读 git 未跟踪件与仓内引用计数；换机无本仓提交史时未跟踪面为空，工具会正确地"
+            "判 UNVERIFIED（rc=2），不得算绿。夹具面（进程内）本身可移。",
+        "covers": [
+            "四步序：①git 跟踪态先于 mtime ②引用>=2 先具名通知 ③三证自证作者归该方 ④否则发现方处置+双向留痕",
+            "夹具 6 腿：含一条必须仍红的双推诿反例（t5）与一条变异对照（t6 摘自证闸门则 t4 结论被改写，证该步承重）",
+            "规则本体 part18 不在盘 / 未跟踪面为空 则 rc=2 UNVERIFIED（R247 零输入不得记绿）",
+            "边界：受管根（D 盘 global_skills）不适用本序，那里归属由写租约面管",
+        ],
+        "why": "一手 R220-6：两会话互相把对方在途件判成「他人件、不代修」，于是没有一个人修，两门持续红。" +
+              "r220 处置了实物却把规则留在叙述里，账龄尺连判 OVERDUE 到 r260；本门把它变成每轮真跑的机器判据。",
+    },
+    {
+        # r260：需求3 两个判据洞的补口面（本地同尺基线 + compat 零排序贡献归因）
+        "id": "local_baseline_face",
+        "script": "r260_local_baseline.py",
+        "argv": ["--json", "06-benchmark/r260_local_baseline.json"],
+        "pass_token": "[R260:PASS]",
+        "portable": False,
+        "not_portable_reason":
+            "本地侧要现扫受管根 D:\\global_skills（191 个含 SKILL.md 目录）并用 detect_license 读正文指纹；"
+            "换机无该权威源 ⇒ 本地列取不到 ⇒ 必须判 UNVERIFIED（rc=2），不得拿旧产物冒充同轮。"
+            "候选侧读的是仓内 tracked 矩阵与池包（离线 0 网络，整轮约 0.6 s）。",
+        "covers": [
+            "单源性：import 同一个 r114_replacement_scan.score5（禁复刻）；导入失败不降级 ⇒ rc=2 零产物",
+            "复现自检：对 r225 全部 937 候选用同一 score5 从池缓存重算并逐字段比对 ⇒ mismatches 必须 0",
+            "三态守恒：rows 之和 == 矩阵行 191（本地更优/候选更优/不可比），打平行计入、r260- 桩件不计入",
+            "compat 判别力面：熵 / rank0-flip（删 compat vs 对照组删 community）/ 三输入实跑 / copyleft 在 rank0 的行数",
+            "负向对照：空壳桩件五维不得全 5；极弱候选自证「本地更优」档可达（防三态退化）；本地分辨率腿 131/191 同形具名",
+        ],
+        "why": "需求3 的对比矩阵此前只有候选侧五维、没有同尺本地列（r113 §3.2 的人写 14 分是另一把尺），"
+              "且 compat 890/937 打满分对排序零贡献未被守住。子代理判据写完不进门表 = W-46 死句柄同族，"
+              "故由编排方注册常驻（第 111 门），每轮真跑复现漂移与 copyleft 敞口。",
+    },
 ]
 
 # 显式声明本 runner **不覆盖**的面，防止聚合绿被读成「所有门禁都绿」（R20-2）。

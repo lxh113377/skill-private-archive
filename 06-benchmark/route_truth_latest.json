@@ -2,7 +2,7 @@
  "schema": "route-truth-v2",
  "readonly": true,
  "router": "C:/Users/37533/Desktop/workspace/焚诀/eval\\unified_router.py",
- "measured_at": "2026-10-26 02:59:17",
+ "measured_at": "2026-10-28 15:34:13",
  "rows": [
   {
    "skill": "win-toolchain-pitfalls",
@@ -14,32 +14,32 @@
    "candidates": [
     {
      "name": "local-mineru",
-     "score": 0.6089,
-     "keyword": 0.0711
+     "score": 0.6032,
+     "keyword": 0.0726
     },
     {
      "name": "wps-knowledgebase",
-     "score": 0.6088,
-     "keyword": 0.0408
+     "score": 0.6031,
+     "keyword": 0.0417
     },
     {
      "name": "local-realtime-translator",
      "score": 0.5927,
-     "keyword": 0.0772
+     "keyword": 0.0781
     },
     {
      "name": "local-txt2img",
      "score": 0.59,
-     "keyword": 0.0747
+     "keyword": 0.0756
     },
     {
      "name": "pdf",
-     "score": 0.5889,
-     "keyword": 0.0671
+     "score": 0.5892,
+     "keyword": 0.0678
     }
    ],
    "llm_reason": "Top-3几乎并列 (diff=0.0001)",
-   "elapsed_s": 0.2
+   "elapsed_s": 1.7
   },
   {
    "skill": "win-toolchain-pitfalls",
@@ -51,18 +51,18 @@
    "candidates": [
     {
      "name": "scope-creep-detector",
-     "score": 0.6591,
-     "keyword": 0.0655
+     "score": 0.6534,
+     "keyword": 0.0653
     },
     {
      "name": "commit-archaeologist",
      "score": 0.6476,
-     "keyword": 0.1825
+     "keyword": 0.1776
     },
     {
      "name": "workbuddy-mcp",
      "score": 0.6185,
-     "keyword": 0.0692
+     "keyword": 0.0701
     },
     {
      "name": "dingtalk-todo",
@@ -71,12 +71,12 @@
     },
     {
      "name": "figma",
-     "score": 0.6109,
-     "keyword": 0.0375
+     "score": 0.6099,
+     "keyword": 0.0377
     }
    ],
-   "llm_reason": "Top-3几乎并列 (diff=0.0115)",
-   "elapsed_s": 0.2
+   "llm_reason": "Top-3几乎并列 (diff=0.0058)",
+   "elapsed_s": 1.9
   },
   {
    "skill": "chaoshi-web-deploy",
@@ -93,7 +93,7 @@
     }
    ],
    "llm_reason": "",
-   "elapsed_s": 0.2
+   "elapsed_s": 0.3
   },
   {
    "skill": "ci-pipeline-debugging",
@@ -105,32 +105,32 @@
    "candidates": [
     {
      "name": "github",
-     "score": 0.6303,
-     "keyword": 0.242
+     "score": 0.6246,
+     "keyword": 0.2433
     },
     {
      "name": "browser-cdp",
      "score": 0.5741,
-     "keyword": 0.0685
+     "keyword": 0.0747
+    },
+    {
+     "name": "gstack",
+     "score": 0.5585,
+     "keyword": 0.0597
     },
     {
      "name": "web-access",
      "score": 0.5578,
-     "keyword": 0.0676
-    },
-    {
-     "name": "gstack",
-     "score": 0.5557,
-     "keyword": 0.0606
+     "keyword": 0.0755
     },
     {
      "name": "electron",
      "score": 0.541,
-     "keyword": 0.0403
+     "keyword": 0.0396
     }
    ],
    "llm_reason": "",
-   "elapsed_s": 0.3
+   "elapsed_s": 1.9
   }
  ],
  "tasks": [
@@ -166,11 +166,11 @@
    "direct_hit": false,
    "top3": [
     "win-toolchain-pitfalls",
-    "debugging-fixing",
-    "wb-git-commit-recipe"
+    "wb-git-commit-recipe",
+    "coding-agent"
    ],
    "outcome": "HIT",
-   "elapsed_s": 0.3
+   "elapsed_s": 1.8
   },
   {
    "task": "Actions 分钟",
@@ -184,7 +184,7 @@
     "screenshot"
    ],
    "outcome": "HIT",
-   "elapsed_s": 0.2
+   "elapsed_s": 1.8
   },
   {
    "task": "R2 开桶",
@@ -198,7 +198,7 @@
     "A-project-handoff"
    ],
    "outcome": "MISS",
-   "elapsed_s": 0.2
+   "elapsed_s": 1.8
   },
   {
    "task": "Turnstile",
@@ -212,35 +212,35 @@
     "dingtalk-aitable"
    ],
    "outcome": "DISPUTED",
-   "elapsed_s": 0.2
+   "elapsed_s": 1.9
   },
   {
    "task": "D1 查额度",
    "want": "A-memory-start",
    "query": "查看 D1 免费额度用了多少行写入",
-   "top1": "wps-knowledgebase",
+   "top1": "A-memory-start",
    "direct_hit": false,
    "top3": [
-    "wps-knowledgebase",
-    "story-setup",
-    "fenjue-memory-audit"
+    "A-memory-start",
+    "fenjue-memory-audit",
+    "fenjue-lessons-hitrate"
    ],
-   "outcome": "MISS",
-   "elapsed_s": 0.2
+   "outcome": "HIT",
+   "elapsed_s": 1.8
   },
   {
    "task": "Workers 调用量",
    "want": "A-memory-start",
    "query": "Workers 今天调用次数接近免费 10 万了吗",
-   "top1": "chaoshi-image-optimization",
+   "top1": "A-memory-start",
    "direct_hit": false,
    "top3": [
+    "A-memory-start",
     "chaoshi-image-optimization",
-    "pixelle-api-ensure",
-    "ican-deploy"
+    "pixelle-api-ensure"
    ],
-   "outcome": "MISS",
-   "elapsed_s": 0.3
+   "outcome": "HIT",
+   "elapsed_s": 1.6
   },
   {
    "task": "Resend 发邮",
@@ -251,10 +251,10 @@
    "top3": [
     "dingtalk-mail",
     "office-automation-pro",
-    "codebuddy-chat-web"
+    "oracle"
    ],
    "outcome": "UNOWNED",
-   "elapsed_s": 0.2
+   "elapsed_s": 1.8
   },
   {
    "task": "Upstash 限流",
@@ -264,15 +264,15 @@
    "direct_hit": false,
    "top3": [
     "codebuddy-chat-web",
-    "libreoffice-base",
-    "workbuddy-mcp"
+    "A-memory-start",
+    "libreoffice-base"
    ],
    "outcome": "UNOWNED",
-   "elapsed_s": 0.2
+   "elapsed_s": 1.9
   }
  ],
  "task_judged": 7,
- "task_hits": 4,
+ "task_hits": 6,
  "task_note": "第三层召回率：真实任务语句能否把预期承载件带进前 3。HIT_DIRECT=走 L0.1 直连表；MISS=召不回（不代表知识不存在，代表入口没有）",
  "note": "路由真值：窗口命中只是入场券（必要非充分）。rank_of_skill=null 表示该 skill 未进 router 返回的候选前列 —— 即实测召不回。",
  "provenance_cmd": "python 05-exec/r209_route_truth_measure.py --json <件>"

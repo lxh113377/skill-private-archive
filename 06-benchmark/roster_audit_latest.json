@@ -6,7 +6,7 @@
  "tools_in_matrix_only": [
   "Pages-Functions"
  ],
- "workflow_face_files": 267,
+ "workflow_face_files": 270,
  "third_roots": [
   "C:/Users/37533/Desktop/workspace/超市web/supermarket-web",
   "C:/Users/37533/Desktop/workspace/项目/新建文件夹"
@@ -18,15 +18,15 @@
    "workers_quota_latest.json"
   ],
   "Cloudflare-D1": [
-   8.9,
+   8.99,
    "quota_face_latest.json"
   ],
   "GitHub": [
-   24911.0,
+   27453.0,
    "gh_billing_latest.json"
   ],
   "Cloudflare-Pages": [
-   199437,
+   235494,
    "pages_http_latest.json"
   ],
   "Cloudflare-Turnstile": [
@@ -34,7 +34,7 @@
    "turnstile_usage_latest.json"
   ],
   "SQLite": [
-   12.64,
+   12.88,
    "sqlite_usage_latest.json"
   ]
  },
@@ -43,13 +43,13 @@
    "l1_mention": 2,
    "l1_exec": 0,
    "l2": 3,
-   "l3": 146
+   "l3": 147
   },
   "Cloudflare-Pages": {
    "l1_mention": 5,
    "l1_exec": 2,
    "l2": 7,
-   "l3": 239
+   "l3": 250
   },
   "Cloudflare-R2": {
    "l1_mention": 1,
@@ -70,7 +70,7 @@
    "l3": 1
   },
   "GitHub": {
-   "l1_mention": 22,
+   "l1_mention": 23,
    "l1_exec": 2,
    "l2": 23,
    "l3": 49

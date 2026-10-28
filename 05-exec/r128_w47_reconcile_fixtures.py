@@ -23,8 +23,41 @@ import tempfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 TOOL = os.path.join(HERE, 'r128_ruler_reconcile.py')
-FACE = os.path.join(os.path.dirname(HERE), '06-benchmark', 'tag_closure_r127_2026-10-20.json')
+# r260 输入面根因修（R-CURRENT 同族第 2 次复发，r259 的「读数过期被报成算错」换了宿主）：
+#   旧 FACE 硬编码 2026-10-20 冻结件 —— 对账 = 判据读数 vs 生产 route() 实测，
+#   判据侧取的是八天前的 actually_hit，路由侧是今天：**两侧不同时钟**。于是 r244 之后
+#   被 owner 侧修好的 2 条题（灵感枯竭→brainstorming / Notion 会议准备→meeting-intelligence）
+#   被算成「判据假红」（r260 实测 rows=279 false_red=2，两条现 top1 已==expected）。
+#   正解 = 夹具开工先现生成判据面（r126，它自己就 route() 实测回填 actually_hit），
+#   两侧同轮同时钟；生成失败才回退冻结件，且**必须打印 FACE_STALE_GENERATION**（可见性
+#   R247：回退不能静默，静默回退 = 把旧读数冒充同轮）。冻结件降级为兜底而非默认。
+BENCH_DIR = os.path.join(os.path.dirname(HERE), '06-benchmark')
+FACE = os.path.join(BENCH_DIR, 'tag_closure_r127_2026-10-20.json')
+FACE_FRESH = os.path.join(BENCH_DIR, 'tag_closure_face_latest.json')
+GENERATOR = os.path.join(HERE, 'r126_tag_closure.py')
 RESULTS = []
+
+
+def ensure_same_clock_face():
+    """Return message string; reassigns module FACE. Fresh generation first, frozen fallback loud."""
+    global FACE
+    if os.path.isfile(GENERATOR):
+        try:
+            env = dict(os.environ)
+            env['PYTHONPYCACHEPREFIX'] = os.path.join(env.get('TEMP', 'C:/Temp'), 'pyc_w47gen')
+            g = subprocess.run([sys.executable, GENERATOR, '--json', FACE_FRESH],
+                               capture_output=True, text=True, encoding='utf-8',
+                               errors='replace', env=env, timeout=1200)
+            if g.returncode == 0 and os.path.isfile(FACE_FRESH):
+                d = json.loads(io.open(FACE_FRESH, encoding='utf-8-sig').read())
+                if d.get('rows'):
+                    FACE = FACE_FRESH
+                    return 'FACE=SAME-CLOCK(r126 现生成, rows=%d)' % len(d['rows'])
+            print('  [w47] r126 现生成失败 rc=%s：%s' % (g.returncode, (g.stderr or '')[-200:]))
+        except Exception as e:  # noqa: BLE010 生成失败不得炸夹具本体，走具名回退
+            print('  [w47] r126 现生成异常：%r' % (e,))
+    FACE = os.path.join(BENCH_DIR, 'tag_closure_r127_2026-10-20.json')
+    return 'FACE_STALE_GENERATION(回退冻结件 2026-10-20 —— 本轮对账跨时钟，false_red 须人工判读)'
 
 
 def ck(name, cond, detail=''):
@@ -64,8 +97,11 @@ def main():
     if not os.path.isfile(TOOL):
         ck('前置：r128_ruler_reconcile.py 存在', False, TOOL)
         return finish()
+    # r260：先对齐两侧时钟（现生成判据面），再跑各腿 —— 见 ensure_same_clock_face 头注。
+    clock = ensure_same_clock_face()
+    print('[W47] ' + clock)
     if not os.path.isfile(FACE):
-        ck('前置：r127 修正产物存在', False, FACE)
+        ck('前置：判据产物存在（现生成或冻结件）', False, FACE)
         return finish()
 
     rc1, out1, c1 = run('actually_hit')

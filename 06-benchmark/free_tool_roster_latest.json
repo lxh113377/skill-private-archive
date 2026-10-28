@@ -21,6 +21,7 @@
     "github",
     "gstack",
     "healthcare-eval-harness",
+    "hyperframes",
     "hyperframes-registry",
     "oracle",
     "security-audit",
@@ -125,7 +126,7 @@
     ]
    },
    "read_why": null,
-   "usage_value": 24911.0,
+   "usage_value": 27453.0,
    "usage_meta": {
     "unit": "分钟（官方计费·账号级·端点默认窗口）",
     "extra": 0.0,
@@ -151,7 +152,7 @@
     "r119_cand_regress.py",
     "r119_cand_sandbox.py"
    ],
-   "third_hits": 146,
+   "third_hits": 147,
    "third_files": [
     "_health.js",
     "_middleware.js",
@@ -174,9 +175,9 @@
     "fix_u333.py",
     "fix_verify_cause.py"
    ],
-   "third_lines": 146,
-   "third_comment_lines": 22,
-   "third_comment_share": 0.151,
+   "third_lines": 147,
+   "third_comment_lines": 23,
+   "third_comment_share": 0.156,
    "third_comment_only": false,
    "gates": "163 + 88 任务层 + 93",
    "touchpoint": "A-memory-start 的 quickref 额度专章（r196_quota_face 现读行数/写入）+ chaoshi-web-deploy 的 d1 execute 部署链",
@@ -232,10 +233,10 @@
     ]
    },
    "read_why": null,
-   "usage_value": 8.9,
+   "usage_value": 8.99,
    "usage_meta": {
     "unit": "MiB",
-    "extra": 0.174,
+    "extra": 0.176,
     "extra_label": "占名册声称上限",
     "window": "5 GiB 存储"
    },
@@ -312,7 +313,7 @@
     "r119_cand_regress.py",
     "r119_cand_sandbox.py"
    ],
-   "third_hits": 239,
+   "third_hits": 250,
    "third_files": [
     "act_part1.py",
     "act_part2.py",
@@ -330,14 +331,14 @@
     "cf_check2.py",
     "cf_check3.py",
     "cf_check4.py",
+    "check-api-native-e2e.mjs",
+    "check-api-parity.mjs",
     "check-catalog-facts.mjs",
-    "check-functions-build.mjs",
-    "check-live-shape.mjs",
-    "check_both_faces.py"
+    "check-functions-build.mjs"
    ],
-   "third_lines": 230,
-   "third_comment_lines": 34,
-   "third_comment_share": 0.148,
+   "third_lines": 239,
+   "third_comment_lines": 36,
+   "third_comment_share": 0.151,
    "third_comment_only": false,
    "gates": "163 + 92 + 93",
    "touchpoint": "chaoshi-web-deploy 部署权威入口（direct_map 10 pattern，任务话术直连命中）",
@@ -376,12 +377,12 @@
     ]
    },
    "read_why": null,
-   "usage_value": 199437,
+   "usage_value": 235494,
    "usage_meta": {
     "unit": "次",
     "extra": null,
     "extra_label": null,
-    "window": "2026-10-01~2026-10-26"
+    "window": "2026-10-01~2026-10-29"
    },
    "usage_why": null
   },
@@ -453,7 +454,7 @@
     "unit": "次",
     "extra": null,
     "extra_label": null,
-    "window": "2026-10-01~2026-10-26"
+    "window": "2026-10-01~2026-10-29"
    },
    "usage_why": null
   },
@@ -534,12 +535,12 @@
     ]
    },
    "read_why": null,
-   "usage_value": 12.64,
+   "usage_value": 12.88,
    "usage_meta": {
     "unit": "MiB（本地库体量·非额度）",
-    "extra": 44549,
+    "extra": 45142,
     "extra_label": "合计行数",
-    "window": "2026-10-26T05:39:00"
+    "window": "2026-10-28T15:33:40"
    },
    "usage_why": null
   },
@@ -665,8 +666,8 @@
     "extra": null,
     "extra_label": null,
     "window": [
-     "2026-10-01",
-     "2026-10-26"
+     "2026-10-03",
+     "2026-10-28"
     ]
    },
    "usage_why": null
@@ -747,7 +748,7 @@
  "gates_reading": {
   "carrier": {
    "tools": 10,
-   "vols": 1728,
+   "vols": 2009,
    "uncarried": 0,
    "k5": true
   },
@@ -765,18 +766,18 @@
   },
   "matrix_src": {
    "file": "tool_skill_matrix_latest.json",
-   "generated_at": "2026-10-26 05:36",
+   "generated_at": "2026-10-28 15:30",
    "cmd": "python 05-exec/r163_tool_skill_matrix.py --json <out>"
   },
   "workflow_src": {
    "file": "workflow_usage_latest.json",
    "generated_at": null,
-   "face_files": 274,
-   "real_face_files": 157,
+   "face_files": 277,
+   "real_face_files": 159,
    "real_total_hits": 84
   },
   "third_src": {
-   "files_scanned": 4133,
+   "files_scanned": 4358,
    "roots": [
     "C:/Users/37533/Desktop/workspace/超市web/supermarket-web",
     "C:/Users/37533/Desktop/workspace/项目/新建文件夹"
@@ -785,7 +786,7 @@
    "files": "tool_skill_matrix_latest.json"
   }
  },
- "read_at": "2026-10-26T05:39:14",
+ "read_at": "2026-10-28T15:34:14",
  "ft_rows": [
   {
    "tool": "GitHub",

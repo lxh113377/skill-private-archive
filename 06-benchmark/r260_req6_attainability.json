@@ -1,0 +1,30 @@
+{
+ "schema": "req6-attainability-r214-v1",
+ "generated_at": "2026-10-27T17:05:08+00:00",
+ "cmd": "python 05-exec/r214_req6_attainability.py",
+ "inputs": {
+  "baseline_file": "quality_truth_r115_2026-10-18.json",
+  "current_file": "r260_req6_quality_truth.json",
+  "threshold_source": "r115_quality_truth.py",
+  "ceiling_producer": "焚诀 eval/frozen_blind_eval.py（R165 U1 自算 max_achievable）"
+ },
+ "metric_caveat": "本面 = 生产路由 Top-1（L1 layered），是任务质量的上游必要条件而非任务完成度本身（r114 口径红线）；「不可达」判定只对本面成立，不得外推成「需求 6 永远无法验证」。",
+ "result": {
+  "threshold_relative_pct": 30.0,
+  "baseline_score": 88.3,
+  "current_score": 90.7,
+  "current_relative_gain_pct": 2.7,
+  "ceiling_score": 95.2,
+  "ceiling_source": "current",
+  "max_possible_relative_gain_pct": 7.8,
+  "need_score_relative_reading": 114.8,
+  "need_score_absolute_reading": 118.3,
+  "attainable_under_relative_reading": false,
+  "attainable_under_absolute_reading": false,
+  "two_readings_agree": true,
+  "exceeds_scale_100": true,
+  "verdict": "MATHEMATICALLY_IMPOSSIBLE",
+  "gap_to_need_points": 24.1,
+  "extra_hits_needed_for_threshold": 57
+ }
+}

@@ -1,0 +1,42 @@
+{
+ "schema": "claim-truth-scan-v1",
+ "generated_at": "2026-10-28 01:06",
+ "readonly": true,
+ "truth": {
+  "active": [
+   "wb",
+   "tr",
+   "cx",
+   "hm",
+   "zc",
+   "oc",
+   "qd",
+   "mm",
+   "ds"
+  ],
+  "n": 9
+ },
+ "registry_count": 191,
+ "targets_present": [
+  "D:\\global_skills\\A-memory-start\\SKILL.md",
+  "D:\\global_skills\\A-memory-start\\references\\contract.md",
+  "D:\\global_skills\\A-project-handoff\\SKILL.md",
+  "D:\\global_skills\\A-get-memory\\SKILL.md",
+  "D:\\global_skills\\A-project-better\\SKILL.md",
+  "D:\\global_skills\\A-skill-manager\\SKILL.md",
+  "C:\\Users\\37533\\Desktop\\workspace\\焚诀\\memory\\AGENTS.md"
+ ],
+ "targets_missing": [],
+ "candidates": [
+  {
+   "family": "endpoint_enum",
+   "file": "D:\\global_skills\\A-memory-start\\SKILL.md",
+   "line": 62,
+   "text": "✅ G2 任务类型判定+平台探测: <闲聊/简单/继续/复杂> | <HM/WB/CX/TC/ZC/OC/QD> (统一路径已解析，端数权威 = 焚诀/eval/truth_constants.json 的 endpoints.active)",
+   "claim": "HM/WB/CX/TC/ZC/OC/QD",
+   "truth": "缺 ['ds', 'mm']（真值 9 端）"
+  }
+ ],
+ "exempt_rule": "含「当时/原为/已作废/原文保留/校正注/历史/瘦身」或版本历史章节的行豁免（R241）",
+ "note": "候选非判决；技能正文此前不在任何内容级对账门禁面上（C3/C13/C16 均不覆盖）"
+}

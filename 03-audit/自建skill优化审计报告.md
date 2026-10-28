@@ -118,3 +118,30 @@
 1. **真自建口径修正**：精读判定 11 个为市场/上游件，需确认是否从「自建 102」移出（真自建 → 约 91），并回改 `00-scope/自建skill清单.md`
 2. **LOW 灰区 33 个**归属（github/gsap/obsidian-* 等）
 3. **退役确认**：`cloudbase-webapp-deploy-debug`、`deep-research-pro`、`multi-search-engine`、`skill-install`、两个已停用 fenjue 件的最终处置
+
+---
+
+## r260 校正注（2026-10-28 追加｜R241：本节以上原文一字未动，仅追加）
+
+> 触发：本报告 P0-1..P0-25 历来无闭环台账（主卷 07 grep P0- = 0；分卷散点 8/25 编号，均非逐条对账）。r260 轮逐条跑当下可跑的机器判据复核。台账 = `06-benchmark/P0闭环台账_r260_2026-10-28.md` + `06-benchmark/r260_p0_closure.json`（每条含 evidence_cmd / measured_at / 被检文件 sha8）。
+
+**一、25 条现态统计（判据实测，非转述）**
+
+| verdict | n | 条目 |
+|---|---|---|
+| FIXED | 14 | P0-1/2/3/5/7/9/10/11/12/13/14/17/18/25 |
+| OPEN | 5 | P0-4、P0-8、P0-21、P0-22、P0-24 |
+| N-A（载体已退役，条目不再适用） | 6 | P0-6、P0-15、P0-16、P0-19、P0-20、P0-23 |
+
+- 口径：FIXED = 修复动作有磁盘证据（含「标注废弃/改锚/挂实体」式修复）；OPEN = 声称问题当下仍在；N-A = 被检 skill 已退役（目录不存在且 truth_constants.json retired_skills 命中，sha8 932eabac）。
+- 点名两条：P0-5 **FIXED**（chaoshi-image-optimization SKILL.md:28/:341 已改「动态探测，禁止硬编码版本目录」，硬编码执行形态=0；sha8 e9249bf1）；P0-8 **OPEN**（wps-knowledgebase 仍只有 SKILL.md，references/workflow.md、scripts/run.js、setup.js 三文件仍缺，SKILL.md 内 workflow.md 引用仍 3 处；sha8 de511d70）。
+- 负向对照（#36 防线：申报绿而实红＝假交付）：两条判据方向**一绿一红**成立；P0-5 判据对合成已知坏样本会判红（hardshape=1），同形态 test -f 对 P0-8 实存文件会判绿——判据有牙。朴素 grep 计数 8.1.1 会把 P0-5 误报 OPEN（叙述残留 2 处），该错判据已弃用并留档。
+- 三处对本报告原口径的实测校正：① 「07 台账 grep P0- = 0」仅对主卷成立，分卷有 8 个编号 18 处散点；② P0-21/22/24 三个治理自违项**大幅缓解但未清零**（A-project-handoff 84,818→20,526B 且分卷 9 leaves，正文与最大 leaf version-history.md 196,186B 仍超 4,096B 自身硬限；bigfile-split 15,360→4,334B 超线 238B；cross-platform-agent-sync 19,590→5,445B 超线 1,349B 而 13 个 leaf 全部 ≤4,096B 合规）——判 OPEN 而非 FIXED，差一步是一步。③ P0-4 Notion 面：MCP 至今未配置（两套 mcp.json notion 命中=0），4 件仍在位合计 24,970B，合并为占位件未执行。
+
+**二、报告头「七份审计卡」下落：判「被合并」**
+
+- 实测 02-review/ 物理卡 = **6 份**（A族/fenjue族/local族/skill审计族/story族/其他族）。第 7 份并非从未存在，也非丢失：**第 6/7 批内容按预告追加合并进了 `其他族_精读.md` 文末**——该卡头部自述「后续批（openclaw/wechat/杂项 约 29 个）追加在文末」，文内实有「批3：杂项族（15 个）」(:87)、「批4：工具/文档族（14 个）」(:111)，预告与实物吻合。
+- 排除独立存在可能（全实测）：archive/ 全树 find 名称含「精读」= 0 命中；git log --oneline --all -- 02-review/ = 1 commit（基线 49ff0d6 建仓时即 6 份、无删除史）；_trash/_temp/memory 的 6 处命中全部是 _temp/rollback_drill/clone/ 克隆副本；GM 仓 git log 名称含「精读」 = 0。
+- 因此报告头 :6 的说法本身不算虚报（7 个批次内容齐），但**物理卡数应读作 6**；「原文见 02-review/ 七份审计卡」易被核对者当 7 个文件名找——建议后续新报告采用「六卡七批（批 6/7 并入其他族卡）」措辞。本报告原文按 R241 不改。
+
+—— r260 复核实测于 2026-10-28 14:28–14:41 +08:00；复跑入口：bash /d/app-cache/temp/r260b_ev.sh（及 ev2-ev5c、r260b_teeth.py）

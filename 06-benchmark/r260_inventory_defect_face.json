@@ -1,0 +1,244 @@
+{
+ "schema": "r260-inventory-defect-face-v1",
+ "generated_at": "2026-10-28T15:44:15",
+ "round": "r260",
+ "readonly": true,
+ "disk_face": {
+  "top_level_dirs": 194,
+  "dirs_with_skillmd": 191,
+  "dirs_without_skillmd": [
+   ".git",
+   ".temp",
+   "_trash"
+  ],
+  "top_level_files": 8,
+  "note": "brief 所称 193 = 2026-10-28 前口径；本轮 ls -1 顶层条目含 8 个文件 ⇒ 目录 192；D:\\global_skills 实测不是 reparse point（fsutil 回 Error 4390）"
+ },
+ "self_made_scope": {
+  "scope_rows_total": 150,
+  "distribution": {
+   "HIGH": 51,
+   "MID": 26,
+   "LOW": 30,
+   "EXCLUDE": 43
+  },
+  "HIGH_MID_N": 77,
+  "IN_77_NOT_ON_DISK": [],
+  "ON_DISK_NOT_IN_77": 114,
+  "note_newer_than_freeze": "现行盘有 114 件不在 2026-09-22 冻结 scope 名单内（含 dingtalk-* 12 件等），扫描面 77 条为冻结名册现值，非盘面全量"
+ },
+ "defect_face_77": {
+  "over_4kb": 70,
+  "size_bands": {
+   "<=4096": 7,
+   "4-8k": 29,
+   "8-16k": 27,
+   ">16k": 14
+  },
+  "largest_10": [
+   {
+    "skill": "debugging-fixing",
+    "size_b": 107673
+   },
+   {
+    "skill": "chaoshi-web-deploy",
+    "size_b": 61876
+   },
+   {
+    "skill": "ican-frontend-design-system",
+    "size_b": 59528
+   },
+   {
+    "skill": "chaoshi-image-optimization",
+    "size_b": 35277
+   },
+   {
+    "skill": "openclaw-task-supervision",
+    "size_b": 34136
+   },
+   {
+    "skill": "prompt-system-audit",
+    "size_b": 33023
+   },
+   {
+    "skill": "c-cleanup",
+    "size_b": 30259
+   },
+   {
+    "skill": "A-prompt-better",
+    "size_b": 28761
+   },
+   {
+    "skill": "openclaw-dual-gate-quality-audit",
+    "size_b": 21587
+   },
+   {
+    "skill": "wps-knowledgebase",
+    "size_b": 21475
+   }
+  ],
+  "no_trigger_words": 55,
+  "desc_short_lt40": 0,
+  "missing_version_key": 0,
+  "version_non_semver": 21,
+  "version_non_semver_list": [
+   "local-asr",
+   "local-computer-use",
+   "local-img2img",
+   "local-mineru",
+   "local-ocr-npu",
+   "local-realtime-translator",
+   "local-screenshot-qa",
+   "local-tts",
+   "local-txt2img",
+   "local-vram",
+   "shell-encoding-pitfalls",
+   "story-import",
+   "story-long-analyze",
+   "story-long-write",
+   "story-review",
+   "story-short-analyze",
+   "story-short-write",
+   "utf8-encoding-fix",
+   "windows-bash-cli-interop-pitfalls",
+   "windows-cli-utf8-wrapper",
+   "windows-gitbash-chinese-path-pit"
+  ],
+  "dead_ref_candidates": 15,
+  "dead_wildcard_candidates": 2,
+  "deprecated_platform_hits": 16
+ },
+ "registry_face": {
+  "registry_n": 191,
+  "disk_n": 191,
+  "ghosts": 0,
+  "unregistered": 0,
+  "version_behind_count": 11,
+  "version_behind": [
+   {
+    "skill": "data-analysis",
+    "registry": "1.2.0",
+    "disk": "1.4.0"
+   },
+   {
+    "skill": "debugging-fixing",
+    "registry": "2.14.6",
+    "disk": "2.14.9"
+   },
+   {
+    "skill": "frontend-slides",
+    "registry": "1.1.0",
+    "disk": "1.3.0"
+   },
+   {
+    "skill": "grill-me",
+    "registry": "1.0.0",
+    "disk": "1.2.0"
+   },
+   {
+    "skill": "hyperframes",
+    "registry": "1.4.0",
+    "disk": "1.7.0"
+   },
+   {
+    "skill": "hyperframes-media",
+    "registry": "1.5.0",
+    "disk": "1.7.0"
+   },
+   {
+    "skill": "ppt-master",
+    "registry": "1.0.0",
+    "disk": "1.1.0"
+   },
+   {
+    "skill": "story",
+    "registry": "1.0.0",
+    "disk": "1.1.0"
+   },
+   {
+    "skill": "story-deslop",
+    "registry": "1.1.0",
+    "disk": "1.2.0"
+   },
+   {
+    "skill": "story-setup",
+    "registry": "1.5.0",
+    "disk": "1.6.0"
+   },
+   {
+    "skill": "ui-ux-pro-max",
+    "registry": "1.4.0",
+    "disk": "1.5.0"
+   }
+  ],
+  "note": "版本落后 11 件全部不在自建 77 名册内（均为市场/上游或灰区件），自建面版本登记无落后"
+ },
+ "link_integrity_face": {
+  "scanned_md": 2008,
+  "links": 2538,
+  "HARD": 6,
+  "SOFT": 120,
+  "hard_detail": [
+   {
+    "skill": "ppt-master",
+    "file": "references/plan-core.md",
+    "line": 5,
+    "cited": "../../../docs/rules/ownership.md",
+    "why": "技能内无同名目标（缺件）"
+   },
+   {
+    "skill": "ppt-master",
+    "file": "scripts/docs/advanced-image-motion-smoke.md",
+    "line": 8,
+    "cited": "../../../../docs/rules/code-style.md",
+    "why": "技能内无同名目标（缺件）"
+   },
+   {
+    "skill": "ppt-master",
+    "file": "scripts/docs/narration.md",
+    "line": 3,
+    "cited": "../../../../docs/audio-narration.md",
+    "why": "技能内无同名目标（缺件）"
+   },
+   {
+    "skill": "ppt-master",
+    "file": "scripts/docs/svg-pipeline.md",
+    "line": 267,
+    "cited": "../../../../docs/rules/code-style.md",
+    "why": "技能内无同名目标（缺件）"
+   },
+   {
+    "skill": "wps-knowledgebase",
+    "file": "SKILL.md",
+    "line": 433,
+    "cited": "references/workflow.md",
+    "why": "技能内无同名目标（缺件）"
+   },
+   {
+    "skill": "wps-knowledgebase",
+    "file": "SKILL.md",
+    "line": 459,
+    "cited": "references/workflow.md",
+    "why": "技能内无同名目标（缺件）"
+   }
+  ],
+  "in_scope_77_hard": [
+   "wps-knowledgebase",
+   "wps-knowledgebase"
+  ]
+ },
+ "claim_truth_face": {
+  "candidates": 1,
+  "detail": "A-memory-start/SKILL.md:62 端数枚举缺 ds/mm（真值 9 端）"
+ },
+ "cmds": {
+  "disk_count": "cd /d/global_skills && ls -1d */ | wc -l  => 192",
+  "with_skillmd": "for d in */; do [ -f \"\\$d/SKILL.md\" ] && echo; done | wc -l  => 191",
+  "quarterly": "python eval/skill_quarterly_inspect.py --skip-live  => registry_drift RED: 在册 191/在盘 191/ghost 0/未注册 0/版本落后 11；link_integrity RED",
+  "link_audit": "python eval/skill_link_audit.py --skills-root D:\\global_skills --json  => HARD 6",
+  "scan_defect": "python 05-exec/r260_scan_runner.py（import 01-scan/scan_all.py 的 scan() 本体，SCOPE_DIR 指 00-scope、SCAN_DIR 指 _temp）=> 超4KB 70 / 无触发词 55 / 死链 15 / 通配 2 / 弃用名 16",
+  "contract": "python 05-exec/baseline_contract_scan.py --json ... => [CONTRACT:PASS] 557 份",
+  "roster": "python 05-exec/r237_roster_audit.py --json ... => [ROSTER-AUDIT:FAIL] 漂移 3",
+  "claim_truth": "python 05-exec/claim_truth_scan.py --json ... => 失真候选 1（EXIT=1）"
+ }
+}

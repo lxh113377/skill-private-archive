@@ -17,12 +17,12 @@
   "Resend",
   "Upstash-Redis"
  ],
- "face_files": 268,
+ "face_files": 277,
  "tools": [
   {
    "tool": "GitHub",
-   "hits": 85,
-   "probe_share": 0.729,
+   "hits": 86,
+   "probe_share": 0.733,
    "real_hits": 23,
    "real_files": [
     "r113_quarterly_audit.py",
@@ -131,17 +131,19 @@
   },
   {
    "tool": "Cloudflare-Turnstile",
-   "hits": 95,
-   "probe_share": 0.737,
-   "real_hits": 25,
+   "hits": 110,
+   "probe_share": 0.755,
+   "real_hits": 27,
    "real_files": [
     "r163_turnstile_admin.py",
-    "r209_route_truth_measure.py"
+    "r209_route_truth_measure.py",
+    "r247_dup_policy_scan.py",
+    "r250_source_freshness_scan.py"
    ],
    "line_exec": 0,
    "line_comment": 12,
-   "line_prose": 12,
-   "line_cjk_prose": 2,
+   "line_prose": 14,
+   "line_cjk_prose": 4,
    "state": "USED",
    "real_state": "REAL_USED"
   },
@@ -172,7 +174,7 @@
    "real_state": "REAL_GAP"
   }
  ],
- "total_hits": 262,
- "real_face_files": 154,
- "real_total_hits": 82
+ "total_hits": 278,
+ "real_face_files": 159,
+ "real_total_hits": 84
 }

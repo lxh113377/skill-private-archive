@@ -1,0 +1,218 @@
+{
+ "schema": "req6-forensics-r260-v1",
+ "round": "r260",
+ "generated_at": "2026-10-27T17:27:04.487Z",
+ "produced_by": "取证子代理（需求 6 三口径 + 兼容性面复算）",
+ "method": "全部为 r260 亲跑读数（焚诀 eval 只读复跑，未改 eval/未跑 run_gates.py）",
+ "caliber": {
+  "A_margin_live": {
+   "note": "r123_margin_cf 反事实沙箱整体不可自动复算（candidate/wrong_domain 须人工候选语料，r216 §6）⇒ 只复现 baseline 腿 = 现役 route() 的 top1-top2 分差",
+   "cases_file": "_temp/r260_margin_probe.py",
+   "r233_anchor": {
+    "pixelle-api-ensure": 0.1073,
+    "data-visualization": 0.1434,
+    "brainstorming_rollback后基线": 0.0991
+   },
+   "r260_live": {
+    "pixelle-api-ensure": 0.1073,
+    "data-visualization": 0.14,
+    "brainstorming": 0.1008
+   },
+   "drift": "pixelle 一致；data-visualization 0.1434→0.1400（−2.4%，随 owner 侧语料重建漂移）；brainstorming 0.0991→0.1008（高于 r233 所引基线，且高于当年被回滚的候选 0.0865）",
+   "negative_control": "slug=__no_such_skill_r260__ ⇒ margin=None / hit=False（判据有牙）"
+  },
+  "B_real_miss": {
+   "r233_anchor": {
+    "baseline": 12,
+    "current": 7,
+    "relative_change_pct": 41.7,
+    "state": "CLEAN"
+   },
+   "r260_live": {
+    "baseline": 12,
+    "current": 5,
+    "relative_change_pct": 58.3,
+    "state": "CLEAN",
+    "fixed_n": 7,
+    "still_real_n": 5,
+    "new_real_miss_n": 0,
+    "moved_to_stale_n": 0,
+    "to_undecidable_n": 0,
+    "partition_identity_ok": true
+   },
+   "verdict": "达标（口径 B），且较 r233 继续改善 −16.6pp",
+   "newly_fixed_vs_r233": [
+    [
+     "灵感枯竭帮我发散一波点子",
+     "brainstorming"
+    ],
+    [
+     "Notion 会议准备",
+     "meeting-intelligence"
+    ]
+   ],
+   "root_cause": "焚诀 eval/direct_map.json mtime 2026-10-25T16:56Z（晚于 r233 读数 11:46Z）新增/校正直连规则；r233 §5 点名的「真错配 2 条」正是这两条 ⇒ 归因仍属路由/触发词侧，与 skill 替换无关",
+   "selftest": "r217 --selftest 9 腿全 OK（含 M1 挪账 / M2 缩分母 / M3 删题面 / M4 重复键 变异必判红）⇒ rc=0"
+  },
+  "C_prod_route_l1": {
+   "r233_anchor": {
+    "baseline": 88.3,
+    "current": 90.1,
+    "gain_pct": 2,
+    "need": 114.8,
+    "ceiling": 95.2,
+    "verdict": "MATHEMATICALLY_IMPOSSIBLE"
+   },
+   "r260_live": {
+    "baseline": 88.3,
+    "current": 90.7,
+    "gain_pct": 2.7,
+    "need": 114.8,
+    "ceiling": 95.2,
+    "max_possible_gain_pct": 7.8,
+    "verdict": "MATHEMATICALLY_IMPOSSIBLE",
+    "gap_points": 24.1,
+    "extra_hits_needed": 57
+   },
+   "determinism": "r115 独立跑 2 次均 90.7%（278/291），Wilson 95% [92.5,97.4] ⇒ 非抽样抖动",
+   "selftest": "r214 --selftest 7 腿全 OK ⇒ [REQ6:SELFTEST-PASS] rc=0；主判 rc=1 = IMPOSSIBLE 语义（件已出）",
+   "conclusion": "不可达结论保持成立；剩余可及空间由 +5.7% 收窄到 +4.9% 相对"
+  },
+  "deprecated_r114_hybrid_face": {
+   "r233_anchor": {
+    "top1": 38.2,
+    "delta_rel_pct": 0,
+    "comparability": "区间重叠(幅度落在抽样抖动内)"
+   },
+   "r260_live": {
+    "top1": 38.2,
+    "top3": 55.1,
+    "hit": 97.8,
+    "f1": 55.3,
+    "ci95": [
+     28.8,
+     48.6
+    ],
+    "delta_rel_pct": 0,
+    "comparability": "区间重叠(幅度落在抽样抖动内)"
+   },
+   "drift": "逐项一致（该面自 r233 起未变）",
+   "caveat": "r115 已判此面不可与 L1 相减（不同源）：r114 的 hybrid_match 不读 direct_map/tags/BGE/memory 任一层 ⇒ 只作对照面，不作需求 6 主尺"
+  }
+ },
+ "compatibility": {
+  "caliber_shadow": {
+   "state": "IDENTICAL",
+   "slugs_total": 191,
+   "verdict_diffs": 0,
+   "c1_fail": 0,
+   "need_c2_human": 191,
+   "shadow_rewrites": 937,
+   "same_as_r233": true
+  },
+  "caliber_flip": {
+   "state": "DETECTED",
+   "candidates_total": 937,
+   "coverage_pct": 100,
+   "bucket_flag_flips": 1,
+   "row_flag_flips": 0,
+   "rows_unresolved": 0,
+   "same_as_r233": true,
+   "note": "r220 rc=1 = DETECTED 语义（不切换口径），与 r233 一致"
+  },
+  "replacement_matrix_conservation": {
+   "ok": true,
+   "sum_verdicts": 191,
+   "local_n": 191,
+   "by_verdict": {
+    "MATCHED": 167,
+    "FAMILY_ONLY": 11,
+    "NO_OS_CANDIDATE": 13,
+    "UNVERIFIED": 0
+   },
+   "recompute_offline": "[REPL:PASS] 191==191",
+   "same_as_r233": true
+  },
+  "three_upgrades_local_only": {
+   "zero_loss_monotone": true,
+   "rows": [
+    {
+     "slug": "test-driven-development",
+     "local_only_r114": 43,
+     "local_only_r260": 51,
+     "upstream_only_r260": 11,
+     "verdict": "UPGRADE_REVIEW",
+     "evidence_source": "cache"
+    },
+    {
+     "slug": "obsidian-bases",
+     "local_only_r114": 5,
+     "local_only_r260": 2,
+     "upstream_only_r260": 0,
+     "verdict": "LOCAL_AHEAD_KEEP",
+     "relation": "local_ahead",
+     "local_sha_stable": "b9bb892552(=季度件)",
+     "note": "5→0→2：0 为 r114 当时转 UP_TO_DATE，其后本地又增 2 行；owner 侧 sha 与季度 provenance 一致 ⇒ 非丢失"
+    },
+    {
+     "slug": "hyperframes-registry",
+     "local_only_r114": 9,
+     "local_only_r260": 17,
+     "upstream_only_r260": 2,
+     "verdict": "UPGRADE_REVIEW",
+     "evidence_source": "cache"
+    }
+   ],
+   "mainline": "git -C D:/global_skills merge-base --is-ancestor f01842b0 HEAD ⇒ rc=0（r233 §4 主线性判据保持）",
+   "touching_commits": "eb1d70c1(2026-10-27 TDD 补缺件) / 93b7e735(2026-10-27 hyperframes 跟版) numstat 为增量式（+198/+250…，SKILL.md 仅 ±2 行改写），无成段删除 ⇒ 未见 local 内容丢失迹象",
+   "caveat": "本轮为 --offline 缓存复算（evidence_source=cache，api 调用 0），未重新联网取上游树 ⇒ 「相对上游新版仍无缺口」只能在缓存口径下判；要证「上游无新增」须 --refresh 联网复跑"
+  }
+ },
+ "controls": {
+  "testset_unchanged": {
+   "path": "焚诀/eval/layered_testset.json",
+   "sha16": "e1d700258d2b55ad",
+   "mtime": "2026-10-01T11:32:55Z",
+   "n": 291
+  },
+  "registry": {
+   "path": "焚诀/skill/registry/unified-skills-index.json",
+   "sha16": "f9066731c1e60ba8",
+   "mtime": "2026-10-27T09:35:42Z",
+   "registry_n": 191
+  },
+  "direct_map": {
+   "path": "焚诀/eval/direct_map.json",
+   "sha16": "49e503937a30c299",
+   "mtime": "2026-10-25T16:56:00Z",
+   "entries": 273
+  },
+  "bge_corpus": {
+   "path": "焚诀/eval/bge_fullbody_skills.json",
+   "sha16": "3598ecff9bbb5642",
+   "mtime": "2026-10-27T02:30:47Z"
+  }
+ },
+ "files_written": [
+  "06-benchmark/r260_req6_quality_truth.json",
+  "06-benchmark/r260_req6_quality_truth_run2.json",
+  "06-benchmark/r260_req6_route_miss_attr.json",
+  "06-benchmark/r260_req6_miss_migration.json",
+  "06-benchmark/r260_req6_attainability.json",
+  "06-benchmark/r260_req6_caliber_shadow.json",
+  "06-benchmark/r260_req6_caliber_flip.json",
+  "06-benchmark/r260_req6_replacement_matrix.json",
+  "06-benchmark/r260_req6_provenance.json",
+  "06-benchmark/r260_req6_upstream.json",
+  "06-benchmark/r260_req6_swap_gate.json",
+  "06-benchmark/r260_req6_forensics.json",
+  "_temp/r260_margin_probe.py",
+  "_temp/r260_margin_probe.json",
+  "06-benchmark/r260_req6_quality_ab.json"
+ ],
+ "not_recomputable": [
+  "口径 A 反事实沙箱全链（需人工 candidate 语料）",
+  "季度巡检 19 步全通过（run_gates.py 禁跑 / r113 整链未启）",
+  "上游「无新增缺口」的联网面（本轮 --offline 缓存口径）"
+ ]
+}

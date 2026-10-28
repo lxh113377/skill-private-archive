@@ -1,0 +1,324 @@
+{
+  "round": "r260",
+  "generated": "2026-10-28T14:45+08:00",
+  "source_claim_file": "03-audit/自建skill优化审计报告.md",
+  "source_claim_sha8": "63cced64",
+  "truth_constants": "C:/Users/37533/Desktop/workspace/焚诀/eval/truth_constants.json",
+  "truth_constants_sha8": "932eabac",
+  "global_skills_count": 193,
+  "tally": {
+    "FIXED": 14,
+    "OPEN": 5,
+    "N-A": 6
+  },
+  "items": [
+    {
+      "id": "P0-1",
+      "claim": "`C:\\Users\\37533\\Desktop\\焚诀\\` 整条路径不存在（正确为 Desktop\\workspace\\焚诀），13+ 处引用；修复动作=全库批量替换路径串",
+      "evidence_cmd": "test -e '/c/Users/37533/Desktop/焚诀' && echo BADPATH || echo BADPATH_GONE; grep -rlF 'Desktop\\焚诀' /d/global_skills | wc -l",
+      "verdict": "FIXED",
+      "detail": "错误路径本体不存在；全库错误路径串引用命中 0 文件（原 13+ 处清零）；07 台账 part4 载批1收口记录",
+      "measured_at": "2026-10-28T14:32:45+08:00",
+      "checked_file_sha8": "932eabac",
+      "claim_sha8_of_report": "63cced64",
+      "evidence_level": "✅已实测"
+    },
+    {
+      "id": "P0-2",
+      "claim": "CC(Claude Code) 已弃用 2026-09-08 却仍是核心执行门；修复=替换 OC/TR，已停用两件走退役",
+      "evidence_cmd": "test -d /d/global_skills/fenjue-advisor-scoring; test -d /d/global_skills/fenjue-cc-audit-cycle; grep -c fenjue-advisor-scoring <TC>; grep -c 'Claude Code' /d/global_skills/cross-platform-agent-sync/SKILL.md",
+      "verdict": "FIXED",
+      "detail": "两件核心门 skill 已退役（目录 NO + 均在 TC.retired_skills）；cross-platform-agent-sync CC 措辞=0（台账 part18 载 commit 4715713 v1.3.0 收口）；windows-cli-utf8-wrapper/discover-agent-cli/prompt-system-audit CC 引用=0；workflow-preflight-check 残留 1 处=平台名册表行 claude-code（:151，非执行门）",
+      "measured_at": "2026-10-28T14:34:22+08:00",
+      "checked_file_sha8": "932eabac",
+      "claim_sha8_of_report": "63cced64",
+      "evidence_level": "✅已实测"
+    },
+    {
+      "id": "P0-3",
+      "claim": "prompt-system-audit 的 V8/V9 围绕 common_prompts.md 而该文件全盘 0 命中；修复=定位真实真相源或标注该维度废弃",
+      "evidence_cmd": "grep -n 'common_prompts' /d/global_skills/prompt-system-audit/SKILL.md | head -3; find <ws+GM+GS> -name common_prompts.md | wc -l",
+      "verdict": "FIXED",
+      "detail": "文件全盘仍 0；SKILL.md:223 已加「真相源清单（2026-09-14 实测校正）」明示其不存在并改锚在役真相源 = 修复动作「标注废弃+改锚」完成",
+      "measured_at": "2026-10-28T14:32:45+08:00",
+      "checked_file_sha8": "9e820984",
+      "claim_sha8_of_report": "63cced64",
+      "evidence_level": "✅已实测"
+    },
+    {
+      "id": "P0-4",
+      "claim": "Notion MCP 未配置（mcp.json 仅 playwright/lighthouse-ops），4 个 Notion 件共 30.8KB 整体空转；修复=合并为 1 个占位件",
+      "evidence_cmd": "grep -ci notion /c/Users/37533/.workbuddy/mcp.json; for s in notion-cli knowledge-capture meeting-intelligence research-documentation; do test -d /d/global_skills/$s; done",
+      "verdict": "OPEN",
+      "detail": "两套 mcp.json notion 命中仍=0（MCP 未配置）；4 件全部在位（2411+7377+11339+3843=24,970B）且均不在 TC 退役名单 → 合并/占位修复未执行",
+      "measured_at": "2026-10-28T14:32:45+08:00",
+      "checked_file_sha8": "9340b9b1",
+      "claim_sha8_of_report": "63cced64",
+      "evidence_level": "✅已实测"
+    },
+    {
+      "id": "P0-5",
+      "claim": "chaoshi-image-optimization 硬编码 ffmpeg-8.1.1-full_build，实测只有 ffmpeg-9.0 → Step2/2.5/3 脚本必崩",
+      "evidence_cmd": "grep -cE 'ffmpeg-8\\.1\\.1[^\\n]*(bin|ffmpeg\\.exe)' /d/global_skills/chaoshi-image-optimization/SKILL.md  # expect 0; grep -c '动态探测' <同上>  # expect >=1",
+      "verdict": "FIXED",
+      "detail": "SKILL.md:28/:341「动态探测，禁止硬编码版本目录」+(Get-Command ffmpeg).Source 5 处；硬编码执行形态正则=0；字符串 8.1.1 残留 2 处均为校正叙述（负控证明朴素 grep 会误判、形态正则不会）",
+      "measured_at": "2026-10-28T14:38:53+08:00",
+      "checked_file_sha8": "e9249bf1",
+      "claim_sha8_of_report": "63cced64",
+      "evidence_level": "✅已实测"
+    },
+    {
+      "id": "P0-6",
+      "claim": "fenjue-routing-health-check CHECK-3 指向 VERSION_LOCK.part2/3/4（不存在）→ 0 条假阴性",
+      "evidence_cmd": "test -d /d/global_skills/fenjue-routing-health-check && echo GATE_ALIVE || echo GATE_RETIRED; grep -c fenjue-routing-health-check <TC>",
+      "verdict": "N-A",
+      "detail": "载体已退役（目录不存在+TC.retired_skills）→ 判据本体不存在，条目不再适用",
+      "measured_at": "2026-10-28T14:32:45+08:00",
+      "checked_file_sha8": "932eabac",
+      "claim_sha8_of_report": "63cced64",
+      "evidence_level": "✅已实测"
+    },
+    {
+      "id": "P0-7",
+      "claim": "c-cleanup 引 scripts/scan_nvidia_cache.ps1、cleanup_workspace.ps1，实测 scripts/ 仅 2 文件 → 运行即断",
+      "evidence_cmd": "test -f /d/global_skills/c-cleanup/scripts/scan_nvidia_cache.ps1; grep -n 'scan_nvidia_cache' /d/global_skills/c-cleanup/SKILL.md",
+      "verdict": "FIXED",
+      "detail": "两脚本磁盘仍不存在，但 SKILL.md:423 已加删除线+「实测不存在」校正注并改指 check_disk.ps1/scan_backups.ps1（实测在位，scripts/ 现 4 文件）→ 断链指引已消除",
+      "measured_at": "2026-10-28T14:32:45+08:00",
+      "checked_file_sha8": "0b2d8df0",
+      "claim_sha8_of_report": "63cced64",
+      "evidence_level": "✅已实测"
+    },
+    {
+      "id": "P0-8",
+      "claim": "wps-knowledgebase 4 处引用（references/workflow.md、scripts/run.js、setup.js），目录只有 SKILL.md",
+      "evidence_cmd": "test -f /d/global_skills/wps-knowledgebase/references/workflow.md && echo FIXED || echo OPEN",
+      "verdict": "OPEN",
+      "detail": "workflow.md/run.js/setup.js 均不存在，目录 ls 仅 SKILL.md，SKILL.md 内 workflow.md 引用仍 3 处 → 死引用未修（复核员 Oct 28 实测一致；负向对照 RED 面）",
+      "measured_at": "2026-10-28T14:32:45+08:00",
+      "checked_file_sha8": "de511d70",
+      "claim_sha8_of_report": "63cced64",
+      "evidence_level": "✅已实测"
+    },
+    {
+      "id": "P0-9",
+      "claim": "first-principles-decomposer Integration 段 4 个联动 skill 全部不存在",
+      "evidence_cmd": "grep -n -A4 'Integration' /d/global_skills/first-principles-decomposer/SKILL.md",
+      "verdict": "FIXED",
+      "detail": "SKILL.md:69 已标注「经实测(2026-09-14)均不存在，保留为待建清单，勿按字面加载」，4 项均带（待建）→ 标注式修复完成",
+      "measured_at": "2026-10-28T14:28:24+08:00",
+      "checked_file_sha8": "7ade3ba4",
+      "claim_sha8_of_report": "63cced64",
+      "evidence_level": "✅已实测"
+    },
+    {
+      "id": "P0-10",
+      "claim": "hook-analyzer-skill + report-generator-skill 共同上游 video-breakdown-skill 不存在 → 两件输入契约悬空",
+      "evidence_cmd": "test -d /d/global_skills/video-breakdown-skill; ls /d/global_skills/video-breakdown-skill/scripts",
+      "verdict": "FIXED",
+      "detail": "上游已补建：目录在位+scripts/process_video.py 实存；07 台账 part4 载「P0-10 补建上游(2026-09-19, e145651)端到端实测通过」",
+      "measured_at": "2026-10-28T14:28:24+08:00",
+      "checked_file_sha8": "ff63c8cf",
+      "claim_sha8_of_report": "63cced64",
+      "evidence_level": "✅已实测"
+    },
+    {
+      "id": "P0-11",
+      "claim": "A-get-memory 引 scripts/trace_view.py、scripts/wf_*.ps1，实测无此二文件（4 处引用）",
+      "evidence_cmd": "test -f '/c/Users/37533/Desktop/workspace/焚诀/scripts/trace_view.py'; ls <焚诀>/scripts | grep -c '^wf_'; grep -n '已恢复' /d/global_skills/A-get-memory/SKILL.md",
+      "verdict": "FIXED",
+      "detail": "SKILL.md:127-128 校正注「2026-09-23 实测已恢复」并锚定实体到焚诀 scripts/：trace_view.py 存在、wf_*.ps1 实 11 个；残留口径：skill 目录相对路径下仍只有 sync_skill_router.py，靠校正注消歧",
+      "measured_at": "2026-10-28T14:34:22+08:00",
+      "checked_file_sha8": "e3dacc77",
+      "claim_sha8_of_report": "63cced64",
+      "evidence_level": "✅已实测"
+    },
+    {
+      "id": "P0-12",
+      "claim": "openclaw-fenjue-weekly 收尾硬门禁指向 sync-global-memory skill（不存在）→ 门禁不可执行",
+      "evidence_cmd": "test -f /d/global_memory/scripts/sync_global_memory.ps1; sed -n '75p' /d/global_skills/openclaw-fenjue-weekly/SKILL.md",
+      "verdict": "FIXED",
+      "detail": ":75 已改写为「Skill 引用为死引用，实体是脚本 …\\sync_global_memory.ps1」且该 ps1 实测存在 → 门禁改挂实体脚本可执行",
+      "measured_at": "2026-10-28T14:34:22+08:00",
+      "checked_file_sha8": "9ee4783b",
+      "claim_sha8_of_report": "63cced64",
+      "evidence_level": "✅已实测"
+    },
+    {
+      "id": "P0-13",
+      "claim": "openclaw-task-supervision 兜底依赖 qoder_start_task，Qoder 2026-08-01 卸载 → 错误处理#7 全废",
+      "evidence_cmd": "grep -n 'qoder_start_task' /d/global_skills/openclaw-task-supervision/SKILL.md | head -4",
+      "verdict": "FIXED",
+      "detail": ":570 已加失效横幅「实测 Qoder 已卸载…兜底链路整体失效，替代=OC 派发通道」，其余提及均在横幅覆盖段内（标注式修复，原文保留）",
+      "measured_at": "2026-10-28T14:32:45+08:00",
+      "checked_file_sha8": "dd850135",
+      "claim_sha8_of_report": "63cced64",
+      "evidence_level": "✅已实测"
+    },
+    {
+      "id": "P0-14",
+      "claim": "cross-platform-agent-sync 引 A-memory-align，全库 0 命中",
+      "evidence_cmd": "grep -c A-memory-align /d/global_skills/cross-platform-agent-sync/SKILL.md",
+      "verdict": "FIXED",
+      "detail": "SKILL.md 引用=0（死引用已删）；A-memory-align 目录仍不存在；全库其余命中均为 A-skill-manager 备份 json/历史卷（非可执行引用）",
+      "measured_at": "2026-10-28T14:32:45+08:00",
+      "checked_file_sha8": "2ea19c49",
+      "claim_sha8_of_report": "63cced64",
+      "evidence_level": "✅已实测"
+    },
+    {
+      "id": "P0-15",
+      "claim": "deep-research-pro 核心脚本 ddg-search 不存在 → 全流程不可执行（且为市场包）",
+      "evidence_cmd": "test -d /d/global_skills/deep-research-pro; grep -c deep-research-pro <TC>; command -v ddg-search",
+      "verdict": "N-A",
+      "detail": "已退役（目录不存在+TC）；ddg-search 亦不在 PATH → 条目不再适用",
+      "measured_at": "2026-10-28T14:32:45+08:00",
+      "checked_file_sha8": "932eabac",
+      "claim_sha8_of_report": "63cced64",
+      "evidence_level": "✅已实测"
+    },
+    {
+      "id": "P0-16",
+      "claim": "skill-install 安装目标 ~/.codebuddy/skills/ 不存在且非四端同步面",
+      "evidence_cmd": "test -d /d/global_skills/skill-install && echo ALIVE || echo RETIRED; grep -c '\"skill-install\"' <TC>",
+      "verdict": "N-A",
+      "detail": "已退役（目录不存在+TC.retired_skills）→ 条目不再适用（注：~/.codebuddy/skills 现已存在但载体已摘）",
+      "measured_at": "2026-10-28T14:32:45+08:00",
+      "checked_file_sha8": "932eabac",
+      "claim_sha8_of_report": "63cced64",
+      "evidence_level": "✅已实测"
+    },
+    {
+      "id": "P0-17",
+      "claim": "story-setup 引 scripts/generate-codex-agents.py、sync-opencode.py，目录内无此二文件",
+      "evidence_cmd": "grep -c generate-codex-agents /d/global_skills/story-setup/SKILL.md; grep -c sync-opencode <同上>",
+      "verdict": "FIXED",
+      "detail": "两死引用已从 SKILL.md 清零；scripts/ 现为 antigravity/claude/codex-hooks 系列 7 文件在位",
+      "measured_at": "2026-10-28T14:32:45+08:00",
+      "checked_file_sha8": "aafeaf6e",
+      "claim_sha8_of_report": "63cced64",
+      "evidence_level": "✅已实测"
+    },
+    {
+      "id": "P0-18",
+      "claim": "wechat-voice-transcription:62 称 local-asr 已删除，实测 D:\\global_skills\\local-asr 存在 → 事实错误误导路由",
+      "evidence_cmd": "test -d /d/global_skills/local-asr; grep -n 'local-asr' /d/global_skills/wechat-voice-transcription/SKILL.md | head -2",
+      "verdict": "FIXED",
+      "detail": ":64 已改「说明更正(2026-09-14)：local-asr 实际存在，旧文与磁盘事实不符」；:5 description 恢复「走 local-asr」路由；local-asr 目录实测在位",
+      "measured_at": "2026-10-28T14:32:45+08:00",
+      "checked_file_sha8": "d4846bc9",
+      "claim_sha8_of_report": "63cced64",
+      "evidence_level": "✅已实测"
+    },
+    {
+      "id": "P0-19",
+      "claim": "data-layer-consistency-fix 4 处注册表路径缺 workspace 段（与 P0-1 同源）",
+      "evidence_cmd": "test -d /d/global_skills/data-layer-consistency-fix && echo ALIVE || echo RETIRED",
+      "verdict": "N-A",
+      "detail": "载体已退役（目录不存在+TC）→ 条目不再适用；P0-1 全库层面错误路径串亦=0",
+      "measured_at": "2026-10-28T14:41:43+08:00",
+      "checked_file_sha8": "932eabac",
+      "claim_sha8_of_report": "63cced64",
+      "evidence_level": "✅已实测"
+    },
+    {
+      "id": "P0-20",
+      "claim": "cloudbase-webapp-deploy-debug 全篇教 tcb，chaoshi-web-deploy:10 已禁 tcb → 执行即误导",
+      "evidence_cmd": "test -d /d/global_skills/cloudbase-webapp-deploy-debug && echo ALIVE || echo RETIRED; grep -c cloudbase-webapp-deploy-debug <TC>",
+      "verdict": "N-A",
+      "detail": "已退役（目录不存在+TC.retired_skills 命中 3）→ 误导载体已摘除，条目不再适用",
+      "measured_at": "2026-10-28T14:32:45+08:00",
+      "checked_file_sha8": "932eabac",
+      "claim_sha8_of_report": "63cced64",
+      "evidence_level": "✅已实测"
+    },
+    {
+      "id": "P0-21",
+      "claim": "A-project-handoff 84,818B 无分卷，却用 split 强制他处 4KB 拆卷",
+      "evidence_cmd": "a=$(wc -c < /d/global_skills/A-project-handoff/SKILL.md); [ $a -le 4096 ] && echo FIXED || echo OPEN; ls /d/global_skills/A-project-handoff/references | wc -l",
+      "verdict": "OPEN",
+      "detail": "分卷机制已作用于自身（84,818→20,526B、正文 716→145 行、references 9 leaves），但正文仍超 4,096B 硬限 5 倍，且最大 leaf version-history.md=196,186B、commands.md=70,471B、disciplines.md=47,411B 均超限 → 自我击穿大幅缓解、未清零",
+      "measured_at": "2026-10-28T14:40:06+08:00",
+      "checked_file_sha8": "4fa728c7",
+      "claim_sha8_of_report": "63cced64",
+      "evidence_level": "✅已实测"
+    },
+    {
+      "id": "P0-22",
+      "claim": "bigfile-split 自身 15,360B(3.75×) 却强制全库 ≤4096B 零豁免",
+      "evidence_cmd": "a=$(wc -c < /d/global_skills/bigfile-split/SKILL.md); [ $a -le 4096 ] && echo FIXED || echo OPEN",
+      "verdict": "OPEN",
+      "detail": "15,360→4,334B（降 71.8%）+ references 分卷在位（leaves 最大 4,003B 合规），但正文仍超 4,096B 达 238B 且 :19 口径仍是「R161 全库零豁免」→ 差一步未达标",
+      "measured_at": "2026-10-28T14:38:53+08:00",
+      "checked_file_sha8": "4168fd71",
+      "claim_sha8_of_report": "63cced64",
+      "evidence_level": "✅已实测"
+    },
+    {
+      "id": "P0-23",
+      "claim": "fenjue-advisor-scoring:265 自定超 4KB 记 0 分，自身 25.17KB（自我击穿）",
+      "evidence_cmd": "test -d /d/global_skills/fenjue-advisor-scoring && echo ALIVE || echo RETIRED; grep -c fenjue-advisor-scoring <TC>",
+      "verdict": "N-A",
+      "detail": "已退役（目录不存在+TC，即 P0-2「停用两件走退役」的执行结果）→ 条目不再适用",
+      "measured_at": "2026-10-28T14:32:45+08:00",
+      "checked_file_sha8": "932eabac",
+      "claim_sha8_of_report": "63cced64",
+      "evidence_level": "✅已实测"
+    },
+    {
+      "id": "P0-24",
+      "claim": "cross-platform-agent-sync:264 自定分卷 ≤4KB 硬上限，自身 19.59KB refs=0（自违）",
+      "evidence_cmd": "a=$(wc -c < /d/global_skills/cross-platform-agent-sync/SKILL.md); [ $a -le 4096 ] && echo FIXED || echo OPEN; ls /d/global_skills/cross-platform-agent-sync/references | wc -l",
+      "verdict": "OPEN",
+      "detail": "19,590→5,445B 且 refs 0→13（leaf 最大 3,837B 全部≤4,096B 合规）→ 分卷侧自违已修，正文仍超自身硬限 1,349B → 未清零",
+      "measured_at": "2026-10-28T14:40:06+08:00",
+      "checked_file_sha8": "2ea19c49",
+      "claim_sha8_of_report": "63cced64",
+      "evidence_level": "✅已实测"
+    },
+    {
+      "id": "P0-25",
+      "claim": "A-project-handoff frontmatter 3.22.0 vs 版本历史 V3.35.0（差 13 个版本）",
+      "evidence_cmd": "grep -m1 '^version:' /d/global_skills/A-project-handoff/SKILL.md; grep -oE 'V3\\.[0-9]+(\\.[0-9]+)?' /d/global_skills/A-project-handoff/references/version-history.md | sort -V | tail -1",
+      "verdict": "FIXED",
+      "detail": "frontmatter version: 3.124.7（:35）与历史卷最新条目 V3.124.7 逐字对齐（历史卷含 V3.124.5/6/7 连续条目）→ 同号一致，13 版差已闭合（两者同进至现行版）",
+      "measured_at": "2026-10-28T14:40:06+08:00",
+      "checked_file_sha8": "4fa728c7",
+      "claim_sha8_of_report": "63cced64",
+      "evidence_level": "✅已实测"
+    }
+  ],
+  "negative_control": {
+    "purpose": "证明判据有牙（#36/#44-D10.2）：P0-5 与 P0-8 方向必须一绿一红",
+    "p0_5": {
+      "criterion": "硬编码执行形态正则 ffmpeg-8.1.1[^\\n]*(bin|ffmpeg\\.exe)=0 且 动态探测指令>=1",
+      "green_side": "真文件：hardshape=0、动态探测=3、Get-Command ffmpeg=5 → FIXED（绿）",
+      "teeth": "合成已知坏样本（含 ffmpeg-8.1.1-full_build\\bin\\ffmpeg.exe 行）同判据 hardshape=1 → 判据会红，非恒绿（/d/app-cache/temp/r260b_teeth.py，用后即删）",
+      "wrong_detector_note": "朴素 grep -c 8.1.1 在真文件=2（叙述残留）会把 FIXED 误报 OPEN —— 已弃用该形态"
+    },
+    "p0_8": {
+      "criterion": "test -f /d/global_skills/wps-knowledgebase/references/workflow.md → 存在=FIXED / 不存在=OPEN",
+      "red_side": "实测不存在 → OPEN（红）",
+      "teeth": "同形态 test -f 对该目录实存的 SKILL.md 返回 YES → 判据对真存在会给绿，非恒红"
+    },
+    "direction_check": "P0-5=FIXED(绿) vs P0-8=OPEN(红) ⇒ 一绿一红成立，判据有效"
+  },
+  "seventh_card_forensics": {
+    "claim": "报告头（:6）称「原文见 02-review/ 七份审计卡」，实测 02-review/ 仅 6 份",
+    "conclusion": "被合并（非从未存在）",
+    "evidence": [
+      "02-review/其他族_精读.md 头部自述「本文件含批1+批2 共 28 个；后续批（openclaw/wechat/杂项 约 29 个）追加在文末」",
+      "同文件 :87 「## 批3：杂项族（15 个）」、:111 「## 批4：工具/文档族（14 个）」→ 第 7 批内容物理在位，追加进了第 6 张卡文末（append-only 合并）",
+      "archive/ 内 find -iname *精读* = 0；_trash/_temp/memory 内 6 个命中全部是 _temp/rollback_drill/clone/02-review 的克隆副本（同为 6 份）",
+      "git log --all -- 02-review/ = 1 commit（基线 49ff0d6，git ls-tree 显示入库时即 6 份、无删除史）；GM 仓 git log -- *精读* = 0",
+      "全盘 find（GM+本仓，排除克隆）族_精读 文件 = 恰好 6 份"
+    ],
+    "verdict_text": "「七份审计卡」是**按批次数**的说法：7 个批次的内容全部存在，物理卡 6 张——第 6/7 批（杂项+工具文档）按该卡头部预告**追加合并**进 其他族_精读.md 文末。判「被合并」，非「从未存在」。"
+  },
+  "ledger_07_gap_recheck": {
+    "claim": "07 台账 grep P0- = 0 命中（25 条无闭环台账）",
+    "measured": "主卷 memory/07-next-steps.md grep -c P0- = 0；分卷 07-next-steps.part*.md 共 8 个不同 P0 编号出现 18 处（P0-1×5/P0-2×6/P0-3/P0-5/P0-6/P0-10×2/P0-12/P0-14，uniq -c 实测）→ 原「0 命中」说法需校正为「主卷 0、分卷散点 8/25 编号」；无论如何 25 条无逐条闭环台账 ⇒ 本件补齐",
+    "cmd": "grep -c 'P0-' memory/07-next-steps.md; grep -rohE 'P0-[0-9]{1,2}' memory/07-next-steps.md memory/07-next-steps.part*.md | sort -V | uniq -c"
+  },
+  "notes": "verdict 三值 FIXED/OPEN/N-A（N-A=载体已退役、条目不再适用）；每条附可复跑 evidence_cmd"
+}

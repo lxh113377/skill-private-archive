@@ -28,6 +28,14 @@ r'''r113_quarterly_audit.py -- 季度 skill 巡检一键入口（需求 5：长�
   python 05-exec/r113_quarterly_audit.py
   python 05-exec/r113_quarterly_audit.py --offline
   python 05-exec/r113_quarterly_audit.py --quarter 2026Q4 --json <件>
+  python 05-exec/r113_quarterly_audit.py --offline --no-side-write --out-dir 06-benchmark/<预览目录>
+
+  r260「不可静默预览」缺陷（本件修复对象，两个独立子代理各撞一次）：
+    本件把 r211 的产物面与 r217 的池包面**硬编码**在 06-benchmark 根（两者均 tracked），
+    与 --out-dir 完全无关 ⇒ 传 --out-dir 做隔离预览，跑完 git status 仍报
+    06-benchmark/local_frontmatter.json 与 06-benchmark/pool_cache_r217.json 被改写。
+    逐子件扫写面又实测出第三处（r221 把影子矩阵写进 06-benchmark 根，见缺陷点 ③）。
+    判据：--no-side-write 开 ⇒ 整轮对 tracked 面零改动（跑前后 git status --porcelain 逐字相同）。
 退出码：0 全步通过 / 1 保留旧产物（本实现用 2 表示面不可用）/ 2 面不可用（零输入，禁记绿）。
 '''
 import argparse
@@ -274,6 +282,49 @@ def atomic_write_json(path, doc):
     os.replace(tmp, path)
 
 
+def capture_bytes(path):
+    """跑前抓字节快照，供 restore_capture 还原 —— 三态分明：不存在 / 存在（带原文）。
+
+    存在理由（r260）：子件 r221_caliber_shadow.py 把影子矩阵**硬编码**写到 06-benchmark 根
+    （它自己不暴露任何重定向参数，而本任务不许改 r221），编排方唯一能做的就是把 tracked 面
+    的**原字节**存下来、跑完还原。用 bytes 而非 mtime：判据要比内容，时间戳改了不算改了，
+    内容改了才算 —— 这正是 git status 的口径，本件与它对表。
+    """
+    if os.path.isfile(path):
+        with open(path, "rb") as fh:
+            return {"existed": True, "blob": fh.read()}
+    return {"existed": False, "blob": None}
+
+
+def restore_capture(path, snap, keep_dir=None):
+    """把 path 还原成 capture_bytes 时的状态；被覆写的**新内容不销毁**，先迁进 keep_dir。
+
+    为什么是「迁移」而不是「删除」：本仓 cache-guard 红线（r112）—— 取数/派生产物不得被
+    一次运行静默销毁。影子矩阵本身是有效读数（严格口径下的输入面），留在 qdir 里可复算，
+    只是不该留在 tracked 根上。keep_dir 为 None 时才真删（调用方须自觉）。
+    """
+    if not snap or not os.path.isfile(path):
+        return "unchanged-absent" if not snap["existed"] else "MISSING-RESTORE"
+    cur = open(path, "rb").read()
+    if snap["existed"]:
+        if cur == snap["blob"]:
+            return "unchanged"
+        if keep_dir:
+            keep = os.path.join(keep_dir, os.path.basename(path) + ".r260_side_write")
+            with open(keep, "wb") as fh:
+                fh.write(cur)
+        with open(path, "wb") as fh:
+            fh.write(snap["blob"])
+        return "restored"
+    # 原本不存在 ⇒ 本轮新建：迁进 keep_dir 后从 tracked 根摘掉（tracked 面零新增文件）
+    if keep_dir:
+        keep = os.path.join(keep_dir, os.path.basename(path) + ".r260_side_write")
+        with open(keep, "wb") as fh:
+            fh.write(cur)
+    os.remove(path)
+    return "removed-new-file"
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--quarter", default=None, help="季度标识，缺省按当前日期算")
@@ -281,6 +332,21 @@ def main():
     ap.add_argument("--json", dest="json_out", default=None)
     ap.add_argument("--offline", action="store_true", help="不联网，复用上游缓存")
     ap.add_argument("--quiet", action="store_true")
+    # r260 修复「不可静默预览」缺陷（复核点名 L314/L335 两处硬编码 BENCH）：
+    #   病 = 本件把 r211 产物面 / r217 包面**钉死在 06-benchmark 根**（tracked），
+    #   与 --out-dir 无关 ⇒ 传了 --out-dir 做隔离预览，跑完仍改写
+    #   06-benchmark/local_frontmatter.json 与 06-benchmark/pool_cache_r217.json。
+    #   两个独立子代理各实测撞一次（一个用 sha 对账、一个用 diff 行数，结论一致）。
+    # 药 = 本开关把**全部编排方写面**（含这两处）改指 --out-dir 之下：
+    #   开关关（缺省）⇒ 一切行为与历史逐字节一致（向后兼容，老门禁零感知）；
+    #   开关开 ⇒ 写面清单（local_fm / pool_pack / qdir 全部产物）都落在 out_dir 内，
+    #   tracked 面零改动 = 可静默预览。缺省不开是有意保守：季产物入库走的就是
+    #   写 tracked 面的路径，不能让默认行为一夜变样（R263「尺的变更须是决定」同族）。
+    ap.add_argument("--no-side-write", action="store_true",
+                    help="预览模式：把本件写到 06-benchmark 根 tracked 件的三处写面"
+                         "（缺陷点 ①② = local_frontmatter.json / pool_cache_r217.json 两处"
+                         "硬编码；缺陷点 ③ = r221 影子矩阵，用 capture/restore 字节围栏）"
+                         "全部改指 --out-dir 之下，使整轮对 tracked 面零改动")
     args = ap.parse_args()
 
     q = args.quarter or current_quarter()
@@ -288,6 +354,12 @@ def main():
     os.makedirs(qdir, exist_ok=True)
     main_out = args.json_out or os.path.join(qdir, "audit.json")
     err_out = os.path.join(qdir, "audit.error.json")
+    # r260「不可静默预览」修复的支点：side_dir = 本轮**编排方自己控制的写面根**。
+    #   缺省（不开关）= BENCH 根 ⇒ 与历史逐字节一致（老门禁、老入库口径零感知）；
+    #   --no-side-write = qdir（必然落在 --out-dir 之下）⇒ tracked 面零改动。
+    # 为什么用 qdir 而不是 out_dir 根：产物按季分目录是本件既有契约（audit.json 同处），
+    # 把重定向的输入面放同一目录，预览轮自成闭环，不往别的季里掉垃圾。
+    side_dir = qdir if args.no_side_write else BENCH
 
     prov = os.path.join(qdir, "provenance.json")
     up = os.path.join(qdir, "upstream.json")
@@ -311,13 +383,25 @@ def main():
     # 动因（实测）：该段原先吃 _temp/local_fm_r114.json —— 全史零入库、全仓无生成器，
     # 且 _temp 会被并行会话按扩展名清场（R189-2），于是第 ⑥ 段**永久跑不起来**。
     # 接成前置步而不是「记得先手工跑一次」：长效机制依赖人的记性 = 没有机制。
-    local_fm = os.path.join(BENCH, "local_frontmatter.json")
+    # 缺陷点 ①（复核点名 L314）：原写法 os.path.join(BENCH, ...) —— 与 --out-dir 无关，
+    # 于是「隔离预览」跑完仍改写 tracked 的 06-benchmark/local_frontmatter.json。
+    # 修法：该面归 side_dir 管；开关开时 r211 只写 qdir 下的同名件，下游 r114 也改读这份。
+    local_fm = os.path.join(side_dir, "local_frontmatter.json")
     steps.append(run_step("local_fm",
                           [PY, os.path.join(HERE, "r211_local_fm.py"),
                            "--json", local_fm, "--quiet"]))
     # r114 第 ⑥ 段：替代候选面（需求 2「每个 skill 3-5 个候选」的季度重扫）
+    # 缺陷点 ②（复核点名 L335）：原写法 os.path.join(BENCH, ...) —— 同样无视 --out-dir。
+    # 定义**前移到 r114 之前**（不是留在 r217 调用行）：因为下游 r114 必须改读同一份池包。
+    # 只重定向 r217 的写面、却让 r114 继续读 BENCH 里的旧包，预览就会「写新读旧」——
+    # 看着 tracked 面零改动，实际算的是上一季的输入面，比原缺陷更坏（假绿）。
+    pool_pack = os.path.join(side_dir, "pool_cache_r217.json")
     repl_argv = [PY, os.path.join(HERE, "r114_replacement_scan.py"),
                  "--local-fm", local_fm, "--json", repl]
+    # r260：开关开时显式把池包指到 side_dir 那份（缺省不注入 ⇒ 走 r114 自己的 BENCH 缺省，
+    # 行为与历史一致；显式传参只在重定向分支里做，避免给老路径引入任何差异）。
+    if args.no_side_write:
+        repl_argv += ["--pool-pack", pool_pack]
     if args.offline:
         repl_argv.append("--offline")
     # 冷缓存实测预算（缺省 timeout=900s 不够）：池缓存 _temp/r114_search_cache 同会被清场，
@@ -325,6 +409,7 @@ def main():
     # （r114 自记「串行 311 仓 ≈ 83 分钟」，现 --workers 8 ⇒ 下界约 10 分钟，但含限流退避）。
     # 给 2400s 是量出来的上界余量，不是「为了变绿放宽」——超时与失败在产物里同样具名（rc=None/error 行）。
     steps.append(run_step("replacement_scan", repl_argv, timeout=2400))
+    # 缺陷点 ②（复核点名 L335）：原写法同样是 os.path.join(BENCH, ...) ⇒ 见上方 pool_pack 定义。
     # r217 前置步（池包幂等维护）：把「记得每季度手跑一次打包」从人身上拿掉。
     # 存在理由：05-exec/r217_pool_pack.py 是 R213-1 的生成器，但生成器没人调用 = 死句柄
     #   （W-46 / 与我今早已修的 R211-7 同一形态）；而机制的输入面 _temp/r114_search_cache/
@@ -332,7 +417,6 @@ def main():
     #   迟早再红一次。放在 replacement_scan **之后**：联网轮新增的散件条目当轮即并进入库包。
     # 幂等：包已覆盖活面时 --ensure 不写（mtime 不动）；活面被清空而包在 ⇒ 原包不动（防自杀式重建）。
     # rc=1 = 漂移后重建失败等真故障 ⇒ 用默认 run_step 计入失败步，不洗绿。
-    pool_pack = os.path.join(BENCH, "pool_cache_r217.json")
     steps.append(run_step("pool_pack_ensure",
                           [PY, os.path.join(HERE, "r217_pool_pack.py"),
                            "--ensure", "--out", pool_pack, "--quiet"]))
@@ -364,10 +448,24 @@ def main():
     # 成因常在上游命名（*-skill.md 文档被旧口径计成 skill 仓），本仓无可整改动作，
     # 若按失败步处理会每季恒红且无人能修（R211-3 同族）。
     caliber_shadow = os.path.join(qdir, "caliber_shadow.json")
+    # 缺陷点 ③（复核未点名，本次逐子件扫写面实测新抓）：r221 第 172 行把影子矩阵写成
+    #   os.path.join(BENCH, basename(matrix) + "_shadowstrict.json") —— 目录钉死 BENCH、
+    #   名字由 --matrix 推导，06-benchmark/replacement_matrix_shadowstrict.json 是 tracked 件，
+    #   于是它是**第三个**静默写面（前两处按点名修的条件下，跑完 status 仍非零改动）。
+    # r221 不在本任务写面白名单 ⇒ 不能改它，编排方唯一可行的字节级围栏 = capture/restore：
+    #   跑前存原字节 → 跑后若被改写则还原，并把新内容迁进 qdir 留证（不销毁读数，r112 同族）。
+    _shad_matrix = os.path.join(BENCH,
+                                os.path.basename(repl).replace(".json", "") + "_shadowstrict.json")
+    _snap_shad = capture_bytes(_shad_matrix) if args.no_side_write else None
+    _shad_action = "skipped_switch_off"
     steps.append(run_step("caliber_shadow",
                           [PY, os.path.join(HERE, "r221_caliber_shadow.py"),
                            "--matrix", repl, "--json", caliber_shadow, "--quiet"],
                           ok_rc=(0, 1)))
+    if args.no_side_write:
+        # 围栏收口：还原动作写进产物（side_write_policy）——只报「零改动」而不报
+        # 「怎么做到零改动」= 下一轮不可审计，等于把修复变成一句自述。
+        _shad_action = restore_capture(_shad_matrix, _snap_shad, qdir)
     # r114 第 ⑦ 段：eval 内三方法对照（**口径降级**：r115 已证它不是生产路由读数，
     # 保留只为跨季观察「轻量匹配」而存在；质量主指标看第 ⑨ 段 r115_quality_truth.py）
     qual_argv = [PY, os.path.join(HERE, "r114_quality_ab.py"), "--json", qual, "--quiet"]
@@ -520,6 +618,17 @@ def main():
         "req6_attainability_reading": _read_req6_att(req6_att),
         "face_ok": face_ok,
         "face_reason": face_reason,
+        # r260 自证段（写进产物而非只打 stdout）：季产物要被下一轮机器对账，
+        # stdout 会随终端滚走，落盘才可复算。三个键分别回答「开关开没开 / 写哪儿了 /
+        # 围栏有没有真的动手」——最后一项若是 "restored"，说明第三写面确实存在且被拦住。
+        "side_write_policy": {
+            "no_side_write": bool(args.no_side_write),
+            "side_dir": os.path.relpath(side_dir, ROOT).replace(os.sep, "/"),
+            "local_fm_written_to": os.path.relpath(local_fm, ROOT).replace(os.sep, "/"),
+            "pool_pack_written_to": os.path.relpath(pool_pack, ROOT).replace(os.sep, "/"),
+            "shadow_matrix_tracked_target": os.path.relpath(_shad_matrix, ROOT).replace(os.sep, "/"),
+            "shadow_matrix_fence_action": _shad_action,
+        },
     }
 
     if not face_ok:

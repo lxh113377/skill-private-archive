@@ -2,7 +2,7 @@
  "schema": "teeth-proof-matrix-v1",
  "readonly": true,
  "provenance_cmd": "python 05-exec/r254_teeth_proof_matrix.py --json <件>",
- "gates_n": 109,
+ "gates_n": 111,
  "fixture_files": [
   "r105_debt_face_freshness_fixtures.py",
   "r112_cache_guard_fixtures.py",
@@ -955,6 +955,22 @@
    "mutation": true,
    "selftest": true,
    "proof": "mutation"
+  },
+  {
+   "id": "r269_converge_face",
+   "script": "r260_r269_converge.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": true,
+   "proof": "selftest"
+  },
+  {
+   "id": "local_baseline_face",
+   "script": "r260_local_baseline.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": true,
+   "proof": "selftest"
   }
  ]
 }

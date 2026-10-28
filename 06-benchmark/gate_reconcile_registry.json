@@ -110,9 +110,11 @@
    "roster_fixtures",
    "judge_binding_scan",
    "proof_fixtures",
-   "teeth_proof_matrix"
+   "teeth_proof_matrix",
+   "r269_converge_face",
+   "local_baseline_face"
   ],
-  "_snapshot_at": "2026-10-26 05:33",
+  "_snapshot_at": "2026-10-28 15:27",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
@@ -384,6 +386,14 @@
   "teeth_proof_matrix": {
    "evidence": "06-benchmark/teeth_proof_latest.json",
    "at": "2026-10-26 04:08"
+  },
+  "r269_converge_face": {
+   "evidence": "06-benchmark/r269_converge_latest.json",
+   "at": "2026-10-28 14:26"
+  },
+  "local_baseline_face": {
+   "evidence": "06-benchmark/r260_local_baseline.json",
+   "at": "2026-10-28 15:08"
   }
  }
 }

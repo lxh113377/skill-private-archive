@@ -1,0 +1,1012 @@
+{
+ "schema": "r260c-directed-search-v1",
+ "generated_at": "2026-10-28T07:22:47+00:00",
+ "cmd": "python _temp/r260c_directed_search.py",
+ "purpose": "需求2 缺口①：原检索面只有 15 条族池查询（matrix.face.queries_n=15 / 191 件），本件补每 skill 定向查询 HIGH 前 20",
+ "caliber": {
+  "roster": "00-scope/自建skill清单.md HIGH(51) 按字母序取前 20",
+  "one_query_per_skill": true,
+  "qualifier": "in:name,description,readme",
+  "per_page": 3,
+  "baseline_face": "quarterly/2026Q4/replacement_matrix.json face={queries_n:15, pool_n:743, candidates_measured:392}"
+ },
+ "auth": {
+  "token_source": "gh auth token",
+  "token_len": 40,
+  "endpoint": "https://api.github.com"
+ },
+ "negative_control_keyword": "zzzqqxxnotexistr260cd",
+ "negative_control": {
+  "query": "zzzqqxxnotexistr260cd in:name,description,readme",
+  "state": "OK",
+  "http": 200,
+  "total_count": 0,
+  "rows_n": 0,
+  "teeth": "PASS",
+  "err": null
+ },
+ "items": [
+  {
+   "skill": "9b-lightworkflow",
+   "keyword_query": "small model agent workflow in:name,description,readme",
+   "state": "OK",
+   "http": 200,
+   "total_count": 256487,
+   "top3": [
+    {
+     "owner_repo": "stakpak/agent",
+     "owner": "stakpak",
+     "repo": "agent",
+     "stars": 1836,
+     "pushed_at": "2026-07-06T10:10:46Z",
+     "archived": false,
+     "license": "Apache-2.0",
+     "latest_commit_date": "2026-07-06T10:10:46Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "Ship your code, on autopilot. An open source agent that lives on your machines 24/7 and keeps your apps running. 🦀"
+    },
+    {
+     "owner_repo": "1mcp-app/agent",
+     "owner": "1mcp-app",
+     "repo": "agent",
+     "stars": 524,
+     "pushed_at": "2026-10-27T20:41:42Z",
+     "archived": false,
+     "license": "Apache-2.0",
+     "latest_commit_date": "2026-10-27T12:13:42Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "A unified Model Context Protocol server implementation that aggregates multiple MCP servers into one."
+    },
+    {
+     "owner_repo": "Zie619/n8n-workflows",
+     "owner": "Zie619",
+     "repo": "n8n-workflows",
+     "stars": 57105,
+     "pushed_at": "2026-06-24T14:16:03Z",
+     "archived": false,
+     "license": "MIT",
+     "latest_commit_date": "2026-06-24T14:16:03Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "all of the workflows of n8n i could find (also from the site itself)"
+    }
+   ],
+   "err": null
+  },
+  {
+   "skill": "A-ask-questions",
+   "keyword_query": "clarifying questions requirements in:name,description,readme",
+   "state": "OK",
+   "http": 200,
+   "total_count": 55580,
+   "top3": [
+    {
+     "owner_repo": "Jeevan-kumar-Raj/Grokking-System-Design",
+     "owner": "Jeevan-kumar-Raj",
+     "repo": "Grokking-System-Design",
+     "stars": 6603,
+     "pushed_at": "2024-03-06T16:24:47Z",
+     "archived": false,
+     "license": "GPL-3.0",
+     "latest_commit_date": "2020-08-08T06:50:31Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "Systems design is the process of defining the architecture, modules, interfaces, and data for a system to satisfy specified requirements. Systems design could be seen as the application of systems the"
+    },
+    {
+     "owner_repo": "checkcheckzz/system-design-interview",
+     "owner": "checkcheckzz",
+     "repo": "system-design-interview",
+     "stars": 23866,
+     "pushed_at": "2023-04-03T04:22:45Z",
+     "archived": false,
+     "license": "NONE",
+     "latest_commit_date": "2020-12-23T06:50:39Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "System design interview for IT companies"
+    },
+    {
+     "owner_repo": "cline/cline",
+     "owner": "cline",
+     "repo": "cline",
+     "stars": 70951,
+     "pushed_at": "2026-10-28T05:42:49Z",
+     "archived": false,
+     "license": "Apache-2.0",
+     "latest_commit_date": "2026-10-28T00:34:58Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "Autonomous coding agent as an SDK, IDE extension, or CLI assistant."
+    }
+   ],
+   "err": null
+  },
+  {
+   "skill": "A-get-memory",
+   "keyword_query": "lessons learned memory agent in:name,description,readme",
+   "state": "OK",
+   "http": 200,
+   "total_count": 18474,
+   "top3": [
+    {
+     "owner_repo": "PentesterFlow/agent",
+     "owner": "PentesterFlow",
+     "repo": "agent",
+     "stars": 1423,
+     "pushed_at": "2026-08-31T12:44:05Z",
+     "archived": false,
+     "license": "Apache-2.0",
+     "latest_commit_date": "2026-08-31T12:43:41Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "Agentic offensive-security in your terminal"
+    },
+    {
+     "owner_repo": "shareAI-lab/learn-claude-code",
+     "owner": "shareAI-lab",
+     "repo": "learn-claude-code",
+     "stars": 79395,
+     "pushed_at": "2026-10-27T04:47:00Z",
+     "archived": false,
+     "license": "MIT",
+     "latest_commit_date": "2026-10-27T04:47:00Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "Bash is all you need -  A nano claude code–like 「agent harness」, built from 0 to 1"
+    },
+    {
+     "owner_repo": "machinegpt/agent",
+     "owner": "machinegpt",
+     "repo": "agent",
+     "stars": 288,
+     "pushed_at": "2026-10-21T11:16:09Z",
+     "archived": false,
+     "license": "Apache-2.0",
+     "latest_commit_date": "2026-10-21T11:11:47Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "Jinx"
+    }
+   ],
+   "err": null
+  },
+  {
+   "skill": "A-java-problem",
+   "keyword_query": "java practice exercises in:name,description,readme",
+   "state": "OK",
+   "http": 200,
+   "total_count": 35125,
+   "top3": [
+    {
+     "owner_repo": "TheOdinProject/javascript-exercises",
+     "owner": "TheOdinProject",
+     "repo": "javascript-exercises",
+     "stars": 1679,
+     "pushed_at": "2026-10-20T13:50:56Z",
+     "archived": false,
+     "license": "MIT",
+     "latest_commit_date": "2026-10-20T13:50:55Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": ""
+    },
+    {
+     "owner_repo": "DopplerHQ/awesome-interview-questions",
+     "owner": "DopplerHQ",
+     "repo": "awesome-interview-questions",
+     "stars": 85247,
+     "pushed_at": "2024-07-29T14:21:23Z",
+     "archived": true,
+     "license": "NONE",
+     "latest_commit_date": "2024-07-29T14:21:23Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": ":octocat: A curated awesome list of lists of interview questions. Feel free to contribute! :mortar_board: "
+    },
+    {
+     "owner_repo": "generation-org/JAVA",
+     "owner": "generation-org",
+     "repo": "JAVA",
+     "stars": 63,
+     "pushed_at": "2023-08-15T06:35:57Z",
+     "archived": false,
+     "license": "NONE",
+     "latest_commit_date": "2020-12-21T16:41:38Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "Practice Exercises for the JAVA module develop by Generation.org"
+    }
+   ],
+   "err": null
+  },
+  {
+   "skill": "A-memory-start",
+   "keyword_query": "memory bootstrap context loading in:name,description,readme",
+   "state": "OK",
+   "http": 200,
+   "total_count": 231728,
+   "top3": [
+    {
+     "owner_repo": "chauncygu/collection-claude-code-source-code",
+     "owner": "chauncygu",
+     "repo": "collection-claude-code-source-code",
+     "stars": 2862,
+     "pushed_at": "2026-04-11T21:16:40Z",
+     "archived": false,
+     "license": "Apache-2.0",
+     "latest_commit_date": "2026-04-11T21:16:40Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "🔥 A collection of the Claude Code open source"
+    },
+    {
+     "owner_repo": "TencentCloud/TencentDB-Agent-Memory",
+     "owner": "TencentCloud",
+     "repo": "TencentDB-Agent-Memory",
+     "stars": 30040,
+     "pushed_at": "2026-10-28T02:49:24Z",
+     "archived": false,
+     "license": "NOASSERTION",
+     "latest_commit_date": "2026-10-28T02:49:21Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "TencentDB Agent Memory is a team-level memory hub for AI Agents — turning conversations, docs, and code into four reusable memory assets (Chat Memory, Skill, LLM-Wiki, Code-Graph) that are governed, s"
+    },
+    {
+     "owner_repo": "affaan-m/ECC",
+     "owner": "affaan-m",
+     "repo": "ECC",
+     "stars": 291134,
+     "pushed_at": "2026-10-26T04:56:56Z",
+     "archived": false,
+     "license": "MIT",
+     "latest_commit_date": "2026-10-26T04:03:57Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond."
+    }
+   ],
+   "err": null
+  },
+  {
+   "skill": "A-project-better",
+   "keyword_query": "technical debt audit in:name,description,readme",
+   "state": "OK",
+   "http": 200,
+   "total_count": 19782,
+   "top3": [
+    {
+     "owner_repo": "alirezarezvani/claude-skills",
+     "owner": "alirezarezvani",
+     "repo": "claude-skills",
+     "stars": 28861,
+     "pushed_at": "2026-10-27T09:44:05Z",
+     "archived": false,
+     "license": "MIT",
+     "latest_commit_date": "2026-10-26T16:54:35Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "380 Claude Code skills & agent skills & plugins (30+ Agents, 70+ custom commands, 380+ skills, customizable references, scripts)for Claude Code, Codex, Gemini CLI, Cursor, and 8 more coding agents — e"
+    },
+    {
+     "owner_repo": "hyhmrright/brooks-lint",
+     "owner": "hyhmrright",
+     "repo": "brooks-lint",
+     "stars": 1550,
+     "pushed_at": "2026-10-26T08:57:49Z",
+     "archived": false,
+     "license": "MIT",
+     "latest_commit_date": "2026-10-26T08:57:48Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "Portable AI code quality reviews for Codex, Cursor, Copilot and other coding agents: six Agent Skills for architecture, technical debt, tests and remediation."
+    },
+    {
+     "owner_repo": "Donchitos/Claude-Code-Game-Studios",
+     "owner": "Donchitos",
+     "repo": "Claude-Code-Game-Studios",
+     "stars": 28118,
+     "pushed_at": "2026-10-19T02:43:42Z",
+     "archived": false,
+     "license": "MIT",
+     "latest_commit_date": "2026-10-19T02:09:09Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "Turn Claude Code into a full game dev studio — 49 AI agents, 72 workflow skills, and a complete coordination system mirroring real studio hierarchy."
+    }
+   ],
+   "err": null
+  },
+  {
+   "skill": "A-project-handoff",
+   "keyword_query": "project handoff documentation in:name,description,readme",
+   "state": "OK",
+   "http": 200,
+   "total_count": 84798,
+   "top3": [
+    {
+     "owner_repo": "polvalente/handoff",
+     "owner": "polvalente",
+     "repo": "handoff",
+     "stars": 125,
+     "pushed_at": "2026-09-10T16:16:15Z",
+     "archived": false,
+     "license": "Apache-2.0",
+     "latest_commit_date": "2026-09-10T16:16:15Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "Distributed graph execution in Elixir"
+    },
+    {
+     "owner_repo": "openai/openai-agents-python",
+     "owner": "openai",
+     "repo": "openai-agents-python",
+     "stars": 30348,
+     "pushed_at": "2026-10-27T19:44:03Z",
+     "archived": false,
+     "license": "MIT",
+     "latest_commit_date": "2026-10-27T19:22:01Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "A lightweight, powerful framework for multi-agent workflows"
+    },
+    {
+     "owner_repo": "vllm-project/vllm-omni",
+     "owner": "vllm-project",
+     "repo": "vllm-omni",
+     "stars": 7390,
+     "pushed_at": "2026-10-28T07:20:16Z",
+     "archived": false,
+     "license": "Apache-2.0",
+     "latest_commit_date": "2026-10-28T07:17:39Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "A framework for efficient model inference with omni-modality models"
+    }
+   ],
+   "err": null
+  },
+  {
+   "skill": "A-prompt-better",
+   "keyword_query": "prompt optimizer in:name,description,readme",
+   "state": "OK",
+   "http": 200,
+   "total_count": 903150,
+   "top3": [
+    {
+     "owner_repo": "linshenkx/prompt-optimizer",
+     "owner": "linshenkx",
+     "repo": "prompt-optimizer",
+     "stars": 39497,
+     "pushed_at": "2026-10-28T06:41:04Z",
+     "archived": false,
+     "license": "NOASSERTION",
+     "latest_commit_date": "2026-10-28T06:27:28Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "An AI prompt optimizer for writing better prompts and getting better AI results."
+    },
+    {
+     "owner_repo": "microsoft/PromptWizard",
+     "owner": "microsoft",
+     "repo": "PromptWizard",
+     "stars": 4023,
+     "pushed_at": "2025-10-13T21:51:01Z",
+     "archived": false,
+     "license": "MIT",
+     "latest_commit_date": "2025-08-04T08:53:19Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "Task-Aware Agent-driven Prompt Optimization Framework"
+    },
+    {
+     "owner_repo": "gepa-ai/gepa",
+     "owner": "gepa-ai",
+     "repo": "gepa",
+     "stars": 7174,
+     "pushed_at": "2026-10-28T03:48:38Z",
+     "archived": false,
+     "license": "MIT",
+     "latest_commit_date": "2026-10-28T03:48:37Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "Optimize prompts, code, and more with AI-powered Reflective Optimization"
+    }
+   ],
+   "err": null
+  },
+  {
+   "skill": "A-skill-manager",
+   "keyword_query": "agent skills manager in:name,description,readme",
+   "state": "OK",
+   "http": 200,
+   "total_count": 149472,
+   "top3": [
+    {
+     "owner_repo": "mattpocock/skills",
+     "owner": "mattpocock",
+     "repo": "skills",
+     "stars": 305110,
+     "pushed_at": "2026-10-27T07:44:25Z",
+     "archived": false,
+     "license": "MIT",
+     "latest_commit_date": "2026-10-27T07:44:12Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "Skills for Real Engineers. Straight from my .agents directory."
+    },
+    {
+     "owner_repo": "google/skills",
+     "owner": "google",
+     "repo": "skills",
+     "stars": 21627,
+     "pushed_at": "2026-10-27T18:48:44Z",
+     "archived": false,
+     "license": "Apache-2.0",
+     "latest_commit_date": "2026-10-27T18:48:35Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "Agent Skills for Google products and technologies"
+    },
+    {
+     "owner_repo": "MengTo/Skills",
+     "owner": "MengTo",
+     "repo": "Skills",
+     "stars": 7082,
+     "pushed_at": "2026-10-25T17:54:56Z",
+     "archived": false,
+     "license": "MIT",
+     "latest_commit_date": "2026-10-25T17:41:35Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "Agent skills for designers and builders using Codex, Claude, Cursor, and other AI coding agents"
+    }
+   ],
+   "err": null
+  },
+  {
+   "skill": "audit-runner-safe-aggregate",
+   "keyword_query": "test result aggregation in:name,description,readme",
+   "state": "OK",
+   "http": 200,
+   "total_count": 229939,
+   "top3": [
+    {
+     "owner_repo": "linshenkx/prompt-optimizer",
+     "owner": "linshenkx",
+     "repo": "prompt-optimizer",
+     "stars": 39497,
+     "pushed_at": "2026-10-28T06:41:04Z",
+     "archived": false,
+     "license": "NOASSERTION",
+     "latest_commit_date": "2026-10-28T06:27:28Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "An AI prompt optimizer for writing better prompts and getting better AI results."
+    },
+    {
+     "owner_repo": "msracver/Flow-Guided-Feature-Aggregation",
+     "owner": "msracver",
+     "repo": "Flow-Guided-Feature-Aggregation",
+     "stars": 732,
+     "pushed_at": "2021-09-27T04:17:35Z",
+     "archived": false,
+     "license": "MIT",
+     "latest_commit_date": "2018-06-13T03:24:03Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "Flow-Guided Feature Aggregation for Video Object Detection"
+    },
+    {
+     "owner_repo": "mvillarrealb/docker-spark-cluster",
+     "owner": "mvillarrealb",
+     "repo": "docker-spark-cluster",
+     "stars": 567,
+     "pushed_at": "2024-03-06T16:38:29Z",
+     "archived": false,
+     "license": "NONE",
+     "latest_commit_date": "2021-06-27T01:41:56Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "A simple spark standalone cluster for your testing environment purposses"
+    }
+   ],
+   "err": null
+  },
+  {
+   "skill": "bigfile-split",
+   "keyword_query": "split markdown document in:name,description,readme",
+   "state": "OK",
+   "http": 200,
+   "total_count": 259840,
+   "top3": [
+    {
+     "owner_repo": "gomarkdown/markdown",
+     "owner": "gomarkdown",
+     "repo": "markdown",
+     "stars": 1739,
+     "pushed_at": "2026-10-26T18:42:20Z",
+     "archived": false,
+     "license": "NOASSERTION",
+     "latest_commit_date": "2026-10-26T18:41:51Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "markdown parser and HTML renderer for Go"
+    },
+    {
+     "owner_repo": "JetBrains/markdown",
+     "owner": "JetBrains",
+     "repo": "markdown",
+     "stars": 967,
+     "pushed_at": "2026-10-27T11:19:47Z",
+     "archived": false,
+     "license": "Apache-2.0",
+     "latest_commit_date": "2026-10-27T11:19:45Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "Markdown parser written in kotlin"
+    },
+    {
+     "owner_repo": "alanshaw/markdown-pdf",
+     "owner": "alanshaw",
+     "repo": "markdown-pdf",
+     "stars": 2881,
+     "pushed_at": "2023-10-19T06:34:40Z",
+     "archived": false,
+     "license": "MIT",
+     "latest_commit_date": "2022-07-12T17:23:57Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": " :page_facing_up: Markdown to PDF converter"
+    }
+   ],
+   "err": null
+  },
+  {
+   "skill": "c-cleanup",
+   "keyword_query": "disk cleanup windows in:name,description,readme",
+   "state": "OK",
+   "http": 200,
+   "total_count": 106717,
+   "top3": [
+    {
+     "owner_repo": "harry0703/MangoDisk",
+     "owner": "harry0703",
+     "repo": "MangoDisk",
+     "stars": 4936,
+     "pushed_at": "2026-10-27T09:34:48Z",
+     "archived": false,
+     "license": "GPL-3.0",
+     "latest_commit_date": "2026-10-27T01:55:30Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "Safety-first disk cleaner and space analyzer for macOS, Windows and Linux, with duplicate cleanup, app uninstall, startup management, system optimization, and maintenance."
+    },
+    {
+     "owner_repo": "tw93/Mole",
+     "owner": "tw93",
+     "repo": "Mole",
+     "stars": 73128,
+     "pushed_at": "2026-10-28T07:09:55Z",
+     "archived": false,
+     "license": "GPL-3.0",
+     "latest_commit_date": "2026-10-28T07:09:54Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "🐹 Keep your Mac and PC clean, light, and running like new. Fast open-source CLI, plus native Mac and Windows apps."
+    },
+    {
+     "owner_repo": "tw93/Pake",
+     "owner": "tw93",
+     "repo": "Pake",
+     "stars": 62330,
+     "pushed_at": "2026-10-28T07:18:14Z",
+     "archived": false,
+     "license": "GPL-3.0",
+     "latest_commit_date": "2026-10-28T07:18:13Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "Turn any website into a lightweight desktop app with one command, on macOS, Windows and Linux."
+    }
+   ],
+   "err": null
+  },
+  {
+   "skill": "chaoshi-admin-inline-edit",
+   "keyword_query": "inline edit table admin in:name,description,readme",
+   "state": "OK",
+   "http": 200,
+   "total_count": 93069,
+   "top3": [
+    {
+     "owner_repo": "PanJiaChen/vue-element-admin",
+     "owner": "PanJiaChen",
+     "repo": "vue-element-admin",
+     "stars": 90116,
+     "pushed_at": "2024-10-24T11:25:46Z",
+     "archived": false,
+     "license": "MIT",
+     "latest_commit_date": "2024-10-24T11:25:43Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": ":tada: A magical vue admin                                                                https://panjiachen.github.io/vue-element-admin"
+    },
+    {
+     "owner_repo": "editor-js/awesome-editorjs",
+     "owner": "editor-js",
+     "repo": "awesome-editorjs",
+     "stars": 2880,
+     "pushed_at": "2026-10-20T20:39:08Z",
+     "archived": false,
+     "license": "CC0-1.0",
+     "latest_commit_date": "2026-10-20T20:39:08Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "🤩 A curated list of awesome Editor.js tools, libraries and resources."
+    },
+    {
+     "owner_repo": "Armour/vue-typescript-admin-template",
+     "owner": "Armour",
+     "repo": "vue-typescript-admin-template",
+     "stars": 5661,
+     "pushed_at": "2023-11-04T02:48:46Z",
+     "archived": false,
+     "license": "MIT",
+     "latest_commit_date": "2021-04-16T15:36:10Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "🖖 A vue-cli 3.0 + typescript minimal admin template"
+    }
+   ],
+   "err": null
+  },
+  {
+   "skill": "chaoshi-image-optimization",
+   "keyword_query": "webp image optimization in:name,description,readme",
+   "state": "OK",
+   "http": 200,
+   "total_count": 101291,
+   "top3": [
+    {
+     "owner_repo": "nuxt/image",
+     "owner": "nuxt",
+     "repo": "image",
+     "stars": 1551,
+     "pushed_at": "2026-10-28T04:05:06Z",
+     "archived": false,
+     "license": "MIT",
+     "latest_commit_date": "2026-10-27T02:26:28Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "Plug-and-play image optimization for Nuxt applications."
+    },
+    {
+     "owner_repo": "meowtec/imgo",
+     "owner": "meowtec",
+     "repo": "imgo",
+     "stars": 4456,
+     "pushed_at": "2026-10-15T04:00:41Z",
+     "archived": false,
+     "license": "NONE",
+     "latest_commit_date": "2026-10-15T04:00:12Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "🖼️ Image optimization app for macOS, Windows and Linux."
+    },
+    {
+     "owner_repo": "spatie/image-optimizer",
+     "owner": "spatie",
+     "repo": "image-optimizer",
+     "stars": 2882,
+     "pushed_at": "2026-10-22T15:03:04Z",
+     "archived": false,
+     "license": "MIT",
+     "latest_commit_date": "2026-10-22T15:03:04Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "Easily optimize images using PHP"
+    }
+   ],
+   "err": null
+  },
+  {
+   "skill": "chaoshi-web-deploy",
+   "keyword_query": "cloudflare pages deploy in:name,description,readme",
+   "state": "OK",
+   "http": 200,
+   "total_count": 556558,
+   "top3": [
+    {
+     "owner_repo": "cf-pages/Telegraph-Image",
+     "owner": "cf-pages",
+     "repo": "Telegraph-Image",
+     "stars": 4701,
+     "pushed_at": "2026-07-27T03:57:46Z",
+     "archived": false,
+     "license": "CC0-1.0",
+     "latest_commit_date": "2026-07-25T06:51:40Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "Image Hosting solution, Flickr/imgur alternative, make it easy for users to share their images. Using Cloudflare Pages and Telegraph."
+    },
+    {
+     "owner_repo": "MarSeventh/CloudFlare-ImgBed",
+     "owner": "MarSeventh",
+     "repo": "CloudFlare-ImgBed",
+     "stars": 6804,
+     "pushed_at": "2026-10-28T03:53:25Z",
+     "archived": false,
+     "license": "MIT",
+     "latest_commit_date": "2026-10-28T03:52:52Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "🏖️ A serverless, open-source file hosting solution built on Cloudflare. Supports image hosting, secure file storage, and personal cloud drive capabilities."
+    },
+    {
+     "owner_repo": "cloudflare/vinext",
+     "owner": "cloudflare",
+     "repo": "vinext",
+     "stars": 9256,
+     "pushed_at": "2026-10-28T00:03:39Z",
+     "archived": false,
+     "license": "MIT",
+     "latest_commit_date": "2026-10-28T00:02:31Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "Vite plugin that reimplements the Next.js API surface — deploy anywhere"
+    }
+   ],
+   "err": null
+  },
+  {
+   "skill": "code-review",
+   "keyword_query": "code review assistant in:name,description,readme",
+   "state": "OK",
+   "http": 200,
+   "total_count": 343400,
+   "top3": [
+    {
+     "owner_repo": "tirth8205/code-review-graph",
+     "owner": "tirth8205",
+     "repo": "code-review-graph",
+     "stars": 32444,
+     "pushed_at": "2026-10-16T11:20:26Z",
+     "archived": false,
+     "license": "MIT",
+     "latest_commit_date": "2026-10-15T13:23:35Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "Local-first code intelligence graph for MCP and CLI. Builds a persistent map of your codebase so AI coding tools read only what matters, with benchmarked context reductions on reviews and large-repo w"
+    },
+    {
+     "owner_repo": "alibaba/open-code-review",
+     "owner": "alibaba",
+     "repo": "open-code-review",
+     "stars": 48720,
+     "pushed_at": "2026-10-22T04:24:26Z",
+     "archived": false,
+     "license": "Apache-2.0",
+     "latest_commit_date": "2026-10-20T09:50:03Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "Secure, fast, efficient, battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in multi-language ruleset (NPE,"
+    },
+    {
+     "owner_repo": "ChinaSiro/claude-code-sourcemap",
+     "owner": "ChinaSiro",
+     "repo": "claude-code-sourcemap",
+     "stars": 9722,
+     "pushed_at": "2026-03-31T08:30:55Z",
+     "archived": false,
+     "license": "NONE",
+     "latest_commit_date": "2026-03-31T08:30:12Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": ""
+    }
+   ],
+   "err": null
+  },
+  {
+   "skill": "cross-platform-agent-sync",
+   "keyword_query": "dotfiles config sync in:name,description,readme",
+   "state": "OK",
+   "http": 200,
+   "total_count": 21603,
+   "top3": [
+    {
+     "owner_repo": "webpro/awesome-dotfiles",
+     "owner": "webpro",
+     "repo": "awesome-dotfiles",
+     "stars": 10916,
+     "pushed_at": "2026-10-11T07:59:17Z",
+     "archived": false,
+     "license": "NONE",
+     "latest_commit_date": "2026-10-11T07:59:15Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "A curated list of dotfiles resources."
+    },
+    {
+     "owner_repo": "nicknisi/dotfiles",
+     "owner": "nicknisi",
+     "repo": "dotfiles",
+     "stars": 3005,
+     "pushed_at": "2026-10-26T17:45:25Z",
+     "archived": false,
+     "license": "MIT",
+     "latest_commit_date": "2026-10-26T17:45:21Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "vim, zsh, git, homebrew, neovim - my whole world"
+    },
+    {
+     "owner_repo": "atomantic/dotfiles",
+     "owner": "atomantic",
+     "repo": "dotfiles",
+     "stars": 1364,
+     "pushed_at": "2026-08-27T17:38:54Z",
+     "archived": false,
+     "license": "ISC",
+     "latest_commit_date": "2026-08-27T17:38:52Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "🖥️ Automated Configuration, Preferences and Software Installation for macOS"
+    }
+   ],
+   "err": null
+  },
+  {
+   "skill": "dogfood",
+   "keyword_query": "exploratory testing browser in:name,description,readme",
+   "state": "OK",
+   "http": 200,
+   "total_count": 50186,
+   "top3": [
+    {
+     "owner_repo": "gosub-io/gosub-engine",
+     "owner": "gosub-io",
+     "repo": "gosub-engine",
+     "stars": 3689,
+     "pushed_at": "2026-10-27T17:44:39Z",
+     "archived": false,
+     "license": "MIT",
+     "latest_commit_date": "2026-10-27T17:43:25Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "The Gosub browser engine"
+    },
+    {
+     "owner_repo": "TheJambo/awesome-testing",
+     "owner": "TheJambo",
+     "repo": "awesome-testing",
+     "stars": 2405,
+     "pushed_at": "2026-10-27T20:48:17Z",
+     "archived": false,
+     "license": "CC0-1.0",
+     "latest_commit_date": "2026-10-27T20:48:07Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "A curated list of testing resources"
+    },
+    {
+     "owner_repo": "BMayhew/awesome-sites-to-test-on",
+     "owner": "BMayhew",
+     "repo": "awesome-sites-to-test-on",
+     "stars": 1118,
+     "pushed_at": "2026-10-16T01:54:18Z",
+     "archived": false,
+     "license": "NONE",
+     "latest_commit_date": "2026-09-29T06:04:14Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "A curated list of sites to practice testing on"
+    }
+   ],
+   "err": null
+  },
+  {
+   "skill": "fenjue-lessons-hitrate",
+   "keyword_query": "retrieval hit rate evaluation in:name,description,readme",
+   "state": "OK",
+   "http": 200,
+   "total_count": 40711,
+   "top3": [
+    {
+     "owner_repo": "wzhe06/Reco-papers",
+     "owner": "wzhe06",
+     "repo": "Reco-papers",
+     "stars": 3578,
+     "pushed_at": "2025-10-16T18:11:27Z",
+     "archived": false,
+     "license": "MIT",
+     "latest_commit_date": "2025-10-16T18:11:23Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "Classic papers and resources on recommendation"
+    },
+    {
+     "owner_repo": "Kodezi/Chronos",
+     "owner": "Kodezi",
+     "repo": "Chronos",
+     "stars": 4975,
+     "pushed_at": "2025-11-12T09:53:44Z",
+     "archived": false,
+     "license": "NOASSERTION",
+     "latest_commit_date": "2025-11-12T09:53:44Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "Kodezi Chronos is a debugging-first language model that achieves state-of-the-art results on SWE-bench Lite (80.33%) and 67% real-world fix accuracy, over six times better than GPT-4. Built with Adapt"
+    },
+    {
+     "owner_repo": "percent4/embedding_rerank_retrieval",
+     "owner": "percent4",
+     "repo": "embedding_rerank_retrieval",
+     "stars": 297,
+     "pushed_at": "2025-07-24T06:05:40Z",
+     "archived": false,
+     "license": "NONE",
+     "latest_commit_date": "2025-07-24T06:05:35Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "本项目是针对RAG中的Retrieve阶段的召回技术及算法效果所做评估实验。使用主体框架为LlamaIndex."
+    }
+   ],
+   "err": null
+  },
+  {
+   "skill": "fenjue-memory-audit",
+   "keyword_query": "memory audit scorecard in:name,description,readme",
+   "state": "OK",
+   "http": 200,
+   "total_count": 10607,
+   "top3": [
+    {
+     "owner_repo": "anthropics/cwc-workshops",
+     "owner": "anthropics",
+     "repo": "cwc-workshops",
+     "stars": 2232,
+     "pushed_at": "2026-10-16T22:26:05Z",
+     "archived": false,
+     "license": "Apache-2.0",
+     "latest_commit_date": "2026-10-16T22:23:44Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": ""
+    },
+    {
+     "owner_repo": "okf-memory/okf-agent-memory",
+     "owner": "okf-memory",
+     "repo": "okf-agent-memory",
+     "stars": 843,
+     "pushed_at": "2026-10-27T09:22:14Z",
+     "archived": false,
+     "license": "MIT",
+     "latest_commit_date": "2026-10-27T09:21:18Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "Git-native persistent memory for AI coding agents. Implements Google OKF v0.2 with sub-300µs in-memory BM25 search, embedded MCP server, and progressive disclosure. Slashes token bloat by 80% with zer"
+    },
+    {
+     "owner_repo": "alirezarezvani/claude-skills",
+     "owner": "alirezarezvani",
+     "repo": "claude-skills",
+     "stars": 28862,
+     "pushed_at": "2026-10-27T09:44:05Z",
+     "archived": false,
+     "license": "MIT",
+     "latest_commit_date": "2026-10-26T16:54:35Z",
+     "latest_commit_http": 200,
+     "latest_commit_err": null,
+     "description": "380 Claude Code skills & agent skills & plugins (30+ Agents, 70+ custom commands, 380+ skills, customizable references, scripts)for Claude Code, Codex, Gemini CLI, Cursor, and 8 more coding agents — e"
+    }
+   ],
+   "err": null
+  }
+ ],
+ "anomalies": [],
+ "updated_at": "2026-10-28T07:25:34+00:00"
+}

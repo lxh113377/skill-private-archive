@@ -137,6 +137,10 @@ python 05-exec/r55_rootface_fixtures.py                                       # 
 - **卷4** `06-constraints.part4.md` — 06-constraints 分卷（R199 自动拆卷）
 - **卷5** `06-constraints.part5.md` — 06-constraints 分卷（R199 自动拆卷）
 - **卷17** `06-constraints.part17.md` — 从根壳 `AGENTS.md` 下沉的原文（r216 注入面腾面 / 对标改造 M-2；壳内已留指针）
+- **卷18** `06-constraints.part18.md` — R269 双向盲区收敛序（r260 立，R220-6 待做① 的规则本体；判据 `05-exec/r260_r269_converge.py`，门 `r269_converge_face`）
+
+> ⚠️ **r260 校正注（R241：上方各行原文一字未改，只加注）**：本目录节列 卷1–5 / 17 / 18，**盘上实有 part6..part16 十一卷**（#30–#48 纪律正文，根壳 AGENTS.md 另有指针）⇒ 目录节自身与磁盘不同步 = 登记面缺口（X-26「手抄清单当分母」同族，此处是手抄目录当分母）。两侧现读不得互当对方真相源：
+> `ls memory/ | grep -c '^06-constraints\.part'`（本轮现读 18）与 `grep -c '^- \*\*卷' memory/06-constraints.md` 并跑，差值即缺口。
 
 
 ## 技术债（r60 新登记）

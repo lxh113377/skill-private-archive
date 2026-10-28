@@ -80,7 +80,12 @@ RE_TITLE_OWN = re.compile(r"\s*-\s*\[[ x]\]\s*\**\s*R(\d{2,3})[a-z]?-\d+")
     # 此前它只存在于 age is None 的回退支（r128），主循环一旦被正文引用先命中就再也轮不到它。
 # r194：裁决取值域**单源化**。此前 RE_DECIDED 与 parse_last_verdict 的头部匹配各写一份词表，
 # 改一处漏一处 ⇒ 与本轮 ratchet_gate「同一文件三份取最新件实现」同族的漂移风险。新增词只加这一处。
-VERDICT_TERMS = ("执行", "降级", "作废", "保留", "销账", "已落地")
+VERDICT_TERMS = ("执行", "降级", "作废", "保留", "销账", "已落地", "结案")
+    # r260 收词（同 r128 收「销账」/r194 收「已落地」的先例，**扩枚举非放宽判定**）：
+    # 本仓 r251/r256 用「结案」表示「以取证/判据取代人工、条目定稿」，且已在正文写出。
+    # 一手代价：R250-2 / R252-2 两条 r251/r256 写了结案仍判 OVERDUE —— 判据不认词，
+    # 棘轮 overdue_debt_items=6 超基线 0 连带 ratchet_gate 恒红。头部仍必须出现明确
+    # 终局词才计数（X-10 不变：自造措辞照旧不算裁决）。
     # r194 收词（按 r128 收「销账」的先例**扩枚举**，不是放宽判定）：本仓 r192/r193/r194
     # 三轮都用「已落地」表示改动已入库且复验过，语义等同「执行」；仍要求头部出现明确
     # 终局词，自造措辞照旧不算裁决（X-10）。我这三条此前全被判 OVERDUE = 判据不认我的词。
@@ -227,11 +232,30 @@ def face_dup_ids(dup_ids):
     """
     if not dup_ids:
         return (True, "同号多副本 0 组（按条目编号聚合，跨分卷可见）")
+    # r260 分类具名（诊断方向修正，判红口径**不放宽**）：同号有两种成因，处置完全不同 ——
+    #   A 撞号：编号后的标题主体不同 ⇒ 两条**不同**条目抢了同一个 R 号（L-6 编号命名空间病，
+    #     处置 = 给后登记者改号消歧并留 R241 注）；
+    #   B 真副本：主体相同 ⇒ 同一笔债的第二份留痕未勾销（处置 = 勾销/迁卷，r119 那 4 条即此）。
+    # 旧实现不分类、一律写「疑似漏勾销致重复计账」，本轮实测三组全是 A，照旧措辞会把人引去
+    # 找一个根本不存在的漏勾销（#32 形态：读数对、结论方向错）。
+    def _split(group):
+        subs = set(x.get("subject") or "" for x in group["locs"])
+        return "collision" if len(subs) > 1 else "stale_copy"
     bad = [d for d in dup_ids if not d["all_checked"]]
+    coll = [d for d in bad if _split(d) == "collision"]
+    stale = [d for d in bad if _split(d) == "stale_copy"]
     if bad:
-        d = bad[0]
-        return (False, "%d 组同号多副本存在未勾销副本（首例 %s：%d 处，跨 %d 卷 %s）⇒ 疑似漏勾销致重复计账" % (len(bad), d["id"], d["n"], len(d["files"]),
-                       ", ".join(os.path.basename(f) for f in d["files"])))
+        parts = []
+        if coll:
+            d = coll[0]
+            parts.append("撞号 %d 组（不同条目抢同一编号，首例 %s：%d 处，主体不同 ⇒ 处置=改号消歧，非漏勾销）"
+                         % (len(coll), d["id"], d["n"]))
+        if stale:
+            d = stale[0]
+            parts.append("真副本 %d 组（主体相同而未勾销，首例 %s：%d 处，跨 %d 卷 %s ⇒ 疑似漏勾销致重复计账）"
+                         % (len(stale), d["id"], d["n"], len(d["files"]),
+                            ", ".join(os.path.basename(f) for f in d["files"])))
+        return (False, "%d 组同号多副本存在未勾销副本：" % len(bad) + "；".join(parts))
     return (True, "%d 组同号多副本但全部已勾销（拆卷留痕，不判红）" % len(dup_ids))
 
 def face_dating(seen_short, seen_full):
@@ -560,8 +584,15 @@ def scan(files, now_round, grace):
             # 故正则锚定标题首部（形态见 RE_ID_SUBJECT 定义），并改用 match 取第一个。
             _m_id = RE_ID_SUBJECT.match(body)
             if _m_id:
+                # r260：除编号外再记「编号之后的标题主体」，供 face_dup_ids 区分两种同号形态 ——
+                #   主体不同 ⇒ 撞号（两条不同条目抢同一个 R 号，L-6 编号命名空间病）；
+                #   主体相同 ⇒ 真副本（拆卷留痕却漏勾销，同一笔债被计两次）。
+                # 旧实现只比编号，于是把前者也报成「疑似漏勾销致重复计账」，诊断方向是错的
+                # （本轮实测三组全是撞号：R249-1 自己写着「原编号 R245-1→R246-1 两度与并行
+                # 会话撞号，本轮定为 R249-1」）。记账行为一字不改，只是把话说准。
                 by_id.setdefault(_m_id.group(1), []).append(
-                    {"file": rel, "line": ln, "checked": m.group(1) == "x"})
+                    {"file": rel, "line": ln, "checked": m.group(1) == "x",
+                     "subject": body[_m_id.end():].strip()[:60]})
             if key in seen:
                 # 主壳与分卷可能同条目（拆卷留索引），去重防重复计账；
                 # 但**正文不同**就不是同一条目 —— 记账行为不变（防静默改数），面自证判红点名。
