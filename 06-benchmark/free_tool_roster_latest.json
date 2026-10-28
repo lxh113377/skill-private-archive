@@ -127,7 +127,7 @@
     ]
    },
    "read_why": null,
-   "usage_value": 27503.0,
+   "usage_value": 27626.0,
    "usage_meta": {
     "unit": "分钟（官方计费·账号级·端点默认窗口）",
     "extra": 0.0,
@@ -359,7 +359,7 @@
     }
    ],
    "blocker": null,
-   "read_state": "MEASURED",
+   "read_state": "UNVERIFIED",
    "read_face": {
     "script": "r200_pages_face.py",
     "artifact": "pages_http_latest.json",
@@ -378,14 +378,9 @@
     ]
    },
    "read_why": null,
-   "usage_value": 235707,
-   "usage_meta": {
-    "unit": "次",
-    "extra": null,
-    "extra_label": null,
-    "window": "2026-10-01~2026-10-29"
-   },
-   "usage_why": null
+   "usage_value": null,
+   "usage_meta": null,
+   "usage_why": "路径取不到：row/requests_total"
   },
   {
    "tool": "Cloudflare-Workers",
@@ -536,12 +531,12 @@
     ]
    },
    "read_why": null,
-   "usage_value": 12.93,
+   "usage_value": 13.09,
    "usage_meta": {
     "unit": "MiB（本地库体量·非额度）",
-    "extra": 45257,
+    "extra": 45625,
     "extra_label": "合计行数",
-    "window": "2026-10-28T16:02:55"
+    "window": "2026-10-28T17:02:03"
    },
    "usage_why": null
   },
@@ -767,14 +762,14 @@
   },
   "matrix_src": {
    "file": "tool_skill_matrix_latest.json",
-   "generated_at": "2026-10-28 16:00",
+   "generated_at": "2026-10-28 16:59",
    "cmd": "python 05-exec/r163_tool_skill_matrix.py --json <out>"
   },
   "workflow_src": {
    "file": "workflow_usage_latest.json",
    "generated_at": null,
-   "face_files": 295,
-   "real_face_files": 176,
+   "face_files": 297,
+   "real_face_files": 177,
    "real_total_hits": 95
   },
   "third_src": {
@@ -787,7 +782,7 @@
    "files": "tool_skill_matrix_latest.json"
   }
  },
- "read_at": "2026-10-28T16:03:06",
+ "read_at": "2026-10-28T17:02:14",
  "ft_rows": [
   {
    "tool": "GitHub",

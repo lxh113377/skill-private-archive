@@ -1,0 +1,66 @@
+{
+ "schema": "miss-migration-r217-v1",
+ "generated_at": "2026-10-28T08:26:09+00:00",
+ "cmd": "python 05-exec/r217_miss_migration.py",
+ "inputs": {
+  "baseline": "route_miss_attr_r117_2026-10-18.json",
+  "current": "route_miss_attr.json",
+  "producer": "05-exec/r117_route_miss_attr.py",
+  "testset": "../../焚诀/eval/layered_testset.json"
+ },
+ "testset_queries_n": 291,
+ "state": "CLEAN",
+ "red_lines": [],
+ "reading": {
+  "baseline_real_rows": 12,
+  "current_real_rows": 5,
+  "face_real_n_baseline": 12,
+  "face_real_n_current": 5,
+  "n_baseline": 291,
+  "n_current": 291,
+  "hits_baseline": 271,
+  "hits_current": 278,
+  "still_real_n": 5,
+  "fixed_n": 7,
+  "moved_to_stale_n": 0,
+  "to_undecidable_n": 0,
+  "vanished_not_in_testset_n": 0,
+  "new_real_miss_n": 0,
+  "relative_change_pct": 58.3,
+  "partition_identity_ok": true,
+  "fixed_list": [
+   [
+    "灵感枯竭帮我发散一波点子",
+    "brainstorming"
+   ],
+   [
+    "Notion 会议准备",
+    "meeting-intelligence"
+   ],
+   [
+    "python 脚本下断点单步调试",
+    "python-debugpy"
+   ],
+   [
+    "路由触发词质量差需要重生",
+    "A-skill-manager"
+   ],
+   [
+    "cloudbase 云函数部署后订单不显示",
+    "chaoshi-web-deploy"
+   ],
+   [
+    "读PDF",
+    "pdf"
+   ],
+   [
+    "头脑风暴",
+    "brainstorming"
+   ]
+  ],
+  "new_real_list": [],
+  "moved_list": [],
+  "to_undecidable_list": []
+ },
+ "caveat": "本件只判改善是否造假，不判改善幅度本身；幅度口径与 30% 达标判据见 04-plan/需求6口径对照与决策件_r216_2026-10-25.md §3。"
+}

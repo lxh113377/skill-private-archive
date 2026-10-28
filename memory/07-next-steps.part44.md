@@ -4,11 +4,11 @@
 
 ## 最近对话摘要（历史）
 
-- [ ] R76-1 项目/医 09 头回填收尾：待该文件在途收口后跑 flow <医> --fix-header（V3.115.0 判据会自行显形）（由 flow 登记；状态: todo）
+- [ ] R76-1 项目/医 09 头回填收尾：待该文件在途收口后跑 flow <医> --fix-header（V3.115.0 判据会自行显形）（由 flow 登记；状态: todo） 【r260 裁决=降级（转长期看守）｜同上：待医仓该文件在途收口后由其跑 flow <医> --fix-header（V3.115.0 判据自行显形）。本仓不跨仓代跑他人项目的 flow 写面（D7.2 多写者纪律），转看守。】
 - [x] R58-1 第17维纵深：把「仓外输入固定」推广到受管根 clone/镜像面（21 道门读本地字节，与 CI 读 checkout 字节同构）（由 flow 登记；状态: todo）
 - [x] W-46b 清 noise_falsepositive_*.json 死句柄（补生成器或按 R241 摘牌留注），再把「pattern 必须有生成器」接进 run_gates 判红（r58 误报率 30.6% 已量清，真死句柄仅 1 条）（由 flow 登记；状态: todo）
 - [ ] VOL-2A600 体量治理[L1 记忆卷] memory/07-next-steps.md — 主卷注入面超告警线：按条数归档（savepoint 摘要归档 / trim-shell）或把长校正注迁分卷；P0 与红线内容禁自动改（由 flow 登记；状态: todo）
-- [ ] R57-3 推荐:注入壳 AGENTS.md 29,293B / TODO.md 31,909B 超 root_doc_max 16KB——走 trim-shell 迁历史条目（VOL-858E6/VOL-D908D 的落地）（由 flow 登记；状态: todo）
+- [ ] R57-3 推荐:注入壳 AGENTS.md 29,293B / TODO.md 31,909B 超 root_doc_max 16KB——走 trim-shell 迁历史条目（VOL-858E6/VOL-D908D 的落地）（由 flow 登记；状态: todo） 【r260 裁决=执行｜r260 实测该债已消：根壳 5496B、TODO.md 11883B 均 < root_doc_max 16384B（r58 已把 TODO 11 节 21274B 迁 todo-history.part1、AGENTS.md 已拆成索引壳）。取值：wc -c AGENTS.md TODO.md。】
 - [x] R57-2 推荐:memory/08-ac-obs.md（4,102B 超 4KB）裁口径——入 SPLIT_TARGETS 还是加豁免册（flow --verify-ac 整卷解析 08，拆卷会打断 AC 判定）（由 flow 登记；状态: todo）
 - [x] R57-1 推荐:rule_editor gates 输出截断机器化——mirror 明细须逐条打印（本轮因只看 tail 误判「他人脏项」，跑 check-skill-mirror.ps1 原文才发现 13 项全是自己的）（由 flow 登记；状态: todo）
 - [x] VOL-D908D 体量治理[L2 根文档] TODO.md — 注入壳瘦身：历史条目迁 memory/ 分卷，壳内只留指针（handoff.py trim-shell）（由 flow 登记；状态: todo）

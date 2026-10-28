@@ -41,7 +41,8 @@ import sys
 import threading
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from datetime import datetime, timezone
+from datetime import datetime, timezone, date, timedelta
+# date/timedelta 为 r260 §3.1 维护状态过滤所加（maintenance_trim 算 12 个月阈值要用）
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -417,6 +418,42 @@ def score5(m):
     return s, sum(s.values()), fc_caliber
 
 
+# ---- 维护状态过滤（§3.1 机制化，r260 立）---------------------------------------------
+# 为什么必须有：`04-plan/后续维护规范_季度巡检机制_r113` §3.1 早就写着「候选仓 archived=true
+#   或 pushed_at 超 12 个月 ⇒ 从该件候选面剔除并具名登记」，但它一直是**规范句** —— 出候选面的
+#   代码里没挂这条判据。r260 一手实测两件事：① 生产矩阵 937 个候选 slot 里确有 2 例违规（其一
+#   archived=true 且正坐 rank2）；② 把同一条判据打到新补的定向检索面上是 60 slot / 12 例 / 7 件
+#   （见 06-benchmark/r260_trim_violations.json 的 directed_search_face_sweep）。⇒ 只补检索不挂
+#   过滤，会把违规从 2 例放大到 14 例：越努力检索，越把停摆仓推成 rank0 建议。
+# 生效位置（关键，放错就等于没挂）：必须在 score5 之后、**sort 与 verdict 之前** ——
+#   skill_relevant_n 决定 MATCHED/FAMILY_ONLY 分档，若只从输出 top5 里删，分档仍按含停摆仓的
+#   计数算 ⇒ 假 MATCHED。
+# 只按**正证据**剔除：archived 为 True，或 pushed_at 非空且严格早于阈值。字段缺失（旧池件无该列）
+#   ⇒ 保留并计入 unknown_field 显形（R247：不许把「没数据」读成「违规」，也不许读成「健康」）。
+TWELVE_MONTHS_DAYS = 365
+# 评测日 = 本轮 r260 的日期。它是**判据输入**而非硬编码常量：矩阵件里以 maintenance_face.eval_date
+# 落盘，下轮巡检复算时以当日重算 ⇒ 阈值随季度滚动（超 12 个月的仓会越来越多地被剔）。
+EVAL_DATE = date(2026, 10, 28)
+
+
+def maintenance_trim(m, eval_date):
+    """按 §3.1 判一个候选仓是否停摆。返回 None=保留；否则返回剔除原因字符串。
+
+    eval_date: date 对象（本轮评测日），阈值 = eval_date - 365 天。"""
+    if m.get("archived"):
+        return "archived"
+    pushed = str(m.get("pushed_at") or "")[:10]
+    if not pushed or len(pushed) < 10:
+        return None                      # 字段缺失：保留，但由调用方计入 unknown_field
+    try:
+        p_y, p_m, p_d = int(pushed[0:4]), int(pushed[5:7]), int(pushed[8:10])
+    except ValueError:
+        return None                      # 不可析日期同样不判违规
+    threshold = eval_date - timedelta(days=TWELVE_MONTHS_DAYS)
+    if date(p_y, p_m, p_d) < threshold:
+        return "stale_pushed_at"
+    return None
+
 def classify(slug, desc):
     hay = (slug + " " + (desc or "")).lower()
     for fid, name, fpat, spat in FAMILIES:
@@ -609,6 +646,9 @@ def require_sig(n):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--offline", action="store_true")
+    ap.add_argument("--no-maintenance-trim", action="store_true",
+                    help="回滚开关（红线4）：关掉 §3.1 维护状态过滤，回到 r260 之前的候选面口径。"
+                         "默认不关 —— 关掉后停摆仓会重新进入 rank 与分档。")
     ap.add_argument("--json", dest="json_out", default=None)
     # r211 修（需求 5 长效机制实测断裂）：原缺省指 _temp/local_fm_r114.json —— 那份件
     # 全史零入库、全仓无生成器（W-46 死句柄），且 _temp 会被并行会话按扩展名清场
@@ -777,6 +817,28 @@ def main():
         # 一手：纯按 rel_strength 排 ⇒ 52 星的小仓因名字撞词压过 32k 星的正主；
         #       纯按 score_total 排 ⇒ 通用大仓压过真上游。
         #       分桶后两者各归其位：桶只回答「是不是同一类东西」，桶内才比质量。
+        # ---- §3.1 维护状态过滤（r260 机制化）----
+        # 位置就是这条判据的全部意义：必须在 sort 与 verdict 之前，且 skill_n 必须按**过滤后**
+        # 的集合算，否则 MATCHED/FAMILY_ONLY 的分档仍把停摆仓算成有效候选（假 MATCHED）。
+        # --no-maintenance-trim 是回滚开关（红线4 回滚预案要求：机制化必须同时给不改数据的退路）。
+        trimmed = []
+        unknown_field = 0
+        if args.no_maintenance_trim:
+            kept_scored = scored
+        else:
+            kept_scored = []
+            for x in scored:
+                why = maintenance_trim(x, EVAL_DATE)
+                if why is None:
+                    if not str(x.get("pushed_at") or "")[:10]:
+                        unknown_field += 1        # 缺字段不判违规，只显形（R247）
+                    kept_scored.append(x)
+                else:
+                    trimmed.append({"repo": x["repo"], "reason": why,
+                                    "pushed_at": x.get("pushed_at"),
+                                    "archived": bool(x.get("archived")),
+                                    "rel": x.get("rel"), "score_total": x.get("score_total")})
+        scored = kept_scored
         scored.sort(key=lambda x: (bucket_of(x), -x["score_total"]))
         skill_n = sum(1 for x in scored if x["rel"] == "skill")
         top = [x for x in scored if x["rel"] == "skill"][:5]
@@ -785,6 +847,15 @@ def main():
         if fid == "OTHER":
             verdict = "UNVERIFIED"
             note = "未命中任何族规则 ⇒ 具名列出（禁静默算作已覆盖）"
+        elif not scored and trimmed:
+            # r260 新增分支：过滤后清空**不等于**取数失败。两种成因必须分开报，否则
+            # 「全被 §3.1 剔掉」会被下游读成「GitHub 取数挂了」（措辞错=归因错，#32 同族）。
+            verdict = "UNVERIFIED"
+            # 多段隐式拼接必须整体括起来：写成 note = "A"\n "B" % (...) 时第二行会被当新语句（IndentationError）。
+            note = ("候选全部被 §3.1 维护状态剔除（%d 例：archived %d / 停摆 %d）⇒ 该行需重检，"
+                    "不得读成开源侧无件，也不得读成取数失败"
+                    % (len(trimmed), sum(1 for t in trimmed if t["reason"] == "archived"),
+                       sum(1 for t in trimmed if t["reason"] == "stale_pushed_at")))
         elif not scored:
             verdict = "UNVERIFIED"
             note = "候选仓全部取数失败 ⇒ 禁读成无替代（R247）"
@@ -806,7 +877,12 @@ def main():
                      "dropped_tokens": ps["dropped"][:8],
                      "family_pool_n": ps["pool_n"],
                      "candidates_n": len(top), "skill_relevant_n": skill_n,
-                     "candidates": top, "verdict": verdict, "note": note})
+                     "candidates": top, "verdict": verdict, "note": note,
+                     # 审计面（§3.1 要求「剔除并具名登记」）：谁被剔、为什么剔、因缺字段而放过几例，
+                     # 全部逐件落进矩阵行 —— 只在面级给个总数就等于没登记。
+                     "maintenance_trimmed": trimmed,
+                     "maintenance_trim_n": len(trimmed),
+                     "maintenance_unknown_field_n": unknown_field})
 
     total = sum(tally.values())
     ok = (total == len(locals_))
@@ -837,6 +913,20 @@ def main():
                                               and _cache_prov.get("pack_entries"))},
         "conservation": {"sum_verdicts": total, "local_n": len(locals_),
                          "ok": ok, "by_verdict": tally},
+        # §3.1 面级汇总（逐件审计在 rows[].maintenance_trimmed，这里只给总量与开关态）
+        "maintenance_face": {
+            "rule_source": "04-plan/后续维护规范_季度巡检机制_r113_2026-10-18.md §3.1",
+            "eval_date": EVAL_DATE.strftime("%Y-%m-%d"),
+            "threshold_date": (EVAL_DATE - timedelta(days=TWELVE_MONTHS_DAYS)).strftime("%Y-%m-%d"),
+            "enabled": not bool(args.no_maintenance_trim),
+            "trimmed_total": sum(r.get("maintenance_trim_n") or 0 for r in rows),
+            "archived_total": sum(1 for r in rows for t in (r.get("maintenance_trimmed") or [])
+                                  if t["reason"] == "archived"),
+            "stale_total": sum(1 for r in rows for t in (r.get("maintenance_trimmed") or [])
+                               if t["reason"] == "stale_pushed_at"),
+            "unknown_field_total": sum(r.get("maintenance_unknown_field_n") or 0 for r in rows),
+            "rows_affected": sum(1 for r in rows if (r.get("maintenance_trim_n") or 0) > 0),
+            "verdict_shift": "过滤在 skill_n 之前生效 ⇒ MATCHED/FAMILY_ONLY 分档按剔后计数"},
         "queries": qmeta,
         "families": [{"id": f[0], "name": f[1], "family_pattern": f[2],
                       "slug_pattern": f[3],

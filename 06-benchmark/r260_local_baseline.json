@@ -1,12 +1,12 @@
 {
  "schema": "r260-local-baseline-v1",
- "generated_at": "2026-10-28T08:03:50+00:00",
+ "generated_at": "2026-10-28T09:02:37+00:00",
  "cmd": "python 05-exec/r260_local_baseline.py",
  "rerun": "cd 自建skill优化 && export PYTHONPYCACHEPREFIX=/tmp/pycache_r260b && python 05-exec/r260_local_baseline.py",
  "single_source": {
   "score5_module": "r114_replacement_scan",
   "score5_file": "05-exec/r114_replacement_scan.py",
-  "score5_sha16": "5582753247bf2a2d",
+  "score5_sha16": "e82d98a9a15e3888",
   "matrix_file": "06-benchmark/replacement_matrix_r225.json",
   "matrix_sha16": "9c0d382a2168db07",
   "pool_pack_entries": 414,

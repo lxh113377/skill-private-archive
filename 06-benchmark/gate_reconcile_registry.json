@@ -113,9 +113,10 @@
    "teeth_proof_matrix",
    "r269_converge_face",
    "local_baseline_face",
-   "quarterly_cadence_face"
+   "quarterly_cadence_face",
+   "maintenance_trim_face"
   ],
-  "_snapshot_at": "2026-10-28 15:55",
+  "_snapshot_at": "2026-10-28 16:54",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
@@ -399,6 +400,10 @@
   "quarterly_cadence_face": {
    "evidence": "06-benchmark/quarterly_cadence_latest.json",
    "at": "2026-10-28 15:53"
+  },
+  "maintenance_trim_face": {
+   "evidence": "06-benchmark/maintenance_trim_fixtures_latest.json",
+   "at": "2026-10-28 16:21"
   }
  }
 }

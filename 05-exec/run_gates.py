@@ -1795,6 +1795,23 @@ GATES = [
               "深度巡检要现扫受管根与 managed venv（X-1 设计边界），不搬进 CI；CI 只承担盯人这一问" +
               "（与 gate_run_freshness 同思路的反向用法：用 CI 盯人，不用 CI 替本机门）。",
     },
+    {
+        # r260：需求4/5 的 §3.1 维护状态过滤从规范句变代码后的看守门（Lead 自干）
+        "id": "maintenance_trim_face",
+        "script": "r260_maintenance_trim_fixtures.py",
+        "argv": ["--json", "06-benchmark/maintenance_trim_fixtures_latest.json"],
+        "pass_token": "[GATE:mtfix-pass]",
+        "portable": False,
+        "not_portable_reason":
+            "生产面腿读 06-benchmark/r260_matrix_trimmed.json（离线复算产物）；缺件时正确判 rc=2 UNVERIFIED 而非绿。",
+        "covers": [
+            "进程内 8 腿：阈值从被测件现读（t0，禁本门另立常量）/ t2 边界日不违规 / t3 t4 两条必须红（阈值前一天、archived 压过新推送）/ t5 t6 缺字段不猜违规（R247）/ t7 变异 <= 版破坏 t2",
+            "生产面 4 腿：产线开关开 / top-5 残留违规必须 0 / trimmed_total>0 证明确实跑过 / 面级阈值与 eval_date 自洽",
+            "面级汇总与逐件审计（rows[].maintenance_trimmed 具名）在矩阵件里，本门只验其活着且为 0 残留",
+        ],
+        "why": "§3.1 从 r113 起只是规范句：生产矩阵 937 slot 里实存 2 例违规（1 例 archived 且坐 rank2），同判据打到定向检索面是 60 slot / 12 例。" +
+              "r260 把过滤接进 r114（sort 与 verdict 之前，否则 skill_n 仍把停摆仓算进 MATCHED）。本门守的是这条代码不被静默摘掉。",
+    },
 ]
 
 # 显式声明本 runner **不覆盖**的面，防止聚合绿被读成「所有门禁都绿」（R20-2）。

@@ -477,7 +477,17 @@ def id_renumbered_note(args, line):
         return None
     rid = 'R%s%s-%s' % (m.group(1), m.group(2), m.group(3))
     declared = 'r%s%s' % (d.group(1), d.group(2))
-    if declared == 'r%s%s' % (m.group(1), m.group(2)):
+    # r260 精确修（去误报类，不削弱 r128 的鉴别力）：本仓条目命名体系是 R<数字>-<序>，字母后缀
+    #   只出现在**轮号**上（r119b/r120b/r150b 这类同轮多支线，在册 3 处条目就是这么登记的）。
+    #   旧式把后缀并进相等判断 ⇒ 「R150-9（r150b 登记」被判「编号疑被改写」，是合法形态被误拦。
+    #   新规则：数字部分不等 ⇒ 报（r128 事故原形 R123-4→R125-5 仍被抓）；
+    #           两侧都带后缀且不同 ⇒ 报（R150c-9 vs r150b 这种真冲突仍被抓）；
+    #           条目侧无后缀 ⇒ 视为基础轮号的支线登记，不报。
+    if m.group(1) != d.group(1):
+        pass                                   # 数字不一致：下方报警
+    elif m.group(2) and d.group(2) and m.group(2) != d.group(2):
+        pass                                   # 双后缀冲突：下方报警
+    else:
         return None
     print('[MARK:WARN] ⑦ 条目 %s 标题声明登记轮次为 %s，与编号自带的 r%s 不一致 ⇒ 该编号疑被改写，'
           % (rid, declared, m.group(1) + m.group(2)))

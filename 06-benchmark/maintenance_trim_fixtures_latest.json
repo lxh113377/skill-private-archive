@@ -1,0 +1,72 @@
+{
+ "schema": "r260-maintenance-trim-fixtures-v1",
+ "readonly": true,
+ "provenance_cmd": "python 05-exec/r260_maintenance_trim_fixtures.py --json <件>",
+ "matrix": "06-benchmark\\r260_matrix_trimmed.json",
+ "eval_date": "2026-10-28",
+ "threshold_date": "2025-10-28",
+ "selftest_only": false,
+ "legs": [
+  {
+   "name": "t0 threshold read from the judge under test",
+   "ok": true,
+   "detail": "('2026-10-28', '2025-10-28', 365)"
+  },
+  {
+   "name": "t1 active repo kept",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "t2 boundary date (== threshold) not a violation",
+   "ok": true,
+   "detail": "2025-10-28"
+  },
+  {
+   "name": "t3 one day before threshold MUST be stale_pushed_at",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "t4 archived MUST win over a fresh push date",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "t5 missing pushed_at kept (never guess a violation)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "t6 unparsable pushed_at kept",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "t7 mutation (<= instead of <) breaks t2 => t2 carries weight",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "L1 pipeline switch on (disabling it goes red)",
+   "ok": true,
+   "detail": true
+  },
+  {
+   "name": "L2 zero surviving violations in top-5 (measured 0)",
+   "ok": true,
+   "detail": 0
+  },
+  {
+   "name": "L3 trimmed_total>0 proves the filter ran (82)",
+   "ok": true,
+   "detail": 82
+  },
+  {
+   "name": "L4 face threshold self-consistent with eval_date",
+   "ok": true,
+   "detail": "2025-10-28"
+  }
+ ],
+ "fail_n": 0
+}

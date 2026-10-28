@@ -2,8 +2,8 @@
  "schema": "r260-quarterly-cadence-v1",
  "readonly": true,
  "provenance_cmd": "python 05-exec/r260_quarterly_cadence.py --json <件>",
- "newest_audit": "06-benchmark\\quarterly_r260b\\2026Q4\\audit.json",
- "generated_at": "2026-10-28T15:03:25",
+ "newest_audit": "06-benchmark\\quarterly_r260c\\2026Q4\\audit.json",
+ "generated_at": "2026-10-28T16:26:30",
  "max_days": 100,
  "rc": 0,
  "reading": "季产物龄期 0.0 天 ≤ 上限 100 天"

@@ -1,0 +1,203 @@
+{
+ "schema": "route-miss-attr-r117-v1",
+ "generated_at": "2026-10-28T08:26:09+00:00",
+ "cmd": "python 05-exec/r117_route_miss_attr.py",
+ "superseded_by": "route_miss_attr_r119_*.json（r119 起改用实测口径；r117 仅作历史留痕）",
+ "superseded_reason": "r128 对账实测 5 条假红（state 与 route() 顶层 top1 不一致）",
+ "ruler": {
+  "STALE_EXPECT": "期望 skill 既不在注册表也不在盘上（题面过期）",
+  "UNREGISTERED": "期望 skill 在盘上但不在注册表（漏注册，单列）",
+  "REAL_MISS": "期望 skill 在册且在盘（路由真错，唯一可作改进靶子）",
+  "UNDECIDABLE": "注册表/盘面取不到（禁并入 REAL_MISS 蒙绿，R247）",
+  "conservation": "stale + unregistered + real + undecidable == miss_n 且 hits + miss_n == n"
+ },
+ "inputs": {
+  "eval": "eval/frozen_blind_eval.py --json --set layered",
+  "registry": "C:/Users/37533/Desktop/workspace/焚诀/skill/registry/unified-skills-index.json",
+  "registry_error": null
+ },
+ "face": {
+  "n": 291,
+  "hits": 278,
+  "score_pct": 90.7,
+  "semantic_layer": "bge",
+  "bge_status": "engaged",
+  "miss_n": 13,
+  "blind_n": 22,
+  "registry_n": 191,
+  "stale_n": 8,
+  "unregistered_n": 0,
+  "real_n": 5,
+  "undecidable_n": 0,
+  "conservation_ok": true
+ },
+ "states_by_expected": {
+  "deep-research-pro": [
+   "STALE_EXPECT",
+   "STALE_EXPECT"
+  ],
+  "fenjue-advisor-scoring": [
+   "STALE_EXPECT"
+  ],
+  "fenjue-cc-audit-cycle": [
+   "STALE_EXPECT"
+  ],
+  "frontend-slides": [
+   "REAL_MISS"
+  ],
+  "multi-search-engine": [
+   "STALE_EXPECT",
+   "STALE_EXPECT"
+  ],
+  "prompt-consolidation": [
+   "REAL_MISS"
+  ],
+  "A-skill-manager": [
+   "REAL_MISS",
+   "REAL_MISS"
+  ],
+  "weather": [
+   "STALE_EXPECT"
+  ],
+  "video-whisper-transcribe": [
+   "REAL_MISS"
+  ],
+  "tencent-cos-skill__skillhub": [
+   "STALE_EXPECT"
+  ]
+ },
+ "pairs": {
+  "deep-research-pro->consulting-analysis": 1,
+  "fenjue-advisor-scoring->fenjue-lessons-hitrate": 1,
+  "fenjue-cc-audit-cycle->fenjue-memory-audit": 1,
+  "frontend-slides->ppt-master": 1,
+  "multi-search-engine->spike": 1,
+  "prompt-consolidation->sq-cleanmgr-c": 1,
+  "A-skill-manager->security-audit": 1,
+  "weather->cloudbase-db-optimize": 1,
+  "video-whisper-transcribe->local-asr": 1,
+  "A-skill-manager->cross-platform-agent-sync": 1,
+  "deep-research-pro->research-documentation": 1,
+  "multi-search-engine->web-access": 1,
+  "tencent-cos-skill__skillhub->libreoffice-base": 1
+ },
+ "rows": [
+  {
+   "query": "搜索网上资料写研究报告",
+   "expected": "deep-research-pro",
+   "router_top1": "consulting-analysis",
+   "judge": "exact",
+   "state": "STALE_EXPECT",
+   "reason": "absent_from_disk_and_registry",
+   "pair": "deep-research-pro->consulting-analysis"
+  },
+  {
+   "query": "按焚诀评分机制给三件套评个分",
+   "expected": "fenjue-advisor-scoring",
+   "router_top1": "fenjue-lessons-hitrate",
+   "judge": "exact",
+   "state": "STALE_EXPECT",
+   "reason": "absent_from_disk_and_registry",
+   "pair": "fenjue-advisor-scoring->fenjue-lessons-hitrate"
+  },
+  {
+   "query": "跑一轮 CC 审计闭环把分数推到达标线",
+   "expected": "fenjue-cc-audit-cycle",
+   "router_top1": "fenjue-memory-audit",
+   "judge": "exact",
+   "state": "STALE_EXPECT",
+   "reason": "absent_from_disk_and_registry",
+   "pair": "fenjue-cc-audit-cycle->fenjue-memory-audit"
+  },
+  {
+   "query": "帮我做一个动画丰富的 HTML 演示文稿",
+   "expected": "frontend-slides",
+   "router_top1": "ppt-master",
+   "judge": "exact",
+   "state": "REAL_MISS",
+   "reason": "in_registry",
+   "pair": "frontend-slides->ppt-master"
+  },
+  {
+   "query": "多引擎搜索一下这个技术",
+   "expected": "multi-search-engine",
+   "router_top1": "spike",
+   "judge": "exact",
+   "state": "STALE_EXPECT",
+   "reason": "absent_from_disk_and_registry",
+   "pair": "multi-search-engine->spike"
+  },
+  {
+   "query": "帮我清理提示词里堆积的补丁",
+   "expected": "prompt-consolidation",
+   "router_top1": "sq-cleanmgr-c",
+   "judge": "exact",
+   "state": "REAL_MISS",
+   "reason": "in_registry",
+   "pair": "prompt-consolidation->sq-cleanmgr-c"
+  },
+  {
+   "query": "新技能装之前先安全审查",
+   "expected": "A-skill-manager",
+   "router_top1": "security-audit",
+   "judge": "exact",
+   "state": "REAL_MISS",
+   "reason": "in_registry",
+   "pair": "A-skill-manager->security-audit"
+  },
+  {
+   "query": "wttr 天气查询",
+   "expected": "weather",
+   "router_top1": "cloudbase-db-optimize",
+   "judge": "exact",
+   "state": "STALE_EXPECT",
+   "reason": "absent_from_disk_and_registry",
+   "pair": "weather->cloudbase-db-optimize"
+  },
+  {
+   "query": "录音转文字",
+   "expected": "video-whisper-transcribe",
+   "router_top1": "local-asr",
+   "judge": "exact",
+   "state": "REAL_MISS",
+   "reason": "in_registry",
+   "pair": "video-whisper-transcribe->local-asr"
+  },
+  {
+   "query": "同步技能",
+   "expected": "A-skill-manager",
+   "router_top1": "cross-platform-agent-sync",
+   "judge": "exact",
+   "state": "REAL_MISS",
+   "reason": "in_registry",
+   "pair": "A-skill-manager->cross-platform-agent-sync"
+  },
+  {
+   "query": "深度调研",
+   "expected": "deep-research-pro",
+   "router_top1": "research-documentation",
+   "judge": "exact",
+   "state": "STALE_EXPECT",
+   "reason": "absent_from_disk_and_registry",
+   "pair": "deep-research-pro->research-documentation"
+  },
+  {
+   "query": "多引擎搜索",
+   "expected": "multi-search-engine",
+   "router_top1": "web-access",
+   "judge": "exact",
+   "state": "STALE_EXPECT",
+   "reason": "absent_from_disk_and_registry",
+   "pair": "multi-search-engine->web-access"
+  },
+  {
+   "query": "写个脚本定期备份数据库",
+   "expected": "tencent-cos-skill__skillhub",
+   "router_top1": "libreoffice-base",
+   "judge": "exact",
+   "state": "STALE_EXPECT",
+   "reason": "absent_from_disk_and_registry",
+   "pair": "tencent-cos-skill__skillhub->libreoffice-base"
+  }
+ ]
+}
