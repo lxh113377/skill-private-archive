@@ -10,16 +10,16 @@
  ],
  "state": "MEASURED",
  "items_n": 12,
- "minutes_total": 27626.0,
- "gross_total": 186.562,
+ "minutes_total": 27664.0,
+ "gross_total": 186.826,
  "net_total": 0.0,
  "wholly_discounted": true,
  "per_product": {
   "actions / Actions Linux": {
-   "quantity": 24017.0,
+   "quantity": 24046.0,
    "unitType": "Minutes",
-   "gross": 144.102,
-   "discount": 144.102,
+   "gross": 144.276,
+   "discount": 144.276,
    "net": 0.0,
    "items": 3,
    "repos": [
@@ -29,10 +29,10 @@
    ]
   },
   "actions / Actions Windows": {
-   "quantity": 3492.0,
+   "quantity": 3501.0,
    "unitType": "Minutes",
-   "gross": 34.92,
-   "discount": 34.92,
+   "gross": 35.01,
+   "discount": 35.01,
    "net": 0.0,
    "items": 2,
    "repos": [

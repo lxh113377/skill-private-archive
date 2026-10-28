@@ -1,6 +1,6 @@
 {
  "schema": "r260-local-baseline-v1",
- "generated_at": "2026-10-28T09:02:37+00:00",
+ "generated_at": "2026-10-28T09:13:34+00:00",
  "cmd": "python 05-exec/r260_local_baseline.py",
  "rerun": "cd 自建skill优化 && export PYTHONPYCACHEPREFIX=/tmp/pycache_r260b && python 05-exec/r260_local_baseline.py",
  "single_source": {
@@ -790,7 +790,7 @@
     "docs_md_n": 0,
     "test_path_n": 0,
     "workflow_n": 0,
-    "pushed_at_mtime": "2026-10-26",
+    "pushed_at_mtime": "2026-10-28",
     "tree_truncated": false,
     "community_na": true,
     "score_total": 7,

@@ -139,9 +139,11 @@ python 05-exec/r55_rootface_fixtures.py                                       # 
 - **卷17** `06-constraints.part17.md` — 从根壳 `AGENTS.md` 下沉的原文（r216 注入面腾面 / 对标改造 M-2；壳内已留指针）
 - **卷18** `06-constraints.part18.md` — R269 双向盲区收敛序（r260 立，R220-6 待做① 的规则本体；判据 `05-exec/r260_r269_converge.py`，门 `r269_converge_face`）
 - **卷19** `06-constraints.part19.md` — r174 段落边界拆分（R241 原文零改写）
+- **卷20** `06-constraints.part20.md` — 新门上线两条硬判据（D-A live 面三态各验一牙 + 禁 O(N×全仓)；D-B 负控探针建在 gitignore 的 _temp/ 内。r260 立，一手 = 我自己那扇恒红门）
 
 > ⚠️ **r260 校正注（R241：上方各行原文一字未改，只加注）**：本目录节列 卷1–5 / 17 / 18，**盘上实有 part6..part16 十一卷**（#30–#48 纪律正文，根壳 AGENTS.md 另有指针）⇒ 目录节自身与磁盘不同步 = 登记面缺口（X-26「手抄清单当分母」同族，此处是手抄目录当分母）。两侧现读不得互当对方真相源：
 > `ls memory/ | grep -c '^06-constraints\.part'`（本轮现读 18）与 `grep -c '^- \*\*卷' memory/06-constraints.md` 并跑，差值即缺口。
+> 同轮追加读数（R241 不改上行原值，只补一行）：写卷18/19/20 之后盘上已到 **20 卷**、目录节列 8 行 ⇒ 缺口仍在；两数一律现读，别引用任何一行当现状。
 
 
 ## 技术债（r60 新登记）

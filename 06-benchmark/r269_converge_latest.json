@@ -3,23 +3,9 @@
  "readonly": true,
  "provenance_cmd": "python 05-exec/r260_r269_converge.py --json <件>",
  "rule_leaf": "memory/06-constraints.part18.md",
- "untracked_py_n": 2,
- "counts": {
-  "NOTIFY_FIRST": 2
- },
+ "untracked_py_n": 0,
+ "counts": {},
  "buck_passing": [],
- "items": [
-  {
-   "file": "05-exec/r260_maintenance_scope.py",
-   "refs_n": 4,
-   "verdict": "NOTIFY_FIRST",
-   "reason": "被 4 处引用，处置前须具名通知"
-  },
-  {
-   "file": "05-exec/r260_maintenance_trim_fixtures.py",
-   "refs_n": 6,
-   "verdict": "NOTIFY_FIRST",
-   "reason": "被 6 处引用，处置前须具名通知"
-  }
- ]
+ "items": [],
+ "face_state": "empty-by-successful-query"
 }

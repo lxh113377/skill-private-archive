@@ -76,37 +76,57 @@ def fixtures():
     return rows
 
 
-def live_face():
-    """扫 05-exec 未跟踪 .py，按四步序逐条分类（只读取证，不动任何盘）。"""
+def untracked_pys(root=ROOT):
+    """返回 (files, None) 或 (None, 原因)。git 查询失败与「查询成功但面为空」必须分开：
+    前者不可知（UNVERIFIED），后者是**目标态**（散件已全部归属处置）⇒ 命题空洞成立。
+    旧实现把两者混成同一个 rc=2，等于造一扇永远不可能绿的门 —— 恒红门与恒绿门一样无用。"""
     try:
-        p = subprocess.run(["git", "-C", ROOT, "ls-files", "--others", "--exclude-standard", "05-exec/"],
+        p = subprocess.run(["git", "-C", root, "ls-files", "--others", "--exclude-standard", "05-exec/"],
                            capture_output=True, text=True, encoding="utf-8", errors="replace")
     except Exception as e:
         return None, "git 取不到未跟踪面: %r" % (e,)
     if p.returncode != 0:
         return None, "git rc=%s" % p.returncode
     files = [x.strip() for x in (p.stdout or "").splitlines() if x.strip().endswith(".py")]
+    return files, None
+
+
+def build_text_index(root=ROOT):
+    """一次性建全文索引再逐件计数：旧实现每个散件都 os.walk 全仓（N 次全仓扫描，
+    本轮实测单轮 1.7s→53s 级）。索引一次、判定多次，且体积超 2MB 的件跳过（防把 700KB
+    级读数件重复读 N 遍）。"""
+    idx = []
+    for dirpath, dirnames, filenames in os.walk(root):
+        dirnames[:] = [d for d in dirnames if d not in SKIP_DIRS]
+        for fn in filenames:
+            if not fn.endswith((".py", ".md", ".json")):
+                continue
+            full = os.path.join(dirpath, fn)
+            try:
+                if os.path.getsize(full) > 2 * 1024 * 1024:
+                    continue
+                txt = io.open(full, encoding="utf-8", errors="ignore").read()
+            except OSError:
+                continue
+            idx.append((os.path.basename(full), txt))
+    return idx
+
+
+def live_face(idx=None):
+    """扫 05-exec 未跟踪 .py，按四步序逐条分类（只读取证，不动任何盘）。"""
+    files, err = untracked_pys()
+    if err:
+        return None, err
     if not files:
-        return None, "未跟踪 .py 面为空（零输入不得判绿，R247）"
+        return [], "empty-face"
+    idx = idx or build_text_index()
     out = []
     for f in files:
         stem = os.path.splitext(os.path.basename(f))[0]
-        refs = 0
+        base = os.path.basename(f)
         # 引用计数：排除自身文件；命中 = 主干名出现在任一 .py/.md/.json 文本里（粗尺，具名口径）。
-        for dirpath, dirnames, filenames in os.walk(ROOT):
-            dirnames[:] = [d for d in dirnames if d not in SKIP_DIRS]
-            for fn in filenames:
-                if not fn.endswith((".py", ".md", ".json")):
-                    continue
-                full = os.path.join(dirpath, fn)
-                if os.path.basename(full) == os.path.basename(f):
-                    continue
-                try:
-                    txt = io.open(full, encoding="utf-8", errors="ignore").read()
-                except OSError:
-                    continue
-                if stem in txt:
-                    refs += 1
+        # 索引只建一次（旧式每个散件重扫全仓 = O(N x 全仓)，本轮实测把整门拖到 50s 级）。
+        refs = sum(1 for name, txt in idx if name != base and stem in txt)
         verdict, reason = adjudicate({"tracked": False, "refs_n": refs, "self_attest": False})
         out.append({"file": f, "refs_n": refs, "verdict": verdict, "reason": reason})
     return out, "ok"
@@ -132,8 +152,27 @@ def main():
         return 0
     items, note = live_face()
     if items is None:
-        print("[CONVERGE:UNVERIFIED] %s（R247 零输入不记绿）" % note)
+        # 只有「取不到面」（git 调用失败 / rc!=0）才是 UNVERIFIED —— 不可知不等于没散件。
+        print("[CONVERGE:UNVERIFIED] %s（面不可知，不得当作无散件）" % note)
         return 2
+    if note == "empty-face":
+        # 查询成功且未跟踪 .py = 0：这是四步序的**目标态**（散件已全部归属处置），命题空洞成立。
+        # r260 一手：上一版把这里也判 rc=2，于是本仓一旦提交干净，这扇门就永远红 ——
+        # 恒红门与恒绿门一样没有信息量（且会把真故障淹在固定噪声里）。
+        print("[CONVERGE] 未跟踪 .py 0 个（git ls-files --others 成功）⇒ 无待归属散件，四步序空洞成立")
+        print("[CONVERGE:PASS] 无未跟踪件需判归属；规则本体 = %s" % os.path.relpath(RULE_LEAF, ROOT))
+        if args.out:
+            d = os.path.dirname(os.path.abspath(args.out))
+            if d:
+                os.makedirs(d, exist_ok=True)
+            with io.open(args.out, "w", encoding="utf-8", newline=chr(10)) as fh:
+                json.dump({"schema": "r269-converge-v1", "readonly": True,
+                         "provenance_cmd": "python 05-exec/r260_r269_converge.py --json <件>",
+                         "rule_leaf": "memory/06-constraints.part18.md",
+                         "untracked_py_n": 0, "counts": {}, "buck_passing": [], "items": [],
+                         "face_state": "empty-by-successful-query"}, fh, ensure_ascii=False, indent=1)
+            print("JSON -> %s" % args.out)
+        return 0
     counts = {}
     for it in items:
         counts[it["verdict"]] = counts.get(it["verdict"], 0) + 1
