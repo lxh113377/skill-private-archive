@@ -36,19 +36,20 @@
     "gstack"
    ],
    "yardstick_absent": false,
-   "wf_real_hits": 34,
+   "wf_real_hits": 36,
    "wf_real_files": [
     "quarterly_audit.yml",
     "r113_quarterly_audit.py",
+    "r114_replacement_scan.py",
     "r19_feedback_append.py",
+    "r262_license_body_pack.py",
     "r31_ci_surface.py",
     "r32_ci_health.py",
     "r33_release_governance.py",
     "r34_portability_surface.py",
     "r58_action_pin_guard.py",
     "r60_capability_roster.py",
-    "r60_capability_roster_describe.py",
-    "r60_upstream_backfill.py"
+    "r60_capability_roster_describe.py"
    ],
    "third_hits": 49,
    "third_files": [
@@ -127,7 +128,7 @@
     ]
    },
    "read_why": null,
-   "usage_value": 27813.0,
+   "usage_value": 27884.0,
    "usage_meta": {
     "unit": "分钟（官方计费·账号级·端点默认窗口）",
     "extra": 0.0,
@@ -359,7 +360,7 @@
     }
    ],
    "blocker": null,
-   "read_state": "MEASURED",
+   "read_state": "UNVERIFIED",
    "read_face": {
     "script": "r200_pages_face.py",
     "artifact": "pages_http_latest.json",
@@ -378,14 +379,9 @@
     ]
    },
    "read_why": null,
-   "usage_value": 236893,
-   "usage_meta": {
-    "unit": "次",
-    "extra": null,
-    "extra_label": null,
-    "window": "2026-10-01~2026-10-29"
-   },
-   "usage_why": null
+   "usage_value": null,
+   "usage_meta": null,
+   "usage_why": "路径取不到：row/requests_total"
   },
   {
    "tool": "Cloudflare-Workers",
@@ -536,12 +532,12 @@
     ]
    },
    "read_why": null,
-   "usage_value": 13.27,
+   "usage_value": 13.31,
    "usage_meta": {
     "unit": "MiB（本地库体量·非额度）",
-    "extra": 46117,
+    "extra": 46243,
     "extra_label": "合计行数",
-    "window": "2026-10-28T18:25:12"
+    "window": "2026-10-28T19:07:37"
    },
    "usage_why": null
   },
@@ -767,15 +763,15 @@
   },
   "matrix_src": {
    "file": "tool_skill_matrix_latest.json",
-   "generated_at": "2026-10-28 18:22",
+   "generated_at": "2026-10-28 19:05",
    "cmd": "python 05-exec/r163_tool_skill_matrix.py --json <out>"
   },
   "workflow_src": {
    "file": "workflow_usage_latest.json",
    "generated_at": null,
-   "face_files": 297,
-   "real_face_files": 177,
-   "real_total_hits": 95
+   "face_files": 298,
+   "real_face_files": 178,
+   "real_total_hits": 97
   },
   "third_src": {
    "files_scanned": 4358,
@@ -787,7 +783,7 @@
    "files": "tool_skill_matrix_latest.json"
   }
  },
- "read_at": "2026-10-28T18:25:29",
+ "read_at": "2026-10-28T19:07:52",
  "ft_rows": [
   {
    "tool": "GitHub",

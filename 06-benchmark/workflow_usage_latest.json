@@ -17,29 +17,30 @@
   "Resend",
   "Upstash-Redis"
  ],
- "face_files": 297,
+ "face_files": 298,
  "tools": [
   {
    "tool": "GitHub",
-   "hits": 97,
-   "probe_share": 0.649,
-   "real_hits": 34,
+   "hits": 100,
+   "probe_share": 0.64,
+   "real_hits": 36,
    "real_files": [
     "quarterly_audit.yml",
     "r113_quarterly_audit.py",
+    "r114_replacement_scan.py",
     "r19_feedback_append.py",
+    "r262_license_body_pack.py",
     "r31_ci_surface.py",
     "r32_ci_health.py",
     "r33_release_governance.py",
     "r34_portability_surface.py",
     "r58_action_pin_guard.py",
     "r60_capability_roster.py",
-    "r60_capability_roster_describe.py",
-    "r60_upstream_backfill.py"
+    "r60_capability_roster_describe.py"
    ],
    "line_exec": 4,
-   "line_comment": 6,
-   "line_prose": 21,
+   "line_comment": 7,
+   "line_prose": 22,
    "line_cjk_prose": 9,
    "state": "USED",
    "real_state": "REAL_USED"
@@ -175,7 +176,7 @@
    "real_state": "REAL_GAP"
   }
  ],
- "total_hits": 289,
- "real_face_files": 177,
- "real_total_hits": 95
+ "total_hits": 292,
+ "real_face_files": 178,
+ "real_total_hits": 97
 }

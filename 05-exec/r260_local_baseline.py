@@ -432,6 +432,13 @@ def main():
             cm_chk = cand_measure(R, cache, c["repo"])
             if cm_chk is None or c.get("score5") is None:
                 continue
+            # 正文档是**生产侧的证据输入**（来自跟踪包 license_body_r262.json / 本轮联网取），
+            #   不是尺子的输出。池缓存里没有它 ⇒ 复现时必须把该行记录的值喂回同一输入，
+            #   否则门在比较两份不同的输入：r262 起 57 个 NOASSERTION slot 会全部报漂移，
+            #   把「换代」误读成「双源」（part20 D-A 那个坑，本轮提前堵掉）。
+            #   旧代矩阵件（r225/r261）没有该字段 ⇒ 这里得到 None，行为与从前逐字相同。
+            if "license_body_class" in cm_chk or c.get("license_body_class") is not None:
+                cm_chk["license_body_class"] = c.get("license_body_class")
             sc = doc["reproduce_selfcheck"]
             sc["candidates_recomputed"] += 1
             rec = []

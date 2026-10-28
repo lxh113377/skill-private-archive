@@ -361,6 +361,35 @@ def measure_repo(full, cache, offline, stats, remeasure=False):
             # R211-9（r218）：口径计数全部走 tree_counts() 纯函数（双口径同列的说明在该函数 docstring）。
             # 旧口径 skill_md_n 保留不动 = C1 硬分桶前置（r116 / r125 读它），切判据须另行单独裁。
             doc.update(tree_counts(paths))
+    # ---- 正文级许可（R261-6 落地，r262）----------------------------------------------
+    # 只在 API 字段可疑时多花一次调用：NOASSERTION（含缺失被上游归此值）就是 dify / Imbad0202
+    #   两例的共性。取正文走 repos/<full>/license —— GitHub 自己解析 LICENSE 文件，一次调用
+    #   即可，不必从树里猜文件名（也省一次 blob 下载）。
+    # 离线/取不到 ⇒ license_body_class 留 None（**不得**当成宽松或受限，R247 双向）；
+    # 该仓走旧缓存时同样没有此字段 ⇒ 世代回退由 score5 的 use_body=False 表达，不靠造数据。
+    lic_api = (doc.get("license") or "").upper()
+    if lic_api in ("NOASSERTION", ""):
+        lout, lerr = gh(["api", "repos/%s/license" % full])
+        bump(stats, "api_calls")
+        time.sleep(CORE_SLEEP)
+        if lerr:
+            doc["license_body"] = "unavailable:%s" % lerr[:80]
+        else:
+            try:
+                ld = json.loads(lout)
+                import base64 as _b64
+                blob = _b64.b64decode(ld.get("content") or "")[:6144]
+                up = blob.decode("utf-8-sig", "replace").upper()
+                doc["license_body_path"] = ld.get("path") or ""
+                doc["license_body_spdx_api"] = ((ld.get("license") or {}).get("spdx_id") or "")
+                # 单源判定：classify_body（抓取脚本、门、夹具都用它），避免两处各写各的（R260-5）
+                spdx_b, cls_b, hits_b = classify_body(up)
+                doc["license_body_class"] = cls_b
+                doc["license_body_spdx"] = spdx_b or ""
+                doc["license_body_restricted_phrases"] = hits_b
+                doc["license_body"] = "read:%dB" % len(blob)
+            except Exception as exc:  # noqa: BLE001
+                doc["license_body"] = "parse_failed:%r" % (exc,)
     save_cache(key, doc)
     return doc
 
@@ -373,10 +402,141 @@ def measure_repo(full, cache, offline, stats, remeasure=False):
 # 做法 = license_class() 归五档 + score5 给 compat 设**上限 cap**（cap 只降不升，其余腿不动）：
 #   copyleft=1 / weak-copyleft=2 / unknown=4 / permissive=5 / none=5（none 的 3 分由原二值腿自然产生，
 #   不再叠加 cap ⇒ 与 r260 前逐字同分，本改动只影响 copyleft/weak/unknown 三类）。
-LICENSE_CAPS = {"copyleft": 1, "weak-copyleft": 2, "unknown": 4, "permissive": 5, "none": 5}
+LICENSE_CAPS = {"copyleft": 1, "weak-copyleft": 2, "restricted": 1, "unknown": 4,
+                "permissive": 5, "none": 5}
+
+# ---- 正文级许可指纹（R261-6 立，r262 落地）----------------------------------------------
+# 为什么必须有：GitHub API 的 license.spdx_id 会骗人。r261 由 C2 人读实测两例（本仓 gh api 复现）：
+#   · langgenius/dify       → API 报 NOASSERTION，正文实为「modified Apache 2.0 + 额外条件」，
+#     且明文「多租户服务须取得商业授权」⇒ 名义宽松、实际受限；
+#   · Imbad0202/academic-research-skills → API 报 NOASSERTION，正文实为 CC BY-**NC** 4.0（非商业）。
+# 我的上一版把 NOASSERTION 归 unknown（cap=4，只是轻罚）⇒ 在正文证据面前**偏松**，而这类仓恰恰
+# 最像可用（名字/描述都对得上，会被排到 rank0）。故新增 restricted 档（cap=1，与 copyleft 同级）。
+# 表与 05-exec/r260_local_baseline.py 的 LICENSE_TEXT_SIGS 同源扩展（本地侧那份由夹具 t15 对账，
+# 防两处定义漂移 —— R263/R280 同族）。
+LICENSE_TEXT_SIGS = [
+    # 顺序敏感：带额外条件/NC 的必须先判，否则会被下面的宽松档吃掉（modified Apache 含 "Apache
+    # License" 子串、CC BY-NC 含 "Creative Commons Attribution" 子串）。
+    ("CC-BY-NC-4.0", ("Creative Commons", "Attribution-NonCommercial")),
+    ("MODIFIED-APACHE-RESTRICTED", ("Modified Version of the Apache License",)),
+    ("AGPL-3.0", ("GNU AFFERO GENERAL PUBLIC LICENSE",)),
+    ("LGPL-3.0", ("GNU LESSER GENERAL PUBLIC LICENSE",)),
+    ("GPL-3.0", ("GNU GENERAL PUBLIC LICENSE",)),
+    ("Apache-2.0", ("Apache License", "Version 2.0")),
+    ("MIT", ("Permission is hereby granted, free of charge",)),
+    ("BSD-3-Clause", ("Neither the name",)),
+    ("CC0-1.0", ("CC0 1.0 Universal",)),
+    ("CC-BY-SA-4.0", ("Attribution-ShareAlike 4.0",)),
+    ("CC-BY-4.0", ("Creative Commons Attribution 4.0",)),
+]
+# 正文里出现这些措辞 ⇒ 即使 SPDX 看着宽松也算受限（商用/署名/再分发被加条件）。
+# ⚠️ 措辞表 r262 二版（我 r262 首版有系统性假阳性，实测抓到）：首版含泛化短语 "MAY NOT USE"，
+#   而 Apache-2.0 **标准文件头**本身就写着 "YOU MAY NOT USE THIS FILE EXCEPT IN COMPLIANCE WITH
+#   THE LICENSE" ⇒ 命中 kubesphere/kubesphere（真 Apache-2.0）与 op7418/CodePilot。若保留，
+#   所有 Apache 仓都会被压到 cap=1 = 把最好的仓误杀。正解 = 只留**确证受限**的措辞：
+#   "FOR A COMMERCIAL PURPOSE"（op7418 原文 "YOU MAY NOT USE THE LICENSED WORK FOR A COMMERCIAL
+#   PURPOSE"）与 "COMMERCIAL LICENSE MUST BE OBTAINED"（dify 原文），泛化措辞一律不用。
+# 判别式取自正文原句（r262 二版，两处都是实测）：
+#   · "WITH THE FOLLOWING ADDITIONAL CONDITIONS" = dify 与 kubesphere 共有的句式，而标准
+#     Apache-2.0 / MIT / AGPL 正文都没有这句 ⇒ 它精确命中「Apache 名义宽松 + 附加商业条件」这一族。
+#     （我第一版用泛化的 "MAY NOT USE" 抓它，会把 Apache 标准文件头自己那句
+#      "YOU MAY NOT USE THIS FILE EXCEPT IN COMPLIANCE WITH THE LICENSE" 也拖下水 = 系统性假阳性；
+#      删掉该短语后又走偏成假阴：kubesphere 被判 permissive，而它正文实为需商业授权。）
+#   · "FOR A COMMERCIAL PURPOSE" 抓 op7418/CodePilot（"YOU MAY NOT USE THE LICENSED WORK FOR A
+#     COMMERCIAL PURPOSE"）—— 该短语在原文里被**换行打断**，故必须做空白折叠匹配（见 classify_body）。
+RESTRICTED_PHRASES = ("WITH THE FOLLOWING ADDITIONAL CONDITIONS",
+                      "COMMERCIAL LICENSE MUST BE OBTAINED", "FOR A COMMERCIAL PURPOSE",
+                      "NONCOMMERCIAL", "NON-COMMERCIAL", "ATTRIBUTION-NONCOMMERCIAL")
+# 正文识别出的 spdx 里，这些属「名义像宽松、实际带条件/非商业」⇒ 与 copyleft 同级禁合入
+RESTRICTED_SPDX = ("CC-BY-NC", "MODIFIED-APACHE-RESTRICTED", "RESTRICTED")
 
 
-def license_class(lic):
+def classify_body(text_upper):
+    """正文指纹归一（单一口径）：返回 (spdx 或 None, 档位, 命中的受限措辞)。
+
+    为什么必须有这一个函数：r262 首版我在 _temp 抓取脚本里**重复实现**了一遍判定（违 R260-5
+    「读实现优先于写探针」），两处各写各的 ⇒ 抓取包与量尺可能给出不同档位而无人发现。
+    现在抓取脚本、measure_repo、夹具、门全部调本函数（单源）。
+
+    判序（两条都是实测踩过的假阴）：
+      · 受限名单先判：MODIFIED-APACHE-RESTRICTED 含子串 APACHE、CC-BY-NC 含子串 CC-BY，
+        若先走宽松档，YaoApp/yao 会被判 permissive（r262 实测首版就是这么漏的）；
+      · 措辞命中与 spdx 命中取**更严的一方**（dify 正文同时命中两者）。
+    """
+    # 空白折叠：法律正文是硬换行的，短语与指纹都可能被 \n 打断。r262 实测一手：
+    #   op7418/CodePilot 原文写作 "...FOR A COMMERCIAL\n                      PURPOSE"，
+    #   不折叠就匹配不到 ⇒ 判成 permissive（假阴，方向危险：受限仓被放走）。
+    #   折叠同时修掉一个潜在假阴：AGPL/GPL 的标题行本身也可能换行。
+    up = " ".join((text_upper or "").split())
+    spdx = None
+    for name, keys in LICENSE_TEXT_SIGS:
+        if all(k.upper() in up for k in keys):
+            spdx = name
+            break
+    hits = [ph for ph in RESTRICTED_PHRASES if ph in up]
+    restricted_by_name = bool(spdx) and any(tag in spdx for tag in RESTRICTED_SPDX)
+    if restricted_by_name or hits:
+        return spdx, "restricted", hits
+    if spdx is None:
+        return None, "unknown", hits
+    return spdx, license_class(spdx), hits
+
+
+# ---- 正文证据包装载（克隆可用，r262）------------------------------------------------------
+# 为什么必须有：_temp/ 缓存被 gitignore ⇒ 一次干净克隆里没有任何正文证据，量尺会静默退回
+#   「只信 API 字段」，也就是退回 dify / Imbad0202 那类受限仓被判 unknown(cap=4) 的状态 ——
+#   证据存在但拿不到，等于没取证。故正文结论落一份**跟踪件**（06-benchmark/license_body_r262.json，
+#   由 05-exec/r262_license_body_pack.py 现生成），量尺按仓名装载。
+BODY_PACK = os.path.join(BENCH, "license_body_r262.json")
+
+
+def load_body_pack(path=BODY_PACK):
+    """读正文证据包；缺件/解析失败 ⇒ 返回 None（调用方显形，禁当成「全部宽松」）。"""
+    if not os.path.isfile(path):
+        return None
+    try:
+        d = json.load(io.open(path, encoding="utf-8-sig"))
+    except Exception as exc:
+        return {"_error": repr(exc)[:120]}
+    if d.get("schema") != "license-body-pack-v1":
+        return {"_error": "schema:%s" % d.get("schema")}
+    return d
+
+
+def apply_body_pack(measured, pack):
+    """把包里的正文档并进 measured（只补**没有**正文档的件；已有 = 本轮联网现取，优先现取值）。
+
+    返回 (applied, still_without_body, unavailable_in_pack)：第三项 = 包里明写 UNAVAILABLE 的仓，
+    即「上游取不到正文」，必须显形而不是静默按 API 字段走。
+    """
+    repos = (pack or {}).get("repos") or {}
+    applied = 0
+    still = 0
+    unav = 0
+    for fn, m in measured.items():
+        if not isinstance(m, dict) or m.get("state") != "OK":
+            continue
+        if m.get("license_body_class"):
+            continue
+        if (m.get("license") or "").upper() not in ("NOASSERTION", ""):
+            continue
+        ent = repos.get(fn)
+        if not ent:
+            still += 1
+            continue
+        if ent.get("state") != "OK":
+            unav += 1
+            m["license_body"] = "pack_unavailable:%s" % (ent.get("error") or "")[:60]
+            continue
+        m["license_body_class"] = ent.get("license_body_class")
+        m["license_body_spdx"] = ent.get("license_body_spdx") or ""
+        m["license_body_restricted_phrases"] = ent.get("restricted_phrases") or []
+        m["license_body_path"] = ent.get("license_body_path") or ""
+        m["license_body"] = "pack:%s" % (ent.get("sha8_head") or "")
+        applied += 1
+    return applied, still, unav
+
+def license_class(lic, body_class=None):
     """许可证字符串 → 五档归一（copyleft / weak-copyleft / unknown / permissive / none）。
 
     判序敏感，三处都是实测踩过的坑（夹具里各钉一条反例）：
@@ -387,6 +547,12 @@ def license_class(lic):
     只按正证据归档：认不出的 SPDX 串 ⇒ unknown（cap=4，比 permissive 低、比真无许可的风险档高），
     禁把「我没认出来」读成「安全」（R247）。
     """
+    # body_class（r262）= 读 LICENSE 正文得到的档位。有正文证据时**正文优先**：API 字段
+    #   会报 NOASSERTION 把受限仓放进 unknown（cap=4），而正文能证明它是 copyleft / 非商业 /
+    #   带商业授权条件（R261-6 两例实测）。正文没有（旧缓存件 / 取不到）时照旧按 API 字段判，
+    #   且绝不把「没读到正文」当成宽松（R247 双向）。
+    if body_class in LICENSE_CAPS:
+        return body_class
     u = (lic or "").strip().upper()
     if not u or u == "UNLICENSED":
         return "none"
@@ -406,7 +572,7 @@ def license_class(lic):
     return "unknown"
 
 
-def score5(m, license_cap=True):
+def score5(m, license_cap=True, use_body=True):
     """五维锚定分（各 0-5，合计 25）。每维锚点可复算，不凭印象。
 
     license_cap=False = 回滚开关（红线4 要求机制化必须带不改数据的退路）：关掉后 compat 退回
@@ -456,15 +622,22 @@ def score5(m, license_cap=True):
     # compat 三腿原样保留（license 二值 + 非 archived + 有 SKILL.md），r261 起再套许可档上限：
     #   cap 只降不升 —— permissive 档 cap=5 等于不设限，故 MIT/Apache 等既有分数逐字不变
     #   （这是「不破坏既有结论」的硬约束，夹具 t3 专门钉它）；copyleft 无论其余腿多好都被压到 <=1。
-    _lic = license_class(m.get("license"))
+    # use_body=False = 世代回退：正文指纹是 r262 才接进量尺的，关掉后只按 API 字段判档
+    #   （用于复现 r261/r225 两代矩阵件，见 r260_local_baseline 的三组合同源自证）。
+    _lic = license_class(m.get("license"),
+                            m.get("license_body_class") if use_body else None)
     s["compat"] = min(5, (2 if (m.get("license") or "UNLICENSED") != "UNLICENSED" else 0)
                       + (0 if m.get("archived") else 1) + (2 if sm else 0))
     if license_cap:
         s["compat"] = min(s["compat"], LICENSE_CAPS[_lic])
     # ⚠️ 许可档**不得**塞进 s：score5 末尾是 sum(s.values()) 算总分，混入字符串直接把总分算炸
     #   —— 这正是本文件 L387-389 记载的 r225 首版事故（fc_caliber 当年同样被迫移出 s）。
-    #   我 r261 首版犯了同一形态，被自己的 AST/求值复跑抓到（见报告 §13）。落盘字段由调用方
-    #   直接调 license_class(m.get("license")) 现算（同一函数 = 单一口径，零副作用、零签名变更）。
+    #   我 r261 首版犯了同一形态，被自己的 AST/求值复跑抓到（见 r261 报告；该文首版节号为 §13，
+    #   独立成件后改号为 §1.x ⇒ 引节号前先 grep）。
+    # 落盘字段由调用方现算 license_class(lic, body_class)。r262 起该函数**带第二个参数**
+    #   （正文指纹优先），所以调用方必须把同一个 use_body 传进去：两处口径不同 ⇒ 落盘的
+    #   license_class 与 compat 得分互相打脸（r262 自查抓到，四处调用点已统一）。
+    #   仍禁把档位塞进 s（见上），因为总分是 sum(s.values())。
     rn = m.get("readme_n") or 0
     dn = m.get("docs_md_n") or 0
     s["docs"] = min(5, (2 if rn else 0) + (1 if dn > 5 else 0)
@@ -705,6 +878,8 @@ def main():
     ap.add_argument("--offline", action="store_true")
     ap.add_argument("--no-license-cap", action="store_true",
                     help="回滚开关（红线4）：关掉 compat 的许可档上限，退回 r260 前的二值口径；仅用于对照实验与应急退路"),
+    ap.add_argument("--no-license-body", action="store_true",
+                    help="世代回退（红线4）：量尺不看 LICENSE 正文指纹，只按 API 字段判档（复现 r261 代矩阵件用）"),
     ap.add_argument("--no-maintenance-trim", action="store_true",
                     help="回滚开关（红线4）：关掉 §3.1 维护状态过滤，回到 r260 之前的候选面口径。"
                          "默认不关 —— 关掉后停摆仓会重新进入 rank 与分档。")
@@ -824,6 +999,9 @@ def main():
     # 并行测量（r114 一手：串行 311 仓 × ~16s ≈ 83 分钟，实测半小时才走完 57 仓）。
     # workers 默认 8：GitHub core 配额 5000/h，8 并发 × 2 请求/仓远低于限流；
     # 缓存写已加锁；stats 计数走 bump/note_error 加锁，禁裸 +=（会丢计数）。
+    # 量尺口径开关（两个回退开关一次解析，供 score5 与行内现算共用；默认全开）
+    use_cap = not args.no_license_cap
+    use_body = not args.no_license_body
     measured = {}
     todo = [fn for fn in sorted(need_measure) if fn not in measured]
     if args.workers <= 1 or args.offline:
@@ -845,6 +1023,25 @@ def main():
                 if not args.quiet and done % 25 == 0:
                     print("  measured %d/%d" % (done, len(todo)))
 
+    # ---- 正文证据装载（r262）---------------------------------------------------------
+    # 本轮联网 measure_repo 取到的优先（最新）；其余按跟踪包补 => 离线复算与干净克隆也能拿到
+    #   R261-6 的结论。包缺失/解析失败 => 具名显形，禁静默退回「只信 API 字段」。
+    body_pack = load_body_pack()
+    pack_err = (body_pack or {}).get("_error") if body_pack else "missing"
+    pack_ok = body_pack is not None and pack_err is None
+    pack_stats = {"pack_present": pack_ok, "pack_error": pack_err,
+                  "pack_fetched_at": (body_pack or {}).get("fetched_at"),
+                  "applied": 0, "still_without_body": 0, "pack_unavailable": 0}
+    if pack_ok:
+        _pa, _ps, _pu = apply_body_pack(measured, body_pack)
+        pack_stats["applied"] = _pa
+        pack_stats["still_without_body"] = _ps
+        pack_stats["pack_unavailable"] = _pu
+        if not args.quiet:
+            print("  [LIC-PACK] applied=%d no_evidence=%d pack_unavailable=%d" % (_pa, _ps, _pu))
+    elif use_body and not args.quiet:
+            print("  [LIC-PACK] UNAVAILABLE (%s) => NOASSERTION repos stay unknown" % pack_err)
+
     fam_name = dict((f[0], f[1]) for f in FAMILIES)
     rows = []
     tally = {"MATCHED": 0, "FAMILY_ONLY": 0, "NO_OS_CANDIDATE": 0, "UNVERIFIED": 0}
@@ -855,12 +1052,20 @@ def main():
             m = measured.get(c["full_name"])
             if not m or m.get("state") != "OK":
                 continue
-            s, tot, fc_cal = score5(m, not args.no_license_cap)
+            # use_body / use_cap 在循环外定义（score5 与行内 license_class 必须同一口径，
+            #   两处各算一次而口径不同 = 落盘档与得分档互相打脸）。
+            s, tot, fc_cal = score5(m, use_cap, use_body)
             scored.append({"repo": c["full_name"], "rel": rel, "rel_strength": rstrength,
                           "fc_caliber": fc_cal,
                           # 许可档现算落盘（与 score5 同一函数 = 单一口径；不从 s 里取，见 score5 注）。
-                          "license_class": license_class(m.get("license")),
-                           "score5": s, "score_total": tot,
+                          # r262：正文档参与（body 优先，见 license_class），并单列 provenance 字段，
+                          #   免得读数的人以为 license_class 只来自 API 字段。
+                          "license_class": license_class(m.get("license"),
+                                                        m.get("license_body_class") if use_body else None),
+                          "license_body_class": m.get("license_body_class"),
+                          "license_body_spdx": m.get("license_body_spdx"),
+                          "license_evidence": m.get("license_body"),
+                          "score5": s, "score_total": tot,
                            "stars": m.get("stars"), "pushed_at": m.get("pushed_at"),
                            "license": m.get("license"), "archived": m.get("archived"),
                            "skill_md_n": m.get("skill_md_n"),
@@ -936,10 +1141,16 @@ def main():
         #   与既有证据链，且等于用分数覆盖身份判断。改为把风险 + 具名的可合入替代一起交给
         #   C2 人读腿（那才是决策位），让风险机器可见而不是被静默推荐。
         _r0 = (top or [None])[0]
-        _r0lic = license_class(_r0.get("license")) if _r0 else None
-        _risky = _r0lic in ("copyleft", "weak-copyleft")
+        # 行内现算必须与 score5 同一口径（含正文档）：两处各自调用而参数不同，
+        #   落盘的 license_class 与 compat 得分就会互相打脸（r262 自查抓到）。
+        _r0lic = license_class(_r0.get("license"),
+                               _r0.get("license_body_class") if use_body else None) if _r0 else None
+        # restricted 与 copyleft 同级（cap=1）⇒ 必须一并计入风险面，否则正文证明的非商业/需商用
+        #   仓会「拿了 copyleft 的分却不在风险清单里」= 显形面漏一档。
+        _risky = _r0lic in ("copyleft", "weak-copyleft", "restricted")
         _perm = [c["repo"] for c in top
-                 if c is not _r0 and license_class(c.get("license")) == "permissive"]
+                 if c is not _r0 and license_class(
+                     c.get("license"), c.get("license_body_class") if use_body else None) == "permissive"]
         tally[verdict] += 1
         rows.append({"slug": slug, "family": fid, "family_name": fam_name.get(fid, "未归族"),
                      "local_bytes": lf[slug].get("local_bytes"),
@@ -1012,10 +1223,25 @@ def main():
             "enabled": not bool(args.no_license_cap),
             "slots_emitted": len(_cand_all),
             "slots_by_class": {k: sum(1 for c in _cand_all
-                                      if license_class(c.get("license")) == k)
-                               for k in ("copyleft", "weak-copyleft", "permissive",
+                                      if license_class(c.get("license"),
+                                                             c.get("license_body_class")
+                                                             if use_body else None) == k)
+                               # restricted 必须在名单里：漏了它 = 新档在面级统计里隐身，
+                               #   读数的人以为它不存在（门也失去牙）。
+                               for k in ("copyleft", "weak-copyleft", "restricted", "permissive",
                                          "unknown", "none")},
             "rows_at_max": sum(1 for r in _cand_all if r["score5"]["compat"] == 5),
+            "body_evidence": {
+                "enabled": use_body,
+                "candidates_with_body_class": sum(1 for c in _cand_all if c.get("license_body_class")),
+                "restricted_by_body": sum(1 for c in _cand_all
+                                          if c.get("license_body_class") == "restricted"),
+                "api_said_noassertion": sum(1 for c in _cand_all
+                                            if (c.get("license") or "") == "NOASSERTION"),
+                "note": "restricted = 正文证明的非商业/需商业授权/带额外条件；API 字段一律报 NOASSERTION"
+                        "（R261-6 两例：langgenius/dify=modified-Apache+多租户需商用、"
+                        "Imbad0202/academic-research-skills=CC BY-NC 4.0）",
+            },
             "rows_risky_rank0": sum(1 for r in rows if r.get("license_risk")),
             "risky_rank0_rows": [r["slug"] for r in rows if r.get("license_risk")],
             "why_rank0_may_stay_risky":

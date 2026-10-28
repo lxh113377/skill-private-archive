@@ -1,10 +1,10 @@
 {
  "schema": "zijian-md-deadlink-v1",
- "generated_at": "2026-10-28T18:25:11",
+ "generated_at": "2026-10-28T19:07:37",
  "root": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化",
- "md_files": 468,
+ "md_files": 469,
  "face": "shipping (git-tracked + non-ignored untracked); drafts excluded",
- "face_files_total": 3339,
+ "face_files_total": 3345,
  "dead": 0,
  "items": [],
  "token": "[GATE:deadlink-pass]",

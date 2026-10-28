@@ -73,6 +73,36 @@
    "detail": ""
   },
   {
+   "name": "t13 apache-with-conditions -> restricted (kubesphere false-negative regression)",
+   "ok": true,
+   "detail": "(None, 'restricted')"
+  },
+  {
+   "name": "t14 standard Apache header must NOT be restricted (false-positive guard)",
+   "ok": true,
+   "detail": "('Apache-2.0', 'permissive')"
+  },
+  {
+   "name": "t15 line-wrapped phrase still caught via whitespace collapse (op7418)",
+   "ok": true,
+   "detail": "['FOR A COMMERCIAL PURPOSE']"
+  },
+  {
+   "name": "t16 CC-BY-NC not swallowed by the CC-BY prefix (ordering false-negative, Imbad0202)",
+   "ok": true,
+   "detail": "('CC-BY-NC-4.0', 'restricted')"
+  },
+  {
+   "name": "t17 body evidence overrides the API field (NOASSERTION -> restricted, else unknown)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "t18 use_body switch changes compat 1 -> 4 (rollback hatch is load-bearing)",
+   "ok": true,
+   "detail": "(1, 4)"
+  },
+  {
    "name": "L1 pipeline switch on (disabling it goes red)",
    "ok": true,
    "detail": true
@@ -98,7 +128,7 @@
    "detail": true
   },
   {
-   "name": "M2 no copyleft slot keeps compat=5 (R260-1 acceptance target, measured 0)",
+   "name": "M2 no risky-class slot (copyleft/weak/restricted) keeps compat=5; measured=0",
    "ok": true,
    "detail": 0
   },
@@ -108,15 +138,47 @@
    "detail": 939
   },
   {
-   "name": "M4 face-level risky list matches per-row flags (2 rows)",
+   "name": "M4 face-level risky list matches per-row flags (3 rows)",
    "ok": true,
    "detail": [
+    "byted-bp-cdn-pagesdeploy",
     "knowledge-capture",
     "react-best-practices"
    ]
   },
   {
    "name": "M5 every risky rank0 row surfaces a named mergeable alternative (0 missing)",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "name": "M6 recorded license_class == recomputed-with-body (single source); drift=0",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "name": "M7 every classed slot honours its cap; violations=0",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "name": "M8 body evidence present on face (restricted=35) so M6/M7 cannot be vacuous",
+   "ok": true,
+   "detail": {
+    "enabled": true,
+    "candidates_with_body_class": 57,
+    "restricted_by_body": 35,
+    "api_said_noassertion": 57,
+    "note": "restricted = 正文证明的非商业/需商业授权/带额外条件；API 字段一律报 NOASSERTION（R261-6 两例：langgenius/dify=modified-Apache+多租户需商用、Imbad0202/academic-research-skills=CC BY-NC 4.0）"
+   }
+  },
+  {
+   "name": "M9 license body switch enabled in the produced face",
+   "ok": true,
+   "detail": true
+  },
+  {
+   "name": "M10 emitted NOASSERTION/empty slots all carry body evidence; uncovered=0",
    "ok": true,
    "detail": []
   }

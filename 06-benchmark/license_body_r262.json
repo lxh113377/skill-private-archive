@@ -1,0 +1,225 @@
+{
+ "schema": "license-body-pack-v1",
+ "fetched_at": "2026-10-28T18:58:42",
+ "provenance_cmd": "python 05-exec/r262_license_body_pack.py",
+ "rule": "R261-6: API license.spdx_id lies for NOASSERTION repos; read the body",
+ "classifier": "05-exec/r114_replacement_scan.py::classify_body (single source)",
+ "matrix_face": "06-benchmark\\r261_matrix_licensed.json",
+ "targets_n": 20,
+ "ok_n": 20,
+ "faces": [
+  "r261_matrix_licensed.json",
+  "r262_matrix_bodied.json"
+ ],
+ "repos": {
+  "A9T9/RPA": {
+   "state": "OK",
+   "license_body_class": "copyleft",
+   "license_body_spdx": "AGPL-3.0",
+   "license_body_path": "LICENSE.txt",
+   "restricted_phrases": [],
+   "sha8_head": "9713a034",
+   "bytes_read": 2834
+  },
+  "Devin-AXIS/iPolloWork": {
+   "state": "OK",
+   "license_body_class": "restricted",
+   "license_body_spdx": "",
+   "license_body_path": "LICENSE",
+   "restricted_phrases": [
+    "NON-COMMERCIAL"
+   ],
+   "sha8_head": "fc58a7db",
+   "bytes_read": 6144
+  },
+  "HKUSTDial/Supervisor-Skills": {
+   "state": "OK",
+   "license_body_class": "restricted",
+   "license_body_spdx": "CC-BY-NC-4.0",
+   "license_body_path": "LICENSE",
+   "restricted_phrases": [
+    "NONCOMMERCIAL",
+    "ATTRIBUTION-NONCOMMERCIAL"
+   ],
+   "sha8_head": "b35c958b",
+   "bytes_read": 1028
+  },
+  "Imbad0202/academic-research-skills": {
+   "state": "OK",
+   "license_body_class": "restricted",
+   "license_body_spdx": "CC-BY-NC-4.0",
+   "license_body_path": "LICENSE",
+   "restricted_phrases": [
+    "NONCOMMERCIAL",
+    "ATTRIBUTION-NONCOMMERCIAL"
+   ],
+   "sha8_head": "7c9edd14",
+   "bytes_read": 6144
+  },
+  "NanmiCoder/cc-haha": {
+   "state": "OK",
+   "license_body_class": "restricted",
+   "license_body_spdx": "",
+   "license_body_path": "LICENSE",
+   "restricted_phrases": [
+    "NONCOMMERCIAL"
+   ],
+   "sha8_head": "f53cfecb",
+   "bytes_read": 6144
+  },
+  "SeleniumHQ/docker-selenium": {
+   "state": "OK",
+   "license_body_class": "unknown",
+   "license_body_spdx": "",
+   "license_body_path": "LICENSE.md",
+   "restricted_phrases": [],
+   "sha8_head": "535a5d36",
+   "bytes_read": 252
+  },
+  "TencentCloud/TencentDB-Agent-Memory": {
+   "state": "OK",
+   "license_body_class": "permissive",
+   "license_body_spdx": "MIT",
+   "license_body_path": "LICENSE",
+   "restricted_phrases": [],
+   "sha8_head": "bcaf06de",
+   "bytes_read": 1315
+  },
+  "YaoApp/yao": {
+   "state": "OK",
+   "license_body_class": "restricted",
+   "license_body_spdx": "MODIFIED-APACHE-RESTRICTED",
+   "license_body_path": "LICENSE",
+   "restricted_phrases": [
+    "WITH THE FOLLOWING ADDITIONAL CONDITIONS"
+   ],
+   "sha8_head": "ba8a74a8",
+   "bytes_read": 1589
+  },
+  "activepieces/activepieces": {
+   "state": "OK",
+   "license_body_class": "permissive",
+   "license_body_spdx": "MIT",
+   "license_body_path": "LICENSE",
+   "restricted_phrases": [],
+   "sha8_head": "d490fc48",
+   "bytes_read": 1629
+  },
+  "code-yeongyu/oh-my-openagent": {
+   "state": "OK",
+   "license_body_class": "restricted",
+   "license_body_spdx": "",
+   "license_body_path": "LICENSE.md",
+   "restricted_phrases": [
+    "NON-COMMERCIAL"
+   ],
+   "sha8_head": "b61ac928",
+   "bytes_read": 3973
+  },
+  "hesreallyhim/awesome-claude-code": {
+   "state": "OK",
+   "license_body_class": "restricted",
+   "license_body_spdx": "CC-BY-NC-4.0",
+   "license_body_path": "LICENSE",
+   "restricted_phrases": [
+    "NONCOMMERCIAL",
+    "ATTRIBUTION-NONCOMMERCIAL"
+   ],
+   "sha8_head": "e5da1bc9",
+   "bytes_read": 632
+  },
+  "kubesphere/kubesphere": {
+   "state": "OK",
+   "license_body_class": "restricted",
+   "license_body_spdx": "Apache-2.0",
+   "license_body_path": "LICENSE",
+   "restricted_phrases": [
+    "WITH THE FOLLOWING ADDITIONAL CONDITIONS"
+   ],
+   "sha8_head": "27fdc3cd",
+   "bytes_read": 2004
+  },
+  "langgenius/dify": {
+   "state": "OK",
+   "license_body_class": "restricted",
+   "license_body_spdx": "MODIFIED-APACHE-RESTRICTED",
+   "license_body_path": "LICENSE",
+   "restricted_phrases": [
+    "WITH THE FOLLOWING ADDITIONAL CONDITIONS",
+    "COMMERCIAL LICENSE MUST BE OBTAINED"
+   ],
+   "sha8_head": "232cf914",
+   "bytes_read": 1801
+  },
+  "larashero3-dotcom/lieflat-charts": {
+   "state": "OK",
+   "license_body_class": "restricted",
+   "license_body_spdx": "",
+   "license_body_path": "LICENSE",
+   "restricted_phrases": [
+    "NONCOMMERCIAL"
+   ],
+   "sha8_head": "ffcca388",
+   "bytes_read": 4563
+  },
+  "mksglu/context-mode": {
+   "state": "OK",
+   "license_body_class": "unknown",
+   "license_body_spdx": "",
+   "license_body_path": "LICENSE",
+   "restricted_phrases": [],
+   "sha8_head": "92f11a86",
+   "bytes_read": 3840
+  },
+  "modelcontextprotocol/inspector": {
+   "state": "OK",
+   "license_body_class": "permissive",
+   "license_body_spdx": "Apache-2.0",
+   "license_body_path": "LICENSE",
+   "restricted_phrases": [],
+   "sha8_head": "fbd29ed7",
+   "bytes_read": 6144
+  },
+  "op7418/CodePilot": {
+   "state": "OK",
+   "license_body_class": "restricted",
+   "license_body_spdx": "Apache-2.0",
+   "license_body_path": "LICENSE",
+   "restricted_phrases": [
+    "FOR A COMMERCIAL PURPOSE"
+   ],
+   "sha8_head": "e77188ca",
+   "bytes_read": 3681
+  },
+  "tigerless-labs/design-harness": {
+   "state": "OK",
+   "license_body_class": "permissive",
+   "license_body_spdx": "MIT",
+   "license_body_path": "LICENSE",
+   "restricted_phrases": [],
+   "sha8_head": "10a58c15",
+   "bytes_read": 1347
+  },
+  "tizzy916/humanities-writing-companion": {
+   "state": "OK",
+   "license_body_class": "restricted",
+   "license_body_spdx": "CC-BY-NC-4.0",
+   "license_body_path": "LICENSE",
+   "restricted_phrases": [
+    "NONCOMMERCIAL",
+    "ATTRIBUTION-NONCOMMERCIAL"
+   ],
+   "sha8_head": "23eb5961",
+   "bytes_read": 6144
+  },
+  "webiny/webiny-js": {
+   "state": "OK",
+   "license_body_class": "permissive",
+   "license_body_spdx": "MIT",
+   "license_body_path": "LICENSE",
+   "restricted_phrases": [],
+   "sha8_head": "6e6e5f5c",
+   "bytes_read": 1729
+  }
+ }
+}
