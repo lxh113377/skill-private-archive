@@ -536,6 +536,92 @@ def apply_body_pack(measured, pack):
         applied += 1
     return applied, still, unav
 
+# ---- 声明上游（.upstream 边车）识别（R261-5 立，r263 落地）--------------------------------
+# 为什么必须有：r262 实测两件（gstack / ppt-master）的真上游不在候选面里 —— 候选来自关键词搜索，
+#   而搜索永远搜不到「我们自己声明的那个上游」。危害不止少一行读数：gstack 因此拿到
+#   verdict=NO_OS_CANDIDATE（断言开源侧无对应件），而它的上游 garrytan/gstack 有 138k stars。
+#   ⇒ 声明的上游必须能被读到，且**在它存在时不得判「无对应件」**。
+UPSTREAM_ROOT = os.environ.get('ZIJIAN_SKILLS_ROOT', 'D:/global_skills')
+RE_REPO_LINE = re.compile(r'^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$')
+
+
+def parse_sidecar(text):
+    '''`.upstream` 正文 -> (repo, 子路径)。侧车形态实测三种（1 行纯 repo / 2 行 repo+path / 3-4 行），
+    故按内容解析而非按行号：第一个形如 owner/repo 的行即 repo，path: 行给子路径。'''
+    repo, subpath = None, None
+    for raw in (text or '').splitlines():
+        ln = raw.strip()
+        if not ln:
+            continue
+        if ln.lower().startswith('path:'):
+            subpath = ln.split(':', 1)[1].strip() or None
+            continue
+        if repo is None and RE_REPO_LINE.match(ln):
+            repo = ln
+    return repo, subpath
+
+
+
+
+def parse_version(text):
+    '''SKILL.md 头部第一个 version: x.y(.z)（返回 None 表示没有）。
+
+    不写「带引号字符类」的正则，改为 startswith + 去引号 + 纯版本号校验：树里实测两种写法
+    （version: 1.3.0 与 version: "6.6.0"），还有一件是缩进在嵌套块里。用这么写既覆盖三形态，
+    又不在源码里塞容易出转义错的字符类（r263 首版就栽在这类转义上）。'''
+    for line in (text or '').splitlines()[:60]:
+        s = line.strip()
+        if not s.startswith('version:'):
+            continue
+        v = s.split(':', 1)[1].strip().strip(chr(34)).strip(chr(39))
+        if re.match(r'^[0-9]+(\.[0-9]+){1,3}$', v):
+            return v
+    return None
+
+
+def vtuple(v):
+    '''版本串 -> 整数元组（None 表示不可比）。'''
+    if not v:
+        return None
+    return tuple(int(x) for x in v.split('.'))
+
+
+def rel_of(local, upstream):
+    '''版本关系：BEHIND / SAME / AHEAD / UNKNOWN_*（缺数据时绝不猜，两个未知方向分开报）。'''
+    a, b = vtuple(local), vtuple(upstream)
+    if a is None and b is None:
+        return 'UNKNOWN_BOTH'
+    if a is None:
+        return 'UNKNOWN_LOCAL'
+    if b is None:
+        return 'UNKNOWN_UPSTREAM_RELEASE'
+    n = max(len(a), len(b))
+    a = a + (0,) * (n - len(a))
+    b = b + (0,) * (n - len(b))
+    if b > a:
+        return 'BEHIND'
+    if b < a:
+        return 'AHEAD'
+    return 'SAME'
+
+def load_declared_upstreams(root=UPSTREAM_ROOT):
+    '''件名 -> 声明上游 repo（只读取证，绝不写受管根）。缺目录/读失败 => 返回空表而非抛错：
+    调用方据「表里没有」判「没声明」；而「声明了但解析不出」是另一种状态，后者同样禁判无对应件。'''
+    out = {}
+    if not os.path.isdir(root):
+        return out
+    for name in sorted(os.listdir(root)):
+        side = os.path.join(root, name, '.upstream')
+        if not os.path.isfile(side):
+            continue
+        try:
+            repo, _sp = parse_sidecar(io.open(side, encoding='utf-8-sig', errors='replace').read())
+        except OSError:
+            continue
+        if repo:
+            out[name] = repo
+    return out
+
 def license_class(lic, body_class=None):
     """许可证字符串 → 五档归一（copyleft / weak-copyleft / unknown / permissive / none）。
 
@@ -965,7 +1051,11 @@ def main():
         cands.sort(key=lambda x: -(x.get("stars") or 0))
         fam_pool[fid] = cands
 
-    lf = {r["slug"]: r for r in locals_}
+    lf = {r['slug']: r for r in locals_}
+    # 声明上游表（r263）：一次装载，逐件查表。表里没有 = 没声明；有 = 必须显形且禁判无对应件。
+    DECL_UP = load_declared_upstreams()
+    if not args.quiet:
+        print('  [UPSTREAM] 声明上游件数 = %d' % len(DECL_UP))
     per_skill = []
     need_measure = set()
     for r in locals_:
@@ -1109,8 +1199,13 @@ def main():
         skill_n = sum(1 for x in scored if x["rel"] == "skill")
         top = [x for x in scored if x["rel"] == "skill"][:5]
         if len(top) < 3:
-            top = top + [x for x in scored if x["rel"] != "skill"][:5 - len(top)]
-        if fid == "OTHER":
+            top = top + [x for x in scored if x['rel'] != 'skill'][:5 - len(top)]
+        # 声明上游表查询必须**在裁决链之前**（r263 首版放在链后，护栏引用它时尚未赋值 = NameError;
+        #   静态 AST 检查抓不到这种顺序错，只有真跑才暴露）。'表里没有' 与 '进了候选面没' 是两件事，
+        #   分开记，免得下游把「已声明但未被匹配」读成「没声明」。
+        _up = DECL_UP.get(slug)
+        _up_in_face = bool(_up and any((c.get('repo') == _up) for c in top))
+        if fid == 'OTHER':
             verdict = "UNVERIFIED"
             note = "未命中任何族规则 ⇒ 具名列出（禁静默算作已覆盖）"
         elif not scored and trimmed:
@@ -1128,10 +1223,16 @@ def main():
         elif skill_n >= 3:
             verdict = "MATCHED"
             note = ""
-        elif skill_n == 0 and ps["pool_n"] > 0:
-            verdict = "NO_OS_CANDIDATE"
-            note = ("族池 %d 仓、试过关键词 %s，无一命中 ⇒ 开源侧无对应件"
-                    % (ps["pool_n"], ",".join(ps["tokens"][:6]) or "（空）"))
+        elif skill_n == 0 and ps['pool_n'] > 0 and _up:
+            # r263（R261-5）：本件声明了上游 ⇒ 「开源侧无对应件」这句被事实证伪（实测 gstack：
+            #   判 NO_OS_CANDIDATE 而其上游 garrytan/gstack 有 138k stars）。禁判该态，改记未取证。
+            verdict = 'UNVERIFIED'
+            note = ('声明上游 %s 存在但未被族级相关性规则匹配进候选面 => 禁判「无对应件」，'
+                    '须以该上游为准走人读或上游面核对（R261-5）' % _up)
+        elif skill_n == 0 and ps['pool_n'] > 0:
+            verdict = 'NO_OS_CANDIDATE'
+            note = ('族池 %d 仓、试过关键词 %s，无一命中 => 开源侧无对应件（本件无声明上游）'
+                    % (ps['pool_n'], ','.join(ps['tokens'][:6]) or '（空）'))
         else:
             verdict = "FAMILY_ONLY"
             note = "仅族级候选命中（skill 词命中 %d 个），如实降档" % skill_n
@@ -1169,7 +1270,12 @@ def main():
                      #   R260-9 纪律：引用必须点名分母，否则与「全池 82 例」互相打脸。
                      "rank0_license_class": _r0lic,
                      "license_risk": bool(_risky),
-                     "permissive_alternatives_emitted": _perm})
+                     "permissive_alternatives_emitted": _perm,
+                     # 声明上游面（r263，R261-5）：repo 具名 + 是否真进了发出的候选面。
+                     # 两者分开记：表里没有 = 没声明；声明了但 in_face=False = 被族级规则挡在外面，
+                     # 那种情形禁判「开源侧无对应件」（裁决链里同一个 _up 已护栏）。
+                     "declared_upstream_repo": _up,
+                     "declared_upstream_in_face": _up_in_face})
 
     total = sum(tally.values())
     ok = (total == len(locals_))

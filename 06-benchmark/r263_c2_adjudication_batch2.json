@@ -1,0 +1,447 @@
+{
+ "schema": "r263.c2_human_adjudication_batch2.v1",
+ "round": "r263",
+ "leg": "C2 人读腿第二批 —— 只裁 r262 正文级许可换代后被换掉 rank0 的 5 件（R262-1 验收靶）",
+ "measured_at": "2026-10-28",
+ "head_at_start": "5498ad8",
+ "priority_set": {
+  "rule": "r262 body-on 相对 r261 body-off 发生 rank0 换人的件，且旧 rank0 为受限许可、新 rank0 为 permissive —— 共 5 件",
+  "expected": 5,
+  "recomputed_by": "逐件读 06-benchmark/r261_matrix_licensed.json 与 06-benchmark/r262_matrix_bodied.json 的 rows[].candidates[0]，两矩阵 191 行全量比对后取 rank0 变化的 5 件（_temp/r263_sum.py 现算）"
+ },
+ "inputs_sha8": {
+  "new_matrix_r262": "c9c8c9ef",
+  "old_matrix_r261": "2c6f5cc0",
+  "license_body_r262": "e0f5963f",
+  "r114_replacement_scan": "62dd998d",
+  "r261_stats_impl_read": "3cf0a33e",
+  "head": "5498ad8"
+ },
+ "caliber": {
+  "overlap": "r114 §4 C2：候选与本地件能力边界重叠但不完全覆盖 —— 必须人读两份 SKILL.md；名字撞词不算覆盖；每件须写出「具体重叠点」与「本地有而候选没有的增量」。increment_in_local_missing = 候选确有可并入本地核心能力的增量（不同域、需重写对象层的功能不计入）。",
+  "license": "R113-3 / r260 结案口径：本仓禁合入 copyleft 上游正文（AGPL/GPL/LGPL/CC-BY-SA）；NOASSERTION 或 license=null = 无可信许可同样禁合入；正文级受限（CC-BY-NC / NONCOMMERCIAL / 附加商业条件的 Apache）禁合入。",
+  "maintenance": "r114 §4 C4 / §3.1：archived=true 或 pushed_at 不在 12 个月（切点 2025-10-28）内 ⇒ 不利。",
+  "verdict_support": "verdict 必须与机器可核字段一致：UPGRADE_CANDIDATE 要求 license_mergeable=true 且 increment_in_local_missing=true；NO_OS_EQUIVALENT 要求 same_class_candidates_found=0；UNVERIFIED 要求 unverified_reason 或 http_codes；KEEP_LOCAL 要求 increment_in_local_missing=false 且 license_mergeable=false。统计器逐行核这四条，违反即 RED。"
+ },
+ "negative_control": {
+  "normal_cmd": "export PYTHONPYCACHEPREFIX=/tmp/pycache_r263 && python _temp/r263_c2_stats.py",
+  "normal_expect": "[R263:C2B2] PASS rc=0",
+  "broken_cmd": "export PYTHONPYCACHEPREFIX=/tmp/pycache_r263 && python _temp/r263_c2_stats.py _temp/r263_negctl.json",
+  "broken_input_rule": "把 prompt-consolidation 一行的 verdict 由 NO_OS_EQUIVALENT 改成 UPGRADE_CANDIDATE，其余字段一字不动（increment_in_local_missing=false、license_mergeable=false、same_class_candidates_found=0）",
+  "broken_expect": "[R263:C2B2] RED rc=1"
+ },
+ "conservation": {
+  "rows": 5,
+  "verdicts_sum": 5,
+  "expect": 5,
+  "equal": true,
+  "by_verdict": {
+   "KEEP_LOCAL": 3,
+   "NO_OS_EQUIVALENT": 2,
+   "UPGRADE_CANDIDATE": 0,
+   "UNVERIFIED": 0
+  },
+  "note": "0 件 UNVERIFIED：gh live 抓取 repos=7/readme+contents=20 全 200；一次 /readme 端点 EOF 已由 /contents 通道复取成功（feder-cr/invisible_dots README 6280B）。"
+ },
+ "rows": [
+  {
+   "slug": "ci-pipeline-debugging",
+   "verdict": "NO_OS_EQUIVALENT",
+   "machine_family": "quality / 调试/测试/评审/计划族",
+   "local_bytes": 12951,
+   "local_skill_md_sha8": "406698c4",
+   "new_rank0_rel": "muratcankoylan/Agent-Skills-for-Context-Engineering",
+   "new_rank0_license_class": "permissive",
+   "new_rank0_license_spdx": "MIT",
+   "new_rank0_same_class": false,
+   "old_rank0_rel": "Imbad0202/academic-research-skills",
+   "old_rank0_license_body_class": "restricted",
+   "old_rank0_license_body_spdx": "CC-BY-NC-4.0",
+   "old_rank0_license_body_sha8": "7c9edd14",
+   "old_rank0_capability_gap": true,
+   "old_rank0_capability_gap_note": "学术研究流水线（research → write → review → revise → finalize），全 README 401 行里 CI 面词命中 1 且落在 v3.8 引用核查段；无 runner / GitHub Actions / job annotation 任何语义。",
+   "same_class_candidates_found": 0,
+   "increment_in_local_missing": false,
+   "license_mergeable": false,
+   "overlap": "新 rank0 = muratcankoylan/Agent-Skills-for-Context-Engineering：顶层 SKILL.md 自述 A comprehensive collection of Agent Skills for context engineering, harness engineering, multi-agent architectures；24 个 skill 全为 context-* / memory-systems / multi-agent-patterns / evaluation / tool-design / self-improvement-loops。逐行读 ctx__SKILL.md + harness-engineering + project-development 三份，CI 面词（github action|ci/cd|runner|workflow_run|check-runs）命中 0（命令见 evidence_cmd）。唯一词面重叠是 description 里的 debugging，但候选指的是 LLM 上下文故障（Debugging context-related failures），不是 CI run 故障。本地有而候选没有的增量：Step 0 六类分诊（环境级 steps=0 / 代码级 / 资源级 / 接线级 / 在途级 / 龄期级）+ 环境级两跳取数（run 级 annotations 恒空 ⇒ 锚点是 job id 不是 run id，一手 run 38476154251 / 37678666826）+ 龄期级三条只读探针与三条硬线（补生产者不动阈值、--ref <SHA> 实测 422 只有 --ref main 可用、拦下的闸必须在结论面可见）+ Step 1~5 + Anti-Rationalization 表 + 提交侧配套。候选面内（academic / caveman / taste-skill / drawio-skill）无一件是 CI 分诊类。",
+   "license": "旧 rank0 被否两条（分开写）：① 许可受限（硬否决）—— license_body_r262.json 实测 Imbad0202/academic-research-skills 的 LICENSE 正文 6144B 为 restricted / CC-BY-NC-4.0，命中 NONCOMMERCIAL + ATTRIBUTION-NONCOMMERCIAL（sha8_head 7c9edd14）⇒ 非商业正文，按 R113-3 禁合入。② 能力差距（同时成立）—— academic-research-skills 是学术论文流水线，CI 面词全仓命中 1 且非 CI 语义，连一步 CI 分诊都没有。两条独立成立，不是「许可一条挡下、能力其实够」。新 rank0 live license_spdx=MIT 可合入，但本件无同类可搬内容，NO_OS 的依据是「候选面内同类件=0」，许可只是旧 rank0 的否决面。",
+   "maintenance": "新 rank0 live pushed_at=2026-10-12T02:06:40Z、archived=false、stars=18238、tree8=9ff0c991，在 12 个月窗内（切点 2025-10-28）；旧 rank0 live pushed=2026-10-28T02:56:11Z、stars=54318、tree8=b8d050f2。两者维护面都达标 ⇒ 出局点不在维护，而在内容重叠度。",
+   "checked_candidates": [
+    {
+     "repo": "muratcankoylan/Agent-Skills-for-Context-Engineering",
+     "role": "rank0",
+     "source": "live",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-12T02:06:40Z",
+     "archived": false,
+     "tree8": "9ff0c991",
+     "stars": 18238,
+     "skill_md_n": 24
+    },
+    {
+     "repo": "Imbad0202/academic-research-skills",
+     "role": "top1+old_rank0",
+     "source": "live",
+     "license_spdx": "NOASSERTION",
+     "license_body_class": "restricted",
+     "license_body_spdx": "CC-BY-NC-4.0",
+     "pushed_at": "2026-10-28T02:56:11Z",
+     "archived": false,
+     "tree8": "b8d050f2",
+     "stars": 54318,
+     "skill_md_n": 5
+    },
+    {
+     "repo": "JuliusBrussee/caveman",
+     "role": "top2",
+     "source": "matrix",
+     "license_spdx": "Apache-2.0",
+     "license_class": "permissive",
+     "pushed_at": "2026-10-25",
+     "stars": 114863,
+     "skill_md_n": 28
+    },
+    {
+     "repo": "Leonxlnx/taste-skill",
+     "role": "top3",
+     "source": "matrix",
+     "license_spdx": "MIT",
+     "license_class": "permissive",
+     "pushed_at": "2026-10-24",
+     "stars": 102123,
+     "skill_md_n": 1
+    },
+    {
+     "repo": "Agents365-ai/drawio-skill",
+     "role": "top4",
+     "source": "matrix",
+     "license_spdx": "MIT",
+     "license_class": "permissive",
+     "pushed_at": "2026-10-11",
+     "stars": 10342,
+     "skill_md_n": 2
+    }
+   ],
+   "verdict_basis_extra": "NO_OS_EQUIVALENT 的成立条件是候选面内同类件=0：academic（学术论文）、caveman（token 压缩）、taste-skill（前端审美）、drawio-skill（架构图）四件逐件点过，无一件含 CI 分诊。5 件全 permissive，故本件不是许可挡下的。",
+   "evidence_cmd": "for p in SKILL.md skills/harness-engineering/SKILL.md skills/project-development/SKILL.md; do gh api 'repos/muratcankoylan/Agent-Skills-for-Context-Engineering/contents/'$p'?ref=HEAD' --jq .content | base64 -d; done | grep -Eic 'github action|ci/cd|runner|workflow_run|check-runs'; sed -n '29,38p' /d/global_skills/ci-pipeline-debugging/SKILL.md",
+   "measured_at": "2026-10-28"
+  },
+  {
+   "slug": "local-computer-use",
+   "verdict": "KEEP_LOCAL",
+   "machine_family": "browser / 浏览器/桌面自动化族",
+   "local_bytes": 5863,
+   "local_skill_md_sha8": "e04897b1",
+   "new_rank0_rel": "feder-cr/invisible_dots",
+   "new_rank0_license_class": "permissive",
+   "new_rank0_license_spdx": "MIT",
+   "new_rank0_same_class": false,
+   "old_rank0_rel": "NanmiCoder/cc-haha",
+   "old_rank0_license_body_class": "restricted",
+   "old_rank0_license_body_spdx": "",
+   "old_rank0_license_body_sha8": "f53cfecb",
+   "old_rank0_capability_gap": true,
+   "old_rank0_capability_gap_note": "cc-haha 是桌面端 Claude Code 工作台，确有 Computer Use 模块，但定位是跨应用桌面操作且 README 明示「在 macOS 上，Computer Use 能操作其他应用」；没有本地那套按 Windows 设置类目的 NL 查询/修改接口，也无 Intel AIPC 本地模型。差距存在但比其余四件小（能力面部分触及，非全面）。",
+   "same_class_candidates_found": 1,
+   "increment_in_local_missing": false,
+   "license_mergeable": false,
+   "overlap": "新 rank0 = feder-cr/invisible_dots：自托管 agent（open-source, self-hosted alternative to OpenAI Dots / Grok Bot），核心是 VM + 隐身 Firefox 浏览器身份。全仓只有 1 个 SKILL.md = invisible_engine_dots/skills/invisible-playwright/SKILL.md，讲 browser_identity_create/list/launch/close 与每身份独立 profile/cookie/login/fingerprint；README 62 行把能力列成「自己的电脑 / 不被封的浏览器 / 记忆与技能 / MCP / 权限 / 任务与自动化」。与本地（Intel Local Windows Computer Use：NL 查询/修改 Windows 系统设置，五大类目 + run.ps1 单接口 + OpenVINO 本地模型）核心重叠仅「用自然语言操作电脑」这一句口号：候选走浏览器自动化 + Linux VM，本地走 Windows 设置类目。Windows 设置面词（windows|registry|bluetooth|power plan|display scaling|注册表|蓝牙|电源）在候选 SKILL.md 与 README 命中 0。本地有而候选没有的增量：五类目（性能与电源 / 设备与连接 / 显示与外壳 / 应用与用户配置）+ run.ps1 唯一接口与 ; 多指令串联 + Intel AIPC 本地模型（MiniLM-INT8 + Qwen3-4B-AWQ-INT4，无云调用）+ --DryRun 干跑 + 管理员提权与「需要管理员权限」判读 + 非 Intel AIPC 平台直接拒跑。候选反要求 Node24/Go1.25/QEMU 硬件虚拟化 + OpenRouter key（云模型）。同族旁核 CursorTouch/Windows-MCP（candidate[4]，live MIT/pushed 2026-10-27T17:16:54Z/stars 10628）是通用 Windows UI 自动化 MCP（点击/输入/截图/UIA），与本地「NL→设置类目」仍非同类件。",
+   "license": "旧 rank0 被否两条（分开写）：① 许可受限（硬否决）—— license_body_r262.json 实测 NanmiCoder/cc-haha 的 LICENSE 正文 6144B 为 restricted，命中短语 NONCOMMERCIAL（sha8_head f53cfecb）；README 徽章自标 Community Source ⇒ 非商业正文，R113-3 禁合入。② 能力差距（同时成立，但较小）—— cc-haha 的 Computer Use 是桌面工作台里的跨应用操作、且 macOS 才明示不抢鼠标，不含本地那套 Windows 设置类目 NL 接口与 Intel AIPC 本地模型。⇒ 许可单独就否决，能力面也不能替代本地件，两条独立成立。新 rank0 live MIT 可合入，但那是另一个产品（浏览器隐身 agent），不构成本地件的同类替换源。",
+   "maintenance": "新 rank0 live pushed_at=2026-10-25T01:04:52Z、archived=false、stars=32282、tree8=ef69f5e1；旧 rank0 live pushed=2026-10-28T15:15:57Z、stars=15213、tree8=8c4869c2。都在 12 个月窗内 ⇒ 结论落点在能力边界，不在维护。",
+   "checked_candidates": [
+    {
+     "repo": "feder-cr/invisible_dots",
+     "role": "rank0",
+     "source": "live",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-25T01:04:52Z",
+     "archived": false,
+     "tree8": "ef69f5e1",
+     "stars": 32282,
+     "skill_md_n": 1
+    },
+    {
+     "repo": "NanmiCoder/cc-haha",
+     "role": "top1+old_rank0",
+     "source": "live",
+     "license_spdx": "NOASSERTION",
+     "license_body_class": "restricted",
+     "license_body_spdx": "",
+     "license_body_phrases": [
+      "NONCOMMERCIAL"
+     ],
+     "pushed_at": "2026-10-28T15:15:57Z",
+     "archived": false,
+     "tree8": "8c4869c2",
+     "stars": 15213,
+     "skill_md_n": 4
+    },
+    {
+     "repo": "feder-cr/invisible_playwright_mcp",
+     "role": "top2",
+     "source": "matrix",
+     "license_class": "permissive",
+     "pushed_at": "2026-10-25",
+     "stars": 0,
+     "skill_md_n": 0
+    },
+    {
+     "repo": "browser-use/browser-harness",
+     "role": "top3",
+     "source": "matrix",
+     "license_class": "permissive",
+     "pushed_at": "2026-10-25",
+     "skill_md_n": 0
+    },
+    {
+     "repo": "CursorTouch/Windows-MCP",
+     "role": "top4",
+     "source": "live",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-27T17:16:54Z",
+     "archived": false,
+     "stars": 10628,
+     "classification": "通用 Windows UI 自动化 MCP，非 NL→设置类目同类件"
+    }
+   ],
+   "verdict_basis_extra": "KEEP_LOCAL 成立条件（增量不可并入且无 permissive 同类替换源）：新 rank0 是浏览器隐身 agent、桌面工作台与 Windows UI 自动化 MCP 均只覆盖通用 computer use，无一件提供本地那套 Windows 设置类目 NL 接口；本地件无被替换的余地。",
+   "evidence_cmd": "gh api 'repos/feder-cr/invisible_dots/contents/invisible_engine_dots/skills/invisible-playwright/SKILL.md?ref=HEAD' --jq .content | base64 -d | grep -Eic 'windows|registry|bluetooth|power plan|display scaling|注册表|蓝牙|电源'; gh api 'repos/CursorTouch/Windows-MCP/contents/README.md?ref=HEAD' --jq .content | base64 -d | grep -Eic 'system settings|power plan|display scaling'; sed -n '6,8p' /d/global_skills/local-computer-use/SKILL.md",
+   "measured_at": "2026-10-28"
+  },
+  {
+   "slug": "prompt-consolidation",
+   "verdict": "NO_OS_EQUIVALENT",
+   "machine_family": "story / 网文/创意写作族（机器误分：keywords=[\"prompt\",\"consolidation\",\"append\",\"only\"] 落进 story family_pool_n=63）",
+   "local_bytes": 16145,
+   "local_skill_md_sha8": "a02782a3",
+   "new_rank0_rel": "zenstory-ai/drama-skills",
+   "new_rank0_license_class": "permissive",
+   "new_rank0_license_spdx": "MIT",
+   "new_rank0_same_class": false,
+   "old_rank0_rel": "Imbad0202/academic-research-skills",
+   "old_rank0_license_body_class": "restricted",
+   "old_rank0_license_body_spdx": "CC-BY-NC-4.0",
+   "old_rank0_license_body_sha8": "7c9edd14",
+   "old_rank0_capability_gap": true,
+   "old_rank0_capability_gap_note": "学术论文流水线；append-only|补丁|prompt consolidation 在全 README 命中 0，无补丁层清理语义。",
+   "same_class_candidates_found": 0,
+   "increment_in_local_missing": false,
+   "license_mergeable": false,
+   "overlap": "新 rank0 = zenstory-ai/drama-skills：开源 AI 短剧/漫剧创作 skill 合集，skills/ 下 short-drama* 共 12 件（develop / write / assets / image-prompts / storyboard / video-prompts / produce / edit / review / novel-analyze），顶层 short-drama 是 creator-first 五文档路由（剧本.md / 视觉设定.md / 分镜.md / 图片提示词.md / 视频提示词.md + 本地 Dashboard）。与本地（append-only 补丁层清理 → 按功能分章节的结构化合并版 + V1-V7 漏洞扫描）零同类：本地核心动作是识别并去除 [以下为XX追加] / [补丁 vX.X] / [vXX 追加] 等标记、规则去重、语义不变量校验；候选核心动作是创作短剧五文档。drama__master + drama__review 两份 SKILL.md 里 append-only|prompt consolidation|补丁|prompt layer 命中 0。本地有而候选没有的增量：补丁标记识别清单（13 种模式含 Callout 形式）+ 单文件硬约束（严禁跨文件合并，含角色边界破裂 / 变量口径冲突 / 降级策略错位 / 保护清单交叉污染四类危害）+ 每个漏洞的 [原文已有 / 清理引入 / 清理退化] 三态来源判定 + Grep 双验证（5a 标记残留=0 / 5b 规则覆盖 100%）+ 决策树联动 prompt-system-audit。候选面内（academic / humanizer / avoid-ai-writing / sepia）无一件是补丁清理类。",
+   "license": "旧 rank0 被否两条（分开写）：① 许可受限（硬否决）—— 同上 Imbad0202/academic-research-skills 正文实测 restricted / CC-BY-NC-4.0（sha8_head 7c9edd14）⇒ 禁合入。② 能力差距（同时成立）—— 学术论文流水线，append-only|补丁|prompt consolidation 命中 0，无补丁清理语义。两条独立成立。新 rank0 live MIT 可合入，但本件无同类可搬内容。",
+   "maintenance": "新 rank0 live pushed_at=2026-10-20T19:23:14Z、archived=false、stars=3475、tree8=fdb7b7c5；旧 rank0 live 2026-10-28T02:56:11Z、stars=54318。窗内 ⇒ 出局点在同类件=0。",
+   "checked_candidates": [
+    {
+     "repo": "zenstory-ai/drama-skills",
+     "role": "rank0",
+     "source": "live",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-20T19:23:14Z",
+     "archived": false,
+     "tree8": "fdb7b7c5",
+     "stars": 3475,
+     "skill_md_n": 12
+    },
+    {
+     "repo": "Imbad0202/academic-research-skills",
+     "role": "top1+old_rank0",
+     "source": "live",
+     "license_spdx": "NOASSERTION",
+     "license_body_class": "restricted",
+     "license_body_spdx": "CC-BY-NC-4.0",
+     "pushed_at": "2026-10-28T02:56:11Z",
+     "archived": false,
+     "tree8": "b8d050f2",
+     "stars": 54318,
+     "skill_md_n": 5
+    },
+    {
+     "repo": "blader/humanizer",
+     "role": "top2",
+     "source": "matrix",
+     "license_class": "permissive",
+     "pushed_at": "2026-10-20",
+     "skill_md_n": 1
+    },
+    {
+     "repo": "conorbronsdon/avoid-ai-writing",
+     "role": "top3",
+     "source": "matrix",
+     "license_class": "permissive",
+     "pushed_at": "2026-10-20",
+     "skill_md_n": 1
+    },
+    {
+     "repo": "Nanako0129/sepia",
+     "role": "top4",
+     "source": "matrix",
+     "license_class": "permissive",
+     "pushed_at": "2026-10-20",
+     "skill_md_n": 1
+    }
+   ],
+   "verdict_basis_extra": "机器把本件分进 story 族（family_pool_n=63），导致 rank0 落到短剧创作合集 —— 这正是人读要纠正的：同类判定必须按内容，不按机器 family。同类件=0 ⇒ NO_OS_EQUIVALENT。",
+   "evidence_cmd": "for p in skills/short-drama/SKILL.md skills/short-drama-review/SKILL.md; do gh api 'repos/zenstory-ai/drama-skills/contents/'$p'?ref=HEAD' --jq .content | base64 -d; done | grep -Eic 'append-only|prompt consolidation|补丁|prompt layer'; grep -c '^| [][]' /d/global_skills/prompt-consolidation/SKILL.md",
+   "measured_at": "2026-10-28"
+  },
+  {
+   "slug": "prompt-system-audit",
+   "verdict": "KEEP_LOCAL",
+   "machine_family": "story / 网文/创意写作族（机器误分：keywords=[\"prompt\",\"system\",\"audit\"]）",
+   "local_bytes": 33023,
+   "local_skill_md_sha8": "9e820984",
+   "new_rank0_rel": "Ar9av/obsidian-wiki",
+   "new_rank0_license_class": "permissive",
+   "new_rank0_license_spdx": "MIT",
+   "new_rank0_same_class": true,
+   "old_rank0_rel": "Imbad0202/academic-research-skills",
+   "old_rank0_license_body_class": "restricted",
+   "old_rank0_license_body_spdx": "CC-BY-NC-4.0",
+   "old_rank0_license_body_sha8": "7c9edd14",
+   "old_rank0_capability_gap": true,
+   "old_rank0_capability_gap_note": "学术论文流水线；无 V1-V8 漏洞类 / 无跨文件角色关系图 / 无提示词门禁语义。",
+   "same_class_candidates_found": 1,
+   "increment_in_local_missing": false,
+   "license_mergeable": false,
+   "overlap": "新 rank0 = Ar9av/obsidian-wiki：digital brain 框架（markdown skill 集，.skills/ 下 40+ 个 wiki-* 件）。其审核能力读在 .skills/wiki-lint/SKILL.md（684 行：orphan / broken wikilink / missing frontmatter / stale / contradiction / lifecycle / tag 检查 + obsidian-wiki lint --json 的 findings 与 schema 块）、.skills/wiki-dedup/SKILL.md（页面身份去重：node_id / title / aliases / tags + 置信度 score ≥0.90 + redirects_to 合并 stub + audit/merge/auto 三模式）、.skills/impl-validator/SKILL.md（PASS/WARN/FAIL 第二意见，查 placeholder / copy-paste error / logical contradiction）。深层重叠：都做跨文件 Markdown 的语义一致性 / 健康审计。对象不同：候选审 Obsidian vault 的 wikilink / frontmatter / tag 知识图，本地审多 agent 提示词系统（角色关系图 + 评分公式 + 门禁）。本地有而候选没有的增量：V1-V8 提示词专用漏洞类（实测 8 个 #### V 段：V1-V7 + V8 单一真相源是否被违反；Phase 2 标题仍写「5类」，本地件内部漂移如实记录）（角色调用方式缺失 / 新旧补丁矛盾、线性工作流有无强制门禁、评分公式变量来源与聚合、超时降级、跨文件数据传递、历史分数锚定口径、保护清单、单一真相源）—— 专门针对「AI 执行时跳过步骤」，候选 wiki-lint 一类都不含；Phase 4 修复补丁生成（只做加法不做减法 + 可粘贴补丁文本）；Phase 4.5 数据层 D1-D6（删除/重命名文件的死链扫描、注册表 orphan、路径漂移、双副本一致性、时间戳、计数对账）；总体健康评分与审计报告模板。候选可参考但不可直接合入的增量：确定性 CLI + JSON findings / schema + 页面身份置信度 + redirects_to 合并 stub —— 全是 Obsidian 专用，搬到提示词文件需重写对象层。",
+   "license": "旧 rank0 被否两条（分开写）：① 许可受限（硬否决）—— 同上 Imbad0202 正文实测 restricted / CC-BY-NC-4.0 ⇒ 禁合入。② 能力差距（同时成立）—— 学术论文流水线 vs 提示词系统一致性审计，候选零 V1-V8 / 零跨文件角色关系 / 零提示词门禁语义。两条独立成立。新 rank0 live MIT 可合入，但它与被审对象（Obsidian vault）绑定，其增量无法并入本地提示词审计。",
+   "maintenance": "新 rank0 live pushed_at=2026-10-27T07:26:53Z、archived=false、stars=3631、tree8=4f457e15；旧 rank0 live 2026-10-28T02:56:11Z、stars=54318。窗内 ⇒ 结论落点在对象层不同。",
+   "checked_candidates": [
+    {
+     "repo": "Ar9av/obsidian-wiki",
+     "role": "rank0",
+     "source": "live",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-27T07:26:53Z",
+     "archived": false,
+     "tree8": "4f457e15",
+     "stars": 3631,
+     "skill_md_n": 40
+    },
+    {
+     "repo": "zenstory-ai/drama-skills",
+     "role": "top1",
+     "source": "live",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-20T19:23:14Z",
+     "archived": false,
+     "tree8": "fdb7b7c5",
+     "stars": 3475,
+     "skill_md_n": 12
+    },
+    {
+     "repo": "Imbad0202/academic-research-skills",
+     "role": "top2+old_rank0",
+     "source": "live",
+     "license_spdx": "NOASSERTION",
+     "license_body_class": "restricted",
+     "license_body_spdx": "CC-BY-NC-4.0",
+     "pushed_at": "2026-10-28T02:56:11Z",
+     "archived": false,
+     "tree8": "b8d050f2",
+     "stars": 54318,
+     "skill_md_n": 5
+    },
+    {
+     "repo": "blader/humanizer",
+     "role": "top3",
+     "source": "matrix",
+     "license_class": "permissive",
+     "pushed_at": "2026-10-20",
+     "skill_md_n": 1
+    },
+    {
+     "repo": "conorbronsdon/avoid-ai-writing",
+     "role": "top4",
+     "source": "matrix",
+     "license_class": "permissive",
+     "pushed_at": "2026-10-20",
+     "skill_md_n": 1
+    }
+   ],
+   "verdict_basis_extra": "KEEP_LOCAL 成立条件：rank0 与本地同属「审计」大类（new_rank0_same_class=true），但增量是 Obsidian 专用的确定性 CLI / JSON findings / 页面身份置信度，需重写对象层才能用于提示词文件 ⇒ increment_in_local_missing=false，无可并入本地核心能力的增量；本地 V1-V8 + D1-D6 在候选侧全缺。",
+   "evidence_cmd": "gh api 'repos/Ar9av/obsidian-wiki/contents/.skills/wiki-lint/SKILL.md?ref=HEAD' --jq .content | base64 -d | grep -Eic '^#### V[0-9]|mandatory gate|scoring formula|role call'; grep -c '^#### V' /d/global_skills/prompt-system-audit/SKILL.md; grep -c 'Phase 4.5' /d/global_skills/prompt-system-audit/SKILL.md",
+   "measured_at": "2026-10-28"
+  },
+  {
+   "slug": "writing-plans",
+   "verdict": "KEEP_LOCAL",
+   "machine_family": "quality / 调试/测试/评审/计划族",
+   "local_bytes": 11266,
+   "local_skill_md_sha8": "ba9a85f8",
+   "new_rank0_rel": "zhayujie/CowAgent",
+   "new_rank0_license_class": "permissive",
+   "new_rank0_license_spdx": "MIT",
+   "new_rank0_same_class": false,
+   "old_rank0_rel": "Imbad0202/academic-research-skills",
+   "old_rank0_license_body_class": "restricted",
+   "old_rank0_license_body_spdx": "CC-BY-NC-4.0",
+   "old_rank0_license_body_sha8": "7c9edd14",
+   "old_rank0_capability_gap": true,
+   "old_rank0_capability_gap_note": "academic-research-skills 的 /ars-plan 是 Socratic 论文结构规划，产出论文大纲而非带精确文件 / 签名 / 测试的工程实施计划；与本地无同类语义。",
+   "same_class_candidates_found": 1,
+   "increment_in_local_missing": false,
+   "license_mergeable": false,
+   "overlap": "新 rank0 = zhayujie/CowAgent：个人 AI 助手 / Agent Harness（README：Open-source personal AI assistant & Agent Harness. Plans tasks, runs tools and skills, self-evolves...），仓库结构是 agent / plugins / channel / skills，只有 3 个 skill（image-generation / knowledge-wiki / skill-creator）。实读 skill-creator（429 行，怎么建/装/更 skill）与 knowledge-wiki（96 行，knowledge/ 目录 ingest/synthesize/query），plan 写作面词（implementation plan|writing-plans|task decomposition|acceptance criteria|step-by-step plan）命中 0。与本地（把 spec 变成工程师可逐步执行的 TDD 实施计划文档）核心重叠仅 description 里 Plans tasks 一句；候选没有 plan 文档的写作方法。本地有而候选没有的增量：File Structure / Task Right-Sizing / Step Granularity（一步一动作且带可检查结果）/ Plan Document Header（Goal+Architecture+Tech Stack+Spec+Global Constraints+Review Focus）/ Task Structure（Files+Interfaces+Step1-5：写失败测试→跑失败→实现→跑通过→提交）/ No Placeholders 清单（7 类禁写）/ Self-Review 五查 / Execution Handoff（subagent-driven vs native 两路）。同候选面旁核：OthmanAdi/planning-with-files（candidate[1]，live MIT / pushed 2026-10-28T15:00:19Z / stars 27733，SKILL.md 41079B，hooks: UserPromptSubmit/PreToolUse/PostToolUse/Stop/PreCompact）确是同类 planning 件，但其增量是正交的 —— 把 task_plan.md / findings.md / progress.md 落盘 + 生命周期钩子做跨 /clear / compaction / crash 的恢复，不教「怎么写一份高质量计划」；backnotprop/plannotator 是计划评审 UI，亦非同类作者件。",
+   "license": "旧 rank0 被否两条（分开写）：① 许可受限（硬否决）—— 同上 Imbad0202 正文实测 restricted / CC-BY-NC-4.0 ⇒ 禁合入。② 能力差距（同时成立）—— /ars-plan 是论文结构 Socratic 规划，非工程实施计划写作；本地要求的精确文件路径 / 接口签名 / 逐步 TDD 测试与预期输出，候选全无。两条独立成立。新 rank0 live MIT 可合入，但 rank0 是 agent harness、不同类。",
+   "maintenance": "新 rank0 live pushed_at=2026-10-28T13:09:51Z、archived=false、stars=47650、tree8=d2096381（默认分支 master）；旧 rank0 live 2026-10-28T02:56:11Z、stars=54318。窗内。旁核 planning-with-files live pushed=2026-10-28T15:00:19Z、stars=27733，亦窗内。",
+   "checked_candidates": [
+    {
+     "repo": "zhayujie/CowAgent",
+     "role": "rank0",
+     "source": "live",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-28T13:09:51Z",
+     "archived": false,
+     "tree8": "d2096381",
+     "stars": 47650,
+     "skill_md_n": 3,
+     "branch": "master"
+    },
+    {
+     "repo": "OthmanAdi/planning-with-files",
+     "role": "top1",
+     "source": "live",
+     "license_spdx": "MIT",
+     "pushed_at": "2026-10-28T15:00:19Z",
+     "archived": false,
+     "stars": 27733,
+     "skill_md_bytes": 41079,
+     "classification": "同类 planning 件，但增量（落盘三文件+生命周期钩子抗上下文丢失）与本地 plan 写作正交互补"
+    },
+    {
+     "repo": "backnotprop/plannotator",
+     "role": "top2",
+     "source": "matrix",
+     "license_class": "permissive",
+     "pushed_at": "2026-10-20",
+     "skill_md_n": 1
+    },
+    {
+     "repo": "Imbad0202/academic-research-skills",
+     "role": "top3+old_rank0",
+     "source": "live",
+     "license_spdx": "NOASSERTION",
+     "license_body_class": "restricted",
+     "license_body_spdx": "CC-BY-NC-4.0",
+     "pushed_at": "2026-10-28T02:56:11Z",
+     "archived": false,
+     "tree8": "b8d050f2",
+     "stars": 54318,
+     "skill_md_n": 5
+    },
+    {
+     "repo": "blader/humanizer",
+     "role": "top4",
+     "source": "matrix",
+     "license_class": "permissive",
+     "pushed_at": "2026-10-20",
+     "skill_md_n": 1
+    }
+   ],
+   "verdict_basis_extra": "KEEP_LOCAL 成立条件：rank0（CowAgent）不同类、无 plan 写作增量；旁核 planning-with-files 的增量正交（钩子式持久化，不提升计划质量），纯替换会丢掉本地 TDD 步粒度 / No-Placeholders / 自检 ⇒ 降级。该正交增量登记为可选未来并入项，不构成本轮 UPGRADE。",
+   "evidence_cmd": "for p in skills/skill-creator/SKILL.md skills/knowledge-wiki/SKILL.md; do gh api 'repos/zhayujie/CowAgent/contents/'$p'?ref=HEAD' --jq .content | base64 -d; done | grep -Eic 'implementation plan|writing-plans|task decomposition|acceptance criteria|step-by-step plan'; gh api 'repos/OthmanAdi/planning-with-files/contents/skills/planning-with-files/SKILL.md?ref=HEAD' --jq .content | base64 -d | grep -Eic 'No Placeholders|exact file path|write the failing test'; sed -n '110,127p' /d/global_skills/writing-plans/SKILL.md",
+   "measured_at": "2026-10-28"
+  }
+ ]
+}
