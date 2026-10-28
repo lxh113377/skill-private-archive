@@ -3,17 +3,9 @@
  "readonly": true,
  "provenance_cmd": "python 05-exec/r260_r269_converge.py --json <件>",
  "rule_leaf": "memory/06-constraints.part18.md",
- "untracked_py_n": 1,
- "counts": {
-  "NOTIFY_FIRST": 1
- },
+ "untracked_py_n": 0,
+ "counts": {},
  "buck_passing": [],
- "items": [
-  {
-   "file": "05-exec/r262_license_body_pack.py",
-   "refs_n": 7,
-   "verdict": "NOTIFY_FIRST",
-   "reason": "被 7 处引用，处置前须具名通知"
-  }
- ]
+ "items": [],
+ "face_state": "empty-by-successful-query"
 }

@@ -2,7 +2,7 @@
  "schema": "route-truth-v2",
  "readonly": true,
  "router": "C:/Users/37533/Desktop/workspace/焚诀/eval\\unified_router.py",
- "measured_at": "2026-10-28 19:07:51",
+ "measured_at": "2026-10-28 22:45:22",
  "rows": [
   {
    "skill": "win-toolchain-pitfalls",
@@ -226,7 +226,7 @@
     "fenjue-lessons-hitrate"
    ],
    "outcome": "HIT",
-   "elapsed_s": 0.1
+   "elapsed_s": 0.2
   },
   {
    "task": "Workers 调用量",
@@ -240,7 +240,7 @@
     "pixelle-api-ensure"
    ],
    "outcome": "HIT",
-   "elapsed_s": 0.1
+   "elapsed_s": 0.2
   },
   {
    "task": "Resend 发邮",

@@ -360,7 +360,7 @@
     }
    ],
    "blocker": null,
-   "read_state": "UNVERIFIED",
+   "read_state": "MEASURED",
    "read_face": {
     "script": "r200_pages_face.py",
     "artifact": "pages_http_latest.json",
@@ -379,9 +379,14 @@
     ]
    },
    "read_why": null,
-   "usage_value": null,
-   "usage_meta": null,
-   "usage_why": "路径取不到：row/requests_total"
+   "usage_value": 253803,
+   "usage_meta": {
+    "unit": "次",
+    "extra": null,
+    "extra_label": null,
+    "window": "2026-10-01~2026-10-29"
+   },
+   "usage_why": null
   },
   {
    "tool": "Cloudflare-Workers",
@@ -532,12 +537,12 @@
     ]
    },
    "read_why": null,
-   "usage_value": 13.31,
+   "usage_value": 13.35,
    "usage_meta": {
     "unit": "MiB（本地库体量·非额度）",
-    "extra": 46243,
+    "extra": 46369,
     "extra_label": "合计行数",
-    "window": "2026-10-28T19:07:37"
+    "window": "2026-10-28T22:45:12"
    },
    "usage_why": null
   },
@@ -763,7 +768,7 @@
   },
   "matrix_src": {
    "file": "tool_skill_matrix_latest.json",
-   "generated_at": "2026-10-28 19:05",
+   "generated_at": "2026-10-28 22:42",
    "cmd": "python 05-exec/r163_tool_skill_matrix.py --json <out>"
   },
   "workflow_src": {
@@ -783,7 +788,7 @@
    "files": "tool_skill_matrix_latest.json"
   }
  },
- "read_at": "2026-10-28T19:07:52",
+ "read_at": "2026-10-28T22:45:22",
  "ft_rows": [
   {
    "tool": "GitHub",

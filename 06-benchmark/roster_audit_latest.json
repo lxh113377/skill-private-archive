@@ -11,9 +11,7 @@
   "C:/Users/37533/Desktop/workspace/超市web/supermarket-web",
   "C:/Users/37533/Desktop/workspace/项目/新建文件夹"
  ],
- "drift": [
-  "未跟踪件贡献了第②层真命中（工作树灌数）=['05-exec/r262_license_body_pack.py']"
- ],
+ "drift": [],
  "layer5_usage": {
   "Cloudflare-Workers": [
    0,
@@ -28,7 +26,7 @@
    "gh_billing_latest.json"
   ],
   "Cloudflare-Pages": [
-   "PATH-MISS",
+   253803,
    "pages_http_latest.json"
   ],
   "Cloudflare-Turnstile": [
@@ -36,7 +34,7 @@
    "turnstile_usage_latest.json"
   ],
   "SQLite": [
-   13.31,
+   13.35,
    "sqlite_usage_latest.json"
   ]
  },

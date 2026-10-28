@@ -1,6 +1,6 @@
 {
  "schema": "r260-local-baseline-v1",
- "generated_at": "2026-10-28T11:08:27+00:00",
+ "generated_at": "2026-10-28T14:45:45+00:00",
  "cmd": "python 05-exec/r260_local_baseline.py",
  "rerun": "cd 自建skill优化 && export PYTHONPYCACHEPREFIX=/tmp/pycache_r260b && python 05-exec/r260_local_baseline.py",
  "single_source": {
