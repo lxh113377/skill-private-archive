@@ -2,7 +2,7 @@
  "schema": "route-truth-v2",
  "readonly": true,
  "router": "C:/Users/37533/Desktop/workspace/焚诀/eval\\unified_router.py",
- "measured_at": "2026-10-28 15:34:13",
+ "measured_at": "2026-10-28 16:03:05",
  "rows": [
   {
    "skill": "win-toolchain-pitfalls",
@@ -39,7 +39,7 @@
     }
    ],
    "llm_reason": "Top-3几乎并列 (diff=0.0001)",
-   "elapsed_s": 1.7
+   "elapsed_s": 0.2
   },
   {
    "skill": "win-toolchain-pitfalls",
@@ -76,7 +76,7 @@
     }
    ],
    "llm_reason": "Top-3几乎并列 (diff=0.0058)",
-   "elapsed_s": 1.9
+   "elapsed_s": 0.2
   },
   {
    "skill": "chaoshi-web-deploy",
@@ -93,7 +93,7 @@
     }
    ],
    "llm_reason": "",
-   "elapsed_s": 0.3
+   "elapsed_s": 0.2
   },
   {
    "skill": "ci-pipeline-debugging",
@@ -130,7 +130,7 @@
     }
    ],
    "llm_reason": "",
-   "elapsed_s": 1.9
+   "elapsed_s": 0.2
   }
  ],
  "tasks": [
@@ -144,7 +144,7 @@
     "chaoshi-web-deploy"
    ],
    "outcome": "HIT_DIRECT",
-   "elapsed_s": 0.3
+   "elapsed_s": 0.2
   },
   {
    "task": "CI 红了",
@@ -156,7 +156,7 @@
     "ci-pipeline-debugging"
    ],
    "outcome": "HIT_DIRECT",
-   "elapsed_s": 0.3
+   "elapsed_s": 0.2
   },
   {
    "task": "钩子静默推送",
@@ -170,7 +170,7 @@
     "coding-agent"
    ],
    "outcome": "HIT",
-   "elapsed_s": 1.8
+   "elapsed_s": 0.2
   },
   {
    "task": "Actions 分钟",
@@ -184,7 +184,7 @@
     "screenshot"
    ],
    "outcome": "HIT",
-   "elapsed_s": 1.8
+   "elapsed_s": 0.2
   },
   {
    "task": "R2 开桶",
@@ -198,7 +198,7 @@
     "A-project-handoff"
    ],
    "outcome": "MISS",
-   "elapsed_s": 1.8
+   "elapsed_s": 0.2
   },
   {
    "task": "Turnstile",
@@ -212,7 +212,7 @@
     "dingtalk-aitable"
    ],
    "outcome": "DISPUTED",
-   "elapsed_s": 1.9
+   "elapsed_s": 0.2
   },
   {
    "task": "D1 查额度",
@@ -226,7 +226,7 @@
     "fenjue-lessons-hitrate"
    ],
    "outcome": "HIT",
-   "elapsed_s": 1.8
+   "elapsed_s": 0.2
   },
   {
    "task": "Workers 调用量",
@@ -240,7 +240,7 @@
     "pixelle-api-ensure"
    ],
    "outcome": "HIT",
-   "elapsed_s": 1.6
+   "elapsed_s": 0.2
   },
   {
    "task": "Resend 发邮",
@@ -254,7 +254,7 @@
     "oracle"
    ],
    "outcome": "UNOWNED",
-   "elapsed_s": 1.8
+   "elapsed_s": 0.2
   },
   {
    "task": "Upstash 限流",
@@ -268,7 +268,7 @@
     "libreoffice-base"
    ],
    "outcome": "UNOWNED",
-   "elapsed_s": 1.9
+   "elapsed_s": 0.2
   }
  ],
  "task_judged": 7,

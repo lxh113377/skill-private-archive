@@ -36,8 +36,9 @@
     "gstack"
    ],
    "yardstick_absent": false,
-   "wf_real_hits": 23,
+   "wf_real_hits": 34,
    "wf_real_files": [
+    "quarterly_audit.yml",
     "r113_quarterly_audit.py",
     "r19_feedback_append.py",
     "r31_ci_surface.py",
@@ -126,7 +127,7 @@
     ]
    },
    "read_why": null,
-   "usage_value": 27453.0,
+   "usage_value": 27503.0,
    "usage_meta": {
     "unit": "分钟（官方计费·账号级·端点默认窗口）",
     "extra": 0.0,
@@ -377,7 +378,7 @@
     ]
    },
    "read_why": null,
-   "usage_value": 235494,
+   "usage_value": 235707,
    "usage_meta": {
     "unit": "次",
     "extra": null,
@@ -535,12 +536,12 @@
     ]
    },
    "read_why": null,
-   "usage_value": 12.88,
+   "usage_value": 12.93,
    "usage_meta": {
     "unit": "MiB（本地库体量·非额度）",
-    "extra": 45142,
+    "extra": 45257,
     "extra_label": "合计行数",
-    "window": "2026-10-28T15:33:40"
+    "window": "2026-10-28T16:02:55"
    },
    "usage_why": null
   },
@@ -766,15 +767,15 @@
   },
   "matrix_src": {
    "file": "tool_skill_matrix_latest.json",
-   "generated_at": "2026-10-28 15:30",
+   "generated_at": "2026-10-28 16:00",
    "cmd": "python 05-exec/r163_tool_skill_matrix.py --json <out>"
   },
   "workflow_src": {
    "file": "workflow_usage_latest.json",
    "generated_at": null,
-   "face_files": 277,
-   "real_face_files": 159,
-   "real_total_hits": 84
+   "face_files": 295,
+   "real_face_files": 176,
+   "real_total_hits": 95
   },
   "third_src": {
    "files_scanned": 4358,
@@ -786,7 +787,7 @@
    "files": "tool_skill_matrix_latest.json"
   }
  },
- "read_at": "2026-10-28T15:34:14",
+ "read_at": "2026-10-28T16:03:06",
  "ft_rows": [
   {
    "tool": "GitHub",

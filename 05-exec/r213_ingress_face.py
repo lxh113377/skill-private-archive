@@ -50,10 +50,17 @@ def _read(p):
 
 
 def reachable():
-    """SKILL.md 里反引号包住的 .md 指针（文件名集）。取不到 SKILL.md 返回 None。"""
+    """SKILL.md 里反引号包住的 .md 指针（文件名集）。取不到 SKILL.md 返回 None。
+
+    R255-2 修法（本仓自持件，不再挂「归属方处置」）：`_read` 读失败/被夹具注入成 None 时，
+    旧代码把 None 交给 re.findall ⇒ TypeError 崩溃。崩溃虽不是「假绿」，但**形态错**：
+    它把「我读不到」报成「脚本坏了」，排障方向被指错（与本仓 R256 判据 C 的「吞成空结论」
+    互为镜像，两端都不该）。现在显式折成 None ⇒ main 打 [INGRESS:UNVERIFIED] + rc=2（R247）。"""
     if not os.path.isfile(SKILL):
         return None
     t = _read(SKILL)
+    if t is None:
+        return None
     return set(m.lower() for m in re.findall(BT + r"([A-Za-z0-9_.\-]+\.md)" + BT, t))
 
 
@@ -64,7 +71,12 @@ def bearer_vols():
         return None
     for f in os.listdir(AMREF):
         if f.endswith(".md"):
-            vols[f.lower()] = _read(os.path.join(AMREF, f)).lower()
+            txt = _read(os.path.join(AMREF, f))
+            # 同上（R255-2）：任一卷读不到即返回 None，让整面按「承载集不可判」走 UNVERIFIED，
+            # 而不是拿半套承载面去判 GAP（半套面会把读不到的卷一律算成「没货」= 假缺口）。
+            if txt is None:
+                return None
+            vols[f.lower()] = txt.lower()
     return vols
 
 

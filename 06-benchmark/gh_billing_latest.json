@@ -10,16 +10,16 @@
  ],
  "state": "MEASURED",
  "items_n": 12,
- "minutes_total": 27453.0,
- "gross_total": 185.3663,
+ "minutes_total": 27503.0,
+ "gross_total": 185.6672,
  "net_total": 0.0,
  "wholly_discounted": true,
  "per_product": {
   "actions / Actions Linux": {
-   "quantity": 23883.0,
+   "quantity": 23933.0,
    "unitType": "Minutes",
-   "gross": 143.298,
-   "discount": 143.298,
+   "gross": 143.598,
+   "discount": 143.598,
    "net": 0.0,
    "items": 3,
    "repos": [
@@ -41,10 +41,10 @@
    ]
   },
   "actions / Actions storage": {
-   "quantity": 831.54850844,
+   "quantity": 834.0095382879999,
    "unitType": "GigabyteHours",
-   "gross": 0.27941206399999996,
-   "discount": 0.27941206399999996,
+   "gross": 0.280239013,
+   "discount": 0.280239013,
    "net": 0.0,
    "items": 3,
    "repos": [
@@ -53,9 +53,9 @@
    ]
   },
   "git_lfs / Git LFS storage": {
-   "quantity": 52.355104995999994,
+   "quantity": 52.430717634,
    "unitType": "GigabyteHours",
-   "gross": 0.004924467,
+   "gross": 0.004931581,
    "discount": 0.004931581,
    "net": 0.0,
    "items": 3,

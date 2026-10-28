@@ -58,15 +58,24 @@ def _read(p):
     try:
         return io.open(p, encoding="utf-8", errors="replace").read()
     except OSError:
-        return ""
+        return ""   # 读不到 ⇒ 空文本，交调用方按面判 UNVERIFIED（不抛，见 R255-2）
 
 
 def corpus_window():
-    """召回窗口取权威值；取不到返回 None（不硬编 800）。"""
+    """召回窗口取权威值；取不到返回 None（不硬编 800）。
+
+    R255-2 修法（本仓自持件，非他人件 ⇒ 不再挂「归属方处置」）：`_read` 被换成返回
+    None（夹具 p5 的注入形态，等价于真实读失败）时，旧代码把 None 直接喂给 re.search
+    ⇒ TypeError 崩溃。崩溃不是绿错，但**形态错**：把「我读不到」报成「脚本坏了」，
+    排障会被指错方向（与本仓 R256 判据 C「吞成空结论」互为镜像，两端都不该）。
+    现在显式把 None 折成「取不到」⇒ main 走 [RECALL:UNVERIFIED] + rc=2（R247 零输入不记绿）。"""
     p = os.path.join(EVAL_DIR, "build_indexes.py")
     if not os.path.isfile(p):
         return None
-    m = re.search(r"CORPUS_CHARS\s*=\s*(\d+)", _read(p))
+    txt = _read(p)
+    if txt is None:
+        return None
+    m = re.search(r"CORPUS_CHARS\s*=\s*(\d+)", txt)
     return int(m.group(1)) if m else None
 
 
@@ -128,6 +137,17 @@ def route_layer(own, reg):
     rows = {}
     for r in rt.get("rows", []):
         rows[(r.get("skill"), r.get("topic"))] = r
+    # R255-3 修法（同为本仓自持件）：router 整轮没返回时，真值件每行的 top1/rank 都是 None，
+    #   旧代码逐条判成「真值未召回」⇒ 环境性假红（全量那次报「新增 9 条不可召回」，
+    #   单跑 0.3s 却 rc=0）。方向也错：本件已有「路由真值层不可用」的 UNVERIFIED 文案，
+    #   却在另一头把同一件事记成反方向的「真缺口」，既追不存在的债又侵蚀判据可信度。
+    #   正解 = 逐条判 GAP 之前先做**整体信号判定**：无返回占比 >= 0.9 ⇒ 整轮 UNVERIFIED。
+    vals = list(rows.values())
+    if vals:
+        none_n = sum(1 for x in vals if not x.get("top1"))
+        if none_n / len(vals) >= 0.9:
+            return None, ("真值面 %d/%d 行无 top1（router 整轮无返回）⇒ 环境性，"
+                          "不逐条折算成不可召回" % (none_n, len(vals)))
     gaps, judged = [], 0
     for item in reg.get("probes", []):
         if item.get("expect") != "recalled":
@@ -197,6 +217,17 @@ def main(argv=None):
     else:
         print("[RECALL:UNVERIFIED] 真值件缺 task 段 ⇒ 先跑 r209_route_truth_measure.py 重测")
         return 2
+    # R255-3 第三层同修：真值件里 task 段的 outcome 也是拿 router 的返回算出来的 ——
+    #   整轮无返回时 top1=None 会把 outcome 压成 MISS，于是同一件环境性故障会在
+    #   「窗口/真值/任务」三层各报一批假缺口（r255 那 9 条 = 7 task + 2 真值行）。
+    #   所以三层共用同一个整体信号闸：有名册归属的 task 行里无 top1 占比 >= 0.9 ⇒ 整轮 UNVERIFIED。
+    trow = [x for x in tasks if x.get("want")]
+    if trow:
+        tnone = sum(1 for x in trow if not x.get("top1"))
+        if tnone / len(trow) >= 0.9:
+            print("[RECALL:UNVERIFIED] 任务真值 %d/%d 行无 top1（router 整轮无返回）"
+                  " ⇒ 环境性，不折算成任务层缺口（R255-3）" % (tnone, len(trow)))
+            return 2
     tgaps = ["task:%s|期望=%s 实测 top1=%s（任务语句召不回承载件）"
              % (x.get("task"), x.get("want"), x.get("top1"))
              for x in tasks if x.get("want") and x.get("outcome")

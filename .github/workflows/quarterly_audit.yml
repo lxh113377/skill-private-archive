@@ -1,0 +1,63 @@
+# 季度巡检节律看门狗（r260 立，需求5「长效季度巡检机制」的 CI 面）
+#
+# 为什么只跑这三面、不跑深度巡检（关键设计取舍，勿"顺手补齐"）：
+#   · r113_quarterly_audit.py 要现扫受管根 D:global_skills、要 managed venv 的 numpy/jinja2/networkx
+#     ⇒ runner 上必假红。本仓既定边界：X-1 禁为凑 CI 覆盖把技能语料复制进归档仓（复制即第二真相源，
+#     且陈旧快照会**假绿**，比红灯危险），"两台机专属门是设计边界"同理。
+#   · CI 在此承担的是**盯人**：季产物超龄就叫，叫到有人跑为止 ——
+#     对位 gates.yml 里 gate_run_freshness 的反向用法（CI 绿不能替人证明本机门在跑，反之用 CI 逼本机去跑）。
+#   · 三态退出码纪律：CADENCE:UNVERIFIED（面取不到）与 CADENCE:FAIL（真超龄）**都算红**，
+#     不许把「取不到读数」静默降级成通过（R247）。
+# 动作引用一律 pin 到 40 位 SHA（D-113：workflow 里决定 112 道门读到什么字节的那一步不能浮动），
+# 且必须配 dependabot（pin 而无人推进 = 固定点腐烂，比浮动更坏）。
+# SHA 实测来源：gh api repos/<owner>/<repo>/git/ref/tags/<major>（本仓 r58 口径，不跨大版本）：
+#   actions/checkout@v4        = 11d5960a326750d5838078e36cf38b85af677262（2026-10-28 复核仍指向该值）
+#   actions/setup-python@v5    = a26af69be951a213d495a4c3e4e4022e16d87065（同上）
+#   actions/upload-artifact@v4 = ea165f8d65b6e75b540449e92b4886f43607fa02（同上；r260 一手：
+#     首版此处填了一个**看起来像 SHA 但不存在**的值，被 gh api 复算当场否掉 —— 见下方盲区条）
+# 复算：`gh api repos/actions/checkout/git/ref/tags/v4 --jq .object.sha`
+#       以及同法取 setup-python/v5 与 upload-artifact/v4（三条都要复算，别只复算第一条）
+#
+# ⚠️ 守卫盲区（r260 一手，值得下轮补腿）：r58_action_pin_guard 的 P1 只判**形态**
+#   （`@[0-9a-f]{40}`），查不出「40 位十六进制但仓库里不存在」的引用 —— 而我本轮恰好填错了一次。
+#   合法方向 = 加一条「pin 的 SHA 必须可解析」的存在性腿（gh api repos/<o>/<r>/git/objects/<sha>，
+#   404 ⇒ 具名 FAIL）。登记为 07 台账接手项，本轮**不顺手改判据**（改判据须带夹具与负控）。
+# 判据自证：`python 05-exec/r58_action_pin_fixtures.py`（须见 b1 rc=0 与 b2 rc=1 两行且变异命中数 ≥1）
+# 本地同跑面：`python 05-exec/r260_quarterly_cadence.py` / `python 05-exec/r58_action_pin_guard.py`
+
+name: quarterly-audit-heartbeat
+
+on:
+  schedule:
+    # 每季度首日 06:00 UTC+8（1/4/7/10 月）。Vixie cron 的 dom 与 dow 同时受限时按"或"匹配，
+    # 故这里只限 dom=1 与月份，不写 dow，避免语义歧义。
+    - cron: "0 22 1 1,4,7,10 *"   # UTC 22:00 = 次日 06:00 (UTC+8)
+  workflow_dispatch: {}          # 允许人工触发一次（季度中段想复算时）
+
+permissions:
+  contents: read                 # 只读取证，零写面 ⇒ 不给 write 权限
+
+jobs:
+  quarterly-cadence:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262  # v4，见文件头实测口径
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065  # v5，同上
+        with:
+          python-version: "3.12"
+      - name: 季度节律看门狗（季产物超龄即叫，取不到也算红）
+        run: python 05-exec/r260_quarterly_cadence.py --max-days 100
+      - name: 动作固定面守卫（P1 全 pin / P2 配 dependabot / P3 空面不判过）
+        run: python 05-exec/r58_action_pin_guard.py
+      - name: 守卫自身有牙复验（含必须仍红的变异腿）
+        run: python 05-exec/r58_action_pin_fixtures.py
+      - name: 留证（CI 侧只读，产物上传而不回写仓库）
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02  # v4，tag `v4` 当前指向（r260 gh api 实测）
+        with:
+          name: quarterly-cadence-ci
+          path: |
+            .github/workflows/
+            05-exec/r260_quarterly_cadence.py
+            05-exec/r58_action_pin_guard.py
+          if-no-files-found: error    # 取不到文件 ⇒ 让这一步红，而不是静默上传空包

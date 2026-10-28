@@ -105,22 +105,28 @@ def p4_judge_binding():
 
 
 def p5_recall_face():
-    # r255 观察（已落待办 R255-2，属他人件不代改）：源件读不到时该面**崩溃**（TypeError）而非报 UNVERIFIED。
-    #   本腿只断言「能不绿」（rc≠0），并把形态记进 detail，供下轮追。
+    # r255 立为待办 R255-2（当时只断言 rc≠0 并记形态）；r260 修在判据本体：
+    #   r208.corpus_window 现在把 _read 的 None 显式折成「取不到」⇒ 走 [RECALL:UNVERIFIED] rc=2。
+    # 断言据此**收紧**（债条目要求的形态）：rc 必须恰为 2 且输出含 UNVERIFIED。
+    # 收紧前已双向验牙（_temp/r260_teeth.py）：修复形态 rc=2/含 UNVERIFIED 通过；
+    # 把 corpus_window 还原成旧写法（None 直喂 re.search）⇒ rc=99 崩溃 ⇒ 新断言判它不过。
+    # 另注：该件在本仓 05-exec/ 下，「属他人件」是 X-14 自家债外部化，本轮由本仓自干。
     import r208_recall_face as M
     M._read = lambda *a, **k: None
     rc, out = call_main(M, [])
-    shape = 'CRASH' if '__CRASH__' in out else 'rc=%d' % rc
-    ck('p5 recall_face 源件读不到 ⇒ 必须 rc≠0（形态：%s）' % shape, rc != 0, shape)
+    ck('p5 recall_face 源件读不到 ⇒ 必须 rc=2 且含 UNVERIFIED（形态收紧）',
+       rc == 2 and 'UNVERIFIED' in out, 'rc=%s crash=%s' % (rc, '__CRASH__' in out))
 
 
 def p6_ingress_face():
-    # r255 同 p5：崩溃形态，已落待办 R255-2。
+    # 同 p5（R255-2）：r213 的 reachable()/bearer_vols() 现在把 None 折成「不可判」⇒
+    #   [INGRESS:UNVERIFIED] rc=2；断言同步收紧。bearer_vols 另有一处：任一卷读不到即整面返回 None
+    #   —— 不拿半套承载面判 GAP（半套面会把读不到的卷一律算成「没货」= 假缺口）。
     import r213_ingress_face as M
     M._read = lambda *a, **k: None
     rc, out = call_main(M, [])
-    shape = 'CRASH' if '__CRASH__' in out else 'rc=%d' % rc
-    ck('p6 ingress_face 源件读不到 ⇒ 必须 rc≠0（形态：%s）' % shape, rc != 0, shape)
+    ck('p6 ingress_face 源件读不到 ⇒ 必须 rc=2 且含 UNVERIFIED（形态收紧）',
+       rc == 2 and 'UNVERIFIED' in out, 'rc=%s crash=%s' % (rc, '__CRASH__' in out))
 
 
 def p7_tool_carrier_face():

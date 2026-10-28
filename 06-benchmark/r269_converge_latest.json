@@ -3,29 +3,17 @@
  "readonly": true,
  "provenance_cmd": "python 05-exec/r260_r269_converge.py --json <件>",
  "rule_leaf": "memory/06-constraints.part18.md",
- "untracked_py_n": 3,
+ "untracked_py_n": 1,
  "counts": {
-  "NOTIFY_FIRST": 3
+  "NOTIFY_FIRST": 1
  },
  "buck_passing": [],
  "items": [
   {
-   "file": "05-exec/r260_local_baseline.py",
-   "refs_n": 11,
-   "verdict": "NOTIFY_FIRST",
-   "reason": "被 11 处引用，处置前须具名通知"
-  },
-  {
-   "file": "05-exec/r260_perf_face.py",
+   "file": "05-exec/r260_quarterly_cadence.py",
    "refs_n": 4,
    "verdict": "NOTIFY_FIRST",
    "reason": "被 4 处引用，处置前须具名通知"
-  },
-  {
-   "file": "05-exec/r260_r269_converge.py",
-   "refs_n": 7,
-   "verdict": "NOTIFY_FIRST",
-   "reason": "被 7 处引用，处置前须具名通知"
   }
  ]
 }

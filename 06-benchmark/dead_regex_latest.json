@@ -1,9 +1,9 @@
 {
  "schema": "dead-regex-scan-v2",
- "files_scanned": 271,
+ "files_scanned": 279,
  "provenance_cmd": "python 05-exec/r221_dead_regex_scan.py --json 件",
- "wide_files": 271,
- "wide_literals": 997,
+ "wide_files": 279,
+ "wide_literals": 1002,
  "wide_suspects": [
   {
    "file": "r117_upstream_delta_fixtures.py",

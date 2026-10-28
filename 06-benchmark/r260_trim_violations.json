@@ -168,5 +168,138 @@
    "teeth": "PASS"
   }
  },
- "anomalies": []
+ "anomalies": [],
+ "directed_search_face_sweep": {
+  "measured_at": "2026-10-28T08:02:21+00:00",
+  "input_face": "06-benchmark/r260_directed_search.json（本会话新增，HIGH 前 20 件 × top3）",
+  "slots_measured": 60,
+  "violations_n": 12,
+  "affected_skills_n": 7,
+  "violations": [
+   {
+    "skill": "A-ask-questions",
+    "rank": 1,
+    "repo": "Jeevan-kumar-Raj/Grokking-System-Design",
+    "pushed_at": "2024-03-06T16:24:47Z",
+    "archived": false,
+    "stars": 6603,
+    "days_since_push": 966,
+    "reason": "pushed_at=2024-03-06 早于 12 月阈值 2025-10-28, 命中 §3.1 条形二"
+   },
+   {
+    "skill": "A-ask-questions",
+    "rank": 2,
+    "repo": "checkcheckzz/system-design-interview",
+    "pushed_at": "2023-04-03T04:22:45Z",
+    "archived": false,
+    "stars": 23866,
+    "days_since_push": 1304,
+    "reason": "pushed_at=2023-04-03 早于 12 月阈值 2025-10-28, 命中 §3.1 条形二"
+   },
+   {
+    "skill": "A-java-problem",
+    "rank": 2,
+    "repo": "DopplerHQ/awesome-interview-questions",
+    "pushed_at": "2024-07-29T14:21:23Z",
+    "archived": true,
+    "stars": 85247,
+    "days_since_push": 821,
+    "reason": "archived=true, 命中 §3.1 条形一"
+   },
+   {
+    "skill": "A-java-problem",
+    "rank": 3,
+    "repo": "generation-org/JAVA",
+    "pushed_at": "2023-08-15T06:35:57Z",
+    "archived": false,
+    "stars": 63,
+    "days_since_push": 1170,
+    "reason": "pushed_at=2023-08-15 早于 12 月阈值 2025-10-28, 命中 §3.1 条形二"
+   },
+   {
+    "skill": "A-prompt-better",
+    "rank": 2,
+    "repo": "microsoft/PromptWizard",
+    "pushed_at": "2025-10-13T21:51:01Z",
+    "archived": false,
+    "stars": 4023,
+    "days_since_push": 380,
+    "reason": "pushed_at=2025-10-13 早于 12 月阈值 2025-10-28, 命中 §3.1 条形二"
+   },
+   {
+    "skill": "audit-runner-safe-aggregate",
+    "rank": 2,
+    "repo": "msracver/Flow-Guided-Feature-Aggregation",
+    "pushed_at": "2021-09-27T04:17:35Z",
+    "archived": false,
+    "stars": 732,
+    "days_since_push": 1857,
+    "reason": "pushed_at=2021-09-27 早于 12 月阈值 2025-10-28, 命中 §3.1 条形二"
+   },
+   {
+    "skill": "audit-runner-safe-aggregate",
+    "rank": 3,
+    "repo": "mvillarrealb/docker-spark-cluster",
+    "pushed_at": "2024-03-06T16:38:29Z",
+    "archived": false,
+    "stars": 567,
+    "days_since_push": 966,
+    "reason": "pushed_at=2024-03-06 早于 12 月阈值 2025-10-28, 命中 §3.1 条形二"
+   },
+   {
+    "skill": "bigfile-split",
+    "rank": 3,
+    "repo": "alanshaw/markdown-pdf",
+    "pushed_at": "2023-10-19T06:34:40Z",
+    "archived": false,
+    "stars": 2881,
+    "days_since_push": 1105,
+    "reason": "pushed_at=2023-10-19 早于 12 月阈值 2025-10-28, 命中 §3.1 条形二"
+   },
+   {
+    "skill": "chaoshi-admin-inline-edit",
+    "rank": 1,
+    "repo": "PanJiaChen/vue-element-admin",
+    "pushed_at": "2024-10-24T11:25:46Z",
+    "archived": false,
+    "stars": 90116,
+    "days_since_push": 734,
+    "reason": "pushed_at=2024-10-24 早于 12 月阈值 2025-10-28, 命中 §3.1 条形二"
+   },
+   {
+    "skill": "chaoshi-admin-inline-edit",
+    "rank": 3,
+    "repo": "Armour/vue-typescript-admin-template",
+    "pushed_at": "2023-11-04T02:48:46Z",
+    "archived": false,
+    "stars": 5661,
+    "days_since_push": 1089,
+    "reason": "pushed_at=2023-11-04 早于 12 月阈值 2025-10-28, 命中 §3.1 条形二"
+   },
+   {
+    "skill": "fenjue-lessons-hitrate",
+    "rank": 1,
+    "repo": "wzhe06/Reco-papers",
+    "pushed_at": "2025-10-16T18:11:27Z",
+    "archived": false,
+    "stars": 3578,
+    "days_since_push": 377,
+    "reason": "pushed_at=2025-10-16 早于 12 月阈值 2025-10-28, 命中 §3.1 条形二"
+   },
+   {
+    "skill": "fenjue-lessons-hitrate",
+    "rank": 3,
+    "repo": "percent4/embedding_rerank_retrieval",
+    "pushed_at": "2025-07-24T06:05:40Z",
+    "archived": false,
+    "stars": 297,
+    "days_since_push": 461,
+    "reason": "pushed_at=2025-07-24 早于 12 月阈值 2025-10-28, 命中 §3.1 条形二"
+   }
+  ],
+  "conclusion": "缺口① 若只补检索不挂 §3.1 过滤，会新带进 12 例停摆候选（占定向面 12/60）；⇒ 定向检索必须与 §3.1 剔除同轮上线，不能只补查询",
+  "rule_source": "04-plan/后续维护规范_季度巡检机制_r113_2026-10-18.md §3.1",
+  "eval_date": "2026-10-28",
+  "judge_impl_reused": "_temp/r260c_trim_violations.py:judge()（未重写口径）"
+ }
 }

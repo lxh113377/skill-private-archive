@@ -1777,6 +1777,24 @@ GATES = [
               "且 compat 890/937 打满分对排序零贡献未被守住。子代理判据写完不进门表 = W-46 死句柄同族，"
               "故由编排方注册常驻（第 111 门），每轮真跑复现漂移与 copyleft 敞口。",
     },
+    {
+        # r260：需求5「季度」二字的节律看门狗（CI 可跑面，纯 stdlib）
+        "id": "quarterly_cadence_face",
+        "script": "r260_quarterly_cadence.py",
+        "argv": ["--json", "06-benchmark/quarterly_cadence_latest.json"],
+        "pass_token": "[CADENCE:PASS]",
+        "portable": True,
+        "covers": [
+            "面 = 扫 06-benchmark/quarterly*/<季>/audit.json 取 generated_at 最新一份（**不按目录名排序**，名字会漂）",
+            "龄期 > --max-days（默认 100 = 季度 91~92 天 + 缓冲）⇒ rc=1 具名点名该件",
+            "空面 / generated_at 不可析 ⇒ rc=2 UNVERIFIED（R247 禁把取不到读成没超期）",
+            "夹具 5 腿：t2 必须仍红（300 天）+ t4 变异（恒 0 版把超龄读成绿）+ t5 真接线（tempfile 不碰真件 X-20）",
+            "live 负控三腿方向实测 1 / 0 / 0（旧件红、恒 0 变异绿、同面换新读数绿）",
+        ],
+        "why": "独立复核实测：workflows 里 grep quarterly = 0 命中、quarterly/ 只有一期 ⇒ 巡检器虽能跑，季度二字全靠人记得跑。" +
+              "深度巡检要现扫受管根与 managed venv（X-1 设计边界），不搬进 CI；CI 只承担盯人这一问" +
+              "（与 gate_run_freshness 同思路的反向用法：用 CI 盯人，不用 CI 替本机门）。",
+    },
 ]
 
 # 显式声明本 runner **不覆盖**的面，防止聚合绿被读成「所有门禁都绿」（R20-2）。
