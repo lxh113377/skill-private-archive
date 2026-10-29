@@ -1,8 +1,8 @@
 {
  "schema": "landing-effect-v1",
- "generated_at": "2026-10-29T23:09:34",
+ "generated_at": "2026-10-29T23:32:19",
  "provenance_cmd": "python 05-exec/r278_landing_effect.py",
- "caliber": "unreferenced axes come from r268 single-source rules; before text = git show <first-landing>~1",
+ "caliber": "unreferenced axes come from r268 single-source rules; before text = BEFORE[ref] else <first-landing>~1 (see BASE/BEFORE)",
  "window_since": "2026-10-29 00:00",
  "axes_note": "per-axis structural readings; NOT task-level quality (see requirement 6 wording)",
  "caliber_caution": "normal caliber is inflatable by naming a directory once; frontend-slides normal 70->0 = +80.5pp but strict 72->68 = only +4.6pp (present_n 87), because r269 names the package dir without naming its 68 member files; quote the strict number whenever claiming files are pointed at; the R268-2 gate leg must watch both calibers or it is blind to this inflation.",
@@ -326,7 +326,7 @@
     "when": "2026-10-29 22:53",
     "subject": "[rule_editor] replace patch x4 (ui-ux-pro-max/SKILL.md)"
    },
-   "before_sha_used": "30b84b20175ad6478efe6417e1a568821b169c57~1",
+   "before_sha_used": "3c72867d",
    "metrics_before": {
     "present_n": 112,
     "unreferenced_n": 0,

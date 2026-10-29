@@ -1,0 +1,76 @@
+{
+ "schema": "smoke-documented-commands-v1",
+ "generated_at": "2026-10-29T23:28:38",
+ "provenance_cmd": "python _temp/r281_smoke_ab3.py",
+ "baseline_rule": "explicit before/after refs; never <first-landing>~1, because the accidental whole-tree commit 079b91f3 recorded others in-flight downgrade for 3 files",
+ "fairness_rule": "each arm runs only the command its own version text documents; argv is hard-listed because auto-extraction turned argv bugs into apparent failures",
+ "limit": "measures executability and persistence of the documented workflow; NOT task quality",
+ "version_history_audit": {
+  "ui-ux-pro-max": {
+   "state": "OK",
+   "ref_before": "3c72867d",
+   "ref_after": "3da30832",
+   "before_sha16": "e6c4bc37784c",
+   "after_sha16": "2b8299ca1acb",
+   "before_bytes": 5796,
+   "after_bytes": 9759,
+   "version_history_entries_before": 6,
+   "version_history_entries_after": 7,
+   "history_lost": false
+  },
+  "frontend-slides": {
+   "state": "OK",
+   "ref_before": "3681df5e",
+   "ref_after": "89efb3e6",
+   "before_sha16": "e76ddd898d42",
+   "after_sha16": "6b9b0953aa26",
+   "before_bytes": 20073,
+   "after_bytes": 23312,
+   "version_history_entries_before": 0,
+   "version_history_entries_after": 4,
+   "history_lost": false
+  },
+  "test-driven-development": {
+   "state": "OK",
+   "ref_before": "079b91f3~1",
+   "ref_after": "079b91f3",
+   "before_sha16": "8ee8a57d45a2",
+   "after_sha16": "e970555276c3",
+   "before_bytes": 11635,
+   "after_bytes": 11760,
+   "version_history_entries_before": 1,
+   "version_history_entries_after": 1,
+   "history_lost": false
+  }
+ },
+ "smoke": {
+  "A_before": {
+   "command": [
+    "design_system.py",
+    "SaaS analytics dashboard"
+   ],
+   "rc": 0,
+   "stdout_bytes": 4506,
+   "text_bytes": 5796,
+   "persisted": [
+    "design-system/saas-analytics-dashboard/MASTER.md"
+   ]
+  },
+  "B_after": {
+   "command": [
+    "search.py",
+    "SaaS analytics dashboard",
+    "--design-system",
+    "--persist",
+    "--output-dir",
+    "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\_temp/r281smoke3"
+   ],
+   "rc": 0,
+   "stdout_bytes": 4904,
+   "text_bytes": 9759,
+   "persisted": [
+    "design-system/saas-analytics-dashboard/MASTER.md"
+   ]
+  }
+ }
+}

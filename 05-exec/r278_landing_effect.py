@@ -50,6 +50,15 @@ BASE = {
     'ui-ux-pro-max/SKILL.md': '30b84b20',
 }
 
+# BEFORE pins the before-text directly when the chosen landing commit's PARENT is not the state
+# this change set actually replaced. Measured r281: 30b84b20~1 IS 079b91f3, the accidental
+# whole-tree commit that recorded another session's downgrade of ui-ux-pro-max (5796 -> 5327
+# bytes, version 1.5.0 -> 1.2.0, three version-history lines dropped). Using ~1 there would
+# fold someone else's regression into my uplift. See ledger R281-1.
+BEFORE = {
+    'ui-ux-pro-max/SKILL.md': '3c72867d',
+}
+
 
 def git(*args):
     p = subprocess.run(['git', '-C', SK] + list(args), capture_output=True, text=True,
@@ -209,7 +218,8 @@ def main():
             first = hit[0]
         else:
             first = commits[0]
-        pb = git('show', first['sha'] + '~1:' + rel)
+        bref = BEFORE.get(rel) or (first['sha'] + '~1')
+        pb = git('show', bref + ':' + rel)
         pw = git('show', ':' + rel)          # index version = current committed content
         wt_path = os.path.join(SK, rel)
         if pb.returncode != 0:
@@ -256,7 +266,7 @@ def main():
             if ma['flag_unsupported_n'] > mb['flag_unsupported_n']:
                 worsened.append('flag_unsupported_n')
         rows.append({'skill': skill, 'state': 'OK', 'landing_commits': commits,
-                     'first_landing': first, 'before_sha_used': first['sha'] + '~1',
+                     'first_landing': first, 'before_sha_used': bref,
                      'metrics_before': mb, 'metrics_after': ma, 'delta': delta,
                      'delta_unjudged': delta_unjudged,
                      'caliber_pair': {'normal_before_after': [mb['unreferenced_n'], ma['unreferenced_n']],
@@ -276,7 +286,7 @@ def main():
     doc = {'schema': 'landing-effect-v1',
            'generated_at': time.strftime('%Y-%m-%dT%H:%M:%S'),
            'provenance_cmd': 'python 05-exec/r278_landing_effect.py',
-           'caliber': 'unreferenced axes come from r268 single-source rules; before text = git show <first-landing>~1',
+           'caliber': 'unreferenced axes come from r268 single-source rules; before text = BEFORE[ref] else <first-landing>~1 (see BASE/BEFORE)',
            'window_since': WINDOW,
            'axes_note': 'per-axis structural readings; NOT task-level quality (see requirement 6 wording)',
            'caliber_caution': ('normal caliber is inflatable by naming a directory once; '
