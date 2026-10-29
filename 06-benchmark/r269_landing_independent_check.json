@@ -1,0 +1,208 @@
+{
+  "schema": "landing-independent-check-v1",
+  "id": "r269-frontend-slides-landing-independent-check",
+  "auditor": "ds subagent (independent, read-only)",
+  "audit_target": {
+    "file": "D:/global_skills/frontend-slides/SKILL.md",
+    "change": "在 187-193 行插入 7 行 686 B（bold-template-pack 包登记 + 与 100vh 正文互斥声明 R268-1）",
+    "managed_root": "D:/global_skills",
+    "commit": "6394cbae1e5d00f8a60e383f761613664cca2b41"
+  },
+  "measured_at": "2026-10-29T18:14:30+08:00",
+  "verdict": "PARTLY",
+  "verdict_rules": "任一条 REFUTED 即不得 CONFIRMED；本件 5 条 CONFIRMED + 1 条 PARTLY（编号数字未复现）⇒ 总判 PARTLY",
+  "scope_declaration": "只读：未写入 D:/global_skills 与 D:/global_memory；未跑 run_gates.py；未改 05-exec 任何 .py；未改动 Lead 的 06-benchmark 件。",
+  "artifact_hashes": {
+    "current_skill_md": {
+      "path": "D:/global_skills/frontend-slides/SKILL.md",
+      "bytes": 21260,
+      "sha256": "39fdd1203aacb16648ccc88944bf46dc6cb2ed4dafae52f3f6ac11bd1134d1cf",
+      "mtime": "2026-10-29 18:05:38.705236 +0800"
+    },
+    "backup": {
+      "path": "D:/global_memory_archive/_trash/rule_backup/frontend-slides.SKILL.md.20261029_180538_466624.bak",
+      "bytes": 20574,
+      "sha256": "411bc5291705b35b17b51f6fafe4247fff2ff211668bc8ba402f856d821c2405",
+      "mtime": "2026-10-27 17:59:18.646740 +0800"
+    },
+    "git_head_prev_blob": {
+      "bytes": 20073,
+      "md5": "a98a09c42b011334c72ef2be1a2dbd1e",
+      "note": "HEAD^ 版 = 20073 B，与备份 20574 B 不等 ⇒ 备份比 HEAD^ 多出「frontmatter 版本行 + Version history」两项（见 check3 备注）"
+    }
+  },
+  "checks": [
+    {
+      "id": 1,
+      "name": "插入内容实读与只追加性",
+      "claim": "第 186 行后仅追加一段，未删除/改写正文既有条款（100vh / viewport-base.css 等原样）",
+      "verdict": "CONFIRMED",
+      "evidence_cmd": [
+        "sed -n '178,202p' 'D:/global_skills/frontend-slides/SKILL.md' | cat -n",
+        "diff 'D:/global_memory_archive/_trash/rule_backup/frontend-slides.SKILL.md.20261029_180538_466624.bak' 'D:/global_skills/frontend-slides/SKILL.md'",
+        "diff 'D:/global_memory_archive/_trash/rule_backup/....bak' 'D:/global_skills/frontend-slides/SKILL.md' | grep -c '^<'",
+        "grep -n '100vh\\|NON-NEGOTIABLE' 'D:/global_skills/frontend-slides/SKILL.md'"
+      ],
+      "observed": [
+        "插入体落在 187-193 行（grep -n 命中 187 行登记行），内容 = 1 行登记 + 空行 + 4 行 ⚠️已知冲突(R268-1) 说明 + 空行。",
+        "diff 备份→当前：唯一 hunk '@@ -184,6 +184,13 @@'，7 行全部为 '+'，'diff ... | grep -c \"^<\"' = 0 ⇒ 零删除行。",
+        "正文既有条款原样在位：17:4. **Viewport Fitting (NON-NEGOTIABLE)** — Every slide MUST fit exactly within 100vh…；43:- Every `.slide` must have `height: 100vh; height: 100dvh; overflow: hidden;`",
+        "插入块字节实测：'sed -n 187,193p | wc -c' = 686，与宣称 686 B 一致。"
+      ],
+      "note": "仅限于「相对备份」的追加性成立。commit 粒度见 check3：同一 commit 还夹带 frontmatter 版本行改写 + Version history 追加。"
+    },
+    {
+      "id": 2,
+      "name": "备份是改前快照（含负向对照）",
+      "claim": "备份 frontend-slides.SKILL.md.20261029_180538_466624.bak 内无 bold-template-pack，且字节数 = 插入前字节数",
+      "verdict": "CONFIRMED",
+      "evidence_cmd": [
+        "grep -c 'bold-template-pack' 'D:/global_memory_archive/_trash/rule_backup/frontend-slides.SKILL.md.20261029_180538_466624.bak'; echo EXIT=$?",
+        "grep -c 'bold-template-pack' 'D:/global_skills/frontend-slides/SKILL.md'",
+        "wc -c '<备份>' 'D:/global_skills/frontend-slides/SKILL.md'",
+        "sha256sum '<备份>' 'D:/global_skills/frontend-slides/SKILL.md'"
+      ],
+      "observed": [
+        "备份侧：'0'，EXIT=1（未命中）⇒ 备份不含该标记。",
+        "当前侧（负向对照）：'1'，且 grep -n 命中 187 行 ⇒ 同一判据在改后件上必命中，判据有牙。",
+        "字节：备份 20574 B + 插入块 686 B = 21260 B = 当前件字节（精确相等，无额外增删）。",
+        "行数：备份 336 行 → 当前 343 行（+7 = 插入块行数）。",
+        "sha256：备份 411bc529…，当前 39fdd120…（两件不同，证非同一文件被误当备份）。"
+      ],
+      "note": "备份 mtime = 2026-10-27 17:59:18.646740，与 bold-template-pack/README.md 同刻（同批拷贝），mtime 早于 commit 时间 2026-10-29 18:05:39。"
+    },
+    {
+      "id": 3,
+      "name": "受管根 git：单文件提交与祖先关系",
+      "claim": "提交只动 frontend-slides/SKILL.md，且 6394cbae 是 HEAD 的祖先",
+      "verdict": "CONFIRMED",
+      "evidence_cmd": [
+        "git -C D:/global_skills log --oneline -3 -- frontend-slides/SKILL.md",
+        "git -C D:/global_skills show --stat HEAD",
+        "git -C D:/global_skills show --stat --name-only HEAD | tail -4",
+        "git -C D:/global_skills merge-base --is-ancestor 6394cbae1e5d00f8a60e383f761613664cca2b41 HEAD; echo IS_ANCESTOR_EXIT=$?",
+        "git -C D:/global_skills status --porcelain -- frontend-slides/SKILL.md"
+      ],
+      "observed": [
+        "log: '6394cbae [rule_editor] insert (frontend-slides/SKILL.md)' 为该件最新提交。",
+        "show --stat HEAD: ' frontend-slides/SKILL.md | 19 +++++++++++++++++--' / '1 file changed, 17 insertions(+), 2 deletions(-)'；--name-only 仅 1 行 frontend-slides/SKILL.md ⇒ 单文件成立。",
+        "merge-base --is-ancestor → IS_ANCESTOR_EXIT=0 ⇒ 祖先关系为真。",
+        "工作区 status 对该件为空 ⇒ 在盘件 == HEAD blob（无未提交尾巴）。",
+        "补充取证：git show 079b91f3 -- frontend-slides/SKILL.md 显示 4,5c4,5（version 1.3.0→1.0.0、last_updated 2026-10-27→2026-09-21）与 326,333d325（整段删除 ## Version history）⇒ HEAD^ 是误覆盖版，备份/当前件的 1.3.0 + 版本史才是被恢复的正确状态。"
+      ],
+      "note": "⚠️ 粒度校正（已二次取证修正）：`17 insertions(+), 2 deletions(-)` 里的 2 处删除不是插入块造成的，也**不是** r269 新增改写 —— 实测 `git show 079b91f3 -- frontend-slides/SKILL.md` 显示 HEAD^ 那个提交把本件**误覆盖**了：version 1.3.0→1.0.0、last_updated 2026-10-27→2026-09-21、并整段删除 `## Version history`（同时该提交还 D 掉了 bold-template-pack 的 3 个件，见 findings_beyond_checks）。所以 6394cbae 的 2 处删除 = **把被覆盖的版本元数据与版本史改回来**（恢复），属修复而非夹带；HEAD^→HEAD 净增 1187 B = 恢复的 ~501 B + 插入 686 B。结论不变：单文件、祖先关系、插入纯追加三项均成立，但「该提交只追加 686 B」按 commit diff 读会显示 2 处删除，审计时须知道那是恢复。"
+    },
+    {
+      "id": 4,
+      "name": "效果复算（独立口径）",
+      "claim": "grep -c bold-template-pack 0→1；该件未引用在盘件 常规档 14→1、严格档 69",
+      "verdict": "PARTLY",
+      "evidence_cmd": [
+        "grep -c 'bold-template-pack' D:/global_skills/frontend-slides/SKILL.md",
+        "find 'D:/global_skills/frontend-slides' -type f -not -path '*/.git/*' -printf '%P\\n' | sort",
+        "node: 对 94 个在盘件（除 SKILL.md）跑 6 种引用口径 × 5 种范围 = 30 组，前/后各算一次（脚本 tmp_recount.mjs，见 _temp/）"
+      ],
+      "observed": [
+        "grep -c = 1 ✓（宣称 0→1 成立）。",
+        "在盘件总数（递归、排除 .git）= 94；除 SKILL.md 外 93 件参与计数，其中 bold-template-pack/templates/** 占 68 件。",
+        "我的口径一（首段目录或文件名命中，全 94 件）：前 79 → 后 7；口径二（父目录或文件名）：前 79 → 后 75；口径三（仅 relpath）：前 86 → 后 85；口径四（depth≤2 文件名）：前 9 → 后 5；口径五（非 templates 26 件，文件名）：前 11 → 后 7；口径六（top-level 9 件）：前 5 → 后 4。",
+        "30 组组合中没有任何一组得出「常规档 14→1」；亦无一组的严格档为 69（我最近的严格档读数 = 85 后 / 86 前）。"
+      ],
+      "note": "实质效果成立（该包由「零引用」变为「正文指向」且把 templates 68 件一并纳入目录级引用）；但「常规档 14→1 / 严格档 69」两个数字在我 30 组口径下均不可复现 —— 疑为口径未公开（可能按目录聚合或另一批计数集），故记 PARTLY 而非 CONFIRMED，也不记 REFUTED（方向与 grep 读数均成立）。"
+    },
+    {
+      "id": 5,
+      "name": "冲突断言真实性",
+      "claim": "正文 100vh NON-NEGOTIABLE 与包 fixed 1920×1080 互斥",
+      "verdict": "CONFIRMED",
+      "evidence_cmd": [
+        "grep -n '100vh\\|NON-NEGOTIABLE' 'D:/global_skills/frontend-slides/SKILL.md'",
+        "grep -n '1920\\|fixed' 'D:/global_skills/frontend-slides/bold-template-pack/README.md'",
+        "sed -n '55,80p' 'D:/global_skills/frontend-slides/bold-template-pack/README.md'",
+        "grep -n '1920\\|1080\\|scale' 'D:/global_skills/frontend-slides/bold-template-pack/deck-stage.js' | head -12",
+        "grep -n 'vh\\|100%\\|height' 'D:/global_skills/frontend-slides/viewport-base.css' | head -30"
+      ],
+      "observed": [
+        "正文（SKILL.md 17 行）：'Every slide MUST fit exactly within 100vh'，且 43 行要求 '.slide { height: 100vh; height: 100dvh; }'，44 行要求 'ALL font sizes and spacing must use clamp(min, preferred, max) — never fixed px/rem'。",
+        "包 README 67-71 行：'Generate every deck as a fixed 1920×1080 stage scaled uniformly to the viewport. This applies even if the source template was originally viewport-fluid.' + 'Treat vw, vh, and clamp() values in a source design.md as design proportions to translate into fixed 1920×1080 stage coordinates.'",
+        "实现侧佐证 deck-stage.js：10-11 行 'inner canvas is a fixed design size (default 1920×1080) scaled with transform: scale() to fit the viewport'；53-54 行常量 DESIGN_W_DEFAULT=1920 / DESIGN_H_DEFAULT=1080。",
+        "viewport-base.css 21-22 行 'height: 100vh; height: 100dvh'，并按 vh 做断点（94/104/119 行 max-height 700/600/500px）⇒ 与「固定 1920×1080 像素坐标」不是同一度量基准。"
+      ],
+      "note": "判定：**成立**（在「舞台尺寸/单位基准」层面）。补充两点精确化：① 二者并非运行时不可共存——fixed stage 用 transform: scale() 铺满视口时同样不会出现滚动，故正文的「不滚动」子条款可被满足；互斥的是度量基准与其配套写法（100vh + clamp 流体 vs 固定 px 舞台 + 把 vw/vh/clamp 当比例翻译）。② 包 README 自身第 66 行又要求 'Include the full contents of viewport-base.css'，与 67 行的固定舞台要求内部打架，进一步印证冲突为真而非误读。"
+    },
+    {
+      "id": 6,
+      "name": "越界检查（目录 mtime）",
+      "claim": "只有 SKILL.md 在 2026-10-29 18:0x 被改，其它件未被触碰",
+      "verdict": "CONFIRMED",
+      "evidence_cmd": [
+        "ls -la --time-style=full-iso 'D:/global_skills/frontend-slides/'",
+        "find 'D:/global_skills/frontend-slides' -type f -newermt '2026-10-29 17:50' -printf '%TY-%Tm-%Td %TH:%TM:%TS %p\\n' | sort",
+        "ls -la --time-style=full-iso 'D:/global_skills/frontend-slides/bold-template-pack/'",
+        "git -C D:/global_skills status --porcelain | head -20"
+      ],
+      "observed": [
+        "目录清单里 2026-10-29 18:0x 的条目只有 'SKILL.md  21260  2026-10-29 18:05:38.705236000 +0800'。",
+        "递归 find -newermt '2026-10-29 17:50' 全场只回 1 行：D:/global_skills/frontend-slides/SKILL.md（18:05:38.705）⇒ 子目录内零触碰。",
+        "bold-template-pack/：README.md 2026-10-27 17:59:18、deck-stage.js 2026-10-27 17:22:41、selection-index.json 2026-10-27 17:22:43、templates/ 2026-10-27 17:24:37 —— 全部早于本次改动。",
+        "同目录其它件：.upstream/.claude-plugin 2026-10-26 16:50 与 2026-08-03，LICENSE/README.md/STYLE_PRESETS.md/animation-patterns.md/html-template.md/meta.json/viewport-base.css 均 2026-07-05 04:04，references/ 2026-10-20 12:35、scripts/ 与 plugins/ 2026-08-03。"
+      ],
+      "note": "仓库全局 status 有其它技能的历史 dirty（brainstorming/cloudbase 等），但与 frontend-slides/ 无关；本件路径下 git status 为空。"
+    }
+  ],
+  "negative_control": {
+    "principle": "同一判据必须能在改后件上命中，否则是恒绿判据",
+    "leg_A_before": {
+      "cmd": "grep -c 'bold-template-pack' <备份.bak>; echo EXIT=$?",
+      "observed": "0 / EXIT=1",
+      "reading": "改前件不命中（预期）"
+    },
+    "leg_B_after": {
+      "cmd": "grep -c 'bold-template-pack' D:/global_skills/frontend-slides/SKILL.md",
+      "observed": "1（grep -n 命中 187 行）",
+      "reading": "改后件命中（必须）"
+    },
+    "conclusion": "两腿齐备 ⇒ check2 判据有牙，可区分改前/改后，不是恒绿。"
+  },
+  "limitations": [
+    "④ 的「14→1 / 69」两个数字无法复现：我试了 6 种引用口径 × 5 种范围共 30 组，无一组命中；如需对齐，须 Lead 给出其脚本原文与计数集定义。",
+    "备份与 git HEAD^ 不等（20574 vs 20073 B）：备份是「插入前一刻」的盘上状态，比 HEAD^ 多出 frontmatter 版本行与 Version history —— 因此「改前快照」对插入这件事成立，但不能当作 HEAD^ 的等价物。",
+    "⑦/B1：被登记包为 git untracked（ls-files 空、ls-tree 无条目、status 显示 ??）⇒ 登记的落点不在版本控制内；这是一条落地缺陷，不属于 6 条判据任何一条的反证。",
+    "⑦/B2：HEAD^ 提交 079b91f3 曾误覆盖本件版本元数据与版本史，r269 的 2 处删除是恢复而非篡改；回滚须按 hunk。"
+  ],
+  "conclusion": "5 条实测成立 + 1 条部分成立（④ 数字未复现）⇒ 总判 PARTLY。插入本身确为纯追加、备份确为改前快照、commit 确为单文件且是 HEAD 祖先、冲突断言经三方（SKILL.md/README/deck-stage.js）取证成立、无越界写。唯一未落实 = 「未引用件 14→1 / 严格 69」的可复算口径。 另发现两条超出 6 条判据的落地缺陷（B1：被登记包不在 git 索引内，clone/clean 后即成死链；B2：HEAD^ 曾误覆盖版本元数据与版本史，本次提交的 2 处删除属恢复）。",
+  "findings_beyond_checks": [
+    {
+      "id": "B1",
+      "severity": "high",
+      "title": "被登记的 bold-template-pack 不在 git 里（盘上有、索引里没有）",
+      "evidence_cmd": [
+        "git -C D:/global_skills status --porcelain -- frontend-slides",
+        "git -C D:/global_skills ls-files frontend-slides/bold-template-pack",
+        "git -C D:/global_skills ls-tree -r --name-only HEAD -- frontend-slides/ | grep bold-template-pack",
+        "git -C D:/global_skills show --name-status 079b91f3 -- frontend-slides"
+      ],
+      "observed": [
+        "git status --porcelain -- frontend-slides → '?? frontend-slides/bold-template-pack/'（未跟踪目录）。",
+        "git ls-files frontend-slides/bold-template-pack → 空输出（索引零条目）。",
+        "git ls-tree HEAD frontend-slides/ → 20 条，无任何 bold-template-pack 条目。",
+        "git show --name-status 079b91f3 -- frontend-slides → 'D frontend-slides/bold-template-pack/README.md' / 'D …/deck-stage.js' / 'D …/selection-index.json'（该提交把它们从 git 删除，但盘上文件仍在）。"
+      ],
+      "reading": "r269 新登记的包指向的是**未纳入版本控制的在盘文件**：任何 clone / 换端 / git clean 都会让这条登记变成死链（187 行指向不存在的目录）。同时 3 个模板根件仍留在盘上属 untracked，后续任何 `git add -A` 会把它们以「新增」身份混入不知名提交。建议单独一笔提交把该包（含 templates/ 68 件）纳入索引，或明确记录「有意不入库」及其理由。",
+      "note": "此项不计入 6 条判据的 verdict（它不反驳任何一条宣称），但属落地完整性缺陷，必须上呈。"
+    },
+    {
+      "id": "B2",
+      "severity": "medium",
+      "title": "079b91f3 的误覆盖未被单独登记",
+      "evidence_cmd": [
+        "git -C D:/global_skills show 079b91f3 -- frontend-slides/SKILL.md"
+      ],
+      "observed": [
+        "同一提交（2026-10-29 16:10:10，含 588 个 D 条目）把 frontend-slides/SKILL.md 的 version 1.3.0→1.0.0、last_updated→2026-09-21、并整段删除 ## Version history。"
+      ],
+      "reading": "该误覆盖是 r269 之前就存在的仓内损伤（非本次改动引入），r269 的提交顺手恢复了它。风险：若用 `git revert 6394cbae` 回滚本次插入，会连带把版本元数据与版本史再次打回 1.0.0/无史状态 ⇒ 回滚必须按 hunk 做。",
+      "note": "不计入 6 条判据 verdict。"
+    }
+  ]
+}
