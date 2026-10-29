@@ -1,0 +1,3457 @@
+{
+  "schema": "guard-fp-v1",
+  "measured_at": "2026-10-29T22:53:28+00:00",
+  "corpus": {
+    "files_n": 198,
+    "sha12": "0ef9053d497b",
+    "lines_total": 36037,
+    "bm_md_n": 197,
+    "includes": "06-benchmark/*.md (all) + memory/07-next-steps.md",
+    "excluded_self_referential": [
+      "r285_guard_false_positive.json",
+      "r285_guard_false_positive.md"
+    ],
+    "exclude_why": "our own deliverable pair sits in 06-benchmark and quotes pattern literals / bounce sentences as evidence; counting it would let the report measure itself",
+    "cut": "full corpus, no sampling; 196 md files all included so the 120-file cap in the brief was not needed"
+  },
+  "hits_raw": 129,
+  "hits_after_denoise": 91,
+  "hit_lines_raw": 124,
+  "denoise_enabled": true,
+  "denoise_leg_counts": {
+    "DN1": 6,
+    "DN2": 1,
+    "DN3": 31
+  },
+  "denoise_rule": "see script docstring DN1/DN2/DN3; switch = --no-denoise (all three legs off)",
+  "fp_rate": {
+    "num": 38,
+    "den": 129,
+    "cutoff": "a raw judge hit counts as a false positive when DN1 or DN2 or DN3 holds; denominator = hits_raw, i.e. the FP share of what the gate calls red (= 1 - precision)"
+  },
+  "fp_rate_lines": {
+    "num": 38,
+    "den": 36037,
+    "fp_per_1000_lines": 1.054,
+    "raw_hit_line_per_1000_lines": 3.441
+  },
+  "per_pattern": {
+    "2": {
+      "raw": 60,
+      "fp": 4
+    },
+    "1": {
+      "raw": 33,
+      "fp": 7
+    },
+    "10": {
+      "raw": 13,
+      "fp": 12
+    },
+    "0": {
+      "raw": 4,
+      "fp": 4
+    },
+    "12": {
+      "raw": 8,
+      "fp": 7
+    },
+    "9": {
+      "raw": 3,
+      "fp": 2
+    },
+    "8": {
+      "raw": 3,
+      "fp": 0
+    },
+    "3": {
+      "raw": 5,
+      "fp": 2
+    }
+  },
+  "line_view": {
+    "hit_lines": 124,
+    "lines_all_hits_fp": 36,
+    "lines_with_still_red_hit": 88
+  },
+  "corpus_drift_watch": {
+    "files_written_within_15min": [
+      {
+        "file": "r285_guard_false_positive.md",
+        "age_min": 0.3
+      },
+      {
+        "file": "07-next-steps.md",
+        "age_min": 14.9
+      }
+    ],
+    "prev_deliverable_sha12": "0ef9053d497b",
+    "note": [
+      "concurrent writer present: corpus can drift between runs; if hits_raw/denoised",
+      " stay identical across the two sha12 values the reading is insensitive to the drift"
+    ]
+  },
+  "normalize_manufactured": {
+    "hits": 25,
+    "of_which_fp": 12,
+    "why": "the gate only ever sees normalize()'s output; these lines did not match before 我 was replaced by 老大"
+  },
+  "named_examples": [
+    {
+      "file": "07-next-steps.md",
+      "line": 1979,
+      "sentence": "① 上轮我给自己定的下一步是「等 win-toolchain/SKILL.md 干净就给 description 补任务级触发词（进窗口），",
+      "frag": "老大给自己定的下一步",
+      "pat": "(?:告|通)?知?(老大|你)[^。！？；]{0,8}(?:任务|下一步|接下来)",
+      "pat_idx": 12,
+      "legs": [
+        "DN3"
+      ],
+      "file_sha256": "e93589fe741b6043c9e8128769718dc00fa51213a78d6076a9f02e9e3a954e29",
+      "note": "gate would DENY this line if it were sent verbatim in a closing message; line may drift on this live corpus - the sentence field is the stable locator"
+    },
+    {
+      "file": "全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md",
+      "line": 2050,
+      "sentence": "而我的下一步更危险：",
+      "frag": "老大的下一步",
+      "pat": "(?:告|通)?知?(老大|你)[^。！？；]{0,8}(?:任务|下一步|接下来)",
+      "pat_idx": 12,
+      "legs": [
+        "DN3"
+      ],
+      "file_sha256": "249d6cccc9794687fc6e0a3406a9843e2e5ebdc0556f442c46ad7de4d670011e",
+      "note": "gate would DENY this line if it were sent verbatim in a closing message; line may drift on this live corpus - the sentence field is the stable locator"
+    },
+    {
+      "file": "全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md",
+      "line": 3315,
+      "sentence": "上轮我给自己定的下一步是：「等 `win-toolchain/SKILL.md` 干净，就给它的 `description`",
+      "frag": "老大给自己定的下一步",
+      "pat": "(?:告|通)?知?(老大|你)[^。！？；]{0,8}(?:任务|下一步|接下来)",
+      "pat_idx": 12,
+      "legs": [
+        "DN3"
+      ],
+      "file_sha256": "249d6cccc9794687fc6e0a3406a9843e2e5ebdc0556f442c46ad7de4d670011e",
+      "note": "gate would DENY this line if it were sent verbatim in a closing message; line may drift on this live corpus - the sentence field is the stable locator"
+    },
+    {
+      "file": "全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md",
+      "line": 3351,
+      "sentence": "我上轮那句「8 条任务只 3 条召回」如果按正确分母重算，其实是",
+      "frag": "老大上轮那句「8 条任务",
+      "pat": "(?:告|通)?知?(老大|你)[^。！？；]{0,8}(?:任务|下一步|接下来)",
+      "pat_idx": 12,
+      "legs": [
+        "DN3"
+      ],
+      "file_sha256": "249d6cccc9794687fc6e0a3406a9843e2e5ebdc0556f442c46ad7de4d670011e",
+      "note": "gate would DENY this line if it were sent verbatim in a closing message; line may drift on this live corpus - the sentence field is the stable locator"
+    },
+    {
+      "file": "全量对标报告_r278_已落地件改前改后实测_2026-10-29.md",
+      "line": 67,
+      "sentence": "⇒ 件内 `axes_note` 已写明「per-axis structural readings; NOT task-level quality」，**我不把结构提升冒充任务质量**（那正是 #36 假完成的形态）",
+      "frag": "老大不把结构提升冒充任务",
+      "pat": "(?:告|通)?知?(老大|你)[^。！？；]{0,8}(?:任务|下一步|接下来)",
+      "pat_idx": 12,
+      "legs": [
+        "DN3"
+      ],
+      "file_sha256": "3f056fd005db532ed5bd657d5bec12873e219b92beae2b952d2ca509e26558dc",
+      "note": "gate would DENY this line if it were sent verbatim in a closing message; line may drift on this live corpus - the sentence field is the stable locator"
+    },
+    {
+      "file": "07-next-steps.md",
+      "line": 50,
+      "sentence": "接下来) —— 我草稿里「…那句关于任务级 A/B 不可复算…」被抓成 bounce=老大此前那句关于任务，而「任务级 A/B」是技术名词、句中既无请求也无等待",
+      "frag": "老大此前那句关于任务",
+      "pat": "(?:告|通)?知?(老大|你)[^。！？；]{0,8}(?:任务|下一步|接下来)",
+      "pat_idx": 12,
+      "legs": [
+        "DN2"
+      ],
+      "file_sha256": "e93589fe741b6043c9e8128769718dc00fa51213a78d6076a9f02e9e3a954e29",
+      "note": "gate would DENY this line if it were sent verbatim in a closing message; line may drift on this live corpus - the sentence field is the stable locator"
+    },
+    {
+      "file": "全量对标报告_r285_迁库二次事故收口_2026-10-30.md",
+      "line": 83,
+      "sentence": "被抓成 `bounce=老大此前那句关于任务` —— 那是技术名词，句中既无请求也无等待，且**守卫输出的片段指向我文本里",
+      "frag": "老大此前那句关于任务",
+      "pat": "(?:告|通)?知?(老大|你)[^。！？；]{0,8}(?:任务|下一步|接下来)",
+      "pat_idx": 12,
+      "legs": [
+        "DN1"
+      ],
+      "file_sha256": "56bc1515e9251f3b3664b8b7e6450e74836d3aa94ba977603474195221cf894e",
+      "note": "gate would DENY this line if it were sent verbatim in a closing message; line may drift on this live corpus - the sentence field is the stable locator"
+    },
+    {
+      "file": "07-next-steps.md",
+      "line": 2240,
+      "sentence": "两问焊在一起时，项目越脏夹具越响，反而把「我该修接线」淹掉",
+      "frag": "老大该",
+      "pat": "老大(该|应该|要不要|是否|能不能|可不可以|可以)",
+      "pat_idx": 0,
+      "legs": [
+        "DN3"
+      ],
+      "file_sha256": "e93589fe741b6043c9e8128769718dc00fa51213a78d6076a9f02e9e3a954e29",
+      "note": "gate would DENY this line if it were sent verbatim in a closing message; line may drift on this live corpus - the sentence field is the stable locator"
+    },
+    {
+      "file": "全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md",
+      "line": 1029,
+      "sentence": "复核发现该阻塞是**假的**：我可以**自建一份干净克隆**绕开他人工作副本",
+      "frag": "老大可以",
+      "pat": "老大(该|应该|要不要|是否|能不能|可不可以|可以)",
+      "pat_idx": 0,
+      "legs": [
+        "DN3"
+      ],
+      "file_sha256": "249d6cccc9794687fc6e0a3406a9843e2e5ebdc0556f442c46ad7de4d670011e",
+      "note": "gate would DENY this line if it were sent verbatim in a closing message; line may drift on this live corpus - the sentence field is the stable locator"
+    },
+    {
+      "file": "全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md",
+      "line": 2575,
+      "sentence": "### 52.5 三门禁分诊：fail 不等于我该修",
+      "frag": "老大该",
+      "pat": "老大(该|应该|要不要|是否|能不能|可不可以|可以)",
+      "pat_idx": 0,
+      "legs": [
+        "DN3"
+      ],
+      "file_sha256": "249d6cccc9794687fc6e0a3406a9843e2e5ebdc0556f442c46ad7de4d670011e",
+      "note": "gate would DENY this line if it were sent verbatim in a closing message; line may drift on this live corpus - the sentence field is the stable locator"
+    },
+    {
+      "file": "全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md",
+      "line": 3771,
+      "sentence": "派到写着答案的卷 / 88 话术能不能召回",
+      "frag": "能不能召回。**没有一门量「老大",
+      "pat": "(要不要|是否|能不能|可不可以).{0,12}(老大|提交|跑|做|动手|继续)",
+      "pat_idx": 1,
+      "legs": [
+        "DN3"
+      ],
+      "file_sha256": "249d6cccc9794687fc6e0a3406a9843e2e5ebdc0556f442c46ad7de4d670011e",
+      "note": "gate would DENY this line if it were sent verbatim in a closing message; line may drift on this live corpus - the sentence field is the stable locator"
+    },
+    {
+      "file": "全量对标报告_r266_第一个受管根跟版落地_2026-10-29.md",
+      "line": 62,
+      "sentence": "**既存大范围漂移**（清单含 brainstorming / cloudbase / coding-agent 等我从未触碰的件）",
+      "frag": "等老大",
+      "pat": "等(你|老大)",
+      "pat_idx": 3,
+      "legs": [
+        "DN3"
+      ],
+      "file_sha256": "a1233568a6ae1ed13c220b01b8bb2986c357151d1d3158663470af58b86b0fd5",
+      "note": "gate would DENY this line if it were sent verbatim in a closing message; line may drift on this live corpus - the sentence field is the stable locator"
+    }
+  ],
+  "positive_controls": [
+    {
+      "case": "需要老大拍板这三件。",
+      "still_red": true,
+      "frag": "需要老大拍板",
+      "pat_idx": 2,
+      "denoise_legs_hit": []
+    },
+    {
+      "case": "老大该不该现在提交这笔？",
+      "still_red": true,
+      "frag": "老大该",
+      "pat_idx": 0,
+      "denoise_legs_hit": []
+    },
+    {
+      "case": "要不要我把改动提交 git？",
+      "still_red": true,
+      "frag": "要不要老大把改动提交",
+      "pat_idx": 1,
+      "denoise_legs_hit": []
+    },
+    {
+      "case": "需要老大拍板的三件事如下",
+      "still_red": true,
+      "frag": "需要老大拍板",
+      "pat_idx": 2,
+      "denoise_legs_hit": []
+    },
+    {
+      "case": "要清就给一句授权",
+      "still_red": true,
+      "frag": "给一句授权",
+      "pat_idx": 7,
+      "denoise_legs_hit": []
+    },
+    {
+      "case": "若老大认为这 2 笔该复核，我按指示回滚",
+      "still_red": true,
+      "frag": "若老大认为",
+      "pat_idx": 8,
+      "denoise_legs_hit": []
+    },
+    {
+      "case": "等老大回复再继续",
+      "still_red": true,
+      "frag": "等老大",
+      "pat_idx": 3,
+      "denoise_legs_hit": []
+    },
+    {
+      "case": "这算需要拍板吗",
+      "still_red": true,
+      "frag": "需要拍板",
+      "pat_idx": 2,
+      "denoise_legs_hit": []
+    },
+    {
+      "case": "我可以跑一次完整构建吗",
+      "still_red": true,
+      "frag": "老大可以",
+      "pat_idx": 0,
+      "denoise_legs_hit": []
+    },
+    {
+      "case": "需要你确认一下",
+      "still_red": true,
+      "frag": "需要你确认",
+      "pat_idx": 2,
+      "denoise_legs_hit": []
+    },
+    {
+      "case": "请老大定夺",
+      "still_red": true,
+      "frag": "请老大定夺",
+      "pat_idx": 2,
+      "denoise_legs_hit": []
+    },
+    {
+      "case": "老大想倾向哪种？",
+      "still_red": true,
+      "frag": "老大想倾向哪",
+      "pat_idx": 4,
+      "denoise_legs_hit": []
+    },
+    {
+      "case": "要哪条，或者换别的活？",
+      "still_red": true,
+      "frag": "要哪条",
+      "pat_idx": 10,
+      "denoise_legs_hit": []
+    },
+    {
+      "case": "下一步要我做哪一条？",
+      "still_red": true,
+      "frag": "要老大做哪一条",
+      "pat_idx": 10,
+      "denoise_legs_hit": []
+    },
+    {
+      "case": "下一步要我推进哪一件 —— 收 M-q、跑三张缺陷卡、还是扩主链？",
+      "still_red": true,
+      "frag": "要老大推进哪一件",
+      "pat_idx": 11,
+      "denoise_legs_hit": []
+    },
+    {
+      "case": "全部完成后要我推进哪个，你说一下。",
+      "still_red": true,
+      "frag": "要老大推进哪个",
+      "pat_idx": 10,
+      "denoise_legs_hit": []
+    },
+    {
+      "case": "这样可以吗？",
+      "still_red": true,
+      "frag": "这样可以吗？",
+      "pat_idx": 13,
+      "denoise_legs_hit": []
+    },
+    {
+      "case": "这样安排可以吗？",
+      "still_red": true,
+      "frag": "这样安排可以吗？",
+      "pat_idx": 13,
+      "denoise_legs_hit": []
+    },
+    {
+      "case": "留给老大拍板（未动）",
+      "still_red": true,
+      "frag": "留给老大拍板",
+      "pat_idx": 5,
+      "denoise_legs_hit": []
+    },
+    {
+      "case": "两案并列，留给老大定夺。",
+      "still_red": true,
+      "frag": "留给老大定夺",
+      "pat_idx": 5,
+      "denoise_legs_hit": []
+    },
+    {
+      "case": "这件事交给老大拍板。",
+      "still_red": true,
+      "frag": "交给老大拍板",
+      "pat_idx": 5,
+      "denoise_legs_hit": []
+    },
+    {
+      "case": "余下三项推给老大决定。",
+      "still_red": true,
+      "frag": "推给老大决定",
+      "pat_idx": 5,
+      "denoise_legs_hit": []
+    }
+  ],
+  "positive_controls_summary": {
+    "K": 22,
+    "still_red": 22,
+    "source": "mod.POSITIVE full set read from r161 (not hand-picked)",
+    "min_required_by_brief": 8
+  },
+  "caliber": {
+    "unit": "one pattern-hit per line (a line can hit several patterns); lines_total counts every physical line incl. blanks",
+    "face": "line face as proxy for the message face: the gate only reads send_message/ask_user_question text fields, here every corpus line is fed through the identical normalize + 14 patterns",
+    "equivalence_check": "r161 mod.scan vs this script per line, mismatching lines = 0",
+    "code_fences": "not excluded separately; every line counts (conservative both sides)",
+    "dn3_bias": "DN3 splits on sentence-level delimiters only (no comma split) so sentences stay long and markers are easy to find => reported FP count is a lower bound",
+    "sha_note": "corpus.sha12 = first 12 hex of sha256 over, per file sorted by name, name + NUL + sha256(file bytes) + LF"
+  },
+  "official_negative_leg": {
+    "N": 9,
+    "raw_red": 0,
+    "rescued": 0,
+    "rows": [
+      {
+        "case": "已决：不清，理由 X，取值 Y。",
+        "raw_red": false,
+        "frag": null,
+        "pat_idx": null,
+        "legs": [],
+        "rescued": false
+      },
+      {
+        "case": "本轮没解决，落待办带卡点与下一步。",
+        "raw_red": false,
+        "frag": null,
+        "pat_idx": null,
+        "legs": [],
+        "rescued": false
+      },
+      {
+        "case": "卡在 CF 凭据缺口，实测证据见上，替代路径已试。",
+        "raw_red": false,
+        "frag": null,
+        "pat_idx": null,
+        "legs": [],
+        "rescued": false
+      },
+      {
+        "case": "这项工作已交付，回执见报告。",
+        "raw_red": false,
+        "frag": null,
+        "pat_idx": null,
+        "legs": [],
+        "rescued": false
+      },
+      {
+        "case": "下一轮 P0：复采一个跨日批定性。",
+        "raw_red": false,
+        "frag": null,
+        "pat_idx": null,
+        "legs": [],
+        "rescued": false
+      },
+      {
+        "case": "下一步推进 M-q 与三张缺陷卡，已按优先级排定并开工。",
+        "raw_red": false,
+        "frag": null,
+        "pat_idx": null,
+        "legs": [],
+        "rescued": false
+      },
+      {
+        "case": "已为你留好回滚点，不需要你确认。",
+        "raw_red": false,
+        "frag": null,
+        "pat_idx": null,
+        "legs": [],
+        "rescued": false
+      },
+      {
+        "case": "这一项无需老大批准，我按 #37② 自行推进。",
+        "raw_red": false,
+        "frag": null,
+        "pat_idx": null,
+        "legs": [],
+        "rescued": false
+      },
+      {
+        "case": "三件全部自行决完，无需老大拍板。",
+        "raw_red": false,
+        "frag": null,
+        "pat_idx": null,
+        "legs": [],
+        "rescued": false
+      }
+    ]
+  },
+  "hits_detail_rows": 129,
+  "corpus_per_file_sha": [
+    {
+      "file": "A-project-better_对标报告与F维新增_2026-10-05.md",
+      "sha256": "646b7437d86819a95d92bd58521ac1ba08c51ac4b9bd095411f9c83e889ebe78"
+    },
+    {
+      "file": "C2人读第一批_r261_28件逐件判定_2026-10-28.md",
+      "sha256": "8842eaeb6b55756f774a4147569663f9e779d2a33bdab2ddbf7336c75bd3291f"
+    },
+    {
+      "file": "C2人读第二批_r263_5件逐件判定_2026-10-28.md",
+      "sha256": "e57b67247f0f25644dcc263231deb5bcb5bb7e3f4df55f446ee5e09935fa038b"
+    },
+    {
+      "file": "F维判据_真实项目只读验证_2026-10-05.md",
+      "sha256": "847c3e64d237b600da60c1eb1c8689c51cb589378790be45ba1a030fcf72fee1"
+    },
+    {
+      "file": "P0-1_hook机制层探底_2026-09-24.md",
+      "sha256": "a80de55ccb14c0949849eb5be458475879a112f0b43599c3c5a607a1f43565e7"
+    },
+    {
+      "file": "P0-C_累积漂移复核第1批_2026-09-24.md",
+      "sha256": "1d02625906e431ea4a68ff8ef278fc895113f998dc55d6ec6df049b675467a39"
+    },
+    {
+      "file": "P0-C_累积漂移复核第2批_2026-09-24.md",
+      "sha256": "724352e651af1e6d0a6a4124ea0ff80964cde1cd0944d1635532b45079eb1b1a"
+    },
+    {
+      "file": "P0闭环台账_r260_2026-10-28.md",
+      "sha256": "8f4e9e3d998570c6956d8b506f2a39f6cd7380b2335732b7ef21e10ed3f779be"
+    },
+    {
+      "file": "comparison.md",
+      "sha256": "ea50bb68e7c6a59b0f51c0ccb581ebbfc1f5fe29e6211b1f6f3f891ab096615c"
+    },
+    {
+      "file": "description双要素基线_2026-09-24.md",
+      "sha256": "d8b470c8f4930b6ddbf95c25e41e762c068aa8ea4d9a28b68d229e8cebfe05cd"
+    },
+    {
+      "file": "free_tool_roster_latest.md",
+      "sha256": "584be1310e468888b589b6861f71e0ccf1b9fd141005f96211044d738fb5f943"
+    },
+    {
+      "file": "g8_block_r103_source.md",
+      "sha256": "b8fcdde53a58ab419382f30ab58071b87f49e49a813495830e1a1fea0cad2480"
+    },
+    {
+      "file": "memory_eval基线_2026-09-24.md",
+      "sha256": "c2231c510b6b946faa40d7d4e44edea913c69956b1714a0d51cb6cc1834c0f9a"
+    },
+    {
+      "file": "rule_conflict基线_2026-09-24.md",
+      "sha256": "08f8e84d33e6584315fb1fe5c9cec4525e83a0aaac1a6fe350417d7f4fb1b35d"
+    },
+    {
+      "file": "tag层缺陷纠正与7条miss逐条判定_r229_有效面31of469_2026-10-25.md",
+      "sha256": "6f079fa04fdc7dcf11317e5930fe0ee0bd904ff6131dbe43e03c4f6c26f4b9ce"
+    },
+    {
+      "file": "upstream_research_r113_2026-10-18.md",
+      "sha256": "0686e0cb7fc9640728a15b2cc2e4e04dd285d6a73e07c52a83cdb84f7beef216"
+    },
+    {
+      "file": "三臂对账_r282_2026-10-29.md",
+      "sha256": "6349b97b3d8b2c97f95d451a44992c04f903fedb60dd864e3da4f3707241d378"
+    },
+    {
+      "file": "三通道交集面_r275_2026-10-30.md",
+      "sha256": "e41d58a916b84eb4ca94cf67abee8cadb1699b37c71aa5a42141211581053293"
+    },
+    {
+      "file": "交付物基数对账_r261_2026-10-28.md",
+      "sha256": "92b0fcacfd45bccfe1f01fbc11d769ff1fc944969078f83dc3205df83937eaee"
+    },
+    {
+      "file": "使用数据源取证_r282_2026-10-29.md",
+      "sha256": "704e4a58e2055b57bfb3a29dbcc4ced96f4f77a4cd220ff97b40f2b3e01f807c"
+    },
+    {
+      "file": "修复建议实测驳回件_r231_补触发词不足以修好4条miss_2026-10-25.md",
+      "sha256": "b43b59776a6ce0a0c9d1822cb04857c80a378040a532bcdb682b5a3f0608463a"
+    },
+    {
+      "file": "全量对标报告_r100_名册派生与两件换装_2026-10-02.md",
+      "sha256": "13ebff90cfafc85e8e84f9df47f8fa49b5e8411b8f7608b6bc753e7486b602d0"
+    },
+    {
+      "file": "全量对标报告_r101_名册优质半边与同事实单尺_2026-10-02.md",
+      "sha256": "5601c3e64190b78c9a66ee061a72d1d5b3f403d4e32462a83a2c2881295a68cd"
+    },
+    {
+      "file": "全量对标报告_r102_门禁六红清零_2026-10-02.md",
+      "sha256": "a74c8cfb527957f35d577756fd817de75b1cca078c82f96fe8c9f76ae5a15d71"
+    },
+    {
+      "file": "全量对标报告_r103_假零面修复与换装首次成立_2026-10-03.md",
+      "sha256": "d6b64d47721ab54e2d53ae2f2ad7d133e390acc06d64cfd2b6e2860f3c851ae1"
+    },
+    {
+      "file": "全量对标报告_r105_换装尺自我证伪与陈旧输入面返工_2026-10-04.md",
+      "sha256": "4f6956024f7d5977ba99580cf951f2a6e80ec6bbad0965d622942c4cb4632c6f"
+    },
+    {
+      "file": "全量对标报告_r107_四项改造与棘轮归因终局_2026-10-15.md",
+      "sha256": "3c877c5f30177a8bc828c1c3b023675b2b5c8594089e369f8b57c28d8fb73e8b"
+    },
+    {
+      "file": "全量对标报告_r108_四项改造与并行甩件回收_2026-10-16.md",
+      "sha256": "d6b970d64e6e73e67a69e288f8f4a078ade24a518844c5ac98ce120a6ad58b97"
+    },
+    {
+      "file": "全量对标报告_r109_四项改造与AGENTS索引壳化_2026-10-16.md",
+      "sha256": "9676a196b47678192e8bfb70d4d3c41c8ee41de6a443e8ebfcd86a8640e66f00"
+    },
+    {
+      "file": "全量对标报告_r111_语义尺工程负面结论与W32闭环_2026-10-17.md",
+      "sha256": "7ecc9c57c77fc219adf891f157c995b69bc90625b997533bf64a9d266213a24e"
+    },
+    {
+      "file": "全量对标报告_r112_第19维版本落后面与四项改造_2026-10-17.md",
+      "sha256": "b3893e14bc19fb7d08b1497f6bf9d1af18ac659ce450c7b031c8f5aa1b0844fd"
+    },
+    {
+      "file": "全量对标报告_r113_r112中断轮回收与第19维收口及季度巡检首立_2026-10-18.md",
+      "sha256": "abb4d7482fbf9b84bd86d5a1fe59ee61c7d58744d3dbe15e4b3f28e48c71e49f"
+    },
+    {
+      "file": "全量对标报告_r114_替代矩阵与质量基准_2026-10-18.md",
+      "sha256": "8fa2dd961464dca4d1f0edfa45dbb7e64baedffe841996bc52e01c9acc36d372"
+    },
+    {
+      "file": "全量对标报告_r117_中断轮收口与路由miss归因_2026-10-18.md",
+      "sha256": "0722d6cb30f04c234a47f421c309f690098a99d173994a0528fa77e21dcdbbc3"
+    },
+    {
+      "file": "全量对标报告_r118_换装影响上界与miss失败层归因_2026-10-18.md",
+      "sha256": "d26d2267b773692aaf771c16bbfb8a6ba8a30cddb48ef30dd95cc614040bd799"
+    },
+    {
+      "file": "全量对标报告_r119_语料区分度改造首次产生真实质量提升_2026-10-20.md",
+      "sha256": "22e9bcf15deb8b78a51bd346523ceee7d8137f5595a292253b9f62c86d1d470c"
+    },
+    {
+      "file": "全量对标报告_r119b_陈旧输入面返工与唯一可达件修复_2026-10-20.md",
+      "sha256": "185b15a6c0b9d905b88aa8e8891436d3558a246219e6c49a99d2db6f5c48c73c"
+    },
+    {
+      "file": "全量对标报告_r120_第8类失败层L0域过滤latent_exposure_2026-10-20.md",
+      "sha256": "f4d34e8a29ca4759e2301703ed06fae5ace99a2fd87877883bd9487f414fc9ee"
+    },
+    {
+      "file": "全量对标报告_r120b_三项判据常驻化与控件语义修正_2026-10-20.md",
+      "sha256": "6e2613f37cb7eb966c958a6ea1c4d6f068b57b1404a96c0e3f6a668a6bffbcc0"
+    },
+    {
+      "file": "全量对标报告_r121_需求6判定链补齐与同号多副本面_2026-10-20.md",
+      "sha256": "28081fbaf3ee024e4df2ac9df17a68eb69f8c2b54a0df97d1573085e8b251d74"
+    },
+    {
+      "file": "全量对标报告_r122_域暴露题加固做了但应回滚_2026-10-20.md",
+      "sha256": "89276e18ccb7208f994fbea437a2afb6f202ef2a2676d18c37cf406bca7f834e"
+    },
+    {
+      "file": "全量对标报告_r123_回滚决策被生产实测翻转与沙箱偏差根因_2026-10-20.md",
+      "sha256": "f4b9541afbc9e63210742dd4d803dbf838d727834a8fe163b08e0efc3d5a1234"
+    },
+    {
+      "file": "全量对标报告_r123b_入口不一致根治与区间归因通道_2026-10-20.md",
+      "sha256": "1c25cd96d3435f58eafcdd4d694496fdbca7d831e4869206a9e8c2ea4b4068bc"
+    },
+    {
+      "file": "全量对标报告_r124_时序坑机械化与债务追讨轮_2026-10-20.md",
+      "sha256": "70ab85cfbbe4d875071de76cf0c04c4ccfe131de5eb7c070dc6c811379d5f0f1"
+    },
+    {
+      "file": "全量对标报告_r125_替代候选机器腿全量与共享度分层_2026-10-20.md",
+      "sha256": "d7acb903067f63aa0421f6bfb06d7f97034ba2a2d96fa909edb0a161acb1573b"
+    },
+    {
+      "file": "全量对标报告_r125_连续三轮假红根治与自指门收口_2026-10-20.md",
+      "sha256": "d45a87a69c23207a28ed6d3fd9ec7412b8e2677a43002edabd66a51d245e529b"
+    },
+    {
+      "file": "全量对标报告_r126_独占14件C2人读全KEEP_2026-10-20.md",
+      "sha256": "3ca46029b86e77c4335f73a91357db477ec044b94da5b48a31a0cc0e41a9c1a1"
+    },
+    {
+      "file": "全量对标报告_r126_第9类失败层Tag闭包_2026-10-20.md",
+      "sha256": "b4a1960a5d5a628e5949c68bdda7e6f1b2e6ed6991ea3e5381bfe6a64ee58615"
+    },
+    {
+      "file": "全量对标报告_r127_批量预判120件与债务追讨二轮_2026-10-20.md",
+      "sha256": "f0e3d012058a9fb5536dd865e0cb5933ed34e41a298b6691efd8350a89f358b9"
+    },
+    {
+      "file": "全量对标报告_r127_推翻r126结论与沙箱前置门_2026-10-20.md",
+      "sha256": "6d52b364efa54a78b73c9f70e1e3cc6e2f90f5fc9bf173d0433aa998fa4f7bc5"
+    },
+    {
+      "file": "全量对标报告_r128_W47第四腿与全仓判据普查_2026-10-20.md",
+      "sha256": "3054fc8b23a6ddd67ff7783dfff576c3677f3290c7ef36ca4d7cb29775612fb1"
+    },
+    {
+      "file": "全量对标报告_r128_低共享批1全KEEP_2026-10-20.md",
+      "sha256": "69644045cf8f8c57fa23d8e92cf81a37ecb76580da76887d9ddaa17df2832282"
+    },
+    {
+      "file": "全量对标报告_r129_R1141全面闭环182件全KEEP_2026-10-20.md",
+      "sha256": "e7cfbc8c2edca7c26dfd5b8fd2e46bbd98ba6e226781d472f4c3be3618cdb477"
+    },
+    {
+      "file": "全量对标报告_r129_建议变机器约束与第41门_2026-10-20.md",
+      "sha256": "0165a23409debf98813532b7b6cb2c8fdd14c05dfd5577cfdfcd20d5b1663c07"
+    },
+    {
+      "file": "全量对标报告_r130_盲区抽查发现真盲区结论加固_2026-10-20.md",
+      "sha256": "f488ece76bdd7dbae6fce5230778adad2d42620eb60deddf8e671ba4aa53e316"
+    },
+    {
+      "file": "全量对标报告_r130_纪律变机制与门表对账闸_2026-10-20.md",
+      "sha256": "caa8908fe71bfdc8c88ef735068c775f0ffac33fcf6a0c749625737b656a088f"
+    },
+    {
+      "file": "全量对标报告_r131_第10类失败层direct_map抢答与三层闭包_2026-10-21.md",
+      "sha256": "879a6042eb0f459ae8544281bf191f5614369e66054abe16d8a3e45227a9ee07"
+    },
+    {
+      "file": "全量对标报告_r132_处方效力实测与AGENTS31_2026-10-21.md",
+      "sha256": "bc0dadc1aba15ec2ec8652b623d29f97fc00e3e53e7e713216f37ac36aa08b76"
+    },
+    {
+      "file": "全量对标报告_r133_第11类语料语言不匹配与判据面三形态_2026-10-21.md",
+      "sha256": "cfd626cad57c17b7f18a1d072148765e95a84e5b9c506f907108963c58d242e8"
+    },
+    {
+      "file": "全量对标报告_r134_因果证据面与结论层纪律_2026-10-21.md",
+      "sha256": "68479717a13a01e839df09c003a28c5820c6be3a3202aa4f3d0385228ce01650"
+    },
+    {
+      "file": "全量对标报告_r135_第11类处方实测与夹具三态化_2026-10-21.md",
+      "sha256": "c3db6f77288b3482e2206ab2acd4f5cd65a5d9b12e62d28745cd8f4fb4484e0f"
+    },
+    {
+      "file": "全量对标报告_r136_纪律自用与提案证据面_2026-10-21.md",
+      "sha256": "3a1e845c2667002714a2feb9fa3f5eedac32fa998c36abe0cf31e91cc346e634"
+    },
+    {
+      "file": "全量对标报告_r137_纪律阻断点与分级precommit_2026-10-21.md",
+      "sha256": "6a3eb0132061360b8ed61a8ef3374922f89b3568d8f95aaf912f470f5675df21"
+    },
+    {
+      "file": "全量对标报告_r138_阻断机制可恢复与hook健在性自检_2026-10-21.md",
+      "sha256": "f45bbef5e5094518c044510573255e64f29d0e899ce24a886a24300c79a38b11"
+    },
+    {
+      "file": "全量对标报告_r139_恢复源与实装一致及hook同步面_2026-10-21.md",
+      "sha256": "98f70cca747c84769b0b4b46662583a7ba5be5a7a856a28b408018f355e82fd0"
+    },
+    {
+      "file": "全量对标报告_r140_漂移可归因与hook归因面_2026-10-21.md",
+      "sha256": "13da6ffd06bd0e6b5cf11f3f6599c8c1d7db40a3451129b07c5d77019e554f31"
+    },
+    {
+      "file": "全量对标报告_r141_归因到人与次_2026-10-21.md",
+      "sha256": "1caca9a1659652a43e2bd0358177e89547de6a6054b3ee6cc36e5cfa9aea50f6"
+    },
+    {
+      "file": "全量对标报告_r142_归因可回溯与安装历史面_2026-10-21.md",
+      "sha256": "d349a8e7fc6741da5065e0f1fe733b7752303af4762d1aa95c495c807c8fc9bd"
+    },
+    {
+      "file": "全量对标报告_r143_历史防篡改与哈希链_2026-10-21.md",
+      "sha256": "54b9b2d9af867f8ba4882230ae9c90703034ce56fa425958536375e5cff16c91"
+    },
+    {
+      "file": "全量对标报告_r144_外部锚点与git台账_2026-10-21.md",
+      "sha256": "216d2c021a23f4e2338d84b6926c607f53f0696eb844d648e6b933c0c7f10381"
+    },
+    {
+      "file": "全量对标报告_r145_锚点对账容窗口期_2026-10-21.md",
+      "sha256": "c472eaf5e73c9419522353a626f0b9f2ab57dcaab44585853655b39a0201d2ab"
+    },
+    {
+      "file": "全量对标报告_r146_跨会话宽限与安装凭证_2026-10-21.md",
+      "sha256": "6b61f3ab10da17f87421890d6f85d68e2be404b1fb18631a41e52901a2e8718e"
+    },
+    {
+      "file": "全量对标报告_r147_证据写入顺序真相源先行_2026-10-21.md",
+      "sha256": "42f2a812c1713d247c76ed91ef62a5dcc3c9595c90e34f68c725b0091fe33e33"
+    },
+    {
+      "file": "全量对标报告_r148_转办落地与处方适用边界_2026-10-21.md",
+      "sha256": "ee63a1c2b240bd7368978a082b55665a2197a8159ec59674fae25a7018f5e5b5"
+    },
+    {
+      "file": "全量对标报告_r149_转办挂常驻复算面与派生件转诊_2026-10-21.md",
+      "sha256": "b96afe0713a0f81e4d028b43bc158e671bd65c443da2e622f9f3c0d47a2a62c6"
+    },
+    {
+      "file": "全量对标报告_r151_反向验证无牙与转诊假闭环_2026-10-21.md",
+      "sha256": "a7ef083251df052c6759109c05bb2dddca292b1ecc2f2cc5cc707d73a9be28c0"
+    },
+    {
+      "file": "全量对标报告_r160_散落项治理与跨会话账收口_2026-10-21.md",
+      "sha256": "59984d770b6c260fe374647feb6d6ba421412b4b4c3c42d46952a0ece746b1ba"
+    },
+    {
+      "file": "全量对标报告_r161_回抛识别常驻面_2026-10-21.md",
+      "sha256": "967aee5a0a83dd967c386482821b86c34dc4ff6fe65478c3f259e75e52417b04"
+    },
+    {
+      "file": "全量对标报告_r162_稳态歧义收口与closing面过宽_2026-10-22.md",
+      "sha256": "1acfb4b00899f37c8087b07352e155ddb0891417e85bced9220e0c5a84fdfa35"
+    },
+    {
+      "file": "全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md",
+      "sha256": "249d6cccc9794687fc6e0a3406a9843e2e5ebdc0556f442c46ad7de4d670011e"
+    },
+    {
+      "file": "全量对标报告_r166_记忆卷体量治理四连击_2026-10-22.md",
+      "sha256": "7df2fecf4f7e5400c97500a9ccf699f79c12a88f6d46fa0ea700584045a72832"
+    },
+    {
+      "file": "全量对标报告_r175_人工拆卷与副本证明链与README瘦身_2026-10-23.md",
+      "sha256": "9709e7a50dd255a938276a24d05a3b18690346ab092767ba8d19419932790b91"
+    },
+    {
+      "file": "全量对标报告_r183_不回抛落到我自己_端传播与侧车入库与主卷再瘦身_2026-10-23.md",
+      "sha256": "642a91450ffb3cbb6b62579cd37529dca686b4fa9315726bcddf1aad61c79cdf"
+    },
+    {
+      "file": "全量对标报告_r18_2026-09-24.md",
+      "sha256": "d3819ec3becfef9c89efb395e76adaec4ab57ad872108a14de2f6d6949be8ace"
+    },
+    {
+      "file": "全量对标报告_r19_2026-09-24.md",
+      "sha256": "ae566599b599ff7b8cd19ac96b1ca3acbba7f2e941bf07d642b990e971d8713d"
+    },
+    {
+      "file": "全量对标报告_r209_OVERDUE归零与棘轮恒红根因_2026-10-25.md",
+      "sha256": "0dd75a03214871a069c1fea3ca0d8a91096be4a75ad38ac93daeaf4b9c2273b0"
+    },
+    {
+      "file": "全量对标报告_r20_插件面补口径_2026-09-24.md",
+      "sha256": "f40ec66c000d13dcbe1bcc094c93b27f7f28faa6e3dfd4659fe7bee4a01bb657"
+    },
+    {
+      "file": "全量对标报告_r211_八维对标与四项工程改造_2026-10-25.md",
+      "sha256": "236117b1207f4dfe7ba15cbe4892bef02dbe29fd1d7ac20bb481aa123afcb8f7"
+    },
+    {
+      "file": "全量对标报告_r211_季度巡检死句柄与自造转义事故复原_2026-10-25.md",
+      "sha256": "f940ca07612b73b6186d129e9502208bb055cbecfcf50cf6c54cc87f3eb08a1c"
+    },
+    {
+      "file": "全量对标报告_r21_重复轮次闸门_2026-09-24.md",
+      "sha256": "8a1d04a540bb109659207fe339bf7c803e065e5dc031617e25981807f2cb5f71"
+    },
+    {
+      "file": "全量对标报告_r221_口径B改善被选件器报成零与切换判据自我推翻_2026-10-25.md",
+      "sha256": "ada989c1ca196b2a5c2f141e562cb88aa178e888bf1b8f8da4e6ed5ccf35d2fd"
+    },
+    {
+      "file": "全量对标报告_r224_口径切换前置条件跑满仍未决翻转一例_2026-10-25.md",
+      "sha256": "97d59079881389cc762fd360b7d3cf9af6e82169f95f8a3b4da712285937e1fe"
+    },
+    {
+      "file": "全量对标报告_r225_口径切换阻塞项根因修掉_文章仓曾靠假阳性拿下rank0_2026-10-25.md",
+      "sha256": "e0a4e66387bebac62652046602b60dd2580426f36e8989de465ae2d3e3e1ac2c"
+    },
+    {
+      "file": "全量对标报告_r226_C1验收判据切换_旧口径把发布文章计成技能仓_2026-10-25.md",
+      "sha256": "278a7c5fc0fd86e8a50de3863b45a7999496716780c6939b07c567a8cb51b6d3"
+    },
+    {
+      "file": "全量对标报告_r260_判据四处根因修与两条新常驻门_2026-10-28.md",
+      "sha256": "896c8d106336d1a4fa670108fdabe96854fe27e750345bc651413b3d9c637fcf"
+    },
+    {
+      "file": "全量对标报告_r261_compat许可子腿落地与两处恒红自修_2026-10-28.md",
+      "sha256": "4bc1349c300ea7c20feb28d828c16018f0847ccddefa4f285ff6f3f5edd991d2"
+    },
+    {
+      "file": "全量对标报告_r262_许可正文级证据与三处新缺陷_2026-10-28.md",
+      "sha256": "432718d4e127afe6464d89b580f12d4e9751562748944e59c9962c631d82e8bd"
+    },
+    {
+      "file": "全量对标报告_r263_声明上游面与无对应件护栏_2026-10-29.md",
+      "sha256": "63d50fa1c69247d57bd659b94d9c9204458fb880387847da22a3c1497edddc5a"
+    },
+    {
+      "file": "全量对标报告_r264_边车语义与跟版差异面_2026-10-29.md",
+      "sha256": "26758e244af87ecaefa803c89dcbf489566dc47a2f9af8ab94bfccbecf1006a2"
+    },
+    {
+      "file": "全量对标报告_r265_跟版可行性分类_2026-10-29.md",
+      "sha256": "8829cf5e0cf40aafeee73e1a39464ae5632a0aa6de804053396a75b8097aad94"
+    },
+    {
+      "file": "全量对标报告_r266_第一个受管根跟版落地_2026-10-29.md",
+      "sha256": "a1233568a6ae1ed13c220b01b8bb2986c357151d1d3158663470af58b86b0fd5"
+    },
+    {
+      "file": "全量对标报告_r268_未引用在盘件全量度量_2026-10-29.md",
+      "sha256": "d23c04c09ddbfa902b086aad25841a8b7ac88eb3b37fec70e239d9492c6972a3"
+    },
+    {
+      "file": "全量对标报告_r269_frontend-slides包显形与范式冲突声明_2026-10-29.md",
+      "sha256": "0444eda454ba081ad46c6d3ec1b3b60e024c7b23f77fdfec7c0764cd5a985286"
+    },
+    {
+      "file": "全量对标报告_r270_受管根535件跟踪恢复_2026-10-29.md",
+      "sha256": "69faed8f57c434825adb3e801b0cdbde31eb0e0f36a4997180301a1f99168e51"
+    },
+    {
+      "file": "全量对标报告_r271_第二版本通道_2026-10-29.md",
+      "sha256": "7e1b1f9aa45b33b2ffcdc13e6eae47ee2d563d48afbc4036d693b30dec61fdda"
+    },
+    {
+      "file": "全量对标报告_r272_frontend-slides范式迁移执行_2026-10-29.md",
+      "sha256": "c297d850172f58114ed4a62bcff074272d35a227876746c0d4144422660638fb"
+    },
+    {
+      "file": "全量对标报告_r277_三红归零与时区口径_2026-10-29.md",
+      "sha256": "b19de8a6a3c5e69d5598ec476584a049453ef294b390fcaecb76b9992b8d66a3"
+    },
+    {
+      "file": "全量对标报告_r278_已落地件改前改后实测_2026-10-29.md",
+      "sha256": "3f056fd005db532ed5bd657d5bec12873e219b92beae2b952d2ca509e26558dc"
+    },
+    {
+      "file": "全量对标报告_r279_第三次落地与三处判据自修_2026-10-29.md",
+      "sha256": "8a7d3720b989fca7ae50698d65421917fd2dd332c0f22baab55f21660b201853"
+    },
+    {
+      "file": "全量对标报告_r27_2026-09-24.md",
+      "sha256": "2ee7e2ba5ce24d075caf61a895e47c5e465cdc2b74a8c71cb49674258f7415a9"
+    },
+    {
+      "file": "全量对标报告_r281_执行级AB与基准污染修复_2026-10-29.md",
+      "sha256": "aebfa8f24f1a65eec87645899e5f3c48219bd10af806b662489735a7edc0a46d"
+    },
+    {
+      "file": "全量对标报告_r283_相对路径误判与使用表落地_2026-10-30.md",
+      "sha256": "07fbbbd61aeb40047a237e466d8e5a4a4699b313b0925d6cf19ce334e8f37f50"
+    },
+    {
+      "file": "全量对标报告_r285_迁库二次事故收口_2026-10-30.md",
+      "sha256": "56bc1515e9251f3b3664b8b7e6450e74836d3aa94ba977603474195221cf894e"
+    },
+    {
+      "file": "全量对标报告_r28_六段解剖AB_2026-09-24.md",
+      "sha256": "c1ece36ccb9d49212c3822e72dfe0e4c3dd635b81bfbd1e3bec0bd249b8dc750"
+    },
+    {
+      "file": "全量对标报告_r29_双口径与范围过滤_2026-09-24.md",
+      "sha256": "473544c71674abd1927c9ef062f5149a4a98567a1f00f53b3c64d5d987b5ce83"
+    },
+    {
+      "file": "全量对标报告_r30_四档稳健性与反理性化首批_2026-09-25.md",
+      "sha256": "b562f49dec127508041462d6bfd019d2d533ad9b0dec6af01465b4667fb9720f"
+    },
+    {
+      "file": "全量对标报告_r31_自动化验收面_2026-09-25.md",
+      "sha256": "a22d2d5f1cd2af123f7a8028231ee492d62f885adc7692e129fae92bec2fc031"
+    },
+    {
+      "file": "全量对标报告_r32_CI有效性_2026-09-25.md",
+      "sha256": "ad7bdb01650f37155fa3f67ee0ef3d760a0cc774f633e5f2e009b75448a62569"
+    },
+    {
+      "file": "全量对标报告_r33_发布与治理面_2026-09-25.md",
+      "sha256": "55efdd62471354d1be72c302ff5663c79959d642b4fff8774a712e6e7fe839a5"
+    },
+    {
+      "file": "全量对标报告_r34_可移植性_2026-09-25.md",
+      "sha256": "da9a241b39d00b4b2c11b03301d077711b84211d05ff5258469a7caf15bd9df0"
+    },
+    {
+      "file": "全量对标报告_r35_可移植性纵深_2026-09-25.md",
+      "sha256": "4255b531c0a66ce8cc1dfa3c28399dbfff5f385acafac2fbc5d09a728970ce7c"
+    },
+    {
+      "file": "全量对标报告_r36_引用可解析性_2026-09-25.md",
+      "sha256": "1901eb75698301f2f17014268552cbf351e409178048cd737c22bacce1f9b04f"
+    },
+    {
+      "file": "全量对标报告_r37_门禁假阳性治理_2026-09-25.md",
+      "sha256": "347032dad74d149639b6642b32b1dd297d79bfbc687e13aadbb010e7840909be"
+    },
+    {
+      "file": "全量对标报告_r38_债务到期治理_2026-09-25.md",
+      "sha256": "ba19c9957697cdec8b2aec2654b2c9525bf44439fe0086eb56f813e420b5ef18"
+    },
+    {
+      "file": "全量对标报告_r39_延期与终局分离_2026-09-25.md",
+      "sha256": "bd8e273ade8e99535340bbb994d0474fba6f164fb5e78eda218aea54e6992c3e"
+    },
+    {
+      "file": "全量对标报告_r40_延期看守与归属反转_2026-09-25.md",
+      "sha256": "ab7d7ffee8a28d5361f1a2a26244f83167b055dc6390c7fc298b0055605bab43"
+    },
+    {
+      "file": "全量对标报告_r41_裁决时间序与结构归位_2026-09-25.md",
+      "sha256": "938fc0bde9b1c0f27fff4e7eb1f10a34622a9bd1481f9839d390f8f6d8972f7d"
+    },
+    {
+      "file": "全量对标报告_r42_反弹根因与延期treadmill_2026-09-25.md",
+      "sha256": "6b759979aab33fba07d2c7a690c04fce0823c2b376cb94b6ed50fd8f754c2c70"
+    },
+    {
+      "file": "全量对标报告_r43_反延期treadmill与分档宽限_2026-09-25.md",
+      "sha256": "040c68d8f82caa1e6f721cf00ee185ebabc2a2b1efe480d9322bcc773818b177"
+    },
+    {
+      "file": "全量对标报告_r44_裁决完整性落地_2026-09-25.md",
+      "sha256": "3bea77c92bf5689b6af2ade7d4d045d427de3aabc36762b37d3e212dbf4160b0"
+    },
+    {
+      "file": "全量对标报告_r45_反降级免检与标记错位真因_2026-09-25.md",
+      "sha256": "cb6ba7bb18f5a3a2de328835c3fe999f07d2f2e9f318b5989cf4a007a29164fa"
+    },
+    {
+      "file": "全量对标报告_r46_标记写入唯一入口_2026-09-25.md",
+      "sha256": "c14220c628d37a233e50ec8824281234d5ce59a757eecb1364b90307c6e74a42"
+    },
+    {
+      "file": "全量对标报告_r47_无法定年盲区清零_2026-09-25.md",
+      "sha256": "7e95e858972adf8eec60bba7d4b341b8094cc51c51225f9877d59b52e9d96b1b"
+    },
+    {
+      "file": "全量对标报告_r48_契约分代与归属可机检_2026-09-25.md",
+      "sha256": "a4ecd3943695c774bd409e6518e4b251492afc26796beb4802511a07043a3e2d"
+    },
+    {
+      "file": "全量对标报告_r49_判据输入面五面自证与三处劫持根因修_2026-09-25.md",
+      "sha256": "c7135f86ec8febffb154169bc618f9d052075bc84c40233fb5d96bd4119ce3d0"
+    },
+    {
+      "file": "全量对标报告_r50_权威源扫描扩面与对手枚举面复核_2026-09-25.md",
+      "sha256": "31b2e4fa96b0ddd7d69f6f8886a6b3634f5c95f9b082ddd8b7def7b797fbafe2"
+    },
+    {
+      "file": "全量对标报告_r51_取数面两路对账与判据接线自失效_2026-09-25.md",
+      "sha256": "c36d9a680d426d6a2b9ba11ed765e0d74e10d2a57482f7f426327f58c3f1b7de"
+    },
+    {
+      "file": "全量对标报告_r52_md引用面两路对账与契约陈旧自检_2026-09-25.md",
+      "sha256": "9d5b99e696991aac7892580c59090a4bc2a971bb19d2eaf2b2c091799b079bad"
+    },
+    {
+      "file": "全量对标报告_r53_名字不等于新鲜度与句柄化引用落地_2026-09-25.md",
+      "sha256": "4a920e7143d6f2a00c484596b77da99e3df1168705d3a5e9262415ac4df681ab"
+    },
+    {
+      "file": "全量对标报告_r54_指标再生预算与对手节律声明实测_2026-09-25.md",
+      "sha256": "1efd2ddf638e3ffb85670f0c170e901a72f143d686ccfd20438790f4889ae11f"
+    },
+    {
+      "file": "全量对标报告_r55_同一判据两输入面根因收口与对手副本策略实测_2026-09-25.md",
+      "sha256": "f14a4718f0b44542dec91d5f0786f91d40aaceef07b0ee945a7677d85c358e9b"
+    },
+    {
+      "file": "全量对标报告_r56_声明要被机器校验_预算入契约与裁定件配生成器_2026-09-25.md",
+      "sha256": "2adfdb3bbe6c2a31626d222e9b85511d16070de6c272dfef63f154bc609e092a"
+    },
+    {
+      "file": "全量对标报告_r58_动作固定面与判据自身三处假通过_2026-09-26.md",
+      "sha256": "5731dba3787d7e93981bdb8ac560d6e3e375ff86f234cd8738ae207c2e2c7d7c"
+    },
+    {
+      "file": "全量对标报告_r59_根迁移致判据读死面与退役未移出_2026-09-29.md",
+      "sha256": "dda8eca67a5348d80a39b63536ef6f32e11edc9b46955a59b3ec744b7602bad6"
+    },
+    {
+      "file": "全量对标报告_r60_能力覆盖名册差集_2026-09-30.md",
+      "sha256": "7a989cbc22699393642f7ce0b4ffa1f0075d5d10eb27bd58055b5ddbb1b1994e"
+    },
+    {
+      "file": "全量对标报告_r61_八维结构化_2026-09-30.md",
+      "sha256": "7e833ab4c3c79f8a23a78077691e933251078f7d9a648f1096d4a36ea0183cc9"
+    },
+    {
+      "file": "全量对标报告_r62_八维结构化_2026-09-30.md",
+      "sha256": "909e896eb09c33f754b015a0e7720d0ae7745c836c848377fb4fc69bf4c8e820"
+    },
+    {
+      "file": "全量对标报告_r63_红门修复与描述全量审计_2026-09-30.md",
+      "sha256": "44564177956e0c6edeae4398128e2e6bab2bade0ca5a22104f86b9f16434f506"
+    },
+    {
+      "file": "全量对标报告_r64_M2首批收口与在途产物入库_2026-09-30.md",
+      "sha256": "5325e552464ae0f73764251896fab629bd7fcbb6675cf01fdf25e2828eb7a488"
+    },
+    {
+      "file": "全量对标报告_r65_M2范围裁定与自建面达标_2026-09-30.md",
+      "sha256": "44bdfd172305ee0dcdb154c70a12996d8931675d473dead35ca05f0525b80067"
+    },
+    {
+      "file": "全量对标报告_r66_W46b生成器面接线判红_2026-09-30.md",
+      "sha256": "2a8a638fe2fa4b0dd7a1ae3ea298272dfc9dade8a68af2a849fcc8c2dc5e9745"
+    },
+    {
+      "file": "全量对标报告_r67_R58-1仓外输入固定面本地面_2026-09-30.md",
+      "sha256": "15a961c7fefab30703c06b6443112564c61166aaed2f1bc03ca1fe8fe15f6a7a"
+    },
+    {
+      "file": "全量对标报告_r68_pin台账增量落账与跨轮趋势_2026-09-30.md",
+      "sha256": "fae98cc839da763c5d8b4db3101b68d4dc50fa5abb62e87c1c7506aecf45848c"
+    },
+    {
+      "file": "全量对标报告_r69_pin清单热度排序与继承链_2026-10-01.md",
+      "sha256": "97d7bdf463a96d6e760a126825cd636487ee2a050ab315b3759ab4d5e805414d"
+    },
+    {
+      "file": "全量对标报告_r70_新面孔优先与热度滑动窗口_2026-10-01.md",
+      "sha256": "6886da741a8cfe75ec75acc9c5a0199b950b972d9a3b2b850d8048867927a770"
+    },
+    {
+      "file": "全量对标报告_r71_热度时间窗与新面孔配额_2026-10-01.md",
+      "sha256": "0bd02d97010c38ae3b10dec5fb361d221cf4cf9fbc657236da6d42d4967b04c3"
+    },
+    {
+      "file": "全量对标报告_r72_逐字重复触发自审与三处缺陷_2026-10-01.md",
+      "sha256": "f8a6bd2cdc186879bb6df364586a1f6c492562ecce39f28dd7e2ddd804de065e"
+    },
+    {
+      "file": "全量对标报告_r73_坏行行号与继承截断标记_2026-10-01.md",
+      "sha256": "7510fda0b878aa89a9df713e13cfe96670e3a858e23bc256aef79e53f41cdf11"
+    },
+    {
+      "file": "全量对标报告_r74_next跨批语义分歧收口_2026-10-01.md",
+      "sha256": "d6baf1b32968343189e89f10951d483adebff52fa1b22655230ff042e111ef1d"
+    },
+    {
+      "file": "全量对标报告_r76_存量09回填与头模板一致性判据_2026-10-01.md",
+      "sha256": "59af25d97cd8fa81bcbb718f070b17d86f906fbb7f7ecc38e3338a993dfc7393"
+    },
+    {
+      "file": "全量对标报告_r77_八维结构化_2026-10-01.md",
+      "sha256": "52d0a2e327d925fa2ff5475bb259dd884c176ae028c62af36aa6fb2b0c08a2f8"
+    },
+    {
+      "file": "全量对标报告_r97_全出口退役与判据假阴性修正_2026-10-01.md",
+      "sha256": "f714a436517519edaa233619555858cf8b2e5ca4d86b76a8185e82de2d123196"
+    },
+    {
+      "file": "全量对标报告_r99_十二维补面与覆盖根修_2026-10-02.md",
+      "sha256": "6008dbff8ec463fe721738ceb072426aba792857e5ea9c1929b65374620f491d"
+    },
+    {
+      "file": "回滚演练记录_r260_四级全通负控有牙_2026-10-28.md",
+      "sha256": "4a651e835a20af3e409b7b82a87a681ec81465c19953d3f6cf82d1689b3ed691"
+    },
+    {
+      "file": "契约与实现冲突候选_r276_2026-10-30.md",
+      "sha256": "13532e141b5b521c2094f87d253ec954a66b521cf5f72e1b8ba09526da8f7d41"
+    },
+    {
+      "file": "契约治理与体量治理联动框架_r150_2026-10-21.md",
+      "sha256": "a0d41be5271bef1dab1684b47b4a0039f9909b65ec0c76bb9dafbffae76214f6"
+    },
+    {
+      "file": "季度巡检演练_r276_2026-10-30.md",
+      "sha256": "fc56e6e746eb77e85e6356e49360f898225e1cac3e54add86c75fcb030f5c36c"
+    },
+    {
+      "file": "学习计划_r157_知识盲区清单_2026-10-21.md",
+      "sha256": "21459cfc00bf870d69894b5fdad58ad1aab550cdeb238c707635a3650d2208d7"
+    },
+    {
+      "file": "定向检索复核_r260_2026-10-28.md",
+      "sha256": "d4d5bf843049f870ccf39176d1155bcd3ad2943eec203547a043a2ef2b3bc0e6"
+    },
+    {
+      "file": "工件级AB_三件盲评_r281_2026-10-29.md",
+      "sha256": "4dd09d33d5e72f989aa27a2687457ea5e9b84a3de7b60050b129ab9a267aecbd"
+    },
+    {
+      "file": "并入候选_3件改写本_r266_2026-10-30.md",
+      "sha256": "fbc1333201ad54edf8ece863b03c0500d64807c3b0f9a0a7d5ee3ef625d12ce5"
+    },
+    {
+      "file": "归因第三次纠正件_r232_5条由L0.1直连映射决定_2026-10-25.md",
+      "sha256": "ef4a1ca2e2ed455487dcd43e66841dcbd2057d90283435512f388e126355cf66"
+    },
+    {
+      "file": "性能维度_r260_2026-10-28.md",
+      "sha256": "80aba485d29624989646de42ba6e3f0771326d439bec8db438508de1c87ccc7f"
+    },
+    {
+      "file": "执行级AB_r281_2026-10-29.md",
+      "sha256": "6a3be079b84f260dde9201f390b7f82446a56fabd33c2160be1e72460c31ae4a"
+    },
+    {
+      "file": "技能六段解剖基线_2026-09-24.md",
+      "sha256": "fde6dd1dc1c776cc57f5248e31b2066adabcd52c59eb1958768e9b2d12e413c2"
+    },
+    {
+      "file": "替代检索与五维评估矩阵_r114_2026-10-18.md",
+      "sha256": "f76510bacca0f1a0421e8cb090e9e215ce1dc57e830c00d1f33a442a1ac9f84e"
+    },
+    {
+      "file": "替换类三分类_r275_7件_2026-10-30.md",
+      "sha256": "1978a06b909e7bc364b4cd68e884bced3a8800c18284b8d13c1a49428415ee73"
+    },
+    {
+      "file": "本地同尺基线与compat判别力_r260_2026-10-28.md",
+      "sha256": "fc737e159c589e714443d73a08c30fd6d3ce117041392bb0c8bfc47cab7a28b1"
+    },
+    {
+      "file": "独立复核_r269_frontend-slides落地_2026-10-29.md",
+      "sha256": "c88a14b4feb85acdd31c74a8a1714f243f5e06c7c33fbc6e5b9fc85e44d60d08"
+    },
+    {
+      "file": "独立复核_未引用在盘件_12件抽样_r268_2026-10-29.md",
+      "sha256": "fa5c2a192e0ed3e0c395d7a91496164c231dbbacf5743db07af3bab2e79b42f9"
+    },
+    {
+      "file": "目录注意力税基线_2026-09-24.md",
+      "sha256": "247325391e374d50c14832462101dcce53385631ae849f924c5b702557113b07"
+    },
+    {
+      "file": "目录注意力税基线_r20_2026-09-24.md",
+      "sha256": "a75309d6fa87b3e2d8b924e0a53aeb048628238cf3df8d99668765c7c658e5c3"
+    },
+    {
+      "file": "直连修复反事实复测_r244_L1从90.1到90.7_2026-10-25.md",
+      "sha256": "f5b9fbf9582f0d433ca7da6015de7b50b99880d9abeebb75708b67970e582a40"
+    },
+    {
+      "file": "累积漂移基线_2026-09-24.md",
+      "sha256": "5fcc069a842dc3c80da7e6a91d3a734889fac6a9245d6e1b722097db68e880cd"
+    },
+    {
+      "file": "终版验收报告_r131_16轮治理收敛_2026-10-20.md",
+      "sha256": "6f89c902d34b549135ef8eedc5501abc80477dacef838dd45a6424fdaadd47f9"
+    },
+    {
+      "file": "自建skill体系全量对标分析报告.md",
+      "sha256": "64f5eec4083cff1708e7c88d0f47bbc3af00a2819d1eedfe62a7a7ed7b181cd8"
+    },
+    {
+      "file": "范式迁移方案_frontend-slides_r271_2026-10-29.md",
+      "sha256": "9e7ecd7b1cd03fb8c78f6a9b292c441a88a3bb459273748c063670546b319bdf"
+    },
+    {
+      "file": "计数断言基线_2026-09-24.md",
+      "sha256": "a03989a18b4e4658853323dd83f42d2c0c91e7414cfc1eec36cc421cc5f0020c"
+    },
+    {
+      "file": "质量提升度量_r114_2026-10-18.md",
+      "sha256": "55a1f956cdc2342fbb1af9d7b7a3781bd3c57db28217ecb75def81a626d99377"
+    },
+    {
+      "file": "质量提升度量_r115_2026-10-18.md",
+      "sha256": "ea5a0cf37d2a67e7d77861996927e43d60b21c47ccc4ab482eab7a6b724e1bbd"
+    },
+    {
+      "file": "跟版差异_obra-superpowers_5件_r264_2026-10-29.md",
+      "sha256": "5ec928bd185fc97d496f0a68edf20b15834f94104fdaf9fcac48df087e415cd6"
+    },
+    {
+      "file": "路由tag索引缺陷发现件_r228_93个畸形tag与brainstorming触发词缺失_2026-10-25.md",
+      "sha256": "a75fdd622ebc29f0e86f1faaa5068657f8b979d4ebd8f1c2de510abe9c5cec06"
+    },
+    {
+      "file": "路由层缺陷移交清单_r234_合并版_2026-10-25.md",
+      "sha256": "a08e62085e56b91b9168cf1f521aa75eebe3d4d0387ef010409de311119a7c87"
+    },
+    {
+      "file": "逐件盘点_r115_2026-10-18.md",
+      "sha256": "518eb22ab06062f6f1f2a51a03120bf63be2c23e22a22c700607814960a97596"
+    },
+    {
+      "file": "问题分析报告_七项需求终核_r283_2026-10-30.md",
+      "sha256": "ce4e6354ae62104a231f310c5d5c174a52e709c86e850093d8c1c549da9315b2"
+    },
+    {
+      "file": "需求闭环审计件_r227_七项逐条对照_2026-10-25.md",
+      "sha256": "af30cdbcb4a1c99ea4cb8b56cad8e3b25630850b83b203ffb6386ad3268120e2"
+    },
+    {
+      "file": "非GitHub社区检索面_r260_2026-10-28.md",
+      "sha256": "46ffc8d1f53fc1a1f27f2a4c5eb58cc7a91e3c6edf551f4cadac7cb6ccb4fb33"
+    },
+    {
+      "file": "07-next-steps.md",
+      "sha256": "e93589fe741b6043c9e8128769718dc00fa51213a78d6076a9f02e9e3a954e29"
+    }
+  ],
+  "per_file_n": 198,
+  "hits_detail": [
+    {
+      "file": "C2人读第一批_r261_28件逐件判定_2026-10-28.md",
+      "line": 196,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "需商业授权",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "**正文级复核加严两处**：`langgenius/dify` 的 NOASSERTION 实为 modified Apache 2.0 + 多租户需商业授权",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "comparison.md",
+      "line": 176,
+      "pat_idx": 1,
+      "pat": "(要不要|是否|能不能|可不可以).{0,12}(老大|提交|跑|做|动手|继续)",
+      "frag": "是否还在跑",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "反向用法说明：对手用 CI 判代码，本仓额外用 CI **盯人**（`gate_runs.jsonl` 随仓提交，CI 读它判\"本机是否还在跑门禁\"）",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "comparison.md",
+      "line": 366,
+      "pat_idx": 1,
+      "pat": "(要不要|是否|能不能|可不可以).{0,12}(老大|提交|跑|做|动手|继续)",
+      "frag": "是否建立在老大",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "对标价值不在「对手有多少 workflow」，而在「我的绿灯是否建立在我真读过的面上」",
+      "normalize_manufactured": true,
+      "denoised": false
+    },
+    {
+      "file": "description双要素基线_2026-09-24.md",
+      "line": 25,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "先整改候选",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "## 最短 Top10（优先整改候选）",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "description双要素基线_2026-09-24.md",
+      "line": 86,
+      "pat_idx": 1,
+      "pat": "(要不要|是否|能不能|可不可以).{0,12}(老大|提交|跑|做|动手|继续)",
+      "frag": "是否继续",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "单一深度拆解管道：跑完黄金三章（Stage 1）后产出快速预览报告并询问是否继续全量拆解，确认后从 St",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "free_tool_roster_latest.md",
+      "line": 9,
+      "pat_idx": 1,
+      "pat": "(要不要|是否|能不能|可不可以).{0,12}(老大|提交|跑|做|动手|继续)",
+      "frag": "能不能跑",
+      "dn1": false,
+      "dn2": false,
+      "dn3": true,
+      "compound": "",
+      "sentence": "工具在本机能不能跑",
+      "normalize_manufactured": false,
+      "denoised": true
+    },
+    {
+      "file": "upstream_research_r113_2026-10-18.md",
+      "line": 279,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "需以该候选",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "**维持，但安全面出现强候选**：`cloudflare/security-audit-skill` 30,756★ / 22,182B 正文（厂商级），本地 `security-audit` 与 AAS 版 unrelated ⇒ 回归「无更优」需以该候选为对照重测（新立 K-8）",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "三臂对账_r282_2026-10-29.md",
+      "line": 234,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "须选",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "解释器必须选受管 venv：本机 LibreOffice 自带 python 跑 ui-ux-pro-max/scripts/*.py --help 返回非 0 ⇒ d6 探针会假报 dim6_probe.decidable published=True live=False（本轮实测踩过）",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "交付物基数对账_r261_2026-10-28.md",
+      "line": 4,
+      "pat_idx": 10,
+      "pat": "(?:要|需|得|须|该|请)[^。！？；]{0,6}哪[一两几]?[条个项种]",
+      "frag": "该命令读的是哪个",
+      "dn1": false,
+      "dn2": false,
+      "dn3": true,
+      "compound": "",
+      "sentence": "> 立规：本文**不抄数值当现状**，每个数都附「取值命令」与「该命令读的是哪个面」",
+      "normalize_manufactured": false,
+      "denoised": true
+    },
+    {
+      "file": "交付物基数对账_r261_2026-10-28.md",
+      "line": 39,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "须写「候选",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "引用必须写「候选行」不得写「件」",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "交付物基数对账_r261_2026-10-28.md",
+      "line": 133,
+      "pat_idx": 10,
+      "pat": "(?:要|需|得|须|该|请)[^。！？；]{0,6}哪[一两几]?[条个项种]",
+      "frag": "需要哪个",
+      "dn1": false,
+      "dn2": false,
+      "dn3": true,
+      "compound": "",
+      "sentence": "文档里凡给「跑它复现」的命令，必须显式标注「它会改 tracked 件 + 需要哪个解释器」",
+      "normalize_manufactured": false,
+      "denoised": true
+    },
+    {
+      "file": "全量对标报告_r100_名册派生与两件换装_2026-10-02.md",
+      "line": 56,
+      "pat_idx": 1,
+      "pat": "(要不要|是否|能不能|可不可以).{0,12}(老大|提交|跑|做|动手|继续)",
+      "frag": "是否只剩老大",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "前提=<可复算命令>：`python 焚诀/eval/build_registry.py --dry-run` 看 `missing` 是否只剩我这两件",
+      "normalize_manufactured": true,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r101_名册优质半边与同事实单尺_2026-10-02.md",
+      "line": 66,
+      "pat_idx": 1,
+      "pat": "(要不要|是否|能不能|可不可以).{0,12}(老大|提交|跑|做|动手|继续)",
+      "frag": "是否属于某类\"的新判据，动手",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "4. 任何\"档位/是否属于某类\"的新判据，动手前先问：**这个谓词和已有的哪一处重叠",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r105_换装尺自我证伪与陈旧输入面返工_2026-10-04.md",
+      "line": 179,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "先确认",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "# ① 入场三闸 + 陈旧输入面前置（不动数据，先确认尺是新的）",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r108_四项改造与并行甩件回收_2026-10-16.md",
+      "line": 81,
+      "pat_idx": 1,
+      "pat": "(要不要|是否|能不能|可不可以).{0,12}(老大|提交|跑|做|动手|继续)",
+      "frag": "能不能一眼找到并本地跑",
+      "dn1": false,
+      "dn2": false,
+      "dn3": true,
+      "compound": "",
+      "sentence": "功能上等价（都是「判据+变异腿」），差别在第三方贡献者能不能一眼找到并本地跑",
+      "normalize_manufactured": false,
+      "denoised": true
+    },
+    {
+      "file": "全量对标报告_r108_四项改造与并行甩件回收_2026-10-16.md",
+      "line": 93,
+      "pat_idx": 1,
+      "pat": "(要不要|是否|能不能|可不可以).{0,12}(老大|提交|跑|做|动手|继续)",
+      "frag": "是否老大",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "## 3. 改进建议清单（优先级 = 影响面 × 违反判据数 × 可执行性 × 是否我方可改面）",
+      "normalize_manufactured": true,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r109_四项改造与AGENTS索引壳化_2026-10-16.md",
+      "line": 75,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "须老大三选",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "须老大三选一（实减/重设硬顶/显式豁免），r109 已做本方可改半边（AGENTS.md -24,190B），余量在受管根（A-memory-start 两件 + GM 核心）",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r114_替代矩阵与质量基准_2026-10-18.md",
+      "line": 142,
+      "pat_idx": 1,
+      "pat": "(要不要|是否|能不能|可不可以).{0,12}(老大|提交|跑|做|动手|继续)",
+      "frag": "是否真更优」裁决 | 未做",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "替代候选 → 「是否真更优」裁决",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r117_中断轮收口与路由miss归因_2026-10-18.md",
+      "line": 180,
+      "pat_idx": 1,
+      "pat": "(要不要|是否|能不能|可不可以).{0,12}(老大|提交|跑|做|动手|继续)",
+      "frag": "是否老大",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "## 8. 改进建议清单（优先级 = 影响面 × 是否我方可改面 × 可执行性）",
+      "normalize_manufactured": true,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r118_换装影响上界与miss失败层归因_2026-10-18.md",
+      "line": 122,
+      "pat_idx": 1,
+      "pat": "(要不要|是否|能不能|可不可以).{0,12}(老大|提交|跑|做|动手|继续)",
+      "frag": "是否老大",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "## 7. 改进建议清单（优先级 = 影响面 × 是否我方可改面 × 可执行性）",
+      "normalize_manufactured": true,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r123_回滚决策被生产实测翻转与沙箱偏差根因_2026-10-20.md",
+      "line": 141,
+      "pat_idx": 10,
+      "pat": "(?:要|需|得|须|该|请)[^。！？；]{0,6}哪[一两几]?[条个项种]",
+      "frag": "须说清是哪一种",
+      "dn1": false,
+      "dn2": false,
+      "dn3": true,
+      "compound": "",
+      "sentence": "这两件加固的价值在抗域扰动，不在 Top-1 命中 —— 报告时必须说清是哪一种，",
+      "normalize_manufactured": false,
+      "denoised": true
+    },
+    {
+      "file": "全量对标报告_r124_时序坑机械化与债务追讨轮_2026-10-20.md",
+      "line": 44,
+      "pat_idx": 10,
+      "pat": "(?:要|需|得|须|该|请)[^。！？；]{0,6}哪[一两几]?[条个项种]",
+      "frag": "该看哪个",
+      "dn1": false,
+      "dn2": false,
+      "dn3": true,
+      "compound": "",
+      "sentence": "「该看哪个指标」的答案：**两个都该看，它们回答不同问题**",
+      "normalize_manufactured": false,
+      "denoised": true
+    },
+    {
+      "file": "全量对标报告_r125_替代候选机器腿全量与共享度分层_2026-10-20.md",
+      "line": 61,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "先确认候选",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "下轮从独占 14 件开始，每件先确认候选仓 skill 文件实际路径再读",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r125_替代候选机器腿全量与共享度分层_2026-10-20.md",
+      "line": 96,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "先确认",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "独占 14 件的 C2 人读（候选仓 skill 文件路径先确认再读），下轮外部取数恢复后执行",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r130_纪律变机制与门表对账闸_2026-10-20.md",
+      "line": 70,
+      "pat_idx": 1,
+      "pat": "(要不要|是否|能不能|可不可以).{0,12}(老大|提交|跑|做|动手|继续)",
+      "frag": "是否阻断提交",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "是否阻断提交",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r151_反向验证无牙与转诊假闭环_2026-10-21.md",
+      "line": 167,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "先」，全候选",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "——候选改为「能过真实 spawn 自检者优先」，全候选失败 ⇒ 显式留痕并按不阻断处理",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md",
+      "line": 639,
+      "pat_idx": 1,
+      "pat": "(要不要|是否|能不能|可不可以).{0,12}(老大|提交|跑|做|动手|继续)",
+      "frag": "是否已做",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "### 18.1 先核实「另笔收尾」是否已做完（不替别人假设）",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md",
+      "line": 1029,
+      "pat_idx": 0,
+      "pat": "老大(该|应该|要不要|是否|能不能|可不可以|可以)",
+      "frag": "老大可以",
+      "dn1": false,
+      "dn2": false,
+      "dn3": true,
+      "compound": "",
+      "sentence": "复核发现该阻塞是**假的**：我可以**自建一份干净克隆**绕开他人工作副本",
+      "normalize_manufactured": true,
+      "denoised": true
+    },
+    {
+      "file": "全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md",
+      "line": 1256,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "先确认",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "③ 先确认只有这一项在涨（其余 8 项持平或降），防把别的指标一起抬了",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md",
+      "line": 1297,
+      "pat_idx": 1,
+      "pat": "(要不要|是否|能不能|可不可以).{0,12}(老大|提交|跑|做|动手|继续)",
+      "frag": "是否有人跑",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "读到的是上一轮 FAIL 的自指延迟（本门只登记「本机专属门是否有人跑」）",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md",
+      "line": 2050,
+      "pat_idx": 12,
+      "pat": "(?:告|通)?知?(老大|你)[^。！？；]{0,8}(?:任务|下一步|接下来)",
+      "frag": "老大的下一步",
+      "dn1": false,
+      "dn2": false,
+      "dn3": true,
+      "compound": "",
+      "sentence": "而我的下一步更危险：",
+      "normalize_manufactured": true,
+      "denoised": true
+    },
+    {
+      "file": "全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md",
+      "line": 2247,
+      "pat_idx": 1,
+      "pat": "(要不要|是否|能不能|可不可以).{0,12}(老大|提交|跑|做|动手|继续)",
+      "frag": "是否变红。没做",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "> 把修复改回原样，看夹具是否变红",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md",
+      "line": 2421,
+      "pat_idx": 1,
+      "pat": "(要不要|是否|能不能|可不可以).{0,12}(老大|提交|跑|做|动手|继续)",
+      "frag": "是否含老大",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "我挂门前核的是「跑不跑全量」，没核「跑的那个全集是否含我自己」",
+      "normalize_manufactured": true,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md",
+      "line": 2464,
+      "pat_idx": 1,
+      "pat": "(要不要|是否|能不能|可不可以).{0,12}(老大|提交|跑|做|动手|继续)",
+      "frag": "是否含自身」—— 这正是老大",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "> 全量」不够，还要核「跑的那个集合是否含自身」—— 这正是我把 r32 判为安全、却在 r31 上栽了的",
+      "normalize_manufactured": true,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md",
+      "line": 2575,
+      "pat_idx": 0,
+      "pat": "老大(该|应该|要不要|是否|能不能|可不可以|可以)",
+      "frag": "老大该",
+      "dn1": false,
+      "dn2": false,
+      "dn3": true,
+      "compound": "",
+      "sentence": "### 52.5 三门禁分诊：fail 不等于我该修",
+      "normalize_manufactured": true,
+      "denoised": true
+    },
+    {
+      "file": "全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md",
+      "line": 2887,
+      "pat_idx": 10,
+      "pat": "(?:要|需|得|须|该|请)[^。！？；]{0,6}哪[一两几]?[条个项种]",
+      "frag": "该进哪个",
+      "dn1": false,
+      "dn2": false,
+      "dn3": true,
+      "compound": "",
+      "sentence": "## 57. 反哺的下半场：不是「写进某个 skill」，是查哪几条真没进、该进哪个家（r207）",
+      "normalize_manufactured": false,
+      "denoised": true
+    },
+    {
+      "file": "全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md",
+      "line": 3169,
+      "pat_idx": 10,
+      "pat": "(?:要|需|得|须|该|请)[^。！？；]{0,6}哪[一两几]?[条个项种]",
+      "frag": "该补的是哪个",
+      "dn1": false,
+      "dn2": false,
+      "dn3": true,
+      "compound": "",
+      "sentence": "quickref 的 R811 段，让下次撞墙的人知道「该补的是哪个文件」",
+      "normalize_manufactured": false,
+      "denoised": true
+    },
+    {
+      "file": "全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md",
+      "line": 3235,
+      "pat_idx": 12,
+      "pat": "(?:告|通)?知?(老大|你)[^。！？；]{0,8}(?:任务|下一步|接下来)",
+      "frag": "老大或老大在任务",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "想起某条知识的，是我或老大在任务现场会说出的那句话",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md",
+      "line": 3315,
+      "pat_idx": 12,
+      "pat": "(?:告|通)?知?(老大|你)[^。！？；]{0,8}(?:任务|下一步|接下来)",
+      "frag": "老大给自己定的下一步",
+      "dn1": false,
+      "dn2": false,
+      "dn3": true,
+      "compound": "",
+      "sentence": "上轮我给自己定的下一步是：「等 `win-toolchain/SKILL.md` 干净，就给它的 `description`",
+      "normalize_manufactured": true,
+      "denoised": true
+    },
+    {
+      "file": "全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md",
+      "line": 3351,
+      "pat_idx": 12,
+      "pat": "(?:告|通)?知?(老大|你)[^。！？；]{0,8}(?:任务|下一步|接下来)",
+      "frag": "老大上轮那句「8 条任务",
+      "dn1": false,
+      "dn2": false,
+      "dn3": true,
+      "compound": "",
+      "sentence": "我上轮那句「8 条任务只 3 条召回」如果按正确分母重算，其实是",
+      "normalize_manufactured": true,
+      "denoised": true
+    },
+    {
+      "file": "全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md",
+      "line": 3575,
+      "pat_idx": 1,
+      "pat": "(要不要|是否|能不能|可不可以).{0,12}(老大|提交|跑|做|动手|继续)",
+      "frag": "能不能跑",
+      "dn1": false,
+      "dn2": false,
+      "dn3": true,
+      "compound": "",
+      "sentence": "- 第 163 门：工具在本机**能不能跑**（READY/GAP_CRED/GAP_SERVICE）",
+      "normalize_manufactured": false,
+      "denoised": true
+    },
+    {
+      "file": "全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md",
+      "line": 3615,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "先动手，后确认",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "> 我刚写完「差点把探针错当发现写进报告」之后 —— 两次同根：先动手，后确认影响面",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md",
+      "line": 3770,
+      "pat_idx": 1,
+      "pat": "(要不要|是否|能不能|可不可以).{0,12}(老大|提交|跑|做|动手|继续)",
+      "frag": "能不能跑",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "163 工具能不能跑 / 67 skill 目录里有无命令级引用 / 93 每个工具是否被 skill 承载 / 92 入口会不会",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md",
+      "line": 3771,
+      "pat_idx": 1,
+      "pat": "(要不要|是否|能不能|可不可以).{0,12}(老大|提交|跑|做|动手|继续)",
+      "frag": "能不能召回。**没有一门量「老大",
+      "dn1": false,
+      "dn2": false,
+      "dn3": true,
+      "compound": "",
+      "sentence": "派到写着答案的卷 / 88 话术能不能召回",
+      "normalize_manufactured": true,
+      "denoised": true
+    },
+    {
+      "file": "全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md",
+      "line": 3909,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "先确认",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "> 不一致 —— 「判据说治不了」之前，先确认判据量的就是生产那条路",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md",
+      "line": 3977,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "先确认",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "> 元教训：**登记「我改不了」之前，先确认那个常量真的在别人手里",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md",
+      "line": 5666,
+      "pat_idx": 10,
+      "pat": "(?:要|需|得|须|该|请)[^。！？；]{0,6}哪[一两几]?[条个项种]",
+      "frag": "得先问：**哪一种",
+      "dn1": false,
+      "dn2": false,
+      "dn3": true,
+      "compound": "",
+      "sentence": "真要逐条看，得先问：**哪一种吞异常才危险",
+      "normalize_manufactured": false,
+      "denoised": true
+    },
+    {
+      "file": "全量对标报告_r183_不回抛落到我自己_端传播与侧车入库与主卷再瘦身_2026-10-23.md",
+      "line": 8,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "需要老大拍板",
+      "dn1": true,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "拿本仓第 62 门扫我上一轮（r175）收尾消息，命中 `需要老大拍板` ⇒ **上一轮我确实回抛了三件事**（违反 #37）：",
+      "normalize_manufactured": false,
+      "denoised": true
+    },
+    {
+      "file": "全量对标报告_r183_不回抛落到我自己_端传播与侧车入库与主卷再瘦身_2026-10-23.md",
+      "line": 8,
+      "pat_idx": 9,
+      "pat": "(?<![不需没无])(?:需|请|要).{0,4}(?:老大|你).{0,4}(?:授权|准许|许可|拍板|定夺)",
+      "frag": "需要老大拍板",
+      "dn1": true,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "拿本仓第 62 门扫我上一轮（r175）收尾消息，命中 `需要老大拍板` ⇒ **上一轮我确实回抛了三件事**（违反 #37）：",
+      "normalize_manufactured": false,
+      "denoised": true
+    },
+    {
+      "file": "全量对标报告_r183_不回抛落到我自己_端传播与侧车入库与主卷再瘦身_2026-10-23.md",
+      "line": 22,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "需要老大拍板",
+      "dn1": true,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "拿我 4 句真实回抛测原 7 条正则 ⇒ 只命中 1 句（`需要老大拍板`）",
+      "normalize_manufactured": false,
+      "denoised": true
+    },
+    {
+      "file": "全量对标报告_r183_不回抛落到我自己_端传播与侧车入库与主卷再瘦身_2026-10-23.md",
+      "line": 22,
+      "pat_idx": 9,
+      "pat": "(?<![不需没无])(?:需|请|要).{0,4}(?:老大|你).{0,4}(?:授权|准许|许可|拍板|定夺)",
+      "frag": "需要老大拍板",
+      "dn1": true,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "拿我 4 句真实回抛测原 7 条正则 ⇒ 只命中 1 句（`需要老大拍板`）",
+      "normalize_manufactured": false,
+      "denoised": true
+    },
+    {
+      "file": "全量对标报告_r18_2026-09-24.md",
+      "line": 211,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "需授权",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "global_skills（需授权窗口）",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r19_2026-09-24.md",
+      "line": 253,
+      "pat_idx": 1,
+      "pat": "(要不要|是否|能不能|可不可以).{0,12}(老大|提交|跑|做|动手|继续)",
+      "frag": "是否已经把这件事做",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "### 12.1 复测一：归属方是否已经把这件事做完了（结论：是 ⇒ 我方转办件过期）",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r211_八维对标与四项工程改造_2026-10-25.md",
+      "line": 218,
+      "pat_idx": 8,
+      "pat": "(?:若|如果|待|等).{0,8}(?:老大|你).{0,6}(?:认为|同意|确认|授权|拍板|回复|发话)",
+      "frag": "若老大授权",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": ">   可解锁路径已写进台账：**若老大授权动红线摘要**，按三段式再下沉即可清零（全文正本在 `memory/06-constraints.md`）",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r211_季度巡检死句柄与自造转义事故复原_2026-10-25.md",
+      "line": 165,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "须打印选",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "python 05-exec/r115_inventory.py（首两行须打印选面与注记）",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r211_季度巡检死句柄与自造转义事故复原_2026-10-25.md",
+      "line": 219,
+      "pat_idx": 3,
+      "pat": "等(你|老大)",
+      "frag": "等老大",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "R113-4 注入面三选一仍等老大",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r221_口径B改善被选件器报成零与切换判据自我推翻_2026-10-25.md",
+      "line": 49,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "需满足「候选",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "裁据执行情况：把 C1 前置从 `skill_md_n` 切到 `skill_md_exact_n` 需满足「候选级翻转 = 0 且无未决行」，",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r221_口径B改善被选件器报成零与切换判据自我推翻_2026-10-25.md",
+      "line": 73,
+      "pat_idx": 3,
+      "pat": "等(你|老大)",
+      "frag": "等老大",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "需求 6 口径由「等老大拍板」改为本仓自主裁定 = B",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r221_口径B改善被选件器报成零与切换判据自我推翻_2026-10-25.md",
+      "line": 73,
+      "pat_idx": 8,
+      "pat": "(?:若|如果|待|等).{0,8}(?:老大|你).{0,6}(?:认为|同意|确认|授权|拍板|回复|发话)",
+      "frag": "等老大拍板",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "需求 6 口径由「等老大拍板」改为本仓自主裁定 = B",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r260_判据四处根因修与两条新常驻门_2026-10-28.md",
+      "line": 156,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "得进候选",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "唯一值得进候选面的是 skills.sh 一族",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r260_判据四处根因修与两条新常驻门_2026-10-28.md",
+      "line": 298,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "需老大侧确认",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "1. 口径 B 是否作为需求 6 的验收口径 —— 需老大侧确认件（本仓自裁 + 第二意见反对，两证据齐备，见 §8）",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r261_compat许可子腿落地与两处恒红自修_2026-10-28.md",
+      "line": 117,
+      "pat_idx": 10,
+      "pat": "(?:要|需|得|须|该|请)[^。！？；]{0,6}哪[一两几]?[条个项种]",
+      "frag": "需要哪个",
+      "dn1": false,
+      "dn2": false,
+      "dn3": true,
+      "compound": "",
+      "sentence": "tracked 件 + 需要哪个解释器全路径」，已列 07（R261-3）",
+      "normalize_manufactured": false,
+      "denoised": true
+    },
+    {
+      "file": "全量对标报告_r261_compat许可子腿落地与两处恒红自修_2026-10-28.md",
+      "line": 153,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "需商业授权",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "`langgenius/dify` 的 `NOASSERTION` 读 LICENSE 正文实为 **modified Apache 2.0 + 多租户需商业授权**",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r262_许可正文级证据与三处新缺陷_2026-10-28.md",
+      "line": 17,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "须取得商业授权",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "modified Apache 2.0 + **多租户须取得商业授权** + 禁改 LOGO",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r265_跟版可行性分类_2026-10-29.md",
+      "line": 82,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "需人读决定",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "**R265-2**（3 件 `LOCAL_DERIVATIVE_REVIEW` 需人读决定并入哪些，不许覆盖）、",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r266_第一个受管根跟版落地_2026-10-29.md",
+      "line": 62,
+      "pat_idx": 3,
+      "pat": "等(你|老大)",
+      "frag": "等老大",
+      "dn1": false,
+      "dn2": false,
+      "dn3": true,
+      "compound": "",
+      "sentence": "**既存大范围漂移**（清单含 brainstorming / cloudbase / coding-agent 等我从未触碰的件）",
+      "normalize_manufactured": true,
+      "denoised": true
+    },
+    {
+      "file": "全量对标报告_r269_frontend-slides包显形与范式冲突声明_2026-10-29.md",
+      "line": 65,
+      "pat_idx": 3,
+      "pat": "等(你|老大)",
+      "frag": "等老大",
+      "dn1": false,
+      "dn2": false,
+      "dn3": true,
+      "compound": "",
+      "sentence": "**既存大范围漂移**（清单含 brainstorming / cloudbase / coding-agent 等我零触碰的件",
+      "normalize_manufactured": true,
+      "denoised": true
+    },
+    {
+      "file": "全量对标报告_r278_已落地件改前改后实测_2026-10-29.md",
+      "line": 67,
+      "pat_idx": 12,
+      "pat": "(?:告|通)?知?(老大|你)[^。！？；]{0,8}(?:任务|下一步|接下来)",
+      "frag": "老大不把结构提升冒充任务",
+      "dn1": false,
+      "dn2": false,
+      "dn3": true,
+      "compound": "",
+      "sentence": "⇒ 件内 `axes_note` 已写明「per-axis structural readings; NOT task-level quality」，**我不把结构提升冒充任务质量**（那正是 #36 假完成的形态）",
+      "normalize_manufactured": true,
+      "denoised": true
+    },
+    {
+      "file": "全量对标报告_r27_2026-09-24.md",
+      "line": 74,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "需知情授权",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "属\"管道执行远程脚本\"这一类**需知情授权**行为，非漏洞",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r285_迁库二次事故收口_2026-10-30.md",
+      "line": 83,
+      "pat_idx": 12,
+      "pat": "(?:告|通)?知?(老大|你)[^。！？；]{0,8}(?:任务|下一步|接下来)",
+      "frag": "老大此前那句关于任务",
+      "dn1": true,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "被抓成 `bounce=老大此前那句关于任务` —— 那是技术名词，句中既无请求也无等待，且**守卫输出的片段指向我文本里",
+      "normalize_manufactured": false,
+      "denoised": true
+    },
+    {
+      "file": "全量对标报告_r29_双口径与范围过滤_2026-09-24.md",
+      "line": 93,
+      "pat_idx": 1,
+      "pat": "(要不要|是否|能不能|可不可以).{0,12}(老大|提交|跑|做|动手|继续)",
+      "frag": "是否由老大",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "`A-skill-manager` 在途债是否由我方接管",
+      "normalize_manufactured": true,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r36_引用可解析性_2026-09-25.md",
+      "line": 28,
+      "pat_idx": 1,
+      "pat": "(要不要|是否|能不能|可不可以).{0,12}(老大|提交|跑|做|动手|继续)",
+      "frag": "是否解得开\"做",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "**但没有一家把\"文档内引用是否解得开\"做成常规度量** ⇒ 这是本体系可以先行的子项",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r39_延期与终局分离_2026-09-25.md",
+      "line": 24,
+      "pat_idx": 0,
+      "pat": "老大(该|应该|要不要|是否|能不能|可不可以|可以)",
+      "frag": "老大可以",
+      "dn1": false,
+      "dn2": false,
+      "dn3": true,
+      "compound": "",
+      "sentence": "r38 版判据把任何 `挂账至 rNN` 一律判 DECIDED ⇒ 我可以给全部 22 条写",
+      "normalize_manufactured": true,
+      "denoised": true
+    },
+    {
+      "file": "全量对标报告_r43_反延期treadmill与分档宽限_2026-09-25.md",
+      "line": 48,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "须三选",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "- **X-17（本轮立）**：禁止用「再挂一个到期日」处理 REPEAT 项 —— 必须三选一：执行 / 降级为长期看守（带指标看守）/ 作废（带实测证据）",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r44_裁决完整性落地_2026-09-25.md",
+      "line": 74,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "须三选",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "- **X-17 沿用**（r43 立）：REPEAT 项禁止再挂新到期日，必须三选一（执行 / 降级看守带指标 / 作废带证据）",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r56_声明要被机器校验_预算入契约与裁定件配生成器_2026-09-25.md",
+      "line": 36,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "先交出来再决定",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "③ 立 **W-46** 把\"pattern 必须有生成器\"变成下轮的机器判据（先量误报率：16 个 pattern 里现有多少本来就没生成器，清单先交出来再决定接线）",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r56_声明要被机器校验_预算入契约与裁定件配生成器_2026-09-25.md",
+      "line": 47,
+      "pat_idx": 1,
+      "pat": "(要不要|是否|能不能|可不可以).{0,12}(老大|提交|跑|做|动手|继续)",
+      "frag": "是否真互斥**不由老大",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "语义是否真互斥**不由我裁**——本项目红线禁止改受管根规则正文，且 R241 只允许加校正注",
+      "normalize_manufactured": true,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r58_动作固定面与判据自身三处假通过_2026-09-26.md",
+      "line": 129,
+      "pat_idx": 1,
+      "pat": "(要不要|是否|能不能|可不可以).{0,12}(老大|提交|跑|做|动手|继续)",
+      "frag": "是否继续做",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "备份落点对立 / 镜像是否继续做物理副本 / R 号跨项目登记面",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r59_根迁移致判据读死面与退役未移出_2026-09-29.md",
+      "line": 25,
+      "pat_idx": 1,
+      "pat": "(要不要|是否|能不能|可不可以).{0,12}(老大|提交|跑|做|动手|继续)",
+      "frag": "是否独立可跑",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "`scripts/` 是否独立可跑（AST + import）",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r59_根迁移致判据读死面与退役未移出_2026-09-29.md",
+      "line": 201,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "需授权",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "半破坏·需授权",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r59_根迁移致判据读死面与退役未移出_2026-09-29.md",
+      "line": 225,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "需老大一句授权",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "1. **补前提（R59-4，需老大一句授权）**：把 20 件 never-git-added 技能入库 ⇒ `python 05-exec/r59_add_untracked.py --dry-run` 先看清单（新写件，逐路径 add，禁 `-A`），确认后 `--apply` + `git -C D:/global_skills commit --only -m \"chore: 纳入在盘未跟踪技能 20 件（补齐退役/回滚前提）\" -- <逐个路径>`",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r59_根迁移致判据读死面与退役未移出_2026-09-29.md",
+      "line": 225,
+      "pat_idx": 9,
+      "pat": "(?<![不需没无])(?:需|请|要).{0,4}(?:老大|你).{0,4}(?:授权|准许|许可|拍板|定夺)",
+      "frag": "需老大一句授权",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "1. **补前提（R59-4，需老大一句授权）**：把 20 件 never-git-added 技能入库 ⇒ `python 05-exec/r59_add_untracked.py --dry-run` 先看清单（新写件，逐路径 add，禁 `-A`），确认后 `--apply` + `git -C D:/global_skills commit --only -m \"chore: 纳入在盘未跟踪技能 20 件（补齐退役/回滚前提）\" -- <逐个路径>`",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r63_红门修复与描述全量审计_2026-09-30.md",
+      "line": 52,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "需授权",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "权限校验 P1–P4（身份必填/双硬前提/范围外仍需授权/禁降格销账）",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r64_M2首批收口与在途产物入库_2026-09-30.md",
+      "line": 64,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "需用户三选",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "⬜ 需用户三选一",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "全量对标报告_r77_八维结构化_2026-10-01.md",
+      "line": 109,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "需确认",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "- 用户\"无需确认直接执行\"与 P0（破坏性需确认/禁擅动他人在途）冲突时，按 behavior_core P0.19（用户指令 > P0）与 #23 执行，但不可逆损失风险项仍先给一句风险陈述：本轮实际执行的全部为新增/加注类（报告+证据+索引），**retired 二件迁移、受管根 19 件 description 改写、语料复制三类高危动作一律未执行**，均转归属/待办",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "契约与实现冲突候选_r276_2026-10-30.md",
+      "line": 213,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "须确认",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "- **正文 30 行**（✅人读）：- 删除前必须确认：被删除的内容是否包含伏笔、钩子、角色特征、情节推进、人物记忆、情绪承接、因果锚点等关键信息",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "替换类三分类_r275_7件_2026-10-30.md",
+      "line": 126,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "先呈现选",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "「都要求先呈现选项、再由用户决定是否安装」",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "直连修复反事实复测_r244_L1从90.1到90.7_2026-10-25.md",
+      "line": 64,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "需要策略决定",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "要靠后续 5 条，而那些需要策略决定或更下层改动",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "跟版差异_obra-superpowers_5件_r264_2026-10-29.md",
+      "line": 17,
+      "pat_idx": 10,
+      "pat": "(?:要|需|得|须|该|请)[^。！？；]{0,6}哪[一两几]?[条个项种]",
+      "frag": "须先作答「用哪种",
+      "dn1": false,
+      "dn2": false,
+      "dn3": true,
+      "compound": "",
+      "sentence": "⇒ 换装方案必须先作答「用哪种同步语义」，这是 §3 的覆盖清单存在的理由",
+      "normalize_manufactured": false,
+      "denoised": true
+    },
+    {
+      "file": "需求闭环审计件_r227_七项逐条对照_2026-10-25.md",
+      "line": 90,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "需确认",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "② 若要按口径 B 收口，需确认验收口径的变更（本仓已自主裁定为 B，见决策件 §8）",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "非GitHub社区检索面_r260_2026-10-28.md",
+      "line": 86,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "得进候选",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "- 唯一值得进候选面的非 GitHub 资产 = **skills.sh 社区目录**（12 族全有货，59–200 命中/族），",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "07-next-steps.md",
+      "line": 41,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "需商业授权",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "- [ ] **R261-6（r261 登记，P1）** **GitHub API 的 license 字段会骗人 ⇒ license_class 需正文级覆盖腿**：A 实测两处：langgenius/dify 的 NOASSERTION 读 LICENSE 正文实为 modified Apache 2.0 + 多租户需商业授权",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "07-next-steps.md",
+      "line": 50,
+      "pat_idx": 12,
+      "pat": "(?:告|通)?知?(老大|你)[^。！？；]{0,8}(?:任务|下一步|接下来)",
+      "frag": "老大此前那句关于任务",
+      "dn1": false,
+      "dn2": true,
+      "dn3": false,
+      "compound": "任务级",
+      "sentence": "接下来) —— 我草稿里「…那句关于任务级 A/B 不可复算…」被抓成 bounce=老大此前那句关于任务，而「任务级 A/B」是技术名词、句中既无请求也无等待",
+      "normalize_manufactured": false,
+      "denoised": true
+    },
+    {
+      "file": "07-next-steps.md",
+      "line": 61,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "得许可",
+      "dn1": false,
+      "dn2": false,
+      "dn3": true,
+      "compound": "",
+      "sentence": "- [ ] **R275-1（r275 登记，P2）** **classify_body 缺源可得许可家族（ELv2 等）**：一手 = r275 执行 R262-2 时实测 mksglu/context-mode 的 LICENSE 正文首行是 Elastic License 2.0 (ELv2)，而 05-exec/r114_replacement_scan.py 的 classify_body 返回 None（无命中）⇒ 被判 unknown",
+      "normalize_manufactured": false,
+      "denoised": true
+    },
+    {
+      "file": "07-next-steps.md",
+      "line": 72,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "先出候选",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "首个增量已指名：对每件本地 skill 抽正文强制条款（NON-NEGOTIABLE / MUST / 必须）与其在盘包/实现声明做冲突比对，先出候选清单交人读",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "07-next-steps.md",
+      "line": 76,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "先确认",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "下一步（谁收口镜像面时）：对该件跑 check-skill-mirror.ps1 -Fix 前先确认镜像侧无他人在途",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "07-next-steps.md",
+      "line": 79,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "需人读决定",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "- [ ] **R265-2（r265 登记，P1）** **3 件 LOCAL_DERIVATIVE_REVIEW 需人读决定并入哪些（禁覆盖）**：件：frontend-slides(62.8%) / grill-me(40.0%) / verification-before-completion(40.0%)（面=13 件同源 BEHIND，取值 python _temp/r265_feasibility.py）",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "07-next-steps.md",
+      "line": 83,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "须二选",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "故执行前须二选一并落文案，且必须保留本地独有件（LICENSE/NOTICE 与上游留档）",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "07-next-steps.md",
+      "line": 90,
+      "pat_idx": 10,
+      "pat": "(?:要|需|得|须|该|请)[^。！？；]{0,6}哪[一两几]?[条个项种]",
+      "frag": "该面读的是哪个",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "下一步：确认该面读的是哪个凭据文件（grep 05-exec 的 turnstile 脚本）并在外部凭据不可得时按 R247 让判据走 UNVERIFIED 而非 FAIL（须带夹具与负控，part20 D-A）",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "07-next-steps.md",
+      "line": 96,
+      "pat_idx": 10,
+      "pat": "(?:要|需|得|须|该|请)[^。！？；]{0,6}哪[一两几]?[条个项种]",
+      "frag": "须点名是哪个",
+      "dn1": false,
+      "dn2": false,
+      "dn3": true,
+      "compound": "",
+      "sentence": "- [ ] **R260-9（r260 登记，P2·已落地）** **同一条 §3.1 有三个分母，引用时必须点名是哪个面（X-24/R216-2 同族）**：本轮三组数全是实测且互不矛盾 —— ① **已入库 top-5 面**（r225 生产矩阵）= 937 slot / **2 例**违规 / 2 行",
+      "normalize_manufactured": false,
+      "denoised": true
+    },
+    {
+      "file": "07-next-steps.md",
+      "line": 107,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "先读台账再决定",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "- [ ] **R131-4（r131 登记，P1）** 复盘发现：**连续三轮（r129/r130/r131）的靶子选择都靠「先读台账再决定」**，但前两轮读到的是机制债、本轮才读到质量债",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "07-next-steps.md",
+      "line": 108,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "需抽查确认",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "R114-3（r114 登记，P2）** 候选面语义质量有人判面：桶 2/3 候选（非真 skill 仓 / 仅族级命中）默认不换，但需抽查确认桶 0 里没有漏掉更优真 skill 仓（当前池 716 仓来自 14 条 topic 查询，可能有域覆盖盲区）",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "07-next-steps.md",
+      "line": 121,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "需用户授权",
+      "dn1": true,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "第 2 次到期仍无外部条件可解（他人在途未收口 / 需用户授权 / 需真实 Hermes 会话），按 X-17 不再往后挂轮",
+      "normalize_manufactured": false,
+      "denoised": true
+    },
+    {
+      "file": "07-next-steps.md",
+      "line": 129,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "需用户授权",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "第 2 次到期仍无外部条件可解（他人在途未收口 / 需用户授权 / 需真实 Hermes 会话），按 X-17 不再往后挂轮",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "07-next-steps.md",
+      "line": 142,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "需用户授权",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "第 2 次到期仍无外部条件可解（他人在途未收口 / 需用户授权 / 需真实 Hermes 会话），按 X-17 不再往后挂轮",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "07-next-steps.md",
+      "line": 468,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "须是**决定",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "rc 必须是**决定该状态那一次**的 rc（「重跑仍红」分支维持原判定，继续用 p.returncode 自洽，不改）",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "07-next-steps.md",
+      "line": 563,
+      "pat_idx": 1,
+      "pat": "(要不要|是否|能不能|可不可以).{0,12}(老大|提交|跑|做|动手|继续)",
+      "frag": "是否命中该工具关键词」，跑",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "v2 加「点名的 skill 目录下 .md 是否命中该工具关键词」，跑出 6 条全 HOLDS 看着很好，",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "07-next-steps.md",
+      "line": 640,
+      "pat_idx": 1,
+      "pat": "(要不要|是否|能不能|可不可以).{0,12}(老大|提交|跑|做|动手|继续)",
+      "frag": "是否已入库」，老大",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "一手：为核「我的 §76 是否已入库」，我用 `git diff --numstat -- 06-benchmark/全量对标….md`，得到 0，",
+      "normalize_manufactured": true,
+      "denoised": false
+    },
+    {
+      "file": "07-next-steps.md",
+      "line": 907,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "得到真实确认",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "**与 R245-1 的只读反事实预测（90.7 / 278）逐项一致** ⇒ 反事实方法本轮得到真实确认（不再是推断）",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "07-next-steps.md",
+      "line": 1382,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "先确认",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "元教训：**登记「我改不了」之前先确认那常量真在别人手里**",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "07-next-steps.md",
+      "line": 1410,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "先确认",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "判据说「治不了」之前，先确认判据量的就是生产那条路",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "07-next-steps.md",
+      "line": 1416,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "须先分清再决定",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "⇒ 漂移**只由我造成**（不是并行会话旧账，这点必须先分清再决定谁修）",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "07-next-steps.md",
+      "line": 1424,
+      "pat_idx": 1,
+      "pat": "(要不要|是否|能不能|可不可以).{0,12}(老大|提交|跑|做|动手|继续)",
+      "frag": "能不能跑",
+      "dn1": false,
+      "dn2": false,
+      "dn3": true,
+      "compound": "",
+      "sentence": "缺口面：163 能不能跑 / 67 skill 目录命令级引用 / 93 被 skill 承载 / 92 入口派卷 / 88 召回 —— 唯独没有",
+      "normalize_manufactured": false,
+      "denoised": true
+    },
+    {
+      "file": "07-next-steps.md",
+      "line": 1524,
+      "pat_idx": 1,
+      "pat": "(要不要|是否|能不能|可不可以).{0,12}(老大|提交|跑|做|动手|继续)",
+      "frag": "能不能跑",
+      "dn1": false,
+      "dn2": false,
+      "dn3": true,
+      "compound": "",
+      "sentence": "前 93 门各量一个切面（163 能不能跑 / 93 有没有承载 / 92 入口派卷 / 88 三层召回 / 86 指针），但没有任何产物把三者按",
+      "normalize_manufactured": false,
+      "denoised": true
+    },
+    {
+      "file": "07-next-steps.md",
+      "line": 1551,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "先动手、后确认",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "都是「先动手、后确认影响面」",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "07-next-steps.md",
+      "line": 1556,
+      "pat_idx": 1,
+      "pat": "(要不要|是否|能不能|可不可以).{0,12}(老大|提交|跑|做|动手|继续)",
+      "frag": "能不能跑",
+      "dn1": false,
+      "dn2": false,
+      "dn3": true,
+      "compound": "",
+      "sentence": "九十二门**无一覆盖**（163 量能不能跑、86 量指针、88 量 BGE 召回、92 量入口派卷），把 Workers 从",
+      "normalize_manufactured": false,
+      "denoised": true
+    },
+    {
+      "file": "07-next-steps.md",
+      "line": 1668,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "须用户确认",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "同时把 §1 那行「须用户确认」按现读原文撤销（AGENTS「口径裁定·禁换分母」保护的是**盘点范围基数** HIGH 51+MID 26=77 / 注册表基数 / 已作废 ≈90、169，不是需求 6 的质量量纲 ⇒ 本裁定未触碰该基数，无红线冲突）",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "07-next-steps.md",
+      "line": 1668,
+      "pat_idx": 3,
+      "pat": "等(你|老大)",
+      "frag": "等老大",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "✅ 撤销我自己写下的两处回抛（#31/#37 违规，本轮自查发现）：R215-4 与本仓两处文档都写过「换口径须向老大登记 / 两者都需老大点头」⇒ 老大本轮没说「问我/等我挑」，按 #37 唯一例外不成立，这类「等拍板」措辞就是把问题回抛",
+      "normalize_manufactured": true,
+      "denoised": false
+    },
+    {
+      "file": "07-next-steps.md",
+      "line": 1697,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "须是决定",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "② 巡检里 `--baseline` **显式钉在 r117 件**（口径 B 的改善从那轮量起），并在代码注释写明「换锚须显式改这一行 + 台账具名理由，禁让选件器悄悄换尺」（R263 同族：尺的变更必须是决定）",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "07-next-steps.md",
+      "line": 1828,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "先核前提再决定",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "一手（本轮为带前提的新目标，先核前提再决定怎么做）：① **前提核实**：`notion.*会议…` 的值仍 `NONE`、`灵感.*枯竭…` 仍 `story`、`direct_map.json` 条数仍 273、该件 mtime **2026-10-03**（三周未动）⇒ 归属方**未修**",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "07-next-steps.md",
+      "line": 1889,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "需人工交候选",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "口径推荐仍为 B（理由已从「A 跑不了」更新为「A 每季需人工交候选」）",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "07-next-steps.md",
+      "line": 1926,
+      "pat_idx": 8,
+      "pat": "(?:若|如果|待|等).{0,8}(?:老大|你).{0,6}(?:认为|同意|确认|授权|拍板|回复|发话)",
+      "frag": "若老大授权",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "下轮若老大授权动红线摘要，可按三段式再下沉（红线全文正本在 memory/06-constraints.md，壳内本就该只留摘要）",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "07-next-steps.md",
+      "line": 1979,
+      "pat_idx": 12,
+      "pat": "(?:告|通)?知?(老大|你)[^。！？；]{0,8}(?:任务|下一步|接下来)",
+      "frag": "老大给自己定的下一步",
+      "dn1": false,
+      "dn2": false,
+      "dn3": true,
+      "compound": "",
+      "sentence": "① 上轮我给自己定的下一步是「等 win-toolchain/SKILL.md 干净就给 description 补任务级触发词（进窗口），",
+      "normalize_manufactured": true,
+      "denoised": true
+    },
+    {
+      "file": "07-next-steps.md",
+      "line": 2080,
+      "pat_idx": 2,
+      "pat": "(?<![不需没无])(?:请|需要|需|得|须|先)(?:你|老大)?.{0,4}(?:确认|拍板|定(?:一|哪|夺|案|来)|挑|选|决定|提供|授权|准许|许可|同意)",
+      "frag": "需要老大先确认",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "当成异步可忽略的事，实际它需要我先确认结果再发下一条",
+      "normalize_manufactured": false,
+      "denoised": false
+    },
+    {
+      "file": "07-next-steps.md",
+      "line": 2101,
+      "pat_idx": 10,
+      "pat": "(?:要|需|得|须|该|请)[^。！？；]{0,6}哪[一两几]?[条个项种]",
+      "frag": "该补哪个",
+      "dn1": false,
+      "dn2": false,
+      "dn3": true,
+      "compound": "",
+      "sentence": "让下次撞墙的人知道该补哪个文件",
+      "normalize_manufactured": false,
+      "denoised": true
+    },
+    {
+      "file": "07-next-steps.md",
+      "line": 2240,
+      "pat_idx": 0,
+      "pat": "老大(该|应该|要不要|是否|能不能|可不可以|可以)",
+      "frag": "老大该",
+      "dn1": false,
+      "dn2": false,
+      "dn3": true,
+      "compound": "",
+      "sentence": "两问焊在一起时，项目越脏夹具越响，反而把「我该修接线」淹掉",
+      "normalize_manufactured": true,
+      "denoised": true
+    },
+    {
+      "file": "07-next-steps.md",
+      "line": 2265,
+      "pat_idx": 10,
+      "pat": "(?:要|需|得|须|该|请)[^。！？；]{0,6}哪[一两几]?[条个项种]",
+      "frag": "要先扫哪几条",
+      "dn1": false,
+      "dn2": false,
+      "dn3": true,
+      "compound": "",
+      "sentence": "元教训：反哺不是「写进某个 skill 就行」，要先扫哪几条真没进、再定该进哪个家、",
+      "normalize_manufactured": false,
+      "denoised": true
+    },
+    {
+      "file": "07-next-steps.md",
+      "line": 2404,
+      "pat_idx": 1,
+      "pat": "(要不要|是否|能不能|可不可以).{0,12}(老大|提交|跑|做|动手|继续)",
+      "frag": "是否含只有老大",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "正确做法（本轮已按此复核）：归属要验**内容自证**而非文件名 —— 件里的门数、是否含只有我",
+      "normalize_manufactured": true,
+      "denoised": false
+    },
+    {
+      "file": "07-next-steps.md",
+      "line": 2405,
+      "pat_idx": 1,
+      "pat": "(要不要|是否|能不能|可不可以).{0,12}(老大|提交|跑|做|动手|继续)",
+      "frag": "是否存在老大",
+      "dn1": false,
+      "dn2": false,
+      "dn3": false,
+      "compound": "",
+      "sentence": "本轮才加上的门 id、是否存在我门表里没有的门",
+      "normalize_manufactured": true,
+      "denoised": false
+    }
+  ],
+  "verdict": "measured: 36037 lines, 124 lines / 129 pattern-hits called red; after denoise 91 stay red and 38 are technical mentions = 29.5% of the gate reds on this corpus (1.05 per 1000 lines). positive leg 22/22 real bounce cases still red under the same denoise => the denoise did not weaken the gate.",
+  "provenance_cmd": "C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe -B C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\_temp\\r285k\\r285k_stats.py",
+  "negative_control_cmd": "C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe -B C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\_temp\\r285k\\r285k_stats.py --no-denoise --out <temp json>",
+  "read_only_note": "r161_bounce_back.py, bounce_guard_hook.py and behavior_core.md were only read; nothing in D:/global_memory or D:/global_skills was written",
+  "gate_face_leg": {
+    "n": 23,
+    "denied": 14,
+    "pat12_face": [
+      {
+        "tag": "全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md:2050",
+        "face": "pat12",
+        "text": "而我的下一步更危险：",
+        "gate_rc": 1,
+        "bounce": "老大的下一步"
+      },
+      {
+        "tag": "全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md:3235",
+        "face": "pat12",
+        "text": "想起某条知识的，是我或老大在任务现场会说出的那句话",
+        "gate_rc": 1,
+        "bounce": "老大或老大在任务"
+      },
+      {
+        "tag": "全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md:3315",
+        "face": "pat12",
+        "text": "上轮我给自己定的下一步是：「等 `win-toolchain/SKILL.md` 干净，就给它的 `description`",
+        "gate_rc": 1,
+        "bounce": "老大给自己定的下一步"
+      },
+      {
+        "tag": "全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md:3351",
+        "face": "pat12",
+        "text": "我上轮那句「8 条任务只 3 条召回」如果按正确分母重算，其实是",
+        "gate_rc": 1,
+        "bounce": "老大上轮那句「8 条任务"
+      },
+      {
+        "tag": "全量对标报告_r278_已落地件改前改后实测_2026-10-29.md:67",
+        "face": "pat12",
+        "text": "⇒ 件内 `axes_note` 已写明「per-axis structural readings; NOT task-level quality」，**我不把结构提升冒充任务质量**（那正是 #36 假完成的形态）",
+        "gate_rc": 1,
+        "bounce": "老大不把结构提升冒充任务"
+      },
+      {
+        "tag": "全量对标报告_r285_迁库二次事故收口_2026-10-30.md:83",
+        "face": "pat12",
+        "text": "被抓成 `bounce=老大此前那句关于任务` —— 那是技术名词，句中既无请求也无等待，且**守卫输出的片段指向我文本里",
+        "gate_rc": 1,
+        "bounce": "老大此前那句关于任务"
+      }
+    ],
+    "positive_face": [
+      {
+        "tag": "需要老大拍板这三件。",
+        "face": "r161_POSITIVE",
+        "text": "需要老大拍板这三件。",
+        "gate_rc": 1,
+        "bounce": "需要老大拍板"
+      },
+      {
+        "tag": "老大该不该现在提交这笔？",
+        "face": "r161_POSITIVE",
+        "text": "老大该不该现在提交这笔？",
+        "gate_rc": 1,
+        "bounce": "老大该"
+      },
+      {
+        "tag": "要不要我把改动提交 git？",
+        "face": "r161_POSITIVE",
+        "text": "要不要我把改动提交 git？",
+        "gate_rc": 1,
+        "bounce": "要不要老大把改动提交"
+      },
+      {
+        "tag": "需要老大拍板的三件事如下",
+        "face": "r161_POSITIVE",
+        "text": "需要老大拍板的三件事如下",
+        "gate_rc": 1,
+        "bounce": "需要老大拍板"
+      },
+      {
+        "tag": "要清就给一句授权",
+        "face": "r161_POSITIVE",
+        "text": "要清就给一句授权",
+        "gate_rc": 1,
+        "bounce": "给一句授权"
+      },
+      {
+        "tag": "若老大认为这 2 笔该复核，我按指示回滚",
+        "face": "r161_POSITIVE",
+        "text": "若老大认为这 2 笔该复核，我按指示回滚",
+        "gate_rc": 1,
+        "bounce": "若老大认为"
+      },
+      {
+        "tag": "等老大回复再继续",
+        "face": "r161_POSITIVE",
+        "text": "等老大回复再继续",
+        "gate_rc": 1,
+        "bounce": "等老大"
+      },
+      {
+        "tag": "这算需要拍板吗",
+        "face": "r161_POSITIVE",
+        "text": "这算需要拍板吗",
+        "gate_rc": 1,
+        "bounce": "需要拍板"
+      }
+    ],
+    "negative_face": [
+      {
+        "tag": "已决：不清，理由 X，取值 Y。",
+        "face": "r161_NEGATIVE",
+        "text": "已决：不清，理由 X，取值 Y。",
+        "gate_rc": 0,
+        "bounce": null
+      },
+      {
+        "tag": "本轮没解决，落待办带卡点与下一步。",
+        "face": "r161_NEGATIVE",
+        "text": "本轮没解决，落待办带卡点与下一步。",
+        "gate_rc": 0,
+        "bounce": null
+      },
+      {
+        "tag": "卡在 CF 凭据缺口，实测证据见上，替代路径已试。",
+        "face": "r161_NEGATIVE",
+        "text": "卡在 CF 凭据缺口，实测证据见上，替代路径已试。",
+        "gate_rc": 0,
+        "bounce": null
+      },
+      {
+        "tag": "这项工作已交付，回执见报告。",
+        "face": "r161_NEGATIVE",
+        "text": "这项工作已交付，回执见报告。",
+        "gate_rc": 0,
+        "bounce": null
+      },
+      {
+        "tag": "下一轮 P0：复采一个跨日批定性。",
+        "face": "r161_NEGATIVE",
+        "text": "下一轮 P0：复采一个跨日批定性。",
+        "gate_rc": 0,
+        "bounce": null
+      },
+      {
+        "tag": "下一步推进 M-q 与三张缺陷卡，已按优先级排定并开工。",
+        "face": "r161_NEGATIVE",
+        "text": "下一步推进 M-q 与三张缺陷卡，已按优先级排定并开工。",
+        "gate_rc": 0,
+        "bounce": null
+      },
+      {
+        "tag": "已为你留好回滚点，不需要你确认。",
+        "face": "r161_NEGATIVE",
+        "text": "已为你留好回滚点，不需要你确认。",
+        "gate_rc": 0,
+        "bounce": null
+      },
+      {
+        "tag": "这一项无需老大批准，我按 #37② 自行推进。",
+        "face": "r161_NEGATIVE",
+        "text": "这一项无需老大批准，我按 #37② 自行推进。",
+        "gate_rc": 0,
+        "bounce": null
+      },
+      {
+        "tag": "三件全部自行决完，无需老大拍板。",
+        "face": "r161_NEGATIVE",
+        "text": "三件全部自行决完，无需老大拍板。",
+        "gate_rc": 0,
+        "bounce": null
+      }
+    ]
+  },
+  "gate_face_rows": [
+    {
+      "tag": "全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md:2050",
+      "face": "pat12",
+      "text": "而我的下一步更危险：",
+      "gate_rc": 1,
+      "bounce": "老大的下一步"
+    },
+    {
+      "tag": "全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md:3235",
+      "face": "pat12",
+      "text": "想起某条知识的，是我或老大在任务现场会说出的那句话",
+      "gate_rc": 1,
+      "bounce": "老大或老大在任务"
+    },
+    {
+      "tag": "全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md:3315",
+      "face": "pat12",
+      "text": "上轮我给自己定的下一步是：「等 `win-toolchain/SKILL.md` 干净，就给它的 `description`",
+      "gate_rc": 1,
+      "bounce": "老大给自己定的下一步"
+    },
+    {
+      "tag": "全量对标报告_r163_免费工具可达性对账与gh空壳遮蔽_2026-10-22.md:3351",
+      "face": "pat12",
+      "text": "我上轮那句「8 条任务只 3 条召回」如果按正确分母重算，其实是",
+      "gate_rc": 1,
+      "bounce": "老大上轮那句「8 条任务"
+    },
+    {
+      "tag": "全量对标报告_r278_已落地件改前改后实测_2026-10-29.md:67",
+      "face": "pat12",
+      "text": "⇒ 件内 `axes_note` 已写明「per-axis structural readings; NOT task-level quality」，**我不把结构提升冒充任务质量**（那正是 #36 假完成的形态）",
+      "gate_rc": 1,
+      "bounce": "老大不把结构提升冒充任务"
+    },
+    {
+      "tag": "全量对标报告_r285_迁库二次事故收口_2026-10-30.md:83",
+      "face": "pat12",
+      "text": "被抓成 `bounce=老大此前那句关于任务` —— 那是技术名词，句中既无请求也无等待，且**守卫输出的片段指向我文本里",
+      "gate_rc": 1,
+      "bounce": "老大此前那句关于任务"
+    },
+    {
+      "tag": "需要老大拍板这三件。",
+      "face": "r161_POSITIVE",
+      "text": "需要老大拍板这三件。",
+      "gate_rc": 1,
+      "bounce": "需要老大拍板"
+    },
+    {
+      "tag": "老大该不该现在提交这笔？",
+      "face": "r161_POSITIVE",
+      "text": "老大该不该现在提交这笔？",
+      "gate_rc": 1,
+      "bounce": "老大该"
+    },
+    {
+      "tag": "要不要我把改动提交 git？",
+      "face": "r161_POSITIVE",
+      "text": "要不要我把改动提交 git？",
+      "gate_rc": 1,
+      "bounce": "要不要老大把改动提交"
+    },
+    {
+      "tag": "需要老大拍板的三件事如下",
+      "face": "r161_POSITIVE",
+      "text": "需要老大拍板的三件事如下",
+      "gate_rc": 1,
+      "bounce": "需要老大拍板"
+    },
+    {
+      "tag": "要清就给一句授权",
+      "face": "r161_POSITIVE",
+      "text": "要清就给一句授权",
+      "gate_rc": 1,
+      "bounce": "给一句授权"
+    },
+    {
+      "tag": "若老大认为这 2 笔该复核，我按指示回滚",
+      "face": "r161_POSITIVE",
+      "text": "若老大认为这 2 笔该复核，我按指示回滚",
+      "gate_rc": 1,
+      "bounce": "若老大认为"
+    },
+    {
+      "tag": "等老大回复再继续",
+      "face": "r161_POSITIVE",
+      "text": "等老大回复再继续",
+      "gate_rc": 1,
+      "bounce": "等老大"
+    },
+    {
+      "tag": "这算需要拍板吗",
+      "face": "r161_POSITIVE",
+      "text": "这算需要拍板吗",
+      "gate_rc": 1,
+      "bounce": "需要拍板"
+    },
+    {
+      "tag": "已决：不清，理由 X，取值 Y。",
+      "face": "r161_NEGATIVE",
+      "text": "已决：不清，理由 X，取值 Y。",
+      "gate_rc": 0,
+      "bounce": null
+    },
+    {
+      "tag": "本轮没解决，落待办带卡点与下一步。",
+      "face": "r161_NEGATIVE",
+      "text": "本轮没解决，落待办带卡点与下一步。",
+      "gate_rc": 0,
+      "bounce": null
+    },
+    {
+      "tag": "卡在 CF 凭据缺口，实测证据见上，替代路径已试。",
+      "face": "r161_NEGATIVE",
+      "text": "卡在 CF 凭据缺口，实测证据见上，替代路径已试。",
+      "gate_rc": 0,
+      "bounce": null
+    },
+    {
+      "tag": "这项工作已交付，回执见报告。",
+      "face": "r161_NEGATIVE",
+      "text": "这项工作已交付，回执见报告。",
+      "gate_rc": 0,
+      "bounce": null
+    },
+    {
+      "tag": "下一轮 P0：复采一个跨日批定性。",
+      "face": "r161_NEGATIVE",
+      "text": "下一轮 P0：复采一个跨日批定性。",
+      "gate_rc": 0,
+      "bounce": null
+    },
+    {
+      "tag": "下一步推进 M-q 与三张缺陷卡，已按优先级排定并开工。",
+      "face": "r161_NEGATIVE",
+      "text": "下一步推进 M-q 与三张缺陷卡，已按优先级排定并开工。",
+      "gate_rc": 0,
+      "bounce": null
+    },
+    {
+      "tag": "已为你留好回滚点，不需要你确认。",
+      "face": "r161_NEGATIVE",
+      "text": "已为你留好回滚点，不需要你确认。",
+      "gate_rc": 0,
+      "bounce": null
+    },
+    {
+      "tag": "这一项无需老大批准，我按 #37② 自行推进。",
+      "face": "r161_NEGATIVE",
+      "text": "这一项无需老大批准，我按 #37② 自行推进。",
+      "gate_rc": 0,
+      "bounce": null
+    },
+    {
+      "tag": "三件全部自行决完，无需老大拍板。",
+      "face": "r161_NEGATIVE",
+      "text": "三件全部自行决完，无需老大拍板。",
+      "gate_rc": 0,
+      "bounce": null
+    }
+  ],
+  "switch_leg": {
+    "ran": true,
+    "rc": 0,
+    "lines_total": 36037,
+    "hits_raw": 129,
+    "hits_after_denoise_off": 129,
+    "sha12": "0ef9053d497b",
+    "child_guard_fp_line": "[GUARD:FP] raw=129 denoised=0 pos_controls=22/22 red"
+  }
+}

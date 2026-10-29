@@ -163,5 +163,10 @@
   "evidence": "06-benchmark/r283_requirements_ledger.json",
   "registered_at": "2026-10-30 01:0x",
   "why": "需求 1-7 交付终核生成器（数字现场取、指针存在性自检；md 与 JSON 同源）"
+ },
+ "r286_message_face_probe.py": {
+  "evidence": "06-benchmark/r286_message_face_probe.json",
+  "registered_at": "2026-10-30 06:48",
+  "why": "R285-3 消息出口面探针（含幸存者偏差自陈）"
  }
 }

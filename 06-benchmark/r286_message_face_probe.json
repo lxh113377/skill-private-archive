@@ -1,0 +1,156 @@
+{
+ "schema": "message-face-probe-v1",
+ "generated_at": "2026-10-30T06:49:58",
+ "provenance_cmd": "python 05-exec/r286_message_face_probe.py",
+ "purpose": "R285-3 second leg: the K arm measured a line-face proxy; this measures real gate traffic",
+ "route_A_samples": [
+  {
+   "file": "r266_draft.md",
+   "bytes": 1136,
+   "rc": 0,
+   "bounce_frag": null,
+   "pattern": null
+  },
+  {
+   "file": "r267_draft.md",
+   "bytes": 886,
+   "rc": 0,
+   "bounce_frag": null,
+   "pattern": null
+  },
+  {
+   "file": "r268_draft.md",
+   "bytes": 1115,
+   "rc": 0,
+   "bounce_frag": null,
+   "pattern": null
+  },
+  {
+   "file": "r269_draft.md",
+   "bytes": 1515,
+   "rc": 0,
+   "bounce_frag": null,
+   "pattern": null
+  },
+  {
+   "file": "r270_draft.md",
+   "bytes": 1100,
+   "rc": 0,
+   "bounce_frag": null,
+   "pattern": null
+  },
+  {
+   "file": "r271_draft.md",
+   "bytes": 1808,
+   "rc": 0,
+   "bounce_frag": null,
+   "pattern": null
+  },
+  {
+   "file": "r272_draft.md",
+   "bytes": 1605,
+   "rc": 0,
+   "bounce_frag": null,
+   "pattern": null
+  },
+  {
+   "file": "r273_draft.md",
+   "bytes": 1406,
+   "rc": 0,
+   "bounce_frag": null,
+   "pattern": null
+  },
+  {
+   "file": "r274_draft.md",
+   "bytes": 1435,
+   "rc": 0,
+   "bounce_frag": null,
+   "pattern": null
+  },
+  {
+   "file": "r275_draft.md",
+   "bytes": 1342,
+   "rc": 0,
+   "bounce_frag": null,
+   "pattern": null
+  },
+  {
+   "file": "r277_draft2.md",
+   "bytes": 1795,
+   "rc": 0,
+   "bounce_frag": null,
+   "pattern": null
+  },
+  {
+   "file": "r278_draft.md",
+   "bytes": 1589,
+   "rc": 0,
+   "bounce_frag": null,
+   "pattern": null
+  },
+  {
+   "file": "r279_draft.txt",
+   "bytes": 1387,
+   "rc": 0,
+   "bounce_frag": null,
+   "pattern": null
+  },
+  {
+   "file": "r282_draft.txt",
+   "bytes": 1964,
+   "rc": 0,
+   "bounce_frag": null,
+   "pattern": null
+  },
+  {
+   "file": "r283_final_draft.txt",
+   "bytes": 4268,
+   "rc": 0,
+   "bounce_frag": null,
+   "pattern": null
+  }
+ ],
+ "route_A_n": 15,
+ "route_A_denied": 0,
+ "route_A_survivorship_bias": "these files are drafts that PASSED the gate; a blocked version was rewritten (the filenames final / draft2 are that rewrite) or never kept, so route_A_denied=0 does NOT mean the message face has no false positives - it only means the surviving finals pass",
+ "route_A_rewrite_traces": [
+  "r277_draft2.md",
+  "r283_final_draft.txt"
+ ],
+ "route_B_audit_log": {
+  "path": "C:/Users/37533/.dsh/tmp/bounce-guard.log",
+  "lines_total": 2844,
+  "epoch_marks": 330,
+  "attributable_after_last_mark": {
+   "SELFTEST:NOOP": 3,
+   "SELFTEST:DISABLED": 1,
+   "SELFTEST:PASS": 1
+  },
+  "legacy_unattributable_before_last_mark": {
+   "PROD:NOOP": 86,
+   "PROD:DISABLED": 20,
+   "PROD:DENY": 54,
+   "PROD:PASS": 23,
+   "SELFTEST:NOOP": 990,
+   "SELFTEST:DISABLED": 330,
+   "SELFTEST:PASS": 330,
+   "PROD:UNVERIFIED": 8
+  },
+  "whole_file_naive": {
+   "PROD:NOOP": 86,
+   "PROD:DISABLED": 20,
+   "PROD:DENY": 54,
+   "PROD:PASS": 23,
+   "SELFTEST:NOOP": 993,
+   "SELFTEST:DISABLED": 331,
+   "SELFTEST:PASS": 331,
+   "PROD:UNVERIFIED": 8
+  },
+  "reading_rule": "three states (production / drill / unattributable) must stay separate and must not be converted into one another; legacy rows have no prefix to tell drill from production, so they are NOT counted as production denies",
+  "prod_deny_attributable": 0,
+  "prod_deny_legacy": 54
+ },
+ "route_B_no_message_body": "the log records only the REASON text, not the blocked message, so a per-case technical-vs-real judgment of the message face is impossible",
+ "k_face_in": "06-benchmark/r285_guard_false_positive.json（行面代理；引用须配 corpus.sha12，语料是活面）",
+ "conclusion": "message-face false-positive rate remains UNMEASURED by design of this probe; what is measured: 15 surviving finals all pass, and 0 attributable production denies"
+}
