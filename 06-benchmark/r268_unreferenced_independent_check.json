@@ -1,0 +1,1072 @@
+{
+ "schema": "unreferenced-independent-check-v1",
+ "r": "r268-1",
+ "seed": 20261029,
+ "measured_at": "2026-10-29T17:41:47+08:00",
+ "rules": {
+  "denominator": "recursive actual sibling files under the skill dir, excluding SKILL.md itself, LICENSE/NOTICE/.upstream basenames and any dot-prefixed path component",
+  "numerator": "files not referenced by SKILL.md under any of rules 1-3",
+  "rule1": "literal relative path appears in SKILL.md",
+  "rule2": "literal basename appears in SKILL.md",
+  "rule3": "the file immediate parent directory name (relative to skill root) appears in SKILL.md; a file at skill root has no parent-dir rule (degenerate: dir name == slug) -> parentdir=null",
+  "channel": "grep -F -c (GNU grep via bash); Lead scripts not invoked"
+ },
+ "sample": [
+  "openai-whisper-api",
+  "libreoffice-writer",
+  "diagram-maker",
+  "story-cover",
+  "grill-me",
+  "local-mineru",
+  "discover-agent-cli",
+  "code-review",
+  "video-whisper-transcribe",
+  "taskflow-inbox-triage",
+  "testing",
+  "libreoffice-base"
+ ],
+ "per_skill": {
+  "openai-whisper-api": {
+   "base": "D:/global_skills\\openai-whisper-api",
+   "present_n": 1,
+   "exempt_n": 0,
+   "exempt_files": [],
+   "raw_n_incl_skillmd": 2,
+   "unreferenced_n": 0,
+   "unreferenced": [],
+   "status": "CLEAN",
+   "referenced": [
+    {
+     "file": "scripts/transcribe.sh",
+     "hit_rules": [
+      "relpath",
+      "basename",
+      "parentdir"
+     ],
+     "hits": {
+      "relpath": 8,
+      "basename": 8,
+      "parentdir": 9
+     }
+    }
+   ],
+   "evidence_unreferenced": []
+  },
+  "libreoffice-writer": {
+   "base": "D:/global_skills\\libreoffice-writer",
+   "present_n": 0,
+   "exempt_n": 0,
+   "exempt_files": [],
+   "raw_n_incl_skillmd": 1,
+   "unreferenced_n": 0,
+   "unreferenced": [],
+   "status": "NO_SIBLINGS",
+   "referenced": [],
+   "evidence_unreferenced": []
+  },
+  "diagram-maker": {
+   "base": "D:/global_skills\\diagram-maker",
+   "present_n": 17,
+   "exempt_n": 2,
+   "exempt_files": [
+    "LICENSE",
+    "NOTICE"
+   ],
+   "raw_n_incl_skillmd": 20,
+   "unreferenced_n": 12,
+   "unreferenced": [
+    "scripts/README.md",
+    "scripts/add-arrow.py",
+    "scripts/add-icon-to-diagram.py",
+    "scripts/split-excalidraw-library.py",
+    "templates/business-flow-swimlane-template.excalidraw",
+    "templates/class-diagram-template.excalidraw",
+    "templates/data-flow-diagram-template.excalidraw",
+    "templates/er-diagram-template.excalidraw",
+    "templates/flowchart-template.excalidraw",
+    "templates/mindmap-template.excalidraw",
+    "templates/relationship-template.excalidraw",
+    "templates/sequence-diagram-template.excalidraw"
+   ],
+   "status": "HAS_UNREFERENCED",
+   "referenced": [
+    {
+     "file": "references/element-types.md",
+     "hit_rules": [
+      "parentdir"
+     ],
+     "hits": {
+      "relpath": 0,
+      "basename": 0,
+      "parentdir": 4
+     }
+    },
+    {
+     "file": "references/excalidraw-advanced.md",
+     "hit_rules": [
+      "relpath",
+      "basename",
+      "parentdir"
+     ],
+     "hits": {
+      "relpath": 2,
+      "basename": 2,
+      "parentdir": 4
+     }
+    },
+    {
+     "file": "references/excalidraw-patterns.md",
+     "hit_rules": [
+      "relpath",
+      "basename",
+      "parentdir"
+     ],
+     "hits": {
+      "relpath": 1,
+      "basename": 1,
+      "parentdir": 4
+     }
+    },
+    {
+     "file": "references/excalidraw-schema.md",
+     "hit_rules": [
+      "parentdir"
+     ],
+     "hits": {
+      "relpath": 0,
+      "basename": 0,
+      "parentdir": 4
+     }
+    },
+    {
+     "file": "references/svg-template.md",
+     "hit_rules": [
+      "relpath",
+      "basename",
+      "parentdir"
+     ],
+     "hits": {
+      "relpath": 1,
+      "basename": 1,
+      "parentdir": 4
+     }
+    }
+   ],
+   "evidence_unreferenced": [
+    {
+     "file": "scripts/README.md",
+     "n_relpath": 0,
+     "c_relpath": "grep -F -c -- 'scripts/README.md' D:/global_skills/diagram-maker/SKILL.md",
+     "n_basename": 0,
+     "c_basename": "grep -F -c -- 'README.md' D:/global_skills/diagram-maker/SKILL.md",
+     "n_parentdir": 0,
+     "c_parentdir": "grep -F -c -- 'scripts' D:/global_skills/diagram-maker/SKILL.md"
+    },
+    {
+     "file": "scripts/add-arrow.py",
+     "n_relpath": 0,
+     "c_relpath": "grep -F -c -- 'scripts/add-arrow.py' D:/global_skills/diagram-maker/SKILL.md",
+     "n_basename": 0,
+     "c_basename": "grep -F -c -- 'add-arrow.py' D:/global_skills/diagram-maker/SKILL.md",
+     "n_parentdir": 0,
+     "c_parentdir": "grep -F -c -- 'scripts' D:/global_skills/diagram-maker/SKILL.md"
+    },
+    {
+     "file": "scripts/add-icon-to-diagram.py",
+     "n_relpath": 0,
+     "c_relpath": "grep -F -c -- 'scripts/add-icon-to-diagram.py' D:/global_skills/diagram-maker/SKILL.md",
+     "n_basename": 0,
+     "c_basename": "grep -F -c -- 'add-icon-to-diagram.py' D:/global_skills/diagram-maker/SKILL.md",
+     "n_parentdir": 0,
+     "c_parentdir": "grep -F -c -- 'scripts' D:/global_skills/diagram-maker/SKILL.md"
+    },
+    {
+     "file": "scripts/split-excalidraw-library.py",
+     "n_relpath": 0,
+     "c_relpath": "grep -F -c -- 'scripts/split-excalidraw-library.py' D:/global_skills/diagram-maker/SKILL.md",
+     "n_basename": 0,
+     "c_basename": "grep -F -c -- 'split-excalidraw-library.py' D:/global_skills/diagram-maker/SKILL.md",
+     "n_parentdir": 0,
+     "c_parentdir": "grep -F -c -- 'scripts' D:/global_skills/diagram-maker/SKILL.md"
+    },
+    {
+     "file": "templates/business-flow-swimlane-template.excalidraw",
+     "n_relpath": 0,
+     "c_relpath": "grep -F -c -- 'templates/business-flow-swimlane-template.excalidraw' D:/global_skills/diagram-maker/SKILL.md",
+     "n_basename": 0,
+     "c_basename": "grep -F -c -- 'business-flow-swimlane-template.excalidraw' D:/global_skills/diagram-maker/SKILL.md",
+     "n_parentdir": 0,
+     "c_parentdir": "grep -F -c -- 'templates' D:/global_skills/diagram-maker/SKILL.md"
+    },
+    {
+     "file": "templates/class-diagram-template.excalidraw",
+     "n_relpath": 0,
+     "c_relpath": "grep -F -c -- 'templates/class-diagram-template.excalidraw' D:/global_skills/diagram-maker/SKILL.md",
+     "n_basename": 0,
+     "c_basename": "grep -F -c -- 'class-diagram-template.excalidraw' D:/global_skills/diagram-maker/SKILL.md",
+     "n_parentdir": 0,
+     "c_parentdir": "grep -F -c -- 'templates' D:/global_skills/diagram-maker/SKILL.md"
+    },
+    {
+     "file": "templates/data-flow-diagram-template.excalidraw",
+     "n_relpath": 0,
+     "c_relpath": "grep -F -c -- 'templates/data-flow-diagram-template.excalidraw' D:/global_skills/diagram-maker/SKILL.md",
+     "n_basename": 0,
+     "c_basename": "grep -F -c -- 'data-flow-diagram-template.excalidraw' D:/global_skills/diagram-maker/SKILL.md",
+     "n_parentdir": 0,
+     "c_parentdir": "grep -F -c -- 'templates' D:/global_skills/diagram-maker/SKILL.md"
+    },
+    {
+     "file": "templates/er-diagram-template.excalidraw",
+     "n_relpath": 0,
+     "c_relpath": "grep -F -c -- 'templates/er-diagram-template.excalidraw' D:/global_skills/diagram-maker/SKILL.md",
+     "n_basename": 0,
+     "c_basename": "grep -F -c -- 'er-diagram-template.excalidraw' D:/global_skills/diagram-maker/SKILL.md",
+     "n_parentdir": 0,
+     "c_parentdir": "grep -F -c -- 'templates' D:/global_skills/diagram-maker/SKILL.md"
+    },
+    {
+     "file": "templates/flowchart-template.excalidraw",
+     "n_relpath": 0,
+     "c_relpath": "grep -F -c -- 'templates/flowchart-template.excalidraw' D:/global_skills/diagram-maker/SKILL.md",
+     "n_basename": 0,
+     "c_basename": "grep -F -c -- 'flowchart-template.excalidraw' D:/global_skills/diagram-maker/SKILL.md",
+     "n_parentdir": 0,
+     "c_parentdir": "grep -F -c -- 'templates' D:/global_skills/diagram-maker/SKILL.md"
+    },
+    {
+     "file": "templates/mindmap-template.excalidraw",
+     "n_relpath": 0,
+     "c_relpath": "grep -F -c -- 'templates/mindmap-template.excalidraw' D:/global_skills/diagram-maker/SKILL.md",
+     "n_basename": 0,
+     "c_basename": "grep -F -c -- 'mindmap-template.excalidraw' D:/global_skills/diagram-maker/SKILL.md",
+     "n_parentdir": 0,
+     "c_parentdir": "grep -F -c -- 'templates' D:/global_skills/diagram-maker/SKILL.md"
+    },
+    {
+     "file": "templates/relationship-template.excalidraw",
+     "n_relpath": 0,
+     "c_relpath": "grep -F -c -- 'templates/relationship-template.excalidraw' D:/global_skills/diagram-maker/SKILL.md",
+     "n_basename": 0,
+     "c_basename": "grep -F -c -- 'relationship-template.excalidraw' D:/global_skills/diagram-maker/SKILL.md",
+     "n_parentdir": 0,
+     "c_parentdir": "grep -F -c -- 'templates' D:/global_skills/diagram-maker/SKILL.md"
+    },
+    {
+     "file": "templates/sequence-diagram-template.excalidraw",
+     "n_relpath": 0,
+     "c_relpath": "grep -F -c -- 'templates/sequence-diagram-template.excalidraw' D:/global_skills/diagram-maker/SKILL.md",
+     "n_basename": 0,
+     "c_basename": "grep -F -c -- 'sequence-diagram-template.excalidraw' D:/global_skills/diagram-maker/SKILL.md",
+     "n_parentdir": 0,
+     "c_parentdir": "grep -F -c -- 'templates' D:/global_skills/diagram-maker/SKILL.md"
+    }
+   ]
+  },
+  "story-cover": {
+   "base": "D:/global_skills\\story-cover",
+   "present_n": 7,
+   "exempt_n": 0,
+   "exempt_files": [],
+   "raw_n_incl_skillmd": 8,
+   "unreferenced_n": 0,
+   "unreferenced": [],
+   "status": "CLEAN",
+   "referenced": [
+    {
+     "file": "references/api-fallback.md",
+     "hit_rules": [
+      "parentdir"
+     ],
+     "hits": {
+      "relpath": 0,
+      "basename": 0,
+      "parentdir": 6
+     }
+    },
+    {
+     "file": "references/cover-styles.md",
+     "hit_rules": [
+      "parentdir"
+     ],
+     "hits": {
+      "relpath": 0,
+      "basename": 0,
+      "parentdir": 6
+     }
+    },
+    {
+     "file": "references/split-01.md",
+     "hit_rules": [
+      "relpath",
+      "basename",
+      "parentdir"
+     ],
+     "hits": {
+      "relpath": 1,
+      "basename": 1,
+      "parentdir": 6
+     }
+    },
+    {
+     "file": "references/split-02.md",
+     "hit_rules": [
+      "relpath",
+      "basename",
+      "parentdir"
+     ],
+     "hits": {
+      "relpath": 1,
+      "basename": 1,
+      "parentdir": 6
+     }
+    },
+    {
+     "file": "references/split-03.md",
+     "hit_rules": [
+      "relpath",
+      "basename",
+      "parentdir"
+     ],
+     "hits": {
+      "relpath": 1,
+      "basename": 1,
+      "parentdir": 6
+     }
+    },
+    {
+     "file": "references/split-04.md",
+     "hit_rules": [
+      "relpath",
+      "basename",
+      "parentdir"
+     ],
+     "hits": {
+      "relpath": 1,
+      "basename": 1,
+      "parentdir": 6
+     }
+    },
+    {
+     "file": "references/split-05.md",
+     "hit_rules": [
+      "relpath",
+      "basename",
+      "parentdir"
+     ],
+     "hits": {
+      "relpath": 1,
+      "basename": 1,
+      "parentdir": 6
+     }
+    }
+   ],
+   "evidence_unreferenced": []
+  },
+  "grill-me": {
+   "base": "D:/global_skills\\grill-me",
+   "present_n": 2,
+   "exempt_n": 0,
+   "exempt_files": [],
+   "raw_n_incl_skillmd": 3,
+   "unreferenced_n": 2,
+   "unreferenced": [
+    "_skillhub_meta.json",
+    "agents/openai.yaml"
+   ],
+   "status": "HAS_UNREFERENCED",
+   "referenced": [],
+   "evidence_unreferenced": [
+    {
+     "file": "_skillhub_meta.json",
+     "n_relpath": 0,
+     "c_relpath": "grep -F -c -- '_skillhub_meta.json' D:/global_skills/grill-me/SKILL.md",
+     "n_basename": null,
+     "c_basename": "grep -F -c -- '_skillhub_meta.json' D:/global_skills/grill-me/SKILL.md",
+     "n_parentdir": null,
+     "c_parentdir": "n/a (file at skill root; parent-dir rule degenerate)"
+    },
+    {
+     "file": "agents/openai.yaml",
+     "n_relpath": 0,
+     "c_relpath": "grep -F -c -- 'agents/openai.yaml' D:/global_skills/grill-me/SKILL.md",
+     "n_basename": 0,
+     "c_basename": "grep -F -c -- 'openai.yaml' D:/global_skills/grill-me/SKILL.md",
+     "n_parentdir": 0,
+     "c_parentdir": "grep -F -c -- 'agents' D:/global_skills/grill-me/SKILL.md"
+    }
+   ]
+  },
+  "local-mineru": {
+   "base": "D:/global_skills\\local-mineru",
+   "present_n": 29,
+   "exempt_n": 0,
+   "exempt_files": [],
+   "raw_n_incl_skillmd": 30,
+   "unreferenced_n": 16,
+   "unreferenced": [
+    "bin/platform.exe",
+    "scripts/mineru_ov/__init__.py",
+    "scripts/mineru_ov/_detokenizer.py",
+    "scripts/mineru_ov/_inference.py",
+    "scripts/mineru_ov/config.py",
+    "scripts/mineru_ov/constants.py",
+    "scripts/mineru_ov/hybrid_backend.py",
+    "scripts/mineru_ov/pdf_utils.py",
+    "scripts/mineru_ov/pipeline.py",
+    "scripts/mineru_ov/pipeline_models.py",
+    "scripts/mineru_ov/post_process.py",
+    "scripts/mineru_ov/utils.py",
+    "scripts/mineru_ov/vlm_backend.py",
+    "tests/1969_PDF.pdf",
+    "tests/2.jpg",
+    "tests/test.ps1"
+   ],
+   "status": "HAS_UNREFERENCED",
+   "referenced": [
+    {
+     "file": "info.json",
+     "hit_rules": [
+      "relpath"
+     ],
+     "hits": {
+      "relpath": 1
+     }
+    },
+    {
+     "file": "meta.json",
+     "hit_rules": [
+      "relpath"
+     ],
+     "hits": {
+      "relpath": 1
+     }
+    },
+    {
+     "file": "references/readiness.md",
+     "hit_rules": [
+      "relpath",
+      "basename",
+      "parentdir"
+     ],
+     "hits": {
+      "relpath": 1,
+      "basename": 1,
+      "parentdir": 1
+     }
+    },
+    {
+     "file": "requirements.txt",
+     "hit_rules": [
+      "relpath"
+     ],
+     "hits": {
+      "relpath": 1
+     }
+    },
+    {
+     "file": "scripts/client.py",
+     "hit_rules": [
+      "parentdir"
+     ],
+     "hits": {
+      "relpath": 0,
+      "basename": 0,
+      "parentdir": 8
+     }
+    },
+    {
+     "file": "scripts/get_gpu_mem.py",
+     "hit_rules": [
+      "parentdir"
+     ],
+     "hits": {
+      "relpath": 0,
+      "basename": 0,
+      "parentdir": 8
+     }
+    },
+    {
+     "file": "scripts/install-env.ps1",
+     "hit_rules": [
+      "parentdir"
+     ],
+     "hits": {
+      "relpath": 0,
+      "basename": 0,
+      "parentdir": 8
+     }
+    },
+    {
+     "file": "scripts/model_download.py",
+     "hit_rules": [
+      "parentdir"
+     ],
+     "hits": {
+      "relpath": 0,
+      "basename": 0,
+      "parentdir": 8
+     }
+    },
+    {
+     "file": "scripts/preflight.ps1",
+     "hit_rules": [
+      "relpath",
+      "basename",
+      "parentdir"
+     ],
+     "hits": {
+      "relpath": 1,
+      "basename": 1,
+      "parentdir": 8
+     }
+    },
+    {
+     "file": "scripts/run.ps1",
+     "hit_rules": [
+      "basename",
+      "parentdir"
+     ],
+     "hits": {
+      "relpath": 0,
+      "basename": 9,
+      "parentdir": 8
+     }
+    },
+    {
+     "file": "scripts/server-dog.py",
+     "hit_rules": [
+      "parentdir"
+     ],
+     "hits": {
+      "relpath": 0,
+      "basename": 0,
+      "parentdir": 8
+     }
+    },
+    {
+     "file": "scripts/server.py",
+     "hit_rules": [
+      "parentdir"
+     ],
+     "hits": {
+      "relpath": 0,
+      "basename": 0,
+      "parentdir": 8
+     }
+    },
+    {
+     "file": "scripts/test.ps1",
+     "hit_rules": [
+      "parentdir"
+     ],
+     "hits": {
+      "relpath": 0,
+      "basename": 0,
+      "parentdir": 8
+     }
+    }
+   ],
+   "evidence_unreferenced": [
+    {
+     "file": "bin/platform.exe",
+     "n_relpath": 0,
+     "c_relpath": "grep -F -c -- 'bin/platform.exe' D:/global_skills/local-mineru/SKILL.md",
+     "n_basename": 0,
+     "c_basename": "grep -F -c -- 'platform.exe' D:/global_skills/local-mineru/SKILL.md",
+     "n_parentdir": 0,
+     "c_parentdir": "grep -F -c -- 'bin' D:/global_skills/local-mineru/SKILL.md"
+    },
+    {
+     "file": "scripts/mineru_ov/__init__.py",
+     "n_relpath": 0,
+     "c_relpath": "grep -F -c -- 'scripts/mineru_ov/__init__.py' D:/global_skills/local-mineru/SKILL.md",
+     "n_basename": 0,
+     "c_basename": "grep -F -c -- '__init__.py' D:/global_skills/local-mineru/SKILL.md",
+     "n_parentdir": 0,
+     "c_parentdir": "grep -F -c -- 'mineru_ov' D:/global_skills/local-mineru/SKILL.md"
+    },
+    {
+     "file": "scripts/mineru_ov/_detokenizer.py",
+     "n_relpath": 0,
+     "c_relpath": "grep -F -c -- 'scripts/mineru_ov/_detokenizer.py' D:/global_skills/local-mineru/SKILL.md",
+     "n_basename": 0,
+     "c_basename": "grep -F -c -- '_detokenizer.py' D:/global_skills/local-mineru/SKILL.md",
+     "n_parentdir": 0,
+     "c_parentdir": "grep -F -c -- 'mineru_ov' D:/global_skills/local-mineru/SKILL.md"
+    },
+    {
+     "file": "scripts/mineru_ov/_inference.py",
+     "n_relpath": 0,
+     "c_relpath": "grep -F -c -- 'scripts/mineru_ov/_inference.py' D:/global_skills/local-mineru/SKILL.md",
+     "n_basename": 0,
+     "c_basename": "grep -F -c -- '_inference.py' D:/global_skills/local-mineru/SKILL.md",
+     "n_parentdir": 0,
+     "c_parentdir": "grep -F -c -- 'mineru_ov' D:/global_skills/local-mineru/SKILL.md"
+    },
+    {
+     "file": "scripts/mineru_ov/config.py",
+     "n_relpath": 0,
+     "c_relpath": "grep -F -c -- 'scripts/mineru_ov/config.py' D:/global_skills/local-mineru/SKILL.md",
+     "n_basename": 0,
+     "c_basename": "grep -F -c -- 'config.py' D:/global_skills/local-mineru/SKILL.md",
+     "n_parentdir": 0,
+     "c_parentdir": "grep -F -c -- 'mineru_ov' D:/global_skills/local-mineru/SKILL.md"
+    },
+    {
+     "file": "scripts/mineru_ov/constants.py",
+     "n_relpath": 0,
+     "c_relpath": "grep -F -c -- 'scripts/mineru_ov/constants.py' D:/global_skills/local-mineru/SKILL.md",
+     "n_basename": 0,
+     "c_basename": "grep -F -c -- 'constants.py' D:/global_skills/local-mineru/SKILL.md",
+     "n_parentdir": 0,
+     "c_parentdir": "grep -F -c -- 'mineru_ov' D:/global_skills/local-mineru/SKILL.md"
+    },
+    {
+     "file": "scripts/mineru_ov/hybrid_backend.py",
+     "n_relpath": 0,
+     "c_relpath": "grep -F -c -- 'scripts/mineru_ov/hybrid_backend.py' D:/global_skills/local-mineru/SKILL.md",
+     "n_basename": 0,
+     "c_basename": "grep -F -c -- 'hybrid_backend.py' D:/global_skills/local-mineru/SKILL.md",
+     "n_parentdir": 0,
+     "c_parentdir": "grep -F -c -- 'mineru_ov' D:/global_skills/local-mineru/SKILL.md"
+    },
+    {
+     "file": "scripts/mineru_ov/pdf_utils.py",
+     "n_relpath": 0,
+     "c_relpath": "grep -F -c -- 'scripts/mineru_ov/pdf_utils.py' D:/global_skills/local-mineru/SKILL.md",
+     "n_basename": 0,
+     "c_basename": "grep -F -c -- 'pdf_utils.py' D:/global_skills/local-mineru/SKILL.md",
+     "n_parentdir": 0,
+     "c_parentdir": "grep -F -c -- 'mineru_ov' D:/global_skills/local-mineru/SKILL.md"
+    },
+    {
+     "file": "scripts/mineru_ov/pipeline.py",
+     "n_relpath": 0,
+     "c_relpath": "grep -F -c -- 'scripts/mineru_ov/pipeline.py' D:/global_skills/local-mineru/SKILL.md",
+     "n_basename": 0,
+     "c_basename": "grep -F -c -- 'pipeline.py' D:/global_skills/local-mineru/SKILL.md",
+     "n_parentdir": 0,
+     "c_parentdir": "grep -F -c -- 'mineru_ov' D:/global_skills/local-mineru/SKILL.md"
+    },
+    {
+     "file": "scripts/mineru_ov/pipeline_models.py",
+     "n_relpath": 0,
+     "c_relpath": "grep -F -c -- 'scripts/mineru_ov/pipeline_models.py' D:/global_skills/local-mineru/SKILL.md",
+     "n_basename": 0,
+     "c_basename": "grep -F -c -- 'pipeline_models.py' D:/global_skills/local-mineru/SKILL.md",
+     "n_parentdir": 0,
+     "c_parentdir": "grep -F -c -- 'mineru_ov' D:/global_skills/local-mineru/SKILL.md"
+    },
+    {
+     "file": "scripts/mineru_ov/post_process.py",
+     "n_relpath": 0,
+     "c_relpath": "grep -F -c -- 'scripts/mineru_ov/post_process.py' D:/global_skills/local-mineru/SKILL.md",
+     "n_basename": 0,
+     "c_basename": "grep -F -c -- 'post_process.py' D:/global_skills/local-mineru/SKILL.md",
+     "n_parentdir": 0,
+     "c_parentdir": "grep -F -c -- 'mineru_ov' D:/global_skills/local-mineru/SKILL.md"
+    },
+    {
+     "file": "scripts/mineru_ov/utils.py",
+     "n_relpath": 0,
+     "c_relpath": "grep -F -c -- 'scripts/mineru_ov/utils.py' D:/global_skills/local-mineru/SKILL.md",
+     "n_basename": 0,
+     "c_basename": "grep -F -c -- 'utils.py' D:/global_skills/local-mineru/SKILL.md",
+     "n_parentdir": 0,
+     "c_parentdir": "grep -F -c -- 'mineru_ov' D:/global_skills/local-mineru/SKILL.md"
+    },
+    {
+     "file": "scripts/mineru_ov/vlm_backend.py",
+     "n_relpath": 0,
+     "c_relpath": "grep -F -c -- 'scripts/mineru_ov/vlm_backend.py' D:/global_skills/local-mineru/SKILL.md",
+     "n_basename": 0,
+     "c_basename": "grep -F -c -- 'vlm_backend.py' D:/global_skills/local-mineru/SKILL.md",
+     "n_parentdir": 0,
+     "c_parentdir": "grep -F -c -- 'mineru_ov' D:/global_skills/local-mineru/SKILL.md"
+    },
+    {
+     "file": "tests/1969_PDF.pdf",
+     "n_relpath": 0,
+     "c_relpath": "grep -F -c -- 'tests/1969_PDF.pdf' D:/global_skills/local-mineru/SKILL.md",
+     "n_basename": 0,
+     "c_basename": "grep -F -c -- '1969_PDF.pdf' D:/global_skills/local-mineru/SKILL.md",
+     "n_parentdir": 0,
+     "c_parentdir": "grep -F -c -- 'tests' D:/global_skills/local-mineru/SKILL.md"
+    },
+    {
+     "file": "tests/2.jpg",
+     "n_relpath": 0,
+     "c_relpath": "grep -F -c -- 'tests/2.jpg' D:/global_skills/local-mineru/SKILL.md",
+     "n_basename": 0,
+     "c_basename": "grep -F -c -- '2.jpg' D:/global_skills/local-mineru/SKILL.md",
+     "n_parentdir": 0,
+     "c_parentdir": "grep -F -c -- 'tests' D:/global_skills/local-mineru/SKILL.md"
+    },
+    {
+     "file": "tests/test.ps1",
+     "n_relpath": 0,
+     "c_relpath": "grep -F -c -- 'tests/test.ps1' D:/global_skills/local-mineru/SKILL.md",
+     "n_basename": 0,
+     "c_basename": "grep -F -c -- 'test.ps1' D:/global_skills/local-mineru/SKILL.md",
+     "n_parentdir": 0,
+     "c_parentdir": "grep -F -c -- 'tests' D:/global_skills/local-mineru/SKILL.md"
+    }
+   ]
+  },
+  "discover-agent-cli": {
+   "base": "D:/global_skills\\discover-agent-cli",
+   "present_n": 1,
+   "exempt_n": 0,
+   "exempt_files": [],
+   "raw_n_incl_skillmd": 2,
+   "unreferenced_n": 0,
+   "unreferenced": [],
+   "status": "CLEAN",
+   "referenced": [
+    {
+     "file": "reference.md",
+     "hit_rules": [
+      "relpath"
+     ],
+     "hits": {
+      "relpath": 2
+     }
+    }
+   ],
+   "evidence_unreferenced": []
+  },
+  "code-review": {
+   "base": "D:/global_skills\\code-review",
+   "present_n": 1,
+   "exempt_n": 0,
+   "exempt_files": [],
+   "raw_n_incl_skillmd": 2,
+   "unreferenced_n": 0,
+   "unreferenced": [],
+   "status": "CLEAN",
+   "referenced": [
+    {
+     "file": "references/upstream-agent-skills.md",
+     "hit_rules": [
+      "relpath",
+      "basename",
+      "parentdir"
+     ],
+     "hits": {
+      "relpath": 1,
+      "basename": 1,
+      "parentdir": 1
+     }
+    }
+   ],
+   "evidence_unreferenced": []
+  },
+  "video-whisper-transcribe": {
+   "base": "D:/global_skills\\video-whisper-transcribe",
+   "present_n": 0,
+   "exempt_n": 0,
+   "exempt_files": [],
+   "raw_n_incl_skillmd": 1,
+   "unreferenced_n": 0,
+   "unreferenced": [],
+   "status": "NO_SIBLINGS",
+   "referenced": [],
+   "evidence_unreferenced": []
+  },
+  "taskflow-inbox-triage": {
+   "base": "D:/global_skills\\taskflow-inbox-triage",
+   "present_n": 0,
+   "exempt_n": 0,
+   "exempt_files": [],
+   "raw_n_incl_skillmd": 1,
+   "unreferenced_n": 0,
+   "unreferenced": [],
+   "status": "NO_SIBLINGS",
+   "referenced": [],
+   "evidence_unreferenced": []
+  },
+  "testing": {
+   "base": "D:/global_skills\\testing",
+   "present_n": 0,
+   "exempt_n": 0,
+   "exempt_files": [],
+   "raw_n_incl_skillmd": 1,
+   "unreferenced_n": 0,
+   "unreferenced": [],
+   "status": "NO_SIBLINGS",
+   "referenced": [],
+   "evidence_unreferenced": []
+  },
+  "libreoffice-base": {
+   "base": "D:/global_skills\\libreoffice-base",
+   "present_n": 0,
+   "exempt_n": 0,
+   "exempt_files": [],
+   "raw_n_incl_skillmd": 1,
+   "unreferenced_n": 0,
+   "unreferenced": [],
+   "status": "NO_SIBLINGS",
+   "referenced": [],
+   "evidence_unreferenced": []
+  }
+ },
+ "negative_control": {
+  "description": "negative control: disable rule3 (parent-dir name) and re-measure; unref count must rise",
+  "channel": "grep -F -c",
+  "skills": {
+   "story-cover": {
+    "rule3_on_unref_n": 0,
+    "rule3_on_unref": [],
+    "rule3_off_unref_n": 2,
+    "rule3_off_unref": [
+     "references/api-fallback.md",
+     "references/cover-styles.md"
+    ],
+    "delta": 2,
+    "added_by_rule3": [
+     "references/api-fallback.md",
+     "references/cover-styles.md"
+    ],
+    "expected": "rule3_off_unref_n > rule3_on_unref_n",
+    "result": "PASS",
+    "cmd": "grep -F -c -- 'references' D:/global_skills/story-cover/SKILL.md"
+   },
+   "diagram-maker": {
+    "rule3_on_unref_n": 12,
+    "rule3_on_unref": [
+     "scripts/README.md",
+     "scripts/add-arrow.py",
+     "scripts/add-icon-to-diagram.py",
+     "scripts/split-excalidraw-library.py",
+     "templates/business-flow-swimlane-template.excalidraw",
+     "templates/class-diagram-template.excalidraw",
+     "templates/data-flow-diagram-template.excalidraw",
+     "templates/er-diagram-template.excalidraw",
+     "templates/flowchart-template.excalidraw",
+     "templates/mindmap-template.excalidraw",
+     "templates/relationship-template.excalidraw",
+     "templates/sequence-diagram-template.excalidraw"
+    ],
+    "rule3_off_unref_n": 14,
+    "rule3_off_unref": [
+     "references/element-types.md",
+     "references/excalidraw-schema.md",
+     "scripts/README.md",
+     "scripts/add-arrow.py",
+     "scripts/add-icon-to-diagram.py",
+     "scripts/split-excalidraw-library.py",
+     "templates/business-flow-swimlane-template.excalidraw",
+     "templates/class-diagram-template.excalidraw",
+     "templates/data-flow-diagram-template.excalidraw",
+     "templates/er-diagram-template.excalidraw",
+     "templates/flowchart-template.excalidraw",
+     "templates/mindmap-template.excalidraw",
+     "templates/relationship-template.excalidraw",
+     "templates/sequence-diagram-template.excalidraw"
+    ],
+    "delta": 2,
+    "added_by_rule3": [
+     "references/element-types.md",
+     "references/excalidraw-schema.md"
+    ],
+    "expected": "rule3_off_unref_n > rule3_on_unref_n",
+    "result": "PASS",
+    "cmd": "grep -F -c -- 'references' D:/global_skills/diagram-maker/SKILL.md"
+   },
+   "local-mineru": {
+    "rule3_on_unref_n": 16,
+    "rule3_on_unref": [
+     "bin/platform.exe",
+     "scripts/mineru_ov/__init__.py",
+     "scripts/mineru_ov/_detokenizer.py",
+     "scripts/mineru_ov/_inference.py",
+     "scripts/mineru_ov/config.py",
+     "scripts/mineru_ov/constants.py",
+     "scripts/mineru_ov/hybrid_backend.py",
+     "scripts/mineru_ov/pdf_utils.py",
+     "scripts/mineru_ov/pipeline.py",
+     "scripts/mineru_ov/pipeline_models.py",
+     "scripts/mineru_ov/post_process.py",
+     "scripts/mineru_ov/utils.py",
+     "scripts/mineru_ov/vlm_backend.py",
+     "tests/1969_PDF.pdf",
+     "tests/2.jpg",
+     "tests/test.ps1"
+    ],
+    "rule3_off_unref_n": 23,
+    "rule3_off_unref": [
+     "bin/platform.exe",
+     "scripts/client.py",
+     "scripts/get_gpu_mem.py",
+     "scripts/install-env.ps1",
+     "scripts/mineru_ov/__init__.py",
+     "scripts/mineru_ov/_detokenizer.py",
+     "scripts/mineru_ov/_inference.py",
+     "scripts/mineru_ov/config.py",
+     "scripts/mineru_ov/constants.py",
+     "scripts/mineru_ov/hybrid_backend.py",
+     "scripts/mineru_ov/pdf_utils.py",
+     "scripts/mineru_ov/pipeline.py",
+     "scripts/mineru_ov/pipeline_models.py",
+     "scripts/mineru_ov/post_process.py",
+     "scripts/mineru_ov/utils.py",
+     "scripts/mineru_ov/vlm_backend.py",
+     "scripts/model_download.py",
+     "scripts/server-dog.py",
+     "scripts/server.py",
+     "scripts/test.ps1",
+     "tests/1969_PDF.pdf",
+     "tests/2.jpg",
+     "tests/test.ps1"
+    ],
+    "delta": 7,
+    "added_by_rule3": [
+     "scripts/client.py",
+     "scripts/get_gpu_mem.py",
+     "scripts/install-env.ps1",
+     "scripts/model_download.py",
+     "scripts/server-dog.py",
+     "scripts/server.py",
+     "scripts/test.ps1"
+    ],
+    "expected": "rule3_off_unref_n > rule3_on_unref_n",
+    "result": "PASS",
+    "cmd": "grep -F -c -- 'references' D:/global_skills/local-mineru/SKILL.md"
+   }
+  }
+ },
+ "status_distribution": {
+  "CLEAN": 4,
+  "NO_SIBLINGS": 5,
+  "HAS_UNREFERENCED": 3
+ },
+ "lead_artifact": {
+  "path": "C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/06-benchmark\\r268_unreferenced_siblings.json",
+  "present_at_read": false,
+  "read_at": "2026-10-29T17:41:47+08:00"
+ },
+ "verdict_per_skill": {
+  "openai-whisper-api": {
+   "my_unreferenced_n": 0,
+   "my_present_n": 1,
+   "my_unreferenced": [],
+   "verdict": "CANNOT_JUDGE",
+   "reason": "Lead artifact C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/06-benchmark\\r268_unreferenced_siblings.json not present on disk at 2026-10-29T17:41:47+08:00 (find . -name r268* returned nothing); nothing to reconcile against"
+  },
+  "libreoffice-writer": {
+   "my_unreferenced_n": 0,
+   "my_present_n": 0,
+   "my_unreferenced": [],
+   "verdict": "CANNOT_JUDGE",
+   "reason": "Lead artifact C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/06-benchmark\\r268_unreferenced_siblings.json not present on disk at 2026-10-29T17:41:47+08:00 (find . -name r268* returned nothing); nothing to reconcile against"
+  },
+  "diagram-maker": {
+   "my_unreferenced_n": 12,
+   "my_present_n": 17,
+   "my_unreferenced": [
+    "scripts/README.md",
+    "scripts/add-arrow.py",
+    "scripts/add-icon-to-diagram.py",
+    "scripts/split-excalidraw-library.py",
+    "templates/business-flow-swimlane-template.excalidraw",
+    "templates/class-diagram-template.excalidraw",
+    "templates/data-flow-diagram-template.excalidraw",
+    "templates/er-diagram-template.excalidraw",
+    "templates/flowchart-template.excalidraw",
+    "templates/mindmap-template.excalidraw",
+    "templates/relationship-template.excalidraw",
+    "templates/sequence-diagram-template.excalidraw"
+   ],
+   "verdict": "CANNOT_JUDGE",
+   "reason": "Lead artifact C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/06-benchmark\\r268_unreferenced_siblings.json not present on disk at 2026-10-29T17:41:47+08:00 (find . -name r268* returned nothing); nothing to reconcile against"
+  },
+  "story-cover": {
+   "my_unreferenced_n": 0,
+   "my_present_n": 7,
+   "my_unreferenced": [],
+   "verdict": "CANNOT_JUDGE",
+   "reason": "Lead artifact C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/06-benchmark\\r268_unreferenced_siblings.json not present on disk at 2026-10-29T17:41:47+08:00 (find . -name r268* returned nothing); nothing to reconcile against"
+  },
+  "grill-me": {
+   "my_unreferenced_n": 2,
+   "my_present_n": 2,
+   "my_unreferenced": [
+    "_skillhub_meta.json",
+    "agents/openai.yaml"
+   ],
+   "verdict": "CANNOT_JUDGE",
+   "reason": "Lead artifact C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/06-benchmark\\r268_unreferenced_siblings.json not present on disk at 2026-10-29T17:41:47+08:00 (find . -name r268* returned nothing); nothing to reconcile against"
+  },
+  "local-mineru": {
+   "my_unreferenced_n": 16,
+   "my_present_n": 29,
+   "my_unreferenced": [
+    "bin/platform.exe",
+    "scripts/mineru_ov/__init__.py",
+    "scripts/mineru_ov/_detokenizer.py",
+    "scripts/mineru_ov/_inference.py",
+    "scripts/mineru_ov/config.py",
+    "scripts/mineru_ov/constants.py",
+    "scripts/mineru_ov/hybrid_backend.py",
+    "scripts/mineru_ov/pdf_utils.py",
+    "scripts/mineru_ov/pipeline.py",
+    "scripts/mineru_ov/pipeline_models.py",
+    "scripts/mineru_ov/post_process.py",
+    "scripts/mineru_ov/utils.py",
+    "scripts/mineru_ov/vlm_backend.py",
+    "tests/1969_PDF.pdf",
+    "tests/2.jpg",
+    "tests/test.ps1"
+   ],
+   "verdict": "CANNOT_JUDGE",
+   "reason": "Lead artifact C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/06-benchmark\\r268_unreferenced_siblings.json not present on disk at 2026-10-29T17:41:47+08:00 (find . -name r268* returned nothing); nothing to reconcile against"
+  },
+  "discover-agent-cli": {
+   "my_unreferenced_n": 0,
+   "my_present_n": 1,
+   "my_unreferenced": [],
+   "verdict": "CANNOT_JUDGE",
+   "reason": "Lead artifact C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/06-benchmark\\r268_unreferenced_siblings.json not present on disk at 2026-10-29T17:41:47+08:00 (find . -name r268* returned nothing); nothing to reconcile against"
+  },
+  "code-review": {
+   "my_unreferenced_n": 0,
+   "my_present_n": 1,
+   "my_unreferenced": [],
+   "verdict": "CANNOT_JUDGE",
+   "reason": "Lead artifact C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/06-benchmark\\r268_unreferenced_siblings.json not present on disk at 2026-10-29T17:41:47+08:00 (find . -name r268* returned nothing); nothing to reconcile against"
+  },
+  "video-whisper-transcribe": {
+   "my_unreferenced_n": 0,
+   "my_present_n": 0,
+   "my_unreferenced": [],
+   "verdict": "CANNOT_JUDGE",
+   "reason": "Lead artifact C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/06-benchmark\\r268_unreferenced_siblings.json not present on disk at 2026-10-29T17:41:47+08:00 (find . -name r268* returned nothing); nothing to reconcile against"
+  },
+  "taskflow-inbox-triage": {
+   "my_unreferenced_n": 0,
+   "my_present_n": 0,
+   "my_unreferenced": [],
+   "verdict": "CANNOT_JUDGE",
+   "reason": "Lead artifact C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/06-benchmark\\r268_unreferenced_siblings.json not present on disk at 2026-10-29T17:41:47+08:00 (find . -name r268* returned nothing); nothing to reconcile against"
+  },
+  "testing": {
+   "my_unreferenced_n": 0,
+   "my_present_n": 0,
+   "my_unreferenced": [],
+   "verdict": "CANNOT_JUDGE",
+   "reason": "Lead artifact C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/06-benchmark\\r268_unreferenced_siblings.json not present on disk at 2026-10-29T17:41:47+08:00 (find . -name r268* returned nothing); nothing to reconcile against"
+  },
+  "libreoffice-base": {
+   "my_unreferenced_n": 0,
+   "my_present_n": 0,
+   "my_unreferenced": [],
+   "verdict": "CANNOT_JUDGE",
+   "reason": "Lead artifact C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/06-benchmark\\r268_unreferenced_siblings.json not present on disk at 2026-10-29T17:41:47+08:00 (find . -name r268* returned nothing); nothing to reconcile against"
+  }
+ },
+ "verdict_distribution": {
+  "CANNOT_JUDGE": 12
+ },
+ "verdict_distribution_note": "verdict is about agreement with the Lead artifact, not about the metric itself; metric status lives in status_distribution"
+}
