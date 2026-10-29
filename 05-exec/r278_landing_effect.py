@@ -39,6 +39,17 @@ OUT_DEFAULT = os.path.join(BENCH, 'r278_landing_effect.json')
 # since-day window: the landings happened on 2026-10-29 (r266 tdd, r269/72/77 frontend-slides).
 WINDOW = '2026-10-29 00:00'
 
+# Baseline must be the first commit of THIS change set, not the first window hit. Measured in
+# r279: the accidental whole-tree staging commit 079b91f3 also touched frontend-slides and
+# ui-ux-pro-max, so a window-first baseline would measure the ui-ux merge against the
+# pre-incident state and report a real change as zero change.
+# None means the window-first commit genuinely IS this change set's landing.
+BASE = {
+    'test-driven-development/SKILL.md': None,
+    'frontend-slides/SKILL.md': '6394cbae',
+    'ui-ux-pro-max/SKILL.md': '30b84b20',
+}
+
 
 def git(*args):
     p = subprocess.run(['git', '-C', SK] + list(args), capture_output=True, text=True,
@@ -58,7 +69,7 @@ def landing_commits(rel):
     return list(reversed(out))
 
 
-def measure(text, files):
+def measure(text, files, skill_dir=None):
     """apply r268's own caliber to one text version; files come from disk (only text differs)."""
     toks = U.referenced_tokens(text)
     unref = []
@@ -80,6 +91,9 @@ def measure(text, files):
         'double_write_n': text.count('After ANY modification, verify:'),
         'max_line_bytes': maxb,
         'vh_claims_n': vh,
+        # 兼容轴：None = 不可判（该件无脚本或 --help 跑不起来），必须与 0 区分，
+        # 否则「跑不了」会被读成「没有不可执行 flag」。
+        'flag_unsupported_n': (flag_compat(skill_dir, text) if skill_dir else None),
         'stage_claims_n': stage,
     }
 
@@ -105,6 +119,44 @@ def strict_unreferenced(text, files):
             out.append(rel)
     return out
 
+
+def flag_compat(skill_dir, text):
+    '''兼容轴：正文里出现的 --flag 必须被该件自带脚本的支持面覆盖。
+
+    为什么必须有这条轴（r279 一手）：我从上游并入文本时带进了 --force，本地 search.py 根本没有
+    这个参数 —— 当时是我肉眼看 --help 才发现的。若没有这条轴，同类合并会把不可执行指令当成改进
+    写进受管根，而且 worsened 轴永远不报红（它只看引用率/矛盾句这些结构量）。
+
+    覆盖面自我限制（必读，否则这条轴会被当成万能兼容检查）：只扫 scripts/ 下的 .py --help。
+    shell/js 入口不在内，所以计数会**高估**不可执行 flag。实测：frontend-slides 只有
+    scripts/extract-pptx.py 一个 py（其 --help 只支持 --help），而它的真实运行面是 sh 脚本与
+    deck-stage.js ⇒ 它报出的 2（--compact / --version）属该限制下的产物，改前=改后、非本次引入。
+
+    返回 None 表示不可判（该件没有脚本、或所有脚本 --help 都跑不起来）——
+    不可判必须显形为 None，绝不能当成 0（0 会被读成「无兼容问题」）。'''
+    scripts = []
+    sdir = os.path.join(skill_dir, 'scripts')
+    for dp, dns, fns in os.walk(sdir):
+        dns[:] = [d for d in dns if d != '__pycache__']
+        scripts += [os.path.join(dp, x) for x in fns if x.endswith('.py')]
+    if not scripts:
+        return None
+    help_all = ''
+    ran = 0
+    for sp in sorted(scripts):
+        try:
+            p = subprocess.run([sys.executable, sp, '--help'], capture_output=True,
+                               text=True, encoding='utf-8', errors='replace', timeout=60)
+        except Exception:
+            continue
+        help_all += (p.stdout or '') + (p.stderr or '')
+        ran += 1
+    if ran == 0:
+        return None
+    import re
+    flags = set(re.findall(r'(?<![A-Za-z-])(--[a-z][a-z0-9-]*)', text or ''))
+    bad = sorted(x for x in flags if x not in help_all)
+    return len(bad)
 
 def commit_series(rel, commits, files):
     '''逐提交读数：端点对比会藏住「中途引入又修掉」的回退（本例 r272 造双写、r277 消除）。'''
@@ -132,7 +184,8 @@ def commit_series(rel, commits, files):
 
 
 def main():
-    targets = ['test-driven-development/SKILL.md', 'frontend-slides/SKILL.md']
+    uiux = 'ui-ux-pro-max/SKILL.md'   # r279 third landing (merge-increment, not overwrite)
+    targets = ['test-driven-development/SKILL.md', 'frontend-slides/SKILL.md', uiux]
     rows = []
     for rel in targets:
         skill = rel.split('/')[0]
@@ -142,7 +195,20 @@ def main():
                          'window_since': WINDOW, 'commits_checked': []})
             print('  %-28s NO landing commit since %s' % (skill, WINDOW))
             continue
-        first = commits[0]
+        want = BASE.get(rel)
+        if want:
+            hit = [c for c in commits if c['sha'].startswith(want)]
+            if not hit:
+                # fail closed: never fall back to the window-first commit, that is the bug this
+                # table exists to avoid. An unfindable baseline becomes an unverified row.
+                rows.append({'skill': skill, 'state': 'BASE_SHA_NOT_IN_WINDOW',
+                             'wanted_base': want,
+                             'window_commits': [c['sha'][:8] for c in commits]})
+                print('  %-24s base %s not in window -> UNVERIFIED' % (skill, want))
+                continue
+            first = hit[0]
+        else:
+            first = commits[0]
         pb = git('show', first['sha'] + '~1:' + rel)
         pw = git('show', ':' + rel)          # index version = current committed content
         wt_path = os.path.join(SK, rel)
@@ -167,7 +233,8 @@ def main():
             assert mine_after == prow.get('unreferenced_strict_n'), (
                 'strict caliber drifted from r268 face: %s mine=%s theirs=%s' % (
                     skill, mine_after, prow.get('unreferenced_strict_n')))
-        mb, ma = measure(before, files), measure(after, files)
+        sd = os.path.join(SK, skill)
+        mb, ma = measure(before, files, sd), measure(after, files, sd)
         # 双档并报：只报宽松档会把「祖先目录被提及」当成可达 ⇒ 与 r275 的口径过头同族。
         sb = strict_unreferenced(before, files)
         sa = strict_unreferenced(after, files)
@@ -175,15 +242,23 @@ def main():
         ma['unreferenced_strict_n'] = len(sa)
         series = commit_series(rel, commits, files)
         axes = ['unreferenced_n', 'half_claim_n', 'double_write_n', 'max_line_bytes',
-                'vh_claims_n', 'stage_claims_n']
-        delta = {k: (ma[k] - mb[k]) for k in axes}
+                'vh_claims_n', 'stage_claims_n', 'flag_unsupported_n']
+        # 不可判轴（None）不进 delta：相减会 TypeError，且强行给 0 会把「跑不了」洗成「无问题」。
+        delta = {k: (ma[k] - mb[k]) for k in axes
+                 if ma[k] is not None and mb[k] is not None}
+        delta_unjudged = [k for k in axes if ma.get(k) is None or mb.get(k) is None]
         improved = [k for k in ('unreferenced_n', 'half_claim_n', 'double_write_n',
                                 'max_line_bytes', 'vh_claims_n') if ma[k] < mb[k]]
+        # 兼容轴单独判：只在「两侧都可判」时比较，且任何一侧变多即算变差。
         worsened = [k for k in ('unreferenced_n', 'half_claim_n', 'double_write_n',
                                 'max_line_bytes', 'vh_claims_n') if ma[k] > mb[k]]
+        if mb['flag_unsupported_n'] is not None and ma['flag_unsupported_n'] is not None:
+            if ma['flag_unsupported_n'] > mb['flag_unsupported_n']:
+                worsened.append('flag_unsupported_n')
         rows.append({'skill': skill, 'state': 'OK', 'landing_commits': commits,
                      'first_landing': first, 'before_sha_used': first['sha'] + '~1',
                      'metrics_before': mb, 'metrics_after': ma, 'delta': delta,
+                     'delta_unjudged': delta_unjudged,
                      'caliber_pair': {'normal_before_after': [mb['unreferenced_n'], ma['unreferenced_n']],
                                       'strict_before_after': [mb['unreferenced_strict_n'], ma['unreferenced_strict_n']]},
                      'commit_series': series,

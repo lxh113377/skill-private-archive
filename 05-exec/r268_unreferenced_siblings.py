@@ -39,7 +39,10 @@ EXEMPT_NAMES = {'LICENSE', 'NOTICE', '.upstream', 'SKILL.md'}
 # 平台元数据类豁免（R272-1 裁定，r273 落地）：meta.json / _skillhub_meta.json / .claude-plugin/* 由平台
 # 读取（作者、图标、上架描述），不是给代理读的技能内容 ⇒ 「SKILL.md 没指向它」不构成缺陷。
 # 一手依据：frontend-slides 与 html-ppt 两件都有 meta.json、两件的 SKILL.md 对它的提及数都是 0（同族一致）。
-EXEMPT_PLATFORM = {'meta.json', '_skillhub_meta.json'}
+# 实测补全（r280）：R273-1 当时只登了两个名字，漏了 _meta.json 这一形 —— 实测该文件内容正是
+# 平台元数据（ownerId / slug / version / publishedAt），全库 5 件有 _meta.json、14 件有 meta.json。
+# 豁免名不全 = 同类未穷举，会让同一性质的件在不同目录下判定不一（这里 ui-ux-pro-max 就被记成未引用）。
+EXEMPT_PLATFORM = {'meta.json', '_meta.json', '_skillhub_meta.json'}
 EXEMPT_PLATFORM_DIRS = ('.claude-plugin/',)
 RE_PATH_TOKEN = re.compile(r'[A-Za-z0-9_][A-Za-z0-9_./-]*\.(?:md|json|txt|py|css|js|html|sh|ya?ml)')
 FILE_EXTS = ('.md', '.json', '.txt', '.py', '.css', '.js', '.html', '.sh', '.yaml', '.yml')

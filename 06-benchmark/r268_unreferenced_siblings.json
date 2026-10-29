@@ -1,14 +1,14 @@
 {
  "schema": "unreferenced-siblings-v1",
- "generated_at": "2026-10-29T19:55:27",
+ "generated_at": "2026-10-29T23:05:57",
  "provenance_cmd": "python 05-exec/r268_unreferenced_siblings.py",
  "rule": "R267-1: a file on disk that SKILL.md never points at is unreachable content",
  "skills_root": "D:/global_skills",
  "skills_n": 194,
- "skills_with_unreferenced_n": 57,
- "skills_clean_n": 134,
- "unreferenced_total_n": 238,
- "unreferenced_strict_total_n": 13922,
+ "skills_with_unreferenced_n": 54,
+ "skills_clean_n": 137,
+ "unreferenced_total_n": 233,
+ "unreferenced_strict_total_n": 13917,
  "caliber_note": "dual caliber: normal treats a bare immediate-parent dir mention as reachable; strict requires that mention to be path-shaped (parent + slash). The r268 independent check landed local-mineru on the strict side (+12 files).",
  "exemption_names": [
   ".upstream",
@@ -689,19 +689,17 @@
   {
    "slug": "cloudbase",
    "state": "OK",
-   "present_n": 147,
-   "exempt_n": 33,
-   "unreferenced_n": 3,
+   "present_n": 146,
+   "exempt_n": 34,
+   "unreferenced_n": 2,
    "unreferenced": [
     "LICENSE.md",
-    "_icon.png",
-    "_meta.json"
+    "_icon.png"
    ],
-   "unreferenced_strict_n": 59,
+   "unreferenced_strict_n": 58,
    "unreferenced_strict": [
     "LICENSE.md",
     "_icon.png",
-    "_meta.json",
     "references/auth-tool-cloudbase/checklist.md",
     "references/cloud-api-operations/references/recipes/README.md",
     "references/cloud-api-operations/references/recipes/billing-charges-explained.md",
@@ -760,7 +758,7 @@
     "references/web-development/frameworks.md"
    ],
    "rule_hist": {
-    "UNREFERENCED": 3,
+    "UNREFERENCED": 2,
     "REF_BY_PATH": 7,
     "REF_BY_PARENT_DIR": 98,
     "WEAK_ANCESTOR_DIR_ONLY": 38,
@@ -926,7 +924,7 @@
    "rule_hist": {
     "REF_BY_PATH": 3
    },
-   "skill_md_bytes": 137054
+   "skill_md_bytes": 145127
   },
   {
    "slug": "defuddle",
@@ -1503,18 +1501,13 @@
   {
    "slug": "first-principles-decomposer",
    "state": "OK",
-   "present_n": 5,
-   "exempt_n": 2,
-   "unreferenced_n": 1,
-   "unreferenced": [
-    "_meta.json"
-   ],
-   "unreferenced_strict_n": 1,
-   "unreferenced_strict": [
-    "_meta.json"
-   ],
+   "present_n": 4,
+   "exempt_n": 3,
+   "unreferenced_n": 0,
+   "unreferenced": [],
+   "unreferenced_strict_n": 0,
+   "unreferenced_strict": [],
    "rule_hist": {
-    "UNREFERENCED": 1,
     "REF_BY_PATH": 4
    },
    "skill_md_bytes": 3517
@@ -1651,24 +1644,18 @@
     "WEAK_ANCESTOR_DIR_ONLY": 66,
     "REF_BY_PARENT_DIR": 2
    },
-   "skill_md_bytes": 23353
+   "skill_md_bytes": 23312
   },
   {
    "slug": "github",
    "state": "OK",
-   "present_n": 1,
-   "exempt_n": 2,
-   "unreferenced_n": 1,
-   "unreferenced": [
-    "_meta.json"
-   ],
-   "unreferenced_strict_n": 1,
-   "unreferenced_strict": [
-    "_meta.json"
-   ],
-   "rule_hist": {
-    "UNREFERENCED": 1
-   },
+   "present_n": 0,
+   "exempt_n": 3,
+   "unreferenced_n": 0,
+   "unreferenced": [],
+   "unreferenced_strict_n": 0,
+   "unreferenced_strict": [],
+   "rule_hist": {},
    "skill_md_bytes": 5124
   },
   {
@@ -16160,20 +16147,18 @@
   {
    "slug": "sq-cleanmgr-c",
    "state": "OK",
-   "present_n": 6,
-   "exempt_n": 2,
-   "unreferenced_n": 2,
+   "present_n": 5,
+   "exempt_n": 3,
+   "unreferenced_n": 1,
    "unreferenced": [
-    "_icon.png",
-    "_meta.json"
+    "_icon.png"
    ],
-   "unreferenced_strict_n": 2,
+   "unreferenced_strict_n": 1,
    "unreferenced_strict": [
-    "_icon.png",
-    "_meta.json"
+    "_icon.png"
    ],
    "rule_hist": {
-    "UNREFERENCED": 2,
+    "UNREFERENCED": 1,
     "REF_BY_PARENT_DIR": 1,
     "REF_BY_PATH": 3
    },
@@ -16703,23 +16688,18 @@
   {
    "slug": "ui-ux-pro-max",
    "state": "OK",
-   "present_n": 113,
-   "exempt_n": 4,
-   "unreferenced_n": 1,
-   "unreferenced": [
-    "_meta.json"
-   ],
-   "unreferenced_strict_n": 1,
-   "unreferenced_strict": [
-    "_meta.json"
-   ],
+   "present_n": 112,
+   "exempt_n": 5,
+   "unreferenced_n": 0,
+   "unreferenced": [],
+   "unreferenced_strict_n": 0,
+   "unreferenced_strict": [],
    "rule_hist": {
-    "UNREFERENCED": 1,
-    "REF_BY_PARENT_DIR": 101,
-    "REF_BY_BASENAME": 6,
-    "REF_BY_PATH": 5
+    "REF_BY_PARENT_DIR": 99,
+    "REF_BY_BASENAME": 5,
+    "REF_BY_PATH": 8
    },
-   "skill_md_bytes": 5796
+   "skill_md_bytes": 9759
   },
   {
    "slug": "utf8-encoding-fix",

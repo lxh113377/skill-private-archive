@@ -1,6 +1,6 @@
 {
  "schema": "landing-effect-v1",
- "generated_at": "2026-10-29T22:38:37",
+ "generated_at": "2026-10-29T23:09:34",
  "provenance_cmd": "python 05-exec/r278_landing_effect.py",
  "caliber": "unreferenced axes come from r268 single-source rules; before text = git show <first-landing>~1",
  "window_since": "2026-10-29 00:00",
@@ -35,6 +35,7 @@
     "double_write_n": 0,
     "max_line_bytes": 390,
     "vh_claims_n": 0,
+    "flag_unsupported_n": null,
     "stage_claims_n": 0,
     "unreferenced_strict_n": 1
    },
@@ -46,6 +47,7 @@
     "double_write_n": 0,
     "max_line_bytes": 390,
     "vh_claims_n": 0,
+    "flag_unsupported_n": null,
     "stage_claims_n": 0,
     "unreferenced_strict_n": 0
    },
@@ -57,6 +59,9 @@
     "vh_claims_n": 0,
     "stage_claims_n": 0
    },
+   "delta_unjudged": [
+    "flag_unsupported_n"
+   ],
    "caliber_pair": {
     "normal_before_after": [
      1,
@@ -117,11 +122,11 @@
     }
    ],
    "first_landing": {
-    "sha": "079b91f33e95e46da750be33a84fae5627adde65",
-    "when": "2026-10-29 16:10",
-    "subject": "[rule_editor] insert (test-driven-development/SKILL.md)"
+    "sha": "6394cbae1e5d00f8a60e383f761613664cca2b41",
+    "when": "2026-10-29 18:05",
+    "subject": "[rule_editor] insert (frontend-slides/SKILL.md)"
    },
-   "before_sha_used": "079b91f33e95e46da750be33a84fae5627adde65~1",
+   "before_sha_used": "6394cbae1e5d00f8a60e383f761613664cca2b41~1",
    "metrics_before": {
     "present_n": 87,
     "unreferenced_n": 70,
@@ -201,6 +206,7 @@
     "double_write_n": 1,
     "max_line_bytes": 487,
     "vh_claims_n": 4,
+    "flag_unsupported_n": 2,
     "stage_claims_n": 3,
     "unreferenced_strict_n": 72
    },
@@ -212,6 +218,7 @@
     "double_write_n": 1,
     "max_line_bytes": 487,
     "vh_claims_n": 3,
+    "flag_unsupported_n": 2,
     "stage_claims_n": 17,
     "unreferenced_strict_n": 68
    },
@@ -221,8 +228,10 @@
     "double_write_n": 0,
     "max_line_bytes": 0,
     "vh_claims_n": -1,
-    "stage_claims_n": 14
+    "stage_claims_n": 14,
+    "flag_unsupported_n": 0
    },
+   "delta_unjudged": [],
    "caliber_pair": {
     "normal_before_after": [
      70,
@@ -291,6 +300,111 @@
    "axes_worsened": [],
    "committed_index_matches_worktree": true,
    "exempt_n": 6
+  },
+  {
+   "skill": "ui-ux-pro-max",
+   "state": "OK",
+   "landing_commits": [
+    {
+     "sha": "079b91f33e95e46da750be33a84fae5627adde65",
+     "when": "2026-10-29 16:10",
+     "subject": "[rule_editor] insert (test-driven-development/SKILL.md)"
+    },
+    {
+     "sha": "30b84b20175ad6478efe6417e1a568821b169c57",
+     "when": "2026-10-29 22:53",
+     "subject": "[rule_editor] replace patch x4 (ui-ux-pro-max/SKILL.md)"
+    },
+    {
+     "sha": "3da30832613c875558b40e5196c910bd0da9831c",
+     "when": "2026-10-29 22:55",
+     "subject": "[rule_editor] replace patch x3 (ui-ux-pro-max/SKILL.md)"
+    }
+   ],
+   "first_landing": {
+    "sha": "30b84b20175ad6478efe6417e1a568821b169c57",
+    "when": "2026-10-29 22:53",
+    "subject": "[rule_editor] replace patch x4 (ui-ux-pro-max/SKILL.md)"
+   },
+   "before_sha_used": "30b84b20175ad6478efe6417e1a568821b169c57~1",
+   "metrics_before": {
+    "present_n": 112,
+    "unreferenced_n": 0,
+    "unreferenced": [],
+    "half_claim_n": 0,
+    "double_write_n": 0,
+    "max_line_bytes": 1255,
+    "vh_claims_n": 0,
+    "flag_unsupported_n": 0,
+    "stage_claims_n": 0,
+    "unreferenced_strict_n": 0
+   },
+   "metrics_after": {
+    "present_n": 112,
+    "unreferenced_n": 0,
+    "unreferenced": [],
+    "half_claim_n": 0,
+    "double_write_n": 0,
+    "max_line_bytes": 1255,
+    "vh_claims_n": 0,
+    "flag_unsupported_n": 0,
+    "stage_claims_n": 0,
+    "unreferenced_strict_n": 0
+   },
+   "delta": {
+    "unreferenced_n": 0,
+    "half_claim_n": 0,
+    "double_write_n": 0,
+    "max_line_bytes": 0,
+    "vh_claims_n": 0,
+    "stage_claims_n": 0,
+    "flag_unsupported_n": 0
+   },
+   "delta_unjudged": [],
+   "caliber_pair": {
+    "normal_before_after": [
+     0,
+     0
+    ],
+    "strict_before_after": [
+     0,
+     0
+    ]
+   },
+   "commit_series": [
+    {
+     "sha": "079b91f3",
+     "when": "2026-10-29 16:10",
+     "state": "OK",
+     "unreferenced_norm_n": 0,
+     "unreferenced_strict_n": 0,
+     "double_write_n": 0,
+     "max_line_bytes": 1255
+    },
+    {
+     "sha": "30b84b20",
+     "when": "2026-10-29 22:53",
+     "state": "OK",
+     "unreferenced_norm_n": 0,
+     "unreferenced_strict_n": 0,
+     "double_write_n": 0,
+     "max_line_bytes": 1255
+    },
+    {
+     "sha": "3da30832",
+     "when": "2026-10-29 22:55",
+     "state": "OK",
+     "unreferenced_norm_n": 0,
+     "unreferenced_strict_n": 0,
+     "double_write_n": 0,
+     "max_line_bytes": 1255
+    }
+   ],
+   "series_flags": [],
+   "axes_improved": [],
+   "axes_worsened": [],
+   "committed_index_matches_worktree": true,
+   "exempt_n": 5
   }
  ]
 }
