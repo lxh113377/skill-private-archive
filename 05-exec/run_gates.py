@@ -1832,6 +1832,25 @@ GATES = [
               "故本轮变成门。首版我用粗匹配报出 5679/13045 的假规模（把被扫对象与 05-exec 下的裸文件名也算缺失），"
               "真数 21 件 63 处 —— 口径与误判原因都写进脚本 docstring，避免下一个人重算出另一个数。",
     },
+    {
+        # r287：新门的自证四腿（被 fixture_wiring 抓到「写了夹具却没接门」后补上 —— 那条门本身就是牙）
+        "id": "provenance_resolve_fixtures",
+        "script": "r287_provenance_fixtures.py",
+        "argv": [],
+        "pass_token": "[GATE:fixture-pass]",
+        "portable": False,
+        "not_portable_reason":
+            "四腿各建一个临时 git 仓（门内部跑 git ls-files）并把生产基线件复制进去；无 git 时腿自身不成立。",
+        "covers": [
+            't1 干净引用 → OK（证明基线不会把门做成恒红）',
+            't2 注入 _temp 幽灵引用 → 必须 FAIL 且点名叫出该 ref（证明基线不是自我豁免的开关）',
+            't3 缺基线 → UNVERIFIED（不得判绿）',
+            't4 非仓库致 git 取数失败 → UNVERIFIED（无文件不等于通过，R247）',
+        ],
+        "why": "第 114 门靠基线分列才不恒红 —— 任何带基线的判据都必须证明它对新增问题仍会红。"
+              "该腿不是可选：r287 我写完夹具忘了接门，正是被 fixture_wiring_face 当场抓出来的，"
+              "补门的同时把那次抓举留作证据。",
+    },
 ]
 
 # 显式声明本 runner **不覆盖**的面，防止聚合绿被读成「所有门禁都绿」（R20-2）。

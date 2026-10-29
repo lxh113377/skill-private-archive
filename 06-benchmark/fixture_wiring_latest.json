@@ -1,7 +1,7 @@
 {
  "schema": "fixture-wiring-v1",
  "readonly": true,
- "fixtures_total": 56,
+ "fixtures_total": 57,
  "orphans": [],
  "baseline": [],
  "new_orphans": [],
