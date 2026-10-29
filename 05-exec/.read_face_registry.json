@@ -178,5 +178,10 @@
   "evidence": "06-benchmark/provenance_resolve_latest.json",
   "registered_at": "2026-10-30 07:07",
   "why": "r287 门自证四腿（t2 注入幽灵必 FAIL 且点名 = 有牙；t3/t4 fail-closed）"
+ },
+ "r288_usage_backfill.py": {
+  "evidence": "06-benchmark/r288_usage_backfill.json",
+  "registered_at": "2026-10-30 07:35",
+  "why": "R281-2 使用表回填；幂等键 key_of 读写共用，unknown 显式保留不猜结果"
  }
 }

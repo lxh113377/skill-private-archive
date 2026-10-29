@@ -1,0 +1,16 @@
+{
+ "schema": "usage-backfill-v1",
+ "provenance_cmd": "python 05-exec/r288_usage_backfill.py --dry-run --json <件>",
+ "registry_names": 190,
+ "gm_dated_files": 2318,
+ "files_with_footer_list": 1135,
+ "rows_existing": 3110,
+ "rows_added": 0,
+ "rows_total": 3110,
+ "dropped_not_in_registry": 74,
+ "footer_files_without_session_key": 983,
+ "skills_covered": 47,
+ "outcome_known_rows": 2,
+ "outcome_unknown_share_pct": 99.94,
+ "idempotence": "a second run must report rows_added=0 (key_of is shared by reader/writer)"
+}
