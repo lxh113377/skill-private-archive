@@ -772,6 +772,11 @@ def main():
         return 2
 
     items, face = scan(files, now_round, args.grace)
+    # R273-1（r274 落地）：REPEAT 明细从 items 派生 —— 只给计数等于分母不可点名；
+    #   REPEAT 规则见 classify_item（同一条目改期 >= REPEAT_AFTER 次），detail 里带第几次延期。
+    repeat_rows = [{"file": r["file"], "line": r["line"], "detail": r.get("detail"),
+                    "priority": r.get("priority"), "owner": r.get("owner"),
+                    "title": r.get("title")} for r in items if r.get("class") == "REPEAT"]
     # ---- W-20（r49）：三处截断/降采样的面自证。任一判红 ⇒ 本轮所有"零"都要打折读
     round_tag = round_from_tag()
     f_round = face_round(now_round, round_tag)
@@ -863,6 +868,8 @@ def main():
            "evidence": {"volumes": len(files), "items_total": len(items),
                         "open_total": len(open_items), "closed_total": len(closed)},
            "by_class": by_cls,
+           # R273-1：REPEAT 明细（可逐行点名；与 by_class[REPEAT] 计数自洽）。
+           "repeat_rows": repeat_rows,
            "overdue": overdue,
            "undated": [{"title": r["title"][:70], "file": r["file"], "line": r["line"]}
                        for r in open_items if r["class"] == "UNDATED"],
