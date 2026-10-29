@@ -183,5 +183,10 @@
   "evidence": "06-benchmark/r288_usage_backfill.json",
   "registered_at": "2026-10-30 07:35",
   "why": "R281-2 使用表回填；幂等键 key_of 读写共用，unknown 显式保留不猜结果"
+ },
+ "r289_usage_coverage.py": {
+  "evidence": "06-benchmark/r289_usage_coverage.json",
+  "registered_at": "2026-10-30 07:45",
+  "why": "需求1 使用覆盖率（在册/用过/可行动集三口径并报）"
  }
 }
