@@ -1,0 +1,230 @@
+{
+ "schema": "usage-source-v1",
+ "task": "R282-2 取证：本机有没有技能级使用与结果数据源",
+ "readonly_note": "全程只读候选面；写面仅本件 + _temp/r282i/ + 同名 md；焚诀 eval/ 未改一字节（红线 6）",
+ "faces": [
+  {
+   "name": "D:/global_memory/memory 按日期会话记录（footer [skill清单]）",
+   "kind": "declared-usage",
+   "verdict": "有(使用=声明加载, 无结果字段)",
+   "evidence_cmd": "grep -rl skill清单 D:/global_memory/memory | wc -l",
+   "sample_fields": "footer:begin session= ts= | [skill清单] 本轮加载=N 个（名 + 名） | [升级建议] | [记忆预读]",
+   "schema_or_note": "半结构化：skill 名在中文括注散文里（须人/正则二次解析）；声明=加载意图，非调用回执；同条记录无任务成败字段。files=1517 occurrences=2084"
+  },
+  {
+   "name": "D:/global_memory/memory footer 块联合尝试（[skill清单] + 同块结果叙述）",
+   "kind": "declared-usage-result-narrative",
+   "verdict": "部分(同块内 skill 名 + 结果叙述，但结果非字段)",
+   "evidence_cmd": "cd 自建skill优化 && python -B 05-exec/r282i_usage_source_forensics.py  # footer 正则块解析",
+   "sample_fields": "footer:begin session= ts= | [skill清单] 本轮加载=N 个（在册名…） | [升级建议] | [记忆预读]",
+   "schema_or_note": "含 footer 的日期件=1416 块=1843 块内点得到在册 skill 名=1706 同块还含结果词（PASS/FAIL/成功/失败/落地…）=474 ⇒ 联合只能靠人读散文，不可复算成 per-skill×成败。"
+  },
+  {
+   "name": "D:/global_memory/meta/lessons_usage.jsonl",
+   "kind": "usage-result-lessons",
+   "verdict": "有(使用=loaded/used+useful, 结果对象=lessons 非任务)",
+   "evidence_cmd": "wc -l D:/global_memory/meta/lessons_usage.jsonl",
+   "sample_fields": "date/session/query/loaded[]/used[]/useful/improved_output/action/trigger_hits",
+   "schema_or_note": "行=1947 点落在册 skill 名的行=1 同条带结果字段的行=0 字段命中数={\"date\": 1928, \"session\": 1935, \"loaded\": 1927, \"used\": 1924, \"useful\": 1924, \"improved_output\": 1924, \"query\": 1926, \"action\": 1702, \"key\": 1, \"reason\": 1, \"trigger_hits\": 1699, \"hit\": 15, \"outcome\": 10, \"note\": 5, \"ts\": 21, \"project\": 19, \"rule\": 19, \"ctx\": 12, \"file\": 19, \"round\": 7, \"trigger\": 7, \"status\": 4, \"notes\": 3, \"owner\": 1}"
+  },
+  {
+   "name": "焚诀 eval/route_trace.jsonl",
+   "kind": "routing-usage",
+   "verdict": "有(使用=路由命中 skill 名, 无任务结果)",
+   "evidence_cmd": "cd 自建skill优化 && python -B 05-exec/r282i_usage_source_forensics.py  # 本件逐行统计",
+   "sample_fields": "ts/src/q/top1/confidence/direct/needs_llm/top3[]/scores[]",
+   "schema_or_note": "总行=7923 production 行=253 带结果字段的 production 行=0。top1=推荐命中，非使用后成败；无 session 键可与结果面 join。"
+  },
+  {
+   "name": "焚诀 memory/sessions/savepoint-gate.jsonl",
+   "kind": "result-per-session",
+   "verdict": "有(结果=all_pass/p0_ok/exit, skill 仅散文)",
+   "evidence_cmd": "wc -l C:/Users/37533/Desktop/workspace/焚诀/memory/sessions/savepoint-gate.jsonl",
+   "sample_fields": "ts/project/gate/exit/schema/stage/platform/all_pass/p0_ok/steps[]/missing_steps/task_card_ok",
+   "schema_or_note": "行=33 结构化字段能点到在册 skill 名的行=0（steps[].reason 是散文，不计）⇒ 结果面有、使用面缺、且无 skill 维度。"
+  },
+  {
+   "name": "焚诀 eval/skill_usage_stats.py",
+   "kind": "usage-aggregator",
+   "verdict": "有(派生聚合尺, 非原始记录面)",
+   "evidence_cmd": "ls -l C:/Users/37533/Desktop/workspace/焚诀/eval/skill_usage_stats.py",
+   "sample_fields": "schema=fenjue-skill-usage-v1: total_calls/skills_seen/per_skill/low_frequency_candidates/feedback_by_skill",
+   "schema_or_note": "把 route_trace(src=production)+llm_decisions+feedback 聚合成 per_skill 频次；把「路由命中」当「使用」，仍无任务成败。件头自证 07 曾记录的 tool_usage_sampler.py 盘上不存在。"
+  },
+  {
+   "name": "焚诀 eval/llm_decisions.jsonl",
+   "kind": "routing-usage",
+   "verdict": "有(使用=LLM 消歧 resolution, 无结果) 但已停写",
+   "evidence_cmd": "tail -1 C:/Users/37533/Desktop/workspace/焚诀/eval/llm_decisions.jsonl",
+   "sample_fields": "ts/query/candidates[]/resolution/reason",
+   "schema_or_note": "行=1000 日期跨度=2026-08-11..2026-08-11（无 src 字段⇒自流量不可辨识；skill_usage_stats 按归档排除出分母）"
+  },
+  {
+   "name": "WorkBuddy ~/.workbuddy/usage-log.json",
+   "kind": "usage-dates",
+   "verdict": "有(使用=按日 lastUsedDate/recentDates, 无结果)",
+   "evidence_cmd": "python -c \"import json,sys;print(len(json.load(open(sys.argv[1],encoding=utf-8))[skills]))\" C:/Users/37533/.workbuddy/usage-log.json",
+   "sample_fields": "version/skills{id,type,lastUsedDate,recentDates[],firstSeenDate}/mcps/activeDays",
+   "schema_or_note": "在册=skill 107 个（其中命中注册表名 37 个）；最新末次使用=agent-browser(2026-10-15)；粒度=哪天用过，无调用次数/无 query/无成败。与焚诀注册表同名空间部分重叠。"
+  },
+  {
+   "name": "WorkBuddy ~/.workbuddy/audit-log/*.jsonl",
+   "kind": "app-audit",
+   "verdict": "无(类别仅 command/file-safety/network/mcp, 无 skill 加载+成败)",
+   "evidence_cmd": "cd 自建skill优化 && python -B 05-exec/r282i_usage_source_forensics.py  # 逐日件全量直方图",
+   "sample_fields": "sessionId/requestId/toolCallId/category/eventType/decision/commandPreview/messageParams",
+   "schema_or_note": "行=4437 category 分布={\"command-safety\": 3498, \"config\": 6, \"network\": 15, \"mcp\": 40, \"file-safety\": 768, \"approval\": 1, \"null\": 109}；同条既点 skill 又带结果字段的行=0。有 sessionId 但事件是沙箱/审批，非 skill 使用。"
+  },
+  {
+   "name": "WorkBuddy ~/.workbuddy/pending-telemetry/",
+   "kind": "app-telemetry",
+   "verdict": "无(仅 install/update outcome 回执, 无 skill 事件)",
+   "evidence_cmd": "ls C:/Users/37533/.workbuddy/pending-telemetry",
+   "sample_fields": "install-*.json.reported / outcome-update-*.json.reported / update-ts-*.json",
+   "schema_or_note": "件数=11 其中名含 skill=0；内容=客户端更新/安装上报，非技能使用。"
+  },
+  {
+   "name": "Codex ~/.codex/logs_2.sqlite logs",
+   "kind": "app-diagnostics",
+   "verdict": "无(skill 扩展宿主诊断 target, 非使用+结果记录)",
+   "evidence_cmd": "cd 自建skill优化 && python -B 05-exec/r282i_usage_source_forensics.py  # 只读查 logs 表",
+   "sample_fields": "logs(id,ts,level,target,feedback_log_body,module_path,file,line,thread_id)",
+   "schema_or_note": "总行=5117；含 skill 的 target=[\"codex_skills_extension::host_service\", \"codex_skills::interface\"]；body 含 skill 的行=35。thread_id 有、skill 名与任务成败无结构化字段。"
+  },
+  {
+   "name": "OpenClaw 本地面",
+   "kind": "app-usage",
+   "verdict": "无(目录仅 locks, 无 logs/sessions/usage 子面)",
+   "evidence_cmd": "ls C:/Users/37533/AppData/Local/openclaw",
+   "sample_fields": "entries=locks",
+   "schema_or_note": "无可取证面（该端已退役或本机未落日志）。"
+  },
+  {
+   "name": "TRAE 本地面",
+   "kind": "app-usage",
+   "verdict": "NOT-FOUND(目录不存在)",
+   "evidence_cmd": "ls C:/Users/37533/.trae",
+   "sample_fields": "-",
+   "schema_or_note": "-"
+  },
+  {
+   "name": "OpenClaw Roaming",
+   "kind": "app-usage",
+   "verdict": "NOT-FOUND(目录不存在)",
+   "evidence_cmd": "ls C:/Users/37533/AppData/Roaming/openclaw",
+   "sample_fields": "-",
+   "schema_or_note": "-"
+  },
+  {
+   "name": "DSH ~/.dsh/sessions/",
+   "kind": "transport",
+   "verdict": "无(transport/route 事件流, 无 skill 使用+结果字段)",
+   "evidence_cmd": "ls C:/Users/37533/.dsh/sessions | wc -l",
+   "sample_fields": "已知：jsonl 事件字段 t/streak/lane/status；抽样 6 件 0 命中 skill-tool 形态",
+   "schema_or_note": "会话目录=25 顶层文件=0 合计约 1.18GB；本次仅抽样（限步数），未全量扫描⇒该面记 部分实测。"
+  },
+  {
+   "name": "本仓 06-benchmark/tool_carrier_latest.json",
+   "kind": "coverage-not-usage",
+   "verdict": "不能反推使用次数(覆盖/搭配/体量尺)",
+   "evidence_cmd": "cat 自建skill优化/06-benchmark/tool_carrier_latest.json",
+   "sample_fields": "schema=tool-carrier-v1 provenance_cmd=python 05-exec/r214_tool_carrier_face.py --json <件>",
+   "schema_or_note": "量的都是「skill 正文有没有提到某工具」/「本仓脚本有没有真调用」/「库体量陈旧度」，键空间不含使用次数与任务成败。"
+  },
+  {
+   "name": "本仓 06-benchmark/tool_skill_matrix_latest.json",
+   "kind": "coverage-not-usage",
+   "verdict": "不能反推使用次数(覆盖/搭配/体量尺)",
+   "evidence_cmd": "cat 自建skill优化/06-benchmark/tool_skill_matrix_latest.json",
+   "sample_fields": "schema=tool-skill-matrix-r163-v1 provenance_cmd=python 05-exec/r163_tool_skill_matrix.py --json <out>",
+   "schema_or_note": "量的都是「skill 正文有没有提到某工具」/「本仓脚本有没有真调用」/「库体量陈旧度」，键空间不含使用次数与任务成败。"
+  },
+  {
+   "name": "本仓 06-benchmark/workflow_usage_latest.json",
+   "kind": "coverage-not-usage",
+   "verdict": "不能反推使用次数(覆盖/搭配/体量尺)",
+   "evidence_cmd": "cat 自建skill优化/06-benchmark/workflow_usage_latest.json",
+   "sample_fields": "schema=workflow-usage-v1 provenance_cmd=python 05-exec/r218_workflow_usage_face.py --json <件>",
+   "schema_or_note": "量的都是「skill 正文有没有提到某工具」/「本仓脚本有没有真调用」/「库体量陈旧度」，键空间不含使用次数与任务成败。"
+  },
+  {
+   "name": "本仓 06-benchmark/sqlite_usage_latest.json",
+   "kind": "coverage-not-usage",
+   "verdict": "不能反推使用次数(覆盖/搭配/体量尺)",
+   "evidence_cmd": "cat 自建skill优化/06-benchmark/sqlite_usage_latest.json",
+   "sample_fields": "schema=sqlite-usage-v1 provenance_cmd=python 05-exec/r243_sqlite_usage_face.py --json <件>",
+   "schema_or_note": "量的都是「skill 正文有没有提到某工具」/「本仓脚本有没有真调用」/「库体量陈旧度」，键空间不含使用次数与任务成败。"
+  },
+  {
+   "name": "本仓 _temp/gate_index.sqlite（ledger_item/gate_run/run_meta）",
+   "kind": "own-audit-trail",
+   "verdict": "不能反推使用次数(自有审计轨迹)",
+   "evidence_cmd": "cd 自建skill优化 && python -B 05-exec/r282i_usage_source_forensics.py  # 只读点算 7 表",
+   "sample_fields": "gate_run cols=id,rid,ts,origin,mode,gate_id,state,rc,elapsed_ms,portable,covers,why ; ledger_item cols=id,volume,round,key,open,verdict,text",
+   "schema_or_note": "表行数={\"src_fingerprint\": 141, \"run_meta\": 835, \"gate_run\": 41872, \"debt_run\": 297, \"input_pin\": 1287, \"report_section\": 2097, \"ledger_item\": 214}；ledger_item 正文含 skill 的行=52（待办散文，非计数）。无任何 skill 使用/结果表。"
+  }
+ ],
+ "face_counts": {
+  "有": 7,
+  "无": 5,
+  "部分": 1,
+  "不能反推使用次数": 5,
+  "NOT-FOUND": 2
+ },
+ "joint_samples": [],
+ "strict_joint_samples": [],
+ "usable_for_requirement1": {
+  "zh": "部分",
+  "token": "partial",
+  "rule": "单条记录同时含在册 skill 名与任务级成败字段才算 是；只有使用面或只有结果面算 部分"
+ },
+ "decision": "建最小记录面",
+ "decision_alternative_rejected": "永久标为不可测",
+ "rationale": "\"结论=①建最小使用记录面，不选②永久标不可测。实测证据链：(a) 使用面存在但三态各弱：GM 1415 个日期件的 footer 块里有 [skill清单] 声明（1705 块点得到 191 个在册 skill 名），WorkBuddy usage-log 给 107 个 skill 的 recentDates，焚诀 route_trace 有 253 行 src=production 的 skill top1 命中；(b) 结果面存在但无 skill 维度：savepoint-gate 33 行带 all_pass/p0_ok/exit，gate_index 41872 行 gate_run 带 state/rc；(c) 联合面缺失：严格扫描 20 面 0 条记录能同时取出「某 skill 的某次使用」与「该次任务成败」（strict_joint_rows=0、lessons_joint_rows=0），474 个 footer 块只有散文级结果词、不可复算；(d) 应用侧无外部评手：无 oracle 二进制、无 LLM 评手、audit-log 4437 行只有 command/file-safety 类别、pending-telemetry 11 件全是 install/update 回执、TRAE/OpenClaw 目录不存在或仅剩 locks。⇒ 缺口是「少一张把 skill 与结果绑起来的表」，不是「测不了」：载体（每轮 footer）、名单（注册表 191）、结果源（savepoint/round-claim）都已在盘上，补一个 schema=skill-usage-v1 的一次写入（ts/session/skill/task/outcome）即可复算 per-skill×成败。故永久标不可测会把已有可用面误判成零（本仓 feedback-blindness-is-not-zero 同族）。\"",
+ "minimal_schema_proposal": {
+  "schema": "skill-usage-v1",
+  "fields": [
+   "ts",
+   "session",
+   "skill",
+   "task",
+   "outcome(pass|fail|partial|unknown)",
+   "evidence_cmd"
+  ],
+  "write_carrier": "每轮收尾写 1 行到 D:/global_memory/meta/skill_usage.jsonl（footer 已有 skill 名单，结果取自 savepoint all_pass/round-claim verdict）"
+ },
+ "two_state_rule": {
+  "面存在但 0 命中": "WorkBuddy audit-log skill+outcome 联合行=0（面在、行在、命中 0）",
+  "面不存在": "TRAE ~/.trae / OpenClaw Roaming 目录 ENOENT ⇒ NOT-FOUND，不得当 0 命中"
+ },
+ "negative_control": {
+  "input_face": "~/.workbuddy/telemetry/skill_invocations_v2.jsonl（确信不存在）",
+  "expected": "NOT-FOUND",
+  "script_behavior": "存在即 exit 2 报 判据无牙"
+ },
+ "metrics": {
+  "registry_names": 191,
+  "gm_footer_files": 1416,
+  "gm_footer_blocks": 1843,
+  "gm_footer_named": 1706,
+  "gm_footer_named_with_result": 474,
+  "gm_footer_sample": "2026-09-21.md | session=578c5a823b2b45ea8324fb84ea5b6214 ts=2026-09-21T23:46:00+08:00 --> | [skill清单] 本轮调用=2 个 (A-memory-start, A-project-handoff) ",
+  "lessons_rows": 1947,
+  "lessons_skill_rows": 1,
+  "lessons_joint_rows": 0,
+  "route_total": 7923,
+  "route_production": 253,
+  "route_sample_prod": "{\"ts\": \"2026-10-29T23:42:59\", \"src\": \"production\", \"q\": \"轮112 耗时读数唯一串 1b642d654e7d\", \"top1\": \"fenjue-lessons-hitrate\", \"confidence\": \"HIGH\", \"direct\": false, \"needs_llm\": false, \"top3\": [\"fenjue-lessons-hitrate\", \"A-memory-start\", \"A-get-memory\"], \"scores\": [0.6315, 0.5128, 0.5126]}",
+  "savepoint_rows": 33,
+  "llm_decisions_rows": 1000,
+  "wb_usage_skills": 107,
+  "wb_usage_named_in_registry": 37,
+  "wb_usage_sample": "{\"id\": \"docx\", \"type\": \"skill\", \"lastUsedDate\": \"2026-08-03\", \"recentDates\": [\"2026-08-03\", \"2026-07-19\", \"2026-06-29\", \"2026-06-26\", \"2026-06-25\", \"2026-06-24\", \"2026-06-23\", \"2026-06-22\", \"2026-06-20\", \"2026-06-19\", \"2026-06-18\", \"2026-06-17\", \"2026-06-15\"], \"firstSeenDate\": \"2026-06-15\"}",
+  "wb_audit_rows": 4437,
+  "dsh_partial": true,
+  "joint_rows_total": 0,
+  "strict_joint_rows": 0
+ },
+ "measured_at": "2026-10-29T17:17:49+00:00",
+ "provenance_cmd": "cd 自建skill优化 && python -B 05-exec/r282i_usage_source_forensics.py  (cwd=skill焚诀)  # 重跑即重建本件，期望末行 [USAGE:SOURCE] faces=20 usable=partial"
+}

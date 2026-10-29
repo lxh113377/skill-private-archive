@@ -1,7 +1,7 @@
 {
  "schema": "smoke-documented-commands-v1",
- "generated_at": "2026-10-29T23:28:38",
- "provenance_cmd": "python _temp/r281_smoke_ab3.py",
+ "generated_at": "2026-10-30T00:24:35",
+ "provenance_cmd": "python 05-exec/r281_smoke_ab.py",
  "baseline_rule": "explicit before/after refs; never <first-landing>~1, because the accidental whole-tree commit 079b91f3 recorded others in-flight downgrade for 3 files",
  "fairness_rule": "each arm runs only the command its own version text documents; argv is hard-listed because auto-extraction turned argv bugs into apparent failures",
  "limit": "measures executability and persistence of the documented workflow; NOT task quality",
@@ -46,24 +46,20 @@
  "smoke": {
   "A_before": {
    "command": [
-    "design_system.py",
-    "SaaS analytics dashboard"
+    "design_system.py"
    ],
    "rc": 0,
    "stdout_bytes": 4506,
    "text_bytes": 5796,
-   "persisted": [
-    "design-system/saas-analytics-dashboard/MASTER.md"
-   ]
+   "persisted": []
   },
   "B_after": {
    "command": [
     "search.py",
-    "SaaS analytics dashboard",
     "--design-system",
     "--persist",
     "--output-dir",
-    "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\_temp/r281smoke3"
+    "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\_temp/r281smoke3\\B_after"
    ],
    "rc": 0,
    "stdout_bytes": 4904,

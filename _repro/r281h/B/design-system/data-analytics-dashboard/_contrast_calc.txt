@@ -1,0 +1,22 @@
+# Contrast ratios computed locally by arm B
+
+NOT sourced from any bundled CSV or script. Formula: WCAG 2.x relative luminance + (L1+0.05)/(L2+0.05),
+implemented in this session by arm B (script text in _exec_log.md). Provenance of the hex values themselves
+is in TOKENS.md section 1.
+
+| Pair | Usage | Ratio | Verdict |
+|---|---|---|---|
+| `#1E3A8A` on `#F8FAFC` | text on background | 9.90:1 | PASS AA |
+| `#1E3A8A` on `#FFFFFF` | text on card | 10.36:1 | PASS AA |
+| `#1E40AF` on `#FFFFFF` | primary on white | 8.72:1 | PASS AA |
+| `#FFFFFF` on `#1E40AF` | white on primary | 8.72:1 | PASS AA |
+| `#FFFFFF` on `#F59E0B` | white on CTA | 2.15:1 | FAIL - needs backing token |
+| `#1E3A8A` on `#F59E0B` | text on CTA | 4.82:1 | PASS AA |
+| `#333333` on `#F5F5F5` | strong text on neutral surface | 11.59:1 | PASS AA |
+| `#333333` on `#FFFFFF` | strong text on white | 12.63:1 | PASS AA |
+| `#EF4444` on `#FFFFFF` | danger on white | 3.76:1 | AA large/UI only |
+| `#22C55E` on `#FFFFFF` | success on white | 2.28:1 | FAIL - needs backing token |
+| `#6B7280` on `#FFFFFF` | neutral grey on white | 4.83:1 | PASS AA |
+| `#F59E0B` on `#1E3A8A` | warning on text-blue | 4.82:1 | PASS AA |
+| `#FFFFFF` on `#1E3A8A` | white on text-blue | 10.36:1 | PASS AA |
+| `#DBEAFE` on `#FFFFFF` | border on white (non-text) | 1.22:1 | FAIL - needs backing token |

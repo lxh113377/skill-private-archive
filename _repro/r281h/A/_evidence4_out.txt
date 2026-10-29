@@ -1,0 +1,31 @@
+=== WCAG CONTRAST ROUND 4 (computed by _evidence4.py) ===
+border.subtle #E2E8F0 vs page #F8FAFC                ratio=  1.18  FAIL/non-normative
+border.subtle #E2E8F0 vs surface #FFFFFF             ratio=  1.23  FAIL/non-normative
+border.default #CBD5E1 vs page #F8FAFC               ratio=  1.42  FAIL/non-normative
+border.default #CBD5E1 vs surface #FFFFFF            ratio=  1.48  FAIL/non-normative
+border.strong #64748B vs surface #FFFFFF             ratio=  4.76  AA
+dark border.default #334155 vs dark surface #1E293B  ratio=  1.41  FAIL/non-normative
+dark border.default #334155 vs dark bg #0F172A       ratio=  1.72  FAIL/non-normative
+dark body #E2E8F0 vs dark surface #1E293B            ratio= 11.87  AAA
+dark on-primary #0F172A vs primary #60A5FA           ratio=  7.02  AAA
+row hover #F1F5F9 vs surface #FFFFFF (non-normative) ratio=  1.10  FAIL/non-normative
+row selected #DBEAFE vs surface #FFFFFF (non-normative) ratio=  1.22  FAIL/non-normative
+row selected text #1E3A8A on #DBEAFE                 ratio=  8.49  AAA
+focus halo #93C5FD vs surface #FFFFFF                ratio=  1.80  FAIL/non-normative
+focus #1D4ED8 vs surface #FFFFFF                     ratio=  6.70  AA
+link #1E40AF vs surface #FFFFFF                      ratio=  8.72  AAA
+muted #64748B vs row-hover #F1F5F9                   ratio=  4.34  AA-UI(>=3:1)
+body #1E3A8A vs surface #FFFFFF                      ratio= 10.36  AAA
+white on CTA-strong #B45309 (recheck)                ratio=  5.02  AA
+
+=== 44px and 8px-grid arithmetic (CSV-cited numbers only) ===
+touch min 44x44 px  (ux-guidelines.csv:23 Do)
+touch gap min 8 px  (ux-guidelines.csv:24 Do)
+button 12px 24px padding (MASTER.md:72-73, generator design_system.py:651)
+44px = 5.5 x 8px grid step; control heights 32/36/40/44 all multiples of 4px half-step
+  height 28px = 3.5 x 8px-grid base(styles.csv:50 --base-unit: 8px)
+  height 32px = 4 x 8px-grid base(styles.csv:50 --base-unit: 8px)
+  height 36px = 4.5 x 8px-grid base(styles.csv:50 --base-unit: 8px)
+  height 40px = 5 x 8px-grid base(styles.csv:50 --base-unit: 8px)
+  height 44px = 5.5 x 8px-grid base(styles.csv:50 --base-unit: 8px)
+  height 56px = 7 x 8px-grid base(styles.csv:50 --base-unit: 8px)

@@ -1,0 +1,65 @@
+=== WCAG CONTRAST (computed by _evidence.py) ===
+body #1E3A8A on bg #F8FAFC                   ratio= 9.90  verdict=AAA
+body #0F172A on bg #F8FAFC                   ratio=17.06  verdict=AAA
+primary #1E40AF on bg #F8FAFC                ratio= 8.34  verdict=AAA
+primary #1E40AF on surface #FFFFFF           ratio= 8.72  verdict=AAA
+on-primary #FFFFFF on primary #1E40AF        ratio= 8.72  verdict=AAA
+on-cta #FFFFFF on CTA #F59E0B                ratio= 2.15  verdict=FAIL
+on-cta #78350F on CTA #F59E0B                ratio= 4.22  verdict=AA/UI(>=3:1)
+CTA #F59E0B on bg #F8FAFC (icon/UI 3:1)      ratio= 2.05  verdict=FAIL
+secondary #3B82F6 on bg #F8FAFC              ratio= 3.52  verdict=AA/UI(>=3:1)
+muted #475569 on bg #F8FAFC                  ratio= 7.24  verdict=AAA
+muted #64748B on bg #F8FAFC                  ratio= 4.55  verdict=AA
+border #DBEAFE on bg #F8FAFC (UI 3:1)        ratio= 1.17  verdict=FAIL
+border #94A3B8 on bg #F8FAFC (UI 3:1)        ratio= 2.45  verdict=FAIL
+success text #15803D on bg #F8FAFC           ratio= 4.79  verdict=AA
+success #22C55E on bg #F8FAFC (UI 3:1)       ratio= 2.18  verdict=FAIL
+warning text #B45309 on bg #F8FAFC           ratio= 4.80  verdict=AA
+danger text #B91C1C on bg #F8FAFC            ratio= 6.18  verdict=AA
+danger #EF4444 on bg #F8FAFC (UI 3:1)        ratio= 3.60  verdict=AA/UI(>=3:1)
+focus ring #1D4ED8 on bg #F8FAFC (UI 3:1)    ratio= 6.41  verdict=AA
+on-danger #FFFFFF on danger #B91C1C          ratio= 6.47  verdict=AA
+dark text #E2E8F0 on dark bg #0F172A         ratio=14.48  verdict=AAA
+dark muted #94A3B8 on dark bg #0F172A        ratio= 6.96  verdict=AA
+
+=== CITED CSV ROWS (file:line -> raw line) ===
+colors.csv:1 | No,Product Type,Primary (Hex),Secondary (Hex),CTA (Hex),Background (Hex),Text (Hex),Border (Hex),Notes
+colors.csv:9 | 8,Analytics Dashboard,#1E40AF,#3B82F6,#F59E0B,#F8FAFC,#1E3A8A,#DBEAFE,Blue data + amber highlights
+colors.csv:15 | 14,Government/Public Service,#0F172A,#334155,#0369A1,#F8FAFC,#020617,#E2E8F0,High contrast navy + blue
+colors.csv:23 | 22,Sustainability/ESG Platform,#059669,#10B981,#0891B2,#ECFDF5,#064E3B,#A7F3D0,Nature green + ocean blue
+typography.csv:1 | No,Font Pairing Name,Category,Heading Font,Body Font,Mood/Style Keywords,Best For,Google Fonts URL,CSS Import,Tailwind Config,Notes
+typography.csv:43 | 42,Dashboard Data,"Mono + Sans",Fira Code,Fira Sans,"dashboard, data, analytics, code, technical, precise","Dashboards, analytics, data visualization, admin panels","https://fonts.google.com/share?sel
+typography.csv:48 | 47,Science/Tech,"Sans + Sans",Exo,Roboto Mono,"science, technology, research, data, futuristic, precise","Science, research, tech documentation, data-heavy sites","https://fonts.google.com/share?selec
+typography.csv:52 | 51,Tech/HUD Mono,"Mono + Mono",Share Tech Mono,Fira Code,"tech, futuristic, hud, sci-fi, data, monospaced, precise","Sci-fi interfaces, developer tools, cybersecurity, dashboards","https://fonts.googl
+typography.csv:58 | 57,Gen Z Brutal,"Display + Sans",Anton,Epilogue,"brutal, loud, shouty, meme, internet, bold","Gen Z marketing, streetwear, viral campaigns","https://fonts.google.com/share?selection.family=Anton|Epilo
+styles.csv:29 | 28,Data-Dense Dashboard,BI/Analytics,"Multiple charts/widgets, data tables, KPI cards, minimal padding, grid layout, space-efficient, maximum data visibility","Neutral primary (light grey/white #F5F5F
+styles.csv:30 | 29,Heat Map & Heatmap Style,BI/Analytics,"Color-coded grid/matrix, data intensity visualization, geographical heat maps, correlation matrices, cell-based representation, gradient coloring","Gradient s
+styles.csv:31 | 30,Executive Dashboard,BI/Analytics,"High-level KPIs, large key metrics, minimal detail, summary view, trend indicators, at-a-glance insights, executive summary","Brand colors, professional palette (b
+styles.csv:34 | 33,Comparative Analysis Dashboard,BI/Analytics,"Side-by-side comparisons, period-over-period metrics, A/B test results, regional comparisons, performance benchmarks","Comparison colors: primary (blue)
+styles.csv:37 | 36,Financial Dashboard,BI/Analytics,"Revenue metrics, profit/loss visualization, budget tracking, financial ratios, portfolio performance, cash flow, audit trail","Financial colors: profit (green #22C
+styles.csv:47 | 46,Dimensional Layering,General,"Depth, overlapping, z-index, layers, 3D, shadows, elevation, floating, cards, spatial hierarchy","Neutral base (#FFFFFF, #F5F5F5, #E0E0E0) + brand accent for elevated 
+ux-guidelines.csv:1 | No,Category,Issue,Platform,Description,Do,Don't,Code Example Good,Code Example Bad,Severity
+ux-guidelines.csv:11 | 10,Animation,Loading States,All,Show feedback during async operations,Use skeleton screens or spinners,Leave UI frozen with no feedback,animate-pulse skeleton,Blank screen while loading,High
+ux-guidelines.csv:29 | 28,Interaction,Focus States,All,Keyboard users need visible focus indicators,Use visible focus rings on interactive elements,Remove focus outline without replacement,focus:ring-2 focus:ring-blue-500,o
+ux-guidelines.csv:32 | 31,Interaction,Disabled States,All,Clearly indicate non-interactive elements,Reduce opacity and change cursor,Confuse disabled with normal state,opacity-50 cursor-not-allowed,Same style as enabled,Med
+ux-guidelines.csv:33 | 32,Interaction,Loading Buttons,All,Prevent double submission during async actions,Disable button and show loading state,Allow multiple clicks during processing,disabled={loading} spinner,Button clicka
+ux-guidelines.csv:37 | 36,Accessibility,Color Contrast,All,Text must be readable against background,Minimum 4.5:1 ratio for normal text,Low contrast text,#333 on white (7:1),#999 on white (2.8:1),High
+ux-guidelines.csv:66 | 65,Responsive,Breakpoint Testing,Web,Test at all common screen sizes,Test at 320 375 414 768 1024 1440,Only test on your device,Multiple device testing,Single device development,Medium
+ux-guidelines.csv:68 | 67,Responsive,Readable Font Size,All,Text must be readable on all devices,Minimum 16px body text on mobile,Tiny text on mobile,text-base or larger,text-xs for body text,High
+ux-guidelines.csv:75 | 74,Typography,Font Size Scale,All,Consistent type hierarchy aids scanning,Use consistent modular scale,Random font sizes,Type scale (12 14 16 18 24 32),Arbitrary sizes,Medium
+ux-guidelines.csv:79 | 78,Feedback,Loading Indicators,All,Show system status during waits,Show spinner/skeleton for operations > 300ms,No feedback during loading,Skeleton or spinner,Frozen UI,High
+ux-guidelines.csv:80 | 79,Feedback,Empty States,All,Guide users when no content exists,Show helpful message and action,Blank empty screens,No items yet. Create one!,Empty white space,Medium
+charts.csv:1 | No,Data Type,Keywords,Best Chart Type,Secondary Options,Color Guidance,Performance Impact,Accessibility Notes,Library Recommendation,Interactive Level
+charts.csv:2 | 1,Trend Over Time,"trend, time-series, line, growth, timeline, progress",Line Chart,"Area Chart, Smooth Area",Primary: #0080FF. Multiple series: use distinct colors. Fill: 20% opacity,⚡ Excellent (opt
+charts.csv:5 | 4,Correlation/Distribution,"correlation, distribution, scatter, relationship, pattern",Scatter Plot or Bubble Chart,"Heat Map, Matrix",Color axis: gradient (blue-red). Size: relative. Opacity: 0.6-0.8
+charts.csv:8 | 7,Funnel/Flow,funnel/flow,"Funnel Chart, Sankey",Waterfall (for flows),Stages: gradient (starting color → ending color). Show conversion %,⚡ Good,✓ Clear stage labels + percentages. Good for accessibi
+charts.csv:14 | 13,Cumulative Changes,cumulative-changes,Waterfall Chart,"Stacked Bar, Cascade",Increases: #4CAF50. Decreases: #F44336. Start: #2196F3. End: #0D47A1.,⚡ Good,✓ Good - clear directional colors with labe
+web-interface.csv:4 | 3,Accessibility,Keyboard Handlers,keyboard onclick onkeydown,Web,Interactive elements must support keyboard interaction,Add onKeyDown alongside onClick,Click-only interaction,"<div onClick={fn} onKeyD
+web-interface.csv:16 | 15,Forms,Inline Errors,error message inline focus,Web,Show error messages inline near the problem field,Inline error with focus on first error,Single error at top,"<input /><span class='text-red-500'>
+stacks/html-tailwind.csv:5 | 4,Animation,Hover transitions,Add smooth transitions on hover state changes,Add transition class with hover states,Instant hover changes without transition,hover:bg-gray-100 transition-colors,hover:bg
+stacks/html-tailwind.csv:29 | 28,Forms,Disabled states,Clear disabled styling,disabled:opacity-50 disabled:cursor-not-allowed,No disabled indication,disabled:opacity-50,Same style as enabled,Medium,
+stacks/html-tailwind.csv:31 | 30,Responsive,Mobile-first approach,Start with mobile styles and add breakpoints,Default mobile + md: lg: xl:,Desktop-first approach,text-sm md:text-base,text-base max-md:text-sm,Medium,https://tailwi
+stacks/html-tailwind.csv:32 | 31,Responsive,Breakpoint testing,Test at standard breakpoints,320 375 768 1024 1280 1536,Only test on development device,Test all breakpoints,Single device testing,High,
+stacks/html-tailwind.csv:39 | 38,Cards,Card hover states,Interactive cards should have hover feedback,hover:shadow-lg transition-shadow,No hover on clickable cards,hover:shadow-xl transition-shadow,Static cards that are clickable,
+landing.csv:1 | No,Pattern Name,Keywords,Section Order,Primary CTA Placement,Color Strategy,Recommended Effects,Conversion Optimization
+products.csv:1 | No,Product Type,Keywords,Primary Style Recommendation,Secondary Styles,Landing Page Pattern,Dashboard Style (if applicable),Color Palette Focus,Key Considerations

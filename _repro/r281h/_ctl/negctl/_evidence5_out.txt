@@ -1,0 +1,25 @@
+=== ROUND 5 (computed by _evidence5.py) ===
+waterfall increase #4CAF50 vs white (UI 3:1)         ratio=  2.78  FAIL
+waterfall decrease #F44336 vs white (UI 3:1)         ratio=  3.68  AA-UI(>=3:1)
+waterfall start #2196F3 vs white (UI 3:1)            ratio=  3.12  AA-UI(>=3:1)
+waterfall end #0D47A1 vs white                       ratio=  8.63  AAA
+heatmap cool #0080FF vs white (UI 3:1)               ratio=  3.80  AA-UI(>=3:1)
+heatmap hot #FF0000 vs white (UI 3:1)                ratio=  4.00  AA-UI(>=3:1)
+alert red #EF4444 vs white (text duty?)              ratio=  3.76  AA-UI(>=3:1)
+accent #F59E0B vs white (UI 3:1)                     ratio=  2.15  FAIL
+secondary #3B82F6 vs white (UI 3:1)                  ratio=  3.68  AA-UI(>=3:1)
+violet #8B5CF6 vs #F8FAFC (UI 3:1)                   ratio=  4.05  AA-UI(>=3:1)
+link #1E40AF vs hover tint #EFF6FF                   ratio=  8.01  AAA
+heading #1E3A8A vs hover tint #EFF6FF                ratio=  9.52  AAA
+body #0F172A vs skeleton #F1F5F9                     ratio= 16.30  AAA
+white vs danger #B91C1C (fill text)                  ratio=  6.47  AA
+dark primary #60A5FA vs page #F8FAFC (should fail on light) ratio=  2.43  FAIL
+#93C5FD vs dark page #0F172A                         ratio=  9.90  AAA
+muted #94A3B8 vs dark surface #1E293B                ratio=  5.71  AA
+#22C55E vs dark bg #0F172A                           ratio=  7.83  AAA
+
+=== focus halo alpha compositing (MASTER.md:130 emits #1E40AF20) ===
+halo composite: #1E40AF a=0.125 over #F8FAFC -> #DDE3F2 ; vs bg ratio=1.23
+halo composite: #1E40AF a=0.125 over #FFFFFF -> #E3E7F5 ; vs bg ratio=1.23
+shipped halo alt #93C5FD a=0.376 over #F8FAFC -> #D2E6FC ratio=1.22
+shipped solid ring #1D4ED8 (a=1.0) over #F8FAFC -> #1D4ED8 ratio=6.41

@@ -1,0 +1,54 @@
+=== WCAG CONTRAST ROUND 2 (computed by _evidence2.py) ===
+on-cta #451A03 on CTA #F59E0B                        ratio=  6.97  verdict=AA
+on-cta #78350F on CTA #F59E0B                        ratio=  4.22  verdict=AA-UI(>=3:1)
+white on CTA-strong #B45309                          ratio=  5.02  verdict=AA
+white on CTA-strong #92400E                          ratio=  7.09  verdict=AAA
+CTA-strong #B45309 on bg #F8FAFC (UI 3:1)            ratio=  4.80  verdict=AA
+primary on tint #1E40AF on #DBEAFE                   ratio=  7.15  verdict=AAA
+primary-hover #1E3A8A on bg #F8FAFC                  ratio=  9.90  verdict=AAA
+primary-active #172554 on bg #F8FAFC                 ratio= 14.04  verdict=AAA
+white on primary-hover #1E3A8A                       ratio= 10.36  verdict=AAA
+white on primary-active #172554                      ratio= 14.69  verdict=AAA
+focus ring #1D4ED8 on surface #FFFFFF (3:1)          ratio=  6.70  verdict=AA
+focus ring #1D4ED8 on primary #1E40AF (3:1)          ratio=  1.30  verdict=FAIL
+body #0F172A on surface #FFFFFF                      ratio= 17.85  verdict=AAA
+muted #475569 on surface #FFFFFF                     ratio=  7.58  verdict=AAA
+muted #64748B on surface #FFFFFF                     ratio=  4.76  verdict=AA
+border-meaning #64748B on bg #F8FAFC (UI 3:1)        ratio=  4.55  verdict=AA
+border-meaning #64748B on surface #FFFFFF (UI 3:1)   ratio=  4.76  verdict=AA
+disabled label #94A3B8 on surface #FFFFFF (UI 3:1)   ratio=  2.56  verdict=FAIL
+success #15803D on surface #FFFFFF                   ratio=  5.02  verdict=AA
+success #16A34A on bg #F8FAFC (UI 3:1)               ratio=  3.15  verdict=AA-UI(>=3:1)
+danger #DC2626 on bg #F8FAFC (UI 3:1)                ratio=  4.62  verdict=AA
+danger #B91C1C on surface #FFFFFF                    ratio=  6.47  verdict=AA
+warning #B45309 on #FEF3C7 (alert bg)                ratio=  4.51  verdict=AA
+danger #B91C1C on #FEF2F2 (alert bg)                 ratio=  5.91  verdict=AA
+success #15803D on #F0FDF4 (alert bg)                ratio=  4.79  verdict=AA
+info #1E40AF on #DBEAFE (alert bg)                   ratio=  7.15  verdict=AAA
+dark: body #E2E8F0 on surface #1E293B                ratio= 11.87  verdict=AAA
+dark: muted #94A3B8 on surface #1E293B               ratio=  5.71  verdict=AA
+dark: primary #60A5FA on surface #1E293B             ratio=  5.75  verdict=AA
+dark: surface #1E293B vs bg #0F172A (UI 3:1)         ratio=  1.22  verdict=FAIL
+chart s2 #3B82F6 on surface #FFFFFF (UI 3:1)         ratio=  3.68  verdict=AA-UI(>=3:1)
+chart s4 #F59E0B on surface #FFFFFF (UI 3:1)         ratio=  2.15  verdict=FAIL
+chart s3 #22C55E on surface #FFFFFF (UI 3:1)         ratio=  2.28  verdict=FAIL
+chart s7 #06B6D4 on surface #FFFFFF (UI 3:1)         ratio=  2.43  verdict=FAIL
+chart s6 #8B5CF6 on surface #FFFFFF (UI 3:1)         ratio=  4.23  verdict=AA-UI(>=3:1)
+chart s1 #1E40AF on surface #FFFFFF (UI 3:1)         ratio=  8.72  verdict=AAA
+
+=== type-scale derived from CSV-cited anchors ===
+12 -> 14  step ratio = 1.167
+14 -> 16  step ratio = 1.143
+16 -> 18  step ratio = 1.125
+18 -> 24  step ratio = 1.333
+24 -> 32  step ratio = 1.333
+32 -> 48  step ratio = 1.500
+size.12 = 0.75rem (base 16) ; line 1.5 -> 18.0px
+size.14 = 0.88rem (base 16) ; line 1.5 -> 21.0px
+size.16 = 1.00rem (base 16) ; line 1.5 -> 24.0px
+size.18 = 1.12rem (base 16) ; line 1.5 -> 27.0px
+size.24 = 1.50rem (base 16) ; line 1.5 -> 36.0px
+size.32 = 2.00rem (base 16) ; line 1.5 -> 48.0px
+size.48 = 3.00rem (base 16) ; line 1.5 -> 72.0px
+table-row 36px = 4.5 x 8px base unit (styles.csv:29 --table-row-height: 36px)
+sidebar 240px = 30 x 8px (styles.csv:29 --sidebar-width: 240px) ; header 56px (same row)

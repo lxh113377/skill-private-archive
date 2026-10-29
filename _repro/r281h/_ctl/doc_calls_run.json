@@ -1,0 +1,31 @@
+{
+ "A": {
+  "rows": [
+   {
+    "doc_call_verbatim": "python3 skills/ui-ux-pro-max/scripts/design_system.py --help",
+    "literal_rc": 49,
+    "resolved_rc": 0,
+    "literal_stderr": "Microsoft Store python3 alias stub: no output",
+    "resolved_stderr": ""
+   }
+  ]
+ },
+ "B": {
+  "rows": [
+   {
+    "doc_call_verbatim": "python3 skills/ui-ux-pro-max/scripts/design_system.py --help",
+    "literal_rc": 49,
+    "resolved_rc": 0,
+    "literal_stderr": "Microsoft Store python3 alias stub: no output",
+    "resolved_stderr": ""
+   },
+   {
+    "doc_call_verbatim": "python \"D:/global_skills/ui-ux-pro-max/scripts/search.py\" \"<query>\" --design-system --persist -p \"Project Name\" --output-dir \"<project-root>\"",
+    "literal_rc": 0,
+    "resolved_rc": 0,
+    "literal_stderr": "",
+    "resolved_stderr": ""
+   }
+  ]
+ }
+}

@@ -1,0 +1,226 @@
+{
+ "arms_scored": {
+  "A": {
+   "Q": 18,
+   "rubric": {
+    "1_artifact_existence": 5,
+    "1_evidence": [
+     "design-system/ directory present",
+     "MASTER.md present: design-system/internal-data-dashboard/MASTER.md (5433B)",
+     "pages/ override layer present: dashboard.md",
+     "2+ files under design-system/ (n=7)"
+    ],
+    "2_content_completeness": 5,
+    "2_categories_hit": [
+     "color",
+     "spacing",
+     "typography(font)",
+     "component states",
+     "breakpoints"
+    ],
+    "3_executability": 0,
+    "3_ratio_ok_over_tried": "0/1",
+    "3_ruler": "Lead-measured literal rc of each script call documented in the arm SKILL.md",
+    "3_doc_call_rows": [
+     {
+      "doc_call": "python3 skills/ui-ux-pro-max/scripts/design_system.py --help",
+      "literal_rc": 49,
+      "resolved_rc": 0,
+      "resolved_stderr": ""
+     }
+    ],
+    "4_no_fabrication": 3,
+    "4_spot_checks": [
+     {
+      "value": "#0F172A",
+      "source": "generator stdout (_gen_stdout.txt)",
+      "traced": true
+     },
+     {
+      "value": "0.88rem",
+      "source": null,
+      "traced": false
+     },
+     {
+      "value": "36px",
+      "source": "generator stdout (_gen_stdout.txt)",
+      "traced": true
+     }
+    ],
+    "4_distinct_numeric_tokens": 122,
+    "5_instruction_following": 5,
+    "5_checks": [
+     {
+      "step": "step1_triage_written",
+      "met": true
+     },
+     {
+      "step": "step2_deliverable_produced",
+      "met": true
+     },
+     {
+      "step": "step3_bundled_assets_referenced",
+      "met": true
+     },
+     {
+      "step": "step4_script_touched_or_logged",
+      "met": true
+     },
+     {
+      "step": "step5_persist_for_retrieval",
+      "met": true
+     },
+     {
+      "step": "output_standard_ascii_tokens",
+      "met": false
+     }
+    ],
+    "5_non_ascii_files": [
+     "_evidence_out.txt",
+     "_gen_c.err",
+     "_merge_tokens.sh",
+     "_selfcheck.py",
+     "MASTER.md",
+     "README.md",
+     "TOKENS.md",
+     "_TOK_P1.md",
+     "_TOK_P2.md",
+     "dashboard.md"
+    ],
+    "6_cost_tool_calls": 124
+   },
+   "tree_sha": "59d495bf8d05df7e81e5943a5fbc785b0a56def4122511751d877ec62b040c6e"
+  },
+  "B": {
+   "Q": 22,
+   "rubric": {
+    "1_artifact_existence": 5,
+    "1_evidence": [
+     "design-system/ directory present",
+     "MASTER.md present: design-system/data-analytics-dashboard/MASTER.md (5446B)",
+     "pages/ override layer present: data-table.md",
+     "2+ files under design-system/ (n=7)"
+    ],
+    "2_content_completeness": 5,
+    "2_categories_hit": [
+     "color",
+     "spacing",
+     "typography(font)",
+     "component states",
+     "breakpoints"
+    ],
+    "3_executability": 2,
+    "3_ratio_ok_over_tried": "1/2",
+    "3_ruler": "Lead-measured literal rc of each script call documented in the arm SKILL.md",
+    "3_doc_call_rows": [
+     {
+      "doc_call": "python3 skills/ui-ux-pro-max/scripts/design_system.py --help",
+      "literal_rc": 49,
+      "resolved_rc": 0,
+      "resolved_stderr": ""
+     },
+     {
+      "doc_call": "python \"D:/global_skills/ui-ux-pro-max/scripts/search.py\" \"<query>\" --design-system --persist -p \"Project Name\" --output-dir \"<project-root>\"",
+      "literal_rc": 0,
+      "resolved_rc": 0,
+      "resolved_stderr": ""
+     }
+    ],
+    "4_no_fabrication": 5,
+    "4_spot_checks": [
+     {
+      "value": "#F59E0B",
+      "source": "generator stdout (_gen_stdout.txt)",
+      "traced": true
+     },
+     {
+      "value": "2px",
+      "source": "local skill data (data/*.csv or *.json)",
+      "traced": true
+     },
+     {
+      "value": "4.5:1",
+      "source": "generator stdout (_gen_stdout.txt)",
+      "traced": true
+     }
+    ],
+    "4_distinct_numeric_tokens": 64,
+    "5_instruction_following": 5,
+    "5_checks": [
+     {
+      "step": "step1_triage_written",
+      "met": true
+     },
+     {
+      "step": "step2_deliverable_produced",
+      "met": true
+     },
+     {
+      "step": "step3_bundled_assets_referenced",
+      "met": true
+     },
+     {
+      "step": "step4_script_touched_or_logged",
+      "met": true
+     },
+     {
+      "step": "step5_persist_for_retrieval",
+      "met": true
+     },
+     {
+      "step": "output_standard_ascii_tokens",
+      "met": false
+     }
+    ],
+    "5_non_ascii_files": [
+     "MASTER.md",
+     "data-table.md",
+     "filters.md",
+     "metrics-detail.md",
+     "overview.md"
+    ],
+    "6_cost_tool_calls": 198
+   },
+   "tree_sha": "78dcd12e5da1926406aed6a5cc10e80f1e0f70738b3e5f9e8a31527e91076e8b"
+  }
+ },
+ "negctl": {
+  "dir": "_temp/r281h/_ctl/negctl",
+  "Q": 1,
+  "tree_sha": "59d495bf8d05df7e81e5943a5fbc785b0a56def4122511751d877ec62b040c6e",
+  "uplift_A_vs_negctl_pct": null,
+  "identical_bytes_to_A": true
+ },
+ "per_dimension_delta_B_minus_A": {
+  "1_artifact_existence": {
+   "A": 5,
+   "B": 5,
+   "delta": 0
+  },
+  "2_content_completeness": {
+   "A": 5,
+   "B": 5,
+   "delta": 0
+  },
+  "3_executability": {
+   "A": 0,
+   "B": 2,
+   "delta": 2
+  },
+  "4_no_fabrication": {
+   "A": 3,
+   "B": 5,
+   "delta": 2
+  },
+  "5_instruction_following": {
+   "A": 5,
+   "B": 5,
+   "delta": 0
+  },
+  "6_cost_tool_calls": {
+   "A": 124,
+   "B": 198,
+   "delta": 74
+  }
+ }
+}

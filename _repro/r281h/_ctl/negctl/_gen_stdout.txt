@@ -1,0 +1,363 @@
+########## A) generator verbatim: search.py --design-system --persist (no --page) ##########
+## Design System: internal-data-dashboard
+
+### Pattern
+- **Name:** Before-After Transformation
+- **Conversion Focus:** Visual proof of value. 45% higher conversion. Real results. Specific metrics. Guarantee offer.
+- **CTA Placement:** After transformation reveal + Bottom
+- **Color Strategy:** Contrast: muted/grey (before) vs vibrant/colorful (after). Success green for results.
+- **Sections:** 1. Hero (problem state), 2. Transformation slider/comparison, 3. How it works, 4. Results CTA
+
+### Style
+- **Name:** Data-Dense Dashboard
+- **Keywords:** Multiple charts/widgets, data tables, KPI cards, minimal padding, grid layout, space-efficient, maximum data visibility
+- **Best For:** Business intelligence dashboards, financial analytics, enterprise reporting, operational dashboards, data warehousing
+- **Performance:** ⚡ Excellent | **Accessibility:** ✓ WCAG AA
+
+### Colors
+| Role | Hex |
+|------|-----|
+| Primary | #1E40AF |
+| Secondary | #3B82F6 |
+| CTA | #F59E0B |
+| Background | #F8FAFC |
+| Text | #1E3A8A |
+
+*Notes: Blue data + amber highlights*
+
+### Typography
+- **Heading:** Fira Code
+- **Body:** Fira Sans
+- **Mood:** dashboard, data, analytics, code, technical, precise
+- **Best For:** Dashboards, analytics, data visualization, admin panels
+- **Google Fonts:** https://fonts.google.com/share?selection.family=Fira+Code:wght@400;500;600;700|Fira+Sans:wght@300;400;500;600;700
+- **CSS Import:**
+```css
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap');
+```
+
+### Key Effects
+Hover tooltips, chart zoom on click, row highlighting on hover, smooth filter animations, data loading spinners
+
+### Avoid (Anti-patterns)
+- Ornate design
+- No filtering
+
+### Pre-Delivery Checklist
+- [ ] No emojis as icons (use SVG: Heroicons/Lucide)
+- [ ] cursor-pointer on all clickable elements
+- [ ] Hover states with smooth transitions (150-300ms)
+- [ ] Light mode: text contrast 4.5:1 minimum
+- [ ] Focus states visible for keyboard nav
+- [ ] prefers-reduced-motion respected
+- [ ] Responsive: 375px, 768px, 1024px, 1440px
+
+
+============================================================
+✅ Design system persisted to design-system/internal-data-dashboard/
+   📄 design-system/internal-data-dashboard/MASTER.md (Global Source of Truth)
+
+📖 Usage: When building a page, check design-system/internal-data-dashboard/pages/[page].md first.
+   If exists, its rules override MASTER.md. Otherwise, use MASTER.md.
+============================================================
+RC=0
+
+########## B) generator verbatim: wrapper with --page dashboard ##########
+## Design System: internal-data-dashboard
+
+### Pattern
+- **Name:** Before-After Transformation
+- **Conversion Focus:** Visual proof of value. 45% higher conversion. Real results. Specific metrics. Guarantee offer.
+- **CTA Placement:** After transformation reveal + Bottom
+- **Color Strategy:** Contrast: muted/grey (before) vs vibrant/colorful (after). Success green for results.
+- **Sections:** 1. Hero (problem state), 2. Transformation slider/comparison, 3. How it works, 4. Results CTA
+
+### Style
+- **Name:** Data-Dense Dashboard
+- **Keywords:** Multiple charts/widgets, data tables, KPI cards, minimal padding, grid layout, space-efficient, maximum data visibility
+- **Best For:** Business intelligence dashboards, financial analytics, enterprise reporting, operational dashboards, data warehousing
+- **Performance:** ⚡ Excellent | **Accessibility:** ✓ WCAG AA
+
+### Colors
+| Role | Hex |
+|------|-----|
+| Primary | #1E40AF |
+| Secondary | #3B82F6 |
+| CTA | #F59E0B |
+| Background | #F8FAFC |
+| Text | #1E3A8A |
+
+*Notes: Blue data + amber highlights*
+
+### Typography
+- **Heading:** Fira Code
+- **Body:** Fira Sans
+- **Mood:** dashboard, data, analytics, code, technical, precise
+- **Best For:** Dashboards, analytics, data visualization, admin panels
+- **Google Fonts:** https://fonts.google.com/share?selection.family=Fira+Code:wght@400;500;600;700|Fira+Sans:wght@300;400;500;600;700
+- **CSS Import:**
+```css
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap');
+```
+
+### Key Effects
+Hover tooltips, chart zoom on click, row highlighting on hover, smooth filter animations, data loading spinners
+
+### Avoid (Anti-patterns)
+- Ornate design
+- No filtering
+
+### Pre-Delivery Checklist
+- [ ] No emojis as icons (use SVG: Heroicons/Lucide)
+- [ ] cursor-pointer on all clickable elements
+- [ ] Hover states with smooth transitions (150-300ms)
+- [ ] Light mode: text contrast 4.5:1 minimum
+- [ ] Focus states visible for keyboard nav
+- [ ] prefers-reduced-motion respected
+- [ ] Responsive: 375px, 768px, 1024px, 1440px
+
+RC=0
+
+########## C) search --domain style ##########
+## UI Pro Max Search Results
+**Domain:** style | **Query:** dashboard data table filter loading empty focus
+**Source:** styles.csv | **Found:** 3 results
+
+### Result 1
+- **Style Category:** Data-Dense Dashboard
+- **Type:** BI/Analytics
+- **Keywords:** Multiple charts/widgets, data tables, KPI cards, minimal padding, grid layout, space-efficient, maximum data visibility
+- **Primary Colors:** Neutral primary (light grey/white #F5F5F5), data colors (blue/green/red), dark text #333333
+- **Effects & Animation:** Hover tooltips, chart zoom on click, row highlighting on hover, smooth filter animations, data loading spinners
+- **Best For:** Business intelligence dashboards, financial analytics, enterprise reporting, operational dashboards, data warehousing
+- **Performance:** ⚡ Excellent
+- **Accessibility:** ✓ WCAG AA
+- **Framework Compatibility:** Recharts 9/10, Chart.js 9/10, D3.js 10/10
+- **Complexity:** Medium
+- **AI Prompt Keywords:** Design a data-dense dashboard. Use: multiple chart widgets, KPI cards row, data tables with sorting, minimal padding (8-12px), efficient grid layout, filter sidebar, dense but readable typography, maximum information density.
+- **CSS/Technical Keywords:** display: grid, grid-template-columns: repeat(12, 1fr), gap: 8px, padding: 12px, font-size: 12-14px, overflow: auto for tables, compact card design, sticky headers
+- **Implementation Checklist:** ☐ Grid layout 12 columns, ☐ KPI cards responsive, ☐ Tables sortable, ☐ Filters functional, ☐ Loading states for data, ☐ Export functionality
+- **Design System Variables:** --grid-gap: 8px, --card-padding: 12px, --font-size-small: 12px, --table-row-height: 36px, --sidebar-width: 240px, --header-height: 56px
+
+### Result 2
+- **Style Category:** Financial Dashboard
+- **Type:** BI/Analytics
+- **Keywords:** Revenue metrics, profit/loss visualization, budget tracking, financial ratios, portfolio performance, cash flow, audit trail
+- **Primary Colors:** Financial colors: profit (green #22C55E), loss (red #EF4444), neutral (grey), trust (dark blue #003366)
+- **Effects & Animation:** Number animations (count-up), trend direction indicators, percentage change animations, profit/loss color transitions
+- **Best For:** Financial reporting, accounting dashboards, portfolio tracking, budget monitoring, banking analytics
+- **Performance:** ⚡ Excellent
+- **Accessibility:** ✓ WCAG AAA
+- **Framework Compatibility:** Recharts 9/10, Chart.js 9/10, D3.js 10/10
+- **Complexity:** Medium
+- **AI Prompt Keywords:** Design a financial dashboard. Use: revenue/expense charts, profit margins, budget vs actual, cash flow waterfall, financial ratios, audit trail table, currency formatting, period comparisons.
+- **CSS/Technical Keywords:** number formatting (Intl.NumberFormat), waterfall chart (positive/negative bars), variance coloring, table with totals row, sparkline for trends, sticky column headers
+- **Implementation Checklist:** ☐ Currency formatted, ☐ Decimals consistent, ☐ P&L clear, ☐ Budget variance shown, ☐ Audit trail complete, ☐ Export to Excel
+- **Design System Variables:** --currency-symbol: $, --decimal-places: 2, --profit-color: #22C55E, --loss-color: #EF4444, --variance-threshold: 10%, --table-header-bg: #F3F4F6
+
+### Result 3
+- **Style Category:** Drill-Down Analytics
+- **Type:** BI/Analytics
+- **Keywords:** Hierarchical data exploration, expandable sections, interactive drill-down paths, summary-to-detail flow, context preservation
+- **Primary Colors:** Primary brand, breadcrumb colors, drill-level indicator colors, hierarchy depth colors
+- **Effects & Animation:** Drill-down expand animations, breadcrumb click transitions, smooth detail reveal, level change smooth, data reload animation
+- **Best For:** Sales analytics, product analytics, funnel analysis, multi-dimensional data exploration, business intelligence
+- **Performance:** ⚡ Good
+- **Accessibility:** ✓ WCAG AA
+- **Framework Compatibility:** Recharts 9/10, Chart.js 9/10, D3.js 10/10
+- **Complexity:** Medium
+- **AI Prompt Keywords:** Design a drill-down analytics dashboard. Use: breadcrumb navigation, expandable sections, summary-to-detail flow, back button prominent, level indicators, context preservation, hierarchical data display.
+- **CSS/Technical Keywords:** breadcrumb nav with separators, details/summary for expand, transition for drill animation, position: sticky breadcrumb, nested grid layouts, smooth scroll to detail
+- **Implementation Checklist:** ☐ Breadcrumbs clear, ☐ Back navigation easy, ☐ Expand animation smooth, ☐ Context preserved, ☐ Mobile drill works, ☐ Deep links supported
+- **Design System Variables:** --breadcrumb-separator: /, --expand-duration: 300ms, --level-indent: 24px, --back-button-size: 40px, --context-bar-height: 48px, --drill-transition: 300ms ease
+
+RC=0
+########## C) search --domain ux ##########
+## UI Pro Max Search Results
+**Domain:** ux | **Query:** dashboard data table filter loading empty focus
+**Source:** ux-guidelines.csv | **Found:** 3 results
+
+### Result 1
+- **Category:** Interaction
+- **Issue:** Focus States
+- **Platform:** All
+- **Description:** Keyboard users need visible focus indicators
+- **Do:** Use visible focus rings on interactive elements
+- **Don't:** Remove focus outline without replacement
+- **Code Example Good:** focus:ring-2 focus:ring-blue-500
+- **Code Example Bad:** outline-none without alternative
+- **Severity:** High
+
+### Result 2
+- **Category:** Responsive
+- **Issue:** Table Handling
+- **Platform:** Web
+- **Description:** Tables can overflow on mobile
+- **Do:** Use horizontal scroll or card layout
+- **Don't:** Wide tables breaking layout
+- **Code Example Good:** overflow-x-auto wrapper
+- **Code Example Bad:** Table overflows viewport
+- **Severity:** Medium
+
+### Result 3
+- **Category:** Feedback
+- **Issue:** Empty States
+- **Platform:** All
+- **Description:** Guide users when no content exists
+- **Do:** Show helpful message and action
+- **Don't:** Blank empty screens
+- **Code Example Good:** No items yet. Create one!
+- **Code Example Bad:** Empty white space
+- **Severity:** Medium
+
+RC=0
+########## C) search --domain chart ##########
+## UI Pro Max Search Results
+**Domain:** chart | **Query:** dashboard data table filter loading empty focus
+**Source:** charts.csv | **Found:** 3 results
+
+### Result 1
+- **Data Type:** Flow/Process Data
+- **Keywords:** flow/process-data
+- **Best Chart Type:** Sankey Diagram
+- **Secondary Options:** Alluvial, Chord Diagram
+- **Color Guidance:** Gradient from source to target. Opacity 0.4-0.6 for flows.
+- **Accessibility Notes:** ⚠ Poor - provide flow table alternative.
+- **Library Recommendation:** D3.js (d3-sankey), Plotly
+- **Interactive Level:** Hover + Drilldown
+
+### Result 2
+- **Data Type:** Hierarchical/Nested Data
+- **Keywords:** hierarchical/nested-data
+- **Best Chart Type:** Treemap
+- **Secondary Options:** Sunburst, Nested Donut, Icicle
+- **Color Guidance:** Parent: distinct hues. Children: lighter shades. White borders 2-3px.
+- **Accessibility Notes:** ⚠ Poor - provide table alternative. Label large areas.
+- **Library Recommendation:** D3.js, Recharts, ApexCharts
+- **Interactive Level:** Hover + Drilldown
+
+### Result 3
+- **Data Type:** 3D Spatial Data
+- **Keywords:** 3d, spatial, immersive, terrain, molecular, volumetric
+- **Best Chart Type:** 3D Scatter/Surface Plot
+- **Secondary Options:** Volumetric Rendering, Point Cloud
+- **Color Guidance:** Depth cues: lighting/shading. Z-axis: color gradient (cool to warm).
+- **Accessibility Notes:** ❌ Poor - requires alternative 2D view or data table.
+- **Library Recommendation:** Three.js, Deck.gl, Plotly 3D
+- **Interactive Level:** Rotate + Zoom + VR
+
+RC=0
+########## C) search --domain color ##########
+## UI Pro Max Search Results
+**Domain:** color | **Query:** dashboard data table filter loading empty focus
+**Source:** colors.csv | **Found:** 3 results
+
+### Result 1
+- **Product Type:** Analytics Dashboard
+- **Primary (Hex):** #1E40AF
+- **Secondary (Hex):** #3B82F6
+- **CTA (Hex):** #F59E0B
+- **Background (Hex):** #F8FAFC
+- **Text (Hex):** #1E3A8A
+- **Notes:** Blue data + amber highlights
+
+### Result 2
+- **Product Type:** Productivity Tool
+- **Primary (Hex):** #0D9488
+- **Secondary (Hex):** #14B8A6
+- **CTA (Hex):** #F97316
+- **Background (Hex):** #F0FDFA
+- **Text (Hex):** #134E4A
+- **Notes:** Teal focus + action orange
+
+### Result 3
+- **Product Type:** Financial Dashboard
+- **Primary (Hex):** #0F172A
+- **Secondary (Hex):** #1E293B
+- **CTA (Hex):** #22C55E
+- **Background (Hex):** #020617
+- **Text (Hex):** #F8FAFC
+- **Notes:** Dark bg + green positive indicators
+
+RC=0
+########## C) search --domain typography ##########
+## UI Pro Max Search Results
+**Domain:** typography | **Query:** dashboard data table filter loading empty focus
+**Source:** typography.csv | **Found:** 3 results
+
+### Result 1
+- **Font Pairing Name:** Dashboard Data
+- **Category:** Mono + Sans
+- **Heading Font:** Fira Code
+- **Body Font:** Fira Sans
+- **Mood/Style Keywords:** dashboard, data, analytics, code, technical, precise
+- **Best For:** Dashboards, analytics, data visualization, admin panels
+- **Google Fonts URL:** https://fonts.google.com/share?selection.family=Fira+Code:wght@400;500;600;700|Fira+Sans:wght@300;400;500;600;700
+- **CSS Import:** @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap');
+- **Tailwind Config:** fontFamily: { mono: ['Fira Code', 'monospace'], sans: ['Fira Sans', 'sans-serif'] }
+- **Notes:** Fira family cohesion. Code for data, Sans for labels.
+
+### Result 2
+- **Font Pairing Name:** Science/Tech
+- **Category:** Sans + Sans
+- **Heading Font:** Exo
+- **Body Font:** Roboto Mono
+- **Mood/Style Keywords:** science, technology, research, data, futuristic, precise
+- **Best For:** Science, research, tech documentation, data-heavy sites
+- **Google Fonts URL:** https://fonts.google.com/share?selection.family=Exo:wght@300;400;500;600;700|Roboto+Mono:wght@300;400;500;700
+- **CSS Import:** @import url('https://fonts.googleapis.com/css2?family=Exo:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500;700&display=swap');
+- **Tailwind Config:** fontFamily: { sans: ['Exo', 'sans-serif'], mono: ['Roboto Mono', 'monospace'] }
+- **Notes:** Exo for modern tech feel. Roboto Mono for code/data.
+
+### Result 3
+- **Font Pairing Name:** Tech/HUD Mono
+- **Category:** Mono + Mono
+- **Heading Font:** Share Tech Mono
+- **Body Font:** Fira Code
+- **Mood/Style Keywords:** tech, futuristic, hud, sci-fi, data, monospaced, precise
+- **Best For:** Sci-fi interfaces, developer tools, cybersecurity, dashboards
+- **Google Fonts URL:** https://fonts.google.com/share?selection.family=Fira+Code:wght@300;400;500;600;700|Share+Tech+Mono
+- **CSS Import:** @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap');
+- **Tailwind Config:** fontFamily: { hud: ['Share Tech Mono', 'monospace'], code: ['Fira Code', 'monospace'] }
+- **Notes:** Share Tech Mono has that classic sci-fi look.
+
+RC=0
+########## C) search --domain web ##########
+## UI Pro Max Search Results
+**Domain:** web | **Query:** dashboard data table filter loading empty focus
+**Source:** web-interface.csv | **Found:** 3 results
+
+### Result 1
+- **Category:** Focus
+- **Issue:** Visible Focus States
+- **Platform:** Web
+- **Description:** All interactive elements need visible focus states
+- **Do:** Use :focus-visible with ring/outline
+- **Don't:** No focus indication
+- **Code Example Good:** focus-visible:ring-2 focus-visible:ring-blue-500
+- **Code Example Bad:** outline-none // no replacement
+- **Severity:** Critical
+
+### Result 2
+- **Category:** Focus
+- **Issue:** Never Remove Outline
+- **Platform:** Web
+- **Description:** Never remove outline without providing replacement
+- **Do:** Replace outline with visible alternative
+- **Don't:** Remove outline completely
+- **Code Example Good:** focus:outline-none focus:ring-2
+- **Code Example Bad:** focus:outline-none // nothing else
+- **Severity:** Critical
+
+### Result 3
+- **Category:** Performance
+- **Issue:** Lazy Load Images
+- **Platform:** Web
+- **Description:** Lazy-load images below the fold
+- **Do:** Use loading='lazy' for below-fold images
+- **Don't:** Load all images eagerly
+- **Code Example Good:** <img loading='lazy' src='...' />
+- **Code Example Bad:** <img src='...' /> // above fold only
+- **Severity:** Medium
+
+RC=0

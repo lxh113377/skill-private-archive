@@ -1,0 +1,6 @@
+P1="/c/Users/37533/Desktop/workspace/skill焚诀/_temp/r281h/A/design-system/internal-data-dashboard/_TOK_P1.md"
+P2="/c/Users/37533/Desktop/workspace/skill焚诀/_temp/r281h/A/design-system/internal-data-dashboard/_TOK_P2.md"
+OUT="/c/Users/37533/Desktop/workspace/skill焚诀/_temp/r281h/A/design-system/internal-data-dashboard/TOKENS.md"
+cat "$P1" "$P2" > "$OUT"; echo "MERGE_RC=$?"
+wc -c "$OUT"
+grep -n "^## " "$OUT"

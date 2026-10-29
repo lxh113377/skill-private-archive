@@ -1,0 +1,327 @@
+{
+ "schema": "execution-ab-v1",
+ "task_text": "为内部数据分析后台 dashboard 产出 UI/UX 设计系统，并保存成可跨会话取用的文件；两臂只在 _temp/r281h/<臂名>/ 下写；固定任务文本、固定工具集（read/grep/ops_bash + 受管 python 3.13.14）、受管根 D:/global_skills 只读。",
+ "arms": {
+  "A": {
+   "files_produced": [
+    "_repro/r281h/A/_ds_page_wrapper.py",
+    "_repro/r281h/A/_evidence.err",
+    "_repro/r281h/A/_evidence.py",
+    "_repro/r281h/A/_evidence2.err",
+    "_repro/r281h/A/_evidence2.py",
+    "_repro/r281h/A/_evidence2_out.txt",
+    "_repro/r281h/A/_evidence3.err",
+    "_repro/r281h/A/_evidence3.py",
+    "_repro/r281h/A/_evidence3_out.txt",
+    "_repro/r281h/A/_evidence4.err",
+    "_repro/r281h/A/_evidence4.py",
+    "_repro/r281h/A/_evidence4_out.txt",
+    "_repro/r281h/A/_evidence5.err",
+    "_repro/r281h/A/_evidence5.py",
+    "_repro/r281h/A/_evidence5_out.txt",
+    "_repro/r281h/A/_evidence_out.txt",
+    "_repro/r281h/A/_exec_log.md",
+    "_repro/r281h/A/_gen_a.err",
+    "_repro/r281h/A/_gen_all.err",
+    "_repro/r281h/A/_gen_b.err",
+    "_repro/r281h/A/_gen_c.err",
+    "_repro/r281h/A/_gen_d.err",
+    "_repro/r281h/A/_gen_e.err",
+    "_repro/r281h/A/_gen_stdout.txt",
+    "_repro/r281h/A/_merge_tokens.sh",
+    "_repro/r281h/A/_probe_help.sh",
+    "_repro/r281h/A/_run_all_gen.sh",
+    "_repro/r281h/A/_run_gen_a.sh",
+    "_repro/r281h/A/_run_gen_b.sh",
+    "_repro/r281h/A/_run_gen_cd.sh",
+    "_repro/r281h/A/_run_gen_e.sh",
+    "_repro/r281h/A/_selfcheck.py",
+    "_repro/r281h/A/_toolcount.txt",
+    "_repro/r281h/A/_triage.md",
+    "_repro/r281h/A/design-system/internal-data-dashboard/CONTRAST-AUDIT.md",
+    "_repro/r281h/A/design-system/internal-data-dashboard/MASTER.md",
+    "_repro/r281h/A/design-system/internal-data-dashboard/README.md",
+    "_repro/r281h/A/design-system/internal-data-dashboard/TOKENS.md",
+    "_repro/r281h/A/design-system/internal-data-dashboard/_TOK_P1.md",
+    "_repro/r281h/A/design-system/internal-data-dashboard/_TOK_P2.md",
+    "_repro/r281h/A/design-system/internal-data-dashboard/pages/dashboard.md"
+   ],
+   "file_count": 41,
+   "bytes": 172835,
+   "rubric": {
+    "1_artifact_existence": 5,
+    "2_content_completeness": 5,
+    "3_executability": 0,
+    "4_no_fabrication": 3,
+    "5_instruction_following": 5,
+    "6_cost_tool_calls": 124
+   },
+   "rubric_evidence": {
+    "1_evidence": [
+     "design-system/ directory present",
+     "MASTER.md present: design-system/internal-data-dashboard/MASTER.md (5433B)",
+     "pages/ override layer present: dashboard.md",
+     "2+ files under design-system/ (n=7)"
+    ],
+    "2_categories_hit": [
+     "color",
+     "spacing",
+     "typography(font)",
+     "component states",
+     "breakpoints"
+    ],
+    "3_ratio_ok_over_tried": "0/1",
+    "3_doc_call_rows": [
+     {
+      "doc_call": "python3 skills/ui-ux-pro-max/scripts/design_system.py --help",
+      "literal_rc": 49,
+      "resolved_rc": 0,
+      "resolved_stderr": ""
+     }
+    ],
+    "4_spot_checks": [
+     {
+      "value": "#0F172A",
+      "source": "generator stdout (_gen_stdout.txt)",
+      "traced": true
+     },
+     {
+      "value": "0.88rem",
+      "source": null,
+      "traced": false
+     },
+     {
+      "value": "36px",
+      "source": "generator stdout (_gen_stdout.txt)",
+      "traced": true
+     }
+    ],
+    "4_distinct_numeric_tokens": 122,
+    "5_checks": [
+     {
+      "step": "step1_triage_written",
+      "met": true
+     },
+     {
+      "step": "step2_deliverable_produced",
+      "met": true
+     },
+     {
+      "step": "step3_bundled_assets_referenced",
+      "met": true
+     },
+     {
+      "step": "step4_script_touched_or_logged",
+      "met": true
+     },
+     {
+      "step": "step5_persist_for_retrieval",
+      "met": true
+     },
+     {
+      "step": "output_standard_ascii_tokens",
+      "met": false
+     }
+    ],
+    "5_non_ascii_files": [
+     "_evidence_out.txt",
+     "_gen_c.err",
+     "_merge_tokens.sh",
+     "_selfcheck.py",
+     "MASTER.md",
+     "README.md",
+     "TOKENS.md",
+     "_TOK_P1.md",
+     "_TOK_P2.md",
+     "dashboard.md"
+    ]
+   },
+   "commands_tried": "1",
+   "commands_ok": "0",
+   "arm_selfreported_full_command_accounting": {
+    "rows_with_rc": 22,
+    "rc0": 17,
+    "rc_hist": {
+     "49": 1,
+     "0": 17,
+     "1": 4
+    }
+   },
+   "artifact_tree_sha256": "0c53f691ceec60aad9a9dffa70969e463831e3ee054c825091ba58b5dfef45e8",
+   "quality_index_Q": 18,
+   "arm_doc_sha256_12": "e6556cb09256",
+   "arm_doc_bytes": 5327,
+   "arm_doc_version_label_observed_in_doc": "1.2.0"
+  },
+  "B": {
+   "files_produced": [
+    "_repro/r281h/B/_coverage_audit.py",
+    "_repro/r281h/B/_exec_log.md",
+    "_repro/r281h/B/_gen_stdout.txt",
+    "_repro/r281h/B/_selfcheck.py",
+    "_repro/r281h/B/_toolcount.txt",
+    "_repro/r281h/B/_triage.md",
+    "_repro/r281h/B/dashboard-design-system.md",
+    "_repro/r281h/B/design-system/data-analytics-dashboard/MASTER.md",
+    "_repro/r281h/B/design-system/data-analytics-dashboard/TOKENS.md",
+    "_repro/r281h/B/design-system/data-analytics-dashboard/_contrast_calc.txt",
+    "_repro/r281h/B/design-system/data-analytics-dashboard/pages/data-table.md",
+    "_repro/r281h/B/design-system/data-analytics-dashboard/pages/filters.md",
+    "_repro/r281h/B/design-system/data-analytics-dashboard/pages/metrics-detail.md",
+    "_repro/r281h/B/design-system/data-analytics-dashboard/pages/overview.md"
+   ],
+   "file_count": 14,
+   "bytes": 75206,
+   "rubric": {
+    "1_artifact_existence": 5,
+    "2_content_completeness": 5,
+    "3_executability": 2,
+    "4_no_fabrication": 5,
+    "5_instruction_following": 5,
+    "6_cost_tool_calls": 198
+   },
+   "rubric_evidence": {
+    "1_evidence": [
+     "design-system/ directory present",
+     "MASTER.md present: design-system/data-analytics-dashboard/MASTER.md (5446B)",
+     "pages/ override layer present: data-table.md",
+     "2+ files under design-system/ (n=7)"
+    ],
+    "2_categories_hit": [
+     "color",
+     "spacing",
+     "typography(font)",
+     "component states",
+     "breakpoints"
+    ],
+    "3_ratio_ok_over_tried": "1/2",
+    "3_doc_call_rows": [
+     {
+      "doc_call": "python3 skills/ui-ux-pro-max/scripts/design_system.py --help",
+      "literal_rc": 49,
+      "resolved_rc": 0,
+      "resolved_stderr": ""
+     },
+     {
+      "doc_call": "python \"D:/global_skills/ui-ux-pro-max/scripts/search.py\" \"<query>\" --design-system --persist -p \"Project Name\" --output-dir \"<project-root>\"",
+      "literal_rc": 0,
+      "resolved_rc": 0,
+      "resolved_stderr": ""
+     }
+    ],
+    "4_spot_checks": [
+     {
+      "value": "#F59E0B",
+      "source": "generator stdout (_gen_stdout.txt)",
+      "traced": true
+     },
+     {
+      "value": "2px",
+      "source": "local skill data (data/*.csv or *.json)",
+      "traced": true
+     },
+     {
+      "value": "4.5:1",
+      "source": "generator stdout (_gen_stdout.txt)",
+      "traced": true
+     }
+    ],
+    "4_distinct_numeric_tokens": 64,
+    "5_checks": [
+     {
+      "step": "step1_triage_written",
+      "met": true
+     },
+     {
+      "step": "step2_deliverable_produced",
+      "met": true
+     },
+     {
+      "step": "step3_bundled_assets_referenced",
+      "met": true
+     },
+     {
+      "step": "step4_script_touched_or_logged",
+      "met": true
+     },
+     {
+      "step": "step5_persist_for_retrieval",
+      "met": true
+     },
+     {
+      "step": "output_standard_ascii_tokens",
+      "met": false
+     }
+    ],
+    "5_non_ascii_files": [
+     "MASTER.md",
+     "data-table.md",
+     "filters.md",
+     "metrics-detail.md",
+     "overview.md"
+    ]
+   },
+   "commands_tried": "2",
+   "commands_ok": "1",
+   "arm_selfreported_full_command_accounting": {
+    "rows_with_rc": 30,
+    "rc0": 25,
+    "rc_hist": {
+     "0": 25,
+     "49": 1,
+     "1": 4
+    }
+   },
+   "artifact_tree_sha256": "e7e194c72067b6ecbf0be4d23441874b2e48c5a73baa825502ca47b8b61d1343",
+   "quality_index_Q": 22,
+   "arm_doc_sha256_12": "969358b895e9",
+   "arm_doc_bytes": 9735,
+   "arm_doc_version_label_observed_in_doc": "1.6.0"
+  }
+ },
+ "blind_note": {
+  "protocol": "派发给两臂执行体时只给匿名臂名 A/B 与各自 SKILL.md 副本，未告知哪份是新/旧；评分器 score_ab.py 只读臂目录的工件字节（路径存在性、正则命中类目、日志 rc、数值可追溯抽样、留痕检查），不读文档版本头，因此打分与臂序/新旧无关。",
+  "pre_unblinding_judgement": "Blind phase verdict, computed before revealing which doc was new: Q_A=18, Q_B=22, B ahead by 4 points, and the whole gap sits in dimension 3 (0->2) and dimension 4 (3->5); dimensions 1/2/5 are tied at 5. So the artifact-level ranking is B > A on executability of documented commands, and B > A on spot-checked traceability only.",
+  "post_unblinding": "揭盲：A=commit 30b84b20~1（旧，v1.2.0），B=30b84b20（新，v1.6.0，新增 Step 2b --persist 段与绝对路径命令）。新版多出的那条命令本机字面可跑（rc=0）并真生成 design-system/<slug>/MASTER.md，故第 3 维拉开差距；第 4 维差异来自 B 臂把数值一律挂到 _gen_stdout/CSV 行，A 臂抽查 3 处中 1 处（0.88rem）在本地语料与生成 stdout 中未命中。两臂在 1/2/5 三维同为满分，说明旧文档同样能靠执行体自补产出完整设计系统——本次 A/B 的净增益集中在「文档自带可执行路径」而非产出与否。"
+ },
+ "negative_control": {
+  "purpose": "证明尺子不偏袒臂序：把 A 臂整目录复制成第三个目录，用与 A 相同的判据重算，uplift 必须为 0。",
+  "dir": "_repro/r281h/_ctl/negctl",
+  "scorer_key": "_ctl/negctl",
+  "byte_identical_to_A": true,
+  "sha_A": "0c53f691ceec60aad9a9dffa70969e463831e3ee054c825091ba58b5dfef45e8",
+  "sha_copy": "0c53f691ceec60aad9a9dffa70969e463831e3ee054c825091ba58b5dfef45e8",
+  "per_dimension_copy": {
+   "1_artifact_existence": 5,
+   "2_content_completeness": 5,
+   "3_executability": 0,
+   "4_no_fabrication": 3,
+   "5_instruction_following": 5
+  },
+  "Q_copy": 18,
+  "uplift_pct_copy_vs_A": 0.0,
+  "verdict": "PASS：同字节 → 同分 → uplift = 0.00%（若评分器按目录名/位置打分，这里不会为 0）。"
+ },
+ "uplift_pct": 22.22,
+ "uplift_formula": {
+  "expression": "uplift_pct = (Q_B - Q_A) / Q_A * 100",
+  "Q_definition": "Q = 第1维 + 第2维 + 第3维 + 第4维 + 第5维（每维 0-5，满分 25）；第6维（工具调用次数）不计入 Q，避免与质量混算。",
+  "numerator": 4,
+  "denominator": 18,
+  "Q_A": 18,
+  "Q_B": 22,
+  "recompute_cmd": "python -B _temp/r281h/_ctl/score_ab.py A B  -> 取 quality_index_Q 两值代入上式"
+ },
+ "rubric_scope_note": "本 rubric 是**工件级机械分**：只看磁盘上文件的路径/字节/正则命中/记录的 rc，全部可复算；它不等于业务价值判断，也不衡量界面好不好看、能不能上线。第 3 维用「Lead 实测文档字面调用的 rc」这一把同一尺子量两臂（不用臂内自报计数，避免自述污染）。",
+ "unverified_flags": [],
+ "provenance_cmd": "git -C D:/global_skills show 30b84b20~1:ui-ux-pro-max/SKILL.md > _temp/r281h/A/SKILL.md ; git -C D:/global_skills show 30b84b20:ui-ux-pro-max/SKILL.md > _temp/r281h/B/SKILL.md",
+ "tool_inventory": {
+  "python": "/c/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe (3.13.14)",
+  "python3_on_PATH": "C:/Users/37533/AppData/Local/Microsoft/WindowsApps/python3 (Store 别名桩，任何调用 rc=49 无输出)",
+  "scorer": "_temp/r281h/_ctl/score_ab.py",
+  "doc_call_measurement": "_temp/r281h/_ctl/doc_calls_run.json",
+  "generator": "_temp/r281h/_ctl/make_json.py"
+ },
+ "side_effects_disclosure": "Managed root D:/global_skills: no tracked file written by this experiment. One unavoidable side effect: arms and Lead executed the documented scripts by path, so CPython rewrote the git-ignored bytecode cache scripts/__pycache__/*.cpython-313.pyc (init/search mtime 23:27:56, inside the window). ui-ux-pro-max/NOTICE and scripts/core.py show dirty but their mtimes are 2026-10-27, i.e. pre-existing edits before this session, not produced here and not claimed. Under 06-benchmark/ only the two files named in the brief were created.",
+ "measured_at": "2026-10-29T17:15:37Z"
+}
