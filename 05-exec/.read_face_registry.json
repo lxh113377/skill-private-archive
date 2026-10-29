@@ -153,5 +153,15 @@
   "evidence": "06-benchmark/r281_artifact_ab.json",
   "registered_at": "2026-10-30 00:08",
   "why": "R278-1 六维机械盲评判据（r282 从 _temp 提升：_temp 被 gitignore，判据在克隆上不可复算）"
+ },
+ "r282i_usage_source_forensics.py": {
+  "evidence": "06-benchmark/r282_usage_source.json",
+  "registered_at": "2026-10-30 01:02",
+  "why": "R281-2 使用数据源取证（20 面判定 + 两态规则 + 负控）；r283 从父树 _temp 提升入仓"
+ },
+ "r283_requirements_ledger.py": {
+  "evidence": "06-benchmark/r283_requirements_ledger.json",
+  "registered_at": "2026-10-30 01:0x",
+  "why": "需求 1-7 交付终核生成器（数字现场取、指针存在性自检；md 与 JSON 同源）"
  }
 }
