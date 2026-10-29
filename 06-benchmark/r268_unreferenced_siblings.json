@@ -1,6 +1,6 @@
 {
  "schema": "unreferenced-siblings-v1",
- "generated_at": "2026-10-29T18:06:06",
+ "generated_at": "2026-10-29T19:31:57",
  "provenance_cmd": "python 05-exec/r268_unreferenced_siblings.py",
  "rule": "R267-1: a file on disk that SKILL.md never points at is unreachable content",
  "skills_root": "D:/global_skills",
@@ -928,7 +928,7 @@
    "rule_hist": {
     "REF_BY_PATH": 3
    },
-   "skill_md_bytes": 135057
+   "skill_md_bytes": 137054
   },
   {
    "slug": "defuddle",
@@ -1655,13 +1655,13 @@
     "meta.json"
    ],
    "rule_hist": {
-    "REF_BY_PATH": 9,
-    "REF_BY_BASENAME": 10,
+    "REF_BY_PATH": 11,
+    "REF_BY_BASENAME": 8,
     "WEAK_ANCESTOR_DIR_ONLY": 66,
     "REF_BY_PARENT_DIR": 2,
     "UNREFERENCED": 1
    },
-   "skill_md_bytes": 21260
+   "skill_md_bytes": 23504
   },
   {
    "slug": "github",
@@ -16761,7 +16761,7 @@
    "unreferenced_strict_n": 0,
    "unreferenced_strict": [],
    "rule_hist": {},
-   "skill_md_bytes": 26212
+   "skill_md_bytes": 28091
   },
   {
    "slug": "video-breakdown-skill",
