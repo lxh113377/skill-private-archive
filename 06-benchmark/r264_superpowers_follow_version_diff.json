@@ -1,0 +1,1252 @@
+{
+ "schema": "superpowers-follow-version-diff-v1",
+ "generated_at": "2026-10-29T01:55:43",
+ "provenance_cmd": "python _temp/r264_follow_version_diff.py",
+ "upstream_repo": "obra/superpowers",
+ "upstream_ref": "v7.0.1",
+ "upstream_ref_source": "gh releases/latest",
+ "local_root": "D:\\global_skills",
+ "unavailable_n": 0,
+ "rows": [
+  {
+   "slug": "brainstorming",
+   "upstream_ref": "v7.0.1",
+   "upstream_path": "skills/brainstorming",
+   "local_dir": "D:\\global_skills\\brainstorming",
+   "local_version": "1.2.0",
+   "upstream_version": "7.0.1",
+   "rel_declared": "BEHIND",
+   "negative_control": false,
+   "state": "OK",
+   "upstream_files": [
+    "SKILL.md",
+    "builder-check-prompt.md",
+    "scripts/frame-template.html",
+    "scripts/helper.js",
+    "scripts/server.cjs",
+    "scripts/start-server.sh",
+    "scripts/stop-server.sh",
+    "visual-companion.md"
+   ],
+   "upstream_file_sizes": {
+    "SKILL.md": 13602,
+    "builder-check-prompt.md": 881,
+    "visual-companion.md": 13413,
+    "scripts/frame-template.html": 8094,
+    "scripts/helper.js": 5615,
+    "scripts/server.cjs": 25699,
+    "scripts/start-server.sh": 6908,
+    "scripts/stop-server.sh": 3263
+   },
+   "local_files": [
+    ".upstream",
+    "LICENSE",
+    "NOTICE",
+    "SKILL.md",
+    "builder-check-prompt.md",
+    "references/upstream-superpowers-v7.md",
+    "scripts/frame-template.html",
+    "scripts/helper.js",
+    "scripts/server.cjs",
+    "scripts/start-server.sh",
+    "scripts/stop-server.sh",
+    "spec-document-reviewer-prompt.md",
+    "visual-companion.md"
+   ],
+   "local_file_sizes": {
+    ".upstream": 44,
+    "builder-check-prompt.md": 881,
+    "LICENSE": 1070,
+    "NOTICE": 824,
+    "SKILL.md": 11615,
+    "spec-document-reviewer-prompt.md": 1748,
+    "visual-companion.md": 12047,
+    "references/upstream-superpowers-v7.md": 5921,
+    "scripts/frame-template.html": 7703,
+    "scripts/helper.js": 2707,
+    "scripts/server.cjs": 11218,
+    "scripts/start-server.sh": 4606,
+    "scripts/stop-server.sh": 1314
+   },
+   "only_local": [
+    ".upstream",
+    "LICENSE",
+    "NOTICE",
+    "references/upstream-superpowers-v7.md",
+    "spec-document-reviewer-prompt.md"
+   ],
+   "only_upstream": [],
+   "size_diff": [
+    {
+     "file": "SKILL.md",
+     "local_bytes": 11615,
+     "upstream_bytes": 13602
+    },
+    {
+     "file": "scripts/frame-template.html",
+     "local_bytes": 7703,
+     "upstream_bytes": 8094
+    },
+    {
+     "file": "scripts/helper.js",
+     "local_bytes": 2707,
+     "upstream_bytes": 5615
+    },
+    {
+     "file": "scripts/server.cjs",
+     "local_bytes": 11218,
+     "upstream_bytes": 25699
+    },
+    {
+     "file": "scripts/start-server.sh",
+     "local_bytes": 4606,
+     "upstream_bytes": 6908
+    },
+    {
+     "file": "scripts/stop-server.sh",
+     "local_bytes": 1314,
+     "upstream_bytes": 3263
+    },
+    {
+     "file": "visual-companion.md",
+     "local_bytes": 12047,
+     "upstream_bytes": 13413
+    }
+   ],
+   "same_bytes": [
+    "builder-check-prompt.md"
+   ],
+   "file_level_identical": false,
+   "counts": {
+    "local": 13,
+    "upstream": 8
+   },
+   "skill_md_heading_delta": [
+    {
+     "heading": "# Brainstorming",
+     "upstream": true,
+     "local": false
+    },
+    {
+     "heading": "## First: What Do You Actually Know?",
+     "upstream": true,
+     "local": false
+    },
+    {
+     "heading": "## Look Before You Ask",
+     "upstream": true,
+     "local": false
+    },
+    {
+     "heading": "## Your First Message",
+     "upstream": true,
+     "local": false
+    },
+    {
+     "heading": "## The Conversation",
+     "upstream": true,
+     "local": false
+    },
+    {
+     "heading": "## Play It Back",
+     "upstream": true,
+     "local": false
+    },
+    {
+     "heading": "## Size the Work",
+     "upstream": true,
+     "local": false
+    },
+    {
+     "heading": "## The Written Design",
+     "upstream": true,
+     "local": false
+    },
+    {
+     "heading": "## Red Flags",
+     "upstream": true,
+     "local": false
+    },
+    {
+     "heading": "## Visual Companion",
+     "upstream": true,
+     "local": true
+    },
+    {
+     "heading": "# Brainstorming Ideas Into Designs",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## Upstream-absorbed sections（分卷指针）",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## Anti-Pattern: \"This Is Too Simple To Need A Design\"",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## Checklist",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## Process Flow",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## The Process",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## After the Design",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## Key Principles",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## Version history",
+     "upstream": false,
+     "local": true
+    }
+   ],
+   "overwrite_risk": {
+    "overwrite_files_if_upstream_copied_over_local": [
+     "SKILL.md",
+     "builder-check-prompt.md",
+     "scripts/frame-template.html",
+     "scripts/helper.js",
+     "scripts/server.cjs",
+     "scripts/start-server.sh",
+     "scripts/stop-server.sh",
+     "visual-companion.md"
+    ],
+    "byte_diff_files": [
+     "SKILL.md",
+     "scripts/frame-template.html",
+     "scripts/helper.js",
+     "scripts/server.cjs",
+     "scripts/start-server.sh",
+     "scripts/stop-server.sh",
+     "visual-companion.md"
+    ],
+    "local_only_files_survive_if_dir_not_wiped": [
+     ".upstream",
+     "LICENSE",
+     "NOTICE",
+     "references/upstream-superpowers-v7.md",
+     "spec-document-reviewer-prompt.md"
+    ],
+    "upstream_only_additions": [],
+    "note": "换装若整目录替换，local_only 文件（含 .upstream/NOTICE/LICENSE/本地新增 references）会一并消失；若仅覆盖同名文件，则只影响 overwrite_files 列出的 8 个文件。"
+   },
+   "evidence_cmd": "gh api \"repos/obra/superpowers/contents/skills/brainstorming?ref=v7.0.1\" ; gh api \"repos/obra/superpowers/contents/skills/brainstorming/SKILL.md?ref=v7.0.1\" -H \"Accept: application/vnd.github.raw\" ; export PYTHONPYCACHEPREFIX=/tmp/pycache_r264 && /c/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe _temp/r264_follow_version_diff.py",
+   "measured_at": "2026-10-29T01:55:28",
+   "heading_delta_summary": {
+    "up_only": [
+     "# Brainstorming",
+     "## First: What Do You Actually Know?",
+     "## Look Before You Ask",
+     "## Your First Message",
+     "## The Conversation",
+     "## Play It Back",
+     "## Size the Work",
+     "## The Written Design",
+     "## Red Flags"
+    ],
+    "local_only": [
+     "# Brainstorming Ideas Into Designs",
+     "## Upstream-absorbed sections（分卷指针）",
+     "## Anti-Pattern: \"This Is Too Simple To Need A Design\"",
+     "## Checklist",
+     "## Process Flow",
+     "## The Process",
+     "## After the Design",
+     "## Key Principles",
+     "## Version history"
+    ],
+    "skill_md_fetch_error": null
+   },
+   "rollback_note": "D:\\global_skills 是 git 仓库（实测 HEAD 8e358806a369be65a4270c321c3fe7f9213cffdf，命令 `git -C D:/global_skills rev-parse HEAD`），但 brainstorming/ 工作树当前为 dirty：MM SKILL.md / D builder-check-prompt.md + ?? builder-check-prompt.md ⇒ git 回滚只会回到 HEAD 8e358806、不等于换装前磁盘态。主回滚 = 换装前对 D:/global_skills/brainstorming/ 做文件级快照（保留目录树与字节数），失败即整体回填；git 仅作第二道保险 `git checkout -- brainstorming`（只读环境下未执行）。"
+  },
+  {
+   "slug": "subagent-driven-development",
+   "upstream_ref": "v7.0.1",
+   "upstream_path": "skills/executing-plans",
+   "local_dir": "D:\\global_skills\\subagent-driven-development",
+   "local_version": "1.3.0",
+   "upstream_version": "7.0.1",
+   "rel_declared": "BEHIND",
+   "negative_control": false,
+   "state": "OK",
+   "upstream_files": [
+    "SKILL.md",
+    "scripts/task-done",
+    "scripts/task-start"
+   ],
+   "upstream_file_sizes": {
+    "SKILL.md": 18103,
+    "scripts/task-done": 1692,
+    "scripts/task-start": 963
+   },
+   "local_files": [
+    ".upstream",
+    "LICENSE",
+    "NOTICE",
+    "SKILL.md",
+    "references/anti-rationalization.md",
+    "references/context-economy.md",
+    "references/execution-flow.md",
+    "references/final-review.md",
+    "references/plan-execution-contract.md",
+    "references/task-loop.md",
+    "scripts/sdd-workspace",
+    "scripts/task-brief",
+    "scripts/task-done",
+    "scripts/task-start"
+   ],
+   "local_file_sizes": {
+    ".upstream": 46,
+    "LICENSE": 1070,
+    "NOTICE": 1975,
+    "SKILL.md": 7352,
+    "references/anti-rationalization.md": 2415,
+    "references/context-economy.md": 2478,
+    "references/execution-flow.md": 4597,
+    "references/final-review.md": 3491,
+    "references/plan-execution-contract.md": 4496,
+    "references/task-loop.md": 2609,
+    "scripts/sdd-workspace": 3684,
+    "scripts/task-brief": 1322,
+    "scripts/task-done": 1692,
+    "scripts/task-start": 963
+   },
+   "only_local": [
+    ".upstream",
+    "LICENSE",
+    "NOTICE",
+    "references/anti-rationalization.md",
+    "references/context-economy.md",
+    "references/execution-flow.md",
+    "references/final-review.md",
+    "references/plan-execution-contract.md",
+    "references/task-loop.md",
+    "scripts/sdd-workspace",
+    "scripts/task-brief"
+   ],
+   "only_upstream": [],
+   "size_diff": [
+    {
+     "file": "SKILL.md",
+     "local_bytes": 7352,
+     "upstream_bytes": 18103
+    }
+   ],
+   "same_bytes": [
+    "scripts/task-done",
+    "scripts/task-start"
+   ],
+   "file_level_identical": false,
+   "counts": {
+    "local": 14,
+    "upstream": 3
+   },
+   "skill_md_heading_delta": [
+    {
+     "heading": "# Executing Plans",
+     "upstream": true,
+     "local": false
+    },
+    {
+     "heading": "## When to Use",
+     "upstream": true,
+     "local": false
+    },
+    {
+     "heading": "## The Process",
+     "upstream": true,
+     "local": false
+    },
+    {
+     "heading": "## Setup",
+     "upstream": true,
+     "local": false
+    },
+    {
+     "heading": "## The Task Loop",
+     "upstream": true,
+     "local": false
+    },
+    {
+     "heading": "### 1. Take the task",
+     "upstream": true,
+     "local": false
+    },
+    {
+     "heading": "### 2. Work the steps",
+     "upstream": true,
+     "local": false
+    },
+    {
+     "heading": "### 3. The completion contract",
+     "upstream": true,
+     "local": false
+    },
+    {
+     "heading": "### 4. Complete the task",
+     "upstream": true,
+     "local": false
+    },
+    {
+     "heading": "## Final Review",
+     "upstream": true,
+     "local": false
+    },
+    {
+     "heading": "## Finish",
+     "upstream": true,
+     "local": false
+    },
+    {
+     "heading": "## Common Rationalizations",
+     "upstream": true,
+     "local": false
+    },
+    {
+     "heading": "# Subagent-Driven Development — 计划执行段内核",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## 何时用",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## 何时不用",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## 核心原则",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## 只有这四种情况停下来问（其余一律继续）",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## 开工前置（REQUIRED，不是建议）",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## 收尾必须上呈两张清单",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## 分卷索引",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## Version history",
+     "upstream": false,
+     "local": true
+    }
+   ],
+   "overwrite_risk": {
+    "overwrite_files_if_upstream_copied_over_local": [
+     "SKILL.md",
+     "scripts/task-done",
+     "scripts/task-start"
+    ],
+    "byte_diff_files": [
+     "SKILL.md"
+    ],
+    "local_only_files_survive_if_dir_not_wiped": [
+     ".upstream",
+     "LICENSE",
+     "NOTICE",
+     "references/anti-rationalization.md",
+     "references/context-economy.md",
+     "references/execution-flow.md",
+     "references/final-review.md",
+     "references/plan-execution-contract.md",
+     "references/task-loop.md",
+     "scripts/sdd-workspace",
+     "scripts/task-brief"
+    ],
+    "upstream_only_additions": [],
+    "note": "换装若整目录替换，local_only 文件（含 .upstream/NOTICE/LICENSE/本地新增 references）会一并消失；若仅覆盖同名文件，则只影响 overwrite_files 列出的 3 个文件。"
+   },
+   "evidence_cmd": "gh api \"repos/obra/superpowers/contents/skills/executing-plans?ref=v7.0.1\" ; gh api \"repos/obra/superpowers/contents/skills/executing-plans/SKILL.md?ref=v7.0.1\" -H \"Accept: application/vnd.github.raw\" ; export PYTHONPYCACHEPREFIX=/tmp/pycache_r264 && /c/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe _temp/r264_follow_version_diff.py",
+   "measured_at": "2026-10-29T01:55:33",
+   "heading_delta_summary": {
+    "up_only": [
+     "# Executing Plans",
+     "## When to Use",
+     "## The Process",
+     "## Setup",
+     "## The Task Loop",
+     "### 1. Take the task",
+     "### 2. Work the steps",
+     "### 3. The completion contract",
+     "### 4. Complete the task",
+     "## Final Review",
+     "## Finish",
+     "## Common Rationalizations"
+    ],
+    "local_only": [
+     "# Subagent-Driven Development — 计划执行段内核",
+     "## 何时用",
+     "## 何时不用",
+     "## 核心原则",
+     "## 只有这四种情况停下来问（其余一律继续）",
+     "## 开工前置（REQUIRED，不是建议）",
+     "## 收尾必须上呈两张清单",
+     "## 分卷索引",
+     "## Version history"
+    ],
+    "skill_md_fetch_error": null
+   },
+   "rollback_note": "D:\\global_skills 是 git 仓库（实测 HEAD 8e358806a369be65a4270c321c3fe7f9213cffdf，命令 `git -C D:/global_skills rev-parse HEAD`），但 subagent-driven-development/ 工作树当前为 dirty：MM NOTICE / MM SKILL.md / D scripts/sdd-workspace / D scripts/task-brief / D scripts/task-done / D scripts/task-start + ?? scripts/ ⇒ git 回滚只会回到 HEAD 8e358806、不等于换装前磁盘态。主回滚 = 换装前对 D:/global_skills/subagent-driven-development/ 做文件级快照（保留目录树与字节数），失败即整体回填；git 仅作第二道保险 `git checkout -- subagent-driven-development`（只读环境下未执行）。"
+  },
+  {
+   "slug": "test-driven-development",
+   "upstream_ref": "v7.0.1",
+   "upstream_path": "skills/test-driven-development",
+   "local_dir": "D:\\global_skills\\test-driven-development",
+   "local_version": "1.3.0",
+   "upstream_version": "7.0.1",
+   "rel_declared": "BEHIND",
+   "negative_control": false,
+   "state": "OK",
+   "upstream_files": [
+    "SKILL.md",
+    "writing-good-tests.md"
+   ],
+   "upstream_file_sizes": {
+    "SKILL.md": 9578,
+    "writing-good-tests.md": 8268
+   },
+   "local_files": [
+    ".upstream",
+    "LICENSE",
+    "NOTICE",
+    "SKILL.md",
+    "references/upstream-agent-skills-tdd-part2.md",
+    "references/upstream-agent-skills-tdd.md",
+    "testing-anti-patterns.md",
+    "writing-good-tests.md"
+   ],
+   "local_file_sizes": {
+    ".upstream": 54,
+    "LICENSE": 1070,
+    "NOTICE": 835,
+    "SKILL.md": 11635,
+    "testing-anti-patterns.md": 8251,
+    "writing-good-tests.md": 8268,
+    "references/upstream-agent-skills-tdd-part2.md": 4360,
+    "references/upstream-agent-skills-tdd.md": 3733
+   },
+   "only_local": [
+    ".upstream",
+    "LICENSE",
+    "NOTICE",
+    "references/upstream-agent-skills-tdd-part2.md",
+    "references/upstream-agent-skills-tdd.md",
+    "testing-anti-patterns.md"
+   ],
+   "only_upstream": [],
+   "size_diff": [
+    {
+     "file": "SKILL.md",
+     "local_bytes": 11635,
+     "upstream_bytes": 9578
+    }
+   ],
+   "same_bytes": [
+    "writing-good-tests.md"
+   ],
+   "file_level_identical": false,
+   "counts": {
+    "local": 8,
+    "upstream": 2
+   },
+   "skill_md_heading_delta": [
+    {
+     "heading": "# Test-Driven Development (TDD)",
+     "upstream": true,
+     "local": true
+    },
+    {
+     "heading": "## Overview",
+     "upstream": true,
+     "local": true
+    },
+    {
+     "heading": "## When to Use",
+     "upstream": true,
+     "local": true
+    },
+    {
+     "heading": "## The Iron Law",
+     "upstream": true,
+     "local": true
+    },
+    {
+     "heading": "## Red-Green-Refactor",
+     "upstream": true,
+     "local": true
+    },
+    {
+     "heading": "### RED - Write Failing Test",
+     "upstream": true,
+     "local": true
+    },
+    {
+     "heading": "### Verify RED - Watch It Fail",
+     "upstream": true,
+     "local": true
+    },
+    {
+     "heading": "### GREEN - Minimal Code",
+     "upstream": true,
+     "local": true
+    },
+    {
+     "heading": "### Verify GREEN - Watch It Pass",
+     "upstream": true,
+     "local": true
+    },
+    {
+     "heading": "### REFACTOR - Clean Up",
+     "upstream": true,
+     "local": true
+    },
+    {
+     "heading": "### Repeat",
+     "upstream": true,
+     "local": true
+    },
+    {
+     "heading": "## Good Tests",
+     "upstream": true,
+     "local": true
+    },
+    {
+     "heading": "## Common Rationalizations",
+     "upstream": true,
+     "local": true
+    },
+    {
+     "heading": "## Red Flags - STOP and Start Over",
+     "upstream": true,
+     "local": true
+    },
+    {
+     "heading": "## Example: Bug Fix",
+     "upstream": true,
+     "local": true
+    },
+    {
+     "heading": "## Verification Checklist",
+     "upstream": true,
+     "local": true
+    },
+    {
+     "heading": "## When Stuck",
+     "upstream": true,
+     "local": true
+    },
+    {
+     "heading": "## Debugging Integration",
+     "upstream": true,
+     "local": true
+    },
+    {
+     "heading": "## Final Rule",
+     "upstream": true,
+     "local": true
+    },
+    {
+     "heading": "## Why Order Matters",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## Testing Anti-Patterns",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## Upstream-absorbed sections（分卷指针）",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## Upstream-absorbed sections（分卷指针 · 二批）",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## Version history",
+     "upstream": false,
+     "local": true
+    }
+   ],
+   "overwrite_risk": {
+    "overwrite_files_if_upstream_copied_over_local": [
+     "SKILL.md",
+     "writing-good-tests.md"
+    ],
+    "byte_diff_files": [
+     "SKILL.md"
+    ],
+    "local_only_files_survive_if_dir_not_wiped": [
+     ".upstream",
+     "LICENSE",
+     "NOTICE",
+     "references/upstream-agent-skills-tdd-part2.md",
+     "references/upstream-agent-skills-tdd.md",
+     "testing-anti-patterns.md"
+    ],
+    "upstream_only_additions": [],
+    "note": "换装若整目录替换，local_only 文件（含 .upstream/NOTICE/LICENSE/本地新增 references）会一并消失；若仅覆盖同名文件，则只影响 overwrite_files 列出的 2 个文件。"
+   },
+   "evidence_cmd": "gh api \"repos/obra/superpowers/contents/skills/test-driven-development?ref=v7.0.1\" ; gh api \"repos/obra/superpowers/contents/skills/test-driven-development/SKILL.md?ref=v7.0.1\" -H \"Accept: application/vnd.github.raw\" ; export PYTHONPYCACHEPREFIX=/tmp/pycache_r264 && /c/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe _temp/r264_follow_version_diff.py",
+   "measured_at": "2026-10-29T01:55:37",
+   "heading_delta_summary": {
+    "up_only": [],
+    "local_only": [
+     "## Why Order Matters",
+     "## Testing Anti-Patterns",
+     "## Upstream-absorbed sections（分卷指针）",
+     "## Upstream-absorbed sections（分卷指针 · 二批）",
+     "## Version history"
+    ],
+    "skill_md_fetch_error": null
+   },
+   "rollback_note": "D:\\global_skills 是 git 仓库（实测 HEAD 8e358806a369be65a4270c321c3fe7f9213cffdf，命令 `git -C D:/global_skills rev-parse HEAD`），但 test-driven-development/ 工作树当前为 dirty：MM SKILL.md / D writing-good-tests.md + ?? writing-good-tests.md ⇒ git 回滚只会回到 HEAD 8e358806、不等于换装前磁盘态。主回滚 = 换装前对 D:/global_skills/test-driven-development/ 做文件级快照（保留目录树与字节数），失败即整体回填；git 仅作第二道保险 `git checkout -- test-driven-development`（只读环境下未执行）。"
+  },
+  {
+   "slug": "verification-before-completion",
+   "upstream_ref": "v7.0.1",
+   "upstream_path": "skills/verification-before-completion",
+   "local_dir": "D:\\global_skills\\verification-before-completion",
+   "local_version": "1.7.0",
+   "upstream_version": "7.0.1",
+   "rel_declared": "BEHIND",
+   "negative_control": false,
+   "state": "OK",
+   "upstream_files": [
+    "SKILL.md"
+   ],
+   "upstream_file_sizes": {
+    "SKILL.md": 3646
+   },
+   "local_files": [
+    ".upstream",
+    "LICENSE",
+    "NOTICE",
+    "SKILL.md"
+   ],
+   "local_file_sizes": {
+    ".upstream": 61,
+    "LICENSE": 1070,
+    "NOTICE": 814,
+    "SKILL.md": 23415
+   },
+   "only_local": [
+    ".upstream",
+    "LICENSE",
+    "NOTICE"
+   ],
+   "only_upstream": [],
+   "size_diff": [
+    {
+     "file": "SKILL.md",
+     "local_bytes": 23415,
+     "upstream_bytes": 3646
+    }
+   ],
+   "same_bytes": [],
+   "file_level_identical": false,
+   "counts": {
+    "local": 4,
+    "upstream": 1
+   },
+   "skill_md_heading_delta": [
+    {
+     "heading": "# Verification Before Completion",
+     "upstream": true,
+     "local": false
+    },
+    {
+     "heading": "## Overview",
+     "upstream": true,
+     "local": false
+    },
+    {
+     "heading": "## The Iron Law",
+     "upstream": true,
+     "local": false
+    },
+    {
+     "heading": "## The Gate Function",
+     "upstream": true,
+     "local": false
+    },
+    {
+     "heading": "## Common Failures",
+     "upstream": true,
+     "local": false
+    },
+    {
+     "heading": "## Red Flags - STOP",
+     "upstream": true,
+     "local": false
+    },
+    {
+     "heading": "## Rationalization Prevention",
+     "upstream": true,
+     "local": false
+    },
+    {
+     "heading": "## Key Patterns",
+     "upstream": true,
+     "local": false
+    },
+    {
+     "heading": "## When To Apply",
+     "upstream": true,
+     "local": false
+    },
+    {
+     "heading": "# Skill: Verification Before Completion",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## When to use",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## 何时不用本 skill（边界）",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## The Rule",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## The Iron Law（吸收上游 2026-10-10 v7.0.0）",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## The Gate Function（吸收上游 2026-10-10 v7.0.0）",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## Claim → Evidence Mapping",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## 标记在位 \\u2260 语义生效（2026-10-24 一手：present-but-dead patch）",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## 门禁读数须带**测量时点与测量面**（2026-10-25 一手：绿了，又被别人的落地刷红）",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## 上下文摘要里的叙述**不是证据**（2026-10-28 一手：我把摘要记忆当读数报给了老大）",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## Anti-Patterns (Excuse → Reality)",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## Common Failures（吸收上游 2026-10-10 v7.0.0）",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## Red Flags - STOP（吸收上游 2026-10-10 v7.0.0）",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## Overview（吸收上游 2026-10-10 v7.0.0）",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## Rationalization Prevention（吸收上游 2026-10-10 v7.0.0）",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## Key Patterns（吸收上游 2026-10-10 v7.0.0）",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## When To Apply（吸收上游 2026-10-10 v7.0.0）",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## Verification Depth by Risk",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## Post-Verification Checklist",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## Special Cases",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "### \"It works on my machine\"",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "### Tests that are slow",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "### Flaky tests",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "### No tests exist",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "### 守卫跳过的命令 = 没跑过的命令（R315，2026-10-23 一手）",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## When Verification Fails",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## 优质完成四判据（焚诀 behavior_core #36，老大 2026-10-21 立规）",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "### 判据不齐时的正确动作（不是收尾，是继续）",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "### 与本 skill 其余判据的分工（别混）",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## Version history",
+     "upstream": false,
+     "local": true
+    }
+   ],
+   "overwrite_risk": {
+    "overwrite_files_if_upstream_copied_over_local": [
+     "SKILL.md"
+    ],
+    "byte_diff_files": [
+     "SKILL.md"
+    ],
+    "local_only_files_survive_if_dir_not_wiped": [
+     ".upstream",
+     "LICENSE",
+     "NOTICE"
+    ],
+    "upstream_only_additions": [],
+    "note": "换装若整目录替换，local_only 文件（含 .upstream/NOTICE/LICENSE/本地新增 references）会一并消失；若仅覆盖同名文件，则只影响 overwrite_files 列出的 1 个文件。"
+   },
+   "evidence_cmd": "gh api \"repos/obra/superpowers/contents/skills/verification-before-completion?ref=v7.0.1\" ; gh api \"repos/obra/superpowers/contents/skills/verification-before-completion/SKILL.md?ref=v7.0.1\" -H \"Accept: application/vnd.github.raw\" ; export PYTHONPYCACHEPREFIX=/tmp/pycache_r264 && /c/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe _temp/r264_follow_version_diff.py",
+   "measured_at": "2026-10-29T01:55:40",
+   "heading_delta_summary": {
+    "up_only": [
+     "# Verification Before Completion",
+     "## Overview",
+     "## The Iron Law",
+     "## The Gate Function",
+     "## Common Failures",
+     "## Red Flags - STOP",
+     "## Rationalization Prevention",
+     "## Key Patterns",
+     "## When To Apply"
+    ],
+    "local_only": [
+     "# Skill: Verification Before Completion",
+     "## When to use",
+     "## 何时不用本 skill（边界）",
+     "## The Rule",
+     "## The Iron Law（吸收上游 2026-10-10 v7.0.0）",
+     "## The Gate Function（吸收上游 2026-10-10 v7.0.0）",
+     "## Claim → Evidence Mapping",
+     "## 标记在位 \\u2260 语义生效（2026-10-24 一手：present-but-dead patch）",
+     "## 门禁读数须带**测量时点与测量面**（2026-10-25 一手：绿了，又被别人的落地刷红）",
+     "## 上下文摘要里的叙述**不是证据**（2026-10-28 一手：我把摘要记忆当读数报给了老大）",
+     "## Anti-Patterns (Excuse → Reality)",
+     "## Common Failures（吸收上游 2026-10-10 v7.0.0）",
+     "## Red Flags - STOP（吸收上游 2026-10-10 v7.0.0）",
+     "## Overview（吸收上游 2026-10-10 v7.0.0）",
+     "## Rationalization Prevention（吸收上游 2026-10-10 v7.0.0）",
+     "## Key Patterns（吸收上游 2026-10-10 v7.0.0）",
+     "## When To Apply（吸收上游 2026-10-10 v7.0.0）",
+     "## Verification Depth by Risk",
+     "## Post-Verification Checklist",
+     "## Special Cases",
+     "### \"It works on my machine\"",
+     "### Tests that are slow",
+     "### Flaky tests",
+     "### No tests exist",
+     "### 守卫跳过的命令 = 没跑过的命令（R315，2026-10-23 一手）",
+     "## When Verification Fails",
+     "## 优质完成四判据（焚诀 behavior_core #36，老大 2026-10-21 立规）",
+     "### 判据不齐时的正确动作（不是收尾，是继续）",
+     "### 与本 skill 其余判据的分工（别混）",
+     "## Version history"
+    ],
+    "skill_md_fetch_error": null
+   },
+   "rollback_note": "D:\\global_skills 是 git 仓库（实测 HEAD 8e358806a369be65a4270c321c3fe7f9213cffdf，命令 `git -C D:/global_skills rev-parse HEAD`），但 verification-before-completion/ 工作树当前为 dirty：(status --porcelain 未列出改动 => 干净) ⇒ git 回滚只会回到 HEAD 8e358806、不等于换装前磁盘态。主回滚 = 换装前对 D:/global_skills/verification-before-completion/ 做文件级快照（保留目录树与字节数），失败即整体回填；git 仅作第二道保险 `git checkout -- verification-before-completion`（只读环境下未执行）。"
+  },
+  {
+   "slug": "writing-plans",
+   "upstream_ref": "v7.0.1",
+   "upstream_path": "skills/writing-plans",
+   "local_dir": "D:\\global_skills\\writing-plans",
+   "local_version": "1.0.0",
+   "upstream_version": "7.0.1",
+   "rel_declared": "BEHIND",
+   "negative_control": false,
+   "state": "OK",
+   "upstream_files": [
+    "SKILL.md"
+   ],
+   "upstream_file_sizes": {
+    "SKILL.md": 10335
+   },
+   "local_files": [
+    ".upstream",
+    "LICENSE",
+    "NOTICE",
+    "SKILL.md",
+    "plan-document-reviewer-prompt.md"
+   ],
+   "local_file_sizes": {
+    ".upstream": 44,
+    "LICENSE": 1070,
+    "NOTICE": 826,
+    "plan-document-reviewer-prompt.md": 1714,
+    "SKILL.md": 11266
+   },
+   "only_local": [
+    ".upstream",
+    "LICENSE",
+    "NOTICE",
+    "plan-document-reviewer-prompt.md"
+   ],
+   "only_upstream": [],
+   "size_diff": [
+    {
+     "file": "SKILL.md",
+     "local_bytes": 11266,
+     "upstream_bytes": 10335
+    }
+   ],
+   "same_bytes": [],
+   "file_level_identical": false,
+   "counts": {
+    "local": 5,
+    "upstream": 1
+   },
+   "skill_md_heading_delta": [
+    {
+     "heading": "# Writing Plans",
+     "upstream": true,
+     "local": true
+    },
+    {
+     "heading": "## Overview",
+     "upstream": true,
+     "local": true
+    },
+    {
+     "heading": "## Scope Check",
+     "upstream": true,
+     "local": true
+    },
+    {
+     "heading": "## File Structure",
+     "upstream": true,
+     "local": true
+    },
+    {
+     "heading": "## Task Right-Sizing",
+     "upstream": true,
+     "local": true
+    },
+    {
+     "heading": "## Step Granularity",
+     "upstream": true,
+     "local": true
+    },
+    {
+     "heading": "## Plan Document Header",
+     "upstream": true,
+     "local": true
+    },
+    {
+     "heading": "# [Feature Name] Implementation Plan",
+     "upstream": true,
+     "local": true
+    },
+    {
+     "heading": "## Global Constraints",
+     "upstream": true,
+     "local": true
+    },
+    {
+     "heading": "## Review Focus",
+     "upstream": true,
+     "local": true
+    },
+    {
+     "heading": "## Task Structure",
+     "upstream": true,
+     "local": true
+    },
+    {
+     "heading": "### Task N: [Component Name]",
+     "upstream": true,
+     "local": true
+    },
+    {
+     "heading": "## What a Step Contains",
+     "upstream": true,
+     "local": true
+    },
+    {
+     "heading": "## Self-Review",
+     "upstream": true,
+     "local": true
+    },
+    {
+     "heading": "## Execution Handoff",
+     "upstream": true,
+     "local": true
+    },
+    {
+     "heading": "## No Placeholders",
+     "upstream": false,
+     "local": true
+    },
+    {
+     "heading": "## Remember",
+     "upstream": false,
+     "local": true
+    }
+   ],
+   "overwrite_risk": {
+    "overwrite_files_if_upstream_copied_over_local": [
+     "SKILL.md"
+    ],
+    "byte_diff_files": [
+     "SKILL.md"
+    ],
+    "local_only_files_survive_if_dir_not_wiped": [
+     ".upstream",
+     "LICENSE",
+     "NOTICE",
+     "plan-document-reviewer-prompt.md"
+    ],
+    "upstream_only_additions": [],
+    "note": "换装若整目录替换，local_only 文件（含 .upstream/NOTICE/LICENSE/本地新增 references）会一并消失；若仅覆盖同名文件，则只影响 overwrite_files 列出的 1 个文件。"
+   },
+   "evidence_cmd": "gh api \"repos/obra/superpowers/contents/skills/writing-plans?ref=v7.0.1\" ; gh api \"repos/obra/superpowers/contents/skills/writing-plans/SKILL.md?ref=v7.0.1\" -H \"Accept: application/vnd.github.raw\" ; export PYTHONPYCACHEPREFIX=/tmp/pycache_r264 && /c/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe _temp/r264_follow_version_diff.py",
+   "measured_at": "2026-10-29T01:55:43",
+   "heading_delta_summary": {
+    "up_only": [],
+    "local_only": [
+     "## No Placeholders",
+     "## Remember"
+    ],
+    "skill_md_fetch_error": null
+   },
+   "rollback_note": "D:\\global_skills 是 git 仓库（实测 HEAD 8e358806a369be65a4270c321c3fe7f9213cffdf，命令 `git -C D:/global_skills rev-parse HEAD`），但 writing-plans/ 工作树当前为 dirty：(status --porcelain 未列出改动 => 干净) ⇒ git 回滚只会回到 HEAD 8e358806、不等于换装前磁盘态。主回滚 = 换装前对 D:/global_skills/writing-plans/ 做文件级快照（保留目录树与字节数），失败即整体回填；git 仅作第二道保险 `git checkout -- writing-plans`（只读环境下未执行）。"
+  }
+ ],
+ "git_facts": {
+  "repo_root": "D:/global_skills",
+  "rev_parse_head": "8e358806a369be65a4270c321c3fe7f9213cffdf",
+  "cmd": "git -C D:/global_skills rev-parse HEAD"
+ },
+ "negative_control": {
+  "slug": "brainstorming",
+  "how": "python _temp/r264_follow_version_diff.py --negctl brainstorming _temp/r264_negctl.json",
+  "local_dir_forced": "D:\\global_skills\\brainstorming__DOES_NOT_EXIST_NEGCTL",
+  "observed_state": "UNVERIFIED",
+  "observed_reason": {
+   "local": {
+    "code": "LOCAL_DIR_MISSING",
+    "path": "D:\\global_skills\\brainstorming__DOES_NOT_EXIST_NEGCTL"
+   },
+   "upstream": null
+  },
+  "observed_stdout": "UNVERIFIED brainstorming {\"local\": {\"code\": \"LOCAL_DIR_MISSING\", ...}}",
+  "verdict": "PASS: 不存在路径 => UNVERIFIED（LOCAL_DIR_MISSING），未静默判为「无差异」"
+ },
+ "rows_fully_identical": [],
+ "conservation": {
+  "rows": 5,
+  "expect": 5,
+  "equal": true,
+  "unavailable_n": 0,
+  "rows_fully_identical": [],
+  "note": "rows==5；每件 only_local/only_upstream/size_diff 至少一项非空（原产出已满足，本字段由 Lead 补写）"
+ },
+ "lead_completion_note": [
+  "本件由子代理产出 JSON 后在生成 md 步骤失败（#44⑦ 明确失败）；Lead 独立复验其读数后补齐守恒字段与 md，未改动任何读数。复验方式：直接用 gh api 取 obra/superpowers @v7.0.1 的 skills/<slug> 目录清单与本地目录比对",
+  "（实测 writing-plans：上游仅 SKILL.md 10335B，本地 SKILL.md 11266B 另有 LICENSE/NOTICE/prompt 等 4 个上游没有的文件）。"
+ ]
+}

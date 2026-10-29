@@ -1,0 +1,1076 @@
+{
+ "schema": "sidecar-semantics-v1",
+ "generated_at": "2026-10-29T02:00:49",
+ "provenance_cmd": "python 05-exec/r264_sidecar_semantics.py",
+ "rule": "R263-3: classify .upstream sidecars so BEHIND is only read as a version gap for SAME_LINEAGE",
+ "face_in": "06-benchmark\\r263_declared_upstream_face.json",
+ "rows_n": 55,
+ "by_semantics": {
+  "SAME_LINEAGE": 47,
+  "TOOL": 2,
+  "UNKNOWN": 4,
+  "COLLECTION": 2
+ },
+ "same_lineage_behind": [
+  "brainstorming",
+  "coding-agent",
+  "data-analysis",
+  "find-skills",
+  "frontend-slides",
+  "grill-me",
+  "gstack",
+  "ppt-master",
+  "rag-eval",
+  "subagent-driven-development",
+  "test-driven-development",
+  "ui-ux-pro-max",
+  "verification-before-completion"
+ ],
+ "rows": [
+  {
+   "skill": "agent-browser",
+   "upstream_repo": "vercel-labs/agent-browser",
+   "upstream_path": "skills/agent-browser",
+   "local_version": "3.2.0",
+   "upstream_version": "0.40.0",
+   "rel": "AHEAD",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 2,
+    "name": "agent-browser",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "algorithmic-art",
+   "upstream_repo": "anthropics/skills",
+   "upstream_path": "skills/algorithmic-art",
+   "local_version": "1.0.0",
+   "upstream_version": null,
+   "rel": "UNKNOWN_UPSTREAM_RELEASE",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 11,
+    "name": "skills",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "brainstorming",
+   "upstream_repo": "obra/superpowers",
+   "upstream_path": "skills/brainstorming",
+   "local_version": "1.2.0",
+   "upstream_version": "7.0.1",
+   "rel": "BEHIND",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 5,
+    "name": "superpowers",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "brand-guidelines",
+   "upstream_repo": "anthropics/skills",
+   "upstream_path": "skills/brand-guidelines",
+   "local_version": "1.0.0",
+   "upstream_version": null,
+   "rel": "UNKNOWN_UPSTREAM_RELEASE",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 11,
+    "name": "skills",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "browser-cdp",
+   "upstream_repo": "ChromeDevTools/chrome-devtools-mcp",
+   "upstream_path": null,
+   "local_version": "1.1.0",
+   "upstream_version": null,
+   "rel": "UNKNOWN_UPSTREAM_RELEASE",
+   "semantics": "TOOL",
+   "rule": "tool_name_or_desc",
+   "evidence": {
+    "has_path": false,
+    "path_exists": null,
+    "shared_local_n": 1,
+    "name": "chrome-devtools-mcp",
+    "desc_hit": "mcp"
+   },
+   "meta_error": null,
+   "path_probe": "unknown"
+  },
+  {
+   "skill": "canvas-design",
+   "upstream_repo": "anthropics/skills",
+   "upstream_path": "skills/canvas-design",
+   "local_version": "1.0.0",
+   "upstream_version": null,
+   "rel": "UNKNOWN_UPSTREAM_RELEASE",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 11,
+    "name": "skills",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "chart-visualization",
+   "upstream_repo": "antvis/chart-visualization-skills",
+   "upstream_path": "skills/chart-visualization",
+   "local_version": "1.0.0",
+   "upstream_version": null,
+   "rel": "UNKNOWN_UPSTREAM_RELEASE",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 1,
+    "name": "chart-visualization-skills",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "coding-agent",
+   "upstream_repo": "sickn33/agentic-awesome-skills",
+   "upstream_path": "plugins/agentic-awesome-skills-claude/skills/codex-delegate",
+   "local_version": "1.3.0",
+   "upstream_version": "20.1.0",
+   "rel": "BEHIND",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 1,
+    "name": "agentic-awesome-skills",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "commit-archaeologist",
+   "upstream_repo": "Shubhamsaboo/awesome-llm-apps",
+   "upstream_path": "agent_skills/commit-archaeologist",
+   "local_version": "1.0.0",
+   "upstream_version": null,
+   "rel": "UNKNOWN_UPSTREAM_RELEASE",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 2,
+    "name": "awesome-llm-apps",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "data-analysis",
+   "upstream_repo": "K-Dense-AI/scientific-agent-skills",
+   "upstream_path": "skills/exploratory-data-analysis",
+   "local_version": "1.4.0",
+   "upstream_version": "2.72.0",
+   "rel": "BEHIND",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 1,
+    "name": "scientific-agent-skills",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "defuddle",
+   "upstream_repo": "kepano/defuddle",
+   "upstream_path": null,
+   "local_version": "1.1.0",
+   "upstream_version": "0.19.6",
+   "rel": "AHEAD",
+   "semantics": "UNKNOWN",
+   "rule": "no_rule_matched",
+   "evidence": {
+    "has_path": false,
+    "path_exists": null,
+    "shared_local_n": 1,
+    "name": "defuddle",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "unknown"
+  },
+  {
+   "skill": "diagram-maker",
+   "upstream_repo": "github/awesome-copilot",
+   "upstream_path": "skills/excalidraw-diagram-generator",
+   "local_version": "1.2.0",
+   "upstream_version": null,
+   "rel": "UNKNOWN_UPSTREAM_RELEASE",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 1,
+    "name": "awesome-copilot",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "doc-coauthoring",
+   "upstream_repo": "anthropics/skills",
+   "upstream_path": "skills/doc-coauthoring",
+   "local_version": "2.0.0",
+   "upstream_version": null,
+   "rel": "UNKNOWN_UPSTREAM_RELEASE",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 11,
+    "name": "skills",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "docx",
+   "upstream_repo": "anthropics/skills",
+   "upstream_path": "skills/docx",
+   "local_version": "2.2.0",
+   "upstream_version": null,
+   "rel": "UNKNOWN_UPSTREAM_RELEASE",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 11,
+    "name": "skills",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "dogfood",
+   "upstream_repo": "microsoft/playwright-mcp",
+   "upstream_path": null,
+   "local_version": "1.1.0",
+   "upstream_version": "0.0.83",
+   "rel": "AHEAD",
+   "semantics": "TOOL",
+   "rule": "tool_name_or_desc",
+   "evidence": {
+    "has_path": false,
+    "path_exists": null,
+    "shared_local_n": 1,
+    "name": "playwright-mcp",
+    "desc_hit": "playwright"
+   },
+   "meta_error": null,
+   "path_probe": "unknown"
+  },
+  {
+   "skill": "electron",
+   "upstream_repo": "vercel-labs/agent-browser",
+   "upstream_path": "skill-data/electron",
+   "local_version": "1.1.0",
+   "upstream_version": "0.40.0",
+   "rel": "AHEAD",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 2,
+    "name": "agent-browser",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "figma",
+   "upstream_repo": "heygen-com/hyperframes",
+   "upstream_path": "skills/figma",
+   "local_version": "1.1.0",
+   "upstream_version": "0.8.214",
+   "rel": "AHEAD",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 5,
+    "name": "hyperframes",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "find-skills",
+   "upstream_repo": "vercel-labs/skills",
+   "upstream_path": "skills/find-skills",
+   "local_version": "1.1.0",
+   "upstream_version": "1.7.4",
+   "rel": "BEHIND",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 1,
+    "name": "skills",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "frontend-design",
+   "upstream_repo": "anthropics/skills",
+   "upstream_path": "skills/frontend-design",
+   "local_version": "2.1.0",
+   "upstream_version": null,
+   "rel": "UNKNOWN_UPSTREAM_RELEASE",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 11,
+    "name": "skills",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "frontend-slides",
+   "upstream_repo": "zarazhangrui/frontend-slides",
+   "upstream_path": "plugins/frontend-slides/skills/frontend-slides",
+   "local_version": "1.3.0",
+   "upstream_version": "2.1.0",
+   "rel": "BEHIND",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 1,
+    "name": "frontend-slides",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "grill-me",
+   "upstream_repo": "mattpocock/skills",
+   "upstream_path": "skills/productivity/grill-me",
+   "local_version": "1.2.0",
+   "upstream_version": "1.3.1",
+   "rel": "BEHIND",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 1,
+    "name": "skills",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "gstack",
+   "upstream_repo": "garrytan/gstack",
+   "upstream_path": "capy/skill/gstack",
+   "local_version": "1.3.0",
+   "upstream_version": "1.91.242.0",
+   "rel": "BEHIND",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 1,
+    "name": "gstack",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "html-ppt",
+   "upstream_repo": "lewislulu/html-ppt-skill",
+   "upstream_path": null,
+   "local_version": "1.0.0",
+   "upstream_version": null,
+   "rel": "UNKNOWN_UPSTREAM_RELEASE",
+   "semantics": "UNKNOWN",
+   "rule": "no_rule_matched",
+   "evidence": {
+    "has_path": false,
+    "path_exists": null,
+    "shared_local_n": 1,
+    "name": "html-ppt-skill",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "unknown"
+  },
+  {
+   "skill": "hyperframes",
+   "upstream_repo": "heygen-com/hyperframes",
+   "upstream_path": "skills/hyperframes",
+   "local_version": "1.7.0",
+   "upstream_version": "0.8.214",
+   "rel": "AHEAD",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 5,
+    "name": "hyperframes",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "hyperframes-cli",
+   "upstream_repo": "heygen-com/hyperframes",
+   "upstream_path": "skills/hyperframes-cli",
+   "local_version": "1.1.0",
+   "upstream_version": "0.8.214",
+   "rel": "AHEAD",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 5,
+    "name": "hyperframes",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "hyperframes-media",
+   "upstream_repo": "heygen-com/hyperframes",
+   "upstream_path": "skills/media-use",
+   "local_version": "1.7.0",
+   "upstream_version": "0.8.214",
+   "rel": "AHEAD",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 5,
+    "name": "hyperframes",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "hyperframes-registry",
+   "upstream_repo": "heygen-com/hyperframes",
+   "upstream_path": "skills/hyperframes-registry",
+   "local_version": "1.1.0",
+   "upstream_version": "0.8.214",
+   "rel": "AHEAD",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 5,
+    "name": "hyperframes",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "internal-comms",
+   "upstream_repo": "anthropics/skills",
+   "upstream_path": "skills/internal-comms",
+   "local_version": "1.0.0",
+   "upstream_version": null,
+   "rel": "UNKNOWN_UPSTREAM_RELEASE",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 11,
+    "name": "skills",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "mcp-builder",
+   "upstream_repo": "anthropics/skills",
+   "upstream_path": "skills/mcp-builder",
+   "local_version": "1.0.0",
+   "upstream_version": null,
+   "rel": "UNKNOWN_UPSTREAM_RELEASE",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 11,
+    "name": "skills",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "oracle",
+   "upstream_repo": "steipete/oracle",
+   "upstream_path": "skills/oracle",
+   "local_version": "1.2.0",
+   "upstream_version": "0.22.2",
+   "rel": "AHEAD",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 1,
+    "name": "oracle",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "pdf",
+   "upstream_repo": "anthropics/skills",
+   "upstream_path": "skills/pdf",
+   "local_version": "1.1.0",
+   "upstream_version": null,
+   "rel": "UNKNOWN_UPSTREAM_RELEASE",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 11,
+    "name": "skills",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "ppt-master",
+   "upstream_repo": "hugohe3/ppt-master",
+   "upstream_path": "skills/ppt-master",
+   "local_version": "6.6.0",
+   "upstream_version": "6.7.3",
+   "rel": "BEHIND",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 1,
+    "name": "ppt-master",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "rag-eval",
+   "upstream_repo": "NVIDIA-AI-Blueprints/rag",
+   "upstream_path": "skills/rag-eval",
+   "local_version": "2.6.0",
+   "upstream_version": "2.6.2",
+   "rel": "BEHIND",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 1,
+    "name": "rag",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "scope-creep-detector",
+   "upstream_repo": "Shubhamsaboo/awesome-llm-apps",
+   "upstream_path": "agent_skills/scope-creep-detector",
+   "local_version": "1.0.0",
+   "upstream_version": null,
+   "rel": "UNKNOWN_UPSTREAM_RELEASE",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 2,
+    "name": "awesome-llm-apps",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "security-audit",
+   "upstream_repo": "trailofbits/skills",
+   "upstream_path": null,
+   "local_version": "2.0.1",
+   "upstream_version": null,
+   "rel": "UNKNOWN_UPSTREAM_RELEASE",
+   "semantics": "COLLECTION",
+   "rule": "name_looks_like_list",
+   "evidence": {
+    "has_path": false,
+    "path_exists": null,
+    "shared_local_n": 1,
+    "name": "skills",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "unknown"
+  },
+  {
+   "skill": "story",
+   "upstream_repo": "worldwonderer/oh-story-claudecode",
+   "upstream_path": "skills/story",
+   "local_version": "1.1.0",
+   "upstream_version": "0.9.1",
+   "rel": "AHEAD",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 11,
+    "name": "oh-story-claudecode",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "story-cover",
+   "upstream_repo": "worldwonderer/oh-story-claudecode",
+   "upstream_path": "skills/story-cover",
+   "local_version": "1.1.0",
+   "upstream_version": "0.9.1",
+   "rel": "AHEAD",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 11,
+    "name": "oh-story-claudecode",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "story-deslop",
+   "upstream_repo": "worldwonderer/oh-story-claudecode",
+   "upstream_path": "skills/story-deslop",
+   "local_version": "1.2.0",
+   "upstream_version": "0.9.1",
+   "rel": "AHEAD",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 11,
+    "name": "oh-story-claudecode",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "story-import",
+   "upstream_repo": "worldwonderer/oh-story-claudecode",
+   "upstream_path": "skills/story-import",
+   "local_version": "1.3.0",
+   "upstream_version": "0.9.1",
+   "rel": "AHEAD",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 11,
+    "name": "oh-story-claudecode",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "story-long-analyze",
+   "upstream_repo": "worldwonderer/oh-story-claudecode",
+   "upstream_path": "skills/story-long-analyze",
+   "local_version": "1.2.0",
+   "upstream_version": "0.9.1",
+   "rel": "AHEAD",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 11,
+    "name": "oh-story-claudecode",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "story-long-write",
+   "upstream_repo": "worldwonderer/oh-story-claudecode",
+   "upstream_path": "skills/story-long-write",
+   "local_version": "1.4.0",
+   "upstream_version": "0.9.1",
+   "rel": "AHEAD",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 11,
+    "name": "oh-story-claudecode",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "story-review",
+   "upstream_repo": "worldwonderer/oh-story-claudecode",
+   "upstream_path": "skills/story-review",
+   "local_version": "1.5.0",
+   "upstream_version": "0.9.1",
+   "rel": "AHEAD",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 11,
+    "name": "oh-story-claudecode",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "story-scan",
+   "upstream_repo": "worldwonderer/oh-story-claudecode",
+   "upstream_path": "skills/story-long-scan",
+   "local_version": "1.1.0",
+   "upstream_version": "0.9.1",
+   "rel": "AHEAD",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 11,
+    "name": "oh-story-claudecode",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "story-setup",
+   "upstream_repo": "worldwonderer/oh-story-claudecode",
+   "upstream_path": "skills/story-setup",
+   "local_version": "1.6.0",
+   "upstream_version": "0.9.1",
+   "rel": "AHEAD",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 11,
+    "name": "oh-story-claudecode",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "story-short-analyze",
+   "upstream_repo": "worldwonderer/oh-story-claudecode",
+   "upstream_path": "skills/story-short-analyze",
+   "local_version": "3.1.0",
+   "upstream_version": "0.9.1",
+   "rel": "AHEAD",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 11,
+    "name": "oh-story-claudecode",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "story-short-write",
+   "upstream_repo": "worldwonderer/oh-story-claudecode",
+   "upstream_path": "skills/story-short-write",
+   "local_version": "1.3.0",
+   "upstream_version": "0.9.1",
+   "rel": "AHEAD",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 11,
+    "name": "oh-story-claudecode",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "subagent-driven-development",
+   "upstream_repo": "obra/superpowers",
+   "upstream_path": "skills/executing-plans",
+   "local_version": "1.3.0",
+   "upstream_version": "7.0.1",
+   "rel": "BEHIND",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 5,
+    "name": "superpowers",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "taskflow",
+   "upstream_repo": "gastownhall/beads",
+   "upstream_path": null,
+   "local_version": "1.1.0",
+   "upstream_version": "1.3.2",
+   "rel": "BEHIND",
+   "semantics": "UNKNOWN",
+   "rule": "no_rule_matched",
+   "evidence": {
+    "has_path": false,
+    "path_exists": null,
+    "shared_local_n": 1,
+    "name": "beads",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "unknown"
+  },
+  {
+   "skill": "test-driven-development",
+   "upstream_repo": "obra/superpowers",
+   "upstream_path": "skills/test-driven-development",
+   "local_version": "1.3.0",
+   "upstream_version": "7.0.1",
+   "rel": "BEHIND",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 5,
+    "name": "superpowers",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "theme-factory",
+   "upstream_repo": "anthropics/skills",
+   "upstream_path": "skills/theme-factory",
+   "local_version": "1.0.0",
+   "upstream_version": null,
+   "rel": "UNKNOWN_UPSTREAM_RELEASE",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 11,
+    "name": "skills",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "ui-ux-pro-max",
+   "upstream_repo": "nextlevelbuilder/ui-ux-pro-max-skill",
+   "upstream_path": ".claude/skills/ui-ux-pro-max",
+   "local_version": "1.5.0",
+   "upstream_version": "2.15.0",
+   "rel": "BEHIND",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 1,
+    "name": "ui-ux-pro-max-skill",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "verification-before-completion",
+   "upstream_repo": "obra/superpowers",
+   "upstream_path": "skills/verification-before-completion",
+   "local_version": "1.7.0",
+   "upstream_version": "7.0.1",
+   "rel": "BEHIND",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 5,
+    "name": "superpowers",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  },
+  {
+   "skill": "web-access",
+   "upstream_repo": "Panniantong/Agent-Reach",
+   "upstream_path": null,
+   "local_version": "2.6.0",
+   "upstream_version": "1.6.0",
+   "rel": "AHEAD",
+   "semantics": "UNKNOWN",
+   "rule": "no_rule_matched",
+   "evidence": {
+    "has_path": false,
+    "path_exists": null,
+    "shared_local_n": 1,
+    "name": "Agent-Reach",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "unknown"
+  },
+  {
+   "skill": "writing-plans",
+   "upstream_repo": "obra/superpowers",
+   "upstream_path": "skills/writing-plans",
+   "local_version": "1.0.0",
+   "upstream_version": "7.0.1",
+   "rel": "BEHIND",
+   "semantics": "COLLECTION",
+   "rule": "serves>=3_local_skills",
+   "evidence": {
+    "has_path": true,
+    "path_exists": null,
+    "shared_local_n": 5,
+    "name": "superpowers",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "unknown"
+  },
+  {
+   "skill": "xlsx",
+   "upstream_repo": "anthropics/skills",
+   "upstream_path": "skills/xlsx",
+   "local_version": "1.2.0",
+   "upstream_version": null,
+   "rel": "UNKNOWN_UPSTREAM_RELEASE",
+   "semantics": "SAME_LINEAGE",
+   "rule": "path_in_tree",
+   "evidence": {
+    "has_path": true,
+    "path_exists": true,
+    "shared_local_n": 11,
+    "name": "skills",
+    "desc_hit": null
+   },
+   "meta_error": null,
+   "path_probe": "exists"
+  }
+ ]
+}
