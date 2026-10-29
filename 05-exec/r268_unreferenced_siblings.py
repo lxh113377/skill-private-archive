@@ -36,6 +36,11 @@ SKILLS_ROOT = os.environ.get('ZIJIAN_SKILLS_ROOT', 'D:/global_skills')
 OUT_DEFAULT = os.path.join(BENCH, 'r268_unreferenced_siblings.json')
 
 EXEMPT_NAMES = {'LICENSE', 'NOTICE', '.upstream', 'SKILL.md'}
+# 平台元数据类豁免（R272-1 裁定，r273 落地）：meta.json / _skillhub_meta.json / .claude-plugin/* 由平台
+# 读取（作者、图标、上架描述），不是给代理读的技能内容 ⇒ 「SKILL.md 没指向它」不构成缺陷。
+# 一手依据：frontend-slides 与 html-ppt 两件都有 meta.json、两件的 SKILL.md 对它的提及数都是 0（同族一致）。
+EXEMPT_PLATFORM = {'meta.json', '_skillhub_meta.json'}
+EXEMPT_PLATFORM_DIRS = ('.claude-plugin/',)
 RE_PATH_TOKEN = re.compile(r'[A-Za-z0-9_][A-Za-z0-9_./-]*\.(?:md|json|txt|py|css|js|html|sh|ya?ml)')
 FILE_EXTS = ('.md', '.json', '.txt', '.py', '.css', '.js', '.html', '.sh', '.yaml', '.yml')
 
@@ -81,6 +86,11 @@ def walk_files(skill_dir):
         dirnames[:] = [d for d in dirnames if not d.startswith('.') and d not in ('__pycache__', 'node_modules')]
         for fn in filenames:
             if fn in EXEMPT_NAMES or fn.lower() in ('license', 'notice'):
+                exempt += 1
+                continue
+            # 平台元数据类：按名或其目录前缀豁免（R272-1 裁定）—— 与上面同列，便于「豁免了多少」可读。
+            _rel_head = os.path.relpath(os.path.join(dirpath, fn), skill_dir).replace(os.sep, '/')
+            if fn in EXEMPT_PLATFORM or _rel_head.startswith(EXEMPT_PLATFORM_DIRS):
                 exempt += 1
                 continue
             if fn.startswith('.'):
@@ -221,7 +231,10 @@ def selftest():
             ck('t8 full-repo: bold-template-pack files exist (else this leg is vacuous)', False, 'no files found')
         else:
             unref = [f for f in bang if not classify(f, os.path.basename(f), [p for p in f.split('/')[:-1]], toks, fs_text)[0]]
-            ck('t8 full-repo: frontend-slides package files still unreferenced (r267 finding)', len(unref) > 0, unref[:3])
+            # 这条腿在 r268 立时断言「包内件仍未被引用」（当时的真缺陷）。r269 补指针 + r272 范式迁移后该缺陷已修，
+        # 故 r273 把它翻转成**回归守卫**：现在必须全部被引用；一旦有人再丢指针，这条腿立刻红（不再是恒真断言）。
+        ck('t8 full-repo: frontend-slides package files are now referenced (r267 gap fixed; guard against regression)',
+           len(unref) == 0 and len(bang) > 0, 'unref=%s bang=%d' % (unref[:3], len(bang)))
     else:
         print('SKIP t8 full-repo leg (frontend-slides absent)')
     n_fail = sum(1 for ok, _, _ in rows if not ok)

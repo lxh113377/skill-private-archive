@@ -1,14 +1,14 @@
 {
  "schema": "unreferenced-siblings-v1",
- "generated_at": "2026-10-29T19:31:57",
+ "generated_at": "2026-10-29T19:55:27",
  "provenance_cmd": "python 05-exec/r268_unreferenced_siblings.py",
  "rule": "R267-1: a file on disk that SKILL.md never points at is unreachable content",
  "skills_root": "D:/global_skills",
  "skills_n": 194,
- "skills_with_unreferenced_n": 58,
- "skills_clean_n": 133,
- "unreferenced_total_n": 247,
- "unreferenced_strict_total_n": 13931,
+ "skills_with_unreferenced_n": 57,
+ "skills_clean_n": 134,
+ "unreferenced_total_n": 238,
+ "unreferenced_strict_total_n": 13922,
  "caliber_note": "dual caliber: normal treats a bare immediate-parent dir mention as reachable; strict requires that mention to be path-shaped (parent + slash). The r268 independent check landed local-mineru on the strict side (+12 files).",
  "exemption_names": [
   ".upstream",
@@ -689,21 +689,19 @@
   {
    "slug": "cloudbase",
    "state": "OK",
-   "present_n": 148,
-   "exempt_n": 32,
-   "unreferenced_n": 4,
+   "present_n": 147,
+   "exempt_n": 33,
+   "unreferenced_n": 3,
    "unreferenced": [
     "LICENSE.md",
     "_icon.png",
-    "_meta.json",
-    "_skillhub_meta.json"
+    "_meta.json"
    ],
-   "unreferenced_strict_n": 60,
+   "unreferenced_strict_n": 59,
    "unreferenced_strict": [
     "LICENSE.md",
     "_icon.png",
     "_meta.json",
-    "_skillhub_meta.json",
     "references/auth-tool-cloudbase/checklist.md",
     "references/cloud-api-operations/references/recipes/README.md",
     "references/cloud-api-operations/references/recipes/billing-charges-explained.md",
@@ -762,7 +760,7 @@
     "references/web-development/frameworks.md"
    ],
    "rule_hist": {
-    "UNREFERENCED": 4,
+    "UNREFERENCED": 3,
     "REF_BY_PATH": 7,
     "REF_BY_PARENT_DIR": 98,
     "WEAK_ANCESTOR_DIR_ONLY": 38,
@@ -1400,24 +1398,22 @@
   {
    "slug": "elon-musk-perspective",
    "state": "OK",
-   "present_n": 8,
-   "exempt_n": 2,
-   "unreferenced_n": 8,
+   "present_n": 7,
+   "exempt_n": 3,
+   "unreferenced_n": 7,
    "unreferenced": [
     "README.md",
     "examples/demo-conversation.md",
-    "meta.json",
     "references/Elon-Musk-思想体系调研-20260404.md",
     "references/research.md",
     "references/马斯克决策模式与行为分析-20260404.md",
     "references/马斯克即兴思考方式调研.md",
     "wechat-qrcode.jpg"
    ],
-   "unreferenced_strict_n": 8,
+   "unreferenced_strict_n": 7,
    "unreferenced_strict": [
     "README.md",
     "examples/demo-conversation.md",
-    "meta.json",
     "references/Elon-Musk-思想体系调研-20260404.md",
     "references/research.md",
     "references/马斯克决策模式与行为分析-20260404.md",
@@ -1425,7 +1421,7 @@
     "wechat-qrcode.jpg"
    ],
    "rule_hist": {
-    "UNREFERENCED": 8
+    "UNREFERENCED": 7
    },
    "skill_md_bytes": 23684
   },
@@ -1507,20 +1503,18 @@
   {
    "slug": "first-principles-decomposer",
    "state": "OK",
-   "present_n": 6,
-   "exempt_n": 1,
-   "unreferenced_n": 2,
+   "present_n": 5,
+   "exempt_n": 2,
+   "unreferenced_n": 1,
    "unreferenced": [
-    "_meta.json",
-    "meta.json"
+    "_meta.json"
    ],
-   "unreferenced_strict_n": 2,
+   "unreferenced_strict_n": 1,
    "unreferenced_strict": [
-    "_meta.json",
-    "meta.json"
+    "_meta.json"
    ],
    "rule_hist": {
-    "UNREFERENCED": 2,
+    "UNREFERENCED": 1,
     "REF_BY_PATH": 4
    },
    "skill_md_bytes": 3517
@@ -1576,13 +1570,11 @@
   {
    "slug": "frontend-slides",
    "state": "OK",
-   "present_n": 88,
-   "exempt_n": 5,
-   "unreferenced_n": 1,
-   "unreferenced": [
-    "meta.json"
-   ],
-   "unreferenced_strict_n": 69,
+   "present_n": 87,
+   "exempt_n": 6,
+   "unreferenced_n": 0,
+   "unreferenced": [],
+   "unreferenced_strict_n": 68,
    "unreferenced_strict": [
     "bold-template-pack/templates/8-bit-orbit/design.md",
     "bold-template-pack/templates/8-bit-orbit/preview.md",
@@ -1651,55 +1643,49 @@
     "bold-template-pack/templates/studio/design.md",
     "bold-template-pack/templates/studio/preview.md",
     "bold-template-pack/templates/vellum/design.md",
-    "bold-template-pack/templates/vellum/preview.md",
-    "meta.json"
+    "bold-template-pack/templates/vellum/preview.md"
    ],
    "rule_hist": {
     "REF_BY_PATH": 11,
     "REF_BY_BASENAME": 8,
     "WEAK_ANCESTOR_DIR_ONLY": 66,
-    "REF_BY_PARENT_DIR": 2,
-    "UNREFERENCED": 1
+    "REF_BY_PARENT_DIR": 2
    },
-   "skill_md_bytes": 23504
+   "skill_md_bytes": 23353
   },
   {
    "slug": "github",
    "state": "OK",
-   "present_n": 2,
-   "exempt_n": 1,
-   "unreferenced_n": 2,
+   "present_n": 1,
+   "exempt_n": 2,
+   "unreferenced_n": 1,
    "unreferenced": [
-    "_meta.json",
-    "_skillhub_meta.json"
+    "_meta.json"
    ],
-   "unreferenced_strict_n": 2,
+   "unreferenced_strict_n": 1,
    "unreferenced_strict": [
-    "_meta.json",
-    "_skillhub_meta.json"
+    "_meta.json"
    ],
    "rule_hist": {
-    "UNREFERENCED": 2
+    "UNREFERENCED": 1
    },
    "skill_md_bytes": 5124
   },
   {
    "slug": "grill-me",
    "state": "OK",
-   "present_n": 2,
-   "exempt_n": 2,
-   "unreferenced_n": 2,
+   "present_n": 1,
+   "exempt_n": 3,
+   "unreferenced_n": 1,
    "unreferenced": [
-    "_skillhub_meta.json",
     "agents/openai.yaml"
    ],
-   "unreferenced_strict_n": 2,
+   "unreferenced_strict_n": 1,
    "unreferenced_strict": [
-    "_skillhub_meta.json",
     "agents/openai.yaml"
    ],
    "rule_hist": {
-    "UNREFERENCED": 2
+    "UNREFERENCED": 1
    },
    "skill_md_bytes": 3062
   },
@@ -1920,9 +1906,9 @@
   {
    "slug": "html-ppt",
    "state": "OK",
-   "present_n": 222,
-   "exempt_n": 4,
-   "unreferenced_n": 14,
+   "present_n": 221,
+   "exempt_n": 5,
+   "unreferenced_n": 13,
    "unreferenced": [
     "README.md",
     "README.zh-CN.md",
@@ -1936,10 +1922,9 @@
     "docs/readme/montage-themes.html",
     "docs/readme/presenter-mode.png",
     "docs/readme/templates.png",
-    "docs/readme/themes.png",
-    "meta.json"
+    "docs/readme/themes.png"
    ],
-   "unreferenced_strict_n": 121,
+   "unreferenced_strict_n": 120,
    "unreferenced_strict": [
     "README.md",
     "README.zh-CN.md",
@@ -1975,7 +1960,6 @@
     "docs/readme/presenter-mode.png",
     "docs/readme/templates.png",
     "docs/readme/themes.png",
-    "meta.json",
     "scripts/verify-output/animation-showcase/animation-showcase_01.png",
     "scripts/verify-output/animation-showcase/animation-showcase_02.png",
     "scripts/verify-output/animation-showcase/animation-showcase_03.png",
@@ -2064,7 +2048,7 @@
     "templates/full-decks/xhs-white-editorial/style.css"
    ],
    "rule_hist": {
-    "UNREFERENCED": 14,
+    "UNREFERENCED": 13,
     "REF_BY_PATH": 17,
     "WEAK_ANCESTOR_DIR_ONLY": 21,
     "REF_BY_BASENAME": 19,
@@ -2435,8 +2419,8 @@
   {
    "slug": "local-asr",
    "state": "OK",
-   "present_n": 19,
-   "exempt_n": 1,
+   "present_n": 18,
+   "exempt_n": 2,
    "unreferenced_n": 5,
    "unreferenced": [
     "bin/platform.exe",
@@ -2455,7 +2439,7 @@
    ],
    "rule_hist": {
     "UNREFERENCED": 5,
-    "REF_BY_PATH": 5,
+    "REF_BY_PATH": 4,
     "REF_BY_PARENT_DIR": 8,
     "REF_BY_BASENAME": 1
    },
@@ -2464,8 +2448,8 @@
   {
    "slug": "local-computer-use",
    "state": "OK",
-   "present_n": 20,
-   "exempt_n": 1,
+   "present_n": 19,
+   "exempt_n": 2,
    "unreferenced_n": 7,
    "unreferenced": [
     "bin/platform.exe",
@@ -2488,7 +2472,7 @@
    ],
    "rule_hist": {
     "UNREFERENCED": 7,
-    "REF_BY_PATH": 5,
+    "REF_BY_PATH": 4,
     "REF_BY_PARENT_DIR": 7,
     "REF_BY_BASENAME": 1
    },
@@ -2497,8 +2481,8 @@
   {
    "slug": "local-img2img",
    "state": "OK",
-   "present_n": 32,
-   "exempt_n": 1,
+   "present_n": 31,
+   "exempt_n": 2,
    "unreferenced_n": 5,
    "unreferenced": [
     "tests/girl.jpg",
@@ -2531,7 +2515,7 @@
    "rule_hist": {
     "WEAK_ANCESTOR_DIR_ONLY": 12,
     "REF_BY_PARENT_DIR": 8,
-    "REF_BY_PATH": 5,
+    "REF_BY_PATH": 4,
     "REF_BY_BASENAME": 2,
     "UNREFERENCED": 5
    },
@@ -2540,8 +2524,8 @@
   {
    "slug": "local-mineru",
    "state": "OK",
-   "present_n": 29,
-   "exempt_n": 1,
+   "present_n": 28,
+   "exempt_n": 2,
    "unreferenced_n": 4,
    "unreferenced": [
     "bin/platform.exe",
@@ -2570,7 +2554,7 @@
    ],
    "rule_hist": {
     "UNREFERENCED": 4,
-    "REF_BY_PATH": 5,
+    "REF_BY_PATH": 4,
     "REF_BY_PARENT_DIR": 7,
     "WEAK_ANCESTOR_DIR_ONLY": 12,
     "REF_BY_BASENAME": 1
@@ -2580,8 +2564,8 @@
   {
    "slug": "local-ocr-npu",
    "state": "OK",
-   "present_n": 28,
-   "exempt_n": 1,
+   "present_n": 27,
+   "exempt_n": 2,
    "unreferenced_n": 1,
    "unreferenced": [
     "test_case.json"
@@ -2613,7 +2597,7 @@
     "WEAK_ANCESTOR_DIR_ONLY": 1,
     "REF_BY_PARENT_DIR": 19,
     "REF_BY_BASENAME": 2,
-    "REF_BY_PATH": 5,
+    "REF_BY_PATH": 4,
     "UNREFERENCED": 1
    },
    "skill_md_bytes": 6293
@@ -2621,8 +2605,8 @@
   {
    "slug": "local-realtime-translator",
    "state": "OK",
-   "present_n": 50,
-   "exempt_n": 1,
+   "present_n": 49,
+   "exempt_n": 2,
    "unreferenced_n": 7,
    "unreferenced": [
     "bin/platform.exe",
@@ -2657,7 +2641,7 @@
    ],
    "rule_hist": {
     "UNREFERENCED": 7,
-    "REF_BY_PATH": 5,
+    "REF_BY_PATH": 4,
     "REF_BY_BASENAME": 3,
     "REF_BY_PARENT_DIR": 29,
     "WEAK_ANCESTOR_DIR_ONLY": 6
@@ -2667,8 +2651,8 @@
   {
    "slug": "local-screenshot-qa",
    "state": "OK",
-   "present_n": 25,
-   "exempt_n": 1,
+   "present_n": 24,
+   "exempt_n": 2,
    "unreferenced_n": 8,
    "unreferenced": [
     "bin/platform.exe",
@@ -2693,7 +2677,7 @@
    ],
    "rule_hist": {
     "UNREFERENCED": 8,
-    "REF_BY_PATH": 5,
+    "REF_BY_PATH": 4,
     "REF_BY_PARENT_DIR": 9,
     "REF_BY_BASENAME": 3
    },
@@ -2702,8 +2686,8 @@
   {
    "slug": "local-tts",
    "state": "OK",
-   "present_n": 25,
-   "exempt_n": 1,
+   "present_n": 24,
+   "exempt_n": 2,
    "unreferenced_n": 4,
    "unreferenced": [
     "bin/platform.exe",
@@ -2720,7 +2704,7 @@
    ],
    "rule_hist": {
     "REF_BY_PARENT_DIR": 14,
-    "REF_BY_PATH": 6,
+    "REF_BY_PATH": 5,
     "UNREFERENCED": 4,
     "REF_BY_BASENAME": 1
    },
@@ -2729,8 +2713,8 @@
   {
    "slug": "local-txt2img",
    "state": "OK",
-   "present_n": 29,
-   "exempt_n": 1,
+   "present_n": 28,
+   "exempt_n": 2,
    "unreferenced_n": 16,
    "unreferenced": [
     "bin/openvino_genai/__init__.py",
@@ -2771,7 +2755,7 @@
    ],
    "rule_hist": {
     "UNREFERENCED": 16,
-    "REF_BY_PATH": 5,
+    "REF_BY_PATH": 4,
     "REF_BY_PARENT_DIR": 7,
     "REF_BY_BASENAME": 1
    },
@@ -2780,8 +2764,8 @@
   {
    "slug": "local-vram",
    "state": "OK",
-   "present_n": 8,
-   "exempt_n": 1,
+   "present_n": 7,
+   "exempt_n": 2,
    "unreferenced_n": 1,
    "unreferenced": [
     "bin/platform.exe"
@@ -2792,7 +2776,7 @@
    ],
    "rule_hist": {
     "UNREFERENCED": 1,
-    "REF_BY_PATH": 5,
+    "REF_BY_PATH": 4,
     "REF_BY_BASENAME": 2
    },
    "skill_md_bytes": 5691
@@ -16176,22 +16160,20 @@
   {
    "slug": "sq-cleanmgr-c",
    "state": "OK",
-   "present_n": 7,
-   "exempt_n": 1,
-   "unreferenced_n": 3,
+   "present_n": 6,
+   "exempt_n": 2,
+   "unreferenced_n": 2,
    "unreferenced": [
     "_icon.png",
-    "_meta.json",
-    "_skillhub_meta.json"
+    "_meta.json"
    ],
-   "unreferenced_strict_n": 3,
+   "unreferenced_strict_n": 2,
    "unreferenced_strict": [
     "_icon.png",
-    "_meta.json",
-    "_skillhub_meta.json"
+    "_meta.json"
    ],
    "rule_hist": {
-    "UNREFERENCED": 3,
+    "UNREFERENCED": 2,
     "REF_BY_PARENT_DIR": 1,
     "REF_BY_PATH": 3
    },
@@ -16832,24 +16814,22 @@
   {
    "slug": "web-access",
    "state": "OK",
-   "present_n": 12,
-   "exempt_n": 2,
-   "unreferenced_n": 4,
+   "present_n": 11,
+   "exempt_n": 3,
+   "unreferenced_n": 3,
    "unreferenced": [
     "_icon.svg",
-    "_skillhub_meta.json",
     "templates/config.env.template",
     "workbuddy.json"
    ],
-   "unreferenced_strict_n": 4,
+   "unreferenced_strict_n": 3,
    "unreferenced_strict": [
     "_icon.svg",
-    "_skillhub_meta.json",
     "templates/config.env.template",
     "workbuddy.json"
    ],
    "rule_hist": {
-    "UNREFERENCED": 4,
+    "UNREFERENCED": 3,
     "REF_BY_PATH": 5,
     "REF_BY_PARENT_DIR": 2,
     "REF_BY_BASENAME": 1
