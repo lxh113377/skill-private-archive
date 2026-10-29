@@ -196,3 +196,10 @@ print('WROTE', out, os.path.getsize(out), 'bytes')
 print('Q_A=' + str(Qa) + ' Q_B=' + str(Qb) + ' uplift_pct=' + str(uplift_pct))
 print('negctl Q=' + str(Q(n)) + ' identical=' + str(sha_a == sha_neg) + ' uplift_negctl=' + str(uplift_negctl))
 print('rubricA=' + json.dumps(a['rubric'], ensure_ascii=False)[:400])
+
+# Negative-control copy must be deleted by the judge itself, not by the operator:
+# rerunning this file recreates _ctl/negctl, and a stale copy inside _repro would then get
+# counted into the corpus manifest (that is exactly how 42 negctl entries entered mine in r284).
+if os.path.isdir(neg):
+    shutil.rmtree(neg)
+print('NEGCTL_COPY_DELETED =', not os.path.isdir(neg))

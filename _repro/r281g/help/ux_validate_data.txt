@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "D:\global_skills\ui-ux-pro-max\scripts\validate_data.py", line 31, in <module>
+    from core import (CSV_CONFIG, STACK_CONFIG, STACK_CURRENT_APPLICABILITY,
+                      _STACK_COLS, DATA_DIR)
+ImportError: cannot import name 'STACK_CURRENT_APPLICABILITY' from 'core' (D:\global_skills\ui-ux-pro-max\scripts\core.py)

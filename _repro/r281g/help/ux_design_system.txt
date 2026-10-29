@@ -1,0 +1,15 @@
+usage: design_system.py [-h] [--project-name PROJECT_NAME]
+                        [--format {ascii,markdown}]
+                        query
+
+Generate Design System
+
+positional arguments:
+  query                 Search query (e.g., 'SaaS dashboard')
+
+options:
+  -h, --help            show this help message and exit
+  --project-name, -p PROJECT_NAME
+                        Project name
+  --format, -f {ascii,markdown}
+                        Output format

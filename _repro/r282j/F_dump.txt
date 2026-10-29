@@ -1,0 +1,438 @@
+{
+ "schema": "before-after-control-v1",
+ "produced_by": "subagent r278c (independent before/after control arm; Lead scripts not reused, nothing imported from 05-exec)",
+ "measured_at": "2026-10-29T22:45:56+08:00",
+ "managed_root": "D:/global_skills",
+ "project_root": "C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化",
+ "head_sha_at_measurement": "89efb3e663b138cf8c0141e89ce38efa733c7652",
+ "scope_note": "Read-only on the managed root: only git log/show/rev-parse/cat-file/merge-base/status and find. No git write command was issued; no file under D:/global_skills or D:/global_memory was created or modified.",
+ "items": {
+  "test-driven-development": {
+   "landed_change": "r266 = 079b91f3, one pointer line to writing-good-tests.md inserted after old line 216",
+   "before_ref": "079b91f3~1 (= 87934d48)",
+   "after_ref": "HEAD (= 89efb3e6; HEAD:path blob == 079b91f3:path blob, so r266 is still the file state on mainline)",
+   "chain_check": "git log --oneline 079b91f3..HEAD -- test-driven-development/SKILL.md returned zero lines (verified empty)",
+   "diff_witness": "git show 079b91f3 -- test-driven-development/SKILL.md printed exactly one added line: \"When writing or changing any test, read [writing-good-tests.md](writing-good-tests.md) ...\" at hunk @@ -214,6 +214,7 @@, i.e. right after old line 216 as the brief states"
+  },
+  "frontend-slides": {
+   "landed_change": "r269 = 6394cbae (register + conflict declaration) -> r272-equivalent 32-place paradigm migration = 9aaa9214 -> 294e3ac6 (replace patch x1, not in the brief) -> r277 = 89efb3e6 (six residual fixes)",
+   "before_ref": "6394cbae~1 (= 3681df5e)",
+   "after_ref": "HEAD (= 89efb3e6)",
+   "chain_check": "git log --oneline 6394cbae~1..HEAD -- frontend-slides/SKILL.md lists exactly 6394cbae, 9aaa9214, 294e3ac6, 89efb3e6; each commit blob equals the next commit parent blob (contiguity verified, see chain_contiguity)",
+   "sha_correction": "the brief gave no sha for the 32-place migration; I took it from git log = 9aaa9214 (message names R310 / 32 处 / 1920x1080 舞台). The brief labeled that round r272, the same-file commit whose stat lists viewport-base.css + html-template.md is 9aaa9214."
+  }
+ },
+ "shas_used": [
+  {
+   "item": "test-driven-development",
+   "sha": "079b91f33e95e46da750be33a84fae5627adde65",
+   "short": "079b91f3",
+   "role": "landed change r266 (1-line writing-good-tests.md pointer inserted after old line 216)",
+   "how_obtained": "git log for the path, then rev-parse for the full sha",
+   "command": "git -C /d/global_skills log --oneline -- test-driven-development/SKILL.md | head -4  &&  git -C /d/global_skills rev-parse 079b91f3"
+  },
+  {
+   "item": "test-driven-development",
+   "sha": "87934d4895b669fdafdcddc2e76ba570a602c9d1",
+   "short": "87934d48",
+   "role": "BEFORE arm = parent of 079b91f3 (resolved by rev-parse, not copied from the brief)",
+   "command": "git -C /d/global_skills rev-parse 079b91f3~1"
+  },
+  {
+   "item": "test-driven-development",
+   "sha": "684266d0e3cff9b54fbb0ca4455863a639e80641",
+   "short": "blob 684266d0",
+   "role": "SKILL.md blob of the AFTER arm; identical for 079b91f3: and HEAD: => nothing touched this file after r266",
+   "command": "git -C /d/global_skills rev-parse HEAD:test-driven-development/SKILL.md  &&  git -C /d/global_skills rev-parse 079b91f3:test-driven-development/SKILL.md"
+  },
+  {
+   "item": "frontend-slides",
+   "sha": "6394cbae1e5d00f8a60e383f761613664cca2b41",
+   "short": "6394cbae",
+   "role": "landed change r269 (registration + conflict declaration; +17/-2)",
+   "command": "git -C /d/global_skills log --oneline -- frontend-slides/SKILL.md | head -6"
+  },
+  {
+   "item": "frontend-slides",
+   "sha": "9aaa92146b09137302ac098958173210fb855c7b",
+   "short": "9aaa9214",
+   "role": "THE ACTUAL SHA of the 32-place paradigm migration (brief called it r272; taken from git log as instructed, NOT copied) - touches SKILL.md + viewport-base.css + html-template.md + references/upstream-frontend-slides.md",
+   "command": "git -C /d/global_skills log --oneline -- frontend-slides/SKILL.md | head -6  &&  git -C /d/global_skills show --stat --oneline 9aaa9214"
+  },
+  {
+   "item": "frontend-slides",
+   "sha": "294e3ac67ab61d95d34e959e1f7d5a6656fc9ce6",
+   "short": "294e3ac6",
+   "role": "intermediate replace patch x1 on the same file (NOT mentioned in the brief; found on the chain) - reason the before-arm must be 6394cbae~1 and not r277~1",
+   "command": "git -C /d/global_skills log --oneline 6394cbae~1..HEAD -- frontend-slides/SKILL.md"
+  },
+  {
+   "item": "frontend-slides",
+   "sha": "89efb3e663b138cf8c0141e89ce38efa733c7652",
+   "short": "89efb3e6",
+   "role": "landed change r277 (six residual fixes) AND current HEAD (HEAD==89efb3e6, verified)",
+   "command": "git -C /d/global_skills rev-parse HEAD  &&  git -C /d/global_skills rev-parse 89efb3e6"
+  },
+  {
+   "item": "frontend-slides",
+   "sha": "3681df5e81fcc995b79f8cfbee538c8cb72bf9e1",
+   "short": "3681df5e",
+   "role": "BEFORE arm = parent of 6394cbae (whole landed chain 6394cbae -> 9aaa9214 -> 294e3ac6 -> 89efb3e6 sits on top of it)",
+   "command": "git -C /d/global_skills rev-parse 6394cbae~1"
+  }
+ ],
+ "pre_change_text_fetch": {
+  "method": "4 fail-closed fetches via _temp/r278c/r278c_fetch.sh, all landed under _temp/r278c/ (managed root untouched)",
+  "commands": [
+   "git -C /d/global_skills show 079b91f3~1:test-driven-development/SKILL.md  (wrapped by _temp/r278c/r278c_fetch.sh -> tdd_before.md)",
+   "git -C /d/global_skills show HEAD:test-driven-development/SKILL.md  -> tdd_after.md",
+   "git -C /d/global_skills show 6394cbae~1:frontend-slides/SKILL.md  -> fs_before.md",
+   "git -C /d/global_skills show HEAD:frontend-slides/SKILL.md  -> fs_after.md"
+  ],
+  "fetched_files": {
+   "tdd_before": "_temp/r278c/tdd_before.md",
+   "tdd_after": "_temp/r278c/tdd_after.md",
+   "fs_before": "_temp/r278c/fs_before.md",
+   "fs_after": "_temp/r278c/fs_after.md"
+  },
+  "fetch_receipts": [
+   "OK ref=079b91f3~1 commit=87934d4895b669fdafdcddc2e76ba570a602c9d1 target=test-driven-development/SKILL.md out=tdd_before.md bytes=11635 blobsha=489ab8a631a84075339a85ada45eb92384d78a39",
+   "OK ref=HEAD commit=89efb3e663b138cf8c0141e89ce38efa733c7652 target=test-driven-development/SKILL.md out=tdd_after.md bytes=11760 blobsha=684266d0e3cff9b54fbb0ca4455863a639e80641",
+   "OK ref=6394cbae~1 commit=3681df5e81fcc995b79f8cfbee538c8cb72bf9e1 target=frontend-slides/SKILL.md out=fs_before.md bytes=20073 blobsha=82db00b5325c610f456dbb762057e8410c36cc79",
+   "OK ref=HEAD commit=89efb3e663b138cf8c0141e89ce38efa733c7652 target=frontend-slides/SKILL.md out=fs_after.md bytes=23312 blobsha=9c2ef9dea94d9d41af2d11d0ec8bb3183a227247"
+  ]
+ },
+ "yardstick": {
+  "script": "_temp/r278c/r278c_metrics.py (self-authored, stdlib only: argparse/hashlib/json/os/re/sys; zero import of 05-exec or run_gates)",
+  "metrics": [
+   "bytes",
+   "lines",
+   "headings_raw",
+   "headings_prose",
+   "viewport_clause_total",
+   "viewport_clause_lines",
+   "viewport_families{vh_numeric,vh_standalone,vw_numeric,vw_standalone,dvh,svh_lvh,clamp_call}",
+   "viewport_subset_100vh",
+   "fixed_stage_clause_total",
+   "fixed_stage_clause_lines",
+   "fixed_stage_families{px_1920,px_1080,fixed_stage,stage_pair_1920x1080}",
+   "sibling_ref_rate_pct (loose = path OR basename OR parent-dir-name, strict = path OR basename; denominator = current on-disk file list of that skill dir minus SKILL.md)",
+   "sha256_md"
+  ],
+  "fail_closed": "missing md => exit 7, empty md => exit 8, missing listing => 9, empty listing => 10; each prints exactly one UNVERIFIED line and emits NO json, so a fetch failure cannot be read as \"before = 0 bytes / 0 lines\"",
+  "selfcheck": "6 probe cases run through the same measure() as the real states, covering the three traps this yardstick had to avoid: 100vh must count once (not in two families), 100dvh must count (digit before dvh is legal), 1920x1080 must count as one clause (not 1920 + 1080 + pair); plus fixed-stage prose, clamp(x, y, z), and fenced-heading exclusion. Result: 24/24 SELFCHECK PASS, SELFCHECK_RESULT PASS, rc=0",
+  "selfcheck_command": "PYTHONPYCACHEPREFIX=/tmp/pycache_r278c python -B _temp/r278c/r278c_metrics.py --selfcheck --md _temp/r278c/r278c_metrics.py --siblings _temp/r278c/sibs_tdd.txt --label sc",
+  "independent_cross_check": "shell grep (no python) over the same four files reconciles the clause counts: raw grep 1920 in fs_after = 18 and grep 1080 = 21 equal my masked px_1920(2) + pair(16) = 18 and px_1080(5) + pair(16) = 21; fs_before grep 1920/1080 = 3/3 equals pair(3). One documented divergence: grep counts the literal \"-clamp()\" 3 times in total while clamp_call = 2/3, because my guard rejects a clamp preceded by a hyphen; both arms carry the identical line, so the offset is common-mode and the delta (-1) matches grep (-1)."
+ },
+ "metrics_before": {
+  "test-driven-development": {
+   "bytes": 11635,
+   "lines": 395,
+   "headings_raw": 24,
+   "headings_prose": 24,
+   "frontmatter_lines": 6,
+   "viewport_clause_total": 0,
+   "viewport_clause_lines": 0,
+   "viewport_families": {
+    "vh_numeric": 0,
+    "vh_standalone": 0,
+    "vw_numeric": 0,
+    "vw_standalone": 0,
+    "dvh": 0,
+    "svh_lvh": 0,
+    "clamp_call": 0
+   },
+   "viewport_subset_100vh": {
+    "100vh": 0
+   },
+   "fixed_stage_clause_total": 0,
+   "fixed_stage_clause_lines": 0,
+   "fixed_stage_families": {
+    "px_1920": 0,
+    "px_1080": 0,
+    "fixed_stage": 0,
+    "stage_pair_1920x1080": 0
+   },
+   "sibling_denom": 7,
+   "sibling_loose_hit": 3,
+   "sibling_strict_hit": 3,
+   "sibling_loose_rate_pct": 42.86,
+   "sibling_strict_rate_pct": 42.86,
+   "sha256_md": "8ee8a57d45a2e78898d4c3e0f7c5db158eb4e077cfa735e551171cb5b0c9c4f0",
+   "git_blob_sha": "489ab8a631a84075339a85ada45eb92384d78a39",
+   "source": "079b91f3~1:test-driven-development/SKILL.md"
+  },
+  "frontend-slides": {
+   "bytes": 20073,
+   "lines": 328,
+   "headings_raw": 22,
+   "headings_prose": 22,
+   "frontmatter_lines": 6,
+   "viewport_clause_total": 9,
+   "viewport_clause_lines": 8,
+   "viewport_families": {
+    "vh_numeric": 5,
+    "vh_standalone": 0,
+    "vw_numeric": 0,
+    "vw_standalone": 0,
+    "dvh": 1,
+    "svh_lvh": 0,
+    "clamp_call": 3
+   },
+   "viewport_subset_100vh": {
+    "100vh": 2
+   },
+   "fixed_stage_clause_total": 3,
+   "fixed_stage_clause_lines": 3,
+   "fixed_stage_families": {
+    "px_1920": 0,
+    "px_1080": 0,
+    "fixed_stage": 0,
+    "stage_pair_1920x1080": 3
+   },
+   "sibling_denom": 93,
+   "sibling_loose_hit": 15,
+   "sibling_strict_hit": 15,
+   "sibling_loose_rate_pct": 16.13,
+   "sibling_strict_rate_pct": 16.13,
+   "sha256_md": "e76ddd898d425ad2bed4b9ac12b7e9e8a9788180cc661d7260e05a25da426f49",
+   "git_blob_sha": "82db00b5325c610f456dbb762057e8410c36cc79",
+   "source": "6394cbae~1:frontend-slides/SKILL.md"
+  }
+ },
+ "metrics_after": {
+  "test-driven-development": {
+   "bytes": 11760,
+   "lines": 396,
+   "headings_raw": 24,
+   "headings_prose": 24,
+   "frontmatter_lines": 6,
+   "viewport_clause_total": 0,
+   "viewport_clause_lines": 0,
+   "viewport_families": {
+    "vh_numeric": 0,
+    "vh_standalone": 0,
+    "vw_numeric": 0,
+    "vw_standalone": 0,
+    "dvh": 0,
+    "svh_lvh": 0,
+    "clamp_call": 0
+   },
+   "viewport_subset_100vh": {
+    "100vh": 0
+   },
+   "fixed_stage_clause_total": 0,
+   "fixed_stage_clause_lines": 0,
+   "fixed_stage_families": {
+    "px_1920": 0,
+    "px_1080": 0,
+    "fixed_stage": 0,
+    "stage_pair_1920x1080": 0
+   },
+   "sibling_denom": 7,
+   "sibling_loose_hit": 4,
+   "sibling_strict_hit": 4,
+   "sibling_loose_rate_pct": 57.14,
+   "sibling_strict_rate_pct": 57.14,
+   "sha256_md": "e970555276c39c3202db205f6d9b15fb7228e159dfda125e2d7dc6192b5e98c4",
+   "git_blob_sha": "684266d0e3cff9b54fbb0ca4455863a639e80641",
+   "source": "HEAD:test-driven-development/SKILL.md"
+  },
+  "frontend-slides": {
+   "bytes": 23312,
+   "lines": 346,
+   "headings_raw": 23,
+   "headings_prose": 23,
+   "frontmatter_lines": 6,
+   "viewport_clause_total": 7,
+   "viewport_clause_lines": 5,
+   "viewport_families": {
+    "vh_numeric": 3,
+    "vh_standalone": 1,
+    "vw_numeric": 0,
+    "vw_standalone": 1,
+    "dvh": 0,
+    "svh_lvh": 0,
+    "clamp_call": 2
+   },
+   "viewport_subset_100vh": {
+    "100vh": 1
+   },
+   "fixed_stage_clause_total": 33,
+   "fixed_stage_clause_lines": 20,
+   "fixed_stage_families": {
+    "px_1920": 2,
+    "px_1080": 5,
+    "fixed_stage": 10,
+    "stage_pair_1920x1080": 16
+   },
+   "sibling_denom": 93,
+   "sibling_loose_hit": 19,
+   "sibling_strict_hit": 19,
+   "sibling_loose_rate_pct": 20.43,
+   "sibling_strict_rate_pct": 20.43,
+   "sha256_md": "6b9b0953aa2681f617ca7aed6b8c49bfce8ae38389751a817124dda30e69a36e",
+   "git_blob_sha": "9c2ef9dea94d9d41af2d11d0ec8bb3183a227247",
+   "source": "HEAD:frontend-slides/SKILL.md"
+  }
+ },
+ "delta": {
+  "test-driven-development": {
+   "bytes": 125,
+   "lines": 1,
+   "headings_raw": 0,
+   "headings_prose": 0,
+   "viewport_clause_total": 0,
+   "viewport_clause_lines": 0,
+   "fixed_stage_clause_total": 0,
+   "fixed_stage_clause_lines": 0,
+   "sibling_loose_hit": 1,
+   "sibling_strict_hit": 1,
+   "sibling_loose_rate_pct": 14.28,
+   "sibling_strict_rate_pct": 14.28,
+   "sibling_denom": 0,
+   "viewport_families_delta": {
+    "vh_numeric": 0,
+    "vh_standalone": 0,
+    "vw_numeric": 0,
+    "vw_standalone": 0,
+    "dvh": 0,
+    "svh_lvh": 0,
+    "clamp_call": 0
+   },
+   "fixed_stage_families_delta": {
+    "px_1920": 0,
+    "px_1080": 0,
+    "fixed_stage": 0,
+    "stage_pair_1920x1080": 0
+   },
+   "sha256_md_changed": true
+  },
+  "frontend-slides": {
+   "bytes": 3239,
+   "lines": 18,
+   "headings_raw": 1,
+   "headings_prose": 1,
+   "viewport_clause_total": -2,
+   "viewport_clause_lines": -3,
+   "fixed_stage_clause_total": 30,
+   "fixed_stage_clause_lines": 17,
+   "sibling_loose_hit": 4,
+   "sibling_strict_hit": 4,
+   "sibling_loose_rate_pct": 4.3,
+   "sibling_strict_rate_pct": 4.3,
+   "sibling_denom": 0,
+   "viewport_families_delta": {
+    "vh_numeric": -2,
+    "vh_standalone": 1,
+    "vw_numeric": 0,
+    "vw_standalone": 1,
+    "dvh": -1,
+    "svh_lvh": 0,
+    "clamp_call": -1
+   },
+   "fixed_stage_families_delta": {
+    "px_1920": 2,
+    "px_1080": 5,
+    "fixed_stage": 10,
+    "stage_pair_1920x1080": 13
+   },
+   "sha256_md_changed": true
+  },
+  "reading": {
+   "test-driven-development": "pointer-only change as advertised: +125 bytes, +1 line, headings unchanged (24), zero viewport-relative and zero fixed-stage clauses in both arms (this file never carried the stage paradigm), sibling reference rate 42.86% -> 57.14% (3/7 -> 4/7) and the new reference target writing-good-tests.md exists on disk in the same listing, so the pointer resolves rather than adding a dead link.",
+   "frontend-slides": "the paradigm migration shows up as a direction reversal, not an inflation: fixed-stage clauses 3 -> 33 occurrences (+30), 3 -> 20 lines (6.7x); by family: composite 1920x1080 3 -> 16 (+13), bare px_1920 0 -> 2, bare px_1080 0 -> 5, literal fixed-stage 0 -> 10, while viewport-relative clauses go DOWN 9 -> 7 (-2; lines 8 -> 5) and 100vh 2 -> 1, dvh 1 -> 0, clamp 3 -> 2, vh_numeric 5 -> 3. Bytes +3239 (+16.1%), lines +18, headings 22 -> 23, sibling rate 16.13% -> 20.43% (15/93 -> 19/93). So the after state replaces responsive-viewport prescriptions with an explicit 1920x1080 fixed-stage rule set instead of merely appending text."
+  }
+ },
+ "rollback_evidence": {
+  "test-driven-development": {
+   "cat_file_e": [
+    "CATFILE_OK 079b91f3~1 -> 87934d4895b669fdafdcddc2e76ba570a602c9d1",
+    "CATFILE_OK 079b91f3 -> 079b91f33e95e46da750be33a84fae5627adde65"
+   ],
+   "is_ancestor_of_head": "079b91f3 is-ancestor-of-HEAD rc=0",
+   "backup_files": [
+    "D:/global_memory_archive/_trash/rule_backup/test-driven-development.SKILL.md.20261029_161009_062174.bak",
+    "D:/global_memory_archive/_trash/rule_backup/test-driven-development.SKILL.md.20261018_072628_409460.bak"
+   ],
+   "backup_equals_before_state": "PROVEN byte-identical: git hash-object of the 20261029_161009 backup = 489ab8a631a84075339a85ada45eb92384d78a39 = the 079b91f3~1 blob sha. So both rollback paths (git revert of 079b91f3, or restoring the .bak) converge on the same pre-change bytes.",
+   "verdict": "ROLLBACK FEASIBLE (two independent paths, both verified)"
+  },
+  "frontend-slides": {
+   "cat_file_e": [
+    "CATFILE_OK 6394cbae~1 -> 3681df5e81fcc995b79f8cfbee538c8cb72bf9e1",
+    "CATFILE_OK 6394cbae -> 6394cbae1e5d00f8a60e383f761613664cca2b41",
+    "CATFILE_OK 9aaa9214 -> 9aaa92146b09137302ac098958173210fb855c7b",
+    "CATFILE_OK 294e3ac6 -> 294e3ac67ab61d95d34e959e1f7d5a6656fc9ce6",
+    "CATFILE_OK 89efb3e6 -> 89efb3e663b138cf8c0141e89ce38efa733c7652"
+   ],
+   "is_ancestor_of_head": "6394cbae / 9aaa9214 / 294e3ac6 / 89efb3e6 all is-ancestor-of-HEAD rc=0",
+   "chain_contiguity": {
+    "6394cbae~1:frontend-slides/SKILL.md": "82db00b5 == 3681df5e:frontend-slides/SKILL.md",
+    "9aaa9214~1": "6e5829d8 == 6394cbae",
+    "294e3ac6~1": "798e2807 == 9aaa9214",
+    "89efb3e6~1": "a409fb3c == 294e3ac6",
+    "meaning": "no third-party commit interleaved on this path, so a single revert range 6394cbae..89efb3e6 restores the pre-r269 bytes exactly"
+   },
+   "backup_files": [
+    "D:/global_memory_archive/_trash/rule_backup/frontend-slides.SKILL.md.20261029_180538_466624.bak (pre 6394cbae)",
+    "D:/global_memory_archive/_trash/rule_backup/frontend-slides.SKILL.md.20261029_192927_757447.bak (pre 9aaa9214)",
+    "D:/global_memory_archive/_trash/rule_backup/frontend-slides.SKILL.md.20261029_193431_150039.bak (pre 294e3ac6)",
+    "D:/global_memory_archive/_trash/rule_backup/frontend-slides.SKILL.md.20261029_220338_015184.bak (pre 89efb3e6)",
+    "plus frontend-slides.viewport-base.css.20261029_192928_418159.bak, frontend-slides.html-template.md.20261029_192928_635617.bak, frontend-slides.references.upstream-frontend-slides.md.20261029_192929_297764.bak (the three side files 9aaa9214 also touched)"
+   ],
+   "backup_to_blob_mapping": {
+    "20261029_192927": "6e5829d8 == 6394cbae blob (exact pre-state of 9aaa9214)",
+    "20261029_193431": "798e2807 == 9aaa9214 blob (exact pre-state of 294e3ac6)",
+    "20261029_220338": "a409fb3c == 294e3ac6 blob (exact pre-state of 89efb3e6)",
+    "20261029_180538": "1c7c6c2b != 6394cbae~1 blob 82db00b5 -- see finding_below"
+   },
+   "finding": "The 18:05 backup differs from the git before-arm by pre-existing uncommitted drift on disk, not by my measurement: it already carries version 1.3.0 (git blob says 1.0.0), last_updated 2026-10-27 (blob 2026-09-21) and an 8-line \"## Version history\" block; 20574 B vs 20073 B. Diff is 15 lines, all in frontmatter + the appended section, and that drift was swept INTO 6394cbae (its own blob already contains the Version history block and 1.3.0). Measuring the backup as an alternative before-arm moves only headings 22 -> 23 and lines 328 -> 336; viewport 9 and fixed-stage 3 clause counts are unchanged, so none of the paradigm readings depend on which before-arm is chosen.",
+   "verdict": "ROLLBACK FEASIBLE via git (single clean range 6394cbae..89efb3e6, contiguity proven, working tree for both dirs clean: git status --porcelain lines = 0). Backup-path rollback restores the 18:05 on-disk state, which is NOT identical to the pre-commit git state - flag for the Lead: a .bak-based rollback would also re-introduce the uncommitted 1.3.0 drift."
+  }
+ },
+ "negative_controls": {
+  "fetch_leg": [
+   "bash r278c_fetch.sh deadbeef1234567 test-driven-development/SKILL.md tdd_neg.md => UNVERIFIED reason=ref-not-found ref=deadbeef1234567, rc_neg_bogus_sha=3",
+   "bash r278c_fetch.sh 079b91f3 nosuchdir/NOPE.md tdd_neg2.md => UNVERIFIED reason=path-not-in-tree, rc_neg_bad_path=4",
+   "bash r278c_fetch.sh aaaa111122223333 frontend-slides/SKILL.md tdd_series_neg.md => UNVERIFIED, rc_fetch_neg=3",
+   "neg_artifact_written=NO (no partial/zero-byte file left behind), so a bogus sha can never feed a fake empty before-arm into the yardstick"
+  ],
+  "measure_leg": [
+   "python -B r278c_metrics.py --md does_not_exist.md ... => UNVERIFIED reason=md-missing, rc=7 (no json, no zeros)",
+   "python -B r278c_metrics.py --md empty_probe.md ... => UNVERIFIED reason=md-empty, rc=8",
+   "in series (fetch failure then measure): rc_fetch_neg=3 followed by rc_judge_after_failed_fetch=7 => both legs red, neither reports a reading"
+  ],
+  "judge_selfcheck_negative": "the yardstick itself was rewritten once after its own cross-check caught two silent bugs (headings_raw stuck at 0 because ^ lacked re.MULTILINE; 100vh and 1920x1080 double-counted across families, and 100dvh matched by neither). v1 numbers were NOT used in this file; every reported number comes from v2 after 24/24 SELFCHECK PASS."
+ },
+ "claims": {
+  "shas_from_git_log_by_me": "✅ 已实测 (git log/rev-parse, receipts above; the 32-place migration sha is 9aaa9214, taken from the repo, not from the brief)",
+  "before_after_metrics_five_plus": "✅ 已实测 - 13 scalar metrics + 2 per-family dicts per item, both arms present for both items",
+  "deltas": "✅ 已实测",
+  "rollback_feasibility": "✅ 已实测 (cat-file -e on all refs; ancestry; FS chain contiguity; TDD backup==before blob; FS 18:05 backup drift documented)",
+  "negative_controls_both_legs": "✅ 已实测 (fetch rc=3/4/3, measure rc=7/8, no artifact written)",
+  "yardstick_is_my_own": "✅ 已实测 (file lives in _temp/r278c, imports only stdlib; no 05-exec path in it)",
+  "semantic_quality_of_the_change": "❌ 未实测 - this arm measures text only; whether the fixed-stage rule set is the right call is out of scope",
+  "head_sha_drift_rechecked": "✅ 已实测 (blobs + byte lengths re-derived from HEAD after two parallel commits landed; unchanged)"
+ },
+ "write_surface_touched": [
+  "06-benchmark/r278_before_after_control.json",
+  "_temp/r278c/*"
+ ],
+ "measured_with": {
+  "python": "/c/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe -B",
+  "PYTHONPYCACHEPREFIX": "/tmp/pycache_r278c",
+  "python_version": "3.13.14"
+ },
+ "head_sha_drift_recheck": {
+  "note": "While this arm was running the managed root advanced twice (parallel sessions): 89efb3e6 -> 25929181 -> 30b84b20. Nothing I measured moved, and I verified it rather than assuming it.",
+  "head_at_measurement": "89efb3e663b138cf8c0141e89ce38efa733c7652",
+  "head_at_final_recheck": "30b84b20 (git log 89efb3e6..HEAD lists 25929181 skill(debugging-fixing) 2.14.20->2.14.21 and 30b84b20 [rule_editor] replace patch x4 (ui-ux-pro-max/SKILL.md))",
+  "after_arm_immunity": {
+   "test-driven-development": "HEAD:test-driven-development/SKILL.md blob still 684266d0e3cff9b54fbb0ca4455863a639e80641 and git show byte length still 11760; tdd_after.md still diff-identical to the on-disk file",
+   "frontend-slides": "HEAD:frontend-slides/SKILL.md blob still 9c2ef9dea94d9d41af2d11d0ec8bb3183a227247 and git show byte length still 23312; fs_after.md still diff-identical to the on-disk file"
+  },
+  "ancestry_still_true": "079b91f3 / 6394cbae / 9aaa9214 / 294e3ac6 / 89efb3e6 all merge-base --is-ancestor HEAD rc=0 at the rechecked head too",
+  "consequence": "metrics_after stays valid against current HEAD; every recorded number was captured under 89efb3e6 and reproduces byte-for-byte under 30b84b20. Recorded as a correction note (R241: history is appended to, not rewritten)."
+ }
+}

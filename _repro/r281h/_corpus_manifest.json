@@ -1,8 +1,9 @@
 {
  "schema": "repro-corpus-manifest-v1",
- "root": "C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r281h/",
- "files_n": 108,
- "total_bytes": 488810,
+ "root": "_repro/r281h/",
+ "files_n": 66,
+ "total_bytes": 312105,
+ "rebuilt_at": "r284 (negctl self-cleaned by judge)",
  "files": {
   "A/SKILL.md": {
    "sha256": "e6556cb09256a24f",
@@ -245,176 +246,8 @@
    "bytes": 823
   },
   "_ctl/make_json.py": {
-   "sha256": "0e5221dfc75bd4c1",
-   "bytes": 10884
-  },
-  "_ctl/negctl/SKILL.md": {
-   "sha256": "e6556cb09256a24f",
-   "bytes": 5327
-  },
-  "_ctl/negctl/_ds_page_wrapper.py": {
-   "sha256": "44f080be5c8c623a",
-   "bytes": 1529
-  },
-  "_ctl/negctl/_evidence.err": {
-   "sha256": "e3b0c44298fc1c14",
-   "bytes": 0
-  },
-  "_ctl/negctl/_evidence.py": {
-   "sha256": "2d13e39070a197d4",
-   "bytes": 3773
-  },
-  "_ctl/negctl/_evidence2.err": {
-   "sha256": "e3b0c44298fc1c14",
-   "bytes": 0
-  },
-  "_ctl/negctl/_evidence2.py": {
-   "sha256": "f024d6b41e7945dc",
-   "bytes": 4552
-  },
-  "_ctl/negctl/_evidence2_out.txt": {
-   "sha256": "603e3b8ae9f9a5eb",
-   "bytes": 3718
-  },
-  "_ctl/negctl/_evidence3.err": {
-   "sha256": "e3b0c44298fc1c14",
-   "bytes": 0
-  },
-  "_ctl/negctl/_evidence3.py": {
-   "sha256": "e46a28934526962d",
-   "bytes": 4258
-  },
-  "_ctl/negctl/_evidence3_out.txt": {
-   "sha256": "de8d33e3da05e8fb",
-   "bytes": 2791
-  },
-  "_ctl/negctl/_evidence4.err": {
-   "sha256": "e3b0c44298fc1c14",
-   "bytes": 0
-  },
-  "_ctl/negctl/_evidence4.py": {
-   "sha256": "5d65b2d1ca62d9e3",
-   "bytes": 2762
-  },
-  "_ctl/negctl/_evidence4_out.txt": {
-   "sha256": "bbf8f9c0de11c589",
-   "bytes": 2230
-  },
-  "_ctl/negctl/_evidence5.err": {
-   "sha256": "e3b0c44298fc1c14",
-   "bytes": 0
-  },
-  "_ctl/negctl/_evidence5.py": {
-   "sha256": "0b1f64e18cf13102",
-   "bytes": 3324
-  },
-  "_ctl/negctl/_evidence5_out.txt": {
-   "sha256": "a5142a3972b65a81",
-   "bytes": 1776
-  },
-  "_ctl/negctl/_evidence_out.txt": {
-   "sha256": "7715bd610f7b0753",
-   "bytes": 9624
-  },
-  "_ctl/negctl/_exec_log.md": {
-   "sha256": "315788470104662b",
-   "bytes": 8821
-  },
-  "_ctl/negctl/_gen_a.err": {
-   "sha256": "b8d608b3e3d0ee51",
-   "bytes": 1063
-  },
-  "_ctl/negctl/_gen_all.err": {
-   "sha256": "e3b0c44298fc1c14",
-   "bytes": 0
-  },
-  "_ctl/negctl/_gen_b.err": {
-   "sha256": "e3b0c44298fc1c14",
-   "bytes": 0
-  },
-  "_ctl/negctl/_gen_c.err": {
-   "sha256": "7e0d2d1ea12a0774",
-   "bytes": 209
-  },
-  "_ctl/negctl/_gen_d.err": {
-   "sha256": "b8d608b3e3d0ee51",
-   "bytes": 1063
-  },
-  "_ctl/negctl/_gen_e.err": {
-   "sha256": "e3b0c44298fc1c14",
-   "bytes": 0
-  },
-  "_ctl/negctl/_gen_stdout.txt": {
-   "sha256": "ca2c631b10cdcb25",
-   "bytes": 17721
-  },
-  "_ctl/negctl/_merge_tokens.sh": {
-   "sha256": "dc33cf94415954d7",
-   "bytes": 419
-  },
-  "_ctl/negctl/_probe_help.sh": {
-   "sha256": "3308dcc0aa24d0f0",
-   "bytes": 490
-  },
-  "_ctl/negctl/_run_all_gen.sh": {
-   "sha256": "e407eb61d1f700ef",
-   "bytes": 819
-  },
-  "_ctl/negctl/_run_gen_a.sh": {
-   "sha256": "af4f9cefe5099c5c",
-   "bytes": 456
-  },
-  "_ctl/negctl/_run_gen_b.sh": {
-   "sha256": "3bca03be36735244",
-   "bytes": 538
-  },
-  "_ctl/negctl/_run_gen_cd.sh": {
-   "sha256": "695ce60f08d3e79a",
-   "bytes": 692
-  },
-  "_ctl/negctl/_run_gen_e.sh": {
-   "sha256": "8e36d60f414a7dc1",
-   "bytes": 555
-  },
-  "_ctl/negctl/_selfcheck.py": {
-   "sha256": "e4aa1a7ba6f8506a",
-   "bytes": 1062
-  },
-  "_ctl/negctl/_toolcount.txt": {
-   "sha256": "6affdae3b3c1aa6a",
-   "bytes": 3
-  },
-  "_ctl/negctl/_triage.md": {
-   "sha256": "ddfa8834b8bbadbd",
-   "bytes": 7420
-  },
-  "_ctl/negctl/design-system/internal-data-dashboard/CONTRAST-AUDIT.md": {
-   "sha256": "299952e1ba6aba8b",
-   "bytes": 5879
-  },
-  "_ctl/negctl/design-system/internal-data-dashboard/MASTER.md": {
-   "sha256": "fa5752f844c475db",
-   "bytes": 5433
-  },
-  "_ctl/negctl/design-system/internal-data-dashboard/README.md": {
-   "sha256": "9c380f805fba4d40",
-   "bytes": 5778
-  },
-  "_ctl/negctl/design-system/internal-data-dashboard/TOKENS.md": {
-   "sha256": "3c955a7cf39644f6",
-   "bytes": 36294
-  },
-  "_ctl/negctl/design-system/internal-data-dashboard/_TOK_P1.md": {
-   "sha256": "89944ef97e317f2e",
-   "bytes": 13845
-  },
-  "_ctl/negctl/design-system/internal-data-dashboard/_TOK_P2.md": {
-   "sha256": "661aa115bd79bae9",
-   "bytes": 22449
-  },
-  "_ctl/negctl/design-system/internal-data-dashboard/pages/dashboard.md": {
-   "sha256": "d872a5617fc8e105",
-   "bytes": 1489
+   "sha256": "728c2455310e56e0",
+   "bytes": 12038
   },
   "_ctl/probe/design-system/insight-desk-analytics/MASTER.md": {
    "sha256": "fb6ee3b87875a857",
@@ -429,8 +262,8 @@
    "bytes": 5372
   },
   "_ctl/score_ab.py": {
-   "sha256": "55508128a049bbc9",
-   "bytes": 9772
+   "sha256": "eadf5162e31ba873",
+   "bytes": 10075
   },
   "_ctl/verify.py": {
    "sha256": "e4c963766be0b30c",

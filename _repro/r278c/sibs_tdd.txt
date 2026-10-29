@@ -1,0 +1,8 @@
+test-driven-development/.upstream
+test-driven-development/LICENSE
+test-driven-development/NOTICE
+test-driven-development/SKILL.md
+test-driven-development/references/upstream-agent-skills-tdd-part2.md
+test-driven-development/references/upstream-agent-skills-tdd.md
+test-driven-development/testing-anti-patterns.md
+test-driven-development/writing-good-tests.md

@@ -1,0 +1,2467 @@
+{
+ "schema": "three-arm-reconcile-v1",
+ "round": "R282 three-arm reconcile (R281 carry-over)",
+ "measured_at": "2026-10-29T17:38:04Z",
+ "managed_root": "D:/global_skills",
+ "head_sha_at_reconcile": "3da30832613c875558b40e5196c910bd0da9831c",
+ "arms": {
+  "lead": {
+   "file": "06-benchmark/r278_landing_effect.json",
+   "judge": "05-exec/r278_landing_effect.py",
+   "caliber": "explicit BASE/BEFORE pins + r268 sibling axes (normal and strict)"
+  },
+  "f_arm": {
+   "file": "06-benchmark/r278_before_after_control.json",
+   "judge": "_temp/r278c/r278c_metrics.py + r278c_drive.sh",
+   "caliber": "own yardstick, zero import of 05-exec"
+  },
+  "g_arm": {
+   "file": "06-benchmark/r281_artifact_ab.json",
+   "judge": "_temp/r281g/score_r281g.py",
+   "caliber": "six-dim mechanical blind rubric, banded 0..5",
+   "rerun_cmd": "R281G CHECK PASS cells=36/36 uplift_reproducible=3/3 blind=AMBIGUOUS_TIE:1,SAME_ORDER:2"
+  }
+ },
+ "rows": [
+  {
+   "skill": "test-driven-development",
+   "status": "MEASURED",
+   "lead": {
+    "before_ref": "079b91f33e95e46da750be33a84fae5627adde65~1",
+    "after_ref": "worktree:test-driven-development/SKILL.md (r278_landing_effect.py reads the index/worktree copy)",
+    "state": "OK",
+    "first_landing": "079b91f33e95e46da750be33a84fae5627adde65",
+    "landing_commits_n": 1,
+    "metrics": {
+     "before": {
+      "present_n": 4,
+      "unreferenced_n": 1,
+      "unreferenced": [
+       "writing-good-tests.md"
+      ],
+      "half_claim_n": 0,
+      "double_write_n": 0,
+      "max_line_bytes": 390,
+      "vh_claims_n": 0,
+      "flag_unsupported_n": null,
+      "stage_claims_n": 0,
+      "unreferenced_strict_n": 1
+     },
+     "after": {
+      "present_n": 4,
+      "unreferenced_n": 0,
+      "unreferenced": [],
+      "half_claim_n": 0,
+      "double_write_n": 0,
+      "max_line_bytes": 390,
+      "vh_claims_n": 0,
+      "flag_unsupported_n": null,
+      "stage_claims_n": 0,
+      "unreferenced_strict_n": 0
+     },
+     "delta": {
+      "unreferenced_n": -1,
+      "half_claim_n": 0,
+      "double_write_n": 0,
+      "max_line_bytes": 0,
+      "vh_claims_n": 0,
+      "stage_claims_n": 0
+     },
+     "caliber_pair": {
+      "normal_before_after": [
+       1,
+       0
+      ],
+      "strict_before_after": [
+       1,
+       0
+      ]
+     },
+     "axes_improved": [
+      "unreferenced_n"
+     ],
+     "axes_worsened": [],
+     "exempt_n": 4,
+     "delta_unjudged": [
+      "flag_unsupported_n"
+     ]
+    }
+   },
+   "f_arm": {
+    "before_ref": "079b91f3~1 (= 87934d48)",
+    "after_ref": "HEAD (= 89efb3e6; HEAD:path blob == 079b91f3:path blob, so r266 is still the file state on mainline)",
+    "state": "MEASURED",
+    "landed_change": "r266 = 079b91f3, one pointer line to writing-good-tests.md inserted after old line 216",
+    "chain_check": "git log --oneline 079b91f3..HEAD -- test-driven-development/SKILL.md returned zero lines (verified empty)",
+    "metrics": {
+     "before": {
+      "bytes": 11635,
+      "lines": 395,
+      "headings_raw": 24,
+      "headings_prose": 24,
+      "frontmatter_lines": 6,
+      "viewport_clause_total": 0,
+      "viewport_clause_lines": 0,
+      "viewport_families": {
+       "vh_numeric": 0,
+       "vh_standalone": 0,
+       "vw_numeric": 0,
+       "vw_standalone": 0,
+       "dvh": 0,
+       "svh_lvh": 0,
+       "clamp_call": 0
+      },
+      "viewport_subset_100vh": {
+       "100vh": 0
+      },
+      "fixed_stage_clause_total": 0,
+      "fixed_stage_clause_lines": 0,
+      "fixed_stage_families": {
+       "px_1920": 0,
+       "px_1080": 0,
+       "fixed_stage": 0,
+       "stage_pair_1920x1080": 0
+      },
+      "sibling_denom": 7,
+      "sibling_loose_hit": 3,
+      "sibling_strict_hit": 3,
+      "sibling_loose_rate_pct": 42.86,
+      "sibling_strict_rate_pct": 42.86,
+      "sha256_md": "8ee8a57d45a2e78898d4c3e0f7c5db158eb4e077cfa735e551171cb5b0c9c4f0",
+      "git_blob_sha": "489ab8a631a84075339a85ada45eb92384d78a39",
+      "source": "079b91f3~1:test-driven-development/SKILL.md"
+     },
+     "after": {
+      "bytes": 11760,
+      "lines": 396,
+      "headings_raw": 24,
+      "headings_prose": 24,
+      "frontmatter_lines": 6,
+      "viewport_clause_total": 0,
+      "viewport_clause_lines": 0,
+      "viewport_families": {
+       "vh_numeric": 0,
+       "vh_standalone": 0,
+       "vw_numeric": 0,
+       "vw_standalone": 0,
+       "dvh": 0,
+       "svh_lvh": 0,
+       "clamp_call": 0
+      },
+      "viewport_subset_100vh": {
+       "100vh": 0
+      },
+      "fixed_stage_clause_total": 0,
+      "fixed_stage_clause_lines": 0,
+      "fixed_stage_families": {
+       "px_1920": 0,
+       "px_1080": 0,
+       "fixed_stage": 0,
+       "stage_pair_1920x1080": 0
+      },
+      "sibling_denom": 7,
+      "sibling_loose_hit": 4,
+      "sibling_strict_hit": 4,
+      "sibling_loose_rate_pct": 57.14,
+      "sibling_strict_rate_pct": 57.14,
+      "sha256_md": "e970555276c39c3202db205f6d9b15fb7228e159dfda125e2d7dc6192b5e98c4",
+      "git_blob_sha": "684266d0e3cff9b54fbb0ca4455863a639e80641",
+      "source": "HEAD:test-driven-development/SKILL.md"
+     },
+     "delta": {
+      "bytes": 125,
+      "lines": 1,
+      "headings_raw": 0,
+      "headings_prose": 0,
+      "viewport_clause_total": 0,
+      "viewport_clause_lines": 0,
+      "fixed_stage_clause_total": 0,
+      "fixed_stage_clause_lines": 0,
+      "sibling_loose_hit": 1,
+      "sibling_strict_hit": 1,
+      "sibling_loose_rate_pct": 14.28,
+      "sibling_strict_rate_pct": 14.28,
+      "sibling_denom": 0,
+      "viewport_families_delta": {
+       "vh_numeric": 0,
+       "vh_standalone": 0,
+       "vw_numeric": 0,
+       "vw_standalone": 0,
+       "dvh": 0,
+       "svh_lvh": 0,
+       "clamp_call": 0
+      },
+      "fixed_stage_families_delta": {
+       "px_1920": 0,
+       "px_1080": 0,
+       "fixed_stage": 0,
+       "stage_pair_1920x1080": 0
+      },
+      "sha256_md_changed": true
+     }
+    }
+   },
+   "g_arm": {
+    "before_ref": "079b91f3~1",
+    "after_ref": "worktree:D:/global_skills/test-driven-development/SKILL.md",
+    "before_full": "87934d4895b669fdafdcddc2e76ba570a602c9d1",
+    "before_full_recomputed": "87934d4895b669fdafdcddc2e76ba570a602c9d1",
+    "metrics": {
+     "raw_before": {
+      "d1": 6,
+      "d2": 7,
+      "d3": 5,
+      "d4": 19,
+      "d5": 3,
+      "d6": null
+     },
+     "raw_after": {
+      "d1": 6,
+      "d2": 7,
+      "d3": 5,
+      "d4": 19,
+      "d5": 4,
+      "d6": null
+     },
+     "dims_before": {
+      "d1": 2,
+      "d2": 2,
+      "d3": 1,
+      "d4": 4,
+      "d5": 2,
+      "d6": null
+     },
+     "dims_after": {
+      "d1": 2,
+      "d2": 2,
+      "d3": 1,
+      "d4": 4,
+      "d5": 2,
+      "d6": null
+     },
+     "sum_before": 11,
+     "sum_after": 11,
+     "uplift_pct": 0.0,
+     "decidable_dims": [
+      "d1",
+      "d2",
+      "d3",
+      "d4",
+      "d5"
+     ],
+     "excluded_dims": [
+      "d6"
+     ],
+     "blind_order_match": "AMBIGUOUS_TIE",
+     "text_sha256": {
+      "before": "8ee8a57d45a2e78898d4c3e0f7c5db158eb4e077cfa735e551171cb5b0c9c4f0",
+      "after": "e970555276c39c3202db205f6d9b15fb7228e159dfda125e2d7dc6192b5e98c4"
+     }
+    }
+   },
+   "divergences": [
+    {
+     "id": "TDD-1",
+     "fields": [
+      "g_arm/uplift_pct",
+      "lead/metrics.{before,after}.unreferenced_strict_n"
+     ],
+     "readings": {
+      "g_uplift_pct": 0.0,
+      "g_raw_d5": [
+       3,
+       4
+      ],
+      "g_dims_d5": [
+       2,
+       2
+      ],
+      "lead_unreferenced_strict": [
+       1,
+       0
+      ]
+     },
+     "kind": "CALIBER",
+     "adjudication": "口径差（分档吃平，不是某侧算错）：r266 只加一行 writing-good-tests.md 指针。G 侧 d5 raw 3->4，但 EDGES d5=[1,3,5,8,12] 使 raw 3 与 raw 4 同落 band2 [3,5) ⇒ 档位 2->2，uplift 报 0.0%；Lead 侧同一件事表现为 unreferenced_strict 1->0。不带分档的 raw 口径为 +2.5%（分子 = 41-40 = 1，分母 = 40 = d1..d5 raw 之和的改前值）。",
+     "quantified": {
+      "raw_delta_d5": 1,
+      "band_span": "raw [3,5) = band 2",
+      "banded_delta": 0,
+      "raw_sum_uplift_pct": 2.5,
+      "banded_uplift_pct": 0.0
+     },
+     "evidence_cmd": "PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B _temp/r282j/emit_r282.py --check | grep -aF '[FLAT]'"
+    },
+    {
+     "id": "TDD-2",
+     "fields": [
+      "lead/metrics_before.present_n",
+      "f_arm/metrics_before.sibling_denom"
+     ],
+     "readings": {
+      "lead_present_n": 4,
+      "f_denom": 7,
+      "f_only_extras": [
+       ".upstream",
+       "LICENSE",
+       "NOTICE"
+      ]
+     },
+     "kind": "CALIBER",
+     "adjudication": "口径差（豁免面不同，集合逐项可推）：4 与 7 的差 = 3 个文件（.upstream / LICENSE / NOTICE），Lead 走 r268 豁免名、F 只丢 *SKILL.md。分子在两臂完全相同（strict 命中 3->4），故两臂可互推为 3/4=75% 与 4/7=57.14% 两个率，不是两个事实；不许折中取平均。",
+     "quantified": {
+      "identity_before_holds": true,
+      "identity_after_holds": true,
+      "equation_before": "f_unref(4) = lead_unref_4rule(1) + extras_unref(3) + rule_gap(0)",
+      "lead_strict_hit_2rule": [
+       3,
+       4
+      ],
+      "f_strict_hit": [
+       3,
+       4
+      ],
+      "rule_gap_before_after": [
+       0,
+       0
+      ]
+     },
+     "evidence_cmd": "PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B _temp/r282j/emit_r282.py --check | grep -aF '[D]'"
+    },
+    {
+     "id": "TDD-3",
+     "fields": [
+      "g_arm/after_ref",
+      "f_arm/after_ref",
+      "lead/after_ref"
+     ],
+     "readings": {
+      "g_and_lead": "worktree:D:/global_skills/test-driven-development/SKILL.md",
+      "f": "HEAD (= 89efb3e6 at F measurement)",
+      "before_arms": {
+       "g": "079b91f3~1",
+       "lead": "079b91f33e95e46da750be33a84fae5627adde65~1",
+       "f": "079b91f3~1"
+      }
+     },
+     "kind": "CALIBER",
+     "adjudication": "口径差（读取面不同：Lead/G 读工作树，F 读 HEAD:path）+ 本件实测无害：改后文本 sha256 在工作树与 HEAD 之间相同，三臂读的是同一份字节。改前三臂同指 079b91f3~1 (= 87934d48)，distinct_texts=1 ⇒ 无任何口径差。",
+     "quantified": {
+      "after_worktree_equals_HEAD": true,
+      "before_distinct_texts": 1,
+      "after_distinct_texts": 1
+     },
+     "evidence_cmd": "PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B _temp/r282j/emit_r282.py --check | grep -aF '[IDENT]'"
+    }
+   ],
+   "adjudication": {
+    "summary": "口径差 3 项 / 某侧错 0 项 / UNVERIFIED 0 项；G 报 0.0% 与 Lead 的 unreferenced_n 1->0 是同一件事的两个口径（分档吃平），非某侧算错",
+    "caliber_n": 3,
+    "error_n": 0,
+    "unverified_n": 0,
+    "every_divergence_has_verdict": true
+   },
+   "adjudication_evidence_cmd": "PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B _temp/r282j/emit_r282.py --check | grep -aF '[FLAT]' ; PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B _temp/r282j/emit_r282.py --check | grep -aF '[D]' ; PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B _temp/r282j/emit_r282.py --check | grep -aF '[IDENT]'",
+   "cross_arm_text_identity": {
+    "skill": "test-driven-development",
+    "before": {
+     "arms": {
+      "g": {
+       "ref": "079b91f3~1",
+       "full_sha": "87934d4895b669fdafdcddc2e76ba570a602c9d1",
+       "bytes_utf8": 11635,
+       "sha256_16": "8ee8a57d45a2e788"
+      },
+      "lead": {
+       "ref": "079b91f33e95e46da750be33a84fae5627adde65~1",
+       "full_sha": "87934d4895b669fdafdcddc2e76ba570a602c9d1",
+       "bytes_utf8": 11635,
+       "sha256_16": "8ee8a57d45a2e788"
+      },
+      "f": {
+       "ref": "079b91f3~1",
+       "full_sha": "87934d4895b669fdafdcddc2e76ba570a602c9d1",
+       "bytes_utf8": 11635,
+       "sha256_16": "8ee8a57d45a2e788"
+      }
+     },
+     "distinct_texts": 1,
+     "all_equal": true
+    },
+    "after": {
+     "arms": {
+      "g": {
+       "ref": "worktree",
+       "full_sha": "worktree",
+       "bytes_utf8": 11760,
+       "sha256_16": "e970555276c39c32"
+      },
+      "lead": {
+       "ref": "worktree",
+       "full_sha": "worktree",
+       "bytes_utf8": 11760,
+       "sha256_16": "e970555276c39c32"
+      },
+      "f": {
+       "ref": "HEAD",
+       "full_sha": "3da30832613c875558b40e5196c910bd0da9831c",
+       "bytes_utf8": 11760,
+       "sha256_16": "e970555276c39c32"
+      }
+     },
+     "distinct_texts": 1,
+     "all_equal": true
+    },
+    "after_worktree_equals_HEAD": true,
+    "published_g_text_sha256": {
+     "before": "8ee8a57d45a2e788",
+     "after": "e970555276c39c32"
+    }
+   },
+   "g_recomputed_independently": {
+    "raw_before": {
+     "d1": 6,
+     "d2": 7,
+     "d3": 5,
+     "d4": 19,
+     "d5": 3,
+     "d6": null
+    },
+    "raw_after": {
+     "d1": 6,
+     "d2": 7,
+     "d3": 5,
+     "d4": 19,
+     "d5": 4,
+     "d6": null
+    },
+    "dims_before": {
+     "d1": 2,
+     "d2": 2,
+     "d3": 1,
+     "d4": 4,
+     "d5": 2,
+     "d6": null
+    },
+    "dims_after": {
+     "d1": 2,
+     "d2": 2,
+     "d3": 1,
+     "d4": 4,
+     "d5": 2,
+     "d6": null
+    },
+    "sum_before": 11,
+    "sum_after": 11,
+    "uplift_pct": 0.0,
+    "decidable_dims": [
+     "d1",
+     "d2",
+     "d3",
+     "d4",
+     "d5"
+    ],
+    "clean": true,
+    "mismatch_fields": [],
+    "text_sha256": {
+     "before": "8ee8a57d45a2e78898d4c3e0f7c5db158eb4e077cfa735e551171cb5b0c9c4f0",
+     "after": "e970555276c39c3202db205f6d9b15fb7228e159dfda125e2d7dc6192b5e98c4"
+    }
+   }
+  },
+  {
+   "skill": "frontend-slides",
+   "status": "MEASURED",
+   "lead": {
+    "before_ref": "6394cbae1e5d00f8a60e383f761613664cca2b41~1",
+    "after_ref": "worktree:frontend-slides/SKILL.md (r278_landing_effect.py reads the index/worktree copy)",
+    "state": "OK",
+    "first_landing": "6394cbae1e5d00f8a60e383f761613664cca2b41",
+    "landing_commits_n": 5,
+    "metrics": {
+     "before": {
+      "present_n": 87,
+      "unreferenced_n": 70,
+      "unreferenced": [
+       "README.md",
+       "bold-template-pack/README.md",
+       "bold-template-pack/deck-stage.js",
+       "bold-template-pack/selection-index.json",
+       "bold-template-pack/templates/8-bit-orbit/design.md",
+       "bold-template-pack/templates/8-bit-orbit/preview.md",
+       "bold-template-pack/templates/biennale-yellow/design.md",
+       "bold-template-pack/templates/biennale-yellow/preview.md",
+       "bold-template-pack/templates/block-frame/design.md",
+       "bold-template-pack/templates/block-frame/preview.md",
+       "bold-template-pack/templates/blue-professional/design.md",
+       "bold-template-pack/templates/blue-professional/preview.md",
+       "bold-template-pack/templates/bold-poster/design.md",
+       "bold-template-pack/templates/bold-poster/preview.md",
+       "bold-template-pack/templates/broadside/design.md",
+       "bold-template-pack/templates/broadside/preview.md",
+       "bold-template-pack/templates/capsule/design.md",
+       "bold-template-pack/templates/capsule/preview.md",
+       "bold-template-pack/templates/cartesian/design.md",
+       "bold-template-pack/templates/cartesian/preview.md",
+       "bold-template-pack/templates/cobalt-grid/design.md",
+       "bold-template-pack/templates/cobalt-grid/preview.md",
+       "bold-template-pack/templates/coral/design.md",
+       "bold-template-pack/templates/coral/preview.md",
+       "bold-template-pack/templates/creative-mode/design.md",
+       "bold-template-pack/templates/creative-mode/preview.md",
+       "bold-template-pack/templates/daisy-days/design.md",
+       "bold-template-pack/templates/daisy-days/preview.md",
+       "bold-template-pack/templates/editorial-forest/design.md",
+       "bold-template-pack/templates/editorial-forest/preview.md",
+       "bold-template-pack/templates/editorial-tri-tone/design.md",
+       "bold-template-pack/templates/editorial-tri-tone/preview.md",
+       "bold-template-pack/templates/emerald-editorial/design.md",
+       "bold-template-pack/templates/emerald-editorial/preview.md",
+       "bold-template-pack/templates/grove/design.md",
+       "bold-template-pack/templates/grove/preview.md",
+       "bold-template-pack/templates/long-table/design.md",
+       "bold-template-pack/templates/long-table/preview.md",
+       "bold-template-pack/templates/monochrome/design.md",
+       "bold-template-pack/templates/monochrome/preview.md",
+       "bold-template-pack/templates/neo-grid-bold/design.md",
+       "bold-template-pack/templates/neo-grid-bold/preview.md",
+       "bold-template-pack/templates/peoples-platform/design.md",
+       "bold-template-pack/templates/peoples-platform/preview.md",
+       "bold-template-pack/templates/pin-and-paper/design.md",
+       "bold-template-pack/templates/pin-and-paper/preview.md",
+       "bold-template-pack/templates/pink-script/design.md",
+       "bold-template-pack/templates/pink-script/preview.md",
+       "bold-template-pack/templates/playful/design.md",
+       "bold-template-pack/templates/playful/preview.md",
+       "bold-template-pack/templates/raw-grid/design.md",
+       "bold-template-pack/templates/raw-grid/preview.md",
+       "bold-template-pack/templates/retro-windows/design.md",
+       "bold-template-pack/templates/retro-windows/preview.md",
+       "bold-template-pack/templates/retro-zine/design.md",
+       "bold-template-pack/templates/retro-zine/preview.md",
+       "bold-template-pack/templates/sakura-chroma/design.md",
+       "bold-template-pack/templates/sakura-chroma/preview.md",
+       "bold-template-pack/templates/scatterbrain/design.md",
+       "bold-template-pack/templates/scatterbrain/preview.md",
+       "bold-template-pack/templates/signal/design.md",
+       "bold-template-pack/templates/signal/preview.md",
+       "bold-template-pack/templates/soft-editorial/design.md",
+       "bold-template-pack/templates/soft-editorial/preview.md",
+       "bold-template-pack/templates/stencil-tablet/design.md",
+       "bold-template-pack/templates/stencil-tablet/preview.md",
+       "bold-template-pack/templates/studio/design.md",
+       "bold-template-pack/templates/studio/preview.md",
+       "bold-template-pack/templates/vellum/design.md",
+       "bold-template-pack/templates/vellum/preview.md"
+      ],
+      "half_claim_n": 0,
+      "double_write_n": 1,
+      "max_line_bytes": 487,
+      "vh_claims_n": 4,
+      "flag_unsupported_n": 2,
+      "stage_claims_n": 3,
+      "unreferenced_strict_n": 72
+     },
+     "after": {
+      "present_n": 87,
+      "unreferenced_n": 0,
+      "unreferenced": [],
+      "half_claim_n": 0,
+      "double_write_n": 1,
+      "max_line_bytes": 487,
+      "vh_claims_n": 3,
+      "flag_unsupported_n": 2,
+      "stage_claims_n": 17,
+      "unreferenced_strict_n": 68
+     },
+     "delta": {
+      "unreferenced_n": -70,
+      "half_claim_n": 0,
+      "double_write_n": 0,
+      "max_line_bytes": 0,
+      "vh_claims_n": -1,
+      "stage_claims_n": 14,
+      "flag_unsupported_n": 0
+     },
+     "caliber_pair": {
+      "normal_before_after": [
+       70,
+       0
+      ],
+      "strict_before_after": [
+       72,
+       68
+      ]
+     },
+     "axes_improved": [
+      "unreferenced_n",
+      "vh_claims_n"
+     ],
+     "axes_worsened": [],
+     "exempt_n": 6,
+     "delta_unjudged": []
+    }
+   },
+   "f_arm": {
+    "before_ref": "6394cbae~1 (= 3681df5e)",
+    "after_ref": "HEAD (= 89efb3e6)",
+    "state": "MEASURED",
+    "landed_change": "r269 = 6394cbae (register + conflict declaration) -> r272-equivalent 32-place paradigm migration = 9aaa9214 -> 294e3ac6 (replace patch x1, not in the brief) -> r277 = 89efb3e6 (six residual fixes)",
+    "chain_check": "git log --oneline 6394cbae~1..HEAD -- frontend-slides/SKILL.md lists exactly 6394cbae, 9aaa9214, 294e3ac6, 89efb3e6; each commit blob equals the next commit parent blob (contiguity verified, see chain_contiguity)",
+    "metrics": {
+     "before": {
+      "bytes": 20073,
+      "lines": 328,
+      "headings_raw": 22,
+      "headings_prose": 22,
+      "frontmatter_lines": 6,
+      "viewport_clause_total": 9,
+      "viewport_clause_lines": 8,
+      "viewport_families": {
+       "vh_numeric": 5,
+       "vh_standalone": 0,
+       "vw_numeric": 0,
+       "vw_standalone": 0,
+       "dvh": 1,
+       "svh_lvh": 0,
+       "clamp_call": 3
+      },
+      "viewport_subset_100vh": {
+       "100vh": 2
+      },
+      "fixed_stage_clause_total": 3,
+      "fixed_stage_clause_lines": 3,
+      "fixed_stage_families": {
+       "px_1920": 0,
+       "px_1080": 0,
+       "fixed_stage": 0,
+       "stage_pair_1920x1080": 3
+      },
+      "sibling_denom": 93,
+      "sibling_loose_hit": 15,
+      "sibling_strict_hit": 15,
+      "sibling_loose_rate_pct": 16.13,
+      "sibling_strict_rate_pct": 16.13,
+      "sha256_md": "e76ddd898d425ad2bed4b9ac12b7e9e8a9788180cc661d7260e05a25da426f49",
+      "git_blob_sha": "82db00b5325c610f456dbb762057e8410c36cc79",
+      "source": "6394cbae~1:frontend-slides/SKILL.md"
+     },
+     "after": {
+      "bytes": 23312,
+      "lines": 346,
+      "headings_raw": 23,
+      "headings_prose": 23,
+      "frontmatter_lines": 6,
+      "viewport_clause_total": 7,
+      "viewport_clause_lines": 5,
+      "viewport_families": {
+       "vh_numeric": 3,
+       "vh_standalone": 1,
+       "vw_numeric": 0,
+       "vw_standalone": 1,
+       "dvh": 0,
+       "svh_lvh": 0,
+       "clamp_call": 2
+      },
+      "viewport_subset_100vh": {
+       "100vh": 1
+      },
+      "fixed_stage_clause_total": 33,
+      "fixed_stage_clause_lines": 20,
+      "fixed_stage_families": {
+       "px_1920": 2,
+       "px_1080": 5,
+       "fixed_stage": 10,
+       "stage_pair_1920x1080": 16
+      },
+      "sibling_denom": 93,
+      "sibling_loose_hit": 19,
+      "sibling_strict_hit": 19,
+      "sibling_loose_rate_pct": 20.43,
+      "sibling_strict_rate_pct": 20.43,
+      "sha256_md": "6b9b0953aa2681f617ca7aed6b8c49bfce8ae38389751a817124dda30e69a36e",
+      "git_blob_sha": "9c2ef9dea94d9d41af2d11d0ec8bb3183a227247",
+      "source": "HEAD:frontend-slides/SKILL.md"
+     },
+     "delta": {
+      "bytes": 3239,
+      "lines": 18,
+      "headings_raw": 1,
+      "headings_prose": 1,
+      "viewport_clause_total": -2,
+      "viewport_clause_lines": -3,
+      "fixed_stage_clause_total": 30,
+      "fixed_stage_clause_lines": 17,
+      "sibling_loose_hit": 4,
+      "sibling_strict_hit": 4,
+      "sibling_loose_rate_pct": 4.3,
+      "sibling_strict_rate_pct": 4.3,
+      "sibling_denom": 0,
+      "viewport_families_delta": {
+       "vh_numeric": -2,
+       "vh_standalone": 1,
+       "vw_numeric": 0,
+       "vw_standalone": 1,
+       "dvh": -1,
+       "svh_lvh": 0,
+       "clamp_call": -1
+      },
+      "fixed_stage_families_delta": {
+       "px_1920": 2,
+       "px_1080": 5,
+       "fixed_stage": 10,
+       "stage_pair_1920x1080": 13
+      },
+      "sha256_md_changed": true
+     }
+    }
+   },
+   "g_arm": {
+    "before_ref": "6394cbae~1",
+    "after_ref": "worktree:D:/global_skills/frontend-slides/SKILL.md",
+    "before_full": "3681df5e81fcc995b79f8cfbee538c8cb72bf9e1",
+    "before_full_recomputed": "3681df5e81fcc995b79f8cfbee538c8cb72bf9e1",
+    "metrics": {
+     "raw_before": {
+      "d1": 6,
+      "d2": 8,
+      "d3": 20,
+      "d4": 2,
+      "d5": 5,
+      "d6": null
+     },
+     "raw_after": {
+      "d1": 6,
+      "d2": 9,
+      "d3": 36,
+      "d4": 2,
+      "d5": 9,
+      "d6": null
+     },
+     "dims_before": {
+      "d1": 2,
+      "d2": 2,
+      "d3": 2,
+      "d4": 1,
+      "d5": 3,
+      "d6": null
+     },
+     "dims_after": {
+      "d1": 2,
+      "d2": 3,
+      "d3": 4,
+      "d4": 1,
+      "d5": 4,
+      "d6": null
+     },
+     "sum_before": 10,
+     "sum_after": 14,
+     "uplift_pct": 40.0,
+     "decidable_dims": [
+      "d1",
+      "d2",
+      "d3",
+      "d4",
+      "d5"
+     ],
+     "excluded_dims": [
+      "d6"
+     ],
+     "blind_order_match": "SAME_ORDER",
+     "text_sha256": {
+      "before": "e76ddd898d425ad2bed4b9ac12b7e9e8a9788180cc661d7260e05a25da426f49",
+      "after": "6b9b0953aa2681f617ca7aed6b8c49bfce8ae38389751a817124dda30e69a36e"
+     }
+    }
+   },
+   "divergences": [
+    {
+     "id": "FS-1",
+     "fields": [
+      "lead/caliber_pair/normal_before_after",
+      "lead/caliber_pair/strict_before_after"
+     ],
+     "readings": {
+      "normal": [
+       70,
+       0
+      ],
+      "strict": [
+       72,
+       68
+      ]
+     },
+     "kind": "CALIBER",
+     "adjudication": "口径差（Lead 自报的两档）：normal 档「点名一次目录」即算引用整个目录 ⇒ 70->0（+80.5pp）；strict 档只认相对路径或基名 ⇒ 72->68（+4.6pp）。Lead 件内 caliber_caution 已自我申报，属可引用的口径而不是隐藏差异。裁定：凡主张「文件被指向」必须引 strict，normal 只可用于「包级可达性」。",
+     "quantified": {
+      "normal_pp": 80.5,
+      "strict_pp": 4.6,
+      "present_n": 87
+     },
+     "evidence_cmd": "PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B _temp/r282j/emit_r282.py --check | grep -aF '[D]'"
+    },
+    {
+     "id": "FS-2",
+     "fields": [
+      "lead/metrics_before.present_n (87/88)",
+      "f_arm/metrics_before.sibling_denom (93/94)"
+     ],
+     "readings": {
+      "lead": [
+       87,
+       88
+      ],
+      "f": [
+       93,
+       94
+      ],
+      "f_only_extras": [
+       ".claude-plugin/marketplace.json",
+       ".upstream",
+       "LICENSE",
+       "NOTICE",
+       "meta.json",
+       "plugins/frontend-slides/.claude-plugin/plugin.json"
+      ],
+      "nested": [
+       "plugins/frontend-slides/skills/frontend-slides/SKILL.md"
+      ]
+     },
+     "kind": "CALIBER",
+     "adjudication": "口径差（豁免面不同 + 一个文件解释两臂的 +1）：87 与 93 的差恰为 6 个具名文件（.claude-plugin/marketplace.json、.upstream、LICENSE、NOTICE、meta.json、plugins/frontend-slides/.claude-plugin/plugin.json）——Lead 按 r268 豁免名与 .claude-plugin/ 目录剪枝把它们剔出分母，F 的 find 全收。两臂各自的 +1 变体（88/94）来自同一个文件：镜像副本 plugins/frontend-slides/skills/frontend-slides/SKILL.md（Lead 按基名 SKILL.md 豁免、F 按 *SKILL.md 行尾丢弃 ⇒ 现值分别 87 与 93；若不豁免该镜像则 88/94）。分子在两臂相同（strict 命中 15->19），故 15/87=17.24% 与 15/93=16.13% 是同一事实的两个分母，不取平均。",
+     "quantified": {
+      "extras_n": 6,
+      "identity_before_holds": true,
+      "identity_after_holds": true,
+      "lead_strict_hit_2rule": [
+       15,
+       19
+      ],
+      "f_strict_hit": [
+       15,
+       19
+      ],
+      "lead_strict_unref_4rule": [
+       72,
+       68
+      ],
+      "rule_gap_before_after": [
+       0,
+       0
+      ],
+      "f_strict_unref": [
+       78,
+       74
+      ],
+      "equation_after": "f_unref(74) = lead_unref_4rule(68) + extras_unref(6) + rule_gap(0)"
+     },
+     "evidence_cmd": "PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B _temp/r282j/emit_r282.py --check | grep -aF '[D]'"
+    },
+    {
+     "id": "FS-3",
+     "fields": [
+      "g_arm/raw.d5 (5->9)",
+      "f_arm/sibling_strict_hit (15->19)",
+      "lead/unreferenced_strict (72->68)"
+     ],
+     "readings": {
+      "g_raw_d5": [
+       5,
+       9
+      ],
+      "f_strict_hit": [
+       15,
+       19
+      ],
+      "lead_strict_unref": [
+       72,
+       68
+      ]
+     },
+     "kind": "CALIBER",
+     "adjudication": "口径差（数的是不同总体，方向巧合一致）：G d5 把文中指针解析到盘上目标（live-dead，含目录与脚本路径、大小写折叠）；Lead/F 统计盘上文件被文中点名。两侧同为 +4 是巧合不是同一量 ⇒ 不可互推具体集合：G 的 live_list 12 条里含 bold-template-pack/* 目录级指针，而 F 的 19 命中含 bold-template-pack/templates/* 单文件。裁定：两臂口径各自成立，禁止把 +4 当同一个 +4 复述。",
+     "quantified": {
+      "g_delta": 4,
+      "f_delta": 4,
+      "g_live_n_after": 12,
+      "f_hit_after": 19
+     },
+     "evidence_cmd": "PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B _temp/r282j/emit_r282.py --check | grep -aF '[RECOMPUTE]'"
+    },
+    {
+     "id": "FS-4",
+     "fields": [
+      "g_arm/post_baseline_drift",
+      "f_arm/items/frontend-slides/chain_check"
+     ],
+     "readings": {
+      "g_drift_lines": [
+       23,
+       20
+      ],
+      "f_chain": "6394cbae -> 9aaa9214 -> 294e3ac6 -> 89efb3e6"
+     },
+     "kind": "CALIBER",
+     "adjudication": "口径差（改后取态不同）：G 与 Lead 的「改后」= 当前工作树（含基准 sha 之后 23 增/20 删的漂移），F 的「改后」= HEAD:path 字节。本件实测工作树 == HEAD（after_worktree_equals_HEAD），且三臂改后文本 sha256 相同 ⇒ 该口径差在本次读数为零影响；若工作树再漂，G 的 raw 会跟着漂而 F 不会。",
+     "quantified": {
+      "after_distinct_texts": 1,
+      "after_worktree_equals_HEAD": true
+     },
+     "evidence_cmd": "PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B _temp/r282j/emit_r282.py --check | grep -aF '[IDENT]'"
+    }
+   ],
+   "adjudication": {
+    "summary": "口径差 4 项 / 某侧错 0 项 / UNVERIFIED 0 项；87 与 93 的差由 6 个豁免/剪枝文件逐项解释，两臂 +1 变体同源于镜像副本 SKILL.md；不取平均",
+    "caliber_n": 4,
+    "error_n": 0,
+    "unverified_n": 0,
+    "every_divergence_has_verdict": true
+   },
+   "adjudication_evidence_cmd": "PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B _temp/r282j/emit_r282.py --check | grep -aF '[D]' ; PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B _temp/r282j/emit_r282.py --check | grep -aF '[D]' ; PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B _temp/r282j/emit_r282.py --check | grep -aF '[RECOMPUTE]' ; PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B _temp/r282j/emit_r282.py --check | grep -aF '[IDENT]'",
+   "cross_arm_text_identity": {
+    "skill": "frontend-slides",
+    "before": {
+     "arms": {
+      "g": {
+       "ref": "6394cbae~1",
+       "full_sha": "3681df5e81fcc995b79f8cfbee538c8cb72bf9e1",
+       "bytes_utf8": 20073,
+       "sha256_16": "e76ddd898d425ad2"
+      },
+      "lead": {
+       "ref": "6394cbae1e5d00f8a60e383f761613664cca2b41~1",
+       "full_sha": "3681df5e81fcc995b79f8cfbee538c8cb72bf9e1",
+       "bytes_utf8": 20073,
+       "sha256_16": "e76ddd898d425ad2"
+      },
+      "f": {
+       "ref": "6394cbae~1",
+       "full_sha": "3681df5e81fcc995b79f8cfbee538c8cb72bf9e1",
+       "bytes_utf8": 20073,
+       "sha256_16": "e76ddd898d425ad2"
+      }
+     },
+     "distinct_texts": 1,
+     "all_equal": true
+    },
+    "after": {
+     "arms": {
+      "g": {
+       "ref": "worktree",
+       "full_sha": "worktree",
+       "bytes_utf8": 23312,
+       "sha256_16": "6b9b0953aa2681f6"
+      },
+      "lead": {
+       "ref": "worktree",
+       "full_sha": "worktree",
+       "bytes_utf8": 23312,
+       "sha256_16": "6b9b0953aa2681f6"
+      },
+      "f": {
+       "ref": "HEAD",
+       "full_sha": "3da30832613c875558b40e5196c910bd0da9831c",
+       "bytes_utf8": 23312,
+       "sha256_16": "6b9b0953aa2681f6"
+      }
+     },
+     "distinct_texts": 1,
+     "all_equal": true
+    },
+    "after_worktree_equals_HEAD": true,
+    "published_g_text_sha256": {
+     "before": "e76ddd898d425ad2",
+     "after": "6b9b0953aa2681f6"
+    }
+   },
+   "g_recomputed_independently": {
+    "raw_before": {
+     "d1": 6,
+     "d2": 8,
+     "d3": 20,
+     "d4": 2,
+     "d5": 5,
+     "d6": null
+    },
+    "raw_after": {
+     "d1": 6,
+     "d2": 9,
+     "d3": 36,
+     "d4": 2,
+     "d5": 9,
+     "d6": null
+    },
+    "dims_before": {
+     "d1": 2,
+     "d2": 2,
+     "d3": 2,
+     "d4": 1,
+     "d5": 3,
+     "d6": null
+    },
+    "dims_after": {
+     "d1": 2,
+     "d2": 3,
+     "d3": 4,
+     "d4": 1,
+     "d5": 4,
+     "d6": null
+    },
+    "sum_before": 10,
+    "sum_after": 14,
+    "uplift_pct": 40.0,
+    "decidable_dims": [
+     "d1",
+     "d2",
+     "d3",
+     "d4",
+     "d5"
+    ],
+    "clean": true,
+    "mismatch_fields": [],
+    "text_sha256": {
+     "before": "e76ddd898d425ad2bed4b9ac12b7e9e8a9788180cc661d7260e05a25da426f49",
+     "after": "6b9b0953aa2681f617ca7aed6b8c49bfce8ae38389751a817124dda30e69a36e"
+    }
+   }
+  },
+  {
+   "skill": "ui-ux-pro-max",
+   "status": "MEASURED",
+   "lead": {
+    "before_ref": "3c72867d",
+    "after_ref": "worktree:ui-ux-pro-max/SKILL.md (r278_landing_effect.py reads the index/worktree copy)",
+    "state": "OK",
+    "first_landing": "30b84b20175ad6478efe6417e1a568821b169c57",
+    "landing_commits_n": 3,
+    "metrics": {
+     "before": {
+      "present_n": 112,
+      "unreferenced_n": 0,
+      "unreferenced": [],
+      "half_claim_n": 0,
+      "double_write_n": 0,
+      "max_line_bytes": 1255,
+      "vh_claims_n": 0,
+      "flag_unsupported_n": 0,
+      "stage_claims_n": 0,
+      "unreferenced_strict_n": 0
+     },
+     "after": {
+      "present_n": 112,
+      "unreferenced_n": 0,
+      "unreferenced": [],
+      "half_claim_n": 0,
+      "double_write_n": 0,
+      "max_line_bytes": 1255,
+      "vh_claims_n": 0,
+      "flag_unsupported_n": 0,
+      "stage_claims_n": 0,
+      "unreferenced_strict_n": 0
+     },
+     "delta": {
+      "unreferenced_n": 0,
+      "half_claim_n": 0,
+      "double_write_n": 0,
+      "max_line_bytes": 0,
+      "vh_claims_n": 0,
+      "stage_claims_n": 0,
+      "flag_unsupported_n": 0
+     },
+     "caliber_pair": {
+      "normal_before_after": [
+       0,
+       0
+      ],
+      "strict_before_after": [
+       0,
+       0
+      ]
+     },
+     "axes_improved": [],
+     "axes_worsened": [],
+     "exempt_n": 5,
+     "delta_unjudged": []
+    }
+   },
+   "f_arm": {
+    "state": "UNVERIFIED",
+    "before_ref": null,
+    "after_ref": null,
+    "metrics": null,
+    "why": "F arm scope = test-driven-development + frontend-slides only (items keys in the published file)",
+    "cmd": "PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B -c \"import json,io;d=json.load(io.open('06-benchmark/r278_before_after_control.json',encoding='utf-8'));print(sorted(d['items']))\"   # run from 自建skill优化/"
+   },
+   "g_arm": {
+    "before_ref": "30b84b20~1",
+    "after_ref": "worktree:D:/global_skills/ui-ux-pro-max/SKILL.md",
+    "before_full": "25929181a7cccc1ff01cdfae39807669731e93a2",
+    "before_full_recomputed": "25929181a7cccc1ff01cdfae39807669731e93a2",
+    "metrics": {
+     "raw_before": {
+      "d1": 6,
+      "d2": 2,
+      "d3": 5,
+      "d4": 0,
+      "d5": 16,
+      "d6": 0
+     },
+     "raw_after": {
+      "d1": 13,
+      "d2": 4,
+      "d3": 15,
+      "d4": 2,
+      "d5": 18,
+      "d6": 0
+     },
+     "dims_before": {
+      "d1": 2,
+      "d2": 0,
+      "d3": 1,
+      "d4": 0,
+      "d5": 5,
+      "d6": 5
+     },
+     "dims_after": {
+      "d1": 3,
+      "d2": 1,
+      "d3": 2,
+      "d4": 1,
+      "d5": 5,
+      "d6": 5
+     },
+     "sum_before": 13,
+     "sum_after": 17,
+     "uplift_pct": 30.7692,
+     "decidable_dims": [
+      "d1",
+      "d2",
+      "d3",
+      "d4",
+      "d5",
+      "d6"
+     ],
+     "excluded_dims": [],
+     "blind_order_match": "SAME_ORDER",
+     "text_sha256": {
+      "before": "e6556cb09256a24fe8a476595ab2c6683b292336ae2111c8a141bdb8a27ead14",
+      "after": "2b8299ca1acb8a4891fa363cd6cba5e8c911b7899bda57210fbe3b13bbe7415c"
+     }
+    }
+   },
+   "divergences": [
+    {
+     "id": "UX-1",
+     "fields": [
+      "g_arm/sha_pair/before_ref",
+      "lead/before_sha_used"
+     ],
+     "readings": {
+      "g_before_ref": "30b84b20~1",
+      "g_before_full": "25929181a7cccc1ff01cdfae39807669731e93a2",
+      "lead_before_ref": "3c72867d",
+      "before_distinct_texts": 2
+     },
+     "kind": "CALIBER",
+     "adjudication": "口径差（两臂各钉各的基准文本，且已量化到 pp）：G 的基准 = 30b84b20~1 = 25929181（5,327B，version 1.2.0 = 被他人降级的那版）；Lead 用 BEFORE 表直接钉 3c72867d（5,796B，version 1.5.0）。把 G 的基准换成 3c72867d 后重算：分档口径 uplift 仍 30.7692%（S_before 两版都是 13 ⇒ 偏高 0.0pp），因为两版之差只落在 d3 raw 5 vs 8，而 EDGES d3=[5,12,22,35,50] 使 raw 5 与 raw 8 同落 band1 [5,12)；不带分档的 raw 口径由 79.3103% 降到 62.5% ⇒ 用降级版当基准让 raw 口径偏高 +16.8103pp。不裁「G 侧错」：D7.2 的第二前提（本会话收到 r281g 收尾消息）不成立，且该基准选择已在 Lead 件内 first_commit_note/R281-1 登记为有意差异。",
+     "quantified": {
+      "banded_uplift_downgraded_baseline": 30.7692,
+      "banded_uplift_3c72867d": 30.7692,
+      "banded_overstatement_pp": 0.0,
+      "raw_uplift_downgraded_baseline": 79.3103,
+      "raw_uplift_3c72867d": 62.5,
+      "raw_overstatement_pp": 16.8103,
+      "S_before_both": [
+       13,
+       13
+      ],
+      "raw_sum_before_both": [
+       29,
+       32
+      ],
+      "bytes": [
+       5327,
+       5796
+      ],
+      "d3_raw": [
+       5,
+       8
+      ],
+      "baseline_diff": {
+       "lines_added": 8,
+       "lines_removed": 2
+      }
+     },
+     "evidence_cmd": "PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B _temp/r282j/emit_r282.py --check | grep -aF '[A2]'"
+    },
+    {
+     "id": "UX-2",
+     "fields": [
+      "f_arm/whole-row"
+     ],
+     "readings": {
+      "f_items": [
+       "frontend-slides",
+       "test-driven-development"
+      ]
+     },
+     "kind": "UNVERIFIED",
+     "adjudication": "F 臂发布范围只含 test-driven-development 与 frontend-slides（items 键名实测）⇒ 本行 F 侧按退路记 UNVERIFIED + 复算命令，不用记忆或摘要补数。这是范围口径，不是读数冲突。",
+     "quantified": {},
+     "evidence_cmd": "PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B -c \"import json,io;d=json.load(io.open('06-benchmark/r278_before_after_control.json',encoding='utf-8'));print(sorted(d['items']))\"   # run from 自建skill优化/"
+    },
+    {
+     "id": "UX-3",
+     "fields": [
+      "g_arm/raw.d5 (16->18)",
+      "g_arm/dims.d5 (5->5)"
+     ],
+     "readings": {
+      "raw": [
+       16,
+       18
+      ],
+      "band": [
+       5,
+       5
+      ]
+     },
+     "kind": "CALIBER",
+     "adjudication": "口径差（分档吃平的第二个实例）：d5 顶档 edge=12，raw 16 与 18 都已封顶 band5 ⇒ raw +2 记 0 分。与 Lead/F 不冲突：Lead 该件四轴改前改后全 0（结构缺陷本已清零），F 无该行。",
+     "quantified": {
+      "band": 5,
+      "raw_delta": 2,
+      "banded_delta": 0,
+      "edges_d5": [
+       1,
+       3,
+       5,
+       8,
+       12
+      ]
+     },
+     "evidence_cmd": "PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B _temp/r282j/emit_r282.py --check | grep -aF '[FLAT]'"
+    },
+    {
+     "id": "UX-4",
+     "fields": [
+      "g_arm/uplift_pct (30.7692)",
+      "lead/delta (all axes 0)"
+     ],
+     "readings": {
+      "g_uplift_pct": 30.7692,
+      "lead_delta": {
+       "unreferenced_n": 0,
+       "half_claim_n": 0,
+       "double_write_n": 0,
+       "max_line_bytes": 0,
+       "vh_claims_n": 0,
+       "stage_claims_n": 0,
+       "flag_unsupported_n": 0
+      },
+      "lead_axes_improved": [],
+      "lead_axes_worsened": []
+     },
+     "kind": "CALIBER",
+     "adjudication": "口径差（度量对象不同，两臂不可互推）：Lead 测缺陷轴（未引用/矛盾句/双写/最长行/flag 兼容），该件改前已全 0 ⇒ 结构轴必然 0 改动；G 测内容密度（可执行指令/禁区/具体性/自检/指针/坏 flag）。裁定：G 的 +30.77% 是密度口径的读数，不能表述为「缺陷减少 30.77%」；Lead 的全 0 也不能表述为「没有变化」。",
+     "quantified": {
+      "g_dims_after": {
+       "d1": 3,
+       "d2": 1,
+       "d3": 2,
+       "d4": 1,
+       "d5": 5,
+       "d6": 5
+      },
+      "lead_present_n": 112
+     },
+     "evidence_cmd": "PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B _temp/r282j/emit_r282.py --check | grep -aF '[A2]'"
+    },
+    {
+     "id": "UX-5",
+     "fields": [
+      "lead/caliber_caution (r279 merge-increment)",
+      "g_arm/dim6_probe.supported (11 flags)"
+     ],
+     "readings": {
+      "lead_state": "OK",
+      "live_probe_recomputed": true
+     },
+     "kind": "CALIBER",
+     "adjudication": "口径差（判据是否重跑 --help）：本次用受管 venv python 独立重跑 ui-ux-pro-max 的 scripts/*.py --help，支持集与 G 件登记的 11 个 flag 一致 ⇒ d6 的 0/0 不是「跑不起来当成 0」，而是实测无可执行 flag。注意选错解释器会假报 MISMATCH（LibreOffice 自带 python 跑这些脚本 rc 非 0 ⇒ decidable=False），已在 _temp/r282j 记录该坑。",
+     "quantified": {
+      "supported_n_published": 11,
+      "d6_raw": [
+       0,
+       0
+      ]
+     },
+     "evidence_cmd": "PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B _temp/r282j/emit_r282.py --check | grep -aF '[C]'"
+    },
+    {
+     "id": "UX-6",
+     "fields": [
+      "lead/metrics.strict_unreferenced_n (0/0)",
+      "this-recompute/2-rule-strict unref (128/126)"
+     ],
+     "readings": {
+      "published_lead_strict": [
+       0,
+       0
+      ],
+      "lead_strict_hit_2rule_after": 13,
+      "f_style_strict_unref_after_on_lead_set": 99,
+      "rule_gap_before_after": [
+       101,
+       99
+      ],
+      "lead_denom": 112
+     },
+     "kind": "CALIBER",
+     "adjudication": "口径差（两臂的 strict 不是同一把尺，量化）：Lead 的 strict 档还带两条宽松规则（路径形态 token 以该相对路径结尾、直接父目录名带斜杠即算引用），F 的 strict 只认路径或基名。同一 112 文件集合、同一文本：Lead-strict 未引用 = 0，F-strict 未引用 = 99（改后），rule_gap = 99（改前 101）⇒ 该件的「全 0 缺陷」是目录级点名撑起来的，不能表述为「112 个文件都被逐一点名」。tdd / frontend-slides 两件 rule_gap = 0，所以这条只在 ui-ux-pro-max 上成立，属可引用口径而非某侧算错（Lead 脚本注释已声明这四条规则）。",
+     "quantified": {
+      "rule_gap_after": 99,
+      "rule_gap_before": 101,
+      "denom": 112
+     },
+     "evidence_cmd": "PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B _temp/r282j/emit_r282.py --check | grep -aF '[D]'"
+    }
+   ],
+   "adjudication": {
+    "summary": "口径差 5 项 / 某侧错 0 项 / UNVERIFIED 1 项；两臂基准文本不同已量化（分档口径 0.0pp、raw 口径 +16.8103pp），未裁他人交付有缺陷（D7.2 第二前提不成立）",
+    "caliber_n": 5,
+    "error_n": 0,
+    "unverified_n": 1,
+    "every_divergence_has_verdict": true
+   },
+   "adjudication_evidence_cmd": "PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B _temp/r282j/emit_r282.py --check | grep -aF '[A2]' ; PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B -c \"import json,io;d=json.load(io.open('06-benchmark/r278_before_after_control.json',encoding='utf-8'));print(sorted(d['items']))\"   # run from 自建skill优化/ ; PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B _temp/r282j/emit_r282.py --check | grep -aF '[FLAT]' ; PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B _temp/r282j/emit_r282.py --check | grep -aF '[A2]' ; PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B _temp/r282j/emit_r282.py --check | grep -aF '[C]' ; PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B _temp/r282j/emit_r282.py --check | grep -aF '[D]'",
+   "cross_arm_text_identity": {
+    "skill": "ui-ux-pro-max",
+    "before": {
+     "arms": {
+      "g": {
+       "ref": "30b84b20~1",
+       "full_sha": "25929181a7cccc1ff01cdfae39807669731e93a2",
+       "bytes_utf8": 5327,
+       "sha256_16": "e6556cb09256a24f"
+      },
+      "lead": {
+       "ref": "3c72867d",
+       "full_sha": "3c72867d489bfb992e5aa12d4eb9f2bec89a4ed0",
+       "bytes_utf8": 5796,
+       "sha256_16": "e6c4bc37784c55eb"
+      },
+      "f": null
+     },
+     "distinct_texts": 2,
+     "all_equal": false
+    },
+    "after": {
+     "arms": {
+      "g": {
+       "ref": "worktree",
+       "full_sha": "worktree",
+       "bytes_utf8": 9759,
+       "sha256_16": "2b8299ca1acb8a48"
+      },
+      "lead": {
+       "ref": "worktree",
+       "full_sha": "worktree",
+       "bytes_utf8": 9759,
+       "sha256_16": "2b8299ca1acb8a48"
+      },
+      "f": null
+     },
+     "distinct_texts": 1,
+     "all_equal": true
+    },
+    "after_worktree_equals_HEAD": true,
+    "published_g_text_sha256": {
+     "before": "e6556cb09256a24f",
+     "after": "2b8299ca1acb8a48"
+    }
+   },
+   "g_recomputed_independently": {
+    "raw_before": {
+     "d1": 6,
+     "d2": 2,
+     "d3": 5,
+     "d4": 0,
+     "d5": 16,
+     "d6": 0
+    },
+    "raw_after": {
+     "d1": 13,
+     "d2": 4,
+     "d3": 15,
+     "d4": 2,
+     "d5": 18,
+     "d6": 0
+    },
+    "dims_before": {
+     "d1": 2,
+     "d2": 0,
+     "d3": 1,
+     "d4": 0,
+     "d5": 5,
+     "d6": 5
+    },
+    "dims_after": {
+     "d1": 3,
+     "d2": 1,
+     "d3": 2,
+     "d4": 1,
+     "d5": 5,
+     "d6": 5
+    },
+    "sum_before": 13,
+    "sum_after": 17,
+    "uplift_pct": 30.7692,
+    "decidable_dims": [
+     "d1",
+     "d2",
+     "d3",
+     "d4",
+     "d5",
+     "d6"
+    ],
+    "clean": true,
+    "mismatch_fields": [],
+    "text_sha256": {
+     "before": "e6556cb09256a24fe8a476595ab2c6683b292336ae2111c8a141bdb8a27ead14",
+     "after": "2b8299ca1acb8a4891fa363cd6cba5e8c911b7899bda57210fbe3b13bbe7415c"
+    }
+   }
+  }
+ ],
+ "band_flattening": {
+  "cases": [
+   {
+    "skill": "test-driven-development",
+    "dim": "d5",
+    "dim_name": "兄弟指针数",
+    "raw_before": 3,
+    "raw_after": 4,
+    "raw_delta": 1,
+    "band_before_after": [
+     2,
+     2
+    ],
+    "edges": [
+     1,
+     3,
+     5,
+     8,
+     12
+    ],
+    "band_span": "raw [3, 5) = band 2",
+    "banded_delta": 0,
+    "stored_uplift_pct": 0.0
+   },
+   {
+    "skill": "ui-ux-pro-max",
+    "dim": "d5",
+    "dim_name": "兄弟指针数",
+    "raw_before": 16,
+    "raw_after": 18,
+    "raw_delta": 2,
+    "band_before_after": [
+     5,
+     5
+    ],
+    "edges": [
+     1,
+     3,
+     5,
+     8,
+     12
+    ],
+    "band_span": "raw [12, inf) = band 5",
+    "banded_delta": 0,
+    "stored_uplift_pct": 30.7692
+   }
+  ],
+  "cases_n": 2,
+  "banded_uplift_pct": 23.5294,
+  "raw_sum_uplift_pct": 40.9091,
+  "banded_numerator_and_denominator": [
+   8,
+   34
+  ],
+  "raw_numerator_and_denominator": [
+   45,
+   110
+  ],
+  "per_skill_both_calibers": {
+   "test-driven-development": {
+    "banded_sums": [
+     11,
+     11
+    ],
+    "banded_uplift_pct": 0.0,
+    "raw_sum_d1_d5": [
+     40,
+     41
+    ],
+    "raw_sum_uplift_pct": 2.5
+   },
+   "frontend-slides": {
+    "banded_sums": [
+     10,
+     14
+    ],
+    "banded_uplift_pct": 40.0,
+    "raw_sum_d1_d5": [
+     41,
+     62
+    ],
+    "raw_sum_uplift_pct": 51.2195
+   },
+   "ui-ux-pro-max": {
+    "banded_sums": [
+     13,
+     17
+    ],
+    "banded_uplift_pct": 30.7692,
+    "raw_sum_d1_d5": [
+     29,
+     52
+    ],
+    "raw_sum_uplift_pct": 79.3103
+   }
+  },
+  "banded_statement": "uplift = (S_after - S_before)/S_before = (42 - 34)/34 = 23.5294%，S = 各件可判维档位和（含 d6 反向档）",
+  "raw_statement": "uplift = (R_after - R_before)/R_before = (155 - 110)/110 = 40.9091%，R = 各件 d1..d5 raw 计数和（不分档、不含 d6）",
+  "evidence_cmd": [
+   "PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B _temp/r282j/emit_r282.py --check | grep -aF '[FLAT]'",
+   "PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B _temp/r282j/emit_r282.py --check | grep -aF '[AGGR]'"
+  ],
+  "per_skill_raw_caliber": {
+   "test-driven-development": {
+    "dims_used_d1_d5": [
+     "d1",
+     "d2",
+     "d3",
+     "d4",
+     "d5"
+    ],
+    "raw_sum_before_d1_d5": 40,
+    "raw_sum_after_d1_d5": 41,
+    "numerator_d1_d5": 1,
+    "denominator_d1_d5": 40,
+    "raw_sum_uplift_pct_d1_d5": 2.5,
+    "banded_uplift_pct": 0.0,
+    "banded_numerator_S_after_minus_S_before": 0,
+    "banded_denominator_S_before": 11,
+    "d6_raw_before_after": [
+     null,
+     null
+    ],
+    "raw_sum_incl_signed_d6_before": 40,
+    "raw_sum_incl_signed_d6_after": 41,
+    "raw_sum_incl_signed_d6_uplift_pct": 2.5,
+    "constant_band_dims": [
+     {
+      "dim": "d1",
+      "band": 2
+     },
+     {
+      "dim": "d2",
+      "band": 2
+     },
+     {
+      "dim": "d3",
+      "band": 1
+     },
+     {
+      "dim": "d4",
+      "band": 4
+     },
+     {
+      "dim": "d5",
+      "band": 2
+     }
+    ],
+    "banded_uplift_excl_constant_dims_pct": null,
+    "excl_constant_denominator": 0
+   },
+   "frontend-slides": {
+    "dims_used_d1_d5": [
+     "d1",
+     "d2",
+     "d3",
+     "d4",
+     "d5"
+    ],
+    "raw_sum_before_d1_d5": 41,
+    "raw_sum_after_d1_d5": 62,
+    "numerator_d1_d5": 21,
+    "denominator_d1_d5": 41,
+    "raw_sum_uplift_pct_d1_d5": 51.2195,
+    "banded_uplift_pct": 40.0,
+    "banded_numerator_S_after_minus_S_before": 4,
+    "banded_denominator_S_before": 10,
+    "d6_raw_before_after": [
+     null,
+     null
+    ],
+    "raw_sum_incl_signed_d6_before": 41,
+    "raw_sum_incl_signed_d6_after": 62,
+    "raw_sum_incl_signed_d6_uplift_pct": 51.2195,
+    "constant_band_dims": [
+     {
+      "dim": "d1",
+      "band": 2
+     },
+     {
+      "dim": "d4",
+      "band": 1
+     }
+    ],
+    "banded_uplift_excl_constant_dims_pct": 57.1429,
+    "excl_constant_denominator": 7
+   },
+   "ui-ux-pro-max": {
+    "dims_used_d1_d5": [
+     "d1",
+     "d2",
+     "d3",
+     "d4",
+     "d5"
+    ],
+    "raw_sum_before_d1_d5": 29,
+    "raw_sum_after_d1_d5": 52,
+    "numerator_d1_d5": 23,
+    "denominator_d1_d5": 29,
+    "raw_sum_uplift_pct_d1_d5": 79.3103,
+    "banded_uplift_pct": 30.7692,
+    "banded_numerator_S_after_minus_S_before": 4,
+    "banded_denominator_S_before": 13,
+    "d6_raw_before_after": [
+     0,
+     0
+    ],
+    "raw_sum_incl_signed_d6_before": 29,
+    "raw_sum_incl_signed_d6_after": 52,
+    "raw_sum_incl_signed_d6_uplift_pct": 79.3103,
+    "constant_band_dims": [
+     {
+      "dim": "d5",
+      "band": 5
+     },
+     {
+      "dim": "d6",
+      "band": 5
+     }
+    ],
+    "banded_uplift_excl_constant_dims_pct": 133.3333,
+    "excl_constant_denominator": 3
+   }
+  }
+ },
+ "d6_mapping_check": {
+  "declared_rule": "d6 是坏指标，好方向分 = 5 - bucket(d6_raw)",
+  "per_skill_raw_and_band": [
+   {
+    "skill": "test-driven-development",
+    "decidable": false,
+    "d6_raw_before": null,
+    "d6_raw_after": null,
+    "stored_dims_d6": [
+     null,
+     null
+    ],
+    "edges_d6": [
+     1,
+     2,
+     4,
+     7,
+     12
+    ],
+    "bucket_before": null,
+    "bucket_after": null,
+    "reversed_good_before": null,
+    "reversed_good_after": null,
+    "bad_flags_before": [],
+    "bad_flags_after": []
+   },
+   {
+    "skill": "frontend-slides",
+    "decidable": false,
+    "d6_raw_before": null,
+    "d6_raw_after": null,
+    "stored_dims_d6": [
+     null,
+     null
+    ],
+    "edges_d6": [
+     1,
+     2,
+     4,
+     7,
+     12
+    ],
+    "bucket_before": null,
+    "bucket_after": null,
+    "reversed_good_before": null,
+    "reversed_good_after": null,
+    "bad_flags_before": [],
+    "bad_flags_after": []
+   },
+   {
+    "skill": "ui-ux-pro-max",
+    "decidable": true,
+    "d6_raw_before": 0,
+    "d6_raw_after": 0,
+    "stored_dims_d6": [
+     5,
+     5
+    ],
+    "edges_d6": [
+     1,
+     2,
+     4,
+     7,
+     12
+    ],
+    "bucket_before": 0,
+    "bucket_after": 0,
+    "reversed_good_before": 5,
+    "reversed_good_after": 5,
+    "bad_flags_before": [],
+    "bad_flags_after": []
+   }
+  ],
+  "independent_sweep": {
+   "sweep": [
+    {
+     "d6_raw": 0,
+     "bucket": 0,
+     "good_5_minus_bucket": 5
+    },
+    {
+     "d6_raw": 1,
+     "bucket": 1,
+     "good_5_minus_bucket": 4
+    },
+    {
+     "d6_raw": 2,
+     "bucket": 2,
+     "good_5_minus_bucket": 3
+    },
+    {
+     "d6_raw": 3,
+     "bucket": 2,
+     "good_5_minus_bucket": 3
+    },
+    {
+     "d6_raw": 4,
+     "bucket": 3,
+     "good_5_minus_bucket": 2
+    },
+    {
+     "d6_raw": 5,
+     "bucket": 3,
+     "good_5_minus_bucket": 2
+    },
+    {
+     "d6_raw": 6,
+     "bucket": 3,
+     "good_5_minus_bucket": 2
+    },
+    {
+     "d6_raw": 7,
+     "bucket": 4,
+     "good_5_minus_bucket": 1
+    },
+    {
+     "d6_raw": 8,
+     "bucket": 4,
+     "good_5_minus_bucket": 1
+    },
+    {
+     "d6_raw": 9,
+     "bucket": 4,
+     "good_5_minus_bucket": 1
+    },
+    {
+     "d6_raw": 10,
+     "bucket": 4,
+     "good_5_minus_bucket": 1
+    },
+    {
+     "d6_raw": 11,
+     "bucket": 4,
+     "good_5_minus_bucket": 1
+    },
+    {
+     "d6_raw": 12,
+     "bucket": 5,
+     "good_5_minus_bucket": 0
+    },
+    {
+     "d6_raw": 13,
+     "bucket": 5,
+     "good_5_minus_bucket": 0
+    }
+   ],
+   "reversed_form_monotone_non_increasing": true,
+   "bucket_form_monotone_non_decreasing": true,
+   "verdict": "NO more-is-better mis-add"
+  },
+  "stored_matches_reversed_form": true,
+  "counterfactual_uplift_if_not_reversed_pct": 50.0,
+  "published_uplift_pct": 30.7692,
+  "conclusion": "已实测：三件 raw d6 = [null, null, 0]（唯一可判的是 ui-ux-pro-max，raw 0/0），bucket(0)=0，5-0=5 = 件内档位 5/5 ⇒ d6 已按坏维反向，无「越多越好」的误加；反证：若按 bucket 直加，该件 uplift 会从 30.7692% 变成 50.0%。",
+  "evidence_cmd": [
+   "PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B _temp/r282j/emit_r282.py --check | grep -aF '[C]'",
+   "PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B _temp/r282j/emit_r282.py --check | grep -aF '[RECOMPUTE]'"
+  ]
+ },
+ "denominator_explanation": {
+  "per_skill": [
+   {
+    "skill": "test-driven-development",
+    "lead_denom": 4,
+    "f_denom": 7,
+    "lead_exempt_n": 4,
+    "lead_exempt_list": [
+     ".upstream",
+     "LICENSE",
+     "NOTICE",
+     "SKILL.md"
+    ],
+    "lead_pruned_dirs": [],
+    "f_only_extras": [
+     ".upstream",
+     "LICENSE",
+     "NOTICE"
+    ],
+    "lead_only_extras": [],
+    "nested_mirror_excluded_by_lead": [],
+    "nested_mirror_n": 0,
+    "skill_relative_top_self": "SKILL.md",
+    "f_denom_if_only_top_SKILL_md_excluded": 7,
+    "lead_denom_if_nested_SKILL_md_counted": 4,
+    "before": {
+     "lead_denom": 4,
+     "f_denom": 7,
+     "lead_strict_unref_rule4": 1,
+     "f_strict_unref": 4,
+     "lead_strict_hit_2rule": 3,
+     "f_strict_hit": 3,
+     "extras_unreferenced": 3,
+     "rule_gap": 0,
+     "rule_flip_files": [],
+     "denom_gap": 3,
+     "identity_holds": true,
+     "equation": "f_unref(4) = lead_unref_4rule(1) + extras_unref(3) + rule_gap(0)"
+    },
+    "after": {
+     "lead_denom": 4,
+     "f_denom": 7,
+     "lead_strict_unref_rule4": 0,
+     "f_strict_unref": 3,
+     "lead_strict_hit_2rule": 4,
+     "f_strict_hit": 4,
+     "extras_unreferenced": 3,
+     "rule_gap": 0,
+     "rule_flip_files": [],
+     "denom_gap": 3,
+     "identity_holds": true,
+     "equation": "f_unref(3) = lead_unref_4rule(0) + extras_unref(3) + rule_gap(0)"
+    },
+    "published_lead_strict": [
+     1,
+     0
+    ],
+    "published_lead_present_n": [
+     4,
+     4
+    ],
+    "published_f": {
+     "denom": 7,
+     "strict_hit": 3,
+     "strict_hit_after": 4,
+     "rate_pct": 42.86,
+     "rate_pct_after": 57.14
+    }
+   },
+   {
+    "skill": "frontend-slides",
+    "lead_denom": 87,
+    "f_denom": 93,
+    "lead_exempt_n": 6,
+    "lead_exempt_list": [
+     ".upstream",
+     "LICENSE",
+     "NOTICE",
+     "SKILL.md",
+     "meta.json",
+     "plugins/frontend-slides/skills/frontend-slides/SKILL.md"
+    ],
+    "lead_pruned_dirs": [
+     ".claude-plugin/",
+     "plugins/frontend-slides/.claude-plugin/"
+    ],
+    "f_only_extras": [
+     ".claude-plugin/marketplace.json",
+     ".upstream",
+     "LICENSE",
+     "NOTICE",
+     "meta.json",
+     "plugins/frontend-slides/.claude-plugin/plugin.json"
+    ],
+    "lead_only_extras": [],
+    "nested_mirror_excluded_by_lead": [
+     "plugins/frontend-slides/skills/frontend-slides/SKILL.md"
+    ],
+    "nested_mirror_n": 1,
+    "skill_relative_top_self": "SKILL.md",
+    "f_denom_if_only_top_SKILL_md_excluded": 94,
+    "lead_denom_if_nested_SKILL_md_counted": 88,
+    "before": {
+     "lead_denom": 87,
+     "f_denom": 93,
+     "lead_strict_unref_rule4": 72,
+     "f_strict_unref": 78,
+     "lead_strict_hit_2rule": 15,
+     "f_strict_hit": 15,
+     "extras_unreferenced": 6,
+     "rule_gap": 0,
+     "rule_flip_files": [],
+     "denom_gap": 6,
+     "identity_holds": true,
+     "equation": "f_unref(78) = lead_unref_4rule(72) + extras_unref(6) + rule_gap(0)"
+    },
+    "after": {
+     "lead_denom": 87,
+     "f_denom": 93,
+     "lead_strict_unref_rule4": 68,
+     "f_strict_unref": 74,
+     "lead_strict_hit_2rule": 19,
+     "f_strict_hit": 19,
+     "extras_unreferenced": 6,
+     "rule_gap": 0,
+     "rule_flip_files": [],
+     "denom_gap": 6,
+     "identity_holds": true,
+     "equation": "f_unref(74) = lead_unref_4rule(68) + extras_unref(6) + rule_gap(0)"
+    },
+    "published_lead_strict": [
+     72,
+     68
+    ],
+    "published_lead_present_n": [
+     87,
+     87
+    ],
+    "published_f": {
+     "denom": 93,
+     "strict_hit": 15,
+     "strict_hit_after": 19,
+     "rate_pct": 16.13,
+     "rate_pct_after": 20.43
+    }
+   },
+   {
+    "skill": "ui-ux-pro-max",
+    "lead_denom": 112,
+    "f_denom": 139,
+    "lead_exempt_n": 5,
+    "lead_exempt_list": [
+     ".upstream",
+     "LICENSE",
+     "NOTICE",
+     "SKILL.md",
+     "_meta.json"
+    ],
+    "lead_pruned_dirs": [
+     "scripts/__pycache__/",
+     "scripts/tests/__pycache__/"
+    ],
+    "f_only_extras": [
+     ".upstream",
+     "LICENSE",
+     "NOTICE",
+     "_meta.json",
+     "scripts/__pycache__/__init__.cpython-313.pyc",
+     "scripts/__pycache__/core.cpython-312.pyc",
+     "scripts/__pycache__/core.cpython-313.pyc",
+     "scripts/__pycache__/design_system.cpython-312.pyc",
+     "scripts/__pycache__/design_system.cpython-313.pyc",
+     "scripts/__pycache__/reasoning_contract.cpython-312.pyc",
+     "scripts/__pycache__/reasoning_contract.cpython-313.pyc",
+     "scripts/__pycache__/search.cpython-313.pyc",
+     "scripts/__pycache__/validate_data.cpython-312.pyc",
+     "scripts/__pycache__/validate_data.cpython-313.pyc",
+     "scripts/tests/__pycache__/test_catalog_refresh.cpython-312-pytest-9.0.2.pyc",
+     "scripts/tests/__pycache__/test_catalog_summary_line_endings.cpython-312-pytest-9.0.2.pyc",
+     "scripts/tests/__pycache__/test_core.cpython-312-pytest-9.0.2.pyc",
+     "scripts/tests/__pycache__/test_core_data_quality.cpython-312-pytest-9.0.2.pyc",
+     "scripts/tests/__pycache__/test_data_contracts.cpython-312-pytest-9.0.2.pyc",
+     "scripts/tests/__pycache__/test_design_system_mode.cpython-312-pytest-9.0.2.pyc",
+     "scripts/tests/__pycache__/test_design_system_stack.cpython-312-pytest-9.0.2.pyc",
+     "scripts/tests/__pycache__/test_native_desktop_stack_freshness.cpython-312-pytest-9.0.2.pyc",
+     "scripts/tests/__pycache__/test_relevance_evaluator.cpython-312-pytest-9.0.2.pyc",
+     "scripts/tests/__pycache__/test_skill_script_paths.cpython-312-pytest-9.0.2.pyc",
+     "scripts/tests/__pycache__/test_style_taxonomy.cpython-312-pytest-9.0.2.pyc",
+     "scripts/tests/__pycache__/test_text_layout_resilience.cpython-312-pytest-9.0.2.pyc",
+     "scripts/tests/__pycache__/test_web_stack_freshness.cpython-312-pytest-9.0.2.pyc"
+    ],
+    "lead_only_extras": [],
+    "nested_mirror_excluded_by_lead": [],
+    "nested_mirror_n": 0,
+    "skill_relative_top_self": "SKILL.md",
+    "f_denom_if_only_top_SKILL_md_excluded": 139,
+    "lead_denom_if_nested_SKILL_md_counted": 112,
+    "before": {
+     "lead_denom": 112,
+     "f_denom": 139,
+     "lead_strict_unref_rule4": 0,
+     "f_strict_unref": 128,
+     "lead_strict_hit_2rule": 11,
+     "f_strict_hit": 11,
+     "extras_unreferenced": 27,
+     "rule_gap": 101,
+     "rule_flip_files": [
+      "assets/data/charts.csv",
+      "assets/data/colors.csv",
+      "assets/data/icons.csv",
+      "assets/data/landing.csv",
+      "assets/data/products.csv",
+      "assets/data/react-performance.csv",
+      "assets/data/stacks/angular.csv",
+      "assets/data/stacks/astro.csv",
+      "assets/data/stacks/avalonia.csv",
+      "assets/data/stacks/flutter.csv",
+      "assets/data/stacks/html-tailwind.csv",
+      "assets/data/stacks/javafx.csv",
+      "assets/data/stacks/jetpack-compose.csv",
+      "assets/data/stacks/laravel.csv",
+      "assets/data/stacks/nextjs.csv",
+      "assets/data/stacks/nuxt-ui.csv",
+      "assets/data/stacks/nuxtjs.csv",
+      "assets/data/stacks/react-native.csv",
+      "assets/data/stacks/react.csv",
+      "assets/data/stacks/shadcn.csv",
+      "assets/data/stacks/svelte.csv",
+      "assets/data/stacks/swiftui.csv",
+      "assets/data/stacks/threejs.csv",
+      "assets/data/stacks/uno.csv",
+      "assets/data/stacks/uwp.csv",
+      "assets/data/stacks/vue.csv",
+      "assets/data/stacks/winui.csv",
+      "assets/data/stacks/wpf.csv",
+      "assets/data/styles.csv",
+      "assets/data/typography.csv",
+      "assets/data/ui-reasoning.csv",
+      "assets/data/ux-guidelines.csv",
+      "data/catalog-summary.json",
+      "data/charts.csv",
+      "data/colors.csv",
+      "data/data-provenance.json",
+      "data/google-font-licenses.json",
+      "data/icons.csv",
+      "data/landing.csv",
+      "data/phosphor-icons-upstream.json",
+      "data/products.csv",
+      "data/react-performance.csv",
+      "data/stacks/angular.csv",
+      "data/stacks/astro.csv",
+      "data/stacks/avalonia.csv",
+      "data/stacks/flutter.csv",
+      "data/stacks/html-tailwind.csv",
+      "data/stacks/javafx.csv",
+      "data/stacks/jetpack-compose.csv",
+      "data/stacks/laravel.csv",
+      "data/stacks/nextjs.csv",
+      "data/stacks/nuxt-ui.csv",
+      "data/stacks/nuxtjs.csv",
+      "data/stacks/react-native.csv",
+      "data/stacks/react.csv",
+      "data/stacks/shadcn.csv",
+      "data/stacks/svelte.csv",
+      "data/stacks/swiftui.csv",
+      "data/stacks/threejs.csv",
+      "data/stacks/uno.csv",
+      "data/stacks/uwp.csv",
+      "data/stacks/vue.csv",
+      "data/stacks/winui.csv",
+      "data/stacks/wpf.csv",
+      "data/styles.csv",
+      "data/typography.csv",
+      "data/ui-reasoning.csv",
+      "data/ux-guidelines.csv",
+      "references/CLAUDE.md",
+      "references/pro-rules.md",
+      "references/quick-reference.md",
+      "references/upstream-README.md",
+      "scripts/__init__.py",
+      "scripts/reasoning_contract.py",
+      "scripts/tests/fixtures/catalogs/google-api.json",
+      "scripts/tests/fixtures/catalogs/google-catalog.json",
+      "scripts/tests/fixtures/catalogs/google-existing.csv",
+      "scripts/tests/fixtures/catalogs/google-metadata.json",
+      "scripts/tests/fixtures/catalogs/google-overrides.json",
+      "scripts/tests/fixtures/catalogs/icons-curated.csv",
+      "scripts/tests/fixtures/catalogs/phosphor-core.json",
+      "scripts/tests/fixtures/catalogs/phosphor-package.json",
+      "scripts/tests/fixtures/catalogs/phosphor-react-exports.json",
+      "scripts/tests/fixtures/catalogs/phosphor-react-package.json",
+      "scripts/tests/fixtures/relevance-baseline.json",
+      "scripts/tests/fixtures/relevance-cases.json",
+      "scripts/tests/fixtures/relevance-thresholds.json",
+      "scripts/tests/test_catalog_refresh.py",
+      "scripts/tests/test_catalog_summary_line_endings.py",
+      "scripts/tests/test_core.py",
+      "scripts/tests/test_core_data_quality.py",
+      "scripts/tests/test_data_contracts.py",
+      "scripts/tests/test_design_system_mode.py",
+      "scripts/tests/test_design_system_stack.py",
+      "scripts/tests/test_native_desktop_stack_freshness.py",
+      "scripts/tests/test_relevance_evaluator.py",
+      "scripts/tests/test_skill_script_paths.py",
+      "scripts/tests/test_style_taxonomy.py",
+      "scripts/tests/test_text_layout_resilience.py",
+      "scripts/tests/test_web_stack_freshness.py",
+      "scripts/validate_data.py"
+     ],
+     "denom_gap": 27,
+     "identity_holds": true,
+     "equation": "f_unref(128) = lead_unref_4rule(0) + extras_unref(27) + rule_gap(101)"
+    },
+    "after": {
+     "lead_denom": 112,
+     "f_denom": 139,
+     "lead_strict_unref_rule4": 0,
+     "f_strict_unref": 126,
+     "lead_strict_hit_2rule": 13,
+     "f_strict_hit": 13,
+     "extras_unreferenced": 27,
+     "rule_gap": 99,
+     "rule_flip_files": [
+      "assets/data/charts.csv",
+      "assets/data/colors.csv",
+      "assets/data/icons.csv",
+      "assets/data/landing.csv",
+      "assets/data/products.csv",
+      "assets/data/react-performance.csv",
+      "assets/data/stacks/angular.csv",
+      "assets/data/stacks/astro.csv",
+      "assets/data/stacks/avalonia.csv",
+      "assets/data/stacks/flutter.csv",
+      "assets/data/stacks/html-tailwind.csv",
+      "assets/data/stacks/javafx.csv",
+      "assets/data/stacks/jetpack-compose.csv",
+      "assets/data/stacks/laravel.csv",
+      "assets/data/stacks/nextjs.csv",
+      "assets/data/stacks/nuxt-ui.csv",
+      "assets/data/stacks/nuxtjs.csv",
+      "assets/data/stacks/react-native.csv",
+      "assets/data/stacks/react.csv",
+      "assets/data/stacks/shadcn.csv",
+      "assets/data/stacks/svelte.csv",
+      "assets/data/stacks/swiftui.csv",
+      "assets/data/stacks/threejs.csv",
+      "assets/data/stacks/uno.csv",
+      "assets/data/stacks/uwp.csv",
+      "assets/data/stacks/vue.csv",
+      "assets/data/stacks/winui.csv",
+      "assets/data/stacks/wpf.csv",
+      "assets/data/styles.csv",
+      "assets/data/typography.csv",
+      "assets/data/ui-reasoning.csv",
+      "assets/data/ux-guidelines.csv",
+      "data/catalog-summary.json",
+      "data/charts.csv",
+      "data/colors.csv",
+      "data/data-provenance.json",
+      "data/google-font-licenses.json",
+      "data/icons.csv",
+      "data/landing.csv",
+      "data/phosphor-icons-upstream.json",
+      "data/products.csv",
+      "data/react-performance.csv",
+      "data/stacks/angular.csv",
+      "data/stacks/astro.csv",
+      "data/stacks/avalonia.csv",
+      "data/stacks/flutter.csv",
+      "data/stacks/html-tailwind.csv",
+      "data/stacks/javafx.csv",
+      "data/stacks/jetpack-compose.csv",
+      "data/stacks/laravel.csv",
+      "data/stacks/nextjs.csv",
+      "data/stacks/nuxt-ui.csv",
+      "data/stacks/nuxtjs.csv",
+      "data/stacks/react-native.csv",
+      "data/stacks/react.csv",
+      "data/stacks/shadcn.csv",
+      "data/stacks/svelte.csv",
+      "data/stacks/swiftui.csv",
+      "data/stacks/threejs.csv",
+      "data/stacks/uno.csv",
+      "data/stacks/uwp.csv",
+      "data/stacks/vue.csv",
+      "data/stacks/winui.csv",
+      "data/stacks/wpf.csv",
+      "data/styles.csv",
+      "data/typography.csv",
+      "data/ui-reasoning.csv",
+      "data/ux-guidelines.csv",
+      "references/CLAUDE.md",
+      "references/upstream-README.md",
+      "scripts/__init__.py",
+      "scripts/reasoning_contract.py",
+      "scripts/tests/fixtures/catalogs/google-api.json",
+      "scripts/tests/fixtures/catalogs/google-catalog.json",
+      "scripts/tests/fixtures/catalogs/google-existing.csv",
+      "scripts/tests/fixtures/catalogs/google-metadata.json",
+      "scripts/tests/fixtures/catalogs/google-overrides.json",
+      "scripts/tests/fixtures/catalogs/icons-curated.csv",
+      "scripts/tests/fixtures/catalogs/phosphor-core.json",
+      "scripts/tests/fixtures/catalogs/phosphor-package.json",
+      "scripts/tests/fixtures/catalogs/phosphor-react-exports.json",
+      "scripts/tests/fixtures/catalogs/phosphor-react-package.json",
+      "scripts/tests/fixtures/relevance-baseline.json",
+      "scripts/tests/fixtures/relevance-cases.json",
+      "scripts/tests/fixtures/relevance-thresholds.json",
+      "scripts/tests/test_catalog_refresh.py",
+      "scripts/tests/test_catalog_summary_line_endings.py",
+      "scripts/tests/test_core.py",
+      "scripts/tests/test_core_data_quality.py",
+      "scripts/tests/test_data_contracts.py",
+      "scripts/tests/test_design_system_mode.py",
+      "scripts/tests/test_design_system_stack.py",
+      "scripts/tests/test_native_desktop_stack_freshness.py",
+      "scripts/tests/test_relevance_evaluator.py",
+      "scripts/tests/test_skill_script_paths.py",
+      "scripts/tests/test_style_taxonomy.py",
+      "scripts/tests/test_text_layout_resilience.py",
+      "scripts/tests/test_web_stack_freshness.py",
+      "scripts/validate_data.py"
+     ],
+     "denom_gap": 27,
+     "identity_holds": true,
+     "equation": "f_unref(126) = lead_unref_4rule(0) + extras_unref(27) + rule_gap(99)"
+    },
+    "published_lead_strict": [
+     0,
+     0
+    ],
+    "published_lead_present_n": [
+     112,
+     112
+    ],
+    "published_f": {
+     "denom": null,
+     "strict_hit": null,
+     "strict_hit_after": null,
+     "rate_pct": null,
+     "rate_pct_after": null
+    }
+   }
+  ],
+  "rule": "Lead 分母 = r268 walk_files（豁免 LICENSE/NOTICE/.upstream/SKILL.md + meta.json/_meta.json/_skillhub_meta.json + .claude-plugin/ 目录 + 点开头文件）；F 分母 = find -type f 之后丢掉任何以 SKILL.md 结尾的行。两者之差是一个具名文件集合，不取平均。命中规则也不同：Lead strict 4 条（路径 / 基名 / 路径形态 token 以该相对路径结尾 / 直接父目录名+斜杠），F strict 2 条（路径 / 基名）⇒ 第三个差项 rule_gap 量的是尺子宽度，ui-ux-pro-max 上 = 99/101，另两件 = 0。",
+  "identity_test": "对每个文本、每一条臂、改前改后各一次：f_strict_unref = lead_strict_unref(Lead 4-rule) + extras_unreferenced + rule_gap，三件六侧全部严格成立（见 per_skill.before/after.equation 与 identity_holds）；F 分母 = Lead 分母 + 6/3/27 个豁免文件，逐项具名",
+  "plus_minus_one": "88 与 94 同源于一个文件：镜像副本 plugins/frontend-slides/skills/frontend-slides/SKILL.md。Lead 只按名豁免顶层 SKILL.md，若把镜像计入就是 88；F 丢掉所有 *SKILL.md，所以镜像已不在 93 内 ⇒ 两臂各 +1 是同一个文件的两种处理，不是两份数据。",
+  "denominator_direction": "F 分母大（93>87）但命中数也更大（19>15 的路径/基名命中），F 的率 20.43% 与 Lead 的 (87-68)/87=21.84% 差在豁免面，不在文本 ⇒ 两臂可互推、不可互换引用",
+  "evidence_cmd": [
+   "PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B _temp/r282j/emit_r282.py --check | grep -aF '[D]'",
+   "PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B _temp/r282j/emit_r282.py --check | grep -aF '[IDENT]'"
+  ],
+  "recomputed_by": "_temp/r282j/denoms.py lead_caliber/f_caliber（自实现，不 import 05-exec）"
+ },
+ "requirement_a_uiux_baseline": {
+  "skill": "ui-ux-pro-max",
+  "g_stored_before_ref": "30b84b20~1",
+  "nested_S_kILL_md_test": {
+   "nested_mirror_skill_md": "plugins/frontend-slides/skills/frontend-slides/SKILL.md",
+   "f_denom_excl_every_SKILL_md_line": 139,
+   "f_denom_excl_top_SKILL_md_only": 139,
+   "find_total_files": 140,
+   "lead_denom": 112,
+   "lead_denom_if_nested_counted": 113,
+   "nested_present_on_disk": null,
+   "delta_both_arms": 0
+  },
+  "as_published2": {
+   "dims_before_G": {
+    "d1": 2,
+    "d2": 0,
+    "d3": 1,
+    "d4": 0,
+    "d5": 5,
+    "d6": 5
+   },
+   "dims_after_G": {
+    "d1": 3,
+    "d2": 1,
+    "d3": 2,
+    "d4": 1,
+    "d5": 5,
+    "d6": 5
+   }
+  },
+  "g_stored_before_full": "25929181a7cccc1ff01cdfae39807669731e93a2",
+  "lead_before_sha_used": "3c72867d",
+  "as_published": {
+   "sum_before": 13,
+   "sum_after": 17,
+   "uplift_pct": 30.7692
+  },
+  "candidates": {
+   "G_before_ref": {
+    "ref": "30b84b20~1",
+    "full_sha": "25929181a7cccc1ff01cdfae39807669731e93a2",
+    "commit": "25929181a7cccc1ff01cdfae39807669731e93a2\t2026-10-29 22:40\tskill(debugging-fixing) 2.14.20 -> 2.14.21：新增 R356「窄窗口用提交后核验+回滚兜住伤害；结构改造先证明钩子语义不丢」",
+    "bytes_utf8": 5327,
+    "sha256_text": "e6556cb09256a24fe8a476595ab2c6683b292336ae2111c8a141bdb8a27ead14",
+    "raw_before": {
+     "d1": 6,
+     "d2": 2,
+     "d3": 5,
+     "d4": 0,
+     "d5": 16,
+     "d6": 0
+    },
+    "dims_before": {
+     "d1": 2,
+     "d2": 0,
+     "d3": 1,
+     "d4": 0,
+     "d5": 5,
+     "d6": 5
+    },
+    "sum_before": 13,
+    "sum_after": 17,
+    "banded_uplift_pct": 30.7692,
+    "banded_numerator": 4,
+    "banded_denominator": 13,
+    "raw_sum_before_d1_d5": 29,
+    "raw_sum_after_d1_d5": 52,
+    "raw_sum_uplift_pct_d1_d5": 79.3103,
+    "d5_live_n": 16,
+    "d5_dead_n": 0,
+    "d1_flag_refs": 5,
+    "d1_code_lines": 1
+   },
+   "Lead_before_ref": {
+    "ref": "3c72867d",
+    "full_sha": "3c72867d489bfb992e5aa12d4eb9f2bec89a4ed0",
+    "commit": "3c72867d489bfb992e5aa12d4eb9f2bec89a4ed0\t2026-10-27 18:10\t跟版补齐：ui-ux-pro-max 补上游 A 类缺件 32 件（1613124 B）第 1/2 批",
+    "bytes_utf8": 5796,
+    "sha256_text": "e6c4bc37784c55eb5c0df4e455234a494f6f16b84769dbb64c571ab318ff649d",
+    "raw_before": {
+     "d1": 6,
+     "d2": 2,
+     "d3": 8,
+     "d4": 0,
+     "d5": 16,
+     "d6": 0
+    },
+    "dims_before": {
+     "d1": 2,
+     "d2": 0,
+     "d3": 1,
+     "d4": 0,
+     "d5": 5,
+     "d6": 5
+    },
+    "sum_before": 13,
+    "sum_after": 17,
+    "banded_uplift_pct": 30.7692,
+    "banded_numerator": 4,
+    "banded_denominator": 13,
+    "raw_sum_before_d1_d5": 32,
+    "raw_sum_after_d1_d5": 52,
+    "raw_sum_uplift_pct_d1_d5": 62.5,
+    "d5_live_n": 16,
+    "d5_dead_n": 0,
+    "d1_flag_refs": 5,
+    "d1_code_lines": 1
+   }
+  },
+  "g_text_provenance_verdict": "MATCHES_G_ARTIFACT",
+  "lead_text_provenance_verdict": "NOT_THE_G_BEFORE_TEXT",
+  "diff_between_candidates": {
+   "lines_added": 8,
+   "lines_removed": 2
+  },
+  "uplift_overstatement_pp": 0.0,
+  "raw_bytes_git": {
+   "G_before_ref": 5327,
+   "Lead_before_ref": 5796
+  },
+  "raw_uplift_overstatement_pp": 16.8103,
+  "uiux_would_be_uplift_if_d6_not_reversed": 50.0,
+  "uiux_published_uplift": 30.7692,
+  "note": "只算不改 G 件：本节全部数值由 _temp/r282j 重算得出，r281_artifact_ab.json 未被写入（sha 见 arm_quiescence_gate）"
+ },
+ "provenance_cmd": [
+  "git -C D:/global_skills rev-parse 30b84b20~1  (= 25929181, 5327B, version 1.2.0 = 被他人降级的一版)",
+  "git -C D:/global_skills show --stat 079b91f3 -- ui-ux-pro-max/SKILL.md  (2 added / 8 removed = 误纳该降级的整树暂存提交)",
+  "git -C D:/global_skills show 3c72867d:ui-ux-pro-max/SKILL.md | wc -c  (= 5796, version 1.5.0)",
+  "git -C D:/global_skills show 30b84b20~1:ui-ux-pro-max/SKILL.md | wc -c  (= 5327)",
+  "PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B _temp/r282j/emit_r282.py --check | grep -aF '[GATE]'",
+  "PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B _temp/r282j/emit_r282.py --check | grep -aF '[IDENT]'",
+  "PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B _temp/r282j/emit_r282.py --check | grep -aF '[FLAT]'",
+  "PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B _temp/r282j/emit_r282.py --check | grep -aF '[AGGR]'",
+  "PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B _temp/r282j/emit_r282.py --check | grep -aF '[C]'",
+  "PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B _temp/r282j/emit_r282.py --check | grep -aF '[D]'",
+  "PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B _temp/r282j/emit_r282.py --check",
+  "PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B _temp/r282j/emit_r282.py --negctl"
+ ],
+ "arm_quiescence_gate": {
+  "r281_artifact_ab.json": {
+   "mtime_utc": "2026-10-29T16:08:11Z",
+   "age_sec": 5390,
+   "quiescent_over_120s": true,
+   "sha256_12": "e91a237d9427"
+  },
+  "r278_landing_effect.json": {
+   "mtime_utc": "2026-10-29T15:32:19Z",
+   "age_sec": 7541,
+   "quiescent_over_120s": true,
+   "sha256_12": "56512f2fbd9d"
+  },
+  "r278_before_after_control.json": {
+   "mtime_utc": "2026-10-29T14:54:15Z",
+   "age_sec": 9825,
+   "quiescent_over_120s": true,
+   "sha256_12": "5736685683f7"
+  },
+  "r268_unreferenced_siblings.json": {
+   "mtime_utc": "2026-10-29T15:05:57Z",
+   "age_sec": 9124,
+   "quiescent_over_120s": true,
+   "sha256_12": "5d52361ddc43"
+  }
+ },
+ "discipline": {
+  "d7_2_precondition": "判定前对三臂原件实测 mtime 年龄 >120s（见 arm_quiescence_gate）；本会话未收到 r281g 的收尾消息 ⇒ 不对其交付下「有缺陷」结论，UX-1 裁为基准口径差并量化。",
+  "read_only": "未写 05-exec/*、06-benchmark/r278_*、06-benchmark/r281_*、D:/global_skills、D:/global_memory；未发 git 写命令；未跑 run_gates.py。",
+  "fallback": "某臂读不到 ⇒ 该行记 UNVERIFIED + 命令（本件 f_arm/ui-ux-pro-max 即此形态），不用记忆或摘要补数。",
+  "claims_labelled": "已实测 = 本会话内由 _temp/r282j 独立重算并可比对；部分实测 = 依赖臂内已发布读数、未独立重跑判据脚本；未实测 = 明确标注。"
+ },
+ "self_check": {
+  "rows": 3,
+  "rows_measured": 3,
+  "g_cells_recomputed": 105,
+  "g_cells_mismatch": 0,
+  "g_cells_mismatch_lines": [],
+  "per_skill_recompute_clean": {
+   "test-driven-development": true,
+   "frontend-slides": true,
+   "ui-ux-pro-max": true
+  },
+  "divergences": 13,
+  "divergences_adjudicated": 13,
+  "band_flattened": 2,
+  "d6_stored_matches_reversed_form": true,
+  "denominator_identity_all_hold": true,
+  "evidence_cmds_run": "每条 divergence 的 evidence_cmd 共 26 条已实跑：全部 rc=0 且 stdout 非空（生成脚本 _temp/r282j/run_evidence.sh，经 Git Bash 执行）。 注意 python subprocess 传 argv 'bash' 在本机解析到 WSL bash 并在其 localhost 代理上失败（wslhost），那是工具面错选、不是命令缺陷，故固定用 Git Bash 复跑。",
+  "negative_control": "run: PYTHONPYCACHEPREFIX=/tmp/py_r282j 'C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe' -B _temp/r282j/emit_r282.py --negctl",
+  "last_line_expect_prefix": "[RECONCILE] rows=3 divergences=13 adjudicated=13 band_flattened=2"
+ }
+}

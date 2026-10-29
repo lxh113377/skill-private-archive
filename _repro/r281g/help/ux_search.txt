@@ -1,0 +1,34 @@
+usage: search.py [-h]
+                 [--domain {style,color,chart,landing,product,ux,typography,icons,gsap,google-fonts,react,web}]
+                 [--stack {html-tailwind,react,nextjs,astro,vue,nuxtjs,nuxt-ui,svelte,swiftui,react-native,flutter,shadcn,jetpack-compose,angular,avalonia,javafx,laravel,threejs,uno,uwp,winui,wpf}]
+                 [--max-results MAX_RESULTS] [--json] [--design-system]
+                 [--project-name PROJECT_NAME] [--format {ascii,markdown}]
+                 [--persist] [--page PAGE] [--output-dir OUTPUT_DIR]
+                 query
+
+UI Pro Max Search
+
+positional arguments:
+  query                 Search query
+
+options:
+  -h, --help            show this help message and exit
+  --domain, -d {style,color,chart,landing,product,ux,typography,icons,gsap,google-fonts,react,web}
+                        Search domain
+  --stack, -s {html-tailwind,react,nextjs,astro,vue,nuxtjs,nuxt-ui,svelte,swiftui,react-native,flutter,shadcn,jetpack-compose,angular,avalonia,javafx,laravel,threejs,uno,uwp,winui,wpf}
+                        Stack-specific search (html-tailwind, react, nextjs)
+  --max-results, -n MAX_RESULTS
+                        Max results (default: 3)
+  --json                Output as JSON
+  --design-system, -ds  Generate complete design system recommendation
+  --project-name, -p PROJECT_NAME
+                        Project name for design system output
+  --format, -f {ascii,markdown}
+                        Output format for design system
+  --persist             Save design system to design-system/MASTER.md (creates
+                        hierarchical structure)
+  --page PAGE           Create page-specific override file in design-
+                        system/pages/
+  --output-dir, -o OUTPUT_DIR
+                        Output directory for persisted files (default: current
+                        directory)

@@ -1,0 +1,89 @@
+== step1: shas taken from git log by me ==
+89efb3e6 [rule_editor] replace patch x6 (frontend-slides/SKILL.md)
+294e3ac6 [rule_editor] replace patch x1 (frontend-slides/SKILL.md)
+9aaa9214 [rule_editor] R310 frontend-slides 范式正式迁移：正文+Cview+模板同批改固定 1920x1080 舞台（32 处；权威裁定 B，方案见 skill-fire R269-1/R271） (frontend-slides/SKILL.md + frontend-slides/viewport-base.css + frontend-slides/html-template.md + frontend-slides/references/upstream-frontend-slides.md)
+6394cbae [rule_editor] insert (frontend-slides/SKILL.md)
+079b91f3 [rule_editor] insert (test-driven-development/SKILL.md)
+9c38d9b2 跟版补齐：frontend-slides 补上游 A 类缺件 1 件（3308 B）第 1/1 批
+--
+079b91f3 [rule_editor] insert (test-driven-development/SKILL.md)
+eb1d70c1 修断链：test-driven-development 补上游 A 类缺件 1 件（8268 B）第 1/1 批
+96164f55 feat(skills): 轮4 吸收收官+判据勘误——TDD 补第二批（决策 guide/五条写法判据/反模式/DevTools 双验证/派子代理时机，6 处英文 H4 锚）+FPD 五步英文锚；§十七 双语别名修法实证为错解（归一化只剥尾部括号，斜杠别名段破坏匹配），回退 6 处、改立「英文标题字面+中文括号注」唯一正确形式；TDD/FPD missing_norm 26/14→0，双双转 GREEN。扫描终态 GREEN 65 / RED 6 / UNVERIFIED 1（残留 RED 均为已裁决项）
+2dc37dfe feat(skill-audit+skills): 轮3 真同源增量吸收——四条 sim>=0.555 同源 RED 逐条读上游后吸收：A-dynamic-workflow(多评审维度/去重/校准/合并模板 12 标题, v1.3.0→1.4.0)与 frontend-slides(舞台不变量/密度模式/风格预览 4 标题)转 GREEN；test-driven-development(先探栈/循环细步/Prove-It/金字塔 4 块)与 first-principles-decomposer(怀疑驱动五步闭环 12 标题)已入卷、剩余上游标题为测试写法通则(留 testing 不重复)与主文件标题口径，漂移仍红=真实未搬内容，不造假绿；修两处判据：中文吸收件双语标题别名(归一化对账)、候选腿瞬断重试+自研跳过；05 §十七 立档。扫描终态 GREEN 63 / RED 8 / UNVERIFIED 1
+--
+HEAD_SHA=89efb3e663b138cf8c0141e89ce38efa733c7652
+TDD_BEFORE_PARENT=87934d4895b669fdafdcddc2e76ba570a602c9d1
+FS_BEFORE_PARENT=3681df5e81fcc995b79f8cfbee538c8cb72bf9e1
+TDD_HEAD_BLOB=684266d0e3cff9b54fbb0ca4455863a639e80641
+TDD_R266_BLOB=684266d0e3cff9b54fbb0ca4455863a639e80641
+FS_HEAD_BLOB=9c2ef9dea94d9d41af2d11d0ec8bb3183a227247
+FS_R277_BLOB=9c2ef9dea94d9d41af2d11d0ec8bb3183a227247
+== step2: on-disk sibling listings (reference-rate denominator) ==
+sibs_tdd=8 sibs_fs=95
+== step3: fail-closed fetch of four states ==
+OK ref=079b91f3~1 commit=87934d4895b669fdafdcddc2e76ba570a602c9d1 target=test-driven-development/SKILL.md out=tdd_before.md bytes=11635 blobsha=489ab8a631a84075339a85ada45eb92384d78a39
+rc_tdd_before=0
+OK ref=HEAD commit=89efb3e663b138cf8c0141e89ce38efa733c7652 target=test-driven-development/SKILL.md out=tdd_after.md bytes=11760 blobsha=684266d0e3cff9b54fbb0ca4455863a639e80641
+rc_tdd_after=0
+OK ref=6394cbae~1 commit=3681df5e81fcc995b79f8cfbee538c8cb72bf9e1 target=frontend-slides/SKILL.md out=fs_before.md bytes=20073 blobsha=82db00b5325c610f456dbb762057e8410c36cc79
+rc_fs_before=0
+OK ref=HEAD commit=89efb3e663b138cf8c0141e89ce38efa733c7652 target=frontend-slides/SKILL.md out=fs_after.md bytes=23312 blobsha=9c2ef9dea94d9d41af2d11d0ec8bb3183a227247
+rc_fs_after=0
+== step4: negative control on the fetch step ==
+UNVERIFIED reason=ref-not-found ref=deadbeef1234567
+rc_neg_bogus_sha=3
+UNVERIFIED reason=path-not-in-tree target=079b91f3:nosuchdir/NOPE.md
+rc_neg_bad_path=4
+neg_artifact_written=NO
+== step5: measure four states with own yardstick ==
+  File "C:\Users\37533\Desktop\workspace\skill焚诀\自建skill优化\_temp\r278c\r278c_metrics.py", line 105
+    """
+    ^
+SyntaxError: unterminated triple-quoted string literal (detected at line 178)
+rc_m1=1
+  File "C:\Users\37533\Desktop\workspace\skill焚诀\自建skill优化\_temp\r278c\r278c_metrics.py", line 105
+    """
+    ^
+SyntaxError: unterminated triple-quoted string literal (detected at line 178)
+rc_m2=1
+  File "C:\Users\37533\Desktop\workspace\skill焚诀\自建skill优化\_temp\r278c\r278c_metrics.py", line 105
+    """
+    ^
+SyntaxError: unterminated triple-quoted string literal (detected at line 178)
+rc_m3=1
+  File "C:\Users\37533\Desktop\workspace\skill焚诀\自建skill优化\_temp\r278c\r278c_metrics.py", line 105
+    """
+    ^
+SyntaxError: unterminated triple-quoted string literal (detected at line 178)
+rc_m4=1
+== step6: negative control on the measure step ==
+  File "C:\Users\37533\Desktop\workspace\skill焚诀\自建skill优化\_temp\r278c\r278c_metrics.py", line 105
+    """
+    ^
+SyntaxError: unterminated triple-quoted string literal (detected at line 178)
+rc_m_neg_missing=1
+  File "C:\Users\37533\Desktop\workspace\skill焚诀\自建skill优化\_temp\r278c\r278c_metrics.py", line 105
+    """
+    ^
+SyntaxError: unterminated triple-quoted string literal (detected at line 178)
+rc_m_neg_empty=1
+== step7: rollback evidence ==
+CATFILE_OK 079b91f3~1 -> 87934d4895b669fdafdcddc2e76ba570a602c9d1
+CATFILE_OK 079b91f3 -> 079b91f33e95e46da750be33a84fae5627adde65
+CATFILE_OK 6394cbae~1 -> 3681df5e81fcc995b79f8cfbee538c8cb72bf9e1
+CATFILE_OK 6394cbae -> 6394cbae1e5d00f8a60e383f761613664cca2b41
+CATFILE_OK 9aaa9214 -> 9aaa92146b09137302ac098958173210fb855c7b
+CATFILE_OK 294e3ac6 -> 294e3ac67ab61d95d34e959e1f7d5a6656fc9ce6
+CATFILE_OK 89efb3e6 -> 89efb3e663b138cf8c0141e89ce38efa733c7652
+CATFILE_OK HEAD -> 89efb3e663b138cf8c0141e89ce38efa733c7652
+BK_DIR_EXISTS=yes
+BK_TDD test-driven-development.SKILL.md.20261018_072628_409460.bak
+BK_TDD test-driven-development.SKILL.md.20261029_161009_062174.bak
+BK_FS frontend-slides.SKILL.md.20261029_180538_466624.bak
+BK_FS frontend-slides.SKILL.md.20261029_192927_757447.bak
+BK_FS frontend-slides.SKILL.md.20261029_193431_150039.bak
+BK_FS frontend-slides.SKILL.md.20261029_220338_015184.bak
+BK_FS frontend-slides.html-template.md.20261029_192928_635617.bak
+BK_FS frontend-slides.references.upstream-frontend-slides.md.20261029_192929_297764.bak
+BK_FS frontend-slides.viewport-base.css.20261029_192928_418159.bak
+== done ==

@@ -57,3 +57,10 @@ _temp/
 #   文件灌满（r233 实测：一次全量 75 件里 68 件是它）。正本读数件是 debt_aging_*_final.json 与
 #   debt_runs.jsonl，本轮只把再生件移出索引（磁盘文件保留，不删）。
 06-benchmark/debt_aging_r_autoregen_*.json
+
+# r285：_repro 下这两处 md 是从受管根 git 可重建的文本副本（F 的 r278c_drive.sh、G 的取文本腿现场重建）。
+# 不入库的两个理由：① 平铺副本里的相对链（STYLE_PRESETS.md 等）指向各自 skill 树的兄弟文件，在本目录
+# 必断 —— 实测把发布面死链从 0 推到 68；② 把别人的 SKILL.md 当本仓发布件 = 第二真相源。
+# 注意 _repro/r281h/（H 的两臂产物）不在豁免内：那是实验产物、不可从任何 git 重建，必须跟踪。
+_repro/r278c/*.md
+_repro/r281g/txt/

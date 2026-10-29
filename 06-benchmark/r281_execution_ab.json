@@ -323,5 +323,5 @@
   "generator": "_temp/r281h/_ctl/make_json.py"
  },
  "side_effects_disclosure": "Managed root D:/global_skills: no tracked file written by this experiment. One unavoidable side effect: arms and Lead executed the documented scripts by path, so CPython rewrote the git-ignored bytecode cache scripts/__pycache__/*.cpython-313.pyc (init/search mtime 23:27:56, inside the window). ui-ux-pro-max/NOTICE and scripts/core.py show dirty but their mtimes are 2026-10-27, i.e. pre-existing edits before this session, not produced here and not claimed. Under 06-benchmark/ only the two files named in the brief were created.",
- "measured_at": "2026-10-29T17:15:37Z"
+ "measured_at": "2026-10-29T18:02:16Z"
 }

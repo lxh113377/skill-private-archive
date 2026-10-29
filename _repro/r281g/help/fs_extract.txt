@@ -1,0 +1,41 @@
+Traceback (most recent call last):
+  File "D:\global_skills\frontend-slides\scripts\extract-pptx.py", line 86, in <module>
+    slides = extract_pptx(input_file, output_dir)
+  File "D:\global_skills\frontend-slides\scripts\extract-pptx.py", line 23, in extract_pptx
+    prs = Presentation(file_path)
+  File "C:\Users\37533\.workbuddy\binaries\python\envs\default\Lib\site-packages\pptx\api.py", line 31, in Presentation
+    presentation_part = Package.open(pptx).main_document_part
+                        ~~~~~~~~~~~~^^^^^^
+  File "C:\Users\37533\.workbuddy\binaries\python\envs\default\Lib\site-packages\pptx\opc\package.py", line 82, in open
+    return cls(pkg_file)._load()
+           ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\37533\.workbuddy\binaries\python\envs\default\Lib\site-packages\pptx\opc\package.py", line 160, in _load
+    pkg_xml_rels, parts = _PackageLoader.load(self._pkg_file, cast("Package", self))
+                          ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\37533\.workbuddy\binaries\python\envs\default\Lib\site-packages\pptx\opc\package.py", line 190, in load
+    return cls(pkg_file, package)._load()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\37533\.workbuddy\binaries\python\envs\default\Lib\site-packages\pptx\opc\package.py", line 194, in _load
+    parts, xml_rels = self._parts, self._xml_rels
+                      ^^^^^^^^^^^
+  File "C:\Users\37533\.workbuddy\binaries\python\envs\default\Lib\site-packages\pptx\util.py", line 191, in __get__
+    value = self._fget(obj)
+  File "C:\Users\37533\.workbuddy\binaries\python\envs\default\Lib\site-packages\pptx\opc\package.py", line 222, in _parts
+    content_types = self._content_types
+                    ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\37533\.workbuddy\binaries\python\envs\default\Lib\site-packages\pptx\util.py", line 191, in __get__
+    value = self._fget(obj)
+  File "C:\Users\37533\.workbuddy\binaries\python\envs\default\Lib\site-packages\pptx\opc\package.py", line 207, in _content_types
+    return _ContentTypeMap.from_xml(self._package_reader[CONTENT_TYPES_URI])
+                                    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\37533\.workbuddy\binaries\python\envs\default\Lib\site-packages\pptx\opc\serialized.py", line 38, in __getitem__
+    return self._blob_reader[pack_uri]
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\37533\.workbuddy\binaries\python\envs\default\Lib\site-packages\pptx\util.py", line 191, in __get__
+    value = self._fget(obj)
+  File "C:\Users\37533\.workbuddy\binaries\python\envs\default\Lib\site-packages\pptx\opc\serialized.py", line 52, in _blob_reader
+    return _PhysPkgReader.factory(self._pkg_file)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\37533\.workbuddy\binaries\python\envs\default\Lib\site-packages\pptx\opc\serialized.py", line 144, in factory
+    raise PackageNotFoundError("Package not found at '%s'" % pkg_file)
+pptx.exc.PackageNotFoundError: Package not found at '--help'
