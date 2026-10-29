@@ -1,0 +1,296 @@
+{
+ "schema": "landing-effect-v1",
+ "generated_at": "2026-10-29T22:38:37",
+ "provenance_cmd": "python 05-exec/r278_landing_effect.py",
+ "caliber": "unreferenced axes come from r268 single-source rules; before text = git show <first-landing>~1",
+ "window_since": "2026-10-29 00:00",
+ "axes_note": "per-axis structural readings; NOT task-level quality (see requirement 6 wording)",
+ "caliber_caution": "normal caliber is inflatable by naming a directory once; frontend-slides normal 70->0 = +80.5pp but strict 72->68 = only +4.6pp (present_n 87), because r269 names the package dir without naming its 68 member files; quote the strict number whenever claiming files are pointed at; the R268-2 gate leg must watch both calibers or it is blind to this inflation.",
+ "series_note": "end-to-end comparison hides mid-sequence regressions: double_write_n ran 1->2->1 across the five landing commits",
+ "first_commit_note": "the first window commit touching frontend-slides/SKILL.md is 079b91f3, the accidental whole-tree staging commit (R269-3), so the before text is the pre-incident state - disclosed rather than hidden",
+ "rows": [
+  {
+   "skill": "test-driven-development",
+   "state": "OK",
+   "landing_commits": [
+    {
+     "sha": "079b91f33e95e46da750be33a84fae5627adde65",
+     "when": "2026-10-29 16:10",
+     "subject": "[rule_editor] insert (test-driven-development/SKILL.md)"
+    }
+   ],
+   "first_landing": {
+    "sha": "079b91f33e95e46da750be33a84fae5627adde65",
+    "when": "2026-10-29 16:10",
+    "subject": "[rule_editor] insert (test-driven-development/SKILL.md)"
+   },
+   "before_sha_used": "079b91f33e95e46da750be33a84fae5627adde65~1",
+   "metrics_before": {
+    "present_n": 4,
+    "unreferenced_n": 1,
+    "unreferenced": [
+     "writing-good-tests.md"
+    ],
+    "half_claim_n": 0,
+    "double_write_n": 0,
+    "max_line_bytes": 390,
+    "vh_claims_n": 0,
+    "stage_claims_n": 0,
+    "unreferenced_strict_n": 1
+   },
+   "metrics_after": {
+    "present_n": 4,
+    "unreferenced_n": 0,
+    "unreferenced": [],
+    "half_claim_n": 0,
+    "double_write_n": 0,
+    "max_line_bytes": 390,
+    "vh_claims_n": 0,
+    "stage_claims_n": 0,
+    "unreferenced_strict_n": 0
+   },
+   "delta": {
+    "unreferenced_n": -1,
+    "half_claim_n": 0,
+    "double_write_n": 0,
+    "max_line_bytes": 0,
+    "vh_claims_n": 0,
+    "stage_claims_n": 0
+   },
+   "caliber_pair": {
+    "normal_before_after": [
+     1,
+     0
+    ],
+    "strict_before_after": [
+     1,
+     0
+    ]
+   },
+   "commit_series": [
+    {
+     "sha": "079b91f3",
+     "when": "2026-10-29 16:10",
+     "state": "OK",
+     "unreferenced_norm_n": 0,
+     "unreferenced_strict_n": 0,
+     "double_write_n": 0,
+     "max_line_bytes": 390
+    }
+   ],
+   "series_flags": [],
+   "axes_improved": [
+    "unreferenced_n"
+   ],
+   "axes_worsened": [],
+   "committed_index_matches_worktree": true,
+   "exempt_n": 4
+  },
+  {
+   "skill": "frontend-slides",
+   "state": "OK",
+   "landing_commits": [
+    {
+     "sha": "079b91f33e95e46da750be33a84fae5627adde65",
+     "when": "2026-10-29 16:10",
+     "subject": "[rule_editor] insert (test-driven-development/SKILL.md)"
+    },
+    {
+     "sha": "6394cbae1e5d00f8a60e383f761613664cca2b41",
+     "when": "2026-10-29 18:05",
+     "subject": "[rule_editor] insert (frontend-slides/SKILL.md)"
+    },
+    {
+     "sha": "9aaa92146b09137302ac098958173210fb855c7b",
+     "when": "2026-10-29 19:30",
+     "subject": "[rule_editor] R310 frontend-slides 范式正式迁移：正文+Cview+模板同批改固定 1920x1080 舞台（32 处；权威裁定 B，方案见 skill-fire R269-1/R271） (frontend-slides/SKILL.md + frontend-slides/viewport-base.css + frontend-slides/html-template.md + frontend-slides/references/upstream-frontend-slides.md)"
+    },
+    {
+     "sha": "294e3ac67ab61d95d34e959e1f7d5a6656fc9ce6",
+     "when": "2026-10-29 19:34",
+     "subject": "[rule_editor] replace patch x1 (frontend-slides/SKILL.md)"
+    },
+    {
+     "sha": "89efb3e663b138cf8c0141e89ce38efa733c7652",
+     "when": "2026-10-29 22:03",
+     "subject": "[rule_editor] replace patch x6 (frontend-slides/SKILL.md)"
+    }
+   ],
+   "first_landing": {
+    "sha": "079b91f33e95e46da750be33a84fae5627adde65",
+    "when": "2026-10-29 16:10",
+    "subject": "[rule_editor] insert (test-driven-development/SKILL.md)"
+   },
+   "before_sha_used": "079b91f33e95e46da750be33a84fae5627adde65~1",
+   "metrics_before": {
+    "present_n": 87,
+    "unreferenced_n": 70,
+    "unreferenced": [
+     "README.md",
+     "bold-template-pack/README.md",
+     "bold-template-pack/deck-stage.js",
+     "bold-template-pack/selection-index.json",
+     "bold-template-pack/templates/8-bit-orbit/design.md",
+     "bold-template-pack/templates/8-bit-orbit/preview.md",
+     "bold-template-pack/templates/biennale-yellow/design.md",
+     "bold-template-pack/templates/biennale-yellow/preview.md",
+     "bold-template-pack/templates/block-frame/design.md",
+     "bold-template-pack/templates/block-frame/preview.md",
+     "bold-template-pack/templates/blue-professional/design.md",
+     "bold-template-pack/templates/blue-professional/preview.md",
+     "bold-template-pack/templates/bold-poster/design.md",
+     "bold-template-pack/templates/bold-poster/preview.md",
+     "bold-template-pack/templates/broadside/design.md",
+     "bold-template-pack/templates/broadside/preview.md",
+     "bold-template-pack/templates/capsule/design.md",
+     "bold-template-pack/templates/capsule/preview.md",
+     "bold-template-pack/templates/cartesian/design.md",
+     "bold-template-pack/templates/cartesian/preview.md",
+     "bold-template-pack/templates/cobalt-grid/design.md",
+     "bold-template-pack/templates/cobalt-grid/preview.md",
+     "bold-template-pack/templates/coral/design.md",
+     "bold-template-pack/templates/coral/preview.md",
+     "bold-template-pack/templates/creative-mode/design.md",
+     "bold-template-pack/templates/creative-mode/preview.md",
+     "bold-template-pack/templates/daisy-days/design.md",
+     "bold-template-pack/templates/daisy-days/preview.md",
+     "bold-template-pack/templates/editorial-forest/design.md",
+     "bold-template-pack/templates/editorial-forest/preview.md",
+     "bold-template-pack/templates/editorial-tri-tone/design.md",
+     "bold-template-pack/templates/editorial-tri-tone/preview.md",
+     "bold-template-pack/templates/emerald-editorial/design.md",
+     "bold-template-pack/templates/emerald-editorial/preview.md",
+     "bold-template-pack/templates/grove/design.md",
+     "bold-template-pack/templates/grove/preview.md",
+     "bold-template-pack/templates/long-table/design.md",
+     "bold-template-pack/templates/long-table/preview.md",
+     "bold-template-pack/templates/monochrome/design.md",
+     "bold-template-pack/templates/monochrome/preview.md",
+     "bold-template-pack/templates/neo-grid-bold/design.md",
+     "bold-template-pack/templates/neo-grid-bold/preview.md",
+     "bold-template-pack/templates/peoples-platform/design.md",
+     "bold-template-pack/templates/peoples-platform/preview.md",
+     "bold-template-pack/templates/pin-and-paper/design.md",
+     "bold-template-pack/templates/pin-and-paper/preview.md",
+     "bold-template-pack/templates/pink-script/design.md",
+     "bold-template-pack/templates/pink-script/preview.md",
+     "bold-template-pack/templates/playful/design.md",
+     "bold-template-pack/templates/playful/preview.md",
+     "bold-template-pack/templates/raw-grid/design.md",
+     "bold-template-pack/templates/raw-grid/preview.md",
+     "bold-template-pack/templates/retro-windows/design.md",
+     "bold-template-pack/templates/retro-windows/preview.md",
+     "bold-template-pack/templates/retro-zine/design.md",
+     "bold-template-pack/templates/retro-zine/preview.md",
+     "bold-template-pack/templates/sakura-chroma/design.md",
+     "bold-template-pack/templates/sakura-chroma/preview.md",
+     "bold-template-pack/templates/scatterbrain/design.md",
+     "bold-template-pack/templates/scatterbrain/preview.md",
+     "bold-template-pack/templates/signal/design.md",
+     "bold-template-pack/templates/signal/preview.md",
+     "bold-template-pack/templates/soft-editorial/design.md",
+     "bold-template-pack/templates/soft-editorial/preview.md",
+     "bold-template-pack/templates/stencil-tablet/design.md",
+     "bold-template-pack/templates/stencil-tablet/preview.md",
+     "bold-template-pack/templates/studio/design.md",
+     "bold-template-pack/templates/studio/preview.md",
+     "bold-template-pack/templates/vellum/design.md",
+     "bold-template-pack/templates/vellum/preview.md"
+    ],
+    "half_claim_n": 0,
+    "double_write_n": 1,
+    "max_line_bytes": 487,
+    "vh_claims_n": 4,
+    "stage_claims_n": 3,
+    "unreferenced_strict_n": 72
+   },
+   "metrics_after": {
+    "present_n": 87,
+    "unreferenced_n": 0,
+    "unreferenced": [],
+    "half_claim_n": 0,
+    "double_write_n": 1,
+    "max_line_bytes": 487,
+    "vh_claims_n": 3,
+    "stage_claims_n": 17,
+    "unreferenced_strict_n": 68
+   },
+   "delta": {
+    "unreferenced_n": -70,
+    "half_claim_n": 0,
+    "double_write_n": 0,
+    "max_line_bytes": 0,
+    "vh_claims_n": -1,
+    "stage_claims_n": 14
+   },
+   "caliber_pair": {
+    "normal_before_after": [
+     70,
+     0
+    ],
+    "strict_before_after": [
+     72,
+     68
+    ]
+   },
+   "commit_series": [
+    {
+     "sha": "079b91f3",
+     "when": "2026-10-29 16:10",
+     "state": "OK",
+     "unreferenced_norm_n": 70,
+     "unreferenced_strict_n": 72,
+     "double_write_n": 1,
+     "max_line_bytes": 487
+    },
+    {
+     "sha": "6394cbae",
+     "when": "2026-10-29 18:05",
+     "state": "OK",
+     "unreferenced_norm_n": 0,
+     "unreferenced_strict_n": 68,
+     "double_write_n": 1,
+     "max_line_bytes": 487
+    },
+    {
+     "sha": "9aaa9214",
+     "when": "2026-10-29 19:30",
+     "state": "OK",
+     "unreferenced_norm_n": 0,
+     "unreferenced_strict_n": 68,
+     "double_write_n": 2,
+     "max_line_bytes": 487
+    },
+    {
+     "sha": "294e3ac6",
+     "when": "2026-10-29 19:34",
+     "state": "OK",
+     "unreferenced_norm_n": 0,
+     "unreferenced_strict_n": 68,
+     "double_write_n": 2,
+     "max_line_bytes": 487
+    },
+    {
+     "sha": "89efb3e6",
+     "when": "2026-10-29 22:03",
+     "state": "OK",
+     "unreferenced_norm_n": 0,
+     "unreferenced_strict_n": 68,
+     "double_write_n": 1,
+     "max_line_bytes": 487
+    }
+   ],
+   "series_flags": [
+    "9aaa9214",
+    "294e3ac6"
+   ],
+   "axes_improved": [
+    "unreferenced_n",
+    "vh_claims_n"
+   ],
+   "axes_worsened": [],
+   "committed_index_matches_worktree": true,
+   "exempt_n": 6
+  }
+ ]
+}

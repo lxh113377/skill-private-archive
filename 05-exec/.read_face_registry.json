@@ -128,5 +128,10 @@
   "evidence": "06-benchmark/r271_version_channel2.json",
   "registered_at": "2026-10-29 21:38",
   "why": "R263-1 第二版本通道（提提交级信号，补无 release 盲区 18/18）"
+ },
+ "r278_landing_effect.py": {
+  "evidence": "06-benchmark/r278_landing_effect.json",
+  "registered_at": "2026-10-29 22:36",
+  "why": "R278 落地效果面（双档 + 逐提交序列 + 与 r268 面互校断言）"
  }
 }
