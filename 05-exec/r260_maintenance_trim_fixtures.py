@@ -173,6 +173,17 @@ def in_process_legs():
     ck("t18 use_body switch changes compat %s -> %s (rollback hatch is load-bearing)" % (_on, _off),
        _on == R.LICENSE_CAPS["restricted"] and _off == R.LICENSE_CAPS["unknown"],
        (_on, _off))
+    # t19（R275-1，r276 落地）：**源可得但限制商用**家族的腿。为什么必须有：这类正文（Elastic License 2.0
+    #   / SSPL / BUSL / Commons Clause）名字里不带 GPL 也不带 NC，旧版名单全不认 ⇒ 判 unknown(cap=4)、
+    #   按「不确定」放行。一手：r275 执行 R262-2 时实测 mksglu/context-mode 正文首行即 ELv2。
+    #   两条腿：正腿（ELv2 必判 restricted 且**家族具名**）+ 负腿（MIT 正文不得被这套规则拖红）。
+    _elv2 = R.classify_body("ELASTIC LICENSE 2.0 (ELV2) COPYRIGHT 2026 X. YOU MAY NOT PROVIDE THE "
+                           "SOFTWARE TO THIRD PARTIES AS A HOSTED OR MANAGED SERVICE.")
+    _mit = R.classify_body("PERMISSION IS HEREBY GRANTED, FREE OF CHARGE, TO ANY PERSON OBTAINING A COPY")
+    ck("t19 source-available family (ELv2) -> restricted & named %s" % (_elv2[:2],),
+       _elv2[1] == "restricted" and _elv2[0] == "ELASTIC-2.0", _elv2[:2])
+    ck("t20 negative: MIT stays permissive (no over-reach) %s" % (_mit[:2],),
+       _mit[1] == "permissive", _mit[:2])
     return R, thr
  
  

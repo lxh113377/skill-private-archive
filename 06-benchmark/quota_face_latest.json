@@ -1,7 +1,7 @@
 {
  "schema": "quota-face-v1",
  "readonly": true,
- "generated_at": "2026-10-28 22:43",
+ "generated_at": "2026-10-29 22:05",
  "provenance_cmd": "python 05-exec/r196_quota_face.py --json <件>",
  "rows": [
   {
@@ -27,12 +27,12 @@
    "repo": "lxh113377/skill-private-archive",
    "state": "MEASURED",
    "why": "",
-   "minutes_all_workflows": 550.68,
-   "counted": 529,
+   "minutes_all_workflows": 584.37,
+   "counted": 547,
    "skipped_no_ts": 0,
    "pages": 600,
-   "gates_minutes": 546.32,
-   "gates_counted": 523,
+   "gates_minutes": 580.0,
+   "gates_counted": 541,
    "since": "2026-10-01",
    "coverage_complete": true,
    "caveat": "墙钟分钟 != billable 分钟（GitHub 按 runner 类型与 OS 加权计费，并发 job 各计时）；作用域是本仓库 != 账号级额度；官方免费分钟数本轮未取到可靠出处（docs 页面为 JS 壳，服务端渲染取不到表格）⇒ 依 r196 自立的规矩：分母无可靠出处就只报绝对值，不折算百分比。"

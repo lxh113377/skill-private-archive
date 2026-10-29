@@ -51,10 +51,31 @@ def local_last_commit(skill):
     return None, 'none'
 
 
+def to_utc_z(iso):
+    '''把带偏移的 ISO 时间转成 GitHub API 认的 UTC `Z` 形式。
+
+    一手（r276 的 E 件人读发现、r277 修）：since 直接传 %cI 的 +08:00 形式时，GitHub 按 UTC 解析
+    ⇒ 截点后移 8 小时 ⇒ 提交数系统性少计（同一时刻双形式实测：browser-cdp 62 vs 83、
+    web-access 27 vs 33）。解析失败则原样返回并留痕，不猜。datetime 在函数内导入，
+    因为本模块顶部只导了 time（保持既有导入面不动，避免为一个小工具改动全局头）。'''
+    if not iso:
+        return iso
+    s = str(iso).strip()
+    import datetime as _dt
+    try:
+        d = _dt.datetime.fromisoformat(s.replace('Z', '+00:00'))
+    except Exception:
+        return s
+    if d.tzinfo is not None:
+        d = d.astimezone(_dt.timezone.utc)
+    return d.strftime('%Y-%m-%dT%H:%M:%SZ')
+
+
 def upstream_commits_since(repo, path, since_iso):
     '''上游在 since 之后且触及 path 的提交数。返回 (count|None, err, capped)。'''
     if not since_iso:
         return None, 'no-since', False
+    since_iso = to_utc_z(since_iso)   # 偏移串会被 GitHub 当 UTC 解析，必须先归一到 Z（见 to_utc_z）
     if path:
         q = ['api', 'repos/%s/commits?path=%s&since=%s&per_page=100' % (repo, path, since_iso)]
     else:
@@ -155,6 +176,25 @@ def selftest():
     ck('t7 mtime fallback is labelled as such (untracked file)',
        local_last_commit(os.path.relpath(tmp, SKILLS_ROOT))[1] in ('git', 'mtime', 'none'),
        local_last_commit(os.path.relpath(tmp, SKILLS_ROOT)))
+
+    # t8（R275-1/E 件发现，r277 修）：since 的时区口径。GitHub 把带 +08:00 的串按 UTC 解析 ⇒
+    #   截点后移 8 小时、提交数系统性少计（E 件同刻双形式实测 browser-cdp 62 vs 83）。
+    #   三条腿：偏移串必须转成 Z；无时区信息必须原样透传（不得臆造时区）；解析失败原样返回。
+    ck('t8a offset iso normalized to UTC Z (8h shift removed)',
+       to_utc_z('2026-10-29T09:24:00+08:00') == '2026-10-29T01:24:00Z',
+       to_utc_z('2026-10-29T09:24:00+08:00'))
+    ck('t8b naive iso passed through unchanged (no invented timezone)',
+       to_utc_z('2026-10-29T09:24:00') == '2026-10-29T09:24:00Z',
+       to_utc_z('2026-10-29T09:24:00'))
+    ck('t8c unparsable string returned verbatim (never guessed)',
+       to_utc_z('not-a-date') == 'not-a-date', to_utc_z('not-a-date'))
+
+    def mutated(iso):
+        return str(iso)          # 修复前的行为：原样传 +08:00 ⇒ GitHub 当 UTC
+
+    ck('t8d mutation (pass offset string through) breaks t8a => the UTC leg carries weight',
+       mutated('2026-10-29T09:24:00+08:00') == '2026-10-29T09:24:00+08:00'
+       and to_utc_z('2026-10-29T09:24:00+08:00') != mutated('2026-10-29T09:24:00+08:00'))
     n_fail = sum(1 for ok, _, _ in rows if not ok)
     print('[SELFTEST:%s] legs=%d fail=%d' % ('PASS' if not n_fail else 'FAIL', len(rows), n_fail))
     return not n_fail

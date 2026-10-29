@@ -118,5 +118,15 @@
  "r254_teeth_proof_matrix.py": {
   "evidence": "06-benchmark/teeth_proof_latest.json",
   "registered_at": "2026-10-26 04:08"
+ },
+ "r268_unreferenced_siblings.py": {
+  "evidence": "06-benchmark/r268_unreferenced_siblings.json",
+  "registered_at": "2026-10-29 21:38",
+  "why": "R267-1 未引用在盘件面（r273 起含平台元数据豁免；t8 翻转为回归守卫）"
+ },
+ "r271_version_channel2.py": {
+  "evidence": "06-benchmark/r271_version_channel2.json",
+  "registered_at": "2026-10-29 21:38",
+  "why": "R263-1 第二版本通道（提提交级信号，补无 release 盲区 18/18）"
  }
 }

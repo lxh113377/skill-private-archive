@@ -419,6 +419,14 @@ LICENSE_TEXT_SIGS = [
     # License" 子串、CC BY-NC 含 "Creative Commons Attribution" 子串）。
     ("CC-BY-NC-4.0", ("Creative Commons", "Attribution-NonCommercial")),
     ("MODIFIED-APACHE-RESTRICTED", ("Modified Version of the Apache License",)),
+    # R275-1（r276 落地）：**源可得但限制商用**的家族 —— 它们不是 OSI 宽松许可，却因为名字里不带
+    #   GPL/NC 而完全不进既有名单，后果是判成 unknown(cap=4)、按「不确定」放行。一手：r275 执行 R262-2 时
+    #   实测 mksglu/context-mode 正文首行即 Elastic License 2.0 (ELv2)，旧版 classify_body 返回 None。
+    #   放在宽松档之前（顺序敏感），并同步进 RESTRICTED_SPDX ⇒ 档位落 restricted 且**家族具名**。
+    ("ELASTIC-2.0", ("Elastic License 2.0", "Elastic License")),
+    ("SSPL-1.0", ("Server Side Public License",)),
+    ("BUSL-1.1", ("Business Source License",)),
+    ("COMMONS-CLAUSE", ("Commons Clause",)),
     ("AGPL-3.0", ("GNU AFFERO GENERAL PUBLIC LICENSE",)),
     ("LGPL-3.0", ("GNU LESSER GENERAL PUBLIC LICENSE",)),
     ("GPL-3.0", ("GNU GENERAL PUBLIC LICENSE",)),
@@ -448,7 +456,9 @@ RESTRICTED_PHRASES = ("WITH THE FOLLOWING ADDITIONAL CONDITIONS",
                       "COMMERCIAL LICENSE MUST BE OBTAINED", "FOR A COMMERCIAL PURPOSE",
                       "NONCOMMERCIAL", "NON-COMMERCIAL", "ATTRIBUTION-NONCOMMERCIAL")
 # 正文识别出的 spdx 里，这些属「名义像宽松、实际带条件/非商业」⇒ 与 copyleft 同级禁合入
-RESTRICTED_SPDX = ("CC-BY-NC", "MODIFIED-APACHE-RESTRICTED", "RESTRICTED")
+RESTRICTED_SPDX = ("CC-BY-NC", "MODIFIED-APACHE-RESTRICTED", "RESTRICTED",
+                   # R275-1：源可得但限制商用（非 OSI 认可）⇒ 与 copyleft 同级禁合入。
+                   "ELASTIC-2.0", "SSPL-1.0", "BUSL-1.1", "COMMONS-CLAUSE")
 
 
 def classify_body(text_upper):

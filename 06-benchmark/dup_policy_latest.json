@@ -2,7 +2,7 @@
  "schema": "dup-policy-scan-v1",
  "readonly": true,
  "provenance_cmd": "python 05-exec/r247_dup_policy_scan.py --json <件>",
- "files_parsed": 282,
+ "files_parsed": 290,
  "single_source": {
   "EXCL": [
    "r218_workflow_usage_face.py"

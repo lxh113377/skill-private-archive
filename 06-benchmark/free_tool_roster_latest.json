@@ -36,20 +36,20 @@
     "gstack"
    ],
    "yardstick_absent": false,
-   "wf_real_hits": 36,
+   "wf_real_hits": 38,
    "wf_real_files": [
     "quarterly_audit.yml",
     "r113_quarterly_audit.py",
     "r114_replacement_scan.py",
     "r19_feedback_append.py",
     "r262_license_body_pack.py",
+    "r264_sidecar_semantics.py",
+    "r265_follow_version_feasibility.py",
     "r31_ci_surface.py",
     "r32_ci_health.py",
     "r33_release_governance.py",
     "r34_portability_surface.py",
-    "r58_action_pin_guard.py",
-    "r60_capability_roster.py",
-    "r60_capability_roster_describe.py"
+    "r58_action_pin_guard.py"
    ],
    "third_hits": 49,
    "third_files": [
@@ -128,7 +128,7 @@
     ]
    },
    "read_why": null,
-   "usage_value": 27884.0,
+   "usage_value": 29125.0,
    "usage_meta": {
     "unit": "分钟（官方计费·账号级·端点默认窗口）",
     "extra": 0.0,
@@ -360,7 +360,7 @@
     }
    ],
    "blocker": null,
-   "read_state": "MEASURED",
+   "read_state": "UNVERIFIED",
    "read_face": {
     "script": "r200_pages_face.py",
     "artifact": "pages_http_latest.json",
@@ -379,14 +379,9 @@
     ]
    },
    "read_why": null,
-   "usage_value": 253803,
-   "usage_meta": {
-    "unit": "次",
-    "extra": null,
-    "extra_label": null,
-    "window": "2026-10-01~2026-10-29"
-   },
-   "usage_why": null
+   "usage_value": null,
+   "usage_meta": null,
+   "usage_why": "路径取不到：row/requests_total"
   },
   {
    "tool": "Cloudflare-Workers",
@@ -456,7 +451,7 @@
     "unit": "次",
     "extra": null,
     "extra_label": null,
-    "window": "2026-10-01~2026-10-29"
+    "window": "2026-10-01~2026-10-30"
    },
    "usage_why": null
   },
@@ -479,12 +474,13 @@
    "wf_real_files": [
     "r203_ledger_index.py"
    ],
-   "third_hits": 127,
+   "third_hits": 128,
    "third_files": [
     "0001_init.sql",
     "0002_admin.sql",
     "[[path]].js",
     "actionAuthz.test.js",
+    "backup-d1-rest.mjs",
     "backup-print-data.mjs",
     "backupPrintData.test.js",
     "backupRestore.test.js",
@@ -499,12 +495,11 @@
     "d1RoundTrips.test.js",
     "metered-d1.mjs",
     "migrate-ai-calls.sql",
-    "migrate-event-log.sql",
-    "migrate-promotions.sql"
+    "migrate-event-log.sql"
    ],
-   "third_lines": 115,
+   "third_lines": 116,
    "third_comment_lines": 16,
-   "third_comment_share": 0.139,
+   "third_comment_share": 0.138,
    "third_comment_only": false,
    "gates": "163 + 85 + 93",
    "touchpoint": "r203_ledger_index 用 SQLite 做门禁台账派生索引（读面与盲区均实测）",
@@ -537,12 +532,12 @@
     ]
    },
    "read_why": null,
-   "usage_value": 13.35,
+   "usage_value": 13.53,
    "usage_meta": {
     "unit": "MiB（本地库体量·非额度）",
-    "extra": 46369,
+    "extra": 46743,
     "extra_label": "合计行数",
-    "window": "2026-10-28T22:45:12"
+    "window": "2026-10-29T22:06:39"
    },
    "usage_why": null
   },
@@ -668,8 +663,8 @@
     "extra": null,
     "extra_label": null,
     "window": [
-     "2026-10-03",
-     "2026-10-28"
+     "2026-10-04",
+     "2026-10-29"
     ]
    },
    "usage_why": null
@@ -750,7 +745,7 @@
  "gates_reading": {
   "carrier": {
    "tools": 10,
-   "vols": 2009,
+   "vols": 2011,
    "uncarried": 0,
    "k5": true
   },
@@ -768,18 +763,18 @@
   },
   "matrix_src": {
    "file": "tool_skill_matrix_latest.json",
-   "generated_at": "2026-10-28 22:42",
+   "generated_at": "2026-10-29 22:03",
    "cmd": "python 05-exec/r163_tool_skill_matrix.py --json <out>"
   },
   "workflow_src": {
    "file": "workflow_usage_latest.json",
    "generated_at": null,
-   "face_files": 298,
-   "real_face_files": 178,
-   "real_total_hits": 97
+   "face_files": 307,
+   "real_face_files": 184,
+   "real_total_hits": 99
   },
   "third_src": {
-   "files_scanned": 4358,
+   "files_scanned": 4361,
    "roots": [
     "C:/Users/37533/Desktop/workspace/超市web/supermarket-web",
     "C:/Users/37533/Desktop/workspace/项目/新建文件夹"
@@ -788,7 +783,7 @@
    "files": "tool_skill_matrix_latest.json"
   }
  },
- "read_at": "2026-10-28T22:45:22",
+ "read_at": "2026-10-29T22:06:51",
  "ft_rows": [
   {
    "tool": "GitHub",
@@ -950,7 +945,7 @@
    "tool": "VS Code",
    "state": "READY",
    "note": {
-    "code_version": "1.141.0",
+    "code_version": "1.144.0",
     "cli_path": "D:\\Microsoft VS Code\\bin\\code.CMD",
     "cli_bytes": 189,
     "extensions_n": 43

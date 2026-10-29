@@ -1,0 +1,409 @@
+{
+ "schema": "diff-impl-triage-v1",
+ "measured_at": "2026-10-29T13:25:06.450Z",
+ "rule": "R265-3: DIFFERENT_IMPLEMENTATION (replace-class, same-name-file overwrite only) triage into KEEP_LOCAL / SWITCH_CANDIDATE / HUMAN_READ, each decided by capability-boundary evidence (overlap / local_only / upstream_only)",
+ "face_in": "06-benchmark/r265_follow_version_feasibility.json (relationship=DIFFERENT_IMPLEMENTATION) + 06-benchmark/r264_sidecar_semantics.json (upstream_path) + D:\\global_skills\\<slug>\\.upstream sidecar",
+ "provenance_cmd": "bash _temp/r275_evidence.sh && python _temp/r275_triage_check.py 06-benchmark/r275_different_impl_triage.json",
+ "conservation": {
+  "face_different_impl_n": 7,
+  "rows_n": 7,
+  "conservation_ok": true,
+  "verdict_counts": {
+   "KEEP_LOCAL": 6,
+   "SWITCH_CANDIDATE": 1
+  },
+  "all_rows_have_evidence_triplet": true,
+  "all_switch_rows_have_plan": true,
+  "unverified_n": 0,
+  "upstream_fetch_all_clean": true
+ },
+ "rows": [
+  {
+   "skill": "brainstorming",
+   "local_path": "D:\\global_skills\\brainstorming\\SKILL.md",
+   "upstream_repo": "obra/superpowers",
+   "upstream_ref": "v7.0.1",
+   "upstream_path": "skills/brainstorming",
+   "local_version": "1.2.0",
+   "upstream_version": "7.0.1",
+   "evidence_status": "VERIFIED",
+   "upstream_http_code": 200,
+   "fetch_attempts": 1,
+   "measured": {
+    "local_bytes": 11615,
+    "local_lines": 176,
+    "local_sha256_16": "17db0001ea6418a1",
+    "upstream_bytes": 13602,
+    "upstream_lines": 295,
+    "upstream_sha256_16": "61a7ef918652108c"
+   },
+   "face_upstream_lines_in_local_pct": 2.2,
+   "cap_local": [
+    "把想法经协作对话转成完整设计与规格（Checklist 逐项开任务 + Process Flow 驱动）",
+    "本地四阶段：Understanding the idea → After the Design → Key Principles → Documentation",
+    "Anti-Pattern「This Is Too Simple To Need A Design」：待办/单函数/配置改动也一律走流程",
+    "上游内容已整卷吸收到 references/upstream-superpowers-v7.md（实测 5921 B）+ 本地 Version history 维护",
+    "Visual Companion 浏览器伴侣（作为工具而非模式）"
+   ],
+   "cap_upstream": [
+    "完全重写的 v7 对话算法：First: What Do You Actually Know? → Look Before You Ask → Your First Message",
+    "The Conversation / Play It Back / Size the Work / The Written Design 五段",
+    "Red Flags 表（Thought/Reality 反理性化）",
+    "Visual Companion 浏览器标签页原型",
+    "description 覆盖软件外场景（a talk, a business, a renovation）"
+   ],
+   "overlap": [
+    "共同目标：先探索用户意图与设计、再进入实现（禁直接开工）",
+    "两者都含 Visual Companion 段（本地为工具形态、上游为浏览器标签页）"
+   ],
+   "local_only": [
+    "上游内容整卷吸收指针（references/upstream-superpowers-v7.md）与本地 Version history 维护机制",
+    "Anti-Pattern「This Is Too Simple To Need A Design」+ Checklist 逐项开任务",
+    "明确路由消歧：不适用＝任务完成后经验反哺（走 A-get-memory）"
+   ],
+   "upstream_only": [
+    "Red Flags 反理性化表、Size the Work（工作量分级）、Play It Back（回放复述）、First: What Do You Actually Know? 自检",
+    "description 把适用面扩到软件外（演讲/生意/装修）"
+   ],
+   "verdict": "KEEP_LOCAL",
+   "verdict_evidence": [
+    "证据A：本地 SKILL.md 顶部有「Upstream-absorbed sections（分卷指针）」且 references/upstream-superpowers-v7.md 实测存在（5921 B）⇒ 上游 v7 内容已被本地整卷吸收",
+    "证据B：local_only 三条（防过简反模式、Checklist 开任务、A-get-memory 路由消歧）在 upstream v7 全文无对应标题",
+    "判据：覆盖同名 SKILL.md 会同时丢吸收指针（造成 references 卷孤儿）并丢本地反模式 ⇒ 净负"
+   ],
+   "switch_plan": null,
+   "evidence_cmd": "gh api -H 'Accept: application/vnd.github.raw' 'repos/obra/superpowers/contents/skills/brainstorming/SKILL.md?ref=v7.0.1' | wc -c; wc -c /d/global_skills/brainstorming/SKILL.md; sha256sum /d/global_skills/brainstorming/SKILL.md"
+  },
+  {
+   "skill": "coding-agent",
+   "local_path": "D:\\global_skills\\coding-agent\\SKILL.md",
+   "upstream_repo": "sickn33/agentic-awesome-skills",
+   "upstream_ref": "v20.1.0",
+   "upstream_path": "plugins/agentic-awesome-skills-claude/skills/codex-delegate",
+   "local_version": "1.3.0",
+   "upstream_version": "20.1.0",
+   "evidence_status": "VERIFIED",
+   "upstream_http_code": 200,
+   "fetch_attempts": 1,
+   "measured": {
+    "local_bytes": 7404,
+    "local_lines": 171,
+    "local_sha256_16": "a7949682e54d031d",
+    "upstream_bytes": 10285,
+    "upstream_lines": 176,
+    "upstream_sha256_16": "6ab8e251a3e033eb"
+   },
+   "face_upstream_lines_in_local_pct": 3,
+   "cap_local": [
+    "把编码活派给 Codex / Claude Code / OpenCode / WorkBuddy 作为后台 worker（Hard rules：background:true）",
+    "Delegation contract：boundary / prerequisites / brief 内容 / dispatch&result 契约（退出码语义）/ review discipline / authorization / landing",
+    "前置自检：多份 codex 安装 / 旧二进制缺参数",
+    "验收纪律：不信任 worker 自报，自己重跑项目真实门禁命令",
+    "长 issue→PR 流程 + Scratch Codex（需可信 git 仓）"
+   ],
+   "cap_upstream": [
+    "只针对 OpenAI Codex CLI 的 5 步 loop：write brief → dispatch → wait → review → land",
+    "read-only 第二意见（relay 的只读文件系统 profile）",
+    "线程续跑 --session/--resume-last、watchdog --timeout",
+    "Authorization model / References / Limitations"
+   ],
+   "overlap": [
+    "都把有界编码任务派给 Codex 且由编排方复核",
+    "都强调 review 阶段不得采信 worker 自报（上游 Re-verify, don't accept / 本地自己重跑门禁）"
+   ],
+   "local_only": [
+    "多 worker 支持（Claude Code / OpenCode / WorkBuddy）而非仅 Codex",
+    "派发形态纪律：Notification block 固定形状 + Launch forms（先写 temp 文件）+ Process actions（list）",
+    "brief 要带项目真实门禁命令 + 自己重跑门禁的本地验收纪律"
+   ],
+   "upstream_only": [
+    "relay 只读 profile 第二意见、--session/--resume-last 线程续跑、--timeout watchdog",
+    "codex sandbox 无法可靠写 .git 的注意事项"
+   ],
+   "verdict": "KEEP_LOCAL",
+   "verdict_evidence": [
+    "证据A：上游 SKILL.md 的 Limitations 节自述 docs-only import（可执行 scripts/relay.mjs 未包含、需 codex CLI + Node18+ + git）⇒ 覆盖同名得到的是不可执行文档",
+    "证据B：local_only 三条（多 worker / Notification block+Launch forms / 项目门禁重跑）在 upstream 无对应",
+    "判据：用不可执行文档替换可执行的多 worker 技能 = 净负"
+   ],
+   "switch_plan": null,
+   "evidence_cmd": "gh api -H 'Accept: application/vnd.github.raw' 'repos/sickn33/agentic-awesome-skills/contents/plugins/agentic-awesome-skills-claude/skills/codex-delegate/SKILL.md?ref=v20.1.0' | wc -c; wc -c /d/global_skills/coding-agent/SKILL.md; sha256sum /d/global_skills/coding-agent/SKILL.md"
+  },
+  {
+   "skill": "data-analysis",
+   "local_path": "D:\\global_skills\\data-analysis\\SKILL.md",
+   "upstream_repo": "K-Dense-AI/scientific-agent-skills",
+   "upstream_ref": "v2.72.0",
+   "upstream_path": "skills/exploratory-data-analysis",
+   "local_version": "1.4.0",
+   "upstream_version": "2.72.0",
+   "evidence_status": "VERIFIED",
+   "upstream_http_code": 200,
+   "fetch_attempts": 1,
+   "measured": {
+    "local_bytes": 10644,
+    "local_lines": 270,
+    "local_sha256_16": "1967894c313b42d9",
+    "upstream_bytes": 14722,
+    "upstream_lines": 312,
+    "upstream_sha256_16": "955c4cefa49106dd"
+   },
+   "face_upstream_lines_in_local_pct": 1.8,
+   "cap_local": [
+    "用 DuckDB（进程内分析 SQL 引擎）分析用户上传的 Excel/CSV，多 sheet 自动成表",
+    "四步工作流：Understand Requirements → Inspect File Structure → Perform Analysis → Export Results",
+    "SQL 分析模式：基本探索 / 聚合分组 / 跨文件 join / 窗口函数 / 透视",
+    "分析安全边界：上传数据一律不可信、未知格式 fail-closed、缺失值/泄漏审计",
+    "结果缓存 + 导出 CSV/JSON/Markdown"
+   ],
+   "cap_upstream": [
+    "面向科学文件的受限 EDA：redacted CSV/TSV/JSON profile + NumPy/HDF5/FASTA/FASTQ/图像元数据",
+    "授权 + approved root 确认、manifest before content analysis",
+    "exact capability matrix + safe local I/O contract",
+    "Required EDA reasoning + report scaffold + output interpretation"
+   ],
+   "overlap": [
+    "都做受限探索式分析、缺失值/泄漏审计、离群与变换敏感性、报告骨架（本地 analysis boundaries 段与上游 Scope and non-negotiable boundary 段语义同源）",
+    "都强调未知格式不越界（本地 fail-closed / 上游 reference-only and unknown）"
+   ],
+   "local_only": [
+    "Excel 多 sheet + DuckDB SQL 全套（join/window/pivot/CTE）+ 结果缓存 + 导出",
+    "面向业务表格（销售/订单/客户）的具体示例与表命名规则"
+   ],
+   "upstream_only": [
+    "科学格式支持（HDF5/FASTA/FASTQ/NumPy/图像元数据）",
+    "授权与 approved root、manifest-before-content、exact capability matrix"
+   ],
+   "verdict": "KEEP_LOCAL",
+   "verdict_evidence": [
+    "证据A：本地唯一入口是 DuckDB-over-Excel/CSV 管道，上游唯一入口是 scientific-file profile；face 实测 upstream_lines_in_local_pct=1.8（两套不同文本）",
+    "证据B：local_only「Excel 多 sheet + DuckDB SQL/缓存/导出」在 upstream 全文无对应标题",
+    "判据：覆盖同名会删除 Excel/DuckDB 主能力，换入本机当前无需求场景的科学格式 ⇒ 净负"
+   ],
+   "switch_plan": null,
+   "evidence_cmd": "gh api -H 'Accept: application/vnd.github.raw' 'repos/K-Dense-AI/scientific-agent-skills/contents/skills/exploratory-data-analysis/SKILL.md?ref=v2.72.0' | wc -c; wc -c /d/global_skills/data-analysis/SKILL.md; sha256sum /d/global_skills/data-analysis/SKILL.md"
+  },
+  {
+   "skill": "find-skills",
+   "local_path": "D:\\global_skills\\find-skills\\SKILL.md",
+   "upstream_repo": "vercel-labs/skills",
+   "upstream_ref": "v1.7.4",
+   "upstream_path": "skills/find-skills",
+   "local_version": "1.1.0",
+   "upstream_version": "1.7.4",
+   "evidence_status": "VERIFIED",
+   "upstream_http_code": 200,
+   "fetch_attempts": 1,
+   "measured": {
+    "local_bytes": 2674,
+    "local_lines": 44,
+    "local_sha256_16": "14dccbd68f531848",
+    "upstream_bytes": 5472,
+    "upstream_lines": 142,
+    "upstream_sha256_16": "c00eeea0e13e74fe"
+   },
+   "face_upstream_lines_in_local_pct": 4.6,
+   "cap_local": [
+    "强制搜索面（官方 marketplace + skills.sh community + 可选企业 MCP），缺一即不完整",
+    "三条私有策略：装前必确认（AskUserQuestion 选项式，含名称/描述/来源/许可）；纯文本菜单=违规形态",
+    "检索无果时如实报告三面结果 + 关键词变体，禁为凑结果放宽匹配",
+    "上游锚点 = vercel-labs/skills CLI @1.7.4（.upstream sidecar 在册）"
+   ],
+   "cap_upstream": [
+    "六步流程：Understand Need → Check Leaderboard → Search → Verify Quality → Present Options → Offer Install",
+    "skills.sh leaderboard 优先、质量核验清单、Common Skill Categories、搜索技巧"
+   ],
+   "overlap": [
+    "都用 npx skills CLI 发现并安装 skill",
+    "都要求先呈现选项、再由用户决定是否安装"
+   ],
+   "local_only": [
+    "三面并行强制搜索（本地比上游多企业 MCP 面）",
+    "AskUserQuestion 选项式确认（纯文本菜单判违规）这一不可让渡策略"
+   ],
+   "upstream_only": [
+    "skills.sh leaderboard 步骤",
+    "Verify Quality 清单（下载量/维护者/最近更新）、Common Skill Categories、搜索技巧"
+   ],
+   "verdict": "KEEP_LOCAL",
+   "verdict_evidence": [
+    "证据A：本地 30 行/2674 B 自述为「薄策略壳」并显式锚定上游 CLI 1.7.4；本地策略段（三面 + 确认式呈现）在 upstream 无对应标题",
+    "证据B：face 实测 upstream_lines_in_local_pct=4.6 ⇒ 两套不同文本",
+    "判据：覆盖同名会以通用指南替换本地强确认策略（用户点选后才是可安装项）⇒ 净负"
+   ],
+   "switch_plan": null,
+   "evidence_cmd": "gh api -H 'Accept: application/vnd.github.raw' 'repos/vercel-labs/skills/contents/skills/find-skills/SKILL.md?ref=v1.7.4' | wc -c; wc -c /d/global_skills/find-skills/SKILL.md; sha256sum /d/global_skills/find-skills/SKILL.md"
+  },
+  {
+   "skill": "gstack",
+   "local_path": "D:\\global_skills\\gstack\\SKILL.md",
+   "upstream_repo": "garrytan/gstack",
+   "upstream_ref": "v1.91.242.0",
+   "upstream_path": "capy/skill/gstack",
+   "local_version": "1.3.0",
+   "upstream_version": "1.91.242.0",
+   "evidence_status": "VERIFIED",
+   "upstream_http_code": 200,
+   "fetch_attempts": 1,
+   "measured": {
+    "local_bytes": 27944,
+    "local_lines": 644,
+    "local_sha256_16": "f3477b0a0bb9111d",
+    "upstream_bytes": 13386,
+    "upstream_lines": 69,
+    "upstream_sha256_16": "949f4b34223829e3"
+   },
+   "face_upstream_lines_in_local_pct": 4.9,
+   "cap_local": [
+    "常驻无头 Chromium 的 QA/dogfooding 手册：~100-200ms/命令，snapshot 系统为主交互面",
+    "QA 工作流族：用户流测试 / 部署核验 / 端到端 dogfood / 响应式布局 / 文件上传 / 表单校验 / 对话框 / cookie 导入已登录页 / 页面环境对比 / 多步链",
+    "完整命令参考（Navigation/Reading/Interaction/Inspection/Visual/Snapshot/Meta/Tabs/Server）",
+    "上游同步状态 + 吸收卷 references/browse-v2-upstream.md（实测 26094 B）",
+    "gstack 工作流技能建议 / AskUserQuestion 固定格式 / Completion Status Protocol / Telemetry"
+   ],
+   "cap_upstream": [
+    "Capy/Claude Code 上的安装与路由壳：session start check → install.sh（frozen bootstrapper）",
+    "GSTACK_LAUNCH 行环境契约、按 host 加载对应 workflow SKILL",
+    "unattended runs for a parent agent（/autoplan DRIVER）、Working under a Captain",
+    "sealed pregate push 前门、宿主指令适配、Maintenance"
+   ],
+   "overlap": [
+    "都属 gstack 体系；本地 SKILL.md 头部已吸收上游 39/42 行（face upstream_lines_in_local_pct=4.9 指上游 39 行落在本地）",
+    "两端都涉及 gstack 安装/自检与工作流路由"
+   ],
+   "local_only": [
+    "整个 browse QA 能力（headless chromium 命令全集、snapshot、断言、cookie-import、响应式/对话框/上传测试）— 435 行本地独有",
+    "AskUserQuestion 格式 / Completeness Principle / Completion Status Protocol / Telemetry"
+   ],
+   "upstream_only": [
+    "GSTACK_LAUNCH 行环境契约、install.sh frozen bootstrapper",
+    "/autoplan DRIVER、Captain 语义、sealed pregate"
+   ],
+   "verdict": "KEEP_LOCAL",
+   "verdict_evidence": [
+    "证据A：face/sidecar 映射的 upstream_path=capy/skill/gstack 实测为 Capy 编排/安装壳（42 行/13386 B），而本地 gstack 是 QA 手册（实测 502 行/27944 B）⇒ 面映射错位（本地同步的其实是上游 browse，见本地「上游同步状态（v1.2.0）」）",
+    "证据B：local_only 435 行（browse 命令全集）在 upstream 全文无对应；且本地已吸收 upstream 39 行 ⇒ 本地是超集",
+    "判据：按错位映射覆盖同名 = 用安装壳替换 QA 手册，且丢 435 行独有能力 ⇒ KEEP_LOCAL + 登记面映射缺陷"
+   ],
+   "switch_plan": null,
+   "evidence_cmd": "gh api -H 'Accept: application/vnd.github.raw' 'repos/garrytan/gstack/contents/capy/skill/gstack/SKILL.md?ref=v1.91.242.0' | wc -c; wc -c /d/global_skills/gstack/SKILL.md; sha256sum /d/global_skills/gstack/SKILL.md"
+  },
+  {
+   "skill": "subagent-driven-development",
+   "local_path": "D:\\global_skills\\subagent-driven-development\\SKILL.md",
+   "upstream_repo": "obra/superpowers",
+   "upstream_ref": "v7.0.1",
+   "upstream_path": "skills/executing-plans",
+   "local_version": "1.3.0",
+   "upstream_version": "7.0.1",
+   "evidence_status": "VERIFIED",
+   "upstream_http_code": 200,
+   "fetch_attempts": 1,
+   "measured": {
+    "local_bytes": 7352,
+    "local_lines": 81,
+    "local_sha256_16": "a430a4be47269efe",
+    "upstream_bytes": 18103,
+    "upstream_lines": 322,
+    "upstream_sha256_16": "e4649e59880ef264"
+   },
+   "face_upstream_lines_in_local_pct": 0.4,
+   "cap_local": [
+    "计划执行段内核（inline）：已有 writing-plans 计划时本会话逐任务执行",
+    "task-start 定 BASE（评审范围从 BASE 切、不是 HEAD~1）→ 每任务读 brief 不凭记忆",
+    "Expected 三分类处置（一致 / 代码错走 debugging-fixing / 计划错裁最小改动并记 Ruling）",
+    "task-done 仅全套通过才写完成行；ledger 首行身份点名计划、跨计划隔离",
+    "终审按影响重分级 + 收尾上呈 Rulings 与 Deferred minors 两张穷尽清单"
+   ],
+   "cap_upstream": [
+    "The Process（dot 图）+ Setup（isolated workspace）+ The Task Loop",
+    "1 Take the task（scripts/task-start）→ 2 Work the steps（RED-GREEN）→ 3 completion contract → 4 Complete（scripts/task-done）",
+    "Final Review（../subagent-driven-development/scripts/review-package）",
+    "Common Rationalizations 表"
+   ],
+   "overlap": [
+    "都是「有计划后本会话逐任务 inline 执行」；都用 task-start/task-done 脚本 + ledger + 证据 + 终审",
+    "都坚持 RED-GREEN（先看测试失败）与 completion contract 需证据"
+   ],
+   "local_only": [
+    "「只有这四种情况停下来问」表、跨计划隔离、压缩后信 ledger 与 git log、终审按影响重分级、12 条反理性化表、上下文成本纪律",
+    "本地 references/ 六卷（anti-rationalization/context-economy/execution-flow/final-review/plan-execution-contract/task-loop）+ scripts/（sdd-workspace/task-brief/task-done/task-start）实测齐备"
+   ],
+   "upstream_only": [
+    "The Process dot 图 / Setup isolation workspace",
+    "Common Rationalizations 表 / review-package 脚本引用"
+   ],
+   "verdict": "KEEP_LOCAL",
+   "verdict_evidence": [
+    "证据A：face 实测 upstream_lines_in_local_pct=0.4（7 件中最低）⇒ 两套文本几乎不共享，本地非上游复述",
+    "证据B：local_only（四问停表 / 两张穷尽清单 / 12 条反理性化 / 六卷 references）在 upstream 无对应；本地自述「吸收 v7 语义 + inline 形态」",
+    "判据：覆盖同名会把本地整卷内核换回上游原版，丢本地纪律卷 ⇒ 净负"
+   ],
+   "switch_plan": null,
+   "evidence_cmd": "gh api -H 'Accept: application/vnd.github.raw' 'repos/obra/superpowers/contents/skills/executing-plans/SKILL.md?ref=v7.0.1' | wc -c; wc -c /d/global_skills/subagent-driven-development/SKILL.md; sha256sum /d/global_skills/subagent-driven-development/SKILL.md"
+  },
+  {
+   "skill": "ui-ux-pro-max",
+   "local_path": "D:\\global_skills\\ui-ux-pro-max\\SKILL.md",
+   "upstream_repo": "nextlevelbuilder/ui-ux-pro-max-skill",
+   "upstream_ref": "v2.15.0",
+   "upstream_path": ".claude/skills/ui-ux-pro-max",
+   "local_version": "1.5.0",
+   "upstream_version": "2.15.0",
+   "evidence_status": "VERIFIED",
+   "upstream_http_code": 200,
+   "fetch_attempts": 1,
+   "measured": {
+    "local_bytes": 5796,
+    "local_lines": 64,
+    "local_sha256_16": "e6c4bc37784c55eb",
+    "upstream_bytes": 15969,
+    "upstream_lines": 215,
+    "upstream_sha256_16": "ea087c341bfb5b23"
+   },
+   "face_upstream_lines_in_local_pct": 3.1,
+   "cap_local": [
+    "三段式：Triage → Produce Deliverables（点名组件/状态/间距/字体/交互）→ Use Bundled Assets",
+    "路由消歧：需要 BUILD 生产前端代码走 frontend-skill（本件只做设计情报）",
+    "捆绑脚本（Design System Generator）+ Output Standards（默认 ASCII-only token）",
+    "捆绑 data/ + assets/ + references/pro-rules.md（实测 10909 B）"
+   ],
+   "cap_upstream": [
+    "可搜索本地数据：79 styles（50 active）/ 192 product palettes / 74 font pairings / 119 UX guidelines / 105 charts",
+    "Rule Categories by Priority 1→10 + query contract（--domain / --stack）",
+    "Workflow：Analyze → Generate Design System（--design-system）→ Persist master+overrides（--persist/--output-dir）→ Design Dials（--dials）→ Supplement → Stack Guidelines",
+    "references/pro-rules.md Pre-Delivery Checklist；搜索 0 结果禁编造"
+   ],
+   "overlap": [
+    "都是 UI/UX 设计情报 + 捆绑本地数据 + 提供可搜的设计系统生成脚本",
+    "都要求不得编造、不得空谈（本地 Always be concrete / 上游 Do not fabricate output）"
+   ],
+   "local_only": [
+    "路由消歧到 frontend-skill（设计指导 vs 代码实现）",
+    "本地 data/ + assets/ + scripts/search.py 组合与本地 Output Standards"
+   ],
+   "upstream_only": [
+    "--dials Design Dials 三滑块",
+    "--persist master+overrides 模式、rule categories 1→10 优先级、query contract 最小搜索模式",
+    "pro-rules Pre-Delivery Checklist 与数据集规模（79 styles / 192 palettes / 74 font pairings）"
+   ],
+   "verdict": "SWITCH_CANDIDATE",
+   "verdict_evidence": [
+    "证据A：本地 SKILL.md 实测 46 行/5796 B，上游 148 行/15969 B，face upstream_lines_in_local_pct=3.1 ⇒ 本地是薄壳、上游是完整工作流",
+    "证据B：本地 scripts/search.py（5375 B）argparse 实测已支持 --design-system/--persist/--domain/--stack/--output-dir/--json/--project-name/-f，仅缺 --dials ⇒ 上游工作流大体可落地",
+    "证据C（反向、支持非纯覆盖）：因本地脚本无 --dials，整篇覆盖会引用不支持 flag ⇒ 替换形态必须是合并增量且剔除 Dials 段"
+   ],
+   "switch_plan": {
+    "form": "合并增量（不整篇覆盖）",
+    "detail": "把上游 v2.15.0 SKILL.md 的 Rule Categories 1→10、query contract（--domain/--stack）、--design-system/--persist/--output-dir 工作流、pro-rules 交付前清单并入本地 SKILL.md；剔除上游 Step 2c Design Dials（--dials）段，因本地 scripts/search.py argparse 无线该 flag",
+    "same_batch_files": [
+     "D:\\global_skills\\ui-ux-pro-max\\SKILL.md"
+    ],
+    "conditional_same_batch": "若同批取到上游 scripts/search.py 且支持 --dials，则可同时升级 scripts/search.py 后保留 Dials 段",
+    "verification": "① 合并后 SKILL.md 引用的每个 --flag 必须出现在 `python D:/global_skills/ui-ux-pro-max/scripts/search.py --help`；② 冒烟 `python .../search.py \"modern minimal\" --design-system -p Smoke --json` rc=0 且输出含 design system 字段；③ 负控：故意引用 --dials 时必须被①判红（证明判据有牙）",
+    "rollback": "受管根 D:\\global_skills 是 git 仓（实测 HEAD 5a4ec3b3 可读）：git -C D:/global_skills checkout HEAD -- ui-ux-pro-max/SKILL.md；或 git revert <本次提交>"
+   },
+   "evidence_cmd": "gh api -H 'Accept: application/vnd.github.raw' 'repos/nextlevelbuilder/ui-ux-pro-max-skill/contents/.claude/skills/ui-ux-pro-max/SKILL.md?ref=v2.15.0' | wc -c; wc -c /d/global_skills/ui-ux-pro-max/SKILL.md; sha256sum /d/global_skills/ui-ux-pro-max/SKILL.md"
+  }
+ ]
+}

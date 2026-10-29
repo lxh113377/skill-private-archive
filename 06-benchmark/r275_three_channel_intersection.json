@@ -1,0 +1,2322 @@
+{
+ "schema": "three-channel-intersection-v1",
+ "generated_at": "2026-10-29T21:14:59",
+ "provenance_cmd": "python _temp/r275_build.py 06-benchmark/ 06-benchmark/r275_three_channel_intersection.json",
+ "rule": "R271-1: 三条通道以 skill 名为键 join; 仓级口径(upstream_path 空)只算线索(L4), 不得当落后依据; relationship 层优先于 QUIESCENT",
+ "face_in": {
+  "ch1": "06-benchmark/r263_declared_upstream_face.json",
+  "ch2": "06-benchmark/r265_follow_version_feasibility.json",
+  "ch3": "06-benchmark/r271_version_channel2.json",
+  "lineage": "06-benchmark/r264_sidecar_semantics.json"
+ },
+ "provenance_inputs": {
+  "r263_declared_upstream_face.json": "52f67e7d2a90",
+  "r264_sidecar_semantics.json": "7daf7bf4c372",
+  "r265_follow_version_feasibility.json": "9bbe5eb37e0b",
+  "r271_version_channel2.json": "0dee0644b215"
+ },
+ "precedence": "L1 > L2 > L3 > L5 > L4(残差); relationship 三档优先于 QUIESCENT, 故 QUIESCENT 的同源 BEHIND 件若 relationship 属 L2/L3 仍归 L2/L3",
+ "tiers": {
+  "L1": {
+   "criteria": "立即可执行 = 同源(r264.semantics=SAME_LINEAGE) AND ch1.rel=BEHIND AND ch3.verdict=UPSTREAM_MOVED AND ch3.upstream_path 非空(路径已定位) AND ch2.relationship=MERGE_CANDIDATE_SMALL",
+   "n": 0,
+   "skills": []
+  },
+  "L2": {
+   "criteria": "需人读 = ch2.relationship=LOCAL_DERIVATIVE_REVIEW (本地有派生改动, 上游行覆盖率中高, 必须逐段人读才可决定)",
+   "n": 3,
+   "skills": [
+    "frontend-slides",
+    "grill-me",
+    "verification-before-completion"
+   ]
+  },
+  "L3": {
+   "criteria": "替换类 = ch2.relationship=DIFFERENT_IMPLEMENTATION (同源但实现完全不同, 只能整件替换或放弃)",
+   "n": 7,
+   "skills": [
+    "brainstorming",
+    "coding-agent",
+    "data-analysis",
+    "find-skills",
+    "gstack",
+    "subagent-driven-development",
+    "ui-ux-pro-max"
+   ]
+  },
+  "L4": {
+   "criteria": "仅线索 = ch3.verdict=UPSTREAM_MOVED 但未能进入 L1/L2/L3: 或 ch3.upstream_path 为空(仓级口径, 只说明整仓动过) 或 路径已定位却缺 BEHIND/relationship 判据",
+   "n": 9,
+   "skills": [
+    "browser-cdp",
+    "defuddle",
+    "dogfood",
+    "hyperframes-cli",
+    "hyperframes-registry",
+    "mcp-builder",
+    "security-audit",
+    "taskflow",
+    "web-access"
+   ]
+  },
+  "L5": {
+   "criteria": "无需动作 = ch2.relationship=SUPERSET_LOCAL_NO_CONTENT_TO_ADOPT 或 ch3.verdict=QUIESCENT (注意: QUIESCENT 下的 MERGE_CANDIDATE_SMALL 件标 latent_L1)",
+   "n": 36,
+   "skills": [
+    "agent-browser",
+    "algorithmic-art",
+    "brand-guidelines",
+    "canvas-design",
+    "chart-visualization",
+    "commit-archaeologist",
+    "diagram-maker",
+    "doc-coauthoring",
+    "docx",
+    "electron",
+    "figma",
+    "frontend-design",
+    "html-ppt",
+    "hyperframes",
+    "hyperframes-media",
+    "internal-comms",
+    "oracle",
+    "pdf",
+    "ppt-master",
+    "rag-eval",
+    "scope-creep-detector",
+    "story",
+    "story-cover",
+    "story-deslop",
+    "story-import",
+    "story-long-analyze",
+    "story-long-write",
+    "story-review",
+    "story-scan",
+    "story-setup",
+    "story-short-analyze",
+    "story-short-write",
+    "test-driven-development",
+    "theme-factory",
+    "writing-plans",
+    "xlsx"
+   ]
+  }
+ },
+ "counts": {
+  "rows": 55,
+  "sum_by_layer": 55,
+  "conservation_ok": true,
+  "by_layer": {
+   "L1": 0,
+   "L2": 3,
+   "L3": 7,
+   "L4": 9,
+   "L5": 36
+  },
+  "channel_presence": {
+   "ch1_tag": {
+    "present": 55,
+    "absent": 0
+   },
+   "ch2_content": {
+    "present": 13,
+    "absent": 42,
+    "absent_skills": [
+     "agent-browser",
+     "algorithmic-art",
+     "brand-guidelines",
+     "browser-cdp",
+     "canvas-design",
+     "chart-visualization",
+     "commit-archaeologist",
+     "defuddle",
+     "diagram-maker",
+     "doc-coauthoring",
+     "docx",
+     "dogfood",
+     "electron",
+     "figma",
+     "frontend-design",
+     "html-ppt",
+     "hyperframes",
+     "hyperframes-cli",
+     "hyperframes-media",
+     "hyperframes-registry",
+     "internal-comms",
+     "mcp-builder",
+     "oracle",
+     "pdf",
+     "scope-creep-detector",
+     "security-audit",
+     "story",
+     "story-cover",
+     "story-deslop",
+     "story-import",
+     "story-long-analyze",
+     "story-long-write",
+     "story-review",
+     "story-scan",
+     "story-setup",
+     "story-short-analyze",
+     "story-short-write",
+     "taskflow",
+     "theme-factory",
+     "web-access",
+     "writing-plans",
+     "xlsx"
+    ]
+   },
+   "ch3_move": {
+    "present": 55,
+    "absent": 0
+   }
+  },
+  "UNKNOWN_cells": {
+   "ch1_tag.upstream_ref": 17
+  },
+  "ch1_rel_dist": {
+   "AHEAD": 22,
+   "UNKNOWN_UPSTREAM_RELEASE": 18,
+   "BEHIND": 15
+  },
+  "ch2_relationship_dist": {
+   "ABSENT": 42,
+   "DIFFERENT_IMPLEMENTATION": 7,
+   "LOCAL_DERIVATIVE_REVIEW": 3,
+   "MERGE_CANDIDATE_SMALL": 2,
+   "SUPERSET_LOCAL_NO_CONTENT_TO_ADOPT": 1
+  },
+  "ch3_verdict_dist": {
+   "QUIESCENT": 45,
+   "UPSTREAM_MOVED": 10
+  },
+  "same_lineage_dist": {
+   "true": 47,
+   "false": 8
+  },
+  "l4_subreason_dist": {
+   "REPO_LEVEL_NO_PATH": 6,
+   "PATH_LOCALIZED_NOT_EXECUTABLE": 3
+  },
+  "latent_L1_skills": [
+   "ppt-master",
+   "test-driven-development"
+  ],
+  "conflicts_n": 0
+ },
+ "caliber_note": "仓级口径告诫: ch3.upstream_path 为空时 upstream_commits_since 只说明该上游仓整体动过, 与本地 skill 对应的路径无关, 不得据此判落后或立即可执行; 仅可作 L4 线索。本件 7 件 upstream_path 为空(6 件 UPSTREAM_MOVED + 1 件 QUIESCENT), 其中 6 件 MOVED 全部落 L4。与 r271 件内口径一致。",
+ "conflicts": [],
+ "repo_level_count_recheck": {
+  "why": "r271 对 ch3.upstream_path 为空的件调 gh api commits?since=<local_last_commit>; local_last_commit 带 +08:00 时 GitHub 不认该偏移, 把 09:24+08:00 当 09:24Z, 截点后移 8h ⇒ 系统性少计",
+  "evidence": "同仓同一时刻两形式对比: browser-cdp since=2026-10-20T09:24:10+08:00 -> 62, since=2026-10-20T01:24:10Z -> 83; web-access 27 vs 33; defuddle 6 vs 6 (该仓窗口前 8h 无提交, 故不显差)",
+  "taken": "UTC(Z) 形式可复算 ⇒ 以复算值为准; 但两者都只作 L4 线索(仓级口径), 层不变",
+  "rows": {
+   "browser-cdp": {
+    "r271": 60,
+    "recount_utc": 83,
+    "at": "2026-10-29T20:55+08:00"
+   },
+   "web-access": {
+    "r271": 27,
+    "recount_utc": 33,
+    "at": "2026-10-29T20:55+08:00"
+   },
+   "taskflow": {
+    "r271": 100,
+    "recount_utc": 100,
+    "capped": true,
+    "at": "2026-10-29T20:55+08:00"
+   }
+  }
+ },
+ "controls": {
+  "narrative": "两条腿实测: 同一 classify() 直接喂构造输入; A 与 B 唯一差异 = ch3_path",
+  "A_repo_level_moved_no_path": {
+   "input": {
+    "same_lineage": true,
+    "ch1_rel": "BEHIND",
+    "ch3_verdict": "UPSTREAM_MOVED",
+    "ch3_path": null,
+    "relationship": "MERGE_CANDIDATE_SMALL"
+   },
+   "expected": "L4",
+   "got": "L4"
+  },
+  "B_same_lineage_merge_moved_with_path": {
+   "input": {
+    "same_lineage": true,
+    "ch1_rel": "BEHIND",
+    "ch3_verdict": "UPSTREAM_MOVED",
+    "ch3_path": "skills/mcp-builder",
+    "relationship": "MERGE_CANDIDATE_SMALL"
+   },
+   "expected": "L1",
+   "got": "L1"
+  },
+  "C_quiescent_control": {
+   "input": {
+    "same_lineage": true,
+    "ch1_rel": "BEHIND",
+    "ch3_verdict": "QUIESCENT",
+    "ch3_path": "skills/x",
+    "relationship": "MERGE_CANDIDATE_SMALL"
+   },
+   "expected": "L5",
+   "got": "L5"
+  },
+  "pincer": "A 与 B 唯一差异是 ch3_path(空 vs 非空), 结果 L4 vs L1 ⇒ path 条件有牙; C 证明非恒绿/非恒 L4"
+ },
+ "rows": [
+  {
+   "skill": "agent-browser",
+   "upstream_repo": "vercel-labs/agent-browser",
+   "upstream_path": "skills/agent-browser",
+   "upstream_ref": "v0.40.0",
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "AHEAD",
+    "state": "OK",
+    "local_version": "3.2.0",
+    "upstream_ref": "v0.40.0",
+    "upstream_ref_reading": "PRESENT",
+    "upstream_ref_reason": null,
+    "upstream_version": "0.40.0"
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-29T16:10:10+08:00",
+    "upstream_path": "skills/agent-browser",
+    "error": null
+   },
+   "layer": "L5",
+   "layer_criteria": "无需动作 = ch2.relationship=SUPERSET_LOCAL_NO_CONTENT_TO_ADOPT 或 ch3.verdict=QUIESCENT (注意: QUIESCENT 下的 MERGE_CANDIDATE_SMALL 件标 latent_L1)",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   }
+  },
+  {
+   "skill": "algorithmic-art",
+   "upstream_repo": "anthropics/skills",
+   "upstream_path": "skills/algorithmic-art",
+   "upstream_ref": null,
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "UNKNOWN_UPSTREAM_RELEASE",
+    "state": "OK",
+    "local_version": "1.0.0",
+    "upstream_ref": null,
+    "upstream_ref_reading": "UNKNOWN",
+    "upstream_ref_reason": "rc=1:gh: Not Found (HTTP 404)",
+    "upstream_version": null
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-20T09:25:30+08:00",
+    "upstream_path": "skills/algorithmic-art",
+    "error": null
+   },
+   "layer": "L5",
+   "layer_criteria": "无需动作 = ch2.relationship=SUPERSET_LOCAL_NO_CONTENT_TO_ADOPT 或 ch3.verdict=QUIESCENT (注意: QUIESCENT 下的 MERGE_CANDIDATE_SMALL 件标 latent_L1)",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   }
+  },
+  {
+   "skill": "brainstorming",
+   "upstream_repo": "obra/superpowers",
+   "upstream_path": "skills/brainstorming",
+   "upstream_ref": "v7.0.1",
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "BEHIND",
+    "state": "OK",
+    "local_version": "1.2.0",
+    "upstream_ref": "v7.0.1",
+    "upstream_ref_reading": "PRESENT",
+    "upstream_ref_reason": null,
+    "upstream_version": "7.0.1"
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-29T16:10:10+08:00",
+    "upstream_path": "skills/brainstorming",
+    "error": null
+   },
+   "layer": "L3",
+   "layer_criteria": "替换类 = ch2.relationship=DIFFERENT_IMPLEMENTATION (同源但实现完全不同, 只能整件替换或放弃)",
+   "ch2_content": {
+    "reading": "PRESENT",
+    "relationship": "DIFFERENT_IMPLEMENTATION",
+    "repo": "obra/superpowers",
+    "upstream_ref": "v7.0.1",
+    "upstream_lines_in_local_pct": 2.2,
+    "upstream_only_n": 226,
+    "local_only_n": 120,
+    "local_bytes": 11615,
+    "upstream_bytes": 13602
+   }
+  },
+  {
+   "skill": "brand-guidelines",
+   "upstream_repo": "anthropics/skills",
+   "upstream_path": "skills/brand-guidelines",
+   "upstream_ref": null,
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "UNKNOWN_UPSTREAM_RELEASE",
+    "state": "OK",
+    "local_version": "1.0.0",
+    "upstream_ref": null,
+    "upstream_ref_reading": "UNKNOWN",
+    "upstream_ref_reason": "rc=1:gh: Not Found (HTTP 404)",
+    "upstream_version": null
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-20T09:25:30+08:00",
+    "upstream_path": "skills/brand-guidelines",
+    "error": null
+   },
+   "layer": "L5",
+   "layer_criteria": "无需动作 = ch2.relationship=SUPERSET_LOCAL_NO_CONTENT_TO_ADOPT 或 ch3.verdict=QUIESCENT (注意: QUIESCENT 下的 MERGE_CANDIDATE_SMALL 件标 latent_L1)",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   }
+  },
+  {
+   "skill": "browser-cdp",
+   "upstream_repo": "ChromeDevTools/chrome-devtools-mcp",
+   "upstream_path": null,
+   "upstream_ref": "chrome-devtools-mcp-v1.12.0",
+   "same_lineage": false,
+   "same_lineage_source": "r264.semantics=TOOL",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "UNKNOWN_UPSTREAM_RELEASE",
+    "state": "OK",
+    "local_version": "1.1.0",
+    "upstream_ref": "chrome-devtools-mcp-v1.12.0",
+    "upstream_ref_reading": "PRESENT",
+    "upstream_ref_reason": null,
+    "upstream_version": null
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "UPSTREAM_MOVED",
+    "upstream_commits_since": 60,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-20T09:24:10+08:00",
+    "upstream_path": null,
+    "error": null
+   },
+   "layer": "L4",
+   "layer_criteria": "仅线索 = ch3.verdict=UPSTREAM_MOVED 但未能进入 L1/L2/L3: 或 ch3.upstream_path 为空(仓级口径, 只说明整仓动过) 或 路径已定位却缺 BEHIND/relationship 判据",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   },
+   "l4_subreason": "REPO_LEVEL_NO_PATH",
+   "notes": [
+    "仓级口径: upstream_path 为空, 只证明整仓动过, 不得当落后依据"
+   ]
+  },
+  {
+   "skill": "canvas-design",
+   "upstream_repo": "anthropics/skills",
+   "upstream_path": "skills/canvas-design",
+   "upstream_ref": null,
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "UNKNOWN_UPSTREAM_RELEASE",
+    "state": "OK",
+    "local_version": "1.0.0",
+    "upstream_ref": null,
+    "upstream_ref_reading": "UNKNOWN",
+    "upstream_ref_reason": "rc=1:gh: Not Found (HTTP 404)",
+    "upstream_version": null
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-20T09:25:30+08:00",
+    "upstream_path": "skills/canvas-design",
+    "error": null
+   },
+   "layer": "L5",
+   "layer_criteria": "无需动作 = ch2.relationship=SUPERSET_LOCAL_NO_CONTENT_TO_ADOPT 或 ch3.verdict=QUIESCENT (注意: QUIESCENT 下的 MERGE_CANDIDATE_SMALL 件标 latent_L1)",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   }
+  },
+  {
+   "skill": "chart-visualization",
+   "upstream_repo": "antvis/chart-visualization-skills",
+   "upstream_path": "skills/chart-visualization",
+   "upstream_ref": null,
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "UNKNOWN_UPSTREAM_RELEASE",
+    "state": "OK",
+    "local_version": "1.0.0",
+    "upstream_ref": null,
+    "upstream_ref_reading": "UNKNOWN",
+    "upstream_ref_reason": "rc=1:gh: Not Found (HTTP 404)",
+    "upstream_version": null
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-20T09:25:30+08:00",
+    "upstream_path": "skills/chart-visualization",
+    "error": null
+   },
+   "layer": "L5",
+   "layer_criteria": "无需动作 = ch2.relationship=SUPERSET_LOCAL_NO_CONTENT_TO_ADOPT 或 ch3.verdict=QUIESCENT (注意: QUIESCENT 下的 MERGE_CANDIDATE_SMALL 件标 latent_L1)",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   }
+  },
+  {
+   "skill": "coding-agent",
+   "upstream_repo": "sickn33/agentic-awesome-skills",
+   "upstream_path": "plugins/agentic-awesome-skills-claude/skills/codex-delegate",
+   "upstream_ref": "v20.1.0",
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "BEHIND",
+    "state": "OK",
+    "local_version": "1.3.0",
+    "upstream_ref": "v20.1.0",
+    "upstream_ref_reading": "PRESENT",
+    "upstream_ref_reason": null,
+    "upstream_version": "20.1.0"
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-29T16:10:10+08:00",
+    "upstream_path": "plugins/agentic-awesome-skills-claude/skills/codex-delegate",
+    "error": null
+   },
+   "layer": "L3",
+   "layer_criteria": "替换类 = ch2.relationship=DIFFERENT_IMPLEMENTATION (同源但实现完全不同, 只能整件替换或放弃)",
+   "ch2_content": {
+    "reading": "PRESENT",
+    "relationship": "DIFFERENT_IMPLEMENTATION",
+    "repo": "sickn33/agentic-awesome-skills",
+    "upstream_ref": "v20.1.0",
+    "upstream_lines_in_local_pct": 3.0,
+    "upstream_only_n": 129,
+    "local_only_n": 106,
+    "local_bytes": 7404,
+    "upstream_bytes": 10285
+   }
+  },
+  {
+   "skill": "commit-archaeologist",
+   "upstream_repo": "Shubhamsaboo/awesome-llm-apps",
+   "upstream_path": "agent_skills/commit-archaeologist",
+   "upstream_ref": null,
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "UNKNOWN_UPSTREAM_RELEASE",
+    "state": "OK",
+    "local_version": "1.0.0",
+    "upstream_ref": null,
+    "upstream_ref_reading": "UNKNOWN",
+    "upstream_ref_reason": "rc=1:gh: Not Found (HTTP 404)",
+    "upstream_version": null
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-20T09:25:30+08:00",
+    "upstream_path": "agent_skills/commit-archaeologist",
+    "error": null
+   },
+   "layer": "L5",
+   "layer_criteria": "无需动作 = ch2.relationship=SUPERSET_LOCAL_NO_CONTENT_TO_ADOPT 或 ch3.verdict=QUIESCENT (注意: QUIESCENT 下的 MERGE_CANDIDATE_SMALL 件标 latent_L1)",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   }
+  },
+  {
+   "skill": "data-analysis",
+   "upstream_repo": "K-Dense-AI/scientific-agent-skills",
+   "upstream_path": "skills/exploratory-data-analysis",
+   "upstream_ref": "v2.72.0",
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "BEHIND",
+    "state": "OK",
+    "local_version": "1.4.0",
+    "upstream_ref": "v2.72.0",
+    "upstream_ref_reading": "PRESENT",
+    "upstream_ref_reason": null,
+    "upstream_version": "2.72.0"
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-29T16:10:10+08:00",
+    "upstream_path": "skills/exploratory-data-analysis",
+    "error": null
+   },
+   "layer": "L3",
+   "layer_criteria": "替换类 = ch2.relationship=DIFFERENT_IMPLEMENTATION (同源但实现完全不同, 只能整件替换或放弃)",
+   "ch2_content": {
+    "reading": "PRESENT",
+    "relationship": "DIFFERENT_IMPLEMENTATION",
+    "repo": "K-Dense-AI/scientific-agent-skills",
+    "upstream_ref": "v2.72.0",
+    "upstream_lines_in_local_pct": 1.8,
+    "upstream_only_n": 222,
+    "local_only_n": 149,
+    "local_bytes": 10644,
+    "upstream_bytes": 14722
+   }
+  },
+  {
+   "skill": "defuddle",
+   "upstream_repo": "kepano/defuddle",
+   "upstream_path": null,
+   "upstream_ref": "0.19.6",
+   "same_lineage": false,
+   "same_lineage_source": "r264.semantics=UNKNOWN",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "AHEAD",
+    "state": "OK",
+    "local_version": "1.1.0",
+    "upstream_ref": "0.19.6",
+    "upstream_ref_reading": "PRESENT",
+    "upstream_ref_reason": null,
+    "upstream_version": "0.19.6"
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "UPSTREAM_MOVED",
+    "upstream_commits_since": 6,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-20T09:24:10+08:00",
+    "upstream_path": null,
+    "error": null
+   },
+   "layer": "L4",
+   "layer_criteria": "仅线索 = ch3.verdict=UPSTREAM_MOVED 但未能进入 L1/L2/L3: 或 ch3.upstream_path 为空(仓级口径, 只说明整仓动过) 或 路径已定位却缺 BEHIND/relationship 判据",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   },
+   "l4_subreason": "REPO_LEVEL_NO_PATH",
+   "notes": [
+    "仓级口径: upstream_path 为空, 只证明整仓动过, 不得当落后依据"
+   ]
+  },
+  {
+   "skill": "diagram-maker",
+   "upstream_repo": "github/awesome-copilot",
+   "upstream_path": "skills/excalidraw-diagram-generator",
+   "upstream_ref": null,
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "UNKNOWN_UPSTREAM_RELEASE",
+    "state": "OK",
+    "local_version": "1.2.0",
+    "upstream_ref": null,
+    "upstream_ref_reading": "UNKNOWN",
+    "upstream_ref_reason": "rc=1:gh: Not Found (HTTP 404)",
+    "upstream_version": null
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-29T16:10:10+08:00",
+    "upstream_path": "skills/excalidraw-diagram-generator",
+    "error": null
+   },
+   "layer": "L5",
+   "layer_criteria": "无需动作 = ch2.relationship=SUPERSET_LOCAL_NO_CONTENT_TO_ADOPT 或 ch3.verdict=QUIESCENT (注意: QUIESCENT 下的 MERGE_CANDIDATE_SMALL 件标 latent_L1)",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   }
+  },
+  {
+   "skill": "doc-coauthoring",
+   "upstream_repo": "anthropics/skills",
+   "upstream_path": "skills/doc-coauthoring",
+   "upstream_ref": null,
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "UNKNOWN_UPSTREAM_RELEASE",
+    "state": "OK",
+    "local_version": "2.0.0",
+    "upstream_ref": null,
+    "upstream_ref_reading": "UNKNOWN",
+    "upstream_ref_reason": "rc=1:gh: Not Found (HTTP 404)",
+    "upstream_version": null
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-20T18:10:50+08:00",
+    "upstream_path": "skills/doc-coauthoring",
+    "error": null
+   },
+   "layer": "L5",
+   "layer_criteria": "无需动作 = ch2.relationship=SUPERSET_LOCAL_NO_CONTENT_TO_ADOPT 或 ch3.verdict=QUIESCENT (注意: QUIESCENT 下的 MERGE_CANDIDATE_SMALL 件标 latent_L1)",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   }
+  },
+  {
+   "skill": "docx",
+   "upstream_repo": "anthropics/skills",
+   "upstream_path": "skills/docx",
+   "upstream_ref": null,
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "UNKNOWN_UPSTREAM_RELEASE",
+    "state": "OK",
+    "local_version": "2.2.0",
+    "upstream_ref": null,
+    "upstream_ref_reading": "UNKNOWN",
+    "upstream_ref_reason": "rc=1:gh: Not Found (HTTP 404)",
+    "upstream_version": null
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-27T11:21:52+08:00",
+    "upstream_path": "skills/docx",
+    "error": null
+   },
+   "layer": "L5",
+   "layer_criteria": "无需动作 = ch2.relationship=SUPERSET_LOCAL_NO_CONTENT_TO_ADOPT 或 ch3.verdict=QUIESCENT (注意: QUIESCENT 下的 MERGE_CANDIDATE_SMALL 件标 latent_L1)",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   }
+  },
+  {
+   "skill": "dogfood",
+   "upstream_repo": "microsoft/playwright-mcp",
+   "upstream_path": null,
+   "upstream_ref": "v0.0.83",
+   "same_lineage": false,
+   "same_lineage_source": "r264.semantics=TOOL",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "AHEAD",
+    "state": "OK",
+    "local_version": "1.1.0",
+    "upstream_ref": "v0.0.83",
+    "upstream_ref_reading": "PRESENT",
+    "upstream_ref_reason": null,
+    "upstream_version": "0.0.83"
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "UPSTREAM_MOVED",
+    "upstream_commits_since": 1,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-20T09:24:10+08:00",
+    "upstream_path": null,
+    "error": null
+   },
+   "layer": "L4",
+   "layer_criteria": "仅线索 = ch3.verdict=UPSTREAM_MOVED 但未能进入 L1/L2/L3: 或 ch3.upstream_path 为空(仓级口径, 只说明整仓动过) 或 路径已定位却缺 BEHIND/relationship 判据",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   },
+   "l4_subreason": "REPO_LEVEL_NO_PATH",
+   "notes": [
+    "仓级口径: upstream_path 为空, 只证明整仓动过, 不得当落后依据"
+   ]
+  },
+  {
+   "skill": "electron",
+   "upstream_repo": "vercel-labs/agent-browser",
+   "upstream_path": "skill-data/electron",
+   "upstream_ref": "v0.40.0",
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "AHEAD",
+    "state": "OK",
+    "local_version": "1.1.0",
+    "upstream_ref": "v0.40.0",
+    "upstream_ref_reading": "PRESENT",
+    "upstream_ref_reason": null,
+    "upstream_version": "0.40.0"
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-20T09:24:10+08:00",
+    "upstream_path": "skill-data/electron",
+    "error": null
+   },
+   "layer": "L5",
+   "layer_criteria": "无需动作 = ch2.relationship=SUPERSET_LOCAL_NO_CONTENT_TO_ADOPT 或 ch3.verdict=QUIESCENT (注意: QUIESCENT 下的 MERGE_CANDIDATE_SMALL 件标 latent_L1)",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   }
+  },
+  {
+   "skill": "figma",
+   "upstream_repo": "heygen-com/hyperframes",
+   "upstream_path": "skills/figma",
+   "upstream_ref": "v0.8.214",
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "AHEAD",
+    "state": "OK",
+    "local_version": "1.1.0",
+    "upstream_ref": "v0.8.214",
+    "upstream_ref_reading": "PRESENT",
+    "upstream_ref_reason": null,
+    "upstream_version": "0.8.214"
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-29T16:10:10+08:00",
+    "upstream_path": "skills/figma",
+    "error": null
+   },
+   "layer": "L5",
+   "layer_criteria": "无需动作 = ch2.relationship=SUPERSET_LOCAL_NO_CONTENT_TO_ADOPT 或 ch3.verdict=QUIESCENT (注意: QUIESCENT 下的 MERGE_CANDIDATE_SMALL 件标 latent_L1)",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   }
+  },
+  {
+   "skill": "find-skills",
+   "upstream_repo": "vercel-labs/skills",
+   "upstream_path": "skills/find-skills",
+   "upstream_ref": "v1.7.4",
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "BEHIND",
+    "state": "OK",
+    "local_version": "1.1.0",
+    "upstream_ref": "v1.7.4",
+    "upstream_ref_reading": "PRESENT",
+    "upstream_ref_reason": null,
+    "upstream_version": "1.7.4"
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-20T09:24:10+08:00",
+    "upstream_path": "skills/find-skills",
+    "error": null
+   },
+   "layer": "L3",
+   "layer_criteria": "替换类 = ch2.relationship=DIFFERENT_IMPLEMENTATION (同源但实现完全不同, 只能整件替换或放弃)",
+   "ch2_content": {
+    "reading": "PRESENT",
+    "relationship": "DIFFERENT_IMPLEMENTATION",
+    "repo": "vercel-labs/skills",
+    "upstream_ref": "v1.7.4",
+    "upstream_lines_in_local_pct": 4.6,
+    "upstream_only_n": 83,
+    "local_only_n": 25,
+    "local_bytes": 2674,
+    "upstream_bytes": 5472
+   }
+  },
+  {
+   "skill": "frontend-design",
+   "upstream_repo": "anthropics/skills",
+   "upstream_path": "skills/frontend-design",
+   "upstream_ref": null,
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "UNKNOWN_UPSTREAM_RELEASE",
+    "state": "OK",
+    "local_version": "2.1.0",
+    "upstream_ref": null,
+    "upstream_ref_reading": "UNKNOWN",
+    "upstream_ref_reason": "rc=1:gh: Not Found (HTTP 404)",
+    "upstream_version": null
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-20T09:24:10+08:00",
+    "upstream_path": "skills/frontend-design",
+    "error": null
+   },
+   "layer": "L5",
+   "layer_criteria": "无需动作 = ch2.relationship=SUPERSET_LOCAL_NO_CONTENT_TO_ADOPT 或 ch3.verdict=QUIESCENT (注意: QUIESCENT 下的 MERGE_CANDIDATE_SMALL 件标 latent_L1)",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   }
+  },
+  {
+   "skill": "frontend-slides",
+   "upstream_repo": "zarazhangrui/frontend-slides",
+   "upstream_path": "plugins/frontend-slides/skills/frontend-slides",
+   "upstream_ref": "v2.1.0",
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "BEHIND",
+    "state": "OK",
+    "local_version": "1.3.0",
+    "upstream_ref": "v2.1.0",
+    "upstream_ref_reading": "PRESENT",
+    "upstream_ref_reason": null,
+    "upstream_version": "2.1.0"
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-29T18:05:39+08:00",
+    "upstream_path": "plugins/frontend-slides/skills/frontend-slides",
+    "error": null
+   },
+   "layer": "L2",
+   "layer_criteria": "需人读 = ch2.relationship=LOCAL_DERIVATIVE_REVIEW (本地有派生改动, 上游行覆盖率中高, 必须逐段人读才可决定)",
+   "ch2_content": {
+    "reading": "PRESENT",
+    "relationship": "LOCAL_DERIVATIVE_REVIEW",
+    "repo": "zarazhangrui/frontend-slides",
+    "upstream_ref": "v2.1.0",
+    "upstream_lines_in_local_pct": 62.8,
+    "upstream_only_n": 92,
+    "local_only_n": 57,
+    "local_bytes": 20574,
+    "upstream_bytes": 28187
+   }
+  },
+  {
+   "skill": "grill-me",
+   "upstream_repo": "mattpocock/skills",
+   "upstream_path": "skills/productivity/grill-me",
+   "upstream_ref": "v1.3.1",
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "BEHIND",
+    "state": "OK",
+    "local_version": "1.2.0",
+    "upstream_ref": "v1.3.1",
+    "upstream_ref_reading": "PRESENT",
+    "upstream_ref_reason": null,
+    "upstream_version": "1.3.1"
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-29T16:10:10+08:00",
+    "upstream_path": "skills/productivity/grill-me",
+    "error": null
+   },
+   "layer": "L2",
+   "layer_criteria": "需人读 = ch2.relationship=LOCAL_DERIVATIVE_REVIEW (本地有派生改动, 上游行覆盖率中高, 必须逐段人读才可决定)",
+   "ch2_content": {
+    "reading": "PRESENT",
+    "relationship": "LOCAL_DERIVATIVE_REVIEW",
+    "repo": "mattpocock/skills",
+    "upstream_ref": "v1.3.1",
+    "upstream_lines_in_local_pct": 40.0,
+    "upstream_only_n": 3,
+    "local_only_n": 38,
+    "local_bytes": 3062,
+    "upstream_bytes": 157
+   }
+  },
+  {
+   "skill": "gstack",
+   "upstream_repo": "garrytan/gstack",
+   "upstream_path": "capy/skill/gstack",
+   "upstream_ref": "v1.91.242.0",
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "BEHIND",
+    "state": "OK",
+    "local_version": "1.3.0",
+    "upstream_ref": "v1.91.242.0",
+    "upstream_ref_reading": "PRESENT",
+    "upstream_ref_reason": null,
+    "upstream_version": "1.91.242.0"
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "UPSTREAM_MOVED",
+    "upstream_commits_since": 4,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-27T11:21:52+08:00",
+    "upstream_path": "capy/skill/gstack",
+    "error": null
+   },
+   "layer": "L3",
+   "layer_criteria": "替换类 = ch2.relationship=DIFFERENT_IMPLEMENTATION (同源但实现完全不同, 只能整件替换或放弃)",
+   "ch2_content": {
+    "reading": "PRESENT",
+    "relationship": "DIFFERENT_IMPLEMENTATION",
+    "repo": "garrytan/gstack",
+    "upstream_ref": "v1.91.242.0",
+    "upstream_lines_in_local_pct": 4.9,
+    "upstream_only_n": 39,
+    "local_only_n": 435,
+    "local_bytes": 27307,
+    "upstream_bytes": 13386
+   }
+  },
+  {
+   "skill": "html-ppt",
+   "upstream_repo": "lewislulu/html-ppt-skill",
+   "upstream_path": null,
+   "upstream_ref": null,
+   "same_lineage": false,
+   "same_lineage_source": "r264.semantics=UNKNOWN",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "UNKNOWN_UPSTREAM_RELEASE",
+    "state": "OK",
+    "local_version": "1.0.0",
+    "upstream_ref": null,
+    "upstream_ref_reading": "UNKNOWN",
+    "upstream_ref_reason": "rc=1:gh: Not Found (HTTP 404)",
+    "upstream_version": null
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-20T09:25:30+08:00",
+    "upstream_path": null,
+    "error": null
+   },
+   "layer": "L5",
+   "layer_criteria": "无需动作 = ch2.relationship=SUPERSET_LOCAL_NO_CONTENT_TO_ADOPT 或 ch3.verdict=QUIESCENT (注意: QUIESCENT 下的 MERGE_CANDIDATE_SMALL 件标 latent_L1)",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   }
+  },
+  {
+   "skill": "hyperframes",
+   "upstream_repo": "heygen-com/hyperframes",
+   "upstream_path": "skills/hyperframes",
+   "upstream_ref": "v0.8.214",
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "AHEAD",
+    "state": "OK",
+    "local_version": "1.7.0",
+    "upstream_ref": "v0.8.214",
+    "upstream_ref_reading": "PRESENT",
+    "upstream_ref_reason": null,
+    "upstream_version": "0.8.214"
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-29T17:38:33+08:00",
+    "upstream_path": "skills/hyperframes",
+    "error": null
+   },
+   "layer": "L5",
+   "layer_criteria": "无需动作 = ch2.relationship=SUPERSET_LOCAL_NO_CONTENT_TO_ADOPT 或 ch3.verdict=QUIESCENT (注意: QUIESCENT 下的 MERGE_CANDIDATE_SMALL 件标 latent_L1)",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   }
+  },
+  {
+   "skill": "hyperframes-cli",
+   "upstream_repo": "heygen-com/hyperframes",
+   "upstream_path": "skills/hyperframes-cli",
+   "upstream_ref": "v0.8.214",
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "AHEAD",
+    "state": "OK",
+    "local_version": "1.1.0",
+    "upstream_ref": "v0.8.214",
+    "upstream_ref_reading": "PRESENT",
+    "upstream_ref_reason": null,
+    "upstream_version": "0.8.214"
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "UPSTREAM_MOVED",
+    "upstream_commits_since": 4,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-27T01:32:29+08:00",
+    "upstream_path": "skills/hyperframes-cli",
+    "error": null
+   },
+   "layer": "L4",
+   "layer_criteria": "仅线索 = ch3.verdict=UPSTREAM_MOVED 但未能进入 L1/L2/L3: 或 ch3.upstream_path 为空(仓级口径, 只说明整仓动过) 或 路径已定位却缺 BEHIND/relationship 判据",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   },
+   "l4_subreason": "PATH_LOCALIZED_NOT_EXECUTABLE",
+   "notes": [
+    "路径已定位但 ch1.rel=AHEAD 非 BEHIND",
+    "路径已定位但 ch2 未测(relationship ABSENT)"
+   ]
+  },
+  {
+   "skill": "hyperframes-media",
+   "upstream_repo": "heygen-com/hyperframes",
+   "upstream_path": "skills/media-use",
+   "upstream_ref": "v0.8.214",
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "AHEAD",
+    "state": "OK",
+    "local_version": "1.7.0",
+    "upstream_ref": "v0.8.214",
+    "upstream_ref_reading": "PRESENT",
+    "upstream_ref_reason": null,
+    "upstream_version": "0.8.214"
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-29T16:10:10+08:00",
+    "upstream_path": "skills/media-use",
+    "error": null
+   },
+   "layer": "L5",
+   "layer_criteria": "无需动作 = ch2.relationship=SUPERSET_LOCAL_NO_CONTENT_TO_ADOPT 或 ch3.verdict=QUIESCENT (注意: QUIESCENT 下的 MERGE_CANDIDATE_SMALL 件标 latent_L1)",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   }
+  },
+  {
+   "skill": "hyperframes-registry",
+   "upstream_repo": "heygen-com/hyperframes",
+   "upstream_path": "skills/hyperframes-registry",
+   "upstream_ref": "v0.8.214",
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "AHEAD",
+    "state": "OK",
+    "local_version": "1.1.0",
+    "upstream_ref": "v0.8.214",
+    "upstream_ref_reading": "PRESENT",
+    "upstream_ref_reason": null,
+    "upstream_version": "0.8.214"
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "UPSTREAM_MOVED",
+    "upstream_commits_since": 2,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-27T10:13:01+08:00",
+    "upstream_path": "skills/hyperframes-registry",
+    "error": null
+   },
+   "layer": "L4",
+   "layer_criteria": "仅线索 = ch3.verdict=UPSTREAM_MOVED 但未能进入 L1/L2/L3: 或 ch3.upstream_path 为空(仓级口径, 只说明整仓动过) 或 路径已定位却缺 BEHIND/relationship 判据",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   },
+   "l4_subreason": "PATH_LOCALIZED_NOT_EXECUTABLE",
+   "notes": [
+    "路径已定位但 ch1.rel=AHEAD 非 BEHIND",
+    "路径已定位但 ch2 未测(relationship ABSENT)"
+   ]
+  },
+  {
+   "skill": "internal-comms",
+   "upstream_repo": "anthropics/skills",
+   "upstream_path": "skills/internal-comms",
+   "upstream_ref": null,
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "UNKNOWN_UPSTREAM_RELEASE",
+    "state": "OK",
+    "local_version": "1.0.0",
+    "upstream_ref": null,
+    "upstream_ref_reading": "UNKNOWN",
+    "upstream_ref_reason": "rc=1:gh: Not Found (HTTP 404)",
+    "upstream_version": null
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-20T09:25:30+08:00",
+    "upstream_path": "skills/internal-comms",
+    "error": null
+   },
+   "layer": "L5",
+   "layer_criteria": "无需动作 = ch2.relationship=SUPERSET_LOCAL_NO_CONTENT_TO_ADOPT 或 ch3.verdict=QUIESCENT (注意: QUIESCENT 下的 MERGE_CANDIDATE_SMALL 件标 latent_L1)",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   }
+  },
+  {
+   "skill": "mcp-builder",
+   "upstream_repo": "anthropics/skills",
+   "upstream_path": "skills/mcp-builder",
+   "upstream_ref": null,
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "UNKNOWN_UPSTREAM_RELEASE",
+    "state": "OK",
+    "local_version": "1.0.0",
+    "upstream_ref": null,
+    "upstream_ref_reading": "UNKNOWN",
+    "upstream_ref_reason": "rc=1:gh: Not Found (HTTP 404)",
+    "upstream_version": null
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "UPSTREAM_MOVED",
+    "upstream_commits_since": 1,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-20T09:25:30+08:00",
+    "upstream_path": "skills/mcp-builder",
+    "error": null
+   },
+   "layer": "L4",
+   "layer_criteria": "仅线索 = ch3.verdict=UPSTREAM_MOVED 但未能进入 L1/L2/L3: 或 ch3.upstream_path 为空(仓级口径, 只说明整仓动过) 或 路径已定位却缺 BEHIND/relationship 判据",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   },
+   "l4_subreason": "PATH_LOCALIZED_NOT_EXECUTABLE",
+   "notes": [
+    "路径已定位但 ch1.rel=UNKNOWN_UPSTREAM_RELEASE 非 BEHIND",
+    "路径已定位但 ch2 未测(relationship ABSENT)"
+   ]
+  },
+  {
+   "skill": "oracle",
+   "upstream_repo": "steipete/oracle",
+   "upstream_path": "skills/oracle",
+   "upstream_ref": "v0.22.2",
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "AHEAD",
+    "state": "OK",
+    "local_version": "1.2.0",
+    "upstream_ref": "v0.22.2",
+    "upstream_ref_reading": "PRESENT",
+    "upstream_ref_reason": null,
+    "upstream_version": "0.22.2"
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-25T18:58:51+08:00",
+    "upstream_path": "skills/oracle",
+    "error": null
+   },
+   "layer": "L5",
+   "layer_criteria": "无需动作 = ch2.relationship=SUPERSET_LOCAL_NO_CONTENT_TO_ADOPT 或 ch3.verdict=QUIESCENT (注意: QUIESCENT 下的 MERGE_CANDIDATE_SMALL 件标 latent_L1)",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   }
+  },
+  {
+   "skill": "pdf",
+   "upstream_repo": "anthropics/skills",
+   "upstream_path": "skills/pdf",
+   "upstream_ref": null,
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "UNKNOWN_UPSTREAM_RELEASE",
+    "state": "OK",
+    "local_version": "1.1.0",
+    "upstream_ref": null,
+    "upstream_ref_reading": "UNKNOWN",
+    "upstream_ref_reason": "rc=1:gh: Not Found (HTTP 404)",
+    "upstream_version": null
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-27T11:21:52+08:00",
+    "upstream_path": "skills/pdf",
+    "error": null
+   },
+   "layer": "L5",
+   "layer_criteria": "无需动作 = ch2.relationship=SUPERSET_LOCAL_NO_CONTENT_TO_ADOPT 或 ch3.verdict=QUIESCENT (注意: QUIESCENT 下的 MERGE_CANDIDATE_SMALL 件标 latent_L1)",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   }
+  },
+  {
+   "skill": "ppt-master",
+   "upstream_repo": "hugohe3/ppt-master",
+   "upstream_path": "skills/ppt-master",
+   "upstream_ref": "v6.7.3",
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "BEHIND",
+    "state": "OK",
+    "local_version": "6.6.0",
+    "upstream_ref": "v6.7.3",
+    "upstream_ref_reading": "PRESENT",
+    "upstream_ref_reason": null,
+    "upstream_version": "6.7.3"
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-29T16:10:10+08:00",
+    "upstream_path": "skills/ppt-master",
+    "error": null
+   },
+   "layer": "L5",
+   "layer_criteria": "无需动作 = ch2.relationship=SUPERSET_LOCAL_NO_CONTENT_TO_ADOPT 或 ch3.verdict=QUIESCENT (注意: QUIESCENT 下的 MERGE_CANDIDATE_SMALL 件标 latent_L1)",
+   "ch2_content": {
+    "reading": "PRESENT",
+    "relationship": "MERGE_CANDIDATE_SMALL",
+    "repo": "hugohe3/ppt-master",
+    "upstream_ref": "v6.7.3",
+    "upstream_lines_in_local_pct": 96.5,
+    "upstream_only_n": 4,
+    "local_only_n": 17,
+    "local_bytes": 10810,
+    "upstream_bytes": 10327
+   },
+   "latent_L1": true,
+   "notes": [
+    "latent_L1: 已是同源 BEHIND 的 MERGE_CANDIDATE_SMALL, 仅因 ch3=QUIESCENT 未进 L1; 上游一动即满足 L1"
+   ]
+  },
+  {
+   "skill": "rag-eval",
+   "upstream_repo": "NVIDIA-AI-Blueprints/rag",
+   "upstream_path": "skills/rag-eval",
+   "upstream_ref": "v2.6.2",
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "BEHIND",
+    "state": "OK",
+    "local_version": "2.6.0",
+    "upstream_ref": "v2.6.2",
+    "upstream_ref_reading": "PRESENT",
+    "upstream_ref_reason": null,
+    "upstream_version": "2.6.2"
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-20T09:24:10+08:00",
+    "upstream_path": "skills/rag-eval",
+    "error": null
+   },
+   "layer": "L5",
+   "layer_criteria": "无需动作 = ch2.relationship=SUPERSET_LOCAL_NO_CONTENT_TO_ADOPT 或 ch3.verdict=QUIESCENT (注意: QUIESCENT 下的 MERGE_CANDIDATE_SMALL 件标 latent_L1)",
+   "ch2_content": {
+    "reading": "PRESENT",
+    "relationship": "SUPERSET_LOCAL_NO_CONTENT_TO_ADOPT",
+    "repo": "NVIDIA-AI-Blueprints/rag",
+    "upstream_ref": "v2.6.2",
+    "upstream_lines_in_local_pct": 100.0,
+    "upstream_only_n": 0,
+    "local_only_n": 10,
+    "local_bytes": 9592,
+    "upstream_bytes": 9415
+   }
+  },
+  {
+   "skill": "scope-creep-detector",
+   "upstream_repo": "Shubhamsaboo/awesome-llm-apps",
+   "upstream_path": "agent_skills/scope-creep-detector",
+   "upstream_ref": null,
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "UNKNOWN_UPSTREAM_RELEASE",
+    "state": "OK",
+    "local_version": "1.0.0",
+    "upstream_ref": null,
+    "upstream_ref_reading": "UNKNOWN",
+    "upstream_ref_reason": "rc=1:gh: Not Found (HTTP 404)",
+    "upstream_version": null
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-20T09:25:30+08:00",
+    "upstream_path": "agent_skills/scope-creep-detector",
+    "error": null
+   },
+   "layer": "L5",
+   "layer_criteria": "无需动作 = ch2.relationship=SUPERSET_LOCAL_NO_CONTENT_TO_ADOPT 或 ch3.verdict=QUIESCENT (注意: QUIESCENT 下的 MERGE_CANDIDATE_SMALL 件标 latent_L1)",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   }
+  },
+  {
+   "skill": "security-audit",
+   "upstream_repo": "trailofbits/skills",
+   "upstream_path": null,
+   "upstream_ref": null,
+   "same_lineage": false,
+   "same_lineage_source": "r264.semantics=COLLECTION",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "UNKNOWN_UPSTREAM_RELEASE",
+    "state": "OK",
+    "local_version": "2.0.1",
+    "upstream_ref": null,
+    "upstream_ref_reading": "UNKNOWN",
+    "upstream_ref_reason": "rc=1:gh: Not Found (HTTP 404)",
+    "upstream_version": null
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "UPSTREAM_MOVED",
+    "upstream_commits_since": 9,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-20T09:35:20+08:00",
+    "upstream_path": null,
+    "error": null
+   },
+   "layer": "L4",
+   "layer_criteria": "仅线索 = ch3.verdict=UPSTREAM_MOVED 但未能进入 L1/L2/L3: 或 ch3.upstream_path 为空(仓级口径, 只说明整仓动过) 或 路径已定位却缺 BEHIND/relationship 判据",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   },
+   "l4_subreason": "REPO_LEVEL_NO_PATH",
+   "notes": [
+    "仓级口径: upstream_path 为空, 只证明整仓动过, 不得当落后依据"
+   ]
+  },
+  {
+   "skill": "story",
+   "upstream_repo": "worldwonderer/oh-story-claudecode",
+   "upstream_path": "skills/story",
+   "upstream_ref": "v0.9.1",
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "AHEAD",
+    "state": "OK",
+    "local_version": "1.1.0",
+    "upstream_ref": "v0.9.1",
+    "upstream_ref_reading": "PRESENT",
+    "upstream_ref_reason": null,
+    "upstream_version": "0.9.1"
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-29T16:10:10+08:00",
+    "upstream_path": "skills/story",
+    "error": null
+   },
+   "layer": "L5",
+   "layer_criteria": "无需动作 = ch2.relationship=SUPERSET_LOCAL_NO_CONTENT_TO_ADOPT 或 ch3.verdict=QUIESCENT (注意: QUIESCENT 下的 MERGE_CANDIDATE_SMALL 件标 latent_L1)",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   }
+  },
+  {
+   "skill": "story-cover",
+   "upstream_repo": "worldwonderer/oh-story-claudecode",
+   "upstream_path": "skills/story-cover",
+   "upstream_ref": "v0.9.1",
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "AHEAD",
+    "state": "OK",
+    "local_version": "1.1.0",
+    "upstream_ref": "v0.9.1",
+    "upstream_ref_reading": "PRESENT",
+    "upstream_ref_reason": null,
+    "upstream_version": "0.9.1"
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-27T13:56:29+08:00",
+    "upstream_path": "skills/story-cover",
+    "error": null
+   },
+   "layer": "L5",
+   "layer_criteria": "无需动作 = ch2.relationship=SUPERSET_LOCAL_NO_CONTENT_TO_ADOPT 或 ch3.verdict=QUIESCENT (注意: QUIESCENT 下的 MERGE_CANDIDATE_SMALL 件标 latent_L1)",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   }
+  },
+  {
+   "skill": "story-deslop",
+   "upstream_repo": "worldwonderer/oh-story-claudecode",
+   "upstream_path": "skills/story-deslop",
+   "upstream_ref": "v0.9.1",
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "AHEAD",
+    "state": "OK",
+    "local_version": "1.2.0",
+    "upstream_ref": "v0.9.1",
+    "upstream_ref_reading": "PRESENT",
+    "upstream_ref_reason": null,
+    "upstream_version": "0.9.1"
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-29T16:10:10+08:00",
+    "upstream_path": "skills/story-deslop",
+    "error": null
+   },
+   "layer": "L5",
+   "layer_criteria": "无需动作 = ch2.relationship=SUPERSET_LOCAL_NO_CONTENT_TO_ADOPT 或 ch3.verdict=QUIESCENT (注意: QUIESCENT 下的 MERGE_CANDIDATE_SMALL 件标 latent_L1)",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   }
+  },
+  {
+   "skill": "story-import",
+   "upstream_repo": "worldwonderer/oh-story-claudecode",
+   "upstream_path": "skills/story-import",
+   "upstream_ref": "v0.9.1",
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "AHEAD",
+    "state": "OK",
+    "local_version": "1.3.0",
+    "upstream_ref": "v0.9.1",
+    "upstream_ref_reading": "PRESENT",
+    "upstream_ref_reason": null,
+    "upstream_version": "0.9.1"
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-29T16:10:10+08:00",
+    "upstream_path": "skills/story-import",
+    "error": null
+   },
+   "layer": "L5",
+   "layer_criteria": "无需动作 = ch2.relationship=SUPERSET_LOCAL_NO_CONTENT_TO_ADOPT 或 ch3.verdict=QUIESCENT (注意: QUIESCENT 下的 MERGE_CANDIDATE_SMALL 件标 latent_L1)",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   }
+  },
+  {
+   "skill": "story-long-analyze",
+   "upstream_repo": "worldwonderer/oh-story-claudecode",
+   "upstream_path": "skills/story-long-analyze",
+   "upstream_ref": "v0.9.1",
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "AHEAD",
+    "state": "OK",
+    "local_version": "1.2.0",
+    "upstream_ref": "v0.9.1",
+    "upstream_ref_reading": "PRESENT",
+    "upstream_ref_reason": null,
+    "upstream_version": "0.9.1"
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-29T16:10:10+08:00",
+    "upstream_path": "skills/story-long-analyze",
+    "error": null
+   },
+   "layer": "L5",
+   "layer_criteria": "无需动作 = ch2.relationship=SUPERSET_LOCAL_NO_CONTENT_TO_ADOPT 或 ch3.verdict=QUIESCENT (注意: QUIESCENT 下的 MERGE_CANDIDATE_SMALL 件标 latent_L1)",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   }
+  },
+  {
+   "skill": "story-long-write",
+   "upstream_repo": "worldwonderer/oh-story-claudecode",
+   "upstream_path": "skills/story-long-write",
+   "upstream_ref": "v0.9.1",
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "AHEAD",
+    "state": "OK",
+    "local_version": "1.4.0",
+    "upstream_ref": "v0.9.1",
+    "upstream_ref_reading": "PRESENT",
+    "upstream_ref_reason": null,
+    "upstream_version": "0.9.1"
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-29T16:10:10+08:00",
+    "upstream_path": "skills/story-long-write",
+    "error": null
+   },
+   "layer": "L5",
+   "layer_criteria": "无需动作 = ch2.relationship=SUPERSET_LOCAL_NO_CONTENT_TO_ADOPT 或 ch3.verdict=QUIESCENT (注意: QUIESCENT 下的 MERGE_CANDIDATE_SMALL 件标 latent_L1)",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   }
+  },
+  {
+   "skill": "story-review",
+   "upstream_repo": "worldwonderer/oh-story-claudecode",
+   "upstream_path": "skills/story-review",
+   "upstream_ref": "v0.9.1",
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "AHEAD",
+    "state": "OK",
+    "local_version": "1.5.0",
+    "upstream_ref": "v0.9.1",
+    "upstream_ref_reading": "PRESENT",
+    "upstream_ref_reason": null,
+    "upstream_version": "0.9.1"
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-29T16:10:10+08:00",
+    "upstream_path": "skills/story-review",
+    "error": null
+   },
+   "layer": "L5",
+   "layer_criteria": "无需动作 = ch2.relationship=SUPERSET_LOCAL_NO_CONTENT_TO_ADOPT 或 ch3.verdict=QUIESCENT (注意: QUIESCENT 下的 MERGE_CANDIDATE_SMALL 件标 latent_L1)",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   }
+  },
+  {
+   "skill": "story-scan",
+   "upstream_repo": "worldwonderer/oh-story-claudecode",
+   "upstream_path": "skills/story-long-scan",
+   "upstream_ref": "v0.9.1",
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "AHEAD",
+    "state": "OK",
+    "local_version": "1.1.0",
+    "upstream_ref": "v0.9.1",
+    "upstream_ref_reading": "PRESENT",
+    "upstream_ref_reason": null,
+    "upstream_version": "0.9.1"
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-27T13:56:29+08:00",
+    "upstream_path": "skills/story-long-scan",
+    "error": null
+   },
+   "layer": "L5",
+   "layer_criteria": "无需动作 = ch2.relationship=SUPERSET_LOCAL_NO_CONTENT_TO_ADOPT 或 ch3.verdict=QUIESCENT (注意: QUIESCENT 下的 MERGE_CANDIDATE_SMALL 件标 latent_L1)",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   }
+  },
+  {
+   "skill": "story-setup",
+   "upstream_repo": "worldwonderer/oh-story-claudecode",
+   "upstream_path": "skills/story-setup",
+   "upstream_ref": "v0.9.1",
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "AHEAD",
+    "state": "OK",
+    "local_version": "1.6.0",
+    "upstream_ref": "v0.9.1",
+    "upstream_ref_reading": "PRESENT",
+    "upstream_ref_reason": null,
+    "upstream_version": "0.9.1"
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-29T16:10:10+08:00",
+    "upstream_path": "skills/story-setup",
+    "error": null
+   },
+   "layer": "L5",
+   "layer_criteria": "无需动作 = ch2.relationship=SUPERSET_LOCAL_NO_CONTENT_TO_ADOPT 或 ch3.verdict=QUIESCENT (注意: QUIESCENT 下的 MERGE_CANDIDATE_SMALL 件标 latent_L1)",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   }
+  },
+  {
+   "skill": "story-short-analyze",
+   "upstream_repo": "worldwonderer/oh-story-claudecode",
+   "upstream_path": "skills/story-short-analyze",
+   "upstream_ref": "v0.9.1",
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "AHEAD",
+    "state": "OK",
+    "local_version": "3.1.0",
+    "upstream_ref": "v0.9.1",
+    "upstream_ref_reading": "PRESENT",
+    "upstream_ref_reason": null,
+    "upstream_version": "0.9.1"
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-29T16:10:10+08:00",
+    "upstream_path": "skills/story-short-analyze",
+    "error": null
+   },
+   "layer": "L5",
+   "layer_criteria": "无需动作 = ch2.relationship=SUPERSET_LOCAL_NO_CONTENT_TO_ADOPT 或 ch3.verdict=QUIESCENT (注意: QUIESCENT 下的 MERGE_CANDIDATE_SMALL 件标 latent_L1)",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   }
+  },
+  {
+   "skill": "story-short-write",
+   "upstream_repo": "worldwonderer/oh-story-claudecode",
+   "upstream_path": "skills/story-short-write",
+   "upstream_ref": "v0.9.1",
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "AHEAD",
+    "state": "OK",
+    "local_version": "1.3.0",
+    "upstream_ref": "v0.9.1",
+    "upstream_ref_reading": "PRESENT",
+    "upstream_ref_reason": null,
+    "upstream_version": "0.9.1"
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-29T16:10:10+08:00",
+    "upstream_path": "skills/story-short-write",
+    "error": null
+   },
+   "layer": "L5",
+   "layer_criteria": "无需动作 = ch2.relationship=SUPERSET_LOCAL_NO_CONTENT_TO_ADOPT 或 ch3.verdict=QUIESCENT (注意: QUIESCENT 下的 MERGE_CANDIDATE_SMALL 件标 latent_L1)",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   }
+  },
+  {
+   "skill": "subagent-driven-development",
+   "upstream_repo": "obra/superpowers",
+   "upstream_path": "skills/executing-plans",
+   "upstream_ref": "v7.0.1",
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "BEHIND",
+    "state": "OK",
+    "local_version": "1.3.0",
+    "upstream_ref": "v7.0.1",
+    "upstream_ref_reading": "PRESENT",
+    "upstream_ref_reason": null,
+    "upstream_version": "7.0.1"
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-29T16:10:10+08:00",
+    "upstream_path": "skills/executing-plans",
+    "error": null
+   },
+   "layer": "L3",
+   "layer_criteria": "替换类 = ch2.relationship=DIFFERENT_IMPLEMENTATION (同源但实现完全不同, 只能整件替换或放弃)",
+   "ch2_content": {
+    "reading": "PRESENT",
+    "relationship": "DIFFERENT_IMPLEMENTATION",
+    "repo": "obra/superpowers",
+    "upstream_ref": "v7.0.1",
+    "upstream_lines_in_local_pct": 0.4,
+    "upstream_only_n": 261,
+    "local_only_n": 59,
+    "local_bytes": 7352,
+    "upstream_bytes": 18103
+   }
+  },
+  {
+   "skill": "taskflow",
+   "upstream_repo": "gastownhall/beads",
+   "upstream_path": null,
+   "upstream_ref": "v1.3.2",
+   "same_lineage": false,
+   "same_lineage_source": "r264.semantics=UNKNOWN",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "BEHIND",
+    "state": "OK",
+    "local_version": "1.1.0",
+    "upstream_ref": "v1.3.2",
+    "upstream_ref_reading": "PRESENT",
+    "upstream_ref_reason": null,
+    "upstream_version": "1.3.2"
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "UPSTREAM_MOVED",
+    "upstream_commits_since": 100,
+    "capped": true,
+    "date_source": "git",
+    "local_last_commit": "2026-10-20T09:24:10+08:00",
+    "upstream_path": null,
+    "error": null
+   },
+   "layer": "L4",
+   "layer_criteria": "仅线索 = ch3.verdict=UPSTREAM_MOVED 但未能进入 L1/L2/L3: 或 ch3.upstream_path 为空(仓级口径, 只说明整仓动过) 或 路径已定位却缺 BEHIND/relationship 判据",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   },
+   "l4_subreason": "REPO_LEVEL_NO_PATH",
+   "notes": [
+    "仓级口径: upstream_path 为空, 只证明整仓动过, 不得当落后依据",
+    "capped: upstream_commits_since 为下界(计数被截断)"
+   ]
+  },
+  {
+   "skill": "test-driven-development",
+   "upstream_repo": "obra/superpowers",
+   "upstream_path": "skills/test-driven-development",
+   "upstream_ref": "v7.0.1",
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "BEHIND",
+    "state": "OK",
+    "local_version": "1.3.0",
+    "upstream_ref": "v7.0.1",
+    "upstream_ref_reading": "PRESENT",
+    "upstream_ref_reason": null,
+    "upstream_version": "7.0.1"
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-29T16:10:10+08:00",
+    "upstream_path": "skills/test-driven-development",
+    "error": null
+   },
+   "layer": "L5",
+   "layer_criteria": "无需动作 = ch2.relationship=SUPERSET_LOCAL_NO_CONTENT_TO_ADOPT 或 ch3.verdict=QUIESCENT (注意: QUIESCENT 下的 MERGE_CANDIDATE_SMALL 件标 latent_L1)",
+   "ch2_content": {
+    "reading": "PRESENT",
+    "relationship": "MERGE_CANDIDATE_SMALL",
+    "repo": "obra/superpowers",
+    "upstream_ref": "v7.0.1",
+    "upstream_lines_in_local_pct": 95.4,
+    "upstream_only_n": 10,
+    "local_only_n": 51,
+    "local_bytes": 11760,
+    "upstream_bytes": 9578
+   },
+   "latent_L1": true,
+   "notes": [
+    "latent_L1: 已是同源 BEHIND 的 MERGE_CANDIDATE_SMALL, 仅因 ch3=QUIESCENT 未进 L1; 上游一动即满足 L1"
+   ]
+  },
+  {
+   "skill": "theme-factory",
+   "upstream_repo": "anthropics/skills",
+   "upstream_path": "skills/theme-factory",
+   "upstream_ref": null,
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "UNKNOWN_UPSTREAM_RELEASE",
+    "state": "OK",
+    "local_version": "1.0.0",
+    "upstream_ref": null,
+    "upstream_ref_reading": "UNKNOWN",
+    "upstream_ref_reason": "rc=1:gh: Not Found (HTTP 404)",
+    "upstream_version": null
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-20T09:25:30+08:00",
+    "upstream_path": "skills/theme-factory",
+    "error": null
+   },
+   "layer": "L5",
+   "layer_criteria": "无需动作 = ch2.relationship=SUPERSET_LOCAL_NO_CONTENT_TO_ADOPT 或 ch3.verdict=QUIESCENT (注意: QUIESCENT 下的 MERGE_CANDIDATE_SMALL 件标 latent_L1)",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   }
+  },
+  {
+   "skill": "ui-ux-pro-max",
+   "upstream_repo": "nextlevelbuilder/ui-ux-pro-max-skill",
+   "upstream_path": ".claude/skills/ui-ux-pro-max",
+   "upstream_ref": "v2.15.0",
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "BEHIND",
+    "state": "OK",
+    "local_version": "1.5.0",
+    "upstream_ref": "v2.15.0",
+    "upstream_ref_reading": "PRESENT",
+    "upstream_ref_reason": null,
+    "upstream_version": "2.15.0"
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-29T16:10:10+08:00",
+    "upstream_path": ".claude/skills/ui-ux-pro-max",
+    "error": null
+   },
+   "layer": "L3",
+   "layer_criteria": "替换类 = ch2.relationship=DIFFERENT_IMPLEMENTATION (同源但实现完全不同, 只能整件替换或放弃)",
+   "ch2_content": {
+    "reading": "PRESENT",
+    "relationship": "DIFFERENT_IMPLEMENTATION",
+    "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
+    "upstream_ref": "v2.15.0",
+    "upstream_lines_in_local_pct": 3.1,
+    "upstream_only_n": 124,
+    "local_only_n": 41,
+    "local_bytes": 5796,
+    "upstream_bytes": 15969
+   }
+  },
+  {
+   "skill": "verification-before-completion",
+   "upstream_repo": "obra/superpowers",
+   "upstream_path": "skills/verification-before-completion",
+   "upstream_ref": "v7.0.1",
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "BEHIND",
+    "state": "OK",
+    "local_version": "1.7.0",
+    "upstream_ref": "v7.0.1",
+    "upstream_ref_reading": "PRESENT",
+    "upstream_ref_reason": null,
+    "upstream_version": "7.0.1"
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-29T18:44:24+08:00",
+    "upstream_path": "skills/verification-before-completion",
+    "error": null
+   },
+   "layer": "L2",
+   "layer_criteria": "需人读 = ch2.relationship=LOCAL_DERIVATIVE_REVIEW (本地有派生改动, 上游行覆盖率中高, 必须逐段人读才可决定)",
+   "ch2_content": {
+    "reading": "PRESENT",
+    "relationship": "LOCAL_DERIVATIVE_REVIEW",
+    "repo": "obra/superpowers",
+    "upstream_ref": "v7.0.1",
+    "upstream_lines_in_local_pct": 40.0,
+    "upstream_only_n": 48,
+    "local_only_n": 246,
+    "local_bytes": 23415,
+    "upstream_bytes": 3646
+   }
+  },
+  {
+   "skill": "web-access",
+   "upstream_repo": "Panniantong/Agent-Reach",
+   "upstream_path": null,
+   "upstream_ref": "v1.6.0",
+   "same_lineage": false,
+   "same_lineage_source": "r264.semantics=UNKNOWN",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "AHEAD",
+    "state": "OK",
+    "local_version": "2.6.0",
+    "upstream_ref": "v1.6.0",
+    "upstream_ref_reading": "PRESENT",
+    "upstream_ref_reason": null,
+    "upstream_version": "1.6.0"
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "UPSTREAM_MOVED",
+    "upstream_commits_since": 27,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-20T10:06:37+08:00",
+    "upstream_path": null,
+    "error": null
+   },
+   "layer": "L4",
+   "layer_criteria": "仅线索 = ch3.verdict=UPSTREAM_MOVED 但未能进入 L1/L2/L3: 或 ch3.upstream_path 为空(仓级口径, 只说明整仓动过) 或 路径已定位却缺 BEHIND/relationship 判据",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   },
+   "l4_subreason": "REPO_LEVEL_NO_PATH",
+   "notes": [
+    "仓级口径: upstream_path 为空, 只证明整仓动过, 不得当落后依据"
+   ]
+  },
+  {
+   "skill": "writing-plans",
+   "upstream_repo": "obra/superpowers",
+   "upstream_path": "skills/writing-plans",
+   "upstream_ref": "v7.0.1",
+   "same_lineage": false,
+   "same_lineage_source": "r264.semantics=COLLECTION",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "BEHIND",
+    "state": "OK",
+    "local_version": "1.0.0",
+    "upstream_ref": "v7.0.1",
+    "upstream_ref_reading": "PRESENT",
+    "upstream_ref_reason": null,
+    "upstream_version": "7.0.1"
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-20T09:25:30+08:00",
+    "upstream_path": "skills/writing-plans",
+    "error": null
+   },
+   "layer": "L5",
+   "layer_criteria": "无需动作 = ch2.relationship=SUPERSET_LOCAL_NO_CONTENT_TO_ADOPT 或 ch3.verdict=QUIESCENT (注意: QUIESCENT 下的 MERGE_CANDIDATE_SMALL 件标 latent_L1)",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   }
+  },
+  {
+   "skill": "xlsx",
+   "upstream_repo": "anthropics/skills",
+   "upstream_path": "skills/xlsx",
+   "upstream_ref": null,
+   "same_lineage": true,
+   "same_lineage_source": "r264.semantics=SAME_LINEAGE",
+   "ch1_tag": {
+    "reading": "PRESENT",
+    "rel": "UNKNOWN_UPSTREAM_RELEASE",
+    "state": "OK",
+    "local_version": "1.2.0",
+    "upstream_ref": null,
+    "upstream_ref_reading": "UNKNOWN",
+    "upstream_ref_reason": "rc=1:gh: Not Found (HTTP 404)",
+    "upstream_version": null
+   },
+   "ch3_move": {
+    "reading": "PRESENT",
+    "verdict": "QUIESCENT",
+    "upstream_commits_since": 0,
+    "capped": false,
+    "date_source": "git",
+    "local_last_commit": "2026-10-27T12:29:59+08:00",
+    "upstream_path": "skills/xlsx",
+    "error": null
+   },
+   "layer": "L5",
+   "layer_criteria": "无需动作 = ch2.relationship=SUPERSET_LOCAL_NO_CONTENT_TO_ADOPT 或 ch3.verdict=QUIESCENT (注意: QUIESCENT 下的 MERGE_CANDIDATE_SMALL 件标 latent_L1)",
+   "ch2_content": {
+    "reading": "ABSENT",
+    "relationship": "ABSENT",
+    "reason": "r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测"
+   }
+  }
+ ]
+}

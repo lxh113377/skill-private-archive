@@ -103,6 +103,16 @@
    "detail": "(1, 4)"
   },
   {
+   "name": "t19 source-available family (ELv2) -> restricted & named ('ELASTIC-2.0', 'restricted')",
+   "ok": true,
+   "detail": "('ELASTIC-2.0', 'restricted')"
+  },
+  {
+   "name": "t20 negative: MIT stays permissive (no over-reach) ('MIT', 'permissive')",
+   "ok": true,
+   "detail": "('MIT', 'permissive')"
+  },
+  {
    "name": "L1 pipeline switch on (disabling it goes red)",
    "ok": true,
    "detail": true

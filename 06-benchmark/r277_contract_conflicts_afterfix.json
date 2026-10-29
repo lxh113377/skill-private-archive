@@ -1,0 +1,19 @@
+{
+ "schema": "contract-conflicts-afterfix-v1",
+ "source_scanner": "_temp/r276_scan.py (verbatim, E 的实现)",
+ "reason": "E 件记录的是修前态（REAL_CONFLICT=1）；本件是同一次扫描在 r277 修复后的复算，两者并存不覆写",
+ "before_fix": {
+  "file": "06-benchmark/r276_contract_vs_impl_conflicts.json",
+  "real_conflict_n": 1
+ },
+ "after_fix": {
+  "rows_n": 31,
+  "kinds": {
+   "WEAK": 28,
+   "RESOLVED_OR_HISTORICAL": 3
+  },
+  "frontend_real_conflict_n": 0
+ },
+ "fix_commit": "D:/global_skills 89efb3e6 [rule_editor] replace patch x6 (frontend-slides/SKILL.md)",
+ "provenance_cmd": "python -B _temp/r276_scan.py _temp/anything _temp/r276_rows.json"
+}
