@@ -1,0 +1,759 @@
+{
+ "schema": "artifact-ab-blind-v1",
+ "round": "R278-1 / r281g",
+ "measured_at": "2026-10-29T15:39:54Z",
+ "rubric_definition": {
+  "scale": "每维 0..5（整数），由 raw 计数过递增分档表 EDGES 得到；同一张表对三件两态通用",
+  "formula": {
+   "score": "score(dim) = #{e in EDGES[dim] : raw >= e}（最多 5）",
+   "dim6_direction": "d6 是坏指标，好方向分 = 5 - bucket(d6_raw)",
+   "sum": "S = sum(score over D)，D = 该件六维中两态均可判的维集合；不可判维记 None 并从 D 剔除",
+   "uplift_pct": "uplift_pct = (S_after - S_before) / S_before * 100，保留 4 位小数"
+  },
+  "EDGES": {
+   "d1": [
+    2,
+    5,
+    10,
+    16,
+    25
+   ],
+   "d2": [
+    3,
+    6,
+    9,
+    14,
+    20
+   ],
+   "d3": [
+    5,
+    12,
+    22,
+    35,
+    50
+   ],
+   "d4": [
+    2,
+    5,
+    10,
+    18,
+    30
+   ],
+   "d5": [
+    1,
+    3,
+    5,
+    8,
+    12
+   ],
+   "d6": [
+    1,
+    2,
+    4,
+    7,
+    12
+   ]
+  },
+  "dims": {
+   "d1": {
+    "name": "可执行指令密度",
+    "kind": "计数型",
+    "rule": "正文 --flag 引用数（排除 --help 自身） + python/bash 等语言围栏块内的非空行数"
+   },
+   "d2": {
+    "name": "禁区条目数",
+    "kind": "计数型",
+    "rule": "以 bullet 或表格行开始、且行内命中 不|勿|禁|never|avoid|don'?t（忽略大小写）的行数"
+   },
+   "d3": {
+    "name": "具体性",
+    "kind": "计数型",
+    "rule": "命中任一数字/阈值正则的行数：单位数(px|rem|em|%|pt|ms|fps|dpi|KB|MB|GB|x|:1)、比例 a:b、3 位以上整数、小数"
+   },
+   "d4": {
+    "name": "自检条目数",
+    "kind": "计数型",
+    "rule": "行内出现 verify|checklist|校验|确认 的行数"
+   },
+   "d5": {
+    "name": "兄弟指针数",
+    "kind": "计数型（净值）",
+    "rule": "被点名的在盘文件/目录数：raw = max(0, live - dead)。带目录形状(含 /)的 token 才判 live/dead；纯 basename 无法解析时记 unresolved 不加不扣"
+   },
+   "d6": {
+    "name": "不可执行 flag 数（坏维）",
+    "kind": "计数型（坏指标）",
+    "rule": "正文 --flag 去重后，不在该件 scripts/*.py --help 支持集里的个数；接口建立不了（无 scripts/ 或无一 --help 可用）记 None"
+   }
+  }
+ },
+ "per_skill": [
+  {
+   "skill": "test-driven-development",
+   "sha_pair": {
+    "baseline_sha": "079b91f3",
+    "before_ref": "079b91f3~1",
+    "after_ref": "worktree:D:/global_skills/test-driven-development/SKILL.md",
+    "before_full": "87934d4895b669fdafdcddc2e76ba570a602c9d1"
+   },
+   "decidable_dims": [
+    "d1",
+    "d2",
+    "d3",
+    "d4",
+    "d5"
+   ],
+   "excluded_dims": [
+    "d6"
+   ],
+   "dim6_probe": {
+    "decidable": false,
+    "reason": "该件无 scripts/ 目录，flag 接口不存在",
+    "supported": [],
+    "cmds": [
+     "ls -1 D:/global_skills\\test-driven-development\\scripts/"
+    ]
+   },
+   "blind": {
+    "label_before": "B",
+    "label_after": "A",
+    "blind_order": [
+     {
+      "label": "A",
+      "state": "after"
+     },
+     {
+      "label": "B",
+      "state": "before"
+     }
+    ],
+    "blind_sum_A": 11,
+    "blind_sum_B": 11,
+    "order_match": "AMBIGUOUS_TIE"
+   },
+   "dims_before": {
+    "d1": 2,
+    "d2": 2,
+    "d3": 1,
+    "d4": 4,
+    "d5": 2,
+    "d6": null
+   },
+   "dims_after": {
+    "d1": 2,
+    "d2": 2,
+    "d3": 1,
+    "d4": 4,
+    "d5": 2,
+    "d6": null
+   },
+   "raw_before": {
+    "d1": 6,
+    "d2": 7,
+    "d3": 5,
+    "d4": 19,
+    "d5": 3,
+    "d6": null
+   },
+   "raw_after": {
+    "d1": 6,
+    "d2": 7,
+    "d3": 5,
+    "d4": 19,
+    "d5": 4,
+    "d6": null
+   },
+   "detail_before": {
+    "d1": {
+     "flag_refs": 0,
+     "code_lines": 6,
+     "raw": 6
+    },
+    "d5": {
+     "raw": 3,
+     "live_n": 3,
+     "dead_n": 0,
+     "unresolved_n": 1,
+     "live_list": [
+      "references/upstream-agent-skills-tdd-part2.md",
+      "references/upstream-agent-skills-tdd.md",
+      "testing-anti-patterns.md"
+     ],
+     "dead_list": [],
+     "unresolved_list": [
+      "test.test.ts"
+     ]
+    },
+    "d6": {
+     "raw": null,
+     "flags": [],
+     "bad": []
+    }
+   },
+   "detail_after": {
+    "d1": {
+     "flag_refs": 0,
+     "code_lines": 6,
+     "raw": 6
+    },
+    "d5": {
+     "raw": 4,
+     "live_n": 4,
+     "dead_n": 0,
+     "unresolved_n": 1,
+     "live_list": [
+      "references/upstream-agent-skills-tdd-part2.md",
+      "references/upstream-agent-skills-tdd.md",
+      "testing-anti-patterns.md",
+      "writing-good-tests.md"
+     ],
+     "dead_list": [],
+     "unresolved_list": [
+      "test.test.ts"
+     ]
+    },
+    "d6": {
+     "raw": null,
+     "flags": [],
+     "bad": []
+    }
+   },
+   "delta": {
+    "d1": 0,
+    "d2": 0,
+    "d3": 0,
+    "d4": 0,
+    "d5": 0,
+    "d6": null
+   },
+   "sum_before": 11,
+   "sum_after": 11,
+   "uplift_pct": 0.0,
+   "text_sha256": {
+    "before": "8ee8a57d45a2e78898d4c3e0f7c5db158eb4e077cfa735e551171cb5b0c9c4f0",
+    "after": "e970555276c39c3202db205f6d9b15fb7228e159dfda125e2d7dc6192b5e98c4"
+   },
+   "status": "MEASURED",
+   "post_baseline_drift": {
+    "meaning": "改后=工作树；此字段=基准 sha 版本 -> 工作树的行级增删（difflib 实测），非行数差",
+    "lines_added_vs_baseline_sha": 0,
+    "lines_removed_vs_baseline_sha": 0,
+    "identical_to_baseline_sha": true,
+    "baseline_sha_text_sha256": "e970555276c39c3202db205f6d9b15fb7228e159dfda125e2d7dc6192b5e98c4",
+    "worktree_text_sha256": "e970555276c39c3202db205f6d9b15fb7228e159dfda125e2d7dc6192b5e98c4"
+   },
+   "uplift_inputs": {
+    "formula": "uplift_pct = (S_after - S_before) / S_before * 100",
+    "denominator_S_before": 11,
+    "numerator_S_after_minus_S_before": 0,
+    "sum_after": 11,
+    "dims_used_D": [
+     "d1",
+     "d2",
+     "d3",
+     "d4",
+     "d5"
+    ],
+    "dims_excluded_None": [
+     "d6"
+    ],
+    "max_possible": 25,
+    "normalized_S_over_max_pct": 44.0
+   }
+  },
+  {
+   "skill": "frontend-slides",
+   "sha_pair": {
+    "baseline_sha": "6394cbae",
+    "before_ref": "6394cbae~1",
+    "after_ref": "worktree:D:/global_skills/frontend-slides/SKILL.md",
+    "before_full": "3681df5e81fcc995b79f8cfbee538c8cb72bf9e1"
+   },
+   "decidable_dims": [
+    "d1",
+    "d2",
+    "d3",
+    "d4",
+    "d5"
+   ],
+   "excluded_dims": [
+    "d6"
+   ],
+   "dim6_probe": {
+    "decidable": false,
+    "reason": "scripts/*.py 无一提供可用 --help（非 argparse 接口）",
+    "supported": [],
+    "cmds": [
+     "python -B D:/global_skills\\frontend-slides\\scripts\\extract-pptx.py --help"
+    ]
+   },
+   "blind": {
+    "label_before": "B",
+    "label_after": "A",
+    "blind_order": [
+     {
+      "label": "A",
+      "state": "after"
+     },
+     {
+      "label": "B",
+      "state": "before"
+     }
+    ],
+    "blind_sum_A": 14,
+    "blind_sum_B": 10,
+    "order_match": "SAME_ORDER"
+   },
+   "dims_before": {
+    "d1": 2,
+    "d2": 2,
+    "d3": 2,
+    "d4": 1,
+    "d5": 3,
+    "d6": null
+   },
+   "dims_after": {
+    "d1": 2,
+    "d2": 3,
+    "d3": 4,
+    "d4": 1,
+    "d5": 4,
+    "d6": null
+   },
+   "raw_before": {
+    "d1": 6,
+    "d2": 8,
+    "d3": 20,
+    "d4": 2,
+    "d5": 5,
+    "d6": null
+   },
+   "raw_after": {
+    "d1": 6,
+    "d2": 9,
+    "d3": 36,
+    "d4": 2,
+    "d5": 9,
+    "d6": null
+   },
+   "detail_before": {
+    "d1": {
+     "flag_refs": 3,
+     "code_lines": 3,
+     "raw": 6
+    },
+    "d5": {
+     "raw": 5,
+     "live_n": 8,
+     "dead_n": 3,
+     "unresolved_n": 7,
+     "live_list": [
+      "animation-patterns.md",
+      "html-template.md",
+      "plugins/frontend-slides/skills/frontend-slides/scripts/deploy.sh",
+      "plugins/frontend-slides/skills/frontend-slides/scripts/export-pdf.sh",
+      "plugins/frontend-slides/skills/frontend-slides/scripts/extract-pptx.py",
+      "references/upstream-frontend-slides.md",
+      "style_presets.md",
+      "viewport-base.css"
+     ],
+     "dead_list": [
+      "claude-design/slide-previews",
+      "my-deck/index.html",
+      "my-deck/logo.png"
+     ],
+     "unresolved_list": [
+      "index.html",
+      "logo.png",
+      "node.js",
+      "photo.png",
+      "style-a.html",
+      "style-b.html",
+      "style-c.html"
+     ]
+    },
+    "d6": {
+     "raw": null,
+     "flags": [
+      "--compact",
+      "--version"
+     ],
+     "bad": []
+    }
+   },
+   "detail_after": {
+    "d1": {
+     "flag_refs": 3,
+     "code_lines": 3,
+     "raw": 6
+    },
+    "d5": {
+     "raw": 9,
+     "live_n": 12,
+     "dead_n": 3,
+     "unresolved_n": 7,
+     "live_list": [
+      "animation-patterns.md",
+      "bold-template-pack/deck-stage.js",
+      "bold-template-pack/readme.md",
+      "bold-template-pack/selection-index.json",
+      "html-template.md",
+      "plugins/frontend-slides/skills/frontend-slides/scripts/deploy.sh",
+      "plugins/frontend-slides/skills/frontend-slides/scripts/export-pdf.sh",
+      "plugins/frontend-slides/skills/frontend-slides/scripts/extract-pptx.py",
+      "readme.md",
+      "references/upstream-frontend-slides.md",
+      "style_presets.md",
+      "viewport-base.css"
+     ],
+     "dead_list": [
+      "claude-design/slide-previews",
+      "my-deck/index.html",
+      "my-deck/logo.png"
+     ],
+     "unresolved_list": [
+      "index.html",
+      "logo.png",
+      "node.js",
+      "photo.png",
+      "style-a.html",
+      "style-b.html",
+      "style-c.html"
+     ]
+    },
+    "d6": {
+     "raw": null,
+     "flags": [
+      "--compact",
+      "--version"
+     ],
+     "bad": []
+    }
+   },
+   "delta": {
+    "d1": 0,
+    "d2": 1,
+    "d3": 2,
+    "d4": 0,
+    "d5": 1,
+    "d6": null
+   },
+   "sum_before": 10,
+   "sum_after": 14,
+   "uplift_pct": 40.0,
+   "text_sha256": {
+    "before": "e76ddd898d425ad2bed4b9ac12b7e9e8a9788180cc661d7260e05a25da426f49",
+    "after": "6b9b0953aa2681f617ca7aed6b8c49bfce8ae38389751a817124dda30e69a36e"
+   },
+   "status": "MEASURED",
+   "post_baseline_drift": {
+    "meaning": "改后=工作树；此字段=基准 sha 版本 -> 工作树的行级增删（difflib 实测），非行数差",
+    "lines_added_vs_baseline_sha": 23,
+    "lines_removed_vs_baseline_sha": 20,
+    "identical_to_baseline_sha": false,
+    "baseline_sha_text_sha256": "39fdd1203aacb16648ccc88944bf46dc6cb2ed4dafae52f3f6ac11bd1134d1cf",
+    "worktree_text_sha256": "6b9b0953aa2681f617ca7aed6b8c49bfce8ae38389751a817124dda30e69a36e"
+   },
+   "uplift_inputs": {
+    "formula": "uplift_pct = (S_after - S_before) / S_before * 100",
+    "denominator_S_before": 10,
+    "numerator_S_after_minus_S_before": 4,
+    "sum_after": 14,
+    "dims_used_D": [
+     "d1",
+     "d2",
+     "d3",
+     "d4",
+     "d5"
+    ],
+    "dims_excluded_None": [
+     "d6"
+    ],
+    "max_possible": 25,
+    "normalized_S_over_max_pct": 56.0
+   }
+  },
+  {
+   "skill": "ui-ux-pro-max",
+   "sha_pair": {
+    "baseline_sha": "30b84b20",
+    "before_ref": "30b84b20~1",
+    "after_ref": "worktree:D:/global_skills/ui-ux-pro-max/SKILL.md",
+    "before_full": "25929181a7cccc1ff01cdfae39807669731e93a2"
+   },
+   "decidable_dims": [
+    "d1",
+    "d2",
+    "d3",
+    "d4",
+    "d5",
+    "d6"
+   ],
+   "excluded_dims": [],
+   "dim6_probe": {
+    "decidable": true,
+    "reason": "",
+    "supported": [
+     "--design-system",
+     "--domain",
+     "--format",
+     "--help",
+     "--json",
+     "--max-results",
+     "--output-dir",
+     "--page",
+     "--persist",
+     "--project-name",
+     "--stack"
+    ],
+    "cmds": [
+     "python -B D:/global_skills\\ui-ux-pro-max\\scripts\\core.py --help",
+     "python -B D:/global_skills\\ui-ux-pro-max\\scripts\\design_system.py --help",
+     "python -B D:/global_skills\\ui-ux-pro-max\\scripts\\reasoning_contract.py --help",
+     "python -B D:/global_skills\\ui-ux-pro-max\\scripts\\search.py --help",
+     "python -B D:/global_skills\\ui-ux-pro-max\\scripts\\validate_data.py --help"
+    ]
+   },
+   "blind": {
+    "label_before": "B",
+    "label_after": "A",
+    "blind_order": [
+     {
+      "label": "A",
+      "state": "after"
+     },
+     {
+      "label": "B",
+      "state": "before"
+     }
+    ],
+    "blind_sum_A": 17,
+    "blind_sum_B": 13,
+    "order_match": "SAME_ORDER"
+   },
+   "dims_before": {
+    "d1": 2,
+    "d2": 0,
+    "d3": 1,
+    "d4": 0,
+    "d5": 5,
+    "d6": 5
+   },
+   "dims_after": {
+    "d1": 3,
+    "d2": 1,
+    "d3": 2,
+    "d4": 1,
+    "d5": 5,
+    "d6": 5
+   },
+   "raw_before": {
+    "d1": 6,
+    "d2": 2,
+    "d3": 5,
+    "d4": 0,
+    "d5": 16,
+    "d6": 0
+   },
+   "raw_after": {
+    "d1": 13,
+    "d2": 4,
+    "d3": 15,
+    "d4": 2,
+    "d5": 18,
+    "d6": 0
+   },
+   "detail_before": {
+    "d1": {
+     "flag_refs": 5,
+     "code_lines": 1,
+     "raw": 6
+    },
+    "d5": {
+     "raw": 16,
+     "live_n": 16,
+     "dead_n": 0,
+     "unresolved_n": 1,
+     "live_list": [
+      "assets/data/",
+      "assets/data/google-fonts.csv",
+      "assets/data/motion.csv",
+      "assets/data/stacks/",
+      "assets/data/web-interface.csv",
+      "data/",
+      "data/app-interface.csv",
+      "data/google-fonts.csv",
+      "data/motion.csv",
+      "data/stacks/",
+      "references/upstream-skill-content.md",
+      "scripts/core.py",
+      "scripts/design_system.py",
+      "scripts/search.py",
+      "scripts/tests/fixtures/catalogs/",
+      "skill.md"
+     ],
+     "dead_list": [],
+     "unresolved_list": [
+      "next.js"
+     ]
+    },
+    "d6": {
+     "raw": 0,
+     "flags": [
+      "--domain",
+      "--stack"
+     ],
+     "bad": []
+    }
+   },
+   "detail_after": {
+    "d1": {
+     "flag_refs": 11,
+     "code_lines": 2,
+     "raw": 13
+    },
+    "d5": {
+     "raw": 18,
+     "live_n": 18,
+     "dead_n": 0,
+     "unresolved_n": 2,
+     "live_list": [
+      "assets/data/",
+      "assets/data/google-fonts.csv",
+      "assets/data/motion.csv",
+      "assets/data/stacks/",
+      "assets/data/web-interface.csv",
+      "data/",
+      "data/app-interface.csv",
+      "data/google-fonts.csv",
+      "data/motion.csv",
+      "data/stacks/",
+      "references/pro-rules.md",
+      "references/quick-reference.md",
+      "references/upstream-skill-content.md",
+      "scripts/core.py",
+      "scripts/design_system.py",
+      "scripts/search.py",
+      "scripts/tests/fixtures/catalogs/",
+      "skill.md"
+     ],
+     "dead_list": [],
+     "unresolved_list": [
+      "master.md",
+      "next.js"
+     ]
+    },
+    "d6": {
+     "raw": 0,
+     "flags": [
+      "--design-system",
+      "--domain",
+      "--output-dir",
+      "--persist",
+      "--stack"
+     ],
+     "bad": []
+    }
+   },
+   "delta": {
+    "d1": 1,
+    "d2": 1,
+    "d3": 1,
+    "d4": 1,
+    "d5": 0,
+    "d6": 0
+   },
+   "sum_before": 13,
+   "sum_after": 17,
+   "uplift_pct": 30.7692,
+   "text_sha256": {
+    "before": "e6556cb09256a24fe8a476595ab2c6683b292336ae2111c8a141bdb8a27ead14",
+    "after": "2b8299ca1acb8a4891fa363cd6cba5e8c911b7899bda57210fbe3b13bbe7415c"
+   },
+   "status": "MEASURED",
+   "post_baseline_drift": {
+    "meaning": "改后=工作树；此字段=基准 sha 版本 -> 工作树的行级增删（difflib 实测），非行数差",
+    "lines_added_vs_baseline_sha": 3,
+    "lines_removed_vs_baseline_sha": 3,
+    "identical_to_baseline_sha": false,
+    "baseline_sha_text_sha256": "969358b895e99da177049b9294e187db90f302bc0ac82635f9811d972786112e",
+    "worktree_text_sha256": "2b8299ca1acb8a4891fa363cd6cba5e8c911b7899bda57210fbe3b13bbe7415c"
+   },
+   "uplift_inputs": {
+    "formula": "uplift_pct = (S_after - S_before) / S_before * 100",
+    "denominator_S_before": 13,
+    "numerator_S_after_minus_S_before": 4,
+    "sum_after": 17,
+    "dims_used_D": [
+     "d1",
+     "d2",
+     "d3",
+     "d4",
+     "d5",
+     "d6"
+    ],
+    "dims_excluded_None": [],
+    "max_possible": 30,
+    "normalized_S_over_max_pct": 56.6667
+   }
+  }
+ ],
+ "caliber_note": "本面只做文本层机械 rubric，不等于任务质量：外部 LLM 评手不可用（oracle 不存在），.dsh 会话日志是 transport 事件，任务级 A/B 不可复算。分档表为设计选择，raw 计数可由件内声明的正则重算。改后一律取 D:/global_skills 工作树，可能包含基准 sha 之后的其他改动（漂移量见 per_skill[].post_baseline_drift）。",
+ "blind_procedure": "两态文本各取 sha256；标签 A/B = sha1(NONCE + content_sha256) 十六进制升序，NONCE = R281G-BLIND-NONCE-2026-10-29。标签由内容哈希决定、与提交先后无关，计分阶段只看版本A/版本B。打完分再揭盲：比较「高分标签」是否就是「改后」，相等记 AMBIGUOUS_TIE，反向记 AMBIGUOUS_REVERSED，一致记 SAME_ORDER。",
+ "provenance_cmd": [
+  "git -C D:/global_skills cat-file -t <sha>",
+  "git -C D:/global_skills show <sha>~1 --no-patch --format=%H%n%ad%n%s",
+  "git -C D:/global_skills show <sha>~1:<skill>/SKILL.md",
+  "read file D:/global_skills/<skill>/SKILL.md（工作树 = 改后）",
+  "python -B <skill>/scripts/*.py --help（维度 6 支持集实测）"
+ ],
+ "self_check": {
+  "check_cells_compared": 36,
+  "cells_expected": 36,
+  "mismatch_count": 0,
+  "mismatch_lines": [],
+  "measured_skills": 3,
+  "uplift_reproducible": "3/3",
+  "uplift_recompute_ok": "3/3",
+  "blind_tally_actual": {
+   "AMBIGUOUS_TIE": 1,
+   "SAME_ORDER": 2
+  },
+  "blind_same_order": 2,
+  "negctl_leg1_identical_text_zero_uplift": [
+   {
+    "skill": "test-driven-development",
+    "uplift_pct": 0.0,
+    "sum_before": 11,
+    "sum_after": 11,
+    "verdict": "PASS"
+   },
+   {
+    "skill": "frontend-slides",
+    "uplift_pct": 0.0,
+    "sum_before": 10,
+    "sum_after": 10,
+    "verdict": "PASS"
+   },
+   {
+    "skill": "ui-ux-pro-max",
+    "uplift_pct": 0.0,
+    "sum_before": 13,
+    "sum_after": 13,
+    "verdict": "PASS"
+   }
+  ],
+  "negctl_leg2_tamper_plus5": {
+   "skill": "test-driven-development",
+   "dim": "d3",
+   "new_value": 6,
+   "mismatch_lines": [
+    "MISMATCH cell test-driven-development/d3/after json=6 fresh=1"
+   ],
+   "mismatch_count": 1,
+   "verdict": "PASS"
+  },
+  "last_line": "R281G CHECK PASS cells=36/36 uplift_reproducible=3/3 blind=AMBIGUOUS_TIE:1,SAME_ORDER:2",
+  "judgement": "本件自证只证明「计数可复算 + 判据有牙」，不证明任务质量提升"
+ }
+}

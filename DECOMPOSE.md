@@ -1,20 +1,22 @@
-# DECOMPOSE · r281（需求6 的任务级缺口）
+# DECOMPOSE · r282（G 收账 + 校正我自己两条错判 + 两路独立取证）
 
-## 前提实测（先证「经典 A/B 做不了」，不假装做了）
-- 外部评手 oracle CLI 不存在（which oracle 无；~/.workbuddy/binaries 只有 PortableGit/libreoffice/node/python）⇒ 无 LLM 评手；
-- .dsh 下会话日志实测是 transport/route 事件（lane/status 502），不是任务级使用记录；
-- 无 tool_skill_matrix_latest.json（使用计数面缺件）⇒ 真实使用反馈只能靠件内自述（需求 1 的已知限制）。
-⇒ 结论：同任务跑两遍打分不可复算，本面不做该形态；改做**工件级 A/B**：改前/改后两版文本（git 取）
-   做六维机械 rubric + 真实脚本冒烟 ⇒ 可复算、无需 LLM。
+## 本轮事实起点
+- G（r281 六维盲评）交付并停笔；我复跑其闸逐字重现（`cells=36/36`、两腿负控 PASS）。
+- **我 733efff 提交信息里对 G 的四条指控，复核后两条是我读错**（负控在 `self_check` 里、d6 已 `5-bucket` 反向）⇒ 按 R241 出校正注，不改写旧提交。
+- 复核中新发现真缺陷：**分档吃平小改进**（tdd `d5 raw 3→4` 报成 uplift 0.0%）⇒ 立 R282-1。
 
 ## 分解
 | # | 件 | 可独立验收 | 写面 | 输入可预固定 | ≤45min | 去处 |
 |---|---|---|---|---|---|---|
-| 1 | 六维机械 rubric 盲评（三件 × 两态） | ✅ 件 + 末行 | 06-benchmark/r281_artifact_ab.json | ✅ 三件基准 sha 已定 | ✅ | **派 G**（避免我出尺自己量） |
-| 2 | 冒烟真跑（ui-ux search.py 产物、FS 备份版指针可达） | ✅ 命令+rc+产物 | 06-benchmark/r281_smoke.json | ✅ | ✅ | Lead 自干（与 R278 面同写面，D7.2 单写者） |
-| 3 | 收口 | ✅ | 本仓 | ✅ | ✅ | Lead（最终答复自留） |
+| 1 | 使用数据源取证（R281-2 裁定「建最小记录面 or 永久标不可测」） | ✅ JSON+md+末行 | 06-benchmark/r282_usage_source.* | ✅ 四候选面点名 | ✅ | **派 I** |
+| 2 | 三臂对账（Lead/F/G 读数差裁定 + 分档吃平量化） | ✅ JSON+md+末行 | 06-benchmark/r282_three_arm_reconcile.* | ✅ 三件都在盘 | ✅ | **派 J** |
+| 3 | G 的发布面死链修复（判据 `_temp` → `05-exec`）+ 校正注 | ✅ 死链面 0 | 05-exec/r281g_*.py, G 两件, r281 报告 | ✅ | ✅ | Lead 自干（写面与 G 冲突 + 历史件改写需 R241 纪律） |
+| 4 | 收口（三面/台账/账龄/提交/GM 侧车） | ✅ | 本仓 | ✅ | ✅ | Lead（最终答复自留） |
 
-30 秒卡：① 是（G 盲评 vs 我冒烟，写面互不相交）；② 是；③ 是（文本层 + 产物层）；④ 是；
-⑤ 发 1 件（G）+ 2 件自留；⑥⑦ 七项与判据末行负控见 _temp/r281g_brief.txt；⑧ 我复跑 G 的统计器正腿与两条负控。
+30 秒卡：① 是（I 取外部数据源、J 裁三臂读数，互不引用）；② 是（各 ≥3 回合）；③ 是（使用面 + 对账面）；
+④ 四问齐；⑤ 发 **2** 件（I、J）+ 2 件自留；⑥ brief 七项见 `_temp/r282i_brief.txt` / `_temp/r282j_brief.txt`；
+⑦ 每件判据命令 + 期望末行 + 负控已写进 brief；⑧ 我复跑：I 的面存在性逐条、J 的 MISMATCH 负控腿。
 
-skip_reason（负申报）：#2 严格串行 + 写面冲突（06-benchmark/r278_landing_effect.json 本会话在写）；#3 决策本体。
+## skip_reason（负申报）
+#3 写面与已交付的 G 冲突（改它 md/JSON 与 05-exec 登记），且属 R241 历史校正类，必须 Lead 持笔；
+#4 决策本体（最终答复）。H（r281 执行级两臂，subagent f0231fc7）**仍在飞、未落盘** ⇒ 按 D7.2 不计已交付。

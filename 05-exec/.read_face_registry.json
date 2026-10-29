@@ -138,5 +138,20 @@
   "evidence": "06-benchmark/r281_smoke_ab.json",
   "registered_at": "2026-10-29 23:28",
   "why": "R278-1 执行级 A/B（显式基准 + 版本史审计 + 双臂文档命令真跑）"
+ },
+ "r281g_score.py": {
+  "evidence": "06-benchmark/r281_artifact_ab.json",
+  "registered_at": "2026-10-30 00:08",
+  "why": "R278-1 六维机械盲评判据（r282 从 _temp 提升：_temp 被 gitignore，判据在克隆上不可复算）"
+ },
+ "r281g_finalize.py": {
+  "evidence": "06-benchmark/r281_artifact_ab.json",
+  "registered_at": "2026-10-30 00:08",
+  "why": "R278-1 六维机械盲评判据（r282 从 _temp 提升：_temp 被 gitignore，判据在克隆上不可复算）"
+ },
+ "r281g_verify.py": {
+  "evidence": "06-benchmark/r281_artifact_ab.json",
+  "registered_at": "2026-10-30 00:08",
+  "why": "R278-1 六维机械盲评判据（r282 从 _temp 提升：_temp 被 gitignore，判据在克隆上不可复算）"
  }
 }
