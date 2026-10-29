@@ -1,0 +1,278 @@
+{
+ "schema": "migration-plan-edit-spec-v1",
+ "negative_control": "ZZZ_NEGATIVE_CONTROL_ANCHOR_9f3a_NOT_IN_ANY_FILE",
+ "edit_count": 32,
+ "edits": [
+  {
+   "id": "S-01",
+   "group": "G1-body-core",
+   "file": "D:/global_skills/frontend-slides/SKILL.md",
+   "anchor": "4. **Viewport Fitting (NON-NEGOTIABLE)** — Every slide MUST fit exactly within 100vh",
+   "proposed": "4. **Fixed Stage (NON-NEGOTIABLE)** — Every deck renders on a fixed 1920×1080 stage scaled uniformly to the viewport. Letterboxing/pillarboxing is allowed; reflowing slide content for the viewport is not. No scrolling within slides, ever. Content overflows? Split into multiple slides.",
+   "why": "Core Principle #4 是代理读到的第一条硬契约；若它仍写 100vh，Phase 3 的固定舞台就被它压回旧范式（r269 报告 §1 实测的失败形态）。"
+  },
+  {
+   "id": "S-02",
+   "group": "G1-body-core",
+   "file": "D:/global_skills/frontend-slides/SKILL.md",
+   "anchor": "## Viewport Fitting Rules",
+   "proposed": "## Fixed Stage Rules（固定舞台不变量）",
+   "why": "该标题是整块不变量的锚；不改则块内条款仍自称 viewport 规则，且与 references/upstream-frontend-slides.md:6 的「Fixed Stage Rules（固定舞台不变量）」同名断裂。"
+  },
+  {
+   "id": "S-03",
+   "group": "G1-body-core",
+   "file": "D:/global_skills/frontend-slides/SKILL.md",
+   "anchor": "- Every `.slide` must have `height: 100vh; height: 100dvh; overflow: hidden;`",
+   "proposed": "- Every deck wraps its slides in a fixed 1920×1080 stage: each `.slide` is authored at `width: 1920px; height: 1080px; overflow: hidden;` and the whole stage is scaled to the viewport by one `transform: scale()` (`bold-template-pack/deck-stage.js`), never reflowed",
+   "why": "这一行是旧范式的可执行定义（100vh/100dvh）；它与 deck-stage.js 的 DESIGN_H_DEFAULT=1080 + scale() 直接互斥，必须与 S-01 同批，否则代理会照此写 fluid 滑页。"
+  },
+  {
+   "id": "S-04",
+   "group": "G1-body-core",
+   "file": "D:/global_skills/frontend-slides/SKILL.md",
+   "anchor": "- ALL font sizes and spacing must use `clamp(min, preferred, max)`",
+   "proposed": "- Slide-internal type and spacing are authoring values on the 1920×1080 draft: fixed `px` is allowed and expected; any `clamp()`/`vw`/`vh` copied from a source design is a design proportion to translate into stage coordinates, not a live responsive rule",
+   "why": "包 README:70-71 明写「design.md 里的 vw/vh/clamp 要翻译成固定舞台坐标」；不改这行则 Phase 2/3 会继续产出 clamp 驱动的 fluid 版式。"
+  },
+  {
+   "id": "S-05",
+   "group": "G1-body-core",
+   "file": "D:/global_skills/frontend-slides/SKILL.md",
+   "anchor": "- Images: `max-height: min(50vh, 400px)`",
+   "proposed": "- Images: `max-height: 540px` (50% of the 1080 stage)",
+   "why": "vh 参照系在固定舞台下失效（stage 内的 100vh 是视口而非画布）；同批换为舞台像素。"
+  },
+  {
+   "id": "S-06",
+   "group": "G1-body-core",
+   "file": "D:/global_skills/frontend-slides/SKILL.md",
+   "anchor": "- Breakpoints required for heights: 700px, 600px, 500px",
+   "proposed": "- No viewport-height breakpoints: the stage scales as a whole (letterbox/pillarbox) instead of reflowing content on short or narrow viewports",
+   "why": "包与上游增量（references/upstream-frontend-slides.md:11「不要用响应式断点」）都禁重排；留断点等于留一条旧范式后门，且与 viewport-base.css 断点块的删除（V-05）必须同批。"
+  },
+  {
+   "id": "S-07",
+   "group": "G1-body-core",
+   "file": "D:/global_skills/frontend-slides/SKILL.md",
+   "anchor": "**When generating, read `viewport-base.css` and include its full contents in every presentation.**",
+   "proposed": "**When generating, read `viewport-base.css` and `bold-template-pack/README.md`, include viewport-base.css in full, and render every deck on the fixed 1920×1080 stage via `bold-template-pack/deck-stage.js` (or an equivalent inline stage scaler) — this applies even when the source template was originally viewport-fluid.**",
+   "why": "这是正文唯一把「读 CSS」与「生成形态」绑在一起的一句；不在此处引入包的 Implementation Contract，代理仍只照 viewport-base.css 走 fluid（r269 实测包不可达即源于此）。"
+  },
+  {
+   "id": "S-08",
+   "group": "G2-phase0",
+   "file": "D:/global_skills/frontend-slides/SKILL.md",
+   "anchor": "content fits at 1280x720",
+   "proposed": "4. **After ANY modification, verify:** `.slide` is authored in 1920×1080 stage coordinates, has `overflow: hidden`, images fit the 1080 stage, and the rendered stage shows no text overflow or panel overlap at 1920×1080 and at a phone-width viewport",
+   "why": "Phase 0 的 Mode C 验收判据；若仍写 1280x720 + clamp，则「改完不合规」会被判为合规，迁移等于没落地。"
+  },
+  {
+   "id": "S-09",
+   "group": "G3-phase3",
+   "file": "D:/global_skills/frontend-slides/SKILL.md",
+   "anchor": "- Include the FULL contents of viewport-base.css in the `<style>` block",
+   "proposed": "- Include the FULL contents of viewport-base.css in the `<style>` block, and wrap every slide in the fixed 1920×1080 stage (`bold-template-pack/deck-stage.js`, or an equivalent inline scaler) instead of letting `.slide` size itself from the viewport",
+   "why": "Phase 3 是真正写 HTML 的步骤；此处不给 stage 包裹 = 生成物仍是 fluid，与 S-03 的正文契约自相矛盾。"
+  },
+  {
+   "id": "S-10",
+   "group": "G3-phase3",
+   "file": "D:/global_skills/frontend-slides/SKILL.md",
+   "anchor": "⚠️ **已知冲突（R268-1，待迁移）**",
+   "proposed": "  ⚠️ **原冲突（R268-1）已由 R269-1 消解**：本件正文原先规定 slides 必须落在 `100vh` 内（Viewport Fitting，NON-NEGOTIABLE），",
+   "why": "r269 登记的冲突声明必须随权威翻转同步改写，否则文件内同时存在「冲突待迁移」与「已迁移」两套说法（自相矛盾的权威）。"
+  },
+  {
+   "id": "S-11",
+   "group": "G3-phase3",
+   "file": "D:/global_skills/frontend-slides/SKILL.md",
+   "anchor": "**迁移完成前以正文的 NON-NEGOTIABLE 规则为准**",
+   "proposed": "  ⇒ **两者对舞台尺寸的指令不再互斥**：R269-1 起正文、Phase 0/3、`viewport-base.css` 与 `html-template.md` 已同批改为固定 1920×1080 舞台；**当前权威 = 固定舞台**（`bold-template-pack/deck-stage.js` 常量 `DESIGN_W_DEFAULT = 1920` / `DESIGN_H_DEFAULT = 1080`）。",
+   "why": "这句是 r269 期间的权威指针；不翻它则代理按文件读到最后仍以 100vh 为准，S-01/S-03 会被该指针反压。"
+  },
+  {
+   "id": "S-12",
+   "group": "G3-phase3",
+   "file": "D:/global_skills/frontend-slides/SKILL.md",
+   "anchor": "该包的正式迁移（正文 Phase 0/3 与 CSS 引用须同批改）登记为 R268-1。",
+   "proposed": "  正式迁移动作登记为 R269-1（本批已完成）。",
+   "why": "登记号与状态必须和 S-10/S-11 同步，否则待办台账（memory/07-next-steps 的 R269-1）与正文状态不一致。"
+  },
+  {
+   "id": "S-13",
+   "group": "G4-refs",
+   "file": "D:/global_skills/frontend-slides/SKILL.md",
+   "anchor": "Mandatory responsive CSS — copy into every presentation",
+   "proposed": "| [viewport-base.css](viewport-base.css)             | Mandatory base CSS (stage-scoped, fixed 1920×1080 since R269-1) — copy whole file | Phase 3 (generation) |",
+   "why": "Supporting Files 表是「引用清单」的权威行；留着 responsive 描述等于给代理第二个旧范式入口。"
+  },
+  {
+   "id": "S-14",
+   "group": "G4-refs",
+   "file": "D:/global_skills/frontend-slides/SKILL.md",
+   "mode": "append",
+   "anchor": "| [animation-patterns.md](animation-patterns.md)     | CSS/JS animation snippets and effect-to-feeling guide",
+   "proposed": "| [bold-template-pack/deck-stage.js](bold-template-pack/deck-stage.js) | Fixed 1920×1080 stage web component — inline into every deck | Phase 3 (generation) |",
+   "why": "该表要显式点名平台实现件；否则 deck-stage.js 只在正文散句里出现，引用清单查不到（r268 的未引用面同族）。"
+  },
+  {
+   "id": "S-15",
+   "group": "G4-refs",
+   "file": "D:/global_skills/frontend-slides/SKILL.md",
+   "mode": "prepend",
+   "anchor": "- **1.3.0**（2026-10-27）— 修断链：补 上游 A 类（被本仓正文引用却缺件（真断链））1 件中的第 1/1 批",
+   "proposed": "- **1.4.0**（2026-10-29）— R269-1 范式正式迁移：Core Principle #4 / Phase 0 验收 / Phase 3 生成契约 + `viewport-base.css`（`.slide`、断点）+ `html-template.md`（stage wrapper）同批改为固定 1920×1080 舞台，与 `bold-template-pack` 及 `references/upstream-frontend-slides.md` 对齐。",
+   "why": "版本史是本技能的自描述；不记这一笔则下次会话读不到范式已翻转。"
+  },
+  {
+   "id": "S-16",
+   "group": "G4-refs",
+   "file": "D:/global_skills/frontend-slides/SKILL.md",
+   "anchor": "version: 1.3.0",
+   "proposed": "version: 1.4.0",
+   "why": "frontmatter 版本与 S-15 的版本史必须一致，否则 r269 复核已抓过的那类「版本行/历史行不齐」缺陷重现。"
+  },
+  {
+   "id": "S-17",
+   "group": "G4-refs",
+   "file": "D:/global_skills/frontend-slides/SKILL.md",
+   "anchor": "last_updated: 2026-10-27",
+   "proposed": "last_updated: 2026-10-29",
+   "why": "同 S-16，frontmatter 时间戳须随改动前进。"
+  },
+  {
+   "id": "V-01",
+   "group": "G5-css",
+   "file": "D:/global_skills/frontend-slides/viewport-base.css",
+   "anchor": "    width: 100vw;",
+   "proposed": "    width: 1920px; /* R269-1: fixed stage canvas — scaled by deck-stage.js, not by the viewport */",
+   "why": "viewport-base.css 被正文要求全文内联（S-07/S-09 保留此要求）；其 `.slide` 规则不改则每份生成物的 .slide 仍是 100vw，stage 包裹形同虚设。"
+  },
+  {
+   "id": "V-02",
+   "group": "G5-css",
+   "file": "D:/global_skills/frontend-slides/viewport-base.css",
+   "anchor": "    height: 100vh;",
+   "proposed": "    height: 1080px; /* R269-1: fixed stage height */",
+   "why": "同 V-01；这一行是「100vh 必守」在 CSS 层的落点，与 deck-stage.js 的 1080 常量互斥。"
+  },
+  {
+   "id": "V-03",
+   "group": "G5-css",
+   "file": "D:/global_skills/frontend-slides/viewport-base.css",
+   "anchor": "    height: 100dvh; /* Dynamic viewport height for mobile browsers */",
+   "proposed": "    /* R269-1: dvh sizing removed — the stage is scaled by transform, so mobile height changes must not resize slides */",
+   "why": "dvh 是为了视口自适应；固定舞台恰恰相反，保留它会让手机地址栏伸缩时画布变形。"
+  },
+  {
+   "id": "V-04",
+   "group": "G5-css",
+   "file": "D:/global_skills/frontend-slides/viewport-base.css",
+   "anchor": "/* 2. Each slide = exact viewport height */",
+   "proposed": "/* 2. Each slide = fixed 1920×1080 stage canvas (whole stage scaled by deck-stage.js) */",
+   "why": "注释是这份 CSS 被代理部分读时的语义入口；不改则同行代码改了、说明仍在讲 viewport。"
+  },
+  {
+   "id": "V-05",
+   "group": "G5-css",
+   "file": "D:/global_skills/frontend-slides/viewport-base.css",
+   "span": [
+    88,
+    138
+   ],
+   "anchor": "   RESPONSIVE BREAKPOINTS",
+   "proposed": "/* ===========================================\n   STAGE SCALE (R269-1)\n   No viewport reflow. The fixed 1920x1080 stage letterboxes or\n   pillarboxes instead of scaling type or stacking grids, so the\n   height/width media-query block was removed here.\n   Paging is owned by bold-template-pack/deck-stage.js.\n   =========================================== */",
+   "why": "整块断点（88-138 行）就是 S-06 禁止的重排机制，且与 deck-stage 的整体缩放互斥；保留它则同一份 CSS 内自带两条互相打架的适配策略。"
+  },
+  {
+   "id": "V-06",
+   "group": "G5-css",
+   "file": "D:/global_skills/frontend-slides/viewport-base.css",
+   "anchor": "/* 4. ALL typography uses clamp() for responsive scaling */",
+   "proposed": "/* 4. Authoring tokens for the 1920×1080 draft. clamp() here is a design-proportion source (see bold-template-pack/README.md:70-71), NOT a live responsive rule. */",
+   "why": "否则 V-01/V-02 把画布改固定、第 4 段又把字号改回视口驱动，生成物在手机上仍会重排。"
+  },
+  {
+   "id": "V-07",
+   "group": "G5-css",
+   "file": "D:/global_skills/frontend-slides/viewport-base.css",
+   "anchor": "    max-width: min(90vw, 1000px);",
+   "proposed": "    max-width: 1728px; /* R269-1: 90% of the 1920 stage */",
+   "why": "容器上限若继续用 vw，则固定舞台下卡片宽度随浏览器窗口变，与「绝不重排」互斥。"
+  },
+  {
+   "id": "V-08",
+   "group": "G5-css",
+   "file": "D:/global_skills/frontend-slides/viewport-base.css",
+   "anchor": "    max-height: min(80vh, 700px);",
+   "proposed": "    max-height: 864px; /* R269-1: 80% of the 1080 stage */",
+   "why": "同 V-07；vh 在 stage 内指向浏览器视口而非画布，是旧范式残留。"
+  },
+  {
+   "id": "V-09",
+   "group": "G5-css",
+   "file": "D:/global_skills/frontend-slides/viewport-base.css",
+   "anchor": "    max-height: min(50vh, 400px);",
+   "proposed": "    max-height: 540px; /* R269-1: 50% of the 1080 stage (mirrors SKILL.md image rule) */",
+   "why": "与 S-05 是同一规则的两处落点，必须同批，否则正文说 540px、内联 CSS 说 50vh。"
+  },
+  {
+   "id": "V-10",
+   "group": "G5-css",
+   "file": "D:/global_skills/frontend-slides/viewport-base.css",
+   "anchor": "    scroll-snap-type: y mandatory;",
+   "proposed": "    /* R269-1: scroll-snap removed. Fixed-stage decks are paged by bold-template-pack/deck-stage.js (.active/.visible), not by document scroll. */",
+   "why": "deck-stage 自持翻页；保留 scroll-snap 会出现「滚一次跳两页」并与 references/upstream-frontend-slides.md:13 的「禁用 display 切页、用 active/visible」策略叠加冲突。"
+  },
+  {
+   "id": "H-01",
+   "group": "G6-template",
+   "file": "D:/global_skills/frontend-slides/html-template.md",
+   "anchor": "/* --- PASTE viewport-base.css CONTENTS HERE --- */",
+   "proposed": "/* --- PASTE viewport-base.css CONTENTS HERE (R269-1: the file is stage-scoped: .slide is 1920×1080, no reflow) --- */",
+   "why": "模板模板是 Phase 3 的复制源；注释不点出 stage 语义，生成者不会意识到粘贴进来的 .slide 已是固定画布。"
+  },
+  {
+   "id": "H-02",
+   "group": "G6-template",
+   "file": "D:/global_skills/frontend-slides/html-template.md",
+   "anchor": "    <section class=\"slide title-slide\">",
+   "proposed": "    <!-- R269-1: every slide lives inside the fixed stage; the whole stage is scaled to the viewport -->\n  <deck-stage width=\"1920\" height=\"1080\">\n    <section class=\"slide title-slide\">",
+   "why": "模板若不给 deck-stage 包裹，模板输出的 HTML 与 S-09 要求不一致，且 deck-stage.js 根本没有挂载点。"
+  },
+  {
+   "id": "H-03",
+   "group": "G6-template",
+   "file": "D:/global_skills/frontend-slides/html-template.md",
+   "anchor": "    <script>",
+   "proposed": "  </deck-stage>\n\n    <script>",
+   "why": "与 H-02 成对；不闭合则 deck-stage 把后续 script/UI 一并吃掉，页面结构错乱。"
+  },
+  {
+   "id": "H-04",
+   "group": "G6-template",
+   "file": "D:/global_skills/frontend-slides/html-template.md",
+   "anchor": "          this.slides = document.querySelectorAll(\".slide\");",
+   "proposed": "          // R269-1: slides stay in light DOM inside <deck-stage>; this selector still works,\n          // but deck-stage.js owns paging when no custom controller is used.\n          this.slides = document.querySelectorAll(\".slide\");",
+   "why": "模板自带控制器与 deck-stage 自带翻页会同时响应键盘；注释必须在同批说明分工，否则「双翻页」成为迁移后的第一号行为缺陷。"
+  },
+  {
+   "id": "U-01",
+   "group": "G7-upstream",
+   "file": "D:/global_skills/frontend-slides/references/upstream-frontend-slides.md",
+   "anchor": "- **每个演示都要内联 `viewport-base.css` 全文**。",
+   "proposed": "- **每个演示都要内联 `viewport-base.css` 全文**（R269-1 起该文件已 stage-scoped；固定 1920×1080 舞台与整体缩放由 `bold-template-pack/deck-stage.js` 提供）。",
+   "why": "上游增量是本技能正文明确要「一并读取」的分卷（SKILL.md:335）；不在此同步舞台实现件，两卷对同一件事就有两套说法。"
+  },
+  {
+   "id": "NEG-01",
+   "group": "NEGATIVE-CONTROL",
+   "file": "D:/global_skills/frontend-slides/SKILL.md",
+   "anchor": "ZZZ_NEGATIVE_CONTROL_ANCHOR_9f3a_NOT_IN_ANY_FILE",
+   "proposed": "(deliberately nonexistent anchor — the validator must report FAIL for this row)",
+   "why": "负向对照：证明校验脚本在锚点缺失时确实报 FAIL，而不是恒绿。"
+  }
+ ],
+ "negative_control_injected": true
+}

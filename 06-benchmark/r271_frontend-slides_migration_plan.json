@@ -1,0 +1,1012 @@
+{
+ "schema": "migration-plan-v1",
+ "id": "r271-frontend-slides-paradigm-migration-plan",
+ "round": "R269-1 (preparation, read-only analysis)",
+ "generated_at": "2026-10-29T19:0x+08:00",
+ "author": "ds subagent (delegated, read-only)",
+ "scope_declaration": "只读分析：未写入 D:/global_skills 与 D:/global_memory；未改 05-exec 任何 .py；未跑 run_gates.py；未做任何 git 写。写面仅本文件与本轮同名 .md，均在 skill焚诀/自建skill优化/06-benchmark/ 下（仓库根无 06-benchmark 目录，06-benchmark 的实际位置是 自建skill优化/06-benchmark）。",
+ "baseline": {
+  "artifacts": [
+   {
+    "path": "D:/global_skills/frontend-slides/SKILL.md",
+    "bytes": 21260,
+    "sha256": "39fdd1203aacb16648ccc88944bf46dc6cb2ed4dafae52f3f6ac11bd1134d1cf"
+   },
+   {
+    "path": "D:/global_skills/frontend-slides/bold-template-pack/README.md",
+    "sha256": "cd4ad5e87dba9f8cb0d794f449491b3028c7c8e69bfe22f44d964627536e2d40"
+   },
+   {
+    "path": "D:/global_skills/frontend-slides/viewport-base.css",
+    "sha256": "dab42c1a556a0fa51d3c39f7edfb93d8303e5c29625ade479a18ba97f2640734"
+   },
+   {
+    "path": "D:/global_skills/frontend-slides/html-template.md",
+    "sha256": "004d77d7631fd75ff1cac02f37777ec70fc9df692ba2caf8cb72857516ff2bb4"
+   },
+   {
+    "path": "D:/global_skills/frontend-slides/references/upstream-frontend-slides.md",
+    "sha256": "bce591ade18fa4924cae48a85877e4a19dab1dd10e1c83be6f0d12f21a54625b"
+   }
+  ],
+  "grep_counts": {
+   "bold-template-pack": 1,
+   "deck-stage": 1,
+   "viewport-base.css": 4,
+   "viewport-fluid": 1,
+   "100vh": 3,
+   "100dvh": 1,
+   "NON-NEGOTIABLE": 3
+  },
+  "r268_face": {
+   "unreferenced_n": 1,
+   "unreferenced": [
+    "meta.json"
+   ],
+   "unreferenced_strict_n": 69,
+   "present_n": 88,
+   "cmd": "python 05-exec/r268_unreferenced_siblings.py --json _temp/r271_r268_recheck_before.json",
+   "json_path": "/c/Users/37533/Desktop/workspace/skill焚诀/_temp/r271_r268_recheck_before.json (copied from 自建skill优化/_temp/ ; script was run with cwd=自建skill优化)",
+   "note": "r271 全部临时件：锚点三件套在 skill焚诀/_temp/（r271_edits_spec.json / r271_anchor_check.py / r271_anchor_hits.json），r268 面在 自建skill优化/_temp/；两处均为 _temp 白名单内。"
+  }
+ },
+ "authority_choice": {
+  "verdict": "B — 改为包主张的 fixed 1920×1080 舞台（正文侧迁移，包侧不动）",
+  "status": "✅已实测",
+  "alternatives": [
+   {
+    "id": "A",
+    "name": "维持正文 viewport-fluid（100vh + clamp + 断点）",
+    "evidence_for": "仅 SKILL.md 正文 L17/L39-51/L83 与其上游英文原文（viewport-base.css 随文件随附）；文件 mtime 为 2026-07-05 上游导入时间",
+    "cost": "需要改包侧 3 件 + 34 套模板（34/34 design.md 都写死 fixed 1920×1080），且与 deck-stage.js 常量、导出脚本、已吸收的上游增量卷同时矛盾"
+   },
+   {
+    "id": "B",
+    "name": "正文改为 fixed 1920×1080 舞台（deck-stage.js 为运行时）",
+    "evidence_for": "34/34 design.md 要求固定舞台；deck-stage.js:53-54 DESIGN_W_DEFAULT=1920/DESIGN_H_DEFAULT=1080 且 :538 以 min(vw/W, vh/H) 整体缩放；references/upstream-frontend-slides.md:9-14（本仓 2026-10-20 已吸收）已写固定舞台+禁断点；scripts/export-pdf.sh:38-39 VIEWPORT_W/H=1920/1080；包 README:66-71 的 Implementation Contract；r269 登记本身即写「迁移完成前以正文为准（临时）」",
+    "cost": "正文 17 处 + viewport-base.css 10 处 + html-template.md 4 处 + 上游增量卷 1 处，共 32 处，全部在本仓可写面（无包侧改动）"
+   }
+  ],
+  "recommended": "B",
+  "rationale": [
+   "哪一侧更新：包与上游增量卷晚于正文（包件 mtime 2026-10-27、上游增量 2026-10-20 吸收；正文/ CSS 仍为 2026-07-05 上游导入文本）。",
+   "哪一侧与实际模板一致：bold-template-pack/templates 34 个目录、34 份 design.md 全部含「fixed 1920×1080 stage」要求（grep -rl \"fixed 1920×1080 stage\" --include=design.md | wc -l = 34；目录数亦为 34），0 份模板要求 viewport-fluid。",
+   "哪一侧与运行时一致：deck-stage.js:53-54 常量为 1920/1080，:538 缩放公式 = 整体 scale；bbox 与切页均由组件持有。",
+   "本仓自己的旁证：references/upstream-frontend-slides.md:9-14 是本技能正文 L335 明确要求「一并读取」的分卷，它早于本轮就写下固定舞台 + 禁响应式断点 + 内联 viewport-base.css；正文是唯一未对齐的一方。",
+   "导出链旁证：scripts/export-pdf.sh:38-39 以 1920×1080 截屏，与固定舞台同构（固定舞台在此视口下 scale=1）。",
+   "不改包的理由（#39 不取折中）：包侧 3 件 + 34 模板全部一致指向固定舞台，改包等于用 1 处正文去改 37 处一致件；且包 README/design.md 的措辞（even if the source template was originally viewport-fluid）显式为旧范式预留了翻译路径。",
+   "为何必须包含 viewport-base.css 的改动：包 README:66 与正文 L51/L185/L198 都要求内联 viewport-base.css 全文，所以「保留 viewport-base.css 不动」反而会违反包契约——必须把它 stage-scoped 化，否则每份生成物内联进来的 .slide 仍是 100vw/100vh。"
+  ],
+  "residual_caveat": "权威翻转后，非包路径（STYLE_PRESETS 的 12 套）也一并变成固定舞台——这是本迁移的既定行为改变，不是副作用遗留；若日后要保留 fluid 通道，应以追加 .viewport-fluid 覆盖块实现，而非回退 baseline（回退会再次与 34 套模板/组件矛盾）。"
+ },
+ "edits": [
+  {
+   "id": "S-01",
+   "group": "G1-body-core",
+   "file": "D:/global_skills/frontend-slides/SKILL.md",
+   "rel": "SKILL.md",
+   "anchor": "4. **Viewport Fitting (NON-NEGOTIABLE)** — Every slide MUST fit exactly within 100vh",
+   "anchor_line": 17,
+   "anchor_grep_n": 1,
+   "op": "replace_line",
+   "span": [
+    17,
+    17
+   ],
+   "current": "4. **Viewport Fitting (NON-NEGOTIABLE)** — Every slide MUST fit exactly within 100vh. No scrolling within slides, ever. Content overflows? Split into multiple slides.",
+   "proposed": "4. **Fixed Stage (NON-NEGOTIABLE)** — Every deck renders on a fixed 1920×1080 stage scaled uniformly to the viewport. Letterboxing/pillarboxing is allowed; reflowing slide content for the viewport is not. No scrolling within slides, ever. Content overflows? Split into multiple slides.",
+   "why_same_batch": "Core Principle #4 是代理读到的第一条硬契约；若它仍写 100vh，Phase 3 的固定舞台就被它压回旧范式（r269 报告 §1 实测的失败形态）。",
+   "verified": {
+    "cmd": "grep -nF -e 4. **Viewport Fitting (NON-NEGOTIABLE)** — Every slide MUST fit exactly within 100vh D:/global_skills/frontend-slides/SKILL.md",
+    "hits": [
+     17
+    ],
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "S-02",
+   "group": "G1-body-core",
+   "file": "D:/global_skills/frontend-slides/SKILL.md",
+   "rel": "SKILL.md",
+   "anchor": "## Viewport Fitting Rules",
+   "anchor_line": 39,
+   "anchor_grep_n": 1,
+   "op": "replace_line",
+   "span": [
+    39,
+    39
+   ],
+   "current": "## Viewport Fitting Rules",
+   "proposed": "## Fixed Stage Rules（固定舞台不变量）",
+   "why_same_batch": "该标题是整块不变量的锚；不改则块内条款仍自称 viewport 规则，且与 references/upstream-frontend-slides.md:6 的「Fixed Stage Rules（固定舞台不变量）」同名断裂。",
+   "verified": {
+    "cmd": "grep -nF -e ## Viewport Fitting Rules D:/global_skills/frontend-slides/SKILL.md",
+    "hits": [
+     39
+    ],
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "S-03",
+   "group": "G1-body-core",
+   "file": "D:/global_skills/frontend-slides/SKILL.md",
+   "rel": "SKILL.md",
+   "anchor": "- Every `.slide` must have `height: 100vh; height: 100dvh; overflow: hidden;`",
+   "anchor_line": 43,
+   "anchor_grep_n": 1,
+   "op": "replace_line",
+   "span": [
+    43,
+    43
+   ],
+   "current": "- Every `.slide` must have `height: 100vh; height: 100dvh; overflow: hidden;`",
+   "proposed": "- Every deck wraps its slides in a fixed 1920×1080 stage: each `.slide` is authored at `width: 1920px; height: 1080px; overflow: hidden;` and the whole stage is scaled to the viewport by one `transform: scale()` (`bold-template-pack/deck-stage.js`), never reflowed",
+   "why_same_batch": "这一行是旧范式的可执行定义（100vh/100dvh）；它与 deck-stage.js 的 DESIGN_H_DEFAULT=1080 + scale() 直接互斥，必须与 S-01 同批，否则代理会照此写 fluid 滑页。",
+   "verified": {
+    "cmd": "grep -nF -e - Every `.slide` must have `height: 100vh; height: 100dvh; overflow: hidden;` D:/global_skills/frontend-slides/SKILL.md",
+    "hits": [
+     43
+    ],
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "S-04",
+   "group": "G1-body-core",
+   "file": "D:/global_skills/frontend-slides/SKILL.md",
+   "rel": "SKILL.md",
+   "anchor": "- ALL font sizes and spacing must use `clamp(min, preferred, max)`",
+   "anchor_line": 44,
+   "anchor_grep_n": 1,
+   "op": "replace_line",
+   "span": [
+    44,
+    44
+   ],
+   "current": "- ALL font sizes and spacing must use `clamp(min, preferred, max)` — never fixed px/rem",
+   "proposed": "- Slide-internal type and spacing are authoring values on the 1920×1080 draft: fixed `px` is allowed and expected; any `clamp()`/`vw`/`vh` copied from a source design is a design proportion to translate into stage coordinates, not a live responsive rule",
+   "why_same_batch": "包 README:70-71 明写「design.md 里的 vw/vh/clamp 要翻译成固定舞台坐标」；不改这行则 Phase 2/3 会继续产出 clamp 驱动的 fluid 版式。",
+   "verified": {
+    "cmd": "grep -nF -e - ALL font sizes and spacing must use `clamp(min, preferred, max)` D:/global_skills/frontend-slides/SKILL.md",
+    "hits": [
+     44
+    ],
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "S-05",
+   "group": "G1-body-core",
+   "file": "D:/global_skills/frontend-slides/SKILL.md",
+   "rel": "SKILL.md",
+   "anchor": "- Images: `max-height: min(50vh, 400px)`",
+   "anchor_line": 46,
+   "anchor_grep_n": 1,
+   "op": "replace_line",
+   "span": [
+    46,
+    46
+   ],
+   "current": "- Images: `max-height: min(50vh, 400px)`",
+   "proposed": "- Images: `max-height: 540px` (50% of the 1080 stage)",
+   "why_same_batch": "vh 参照系在固定舞台下失效（stage 内的 100vh 是视口而非画布）；同批换为舞台像素。",
+   "verified": {
+    "cmd": "grep -nF -e - Images: `max-height: min(50vh, 400px)` D:/global_skills/frontend-slides/SKILL.md",
+    "hits": [
+     46
+    ],
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "S-06",
+   "group": "G1-body-core",
+   "file": "D:/global_skills/frontend-slides/SKILL.md",
+   "rel": "SKILL.md",
+   "anchor": "- Breakpoints required for heights: 700px, 600px, 500px",
+   "anchor_line": 47,
+   "anchor_grep_n": 1,
+   "op": "replace_line",
+   "span": [
+    47,
+    47
+   ],
+   "current": "- Breakpoints required for heights: 700px, 600px, 500px",
+   "proposed": "- No viewport-height breakpoints: the stage scales as a whole (letterbox/pillarbox) instead of reflowing content on short or narrow viewports",
+   "why_same_batch": "包与上游增量（references/upstream-frontend-slides.md:11「不要用响应式断点」）都禁重排；留断点等于留一条旧范式后门，且与 viewport-base.css 断点块的删除（V-05）必须同批。",
+   "verified": {
+    "cmd": "grep -nF -e - Breakpoints required for heights: 700px, 600px, 500px D:/global_skills/frontend-slides/SKILL.md",
+    "hits": [
+     47
+    ],
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "S-07",
+   "group": "G1-body-core",
+   "file": "D:/global_skills/frontend-slides/SKILL.md",
+   "rel": "SKILL.md",
+   "anchor": "**When generating, read `viewport-base.css` and include its full contents in every presentation.**",
+   "anchor_line": 51,
+   "anchor_grep_n": 1,
+   "op": "replace_line",
+   "span": [
+    51,
+    51
+   ],
+   "current": "**When generating, read `viewport-base.css` and include its full contents in every presentation.**",
+   "proposed": "**When generating, read `viewport-base.css` and `bold-template-pack/README.md`, include viewport-base.css in full, and render every deck on the fixed 1920×1080 stage via `bold-template-pack/deck-stage.js` (or an equivalent inline stage scaler) — this applies even when the source template was originally viewport-fluid.**",
+   "why_same_batch": "这是正文唯一把「读 CSS」与「生成形态」绑在一起的一句；不在此处引入包的 Implementation Contract，代理仍只照 viewport-base.css 走 fluid（r269 实测包不可达即源于此）。",
+   "verified": {
+    "cmd": "grep -nF -e **When generating, read `viewport-base.css` and include its full contents in every presentation.** D:/global_skills/frontend-slides/SKILL.md",
+    "hits": [
+     51
+    ],
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "S-08",
+   "group": "G2-phase0",
+   "file": "D:/global_skills/frontend-slides/SKILL.md",
+   "rel": "SKILL.md",
+   "anchor": "content fits at 1280x720",
+   "anchor_line": 83,
+   "anchor_grep_n": 1,
+   "op": "replace_line",
+   "span": [
+    83,
+    83
+   ],
+   "current": "4. **After ANY modification, verify:** `.slide` has `overflow: hidden`, new elements use `clamp()`, images have viewport-relative max-height, content fits at 1280x720",
+   "proposed": "4. **After ANY modification, verify:** `.slide` is authored in 1920×1080 stage coordinates, has `overflow: hidden`, images fit the 1080 stage, and the rendered stage shows no text overflow or panel overlap at 1920×1080 and at a phone-width viewport",
+   "why_same_batch": "Phase 0 的 Mode C 验收判据；若仍写 1280x720 + clamp，则「改完不合规」会被判为合规，迁移等于没落地。",
+   "verified": {
+    "cmd": "grep -nF -e content fits at 1280x720 D:/global_skills/frontend-slides/SKILL.md",
+    "hits": [
+     83
+    ],
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "S-09",
+   "group": "G3-phase3",
+   "file": "D:/global_skills/frontend-slides/SKILL.md",
+   "rel": "SKILL.md",
+   "anchor": "- Include the FULL contents of viewport-base.css in the `<style>` block",
+   "anchor_line": 198,
+   "anchor_grep_n": 1,
+   "op": "replace_line",
+   "span": [
+    198,
+    198
+   ],
+   "current": "- Include the FULL contents of viewport-base.css in the `<style>` block",
+   "proposed": "- Include the FULL contents of viewport-base.css in the `<style>` block, and wrap every slide in the fixed 1920×1080 stage (`bold-template-pack/deck-stage.js`, or an equivalent inline scaler) instead of letting `.slide` size itself from the viewport",
+   "why_same_batch": "Phase 3 是真正写 HTML 的步骤；此处不给 stage 包裹 = 生成物仍是 fluid，与 S-03 的正文契约自相矛盾。",
+   "verified": {
+    "cmd": "grep -nF -e - Include the FULL contents of viewport-base.css in the `<style>` block D:/global_skills/frontend-slides/SKILL.md",
+    "hits": [
+     198
+    ],
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "S-10",
+   "group": "G3-phase3",
+   "file": "D:/global_skills/frontend-slides/SKILL.md",
+   "rel": "SKILL.md",
+   "anchor": "⚠️ **已知冲突（R268-1，待迁移）**",
+   "anchor_line": 189,
+   "anchor_grep_n": 1,
+   "op": "replace_line",
+   "span": [
+    189,
+    189
+   ],
+   "current": "  ⚠️ **已知冲突（R268-1，待迁移）**：本件正文规定 slides 必须落在 `100vh` 内（Viewport Fitting，NON-NEGOTIABLE），",
+   "proposed": "  ⚠️ **原冲突（R268-1）已由 R269-1 消解**：本件正文原先规定 slides 必须落在 `100vh` 内（Viewport Fitting，NON-NEGOTIABLE），",
+   "why_same_batch": "r269 登记的冲突声明必须随权威翻转同步改写，否则文件内同时存在「冲突待迁移」与「已迁移」两套说法（自相矛盾的权威）。",
+   "verified": {
+    "cmd": "grep -nF -e ⚠️ **已知冲突（R268-1，待迁移）** D:/global_skills/frontend-slides/SKILL.md",
+    "hits": [
+     189
+    ],
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "S-11",
+   "group": "G3-phase3",
+   "file": "D:/global_skills/frontend-slides/SKILL.md",
+   "rel": "SKILL.md",
+   "anchor": "**迁移完成前以正文的 NON-NEGOTIABLE 规则为准**",
+   "anchor_line": 191,
+   "anchor_grep_n": 1,
+   "op": "replace_line",
+   "span": [
+    191,
+    191
+   ],
+   "current": "  ⇒ **两者对舞台尺寸的指令互斥**。**迁移完成前以正文的 NON-NEGOTIABLE 规则为准**（不改行为）；",
+   "proposed": "  ⇒ **两者对舞台尺寸的指令不再互斥**：R269-1 起正文、Phase 0/3、`viewport-base.css` 与 `html-template.md` 已同批改为固定 1920×1080 舞台；**当前权威 = 固定舞台**（`bold-template-pack/deck-stage.js` 常量 `DESIGN_W_DEFAULT = 1920` / `DESIGN_H_DEFAULT = 1080`）。",
+   "why_same_batch": "这句是 r269 期间的权威指针；不翻它则代理按文件读到最后仍以 100vh 为准，S-01/S-03 会被该指针反压。",
+   "verified": {
+    "cmd": "grep -nF -e **迁移完成前以正文的 NON-NEGOTIABLE 规则为准** D:/global_skills/frontend-slides/SKILL.md",
+    "hits": [
+     191
+    ],
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "S-12",
+   "group": "G3-phase3",
+   "file": "D:/global_skills/frontend-slides/SKILL.md",
+   "rel": "SKILL.md",
+   "anchor": "该包的正式迁移（正文 Phase 0/3 与 CSS 引用须同批改）登记为 R268-1。",
+   "anchor_line": 192,
+   "anchor_grep_n": 1,
+   "op": "replace_line",
+   "span": [
+    192,
+    192
+   ],
+   "current": "  该包的正式迁移（正文 Phase 0/3 与 CSS 引用须同批改）登记为 R268-1。",
+   "proposed": "  正式迁移动作登记为 R269-1（本批已完成）。",
+   "why_same_batch": "登记号与状态必须和 S-10/S-11 同步，否则待办台账（memory/07-next-steps 的 R269-1）与正文状态不一致。",
+   "verified": {
+    "cmd": "grep -nF -e 该包的正式迁移（正文 Phase 0/3 与 CSS 引用须同批改）登记为 R268-1。 D:/global_skills/frontend-slides/SKILL.md",
+    "hits": [
+     192
+    ],
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "S-13",
+   "group": "G4-refs",
+   "file": "D:/global_skills/frontend-slides/SKILL.md",
+   "rel": "SKILL.md",
+   "anchor": "Mandatory responsive CSS — copy into every presentation",
+   "anchor_line": 326,
+   "anchor_grep_n": 1,
+   "op": "replace_line",
+   "span": [
+    326,
+    326
+   ],
+   "current": "| [viewport-base.css](viewport-base.css)             | Mandatory responsive CSS — copy into every presentation              | Phase 3 (generation)      |",
+   "proposed": "| [viewport-base.css](viewport-base.css)             | Mandatory base CSS (stage-scoped, fixed 1920×1080 since R269-1) — copy whole file | Phase 3 (generation) |",
+   "why_same_batch": "Supporting Files 表是「引用清单」的权威行；留着 responsive 描述等于给代理第二个旧范式入口。",
+   "verified": {
+    "cmd": "grep -nF -e Mandatory responsive CSS — copy into every presentation D:/global_skills/frontend-slides/SKILL.md",
+    "hits": [
+     326
+    ],
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "S-14",
+   "group": "G4-refs",
+   "file": "D:/global_skills/frontend-slides/SKILL.md",
+   "rel": "SKILL.md",
+   "anchor": "| [animation-patterns.md](animation-patterns.md)     | CSS/JS animation snippets and effect-to-feeling guide",
+   "anchor_line": 328,
+   "anchor_grep_n": 1,
+   "op": "insert_after_line",
+   "span": [
+    328,
+    328
+   ],
+   "current": "| [animation-patterns.md](animation-patterns.md)     | CSS/JS animation snippets and effect-to-feeling guide                | Phase 3 (generation)      |",
+   "proposed": "| [bold-template-pack/deck-stage.js](bold-template-pack/deck-stage.js) | Fixed 1920×1080 stage web component — inline into every deck | Phase 3 (generation) |",
+   "why_same_batch": "该表要显式点名平台实现件；否则 deck-stage.js 只在正文散句里出现，引用清单查不到（r268 的未引用面同族）。",
+   "verified": {
+    "cmd": "grep -nF -e | [animation-patterns.md](animation-patterns.md)     | CSS/JS animation snippets and effect-to-feeling guide D:/global_skills/frontend-slides/SKILL.md",
+    "hits": [
+     328
+    ],
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "S-15",
+   "group": "G4-refs",
+   "file": "D:/global_skills/frontend-slides/SKILL.md",
+   "rel": "SKILL.md",
+   "anchor": "- **1.3.0**（2026-10-27）— 修断链：补 上游 A 类（被本仓正文引用却缺件（真断链））1 件中的第 1/1 批",
+   "anchor_line": 339,
+   "anchor_grep_n": 1,
+   "op": "insert_before_line",
+   "span": [
+    339,
+    339
+   ],
+   "current": "- **1.3.0**（2026-10-27）— 修断链：补 上游 A 类（被本仓正文引用却缺件（真断链））1 件中的第 1/1 批，本批 1 件（3308 B）。",
+   "proposed": "- **1.4.0**（2026-10-29）— R269-1 范式正式迁移：Core Principle #4 / Phase 0 验收 / Phase 3 生成契约 + `viewport-base.css`（`.slide`、断点）+ `html-template.md`（stage wrapper）同批改为固定 1920×1080 舞台，与 `bold-template-pack` 及 `references/upstream-frontend-slides.md` 对齐。",
+   "why_same_batch": "版本史是本技能的自描述；不记这一笔则下次会话读不到范式已翻转。",
+   "verified": {
+    "cmd": "grep -nF -e - **1.3.0**（2026-10-27）— 修断链：补 上游 A 类（被本仓正文引用却缺件（真断链））1 件中的第 1/1 批 D:/global_skills/frontend-slides/SKILL.md",
+    "hits": [
+     339
+    ],
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "S-16",
+   "group": "G4-refs",
+   "file": "D:/global_skills/frontend-slides/SKILL.md",
+   "rel": "SKILL.md",
+   "anchor": "version: 1.3.0",
+   "anchor_line": 5,
+   "anchor_grep_n": 1,
+   "op": "replace_line",
+   "span": [
+    5,
+    5
+   ],
+   "current": "version: 1.3.0",
+   "proposed": "version: 1.4.0",
+   "why_same_batch": "frontmatter 版本与 S-15 的版本史必须一致，否则 r269 复核已抓过的那类「版本行/历史行不齐」缺陷重现。",
+   "verified": {
+    "cmd": "grep -nF -e version: 1.3.0 D:/global_skills/frontend-slides/SKILL.md",
+    "hits": [
+     5
+    ],
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "S-17",
+   "group": "G4-refs",
+   "file": "D:/global_skills/frontend-slides/SKILL.md",
+   "rel": "SKILL.md",
+   "anchor": "last_updated: 2026-10-27",
+   "anchor_line": 4,
+   "anchor_grep_n": 1,
+   "op": "replace_line",
+   "span": [
+    4,
+    4
+   ],
+   "current": "last_updated: 2026-10-27",
+   "proposed": "last_updated: 2026-10-29",
+   "why_same_batch": "同 S-16，frontmatter 时间戳须随改动前进。",
+   "verified": {
+    "cmd": "grep -nF -e last_updated: 2026-10-27 D:/global_skills/frontend-slides/SKILL.md",
+    "hits": [
+     4
+    ],
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "V-01",
+   "group": "G5-css",
+   "file": "D:/global_skills/frontend-slides/viewport-base.css",
+   "rel": "viewport-base.css",
+   "anchor": "    width: 100vw;",
+   "anchor_line": 20,
+   "anchor_grep_n": 1,
+   "op": "replace_line",
+   "span": [
+    20,
+    20
+   ],
+   "current": "    width: 100vw;",
+   "proposed": "    width: 1920px; /* R269-1: fixed stage canvas — scaled by deck-stage.js, not by the viewport */",
+   "why_same_batch": "viewport-base.css 被正文要求全文内联（S-07/S-09 保留此要求）；其 `.slide` 规则不改则每份生成物的 .slide 仍是 100vw，stage 包裹形同虚设。",
+   "verified": {
+    "cmd": "grep -nF -e     width: 100vw; D:/global_skills/frontend-slides/viewport-base.css",
+    "hits": [
+     20
+    ],
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "V-02",
+   "group": "G5-css",
+   "file": "D:/global_skills/frontend-slides/viewport-base.css",
+   "rel": "viewport-base.css",
+   "anchor": "    height: 100vh;",
+   "anchor_line": 21,
+   "anchor_grep_n": 1,
+   "op": "replace_line",
+   "span": [
+    21,
+    21
+   ],
+   "current": "    height: 100vh;",
+   "proposed": "    height: 1080px; /* R269-1: fixed stage height */",
+   "why_same_batch": "同 V-01；这一行是「100vh 必守」在 CSS 层的落点，与 deck-stage.js 的 1080 常量互斥。",
+   "verified": {
+    "cmd": "grep -nF -e     height: 100vh; D:/global_skills/frontend-slides/viewport-base.css",
+    "hits": [
+     21
+    ],
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "V-03",
+   "group": "G5-css",
+   "file": "D:/global_skills/frontend-slides/viewport-base.css",
+   "rel": "viewport-base.css",
+   "anchor": "    height: 100dvh; /* Dynamic viewport height for mobile browsers */",
+   "anchor_line": 22,
+   "anchor_grep_n": 1,
+   "op": "replace_line",
+   "span": [
+    22,
+    22
+   ],
+   "current": "    height: 100dvh; /* Dynamic viewport height for mobile browsers */",
+   "proposed": "    /* R269-1: dvh sizing removed — the stage is scaled by transform, so mobile height changes must not resize slides */",
+   "why_same_batch": "dvh 是为了视口自适应；固定舞台恰恰相反，保留它会让手机地址栏伸缩时画布变形。",
+   "verified": {
+    "cmd": "grep -nF -e     height: 100dvh; /* Dynamic viewport height for mobile browsers */ D:/global_skills/frontend-slides/viewport-base.css",
+    "hits": [
+     22
+    ],
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "V-04",
+   "group": "G5-css",
+   "file": "D:/global_skills/frontend-slides/viewport-base.css",
+   "rel": "viewport-base.css",
+   "anchor": "/* 2. Each slide = exact viewport height */",
+   "anchor_line": 18,
+   "anchor_grep_n": 1,
+   "op": "replace_line",
+   "span": [
+    18,
+    18
+   ],
+   "current": "/* 2. Each slide = exact viewport height */",
+   "proposed": "/* 2. Each slide = fixed 1920×1080 stage canvas (whole stage scaled by deck-stage.js) */",
+   "why_same_batch": "注释是这份 CSS 被代理部分读时的语义入口；不改则同行代码改了、说明仍在讲 viewport。",
+   "verified": {
+    "cmd": "grep -nF -e /* 2. Each slide = exact viewport height */ D:/global_skills/frontend-slides/viewport-base.css",
+    "hits": [
+     18
+    ],
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "V-05",
+   "group": "G5-css",
+   "file": "D:/global_skills/frontend-slides/viewport-base.css",
+   "rel": "viewport-base.css",
+   "anchor": "   RESPONSIVE BREAKPOINTS",
+   "anchor_line": 89,
+   "anchor_grep_n": 1,
+   "op": "replace_block_lines_88_138",
+   "span": [
+    88,
+    138
+   ],
+   "current": "/* ===========================================\n   RESPONSIVE BREAKPOINTS\n   Aggressive scaling for smaller viewports\n   =========================================== */\n\n/* Short viewports (< 700px height) */\n@media (max-height: 700px) {\n    :root {\n        --slide-padding: clamp(0.75rem, 3vw, 2rem);\n        --content-gap: clamp(0.4rem, 1.5vw, 1rem);\n        --title-size: clamp(1.25rem, 4.5vw, 2.5rem);\n        --h2-size: clamp(1rem, 3vw, 1.75rem);\n    }\n}\n\n/* Very short viewports (< 600px height) */\n@media (max-height: 600px) {\n    :root {\n        --slide-padding: clamp(0.5rem, 2.5vw, 1.5rem);\n        --content-gap: clamp(0.3rem, 1vw, 0.75rem);\n        --title-size: clamp(1.1rem, 4vw, 2rem);\n        --body-size: clamp(0.7rem, 1.2vw, 0.95rem);\n    }\n\n    /* Hide non-essential elements */\n    .nav-dots, .keyboard-hint, .decorative {\n        display: none;\n    }\n}\n\n/* Extremely short (landscape phones, < 500px height) */\n@media (max-height: 500px) {\n    :root {\n        --slide-padding: clamp(0.4rem, 2vw, 1rem);\n        --title-size: clamp(1rem, 3.5vw, 1.5rem);\n        --h2-size: clamp(0.9rem, 2.5vw, 1.25rem);\n        --body-size: clamp(0.65rem, 1vw, 0.85rem);\n    }\n}\n\n/* Narrow viewports (< 600px width) */\n@media (max-width: 600px) {\n    :root {\n        --title-size: clamp(1.25rem, 7vw, 2.5rem);\n    }\n\n    /* Stack grids vertically */\n    .grid {\n        grid-template-columns: 1fr;\n    }\n}",
+   "proposed": "/* ===========================================\n   STAGE SCALE (R269-1)\n   No viewport reflow. The fixed 1920x1080 stage letterboxes or\n   pillarboxes instead of scaling type or stacking grids, so the\n   height/width media-query block was removed here.\n   Paging is owned by bold-template-pack/deck-stage.js.\n   =========================================== */",
+   "why_same_batch": "整块断点（88-138 行）就是 S-06 禁止的重排机制，且与 deck-stage 的整体缩放互斥；保留它则同一份 CSS 内自带两条互相打架的适配策略。",
+   "verified": {
+    "cmd": "grep -nF -e    RESPONSIVE BREAKPOINTS D:/global_skills/frontend-slides/viewport-base.css",
+    "hits": [
+     89
+    ],
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "V-06",
+   "group": "G5-css",
+   "file": "D:/global_skills/frontend-slides/viewport-base.css",
+   "rel": "viewport-base.css",
+   "anchor": "/* 4. ALL typography uses clamp() for responsive scaling */",
+   "anchor_line": 41,
+   "anchor_grep_n": 1,
+   "op": "replace_line",
+   "span": [
+    41,
+    41
+   ],
+   "current": "/* 4. ALL typography uses clamp() for responsive scaling */",
+   "proposed": "/* 4. Authoring tokens for the 1920×1080 draft. clamp() here is a design-proportion source (see bold-template-pack/README.md:70-71), NOT a live responsive rule. */",
+   "why_same_batch": "否则 V-01/V-02 把画布改固定、第 4 段又把字号改回视口驱动，生成物在手机上仍会重排。",
+   "verified": {
+    "cmd": "grep -nF -e /* 4. ALL typography uses clamp() for responsive scaling */ D:/global_skills/frontend-slides/viewport-base.css",
+    "hits": [
+     41
+    ],
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "V-07",
+   "group": "G5-css",
+   "file": "D:/global_skills/frontend-slides/viewport-base.css",
+   "rel": "viewport-base.css",
+   "anchor": "    max-width: min(90vw, 1000px);",
+   "anchor_line": 60,
+   "anchor_grep_n": 1,
+   "op": "replace_line",
+   "span": [
+    60,
+    60
+   ],
+   "current": "    max-width: min(90vw, 1000px);",
+   "proposed": "    max-width: 1728px; /* R269-1: 90% of the 1920 stage */",
+   "why_same_batch": "容器上限若继续用 vw，则固定舞台下卡片宽度随浏览器窗口变，与「绝不重排」互斥。",
+   "verified": {
+    "cmd": "grep -nF -e     max-width: min(90vw, 1000px); D:/global_skills/frontend-slides/viewport-base.css",
+    "hits": [
+     60
+    ],
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "V-08",
+   "group": "G5-css",
+   "file": "D:/global_skills/frontend-slides/viewport-base.css",
+   "rel": "viewport-base.css",
+   "anchor": "    max-height: min(80vh, 700px);",
+   "anchor_line": 61,
+   "anchor_grep_n": 1,
+   "op": "replace_line",
+   "span": [
+    61,
+    61
+   ],
+   "current": "    max-height: min(80vh, 700px);",
+   "proposed": "    max-height: 864px; /* R269-1: 80% of the 1080 stage */",
+   "why_same_batch": "同 V-07；vh 在 stage 内指向浏览器视口而非画布，是旧范式残留。",
+   "verified": {
+    "cmd": "grep -nF -e     max-height: min(80vh, 700px); D:/global_skills/frontend-slides/viewport-base.css",
+    "hits": [
+     61
+    ],
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "V-09",
+   "group": "G5-css",
+   "file": "D:/global_skills/frontend-slides/viewport-base.css",
+   "rel": "viewport-base.css",
+   "anchor": "    max-height: min(50vh, 400px);",
+   "anchor_line": 84,
+   "anchor_grep_n": 1,
+   "op": "replace_line",
+   "span": [
+    84,
+    84
+   ],
+   "current": "    max-height: min(50vh, 400px);",
+   "proposed": "    max-height: 540px; /* R269-1: 50% of the 1080 stage (mirrors SKILL.md image rule) */",
+   "why_same_batch": "与 S-05 是同一规则的两处落点，必须同批，否则正文说 540px、内联 CSS 说 50vh。",
+   "verified": {
+    "cmd": "grep -nF -e     max-height: min(50vh, 400px); D:/global_skills/frontend-slides/viewport-base.css",
+    "hits": [
+     84
+    ],
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "V-10",
+   "group": "G5-css",
+   "file": "D:/global_skills/frontend-slides/viewport-base.css",
+   "rel": "viewport-base.css",
+   "anchor": "    scroll-snap-type: y mandatory;",
+   "anchor_line": 14,
+   "anchor_grep_n": 1,
+   "op": "replace_line",
+   "span": [
+    14,
+    14
+   ],
+   "current": "    scroll-snap-type: y mandatory;",
+   "proposed": "    /* R269-1: scroll-snap removed. Fixed-stage decks are paged by bold-template-pack/deck-stage.js (.active/.visible), not by document scroll. */",
+   "why_same_batch": "deck-stage 自持翻页；保留 scroll-snap 会出现「滚一次跳两页」并与 references/upstream-frontend-slides.md:13 的「禁用 display 切页、用 active/visible」策略叠加冲突。",
+   "verified": {
+    "cmd": "grep -nF -e     scroll-snap-type: y mandatory; D:/global_skills/frontend-slides/viewport-base.css",
+    "hits": [
+     14
+    ],
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "H-01",
+   "group": "G6-template",
+   "file": "D:/global_skills/frontend-slides/html-template.md",
+   "rel": "html-template.md",
+   "anchor": "/* --- PASTE viewport-base.css CONTENTS HERE --- */",
+   "anchor_line": 57,
+   "anchor_grep_n": 1,
+   "op": "replace_line",
+   "span": [
+    57,
+    57
+   ],
+   "current": "      /* --- PASTE viewport-base.css CONTENTS HERE --- */",
+   "proposed": "/* --- PASTE viewport-base.css CONTENTS HERE (R269-1: the file is stage-scoped: .slide is 1920×1080, no reflow) --- */",
+   "why_same_batch": "模板模板是 Phase 3 的复制源；注释不点出 stage 语义，生成者不会意识到粘贴进来的 .slide 已是固定画布。",
+   "verified": {
+    "cmd": "grep -nF -e /* --- PASTE viewport-base.css CONTENTS HERE --- */ D:/global_skills/frontend-slides/html-template.md",
+    "hits": [
+     57
+    ],
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "H-02",
+   "group": "G6-template",
+   "file": "D:/global_skills/frontend-slides/html-template.md",
+   "rel": "html-template.md",
+   "anchor": "    <section class=\"slide title-slide\">",
+   "anchor_line": 101,
+   "anchor_grep_n": 1,
+   "op": "replace_line",
+   "span": [
+    101,
+    101
+   ],
+   "current": "    <section class=\"slide title-slide\">",
+   "proposed": "    <!-- R269-1: every slide lives inside the fixed stage; the whole stage is scaled to the viewport -->\n  <deck-stage width=\"1920\" height=\"1080\">\n    <section class=\"slide title-slide\">",
+   "why_same_batch": "模板若不给 deck-stage 包裹，模板输出的 HTML 与 S-09 要求不一致，且 deck-stage.js 根本没有挂载点。",
+   "verified": {
+    "cmd": "grep -nF -e     <section class=\"slide title-slide\"> D:/global_skills/frontend-slides/html-template.md",
+    "hits": [
+     101
+    ],
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "H-03",
+   "group": "G6-template",
+   "file": "D:/global_skills/frontend-slides/html-template.md",
+   "rel": "html-template.md",
+   "anchor": "    <script>",
+   "anchor_line": 115,
+   "anchor_grep_n": 1,
+   "op": "replace_line",
+   "span": [
+    115,
+    115
+   ],
+   "current": "    <script>",
+   "proposed": "  </deck-stage>\n\n    <script>",
+   "why_same_batch": "与 H-02 成对；不闭合则 deck-stage 把后续 script/UI 一并吃掉，页面结构错乱。",
+   "verified": {
+    "cmd": "grep -nF -e     <script> D:/global_skills/frontend-slides/html-template.md",
+    "hits": [
+     115
+    ],
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "H-04",
+   "group": "G6-template",
+   "file": "D:/global_skills/frontend-slides/html-template.md",
+   "rel": "html-template.md",
+   "anchor": "          this.slides = document.querySelectorAll(\".slide\");",
+   "anchor_line": 121,
+   "anchor_grep_n": 1,
+   "op": "replace_line",
+   "span": [
+    121,
+    121
+   ],
+   "current": "          this.slides = document.querySelectorAll(\".slide\");",
+   "proposed": "          // R269-1: slides stay in light DOM inside <deck-stage>; this selector still works,\n          // but deck-stage.js owns paging when no custom controller is used.\n          this.slides = document.querySelectorAll(\".slide\");",
+   "why_same_batch": "模板自带控制器与 deck-stage 自带翻页会同时响应键盘；注释必须在同批说明分工，否则「双翻页」成为迁移后的第一号行为缺陷。",
+   "verified": {
+    "cmd": "grep -nF -e           this.slides = document.querySelectorAll(\".slide\"); D:/global_skills/frontend-slides/html-template.md",
+    "hits": [
+     121
+    ],
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "U-01",
+   "group": "G7-upstream",
+   "file": "D:/global_skills/frontend-slides/references/upstream-frontend-slides.md",
+   "rel": "references/upstream-frontend-slides.md",
+   "anchor": "- **每个演示都要内联 `viewport-base.css` 全文**。",
+   "anchor_line": 14,
+   "anchor_grep_n": 1,
+   "op": "replace_line",
+   "span": [
+    14,
+    14
+   ],
+   "current": "- **每个演示都要内联 `viewport-base.css` 全文**。",
+   "proposed": "- **每个演示都要内联 `viewport-base.css` 全文**（R269-1 起该文件已 stage-scoped；固定 1920×1080 舞台与整体缩放由 `bold-template-pack/deck-stage.js` 提供）。",
+   "why_same_batch": "上游增量是本技能正文明确要「一并读取」的分卷（SKILL.md:335）；不在此同步舞台实现件，两卷对同一件事就有两套说法。",
+   "verified": {
+    "cmd": "grep -nF -e - **每个演示都要内联 `viewport-base.css` 全文**。 D:/global_skills/frontend-slides/references/upstream-frontend-slides.md",
+    "hits": [
+     14
+    ],
+    "verdict": "PASS"
+   }
+  }
+ ],
+ "groups": [
+  "G1-body-core",
+  "G2-phase0",
+  "G3-phase3",
+  "G4-refs",
+  "G5-css",
+  "G6-template",
+  "G7-upstream"
+ ],
+ "non_edits": [
+  {
+   "file": "D:/global_skills/frontend-slides/SKILL.md",
+   "line": 185,
+   "text": "- [viewport-base.css](viewport-base.css) — Mandatory CSS (include in full)",
+   "decision": "KEEP",
+   "why": "包 README:66 同样要求内联 viewport-base.css 全文，B 侧不改这条要求，只改该 CSS 文件自身的内容（V-01..V-10）。"
+  },
+  {
+   "file": "D:/global_skills/frontend-slides/SKILL.md",
+   "line": 49,
+   "text": "- Never negate CSS functions directly (...) — use calc(-1 * clamp(...))",
+   "decision": "KEEP",
+   "why": "是 CSS 语法陷阱，与舞台范式无关。"
+  },
+  {
+   "file": "D:/global_skills/frontend-slides/SKILL.md",
+   "line": 48,
+   "text": "- Include `prefers-reduced-motion` support",
+   "decision": "KEEP",
+   "why": "无障碍要求，两范式都适用。"
+  },
+  {
+   "file": "D:/global_skills/frontend-slides/SKILL.md",
+   "line": 293,
+   "text": "- A headless browser opens the presentation at 1920×1080 (standard widescreen)",
+   "decision": "KEEP",
+   "why": "导出链本已按 1920×1080 工作，与 B 一致（不再需要改）。"
+  },
+  {
+   "file": "D:/global_skills/frontend-slides/bold-template-pack/README.md",
+   "line": 66,
+   "text": "- Include the full contents of `viewport-base.css`.",
+   "decision": "KEEP",
+   "why": "包是本轮权威侧，保持逐字不动是可回滚与可审计的前提（也避免把迁移混成「改包+改正文」双面改动）。"
+  },
+  {
+   "file": "D:/global_skills/frontend-slides/references/upstream-frontend-slides.md",
+   "line": 11,
+   "text": "- **不要用响应式断点**为手机重排幻灯片内容；",
+   "decision": "KEEP",
+   "why": "已与 B 一致，无需改。"
+  }
+ ],
+ "risks": [
+  {
+   "id": "K-01",
+   "risk": "生成物形态变化：新生成 deck 在手机/小窗不再重排，改为整台等比缩小 + 留黑边（letterbox/pillarbox）",
+   "impact": "手机端单行文字实际渲染尺寸可能小于旧版 fluid（旧版在小屏是重排而非缩小）",
+   "mitigation": "这是包 Implementation Contract 的显式要求（README:67-69）；如某场 deck 必须重排，应在 Phase 1 与用户确认后追加 .viewport-fluid 覆盖块，而不是回退 baseline",
+   "sev": "MEDIUM",
+   "rollback": "按 hunk 回退本批 32 处 edit，或 rule_editor undo 最近一次提交"
+  },
+  {
+   "id": "K-02",
+   "risk": "viewport-base.css 是共享底座：STYLE_PRESETS 的 12 套非包路径也改用固定舞台（V-01/V-02 直接改 .slide）",
+   "impact": "老用户拿新模板生成的 deck 与既有已生成 HTML 外观不一致（既有 HTML 内联的是旧副本，不受影响）",
+   "mitigation": "已在 authority_choice.residual_caveat 写清：这是既定行为改变；仅影响此后新生成物",
+   "sev": "MEDIUM",
+   "rollback": "同 K-01；也可只回退 V-01..V-10 而保留正文声明（但会造成正文与内联 CSS 再次自相矛盾，不建议）"
+  },
+  {
+   "id": "K-03",
+   "risk": "V-05 删除 88-138 行的 3 组 max-height 断点 + max-width:600px 网格堆叠",
+   "impact": "极矮/极窄视口下不再隐藏 nav-dots/keyboard-hint、不再把 .grid 堆成单列；改由整体缩放覆盖可读性",
+   "mitigation": "deck-stage 的整体缩放在这些视口下等价于「等比变小」，属于包既定策略；若要保留移动端向导隐藏，应改为按 stage 缩放因子触发而非视口断点",
+   "sev": "LOW",
+   "rollback": "按 hunk 还原 88-138 行（现文已在 edits[V-05].current 里逐字留存）"
+  },
+  {
+   "id": "K-04",
+   "risk": "双翻页：html-template.md 自带 SlidePresentation 控制器（模板 :121 查询 .slide）与 deck-stage.js 自带 paging/tapzones 同时响应",
+   "impact": "方向键/触摸可能一次跳两页；进度条与 deck-stage 内部页号不同步",
+   "mitigation": "H-04 注释在同批写明分工；render 验证项 V5 明确要求用真实键盘事件跑一页→一页；Phase 3 应二选一（用 deck-stage 内部 paging 时不实例化模板控制器）",
+   "sev": "HIGH",
+   "rollback": "只回退 H-02/H-03（去掉 wrapper）或 H-04（保留注释分流）"
+  },
+  {
+   "id": "K-05",
+   "risk": "导出链交互：export-pdf.sh:209/230/267 以 document.querySelectorAll('.slide') 取页；deck-stage 用 <slot>，slide 仍在 light DOM（实测 deck-stage.js:341 仅把 slot 放进 shadow canvas），选择器仍能命中；但导出脚本按文档滚动逐页截屏，而 deck-stage 是内部翻页",
+   "impact": "PDF 可能只截到第一页或重复同一页",
+   "mitigation": "verify V6 要求实跑一次 export-pdf，逐页比对页数；若失败，改导出脚本改用 deck-stage 的 API/事件（scripts/ 改动不在本批，另立）",
+   "sev": "HIGH",
+   "rollback": "回退 HTML wrapper 即可恢复旧导出路径"
+  },
+  {
+   "id": "K-06",
+   "risk": "SKILL.md 只是文档，本批不改任何运行时逻辑；生成物质量取决于代理是否照新正文执行",
+   "impact": "本批自身不产生 HTML，无运行时回归；但若只落 md 不改 SKILL.md（本任务禁止），行为不变",
+   "mitigation": "交付判据 V1-V4 以 grep/复算为主，行为变化由 K-01/K-04 的 render 判据覆盖",
+   "sev": "LOW",
+   "rollback": "不适用（本任务只读）"
+  }
+ ],
+ "verify": [
+  {
+   "id": "V0",
+   "claim": "锚点校验脚本有牙（负向对照）",
+   "cmd": "python 05-exec/r271_anchor_check.py 05-exec/r271_edits_spec_negctrl.json _temp/r271_anchor_hits_negctrl.json FAIL",
+   "expect_last_line": "TOTAL checked=33 fails=1 verdict=FAIL expect=FAIL",
+   "status": "✅已实测 exit=0（NEG-01 hits=[]）"
+  },
+  {
+   "id": "V1",
+   "claim": "32 条锚点逐条 grep 命中且行号唯一",
+   "cmd": "python 05-exec/r271_anchor_check.py 05-exec/r271_edits_spec.json _temp/r271_anchor_hits.json PASS",
+   "expect_last_line": "TOTAL checked=32 fails=0 verdict=PASS expect=PASS",
+   "status": "✅已实测 exit=0"
+  },
+  {
+   "id": "V2",
+   "claim": "改后正文不再把 100vh 当规则、且在盘包被正文点名",
+   "cmd": "grep -nF \"100vh\" D:/global_skills/frontend-slides/SKILL.md; grep -cF \"bold-template-pack\" D:/global_skills/frontend-slides/SKILL.md",
+   "expect_last_line": "100vh 仅剩 1 处（历史注释 Note 行）；bold-template-pack 计数 >=3（baseline 1）",
+   "status": "⚠️未实测（迁移前）"
+  },
+  {
+   "id": "V3",
+   "claim": "改后 viewport-base.css 无 viewport 尺寸残留",
+   "cmd": "grep -nF -e \"100dvh\" -e \"min(50vh\" -e \"min(80vh\" -e \"min(90vw\" -e \"RESPONSIVE BREAKPOINTS\" D:/global_skills/frontend-slides/viewport-base.css",
+   "expect_last_line": "无输出（exit=1）",
+   "status": "⚠️未实测（迁移前）"
+  },
+  {
+   "id": "V4",
+   "claim": "本仓 r268 未引用在盘件面复算（同口径同命令）",
+   "cmd": "python 05-exec/r268_unreferenced_siblings.py --json _temp/r271_r268_after.json && python -c \"import json;r=[x for x in json.load(open('_temp/r271_r268_after.json',encoding='utf-8'))['rows'] if x['slug']=='frontend-slides'][0];print(r['unreferenced_n'],r['unreferenced'],r['unreferenced_strict_n'])\"",
+   "expect_last_line": "1 ['meta.json'] 69（常规档保持 1；strict 69 不变，本迁移不主张改善该面）",
+   "status": "✅迁移前 baseline 已实测：1 ['meta.json'] 69"
+  },
+  {
+   "id": "V5",
+   "claim": "模板 wrapper 成对 + 组件常量正确",
+   "cmd": "grep -c \"<deck-stage\" D:/global_skills/frontend-slides/html-template.md; grep -c \"</deck-stage>\" D:/global_skills/frontend-slides/html-template.md; grep -n \"DESIGN_W_DEFAULT\\|DESIGN_H_DEFAULT\" D:/global_skills/frontend-slides/bold-template-pack/deck-stage.js",
+   "expect_last_line": "1 / 1 / 53:const DESIGN_W_DEFAULT = 1920; 54:const DESIGN_H_DEFAULT = 1080;",
+   "status": "⚠️部分实测（组件常量 ✅；wrapper 未改前为 0/0）"
+  },
+  {
+   "id": "V6",
+   "claim": "渲染/导出行为（可读性 + 单页翻页 + 导出页数）",
+   "cmd": "bash scripts/export-pdf.sh <fixture.html> /tmp/r271.pdf && grep -c \"/Type /Page\" /tmp/r271.pdf",
+   "expect_last_line": "页数 == fixture 的 .slide 数（并另跑一次键盘事件：一按一键只前进一页）",
+   "status": "❌未实测（需 Playwright；本任务禁跑生成式流程且无 fixture）"
+  }
+ ],
+ "evidence_cmd": {
+  "anchor_validation_positive": "python 05-exec/r271_anchor_check.py 05-exec/r271_edits_spec.json _temp/r271_anchor_hits.json PASS",
+  "anchor_validation_negative": "python 05-exec/r271_anchor_check.py 05-exec/r271_edits_spec_negctrl.json _temp/r271_anchor_hits_negctrl.json FAIL",
+  "authority_evidence": "grep -rl \"fixed 1920×1080 stage\" 'D:/global_skills/frontend-slides/bold-template-pack/templates' --include=design.md | wc -l  # 34 ; grep -n \"DESIGN_W_DEFAULT\\|DESIGN_H_DEFAULT\" D:/global_skills/frontend-slides/bold-template-pack/deck-stage.js ; sed -n '38,39p' D:/global_skills/frontend-slides/scripts/export-pdf.sh ; sed -n '9,14p' D:/global_skills/frontend-slides/references/upstream-frontend-slides.md",
+  "r268_face": "cd 自建skill优化; python 05-exec/r268_unreferenced_siblings.py --json _temp/r271_r268_after.json  (writes 自建skill优化/_temp/; baseline copy also at skill焚诀/_temp/r271_r268_recheck_before.json)"
+ }
+}
