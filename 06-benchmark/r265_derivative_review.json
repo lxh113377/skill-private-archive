@@ -1,0 +1,1551 @@
+{
+ "schema": "derivative-review-v1",
+ "generated_at": "2026-10-29T17:20:06",
+ "provenance_cmd": "export PYTHONPYCACHEPREFIX=/tmp/pycache_r266 && python _temp/r266_derivative_review.py",
+ "face_in": "06-benchmark/r265_follow_version_feasibility.json (relationship=LOCAL_DERIVATIVE_REVIEW)",
+ "rule": "只覆盖同名文件、不镜像目录；本件只产「哪些上游段落值得并入」候选清单，不改受管根",
+ "targets_n": 3,
+ "rows_ok_n": 3,
+ "rows_unverified_n": 0,
+ "upstream_dir": "_temp/r265_follow_all",
+ "rows": [
+  {
+   "slug": "frontend-slides",
+   "upstream_repo": "zarazhangrui/frontend-slides",
+   "upstream_ref": "v2.1.0",
+   "upstream_path": "_temp/r265_follow_all/frontend-slides/SKILL.md",
+   "local_path": "D:/global_skills/frontend-slides/SKILL.md",
+   "local_bytes": 20574,
+   "upstream_bytes": 28187,
+   "local_lines": 225,
+   "upstream_lines": 260,
+   "upstream_lines_in_local_pct": 62.8,
+   "upstream_only_n": 92,
+   "local_only_n": 57,
+   "r265_reproduced": true,
+   "sections": [
+    {
+     "heading": "(frontmatter)",
+     "upstream_line_span": [
+      1,
+      4
+     ],
+     "upstream_lines": 4,
+     "exact_matched_lines": 4,
+     "exact_match_pct": 100.0,
+     "upstream_only_lines": 0,
+     "sibling_exact_line_hits": 0,
+     "heading_in_local": false,
+     "local_counterpart": {
+      "heading": "(frontmatter)",
+      "line_span": [
+       1,
+       6
+      ],
+      "lines": 6,
+      "matched_by": "pseudo_frontmatter",
+      "structure": {
+       "table_rows": 0,
+       "bullets": 0,
+       "fences": 0,
+       "ordered": 0
+      }
+     },
+     "structure_parity": true,
+     "sibling_headings": [],
+     "coverage_basis": "EXACT_IDENTICAL",
+     "why_not_overwrite": "上游本段 4 行在本地逐字命中（100%），本地已是同文",
+     "worth_merging": false,
+     "merge_priority": null,
+     "merge_reason": "无增量：字面已完全一致",
+     "unverified": false,
+     "judgment_source": "auto_exact"
+    },
+    {
+     "heading": "Frontend Slides",
+     "upstream_line_span": [
+      6,
+      9
+     ],
+     "upstream_lines": 1,
+     "exact_matched_lines": 1,
+     "exact_match_pct": 100.0,
+     "upstream_only_lines": 0,
+     "sibling_exact_line_hits": 0,
+     "heading_in_local": true,
+     "local_counterpart": {
+      "heading": "Frontend Slides",
+      "line_span": [
+       8,
+       11
+      ],
+      "lines": 2,
+      "matched_by": "heading",
+      "structure": {
+       "table_rows": 0,
+       "bullets": 0,
+       "fences": 0,
+       "ordered": 0
+      }
+     },
+     "structure_parity": true,
+     "sibling_headings": [
+      {
+       "heading": "Frontend Slides",
+       "file": "README.md",
+       "line": 1
+      }
+     ],
+     "coverage_basis": "EXACT_IDENTICAL",
+     "why_not_overwrite": "上游本段 1 行在本地逐字命中（100%），本地已是同文",
+     "worth_merging": false,
+     "merge_priority": null,
+     "merge_reason": "无增量：字面已完全一致",
+     "unverified": false,
+     "judgment_source": "auto_exact"
+    },
+    {
+     "heading": "Core Principles",
+     "upstream_line_span": [
+      10,
+      17
+     ],
+     "upstream_lines": 5,
+     "exact_matched_lines": 3,
+     "exact_match_pct": 60.0,
+     "upstream_only_lines": 2,
+     "sibling_exact_line_hits": 0,
+     "heading_in_local": true,
+     "local_counterpart": {
+      "heading": "Core Principles",
+      "line_span": [
+       12,
+       18
+      ],
+      "lines": 5,
+      "matched_by": "heading",
+      "structure": {
+       "table_rows": 0,
+       "bullets": 0,
+       "fences": 0,
+       "ordered": 4
+      }
+     },
+     "structure_parity": false,
+     "sibling_headings": [],
+     "coverage_basis": "PARTIAL_PLUS_PARADIGM_SPLIT",
+     "why_not_overwrite": "本地 5 行里 3 行逐字命中（60%）；第 4 条本地是 Viewport Fitting（100vh + clamp，NON-NEGOTIABLE），是本地 Phase 0/3/5 与 viewport-base.css 的锚。上游把它换成第 4 条 Progressive Disclosure + 第 5 条 Fixed 16:9 Stage：前一条不涉范式、后一条是范式换代。整段照抄会把本地 CSS（.slide{height:100vh}）与新原则拆成互相矛盾的两套。",
+     "worth_merging": true,
+     "merge_priority": "HIGH",
+     "merge_reason": "只并入上游第 4 条 Progressive Disclosure（先读轻量索引、用户选定后才读 design.md）——本地 0 命中，且本地已落 34 个 bold 模板（selection-index.json 39202 B）正是靠它控成本。第 5 条 Fixed 16:9 与本地第 4 条冲突，移入 Fixed Stage Rules 候选统一裁定，本段不重复。",
+     "unverified": null,
+     "judgment_source": "human",
+     "evidence": [
+      "D:/global_skills/frontend-slides/SKILL.md:12-17（本地 4 条原则）",
+      "自建skill优化/_temp/r265_follow_all/frontend-slides/SKILL.md:10-16（上游 5 条原则）",
+      "D:/global_skills/frontend-slides/viewport-base.css:1-24（.slide{height:100vh}）"
+     ],
+     "assertions_ok": true
+    },
+    {
+     "heading": "Design Aesthetics",
+     "upstream_line_span": [
+      18,
+      37
+     ],
+     "upstream_lines": 12,
+     "exact_matched_lines": 12,
+     "exact_match_pct": 100.0,
+     "upstream_only_lines": 0,
+     "sibling_exact_line_hits": 0,
+     "heading_in_local": true,
+     "local_counterpart": {
+      "heading": "Design Aesthetics",
+      "line_span": [
+       19,
+       38
+      ],
+      "lines": 13,
+      "matched_by": "heading",
+      "structure": {
+       "table_rows": 0,
+       "bullets": 8,
+       "fences": 0,
+       "ordered": 0
+      }
+     },
+     "structure_parity": true,
+     "sibling_headings": [],
+     "coverage_basis": "EXACT_IDENTICAL",
+     "why_not_overwrite": "上游本段 12 行在本地逐字命中（100%），本地已是同文",
+     "worth_merging": false,
+     "merge_priority": null,
+     "merge_reason": "无增量：字面已完全一致",
+     "unverified": false,
+     "judgment_source": "auto_exact"
+    },
+    {
+     "heading": "Fixed Stage Rules",
+     "upstream_line_span": [
+      38,
+      53
+     ],
+     "upstream_lines": 11,
+     "exact_matched_lines": 4,
+     "exact_match_pct": 36.4,
+     "upstream_only_lines": 7,
+     "sibling_exact_line_hits": 0,
+     "heading_in_local": false,
+     "local_counterpart": {
+      "heading": "Viewport Fitting Rules",
+      "line_span": [
+       39,
+       52
+      ],
+      "lines": 10,
+      "matched_by": "line_overlap",
+      "structure": {
+       "table_rows": 0,
+       "bullets": 7,
+       "fences": 0,
+       "ordered": 0
+      }
+     },
+     "structure_parity": false,
+     "sibling_headings": [
+      {
+       "heading": "Fixed Stage Rules（固定舞台不变量 · 每页每场必守）",
+       "file": "references/upstream-frontend-slides.md",
+       "line": 6
+      }
+     ],
+     "coverage_basis": "PARADIGM_SHIFT_PARTIAL_DIGEST",
+     "why_not_overwrite": "本地没有同名段，但有完整的另一范式段 Viewport Fitting Rules（9 条 + 内容密度表），不是弱的同段；上游本段（11 行）要求固定 1920×1080 舞台、等比缩放、禁响应式断点。直接覆盖会当场打穿三处本地事实：Phase 0 Mode C 第 4 条「content fits at 1280x720」、Phase 3 要求 clamp()、viewport-base.css 的 100vh。",
+     "worth_merging": true,
+     "merge_priority": "HIGH",
+     "merge_reason": "值得并入，但必须与三处连改一起做（Phase 0 Mode C / Phase 3 / viewport-base.css 引用），故标 requires_decision。理由是树内已有新范式的实物：bold-template-pack/deck-stage.js 实测实现 fixed 1920×1080 等比缩放，bold-template-pack/README.md 第 67-69 行明文要求「Generate every deck as a fixed 1920×1080 stage」。SKILL.md 正文是唯一还停在旧范式的层 ⇒ 现状是树内自相矛盾，不是「本地更强」。",
+     "unverified": null,
+     "judgment_source": "human",
+     "evidence": [
+      "D:/global_skills/frontend-slides/bold-template-pack/deck-stage.js:1-20（auto-scaling fixed design size default 1920×1080）",
+      "D:/global_skills/frontend-slides/bold-template-pack/README.md:63-77（fixed 1920×1080 stage 实现契约）",
+      "D:/global_skills/frontend-slides/references/upstream-frontend-slides.md:6-14（旧轮次译写的 8 条摘要，非全量）",
+      "D:/global_skills/frontend-slides/SKILL.md:39-51（本地 Viewport Fitting Rules）"
+     ],
+     "assertions_ok": true
+    },
+    {
+     "heading": "Content Density Modes",
+     "upstream_line_span": [
+      54,
+      66
+     ],
+     "upstream_lines": 7,
+     "exact_matched_lines": 1,
+     "exact_match_pct": 14.3,
+     "upstream_only_lines": 6,
+     "sibling_exact_line_hits": 0,
+     "heading_in_local": false,
+     "local_counterpart": null,
+     "structure_parity": null,
+     "sibling_headings": [
+      {
+       "heading": "Content Density Modes（内容密度模式）",
+       "file": "references/upstream-frontend-slides.md",
+       "line": 16
+      }
+     ],
+     "coverage_basis": "SIBLING_DIGEST_PLUS_LOCAL_AXIS",
+     "why_not_overwrite": "两段量纲不同、不是强弱关系：本地 ### Content Density Limits Per Slide 是「每页类型上限表」（标题页 1 标题+1 副标题、内容页 4-6 bullet…共 6 行），上游是「阅读型/讲授型」二选一并决定页数字号档。覆盖会删掉本地独有的 6 行上限表（上游没有这张表）。正确形态是并存。",
+     "worth_merging": true,
+     "merge_priority": "MEDIUM",
+     "merge_reason": "值得并入正文（当前只在 references/upstream-frontend-slides.md 译写为分卷摘要，SKILL.md 正文不提）；真正的正文缺口是本地 Phase 1 Question 4 问的是 inline editing，而上游明文要求「Do not ask about inline editing during Phase 1」并把 Q4 换成 Density —— 四问换一问，答案面等量。",
+     "unverified": null,
+     "judgment_source": "human",
+     "evidence": [
+      "D:/global_skills/frontend-slides/references/upstream-frontend-slides.md:16-23（译写的 2 行模式表）",
+      "D:/global_skills/frontend-slides/SKILL.md:53-64（本地上限表）",
+      "自建skill优化/_temp/r265_follow_all/frontend-slides/SKILL.md:54-63, 102-110（Density + 禁问编辑）"
+     ],
+     "assertions_ok": true
+    },
+    {
+     "heading": "Phase 0: Detect Mode",
+     "upstream_line_span": [
+      67,
+      74
+     ],
+     "upstream_lines": 4,
+     "exact_matched_lines": 4,
+     "exact_match_pct": 100.0,
+     "upstream_only_lines": 0,
+     "sibling_exact_line_hits": 0,
+     "heading_in_local": true,
+     "local_counterpart": {
+      "heading": "Phase 0: Detect Mode",
+      "line_span": [
+       68,
+       75
+      ],
+      "lines": 5,
+      "matched_by": "heading",
+      "structure": {
+       "table_rows": 0,
+       "bullets": 3,
+       "fences": 0,
+       "ordered": 0
+      }
+     },
+     "structure_parity": true,
+     "sibling_headings": [],
+     "coverage_basis": "EXACT_IDENTICAL",
+     "why_not_overwrite": "上游本段 4 行在本地逐字命中（100%），本地已是同文",
+     "worth_merging": false,
+     "merge_priority": null,
+     "merge_reason": "无增量：字面已完全一致",
+     "unverified": false,
+     "judgment_source": "auto_exact"
+    },
+    {
+     "heading": "Mode C: Modification Rules",
+     "upstream_line_span": [
+      75,
+      88
+     ],
+     "upstream_lines": 8,
+     "exact_matched_lines": 4,
+     "exact_match_pct": 50.0,
+     "upstream_only_lines": 4,
+     "sibling_exact_line_hits": 0,
+     "heading_in_local": true,
+     "local_counterpart": {
+      "heading": "Mode C: Modification Rules",
+      "line_span": [
+       76,
+       89
+      ],
+      "lines": 9,
+      "matched_by": "heading",
+      "structure": {
+       "table_rows": 0,
+       "bullets": 0,
+       "fences": 0,
+       "ordered": 5
+      }
+     },
+     "structure_parity": true,
+     "sibling_headings": [],
+     "coverage_basis": "SAME_INTENT_PARADIGM_DIFF",
+     "why_not_overwrite": "字面 50% 命中即证明是同段同义、只是范式不同。本地对应段更长且与本地 CSS 绑定（.slide overflow:hidden、新元素必须 clamp()、图片 max-height: min(50vh,400px)、1280x720 复验）；上游把同类规则改写成固定舞台口径。本地不是更弱，是挂在另一套 CSS 上。",
+     "worth_merging": false,
+     "merge_priority": null,
+     "merge_reason": "本段单独并入会造成「Mode C 说固定舞台、Phase 3 说 clamp、CSS 用 100vh」三处矛盾；记为 Fixed Stage Rules 候选的连改项，不单列。",
+     "unverified": null,
+     "judgment_source": "human",
+     "evidence": [
+      "D:/global_skills/frontend-slides/SKILL.md:76-86（本地 5 条）",
+      "自建skill优化/_temp/r265_follow_all/frontend-slides/SKILL.md:75-85（上游 5 条）"
+     ],
+     "assertions_ok": true
+    },
+    {
+     "heading": "Phase 1: Content Discovery (New Presentations)",
+     "upstream_line_span": [
+      89,
+      113
+     ],
+     "upstream_lines": 14,
+     "exact_matched_lines": 7,
+     "exact_match_pct": 50.0,
+     "upstream_only_lines": 7,
+     "sibling_exact_line_hits": 0,
+     "heading_in_local": true,
+     "local_counterpart": {
+      "heading": "Phase 1: Content Discovery (New Presentations)",
+      "line_span": [
+       90,
+       112
+      ],
+      "lines": 14,
+      "matched_by": "heading",
+      "structure": {
+       "table_rows": 0,
+       "bullets": 2,
+       "fences": 0,
+       "ordered": 0
+      }
+     },
+     "structure_parity": true,
+     "sibling_headings": [],
+     "coverage_basis": "LOCALIZED_PLUS_TOOL_DEPS",
+     "why_not_overwrite": "本地把四问写死为 Claude 专属工具 AskUserQuestion（每条都带 header/options），这是本地化承载而非「更弱」；上游 v2.1.0 改成「有结构化问答就用、没有就一条消息列编号选项」并新增禁问编辑行为。字数上本地与上游互有出入，不能整段覆盖（会抹掉本地选项文案）。",
+     "worth_merging": true,
+     "merge_priority": "MEDIUM",
+     "merge_reason": "值得并入的是两处增量：① 去工具硬依赖的兜底表述（上游 91 行）② Question 4 由 inline editing 换成 Density + 「编辑默认开启」（上游 102-108）。后者是范式决定：用户不该在看到草稿前先选编辑行为；本地 Phase 3 有该分支代码，默认开启只加字节不改流程。",
+     "unverified": null,
+     "judgment_source": "human",
+     "evidence": [
+      "D:/global_skills/frontend-slides/SKILL.md:90-111（本地 Q1-Q4 + AskUserQuestion）",
+      "自建skill优化/_temp/r265_follow_all/frontend-slides/SKILL.md:89-112（上游四问 + Density + 禁问编辑）"
+     ],
+     "assertions_ok": true
+    },
+    {
+     "heading": "Step 1.2: Image Evaluation (if images provided)",
+     "upstream_line_span": [
+      114,
+      129
+     ],
+     "upstream_lines": 9,
+     "exact_matched_lines": 7,
+     "exact_match_pct": 77.8,
+     "upstream_only_lines": 2,
+     "sibling_exact_line_hits": 0,
+     "heading_in_local": true,
+     "local_counterpart": {
+      "heading": "Step 1.2: Image Evaluation (if images provided)",
+      "line_span": [
+       113,
+       128
+      ],
+      "lines": 10,
+      "matched_by": "heading",
+      "structure": {
+       "table_rows": 0,
+       "bullets": 0,
+       "fences": 0,
+       "ordered": 5
+      }
+     },
+     "structure_parity": true,
+     "sibling_headings": [],
+     "coverage_basis": "EXACT_MAJORITY_LOCALIZED_TWO_LINES",
+     "why_not_overwrite": "9 行里 7 行逐字命中（77.8%），差异只有 2 行：本地用 Read 工具（Claude is multimodal），上游改成「用本代理可用的图像理解能力，不可用则退到文件名/元数据」；第 5 步确认方式上游写「同一套结构化问答机制」。两处都是「工具名 → 环境无关表述」的抽象，覆盖只会把本地更具体的工具名抹掉、不加任何新语义。",
+     "worth_merging": false,
+     "merge_priority": null,
+     "merge_reason": "增量=0；若日后统一去工具依赖，属 Phase 1 候选同一笔改动（见上段），本段不单列。",
+     "unverified": null,
+     "judgment_source": "human",
+     "evidence": [
+      "D:/global_skills/frontend-slides/SKILL.md:113-125",
+      "自建skill优化/_temp/r265_follow_all/frontend-slides/SKILL.md:114-126"
+     ],
+     "assertions_ok": true
+    },
+    {
+     "heading": "Phase 2: Style Discovery",
+     "upstream_line_span": [
+      130,
+      133
+     ],
+     "upstream_lines": 1,
+     "exact_matched_lines": 1,
+     "exact_match_pct": 100.0,
+     "upstream_only_lines": 0,
+     "sibling_exact_line_hits": 0,
+     "heading_in_local": true,
+     "local_counterpart": {
+      "heading": "Phase 2: Style Discovery",
+      "line_span": [
+       129,
+       132
+      ],
+      "lines": 2,
+      "matched_by": "heading",
+      "structure": {
+       "table_rows": 0,
+       "bullets": 0,
+       "fences": 0,
+       "ordered": 0
+      }
+     },
+     "structure_parity": true,
+     "sibling_headings": [],
+     "coverage_basis": "EXACT_IDENTICAL",
+     "why_not_overwrite": "上游本段 1 行在本地逐字命中（100%），本地已是同文",
+     "worth_merging": false,
+     "merge_priority": null,
+     "merge_reason": "无增量：字面已完全一致",
+     "unverified": false,
+     "judgment_source": "auto_exact"
+    },
+    {
+     "heading": "Step 2.0: Generate 3 Style Previews Directly",
+     "upstream_line_span": [
+      134,
+      192
+     ],
+     "upstream_lines": 41,
+     "exact_matched_lines": 7,
+     "exact_match_pct": 17.1,
+     "upstream_only_lines": 34,
+     "sibling_exact_line_hits": 0,
+     "heading_in_local": false,
+     "local_counterpart": null,
+     "structure_parity": null,
+     "sibling_headings": [],
+     "coverage_basis": "SIBLING_README_PARTIAL",
+     "why_not_overwrite": "本地 Step 2.0-2.3 是四步旧流程（先问「给我选项 vs 我直接挑」→问 mood→生成 3 张→问选哪张），上游把 2.0 合并为「直接生成 3 张、不问要不要选项」并新增 4 个硬规则块（预览混搭 / 自定义 wildcard / bold 模板选择 / 预览真实性 NON-NEGOTIABLE）。整段覆盖会删掉本地 mood 问题与「我知道我要什么」直选逃生通道（上游只说用户点名预设时照办）。",
+     "worth_merging": true,
+     "merge_priority": "HIGH",
+     "merge_reason": "值得并入的是四个规则块而不是全部行：本地包已落 34 个模板与 selection-index.json，而 SKILL.md 对 bold-template-pack / selection-index / design.md / preview.md 实测 0 命中（grep）⇒ 代理不会去读；包 README 只覆盖了读序与混搭/契约的一半，且 SKILL.md 不指向 README。其中「预览真实性」块（禁把 preview / Option A/B/C / 模板名 / 文件名 / 需求备注渲染到页面上）是事故防线，本地全无。保留本地 mood 问与直选。",
+     "unverified": null,
+     "judgment_source": "human",
+     "evidence": [
+      "D:/global_skills/frontend-slides/bold-template-pack/README.md:6-26（读序）,30-51（混搭+wildcard）,53-77（实现契约）",
+      "D:/global_skills/frontend-slides/bold-template-pack/selection-index.json（template_count=34）",
+      "D:/global_skills/frontend-slides/SKILL.md:133-171（本地 2.0-2.3）",
+      "自建skill优化/_temp/r265_follow_all/frontend-slides/SKILL.md:134-191（上游 2.0 全量）"
+     ],
+     "assertions_ok": true
+    },
+    {
+     "heading": "Step 2.1: User Picks",
+     "upstream_line_span": [
+      193,
+      201
+     ],
+     "upstream_lines": 4,
+     "exact_matched_lines": 4,
+     "exact_match_pct": 100.0,
+     "upstream_only_lines": 0,
+     "sibling_exact_line_hits": 0,
+     "heading_in_local": false,
+     "local_counterpart": {
+      "heading": "Step 2.3: User Picks",
+      "line_span": [
+       167,
+       175
+      ],
+      "lines": 5,
+      "matched_by": "line_overlap",
+      "structure": {
+       "table_rows": 0,
+       "bullets": 0,
+       "fences": 0,
+       "ordered": 0
+      }
+     },
+     "structure_parity": true,
+     "sibling_headings": [],
+     "coverage_basis": "EXACT_IDENTICAL",
+     "why_not_overwrite": "上游本段 4 行在本地逐字命中（100%），本地已是同文",
+     "worth_merging": false,
+     "merge_priority": null,
+     "merge_reason": "无增量：字面已完全一致",
+     "unverified": false,
+     "judgment_source": "auto_exact"
+    },
+    {
+     "heading": "Phase 3: Generate Presentation",
+     "upstream_line_span": [
+      202,
+      249
+     ],
+     "upstream_lines": 31,
+     "exact_matched_lines": 13,
+     "exact_match_pct": 41.9,
+     "upstream_only_lines": 18,
+     "sibling_exact_line_hits": 0,
+     "heading_in_local": true,
+     "local_counterpart": {
+      "heading": "Phase 3: Generate Presentation",
+      "line_span": [
+       176,
+       197
+      ],
+      "lines": 14,
+      "matched_by": "heading",
+      "structure": {
+       "table_rows": 0,
+       "bullets": 8,
+       "fences": 0,
+       "ordered": 0
+      }
+     },
+     "structure_parity": false,
+     "sibling_headings": [],
+     "coverage_basis": "EXACT_CORE_PLUS_SIBLING_RULES",
+     "why_not_overwrite": "本地本段保留了与上游逐字相同的读件清单与 Key requirements（41.9% 命中来自这里）；缺的是「密度模式如何落到整册」（上游 208-215）与「bold 模板 design.md 怎么当配方」（上游 217-232）。整段覆盖会重复本地已同文的部分。",
+     "worth_merging": true,
+     "merge_priority": "MEDIUM",
+     "merge_reason": "值得并入的形态是「指针 + 密度应用短段」：bold 模板应用规则的实质（design.md 当配方、vw/vh/clamp 只作比例、保留字体/色板、截图验文字溢出与面板重叠）已在包 README 的实现契约里，正文再抄一份即造双真相源 ⇒ 建议正文只加一行指针到 bold-template-pack/README.md，密度应用段则直接并入。",
+     "unverified": null,
+     "judgment_source": "human",
+     "evidence": [
+      "D:/global_skills/frontend-slides/bold-template-pack/README.md:53-77（实现契约）",
+      "D:/global_skills/frontend-slides/SKILL.md:176-195",
+      "自建skill优化/_temp/r265_follow_all/frontend-slides/SKILL.md:202-246"
+     ],
+     "assertions_ok": true
+    },
+    {
+     "heading": "Phase 4: PPT Conversion",
+     "upstream_line_span": [
+      250,
+      260
+     ],
+     "upstream_lines": 6,
+     "exact_matched_lines": 6,
+     "exact_match_pct": 100.0,
+     "upstream_only_lines": 0,
+     "sibling_exact_line_hits": 0,
+     "heading_in_local": true,
+     "local_counterpart": {
+      "heading": "Phase 4: PPT Conversion",
+      "line_span": [
+       198,
+       208
+      ],
+      "lines": 7,
+      "matched_by": "heading",
+      "structure": {
+       "table_rows": 0,
+       "bullets": 0,
+       "fences": 0,
+       "ordered": 4
+      }
+     },
+     "structure_parity": true,
+     "sibling_headings": [],
+     "coverage_basis": "EXACT_IDENTICAL",
+     "why_not_overwrite": "上游本段 6 行在本地逐字命中（100%），本地已是同文",
+     "worth_merging": false,
+     "merge_priority": null,
+     "merge_reason": "无增量：字面已完全一致",
+     "unverified": false,
+     "judgment_source": "auto_exact"
+    },
+    {
+     "heading": "Phase 5: Delivery",
+     "upstream_line_span": [
+      261,
+      273
+     ],
+     "upstream_lines": 9,
+     "exact_matched_lines": 5,
+     "exact_match_pct": 55.6,
+     "upstream_only_lines": 4,
+     "sibling_exact_line_hits": 0,
+     "heading_in_local": true,
+     "local_counterpart": {
+      "heading": "Phase 5: Delivery",
+      "line_span": [
+       209,
+       220
+      ],
+      "lines": 9,
+      "matched_by": "heading",
+      "structure": {
+       "table_rows": 0,
+       "bullets": 4,
+       "fences": 0,
+       "ordered": 3
+      }
+     },
+     "structure_parity": false,
+     "sibling_headings": [],
+     "coverage_basis": "LOCAL_CONDITIONAL_COUPLED",
+     "why_not_overwrite": "本地对应段是条件式（If inline editing was enabled: …），与本地 Phase 1 的编辑选择耦合；上游断言编辑总可用并加「Offer the natural post-draft actions」。字面 5/9 命中，差异全部由「编辑默认开启」这一范式决定 ⇒ 本地不是更弱，是另一个（自一致的）选择。",
+     "worth_merging": false,
+     "merge_priority": null,
+     "merge_reason": "本段单独并入会产生「Phase 5 说总可用、Phase 3 却按选择裁剪代码」的矛盾；记为 Phase 1 Density/编辑候选的连改项，并在连改时一并统一预览目录（.claude-design vs .frontend-slides）。",
+     "unverified": null,
+     "judgment_source": "human",
+     "evidence": [
+      "D:/global_skills/frontend-slides/SKILL.md:209-217（条件式 + .claude-design）",
+      "自建skill优化/_temp/r265_follow_all/frontend-slides/SKILL.md:261-270（总可用 + .frontend-slides）"
+     ],
+     "assertions_ok": true
+    },
+    {
+     "heading": "Phase 6: Share & Export (Optional)",
+     "upstream_line_span": [
+      274,
+      286
+     ],
+     "upstream_lines": 7,
+     "exact_matched_lines": 7,
+     "exact_match_pct": 100.0,
+     "upstream_only_lines": 0,
+     "sibling_exact_line_hits": 0,
+     "heading_in_local": true,
+     "local_counterpart": {
+      "heading": "Phase 6: Share & Export (Optional)",
+      "line_span": [
+       221,
+       233
+      ],
+      "lines": 8,
+      "matched_by": "heading",
+      "structure": {
+       "table_rows": 0,
+       "bullets": 4,
+       "fences": 0,
+       "ordered": 0
+      }
+     },
+     "structure_parity": true,
+     "sibling_headings": [],
+     "coverage_basis": "EXACT_IDENTICAL",
+     "why_not_overwrite": "上游本段 7 行在本地逐字命中（100%），本地已是同文",
+     "worth_merging": false,
+     "merge_priority": null,
+     "merge_reason": "无增量：字面已完全一致",
+     "unverified": false,
+     "judgment_source": "auto_exact"
+    },
+    {
+     "heading": "6A: Deploy to a Live URL (Vercel)",
+     "upstream_line_span": [
+      287,
+      323
+     ],
+     "upstream_lines": 25,
+     "exact_matched_lines": 25,
+     "exact_match_pct": 100.0,
+     "upstream_only_lines": 0,
+     "sibling_exact_line_hits": 0,
+     "heading_in_local": true,
+     "local_counterpart": {
+      "heading": "6A: Deploy to a Live URL (Vercel)",
+      "line_span": [
+       234,
+       270
+      ],
+      "lines": 26,
+      "matched_by": "heading",
+      "structure": {
+       "table_rows": 0,
+       "bullets": 14,
+       "fences": 2,
+       "ordered": 4
+      }
+     },
+     "structure_parity": true,
+     "sibling_headings": [],
+     "coverage_basis": "EXACT_IDENTICAL",
+     "why_not_overwrite": "上游本段 25 行在本地逐字命中（100%），本地已是同文",
+     "worth_merging": false,
+     "merge_priority": null,
+     "merge_reason": "无增量：字面已完全一致",
+     "unverified": false,
+     "judgment_source": "auto_exact"
+    },
+    {
+     "heading": "6B: Export to PDF",
+     "upstream_line_span": [
+      324,
+      366
+     ],
+     "upstream_lines": 30,
+     "exact_matched_lines": 30,
+     "exact_match_pct": 100.0,
+     "upstream_only_lines": 0,
+     "sibling_exact_line_hits": 0,
+     "heading_in_local": true,
+     "local_counterpart": {
+      "heading": "6B: Export to PDF",
+      "line_span": [
+       271,
+       313
+      ],
+      "lines": 31,
+      "matched_by": "heading",
+      "structure": {
+       "table_rows": 0,
+       "bullets": 14,
+       "fences": 4,
+       "ordered": 4
+      }
+     },
+     "structure_parity": true,
+     "sibling_headings": [],
+     "coverage_basis": "EXACT_IDENTICAL",
+     "why_not_overwrite": "上游本段 30 行在本地逐字命中（100%），本地已是同文",
+     "worth_merging": false,
+     "merge_priority": null,
+     "merge_reason": "无增量：字面已完全一致",
+     "unverified": false,
+     "judgment_source": "auto_exact"
+    },
+    {
+     "heading": "Supporting Files",
+     "upstream_line_span": [
+      367,
+      381
+     ],
+     "upstream_lines": 12,
+     "exact_matched_lines": 8,
+     "exact_match_pct": 66.7,
+     "upstream_only_lines": 4,
+     "sibling_exact_line_hits": 0,
+     "heading_in_local": true,
+     "local_counterpart": {
+      "heading": "Supporting Files",
+      "line_span": [
+       314,
+       325
+      ],
+      "lines": 10,
+      "matched_by": "heading",
+      "structure": {
+       "table_rows": 9,
+       "bullets": 0,
+       "fences": 0,
+       "ordered": 0
+      }
+     },
+     "structure_parity": false,
+     "sibling_headings": [],
+     "coverage_basis": "MISSING_THREE_ROWS",
+     "why_not_overwrite": "本地 12 行表里 8 行逐字同（66.7%）；缺的 3 行正是包内已存在文件的登记（selection-index.json、templates/*/preview.md、templates/*/design.md）。整段覆盖会删掉本地已有行 —— 正确做法是只追加 3 行，不是覆盖。",
+     "worth_merging": true,
+     "merge_priority": "HIGH",
+     "merge_reason": "成本最低、收益直接：包与 README 均已在盘（selection-index.json 39202 B、README 3308 B），而 Supporting Files 是 SKILL.md 里唯一登记读件的表，缺 3 行 ⇒ 代理看不到包。",
+     "unverified": null,
+     "judgment_source": "human",
+     "evidence": [
+      "D:/global_skills/frontend-slides/SKILL.md:314-324（本地 8 行）",
+      "自建skill优化/_temp/r265_follow_all/frontend-slides/SKILL.md:367-380（上游 11 行，多 3 行包登记）",
+      "D:/global_skills/frontend-slides/bold-template-pack/（目录实测存在）"
+     ],
+     "assertions_ok": true
+    }
+   ],
+   "sections_n": 20,
+   "local_only_sections_n": 8,
+   "local_only_sections": [
+    "Viewport Fitting Rules",
+    "Content Density Limits Per Slide",
+    "Step 2.0: Style Path",
+    "Step 2.1: Mood Selection (Guided Discovery)",
+    "Step 2.2: Generate 3 Style Previews",
+    "Step 2.3: User Picks",
+    "Upstream-absorbed sections（分卷指针）",
+    "Version history"
+   ],
+   "merge_candidates": [
+    {
+     "heading": "Core Principles",
+     "upstream_line_span": [
+      10,
+      17
+     ],
+     "merge_priority": "HIGH",
+     "reason": "只并入上游第 4 条 Progressive Disclosure（先读轻量索引、用户选定后才读 design.md）——本地 0 命中，且本地已落 34 个 bold 模板（selection-index.json 39202 B）正是靠它控成本。第 5 条 Fixed 16:9 与本地第 4 条冲突，移入 Fixed Stage Rules 候选统一裁定，本段不重复。",
+     "target": "D:/global_skills/frontend-slides/SKILL.md"
+    },
+    {
+     "heading": "Fixed Stage Rules",
+     "upstream_line_span": [
+      38,
+      53
+     ],
+     "merge_priority": "HIGH",
+     "reason": "值得并入，但必须与三处连改一起做（Phase 0 Mode C / Phase 3 / viewport-base.css 引用），故标 requires_decision。理由是树内已有新范式的实物：bold-template-pack/deck-stage.js 实测实现 fixed 1920×1080 等比缩放，bold-template-pack/README.md 第 67-69 行明文要求「Generate every deck as a fixed 1920×1080 stage」。SKILL.md 正文是唯一还停在旧范式的层 ⇒ 现状是树内自相矛盾，不是「本地更强」。",
+     "target": "D:/global_skills/frontend-slides/SKILL.md"
+    },
+    {
+     "heading": "Content Density Modes",
+     "upstream_line_span": [
+      54,
+      66
+     ],
+     "merge_priority": "MEDIUM",
+     "reason": "值得并入正文（当前只在 references/upstream-frontend-slides.md 译写为分卷摘要，SKILL.md 正文不提）；真正的正文缺口是本地 Phase 1 Question 4 问的是 inline editing，而上游明文要求「Do not ask about inline editing during Phase 1」并把 Q4 换成 Density —— 四问换一问，答案面等量。",
+     "target": "D:/global_skills/frontend-slides/SKILL.md"
+    },
+    {
+     "heading": "Phase 1: Content Discovery (New Presentations)",
+     "upstream_line_span": [
+      89,
+      113
+     ],
+     "merge_priority": "MEDIUM",
+     "reason": "值得并入的是两处增量：① 去工具硬依赖的兜底表述（上游 91 行）② Question 4 由 inline editing 换成 Density + 「编辑默认开启」（上游 102-108）。后者是范式决定：用户不该在看到草稿前先选编辑行为；本地 Phase 3 有该分支代码，默认开启只加字节不改流程。",
+     "target": "D:/global_skills/frontend-slides/SKILL.md"
+    },
+    {
+     "heading": "Step 2.0: Generate 3 Style Previews Directly",
+     "upstream_line_span": [
+      134,
+      192
+     ],
+     "merge_priority": "HIGH",
+     "reason": "值得并入的是四个规则块而不是全部行：本地包已落 34 个模板与 selection-index.json，而 SKILL.md 对 bold-template-pack / selection-index / design.md / preview.md 实测 0 命中（grep）⇒ 代理不会去读；包 README 只覆盖了读序与混搭/契约的一半，且 SKILL.md 不指向 README。其中「预览真实性」块（禁把 preview / Option A/B/C / 模板名 / 文件名 / 需求备注渲染到页面上）是事故防线，本地全无。保留本地 mood 问与直选。",
+     "target": "D:/global_skills/frontend-slides/SKILL.md"
+    },
+    {
+     "heading": "Phase 3: Generate Presentation",
+     "upstream_line_span": [
+      202,
+      249
+     ],
+     "merge_priority": "MEDIUM",
+     "reason": "值得并入的形态是「指针 + 密度应用短段」：bold 模板应用规则的实质（design.md 当配方、vw/vh/clamp 只作比例、保留字体/色板、截图验文字溢出与面板重叠）已在包 README 的实现契约里，正文再抄一份即造双真相源 ⇒ 建议正文只加一行指针到 bold-template-pack/README.md，密度应用段则直接并入。",
+     "target": "D:/global_skills/frontend-slides/SKILL.md"
+    },
+    {
+     "heading": "Supporting Files",
+     "upstream_line_span": [
+      367,
+      381
+     ],
+     "merge_priority": "HIGH",
+     "reason": "成本最低、收益直接：包与 README 均已在盘（selection-index.json 39202 B、README 3308 B），而 Supporting Files 是 SKILL.md 里唯一登记读件的表，缺 3 行 ⇒ 代理看不到包。",
+     "target": "D:/global_skills/frontend-slides/SKILL.md"
+    }
+   ],
+   "merge_candidates_n": 7,
+   "no_merge_reason": "非空。未并入项及理由逐段写在各段 why_not_overwrite：Design Aesthetics / Phase 0: Detect Mode / Phase 2: Style Discovery / Step 2.1: User Picks / Phase 4 / Phase 6 / 6A / 6B 为逐字同文（无增量）；Mode C: Modification Rules 与 Phase 5: Delivery 是 Fixed-16:9 范式与「编辑默认开启」的连带改动，单独并入会让树内出现两套矛盾规则；view-base.css（旧 100vh 范式）与 bold-template-pack/deck-stage.js（新固定 1920×1080 范式）在盘上并存，属 P0 范式裁定的输入，不在本清单直接并入。",
+   "verify_after_merge": [
+    "红线：改受管根 D:/global_skills 唯一途径 = rule_editor.py + 备份落 _trash + 三门禁（mirror / noise / evolution）+ disk_registry_diff 三类全 0；本任务不执行。",
+    "标题面：并入后本地标题集合须仍为上游标题集合的超集（base 化比对，本件机器口径 base_heading）。",
+    "字节面：同名 SKILL.md 只增不减（本地既有的 tokens/中文/版本史一字不动）。",
+    "可达面（本次核心缺口）：grep -n 'bold-template-pack' D:/global_skills/frontend-slides/SKILL.md 须 >= 1（当前实测 0 命中）；grep -n 'selection-index' 须 >= 1（当前 0）。",
+    "反例面：以 --break-slug frontend-slides 复跑必须出 UNVERIFIED + 退出码 3。"
+   ],
+   "evidence_cmd": "python _temp/r266_derivative_review.py --out _temp/r266_recheck.json && python -c \"import json,io;r=[x for x in json.load(io.open('_temp/r266_recheck.json',encoding='utf-8'))['rows'] if x['slug']=='frontend-slides'][0];print(r['slug'],r['upstream_only_n'],r['local_only_n'],r['r265_reproduced'],r['state'],r['merge_candidates_n'])\"",
+   "sibling_files_scanned": [
+    "references/upstream-frontend-slides.md",
+    "README.md",
+    "STYLE_PRESETS.md",
+    "animation-patterns.md",
+    "html-template.md",
+    "bold-template-pack/README.md",
+    "bold-template-pack/templates/8-bit-orbit/design.md",
+    "bold-template-pack/templates/8-bit-orbit/preview.md",
+    "bold-template-pack/templates/biennale-yellow/design.md",
+    "bold-template-pack/templates/biennale-yellow/preview.md",
+    "bold-template-pack/templates/block-frame/design.md",
+    "bold-template-pack/templates/block-frame/preview.md",
+    "bold-template-pack/templates/blue-professional/design.md",
+    "bold-template-pack/templates/blue-professional/preview.md",
+    "bold-template-pack/templates/bold-poster/design.md",
+    "bold-template-pack/templates/bold-poster/preview.md",
+    "bold-template-pack/templates/broadside/design.md",
+    "bold-template-pack/templates/broadside/preview.md",
+    "bold-template-pack/templates/capsule/design.md",
+    "bold-template-pack/templates/capsule/preview.md",
+    "bold-template-pack/templates/cartesian/design.md",
+    "bold-template-pack/templates/cartesian/preview.md",
+    "bold-template-pack/templates/cobalt-grid/design.md",
+    "bold-template-pack/templates/cobalt-grid/preview.md",
+    "bold-template-pack/templates/coral/design.md",
+    "bold-template-pack/templates/coral/preview.md",
+    "bold-template-pack/templates/creative-mode/design.md",
+    "bold-template-pack/templates/creative-mode/preview.md",
+    "bold-template-pack/templates/daisy-days/design.md",
+    "bold-template-pack/templates/daisy-days/preview.md",
+    "bold-template-pack/templates/editorial-forest/design.md",
+    "bold-template-pack/templates/editorial-forest/preview.md",
+    "bold-template-pack/templates/editorial-tri-tone/design.md",
+    "bold-template-pack/templates/editorial-tri-tone/preview.md",
+    "bold-template-pack/templates/emerald-editorial/design.md",
+    "bold-template-pack/templates/emerald-editorial/preview.md",
+    "bold-template-pack/templates/grove/design.md",
+    "bold-template-pack/templates/grove/preview.md",
+    "bold-template-pack/templates/long-table/design.md",
+    "bold-template-pack/templates/long-table/preview.md",
+    "bold-template-pack/templates/mat/design.md",
+    "bold-template-pack/templates/mat/preview.md",
+    "bold-template-pack/templates/monochrome/design.md",
+    "bold-template-pack/templates/monochrome/preview.md",
+    "bold-template-pack/templates/neo-grid-bold/design.md",
+    "bold-template-pack/templates/neo-grid-bold/preview.md",
+    "bold-template-pack/templates/peoples-platform/design.md",
+    "bold-template-pack/templates/peoples-platform/preview.md",
+    "bold-template-pack/templates/pin-and-paper/design.md",
+    "bold-template-pack/templates/pin-and-paper/preview.md",
+    "bold-template-pack/templates/pink-script/design.md",
+    "bold-template-pack/templates/pink-script/preview.md",
+    "bold-template-pack/templates/playful/design.md",
+    "bold-template-pack/templates/playful/preview.md",
+    "bold-template-pack/templates/raw-grid/design.md",
+    "bold-template-pack/templates/raw-grid/preview.md",
+    "bold-template-pack/templates/retro-windows/design.md",
+    "bold-template-pack/templates/retro-windows/preview.md",
+    "bold-template-pack/templates/retro-zine/design.md",
+    "bold-template-pack/templates/retro-zine/preview.md",
+    "bold-template-pack/templates/sakura-chroma/design.md",
+    "bold-template-pack/templates/sakura-chroma/preview.md",
+    "bold-template-pack/templates/scatterbrain/design.md",
+    "bold-template-pack/templates/scatterbrain/preview.md",
+    "bold-template-pack/templates/signal/design.md",
+    "bold-template-pack/templates/signal/preview.md",
+    "bold-template-pack/templates/soft-editorial/design.md",
+    "bold-template-pack/templates/soft-editorial/preview.md",
+    "bold-template-pack/templates/stencil-tablet/design.md",
+    "bold-template-pack/templates/stencil-tablet/preview.md",
+    "bold-template-pack/templates/studio/design.md",
+    "bold-template-pack/templates/studio/preview.md",
+    "bold-template-pack/templates/vellum/design.md",
+    "bold-template-pack/templates/vellum/preview.md",
+    "plugins/frontend-slides/skills/frontend-slides/SKILL.md",
+    "plugins/frontend-slides/skills/frontend-slides/STYLE_PRESETS.md",
+    "plugins/frontend-slides/skills/frontend-slides/animation-patterns.md",
+    "plugins/frontend-slides/skills/frontend-slides/html-template.md"
+   ],
+   "measured_at": "2026-10-29T17:20:06",
+   "state": "OK"
+  },
+  {
+   "slug": "grill-me",
+   "upstream_repo": "mattpocock/skills",
+   "upstream_ref": "v1.3.1",
+   "upstream_path": "_temp/r265_follow_all/grill-me/SKILL.md",
+   "local_path": "D:/global_skills/grill-me/SKILL.md",
+   "local_bytes": 3062,
+   "upstream_bytes": 157,
+   "local_lines": 41,
+   "upstream_lines": 6,
+   "upstream_lines_in_local_pct": 40.0,
+   "upstream_only_n": 3,
+   "local_only_n": 38,
+   "r265_reproduced": true,
+   "sections": [
+    {
+     "heading": "(frontmatter)",
+     "upstream_line_span": [
+      1,
+      5
+     ],
+     "upstream_lines": 5,
+     "exact_matched_lines": 3,
+     "exact_match_pct": 60.0,
+     "upstream_only_lines": 2,
+     "sibling_exact_line_hits": 0,
+     "heading_in_local": false,
+     "local_counterpart": {
+      "heading": "(frontmatter)",
+      "line_span": [
+       1,
+       12
+      ],
+      "lines": 12,
+      "matched_by": "pseudo_frontmatter",
+      "structure": {
+       "table_rows": 0,
+       "bullets": 0,
+       "fences": 0,
+       "ordered": 0
+      }
+     },
+     "structure_parity": true,
+     "sibling_headings": [],
+     "coverage_basis": "FRONTMATTER_SUPERSET",
+     "why_not_overwrite": "上游 frontmatter 只有 3 个键（name / description / disable-model-invocation），其中 name 与 description 的语义在本地逐字/更大命中；本地另有 version / last_updated / homepage / allowed-tools / display_name / description_zh / description_en，是本仓注册表、审计与中英文路由的取数面。整段覆盖 = 丢注册面。",
+     "worth_merging": false,
+     "merge_priority": null,
+     "merge_reason": "唯一未命中项 disable-model-invocation: true 的语义是「禁止模型自动调用」，而本地该件的存在方式恰是触发词自动命中 ⇒ 并入即自毁路由，故不值得。",
+     "unverified": null,
+     "judgment_source": "human",
+     "evidence": [
+      "D:/global_skills/grill-me/SKILL.md:1-12（本地 9 键）",
+      "自建skill优化/_temp/r265_follow_all/grill-me/SKILL.md:1-5（上游 3 键）"
+     ],
+     "assertions_ok": true
+    },
+    {
+     "heading": "(no-heading block) 1",
+     "upstream_line_span": [
+      7,
+      7
+     ],
+     "upstream_lines": 1,
+     "exact_matched_lines": 0,
+     "exact_match_pct": 0.0,
+     "upstream_only_lines": 1,
+     "sibling_exact_line_hits": 0,
+     "heading_in_local": false,
+     "local_counterpart": null,
+     "structure_parity": null,
+     "sibling_headings": [],
+     "coverage_basis": "SUPERSEDED_BY_INLINE",
+     "why_not_overwrite": "上游正文只有这一行：Call the Skill tool with \"grilling\".（语义=本 skill 是跳板，转去调用名为 grilling 的技能）。本地已把该流程内联实现为 4 节 38 行（What to do 的逐问面试流程、Difference from grill-with-docs、When to use、Tools），且实测 D:/global_skills/grilling 不存在（ls 无该项）⇒ 本地无法、也无需照上游转调。",
+     "worth_merging": false,
+     "merge_priority": null,
+     "merge_reason": "无可并入正文：上游 stub 语义被本地内联实现完全取代，并入反而会把本地流程替换成一次不存在技能的调用。",
+     "unverified": null,
+     "judgment_source": "human",
+     "evidence": [
+      "D:/global_skills/grill-me/SKILL.md:16-52（本地 4 节流程）",
+      "自建skill优化/_temp/r265_follow_all/grill-me/SKILL.md:7（上游唯一正文行）",
+      "ls D:/global_skills/grilling => No such file or directory（实测）"
+     ],
+     "assertions_ok": true
+    }
+   ],
+   "sections_n": 2,
+   "local_only_sections_n": 6,
+   "local_only_sections": [
+    "Grill Me",
+    "What to do",
+    "Difference from grill-with-docs",
+    "When to use",
+    "Tools",
+    "Version history"
+   ],
+   "merge_candidates": [],
+   "merge_candidates_n": 0,
+   "no_merge_reason": "本地已覆盖上游全部语义（段落级对应见 sections：上游 frontmatter 3 键 ↔ 本地 frontmatter 9 键且其中 2 键逐字命中；上游正文唯一的 1 行「转调 grilling」↔ 本地内联的 4 节实现）。48 行差异的方向是本地远超上游（41 行 vs 6 行非空行），上游只有 stub；唯一未命中的上游行 disable-model-invocation: true 与本地「触发词自动路由」的存在方式冲突 ⇒ 并入候选为空。",
+   "verify_after_merge": [
+    "红线：改受管根唯一途径 = rule_editor.py + 备份落 _trash + 三门禁 + disk_registry_diff 三类全 0；本任务不执行。",
+    "若未来真并入：本地非空行数须仍 >= 41（只增不减），且 frontmatter 的 description/description_zh/description_en 触发词一条不动。",
+    "反例面：以 --break-slug grill-me 复跑必须出 UNVERIFIED + 退出码 3，且另两行仍 OK。"
+   ],
+   "evidence_cmd": "python _temp/r266_derivative_review.py --out _temp/r266_recheck.json && python -c \"import json,io;r=[x for x in json.load(io.open('_temp/r266_recheck.json',encoding='utf-8'))['rows'] if x['slug']=='grill-me'][0];print(r['slug'],r['upstream_only_n'],r['local_only_n'],r['r265_reproduced'],r['state'],r['merge_candidates_n'])\"",
+   "sibling_files_scanned": [],
+   "measured_at": "2026-10-29T17:20:06",
+   "state": "OK"
+  },
+  {
+   "slug": "verification-before-completion",
+   "upstream_repo": "obra/superpowers",
+   "upstream_ref": "v7.0.1",
+   "upstream_path": "_temp/r265_follow_all/verification-before-completion/SKILL.md",
+   "local_path": "D:/global_skills/verification-before-completion/SKILL.md",
+   "local_bytes": 23415,
+   "upstream_bytes": 3646,
+   "local_lines": 295,
+   "upstream_lines": 94,
+   "upstream_lines_in_local_pct": 40.0,
+   "upstream_only_n": 48,
+   "local_only_n": 246,
+   "r265_reproduced": true,
+   "sections": [
+    {
+     "heading": "(frontmatter)",
+     "upstream_line_span": [
+      1,
+      4
+     ],
+     "upstream_lines": 4,
+     "exact_matched_lines": 3,
+     "exact_match_pct": 75.0,
+     "upstream_only_lines": 1,
+     "sibling_exact_line_hits": 0,
+     "heading_in_local": false,
+     "local_counterpart": {
+      "heading": "(frontmatter)",
+      "line_span": [
+       1,
+       20
+      ],
+      "lines": 20,
+      "matched_by": "pseudo_frontmatter",
+      "structure": {
+       "table_rows": 0,
+       "bullets": 13,
+       "fences": 0,
+       "ordered": 0
+      }
+     },
+     "structure_parity": false,
+     "sibling_headings": [],
+     "coverage_basis": "FRONTMATTER_SUPERSET",
+     "why_not_overwrite": "上游 4 行里 3 行命中（75%）；本地多出 version / last_updated / triggers（13 条中英文触发词）—— 这是本仓注册表、路由与审计的取数面，上游 stub 没有。覆盖=丢注册面。",
+     "worth_merging": false,
+     "merge_priority": null,
+     "merge_reason": "无增量：语义面本地是严格超集（description 本地更长且含触发词）。",
+     "unverified": null,
+     "judgment_source": "human",
+     "evidence": [
+      "D:/global_skills/verification-before-completion/SKILL.md:1-20（本地 frontmatter）",
+      "自建skill优化/_temp/r265_follow_all/verification-before-completion/SKILL.md:1-4（上游 frontmatter）"
+     ],
+     "assertions_ok": true
+    },
+    {
+     "heading": "Verification Before Completion",
+     "upstream_line_span": [
+      6,
+      7
+     ],
+     "upstream_lines": 0,
+     "exact_matched_lines": 0,
+     "exact_match_pct": 0.0,
+     "upstream_only_lines": 0,
+     "sibling_exact_line_hits": 0,
+     "heading_in_local": false,
+     "local_counterpart": null,
+     "structure_parity": null,
+     "sibling_headings": [],
+     "coverage_basis": "EMPTY",
+     "why_not_overwrite": "纯标题段（无正文行）",
+     "worth_merging": false,
+     "merge_priority": null,
+     "merge_reason": "无正文行，无可并入内容",
+     "unverified": false,
+     "judgment_source": "auto_exact"
+    },
+    {
+     "heading": "Overview",
+     "upstream_line_span": [
+      8,
+      13
+     ],
+     "upstream_lines": 2,
+     "exact_matched_lines": 1,
+     "exact_match_pct": 50.0,
+     "upstream_only_lines": 1,
+     "sibling_exact_line_hits": 0,
+     "heading_in_local": true,
+     "local_counterpart": {
+      "heading": "Overview（吸收上游 2026-10-10 v7.0.0）",
+      "line_span": [
+       197,
+       202
+      ],
+      "lines": 3,
+      "matched_by": "heading",
+      "structure": {
+       "table_rows": 0,
+       "bullets": 0,
+       "fences": 0,
+       "ordered": 0
+      }
+     },
+     "structure_parity": true,
+     "sibling_headings": [],
+     "coverage_basis": "TRANSLATED_PARITY",
+     "why_not_overwrite": "上游 2 行（Core principle: Evidence before claims, always. / Violating the letter…）在本地第 197-201 行逐条对应：首句逐字保留，第二句改为「违反这条规则的字面，就是违反它的精神」。结构元素同为 0 表行/0 bullet/0 围栏，属译写覆盖；覆盖只会把本地中文引注抹掉。",
+     "worth_merging": false,
+     "merge_priority": null,
+     "merge_reason": "无增量：2/2 语义在场。",
+     "unverified": null,
+     "judgment_source": "human",
+     "evidence": [
+      "D:/global_skills/verification-before-completion/SKILL.md:197-201",
+      "自建skill优化/_temp/r265_follow_all/verification-before-completion/SKILL.md:8-12"
+     ],
+     "assertions_ok": true
+    },
+    {
+     "heading": "The Iron Law",
+     "upstream_line_span": [
+      14,
+      21
+     ],
+     "upstream_lines": 4,
+     "exact_matched_lines": 3,
+     "exact_match_pct": 75.0,
+     "upstream_only_lines": 1,
+     "sibling_exact_line_hits": 0,
+     "heading_in_local": true,
+     "local_counterpart": {
+      "heading": "The Iron Law（吸收上游 2026-10-10 v7.0.0）",
+      "line_span": [
+       57,
+       64
+      ],
+      "lines": 5,
+      "matched_by": "heading",
+      "structure": {
+       "table_rows": 0,
+       "bullets": 0,
+       "fences": 2,
+       "ordered": 0
+      }
+     },
+     "structure_parity": true,
+     "sibling_headings": [],
+     "coverage_basis": "TRANSLATED_PARITY",
+     "why_not_overwrite": "围栏内那句 NO COMPLETION CLAIMS WITHOUT FRESH VERIFICATION EVIDENCE 与本地第 60 行逐字同；上游第 20 行的补充句（未在本条消息跑过验证就不能声称通过）本地第 63 行以中文同义落地。本地还在标题上留了溯源括注「（吸收上游 2026-10-10 v7.0.0）」。",
+     "worth_merging": false,
+     "merge_priority": null,
+     "merge_reason": "无增量：4 行中 3 行逐字命中，剩 1 行中译在场。",
+     "unverified": null,
+     "judgment_source": "human",
+     "evidence": [
+      "D:/global_skills/verification-before-completion/SKILL.md:57-63",
+      "自建skill优化/_temp/r265_follow_all/verification-before-completion/SKILL.md:14-20"
+     ],
+     "assertions_ok": true
+    },
+    {
+     "heading": "The Gate Function",
+     "upstream_line_span": [
+      22,
+      37
+     ],
+     "upstream_lines": 11,
+     "exact_matched_lines": 3,
+     "exact_match_pct": 27.3,
+     "upstream_only_lines": 8,
+     "sibling_exact_line_hits": 0,
+     "heading_in_local": true,
+     "local_counterpart": {
+      "heading": "The Gate Function（吸收上游 2026-10-10 v7.0.0）",
+      "line_span": [
+       65,
+       77
+      ],
+      "lines": 11,
+      "matched_by": "heading",
+      "structure": {
+       "table_rows": 0,
+       "bullets": 0,
+       "fences": 2,
+       "ordered": 5
+      }
+     },
+     "structure_parity": false,
+     "sibling_headings": [],
+     "coverage_basis": "TRANSLATED_SEMANTIC_PARITY_STRUCTURE_DIFFERS",
+     "why_not_overwrite": "上游 11 行全是 5 步英文清单 + 一句 Skip any step = lying；本地第 65-76 行是同一 5 步的中文版（IDENTIFY/RUN/READ/VERIFY/ONLY THEN 五个关键字逐个保留）。结构不配平的唯一来源：上游 VERIFY 步下的 2 条子 bullet（If NO: 用证据陈述实际状态 / If YES: 带着证据陈述结论）被本地压成 1 行 prose（「不支持 → 用证据陈述实际状态；支持 → 带着证据陈述结论」）——语义两项都在，只是没有 bullet 形态。字面 27.3% 命中只反映换语言，不代表缺内容。",
+     "worth_merging": false,
+     "merge_priority": null,
+     "merge_reason": "无增量：5/5 步骤、2/2 子分支与收尾句语义在场；结构差异是本地有意压缩（与 When To Apply 同族），不值得为样式改受管根。",
+     "unverified": null,
+     "judgment_source": "human",
+     "evidence": [
+      "D:/global_skills/verification-before-completion/SKILL.md:65-76",
+      "自建skill优化/_temp/r265_follow_all/verification-before-completion/SKILL.md:22-36",
+      "本地 65-76 实测：围栏 2 / 有序步骤 5 / 子 bullet 0（上游同段 围栏 2 / 有序 5 / 子 bullet 2）"
+     ],
+     "assertions_ok": true
+    },
+    {
+     "heading": "Common Failures",
+     "upstream_line_span": [
+      38,
+      49
+     ],
+     "upstream_lines": 9,
+     "exact_matched_lines": 0,
+     "exact_match_pct": 0.0,
+     "upstream_only_lines": 9,
+     "sibling_exact_line_hits": 0,
+     "heading_in_local": true,
+     "local_counterpart": {
+      "heading": "Common Failures（吸收上游 2026-10-10 v7.0.0）",
+      "line_span": [
+       174,
+       185
+      ],
+      "lines": 10,
+      "matched_by": "heading",
+      "structure": {
+       "table_rows": 9,
+       "bullets": 0,
+       "fences": 0,
+       "ordered": 0
+      }
+     },
+     "structure_parity": true,
+     "sibling_headings": [],
+     "coverage_basis": "TRANSLATED_PARITY",
+     "why_not_overwrite": "字面 0% 命中（英文全换中文），但结构完全配平：表头+分隔+7 行 = 9 行表行，两边的 7 组「结论/需要证据/不够格证据」同序同义（Tests pass / Linter clean / Build succeeds / Bug fixed / Regression test works / Agent completed / Requirements met）。本地表头改成中文且标了溯源括注，更贴中文读者。",
+     "worth_merging": false,
+     "merge_priority": null,
+     "merge_reason": "无增量：7/7 行语义在场。",
+     "unverified": null,
+     "judgment_source": "human",
+     "evidence": [
+      "D:/global_skills/verification-before-completion/SKILL.md:174-184",
+      "自建skill优化/_temp/r265_follow_all/verification-before-completion/SKILL.md:38-48"
+     ],
+     "assertions_ok": true
+    },
+    {
+     "heading": "Red Flags - STOP",
+     "upstream_line_span": [
+      50,
+      60
+     ],
+     "upstream_lines": 8,
+     "exact_matched_lines": 0,
+     "exact_match_pct": 0.0,
+     "upstream_only_lines": 8,
+     "sibling_exact_line_hits": 0,
+     "heading_in_local": true,
+     "local_counterpart": {
+      "heading": "Red Flags - STOP（吸收上游 2026-10-10 v7.0.0）",
+      "line_span": [
+       186,
+       196
+      ],
+      "lines": 9,
+      "matched_by": "heading",
+      "structure": {
+       "table_rows": 0,
+       "bullets": 8,
+       "fences": 0,
+       "ordered": 0
+      }
+     },
+     "structure_parity": true,
+     "sibling_headings": [],
+     "coverage_basis": "TRANSLATED_PARITY",
+     "why_not_overwrite": "上游 8 条 bullet（含加粗的 ANY wording…）在本地第 186-195 行逐条中译，bullet 数 8/8 配平，顺序一致，最后一条的加粗强调也保留。",
+     "worth_merging": false,
+     "merge_priority": null,
+     "merge_reason": "无增量：8/8 条语义在场。",
+     "unverified": null,
+     "judgment_source": "human",
+     "evidence": [
+      "D:/global_skills/verification-before-completion/SKILL.md:186-195",
+      "自建skill优化/_temp/r265_follow_all/verification-before-completion/SKILL.md:50-59"
+     ],
+     "assertions_ok": true
+    },
+    {
+     "heading": "Rationalization Prevention",
+     "upstream_line_span": [
+      61,
+      73
+     ],
+     "upstream_lines": 10,
+     "exact_matched_lines": 10,
+     "exact_match_pct": 100.0,
+     "upstream_only_lines": 0,
+     "sibling_exact_line_hits": 0,
+     "heading_in_local": true,
+     "local_counterpart": {
+      "heading": "Rationalization Prevention（吸收上游 2026-10-10 v7.0.0）",
+      "line_span": [
+       203,
+       215
+      ],
+      "lines": 11,
+      "matched_by": "heading",
+      "structure": {
+       "table_rows": 10,
+       "bullets": 0,
+       "fences": 0,
+       "ordered": 0
+      }
+     },
+     "structure_parity": true,
+     "sibling_headings": [],
+     "coverage_basis": "EXACT_IDENTICAL",
+     "why_not_overwrite": "上游本段 10 行在本地逐字命中（100%），本地已是同文",
+     "worth_merging": false,
+     "merge_priority": null,
+     "merge_reason": "无增量：字面已完全一致",
+     "unverified": false,
+     "judgment_source": "auto_exact"
+    },
+    {
+     "heading": "Key Patterns",
+     "upstream_line_span": [
+      74,
+      105
+     ],
+     "upstream_lines": 25,
+     "exact_matched_lines": 25,
+     "exact_match_pct": 100.0,
+     "upstream_only_lines": 0,
+     "sibling_exact_line_hits": 0,
+     "heading_in_local": true,
+     "local_counterpart": {
+      "heading": "Key Patterns（吸收上游 2026-10-10 v7.0.0）",
+      "line_span": [
+       216,
+       247
+      ],
+      "lines": 26,
+      "matched_by": "heading",
+      "structure": {
+       "table_rows": 0,
+       "bullets": 0,
+       "fences": 10,
+       "ordered": 0
+      }
+     },
+     "structure_parity": true,
+     "sibling_headings": [],
+     "coverage_basis": "EXACT_IDENTICAL",
+     "why_not_overwrite": "上游本段 25 行在本地逐字命中（100%），本地已是同文",
+     "worth_merging": false,
+     "merge_priority": null,
+     "merge_reason": "无增量：字面已完全一致",
+     "unverified": false,
+     "judgment_source": "auto_exact"
+    },
+    {
+     "heading": "When To Apply",
+     "upstream_line_span": [
+      106,
+      121
+     ],
+     "upstream_lines": 12,
+     "exact_matched_lines": 1,
+     "exact_match_pct": 8.3,
+     "upstream_only_lines": 11,
+     "sibling_exact_line_hits": 0,
+     "heading_in_local": true,
+     "local_counterpart": {
+      "heading": "When To Apply（吸收上游 2026-10-10 v7.0.0）",
+      "line_span": [
+       248,
+       259
+      ],
+      "lines": 9,
+      "matched_by": "heading",
+      "structure": {
+       "table_rows": 0,
+       "bullets": 6,
+       "fences": 0,
+       "ordered": 0
+      }
+     },
+     "structure_parity": false,
+     "sibling_headings": [],
+     "coverage_basis": "TRANSLATED_SEMANTIC_PARITY_STRUCTURE_DIFFERS",
+     "why_not_overwrite": "本地第 248-258 行把上游 12 行（ALWAYS before 6 条 + Rule applies to 4 条）压成「6 条 bullet + 1 句适用范围」：6 条 bullet 与上游 1:1；规则适用面 4 条（原句/改写句/同义表达/暗示成功）被合并成一句「原句、改写句、同义表达、以及任何暗示「已完成/已正确」的沟通」。因此结构不配平（本地 bullet=6，上游=10）但语义无缺 —— 属本地有意压缩，不是本地更弱。",
+     "worth_merging": false,
+     "merge_priority": "LOW",
+     "merge_reason": "不并入（无新语义）。仅当未来要统一排版时才考虑恢复 4 条 bullet 形态；当前不值得为样式改动受管根。",
+     "unverified": null,
+     "judgment_source": "human",
+     "evidence": [
+      "D:/global_skills/verification-before-completion/SKILL.md:248-258（本地 6 bullet + 1 句）",
+      "自建skill优化/_temp/r265_follow_all/verification-before-completion/SKILL.md:106-120（上游 6+4 bullet）"
+     ],
+     "assertions_ok": true
+    }
+   ],
+   "sections_n": 10,
+   "local_only_sections_n": 22,
+   "local_only_sections": [
+    "Skill: Verification Before Completion",
+    "When to use",
+    "何时不用本 skill（边界）",
+    "The Rule",
+    "Claim → Evidence Mapping",
+    "标记在位 \\u2260 语义生效（2026-10-24 一手：present-but-dead patch）",
+    "门禁读数须带**测量时点与测量面**（2026-10-25 一手：绿了，又被别人的落地刷红）",
+    "上下文摘要里的叙述**不是证据**（2026-10-28 一手：我把摘要记忆当读数报给了老大）",
+    "Anti-Patterns (Excuse → Reality)",
+    "Verification Depth by Risk",
+    "Post-Verification Checklist",
+    "Special Cases",
+    "\"It works on my machine\"",
+    "Tests that are slow",
+    "Flaky tests",
+    "No tests exist",
+    "守卫跳过的命令 = 没跑过的命令（R315，2026-10-23 一手）",
+    "When Verification Fails",
+    "优质完成四判据（焚诀 behavior_core #36，老大 2026-10-21 立规）",
+    "判据不齐时的正确动作（不是收尾，是继续）",
+    "与本 skill 其余判据的分工（别混）",
+    "Version history"
+   ],
+   "merge_candidates": [],
+   "merge_candidates_n": 0,
+   "no_merge_reason": "本地标题集合严格包含上游 8 个标题（8/8 命中），且逐段为「结构配平+译写覆盖」：上游 48 条独有行全部是英文原文行，对应中文行就在本地同段内（表行数、bullet 数、代码围栏数、步骤数逐段配平）。上游唯二「本地未逐字保留的结构」是 When To Apply 的 4 条 bullet 被本地压成 1 句（4 项语义逐条在内）与 frontmatter 少 1 键（本地 3/4 命中，且本地另有 version/last_updated/triggers 超集）⇒ 并入候选为空。",
+   "verify_after_merge": [
+    "红线：改受管根唯一途径 = rule_editor.py + 备份落 _trash + 三门禁 + disk_registry_diff 三类全 0；本任务不执行。",
+    "若未来真并入：本地标题集合须仍为上游 8 标题的超集；本地非空行 295 只增不减；version history 追加一条而旧行零改写（R241）。",
+    "反例面：以 --break-slug verification-before-completion 复跑必须出 UNVERIFIED + 退出码 3。"
+   ],
+   "evidence_cmd": "python _temp/r266_derivative_review.py --out _temp/r266_recheck.json && python -c \"import json,io;r=[x for x in json.load(io.open('_temp/r266_recheck.json',encoding='utf-8'))['rows'] if x['slug']=='verification-before-completion'][0];print(r['slug'],r['upstream_only_n'],r['local_only_n'],r['r265_reproduced'],r['state'],r['merge_candidates_n'])\"",
+   "sibling_files_scanned": [],
+   "measured_at": "2026-10-29T17:20:06",
+   "state": "OK"
+  }
+ ]
+}
