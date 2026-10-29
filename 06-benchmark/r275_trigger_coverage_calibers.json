@@ -1,0 +1,17 @@
+{
+ "caliber_all_dirs": {
+  "denominator": 191,
+  "numerator": 38,
+  "ratio_pct": 19.9,
+  "excluded_underscore_dirs": [
+   "_my-skills"
+  ]
+ },
+ "caliber_registry_face": {
+  "denominator": 190,
+  "numerator": 38,
+  "ratio_pct": 20.0
+ },
+ "caliber_rule": "legal = top-level dirs with SKILL.md, excluding _* protected dirs (read from disk_registry_diff.py lines 43-60)",
+ "cut": "2026-10-29T20:3x"
+}

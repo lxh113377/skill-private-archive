@@ -1,0 +1,29 @@
+{
+ "schema": "unknown-repos-license-v1",
+ "rule": "R262-2: two repos left unknown after body read",
+ "caliber": "classify_body from 05-exec/r114_replacement_scan.py (single source)",
+ "rows": {
+  "SeleniumHQ/docker-selenium": {
+   "state": "OK",
+   "api_spdx": "NOASSERTION",
+   "body_class": null,
+   "body_spdx": "unknown",
+   "body_hits": [],
+   "license_class": "unknown",
+   "body_bytes": 252,
+   "head_evidence": "The project is made possible by volunteer contributors who have put in thousands of hours of their own time, and made the source code freely available",
+   "reason": "API spdx=NOASSERTION 且正文无已知许可家族指纹（classify_body 返回 None）⇒ 按口径判 unknown 并留读到的行"
+  },
+  "mksglu/context-mode": {
+   "state": "OK",
+   "api_spdx": "NOASSERTION",
+   "body_class": null,
+   "body_spdx": "unknown",
+   "body_hits": [],
+   "license_class": "unknown",
+   "body_bytes": 3840,
+   "head_evidence": "Elastic License 2.0 (ELv2) | Copyright 2026 Mert Koseoglu",
+   "reason": "API spdx=NOASSERTION 且正文无已知许可家族指纹（classify_body 返回 None）⇒ 按口径判 unknown 并留读到的行"
+  }
+ }
+}
