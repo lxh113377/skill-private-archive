@@ -114,9 +114,10 @@
    "r269_converge_face",
    "local_baseline_face",
    "quarterly_cadence_face",
-   "maintenance_trim_face"
+   "maintenance_trim_face",
+   "provenance_resolve_face"
   ],
-  "_snapshot_at": "2026-10-30 06:25",
+  "_snapshot_at": "2026-10-30 07:09",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
@@ -404,6 +405,10 @@
   "maintenance_trim_face": {
    "evidence": "06-benchmark/maintenance_trim_fixtures_latest.json",
    "at": "2026-10-28 16:21"
+  },
+  "provenance_resolve_face": {
+   "evidence": "06-benchmark/r287_provenance_fixtures_out.txt",
+   "at": "2026-10-30 07:08"
   }
  }
 }

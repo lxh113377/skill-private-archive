@@ -1812,6 +1812,26 @@ GATES = [
         "why": "§3.1 从 r113 起只是规范句：生产矩阵 937 slot 里实存 2 例违规（1 例 archived 且坐 rank2），同判据打到定向检索面是 60 slot / 12 例。" +
               "r260 把过滤接进 r114（sort 与 verdict 之前，否则 skill_n 仍把停摆仓算进 MATCHED）。本门守的是这条代码不被静默摘掉。",
     },
+    {
+        # r287：面件的「出处命令」在 clone 后必须还能解析（本会话四次手工搬判据后的机械化）
+        "id": "provenance_resolve_face",
+        "script": "r287_provenance_resolve.py",
+        "argv": ["--json", "06-benchmark/provenance_resolve_latest.json"],
+        "pass_token": "[PROVRESOLVE_OK]",
+        "portable": False,
+        "not_portable_reason":
+            "取数靠 git ls-files（新增面与已跟踪集合都在本机仓内）；无 .git 时正确判 rc=2 UNVERIFIED 而非绿。",
+        "covers": [
+            "面件出处类字段（provenance_cmd/produce_cmd/evidence_cmd/produce/cmd）里引用的脚本是否存在于克隆内",
+            "_temp/ 前缀引用一律算不可解析（.gitignore 里 _temp/ 是任意层级模式，clone 后必然不存在）",
+            "基线分列：54 项既有问题进 r287_provenance_baseline.json，门只对新增判红（否则恒红即无用）",
+            "缺基线 / git 取不到 ⇒ UNVERIFIED，禁把「无法判定」读成「没有问题」（R247）",
+        ],
+        "why": "判据落点决定别人能不能复算：r283/r284/r286 我手工搬了四次这类件（r278c/r281g/r282j/r285k），"
+              "它们原先都写在 _temp/ 下 —— 面件在克隆里跑不出自己的读数。R283-2、R286-1 立了三轮仍是纸面条，"
+              "故本轮变成门。首版我用粗匹配报出 5679/13045 的假规模（把被扫对象与 05-exec 下的裸文件名也算缺失），"
+              "真数 21 件 63 处 —— 口径与误判原因都写进脚本 docstring，避免下一个人重算出另一个数。",
+    },
 ]
 
 # 显式声明本 runner **不覆盖**的面，防止聚合绿被读成「所有门禁都绿」（R20-2）。

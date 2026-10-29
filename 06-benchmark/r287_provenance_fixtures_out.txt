@@ -1,0 +1,5 @@
+[PASS] t1 clean reference -> OK rc=0 state=PROVRESOLVE_OK named=True
+[PASS] t2 injected _temp ghost -> FAIL rc=1 state=PROVRESOLVE_FAIL named=True
+[PASS] t3 missing baseline -> UNVERIFIED rc=2 state=(stdout only) named=True
+[PASS] t4 not-a-repo (git 取数失败) -> UNVERIFIED rc=2
+[GATE:fixture-pass] legs=4/4

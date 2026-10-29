@@ -168,5 +168,15 @@
   "evidence": "06-benchmark/r286_message_face_probe.json",
   "registered_at": "2026-10-30 06:48",
   "why": "R285-3 消息出口面探针（含幸存者偏差自陈）"
+ },
+ "r287_provenance_resolve.py": {
+  "evidence": "06-benchmark/provenance_resolve_latest.json",
+  "registered_at": "2026-10-30 07:07",
+  "why": "第 114 门：面件出处在 clone 后必须可解析（基线分列 + fail-closed）"
+ },
+ "r287_provenance_fixtures.py": {
+  "evidence": "06-benchmark/provenance_resolve_latest.json",
+  "registered_at": "2026-10-30 07:07",
+  "why": "r287 门自证四腿（t2 注入幽灵必 FAIL 且点名 = 有牙；t3/t4 fail-closed）"
  }
 }

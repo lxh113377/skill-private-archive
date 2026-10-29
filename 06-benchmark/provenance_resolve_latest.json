@@ -1,0 +1,14 @@
+{
+ "schema": "provenance-resolve-v1",
+ "generated_at": "2026-10-30 07:09",
+ "provenance_cmd": "python 05-exec/r287_provenance_resolve.py",
+ "readonly": true,
+ "faces_total": 1550,
+ "unresolvable_total": 54,
+ "temp_prefixed": 46,
+ "baseline_keys": 29,
+ "new_unresolvable": [],
+ "baseline_stale": 0,
+ "scope_note": "provenance-class fields only; basename match counts as resolvable; absolute paths are the portability gate business",
+ "state": "PROVRESOLVE_OK"
+}
