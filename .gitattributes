@@ -1,0 +1,18 @@
+# r298：被哈希钉住的证据件必须逐字节稳定。
+#
+# 为什么需要这个件（一手，r298）：本仓 core.autocrlf=true 且原先**没有 .gitattributes** ⇒
+# clone 检出时 git 把 blob 里的 LF 转成 CRLF（实测 _repro/r291b2/harness/results/run_raw.json
+# blob=30,312B 而工作树=30,583B），于是交付件里存档的 evidence_sha256 与 clone 现算值不等，
+# 判据 [CONSISTENCY] FAIL。这不是证据被篡改，是**行尾在检出时被改写**。
+# 正解是 pin 住字节（-text = 检出与提交都不做行尾转换），而不是把判据改松（去掉 sha 比对
+# 就等于放弃「证据没被动过」这一条，见 _repro/r285l/r285_validate.mjs:183 的反例：它是
+# 现算现比 ⇒ clone 里恒 PASS，那个字段其实没有牙）。
+#
+# 只覆盖「被存档哈希引用」的件，不动全仓既有行尾（否则会把他人/历史文件的行尾一次性重写）。
+_repro/*/harness/results/*.json -text
+_repro/*/results/*.json        -text
+_repro/r285l/results/*.json    -text
+_repro/r291b2/**/_inputs_fingerprint.json -text
+# 交付读数件本身也含 evidence_sha256 字段，pin 住以便 clone 内自校验成立
+06-benchmark/r285_exec_commands_ab.json -text
+06-benchmark/r291b2_exec_commands_ab.json -text
