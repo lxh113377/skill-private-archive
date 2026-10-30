@@ -1,29 +1,43 @@
 {
  "schema": "uncommitted-this-round-v1",
  "round": "300",
- "dirty_tracked": 37,
- "suspect_count": 3,
+ "dirty_tracked": 42,
+ "suspect_count": 5,
  "suspects": [
   {
-   "file": "06-benchmark/gate_reconcile_registry.json",
-   "added_lines": 4,
-   "marker_lines": 1,
-   "strong_lines": 0,
-   "sample": "\"evidence\": \"05-exec/r300_declared_face_fixtures.py\","
+   "file": "04-plan/后续维护规范_季度巡检机制_r113_2026-10-18.md",
+   "added_lines": 19,
+   "marker_lines": 2,
+   "strong_lines": 1,
+   "sample": "## 5.6 引用必须先 grep 取原文（r300 落纸，R295-1 的规矩；含「引用自己写过的话」）"
   },
   {
-   "file": "DECOMPOSE.md",
-   "added_lines": 28,
-   "marker_lines": 4,
+   "file": "06-benchmark/r276_quarterly_inspection_dryrun.json",
+   "added_lines": 6,
+   "marker_lines": 1,
+   "strong_lines": 1,
+   "sample": "\"verify_cmd\": null, \"verify_cmd_unavailable\": \"该面此列原指向一件在任何盘上都已不存在的脚本（r300 实测 ls 无此件），故置空且不留路径形态文字\","
+  },
+  {
+   "file": "06-benchmark/r300_debt.json",
+   "added_lines": 21,
+   "marker_lines": 1,
    "strong_lines": 0,
-   "sample": "# DECOMPOSE · r300（把 R296-4 真落进 r114 本体：声明仓进五维打分，且**零档位漂移**）"
+   "sample": "\"detail\": \"log=r300 ≥ tag=r300（差 0 轮：本轮 tag 已打，两源一致）\""
+  },
+  {
+   "file": "06-benchmark/全量对标报告_r300_声明仓并入r114本体与零漂移实测_2026-10-30.md",
+   "added_lines": 40,
+   "marker_lines": 3,
+   "strong_lines": 0,
+   "sample": "> `python -B _temp/r300a/check_r300a.py`（末行 [V1:PREDICT] …；其上一行 [V1:PREDICT-PAIRS] …）；"
   },
   {
    "file": "memory/07-next-steps.md",
-   "added_lines": 39,
-   "marker_lines": 4,
-   "strong_lines": 3,
-   "sample": "- [ ] **R300-1（r300 登记，P1）** **R296-4 落进 r114 本体（加法式 declared_face：62 对声明仓进行内五维，档位/候选面零漂移，回滚字节等值）+ 七腿夹具进门表（116 门）；含我自己的两"
+   "added_lines": 98,
+   "marker_lines": 13,
+   "strong_lines": 9,
+   "sample": "- [ ] **R289-2（r289 登记，P2）** **巡检 dryrun 面件的 provenance_cmd 指 _temp（r287 基线 7 项里最大一族）：迁出需先处理 6 处中间态引用，本轮不做半截**：一手（r289 实"
   }
  ],
  "limit_note": "工作树共享：本面不证明作者，只给线索（判据 = 新增行含本轮轮号；处置词只作强度标注 strong_lines）",

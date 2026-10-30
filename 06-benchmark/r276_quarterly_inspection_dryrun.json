@@ -1,7 +1,7 @@
 {
  "schema": "quarterly-inspection-dryrun-v1",
  "generated_at": "2026-10-29T21:04:51+08:00",
- "provenance_cmd": "python -B _temp/r276qi_collect.py --out _temp/r276qi_stats.json && python -B _temp/r276qi_build.py",
+ "provenance_cmd": "python -B _repro/r276qi/r276qi_collect.py --out _repro/r276qi/work/r276qi_stats.json && python -B _repro/r276qi/r276qi_build.py",
  "readonly": true,
  "scope": {
   "bench_dir": "06-benchmark",
@@ -300,15 +300,15 @@
    "id": "I1",
    "target": "05-exec/r260_quarterly_cadence.py 的 newest_audit()（扩展为多面龄期扫描；禁改既有 06-benchmark 件）",
    "expected_coverage_change": "F5 watch_scope 由 1 类→5 面（audit + r263 + r271 + r264 + r262），任一件超 max_days 判红；F5 覆盖 1→5",
-   "verify_cmd": "python 05-exec/r260_quarterly_cadence.py --max-days 100 --json _temp/r276qi_cad_after.json",
+   "verify_cmd": "python 05-exec/r260_quarterly_cadence.py --max-days 100 --json _repro/r276qi/work/r276qi_cad_after.json",
    "verify_expect": "期望末行 [CADENCE:PASS] 且 reading 列出 5 面",
-   "negctrl": "把 _temp 负控目录里某一面 generated_at 造旧 >100 天 ⇒ 期望 [CADENCE:FAIL] 并点名该件"
+   "negctrl": "把 _repro/r276qi/work/r276qi_negctrl 负控目录里某一面 generated_at 造旧 >100 天 ⇒ 期望 [CADENCE:FAIL] 并点名该件"
   },
   {
    "id": "I2",
    "target": "新增 05-exec/r277_sidecar_backfill_proposal.py（只读：用 r262 件级 MATCHED 候选反查候选 .upstream，产出建议件，不改受管根）",
    "expected_coverage_change": "F1 入口覆盖 55/191 具备回填来源 120 件（join 无侧车但有件级替代=120）⇒ 入口未覆盖 136 可降至理论 16",
-   "verify_cmd": "python -B _temp/r276qi_collect.py --out _temp/r276qi_stats_after.json",
+   "verify_cmd": "python -B _repro/r276qi/r276qi_collect.py --out _repro/r276qi/work/r276qi_stats_after.json",
    "verify_expect": "期望末行 [QI:PASS] 且 F1 entry_uncovered_n < 136",
    "negctrl": "把建议件路径指向不存在 ⇒ 期望 [QI:UNVERIFIED] unverified=[F1]，禁止读成无缺口"
   },
@@ -316,7 +316,7 @@
    "id": "I3",
    "target": "新增 06-benchmark/r277_quarterly_verdict.json（把 F1.rel x F2.verdict x F4.semantics x F3.verdict 合成每件跟/换/观察/无解四态）",
    "expected_coverage_change": "G6/G7 合并为单件四态结论；缺口条目由 7 条收敛到约 4 条（G1/G3/G5 仍在）",
-   "verify_cmd": "python -B _temp/r277_verdict.py",
+   "verify_cmd": null, "verify_cmd_unavailable": "该面此列原指向一件在任何盘上都已不存在的脚本（r300 实测 ls 无此件），故置空且不留路径形态文字",
    "verify_expect": "期望末行 [VERDICT] rows=191",
    "negctrl": "去掉 F4 语义面重跑 ⇒ 期望报语义缺失态而非默认 SAME_LINEAGE"
   }
@@ -359,7 +359,7 @@
   }
  ],
  "negative_control": {
-  "method": "把 F4 的输入件 r264_sidecar_semantics.json 指向不存在（_temp/r276qi_negctrl 副本目录中故意缺失该件）",
+  "method": "把 F4 的输入件 r264_sidecar_semantics.json 指向不存在（_repro/r276qi/work/r276qi_negctrl 副本目录中故意缺失该件）",
   "observed": "F4 input_state=ABSENT denom=None covered=None uncovered=None；[QI:UNVERIFIED] unverified=[F4]；RC=2",
   "positive_leg": "四面齐 ⇒ [QI:PASS] faces=5 unverified=0；RC=0",
   "assertion": "输入件缺失 / 不可析一律 UNVERIFIED，绝不静默当成无缺口（R247）"

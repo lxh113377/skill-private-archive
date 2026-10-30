@@ -21,6 +21,7 @@
    "direct_fix_efficacy_face",
    "closure_layers_face",
    "gate_table_reconcile",
+   "declared_face_fixtures",
    "r19_scan_fixtures",
    "r19_baseline_contract_fixtures",
    "baseline_contract_scan",
@@ -118,7 +119,7 @@
    "provenance_resolve_face",
    "provenance_resolve_fixtures"
   ],
-  "_snapshot_at": "2026-10-30 13:20",
+  "_snapshot_at": "2026-10-30 21:06",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
