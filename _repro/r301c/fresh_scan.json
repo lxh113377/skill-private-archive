@@ -1,0 +1,580 @@
+{
+ "meta": {
+  "tool": "r301c freshness face",
+  "rules": "upstream_pushed_at > local_last_updated => BEHIND; == => CURRENT; < => LOCAL_AHEAD; either None => UNKNOWN; version 不参与判定",
+  "fm_src": "r112_provenance_scan.fm_field",
+  "cache_prov": {
+   "pack_path": "06-benchmark/pool_cache_r217.json",
+   "pack_entries": 414,
+   "pack_generated_at": "2026-10-25T07:07:46+00:00",
+   "loose_files": 432,
+   "loose_dir_exists": true
+  },
+  "load_cache_doc": "候选池缓存 = 入库包（POOL_PACK）+ 活散件，且**散件覆盖包**。  存在理由（r217，解 R213-1）：本函数原先只读 _temp/r114_search_cache/ —— 那目录"
+ },
+ "pairs": [
+  {
+   "slug": "agent-browser",
+   "repo": "vercel-labs/agent-browser",
+   "local_version": "3.2.0",
+   "local_last_updated": "2026-10-20",
+   "upstream_pushed_at": "2026-10-30",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\agent-browser\\SKILL.md)) -> 3.2.0 ; fm_field(text,last_updated) -> 2026-10-20 ; UPSTREAM load_cache()[repo__vercel_labs_agent_browser].pushed_at -> 2026-10-30"
+  },
+  {
+   "slug": "algorithmic-art",
+   "repo": "anthropics/skills",
+   "local_version": "1.0.0",
+   "local_last_updated": "2026-09-21",
+   "upstream_pushed_at": "2026-10-28",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\algorithmic-art\\SKILL.md)) -> 1.0.0 ; fm_field(text,last_updated) -> 2026-09-21 ; UPSTREAM load_cache()[repo__anthropics_skills].pushed_at -> 2026-10-28"
+  },
+  {
+   "slug": "brainstorming",
+   "repo": "obra/superpowers",
+   "local_version": "1.2.0",
+   "local_last_updated": "2026-10-27",
+   "upstream_pushed_at": "2026-10-29",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\brainstorming\\SKILL.md)) -> 1.2.0 ; fm_field(text,last_updated) -> 2026-10-27 ; UPSTREAM load_cache()[repo__obra_superpowers].pushed_at -> 2026-10-29"
+  },
+  {
+   "slug": "brand-guidelines",
+   "repo": "anthropics/skills",
+   "local_version": "1.0.0",
+   "local_last_updated": "2026-09-22",
+   "upstream_pushed_at": "2026-10-28",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\brand-guidelines\\SKILL.md)) -> 1.0.0 ; fm_field(text,last_updated) -> 2026-09-22 ; UPSTREAM load_cache()[repo__anthropics_skills].pushed_at -> 2026-10-28"
+  },
+  {
+   "slug": "canvas-design",
+   "repo": "anthropics/skills",
+   "local_version": "1.0.0",
+   "local_last_updated": "2026-09-21",
+   "upstream_pushed_at": "2026-10-28",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\canvas-design\\SKILL.md)) -> 1.0.0 ; fm_field(text,last_updated) -> 2026-09-21 ; UPSTREAM load_cache()[repo__anthropics_skills].pushed_at -> 2026-10-28"
+  },
+  {
+   "slug": "chart-visualization",
+   "repo": "antvis/chart-visualization-skills",
+   "local_version": "1.0.0",
+   "local_last_updated": "2026-09-22",
+   "upstream_pushed_at": "2026-09-22",
+   "state": "CURRENT",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\chart-visualization\\SKILL.md)) -> 1.0.0 ; fm_field(text,last_updated) -> 2026-09-22 ; UPSTREAM load_cache()[repo__antvis_chart_visualization_skills].pushed_at -> 2026-09-22"
+  },
+  {
+   "slug": "coding-agent",
+   "repo": "sickn33/agentic-awesome-skills",
+   "local_version": "1.3.0",
+   "local_last_updated": "2026-10-27",
+   "upstream_pushed_at": "2026-10-29",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\coding-agent\\SKILL.md)) -> 1.3.0 ; fm_field(text,last_updated) -> 2026-10-27 ; UPSTREAM load_cache()[repo__sickn33_agentic_awesome_skills].pushed_at -> 2026-10-29"
+  },
+  {
+   "slug": "commit-archaeologist",
+   "repo": "Shubhamsaboo/awesome-llm-apps",
+   "local_version": "1.0.0",
+   "local_last_updated": "2026-10-04",
+   "upstream_pushed_at": "2026-10-22",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\commit-archaeologist\\SKILL.md)) -> 1.0.0 ; fm_field(text,last_updated) -> 2026-10-04 ; UPSTREAM load_cache()[repo__Shubhamsaboo_awesome_llm_apps].pushed_at -> 2026-10-22"
+  },
+  {
+   "slug": "data-analysis",
+   "repo": "K-Dense-AI/scientific-agent-skills",
+   "local_version": "1.4.0",
+   "local_last_updated": "2026-10-27",
+   "upstream_pushed_at": "2026-10-26",
+   "state": "LOCAL_AHEAD",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\data-analysis\\SKILL.md)) -> 1.4.0 ; fm_field(text,last_updated) -> 2026-10-27 ; UPSTREAM load_cache()[repo__K_Dense_AI_scientific_agent_skills].pushed_at -> 2026-10-26"
+  },
+  {
+   "slug": "diagram-maker",
+   "repo": "github/awesome-copilot",
+   "local_version": "1.2.0",
+   "local_last_updated": "2026-10-27",
+   "upstream_pushed_at": "2026-10-30",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\diagram-maker\\SKILL.md)) -> 1.2.0 ; fm_field(text,last_updated) -> 2026-10-27 ; UPSTREAM load_cache()[repo__github_awesome_copilot].pushed_at -> 2026-10-30"
+  },
+  {
+   "slug": "doc-coauthoring",
+   "repo": "anthropics/skills",
+   "local_version": "2.0.0",
+   "local_last_updated": "2026-10-20",
+   "upstream_pushed_at": "2026-10-28",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\doc-coauthoring\\SKILL.md)) -> 2.0.0 ; fm_field(text,last_updated) -> 2026-10-20 ; UPSTREAM load_cache()[repo__anthropics_skills].pushed_at -> 2026-10-28"
+  },
+  {
+   "slug": "docx",
+   "repo": "anthropics/skills",
+   "local_version": "2.2.0",
+   "local_last_updated": "2026-10-27",
+   "upstream_pushed_at": "2026-10-28",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\docx\\SKILL.md)) -> 2.2.0 ; fm_field(text,last_updated) -> 2026-10-27 ; UPSTREAM load_cache()[repo__anthropics_skills].pushed_at -> 2026-10-28"
+  },
+  {
+   "slug": "electron",
+   "repo": "vercel-labs/agent-browser",
+   "local_version": "1.1.0",
+   "local_last_updated": "2026-10-20",
+   "upstream_pushed_at": "2026-10-30",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\electron\\SKILL.md)) -> 1.1.0 ; fm_field(text,last_updated) -> 2026-10-20 ; UPSTREAM load_cache()[repo__vercel_labs_agent_browser].pushed_at -> 2026-10-30"
+  },
+  {
+   "slug": "figma",
+   "repo": "heygen-com/hyperframes",
+   "local_version": "1.1.0",
+   "local_last_updated": "2026-10-27",
+   "upstream_pushed_at": "2026-10-30",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\figma\\SKILL.md)) -> 1.1.0 ; fm_field(text,last_updated) -> 2026-10-27 ; UPSTREAM load_cache()[repo__heygen_com_hyperframes].pushed_at -> 2026-10-30"
+  },
+  {
+   "slug": "find-skills",
+   "repo": "vercel-labs/skills",
+   "local_version": "1.1.0",
+   "local_last_updated": "2026-10-20",
+   "upstream_pushed_at": "2026-10-29",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\find-skills\\SKILL.md)) -> 1.1.0 ; fm_field(text,last_updated) -> 2026-10-20 ; UPSTREAM load_cache()[repo__vercel_labs_skills].pushed_at -> 2026-10-29"
+  },
+  {
+   "slug": "frontend-design",
+   "repo": "anthropics/skills",
+   "local_version": "2.1.0",
+   "local_last_updated": "2026-09-29",
+   "upstream_pushed_at": "2026-10-28",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\frontend-design\\SKILL.md)) -> 2.1.0 ; fm_field(text,last_updated) -> 2026-09-29 ; UPSTREAM load_cache()[repo__anthropics_skills].pushed_at -> 2026-10-28"
+  },
+  {
+   "slug": "frontend-slides",
+   "repo": "zarazhangrui/frontend-slides",
+   "local_version": "1.4.2",
+   "local_last_updated": "2026-10-30",
+   "upstream_pushed_at": "2026-06-23",
+   "state": "LOCAL_AHEAD",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\frontend-slides\\SKILL.md)) -> 1.4.2 ; fm_field(text,last_updated) -> 2026-10-30 ; UPSTREAM load_cache()[repo__zarazhangrui_frontend_slides].pushed_at -> 2026-06-23"
+  },
+  {
+   "slug": "grill-me",
+   "repo": "mattpocock/skills",
+   "local_version": "1.2.0",
+   "local_last_updated": "2026-10-27",
+   "upstream_pushed_at": "2026-10-29",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\grill-me\\SKILL.md)) -> 1.2.0 ; fm_field(text,last_updated) -> 2026-10-27 ; UPSTREAM load_cache()[repo__mattpocock_skills].pushed_at -> 2026-10-29"
+  },
+  {
+   "slug": "gstack",
+   "repo": "garrytan/gstack",
+   "local_version": "1.3.0",
+   "local_last_updated": "2026-10-27",
+   "upstream_pushed_at": "2026-10-30",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\gstack\\SKILL.md)) -> 1.3.0 ; fm_field(text,last_updated) -> 2026-10-27 ; UPSTREAM load_cache()[repo__garrytan_gstack].pushed_at -> 2026-10-30"
+  },
+  {
+   "slug": "html-ppt",
+   "repo": "lewislulu/html-ppt-skill",
+   "local_version": "1.0.0",
+   "local_last_updated": "2026-10-04",
+   "upstream_pushed_at": "2026-09-14",
+   "state": "LOCAL_AHEAD",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\html-ppt\\SKILL.md)) -> 1.0.0 ; fm_field(text,last_updated) -> 2026-10-04 ; UPSTREAM load_cache()[repo__lewislulu_html_ppt_skill].pushed_at -> 2026-09-14"
+  },
+  {
+   "slug": "hyperframes",
+   "repo": "heygen-com/hyperframes",
+   "local_version": "1.7.0",
+   "local_last_updated": "2026-10-27",
+   "upstream_pushed_at": "2026-10-30",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\hyperframes\\SKILL.md)) -> 1.7.0 ; fm_field(text,last_updated) -> 2026-10-27 ; UPSTREAM load_cache()[repo__heygen_com_hyperframes].pushed_at -> 2026-10-30"
+  },
+  {
+   "slug": "hyperframes-cli",
+   "repo": "heygen-com/hyperframes",
+   "local_version": "1.1.0",
+   "local_last_updated": "2026-10-27",
+   "upstream_pushed_at": "2026-10-30",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\hyperframes-cli\\SKILL.md)) -> 1.1.0 ; fm_field(text,last_updated) -> 2026-10-27 ; UPSTREAM load_cache()[repo__heygen_com_hyperframes].pushed_at -> 2026-10-30"
+  },
+  {
+   "slug": "hyperframes-media",
+   "repo": "heygen-com/hyperframes",
+   "local_version": "1.7.0",
+   "local_last_updated": "2026-10-27",
+   "upstream_pushed_at": "2026-10-30",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\hyperframes-media\\SKILL.md)) -> 1.7.0 ; fm_field(text,last_updated) -> 2026-10-27 ; UPSTREAM load_cache()[repo__heygen_com_hyperframes].pushed_at -> 2026-10-30"
+  },
+  {
+   "slug": "hyperframes-registry",
+   "repo": "heygen-com/hyperframes",
+   "local_version": "1.1.0",
+   "local_last_updated": "2026-10-27",
+   "upstream_pushed_at": "2026-10-30",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\hyperframes-registry\\SKILL.md)) -> 1.1.0 ; fm_field(text,last_updated) -> 2026-10-27 ; UPSTREAM load_cache()[repo__heygen_com_hyperframes].pushed_at -> 2026-10-30"
+  },
+  {
+   "slug": "internal-comms",
+   "repo": "anthropics/skills",
+   "local_version": "1.0.0",
+   "local_last_updated": "2026-09-22",
+   "upstream_pushed_at": "2026-10-28",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\internal-comms\\SKILL.md)) -> 1.0.0 ; fm_field(text,last_updated) -> 2026-09-22 ; UPSTREAM load_cache()[repo__anthropics_skills].pushed_at -> 2026-10-28"
+  },
+  {
+   "slug": "mcp-builder",
+   "repo": "anthropics/skills",
+   "local_version": "1.1.0",
+   "local_last_updated": "2026-10-30",
+   "upstream_pushed_at": "2026-10-28",
+   "state": "LOCAL_AHEAD",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\mcp-builder\\SKILL.md)) -> 1.1.0 ; fm_field(text,last_updated) -> 2026-10-30 ; UPSTREAM load_cache()[repo__anthropics_skills].pushed_at -> 2026-10-28"
+  },
+  {
+   "slug": "oracle",
+   "repo": "steipete/oracle",
+   "local_version": "1.2.0",
+   "local_last_updated": "2026-10-25",
+   "upstream_pushed_at": "2026-10-27",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\oracle\\SKILL.md)) -> 1.2.0 ; fm_field(text,last_updated) -> 2026-10-25 ; UPSTREAM load_cache()[repo__steipete_oracle].pushed_at -> 2026-10-27"
+  },
+  {
+   "slug": "pdf",
+   "repo": "anthropics/skills",
+   "local_version": "1.1.0",
+   "local_last_updated": "2026-10-27",
+   "upstream_pushed_at": "2026-10-28",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\pdf\\SKILL.md)) -> 1.1.0 ; fm_field(text,last_updated) -> 2026-10-27 ; UPSTREAM load_cache()[repo__anthropics_skills].pushed_at -> 2026-10-28"
+  },
+  {
+   "slug": "ppt-master",
+   "repo": "hugohe3/ppt-master",
+   "local_version": "6.6.0",
+   "local_last_updated": "2026-10-27",
+   "upstream_pushed_at": "2026-10-30",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\ppt-master\\SKILL.md)) -> 6.6.0 ; fm_field(text,last_updated) -> 2026-10-27 ; UPSTREAM load_cache()[repo__hugohe3_ppt_master].pushed_at -> 2026-10-30"
+  },
+  {
+   "slug": "rag-eval",
+   "repo": "NVIDIA-AI-Blueprints/rag",
+   "local_version": "2.6.0",
+   "local_last_updated": "2026-10-04",
+   "upstream_pushed_at": "2026-10-29",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\rag-eval\\SKILL.md)) -> 2.6.0 ; fm_field(text,last_updated) -> 2026-10-04 ; UPSTREAM load_cache()[repo__NVIDIA_AI_Blueprints_rag].pushed_at -> 2026-10-29"
+  },
+  {
+   "slug": "scope-creep-detector",
+   "repo": "Shubhamsaboo/awesome-llm-apps",
+   "local_version": "1.0.0",
+   "local_last_updated": "2026-10-04",
+   "upstream_pushed_at": "2026-10-22",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\scope-creep-detector\\SKILL.md)) -> 1.0.0 ; fm_field(text,last_updated) -> 2026-10-04 ; UPSTREAM load_cache()[repo__Shubhamsaboo_awesome_llm_apps].pushed_at -> 2026-10-22"
+  },
+  {
+   "slug": "story",
+   "repo": "worldwonderer/oh-story-claudecode",
+   "local_version": "1.1.0",
+   "local_last_updated": "2026-10-27",
+   "upstream_pushed_at": "2026-10-30",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\story\\SKILL.md)) -> 1.1.0 ; fm_field(text,last_updated) -> 2026-10-27 ; UPSTREAM load_cache()[repo__worldwonderer_oh_story_claudecode].pushed_at -> 2026-10-30"
+  },
+  {
+   "slug": "story-cover",
+   "repo": "worldwonderer/oh-story-claudecode",
+   "local_version": "1.1.0",
+   "local_last_updated": "2026-10-27",
+   "upstream_pushed_at": "2026-10-30",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\story-cover\\SKILL.md)) -> 1.1.0 ; fm_field(text,last_updated) -> 2026-10-27 ; UPSTREAM load_cache()[repo__worldwonderer_oh_story_claudecode].pushed_at -> 2026-10-30"
+  },
+  {
+   "slug": "story-deslop",
+   "repo": "worldwonderer/oh-story-claudecode",
+   "local_version": "1.2.0",
+   "local_last_updated": "2026-10-27",
+   "upstream_pushed_at": "2026-10-30",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\story-deslop\\SKILL.md)) -> 1.2.0 ; fm_field(text,last_updated) -> 2026-10-27 ; UPSTREAM load_cache()[repo__worldwonderer_oh_story_claudecode].pushed_at -> 2026-10-30"
+  },
+  {
+   "slug": "story-import",
+   "repo": "worldwonderer/oh-story-claudecode",
+   "local_version": "1.3.0",
+   "local_last_updated": "2026-10-27",
+   "upstream_pushed_at": "2026-10-30",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\story-import\\SKILL.md)) -> 1.3.0 ; fm_field(text,last_updated) -> 2026-10-27 ; UPSTREAM load_cache()[repo__worldwonderer_oh_story_claudecode].pushed_at -> 2026-10-30"
+  },
+  {
+   "slug": "story-long-analyze",
+   "repo": "worldwonderer/oh-story-claudecode",
+   "local_version": "1.2.0",
+   "local_last_updated": "2026-10-27",
+   "upstream_pushed_at": "2026-10-30",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\story-long-analyze\\SKILL.md)) -> 1.2.0 ; fm_field(text,last_updated) -> 2026-10-27 ; UPSTREAM load_cache()[repo__worldwonderer_oh_story_claudecode].pushed_at -> 2026-10-30"
+  },
+  {
+   "slug": "story-long-write",
+   "repo": "worldwonderer/oh-story-claudecode",
+   "local_version": "1.4.0",
+   "local_last_updated": "2026-10-27",
+   "upstream_pushed_at": "2026-10-30",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\story-long-write\\SKILL.md)) -> 1.4.0 ; fm_field(text,last_updated) -> 2026-10-27 ; UPSTREAM load_cache()[repo__worldwonderer_oh_story_claudecode].pushed_at -> 2026-10-30"
+  },
+  {
+   "slug": "story-review",
+   "repo": "worldwonderer/oh-story-claudecode",
+   "local_version": "1.5.0",
+   "local_last_updated": "2026-10-27",
+   "upstream_pushed_at": "2026-10-30",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\story-review\\SKILL.md)) -> 1.5.0 ; fm_field(text,last_updated) -> 2026-10-27 ; UPSTREAM load_cache()[repo__worldwonderer_oh_story_claudecode].pushed_at -> 2026-10-30"
+  },
+  {
+   "slug": "story-scan",
+   "repo": "worldwonderer/oh-story-claudecode",
+   "local_version": "1.1.0",
+   "local_last_updated": "2026-10-27",
+   "upstream_pushed_at": "2026-10-30",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\story-scan\\SKILL.md)) -> 1.1.0 ; fm_field(text,last_updated) -> 2026-10-27 ; UPSTREAM load_cache()[repo__worldwonderer_oh_story_claudecode].pushed_at -> 2026-10-30"
+  },
+  {
+   "slug": "story-setup",
+   "repo": "worldwonderer/oh-story-claudecode",
+   "local_version": "1.6.0",
+   "local_last_updated": "2026-10-27",
+   "upstream_pushed_at": "2026-10-30",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\story-setup\\SKILL.md)) -> 1.6.0 ; fm_field(text,last_updated) -> 2026-10-27 ; UPSTREAM load_cache()[repo__worldwonderer_oh_story_claudecode].pushed_at -> 2026-10-30"
+  },
+  {
+   "slug": "story-short-analyze",
+   "repo": "worldwonderer/oh-story-claudecode",
+   "local_version": "3.1.0",
+   "local_last_updated": "2026-10-27",
+   "upstream_pushed_at": "2026-10-30",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\story-short-analyze\\SKILL.md)) -> 3.1.0 ; fm_field(text,last_updated) -> 2026-10-27 ; UPSTREAM load_cache()[repo__worldwonderer_oh_story_claudecode].pushed_at -> 2026-10-30"
+  },
+  {
+   "slug": "story-short-write",
+   "repo": "worldwonderer/oh-story-claudecode",
+   "local_version": "1.3.0",
+   "local_last_updated": "2026-10-27",
+   "upstream_pushed_at": "2026-10-30",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\story-short-write\\SKILL.md)) -> 1.3.0 ; fm_field(text,last_updated) -> 2026-10-27 ; UPSTREAM load_cache()[repo__worldwonderer_oh_story_claudecode].pushed_at -> 2026-10-30"
+  },
+  {
+   "slug": "subagent-driven-development",
+   "repo": "obra/superpowers",
+   "local_version": "1.3.0",
+   "local_last_updated": null,
+   "upstream_pushed_at": "2026-10-29",
+   "state": "UNKNOWN",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\subagent-driven-development\\SKILL.md)) -> 1.3.0 ; fm_field(text,last_updated) -> None ; UPSTREAM load_cache()[repo__obra_superpowers].pushed_at -> 2026-10-29"
+  },
+  {
+   "slug": "test-driven-development",
+   "repo": "obra/superpowers",
+   "local_version": "1.3.0",
+   "local_last_updated": "2026-10-27",
+   "upstream_pushed_at": "2026-10-29",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\test-driven-development\\SKILL.md)) -> 1.3.0 ; fm_field(text,last_updated) -> 2026-10-27 ; UPSTREAM load_cache()[repo__obra_superpowers].pushed_at -> 2026-10-29"
+  },
+  {
+   "slug": "theme-factory",
+   "repo": "anthropics/skills",
+   "local_version": "1.0.0",
+   "local_last_updated": "2026-09-22",
+   "upstream_pushed_at": "2026-10-28",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\theme-factory\\SKILL.md)) -> 1.0.0 ; fm_field(text,last_updated) -> 2026-09-22 ; UPSTREAM load_cache()[repo__anthropics_skills].pushed_at -> 2026-10-28"
+  },
+  {
+   "slug": "ui-ux-pro-max",
+   "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
+   "local_version": "1.6.0",
+   "local_last_updated": "2026-10-29",
+   "upstream_pushed_at": "2026-10-26",
+   "state": "LOCAL_AHEAD",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\ui-ux-pro-max\\SKILL.md)) -> 1.6.0 ; fm_field(text,last_updated) -> 2026-10-29 ; UPSTREAM load_cache()[repo__nextlevelbuilder_ui_ux_pro_max_skill].pushed_at -> 2026-10-26"
+  },
+  {
+   "slug": "verification-before-completion",
+   "repo": "obra/superpowers",
+   "local_version": "1.7.2",
+   "local_last_updated": "2026-10-25",
+   "upstream_pushed_at": "2026-10-29",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\verification-before-completion\\SKILL.md)) -> 1.7.2 ; fm_field(text,last_updated) -> 2026-10-25 ; UPSTREAM load_cache()[repo__obra_superpowers].pushed_at -> 2026-10-29"
+  },
+  {
+   "slug": "writing-plans",
+   "repo": "obra/superpowers",
+   "local_version": "1.0.0",
+   "local_last_updated": "2026-10-17",
+   "upstream_pushed_at": "2026-10-29",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\writing-plans\\SKILL.md)) -> 1.0.0 ; fm_field(text,last_updated) -> 2026-10-17 ; UPSTREAM load_cache()[repo__obra_superpowers].pushed_at -> 2026-10-29"
+  },
+  {
+   "slug": "xlsx",
+   "repo": "anthropics/skills",
+   "local_version": "1.2.0",
+   "local_last_updated": "2026-10-27",
+   "upstream_pushed_at": "2026-10-28",
+   "state": "BEHIND",
+   "evidence_cmd": "LOCAL parse_version(read(D:\\global_skills\\xlsx\\SKILL.md)) -> 1.2.0 ; fm_field(text,last_updated) -> 2026-10-27 ; UPSTREAM load_cache()[repo__anthropics_skills].pushed_at -> 2026-10-28"
+  }
+ ],
+ "samples": [
+  {
+   "slug": "agent-browser",
+   "repo": "vercel-labs/agent-browser",
+   "path": "skills/agent-browser/SKILL.md",
+   "upstream_version": null,
+   "sha": "67e8a49ad8d8e5874b9e3a5d802df68d5e5e7d76",
+   "sampled_state": "VERIFIED",
+   "evidence_cmd": "gh api repos/vercel-labs/agent-browser/contents/skills/agent-browser/SKILL.md -> base64 decode -> parse_version",
+   "stderr": ""
+  },
+  {
+   "slug": "diagram-maker",
+   "repo": "github/awesome-copilot",
+   "path": "skills/excalidraw-diagram-generator/SKILL.md",
+   "upstream_version": null,
+   "sha": "1a290eae1c7a164f59422e3d8811709ef3357d85",
+   "sampled_state": "VERIFIED",
+   "evidence_cmd": "gh api repos/github/awesome-copilot/contents/skills/excalidraw-diagram-generator/SKILL.md -> base64 decode -> parse_version",
+   "stderr": ""
+  },
+  {
+   "slug": "electron",
+   "repo": "vercel-labs/agent-browser",
+   "path": "skill-data/electron/SKILL.md",
+   "upstream_version": null,
+   "sha": "e4bf00e8e669e43d717e00050df320455352fa86",
+   "sampled_state": "VERIFIED",
+   "evidence_cmd": "gh api repos/vercel-labs/agent-browser/contents/skill-data/electron/SKILL.md -> base64 decode -> parse_version",
+   "stderr": ""
+  },
+  {
+   "slug": "figma",
+   "repo": "heygen-com/hyperframes",
+   "path": "skills/figma/SKILL.md",
+   "upstream_version": null,
+   "sha": "2a33e19bee8715a5225f6743d91a828aa8b66ea2",
+   "sampled_state": "VERIFIED",
+   "evidence_cmd": "gh api repos/heygen-com/hyperframes/contents/skills/figma/SKILL.md -> base64 decode -> parse_version",
+   "stderr": ""
+  },
+  {
+   "slug": "gstack",
+   "repo": "garrytan/gstack",
+   "path": "capy/skill/gstack/SKILL.md",
+   "upstream_version": null,
+   "sha": "11bd23cc72e7535978675f6da3ddcf39d7720b5b",
+   "sampled_state": "VERIFIED",
+   "evidence_cmd": "gh api repos/garrytan/gstack/contents/capy/skill/gstack/SKILL.md -> base64 decode -> parse_version",
+   "stderr": ""
+  },
+  {
+   "slug": "hyperframes",
+   "repo": "heygen-com/hyperframes",
+   "path": "skills/hyperframes/SKILL.md",
+   "upstream_version": null,
+   "sha": "6f4166472b0f0c6f26e4b3db6829ecf385686701",
+   "sampled_state": "VERIFIED",
+   "evidence_cmd": "gh api repos/heygen-com/hyperframes/contents/skills/hyperframes/SKILL.md -> base64 decode -> parse_version",
+   "stderr": ""
+  },
+  {
+   "slug": "hyperframes-cli",
+   "repo": "heygen-com/hyperframes",
+   "path": "skills/hyperframes-cli/SKILL.md",
+   "upstream_version": null,
+   "sha": "7f51bc528abc5bb4f3e9659de97332dfea9047ca",
+   "sampled_state": "VERIFIED",
+   "evidence_cmd": "gh api repos/heygen-com/hyperframes/contents/skills/hyperframes-cli/SKILL.md -> base64 decode -> parse_version",
+   "stderr": ""
+  },
+  {
+   "slug": "hyperframes-media",
+   "repo": "heygen-com/hyperframes",
+   "path": "skills/media-use/SKILL.md",
+   "upstream_version": null,
+   "sha": "ddb316eac41a15ab54d0b3de538fd1d0f9b474fc",
+   "sampled_state": "VERIFIED",
+   "evidence_cmd": "gh api repos/heygen-com/hyperframes/contents/skills/media-use/SKILL.md -> base64 decode -> parse_version",
+   "stderr": ""
+  },
+  {
+   "slug": "hyperframes-registry",
+   "repo": "heygen-com/hyperframes",
+   "path": "skills/hyperframes-registry/SKILL.md",
+   "upstream_version": null,
+   "sha": "7b1bc6a6c95c02ee03319cc8adaba7e54b020cba",
+   "sampled_state": "VERIFIED",
+   "evidence_cmd": "gh api repos/heygen-com/hyperframes/contents/skills/hyperframes-registry/SKILL.md -> base64 decode -> parse_version",
+   "stderr": ""
+  },
+  {
+   "slug": "ppt-master",
+   "repo": "hugohe3/ppt-master",
+   "path": "skills/ppt-master/SKILL.md",
+   "upstream_version": "6.8.0",
+   "sha": "39e6c8a6ab8e1c1e18dfcbfee879d0ae31dbe4ee",
+   "sampled_state": "VERIFIED",
+   "evidence_cmd": "gh api repos/hugohe3/ppt-master/contents/skills/ppt-master/SKILL.md -> base64 decode -> parse_version",
+   "stderr": ""
+  },
+  {
+   "slug": "story",
+   "repo": "worldwonderer/oh-story-claudecode",
+   "path": "skills/story/SKILL.md",
+   "upstream_version": null,
+   "sha": "f99b794a131a8946418f73e27f24a564d8580f74",
+   "sampled_state": "VERIFIED",
+   "evidence_cmd": "gh api repos/worldwonderer/oh-story-claudecode/contents/skills/story/SKILL.md -> base64 decode -> parse_version",
+   "stderr": ""
+  },
+  {
+   "slug": "story-cover",
+   "repo": "worldwonderer/oh-story-claudecode",
+   "path": "skills/story-cover/SKILL.md",
+   "upstream_version": "1.0.0",
+   "sha": "a01d8b2a6acb6b8c3822367c750303b88ee785da",
+   "sampled_state": "VERIFIED",
+   "evidence_cmd": "gh api repos/worldwonderer/oh-story-claudecode/contents/skills/story-cover/SKILL.md -> base64 decode -> parse_version",
+   "stderr": ""
+  }
+ ]
+}

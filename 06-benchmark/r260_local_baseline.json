@@ -1,15 +1,15 @@
 {
  "schema": "r260-local-baseline-v1",
- "generated_at": "2026-10-29T14:07:13+00:00",
+ "generated_at": "2026-10-30T14:01:41+00:00",
  "cmd": "python 05-exec/r260_local_baseline.py",
  "rerun": "cd 自建skill优化 && export PYTHONPYCACHEPREFIX=/tmp/pycache_r260b && python 05-exec/r260_local_baseline.py",
  "single_source": {
   "score5_module": "r114_replacement_scan",
   "score5_file": "05-exec/r114_replacement_scan.py",
-  "score5_sha16": "8a13ae1f4d91ec9b",
+  "score5_sha16": "31231c228446b037",
   "matrix_file": "06-benchmark/replacement_matrix_r225.json",
   "matrix_sha16": "9c0d382a2168db07",
-  "pool_pack_entries": 414,
+  "pool_pack_entries": 432,
   "claim": "本地列与候选列调用 r114_replacement_scan.score5 同一函数对象；复刻即双源 —— reproduce_selfcheck.mismatches 必须为 0 才算这条成立"
  },
  "authority": "D:/global_skills",
@@ -102,13 +102,13 @@
    "rows_checked": 191,
    "rank0_flips_when_compat_dropped": 22,
    "rows_with_constant_compat_across_candidates": 75,
-   "control_rank0_flips_when_community_dropped": 22,
+   "control_rank0_flips_when_community_dropped": 23,
    "control_slugs": [
+    "agent-browser",
     "byted-seedance-video-generate",
     "byted-seedream-image-generate",
     "chart-visualization",
-    "code-review",
-    "dingtalk-aisearch"
+    "code-review"
    ],
    "control_meaning": "对照组测出非零 ⇒ 本函数不是恒 0 的死码；compat=0 是维度性质",
    "contribution_reading": "有贡献：22 行换过 rank0",
@@ -290,7 +290,7 @@
    ],
    "meaning": "copyleft 候选 48 个里 compat=5 的有 48 个，且 9 行把它排在 rank0 ⇒ 判据不认识许可风险与合并政策冲突"
   },
-  "verdict": "部分判别力：3/3 个应判低分形态被扣分（license 明确性与 SKILL.md 约定两子腿起作用），0 个形态仍满分 ⇒ 缺陷具名到子腿：compat 没有许可风险/能否合入子腿；排序贡献实测：删掉 compat 后 rank0 变化 22/191 行（对照组删 community 变化 22 行） ⇒ 该维对排序有贡献但被恒满分稀释",
+  "verdict": "部分判别力：3/3 个应判低分形态被扣分（license 明确性与 SKILL.md 约定两子腿起作用），0 个形态仍满分 ⇒ 缺陷具名到子腿：compat 没有许可风险/能否合入子腿；排序贡献实测：删掉 compat 后 rank0 变化 22/191 行（对照组删 community 变化 23 行） ⇒ 该维对排序有贡献但被恒满分稀释",
   "subleg_saturation": {
    "license_explicit": {
     "satisfied": 928,
@@ -334,7 +334,7 @@
     "test_path_n": 0,
     "workflow_n": 0,
     "license": "UNLICENSED",
-    "pushed_at": "2026-10-29"
+    "pushed_at": "2026-10-30"
    },
    "score5": {
     "fc": 2,
@@ -464,13 +464,104 @@
  },
  "reproduce_selfcheck": {
   "candidates_recomputed": 937,
-  "mismatches": 0,
-  "mismatch_examples": [],
-  "mismatches_cap_on": 131,
-  "mismatches_cap_off": 0,
+  "mismatches": 3,
+  "mismatch_examples": [
+   {
+    "slug": "agent-browser",
+    "repo": "vercel-labs/agent-browser",
+    "recomputed_cap_on": {
+     "fc": 4,
+     "eff": 3,
+     "compat": 5,
+     "docs": 3,
+     "community": 4
+    },
+    "recorded": {
+     "fc": 3,
+     "eff": 3,
+     "compat": 5,
+     "docs": 3,
+     "community": 4
+    }
+   },
+   {
+    "slug": "agent-browser",
+    "repo": "vercel-labs/agent-browser",
+    "recomputed": {
+     "fc": 4,
+     "eff": 3,
+     "compat": 5,
+     "docs": 3,
+     "community": 4
+    },
+    "recorded": {
+     "fc": 3,
+     "eff": 3,
+     "compat": 5,
+     "docs": 3,
+     "community": 4
+    }
+   },
+   {
+    "slug": "browser-voice-call",
+    "repo": "vercel-labs/agent-browser",
+    "recomputed_cap_on": {
+     "fc": 4,
+     "eff": 3,
+     "compat": 5,
+     "docs": 3,
+     "community": 4
+    },
+    "recorded": {
+     "fc": 3,
+     "eff": 3,
+     "compat": 5,
+     "docs": 3,
+     "community": 4
+    }
+   },
+   {
+    "slug": "browser-voice-call",
+    "repo": "vercel-labs/agent-browser",
+    "recomputed": {
+     "fc": 4,
+     "eff": 3,
+     "compat": 5,
+     "docs": 3,
+     "community": 4
+    },
+    "recorded": {
+     "fc": 3,
+     "eff": 3,
+     "compat": 5,
+     "docs": 3,
+     "community": 4
+    }
+   },
+   {
+    "slug": "github",
+    "repo": "github/awesome-copilot",
+    "recomputed_cap_on": {
+     "fc": 5,
+     "eff": 4,
+     "compat": 5,
+     "docs": 4,
+     "community": 4
+    },
+    "recorded": {
+     "fc": 5,
+     "eff": 3,
+     "compat": 5,
+     "docs": 4,
+     "community": 4
+    }
+   }
+  ],
+  "mismatches_cap_on": 134,
+  "mismatches_cap_off": 3,
   "matrix_caliber": "license_cap_off",
   "cap_discriminates": true,
-  "caliber_note": "两口径漂移分别记录（cap_on=131 / cap_off=0）：较小值视为该矩阵件产出时的口径。cap_discriminates=False 且两者皆 0 ⇒ 本次样本对 cap 无差别（如 --limit 小样），禁据此判许可档有效；两者皆非 0 ⇒ 未知改动/真双源，本门当场红。",
+  "caliber_note": "两口径漂移分别记录（cap_on=134 / cap_off=3）：较小值视为该矩阵件产出时的口径。cap_discriminates=False 且两者皆 0 ⇒ 本次样本对 cap 无差别（如 --limit 小样），禁据此判许可档有效；两者皆非 0 ⇒ 未知改动/真双源，本门当场红。",
   "claim": "mismatches==0 即本件与该矩阵件产出时同一把尺（两个 cap 档至少一个能零漂移复现）；两档皆 >0 即双源/未登记换代，自证不成立"
  },
  "rows": [
@@ -1763,14 +1854,14 @@
     "score_cmp4": 15,
     "fc_caliber": "strict",
     "license": "MIT",
-    "stars": 304728,
+    "stars": 309106,
     "archived": false,
     "skill_md_exact_n": 15,
     "blob_n": 231,
     "test_path_n": 70,
     "workflow_n": 0,
     "docs_md_n": 31,
-    "pushed_at": "2026-10-23"
+    "pushed_at": "2026-10-29"
    },
    "delta_cmp4": -7,
    "delta_total25": -11,
@@ -1832,14 +1923,14 @@
     "score_cmp4": 16,
     "fc_caliber": "strict",
     "license": "MIT",
-    "stars": 140041,
+    "stars": 142835,
     "archived": false,
     "skill_md_exact_n": 13,
-    "blob_n": 697,
-    "test_path_n": 105,
+    "blob_n": 698,
+    "test_path_n": 106,
     "workflow_n": 6,
     "docs_md_n": 5,
-    "pushed_at": "2026-10-23"
+    "pushed_at": "2026-10-26"
    },
    "delta_cmp4": -8,
    "delta_total25": -12,
@@ -5558,7 +5649,7 @@
     "score_cmp4": 10,
     "fc_caliber": "strict",
     "license": "MIT",
-    "stars": 31230,
+    "stars": 31594,
     "archived": false,
     "skill_md_exact_n": 2,
     "blob_n": 163,
@@ -5696,7 +5787,7 @@
     "score_cmp4": 10,
     "fc_caliber": "strict",
     "license": "MIT",
-    "stars": 31230,
+    "stars": 31594,
     "archived": false,
     "skill_md_exact_n": 2,
     "blob_n": 163,
@@ -5746,7 +5837,7 @@
     "docs_md_n": 0,
     "test_path_n": 0,
     "workflow_n": 0,
-    "pushed_at_mtime": "2026-10-29",
+    "pushed_at_mtime": "2026-10-30",
     "tree_truncated": false,
     "community_na": true,
     "score_total": 11,
@@ -5765,7 +5856,7 @@
     "score_cmp4": 10,
     "fc_caliber": "strict",
     "license": "MIT",
-    "stars": 31230,
+    "stars": 31594,
     "archived": false,
     "skill_md_exact_n": 2,
     "blob_n": 163,
@@ -5825,36 +5916,36 @@
    "cand": {
     "score5": {
      "fc": 5,
-     "eff": 3,
+     "eff": 4,
      "compat": 5,
      "docs": 4,
      "community": 4
     },
-    "score_total": 21,
-    "score_cmp4": 17,
+    "score_total": 22,
+    "score_cmp4": 18,
     "fc_caliber": "strict",
     "license": "MIT",
-    "stars": 40379,
+    "stars": 40592,
     "archived": false,
-    "skill_md_exact_n": 460,
-    "blob_n": 3663,
-    "test_path_n": 3,
+    "skill_md_exact_n": 466,
+    "blob_n": 3985,
+    "test_path_n": 21,
     "workflow_n": 55,
     "docs_md_n": 9,
-    "pushed_at": "2026-10-23"
+    "pushed_at": "2026-10-30"
    },
-   "delta_cmp4": -11,
-   "delta_total25": -14,
+   "delta_cmp4": -12,
+   "delta_total25": -15,
    "delta_total25_note": "含 community 腿（本地 stars 缺失）⇒ 仅作对照不作结论",
    "per_dim_delta": {
     "fc": -3,
-    "eff": -3,
+    "eff": -4,
     "compat": -2,
     "docs": -3,
     "community": -3
    },
    "state": "候选更优",
-   "state_reason": "delta_cmp4=-11"
+   "state_reason": "delta_cmp4=-12"
   },
   {
    "slug": "grill-me",
@@ -6593,14 +6684,14 @@
     "score_cmp4": 18,
     "fc_caliber": "strict",
     "license": "Apache-2.0",
-    "stars": 71624,
+    "stars": 75789,
     "archived": false,
     "skill_md_exact_n": 26,
-    "blob_n": 9179,
-    "test_path_n": 750,
-    "workflow_n": 19,
+    "blob_n": 9472,
+    "test_path_n": 773,
+    "workflow_n": 20,
     "docs_md_n": 6,
-    "pushed_at": "2026-10-25"
+    "pushed_at": "2026-10-30"
    },
    "delta_cmp4": -10,
    "delta_total25": -14,
@@ -6662,14 +6753,14 @@
     "score_cmp4": 18,
     "fc_caliber": "strict",
     "license": "Apache-2.0",
-    "stars": 71624,
+    "stars": 75789,
     "archived": false,
     "skill_md_exact_n": 26,
-    "blob_n": 9179,
-    "test_path_n": 750,
-    "workflow_n": 19,
+    "blob_n": 9472,
+    "test_path_n": 773,
+    "workflow_n": 20,
     "docs_md_n": 6,
-    "pushed_at": "2026-10-25"
+    "pushed_at": "2026-10-30"
    },
    "delta_cmp4": -10,
    "delta_total25": -14,
@@ -6731,14 +6822,14 @@
     "score_cmp4": 18,
     "fc_caliber": "strict",
     "license": "Apache-2.0",
-    "stars": 71624,
+    "stars": 75789,
     "archived": false,
     "skill_md_exact_n": 26,
-    "blob_n": 9179,
-    "test_path_n": 750,
-    "workflow_n": 19,
+    "blob_n": 9472,
+    "test_path_n": 773,
+    "workflow_n": 20,
     "docs_md_n": 6,
-    "pushed_at": "2026-10-25"
+    "pushed_at": "2026-10-30"
    },
    "delta_cmp4": -10,
    "delta_total25": -14,
@@ -6800,14 +6891,14 @@
     "score_cmp4": 18,
     "fc_caliber": "strict",
     "license": "Apache-2.0",
-    "stars": 71624,
+    "stars": 75789,
     "archived": false,
     "skill_md_exact_n": 26,
-    "blob_n": 9179,
-    "test_path_n": 750,
-    "workflow_n": 19,
+    "blob_n": 9472,
+    "test_path_n": 773,
+    "workflow_n": 20,
     "docs_md_n": 6,
-    "pushed_at": "2026-10-25"
+    "pushed_at": "2026-10-30"
    },
    "delta_cmp4": -11,
    "delta_total25": -15,
@@ -8292,14 +8383,14 @@
     },
     "license": "Apache-2.0",
     "license_note": "fingerprint:LICENSE",
-    "blob_n": 13,
+    "blob_n": 14,
     "skill_md_n": 1,
     "skill_md_exact_n": 1,
     "readme_n": 0,
     "docs_md_n": 0,
     "test_path_n": 0,
     "workflow_n": 0,
-    "pushed_at_mtime": "2026-10-25",
+    "pushed_at_mtime": "2026-10-30",
     "tree_truncated": false,
     "community_na": true,
     "score_total": 9,
@@ -10362,14 +10453,14 @@
     },
     "license": "UNLICENSED",
     "license_note": "no_license_file",
-    "blob_n": 3,
+    "blob_n": 5,
     "skill_md_n": 1,
     "skill_md_exact_n": 1,
     "readme_n": 0,
     "docs_md_n": 0,
     "test_path_n": 0,
     "workflow_n": 0,
-    "pushed_at_mtime": "2026-10-25",
+    "pushed_at_mtime": "2026-10-30",
     "tree_truncated": false,
     "community_na": true,
     "score_total": 7,
@@ -10664,14 +10755,14 @@
     "score_cmp4": 20,
     "fc_caliber": "strict",
     "license": "MIT",
-    "stars": 54473,
+    "stars": 55356,
     "archived": false,
     "skill_md_exact_n": 177,
     "blob_n": 2780,
     "test_path_n": 370,
     "workflow_n": 5,
     "docs_md_n": 183,
-    "pushed_at": "2026-10-19"
+    "pushed_at": "2026-10-26"
    },
    "delta_cmp4": -14,
    "delta_total25": -18,
@@ -11699,14 +11790,14 @@
     "score_cmp4": 15,
     "fc_caliber": "strict",
     "license": "MIT",
-    "stars": 304728,
+    "stars": 309106,
     "archived": false,
     "skill_md_exact_n": 15,
     "blob_n": 231,
     "test_path_n": 70,
     "workflow_n": 0,
     "docs_md_n": 31,
-    "pushed_at": "2026-10-23"
+    "pushed_at": "2026-10-29"
    },
    "delta_cmp4": -7,
    "delta_total25": -11,
@@ -11906,14 +11997,14 @@
     "score_cmp4": 15,
     "fc_caliber": "strict",
     "license": "MIT",
-    "stars": 304728,
+    "stars": 309106,
     "archived": false,
     "skill_md_exact_n": 15,
     "blob_n": 231,
     "test_path_n": 70,
     "workflow_n": 0,
     "docs_md_n": 31,
-    "pushed_at": "2026-10-23"
+    "pushed_at": "2026-10-29"
    },
    "delta_cmp4": -7,
    "delta_total25": -11,
@@ -12094,7 +12185,7 @@
     "docs_md_n": 0,
     "test_path_n": 26,
     "workflow_n": 0,
-    "pushed_at_mtime": "2026-10-27",
+    "pushed_at_mtime": "2026-10-29",
     "tree_truncated": false,
     "community_na": true,
     "score_total": 11,
@@ -12113,14 +12204,14 @@
     "score_cmp4": 16,
     "fc_caliber": "strict",
     "license": "MIT",
-    "stars": 140041,
+    "stars": 142835,
     "archived": false,
     "skill_md_exact_n": 13,
-    "blob_n": 697,
-    "test_path_n": 105,
+    "blob_n": 698,
+    "test_path_n": 106,
     "workflow_n": 6,
     "docs_md_n": 5,
-    "pushed_at": "2026-10-23"
+    "pushed_at": "2026-10-26"
    },
    "delta_cmp4": -6,
    "delta_total25": -10,
@@ -13676,5 +13767,5 @@
   "states_equal_rows": true,
   "selftest_note": "slug 前缀 r260- 的行是自证腿，不计入矩阵守恒；打平行（tie_cmp4）是真读数，计入"
  },
- "selfcheck_pass": true
+ "selfcheck_pass": false
 }

@@ -1,50 +1,22 @@
 {
  "schema": "uncommitted-this-round-v1",
  "round": "301",
- "dirty_tracked": 41,
- "suspect_count": 6,
+ "dirty_tracked": 39,
+ "suspect_count": 2,
  "suspects": [
   {
-   "file": "04-plan/后续维护规范_季度巡检机制_r113_2026-10-18.md",
-   "added_lines": 16,
-   "marker_lines": 2,
-   "strong_lines": 1,
-   "sample": "## 5.7 复验基线必须钉在「特性引入之前」的提交，禁浮动 HEAD（r301 落纸）"
-  },
-  {
-   "file": "05-exec/r114_replacement_scan.py",
-   "added_lines": 23,
-   "marker_lines": 2,
-   "strong_lines": 0,
-   "sample": "# ---- 修 1（r301）：path: 归属自解析 ----"
-  },
-  {
-   "file": "05-exec/r300_declared_face_fixtures.py",
-   "added_lines": 45,
-   "marker_lines": 3,
-   "strong_lines": 0,
-   "sample": "L8 声明 path: 归属（r301 修）：路径只对树里真有它的仓生效，兄弟仓不得借它判 lineage（双向）"
-  },
-  {
-   "file": "05-exec/run_gates.py",
-   "added_lines": 3,
-   "marker_lines": 1,
-   "strong_lines": 1,
-   "sample": "\"r301 依独立预测面（另一臂）的边界异议追加两腿双向断言：L8 声明 path: 的**归属自解析**（路径只对树里真有它的仓生效，兄弟仓不得借它判 lineage —— 实测 electron 声明的 path 只在 vercel-l"
-  },
-  {
-   "file": "DECOMPOSE.md",
-   "added_lines": 21,
+   "file": "06-benchmark/全量对标报告_r301_声明仓面两处机制修与复验基线钉死_2026-10-30.md",
+   "added_lines": 53,
    "marker_lines": 4,
-   "strong_lines": 0,
-   "sample": "# DECOMPOSE · r301（需求 5 的第一次真扫：把 r300 建好的 lineage 面变成「有哪些上游已更新」的读数）"
+   "strong_lines": 1,
+   "sample": "本轮做成可复算读数（提升后在 _repro/r301c 里我复跑，末行逐字一致，rc=0）："
   },
   {
    "file": "memory/07-next-steps.md",
-   "added_lines": 23,
-   "marker_lines": 2,
-   "strong_lines": 1,
-   "sample": "- [ ] **R301-1（r301 登记，P1）** **r114 两处机制修（path 归属自解析 + 根级腿改前后缀式）落地：12 腿夹具全 PASS（含 L9c 有牙证明）、191 行零漂移、回滚对 r299 版 0 差异；并落纸"
+   "added_lines": 78,
+   "marker_lines": 18,
+   "strong_lines": 11,
+   "sample": "- [ ] **R296-1（r296 登记，P1）** **台账插入器做成跟踪工具（05-exec/r296_ledger_insert.py，五腿自证）：终结历轮 8 份 _temp 一次性重写，并让上一轮那句「assert 已固化进脚"
   }
  ],
  "limit_note": "工作树共享：本面不证明作者，只给线索（判据 = 新增行含本轮轮号；处置词只作强度标注 strong_lines）",

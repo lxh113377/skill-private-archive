@@ -1,0 +1,33 @@
+{
+ "schema": "provenance-resolve-v1",
+ "generated_at": "2026-10-30 21:53",
+ "provenance_cmd": "python 05-exec/r287_provenance_resolve.py",
+ "readonly": true,
+ "faces_total": 1624,
+ "unresolvable_total": 50,
+ "temp_prefixed": 39,
+ "baseline_keys": 29,
+ "new_unresolvable": [
+  {
+   "face": "06-benchmark/r276_contract_vs_impl_conflicts.json",
+   "json_path": "/provenance_cmd",
+   "ref": "_repro/r276qi/r276_finalize.py",
+   "temp_prefixed": false
+  },
+  {
+   "face": "06-benchmark/r276_contract_vs_impl_conflicts.json",
+   "json_path": "/provenance_cmd",
+   "ref": "_repro/r276qi/r276_scan.py",
+   "temp_prefixed": false
+  },
+  {
+   "face": "06-benchmark/r277_contract_conflicts_afterfix.json",
+   "json_path": "/provenance_cmd",
+   "ref": "_repro/r276qi/r276_scan.py",
+   "temp_prefixed": false
+  }
+ ],
+ "baseline_stale": 6,
+ "scope_note": "provenance-class fields only; basename match counts as resolvable; absolute paths are the portability gate business",
+ "state": "PROVRESOLVE_FAIL"
+}
