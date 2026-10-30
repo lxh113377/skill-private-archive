@@ -39,5 +39,21 @@
   "expect": "1.1.0",
   "history_heading": "## Version history"
  },
- "mirror_root": "C:/Users/37533/.agents/skills"
+ "mirror_roots": [
+  {
+   "path": "C:/Users/37533/.agents/skills",
+   "required": true,
+   "evidence": "D:/global_skills/A-skill-manager/SKILL.md:44 铁律8 点名 .agents\\skills 为镜像"
+  },
+  {
+   "path": "C:/Users/37533/.claude/skills",
+   "required": false,
+   "evidence": "目录存在但端记载 UNKNOWN（r295 R 臂在查）=> 不判红"
+  },
+  {
+   "path": "C:/Users/37533/.codex/skills",
+   "required": false,
+   "evidence": "同上，无端记载 => 不判红"
+  }
+ ]
 }

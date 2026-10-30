@@ -40,11 +40,16 @@ def scan(repo, round_no):
         diff = git(repo, ["diff", "--unified=0", "--", p])
         added = [x[1:].strip() for x in diff.splitlines()
                  if x.startswith("+") and not x.startswith("+++")]
-        marked = [x for x in added
-                  if ("r%s" % round_no) in x and any(w in x for w in MARK_CTX)]
+        # r295 修盲点：判据只看**轮号**出现在新增行 —— 词表曾作为必要条件，于是
+        # 「带 r295 但不含登记/实测/校正注/新增/一手」的行被漏掉（实测：本轮 5 个脏跟踪件
+        # 只报出 2 个，漏掉的是 landing_specs/*.json，其行文本是「端记载 UNKNOWN（r295 R 臂在查）
+        # => 不判红」）。词表降级为强度标注（strong=True 表示更像我自己写的台账式改动）。
+        marked = [x for x in added if ("r%s" % round_no) in x]
+        strong = [x for x in marked if any(w in x for w in MARK_CTX)]
         if marked:
             hits.append({"file": p, "added_lines": len(added),
-                         "marker_lines": len(marked), "sample": marked[0][:120]})
+                         "marker_lines": len(marked), "strong_lines": len(strong),
+                         "sample": marked[0][:120]})
     return hits
 
 
@@ -54,7 +59,7 @@ def selftest():
     git(d, ["init", "-q"])
     git(d, ["config", "user.email", "t@t"])
     git(d, ["config", "user.name", "t"])
-    for n in ("a.md", "b.md", "c.md"):
+    for n in ("a.md", "b.md", "c.md", "d.md"):
         io.open(os.path.join(d, n), "w", encoding="utf-8").write("base line" + chr(10))
     git(d, ["add", "-A"])
     git(d, ["commit", "-qm", "seed"])
@@ -65,15 +70,21 @@ def selftest():
     io.open(os.path.join(d, "c.md"), "w", encoding="utf-8").write(
         "base r289 登记的老内容" + chr(10) + chr(10) + "本轮新写但没带轮号" + chr(10))
     git(d, ["add", "c.md"])
+    # d 腿（r295 补）：新增行**只带轮号、不带处置词** —— 这正是 landing_specs/*.json 那一型，
+    # 旧实现要求两个条件同时成立所以漏检；改判为只看轮号后 d 必须被抓。
+    io.open(os.path.join(d, "d.md"), "a", encoding="utf-8").write(
+        chr(10) + "目录存在但端记载 UNKNOWN（r289 R 臂在查）=> 不判红" + chr(10))
     res = scan(d, 289)
     got = set(x["file"] for x in res)
     ok_a = "a.md" in got
     ok_b = "b.md" not in got
     ok_c = "c.md" not in got
-    print("[SELFTEST] hit(a must-hit)=%s miss(b must-miss)=%s miss(c must-miss)=%s"
-          % (ok_a, ok_b, ok_c))
-    print("[SELFTEST] suspects=%s" % sorted(got))
-    return 0 if (ok_a and ok_b and ok_c) else 1
+    ok_d = "d.md" in got
+    strong_flag = {x["file"]: x.get("strong_lines", 0) for x in res}
+    print("[SELFTEST] hit(a)=%s miss(b)=%s miss(c)=%s hit(d round-only)=%s"
+          % (ok_a, ok_b, ok_c, ok_d))
+    print("[SELFTEST] suspects=%s strong_lines=%s" % (sorted(got), strong_flag))
+    return 0 if (ok_a and ok_b and ok_c and ok_d) else 1
 
 
 def main():
@@ -91,7 +102,7 @@ def main():
     doc = {"schema": "uncommitted-this-round-v1", "round": a.round,
            "dirty_tracked": len(dirty_tracked(a.root)),
            "suspect_count": len(hits), "suspects": hits,
-           "limit_note": "工作树共享：本面不证明作者，只给线索（新增行含本轮轮号 + 处置词）",
+           "limit_note": "工作树共享：本面不证明作者，只给线索（判据 = 新增行含本轮轮号；处置词只作强度标注 strong_lines）",
            "disposal": "Lead 收尾前逐个提交或撤销；留着就走 = 发布面缺件（r290 实测）"}
     if a.js:
         dd = os.path.dirname(a.js)

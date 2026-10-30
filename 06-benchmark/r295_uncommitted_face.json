@@ -1,0 +1,52 @@
+{
+ "schema": "uncommitted-this-round-v1",
+ "round": "295",
+ "dirty_tracked": 39,
+ "suspect_count": 6,
+ "suspects": [
+  {
+   "file": "05-exec/landing_replay_check.py",
+   "added_lines": 68,
+   "marker_lines": 1,
+   "strong_lines": 1,
+   "sample": "required / observed 分离（r295 一手，我上一轮的错被开场取证推翻后写进代码）："
+  },
+  {
+   "file": "05-exec/landing_specs/mcp-builder.json",
+   "added_lines": 17,
+   "marker_lines": 1,
+   "strong_lines": 0,
+   "sample": "\"evidence\": \"目录存在但端记载 UNKNOWN（r295 R 臂在查）=> 不判红\""
+  },
+  {
+   "file": "05-exec/landing_specs/security-audit.json",
+   "added_lines": 17,
+   "marker_lines": 1,
+   "strong_lines": 0,
+   "sample": "\"evidence\": \"目录存在但端记载 UNKNOWN（r295 R 臂在查）=> 不判红\""
+  },
+  {
+   "file": "05-exec/r290_uncommitted_face.py",
+   "added_lines": 19,
+   "marker_lines": 4,
+   "strong_lines": 3,
+   "sample": "# r295 修盲点：判据只看**轮号**出现在新增行 —— 词表曾作为必要条件，于是"
+  },
+  {
+   "file": "DECOMPOSE.md",
+   "added_lines": 38,
+   "marker_lines": 3,
+   "strong_lines": 0,
+   "sample": "# DECOMPOSE · r295（开场取证推翻了我 r294 的一个过度概括：端×根映射我没测过）"
+  },
+  {
+   "file": "memory/07-next-steps.md",
+   "added_lines": 2,
+   "marker_lines": 2,
+   "strong_lines": 2,
+   "sample": "- [ ] **R292-4（r292 登记，P0）** **落地只改受管根源件，九端实际读的镜像 C:/Users/37533/.agents/skills 全部滞后（我这两单也滞后）⇒ 这才是「仓库里在用旧版 skill」的字面成因；但"
+  }
+ ],
+ "limit_note": "工作树共享：本面不证明作者，只给线索（新增行含本轮轮号 + 处置词）",
+ "disposal": "Lead 收尾前逐个提交或撤销；留着就走 = 发布面缺件（r290 实测）"
+}

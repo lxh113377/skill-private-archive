@@ -22,7 +22,8 @@ security-audit **这一单**写死的 —— skill 名、基线 ref、补丁链�
 
 负控：--neg hand-edited（内存里把某 target 的盘上文本改一个字符 => R 必须判红）
       --neg fake-sha（把期望 blob sha 改一位 => N 必须判红）
-      --neg mirror-stale（把首个受影响路径的镜像 blob 视为未同步 => M 必须判红）
+      --neg mirror-stale（把首个受影响路径在**第一个 required 根**的 blob 视为未同步 => M 必须判红）
+      --neg root-absent（模拟 required 根不可达 => M 必须 UNVERIFIED，不得读成已同步）
 用法：python -B 05-exec/landing_replay_check.py --spec 05-exec/landing_specs/security-audit.json
 """
 import argparse
@@ -241,43 +242,80 @@ def leg_V(spec):
 
 
 def leg_M(spec, neg=''):
-    """M mirror-propagated：受管根源件与九端实际加载的镜像必须逐字节同 blob。
+    """M mirror-propagated：受管根源件与各物理副本必须逐字节同 blob。
 
-    为什么是一条腿（一手，r292/r294）：落地只改 D:/global_skills，而各端加载的是镜像
-    C:/Users/37533/.agents/skills。A 臂的维6 实测 5/5 落地件滞后（我的 mcp-builder 落后 HEAD~5、
-    security-audit 落后 HEAD~4）=> 「无兼容回归」若只看源件，对实际读到旧版的端是空话。
-    镜像根不存在或件缺失一律 UNVERIFIED（R247：不许把取不到当已同步）。
+    为什么是一条腿（一手，r292/r294）：落地只改 D:/global_skills，而副本根是物理复制的
+    C:/Users/37533/.agents/skills。A 臂维6 实测 5/5 落地件滞后（我的 mcp-builder 落后 HEAD~5、
+    security-audit 落后 HEAD~4）=> 「无兼容回归」若只看源件，对读到旧副本的端是空话。
+
+    required / observed 分离（r295 一手，我上一轮的错被开场取证推翻后写进代码）：
+    只有 spec 里带 evidence（文件:行 的端记载）的根才允许判红 —— 我 r294 曾断言「九端读的
+    就是 .agents 那一个根」，而实测 ~/.dsh/skills 与 .config/opencode/skills 都直连权威源、
+    另有 .claude/.codex 两个物理副本存在但无端记载。若把所有存在的目录都当 required，
+    就是把「我猜谁在读它」写进判据，会把未知当缺陷。observed 根只报状态、绝不判红。
+    根不存在或件缺失：required 记 UNVERIFIED、observed 记入明细（R247，不许读成已同步）。
     """
-    root = spec.get("mirror_root") or r"C:\Users\37533\.agents\skills"
-    if not os.path.isdir(root):
-        return "UNVERIFIED", ["镜像根不存在: " + root]
+    roots = spec.get("mirror_roots")
+    if not roots:
+        old = spec.get("mirror_root")
+        if old:
+            roots = [{"path": old, "required": True, "evidence": "旧单根字段 mirror_root"}]
+        else:
+            return "UNVERIFIED", ["spec 未声明任何副本根（mirror_roots 缺失）"]
     paths = [t["target"] for t in (spec.get("replays") or [])] + \
             [f["target"] for f in (spec.get("new_files") or [])]
     if not paths:
         return "UNVERIFIED", ["spec 未列受影响路径"]
-    bad, det, skipped = [], [], 0
-    for rel in paths:
-        srcp = os.path.join(spec["managed"], rel)
-        mirp = os.path.join(root, rel)
-        if not os.path.isfile(srcp):
-            skipped += 1
-            det.append(rel + " 源件不在盘（跳过）")
+    bad, unver, det = [], [], []
+    checked_required = 0
+    for ri, rt in enumerate(roots):
+        root = rt["path"]
+        req = bool(rt.get("required"))
+        tag = "REQUIRED" if req else "observed"
+        if neg == "root-absent" and req:
+            unver.append(root + "（负控：模拟 required 根缺失）")
             continue
-        if not os.path.isfile(mirp):
-            bad.append(rel + " 镜像缺失")
+        if not os.path.isdir(root):
+            msg = root + " 根不存在"
+            (unver if req else det).append(tag + " " + msg)
             continue
-        h1 = (git(spec["managed"], ["hash-object", rel]) or "").strip()
-        h2 = subprocess.run(["git", "hash-object", mirp], capture_output=True, text=True,
-                            encoding="utf-8", errors="replace", timeout=90).stdout.strip()
-        if neg == "mirror-stale" and rel == paths[0]:
-            h2 = "0" * 40   # 内存里模拟镜像未同步：M 必须判红
-        if h1 and h2 and h1 == h2:
-            det.append("%s blob=%s 同" % (rel, h1[:10]))
+        lag, skip, match = [], 0, 0
+        for rel in paths:
+            srcp = os.path.join(spec["managed"], rel)
+            mirp = os.path.join(root, rel)
+            if not os.path.isfile(srcp):
+                skip += 1
+                continue
+            h1 = (git(spec["managed"], ["hash-object", rel]) or "").strip()
+            if os.path.isfile(mirp):
+                h2 = subprocess.run(["git", "hash-object", mirp], capture_output=True,
+                                        text=True, encoding="utf-8", errors="replace",
+                                        timeout=90).stdout.strip()
+            else:
+                h2 = ""
+            if neg == "mirror-stale" and ri == 0 and rel == paths[0]:
+                h2 = "0" * 40   # 内存里模拟该根未同步：required 时 M 必须判红
+            if h1 and h2 and h1 == h2:
+                match += 1
+            else:
+                lag.append("%s(%s)" % (rel, "缺失" if not h2 else "滞后"))
+        if lag and req:
+            bad.append("%s %s 落后 %d 项: %s" % (tag, root, len(lag), "; ".join(lag)))
+        elif req:
+            checked_required += 1
+            det.append("%s %s 全同 match=%d skip=%d | evidence=%s" % (
+                tag, os.path.basename(os.path.normpath(root)), match, skip,
+                str(rt.get("evidence") or "-")[:60]))
         else:
-            bad.append("%s 镜像滞后(src=%s mirror=%s)" % (rel, (h1 or "-")[:10], (h2 or "-")[:10]))
-    if skipped == len(paths):
-        return "UNVERIFIED", det
-    return ("ok" if not bad else "BAD"), (det if not bad else bad) + (["跳过%d" % skipped] if skipped else []),
+            det.append("%s %s lag=%d match=%d（无端记载，不判红）" % (
+                tag, os.path.basename(os.path.normpath(root)), len(lag), match))
+    if bad:
+        return "BAD", bad + det
+    if unver and not checked_required:
+        return "UNVERIFIED", unver + det
+    if unver:
+        return "UNVERIFIED", unver + det
+    return "ok", det or ["无可核 required 根"]
 
 
 def main():
@@ -290,7 +328,7 @@ def main():
     if not os.path.isfile(sp_path):
         print("[LANDING-CHECK] UNVERIFIED spec 不存在: %s" % sp_path)
         return 2
-    KNOWN_NEG = {"", "hand-edited", "fake-sha", "mirror-stale"}
+    KNOWN_NEG = {"", "hand-edited", "fake-sha", "mirror-stale", "root-absent"}
     if a.neg not in KNOWN_NEG:
         # 负控名写错 => 腿静默不触发 => 看起来「判据跑过且仍绿」，那是假负控（r294 一手踩到）。
         print("[LANDING-CHECK] UNVERIFIED 未知 --neg 值 %r（可用：%s）" % (a.neg, sorted(KNOWN_NEG)))
