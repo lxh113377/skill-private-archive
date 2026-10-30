@@ -414,6 +414,10 @@
   "provenance_resolve_fixtures": {
    "evidence": "06-benchmark/r287_provenance_fixtures_out.txt",
    "at": "2026-10-30 07:17"
+  },
+  "declared_face_fixtures": {
+   "evidence": "05-exec/r300_declared_face_fixtures.py",
+   "at": "2026-10-30 21:00"
   }
  }
 }

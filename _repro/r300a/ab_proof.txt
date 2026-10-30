@@ -1,0 +1,23 @@
+r300 证据：r114 本体的 declared_face 改动 —— 零档位漂移 + 回滚字节等值（两份实测都可由本文件命令复跑）。
+
+为什么留这份证据：本轮改的是权威生成器（191 行读数的源头）。「我改了它但档位没动」这句话必须能被
+第三方用盘上的件复算，不能只靠我的自述（#44⑥ 自述不算证据）。
+
+口径：基线与改后都用**同一个 HEAD 版/工作区版脚本**跑 --offline 矩阵，然后逐行比 JSON。
+基线来源 = git show HEAD:05-exec/r114_replacement_scan.py 落到 _temp/r300_r114_head.py（不凭记忆抄）。
+命令（cwd = 项目根，PY = managed venv python）：
+  python -B _temp/r300_populate_ab.py
+实跑读数（两次跑，第二次 = 修完 paths_missing 语义之后复查）：
+  [POPULATE] done api_calls=62 errors=0          # 只对 31 个声明仓补树目录
+  [RUN] r300_r114_head.py rc=0 / r114_replacement_scan.py rc=0
+  [DIFF] rows before=191 after=191 same_set=True
+  [DIFF] 档位/候选面漂移条数 = 0                  # verdict / skill_relevant_n / candidates_n / 候选顺序 全等
+  [DIFF] 带 declared 字段行数=55 states={'lineage': 49, 'invalid': 6}
+  [ROLLBACK] rc=0；与 HEAD 版逐行(整行 JSON)不一致的行数 = 0；残留 declared_score* 键的行数 = 0
+
+矩阵落盘（不入库、可重建）：_temp/r300_before.json / _temp/r300_after.json / _temp/r300_rollback.json
+摘要件（入库）：_repro/r300a/results/ab.json
+
+新面的夹具与门：
+  python -B 05-exec/r300_declared_face_fixtures.py   ⇒ [DECLARED:FACE:PASS] legs=7 passed=7
+  python 05-exec/run_gates.py --gate declared_face_fixtures ⇒ [GATES:PASS] PASS=1

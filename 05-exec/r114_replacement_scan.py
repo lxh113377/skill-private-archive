@@ -303,12 +303,25 @@ def tree_counts(paths):
     }
 
 
-def measure_repo(full, cache, offline, stats, remeasure=False):
+def measure_repo(full, cache, offline, stats, remeasure=False, store_paths=False):
     """仓元数据 + 树形态；remeasure=True 时**跳过该仓缓存**重取（严格口径字段靠它补）。"""
     key = "repo__" + key_of(full)
     if not remeasure and key in cache:
-        stats["cache_hits"] += 1
-        return cache[key]
+        # r300：store_paths=True 时要求缓存里带树目录名（老缓存只有计数）。缺则落到重测路径 ——
+        # 否则会把「缓存没这个字段」当成「树里没有这个目录」，正是 R247 的反面。
+        _hit = cache[key]
+        if store_paths and "skill_md_dirs" not in (_hit or {}):
+            # store_paths 要求树目录列；老缓存（r300 之前只存计数）没有 ⇒ 两件事：
+            #   联网 ⇒ 落到下面的重测路径把它补上；离线 ⇒ 返回旧件并**显式标记**缺列，
+            #   不返回 SKIPPED_OFFLINE（那会让「元数据在、树目录缺」被读成「仓没测过」）。
+            if offline:
+                _h2 = dict(_hit)
+                _h2["paths_missing"] = True
+                stats["cache_miss"] += 1
+                return _h2
+        else:
+            stats["cache_hits"] += 1
+            return _hit
     if offline:
         stats["cache_miss"] += 1
         return {"state": "SKIPPED_OFFLINE"}
@@ -361,6 +374,13 @@ def measure_repo(full, cache, offline, stats, remeasure=False):
             # R211-9（r218）：口径计数全部走 tree_counts() 纯函数（双口径同列的说明在该函数 docstring）。
             # 旧口径 skill_md_n 保留不动 = C1 硬分桶前置（r116 / r125 读它），切判据须另行单独裁。
             doc.update(tree_counts(paths))
+            if store_paths:
+                # 只存**目录名**（不存全路径）：判断「本件同名 SKILL.md 是否在该仓树里」够用，
+                # 体积也远小于全路径（agentic-awesome-skills 实测 8851 个 SKILL.md）。
+                _dirs = sorted({(p.rsplit("/", 1)[0].lower() if "/" in p else ".")
+                               for p in paths if p.lower().endswith("skill.md")})
+                doc["skill_md_dirs"] = _dirs
+                doc["skill_md_root"] = any(p.lower() == "skill.md" for p in paths)
     # ---- 正文级许可（R261-6 落地，r262）----------------------------------------------
     # 只在 API 字段可疑时多花一次调用：NOASSERTION（含缺失被上游归此值）就是 dify / Imbad0202
     #   两例的共性。取正文走 repos/<full>/license —— GitHub 自己解析 LICENSE 文件，一次调用
@@ -631,6 +651,84 @@ def load_declared_upstreams(root=UPSTREAM_ROOT):
         if repo:
             out[name] = repo
     return out
+
+def load_declared_paths(root=UPSTREAM_ROOT):
+    """件名 -> 侧车里的 path: 子路径（r300）。
+
+    为什么要单独一张表：parse_sidecar 本来就返回 (repo, subpath)，但 load_declared_upstreams
+    只留了 repo、把 subpath 丢了。而实测有 8 件声明的是一大片容器仓里的**子目录**
+    （如 data-analysis -> K-Dense-AI/scientific-agent-skills 的 skills/exploratory-data-analysis）
+    —— 只看 repo 级会把它们误判成「声明失效」。这里补一张只读表，不改 DECL_UP 的值类型
+    （它被多处当字符串用，改类型会连带打穿）。
+    """
+    out = {}
+    if not os.path.isdir(root):
+        return out
+    for name in sorted(os.listdir(root)):
+        side = os.path.join(root, name, ".upstream")
+        if not os.path.isfile(side):
+            continue
+        try:
+            _repo, sub = parse_sidecar(io.open(side, encoding="utf-8-sig", errors="replace").read())
+        except OSError:
+            continue
+        if sub:
+            out[name] = sub
+    return out
+
+
+def declared_face(slug, repo, subpath, cache, offline, stats):
+    """声明上游仓的**行内**五维面（r300，加法式：不进 top-5、不参与排序、不计入 skill_n）。
+
+    为什么加法式而不并入候选池：r299 实测 flip=0（纳入声明仓不改变任何行的档位数字），而 138k★
+    上游的 score5 通常高于小仓 —— 若放进 top-5 会挤掉真替代，等于把「替代」偷换成「上游」。
+    需求 3 要的是「对候选做五维量化」，行内打分就满足；需求 2 的竞争面保持不动。
+
+    返回 state ∈ lineage（声明能落地=确是我们的上游）/ invalid（仓可测、树完整、路径与 slug 目录
+    都落不到=声明失效）/ unmeasured（取不到或树截断：取不到 ≠ 不存在，R247 双向）。
+    """
+    if not repo:
+        return None
+    m = measure_repo(repo, cache, offline, stats, store_paths=True)
+    base = {"repo": repo, "declared_path": subpath}
+    if not m or m.get("state") != "OK":
+        base.update({"state": "unmeasured",
+                     "why": "仓元数据取不到（%s）" % ((m or {}).get("state") or "absent")})
+        return base
+    if m.get("paths_missing"):
+        base.update({"state": "unmeasured",
+                     "why": "缓存里没有树目录列（r300 之前只存计数）⇒ 联网重测一次即可补齐；"
+                            "本轮按取不到记，不据此判声明失效"})
+        return base
+    dirs = m.get("skill_md_dirs")
+    if dirs is None:
+        base.update({"state": "unmeasured", "why": "缓存无树目录（需联网重测一次）"})
+        return base
+    if m.get("tree_truncated"):
+        base.update({"state": "unmeasured", "why": "tree truncated ⇒ 未见不等于不存在"})
+        return base
+    vs = {str(slug).lower(), str(slug).lower().replace("-", "_"),
+          str(slug).lower().replace("_", "-"), str(slug).lower().replace("-", "")}
+    hit = [d for d in dirs if d.rsplit("/", 1)[-1] in vs]
+    ph = None
+    if subpath:
+        want = str(subpath).strip("/").lower()
+        ph = want if any(d == want or d.endswith("/" + want) for d in dirs) else None
+    tail = str(repo).split("/")[-1].lower()
+    name_ok = any(v and v in tail for v in vs)
+    root = bool(m.get("skill_md_root"))
+    state = "lineage" if (ph or hit or (root and name_ok)) else "invalid"
+    s, tot, fc = score5(m, True, True)
+    base.update({"state": state, "path_hit": ph, "slug_hit": hit[:4],
+                 "root_skill_md": root, "repo_name_ok": name_ok,
+                 "score5": s, "score_total": tot, "fc_caliber": fc,
+                 "stars": m.get("stars"), "pushed_at": m.get("pushed_at"),
+                 "license": m.get("license"), "tree_skill_md_n": m.get("skill_md_n")})
+    if state == "invalid":
+        base["why"] = ("全树 %d 个 SKILL.md 里，声明路径与 slug 目录均未落地 ⇒ 声明失效（实测非取不到）"
+                       % (m.get("skill_md_n") or 0))
+    return base
+
 
 def license_class(lic, body_class=None):
     """许可证字符串 → 五档归一（copyleft / weak-copyleft / unknown / permissive / none）。
@@ -979,6 +1077,9 @@ def main():
     ap.add_argument("--no-maintenance-trim", action="store_true",
                     help="回滚开关（红线4）：关掉 §3.1 维护状态过滤，回到 r260 之前的候选面口径。"
                          "默认不关 —— 关掉后停摆仓会重新进入 rank 与分档。")
+    ap.add_argument("--no-declared-inject", action="store_true",
+                    help="回滚开关（红线4）：不产 declared_* 行内面，输出与本轮之前逐字节一致。"
+                         "默认开 —— 关掉后声明仓不再被五维打分（需求 3 的覆盖回退到 r299 前）")
     ap.add_argument("--json", dest="json_out", default=None)
     # r211 修（需求 5 长效机制实测断裂）：原缺省指 _temp/local_fm_r114.json —— 那份件
     # 全史零入库、全仓无生成器（W-46 死句柄），且 _temp 会被并行会话按扩展名清场
@@ -1064,8 +1165,10 @@ def main():
     lf = {r['slug']: r for r in locals_}
     # 声明上游表（r263）：一次装载，逐件查表。表里没有 = 没声明；有 = 必须显形且禁判无对应件。
     DECL_UP = load_declared_upstreams()
+    # r300：声明子路径表（容器仓里的子目录）。DECL_UP 的值类型不动 —— 它被多处当字符串用。
+    DECL_PATH = load_declared_paths()
     if not args.quiet:
-        print('  [UPSTREAM] 声明上游件数 = %d' % len(DECL_UP))
+        print('  [UPSTREAM] 声明上游件数 = %d（其中带 path: 子路径 %d）' % (len(DECL_UP), len(DECL_PATH)))
     per_skill = []
     need_measure = set()
     for r in locals_:
@@ -1263,7 +1366,12 @@ def main():
                  if c is not _r0 and license_class(
                      c.get("license"), c.get("license_body_class") if use_body else None) == "permissive"]
         tally[verdict] += 1
-        rows.append({"slug": slug, "family": fid, "family_name": fam_name.get(fid, "未归族"),
+        # r300：声明上游仓的行内五维面。只在该行确有声明、且回滚开关未关时计算；
+        #   measure_repo(store_paths=True) 命中缓存则零网络成本，缺树目录则在联网时补测一次。
+        _declared = None
+        if (not args.no_declared_inject) and _up:
+            _declared = declared_face(slug, _up, DECL_PATH.get(slug), cache, args.offline, stats)
+        _row = {"slug": slug, "family": fid, "family_name": fam_name.get(fid, "未归族"),
                      "local_bytes": lf[slug].get("local_bytes"),
                      "local_desc_len": lf[slug].get("desc_len"),
                      "keywords": ps["tokens"][:8],
@@ -1285,7 +1393,21 @@ def main():
                      # 两者分开记：表里没有 = 没声明；声明了但 in_face=False = 被族级规则挡在外面，
                      # 那种情形禁判「开源侧无对应件」（裁决链里同一个 _up 已护栏）。
                      "declared_upstream_repo": _up,
-                     "declared_upstream_in_face": _up_in_face})
+                     "declared_upstream_in_face": _up_in_face}
+        # ---- r300：声明仓行内五维（加法式：不进 top-5、不参与排序、不计入 skill_n）----
+        # 为什么只在有声明时加键：无声明的行不该凭空多出一串 null（那会让「没声明」与
+        # 「声明了但没测」在落盘面上长得一样）。回滚开关关掉时这些键完全不出现 ⇒ 输出同旧版。
+        if _declared is not None:
+            _row["declared_state"] = _declared.get("state")
+            _row["declared_path_hit"] = _declared.get("path_hit")
+            _row["declared_slug_hit"] = _declared.get("slug_hit")
+            _row["declared_score5"] = _declared.get("score5")
+            _row["declared_score_total"] = _declared.get("score_total")
+            _row["declared_stars"] = _declared.get("stars")
+            _row["declared_pushed_at"] = _declared.get("pushed_at")
+            _row["declared_license"] = _declared.get("license")
+            _row["declared_why"] = _declared.get("why")
+        rows.append(_row)
 
     total = sum(tally.values())
     ok = (total == len(locals_))

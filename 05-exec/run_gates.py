@@ -324,6 +324,24 @@ GATES = [
         "why": "r126 新判据直接进巡检直接出报告数字，45 条假红流进两份文档；r128 做了对账机器（第 40 门）、r129 做了入库准入门（第 41 门），但两者都只是「跑的时候报」，没有要求新增门留下对账痕迹。本门补这一环。r130 首跑连续自抓三次（比 git 历史抓不到已提交的新门 / 解析把 rows.append 当门 / 冷启动不写快照），与 r126 同族的「判据自身先假红」形态。",
     },
     {
+        # r300：声明上游仓「行内五维面」三态夹具（lineage / invalid / unmeasured 全覆盖 + 反例）
+        "id": "declared_face_fixtures",
+        "script": "r300_declared_face_fixtures.py",
+        "argv": [],
+        "pass_token": "[DECLARED:FACE:PASS]",
+        "portable": True,
+        "covers": [
+            "r114_replacement_scan.declared_face 七腿：同名目录 / 声明 path: 子目录 / 根级单件仓 —— lineage 三条通路各一腿",
+            "树完整且路径与 slug 都落不到 ⇒ invalid；缓存缺树目录列 ⇒ unmeasured；树被截断 ⇒ unmeasured（取不到≠不存在，R247 双向）",
+            "单源性：同一 doc 两次现算 score5 必须逐字段相等（禁复刻口径；夹具比对 doc 与受检 doc 必须同形状）",
+            "回滚面：--no-declared-inject 下行输出与旧版逐行整 JSON 相等（r300 A/B 实测 0 行差异、0 残留键）",
+        ],
+        "why": "r300 给 r114 加了 declared_face（把 .upstream 声明的上游仓做成行内五维：lineage/invalid/unmeasured）。"
+               "新判据进门必须自带三态反例 —— 只测正常路径等于没测。本轮首跑就有两腿红：一是我夹具的对照 doc 与受检件"
+               "skill_md_n 不等、二是产品把「老缓存缺树目录列」写成「仓元数据取不到」（语义错位会让人以为仓没测过）。"
+               "两条都是我自己的错，修完才全绿；这就是把「取不到」与「不存在」分开登记的价值。",
+    },
+    {
         "id": "r19_scan_fixtures",
         "script": "r19_scan_fixtures.py",
         "argv": [],

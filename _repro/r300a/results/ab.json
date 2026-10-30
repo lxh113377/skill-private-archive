@@ -1,0 +1,12 @@
+{
+ "drift": [],
+ "states": {
+  "lineage": 49,
+  "invalid": 6
+ },
+ "rows_with_declared": 55,
+ "tally_before": {},
+ "tally_after": {},
+ "populate_api_calls": 0,
+ "populate_errors": []
+}

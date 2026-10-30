@@ -1,0 +1,31 @@
+{
+ "schema": "uncommitted-this-round-v1",
+ "round": "300",
+ "dirty_tracked": 37,
+ "suspect_count": 3,
+ "suspects": [
+  {
+   "file": "06-benchmark/gate_reconcile_registry.json",
+   "added_lines": 4,
+   "marker_lines": 1,
+   "strong_lines": 0,
+   "sample": "\"evidence\": \"05-exec/r300_declared_face_fixtures.py\","
+  },
+  {
+   "file": "DECOMPOSE.md",
+   "added_lines": 28,
+   "marker_lines": 4,
+   "strong_lines": 0,
+   "sample": "# DECOMPOSE · r300（把 R296-4 真落进 r114 本体：声明仓进五维打分，且**零档位漂移**）"
+  },
+  {
+   "file": "memory/07-next-steps.md",
+   "added_lines": 39,
+   "marker_lines": 4,
+   "strong_lines": 3,
+   "sample": "- [ ] **R300-1（r300 登记，P1）** **R296-4 落进 r114 本体（加法式 declared_face：62 对声明仓进行内五维，档位/候选面零漂移，回滚字节等值）+ 七腿夹具进门表（116 门）；含我自己的两"
+  }
+ ],
+ "limit_note": "工作树共享：本面不证明作者，只给线索（判据 = 新增行含本轮轮号；处置词只作强度标注 strong_lines）",
+ "disposal": "Lead 收尾前逐个提交或撤销；留着就走 = 发布面缺件（r290 实测）"
+}
