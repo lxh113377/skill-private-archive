@@ -1,8 +1,8 @@
 {
  "schema": "provenance-baseline-v1",
- "generated_at": "2026-10-30 21:26",
+ "generated_at": "2026-10-30 21:57",
  "why": "known-pre-existing unresolvable provenance refs; the gate only fails on NEW ones (otherwise the gate is permanently red and therefore useless)",
- "count": 54,
+ "count": 47,
  "keys": [
   "06-benchmark/description_baseline_r107_2026-10-15.json|verify_truth_consistency.py",
   "06-benchmark/description_baseline_r107c_2026-10-15.json|verify_truth_consistency.py",
@@ -23,12 +23,6 @@
   "06-benchmark/r275_different_impl_triage.json|_temp/r275_evidence.sh",
   "06-benchmark/r275_different_impl_triage.json|_temp/r275_triage_check.py",
   "06-benchmark/r275_three_channel_intersection.json|_temp/r275_build.py",
-  "06-benchmark/r276_contract_vs_impl_conflicts.json|_temp/r276_finalize.py",
-  "06-benchmark/r276_contract_vs_impl_conflicts.json|_temp/r276_scan.py",
-  "06-benchmark/r276_quarterly_inspection_dryrun.json|_repro/r276qi/r276qi_build.py",
-  "06-benchmark/r276_quarterly_inspection_dryrun.json|_repro/r276qi/r276qi_collect.py",
-  "06-benchmark/r276_quarterly_inspection_dryrun.json|r277_verdict.py",
-  "06-benchmark/r277_contract_conflicts_afterfix.json|_temp/r276_scan.py",
   "06-benchmark/r281_execution_ab.json|_temp/r281h/_ctl/score_ab.py",
   "06-benchmark/r282_three_arm_reconcile.json|_temp/r282j/emit_r282.py",
   "06-benchmark/r283_requirements_ledger.json|05-exec/r276_quarterly_inspection_dryrun.py",

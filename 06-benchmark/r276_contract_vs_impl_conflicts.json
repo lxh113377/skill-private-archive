@@ -1,7 +1,7 @@
 {
  "schema": "contract-vs-impl-v1",
  "generated_at": "2026-10-29T21:36:57+08:00",
- "provenance_cmd": "cd 自建skill优化 && PYTHONPYCACHEPREFIX=/tmp/pycache_r276 python -B _temp/r276_scan.py _temp/r276_rows.json ; python -B _temp/r276_finalize.py",
+ "provenance_cmd": "cd 自建skill优化 && PYTHONPYCACHEPREFIX=/tmp/pycache_r276 python -B _repro/r276qi/r276_scan.py _repro/r276qi/work/r276_rows.json ; python -B _repro/r276qi/r276_finalize.py",
  "disclaimer": "候选面（candidate surface），非缺陷结论：每行须人读后才可入缺陷台账；未人读行标 ⚠️未人读。",
  "corpus": {
   "root": "D:/global_skills",
