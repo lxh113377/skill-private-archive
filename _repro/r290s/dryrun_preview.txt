@@ -1,0 +1,28 @@
+$ rule_editor.py replace --file security-audit/SKILL.md --patch _repro/r290s/patch_local.json --dry-run (cwd=D:/global_skills)
+rc=0
+[dry-run] 目标: D:\global_skills\security-audit\SKILL.md
+  #1 命中行 4  old(2 行) → new(2 行)
+       上文: description: "Security-focused code audit and vulnerability 
+       - version: 2.0.1
+       + version: 2.1.0
+  #2 命中行 24  old(2 行) → new(4 行)
+       - > **Provenance**: methodology adapted from [trailofbits/skil
+       + > **Provenance**: methodology adapted from [trailofbits/skil
+  #3 命中行 54  old(1 行) → new(5 行)
+       - ## Workflow (7-Phase Audit)
+       + ## 上游增量分卷（2026-10-30 吸收 cloudflare/security-audit-skill）
+  #4 命中行 242  old(2 行) → new(3 行)
+       上文: | Java | `mvn dependency-check` | `spotbugs` + `findsecbugs`
+       - ## Version history
+       + ## Version history
+[dry-run] ✅ 共 4 处全部可应用；未写盘未备份（去掉 --dry-run 即执行）
+
+$ rule_editor.py replace --file security-audit/.upstream --patch _repro/r290s/patch_upstream.json --dry-run
+rc=0
+[dry-run] 目标: D:\global_skills\security-audit\.upstream
+  #1 命中行 1  old(1 行) → new(4 行)
+       - trailofbits/skills
+       + trailofbits/skills
+[dry-run] ✅ 共 1 处全部可应用；未写盘未备份（去掉 --dry-run 即执行）
+
+POSTCHECK managed_root_status=[]

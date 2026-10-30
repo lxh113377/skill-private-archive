@@ -1,0 +1,12 @@
+[
+ {
+  "id": "SEC-AMB-LICENSE",
+  "old": "> 逐字取自 `cloudflare/security-audit-skill`@`c1c8a8c14710`（MIT；许可门单源 = `05-exec/r114_replacement_scan.py` 的 classify_body/license_class，实测读数见 `_repro/r290s/license_gate.md`）。",
+  "new": "> 逐字取自 `cloudflare/security-audit-skill`@`c1c8a8c14710`（MIT；许可门单源 = `05-exec/r114_replacement_scan.py` 的 classify_body/license_class，实测读数见 `C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r290s/license_gate.md`）。"
+ },
+ {
+  "id": "SEC-AMB-PROBE",
+  "old": "三条本地原缺能力（**OS 沙箱 / write isolation / coverage-ledger**；换装前实测合并面关键词命中见 `_repro/r290s/capability_probe.py`）已**逐字**并入分卷 [`references/upstream-cloudflare-sec.md](references/upstream-cloudflare-sec.md)（加载本技能时一并读取）。台账校验器随件附送：[`scripts/validate-coverage-ledger.cjs](scripts/validate-coverage-ledger.cjs)，实测 usage 为 `node validate-coverage-ledger.cjs <path-to-coverage-ledger.json>`（该脚本**无 --help**，零参数调用即打印 usage 并 rc=1）。",
+  "new": "三条本地原缺能力（**OS 沙箱 / write isolation / coverage-ledger**；换装前实测合并面关键词命中见 `C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r290s/capability_probe.py`）已**逐字**并入分卷 [`references/upstream-cloudflare-sec.md](references/upstream-cloudflare-sec.md)（加载本技能时一并读取）。台账校验器随件附送：[`scripts/validate-coverage-ledger.cjs](scripts/validate-coverage-ledger.cjs)，实测 usage 为 `node validate-coverage-ledger.cjs <path-to-coverage-ledger.json>`（该脚本**无 --help**，零参数调用即打印 usage 并 rc=1）。"
+ }
+]

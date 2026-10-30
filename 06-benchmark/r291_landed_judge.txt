@@ -1,0 +1,10 @@
+rc=0
+PASS       H replay-equals-landed SKILL hunks=6; SIDECAR hunks=2
+PASS       I files-and-blob-sha   vol=9544 cjs=33522 | live=0ef58657bef1 api=0ef58657bef1 ev=0ef58657bef1
+PASS       J volume-verbatim      5/5
+PASS       K pointer-clean        bare=0/0
+PASS       L version-sidecar      fm=2.1.0/2026-10-30 hist=2.1.0/2026-10-30 sidecar_first=True inc=True
+PASS       M links-landed         links=3 rel=2 dead=[]
+PASS       N prep-consistent      rc=1 broken_ids=['SEC-FM-VERSION'] extra=[]
+PASS       P provenance-live      5/5 blocks verbatim in upstream SKILL.md (blob 92178dad304d)
+[SEC-AUDIT-LANDED] replay=ok blob=ok verbatim=5/5 pointers=0 links_dead=0 gate=PASS

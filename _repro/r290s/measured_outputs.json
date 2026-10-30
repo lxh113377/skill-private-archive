@@ -1,0 +1,52 @@
+{
+ "note": "本件 = verifications.md 与 negctl_filecopy_proof.md 全部引文的逐字来源（最后一次实跑）",
+ "full": {
+  "rc": 0,
+  "out": "PASS A [R290S-A-ANCHORS] hunks=5 old_unique=5/5 seq_errs=0 broken=-\nPASS B [R290S-B-VERBATIM] mode=live cjs=33522B blob=0ef58657bef1 api=0ef58657bef1 equal=Y slices=5 missing=- vol=9458B\nPASS C [R290S-C-LICENSE] api=MIT body=MIT class=permissive cap=5 restricted_hits=0 md_reconcile=Y verdict=MAY_MERGE\nPASS D [R290S-D-LINKS] claim_new=Y links=22 dead=0 detail=-\nPASS E [R290S-E-EXEC] mode=live_rc1 calls=1 usage_zero_flag=Y bad_flags=0 detail=- win_caveat=Y\nPASS F [R290S-F-VERSION] fm=2.1.0/2026-10-30 hist=2.1.0/2026-10-30 coords=2.1.0/2026-10-30 sidecar_sha_ref=Y\nPASS G [R290S-G-DRIFT] components=2 ids=5/5 drift=-\n[SEC-AUDIT-PREP] hunks=5 old_unique=5/5 license=MIT gate=PASS"
+ },
+ "neg": {
+  "anchor-absent": {
+   "rc": 0,
+   "out": "FAIL A [R290S-A-ANCHORS] hunks=5 old_unique=4/5 seq_errs=1 broken=SEC-FM-VERSION(count0/alignN/tailY),SEC-FM-VERSION(count=0) @ SKILL.md\n[R290S-NEGCTL] neg=anchor-absent leg_red=Y meaning=has_teeth\n[SEC-AUDIT-PREP] hunks=5 old_unique=4/5 license=? gate=PASS"
+  },
+  "anchor-multi": {
+   "rc": 0,
+   "out": "FAIL A [R290S-A-ANCHORS] hunks=5 old_unique=4/5 seq_errs=1 broken=SEC-FM-VERSION(count9/alignY/tailY),SEC-FM-VERSION(count=9) @ SKILL.md\n[R290S-NEGCTL] neg=anchor-multi leg_red=Y meaning=has_teeth\n[SEC-AUDIT-PREP] hunks=5 old_unique=4/5 license=? gate=PASS"
+  },
+  "deadlink": {
+   "rc": 0,
+   "out": "PASS A [R290S-A-ANCHORS] hunks=5 old_unique=5/5 seq_errs=0 broken=-\nFAIL D [R290S-D-LINKS] claim_new=Y links=24 dead=2 detail=skill:D:/global_skills/security-audit/SKILL.md:257->./nope_r290s_unwritten.md;here:verifications.md:270->./nope_r290s_unwritten.md\n[R290S-NEGCTL] neg=deadlink leg_red=Y meaning=has_teeth\n[SEC-AUDIT-PREP] hunks=5 old_unique=5/5 license=? gate=PASS"
+  },
+  "order": {
+   "rc": 0,
+   "out": "PASS A [R290S-A-ANCHORS] hunks=5 old_unique=5/5 seq_errs=0 broken=-\nFAIL D [R290S-D-LINKS] claim_new=N links=22 dead=2 detail=skill:D:/global_skills/security-audit/SKILL.md:56->references/upstream-cloudflare-sec.md;skill:D:/global_skills/security-audit/SKILL.md:56->scripts/validate-coverage-ledger.cjs\n[R290S-NEGCTL] neg=order leg_red=Y meaning=has_teeth\n[SEC-AUDIT-PREP] hunks=5 old_unique=5/5 license=? gate=PASS"
+  },
+  "argflag": {
+   "rc": 0,
+   "out": "PASS A [R290S-A-ANCHORS] hunks=5 old_unique=5/5 seq_errs=0 broken=-\nFAIL E [R290S-E-EXEC] mode=live_rc1 calls=2 usage_zero_flag=Y bad_flags=1 detail=--check-coverage win_caveat=Y\n[R290S-NEGCTL] neg=argflag leg_red=Y meaning=has_teeth\n[SEC-AUDIT-PREP] hunks=5 old_unique=5/5 license=? gate=PASS"
+  },
+  "drift": {
+   "rc": 0,
+   "out": "PASS A [R290S-A-ANCHORS] hunks=5 old_unique=5/5 seq_errs=0 broken=-\nFAIL G [R290S-G-DRIFT] components=2 ids=5/5 drift=DRIFT:SEC-FM-VERSION @ patch_local.json\n[R290S-NEGCTL] neg=drift leg_red=Y meaning=has_teeth\n[SEC-AUDIT-PREP] hunks=5 old_unique=5/5 license=? gate=PASS"
+  }
+ },
+ "dry": {
+  "rc": 0,
+  "out": "PASS A [R290S-A-ANCHORS] hunks=5 old_unique=5/5 seq_errs=0 broken=-\nPASS B [R290S-B-VERBATIM] mode=dry cjs=33522B blob=0ef58657bef1 api=0ef58657bef1 equal=Y slices=5 missing=- vol=9458B\nPASS C [R290S-C-LICENSE] api=MIT body=MIT class=permissive cap=5 restricted_hits=0 md_reconcile=Y verdict=MAY_MERGE\nPASS D [R290S-D-LINKS] claim_new=Y links=22 dead=0 detail=-\nPASS E [R290S-E-EXEC] mode=dry calls=1 usage_zero_flag=Y bad_flags=0 detail=- win_caveat=Y\nPASS F [R290S-F-VERSION] fm=2.1.0/2026-10-30 hist=2.1.0/2026-10-30 coords=2.1.0/2026-10-30 sidecar_sha_ref=Y\nPASS G [R290S-G-DRIFT] components=2 ids=5/5 drift=-\n[SEC-AUDIT-PREP] hunks=5 old_unique=5/5 license=MIT gate=PASS"
+ },
+ "probe": {
+  "rc": 0,
+  "out": "MERGED_FILES ['SKILL.md', 'upstream-owasp-asi.md'] lines=407\nNEEDLE os_sandbox       patterns=3 hits=1 detail=[('upstream-owasp-asi.md', 64, '- agent 生成码在无沙箱情况下不得 `eval()` / `exec()`')]\nNEEDLE write_isolation  patterns=3 hits=0 detail=[]\nNEEDLE coverage_ledger  patterns=4 hits=1 detail=[('SKILL.md', 50, '本 skill 独占的是：OWASP 逐类深扫、**变体分析**（同类漏洞全站扩散查找）、供应链台账、不安全默认值普查、误报反驳验证、补丁后')]\n[CAP-PROBE] done"
+ },
+ "read275": {
+  "rc": 0,
+  "out": "== r275_different_impl_triage.json rows=7\n   row0 keys: ['cap_local', 'cap_upstream', 'evidence_cmd', 'evidence_status', 'face_upstream_lines_in_local_pct', 'fetch_attempts', 'local_only', 'local_path', 'local_version', 'measured', 'overlap', 'skill', 'switch_plan', 'upstream_http_code', 'upstream_only', 'upstream_path', 'upstream_ref', 'upstream_repo', 'upstream_version', 'verdict', 'verdict_evidence']\n== r275_three_channel_intersection.json rows=55\n   row0 keys: ['ch1_tag', 'ch2_content', 'ch3_move', 'layer', 'layer_criteria', 'same_lineage', 'same_lineage_source', 'skill', 'upstream_path', 'upstream_ref', 'upstream_repo']\n   HIT keys: ['ch1_tag', 'ch2_content', 'ch3_move', 'l4_subreason', 'layer', 'layer_criteria', 'notes', 'same_lineage', 'same_lineage_source', 'skill', 'upstream_path', 'upstream_ref', 'upstream_repo']\n   HIT: {\"skill\": \"security-audit\", \"upstream_repo\": \"trailofbits/skills\", \"upstream_path\": null, \"upstream_ref\": null, \"same_lineage\": false, \"same_lineage_source\": \"r264.semantics=COLLECTION\", \"ch1_tag\": {\"reading\": \"PRESENT\", \"rel\": \"UNKNOWN_UPSTREAM_RELEASE\", \"state\": \"OK\", \"local_version\": \"2.0.1\", \"upstream_ref\": null, \"upstream_ref_reading\": \"UNKNOWN\", \"upstream_ref_reason\": \"rc=1:gh: Not Found (HTTP 404)\", \"upstream_version\": null}, \"ch3_move\": {\"reading\": \"PRESENT\", \"verdict\": \"UPSTREAM_MOVED\", \"upstream_commits_since\": 9, \"capped\": false, \"date_source\": \"git\", \"local_last_commit\": \"2026-10-20T09:35:20+08:00\", \"upstream_path\": null, \"error\": null}, \"layer\": \"L4\", \"layer_criteria\": \"仅线索 = ch3.verdict=UPSTREAM_MOVED 但未能进入 L1/L2/L3: 或 ch3.upstream_path 为空(仓级口径, 只说明整仓动过) 或 路径已定位却缺 BEHIND/relationship 判据\", \"ch2_content\": {\"reading\": \"ABSENT\", \"relationship\": \"ABSENT\", \"reason\": \"r265 只测同源 BEHIND 13 件(face_in 口径), 本件不在其内, 内容关系未测\"}, \"l4_subreason\": \"REPO_LEVEL_NO_PATH\", \"notes\": [\"仓级口径: upstream_path 为空, 只证明整仓动过, 不得当落后依据\"]}\ntriage skills: ['brainstorming', 'coding-agent', 'data-analysis', 'find-skills', 'gstack', 'subagent-driven-development', 'ui-ux-pro-max']"
+ },
+ "license": {
+  "rc": 0,
+  "out": "[LICENSE] api_spdx=MIT body_spdx=MIT body_class=permissive final_class=permissive cap=5 restricted_hits=0\n[LICENSE] hits=[] bytes=1078 sha256=e598e694aa506650c7192d5ea3be0e50aca0d356ea00551c53429f0b01eb6391\n[SCAN] DATA-ISOLATION-AND-LIFECYCLE.md bytes=7798 class=unknown spdx=None hits=[]\n[SCAN] HUNTING.md bytes=22446 class=unknown spdx=None hits=[]\n[SCAN] LICENSE bytes=1078 class=permissive spdx=MIT hits=[]\n[SCAN] README.md bytes=6950 class=unknown spdx=None hits=[]\n[SCAN] SKILL.md bytes=22026 class=unknown spdx=None hits=[]\n[SCAN] VALIDATION-AND-REPORTING.md bytes=17843 class=unknown spdx=None hits=[]\n[SCAN] report-schema.json bytes=14494 class=unknown spdx=None hits=[]\n[SCAN] validate-coverage-ledger.cjs bytes=33522 class=unknown spdx=None hits=[]\n[SCAN] validate-coverage-ledger.test.cjs bytes=28483 class=unknown spdx=None hits=[]\n[LICENSE-PREP] spdx=MIT class=permissive cap=5 restricted=0 gate=PASS"
+ },
+ "judge_cmd": "cd 自建skill优化 && C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe -B _repro/r290s/check_r290s.py",
+ "expected_last_line": "[SEC-AUDIT-PREP] hunks=5 old_unique=5/5 license=MIT gate=PASS",
+ "managed_root_status_security_audit": ""
+}

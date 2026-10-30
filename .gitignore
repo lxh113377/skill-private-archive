@@ -100,3 +100,11 @@ _repro/r285l/texts/
 # 被哈希的证据 results/run.json 仍保留跟踪（交付件里的 evidence_sha256 需在 clone 后可核）。
 _repro/*/work/
 _repro/*/*cache*/
+
+# r291：_repro/*/upstream/ 是上游原文的**部分**快照（S 只取了 6 个文件），它内部相对链指向
+# 未取入的兄弟文件（RECONNAISSANCE.md / ATTACK-CLASSES.md）=> 进本仓发布面必断（实测 3 条死链）。
+# 不入库：clone 后按 _repro/r290s/coords.json 里的 repo/ref/path 用 gh api 逐文件重建，
+# blob sha 已在 coords.json 留证（validate-coverage-ledger.cjs = 0ef58657bef18b26a92321df6c8e3d31bc8e6659）。
+# 反面仍成立：判据本体与 blocks/（逐字切片，被 leg B 用于等值比对）必须入库，否则 clone 不可复算。
+_repro/*/upstream/
+

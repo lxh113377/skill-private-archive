@@ -196,5 +196,9 @@
  "r291_req2_compliance.py": {
   "evidence": "06-benchmark/r291_req2_compliance.json",
   "registered_at": "2026-10-30 10:02"
+ },
+ "check_r291_landed.py": {
+  "evidence": "06-benchmark/r291_landed_judge.txt",
+  "registered_at": "2026-10-30 10:39"
  }
 }

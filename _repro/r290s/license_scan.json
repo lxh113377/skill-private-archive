@@ -1,0 +1,84 @@
+{
+ "api_spdx": "MIT",
+ "body_class": "permissive",
+ "body_spdx": "MIT",
+ "cap": 5,
+ "final_class": "permissive",
+ "restricted_hits": [],
+ "risky_files": [],
+ "rows": [
+  {
+   "bytes": 7798,
+   "class": "unknown",
+   "file": "DATA-ISOLATION-AND-LIFECYCLE.md",
+   "hits": [],
+   "sha256": "307dcb3e24d292715c4a041190e7bb135646a37eb6187619ae01d000a634a4ad",
+   "spdx": null
+  },
+  {
+   "bytes": 22446,
+   "class": "unknown",
+   "file": "HUNTING.md",
+   "hits": [],
+   "sha256": "71c121decea1322c47c718f6e110f1a892980bb4266bd7ac55ef043a213ade09",
+   "spdx": null
+  },
+  {
+   "bytes": 1078,
+   "class": "permissive",
+   "file": "LICENSE",
+   "hits": [],
+   "sha256": "e598e694aa506650c7192d5ea3be0e50aca0d356ea00551c53429f0b01eb6391",
+   "spdx": "MIT"
+  },
+  {
+   "bytes": 6950,
+   "class": "unknown",
+   "file": "README.md",
+   "hits": [],
+   "sha256": "55e793bbea3563f8246735997c07aaee360e043eeb626f0b56ea6161c8618ae7",
+   "spdx": null
+  },
+  {
+   "bytes": 22026,
+   "class": "unknown",
+   "file": "SKILL.md",
+   "hits": [],
+   "sha256": "5e3e96a1e438d8f35fef0a1e38f02d4f00e2bdf910401b7dfe00e6779c6dac85",
+   "spdx": null
+  },
+  {
+   "bytes": 17843,
+   "class": "unknown",
+   "file": "VALIDATION-AND-REPORTING.md",
+   "hits": [],
+   "sha256": "b892470cb89bb31f33403e050d4bdfbe2cdaef940ade1496fa65e32b2e129449",
+   "spdx": null
+  },
+  {
+   "bytes": 14494,
+   "class": "unknown",
+   "file": "report-schema.json",
+   "hits": [],
+   "sha256": "6575c9de4a62255699ea052ebf9a49ebfb373a32891bcd89af6f55cc84b35519",
+   "spdx": null
+  },
+  {
+   "bytes": 33522,
+   "class": "unknown",
+   "file": "validate-coverage-ledger.cjs",
+   "hits": [],
+   "sha256": "2eb280bd2e33c002916f86db9b29f9edfedb6454e5db973c766290465b868ac8",
+   "spdx": null
+  },
+  {
+   "bytes": 28483,
+   "class": "unknown",
+   "file": "validate-coverage-ledger.test.cjs",
+   "hits": [],
+   "sha256": "cfb9df26b03469a4279a70e7664a2a5434dd6f8c2c204e91f9b0aeb9dd71e648",
+   "spdx": null
+  }
+ ],
+ "single_source": "05-exec/r114_replacement_scan.py::classify_body/license_class/LICENSE_CAPS"
+}

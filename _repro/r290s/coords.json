@@ -1,0 +1,211 @@
+{
+ "schema": "r290s-coords-v2",
+ "skill": "security-audit",
+ "measured_at": "2026-10-30T01:39:21.259Z",
+ "ledger_claim_checked": {
+  "source": "memory/07-next-steps.md L42 (R261-7)",
+  "claim": "security-audit←cloudflare/security-audit-skill（OS 沙箱 + write isolation + coverage-ledger）",
+  "verdict": "成立（措辞需修正一处：本地 L50 的「供应链台账」与上游 coverage-ledger 同名异物，见 capability_probe 行号）"
+ },
+ "not_in_r275_faces": {
+  "r275_different_impl_triage_json": {
+   "real_field_names": [
+    "skill",
+    "layer_unused",
+    "verdict"
+   ],
+   "security_audit_row": "ABSENT（rows=7：brainstorming/coding-agent/data-analysis/find-skills/gstack/subagent-driven-development/ui-ux-pro-max）",
+   "cmd": "python -B _repro/r290s/_read275.py"
+  },
+  "r275_three_channel_intersection_json": {
+   "real_field_names": [
+    "skill",
+    "layer",
+    "ch1_tag",
+    "ch2_content",
+    "ch3_move",
+    "upstream_repo",
+    "upstream_path",
+    "upstream_ref",
+    "same_lineage",
+    "layer_criteria",
+    "notes"
+   ],
+   "security_audit_row": "PRESENT: skill=security-audit, layer=L4, l4_subreason=REPO_LEVEL_NO_PATH, upstream_repo=trailofbits/skills, upstream_path=null, upstream_ref=null, ch1_tag.rel=UNKNOWN_UPSTREAM_RELEASE, ch1_tag.upstream_ref_reason=\"rc=1:gh: Not Found (HTTP 404)\", ch2_content.reading=ABSENT, ch3_move.verdict=UPSTREAM_MOVED, ch3_move.upstream_commits_since=9, local_version=2.0.1",
+   "cmd": "python -B _repro/r290s/_read275.py"
+  },
+  "conclusion": "那两件面件里没有 cloudflare 坐标 ⇒ 上游坐标按 brief 退路用 gh api 现查（下方 live_commands 全为实跑）",
+  "note": "真字段名现读：triage 行 keys 含 skill/verdict（无 layer）；交集行 keys 含 skill/layer（无 verdict、无 slug/tier）—— 见 _read275.py 输出",
+  "read_cmds": [
+   "python -B _repro/r290s/_read275.py"
+  ]
+ },
+ "upstream": {
+  "repo": "cloudflare/security-audit-skill",
+  "ref": "main",
+  "path": "skills/security-audit",
+  "path_exists": true,
+  "head_sha": "c1c8a8c1471069fb0e188eeaff69b8e8db6564a8",
+  "head_date": "2026-09-14T19:28:54Z",
+  "default_branch": "main",
+  "license_spdx": "MIT",
+  "archived": false,
+  "commands": [
+   "gh api repos/cloudflare/security-audit-skill --jq \"{full_name,default_branch,spdx:(.license.spdx_id // \"NONE\"),pushed_at,archived}\"",
+   "gh api repos/cloudflare/security-audit-skill/commits/main --jq \"{sha:.sha,date:.commit.committer.date,msg:(.commit.message|split(\"\\n\")[0])}\"",
+   "gh api repos/cloudflare/security-audit-skill/git/trees/main?recursive=1 --jq \"[.tree[]|{p:.path,t:.type,s:.size}]\""
+  ],
+  "files": {
+   "SKILL.md": {
+    "bytes": 22026,
+    "blob_sha": "92178dad304d3f63e37582a297026a7874e12c62",
+    "local_absent": true
+   },
+   "validate-coverage-ledger.cjs": {
+    "bytes": 33522,
+    "blob_sha": "0ef58657bef18b26a92321df6c8e3d31bc8e6659",
+    "local_absent": true
+   },
+   "LICENSE": {
+    "bytes": 1078,
+    "blob_sha": "6dbc9ecb3a5b9080e95b962869e8c7ab16cfdc20",
+    "note": "仓库根（不在 skills/security-audit 下）"
+   },
+   "README.md": {
+    "bytes": 6950,
+    "blob_sha": "c80305c88cd5087db37f76a0d230c1fc092c864c",
+    "note": "仓库根"
+   }
+  }
+ },
+ "local": {
+  "skill_dir": "D:/global_skills/security-audit",
+  "version_pre": "2.0.1",
+  "tracked_files": [
+   "security-audit/SKILL.md",
+   "security-audit/.upstream",
+   "security-audit/references/upstream-owasp-asi.md"
+  ],
+  "has_cloudflare_paths": false,
+  "has_coverage_ledger_validator": false,
+  "sidecar_content": "trailofbits/skills\n",
+  "dirty_in_managed_root": "clean（security-audit 子树）",
+  "local_last_commit": "2026-10-25T20:20:28+08:00",
+  "commands": [
+   "ls -1 D:/global_skills/security-audit D:/global_skills/security-audit/references",
+   "git -C D:/global_skills ls-files -- security-audit",
+   "git -C D:/global_skills status --porcelain -- security-audit",
+   "git -C D:/global_skills log -1 --format=%cI -- security-audit",
+   "cat D:/global_skills/security-audit/.upstream"
+  ],
+  "has_corresponding_files": false,
+  "corresponding_probe": "ls -1 D:/global_skills/security-audit/references 与 scripts ⇒ references 仅 upstream-owasp-asi.md；scripts 目录不存在（实测）"
+ },
+ "verbatim_evidence": {
+  "cjs_api_sha": "0ef58657bef18b26a92321df6c8e3d31bc8e6659",
+  "cjs_size": 33522,
+  "cjs_git_hash_object": "0ef58657bef18b26a92321df6c8e3d31bc8e6659",
+  "cjs_usage_zero_arg": "Usage: node validate-coverage-ledger.cjs <path-to-coverage-ledger.json>",
+  "zero_arg_rc": 1,
+  "help_rc": 1,
+  "help_stderr": "Failed to read coverage ledger: OS no-follow and nonblocking input protection is unavailable",
+  "bogus_flag_rc": 1,
+  "bogus_stderr": "Failed to read coverage ledger: OS no-follow and nonblocking input protection is unavailable",
+  "tests_rc": 0,
+  "tests_tail": [
+   "✔ accepts a canonical ID derived from near-maximum multibyte references (2.6169ms)",
+   "ℹ tests 31",
+   "ℹ suites 0",
+   "ℹ pass 24",
+   "ℹ fail 0",
+   "ℹ cancelled 0",
+   "ℹ skipped 7",
+   "ℹ todo 0",
+   "ℹ duration_ms 130.6401"
+  ],
+  "byte_identical": true,
+  "commands": [
+   "gh api \"repos/cloudflare/security-audit-skill/contents/skills/security-audit/validate-coverage-ledger.cjs?ref=main\" --jq \".sha + \\\" \\\" + (.size|tostring)\"",
+   "git hash-object _repro/r290s/staging/security-audit/scripts/validate-coverage-ledger.cjs",
+   "node _repro/r290s/staging/security-audit/scripts/validate-coverage-ledger.cjs",
+   "node _repro/r290s/staging/security-audit/scripts/validate-coverage-ledger.cjs --help",
+   "node _repro/r290s/upstream/validate-coverage-ledger.test.cjs"
+  ]
+ },
+ "UNVERIFIED": [
+  "cloudflare 侧无 version 字段（无 frontmatter version）⇒ 本地 2.0.1→2.1.0 是本仓自定递增，非上游版本号"
+ ],
+ "post_reskin": {
+  "version": "2.1.0",
+  "last_updated": "2026-10-30",
+  "applied_by": "Lead via rule_editor.py（本件只出材料，不落盘）"
+ },
+ "ledger_claim": {
+  "source": "memory/07-next-steps.md L42（R261-7 原句，逐字抄）",
+  "quote": "security-audit←cloudflare/security-audit-skill（OS 沙箱 + write isolation + coverage-ledger）",
+  "verdict": "成立（部分实测→已实测）：上游三项在 cloudflare 仓可指行；本地合并面三词命中 0",
+  "correction": "本地 SKILL.md:50 的「供应链台账」与上游 coverage-ledger 同名异物（那是 dependency ledger 表述，非 coverage 台账），不构成已有能力",
+  "commands": [
+   "python -B _repro/r290s/capability_probe.py  # 合并面（SKILL.md + references/*.md）关键词普查",
+   "grep -n R261-7 memory/07-next-steps.md"
+  ],
+  "probe_output_verbatim": [
+   "MERGED_FILES ['SKILL.md', 'upstream-owasp-asi.md'] lines=407\r",
+   "NEEDLE os_sandbox       patterns=3 hits=1 detail=[('upstream-owasp-asi.md', 64, '- agent 生成码在无沙箱情况下不得 `eval()` / `exec()`')]\r",
+   "NEEDLE write_isolation  patterns=3 hits=0 detail=[]\r",
+   "NEEDLE coverage_ledger  patterns=4 hits=1 detail=[('SKILL.md', 50, '本 skill 独占的是：OWASP 逐类深扫、**变体分析**（同类漏洞全站扩散查找）、供应链台账、不安全默认值普查、误报反驳验证、补丁后')]\r",
+   "[CAP-PROBE] done"
+  ]
+ },
+ "license_risky_files": [],
+ "staged_vol_link_audit": {
+  "md_links": 0,
+  "targets": [],
+  "fence_aware_note": "整卷无 markdown 相对链接 ⇒ 落盘后不新增死链面（r289 第⑧步同族纪律）",
+  "recheck_cmd": "python -B _repro/r290s/check_r290s.py --only D"
+ },
+ "cjs_usage_live_captured": "Usage: node validate-coverage-ledger.cjs <path-to-coverage-ledger.json>",
+ "read_face_sha": {
+  "06-benchmark/r275_different_impl_triage.json": {
+   "sha256_12": "b10861cea6e2",
+   "bytes": 23299,
+   "mtime": "2026-10-29T13:25:06.952Z"
+  },
+  "06-benchmark/r275_three_channel_intersection.json": {
+   "sha256_12": "8c91684021bc",
+   "bytes": 77242,
+   "mtime": "2026-10-29T13:14:59.775Z"
+  },
+  "memory/07-next-steps.md": {
+   "sha256_12": "684a0928fc8c",
+   "bytes": 701068,
+   "mtime": "2026-10-30T01:49:29.952Z"
+  },
+  "05-exec/r114_replacement_scan.py": {
+   "sha256_12": "8a13ae1f4d91",
+   "bytes": 82442,
+   "mtime": "2026-10-29T13:04:07.805Z"
+  },
+  "05-exec/r220_md_deadlink.py": {
+   "sha256_12": "f5b4a0c457f3",
+   "bytes": 11646,
+   "mtime": "2026-10-28T10:03:08.375Z"
+  },
+  "D:/global_skills/security-audit/SKILL.md": {
+   "sha256_12": "e3f38afe2046",
+   "bytes": 12084,
+   "mtime": "2026-10-20T01:34:51.020Z"
+  },
+  "D:/global_skills/security-audit/.upstream": {
+   "sha256_12": "fd64bbd190f9",
+   "bytes": 19,
+   "mtime": "2026-10-25T12:00:09.896Z"
+  },
+  "D:/global_skills/security-audit/references/upstream-owasp-asi.md": {
+   "sha256_12": "c7e37e1bcb80",
+   "bytes": 7776,
+   "mtime": "2026-10-20T01:34:15.722Z"
+  }
+ },
+ "read_face_note": "D9 纪律：本件全部读数绑定的被检文件 sha256 前 12 + mtime（复算前若 sha 变化即读数过期，必须重跑 _read275.py / capability_probe.py / license_gate.py）"
+}

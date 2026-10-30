@@ -1,0 +1,22 @@
+[
+ {
+  "id": "SEC-SIDECAR-ABSORBED",
+  "old": "trailofbits/skills\n",
+  "new": "trailofbits/skills\n# absorbed_increment cloudflare/security-audit-skill @ c1c8a8c1471069fb0e188eeaff69b8e8db6564a8 (main, 2026-09-14T19:28:54Z, MIT)\n# 三条本地原缺能力逐字并入 references/upstream-cloudflare-sec.md；校验器 scripts/validate-coverage-ledger.cjs\n# 注释行不改变 05-exec/r114_replacement_scan.py parse_sidecar 的解析结果（实测前后同解）\n",
+  "_verify": {
+   "target": "D:/global_skills/security-audit/.upstream",
+   "assert": "text.count(old) == 1",
+   "count": 1,
+   "pass": true,
+   "start": 0,
+   "end": 19,
+   "old_lines": 1,
+   "new_lines": 4,
+   "old_bytes": 19,
+   "new_bytes": 383,
+   "target_bytes": 19,
+   "how": "old = 目标件盘上原文的行对齐切片（逐字，未拼接、无多余空行）；count 由本件现算",
+   "recheck_cmd": "python -B _repro/r290s/check_r290s.py --only A"
+  }
+ }
+]

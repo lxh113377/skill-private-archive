@@ -1,0 +1,42 @@
+[
+ {
+  "id": "G1",
+  "a": 31,
+  "b": 42,
+  "cap": "OS-enforced sandbox",
+  "bytes": 2077,
+  "lines": 12
+ },
+ {
+  "id": "G2",
+  "a": 54,
+  "b": 81,
+  "cap": "write isolation",
+  "bytes": 2958,
+  "lines": 28
+ },
+ {
+  "id": "G3",
+  "a": 84,
+  "b": 86,
+  "cap": "write isolation",
+  "bytes": 830,
+  "lines": 3
+ },
+ {
+  "id": "G4",
+  "a": 92,
+  "b": 93,
+  "cap": "coverage-ledger",
+  "bytes": 29,
+  "lines": 2
+ },
+ {
+  "id": "G5",
+  "a": 96,
+  "b": 105,
+  "cap": "coverage-ledger",
+  "bytes": 1930,
+  "lines": 10
+ }
+]

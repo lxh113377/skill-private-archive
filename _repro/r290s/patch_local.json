@@ -1,0 +1,82 @@
+[
+ {
+  "id": "SEC-FM-VERSION",
+  "old": "version: 2.0.1\nlast_updated: 2026-10-20\n",
+  "new": "version: 2.1.0\nlast_updated: 2026-10-30\n",
+  "_verify": {
+   "target": "D:/global_skills/security-audit/SKILL.md",
+   "assert": "text.count(old) == 1",
+   "count": 1,
+   "pass": true,
+   "start": 554,
+   "end": 594,
+   "old_lines": 2,
+   "new_lines": 2,
+   "old_bytes": 40,
+   "new_bytes": 40,
+   "target_bytes": 12084,
+   "how": "old = 目标件盘上原文的行对齐切片（逐字，未拼接、无多余空行）；count 由本件现算",
+   "recheck_cmd": "python -B _repro/r290s/check_r290s.py --only A"
+  }
+ },
+ {
+  "id": "SEC-PROVENANCE-ALT",
+  "old": "> **Provenance**: methodology adapted from [trailofbits/skills](https://github.com/trailofbits/skills)\n> (7,278 stars, measured 2026-09-29 via `gh api repos/trailofbits/skills`) — a real-world audit firm's playbook.\n",
+  "new": "> **Provenance**: methodology adapted from [trailofbits/skills](https://github.com/trailofbits/skills)\n> (7,278 stars, measured 2026-09-29 via `gh api repos/trailofbits/skills`) — a real-world audit firm's playbook.\n> **Absorbed increment (R290, 2026-10-30)**: 三条本地原缺能力（OS 沙箱 / write isolation / coverage-ledger）\n> 逐字取自 `cloudflare/security-audit-skill`@`c1c8a8c14710`（MIT；许可门单源 = `05-exec/r114_replacement_scan.py` 的 classify_body/license_class，实测读数见 `_repro/r290s/license_gate.md`）。\n",
+  "_verify": {
+   "target": "D:/global_skills/security-audit/SKILL.md",
+   "assert": "text.count(old) == 1",
+   "count": 1,
+   "pass": true,
+   "start": 811,
+   "end": 1027,
+   "old_lines": 2,
+   "new_lines": 4,
+   "old_bytes": 218,
+   "new_bytes": 550,
+   "target_bytes": 12084,
+   "how": "old = 目标件盘上原文的行对齐切片（逐字，未拼接、无多余空行）；count 由本件现算",
+   "recheck_cmd": "python -B _repro/r290s/check_r290s.py --only A"
+  }
+ },
+ {
+  "id": "SEC-ABSORB-POINTER",
+  "old": "## Workflow (7-Phase Audit)\n",
+  "new": "## 上游增量分卷（2026-10-30 吸收 cloudflare/security-audit-skill）\n\n三条本地原缺能力（**OS 沙箱 / write isolation / coverage-ledger**；换装前实测合并面关键词命中见 `_repro/r290s/capability_probe.py`）已**逐字**并入分卷 [`references/upstream-cloudflare-sec.md](references/upstream-cloudflare-sec.md)（加载本技能时一并读取）。台账校验器随件附送：[`scripts/validate-coverage-ledger.cjs](scripts/validate-coverage-ledger.cjs)，实测 usage 为 `node validate-coverage-ledger.cjs <path-to-coverage-ledger.json>`（该脚本**无 --help**，零参数调用即打印 usage 并 rc=1）。\n\n## Workflow (7-Phase Audit)\n",
+  "_verify": {
+   "target": "D:/global_skills/security-audit/SKILL.md",
+   "assert": "text.count(old) == 1",
+   "count": 1,
+   "pass": true,
+   "start": 1935,
+   "end": 1963,
+   "old_lines": 1,
+   "new_lines": 5,
+   "old_bytes": 28,
+   "new_bytes": 677,
+   "target_bytes": 12084,
+   "how": "old = 目标件盘上原文的行对齐切片（逐字，未拼接、无多余空行）；count 由本件现算",
+   "recheck_cmd": "python -B _repro/r290s/check_r290s.py --only A"
+  }
+ },
+ {
+  "id": "SEC-VERSION-HISTORY",
+  "old": "## Version history\n\n",
+  "new": "## Version history\n\n- **2.1.0** (2026-10-30) — 吸收 `cloudflare/security-audit-skill`@`c1c8a8c14710`（许可门 MIT/permissive/cap=5/受限命中 0）三段增量：OS-enforced sandbox 执行安全、write isolation（parent-only 共享文件 + race-safe 提升 11 步）、coverage-ledger 先前运行并入规则；逐字分卷 `references/upstream-cloudflare-sec.md` + 零依赖校验器 `scripts/validate-coverage-ledger.cjs`。本地七 Phase / 触发词 / Trail of Bits 谱系指针不动。\n",
+  "_verify": {
+   "target": "D:/global_skills/security-audit/SKILL.md",
+   "assert": "text.count(old) == 1",
+   "count": 1,
+   "pass": true,
+   "start": 10278,
+   "end": 10298,
+   "old_lines": 2,
+   "new_lines": 3,
+   "old_bytes": 20,
+   "new_bytes": 503,
+   "target_bytes": 12084,
+   "how": "old = 目标件盘上原文的行对齐切片（逐字，未拼接、无多余空行）；count 由本件现算",
+   "recheck_cmd": "python -B _repro/r290s/check_r290s.py --only A"
+  }
+ }
+]
