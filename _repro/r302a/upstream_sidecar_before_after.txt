@@ -1,0 +1,40 @@
+r302 证据：security-audit 的 .upstream 声明落点修正（改前/改后逐字 + 决定·理由·回滚）。
+
+为什么改：该侧车原先只有一行机器可读声明 trailofbits/skills，而该仓在其 104 个 SKILL.md 里**没有**同名件
+（security-audit）⇒ r114 的 declared_state 恒判 invalid（名称身份未命中）。但本件的正文吸收点其实另有其仓：
+comment 行里记着 absorbed_increment cloudflare/security-audit-skill，而该仓树内确有 skills/security-audit/SKILL.md
+（r302 实测：gh api 该仓 tree 命中该路径；stars 53,489、pushed 2026-09-14、MIT）⇒ 真实血统可机器核对，
+只是声明写法让它落不了地。
+
+改法（决定）：把机器可读的上游换成 cloudflare/security-audit-skill + path: skills/security-audit（可落地 ⇒ lineage），
+把 trailofbits/skills 降为注释级来源并写明它为何不适合当机器可读上游（无同名件）；同时删掉原注释里那行机器专属
+绝对路径（指向本机工作区，违 R298 可移植性规矩）。
+
+改前（逐字，446B，4 行）：
+trailofbits/skills
+# absorbed_increment cloudflare/security-audit-skill @ c1c8a8c1471069fb0e188eeaff69b8e8db6564a8 (main, 2026-09-14T19:28:54Z, MIT)
+# 三条本地原缺能力逐字并入 references/upstream-cloudflare-sec.md；校验器 scripts/validate-coverage-ledger.cjs
+# 注释行不改变 C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/05-exec/r114_replacement_scan.py parse_sidecar 的解析结果（实测前后同解）
+
+改后（逐字，1074B，10 行）：
+cloudflare/security-audit-skill
+path: skills/security-audit
+# 多源合成声明（r302 裁定；理由与回滚见自建skill优化台账 R302-3 与 _repro/r302a/upstream_sidecar_before_after.txt）：
+# · 机器可读的上游 = cloudflare/security-audit-skill：该仓树内确有 skills/security-audit/SKILL.md（与本件同名），
+#   故声明能落地（declared_state=lineage），可作为版本面与升级比对的靶。
+# · 方法论血统 = trailofbits/skills（本件描述里的 Adapted from Trail of Bits security audit methodology）。
+#   该仓 104 个 SKILL.md 中无同名件 ⇒ 不宜当机器可读上游（否则恒判声明失效），故降为注释级来源。
+# · 正文吸收点：三条本地原缺能力逐字并入 references/upstream-cloudflare-sec.md；校验器 scripts/validate-coverage-ledger.cjs。
+# · 吸收时的上游提交 = c1c8a8c1471069fb0e188eeaff69b8e8db6564a8（main，2026-09-14T19:28:54Z，MIT）。
+# · 原注释里那行机器专属绝对路径（指向本机工作区）已按 R298 可移植性规矩移除。
+
+落地与验证：
+· 写途径 = D:/global_skills/A-memory-start/references/rule_editor.py replace --file security-audit/.upstream
+  （红线 2：唯一合法途径；先 --dry-run 通过 1 处 hunk，再实跑）；备份已落 _trash（rule_editor 输出里具名）。
+· 受管根提交 = a9a98ba6 [rule_editor] replace (security-audit/.upstream)；git merge-base --is-ancestor <HEAD> HEAD ⇒ ANCESTOR_OK=1（红线：受管根落地≠交付）。
+· 落地后 r114 矩阵现读该行：declared_state=lineage、declared_path_hit=skills/security-audit、
+  declared_path_attributed=True、declared_score_total=15、declared_upstream_repo=cloudflare/security-audit-skill。
+· 受管根噪声门：global_skills 汇总 violation=0（我的改动在该面上干净）。
+
+回滚：rule_editor.py undo（它自带备份）或 git -C D:/global_skills revert a9a98ba6；
+两条路都留了痕，且改前全文逐字抄在上面，可逐字复原。

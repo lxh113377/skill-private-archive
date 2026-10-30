@@ -57,6 +57,57 @@ TOKEN = "[R260:%s]"
 
 # 四维可比腿：community 本地无 stars 语义 ⇒ 不入 delta（理由见模块 docstring）
 CMP_DIMS = ("fc", "eff", "compat", "docs")
+# ---- r302 输入指纹（保牙修法）--------------------------------------------------------
+# 存在理由：r300 为让 31 个声明仓进五维面，用 measure_repo(store_paths=True, offline=False)
+#   重测，顺带刷新了缓存条目。旧自检拿「现算 score5」与「r225 记录」逐字段比对 ⇒ 上游内容变了
+#   也被读成「量尺漂移」（agent-browser 一手实测：上游新增技能入口，严格口径的 SKILL.md 件数
+#   由 10 升到 11，fc 由 3 升到 4）。那是**数据新鲜度**变化，不是尺子行为变化 —— 两者必须分档，
+#   否则每刷一次缓存本门就假红（恒红门与恒绿门同样无信息量）。
+# 判定三档（互不吞并，r302 立）：
+#   指纹相同 + score5 不同 ⇒ 量尺漂移 ⇒ 计入 mismatches（本门的牙，必须 FAIL）；
+#   指纹不同             ⇒ 输入被合法刷新 ⇒ 记 stale_input_n（不计 mismatches、不判 FAIL，行内显形）；
+#   活件取不到           ⇒ 记 unknown_n（取不到 ≠ 漂移 ≠ 干净，与 R247 同族）。
+# 指纹口径（为什么是投影而不是整份 doc）：r225 是历史件（R241 禁改写），逐候选只落了 score5
+#   输入的一个子集；整份缓存 doc 没有与之配套的历史副本可比 ⇒ 指纹只能取**两侧都算得出**的字段。
+# 具名边界（代价）：四个未记录字段（blob_n、readme_n、tree_state、license_body_class）不进指纹；
+#   只改这些字段且 score5 也跟着变时，会被读成量尺漂移（假红）。为什么不补 None 硬凑：那会让全部
+#   937 个候选恒判 stale ⇒ 漂移腿恒 0 = 恒绿门，比假红更坏（本仓 X-7 同族）。
+PIN_FIELDS = ("stars", "pushed_at", "license", "archived",
+              "skill_md_n", "skill_md_exact_n", "skill_md_ghost_n",
+              "docs_md_n", "test_path_n", "workflow_n")
+INPUT_PIN_VERSION = "r302-pin-v1"
+INPUT_PIN_NOTE = ("input_pin = sha256(规范化 JSON(score5 输入投影))[:16]，投影字段 = r225 矩阵逐候选"
+                  "记录下来的那批 score5 输入（PIN_FIELDS）；两侧同规则现算，不依赖任何历史 pin 字段"
+                  "（r225 没有，且禁改写）。判档：pin 同 + score5 不同 ⇒ 量尺漂移（计入 mismatches）；"
+                  "pin 不同 ⇒ 输入被合法刷新（stale_input，不计 mismatches、不判 FAIL）；活件取不到 ⇒ "
+                  "unknown。未记录的四个字段（blob_n、readme_n、tree_state、license_body_class）不进"
+                  "投影 ⇒ 只改这些字段的刷新可能被误判成漂移（具名边界）。")
+
+
+def canonical_json(obj):
+    """规范化 JSON：键排序 + 无多余空白 + 非 ASCII 原样 ⇒ 同一映射必得同一串（指纹可跨轮对账）。"""
+    return json.dumps(obj, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+
+
+def input_pin(doc):
+    """输入指纹 = 打分输入投影的规范化 JSON 的 sha256 前 16 位；doc 非映射返回 None。
+
+    怎么运作：固定按 PIN_FIELDS 取键（缺失取 None），所以「同一输入的两种载体」（矩阵记录的投影
+    vs 现读的缓存 doc）能算到同一枚指纹 —— 这是本判据能跨历史件比对的前提。
+    """
+    if not isinstance(doc, dict):
+        return None
+    proj = dict((k, doc.get(k)) for k in PIN_FIELDS)
+    return hashlib.sha256(canonical_json(proj).encode("utf-8")).hexdigest()[:16]
+
+
+def pin_changed_fields(recorded_doc, live_doc):
+    """列出两侧投影里取值不同的字段名（具名样例用；不参与判定，只作证据）。"""
+    changed = []
+    for k in PIN_FIELDS:
+        if canonical_json(recorded_doc.get(k)) != canonical_json(live_doc.get(k)):
+            changed.append(k)
+    return changed
 
 # LICENSE 文件名识别：只按路径末段、不区分大小写（与 r114 tree_counts 的末段口径一致）
 LICENSE_NAME_RE = re.compile("^(license|licence|copying|copyleft|unlicense|eula|notice)\\b", re.I)
@@ -335,6 +386,103 @@ def row_readout(mod, lm, c0, cm):
     return out
 
 
+def reproduce_selfcheck(Rmod, cache, mrows):
+    """复现自检（单源证据；r302 起带输入指纹）：每个候选从池缓存重算 score5，与矩阵记录比对。
+
+    怎么运作（两层判定，顺序不能换）：
+      ① 输入指纹层：对矩阵记录与当前活件各算一次 input_pin。两枚不同 ⇒ 该候选的输入被合法刷新
+         （上游内容/星标/推送时间变了）⇒ 记 stale_input，**不进** ② 的漂移计数 —— 否则每刷一次
+         缓存本门就假红（r302 修法正是修这一处）。
+      ② 量尺复现层（只在指纹相同时跑）：两个已记录口径（cap_on 与 cap_off）各重算一次，要求**至少
+         一个**能零漂移复现该矩阵件。两个都非 0 ⇒ 未知改动/双源 ⇒ 本门红（这就是牙）；两个都 0 ⇒
+         档开关对这批样本无差别（如小样），复现成立但 cap_discriminates 记 False，禁把它读成档有效。
+
+    为什么 ② 要两口径：r261 给 compat 加了许可档上限后，用今天的 score5 重算旧矩阵（r225 无档）
+    必然不一致 —— 那是**尺子换代**不是「双源/漂移」。旧写法把两者混进同一个 mismatches ⇒ 只要这条
+    腿动过一次，自证就永远红（恒红门与恒绿门同样无信息量；r260 已在第 110 门栽过同族）。
+    防退化闸：指纹相同而真被重算的候选数 pinned_scored_n 若为 0，说明漂移腿没有任何样本（整批判
+    stale）—— 那样的 0 漂移是恒绿门，selfcheck_pass() 会据此否决。
+    """
+    sc = {"candidates_recomputed": 0, "mismatches": 0, "mismatch_examples": [],
+          "mismatches_cap_on": 0, "mismatches_cap_off": 0,
+          "matrix_caliber": None, "cap_discriminates": None,
+          "input_pin_version": INPUT_PIN_VERSION,
+          "stale_input_n": 0, "stale_input_rank0_n": 0, "stale_input_examples": [],
+          "unknown_n": 0, "pinned_scored_n": 0,
+          "input_pin_note": INPUT_PIN_NOTE}
+    for row in mrows:
+        slug = row["slug"]
+        for rank, c in enumerate(row.get("candidates") or []):
+            live = cand_measure(Rmod, cache, c["repo"])
+            if live is None or c.get("score5") is None:
+                # 取不到 ⇒ 记 unknown：取不到 ≠ 漂移 ≠ 干净（R247：缺数据不得造结论，任一方向）
+                sc["unknown_n"] += 1
+                continue
+            # 正文档是**生产侧的证据输入**（来自跟踪包 license_body_r262.json 或本轮联网取），不是
+            #   尺子的输出。池缓存里没有它 ⇒ 复现时必须把该行记录的值喂回同一输入，否则门在比较两份
+            #   不同的输入：r262 起 57 个 NOASSERTION slot 会全部报漂移，把「换代」误读成「双源」。
+            #   旧代矩阵件（r225/r261）没有该字段 ⇒ 这里得到 None，行为与从前逐字相同。
+            live = dict(live)   # 浅拷贝：指纹只读，不改缓存在内存里的那份
+            if "license_body_class" in live or c.get("license_body_class") is not None:
+                live["license_body_class"] = c.get("license_body_class")
+            sc["candidates_recomputed"] += 1
+            want_pin = input_pin(c)
+            got_pin = input_pin(live)
+            if want_pin != got_pin:
+                sc["stale_input_n"] += 1
+                if rank == 0:
+                    sc["stale_input_rank0_n"] += 1
+                if len(sc["stale_input_examples"]) < 5:
+                    sc["stale_input_examples"].append({
+                        "slug": slug, "repo": c["repo"], "rank": rank,
+                        "recorded_pin": want_pin, "live_pin": got_pin,
+                        "changed_fields": pin_changed_fields(c, live)})
+                continue
+            sc["pinned_scored_n"] += 1
+            fails = []
+            on_s = off_s = None
+            for cap_flag in (True, False):
+                s_chk, t_chk, _cal = Rmod.score5(live, license_cap=cap_flag)
+                bad = (s_chk != c["score5"] or t_chk != c.get("score_total"))
+                sc["mismatches_cap_on" if cap_flag else "mismatches_cap_off"] += 1 if bad else 0
+                if cap_flag:
+                    on_s = s_chk
+                else:
+                    off_s = s_chk
+                fails.append(bad)
+            if all(fails) and len(sc["mismatch_examples"]) < 5:
+                # 指纹相同而两个口径都复现不了 = 真漂移，留样例具名（只留一条，旧写法的双写是笔误）
+                sc["mismatch_examples"].append({
+                    "slug": slug, "repo": c["repo"], "rank": rank,
+                    "recorded": c["score5"],
+                    "recomputed_cap_on": on_s, "recomputed_cap_off": off_s})
+    _on, _off = sc["mismatches_cap_on"], sc["mismatches_cap_off"]
+    # 派生字段：生效口径 = 两个 cap 档里漂移较小的那个；mismatches 取该值 ⇒ 自证的语义从「与 r225
+    #   同尺」升级为「与该矩阵件**产出时**的尺同」，换代不再假红，而未知改动仍会被抓（两口径都复现
+    #   不了 ⇒ 两个计数同时非 0 ⇒ mismatches>0 ⇒ 本门红）。
+    sc["mismatches"] = min(_on, _off)
+    sc["matrix_caliber"] = ("license_cap_on" if _on <= _off else "license_cap_off")
+    sc["cap_discriminates"] = (_on != _off)
+    sc["caliber_note"] = (
+        "两口径漂移分别记录（cap_on=%d 与 cap_off=%d）：较小值视为该矩阵件产出时的口径。" % (_on, _off) +
+        "cap_discriminates=False 且两者皆 0 ⇒ 本次样本对 cap 无差别，禁据此判许可档有效；" +
+        "两者皆非 0 ⇒ 未知改动/真双源，本门当场红。")
+    sc["claim"] = ("mismatches==0 即本件与该矩阵件产出时同一把尺（两个 cap 档至少一个能零漂移复现）；" +
+                   "两档皆 >0 即双源/未登记换代，自证不成立；stale_input_n 是输入刷新数，不参与本布尔")
+    return sc
+
+
+def selfcheck_pass(sc, teeth_ok, conservation_ok):
+    """自证三腿合并判定（r302 从 finalize 抽成纯函数：夹具要能直接调它复算同一布尔）。
+
+    三腿 = 负向对照有牙(teeth_ok) + 量尺零漂移(mismatches==0) + 守恒(conservation_ok)，外加防退化闸
+    pinned_scored_n>0（指纹相同且真被重算的候选必须非空，否则漂移腿无样本、那个 0 是恒绿）。
+    stale_input_n 与 unknown_n **不进**这个布尔：它们是输入新鲜度与取数缺口，不是量尺出错。
+    """
+    return bool(teeth_ok and sc.get("mismatches") == 0
+                and sc.get("pinned_scored_n", 0) > 0
+                and conservation_ok)
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--json", dest="out", default=OUT_DEFAULT, help="主产物（缺省 06-benchmark/r260_local_baseline.json）")
@@ -380,6 +528,10 @@ def main():
         print(TOKEN % "UNVERIFIED", "本地扫出 0 件 ⇒ 不得读成无本地基线（R247）")
         return 2
 
+    # --limit 时自检也只覆盖前 N 行（与主循环同一片；旧写法内联在循环里天然如此）。
+    n = len(mrows) if not args.limit else min(args.limit, len(mrows))
+    selfcheck = reproduce_selfcheck(R, cache, mrows[:n])
+
     doc = {
         "schema": "r260-local-baseline-v1",
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S+00:00"),
@@ -407,53 +559,14 @@ def main():
         },
         "compat_teeth": {"dim_distribution_in_matrix": {}, "rank_flip": None, "three_inputs": [], "copleft_at_5": None, "verdict": None},
         "negative_controls": {},
-        # 两个口径各一个计数器；mismatches = 两者较小值（= 生效口径下的漂移数）。
-        "reproduce_selfcheck": {"candidates_recomputed": 0, "mismatches": 0, "mismatch_examples": [],
-                                  "mismatches_cap_on": 0, "mismatches_cap_off": 0,
-                                  "matrix_caliber": None, "cap_discriminates": None},
+        "reproduce_selfcheck": selfcheck,
         "rows": [],
         "status": "IN_PROGRESS"}
 
     tally = {"本地更优": 0, "候选更优": 0, "不可比": 0}
-    n = len(mrows) if not args.limit else min(args.limit, len(mrows))
     for idx, row in enumerate(mrows[:n]):
         slug = row["slug"]
         cands = row.get("candidates") or []
-        # 复现自检（单源证据）：每个候选从池缓存重算，与矩阵记录的 score5/score_total 比对。
-        # r261 改造（量尺换代后必须做，否则本门永久红）：compat 加了许可档上限后，用今天的
-        #   score5 重算旧矩阵（r225 无档）必然不一致 —— 那是**尺子换代**，不是「双源/漂移」。
-        #   旧写法把两者混进同一个 mismatches ⇒ 只要这条腿动过一次，自证就永远红（恒红门与
-        #   恒绿门同样无信息量；r260 已在第 110 门栽过同族，见 06-constraints.part20 D-A）。
-        # 正解 = 两个已记录口径各重算一次，要求**至少一个**能零漂移复现该矩阵件：
-        #   两个都非 0 ⇒ 未知改动/双源 ⇒ 本门红（这就是牙）；
-        #   两个都 0 ⇒ 档开关对这批样本无差别（如 --limit 小样），复现成立但 cap_discriminates
-        #   记 False，禁把它读成「档有效」。
-        for c in cands:
-            cm_chk = cand_measure(R, cache, c["repo"])
-            if cm_chk is None or c.get("score5") is None:
-                continue
-            # 正文档是**生产侧的证据输入**（来自跟踪包 license_body_r262.json / 本轮联网取），
-            #   不是尺子的输出。池缓存里没有它 ⇒ 复现时必须把该行记录的值喂回同一输入，
-            #   否则门在比较两份不同的输入：r262 起 57 个 NOASSERTION slot 会全部报漂移，
-            #   把「换代」误读成「双源」（part20 D-A 那个坑，本轮提前堵掉）。
-            #   旧代矩阵件（r225/r261）没有该字段 ⇒ 这里得到 None，行为与从前逐字相同。
-            if "license_body_class" in cm_chk or c.get("license_body_class") is not None:
-                cm_chk["license_body_class"] = c.get("license_body_class")
-            sc = doc["reproduce_selfcheck"]
-            sc["candidates_recomputed"] += 1
-            rec = []
-            for cap_flag in (True, False):
-                s_chk, t_chk, _cal = R.score5(cm_chk, license_cap=cap_flag)
-                bad = (s_chk != c["score5"] or t_chk != c.get("score_total"))
-                sc["mismatches_cap_on" if cap_flag else "mismatches_cap_off"] += 1 if bad else 0
-                rec.append(bad)
-            if all(rec) and len(sc["mismatch_examples"]) < 5:
-                # 两个口径都复现不了 = 真漂移，留样例具名（旧代码在此只留一个口径的样例）
-                sc["mismatch_examples"].append({"slug": slug, "repo": c["repo"],
-                                                "recomputed_cap_on": s_chk,
-                                                "recorded": c["score5"]})
-                if len(doc["reproduce_selfcheck"]["mismatch_examples"]) < 5:
-                    doc["reproduce_selfcheck"]["mismatch_examples"].append({"slug": slug, "repo": c["repo"], "recomputed": s_chk, "recorded": c["score5"]})
         lm = locals_map.get(slug)
         c0 = cands[0] if cands else None
         item = {"slug": slug, "family": row.get("family"), "verdict": row.get("verdict"),
@@ -730,23 +843,11 @@ def finalize(doc, args, mrows, cache, locals_map, tally):
                            "rows_equal": len(matrix_rows_out) == planned,
                            "states_equal_rows": sum(tally.values()) == len(matrix_rows_out),
                            "selftest_note": "slug 前缀 r260- 的行是自证腿，不计入矩阵守恒；打平行（tie_cmp4）是真读数，计入"}
-    # 派生字段（r261）：生效口径 = 两个 cap 档里漂移较小的那个；mismatches 取该值 ⇒ 自证的语义
-    #   从「与 r225 同尺」升级为「与该矩阵件**产出时**的尺同」，换代不再假红，而未知改动仍会被抓
-    #   （两个口径都复现不了 ⇒ 两个计数同时非 0 ⇒ mismatches>0 ⇒ 本门红）。
-    _sc = doc["reproduce_selfcheck"]
-    _on, _off = _sc["mismatches_cap_on"], _sc["mismatches_cap_off"]
-    _sc["mismatches"] = min(_on, _off)
-    _sc["matrix_caliber"] = ("license_cap_on" if _on <= _off else "license_cap_off")
-    _sc["cap_discriminates"] = (_on != _off)
-    _sc["caliber_note"] = (
-        "两口径漂移分别记录（cap_on=%d / cap_off=%d）：较小值视为该矩阵件产出时的口径。" % (_on, _off) +
-        "cap_discriminates=False 且两者皆 0 ⇒ 本次样本对 cap 无差别（如 --limit 小样），" +
-        "禁据此判许可档有效；两者皆非 0 ⇒ 未知改动/真双源，本门当场红。")
-    doc["reproduce_selfcheck"]["claim"] = ("mismatches==0 即本件与该矩阵件产出时同一把尺（两个 cap 档至少" +
-                                           "一个能零漂移复现）；两档皆 >0 即双源/未登记换代，自证不成立")
-    doc["selfcheck_pass"] = bool(teeth_ok and doc["reproduce_selfcheck"]["mismatches"] == 0
-                                   and doc["conservation"]["rows_equal"]
-                                   and doc["conservation"]["states_equal_rows"])
+    # 派生字段与 twin-caliber 判定已上移到 reproduce_selfcheck()（r302）：finalize 只做三腿合并。
+    #   selfcheck_pass 的三腿 + 防退化闸见 selfcheck_pass() 的 docstring。
+    doc["selfcheck_pass"] = selfcheck_pass(
+        doc["reproduce_selfcheck"], teeth_ok,
+        doc["conservation"]["rows_equal"] and doc["conservation"]["states_equal_rows"])
     doc["status"] = "COMPLETE"
     flush(doc, args.out, args.check_only)
     meta = doc["single_source"]
@@ -773,15 +874,24 @@ def finalize(doc, args, mrows, cache, locals_map, tally):
     print("compat 维结论：{0}".format(doc["compat_teeth"]["verdict"]))
     print("copyleft 候选 {0} 个（compat=5：{1}）｜ rank0 位上是 copyleft：{2} 行".format(
         ca["candidates"], ca["at_compat_5"], ca["rank0_candidates_copleft"]))
-    print("复现自检：重算候选 {0} 个，与 r225 记录不一致 {1}".format(
-        doc["reproduce_selfcheck"]["candidates_recomputed"], doc["reproduce_selfcheck"]["mismatches"]))
+    sc_out = doc["reproduce_selfcheck"]
+    print("复现自检：重算候选 {0} 个 ｜ 量尺漂移 mismatches={1} ｜ 输入已刷新 stale_input_n={2}"
+          "（rank0 位 {3}）｜ 输入取不到 unknown_n={4} ｜ 指纹口径 {5} ｜ 同指纹重算 {6}".format(
+              sc_out["candidates_recomputed"], sc_out["mismatches"], sc_out["stale_input_n"],
+              sc_out["stale_input_rank0_n"], sc_out["unknown_n"], sc_out["input_pin_version"],
+              sc_out["pinned_scored_n"]))
+    for _ex in sc_out["stale_input_examples"][:3]:
+        print("  [stale_input] {0} 与 {1} ｜ pin {2} 到 {3} ｜ 变了 {4}".format(
+            _ex["slug"], _ex["repo"], _ex["recorded_pin"], _ex["live_pin"],
+            ",".join(_ex["changed_fields"])))
     print("负向对照桩件：五维 {0} 总分 {1} ｜ 不全 5 = {2}".format(ss, stot, "PASS" if teeth_ok else "FAIL（判据无牙）"))
     print("本地侧 compat 分布：{0}（带 LICENSE 的本地件 {1}/{2}）".format(lcompat_hist, lic_have, len(locals_map)))
     if not doc["selfcheck_pass"]:
         print(TOKEN % "FAIL", "自证三腿未全过（无牙 / 复现漂移 / 守恒破坏）")
         return 1
     tail = "（--check-only 未写件）" if args.check_only else " -> " + args.out
-    print(TOKEN % "PASS", "三态守恒 {0} ｜ score5 单源复现 0 漂移 ｜ 负向对照有牙{1}".format(len(doc["rows"]), tail))
+    print(TOKEN % "PASS", "三态守恒 {0} ｜ mismatches={1} ｜ stale_input_n={2} ｜ unknown_n={3} ｜ 负向对照有牙{4}".format(
+        len(doc["rows"]), sc_out["mismatches"], sc_out["stale_input_n"], sc_out["unknown_n"], tail))
     return 0
 
 

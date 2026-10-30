@@ -1,0 +1,38 @@
+{
+ "schema": "uncommitted-this-round-v1",
+ "round": "302",
+ "dirty_tracked": 37,
+ "suspect_count": 4,
+ "suspects": [
+  {
+   "file": "05-exec/r260_local_baseline.py",
+   "added_lines": 170,
+   "marker_lines": 7,
+   "strong_lines": 0,
+   "sample": "# ---- r302 输入指纹（保牙修法）--------------------------------------------------------"
+  },
+  {
+   "file": "06-benchmark/r260_local_baseline.json",
+   "added_lines": 150,
+   "marker_lines": 1,
+   "strong_lines": 0,
+   "sample": "\"input_pin_version\": \"r302-pin-v1\","
+  },
+  {
+   "file": "DECOMPOSE.md",
+   "added_lines": 19,
+   "marker_lines": 4,
+   "strong_lines": 0,
+   "sample": "# DECOMPOSE · r302（需求 4 的实质产出：用 r301 的版本面把「先核对哪几件」排出来；并修掉我自己造成的门红）"
+  },
+  {
+   "file": "memory/07-next-steps.md",
+   "added_lines": 90,
+   "marker_lines": 12,
+   "strong_lines": 5,
+   "sample": "- [ ] **R302-1（r302 登记，P1）** **需求 4 证据化优先级表落地（T1=30/T2=12/T3=6/U=1，判据写死且 stable=True；含 13 件 invalid 单列）；其具名边界=只能判版本落后、不能"
+  }
+ ],
+ "limit_note": "工作树共享：本面不证明作者，只给线索（判据 = 新增行含本轮轮号；处置词只作强度标注 strong_lines）",
+ "disposal": "Lead 收尾前逐个提交或撤销；留着就走 = 发布面缺件（r290 实测）"
+}

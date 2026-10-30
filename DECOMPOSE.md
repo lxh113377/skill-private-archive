@@ -1,30 +1,31 @@
-# DECOMPOSE · r301（需求 5 的第一次真扫：把 r300 建好的 lineage 面变成「有哪些上游已更新」的读数）
+# DECOMPOSE · r302（需求 4 的实质产出：用 r301 的版本面把「先核对哪几件」排出来；并修掉我自己造成的门红）
 
-> 本卡先于本轮任何产物写入落盘。起点 758168d（tag r300b）。轮号 = goal 65 ⇒ r301。
+> 本卡先于本轮任何产物写入落盘。起点 3bfe8f5（tag r301c）。轮号 = goal 66 ⇒ r302。
 
 ## 起点实测（现取）
-- HEAD 758168d、tags r299/r300/r300b；我名下未交件 0；[RATCHET:PASS]（OVERDUE 0 / REPEAT 0 / DECIDED 263）。
-- r300 已落地（加法式、零漂移）：r114 现对 55 行声明件产出 declared_state ∈ {lineage 49, invalid 6}，
-  并给声明仓行内五维；31 个声明仓的树目录名已在 gitignored 缓存里。
-- 需求 5 原文要的是「每季度对依赖的开源 skill 做一次**版本和替代方案扫描**」。现状：替代方案扫（需求 2/3）
-  有矩阵与门，但**版本比较**这一半从未有读数 —— 我们从未量过「本件相对其上游是更新还是落后」。
+- HEAD 3bfe8f5、tags r301/r301b/r301c；我名下未交件 0；[RATCHET:PASS]（OVERDUE 0 / DECIDED 269）。
+- r301 已产出需求 5 的版本面：49 对 lineage 里 behind=42 / current=1 / local_ahead=5 / unknown=1（口径限制已写死）。
+- 两处门态待处置：① **r260_local_baseline FAIL**（我 r300 backfill 刷新 agent-browser 缓存条目造成，已归因）；
+  ② **r291_req2 UNVERIFIED**（缺省读 2026-10-27 的 stale shadowstrict，须由 r221 自己刷新）。
+- 需求 4 要的是「替换优先级 / 时间节点 / 验证标准 / 回滚预案」。现状：优先级从未有**证据化排序**，
+  behind=42 只给了线索，没有把「上游更活跃 + 上游五维 + 声明态」合成一张可执行序。
 
 ## 本轮分解（真实派发 = 2 件）
 | # | 件 | 可独立验收 | 写面 | 去处 |
 |---|---|---|---|---|
-| 1 | R300-7 残余家族：r276_scan.py / r276_finalize.py 迁出 _temp + r277_verdict.py 死句柄删引用 | r287 末行「不可解析出处」再跌 3 且新增 0 | _repro/r276qi/ + 06-benchmark/r276_contract_vs_impl_conflicts.json | 派 A1 |
-| 2 | 需求 5 版本面：对 lineage 声明件做「本地版本 vs 上游树/推送」对照，产出升级候选表 | 判据末行 + 两腿负控（用真实反例） | _temp/r301b/ | 派 B1 |
-| 3 | r114 两处机制修（path: 归属自解析、根级腿改前后缀式）+ 夹具腿 + 零漂移复验 | 夹具全绿 + 漂移 0 + 回滚等值 | 05-exec/ | Lead 自干 |
-| 4 | security-audit 的 .upstream 落点（走 rule_editor 单独一单） | 落盘后 declared_state 变 lineage 或注明无单一上游 | D:/global_skills/security-audit/ | 本轮**只登记不擅动**（见 skip_reason）|
+| 1 | r260 复现记录**加输入指纹**（保牙修法：同一 doc 重算仍严格相等；doc 被合法刷新判 STALE_INPUT 而非 FAIL）| 判据末行 PASS + 一条「量尺漂移仍必 FAIL」的反向腿 | 05-exec/r260_local_baseline.py | 派 A1 |
+| 2 | 需求 4 证据化优先级表：把 behind 态 × 上游五维 × 声明态合成排序 + 12 对抽样补「同名件 sha 是否变」层 | 判据末行 + 两腿负控 | _temp/r302b/ | 派 B1 |
+| 3 | 用 r221 自己的生产者刷新 stale shadowstrict ⇒ r291_req2 转绿 | 末行从 UNVERIFIED 变 PASS/FAIL 且明写输入 | 06-benchmark/ | Lead 自干 |
+| 4 | security-audit 的 .upstream 落点（受管根，走 rule_editor + 三门禁 + registry diff）| declared_state 从 invalid 变 lineage 或注明无单一同名上游 | D:/global_skills/security-audit/ | Lead 自干 |
 | 5 | 收口：三面 + 账龄 + 提交 + 部署 + GM | 现取读数 | 本仓 | Lead |
 
-30 秒卡：① 互不引用工作流 ≥2 是（#1 家族迁移 / #2 需求 5 版本面，不同件不同面）；② 各 ≥3 回合 是；
-③ ≥2 独立面取证 是；④ 四问齐（#1 #2 单一产出物 / 单文件面 / 可独立验证）；⑤ 发 2 件；
-⑥⑦ 判据与期望末行写进 _temp/r301_briefs/；⑧ 收件后我各复跑一条判据（r287 末行、B1 版本面末行）。
+30 秒卡：① 互不引用工作流 ≥2 是（#1 门修 / #2 需求 4 排序，不同件不同面）；② 各 ≥3 回合 是；③ ≥2 独立面 是；
+④ 四问齐（#1 #2 单一产出物 / 单文件面 / 可独立验证）；⑤ 发 2 件；⑥⑦ 判据与期望末行写进 _temp/r302_briefs/；
+⑧ 收件后我各复跑一条判据，并对 #1 额外做「反向腿：人为造量尺漂移必须仍 FAIL」。
 
 ## skip_reason（负申报）
-#3 决策本体 + 严格串行：改的是权威生成器的两处判定语义，落点取舍（前后缀式 vs 子串、path 归属按仓解析）
-是 Lead 裁定，且改完必须当场复算 191 行档位与回滚字节等值。
-#4 受管根落地动作：红线 2 要求唯一途径 rule_editor、红线 5 要求落地后跑三门禁 + disk_registry_diff 三类全 0；
-本轮把 #1/#2/#3 做完再动它会让收尾同时跨两个仓，故作**单独一单**登记（不是不做，是不夹带半截）。
+#3 单写者动作 + 严格串行：那份跟踪面已被我登记为「另一个写者动过」（D7.2），刷新必须由我按它自己的生产者跑并当场比对
+前后读数，不能交出去（交出去会让「谁改的、改成什么」不可归因）。
+#4 受管根落地动作：红线 2 要求唯一途径 rule_editor、红线 5 要求落地后三门禁 + disk_registry_diff 三类全 0；
+且它是我自己落地件的声明落点问题，责任在我。
 #5 最终方案·diff·答复（Lead 自留）。

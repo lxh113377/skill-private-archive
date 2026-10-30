@@ -443,6 +443,96 @@ version 允许缺失（缺记 None），不参与 state 判定，不许用 pushe
   条目若不在下一步里写明**验收动作**，它就会一直以 OVERDUE 身份出现（我 r300 已把这条写成教训，本轮是它第二次生效）。
 ⇒ 追加一条可执行的自律：**每轮提交前，除了跑账龄，还要对每条 OVERDUE 先问一句「它是不是已经做完了」**（现核盘上证据），
   再决定是改判、还是处置；本轮 6 条里 6 条都是前者。
+- [ ] **R302-1（r302 登记，P1）** **需求 4 证据化优先级表落地（T1=30/T2=12/T3=6/U=1，判据写死且 stable=True；含 13 件 invalid 单列）；其具名边界=只能判版本落后、不能判内容漂移（缺「吸收时基准 sha」）；我的抽检一度误读行的顺序，已按 rank 复核**：一手（r302，派发件 9d677ffd 交付 + 我独立复跑与抽检）：**需求 4 的证据化优先级表**落地。
+读数（末行逐字，我在 _temp/r302b 与提升后的 _repro/r302b 各复跑一次，两次相同）：
+  [R302:PRIORITY] pairs=49 t1=30 t2=12 t3=6 unknown=1 invalid=13 sampled_sha=12 stable=True
+判据（写死、可复算、先于分数）：state 优先级 BEHIND > UNKNOWN > CURRENT > LOCAL_AHEAD ⇒ 层内 upstream_score_total 降序 ⇒
+推送日降序 ⇒ slug 升序 + repo 兜底（全序唯一；stable=True 即同输入两跑排名完全一致）。
+TIER：T1 = BEHIND 且上游五维总分 ≥19（30 件）；T2 = BEHIND 且 <19（12 件）；T3 = CURRENT/LOCAL_AHEAD（6 件）；U = UNKNOWN（1 件，单列）。
+我的独立验证：① 复跑判据 rc=0、末行逐字一致；② 自己抽检守恒：T1+T2+T3+U = 30+12+6+1 = 49 = rows_n；invalid=13 单列；samples_sha=12；
+③ **我第一版抽检读到「头部不是 gstack」并一度怀疑它报错** —— 原因是 priority.json 的 rows **不是** rank 序，我直接切了前 3 条；
+   改按 rank 排序后头部逐字与它自称一致（#1 gstack 24 / #2 coding-agent 24 / #3 figma 23 / #4-7 hyperframes 四件 23 / #8 diagram-maker 22）
+   ⇒ 又一次「先 print 字段再下结论」的教训（字段在，但我假设了它的顺序）。
+它如实具名的能力边界（我认可并转抄）：本表只能判**版本面落后**，**不能判内容漂移** —— 要回答「那个同名 SKILL.md 变没变」，
+需要「本地吸收时该同名件的 sha」这个基准，而盘上**没有**这个基准；12 对抽样已有的上游 sha 只能证明「上游那个文件当前是这个 sha」。
+⇒ 这正好是需求 4 下一步的前置件：给吸收动作留基准 sha（我登记为新条目，见本轮收尾）。
+另：invalid 的 13 对不进本表（声明失效 ≠ 有可核对的上游），走改声明/补 path 那条路 —— 我这轮已按这条路处置了其中一件（security-audit，见 R302-3）。
+数据质量顺带核对（不采信、亲手查）：figma 声明 heygen-com/hyperframes + path: skills/figma，我查了该仓树 —— 确有 skills/figma/SKILL.md ⇒ 声明合法，非错配。
+取值：cd _repro/r302b && python -B check_r302b.py；逐行读数见同目录 priority.json 的 rows（按 rank 排序才是全序）。
+- [ ] **R302-2（r302 登记，P1）** **用 r221 自己的生产者刷新 stale shadowstrict 跟踪面 ⇒ r291_req2 从 UNVERIFIED 转绿（rows=191 literal=191/100% semantic=166/86.91%）；并登记该面「带 declared_upstream_repo 但不带 declared_state」的覆盖缺口**：一手（r302，Lead 自干）：把那份 2026-10-27 的 stale 跟踪面（06-benchmark/replacement_matrix_shadowstrict.json）用**它自己的生产者**刷新。
+为什么由我按 D7.2 处置：该件是 r221_caliber_shadow.py 的产物、r113 有意围栏的第三个静默写面；我 r300 观察到它已被别的写者改脏，
+故当时停写、只登记（R300-2②）。本轮实测它 mtime=10-28 16:26、generated_at=2026-10-27T17:09:50、191 行、**无 declared_upstream_repo 字段**
+（早于 r261-5 护栏）⇒ 写者已静默两日，可安全接手。
+做法与验证（两步都不动别人的手写产物）：① 用 r114 --offline 生成现行矩阵到 _temp/r302sh/replacement_matrix.json（basename 必须如此，
+r221 按 basename 推导输出名）；② 用 r221_caliber_shadow.py --matrix <该件> 刷新 ⇒ 它写回 06-benchmark/replacement_matrix_shadowstrict.json。
+刷新后现读：generated_at=2026-10-30T14:16:38、rows=191、**has declared_upstream_repo=True**；r221 自身末行 [SHADOW:IDENTICAL]
+（两次判据逐 slug verdict 完全一致 ⇒ 切换不改变下游结论）。
+效果（这条是本条的目的）：**r291_req2_compliance 从 [REQ2:UNVERIFIED]（rc=2，缺 declared_upstream_repo 字段）转绿** ⇒
+现读 [REQ2:COMPLIANCE] rows=191 literal=191(100.00%) semantic=166(86.91%) pad_only=13 guard_ok=True equation=True（rc=0）。
+⇒ 挡了多轮的一道结构性门态解除；且它是「用生产者自己的工具刷新」而不是「我手改跟踪面」。
+顺带发现一处**覆盖缺口**（如实登记，不夸大）：刷新后的 shadow 面带 declared_upstream_repo，但**不带** declared_state
+（r221 自建行、不整体复制 r114 的行字典）⇒ 读 shadow 面的人看不到 lineage/invalid 这一维。若该面要继续当权威读法，
+须让 r221 把 declared_state 一并带过去；本轮不动它（属别人的件，且改它要连着改它自己的判据）。
+取值：python 05-exec/r221_caliber_shadow.py --matrix _temp/r302sh/replacement_matrix.json --json <件>（末行 [SHADOW:IDENTICAL]）；
+python 05-exec/r291_req2_compliance.py（末行 [REQ2:COMPLIANCE] …）。
+- [ ] **R302-3（r302 登记，P1）** **security-audit 的 .upstream 声明落点修正（机器可读上游换成确有同名件的 cloudflare/security-audit-skill + path；trailofbits 降为注释级；删机器专属路径）：rule_editor 落地、受管根提交 a9a98ba6 且祖先性通过，declared_state 由 invalid 转 lineage**：一手（r302，Lead 自干；受管根落地动作）：security-audit 的 .upstream **声明落点修正**。
+问题（r299/r300 两轮实测）：该侧车原先只有一行机器可读声明 trailofbits/skills，而该仓在 104 个 SKILL.md 里**没有**同名件 ⇒
+r114 的 declared_state 恒判 invalid（我 r299 定的语义：invalid = 名称身份未命中，**不等于**无血统）。但本件的真实吸收点在注释里记着的
+cloudflare/security-audit-skill，而我实测该仓树内**确有** skills/security-audit/SKILL.md（stars 53,489、pushed 2026-09-14、MIT）
+⇒ 血统本来可机器核对，是**声明写法**让它落不了地。
+处置（决定/理由/回滚三件齐）：
+· 决定：把机器可读上游换成 cloudflare/security-audit-skill + path: skills/security-audit（改后 declared_state=lineage，可作版本与升级比对的靶）；
+  把 trailofbits/skills 降为注释级来源并写明它为何不适合当机器可读上游（无同名件，若继续当声明则恒判失效）；
+  同时删掉原注释里那行指向本机工作区的绝对路径（违 R298 可移植性规矩）。
+· 理由：声明字段的用途是「护栏 + 版本/升级比对」，选一个能落地的同名件仓比选一个方法论仓更有用；血统信息不丢（降为注释 + 保留吸收提交 sha）。
+· 回滚：rule_editor.py undo（自带备份，本次备份已具名落 _trash）或 git revert 受管根提交；改前全文已逐字抄进入库证据件。
+落地与验证（全部我自己跑，不采信输出摘要）：
+· 写途径 = rule_editor.py replace --file security-audit/.upstream（红线 2 唯一合法途径；先 --dry-run 命中 1 处 hunk 再实跑）；
+  实跑输出含 [verify] PASS 新内容已落盘 + [git] committed。
+· 受管根提交 = a9a98ba6 [rule_editor] replace (security-audit/.upstream)；git merge-base --is-ancestor <该 sha> HEAD ⇒ ANCESTOR_OK=1。
+· 落盘核对：10 行 / 1,074B；L1=cloudflare/security-audit-skill、L2=path: skills/security-audit。
+· 补测新上游的仓元数据（measure_repo store_paths=True，api_calls=2、errors=0）：state=OK、dirs=1、n_skill=1、has skills/security-audit=True、stars=53,489、pushed=2026-09-14、MIT。
+· 矩阵现读该行：declared_state=lineage、declared_path_hit=skills/security-audit、declared_path_attributed=True、
+  declared_score_total=15、declared_upstream_repo=cloudflare/security-audit-skill。
+· 受管根噪声门该面干净：汇总 global_skills violation=0（另两个根有红，见 R302-4，与本改动无关）。
+入库证据：_repro/r302a/upstream_sidecar_before_after.txt（改前 446B 逐字 + 改后 1,074B 逐字 + 决定/理由/回滚 + 提交 sha）。
+- [ ] **R302-4（r302 登记，P1）** **受管根三门禁现读三红（noise-fail 于 global_memory 19 violation / C16-domain / C29-C30-index-routing），部分实测归因为「非本轮改动引入」；按 D7.2 不代迁他人散落物，登记为交出去的红**：一手（r302，受管根三门禁的读数与归因；**部分实测**，见末段）：跑 rule_editor.py gates（A-memory-start 的门禁协议自检）得 rc=1，三处红：
+① [GATE:noise-fail] 扫 D:/global_memory 发现 19 violation + 21 个违规散落项（例：.chain_status_r39.txt、_govtodo_msg.txt、
+   _r1415_msg.txt、_r16_gm_msg.txt、_r17_msg.txt），并点名 D:/global_memory/05-exec 为「禁迁 _trash（版本库本体）」；
+② C16-domain：未解析到 N/M 汇总（末行空，rc=1），stderr 提示「对应用例判据面为空，禁当…」；
+③ C29-C30-index-routing：21/22 通过，失败例为「C29 注册调用面=() 实跑=FAIL detail=评分产物与 STATUS 脱节: json.overall=153.7…」。
+归因（我能证明的部分）：
+· **global_skills 面 violation=0**（汇总现读 ok:195 / quarantine:6 / violation:0 / exempt:1）⇒ 我本轮的受管根改动在噪声门该面干净；
+· 三条红的对象都不在我改动的作用域内：① 的清单是**别的会话**遗留在记忆根的消息/状态文件（我却不能确认它们是否仍在用 ⇒ 不代迁）；
+  ②③ 的措辞分别是「用例判据面为空」与「评分产物与 STATUS 脱节」，属记忆/焚诀侧的评分与索引产物，不读某个 skill 的 .upstream。
+· 我在 D:/global_memory 的历史台账里找到 C16/C29 字样的既有记录（如 07-next-steps.part87.md，mtime 2026-10-14）⇒ 这两类红**有历史**；
+  但那些记录讲的是别的事项，**不能据此断言**「当时也红」⇒ 故本条标注**部分实测**：我能证明「不是本轮改动引入」，不能证明「本轮之前就是红的」。
+处置（本轮不代动）：① 的散落物属别的会话产物，按 D7.2「同一权威件同一时刻只允许一个写者」与红线 4「散落项只迁 _trash 禁删」，
+应由其归属方或专轮按红线 4 迁往 _trash；②③ 属记忆/焚诀侧判据，须由对应所有者处置。⇒ 本条登记为**交出去的红**，不掩盖、不代改。
+⇒ 顺带一条方法论收获：受管根动作的验收**不能只看「我这条面绿」** —— 汇总里 global_memory 的 19 个 violation 与我的改动无关，
+但它们与我的改动出现在同一份汇总里 ⇒ 若不逐面拆开读，很容易把别人的红算到自己头上（或反向：把别人的绿当自己的成绩）。
+- [ ] **R302-5（r302 登记，P0）** **r260 复现自检加输入指纹并保牙（[R260:PASS] mismatches=0 / stale_input_n=90 / 三腿含「同指纹仍 FAIL」）；修掉我 r300 backfill 造成的门红；同批登记我 brief 里猜错门 id（--gate r260_local_baseline 不存在，真 id=local_baseline_face）**：一手（r302，派发件 a6291126 交付 + 我独立复跑三项）：r260 复现自检**加输入指纹**，修掉我 r300 backfill 造成的那处门红（R301-4）。
+结果（我复跑，不采信自述）：python 05-exec/r260_local_baseline.py --json 06-benchmark/r260_local_baseline.json
+  ⇒ [R260:PASS] 三态守恒 191 ｜ mismatches=0 ｜ stale_input_n=90 ｜ unknown_n=0 ｜ 负向对照有牙
+  （复现自检行另给：重算候选 937 ｜ 量尺漂移 0 ｜ 输入已刷新 90（rank0 位 26）｜ 取不到 0 ｜ 指纹口径 r302-pin-v1 ｜ 同指纹重算 847）
+口径（新增 5 个字段，既有 9 个语义保留）：指纹 = sha256(规范化 JSON(score5 输入投影))[:16]，投影 = r225 逐候选记录下来的那批字段；
+判定三分：**指纹同 + score5 不同 ⇒ mismatches（必须 FAIL，保牙）**；**指纹不同 ⇒ stale_input_n（不计 mismatches、不 FAIL、行内具名显形）**；
+活件取不到 ⇒ unknown_n（取不到 ≠ 漂移 ≠ 干净）。防退化闸：selfcheck_pass 额外要求 pinned_scored_n>0（实测 847）。
+三腿（我复跑，末行 [R302:PASS]）：腿 a 保牙 —— 同指纹下人为让 score5 差一档 ⇒ mismatches=1 且 selfcheck_pass=False（**修完仍抓得到量尺漂移**）；
+腿 b 真数据 —— vercel-labs/agent-browser 记录 pin 06c0673ad09b6eb2 → 活 pin 2f8ccea93b63c2fa、exact_n 10→11 ⇒ 判 stale_input 而非 misrent match；
+腿 c 反向 —— stale 与 drift 同场共存、两清单互不包含（证明两条腿不互相吞掉）。
+门：python 05-exec/run_gates.py --gate local_baseline_face ⇒ [GATES:PASS] PASS=1（rc=0）。
+与预期的差（它实测后如实报，我认可）：stale_input_n 实测 **90**（我 brief 里猜的是 3），来自 13 个仓的 90 次候选出现；
+changed_fields 分布 stars=90 / pushed_at=75 / test_path_n=47 / workflow_n=10 / skill_md_n=4 / exact_n=4 / docs_md_n=1；
+它坚持把 stars/pushed_at 纳入指纹的理由成立：那两项是 community 腿的 score5 输入，不纳入会把正常刷新误判成量尺漂移。
+它具名的边界（部分实测）：blob_n / readme_n / tree_state / license_body_class 四字段不在 r225 记录里 ⇒ 不进指纹 ⇒
+若上游只改这四项且 score5 也变，会被读成漂移（假红）；当前 90 例无一命中这四字段（已实测），边界本身按构造推断。
+**我 brief 里的一处错（登记）**：我把门 id 写成 --gate r260_local_baseline，实测被 runner 判 [GATES:MISSING-SELECTOR]、选中 0 门 rc=2；
+真 id = local_baseline_face（run_gates.py:1788，script=r260_local_baseline.py）。它没有改 run_gates 加别名（不在写面白名单），而是改用真 id 取证 —— 处置正确。
+⇒ 这是我「猜标识符」家族的又一次复发（此前：--desc 不是 rule_editor 的 replace 参数、registry 门的 --json <路径>）⇒ 加固一条：
+**brief 里凡出现命令行开关/门 id/参数名，必须由我先实跑 --help 或现读源码确认再写**，否则等于把自己的猜测当接口交给别人。
+取值：python 05-exec/r260_local_baseline.py --json 06-benchmark/r260_local_baseline.json；
+python -B 05-exec/r302_r260_input_pin_fixtures.py；python 05-exec/run_gates.py --gate local_baseline_face。
 - [ ] **R290-1（r290 登记，P1）** **r46 锚点匹配收紧为「行首复选框后首个加粗段内含 key」：解除「引用过某条 ⇒ 永不能裁该条」的死锁，且不削弱 W-14 串条防护**：一手（r290 现场）：我想把 R261-7 从上轮误写的挂账改判为降级，r46 返回 [MARK:REFUSED] ② 锚点命中数 != 1，命中 [42, 53] —— 第 53 行是**我上轮写的 R289-6 条目正文**里引用了 R261-7。原实现 find_item_lines 用裸 `key in line`，于是「引用过某条 ⇒ 永远无法裁决该条」，机器闸反过来挡住了对本条的正确纠正。修法与踩坑：① 我先试「行首必须 `- [ ] **`+key」的严格式 ⇒ 真实台账 236 条零歧义，但夹具 **14 项红**（夹具用的是 `- [ ] **【P0·待办 丙（r44 登记）】】**` 这种 key 不在首段起点的排版）⇒ 我的严格式**过窄**，不是夹具错；② 我又加过「严格零命中则回退宽松匹配」的安全网 ⇒ 自查发现该回退正是 W-14 事故形态（会把正文引用行当锚点，把裁决写到无关条目）⇒ **删掉回退**；③ 终解 = 匹配「行首复选框后的第一个加粗段」内是否含 key（re.match 到首个 **…** 段），两种既有排版都覆盖、正文引用（哪怕第二段加粗）永不命中。判别力自证：新增 t24~t27 + m3 变异共 5 腿（m3 首版我用夹具的 run() 前置了正式 TOOL 路径 ⇒ 变异体被当位置参数、argparse rc=2 是**假红不是判别力**，改为 subprocess 直接调变异体后 PASS）。取值：python 05-exec/r46_mark_verdict_fixtures.py（末行 [GATE:fixture-pass]，现 30 项 30 过）；python _temp/r290_selfproof.py（真实台账带过期挂账的条目 22 条，⑧ 会拦）。 【r296 裁决=已落地｜夹具活数现读 r46=30/30 全过、r31=31/31；锚点口径已被 r46 与本会话三次插入实践共同验证（r292 起用它裁 R289-6/R292-4/R295-1 均 rc=0）。原靶（不得把裁决写到无关条目）达成。】
 - [ ] **R290-2（r290 登记，P1）** **机器闸 ⑧ 落地：条目先前已挂账且目标轮已过 ⇒ 本次禁再挂账，只能执行/降级/作废三选一（带逃生门与真实数据自证）**：一手（r289 我造成的错 + r290 的机制化）：R261-7 第 2 次到期时我先写成「挂账至 r290」，违反自立的 R271-2；根因不是不懂规矩，而是**下裁决时没人问我这条已经挂过几次** ⇒ 必须前移到写时由机器判。实现 = r46 第 ⑧ 重拒写：读该条目自己已有的「裁决=挂账至 rN」标记，若存在 N < 本轮 round（上次挂账目标轮已过）且本次 verdict 仍是挂账 ⇒ 拒写并点名证据轮号；轮号取不到不猜（宁可放行不误伤）。范围纪律：只约束**延期型**裁决，终局裁决（执行/降级/作废）不受影响；首轮挂账放行；目标轮未到（如挂到 r99）放行。逃生门 --allow-repeat-deferral 显式放行且留痕（不是死闸）。真实数据自证（临时卷副本，不碰真台账）：⑧ 对 probe 条目 rc=1 且台账未写入；同条目改「降级（转长期看守）」rc=0 且 marker 落盘；带逃生门 rc=0。R289-6 的验收靶（下一轮起 R261-7 能被合法改判且留两次痕迹）已达成：r290 台账同现「【r289 裁决=挂账至 r290…】」与「【r290 裁决=降级…】」，REPEAT 由 1 归 0。取值：python 05-exec/r46_mark_verdict_fixtures.py（t24~t27/m3 五腿）、python _temp/r290_real2.py（真实数据三态：拦挂账/放降级/逃生门）。
 - [ ] **R290-3（r290 登记，P2）** **run_gates.py 的 --gate 传不存在的 id 会被**静默丢弃**：部分选中时报 PASS 且写「无 MISSING」，只在 0 个时才报 UNVERIFIED**：一手（r290 现场）：我为验证迁库结果跑 `--gate mark_verdict_fixtures --gate provenance_resolve_face --gate provenance_resolve_fixtures --gate tracked_empty`（最后一个 id 我拼错了，真名 tracked_empty_check），返回 `[GATES:PASS] PASS=3（无 FAIL / 无 UNVERIFIED / 无 MISSING）` —— 三门都绿，但那句「无 MISSING」是**假安心**：第四门根本没跑，runner 没有任何一行告诉我它被丢弃。二次实测：只传一个不存在的 id 时它确实会拦（`[GATES:UNVERIFIED] 选中的门为 0 个，禁止判「全绿」（R247）`），说明 R247 的零输入保护在**全部落空**时有效、**部分落空**时失效。修法（下一轮，小改）：在 --gate 过滤后比对「请求的 id 集合 vs 实际选中的 id 集合」，差集非空 ⇒ 打印 `[GATES:MISSING-SELECTOR]` 并以非零退出（与现有 0 个的处理对齐，别另造一套语义）；同时给夹具补一条腿：传一个不存在的 id + 一个真 id ⇒ 必须判红并点名被丢弃的 id（证明有牙）。判别力证据已在手：本次实测 rows=3 而请求=4。取值：python 05-exec/run_gates.py --gate definitely_not_a_gate --no-ledger --json _temp/x.json（期望现在就是 UNVERIFIED，因为选中 0 个）；python -c 读 _temp/r290_g4.json 的 gates 长度 = 3（请求 4）。注意：本轮我没有把这当成「已跑全量」的证据 —— 我随后补跑了 tracked_empty_check 并单独取到 PASS=1，才认定新增跟踪件不触发非空文本门。 【r290 裁决=已落地｜同轮即修（不等下一轮）。实现 = run_gates.py 汇总前算差集 requested-selected_ids，非空即打 [GATES:MISSING-SELECTOR] 点名被丢弃的 id。关键取舍是**顺序**：第一版我把差集分支放在「0 个选中」之前 ⇒ r31 夹具层 b（该腿断言 rc==2 且报 UNVERIFIED）判红 FAIL 1 项 —— 那是夹具对我改动的**正确反应**，我破坏的是既有 R247 语义而不是夹具错。正解：先跑 not rows ⇒ 保留 rc=2 语义，再跑 dropped ⇒ rc=1；两条语义互不吞并。四态实测（每步取真实退出码、不经管道）：0 个选中 rc=2 且末行 UNVERIFIED / 部分落空 rc=1 且点名 fixture_wiring / 全真 id rc=0 且 PASS=1 / 全部错 id 仍 rc=2；r31 夹具 31 项 31 过（[GATE:fixture-pass]）。为何不新增夹具腿：r31 层 b 已覆盖 0 个那条，部分落空这条由上面四态实测覆盖并写进本注；若下一轮要长期看守，可在 r31 加一腿断言「假 id + 真 id ⇒ rc==1 且 MISSING-SELECTOR 出现」（本轮未加，因为我把改动挂在该夹具的门表自证之下、它已经被跑到）。取值：bash _temp/r290_sem.sh（四态与夹具一次跑完）；python 05-exec/r31_run_gates_fixtures.py（末行 [GATE:fixture-pass]）。】
