@@ -1,0 +1,326 @@
+{
+  "schema": "r287m-replace-patch-v1",
+  "note": "rule_editor 用 per-file 数组件（files 段）；本件是材料本体 + 断言自描述。",
+  "coordinates": {
+    "repo": "anthropics/skills",
+    "ref": "main",
+    "ref_sha": "ca45fc496a3436251f191354091d557da31c15b5",
+    "commit_title": "Update mcp-builder skill: teach v2 of the MCP TypeScript SDK (#2087)",
+    "commit_date": "2026-10-28T19:20:38Z",
+    "upstream_path": "skills/mcp-builder",
+    "reading_from": [
+      "06-benchmark/r275_three_channel_intersection.json rows[28]",
+      "06-benchmark/r264_sidecar_semantics.json rows[skill=mcp-builder] semantics=SAME_LINEAGE",
+      "06-benchmark/r271_version_channel2.json rows[skill=mcp-builder] verdict=UPSTREAM_MOVED",
+      "06-benchmark/r263_declared_upstream_face.json rows[skill=mcp-builder] rel=UNKNOWN_UPSTREAM_RELEASE"
+    ]
+  },
+  "new_file": {
+    "upstream_path": "skills/mcp-builder/reference/node_mcp_server_v2.md",
+    "local_target": "D:/global_skills/mcp-builder/reference/node_mcp_server_v2.md",
+    "staged_copy": "_repro/r287m/upstream_node_mcp_server_v2.md",
+    "bytes": 35171,
+    "lines": 747,
+    "sha256_12": "49b2fe48f339",
+    "git_blob_sha": "5d61f896d9707c8797c33ac8ac03c5aebf9b163f",
+    "api_blob_sha": "5d61f896d9707c8797c33ac8ac03c5aebf9b163f"
+  },
+  "files": {
+    "D:/global_skills/mcp-builder/SKILL.md": "patch_SKILL.md.json",
+    "D:/global_skills/mcp-builder/reference/node_mcp_server.md": "patch_node_mcp_server.md.json"
+  },
+  "_verify": {
+    "rule": "对每个 hunk 断言 text.count(old) == 1（text = 目标件盘上原文，UTF-8 newline 逐字读）",
+    "why": "本仓 R277-1 + 前 4 轮锚点靠记忆教训的机械化：old 必须是逐字切片，唯一命中，不多空行",
+    "checked_by": "python -B _repro/r287m/check_r287m.py --only A",
+    "negctl": [
+      "check_r287m.py --only A --neg anchor-absent（old 改一个字符 => 点名 SKILL-STRUCTURE-PTR 判红）",
+      "check_r287m.py --only A --neg anchor-multi（old 换成盘上重复 22 次的行 => 点名 NODE-V1-BANNER 判红）"
+    ],
+    "all_pass": true,
+    "rows": [
+      {
+        "id": "SKILL-TS-DUALVERSION",
+        "target": "D:/global_skills/mcp-builder/SKILL.md",
+        "count": 1,
+        "assert": "text.count(old) == 1",
+        "pass": true,
+        "old_sha256_12": "7ef14457d700",
+        "old_bytes": 222,
+        "new_bytes": 1362
+      },
+      {
+        "id": "SKILL-STRUCTURE-PTR",
+        "target": "D:/global_skills/mcp-builder/SKILL.md",
+        "count": 1,
+        "assert": "text.count(old) == 1",
+        "pass": true,
+        "old_sha256_12": "0dfa7d8b06df",
+        "old_bytes": 106,
+        "new_bytes": 178
+      },
+      {
+        "id": "SKILL-V2-SELFCHECK",
+        "target": "D:/global_skills/mcp-builder/SKILL.md",
+        "count": 1,
+        "assert": "text.count(old) == 1",
+        "pass": true,
+        "old_sha256_12": "276f16b18901",
+        "old_bytes": 44,
+        "new_bytes": 184
+      },
+      {
+        "id": "SKILL-SDK-DOCINDEX",
+        "target": "D:/global_skills/mcp-builder/SKILL.md",
+        "count": 1,
+        "assert": "text.count(old) == 1",
+        "pass": true,
+        "old_sha256_12": "70bce6c155cf",
+        "old_bytes": 120,
+        "new_bytes": 350
+      },
+      {
+        "id": "SKILL-IMPLGUIDE-BLOCK",
+        "target": "D:/global_skills/mcp-builder/SKILL.md",
+        "count": 1,
+        "assert": "text.count(old) == 1",
+        "pass": true,
+        "old_sha256_12": "d133bf07ec52",
+        "old_bytes": 253,
+        "new_bytes": 708
+      },
+      {
+        "id": "SKILL-FM-VERSION",
+        "target": "D:/global_skills/mcp-builder/SKILL.md",
+        "count": 1,
+        "assert": "text.count(old) == 1",
+        "pass": true,
+        "old_sha256_12": "ccad83ec509f",
+        "old_bytes": 40,
+        "new_bytes": 40
+      },
+      {
+        "id": "SKILL-VERSION-HISTORY",
+        "target": "D:/global_skills/mcp-builder/SKILL.md",
+        "count": 1,
+        "assert": "text.count(old) == 1",
+        "pass": true,
+        "old_sha256_12": "6ec58d3b67bf",
+        "old_bytes": 52,
+        "new_bytes": 319
+      },
+      {
+        "id": "NODE-V1-BANNER",
+        "target": "D:/global_skills/mcp-builder/reference/node_mcp_server.md",
+        "count": 1,
+        "assert": "text.count(old) == 1",
+        "pass": true,
+        "old_sha256_12": "88cb7fe15bee",
+        "old_bytes": 50,
+        "new_bytes": 245
+      }
+    ]
+  },
+  "hunks": [
+    {
+      "id": "SKILL-TS-DUALVERSION",
+      "target": "D:/global_skills/mcp-builder/SKILL.md",
+      "old": "- **TypeScript SDK**: Use WebFetch to load `https://raw.githubusercontent.com/modelcontextprotocol/typescript-sdk/main/README.md`\n- [⚡ TypeScript Guide](./reference/node_mcp_server.md) - TypeScript patterns and examples\n",
+      "new": "\nThe TypeScript SDK has two major versions. Pick one before writing code:\n- **v2** (`@modelcontextprotocol/server`): the current stable release. Use it for new servers.\n- **v1** (`@modelcontextprotocol/sdk`): receives bug and security fixes only. Use it only when the project's `package.json` already depends on `@modelcontextprotocol/sdk`, or migrate that project with `npx @modelcontextprotocol/codemod@latest v1-to-v2 .`\n\nIf the project already uses v1, tell the user once, in a sentence or two, that v2 (`@modelcontextprotocol/server`) is the current stable release, that v1 receives only bug and security fixes, and that `npx @modelcontextprotocol/codemod@latest v1-to-v2 .` migrates the project. Then continue with v1 unless the user asks to migrate.\n\nDon't mix the two in one project: v1 code samples (imports from `@modelcontextprotocol/sdk/...`) don't apply to v2.\n\n- **TypeScript SDK (v2)**: Use WebFetch to load `https://raw.githubusercontent.com/modelcontextprotocol/typescript-sdk/main/README.md`; the full docs index is `https://ts.sdk.modelcontextprotocol.io/v2/llms.txt`\n- [⚡ TypeScript Guide (v2)](./reference/node_mcp_server_v2.md) - TypeScript patterns and examples\n- For v1 projects only: `https://raw.githubusercontent.com/modelcontextprotocol/typescript-sdk/v1.x/README.md` and the [TypeScript Guide (v1)](./reference/node_mcp_server.md)\n",
+      "_source": {
+        "repo": "anthropics/skills",
+        "ref": "main",
+        "ref_sha": "ca45fc496a3436251f191354091d557da31c15b5",
+        "upstream_path": "skills/mcp-builder/SKILL.md",
+        "upstream_lines_1based": "L61-L72",
+        "local_lines_1based": "L63-L64"
+      },
+      "_note": "上游 v2/v1 双版本段整块落地（本地无领先内容）",
+      "_verify": {
+        "target": "D:/global_skills/mcp-builder/SKILL.md",
+        "file": "SKILL.md",
+        "count": 1,
+        "start": 3036,
+        "end": 3256,
+        "target_bytes": 9132,
+        "target_sha256_12": "32f54257ab8b",
+        "assert": "text.count(old) == 1"
+      }
+    },
+    {
+      "id": "SKILL-STRUCTURE-PTR",
+      "target": "D:/global_skills/mcp-builder/SKILL.md",
+      "old": "- [⚡ TypeScript Guide](./reference/node_mcp_server.md) - Project structure, package.json, tsconfig.json\n",
+      "new": "- [⚡ TypeScript Guide (v2)](./reference/node_mcp_server_v2.md) - Project structure, package.json, tsconfig.json ([v1](./reference/node_mcp_server.md) for existing v1 projects)\n",
+      "_source": {
+        "repo": "anthropics/skills",
+        "ref": "main",
+        "ref_sha": "ca45fc496a3436251f191354091d557da31c15b5",
+        "upstream_path": "skills/mcp-builder/SKILL.md",
+        "upstream_lines_1based": "L93-L93",
+        "local_lines_1based": "L85-L85"
+      },
+      "_note": "Project structure 指引改指 v2，v1 链接保留",
+      "_verify": {
+        "target": "D:/global_skills/mcp-builder/SKILL.md",
+        "file": "SKILL.md",
+        "count": 1,
+        "start": 3939,
+        "end": 4043,
+        "target_bytes": 9132,
+        "target_sha256_12": "32f54257ab8b",
+        "assert": "text.count(old) == 1"
+      }
+    },
+    {
+      "id": "SKILL-V2-SELFCHECK",
+      "target": "D:/global_skills/mcp-builder/SKILL.md",
+      "old": "- Run `npm run build` to verify compilation\n",
+      "new": "- Run `npm run build` to verify compilation\n- v2 projects: run the self-check script from the [v2 guide](./reference/node_mcp_server_v2.md#verify-your-server) against the built server\n",
+      "_source": {
+        "repo": "anthropics/skills",
+        "ref": "main",
+        "ref_sha": "ca45fc496a3436251f191354091d557da31c15b5",
+        "upstream_path": "skills/mcp-builder/SKILL.md",
+        "upstream_lines_1based": "L151-L151",
+        "local_lines_1based": "L142-L142"
+      },
+      "_note": "锚=build 校验行；new=锚 + 上游新增自检行（两段皆为逐字切片）",
+      "_verify": {
+        "target": "D:/global_skills/mcp-builder/SKILL.md",
+        "file": "SKILL.md",
+        "count": 1,
+        "start": 5382,
+        "end": 5426,
+        "target_bytes": 9132,
+        "target_sha256_12": "32f54257ab8b",
+        "assert": "text.count(old) == 1"
+      }
+    },
+    {
+      "id": "SKILL-SDK-DOCINDEX",
+      "target": "D:/global_skills/mcp-builder/SKILL.md",
+      "old": "- **TypeScript SDK**: Fetch from `https://raw.githubusercontent.com/modelcontextprotocol/typescript-sdk/main/README.md`\n",
+      "new": "- **TypeScript SDK (v2)**: Fetch from `https://raw.githubusercontent.com/modelcontextprotocol/typescript-sdk/main/README.md`; full docs index at `https://ts.sdk.modelcontextprotocol.io/v2/llms.txt`\n- **TypeScript SDK (v1, existing v1 projects only)**: Fetch from `https://raw.githubusercontent.com/modelcontextprotocol/typescript-sdk/v1.x/README.md`\n",
+      "_source": {
+        "repo": "anthropics/skills",
+        "ref": "main",
+        "ref_sha": "ca45fc496a3436251f191354091d557da31c15b5",
+        "upstream_path": "skills/mcp-builder/SKILL.md",
+        "upstream_lines_1based": "L224-L225",
+        "local_lines_1based": "L215-L215"
+      },
+      "_note": "Phase 1/2 文档索引改双版（v2 llms.txt + v1.x README）",
+      "_verify": {
+        "target": "D:/global_skills/mcp-builder/SKILL.md",
+        "file": "SKILL.md",
+        "count": 1,
+        "start": 8079,
+        "end": 8199,
+        "target_bytes": 9132,
+        "target_sha256_12": "32f54257ab8b",
+        "assert": "text.count(old) == 1"
+      }
+    },
+    {
+      "id": "SKILL-IMPLGUIDE-BLOCK",
+      "target": "D:/global_skills/mcp-builder/SKILL.md",
+      "old": "- [⚡ TypeScript Implementation Guide](./reference/node_mcp_server.md) - Complete TypeScript guide with:\n  - Project structure\n  - Zod schema patterns\n  - Tool registration with `server.registerTool`\n  - Complete working examples\n  - Quality checklist\n",
+      "new": "- [⚡ TypeScript Implementation Guide (SDK v2)](./reference/node_mcp_server_v2.md) - Complete TypeScript guide for `@modelcontextprotocol/server` with:\n  - Project setup and the server factory\n  - Tool design: Zod 4 schemas, output formats, pagination, errors\n  - A complete example serving stdio and Streamable HTTP, plus bearer auth\n  - Resources, prompts, and notifications\n  - A self-check script to verify the built server\n  - Links to SDK examples for advanced features\n  - A v1 → v2 translation table, migration steps, and a quality checklist\n\n- [⚡ TypeScript Implementation Guide (SDK v1)](./reference/node_mcp_server.md) - The equivalent guide for existing `@modelcontextprotocol/sdk` projects\n",
+      "_source": {
+        "repo": "anthropics/skills",
+        "ref": "main",
+        "ref_sha": "ca45fc496a3436251f191354091d557da31c15b5",
+        "upstream_path": "skills/mcp-builder/SKILL.md",
+        "upstream_lines_1based": "L235-L244",
+        "local_lines_1based": "L225-L230"
+      },
+      "_note": "TypeScript Implementation Guide 换成 v2 条 + v1 条（上游整块）",
+      "_verify": {
+        "target": "D:/global_skills/mcp-builder/SKILL.md",
+        "file": "SKILL.md",
+        "count": 1,
+        "start": 8527,
+        "end": 8778,
+        "target_bytes": 9132,
+        "target_sha256_12": "32f54257ab8b",
+        "assert": "text.count(old) == 1"
+      }
+    },
+    {
+      "id": "SKILL-FM-VERSION",
+      "target": "D:/global_skills/mcp-builder/SKILL.md",
+      "old": "last_updated: 2026-09-29\nversion: 1.0.0\n",
+      "new": "last_updated: 2026-10-30\nversion: 1.1.0\n",
+      "_source": {
+        "repo": "anthropics/skills",
+        "ref": "main",
+        "ref_sha": "ca45fc496a3436251f191354091d557da31c15b5",
+        "upstream_path": "skills/mcp-builder/SKILL.md",
+        "upstream_lines_1based": "L5-L4",
+        "local_lines_1based": "L5-L6"
+      },
+      "_note": "保留本地叠加 frontmatter，仅把 version 1.0.0->1.1.0 / last_updated->换装日；上游该行不存在（r275 人读：本地叠加项须保留），故 new 为构造串而非上游切片",
+      "_verify": {
+        "target": "D:/global_skills/mcp-builder/SKILL.md",
+        "file": "SKILL.md",
+        "count": 1,
+        "start": 352,
+        "end": 392,
+        "target_bytes": 9132,
+        "target_sha256_12": "32f54257ab8b",
+        "assert": "text.count(old) == 1"
+      }
+    },
+    {
+      "id": "SKILL-VERSION-HISTORY",
+      "target": "D:/global_skills/mcp-builder/SKILL.md",
+      "old": "  - Running an evaluation with the provided scripts\n",
+      "new": "  - Running an evaluation with the provided scripts\n\n---\n\n## Version history\n\n- **1.1.0**（2026-10-30）— R287m 同源拉平 anthropics/skills@ca45fc496a34（#2087）：并入 reference/node_mcp_server_v2.md（新增独立件）+ TS 双版本段 + v1 横幅；本地叠加项 frontmatter/LICENSE/NOTICE 全保留。\n",
+      "_source": {
+        "repo": "anthropics/skills",
+        "ref": "main",
+        "ref_sha": "ca45fc496a3436251f191354091d557da31c15b5",
+        "upstream_path": "skills/mcp-builder/SKILL.md",
+        "upstream_lines_1based": "L238-L238",
+        "local_lines_1based": "L238-L238"
+      },
+      "_note": "old=本地末行逐字切片；new=末行 + 版本史小节（与 frontmatter 1.1.0/2026-10-30 对齐）",
+      "_verify": {
+        "target": "D:/global_skills/mcp-builder/SKILL.md",
+        "file": "SKILL.md",
+        "count": 1,
+        "start": 9047,
+        "end": 9099,
+        "target_bytes": 9132,
+        "target_sha256_12": "32f54257ab8b",
+        "assert": "text.count(old) == 1"
+      }
+    },
+    {
+      "id": "NODE-V1-BANNER",
+      "target": "D:/global_skills/mcp-builder/reference/node_mcp_server.md",
+      "old": "# Node/TypeScript MCP Server Implementation Guide\n",
+      "new": "# Node/TypeScript MCP Server Implementation Guide\n\n> **This guide covers v1 of the TypeScript SDK (`@modelcontextprotocol/sdk`).** Use it only for projects that already depend on v1. For new servers, use the [v2 guide](./node_mcp_server_v2.md).\n",
+      "_source": {
+        "repo": "anthropics/skills",
+        "ref": "main",
+        "ref_sha": "ca45fc496a3436251f191354091d557da31c15b5",
+        "upstream_path": "skills/mcp-builder/reference/node_mcp_server.md",
+        "upstream_lines_1based": "L1-L0",
+        "local_lines_1based": "L1-L1"
+      },
+      "_note": "上游在标题后插 v1-only 横幅；old=本地标题行逐字切片（全文唯一），new=上游标题+空行+横幅连续切片 b[0:3]",
+      "_verify": {
+        "target": "D:/global_skills/mcp-builder/reference/node_mcp_server.md",
+        "file": "node_mcp_server.md",
+        "count": 1,
+        "start": 0,
+        "end": 50,
+        "target_bytes": 28550,
+        "target_sha256_12": "c3ba35a4f599",
+        "assert": "text.count(old) == 1"
+      }
+    }
+  ]
+}

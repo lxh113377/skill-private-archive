@@ -1,0 +1,37 @@
+[
+  {
+    "id": "SKILL-TS-DUALVERSION",
+    "old": "- **TypeScript SDK**: Use WebFetch to load `https://raw.githubusercontent.com/modelcontextprotocol/typescript-sdk/main/README.md`\n- [⚡ TypeScript Guide](./reference/node_mcp_server.md) - TypeScript patterns and examples\n",
+    "new": "\nThe TypeScript SDK has two major versions. Pick one before writing code:\n- **v2** (`@modelcontextprotocol/server`): the current stable release. Use it for new servers.\n- **v1** (`@modelcontextprotocol/sdk`): receives bug and security fixes only. Use it only when the project's `package.json` already depends on `@modelcontextprotocol/sdk`, or migrate that project with `npx @modelcontextprotocol/codemod@latest v1-to-v2 .`\n\nIf the project already uses v1, tell the user once, in a sentence or two, that v2 (`@modelcontextprotocol/server`) is the current stable release, that v1 receives only bug and security fixes, and that `npx @modelcontextprotocol/codemod@latest v1-to-v2 .` migrates the project. Then continue with v1 unless the user asks to migrate.\n\nDon't mix the two in one project: v1 code samples (imports from `@modelcontextprotocol/sdk/...`) don't apply to v2.\n\n- **TypeScript SDK (v2)**: Use WebFetch to load `https://raw.githubusercontent.com/modelcontextprotocol/typescript-sdk/main/README.md`; the full docs index is `https://ts.sdk.modelcontextprotocol.io/v2/llms.txt`\n- [⚡ TypeScript Guide (v2)](./reference/node_mcp_server_v2.md) - TypeScript patterns and examples\n- For v1 projects only: `https://raw.githubusercontent.com/modelcontextprotocol/typescript-sdk/v1.x/README.md` and the [TypeScript Guide (v1)](./reference/node_mcp_server.md)\n"
+  },
+  {
+    "id": "SKILL-STRUCTURE-PTR",
+    "old": "- [⚡ TypeScript Guide](./reference/node_mcp_server.md) - Project structure, package.json, tsconfig.json\n",
+    "new": "- [⚡ TypeScript Guide (v2)](./reference/node_mcp_server_v2.md) - Project structure, package.json, tsconfig.json ([v1](./reference/node_mcp_server.md) for existing v1 projects)\n"
+  },
+  {
+    "id": "SKILL-V2-SELFCHECK",
+    "old": "- Run `npm run build` to verify compilation\n",
+    "new": "- Run `npm run build` to verify compilation\n- v2 projects: run the self-check script from the [v2 guide](./reference/node_mcp_server_v2.md#verify-your-server) against the built server\n"
+  },
+  {
+    "id": "SKILL-SDK-DOCINDEX",
+    "old": "- **TypeScript SDK**: Fetch from `https://raw.githubusercontent.com/modelcontextprotocol/typescript-sdk/main/README.md`\n",
+    "new": "- **TypeScript SDK (v2)**: Fetch from `https://raw.githubusercontent.com/modelcontextprotocol/typescript-sdk/main/README.md`; full docs index at `https://ts.sdk.modelcontextprotocol.io/v2/llms.txt`\n- **TypeScript SDK (v1, existing v1 projects only)**: Fetch from `https://raw.githubusercontent.com/modelcontextprotocol/typescript-sdk/v1.x/README.md`\n"
+  },
+  {
+    "id": "SKILL-IMPLGUIDE-BLOCK",
+    "old": "- [⚡ TypeScript Implementation Guide](./reference/node_mcp_server.md) - Complete TypeScript guide with:\n  - Project structure\n  - Zod schema patterns\n  - Tool registration with `server.registerTool`\n  - Complete working examples\n  - Quality checklist\n",
+    "new": "- [⚡ TypeScript Implementation Guide (SDK v2)](./reference/node_mcp_server_v2.md) - Complete TypeScript guide for `@modelcontextprotocol/server` with:\n  - Project setup and the server factory\n  - Tool design: Zod 4 schemas, output formats, pagination, errors\n  - A complete example serving stdio and Streamable HTTP, plus bearer auth\n  - Resources, prompts, and notifications\n  - A self-check script to verify the built server\n  - Links to SDK examples for advanced features\n  - A v1 → v2 translation table, migration steps, and a quality checklist\n\n- [⚡ TypeScript Implementation Guide (SDK v1)](./reference/node_mcp_server.md) - The equivalent guide for existing `@modelcontextprotocol/sdk` projects\n"
+  },
+  {
+    "id": "SKILL-FM-VERSION",
+    "old": "last_updated: 2026-09-29\nversion: 1.0.0\n",
+    "new": "last_updated: 2026-10-30\nversion: 1.1.0\n"
+  },
+  {
+    "id": "SKILL-VERSION-HISTORY",
+    "old": "  - Running an evaluation with the provided scripts\n",
+    "new": "  - Running an evaluation with the provided scripts\n\n---\n\n## Version history\n\n- **1.1.0**（2026-10-30）— R287m 同源拉平 anthropics/skills@ca45fc496a34（#2087）：并入 reference/node_mcp_server_v2.md（新增独立件）+ TS 双版本段 + v1 横幅；本地叠加项 frontmatter/LICENSE/NOTICE 全保留。\n"
+  }
+]

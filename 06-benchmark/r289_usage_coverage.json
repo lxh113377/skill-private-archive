@@ -1,6 +1,6 @@
 {
  "schema": "usage-coverage-v1",
- "generated_at": "2026-10-30 07:48",
+ "generated_at": "2026-10-30 07:55",
  "provenance_cmd": "python 05-exec/r289_usage_coverage.py",
  "registered_skills": 190,
  "skills_seen_in_table": 47,

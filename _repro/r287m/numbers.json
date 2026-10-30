@@ -1,0 +1,53 @@
+{
+ "license": {
+  "upstream_body_file": "skills/mcp-builder/LICENSE.txt",
+  "bytes": 11345,
+  "sha256_12": "bc6b3af2f331",
+  "git_blob_sha40": "4f881c52d1f72f4cfb720e339e2d35c3058d01a9",
+  "classify_body_spdx": "Apache-2.0",
+  "classify_body_class": "permissive",
+  "restricted_phrase_hits": [],
+  "license_class_spdx_only": "permissive",
+  "license_class_body_first": "permissive",
+  "cap": 5,
+  "caps_table": {
+   "copyleft": 1,
+   "weak-copyleft": 2,
+   "restricted": 1,
+   "unknown": 4,
+   "permissive": 5,
+   "none": 5
+  },
+  "local_license_txt_sha256_12": "bc6b3af2f331",
+  "local_license_txt_blob40": "4f881c52d1f72f4cfb720e339e2d35c3058d01a9",
+  "license_body_restricted_hits": 0,
+  "fetched_at": "2026-10-29T23:59:03Z"
+ },
+ "api_repo_license_field": {
+  "stdout": "",
+  "stderr": "",
+  "rc": 0
+ },
+ "api_license_endpoint": {
+  "stdout": "{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/licenses/licenses#get-the-license-for-a-repository\",\"status\":\"404\"}",
+  "stderr": "gh: Not Found (HTTP 404)",
+  "rc": 1
+ },
+ "commit": {
+  "stdout": "ca45fc496a3436251f191354091d557da31c15b5 ~ 2026-10-28T19:20:38Z ~ Update mcp-builder skill: teach v2 of the MCP TypeScript SDK (#2087)\n\n* Update mcp-builder skill: add a TypeScript SDK v2 guide\n\nAdds reference/node_mcp_server_v2.md for @modelcontextprotocol/server, tells SKILL.md readers how to choose between v1 and v2, and links each version's docs. The v1 guide is unchanged apart from a note pointing new servers to v2.\n\n* Update mcp-builder skill: tell v1 users that SDK v2 exists\n\nWhen a TypeScript project already depends on @modelcontextprotocol/sdk, the agent tells the user once that v2 is the current stable release, that v1 gets only bug and security fixes, and how to migrate with the codemod, then continues with v1 unless asked to migrate.\n\n* Update mcp-builder skill: rewrite the v2 guide around the SDK examples\n\nRebuilds reference/node_mcp_server_v2.md on patterns from the MCP TypeScript SDK examples: a server factory, a fetch-based API helper, tool design guidance, one complete stdio + HTTP example, bearer auth, resources and prompts, and a self-check script that verifies the built server. Links SDK example stories for advanced features. SKILL.md points v2 projects to the self-check.\n\n* Update mcp-builder skill: review fixes for the TypeScript SDK v2 guide\n\n---------\n\nCo-authored-by: Konstantin Konstantinov <konstantin@mach5technology.com> ~ 3",
+  "stderr": "",
+  "rc": 0
+ },
+ "v2": {
+  "bytes": 35171,
+  "lines_text_mode": 747,
+  "lines_newline_count": 747,
+  "sha256_12": "49b2fe48f339",
+  "git_blob_sha40": "5d61f896d9707c8797c33ac8ac03c5aebf9b163f"
+ },
+ "v2_api_blob_sha": {
+  "stdout": "5d61f896d9707c8797c33ac8ac03c5aebf9b163f",
+  "stderr": "",
+  "rc": 0
+ }
+}

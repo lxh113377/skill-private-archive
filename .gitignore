@@ -64,3 +64,17 @@ _temp/
 # 注意 _repro/r281h/（H 的两臂产物）不在豁免内：那是实验产物、不可从任何 git 重建，必须跟踪。
 _repro/r278c/*.md
 _repro/r281g/txt/
+
+# r289：_repro/r287m 的逐字节上游快照素材不入库（clone 后可由 newfile_manifest.json 里的
+# repo/ref/path + gh api 重建，sha 已在 manifest 与 license_gate.md/verifications.md 留证）。
+# 理由同 R285-1：这类副本内部的相对链（./reference/xxx.md）指向各自 skill 树，放进本仓发布面
+# 必断 —— 实测 16 条死链全来自它们；而它们必须与上游逐字节相同（是等值证据），改一行就废了证据。
+# 判据不受影响：check_r287m 读的是 patch.json/上游 v2 件的 sha 记录、verify_landed（落地后权威判据）
+# 只读受管根三个文件，两者都不读这些快照 ⇒ 用 python -c 统计命中数 = 0 验证过。
+# 反面：中间取证输出（_*.txt/_*.b64/_*.err/_landed_preview）同样不入库，它们不是交付物。
+_repro/*/_upstream_*.md
+_repro/*/upstream_*.md
+_repro/*/_*.b64
+_repro/*/_*.err
+_repro/*/_*.txt
+_repro/*/_landed_preview/

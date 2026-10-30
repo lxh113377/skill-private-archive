@@ -1,9 +1,9 @@
 {
  "schema": "debt-aging-v2",
- "generated_at": "2026-10-30T07:50:36",
+ "generated_at": "2026-10-30T08:30:06",
  "readonly": true,
  "grace_rounds": 2,
- "current_round": 288,
+ "current_round": 289,
  "round_source": "git log --format=%s -40 中**作用域**最大 rNN（未硬编码；排除「挂账至 rNN」等未来轮号引用）",
  "verdict_taxonomy": [
   "OVERDUE",
@@ -205,20 +205,29 @@
  ],
  "evidence": {
   "volumes": 187,
-  "items_total": 556,
-  "open_total": 246,
+  "items_total": 561,
+  "open_total": 251,
   "closed_total": 310,
-  "raw_item_lines": 556
+  "raw_item_lines": 561
  },
  "by_class": {
   "OVERDUE": 0,
-  "ACTIVE": 8,
+  "ACTIVE": 11,
   "DECIDED": 236,
   "UNDATED": 2,
-  "DEFERRED": 0,
-  "REPEAT": 0
+  "DEFERRED": 1,
+  "REPEAT": 1
  },
- "repeat_rows": [],
+ "repeat_rows": [
+  {
+   "file": "memory\\07-next-steps.md",
+   "line": 42,
+   "detail": "第 2 次延期至 r290 ⇒ 须升级：执行 / 降级为长期看守 / 作废",
+   "priority": "未标",
+   "owner": "NONE",
+   "title": "**R261-7（r261 登记，P1）** **三件 UPGRADE_CANDIDATE 只裁了「值不值得换」，换装未执行（阶段 C 未开）**：A 具名：A-prompt-better←prompt-master（L"
+  }
+ ],
  "overdue": [],
  "undated": [
   {
@@ -294,17 +303,17 @@
  "note": "OVERDUE 数 = ratchet_gate 第 7 指标 overdue_debt_items 的唯一取值面",
  "coverage": {
   "status": "OK",
-  "prev": "debt_aging_r_autoregen_20261030_071233.json",
+  "prev": "debt_aging_r_autoregen_20261030_073706.json",
   "prev_overdue": 0,
   "missing": [],
   "method": "adjudication_gap(上一轮 overdue[].title 前 40 字, 当前卷文本, 本轮轮号)"
  },
  "input_face": {
   "round": {
-   "log": 288,
-   "tag": 288,
+   "log": 289,
+   "tag": 289,
    "ok": true,
-   "detail": "log=r288 ≥ tag=r288（差 0 轮：本轮 tag 已打，两源一致）"
+   "detail": "log=r289 ≥ tag=r289（差 0 轮：本轮 tag 已打，两源一致）"
   },
   "floor": {
    "ok": true,
@@ -312,7 +321,7 @@
   },
   "dedup": {
    "ok": true,
-   "detail": "556 行全部计入，80 字前缀键零碰撞"
+   "detail": "561 行全部计入，80 字前缀键零碰撞"
   },
   "dup": {
    "ok": false,
@@ -327,7 +336,7 @@
    "ok": null,
    "detail": "未传 --report ⇒ 建议面未对照（R247 不判绿）"
   },
-  "raw_lines": 556,
+  "raw_lines": 561,
   "collisions": [],
   "status": "FAIL",
   "red_faces": [
@@ -341,32 +350,32 @@
  "unowned_claims": [
   {
    "file": "memory\\07-next-steps.md",
-   "line": 595,
+   "line": 600,
    "title": "**R219-4（r219 登记，P1·已落地）** **镜像同步的真实耗时 2711s 对 rule_editor 内嵌硬超时 180s：差 15 倍，等于每次 --fix-mi"
   },
   {
    "file": "memory\\07-next-steps.md",
-   "line": 1633,
+   "line": 1640,
    "title": "**R217-3（r217 登记，P1·已落地）** **本轮两个自抓：① 我漏跑了自己立的「改门侧件即跑全量」；② 我把并行会话未提交的台账条目以我的提交信息代提交了**： 【r"
   },
   {
    "file": "memory\\07-next-steps.md",
-   "line": 1784,
+   "line": 1791,
    "title": "**R231-1（r231 登记，P1·已落地·**只报不改**）用只读模拟**实测驳回我 r229 §5 的修复建议**：给 tag 清单+索引补上各件已声明的触发词，4/4 条"
   },
   {
    "file": "memory\\07-next-steps.md",
-   "line": 1822,
+   "line": 1829,
    "title": "**R235-1（r235 登记，P0·**目标收口决定**）七项要求全部交付且逐项有据，要求 6 按其裁定口径达标、其字面主尺口径已证算术不可达 ⇒ 本会话目标判**完成**（依"
   },
   {
    "file": "memory\\07-next-steps.md",
-   "line": 1935,
+   "line": 1940,
    "title": "**R212-2（r212 登记，P1·已落地）** **归属方 HEAD 加严 to>from 校验，把我 r208 修的安全夹具变成永久红；处方=第三态+可解除证明，不绕校验*"
   },
   {
    "file": "memory\\07-next-steps.md",
-   "line": 2198,
+   "line": 2203,
    "title": "**R208-1（r208 登记，P1·已落地）** **实跑路由才暴露：知识进对了 skill，仍进不了召回面（可达 ≠ 可召回）**： 【r208 裁决=执行（实跑路由暴露「进"
   },
   {

@@ -1,0 +1,7 @@
+[
+  {
+    "id": "NODE-V1-BANNER",
+    "old": "# Node/TypeScript MCP Server Implementation Guide\n",
+    "new": "# Node/TypeScript MCP Server Implementation Guide\n\n> **This guide covers v1 of the TypeScript SDK (`@modelcontextprotocol/sdk`).** Use it only for projects that already depend on v1. For new servers, use the [v2 guide](./node_mcp_server_v2.md).\n"
+  }
+]

@@ -1,0 +1,15 @@
+{
+ "schema": "r287m-newfile-manifest-v1",
+ "repo": "anthropics/skills",
+ "ref": "main",
+ "ref_sha": "ca45fc496a3436251f191354091d557da31c15b5",
+ "upstream_path": "skills/mcp-builder/reference/node_mcp_server_v2.md",
+ "local_target": "D:/global_skills/mcp-builder/reference/node_mcp_server_v2.md",
+ "staged_copy": "C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r287m/upstream_node_mcp_server_v2.md",
+ "bytes": 35171,
+ "lines": 747,
+ "sha256_12": "49b2fe48f339",
+ "api_blob_sha": "5d61f896d9707c8797c33ac8ac03c5aebf9b163f",
+ "api_size": 35171,
+ "api_name": "node_mcp_server_v2.md"
+}
