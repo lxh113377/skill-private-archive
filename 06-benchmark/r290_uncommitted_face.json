@@ -1,9 +1,22 @@
 {
  "schema": "uncommitted-this-round-v1",
  "round": "290",
- "dirty_tracked": 29,
- "suspect_count": 0,
- "suspects": [],
+ "dirty_tracked": 35,
+ "suspect_count": 2,
+ "suspects": [
+  {
+   "file": "05-exec/run_gates.py",
+   "added_lines": 18,
+   "marker_lines": 1,
+   "sample": "# r290（R290-3）：--gate 传不存在的 id，过去被**静默丢弃** —— 一手实测：请求 3 门、实跑 2 门,"
+  },
+  {
+   "file": "memory/07-next-steps.md",
+   "added_lines": 2,
+   "marker_lines": 2,
+   "sample": "- [ ] **R285-4（r285 登记，P2）** **门禁全量跑批会刷新 23 个 *_latest 快照；本会话未并入，须由下一轮或巡检决定归属与提交口径**：一手（r285 实测）：我跑 python 05-exec/run_g"
+  }
+ ],
  "limit_note": "工作树共享：本面不证明作者，只给线索（新增行含本轮轮号 + 处置词）",
  "disposal": "Lead 收尾前逐个提交或撤销；留着就走 = 发布面缺件（r290 实测）"
 }

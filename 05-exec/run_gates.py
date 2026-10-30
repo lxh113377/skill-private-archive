@@ -2118,9 +2118,12 @@ def main():
     except OSError as _e:
         print("⚠️ 暂存清单落盘失败（commit_gate_map_face 将判 UNVERIFIED）: %s" % _e)
 
+    requested = set(args.gate or [])
+    selected_ids = set()
     for g in GATES:
         if args.gate and g["id"] not in args.gate:
             continue
+        selected_ids.add(g["id"])
         if args.portable_only and not g["portable"]:
             print("%-32s SKIPPED-BY-DESIGN  %s" % (g["id"], g.get("not_portable_reason", "未声明原因")))
             rows.append({"id": g["id"], "state": "SKIPPED", "rc": None, "elapsed_ms": 0,
@@ -2135,9 +2138,24 @@ def main():
         rows.append({"id": g["id"], "state": state, "rc": rc, "elapsed_ms": ms,
                      "portable": g["portable"], "covers": g["covers"], "tail": tail})
 
+    # r290（R290-3）：--gate 传不存在的 id，过去被**静默丢弃** —— 一手实测：请求 3 门、实跑 2 门,
+    # 汇总却报「无 MISSING」, 那是假安心（没跑的门被当成跑过且绿）。R247 的零输入保护只在全部落空
+    # 时有效、部分落空失效。这里补差集：请求集减选中集非空 ⇒ 点名被丢弃的 id 并非零退出，
+    # 与「0 个」走同一语义（不另造判定口径）。
+    # 顺序关键（r31 夹具层 b 教我）：先判「0 个选中」保留原 UNVERIFIED/rc=2 语义，差集只在真有门
+    # 跑过时才接管 ⇒ rc=1。反过来的话差集会抢在 0 个之前把 rc=2 改成 rc=1，破坏既有语义。
+    dropped = sorted(requested - selected_ids)
+    if dropped:
+        print("[GATES:MISSING-SELECTOR] 请求的门有 %d 个不在 GATES 内，被丢弃: %s"
+              % (len(dropped), ", ".join(dropped)))
+
     if not rows:
         print("[GATES:UNVERIFIED] 选中的门为 0 个，禁止判「全绿」（R247）")
         return 2
+
+    if dropped:
+        print("[GATES:FAIL] 选择器含未知门 id（禁把「没跑」当「跑过且绿」）")
+        return 1
 
     rc, why = aggregate(rows)
     n = len([r for r in rows if r["state"] != "SKIPPED"])

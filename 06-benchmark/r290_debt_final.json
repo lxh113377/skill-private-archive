@@ -1,6 +1,6 @@
 {
  "schema": "debt-aging-v2",
- "generated_at": "2026-10-30T09:32:59",
+ "generated_at": "2026-10-30T09:49:30",
  "readonly": true,
  "grace_rounds": 2,
  "current_round": 290,
@@ -212,8 +212,8 @@
  },
  "by_class": {
   "OVERDUE": 0,
-  "ACTIVE": 11,
-  "DECIDED": 242,
+  "ACTIVE": 9,
+  "DECIDED": 244,
   "UNDATED": 2,
   "DEFERRED": 0,
   "REPEAT": 0
@@ -294,7 +294,7 @@
  "note": "OVERDUE 数 = ratchet_gate 第 7 指标 overdue_debt_items 的唯一取值面",
  "coverage": {
   "status": "OK",
-  "prev": "debt_aging_r_autoregen_20261030_085615.json",
+  "prev": "debt_aging_r_autoregen_20261030_093313.json",
   "prev_overdue": 0,
   "missing": [],
   "method": "adjudication_gap(上一轮 overdue[].title 前 40 字, 当前卷文本, 本轮轮号)"
@@ -302,9 +302,9 @@
  "input_face": {
   "round": {
    "log": 290,
-   "tag": 290,
-   "ok": true,
-   "detail": "log=r290 ≥ tag=r290（差 0 轮：本轮 tag 已打，两源一致）"
+   "tag": null,
+   "ok": null,
+   "detail": "无 tag 锚可对照（首轮未打 tag 或 describe 失败）⇒ UNVERIFIED，不记绿"
   },
   "floor": {
    "ok": true,
@@ -334,6 +334,7 @@
    "dup"
   ],
   "unverified_faces": [
+   "round",
    "dating",
    "suggestions"
   ]
