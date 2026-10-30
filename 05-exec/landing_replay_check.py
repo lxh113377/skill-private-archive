@@ -22,6 +22,7 @@ security-audit **这一单**写死的 —— skill 名、基线 ref、补丁链�
 
 负控：--neg hand-edited（内存里把某 target 的盘上文本改一个字符 => R 必须判红）
       --neg fake-sha（把期望 blob sha 改一位 => N 必须判红）
+      --neg mirror-stale（把首个受影响路径的镜像 blob 视为未同步 => M 必须判红）
 用法：python -B 05-exec/landing_replay_check.py --spec 05-exec/landing_specs/security-audit.json
 """
 import argparse
@@ -237,6 +238,48 @@ def leg_V(spec):
                                                                       v["expect"])]
 
 
+
+
+def leg_M(spec, neg=''):
+    """M mirror-propagated：受管根源件与九端实际加载的镜像必须逐字节同 blob。
+
+    为什么是一条腿（一手，r292/r294）：落地只改 D:/global_skills，而各端加载的是镜像
+    C:/Users/37533/.agents/skills。A 臂的维6 实测 5/5 落地件滞后（我的 mcp-builder 落后 HEAD~5、
+    security-audit 落后 HEAD~4）=> 「无兼容回归」若只看源件，对实际读到旧版的端是空话。
+    镜像根不存在或件缺失一律 UNVERIFIED（R247：不许把取不到当已同步）。
+    """
+    root = spec.get("mirror_root") or r"C:\Users\37533\.agents\skills"
+    if not os.path.isdir(root):
+        return "UNVERIFIED", ["镜像根不存在: " + root]
+    paths = [t["target"] for t in (spec.get("replays") or [])] + \
+            [f["target"] for f in (spec.get("new_files") or [])]
+    if not paths:
+        return "UNVERIFIED", ["spec 未列受影响路径"]
+    bad, det, skipped = [], [], 0
+    for rel in paths:
+        srcp = os.path.join(spec["managed"], rel)
+        mirp = os.path.join(root, rel)
+        if not os.path.isfile(srcp):
+            skipped += 1
+            det.append(rel + " 源件不在盘（跳过）")
+            continue
+        if not os.path.isfile(mirp):
+            bad.append(rel + " 镜像缺失")
+            continue
+        h1 = (git(spec["managed"], ["hash-object", rel]) or "").strip()
+        h2 = subprocess.run(["git", "hash-object", mirp], capture_output=True, text=True,
+                            encoding="utf-8", errors="replace", timeout=90).stdout.strip()
+        if neg == "mirror-stale" and rel == paths[0]:
+            h2 = "0" * 40   # 内存里模拟镜像未同步：M 必须判红
+        if h1 and h2 and h1 == h2:
+            det.append("%s blob=%s 同" % (rel, h1[:10]))
+        else:
+            bad.append("%s 镜像滞后(src=%s mirror=%s)" % (rel, (h1 or "-")[:10], (h2 or "-")[:10]))
+    if skipped == len(paths):
+        return "UNVERIFIED", det
+    return ("ok" if not bad else "BAD"), (det if not bad else bad) + (["跳过%d" % skipped] if skipped else []),
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--spec", required=True, help="落地单的描述件（05-exec/landing_specs/*.json）")
@@ -247,11 +290,19 @@ def main():
     if not os.path.isfile(sp_path):
         print("[LANDING-CHECK] UNVERIFIED spec 不存在: %s" % sp_path)
         return 2
+    KNOWN_NEG = {"", "hand-edited", "fake-sha", "mirror-stale"}
+    if a.neg not in KNOWN_NEG:
+        # 负控名写错 => 腿静默不触发 => 看起来「判据跑过且仍绿」，那是假负控（r294 一手踩到）。
+        print("[LANDING-CHECK] UNVERIFIED 未知 --neg 值 %r（可用：%s）" % (a.neg, sorted(KNOWN_NEG)))
+        return 2
     spec = json.load(io.open(sp_path, encoding="utf-8"))
     legs = []
+    # 负控名必须与实现逐字一致：实现用 mirror-stale，我上一版注释与试跑都写成 mirror-staged
+    # ⇒ 那次「负控」传的是不存在的名字、静默无操作，差点被我读成「M 腿没牙」。
+    # 所以 main() 现在校验 --neg 取值：未知名字直接 rc=2，不给静默无操作的机会。
     for nm, fn in (("R replay", leg_R), ("N new-files", leg_N), ("P pointer-clean", leg_P),
-                   ("V version", leg_V)):
-        st, det = fn(spec, a.neg) if nm.startswith(("R", "N")) else fn(spec)
+                   ("V version", leg_V), ("M mirror", leg_M)):
+        st, det = fn(spec, a.neg) if nm.startswith(("R", "N", "M")) else fn(spec)
         legs.append((nm, st, det))
     for nm, st, det in legs:
         print("%-18s %-12s %s" % (nm, st, "; ".join(str(x) for x in det)[:150]))

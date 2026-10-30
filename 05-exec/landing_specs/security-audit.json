@@ -50,5 +50,6 @@
   "fm_key": "version",
   "fm_date_key": "last_updated",
   "expect": "2.1.0"
- }
+ },
+ "mirror_root": "C:/Users/37533/.agents/skills"
 }

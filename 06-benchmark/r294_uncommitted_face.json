@@ -1,0 +1,22 @@
+{
+ "schema": "uncommitted-this-round-v1",
+ "round": "294",
+ "dirty_tracked": 37,
+ "suspect_count": 2,
+ "suspects": [
+  {
+   "file": "05-exec/landing_replay_check.py",
+   "added_lines": 53,
+   "marker_lines": 2,
+   "sample": "为什么是一条腿（一手，r292/r294）：落地只改 D:/global_skills，而各端加载的是镜像"
+  },
+  {
+   "file": "memory/07-next-steps.md",
+   "added_lines": 2,
+   "marker_lines": 2,
+   "sample": "- [ ] **R292-4（r292 登记，P0）** **落地只改受管根源件，九端实际读的镜像 C:/Users/37533/.agents/skills 全部滞后（我这两单也滞后）⇒ 这才是「仓库里在用旧版 skill」的字面成因；但"
+  }
+ ],
+ "limit_note": "工作树共享：本面不证明作者，只给线索（新增行含本轮轮号 + 处置词）",
+ "disposal": "Lead 收尾前逐个提交或撤销；留着就走 = 发布面缺件（r290 实测）"
+}
