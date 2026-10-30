@@ -1,0 +1,216 @@
+{
+  "meta": {
+    "round": "r303b",
+    "generated_at": "2026-10-30T14:50:37.808Z",
+    "scope": "R261-7 剩余两件的换装证据包（增量 / 本地独有 / 验证标准 / 回滚预案）",
+    "write_face": "C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_temp/r303b",
+    "verdict_owner": "Lead —— 本件只出证据与验证标准/回滚预案，不代裁值不值得换",
+    "source_ledger_ref": "memory/07-next-steps.md L42 条目 R261-7",
+    "source_adjudication": "06-benchmark/C2人读第一批_r261_28件逐件判定_2026-10-28.md",
+    "local_root_git_head_short": "a9a98ba6",
+    "local_root_tracked": true,
+    "upstream_fetch_method": "gh api ./contents/<path> -H Accept=application/vnd.github.raw",
+    "upstream_fetch_time": "2026-10-30T14:50:37.808Z"
+  },
+  "skills": [
+    {
+      "slug": "A-prompt-better",
+      "local_path": "D:/global_skills/A-prompt-better/SKILL.md",
+      "local_sha256": "01884cd11aed608ba09d3911e96f0d4143a034ce75980719a0c04cf54f3d0aa3",
+      "local_blob_sha": "ce4652490b755f20c39f1a9756006e0243785f6b",
+      "local_version": "1.3.0",
+      "local_lines": 675,
+      "declared_upstream": {
+        "path_checked": "D:/global_skills/A-prompt-better/.upstream",
+        "present": false,
+        "value": null,
+        "note": "实测该文件不存在（ls 报 No such file）。同族技能的 .upstream 为「仓库 + path:」两行式；本件缺该声明，候选具名改由台账 R261-7 与 r261 判定件给出，故上游声明的权威来源记为 UNVERIFIED。"
+      },
+      "candidates": [
+        {
+          "repo": "nidhinjs/prompt-master",
+          "exists": true,
+          "skill_md_path": "SKILL.md",
+          "upstream_blob_sha": "742deafaf4222f9f0e9d9410e72483dad64fe716",
+          "upstream_content_sha256": "36e68cdcd62c38b2f99c2538c83fefb8c8837ea9b7eed75297fe76e45c452e75",
+          "upstream_size_bytes": 33508,
+          "version": "1.8.2",
+          "license_spdx": "MIT",
+          "default_branch": "main",
+          "pushed_at": "2026-10-22T13:26:18Z",
+          "state": "VERIFIED"
+        }
+      ]
+    },
+    {
+      "slug": "frontend-skill",
+      "local_path": "D:/global_skills/frontend-skill/SKILL.md",
+      "local_sha256": "4a87c81063d4cb66954b379012091d3dad0cc53c6f88b428eac2f78d0b3085f8",
+      "local_blob_sha": "c94f6d03d7a799a213e755d65388f40bd8bf2d09",
+      "local_version": "1.0.0",
+      "local_lines": 186,
+      "declared_upstream": {
+        "path_checked": "D:/global_skills/frontend-skill/.upstream",
+        "present": false,
+        "value": null,
+        "note": "实测该文件不存在（ls 报 No such file）。候选具名改由台账 R261-7 与 r261 判定件给出，故上游声明的权威来源记为 UNVERIFIED。"
+      },
+      "candidates": [
+        {
+          "repo": "Leonxlnx/taste-skill",
+          "exists": true,
+          "skill_md_path": "skills/taste-skill/SKILL.md",
+          "upstream_blob_sha": "d8444f13b76be100b3b088dfdae738e85288d6b6",
+          "upstream_content_sha256": "3435ed963b15a1b6447746ec8844ab2cd38d8d2e8ead3451937f42df01e408c4",
+          "upstream_size_bytes": 39537,
+          "version": null,
+          "version_note": "候选 SKILL.md frontmatter 只有 name 与 description，无 version 字段（grep -n ^version 命中 0）⇒ 候选版本 UNVERIFIED；frontmatter name=design-taste-frontend。",
+          "license_spdx": "MIT",
+          "default_branch": "main",
+          "pushed_at": "2026-10-30T09:24:57Z",
+          "asset_counts": {
+            "scripts": 11,
+            "library": 9,
+            "references": 11
+          },
+          "state": "VERIFIED"
+        }
+      ]
+    }
+  ],
+  "increments": [
+    {
+      "skill": "A-prompt-better",
+      "upstream_ref": "nidhinjs/prompt-master:SKILL.md L22-27",
+      "anchor": "Mixture of Experts",
+      "what": "单 prompt 场景的高虚构风险技法黑名单：Mixture of Experts / Tree of Thought / Graph of Thought / Universal Self-Consistency / prompt-chaining 只准用户显式点名且目标工具支持时才用；紧接一条「Never request hidden chain-of-thought, private reasoning, or a verbatim reasoning trace」（L27）。",
+      "why_local_lacks": "本地件无该黑名单，也无「不得索取隐藏思维链」硬规则（对上游该段的缺席探针 grep 命中 0）；本地只有 Level 1/2/3 分流与近因位置规则。",
+      "state": "VERIFIED"
+    },
+    {
+      "skill": "A-prompt-better",
+      "upstream_ref": "nidhinjs/prompt-master:SKILL.md L442",
+      "anchor": "first 30%",
+      "what": "Memory Block 的位置约束：引用既往工作时前置该块，并「Place it in the first 30% of the prompt so it survives attention decay in the target model」。",
+      "why_local_lacks": "本地只有近因效应这一半（「最重要的约束放在 </task> 标签之前」L205），没有按相对位置比例（前 30%）量化放置的规则，也没有 attention decay 这一机理表述。",
+      "state": "VERIFIED"
+    },
+    {
+      "skill": "A-prompt-better",
+      "upstream_ref": "nidhinjs/prompt-master:SKILL.md L469-470",
+      "anchor": "Agentic Output Warning",
+      "what": "面向 agentic 工具的 scope lock 复核提示：对会执行命令或改文件的工具，附一段要求复核 scope locks / forbidden actions / stop conditions 与路径权限的告示。",
+      "why_local_lacks": "本地件无 agentic 输出警示段（探针缺席），本地优化流程不区分「粘贴给可执行工具」这一风险面。",
+      "state": "VERIFIED"
+    },
+    {
+      "skill": "A-prompt-better",
+      "upstream_ref": "nidhinjs/prompt-master:SKILL.md L482",
+      "anchor": "most critical constraints",
+      "what": "交付前六问自检（RECENCY ZONE）之一：Are the most critical constraints in the first 30% of the generated prompt? —— 把「位置比例」提升为交付闸，另含 token efficiency audit。",
+      "why_local_lacks": "本地无交付前自检清单（无「六问」形态，探针缺席）；本地只有写作期规则，没有交付前的可判问题集。",
+      "state": "VERIFIED"
+    },
+    {
+      "skill": "frontend-skill",
+      "upstream_ref": "Leonxlnx/taste-skill:skills/taste-skill/SKILL.md L307-322",
+      "anchor": "inspect.mjs",
+      "what": "第 7 步 Gate 的执行器：lint.mjs 扫源码禁用模式与套话；inspect.mjs 在真实浏览器按 1440 / 768 / 390 三档实测 headline line counts、type sizes、fonts actually loaded、contrast、overflow 与版面帧；scenes.mjs 覆盖滚动场景。",
+      "why_local_lacks": "本地件是纯散文规则，目录内无任何脚本（只一个平台配置文件），故没有任何可执行的审美门禁；这条正是台账所写「把本地散文规则变 1440/768/390 实测门禁」。",
+      "state": "VERIFIED"
+    },
+    {
+      "skill": "frontend-skill",
+      "upstream_ref": "Leonxlnx/taste-skill:skills/taste-skill/SKILL.md L367",
+      "anchor": "0 FAIL",
+      "what": "交付判据：inspect.mjs 在 1440、768、390 三档对最终版本显示 0 FAIL，才允许报告；并列出「每次改动后要打开它列出的全部截图」等前置条件。",
+      "why_local_lacks": "本地无可复跑的交付判据（无脚本、无三档断点断言），交付标准停留在文字要求，无法复算。",
+      "state": "VERIFIED"
+    },
+    {
+      "skill": "frontend-skill",
+      "upstream_ref": "Leonxlnx/taste-skill:skills/taste-skill/SKILL.md L25",
+      "anchor": "twenty researched directions",
+      "what": "draw.mjs 从 20 个已研究研究方向中发牌（方向 / 构图 / 字体 / 配色 / 摄影 / 分区蓝图），数据落在 library 下的 9 个文件（directions、heroes、sections、type、palettes、photographs、sites、motions、app）。",
+      "why_local_lacks": "本地只有 Working Model 三件套（visual thesis / content plan / interaction thesis）这类叙述性方法，没有可发牌的成库方向数据与执行器。",
+      "state": "VERIFIED"
+    },
+    {
+      "skill": "frontend-skill",
+      "upstream_ref": "Leonxlnx/taste-skill:skills/taste-skill/SKILL.md L52-54",
+      "anchor": "references/app-screens.md",
+      "what": "app 屏幕专线：references/app-screens.md 给独立的 draw 调用（draw.mjs --app）、独立的 house rules 与 inspect.mjs --app 验收。",
+      "why_local_lacks": "本地 Apps 一节是散文约束，没有独立数据文件与独立验收命令；候选把 app 屏与营销页拆成两条可执行流水线。",
+      "state": "VERIFIED"
+    }
+  ],
+  "local_only": [
+    {
+      "skill": "A-prompt-better",
+      "local_ref": "D:/global_skills/A-prompt-better/SKILL.md L34-39",
+      "capability": "七步闭环的第 ② 环节衔接（R195，V1.2）：声明本件是七步闭环的 ② 环节，引用记忆侧共享规范 workflow_seven_step.md V1.0，并写明门禁项 G6 已于 2026-09-28 废止、不需要再写「跳过 G6」。",
+      "upstream_counter_evidence": "候选 prompt-master 对 workflow_seven_step / 七步 的 grep 命中 0，无跨系统闭环接线概念。",
+      "state": "VERIFIED"
+    },
+    {
+      "skill": "A-prompt-better",
+      "local_ref": "D:/global_skills/A-prompt-better/SKILL.md L146-165 与 L205",
+      "capability": "Level 1/2/3 达标分流（Level 1 直接跳过优化、Level 2/3 进入优化流程）＋闭合标签近因规则（最重要的约束放在 </task> 标签之前）。",
+      "upstream_counter_evidence": "候选对 Level 1 / Level 2 / </task> 的 grep 命中均为 0；候选只有位置比例（前 30%）而无闭合标签级近因与本地分流口径。",
+      "state": "VERIFIED"
+    },
+    {
+      "skill": "frontend-skill",
+      "local_ref": "D:/global_skills/frontend-skill/SKILL.md L48",
+      "capability": "Canonical full-bleed rule：品牌落地页 hero 必须 edge-to-edge，不得继承页面 gutters / framed container / shared max-width，只约束内部文字与动作列。",
+      "upstream_counter_evidence": "候选对 full-bleed 的 grep 命中 0（同时 100svh / viewport budget 均命中 0）。",
+      "state": "VERIFIED"
+    },
+    {
+      "skill": "frontend-skill",
+      "local_ref": "D:/global_skills/frontend-skill/SKILL.md L57-60",
+      "capability": "Viewport budget：用 100vh / 100svh hero 时须扣掉常驻 UI chrome（calc(100svh - header-height)）或让 header 覆盖而非顺排。",
+      "upstream_counter_evidence": "候选对 Viewport budget 与 100svh 的 grep 命中均为 0。",
+      "state": "VERIFIED"
+    },
+    {
+      "skill": "frontend-skill",
+      "local_ref": "D:/global_skills/frontend-skill/agents/openai.yaml（326 B）",
+      "capability": "本地带平台 agent 配置文件 agents/openai.yaml（候选仓 assets 面无 agents 目录，对该文件名的 grep 命中 0）。",
+      "upstream_counter_evidence": "候选仓 tree 中 skills/taste-skill/ 下的子面只有 scripts / library / references（31 文件），无 agents 子面。",
+      "state": "VERIFIED"
+    }
+  ],
+  "unknown": [
+    {
+      "id": "U1",
+      "topic": "declared_upstream 缺失",
+      "state": "UNVERIFIED",
+      "detail": "两件的 .upstream 均不存在（实测 ls 报 No such file）；候选取值来自台账 R261-7 与 r261 判定件，故「上游声明」本身无权威文件可核。"
+    },
+    {
+      "id": "U2",
+      "topic": "候选版本号",
+      "state": "UNVERIFIED",
+      "detail": "taste-skill 候选 frontmatter 无 version 字段（grep -n ^version 命中 0），候选版本 UNVERIFIED。"
+    },
+    {
+      "id": "U3",
+      "topic": "候选脚本可运行性",
+      "state": "UNVERIFIED",
+      "detail": "候选 libs 与浏览器执行器（Node / Chrome / CDP 依赖）未在本机试跑；本件只取证不执行换装，故不实测。"
+    },
+    {
+      "id": "U4",
+      "topic": "agents/openai.yaml 引用方",
+      "state": "UNVERIFIED",
+      "detail": "本地该配置文件被谁引用未核，换装时存在死引用风险（对应台账所述 C6 面）。"
+    },
+    {
+      "id": "U5",
+      "topic": "上游行号与版本冻结",
+      "state": "UNVERIFIED",
+      "detail": "上游内容按 HEAD 现取、未 pin commit（候选 taste-skill 的 pushed_at 即 2026-10-30），行号与内容可能随上游推进漂移；换装落地时必须重新钉定 sha。"
+    }
+  ]
+}
