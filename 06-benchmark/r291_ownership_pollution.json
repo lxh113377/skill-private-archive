@@ -1,0 +1,31 @@
+{
+ "schema": "ownership-pollution-v1",
+ "tracked_json": 1654,
+ "polluted": [],
+ "changed": [
+  "06-benchmark/gate_reconcile_registry.json",
+  "06-benchmark/local_frontmatter.json",
+  "06-benchmark/r260_local_baseline.json",
+  "06-benchmark/r290_uncommitted_face.json",
+  "06-benchmark/r291_debt_final.json",
+  "06-benchmark/replacement_matrix_shadowstrict.json"
+ ],
+ "unreadable": [
+  "06-benchmark/frozen_layered_r209_raw.json"
+ ],
+ "time_keys": [
+  "at",
+  "created_at",
+  "date",
+  "finished_at",
+  "generated_at",
+  "measured_at",
+  "ran_at",
+  "registered_at",
+  "started_at",
+  "timestamp",
+  "ts",
+  "updated_at"
+ ],
+ "reading_rule": "仅时间字段漂移=复跑覆盖他人交付件（所有权污染）；内容变化=真实修改，不判污染"
+}

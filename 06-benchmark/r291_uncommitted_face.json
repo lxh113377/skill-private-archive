@@ -1,0 +1,22 @@
+{
+ "schema": "uncommitted-this-round-v1",
+ "round": "291",
+ "dirty_tracked": 36,
+ "suspect_count": 2,
+ "suspects": [
+  {
+   "file": "DECOMPOSE.md",
+   "added_lines": 17,
+   "marker_lines": 1,
+   "sample": "新增的三件（落地执行、check_r291_landed、r291_ownership_pollution）全部 Lead 自干，理由属枚举内："
+  },
+  {
+   "file": "memory/07-next-steps.md",
+   "added_lines": 5,
+   "marker_lines": 5,
+   "sample": "- [ ] **R289-5（r289 登记，P1）** **换装工序模板（r289 首单跑通）：材料→许可门→dry-run→落盘→改后复读→范围与回滚双前提→落地判据→素材不入库**：从 mcp-builder 这一单抽出的可复制八步（"
+  }
+ ],
+ "limit_note": "工作树共享：本面不证明作者，只给线索（新增行含本轮轮号 + 处置词）",
+ "disposal": "Lead 收尾前逐个提交或撤销；留着就走 = 发布面缺件（r290 实测）"
+}
