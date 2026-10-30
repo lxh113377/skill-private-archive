@@ -1,36 +1,29 @@
 {
  "schema": "uncommitted-this-round-v1",
  "round": "296",
- "dirty_tracked": 38,
- "suspect_count": 4,
+ "dirty_tracked": 35,
+ "suspect_count": 3,
  "suspects": [
   {
-   "file": "04-plan/后续维护规范_季度巡检机制_r113_2026-10-18.md",
-   "added_lines": 18,
-   "marker_lines": 4,
-   "strong_lines": 1,
-   "sample": "### 5.2 往台账追加内容必须落在「整块之后」（r296 一手，防止切开既有条目正文）"
+   "file": "06-benchmark/r296_debt_final.json",
+   "added_lines": 20,
+   "marker_lines": 1,
+   "strong_lines": 0,
+   "sample": "\"detail\": \"log=r296 ≥ tag=r296（差 0 轮：本轮 tag 已打，两源一致）\""
   },
   {
-   "file": "05-exec/.read_face_registry.json",
-   "added_lines": 4,
+   "file": "06-benchmark/r296_uncommitted_face.json",
+   "added_lines": 10,
    "marker_lines": 2,
    "strong_lines": 0,
-   "sample": "\"r296_ledger_insert.py\": {"
-  },
-  {
-   "file": "DECOMPOSE.md",
-   "added_lines": 30,
-   "marker_lines": 4,
-   "strong_lines": 0,
-   "sample": "## 追加（r296 后半程）—— 但先记一条违例：本轮开场卡**没有**在动手前落盘"
+   "sample": "\"file\": \"06-benchmark/r296_debt_final.json\","
   },
   {
    "file": "memory/07-next-steps.md",
-   "added_lines": 9,
-   "marker_lines": 6,
-   "strong_lines": 6,
-   "sample": "- [ ] **R292-1（r292 登记，P0）** **我拿 2026-10-27 的旧矩阵快照当现行事实，据此写下「13 件真无替代、判档没错」的错结论；护栏其实早已修好，而我自建的合规面默认读旧快照、等式还缺声明项**： 【r29"
+   "added_lines": 8,
+   "marker_lines": 8,
+   "strong_lines": 8,
+   "sample": "- [ ] **R291-1（r291 登记，P1）** **需求 2 的字面 vs 语义合规面建成：候选条数达标不等于有 3 个真对应物（family 补位），并给 r114 报表口径加校正注**：一手（r291 我自己差点犯的错）：我一"
   }
  ],
  "limit_note": "工作树共享：本面不证明作者，只给线索（判据 = 新增行含本轮轮号；处置词只作强度标注 strong_lines）",
