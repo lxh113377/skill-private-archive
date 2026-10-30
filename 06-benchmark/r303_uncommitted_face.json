@@ -1,29 +1,36 @@
 {
  "schema": "uncommitted-this-round-v1",
  "round": "303",
- "dirty_tracked": 36,
- "suspect_count": 3,
+ "dirty_tracked": 39,
+ "suspect_count": 4,
  "suspects": [
   {
-   "file": "04-plan/迁移替换方案_r114_2026-10-18.md",
-   "added_lines": 32,
-   "marker_lines": 6,
-   "strong_lines": 0,
-   "sample": "## 附 · r303 版本面证据如何进入优先级（本节**不替换** §3/§4，只把新证据接上）"
+   "file": "05-exec/landing_replay_check.py",
+   "added_lines": 16,
+   "marker_lines": 1,
+   "strong_lines": 1,
+   "sample": "# r303 落 R298-4：原写法把「同行含绝对路径」的裸糖行**静默**排除（掩蔽生产面实测 4 条），"
   },
   {
-   "file": "DECOMPOSE.md",
-   "added_lines": 15,
-   "marker_lines": 5,
+   "file": "05-exec/landing_specs/security-audit.json",
+   "added_lines": 2,
+   "marker_lines": 1,
    "strong_lines": 0,
-   "sample": "# DECOMPOSE · r303（补上需求 4 判「内容漂移」缺的那个基准；并推进 R261-7 剩余的换装）"
+   "sample": "\"_repro/r303a/patch_sidecar_r302_r303.json\""
+  },
+  {
+   "file": "06-benchmark/r303_debt.json",
+   "added_lines": 19,
+   "marker_lines": 1,
+   "strong_lines": 0,
+   "sample": "\"detail\": \"log=r303 ≥ tag=r303（差 0 轮：本轮 tag 已打，两源一致）\""
   },
   {
    "file": "memory/07-next-steps.md",
-   "added_lines": 61,
-   "marker_lines": 12,
-   "strong_lines": 6,
-   "sample": "- [ ] **R261-7（r261 登记，P1）** **三件 UPGRADE_CANDIDATE 只裁了「值不值得换」，换装未执行（阶段 C 未开）**：A 具名：A-prompt-better←prompt-master（L22-2"
+   "added_lines": 26,
+   "marker_lines": 8,
+   "strong_lines": 7,
+   "sample": "- [ ] **R294-1（r294 登记，P2）** **假负控第 3 次（这次是负控名拼错⇒静默无操作，差点误判判据没牙）：已给工具加未知 --neg 白名单拒写**：一手（r294 我造成，抓到得靠多算一步）：给 landing_r"
   }
  ],
  "limit_note": "工作树共享：本面不证明作者，只给线索（判据 = 新增行含本轮轮号；处置词只作强度标注 strong_lines）",

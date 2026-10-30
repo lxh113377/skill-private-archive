@@ -1,0 +1,12 @@
+[
+ {
+  "id": "SEC-SIDECAR-a9a98ba6",
+  "old": "trailofbits/skills\n# absorbed_increment cloudflare/security-audit-skill @ c1c8a8c1471069fb0e188eeaff69b8e8db6564a8 (main, 2026-09-14T19:28:54Z, MIT)\n# 三条本地原缺能力逐字并入 references/upstream-cloudflare-sec.md；校验器 scripts/validate-coverage-ledger.cjs\n# 注释行不改变 C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/05-exec/r114_replacement_scan.py parse_sidecar 的解析结果（实测前后同解）\n",
+  "new": "cloudflare/security-audit-skill\npath: skills/security-audit\n# 多源合成声明（r302 裁定；理由与回滚见自建skill优化台账 R302-3 与 _repro/r302a/upstream_sidecar_before_after.txt）：\n# · 机器可读的上游 = cloudflare/security-audit-skill：该仓树内确有 skills/security-audit/SKILL.md（与本件同名），\n#   故声明能落地（declared_state=lineage），可作为版本面与升级比对的靶。\n# · 方法论血统 = trailofbits/skills（本件描述里的 Adapted from Trail of Bits security audit methodology）。\n#   该仓 104 个 SKILL.md 中无同名件 ⇒ 不宜当机器可读上游（否则恒判声明失效），故降为注释级来源。\n# · 正文吸收点：三条本地原缺能力逐字并入 references/upstream-cloudflare-sec.md；校验器 scripts/validate-coverage-ledger.cjs。\n# · 吸收时的上游提交 = c1c8a8c1471069fb0e188eeaff69b8e8db6564a8（main，2026-09-14T19:28:54Z，MIT）。\n# · 原注释里那行机器专属绝对路径（指向本机工作区）已按 R298 可移植性规矩移除。\n"
+ },
+ {
+  "id": "SEC-SIDECAR-221c548b",
+  "old": "# 多源合成声明（r302 裁定；理由与回滚见自建skill优化台账 R302-3 与 _repro/r302a/upstream_sidecar_before_after.txt）：\n",
+  "new": "# 多源合成声明（r302 裁定；理由与回滚见本仓台账 R302-3）：\n"
+ }
+]

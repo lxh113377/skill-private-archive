@@ -183,19 +183,28 @@ def leg_N(spec, neg=''):
 
 
 def leg_P(spec):
-    n, det = 0, []
+    n, m, det = 0, 0, []          # m = 被同行绝对路径豁免的裸糖行数（R298-4 的「掩蔽面」可见性）
     for tgt in (spec.get("replays") or []) + (spec.get("new_files") or []):
         rel = tgt["target"]
         txt = git(spec["managed"], ["show", "HEAD:" + rel])
         if txt is None:
             continue
-        bare = [x for x in txt.split(NL)
-                if any(t in x for t in spec.get("bare_tokens") or [])
-                and "C:/Users" not in x and "D:/global" not in x]
+        # r303 落 R298-4：原写法把「同行含绝对路径」的裸糖行**静默**排除（掩蔽生产面实测 4 条），
+        # 于是那 4 条既不算违规、也不出现在任何读数里 —— 缺陷不是「豁免」本身，而是「豁免不可见」。
+        # 改法（保牙且不改变判定）：两个计数器分开跑，掩蔽数**照实显形**；
+        #   · bare  = 未被豁免的裸糖行（口径与原来完全一致 ⇒ 判定语义不变，三个 spec 不会因此变红）
+        #   · masked= 被绝对路径同行豁免的行（新增可见性，供人读；它是「可能被掩掉的违规」的候选面）
+        # 不把 masked 计入 BAD 是刻意的：那会把别人的历史遗留算成本轮落地失败，而本条要治的是「看不见」。
+        alltok = [x for x in txt.split(NL)
+                  if any(t in x for t in spec.get("bare_tokens") or [])]
+        masked = [x for x in alltok if ("C:/Users" in x or "D:/global" in x)]
+        bare = [x for x in alltok if x not in masked]
         n += len(bare)
-        if bare:
-            det.append("%s 裸指针 %d 条" % (rel, len(bare)))
-    return ("ok" if n == 0 else "BAD"), (["bare=%d" % n] + det)
+        m += len(masked)
+        if bare or masked:
+            det.append("%s 裸指针 %d 条（另 %d 条被同行绝对路径豁免=掩蔽面，须人读）"
+                       % (rel, len(bare), len(masked)))
+    return ("ok" if n == 0 else "BAD"), (["bare=%d" % n, "masked=%d" % m] + det)
 
 
 def leg_V(spec):

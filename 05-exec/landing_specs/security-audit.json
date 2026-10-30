@@ -16,7 +16,8 @@
    "base_ref": "a780bbcf~1",
    "patches": [
     "_repro/r290s/patch_upstream.json",
-    "_repro/r290s/patch_ambiguity_sidecar.json"
+    "_repro/r290s/patch_ambiguity_sidecar.json",
+    "_repro/r303a/patch_sidecar_r302_r303.json"
    ]
   }
  ],
