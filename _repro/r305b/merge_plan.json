@@ -1,0 +1,881 @@
+{
+ "plan_meta": {
+  "round": "r305b",
+  "scope": "R261-7 剩余两件的换装合并计划（逐文件落哪与丢哪与卡哪）",
+  "write_face": "自建skill优化/_repro/r305b",
+  "generated_for": "换装准入可执行件",
+  "does_not_decide_switch": true
+ },
+ "plan_boundary": {
+  "not_a_verdict": "本计划只写落哪、丢哪、卡哪，不代裁值不值得换；是否换装由换装准入面另行裁定。",
+  "wiring": {
+   "belongs_to_other_face": true,
+   "face": "inject_face_arm_A",
+   "included_in_this_plan": false,
+   "note": "换装后若要在注入面加接线行，该行属另一个面（r305 A 臂），不得混进本计划；本计划的 files、dst、dropped_refs 一律不含注入面接线行。"
+  },
+  "evidence_state": {
+   "measured": [
+    "候选仓树与候选件路径（r304c 树读数、r304b 树读数）",
+    "本机技能目录写前状态与逐件 sha256（r305b 实测 6 件）",
+    "C6 的 UNLOCATED 数组（r304b 读数）",
+    "候选脚本探针五项 rc 与 stdout（r304c 读数）"
+   ],
+   "partial": [
+    "C6 的 frontend-skill 未定位数组只列 12 条而 refs_n=36，数组疑不完整；本件只按数组记 dropped_refs，另开 ref_enrichment 记 r305b grep 补读（非 C6 尺，禁与 C6 计数相比）"
+   ],
+   "unmeasured": [
+    "上游内容未钉 commit，行号与内容可能漂移",
+    "候选版本号无 version 字段",
+    "本地 agents 平台配置的引用方未核"
+   ]
+  }
+ },
+ "skills": [
+  {
+   "slug": "A-prompt-better",
+   "candidate": "nidhinjs/prompt-master",
+   "candidate_side_skill_dir_file": "SKILL.md",
+   "candidate_tree_measured": [
+    "LICENSE",
+    "README.md",
+    "SKILL.md",
+    "references/patterns.md",
+    "references/templates.md"
+   ],
+   "landable_src": [
+    "SKILL.md",
+    "references/patterns.md",
+    "references/templates.md",
+    "LICENSE"
+   ],
+   "local_pre_state_files": [
+    {
+     "path": "SKILL.md",
+     "sha256": "01884cd11aed608ba09d3911e96f0d4143a034ce75980719a0c04cf54f3d0aa3",
+     "bytes": 28761
+    },
+    {
+     "path": ".upstream",
+     "sha256": "107120501bf154b7c68a55050c4c212dbb31fdb5f029cfed4bfac02ac19dc12b",
+     "bytes": 601
+    }
+   ],
+   "files": [
+    {
+     "src": "LICENSE",
+     "action": "land",
+     "dst": "LICENSE.txt",
+     "why": "复制上游实质文本须保留 MIT 版权声明；本地技能目录内现无许可件，新建不覆盖任何既有文件。"
+    },
+    {
+     "src": "README.md",
+     "action": "drop",
+     "dst": null,
+     "why": "候选仓的安装说明，非注入面；本地件不引用它。"
+    },
+    {
+     "src": "SKILL.md",
+     "action": "land",
+     "dst": "SKILL.md",
+     "why": "候选 4 条已实测增量按段拼入本地件；本地独有的七步闭环接线、Level 分流、闭合标签近因三项必须逐字保留；落地途径限于增量改写。"
+    },
+    {
+     "src": "references/patterns.md",
+     "action": "land",
+     "dst": "references/patterns.md",
+     "why": "候选侧存在，且本地件对它有两处未定位引用；落地后在本地可解析。"
+    },
+    {
+     "src": "references/templates.md",
+     "action": "land",
+     "dst": "references/templates.md",
+     "why": "候选侧存在，且本地件对它有多处未定位引用；落地后在本地可解析。"
+    }
+   ]
+  },
+  {
+   "slug": "frontend-skill",
+   "candidate": "Leonxlnx/taste-skill",
+   "candidate_side_skill_dir_file": "skills/taste-skill/SKILL.md",
+   "candidate_skill_dir_files_measured_n": 39,
+   "landable_src": [
+    "LICENSE",
+    "SKILL.md",
+    "SKILL.md",
+    "assets/app.css",
+    "assets/base.css",
+    "assets/scenes/stage.css",
+    "assets/scenes/stage.js",
+    "library/app.json",
+    "library/directions.json",
+    "library/heroes.json",
+    "library/motions.json",
+    "library/palettes.json",
+    "library/photos.json",
+    "library/sections.json",
+    "library/sites.json",
+    "library/type.json",
+    "references/app-screens.md",
+    "references/colour.md",
+    "references/copy.md",
+    "references/critique.md",
+    "references/imagery.md",
+    "references/layout.md",
+    "references/motion.md",
+    "references/research.md",
+    "references/scenes.md",
+    "references/tells.md",
+    "references/type.md",
+    "scripts/assets.mjs",
+    "scripts/draw.mjs",
+    "scripts/inspect.mjs",
+    "scripts/lib/app-draw.mjs",
+    "scripts/lib/cdp.mjs",
+    "scripts/lib/inspection-files.mjs",
+    "scripts/lib/probe.mjs",
+    "scripts/lib/rules.mjs",
+    "scripts/lint.mjs",
+    "scripts/scenes.mjs"
+   ],
+   "local_pre_state_files": [
+    {
+     "path": "SKILL.md",
+     "sha256": "4a87c81063d4cb66954b379012091d3dad0cc53c6f88b428eac2f78d0b3085f8",
+     "bytes": 7711
+    },
+    {
+     "path": ".upstream",
+     "sha256": "6445cdf7b6577477369704d2a7d2f48b0fa43f9cfa32b1495c43e57f08c2acf0",
+     "bytes": 639
+    },
+    {
+     "path": "agents/openai.yaml",
+     "sha256": "e12288464311eeedcec370bf7625081b3bfb429ffe4c5d34acc9cf4bfd89db79",
+     "bytes": 326
+    },
+    {
+     "path": "LICENSE.txt",
+     "sha256": "b87a529a13d5294f97bb847936a82f39e4f8adae2425a3a5fb5f1a7b75d43e6a",
+     "bytes": 10775
+    }
+   ],
+   "files": [
+    {
+     "src": "README.md",
+     "action": "drop",
+     "dst": null,
+     "why": "技能目录内的安装说明，非注入面，本地件未引用该名。"
+    },
+    {
+     "src": "SKILL.md",
+     "action": "land",
+     "dst": "SKILL.md",
+     "why": "候选 4 条已实测增量按段拼入本地件；本地独有的 full-bleed、viewport budget、agents 平台配置三项必须逐字保留；落地途径限于增量改写。"
+    },
+    {
+     "src": "assets/app.css",
+     "action": "land",
+     "dst": "assets/app.css",
+     "why": "候选侧存在且被候选 SKILL.md 引用，作为技能目录内 sidecar 落地，使未定位引用在本地可解析。"
+    },
+    {
+     "src": "assets/base.css",
+     "action": "land",
+     "dst": "assets/base.css",
+     "why": "候选侧存在且被候选 SKILL.md 引用，作为技能目录内 sidecar 落地，使未定位引用在本地可解析。"
+    },
+    {
+     "src": "assets/base.js",
+     "action": "block",
+     "dst": null,
+     "why": "C6 读数列为候选取件缺件；上游树读数该路径在盘，两读数冲突 ⇒ 本轮不落，补取并钉 sha 后再落。"
+    },
+    {
+     "src": "assets/charts.js",
+     "action": "block",
+     "dst": null,
+     "why": "C6 读数列为候选取件缺件；上游树读数该路径在盘，两读数冲突 ⇒ 本轮不落，补取并钉 sha 后再落。"
+    },
+    {
+     "src": "assets/scenes/stage.css",
+     "action": "land",
+     "dst": "assets/scenes/stage.css",
+     "why": "候选侧存在且被候选 SKILL.md 引用，作为技能目录内 sidecar 落地，使未定位引用在本地可解析。"
+    },
+    {
+     "src": "assets/scenes/stage.js",
+     "action": "land",
+     "dst": "assets/scenes/stage.js",
+     "why": "候选侧存在且被候选 SKILL.md 引用，作为技能目录内 sidecar 落地，使未定位引用在本地可解析。"
+    },
+    {
+     "src": "evals/evals.json",
+     "action": "drop",
+     "dst": null,
+     "why": "候选仓自评测件，不进技能注入面，本轮准入不引入候选评分器。"
+    },
+    {
+     "src": "library/app.json",
+     "action": "land",
+     "dst": "library/app.json",
+     "why": "候选侧存在且被候选 SKILL.md 引用，作为技能目录内 sidecar 落地，使未定位引用在本地可解析。"
+    },
+    {
+     "src": "library/directions.json",
+     "action": "land",
+     "dst": "library/directions.json",
+     "why": "候选侧存在且被候选 SKILL.md 引用，作为技能目录内 sidecar 落地，使未定位引用在本地可解析。"
+    },
+    {
+     "src": "library/heroes.json",
+     "action": "land",
+     "dst": "library/heroes.json",
+     "why": "候选侧存在且被候选 SKILL.md 引用，作为技能目录内 sidecar 落地，使未定位引用在本地可解析。"
+    },
+    {
+     "src": "library/motions.json",
+     "action": "land",
+     "dst": "library/motions.json",
+     "why": "候选侧存在且被候选 SKILL.md 引用，作为技能目录内 sidecar 落地，使未定位引用在本地可解析。"
+    },
+    {
+     "src": "library/palettes.json",
+     "action": "land",
+     "dst": "library/palettes.json",
+     "why": "候选侧存在且被候选 SKILL.md 引用，作为技能目录内 sidecar 落地，使未定位引用在本地可解析。"
+    },
+    {
+     "src": "library/photos.json",
+     "action": "land",
+     "dst": "library/photos.json",
+     "why": "候选侧存在且被候选 SKILL.md 引用，作为技能目录内 sidecar 落地，使未定位引用在本地可解析。"
+    },
+    {
+     "src": "library/sections.json",
+     "action": "land",
+     "dst": "library/sections.json",
+     "why": "候选侧存在且被候选 SKILL.md 引用，作为技能目录内 sidecar 落地，使未定位引用在本地可解析。"
+    },
+    {
+     "src": "library/sites.json",
+     "action": "land",
+     "dst": "library/sites.json",
+     "why": "候选侧存在且被候选 SKILL.md 引用，作为技能目录内 sidecar 落地，使未定位引用在本地可解析。"
+    },
+    {
+     "src": "library/type.json",
+     "action": "land",
+     "dst": "library/type.json",
+     "why": "候选侧存在且被候选 SKILL.md 引用，作为技能目录内 sidecar 落地，使未定位引用在本地可解析。"
+    },
+    {
+     "src": "references/app-screens.md",
+     "action": "land",
+     "dst": "references/app-screens.md",
+     "why": "候选侧存在且被候选 SKILL.md 引用，作为技能目录内 sidecar 落地，使未定位引用在本地可解析。"
+    },
+    {
+     "src": "references/colour.md",
+     "action": "land",
+     "dst": "references/colour.md",
+     "why": "候选侧存在且被候选 SKILL.md 引用，作为技能目录内 sidecar 落地，使未定位引用在本地可解析。"
+    },
+    {
+     "src": "references/copy.md",
+     "action": "land",
+     "dst": "references/copy.md",
+     "why": "候选侧存在且被候选 SKILL.md 引用，作为技能目录内 sidecar 落地，使未定位引用在本地可解析。"
+    },
+    {
+     "src": "references/critique.md",
+     "action": "land",
+     "dst": "references/critique.md",
+     "why": "候选侧存在且被候选 SKILL.md 引用，作为技能目录内 sidecar 落地，使未定位引用在本地可解析。"
+    },
+    {
+     "src": "references/imagery.md",
+     "action": "land",
+     "dst": "references/imagery.md",
+     "why": "候选侧存在且被候选 SKILL.md 引用，作为技能目录内 sidecar 落地，使未定位引用在本地可解析。"
+    },
+    {
+     "src": "references/layout.md",
+     "action": "land",
+     "dst": "references/layout.md",
+     "why": "候选侧存在且被候选 SKILL.md 引用，作为技能目录内 sidecar 落地，使未定位引用在本地可解析。"
+    },
+    {
+     "src": "references/motion.md",
+     "action": "land",
+     "dst": "references/motion.md",
+     "why": "候选侧存在且被候选 SKILL.md 引用，作为技能目录内 sidecar 落地，使未定位引用在本地可解析。"
+    },
+    {
+     "src": "references/research.md",
+     "action": "land",
+     "dst": "references/research.md",
+     "why": "候选侧存在且被候选 SKILL.md 引用，作为技能目录内 sidecar 落地，使未定位引用在本地可解析。"
+    },
+    {
+     "src": "references/scenes.md",
+     "action": "land",
+     "dst": "references/scenes.md",
+     "why": "候选侧存在且被候选 SKILL.md 引用，作为技能目录内 sidecar 落地，使未定位引用在本地可解析。"
+    },
+    {
+     "src": "references/tells.md",
+     "action": "land",
+     "dst": "references/tells.md",
+     "why": "候选侧存在且被候选 SKILL.md 引用，作为技能目录内 sidecar 落地，使未定位引用在本地可解析。"
+    },
+    {
+     "src": "references/type.md",
+     "action": "land",
+     "dst": "references/type.md",
+     "why": "候选侧存在且被候选 SKILL.md 引用，作为技能目录内 sidecar 落地，使未定位引用在本地可解析。"
+    },
+    {
+     "src": "scripts/assets.mjs",
+     "action": "block",
+     "dst": null,
+     "why": "实测 rc=124 网络超时 ⇒ 本机不可复跑，脚本臂卡住，不落。"
+    },
+    {
+     "src": "scripts/draw.mjs",
+     "action": "land",
+     "dst": "scripts/draw.mjs",
+     "why": "候选侧存在且被候选 SKILL.md 引用，作为技能目录内 sidecar 落地，使未定位引用在本地可解析。"
+    },
+    {
+     "src": "scripts/inspect.mjs",
+     "action": "block",
+     "dst": null,
+     "why": "实测 rc=1，本机无 Chrome ⇒ 脚本臂卡住，不落。"
+    },
+    {
+     "src": "scripts/lib/app-draw.mjs",
+     "action": "land",
+     "dst": "scripts/lib/app-draw.mjs",
+     "why": "运行依赖件，随已落脚本一并落地；不被独立调用，无环境卡点。"
+    },
+    {
+     "src": "scripts/lib/cdp.mjs",
+     "action": "land",
+     "dst": "scripts/lib/cdp.mjs",
+     "why": "运行依赖件，随已落脚本一并落地；不被独立调用，无环境卡点。"
+    },
+    {
+     "src": "scripts/lib/inspection-files.mjs",
+     "action": "land",
+     "dst": "scripts/lib/inspection-files.mjs",
+     "why": "运行依赖件，随已落脚本一并落地；不被独立调用，无环境卡点。"
+    },
+    {
+     "src": "scripts/lib/probe.mjs",
+     "action": "land",
+     "dst": "scripts/lib/probe.mjs",
+     "why": "运行依赖件，随已落脚本一并落地；不被独立调用，无环境卡点。"
+    },
+    {
+     "src": "scripts/lib/rules.mjs",
+     "action": "land",
+     "dst": "scripts/lib/rules.mjs",
+     "why": "运行依赖件，随已落脚本一并落地；不被独立调用，无环境卡点。"
+    },
+    {
+     "src": "scripts/lint.mjs",
+     "action": "land",
+     "dst": "scripts/lint.mjs",
+     "why": "候选侧存在且被候选 SKILL.md 引用，作为技能目录内 sidecar 落地，使未定位引用在本地可解析。"
+    },
+    {
+     "src": "scripts/scenes.mjs",
+     "action": "land",
+     "dst": "scripts/scenes.mjs",
+     "why": "候选侧存在且被候选 SKILL.md 引用，作为技能目录内 sidecar 落地，使未定位引用在本地可解析。"
+    },
+    {
+     "src": ".agents/plugins/marketplace.json",
+     "action": "drop",
+     "dst": null,
+     "why": "候选仓打包面（市场元数据、CI、示例、徽标、自测），不进技能目录与注入面。"
+    },
+    {
+     "src": ".claude-plugin/marketplace.json",
+     "action": "drop",
+     "dst": null,
+     "why": "候选仓打包面（市场元数据、CI、示例、徽标、自测），不进技能目录与注入面。"
+    },
+    {
+     "src": ".codex-plugin/plugin.json",
+     "action": "drop",
+     "dst": null,
+     "why": "候选仓打包面（市场元数据、CI、示例、徽标、自测），不进技能目录与注入面。"
+    },
+    {
+     "src": ".gitattributes",
+     "action": "drop",
+     "dst": null,
+     "why": "候选仓打包面（市场元数据、CI、示例、徽标、自测），不进技能目录与注入面。"
+    },
+    {
+     "src": ".github/FUNDING.yml",
+     "action": "drop",
+     "dst": null,
+     "why": "候选仓打包面（市场元数据、CI、示例、徽标、自测），不进技能目录与注入面。"
+    },
+    {
+     "src": ".github/workflows/check-skills.yml",
+     "action": "drop",
+     "dst": null,
+     "why": "候选仓打包面（市场元数据、CI、示例、徽标、自测），不进技能目录与注入面。"
+    },
+    {
+     "src": ".gitignore",
+     "action": "drop",
+     "dst": null,
+     "why": "候选仓打包面（市场元数据、CI、示例、徽标、自测），不进技能目录与注入面。"
+    },
+    {
+     "src": "CHANGELOG.md",
+     "action": "drop",
+     "dst": null,
+     "why": "候选仓打包面（市场元数据、CI、示例、徽标、自测），不进技能目录与注入面。"
+    },
+    {
+     "src": "LICENSE",
+     "action": "land",
+     "dst": "LICENSE.upstream.txt",
+     "why": "复制上游实质文本须保留 MIT 版权声明；本地已有许可件，故落为独立文件名，不覆盖。"
+    },
+    {
+     "src": "README.md",
+     "action": "drop",
+     "dst": null,
+     "why": "候选仓打包面（市场元数据、CI、示例、徽标、自测），不进技能目录与注入面。"
+    },
+    {
+     "src": "assets/readme-tastecode-dark.webp",
+     "action": "drop",
+     "dst": null,
+     "why": "候选仓打包面（市场元数据、CI、示例、徽标、自测），不进技能目录与注入面。"
+    },
+    {
+     "src": "assets/readme-tastecode.webp",
+     "action": "drop",
+     "dst": null,
+     "why": "候选仓打包面（市场元数据、CI、示例、徽标、自测），不进技能目录与注入面。"
+    },
+    {
+     "src": "assets/sponsors/imgly-logo.svg",
+     "action": "drop",
+     "dst": null,
+     "why": "候选仓打包面（市场元数据、CI、示例、徽标、自测），不进技能目录与注入面。"
+    },
+    {
+     "src": "assets/sponsors/interfaces-dev-icon.webp",
+     "action": "drop",
+     "dst": null,
+     "why": "候选仓打包面（市场元数据、CI、示例、徽标、自测），不进技能目录与注入面。"
+    },
+    {
+     "src": "assets/sponsors/kimi-icon.png",
+     "action": "drop",
+     "dst": null,
+     "why": "候选仓打包面（市场元数据、CI、示例、徽标、自测），不进技能目录与注入面。"
+    },
+    {
+     "src": "assets/sponsors/reactbits-icon-dark.svg",
+     "action": "drop",
+     "dst": null,
+     "why": "候选仓打包面（市场元数据、CI、示例、徽标、自测），不进技能目录与注入面。"
+    },
+    {
+     "src": "assets/sponsors/reactbits-icon-light.svg",
+     "action": "drop",
+     "dst": null,
+     "why": "候选仓打包面（市场元数据、CI、示例、徽标、自测），不进技能目录与注入面。"
+    },
+    {
+     "src": "assets/sponsors/sentdm.png",
+     "action": "drop",
+     "dst": null,
+     "why": "候选仓打包面（市场元数据、CI、示例、徽标、自测），不进技能目录与注入面。"
+    },
+    {
+     "src": "assets/sponsors/sidrune-ai.png",
+     "action": "drop",
+     "dst": null,
+     "why": "候选仓打包面（市场元数据、CI、示例、徽标、自测），不进技能目录与注入面。"
+    },
+    {
+     "src": "assets/sponsors/vercel-logo.svg",
+     "action": "drop",
+     "dst": null,
+     "why": "候选仓打包面（市场元数据、CI、示例、徽标、自测），不进技能目录与注入面。"
+    },
+    {
+     "src": "assets/taste-skill-wordmark-dark.png",
+     "action": "drop",
+     "dst": null,
+     "why": "候选仓打包面（市场元数据、CI、示例、徽标、自测），不进技能目录与注入面。"
+    },
+    {
+     "src": "assets/taste-skill-wordmark.png",
+     "action": "drop",
+     "dst": null,
+     "why": "候选仓打包面（市场元数据、CI、示例、徽标、自测），不进技能目录与注入面。"
+    },
+    {
+     "src": "assets/vercel-oss-program-badge.svg",
+     "action": "drop",
+     "dst": null,
+     "why": "候选仓打包面（市场元数据、CI、示例、徽标、自测），不进技能目录与注入面。"
+    },
+    {
+     "src": "examples/v2/CREDITS.md",
+     "action": "drop",
+     "dst": null,
+     "why": "候选仓打包面（市场元数据、CI、示例、徽标、自测），不进技能目录与注入面。"
+    },
+    {
+     "src": "examples/v2/coffee-questions.webp",
+     "action": "drop",
+     "dst": null,
+     "why": "候选仓打包面（市场元数据、CI、示例、徽标、自测），不进技能目录与注入面。"
+    },
+    {
+     "src": "examples/v2/coffee-roast.webp",
+     "action": "drop",
+     "dst": null,
+     "why": "候选仓打包面（市场元数据、CI、示例、徽标、自测），不进技能目录与注入面。"
+    },
+    {
+     "src": "examples/v2/coffee-storefront.webp",
+     "action": "drop",
+     "dst": null,
+     "why": "候选仓打包面（市场元数据、CI、示例、徽标、自测），不进技能目录与注入面。"
+    },
+    {
+     "src": "examples/v2/night-dates.webp",
+     "action": "drop",
+     "dst": null,
+     "why": "候选仓打包面（市场元数据、CI、示例、徽标、自测），不进技能目录与注入面。"
+    },
+    {
+     "src": "install.sh",
+     "action": "drop",
+     "dst": null,
+     "why": "候选仓打包面（市场元数据、CI、示例、徽标、自测），不进技能目录与注入面。"
+    },
+    {
+     "src": "tests/frontmatter.mjs",
+     "action": "drop",
+     "dst": null,
+     "why": "候选仓打包面（市场元数据、CI、示例、徽标、自测），不进技能目录与注入面。"
+    },
+    {
+     "src": "tests/inspection-files.mjs",
+     "action": "drop",
+     "dst": null,
+     "why": "候选仓打包面（市场元数据、CI、示例、徽标、自测），不进技能目录与注入面。"
+    },
+    {
+     "src": "tests/profile-cleanup.mjs",
+     "action": "drop",
+     "dst": null,
+     "why": "候选仓打包面（市场元数据、CI、示例、徽标、自测），不进技能目录与注入面。"
+    },
+    {
+     "src": "tests/text-encoding.mjs",
+     "action": "drop",
+     "dst": null,
+     "why": "候选仓打包面（市场元数据、CI、示例、徽标、自测），不进技能目录与注入面。"
+    }
+   ],
+   "landable_src_note": "landable 语料 = 候选技能目录内可落件（清单见 files 的 land 行）+ 候选仓根许可件；缺件与仓级打包件不在语料内，故对它们置 land 必被拒。"
+  }
+ ],
+ "dropped_refs": [
+  {
+   "idx": 0,
+   "skill": "A-prompt-better",
+   "ref": "references/templates.md",
+   "disposition": "map_to_landed_sidecar",
+   "dst": "references/templates.md",
+   "why": "候选侧存在该件；落地同名 sidecar 后本地可解析，不丢引用。",
+   "measure": "r304b_c6"
+  },
+  {
+   "idx": 1,
+   "skill": "A-prompt-better",
+   "ref": "references/templates.md",
+   "disposition": "map_to_landed_sidecar",
+   "dst": "references/templates.md",
+   "why": "候选侧存在该件；落地同名 sidecar 后本地可解析，不丢引用。",
+   "measure": "r304b_c6"
+  },
+  {
+   "idx": 2,
+   "skill": "A-prompt-better",
+   "ref": "references/templates.md",
+   "disposition": "map_to_landed_sidecar",
+   "dst": "references/templates.md",
+   "why": "候选侧存在该件；落地同名 sidecar 后本地可解析，不丢引用。",
+   "measure": "r304b_c6"
+  },
+  {
+   "idx": 3,
+   "skill": "A-prompt-better",
+   "ref": "references/templates.md",
+   "disposition": "map_to_landed_sidecar",
+   "dst": "references/templates.md",
+   "why": "候选侧存在该件；落地同名 sidecar 后本地可解析，不丢引用。",
+   "measure": "r304b_c6"
+  },
+  {
+   "idx": 4,
+   "skill": "A-prompt-better",
+   "ref": "references/templates.md",
+   "disposition": "map_to_landed_sidecar",
+   "dst": "references/templates.md",
+   "why": "候选侧存在该件；落地同名 sidecar 后本地可解析，不丢引用。",
+   "measure": "r304b_c6"
+  },
+  {
+   "idx": 5,
+   "skill": "A-prompt-better",
+   "ref": "references/templates.md",
+   "disposition": "map_to_landed_sidecar",
+   "dst": "references/templates.md",
+   "why": "候选侧存在该件；落地同名 sidecar 后本地可解析，不丢引用。",
+   "measure": "r304b_c6"
+  },
+  {
+   "idx": 6,
+   "skill": "A-prompt-better",
+   "ref": "references/templates.md",
+   "disposition": "map_to_landed_sidecar",
+   "dst": "references/templates.md",
+   "why": "候选侧存在该件；落地同名 sidecar 后本地可解析，不丢引用。",
+   "measure": "r304b_c6"
+  },
+  {
+   "idx": 7,
+   "skill": "A-prompt-better",
+   "ref": "references/patterns.md",
+   "disposition": "map_to_landed_sidecar",
+   "dst": "references/patterns.md",
+   "why": "候选侧存在该件；落地同名 sidecar 后本地可解析，不丢引用。",
+   "measure": "r304b_c6"
+  },
+  {
+   "idx": 8,
+   "skill": "A-prompt-better",
+   "ref": "references/patterns.md",
+   "disposition": "map_to_landed_sidecar",
+   "dst": "references/patterns.md",
+   "why": "候选侧存在该件；落地同名 sidecar 后本地可解析，不丢引用。",
+   "measure": "r304b_c6"
+  },
+  {
+   "idx": 0,
+   "skill": "frontend-skill",
+   "ref": "scripts/draw.mjs",
+   "disposition": "map_to_landed_sidecar",
+   "dst": "scripts/draw.mjs",
+   "unblock": null,
+   "why": "候选侧存在该件；落地同名 sidecar 后本地可解析，不丢引用。",
+   "measure": "r304b_c6"
+  },
+  {
+   "idx": 1,
+   "skill": "frontend-skill",
+   "ref": "scripts/inspect.mjs",
+   "disposition": "block",
+   "dst": null,
+   "unblock": "补取缺件或补齐 Chrome / 网络后复跑脚本探针",
+   "why": "只能丢引用或卡住等补件，本计划选卡住；理由见同 skill 的 block 行与 blocked 表。",
+   "measure": "r304b_c6"
+  },
+  {
+   "idx": 2,
+   "skill": "frontend-skill",
+   "ref": "references/app-screens.md",
+   "disposition": "map_to_landed_sidecar",
+   "dst": "references/app-screens.md",
+   "unblock": null,
+   "why": "候选侧存在该件；落地同名 sidecar 后本地可解析，不丢引用。",
+   "measure": "r304b_c6"
+  },
+  {
+   "idx": 3,
+   "skill": "frontend-skill",
+   "ref": "assets/charts.js",
+   "disposition": "block",
+   "dst": null,
+   "unblock": "补取缺件或补齐 Chrome / 网络后复跑脚本探针",
+   "why": "只能丢引用或卡住等补件，本计划选卡住；理由见同 skill 的 block 行与 blocked 表。",
+   "measure": "r304b_c6"
+  },
+  {
+   "idx": 4,
+   "skill": "frontend-skill",
+   "ref": "scripts/assets.mjs",
+   "disposition": "block",
+   "dst": null,
+   "unblock": "补取缺件或补齐 Chrome / 网络后复跑脚本探针",
+   "why": "只能丢引用或卡住等补件，本计划选卡住；理由见同 skill 的 block 行与 blocked 表。",
+   "measure": "r304b_c6"
+  },
+  {
+   "idx": 5,
+   "skill": "frontend-skill",
+   "ref": "references/copy.md",
+   "disposition": "map_to_landed_sidecar",
+   "dst": "references/copy.md",
+   "unblock": null,
+   "why": "候选侧存在该件；落地同名 sidecar 后本地可解析，不丢引用。",
+   "measure": "r304b_c6"
+  },
+  {
+   "idx": 6,
+   "skill": "frontend-skill",
+   "ref": "references/copy.md",
+   "disposition": "map_to_landed_sidecar",
+   "dst": "references/copy.md",
+   "unblock": null,
+   "why": "候选侧存在该件；落地同名 sidecar 后本地可解析，不丢引用。",
+   "measure": "r304b_c6"
+  },
+  {
+   "idx": 7,
+   "skill": "frontend-skill",
+   "ref": "references/imagery.md",
+   "disposition": "map_to_landed_sidecar",
+   "dst": "references/imagery.md",
+   "unblock": null,
+   "why": "候选侧存在该件；落地同名 sidecar 后本地可解析，不丢引用。",
+   "measure": "r304b_c6"
+  },
+  {
+   "idx": 8,
+   "skill": "frontend-skill",
+   "ref": "references/scenes.md",
+   "disposition": "map_to_landed_sidecar",
+   "dst": "references/scenes.md",
+   "unblock": null,
+   "why": "候选侧存在该件；落地同名 sidecar 后本地可解析，不丢引用。",
+   "measure": "r304b_c6"
+  },
+  {
+   "idx": 9,
+   "skill": "frontend-skill",
+   "ref": "references/type.md",
+   "disposition": "map_to_landed_sidecar",
+   "dst": "references/type.md",
+   "unblock": null,
+   "why": "候选侧存在该件；落地同名 sidecar 后本地可解析，不丢引用。",
+   "measure": "r304b_c6"
+  },
+  {
+   "idx": 10,
+   "skill": "frontend-skill",
+   "ref": "references/colour.md",
+   "disposition": "map_to_landed_sidecar",
+   "dst": "references/colour.md",
+   "unblock": null,
+   "why": "候选侧存在该件；落地同名 sidecar 后本地可解析，不丢引用。",
+   "measure": "r304b_c6"
+  },
+  {
+   "idx": 11,
+   "skill": "frontend-skill",
+   "ref": "references/layout.md",
+   "disposition": "map_to_landed_sidecar",
+   "dst": "references/layout.md",
+   "unblock": null,
+   "why": "候选侧存在该件；落地同名 sidecar 后本地可解析，不丢引用。",
+   "measure": "r304b_c6"
+  }
+ ],
+ "dropped_refs_note": "A 臂 9 条逐字照 r304b 数组；F 臂逐字照 r304b 数组的 12 条（refs_n 读作 36，差异见 plan_boundary.evidence_state.partial）。处置只有两类：映射到本地等价件（落地同名 sidecar）或卡住等补件；本计划未采用丢引用。",
+ "ref_enrichment": {
+  "measure": "r305b grep 候选 SKILL.md 的路径型 token（非 C6 尺，禁与 dropped_refs 计数合并）",
+  "tokens_added": [
+   "assets/app.css",
+   "assets/base.css",
+   "assets/scenes/demo",
+   "references/critique.md",
+   "references/motion.md",
+   "references/tells.md",
+   "references/research.md",
+   "scripts/lint.mjs",
+   "scripts/scenes.mjs"
+  ],
+  "handling": "除 assets/scenes/demo 外均随同名 sidecar 落地后本地可解析；该 demo 路径在候选树实测不存在，判为运行期生成目录引用，不落盘。"
+ },
+ "blocked": [
+  {
+   "id": "B1",
+   "skill": "frontend-skill",
+   "kind": "env",
+   "target": "scripts/inspect.mjs",
+   "evidence": "r304c 探针实测 rc=1，本机无 Chrome。",
+   "unblock": "装 Chrome 或改走可用 CDP 浏览器后复跑探针，探针绿才落。"
+  },
+  {
+   "id": "B2",
+   "skill": "frontend-skill",
+   "kind": "env",
+   "target": "scripts/assets.mjs",
+   "evidence": "r304c 探针实测 rc=124（网络超时）。",
+   "unblock": "网络可达后复跑探针，探针绿才落。"
+  },
+  {
+   "id": "B3",
+   "skill": "frontend-skill",
+   "kind": "candidate_gap",
+   "target": "assets/charts.js",
+   "evidence": "C6 读数列为候选取件缺件（同件在候选 SKILL.md 出现 2 次）；上游树读数该路径在盘，两读数冲突。",
+   "unblock": "按 pin 后的 sha 重取该件内容，再按 land 落件并复算引用可解析性。"
+  },
+  {
+   "id": "B4",
+   "skill": "frontend-skill",
+   "kind": "candidate_gap",
+   "target": "assets/base.js",
+   "evidence": "C6 读数列为候选取件缺件（候选 SKILL.md 出现 1 次）；上游树读数该路径在盘。",
+   "unblock": "同上，重取并钉 sha 后再落。"
+  }
+ ],
+ "blocked_note": "A 臂无脚本锚点（r304c 实测），故无环境类卡点；卡点全在 F 臂。",
+ "merge_order": [
+  "1 取件并钉 sha（含 B3 与 B4 两件补取）",
+  "2 落 sidecar 新件（先不动 SKILL.md）",
+  "3 增量改写 SKILL.md",
+  "4 复算引用可解析性（现读 C6 同尺）",
+  "5 最后写指针与提交"
+ ],
+ "rollback": {
+  "pre_state": {
+   "git_head_short": "a9a98ba6",
+   "root_tracked": true,
+   "recorded_by": "r305b 实测（逐件 sha256，见各 skill 的 local_pre_state_files）",
+   "local_file_counts": {
+    "A-prompt-better": 2,
+    "frontend-skill": 4
+   },
+   "note": "写前状态 = 两技能目录的现存文件清单加逐件 sha256 加仓根 HEAD；本计划不含任何写动作，故该状态在计划落地时须重测一次再比。"
+  },
+  "how": [
+   "写前：逐件 sha256 抄录并落文件级快照副本（快照落受管根外的落点，禁以 _bak 命名）。",
+   "写前：确认仓根可回滚（本仓根已跟踪，HEAD 短号见 pre_state）。",
+   "回退新件：删除本轮新增的 sidecar，逐件 sha256 与原目录清单比对。",
+   "回退改件：对 SKILL.md 用仓内单件检出恢复，或对已提交的换装提交做反向提交；只回退本会话自己的提交。",
+   "回退完成判据：两技能目录 sha256 与 pre_state 全等，且引用可解析性复算回到写前基线。"
+  ],
+  "hard_precondition": "破坏性动作双硬前提：文件级快照就位 且 仓可回滚；缺一不落。"
+ }
+}

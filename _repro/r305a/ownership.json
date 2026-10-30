@@ -1,0 +1,58 @@
+{
+  "schema": "r305a.watchdog-ownership.v1",
+  "measured_at": "2026-10-30T17:34:18.054Z",
+  "verdict": "已实测",
+  "watchdog": {
+    "file": "05-exec/r260_quarterly_cadence.py",
+    "glob_patterns": [
+      "06-benchmark/quarterly*/*/audit.json",
+      "06-benchmark/quarterly*/audit.json"
+    ],
+    "newest_rule": "max generated_at over the face; directory names are not ranked",
+    "stale_threshold_days": 100,
+    "exit_codes": {
+      "fresh": 0,
+      "stale": 1,
+      "unverified": 2
+    },
+    "fail_token": "[CADENCE:FAIL]",
+    "fail_line_names": "05-exec/r113_quarterly_audit.py --offline",
+    "fail_line_reading": "the watchdog names the depth audit as the runner that must be executed when the archive is stale"
+  },
+  "owners": [
+    {
+      "watchdog_artifact": "the archive the quarterly cadence watchdog ranks for its green light",
+      "producer": "05-exec/r113_quarterly_audit.py",
+      "producer_key": "quarterly_depth_audit",
+      "path": "06-benchmark/quarterly/<quarter>/audit.json",
+      "satisfies_watchdog": true,
+      "role": "designated owner",
+      "responsible_for_green": true,
+      "why": "the watchdogs own failing line names this runner as the actor to execute; only this artifact is evidence that the quarterly cadence happened",
+      "evidence": "verbatim in the leg A output below; the face patterns captured from the picker are relative to the repository root"
+    },
+    {
+      "watchdog_artifact": "the same face, reached through a differently named sibling directory",
+      "producer": "_repro/r304a/r304_quarterly_version_scan.py",
+      "producer_key": "version_scan",
+      "path": "06-benchmark/quarterly_r304a/<quarter>/audit.json",
+      "satisfies_watchdog": true,
+      "satisfies_watchdog_when": "the scan output root is the repository scan root, or an archive is copied into a sibling directory already inside the face",
+      "default_run_in_face": false,
+      "role": "parasite: shares the face and produces no cadence evidence",
+      "responsible_for_green": false,
+      "why": "the face wildcard matches any sibling whose name starts with the same prefix, and the scan stamps its document with the exact format the watchdog parses",
+      "evidence": "the producer own builder output, written at the producer own declared path, is returned by the watchdogs own picker",
+      "alarm": "FAKE-GREEN-RISK"
+    }
+  ],
+  "fake_green_risk": {
+    "state": "open",
+    "what": "a version scan can keep the quarterly watchdog green while the depth audit never ran",
+    "how": "point the scan output root at the repository scan root, or copy a scan archive into a sibling directory already inside the face",
+    "why_the_producer_self_declaration_does_not_close_it": "the scan document declares its own default run out of the face, yet its path rule and stamp format are face compatible and nothing rejects a scan archive from being ranked",
+    "guard": "this table requires the version-scan row to carry satisfies_watchdog=false only while the artifact is truly out of face; it was measured in face, so the row carries true and the alarm stays open",
+    "owner": "quarterly_depth_audit",
+    "resolution": "keep the depth audit as the only accepted green evidence; never cite a scan archive as proof that the quarterly cadence ran"
+  }
+}

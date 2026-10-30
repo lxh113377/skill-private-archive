@@ -16,7 +16,8 @@ How it works:
   3. partition the records - upstream-side movement becomes an absorption candidate,
      local-side movement becomes local drift, a fetch failure becomes unknown;
   4. write the quarter archive under the output root, stamped with a naive local
-     generated_at so the existing quarterly cadence watchdog can read it;
+     generated_at in the same textual form as the cadence watchdog uses, **but deliberately placed OUTSIDE that
+     watchdog's face** (r305: the prefix must not match quarterly*) so this scan can never make it green;
   5. print one machine-readable summary line.
 
 Exit codes: 0 scanned / 2 baseline missing (UNVERIFIED, never read as no-change).
@@ -33,7 +34,11 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 REPO_ROOT = os.path.dirname(os.path.dirname(HERE))
 DEFAULT_BASELINE = os.path.join(REPO_ROOT, '_repro', 'r303a', 'absorption_baseline.json')
 DEFAULT_COMPARATOR = os.path.join(REPO_ROOT, '_repro', 'r303a', 'compare_baseline.py')
-QUARTER_PREFIX = 'quarterly_r304a'
+# r305 修（A1 实测报警）：原名 'quarterly_r304a' 会**命中**季档看门狗的 glob（06-benchmark/quarterly*/*/audit.json），
+# 于是「把输出根指到仓根」时看门狗会取走本件的季档 ⇒ 假绿风险（r305a 用看门狗自带 picker 实测 watchdog_picker_sees_it=true）。
+# 改成一个**不匹配 quarterly*** 的目录名：本件落 06-benchmark/version_scan/<季>/audit.json，
+# 即使有人把它指到仓根，看门狗也取不到 ⇒ 它永远不能冒充 r113 的深度季档。
+QUARTER_PREFIX = 'version_scan'
 WATCHDOG_STAMP_FMT = '%Y-%m-%dT%H:%M:%S'
 FIVE_STATES = ('OK', 'LOCAL_CHANGED', 'UPSTREAM_CHANGED', 'BOTH_CHANGED', 'UNKNOWN')
 UPSTREAM_STATES = ('UPSTREAM_CHANGED', 'BOTH_CHANGED')

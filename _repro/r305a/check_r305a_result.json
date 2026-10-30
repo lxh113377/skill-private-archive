@@ -1,0 +1,116 @@
+{
+ "schema": "r305a.check.v1",
+ "measured_at": "2026-10-31T01:35:04",
+ "watchdog_face": [
+  "06-benchmark/quarterly*/*/audit.json",
+  "06-benchmark/quarterly*/audit.json"
+ ],
+ "max_days": 100,
+ "live_reading": {
+  "schema": "r260-quarterly-cadence-v1",
+  "readonly": true,
+  "provenance_cmd": "python 05-exec/r260_quarterly_cadence.py --json <件>",
+  "newest_audit": "06-benchmark\\quarterly_r260c\\2026Q4\\audit.json",
+  "generated_at": "2026-10-28T16:26:30",
+  "max_days": 100,
+  "rc": 0,
+  "reading": "季产物龄期 2.4 天 ≤ 上限 100 天"
+ },
+ "live_stdout": "[CADENCE] 最新季产物 = 06-benchmark\\quarterly_r260c\\2026Q4\\audit.json（2026-10-28T16:26:30）\n[CADENCE] 季产物龄期 2.4 天 ≤ 上限 100 天\n[CADENCE:PASS] 季度节律在限内\nJSON -> C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\_temp\\r305a\\_scratch\\r305a_live_6rl5ajiv.json\n",
+ "legA_verbatim": "[CADENCE] 最新季产物 = _temp\\r305a\\_scratch\\r305a_legA_dzf85zzn\\06-benchmark\\quarterly_r305a\\2020Q1\\audit.json（2020-01-01T00:00:00）\n[CADENCE] 季产物超龄 2495.1 天 > 上限 100 天 ⇒ 季度巡检该跑了\n[CADENCE:FAIL] 季度巡检超龄 ⇒ 跑 python 05-exec/r113_quarterly_audit.py --offline\nJSON -> C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\_temp\\r305a\\_scratch\\r305a_legA_dzf85zzn\\watchdog_reading.json\n",
+ "legB_verbatim": "[CADENCE] 最新季产物 = _temp\\r305a\\_scratch\\r305a_legB_wa_ww4lh\\06-benchmark\\quarterly_r305a\\2026Q4\\audit.json（2026-10-28T12:00:00）\n[CADENCE] 季产物龄期 2.6 天 ≤ 上限 100 天\n[CADENCE:PASS] 季度节律在限内\nJSON -> C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\_temp\\r305a\\_scratch\\r305a_legB_wa_ww4lh\\watchdog_reading.json\n",
+ "legA_verdict": "rc1,age_days=2495.1,max_days=100,verdict=STALE_FAIL",
+ "legB_picked_quarter": "2026Q4",
+ "quarters": 2,
+ "version_scan_in_face": true,
+ "version_scan_declared_path": "06-benchmark/quarterly_r304a/2026Q4/audit.json",
+ "checks": [
+  {
+   "ok": true,
+   "name": "watchdog face has two patterns and the threshold is read from it",
+   "detail": "(['06-benchmark/quarterly*/*/audit.json', '06-benchmark/quarterly*/audit.json'], 100)"
+  },
+  {
+   "ok": true,
+   "name": "legA verdict is stale rc=1",
+   "detail": "(1, 1, '季产物超龄 2495.1 天 > 上限 100 天 ⇒ 季度巡检该跑了')"
+  },
+  {
+   "ok": true,
+   "name": "legA prints the failing token",
+   "detail": "跑了\n[CADENCE:FAIL] 季度巡检超龄 ⇒ 跑 python 05-exec/r113_quarterly_audit.py --offline\nJSON -> C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\_temp\\r305a\\_scratch\\r305a_legA_dzf85zzn\\watchdog_reading.json\n"
+  },
+  {
+   "ok": true,
+   "name": "legA failing line names the depth audit as the actor",
+   "detail": "k\\quarterly_r305a\\2020Q1\\audit.json（2020-01-01T00:00:00）\n[CADENCE] 季产物超龄 2495.1 天 > 上限 100 天 ⇒ 季度巡检该跑了\n[CADENCE:FAIL] 季度巡检超龄 ⇒ 跑 python 05-exec/r113_quarterly_audit.py --offline\nJSON -> C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\_temp\\r305a\\_scratch\\r305a_legA_dzf85zzn\\watchdog_reading.json\n"
+  },
+  {
+   "ok": true,
+   "name": "legA newest archive is the over-age one, not a fresh stand-in",
+   "detail": "2020-01-01T00:00:00"
+  },
+  {
+   "ok": true,
+   "name": "legB verdict is fresh rc=0",
+   "detail": "(0, 0, '季产物龄期 2.6 天 ≤ 上限 100 天')"
+  },
+  {
+   "ok": true,
+   "name": "legB picks the new quarter and the identifier is right",
+   "detail": "('2026-10-28T12:00:00', '2026Q4', '_temp\\\\r305a\\\\_scratch\\\\r305a_legB_wa_ww4lh\\\\06-benchmark\\\\quarterly_r305a\\\\2026Q4\\\\audit.json')"
+  },
+  {
+   "ok": true,
+   "name": "legB face reaches both archives",
+   "detail": "2"
+  },
+  {
+   "ok": true,
+   "name": "version-scan document is written at the path its producer declares",
+   "detail": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\_temp\\r305a\\_scratch\\r305a_ver_nb3_ypww\\06-benchmark\\quarterly_r304a\\2026Q4\\audit.json"
+  },
+  {
+   "ok": true,
+   "name": "version-scan stamp matches the watchdog stamp format",
+   "detail": "2026-10-28T12:00:00"
+  },
+  {
+   "ok": true,
+   "name": "ownership table present and parses",
+   "detail": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\_temp\\r305a\\ownership.json"
+  },
+  {
+   "ok": true,
+   "name": "scan row satisfies_watchdog equals the measured face",
+   "detail": "(True, True)"
+  },
+  {
+   "ok": true,
+   "name": "scan row is not marked responsible for the green",
+   "detail": "False"
+  },
+  {
+   "ok": true,
+   "name": "depth audit row is the designated owner and is in the face",
+   "detail": "{'watchdog_artifact': 'the archive the quarterly cadence watchdog ranks for its green light', 'producer': '05-exec/r113_quarterly_audit.py', 'producer_key': 'quarterly_depth_audit', 'path': '06-benchmark/quarterly/<quarter>/audit.json', 'satisfies_watchdog': True, 'role': 'designated owner', 'responsible_for_green': True, 'why': 'the watchdogs own failing line names this runner as the actor to execute; only this artifact is evidence that the quarterly cadence happened', 'evidence': 'verbatim in the leg A output below; the face patterns captured from the picker are relative to the repository root'}"
+  },
+  {
+   "ok": true,
+   "name": "ownership threshold equals the watchdog default",
+   "detail": "(100, 100)"
+  },
+  {
+   "ok": true,
+   "name": "ownership face patterns equal the measured patterns",
+   "detail": "(['06-benchmark/quarterly*/*/audit.json', '06-benchmark/quarterly*/audit.json'], ['06-benchmark/quarterly*/*/audit.json', '06-benchmark/quarterly*/audit.json'])"
+  },
+  {
+   "ok": true,
+   "name": "ownership carries the fake-green alarm when the scan is in the face",
+   "detail": "(True, 'open')"
+  }
+ ],
+ "failed": [],
+ "longterm_line": "[R305A:LONGTERM] watchdog_face=06-benchmark/quarterly*/*/audit.json,06-benchmark/quarterly*/audit.json version_scan_in_face=true quarters=2 newest=2026Q4 stale=2020Q1 stale_verdict=rc1,age_days=2495.1,max_days=100,verdict=STALE_FAIL"
+}

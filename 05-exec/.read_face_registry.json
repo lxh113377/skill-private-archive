@@ -212,5 +212,9 @@
  "r296_ledger_insert.py": {
   "evidence": "06-benchmark/r296_insert_selftest.txt",
   "registered_at": "2026-10-30 12:21"
+ },
+ "r305_wiring_headroom.py": {
+  "evidence": "_temp/r305_headroom.json",
+  "registered_at": "2026-10-31 01:39"
  }
 }

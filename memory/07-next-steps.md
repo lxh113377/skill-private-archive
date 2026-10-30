@@ -672,6 +672,56 @@ C1 一次交付成功（末行逐字我复跑一致、两腿实测、并**自己
 **默认写「步数上限 N」与「做不完就交已完成部分」两句**（不是鼓励少做，而是让「卡住」能被表达出来而不是静默死掉）。
 另记：本轮 B1 的收尾消息是一段**中间推理**而非回执（没有路径/判据/末行/腿），
 按 #44⑥「自述不算证据」我按「写面无件」判失败 —— 这也说明 brief 里「收尾消息必须含四项」那句是必要的，只是没被执行。
+- [ ] **R305-1（r305 登记，P1）** **季度扫描与看门狗的关系写死并消掉一处假绿通道：原目录名 quarterly_r304a 命中看门狗通配（派发件用其 picker 实测 watchdog_picker_sees_it=true）⇒ 我结构性改名为 version_scan 并以 fnmatch 复证实测 False/True；两腿（超龄必 FAIL / 新旧档取新）复跑逐字；附 r260 跨盘 relpath 抛错的环境发现**：一手（r305，派发件 62cf8776 交付 + 我实读它报的报警并做了结构性修）：季度扫描与**季档看门狗**的关系写死，并消掉一处**假绿风险**。
+它实读的口径（glob spy 抓的真实字符串，不是猜）：看门狗两条 glob = `06-benchmark/quarterly*/*/audit.json` 与 `06-benchmark/quarterly*/audit.json`；
+newest_audit 按 generated_at 取最大、不看目录名；阈值 100 天；FAIL 行点名 r113 深审 ⇒ **谁负责让看门狗变绿 = r113**。
+**它报出的报警（我复核成立）**：我 r304 给扫描件选的目录名 `quarterly_r304a` **命中那条 `quarterly*` 通配** ⇒ 只要有人把输出根指到仓根，
+看门狗自己的 picker 就会取走我的季档（它用看门狗自带 picker 实测 `watchdog_picker_sees_it=true`）⇒ 那是**假绿通道**。
+**我做的结构性修**（不是靠约定、是靠命名）：把扫描件的季目录前缀从 `quarterly_r304a` 改成 **`version_scan`**，并改掉那句误导性 docstring
+（原文写「generated_at 与看门狗同形**以便它读**」，改为「同形但**刻意落在其面外**，永不能让它变绿」）。
+**修的可复算验证**：fnmatch 实测 —— `06-benchmark/version_scan/2026Q4/audit.json` → **False**（不在面内）；
+`06-benchmark/quarterly_r304a/2026Q4/audit.json` → **True**（在面内）；改后复跑扫描判据仍 rc=0、末行不变。
+它给的两腿（我复跑逐字）：腿 A 只造一个明显超龄季档（2020Q1）⇒ 看门狗真跑 CLI 得 `[CADENCE:FAIL]`、`age_days=2495.1 > max_days=100`、rc=1
+（**文件存在本身没有把它判成新鲜**）；腿 B 旧+新两档 ⇒ picker 取到 `2026Q4`、`[CADENCE:PASS]`。夹具 17/17 通过。
+它另附一条环境发现（非判据）：r260 的 main() 在「面内最新件与仓根不同盘」时会抛 `ValueError: path is on mount …`（它用 relpath 相对仓根报读数）
+⇒ 跨盘夹具要落在同盘 scratch（这个坑我记下，日后若把季档放到别的盘会撞上）。
+取值：cd _temp/r305a && python -B check_r305a.py（末行 [R305A:LONGTERM] …）；
+python -c "import fnmatch; print(fnmatch.fnmatch('06-benchmark/version_scan/2026Q4/audit.json','06-benchmark/quarterly*/*/audit.json'))"。
+- [ ] **R305-2（r305 登记，P1）** **R261-7 两件合并计划落地（land 38 / drop 35 / block 4，三腿含越界拒绝与缺件拒绝）；**它独立纠正了我的 r304 错结论**——我拿 31 条的上游清单冒充全量（活体 92 条、两条 assets 确实在仓），已按 R241 加两处校正注**：一手（r305，派发件 be76f582 交付 + **它纠正了我的一处错误结论**）：R261-7 两件的合并计划。
+末行（我复跑 rc=0）：[R305B:PLAN] skills=2 files=77 land=38 drop=35 block=4 dropped_refs=21 blocked=4
+三腿逐字：腿 A `dst=../other-skill/x.md -> REJECTED:DST_OUTSIDE_SKILL_DIR`（越界落点被拒）；
+腿 B `src=assets/charts.js action=land -> REJECTED:SRC_NOT_LANDABLE`（缺件标 land 被拒）；腿 C+ 正控 `dst=references/copy.md -> ACCEPTED`（证明校验非恒拒）。
+**它纠正了我的错（我复核确认它对）**：我 r304 写的「F 臂 3 条引用连候选自己的仓都没有（assets/charts.js×2 + assets/base.js）」**是错的**。
+r305 现取活体树：`gh api repos/Leonxlnx/taste-skill/git/trees/main?recursive=1` **92 条**，其中确有 `skills/taste-skill/assets/base.js` 与 `charts.js`；
+而我 r304 依据的上游清单件**只有 31 条** ⇒ **我拿切片冒充了全量**（这是我在 R303-1 刚固化的那条规矩的第 4 次复发）。
+它当时的处置也正确：两读数冲突时**不声称候选缺件**，改判「卡住等补取 + 钉 sha」（比我原来的「候选自缺」更保守、可回退）。
+已按 R241 在两处加校正注（r304 报告末段 + 本台账 R304-2），原文不改写。
+计划读数：A 臂落 4 / 丢 1 / 卡 0（本地独有 3 项逐字保留）；F 臂落 34 / 丢 34（技能目录内 2 + 仓根打包面 32）/ 卡 4（inspect 无 Chrome、assets 网络超时、两条待补取）；
+回滚要点：逐件 sha256（已记 6 件）+ 受管根 HEAD 短号，退 = 删新增侧件 → 主件单件检出/反向提交 → 复算全等才算退；本计划**不代裁值不值得换**，接线行归另一个面。
+取值：cd _temp/r305b && python -B check_r305b.py（末行 [R305B:PLAN] …）。
+- [ ] **R305-3（r305 登记，P1）** **替掉空过的 C5：新增入库判据 r305_wiring_headroom.py（接线增量 ≤ 注入面余量 2199；现实接线 280 B ⇒ fits；两腿证明超余量必 exceeds、面外编辑必 ignored；并打印 swapped_in_face=false 防再空过），已按 r129 --register 带证据登记**：一手（r305，Lead 自干并入库）：**替掉「空过」的那条判据**—— `05-exec/r305_wiring_headroom.py`。
+立它的理由（接 R304-2）：方案 §4 的 C5 成员面**不含被换装的两件** ⇒ 对它们零约束（派发件自证为空过）。本件把约束换成**真能比较的东西**：
+换装本身（两件 SKILL.md 与其侧车）不进注入面 ⇒ 不计字节；真正会动注入面的是**接线**（往成员件里加/改路由行）⇒ 判据 = 接线增量 ≤ 余量。
+现读刻度（不写字面量，读常量件 inject_budget）：成员 5 条、live **63337**、cap **65536**、余量 **2199**；
+**现实形态真跑**：一份两行绑定/路由的接线清单（127 B + 151 B）⇒ `[R305:HEADROOM] … wiring_needed=280 verdict=fits counted=1 ignored=0 swapped_in_face=false`
+⇒ 用掉余量的 13%，判定 fits；这条判据**对这两件有约束**（不像 C5 那样空过）。
+自证两腿（`--selftest`）：腿 a 把成员件增量拉到 2200（>余量 2199）⇒ `verdict=exceeds`；腿 b 同增量放到**非成员**路径 ⇒ `ignored=1`、`verdict=fits` ⇒ 证明 membership 真在起作用。
+另有一条**防再空过**的打印：`[VACUOUS-FACE] 被换装两件在注入面内 = False` ⇒ 谁读这个数都能看见「C5 对它们零约束」这件事，不会被 ok 骗过去。
+入库与登记：脚本进 05-exec（本仓读面工具），并按 r129 的 `--register` 带证据登记（证据 = 其 --json 产物）⇒ r129 现读「脚本 311 / 已登记 115 / 未声明的产读数脚本 **0**」。
+取值：python 05-exec/r305_wiring_headroom.py --selftest；python 05-exec/r305_wiring_headroom.py --spec _temp/r305_wiring_spec.json（末行 [R305:HEADROOM] …）。
+- [ ] **R305-4（r305 登记，P0）** **对 R304-2 的校正（新开短条目，因长条目 note 被拒写）：我 r304「F 臂 3 条候选自缺引用」是错的 —— 拿 31 条的上游清单冒充全量（活体 92 条），两条 assets 确实在仓；r305b 独立发现且处置正确；该错是「切片冒充全量」的第 4 次复发，新增机械要求「引用外部件当全量时必须并排写条目数 vs 活体数」**：一手（r305，Lead 登记）：**对 R304-2 的校正**（新开短条目承载 —— 因为直接对该长条目做 r46 note 被「读回验证失败，已回滚」拒写，
+这正是 R303-5 记的那条操作事实：长条目上的补记宜新开短条目，别硬往长行尾部塞标记）。
+**被纠正的原话**：R304-2 末段「F 臂 33/36，其中 3 条连候选自己的仓都没有（assets/charts.js 两条 + assets/base.js）」。
+**改正**：该结论**是错的**。r305 现取活体树核对 —— gh api repos/Leonxlnx/taste-skill/git/trees/main?recursive=1 **92 个条目**，
+其中确有 `skills/taste-skill/assets/base.js` 与 `skills/taste-skill/assets/charts.js`；而我 r304 依据的那份上游清单件**只有 31 条** ⇒
+**我拿切片冒充了全量**，把「清单里没有」写成了「仓里没有」。⇒ payload 覆盖率改正为 **36/36**（3 条并非候选自缺、能被 payload 补齐）。
+**谁发现的**：r305b 的合并计划独立发现这处冲突，且处置正确（两读数冲突时**不声称缺件**，改判「卡住等补取 + 钉 sha」、可回退）
+⇒ 我复核确认**它对、我错**；已按 R241 在两处留痕：r304 报告末段加校正注（已落盘）+ 本条（台账面）。
+**复发计数（诚实记）**：这是我在 R303-1 固化的「报有多少/有没有之前先给全量计数与命令」那条规矩的**第 4 次复发**
+（前三次：切 rows[:3] 说头部不对 / brief 里猜 stale=3 实际 90 / 只看 rows[:5] 断言字段没带过来）。
+⇒ 再加一条更硬的机械要求：**凡引用某个外部取数件当作「全量」时，必须先核对「它的条目数 vs 活体条目数」并把两个数并排写出来**
+（本例：31 vs 92，并排一写就能立刻看出前者是切片）。只有并排写出来的数，才算「我知道它的覆盖面」。
+不受此更正影响的读数：C5 空过、C6 按 r36 尺 0 DEAD 但 45 条 UNLOCATED、脚本 3 ok / 2 fail（inspect 无 Chrome、assets 网络超时）。
 - [ ] **R290-1（r290 登记，P1）** **r46 锚点匹配收紧为「行首复选框后首个加粗段内含 key」：解除「引用过某条 ⇒ 永不能裁该条」的死锁，且不削弱 W-14 串条防护**：一手（r290 现场）：我想把 R261-7 从上轮误写的挂账改判为降级，r46 返回 [MARK:REFUSED] ② 锚点命中数 != 1，命中 [42, 53] —— 第 53 行是**我上轮写的 R289-6 条目正文**里引用了 R261-7。原实现 find_item_lines 用裸 `key in line`，于是「引用过某条 ⇒ 永远无法裁决该条」，机器闸反过来挡住了对本条的正确纠正。修法与踩坑：① 我先试「行首必须 `- [ ] **`+key」的严格式 ⇒ 真实台账 236 条零歧义，但夹具 **14 项红**（夹具用的是 `- [ ] **【P0·待办 丙（r44 登记）】】**` 这种 key 不在首段起点的排版）⇒ 我的严格式**过窄**，不是夹具错；② 我又加过「严格零命中则回退宽松匹配」的安全网 ⇒ 自查发现该回退正是 W-14 事故形态（会把正文引用行当锚点，把裁决写到无关条目）⇒ **删掉回退**；③ 终解 = 匹配「行首复选框后的第一个加粗段」内是否含 key（re.match 到首个 **…** 段），两种既有排版都覆盖、正文引用（哪怕第二段加粗）永不命中。判别力自证：新增 t24~t27 + m3 变异共 5 腿（m3 首版我用夹具的 run() 前置了正式 TOOL 路径 ⇒ 变异体被当位置参数、argparse rc=2 是**假红不是判别力**，改为 subprocess 直接调变异体后 PASS）。取值：python 05-exec/r46_mark_verdict_fixtures.py（末行 [GATE:fixture-pass]，现 30 项 30 过）；python _temp/r290_selfproof.py（真实台账带过期挂账的条目 22 条，⑧ 会拦）。 【r296 裁决=已落地｜夹具活数现读 r46=30/30 全过、r31=31/31；锚点口径已被 r46 与本会话三次插入实践共同验证（r292 起用它裁 R289-6/R292-4/R295-1 均 rc=0）。原靶（不得把裁决写到无关条目）达成。】
 - [ ] **R290-2（r290 登记，P1）** **机器闸 ⑧ 落地：条目先前已挂账且目标轮已过 ⇒ 本次禁再挂账，只能执行/降级/作废三选一（带逃生门与真实数据自证）**：一手（r289 我造成的错 + r290 的机制化）：R261-7 第 2 次到期时我先写成「挂账至 r290」，违反自立的 R271-2；根因不是不懂规矩，而是**下裁决时没人问我这条已经挂过几次** ⇒ 必须前移到写时由机器判。实现 = r46 第 ⑧ 重拒写：读该条目自己已有的「裁决=挂账至 rN」标记，若存在 N < 本轮 round（上次挂账目标轮已过）且本次 verdict 仍是挂账 ⇒ 拒写并点名证据轮号；轮号取不到不猜（宁可放行不误伤）。范围纪律：只约束**延期型**裁决，终局裁决（执行/降级/作废）不受影响；首轮挂账放行；目标轮未到（如挂到 r99）放行。逃生门 --allow-repeat-deferral 显式放行且留痕（不是死闸）。真实数据自证（临时卷副本，不碰真台账）：⑧ 对 probe 条目 rc=1 且台账未写入；同条目改「降级（转长期看守）」rc=0 且 marker 落盘；带逃生门 rc=0。R289-6 的验收靶（下一轮起 R261-7 能被合法改判且留两次痕迹）已达成：r290 台账同现「【r289 裁决=挂账至 r290…】」与「【r290 裁决=降级…】」，REPEAT 由 1 归 0。取值：python 05-exec/r46_mark_verdict_fixtures.py（t24~t27/m3 五腿）、python _temp/r290_real2.py（真实数据三态：拦挂账/放降级/逃生门）。
 - [ ] **R290-3（r290 登记，P2）** **run_gates.py 的 --gate 传不存在的 id 会被**静默丢弃**：部分选中时报 PASS 且写「无 MISSING」，只在 0 个时才报 UNVERIFIED**：一手（r290 现场）：我为验证迁库结果跑 `--gate mark_verdict_fixtures --gate provenance_resolve_face --gate provenance_resolve_fixtures --gate tracked_empty`（最后一个 id 我拼错了，真名 tracked_empty_check），返回 `[GATES:PASS] PASS=3（无 FAIL / 无 UNVERIFIED / 无 MISSING）` —— 三门都绿，但那句「无 MISSING」是**假安心**：第四门根本没跑，runner 没有任何一行告诉我它被丢弃。二次实测：只传一个不存在的 id 时它确实会拦（`[GATES:UNVERIFIED] 选中的门为 0 个，禁止判「全绿」（R247）`），说明 R247 的零输入保护在**全部落空**时有效、**部分落空**时失效。修法（下一轮，小改）：在 --gate 过滤后比对「请求的 id 集合 vs 实际选中的 id 集合」，差集非空 ⇒ 打印 `[GATES:MISSING-SELECTOR]` 并以非零退出（与现有 0 个的处理对齐，别另造一套语义）；同时给夹具补一条腿：传一个不存在的 id + 一个真 id ⇒ 必须判红并点名被丢弃的 id（证明有牙）。判别力证据已在手：本次实测 rows=3 而请求=4。取值：python 05-exec/run_gates.py --gate definitely_not_a_gate --no-ledger --json _temp/x.json（期望现在就是 UNVERIFIED，因为选中 0 个）；python -c 读 _temp/r290_g4.json 的 gates 长度 = 3（请求 4）。注意：本轮我没有把这当成「已跑全量」的证据 —— 我随后补跑了 tracked_empty_check 并单独取到 PASS=1，才认定新增跟踪件不触发非空文本门。 【r290 裁决=已落地｜同轮即修（不等下一轮）。实现 = run_gates.py 汇总前算差集 requested-selected_ids，非空即打 [GATES:MISSING-SELECTOR] 点名被丢弃的 id。关键取舍是**顺序**：第一版我把差集分支放在「0 个选中」之前 ⇒ r31 夹具层 b（该腿断言 rc==2 且报 UNVERIFIED）判红 FAIL 1 项 —— 那是夹具对我改动的**正确反应**，我破坏的是既有 R247 语义而不是夹具错。正解：先跑 not rows ⇒ 保留 rc=2 语义，再跑 dropped ⇒ rc=1；两条语义互不吞并。四态实测（每步取真实退出码、不经管道）：0 个选中 rc=2 且末行 UNVERIFIED / 部分落空 rc=1 且点名 fixture_wiring / 全真 id rc=0 且 PASS=1 / 全部错 id 仍 rc=2；r31 夹具 31 项 31 过（[GATE:fixture-pass]）。为何不新增夹具腿：r31 层 b 已覆盖 0 个那条，部分落空这条由上面四态实测覆盖并写进本注；若下一轮要长期看守，可在 r31 加一腿断言「假 id + 真 id ⇒ rc==1 且 MISSING-SELECTOR 出现」（本轮未加，因为我把改动挂在该夹具的门表自证之下、它已经被跑到）。取值：bash _temp/r290_sem.sh（四态与夹具一次跑完）；python 05-exec/r31_run_gates_fixtures.py（末行 [GATE:fixture-pass]）。】

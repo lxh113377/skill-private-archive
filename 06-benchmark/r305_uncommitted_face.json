@@ -1,0 +1,45 @@
+{
+ "schema": "uncommitted-this-round-v1",
+ "round": "305",
+ "dirty_tracked": 37,
+ "suspect_count": 5,
+ "suspects": [
+  {
+   "file": "05-exec/.read_face_registry.json",
+   "added_lines": 4,
+   "marker_lines": 2,
+   "strong_lines": 0,
+   "sample": "\"r305_wiring_headroom.py\": {"
+  },
+  {
+   "file": "06-benchmark/全量对标报告_r304_季度扫描工具与换装准入实测_2026-10-31.md",
+   "added_lines": 12,
+   "marker_lines": 4,
+   "strong_lines": 1,
+   "sample": "### 校正注（r305 · R241：原文不改写，只加注）"
+  },
+  {
+   "file": "DECOMPOSE.md",
+   "added_lines": 12,
+   "marker_lines": 5,
+   "strong_lines": 0,
+   "sample": "# DECOMPOSE · r305（把 r304 那三处「还差半步」补掉：空过的 C5 换成有约束的判据、季度扫描接进长效面、F 臂合并计划）"
+  },
+  {
+   "file": "_repro/r304a/r304_quarterly_version_scan.py",
+   "added_lines": 7,
+   "marker_lines": 3,
+   "strong_lines": 2,
+   "sample": "watchdog's face** (r305: the prefix must not match quarterly*) so this scan can never make it green;"
+  },
+  {
+   "file": "memory/07-next-steps.md",
+   "added_lines": 50,
+   "marker_lines": 10,
+   "strong_lines": 4,
+   "sample": "- [ ] **R305-1（r305 登记，P1）** **季度扫描与看门狗的关系写死并消掉一处假绿通道：原目录名 quarterly_r304a 命中看门狗通配（派发件用其 picker 实测 watchdog_picker_sees_"
+  }
+ ],
+ "limit_note": "工作树共享：本面不证明作者，只给线索（判据 = 新增行含本轮轮号；处置词只作强度标注 strong_lines）",
+ "disposal": "Lead 收尾前逐个提交或撤销；留着就走 = 发布面缺件（r290 实测）"
+}

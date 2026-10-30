@@ -1,0 +1,39 @@
+{
+ "schema": "r305a.cross-quarter.v1",
+ "watchdog": {
+  "path": "05-exec/r260_quarterly_cadence.py",
+  "glob_patterns": [
+   "06-benchmark/quarterly*/*/audit.json",
+   "06-benchmark/quarterly*/audit.json"
+  ],
+  "max_days": 100,
+  "newest_rule": "max generated_at over the face; directory names are not ranked"
+ },
+ "now": "2026-10-31T01:36:11",
+ "quarters_n": 2,
+ "quarters_in_face": 2,
+ "quarters": [
+  {
+   "quarter": "2020Q1",
+   "generated_at": "2020-01-01T00:00:00",
+   "age_days": 2495.1,
+   "rc": 1,
+   "verdict": "STALE",
+   "watchdog_reading": "季产物超龄 2495.1 天 > 上限 100 天 ⇒ 季度巡检该跑了"
+  },
+  {
+   "quarter": "2026Q4",
+   "generated_at": "2026-10-28T12:00:00",
+   "age_days": 2.6,
+   "rc": 0,
+   "verdict": "FRESH",
+   "watchdog_reading": "季产物龄期 2.6 天 ≤ 上限 100 天"
+  }
+ ],
+ "newest": "2026Q4",
+ "newest_selected_path": "06-benchmark/quarterly_r305a/2026Q4/audit.json",
+ "stale": "2020Q1",
+ "stale_rc": 1,
+ "stale_verdict": "季产物超龄 2495.1 天 > 上限 100 天 ⇒ 季度巡检该跑了",
+ "kept_at": "_fixture"
+}
