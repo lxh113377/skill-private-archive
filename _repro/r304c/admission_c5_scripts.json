@@ -1,0 +1,195 @@
+{
+ "meta": {
+  "round": "r304c",
+  "generated_at": "2026-10-30T16:59:20.400Z",
+  "scope": "C5 inject_union_bytes merged-state + candidate script runnability (C6 excluded; owned by parent)",
+  "c5_evidence_state": "measured",
+  "scripts_evidence_state": "measured",
+  "gate_reader": "importlib load of ratchet_gate.py; reused inject_union_paths / hard_caps / inject_union_bytes (no judgement copied)",
+  "member_ids": [
+   "a_memory_start_skill",
+   "a_memory_start_contract",
+   "behavior_core",
+   "shell_zc",
+   "shell_project"
+  ],
+  "cap_source": "truth_constants.json inject_budget.hard_cap_bytes (read live through the gate)",
+  "fetch_method": "gh api contents raw (read-only); gh rate remaining 5000/5000; node v24.16.0",
+  "probe_invocations": {
+   "assets": "node scripts/assets.mjs \"ghent postcard\"",
+   "draw": "node scripts/draw.mjs --list sectors",
+   "inspect": "node scripts/inspect.mjs tiny.html",
+   "lint": "node scripts/lint.mjs tiny.html",
+   "scenes": "node scripts/scenes.mjs tiny.html"
+  },
+  "probe_stdout_first": {
+   "assets": "",
+   "draw": "saas",
+   "inspect": "TASTESKILL · INSPECT   tiny.html",
+   "lint": "TASTESKILL · LINT   1 file(s)",
+   "scenes": "desktop: no <section class=\"scene\"> on the page"
+  },
+  "probe_stderr_note": "stderr was empty for all five probes; where the first line landed on stdout it is tagged [stdout]. FAIL/rc cannot be explained by a stderr line here."
+ },
+ "c5": {
+  "metric": "inject_union_bytes",
+  "members": [
+   "D:/global_skills/A-memory-start/SKILL.md",
+   "D:/global_skills/A-memory-start/references/contract.md",
+   "D:/global_memory/core/behavior_core.md",
+   "C:/Users/37533/.zcode/AGENTS.md",
+   "C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/AGENTS.md"
+  ],
+  "cap": 65536,
+  "live_value": 63337,
+  "merged_value": 63337,
+  "folding_rule": {
+   "text": "delta(path) = bytes of upstream artifact newly written into that path. classes: PROSE_LOCAL_SHELL -> local skill SKILL.md of the upgraded slug; NEW_SIDECAR -> under the local skill dir (scripts/library/references). counted_delta = sum of delta(path) over path in the measured member set; non-member writes are NOT counted. Neither class lands on any of the 5 member paths, so counted_delta = 0 and merged = live.",
+   "counted_delta": 0,
+   "out_of_list_delta_total": 2064148,
+   "references_unmeasured": "frontend-skill/references/*.md (11 files) not fetched: size unmeasured; still out-of-list by class, so the C5 verdict is invariant to them",
+   "deltas": [
+    [
+     "D:/global_skills/A-prompt-better/SKILL.md",
+     33508
+    ],
+    [
+     "D:/global_skills/frontend-skill/SKILL.md",
+     39537
+    ],
+    [
+     "D:/global_skills/frontend-skill/scripts/assets.mjs",
+     64522
+    ],
+    [
+     "D:/global_skills/frontend-skill/scripts/draw.mjs",
+     54140
+    ],
+    [
+     "D:/global_skills/frontend-skill/scripts/inspect.mjs",
+     28853
+    ],
+    [
+     "D:/global_skills/frontend-skill/scripts/lint.mjs",
+     11747
+    ],
+    [
+     "D:/global_skills/frontend-skill/scripts/scenes.mjs",
+     8980
+    ],
+    [
+     "D:/global_skills/frontend-skill/scripts/lib/app-draw.mjs",
+     14715
+    ],
+    [
+     "D:/global_skills/frontend-skill/scripts/lib/cdp.mjs",
+     11920
+    ],
+    [
+     "D:/global_skills/frontend-skill/scripts/lib/inspection-files.mjs",
+     478
+    ],
+    [
+     "D:/global_skills/frontend-skill/scripts/lib/probe.mjs",
+     82552
+    ],
+    [
+     "D:/global_skills/frontend-skill/scripts/lib/rules.mjs",
+     37298
+    ],
+    [
+     "D:/global_skills/frontend-skill/library/app.json",
+     74229
+    ],
+    [
+     "D:/global_skills/frontend-skill/library/directions.json",
+     61466
+    ],
+    [
+     "D:/global_skills/frontend-skill/library/heroes.json",
+     108240
+    ],
+    [
+     "D:/global_skills/frontend-skill/library/motions.json",
+     9033
+    ],
+    [
+     "D:/global_skills/frontend-skill/library/palettes.json",
+     34753
+    ],
+    [
+     "D:/global_skills/frontend-skill/library/photos.json",
+     160632
+    ],
+    [
+     "D:/global_skills/frontend-skill/library/sections.json",
+     276146
+    ],
+    [
+     "D:/global_skills/frontend-skill/library/sites.json",
+     869073
+    ],
+    [
+     "D:/global_skills/frontend-skill/library/type.json",
+     82326
+    ]
+   ]
+  },
+  "state": "ok"
+ },
+ "scripts": [
+  {
+   "skill": "frontend-skill",
+   "candidate": "Leonxlnx/taste-skill",
+   "path": "scripts/assets.mjs",
+   "check_rc": 0,
+   "run_rc": 124,
+   "stderr_first": "",
+   "state": "FAIL"
+  },
+  {
+   "skill": "frontend-skill",
+   "candidate": "Leonxlnx/taste-skill",
+   "path": "scripts/draw.mjs",
+   "check_rc": 0,
+   "run_rc": 0,
+   "stderr_first": "[stdout] saas",
+   "state": "OK"
+  },
+  {
+   "skill": "frontend-skill",
+   "candidate": "Leonxlnx/taste-skill",
+   "path": "scripts/inspect.mjs",
+   "check_rc": 0,
+   "run_rc": 1,
+   "stderr_first": "[stdout] TASTESKILL · INSPECT   tiny.html",
+   "state": "FAIL"
+  },
+  {
+   "skill": "frontend-skill",
+   "candidate": "Leonxlnx/taste-skill",
+   "path": "scripts/lint.mjs",
+   "check_rc": 0,
+   "run_rc": 0,
+   "stderr_first": "[stdout] TASTESKILL · LINT   1 file(s)",
+   "state": "OK"
+  },
+  {
+   "skill": "frontend-skill",
+   "candidate": "Leonxlnx/taste-skill",
+   "path": "scripts/scenes.mjs",
+   "check_rc": 0,
+   "run_rc": 0,
+   "stderr_first": "[stdout] desktop: no <section class=\"scene\"> on the page",
+   "state": "OK"
+  }
+ ],
+ "scripts_none": [
+  {
+   "skill": "A-prompt-better",
+   "candidate": "nidhinjs/prompt-master",
+   "state": "none",
+   "reason": "candidate SKILL.md body (499 lines) has no script-path anchor (backtick code-span scan for scripts/*.mjs = 0); repo tree also has no scripts/ dir (files: LICENSE/README.md/SKILL.md/references/patterns.md/references/templates.md). scripts=none here means nothing was runnable to test, NOT a pass."
+  }
+ ]
+}

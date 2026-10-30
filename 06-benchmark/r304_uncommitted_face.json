@@ -1,0 +1,31 @@
+{
+ "schema": "uncommitted-this-round-v1",
+ "round": "304",
+ "dirty_tracked": 36,
+ "suspect_count": 3,
+ "suspects": [
+  {
+   "file": "04-plan/迁移替换方案_r114_2026-10-18.md",
+   "added_lines": 10,
+   "marker_lines": 4,
+   "strong_lines": 3,
+   "sample": "### 校正注（r304 · R241：原表不改写，只加注）"
+  },
+  {
+   "file": "DECOMPOSE.md",
+   "added_lines": 15,
+   "marker_lines": 5,
+   "strong_lines": 1,
+   "sample": "# DECOMPOSE · r304（把需求 5 的「季度版本扫描」接成可跑工具；并把 R261-7 两件的换装准入条件测掉）"
+  },
+  {
+   "file": "memory/07-next-steps.md",
+   "added_lines": 53,
+   "marker_lines": 7,
+   "strong_lines": 5,
+   "sample": "- [ ] **R304-1（r304 登记，P1）** **需求 5 的季度版本扫描成可跑工具（import 基准比较器、单一 caliber）：49 对里 2 对上游已变（gstack / hyperframes-media）+ 季档落"
+  }
+ ],
+ "limit_note": "工作树共享：本面不证明作者，只给线索（判据 = 新增行含本轮轮号；处置词只作强度标注 strong_lines）",
+ "disposal": "Lead 收尾前逐个提交或撤销；留着就走 = 发布面缺件（r290 实测）"
+}
