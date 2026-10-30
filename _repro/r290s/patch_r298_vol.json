@@ -1,0 +1,10 @@
+[
+ {
+  "old": "> 上游坐标：`cloudflare/security-audit-skill` @ `c1c8a8c1471069fb0e188eeaff69b8e8db6564a8`（main，committer date 2026-09-14T19:28:54Z，license.spdx_id=MIT）—— 取值命令与输出见 `C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r290s/coords.json`。",
+  "new": "> 上游坐标：`cloudflare/security-audit-skill` @ `c1c8a8c1471069fb0e188eeaff69b8e8db6564a8`（main，committer date 2026-09-14T19:28:54Z，license.spdx_id=MIT）—— 坐标复算（可移植）：`gh api repos/cloudflare/security-audit-skill --jq \"{sha:.sha,license:.license.spdx_id}\"` 与 `gh api repos/cloudflare/security-audit-skill/commits/main --jq .commit.committer.date`（实测返回与本行一致）。"
+ },
+ {
+  "old": "> 吸收理由 = 换装前实测「三词命中 0」：`OS-enforced sandbox` / `write isolation` / `coverage-ledger`（复算（须在本仓根执行）`python -B C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r290s/capability_probe.py`）。",
+  "new": "> 吸收理由 = 换装前实测「三词命中 0」：`OS-enforced sandbox` / `write isolation` / `coverage-ledger`（复算：`git -C <受管根> grep -c -i -e \"OS-enforced sandbox\" -e \"write isolation\" -e \"coverage-ledger\" e64c17d3 -- security-audit` ⇒ 零命中；同一命令换到 HEAD 则逐文件命中 `.upstream` 1 / `SKILL.md` 3 / 本分卷 8 / `scripts/validate-coverage-ledger.cjs` 3（2026-10-30 实测；命中数随后续编辑漂移，只作方向核对不作固定基线））。"
+ }
+]

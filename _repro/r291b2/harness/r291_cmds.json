@@ -1,0 +1,100 @@
+{
+ "schema": "exec-commands-cmdspec-v2",
+ "skill": "mcp-builder",
+ "note": "argv hand listed per row, same contract as the tracked _repro/r285l/r285_cmds.json. A row runs in an arm only when the declared arms list contains that arm AND the tracked r285 extractor finds that literal in the arm text, so the B-only codemod row disappears under negative control 1. operative rc = argv_resolved when present else argv_literal.",
+ "rows": [
+  {
+   "id": "mcpbuilder.inspector",
+   "literal": "npx @modelcontextprotocol/inspector",
+   "arms": [
+    "A",
+    "B"
+   ],
+   "kind": "service",
+   "argv_literal": [
+    "{NODE_EXE}",
+    "{NPXCLI}",
+    "-y",
+    "@modelcontextprotocol/inspector"
+   ],
+   "cwd": "{ARM}/py_work",
+   "timeout_ms": 25000,
+   "output_dirs": [
+    "py_work"
+   ],
+   "runnable": true,
+   "external_account": false,
+   "placeholder_resolved": true,
+   "requires_rc_zero": false,
+   "predicate": {
+    "banner_substring": "MCP Inspector Web is up and running"
+   },
+   "resolve_note": "No doc placeholder to resolve: the literal is the whole command and it starts the interactive inspector UI. Success predicate is the start-up banner. By design the process never exits, so its rc is a timeout signal and the row is deliberately excluded from the rc_zero numerator - that is what keeps this row from inflating the gain."
+  },
+  {
+   "id": "mcpbuilder.py_compile",
+   "literal": "python -m py_compile your_server.py",
+   "arms": [
+    "A",
+    "B"
+   ],
+   "kind": "verify",
+   "argv_literal": [
+    "python",
+    "-m",
+    "py_compile",
+    "your_server.py"
+   ],
+   "argv_resolved": [
+    "{PY}",
+    "-m",
+    "py_compile",
+    "your_server.py"
+   ],
+   "cwd": "{ARM}/py_work",
+   "timeout_ms": 60000,
+   "output_dirs": [
+    "py_work"
+   ],
+   "runnable": true,
+   "external_account": false,
+   "placeholder_resolved": true,
+   "requires_rc_zero": true,
+   "predicate": {
+    "artifact_suffix": ".pyc"
+   },
+   "resolve_note": "your_server.py is the doc placeholder, resolved by writing a real Python MCP-server shaped fixture at that name before the arm runs, so the fixture is never counted as an artifact. The interpreter is the managed venv one (the LibreOffice-bundled python misreports on this host); the aux rows python_which record which interpreter a bare python on the declared PATH resolves to."
+  },
+  {
+   "id": "mcpbuilder.codemod",
+   "literal": "npx @modelcontextprotocol/codemod@latest v1-to-v2",
+   "arms": [
+    "B"
+   ],
+   "kind": "verify",
+   "argv_literal": [
+    "{NODE_EXE}",
+    "{NPXCLI}",
+    "-y",
+    "@modelcontextprotocol/codemod@latest",
+    "v1-to-v2",
+    "."
+   ],
+   "cwd": "{ARM}/codemod_proj",
+   "timeout_ms": 180000,
+   "output_dirs": [
+    "codemod_proj"
+   ],
+   "runnable": true,
+   "external_account": false,
+   "placeholder_resolved": true,
+   "requires_rc_zero": true,
+   "predicate": {
+    "rewrite_file": "src_server.ts",
+    "must_gain": "@modelcontextprotocol/server",
+    "must_lose": "@modelcontextprotocol/sdk/server"
+   },
+   "resolve_note": "SKILL.md B line 66 writes the literal with a trailing dot operand; the tracked r285 cutProse truncates a command at a dot, so the extracted literal is the form recorded here while argv keeps the dot operand from the doc. The dot is resolved by materialising a real v1 shaped project (package.json depending on the v1 sdk plus one v1 server source) in that arm dir before the row runs. Effect is judged by the rewrite predicate, not by newly appearing files, because a codemod edits in place."
+  }
+ ]
+}

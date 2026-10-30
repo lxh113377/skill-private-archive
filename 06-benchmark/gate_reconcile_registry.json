@@ -118,7 +118,7 @@
    "provenance_resolve_face",
    "provenance_resolve_fixtures"
   ],
-  "_snapshot_at": "2026-10-30 09:50",
+  "_snapshot_at": "2026-10-30 13:20",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"

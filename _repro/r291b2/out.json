@@ -1,0 +1,575 @@
+{
+ "schema": "exec-commands-ab-v1",
+ "task": "R291-B2 execution-level A/B (narrowed re-dispatch: only the judge and the readings were missing). One row, skill mcp-builder: run the commands literally written in the before/after SKILL.md; caliber copied from 06-benchmark/r285_exec_commands_ab.json.",
+ "skill_set": [
+  "mcp-builder"
+ ],
+ "caliber_note": {
+  "commands_found": "count of distinct literal command strings the extractor finds in THAT arm's SKILL.md text (triggers: python/python3/py, bash scripts/*.sh, npm test, pytest, cargo test, pip install, npx, open [), after removing inline-code backticks and dropping query-only forms (--help / --version / whoami / login). Denominator of every ratio in this file.",
+  "runnable": "of those commands, how many were actually executed on this machine. A command whose toolchain is absent (cargo) is counted in commands_found and in blocked_not_runnable, and NEVER in runnable, rc_zero or artifacts.",
+  "rc_zero": "numerator = number of runnable commands whose operative exit code was 0 in their normal (expected-to-pass) state. Expected-failure probes (state=RED, the doc's own Verify RED step) are excluded from the numerator and are reported separately as evidence for doc_claim_met. In this row one never-exiting service row (the inspector) is excluded",
+  "operative_rc": "argv_resolved when cmdspec declared one (bare pytest is not on PATH in the managed venv), else argv_literal. Both argv lists are in detail_rows.",
+  "placeholder_unresolved": "commands whose placeholders could not be resolved to a real input. All were resolved in this run (fixture .pptx and deck.html were built for it), so this is 0 everywhere; nothing is silently counted as failure.",
+  "persisted_artifacts": "files newly appearing in that arm's OWN declared output directories, which are wiped before the arm runs and never shared between arms (the r283 contamination lesson). Paths are relative to the arm directory.",
+  "needs_external_account": "commands that reach a third-party account gate before producing anything. Counted in commands_found, excluded from runnable / rc_zero / artifacts, and never counted as a doc defect: this run creates no external credential.",
+  "variant_rows": "rows with primary === false are extra runs of the SAME doc literal with a different placeholder resolution (export-pdf with an absolute output path). They are evidence for the sub-claims and are NOT counted in commands_found, runnable, rc_zero or artifacts.",
+  "doc_claim_met": "binary. mcp-builder A: the 3.2 Build and Test Python verify (python -m py_compile your_server.py) must return rc=0 and persist the compiled artifact. mcp-builder B: everything A claims PLUS the B-only codemod literal (npx @modelcontextprotocol/codemod@latest v1-to-v2) must run rc=0 and actually rewrite a v1-shaped project to v2 (source gained @modelcontextprotocol/server, lost the v1 sdk server import, manifest swapped).",
+  "unverified_rule": "any arm whose commands could not be executed at all is reported UNVERIFIED with the command and its stderr and is excluded from both sides of every delta.",
+  "not_measured": "executability and persistence only. This row does not measure the business quality of a generated MCP server, does not judge whether the codemod output is idiomatic, and does not re-run the r285 trio.",
+  "r289_command_fix": "FIX(r289): the recorded judge command used `node -B`; -B is a python flag and this host rejects it (node rc=9 bad option). Judge command corrected to plain `node` and re-run: exit 0, same last line.",
+  "doc_claim_met_r285_original": "binary. test-driven-development: the doc worked example must fail before the feature exists (RED rc!=0) and pass after (GREEN rc=0). frontend-slides: extracted-slides.json written by the doc-literal extract command must contain >=2 slides; the PDF half is reported separately as sub-claims (relative form vs absolute form) because the two differ. ui-ux-pro-max (cited): >=1 doc-literal command returning rc=0 that persists a design-system artifact.",
+  "blocked_not_runnable": "commands_found items the machine could not execute (missing toolchain / ENOENT / declared runnable=false). Never in runnable, rc_zero or artifacts, and never counted as a doc defect.",
+  "service_rows_never_exit": "NEW in this row (r285 had no such shape): npx @modelcontextprotocol/inspector is an interactive UI that by design never returns, so its operative rc is a timeout signal (SIGNAL:SIGTERM) on both arms. It counts in commands_found and runnable, is excluded from rc_zero by the cmdspec (requires_rc_zero=false), and its evidence is the start-up banner predicate. That is what keeps this row from inflating the gain.",
+  "port_isolation": "NEW: the surviving harness did not free the inspector ports between arms, so arm A SIGTERM-leftover server made arm B read rc=1 with MCP Inspector PORT IS IN USE at http://127.0.0.1:6274 - the r283 contamination one layer down (process, not directory). The relocated harness kills only leftover node/python pids holding 6274-6278 before each arm and records every kill in port_cleanup."
+ },
+ "caliber_source": "C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/06-benchmark/r285_exec_commands_ab.json",
+ "rows": [
+  {
+   "skill": "mcp-builder",
+   "before_ref": "79862372~1",
+   "after_ref": "79862372",
+   "before_blob": "5e3fac986fe73d8479bdc59af1aa4ab786085714",
+   "after_blob": "8f640a5939ca4db93d22690d7ba0638203bee6b9",
+   "before_bytes": 9132,
+   "after_bytes": 11436,
+   "base_commit": "e64c17d366d660764b3dd6faf3fcd80be887fec7",
+   "source": "MEASURED IN THIS RUN (R291-B2, relocated write face _repro/r291b2)",
+   "doc_claim": "SKILL.md section 3.2 Build and Test declares an executable verify surface: python -m py_compile your_server.py for Python servers and npx @modelcontextprotocol/inspector for both languages; the after-face additionally declares the B-only codemod literal npx @modelcontextprotocol/codemod@latest v1-to-v2 that migrates a v1 project to the v2 package.",
+   "ref_note": "before/after face re-measured by git on every validation (see git_ref_face): mcp-builder/SKILL.md at 79862372~1 = 5e3fac986fe7 ( 9132B) and at 79862372 = 8f640a5939ca ( 11436B). The brief 079b91f3 class of foreign commit measured: 079b91f3:mcp-builder/SKILL.md = 5e3fac986fe7 == BASE e64c17d3 => that foreign commit did NOT touch this file, so ~1 is the true before state. HEAD = 8f640a5939ca == after => nothing overwrote it later. Direct parent of 79862372 is 3da30832 (touches other faces, not this file); previous touch of this file is e64c17d3.",
+   "field_caliber_local": {
+    "commands_found": "A=2 B=3 from the tracked r285 extractor on THAT arm text (before-face has only inspector + py_compile; the codemod literal exists only in the after-face) => the gain face is the command surface the doc newly wrote, not a hand-picked one.",
+    "rc_zero": "A=1 B=2: only rows with requires_rc_zero=true and operative rc==0 (py_compile, plus the codemod on B). The inspector is a never-exiting service, SIGNAL:SIGTERM on both arms => excluded from the numerator by the cmdspec, see caliber_note.service_rows_never_exit.",
+    "blocked_not_runnable": "0: npx and the managed python are both on the harness PATH, so nothing was missing-toolchain; no toolchain gap is disguised as a doc defect.",
+    "needs_external_account": "0: none of the three rows reaches a third-party account gate; this run creates no credential and does not record a 0 gain for it.",
+    "placeholder_unresolved": "0: your_server.py resolved by a fixture written before the row runs; the codemod dot operand by a v1-shaped fixture project => a fixture is never a produced artifact.",
+    "persisted_artifacts": "one per arm: py_compile persists __pycache__/your_server.cpython-313.pyc in that arm s own py_work. The codemod edits in place and adds no file, so its effect is evidenced by the rewrite predicate plus the manifest swap, never by artifact counting.",
+    "executions": "A=2 B=3 primary rows; no variant rows in this run (variant_executions=0)."
+   },
+   "arms": {
+    "A": {
+     "commands_found": 2,
+     "runnable": 2,
+     "blocked_not_runnable": 0,
+     "needs_external_account": 0,
+     "rc_zero": 1,
+     "placeholder_unresolved": 0,
+     "persisted_artifacts": [
+      "py_work/__pycache__/your_server.cpython-313.pyc (1517B)"
+     ],
+     "doc_claim_met": "Y",
+     "doc_claim_sub": {
+      "claim_face": "A: python verify only",
+      "inspector_banner": true,
+      "inspector_rc": "SIGNAL:SIGTERM",
+      "py_compile_rc": 0,
+      "pyc_persisted": true,
+      "codemod_present_in_arm": false,
+      "codemod_rc": null,
+      "codemod_rewrite_met": null,
+      "codemod_manifest_has_v2": null,
+      "codemod_manifest_drops_v1": null,
+      "codemod_bytes_before": null,
+      "codemod_bytes_after": null,
+      "commands_found_literal_set": [
+       "npx @modelcontextprotocol/inspector",
+       "python -m py_compile your_server.py"
+      ]
+     },
+     "executions": 2,
+     "variant_executions": 0
+    },
+    "B": {
+     "commands_found": 3,
+     "runnable": 3,
+     "blocked_not_runnable": 0,
+     "needs_external_account": 0,
+     "rc_zero": 2,
+     "placeholder_unresolved": 0,
+     "persisted_artifacts": [
+      "py_work/__pycache__/your_server.cpython-313.pyc (1517B)"
+     ],
+     "doc_claim_met": "Y",
+     "doc_claim_sub": {
+      "claim_face": "B: python verify + B-only codemod rewrite",
+      "inspector_banner": true,
+      "inspector_rc": "SIGNAL:SIGTERM",
+      "py_compile_rc": 0,
+      "pyc_persisted": true,
+      "codemod_present_in_arm": true,
+      "codemod_rc": 0,
+      "codemod_rewrite_met": true,
+      "codemod_manifest_has_v2": true,
+      "codemod_manifest_drops_v1": true,
+      "codemod_bytes_before": 389,
+      "codemod_bytes_after": 429,
+      "commands_found_literal_set": [
+       "npx @modelcontextprotocol/codemod@latest v1-to-v2",
+       "npx @modelcontextprotocol/inspector",
+       "python -m py_compile your_server.py"
+      ]
+     },
+     "executions": 3,
+     "variant_executions": 0
+    }
+   },
+   "arm_text": {
+    "A": {
+     "ref": "79862372^",
+     "bytes": 9132,
+     "sha12": "32f54257ab8b",
+     "substituted": false
+    },
+    "B": {
+     "ref": "79862372",
+     "bytes": 11436,
+     "sha12": "2b3a3a7b0c88",
+     "substituted": false
+    }
+   },
+   "commands_found_literals": {
+    "A": [
+     "npx @modelcontextprotocol/inspector",
+     "python -m py_compile your_server.py"
+    ],
+    "B": [
+     "npx @modelcontextprotocol/codemod@latest v1-to-v2",
+     "npx @modelcontextprotocol/inspector",
+     "python -m py_compile your_server.py"
+    ]
+   },
+   "query_excluded": {
+    "A": [],
+    "B": []
+   },
+   "unmatched_literals": {
+    "A": [],
+    "B": []
+   },
+   "spec_rows_skipped_for_this_arm": {
+    "A": [],
+    "B": []
+   },
+   "anti_cherry_pick": "every literal the extractor hits in an arm text must have a hand-listed argv row or the harness throws and stops (unmatched=0 here); the built-in B-only row vanishes on its own itself when negative control 1 swaps the text => readings are not hand picked.",
+   "port_cleanup": [
+    {
+     "tag": "before_A",
+     "killed": [],
+     "skipped": []
+    },
+    {
+     "tag": "before_B",
+     "killed": [
+      {
+       "pid": "26228",
+       "image": "node.exe                     26228 Conso",
+       "taskkill_rc": 0
+      }
+     ],
+     "skipped": []
+    },
+    {
+     "tag": "after_all_arms",
+     "killed": [
+      {
+       "pid": "33956",
+       "image": "node.exe                     33956 Conso",
+       "taskkill_rc": 0
+      }
+     ],
+     "skipped": []
+    }
+   ],
+   "detail_rows": {
+    "A": [
+     {
+      "id": "mcpbuilder.inspector",
+      "literal": "npx @modelcontextprotocol/inspector",
+      "kind": "service",
+      "primary": true,
+      "counted": true,
+      "cwd": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\_temp\\r291b2\\work\\run\\mcp-builder_A/py_work",
+      "operative_argv": [
+       "C:/Program Files/nodejs/node.exe",
+       "C:/Program Files/nodejs/node_modules/npm/bin/npx-cli.js",
+       "-y",
+       "@modelcontextprotocol/inspector"
+      ],
+      "argv_form": "literal",
+      "rc": "SIGNAL:SIGTERM",
+      "spawn_error": "ETIMEDOUT",
+      "signal": "SIGTERM",
+      "stdout_bytes": 361,
+      "stderr_bytes": 810,
+      "stdout_tail": "Starting MCP inspector...\n\nMCP Inspector Web is up and running at:\n   http://127.0.0.1:6274?MCP_INSPECTOR_API_TOKEN=2aa1c4d32f33e78b5d7932fbe94498b08cec7769f3a4f331486ad86676895380\n\n   Sandbox (MCP Apps): http://127.0.0.1:6275/sandbox\n\n   Auth token: 2aa1c4d32f33e78b5d7932fbe94498b08cec7769f3a4f331486ad86676895380\n\n   Secrets: OS keychain\n\nOpening browser...\n",
+      "stderr_tail": "nfig \"sharp_binary_host\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\nnpm warn Unknown user config \"sharp_libvips_binary_host\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\n",
+      "artifacts": [],
+      "predicate": {
+       "banner": true
+      },
+      "requires_rc_zero": false,
+      "external_account": false,
+      "declared_runnable": true,
+      "placeholder_resolved": true,
+      "timeout_ms": 25000
+     },
+     {
+      "id": "mcpbuilder.py_compile",
+      "literal": "python -m py_compile your_server.py",
+      "kind": "verify",
+      "primary": true,
+      "counted": true,
+      "cwd": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\_temp\\r291b2\\work\\run\\mcp-builder_A/py_work",
+      "operative_argv": [
+       "C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe",
+       "-m",
+       "py_compile",
+       "your_server.py"
+      ],
+      "argv_form": "resolved",
+      "rc": 0,
+      "spawn_error": null,
+      "signal": null,
+      "stdout_bytes": 0,
+      "stderr_bytes": 0,
+      "stdout_tail": "",
+      "stderr_tail": "",
+      "artifacts": [
+       {
+        "dir": "py_work",
+        "rel": "__pycache__/your_server.cpython-313.pyc",
+        "bytes": 1517
+       }
+      ],
+      "predicate": {
+       "artifact": true
+      },
+      "requires_rc_zero": true,
+      "external_account": false,
+      "declared_runnable": true,
+      "placeholder_resolved": true,
+      "timeout_ms": 60000
+     }
+    ],
+    "B": [
+     {
+      "id": "mcpbuilder.inspector",
+      "literal": "npx @modelcontextprotocol/inspector",
+      "kind": "service",
+      "primary": true,
+      "counted": true,
+      "cwd": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\_temp\\r291b2\\work\\run\\mcp-builder_B/py_work",
+      "operative_argv": [
+       "C:/Program Files/nodejs/node.exe",
+       "C:/Program Files/nodejs/node_modules/npm/bin/npx-cli.js",
+       "-y",
+       "@modelcontextprotocol/inspector"
+      ],
+      "argv_form": "literal",
+      "rc": "SIGNAL:SIGTERM",
+      "spawn_error": "ETIMEDOUT",
+      "signal": "SIGTERM",
+      "stdout_bytes": 361,
+      "stderr_bytes": 810,
+      "stdout_tail": "Starting MCP inspector...\n\nMCP Inspector Web is up and running at:\n   http://127.0.0.1:6274?MCP_INSPECTOR_API_TOKEN=68e3734d33c6ea15e79084ab08f5999c443842ac909f3942dd9dc05da1799435\n\n   Sandbox (MCP Apps): http://127.0.0.1:6275/sandbox\n\n   Auth token: 68e3734d33c6ea15e79084ab08f5999c443842ac909f3942dd9dc05da1799435\n\n   Secrets: OS keychain\n\nOpening browser...\n",
+      "stderr_tail": "nfig \"sharp_binary_host\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\nnpm warn Unknown user config \"sharp_libvips_binary_host\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\n",
+      "artifacts": [],
+      "predicate": {
+       "banner": true
+      },
+      "requires_rc_zero": false,
+      "external_account": false,
+      "declared_runnable": true,
+      "placeholder_resolved": true,
+      "timeout_ms": 25000
+     },
+     {
+      "id": "mcpbuilder.py_compile",
+      "literal": "python -m py_compile your_server.py",
+      "kind": "verify",
+      "primary": true,
+      "counted": true,
+      "cwd": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\_temp\\r291b2\\work\\run\\mcp-builder_B/py_work",
+      "operative_argv": [
+       "C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe",
+       "-m",
+       "py_compile",
+       "your_server.py"
+      ],
+      "argv_form": "resolved",
+      "rc": 0,
+      "spawn_error": null,
+      "signal": null,
+      "stdout_bytes": 0,
+      "stderr_bytes": 0,
+      "stdout_tail": "",
+      "stderr_tail": "",
+      "artifacts": [
+       {
+        "dir": "py_work",
+        "rel": "__pycache__/your_server.cpython-313.pyc",
+        "bytes": 1517
+       }
+      ],
+      "predicate": {
+       "artifact": true
+      },
+      "requires_rc_zero": true,
+      "external_account": false,
+      "declared_runnable": true,
+      "placeholder_resolved": true,
+      "timeout_ms": 60000
+     },
+     {
+      "id": "mcpbuilder.codemod",
+      "literal": "npx @modelcontextprotocol/codemod@latest v1-to-v2",
+      "kind": "verify",
+      "primary": true,
+      "counted": true,
+      "cwd": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\_temp\\r291b2\\work\\run\\mcp-builder_B/codemod_proj",
+      "operative_argv": [
+       "C:/Program Files/nodejs/node.exe",
+       "C:/Program Files/nodejs/node_modules/npm/bin/npx-cli.js",
+       "-y",
+       "@modelcontextprotocol/codemod@latest",
+       "v1-to-v2",
+       "."
+      ],
+      "argv_form": "literal",
+      "rc": 0,
+      "spawn_error": null,
+      "signal": null,
+      "stdout_bytes": 1072,
+      "stderr_bytes": 810,
+      "stdout_tail": " wrapped raw shapes. The owning package must declare zod (>=4.2.0 satisfies v2) — the manifest summary adds or warns accordingly.\n\npackage.json updated:\n  package.json\n    Removed: @modelcontextprotocol/sdk\n    Added:   @modelcontextprotocol/server, zod\n\nThis codemod doesn't reformat its output. Run your formatter on the changed file(s):\n  e.g. prettier --write src_server.ts\n\nRun your package manager to install the new packages.\n\nMigration complete. Review the changes and run your build/tests.\n\n",
+      "stderr_tail": "nfig \"sharp_binary_host\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\nnpm warn Unknown user config \"sharp_libvips_binary_host\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\n",
+      "artifacts": [],
+      "predicate": {
+       "gained": true,
+       "kept_away": true,
+       "rewrite_met": true,
+       "bytes_before": 389,
+       "bytes_after": 429,
+       "sha12_before": "c231b6101238",
+       "sha12_after": "2fd7f5c51d03",
+       "manifest_has_v2": true,
+       "manifest_drops_v1": true
+      },
+      "requires_rc_zero": true,
+      "external_account": false,
+      "declared_runnable": true,
+      "placeholder_resolved": true,
+      "timeout_ms": 180000
+     }
+    ]
+   }
+  }
+ ],
+ "git_ref_face": [
+  {
+   "point": "before",
+   "ref": "79862372~1",
+   "meaning": "brief 指定的改前 ref",
+   "blob": "5e3fac986fe73d8479bdc59af1aa4ab786085714",
+   "bytes": 9132,
+   "git_rc": 0,
+   "git_err": ""
+  },
+  {
+   "point": "after",
+   "ref": "79862372",
+   "meaning": "R312 换装提交（改后）",
+   "blob": "8f640a5939ca4db93d22690d7ba0638203bee6b9",
+   "bytes": 11436,
+   "git_rc": 0,
+   "git_err": ""
+  },
+  {
+   "point": "base_last_touch",
+   "ref": "e64c17d366d660764b3dd6faf3fcd80be887fec7",
+   "meaning": "最后一个真动 mcp-builder/SKILL.md 的提交",
+   "blob": "5e3fac986fe73d8479bdc59af1aa4ab786085714",
+   "bytes": 9132,
+   "git_rc": 0,
+   "git_err": ""
+  },
+  {
+   "point": "other_session_commit",
+   "ref": "079b91f3",
+   "meaning": "他会话提交（079b91f3 坑位探针）",
+   "blob": "5e3fac986fe73d8479bdc59af1aa4ab786085714",
+   "bytes": 9132,
+   "git_rc": 0,
+   "git_err": ""
+  },
+  {
+   "point": "head",
+   "ref": "HEAD",
+   "meaning": "现头（证明改后无后续覆盖）",
+   "blob": "8f640a5939ca4db93d22690d7ba0638203bee6b9",
+   "bytes": 11436,
+   "git_rc": 0,
+   "git_err": ""
+  },
+  {
+   "point": "after_first_parent",
+   "ref": "79862372^",
+   "meaning": "改后提交的直接父（面外提交）",
+   "blob": null,
+   "bytes": null,
+   "git_rc": 0,
+   "commit": "3da30832613c875558b40e5196c910bd0da9831c"
+  }
+ ],
+ "git_file_history": [
+  "79862372928ddb9906707f4c0bc9136d208e37e8",
+  "e64c17d366d660764b3dd6faf3fcd80be887fec7",
+  "ab6663e36feb192f3c8bf6c2f1cdfc3d04c563bc",
+  "31e769fe26344262c39988c50ac0012c6d046799"
+ ],
+ "totals": {
+  "command_pairs": 1,
+  "commands_found_after": 3,
+  "rc_zero_after": 2,
+  "artifacts_before": 1,
+  "artifacts_after": 1
+ },
+ "gain_reading": {
+  "commands_found_delta": 1,
+  "rc_zero_delta": 1,
+  "artifacts_delta": 0,
+  "reading": "the after-face adds one doc command surface (the B-only codemod), it runs rc=0 and really rewrites v1 to v2 => +1 rc_zero; artifact face stays level (1 vs 1). The inspector row is identical in shape on both arms and adds no gain."
+ },
+ "evidence": {
+  "path": "C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r291b2/harness/results/run_raw.json",
+  "bytes": 30312,
+  "sha256": "187e0c47d9be0095d4dee1144a8107ba330fbb74fcb9a093f6c585e44e619bd3",
+  "produced_by": "harness/r291_measure.mjs run, a byte-identical copy of the read-only _temp/r291b/harness script patched inside this write face",
+  "harness_patch_note": "two patches, both recorded: 1) before each arm, release 6274-6278 from node/python leftovers this harness itself orphaned (port_cleanup lists every kill); 2) drop PYTHONPYCACHEPREFIX so the .pyc lands back in the declared output dir - with the prefix it was redirected outside and persisted_artifacts read 0 for a command that does persist a file, which was a reading bug, not a doc gap. The read-only dir _temp/r291b was not touched; see readonly_check."
+ },
+ "evidence_sha256": "187e0c47d9be0095d4dee1144a8107ba330fbb74fcb9a093f6c585e44e619bd3",
+ "readonly_check": {
+  "surviving_dir": "C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_temp/r291b",
+  "policy": "READ ONLY (no write, no rename, no delete)",
+  "drift": []
+ },
+ "comparability_with_r285": {
+  "r285_face": "C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/06-benchmark/r285_exec_commands_ab.json",
+  "same_field_names": true,
+  "same_extractor": true,
+  "same_extractor_path": "自建skill优化/_repro/r285l/r285_common.mjs",
+  "notes": "comparable because field names, semantics, the extractor and the three-way classification (blocked_not_runnable and needs_external_account enter neither rc_zero nor a doc defect nor a 0 gain) are the r285 ones, and all four faces run doc-literal commands and read rc plus artifacts. Two shape differences must be stated to keep the comparison honest: 1) this row contains a never-exiting service command (inspector) which none of the r285 three has, so it is excluded from rc_zero and evidenced by the banner; 2) the core gain effect here is an in-place rewrite rather than new files, so it is judged by the rewrite predicate plus the manifest swap, not by persisted_artifacts (the r285 ui-ux row is the artifact type)."
+ },
+ "provenance_cmd": "git -C D:/global_skills rev-parse 79862372~1:mcp-builder/SKILL.md   (before blob, re-measured)\ngit -C D:/global_skills rev-parse 79862372:mcp-builder/SKILL.md     (after blob, re-measured)\ngit -C D:/global_skills rev-parse e64c17d3:mcp-builder/SKILL.md     (last real touch, re-measured)\ngit -C D:/global_skills rev-parse 079b91f3:mcp-builder/SKILL.md     (foreign-commit trap probe)\ngit -C D:/global_skills log --format=%H -8 -- mcp-builder/SKILL.md  (touch history)\n自建skill优化/_repro/r285l/r285_common.mjs            (r285 extractor + runOne, tracked)\n自建skill优化/_repro/r285l/r285_cmds.json             (r285 cmdspec contract, tracked)\n自建skill优化/06-benchmark/r285_exec_commands_ab.json (caliber authority, tracked)",
+ "run_face": {
+  "write_face": "C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r291b2",
+  "deliverables": [
+   "C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r291b2/out.json",
+   "C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r291b2/check_r291b.py",
+   "C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r291b2/report.md"
+  ],
+  "evidence_dir": "C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r291b2/harness/results",
+  "arm_dirs": {
+   "A": "work/run/mcp-builder_A",
+   "B": "work/run/mcp-builder_B"
+  },
+  "read_only_face": "C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_temp/r291b"
+ },
+ "run_face_note": "write face moved to a brand new directory _repro/r291b2 so a possibly still alive process from the previous round cannot fight this one over the same file; the surviving assets _temp/r291b are read only. _temp/ is an any-depth .gitignore pattern, so nothing here is registered: provenance_cmd therefore points only at repo-resolvable paths and the real invocations (absolute) live in judge_invocation / nc1_invocation / nc2_invocation.",
+ "judge_invocation": [
+  "cd /d \"C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\_temp\\r291b2\"",
+  "\"C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe\" -B check_r291b.py"
+ ],
+ "nc1_invocation": [
+  "cd /d \"C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\_temp\\r291b2\"",
+  "\"C:/Program Files/nodejs/node.exe\" harness/r291_measure.mjs sub \"C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\_temp\\r291b2\\texts\\run_A_SKILL.md\"",
+  "\"C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe\" -B check_r291b.py --sub-evidence harness/results/sub_raw.json --emit"
+ ],
+ "nc2_invocation": [
+  "cd /d \"C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\_temp\\r291b2\"",
+  "\"C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe\" -B check_r291b.py --negctl2"
+ ],
+ "measured_at": "2026-10-30T04:31:33Z",
+ "expected_last_line": "[EXEC-AB-B] rows=1 commands_ok=2/3 artifacts_before=1 artifacts_after=1",
+ "negative_controls": {
+  "control_1_identical_text": {
+   "ran": true,
+   "mode": "sub",
+   "A_text_sha12": "32f54257ab8b",
+   "B_text_sha12": "32f54257ab8b",
+   "substituted_B_with": "SUBSTITUTED:run_A_SKILL.md",
+   "B_text_source_bytes": 9132,
+   "readings_A": {
+    "commands_found": 2,
+    "runnable": 2,
+    "blocked_not_runnable": 0,
+    "needs_external_account": 0,
+    "rc_zero": 1,
+    "placeholder_unresolved": 0,
+    "persisted_artifacts": [
+     "py_work/__pycache__/your_server.cpython-313.pyc (1517B)"
+    ],
+    "doc_claim_met": "Y",
+    "doc_claim_sub": {
+     "claim_face": "A: python verify only",
+     "inspector_banner": true,
+     "inspector_rc": "SIGNAL:SIGTERM",
+     "py_compile_rc": 0,
+     "pyc_persisted": true,
+     "codemod_present_in_arm": false,
+     "codemod_rc": null,
+     "codemod_rewrite_met": null,
+     "codemod_manifest_has_v2": null,
+     "codemod_manifest_drops_v1": null,
+     "codemod_bytes_before": null,
+     "codemod_bytes_after": null,
+     "commands_found_literal_set": [
+      "npx @modelcontextprotocol/inspector",
+      "python -m py_compile your_server.py"
+     ]
+    },
+    "executions": 2,
+    "variant_executions": 0
+   },
+   "readings_B": {
+    "commands_found": 2,
+    "runnable": 2,
+    "blocked_not_runnable": 0,
+    "needs_external_account": 0,
+    "rc_zero": 1,
+    "placeholder_unresolved": 0,
+    "persisted_artifacts": [
+     "py_work/__pycache__/your_server.cpython-313.pyc (1517B)"
+    ],
+    "doc_claim_met": "Y",
+    "doc_claim_sub": {
+     "claim_face": "A: python verify only",
+     "inspector_banner": true,
+     "inspector_rc": "SIGNAL:SIGTERM",
+     "py_compile_rc": 0,
+     "pyc_persisted": true,
+     "codemod_present_in_arm": false,
+     "codemod_rc": null,
+     "codemod_rewrite_met": null,
+     "codemod_manifest_has_v2": null,
+     "codemod_manifest_drops_v1": null,
+     "codemod_bytes_before": null,
+     "codemod_bytes_after": null,
+     "commands_found_literal_set": [
+      "npx @modelcontextprotocol/inspector",
+      "python -m py_compile your_server.py"
+     ]
+    },
+    "executions": 2,
+    "variant_executions": 0
+   },
+   "identical": true,
+   "differing_fields": [],
+   "inspector_rc_A": "SIGNAL:SIGTERM",
+   "inspector_rc_B": "SIGNAL:SIGTERM",
+   "B_spec_rows_skipped_for_this_arm": [
+    "mcpbuilder.codemod"
+   ],
+   "verdict": "PASS: identical text -> identical readings, field by field"
+  }
+ }
+}

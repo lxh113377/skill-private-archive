@@ -7,7 +7,8 @@
    "base_ref": "6ea564bd~1",
    "patches": [
     "_repro/r290s/patch_local.json",
-    "_repro/r290s/patch_ambiguity.json"
+    "_repro/r290s/patch_ambiguity.json",
+    "_repro/r290s/patch_r298_skill.json"
    ]
   },
   {
@@ -27,7 +28,8 @@
    ],
    "base_ref": "6ea564bd",
    "patches": [
-    "_repro/r290s/patch_vol_paths.json"
+    "_repro/r290s/patch_vol_paths.json",
+    "_repro/r290s/patch_r298_vol.json"
    ],
    "no_upstream_anchor": true
   },
@@ -37,7 +39,8 @@
     "repo": "cloudflare/security-audit-skill",
     "path": "skills/security-audit/validate-coverage-ledger.cjs"
    },
-   "expected_sha": "0ef58657bef18b26a92321df6c8e3d31bc8e6659"
+   "expected_sha": "0ef58657bef18b26a92321df6c8e3d31bc8e6659",
+   "patches": []
   }
  ],
  "bare_tokens": [

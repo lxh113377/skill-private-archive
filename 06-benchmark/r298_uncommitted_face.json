@@ -1,0 +1,38 @@
+{
+ "schema": "uncommitted-this-round-v1",
+ "round": "298",
+ "dirty_tracked": 37,
+ "suspect_count": 4,
+ "suspects": [
+  {
+   "file": ".gitignore",
+   "added_lines": 6,
+   "marker_lines": 1,
+   "strong_lines": 0,
+   "sample": "# r298：_repro/*/texts/ 是 A/B 两臂输入的 SKILL.md 逐字副本，由 harness 现场从受管根 git blob 写出"
+  },
+  {
+   "file": "05-exec/landing_specs/security-audit.json",
+   "added_lines": 7,
+   "marker_lines": 2,
+   "strong_lines": 0,
+   "sample": "\"_repro/r290s/patch_r298_skill.json\""
+  },
+  {
+   "file": "DECOMPOSE.md",
+   "added_lines": 30,
+   "marker_lines": 4,
+   "strong_lines": 0,
+   "sample": "# DECOMPOSE · r298（B2 判据入库：兑现 R296-3 的四个阻塞点）"
+  },
+  {
+   "file": "memory/07-next-steps.md",
+   "added_lines": 7,
+   "marker_lines": 7,
+   "strong_lines": 7,
+   "sample": "- [ ] **R291-1（r291 登记，P1）** **需求 2 的字面 vs 语义合规面建成：候选条数达标不等于有 3 个真对应物（family 补位），并给 r114 报表口径加校正注**：一手（r291 我自己差点犯的错）：我一"
+  }
+ ],
+ "limit_note": "工作树共享：本面不证明作者，只给线索（判据 = 新增行含本轮轮号；处置词只作强度标注 strong_lines）",
+ "disposal": "Lead 收尾前逐个提交或撤销；留着就走 = 发布面缺件（r290 实测）"
+}

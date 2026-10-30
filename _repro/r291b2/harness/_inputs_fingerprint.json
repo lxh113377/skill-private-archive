@@ -1,0 +1,37 @@
+{
+ "note": "sha256 of the read-only r291b assets as copied in; re-checked by check_r291b.py so a concurrent writer in the sibling dir is caught",
+ "before": {
+  "harness/r291_measure.mjs": {
+   "size": 11213,
+   "sha12": "476c890f6d1d"
+  },
+  "harness/r291_cmds.json": {
+   "size": 3521,
+   "sha12": "7599b676b0d3"
+  },
+  "texts/A_SKILL.md": {
+   "size": 9132,
+   "sha12": "32f54257ab8b"
+  },
+  "texts/B_SKILL.md": {
+   "size": 11436,
+   "sha12": "2b3a3a7b0c88"
+  },
+  "texts/A_ref_v1.md": {
+   "size": 28550,
+   "sha12": "c3ba35a4f599"
+  },
+  "texts/B_ref_v1.md": {
+   "size": 28745,
+   "sha12": "ee3c95d812e4"
+  },
+  "texts/B_ref_v2.md": {
+   "size": 35171,
+   "sha12": "49b2fe48f339"
+  },
+  "texts/extract_r285caliber.json": {
+   "size": 1044,
+   "sha12": "be657a17813d"
+  }
+ }
+}

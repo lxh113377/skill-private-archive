@@ -101,6 +101,12 @@ _repro/r285l/texts/
 _repro/*/work/
 _repro/*/*cache*/
 
+# r298：_repro/*/texts/ 是 A/B 两臂输入的 SKILL.md 逐字副本，由 harness 现场从受管根 git blob 写出
+# （r291b2 实测：run_A=5e3fac986fe7=79862372~1、run_B=8f640a5939ca=79862372、sub_A=run_A 三者与
+# git hash-object 全等）⇒ 可由两条 git show 重建，不入库；入库会把副本内部的相对链送进死链门
+# （r285-1/r290 各犯过一次）。判据本体与 results/ 两份 raw 证据仍必须跟踪。
+_repro/*/texts/
+
 # r291：_repro/*/upstream/ 是上游原文的**部分**快照（S 只取了 6 个文件），它内部相对链指向
 # 未取入的兄弟文件（RECONNAISSANCE.md / ATTACK-CLASSES.md）=> 进本仓发布面必断（实测 3 条死链）。
 # 不入库：clone 后按 _repro/r290s/coords.json 里的 repo/ref/path 用 gh api 逐文件重建，

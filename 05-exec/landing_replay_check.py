@@ -174,7 +174,7 @@ def leg_N(spec, neg=''):
             continue
         if neg == "fake-sha":
             want = want[:38] + ("ab" if not want.endswith("ab") else "cd")
-        det.append("%s %s live=%s want=%s" % (rel, os.path.basename(rel), live[:12], src))
+        det.append("%s live=%s want=%s(来源 %s)" % (os.path.basename(rel), live[:12], (want or "")[:12], src))
         if live != want:
             bad.append("%s/BLOB-DIFFERS(%s)" % (rel, want[:12]))
     if unver and not bad:
