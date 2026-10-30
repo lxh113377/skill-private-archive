@@ -188,5 +188,9 @@
   "evidence": "06-benchmark/r289_usage_coverage.json",
   "registered_at": "2026-10-30 07:45",
   "why": "需求1 使用覆盖率（在册/用过/可行动集三口径并报）"
+ },
+ "r290_uncommitted_face.py": {
+  "evidence": "06-benchmark/r290_uncommitted_face.json",
+  "registered_at": "2026-10-30 09:29"
  }
 }

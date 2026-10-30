@@ -27,6 +27,15 @@
     python 05-exec/run_gates.py --portable-only    # 只跑跨机可复现子集（CI 用），其余显式记 SKIPPED
     python 05-exec/run_gates.py --json 06-benchmark/gate_run_r31.json
 退出码：0 全绿 / 1 有 FAIL 或 UNVERIFIED / 2 门脚本缺失或环境不满足
+
+接入新门的硬顺序（r287 一手，R287-2 的待做项今天补齐）：
+    ① 先 git add 新门脚本本体与它引用的每个新面件 —— **再**跑门；
+    ② 后 r130_gate_table_reconcile.py --record <id> --evidence <已跟踪件>；
+    ③ 最后才把门 id 写进 GATES 并跑全量。
+  为什么顺序不能反：本仓有些门读的是 **git 真相**（如 provenance_resolve 用 git ls-files 判「clone 后
+  是否可解析」）。新脚本在未 add 前不在索引里 ⇒ 门必然抓到它自己 ⇒ 首次 FAIL 是**设计使然而非门坏**。
+  r287 实测：以门表 argv 形态首跑新门得 PROVRESOLVE_FAIL，new_unresolvable 恰好一项就是该门脚本自身；
+  git add 后同一命令立刻 OK。遇到这种红**不要放宽判据**（那会把门变成恒绿），按①补 add 即可。
 """
 
 import argparse
