@@ -1,36 +1,29 @@
 {
  "schema": "uncommitted-this-round-v1",
  "round": "298",
- "dirty_tracked": 37,
- "suspect_count": 4,
+ "dirty_tracked": 35,
+ "suspect_count": 3,
  "suspects": [
   {
-   "file": ".gitignore",
-   "added_lines": 6,
+   "file": "04-plan/后续维护规范_季度巡检机制_r113_2026-10-18.md",
+   "added_lines": 24,
+   "marker_lines": 1,
+   "strong_lines": 1,
+   "sample": "### 5.3 存档指纹必须被当作断言对象，且被哈希的件要 pin 字节（r298 一手）"
+  },
+  {
+   "file": "06-benchmark/r298_debt_final.json",
+   "added_lines": 94,
    "marker_lines": 1,
    "strong_lines": 0,
-   "sample": "# r298：_repro/*/texts/ 是 A/B 两臂输入的 SKILL.md 逐字副本，由 harness 现场从受管根 git blob 写出"
-  },
-  {
-   "file": "05-exec/landing_specs/security-audit.json",
-   "added_lines": 7,
-   "marker_lines": 2,
-   "strong_lines": 0,
-   "sample": "\"_repro/r290s/patch_r298_skill.json\""
-  },
-  {
-   "file": "DECOMPOSE.md",
-   "added_lines": 30,
-   "marker_lines": 4,
-   "strong_lines": 0,
-   "sample": "# DECOMPOSE · r298（B2 判据入库：兑现 R296-3 的四个阻塞点）"
+   "sample": "\"detail\": \"log=r298 ≥ tag=r298（差 0 轮：本轮 tag 已打，两源一致）\""
   },
   {
    "file": "memory/07-next-steps.md",
-   "added_lines": 7,
-   "marker_lines": 7,
-   "strong_lines": 7,
-   "sample": "- [ ] **R291-1（r291 登记，P1）** **需求 2 的字面 vs 语义合规面建成：候选条数达标不等于有 3 个真对应物（family 补位），并给 r114 报表口径加校正注**：一手（r291 我自己差点犯的错）：我一"
+   "added_lines": 1,
+   "marker_lines": 1,
+   "strong_lines": 1,
+   "sample": "- [ ] **R298-6（r298 登记，P0）** **发现并修好一条 repo 级缺陷：无 .gitattributes + autocrlf=true ⇒ clone 检出把被哈希证据件的 LF 转 CRLF，evidence_s"
   }
  ],
  "limit_note": "工作树共享：本面不证明作者，只给线索（判据 = 新增行含本轮轮号；处置词只作强度标注 strong_lines）",

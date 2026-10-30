@@ -1,0 +1,59 @@
+{
+ "skill": "frontend-slides",
+ "managed": "D:/global_skills",
+ "bare_tokens": [
+  "_repro/",
+  "_temp/",
+  "05-exec/"
+ ],
+ "replays": [
+  {
+   "target": "frontend-slides/scripts/export-pdf.sh",
+   "base_ref": "d5f02440",
+   "patches": [
+    "_repro/r290s/patch_pdf_abspath.json"
+   ],
+   "note": [
+    "r298 机制级修复 R289-4 根因。两侧文本**由 git show 现取**（pre=d5f02440 / post=HEAD），",
+    "不是我转写的抄本 —— 我转写时漂移过一次，被 assert 抓住（见 R298-3 同族）。",
+    "该件历史上另有 r285 两臂基线（before 3681df5e / after 89efb3e6），与本次无关，故本 spec 只覆盖脚本文件。"
+   ]
+  },
+  {
+   "target": "frontend-slides/SKILL.md",
+   "base_ref": "6b9d1a30",
+   "patches": [
+    "_repro/r290s/patch_fs_version.json"
+   ],
+   "note": [
+    "r298 行为修复随之升版本 1.4.1→1.4.2（脚本行为变了，不升版本本机就无法分辨",
+    "修前/修后脚本）。两侧文本由 git show 现取（pre=6b9d1a30 / post=HEAD），",
+    "锚点唯一性在生成时断言过。"
+   ]
+  }
+ ],
+ "new_files": [],
+ "version": {
+  "target": "frontend-slides/SKILL.md",
+  "fm_key": "version",
+  "fm_date_key": "last_updated",
+  "expect": "1.4.2"
+ },
+ "mirror_roots": [
+  {
+   "path": "C:/Users/37533/.agents/skills",
+   "required": true,
+   "evidence": "D:/global_skills/A-skill-manager/SKILL.md:44 铁律8 点名 .agents\\skills 为镜像"
+  },
+  {
+   "path": "C:/Users/37533/.claude/skills",
+   "required": false,
+   "evidence": "端记载 UNKNOWN（r295 R 臂实测 grep 三面 0 hits）=> 不判红"
+  },
+  {
+   "path": "C:/Users/37533/.codex/skills",
+   "required": false,
+   "evidence": "同上，无端记载 => 不判红"
+  }
+ ]
+}

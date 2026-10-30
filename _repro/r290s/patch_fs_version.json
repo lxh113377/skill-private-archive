@@ -1,0 +1,10 @@
+[
+ {
+  "old": "last_updated: 2026-10-29\nversion: 1.4.1",
+  "new": "last_updated: 2026-10-30\nversion: 1.4.2"
+ },
+ {
+  "old": "- **1.4.1**（2026-10-29）— R277 同源修正：补 r272 迁移遗漏的 Mode C 视口相对规则与密度表 60vh（E 件的 REAL_CONFLICT 抓出），并修掉行 83 被前缀式补丁留下的双写。",
+  "new": "- **1.4.2**（2026-10-30）— R298 修 R289-4 根因（行为修复，非文档措辞）：scripts/export-pdf.sh 的输出路径原先只做 dirname/basename 重组，相对第二参（如 sub/out.pdf）会 mkdir 到用户当前目录、而脚本随后 cd 进 TEMP_DIR 才写产物 ⇒ 写出失败且产物随临时目录被删（机制级实测：改前 touch rc=1、改后 rc=0 且产物留在用户目录；绝对第二参两态均 rc=0，作为正控）。现与 INPUT_HTML 同一手法用 cd+pwd 绝对化。SKILL.md 正文未改（示例本就写 [output.pdf] 可选形，修后该形式真的可用）。\n- **1.4.1**（2026-10-29）— R277 同源修正：补 r272 迁移遗漏的 Mode C 视口相对规则与密度表 60vh（E 件的 REAL_CONFLICT 抓出），并修掉行 83 被前缀式补丁留下的双写。"
+ }
+]

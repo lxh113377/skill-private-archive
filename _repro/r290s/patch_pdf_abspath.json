@@ -1,0 +1,6 @@
+[
+ {
+  "old": "OUTPUT_DIR=$(dirname \"$OUTPUT_PDF\")\nmkdir -p \"$OUTPUT_DIR\"\nOUTPUT_PDF=\"$OUTPUT_DIR/$(basename \"$OUTPUT_PDF\")\"",
+  "new": "# r298 修 R289-4（既存缺陷，两臂共有）：原先只做 dirname/basename 重组，相对第二参（如 sub/out.pdf）\n# 在 mkdir 时建到**用户当前目录**，而脚本随后 cd 进 TEMP_DIR 才写产物 ⇒ 那会儿该相对目录在临时目录里\n# 不存在，写出直接失败（机制级实测：改前 touch rc=1 \"No such file or directory\" 且产物不留存；\n# 改后同参数 rc=0 且产物留在用户目录；绝对第二参本来就 rc=0，作为正控）。\n# 正解与上面 INPUT_HTML 同一手法：先在用户 CWD 下建目录，再用 cd+pwd 把目录解析成绝对路径，\n# 之后无论怎么 cd 都指向同一处。pwd 失败时保留原值（不静默改语义，行为不劣于修前）。\nOUTPUT_DIR=$(dirname \"$OUTPUT_PDF\")\nmkdir -p \"$OUTPUT_DIR\"\nABS_OUTPUT_DIR=$(cd \"$OUTPUT_DIR\" && pwd) && OUTPUT_PDF=\"$ABS_OUTPUT_DIR/$(basename \"$OUTPUT_PDF\")\""
+ }
+]
