@@ -1,6 +1,6 @@
 {
  "schema": "debt-aging-v2",
- "generated_at": "2026-10-31T00:15:19",
+ "generated_at": "2026-10-31T00:25:04",
  "readonly": true,
  "grace_rounds": 2,
  "current_round": 303,
