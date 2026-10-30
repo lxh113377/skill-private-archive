@@ -1,0 +1,451 @@
+{
+  "mode": "sub",
+  "env_path": "C:/Program Files/nodejs;C:/Windows/System32;C:/Windows;C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts",
+  "only": [
+    "tdd"
+  ],
+  "arms": {
+    "tdd": {
+      "A": {
+        "arm_doc": {
+          "ref": "079b91f3~1",
+          "bytes": 11635,
+          "sha12": "8ee8a57d45a2",
+          "substituted": false
+        },
+        "commands_found": [
+          {
+            "literal": "npm test path/to/test.test.ts",
+            "line": 120
+          },
+          {
+            "literal": "pytest",
+            "line": 189
+          },
+          {
+            "literal": "cargo test",
+            "line": 190
+          },
+          {
+            "literal": "npm test",
+            "line": 190
+          }
+        ],
+        "commands_found_count": 4,
+        "query_excluded": [],
+        "rows": [
+          {
+            "command_id": "tdd.npm.test.example#RED",
+            "doc_literal": "npm test path/to/test.test.ts",
+            "argv_hand_listed": [
+              "C:/Program Files/nodejs/node.exe",
+              "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+              "test",
+              "path/to/test.test.ts"
+            ],
+            "argv_resolved_used": null,
+            "cwd": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\_repro\\r285l\\work\\sub\\tdd_A/scaffold",
+            "state": "RED",
+            "primary": true,
+            "attempts": [
+              {
+                "attempt": 1,
+                "rc": 1,
+                "spawn_error": null,
+                "stdout_bytes": 1017,
+                "stderr_tail": "rking in the next major version of npm. See `npm help npmrc` for supported config options.\nnpm notice\nnpm notice New major version of npm available! 11.13.0 -> 12.2.1\nnpm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1\nnpm notice To update run: npm install -g npm@12.2.1\nnpm notice\n"
+              }
+            ],
+            "rc": 1,
+            "spawn_error": null,
+            "signal": null,
+            "stdout_bytes": 1017,
+            "stderr_bytes": 1019,
+            "stdout_tail": "defined\n  - 'Email required'\n  \n      at TestContext.<anonymous> (C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\_repro\\r285l\\work\\sub\\tdd_A\\scaffold\\path\\to\\test.test.ts:5:10)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1306:25)\n      at Test.start (node:internal/test_runner/test:1177:17)\n      at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: undefined,\n    expected: 'Email required',\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n",
+            "stderr_tail": "version of npm. See `npm help npmrc` for supported config options.\nnpm warn Unknown user config \"sharp_binary_host\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\nnpm warn Unknown user config \"sharp_libvips_binary_host\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\nnpm notice\nnpm notice New major version of npm available! 11.13.0 -> 12.2.1\nnpm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1\nnpm notice To update run: npm install -g npm@12.2.1\nnpm notice\n",
+            "persisted_new": [],
+            "runnable": true,
+            "blocked_reason": null,
+            "external_service": false,
+            "placeholder_unresolved": false,
+            "resolve_note": "npm test is a cmd shim here (spawnSync on .cmd gives EINVAL), so the hand-listed argv invokes npm-cli.js with real node; same verb, same argument. path/to/test.test.ts is verbatim from the doc; scaffold holds the doc worked example (rejects empty email) as a .ts file, run in RED then GREEN state."
+          },
+          {
+            "command_id": "tdd.npm.test.example#GREEN",
+            "doc_literal": "npm test path/to/test.test.ts",
+            "argv_hand_listed": [
+              "C:/Program Files/nodejs/node.exe",
+              "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+              "test",
+              "path/to/test.test.ts"
+            ],
+            "argv_resolved_used": null,
+            "cwd": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\_repro\\r285l\\work\\sub\\tdd_A/scaffold",
+            "state": "GREEN",
+            "primary": true,
+            "attempts": [
+              {
+                "attempt": 1,
+                "rc": 0,
+                "spawn_error": null,
+                "stdout_bytes": 213,
+                "stderr_tail": "nfig \"sharp_binary_host\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\nnpm warn Unknown user config \"sharp_libvips_binary_host\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\n"
+              }
+            ],
+            "rc": 0,
+            "spawn_error": null,
+            "signal": null,
+            "stdout_bytes": 213,
+            "stderr_bytes": 810,
+            "stdout_tail": "\n> test\n> node --test path/to/test.test.ts path/to/test.test.ts\n\n✔ rejects empty email (1.0094ms)\nℹ tests 1\nℹ suites 0\nℹ pass 1\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 103.6132\n",
+            "stderr_tail": "s_mirror\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\nnpm warn Unknown user config \"sass_binary_site\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\nnpm warn Unknown user config \"sharp_binary_host\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\nnpm warn Unknown user config \"sharp_libvips_binary_host\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\n",
+            "persisted_new": [],
+            "runnable": true,
+            "blocked_reason": null,
+            "external_service": false,
+            "placeholder_unresolved": false,
+            "resolve_note": "npm test is a cmd shim here (spawnSync on .cmd gives EINVAL), so the hand-listed argv invokes npm-cli.js with real node; same verb, same argument. path/to/test.test.ts is verbatim from the doc; scaffold holds the doc worked example (rejects empty email) as a .ts file, run in RED then GREEN state."
+          },
+          {
+            "command_id": "tdd.npm.test.bare",
+            "doc_literal": "npm test",
+            "argv_hand_listed": [
+              "C:/Program Files/nodejs/node.exe",
+              "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+              "test"
+            ],
+            "argv_resolved_used": null,
+            "cwd": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\_repro\\r285l\\work\\sub\\tdd_A/scaffold",
+            "state": null,
+            "primary": true,
+            "attempts": [
+              {
+                "attempt": 1,
+                "rc": 0,
+                "spawn_error": null,
+                "stdout_bytes": 191,
+                "stderr_tail": "nfig \"sharp_binary_host\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\nnpm warn Unknown user config \"sharp_libvips_binary_host\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\n"
+              }
+            ],
+            "rc": 0,
+            "spawn_error": null,
+            "signal": null,
+            "stdout_bytes": 191,
+            "stderr_bytes": 810,
+            "stdout_tail": "\n> test\n> node --test path/to/test.test.ts\n\n✔ rejects empty email (1.1437ms)\nℹ tests 1\nℹ suites 0\nℹ pass 1\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 87.5891\n",
+            "stderr_tail": "s_mirror\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\nnpm warn Unknown user config \"sass_binary_site\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\nnpm warn Unknown user config \"sharp_binary_host\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\nnpm warn Unknown user config \"sharp_libvips_binary_host\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\n",
+            "persisted_new": [],
+            "runnable": true,
+            "blocked_reason": null,
+            "external_service": false,
+            "placeholder_unresolved": false,
+            "resolve_note": "bare project-suite form (doc line 190, and the worked-example transcript lines show bare npm test); runs package.json test script in the same scaffold, GREEN state."
+          },
+          {
+            "command_id": "tdd.pytest",
+            "doc_literal": "pytest",
+            "argv_hand_listed": [
+              "pytest"
+            ],
+            "argv_resolved_used": [
+              "C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe",
+              "-m",
+              "pytest"
+            ],
+            "cwd": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\_repro\\r285l\\work\\sub\\tdd_A/scaffold_py",
+            "state": null,
+            "primary": true,
+            "attempts": [
+              {
+                "attempt": 1,
+                "rc": 0,
+                "spawn_error": null,
+                "stdout_bytes": 502,
+                "stderr_tail": ""
+              }
+            ],
+            "rc": 0,
+            "spawn_error": null,
+            "signal": null,
+            "stdout_bytes": 502,
+            "stderr_bytes": 0,
+            "stdout_tail": "============================= test session starts =============================\r\nplatform win32 -- Python 3.13.14, pytest-9.1.1, pluggy-1.6.0\r\nrootdir: C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\_repro\\r285l\\work\\sub\\tdd_A\\scaffold_py\r\nplugins: anyio-4.13.0, cov-7.1.0, timeout-2.4.0, xdist-3.8.0\r\ncollected 1 item\r\n\r\ntest_form.py .                                                           [100%]\r\n\r\n============================== 1 passed in 0.05s ==============================\r\n",
+            "stderr_tail": "",
+            "persisted_new": [],
+            "runnable": true,
+            "blocked_reason": null,
+            "external_service": false,
+            "placeholder_unresolved": false,
+            "resolve_note": "bare form from doc line 189. No pytest.exe on PATH in the managed venv, so the literal argv is recorded as ENOENT and the resolved argv (python -m pytest, the same command in the interpreter that owns the venv) decides rc."
+          },
+          {
+            "command_id": "tdd.cargo.test",
+            "doc_literal": "cargo test",
+            "argv_hand_listed": [
+              "cargo",
+              "test"
+            ],
+            "argv_resolved_used": null,
+            "cwd": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\_repro\\r285l\\work\\sub\\tdd_A/scaffold",
+            "state": null,
+            "primary": true,
+            "attempts": [
+              {
+                "attempt": 1,
+                "rc": "ENOENT",
+                "spawn_error": "ENOENT",
+                "stdout_bytes": 0,
+                "stderr_tail": ""
+              }
+            ],
+            "rc": "ENOENT",
+            "spawn_error": "ENOENT",
+            "signal": null,
+            "stdout_bytes": 0,
+            "stderr_bytes": 0,
+            "stdout_tail": "",
+            "stderr_tail": "",
+            "persisted_new": [],
+            "runnable": false,
+            "blocked_reason": "TOOLCHAIN-ABSENT: cargo not installed on this machine (probe rc/spawn error recorded in results). Not counted in runnable, rc_zero or artifacts.",
+            "external_service": false,
+            "placeholder_unresolved": false
+          }
+        ],
+        "unmatched_literals": [],
+        "doc_claim": {
+          "claim": "Verify RED then Verify GREEN: the worked example test must fail before the feature exists and pass after it does.",
+          "met": "Y",
+          "evidence": "RED rc=1 / GREEN rc=0; test body is the doc worked example (rejects empty email)"
+        },
+        "out_dirs": [
+          {
+            "dir": "out_persist",
+            "files": []
+          }
+        ],
+        "arm_dir": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\_repro\\r285l\\work\\sub\\tdd_A"
+      },
+      "B": {
+        "arm_doc": {
+          "ref": "SUBSTITUTED:tdd_A.md",
+          "bytes": 11635,
+          "sha12": "8ee8a57d45a2",
+          "substituted": true
+        },
+        "commands_found": [
+          {
+            "literal": "npm test path/to/test.test.ts",
+            "line": 120
+          },
+          {
+            "literal": "pytest",
+            "line": 189
+          },
+          {
+            "literal": "cargo test",
+            "line": 190
+          },
+          {
+            "literal": "npm test",
+            "line": 190
+          }
+        ],
+        "commands_found_count": 4,
+        "query_excluded": [],
+        "rows": [
+          {
+            "command_id": "tdd.npm.test.example#RED",
+            "doc_literal": "npm test path/to/test.test.ts",
+            "argv_hand_listed": [
+              "C:/Program Files/nodejs/node.exe",
+              "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+              "test",
+              "path/to/test.test.ts"
+            ],
+            "argv_resolved_used": null,
+            "cwd": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\_repro\\r285l\\work\\sub\\tdd_B/scaffold",
+            "state": "RED",
+            "primary": true,
+            "attempts": [
+              {
+                "attempt": 1,
+                "rc": 1,
+                "spawn_error": null,
+                "stdout_bytes": 1016,
+                "stderr_tail": "nfig \"sharp_binary_host\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\nnpm warn Unknown user config \"sharp_libvips_binary_host\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\n"
+              }
+            ],
+            "rc": 1,
+            "spawn_error": null,
+            "signal": null,
+            "stdout_bytes": 1016,
+            "stderr_bytes": 810,
+            "stdout_tail": "defined\n  - 'Email required'\n  \n      at TestContext.<anonymous> (C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\_repro\\r285l\\work\\sub\\tdd_B\\scaffold\\path\\to\\test.test.ts:5:10)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1306:25)\n      at Test.start (node:internal/test_runner/test:1177:17)\n      at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: undefined,\n    expected: 'Email required',\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n",
+            "stderr_tail": "s_mirror\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\nnpm warn Unknown user config \"sass_binary_site\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\nnpm warn Unknown user config \"sharp_binary_host\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\nnpm warn Unknown user config \"sharp_libvips_binary_host\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\n",
+            "persisted_new": [],
+            "runnable": true,
+            "blocked_reason": null,
+            "external_service": false,
+            "placeholder_unresolved": false,
+            "resolve_note": "npm test is a cmd shim here (spawnSync on .cmd gives EINVAL), so the hand-listed argv invokes npm-cli.js with real node; same verb, same argument. path/to/test.test.ts is verbatim from the doc; scaffold holds the doc worked example (rejects empty email) as a .ts file, run in RED then GREEN state."
+          },
+          {
+            "command_id": "tdd.npm.test.example#GREEN",
+            "doc_literal": "npm test path/to/test.test.ts",
+            "argv_hand_listed": [
+              "C:/Program Files/nodejs/node.exe",
+              "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+              "test",
+              "path/to/test.test.ts"
+            ],
+            "argv_resolved_used": null,
+            "cwd": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\_repro\\r285l\\work\\sub\\tdd_B/scaffold",
+            "state": "GREEN",
+            "primary": true,
+            "attempts": [
+              {
+                "attempt": 1,
+                "rc": 0,
+                "spawn_error": null,
+                "stdout_bytes": 212,
+                "stderr_tail": "nfig \"sharp_binary_host\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\nnpm warn Unknown user config \"sharp_libvips_binary_host\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\n"
+              }
+            ],
+            "rc": 0,
+            "spawn_error": null,
+            "signal": null,
+            "stdout_bytes": 212,
+            "stderr_bytes": 810,
+            "stdout_tail": "\n> test\n> node --test path/to/test.test.ts path/to/test.test.ts\n\n✔ rejects empty email (1.1131ms)\nℹ tests 1\nℹ suites 0\nℹ pass 1\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 89.2566\n",
+            "stderr_tail": "s_mirror\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\nnpm warn Unknown user config \"sass_binary_site\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\nnpm warn Unknown user config \"sharp_binary_host\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\nnpm warn Unknown user config \"sharp_libvips_binary_host\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\n",
+            "persisted_new": [],
+            "runnable": true,
+            "blocked_reason": null,
+            "external_service": false,
+            "placeholder_unresolved": false,
+            "resolve_note": "npm test is a cmd shim here (spawnSync on .cmd gives EINVAL), so the hand-listed argv invokes npm-cli.js with real node; same verb, same argument. path/to/test.test.ts is verbatim from the doc; scaffold holds the doc worked example (rejects empty email) as a .ts file, run in RED then GREEN state."
+          },
+          {
+            "command_id": "tdd.npm.test.bare",
+            "doc_literal": "npm test",
+            "argv_hand_listed": [
+              "C:/Program Files/nodejs/node.exe",
+              "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+              "test"
+            ],
+            "argv_resolved_used": null,
+            "cwd": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\_repro\\r285l\\work\\sub\\tdd_B/scaffold",
+            "state": null,
+            "primary": true,
+            "attempts": [
+              {
+                "attempt": 1,
+                "rc": 0,
+                "spawn_error": null,
+                "stdout_bytes": 191,
+                "stderr_tail": "nfig \"sharp_binary_host\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\nnpm warn Unknown user config \"sharp_libvips_binary_host\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\n"
+              }
+            ],
+            "rc": 0,
+            "spawn_error": null,
+            "signal": null,
+            "stdout_bytes": 191,
+            "stderr_bytes": 810,
+            "stdout_tail": "\n> test\n> node --test path/to/test.test.ts\n\n✔ rejects empty email (1.3955ms)\nℹ tests 1\nℹ suites 0\nℹ pass 1\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 96.0183\n",
+            "stderr_tail": "s_mirror\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\nnpm warn Unknown user config \"sass_binary_site\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\nnpm warn Unknown user config \"sharp_binary_host\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\nnpm warn Unknown user config \"sharp_libvips_binary_host\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\n",
+            "persisted_new": [],
+            "runnable": true,
+            "blocked_reason": null,
+            "external_service": false,
+            "placeholder_unresolved": false,
+            "resolve_note": "bare project-suite form (doc line 190, and the worked-example transcript lines show bare npm test); runs package.json test script in the same scaffold, GREEN state."
+          },
+          {
+            "command_id": "tdd.pytest",
+            "doc_literal": "pytest",
+            "argv_hand_listed": [
+              "pytest"
+            ],
+            "argv_resolved_used": [
+              "C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe",
+              "-m",
+              "pytest"
+            ],
+            "cwd": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\_repro\\r285l\\work\\sub\\tdd_B/scaffold_py",
+            "state": null,
+            "primary": true,
+            "attempts": [
+              {
+                "attempt": 1,
+                "rc": 0,
+                "spawn_error": null,
+                "stdout_bytes": 502,
+                "stderr_tail": ""
+              }
+            ],
+            "rc": 0,
+            "spawn_error": null,
+            "signal": null,
+            "stdout_bytes": 502,
+            "stderr_bytes": 0,
+            "stdout_tail": "============================= test session starts =============================\r\nplatform win32 -- Python 3.13.14, pytest-9.1.1, pluggy-1.6.0\r\nrootdir: C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\_repro\\r285l\\work\\sub\\tdd_B\\scaffold_py\r\nplugins: anyio-4.13.0, cov-7.1.0, timeout-2.4.0, xdist-3.8.0\r\ncollected 1 item\r\n\r\ntest_form.py .                                                           [100%]\r\n\r\n============================== 1 passed in 0.02s ==============================\r\n",
+            "stderr_tail": "",
+            "persisted_new": [],
+            "runnable": true,
+            "blocked_reason": null,
+            "external_service": false,
+            "placeholder_unresolved": false,
+            "resolve_note": "bare form from doc line 189. No pytest.exe on PATH in the managed venv, so the literal argv is recorded as ENOENT and the resolved argv (python -m pytest, the same command in the interpreter that owns the venv) decides rc."
+          },
+          {
+            "command_id": "tdd.cargo.test",
+            "doc_literal": "cargo test",
+            "argv_hand_listed": [
+              "cargo",
+              "test"
+            ],
+            "argv_resolved_used": null,
+            "cwd": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\_repro\\r285l\\work\\sub\\tdd_B/scaffold",
+            "state": null,
+            "primary": true,
+            "attempts": [
+              {
+                "attempt": 1,
+                "rc": "ENOENT",
+                "spawn_error": "ENOENT",
+                "stdout_bytes": 0,
+                "stderr_tail": ""
+              }
+            ],
+            "rc": "ENOENT",
+            "spawn_error": "ENOENT",
+            "signal": null,
+            "stdout_bytes": 0,
+            "stderr_bytes": 0,
+            "stdout_tail": "",
+            "stderr_tail": "",
+            "persisted_new": [],
+            "runnable": false,
+            "blocked_reason": "TOOLCHAIN-ABSENT: cargo not installed on this machine (probe rc/spawn error recorded in results). Not counted in runnable, rc_zero or artifacts.",
+            "external_service": false,
+            "placeholder_unresolved": false
+          }
+        ],
+        "unmatched_literals": [],
+        "doc_claim": {
+          "claim": "Verify RED then Verify GREEN: the worked example test must fail before the feature exists and pass after it does.",
+          "met": "Y",
+          "evidence": "RED rc=1 / GREEN rc=0; test body is the doc worked example (rejects empty email)"
+        },
+        "out_dirs": [
+          {
+            "dir": "out_persist",
+            "files": []
+          }
+        ],
+        "arm_dir": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\_repro\\r285l\\work\\sub\\tdd_B"
+      }
+    }
+  }
+}

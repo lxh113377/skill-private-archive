@@ -45,6 +45,30 @@ RE_ITEM_ID = re.compile(r"([A-Z]-\d+)（r\d{1,3}\s*新立")
 RE_LANDED_WORD = re.compile(r"落地|已落地|执行完毕|已闭环")
 RE_DEFERRAL_TEXT = re.compile(r"^\s*(?:【)?\s*挂账至\s*r\d{1,3}")   # 只看裁决文本**头部**：r49 实测「在原因里引用旧标记原文」会被全文 search 命中，把终局裁决误判成延期（同一劫持第 2 形态）
 
+# ---- r290（R289-6 / R271-2）：第 >=2 次到期禁再挂账，机器闸 ⑧ ---------------------------
+# 一手（r289 我自己造成）：R261-7 第 2 次到期时我先写成「挂账至 r290」，违反自立的 R271-2
+# （REPEAT 即升级、禁再挂账）；想改判又被 r46 同轮幂等拒（那条是对的），于是只能带 REPEAT 收口。
+# 根因不是不知道规矩，而是下裁决时没先看这条已经挂过几次 —— 必须前移到写时由机器判。
+# 判据只看该条目自己已写的标记：存在「裁决=挂账至 rN」且本轮 round > N（上次的目标轮已过）
+# ⇒ 本次再挂账即拒写。首轮挂账（无更早标记，或目标轮未到）放行，不误伤正常延期。
+RE_PRIOR_DEFERRAL = re.compile(r"裁决=挂账至\s*r(\d{1,3})")
+
+
+def repeat_deferral_hits(lines, key, round_val):
+    """返回 (是否应拒写, 证据串)。取不到轮号或无标记 => 不拒（放行）；判据不得拦死任务。"""
+    expired = []
+    for l in lines:
+        if key not in l:
+            continue
+        for m in RE_PRIOR_DEFERRAL.finditer(l):
+            try:
+                n = int(m.group(1))
+            except ValueError:
+                continue          # 轮号取不到就不猜：宁可放行也不误伤
+            if round_val is not None and n < round_val:
+                expired.append("r%d" % n)
+    return (bool(expired), ";".join(sorted(set(expired)))[:40])
+
 
 # ---- r214（对标改造 H-2 / R211-2）：备份簇 keep 收敛 --------------------------------
 # 一手规模（r214 本轮实测，非估算）：_trash 内 .bak 431 件 / 49,135,862B；最大单簇
@@ -249,15 +273,28 @@ def git_subjects(vault, n=20):
 
 
 def find_item_lines(lines, key):
-    """返回 (未勾选命中, 已勾选命中) 两组 1-based 行号 —— 只认 markdown 任务行。"""
+    """返回 (未勾选命中, 已勾选命中) 两组 1-based 行号 —— 只认 markdown 任务行的**条目声明**。
+
+    r290 一手：原实现用裸 `key in line` 判锚点，于是别的条目正文里引用同一编号（我在 R289-6 的
+    note 里写了 R261-7）会被当成第二个锚点，r46 直接以「锚点命中数 != 1」拒写 —— 结果是
+    「引用过某条 ⇒ 永远无法裁决该条」的死锁，反而挡住了对本条的正确纠正。
+    收紧为行首声明匹配（`- [ ] **<key>`）：编号不同仍匹配不上，所以 r46 W-14 那类串条防护不削弱。
+    零命中时**不回退**：r290 实测严格式已覆盖台账全部 236 个条目声明且零歧义；宽松式会把
+    「正文里引用过该编号的别条目」当锚点，正是 r46 W-14 那类把裁决写错条目的事故形态。
+    """
+    # 锚点 = 行首复选框后的**第一个加粗段**里含 key。两种既有条目排版都覆盖：
+    #   `- [ ] **R261-7（r261 登记，P1）** **标题**…`（key 就是首段）与
+    #   `- [ ] **【P0·待办 丙（r44 登记）】】** 正文`（key 在首段内）。
+    # 正文里的引用（哪怕被加粗成第二段）一律不命中 —— 那正是 r290 挡我对 R261-7 改判的原因。
     open_hits, closed_hits = [], []
     for i, l in enumerate(lines):
-        if key not in l:
-            continue
         st = l.lstrip()
+        m = re.match(r"^- \[[ xX]\] \*\*(.+?)\*\*", st)
+        if not m or key not in m.group(1):
+            continue
         if st.startswith("- [ ]"):
             open_hits.append(i + 1)
-        elif st.startswith("- [x]") or st.startswith("- [X]"):
+        else:
             closed_hits.append(i + 1)
     return open_hits, closed_hits
 
@@ -297,6 +334,8 @@ def main():
     ap.add_argument("--vault", default=str(ROOT), help="项目根（其下 memory/ 才允许写）")
     ap.add_argument("--allow-renumbered", action="store_true",
                     help="⑦ 显式放行「编号疑被改写」的条目（默认拒写，见 r128 事故）")
+    ap.add_argument("--allow-repeat-deferral", action="store_true",
+                    help="⑧ 显式放行「第 >=2 次到期仍写挂账」（默认拒写，见 R271-2 / r289 事故）")
     ap.add_argument("--file", help="指定卷路径（必须位于 <vault>/memory/ 下）")
     ap.add_argument("--key", required=True, help="锚点子串（须在目标卷内唯一命中）")
     ap.add_argument("--round", required=True, help="本轮轮号，如 46")
@@ -382,6 +421,19 @@ def main():
             if mark_head in lines[i]:
                 return refuse("④ 本轮已裁过，不重复写（幂等靠拒绝而非静默跳过）",
                               "%s:%d" % (rp.name, i + 1))
+            # ⑧（r290 / R271-2）：先前已挂账且目标轮已过 => 本次禁再挂账，须三选一（执行/降级/作废）
+            if RE_DEFERRAL_TEXT.search(args.verdict or "") and not args.allow_repeat_deferral:
+                try:
+                    _rv = int(str(args.round).strip())
+                except ValueError:
+                    _rv = None
+                _bad, _ev = repeat_deferral_hits(lines, args.key, _rv)
+                if _bad:
+                    return refuse("⑧ 该条先前已挂账至 %s（目标轮已过）=> 本次不得再挂账；按 R271-2 "
+                                  "只能「执行 / 降级（转长期看守）/ 作废」三选一" % _ev,
+                                  "%s:%d ｜ 确需放行用 --allow-repeat-deferral 并在 note 写理由"
+                                  % (rp.name, i + 1))
+
             if RE_DEFERRAL_TEXT.search(args.verdict or ""):                 # ⑥ 只对延期型裁决设卡
                 subj = git_subjects(vault)
                 own = item_own_id(lines[i])

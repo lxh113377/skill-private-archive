@@ -342,6 +342,69 @@ def main():
     else:
         ck("m2 变异：找不到收敛调用锚点（实现已变，须同步更新变异体）", False, "anchor missing")
 
+
+    # ---- t24~t26 + m3（r290 / R271-2）：⑧ 第 >=2 次到期禁再挂账的判别力 ----------
+    def mk_defer_vault(tmpx, seed_marker):
+        d = tmpx / "defer"
+        (d / "memory").mkdir(parents=True, exist_ok=True)
+        fx = d / "memory" / "07-next-steps.md"
+        body = "- [ ] **待办 庚（r44 登记，P1）** 正文庚"
+        fx.write_text((body + seed_marker + "\n") if seed_marker else (body + "\n"),
+                      encoding="utf-8", newline="")
+        return fx
+
+    import shutil as _sh
+    seed = "【r45 裁决=挂账至 r46｜首次越线】"
+    fx24 = mk_defer_vault(tmp, seed)
+    r24 = run(["--vault", str(tmp / "defer"), "--key", "待办 庚", "--round", "47",
+               "--verdict", "挂账至 r48｜再延一轮"])
+    o24 = (r24.stdout or "") + (r24.stderr or "")
+    ck("t24 先前挂账目标轮已过 + 本轮仍挂账 → ⑧ 拒写且台账未被改",
+       r24.returncode != 0 and "⑧" in o24 and seed in fx24.read_text(encoding="utf-8")
+       and "r47 裁决=" not in fx24.read_text(encoding="utf-8"), o24[-170:])
+
+    fx25 = mk_defer_vault(tmp, "")
+    r25 = run(["--vault", str(tmp / "defer"), "--key", "待办 庚", "--round", "47",
+               "--verdict", "挂账至 r48｜首次越线"])
+    ck("t25 首轮挂账（无更早标记）→ 放行，⑧ 不误伤正常延期",
+       r25.returncode == 0 and "r47 裁决=挂账" in fx25.read_text(encoding="utf-8"),
+       ((r25.stdout or "") + (r25.stderr or ""))[-160:])
+
+    fx26 = mk_defer_vault(tmp, "【r45 裁决=挂账至 r99｜目标轮尚远】")
+    r26 = run(["--vault", str(tmp / "defer"), "--key", "待办 庚", "--round", "47",
+               "--verdict", "挂账至 r48｜同条二次但目标轮未到"])
+    ck("t26 先前挂账的目标轮未到（r99 > 本轮 47）→ 放行（判据只拦过期挂账）",
+       r26.returncode == 0, ((r26.stdout or "") + (r26.stderr or ""))[-160:])
+
+    fx27 = mk_defer_vault(tmp, seed)
+    r27 = run(["--vault", str(tmp / "defer"), "--key", "待办 庚", "--round", "47",
+               "--verdict", "挂账至 r48｜带逃生门", "--allow-repeat-deferral"])
+    ck("t27 逃生门 --allow-repeat-deferral 可放行且留痕（⑧ 不是死闸）",
+       r27.returncode == 0 and "r47 裁决=挂账" in fx27.read_text(encoding="utf-8"),
+       ((r27.stdout or "") + (r27.stderr or ""))[-160:])
+
+    MUT8 = "if RE_DEFERRAL_TEXT.search(args.verdict or \"\") and not args.allow_repeat_deferral:"
+    src28 = TOOL.read_text(encoding="utf-8")
+    if MUT8 in src28:
+        md = tmp / "mut8"
+        (md / "memory").mkdir(parents=True, exist_ok=True)
+        mt = md / "memory" / "07-next-steps.md"
+        mt.write_text("- [ ] **待办 庚（r44 登记，P1）** 正文庚【r45 裁决=挂账至 r46｜首次越线】\n",
+                      encoding="utf-8", newline="")
+        stub8 = "if False:"
+        mut = md / "tool8.py"
+        mut.write_text(src28.replace(MUT8, stub8, 1), encoding="utf-8", newline="")
+        # 变异体必须**直接调用**：夹具里的 run() 会把正式 TOOL 路径前置，于是变异体文件名被
+        # 当成多余位置参数 ⇒ argparse 报 unrecognized arguments（实测 rc=2，是假红不是判别力）。
+        r28 = subprocess.run([sys.executable, str(mut), "--vault", str(md), "--key", "待办 庚",
+                              "--round", "47", "--verdict", "挂账至 r48｜变异体"],
+                             capture_output=True, text=True, encoding="utf-8",
+                             errors="replace", cwd=str(HERE.parent))
+        ck("m3 变异：摘掉 ⑧ → 同一输入被放行（证 t24 的绿来自 ⑧ 本身）",
+           r28.returncode == 0 and "r47 裁决=挂账" in mt.read_text(encoding="utf-8"),
+           ((r28.stdout or "") + (r28.stderr or ""))[-170:])
+    else:
+        ck("m3 变异：找不到 ⑧ 调用锚点（实现已变，须同步更新变异体）", False, "anchor missing")
     fails = [x for x in RESULTS if not x[0]]
     print("\n夹具合计: %d 项，通过 %d，失败 %d"
           % (len(RESULTS), len(RESULTS) - len(fails), len(fails)))

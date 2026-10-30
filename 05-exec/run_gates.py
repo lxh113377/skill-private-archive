@@ -383,7 +383,7 @@ GATES = [
         "argv": [],
         "pass_token": "[GATE:fixture-pass]",
         "portable": True,
-        "covers": ["05-exec/r46_mark_verdict.py 的锚点定位与拒写分支",
+        "covers": ["05-exec/r46_mark_verdict.py 的锚点定位与拒写分支（r290：锚点收紧为行首首个加粗段 + 第⑧重「过期挂账禁再挂」）",
                    "X-19 禁行号写标记（工具化，不靠自觉）"],
         "why": "r45 实测 W-9 挂了 5 轮的真因是按行号写标记写到别处；本门锁死该入口不再接受行号、歧义与已闭环一律拒写、写完必须读回",
     },

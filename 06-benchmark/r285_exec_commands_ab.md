@@ -4,7 +4,7 @@
 
 这一件量的不是「文档写得好不好」，而是「文档里字面写出来的命令，在这台机器上按原样能不能跑、跑完有没有真的把东西落到盘上」。
 做法：取改前/改后两份 SKILL.md 文本（只读 git show），从文本里抽字面命令（查询型 --help / --version / whoami 不进分母）。
-每条命令的 argv 手工硬列在 _temp/r285l/r285_cmds.json，绝不按空白切词（r281 就是这么把 -p 带空格的项目名拆坏造成假红）。
+每条命令的 argv 手工硬列在 _repro/r285l/r285_cmds.json，绝不按空白切词（r281 就是这么把 -p 带空格的项目名拆坏造成假红）。
 占位符按文中语义换成真实输入（本运行现造 2 页 .pptx 与 2 页 HTML deck），每个臂用自己独立且跑前清空的输出目录。
 
 ## 1. 总表（三件并列）
@@ -24,7 +24,7 @@
 diff 显示前者只多了一行指向 writing-good-tests.md 的插入行（无新命令）；后者的改动全在版式规则（100vh 改为固定 1920x1080 舞台）、模板包指针与版本历史。
 三个脚本本体两态 sha256 完全相同：extract-pptx.py 4f5e7603c99b / deploy.sh 74a1103519a6 / export-pdf.sh 16336202904f。
 所以「字面命令集、实跑数、rc=0、落盘件数、声明兑现」五项全部相同。r281 那件有 +22.22% 是因为它新增了一条真能跑且真能持久化的命令；这两件没有这类新增。
-> 取值：`node _temp/r285l/r285_validate.mjs`（期望末行 `[EXEC-AB] rows=3 commands_ok=7/13
+> 取值：`node _repro/r285l/r285_validate.mjs`（期望末行 `[EXEC-AB] rows=3 commands_ok=7/13
 > artifacts_before=5 artifacts_after=6`；注意**不要**带 `-B`，本机 node 拒绝该选项 rc=9）。
 > 逐件读数与两处 PDF 体积读 `06-benchmark/r285_exec_commands_ab.json` 的
 > rows[skill=frontend-slides].arms.B.persisted_artifacts（每项自带 bytes）与 doc_claim_sub。
@@ -173,10 +173,10 @@ git -C D:/global_skills show 079b91f3:test-driven-development/SKILL.md    (after
 git -C D:/global_skills show 3681df5e:frontend-slides/SKILL.md            (before)
 git -C D:/global_skills show 89efb3e6:frontend-slides/SKILL.md            (after)
 ui-ux-pro-max pair NOT re-run; readings copied from C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/06-benchmark/r281_execution_ab.json
-cd C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化 && node _temp/r285l/r285_measure.mjs run
-cd C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化 && node _temp/r285l/r285_validate.mjs   (this file's own recomputation gate)
-cd C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化 && ONLY=tdd node _temp/r285l/r285_measure.mjs sub _temp/r285l/texts/tdd_A.md   (negative control 1)
-cd C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化 && node _temp/r285l/r285_negctl2.mjs   (negative control 2, tamper then delete copy)
+cd C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化 && node _repro/r285l/r285_measure.mjs run
+cd C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化 && node _repro/r285l/r285_validate.mjs   (this file's own recomputation gate)
+cd C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化 && ONLY=tdd node _repro/r285l/r285_measure.mjs sub _repro/r285l/texts/tdd_A.md   (negative control 1)
+cd C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化 && node _repro/r285l/r285_negctl2.mjs   (negative control 2, tamper then delete copy)
 ```
 
 判据命令 = 重跑本件自己的脚本（不跑任何人的门），期望末行：

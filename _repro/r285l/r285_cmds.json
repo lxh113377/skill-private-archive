@@ -1,0 +1,225 @@
+{
+  "schema": "exec-commands-cmdspec-v2",
+  "note": "argv hand listed per row, never derived by splitting doc text on whitespace. Placeholders resolved to real inputs. operative rc = argv_resolved when present else argv_literal.",
+  "NPMCLI": "C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js",
+  "NPXCLI": "C:/Program Files/nodejs/node_modules/npm/bin/npx-cli.js",
+  "NODE_EXE": "C:/Program Files/nodejs/node.exe",
+  "ENV_PATH": "C:/Program Files/nodejs;C:/Windows/System32;C:/Windows;C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts",
+  "rows": [
+    {
+      "id": "tdd.npm.test.example",
+      "skill": "test-driven-development",
+      "literal": "npm test path/to/test.test.ts",
+      "argv_literal": [
+        "C:/Program Files/nodejs/node.exe",
+        "{NPMCLI}",
+        "test",
+        "path/to/test.test.ts"
+      ],
+      "cwd": "{ARM}/scaffold",
+      "timeout_ms": 120000,
+      "runnable": true,
+      "resolve_note": "npm test is a cmd shim here (spawnSync on .cmd gives EINVAL), so the hand-listed argv invokes npm-cli.js with real node; same verb, same argument. path/to/test.test.ts is verbatim from the doc; scaffold holds the doc worked example (rejects empty email) as a .ts file, run in RED then GREEN state."
+    },
+    {
+      "id": "tdd.npm.test.bare",
+      "skill": "test-driven-development",
+      "literal": "npm test",
+      "argv_literal": [
+        "C:/Program Files/nodejs/node.exe",
+        "{NPMCLI}",
+        "test"
+      ],
+      "cwd": "{ARM}/scaffold",
+      "timeout_ms": 120000,
+      "runnable": true,
+      "resolve_note": "bare project-suite form (doc line 190, and the worked-example transcript lines show bare npm test); runs package.json test script in the same scaffold, GREEN state."
+    },
+    {
+      "id": "tdd.pytest",
+      "skill": "test-driven-development",
+      "literal": "pytest",
+      "argv_literal": [
+        "pytest"
+      ],
+      "argv_resolved": [
+        "{PY}",
+        "-m",
+        "pytest"
+      ],
+      "cwd": "{ARM}/scaffold_py",
+      "timeout_ms": 120000,
+      "runnable": true,
+      "resolve_note": "bare form from doc line 189. No pytest.exe on PATH in the managed venv, so the literal argv is recorded as ENOENT and the resolved argv (python -m pytest, the same command in the interpreter that owns the venv) decides rc.",
+      "max_attempts": 2
+    },
+    {
+      "id": "tdd.cargo.test",
+      "skill": "test-driven-development",
+      "literal": "cargo test",
+      "argv_literal": [
+        "cargo",
+        "test"
+      ],
+      "cwd": "{ARM}/scaffold",
+      "timeout_ms": 60000,
+      "runnable": false,
+      "blocked_reason": "TOOLCHAIN-ABSENT: cargo not installed on this machine (probe rc/spawn error recorded in results). Not counted in runnable, rc_zero or artifacts."
+    },
+    {
+      "id": "fs.playwright.install",
+      "skill": "frontend-slides",
+      "literal": "npx playwright install chromium",
+      "argv_literal": [
+        "C:/Program Files/nodejs/node.exe",
+        "{NPXCLI}",
+        "playwright",
+        "install",
+        "chromium"
+      ],
+      "cwd": "{ARM}",
+      "timeout_ms": 600000,
+      "runnable": true,
+      "resolve_note": "doc troubleshooting step for the PDF export path; run before the export rows so the browser download is shared, not duplicated. npx goes through npx-cli.js for the same EINVAL reason.",
+      "max_attempts": 3,
+      "retry_note": "network-bound download; both arms contain this identical line, so a differing rc between arms is a provider/network flake, not a doc difference. Operative rc = first 0 within max_attempts, all attempts kept."
+    },
+    {
+      "id": "fs.pip.install",
+      "skill": "frontend-slides",
+      "literal": "pip install python-pptx",
+      "argv_literal": [
+        "{PY}",
+        "-m",
+        "pip",
+        "install",
+        "python-pptx"
+      ],
+      "cwd": "{ARM}",
+      "timeout_ms": 300000,
+      "runnable": true,
+      "resolve_note": "doc dependency step; executed in the managed venv (requirement already satisfied there, rc=0 either way)."
+    },
+    {
+      "id": "fs.extract.pptx",
+      "skill": "frontend-slides",
+      "literal": "python scripts/extract-pptx.py <input.pptx> <output_dir>",
+      "argv_literal": [
+        "{PY}",
+        "scripts/extract-pptx.py",
+        "fixture.pptx",
+        "out_extract"
+      ],
+      "cwd": "{ARM}",
+      "timeout_ms": 180000,
+      "runnable": true,
+      "resolve_note": "<input.pptx> resolved to a real 2-slide .pptx built for this run (hand-built OPC package, normalised through LibreOffice 26.8.1 headless because python-pptx 1.0.2 in the managed venv cannot create one: its templates/default.pptx is missing). <output_dir> resolved to the arm's own out_extract."
+    },
+    {
+      "id": "fs.deploy.placeholder",
+      "skill": "frontend-slides",
+      "literal": "bash scripts/deploy.sh <path-to-presentation>",
+      "argv_literal": [
+        "{GB}",
+        "scripts/deploy.sh",
+        "my-deck"
+      ],
+      "cwd": "{ARM}",
+      "timeout_ms": 75000,
+      "runnable": true,
+      "external_service": true,
+      "resolve_note": "<path-to-presentation> resolved to the arm's my-deck folder (index.html from the fixture deck). Deploying needs a logged-in Vercel account: no external credential is used or created by this run, so a non-zero rc here is an environment boundary, not a doc defect."
+    },
+    {
+      "id": "fs.deploy.reldir",
+      "skill": "frontend-slides",
+      "literal": "bash scripts/deploy.sh ./my-deck/",
+      "argv_literal": [
+        "{GB}",
+        "scripts/deploy.sh",
+        "./my-deck/"
+      ],
+      "cwd": "{ARM}",
+      "timeout_ms": 75000,
+      "runnable": true,
+      "external_service": true,
+      "resolve_note": "the doc's verbatim relative-folder form (line 267/275), same my-deck folder, same Vercel boundary."
+    },
+    {
+      "id": "fs.export.pdf",
+      "skill": "frontend-slides",
+      "literal": "bash scripts/export-pdf.sh <path-to-html> [output.pdf]",
+      "argv_literal": [
+        "{GB}",
+        "scripts/export-pdf.sh",
+        "my-deck/index.html",
+        "out_pdf/deck.pdf"
+      ],
+      "cwd": "{ARM}",
+      "timeout_ms": 600000,
+      "runnable": true,
+      "resolve_note": "<path-to-html> resolved to the arm's deck, [output.pdf] resolved to out_pdf/deck.pdf (the optional arg is filled, since the doc default writes next to the HTML and that would land outside the arm output dir).",
+      "max_attempts": 3,
+      "network_bound": true,
+      "flake_note": "export-pdf.sh installs Playwright AND downloads Chromium into a fresh mktemp dir on every invocation, so each of these rows is a separate network draw. Operative rc = first 0 within max_attempts. A cross-arm rc difference here is a download flake, not a doc difference; if every attempt fails the claim is reported UNVERIFIED, never as a delta."
+    },
+    {
+      "id": "fs.export.pdf.compact",
+      "skill": "frontend-slides",
+      "literal": "bash scripts/export-pdf.sh <path-to-html> [output.pdf] --compact",
+      "argv_literal": [
+        "{GB}",
+        "scripts/export-pdf.sh",
+        "my-deck/index.html",
+        "out_pdf_compact/deck.pdf",
+        "--compact"
+      ],
+      "cwd": "{ARM}",
+      "timeout_ms": 600000,
+      "runnable": true,
+      "resolve_note": "doc compact variant (renders 1280x720); separate output dir so the two exports cannot be confused.",
+      "max_attempts": 3,
+      "network_bound": true,
+      "flake_note": "export-pdf.sh installs Playwright AND downloads Chromium into a fresh mktemp dir on every invocation, so each of these rows is a separate network draw. Operative rc = first 0 within max_attempts. A cross-arm rc difference here is a download flake, not a doc difference; if every attempt fails the claim is reported UNVERIFIED, never as a delta."
+    },
+    {
+      "id": "fs.export.pdf.absolute",
+      "skill": "frontend-slides",
+      "literal": "bash scripts/export-pdf.sh <path-to-html> [output.pdf]",
+      "argv_literal": [
+        "{GB}",
+        "scripts/export-pdf.sh",
+        "my-deck/index.html",
+        "{ARM}/out_pdf/deck.pdf"
+      ],
+      "cwd": "{ARM}",
+      "timeout_ms": 600000,
+      "runnable": true,
+      "resolve_note": "same literal command with the [output.pdf] placeholder resolved to an ABSOLUTE path inside the arm output dir, added because the doc-literal relative form demonstrably loses the PDF (the script cds into its own temp dir before running node, then rm -rf it). Recorded as a variant, not counted in rc_zero.",
+      "primary": false,
+      "max_attempts": 3,
+      "network_bound": true,
+      "flake_note": "export-pdf.sh installs Playwright AND downloads Chromium into a fresh mktemp dir on every invocation, so each of these rows is a separate network draw. Operative rc = first 0 within max_attempts. A cross-arm rc difference here is a download flake, not a doc difference; if every attempt fails the claim is reported UNVERIFIED, never as a delta."
+    },
+    {
+      "id": "fs.export.pdf.compact.absolute",
+      "skill": "frontend-slides",
+      "literal": "bash scripts/export-pdf.sh <path-to-html> [output.pdf] --compact",
+      "argv_literal": [
+        "{GB}",
+        "scripts/export-pdf.sh",
+        "my-deck/index.html",
+        "{ARM}/out_pdf_compact/deck.pdf",
+        "--compact"
+      ],
+      "cwd": "{ARM}",
+      "timeout_ms": 600000,
+      "runnable": true,
+      "resolve_note": "same literal command with the [output.pdf] placeholder resolved to an ABSOLUTE path inside the arm output dir, added because the doc-literal relative form demonstrably loses the PDF (the script cds into its own temp dir before running node, then rm -rf it). Recorded as a variant, not counted in rc_zero.",
+      "primary": false,
+      "max_attempts": 3,
+      "network_bound": true,
+      "flake_note": "export-pdf.sh installs Playwright AND downloads Chromium into a fresh mktemp dir on every invocation, so each of these rows is a separate network draw. Operative rc = first 0 within max_attempts. A cross-arm rc difference here is a download flake, not a doc difference; if every attempt fails the claim is reported UNVERIFIED, never as a delta."
+    }
+  ]
+}

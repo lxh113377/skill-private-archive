@@ -78,3 +78,25 @@ _repro/*/_*.b64
 _repro/*/_*.err
 _repro/*/_*.txt
 _repro/*/_landed_preview/
+
+# r290：_repro/r285l/texts/ 是 L 臂 A/B 的输入语料 = 受管根 SKILL.md 的逐字节副本，不入库。
+# 两条实测依据（不是推断）：① 权威判据不读它 —— 把 texts/ 临时移开后 r285_validate.mjs 与
+#    r285_negctl2.mjs 均 rc=0 且末行逐字一致（validate 只读 results/run.json 与交付件）；
+# ② 可逐字节重建 —— 用交付件 rows[].before_ref/after_ref 做 git show <ref>:<skill>/SKILL.md，
+#    4/4 sha256 与现文件相同（tdd_A 8ee8a57d45 / tdd_B e970555276 / fs_A e76ddd898d / fs_B 6b9b0953aa）。
+# 重建命令（clone 后跑，仓根执行）：
+#   mkdir -p _repro/r285l/texts && \
+#   git -C D:/global_skills show '079b91f3~1:test-driven-development/SKILL.md' > _repro/r285l/texts/tdd_A.md && \
+#   git -C D:/global_skills show '079b91f3:test-driven-development/SKILL.md'    > _repro/r285l/texts/tdd_B.md && \
+#   git -C D:/global_skills show '3681df5e:frontend-slides/SKILL.md'            > _repro/r285l/texts/fs_A.md && \
+#   git -C D:/global_skills show '89efb3e6:frontend-slides/SKILL.md'            > _repro/r285l/texts/fs_B.md
+# 反面教训（同 R285-1）：这类副本内部的相对链（STYLE_PRESETS.md / html-template.md / viewport-base.css 等）
+# 指向各自 skill 树，放进本仓发布面必断 —— 实测 28 条死链全部来自它们；而副本必须与源逐字节相同
+# （是 A/B 的输入证据），改一行就废了证据，所以唯一正解是不入库。
+# 必须入库的是判据本体与 results/run.json（evidence_sha256 哈希它，删了就自证断裂）。
+_repro/r285l/texts/
+
+# r290：判据在 _repro 下自建的运行时工作区与字节码缓存（随判据改名迁移），每次跑都重建，不入库。
+# 被哈希的证据 results/run.json 仍保留跟踪（交付件里的 evidence_sha256 需在 clone 后可核）。
+_repro/*/work/
+_repro/*/*cache*/
