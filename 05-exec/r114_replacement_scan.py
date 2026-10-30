@@ -710,17 +710,38 @@ def declared_face(slug, repo, subpath, cache, offline, stats):
     vs = {str(slug).lower(), str(slug).lower().replace("-", "_"),
           str(slug).lower().replace("_", "-"), str(slug).lower().replace("-", "")}
     hit = [d for d in dirs if d.rsplit("/", 1)[-1] in vs]
+    # ---- 修 1（r301）：path: 归属自解析 ----
+    # 旧写法把侧车声明的子路径无条件套到「本件的每个声明仓」上。多仓侧车（实测 5 件）里这条路径往往
+    # 只属于其中**一个**仓（例：electron 声明的 path: skill-data/electron 只在 vercel-labs/agent-browser
+    # 的树里），套到兄弟仓上就是「借别人的路径证明自己命中」= 假 lineage 通道。现在要求该路径在
+    # **本仓**树里存在才生效；不存在则本仓不采用它，并把这个事实显形（path_attributed=False）。
     ph = None
+    path_attributed = None
     if subpath:
         want = str(subpath).strip("/").lower()
         ph = want if any(d == want or d.endswith("/" + want) for d in dirs) else None
+        path_attributed = bool(ph)
+    # ---- 修 2（r301）：根级腿改前后缀式，不再用子串 ----
+    # 旧写法 any(v in tail) 只要仓名**任意位置**含 slug 就算命中：slug=story + 仓 oh-story-claudecode
+    # 会假 lineage（实测真实语料未触发，但通道是真的）。改为「整名相等 / 以 slug+分隔符开头 /
+    # 以分隔符+slug 结尾」三种边界形态。
     tail = str(repo).split("/")[-1].lower()
-    name_ok = any(v and v in tail for v in vs)
+    def _boundary_hit(name, v):
+        if not v:
+            return False
+        if name == v:
+            return True
+        for sep in ("-", "_", "."):
+            if name.startswith(v + sep) or name.endswith(sep + v):
+                return True
+        return False
+    name_ok = any(_boundary_hit(tail, v) for v in vs)
     root = bool(m.get("skill_md_root"))
     state = "lineage" if (ph or hit or (root and name_ok)) else "invalid"
     s, tot, fc = score5(m, True, True)
     base.update({"state": state, "path_hit": ph, "slug_hit": hit[:4],
                  "root_skill_md": root, "repo_name_ok": name_ok,
+                 "path_attributed": path_attributed,
                  "score5": s, "score_total": tot, "fc_caliber": fc,
                  "stars": m.get("stars"), "pushed_at": m.get("pushed_at"),
                  "license": m.get("license"), "tree_skill_md_n": m.get("skill_md_n")})
@@ -1400,6 +1421,7 @@ def main():
         if _declared is not None:
             _row["declared_state"] = _declared.get("state")
             _row["declared_path_hit"] = _declared.get("path_hit")
+            _row["declared_path_attributed"] = _declared.get("path_attributed")
             _row["declared_slug_hit"] = _declared.get("slug_hit")
             _row["declared_score5"] = _declared.get("score5")
             _row["declared_score_total"] = _declared.get("score_total")

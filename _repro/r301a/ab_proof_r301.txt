@@ -1,0 +1,22 @@
+r301 证据：声明仓面两处机制修的守约束读数（三条都可由本文件命令复跑）。
+
+为什么留：本轮改的是权威生成器的两处**判定语义**（path 归属、根级边界），必须证明「关掉假绿通道」
+与「不改既有读数」同时成立 —— 前者是目的，后者是红线（191 行档位不得因它漂移）。
+
+命令与读数（cwd = 项目根；PY = managed venv python）：
+  ① 夹具（12 腿）：PY -B 05-exec/r300_declared_face_fixtures.py
+     实跑末行：[DECLARED:FACE:PASS] legs=12 passed=12 lineage=3 invalid=1 unmeasured=2
+     本轮新增：L8a/L8b（path 归属双向）、L9a/L9b（根级边界双向）、L9c（有牙证明：旧子串判据 True / 新边界判据 False）
+  ② 零漂移：PY -B _temp/r300_populate_ab.py
+     实跑：[DIFF] rows before=191 after=191 same_set=True
+           [DIFF] 档位/候选面漂移条数 = 0
+           [DIFF] 带 declared 字段行数=55 states={'lineage': 49, 'invalid': 6}
+     （基线 = git show HEAD 版；此刻 HEAD 已含 declared 面 ⇒ 两版同源，故只比档位/候选面，不比整行）
+  ③ 回滚对 r299 版：PY -B _temp/r301_rbpin.py
+     实跑：[ROLLBACK vs r299] rows=191/191 整行不一致 = 0
+     说明：基线必须用 `git show r299:...`（特性引入前的 tag），**不得**用浮动的 HEAD ——
+     我第一次用 HEAD 当基线时报出 55 行整行差异，逐键一看全是 declared_* 键，是口径错不是回滚坏。
+     这条已落纸 04-plan §5.7。
+
+诚实标注：L8b **不构成有牙腿**（旧写法在该形态下同样给 ph=None）⇒ 修 ① 是加固与显形；
+有牙的是 L9c。详见 06-benchmark/全量对标报告_r301_*.md 第 3 节。

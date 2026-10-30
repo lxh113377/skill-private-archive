@@ -331,7 +331,7 @@ GATES = [
         "pass_token": "[DECLARED:FACE:PASS]",
         "portable": True,
         "covers": [
-            "r114_replacement_scan.declared_face 七腿：同名目录 / 声明 path: 子目录 / 根级单件仓 —— lineage 三条通路各一腿",
+            "r114_replacement_scan.declared_face 九腿：同名目录 / 声明 path: 子目录 / 根级单件仓 —— lineage 三条通路各一腿",
             "树完整且路径与 slug 都落不到 ⇒ invalid；缓存缺树目录列 ⇒ unmeasured；树被截断 ⇒ unmeasured（取不到≠不存在，R247 双向）",
             "单源性：同一 doc 两次现算 score5 必须逐字段相等（禁复刻口径；夹具比对 doc 与受检 doc 必须同形状）",
             "回滚面：--no-declared-inject 下行输出与旧版逐行整 JSON 相等（r300 A/B 实测 0 行差异、0 残留键）",
@@ -339,7 +339,8 @@ GATES = [
         "why": "r300 给 r114 加了 declared_face（把 .upstream 声明的上游仓做成行内五维：lineage/invalid/unmeasured）。"
                "新判据进门必须自带三态反例 —— 只测正常路径等于没测。本轮首跑就有两腿红：一是我夹具的对照 doc 与受检件"
                "skill_md_n 不等、二是产品把「老缓存缺树目录列」写成「仓元数据取不到」（语义错位会让人以为仓没测过）。"
-               "两条都是我自己的错，修完才全绿；这就是把「取不到」与「不存在」分开登记的价值。",
+               "两条都是我自己的错，修完才全绿；这就是把「取不到」与「不存在」分开登记的价值。"
+               "r301 依独立预测面（另一臂）的边界异议追加两腿双向断言：L8 声明 path: 的**归属自解析**（路径只对树里真有它的仓生效，兄弟仓不得借它判 lineage —— 实测 electron 声明的 path 只在 vercel-labs/agent-browser 树里）、L9 根级腿改前后缀式（slug 只出现在仓名中间不算，旧子串写法在 story + oh-story-claudecode 形态上会假绿）。两处修完 191 行档位与候选面漂移 0 条、回滚逐行整 JSON 相等。",
     },
     {
         "id": "r19_scan_fixtures",

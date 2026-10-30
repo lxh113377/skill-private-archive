@@ -333,6 +333,29 @@ debt_runs 实测 current_round 298/299/300 对应 overdue 0/0/**4**，跳变与�
 手法可复用本轮建好的 _repro/r276qi/ 与 work 镜像口径；验收靶 = r287 末行「不可解析出处」再跌 3 且**新增 0**；
 注意解释文字不得含路径形态（见 R300-6 第②条）。
 取值：python 05-exec/r287_provenance_resolve.py --json <件>；python -c 读 06-benchmark/r287_provenance_baseline.json 的 keys 筛 r276/r277。
+- [ ] **R301-1（r301 登记，P1）** **r114 两处机制修（path 归属自解析 + 根级腿改前后缀式）落地：12 腿夹具全 PASS（含 L9c 有牙证明）、191 行零漂移、回滚对 r299 版 0 差异；并落纸 §5.7「复验基线必须钉在特性引入前，禁浮动 HEAD」**：一手（r301，Lead 自干件）：r114 两处机制修 + 12 腿夹具 + 两条守约束复验。
+修的什么（依独立预测面 r300 的边界异议，两条都是「通道真实、真实语料未触发」型）：
+① **声明 path: 的归属自解析**：旧写法把侧车声明的子路径无条件套到本件的每个声明仓上（多仓侧车实测 5 件），
+   而该路径往往只属于其中一个仓（实测 electron 声明的 path: skill-data/electron 只在 vercel-labs/agent-browser
+   树里）⇒ 已改为「该路径必须在**本仓**树里存在才生效」，并落 declared_path_attributed 显形。
+② **根级腿改前后缀式**：旧写法 any(v in tail) 只要仓名任意位置含 slug 即命中 ⇒ slug=story +
+   worldwonderer/oh-story-claudecode 会假 lineage；改为「整名相等 / 以 slug+分隔符开头 / 以分隔符+slug 结尾」。
+证据（三件，全可复跑）：
+   · 夹具 05-exec/r300_declared_face_fixtures.py 从 7 腿扩到 **12 腿全 PASS**：[DECLARED:FACE:PASS] legs=12 passed=12。
+     新增 L8a/L8b（path 归属双向）、L9a/L9b（根级边界双向）、**L9c = L9b 的有牙证明**（把旧子串判据与新边界
+     判据并排跑，必须给出相反答案 ⇒ 否则无法排除「旧版也判 invalid、这条腿从来没红过」）。
+   · 零漂移：改了两处判定语义后重跑 A/B（基线 = git show HEAD 版，因两版都含 declared 面）⇒
+     rows 191==191、档位/候选面**漂移 0 条**、declared 面 lineage 49 / invalid 6 不变。
+   · 回滚：--no-declared-inject 与 **r299（特性引入前）** 版逐行整 JSON 比 ⇒ **191 行不一致 = 0**。
+诚实标注一条：**L8b 不构成有牙腿** —— 旧写法在该形态下同样给 ph=None（因为它本来就按本仓 dirs 判），
+所以修 ① 是**加固与显形**，真正的假绿通道只在「兄弟仓恰好也有同名目录」时打开，本轮无真实语料命中；
+我把它如实写成断言而不是腿，避免拿一条恒绿的断言冒充判别力。
+⇒ 顺带挖出并落纸一条通用规矩（04-plan §5.7）：**复验的基线必须钉在特性引入之前的提交，禁浮动 HEAD**。
+  我这轮第三次复验回滚面时就是踩了它：HEAD 已前进到含 declared 面的 r300b，于是「跟 HEAD 比」静默变成
+  「跟含特性版比」，报出 55 行整行差异；逐键一看全是 declared_* 键 ⇒ 不是回滚坏了，是基线取错。
+  同族：R293「旧矩阵快照当现行事实」、R298「读改前旧快照当现行值」—— 表现都是复验报红、最易被读成回归。
+取值：python -B 05-exec/r300_declared_face_fixtures.py；python -B _temp/r300_populate_ab.py；
+python -B _temp/r301_rbpin.py（回滚 vs r299 版，末行 不一致 = 0）。
 - [ ] **R290-1（r290 登记，P1）** **r46 锚点匹配收紧为「行首复选框后首个加粗段内含 key」：解除「引用过某条 ⇒ 永不能裁该条」的死锁，且不削弱 W-14 串条防护**：一手（r290 现场）：我想把 R261-7 从上轮误写的挂账改判为降级，r46 返回 [MARK:REFUSED] ② 锚点命中数 != 1，命中 [42, 53] —— 第 53 行是**我上轮写的 R289-6 条目正文**里引用了 R261-7。原实现 find_item_lines 用裸 `key in line`，于是「引用过某条 ⇒ 永远无法裁决该条」，机器闸反过来挡住了对本条的正确纠正。修法与踩坑：① 我先试「行首必须 `- [ ] **`+key」的严格式 ⇒ 真实台账 236 条零歧义，但夹具 **14 项红**（夹具用的是 `- [ ] **【P0·待办 丙（r44 登记）】】**` 这种 key 不在首段起点的排版）⇒ 我的严格式**过窄**，不是夹具错；② 我又加过「严格零命中则回退宽松匹配」的安全网 ⇒ 自查发现该回退正是 W-14 事故形态（会把正文引用行当锚点，把裁决写到无关条目）⇒ **删掉回退**；③ 终解 = 匹配「行首复选框后的第一个加粗段」内是否含 key（re.match 到首个 **…** 段），两种既有排版都覆盖、正文引用（哪怕第二段加粗）永不命中。判别力自证：新增 t24~t27 + m3 变异共 5 腿（m3 首版我用夹具的 run() 前置了正式 TOOL 路径 ⇒ 变异体被当位置参数、argparse rc=2 是**假红不是判别力**，改为 subprocess 直接调变异体后 PASS）。取值：python 05-exec/r46_mark_verdict_fixtures.py（末行 [GATE:fixture-pass]，现 30 项 30 过）；python _temp/r290_selfproof.py（真实台账带过期挂账的条目 22 条，⑧ 会拦）。 【r296 裁决=已落地｜夹具活数现读 r46=30/30 全过、r31=31/31；锚点口径已被 r46 与本会话三次插入实践共同验证（r292 起用它裁 R289-6/R292-4/R295-1 均 rc=0）。原靶（不得把裁决写到无关条目）达成。】
 - [ ] **R290-2（r290 登记，P1）** **机器闸 ⑧ 落地：条目先前已挂账且目标轮已过 ⇒ 本次禁再挂账，只能执行/降级/作废三选一（带逃生门与真实数据自证）**：一手（r289 我造成的错 + r290 的机制化）：R261-7 第 2 次到期时我先写成「挂账至 r290」，违反自立的 R271-2；根因不是不懂规矩，而是**下裁决时没人问我这条已经挂过几次** ⇒ 必须前移到写时由机器判。实现 = r46 第 ⑧ 重拒写：读该条目自己已有的「裁决=挂账至 rN」标记，若存在 N < 本轮 round（上次挂账目标轮已过）且本次 verdict 仍是挂账 ⇒ 拒写并点名证据轮号；轮号取不到不猜（宁可放行不误伤）。范围纪律：只约束**延期型**裁决，终局裁决（执行/降级/作废）不受影响；首轮挂账放行；目标轮未到（如挂到 r99）放行。逃生门 --allow-repeat-deferral 显式放行且留痕（不是死闸）。真实数据自证（临时卷副本，不碰真台账）：⑧ 对 probe 条目 rc=1 且台账未写入；同条目改「降级（转长期看守）」rc=0 且 marker 落盘；带逃生门 rc=0。R289-6 的验收靶（下一轮起 R261-7 能被合法改判且留两次痕迹）已达成：r290 台账同现「【r289 裁决=挂账至 r290…】」与「【r290 裁决=降级…】」，REPEAT 由 1 归 0。取值：python 05-exec/r46_mark_verdict_fixtures.py（t24~t27/m3 五腿）、python _temp/r290_real2.py（真实数据三态：拦挂账/放降级/逃生门）。
 - [ ] **R290-3（r290 登记，P2）** **run_gates.py 的 --gate 传不存在的 id 会被**静默丢弃**：部分选中时报 PASS 且写「无 MISSING」，只在 0 个时才报 UNVERIFIED**：一手（r290 现场）：我为验证迁库结果跑 `--gate mark_verdict_fixtures --gate provenance_resolve_face --gate provenance_resolve_fixtures --gate tracked_empty`（最后一个 id 我拼错了，真名 tracked_empty_check），返回 `[GATES:PASS] PASS=3（无 FAIL / 无 UNVERIFIED / 无 MISSING）` —— 三门都绿，但那句「无 MISSING」是**假安心**：第四门根本没跑，runner 没有任何一行告诉我它被丢弃。二次实测：只传一个不存在的 id 时它确实会拦（`[GATES:UNVERIFIED] 选中的门为 0 个，禁止判「全绿」（R247）`），说明 R247 的零输入保护在**全部落空**时有效、**部分落空**时失效。修法（下一轮，小改）：在 --gate 过滤后比对「请求的 id 集合 vs 实际选中的 id 集合」，差集非空 ⇒ 打印 `[GATES:MISSING-SELECTOR]` 并以非零退出（与现有 0 个的处理对齐，别另造一套语义）；同时给夹具补一条腿：传一个不存在的 id + 一个真 id ⇒ 必须判红并点名被丢弃的 id（证明有牙）。判别力证据已在手：本次实测 rows=3 而请求=4。取值：python 05-exec/run_gates.py --gate definitely_not_a_gate --no-ledger --json _temp/x.json（期望现在就是 UNVERIFIED，因为选中 0 个）；python -c 读 _temp/r290_g4.json 的 gates 长度 = 3（请求 4）。注意：本轮我没有把这当成「已跑全量」的证据 —— 我随后补跑了 tracked_empty_check 并单独取到 PASS=1，才认定新增跟踪件不触发非空文本门。 【r290 裁决=已落地｜同轮即修（不等下一轮）。实现 = run_gates.py 汇总前算差集 requested-selected_ids，非空即打 [GATES:MISSING-SELECTOR] 点名被丢弃的 id。关键取舍是**顺序**：第一版我把差集分支放在「0 个选中」之前 ⇒ r31 夹具层 b（该腿断言 rc==2 且报 UNVERIFIED）判红 FAIL 1 项 —— 那是夹具对我改动的**正确反应**，我破坏的是既有 R247 语义而不是夹具错。正解：先跑 not rows ⇒ 保留 rc=2 语义，再跑 dropped ⇒ rc=1；两条语义互不吞并。四态实测（每步取真实退出码、不经管道）：0 个选中 rc=2 且末行 UNVERIFIED / 部分落空 rc=1 且点名 fixture_wiring / 全真 id rc=0 且 PASS=1 / 全部错 id 仍 rc=2；r31 夹具 31 项 31 过（[GATE:fixture-pass]）。为何不新增夹具腿：r31 层 b 已覆盖 0 个那条，部分落空这条由上面四态实测覆盖并写进本注；若下一轮要长期看守，可在 r31 加一腿断言「假 id + 真 id ⇒ rc==1 且 MISSING-SELECTOR 出现」（本轮未加，因为我把改动挂在该夹具的门表自证之下、它已经被跑到）。取值：bash _temp/r290_sem.sh（四态与夹具一次跑完）；python 05-exec/r31_run_gates_fixtures.py（末行 [GATE:fixture-pass]）。】

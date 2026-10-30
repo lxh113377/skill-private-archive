@@ -1,0 +1,13 @@
+{
+ "schema": "zijian-md-deadlink-v1",
+ "generated_at": "2026-10-30T21:51:57",
+ "root": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化",
+ "md_files": 544,
+ "face": "shipping (git-tracked + non-ignored untracked); drafts excluded",
+ "face_files_total": 3736,
+ "dead": 0,
+ "items": [],
+ "token": "[GATE:deadlink-pass]",
+ "status": "PASS",
+ "note": "围栏感知 + 占位符跳过；三腿自证见 --selftest（反例/围栏/占位符）"
+}
