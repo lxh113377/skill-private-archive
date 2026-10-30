@@ -1,0 +1,31 @@
+{
+ "schema": "uncommitted-this-round-v1",
+ "round": "299",
+ "dirty_tracked": 34,
+ "suspect_count": 3,
+ "suspects": [
+  {
+   "file": ".gitignore",
+   "added_lines": 6,
+   "marker_lines": 2,
+   "strong_lines": 1,
+   "sample": "# r299：_repro/*/tree_paths.json 是 gh api 采集的上游仓树数据（实测 1.39MB / 31 仓全量 SKILL.md 路径），"
+  },
+  {
+   "file": "DECOMPOSE.md",
+   "added_lines": 22,
+   "marker_lines": 7,
+   "strong_lines": 0,
+   "sample": "# DECOMPOSE · r299（把 R296-4 真做完：声明仓进候选池被五维打分 —— 需求 2 与需求 3 之间那条断链）"
+  },
+  {
+   "file": "memory/07-next-steps.md",
+   "added_lines": 95,
+   "marker_lines": 15,
+   "strong_lines": 6,
+   "sample": "- [ ] **R289-4（r289 登记，P2）** **frontend-slides 文中 PDF 导出示例的相对输出形式会丢产物（既存缺陷，两态共有；claim=Y 仅对绝对形式成立）**：一手（r289 收 L 账时实读件内字段"
+  }
+ ],
+ "limit_note": "工作树共享：本面不证明作者，只给线索（判据 = 新增行含本轮轮号；处置词只作强度标注 strong_lines）",
+ "disposal": "Lead 收尾前逐个提交或撤销；留着就走 = 发布面缺件（r290 实测）"
+}

@@ -107,6 +107,12 @@ _repro/*/*cache*/
 # （r285-1/r290 各犯过一次）。判据本体与 results/ 两份 raw 证据仍必须跟踪。
 _repro/*/texts/
 
+# r299：_repro/*/tree_paths.json 是 gh api 采集的上游仓树数据（实测 1.39MB / 31 仓全量 SKILL.md 路径），
+# 可由 _repro/r299a/collect.py + collect2.py 重建（两批 31 仓、api_calls 36、errors=0）⇒ 不入库。
+# 入库的是判据、采集器、小份判定面与结果件；判据在树缺件时必须 REFUSED（干净 clone 里不出任何态，
+# 这是设计不是缺陷 —— 反过来若在没树数据时也照样报态，那才是假绿）。
+_repro/*/tree_paths.json
+
 # r291：_repro/*/upstream/ 是上游原文的**部分**快照（S 只取了 6 个文件），它内部相对链指向
 # 未取入的兄弟文件（RECONNAISSANCE.md / ATTACK-CLASSES.md）=> 进本仓发布面必断（实测 3 条死链）。
 # 不入库：clone 后按 _repro/r290s/coords.json 里的 repo/ref/path 用 gh api 逐文件重建，

@@ -1,0 +1,15 @@
+r299 证据：判据在树缺件时必须 REFUSED（干净 clone 的等价态）。
+
+为什么要留这份证据：tree_paths.json（1.39MB、gh api 采集）按 .gitignore 不入库 => 干净 clone 里树是缺的。
+若判据在缺树时照样输出 lineage/invalid，那就是把「看不见」当「不存在」（R247），是假绿。
+
+实跑（cwd = 项目根）：
+  mv _repro/r299a/tree_paths.json _repro/r299a/_tp_hidden.json
+  python -B _repro/r299a/check_r299a.py   # rc=2
+  [R299:INJECT] REFUSED 采集件 tree_paths.json 不在盘上；先跑 python _repro/r299a/collect.py 再跑
+  collect2.py 重建 => 本轮不出任何态
+  mv _repro/r299a/_tp_hidden.json _repro/r299a/tree_paths.json   # 还原
+
+对照（树在位时的正常末行，同一天两次跑逐字一致）：
+  [R299:INJECT] rows=62 lineage=49 invalid=13 unmeasured=0 scored_with_dims=62 legA=PASS legB=PASS legC=PASS legD=PASS
+  （整行见 _repro/r299a/local_run.log，该件按 *.log 规则不入库，故正文抄在此。）

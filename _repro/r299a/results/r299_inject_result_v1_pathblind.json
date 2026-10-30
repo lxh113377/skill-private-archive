@@ -1,0 +1,1244 @@
+{
+ "declared_rows_n": 55,
+ "rows": [
+  {
+   "repo": "vercel-labs/agent-browser",
+   "hits": [
+    {
+     "path": "skills/agent-browser/SKILL.md",
+     "sha": "67e8a49ad8d8"
+    }
+   ],
+   "tree_skill_md_n": 11,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 3,
+     "eff": 3,
+     "compat": 5,
+     "docs": 3,
+     "community": 4
+    },
+    "score_total": 18,
+    "fc_caliber": "strict"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "agent-browser",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "anthropics/skills",
+   "hits": [
+    {
+     "path": "skills/algorithmic-art/SKILL.md",
+     "sha": "634f6fa42e4e"
+    }
+   ],
+   "tree_skill_md_n": 20,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 1,
+     "compat": 3,
+     "docs": 3,
+     "community": 5
+    },
+    "score_total": 16,
+    "fc_caliber": "strict"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "algorithmic-art",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "obra/superpowers",
+   "hits": [
+    {
+     "path": "skills/brainstorming/SKILL.md",
+     "sha": "7f5eef02f894"
+    }
+   ],
+   "tree_skill_md_n": 15,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 2,
+     "compat": 5,
+     "docs": 4,
+     "community": 5
+    },
+    "score_total": 20,
+    "fc_caliber": "strict"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "brainstorming",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "anthropics/skills",
+   "hits": [
+    {
+     "path": "skills/brand-guidelines/SKILL.md",
+     "sha": "47c72c607bdb"
+    }
+   ],
+   "tree_skill_md_n": 20,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 1,
+     "compat": 3,
+     "docs": 3,
+     "community": 5
+    },
+    "score_total": 16,
+    "fc_caliber": "strict"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "brand-guidelines",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "ChromeDevTools/chrome-devtools-mcp",
+   "hits": [],
+   "tree_skill_md_n": 7,
+   "truncated": false,
+   "dims": {
+    "unmeasured": "仓元数据不在 r114 缓存（离线不取数）"
+   },
+   "kind": "invalid",
+   "why": "仓全树 7 个 SKILL.md 中无本件同名路径 ⇒ 声明失效（实测，非取不到）",
+   "counts_toward_skill_n": false,
+   "slug": "browser-cdp",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "anthropics/skills",
+   "hits": [
+    {
+     "path": "skills/canvas-design/SKILL.md",
+     "sha": "9f63fee82de8"
+    }
+   ],
+   "tree_skill_md_n": 20,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 1,
+     "compat": 3,
+     "docs": 3,
+     "community": 5
+    },
+    "score_total": 16,
+    "fc_caliber": "strict"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "canvas-design",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "antvis/chart-visualization-skills",
+   "hits": [
+    {
+     "path": "skills/chart-visualization/SKILL.md",
+     "sha": "66cb8f87ddb9"
+    }
+   ],
+   "tree_skill_md_n": 9,
+   "truncated": false,
+   "dims": {
+    "unmeasured": "仓元数据不在 r114 缓存（离线不取数）"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "chart-visualization",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "sickn33/agentic-awesome-skills",
+   "hits": [],
+   "tree_skill_md_n": 8851,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 5,
+     "eff": 5,
+     "compat": 5,
+     "docs": 5,
+     "community": 4
+    },
+    "score_total": 24,
+    "fc_caliber": "strict"
+   },
+   "kind": "invalid",
+   "why": "仓全树 8851 个 SKILL.md 中无本件同名路径 ⇒ 声明失效（实测，非取不到）",
+   "counts_toward_skill_n": false,
+   "slug": "coding-agent",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "Shubhamsaboo/awesome-llm-apps",
+   "hits": [
+    {
+     "path": "agent_skills/commit-archaeologist/SKILL.md",
+     "sha": "a80214bea587"
+    }
+   ],
+   "tree_skill_md_n": 10,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 3,
+     "eff": 3,
+     "compat": 5,
+     "docs": 3,
+     "community": 5
+    },
+    "score_total": 19,
+    "fc_caliber": "strict"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "commit-archaeologist",
+   "row_verdict_before": "UNVERIFIED"
+  },
+  {
+   "repo": "K-Dense-AI/scientific-agent-skills",
+   "hits": [],
+   "tree_skill_md_n": 177,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 5,
+     "eff": 5,
+     "compat": 5,
+     "docs": 5,
+     "community": 5
+    },
+    "score_total": 25,
+    "fc_caliber": "strict"
+   },
+   "kind": "invalid",
+   "why": "仓全树 177 个 SKILL.md 中无本件同名路径 ⇒ 声明失效（实测，非取不到）",
+   "counts_toward_skill_n": false,
+   "slug": "data-analysis",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "kepano/defuddle",
+   "hits": [],
+   "tree_skill_md_n": 0,
+   "truncated": false,
+   "dims": {
+    "unmeasured": "仓元数据不在 r114 缓存（离线不取数）"
+   },
+   "kind": "invalid",
+   "why": "仓全树 0 个 SKILL.md 中无本件同名路径 ⇒ 声明失效（实测，非取不到）",
+   "counts_toward_skill_n": false,
+   "slug": "defuddle",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "github/awesome-copilot",
+   "hits": [],
+   "tree_skill_md_n": 466,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 5,
+     "eff": 3,
+     "compat": 5,
+     "docs": 4,
+     "community": 4
+    },
+    "score_total": 21,
+    "fc_caliber": "strict"
+   },
+   "kind": "invalid",
+   "why": "仓全树 466 个 SKILL.md 中无本件同名路径 ⇒ 声明失效（实测，非取不到）",
+   "counts_toward_skill_n": false,
+   "slug": "diagram-maker",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "anthropics/skills",
+   "hits": [
+    {
+     "path": "skills/doc-coauthoring/SKILL.md",
+     "sha": "a5a69839ef4a"
+    }
+   ],
+   "tree_skill_md_n": 20,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 1,
+     "compat": 3,
+     "docs": 3,
+     "community": 5
+    },
+    "score_total": 16,
+    "fc_caliber": "strict"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "doc-coauthoring",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "anthropics/skills",
+   "hits": [
+    {
+     "path": "skills/docx/SKILL.md",
+     "sha": "fb954a460a1e"
+    }
+   ],
+   "tree_skill_md_n": 20,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 1,
+     "compat": 3,
+     "docs": 3,
+     "community": 5
+    },
+    "score_total": 16,
+    "fc_caliber": "strict"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "docx",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "microsoft/playwright-mcp",
+   "hits": [],
+   "tree_skill_md_n": 0,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 0,
+     "eff": 2,
+     "compat": 3,
+     "docs": 3,
+     "community": 4
+    },
+    "score_total": 12,
+    "fc_caliber": "strict"
+   },
+   "kind": "invalid",
+   "why": "仓全树 0 个 SKILL.md 中无本件同名路径 ⇒ 声明失效（实测，非取不到）",
+   "counts_toward_skill_n": false,
+   "slug": "dogfood",
+   "row_verdict_before": "UNVERIFIED"
+  },
+  {
+   "repo": "vercel-labs/agent-browser",
+   "hits": [
+    {
+     "path": "skill-data/electron/SKILL.md",
+     "sha": "e4bf00e8e669"
+    }
+   ],
+   "tree_skill_md_n": 11,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 3,
+     "eff": 3,
+     "compat": 5,
+     "docs": 3,
+     "community": 4
+    },
+    "score_total": 18,
+    "fc_caliber": "strict"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "electron",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "heygen-com/hyperframes",
+   "hits": [
+    {
+     "path": "skills/figma/SKILL.md",
+     "sha": "2a33e19bee87"
+    }
+   ],
+   "tree_skill_md_n": 26,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 5,
+     "compat": 5,
+     "docs": 4,
+     "community": 5
+    },
+    "score_total": 23,
+    "fc_caliber": "strict"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "figma",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "vercel-labs/skills",
+   "hits": [
+    {
+     "path": "skills/find-skills/SKILL.md",
+     "sha": "a41bdd074bb5"
+    }
+   ],
+   "tree_skill_md_n": 3,
+   "truncated": false,
+   "dims": {
+    "unmeasured": "仓元数据不在 r114 缓存（离线不取数）"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "find-skills",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "anthropics/skills",
+   "hits": [
+    {
+     "path": "skills/frontend-design/SKILL.md",
+     "sha": "a5333457c414"
+    }
+   ],
+   "tree_skill_md_n": 20,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 1,
+     "compat": 3,
+     "docs": 3,
+     "community": 5
+    },
+    "score_total": 16,
+    "fc_caliber": "strict"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "frontend-design",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "zarazhangrui/frontend-slides",
+   "hits": [
+    {
+     "path": "plugins/frontend-slides/skills/frontend-slides/SKILL.md",
+     "sha": "9b8374bf128d"
+    }
+   ],
+   "tree_skill_md_n": 2,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 2,
+     "eff": 0,
+     "compat": 5,
+     "docs": 3,
+     "community": 3
+    },
+    "score_total": 13,
+    "fc_caliber": "strict"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "frontend-slides",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "mattpocock/skills",
+   "hits": [
+    {
+     "path": "skills/productivity/grill-me/SKILL.md",
+     "sha": "3947ff9c4ad9"
+    }
+   ],
+   "tree_skill_md_n": 38,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 1,
+     "compat": 5,
+     "docs": 4,
+     "community": 5
+    },
+    "score_total": 19,
+    "fc_caliber": "strict"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "grill-me",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "garrytan/gstack",
+   "hits": [
+    {
+     "path": "capy/skill/gstack/SKILL.md",
+     "sha": "ed9ab9eb7e63"
+    }
+   ],
+   "tree_skill_md_n": 75,
+   "truncated": false,
+   "dims": {
+    "unmeasured": "仓元数据不在 r114 缓存（离线不取数）"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "gstack",
+   "row_verdict_before": "UNVERIFIED"
+  },
+  {
+   "repo": "lewislulu/html-ppt-skill",
+   "hits": [],
+   "tree_skill_md_n": 1,
+   "truncated": false,
+   "dims": {
+    "unmeasured": "仓元数据不在 r114 缓存（离线不取数）"
+   },
+   "kind": "invalid",
+   "why": "仓全树 1 个 SKILL.md 中无本件同名路径 ⇒ 声明失效（实测，非取不到）",
+   "counts_toward_skill_n": false,
+   "slug": "html-ppt",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "heygen-com/hyperframes",
+   "hits": [
+    {
+     "path": "skills/hyperframes/SKILL.md",
+     "sha": "6f4166472b0f"
+    }
+   ],
+   "tree_skill_md_n": 26,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 5,
+     "compat": 5,
+     "docs": 4,
+     "community": 5
+    },
+    "score_total": 23,
+    "fc_caliber": "strict"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "hyperframes",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "heygen-com/hyperframes",
+   "hits": [
+    {
+     "path": "skills/hyperframes-cli/SKILL.md",
+     "sha": "7f51bc528abc"
+    }
+   ],
+   "tree_skill_md_n": 26,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 5,
+     "compat": 5,
+     "docs": 4,
+     "community": 5
+    },
+    "score_total": 23,
+    "fc_caliber": "strict"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "hyperframes-cli",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "heygen-com/hyperframes",
+   "hits": [],
+   "tree_skill_md_n": 26,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 5,
+     "compat": 5,
+     "docs": 4,
+     "community": 5
+    },
+    "score_total": 23,
+    "fc_caliber": "strict"
+   },
+   "kind": "invalid",
+   "why": "仓全树 26 个 SKILL.md 中无本件同名路径 ⇒ 声明失效（实测，非取不到）",
+   "counts_toward_skill_n": false,
+   "slug": "hyperframes-media",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "heygen-com/hyperframes",
+   "hits": [
+    {
+     "path": "skills/hyperframes-registry/SKILL.md",
+     "sha": "7b1bc6a6c95c"
+    }
+   ],
+   "tree_skill_md_n": 26,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 5,
+     "compat": 5,
+     "docs": 4,
+     "community": 5
+    },
+    "score_total": 23,
+    "fc_caliber": "strict"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "hyperframes-registry",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "anthropics/skills",
+   "hits": [
+    {
+     "path": "skills/internal-comms/SKILL.md",
+     "sha": "56ea935b74f3"
+    }
+   ],
+   "tree_skill_md_n": 20,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 1,
+     "compat": 3,
+     "docs": 3,
+     "community": 5
+    },
+    "score_total": 16,
+    "fc_caliber": "strict"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "internal-comms",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "anthropics/skills",
+   "hits": [
+    {
+     "path": "skills/mcp-builder/SKILL.md",
+     "sha": "d61a9056202a"
+    }
+   ],
+   "tree_skill_md_n": 20,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 1,
+     "compat": 3,
+     "docs": 3,
+     "community": 5
+    },
+    "score_total": 16,
+    "fc_caliber": "strict"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "mcp-builder",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "steipete/oracle",
+   "hits": [
+    {
+     "path": "skills/oracle/SKILL.md",
+     "sha": "4ab68b1fd982"
+    }
+   ],
+   "tree_skill_md_n": 2,
+   "truncated": false,
+   "dims": {
+    "unmeasured": "仓元数据不在 r114 缓存（离线不取数）"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "oracle",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "anthropics/skills",
+   "hits": [
+    {
+     "path": "skills/pdf/SKILL.md",
+     "sha": "d3e046a5ae10"
+    }
+   ],
+   "tree_skill_md_n": 20,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 1,
+     "compat": 3,
+     "docs": 3,
+     "community": 5
+    },
+    "score_total": 16,
+    "fc_caliber": "strict"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "pdf",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "hugohe3/ppt-master",
+   "hits": [
+    {
+     "path": "skills/ppt-master/SKILL.md",
+     "sha": "39e6c8a6ab8e"
+    }
+   ],
+   "tree_skill_md_n": 1,
+   "truncated": false,
+   "dims": {
+    "unmeasured": "仓元数据不在 r114 缓存（离线不取数）"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "ppt-master",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "NVIDIA-AI-Blueprints/rag",
+   "hits": [
+    {
+     "path": "skills/rag-eval/SKILL.md",
+     "sha": "010478c61d86"
+    }
+   ],
+   "tree_skill_md_n": 3,
+   "truncated": false,
+   "dims": {
+    "unmeasured": "仓元数据不在 r114 缓存（离线不取数）"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "rag-eval",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "Shubhamsaboo/awesome-llm-apps",
+   "hits": [
+    {
+     "path": "agent_skills/scope-creep-detector/SKILL.md",
+     "sha": "302718a69b41"
+    }
+   ],
+   "tree_skill_md_n": 10,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 3,
+     "eff": 3,
+     "compat": 5,
+     "docs": 3,
+     "community": 5
+    },
+    "score_total": 19,
+    "fc_caliber": "strict"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "scope-creep-detector",
+   "row_verdict_before": "UNVERIFIED"
+  },
+  {
+   "repo": "trailofbits/skills",
+   "hits": [],
+   "tree_skill_md_n": 97,
+   "truncated": false,
+   "dims": {
+    "unmeasured": "仓元数据不在 r114 缓存（离线不取数）"
+   },
+   "kind": "invalid",
+   "why": "仓全树 97 个 SKILL.md 中无本件同名路径 ⇒ 声明失效（实测，非取不到）",
+   "counts_toward_skill_n": false,
+   "slug": "security-audit",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "worldwonderer/oh-story-claudecode",
+   "hits": [
+    {
+     "path": "skills/story/SKILL.md",
+     "sha": "f99b794a131a"
+    }
+   ],
+   "tree_skill_md_n": 14,
+   "truncated": false,
+   "dims": {
+    "unmeasured": "仓元数据不在 r114 缓存（离线不取数）"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "story",
+   "row_verdict_before": "FAMILY_ONLY"
+  },
+  {
+   "repo": "worldwonderer/oh-story-claudecode",
+   "hits": [
+    {
+     "path": "skills/story-cover/SKILL.md",
+     "sha": "a01d8b2a6acb"
+    }
+   ],
+   "tree_skill_md_n": 14,
+   "truncated": false,
+   "dims": {
+    "unmeasured": "仓元数据不在 r114 缓存（离线不取数）"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "story-cover",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "worldwonderer/oh-story-claudecode",
+   "hits": [
+    {
+     "path": "skills/story-deslop/SKILL.md",
+     "sha": "03966448cc42"
+    }
+   ],
+   "tree_skill_md_n": 14,
+   "truncated": false,
+   "dims": {
+    "unmeasured": "仓元数据不在 r114 缓存（离线不取数）"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "story-deslop",
+   "row_verdict_before": "FAMILY_ONLY"
+  },
+  {
+   "repo": "worldwonderer/oh-story-claudecode",
+   "hits": [
+    {
+     "path": "skills/story-import/SKILL.md",
+     "sha": "f9c0780837cd"
+    }
+   ],
+   "tree_skill_md_n": 14,
+   "truncated": false,
+   "dims": {
+    "unmeasured": "仓元数据不在 r114 缓存（离线不取数）"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "story-import",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "worldwonderer/oh-story-claudecode",
+   "hits": [
+    {
+     "path": "skills/story-long-analyze/SKILL.md",
+     "sha": "e05dc6d162f3"
+    }
+   ],
+   "tree_skill_md_n": 14,
+   "truncated": false,
+   "dims": {
+    "unmeasured": "仓元数据不在 r114 缓存（离线不取数）"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "story-long-analyze",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "worldwonderer/oh-story-claudecode",
+   "hits": [
+    {
+     "path": "skills/story-long-write/SKILL.md",
+     "sha": "4dd517a625f0"
+    }
+   ],
+   "tree_skill_md_n": 14,
+   "truncated": false,
+   "dims": {
+    "unmeasured": "仓元数据不在 r114 缓存（离线不取数）"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "story-long-write",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "worldwonderer/oh-story-claudecode",
+   "hits": [
+    {
+     "path": "skills/story-review/SKILL.md",
+     "sha": "42c80f63bbdc"
+    }
+   ],
+   "tree_skill_md_n": 14,
+   "truncated": false,
+   "dims": {
+    "unmeasured": "仓元数据不在 r114 缓存（离线不取数）"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "story-review",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "worldwonderer/oh-story-claudecode",
+   "hits": [],
+   "tree_skill_md_n": 14,
+   "truncated": false,
+   "dims": {
+    "unmeasured": "仓元数据不在 r114 缓存（离线不取数）"
+   },
+   "kind": "invalid",
+   "why": "仓全树 14 个 SKILL.md 中无本件同名路径 ⇒ 声明失效（实测，非取不到）",
+   "counts_toward_skill_n": false,
+   "slug": "story-scan",
+   "row_verdict_before": "FAMILY_ONLY"
+  },
+  {
+   "repo": "worldwonderer/oh-story-claudecode",
+   "hits": [
+    {
+     "path": "skills/story-setup/SKILL.md",
+     "sha": "a67312cb4878"
+    }
+   ],
+   "tree_skill_md_n": 14,
+   "truncated": false,
+   "dims": {
+    "unmeasured": "仓元数据不在 r114 缓存（离线不取数）"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "story-setup",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "worldwonderer/oh-story-claudecode",
+   "hits": [
+    {
+     "path": "skills/story-short-analyze/SKILL.md",
+     "sha": "fbfb42f29055"
+    }
+   ],
+   "tree_skill_md_n": 14,
+   "truncated": false,
+   "dims": {
+    "unmeasured": "仓元数据不在 r114 缓存（离线不取数）"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "story-short-analyze",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "worldwonderer/oh-story-claudecode",
+   "hits": [
+    {
+     "path": "skills/story-short-write/SKILL.md",
+     "sha": "0fdf2e883951"
+    }
+   ],
+   "tree_skill_md_n": 14,
+   "truncated": false,
+   "dims": {
+    "unmeasured": "仓元数据不在 r114 缓存（离线不取数）"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "story-short-write",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "obra/superpowers",
+   "hits": [
+    {
+     "path": "skills/subagent-driven-development/SKILL.md",
+     "sha": "ea170ed101d6"
+    }
+   ],
+   "tree_skill_md_n": 15,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 2,
+     "compat": 5,
+     "docs": 4,
+     "community": 5
+    },
+    "score_total": 20,
+    "fc_caliber": "strict"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "subagent-driven-development",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "gastownhall/beads",
+   "hits": [],
+   "tree_skill_md_n": 3,
+   "truncated": false,
+   "dims": {
+    "unmeasured": "仓元数据不在 r114 缓存（离线不取数）"
+   },
+   "kind": "invalid",
+   "why": "仓全树 3 个 SKILL.md 中无本件同名路径 ⇒ 声明失效（实测，非取不到）",
+   "counts_toward_skill_n": false,
+   "slug": "taskflow",
+   "row_verdict_before": "UNVERIFIED"
+  },
+  {
+   "repo": "obra/superpowers",
+   "hits": [
+    {
+     "path": "skills/test-driven-development/SKILL.md",
+     "sha": "46838cc9e893"
+    }
+   ],
+   "tree_skill_md_n": 15,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 2,
+     "compat": 5,
+     "docs": 4,
+     "community": 5
+    },
+    "score_total": 20,
+    "fc_caliber": "strict"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "test-driven-development",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "anthropics/skills",
+   "hits": [
+    {
+     "path": "skills/theme-factory/SKILL.md",
+     "sha": "90dfceaf2ecd"
+    }
+   ],
+   "tree_skill_md_n": 20,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 1,
+     "compat": 3,
+     "docs": 3,
+     "community": 5
+    },
+    "score_total": 16,
+    "fc_caliber": "strict"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "theme-factory",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
+   "hits": [
+    {
+     "path": ".claude/skills/ui-ux-pro-max/SKILL.md",
+     "sha": "41f8e2fd7f8c"
+    }
+   ],
+   "tree_skill_md_n": 13,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 4,
+     "compat": 5,
+     "docs": 3,
+     "community": 5
+    },
+    "score_total": 21,
+    "fc_caliber": "strict"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "ui-ux-pro-max",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "obra/superpowers",
+   "hits": [
+    {
+     "path": "skills/verification-before-completion/SKILL.md",
+     "sha": "7d45333cc4a4"
+    }
+   ],
+   "tree_skill_md_n": 15,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 2,
+     "compat": 5,
+     "docs": 4,
+     "community": 5
+    },
+    "score_total": 20,
+    "fc_caliber": "strict"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "verification-before-completion",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "Panniantong/Agent-Reach",
+   "hits": [],
+   "tree_skill_md_n": 1,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 2,
+     "eff": 3,
+     "compat": 5,
+     "docs": 4,
+     "community": 5
+    },
+    "score_total": 19,
+    "fc_caliber": "strict"
+   },
+   "kind": "invalid",
+   "why": "仓全树 1 个 SKILL.md 中无本件同名路径 ⇒ 声明失效（实测，非取不到）",
+   "counts_toward_skill_n": false,
+   "slug": "web-access",
+   "row_verdict_before": "FAMILY_ONLY"
+  },
+  {
+   "repo": "obra/superpowers",
+   "hits": [
+    {
+     "path": "skills/writing-plans/SKILL.md",
+     "sha": "4cf0275d88d6"
+    }
+   ],
+   "tree_skill_md_n": 15,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 2,
+     "compat": 5,
+     "docs": 4,
+     "community": 5
+    },
+    "score_total": 20,
+    "fc_caliber": "strict"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "writing-plans",
+   "row_verdict_before": "MATCHED"
+  },
+  {
+   "repo": "anthropics/skills",
+   "hits": [
+    {
+     "path": "skills/xlsx/SKILL.md",
+     "sha": "9da54804cc8c"
+    }
+   ],
+   "tree_skill_md_n": 20,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 1,
+     "compat": 3,
+     "docs": 3,
+     "community": 5
+    },
+    "score_total": 16,
+    "fc_caliber": "strict"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "xlsx",
+   "row_verdict_before": "MATCHED"
+  }
+ ],
+ "tally": {
+  "lineage": 43,
+  "invalid": 12,
+  "unmeasured": 0
+ },
+ "flip_no_os_to_invalid": 0,
+ "legs": {
+  "A1": "True",
+  "A2": "True",
+  "A": "PASS",
+  "B": "PASS",
+  "B_detail": {
+   "kind": "lineage",
+   "hits": [
+    {
+     "path": "agent_skills/commit-archaeologist/SKILL.md",
+     "sha": "a80214bea587"
+    }
+   ],
+   "counts_toward_skill_n": false,
+   "dims": {
+    "score5": {
+     "fc": 3,
+     "eff": 3,
+     "compat": 5,
+     "docs": 3,
+     "community": 5
+    },
+    "score_total": 19,
+    "fc_caliber": "strict"
+   }
+  }
+ }
+}

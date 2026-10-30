@@ -1,0 +1,283 @@
+{
+ "schema": "r299-declared-verdict-face-v1",
+ "generated_at": "2026-10-30T07:02:10+00:00",
+ "generated_from_cmd": "python 05-exec/r114_replacement_scan.py --offline --json <件>",
+ "matrix_rows_total": 191,
+ "rows": [
+  {
+   "slug": "agent-browser",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "vercel-labs/agent-browser"
+  },
+  {
+   "slug": "algorithmic-art",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "anthropics/skills"
+  },
+  {
+   "slug": "brainstorming",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "obra/superpowers"
+  },
+  {
+   "slug": "brand-guidelines",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "anthropics/skills"
+  },
+  {
+   "slug": "browser-cdp",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "ChromeDevTools/chrome-devtools-mcp"
+  },
+  {
+   "slug": "canvas-design",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "anthropics/skills"
+  },
+  {
+   "slug": "chart-visualization",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "antvis/chart-visualization-skills"
+  },
+  {
+   "slug": "coding-agent",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "sickn33/agentic-awesome-skills"
+  },
+  {
+   "slug": "commit-archaeologist",
+   "verdict": "UNVERIFIED",
+   "declared_upstream_repo": "Shubhamsaboo/awesome-llm-apps"
+  },
+  {
+   "slug": "data-analysis",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "K-Dense-AI/scientific-agent-skills"
+  },
+  {
+   "slug": "defuddle",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "kepano/defuddle"
+  },
+  {
+   "slug": "diagram-maker",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "github/awesome-copilot"
+  },
+  {
+   "slug": "doc-coauthoring",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "anthropics/skills"
+  },
+  {
+   "slug": "docx",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "anthropics/skills"
+  },
+  {
+   "slug": "dogfood",
+   "verdict": "UNVERIFIED",
+   "declared_upstream_repo": "microsoft/playwright-mcp"
+  },
+  {
+   "slug": "electron",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "vercel-labs/agent-browser"
+  },
+  {
+   "slug": "figma",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "heygen-com/hyperframes"
+  },
+  {
+   "slug": "find-skills",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "vercel-labs/skills"
+  },
+  {
+   "slug": "frontend-design",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "anthropics/skills"
+  },
+  {
+   "slug": "frontend-slides",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "zarazhangrui/frontend-slides"
+  },
+  {
+   "slug": "grill-me",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "mattpocock/skills"
+  },
+  {
+   "slug": "gstack",
+   "verdict": "UNVERIFIED",
+   "declared_upstream_repo": "garrytan/gstack"
+  },
+  {
+   "slug": "html-ppt",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "lewislulu/html-ppt-skill"
+  },
+  {
+   "slug": "hyperframes",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "heygen-com/hyperframes"
+  },
+  {
+   "slug": "hyperframes-cli",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "heygen-com/hyperframes"
+  },
+  {
+   "slug": "hyperframes-media",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "heygen-com/hyperframes"
+  },
+  {
+   "slug": "hyperframes-registry",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "heygen-com/hyperframes"
+  },
+  {
+   "slug": "internal-comms",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "anthropics/skills"
+  },
+  {
+   "slug": "mcp-builder",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "anthropics/skills"
+  },
+  {
+   "slug": "oracle",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "steipete/oracle"
+  },
+  {
+   "slug": "pdf",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "anthropics/skills"
+  },
+  {
+   "slug": "ppt-master",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "hugohe3/ppt-master"
+  },
+  {
+   "slug": "rag-eval",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "NVIDIA-AI-Blueprints/rag"
+  },
+  {
+   "slug": "scope-creep-detector",
+   "verdict": "UNVERIFIED",
+   "declared_upstream_repo": "Shubhamsaboo/awesome-llm-apps"
+  },
+  {
+   "slug": "security-audit",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "trailofbits/skills"
+  },
+  {
+   "slug": "story",
+   "verdict": "FAMILY_ONLY",
+   "declared_upstream_repo": "worldwonderer/oh-story-claudecode"
+  },
+  {
+   "slug": "story-cover",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "worldwonderer/oh-story-claudecode"
+  },
+  {
+   "slug": "story-deslop",
+   "verdict": "FAMILY_ONLY",
+   "declared_upstream_repo": "worldwonderer/oh-story-claudecode"
+  },
+  {
+   "slug": "story-import",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "worldwonderer/oh-story-claudecode"
+  },
+  {
+   "slug": "story-long-analyze",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "worldwonderer/oh-story-claudecode"
+  },
+  {
+   "slug": "story-long-write",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "worldwonderer/oh-story-claudecode"
+  },
+  {
+   "slug": "story-review",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "worldwonderer/oh-story-claudecode"
+  },
+  {
+   "slug": "story-scan",
+   "verdict": "FAMILY_ONLY",
+   "declared_upstream_repo": "worldwonderer/oh-story-claudecode"
+  },
+  {
+   "slug": "story-setup",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "worldwonderer/oh-story-claudecode"
+  },
+  {
+   "slug": "story-short-analyze",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "worldwonderer/oh-story-claudecode"
+  },
+  {
+   "slug": "story-short-write",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "worldwonderer/oh-story-claudecode"
+  },
+  {
+   "slug": "subagent-driven-development",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "obra/superpowers"
+  },
+  {
+   "slug": "taskflow",
+   "verdict": "UNVERIFIED",
+   "declared_upstream_repo": "gastownhall/beads"
+  },
+  {
+   "slug": "test-driven-development",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "obra/superpowers"
+  },
+  {
+   "slug": "theme-factory",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "anthropics/skills"
+  },
+  {
+   "slug": "ui-ux-pro-max",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "nextlevelbuilder/ui-ux-pro-max-skill"
+  },
+  {
+   "slug": "verification-before-completion",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "obra/superpowers"
+  },
+  {
+   "slug": "web-access",
+   "verdict": "FAMILY_ONLY",
+   "declared_upstream_repo": "Panniantong/Agent-Reach"
+  },
+  {
+   "slug": "writing-plans",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "obra/superpowers"
+  },
+  {
+   "slug": "xlsx",
+   "verdict": "MATCHED",
+   "declared_upstream_repo": "anthropics/skills"
+  }
+ ]
+}

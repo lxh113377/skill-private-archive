@@ -1,0 +1,20 @@
+{
+ "missing_before": [
+  "D4Vinci/Scrapling",
+  "adbar/trafilatura",
+  "firecrawl/firecrawl",
+  "microsoft/playwright",
+  "unclecode/crawl4ai",
+  "web-infra-dev/midscene"
+ ],
+ "measured_ok": [
+  "D4Vinci/Scrapling",
+  "adbar/trafilatura",
+  "firecrawl/firecrawl",
+  "microsoft/playwright",
+  "unclecode/crawl4ai",
+  "web-infra-dev/midscene"
+ ],
+ "api_calls": 12,
+ "errors": []
+}
