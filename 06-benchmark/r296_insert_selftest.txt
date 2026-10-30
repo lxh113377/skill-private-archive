@@ -1,0 +1,7 @@
+rc=0
+PASS happy-path
+PASS idempotent-refuse
+PASS cross-round-dup-not-touched
+PASS missing-anchor-rc2
+PASS vacuous-regex-caught
+[SELFTEST] legs=5 passed=5

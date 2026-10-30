@@ -54,7 +54,8 @@ def scan(repo, round_no):
 
 
 def selftest():
-    """三腿夹具：一腿必须命中（有牙），两腿必须不命中（不误伤他人、不误命中上下文）。"""
+    """四腿夹具：a/d 必须命中（有牙：a=轮号+处置词，d=只带轮号无处置词——r295 漏检那一型），
+    b/c 必须不命中（不误伤他人无轮号的并发写、不把老内容里的轮号当新增行）。"""
     d = tempfile.mkdtemp(prefix="r290_unc_")
     git(d, ["init", "-q"])
     git(d, ["config", "user.email", "t@t"])

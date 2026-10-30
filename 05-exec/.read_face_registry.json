@@ -208,5 +208,9 @@
  "landing_replay_check.py": {
   "evidence": "06-benchmark/r292_landing_security_audit.json",
   "registered_at": "2026-10-30 11:22"
+ },
+ "r296_ledger_insert.py": {
+  "evidence": "06-benchmark/r296_insert_selftest.txt",
+  "registered_at": "2026-10-30 12:21"
  }
 }
