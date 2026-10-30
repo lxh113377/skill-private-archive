@@ -1,0 +1,42 @@
+{
+ "schema": "req2-compliance-v2",
+ "source": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\_temp/r292_matrix_now.json",
+ "matrix_generated_at": "2026-10-30T03:17:54+00:00",
+ "rows": 191,
+ "literal_3_5": 191,
+ "literal_pct": 100.0,
+ "semantic_rel_ge3": 166,
+ "semantic_pct": 86.91,
+ "pad_only_n": 13,
+ "pad_only_slugs": [
+  "_my-skills",
+  "chaoshi-admin-inline-edit",
+  "commit-archaeologist",
+  "dingtalk-aisearch",
+  "dingtalk-contact",
+  "dingtalk-event",
+  "dogfood",
+  "elon-musk-perspective",
+  "gstack",
+  "no-manual-steps",
+  "scope-creep-detector",
+  "taskflow",
+  "wps-knowledgebase"
+ ],
+ "pad_count_histogram": {
+  "3": 4,
+  "5": 13,
+  "4": 8
+ },
+ "pad_rel_histogram": {
+  "family": 109
+ },
+ "verdict_no_os_n": 8,
+ "verdict_unverified_n": 5,
+ "declared_upstream_rows_n": 55,
+ "guard_violations": [],
+ "equation_ok": true,
+ "stale_input": false,
+ "reading_rule": "candidates_n 满足条数不等于真有 3 个对应物；rel=family 的补位件是族级邻居，不能当替代方案引用。引用前看 rel、skill_relevant_n，以及本地 .upstream 声明",
+ "regenerate_cmd": "python 05-exec/r114_replacement_scan.py --json <新快照>"
+}

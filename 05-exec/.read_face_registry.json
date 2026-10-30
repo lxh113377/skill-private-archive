@@ -200,5 +200,13 @@
  "check_r291_landed.py": {
   "evidence": "06-benchmark/r291_landed_judge.txt",
   "registered_at": "2026-10-30 10:39"
+ },
+ "r291_ownership_pollution.py": {
+  "evidence": "06-benchmark/r291_ownership_pollution.json",
+  "registered_at": "2026-10-30 10:53"
+ },
+ "landing_replay_check.py": {
+  "evidence": "06-benchmark/r292_landing_security_audit.json",
+  "registered_at": "2026-10-30 11:22"
  }
 }

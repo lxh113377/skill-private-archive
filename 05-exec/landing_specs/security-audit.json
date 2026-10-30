@@ -1,0 +1,54 @@
+{
+ "skill": "security-audit",
+ "managed": "D:/global_skills",
+ "replays": [
+  {
+   "target": "security-audit/SKILL.md",
+   "base_ref": "6ea564bd~1",
+   "patches": [
+    "_repro/r290s/patch_local.json",
+    "_repro/r290s/patch_ambiguity.json"
+   ]
+  },
+  {
+   "target": "security-audit/.upstream",
+   "base_ref": "a780bbcf~1",
+   "patches": [
+    "_repro/r290s/patch_upstream.json",
+    "_repro/r290s/patch_ambiguity_sidecar.json"
+   ]
+  }
+ ],
+ "new_files": [
+  {
+   "target": "security-audit/references/upstream-cloudflare-sec.md",
+   "note": [
+    "落地后被再修正（歧义补丁一笔）=> 挂 patches 走同一条重放不变式，不只核 blob"
+   ],
+   "base_ref": "6ea564bd",
+   "patches": [
+    "_repro/r290s/patch_vol_paths.json"
+   ],
+   "no_upstream_anchor": true
+  },
+  {
+   "target": "security-audit/scripts/validate-coverage-ledger.cjs",
+   "upstream": {
+    "repo": "cloudflare/security-audit-skill",
+    "path": "skills/security-audit/validate-coverage-ledger.cjs"
+   },
+   "expected_sha": "0ef58657bef18b26a92321df6c8e3d31bc8e6659"
+  }
+ ],
+ "bare_tokens": [
+  "_repro/",
+  "_temp/",
+  "05-exec/"
+ ],
+ "version": {
+  "target": "security-audit/SKILL.md",
+  "fm_key": "version",
+  "fm_date_key": "last_updated",
+  "expect": "2.1.0"
+ }
+}

@@ -1,0 +1,39 @@
+{
+ "schema": "landing-replay-v1",
+ "skill": "security-audit",
+ "spec": "05-exec/landing_specs/security-audit.json",
+ "legs": [
+  {
+   "name": "R replay",
+   "state": "ok",
+   "detail": [
+    "security-audit/SKILL.md hunks=6",
+    "security-audit/.upstream hunks=2"
+   ]
+  },
+  {
+   "name": "N new-files",
+   "state": "ok",
+   "detail": [
+    "security-audit/references/upstream-cloudflare-sec.md 重放一致 hunks=2",
+    "security-audit/references/upstream-cloudflare-sec.md 无上游锚点（自造件），以重放一致为等值证明",
+    "security-audit/scripts/validate-coverage-ledger.cjs validate-coverage-ledger.cjs live=0ef58657bef1 want=gh api (live)"
+   ]
+  },
+  {
+   "name": "P pointer-clean",
+   "state": "ok",
+   "detail": [
+    "bare=0"
+   ]
+  },
+  {
+   "name": "V version",
+   "state": "ok",
+   "detail": [
+    "fm=2.1.0/2026-10-30 hist=2.1.0/2026-10-30 want=2.1.0"
+   ]
+  }
+ ],
+ "gate": "PASS"
+}

@@ -1,0 +1,12 @@
+[
+ {
+  "id": "VOL-FIX-L4",
+  "old": "> 上游坐标：`cloudflare/security-audit-skill` @ `c1c8a8c1471069fb0e188eeaff69b8e8db6564a8`（main，committer date 2026-09-14T19:28:54Z，license.spdx_id=MIT）—— 取值命令与输出见 `skill焚诀/自建skill优化 仓的 `_repro/r290s/coords.json``。",
+  "new": "> 上游坐标：`cloudflare/security-audit-skill` @ `c1c8a8c1471069fb0e188eeaff69b8e8db6564a8`（main，committer date 2026-09-14T19:28:54Z，license.spdx_id=MIT）—— 取值命令与输出见 `C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r290s/coords.json`。"
+ },
+ {
+  "id": "VOL-FIX-L5",
+  "old": "> 吸收理由 = 换装前实测「三词命中 0」：`OS-enforced sandbox` / `write isolation` / `coverage-ledger`（复算（在 skill焚诀/自建skill优化 仓根）`python -B _repro/r290s/capability_probe.py`）。",
+  "new": "> 吸收理由 = 换装前实测「三词命中 0」：`OS-enforced sandbox` / `write isolation` / `coverage-ledger`（复算（须在本仓根执行）`python -B C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r290s/capability_probe.py`）。"
+ }
+]

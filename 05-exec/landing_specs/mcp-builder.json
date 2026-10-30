@@ -1,0 +1,42 @@
+{
+ "skill": "mcp-builder",
+ "managed": "D:/global_skills",
+ "replays": [
+  {
+   "target": "mcp-builder/SKILL.md",
+   "base_ref": "79862372~1",
+   "patches": [
+    "_repro/r287m/patch_SKILL.md.json"
+   ]
+  },
+  {
+   "target": "mcp-builder/reference/node_mcp_server.md",
+   "base_ref": "79862372~1",
+   "patches": [
+    "_repro/r287m/patch_node_mcp_server.md.json"
+   ]
+  }
+ ],
+ "new_files": [
+  {
+   "target": "mcp-builder/reference/node_mcp_server_v2.md",
+   "upstream": {
+    "repo": "anthropics/skills",
+    "path": "skills/mcp-builder/reference/node_mcp_server_v2.md"
+   },
+   "expected_sha": "5d61f896d9707c8797c33ac8ac03c5aebf9b163f"
+  }
+ ],
+ "bare_tokens": [
+  "_repro/",
+  "_temp/",
+  "05-exec/"
+ ],
+ "version": {
+  "target": "mcp-builder/SKILL.md",
+  "fm_key": "version",
+  "fm_date_key": "last_updated",
+  "expect": "1.1.0",
+  "history_heading": "## Version history"
+ }
+}

@@ -1,0 +1,2027 @@
+{
+ "schema": "compat-regression-v1",
+ "provenance": {
+  "generated_at": "2026-10-30T11:14:52+0800",
+  "python": "3.13.14",
+  "managed_root": "D:/global_skills",
+  "managed_head_at_read": "fec92094fa882085c3ff21ad2da8c555dfed0f75",
+  "head_drift_note": "the managed HEAD moves while this round runs (another session commits); the before/after arms are PINNED blobs read with git show <sha>:<path>, so no reading depends on HEAD. head_crosscheck uses the head value printed here and only as a second face, never to wash a cell.",
+  "managed_worktree_dirty_lines": 80,
+  "reuse_single_source": {
+   "link_extraction": "05-exec/r220_md_deadlink.scan_lines (fence-aware)",
+   "flag_compat_face": "same shape as r278_landing_effect.flag_compat (scripts/*.py --help)",
+   "quality_axes_stay_in": "05-exec/r278_landing_effect.py + 06-benchmark/r278_landing_effect_*.json",
+   "admission_gate": "05-exec/r129_reconcile_admission.py (not re-implemented here)"
+  },
+  "read_only_attestation": "only git log/show/rev-parse/ls-tree/archive (read) + filesystem reads; no git write, no file created or modified under D:/global_skills or D:/global_memory",
+  "sha_accounting": {
+   "requested": [
+    "079b91f3",
+    "6394cbae",
+    "9aaa9214",
+    "294e3ac6",
+    "89efb3e6",
+    "30b84b20",
+    "3da30832",
+    "3c72867d",
+    "79862372"
+   ],
+   "resolved": {
+    "079b91f3": "079b91f33e95e46da750be33a84fae5627adde65",
+    "6394cbae": "6394cbae1e5d00f8a60e383f761613664cca2b41",
+    "9aaa9214": "9aaa92146b09137302ac098958173210fb855c7b",
+    "294e3ac6": "294e3ac67ab61d95d34e959e1f7d5a6656fc9ce6",
+    "89efb3e6": "89efb3e663b138cf8c0141e89ce38efa733c7652",
+    "30b84b20": "30b84b20175ad6478efe6417e1a568821b169c57",
+    "3da30832": "3da30832613c875558b40e5196c910bd0da9831c",
+    "3c72867d": "3c72867d489bfb992e5aa12d4eb9f2bec89a4ed0",
+    "79862372": "79862372928ddb9906707f4c0bc9136d208e37e8"
+   },
+   "unreadable": [],
+   "rule": "a sha that cannot be read is registered by name here, never substituted"
+  },
+  "field_names_measured_first": "probe run printed sorted keys of r278_landing_effect.json / gate_run_r220_md_deadlink.json / admission_r129_2026-10-20.json before use"
+ },
+ "dims": [
+  "trigger_semantics",
+  "frontmatter_fields",
+  "relative_pointers",
+  "command_surface",
+  "version_history",
+  "mirror_sync"
+ ],
+ "dim_meanings": {
+  "trigger_semantics": "description/trigger key semantics preserved (CJK bigram + latin token proxy)",
+  "frontmatter_fields": "frontmatter key set only-grows; named difference sets",
+  "relative_pointers": "every relative pointer resolves at the landing ref (git tree face)",
+  "command_surface": "literal command count + flag support face (strict/wide), UNVERIFIED if unproducible",
+  "version_history": "Version history block rows may not shrink or lose a version (R241 class)",
+  "mirror_sync": "mirror copies vs before/after blobs (read-only probe)"
+ },
+ "scope_note": "This face reads PRODUCT/INTERFACE compatibility only. It is NOT business quality: quality movement lives in r278_landing_effect (unreferenced rate, half-claims, double writes). A cell saying PASS says nothing about whether the skill got better.",
+ "verdict_rule": "per landing: REGRESSION if any dim red; else UNVERIFIED if any dim cannot be judged; else NO_REGRESSION. Top level = same precedence over landings. No any()/all() aggregation (audit-runner-safe-aggregate).",
+ "landings": [
+  {
+   "id": "L1-r266-tdd-pointer",
+   "slug": "test-driven-development",
+   "note": "one pointer line to writing-good-tests.md; landing commit 079b91f3 is ALSO the accidental whole-tree commit (R269-3) - only the anchor path is read here.",
+   "refs": {
+    "state": "OK",
+    "base": "87934d4895b669fdafdcddc2e76ba570a602c9d1",
+    "before": "87934d4895b669fdafdcddc2e76ba570a602c9d1",
+    "after": "079b91f33e95e46da750be33a84fae5627adde65",
+    "base_is_before": true,
+    "before_last_touching_anchor": "eb1d70c186332c8b79da7b98ce4ee50dbc320e97",
+    "before_blob_witness": true,
+    "chain_commits": [
+     "079b91f33e95e46da750be33a84fae5627adde65"
+    ],
+    "chain_is_landing": true,
+    "on_mainline_head": {
+     "079b91f3": true
+    },
+    "chain_extra_commits": [],
+    "chain_extra_note": ""
+   },
+   "landing_commits": [
+    "079b91f3"
+   ],
+   "touched_paths": {
+    "079b91f3": [
+     "A-project-better/SKILL.md",
+     "A-project-better/references/benchmark.md",
+     "A-project-better/references/benchmark.part4.md",
+     "A-project-better/references/frontend-checkpoints.md",
+     "A-project-better/references/version-history.md",
+     "agent-browser/SKILL.md",
+     "brainstorming/SKILL.md",
+     "brainstorming/builder-check-prompt.md",
+     "chaoshi-image-optimization/SKILL.md",
+     "cloudbase/SKILL.md",
+     "cloudbase/_meta.json",
+     "cloudbase/_skillhub_meta.json",
+     "cloudbase/references/ai-model-nodejs/LICENSE.md",
+     "cloudbase/references/ai-model-nodejs/SKILL.md",
+     "cloudbase/references/ai-model-web/LICENSE.md",
+     "cloudbase/references/ai-model-web/SKILL.md",
+     "cloudbase/references/ai-model-wechat/LICENSE.md",
+     "cloudbase/references/ai-model-wechat/SKILL.md",
+     "cloudbase/references/auth-nodejs-cloudbase/LICENSE.md",
+     "cloudbase/references/auth-nodejs-cloudbase/SKILL.md",
+     "cloudbase/references/auth-tool-cloudbase/LICENSE.md",
+     "cloudbase/references/auth-tool-cloudbase/SKILL.md",
+     "cloudbase/references/auth-web-cloudbase/LICENSE.md",
+     "cloudbase/references/auth-web-cloudbase/SKILL.md",
+     "cloudbase/references/auth-wechat-miniprogram/LICENSE.md",
+     "cloudbase/references/auth-wechat-miniprogram/SKILL.md",
+     "cloudbase/references/cloud-api-operations/LICENSE.md",
+     "cloudbase/references/cloud-api-operations/SKILL.md",
+     "cloudbase/references/cloud-api-operations/references/recipes/README.md",
+     "cloudbase/references/cloud-api-operations/references/recipes/billing-charges-explained.md",
+     "cloudbase/references/cloud-api-operations/references/recipes/credits-exhaustion.md",
+     "cloudbase/references/cloud-api-operations/references/recipes/pg-instance-spec.md",
+     "cloudbase/references/cloud-api-operations/references/recipes/platform-agent-connect.md",
+     "cloudbase/references/cloud-api-operations/references/recipes/platform-agent-guardrails.md",
+     "cloudbase/references/cloud-api-operations/references/recipes/platform-onboarding.md",
+     "cloudbase/references/cloud-api-operations/references/recipes/platform-usage-and-recycle.md",
+     "cloudbase/references/cloud-functions/LICENSE.md",
+     "cloudbase/references/cloud-functions/SKILL.md",
+     "cloudbase/references/cloud-functions/references/http-functions.md",
+     "cloudbase/references/cloud-storage-web/LICENSE.md",
+     "cloudbase/references/cloud-storage-web/SKILL.md",
+     "cloudbase/references/cloudbase-agent/LICENSE.md",
+     "cloudbase/references/cloudbase-agent/SKILL.md",
+     "cloudbase/references/cloudbase-agent/py/LICENSE.md",
+     "cloudbase/references/cloudbase-agent/py/adapter-coze.md",
+     "cloudbase/references/cloudbase-agent/py/adapter-development.md",
+     "cloudbase/references/cloudbase-agent/py/authentication.md",
+     "cloudbase/references/cloudbase-agent/py/references/recipes.md",
+     "cloudbase/references/cloudbase-agent/py/references/storage.md",
+     "cloudbase/references/cloudbase-agent/py/references/tools.md",
+     "cloudbase/references/cloudbase-agent/py/skill.md",
+     "cloudbase/references/cloudbase-agent/ts/LICENSE.md",
+     "cloudbase/references/cloudbase-agent/ts/skill.md",
+     "cloudbase/references/cloudbase-cli/LICENSE.md",
+     "cloudbase/references/cloudbase-cli/SKILL.md",
+     "cloudbase/references/cloudbase-cli/references/access.md",
+     "cloudbase/references/cloudbase-cli/references/agent.md",
+     "cloudbase/references/cloudbase-cli/references/app.md",
+     "cloudbase/references/cloudbase-cli/references/cloudrun.md",
+     "cloudbase/references/cloudbase-cli/references/config.md",
+     "cloudbase/references/cloudbase-cli/references/core.md",
+     "cloudbase/references/cloudbase-cli/references/env.md",
+     "cloudbase/references/cloudbase-cli/references/functions.md",
+     "cloudbase/references/cloudbase-cli/references/hosting.md",
+     "cloudbase/references/cloudbase-cli/references/integration.md",
+     "cloudbase/references/cloudbase-cli/references/logs.md",
+     "cloudbase/references/cloudbase-cli/references/lowcode.md",
+     "cloudbase/references/cloudbase-cli/references/monitor.md",
+     "cloudbase/references/cloudbase-cli/references/mysql.md",
+     "cloudbase/references/cloudbase-cli/references/nosql.md",
+     "cloudbase/references/cloudbase-cli/references/permission.md",
+     "cloudbase/references/cloudbase-cli/references/sandbox.md",
+     "cloudbase/references/cloudbase-cli/references/schema.md",
+     "cloudbase/references/cloudbase-cli/references/storage.md",
+     "cloudbase/references/cloudbase-code-review/LICENSE.md",
+     "cloudbase/references/cloudbase-code-review/SKILL.md",
+     "cloudbase/references/cloudbase-declarative-deploy/LICENSE.md",
+     "cloudbase/references/cloudbase-declarative-deploy/SKILL.md",
+     "cloudbase/references/cloudbase-document-database-in-wechat-miniprogram/LICENSE.md",
+     "cloudbase/references/cloudbase-document-database-in-wechat-miniprogram/SKILL.md",
+     "cloudbase/references/cloudbase-document-database-web-sdk/LICENSE.md",
+     "cloudbase/references/cloudbase-document-database-web-sdk/SKILL.md",
+     "cloudbase/references/cloudbase-mcp/LICENSE.md",
+     "cloudbase/references/cloudbase-mcp/SKILL.md",
+     "cloudbase/references/cloudbase-platform/LICENSE.md",
+     "cloudbase/references/cloudbase-platform/SKILL.md",
+     "cloudbase/references/cloudbase-platform/references/protocols/deployment-share.md",
+     "cloudbase/references/cloudbase-wechat-integration/LICENSE.md",
+     "cloudbase/references/cloudbase-wechat-integration/SKILL.md",
+     "cloudbase/references/cloudrun-development/LICENSE.md",
+     "cloudbase/references/cloudrun-development/SKILL.md",
+     "cloudbase/references/cloudrun-development/references/vpc-and-database.md",
+     "cloudbase/references/data-model-creation/LICENSE.md",
+     "cloudbase/references/data-model-creation/SKILL.md",
+     "cloudbase/references/http-api-cloudbase/LICENSE.md",
+     "cloudbase/references/http-api-cloudbase/SKILL.md",
+     "cloudbase/references/mcp-setup.md",
+     "cloudbase/references/minimal-web-baas-demo/LICENSE.md",
+     "cloudbase/references/minimal-web-baas-demo/SKILL.md",
+     "cloudbase/references/miniprogram-development/LICENSE.md",
+     "cloudbase/references/miniprogram-development/SKILL.md",
+     "cloudbase/references/miniprogram-development/references/cloudbase-integration.md",
+     "cloudbase/references/ops-inspector/LICENSE.md",
+     "cloudbase/references/ops-inspector/SKILL.md",
+     "cloudbase/references/ops-inspector/references/fault-playbooks.md",
+     "cloudbase/references/postgresql-best-practices-cloudbase/LICENSE.md",
+     "cloudbase/references/postgresql-best-practices-cloudbase/SKILL.md",
+     "cloudbase/references/postgresql-development-cloudbase/LICENSE.md",
+     "cloudbase/references/postgresql-development-cloudbase/SKILL.md",
+     "cloudbase/references/postgresql-development-cloudbase/references/troubleshooting.md",
+     "cloudbase/references/relational-database-mcp-cloudbase/LICENSE.md",
+     "cloudbase/references/relational-database-mcp-cloudbase/SKILL.md",
+     "cloudbase/references/relational-database-web-cloudbase/LICENSE.md",
+     "cloudbase/references/relational-database-web-cloudbase/SKILL.md",
+     "cloudbase/references/spec-workflow/LICENSE.md",
+     "cloudbase/references/spec-workflow/SKILL.md",
+     "cloudbase/references/ui-design/LICENSE.md",
+     "cloudbase/references/ui-design/SKILL.md",
+     "cloudbase/references/web-development/LICENSE.md",
+     "cloudbase/references/web-development/SKILL.md",
+     "coding-agent/SKILL.md",
+     "coding-agent/references/dispatch-and-poll.md",
+     "coding-agent/references/multi-task-queues.md",
+     "coding-agent/references/review-and-land.md",
+     "coding-agent/references/writing-the-brief.md",
+     "data-analysis/SKILL.md",
+     "data-analysis/assets/report_template.md",
+     "data-analysis/references/bioinformatics_genomics_formats.md",
+     "data-analysis/references/chemistry_molecular_formats.md",
+     "data-analysis/references/general_scientific_formats.md",
+     "data-analysis/references/microscopy_imaging_formats.md",
+     "data-analysis/references/proteomics_metabolomics_formats.md",
+     "data-analysis/references/spectroscopy_analytical_formats.md",
+     "data-analysis/scripts/__init__.py",
+     "data-analysis/scripts/_capabilities.py",
+     "data-analysis/scripts/_common.py",
+     "data-analysis/scripts/_structured.py",
+     "data-analysis/scripts/_tabular.py",
+     "data-analysis/scripts/capability_manifest.py",
+     "data-analysis/scripts/distribution_sensitivity.py",
+     "data-analysis/scripts/eda_analyzer.py",
+     "data-analysis/scripts/image_inspector.py",
+     "data-analysis/scripts/missingness_leakage_audit.py",
+     "data-analysis/scripts/report_scaffold.py",
+     "data-analysis/scripts/sequence_inspector.py",
+     "data-analysis/scripts/tabular_profile.py",
+     "diagram-maker/SKILL.md",
+     "diagram-maker/references/element-types.md",
+     "diagram-maker/references/excalidraw-schema.md",
+     "diagram-maker/scripts/.gitignore",
+     "diagram-maker/scripts/README.md",
+     "diagram-maker/scripts/add-arrow.py",
+     "diagram-maker/scripts/add-icon-to-diagram.py",
+     "diagram-maker/scripts/split-excalidraw-library.py",
+     "diagram-maker/templates/business-flow-swimlane-template.excalidraw",
+     "diagram-maker/templates/class-diagram-template.excalidraw",
+     "diagram-maker/templates/data-flow-diagram-template.excalidraw",
+     "diagram-maker/templates/er-diagram-template.excalidraw",
+     "diagram-maker/templates/flowchart-template.excalidraw",
+     "diagram-maker/templates/mindmap-template.excalidraw",
+     "diagram-maker/templates/relationship-template.excalidraw",
+     "diagram-maker/templates/sequence-diagram-template.excalidraw",
+     "dingtalk-shared/references/recipes/conventions.md",
+     "figma/SKILL.md",
+     "figma/scripts/verify-motion.mjs",
+     "frontend-slides/SKILL.md",
+     "frontend-slides/bold-template-pack/README.md",
+     "frontend-slides/bold-template-pack/deck-stage.js",
+     "frontend-slides/bold-template-pack/selection-index.json",
+     "frontend-slides/bold-template-pack/templates/8-bit-orbit/design.md",
+     "frontend-slides/bold-template-pack/templates/8-bit-orbit/preview.md",
+     "frontend-slides/bold-template-pack/templates/biennale-yellow/design.md",
+     "frontend-slides/bold-template-pack/templates/biennale-yellow/preview.md",
+     "frontend-slides/bold-template-pack/templates/block-frame/design.md",
+     "frontend-slides/bold-template-pack/templates/block-frame/preview.md",
+     "frontend-slides/bold-template-pack/templates/blue-professional/design.md",
+     "frontend-slides/bold-template-pack/templates/blue-professional/preview.md",
+     "frontend-slides/bold-template-pack/templates/bold-poster/design.md",
+     "frontend-slides/bold-template-pack/templates/bold-poster/preview.md",
+     "frontend-slides/bold-template-pack/templates/broadside/design.md",
+     "frontend-slides/bold-template-pack/templates/broadside/preview.md",
+     "frontend-slides/bold-template-pack/templates/capsule/design.md",
+     "frontend-slides/bold-template-pack/templates/capsule/preview.md",
+     "frontend-slides/bold-template-pack/templates/cartesian/design.md",
+     "frontend-slides/bold-template-pack/templates/cartesian/preview.md",
+     "frontend-slides/bold-template-pack/templates/cobalt-grid/design.md",
+     "frontend-slides/bold-template-pack/templates/cobalt-grid/preview.md",
+     "frontend-slides/bold-template-pack/templates/coral/design.md",
+     "frontend-slides/bold-template-pack/templates/coral/preview.md",
+     "frontend-slides/bold-template-pack/templates/creative-mode/design.md",
+     "frontend-slides/bold-template-pack/templates/creative-mode/preview.md",
+     "frontend-slides/bold-template-pack/templates/daisy-days/design.md",
+     "frontend-slides/bold-template-pack/templates/daisy-days/preview.md",
+     "frontend-slides/bold-template-pack/templates/editorial-forest/design.md",
+     "frontend-slides/bold-template-pack/templates/editorial-forest/preview.md",
+     "frontend-slides/bold-template-pack/templates/editorial-tri-tone/design.md",
+     "frontend-slides/bold-template-pack/templates/editorial-tri-tone/preview.md",
+     "frontend-slides/bold-template-pack/templates/emerald-editorial/design.md",
+     "frontend-slides/bold-template-pack/templates/emerald-editorial/preview.md",
+     "frontend-slides/bold-template-pack/templates/grove/design.md",
+     "frontend-slides/bold-template-pack/templates/grove/preview.md",
+     "frontend-slides/bold-template-pack/templates/long-table/design.md",
+     "frontend-slides/bold-template-pack/templates/long-table/preview.md",
+     "frontend-slides/bold-template-pack/templates/mat/design.md",
+     "frontend-slides/bold-template-pack/templates/mat/preview.md",
+     "frontend-slides/bold-template-pack/templates/monochrome/design.md",
+     "frontend-slides/bold-template-pack/templates/monochrome/preview.md",
+     "frontend-slides/bold-template-pack/templates/neo-grid-bold/design.md",
+     "frontend-slides/bold-template-pack/templates/neo-grid-bold/preview.md",
+     "frontend-slides/bold-template-pack/templates/peoples-platform/design.md",
+     "frontend-slides/bold-template-pack/templates/peoples-platform/preview.md",
+     "frontend-slides/bold-template-pack/templates/pin-and-paper/design.md",
+     "frontend-slides/bold-template-pack/templates/pin-and-paper/preview.md",
+     "frontend-slides/bold-template-pack/templates/pink-script/design.md",
+     "frontend-slides/bold-template-pack/templates/pink-script/preview.md",
+     "frontend-slides/bold-template-pack/templates/playful/design.md",
+     "frontend-slides/bold-template-pack/templates/playful/preview.md",
+     "frontend-slides/bold-template-pack/templates/raw-grid/design.md",
+     "frontend-slides/bold-template-pack/templates/raw-grid/preview.md",
+     "frontend-slides/bold-template-pack/templates/retro-windows/design.md",
+     "frontend-slides/bold-template-pack/templates/retro-windows/preview.md",
+     "frontend-slides/bold-template-pack/templates/retro-zine/design.md",
+     "frontend-slides/bold-template-pack/templates/retro-zine/preview.md",
+     "frontend-slides/bold-template-pack/templates/sakura-chroma/design.md",
+     "frontend-slides/bold-template-pack/templates/sakura-chroma/preview.md",
+     "frontend-slides/bold-template-pack/templates/scatterbrain/design.md",
+     "frontend-slides/bold-template-pack/templates/scatterbrain/preview.md",
+     "frontend-slides/bold-template-pack/templates/signal/design.md",
+     "frontend-slides/bold-template-pack/templates/signal/preview.md",
+     "frontend-slides/bold-template-pack/templates/soft-editorial/design.md",
+     "frontend-slides/bold-template-pack/templates/soft-editorial/preview.md",
+     "frontend-slides/bold-template-pack/templates/stencil-tablet/design.md",
+     "frontend-slides/bold-template-pack/templates/stencil-tablet/preview.md",
+     "frontend-slides/bold-template-pack/templates/studio/design.md",
+     "frontend-slides/bold-template-pack/templates/studio/preview.md",
+     "frontend-slides/bold-template-pack/templates/vellum/design.md",
+     "frontend-slides/bold-template-pack/templates/vellum/preview.md",
+     "grill-me/SKILL.md",
+     "grill-me/agents/openai.yaml",
+     "gstack/qa/templates/qa-report-template.md",
+     "hyperframes-media/.gitignore",
+     "hyperframes-media/NOTICE",
+     "hyperframes-media/SKILL.md",
+     "hyperframes-media/audio/assets/sfx/CREDITS.md",
+     "hyperframes-media/audio/assets/sfx/chime.mp3",
+     "hyperframes-media/audio/assets/sfx/click-soft.mp3",
+     "hyperframes-media/audio/assets/sfx/click.mp3",
+     "hyperframes-media/audio/assets/sfx/error.mp3",
+     "hyperframes-media/audio/assets/sfx/glitch-1.mp3",
+     "hyperframes-media/audio/assets/sfx/glitch-2.mp3",
+     "hyperframes-media/audio/assets/sfx/glitch-3.mp3",
+     "hyperframes-media/audio/assets/sfx/impact-bass-1.mp3",
+     "hyperframes-media/audio/assets/sfx/impact-bass-2.mp3",
+     "hyperframes-media/audio/assets/sfx/key-press.mp3",
+     "hyperframes-media/audio/assets/sfx/manifest.json",
+     "hyperframes-media/audio/assets/sfx/notification.mp3",
+     "hyperframes-media/audio/assets/sfx/ping.mp3",
+     "hyperframes-media/audio/assets/sfx/pop.mp3",
+     "hyperframes-media/audio/assets/sfx/riser.mp3",
+     "hyperframes-media/audio/assets/sfx/sparkle.mp3",
+     "hyperframes-media/audio/assets/sfx/typing.mp3",
+     "hyperframes-media/audio/assets/sfx/whoosh-cinematic.mp3",
+     "hyperframes-media/audio/assets/sfx/whoosh-short.mp3",
+     "hyperframes-media/audio/assets/sfx/whoosh.mp3",
+     "hyperframes-media/audio/references/bgm.md",
+     "hyperframes-media/audio/references/captions/authoring.md",
+     "hyperframes-media/audio/references/captions/motion.md",
+     "hyperframes-media/audio/references/captions/transcript-handling.md",
+     "hyperframes-media/audio/references/remove-background.md",
+     "hyperframes-media/audio/references/requirements.md",
+     "hyperframes-media/audio/references/sfx.md",
+     "hyperframes-media/audio/references/transcribe.md",
+     "hyperframes-media/audio/references/tts-to-captions.md",
+     "hyperframes-media/audio/references/tts.md",
+     "hyperframes-media/audio/scripts/audio.mjs",
+     "hyperframes-media/audio/scripts/audio.test.mjs",
+     "hyperframes-media/audio/scripts/carve.mjs",
+     "hyperframes-media/audio/scripts/carve.test.mjs",
+     "hyperframes-media/audio/scripts/extract-audio-data.py",
+     "hyperframes-media/audio/scripts/gemini-pipeline.test.mjs",
+     "hyperframes-media/audio/scripts/heygen-tts.mjs",
+     "hyperframes-media/audio/scripts/heygen-tts.test.mjs",
+     "hyperframes-media/audio/scripts/heygen-voice.mjs",
+     "hyperframes-media/audio/scripts/heygen-voice.test.mjs",
+     "hyperframes-media/audio/scripts/lib/audio-meta.mjs",
+     "hyperframes-media/audio/scripts/lib/audio-meta.test.mjs",
+     "hyperframes-media/audio/scripts/lib/bgm-volume.mjs",
+     "hyperframes-media/audio/scripts/lib/bgm.mjs",
+     "hyperframes-media/audio/scripts/lib/bgm.test.mjs",
+     "hyperframes-media/audio/scripts/lib/concurrency.mjs",
+     "hyperframes-media/audio/scripts/lib/concurrency.test.mjs",
+     "hyperframes-media/audio/scripts/lib/gemini-auth.mjs",
+     "hyperframes-media/audio/scripts/lib/gemini-auth.py",
+     "hyperframes-media/audio/scripts/lib/gemini-auth.test.mjs",
+     "hyperframes-media/audio/scripts/lib/gemini-auth_test.py",
+     "hyperframes-media/audio/scripts/lib/gemini-tts.mjs",
+     "hyperframes-media/audio/scripts/lib/gemini-tts.test.mjs",
+     "hyperframes-media/audio/scripts/lib/heygen.mjs",
+     "hyperframes-media/audio/scripts/lib/heygen.test.mjs",
+     "hyperframes-media/audio/scripts/lib/main-module.mjs",
+     "hyperframes-media/audio/scripts/lib/media-record.mjs",
+     "hyperframes-media/audio/scripts/lib/media-record.test.mjs",
+     "hyperframes-media/audio/scripts/lib/openverse.mjs",
+     "hyperframes-media/audio/scripts/lib/python.mjs",
+     "hyperframes-media/audio/scripts/lib/python.test.mjs",
+     "hyperframes-media/audio/scripts/lib/sfx.mjs",
+     "hyperframes-media/audio/scripts/lib/sfx.test.mjs",
+     "hyperframes-media/audio/scripts/lib/tts.cleanup.test.mjs",
+     "hyperframes-media/audio/scripts/lib/tts.mjs",
+     "hyperframes-media/audio/scripts/lib/tts.spawn.test.mjs",
+     "hyperframes-media/audio/scripts/lib/tts.test.mjs",
+     "hyperframes-media/audio/scripts/lyria-recipe.py",
+     "hyperframes-media/audio/scripts/wait-bgm.mjs",
+     "hyperframes-media/audio/scripts/wait-bgm.test.mjs",
+     "hyperframes-media/luts/README.md",
+     "hyperframes-media/luts/index.json",
+     "hyperframes-media/scripts/audio-duck.mjs",
+     "hyperframes-media/scripts/compatibility.test.mjs",
+     "hyperframes-media/scripts/dither.mjs",
+     "hyperframes-media/scripts/dither.test.mjs",
+     "hyperframes-media/scripts/eval.mjs",
+     "hyperframes-media/scripts/lib/config-lock.mjs",
+     "hyperframes-media/scripts/lib/cutlist.mjs",
+     "hyperframes-media/scripts/lib/duck.mjs",
+     "hyperframes-media/scripts/lib/error-diffusion.mjs",
+     "hyperframes-media/scripts/lib/index-gen.mjs",
+     "hyperframes-media/scripts/lib/manifest.mjs",
+     "hyperframes-media/scripts/lib/media-fetch.mjs",
+     "hyperframes-media/scripts/lib/media-home.mjs",
+     "hyperframes-media/scripts/lib/npx-sync.mjs",
+     "hyperframes-media/scripts/lib/parakeet-words.mjs",
+     "hyperframes-media/scripts/lib/prefs-store.mjs",
+     "hyperframes-media/scripts/lib/recipe-store.mjs",
+     "hyperframes-media/scripts/lib/telemetry.mjs",
+     "hyperframes-media/scripts/lib/telemetry.test.mjs",
+     "hyperframes-media/scripts/lib/transcriptCutFade.mjs",
+     "hyperframes-media/scripts/lib/words.mjs",
+     "hyperframes-media/scripts/prefs.mjs",
+     "hyperframes-media/scripts/recipe.mjs",
+     "hyperframes-media/scripts/resolve-plugin.test.mjs",
+     "hyperframes-media/scripts/resolve.mjs",
+     "hyperframes-media/scripts/transcribe.mjs",
+     "hyperframes-media/scripts/transcribe.test.mjs",
+     "hyperframes-media/scripts/transcript-cut.mjs",
+     "hyperframes-media/scripts/transcript-cut.test.mjs",
+     "hyperframes/SKILL.md",
+     "hyperframes/assets/frame-presets/biennale-yellow/FRAME.md",
+     "hyperframes/assets/frame-presets/biennale-yellow/caption-skin.html",
+     "hyperframes/assets/frame-presets/biennale-yellow/frame-showcase.html",
+     "hyperframes/assets/frame-presets/blockframe/FRAME.md",
+     "hyperframes/assets/frame-presets/blockframe/caption-skin.html",
+     "hyperframes/assets/frame-presets/blockframe/frame-showcase.html",
+     "hyperframes/assets/frame-presets/blue-professional/FRAME.md",
+     "hyperframes/assets/frame-presets/blue-professional/caption-skin.html",
+     "hyperframes/assets/frame-presets/blue-professional/frame-showcase.html",
+     "hyperframes/assets/frame-presets/bold-poster/FRAME.md",
+     "hyperframes/assets/frame-presets/bold-poster/caption-skin.html",
+     "hyperframes/assets/frame-presets/bold-poster/frame-showcase.html",
+     "hyperframes/assets/frame-presets/broadside/FRAME.md",
+     "hyperframes/assets/frame-presets/broadside/caption-skin.html",
+     "hyperframes/assets/frame-presets/broadside/frame-showcase.html",
+     "hyperframes/assets/frame-presets/capsule/FRAME.md",
+     "hyperframes/assets/frame-presets/capsule/caption-skin.html",
+     "hyperframes/assets/frame-presets/capsule/frame-showcase.html",
+     "hyperframes/assets/frame-presets/cartesian/FRAME.md",
+     "hyperframes/assets/frame-presets/cartesian/caption-skin.html",
+     "hyperframes/assets/frame-presets/cartesian/frame-showcase.html",
+     "hyperframes/assets/frame-presets/cobalt-grid/FRAME.md",
+     "hyperframes/assets/frame-presets/cobalt-grid/caption-skin.html",
+     "hyperframes/assets/frame-presets/cobalt-grid/frame-showcase.html",
+     "hyperframes/assets/frame-presets/code-editorial/FRAME.md",
+     "hyperframes/assets/frame-presets/code-editorial/caption-skin.html",
+     "hyperframes/assets/frame-presets/code-editorial/fonts/EBGaramond-400.woff2",
+     "hyperframes/assets/frame-presets/code-editorial/fonts/EBGaramond-700.woff2",
+     "hyperframes/assets/frame-presets/code-editorial/fonts/Inter-400.woff2",
+     "hyperframes/assets/frame-presets/code-editorial/fonts/Inter-700.woff2",
+     "hyperframes/assets/frame-presets/code-editorial/fonts/JetBrainsMono-400.woff2",
+     "hyperframes/assets/frame-presets/code-editorial/fonts/JetBrainsMono-700.woff2",
+     "hyperframes/assets/frame-presets/code-editorial/fonts/OFL-eb-garamond.txt",
+     "hyperframes/assets/frame-presets/code-editorial/fonts/OFL-inter.txt",
+     "hyperframes/assets/frame-presets/code-editorial/fonts/OFL-jetbrains-mono.txt",
+     "hyperframes/assets/frame-presets/code-editorial/frame-showcase.html",
+     "hyperframes/assets/frame-presets/coral/FRAME.md",
+     "hyperframes/assets/frame-presets/coral/caption-skin.html",
+     "hyperframes/assets/frame-presets/coral/frame-showcase.html",
+     "hyperframes/assets/frame-presets/creative-mode/FRAME.md",
+     "hyperframes/assets/frame-presets/creative-mode/caption-skin.html",
+     "hyperframes/assets/frame-presets/creative-mode/frame-showcase.html",
+     "hyperframes/assets/frame-presets/daisy-days/FRAME.md",
+     "hyperframes/assets/frame-presets/daisy-days/caption-skin.html",
+     "hyperframes/assets/frame-presets/daisy-days/frame-showcase.html",
+     "hyperframes/assets/frame-presets/editorial-forest/FRAME.md",
+     "hyperframes/assets/frame-presets/editorial-forest/caption-skin.html",
+     "hyperframes/assets/frame-presets/editorial-forest/frame-showcase.html",
+     "local-asr/tests/qgs2.mp4",
+     "local-asr/tests/zh.wav",
+     "local-mineru/tests/9.png",
+     "local-realtime-translator/nltk_data/taggers/averaged_perceptron_tagger.zip",
+     "local-realtime-translator/nltk_data/taggers/averaged_perceptron_tagger_eng.zip",
+     "local-tts/assets/ref/dongbeihua/sound.wav",
+     "ppt-master/SKILL.md",
+     "ppt-master/references/ai-image-comparison/palette/cool-corporate.webp",
+     "ppt-master/references/ai-image-comparison/palette/dark-cinematic.webp",
+     "ppt-master/references/ai-image-comparison/palette/duotone.webp",
+     "ppt-master/references/ai-image-comparison/palette/earthy-dusty.webp",
+     "ppt-master/references/ai-image-comparison/palette/editorial-classic.png",
+     "ppt-master/references/ai-image-comparison/palette/editorial-classic.webp",
+     "ppt-master/references/ai-image-comparison/palette/frost-ice.webp",
+     "ppt-master/references/ai-image-comparison/palette/jewel-tone.webp",
+     "ppt-master/references/ai-image-comparison/palette/macaron.webp",
+     "ppt-master/references/ai-image-comparison/palette/mono-ink.webp",
+     "ppt-master/references/ai-image-comparison/palette/nature-organic.webp",
+     "ppt-master/references/ai-image-comparison/palette/sunset-gradient.webp",
+     "ppt-master/references/ai-image-comparison/palette/tech-neon.webp",
+     "ppt-master/references/ai-image-comparison/palette/vivid-launch.webp",
+     "ppt-master/references/ai-image-comparison/palette/warm-earth.webp",
+     "ppt-master/references/ai-image-comparison/rendering/3d-isometric.webp",
+     "ppt-master/references/ai-image-comparison/rendering/blueprint.webp",
+     "ppt-master/references/ai-image-comparison/rendering/chalkboard.png",
+     "ppt-master/references/ai-image-comparison/rendering/chalkboard.webp",
+     "ppt-master/references/ai-image-comparison/rendering/corporate-photo.png",
+     "ppt-master/references/ai-image-comparison/rendering/corporate-photo.webp",
+     "ppt-master/references/ai-image-comparison/rendering/digital-dashboard.webp",
+     "ppt-master/references/ai-image-comparison/rendering/editorial.png",
+     "ppt-master/references/ai-image-comparison/rendering/editorial.webp",
+     "ppt-master/references/ai-image-comparison/rendering/fantasy-animation.png",
+     "ppt-master/references/ai-image-comparison/rendering/fantasy-animation.webp",
+     "ppt-master/references/ai-image-comparison/rendering/flat.webp",
+     "ppt-master/references/ai-image-comparison/rendering/glassmorphism.webp",
+     "ppt-master/references/ai-image-comparison/rendering/ink-notes.webp",
+     "ppt-master/references/ai-image-comparison/rendering/minimalist-swiss.webp",
+     "ppt-master/references/ai-image-comparison/rendering/nature.png",
+     "ppt-master/references/ai-image-comparison/rendering/nature.webp",
+     "ppt-master/references/ai-image-comparison/rendering/paper-cut.png",
+     "ppt-master/references/ai-image-comparison/rendering/paper-cut.webp",
+     "ppt-master/references/ai-image-comparison/rendering/pixel-art.webp",
+     "ppt-master/references/ai-image-comparison/rendering/screen-print.png",
+     "ppt-master/references/ai-image-comparison/rendering/screen-print.webp",
+     "ppt-master/references/ai-image-comparison/rendering/sketch-notes.png",
+     "ppt-master/references/ai-image-comparison/rendering/sketch-notes.webp",
+     "ppt-master/references/ai-image-comparison/rendering/vector-illustration.webp",
+     "ppt-master/references/ai-image-comparison/rendering/vintage-poster.png",
+     "ppt-master/references/ai-image-comparison/rendering/vintage-poster.webp",
+     "ppt-master/references/ai-image-comparison/rendering/warm-scene.png",
+     "ppt-master/references/ai-image-comparison/rendering/warm-scene.webp",
+     "ppt-master/references/ai-image-comparison/rendering/watercolor.png",
+     "ppt-master/references/ai-image-comparison/rendering/watercolor.webp",
+     "ppt-master/references/ai-image-comparison/type/comparison.webp",
+     "ppt-master/references/ai-image-comparison/type/cycle.webp",
+     "ppt-master/references/ai-image-comparison/type/flowchart.webp",
+     "ppt-master/references/ai-image-comparison/type/framework.webp",
+     "ppt-master/references/ai-image-comparison/type/funnel.webp",
+     "ppt-master/references/ai-image-comparison/type/infographic.webp",
+     "ppt-master/references/ai-image-comparison/type/map.webp",
+     "ppt-master/references/ai-image-comparison/type/matrix.webp",
+     "ppt-master/references/ai-image-comparison/type/pyramid.webp",
+     "ppt-master/references/ai-image-comparison/type/scene.webp",
+     "ppt-master/references/ai-image-comparison/type/timeline.webp",
+     "ppt-master/scripts/svg_to_pptx/drawingml/font_metrics.json",
+     "ppt-master/scripts/svg_to_pptx/drawingml/text_baseline.py",
+     "ppt-master/scripts/svg_to_pptx/native_objects/chart_patch.py",
+     "ppt-master/scripts/tests/test_chart_import_formatting.py",
+     "ppt-master/scripts/tests/test_chart_inplace.py",
+     "ppt-master/scripts/tests/test_edit_native_batch_d.py",
+     "ppt-master/scripts/tests/test_formula_fallback.py",
+     "ppt-master/scripts/tests/test_formula_import_colors.py",
+     "ppt-master/scripts/tests/test_formula_roundtrip_identity.py",
+     "ppt-master/scripts/tests/test_image_gen_manifest.py",
+     "ppt-master/scripts/tests/test_native_chart_part_allocation.py",
+     "ppt-master/scripts/tests/test_native_chart_roundtrip_identity.py",
+     "ppt-master/scripts/tests/test_native_table_merges.py",
+     "ppt-master/scripts/tests/test_pdf_content_preservation.py",
+     "ppt-master/scripts/tests/test_pdf_header_footer_position.py",
+     "ppt-master/scripts/tests/test_pdf_table_continuation.py",
+     "ppt-master/scripts/tests/test_roundtrip_morph_passthrough.py",
+     "ppt-master/scripts/tests/test_roundtrip_text_body_move.py",
+     "ppt-master/scripts/tests/test_source_to_md_content_loss_docx.py",
+     "ppt-master/scripts/tests/test_source_to_md_content_loss_excel.py",
+     "ppt-master/scripts/tests/test_source_to_md_content_loss_pptx.py",
+     "ppt-master/scripts/tests/test_source_to_md_content_loss_web.py",
+     "ppt-master/scripts/tests/test_text_baseline.py",
+     "ppt-master/scripts/tests/test_text_baseline_metadata.py",
+     "ppt-master/scripts/tests/test_text_baseline_roundtrip.py",
+     "ppt-master/scripts/tests/test_text_overflow_import.py",
+     "react-best-practices/AGENTS.md",
+     "story-deslop/SKILL.md",
+     "story-deslop/scripts/style-whitelist.js",
+     "story-import/SKILL.md",
+     "story-import/references/benchmark-sync.md",
+     "story-import/references/deep-analysis.md",
+     "story-import/references/import-report.md",
+     "story-import/references/import-special-cases.md",
+     "story-import/references/import-tracking.md",
+     "story-import/references/outline-reverse-rules.md",
+     "story-import/references/outline-reverse.md",
+     "story-import/references/tracking-initialization.md",
+     "story-import/scripts/build_outline_brief.py",
+     "story-import/scripts/check-outline-contract.js",
+     "story-import/scripts/outline_view.py",
+     "story-import/scripts/tracking_commit.py",
+     "story-import/scripts/wordcount_core.py",
+     "story-long-analyze/SKILL.md",
+     "story-long-analyze/references/author-facing.md",
+     "story-long-analyze/references/final-checks.md",
+     "story-long-analyze/references/index-rebuild.md",
+     "story-long-analyze/references/inspiration-library.md",
+     "story-long-analyze/references/stage1-golden-chapters.md",
+     "story-long-analyze/references/stage2-extraction.md",
+     "story-long-analyze/references/stage3-plot-rhythm.md",
+     "story-long-analyze/references/stage4-characters-settings.md",
+     "story-long-analyze/references/stage5-report.md",
+     "story-long-analyze/references/synthesis-inputs.md",
+     "story-long-analyze/scripts/build_chapter_index.py",
+     "story-long-analyze/scripts/inspect_existing_assets.py",
+     "story-long-analyze/scripts/inspiration_index.py",
+     "story-long-analyze/scripts/manage_analysis_run.py",
+     "story-long-analyze/scripts/render_relation_chart.py",
+     "story-long-write/SKILL.md",
+     "story-long-write/references/agent-calls.md",
+     "story-long-write/references/author-memory-maintenance.md",
+     "story-long-write/references/author-memory.md",
+     "story-long-write/references/benchmark-recall.md",
+     "story-long-write/references/emotion-on-page.md",
+     "story-long-write/references/long-chapter-hooks.md",
+     "story-long-write/references/long-chapter-quality.md",
+     "story-long-write/references/long-format.md",
+     "story-long-write/references/long-genre-catalog.md",
+     "story-long-write/references/long-genre-mechanics.md",
+     "story-long-write/references/long-reversal.md",
+     "story-long-write/references/long-suspense.md",
+     "story-long-write/references/project-files.md",
+     "story-long-write/references/reference-index.md",
+     "story-long-write/references/revision-diagnosis.md",
+     "story-long-write/references/stop-and-fix.md",
+     "story-long-write/references/style-resolution.md",
+     "story-long-write/references/tracking-initialization.md",
+     "story-long-write/references/tracking-transaction.md",
+     "story-long-write/references/workflow-chapter.md",
+     "story-long-write/references/workflow-outline.md",
+     "story-long-write/references/workflow-setup.md",
+     "story-long-write/references/workflow-volume.md",
+     "story-long-write/references/writer-prompt-fallback.md",
+     "story-long-write/scripts/author_memory_commit.py",
+     "story-long-write/scripts/build_architect_brief.py",
+     "story-long-write/scripts/build_writer_prompt.py",
+     "story-long-write/scripts/check-outline-contract.js",
+     "story-long-write/scripts/check-outline-copy.js",
+     "story-long-write/scripts/outline_view.py",
+     "story-long-write/scripts/storyctl.py",
+     "story-long-write/scripts/style-whitelist.js",
+     "story-long-write/scripts/tracking_commit.py",
+     "story-long-write/scripts/wordcount_core.py",
+     "story-review/SKILL.md",
+     "story-review/references/agent-prompts.md",
+     "story-review/references/batch-review.md",
+     "story-review/references/expression.md",
+     "story-review/references/narrative-focus.md",
+     "story-review/references/review-tracking.md",
+     "story-review/references/solo.md",
+     "story-review/references/story-logic.md",
+     "story-review/references/style-resolution.md",
+     "story-review/references/tracking-initialization.md",
+     "story-review/references/tracking-transaction.md",
+     "story-review/scripts/style-whitelist.js",
+     "story-review/scripts/tracking_commit.py",
+     "story-review/scripts/wordcount_core.py",
+     "story-setup/SKILL.md",
+     "story-setup/references/agent-references/agent-quality.md",
+     "story-setup/references/agent-references/agent-reference-profiles.md",
+     "story-setup/references/agent-references/benchmark-style-load.md",
+     "story-setup/references/agent-references/deslop-gates.md",
+     "story-setup/references/agent-references/emotion-on-page.md",
+     "story-setup/references/agent-references/expression.md",
+     "story-setup/references/agent-references/female-audience-writing.md",
+     "story-setup/references/agent-references/long-chapter-hooks.md",
+     "story-setup/references/agent-references/long-emotional-methods.md",
+     "story-setup/references/agent-references/long-genre-catalog.md",
+     "story-setup/references/agent-references/long-genre-mechanics.md",
+     "story-setup/references/agent-references/long-quality.md",
+     "story-setup/references/agent-references/long-reversal.md",
+     "story-setup/references/agent-references/long-suspense.md",
+     "story-setup/references/agent-references/narrative-focus.md",
+     "story-setup/references/agent-references/short-chapter-hooks.md",
+     "story-setup/references/agent-references/short-emotional-methods.md",
+     "story-setup/references/agent-references/short-genre-formulas.md",
+     "story-setup/references/agent-references/short-quality.md",
+     "story-setup/references/agent-references/short-reversal.md",
+     "story-setup/references/agent-references/story-logic.md",
+     "story-setup/references/agent-references/style-resolution.md",
+     "story-setup/references/antigravity/hooks/story_antigravity_hook.js",
+     "story-setup/references/antigravity/rules/oh-story.md",
+     "story-setup/references/deploy-antigravity.md",
+     "story-setup/references/deploy-claude-code.md",
+     "story-setup/references/deploy-codex.md",
+     "story-setup/references/deploy-generic.md",
+     "story-setup/references/deploy-openclaw.md",
+     "story-setup/references/deploy-opencode.md",
+     "story-setup/references/deploy-reasonix.md",
+     "story-setup/references/deploy-zcode.md",
+     "story-setup/references/diagnostics.md",
+     "story-setup/references/opencode/commands/story-long-scan.md",
+     "story-setup/references/opencode/commands/story-short-scan.md",
+     "story-setup/references/zcode/agents/character-designer.md",
+     "story-setup/references/zcode/agents/consistency-checker.md",
+     "story-setup/references/zcode/agents/narrative-writer.md",
+     "story-setup/references/zcode/agents/story-architect.md",
+     "story-setup/references/zcode/agents/story-explorer.md",
+     "story-setup/references/zcode/agents/story-researcher.md",
+     "story-setup/references/zcode/commands/story-long-scan.md",
+     "story-setup/references/zcode/commands/story-short-scan.md",
+     "story-setup/scripts/copy-path-safety.py",
+     "story-setup/scripts/deploy-antigravity-skills.py",
+     "story-setup/scripts/generate-antigravity-agents.mjs",
+     "story-setup/scripts/merge-antigravity-hooks.py",
+     "story-setup/scripts/merge-claude-settings.py",
+     "story-setup/scripts/merge-project-instructions.py",
+     "story-short-analyze/SKILL.md",
+     "story-short-analyze/references/analysis-characters.md",
+     "story-short-analyze/references/analysis-method.md",
+     "story-short-analyze/references/analysis-report-style.md",
+     "story-short-analyze/references/analysis-short-genres.md",
+     "story-short-analyze/references/analysis-short-hooks.md",
+     "story-short-analyze/references/analysis-short-mechanics.md",
+     "story-short-analyze/references/analysis-short-patterns.md",
+     "story-short-analyze/references/analysis-short-suspense.md",
+     "story-short-analyze/references/analysis-submission.md",
+     "story-short-analyze/references/optional-modules.md",
+     "story-short-analyze/references/source-story-quality.md",
+     "story-short-analyze/references/stage2-3-structure-emotion.md",
+     "story-short-analyze/references/stage4-6-reversal-summary.md",
+     "story-short-write/SKILL.md",
+     "story-short-write/references/agent-calls.md",
+     "story-short-write/references/author-memory-maintenance.md",
+     "story-short-write/references/author-memory.md",
+     "story-short-write/references/benchmark-recall.md",
+     "story-short-write/references/deslop-gates.md",
+     "story-short-write/references/expression.md",
+     "story-short-write/references/narrative-focus.md",
+     "story-short-write/references/reference-index.md",
+     "story-short-write/references/scene-craft.md",
+     "story-short-write/references/short-reversal.md",
+     "story-short-write/references/story-logic.md",
+     "story-short-write/references/style-resolution.md",
+     "story-short-write/references/workflow-design.md",
+     "story-short-write/references/workflow-draft.md",
+     "story-short-write/references/workflow-revision.md",
+     "story-short-write/scripts/author_memory_commit.py",
+     "story-short-write/scripts/check-delivery-contract.js",
+     "story-short-write/scripts/check-outline-copy.js",
+     "story-short-write/scripts/check-phase2-contract.js",
+     "story-short-write/scripts/style-whitelist.js",
+     "story/SKILL.md",
+     "story/assets/tokens.css",
+     "subagent-driven-development/NOTICE",
+     "subagent-driven-development/SKILL.md",
+     "subagent-driven-development/scripts/sdd-workspace",
+     "subagent-driven-development/scripts/task-brief",
+     "subagent-driven-development/scripts/task-done",
+     "subagent-driven-development/scripts/task-start",
+     "test-driven-development/SKILL.md",
+     "test-driven-development/writing-good-tests.md",
+     "ui-ux-pro-max/NOTICE",
+     "ui-ux-pro-max/SKILL.md",
+     "ui-ux-pro-max/data/app-interface.csv",
+     "ui-ux-pro-max/data/catalog-summary.json",
+     "ui-ux-pro-max/data/data-provenance.json",
+     "ui-ux-pro-max/data/google-font-licenses.json",
+     "ui-ux-pro-max/data/phosphor-icons-upstream.json",
+     "ui-ux-pro-max/references/CLAUDE.md",
+     "ui-ux-pro-max/references/pro-rules.md",
+     "ui-ux-pro-max/references/quick-reference.md",
+     "ui-ux-pro-max/scripts/core.py",
+     "ui-ux-pro-max/scripts/reasoning_contract.py",
+     "ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-api.json",
+     "ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-catalog.json",
+     "ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-existing.csv",
+     "ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-metadata.json",
+     "ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-overrides.json",
+     "ui-ux-pro-max/scripts/tests/fixtures/catalogs/icons-curated.csv",
+     "ui-ux-pro-max/scripts/tests/fixtures/catalogs/phosphor-core.json",
+     "ui-ux-pro-max/scripts/tests/fixtures/catalogs/phosphor-package.json",
+     "ui-ux-pro-max/scripts/tests/fixtures/catalogs/phosphor-react-exports.json",
+     "ui-ux-pro-max/scripts/tests/fixtures/catalogs/phosphor-react-package.json",
+     "ui-ux-pro-max/scripts/tests/fixtures/relevance-baseline.json",
+     "ui-ux-pro-max/scripts/tests/fixtures/relevance-cases.json",
+     "ui-ux-pro-max/scripts/tests/fixtures/relevance-thresholds.json",
+     "ui-ux-pro-max/scripts/tests/test_catalog_refresh.py",
+     "ui-ux-pro-max/scripts/tests/test_catalog_summary_line_endings.py",
+     "ui-ux-pro-max/scripts/tests/test_core.py",
+     "ui-ux-pro-max/scripts/tests/test_core_data_quality.py",
+     "ui-ux-pro-max/scripts/tests/test_data_contracts.py",
+     "ui-ux-pro-max/scripts/tests/test_design_system_mode.py",
+     "ui-ux-pro-max/scripts/tests/test_design_system_stack.py",
+     "ui-ux-pro-max/scripts/tests/test_native_desktop_stack_freshness.py",
+     "ui-ux-pro-max/scripts/tests/test_relevance_evaluator.py",
+     "ui-ux-pro-max/scripts/tests/test_skill_script_paths.py",
+     "ui-ux-pro-max/scripts/tests/test_style_taxonomy.py",
+     "ui-ux-pro-max/scripts/tests/test_text_layout_resilience.py",
+     "ui-ux-pro-max/scripts/tests/test_web_stack_freshness.py",
+     "ui-ux-pro-max/scripts/validate_data.py",
+     "web-access/config.env",
+     "win-toolchain-pitfalls/SKILL.md",
+     "win-toolchain-pitfalls/references/crlf-anchor-pitfalls.md",
+     "win-toolchain-pitfalls/references/path-separator-pitfalls.md",
+     "wps-knowledgebase/SKILL.md"
+    ]
+   },
+   "dims": {
+    "trigger_semantics": {
+     "status": "PASS",
+     "trigger_keys": [
+      "description",
+      "name"
+     ],
+     "identical_all": true,
+     "per_key": [
+      {
+       "key": "description",
+       "identical": true,
+       "tokens_before": 56,
+       "tokens_after": 56,
+       "lost_from_description": 0,
+       "lost_from_whole_file": [],
+       "moved_into_body": 0
+      },
+      {
+       "key": "name",
+       "identical": true,
+       "tokens_before": 1,
+       "tokens_after": 1,
+       "lost_from_description": 0,
+       "lost_from_whole_file": [],
+       "moved_into_body": 0
+      }
+     ],
+     "lost_evidence": [],
+     "moved_into_body": [],
+     "caliber": "CJK bigram + latin word token proxy over trigger-bearing frontmatter keys"
+    },
+    "frontmatter_fields": {
+     "status": "PASS",
+     "fields_before": [
+      "name",
+      "description",
+      "last_updated",
+      "version"
+     ],
+     "fields_after": [
+      "name",
+      "description",
+      "last_updated",
+      "version"
+     ],
+     "dropped": [],
+     "added": [],
+     "body_lines_delta": 1,
+     "caliber": "key-set only-grows; value edits are not this dim"
+    },
+    "relative_pointers": {
+     "status": "REGRESSION",
+     "face": "git tree at 079b91f33e95",
+     "links_total": 1,
+     "dead_n": 1,
+     "red": [
+      "test-driven-development/writing-good-tests.md"
+     ],
+     "preexisting": [],
+     "dead_detail": [
+      {
+       "line": 217,
+       "target": "writing-good-tests.md",
+       "normalized": "test-driven-development/writing-good-tests.md",
+       "kind": "broke",
+       "referenced_at_base": false,
+       "lives_at_base_tree": true
+      }
+     ],
+     "head_crosscheck": {
+      "head": "fec92094fa88",
+      "red_still_dead_at_head": [],
+      "red_restored_by_head": [
+       "test-driven-development/writing-good-tests.md"
+      ],
+      "note": "cross-check only; the cell verdict is taken at the landing ref"
+     }
+    },
+    "command_surface": {
+     "arms": {
+      "before": {
+       "ref": "87934d4895b6",
+       "cmds_n": 0,
+       "cmds": [],
+       "flags_n": 0,
+       "flags": [],
+       "scripts_py_n": 0,
+       "help_ran_n": 0,
+       "help_interpreter": "",
+       "help_attempt_failures": [],
+       "unsupported_strict": null,
+       "unsupported_wide": [],
+       "unjudgable_reason": "no scripts/*.py at this ref: no --help support face exists"
+      },
+      "after": {
+       "ref": "079b91f33e95",
+       "cmds_n": 0,
+       "cmds": [],
+       "flags_n": 0,
+       "flags": [],
+       "scripts_py_n": 0,
+       "help_ran_n": 0,
+       "help_interpreter": "",
+       "help_attempt_failures": [],
+       "unsupported_strict": null,
+       "unsupported_wide": [],
+       "unjudgable_reason": "no scripts/*.py at this ref: no --help support face exists"
+      }
+     },
+     "cmd_delta": 0,
+     "caliber_divergence_from_r278": "r278.flag_compat counts ANY subprocess output as the support face, so a script that crashes on --help still yields a face there; this face requires rc==0 or argparse usage: output - a traceback is not a support face. Where r278 reports a number and this cell reports UNVERIFIED, that is the stricter rule at work, not a missing reading.",
+     "face_limitation": "strict = scripts/*.py --help only (mirrors r278.flag_compat); shell/js entry points excluded, so unsupported flags may be OVERSTATED",
+     "status": "UNVERIFIED",
+     "reason": "support face unavailable: no scripts/*.py at this ref: no --help support face exists",
+     "needs": "a runnable --help face at that ref (scripts/*.py that answers --help), or a non-python entry probe for js/sh CLIs, or an owner statement that the skill ships no CLI and its body advertises no flags"
+    },
+    "version_history": {
+     "status": "PASS",
+     "rows_before": 1,
+     "rows_after": 1,
+     "versions_before": [
+      "1.3.0"
+     ],
+     "versions_after": [
+      "1.3.0"
+     ],
+     "dropped_versions": [],
+     "added_versions": [],
+     "caliber": "semver bullets inside the Version history heading"
+    },
+    "mirror_sync": {
+     "_my-skills": {
+      "path": "D:/global_skills/_my-skills",
+      "kind": "protection index (measured)",
+      "entries": [
+       ".protected",
+       "SKILL.md",
+       "registry.json"
+      ],
+      "has_skill_dir": false,
+      "verdict": "N/A_NOT_A_MIRROR"
+     },
+     "agents_skills": {
+      "path": "C:/Users/37533/.agents/skills/test-driven-development/SKILL.md",
+      "exists": true,
+      "mirror_root_is_reparse": true,
+      "bytes": 11466,
+      "sha16": "5583fb6a1a56b90b",
+      "after_sha16": "e970555276c39c32",
+      "before_sha16": "8ee8a57d45a2e788",
+      "matches_other_ref": [
+       "3b8f0863b2a8",
+       "80dcf13a119f",
+       "96164f551dfe"
+      ],
+      "matches_ancestor_of_before": [
+       "eb1d70c18633",
+       "3b8f0863b2a8",
+       "80dcf13a119f",
+       "96164f551dfe",
+       "2dc37dfe42dd",
+       "e64c17d366d6",
+       "ab6663e36feb",
+       "f01842b042e2",
+       "1a8f4af5925f",
+       "29f9d868b986"
+      ],
+      "mirror_repo_last_touch": "38be46b 2026-08-26T03:40 chore(mirror): 镜像同步快照——对齐 D:\\global_skills（含 A-get-memory/chaoshi-web-deploy/cloudbase__skillhub 等更新，移除 666-v2__skillhub）",
+      "verdict": "REGRESSION",
+      "observed": "mirror equals managed ref eb1d70c18633 which merge-base --is-ancestor proves is an ancestor of before",
+      "reason": "mirror stale at ancestor ref(s) eb1d70c18633, 3b8f0863b2a8, 80dcf13a119f; last mirror sync for this path = 38be46b 2026-08-26T03:40 chore(mirror): 镜像同步快照——对齐 D:\\global_skills（含 A-get-memory/chaoshi-web-deploy/cloudbase__skillhub 等更新，移除 666-v2__skillhub）",
+      "needs": "none: staleness proved; propagation needs the mirror gate to be run"
+     },
+     "status": "REGRESSION",
+     "needs": "none: staleness proved; propagation needs the mirror gate to be run",
+     "caliber": "PASS only when the mirror copy equals the after-arm blob byte-for-byte; REGRESSION when it still equals the before-arm blob (landing not propagated); any other content = UNVERIFIED needing the mirror sync log"
+    }
+   },
+   "sha16": {
+    "base": "8ee8a57d45a2e788",
+    "before": "8ee8a57d45a2e788",
+    "after": "e970555276c39c32"
+   },
+   "identical_arms": false,
+   "verdict": "REGRESSION"
+  },
+  {
+   "id": "L2-r269-frontend-slides-register",
+   "slug": "frontend-slides",
+   "note": "r269 registration + conflict declaration line.",
+   "refs": {
+    "state": "OK",
+    "base": "3681df5e81fcc995b79f8cfbee538c8cb72bf9e1",
+    "before": "3681df5e81fcc995b79f8cfbee538c8cb72bf9e1",
+    "after": "6394cbae1e5d00f8a60e383f761613664cca2b41",
+    "base_is_before": true,
+    "before_last_touching_anchor": "079b91f33e95e46da750be33a84fae5627adde65",
+    "before_blob_witness": true,
+    "chain_commits": [
+     "6394cbae1e5d00f8a60e383f761613664cca2b41"
+    ],
+    "chain_is_landing": true,
+    "on_mainline_head": {
+     "6394cbae": true
+    },
+    "chain_extra_commits": [],
+    "chain_extra_note": ""
+   },
+   "landing_commits": [
+    "6394cbae"
+   ],
+   "touched_paths": {
+    "6394cbae": [
+     "frontend-slides/SKILL.md"
+    ]
+   },
+   "dims": {
+    "trigger_semantics": {
+     "status": "PASS",
+     "trigger_keys": [
+      "description",
+      "name"
+     ],
+     "identical_all": true,
+     "per_key": [
+      {
+       "key": "description",
+       "identical": true,
+       "tokens_before": 32,
+       "tokens_after": 32,
+       "lost_from_description": 0,
+       "lost_from_whole_file": [],
+       "moved_into_body": 0
+      },
+      {
+       "key": "name",
+       "identical": true,
+       "tokens_before": 1,
+       "tokens_after": 1,
+       "lost_from_description": 0,
+       "lost_from_whole_file": [],
+       "moved_into_body": 0
+      }
+     ],
+     "lost_evidence": [],
+     "moved_into_body": [],
+     "caliber": "CJK bigram + latin word token proxy over trigger-bearing frontmatter keys"
+    },
+    "frontmatter_fields": {
+     "status": "PASS",
+     "fields_before": [
+      "name",
+      "description",
+      "last_updated",
+      "version"
+     ],
+     "fields_after": [
+      "name",
+      "description",
+      "last_updated",
+      "version"
+     ],
+     "dropped": [],
+     "added": [],
+     "body_lines_delta": 15,
+     "caliber": "key-set only-grows; value edits are not this dim"
+    },
+    "relative_pointers": {
+     "status": "REGRESSION",
+     "face": "git tree at 6394cbae1e5d",
+     "links_total": 13,
+     "dead_n": 1,
+     "red": [
+      "frontend-slides/bold-template-pack"
+     ],
+     "preexisting": [],
+     "dead_detail": [
+      {
+       "line": 187,
+       "target": "bold-template-pack/",
+       "normalized": "frontend-slides/bold-template-pack",
+       "kind": "newly_added_dead",
+       "referenced_at_base": false,
+       "lives_at_base_tree": false
+      }
+     ],
+     "head_crosscheck": {
+      "head": "fec92094fa88",
+      "red_still_dead_at_head": [],
+      "red_restored_by_head": [
+       "frontend-slides/bold-template-pack"
+      ],
+      "note": "cross-check only; the cell verdict is taken at the landing ref"
+     }
+    },
+    "command_surface": {
+     "arms": {
+      "before": {
+       "ref": "3681df5e81fc",
+       "cmds_n": 3,
+       "cmds": [
+        "bash scripts/deploy.sh <path-to-presentation>",
+        "bash scripts/export-pdf.sh <path-to-html> [output.pdf]",
+        "bash scripts/export-pdf.sh <path-to-html> [output.pdf] --compact"
+       ],
+       "flags_n": 2,
+       "flags": [
+        "--compact",
+        "--version"
+       ],
+       "scripts_py_n": 1,
+       "help_ran_n": 0,
+       "help_interpreter": "",
+       "help_attempt_failures": [
+        "extract-pptx.py@python.exe rc=1 no-usage-output"
+       ],
+       "unsupported_strict": null,
+       "unsupported_wide": [],
+       "unjudgable_reason": "no --help face produced; failures=extract-pptx.py@python.exe rc=1 no-usage-output"
+      },
+      "after": {
+       "ref": "6394cbae1e5d",
+       "cmds_n": 3,
+       "cmds": [
+        "bash scripts/deploy.sh <path-to-presentation>",
+        "bash scripts/export-pdf.sh <path-to-html> [output.pdf]",
+        "bash scripts/export-pdf.sh <path-to-html> [output.pdf] --compact"
+       ],
+       "flags_n": 2,
+       "flags": [
+        "--compact",
+        "--version"
+       ],
+       "scripts_py_n": 1,
+       "help_ran_n": 0,
+       "help_interpreter": "",
+       "help_attempt_failures": [
+        "extract-pptx.py@python.exe rc=1 no-usage-output"
+       ],
+       "unsupported_strict": null,
+       "unsupported_wide": [],
+       "unjudgable_reason": "no --help face produced; failures=extract-pptx.py@python.exe rc=1 no-usage-output"
+      }
+     },
+     "cmd_delta": 0,
+     "caliber_divergence_from_r278": "r278.flag_compat counts ANY subprocess output as the support face, so a script that crashes on --help still yields a face there; this face requires rc==0 or argparse usage: output - a traceback is not a support face. Where r278 reports a number and this cell reports UNVERIFIED, that is the stricter rule at work, not a missing reading.",
+     "face_limitation": "strict = scripts/*.py --help only (mirrors r278.flag_compat); shell/js entry points excluded, so unsupported flags may be OVERSTATED",
+     "status": "UNVERIFIED",
+     "reason": "support face unavailable: no --help face produced; failures=extract-pptx.py@python.exe rc=1 no-usage-output",
+     "needs": "a runnable --help face at that ref (scripts/*.py that answers --help), or a non-python entry probe for js/sh CLIs, or an owner statement that the skill ships no CLI and its body advertises no flags"
+    },
+    "version_history": {
+     "status": "PASS_ADDED_BLOCK",
+     "rows_before": null,
+     "rows_after": 3,
+     "versions_after": [
+      "1.3.0",
+      "1.2.0",
+      "1.1.0"
+     ],
+     "dropped_versions": [],
+     "reason": "before arm has no Version history block and the landing introduced one: nothing was eaten, so the R241 axis cannot regress on null -> set"
+    },
+    "mirror_sync": {
+     "_my-skills": {
+      "path": "D:/global_skills/_my-skills",
+      "kind": "protection index (measured)",
+      "entries": [
+       ".protected",
+       "SKILL.md",
+       "registry.json"
+      ],
+      "has_skill_dir": false,
+      "verdict": "N/A_NOT_A_MIRROR"
+     },
+     "agents_skills": {
+      "path": "C:/Users/37533/.agents/skills/frontend-slides/SKILL.md",
+      "exists": true,
+      "mirror_root_is_reparse": true,
+      "bytes": 20073,
+      "sha16": "e76ddd898d425ad2",
+      "after_sha16": "39fdd1203aacb166",
+      "before_sha16": "e76ddd898d425ad2",
+      "verdict": "REGRESSION",
+      "observed": "mirror == before arm byte-for-byte (landing not propagated)",
+      "reason": "mirror still serves the pre-landing text; landing shas 6394cbae1e5d00f8a60e383f761613664cca2b41",
+      "matches_ancestor_of_before": [
+       "3681df5e81fc"
+      ],
+      "mirror_repo_last_touch": "be2f2f2 2026-08-03T12:04 feat: Marvis 6 技能镜像同步 (R140)",
+      "needs": "none: the mirror provably still serves the before-arm blob"
+     },
+     "status": "REGRESSION",
+     "needs": "none: the mirror provably still serves the before-arm blob",
+     "caliber": "PASS only when the mirror copy equals the after-arm blob byte-for-byte; REGRESSION when it still equals the before-arm blob (landing not propagated); any other content = UNVERIFIED needing the mirror sync log"
+    }
+   },
+   "sha16": {
+    "base": "e76ddd898d425ad2",
+    "before": "e76ddd898d425ad2",
+    "after": "39fdd1203aacb166"
+   },
+   "identical_arms": false,
+   "verdict": "REGRESSION"
+  },
+  {
+   "id": "L3-r272-277-frontend-slides-migration",
+   "slug": "frontend-slides",
+   "note": "R310 paradigm migration (32 places) + x1 + x6 residual fixes, read as one landing.",
+   "refs": {
+    "state": "OK",
+    "base": "d14fc49a9f7a6a41862a5a4b1a03ddb51f98f19a",
+    "before": "d14fc49a9f7a6a41862a5a4b1a03ddb51f98f19a",
+    "after": "89efb3e663b138cf8c0141e89ce38efa733c7652",
+    "base_is_before": true,
+    "before_last_touching_anchor": "6394cbae1e5d00f8a60e383f761613664cca2b41",
+    "before_blob_witness": true,
+    "chain_commits": [
+     "89efb3e663b138cf8c0141e89ce38efa733c7652",
+     "294e3ac67ab61d95d34e959e1f7d5a6656fc9ce6",
+     "9aaa92146b09137302ac098958173210fb855c7b"
+    ],
+    "chain_is_landing": true,
+    "on_mainline_head": {
+     "9aaa9214": true,
+     "294e3ac6": true,
+     "89efb3e6": true
+    },
+    "chain_extra_commits": [],
+    "chain_extra_note": ""
+   },
+   "landing_commits": [
+    "9aaa9214",
+    "294e3ac6",
+    "89efb3e6"
+   ],
+   "touched_paths": {
+    "9aaa9214": [
+     "frontend-slides/SKILL.md",
+     "frontend-slides/html-template.md",
+     "frontend-slides/references/upstream-frontend-slides.md",
+     "frontend-slides/viewport-base.css"
+    ],
+    "294e3ac6": [
+     "frontend-slides/SKILL.md"
+    ],
+    "89efb3e6": [
+     "frontend-slides/SKILL.md"
+    ]
+   },
+   "dims": {
+    "trigger_semantics": {
+     "status": "PASS",
+     "trigger_keys": [
+      "description",
+      "name"
+     ],
+     "identical_all": true,
+     "per_key": [
+      {
+       "key": "description",
+       "identical": true,
+       "tokens_before": 32,
+       "tokens_after": 32,
+       "lost_from_description": 0,
+       "lost_from_whole_file": [],
+       "moved_into_body": 0
+      },
+      {
+       "key": "name",
+       "identical": true,
+       "tokens_before": 1,
+       "tokens_after": 1,
+       "lost_from_description": 0,
+       "lost_from_whole_file": [],
+       "moved_into_body": 0
+      }
+     ],
+     "lost_evidence": [],
+     "moved_into_body": [],
+     "caliber": "CJK bigram + latin word token proxy over trigger-bearing frontmatter keys"
+    },
+    "frontmatter_fields": {
+     "status": "PASS",
+     "fields_before": [
+      "name",
+      "description",
+      "last_updated",
+      "version"
+     ],
+     "fields_after": [
+      "name",
+      "description",
+      "last_updated",
+      "version"
+     ],
+     "dropped": [],
+     "added": [],
+     "body_lines_delta": 3,
+     "caliber": "key-set only-grows; value edits are not this dim"
+    },
+    "relative_pointers": {
+     "status": "PASS",
+     "face": "git tree at 89efb3e663b1",
+     "links_total": 15,
+     "dead_n": 0,
+     "red": [],
+     "preexisting": [],
+     "dead_detail": [],
+     "head_crosscheck": {
+      "head": "fec92094fa88",
+      "red_still_dead_at_head": [],
+      "red_restored_by_head": [],
+      "note": "cross-check only; the cell verdict is taken at the landing ref"
+     }
+    },
+    "command_surface": {
+     "arms": {
+      "before": {
+       "ref": "d14fc49a9f7a",
+       "cmds_n": 3,
+       "cmds": [
+        "bash scripts/deploy.sh <path-to-presentation>",
+        "bash scripts/export-pdf.sh <path-to-html> [output.pdf]",
+        "bash scripts/export-pdf.sh <path-to-html> [output.pdf] --compact"
+       ],
+       "flags_n": 2,
+       "flags": [
+        "--compact",
+        "--version"
+       ],
+       "scripts_py_n": 1,
+       "help_ran_n": 0,
+       "help_interpreter": "",
+       "help_attempt_failures": [
+        "extract-pptx.py@python.exe rc=1 no-usage-output"
+       ],
+       "unsupported_strict": null,
+       "unsupported_wide": [],
+       "unjudgable_reason": "no --help face produced; failures=extract-pptx.py@python.exe rc=1 no-usage-output"
+      },
+      "after": {
+       "ref": "89efb3e663b1",
+       "cmds_n": 3,
+       "cmds": [
+        "bash scripts/deploy.sh <path-to-presentation>",
+        "bash scripts/export-pdf.sh <path-to-html> [output.pdf]",
+        "bash scripts/export-pdf.sh <path-to-html> [output.pdf] --compact"
+       ],
+       "flags_n": 2,
+       "flags": [
+        "--compact",
+        "--version"
+       ],
+       "scripts_py_n": 1,
+       "help_ran_n": 0,
+       "help_interpreter": "",
+       "help_attempt_failures": [
+        "extract-pptx.py@python.exe rc=1 no-usage-output"
+       ],
+       "unsupported_strict": null,
+       "unsupported_wide": [],
+       "unjudgable_reason": "no --help face produced; failures=extract-pptx.py@python.exe rc=1 no-usage-output"
+      }
+     },
+     "cmd_delta": 0,
+     "caliber_divergence_from_r278": "r278.flag_compat counts ANY subprocess output as the support face, so a script that crashes on --help still yields a face there; this face requires rc==0 or argparse usage: output - a traceback is not a support face. Where r278 reports a number and this cell reports UNVERIFIED, that is the stricter rule at work, not a missing reading.",
+     "face_limitation": "strict = scripts/*.py --help only (mirrors r278.flag_compat); shell/js entry points excluded, so unsupported flags may be OVERSTATED",
+     "status": "UNVERIFIED",
+     "reason": "support face unavailable: no --help face produced; failures=extract-pptx.py@python.exe rc=1 no-usage-output",
+     "needs": "a runnable --help face at that ref (scripts/*.py that answers --help), or a non-python entry probe for js/sh CLIs, or an owner statement that the skill ships no CLI and its body advertises no flags"
+    },
+    "version_history": {
+     "status": "PASS",
+     "rows_before": 3,
+     "rows_after": 4,
+     "versions_before": [
+      "1.3.0",
+      "1.2.0",
+      "1.1.0"
+     ],
+     "versions_after": [
+      "1.4.1",
+      "1.3.0",
+      "1.2.0",
+      "1.1.0"
+     ],
+     "dropped_versions": [],
+     "added_versions": [
+      "1.4.1"
+     ],
+     "caliber": "semver bullets inside the Version history heading"
+    },
+    "mirror_sync": {
+     "_my-skills": {
+      "path": "D:/global_skills/_my-skills",
+      "kind": "protection index (measured)",
+      "entries": [
+       ".protected",
+       "SKILL.md",
+       "registry.json"
+      ],
+      "has_skill_dir": false,
+      "verdict": "N/A_NOT_A_MIRROR"
+     },
+     "agents_skills": {
+      "path": "C:/Users/37533/.agents/skills/frontend-slides/SKILL.md",
+      "exists": true,
+      "mirror_root_is_reparse": true,
+      "bytes": 20073,
+      "sha16": "e76ddd898d425ad2",
+      "after_sha16": "6b9b0953aa2681f6",
+      "before_sha16": "39fdd1203aacb166",
+      "matches_other_ref": [
+       "079b91f33e95",
+       "311ed61f0de9",
+       "2dc37dfe42dd"
+      ],
+      "matches_ancestor_of_before": [
+       "d14fc49a9f7a",
+       "56d83407f712",
+       "545474993d23",
+       "c7188e607275",
+       "3a151f45a272",
+       "f0c14b42b3c5",
+       "6e37c426ba56",
+       "6394cbae1e5d",
+       "079b91f33e95",
+       "9c38d9b2e1e7",
+       "70bbf78fadaf",
+       "a81006d613d8",
+       "8819e575a733",
+       "4e3af0755477",
+       "f03df9ae3196",
+       "992e6a1adb0a",
+       "311ed61f0de9",
+       "2dc37dfe42dd",
+       "e64c17d366d6",
+       "ab6663e36feb",
+       "400dcaf71dda"
+      ],
+      "mirror_repo_last_touch": "be2f2f2 2026-08-03T12:04 feat: Marvis 6 技能镜像同步 (R140)",
+      "verdict": "REGRESSION",
+      "observed": "mirror equals managed ref d14fc49a9f7a which merge-base --is-ancestor proves is an ancestor of before",
+      "reason": "mirror stale at ancestor ref(s) d14fc49a9f7a, 56d83407f712, 545474993d23; last mirror sync for this path = be2f2f2 2026-08-03T12:04 feat: Marvis 6 技能镜像同步 (R140)",
+      "needs": "none: staleness proved; propagation needs the mirror gate to be run"
+     },
+     "status": "REGRESSION",
+     "needs": "none: staleness proved; propagation needs the mirror gate to be run",
+     "caliber": "PASS only when the mirror copy equals the after-arm blob byte-for-byte; REGRESSION when it still equals the before-arm blob (landing not propagated); any other content = UNVERIFIED needing the mirror sync log"
+    }
+   },
+   "sha16": {
+    "base": "39fdd1203aacb166",
+    "before": "39fdd1203aacb166",
+    "after": "6b9b0953aa2681f6"
+   },
+   "identical_arms": false,
+   "verdict": "REGRESSION"
+  },
+  {
+   "id": "L4-r279-ui-ux-pro-max-merge",
+   "slug": "ui-ux-pro-max",
+   "note": "merge-increment (not overwrite). BASE(=30b84b20~1) is 079b91f3, which recorded another session's downgrade (1.5.0 -> 1.2.0, three version rows dropped), so the before arm is pinned to 3c72867d - see baseline_witness.",
+   "refs": {
+    "state": "OK",
+    "base": "25929181a7cccc1ff01cdfae39807669731e93a2",
+    "before": "3c72867d489bfb992e5aa12d4eb9f2bec89a4ed0",
+    "after": "3da30832613c875558b40e5196c910bd0da9831c",
+    "base_is_before": false,
+    "before_last_touching_anchor": "3c72867d489bfb992e5aa12d4eb9f2bec89a4ed0",
+    "before_blob_witness": true,
+    "chain_commits": [
+     "3da30832613c875558b40e5196c910bd0da9831c",
+     "30b84b20175ad6478efe6417e1a568821b169c57",
+     "079b91f33e95e46da750be33a84fae5627adde65"
+    ],
+    "chain_is_landing": false,
+    "on_mainline_head": {
+     "30b84b20": true,
+     "3da30832": true
+    },
+    "chain_extra_commits": [
+     "079b91f3"
+    ],
+    "chain_extra_note": "commits touching the anchor between before and after that are NOT part of this landing (079b91f3 = the accidental whole-tree commit) - named, not hidden"
+   },
+   "landing_commits": [
+    "30b84b20",
+    "3da30832"
+   ],
+   "touched_paths": {
+    "30b84b20": [
+     "ui-ux-pro-max/SKILL.md"
+    ],
+    "3da30832": [
+     "ui-ux-pro-max/SKILL.md"
+    ]
+   },
+   "dims": {
+    "trigger_semantics": {
+     "status": "PASS",
+     "trigger_keys": [
+      "description",
+      "name"
+     ],
+     "identical_all": true,
+     "per_key": [
+      {
+       "key": "description",
+       "identical": true,
+       "tokens_before": 48,
+       "tokens_after": 48,
+       "lost_from_description": 0,
+       "lost_from_whole_file": [],
+       "moved_into_body": 0
+      },
+      {
+       "key": "name",
+       "identical": true,
+       "tokens_before": 1,
+       "tokens_after": 1,
+       "lost_from_description": 0,
+       "lost_from_whole_file": [],
+       "moved_into_body": 0
+      }
+     ],
+     "lost_evidence": [],
+     "moved_into_body": [],
+     "caliber": "CJK bigram + latin word token proxy over trigger-bearing frontmatter keys"
+    },
+    "frontmatter_fields": {
+     "status": "PASS",
+     "fields_before": [
+      "name",
+      "description",
+      "last_updated",
+      "version"
+     ],
+     "fields_after": [
+      "name",
+      "description",
+      "last_updated",
+      "version"
+     ],
+     "dropped": [],
+     "added": [],
+     "body_lines_delta": 47,
+     "caliber": "key-set only-grows; value edits are not this dim"
+    },
+    "relative_pointers": {
+     "status": "PASS",
+     "face": "git tree at 3da30832613c",
+     "links_total": 0,
+     "dead_n": 0,
+     "red": [],
+     "preexisting": [],
+     "dead_detail": [],
+     "head_crosscheck": {
+      "head": "fec92094fa88",
+      "red_still_dead_at_head": [],
+      "red_restored_by_head": [],
+      "note": "cross-check only; the cell verdict is taken at the landing ref"
+     }
+    },
+    "command_surface": {
+     "arms": {
+      "before": {
+       "ref": "3c72867d489b",
+       "cmds_n": 1,
+       "cmds": [
+        "python3 skills/ui-ux-pro-max/scripts/design_system.py --help"
+       ],
+       "flags_n": 3,
+       "flags": [
+        "--domain",
+        "--help",
+        "--stack"
+       ],
+       "scripts_py_n": 5,
+       "help_ran_n": 5,
+       "help_interpreter": "C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe",
+       "help_attempt_failures": [],
+       "unsupported_strict": [],
+       "unsupported_wide": [],
+       "unjudgable_reason": null
+      },
+      "after": {
+       "ref": "3da30832613c",
+       "cmds_n": 2,
+       "cmds": [
+        "python3 skills/ui-ux-pro-max/scripts/design_system.py --help",
+        "python \"D:/global_skills/ui-ux-pro-max/scripts/search.py\" \"<query>\" --design-system --persist -p \"Project Name\" --output-dir \"<project-root>\""
+       ],
+       "flags_n": 6,
+       "flags": [
+        "--design-system",
+        "--domain",
+        "--help",
+        "--output-dir",
+        "--persist",
+        "--stack"
+       ],
+       "scripts_py_n": 19,
+       "help_ran_n": 8,
+       "help_interpreter": "C:/Users/37533/.workbuddy/binaries/python/envs/default/Scripts/python.exe",
+       "help_attempt_failures": [
+        "test_catalog_refresh.py@python.exe rc=1 no-usage-output",
+        "test_catalog_summary_line_endings.py@python.exe rc=1 no-usage-output",
+        "test_core_data_quality.py@python.exe rc=1 no-usage-output",
+        "test_data_contracts.py@python.exe rc=1 no-usage-output",
+        "test_design_system_mode.py@python.exe rc=1 no-usage-output",
+        "test_native_desktop_stack_freshness.py@python.exe rc=1 no-usage-output",
+        "test_relevance_evaluator.py@python.exe rc=1 no-usage-output",
+        "test_skill_script_paths.py@python.exe rc=1 no-usage-output"
+       ],
+       "unsupported_strict": [],
+       "unsupported_wide": [],
+       "unjudgable_reason": null
+      }
+     },
+     "cmd_delta": 1,
+     "caliber_divergence_from_r278": "r278.flag_compat counts ANY subprocess output as the support face, so a script that crashes on --help still yields a face there; this face requires rc==0 or argparse usage: output - a traceback is not a support face. Where r278 reports a number and this cell reports UNVERIFIED, that is the stricter rule at work, not a missing reading.",
+     "face_limitation": "strict = scripts/*.py --help only (mirrors r278.flag_compat); shell/js entry points excluded, so unsupported flags may be OVERSTATED",
+     "status": "PASS"
+    },
+    "version_history": {
+     "status": "PASS",
+     "rows_before": 6,
+     "rows_after": 7,
+     "versions_before": [
+      "1.5.0",
+      "1.4.0",
+      "1.3.0",
+      "1.2.0",
+      "1.1.0",
+      "1.0.0"
+     ],
+     "versions_after": [
+      "1.6.0",
+      "1.5.0",
+      "1.4.0",
+      "1.3.0",
+      "1.2.0",
+      "1.1.0",
+      "1.0.0"
+     ],
+     "dropped_versions": [],
+     "added_versions": [
+      "1.6.0"
+     ],
+     "caliber": "semver bullets inside the Version history heading"
+    },
+    "mirror_sync": {
+     "_my-skills": {
+      "path": "D:/global_skills/_my-skills",
+      "kind": "protection index (measured)",
+      "entries": [
+       ".protected",
+       "SKILL.md",
+       "registry.json"
+      ],
+      "has_skill_dir": false,
+      "verdict": "N/A_NOT_A_MIRROR"
+     },
+     "agents_skills": {
+      "path": "C:/Users/37533/.agents/skills/ui-ux-pro-max/SKILL.md",
+      "exists": true,
+      "mirror_root_is_reparse": true,
+      "bytes": 4071,
+      "sha16": "93ab6f15dcbeaa80",
+      "after_sha16": "2b8299ca1acb8a48",
+      "before_sha16": "e6c4bc37784c55eb",
+      "matches_other_ref": [
+       "17a18b354445",
+       "90ae90d8fbe0",
+       "6ce2c8f10ef6"
+      ],
+      "matches_ancestor_of_before": [
+       "3c72867d489b",
+       "6d53d132e686",
+       "b2156d5b3b90",
+       "64f22ef894a4",
+       "49b0c21343cb",
+       "17a18b354445",
+       "90ae90d8fbe0",
+       "6ce2c8f10ef6",
+       "e64c17d366d6",
+       "ab6663e36feb",
+       "400dcaf71dda"
+      ],
+      "mirror_repo_last_touch": "38be46b 2026-08-26T03:40 chore(mirror): 镜像同步快照——对齐 D:\\global_skills（含 A-get-memory/chaoshi-web-deploy/cloudbase__skillhub 等更新，移除 666-v2__skillhub）",
+      "verdict": "REGRESSION",
+      "observed": "mirror equals managed ref 3c72867d489b which merge-base --is-ancestor proves is an ancestor of before",
+      "reason": "mirror stale at ancestor ref(s) 3c72867d489b, 6d53d132e686, b2156d5b3b90; last mirror sync for this path = 38be46b 2026-08-26T03:40 chore(mirror): 镜像同步快照——对齐 D:\\global_skills（含 A-get-memory/chaoshi-web-deploy/cloudbase__skillhub 等更新，移除 666-v2__skillhub）",
+      "needs": "none: staleness proved; propagation needs the mirror gate to be run"
+     },
+     "status": "REGRESSION",
+     "needs": "none: staleness proved; propagation needs the mirror gate to be run",
+     "caliber": "PASS only when the mirror copy equals the after-arm blob byte-for-byte; REGRESSION when it still equals the before-arm blob (landing not propagated); any other content = UNVERIFIED needing the mirror sync log"
+    }
+   },
+   "sha16": {
+    "base": "e6556cb09256a24f",
+    "before": "e6c4bc37784c55eb",
+    "after": "2b8299ca1acb8a48"
+   },
+   "identical_arms": false,
+   "verdict": "REGRESSION"
+  },
+  {
+   "id": "L5-r312-mcp-builder-relayout",
+   "slug": "mcp-builder",
+   "note": "v2 Node SDK guide merged in; new reference/node_mcp_server_v2.md.",
+   "refs": {
+    "state": "OK",
+    "base": "3da30832613c875558b40e5196c910bd0da9831c",
+    "before": "3da30832613c875558b40e5196c910bd0da9831c",
+    "after": "79862372928ddb9906707f4c0bc9136d208e37e8",
+    "base_is_before": true,
+    "before_last_touching_anchor": "e64c17d366d660764b3dd6faf3fcd80be887fec7",
+    "before_blob_witness": true,
+    "chain_commits": [
+     "79862372928ddb9906707f4c0bc9136d208e37e8"
+    ],
+    "chain_is_landing": true,
+    "on_mainline_head": {
+     "79862372": true
+    },
+    "chain_extra_commits": [],
+    "chain_extra_note": ""
+   },
+   "landing_commits": [
+    "79862372"
+   ],
+   "touched_paths": {
+    "79862372": [
+     "mcp-builder/SKILL.md",
+     "mcp-builder/reference/node_mcp_server.md",
+     "mcp-builder/reference/node_mcp_server_v2.md"
+    ]
+   },
+   "dims": {
+    "trigger_semantics": {
+     "status": "PASS",
+     "trigger_keys": [
+      "description",
+      "name"
+     ],
+     "identical_all": true,
+     "per_key": [
+      {
+       "key": "description",
+       "identical": true,
+       "tokens_before": 26,
+       "tokens_after": 26,
+       "lost_from_description": 0,
+       "lost_from_whole_file": [],
+       "moved_into_body": 0
+      },
+      {
+       "key": "name",
+       "identical": true,
+       "tokens_before": 1,
+       "tokens_after": 1,
+       "lost_from_description": 0,
+       "lost_from_whole_file": [],
+       "moved_into_body": 0
+      }
+     ],
+     "lost_evidence": [],
+     "moved_into_body": [],
+     "caliber": "CJK bigram + latin word token proxy over trigger-bearing frontmatter keys"
+    },
+    "frontmatter_fields": {
+     "status": "PASS",
+     "fields_before": [
+      "name",
+      "description",
+      "license",
+      "last_updated",
+      "version"
+     ],
+     "fields_after": [
+      "name",
+      "description",
+      "license",
+      "last_updated",
+      "version"
+     ],
+     "dropped": [],
+     "added": [],
+     "body_lines_delta": 22,
+     "caliber": "key-set only-grows; value edits are not this dim"
+    },
+    "relative_pointers": {
+     "status": "PASS",
+     "face": "git tree at 79862372928d",
+     "links_total": 14,
+     "dead_n": 0,
+     "red": [],
+     "preexisting": [],
+     "dead_detail": [],
+     "head_crosscheck": {
+      "head": "fec92094fa88",
+      "red_still_dead_at_head": [],
+      "red_restored_by_head": [],
+      "note": "cross-check only; the cell verdict is taken at the landing ref"
+     }
+    },
+    "command_surface": {
+     "arms": {
+      "before": {
+       "ref": "3da30832613c",
+       "cmds_n": 0,
+       "cmds": [],
+       "flags_n": 0,
+       "flags": [],
+       "scripts_py_n": 2,
+       "help_ran_n": 0,
+       "help_interpreter": "",
+       "help_attempt_failures": [
+        "connections.py@python.exe rc=1 no-usage-output",
+        "evaluation.py@python.exe rc=1 no-usage-output"
+       ],
+       "unsupported_strict": null,
+       "unsupported_wide": [],
+       "unjudgable_reason": "no --help face produced; failures=connections.py@python.exe rc=1 no-usage-output; evaluation.py@python.exe rc=1 no-usage-output"
+      },
+      "after": {
+       "ref": "79862372928d",
+       "cmds_n": 0,
+       "cmds": [],
+       "flags_n": 0,
+       "flags": [],
+       "scripts_py_n": 2,
+       "help_ran_n": 0,
+       "help_interpreter": "",
+       "help_attempt_failures": [
+        "connections.py@python.exe rc=1 no-usage-output",
+        "evaluation.py@python.exe rc=1 no-usage-output"
+       ],
+       "unsupported_strict": null,
+       "unsupported_wide": [],
+       "unjudgable_reason": "no --help face produced; failures=connections.py@python.exe rc=1 no-usage-output; evaluation.py@python.exe rc=1 no-usage-output"
+      }
+     },
+     "cmd_delta": 0,
+     "caliber_divergence_from_r278": "r278.flag_compat counts ANY subprocess output as the support face, so a script that crashes on --help still yields a face there; this face requires rc==0 or argparse usage: output - a traceback is not a support face. Where r278 reports a number and this cell reports UNVERIFIED, that is the stricter rule at work, not a missing reading.",
+     "face_limitation": "strict = scripts/*.py --help only (mirrors r278.flag_compat); shell/js entry points excluded, so unsupported flags may be OVERSTATED",
+     "status": "UNVERIFIED",
+     "reason": "support face unavailable: no --help face produced; failures=connections.py@python.exe rc=1 no-usage-output; evaluation.py@python.exe rc=1 no-usage-output",
+     "needs": "a runnable --help face at that ref (scripts/*.py that answers --help), or a non-python entry probe for js/sh CLIs, or an owner statement that the skill ships no CLI and its body advertises no flags"
+    },
+    "version_history": {
+     "status": "PASS_ADDED_BLOCK",
+     "rows_before": null,
+     "rows_after": 1,
+     "versions_after": [
+      "1.1.0"
+     ],
+     "dropped_versions": [],
+     "reason": "before arm has no Version history block and the landing introduced one: nothing was eaten, so the R241 axis cannot regress on null -> set"
+    },
+    "mirror_sync": {
+     "_my-skills": {
+      "path": "D:/global_skills/_my-skills",
+      "kind": "protection index (measured)",
+      "entries": [
+       ".protected",
+       "SKILL.md",
+       "registry.json"
+      ],
+      "has_skill_dir": false,
+      "verdict": "N/A_NOT_A_MIRROR"
+     },
+     "agents_skills": {
+      "path": "C:/Users/37533/.agents/skills/mcp-builder/SKILL.md",
+      "exists": true,
+      "mirror_root_is_reparse": true,
+      "bytes": 9132,
+      "sha16": "32f54257ab8bf84f",
+      "after_sha16": "2b3a3a7b0c885732",
+      "before_sha16": "32f54257ab8bf84f",
+      "verdict": "REGRESSION",
+      "observed": "mirror == before arm byte-for-byte (landing not propagated)",
+      "reason": "mirror still serves the pre-landing text; landing shas 79862372928ddb9906707f4c0bc9136d208e37e8",
+      "matches_ancestor_of_before": [
+       "3da30832613c"
+      ],
+      "mirror_repo_last_touch": null,
+      "needs": "none: the mirror provably still serves the before-arm blob"
+     },
+     "status": "REGRESSION",
+     "needs": "none: the mirror provably still serves the before-arm blob",
+     "caliber": "PASS only when the mirror copy equals the after-arm blob byte-for-byte; REGRESSION when it still equals the before-arm blob (landing not propagated); any other content = UNVERIFIED needing the mirror sync log"
+    }
+   },
+   "sha16": {
+    "base": "32f54257ab8bf84f",
+    "before": "32f54257ab8bf84f",
+    "after": "2b3a3a7b0c885732"
+   },
+   "identical_arms": false,
+   "verdict": "REGRESSION"
+  }
+ ],
+ "negative_controls": {
+  "same_text": {
+   "landing": "L4-r279-ui-ux-pro-max-merge",
+   "leg_same_text_same_reading": {
+    "trigger_identical_all": true,
+    "frontmatter_dropped": [],
+    "frontmatter_added": [],
+    "version_rows_equal": true,
+    "all_status": {
+     "trigger_semantics": "PASS",
+     "frontmatter_fields": "PASS",
+     "version_history": "PASS"
+    }
+   },
+   "leg_a_ok": true,
+   "leg_swapped_arms": {
+    "statuses": {
+     "trigger_semantics": "PASS",
+     "frontmatter_fields": "PASS",
+     "version_history": "REGRESSION"
+    },
+    "lost_evidence": [],
+    "frontmatter_dropped": [],
+    "version_dropped": [
+     "1.6.0"
+    ]
+   },
+   "leg_b_lits": [
+    "version_history"
+   ],
+   "leg_b_ok": true,
+   "pass": true
+  },
+  "ghost": {
+   "landing": "L5-r312-mcp-builder-relayout",
+   "injected_targets": [
+    "_r291a_ghost_pointer_does_not_exist.md",
+    "sub/ghost2_r291a.md"
+   ],
+   "injected_line": "ghost leg [ghost](_r291a_ghost_pointer_does_not_exist.md) and [g2](sub/ghost2_r291a.md)",
+   "status": "REGRESSION",
+   "red_named": [
+    "mcp-builder/_r291a_ghost_pointer_does_not_exist.md",
+    "mcp-builder/sub/ghost2_r291a.md"
+   ],
+   "ghost_named": [
+    "mcp-builder/_r291a_ghost_pointer_does_not_exist.md",
+    "mcp-builder/sub/ghost2_r291a.md"
+   ],
+   "temp_copy_path": "C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r291a/negctl/injected_copy.md",
+   "temp_copy_removed": true,
+   "negctl_dir_removed": true,
+   "residual_files_matching_ghost": [],
+   "residual_n": 0,
+   "pass": true
+  }
+ },
+ "summary": {
+  "status_histogram": {
+   "PASS": 17,
+   "REGRESSION": 7,
+   "UNVERIFIED": 4,
+   "PASS_ADDED_BLOCK": 2
+  },
+  "landings": 5,
+  "cells": 30,
+  "regression_cells": 7,
+  "unverified_cells": 4,
+  "per_landing_verdicts": {
+   "L1-r266-tdd-pointer": "REGRESSION",
+   "L2-r269-frontend-slides-register": "REGRESSION",
+   "L3-r272-277-frontend-slides-migration": "REGRESSION",
+   "L4-r279-ui-ux-pro-max-merge": "REGRESSION",
+   "L5-r312-mcp-builder-relayout": "REGRESSION"
+  },
+  "top_verdict_by_precedence": "REGRESSION",
+  "precedence": "REGRESSION > UNVERIFIED > NO_REGRESSION (a cell that cannot be judged is named, never folded into pass; no any()/all() washing)"
+ },
+ "cmd_per_cell": {
+  "L1-r266-tdd-pointer": {
+   "trigger_semantics": "python -B C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r291a/r291a_compat_face.py --dim trigger_semantics --landing L1-r266-tdd-pointer",
+   "frontmatter_fields": "python -B C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r291a/r291a_compat_face.py --dim frontmatter_fields --landing L1-r266-tdd-pointer",
+   "relative_pointers": "python -B C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r291a/r291a_compat_face.py --dim relative_pointers --landing L1-r266-tdd-pointer",
+   "command_surface": "python -B C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r291a/r291a_compat_face.py --dim command_surface --landing L1-r266-tdd-pointer",
+   "version_history": "python -B C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r291a/r291a_compat_face.py --dim version_history --landing L1-r266-tdd-pointer",
+   "mirror_sync": "python -B C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r291a/r291a_compat_face.py --dim mirror_sync --landing L1-r266-tdd-pointer"
+  },
+  "L2-r269-frontend-slides-register": {
+   "trigger_semantics": "python -B C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r291a/r291a_compat_face.py --dim trigger_semantics --landing L2-r269-frontend-slides-register",
+   "frontmatter_fields": "python -B C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r291a/r291a_compat_face.py --dim frontmatter_fields --landing L2-r269-frontend-slides-register",
+   "relative_pointers": "python -B C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r291a/r291a_compat_face.py --dim relative_pointers --landing L2-r269-frontend-slides-register",
+   "command_surface": "python -B C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r291a/r291a_compat_face.py --dim command_surface --landing L2-r269-frontend-slides-register",
+   "version_history": "python -B C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r291a/r291a_compat_face.py --dim version_history --landing L2-r269-frontend-slides-register",
+   "mirror_sync": "python -B C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r291a/r291a_compat_face.py --dim mirror_sync --landing L2-r269-frontend-slides-register"
+  },
+  "L3-r272-277-frontend-slides-migration": {
+   "trigger_semantics": "python -B C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r291a/r291a_compat_face.py --dim trigger_semantics --landing L3-r272-277-frontend-slides-migration",
+   "frontmatter_fields": "python -B C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r291a/r291a_compat_face.py --dim frontmatter_fields --landing L3-r272-277-frontend-slides-migration",
+   "relative_pointers": "python -B C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r291a/r291a_compat_face.py --dim relative_pointers --landing L3-r272-277-frontend-slides-migration",
+   "command_surface": "python -B C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r291a/r291a_compat_face.py --dim command_surface --landing L3-r272-277-frontend-slides-migration",
+   "version_history": "python -B C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r291a/r291a_compat_face.py --dim version_history --landing L3-r272-277-frontend-slides-migration",
+   "mirror_sync": "python -B C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r291a/r291a_compat_face.py --dim mirror_sync --landing L3-r272-277-frontend-slides-migration"
+  },
+  "L4-r279-ui-ux-pro-max-merge": {
+   "trigger_semantics": "python -B C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r291a/r291a_compat_face.py --dim trigger_semantics --landing L4-r279-ui-ux-pro-max-merge",
+   "frontmatter_fields": "python -B C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r291a/r291a_compat_face.py --dim frontmatter_fields --landing L4-r279-ui-ux-pro-max-merge",
+   "relative_pointers": "python -B C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r291a/r291a_compat_face.py --dim relative_pointers --landing L4-r279-ui-ux-pro-max-merge",
+   "command_surface": "python -B C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r291a/r291a_compat_face.py --dim command_surface --landing L4-r279-ui-ux-pro-max-merge",
+   "version_history": "python -B C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r291a/r291a_compat_face.py --dim version_history --landing L4-r279-ui-ux-pro-max-merge",
+   "mirror_sync": "python -B C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r291a/r291a_compat_face.py --dim mirror_sync --landing L4-r279-ui-ux-pro-max-merge"
+  },
+  "L5-r312-mcp-builder-relayout": {
+   "trigger_semantics": "python -B C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r291a/r291a_compat_face.py --dim trigger_semantics --landing L5-r312-mcp-builder-relayout",
+   "frontmatter_fields": "python -B C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r291a/r291a_compat_face.py --dim frontmatter_fields --landing L5-r312-mcp-builder-relayout",
+   "relative_pointers": "python -B C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r291a/r291a_compat_face.py --dim relative_pointers --landing L5-r312-mcp-builder-relayout",
+   "command_surface": "python -B C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r291a/r291a_compat_face.py --dim command_surface --landing L5-r312-mcp-builder-relayout",
+   "version_history": "python -B C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r291a/r291a_compat_face.py --dim version_history --landing L5-r312-mcp-builder-relayout",
+   "mirror_sync": "python -B C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r291a/r291a_compat_face.py --dim mirror_sync --landing L5-r312-mcp-builder-relayout"
+  }
+ },
+ "cmd_all": "python -B C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r291a/r291a_compat_face.py"
+}
