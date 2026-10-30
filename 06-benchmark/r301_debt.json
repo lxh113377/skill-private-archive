@@ -1,6 +1,6 @@
 {
  "schema": "debt-aging-v2",
- "generated_at": "2026-10-30T22:06:36",
+ "generated_at": "2026-10-30T22:09:42",
  "readonly": true,
  "grace_rounds": 2,
  "current_round": 301,
@@ -294,8 +294,8 @@
  "note": "OVERDUE 数 = ratchet_gate 第 7 指标 overdue_debt_items 的唯一取值面",
  "coverage": {
   "status": "OK",
-  "prev": "debt_aging_r_autoregen_20261030_220412.json",
-  "prev_overdue": 6,
+  "prev": "debt_aging_r_autoregen_20261030_220524.json",
+  "prev_overdue": 0,
   "missing": [],
   "method": "adjudication_gap(上一轮 overdue[].title 前 40 字, 当前卷文本, 本轮轮号)"
  },
