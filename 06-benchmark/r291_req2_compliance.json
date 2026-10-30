@@ -1,0 +1,36 @@
+{
+ "schema": "req2-compliance-v1",
+ "source": "06-benchmark/replacement_matrix_shadowstrict.json",
+ "rows": 191,
+ "literal_3_5": 191,
+ "literal_pct": 100.0,
+ "semantic_rel_ge3": 167,
+ "semantic_pct": 87.43,
+ "pad_only_n": 13,
+ "pad_only_slugs": [
+  "_my-skills",
+  "chaoshi-admin-inline-edit",
+  "commit-archaeologist",
+  "dingtalk-aisearch",
+  "dingtalk-contact",
+  "dingtalk-event",
+  "dogfood",
+  "elon-musk-perspective",
+  "gstack",
+  "no-manual-steps",
+  "scope-creep-detector",
+  "taskflow",
+  "wps-knowledgebase"
+ ],
+ "pad_count_histogram": {
+  "5": 13,
+  "4": 8,
+  "3": 3
+ },
+ "pad_rel_histogram": {
+  "family": 106
+ },
+ "verdict_no_os_n": 13,
+ "consistency_pad_eq_verdict": true,
+ "reading_rule": "candidates_n 满足条数不等于真有 3 个对应物；rel=family 的补位件是族级邻居，不能当替代方案引用（引用前先看 rel 与 skill_relevant_n）"
+}

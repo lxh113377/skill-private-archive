@@ -192,5 +192,9 @@
  "r290_uncommitted_face.py": {
   "evidence": "06-benchmark/r290_uncommitted_face.json",
   "registered_at": "2026-10-30 09:29"
+ },
+ "r291_req2_compliance.py": {
+  "evidence": "06-benchmark/r291_req2_compliance.json",
+  "registered_at": "2026-10-30 10:02"
  }
 }
