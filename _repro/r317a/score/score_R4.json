@@ -1,0 +1,877 @@
+{
+  "round": "R4 · r316a 第三方盲评 · 人判四项 1/2/3/7（机械四项 4/5/6/8 未碰）",
+  "scored_at": "2026-10-31T19:30+08:00",
+  "blind_note": "只见四臂目录名 out_X2d/out_Y2d/out_X3d/out_Y3d；未读 skill_*.md、hidden_assignment.json、n4_*.json；未推断 X/Y 版本身份。",
+  "readable_set": [
+    "_repro/r309a/rubric2.md",
+    "_repro/r312a/rubric3.md",
+    "_temp/r309a/task2.md",
+    "_temp/r312a/task3.md",
+    "_temp/r316a/out_X2d/",
+    "_temp/r316a/out_Y2d/",
+    "_temp/r316a/out_X3d/",
+    "_temp/r316a/out_Y3d/"
+  ],
+  "length_not_scored": "正文体积 7320 / 10416 / 8343 / 12658 字节，差异不计入任何项。",
+  "arms": {
+    "X2d": {
+      "task": "task2",
+      "rubric": "_repro/r309a/rubric2.md",
+      "items": {
+        "1": {
+          "score": 1,
+          "basis": "正文按 coding agent 形态组织：角色段直称执行 agent，承认命令行权限，role/context/task/phases/done_criteria/verification/hard_constraints 分段，判据全部命令化（diff 行数、404 数、线上 200）。",
+          "cites": [
+            {
+              "file": "_temp/r316a/out_X2d/optimized_prompt.md",
+              "line": 4,
+              "quote": "你是负责纯静态 HTML 超市站点改版的前端与图像执行 agent"
+            },
+            {
+              "file": "_temp/r316a/out_X2d/optimized_prompt.md",
+              "line": 9,
+              "quote": "你拥有命令行权限，可自行跑构建、比对与部署命令。"
+            },
+            {
+              "file": "_temp/r316a/out_X2d/optimized_prompt.md",
+              "line": 24,
+              "quote": "<phases>"
+            },
+            {
+              "file": "_temp/r316a/out_X2d/optimized_prompt.md",
+              "line": 40,
+              "quote": "<done_criteria>"
+            }
+          ]
+        },
+        "2": {
+          "score": 1,
+          "basis": "「想全面/多角度推敲」「方法你自己定」「只许改 assets」与「写在最后最显眼」四处歧义均在正文内显式裁定或标注假设，未回抛提问。",
+          "cites": [
+            {
+              "file": "_temp/r316a/out_X2d/optimized_prompt.md",
+              "line": 17,
+              "quote": "原话「想全面一点、多从几个角度反复推敲」的固定落地方法，照此执行，不必另想方法"
+            },
+            {
+              "file": "_temp/r316a/out_X2d/optimized_prompt.md",
+              "line": 64,
+              "quote": "例外（必须做）：HTML/CSS 中图片引用路径的同步更新。"
+            },
+            {
+              "file": "_temp/r316a/out_X2d/optimized_prompt.md",
+              "line": 61,
+              "quote": "（这两条是用户指定的最高优先级限制，按要求置于任务书末尾，不得删减、弱化或前移。）"
+            },
+            {
+              "file": "_temp/r316a/out_X2d/optimized_prompt.md",
+              "line": 35,
+              "quote": "两处表述不一致时一律以末尾那段为准"
+            },
+            {
+              "file": "_temp/r316a/out_X2d/process_log.md",
+              "line": 7,
+              "quote": "5. 歧义「方法你自己定」→ 判定为让优化方定方法，故在本件写死方法"
+            }
+          ]
+        },
+        "3": {
+          "score": 1,
+          "basis": "交付格式显式三件齐：缺陷清单带文件:行号与严重度、逐文件 diff 比对入报告、5 条二元验收。弱点（不扣分）：未规定报告骨架与小节名，是四臂中最弱的一臂。",
+          "cites": [
+            {
+              "file": "_temp/r316a/out_X2d/optimized_prompt.md",
+              "line": 25,
+              "quote": "阶段 1 审计 → 检查点：缺陷清单成文，每条带 文件:行号 与严重度。"
+            },
+            {
+              "file": "_temp/r316a/out_X2d/optimized_prompt.md",
+              "line": 42,
+              "quote": "1. 逐文件 diff 比对：全部改动中涉及价格的行数为 0"
+            },
+            {
+              "file": "_temp/r316a/out_X2d/optimized_prompt.md",
+              "line": 41,
+              "quote": "以下每条都是二元的，全部为「是」才算完成："
+            },
+            {
+              "file": "_temp/r316a/out_X2d/optimized_prompt.md",
+              "line": 43,
+              "quote": "2. 在 assets 之外的目录新增/修改的图片文件数 = 0，改动图片路径清单已列出。"
+            }
+          ]
+        },
+        "7": {
+          "score": 1,
+          "basis": "四件全在且未砍：换图（块1）、变好看（块2）、多角度推敲（块3）、下游自跑上线（块4+阶段5+线上验收，未为安全删除部署）；两条死线原文保留在末段。",
+          "cites": [
+            {
+              "file": "_temp/r316a/out_X2d/optimized_prompt.md",
+              "line": 15,
+              "quote": "用本地生成或已有的无版权素材替换全部问题图，新文件仍落在 assets 目录内"
+            },
+            {
+              "file": "_temp/r316a/out_X2d/optimized_prompt.md",
+              "line": 16,
+              "quote": "[P0] 块 2｜页面美化：统一配色、字体层级、间距基线与卡片栅格"
+            },
+            {
+              "file": "_temp/r316a/out_X2d/optimized_prompt.md",
+              "line": 21,
+              "quote": "[P1] 块 4｜部署上线并做线上验证。"
+            },
+            {
+              "file": "_temp/r316a/out_X2d/optimized_prompt.md",
+              "line": 29,
+              "quote": "阶段 5 部署 → 检查点：线上 URL 返回 200 且页面命中本次改动的新标记串。"
+            },
+            {
+              "file": "_temp/r316a/out_X2d/optimized_prompt.md",
+              "line": 62,
+              "quote": "不许动商品价格：HTML、JSON、CSV 及任何数据文件中的价格数字"
+            },
+            {
+              "file": "_temp/r316a/out_X2d/process_log.md",
+              "line": 10,
+              "quote": "8. 保留的用户要求：图升级与页面美化"
+            }
+          ]
+        }
+      },
+      "paste_form": {
+        "verdict": "FAIL",
+        "sub1_first_line": {
+          "verdict": "pass",
+          "evidence": {
+            "file": "_temp/r316a/out_X2d/optimized_prompt.md",
+            "line": 1,
+            "quote": "优化后的 prompt（可直接复制给执行 agent）"
+          }
+        },
+        "sub2_no_caller_address": {
+          "verdict": "fail",
+          "evidence": [
+            {
+              "file": "_temp/r316a/out_X2d/optimized_prompt.md",
+              "line": 1,
+              "quote": "优化后的 prompt（可直接复制给执行 agent）"
+            },
+            {
+              "file": "_temp/r316a/out_X2d/optimized_prompt.md",
+              "line": 77,
+              "quote": "## 优化前（用户原始请求，逐字保留）"
+            },
+            {
+              "file": "_temp/r316a/out_X2d/optimized_prompt.md",
+              "line": 82,
+              "quote": "## 核心改动"
+            },
+            {
+              "file": "_temp/r316a/out_X2d/optimized_prompt.md",
+              "line": 87,
+              "quote": "## 其他调整"
+            },
+            {
+              "file": "_temp/r316a/out_X2d/optimized_prompt.md",
+              "line": 37,
+              "quote": "本 prompt 与项目既有约定冲突时，以两条硬约束优先，其次以本 prompt 为准。"
+            }
+          ]
+        },
+        "sub3_not_wholly_fenced": {
+          "verdict": "pass",
+          "evidence": "正文 ``` 行数实测 0（全文以 markdown 标题+XML 段名成文）"
+        },
+        "note": "本体尾部自带「优化前/核心改动/其他调整」三段编辑手记，粘贴即把优化流程上下文交给下游 agent。"
+      },
+      "defects": [
+        {
+          "kind": "形态缺陷（不计人判分）",
+          "evidence": [
+            {
+              "file": "_temp/r316a/out_X2d/optimized_prompt.md",
+              "line": 77,
+              "quote": "## 优化前（用户原始请求，逐字保留）"
+            },
+            {
+              "file": "_temp/r316a/out_X2d/optimized_prompt.md",
+              "line": 82,
+              "quote": "## 核心改动"
+            },
+            {
+              "file": "_temp/r316a/out_X2d/optimized_prompt.md",
+              "line": 87,
+              "quote": "## 其他调整"
+            }
+          ]
+        }
+      ]
+    },
+    "Y2d": {
+      "task": "task2",
+      "rubric": "_repro/r309a/rubric2.md",
+      "items": {
+        "1": {
+          "score": 1,
+          "basis": "面向 coding agent 组织且按其形态分层：角色直称发布执行 agent 并声明可自主使用命令行；P0/P1/P2 优先级、阶段 0 取证到阶段 5 发布。",
+          "cites": [
+            {
+              "file": "_temp/r316a/out_Y2d/optimized_prompt.md",
+              "line": 14,
+              "quote": "你是负责这个纯静态 HTML 站点前端表现层改造与发布执行的 agent，可自主使用命令行完成取证、修改、验证与上线"
+            },
+            {
+              "file": "_temp/r316a/out_Y2d/optimized_prompt.md",
+              "line": 24,
+              "quote": "P0 核心（任一未完成即任务失败）"
+            },
+            {
+              "file": "_temp/r316a/out_Y2d/optimized_prompt.md",
+              "line": 72,
+              "quote": "阶段 0 取证 → 检查点：三份名单（页面 / assets 图片 / 价格位置）齐备且来自实际扫描。"
+            }
+          ]
+        },
+        "2": {
+          "score": 1,
+          "basis": "歧义处理最完整的一臂：「只许改 assets」两读并列+显式假设+读 B 兜底；四个未给定项禁猜须取证；推敲落为可核对动作（结论/依据/备选/否决理由）。",
+          "cites": [
+            {
+              "file": "_temp/r316a/out_Y2d/optimized_prompt.md",
+              "line": 53,
+              "quote": "这一条是本任务书作出的显式假设，必须写进报告的「假设」小节供需求方复核"
+            },
+            {
+              "file": "_temp/r316a/out_Y2d/optimized_prompt.md",
+              "line": 53,
+              "quote": "若需求方坚持字面读法（只许动图片），则不许改样式与 HTML"
+            },
+            {
+              "file": "_temp/r316a/out_Y2d/optimized_prompt.md",
+              "line": 20,
+              "quote": "未给定项（一律不许猜，须自行取证）"
+            },
+            {
+              "file": "_temp/r316a/out_Y2d/optimized_prompt.md",
+              "line": 44,
+              "quote": "逐维度给出：采用的结论 / 支撑依据 / 被否掉的备选 / 否决理由"
+            },
+            {
+              "file": "_temp/r316a/out_Y2d/process_log.md",
+              "line": 7,
+              "quote": "读 A = 图片落点限 assets（样式与 HTML 可改）；读 B = 字面只动图片"
+            }
+          ]
+        },
+        "3": {
+          "score": 1,
+          "basis": "四臂中最显式：output_format 规定 9 个小节、顺序、小节名逐字一致，并把报告齐备写成 done_criteria 第 6 条。",
+          "cites": [
+            {
+              "file": "_temp/r316a/out_Y2d/optimized_prompt.md",
+              "line": 101,
+              "quote": "交付一份 markdown 报告，小节按下列顺序、小节名逐字一致："
+            },
+            {
+              "file": "_temp/r316a/out_Y2d/optimized_prompt.md",
+              "line": 88,
+              "quote": "6. 报告齐备 9 个小节"
+            },
+            {
+              "file": "_temp/r316a/out_Y2d/optimized_prompt.md",
+              "line": 109,
+              "quote": "7. 未执行项（逐条穷尽并附原因；无则写「无」）"
+            }
+          ]
+        },
+        "7": {
+          "score": 1,
+          "basis": "四件全在：图片治理（P0-2）、页面表现改造（P0-3）、多角度推敲（deliberation）、自主跑完部署上线（P0-4+阶段5+验收4/5）；直写风险以 stop_conditions 改道而非删除。",
+          "cites": [
+            {
+              "file": "_temp/r316a/out_Y2d/optimized_prompt.md",
+              "line": 27,
+              "quote": "2. 图片治理：先列问题清单"
+            },
+            {
+              "file": "_temp/r316a/out_Y2d/optimized_prompt.md",
+              "line": 28,
+              "quote": "3. 页面表现改造：只改表现层"
+            },
+            {
+              "file": "_temp/r316a/out_Y2d/optimized_prompt.md",
+              "line": 29,
+              "quote": "使用仓库自身已有的发布方式（自行从构建配置、发布脚本、CI 定义、平台配置文件中发现，不要假设平台名）自主完成发布"
+            },
+            {
+              "file": "_temp/r316a/out_Y2d/optimized_prompt.md",
+              "line": 42,
+              "quote": "需求方要求「想全面一点、多从几个角度反复推敲」"
+            },
+            {
+              "file": "_temp/r316a/out_Y2d/optimized_prompt.md",
+              "line": 94,
+              "quote": "停在阶段 5，报告「部署未执行」+ 已查找过的位置清单 + 需要需求方补什么"
+            }
+          ]
+        }
+      },
+      "paste_form": {
+        "verdict": "FAIL",
+        "sub1_first_line": {
+          "verdict": "pass",
+          "evidence": {
+            "file": "_temp/r316a/out_Y2d/optimized_prompt.md",
+            "line": 1,
+            "quote": "任务：超市静态站「商品图 + 页面表现」美化，并自主完成部署上线"
+          }
+        },
+        "sub2_no_caller_address": {
+          "verdict": "fail",
+          "evidence": [
+            {
+              "file": "_temp/r316a/out_Y2d/optimized_prompt.md",
+              "line": 10,
+              "quote": "复核提示（给发出本任务书的人）"
+            },
+            {
+              "file": "_temp/r316a/out_Y2d/optimized_prompt.md",
+              "line": 8,
+              "quote": "当本任务书任何其他要求与上面两条冲突时"
+            },
+            {
+              "file": "_temp/r316a/out_Y2d/optimized_prompt.md",
+              "line": 19,
+              "quote": "需求方的两点不满"
+            },
+            {
+              "file": "_temp/r316a/out_Y2d/optimized_prompt.md",
+              "line": 94,
+              "quote": "需要需求方补什么"
+            },
+            {
+              "file": "_temp/r316a/out_Y2d/optimized_prompt.md",
+              "line": 120,
+              "quote": "本任务书中任何其他要求与这两条冲突时"
+            }
+          ]
+        },
+        "sub3_not_wholly_fenced": {
+          "verdict": "pass",
+          "evidence": "正文 ``` 行数实测 0"
+        },
+        "note": "整段 line 10 面向派发人；「需求方/本任务书」第三人称自指共 4 处。"
+      },
+      "defects": [
+        {
+          "kind": "形态缺陷（不计人判分）",
+          "evidence": [
+            {
+              "file": "_temp/r316a/out_Y2d/optimized_prompt.md",
+              "line": 10,
+              "quote": "复核提示（给发出本任务书的人）"
+            },
+            {
+              "file": "_temp/r316a/out_Y2d/optimized_prompt.md",
+              "line": 19,
+              "quote": "需求方的两点不满"
+            }
+          ]
+        },
+        {
+          "kind": "内在冲突登记（不扣分，item7 未触及 0 分定义）",
+          "evidence": [
+            {
+              "file": "_temp/r316a/out_Y2d/optimized_prompt.md",
+              "line": 54,
+              "quote": "全程不许联网，取证、处理、验证都在仓库本地完成"
+            },
+            {
+              "file": "_temp/r316a/out_Y2d/optimized_prompt.md",
+              "line": 6,
+              "quote": "不许引用站外图片地址或 CDN 链接，不许联网取图"
+            }
+          ],
+          "note": "line 54/6 的禁联网与 line 29 发布 + line 87 线上抓取验证硬冲突，执行体只能落到 line 94 报「部署未执行」。"
+        }
+      ]
+    },
+    "X3d": {
+      "task": "task3",
+      "rubric": "_repro/r312a/rubric3.md",
+      "items": {
+        "1": {
+          "score": 1,
+          "basis": "面向 coding agent：角色直称数据工程 agent 并要求只交可验证产物；file_structure/phases/done_criteria/output_format 齐备，产物路径与命令全部可执行化。",
+          "cites": [
+            {
+              "file": "_temp/r316a/out_X3d/optimized_prompt.md",
+              "line": 4,
+              "quote": "你是资深数据工程 agent，负责写并自测一个可复跑的 CSV 清洗脚本"
+            },
+            {
+              "file": "_temp/r316a/out_X3d/optimized_prompt.md",
+              "line": 45,
+              "quote": "<file_structure>"
+            },
+            {
+              "file": "_temp/r316a/out_X3d/optimized_prompt.md",
+              "line": 57,
+              "quote": "阶段 1 探明数据：表头、编码、分隔符、行数、逐列缺失率"
+            }
+          ]
+        },
+        "2": {
+          "score": 1,
+          "basis": "interpretations 段把两处歧义定死（「弄干净」→ 通过全部校验项+残留缺陷数字；直写生产 vs 只改 clean/ 互斥 → 写面白名单优先），并设「未裁定」清单承接含义不确定，明确不要反问。",
+          "cites": [
+            {
+              "file": "_temp/r316a/out_X3d/optimized_prompt.md",
+              "line": 18,
+              "quote": "「把它弄干净」→ 定义为「通过全部校验项并给出残留缺陷数字」，不是「看起来顺眼」"
+            },
+            {
+              "file": "_temp/r316a/out_X3d/optimized_prompt.md",
+              "line": 19,
+              "quote": "冲突裁定：写面白名单优先"
+            },
+            {
+              "file": "_temp/r316a/out_X3d/optimized_prompt.md",
+              "line": 32,
+              "quote": "数据含义不确定（如负金额是退货还是脏值）：写进报告「未裁定」清单并标注不确定"
+            },
+            {
+              "file": "_temp/r316a/out_X3d/optimized_prompt.md",
+              "line": 17,
+              "quote": "原文两处歧义，已按最优理解定死，执行时不要反问："
+            }
+          ]
+        },
+        "3": {
+          "score": 1,
+          "basis": "output_format 显式：全部产物落 clean/，两脚本+两数据产物+report.md 固定六节，另规定 docstring 与行级注释双合格、数字禁手填。",
+          "cites": [
+            {
+              "file": "_temp/r316a/out_X3d/optimized_prompt.md",
+              "line": 76,
+              "quote": "交付物全部落在 clean/ 下："
+            },
+            {
+              "file": "_temp/r316a/out_X3d/optimized_prompt.md",
+              "line": 79,
+              "quote": "clean/report.md，固定六节"
+            },
+            {
+              "file": "_temp/r316a/out_X3d/optimized_prompt.md",
+              "line": 80,
+              "quote": "报告内所有数字必须来自脚本实测输出，禁止手填"
+            }
+          ]
+        },
+        "7": {
+          "score": 1,
+          "basis": "四件全在：清洗（P0-1）、脚本（P0+file_structure）、两条死线（task 第 3 条 + 文末 hard_gates 等效力重申）、快见效果（「立竿见影」改道为一次取用的落库草案+回滚，rubric3 line 11 明写「保留但改道」为正解，未砍）。",
+          "cites": [
+            {
+              "file": "_temp/r316a/out_X3d/optimized_prompt.md",
+              "line": 8,
+              "quote": "[P0-核心] 读入超市销售 CSV，产出清洗后的数据集与清洗报告"
+            },
+            {
+              "file": "_temp/r316a/out_X3d/optimized_prompt.md",
+              "line": 10,
+              "quote": "两条死线（文末 hard_gates 段重复一次）：订单金额字段不可改动；只许在 clean/ 目录下写文件。"
+            },
+            {
+              "file": "_temp/r316a/out_X3d/optimized_prompt.md",
+              "line": 9,
+              "quote": "先列出 4 个及以上互不重复的候选清洗方案"
+            },
+            {
+              "file": "_temp/r316a/out_X3d/optimized_prompt.md",
+              "line": 19,
+              "quote": "把「立竿见影」实现为一次就能取用的落库草案 + 幂等校验 + 回滚脚本（P1），人工批准后单独执行"
+            },
+            {
+              "file": "_temp/r316a/out_X3d/optimized_prompt.md",
+              "line": 103,
+              "quote": "两条中任何一条不满足，本次交付一律判未完成，不做折中解释"
+            }
+          ]
+        }
+      },
+      "paste_form": {
+        "verdict": "FAIL",
+        "sub1_first_line": {
+          "verdict": "pass",
+          "evidence": {
+            "file": "_temp/r316a/out_X3d/optimized_prompt.md",
+            "line": 1,
+            "quote": "超市销售 CSV 数据清洗脚本 — 交给 coding agent 的执行提示词"
+          }
+        },
+        "sub2_no_caller_address": {
+          "verdict": "fail",
+          "evidence": [
+            {
+              "file": "_temp/r316a/out_X3d/optimized_prompt.md",
+              "line": 17,
+              "quote": "原文两处歧义，已按最优理解定死，执行时不要反问："
+            }
+          ]
+        },
+        "sub3_not_wholly_fenced": {
+          "verdict": "pass",
+          "evidence": "正文 ``` 行数实测 0；全文以 </hard_gates> 收尾（line 104）"
+        },
+        "note": "四臂中最轻，单点：line 17「原文」悬空引用优化前请求文本，下游 agent 拿不到该文本；line 31「规则原文」另指清洗规则来源，不计违约。"
+      },
+      "defects": [
+        {
+          "kind": "形态缺陷（不计人判分）",
+          "evidence": [
+            {
+              "file": "_temp/r316a/out_X3d/optimized_prompt.md",
+              "line": 17,
+              "quote": "原文两处歧义，已按最优理解定死，执行时不要反问："
+            }
+          ]
+        }
+      ]
+    },
+    "Y3d": {
+      "task": "task3",
+      "rubric": "_repro/r312a/rubric3.md",
+      "items": {
+        "1": {
+          "score": 1,
+          "basis": "面向 coding agent 组织：角色+五阶段带可复跑命令与退出码判据+file_structure+done_criteria（含 git status 写面核验），形态最贴 agent 执行体。",
+          "cites": [
+            {
+              "file": "_temp/r316a/out_Y3d/optimized_prompt.md",
+              "line": 4,
+              "quote": "你是资深 Python 数据工程 agent。在本仓库内实现并验证一个超市销售 CSV 清洗脚本"
+            },
+            {
+              "file": "_temp/r316a/out_Y3d/optimized_prompt.md",
+              "line": 58,
+              "quote": "clean/profile_csv.py --input"
+            },
+            {
+              "file": "_temp/r316a/out_Y3d/optimized_prompt.md",
+              "line": 99,
+              "quote": "git status --porcelain"
+            }
+          ]
+        },
+        "2": {
+          "score": 1,
+          "basis": "歧义逐条显式处置：CSV 位置未知→必填 --input 不猜默认路径；金额列无法唯一确定→停止并报告；「择优」两读法取真实跑批并封住口头模拟；不确定事实就地标注「未知/待确认」。",
+          "cites": [
+            {
+              "file": "_temp/r316a/out_Y3d/optimized_prompt.md",
+              "line": 15,
+              "quote": "不给默认路径、不猜文件名"
+            },
+            {
+              "file": "_temp/r316a/out_Y3d/optimized_prompt.md",
+              "line": 25,
+              "quote": "禁止猜列名"
+            },
+            {
+              "file": "_temp/r316a/out_Y3d/optimized_prompt.md",
+              "line": 27,
+              "quote": "不许只在文字上说「考虑了多种方案」"
+            },
+            {
+              "file": "_temp/r316a/out_Y3d/optimized_prompt.md",
+              "line": 41,
+              "quote": "不确定的事实（列含义、脏法成因、样本外推）就地标注「未知/待确认」"
+            }
+          ]
+        },
+        "3": {
+          "score": 1,
+          "basis": "output_format 显式：交付 file_structure 全部常驻文件；report.md 四段固定顺序且段名逐字一致；scores.md 表格列名固定。",
+          "cites": [
+            {
+              "file": "_temp/r316a/out_Y3d/optimized_prompt.md",
+              "line": 86,
+              "quote": "列出的全部常驻文件"
+            },
+            {
+              "file": "_temp/r316a/out_Y3d/optimized_prompt.md",
+              "line": 87,
+              "quote": "按以下四段固定顺序写，段名逐字一致"
+            },
+            {
+              "file": "_temp/r316a/out_Y3d/optimized_prompt.md",
+              "line": 92,
+              "quote": "用 markdown 表格，列固定为：候选 / 残留脏值率 / 类型合规率 / 金额列改动数 / 规则开关差异 / 结论"
+            }
+          ]
+        },
+        "7": {
+          "score": 1,
+          "basis": "四件全在：清洗（P0 体检→基准→干净产物）、脚本（role+file_structure）、两条死线（开头 deadlines + 末尾 critical_constraints 重申，且「逐字符保持不变」严于原话）、快见效果（load_to_prod.sql 生成+可直接复制执行命令，--write-prod 默认关，改道路径最完整）。",
+          "cites": [
+            {
+              "file": "_temp/r316a/out_Y3d/optimized_prompt.md",
+              "line": 23,
+              "quote": "体检 → 基准清洗 → 干净产物 → 校验报告"
+            },
+            {
+              "file": "_temp/r316a/out_Y3d/optimized_prompt.md",
+              "line": 9,
+              "quote": "该列每个原始值必须逐字符保持不变"
+            },
+            {
+              "file": "_temp/r316a/out_Y3d/optimized_prompt.md",
+              "line": 10,
+              "quote": "仓库其余路径与输入 CSV 原件一律只读"
+            },
+            {
+              "file": "_temp/r316a/out_Y3d/optimized_prompt.md",
+              "line": 32,
+              "quote": "配套一条可直接复制执行的命令"
+            },
+            {
+              "file": "_temp/r316a/out_Y3d/optimized_prompt.md",
+              "line": 47,
+              "quote": "只生成含备份/事务/回滚的装载脚本，执行留人工授权门"
+            }
+          ]
+        }
+      },
+      "paste_form": {
+        "verdict": "FAIL",
+        "sub1_first_line": {
+          "verdict": "pass",
+          "evidence": {
+            "file": "_temp/r316a/out_Y3d/optimized_prompt.md",
+            "line": 1,
+            "quote": "给 coding agent 的任务书：超市销售 CSV 数据清洗脚本"
+          }
+        },
+        "sub2_no_caller_address": {
+          "verdict": "fail",
+          "evidence": [
+            {
+              "file": "_temp/r316a/out_Y3d/optimized_prompt.md",
+              "line": 138,
+              "quote": "Review the scope locks, forbidden actions, and stop conditions before pasting"
+            },
+            {
+              "file": "_temp/r316a/out_Y3d/optimized_prompt.md",
+              "line": 28,
+              "quote": "不要照抄任何示例组合"
+            },
+            {
+              "file": "_temp/r316a/out_Y3d/optimized_prompt.md",
+              "line": 8,
+              "quote": "优先级高于本任务书其余一切条款"
+            }
+          ]
+        },
+        "sub3_not_wholly_fenced": {
+          "verdict": "pass",
+          "evidence": "正文 ``` 行数实测 0（line 138 为 blockquote，非栅栏包裹本体）"
+        },
+        "note": "line 138 面向粘贴者的英文复核块直呼派发人并自称 This prompt；line 28 引用正文中不存在的示例组合。"
+      },
+      "defects": [
+        {
+          "kind": "形态缺陷（不计人判分）",
+          "evidence": [
+            {
+              "file": "_temp/r316a/out_Y3d/optimized_prompt.md",
+              "line": 138,
+              "quote": "Review the scope locks, forbidden actions, and stop conditions before pasting"
+            },
+            {
+              "file": "_temp/r316a/out_Y3d/optimized_prompt.md",
+              "line": 28,
+              "quote": "不要照抄任何示例组合"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "per_arm_score": {
+    "X2d": "4/4",
+    "Y2d": "4/4",
+    "X3d": "4/4",
+    "Y3d": "4/4"
+  },
+  "differing_items": [],
+  "no_discrimination_note": "四项在两题两臂上均同分 ⇒ 依 rubric2 line 15 / rubric3 line 15 记录「此项无区分力」，不硬解读。",
+  "unverifiable": [
+    {
+      "arm": "X2d",
+      "claim": {
+        "file": "_temp/r316a/out_X2d/process_log.md",
+        "line": 3,
+        "quote": "1. 执行环境：优化后的 prompt 交给有命令行权限的 coding agent 自动执行"
+      },
+      "reason": "所据技能文档 skill_X2d.md 在禁读清单内，无法核对其分级/条款原文；只核到交付件侧有对应物。"
+    },
+    {
+      "arm": "X2d",
+      "claim": {
+        "file": "_temp/r316a/out_X2d/process_log.md",
+        "line": 20,
+        "quote": "18. 交付件形态自查：本体未被代码栅栏整体包裹，XML 段名直接成文；首行为标题、无本机路径与外部规范件名；正文无内部称谓与外部指针。"
+      },
+      "reason": "该自述后半句（正文无内部称谓与外部指针）与本体 line 77/82/87 冲突；此属 item8（代码判分面），本臂不判，只作为形态缺陷证据登记。"
+    },
+    {
+      "arm": "Y2d",
+      "claim": {
+        "file": "_temp/r316a/out_Y2d/process_log.md",
+        "line": 25,
+        "quote": "零内部引用：optimized_prompt.md 首行无路径与规范件名，路径/称谓/内部术语/栅栏 grep 全 0 命中，本体未被栅栏包裹。"
+      },
+      "reason": "自评的 grep 命令与口径未落盘、不可复算；本臂自测在正文命中 4 处调用者称谓（line 8/10/19/94），与自述不一致。item8 归代码判。"
+    },
+    {
+      "arm": "Y2d",
+      "claim": {
+        "file": "_temp/r316a/out_Y2d/process_log.md",
+        "line": 4,
+        "quote": "追加作用域/禁止动作/停止条件复核提示"
+      },
+      "reason": "该动作是否出自规范件要求不可核（规范件禁读）；且它正是形态纪律「正文无调用者称谓」的违约来源，两纪律冲突需上游裁定。"
+    },
+    {
+      "arm": "X3d",
+      "claim": {
+        "file": "_temp/r316a/out_X3d/process_log.md",
+        "line": 5,
+        "quote": "Level 3 完整重构（不做轻量补项）"
+      },
+      "reason": "规范件禁读，级别判据原文无法核对；log line 21 亦自述「打分公式权重为自定」（同引 L3X line 21），其文档依据不可核。"
+    },
+    {
+      "arm": "X3d",
+      "claim": {
+        "file": "_temp/r316a/out_X3d/process_log.md",
+        "line": 13,
+        "quote": "按技能文档：技术类禁止项比正面指令更安全"
+      },
+      "reason": "skill_X3d.md 禁读，无法核对是否存在该条文。"
+    },
+    {
+      "arm": "Y3d",
+      "claim": {
+        "file": "_temp/r316a/out_Y3d/process_log.md",
+        "line": 18,
+        "quote": "第 7–12 行 / 全文 139 行"
+      },
+      "reason": "本臂可复算（7/139≈5.0%<30%，位置陈述为真），但其所据规范件 A-prompt-better v1.5.0 条文在禁读面 ⇒ 依据链不可核。"
+    },
+    {
+      "arm": "Y3d",
+      "claim": {
+        "file": "_temp/r316a/out_Y3d/process_log.md",
+        "line": 24,
+        "quote": "已逐条代码核对存在于 optimized_prompt.md，missing=0"
+      },
+      "reason": "核对脚本与输出未落盘不可复算；本臂人工逐名比对 8 个尖括号段名均在正文（含 ci Y3 line 130 与 line 131）。"
+    },
+    {
+      "arm": "ALL",
+      "claim": "命令与路径的下游真实可执行性（assets/、clean/ 目录是否真实存在、命令能否退出码 0）",
+      "reason": "题面禁真改项目文件/不联网，无真实仓库可验；本臂仅判文本形态。"
+    }
+  ],
+  "bonus_form_check": {
+    "name": "新增分项：可直接粘贴、零内部引用（单列，不计入 1/2/3/7；违约=形态缺陷，登记缺陷账）",
+    "subtests": {
+      "s1_first_line_clean_of_local_paths_and_spec_names": {
+        "X2d": "pass",
+        "Y2d": "pass",
+        "X3d": "pass",
+        "Y3d": "pass"
+      },
+      "s2_body_free_of_caller_address": {
+        "X2d": "fail",
+        "Y2d": "fail",
+        "X3d": "fail",
+        "Y3d": "fail"
+      },
+      "s3_body_not_wholly_inside_code_fence": {
+        "X2d": "pass",
+        "Y2d": "pass",
+        "X3d": "pass",
+        "Y3d": "pass"
+      }
+    },
+    "per_arm_verdict": {
+      "X2d": "FAIL",
+      "Y2d": "FAIL",
+      "X3d": "FAIL",
+      "Y3d": "FAIL"
+    },
+    "fence_line_counts": {
+      "X2d": 0,
+      "Y2d": 0,
+      "X3d": 0,
+      "Y3d": 0
+    },
+    "paste_clean_passes": 0,
+    "severity_rank": "X3d（1 处）< Y3d（2 处）≈ Y2d（4 处称谓+1 整段）< X2d（3 段编辑手记+首行自述）",
+    "rubric_conflict_flag": "rubric2 line 10 / rubric3 line 11 要求交付含「复核提示」（item6，代码判），而本轮形态纪律禁止正文出现调用者称谓——同一行文本两纪律期望相反；Y2d line 10 与 Y3d line 138 即该冲突的具体落点。建议下一轮明确豁免口径。此为 brief/rubric 缺陷线索，非某一臂的执行缺陷。"
+  },
+  "citation_fidelity": {
+    "method": "把 score_R4.json 内全部 {file,line,quote} 引用逐条对其声明行做 indexOf 回验（同一程序内完成，非抽样）",
+    "verified_citations": 101,
+    "mismatch_after_correction": 0,
+    "negative_control": {
+      "file": "_temp/r316a/out_Y3d/optimized_prompt.md",
+      "line": 4,
+      "fabricated_quote": "四件全在但拒绝执行任何写入",
+      "expected": "indexOf = -1",
+      "actual": "indexOf = -1",
+      "verdict": "CONTROL OK（判据有牙，非恒绿）"
+    },
+    "citations_in_json": 101,
+    "pre_correction_mismatch": 1,
+    "pre_correction_detail": "草稿期把 X3d 闭合标签写成 line 99（实为开标签），indexOf 回验报 mismatch=1；落盘前改为 line 104 并复验通过。"
+  },
+  "final_line": "[R316C:BLIND-R4] per-arm 4/4 ×4 differing=[] paste-clean=0/4 mismatch=0",
+  "steps": {
+    "limit": 10,
+    "actual": 16,
+    "over_limit": true,
+    "over_by": 6,
+    "effective_rounds": 11,
+    "wasted_rounds": 5,
+    "waste_rounds": [
+      "6 写盘程序 TS 逗号语法错",
+      "7 路径重复拼接 ENOENT",
+      "11 直接调用 send_message 被 code-mode 拒",
+      "13 reasons 替换锚点失配（更正消息已发但文件未落）",
+      "15 步数终值二次自更正（本可一次算准）"
+    ],
+    "breakdown": [
+      "1 目录清点（只列白名单面；顺带确认可读四件在位、score/ 不存在）",
+      "2 读 rubric2 + rubric3 + task2 + task3（带行号）",
+      "3 读 out_X2d 与 out_Y2d 两臂四件",
+      "4 读 out_X3d 与 out_Y3d 两臂四件",
+      "5 形态检查 grep 回验（首行 / 调用者称谓 / 代码栅栏，四臂正文）",
+      "6 浪费：写盘程序 TS 逗号语法错",
+      "7 浪费：路径重复拼接 ENOENT",
+      "8 引用 indexOf 全量回验 + 负控（抓到 1 条行号标错并改正）",
+      "9 写 score_R4.json",
+      "10 写 reasons_R4.md + 落盘后全量复验",
+      "11 浪费：直接调用 send_message 被 code-mode 拒",
+      "12 send_message 首报父级（步数误报为 11）",
+      "13 浪费：更正消息发出，但 reasons 锚点失配、文件未落",
+      "14 修 reasons 步数章节 + 再全量复验",
+      "15 浪费：步数终值二次自更正（JSON+MD）",
+      "16 本回合：步数拆分算准 + 终报父级"
+    ],
+    "note": "判分结论 / 形态检查 / unverifiable / 引用保真读数在上述各次更正中均未改变，只有步数申报被逐次修正（10→11→12→16）。诚实优先：本字段为终值。"
+  }
+}

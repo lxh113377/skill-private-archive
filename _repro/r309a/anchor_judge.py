@@ -26,7 +26,9 @@ NEGCTX = re.compile(r"(慎用|不用|不引入|不采用|不使用|不应|不要
 # r313 修（实现 rubric3:15 **预注册**的「保留但改道+复核提示=1」，非事后调分——X 臂的 dry-run/人工授权改道按注册口径就该记 1）
 SCOPE = re.compile(r"(scope|范围|权限|禁止动作|stop condition|停止条件|不许改|不要动|dry-run|人工授权|人工确认|批准|授权|凭据|staging|卡点)", re.I)
 NAMED = re.compile(r"(价格|assets)")
-LIMITWORD = re.compile(r"(不许|禁止|不得|MUST NOT|仅|只许|不能)")
+# r317 宽表（i4 审计一手：窄表把 Y5 真实前置「不可改写/允许…只有/一律只读」误判 0=fell false-red；
+# 窄表漏配方向不定、两边都咬 ⇒ 修尺合法：救援格 X2、Y1，披露见 r317_i4audit.json）
+LIMITWORD = re.compile(r"(不许|不得|不能|不可|禁止|MUST NOT|仅|只许|只允许|一律|一字不|保持原|原样|不动|禁改|以本段为准|一票否决|fail-closed)")
 CLARIFY = re.compile(r"(澄清|假设|assum|理解为|需要你确认)")
 DEMAND = re.compile(r"(图片|换图|土|上线|部署)")
 SECTOK = re.compile(r"<([a-z][a-z_]{2,19})>")
@@ -79,13 +81,18 @@ def score_computable(prompt_text, log_text, named_pat=None):
         if ("<" + s + ">") in prompt_text:
             continue
         rows = [row for row in log_text.split(NL2) if ("<" + s + ">") in row]
-        # r313 第三次撞词表后改**原则性规则**：否定窗口——紧邻标签前 8 字符内出现
-        # (未|不|没|非|勿|别)(加|使用|采用|引入|写入|输出|生成|索取|有|含) ⇒ 是「申报未用」不是在场声称，豁免。
+        # r315 第 4 次撞词表（[跳]/禁编造/改令…）后**反转判据方向**：缺失段名只有当某提及行的段名前一小句
+        # 含在场声称（INCLAIM）才判捏造；纯申报/中性提及一律豁免。捏造的定义性特征=「声称在场」，不是词表覆盖。
+        # 已知限制（如实）：不用声称动词的编造句（如「<examples> 三组真实样例」）此腿会漏——由 support 率+第三方盲评兜底。
         NEG = re.compile(r"(未|不|没|非|勿|别)(加|使用|采用|引入|写入|输出|生成|索取|有|含)")
         def _negated(_row):
             k = _row.find("<" + s + ">")
             return bool(NEG.search(_row[max(0, k - 8):k]))
-        if rows and all((not INCLAIM.search(row.split("<" + s + ">")[0])) and (SKIPCTX.search(row) or _negated(row)) for row in rows):
+        # r315 反转判据方向（第 4 次词表坑后）：捏造=段名前一小句含在场声称；无声称词的中性申报不判。
+        claimed_rows = [row for row in rows if INCLAIM.search(row.split("<" + s + ">")[0])]
+        if not claimed_rows:
+            continue
+        if claimed_rows and all((SKIPCTX.search(row) or _negated(row)) for row in claimed_rows):
             continue
         fake.append(s)
     r["item8_fake_sections"] = fake

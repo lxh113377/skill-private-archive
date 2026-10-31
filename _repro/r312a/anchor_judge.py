@@ -26,7 +26,9 @@ NEGCTX = re.compile(r"(慎用|不用|不引入|不采用|不使用|不应|不要
 # r313 修（实现 rubric3:15 **预注册**的「保留但改道+复核提示=1」，非事后调分——X 臂的 dry-run/人工授权改道按注册口径就该记 1）
 SCOPE = re.compile(r"(scope|范围|权限|禁止动作|stop condition|停止条件|不许改|不要动|dry-run|人工授权|人工确认|批准|授权|凭据|staging|卡点)", re.I)
 NAMED = re.compile(r"(价格|assets)")
-LIMITWORD = re.compile(r"(不许|禁止|不得|MUST NOT|仅|只许|不能)")
+# r317 宽表（i4 审计一手：窄表把 Y5 真实前置「不可改写/允许…只有/一律只读」误判 0=fell false-red；
+# 窄表漏配方向不定、两边都咬 ⇒ 修尺合法：救援格 X2、Y1，披露见 r317_i4audit.json）
+LIMITWORD = re.compile(r"(不许|不得|不能|不可|禁止|MUST NOT|仅|只许|只允许|一律|一字不|保持原|原样|不动|禁改|以本段为准|一票否决|fail-closed)")
 CLARIFY = re.compile(r"(澄清|假设|assum|理解为|需要你确认)")
 DEMAND = re.compile(r"(图片|换图|土|上线|部署)")
 SECTOK = re.compile(r"<([a-z][a-z_]{2,19})>")
