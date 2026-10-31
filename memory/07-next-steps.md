@@ -672,7 +672,7 @@ C1 一次交付成功（末行逐字我复跑一致、两腿实测、并**自己
 **默认写「步数上限 N」与「做不完就交已完成部分」两句**（不是鼓励少做，而是让「卡住」能被表达出来而不是静默死掉）。
 另记：本轮 B1 的收尾消息是一段**中间推理**而非回执（没有路径/判据/末行/腿），
 按 #44⑥「自述不算证据」我按「写面无件」判失败 —— 这也说明 brief 里「收尾消息必须含四项」那句是必要的，只是没被执行。
-- [ ] **R305-1（r305 登记，P1）** **季度扫描与看门狗的关系写死并消掉一处假绿通道：原目录名 quarterly_r304a 命中看门狗通配（派发件用其 picker 实测 watchdog_picker_sees_it=true）⇒ 我结构性改名为 version_scan 并以 fnmatch 复证实测 False/True；两腿（超龄必 FAIL / 新旧档取新）复跑逐字；附 r260 跨盘 relpath 抛错的环境发现**：一手（r305，派发件 62cf8776 交付 + 我实读它报的报警并做了结构性修）：季度扫描与**季档看门狗**的关系写死，并消掉一处**假绿风险**。
+- [ ] **R305-1（r305 登记，P1）** **季度扫描与看门狗的关系写死并消掉一处假绿通道：原目录名 quarterly_r304a 命中看门狗通配（派发件用其 picker 实测 watchdog_picker_sees_it=true）⇒ 我结构性改名为 version_scan 并以 fnmatch 复证实测 False/True；两腿（超龄必 FAIL / 新旧档取新）复跑逐字；附 r260 跨盘 relpath 抛错的环境发现**：一手（r305，派发件 62cf8776 交付 + 我实读它报的报警并做了结构性修）：季度扫描与**季档看门狗**的关系写死，并消掉一处**假绿风险**。 【r310 裁决=已落地｜r310 改判：已落地且持续在役。现核：扫描件前缀=version_scan（_repro/r304a 件内 41 行 QUARTER_PREFIX 在库）；fnmatch 双验证（version_scan→False、quarterly_r304a→True）在台账 R305-1 正文；r307/r310 各复跑判据 rc=0（[R304:SCAN]/[R310A:ABSORB] 都从提升面出数）⇒ 假绿通道保持关闭。】
 它实读的口径（glob spy 抓的真实字符串，不是猜）：看门狗两条 glob = `06-benchmark/quarterly*/*/audit.json` 与 `06-benchmark/quarterly*/audit.json`；
 newest_audit 按 generated_at 取最大、不看目录名；阈值 100 天；FAIL 行点名 r113 深审 ⇒ **谁负责让看门狗变绿 = r113**。
 **它报出的报警（我复核成立）**：我 r304 给扫描件选的目录名 `quarterly_r304a` **命中那条 `quarterly*` 通配** ⇒ 只要有人把输出根指到仓根，
@@ -687,7 +687,7 @@ newest_audit 按 generated_at 取最大、不看目录名；阈值 100 天；FAI
 ⇒ 跨盘夹具要落在同盘 scratch（这个坑我记下，日后若把季档放到别的盘会撞上）。
 取值：cd _temp/r305a && python -B check_r305a.py（末行 [R305A:LONGTERM] …）；
 python -c "import fnmatch; print(fnmatch.fnmatch('06-benchmark/version_scan/2026Q4/audit.json','06-benchmark/quarterly*/*/audit.json'))"。
-- [ ] **R305-2（r305 登记，P1）** **R261-7 两件合并计划落地（land 38 / drop 35 / block 4，三腿含越界拒绝与缺件拒绝）；**它独立纠正了我的 r304 错结论**——我拿 31 条的上游清单冒充全量（活体 92 条、两条 assets 确实在仓），已按 R241 加两处校正注**：一手（r305，派发件 be76f582 交付 + **它纠正了我的一处错误结论**）：R261-7 两件的合并计划。
+- [ ] **R305-2（r305 登记，P1）** **R261-7 两件合并计划落地（land 38 / drop 35 / block 4，三腿含越界拒绝与缺件拒绝）；**它独立纠正了我的 r304 错结论**——我拿 31 条的上游清单冒充全量（活体 92 条、两条 assets 确实在仓），已按 R241 加两处校正注**：一手（r305，派发件 be76f582 交付 + **它纠正了我的一处错误结论**）：R261-7 两件的合并计划。 【r310 裁决=已落地｜r310 改判：已落地——本条的产物（合并计划 land38/drop35/block4）就是 r308 第二件换装的执行蓝本：F 臂按它落了 SKILL.md 五条逐字钉定 + 37 payload（受管根 0fcf7842+c7e3a0cc+c5d8391d，五腿 spec 全绿）。它的三腿负控（越界拒/缺件拒/正控接受）在 _repro/r305b 判据内至今可复跑；我 r304 错结论的双处校正注（切片冒充全量）仍在台账。】
 末行（我复跑 rc=0）：[R305B:PLAN] skills=2 files=77 land=38 drop=35 block=4 dropped_refs=21 blocked=4
 三腿逐字：腿 A `dst=../other-skill/x.md -> REJECTED:DST_OUTSIDE_SKILL_DIR`（越界落点被拒）；
 腿 B `src=assets/charts.js action=land -> REJECTED:SRC_NOT_LANDABLE`（缺件标 land 被拒）；腿 C+ 正控 `dst=references/copy.md -> ACCEPTED`（证明校验非恒拒）。
@@ -699,7 +699,7 @@ r305 现取活体树：`gh api repos/Leonxlnx/taste-skill/git/trees/main?recursi
 计划读数：A 臂落 4 / 丢 1 / 卡 0（本地独有 3 项逐字保留）；F 臂落 34 / 丢 34（技能目录内 2 + 仓根打包面 32）/ 卡 4（inspect 无 Chrome、assets 网络超时、两条待补取）；
 回滚要点：逐件 sha256（已记 6 件）+ 受管根 HEAD 短号，退 = 删新增侧件 → 主件单件检出/反向提交 → 复算全等才算退；本计划**不代裁值不值得换**，接线行归另一个面。
 取值：cd _temp/r305b && python -B check_r305b.py（末行 [R305B:PLAN] …）。
-- [ ] **R305-3（r305 登记，P1）** **替掉空过的 C5：新增入库判据 r305_wiring_headroom.py（接线增量 ≤ 注入面余量 2199；现实接线 280 B ⇒ fits；两腿证明超余量必 exceeds、面外编辑必 ignored；并打印 swapped_in_face=false 防再空过），已按 r129 --register 带证据登记**：一手（r305，Lead 自干并入库）：**替掉「空过」的那条判据**—— `05-exec/r305_wiring_headroom.py`。
+- [ ] **R305-3（r305 登记，P1）** **替掉空过的 C5：新增入库判据 r305_wiring_headroom.py（接线增量 ≤ 注入面余量 2199；现实接线 280 B ⇒ fits；两腿证明超余量必 exceeds、面外编辑必 ignored；并打印 swapped_in_face=false 防再空过），已按 r129 --register 带证据登记**：一手（r305，Lead 自干并入库）：**替掉「空过」的那条判据**—— `05-exec/r305_wiring_headroom.py`。 【r310 裁决=已落地｜r310 改判：已落地。05-exec/r305_wiring_headroom.py 在库且被引用两处：① 迁移方案 r306 附节把「C5-原（无判别力）+C5-替代（接线余量）」写成正式口径；② r306/r308 两次落地前都跑过它（现实接线 280B≤余量 2199 ⇒ fits）。两腿（成员超量必 exceeds / 面外 ignored=1）仍在其 --selftest 内。r129 登记在案（未声明 0）。】
 立它的理由（接 R304-2）：方案 §4 的 C5 成员面**不含被换装的两件** ⇒ 对它们零约束（派发件自证为空过）。本件把约束换成**真能比较的东西**：
 换装本身（两件 SKILL.md 与其侧车）不进注入面 ⇒ 不计字节；真正会动注入面的是**接线**（往成员件里加/改路由行）⇒ 判据 = 接线增量 ≤ 余量。
 现读刻度（不写字面量，读常量件 inject_budget）：成员 5 条、live **63337**、cap **65536**、余量 **2199**；
@@ -772,7 +772,7 @@ fm 读数不变（2.1.0 / 1.1.0 / 1.4.2）；A-prompt-better 规格五腿全 ok�
    （改受管根件跑覆盖它的 spec（现 4 件）/ 主动升级后重生成吸收基准 / 注册表 lag 由合规提交带走且读数带观测时刻）。
    维护件死链面复跑 [GATE:deadlink-pass]、r119 [MIGGUARD:PASS]。
 读数汇总：_temp/r307lead/audit_summary.md（审查表+复跑逐字+SOP 指针）。
-- [ ] **R307-2（r307 登记，P0）** **推翻我自己 r304/r305 的两条环境判定：inspect.mjs 能跑（findChrome 候选含 msedge、本机 Edge 在位；rc=1 是 exit(fails?1:0) 的设计语义，实测出三视口量测+7截图+report.json）、assets.mjs 本体可跑（rc=2 是用法提示、零外部依赖，rc=124 只是带参联网取图超时）⇒ F 臂换装硬卡点清零，只剩备料与落地。教训：脚本 rc≠0 先读退出语义与依赖结构，别记成环境受阻**：一手（r307，Lead 当场实测，**推翻我自己 r304/r305 的两条判定**）：F 臂（frontend-skill）4 个环境卡点解了 3 个。
+- [ ] **R307-2（r307 登记，P0）** **推翻我自己 r304/r305 的两条环境判定：inspect.mjs 能跑（findChrome 候选含 msedge、本机 Edge 在位；rc=1 是 exit(fails?1:0) 的设计语义，实测出三视口量测+7截图+report.json）、assets.mjs 本体可跑（rc=2 是用法提示、零外部依赖，rc=124 只是带参联网取图超时）⇒ F 臂换装硬卡点清零，只剩备料与落地。教训：脚本 rc≠0 先读退出语义与依赖结构，别记成环境受阻**：一手（r307，Lead 当场实测，**推翻我自己 r304/r305 的两条判定**）：F 臂（frontend-skill）4 个环境卡点解了 3 个。 【r310 裁决=已落地｜r310 改判：已落地——本条推翻的两条假卡点直接促成第二件换装：r308 F 臂 payload 37 件含当时解锁的charts.js/base.js/assets.mjs/inspect.mjs；inspect 的 Edge 路径在 r308 落地后又被锚题实验二次复用（Y2 臂运行）。教训「脚本 rc≠0 先读退出语义与依赖结构」已进迁移方案 r307 附节与 GM。】
 做法：把 B1 取回的候选件放进**真目录结构**（scripts/ + scripts/lib/）再跑 —— 不是我 r304 那样单文件跑（那种跑法必然找不到相对依赖）。
 ① **inspect.mjs「本机无 Chrome」是假卡点**：它 import lib/cdp.mjs，cdp.findChrome 的候选清单**含 msedge**，
    本机 C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe 实测 FOUND（Chrome 三路径均 absent）；
@@ -801,7 +801,7 @@ fm 读数不变（2.1.0 / 1.1.0 / 1.4.2）；A-prompt-better 规格五腿全 ok�
   看门狗面外（version_scan）所以加文件不触假绿；下次扫描前先把今日这份 cp 一份带日期的。
 取值：cd _repro/r304a && python -B r304_quarterly_version_scan.py（末行 [R304:SCAN]）；
 逐对现值：gh api repos/<repo>/contents/<path> --jq .sha 对 _repro/r303a/absorption_baseline.json 的 upstream_file_sha。
-- [ ] **R307-4（r307 登记，P0）** **需求6执行级A/B对指南件恒在量程外：真臂 delta=not_applicable（commands 0/0，我独立标尺同读数）、腿A伪件+200%证明尺在数东西；r281 的 22.22% 靠「新增真可跑命令」、指南件无同类⇒不可外推 ⇒ 指南型换装的验收只能走内容层或造锚题双臂执行，「≥30%」用文本A/B对这类件根本产不出数（收紧我自己此前的口径）**：一手（r307，派发件 24110d0b 交付 + 我独立复跑真臂与腿 A 逐字一致 + 我先立了独立标尺对照）：
+- [ ] **R307-4（r307 登记，P0）** **需求6执行级A/B对指南件恒在量程外：真臂 delta=not_applicable（commands 0/0，我独立标尺同读数）、腿A伪件+200%证明尺在数东西；r281 的 22.22% 靠「新增真可跑命令」、指南件无同类⇒不可外推 ⇒ 指南型换装的验收只能走内容层或造锚题双臂执行，「≥30%」用文本A/B对这类件根本产不出数（收紧我自己此前的口径）**：一手（r307，派发件 24110d0b 交付 + 我独立复跑真臂与腿 A 逐字一致 + 我先立了独立标尺对照）： 【r310 裁决=已落地｜r310 改判：已落地且被本条的后继读数部分推翻（如实分两层）。本条核心限定仍成立：指南件的**文本 A/B** 恒 na（commands 0/0，独立标尺同读数）——这一半永久有效。但「两尺皆失灵、≥30% 只能等锚题」的后半已被 r309/r310 推进：判别性锚题出了首个非 na 读数（before=7/8 after=8/8 delta=+14.29%，n=1 观测点、归因=执行体自报保真度）。⇒ 本条以「已落地+被后继精化」关闭；引用需求 6 时以 R310-1 的观测点纪律为准（14.29% 不得写成换装收益）。】
 **需求 6 的执行级 A/B 对「指南性件」恒在量程之外** —— 这是本轮对任务级 30% 说法最硬的一条限定。
 读数（我复跑）：真臂 [R307A:AB] method=r281 five_items=4/5 q_a=0 q_b=0 delta=not_applicable verdict=na；
 腿 A（伪件 after 多两条命令）q_a=1 q_b=3 delta=+200.00% verdict=reported ⇒ 尺真的在数东西，na 不是恒 0 假平。
