@@ -112,6 +112,29 @@ def build(project, budget_file=""):
     }
 
 
+
+
+def root_doc_files(root):
+    names = ["README.md", "AGENTS.md", "AGENTS.local.md", "CLAUDE.md", "TODO.md"]
+    out = []
+    for n in names:
+        p = os.path.join(root, n)
+        if os.path.isfile(p):
+            out.append((n, os.path.getsize(p)))
+    return out
+
+
+def check_root_docs(root, budget):
+    cap = budget.get("root_doc_max")
+    if not isinstance(cap, int) or cap <= 0:
+        return None, [], None
+    over, checked = [], []
+    for name, size in root_doc_files(root):
+        checked.append({"file": name, "bytes": size, "cap": cap, "over": size > cap})
+        if size > cap:
+            over.append({"file": name, "bytes": size, "cap": cap})
+    return over, checked, cap
+
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--root", default=ROOT_DEFAULT)
@@ -139,7 +162,21 @@ def main(argv=None):
         rc = 1
     else:
         print("[GOVTIER:PASS] 全部分层且计数自洽（sum(tiers) == total == %d）" % doc["total_n"])
-        rc = 0
+        # build() 不返回 budget 平铺视图（值嵌在 tiers[].values 里）⇒ 这里现拼一份，避免我又按想象取键。
+        _budget = {}
+        for _tier in (doc.get("tiers") or {}).values():
+            _budget.update(_tier.get("values") or {})
+        over, checked, cap = check_root_docs(os.path.abspath(args.root), _budget)
+        doc["root_doc_check"] = {"cap": cap, "checked": checked, "over": over}
+        if cap is None:
+            print("[GOVTIER:ROOTDOC-UNVERIFIED] root_doc_max 不在阈值册 => 逐件腿不可判（禁按通过记）")
+            rc = 2
+        elif over:
+            print("[GOVTIER:ROOTDOC-OVER] %d 件超 root_doc_max=%d：%s" % (len(over), cap, ", ".join(x["file"] + "(" + str(x["bytes"]) + "B)" for x in over)))
+            rc = 1
+        else:
+            print("[GOVTIER:ROOTDOC-OK] %d 件均在 root_doc_max=%d 内" % (len(checked), cap))
+            rc = 0
     if args.out:
         with io.open(args.out, "w", encoding="utf-8", newline="\n") as f:
             json.dump(doc, f, ensure_ascii=False, indent=1)

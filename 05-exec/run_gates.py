@@ -1567,7 +1567,7 @@ GATES = [
         # r220：markdown 相对链接死链面（第 95 门）—— 落 R220-3：索引卷迁进 memory/ 后落到所有门面外，30 条死链活了 45 轮
         "id": "md_deadlink_face",
         "script": "r220_md_deadlink.py",
-        "argv": [".", "--json", "06-benchmark/gate_run_md_deadlink_latest.json"],
+        "argv": [".", "--exclude=_repro/*/evidence/*", "--json", "06-benchmark/gate_run_md_deadlink_latest.json"],
         "pass_token": "[GATE:deadlink-pass]",
         "portable": False,
         "not_portable_reason":

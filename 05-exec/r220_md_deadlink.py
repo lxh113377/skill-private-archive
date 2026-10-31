@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """围栏感知死链扫描 + 内建正反两腿自证。"""
-import io, os, re, subprocess, sys
+import fnmatch, io, os, re, subprocess, sys
 
 LINK = re.compile(r'\[[^\]]*\]\(\s*([^)\s]+?)(?:\s+"[^"]*")?\s*\)')
 
@@ -213,7 +213,12 @@ def main():
         if x.startswith('--exclude='):
             excl = [q.strip().rstrip('/') for q in x.split('=', 1)[1].split(',') if q.strip()]
     if excl:
-        kept = [f for f in face_files if not any(f.replace(os.sep, '/').startswith(q) for q in excl)]
+        # r329（R321-1 兑现）：把前缀匹配升级为 fnmatch，支持 `_repro/*/evidence/*` 这类通配形态。
+        # 旧实现 `startswith(q)` 只能逐条硬写 rNN 目录名 ⇒ 下一轮新快照目录再红一次（r321 实测）。
+        # 同时保留「必须真的划出东西」的透明打印与分母同步扣减（否则划出 0 件等于判据空转）。
+        def _hit(path, pat):
+            return fnmatch.fnmatch(path, pat) or path.startswith(pat)
+        kept = [f for f in face_files if not any(_hit(f.replace(os.sep, '/'), q) for q in excl)]
         print('[EXCLUDE] 前缀=%s 划出 %d 件、留 %d 件（分母同步扣减）' % (excl, len(face_files) - len(kept), len(kept)))
         face_files = kept
         md = sum(1 for x in face_files if x.endswith('.md'))
