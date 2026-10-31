@@ -1,0 +1,49 @@
+{
+ "round1": {
+  "task2|X": {
+   "item4_first30": 1,
+   "item5_no_fabricated": 1,
+   "item6_scope": 1,
+   "item8_consistent": 0,
+   "item8_fake_sections": [
+    "anti_patterns"
+   ],
+   "item4_frac": 0.16,
+   "item8_support": "11/12"
+  },
+  "task2|Y": {
+   "item4_first30": 1,
+   "item5_no_fabricated": 1,
+   "item6_scope": 1,
+   "item8_consistent": 1,
+   "item8_fake_sections": [],
+   "item4_frac": 0.144,
+   "item8_support": "12/12"
+  },
+  "task3|X": {
+   "item4_first30": 1,
+   "item5_no_fabricated": 1,
+   "item6_scope": 1,
+   "item8_consistent": 1,
+   "item8_fake_sections": [],
+   "item4_frac": 0.274,
+   "item8_support": "12/12"
+  },
+  "task3|Y": {
+   "item4_first30": 1,
+   "item5_no_fabricated": 1,
+   "item6_scope": 1,
+   "item8_consistent": 1,
+   "item8_fake_sections": [],
+   "item4_frac": 0.264,
+   "item8_support": "10/12"
+  }
+ },
+ "round2": {},
+ "pending": [
+  "X2b",
+  "Y2b",
+  "X3b",
+  "Y3b"
+ ]
+}
