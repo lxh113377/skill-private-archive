@@ -1,0 +1,3775 @@
+{
+ "schema": "_r319a-entry-scan-1",
+ "head_sha": "e8f489ebcf788f9b4f258ab96bb6c3cf465c5b25",
+ "tree_source": "recon_rows(_recon_rows.json)",
+ "tree_rows": 16509,
+ "skills": 52,
+ "broken_total": 10,
+ "orphan_total": 624,
+ "orphan_bytes_total": 4895569,
+ "orphan_kb_total": 4781,
+ "no_entry": [],
+ "skip_histogram": {
+  "no_dir": 48866,
+  "no_ext": 528,
+  "empty": 383,
+  "absolute": 1567,
+  "ext_not_routable": 33,
+  "outside_slug": 77,
+  "url_scheme": 111,
+  "upstream_mirror": 6,
+  "repo_root_ref": 1,
+  "parent_jump": 4,
+  "outside_repo": 2
+ },
+ "skip_samples": {
+  "no_dir": [
+   "---",
+   "name:",
+   "data-analysis",
+   "---",
+   "name:",
+   "rag-eval",
+   "---",
+   "name:",
+   "commit-archaeologist",
+   "---",
+   "name:",
+   "scope-creep-detector",
+   "---",
+   "name:",
+   "algorithmic-art",
+   "---",
+   "name:",
+   "brand-guidelines",
+   "---",
+   "name:",
+   "canvas-design",
+   "---",
+   "name:",
+   "doc-coauthoring",
+   "---",
+   "name:",
+   "docx",
+   "---",
+   "name:",
+   "frontend-design",
+   "---",
+   "name:",
+   "internal-comms",
+   "---",
+   "name:",
+   "mcp-builder",
+   "---",
+   "name:",
+   "pdf",
+   "---",
+   "name:",
+   "theme-factory",
+   "---",
+   "name:",
+   "xlsx",
+   "---",
+   "name:",
+   "chart-visualization",
+   "---",
+   "name:",
+   "gstack",
+   "---",
+   "name:",
+   "diagram-maker",
+   "---",
+   "name:",
+   "figma",
+   "---",
+   "name:",
+   "hyperframes",
+   "---",
+   "name:",
+   "hyperframes-cli",
+   "---",
+   "name:",
+   "hyperframes-media",
+   "---",
+   "name:",
+   "hyperframes-registry",
+   "---",
+   "name:",
+   "ppt-master",
+   "---",
+   "name:",
+   "html-ppt",
+   "---",
+   "name:",
+   "grill-me",
+   "---",
+   "name:",
+   "ui-ux-pro-max",
+   "---",
+   "name:",
+   "brainstorming",
+   "---",
+   "name:",
+   "subagent-driven-development",
+   "---",
+   "name:",
+   "test-driven-development",
+   "---",
+   "name:",
+   "verification-before-completion",
+   "---",
+   "name:",
+   "writing-plans",
+   "---",
+   "name:",
+   "coding-agent",
+   "---",
+   "name:",
+   "oracle",
+   "---",
+   "name:",
+   "agent-browser",
+   "---",
+   "name:",
+   "electron",
+   "---",
+   "name:",
+   "find-skills",
+   "---",
+   "name:",
+   "story",
+   "---",
+   "name:",
+   "story-cover",
+   "---",
+   "name:",
+   "story-deslop",
+   "---",
+   "name:",
+   "story-import",
+   "---",
+   "name:",
+   "story-long-analyze",
+   "---",
+   "name:",
+   "story-long-write",
+   "---",
+   "name:",
+   "story-review",
+   "---",
+   "name:",
+   "story-scan",
+   "---",
+   "name:",
+   "story-setup",
+   "---",
+   "name:",
+   "story-short-analyze",
+   "---",
+   "name:",
+   "story-short-write",
+   "---",
+   "name:",
+   "frontend-slides",
+   "---",
+   "name:",
+   "A-prompt-better",
+   "---",
+   "name:",
+   "frontend-skill",
+   "---",
+   "name:",
+   "security-audit"
+  ],
+  "no_ext": [
+   "Excel/CSV",
+   "Excel/CSV",
+   "missingness/leakage",
+   "latency/throughput",
+   "scripts/eval",
+   "scripts/eval",
+   "intent/path",
+   "philosophy/generative",
+   "colors/fonts",
+   "Poppins/Lora",
+   "Arial/Georgia",
+   "art/posters/print",
+   "philosophy/aesthetic",
+   "movie/game/book",
+   "anthropics/skills",
+   "15071/15071",
+   "pdf/docx/xlsx/pptx",
+   "insert/replace",
+   "anthropics/skills",
+   "skills/docx",
+   "HTML/CSS/layouts",
+   "styling/beautifying",
+   "Symmetry/safety",
+   "Progress/Plans/Problems",
+   "Node/TypeScript",
+   "filter/paginate",
+   "modelcontextprotocol/server",
+   "text/tables",
+   "encrypting/decrypting",
+   "Sub/Superscripts",
+   "colors/fonts",
+   "deck/artifact",
+   "font/color",
+   "add/edit",
+   "DIV/0",
+   "DIV/0",
+   "antvis/chart-visualization-skills",
+   "module/directory",
+   "SETUP/Pick",
+   ".claude/skills/gstack/bin/gstack-update-check",
+   "software/cloud/infra",
+   "editable/collaborative:",
+   "opening/parsing",
+   "utilities/design-system",
+   "import/add",
+   "frame/layer",
+   "J/L",
+   "assets/fonts/",
+   "init/lint/inspect/preview/render",
+   "build/render",
+   "bubbles/containers",
+   "CI/agents",
+   "audio/video",
+   "audio/video",
+   "SRT/VTT",
+   "heygen-com/hyperframes",
+   "CI/headless",
+   "compositions/components/",
+   "Brand/Style/Layout/Deck",
+   "narrated/self-running",
+   "hugohe3/ppt-master",
+   "pitch/report/sharing",
+   "HTML/CSS/JS",
+   "assets/themes/",
+   "Read/Grep",
+   "UI/UX",
+   "systems/tokens",
+   "copy/microcopy",
+   "purpose/constraints/success",
+   "docs/superpowers/specs/YYYY-MM-DD-",
+   "Companion\\n",
+   "obra/superpowers",
+   "Critical/Important",
+   "obra/superpowers",
+   "RED\\nWrite",
+   "fails\\ncorrectly",
+   "GREEN\\nMinimal",
+   "obra/superpowers",
+   "repos/obra/superpowers",
+   "HM/WB/CX/TC/ZC/OC",
+   "docs/superpowers/plans/YYYY-MM-DD-",
+   "technologies/libraries",
+   "spec/design",
+   "anthropic-ai/claude-code",
+   "openai/codex",
+   "completion/failure",
+   "review/debug/refactor/design",
+   "steipete/oracle",
+   "steipete/oracle",
+   "vercel-labs/agent-browser",
+   "snapshot/get/eval",
+   "e\\d",
+   "vercel-labs/agent-browser",
+   "microsoft/playwright",
+   "1/2",
+   "vercel-labs/skills",
+   "vercel-labs/skills",
+   "owner/repo",
+   "Claude/OpenCode",
+   "Agent/Task",
+   ".claude/agents/",
+   ".claude/agents/",
+   ".opencode/agents/",
+   ".codex/agents/",
+   ".claude/agents/",
+   ".opencode/agents/",
+   ".codex/agents/",
+   ".claude/agents/",
+   ".opencode/agents/",
+   ".codex/agents/",
+   ".claude/agents/",
+   ".opencode/agents/",
+   ".codex/agents/",
+   "full/lean",
+   ".claude/agents/",
+   ".opencode/agents/",
+   "PC/CDP",
+   "API/Bearer",
+   "ab/sleep/evalJSON/safeStr/scrollLoad/getArg",
+   "hooks/agents/config",
+   ".codex/agents/",
+   ".zcode/skills/",
+   "50/100",
+   "2/3",
+   ".claude/agents/",
+   ".opencode/agents/",
+   ".codex/agents/",
+   "PPT/PPTX",
+   "Letterboxing/pillarboxing",
+   "px/rem",
+   "2/3",
+   "2/3",
+   "MJ/SD/FLUX",
+   "Leonxlnx/taste-skill",
+   "text/action",
+   "sticky/fixed",
+   "trailofbits/skills",
+   "repos/trailofbits/skills",
+   "cloudflare/security-audit-skill"
+  ],
+  "empty": [
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":",
+   ":"
+  ],
+  "absolute": [
+   "/",
+   "/",
+   "/mnt/user-data/uploads/",
+   "/",
+   "/",
+   "\\",
+   "/path/to/repo",
+   "/path/to/repo",
+   "/path/to/repo",
+   "\\",
+   "/path/to/repo",
+   "/",
+   "/",
+   "//",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/question",
+   "/answer",
+   "/qa_pair",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/",
+   "\\",
+   "/office-hours",
+   "/plan-ceo-review",
+   "/plan-eng-review",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/div",
+   "/",
+   "/",
+   "/scripts/attribution_guard.py",
+   "/workflows/routing.md",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/HARD-GATE",
+   "/Checklist/Process",
+   "/",
+   "/",
+   "/deferred",
+   "/Good",
+   "/Bad",
+   "/Good",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/glob",
+   "/",
+   "/",
+   "/",
+   "/",
+   "//",
+   "//",
+   "//",
+   "/",
+   "/",
+   "/plugin",
+   "/story",
+   "/story",
+   "/",
+   "/story-cover",
+   "/",
+   "/story-deslop",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/story-import",
+   "/",
+   "/",
+   "/story-long-analyze",
+   "/story-long-write",
+   "/",
+   "/",
+   "/",
+   "/story-review",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/story-short-write",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/",
+   "/scripts/lint.mjs",
+   "/scripts/inspect.mjs",
+   "/",
+   "/",
+   "/"
+  ],
+  "ext_not_routable": [
+   ".xlsx/.xls",
+   "CSV/JSON/Markdown.",
+   "mistralai/mixtral-8x22b-instruct-v0.1",
+   "CSV/JSONL/etc.",
+   "word/_rels/document.xml.rels",
+   "Read/import.",
+   "DOCX/PPTX.",
+   "Leonxlnx/taste-skill.",
+   "modelcontextprotocol/sdk/...",
+   "colors/fonts.",
+   "Percentage/Progress.",
+   "plan/task.",
+   "alert/confirm/prompt.",
+   "SVG/HTML.",
+   "./diagram.excalidraw",
+   "assets/...",
+   "renders/name_timestamp.mp4",
+   "DaVinci/Premiere/FCP.",
+   "CSS/GSAP.",
+   "1e/2.9",
+   "screens/sections.",
+   "inspiration/standards.",
+   "./...",
+   "./...",
+   "./...",
+   "exact/path/to/existing.py:123-145",
+   "tests/path/test.py::test_name",
+   "tests/path/test.py::test_name",
+   "shell/session.",
+   "GPT-5.5/5.4/5.2/5.1",
+   "C:\\\\path\\\\to\\\\app.exe",
+   "talk/pitch.",
+   "CSS/JS."
+  ],
+  "outside_slug": [
+   "scripts/eval/pyproject.toml",
+   "docs/api_reference/openapi_schema_rag_server.json",
+   "docs/api_reference/openapi_schema_ingestor_server.json",
+   "src/cache.py",
+   "src/cache.py",
+   "templates/report-standard.docx",
+   "templates/memo.docx",
+   "templates/contract.docx",
+   "./reference/mcp_best_practices.md",
+   "./reference/node_mcp_server_v2.md",
+   "./reference/node_mcp_server.md",
+   ".xlsx/.xlsm/.csv",
+   ".xlsx/.xlsm/.csv",
+   "recalc_out/output.xlsx",
+   "./scripts/generate.js",
+   "./diagram.html",
+   "lib/main-module.mjs",
+   "eval/skill_size_report.py",
+   "./references/install-locations.md",
+   "compositions/data-chart.html",
+   "./references/wiring-blocks.md",
+   "./scripts/new-deck.sh",
+   "./scripts/render.sh",
+   "./scripts/render.sh",
+   "eval/truth_constants.json",
+   "path/to/test.test.ts",
+   "path/to/test.test.ts",
+   "deliverables/_number_ledger.jsonl",
+   "exact/path/to/file.py",
+   "tests/exact/path/to/test.py",
+   "exact/path/to/file.py",
+   "src/index.ts",
+   ".codex/config.toml",
+   ".codex/hooks.json",
+   ".zcode/config.json",
+   "my-deck/index.html",
+   "my-deck/logo.png",
+   "sub/out.pdf",
+   "css/custom.css",
+   "path/to/index.html",
+   "path/to/index.html",
+   "charts.js/base.js/assets.mjs/inspect.mjs"
+  ],
+  "url_scheme": [
+   "https://github.com/NVIDIA-AI-Blueprints/rag",
+   "localhost:8081",
+   "http://host:port",
+   "https://github.com/Shubhamsaboo/awesome-llm-apps",
+   "https://github.com/Shubhamsaboo/awesome-llm-apps",
+   "https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js",
+   "https://example.com",
+   "xml:space",
+   "xml:space",
+   "https://modelcontextprotocol.io/sitemap.xml",
+   "https://modelcontextprotocol.io/specification/draft.md",
+   "https://raw.githubusercontent.com/modelcontextprotocol/typescript-sdk/main/README.md",
+   "https://github.com/antvis/chart-visualization-skills",
+   "https://github.com/antvis/chart-visualization-skills/blob/master/LICENSE",
+   "gen:skill-docs",
+   "https://garryslist.org/posts/boil-the-ocean",
+   "https://garryslist.org/posts/boil-the-ocean",
+   "http://localhost:",
+   "http://localhost:3017/",
+   "position:absolute",
+   "inset:0",
+   "position:absolute",
+   "https://raw.githubusercontent.com/heygen-com/hyperframes/main/registry",
+   "https://raw.githubusercontent.com/heygen-com/hyperframes/main/registry/registry.json",
+   "https://github.com/hugohe3/ppt-master",
+   "https://github.com/lewislulu/html-ppt-skill",
+   "idx:N",
+   "display:none",
+   "https://github.com/mattpocock/skills",
+   "https://github.com/obra/superpowers",
+   "superpowers:systematic-debugging",
+   "superpowers:verification-before-completion",
+   "superpowers:using-git-worktrees",
+   "superpowers:subagent-driven-development",
+   "superpowers:executing-plans",
+   "background:true",
+   "pty:true",
+   "pty:true",
+   "https://askoracle.dev",
+   "host:port",
+   "env:LOCALAPPDATA\\slack\\slack.exe",
+   "https://github.com/worldwonderer/oh-story-claudecode",
+   "https://api.github.com/repos/worldwonderer/oh-story-claudecode/releases/latest",
+   "https://github.com/worldwonderer/oh-story-claudecode/releases",
+   "https://github.com/worldwonderer/oh-story-claudecode",
+   "https://github.com/worldwonderer/oh-story-claudecode",
+   "https://github.com/worldwonderer/oh-story-claudecode",
+   "https://github.com/worldwonderer/oh-story-claudecode",
+   "https://github.com/worldwonderer/oh-story-claudecode",
+   "https://github.com/worldwonderer/oh-story-claudecode",
+   "https://github.com/worldwonderer/oh-story-claudecode",
+   "https://github.com/worldwonderer/oh-story-claudecode",
+   "https://github.com/worldwonderer/oh-story-claudecode",
+   "https://github.com/worldwonderer/oh-story-claudecode",
+   "https://nodejs.org",
+   "https://vercel.com/signup",
+   "https://vercel.com/dashboard",
+   "masterpiece:1.2",
+   "quality:1.2",
+   "quality:1.2",
+   "https://github.com/trailofbits/skills",
+   "admin:admin",
+   "file:line"
+  ],
+  "upstream_mirror": [
+   "skills/pdf/SKILL.md",
+   "skills/ui-ux-pro-max/references/upstream-skill-content.md",
+   "skills/ui-ux-pro-max/scripts/design_system.py",
+   "skills/brainstorming/visual-companion.md",
+   "skills/oracle/SKILL.md",
+   ".claude/settings.local.json"
+  ],
+  "repo_root_ref": [
+   "hyperframes/references/transcript-guide.md"
+  ],
+  "parent_jump": [
+   "../hyperframes/references/transcript-guide.md",
+   "../assets/themes/aurora.css",
+   "../assets/animations/fx-runtime.js",
+   "../assets/runtime.js"
+  ],
+  "outside_repo": [
+   "D:/global_memory/core/rule36_done_needs_confidence.md",
+   "D:\\global_memory\\prompts\\workflow_seven_step.md"
+  ]
+ },
+ "court": {
+  "verdict": "pass",
+  "log": [
+   "POS coding-agent@HEAD broken=0 orphans=0 files=9 => pass",
+   "orphan TRY coding-agent@a0092c9c~1 broken=0 orphans=4 files=9",
+   "orphan USE coding-agent@a0092c9c~1 orphans=4 source=draft_rev",
+   "broken TRY frontend-skill@0fcf7842~1 broken=0 orphans=0 files=4",
+   "broken TRY frontend-skill@0fcf7842~1~1 broken=0 orphans=0 files=4",
+   "broken TRY frontend-skill@0fcf7842~1~2 broken=0 orphans=0 files=4",
+   "broken TRY frontend-skill@0fcf7842~1~3 broken=0 orphans=0 files=4",
+   "broken TRY frontend-skill@0fcf7842~1~4 broken=0 orphans=0 files=3",
+   "broken TRY coding-agent@e8f489ebc (recent commit) broken=0 orphans=0",
+   "broken TRY coding-agent@a0092c9c9 (recent commit) broken=0 orphans=0",
+   "broken TRY A-prompt-better@f39eb3c0d (recent commit) broken=0 orphans=0",
+   "broken TRY A-prompt-better@17cc0c811 (recent commit) broken=0 orphans=0",
+   "broken TRY A-prompt-better@3d3bb0a98 (recent commit) broken=0 orphans=0",
+   "broken TRY security-audit@221c548bf (recent commit) broken=0 orphans=0",
+   "broken TRY security-audit@a9a98ba69 (recent commit) broken=0 orphans=0",
+   "broken SUBSTITUTED html-ppt@HEAD broken=1 source=substituted_current_state（草稿 rev 与近史均未报出该轴，改用 HEAD 可复现缺陷态）"
+  ],
+  "positive": {
+   "case": "coding-agent@HEAD",
+   "broken": 0,
+   "orphans": 0,
+   "pass": true
+  },
+  "negative_orphan": {
+   "case": "coding-agent@a0092c9c~1",
+   "axis": "orphan",
+   "n": 4,
+   "items": [
+    "references/dispatch-and-poll.md",
+    "references/multi-task-queues.md",
+    "references/review-and-land.md",
+    "references/writing-the-brief.md"
+   ],
+   "broken": 0,
+   "orphans": 4,
+   "files": 9,
+   "source": "draft_rev"
+  },
+  "negative_broken": {
+   "case": "html-ppt@HEAD",
+   "axis": "broken",
+   "n": 1,
+   "items": [
+    "examples/my-talk/index.html"
+   ],
+   "broken": 1,
+   "orphans": 15,
+   "files": 227,
+   "source": "substituted_current_state"
+  },
+  "legA": {
+   "ok": true,
+   "slug": "ppt-master",
+   "path": "scripts/docs/svg-pipeline.md",
+   "base": 171,
+   "injected": 170,
+   "recheck": 171,
+   "why": ""
+  },
+  "legB": {
+   "ok": true,
+   "slug": "coding-agent",
+   "probe": "references/_neg_probe_r319a_missing.md",
+   "base": 0,
+   "injected": 1,
+   "after_fake_tree": 0
+  }
+ },
+ "per_skill": [
+  {
+   "slug": "data-analysis",
+   "tree_files": 26,
+   "entry_bytes": 10161,
+   "broken": [],
+   "orphans": [
+    {
+     "path": "assets/report_template.md",
+     "bytes": 7873
+    },
+    {
+     "path": "references/bioinformatics_genomics_formats.md",
+     "bytes": 8977
+    },
+    {
+     "path": "references/chemistry_molecular_formats.md",
+     "bytes": 8732
+    },
+    {
+     "path": "references/general_scientific_formats.md",
+     "bytes": 12276
+    },
+    {
+     "path": "references/microscopy_imaging_formats.md",
+     "bytes": 9305
+    },
+    {
+     "path": "references/proteomics_metabolomics_formats.md",
+     "bytes": 9821
+    },
+    {
+     "path": "references/spectroscopy_analytical_formats.md",
+     "bytes": 9555
+    }
+   ],
+   "orphan_bytes": 66539
+  },
+  {
+   "slug": "rag-eval",
+   "tree_files": 13,
+   "entry_bytes": 9592,
+   "broken": [],
+   "orphans": [],
+   "orphan_bytes": 0
+  },
+  {
+   "slug": "commit-archaeologist",
+   "tree_files": 7,
+   "entry_bytes": 5536,
+   "broken": [],
+   "orphans": [],
+   "orphan_bytes": 0
+  },
+  {
+   "slug": "scope-creep-detector",
+   "tree_files": 7,
+   "entry_bytes": 5180,
+   "broken": [],
+   "orphans": [],
+   "orphan_bytes": 0
+  },
+  {
+   "slug": "algorithmic-art",
+   "tree_files": 7,
+   "entry_bytes": 19809,
+   "broken": [],
+   "orphans": [],
+   "orphan_bytes": 0
+  },
+  {
+   "slug": "brand-guidelines",
+   "tree_files": 5,
+   "entry_bytes": 2275,
+   "broken": [],
+   "orphans": [],
+   "orphan_bytes": 0
+  },
+  {
+   "slug": "canvas-design",
+   "tree_files": 86,
+   "entry_bytes": 12416,
+   "broken": [],
+   "orphans": [
+    {
+     "path": "canvas-fonts/ArsenalSC-OFL.txt",
+     "bytes": 4373
+    },
+    {
+     "path": "canvas-fonts/BigShoulders-OFL.txt",
+     "bytes": 4397
+    },
+    {
+     "path": "canvas-fonts/Boldonse-OFL.txt",
+     "bytes": 4390
+    },
+    {
+     "path": "canvas-fonts/BricolageGrotesque-OFL.txt",
+     "bytes": 4403
+    },
+    {
+     "path": "canvas-fonts/CrimsonPro-OFL.txt",
+     "bytes": 4394
+    },
+    {
+     "path": "canvas-fonts/DMMono-OFL.txt",
+     "bytes": 4392
+    },
+    {
+     "path": "canvas-fonts/EricaOne-OFL.txt",
+     "bytes": 4410
+    },
+    {
+     "path": "canvas-fonts/GeistMono-OFL.txt",
+     "bytes": 4388
+    },
+    {
+     "path": "canvas-fonts/Gloock-OFL.txt",
+     "bytes": 4381
+    },
+    {
+     "path": "canvas-fonts/IBMPlexMono-OFL.txt",
+     "bytes": 4363
+    },
+    {
+     "path": "canvas-fonts/InstrumentSans-OFL.txt",
+     "bytes": 4403
+    },
+    {
+     "path": "canvas-fonts/Italiana-OFL.txt",
+     "bytes": 4394
+    },
+    {
+     "path": "canvas-fonts/JetBrainsMono-OFL.txt",
+     "bytes": 4399
+    },
+    {
+     "path": "canvas-fonts/Jura-OFL.txt",
+     "bytes": 4380
+    },
+    {
+     "path": "canvas-fonts/LibreBaskerville-OFL.txt",
+     "bytes": 4449
+    },
+    {
+     "path": "canvas-fonts/Lora-OFL.txt",
+     "bytes": 4423
+    },
+    {
+     "path": "canvas-fonts/NationalPark-OFL.txt",
+     "bytes": 4399
+    },
+    {
+     "path": "canvas-fonts/NothingYouCouldDo-OFL.txt",
+     "bytes": 4363
+    },
+    {
+     "path": "canvas-fonts/Outfit-OFL.txt",
+     "bytes": 4389
+    },
+    {
+     "path": "canvas-fonts/PixelifySans-OFL.txt",
+     "bytes": 4395
+    },
+    {
+     "path": "canvas-fonts/PoiretOne-OFL.txt",
+     "bytes": 4366
+    },
+    {
+     "path": "canvas-fonts/RedHatMono-OFL.txt",
+     "bytes": 4394
+    },
+    {
+     "path": "canvas-fonts/Silkscreen-OFL.txt",
+     "bytes": 4394
+    },
+    {
+     "path": "canvas-fonts/SmoochSans-OFL.txt",
+     "bytes": 4396
+    },
+    {
+     "path": "canvas-fonts/Tektur-OFL.txt",
+     "bytes": 4385
+    },
+    {
+     "path": "canvas-fonts/WorkSans-OFL.txt",
+     "bytes": 4397
+    },
+    {
+     "path": "canvas-fonts/YoungSerif-OFL.txt",
+     "bytes": 4398
+    }
+   ],
+   "orphan_bytes": 118615
+  },
+  {
+   "slug": "doc-coauthoring",
+   "tree_files": 3,
+   "entry_bytes": 7273,
+   "broken": [],
+   "orphans": [],
+   "orphan_bytes": 0
+  },
+  {
+   "slug": "docx",
+   "tree_files": 75,
+   "entry_bytes": 29488,
+   "broken": [],
+   "orphans": [],
+   "orphan_bytes": 0
+  },
+  {
+   "slug": "frontend-design",
+   "tree_files": 3,
+   "entry_bytes": 10198,
+   "broken": [],
+   "orphans": [],
+   "orphan_bytes": 0
+  },
+  {
+   "slug": "internal-comms",
+   "tree_files": 9,
+   "entry_bytes": 1551,
+   "broken": [],
+   "orphans": [],
+   "orphan_bytes": 0
+  },
+  {
+   "slug": "mcp-builder",
+   "tree_files": 14,
+   "entry_bytes": 11436,
+   "broken": [],
+   "orphans": [],
+   "orphan_bytes": 0
+  },
+  {
+   "slug": "pdf",
+   "tree_files": 16,
+   "entry_bytes": 13121,
+   "broken": [],
+   "orphans": [],
+   "orphan_bytes": 0
+  },
+  {
+   "slug": "theme-factory",
+   "tree_files": 16,
+   "entry_bytes": 3164,
+   "broken": [],
+   "orphans": [
+    {
+     "path": "themes/arctic-frost.md",
+     "bytes": 544
+    },
+    {
+     "path": "themes/botanical-garden.md",
+     "bytes": 519
+    },
+    {
+     "path": "themes/desert-rose.md",
+     "bytes": 496
+    },
+    {
+     "path": "themes/forest-canopy.md",
+     "bytes": 506
+    },
+    {
+     "path": "themes/golden-hour.md",
+     "bytes": 528
+    },
+    {
+     "path": "themes/midnight-galaxy.md",
+     "bytes": 513
+    },
+    {
+     "path": "themes/modern-minimalist.md",
+     "bytes": 549
+    },
+    {
+     "path": "themes/ocean-depths.md",
+     "bytes": 555
+    },
+    {
+     "path": "themes/sunset-boulevard.md",
+     "bytes": 558
+    },
+    {
+     "path": "themes/tech-innovation.md",
+     "bytes": 547
+    }
+   ],
+   "orphan_bytes": 5315
+  },
+  {
+   "slug": "xlsx",
+   "tree_files": 60,
+   "entry_bytes": 12038,
+   "broken": [],
+   "orphans": [],
+   "orphan_bytes": 0
+  },
+  {
+   "slug": "chart-visualization",
+   "tree_files": 29,
+   "entry_bytes": 3395,
+   "broken": [],
+   "orphans": [],
+   "orphan_bytes": 0
+  },
+  {
+   "slug": "gstack",
+   "tree_files": 174,
+   "entry_bytes": 27307,
+   "broken": [],
+   "orphans": [
+    {
+     "path": "qa/references/issue-taxonomy.md",
+     "bytes": 3619
+    },
+    {
+     "path": "qa/templates/qa-report-template.md",
+     "bytes": 2979
+    },
+    {
+     "path": "review/TODOS-format.md",
+     "bytes": 1660
+    },
+    {
+     "path": "review/checklist.md",
+     "bytes": 10178
+    },
+    {
+     "path": "review/design-checklist.md",
+     "bytes": 6605
+    },
+    {
+     "path": "review/greptile-triage.md",
+     "bytes": 8271
+    }
+   ],
+   "orphan_bytes": 33312
+  },
+  {
+   "slug": "diagram-maker",
+   "tree_files": 22,
+   "entry_bytes": 3639,
+   "broken": [],
+   "orphans": [
+    {
+     "path": "references/element-types.md",
+     "bytes": 8717
+    },
+    {
+     "path": "references/excalidraw-schema.md",
+     "bytes": 8419
+    },
+    {
+     "path": "scripts/README.md",
+     "bytes": 6537
+    }
+   ],
+   "orphan_bytes": 23673
+  },
+  {
+   "slug": "figma",
+   "tree_files": 10,
+   "entry_bytes": 3210,
+   "broken": [],
+   "orphans": [],
+   "orphan_bytes": 0
+  },
+  {
+   "slug": "hyperframes",
+   "tree_files": 136,
+   "entry_bytes": 11096,
+   "broken": [],
+   "orphans": [
+    {
+     "path": "assets/frame-presets/code-editorial/fonts/OFL-eb-garamond.txt",
+     "bytes": 4519
+    },
+    {
+     "path": "assets/frame-presets/code-editorial/fonts/OFL-inter.txt",
+     "bytes": 4477
+    },
+    {
+     "path": "assets/frame-presets/code-editorial/fonts/OFL-jetbrains-mono.txt",
+     "bytes": 4524
+    },
+    {
+     "path": "palettes/bold-energetic.md",
+     "bytes": 417
+    },
+    {
+     "path": "palettes/clean-corporate.md",
+     "bytes": 410
+    },
+    {
+     "path": "palettes/dark-premium.md",
+     "bytes": 389
+    },
+    {
+     "path": "palettes/jewel-rich.md",
+     "bytes": 394
+    },
+    {
+     "path": "palettes/monochrome.md",
+     "bytes": 454
+    },
+    {
+     "path": "palettes/nature-earth.md",
+     "bytes": 399
+    },
+    {
+     "path": "palettes/neon-electric.md",
+     "bytes": 380
+    },
+    {
+     "path": "palettes/pastel-soft.md",
+     "bytes": 392
+    },
+    {
+     "path": "palettes/warm-editorial.md",
+     "bytes": 411
+    },
+    {
+     "path": "references/animejs-adapter.md",
+     "bytes": 3309
+    },
+    {
+     "path": "references/css-animations-adapter.md",
+     "bytes": 3889
+    },
+    {
+     "path": "references/css-patterns.md",
+     "bytes": 8312
+    },
+    {
+     "path": "references/dynamic-techniques.md",
+     "bytes": 7812
+    },
+    {
+     "path": "references/lottie-adapter.md",
+     "bytes": 3397
+    },
+    {
+     "path": "references/text-effects.md",
+     "bytes": 4064
+    },
+    {
+     "path": "references/three-adapter.md",
+     "bytes": 3537
+    },
+    {
+     "path": "references/transcript-guide.md",
+     "bytes": 5864
+    },
+    {
+     "path": "references/transitions/catalog.md",
+     "bytes": 6290
+    },
+    {
+     "path": "references/transitions/css-3d.md",
+     "bytes": 421
+    },
+    {
+     "path": "references/transitions/css-blur.md",
+     "bytes": 1787
+    },
+    {
+     "path": "references/transitions/css-cover.md",
+     "bytes": 1448
+    },
+    {
+     "path": "references/transitions/css-destruction.md",
+     "bytes": 4484
+    },
+    {
+     "path": "references/transitions/css-dissolve.md",
+     "bytes": 2462
+    },
+    {
+     "path": "references/transitions/css-distortion.md",
+     "bytes": 1803
+    },
+    {
+     "path": "references/transitions/css-grid.md",
+     "bytes": 370
+    },
+    {
+     "path": "references/transitions/css-light.md",
+     "bytes": 2376
+    },
+    {
+     "path": "references/transitions/css-mechanical.md",
+     "bytes": 1613
+    },
+    {
+     "path": "references/transitions/css-other.md",
+     "bytes": 838
+    },
+    {
+     "path": "references/transitions/css-push.md",
+     "bytes": 1195
+    },
+    {
+     "path": "references/transitions/css-radial.md",
+     "bytes": 1060
+    },
+    {
+     "path": "references/transitions/css-scale.md",
+     "bytes": 715
+    },
+    {
+     "path": "references/typegpu-adapter.md",
+     "bytes": 6688
+    },
+    {
+     "path": "references/waapi-adapter.md",
+     "bytes": 3217
+    }
+   ],
+   "orphan_bytes": 94117
+  },
+  {
+   "slug": "hyperframes-cli",
+   "tree_files": 16,
+   "entry_bytes": 10631,
+   "broken": [],
+   "orphans": [],
+   "orphan_bytes": 0
+  },
+  {
+   "slug": "hyperframes-media",
+   "tree_files": 119,
+   "entry_bytes": 17408,
+   "broken": [],
+   "orphans": [
+    {
+     "path": "audio/assets/sfx/CREDITS.md",
+     "bytes": 1183
+    },
+    {
+     "path": "audio/references/bgm.md",
+     "bytes": 8119
+    },
+    {
+     "path": "audio/references/captions/authoring.md",
+     "bytes": 9422
+    },
+    {
+     "path": "audio/references/captions/motion.md",
+     "bytes": 5480
+    },
+    {
+     "path": "audio/references/captions/transcript-handling.md",
+     "bytes": 5439
+    },
+    {
+     "path": "audio/references/sfx.md",
+     "bytes": 4137
+    },
+    {
+     "path": "audio/references/tts-to-captions.md",
+     "bytes": 1755
+    },
+    {
+     "path": "luts/README.md",
+     "bytes": 1087
+    }
+   ],
+   "orphan_bytes": 36622
+  },
+  {
+   "slug": "hyperframes-registry",
+   "tree_files": 15,
+   "entry_bytes": 5298,
+   "broken": [],
+   "orphans": [
+    {
+     "path": "examples/add-block.md",
+     "bytes": 1232
+    },
+    {
+     "path": "examples/add-component.md",
+     "bytes": 1473
+    },
+    {
+     "path": "references/demo-html-pattern.md",
+     "bytes": 1884
+    }
+   ],
+   "orphan_bytes": 4589
+  },
+  {
+   "slug": "ppt-master",
+   "tree_files": 13069,
+   "entry_bytes": 10622,
+   "broken": [],
+   "orphans": [
+    {
+     "path": "references/ai-image-comparison/README.md",
+     "bytes": 4372
+    },
+    {
+     "path": "references/ai-image-comparison/palette/_manifest.md",
+     "bytes": 16161
+    },
+    {
+     "path": "references/ai-image-comparison/palette/_subject.md",
+     "bytes": 3086
+    },
+    {
+     "path": "references/ai-image-comparison/rendering/_manifest.md",
+     "bytes": 23824
+    },
+    {
+     "path": "references/ai-image-comparison/rendering/_subject.md",
+     "bytes": 1806
+    },
+    {
+     "path": "references/ai-image-comparison/type/_manifest.md",
+     "bytes": 15082
+    },
+    {
+     "path": "references/ai-image-comparison/type/_subject.md",
+     "bytes": 3117
+    },
+    {
+     "path": "references/animations.md",
+     "bytes": 24154
+    },
+    {
+     "path": "references/artifact-ownership.md",
+     "bytes": 20217
+    },
+    {
+     "path": "references/canvas-formats.md",
+     "bytes": 4255
+    },
+    {
+     "path": "references/confirm-surface.md",
+     "bytes": 10102
+    },
+    {
+     "path": "references/executor-base.md",
+     "bytes": 52613
+    },
+    {
+     "path": "references/executor-chart.md",
+     "bytes": 8360
+    },
+    {
+     "path": "references/executor-image.md",
+     "bytes": 7249
+    },
+    {
+     "path": "references/executor-notes.md",
+     "bytes": 4753
+    },
+    {
+     "path": "references/executor-structure.md",
+     "bytes": 8148
+    },
+    {
+     "path": "references/executor-structured.md",
+     "bytes": 12937
+    },
+    {
+     "path": "references/executor-table.md",
+     "bytes": 4786
+    },
+    {
+     "path": "references/executor-visualization.md",
+     "bytes": 4517
+    },
+    {
+     "path": "references/executor-web-image.md",
+     "bytes": 1806
+    },
+    {
+     "path": "references/image-base.md",
+     "bytes": 8711
+    },
+    {
+     "path": "references/image-generator.md",
+     "bytes": 45140
+    },
+    {
+     "path": "references/image-layout-patterns.md",
+     "bytes": 26818
+    },
+    {
+     "path": "references/image-layout-spec.md",
+     "bytes": 9416
+    },
+    {
+     "path": "references/image-palettes/_index.md",
+     "bytes": 2368
+    },
+    {
+     "path": "references/image-palettes/cool-corporate.md",
+     "bytes": 1697
+    },
+    {
+     "path": "references/image-palettes/dark-cinematic.md",
+     "bytes": 2013
+    },
+    {
+     "path": "references/image-palettes/duotone.md",
+     "bytes": 1495
+    },
+    {
+     "path": "references/image-palettes/earthy-dusty.md",
+     "bytes": 1897
+    },
+    {
+     "path": "references/image-palettes/editorial-classic.md",
+     "bytes": 1470
+    },
+    {
+     "path": "references/image-palettes/frost-ice.md",
+     "bytes": 1673
+    },
+    {
+     "path": "references/image-palettes/jewel-tone.md",
+     "bytes": 1793
+    },
+    {
+     "path": "references/image-palettes/macaron.md",
+     "bytes": 1676
+    },
+    {
+     "path": "references/image-palettes/mono-ink.md",
+     "bytes": 2584
+    },
+    {
+     "path": "references/image-palettes/nature-organic.md",
+     "bytes": 1335
+    },
+    {
+     "path": "references/image-palettes/sunset-gradient.md",
+     "bytes": 2193
+    },
+    {
+     "path": "references/image-palettes/tech-neon.md",
+     "bytes": 1550
+    },
+    {
+     "path": "references/image-palettes/vivid-launch.md",
+     "bytes": 1478
+    },
+    {
+     "path": "references/image-palettes/warm-earth.md",
+     "bytes": 1686
+    },
+    {
+     "path": "references/image-renderings/3d-isometric.md",
+     "bytes": 2738
+    },
+    {
+     "path": "references/image-renderings/_index.md",
+     "bytes": 8249
+    },
+    {
+     "path": "references/image-renderings/blueprint.md",
+     "bytes": 2667
+    },
+    {
+     "path": "references/image-renderings/chalkboard.md",
+     "bytes": 2600
+    },
+    {
+     "path": "references/image-renderings/corporate-photo.md",
+     "bytes": 3485
+    },
+    {
+     "path": "references/image-renderings/digital-dashboard.md",
+     "bytes": 2652
+    },
+    {
+     "path": "references/image-renderings/fantasy-animation.md",
+     "bytes": 2754
+    },
+    {
+     "path": "references/image-renderings/glassmorphism.md",
+     "bytes": 3181
+    },
+    {
+     "path": "references/image-renderings/ink-notes.md",
+     "bytes": 3361
+    },
+    {
+     "path": "references/image-renderings/minimalist-swiss.md",
+     "bytes": 2900
+    },
+    {
+     "path": "references/image-renderings/paper-cut.md",
+     "bytes": 2759
+    },
+    {
+     "path": "references/image-renderings/pixel-art.md",
+     "bytes": 2536
+    },
+    {
+     "path": "references/image-renderings/screen-print.md",
+     "bytes": 2854
+    },
+    {
+     "path": "references/image-renderings/sketch-notes.md",
+     "bytes": 2998
+    },
+    {
+     "path": "references/image-renderings/vector-illustration.md",
+     "bytes": 2909
+    },
+    {
+     "path": "references/image-renderings/vintage-poster.md",
+     "bytes": 2975
+    },
+    {
+     "path": "references/image-renderings/warm-scene.md",
+     "bytes": 2990
+    },
+    {
+     "path": "references/image-renderings/watercolor.md",
+     "bytes": 2457
+    },
+    {
+     "path": "references/image-searcher.md",
+     "bytes": 14313
+    },
+    {
+     "path": "references/image-type-templates/_index.md",
+     "bytes": 6229
+    },
+    {
+     "path": "references/image-type-templates/comparison.md",
+     "bytes": 3532
+    },
+    {
+     "path": "references/image-type-templates/flowchart.md",
+     "bytes": 2919
+    },
+    {
+     "path": "references/image-type-templates/framework.md",
+     "bytes": 4715
+    },
+    {
+     "path": "references/image-type-templates/funnel.md",
+     "bytes": 3786
+    },
+    {
+     "path": "references/image-type-templates/infographic.md",
+     "bytes": 3538
+    },
+    {
+     "path": "references/image-type-templates/map.md",
+     "bytes": 3915
+    },
+    {
+     "path": "references/image-type-templates/matrix.md",
+     "bytes": 3676
+    },
+    {
+     "path": "references/image-type-templates/pyramid.md",
+     "bytes": 3471
+    },
+    {
+     "path": "references/image-type-templates/scene.md",
+     "bytes": 3489
+    },
+    {
+     "path": "references/image-type-templates/timeline.md",
+     "bytes": 2849
+    },
+    {
+     "path": "references/modes/_index.md",
+     "bytes": 5813
+    },
+    {
+     "path": "references/modes/briefing.md",
+     "bytes": 3027
+    },
+    {
+     "path": "references/modes/instructional.md",
+     "bytes": 2195
+    },
+    {
+     "path": "references/modes/narrative.md",
+     "bytes": 2453
+    },
+    {
+     "path": "references/modes/pyramid.md",
+     "bytes": 3178
+    },
+    {
+     "path": "references/modes/showcase.md",
+     "bytes": 1927
+    },
+    {
+     "path": "references/native-data-interface.md",
+     "bytes": 11758
+    },
+    {
+     "path": "references/native-formula.md",
+     "bytes": 6016
+    },
+    {
+     "path": "references/native-hyperlinks.md",
+     "bytes": 5201
+    },
+    {
+     "path": "references/native-shape-authoring.md",
+     "bytes": 22756
+    },
+    {
+     "path": "references/plan-core.md",
+     "bytes": 31905
+    },
+    {
+     "path": "references/pptx-structure-interface.md",
+     "bytes": 12457
+    },
+    {
+     "path": "references/preset-shape-vocabulary.md",
+     "bytes": 10017
+    },
+    {
+     "path": "references/semantic-svg.md",
+     "bytes": 5579
+    },
+    {
+     "path": "references/shared-standards-core.md",
+     "bytes": 32310
+    },
+    {
+     "path": "references/shared-standards.md",
+     "bytes": 539
+    },
+    {
+     "path": "references/strategist-image.md",
+     "bytes": 11677
+    },
+    {
+     "path": "references/strategist-template.md",
+     "bytes": 12316
+    },
+    {
+     "path": "references/strategist.md",
+     "bytes": 38546
+    },
+    {
+     "path": "references/svg-effects.md",
+     "bytes": 36609
+    },
+    {
+     "path": "references/svg-image-embedding.md",
+     "bytes": 6485
+    },
+    {
+     "path": "references/template-designer.md",
+     "bytes": 26130
+    },
+    {
+     "path": "references/topology-assembly.md",
+     "bytes": 11115
+    },
+    {
+     "path": "references/video-design.md",
+     "bytes": 12620
+    },
+    {
+     "path": "references/visual-review.md",
+     "bytes": 12809
+    },
+    {
+     "path": "references/visual-styles/_index.md",
+     "bytes": 9471
+    },
+    {
+     "path": "references/visual-styles/blueprint.md",
+     "bytes": 2937
+    },
+    {
+     "path": "references/visual-styles/brutalist.md",
+     "bytes": 3114
+    },
+    {
+     "path": "references/visual-styles/chalkboard.md",
+     "bytes": 2366
+    },
+    {
+     "path": "references/visual-styles/dark-tech.md",
+     "bytes": 2245
+    },
+    {
+     "path": "references/visual-styles/data-journalism.md",
+     "bytes": 2893
+    },
+    {
+     "path": "references/visual-styles/glassmorphism.md",
+     "bytes": 2765
+    },
+    {
+     "path": "references/visual-styles/ink-notes.md",
+     "bytes": 2772
+    },
+    {
+     "path": "references/visual-styles/ink-wash.md",
+     "bytes": 2849
+    },
+    {
+     "path": "references/visual-styles/memphis.md",
+     "bytes": 2670
+    },
+    {
+     "path": "references/visual-styles/paper-cut.md",
+     "bytes": 2645
+    },
+    {
+     "path": "references/visual-styles/photo-editorial.md",
+     "bytes": 2868
+    },
+    {
+     "path": "references/visual-styles/pixel-art.md",
+     "bytes": 2504
+    },
+    {
+     "path": "references/visual-styles/sketch-notes.md",
+     "bytes": 2555
+    },
+    {
+     "path": "references/visual-styles/soft-rounded.md",
+     "bytes": 2520
+    },
+    {
+     "path": "references/visual-styles/swiss-minimal.md",
+     "bytes": 2953
+    },
+    {
+     "path": "references/visual-styles/vintage-poster.md",
+     "bytes": 2672
+    },
+    {
+     "path": "references/visual-styles/zine.md",
+     "bytes": 2782
+    },
+    {
+     "path": "scripts/README.md",
+     "bytes": 35636
+    },
+    {
+     "path": "scripts/docs/advanced-image-motion-smoke.md",
+     "bytes": 12647
+    },
+    {
+     "path": "scripts/docs/chart-recall.md",
+     "bytes": 1183
+    },
+    {
+     "path": "scripts/docs/confirm_ui.md",
+     "bytes": 56205
+    },
+    {
+     "path": "scripts/docs/conversion.md",
+     "bytes": 34020
+    },
+    {
+     "path": "scripts/docs/mask-gradient-smoke.md",
+     "bytes": 9009
+    },
+    {
+     "path": "scripts/docs/multilingual-text-smoke.md",
+     "bytes": 10649
+    },
+    {
+     "path": "scripts/docs/native-data.md",
+     "bytes": 21162
+    },
+    {
+     "path": "scripts/docs/pptx-animations.md",
+     "bytes": 19707
+    },
+    {
+     "path": "scripts/docs/pptx-transitions.md",
+     "bytes": 13150
+    },
+    {
+     "path": "scripts/docs/project.md",
+     "bytes": 18420
+    },
+    {
+     "path": "scripts/docs/prompt_audit.md",
+     "bytes": 6383
+    },
+    {
+     "path": "scripts/docs/spec_review.md",
+     "bytes": 13871
+    },
+    {
+     "path": "scripts/docs/svg-contract.md",
+     "bytes": 57858
+    },
+    {
+     "path": "scripts/docs/svg-pipeline.md",
+     "bytes": 96720
+    },
+    {
+     "path": "scripts/docs/svg_editor.md",
+     "bytes": 5558
+    },
+    {
+     "path": "scripts/docs/template-tools.md",
+     "bytes": 18329
+    },
+    {
+     "path": "scripts/docs/update_spec.md",
+     "bytes": 4354
+    },
+    {
+     "path": "scripts/docs/video-motion-plan.md",
+     "bytes": 4027
+    },
+    {
+     "path": "scripts/docs/visualization-recall.md",
+     "bytes": 5385
+    },
+    {
+     "path": "scripts/pptx_shapes/data/LICENSE-APACHE-2.0.txt",
+     "bytes": 11358
+    },
+    {
+     "path": "scripts/pptx_shapes/data/LICENSE-OPEN-XML-SDK-MIT.txt",
+     "bytes": 1116
+    },
+    {
+     "path": "scripts/pptx_shapes/data/NOTICE.md",
+     "bytes": 2365
+    },
+    {
+     "path": "scripts/pptx_shapes/data/shape_type_values.txt",
+     "bytes": 2527
+    },
+    {
+     "path": "templates/README.md",
+     "bytes": 6278
+    },
+    {
+     "path": "templates/VISUALIZATION_TEMPLATE_AUTHORING.md",
+     "bytes": 23605
+    },
+    {
+     "path": "templates/brands/README.md",
+     "bytes": 2058
+    },
+    {
+     "path": "templates/charts/README.md",
+     "bytes": 3392
+    },
+    {
+     "path": "templates/charts/chart-vocabulary.md",
+     "bytes": 4432
+    },
+    {
+     "path": "templates/decks/README.md",
+     "bytes": 4654
+    },
+    {
+     "path": "templates/design_spec_reference.md",
+     "bytes": 15644
+    },
+    {
+     "path": "templates/icons/README.md",
+     "bytes": 5711
+    },
+    {
+     "path": "templates/icons/THIRD_PARTY_NOTICES.md",
+     "bytes": 5682
+    },
+    {
+     "path": "templates/layouts/README.md",
+     "bytes": 5260
+    },
+    {
+     "path": "templates/scaffolds/spec_lock.md",
+     "bytes": 858
+    },
+    {
+     "path": "templates/sounds/CC0-1.0.txt",
+     "bytes": 7048
+    },
+    {
+     "path": "templates/sounds/README.md",
+     "bytes": 2714
+    },
+    {
+     "path": "templates/sounds/THIRD_PARTY_NOTICES.md",
+     "bytes": 3204
+    },
+    {
+     "path": "templates/sounds/sound-vocabulary.md",
+     "bytes": 17426
+    },
+    {
+     "path": "templates/spec_lock_reference.md",
+     "bytes": 9984
+    },
+    {
+     "path": "templates/styles/README.md",
+     "bytes": 4697
+    },
+    {
+     "path": "templates/tables/README.md",
+     "bytes": 3496
+    },
+    {
+     "path": "templates/tables/table-vocabulary.md",
+     "bytes": 1544
+    },
+    {
+     "path": "workflows/create-template/create-brand.md",
+     "bytes": 6299
+    },
+    {
+     "path": "workflows/create-template/create-deck.md",
+     "bytes": 6648
+    },
+    {
+     "path": "workflows/create-template/create-layout.md",
+     "bytes": 6695
+    },
+    {
+     "path": "workflows/create-template/create-style.md",
+     "bytes": 8397
+    },
+    {
+     "path": "workflows/governance/failure-recovery.md",
+     "bytes": 12207
+    },
+    {
+     "path": "workflows/index.md",
+     "bytes": 3718
+    },
+    {
+     "path": "workflows/stages/apply-template-workspace.md",
+     "bytes": 13068
+    },
+    {
+     "path": "workflows/stages/customize-animations.md",
+     "bytes": 17961
+    },
+    {
+     "path": "workflows/stages/generate-audio.md",
+     "bytes": 15026
+    },
+    {
+     "path": "workflows/stages/live-preview.md",
+     "bytes": 3561
+    },
+    {
+     "path": "workflows/stages/refine-spec.md",
+     "bytes": 6191
+    },
+    {
+     "path": "workflows/stages/resume-execute.md",
+     "bytes": 6416
+    },
+    {
+     "path": "workflows/stages/topic-research.md",
+     "bytes": 9490
+    },
+    {
+     "path": "workflows/stages/verify-charts.md",
+     "bytes": 9563
+    },
+    {
+     "path": "workflows/stages/visual-review.md",
+     "bytes": 7460
+    },
+    {
+     "path": "workflows/stages/web-image-review.md",
+     "bytes": 3511
+    }
+   ],
+   "orphan_bytes": 1568391
+  },
+  {
+   "slug": "html-ppt",
+   "tree_files": 227,
+   "entry_bytes": 14305,
+   "broken": [
+    "examples/my-talk/index.html"
+   ],
+   "orphans": [
+    {
+     "path": "templates/full-decks/course-module/README.md",
+     "bytes": 627
+    },
+    {
+     "path": "templates/full-decks/dir-key-nav-minimal/README.md",
+     "bytes": 1021
+    },
+    {
+     "path": "templates/full-decks/graphify-dark-graph/README.md",
+     "bytes": 937
+    },
+    {
+     "path": "templates/full-decks/hermes-cyber-terminal/README.md",
+     "bytes": 1016
+    },
+    {
+     "path": "templates/full-decks/knowledge-arch-blueprint/README.md",
+     "bytes": 933
+    },
+    {
+     "path": "templates/full-decks/obsidian-claude-gradient/README.md",
+     "bytes": 901
+    },
+    {
+     "path": "templates/full-decks/pitch-deck/README.md",
+     "bytes": 524
+    },
+    {
+     "path": "templates/full-decks/presenter-mode-reveal/README.md",
+     "bytes": 3964
+    },
+    {
+     "path": "templates/full-decks/product-launch/README.md",
+     "bytes": 545
+    },
+    {
+     "path": "templates/full-decks/tech-sharing/README.md",
+     "bytes": 522
+    },
+    {
+     "path": "templates/full-decks/testing-safety-alert/README.md",
+     "bytes": 967
+    },
+    {
+     "path": "templates/full-decks/weekly-report/README.md",
+     "bytes": 562
+    },
+    {
+     "path": "templates/full-decks/xhs-pastel-card/README.md",
+     "bytes": 1071
+    },
+    {
+     "path": "templates/full-decks/xhs-post/README.md",
+     "bytes": 628
+    },
+    {
+     "path": "templates/full-decks/xhs-white-editorial/README.md",
+     "bytes": 995
+    }
+   ],
+   "orphan_bytes": 15213
+  },
+  {
+   "slug": "grill-me",
+   "tree_files": 4,
+   "entry_bytes": 2716,
+   "broken": [],
+   "orphans": [],
+   "orphan_bytes": 0
+  },
+  {
+   "slug": "ui-ux-pro-max",
+   "tree_files": 117,
+   "entry_bytes": 9759,
+   "broken": [],
+   "orphans": [
+    {
+     "path": "references/CLAUDE.md",
+     "bytes": 5562
+    },
+    {
+     "path": "references/upstream-README.md",
+     "bytes": 23615
+    }
+   ],
+   "orphan_bytes": 29177
+  },
+  {
+   "slug": "brainstorming",
+   "tree_files": 13,
+   "entry_bytes": 11467,
+   "broken": [],
+   "orphans": [],
+   "orphan_bytes": 0
+  },
+  {
+   "slug": "subagent-driven-development",
+   "tree_files": 14,
+   "entry_bytes": 7203,
+   "broken": [],
+   "orphans": [],
+   "orphan_bytes": 0
+  },
+  {
+   "slug": "test-driven-development",
+   "tree_files": 8,
+   "entry_bytes": 11760,
+   "broken": [],
+   "orphans": [],
+   "orphan_bytes": 0
+  },
+  {
+   "slug": "verification-before-completion",
+   "tree_files": 4,
+   "entry_bytes": 28091,
+   "broken": [],
+   "orphans": [],
+   "orphan_bytes": 0
+  },
+  {
+   "slug": "writing-plans",
+   "tree_files": 5,
+   "entry_bytes": 11266,
+   "broken": [],
+   "orphans": [],
+   "orphan_bytes": 0
+  },
+  {
+   "slug": "coding-agent",
+   "tree_files": 9,
+   "entry_bytes": 8623,
+   "broken": [],
+   "orphans": [],
+   "orphan_bytes": 0
+  },
+  {
+   "slug": "oracle",
+   "tree_files": 8,
+   "entry_bytes": 9910,
+   "broken": [],
+   "orphans": [],
+   "orphan_bytes": 0
+  },
+  {
+   "slug": "agent-browser",
+   "tree_files": 16,
+   "entry_bytes": 7867,
+   "broken": [],
+   "orphans": [
+    {
+     "path": "references/commands.md",
+     "bytes": 11191
+    }
+   ],
+   "orphan_bytes": 11191
+  },
+  {
+   "slug": "electron",
+   "tree_files": 2,
+   "entry_bytes": 2625,
+   "broken": [],
+   "orphans": [],
+   "orphan_bytes": 0
+  },
+  {
+   "slug": "find-skills",
+   "tree_files": 6,
+   "entry_bytes": 2674,
+   "broken": [],
+   "orphans": [],
+   "orphan_bytes": 0
+  },
+  {
+   "slug": "story",
+   "tree_files": 10,
+   "entry_bytes": 9047,
+   "broken": [],
+   "orphans": [],
+   "orphan_bytes": 0
+  },
+  {
+   "slug": "story-cover",
+   "tree_files": 9,
+   "entry_bytes": 1909,
+   "broken": [
+    "references/split-NN.md"
+   ],
+   "orphans": [
+    {
+     "path": "references/api-fallback.md",
+     "bytes": 4808
+    },
+    {
+     "path": "references/cover-styles.md",
+     "bytes": 8992
+    }
+   ],
+   "orphan_bytes": 13800
+  },
+  {
+   "slug": "story-deslop",
+   "tree_files": 17,
+   "entry_bytes": 10568,
+   "broken": [
+    "references/split-NN.md"
+   ],
+   "orphans": [
+    {
+     "path": "references/agent-calls.md",
+     "bytes": 1258
+    },
+    {
+     "path": "references/deslop-gates.md",
+     "bytes": 2533
+    },
+    {
+     "path": "references/expression.md",
+     "bytes": 9713
+    },
+    {
+     "path": "references/narrative-focus.md",
+     "bytes": 6862
+    },
+    {
+     "path": "references/story-logic.md",
+     "bytes": 6069
+    },
+    {
+     "path": "references/style-resolution.md",
+     "bytes": 3790
+    }
+   ],
+   "orphan_bytes": 30225
+  },
+  {
+   "slug": "story-import",
+   "tree_files": 33,
+   "entry_bytes": 9652,
+   "broken": [
+    "references/split-NN.md"
+   ],
+   "orphans": [
+    {
+     "path": "references/benchmark-sync.md",
+     "bytes": 4103
+    },
+    {
+     "path": "references/character-state-reverse.md",
+     "bytes": 5911
+    },
+    {
+     "path": "references/deep-analysis.md",
+     "bytes": 5398
+    },
+    {
+     "path": "references/format-and-structure.md",
+     "bytes": 11433
+    },
+    {
+     "path": "references/import-report.md",
+     "bytes": 4482
+    },
+    {
+     "path": "references/import-special-cases.md",
+     "bytes": 2607
+    },
+    {
+     "path": "references/import-tracking.md",
+     "bytes": 7702
+    },
+    {
+     "path": "references/length-routing.md",
+     "bytes": 5293
+    },
+    {
+     "path": "references/outline-reverse-rules.md",
+     "bytes": 6058
+    },
+    {
+     "path": "references/outline-reverse.md",
+     "bytes": 2845
+    },
+    {
+     "path": "references/state-tracking.md",
+     "bytes": 3751
+    },
+    {
+     "path": "references/tracking-initialization.md",
+     "bytes": 1566
+    }
+   ],
+   "orphan_bytes": 61149
+  },
+  {
+   "slug": "story-long-analyze",
+   "tree_files": 27,
+   "entry_bytes": 5908,
+   "broken": [
+    "references/split-NN.md"
+   ],
+   "orphans": [
+    {
+     "path": "references/author-facing.md",
+     "bytes": 12729
+    },
+    {
+     "path": "references/final-checks.md",
+     "bytes": 1022
+    },
+    {
+     "path": "references/index-rebuild.md",
+     "bytes": 3187
+    },
+    {
+     "path": "references/inspiration-library.md",
+     "bytes": 10587
+    },
+    {
+     "path": "references/stage1-golden-chapters.md",
+     "bytes": 6819
+    },
+    {
+     "path": "references/stage2-extraction.md",
+     "bytes": 11004
+    },
+    {
+     "path": "references/stage3-plot-rhythm.md",
+     "bytes": 20790
+    },
+    {
+     "path": "references/stage4-characters-settings.md",
+     "bytes": 6704
+    },
+    {
+     "path": "references/stage5-report.md",
+     "bytes": 2756
+    },
+    {
+     "path": "references/style-profile-generator.md",
+     "bytes": 10345
+    },
+    {
+     "path": "references/synthesis-inputs.md",
+     "bytes": 4097
+    }
+   ],
+   "orphan_bytes": 90040
+  },
+  {
+   "slug": "story-long-write",
+   "tree_files": 117,
+   "entry_bytes": 2438,
+   "broken": [
+    "references/split-NN.md"
+   ],
+   "orphans": [
+    {
+     "path": "references/agent-calls.md",
+     "bytes": 7373
+    },
+    {
+     "path": "references/anti-ai-writing.md",
+     "bytes": 36483
+    },
+    {
+     "path": "references/artifact-protocols.md",
+     "bytes": 16314
+    },
+    {
+     "path": "references/author-memory-maintenance.md",
+     "bytes": 9019
+    },
+    {
+     "path": "references/author-memory.md",
+     "bytes": 11484
+    },
+    {
+     "path": "references/banned-words.md",
+     "bytes": 9106
+    },
+    {
+     "path": "references/benchmark-recall.md",
+     "bytes": 5713
+    },
+    {
+     "path": "references/character-basics.md",
+     "bytes": 16921
+    },
+    {
+     "path": "references/character-design-methods.md",
+     "bytes": 16262
+    },
+    {
+     "path": "references/character-relations.md",
+     "bytes": 15470
+    },
+    {
+     "path": "references/commercial-core-methods.md",
+     "bytes": 20648
+    },
+    {
+     "path": "references/cross-book-recall.md",
+     "bytes": 4892
+    },
+    {
+     "path": "references/dialogue-mastery.md",
+     "bytes": 11327
+    },
+    {
+     "path": "references/emotion-on-page.md",
+     "bytes": 4672
+    },
+    {
+     "path": "references/emotional-arc-design.md",
+     "bytes": 16647
+    },
+    {
+     "path": "references/emotional-methods.md",
+     "bytes": 10208
+    },
+    {
+     "path": "references/female-audience-writing.md",
+     "bytes": 11427
+    },
+    {
+     "path": "references/format-and-structure.md",
+     "bytes": 11433
+    },
+    {
+     "path": "references/genre-catalog.md",
+     "bytes": 20681
+    },
+    {
+     "path": "references/genre-core-mechanics.md",
+     "bytes": 17360
+    },
+    {
+     "path": "references/genre-prose-cards.md",
+     "bytes": 7137
+    },
+    {
+     "path": "references/genre-prose-cards/东方仙侠.md",
+     "bytes": 2788
+    },
+    {
+     "path": "references/genre-prose-cards/传统玄幻.md",
+     "bytes": 2801
+    },
+    {
+     "path": "references/genre-prose-cards/历史古代.md",
+     "bytes": 2635
+    },
+    {
+     "path": "references/genre-prose-cards/历史脑洞.md",
+     "bytes": 2934
+    },
+    {
+     "path": "references/genre-prose-cards/双男主.md",
+     "bytes": 3272
+    },
+    {
+     "path": "references/genre-prose-cards/古言脑洞.md",
+     "bytes": 2676
+    },
+    {
+     "path": "references/genre-prose-cards/古风世情.md",
+     "bytes": 2622
+    },
+    {
+     "path": "references/genre-prose-cards/女频悬疑.md",
+     "bytes": 2637
+    },
+    {
+     "path": "references/genre-prose-cards/女频种田.md",
+     "bytes": 2693
+    },
+    {
+     "path": "references/genre-prose-cards/宫斗宅斗.md",
+     "bytes": 2522
+    },
+    {
+     "path": "references/genre-prose-cards/年代.md",
+     "bytes": 3069
+    },
+    {
+     "path": "references/genre-prose-cards/快穿.md",
+     "bytes": 2858
+    },
+    {
+     "path": "references/genre-prose-cards/悬疑灵异.md",
+     "bytes": 2616
+    },
+    {
+     "path": "references/genre-prose-cards/悬疑脑洞.md",
+     "bytes": 2788
+    },
+    {
+     "path": "references/genre-prose-cards/战神赘婿.md",
+     "bytes": 2810
+    },
+    {
+     "path": "references/genre-prose-cards/抗战谍战.md",
+     "bytes": 2728
+    },
+    {
+     "path": "references/genre-prose-cards/星光璀璨.md",
+     "bytes": 2800
+    },
+    {
+     "path": "references/genre-prose-cards/民国言情.md",
+     "bytes": 2817
+    },
+    {
+     "path": "references/genre-prose-cards/游戏体育.md",
+     "bytes": 2899
+    },
+    {
+     "path": "references/genre-prose-cards/玄幻脑洞.md",
+     "bytes": 3004
+    },
+    {
+     "path": "references/genre-prose-cards/玄幻言情.md",
+     "bytes": 2596
+    },
+    {
+     "path": "references/genre-prose-cards/现言脑洞.md",
+     "bytes": 2741
+    },
+    {
+     "path": "references/genre-prose-cards/科幻末世.md",
+     "bytes": 2653
+    },
+    {
+     "path": "references/genre-prose-cards/职场婚恋.md",
+     "bytes": 2612
+    },
+    {
+     "path": "references/genre-prose-cards/西方奇幻.md",
+     "bytes": 2834
+    },
+    {
+     "path": "references/genre-prose-cards/豪门总裁.md",
+     "bytes": 3343
+    },
+    {
+     "path": "references/genre-prose-cards/都市修真.md",
+     "bytes": 2580
+    },
+    {
+     "path": "references/genre-prose-cards/都市日常.md",
+     "bytes": 3766
+    },
+    {
+     "path": "references/genre-prose-cards/都市种田.md",
+     "bytes": 2584
+    },
+    {
+     "path": "references/genre-prose-cards/都市脑洞.md",
+     "bytes": 3485
+    },
+    {
+     "path": "references/genre-prose-cards/都市高武.md",
+     "bytes": 3018
+    },
+    {
+     "path": "references/genre-prose-cards/青春甜宠.md",
+     "bytes": 2790
+    },
+    {
+     "path": "references/genre-readers.md",
+     "bytes": 10972
+    },
+    {
+     "path": "references/genre-writing-formulas.md",
+     "bytes": 21340
+    },
+    {
+     "path": "references/hooks-chapter.md",
+     "bytes": 8632
+    },
+    {
+     "path": "references/hooks-paragraph.md",
+     "bytes": 6848
+    },
+    {
+     "path": "references/hooks-suspense.md",
+     "bytes": 15308
+    },
+    {
+     "path": "references/long-chapter-hooks.md",
+     "bytes": 7940
+    },
+    {
+     "path": "references/long-chapter-quality.md",
+     "bytes": 6524
+    },
+    {
+     "path": "references/long-format.md",
+     "bytes": 2551
+    },
+    {
+     "path": "references/long-genre-catalog.md",
+     "bytes": 12492
+    },
+    {
+     "path": "references/long-genre-mechanics.md",
+     "bytes": 12131
+    },
+    {
+     "path": "references/long-reversal.md",
+     "bytes": 15637
+    },
+    {
+     "path": "references/long-suspense.md",
+     "bytes": 15484
+    },
+    {
+     "path": "references/opening-design.md",
+     "bytes": 12753
+    },
+    {
+     "path": "references/outline-conflict.md",
+     "bytes": 17687
+    },
+    {
+     "path": "references/outline-methods.md",
+     "bytes": 10875
+    },
+    {
+     "path": "references/outline-rhythm.md",
+     "bytes": 12878
+    },
+    {
+     "path": "references/outline-structure-theory.md",
+     "bytes": 21818
+    },
+    {
+     "path": "references/plot-core-methods.md",
+     "bytes": 20291
+    },
+    {
+     "path": "references/plot-emotion-system.md",
+     "bytes": 15867
+    },
+    {
+     "path": "references/plot-frameworks.md",
+     "bytes": 27755
+    },
+    {
+     "path": "references/plot-special-topics.md",
+     "bytes": 25544
+    },
+    {
+     "path": "references/project-files.md",
+     "bytes": 11762
+    },
+    {
+     "path": "references/quality-checklist.md",
+     "bytes": 9734
+    },
+    {
+     "path": "references/reader-contract-and-progression.md",
+     "bytes": 11144
+    },
+    {
+     "path": "references/reference-index.md",
+     "bytes": 2548
+    },
+    {
+     "path": "references/reversal-toolkit.md",
+     "bytes": 15406
+    },
+    {
+     "path": "references/revision-diagnosis.md",
+     "bytes": 4051
+    },
+    {
+     "path": "references/state-tracking.md",
+     "bytes": 3751
+    },
+    {
+     "path": "references/stop-and-fix.md",
+     "bytes": 1042
+    },
+    {
+     "path": "references/style-combat-face.md",
+     "bytes": 20057
+    },
+    {
+     "path": "references/style-craft.md",
+     "bytes": 13896
+    },
+    {
+     "path": "references/style-genre-modules.md",
+     "bytes": 24730
+    },
+    {
+     "path": "references/style-resolution.md",
+     "bytes": 3790
+    },
+    {
+     "path": "references/tracking-initialization.md",
+     "bytes": 1566
+    },
+    {
+     "path": "references/tracking-transaction.md",
+     "bytes": 15618
+    },
+    {
+     "path": "references/workflow-chapter.md",
+     "bytes": 14891
+    },
+    {
+     "path": "references/workflow-daily.md",
+     "bytes": 31472
+    },
+    {
+     "path": "references/workflow-outline.md",
+     "bytes": 21422
+    },
+    {
+     "path": "references/workflow-revision.md",
+     "bytes": 4569
+    },
+    {
+     "path": "references/workflow-setup.md",
+     "bytes": 13430
+    },
+    {
+     "path": "references/workflow-volume.md",
+     "bytes": 14766
+    },
+    {
+     "path": "references/writer-prompt-fallback.md",
+     "bytes": 3897
+    },
+    {
+     "path": "references/writing-craft.md",
+     "bytes": 22595
+    }
+   ],
+   "orphan_bytes": 939012
+  },
+  {
+   "slug": "story-review",
+   "tree_files": 35,
+   "entry_bytes": 10924,
+   "broken": [
+    "references/split-NN.md"
+   ],
+   "orphans": [
+    {
+     "path": "references/agent-prompts.md",
+     "bytes": 14249
+    },
+    {
+     "path": "references/anti-ai-writing.md",
+     "bytes": 36483
+    },
+    {
+     "path": "references/banned-words.md",
+     "bytes": 9106
+    },
+    {
+     "path": "references/batch-review.md",
+     "bytes": 2325
+    },
+    {
+     "path": "references/character-relations.md",
+     "bytes": 15470
+    },
+    {
+     "path": "references/dialogue-mastery.md",
+     "bytes": 11327
+    },
+    {
+     "path": "references/expression.md",
+     "bytes": 9713
+    },
+    {
+     "path": "references/narrative-focus.md",
+     "bytes": 6862
+    },
+    {
+     "path": "references/plot-core-methods.md",
+     "bytes": 20291
+    },
+    {
+     "path": "references/quality-checklist.md",
+     "bytes": 12984
+    },
+    {
+     "path": "references/review-tracking.md",
+     "bytes": 2604
+    },
+    {
+     "path": "references/story-logic.md",
+     "bytes": 6069
+    },
+    {
+     "path": "references/style-resolution.md",
+     "bytes": 3790
+    },
+    {
+     "path": "references/tracking-initialization.md",
+     "bytes": 1566
+    },
+    {
+     "path": "references/tracking-transaction.md",
+     "bytes": 15618
+    }
+   ],
+   "orphan_bytes": 168457
+  },
+  {
+   "slug": "story-scan",
+   "tree_files": 24,
+   "entry_bytes": 6452,
+   "broken": [],
+   "orphans": [
+    {
+     "path": "references/platform-ciweimao.md",
+     "bytes": 1693
+    },
+    {
+     "path": "references/platform-fanqie.md",
+     "bytes": 2867
+    },
+    {
+     "path": "references/platform-jjwxc.md",
+     "bytes": 1898
+    },
+    {
+     "path": "references/platform-qidian.md",
+     "bytes": 3300
+    },
+    {
+     "path": "references/platform-qimao.md",
+     "bytes": 2558
+    }
+   ],
+   "orphan_bytes": 12316
+  },
+  {
+   "slug": "story-setup",
+   "tree_files": 205,
+   "entry_bytes": 6572,
+   "broken": [
+    "references/split-NN.md"
+   ],
+   "orphans": [
+    {
+     "path": "references/agent-references/agent-quality.md",
+     "bytes": 3614
+    },
+    {
+     "path": "references/agent-references/agent-reference-profiles.md",
+     "bytes": 4288
+    },
+    {
+     "path": "references/agent-references/anti-ai-writing.md",
+     "bytes": 36483
+    },
+    {
+     "path": "references/agent-references/banned-words.md",
+     "bytes": 9106
+    },
+    {
+     "path": "references/agent-references/benchmark-style-load.md",
+     "bytes": 10306
+    },
+    {
+     "path": "references/agent-references/character-basics.md",
+     "bytes": 16921
+    },
+    {
+     "path": "references/agent-references/character-design-methods.md",
+     "bytes": 16262
+    },
+    {
+     "path": "references/agent-references/character-relations.md",
+     "bytes": 15470
+    },
+    {
+     "path": "references/agent-references/deslop-gates.md",
+     "bytes": 2533
+    },
+    {
+     "path": "references/agent-references/dialogue-mastery.md",
+     "bytes": 11327
+    },
+    {
+     "path": "references/agent-references/emotion-on-page.md",
+     "bytes": 4672
+    },
+    {
+     "path": "references/agent-references/emotional-arc-design.md",
+     "bytes": 16647
+    },
+    {
+     "path": "references/agent-references/emotional-methods.md",
+     "bytes": 7690
+    },
+    {
+     "path": "references/agent-references/expression.md",
+     "bytes": 9713
+    },
+    {
+     "path": "references/agent-references/female-audience-writing.md",
+     "bytes": 9681
+    },
+    {
+     "path": "references/agent-references/format-and-structure.md",
+     "bytes": 11433
+    },
+    {
+     "path": "references/agent-references/genre-catalog.md",
+     "bytes": 20681
+    },
+    {
+     "path": "references/agent-references/genre-core-mechanics.md",
+     "bytes": 17360
+    },
+    {
+     "path": "references/agent-references/genre-prose-cards.md",
+     "bytes": 7137
+    },
+    {
+     "path": "references/agent-references/genre-prose-cards/东方仙侠.md",
+     "bytes": 2788
+    },
+    {
+     "path": "references/agent-references/genre-prose-cards/传统玄幻.md",
+     "bytes": 2801
+    },
+    {
+     "path": "references/agent-references/genre-prose-cards/历史古代.md",
+     "bytes": 2635
+    },
+    {
+     "path": "references/agent-references/genre-prose-cards/历史脑洞.md",
+     "bytes": 2934
+    },
+    {
+     "path": "references/agent-references/genre-prose-cards/双男主.md",
+     "bytes": 3272
+    },
+    {
+     "path": "references/agent-references/genre-prose-cards/古言脑洞.md",
+     "bytes": 2676
+    },
+    {
+     "path": "references/agent-references/genre-prose-cards/古风世情.md",
+     "bytes": 2622
+    },
+    {
+     "path": "references/agent-references/genre-prose-cards/女频悬疑.md",
+     "bytes": 2637
+    },
+    {
+     "path": "references/agent-references/genre-prose-cards/女频种田.md",
+     "bytes": 2693
+    },
+    {
+     "path": "references/agent-references/genre-prose-cards/宫斗宅斗.md",
+     "bytes": 2522
+    },
+    {
+     "path": "references/agent-references/genre-prose-cards/年代.md",
+     "bytes": 3069
+    },
+    {
+     "path": "references/agent-references/genre-prose-cards/快穿.md",
+     "bytes": 2858
+    },
+    {
+     "path": "references/agent-references/genre-prose-cards/悬疑灵异.md",
+     "bytes": 2616
+    },
+    {
+     "path": "references/agent-references/genre-prose-cards/悬疑脑洞.md",
+     "bytes": 2788
+    },
+    {
+     "path": "references/agent-references/genre-prose-cards/战神赘婿.md",
+     "bytes": 2810
+    },
+    {
+     "path": "references/agent-references/genre-prose-cards/抗战谍战.md",
+     "bytes": 2728
+    },
+    {
+     "path": "references/agent-references/genre-prose-cards/星光璀璨.md",
+     "bytes": 2800
+    },
+    {
+     "path": "references/agent-references/genre-prose-cards/民国言情.md",
+     "bytes": 2817
+    },
+    {
+     "path": "references/agent-references/genre-prose-cards/游戏体育.md",
+     "bytes": 2899
+    },
+    {
+     "path": "references/agent-references/genre-prose-cards/玄幻脑洞.md",
+     "bytes": 3004
+    },
+    {
+     "path": "references/agent-references/genre-prose-cards/玄幻言情.md",
+     "bytes": 2596
+    },
+    {
+     "path": "references/agent-references/genre-prose-cards/现言脑洞.md",
+     "bytes": 2741
+    },
+    {
+     "path": "references/agent-references/genre-prose-cards/科幻末世.md",
+     "bytes": 2653
+    },
+    {
+     "path": "references/agent-references/genre-prose-cards/职场婚恋.md",
+     "bytes": 2612
+    },
+    {
+     "path": "references/agent-references/genre-prose-cards/西方奇幻.md",
+     "bytes": 2834
+    },
+    {
+     "path": "references/agent-references/genre-prose-cards/豪门总裁.md",
+     "bytes": 3343
+    },
+    {
+     "path": "references/agent-references/genre-prose-cards/都市修真.md",
+     "bytes": 2580
+    },
+    {
+     "path": "references/agent-references/genre-prose-cards/都市日常.md",
+     "bytes": 3766
+    },
+    {
+     "path": "references/agent-references/genre-prose-cards/都市种田.md",
+     "bytes": 2584
+    },
+    {
+     "path": "references/agent-references/genre-prose-cards/都市脑洞.md",
+     "bytes": 3485
+    },
+    {
+     "path": "references/agent-references/genre-prose-cards/都市高武.md",
+     "bytes": 3018
+    },
+    {
+     "path": "references/agent-references/genre-prose-cards/青春甜宠.md",
+     "bytes": 2790
+    },
+    {
+     "path": "references/agent-references/genre-readers.md",
+     "bytes": 10972
+    },
+    {
+     "path": "references/agent-references/genre-writing-formulas.md",
+     "bytes": 21340
+    },
+    {
+     "path": "references/agent-references/hooks-chapter.md",
+     "bytes": 8632
+    },
+    {
+     "path": "references/agent-references/hooks-suspense.md",
+     "bytes": 15308
+    },
+    {
+     "path": "references/agent-references/long-chapter-hooks.md",
+     "bytes": 7940
+    },
+    {
+     "path": "references/agent-references/long-emotional-methods.md",
+     "bytes": 7126
+    },
+    {
+     "path": "references/agent-references/long-genre-catalog.md",
+     "bytes": 12492
+    },
+    {
+     "path": "references/agent-references/long-genre-mechanics.md",
+     "bytes": 12131
+    },
+    {
+     "path": "references/agent-references/long-quality.md",
+     "bytes": 3142
+    },
+    {
+     "path": "references/agent-references/long-reversal.md",
+     "bytes": 15637
+    },
+    {
+     "path": "references/agent-references/long-suspense.md",
+     "bytes": 15484
+    },
+    {
+     "path": "references/agent-references/narrative-focus.md",
+     "bytes": 6862
+    },
+    {
+     "path": "references/agent-references/opening-design.md",
+     "bytes": 12753
+    },
+    {
+     "path": "references/agent-references/outline-conflict.md",
+     "bytes": 17687
+    },
+    {
+     "path": "references/agent-references/outline-methods.md",
+     "bytes": 10875
+    },
+    {
+     "path": "references/agent-references/outline-rhythm.md",
+     "bytes": 12878
+    },
+    {
+     "path": "references/agent-references/plot-core-methods.md",
+     "bytes": 20291
+    },
+    {
+     "path": "references/agent-references/quality-checklist.md",
+     "bytes": 12457
+    },
+    {
+     "path": "references/agent-references/reversal-toolkit.md",
+     "bytes": 15406
+    },
+    {
+     "path": "references/agent-references/short-chapter-hooks.md",
+     "bytes": 8914
+    },
+    {
+     "path": "references/agent-references/short-emotional-methods.md",
+     "bytes": 5808
+    },
+    {
+     "path": "references/agent-references/short-genre-formulas.md",
+     "bytes": 20065
+    },
+    {
+     "path": "references/agent-references/short-quality.md",
+     "bytes": 2782
+    },
+    {
+     "path": "references/agent-references/short-reversal.md",
+     "bytes": 15895
+    },
+    {
+     "path": "references/agent-references/story-logic.md",
+     "bytes": 6069
+    },
+    {
+     "path": "references/agent-references/style-combat-face.md",
+     "bytes": 20057
+    },
+    {
+     "path": "references/agent-references/style-genre-modules.md",
+     "bytes": 24730
+    },
+    {
+     "path": "references/agent-references/style-resolution.md",
+     "bytes": 3790
+    },
+    {
+     "path": "references/agent-references/writing-craft.md",
+     "bytes": 22595
+    },
+    {
+     "path": "references/deploy-antigravity.md",
+     "bytes": 9703
+    },
+    {
+     "path": "references/deploy-claude-code.md",
+     "bytes": 7728
+    },
+    {
+     "path": "references/deploy-codex.md",
+     "bytes": 6087
+    },
+    {
+     "path": "references/deploy-generic.md",
+     "bytes": 2502
+    },
+    {
+     "path": "references/deploy-openclaw.md",
+     "bytes": 2957
+    },
+    {
+     "path": "references/deploy-opencode.md",
+     "bytes": 14982
+    },
+    {
+     "path": "references/deploy-reasonix.md",
+     "bytes": 3405
+    },
+    {
+     "path": "references/deploy-zcode.md",
+     "bytes": 7356
+    },
+    {
+     "path": "references/diagnostics.md",
+     "bytes": 4422
+    },
+    {
+     "path": "references/opencode/agents/character-designer.md",
+     "bytes": 9203
+    },
+    {
+     "path": "references/opencode/agents/consistency-checker.md",
+     "bytes": 10305
+    },
+    {
+     "path": "references/opencode/agents/narrative-writer.md",
+     "bytes": 35608
+    },
+    {
+     "path": "references/opencode/agents/story-architect.md",
+     "bytes": 11315
+    },
+    {
+     "path": "references/opencode/agents/story-explorer.md",
+     "bytes": 16408
+    },
+    {
+     "path": "references/opencode/agents/story-researcher.md",
+     "bytes": 12265
+    },
+    {
+     "path": "references/opencode/commands/browser-cdp.md",
+     "bytes": 257
+    },
+    {
+     "path": "references/opencode/commands/story-cover.md",
+     "bytes": 162
+    },
+    {
+     "path": "references/opencode/commands/story-deslop.md",
+     "bytes": 195
+    },
+    {
+     "path": "references/opencode/commands/story-long-analyze.md",
+     "bytes": 187
+    },
+    {
+     "path": "references/opencode/commands/story-long-scan.md",
+     "bytes": 232
+    },
+    {
+     "path": "references/opencode/commands/story-review.md",
+     "bytes": 185
+    },
+    {
+     "path": "references/opencode/commands/story-scan-long.md",
+     "bytes": 200
+    },
+    {
+     "path": "references/opencode/commands/story-scan-short.md",
+     "bytes": 182
+    },
+    {
+     "path": "references/opencode/commands/story-short-analyze.md",
+     "bytes": 182
+    },
+    {
+     "path": "references/opencode/commands/story-short-scan.md",
+     "bytes": 215
+    },
+    {
+     "path": "references/opencode_model_config.md",
+     "bytes": 8222
+    },
+    {
+     "path": "references/templates/agents/character-designer.md",
+     "bytes": 9363
+    },
+    {
+     "path": "references/templates/agents/consistency-checker.md",
+     "bytes": 10574
+    },
+    {
+     "path": "references/templates/agents/narrative-writer.md",
+     "bytes": 35997
+    },
+    {
+     "path": "references/templates/agents/story-architect.md",
+     "bytes": 11532
+    },
+    {
+     "path": "references/templates/agents/story-explorer.md",
+     "bytes": 16654
+    },
+    {
+     "path": "references/templates/agents/story-researcher.md",
+     "bytes": 12381
+    },
+    {
+     "path": "references/templates/rules/story-consistency.md",
+     "bytes": 1836
+    },
+    {
+     "path": "references/templates/rules/story-format.md",
+     "bytes": 3154
+    },
+    {
+     "path": "references/templates/rules/story-narrative.md",
+     "bytes": 3184
+    },
+    {
+     "path": "references/templates/rules/story-outline.md",
+     "bytes": 6124
+    },
+    {
+     "path": "references/zcode/agents/character-designer.md",
+     "bytes": 4503
+    },
+    {
+     "path": "references/zcode/agents/consistency-checker.md",
+     "bytes": 12281
+    },
+    {
+     "path": "references/zcode/agents/narrative-writer.md",
+     "bytes": 15205
+    },
+    {
+     "path": "references/zcode/agents/story-architect.md",
+     "bytes": 9361
+    },
+    {
+     "path": "references/zcode/agents/story-explorer.md",
+     "bytes": 11513
+    },
+    {
+     "path": "references/zcode/agents/story-researcher.md",
+     "bytes": 12737
+    },
+    {
+     "path": "references/zcode/commands/browser-cdp.md",
+     "bytes": 221
+    },
+    {
+     "path": "references/zcode/commands/story-cover.md",
+     "bytes": 204
+    },
+    {
+     "path": "references/zcode/commands/story-deslop.md",
+     "bytes": 234
+    },
+    {
+     "path": "references/zcode/commands/story-long-analyze.md",
+     "bytes": 218
+    },
+    {
+     "path": "references/zcode/commands/story-long-scan.md",
+     "bytes": 206
+    },
+    {
+     "path": "references/zcode/commands/story-review.md",
+     "bytes": 216
+    },
+    {
+     "path": "references/zcode/commands/story-scan-long.md",
+     "bytes": 196
+    },
+    {
+     "path": "references/zcode/commands/story-scan-short.md",
+     "bytes": 205
+    },
+    {
+     "path": "references/zcode/commands/story-short-analyze.md",
+     "bytes": 214
+    },
+    {
+     "path": "references/zcode/commands/story-short-scan.md",
+     "bytes": 217
+    }
+   ],
+   "orphan_bytes": 1035408
+  },
+  {
+   "slug": "story-short-analyze",
+   "tree_files": 40,
+   "entry_bytes": 9659,
+   "broken": [
+    "references/split-NN.md"
+   ],
+   "orphans": [
+    {
+     "path": "references/analysis-characters.md",
+     "bytes": 3458
+    },
+    {
+     "path": "references/analysis-method.md",
+     "bytes": 2664
+    },
+    {
+     "path": "references/analysis-report-style.md",
+     "bytes": 2451
+    },
+    {
+     "path": "references/analysis-short-genres.md",
+     "bytes": 5166
+    },
+    {
+     "path": "references/analysis-short-hooks.md",
+     "bytes": 3969
+    },
+    {
+     "path": "references/analysis-short-mechanics.md",
+     "bytes": 4476
+    },
+    {
+     "path": "references/analysis-short-patterns.md",
+     "bytes": 4255
+    },
+    {
+     "path": "references/analysis-short-suspense.md",
+     "bytes": 4298
+    },
+    {
+     "path": "references/analysis-submission.md",
+     "bytes": 3047
+    },
+    {
+     "path": "references/anti-ai-writing.md",
+     "bytes": 36483
+    },
+    {
+     "path": "references/banned-words.md",
+     "bytes": 9106
+    },
+    {
+     "path": "references/character-basics.md",
+     "bytes": 17011
+    },
+    {
+     "path": "references/character-design-methods.md",
+     "bytes": 16839
+    },
+    {
+     "path": "references/character-relations.md",
+     "bytes": 16047
+    },
+    {
+     "path": "references/deconstruction-examples.md",
+     "bytes": 4201
+    },
+    {
+     "path": "references/genre-core-mechanics.md",
+     "bytes": 17937
+    },
+    {
+     "path": "references/genre-readers.md",
+     "bytes": 11549
+    },
+    {
+     "path": "references/genre-writing-formulas.md",
+     "bytes": 21665
+    },
+    {
+     "path": "references/genre-writing-techniques.md",
+     "bytes": 20800
+    },
+    {
+     "path": "references/hooks-chapter.md",
+     "bytes": 8632
+    },
+    {
+     "path": "references/hooks-paragraph.md",
+     "bytes": 6848
+    },
+    {
+     "path": "references/hooks-suspense.md",
+     "bytes": 15308
+    },
+    {
+     "path": "references/optional-modules.md",
+     "bytes": 2559
+    },
+    {
+     "path": "references/quality-checklist.md",
+     "bytes": 10436
+    },
+    {
+     "path": "references/real-market-data.md",
+     "bytes": 4962
+    },
+    {
+     "path": "references/source-story-quality.md",
+     "bytes": 4574
+    },
+    {
+     "path": "references/stage2-3-structure-emotion.md",
+     "bytes": 14448
+    },
+    {
+     "path": "references/stage4-6-reversal-summary.md",
+     "bytes": 29382
+    },
+    {
+     "path": "references/zhihu-style.md",
+     "bytes": 2416
+    }
+   ],
+   "orphan_bytes": 304987
+  },
+  {
+   "slug": "story-short-write",
+   "tree_files": 57,
+   "entry_bytes": 10469,
+   "broken": [
+    "references/split-NN.md"
+   ],
+   "orphans": [
+    {
+     "path": "references/agent-calls.md",
+     "bytes": 2193
+    },
+    {
+     "path": "references/author-memory-maintenance.md",
+     "bytes": 9019
+    },
+    {
+     "path": "references/author-memory.md",
+     "bytes": 11484
+    },
+    {
+     "path": "references/banned-words.md",
+     "bytes": 9106
+    },
+    {
+     "path": "references/benchmark-recall.md",
+     "bytes": 3645
+    },
+    {
+     "path": "references/deslop-gates.md",
+     "bytes": 2533
+    },
+    {
+     "path": "references/dialogue-mastery.md",
+     "bytes": 11327
+    },
+    {
+     "path": "references/emotional-methods.md",
+     "bytes": 7690
+    },
+    {
+     "path": "references/expression.md",
+     "bytes": 9713
+    },
+    {
+     "path": "references/genre-writing-techniques.md",
+     "bytes": 22196
+    },
+    {
+     "path": "references/hooks-chapter.md",
+     "bytes": 8632
+    },
+    {
+     "path": "references/hooks-paragraph.md",
+     "bytes": 6848
+    },
+    {
+     "path": "references/hooks-suspense.md",
+     "bytes": 15308
+    },
+    {
+     "path": "references/narrative-focus.md",
+     "bytes": 6862
+    },
+    {
+     "path": "references/reference-index.md",
+     "bytes": 2240
+    },
+    {
+     "path": "references/reversal-toolkit.md",
+     "bytes": 15406
+    },
+    {
+     "path": "references/scene-craft.md",
+     "bytes": 2932
+    },
+    {
+     "path": "references/short-deslop.md",
+     "bytes": 8532
+    },
+    {
+     "path": "references/short-reversal.md",
+     "bytes": 15895
+    },
+    {
+     "path": "references/story-logic.md",
+     "bytes": 6069
+    },
+    {
+     "path": "references/style-resolution.md",
+     "bytes": 3790
+    },
+    {
+     "path": "references/villain-and-reveal.md",
+     "bytes": 6141
+    },
+    {
+     "path": "references/workflow-design.md",
+     "bytes": 10085
+    },
+    {
+     "path": "references/workflow-draft.md",
+     "bytes": 11761
+    },
+    {
+     "path": "references/workflow-revision.md",
+     "bytes": 7809
+    },
+    {
+     "path": "references/writing-workflow.md",
+     "bytes": 8785
+    }
+   ],
+   "orphan_bytes": 226001
+  },
+  {
+   "slug": "frontend-slides",
+   "tree_files": 95,
+   "entry_bytes": 23926,
+   "broken": [],
+   "orphans": [],
+   "orphan_bytes": 0
+  },
+  {
+   "slug": "A-prompt-better",
+   "tree_files": 2,
+   "entry_bytes": 35594,
+   "broken": [],
+   "orphans": [],
+   "orphan_bytes": 0
+  },
+  {
+   "slug": "frontend-skill",
+   "tree_files": 41,
+   "entry_bytes": 15540,
+   "broken": [],
+   "orphans": [
+    {
+     "path": "references/tells.md",
+     "bytes": 7420
+    }
+   ],
+   "orphan_bytes": 7420
+  },
+  {
+   "slug": "security-audit",
+   "tree_files": 5,
+   "entry_bytes": 13745,
+   "broken": [],
+   "orphans": [],
+   "orphan_bytes": 0
+  }
+ ]
+}

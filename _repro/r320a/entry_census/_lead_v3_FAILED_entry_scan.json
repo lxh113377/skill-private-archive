@@ -1,0 +1,3192 @@
+{
+ "schema": "r319a-entry-scan-v1",
+ "note": "前臂 2ac6b028 出助手函数与侦察数据；Lead 出主循环/堂/负控（双人合成品）",
+ "court": {
+  "pos_coding_agent_clean": false,
+  "neg_orphan_case": {
+   "rev": "coding-agent",
+   "orphans": 0,
+   "pass": false
+  },
+  "neg_broken_case": {
+   "rev": "frontend-skill",
+   "broken": [],
+   "pass": false
+  },
+  "legA_orphan_tooth": false,
+  "legB_broken_tooth": false,
+  "court_pass": false
+ },
+ "totals": {
+  "skills": 52,
+  "broken": 324,
+  "orphans": 587,
+  "orphan_bytes": 4975966
+ },
+ "per_skill": [
+  {
+   "rev": "HEAD",
+   "slug": "data-analysis",
+   "entry_ok": true,
+   "tree_files": 26,
+   "broken": [
+    "references/analysis-boundaries.md"
+   ],
+   "orphans": [
+    {
+     "file": "data-analysis/assets/report_template.md",
+     "bytes": 7873
+    },
+    {
+     "file": "data-analysis/references/bioinformatics_genomics_formats.md",
+     "bytes": 8977
+    },
+    {
+     "file": "data-analysis/references/chemistry_molecular_formats.md",
+     "bytes": 8732
+    },
+    {
+     "file": "data-analysis/references/general_scientific_formats.md",
+     "bytes": 12276
+    },
+    {
+     "file": "data-analysis/references/microscopy_imaging_formats.md",
+     "bytes": 9305
+    },
+    {
+     "file": "data-analysis/references/proteomics_metabolomics_formats.md",
+     "bytes": 9821
+    },
+    {
+     "file": "data-analysis/references/spectroscopy_analytical_formats.md",
+     "bytes": 9555
+    }
+   ]
+  },
+  {
+   "rev": "HEAD",
+   "slug": "rag-eval",
+   "entry_ok": true,
+   "tree_files": 13,
+   "broken": [
+    "scripts/eval/pyproject.toml",
+    "docs/api_reference/openapi_schema_rag_server.json",
+    "docs/api_reference/openapi_schema_ingestor_server.json",
+    "scripts/eval/evaluate_rag.py",
+    "docs/performance-benchmarking.md",
+    "references/benchmark-execution.md",
+    "references/dataset-and-conversion.md",
+    "references/evaluate-rag-cli.md",
+    "references/result-analysis.md",
+    "results/my_dataset/rag_my_dataset_evaluation_summary.json",
+    "scripts/eval/README.md"
+   ],
+   "orphans": [
+    {
+     "file": "rag-eval/BENCHMARK.md",
+     "bytes": 2915
+    },
+    {
+     "file": "rag-eval/skill-card.md",
+     "bytes": 2673
+    }
+   ]
+  },
+  {
+   "rev": "HEAD",
+   "slug": "commit-archaeologist",
+   "entry_ok": true,
+   "tree_files": 7,
+   "broken": [
+    "scripts/archaeologist.py",
+    "src/cache.py",
+    "references/reading-git-history.md"
+   ],
+   "orphans": [
+    {
+     "file": "commit-archaeologist/README.md",
+     "bytes": 2343
+    }
+   ]
+  },
+  {
+   "rev": "HEAD",
+   "slug": "scope-creep-detector",
+   "entry_ok": true,
+   "tree_files": 7,
+   "broken": [
+    "scripts/scope_creep.py",
+    "references/scope-signals.md"
+   ],
+   "orphans": [
+    {
+     "file": "scope-creep-detector/README.md",
+     "bytes": 1231
+    }
+   ]
+  },
+  {
+   "rev": "HEAD",
+   "slug": "algorithmic-art",
+   "entry_ok": true,
+   "tree_files": 7,
+   "broken": [
+    "templates/viewer.html",
+    "templates/generator_template.js"
+   ],
+   "orphans": []
+  },
+  {
+   "rev": "HEAD",
+   "slug": "brand-guidelines",
+   "entry_ok": true,
+   "tree_files": 5,
+   "broken": [],
+   "orphans": []
+  },
+  {
+   "rev": "HEAD",
+   "slug": "canvas-design",
+   "entry_ok": true,
+   "tree_files": 86,
+   "broken": [],
+   "orphans": [
+    {
+     "file": "canvas-design/canvas-fonts/ArsenalSC-OFL.txt",
+     "bytes": 4373
+    },
+    {
+     "file": "canvas-design/canvas-fonts/BigShoulders-OFL.txt",
+     "bytes": 4397
+    },
+    {
+     "file": "canvas-design/canvas-fonts/Boldonse-OFL.txt",
+     "bytes": 4390
+    },
+    {
+     "file": "canvas-design/canvas-fonts/BricolageGrotesque-OFL.txt",
+     "bytes": 4403
+    },
+    {
+     "file": "canvas-design/canvas-fonts/CrimsonPro-OFL.txt",
+     "bytes": 4394
+    },
+    {
+     "file": "canvas-design/canvas-fonts/DMMono-OFL.txt",
+     "bytes": 4392
+    },
+    {
+     "file": "canvas-design/canvas-fonts/EricaOne-OFL.txt",
+     "bytes": 4410
+    },
+    {
+     "file": "canvas-design/canvas-fonts/GeistMono-OFL.txt",
+     "bytes": 4388
+    },
+    {
+     "file": "canvas-design/canvas-fonts/Gloock-OFL.txt",
+     "bytes": 4381
+    },
+    {
+     "file": "canvas-design/canvas-fonts/IBMPlexMono-OFL.txt",
+     "bytes": 4363
+    },
+    {
+     "file": "canvas-design/canvas-fonts/InstrumentSans-OFL.txt",
+     "bytes": 4403
+    },
+    {
+     "file": "canvas-design/canvas-fonts/Italiana-OFL.txt",
+     "bytes": 4394
+    },
+    {
+     "file": "canvas-design/canvas-fonts/JetBrainsMono-OFL.txt",
+     "bytes": 4399
+    },
+    {
+     "file": "canvas-design/canvas-fonts/Jura-OFL.txt",
+     "bytes": 4380
+    },
+    {
+     "file": "canvas-design/canvas-fonts/LibreBaskerville-OFL.txt",
+     "bytes": 4449
+    },
+    {
+     "file": "canvas-design/canvas-fonts/Lora-OFL.txt",
+     "bytes": 4423
+    },
+    {
+     "file": "canvas-design/canvas-fonts/NationalPark-OFL.txt",
+     "bytes": 4399
+    },
+    {
+     "file": "canvas-design/canvas-fonts/NothingYouCouldDo-OFL.txt",
+     "bytes": 4363
+    },
+    {
+     "file": "canvas-design/canvas-fonts/Outfit-OFL.txt",
+     "bytes": 4389
+    },
+    {
+     "file": "canvas-design/canvas-fonts/PixelifySans-OFL.txt",
+     "bytes": 4395
+    },
+    {
+     "file": "canvas-design/canvas-fonts/PoiretOne-OFL.txt",
+     "bytes": 4366
+    },
+    {
+     "file": "canvas-design/canvas-fonts/RedHatMono-OFL.txt",
+     "bytes": 4394
+    },
+    {
+     "file": "canvas-design/canvas-fonts/Silkscreen-OFL.txt",
+     "bytes": 4394
+    },
+    {
+     "file": "canvas-design/canvas-fonts/SmoochSans-OFL.txt",
+     "bytes": 4396
+    },
+    {
+     "file": "canvas-design/canvas-fonts/Tektur-OFL.txt",
+     "bytes": 4385
+    },
+    {
+     "file": "canvas-design/canvas-fonts/WorkSans-OFL.txt",
+     "bytes": 4397
+    },
+    {
+     "file": "canvas-design/canvas-fonts/YoungSerif-OFL.txt",
+     "bytes": 4398
+    }
+   ]
+  },
+  {
+   "rev": "HEAD",
+   "slug": "doc-coauthoring",
+   "entry_ok": true,
+   "tree_files": 3,
+   "broken": [
+    "references/license-provenance.md"
+   ],
+   "orphans": []
+  },
+  {
+   "rev": "HEAD",
+   "slug": "docx",
+   "entry_ok": true,
+   "tree_files": 75,
+   "broken": [
+    "scripts/md_to_docx.py",
+    "scripts/doctor.py",
+    "scripts/md_to_docx.mjs",
+    "scripts/preview.py",
+    "templates/report-standard.docx",
+    "scripts/office/validate.py",
+    "templates/memo.docx",
+    "scripts/fill_template.py",
+    "templates/contract.docx",
+    "scripts/styles/zh-cn.js",
+    "scripts/office/unpack.py",
+    "scripts/comment.py",
+    "scripts/office/pack.py",
+    "media/image1.png",
+    "scripts/office/soffice.py",
+    "scripts/accept_changes.py",
+    "reference/pipeline.md",
+    "reference/templates.md",
+    "scripts/merge_runs.py"
+   ],
+   "orphans": [
+    {
+     "file": "docx/LICENSE.txt",
+     "bytes": 1467
+    }
+   ]
+  },
+  {
+   "rev": "HEAD",
+   "slug": "frontend-design",
+   "entry_ok": true,
+   "tree_files": 3,
+   "broken": [],
+   "orphans": []
+  },
+  {
+   "rev": "HEAD",
+   "slug": "internal-comms",
+   "entry_ok": true,
+   "tree_files": 9,
+   "broken": [
+    "examples/3p-updates.md",
+    "examples/company-newsletter.md",
+    "examples/faq-answers.md",
+    "examples/general-comms.md"
+   ],
+   "orphans": []
+  },
+  {
+   "rev": "HEAD",
+   "slug": "mcp-builder",
+   "entry_ok": true,
+   "tree_files": 14,
+   "broken": [
+    "./reference/mcp_best_practices.md",
+    "./reference/node_mcp_server_v2.md",
+    "./reference/node_mcp_server.md",
+    "./reference/python_mcp_server.md",
+    "./reference/evaluation.md",
+    "reference/node_mcp_server_v2.md"
+   ],
+   "orphans": []
+  },
+  {
+   "rev": "HEAD",
+   "slug": "pdf",
+   "entry_ok": true,
+   "tree_files": 16,
+   "broken": [
+    "scripts/extract_form_field_info.py",
+    "scripts/fill_fillable_fields.py",
+    "scripts/check_fillable_fields.py",
+    "scripts/extract_form_structure.py",
+    "scripts/convert_pdf_to_images.py",
+    "scripts/create_validation_image.py",
+    "scripts/check_bounding_boxes.py",
+    "SKILL.md"
+   ],
+   "orphans": []
+  },
+  {
+   "rev": "HEAD",
+   "slug": "theme-factory",
+   "entry_ok": true,
+   "tree_files": 16,
+   "broken": [],
+   "orphans": [
+    {
+     "file": "theme-factory/themes/arctic-frost.md",
+     "bytes": 544
+    },
+    {
+     "file": "theme-factory/themes/botanical-garden.md",
+     "bytes": 519
+    },
+    {
+     "file": "theme-factory/themes/desert-rose.md",
+     "bytes": 496
+    },
+    {
+     "file": "theme-factory/themes/forest-canopy.md",
+     "bytes": 506
+    },
+    {
+     "file": "theme-factory/themes/golden-hour.md",
+     "bytes": 528
+    },
+    {
+     "file": "theme-factory/themes/midnight-galaxy.md",
+     "bytes": 513
+    },
+    {
+     "file": "theme-factory/themes/modern-minimalist.md",
+     "bytes": 549
+    },
+    {
+     "file": "theme-factory/themes/ocean-depths.md",
+     "bytes": 555
+    },
+    {
+     "file": "theme-factory/themes/sunset-boulevard.md",
+     "bytes": 558
+    },
+    {
+     "file": "theme-factory/themes/tech-innovation.md",
+     "bytes": 547
+    }
+   ]
+  },
+  {
+   "rev": "HEAD",
+   "slug": "xlsx",
+   "entry_ok": true,
+   "tree_files": 60,
+   "broken": [
+    ".xlsx/.xlsm/.csv",
+    "scripts/recalc.py",
+    "scripts/office/unpack.py",
+    "scripts/office/pack.py",
+    "recalc_out/output.xlsx",
+    "scripts/office/validate.py",
+    "office/soffice.py",
+    "references/verification.md"
+   ],
+   "orphans": []
+  },
+  {
+   "rev": "HEAD",
+   "slug": "chart-visualization",
+   "entry_ok": true,
+   "tree_files": 29,
+   "broken": [
+    "references/generate_line_chart.md",
+    "scripts/generate.js",
+    "./scripts/generate.js"
+   ],
+   "orphans": []
+  },
+  {
+   "rev": "HEAD",
+   "slug": "gstack",
+   "entry_ok": true,
+   "tree_files": 174,
+   "broken": [
+    "references/browse-v2-upstream.md",
+    "scripts/install.sh"
+   ],
+   "orphans": [
+    {
+     "file": "gstack/AGENTS.md",
+     "bytes": 2610
+    },
+    {
+     "file": "gstack/CHANGELOG.md",
+     "bytes": 67122
+    },
+    {
+     "file": "gstack/CLAUDE.md",
+     "bytes": 11378
+    },
+    {
+     "file": "gstack/CONTRIBUTING.md",
+     "bytes": 15428
+    },
+    {
+     "file": "gstack/README.md",
+     "bytes": 20701
+    },
+    {
+     "file": "gstack/TODOS.md",
+     "bytes": 22547
+    },
+    {
+     "file": "gstack/qa/references/issue-taxonomy.md",
+     "bytes": 3619
+    },
+    {
+     "file": "gstack/qa/templates/qa-report-template.md",
+     "bytes": 2979
+    },
+    {
+     "file": "gstack/review/TODOS-format.md",
+     "bytes": 1660
+    },
+    {
+     "file": "gstack/review/checklist.md",
+     "bytes": 10178
+    },
+    {
+     "file": "gstack/review/design-checklist.md",
+     "bytes": 6605
+    },
+    {
+     "file": "gstack/review/greptile-triage.md",
+     "bytes": 8271
+    }
+   ]
+  },
+  {
+   "rev": "HEAD",
+   "slug": "diagram-maker",
+   "entry_ok": true,
+   "tree_files": 22,
+   "broken": [
+    "./diagram.html",
+    "references/svg-template.md",
+    "references/excalidraw-patterns.md",
+    "references/excalidraw-advanced.md"
+   ],
+   "orphans": [
+    {
+     "file": "diagram-maker/references/element-types.md",
+     "bytes": 8717
+    },
+    {
+     "file": "diagram-maker/references/excalidraw-schema.md",
+     "bytes": 8419
+    },
+    {
+     "file": "diagram-maker/scripts/README.md",
+     "bytes": 6537
+    }
+   ]
+  },
+  {
+   "rev": "HEAD",
+   "slug": "figma",
+   "entry_ok": true,
+   "tree_files": 10,
+   "broken": [
+    "references/figma-mcp-config.md",
+    "references/figma-tools-and-prompts.md"
+   ],
+   "orphans": [
+    {
+     "file": "figma/LICENSE.txt",
+     "bytes": 440
+    }
+   ]
+  },
+  {
+   "rev": "HEAD",
+   "slug": "hyperframes",
+   "entry_ok": true,
+   "tree_files": 136,
+   "broken": [
+    "references/format.md",
+    "references/rules.md",
+    "references/prompt-expansion.md",
+    "references/review.md",
+    "references/approach.md",
+    "references/design-picker.md",
+    "references/beat-direction.md",
+    "references/layout.md",
+    "references/index.md",
+    "references/video-composition.md",
+    "references/typography.md",
+    "references/motion-principles.md",
+    "references/captions.md",
+    "references/transitions.md",
+    "references/audio-reactive.md",
+    "references/narration.md",
+    "references/techniques.md",
+    "references/html-in-canvas-patterns.md",
+    "references/spec.md",
+    "references/story.md",
+    "references/storyboard.md",
+    "references/storyboard-format.md",
+    "references/motion.md",
+    "references/look.md",
+    "references/sound.md",
+    "references/film.md",
+    "references/overlays.md",
+    "references/runtimes.md",
+    "references/plugin-installation.md",
+    "references/skill-lifecycle.md",
+    "scripts/bake-basemap.mjs",
+    "scripts/locate.mjs",
+    "scripts/plugin-cli.mjs",
+    "lib/main-module.mjs",
+    "eval/skill_size_report.py"
+   ],
+   "orphans": [
+    {
+     "file": "hyperframes/assets/frame-presets/code-editorial/fonts/OFL-eb-garamond.txt",
+     "bytes": 4519
+    },
+    {
+     "file": "hyperframes/assets/frame-presets/code-editorial/fonts/OFL-inter.txt",
+     "bytes": 4477
+    },
+    {
+     "file": "hyperframes/assets/frame-presets/code-editorial/fonts/OFL-jetbrains-mono.txt",
+     "bytes": 4524
+    },
+    {
+     "file": "hyperframes/palettes/bold-energetic.md",
+     "bytes": 417
+    },
+    {
+     "file": "hyperframes/palettes/clean-corporate.md",
+     "bytes": 410
+    },
+    {
+     "file": "hyperframes/palettes/dark-premium.md",
+     "bytes": 389
+    },
+    {
+     "file": "hyperframes/palettes/jewel-rich.md",
+     "bytes": 394
+    },
+    {
+     "file": "hyperframes/palettes/monochrome.md",
+     "bytes": 454
+    },
+    {
+     "file": "hyperframes/palettes/nature-earth.md",
+     "bytes": 399
+    },
+    {
+     "file": "hyperframes/palettes/neon-electric.md",
+     "bytes": 380
+    },
+    {
+     "file": "hyperframes/palettes/pastel-soft.md",
+     "bytes": 392
+    },
+    {
+     "file": "hyperframes/palettes/warm-editorial.md",
+     "bytes": 411
+    },
+    {
+     "file": "hyperframes/patterns.md",
+     "bytes": 5539
+    },
+    {
+     "file": "hyperframes/references/animejs-adapter.md",
+     "bytes": 3309
+    },
+    {
+     "file": "hyperframes/references/css-animations-adapter.md",
+     "bytes": 3889
+    },
+    {
+     "file": "hyperframes/references/css-patterns.md",
+     "bytes": 8312
+    },
+    {
+     "file": "hyperframes/references/dynamic-techniques.md",
+     "bytes": 7812
+    },
+    {
+     "file": "hyperframes/references/lottie-adapter.md",
+     "bytes": 3397
+    },
+    {
+     "file": "hyperframes/references/text-effects.md",
+     "bytes": 4064
+    },
+    {
+     "file": "hyperframes/references/three-adapter.md",
+     "bytes": 3537
+    },
+    {
+     "file": "hyperframes/references/transcript-guide.md",
+     "bytes": 5864
+    },
+    {
+     "file": "hyperframes/references/transitions/catalog.md",
+     "bytes": 6290
+    },
+    {
+     "file": "hyperframes/references/transitions/css-3d.md",
+     "bytes": 421
+    },
+    {
+     "file": "hyperframes/references/transitions/css-blur.md",
+     "bytes": 1787
+    },
+    {
+     "file": "hyperframes/references/transitions/css-cover.md",
+     "bytes": 1448
+    },
+    {
+     "file": "hyperframes/references/transitions/css-destruction.md",
+     "bytes": 4484
+    },
+    {
+     "file": "hyperframes/references/transitions/css-dissolve.md",
+     "bytes": 2462
+    },
+    {
+     "file": "hyperframes/references/transitions/css-distortion.md",
+     "bytes": 1803
+    },
+    {
+     "file": "hyperframes/references/transitions/css-grid.md",
+     "bytes": 370
+    },
+    {
+     "file": "hyperframes/references/transitions/css-light.md",
+     "bytes": 2376
+    },
+    {
+     "file": "hyperframes/references/transitions/css-mechanical.md",
+     "bytes": 1613
+    },
+    {
+     "file": "hyperframes/references/transitions/css-other.md",
+     "bytes": 838
+    },
+    {
+     "file": "hyperframes/references/transitions/css-push.md",
+     "bytes": 1195
+    },
+    {
+     "file": "hyperframes/references/transitions/css-radial.md",
+     "bytes": 1060
+    },
+    {
+     "file": "hyperframes/references/transitions/css-scale.md",
+     "bytes": 715
+    },
+    {
+     "file": "hyperframes/references/typegpu-adapter.md",
+     "bytes": 6688
+    },
+    {
+     "file": "hyperframes/references/waapi-adapter.md",
+     "bytes": 3217
+    }
+   ]
+  },
+  {
+   "rev": "HEAD",
+   "slug": "hyperframes-cli",
+   "entry_ok": true,
+   "tree_files": 16,
+   "broken": [
+    "references/init-and-scaffold.md",
+    "references/lint-validate-inspect.md",
+    "references/preview-render.md",
+    "references/lambda.md",
+    "references/cloud.md",
+    "references/cloudrun.md",
+    "references/compare-and-batch.md",
+    "references/doctor-browser.md",
+    "references/conventions.md",
+    "references/feedback.md",
+    "references/beats.md",
+    "references/upgrade-info-misc.md"
+   ],
+   "orphans": []
+  },
+  {
+   "rev": "HEAD",
+   "slug": "hyperframes-media",
+   "entry_ok": true,
+   "tree_files": 119,
+   "broken": [
+    "references/resolve.md",
+    "references/setup-providers.md",
+    "references/audio.md",
+    "references/local.md",
+    "references/mixing.md",
+    "references/grading.md",
+    "references/media-treatments.md",
+    "references/media-treatment-recipes.md",
+    "references/memory.md",
+    "references/meta.md",
+    "references/operations.md",
+    "references/telemetry-dashboard.md"
+   ],
+   "orphans": [
+    {
+     "file": "hyperframes-media/audio/assets/sfx/CREDITS.md",
+     "bytes": 1183
+    },
+    {
+     "file": "hyperframes-media/audio/references/bgm.md",
+     "bytes": 8119
+    },
+    {
+     "file": "hyperframes-media/audio/references/captions/authoring.md",
+     "bytes": 9422
+    },
+    {
+     "file": "hyperframes-media/audio/references/captions/motion.md",
+     "bytes": 5480
+    },
+    {
+     "file": "hyperframes-media/audio/references/captions/transcript-handling.md",
+     "bytes": 5439
+    },
+    {
+     "file": "hyperframes-media/audio/references/sfx.md",
+     "bytes": 4137
+    },
+    {
+     "file": "hyperframes-media/audio/references/tts-to-captions.md",
+     "bytes": 1755
+    },
+    {
+     "file": "hyperframes-media/luts/README.md",
+     "bytes": 1087
+    }
+   ]
+  },
+  {
+   "rev": "HEAD",
+   "slug": "hyperframes-registry",
+   "entry_ok": true,
+   "tree_files": 15,
+   "broken": [
+    "references/component-quality-bar.md",
+    "references/placeholder-material.md",
+    "references/search.md",
+    "./references/install-locations.md",
+    "compositions/data-chart.html",
+    "./references/wiring-blocks.md",
+    "compositions/components/grain-overlay.html",
+    "./references/wiring-components.md",
+    "./references/discovery.md",
+    "./references/contributing.md",
+    "./references/templates.md"
+   ],
+   "orphans": [
+    {
+     "file": "hyperframes-registry/examples/add-block.md",
+     "bytes": 1232
+    },
+    {
+     "file": "hyperframes-registry/examples/add-component.md",
+     "bytes": 1473
+    },
+    {
+     "file": "hyperframes-registry/references/demo-html-pattern.md",
+     "bytes": 1884
+    }
+   ]
+  },
+  {
+   "rev": "HEAD",
+   "slug": "ppt-master",
+   "entry_ok": true,
+   "tree_files": 13069,
+   "broken": [
+    "workflows/routing.md",
+    "workflows/profiles/image-to-pptx.md",
+    "workflows/profiles/beautify-pptx.md",
+    "workflows/generate-pptx.md",
+    "workflows/profiles/quick-generate.md",
+    "workflows/create-template.md",
+    "workflows/edit-native-pptx.md"
+   ],
+   "orphans": [
+    {
+     "file": "ppt-master/references/ai-image-comparison/README.md",
+     "bytes": 4372
+    },
+    {
+     "file": "ppt-master/references/ai-image-comparison/palette/_manifest.md",
+     "bytes": 16161
+    },
+    {
+     "file": "ppt-master/references/ai-image-comparison/palette/_subject.md",
+     "bytes": 3086
+    },
+    {
+     "file": "ppt-master/references/ai-image-comparison/rendering/_manifest.md",
+     "bytes": 23824
+    },
+    {
+     "file": "ppt-master/references/ai-image-comparison/rendering/_subject.md",
+     "bytes": 1806
+    },
+    {
+     "file": "ppt-master/references/ai-image-comparison/type/_manifest.md",
+     "bytes": 15082
+    },
+    {
+     "file": "ppt-master/references/ai-image-comparison/type/_subject.md",
+     "bytes": 3117
+    },
+    {
+     "file": "ppt-master/references/animations.md",
+     "bytes": 24154
+    },
+    {
+     "file": "ppt-master/references/artifact-ownership.md",
+     "bytes": 20217
+    },
+    {
+     "file": "ppt-master/references/canvas-formats.md",
+     "bytes": 4255
+    },
+    {
+     "file": "ppt-master/references/confirm-surface.md",
+     "bytes": 10102
+    },
+    {
+     "file": "ppt-master/references/executor-base.md",
+     "bytes": 52613
+    },
+    {
+     "file": "ppt-master/references/executor-chart.md",
+     "bytes": 8360
+    },
+    {
+     "file": "ppt-master/references/executor-image.md",
+     "bytes": 7249
+    },
+    {
+     "file": "ppt-master/references/executor-notes.md",
+     "bytes": 4753
+    },
+    {
+     "file": "ppt-master/references/executor-structure.md",
+     "bytes": 8148
+    },
+    {
+     "file": "ppt-master/references/executor-structured.md",
+     "bytes": 12937
+    },
+    {
+     "file": "ppt-master/references/executor-table.md",
+     "bytes": 4786
+    },
+    {
+     "file": "ppt-master/references/executor-visualization.md",
+     "bytes": 4517
+    },
+    {
+     "file": "ppt-master/references/executor-web-image.md",
+     "bytes": 1806
+    },
+    {
+     "file": "ppt-master/references/image-base.md",
+     "bytes": 8711
+    },
+    {
+     "file": "ppt-master/references/image-generator.md",
+     "bytes": 45140
+    },
+    {
+     "file": "ppt-master/references/image-layout-patterns.md",
+     "bytes": 26818
+    },
+    {
+     "file": "ppt-master/references/image-layout-spec.md",
+     "bytes": 9416
+    },
+    {
+     "file": "ppt-master/references/image-palettes/_index.md",
+     "bytes": 2368
+    },
+    {
+     "file": "ppt-master/references/image-palettes/cool-corporate.md",
+     "bytes": 1697
+    },
+    {
+     "file": "ppt-master/references/image-palettes/dark-cinematic.md",
+     "bytes": 2013
+    },
+    {
+     "file": "ppt-master/references/image-palettes/duotone.md",
+     "bytes": 1495
+    },
+    {
+     "file": "ppt-master/references/image-palettes/earthy-dusty.md",
+     "bytes": 1897
+    },
+    {
+     "file": "ppt-master/references/image-palettes/editorial-classic.md",
+     "bytes": 1470
+    },
+    {
+     "file": "ppt-master/references/image-palettes/frost-ice.md",
+     "bytes": 1673
+    },
+    {
+     "file": "ppt-master/references/image-palettes/jewel-tone.md",
+     "bytes": 1793
+    },
+    {
+     "file": "ppt-master/references/image-palettes/macaron.md",
+     "bytes": 1676
+    },
+    {
+     "file": "ppt-master/references/image-palettes/mono-ink.md",
+     "bytes": 2584
+    },
+    {
+     "file": "ppt-master/references/image-palettes/nature-organic.md",
+     "bytes": 1335
+    },
+    {
+     "file": "ppt-master/references/image-palettes/sunset-gradient.md",
+     "bytes": 2193
+    },
+    {
+     "file": "ppt-master/references/image-palettes/tech-neon.md",
+     "bytes": 1550
+    },
+    {
+     "file": "ppt-master/references/image-palettes/vivid-launch.md",
+     "bytes": 1478
+    },
+    {
+     "file": "ppt-master/references/image-palettes/warm-earth.md",
+     "bytes": 1686
+    },
+    {
+     "file": "ppt-master/references/image-renderings/3d-isometric.md",
+     "bytes": 2738
+    },
+    {
+     "file": "ppt-master/references/image-renderings/_index.md",
+     "bytes": 8249
+    },
+    {
+     "file": "ppt-master/references/image-renderings/blueprint.md",
+     "bytes": 2667
+    },
+    {
+     "file": "ppt-master/references/image-renderings/chalkboard.md",
+     "bytes": 2600
+    },
+    {
+     "file": "ppt-master/references/image-renderings/corporate-photo.md",
+     "bytes": 3485
+    },
+    {
+     "file": "ppt-master/references/image-renderings/digital-dashboard.md",
+     "bytes": 2652
+    },
+    {
+     "file": "ppt-master/references/image-renderings/fantasy-animation.md",
+     "bytes": 2754
+    },
+    {
+     "file": "ppt-master/references/image-renderings/glassmorphism.md",
+     "bytes": 3181
+    },
+    {
+     "file": "ppt-master/references/image-renderings/ink-notes.md",
+     "bytes": 3361
+    },
+    {
+     "file": "ppt-master/references/image-renderings/minimalist-swiss.md",
+     "bytes": 2900
+    },
+    {
+     "file": "ppt-master/references/image-renderings/nature.md",
+     "bytes": 2804
+    },
+    {
+     "file": "ppt-master/references/image-renderings/paper-cut.md",
+     "bytes": 2759
+    },
+    {
+     "file": "ppt-master/references/image-renderings/pixel-art.md",
+     "bytes": 2536
+    },
+    {
+     "file": "ppt-master/references/image-renderings/screen-print.md",
+     "bytes": 2854
+    },
+    {
+     "file": "ppt-master/references/image-renderings/sketch-notes.md",
+     "bytes": 2998
+    },
+    {
+     "file": "ppt-master/references/image-renderings/vector-illustration.md",
+     "bytes": 2909
+    },
+    {
+     "file": "ppt-master/references/image-renderings/vintage-poster.md",
+     "bytes": 2975
+    },
+    {
+     "file": "ppt-master/references/image-renderings/warm-scene.md",
+     "bytes": 2990
+    },
+    {
+     "file": "ppt-master/references/image-renderings/watercolor.md",
+     "bytes": 2457
+    },
+    {
+     "file": "ppt-master/references/image-searcher.md",
+     "bytes": 14313
+    },
+    {
+     "file": "ppt-master/references/image-type-templates/_index.md",
+     "bytes": 6229
+    },
+    {
+     "file": "ppt-master/references/image-type-templates/comparison.md",
+     "bytes": 3532
+    },
+    {
+     "file": "ppt-master/references/image-type-templates/flowchart.md",
+     "bytes": 2919
+    },
+    {
+     "file": "ppt-master/references/image-type-templates/framework.md",
+     "bytes": 4715
+    },
+    {
+     "file": "ppt-master/references/image-type-templates/funnel.md",
+     "bytes": 3786
+    },
+    {
+     "file": "ppt-master/references/image-type-templates/infographic.md",
+     "bytes": 3538
+    },
+    {
+     "file": "ppt-master/references/image-type-templates/map.md",
+     "bytes": 3915
+    },
+    {
+     "file": "ppt-master/references/image-type-templates/matrix.md",
+     "bytes": 3676
+    },
+    {
+     "file": "ppt-master/references/image-type-templates/pyramid.md",
+     "bytes": 3471
+    },
+    {
+     "file": "ppt-master/references/image-type-templates/scene.md",
+     "bytes": 3489
+    },
+    {
+     "file": "ppt-master/references/image-type-templates/timeline.md",
+     "bytes": 2849
+    },
+    {
+     "file": "ppt-master/references/modes/_index.md",
+     "bytes": 5813
+    },
+    {
+     "file": "ppt-master/references/modes/briefing.md",
+     "bytes": 3027
+    },
+    {
+     "file": "ppt-master/references/modes/instructional.md",
+     "bytes": 2195
+    },
+    {
+     "file": "ppt-master/references/modes/narrative.md",
+     "bytes": 2453
+    },
+    {
+     "file": "ppt-master/references/modes/pyramid.md",
+     "bytes": 3178
+    },
+    {
+     "file": "ppt-master/references/modes/showcase.md",
+     "bytes": 1927
+    },
+    {
+     "file": "ppt-master/references/native-data-interface.md",
+     "bytes": 11758
+    },
+    {
+     "file": "ppt-master/references/native-formula.md",
+     "bytes": 6016
+    },
+    {
+     "file": "ppt-master/references/native-hyperlinks.md",
+     "bytes": 5201
+    },
+    {
+     "file": "ppt-master/references/native-shape-authoring.md",
+     "bytes": 22756
+    },
+    {
+     "file": "ppt-master/references/plan-core.md",
+     "bytes": 31905
+    },
+    {
+     "file": "ppt-master/references/pptx-structure-interface.md",
+     "bytes": 12457
+    },
+    {
+     "file": "ppt-master/references/preset-shape-vocabulary.md",
+     "bytes": 10017
+    },
+    {
+     "file": "ppt-master/references/semantic-svg.md",
+     "bytes": 5579
+    },
+    {
+     "file": "ppt-master/references/shared-standards-core.md",
+     "bytes": 32310
+    },
+    {
+     "file": "ppt-master/references/shared-standards.md",
+     "bytes": 539
+    },
+    {
+     "file": "ppt-master/references/strategist-image.md",
+     "bytes": 11677
+    },
+    {
+     "file": "ppt-master/references/strategist-template.md",
+     "bytes": 12316
+    },
+    {
+     "file": "ppt-master/references/strategist.md",
+     "bytes": 38546
+    },
+    {
+     "file": "ppt-master/references/svg-effects.md",
+     "bytes": 36609
+    },
+    {
+     "file": "ppt-master/references/svg-image-embedding.md",
+     "bytes": 6485
+    },
+    {
+     "file": "ppt-master/references/template-designer.md",
+     "bytes": 26130
+    },
+    {
+     "file": "ppt-master/references/topology-assembly.md",
+     "bytes": 11115
+    },
+    {
+     "file": "ppt-master/references/video-design.md",
+     "bytes": 12620
+    },
+    {
+     "file": "ppt-master/references/visual-review.md",
+     "bytes": 12809
+    },
+    {
+     "file": "ppt-master/references/visual-styles/_index.md",
+     "bytes": 9471
+    },
+    {
+     "file": "ppt-master/references/visual-styles/blueprint.md",
+     "bytes": 2937
+    },
+    {
+     "file": "ppt-master/references/visual-styles/brutalist.md",
+     "bytes": 3114
+    },
+    {
+     "file": "ppt-master/references/visual-styles/chalkboard.md",
+     "bytes": 2366
+    },
+    {
+     "file": "ppt-master/references/visual-styles/dark-tech.md",
+     "bytes": 2245
+    },
+    {
+     "file": "ppt-master/references/visual-styles/data-journalism.md",
+     "bytes": 2893
+    },
+    {
+     "file": "ppt-master/references/visual-styles/glassmorphism.md",
+     "bytes": 2765
+    },
+    {
+     "file": "ppt-master/references/visual-styles/ink-notes.md",
+     "bytes": 2772
+    },
+    {
+     "file": "ppt-master/references/visual-styles/ink-wash.md",
+     "bytes": 2849
+    },
+    {
+     "file": "ppt-master/references/visual-styles/memphis.md",
+     "bytes": 2670
+    },
+    {
+     "file": "ppt-master/references/visual-styles/paper-cut.md",
+     "bytes": 2645
+    },
+    {
+     "file": "ppt-master/references/visual-styles/photo-editorial.md",
+     "bytes": 2868
+    },
+    {
+     "file": "ppt-master/references/visual-styles/pixel-art.md",
+     "bytes": 2504
+    },
+    {
+     "file": "ppt-master/references/visual-styles/sketch-notes.md",
+     "bytes": 2555
+    },
+    {
+     "file": "ppt-master/references/visual-styles/soft-rounded.md",
+     "bytes": 2520
+    },
+    {
+     "file": "ppt-master/references/visual-styles/swiss-minimal.md",
+     "bytes": 2953
+    },
+    {
+     "file": "ppt-master/references/visual-styles/vintage-poster.md",
+     "bytes": 2672
+    },
+    {
+     "file": "ppt-master/references/visual-styles/zine.md",
+     "bytes": 2782
+    },
+    {
+     "file": "ppt-master/requirements.txt",
+     "bytes": 7711
+    },
+    {
+     "file": "ppt-master/scripts/README.md",
+     "bytes": 35636
+    },
+    {
+     "file": "ppt-master/scripts/docs/advanced-image-motion-smoke.md",
+     "bytes": 12647
+    },
+    {
+     "file": "ppt-master/scripts/docs/chart-recall.md",
+     "bytes": 1183
+    },
+    {
+     "file": "ppt-master/scripts/docs/confirm_ui.md",
+     "bytes": 56205
+    },
+    {
+     "file": "ppt-master/scripts/docs/conversion.md",
+     "bytes": 34020
+    },
+    {
+     "file": "ppt-master/scripts/docs/mask-gradient-smoke.md",
+     "bytes": 9009
+    },
+    {
+     "file": "ppt-master/scripts/docs/multilingual-text-smoke.md",
+     "bytes": 10649
+    },
+    {
+     "file": "ppt-master/scripts/docs/native-data.md",
+     "bytes": 21162
+    },
+    {
+     "file": "ppt-master/scripts/docs/pptx-animations.md",
+     "bytes": 19707
+    },
+    {
+     "file": "ppt-master/scripts/docs/pptx-transitions.md",
+     "bytes": 13150
+    },
+    {
+     "file": "ppt-master/scripts/docs/project.md",
+     "bytes": 18420
+    },
+    {
+     "file": "ppt-master/scripts/docs/prompt_audit.md",
+     "bytes": 6383
+    },
+    {
+     "file": "ppt-master/scripts/docs/spec_review.md",
+     "bytes": 13871
+    },
+    {
+     "file": "ppt-master/scripts/docs/svg-contract.md",
+     "bytes": 57858
+    },
+    {
+     "file": "ppt-master/scripts/docs/svg-pipeline.md",
+     "bytes": 96720
+    },
+    {
+     "file": "ppt-master/scripts/docs/svg_editor.md",
+     "bytes": 5558
+    },
+    {
+     "file": "ppt-master/scripts/docs/template-tools.md",
+     "bytes": 18329
+    },
+    {
+     "file": "ppt-master/scripts/docs/update_spec.md",
+     "bytes": 4354
+    },
+    {
+     "file": "ppt-master/scripts/docs/video-motion-plan.md",
+     "bytes": 4027
+    },
+    {
+     "file": "ppt-master/scripts/docs/visualization-recall.md",
+     "bytes": 5385
+    },
+    {
+     "file": "ppt-master/scripts/pptx_shapes/data/LICENSE-APACHE-2.0.txt",
+     "bytes": 11358
+    },
+    {
+     "file": "ppt-master/scripts/pptx_shapes/data/LICENSE-OPEN-XML-SDK-MIT.txt",
+     "bytes": 1116
+    },
+    {
+     "file": "ppt-master/scripts/pptx_shapes/data/NOTICE.md",
+     "bytes": 2365
+    },
+    {
+     "file": "ppt-master/scripts/pptx_shapes/data/shape_type_values.txt",
+     "bytes": 2527
+    },
+    {
+     "file": "ppt-master/templates/README.md",
+     "bytes": 6278
+    },
+    {
+     "file": "ppt-master/templates/VISUALIZATION_TEMPLATE_AUTHORING.md",
+     "bytes": 23605
+    },
+    {
+     "file": "ppt-master/templates/brands/README.md",
+     "bytes": 2058
+    },
+    {
+     "file": "ppt-master/templates/charts/README.md",
+     "bytes": 3392
+    },
+    {
+     "file": "ppt-master/templates/charts/chart-vocabulary.md",
+     "bytes": 4432
+    },
+    {
+     "file": "ppt-master/templates/decks/README.md",
+     "bytes": 4654
+    },
+    {
+     "file": "ppt-master/templates/design_spec_reference.md",
+     "bytes": 15644
+    },
+    {
+     "file": "ppt-master/templates/icons/README.md",
+     "bytes": 5711
+    },
+    {
+     "file": "ppt-master/templates/icons/THIRD_PARTY_NOTICES.md",
+     "bytes": 5682
+    },
+    {
+     "file": "ppt-master/templates/layouts/README.md",
+     "bytes": 5260
+    },
+    {
+     "file": "ppt-master/templates/scaffolds/spec_lock.md",
+     "bytes": 858
+    },
+    {
+     "file": "ppt-master/templates/sounds/CC0-1.0.txt",
+     "bytes": 7048
+    },
+    {
+     "file": "ppt-master/templates/sounds/README.md",
+     "bytes": 2714
+    },
+    {
+     "file": "ppt-master/templates/sounds/THIRD_PARTY_NOTICES.md",
+     "bytes": 3204
+    },
+    {
+     "file": "ppt-master/templates/sounds/sound-vocabulary.md",
+     "bytes": 17426
+    },
+    {
+     "file": "ppt-master/templates/spec_lock_reference.md",
+     "bytes": 9984
+    },
+    {
+     "file": "ppt-master/templates/styles/README.md",
+     "bytes": 4697
+    },
+    {
+     "file": "ppt-master/templates/tables/README.md",
+     "bytes": 3496
+    },
+    {
+     "file": "ppt-master/templates/tables/table-vocabulary.md",
+     "bytes": 1544
+    },
+    {
+     "file": "ppt-master/workflows/create-template/create-brand.md",
+     "bytes": 6299
+    },
+    {
+     "file": "ppt-master/workflows/create-template/create-deck.md",
+     "bytes": 6648
+    },
+    {
+     "file": "ppt-master/workflows/create-template/create-layout.md",
+     "bytes": 6695
+    },
+    {
+     "file": "ppt-master/workflows/create-template/create-style.md",
+     "bytes": 8397
+    },
+    {
+     "file": "ppt-master/workflows/governance/failure-recovery.md",
+     "bytes": 12207
+    },
+    {
+     "file": "ppt-master/workflows/index.md",
+     "bytes": 3718
+    },
+    {
+     "file": "ppt-master/workflows/stages/apply-template-workspace.md",
+     "bytes": 13068
+    },
+    {
+     "file": "ppt-master/workflows/stages/customize-animations.md",
+     "bytes": 17961
+    },
+    {
+     "file": "ppt-master/workflows/stages/generate-audio.md",
+     "bytes": 15026
+    },
+    {
+     "file": "ppt-master/workflows/stages/live-preview.md",
+     "bytes": 3561
+    },
+    {
+     "file": "ppt-master/workflows/stages/refine-spec.md",
+     "bytes": 6191
+    },
+    {
+     "file": "ppt-master/workflows/stages/resume-execute.md",
+     "bytes": 6416
+    },
+    {
+     "file": "ppt-master/workflows/stages/topic-research.md",
+     "bytes": 9490
+    },
+    {
+     "file": "ppt-master/workflows/stages/verify-charts.md",
+     "bytes": 9563
+    },
+    {
+     "file": "ppt-master/workflows/stages/visual-review.md",
+     "bytes": 7460
+    },
+    {
+     "file": "ppt-master/workflows/stages/web-image-review.md",
+     "bytes": 3511
+    }
+   ]
+  },
+  {
+   "rev": "HEAD",
+   "slug": "html-ppt",
+   "entry_ok": true,
+   "tree_files": 227,
+   "broken": [
+    "assets/base.css",
+    "assets/animations/animations.css",
+    "assets/runtime.js",
+    "assets/animations/fx-runtime.js",
+    "references/presenter-mode.md",
+    "./scripts/new-deck.sh",
+    "examples/my-talk/index.html",
+    "references/themes.md",
+    "references/layouts.md",
+    "references/animations.md",
+    "references/full-decks.md",
+    "templates/full-decks-index.html",
+    "./scripts/render.sh",
+    "templates/theme-showcase.html",
+    "references/authoring-guide.md",
+    "scripts/render.sh",
+    "templates/single-page/kpi-grid.html",
+    "examples/demo-deck/index.html"
+   ],
+   "orphans": [
+    {
+     "file": "html-ppt/README.md",
+     "bytes": 10640
+    },
+    {
+     "file": "html-ppt/README.zh-CN.md",
+     "bytes": 11309
+    },
+    {
+     "file": "html-ppt/templates/full-decks/course-module/README.md",
+     "bytes": 627
+    },
+    {
+     "file": "html-ppt/templates/full-decks/dir-key-nav-minimal/README.md",
+     "bytes": 1021
+    },
+    {
+     "file": "html-ppt/templates/full-decks/graphify-dark-graph/README.md",
+     "bytes": 937
+    },
+    {
+     "file": "html-ppt/templates/full-decks/hermes-cyber-terminal/README.md",
+     "bytes": 1016
+    },
+    {
+     "file": "html-ppt/templates/full-decks/knowledge-arch-blueprint/README.md",
+     "bytes": 933
+    },
+    {
+     "file": "html-ppt/templates/full-decks/obsidian-claude-gradient/README.md",
+     "bytes": 901
+    },
+    {
+     "file": "html-ppt/templates/full-decks/pitch-deck/README.md",
+     "bytes": 524
+    },
+    {
+     "file": "html-ppt/templates/full-decks/presenter-mode-reveal/README.md",
+     "bytes": 3964
+    },
+    {
+     "file": "html-ppt/templates/full-decks/product-launch/README.md",
+     "bytes": 545
+    },
+    {
+     "file": "html-ppt/templates/full-decks/tech-sharing/README.md",
+     "bytes": 522
+    },
+    {
+     "file": "html-ppt/templates/full-decks/testing-safety-alert/README.md",
+     "bytes": 967
+    },
+    {
+     "file": "html-ppt/templates/full-decks/weekly-report/README.md",
+     "bytes": 562
+    },
+    {
+     "file": "html-ppt/templates/full-decks/xhs-pastel-card/README.md",
+     "bytes": 1071
+    },
+    {
+     "file": "html-ppt/templates/full-decks/xhs-post/README.md",
+     "bytes": 628
+    },
+    {
+     "file": "html-ppt/templates/full-decks/xhs-white-editorial/README.md",
+     "bytes": 995
+    }
+   ]
+  },
+  {
+   "rev": "HEAD",
+   "slug": "grill-me",
+   "entry_ok": true,
+   "tree_files": 4,
+   "broken": [],
+   "orphans": []
+  },
+  {
+   "rev": "HEAD",
+   "slug": "ui-ux-pro-max",
+   "entry_ok": true,
+   "tree_files": 117,
+   "broken": [
+    "references/upstream-skill-content.md",
+    "scripts/design_system.py",
+    "references/quick-reference.md",
+    "references/pro-rules.md",
+    "scripts/search.py",
+    "data/motion.csv",
+    "data/google-fonts.csv",
+    "scripts/core.py"
+   ],
+   "orphans": [
+    {
+     "file": "ui-ux-pro-max/references/CLAUDE.md",
+     "bytes": 5562
+    },
+    {
+     "file": "ui-ux-pro-max/references/upstream-README.md",
+     "bytes": 23615
+    }
+   ]
+  },
+  {
+   "rev": "HEAD",
+   "slug": "brainstorming",
+   "entry_ok": true,
+   "tree_files": 13,
+   "broken": [
+    "references/upstream-superpowers-v7.md",
+    "visual-companion.md"
+   ],
+   "orphans": [
+    {
+     "file": "brainstorming/builder-check-prompt.md",
+     "bytes": 881
+    },
+    {
+     "file": "brainstorming/spec-document-reviewer-prompt.md",
+     "bytes": 1748
+    }
+   ]
+  },
+  {
+   "rev": "HEAD",
+   "slug": "subagent-driven-development",
+   "entry_ok": true,
+   "tree_files": 14,
+   "broken": [
+    "eval/truth_constants.json",
+    "references/execution-flow.md",
+    "references/final-review.md",
+    "references/task-loop.md",
+    "references/plan-execution-contract.md",
+    "references/context-economy.md",
+    "references/anti-rationalization.md"
+   ],
+   "orphans": []
+  },
+  {
+   "rev": "HEAD",
+   "slug": "test-driven-development",
+   "entry_ok": true,
+   "tree_files": 8,
+   "broken": [
+    "path/to/test.test.ts",
+    "references/upstream-agent-skills-tdd.md",
+    "references/upstream-agent-skills-tdd-part2.md"
+   ],
+   "orphans": []
+  },
+  {
+   "rev": "HEAD",
+   "slug": "verification-before-completion",
+   "entry_ok": true,
+   "tree_files": 4,
+   "broken": [
+    "deliverables/_number_ledger.jsonl",
+    "global_memory/core/rule36_done_needs_confidence.md"
+   ],
+   "orphans": []
+  },
+  {
+   "rev": "HEAD",
+   "slug": "writing-plans",
+   "entry_ok": true,
+   "tree_files": 5,
+   "broken": [
+    "exact/path/to/file.py",
+    "tests/exact/path/to/test.py",
+    "tests/path/test.py",
+    "src/path/file.py"
+   ],
+   "orphans": [
+    {
+     "file": "writing-plans/plan-document-reviewer-prompt.md",
+     "bytes": 1714
+    }
+   ]
+  },
+  {
+   "rev": "HEAD",
+   "slug": "coding-agent",
+   "entry_ok": true,
+   "tree_files": 9,
+   "broken": [
+    "references/delegation-contract.md",
+    "references/writing-the-brief.md",
+    "references/dispatch-and-poll.md",
+    "references/review-and-land.md",
+    "references/multi-task-queues.md"
+   ],
+   "orphans": []
+  },
+  {
+   "rev": "HEAD",
+   "slug": "oracle",
+   "entry_ok": true,
+   "tree_files": 8,
+   "broken": [
+    "references/model-selection.md",
+    "src/index.ts",
+    "references/browser-controls.md",
+    "references/api-preflight.md",
+    "references/prompt-template.md",
+    "SKILL.md"
+   ],
+   "orphans": []
+  },
+  {
+   "rev": "HEAD",
+   "slug": "agent-browser",
+   "entry_ok": true,
+   "tree_files": 16,
+   "broken": [
+    "references/fork-provenance.md",
+    "references/proxy-support.md",
+    "references/authentication.md"
+   ],
+   "orphans": [
+    {
+     "file": "agent-browser/references/commands.md",
+     "bytes": 11191
+    }
+   ]
+  },
+  {
+   "rev": "HEAD",
+   "slug": "electron",
+   "entry_ok": true,
+   "tree_files": 2,
+   "broken": [],
+   "orphans": []
+  },
+  {
+   "rev": "HEAD",
+   "slug": "find-skills",
+   "entry_ok": true,
+   "tree_files": 6,
+   "broken": [
+    "references/policy-details.md"
+   ],
+   "orphans": []
+  },
+  {
+   "rev": "HEAD",
+   "slug": "story",
+   "entry_ok": true,
+   "tree_files": 10,
+   "broken": [
+    "scripts/dashboard-server.mjs"
+   ],
+   "orphans": []
+  },
+  {
+   "rev": "HEAD",
+   "slug": "story-cover",
+   "entry_ok": true,
+   "tree_files": 9,
+   "broken": [
+    "references/split-01.md",
+    "references/split-05.md",
+    "references/split-03.md",
+    "references/split-04.md",
+    "references/split-02.md",
+    "references/split-NN.md"
+   ],
+   "orphans": [
+    {
+     "file": "story-cover/references/api-fallback.md",
+     "bytes": 4808
+    },
+    {
+     "file": "story-cover/references/cover-styles.md",
+     "bytes": 8992
+    }
+   ]
+  },
+  {
+   "rev": "HEAD",
+   "slug": "story-deslop",
+   "entry_ok": true,
+   "tree_files": 17,
+   "broken": [
+    "references/split-01.md",
+    "references/banned-words.md",
+    "references/anti-ai-writing.md",
+    "scripts/normalize-punctuation.js",
+    "scripts/check-ai-patterns.js",
+    "references/split-NN.md"
+   ],
+   "orphans": [
+    {
+     "file": "story-deslop/references/agent-calls.md",
+     "bytes": 1258
+    },
+    {
+     "file": "story-deslop/references/deslop-gates.md",
+     "bytes": 2533
+    },
+    {
+     "file": "story-deslop/references/expression.md",
+     "bytes": 9713
+    },
+    {
+     "file": "story-deslop/references/narrative-focus.md",
+     "bytes": 6862
+    },
+    {
+     "file": "story-deslop/references/story-logic.md",
+     "bytes": 6069
+    },
+    {
+     "file": "story-deslop/references/style-resolution.md",
+     "bytes": 3790
+    }
+   ]
+  },
+  {
+   "rev": "HEAD",
+   "slug": "story-import",
+   "entry_ok": true,
+   "tree_files": 33,
+   "broken": [
+    "references/split-02.md",
+    "references/split-01.md",
+    "references/structure-mapping-long.md",
+    "references/split-05.md",
+    "references/split-08.md",
+    "references/split-04.md",
+    "references/split-10.md",
+    "references/split-03.md",
+    "references/structure-mapping-short.md",
+    "references/split-06.md",
+    "references/split-09.md",
+    "references/split-07.md",
+    "references/split-NN.md"
+   ],
+   "orphans": [
+    {
+     "file": "story-import/references/benchmark-sync.md",
+     "bytes": 4103
+    },
+    {
+     "file": "story-import/references/character-state-reverse.md",
+     "bytes": 5911
+    },
+    {
+     "file": "story-import/references/deep-analysis.md",
+     "bytes": 5398
+    },
+    {
+     "file": "story-import/references/format-and-structure.md",
+     "bytes": 11433
+    },
+    {
+     "file": "story-import/references/import-report.md",
+     "bytes": 4482
+    },
+    {
+     "file": "story-import/references/import-special-cases.md",
+     "bytes": 2607
+    },
+    {
+     "file": "story-import/references/import-tracking.md",
+     "bytes": 7702
+    },
+    {
+     "file": "story-import/references/length-routing.md",
+     "bytes": 5293
+    },
+    {
+     "file": "story-import/references/outline-reverse-rules.md",
+     "bytes": 6058
+    },
+    {
+     "file": "story-import/references/outline-reverse.md",
+     "bytes": 2845
+    },
+    {
+     "file": "story-import/references/state-tracking.md",
+     "bytes": 3751
+    },
+    {
+     "file": "story-import/references/tracking-initialization.md",
+     "bytes": 1566
+    }
+   ]
+  },
+  {
+   "rev": "HEAD",
+   "slug": "story-long-analyze",
+   "entry_ok": true,
+   "tree_files": 27,
+   "broken": [
+    "references/split-01.md",
+    "references/material-decomposition.md",
+    "references/split-02.md",
+    "references/pipeline-ops.md",
+    "references/output-templates.md",
+    "references/deconstruction-notes.md",
+    "references/style-profile-protocol.md",
+    "references/split-NN.md"
+   ],
+   "orphans": [
+    {
+     "file": "story-long-analyze/references/author-facing.md",
+     "bytes": 12729
+    },
+    {
+     "file": "story-long-analyze/references/final-checks.md",
+     "bytes": 1022
+    },
+    {
+     "file": "story-long-analyze/references/index-rebuild.md",
+     "bytes": 3187
+    },
+    {
+     "file": "story-long-analyze/references/inspiration-library.md",
+     "bytes": 10587
+    },
+    {
+     "file": "story-long-analyze/references/stage1-golden-chapters.md",
+     "bytes": 6819
+    },
+    {
+     "file": "story-long-analyze/references/stage2-extraction.md",
+     "bytes": 11004
+    },
+    {
+     "file": "story-long-analyze/references/stage3-plot-rhythm.md",
+     "bytes": 20790
+    },
+    {
+     "file": "story-long-analyze/references/stage4-characters-settings.md",
+     "bytes": 6704
+    },
+    {
+     "file": "story-long-analyze/references/stage5-report.md",
+     "bytes": 2756
+    },
+    {
+     "file": "story-long-analyze/references/style-profile-generator.md",
+     "bytes": 10345
+    },
+    {
+     "file": "story-long-analyze/references/synthesis-inputs.md",
+     "bytes": 4097
+    }
+   ]
+  },
+  {
+   "rev": "HEAD",
+   "slug": "story-long-write",
+   "entry_ok": true,
+   "tree_files": 117,
+   "broken": [
+    "references/split-01.md",
+    "references/split-03.md",
+    "references/templates.md",
+    "references/split-02.md",
+    "references/split-NN.md"
+   ],
+   "orphans": [
+    {
+     "file": "story-long-write/references/agent-calls.md",
+     "bytes": 7373
+    },
+    {
+     "file": "story-long-write/references/anti-ai-writing.md",
+     "bytes": 36483
+    },
+    {
+     "file": "story-long-write/references/artifact-protocols.md",
+     "bytes": 16314
+    },
+    {
+     "file": "story-long-write/references/author-memory-maintenance.md",
+     "bytes": 9019
+    },
+    {
+     "file": "story-long-write/references/author-memory.md",
+     "bytes": 11484
+    },
+    {
+     "file": "story-long-write/references/banned-words.md",
+     "bytes": 9106
+    },
+    {
+     "file": "story-long-write/references/benchmark-recall.md",
+     "bytes": 5713
+    },
+    {
+     "file": "story-long-write/references/character-basics.md",
+     "bytes": 16921
+    },
+    {
+     "file": "story-long-write/references/character-design-methods.md",
+     "bytes": 16262
+    },
+    {
+     "file": "story-long-write/references/character-relations.md",
+     "bytes": 15470
+    },
+    {
+     "file": "story-long-write/references/commercial-core-methods.md",
+     "bytes": 20648
+    },
+    {
+     "file": "story-long-write/references/cross-book-recall.md",
+     "bytes": 4892
+    },
+    {
+     "file": "story-long-write/references/dialogue-mastery.md",
+     "bytes": 11327
+    },
+    {
+     "file": "story-long-write/references/emotion-on-page.md",
+     "bytes": 4672
+    },
+    {
+     "file": "story-long-write/references/emotional-arc-design.md",
+     "bytes": 16647
+    },
+    {
+     "file": "story-long-write/references/emotional-methods.md",
+     "bytes": 10208
+    },
+    {
+     "file": "story-long-write/references/female-audience-writing.md",
+     "bytes": 11427
+    },
+    {
+     "file": "story-long-write/references/format-and-structure.md",
+     "bytes": 11433
+    },
+    {
+     "file": "story-long-write/references/genre-catalog.md",
+     "bytes": 20681
+    },
+    {
+     "file": "story-long-write/references/genre-core-mechanics.md",
+     "bytes": 17360
+    },
+    {
+     "file": "story-long-write/references/genre-prose-cards.md",
+     "bytes": 7137
+    },
+    {
+     "file": "story-long-write/references/genre-readers.md",
+     "bytes": 10972
+    },
+    {
+     "file": "story-long-write/references/genre-writing-formulas.md",
+     "bytes": 21340
+    },
+    {
+     "file": "story-long-write/references/hooks-chapter.md",
+     "bytes": 8632
+    },
+    {
+     "file": "story-long-write/references/hooks-paragraph.md",
+     "bytes": 6848
+    },
+    {
+     "file": "story-long-write/references/hooks-suspense.md",
+     "bytes": 15308
+    },
+    {
+     "file": "story-long-write/references/long-chapter-hooks.md",
+     "bytes": 7940
+    },
+    {
+     "file": "story-long-write/references/long-chapter-quality.md",
+     "bytes": 6524
+    },
+    {
+     "file": "story-long-write/references/long-format.md",
+     "bytes": 2551
+    },
+    {
+     "file": "story-long-write/references/long-genre-catalog.md",
+     "bytes": 12492
+    },
+    {
+     "file": "story-long-write/references/long-genre-mechanics.md",
+     "bytes": 12131
+    },
+    {
+     "file": "story-long-write/references/long-reversal.md",
+     "bytes": 15637
+    },
+    {
+     "file": "story-long-write/references/long-suspense.md",
+     "bytes": 15484
+    },
+    {
+     "file": "story-long-write/references/opening-design.md",
+     "bytes": 12753
+    },
+    {
+     "file": "story-long-write/references/outline-conflict.md",
+     "bytes": 17687
+    },
+    {
+     "file": "story-long-write/references/outline-methods.md",
+     "bytes": 10875
+    },
+    {
+     "file": "story-long-write/references/outline-rhythm.md",
+     "bytes": 12878
+    },
+    {
+     "file": "story-long-write/references/outline-structure-theory.md",
+     "bytes": 21818
+    },
+    {
+     "file": "story-long-write/references/plot-core-methods.md",
+     "bytes": 20291
+    },
+    {
+     "file": "story-long-write/references/plot-emotion-system.md",
+     "bytes": 15867
+    },
+    {
+     "file": "story-long-write/references/plot-frameworks.md",
+     "bytes": 27755
+    },
+    {
+     "file": "story-long-write/references/plot-special-topics.md",
+     "bytes": 25544
+    },
+    {
+     "file": "story-long-write/references/project-files.md",
+     "bytes": 11762
+    },
+    {
+     "file": "story-long-write/references/quality-checklist.md",
+     "bytes": 9734
+    },
+    {
+     "file": "story-long-write/references/reader-contract-and-progression.md",
+     "bytes": 11144
+    },
+    {
+     "file": "story-long-write/references/reference-index.md",
+     "bytes": 2548
+    },
+    {
+     "file": "story-long-write/references/reversal-toolkit.md",
+     "bytes": 15406
+    },
+    {
+     "file": "story-long-write/references/revision-diagnosis.md",
+     "bytes": 4051
+    },
+    {
+     "file": "story-long-write/references/state-tracking.md",
+     "bytes": 3751
+    },
+    {
+     "file": "story-long-write/references/stop-and-fix.md",
+     "bytes": 1042
+    },
+    {
+     "file": "story-long-write/references/style-combat-face.md",
+     "bytes": 20057
+    },
+    {
+     "file": "story-long-write/references/style-craft.md",
+     "bytes": 13896
+    },
+    {
+     "file": "story-long-write/references/style-genre-modules.md",
+     "bytes": 24730
+    },
+    {
+     "file": "story-long-write/references/style-resolution.md",
+     "bytes": 3790
+    },
+    {
+     "file": "story-long-write/references/tracking-initialization.md",
+     "bytes": 1566
+    },
+    {
+     "file": "story-long-write/references/tracking-transaction.md",
+     "bytes": 15618
+    },
+    {
+     "file": "story-long-write/references/workflow-chapter.md",
+     "bytes": 14891
+    },
+    {
+     "file": "story-long-write/references/workflow-daily.md",
+     "bytes": 31472
+    },
+    {
+     "file": "story-long-write/references/workflow-outline.md",
+     "bytes": 21422
+    },
+    {
+     "file": "story-long-write/references/workflow-revision.md",
+     "bytes": 4569
+    },
+    {
+     "file": "story-long-write/references/workflow-setup.md",
+     "bytes": 13430
+    },
+    {
+     "file": "story-long-write/references/workflow-volume.md",
+     "bytes": 14766
+    },
+    {
+     "file": "story-long-write/references/writer-prompt-fallback.md",
+     "bytes": 3897
+    },
+    {
+     "file": "story-long-write/references/writing-craft.md",
+     "bytes": 22595
+    }
+   ]
+  },
+  {
+   "rev": "HEAD",
+   "slug": "story-review",
+   "entry_ok": true,
+   "tree_files": 35,
+   "broken": [
+    "references/split-02.md",
+    "references/split-03.md",
+    "references/split-01.md",
+    "references/quality-rubric.md",
+    "references/split-05.md",
+    "references/split-04.md",
+    "references/split-NN.md"
+   ],
+   "orphans": [
+    {
+     "file": "story-review/references/agent-prompts.md",
+     "bytes": 14249
+    },
+    {
+     "file": "story-review/references/anti-ai-writing.md",
+     "bytes": 36483
+    },
+    {
+     "file": "story-review/references/banned-words.md",
+     "bytes": 9106
+    },
+    {
+     "file": "story-review/references/batch-review.md",
+     "bytes": 2325
+    },
+    {
+     "file": "story-review/references/character-relations.md",
+     "bytes": 15470
+    },
+    {
+     "file": "story-review/references/dialogue-mastery.md",
+     "bytes": 11327
+    },
+    {
+     "file": "story-review/references/expression.md",
+     "bytes": 9713
+    },
+    {
+     "file": "story-review/references/narrative-focus.md",
+     "bytes": 6862
+    },
+    {
+     "file": "story-review/references/plot-core-methods.md",
+     "bytes": 20291
+    },
+    {
+     "file": "story-review/references/quality-checklist.md",
+     "bytes": 12984
+    },
+    {
+     "file": "story-review/references/review-tracking.md",
+     "bytes": 2604
+    },
+    {
+     "file": "story-review/references/story-logic.md",
+     "bytes": 6069
+    },
+    {
+     "file": "story-review/references/style-resolution.md",
+     "bytes": 3790
+    },
+    {
+     "file": "story-review/references/tracking-initialization.md",
+     "bytes": 1566
+    },
+    {
+     "file": "story-review/references/tracking-transaction.md",
+     "bytes": 15618
+    }
+   ]
+  },
+  {
+   "rev": "HEAD",
+   "slug": "story-scan",
+   "entry_ok": true,
+   "tree_files": 24,
+   "broken": [
+    "references/scan-long.md",
+    "references/scan-short.md",
+    "references/scan-output-format.md",
+    "references/genre-trends.md",
+    "references/reader-profiling.md",
+    "references/publishing-guide.md",
+    "references/topic-decision.md",
+    "references/real-market-data.md",
+    "scripts/qidian-rank-scraper.js",
+    "scripts/fanqie-rank-scraper.js",
+    "scripts/qimao-rank-scraper.js",
+    "scripts/jjwxc-rank-scraper.js",
+    "scripts/ciweimao-rank-scraper.js",
+    "scripts/dz-browse-scraper.js",
+    "scripts/heiyan-booklist-scraper.js",
+    "scripts/cdp-utils.js"
+   ],
+   "orphans": [
+    {
+     "file": "story-scan/references/platform-ciweimao.md",
+     "bytes": 1693
+    },
+    {
+     "file": "story-scan/references/platform-fanqie.md",
+     "bytes": 2867
+    },
+    {
+     "file": "story-scan/references/platform-jjwxc.md",
+     "bytes": 1898
+    },
+    {
+     "file": "story-scan/references/platform-qidian.md",
+     "bytes": 3300
+    },
+    {
+     "file": "story-scan/references/platform-qimao.md",
+     "bytes": 2558
+    }
+   ]
+  },
+  {
+   "rev": "HEAD",
+   "slug": "story-setup",
+   "entry_ok": true,
+   "tree_files": 205,
+   "broken": [
+    ".codex/config.toml",
+    ".codex/hooks.json",
+    ".zcode/config.json",
+    "references/split-01.md",
+    "references/split-02.md",
+    "references/setup_templates.md",
+    "references/split-NN.md",
+    "references/antigravity/hooks/hooks.json",
+    "references/antigravity/hooks/story_hook_core.js",
+    "references/zcode/agents/chapter-extractor.md"
+   ],
+   "orphans": [
+    {
+     "file": "story-setup/UPGRADING.md",
+     "bytes": 33265
+    },
+    {
+     "file": "story-setup/references/agent-references/agent-quality.md",
+     "bytes": 3614
+    },
+    {
+     "file": "story-setup/references/agent-references/agent-reference-profiles.md",
+     "bytes": 4288
+    },
+    {
+     "file": "story-setup/references/agent-references/anti-ai-writing.md",
+     "bytes": 36483
+    },
+    {
+     "file": "story-setup/references/agent-references/banned-words.md",
+     "bytes": 9106
+    },
+    {
+     "file": "story-setup/references/agent-references/benchmark-style-load.md",
+     "bytes": 10306
+    },
+    {
+     "file": "story-setup/references/agent-references/character-basics.md",
+     "bytes": 16921
+    },
+    {
+     "file": "story-setup/references/agent-references/character-design-methods.md",
+     "bytes": 16262
+    },
+    {
+     "file": "story-setup/references/agent-references/character-relations.md",
+     "bytes": 15470
+    },
+    {
+     "file": "story-setup/references/agent-references/deslop-gates.md",
+     "bytes": 2533
+    },
+    {
+     "file": "story-setup/references/agent-references/dialogue-mastery.md",
+     "bytes": 11327
+    },
+    {
+     "file": "story-setup/references/agent-references/emotion-on-page.md",
+     "bytes": 4672
+    },
+    {
+     "file": "story-setup/references/agent-references/emotional-arc-design.md",
+     "bytes": 16647
+    },
+    {
+     "file": "story-setup/references/agent-references/emotional-methods.md",
+     "bytes": 7690
+    },
+    {
+     "file": "story-setup/references/agent-references/expression.md",
+     "bytes": 9713
+    },
+    {
+     "file": "story-setup/references/agent-references/female-audience-writing.md",
+     "bytes": 9681
+    },
+    {
+     "file": "story-setup/references/agent-references/format-and-structure.md",
+     "bytes": 11433
+    },
+    {
+     "file": "story-setup/references/agent-references/genre-catalog.md",
+     "bytes": 20681
+    },
+    {
+     "file": "story-setup/references/agent-references/genre-core-mechanics.md",
+     "bytes": 17360
+    },
+    {
+     "file": "story-setup/references/agent-references/genre-prose-cards.md",
+     "bytes": 7137
+    },
+    {
+     "file": "story-setup/references/agent-references/genre-readers.md",
+     "bytes": 10972
+    },
+    {
+     "file": "story-setup/references/agent-references/genre-writing-formulas.md",
+     "bytes": 21340
+    },
+    {
+     "file": "story-setup/references/agent-references/hooks-chapter.md",
+     "bytes": 8632
+    },
+    {
+     "file": "story-setup/references/agent-references/hooks-suspense.md",
+     "bytes": 15308
+    },
+    {
+     "file": "story-setup/references/agent-references/long-chapter-hooks.md",
+     "bytes": 7940
+    },
+    {
+     "file": "story-setup/references/agent-references/long-emotional-methods.md",
+     "bytes": 7126
+    },
+    {
+     "file": "story-setup/references/agent-references/long-genre-catalog.md",
+     "bytes": 12492
+    },
+    {
+     "file": "story-setup/references/agent-references/long-genre-mechanics.md",
+     "bytes": 12131
+    },
+    {
+     "file": "story-setup/references/agent-references/long-quality.md",
+     "bytes": 3142
+    },
+    {
+     "file": "story-setup/references/agent-references/long-reversal.md",
+     "bytes": 15637
+    },
+    {
+     "file": "story-setup/references/agent-references/long-suspense.md",
+     "bytes": 15484
+    },
+    {
+     "file": "story-setup/references/agent-references/narrative-focus.md",
+     "bytes": 6862
+    },
+    {
+     "file": "story-setup/references/agent-references/opening-design.md",
+     "bytes": 12753
+    },
+    {
+     "file": "story-setup/references/agent-references/outline-conflict.md",
+     "bytes": 17687
+    },
+    {
+     "file": "story-setup/references/agent-references/outline-methods.md",
+     "bytes": 10875
+    },
+    {
+     "file": "story-setup/references/agent-references/outline-rhythm.md",
+     "bytes": 12878
+    },
+    {
+     "file": "story-setup/references/agent-references/plot-core-methods.md",
+     "bytes": 20291
+    },
+    {
+     "file": "story-setup/references/agent-references/quality-checklist.md",
+     "bytes": 12457
+    },
+    {
+     "file": "story-setup/references/agent-references/reversal-toolkit.md",
+     "bytes": 15406
+    },
+    {
+     "file": "story-setup/references/agent-references/short-chapter-hooks.md",
+     "bytes": 8914
+    },
+    {
+     "file": "story-setup/references/agent-references/short-emotional-methods.md",
+     "bytes": 5808
+    },
+    {
+     "file": "story-setup/references/agent-references/short-genre-formulas.md",
+     "bytes": 20065
+    },
+    {
+     "file": "story-setup/references/agent-references/short-quality.md",
+     "bytes": 2782
+    },
+    {
+     "file": "story-setup/references/agent-references/short-reversal.md",
+     "bytes": 15895
+    },
+    {
+     "file": "story-setup/references/agent-references/story-logic.md",
+     "bytes": 6069
+    },
+    {
+     "file": "story-setup/references/agent-references/style-combat-face.md",
+     "bytes": 20057
+    },
+    {
+     "file": "story-setup/references/agent-references/style-genre-modules.md",
+     "bytes": 24730
+    },
+    {
+     "file": "story-setup/references/agent-references/style-resolution.md",
+     "bytes": 3790
+    },
+    {
+     "file": "story-setup/references/agent-references/writing-craft.md",
+     "bytes": 22595
+    },
+    {
+     "file": "story-setup/references/antigravity/rules/oh-story.md",
+     "bytes": 3229
+    },
+    {
+     "file": "story-setup/references/deploy-antigravity.md",
+     "bytes": 9703
+    },
+    {
+     "file": "story-setup/references/deploy-claude-code.md",
+     "bytes": 7728
+    },
+    {
+     "file": "story-setup/references/deploy-codex.md",
+     "bytes": 6087
+    },
+    {
+     "file": "story-setup/references/deploy-generic.md",
+     "bytes": 2502
+    },
+    {
+     "file": "story-setup/references/deploy-openclaw.md",
+     "bytes": 2957
+    },
+    {
+     "file": "story-setup/references/deploy-opencode.md",
+     "bytes": 14982
+    },
+    {
+     "file": "story-setup/references/deploy-reasonix.md",
+     "bytes": 3405
+    },
+    {
+     "file": "story-setup/references/deploy-zcode.md",
+     "bytes": 7356
+    },
+    {
+     "file": "story-setup/references/diagnostics.md",
+     "bytes": 4422
+    },
+    {
+     "file": "story-setup/references/opencode/agents/character-designer.md",
+     "bytes": 9203
+    },
+    {
+     "file": "story-setup/references/opencode/agents/consistency-checker.md",
+     "bytes": 10305
+    },
+    {
+     "file": "story-setup/references/opencode/agents/narrative-writer.md",
+     "bytes": 35608
+    },
+    {
+     "file": "story-setup/references/opencode/agents/story-architect.md",
+     "bytes": 11315
+    },
+    {
+     "file": "story-setup/references/opencode/agents/story-explorer.md",
+     "bytes": 16408
+    },
+    {
+     "file": "story-setup/references/opencode/agents/story-researcher.md",
+     "bytes": 12265
+    },
+    {
+     "file": "story-setup/references/opencode/commands/browser-cdp.md",
+     "bytes": 257
+    },
+    {
+     "file": "story-setup/references/opencode/commands/story-cover.md",
+     "bytes": 162
+    },
+    {
+     "file": "story-setup/references/opencode/commands/story-deslop.md",
+     "bytes": 195
+    },
+    {
+     "file": "story-setup/references/opencode/commands/story-long-analyze.md",
+     "bytes": 187
+    },
+    {
+     "file": "story-setup/references/opencode/commands/story-long-scan.md",
+     "bytes": 232
+    },
+    {
+     "file": "story-setup/references/opencode/commands/story-review.md",
+     "bytes": 185
+    },
+    {
+     "file": "story-setup/references/opencode/commands/story-scan-long.md",
+     "bytes": 200
+    },
+    {
+     "file": "story-setup/references/opencode/commands/story-scan-short.md",
+     "bytes": 182
+    },
+    {
+     "file": "story-setup/references/opencode/commands/story-short-analyze.md",
+     "bytes": 182
+    },
+    {
+     "file": "story-setup/references/opencode/commands/story-short-scan.md",
+     "bytes": 215
+    },
+    {
+     "file": "story-setup/references/opencode/commands/story.md",
+     "bytes": 243
+    },
+    {
+     "file": "story-setup/references/opencode_model_config.md",
+     "bytes": 8222
+    },
+    {
+     "file": "story-setup/references/templates/agents/character-designer.md",
+     "bytes": 9363
+    },
+    {
+     "file": "story-setup/references/templates/agents/consistency-checker.md",
+     "bytes": 10574
+    },
+    {
+     "file": "story-setup/references/templates/agents/narrative-writer.md",
+     "bytes": 35997
+    },
+    {
+     "file": "story-setup/references/templates/agents/story-architect.md",
+     "bytes": 11532
+    },
+    {
+     "file": "story-setup/references/templates/agents/story-explorer.md",
+     "bytes": 16654
+    },
+    {
+     "file": "story-setup/references/templates/agents/story-researcher.md",
+     "bytes": 12381
+    },
+    {
+     "file": "story-setup/references/templates/rules/story-consistency.md",
+     "bytes": 1836
+    },
+    {
+     "file": "story-setup/references/templates/rules/story-format.md",
+     "bytes": 3154
+    },
+    {
+     "file": "story-setup/references/templates/rules/story-narrative.md",
+     "bytes": 3184
+    },
+    {
+     "file": "story-setup/references/templates/rules/story-outline.md",
+     "bytes": 6124
+    },
+    {
+     "file": "story-setup/references/zcode/agents/character-designer.md",
+     "bytes": 4503
+    },
+    {
+     "file": "story-setup/references/zcode/agents/consistency-checker.md",
+     "bytes": 12281
+    },
+    {
+     "file": "story-setup/references/zcode/agents/narrative-writer.md",
+     "bytes": 15205
+    },
+    {
+     "file": "story-setup/references/zcode/agents/story-architect.md",
+     "bytes": 9361
+    },
+    {
+     "file": "story-setup/references/zcode/agents/story-explorer.md",
+     "bytes": 11513
+    },
+    {
+     "file": "story-setup/references/zcode/agents/story-researcher.md",
+     "bytes": 12737
+    },
+    {
+     "file": "story-setup/references/zcode/commands/browser-cdp.md",
+     "bytes": 221
+    },
+    {
+     "file": "story-setup/references/zcode/commands/story-cover.md",
+     "bytes": 204
+    },
+    {
+     "file": "story-setup/references/zcode/commands/story-deslop.md",
+     "bytes": 234
+    },
+    {
+     "file": "story-setup/references/zcode/commands/story-long-analyze.md",
+     "bytes": 218
+    },
+    {
+     "file": "story-setup/references/zcode/commands/story-long-scan.md",
+     "bytes": 206
+    },
+    {
+     "file": "story-setup/references/zcode/commands/story-review.md",
+     "bytes": 216
+    },
+    {
+     "file": "story-setup/references/zcode/commands/story-scan-long.md",
+     "bytes": 196
+    },
+    {
+     "file": "story-setup/references/zcode/commands/story-scan-short.md",
+     "bytes": 205
+    },
+    {
+     "file": "story-setup/references/zcode/commands/story-short-analyze.md",
+     "bytes": 214
+    },
+    {
+     "file": "story-setup/references/zcode/commands/story-short-scan.md",
+     "bytes": 217
+    },
+    {
+     "file": "story-setup/references/zcode/commands/story.md",
+     "bytes": 221
+    }
+   ]
+  },
+  {
+   "rev": "HEAD",
+   "slug": "story-short-analyze",
+   "entry_ok": true,
+   "tree_files": 40,
+   "broken": [
+    "references/genre-catalog.md",
+    "references/output-contract.md",
+    "references/split-01.md",
+    "references/output-templates.md",
+    "references/material-decomposition.md",
+    "references/split-03.md",
+    "references/split-02.md",
+    "references/split-NN.md"
+   ],
+   "orphans": [
+    {
+     "file": "story-short-analyze/references/analysis-characters.md",
+     "bytes": 3458
+    },
+    {
+     "file": "story-short-analyze/references/analysis-method.md",
+     "bytes": 2664
+    },
+    {
+     "file": "story-short-analyze/references/analysis-report-style.md",
+     "bytes": 2451
+    },
+    {
+     "file": "story-short-analyze/references/analysis-short-genres.md",
+     "bytes": 5166
+    },
+    {
+     "file": "story-short-analyze/references/analysis-short-hooks.md",
+     "bytes": 3969
+    },
+    {
+     "file": "story-short-analyze/references/analysis-short-mechanics.md",
+     "bytes": 4476
+    },
+    {
+     "file": "story-short-analyze/references/analysis-short-patterns.md",
+     "bytes": 4255
+    },
+    {
+     "file": "story-short-analyze/references/analysis-short-suspense.md",
+     "bytes": 4298
+    },
+    {
+     "file": "story-short-analyze/references/analysis-submission.md",
+     "bytes": 3047
+    },
+    {
+     "file": "story-short-analyze/references/anti-ai-writing.md",
+     "bytes": 36483
+    },
+    {
+     "file": "story-short-analyze/references/banned-words.md",
+     "bytes": 9106
+    },
+    {
+     "file": "story-short-analyze/references/character-basics.md",
+     "bytes": 17011
+    },
+    {
+     "file": "story-short-analyze/references/character-design-methods.md",
+     "bytes": 16839
+    },
+    {
+     "file": "story-short-analyze/references/character-relations.md",
+     "bytes": 16047
+    },
+    {
+     "file": "story-short-analyze/references/deconstruction-examples.md",
+     "bytes": 4201
+    },
+    {
+     "file": "story-short-analyze/references/genre-core-mechanics.md",
+     "bytes": 17937
+    },
+    {
+     "file": "story-short-analyze/references/genre-readers.md",
+     "bytes": 11549
+    },
+    {
+     "file": "story-short-analyze/references/genre-writing-formulas.md",
+     "bytes": 21665
+    },
+    {
+     "file": "story-short-analyze/references/genre-writing-techniques.md",
+     "bytes": 20800
+    },
+    {
+     "file": "story-short-analyze/references/hooks-chapter.md",
+     "bytes": 8632
+    },
+    {
+     "file": "story-short-analyze/references/hooks-paragraph.md",
+     "bytes": 6848
+    },
+    {
+     "file": "story-short-analyze/references/hooks-suspense.md",
+     "bytes": 15308
+    },
+    {
+     "file": "story-short-analyze/references/optional-modules.md",
+     "bytes": 2559
+    },
+    {
+     "file": "story-short-analyze/references/quality-checklist.md",
+     "bytes": 10436
+    },
+    {
+     "file": "story-short-analyze/references/real-market-data.md",
+     "bytes": 4962
+    },
+    {
+     "file": "story-short-analyze/references/source-story-quality.md",
+     "bytes": 4574
+    },
+    {
+     "file": "story-short-analyze/references/stage2-3-structure-emotion.md",
+     "bytes": 14448
+    },
+    {
+     "file": "story-short-analyze/references/stage4-6-reversal-summary.md",
+     "bytes": 29382
+    },
+    {
+     "file": "story-short-analyze/references/zhihu-style.md",
+     "bytes": 2416
+    }
+   ]
+  },
+  {
+   "rev": "HEAD",
+   "slug": "story-short-write",
+   "entry_ok": true,
+   "tree_files": 57,
+   "broken": [
+    "references/short-format.md",
+    "references/submission-craft.md",
+    "references/output-contract.md",
+    "references/cross-book-recall.md",
+    "references/split-01.md",
+    "references/quality-checklist.md",
+    "references/split-02.md",
+    "references/split-NN.md"
+   ],
+   "orphans": [
+    {
+     "file": "story-short-write/references/agent-calls.md",
+     "bytes": 2193
+    },
+    {
+     "file": "story-short-write/references/author-memory-maintenance.md",
+     "bytes": 9019
+    },
+    {
+     "file": "story-short-write/references/author-memory.md",
+     "bytes": 11484
+    },
+    {
+     "file": "story-short-write/references/banned-words.md",
+     "bytes": 9106
+    },
+    {
+     "file": "story-short-write/references/benchmark-recall.md",
+     "bytes": 3645
+    },
+    {
+     "file": "story-short-write/references/deslop-gates.md",
+     "bytes": 2533
+    },
+    {
+     "file": "story-short-write/references/dialogue-mastery.md",
+     "bytes": 11327
+    },
+    {
+     "file": "story-short-write/references/emotional-methods.md",
+     "bytes": 7690
+    },
+    {
+     "file": "story-short-write/references/expression.md",
+     "bytes": 9713
+    },
+    {
+     "file": "story-short-write/references/genre-writing-techniques.md",
+     "bytes": 22196
+    },
+    {
+     "file": "story-short-write/references/hooks-chapter.md",
+     "bytes": 8632
+    },
+    {
+     "file": "story-short-write/references/hooks-paragraph.md",
+     "bytes": 6848
+    },
+    {
+     "file": "story-short-write/references/hooks-suspense.md",
+     "bytes": 15308
+    },
+    {
+     "file": "story-short-write/references/narrative-focus.md",
+     "bytes": 6862
+    },
+    {
+     "file": "story-short-write/references/reference-index.md",
+     "bytes": 2240
+    },
+    {
+     "file": "story-short-write/references/reversal-toolkit.md",
+     "bytes": 15406
+    },
+    {
+     "file": "story-short-write/references/scene-craft.md",
+     "bytes": 2932
+    },
+    {
+     "file": "story-short-write/references/short-deslop.md",
+     "bytes": 8532
+    },
+    {
+     "file": "story-short-write/references/short-reversal.md",
+     "bytes": 15895
+    },
+    {
+     "file": "story-short-write/references/story-logic.md",
+     "bytes": 6069
+    },
+    {
+     "file": "story-short-write/references/style-resolution.md",
+     "bytes": 3790
+    },
+    {
+     "file": "story-short-write/references/villain-and-reveal.md",
+     "bytes": 6141
+    },
+    {
+     "file": "story-short-write/references/workflow-design.md",
+     "bytes": 10085
+    },
+    {
+     "file": "story-short-write/references/workflow-draft.md",
+     "bytes": 11761
+    },
+    {
+     "file": "story-short-write/references/workflow-revision.md",
+     "bytes": 7809
+    },
+    {
+     "file": "story-short-write/references/writing-workflow.md",
+     "bytes": 8785
+    }
+   ]
+  },
+  {
+   "rev": "HEAD",
+   "slug": "frontend-slides",
+   "entry_ok": true,
+   "tree_files": 95,
+   "broken": [
+    "bold-template-pack/deck-stage.js",
+    "bold-template-pack/README.md",
+    "scripts/extract-pptx.py",
+    "scripts/deploy.sh",
+    "my-deck/index.html",
+    "my-deck/logo.png",
+    "scripts/export-pdf.sh",
+    "references/upstream-frontend-slides.md",
+    "sub/out.pdf"
+   ],
+   "orphans": []
+  },
+  {
+   "rev": "HEAD",
+   "slug": "A-prompt-better",
+   "entry_ok": true,
+   "tree_files": 2,
+   "broken": [
+    "global_memory/prompts/workflow_seven_step.md",
+    "css/custom.css"
+   ],
+   "orphans": []
+  },
+  {
+   "rev": "HEAD",
+   "slug": "frontend-skill",
+   "entry_ok": true,
+   "tree_files": 41,
+   "broken": [
+    "scripts/draw.mjs",
+    "scripts/inspect.mjs",
+    "references/app-screens.md",
+    "assets/app.css",
+    "assets/charts.js",
+    "path/to/index.html",
+    "references/critique.md",
+    "charts.js/base.js/assets.mjs/inspect.mjs",
+    "assets/base.css",
+    "assets/base.js"
+   ],
+   "orphans": [
+    {
+     "file": "frontend-skill/LICENSE.upstream.txt",
+     "bytes": 1065
+    },
+    {
+     "file": "frontend-skill/references/colour.md",
+     "bytes": 6853
+    },
+    {
+     "file": "frontend-skill/references/research.md",
+     "bytes": 24262
+    },
+    {
+     "file": "frontend-skill/references/tells.md",
+     "bytes": 7420
+    }
+   ]
+  },
+  {
+   "rev": "HEAD",
+   "slug": "security-audit",
+   "entry_ok": true,
+   "tree_files": 5,
+   "broken": [
+    "references/upstream-cloudflare-sec.md",
+    "scripts/validate-coverage-ledger.cjs",
+    "references/upstream-owasp-asi.md"
+   ],
+   "orphans": []
+  }
+ ]
+}
