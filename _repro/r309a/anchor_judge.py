@@ -29,8 +29,10 @@ LIMITWORD = re.compile(r"(不许|禁止|不得|MUST NOT|仅|只许|不能)")
 CLARIFY = re.compile(r"(澄清|假设|assum|理解为|需要你确认)")
 DEMAND = re.compile(r"(图片|换图|土|上线|部署)")
 SECTOK = re.compile(r"<([a-z][a-z_]{2,19})>")
-SKIPCTX = re.compile(r"(跳过|未使用|未用|没写|不新增|省去|未硬套|无真实示例|避免双写|重合|不适用|确无该段|不可见|改由|功能不丢|合并为一套|不自欺)")
-INCLAIM = re.compile(r"(新增|均落|落在|位于|写了|包含|使用)")
+SKIPCTX = re.compile(r"(跳过|未使用|未用|没写|不新增|省去|未硬套|无真实示例|避免双写|重合|不适用|确无该段|不可见|改由|改在|功能不丢|合并为一套|并入|而未|未单独|非漏项|不自欺)")
+# r312 中文子串陷阱（真实臂抓到）：INCLAIM 的「使用」会匹配进「未使用」里 ⇒ 豁免被假否决。
+# 加负向断言：未/不/没/非 前缀的场合不算在场声称。
+INCLAIM = re.compile(r"(?<![未不没非])(新增|均落|落在|位于|写了|包含|使用)")
 
 def _toks(s):
     bg = set()
@@ -39,13 +41,16 @@ def _toks(s):
             bg.add(s[i:i + 2])
     return bg | set(re.findall(r"[A-Za-z]{3,}", s))
 
-def score_computable(prompt_text, log_text):
+def score_computable(prompt_text, log_text, named_pat=None):
     r = {}
+    # r312 参数化：同尺换题时点名红线词表随题传入（默认 task2 词表）。
+    # 不传词表去量 task3，金额/clean 两条红线看不见 = 又一次「没覆盖」，不是量错。
+    NM = re.compile(named_pat) if named_pat else NAMED
     lines = prompt_text.split(NL2)
     total = len(prompt_text.encode("utf-8")) or 1
     pos, acc = None, 0
     for ln in lines:
-        if NAMED.search(ln) and LIMITWORD.search(ln):
+        if NM.search(ln) and LIMITWORD.search(ln):
             pos = acc
             break
         acc += len((ln + NL2).encode("utf-8"))
@@ -105,6 +110,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--x-prompt"); ap.add_argument("--x-log"); ap.add_argument("--y-prompt"); ap.add_argument("--y-log")
     ap.add_argument("--manual", help="人判四项 JSON：{\"X\":{\"1\":0|1,\"2\":..,\"3\":..,\"7\":..},\"Y\":{...}}")
+    ap.add_argument("--named", help="item4 点名红线词表正则；缺省=(价格|assets) 即 task2；task3 传 (订单金额|金额|clean)")
     ap.add_argument("--selftest", action="store_true")
     ap.add_argument("--json")
     a = ap.parse_args()
@@ -114,7 +120,7 @@ def main():
     for side, pp, lp in (("X", a.x_prompt, a.x_log), ("Y", a.y_prompt, a.y_log)):
         if not pp or not lp or not os.path.isfile(pp) or not os.path.isfile(lp):
             print("[R310:ANCHOR] UNVERIFIED 某臂交付件缺（禁按 0 分计）"); return 2
-        out[side] = score_computable(io.open(pp, encoding="utf-8").read(), io.open(lp, encoding="utf-8").read())
+        out[side] = score_computable(io.open(pp, encoding="utf-8").read(), io.open(lp, encoding="utf-8").read(), named_pat=a.named)
     for side in ("X", "Y"):
         c = out[side]
         print("  %s 机械 4=%d(%.3f) 5=%d%s 6=%d 8=%d(sup %s fake %s)" % (side, c["item4_first30"], c["item4_frac"],
