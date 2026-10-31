@@ -1,0 +1,3177 @@
+{
+ "schema": "r324-entry-reachability-1",
+ "closure": "top",
+ "managed_root": "D:/global_skills",
+ "slugs": 52,
+ "totals": {
+  "broken_top": 10,
+  "broken_real": 0,
+  "placeholder": 9,
+  "generated_output_ref": 1,
+  "orphans_top": 623,
+  "orphans_prose": 551,
+  "orphans_noise": 72,
+  "noise_kb": 334,
+  "tree_rows": 16509
+ },
+ "per": [
+  {
+   "slug": "data-analysis",
+   "broken": [],
+   "orphans": [
+    [
+     "assets/report_template.md",
+     7873
+    ],
+    [
+     "references/bioinformatics_genomics_formats.md",
+     8977
+    ],
+    [
+     "references/chemistry_molecular_formats.md",
+     8732
+    ],
+    [
+     "references/general_scientific_formats.md",
+     12276
+    ],
+    [
+     "references/microscopy_imaging_formats.md",
+     9305
+    ],
+    [
+     "references/proteomics_metabolomics_formats.md",
+     9821
+    ],
+    [
+     "references/spectroscopy_analytical_formats.md",
+     9555
+    ]
+   ],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 7,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "rag-eval",
+   "broken": [],
+   "orphans": [],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 0,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "commit-archaeologist",
+   "broken": [],
+   "orphans": [],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 0,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "scope-creep-detector",
+   "broken": [],
+   "orphans": [],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 0,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "algorithmic-art",
+   "broken": [],
+   "orphans": [],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 0,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "brand-guidelines",
+   "broken": [],
+   "orphans": [],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 0,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "canvas-design",
+   "broken": [],
+   "orphans": [
+    [
+     "canvas-fonts/ArsenalSC-OFL.txt",
+     4373
+    ],
+    [
+     "canvas-fonts/BigShoulders-OFL.txt",
+     4397
+    ],
+    [
+     "canvas-fonts/Boldonse-OFL.txt",
+     4390
+    ],
+    [
+     "canvas-fonts/BricolageGrotesque-OFL.txt",
+     4403
+    ],
+    [
+     "canvas-fonts/CrimsonPro-OFL.txt",
+     4394
+    ],
+    [
+     "canvas-fonts/DMMono-OFL.txt",
+     4392
+    ],
+    [
+     "canvas-fonts/EricaOne-OFL.txt",
+     4410
+    ],
+    [
+     "canvas-fonts/GeistMono-OFL.txt",
+     4388
+    ],
+    [
+     "canvas-fonts/Gloock-OFL.txt",
+     4381
+    ],
+    [
+     "canvas-fonts/IBMPlexMono-OFL.txt",
+     4363
+    ],
+    [
+     "canvas-fonts/InstrumentSans-OFL.txt",
+     4403
+    ],
+    [
+     "canvas-fonts/Italiana-OFL.txt",
+     4394
+    ],
+    [
+     "canvas-fonts/JetBrainsMono-OFL.txt",
+     4399
+    ],
+    [
+     "canvas-fonts/Jura-OFL.txt",
+     4380
+    ],
+    [
+     "canvas-fonts/LibreBaskerville-OFL.txt",
+     4449
+    ],
+    [
+     "canvas-fonts/Lora-OFL.txt",
+     4423
+    ],
+    [
+     "canvas-fonts/NationalPark-OFL.txt",
+     4399
+    ],
+    [
+     "canvas-fonts/NothingYouCouldDo-OFL.txt",
+     4363
+    ],
+    [
+     "canvas-fonts/Outfit-OFL.txt",
+     4389
+    ],
+    [
+     "canvas-fonts/PixelifySans-OFL.txt",
+     4395
+    ],
+    [
+     "canvas-fonts/PoiretOne-OFL.txt",
+     4366
+    ],
+    [
+     "canvas-fonts/RedHatMono-OFL.txt",
+     4394
+    ],
+    [
+     "canvas-fonts/Silkscreen-OFL.txt",
+     4394
+    ],
+    [
+     "canvas-fonts/SmoochSans-OFL.txt",
+     4396
+    ],
+    [
+     "canvas-fonts/Tektur-OFL.txt",
+     4385
+    ],
+    [
+     "canvas-fonts/WorkSans-OFL.txt",
+     4397
+    ],
+    [
+     "canvas-fonts/YoungSerif-OFL.txt",
+     4398
+    ]
+   ],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 0,
+    "orphans_noise": 27
+   }
+  },
+  {
+   "slug": "doc-coauthoring",
+   "broken": [],
+   "orphans": [],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 0,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "docx",
+   "broken": [],
+   "orphans": [],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 0,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "frontend-design",
+   "broken": [],
+   "orphans": [],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 0,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "internal-comms",
+   "broken": [],
+   "orphans": [],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 0,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "mcp-builder",
+   "broken": [],
+   "orphans": [],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 0,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "pdf",
+   "broken": [],
+   "orphans": [],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 0,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "theme-factory",
+   "broken": [],
+   "orphans": [
+    [
+     "themes/arctic-frost.md",
+     544
+    ],
+    [
+     "themes/botanical-garden.md",
+     519
+    ],
+    [
+     "themes/desert-rose.md",
+     496
+    ],
+    [
+     "themes/forest-canopy.md",
+     506
+    ],
+    [
+     "themes/golden-hour.md",
+     528
+    ],
+    [
+     "themes/midnight-galaxy.md",
+     513
+    ],
+    [
+     "themes/modern-minimalist.md",
+     549
+    ],
+    [
+     "themes/ocean-depths.md",
+     555
+    ],
+    [
+     "themes/sunset-boulevard.md",
+     558
+    ],
+    [
+     "themes/tech-innovation.md",
+     547
+    ]
+   ],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 10,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "xlsx",
+   "broken": [],
+   "orphans": [],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 0,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "chart-visualization",
+   "broken": [],
+   "orphans": [],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 0,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "gstack",
+   "broken": [],
+   "orphans": [
+    [
+     "qa/references/issue-taxonomy.md",
+     3619
+    ],
+    [
+     "qa/templates/qa-report-template.md",
+     2979
+    ],
+    [
+     "review/TODOS-format.md",
+     1660
+    ],
+    [
+     "review/checklist.md",
+     10178
+    ],
+    [
+     "review/design-checklist.md",
+     6605
+    ],
+    [
+     "review/greptile-triage.md",
+     8271
+    ]
+   ],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 6,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "diagram-maker",
+   "broken": [],
+   "orphans": [
+    [
+     "references/element-types.md",
+     8717
+    ],
+    [
+     "references/excalidraw-schema.md",
+     8419
+    ],
+    [
+     "scripts/README.md",
+     6537
+    ]
+   ],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 2,
+    "orphans_noise": 1
+   }
+  },
+  {
+   "slug": "figma",
+   "broken": [],
+   "orphans": [],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 0,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "hyperframes",
+   "broken": [],
+   "orphans": [
+    [
+     "assets/frame-presets/code-editorial/fonts/OFL-eb-garamond.txt",
+     4519
+    ],
+    [
+     "assets/frame-presets/code-editorial/fonts/OFL-inter.txt",
+     4477
+    ],
+    [
+     "assets/frame-presets/code-editorial/fonts/OFL-jetbrains-mono.txt",
+     4524
+    ],
+    [
+     "palettes/bold-energetic.md",
+     417
+    ],
+    [
+     "palettes/clean-corporate.md",
+     410
+    ],
+    [
+     "palettes/dark-premium.md",
+     389
+    ],
+    [
+     "palettes/jewel-rich.md",
+     394
+    ],
+    [
+     "palettes/monochrome.md",
+     454
+    ],
+    [
+     "palettes/nature-earth.md",
+     399
+    ],
+    [
+     "palettes/neon-electric.md",
+     380
+    ],
+    [
+     "palettes/pastel-soft.md",
+     392
+    ],
+    [
+     "palettes/warm-editorial.md",
+     411
+    ],
+    [
+     "references/animejs-adapter.md",
+     3309
+    ],
+    [
+     "references/css-animations-adapter.md",
+     3889
+    ],
+    [
+     "references/css-patterns.md",
+     8312
+    ],
+    [
+     "references/dynamic-techniques.md",
+     7812
+    ],
+    [
+     "references/lottie-adapter.md",
+     3397
+    ],
+    [
+     "references/text-effects.md",
+     4064
+    ],
+    [
+     "references/three-adapter.md",
+     3537
+    ],
+    [
+     "references/transcript-guide.md",
+     5864
+    ],
+    [
+     "references/transitions/catalog.md",
+     6290
+    ],
+    [
+     "references/transitions/css-3d.md",
+     421
+    ],
+    [
+     "references/transitions/css-blur.md",
+     1787
+    ],
+    [
+     "references/transitions/css-cover.md",
+     1448
+    ],
+    [
+     "references/transitions/css-destruction.md",
+     4484
+    ],
+    [
+     "references/transitions/css-dissolve.md",
+     2462
+    ],
+    [
+     "references/transitions/css-distortion.md",
+     1803
+    ],
+    [
+     "references/transitions/css-grid.md",
+     370
+    ],
+    [
+     "references/transitions/css-light.md",
+     2376
+    ],
+    [
+     "references/transitions/css-mechanical.md",
+     1613
+    ],
+    [
+     "references/transitions/css-other.md",
+     838
+    ],
+    [
+     "references/transitions/css-push.md",
+     1195
+    ],
+    [
+     "references/transitions/css-radial.md",
+     1060
+    ],
+    [
+     "references/transitions/css-scale.md",
+     715
+    ],
+    [
+     "references/typegpu-adapter.md",
+     6688
+    ],
+    [
+     "references/waapi-adapter.md",
+     3217
+    ]
+   ],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 33,
+    "orphans_noise": 3
+   }
+  },
+  {
+   "slug": "hyperframes-cli",
+   "broken": [],
+   "orphans": [],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 0,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "hyperframes-media",
+   "broken": [],
+   "orphans": [
+    [
+     "audio/assets/sfx/CREDITS.md",
+     1183
+    ],
+    [
+     "audio/references/bgm.md",
+     8119
+    ],
+    [
+     "audio/references/captions/authoring.md",
+     9422
+    ],
+    [
+     "audio/references/captions/motion.md",
+     5480
+    ],
+    [
+     "audio/references/captions/transcript-handling.md",
+     5439
+    ],
+    [
+     "audio/references/sfx.md",
+     4137
+    ],
+    [
+     "audio/references/tts-to-captions.md",
+     1755
+    ],
+    [
+     "luts/README.md",
+     1087
+    ]
+   ],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 6,
+    "orphans_noise": 2
+   }
+  },
+  {
+   "slug": "hyperframes-registry",
+   "broken": [],
+   "orphans": [
+    [
+     "examples/add-block.md",
+     1232
+    ],
+    [
+     "examples/add-component.md",
+     1473
+    ],
+    [
+     "references/demo-html-pattern.md",
+     1884
+    ]
+   ],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 3,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "ppt-master",
+   "broken": [],
+   "orphans": [
+    [
+     "references/ai-image-comparison/README.md",
+     4372
+    ],
+    [
+     "references/ai-image-comparison/palette/_manifest.md",
+     16161
+    ],
+    [
+     "references/ai-image-comparison/palette/_subject.md",
+     3086
+    ],
+    [
+     "references/ai-image-comparison/rendering/_manifest.md",
+     23824
+    ],
+    [
+     "references/ai-image-comparison/rendering/_subject.md",
+     1806
+    ],
+    [
+     "references/ai-image-comparison/type/_manifest.md",
+     15082
+    ],
+    [
+     "references/ai-image-comparison/type/_subject.md",
+     3117
+    ],
+    [
+     "references/animations.md",
+     24154
+    ],
+    [
+     "references/artifact-ownership.md",
+     20217
+    ],
+    [
+     "references/canvas-formats.md",
+     4255
+    ],
+    [
+     "references/confirm-surface.md",
+     10102
+    ],
+    [
+     "references/executor-base.md",
+     52613
+    ],
+    [
+     "references/executor-chart.md",
+     8360
+    ],
+    [
+     "references/executor-image.md",
+     7249
+    ],
+    [
+     "references/executor-notes.md",
+     4753
+    ],
+    [
+     "references/executor-structure.md",
+     8148
+    ],
+    [
+     "references/executor-structured.md",
+     12937
+    ],
+    [
+     "references/executor-table.md",
+     4786
+    ],
+    [
+     "references/executor-visualization.md",
+     4517
+    ],
+    [
+     "references/executor-web-image.md",
+     1806
+    ],
+    [
+     "references/image-base.md",
+     8711
+    ],
+    [
+     "references/image-generator.md",
+     45140
+    ],
+    [
+     "references/image-layout-patterns.md",
+     26818
+    ],
+    [
+     "references/image-layout-spec.md",
+     9416
+    ],
+    [
+     "references/image-palettes/_index.md",
+     2368
+    ],
+    [
+     "references/image-palettes/cool-corporate.md",
+     1697
+    ],
+    [
+     "references/image-palettes/dark-cinematic.md",
+     2013
+    ],
+    [
+     "references/image-palettes/duotone.md",
+     1495
+    ],
+    [
+     "references/image-palettes/earthy-dusty.md",
+     1897
+    ],
+    [
+     "references/image-palettes/editorial-classic.md",
+     1470
+    ],
+    [
+     "references/image-palettes/frost-ice.md",
+     1673
+    ],
+    [
+     "references/image-palettes/jewel-tone.md",
+     1793
+    ],
+    [
+     "references/image-palettes/macaron.md",
+     1676
+    ],
+    [
+     "references/image-palettes/mono-ink.md",
+     2584
+    ],
+    [
+     "references/image-palettes/nature-organic.md",
+     1335
+    ],
+    [
+     "references/image-palettes/sunset-gradient.md",
+     2193
+    ],
+    [
+     "references/image-palettes/tech-neon.md",
+     1550
+    ],
+    [
+     "references/image-palettes/vivid-launch.md",
+     1478
+    ],
+    [
+     "references/image-palettes/warm-earth.md",
+     1686
+    ],
+    [
+     "references/image-renderings/3d-isometric.md",
+     2738
+    ],
+    [
+     "references/image-renderings/_index.md",
+     8249
+    ],
+    [
+     "references/image-renderings/blueprint.md",
+     2667
+    ],
+    [
+     "references/image-renderings/chalkboard.md",
+     2600
+    ],
+    [
+     "references/image-renderings/corporate-photo.md",
+     3485
+    ],
+    [
+     "references/image-renderings/digital-dashboard.md",
+     2652
+    ],
+    [
+     "references/image-renderings/fantasy-animation.md",
+     2754
+    ],
+    [
+     "references/image-renderings/glassmorphism.md",
+     3181
+    ],
+    [
+     "references/image-renderings/ink-notes.md",
+     3361
+    ],
+    [
+     "references/image-renderings/minimalist-swiss.md",
+     2900
+    ],
+    [
+     "references/image-renderings/paper-cut.md",
+     2759
+    ],
+    [
+     "references/image-renderings/pixel-art.md",
+     2536
+    ],
+    [
+     "references/image-renderings/screen-print.md",
+     2854
+    ],
+    [
+     "references/image-renderings/sketch-notes.md",
+     2998
+    ],
+    [
+     "references/image-renderings/vector-illustration.md",
+     2909
+    ],
+    [
+     "references/image-renderings/vintage-poster.md",
+     2975
+    ],
+    [
+     "references/image-renderings/warm-scene.md",
+     2990
+    ],
+    [
+     "references/image-renderings/watercolor.md",
+     2457
+    ],
+    [
+     "references/image-searcher.md",
+     14313
+    ],
+    [
+     "references/image-type-templates/_index.md",
+     6229
+    ],
+    [
+     "references/image-type-templates/comparison.md",
+     3532
+    ],
+    [
+     "references/image-type-templates/flowchart.md",
+     2919
+    ],
+    [
+     "references/image-type-templates/framework.md",
+     4715
+    ],
+    [
+     "references/image-type-templates/funnel.md",
+     3786
+    ],
+    [
+     "references/image-type-templates/infographic.md",
+     3538
+    ],
+    [
+     "references/image-type-templates/map.md",
+     3915
+    ],
+    [
+     "references/image-type-templates/matrix.md",
+     3676
+    ],
+    [
+     "references/image-type-templates/pyramid.md",
+     3471
+    ],
+    [
+     "references/image-type-templates/scene.md",
+     3489
+    ],
+    [
+     "references/image-type-templates/timeline.md",
+     2849
+    ],
+    [
+     "references/modes/_index.md",
+     5813
+    ],
+    [
+     "references/modes/briefing.md",
+     3027
+    ],
+    [
+     "references/modes/instructional.md",
+     2195
+    ],
+    [
+     "references/modes/narrative.md",
+     2453
+    ],
+    [
+     "references/modes/pyramid.md",
+     3178
+    ],
+    [
+     "references/modes/showcase.md",
+     1927
+    ],
+    [
+     "references/native-data-interface.md",
+     11758
+    ],
+    [
+     "references/native-formula.md",
+     6016
+    ],
+    [
+     "references/native-hyperlinks.md",
+     5201
+    ],
+    [
+     "references/native-shape-authoring.md",
+     22756
+    ],
+    [
+     "references/plan-core.md",
+     31905
+    ],
+    [
+     "references/pptx-structure-interface.md",
+     12457
+    ],
+    [
+     "references/preset-shape-vocabulary.md",
+     10017
+    ],
+    [
+     "references/semantic-svg.md",
+     5579
+    ],
+    [
+     "references/shared-standards-core.md",
+     32310
+    ],
+    [
+     "references/shared-standards.md",
+     539
+    ],
+    [
+     "references/strategist-image.md",
+     11677
+    ],
+    [
+     "references/strategist-template.md",
+     12316
+    ],
+    [
+     "references/strategist.md",
+     38546
+    ],
+    [
+     "references/svg-effects.md",
+     36609
+    ],
+    [
+     "references/svg-image-embedding.md",
+     6485
+    ],
+    [
+     "references/template-designer.md",
+     26130
+    ],
+    [
+     "references/topology-assembly.md",
+     11115
+    ],
+    [
+     "references/video-design.md",
+     12620
+    ],
+    [
+     "references/visual-review.md",
+     12809
+    ],
+    [
+     "references/visual-styles/_index.md",
+     9471
+    ],
+    [
+     "references/visual-styles/blueprint.md",
+     2937
+    ],
+    [
+     "references/visual-styles/brutalist.md",
+     3114
+    ],
+    [
+     "references/visual-styles/chalkboard.md",
+     2366
+    ],
+    [
+     "references/visual-styles/dark-tech.md",
+     2245
+    ],
+    [
+     "references/visual-styles/data-journalism.md",
+     2893
+    ],
+    [
+     "references/visual-styles/glassmorphism.md",
+     2765
+    ],
+    [
+     "references/visual-styles/ink-notes.md",
+     2772
+    ],
+    [
+     "references/visual-styles/ink-wash.md",
+     2849
+    ],
+    [
+     "references/visual-styles/memphis.md",
+     2670
+    ],
+    [
+     "references/visual-styles/paper-cut.md",
+     2645
+    ],
+    [
+     "references/visual-styles/photo-editorial.md",
+     2868
+    ],
+    [
+     "references/visual-styles/pixel-art.md",
+     2504
+    ],
+    [
+     "references/visual-styles/sketch-notes.md",
+     2555
+    ],
+    [
+     "references/visual-styles/soft-rounded.md",
+     2520
+    ],
+    [
+     "references/visual-styles/swiss-minimal.md",
+     2953
+    ],
+    [
+     "references/visual-styles/vintage-poster.md",
+     2672
+    ],
+    [
+     "references/visual-styles/zine.md",
+     2782
+    ],
+    [
+     "scripts/README.md",
+     35636
+    ],
+    [
+     "scripts/docs/advanced-image-motion-smoke.md",
+     12647
+    ],
+    [
+     "scripts/docs/chart-recall.md",
+     1183
+    ],
+    [
+     "scripts/docs/confirm_ui.md",
+     56205
+    ],
+    [
+     "scripts/docs/conversion.md",
+     34020
+    ],
+    [
+     "scripts/docs/mask-gradient-smoke.md",
+     9009
+    ],
+    [
+     "scripts/docs/multilingual-text-smoke.md",
+     10649
+    ],
+    [
+     "scripts/docs/native-data.md",
+     21162
+    ],
+    [
+     "scripts/docs/pptx-animations.md",
+     19707
+    ],
+    [
+     "scripts/docs/pptx-transitions.md",
+     13150
+    ],
+    [
+     "scripts/docs/project.md",
+     18420
+    ],
+    [
+     "scripts/docs/prompt_audit.md",
+     6383
+    ],
+    [
+     "scripts/docs/spec_review.md",
+     13871
+    ],
+    [
+     "scripts/docs/svg-contract.md",
+     57858
+    ],
+    [
+     "scripts/docs/svg-pipeline.md",
+     96720
+    ],
+    [
+     "scripts/docs/svg_editor.md",
+     5558
+    ],
+    [
+     "scripts/docs/template-tools.md",
+     18329
+    ],
+    [
+     "scripts/docs/update_spec.md",
+     4354
+    ],
+    [
+     "scripts/docs/video-motion-plan.md",
+     4027
+    ],
+    [
+     "scripts/docs/visualization-recall.md",
+     5385
+    ],
+    [
+     "scripts/pptx_shapes/data/LICENSE-APACHE-2.0.txt",
+     11358
+    ],
+    [
+     "scripts/pptx_shapes/data/LICENSE-OPEN-XML-SDK-MIT.txt",
+     1116
+    ],
+    [
+     "scripts/pptx_shapes/data/NOTICE.md",
+     2365
+    ],
+    [
+     "scripts/pptx_shapes/data/shape_type_values.txt",
+     2527
+    ],
+    [
+     "templates/README.md",
+     6278
+    ],
+    [
+     "templates/VISUALIZATION_TEMPLATE_AUTHORING.md",
+     23605
+    ],
+    [
+     "templates/brands/README.md",
+     2058
+    ],
+    [
+     "templates/charts/README.md",
+     3392
+    ],
+    [
+     "templates/charts/chart-vocabulary.md",
+     4432
+    ],
+    [
+     "templates/decks/README.md",
+     4654
+    ],
+    [
+     "templates/design_spec_reference.md",
+     15644
+    ],
+    [
+     "templates/icons/README.md",
+     5711
+    ],
+    [
+     "templates/icons/THIRD_PARTY_NOTICES.md",
+     5682
+    ],
+    [
+     "templates/layouts/README.md",
+     5260
+    ],
+    [
+     "templates/scaffolds/spec_lock.md",
+     858
+    ],
+    [
+     "templates/sounds/CC0-1.0.txt",
+     7048
+    ],
+    [
+     "templates/sounds/README.md",
+     2714
+    ],
+    [
+     "templates/sounds/THIRD_PARTY_NOTICES.md",
+     3204
+    ],
+    [
+     "templates/sounds/sound-vocabulary.md",
+     17426
+    ],
+    [
+     "templates/spec_lock_reference.md",
+     9984
+    ],
+    [
+     "templates/styles/README.md",
+     4697
+    ],
+    [
+     "templates/tables/README.md",
+     3496
+    ],
+    [
+     "templates/tables/table-vocabulary.md",
+     1544
+    ],
+    [
+     "workflows/create-template/create-brand.md",
+     6299
+    ],
+    [
+     "workflows/create-template/create-deck.md",
+     6648
+    ],
+    [
+     "workflows/create-template/create-layout.md",
+     6695
+    ],
+    [
+     "workflows/create-template/create-style.md",
+     8397
+    ],
+    [
+     "workflows/governance/failure-recovery.md",
+     12207
+    ],
+    [
+     "workflows/index.md",
+     3718
+    ],
+    [
+     "workflows/stages/apply-template-workspace.md",
+     13068
+    ],
+    [
+     "workflows/stages/customize-animations.md",
+     17961
+    ],
+    [
+     "workflows/stages/generate-audio.md",
+     15026
+    ],
+    [
+     "workflows/stages/live-preview.md",
+     3561
+    ],
+    [
+     "workflows/stages/refine-spec.md",
+     6191
+    ],
+    [
+     "workflows/stages/resume-execute.md",
+     6416
+    ],
+    [
+     "workflows/stages/topic-research.md",
+     9490
+    ],
+    [
+     "workflows/stages/verify-charts.md",
+     9563
+    ],
+    [
+     "workflows/stages/visual-review.md",
+     7460
+    ],
+    [
+     "workflows/stages/web-image-review.md",
+     3511
+    ]
+   ],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 147,
+    "orphans_noise": 24
+   }
+  },
+  {
+   "slug": "html-ppt",
+   "broken": [
+    "examples/my-talk/index.html"
+   ],
+   "orphans": [
+    [
+     "templates/full-decks/course-module/README.md",
+     627
+    ],
+    [
+     "templates/full-decks/dir-key-nav-minimal/README.md",
+     1021
+    ],
+    [
+     "templates/full-decks/graphify-dark-graph/README.md",
+     937
+    ],
+    [
+     "templates/full-decks/hermes-cyber-terminal/README.md",
+     1016
+    ],
+    [
+     "templates/full-decks/knowledge-arch-blueprint/README.md",
+     933
+    ],
+    [
+     "templates/full-decks/obsidian-claude-gradient/README.md",
+     901
+    ],
+    [
+     "templates/full-decks/pitch-deck/README.md",
+     524
+    ],
+    [
+     "templates/full-decks/presenter-mode-reveal/README.md",
+     3964
+    ],
+    [
+     "templates/full-decks/product-launch/README.md",
+     545
+    ],
+    [
+     "templates/full-decks/tech-sharing/README.md",
+     522
+    ],
+    [
+     "templates/full-decks/testing-safety-alert/README.md",
+     967
+    ],
+    [
+     "templates/full-decks/weekly-report/README.md",
+     562
+    ],
+    [
+     "templates/full-decks/xhs-pastel-card/README.md",
+     1071
+    ],
+    [
+     "templates/full-decks/xhs-post/README.md",
+     628
+    ],
+    [
+     "templates/full-decks/xhs-white-editorial/README.md",
+     995
+    ]
+   ],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 1,
+    "orphans_prose": 0,
+    "orphans_noise": 15
+   }
+  },
+  {
+   "slug": "grill-me",
+   "broken": [],
+   "orphans": [],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 0,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "ui-ux-pro-max",
+   "broken": [],
+   "orphans": [
+    [
+     "references/CLAUDE.md",
+     5562
+    ],
+    [
+     "references/upstream-README.md",
+     23615
+    ]
+   ],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 2,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "brainstorming",
+   "broken": [],
+   "orphans": [],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 0,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "subagent-driven-development",
+   "broken": [],
+   "orphans": [],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 0,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "test-driven-development",
+   "broken": [],
+   "orphans": [],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 0,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "verification-before-completion",
+   "broken": [],
+   "orphans": [],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 0,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "writing-plans",
+   "broken": [],
+   "orphans": [],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 0,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "coding-agent",
+   "broken": [],
+   "orphans": [],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 0,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "oracle",
+   "broken": [],
+   "orphans": [],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 0,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "agent-browser",
+   "broken": [],
+   "orphans": [
+    [
+     "references/commands.md",
+     11191
+    ]
+   ],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 1,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "electron",
+   "broken": [],
+   "orphans": [],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 0,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "find-skills",
+   "broken": [],
+   "orphans": [],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 0,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "story",
+   "broken": [],
+   "orphans": [],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 0,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "story-cover",
+   "broken": [
+    "references/split-NN.md"
+   ],
+   "orphans": [
+    [
+     "references/api-fallback.md",
+     4808
+    ],
+    [
+     "references/cover-styles.md",
+     8992
+    ]
+   ],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 1,
+    "generated_output_ref": 0,
+    "orphans_prose": 2,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "story-deslop",
+   "broken": [
+    "references/split-NN.md"
+   ],
+   "orphans": [
+    [
+     "references/agent-calls.md",
+     1258
+    ],
+    [
+     "references/deslop-gates.md",
+     2533
+    ],
+    [
+     "references/expression.md",
+     9713
+    ],
+    [
+     "references/narrative-focus.md",
+     6862
+    ],
+    [
+     "references/story-logic.md",
+     6069
+    ],
+    [
+     "references/style-resolution.md",
+     3790
+    ]
+   ],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 1,
+    "generated_output_ref": 0,
+    "orphans_prose": 6,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "story-import",
+   "broken": [
+    "references/split-NN.md"
+   ],
+   "orphans": [
+    [
+     "references/benchmark-sync.md",
+     4103
+    ],
+    [
+     "references/character-state-reverse.md",
+     5911
+    ],
+    [
+     "references/deep-analysis.md",
+     5398
+    ],
+    [
+     "references/format-and-structure.md",
+     11433
+    ],
+    [
+     "references/import-report.md",
+     4482
+    ],
+    [
+     "references/import-special-cases.md",
+     2607
+    ],
+    [
+     "references/import-tracking.md",
+     7702
+    ],
+    [
+     "references/length-routing.md",
+     5293
+    ],
+    [
+     "references/outline-reverse-rules.md",
+     6058
+    ],
+    [
+     "references/outline-reverse.md",
+     2845
+    ],
+    [
+     "references/state-tracking.md",
+     3751
+    ],
+    [
+     "references/tracking-initialization.md",
+     1566
+    ]
+   ],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 1,
+    "generated_output_ref": 0,
+    "orphans_prose": 12,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "story-long-analyze",
+   "broken": [
+    "references/split-NN.md"
+   ],
+   "orphans": [
+    [
+     "references/author-facing.md",
+     12729
+    ],
+    [
+     "references/final-checks.md",
+     1022
+    ],
+    [
+     "references/index-rebuild.md",
+     3187
+    ],
+    [
+     "references/inspiration-library.md",
+     10587
+    ],
+    [
+     "references/stage1-golden-chapters.md",
+     6819
+    ],
+    [
+     "references/stage2-extraction.md",
+     11004
+    ],
+    [
+     "references/stage3-plot-rhythm.md",
+     20790
+    ],
+    [
+     "references/stage4-characters-settings.md",
+     6704
+    ],
+    [
+     "references/stage5-report.md",
+     2756
+    ],
+    [
+     "references/style-profile-generator.md",
+     10345
+    ],
+    [
+     "references/synthesis-inputs.md",
+     4097
+    ]
+   ],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 1,
+    "generated_output_ref": 0,
+    "orphans_prose": 11,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "story-long-write",
+   "broken": [
+    "references/split-NN.md"
+   ],
+   "orphans": [
+    [
+     "references/agent-calls.md",
+     7373
+    ],
+    [
+     "references/anti-ai-writing.md",
+     36483
+    ],
+    [
+     "references/artifact-protocols.md",
+     16314
+    ],
+    [
+     "references/author-memory-maintenance.md",
+     9019
+    ],
+    [
+     "references/author-memory.md",
+     11484
+    ],
+    [
+     "references/banned-words.md",
+     9106
+    ],
+    [
+     "references/benchmark-recall.md",
+     5713
+    ],
+    [
+     "references/character-basics.md",
+     16921
+    ],
+    [
+     "references/character-design-methods.md",
+     16262
+    ],
+    [
+     "references/character-relations.md",
+     15470
+    ],
+    [
+     "references/commercial-core-methods.md",
+     20648
+    ],
+    [
+     "references/cross-book-recall.md",
+     4892
+    ],
+    [
+     "references/dialogue-mastery.md",
+     11327
+    ],
+    [
+     "references/emotion-on-page.md",
+     4672
+    ],
+    [
+     "references/emotional-arc-design.md",
+     16647
+    ],
+    [
+     "references/emotional-methods.md",
+     10208
+    ],
+    [
+     "references/female-audience-writing.md",
+     11427
+    ],
+    [
+     "references/format-and-structure.md",
+     11433
+    ],
+    [
+     "references/genre-catalog.md",
+     20681
+    ],
+    [
+     "references/genre-core-mechanics.md",
+     17360
+    ],
+    [
+     "references/genre-prose-cards.md",
+     7137
+    ],
+    [
+     "references/genre-prose-cards/东方仙侠.md",
+     2788
+    ],
+    [
+     "references/genre-prose-cards/传统玄幻.md",
+     2801
+    ],
+    [
+     "references/genre-prose-cards/历史古代.md",
+     2635
+    ],
+    [
+     "references/genre-prose-cards/历史脑洞.md",
+     2934
+    ],
+    [
+     "references/genre-prose-cards/双男主.md",
+     3272
+    ],
+    [
+     "references/genre-prose-cards/古言脑洞.md",
+     2676
+    ],
+    [
+     "references/genre-prose-cards/古风世情.md",
+     2622
+    ],
+    [
+     "references/genre-prose-cards/女频悬疑.md",
+     2637
+    ],
+    [
+     "references/genre-prose-cards/女频种田.md",
+     2693
+    ],
+    [
+     "references/genre-prose-cards/宫斗宅斗.md",
+     2522
+    ],
+    [
+     "references/genre-prose-cards/年代.md",
+     3069
+    ],
+    [
+     "references/genre-prose-cards/快穿.md",
+     2858
+    ],
+    [
+     "references/genre-prose-cards/悬疑灵异.md",
+     2616
+    ],
+    [
+     "references/genre-prose-cards/悬疑脑洞.md",
+     2788
+    ],
+    [
+     "references/genre-prose-cards/战神赘婿.md",
+     2810
+    ],
+    [
+     "references/genre-prose-cards/抗战谍战.md",
+     2728
+    ],
+    [
+     "references/genre-prose-cards/星光璀璨.md",
+     2800
+    ],
+    [
+     "references/genre-prose-cards/民国言情.md",
+     2817
+    ],
+    [
+     "references/genre-prose-cards/游戏体育.md",
+     2899
+    ],
+    [
+     "references/genre-prose-cards/玄幻脑洞.md",
+     3004
+    ],
+    [
+     "references/genre-prose-cards/玄幻言情.md",
+     2596
+    ],
+    [
+     "references/genre-prose-cards/现言脑洞.md",
+     2741
+    ],
+    [
+     "references/genre-prose-cards/科幻末世.md",
+     2653
+    ],
+    [
+     "references/genre-prose-cards/职场婚恋.md",
+     2612
+    ],
+    [
+     "references/genre-prose-cards/西方奇幻.md",
+     2834
+    ],
+    [
+     "references/genre-prose-cards/豪门总裁.md",
+     3343
+    ],
+    [
+     "references/genre-prose-cards/都市修真.md",
+     2580
+    ],
+    [
+     "references/genre-prose-cards/都市日常.md",
+     3766
+    ],
+    [
+     "references/genre-prose-cards/都市种田.md",
+     2584
+    ],
+    [
+     "references/genre-prose-cards/都市脑洞.md",
+     3485
+    ],
+    [
+     "references/genre-prose-cards/都市高武.md",
+     3018
+    ],
+    [
+     "references/genre-prose-cards/青春甜宠.md",
+     2790
+    ],
+    [
+     "references/genre-readers.md",
+     10972
+    ],
+    [
+     "references/genre-writing-formulas.md",
+     21340
+    ],
+    [
+     "references/hooks-chapter.md",
+     8632
+    ],
+    [
+     "references/hooks-paragraph.md",
+     6848
+    ],
+    [
+     "references/hooks-suspense.md",
+     15308
+    ],
+    [
+     "references/long-chapter-hooks.md",
+     7940
+    ],
+    [
+     "references/long-chapter-quality.md",
+     6524
+    ],
+    [
+     "references/long-format.md",
+     2551
+    ],
+    [
+     "references/long-genre-catalog.md",
+     12492
+    ],
+    [
+     "references/long-genre-mechanics.md",
+     12131
+    ],
+    [
+     "references/long-reversal.md",
+     15637
+    ],
+    [
+     "references/long-suspense.md",
+     15484
+    ],
+    [
+     "references/opening-design.md",
+     12753
+    ],
+    [
+     "references/outline-conflict.md",
+     17687
+    ],
+    [
+     "references/outline-methods.md",
+     10875
+    ],
+    [
+     "references/outline-rhythm.md",
+     12878
+    ],
+    [
+     "references/outline-structure-theory.md",
+     21818
+    ],
+    [
+     "references/plot-core-methods.md",
+     20291
+    ],
+    [
+     "references/plot-emotion-system.md",
+     15867
+    ],
+    [
+     "references/plot-frameworks.md",
+     27755
+    ],
+    [
+     "references/plot-special-topics.md",
+     25544
+    ],
+    [
+     "references/project-files.md",
+     11762
+    ],
+    [
+     "references/quality-checklist.md",
+     9734
+    ],
+    [
+     "references/reader-contract-and-progression.md",
+     11144
+    ],
+    [
+     "references/reference-index.md",
+     2548
+    ],
+    [
+     "references/reversal-toolkit.md",
+     15406
+    ],
+    [
+     "references/revision-diagnosis.md",
+     4051
+    ],
+    [
+     "references/state-tracking.md",
+     3751
+    ],
+    [
+     "references/stop-and-fix.md",
+     1042
+    ],
+    [
+     "references/style-combat-face.md",
+     20057
+    ],
+    [
+     "references/style-craft.md",
+     13896
+    ],
+    [
+     "references/style-genre-modules.md",
+     24730
+    ],
+    [
+     "references/style-resolution.md",
+     3790
+    ],
+    [
+     "references/tracking-initialization.md",
+     1566
+    ],
+    [
+     "references/tracking-transaction.md",
+     15618
+    ],
+    [
+     "references/workflow-chapter.md",
+     14891
+    ],
+    [
+     "references/workflow-daily.md",
+     31472
+    ],
+    [
+     "references/workflow-outline.md",
+     21422
+    ],
+    [
+     "references/workflow-revision.md",
+     4569
+    ],
+    [
+     "references/workflow-setup.md",
+     13430
+    ],
+    [
+     "references/workflow-volume.md",
+     14766
+    ],
+    [
+     "references/writer-prompt-fallback.md",
+     3897
+    ],
+    [
+     "references/writing-craft.md",
+     22595
+    ]
+   ],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 1,
+    "generated_output_ref": 0,
+    "orphans_prose": 96,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "story-review",
+   "broken": [
+    "references/split-NN.md"
+   ],
+   "orphans": [
+    [
+     "references/agent-prompts.md",
+     14249
+    ],
+    [
+     "references/anti-ai-writing.md",
+     36483
+    ],
+    [
+     "references/banned-words.md",
+     9106
+    ],
+    [
+     "references/batch-review.md",
+     2325
+    ],
+    [
+     "references/character-relations.md",
+     15470
+    ],
+    [
+     "references/dialogue-mastery.md",
+     11327
+    ],
+    [
+     "references/expression.md",
+     9713
+    ],
+    [
+     "references/narrative-focus.md",
+     6862
+    ],
+    [
+     "references/plot-core-methods.md",
+     20291
+    ],
+    [
+     "references/quality-checklist.md",
+     12984
+    ],
+    [
+     "references/review-tracking.md",
+     2604
+    ],
+    [
+     "references/story-logic.md",
+     6069
+    ],
+    [
+     "references/style-resolution.md",
+     3790
+    ],
+    [
+     "references/tracking-initialization.md",
+     1566
+    ],
+    [
+     "references/tracking-transaction.md",
+     15618
+    ]
+   ],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 1,
+    "generated_output_ref": 0,
+    "orphans_prose": 15,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "story-scan",
+   "broken": [],
+   "orphans": [
+    [
+     "references/platform-ciweimao.md",
+     1693
+    ],
+    [
+     "references/platform-fanqie.md",
+     2867
+    ],
+    [
+     "references/platform-jjwxc.md",
+     1898
+    ],
+    [
+     "references/platform-qidian.md",
+     3300
+    ],
+    [
+     "references/platform-qimao.md",
+     2558
+    ]
+   ],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 5,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "story-setup",
+   "broken": [
+    "references/split-NN.md"
+   ],
+   "orphans": [
+    [
+     "references/agent-references/agent-quality.md",
+     3614
+    ],
+    [
+     "references/agent-references/agent-reference-profiles.md",
+     4288
+    ],
+    [
+     "references/agent-references/anti-ai-writing.md",
+     36483
+    ],
+    [
+     "references/agent-references/banned-words.md",
+     9106
+    ],
+    [
+     "references/agent-references/benchmark-style-load.md",
+     10306
+    ],
+    [
+     "references/agent-references/character-basics.md",
+     16921
+    ],
+    [
+     "references/agent-references/character-design-methods.md",
+     16262
+    ],
+    [
+     "references/agent-references/character-relations.md",
+     15470
+    ],
+    [
+     "references/agent-references/deslop-gates.md",
+     2533
+    ],
+    [
+     "references/agent-references/dialogue-mastery.md",
+     11327
+    ],
+    [
+     "references/agent-references/emotion-on-page.md",
+     4672
+    ],
+    [
+     "references/agent-references/emotional-arc-design.md",
+     16647
+    ],
+    [
+     "references/agent-references/emotional-methods.md",
+     7690
+    ],
+    [
+     "references/agent-references/expression.md",
+     9713
+    ],
+    [
+     "references/agent-references/female-audience-writing.md",
+     9681
+    ],
+    [
+     "references/agent-references/format-and-structure.md",
+     11433
+    ],
+    [
+     "references/agent-references/genre-catalog.md",
+     20681
+    ],
+    [
+     "references/agent-references/genre-core-mechanics.md",
+     17360
+    ],
+    [
+     "references/agent-references/genre-prose-cards.md",
+     7137
+    ],
+    [
+     "references/agent-references/genre-prose-cards/东方仙侠.md",
+     2788
+    ],
+    [
+     "references/agent-references/genre-prose-cards/传统玄幻.md",
+     2801
+    ],
+    [
+     "references/agent-references/genre-prose-cards/历史古代.md",
+     2635
+    ],
+    [
+     "references/agent-references/genre-prose-cards/历史脑洞.md",
+     2934
+    ],
+    [
+     "references/agent-references/genre-prose-cards/双男主.md",
+     3272
+    ],
+    [
+     "references/agent-references/genre-prose-cards/古言脑洞.md",
+     2676
+    ],
+    [
+     "references/agent-references/genre-prose-cards/古风世情.md",
+     2622
+    ],
+    [
+     "references/agent-references/genre-prose-cards/女频悬疑.md",
+     2637
+    ],
+    [
+     "references/agent-references/genre-prose-cards/女频种田.md",
+     2693
+    ],
+    [
+     "references/agent-references/genre-prose-cards/宫斗宅斗.md",
+     2522
+    ],
+    [
+     "references/agent-references/genre-prose-cards/年代.md",
+     3069
+    ],
+    [
+     "references/agent-references/genre-prose-cards/快穿.md",
+     2858
+    ],
+    [
+     "references/agent-references/genre-prose-cards/悬疑灵异.md",
+     2616
+    ],
+    [
+     "references/agent-references/genre-prose-cards/悬疑脑洞.md",
+     2788
+    ],
+    [
+     "references/agent-references/genre-prose-cards/战神赘婿.md",
+     2810
+    ],
+    [
+     "references/agent-references/genre-prose-cards/抗战谍战.md",
+     2728
+    ],
+    [
+     "references/agent-references/genre-prose-cards/星光璀璨.md",
+     2800
+    ],
+    [
+     "references/agent-references/genre-prose-cards/民国言情.md",
+     2817
+    ],
+    [
+     "references/agent-references/genre-prose-cards/游戏体育.md",
+     2899
+    ],
+    [
+     "references/agent-references/genre-prose-cards/玄幻脑洞.md",
+     3004
+    ],
+    [
+     "references/agent-references/genre-prose-cards/玄幻言情.md",
+     2596
+    ],
+    [
+     "references/agent-references/genre-prose-cards/现言脑洞.md",
+     2741
+    ],
+    [
+     "references/agent-references/genre-prose-cards/科幻末世.md",
+     2653
+    ],
+    [
+     "references/agent-references/genre-prose-cards/职场婚恋.md",
+     2612
+    ],
+    [
+     "references/agent-references/genre-prose-cards/西方奇幻.md",
+     2834
+    ],
+    [
+     "references/agent-references/genre-prose-cards/豪门总裁.md",
+     3343
+    ],
+    [
+     "references/agent-references/genre-prose-cards/都市修真.md",
+     2580
+    ],
+    [
+     "references/agent-references/genre-prose-cards/都市日常.md",
+     3766
+    ],
+    [
+     "references/agent-references/genre-prose-cards/都市种田.md",
+     2584
+    ],
+    [
+     "references/agent-references/genre-prose-cards/都市脑洞.md",
+     3485
+    ],
+    [
+     "references/agent-references/genre-prose-cards/都市高武.md",
+     3018
+    ],
+    [
+     "references/agent-references/genre-prose-cards/青春甜宠.md",
+     2790
+    ],
+    [
+     "references/agent-references/genre-readers.md",
+     10972
+    ],
+    [
+     "references/agent-references/genre-writing-formulas.md",
+     21340
+    ],
+    [
+     "references/agent-references/hooks-chapter.md",
+     8632
+    ],
+    [
+     "references/agent-references/hooks-suspense.md",
+     15308
+    ],
+    [
+     "references/agent-references/long-chapter-hooks.md",
+     7940
+    ],
+    [
+     "references/agent-references/long-emotional-methods.md",
+     7126
+    ],
+    [
+     "references/agent-references/long-genre-catalog.md",
+     12492
+    ],
+    [
+     "references/agent-references/long-genre-mechanics.md",
+     12131
+    ],
+    [
+     "references/agent-references/long-quality.md",
+     3142
+    ],
+    [
+     "references/agent-references/long-reversal.md",
+     15637
+    ],
+    [
+     "references/agent-references/long-suspense.md",
+     15484
+    ],
+    [
+     "references/agent-references/narrative-focus.md",
+     6862
+    ],
+    [
+     "references/agent-references/opening-design.md",
+     12753
+    ],
+    [
+     "references/agent-references/outline-conflict.md",
+     17687
+    ],
+    [
+     "references/agent-references/outline-methods.md",
+     10875
+    ],
+    [
+     "references/agent-references/outline-rhythm.md",
+     12878
+    ],
+    [
+     "references/agent-references/plot-core-methods.md",
+     20291
+    ],
+    [
+     "references/agent-references/quality-checklist.md",
+     12457
+    ],
+    [
+     "references/agent-references/reversal-toolkit.md",
+     15406
+    ],
+    [
+     "references/agent-references/short-chapter-hooks.md",
+     8914
+    ],
+    [
+     "references/agent-references/short-emotional-methods.md",
+     5808
+    ],
+    [
+     "references/agent-references/short-genre-formulas.md",
+     20065
+    ],
+    [
+     "references/agent-references/short-quality.md",
+     2782
+    ],
+    [
+     "references/agent-references/short-reversal.md",
+     15895
+    ],
+    [
+     "references/agent-references/story-logic.md",
+     6069
+    ],
+    [
+     "references/agent-references/style-combat-face.md",
+     20057
+    ],
+    [
+     "references/agent-references/style-genre-modules.md",
+     24730
+    ],
+    [
+     "references/agent-references/style-resolution.md",
+     3790
+    ],
+    [
+     "references/agent-references/writing-craft.md",
+     22595
+    ],
+    [
+     "references/deploy-antigravity.md",
+     9703
+    ],
+    [
+     "references/deploy-claude-code.md",
+     7728
+    ],
+    [
+     "references/deploy-codex.md",
+     6087
+    ],
+    [
+     "references/deploy-generic.md",
+     2502
+    ],
+    [
+     "references/deploy-openclaw.md",
+     2957
+    ],
+    [
+     "references/deploy-opencode.md",
+     14982
+    ],
+    [
+     "references/deploy-reasonix.md",
+     3405
+    ],
+    [
+     "references/deploy-zcode.md",
+     7356
+    ],
+    [
+     "references/diagnostics.md",
+     4422
+    ],
+    [
+     "references/opencode/agents/character-designer.md",
+     9203
+    ],
+    [
+     "references/opencode/agents/consistency-checker.md",
+     10305
+    ],
+    [
+     "references/opencode/agents/narrative-writer.md",
+     35608
+    ],
+    [
+     "references/opencode/agents/story-architect.md",
+     11315
+    ],
+    [
+     "references/opencode/agents/story-explorer.md",
+     16408
+    ],
+    [
+     "references/opencode/agents/story-researcher.md",
+     12265
+    ],
+    [
+     "references/opencode/commands/browser-cdp.md",
+     257
+    ],
+    [
+     "references/opencode/commands/story-cover.md",
+     162
+    ],
+    [
+     "references/opencode/commands/story-deslop.md",
+     195
+    ],
+    [
+     "references/opencode/commands/story-long-analyze.md",
+     187
+    ],
+    [
+     "references/opencode/commands/story-long-scan.md",
+     232
+    ],
+    [
+     "references/opencode/commands/story-review.md",
+     185
+    ],
+    [
+     "references/opencode/commands/story-scan-long.md",
+     200
+    ],
+    [
+     "references/opencode/commands/story-scan-short.md",
+     182
+    ],
+    [
+     "references/opencode/commands/story-short-analyze.md",
+     182
+    ],
+    [
+     "references/opencode/commands/story-short-scan.md",
+     215
+    ],
+    [
+     "references/opencode_model_config.md",
+     8222
+    ],
+    [
+     "references/templates/agents/character-designer.md",
+     9363
+    ],
+    [
+     "references/templates/agents/consistency-checker.md",
+     10574
+    ],
+    [
+     "references/templates/agents/narrative-writer.md",
+     35997
+    ],
+    [
+     "references/templates/agents/story-architect.md",
+     11532
+    ],
+    [
+     "references/templates/agents/story-explorer.md",
+     16654
+    ],
+    [
+     "references/templates/agents/story-researcher.md",
+     12381
+    ],
+    [
+     "references/templates/rules/story-consistency.md",
+     1836
+    ],
+    [
+     "references/templates/rules/story-format.md",
+     3154
+    ],
+    [
+     "references/templates/rules/story-narrative.md",
+     3184
+    ],
+    [
+     "references/templates/rules/story-outline.md",
+     6124
+    ],
+    [
+     "references/zcode/agents/character-designer.md",
+     4503
+    ],
+    [
+     "references/zcode/agents/consistency-checker.md",
+     12281
+    ],
+    [
+     "references/zcode/agents/narrative-writer.md",
+     15205
+    ],
+    [
+     "references/zcode/agents/story-architect.md",
+     9361
+    ],
+    [
+     "references/zcode/agents/story-explorer.md",
+     11513
+    ],
+    [
+     "references/zcode/agents/story-researcher.md",
+     12737
+    ],
+    [
+     "references/zcode/commands/browser-cdp.md",
+     221
+    ],
+    [
+     "references/zcode/commands/story-cover.md",
+     204
+    ],
+    [
+     "references/zcode/commands/story-deslop.md",
+     234
+    ],
+    [
+     "references/zcode/commands/story-long-analyze.md",
+     218
+    ],
+    [
+     "references/zcode/commands/story-long-scan.md",
+     206
+    ],
+    [
+     "references/zcode/commands/story-review.md",
+     216
+    ],
+    [
+     "references/zcode/commands/story-scan-long.md",
+     196
+    ],
+    [
+     "references/zcode/commands/story-scan-short.md",
+     205
+    ],
+    [
+     "references/zcode/commands/story-short-analyze.md",
+     214
+    ],
+    [
+     "references/zcode/commands/story-short-scan.md",
+     217
+    ]
+   ],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 1,
+    "generated_output_ref": 0,
+    "orphans_prose": 132,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "story-short-analyze",
+   "broken": [
+    "references/split-NN.md"
+   ],
+   "orphans": [
+    [
+     "references/analysis-characters.md",
+     3458
+    ],
+    [
+     "references/analysis-method.md",
+     2664
+    ],
+    [
+     "references/analysis-report-style.md",
+     2451
+    ],
+    [
+     "references/analysis-short-genres.md",
+     5166
+    ],
+    [
+     "references/analysis-short-hooks.md",
+     3969
+    ],
+    [
+     "references/analysis-short-mechanics.md",
+     4476
+    ],
+    [
+     "references/analysis-short-patterns.md",
+     4255
+    ],
+    [
+     "references/analysis-short-suspense.md",
+     4298
+    ],
+    [
+     "references/analysis-submission.md",
+     3047
+    ],
+    [
+     "references/anti-ai-writing.md",
+     36483
+    ],
+    [
+     "references/banned-words.md",
+     9106
+    ],
+    [
+     "references/character-basics.md",
+     17011
+    ],
+    [
+     "references/character-design-methods.md",
+     16839
+    ],
+    [
+     "references/character-relations.md",
+     16047
+    ],
+    [
+     "references/deconstruction-examples.md",
+     4201
+    ],
+    [
+     "references/genre-core-mechanics.md",
+     17937
+    ],
+    [
+     "references/genre-readers.md",
+     11549
+    ],
+    [
+     "references/genre-writing-formulas.md",
+     21665
+    ],
+    [
+     "references/genre-writing-techniques.md",
+     20800
+    ],
+    [
+     "references/hooks-chapter.md",
+     8632
+    ],
+    [
+     "references/hooks-paragraph.md",
+     6848
+    ],
+    [
+     "references/hooks-suspense.md",
+     15308
+    ],
+    [
+     "references/optional-modules.md",
+     2559
+    ],
+    [
+     "references/quality-checklist.md",
+     10436
+    ],
+    [
+     "references/real-market-data.md",
+     4962
+    ],
+    [
+     "references/source-story-quality.md",
+     4574
+    ],
+    [
+     "references/stage2-3-structure-emotion.md",
+     14448
+    ],
+    [
+     "references/stage4-6-reversal-summary.md",
+     29382
+    ],
+    [
+     "references/zhihu-style.md",
+     2416
+    ]
+   ],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 1,
+    "generated_output_ref": 0,
+    "orphans_prose": 29,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "story-short-write",
+   "broken": [
+    "references/split-NN.md"
+   ],
+   "orphans": [
+    [
+     "references/agent-calls.md",
+     2193
+    ],
+    [
+     "references/author-memory-maintenance.md",
+     9019
+    ],
+    [
+     "references/author-memory.md",
+     11484
+    ],
+    [
+     "references/banned-words.md",
+     9106
+    ],
+    [
+     "references/benchmark-recall.md",
+     3645
+    ],
+    [
+     "references/deslop-gates.md",
+     2533
+    ],
+    [
+     "references/dialogue-mastery.md",
+     11327
+    ],
+    [
+     "references/emotional-methods.md",
+     7690
+    ],
+    [
+     "references/expression.md",
+     9713
+    ],
+    [
+     "references/genre-writing-techniques.md",
+     22196
+    ],
+    [
+     "references/hooks-chapter.md",
+     8632
+    ],
+    [
+     "references/hooks-paragraph.md",
+     6848
+    ],
+    [
+     "references/hooks-suspense.md",
+     15308
+    ],
+    [
+     "references/narrative-focus.md",
+     6862
+    ],
+    [
+     "references/reference-index.md",
+     2240
+    ],
+    [
+     "references/reversal-toolkit.md",
+     15406
+    ],
+    [
+     "references/scene-craft.md",
+     2932
+    ],
+    [
+     "references/short-deslop.md",
+     8532
+    ],
+    [
+     "references/short-reversal.md",
+     15895
+    ],
+    [
+     "references/story-logic.md",
+     6069
+    ],
+    [
+     "references/style-resolution.md",
+     3790
+    ],
+    [
+     "references/villain-and-reveal.md",
+     6141
+    ],
+    [
+     "references/workflow-design.md",
+     10085
+    ],
+    [
+     "references/workflow-draft.md",
+     11761
+    ],
+    [
+     "references/workflow-revision.md",
+     7809
+    ],
+    [
+     "references/writing-workflow.md",
+     8785
+    ]
+   ],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 1,
+    "generated_output_ref": 0,
+    "orphans_prose": 26,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "frontend-slides",
+   "broken": [],
+   "orphans": [],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 0,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "A-prompt-better",
+   "broken": [],
+   "orphans": [],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 0,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "frontend-skill",
+   "broken": [],
+   "orphans": [],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 0,
+    "orphans_noise": 0
+   }
+  },
+  {
+   "slug": "security-audit",
+   "broken": [],
+   "orphans": [],
+   "v2": {
+    "broken_real": 0,
+    "placeholder": 0,
+    "generated_output_ref": 0,
+    "orphans_prose": 0,
+    "orphans_noise": 0
+   }
+  }
+ ]
+}

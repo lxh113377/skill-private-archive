@@ -216,5 +216,10 @@
  "r305_wiring_headroom.py": {
   "evidence": "_temp/r305_headroom.json",
   "registered_at": "2026-10-31 01:39"
+ },
+ "r324_entry_reachability_face.py": {
+  "evidence": "06-benchmark/entry_reachability_latest.json",
+  "registered_at": "2026-11-01 01:29",
+  "why": "R322-2 验收靶落地：入口可达性维常驻判据（四桶分账 + 两口径闭包）。r324 从一次性取证目录搬入 05-exec 并自包含化（修 quotepath 缺陷、_repro/_temp 引用清零）"
  }
 }

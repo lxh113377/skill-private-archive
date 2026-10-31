@@ -1,0 +1,85 @@
+{
+ "schema": "r324a-parity-1",
+ "generated_at": "2026-11-01T01:28:04",
+ "managed_root": "D:/global_skills",
+ "new_file": "05-exec/r324_entry_reachability_face.py",
+ "new_sha256_12_len": 16296,
+ "source_file": "one-shot r322b census (read-only reference)",
+ "note": "orphans_top 旧 624 → 新 623 是 r323 落盘（frontend-skill 补链）造成的真实下降，不是回归；prose 552→551 同因。其余键逐项相等。",
+ "modes": {
+  "top": {
+   "keys": [
+    "broken_top",
+    "broken_real",
+    "placeholder",
+    "generated_output_ref",
+    "orphans_top",
+    "orphans_noise",
+    "noise_kb"
+   ],
+   "old": {
+    "broken_top": 10,
+    "broken_real": 0,
+    "placeholder": 9,
+    "generated_output_ref": 1,
+    "orphans_top": 624,
+    "orphans_noise": 72,
+    "noise_kb": 334
+   },
+   "new": {
+    "broken_top": 10,
+    "broken_real": 0,
+    "placeholder": 9,
+    "generated_output_ref": 1,
+    "orphans_top": 623,
+    "orphans_noise": 72,
+    "noise_kb": 334
+   },
+   "expected_delta": {
+    "orphans_top": -1,
+    "orphans_prose": -1
+   }
+  },
+  "nested": {
+   "keys": [
+    "broken_top",
+    "broken_real",
+    "placeholder",
+    "generated_output_ref",
+    "orphans_top"
+   ],
+   "old": {
+    "broken_top": 11,
+    "broken_real": 1,
+    "placeholder": 9,
+    "generated_output_ref": 1,
+    "orphans_top": 618
+   },
+   "new": {
+    "broken_top": 11,
+    "broken_real": 1,
+    "placeholder": 9,
+    "generated_output_ref": 1,
+    "orphans_top": 617
+   },
+   "expected_delta": {
+    "orphans_top": -1
+   }
+  }
+ },
+ "tree_rows": 16509,
+ "conservation": {
+  "files": "623 == 623",
+  "files_ok": true,
+  "broken": "10 == 10",
+  "broken_ok": true
+ },
+ "portable": {
+  "repro_refs_in_source": 0,
+  "temp_refs_in_source": 0,
+  "external_inputs": [
+   "06-benchmark/absorption_baseline_face.json"
+  ],
+  "checked_by": "string count on source (see report §portable)"
+ }
+}
