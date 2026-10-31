@@ -1,0 +1,254 @@
+{
+  "X2": {
+    "items": {
+      "1": 1,
+      "2": 1,
+      "3": 1,
+      "4": 1,
+      "5": 1,
+      "6": 1,
+      "7": 1,
+      "8": 0
+    },
+    "q_total": 7,
+    "key_quotes_per_item": {
+      "1": [
+        "out_X2/optimized_prompt.md:L4 :: 你是本次改版的执行 coding agent，有命令行权限：可读写本仓库文件、可跑构建与部署命令。",
+        "out_X2/optimized_prompt.md:L49 :: 1. 价格零变更：用基线快照与改后文件做价格数值比对，比对结果为 0 处差异，报告附比对命令与输出。"
+      ],
+      "2": [
+        "out_X2/optimized_prompt.md:L26 :: 具体做法你自己定，但必须走完两轮多视角推敲，并把两轮结论写进报告（这是把「想全面一点」变成可检查的动作）：",
+        "out_X2/optimized_prompt.md:L40 :: - 红线 1、2 之外：样式与结构文件（HTML/CSS/JS）可以为「变好看」而修改，但改这些文件时只动表现层（样式、结构、类名、图片引用路径），不得改动价格数值。",
+        "out_X2/optimized_prompt.md:L86 :: 最后再念一遍——全场最重的两条，优先级高于上面一切表述：",
+        "out_X2/process_log.md:L5 :: 4. Step2 歧义（只列理解、取最优执行、不反问）：①「弄一版」→ 一轮完整改版（换图+美化+上线）；②「好看起来」→ 表现层视觉改善，不做结构重写；③「部署上线」→ 通道未知，先取证再执行；④「想全面一点、多从几个角度反复推敲」→ 落成 <method> 的两轮 5 视角协议；⑤「它有命令行权限」→ 写入 <role>，并据此要求留回滚点。"
+      ],
+      "3": [
+        "out_X2/optimized_prompt.md:L58 :: 交付一份 Markdown 报告，章节名与顺序固定为：",
+        "out_X2/optimized_prompt.md:L59 :: 一、勘察证据（页面清单 / 图片清单 / 价格基线 / 部署通道依据，逐条落到具体文件路径）"
+      ],
+      "4": [
+        "out_X2/optimized_prompt.md:L11 :: - 本任务书不含项目文件清单与部署通道信息：这两项必须由你勘察仓库取到文件级证据后再决定，不许凭印象或猜测执行。",
+        "out_X2/optimized_prompt.md:L17 :: 2. 重做商品图：逐张替换或重做丑图，新图与所标商品真实相符（不得用与商品不符的图充数）；图片文件的写入只允许发生在 assets 目录。",
+        "out_X2/optimized_prompt.md:L38 :: - 红线 1：任何商品价格数值不得改变——包括 HTML 内文、JS 数据数组、JSON/CSV 数据源、以及任何换算或格式化后仍会改变展示值的做法。",
+        "out_X2/optimized_prompt.md:L87 :: 禁止：修改任何商品价格数值 → 替代：价格数值原样保留，只改它的呈现样式。",
+        "out_X2/process_log.md:L9 :: 8. 首尾效应：文档要求「最重要约束放 </task> 前」与「末尾重复核心要求」，与用户「放结尾最显眼」一致 ⇒ 红线在 <constraints>（顶部）与 <hard_limits>（结尾）各写一次，未改动用户指定的结尾位置。"
+      ],
+      "5": [
+        "out_X2/optimized_prompt.md:L26 :: 具体做法你自己定，但必须走完两轮多视角推敲，并把两轮结论写进报告（这是把「想全面一点」变成可检查的动作）：",
+        "out_X2/optimized_prompt.md:L28 :: 第 2 轮：拿第 1 轮方案逐项自审并修正，逐项过这 5 个视角——"
+      ],
+      "6": [
+        "out_X2/optimized_prompt.md:L88 :: 禁止：在 assets 目录之外新增、替换或删除任何图片文件 → 替代：所有图片改动只落在 assets 目录。",
+        "out_X2/optimized_prompt.md:L89 :: 禁止：为了「省事上线」而扩大改动范围（改数据源、改价格逻辑、动目录外图片） → 替代：范围装不下时，停在冲突点，把它写进报告第六节。",
+        "out_X2/optimized_prompt.md:L42 :: - 部署前必须建立可回滚点（一次 git 提交或仓库外备份副本），并记录回滚步骤。",
+        "out_X2/optimized_prompt.md:L68 :: 每个阶段检查点不通过，不得进入下一阶段："
+      ],
+      "7": [
+        "out_X2/optimized_prompt.md:L17 :: 2. 重做商品图：逐张替换或重做丑图，新图与所标商品真实相符（不得用与商品不符的图充数）；图片文件的写入只允许发生在 assets 目录。",
+        "out_X2/optimized_prompt.md:L18 :: 3. 页面美化：改善版式与视觉——字体层级、间距节奏、配色一致性、卡片与网格、留白、文字与图标对比度。",
+        "out_X2/optimized_prompt.md:L26 :: 具体做法你自己定，但必须走完两轮多视角推敲，并把两轮结论写进报告（这是把「想全面一点」变成可检查的动作）：",
+        "out_X2/optimized_prompt.md:L5 :: 全程自主完成到线上生效，不要中途回来问；需要拍板的按 <constraints> 与 <hard_limits> 自行裁定，并把裁定写进报告的「未取证项与风险」。",
+        "out_X2/optimized_prompt.md:L19 :: 4. 验证与上线：本地验证全过 → 建立回滚点 → 部署 → 线上回读验证。"
+      ],
+      "8": [
+        "out_X2/process_log.md:L8 :: 7. 新增的结构（均可指到段落）：<done_criteria> 6 条二元判据（执行类必选）；<anti_patterns> 用「禁止→替代」句式且落在末尾（技术/执行类禁止项比正面指令更安全）；<phases> 5 阶段各写死检查点（子任务 ≥5）；<output_format> 固定六章报告（原请求最大缺口就是没有输出格式）；<artifact_rules>（上线=交付，同风险：别把自审截图与中间产物提交进站点）；<context_budget> 条件式（文件数未知，故写成阶段 1 统计后再判）。",
+        "out_X2/process_log.md:L9 :: 8. 首尾效应：文档要求「最重要约束放 </task> 前」与「末尾重复核心要求」，与用户「放结尾最显眼」一致 ⇒ 红线在 <constraints>（顶部）与 <hard_limits>（结尾）各写一次，未改动用户指定的结尾位置。",
+        "out_X2/process_log.md:L18 :: 11. Step5 对比一句话：优化前=意图明确但零结构（无角色边界、无输出格式、无判据、约束互斥、方法外包）；优化后=role/context/task/method/constraints/done_criteria/output_format/phases/artifact_rules/context_budget/hard_limits 十一段，红线首尾各一次。",
+        "out_X2/optimized_prompt.md:L87 :: 禁止：修改任何商品价格数值 → 替代：价格数值原样保留，只改它的呈现样式。",
+        "out_X2/optimized_prompt.md:L88 :: 禁止：在 assets 目录之外新增、替换或删除任何图片文件 → 替代：所有图片改动只落在 assets 目录。"
+      ]
+    }
+  },
+  "Y2": {
+    "items": {
+      "1": 1,
+      "2": 1,
+      "3": 1,
+      "4": 1,
+      "5": 1,
+      "6": 1,
+      "7": 1,
+      "8": 1
+    },
+    "q_total": 8,
+    "key_quotes_per_item": {
+      "1": [
+        "out_Y2/optimized_prompt.md:L1 :: # 任务书：超市静态站「商品图焕新 + 页面美化 + 部署上线」（交给 coding agent 直接执行）",
+        "out_Y2/optimized_prompt.md:L4 :: 你是资深前端工程师兼视觉设计师，负责一个纯静态 HTML 超市站点的一次完整升级：商品图焕新、页面美化、并通过仓库既有渠道部署上线。你有命令行执行权限，端到端一次做完，做完交报告，不中途回问。",
+        "out_Y2/optimized_prompt.md:L22 :: [P0] 商品图焕新：清点 assets/ 全部图片（格式/体积/尺寸/被引用处）；对低清、尺寸不一、背景杂乱、压缩崩坏的图片做本地重制——统一尺寸规格、统一背景与裁切风格（你定一套全站一致的规格，写入 design_review）；工具用本机命令行（ffmpeg / Python PIL / ImageMagick，任选可用者）。无法美化的图不得假装处理过，如实进「遗留问题」。"
+      ],
+      "2": [
+        "out_Y2/optimized_prompt.md:L14 :: 两条铁律（本任务最高优先级；开头与结尾各写一次，是刻意设计——长上下文首尾留存最强，正文中段最易衰减）：",
+        "out_Y2/optimized_prompt.md:L16 :: 2. 只许改 assets 目录里的图片：一切图片的替换、压缩、改尺寸、重命名、新增，只发生在 assets/ 目录内；页面图片引用只允许指向 assets/ 本地文件，禁止外链图床与网图下载。页面美化所需的样式文件（CSS 及必要的最小 HTML 结构调整）可以改，但不得借美化之名违反第 1 条。",
+        "out_Y2/optimized_prompt.md:L9 :: - 部署渠道：动手前先探测仓库既有部署配置（package.json scripts、CI 配置、部署 CLI 配置文件、git remote）；探测不到即按「无渠道」处理（见 task 部署段）。",
+        "out_Y2/process_log.md:L3 :: 2. 环境探测（Step 1）：执行环境 = 「AI 直接执行」的 coding agent（用户言明其有命令行权限）→ 触发 Quick Reference 的 agentic 产出复核与 I3 逐字 Agentic Output Warning，已附 prompt 末尾。",
+        "out_Y2/process_log.md:L6 :: 5. 歧义C「想全面一点、多从几个角度反复推敲」：按 I1 黑名单，单 prompt 内模拟多专家/ToT 属表演，且禁索取隐藏思维链 → 具体化为 design_review 固定五角度「问题-方案-验证」结论 + phases 阶段检查点（真实多回合复验，非模拟人格）；anti_patterns 第 5 条对应。"
+      ],
+      "3": [
+        "out_Y2/optimized_prompt.md:L62 :: 最终交付一份 Markdown 报告，固定五节：",
+        "out_Y2/optimized_prompt.md:L63 :: 1. 改动清单：文件路径 + 每行一句用途（图片改动附旧→新的尺寸/体积）。"
+      ],
+      "4": [
+        "out_Y2/optimized_prompt.md:L15 :: 1. 不许动商品价格：任何文件、任何形式的商品价格数字、符号、单位都不得改动（含顺手重构、查找替换）。若某次美化改动波及价格所在文本行，该改动作废，绕开价格区域重做。",
+        "out_Y2/optimized_prompt.md:L16 :: 2. 只许改 assets 目录里的图片：一切图片的替换、压缩、改尺寸、重命名、新增，只发生在 assets/ 目录内；页面图片引用只允许指向 assets/ 本地文件，禁止外链图床与网图下载。页面美化所需的样式文件（CSS 及必要的最小 HTML 结构调整）可以改，但不得借美化之名违反第 1 条。",
+        "out_Y2/optimized_prompt.md:L77 :: 最后复述两条铁律（与任务书开头那条配对，首尾各一次）：不许动商品价格；只许改 assets 目录里的图片。",
+        "out_Y2/process_log.md:L9 :: 8. 改动2（对用户字面指令的唯一加码，如实申报）：约束双写。用户只要求尾部；但 RECENCY ZONE 第 2 问与检查清单要求「关键约束落在生成 prompt 前 30%」，C 表要求「长上下文遗漏→首尾各写一次」「模型忽略约束→checklist 放末尾」→ 取双写：hard_constraints 前置（实测：起始第 13 行 / 全 82 行 = 15.9%，落在前 30%），尾部 verification 复述保留，不删不移。"
+      ],
+      "5": [
+        "out_Y2/optimized_prompt.md:L57 :: 禁止：把「多角度推敲」演成多专家圆桌（单模型模拟多人格是表演，不是评审）→ 用 design_review 的「问题-方案-验证」结论格式。",
+        "out_Y2/optimized_prompt.md:L29 :: 动手改任何文件之前，先写一份多角度评审（只交结论与依据，不要求输出内心推理过程），至少覆盖 5 个角度："
+      ],
+      "6": [
+        "out_Y2/optimized_prompt.md:L81 :: This prompt is for an agentic tool with real system access. Review the scope locks, forbidden actions, and stop conditions before pasting. Confirm file paths, directories, and permissions match the actual project.",
+        "out_Y2/optimized_prompt.md:L82 :: （中文对照：本 prompt 面向有真实系统访问权限的 agentic 工具。粘贴执行前请复核其中的作用域锁定、禁止动作与停止条件，并确认文件路径、目录与权限与真实项目一致。）",
+        "out_Y2/optimized_prompt.md:L25 :: [P0] 部署上线：只用仓库既有渠道执行；命中以下任一条件立即停止部署并改交「卡点报告」（缺什么 + 实测证据 + 下一步）：需要外部凭据/账号、需要花钱、探测不到渠道。停止部署不算任务失败，但禁止为此临时注册新平台或改用未配置的渠道。"
+      ],
+      "7": [
+        "out_Y2/optimized_prompt.md:L22 :: [P0] 商品图焕新：清点 assets/ 全部图片（格式/体积/尺寸/被引用处）；对低清、尺寸不一、背景杂乱、压缩崩坏的图片做本地重制——统一尺寸规格、统一背景与裁切风格（你定一套全站一致的规格，写入 design_review）；工具用本机命令行（ffmpeg / Python PIL / ImageMagick，任选可用者）。无法美化的图不得假装处理过，如实进「遗留问题」。",
+        "out_Y2/optimized_prompt.md:L24 :: [P0] 页面美化：以样式层为主——CSS 文件与必要的最小 HTML 结构调整；必须局部编辑，禁止整文件重写 HTML/CSS（防止顺手改坏价格文本，见 anti_patterns）。",
+        "out_Y2/optimized_prompt.md:L29 :: 动手改任何文件之前，先写一份多角度评审（只交结论与依据，不要求输出内心推理过程），至少覆盖 5 个角度：",
+        "out_Y2/optimized_prompt.md:L25 :: [P0] 部署上线：只用仓库既有渠道执行；命中以下任一条件立即停止部署并改交「卡点报告」（缺什么 + 实测证据 + 下一步）：需要外部凭据/账号、需要花钱、探测不到渠道。停止部署不算任务失败，但禁止为此临时注册新平台或改用未配置的渠道。",
+        "out_Y2/optimized_prompt.md:L21 :: 按依赖顺序完成 4 个子任务（均为用户明确要求的范围，不得自行加戏）："
+      ],
+      "8": [
+        "out_Y2/process_log.md:L8 :: 7. 改动1：补 role/context/task/hard_constraints XML 骨架——策略表「代码生成/技术任务 → 结构化框架必选」。",
+        "out_Y2/process_log.md:L13 :: 12. 交付前自查（RECENCY ZONE 六问）：目标工具已识别并按其语法组织✓；关键约束在前 30%✓（hard_constraints 起始第 13 行 / 全 82 行 = 15.9%）；强信号词必须/禁止/不得✓；无虚构技法（MoE/ToT/GoT/USC/chaining 均未用）✓；逐句承载、范围有界（4 子任务＝用户原话的 4 件事）✓；首试可用——部署不确定性由停止条件兜住✓。未做：Step 5 前后对比展示（题面要求交付件本体可直接使用，对比与理由落本 log）。",
+        "out_Y2/optimized_prompt.md:L13 :: <hard_constraints>",
+        "out_Y2/optimized_prompt.md:L81 :: This prompt is for an agentic tool with real system access. Review the scope locks, forbidden actions, and stop conditions before pasting. Confirm file paths, directories, and permissions match the actual project."
+      ]
+    }
+  },
+  "meta": {
+    "judge": "第三方盲评臂 C（r309 判别性锚题 2）",
+    "scored_at": "2026-10-31",
+    "inputs_read": [
+      "rubric2.md",
+      "out_X2/optimized_prompt.md",
+      "out_X2/process_log.md",
+      "out_Y2/optimized_prompt.md",
+      "out_Y2/process_log.md"
+    ],
+    "blind_note": "未读 skill_X2.md / skill_Y2.md / hidden_assignment.json / anchor_judge.py / r307a / r308a / _repro / D:/global_skills / D:/global_memory；不知两臂各对应哪个文档版本，未据篇幅加分（X2=7209B，Y2=7566B，同量级）。百分比一律以全文字节为分母、该行起始字节为分子（含尾部换行的真实文件大小）。",
+    "differing_items": [
+      8
+    ],
+    "no_discrimination_items": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "mechanical_recompute": {
+      "X2": {
+        "total_bytes": 7209,
+        "first_constraint_signal_line": {
+          "line": 11,
+          "byte": 664,
+          "pct": 9.21,
+          "text": "- 本任务书不含项目文件清单与部署通道信息：这两项必须由你勘察仓库取到文件级证据"
+        },
+        "alt_meta_constraint_line": {
+          "line": 5,
+          "byte": 223,
+          "pct": 3.09
+        },
+        "hardlimit_assets_first_stated": {
+          "line": 17,
+          "byte": 1152,
+          "pct": 15.98
+        },
+        "hardlimit_price_first_stated": {
+          "line": 38,
+          "byte": 2840,
+          "pct": 39.4
+        },
+        "constraints_block_open": {
+          "line": 37,
+          "byte": 2826,
+          "pct": 39.2
+        },
+        "task_block_close": {
+          "line": 23,
+          "byte": 1805,
+          "pct": 25.04
+        },
+        "hard_limits_block_open": {
+          "line": 85,
+          "byte": 6581,
+          "pct": 91.29
+        },
+        "tail_restates_both_hard_limits": true,
+        "section_count": 11,
+        "anti_patterns_tag_present": false,
+        "verification_tag_present": false,
+        "technique_keyword_hits": 0,
+        "agentic_warning_line": null
+      },
+      "Y2": {
+        "total_bytes": 7566,
+        "first_constraint_signal_line": {
+          "line": 10,
+          "byte": 767,
+          "pct": 10.14
+        },
+        "hard_constraints_block_open": {
+          "line": 13,
+          "byte": 914,
+          "pct": 12.08
+        },
+        "hardlimit_price_first_stated": {
+          "line": 15,
+          "byte": 1090,
+          "pct": 14.41
+        },
+        "hardlimit_assets_first_stated": {
+          "line": 16,
+          "byte": 1334,
+          "pct": 17.63
+        },
+        "tail_restate_line": {
+          "line": 77,
+          "byte": 6956,
+          "pct": 91.94
+        },
+        "agentic_warning_line": {
+          "line": 81,
+          "byte": 7121,
+          "pct": 94.12
+        },
+        "technique_mention_forbidden_context_line": {
+          "line": 57,
+          "byte": 5594,
+          "pct": 73.94
+        },
+        "log_self_claim": {
+          "claimed_line": 13,
+          "claimed_total_lines": 82,
+          "claimed_pct": 15.9,
+          "measured_byte_pct": 12.08,
+          "measured_line_pct": 15.85,
+          "claim_verifiable": true,
+          "file_line_count": 83,
+          "note": "log 自称口径 = 13/82=15.85%（正文行，不含文件末尾空行）；若按 split 出的 83 行算 = 15.66%；字节口径 = 12.08%。三种口径均 ≤30%，判分不受口径影响。",
+          "measured_line_pct_alt": 15.66
+        },
+        "file_line_shape": {
+          "content_lines_excluding_trailing_blank": 82,
+          "raw_split_lines_incl_trailing_empty": 83
+        }
+      }
+    },
+    "human_vs_code_divergence_flags": [
+      "项4：rubric 字面为「首条约束信号行字节位置/全文 ≤30%」（单数）。X2 首个约束信号行 = L11 的 9.21%（另 L5=3.09%；硬限制「图片改动限 assets」句本体在 L17=15.98%）⇒ 按字面 X2=1。但若代码口径取「两条硬限制的约束块起始 ≤30%」，X2 的 <constraints> 开于 39.05%、价格红线首现 39.4% ⇒ X2=0、Y2=1，该项即产生区分力。我按 rubric 文字给 1，未改数对齐。",
+      "项8：我给 X2=0 依据是 log 声称物与交付件不符（声称的 <anti_patterns> 段不存在；声称 <constraints> 在「顶部」实测 39.05%，且同一 log 引的文档规则「最重要约束放 </task> 前」实测 </task>=25.04% 而 <constraints>=39.05%）。若代码只做段名存在性/实质动作映射的宽松匹配（「禁止→替代」句式确实在 <hard_limits> 里），X2 可能被判 1。保留分歧，不改数。"
+    ],
+    "quote_fidelity_check": {
+      "quotes_total": 57,
+      "verbatim_mismatches": 0,
+      "method": "每条引用按 文件:行号 从源文件重取整行 trim 后逐字符比对"
+    }
+  }
+}

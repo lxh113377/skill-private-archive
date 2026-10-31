@@ -1,0 +1,238 @@
+{
+  "arm": "C（第三方盲评 · 仅人判四项 1/2/3/7）",
+  "round": "r310a",
+  "scored_items": [
+    "1",
+    "2",
+    "3",
+    "7"
+  ],
+  "mechanical_items_skipped": [
+    "4",
+    "5",
+    "6",
+    "8"
+  ],
+  "X2": {
+    "items": {
+      "1": 1,
+      "2": 1,
+      "3": 1,
+      "7": 1
+    },
+    "score_sum": 4,
+    "evidence_per_item": {
+      "1": [
+        {
+          "src": "自建skill优化/_temp/r309a/out_X2/optimized_prompt.md L3-L4",
+          "quote": "你是本次改版的执行 coding agent，有命令行权限：可读写本仓库文件、可跑构建与部署命令。"
+        },
+        {
+          "src": "自建skill优化/_temp/r309a/out_X2/optimized_prompt.md L16",
+          "quote": "从仓库证据（部署配置、CI 脚本、锁文件、README）确定部署通道与上线命令。"
+        },
+        {
+          "src": "自建skill优化/_temp/r309a/out_X2/optimized_prompt.md L11",
+          "quote": "本任务书不含项目文件清单与部署通道信息：这两项必须由你勘察仓库取到文件级证据后再决定，不许凭印象或猜测执行。"
+        },
+        {
+          "src": "自建skill优化/_temp/r309a/out_X2/process_log.md L2",
+          "quote": "Step1 环境探测：判为「下游 coding agent 直接执行」；该 agent 工具清单未知，故 prompt 内不引用任何具体工具或 skill 名（引用即编造）。"
+        }
+      ],
+      "2": [
+        {
+          "src": "自建skill优化/_temp/r309a/out_X2/optimized_prompt.md L26",
+          "quote": "具体做法你自己定，但必须走完两轮多视角推敲，并把两轮结论写进报告（这是把「想全面一点」变成可检查的动作）："
+        },
+        {
+          "src": "自建skill优化/_temp/r309a/out_X2/optimized_prompt.md L34",
+          "quote": "某一视角自审不通过 ⇒ 先改方案再动手；改不动就缩小改动范围并在报告里写明放弃项与原因。"
+        },
+        {
+          "src": "自建skill优化/_temp/r309a/out_X2/optimized_prompt.md L86",
+          "quote": "最后再念一遍——全场最重的两条，优先级高于上面一切表述："
+        },
+        {
+          "src": "自建skill优化/_temp/r309a/out_X2/optimized_prompt.md L43",
+          "quote": "证据不足就直说：写「未取证 + 已经查过哪些路径」，不要用看着合理的猜测填空；不知道部署通道就是不知道，不许自创平台或凭据。"
+        },
+        {
+          "src": "自建skill优化/_temp/r309a/out_X2/process_log.md L5",
+          "quote": "④「想全面一点、多从几个角度反复推敲」→ 落成 <method> 的两轮 5 视角协议；⑤「它有命令行权限」→ 写入 <role>，并据此要求留回滚点。"
+        },
+        {
+          "src": "自建skill优化/_temp/r309a/out_X2/process_log.md L9",
+          "quote": "首尾效应：文档要求「最重要约束放 </task> 前」与「末尾重复核心要求」，与用户「放结尾最显眼」一致 ⇒ 红线在 <constraints>（顶部）与 <hard_limits>（结尾）各写一次，未改动用户指定的结尾位置。"
+        }
+      ],
+      "3": [
+        {
+          "src": "自建skill优化/_temp/r309a/out_X2/optimized_prompt.md L57-L58",
+          "quote": "交付一份 Markdown 报告，章节名与顺序固定为："
+        },
+        {
+          "src": "自建skill优化/_temp/r309a/out_X2/optimized_prompt.md L60",
+          "quote": "二、改动清单（每个文件一行：路径 | 改了什么 | 为什么）"
+        },
+        {
+          "src": "自建skill优化/_temp/r309a/out_X2/optimized_prompt.md L62",
+          "quote": "四、红线核对（价格比对结果 + 图片改动范围结果，附命令与输出）"
+        },
+        {
+          "src": "自建skill优化/_temp/r309a/out_X2/optimized_prompt.md L49",
+          "quote": "价格零变更：用基线快照与改后文件做价格数值比对，比对结果为 0 处差异，报告附比对命令与输出。"
+        }
+      ],
+      "7": [
+        {
+          "src": "自建skill优化/_temp/r309a/out_X2/optimized_prompt.md L17",
+          "quote": "2. 重做商品图：逐张替换或重做丑图，新图与所标商品真实相符（不得用与商品不符的图充数）；图片文件的写入只允许发生在 assets 目录。"
+        },
+        {
+          "src": "自建skill优化/_temp/r309a/out_X2/optimized_prompt.md L18",
+          "quote": "3. 页面美化：改善版式与视觉——字体层级、间距节奏、配色一致性、卡片与网格、留白、文字与图标对比度。"
+        },
+        {
+          "src": "自建skill优化/_temp/r309a/out_X2/optimized_prompt.md L26",
+          "quote": "具体做法你自己定，但必须走完两轮多视角推敲，并把两轮结论写进报告（这是把「想全面一点」变成可检查的动作）："
+        },
+        {
+          "src": "自建skill优化/_temp/r309a/out_X2/optimized_prompt.md L5",
+          "quote": "全程自主完成到线上生效，不要中途回来问；需要拍板的按 <constraints> 与 <hard_limits> 自行裁定，并把裁定写进报告的「未取证项与风险」。"
+        },
+        {
+          "src": "自建skill优化/_temp/r309a/out_X2/optimized_prompt.md L19",
+          "quote": "4. 验证与上线：本地验证全过 → 建立回滚点 → 部署 → 线上回读验证。"
+        },
+        {
+          "src": "自建skill优化/_temp/r309a/out_X2/optimized_prompt.md L53",
+          "quote": "上线生效：按部署通道给出的线上地址回读，页面为改版后内容，且线上价格数值与基线完全一致。"
+        },
+        {
+          "src": "自建skill优化/_temp/r309a/out_X2/process_log.md L7",
+          "quote": "保留的用户要求（逐条可对应交付件）：两条红线放任务书最后 = <hard_limits>（按用户指定的位置）；「想全面、多推敲」= <method>；「方法你自己定」= <method> 首句与 <task> 未规定实现手段；「直接跑完部署上线、不回来问」= <role>；「静态站、图片在本地 assets」= <context>。"
+        }
+      ]
+    }
+  },
+  "Y2": {
+    "items": {
+      "1": 1,
+      "2": 1,
+      "3": 1,
+      "7": 1
+    },
+    "score_sum": 4,
+    "evidence_per_item": {
+      "1": [
+        {
+          "src": "自建skill优化/_temp/r309a/out_Y2/optimized_prompt.md L1",
+          "quote": "# 任务书：超市静态站「商品图焕新 + 页面美化 + 部署上线」（交给 coding agent 直接执行）"
+        },
+        {
+          "src": "自建skill优化/_temp/r309a/out_Y2/optimized_prompt.md L4",
+          "quote": "你有命令行执行权限，端到端一次做完，做完交报告，不中途回问。"
+        },
+        {
+          "src": "自建skill优化/_temp/r309a/out_Y2/optimized_prompt.md L22",
+          "quote": "工具用本机命令行（ffmpeg / Python PIL / ImageMagick，任选可用者）。"
+        },
+        {
+          "src": "自建skill优化/_temp/r309a/out_Y2/optimized_prompt.md L81",
+          "quote": "This prompt is for an agentic tool with real system access. Review the scope locks, forbidden actions, and stop conditions before pasting. Confirm file paths, directories, and permissions match the actual project."
+        },
+        {
+          "src": "自建skill优化/_temp/r309a/out_Y2/process_log.md L3",
+          "quote": "环境探测（Step 1）：执行环境 = 「AI 直接执行」的 coding agent（用户言明其有命令行权限）→ 触发 Quick Reference 的 agentic 产出复核与 I3 逐字 Agentic Output Warning，已附 prompt 末尾。"
+        }
+      ],
+      "2": [
+        {
+          "src": "自建skill优化/_temp/r309a/out_Y2/optimized_prompt.md L29",
+          "quote": "动手改任何文件之前，先写一份多角度评审（只交结论与依据，不要求输出内心推理过程），至少覆盖 5 个角度："
+        },
+        {
+          "src": "自建skill优化/_temp/r309a/out_Y2/optimized_prompt.md L57",
+          "quote": "禁止：把「多角度推敲」演成多专家圆桌（单模型模拟多人格是表演，不是评审）→ 用 design_review 的「问题-方案-验证」结论格式。"
+        },
+        {
+          "src": "自建skill优化/_temp/r309a/out_Y2/optimized_prompt.md L14",
+          "quote": "两条铁律（本任务最高优先级；开头与结尾各写一次，是刻意设计——长上下文首尾留存最强，正文中段最易衰减）："
+        },
+        {
+          "src": "自建skill优化/_temp/r309a/out_Y2/optimized_prompt.md L71",
+          "quote": "收尾前逐条核对（此清单放在任务书最后，是刻意的近位强调）："
+        },
+        {
+          "src": "自建skill优化/_temp/r309a/out_Y2/optimized_prompt.md L9",
+          "quote": "部署渠道：动手前先探测仓库既有部署配置（package.json scripts、CI 配置、部署 CLI 配置文件、git remote）；探测不到即按「无渠道」处理（见 task 部署段）。"
+        },
+        {
+          "src": "自建skill优化/_temp/r309a/out_Y2/process_log.md L6",
+          "quote": "歧义C「想全面一点、多从几个角度反复推敲」：按 I1 黑名单，单 prompt 内模拟多专家/ToT 属表演，且禁索取隐藏思维链 → 具体化为 design_review 固定五角度「问题-方案-验证」结论 + phases 阶段检查点（真实多回合复验，非模拟人格）"
+        }
+      ],
+      "3": [
+        {
+          "src": "自建skill优化/_temp/r309a/out_Y2/optimized_prompt.md L61-L62",
+          "quote": "最终交付一份 Markdown 报告，固定五节："
+        },
+        {
+          "src": "自建skill优化/_temp/r309a/out_Y2/optimized_prompt.md L63",
+          "quote": "1. 改动清单：文件路径 + 每行一句用途（图片改动附旧→新的尺寸/体积）。"
+        },
+        {
+          "src": "自建skill优化/_temp/r309a/out_Y2/optimized_prompt.md L65",
+          "quote": "3. 验证证据：done_criteria 1-4 的实际命令输出（判据 5 给线上验证或卡点说明）。"
+        },
+        {
+          "src": "自建skill优化/_temp/r309a/out_Y2/optimized_prompt.md L31",
+          "quote": "每个角度写三行：现状问题 → 打算怎么改 → 改完用什么命令验证。全部子任务做完后逐条回勾标注「已做 / 未做+原因」。"
+        }
+      ],
+      "7": [
+        {
+          "src": "自建skill优化/_temp/r309a/out_Y2/optimized_prompt.md L22",
+          "quote": "[P0] 商品图焕新：清点 assets/ 全部图片（格式/体积/尺寸/被引用处）；对低清、尺寸不一、背景杂乱、压缩崩坏的图片做本地重制——统一尺寸规格、统一背景与裁切风格"
+        },
+        {
+          "src": "自建skill优化/_temp/r309a/out_Y2/optimized_prompt.md L24",
+          "quote": "[P0] 页面美化：以样式层为主——CSS 文件与必要的最小 HTML 结构调整；必须局部编辑，禁止整文件重写 HTML/CSS（防止顺手改坏价格文本，见 anti_patterns）。"
+        },
+        {
+          "src": "自建skill优化/_temp/r309a/out_Y2/optimized_prompt.md L29",
+          "quote": "动手改任何文件之前，先写一份多角度评审（只交结论与依据，不要求输出内心推理过程），至少覆盖 5 个角度："
+        },
+        {
+          "src": "自建skill优化/_temp/r309a/out_Y2/optimized_prompt.md L25",
+          "quote": "[P0] 部署上线：只用仓库既有渠道执行；命中以下任一条件立即停止部署并改交「卡点报告」（缺什么 + 实测证据 + 下一步）：需要外部凭据/账号、需要花钱、探测不到渠道。停止部署不算任务失败，但禁止为此临时注册新平台或改用未配置的渠道。"
+        },
+        {
+          "src": "自建skill优化/_temp/r309a/out_Y2/optimized_prompt.md L40",
+          "quote": "部署验证：经既有渠道部署后，线上任一页面 HTTP 200，且该页引用的新图在线上可拉取、文件 hash 与仓库产物一致。"
+        },
+        {
+          "src": "自建skill优化/_temp/r309a/out_Y2/optimized_prompt.md L15",
+          "quote": "不许动商品价格：任何文件、任何形式的商品价格数字、符号、单位都不得改动（含顺手重构、查找替换）。"
+        },
+        {
+          "src": "自建skill优化/_temp/r309a/out_Y2/process_log.md L7",
+          "quote": "保留的用户要求：① 两条铁律原文级保留，且「写在任务书最后」照办——verification 末段逐字复述，尾部位置未删未移；② 让下游 agent 直接跑完部署上线（task P0 部署段）；③「方法你自己定」→ 方法/工具/规格全在 prompt 内定义；④ 超市静态站、assets 图丑、价格不许动等业务事实全部落 context/task，未加用户未要求的新任务。"
+        }
+      ]
+    }
+  },
+  "differing_items": [],
+  "unverifiable": [
+    "用户原始请求全文不可读（hidden_assignment.json 在禁读清单）⇒ 项 2「最显眼」与项 7「未砍用户显式要求」只能按 rubric2.md 第 6/11 行点名的歧义词与两臂 process_log 的转述核对，无法与用户原话逐字对齐。",
+    "两臂各自依据的规范文件 skill_X2.md / skill_Y2.md 禁读 ⇒ 项 1「按其形态组织」只判成品形态是否面向 coding agent，不判是否合规于规范版本差异。",
+    "目标超市仓库与 assets 目录、部署渠道的真实文件不可见 ⇒ 无法核验「assets 目录存在」「仓库既有渠道」等事实前提，项 7 只判用户四件诉求（换图／变好看／多角度推敲／下游自跑上线）是否都在交付里。",
+    "mech_*.json 与 anchor_judge.py 禁读 ⇒ 机械四项（4/5/6/8）口径无法预先对齐，本轮不预测、不覆盖机械判分。",
+    "X2 两条红线是否只放尾部（项 4 的字节位置计算）不在人判范围：只报事实——<constraints> 起于 optimized_prompt.md 第 37 行、<hard_limits> 在第 85 行，全文 91 行；是否 ≤30% 由机械判分定。"
+  ],
+  "notes_to_parent": [
+    "X2 process_log L8 声称新增 <anti_patterns> 段且落在末尾，但 optimized_prompt.md 无 <anti_patterns> 段名（末尾承载「禁止→替代」句式的是 <hard_limits>，L85-L91）⇒ 属机械项 8（log 与交付一致）面，本轮不判，供父级揭盲后核对。",
+    "四项均两臂同分 ⇒ 按任务纪律不强行分高下，人判四项对 r309 双臂无区分力（rubric2.md L14 预设的区分力全部落在机械项 4/5/6 的三个陷阱上）。"
+  ]
+}

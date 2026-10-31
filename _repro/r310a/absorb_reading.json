@@ -1,0 +1,260 @@
+{
+  "skills": {
+    "A-prompt-better": {
+      "blocks_total": 6,
+      "blocks_present": 6,
+      "missing": [],
+      "locators_total": 4,
+      "locators_present": 4,
+      "locators_inline_only": [],
+      "held": 0,
+      "rate": 100.0,
+      "detail": [
+        {
+          "id": "E1",
+          "op": "replace",
+          "increment": null,
+          "block_lines": 2,
+          "block_present": true,
+          "block_start_line_index": 10,
+          "pinned_comment_lines": 0,
+          "self_written_lines_in_block": 0,
+          "locators": []
+        },
+        {
+          "id": "E2",
+          "op": "insert",
+          "increment": "I1",
+          "block_lines": 7,
+          "block_present": true,
+          "block_start_line_index": 260,
+          "pinned_comment_lines": 1,
+          "self_written_lines_in_block": 0,
+          "locators": [
+            {
+              "blob_sha": "742deafaf4222f9f0e9d9410e72483dad64fe716",
+              "commit": null,
+              "content_sha256": "36e68cdcd62c38b2f99c2538c83fefb8c8837ea9b7eed75297fe76e45c452e75",
+              "line_present": true,
+              "inline_only_in_line_index": null
+            }
+          ]
+        },
+        {
+          "id": "E3",
+          "op": "insert",
+          "increment": "I2",
+          "block_lines": 9,
+          "block_present": true,
+          "block_start_line_index": 270,
+          "pinned_comment_lines": 1,
+          "self_written_lines_in_block": 0,
+          "locators": [
+            {
+              "blob_sha": "742deafaf4222f9f0e9d9410e72483dad64fe716",
+              "commit": null,
+              "content_sha256": "36e68cdcd62c38b2f99c2538c83fefb8c8837ea9b7eed75297fe76e45c452e75",
+              "line_present": true,
+              "inline_only_in_line_index": null
+            }
+          ]
+        },
+        {
+          "id": "E4",
+          "op": "insert",
+          "increment": "I3",
+          "block_lines": 3,
+          "block_present": true,
+          "block_start_line_index": 499,
+          "pinned_comment_lines": 1,
+          "self_written_lines_in_block": 0,
+          "locators": [
+            {
+              "blob_sha": "742deafaf4222f9f0e9d9410e72483dad64fe716",
+              "commit": null,
+              "content_sha256": "36e68cdcd62c38b2f99c2538c83fefb8c8837ea9b7eed75297fe76e45c452e75",
+              "line_present": true,
+              "inline_only_in_line_index": null
+            }
+          ]
+        },
+        {
+          "id": "E5",
+          "op": "insert",
+          "increment": "I4",
+          "block_lines": 10,
+          "block_present": true,
+          "block_start_line_index": 503,
+          "pinned_comment_lines": 1,
+          "self_written_lines_in_block": 0,
+          "locators": [
+            {
+              "blob_sha": "742deafaf4222f9f0e9d9410e72483dad64fe716",
+              "commit": null,
+              "content_sha256": "36e68cdcd62c38b2f99c2538c83fefb8c8837ea9b7eed75297fe76e45c452e75",
+              "line_present": true,
+              "inline_only_in_line_index": null
+            }
+          ]
+        },
+        {
+          "id": "E6",
+          "op": "insert",
+          "increment": null,
+          "block_lines": 1,
+          "block_present": true,
+          "block_start_line_index": 529,
+          "pinned_comment_lines": 0,
+          "self_written_lines_in_block": 0,
+          "locators": []
+        }
+      ],
+      "head_object": "A-prompt-better/SKILL.md",
+      "head_lines_nonblank": 536
+    },
+    "frontend-skill": {
+      "blocks_total": 6,
+      "blocks_present": 6,
+      "missing": [],
+      "locators_total": 5,
+      "locators_present": 4,
+      "locators_inline_only": [
+        "F6"
+      ],
+      "held": 3,
+      "rate": 100.0,
+      "detail": [
+        {
+          "id": "F1",
+          "op": "replace",
+          "increment": null,
+          "block_lines": 2,
+          "block_present": true,
+          "block_start_line_index": 3,
+          "pinned_comment_lines": 0,
+          "self_written_lines_in_block": 0,
+          "locators": []
+        },
+        {
+          "id": "F2",
+          "op": "insert",
+          "increment": "I3",
+          "block_lines": 9,
+          "block_present": true,
+          "block_start_line_index": 16,
+          "pinned_comment_lines": 1,
+          "self_written_lines_in_block": 0,
+          "locators": [
+            {
+              "blob_sha": "d8444f13b76be100b3b088dfdae738e85288d6b6",
+              "commit": "12af471f627f866411b4bd785b19646d3672784c",
+              "content_sha256": "3435ed963b15a1b6447746ec8844ab2cd38d8d2e8ead3451937f42df01e408c4",
+              "line_present": true,
+              "inline_only_in_line_index": null
+            }
+          ]
+        },
+        {
+          "id": "F3",
+          "op": "insert",
+          "increment": "I4",
+          "block_lines": 11,
+          "block_present": true,
+          "block_start_line_index": 74,
+          "pinned_comment_lines": 1,
+          "self_written_lines_in_block": 1,
+          "locators": [
+            {
+              "blob_sha": "d8444f13b76be100b3b088dfdae738e85288d6b6",
+              "commit": "12af471f627f866411b4bd785b19646d3672784c",
+              "content_sha256": "3435ed963b15a1b6447746ec8844ab2cd38d8d2e8ead3451937f42df01e408c4",
+              "line_present": true,
+              "inline_only_in_line_index": null
+            }
+          ]
+        },
+        {
+          "id": "F4",
+          "op": "insert",
+          "increment": "I1",
+          "block_lines": 21,
+          "block_present": true,
+          "block_start_line_index": 133,
+          "pinned_comment_lines": 1,
+          "self_written_lines_in_block": 0,
+          "locators": [
+            {
+              "blob_sha": "d8444f13b76be100b3b088dfdae738e85288d6b6",
+              "commit": "12af471f627f866411b4bd785b19646d3672784c",
+              "content_sha256": "3435ed963b15a1b6447746ec8844ab2cd38d8d2e8ead3451937f42df01e408c4",
+              "line_present": true,
+              "inline_only_in_line_index": null
+            }
+          ]
+        },
+        {
+          "id": "F5",
+          "op": "insert",
+          "increment": "I2",
+          "block_lines": 9,
+          "block_present": true,
+          "block_start_line_index": 174,
+          "pinned_comment_lines": 1,
+          "self_written_lines_in_block": 0,
+          "locators": [
+            {
+              "blob_sha": "d8444f13b76be100b3b088dfdae738e85288d6b6",
+              "commit": "12af471f627f866411b4bd785b19646d3672784c",
+              "content_sha256": "3435ed963b15a1b6447746ec8844ab2cd38d8d2e8ead3451937f42df01e408c4",
+              "line_present": true,
+              "inline_only_in_line_index": null
+            }
+          ]
+        },
+        {
+          "id": "F6",
+          "op": "insert",
+          "increment": null,
+          "block_lines": 7,
+          "block_present": true,
+          "block_start_line_index": 193,
+          "pinned_comment_lines": 1,
+          "self_written_lines_in_block": 4,
+          "locators": [
+            {
+              "blob_sha": "d8444f13b76be100b3b088dfdae738e85288d6b6",
+              "commit": "12af471f627f866411b4bd785b19646d3672784c",
+              "content_sha256": "3435ed963b15a1b6447746ec8844ab2cd38d8d2e8ead3451937f42df01e408c4",
+              "line_present": false,
+              "inline_only_in_line_index": 192
+            }
+          ]
+        }
+      ],
+      "head_object": "frontend-skill/SKILL.md",
+      "head_lines_nonblank": 200
+    }
+  },
+  "overall_rate": 100.0,
+  "totals": {
+    "blocks_present": 12,
+    "blocks_total": 12,
+    "locators_present": 8,
+    "locators_total": 9
+  },
+  "head_commit": "c5d8391dbea1ff16c666c2278d277a4bf09b37fb",
+  "head_rev": "HEAD",
+  "denominator_scope": {
+    "in": "两件主件的 insert 或 replace 逐字块 + 钉定注释定位器行",
+    "out": [
+      "随落地铺开的附属载荷件（脚本、参考件、资产）—— 非本次分母",
+      "op 为 hold 的本地独有守项（另记 held，不入吸收分母）",
+      "工作区现值（只取 HEAD，保复跑同对象）"
+    ]
+  },
+  "sanxing": {
+    "实测": "逐块整块连续性与定位器整行全等，均在 HEAD 现值上实跑；两负控腿见判据件的 selftest",
+    "部分": "present 仅代表整块在 HEAD 逐字存在，不回头校验上游侧内容号是否仍等（上游侧漂移需另尺）",
+    "未证": "无：missing 的归因只到逐行诊断层，未逐条追是哪一轮改写所致"
+  }
+}
