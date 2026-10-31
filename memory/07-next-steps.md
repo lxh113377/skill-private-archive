@@ -758,6 +758,35 @@ spec 给 history_form=markdown-table + history_row_regex（B1 的规格本来就
 fm 读数不变（2.1.0 / 1.1.0 / 1.4.2）；A-prompt-better 规格五腿全 ok、gate=PASS（R 腿 9 hunk 重放逐字节==HEAD）。
 ⇒ 至此需求 4/5 的「落地后验证标准」面有**四件**受管制（三件此前 + 本轮换装件）。
 取值：python 05-exec/landing_replay_check.py --spec 05-exec/landing_specs/A-prompt-better.json（末行 gate=PASS）。
+- [ ] **R307-1（r307 登记，P1）** **季度面来源审查（4 件全是 r113 本体系真产物 ⇒ CADENCE:PASS 的 green 是真的；r260c 与今日实跑件键集全等）+ r113 离线全链今日复跑 19 步 PASS + SOP 三层动线与换装季义务落维护规范（死链/r119 双门复跑过）**：一手（r307，Lead 自干件 #3，全部现跑）：季度巡检面的**来源审查** + r113 离线全链今日复跑 + SOP 三层接线落维护规范。
+① 来源审查（合理怀疑：面里 4 件混着，green 是谁喂的？）：quarterly(10-25, a366ed6/r230 提交) ＋ quarterly_r260/260b/260c(10-28, 336c68a 与
+   373a038) ⇒ **四件全是 r113 本体的真产物**（schema 同 quarterly-skill-audit-v1；r260c 与今日实跑件**键集全等**、正牌季档仅差
+   side_write_policy 一键；r260* 是那些轮用 --out-dir 落的预览跑且入了库）⇒ 看门狗取最新=10-28 真跑，[CADENCE:PASS]（龄 3.0≤100）
+   是真的、不是外来件喂绿的。r305a 曾担心的冒充通道已被命名隔离（version_scan 不匹配 quarterly* 通配，fnmatch 已复证）。
+   残留口径模糊**登记不判红**：预览件与正牌季档同 schema 同面 ⇒ 人读分不清；新增季档请落正牌目录。
+② r113 链通证明（今日实跑）：python 05-exec/r113_quarterly_audit.py --offline --no-side-write --out-dir _temp/r307lead/r113_preview
+   ⇒ [QUARTERLY:PASS] 19 步全通过 ｜ 上游元数据 OK=11 UNVERIFIED=0；且 --no-side-write 预览跑**确实没生成** out-dir 季档（实测 NO）、
+   正牌季档零触碰（仍 10-25/a366ed6）⇒ 预览模式行为与文档自述一致。
+③ SOP 接线（04-plan/后续维护规范_季度巡检机制_r113 追加 r307 附节，原文不改）：三层季度动线（① r113 深审=新鲜度权威
+   ② r303a 吸收基准比较器=UPSTREAM_CHANGED 进当季候选 ③ r304a 版本扫描=刻意在看门狗面外）+ 换装季义务三条
+   （改受管根件跑覆盖它的 spec（现 4 件）/ 主动升级后重生成吸收基准 / 注册表 lag 由合规提交带走且读数带观测时刻）。
+   维护件死链面复跑 [GATE:deadlink-pass]、r119 [MIGGUARD:PASS]。
+读数汇总：_temp/r307lead/audit_summary.md（审查表+复跑逐字+SOP 指针）。
+- [ ] **R307-2（r307 登记，P0）** **推翻我自己 r304/r305 的两条环境判定：inspect.mjs 能跑（findChrome 候选含 msedge、本机 Edge 在位；rc=1 是 exit(fails?1:0) 的设计语义，实测出三视口量测+7截图+report.json）、assets.mjs 本体可跑（rc=2 是用法提示、零外部依赖，rc=124 只是带参联网取图超时）⇒ F 臂换装硬卡点清零，只剩备料与落地。教训：脚本 rc≠0 先读退出语义与依赖结构，别记成环境受阻**：一手（r307，Lead 当场实测，**推翻我自己 r304/r305 的两条判定**）：F 臂（frontend-skill）4 个环境卡点解了 3 个。
+做法：把 B1 取回的候选件放进**真目录结构**（scripts/ + scripts/lib/）再跑 —— 不是我 r304 那样单文件跑（那种跑法必然找不到相对依赖）。
+① **inspect.mjs「本机无 Chrome」是假卡点**：它 import lib/cdp.mjs，cdp.findChrome 的候选清单**含 msedge**，
+   本机 C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe 实测 FOUND（Chrome 三路径均 absent）；
+   对极简页实测 rc=1，但它 stdout 出了完整三视口量测（1440/768/390）+ 7 张截图（desktop/tablet/mobile 的 fold+page）+ report.json，
+   且源码写明 process.exit(fails.length ? 1 : 0) ⇒ **rc=1 是「页面有 FAIL 项」的设计语义，不是脚本不可用**；
+   找不齐浏览器的报错原文是 No Chrome/Edge/Chromium found…set CHROME_PATH（我 r304 记成 NO_CHROME_PATH 也是转述走样）。
+② assets.mjs：无参 rc=2 是用法提示（Give a search query…），源码 imports 只有 node:fs/path/url 零外部依赖
+   ⇒ **脚本本体可跑**，r304 的 rc=124 是「带参才联网取图」的超时，属正常依赖不是不可用性。
+③ charts.js（59,016B）与 base.js（2,162B）B1 已取回并钉 blob（r305 已证上游活体树确有，我 r304「候选仓没有」是切片冒充全量、已校正）。
+⇒ **F 臂换装不再有硬环境卡点**（T1 档、r302 优先级分数 23）；我 r303/r304 的「维持 KEEP 因环境受阻」这条**当场作废**，
+   换装只剩 B1 的合并编辑清单 + 我落地。
+⇒ 自记教训（与恒绿/空过同族）：**脚本 rc!=0 别直接记「环境受阻」，先读它的退出语义与依赖结构**——
+   我 r304 把「缺 lib/ 的单文件跑法」和「有 FAIL findings 的正常 rc=1」都当成不可用，差点让第二件换装白挂一季。
+取值：见 _temp/r307lead/audit_summary.md §4（对照表 + 实测逐字）；复现：在 _temp/r307lead/ftest 下 node scripts/inspect.mjs page.html。
 - [ ] **R290-1（r290 登记，P1）** **r46 锚点匹配收紧为「行首复选框后首个加粗段内含 key」：解除「引用过某条 ⇒ 永不能裁该条」的死锁，且不削弱 W-14 串条防护**：一手（r290 现场）：我想把 R261-7 从上轮误写的挂账改判为降级，r46 返回 [MARK:REFUSED] ② 锚点命中数 != 1，命中 [42, 53] —— 第 53 行是**我上轮写的 R289-6 条目正文**里引用了 R261-7。原实现 find_item_lines 用裸 `key in line`，于是「引用过某条 ⇒ 永远无法裁决该条」，机器闸反过来挡住了对本条的正确纠正。修法与踩坑：① 我先试「行首必须 `- [ ] **`+key」的严格式 ⇒ 真实台账 236 条零歧义，但夹具 **14 项红**（夹具用的是 `- [ ] **【P0·待办 丙（r44 登记）】】**` 这种 key 不在首段起点的排版）⇒ 我的严格式**过窄**，不是夹具错；② 我又加过「严格零命中则回退宽松匹配」的安全网 ⇒ 自查发现该回退正是 W-14 事故形态（会把正文引用行当锚点，把裁决写到无关条目）⇒ **删掉回退**；③ 终解 = 匹配「行首复选框后的第一个加粗段」内是否含 key（re.match 到首个 **…** 段），两种既有排版都覆盖、正文引用（哪怕第二段加粗）永不命中。判别力自证：新增 t24~t27 + m3 变异共 5 腿（m3 首版我用夹具的 run() 前置了正式 TOOL 路径 ⇒ 变异体被当位置参数、argparse rc=2 是**假红不是判别力**，改为 subprocess 直接调变异体后 PASS）。取值：python 05-exec/r46_mark_verdict_fixtures.py（末行 [GATE:fixture-pass]，现 30 项 30 过）；python _temp/r290_selfproof.py（真实台账带过期挂账的条目 22 条，⑧ 会拦）。 【r296 裁决=已落地｜夹具活数现读 r46=30/30 全过、r31=31/31；锚点口径已被 r46 与本会话三次插入实践共同验证（r292 起用它裁 R289-6/R292-4/R295-1 均 rc=0）。原靶（不得把裁决写到无关条目）达成。】
 - [ ] **R290-2（r290 登记，P1）** **机器闸 ⑧ 落地：条目先前已挂账且目标轮已过 ⇒ 本次禁再挂账，只能执行/降级/作废三选一（带逃生门与真实数据自证）**：一手（r289 我造成的错 + r290 的机制化）：R261-7 第 2 次到期时我先写成「挂账至 r290」，违反自立的 R271-2；根因不是不懂规矩，而是**下裁决时没人问我这条已经挂过几次** ⇒ 必须前移到写时由机器判。实现 = r46 第 ⑧ 重拒写：读该条目自己已有的「裁决=挂账至 rN」标记，若存在 N < 本轮 round（上次挂账目标轮已过）且本次 verdict 仍是挂账 ⇒ 拒写并点名证据轮号；轮号取不到不猜（宁可放行不误伤）。范围纪律：只约束**延期型**裁决，终局裁决（执行/降级/作废）不受影响；首轮挂账放行；目标轮未到（如挂到 r99）放行。逃生门 --allow-repeat-deferral 显式放行且留痕（不是死闸）。真实数据自证（临时卷副本，不碰真台账）：⑧ 对 probe 条目 rc=1 且台账未写入；同条目改「降级（转长期看守）」rc=0 且 marker 落盘；带逃生门 rc=0。R289-6 的验收靶（下一轮起 R261-7 能被合法改判且留两次痕迹）已达成：r290 台账同现「【r289 裁决=挂账至 r290…】」与「【r290 裁决=降级…】」，REPEAT 由 1 归 0。取值：python 05-exec/r46_mark_verdict_fixtures.py（t24~t27/m3 五腿）、python _temp/r290_real2.py（真实数据三态：拦挂账/放降级/逃生门）。
 - [ ] **R290-3（r290 登记，P2）** **run_gates.py 的 --gate 传不存在的 id 会被**静默丢弃**：部分选中时报 PASS 且写「无 MISSING」，只在 0 个时才报 UNVERIFIED**：一手（r290 现场）：我为验证迁库结果跑 `--gate mark_verdict_fixtures --gate provenance_resolve_face --gate provenance_resolve_fixtures --gate tracked_empty`（最后一个 id 我拼错了，真名 tracked_empty_check），返回 `[GATES:PASS] PASS=3（无 FAIL / 无 UNVERIFIED / 无 MISSING）` —— 三门都绿，但那句「无 MISSING」是**假安心**：第四门根本没跑，runner 没有任何一行告诉我它被丢弃。二次实测：只传一个不存在的 id 时它确实会拦（`[GATES:UNVERIFIED] 选中的门为 0 个，禁止判「全绿」（R247）`），说明 R247 的零输入保护在**全部落空**时有效、**部分落空**时失效。修法（下一轮，小改）：在 --gate 过滤后比对「请求的 id 集合 vs 实际选中的 id 集合」，差集非空 ⇒ 打印 `[GATES:MISSING-SELECTOR]` 并以非零退出（与现有 0 个的处理对齐，别另造一套语义）；同时给夹具补一条腿：传一个不存在的 id + 一个真 id ⇒ 必须判红并点名被丢弃的 id（证明有牙）。判别力证据已在手：本次实测 rows=3 而请求=4。取值：python 05-exec/run_gates.py --gate definitely_not_a_gate --no-ledger --json _temp/x.json（期望现在就是 UNVERIFIED，因为选中 0 个）；python -c 读 _temp/r290_g4.json 的 gates 长度 = 3（请求 4）。注意：本轮我没有把这当成「已跑全量」的证据 —— 我随后补跑了 tracked_empty_check 并单独取到 PASS=1，才认定新增跟踪件不触发非空文本门。 【r290 裁决=已落地｜同轮即修（不等下一轮）。实现 = run_gates.py 汇总前算差集 requested-selected_ids，非空即打 [GATES:MISSING-SELECTOR] 点名被丢弃的 id。关键取舍是**顺序**：第一版我把差集分支放在「0 个选中」之前 ⇒ r31 夹具层 b（该腿断言 rc==2 且报 UNVERIFIED）判红 FAIL 1 项 —— 那是夹具对我改动的**正确反应**，我破坏的是既有 R247 语义而不是夹具错。正解：先跑 not rows ⇒ 保留 rc=2 语义，再跑 dropped ⇒ rc=1；两条语义互不吞并。四态实测（每步取真实退出码、不经管道）：0 个选中 rc=2 且末行 UNVERIFIED / 部分落空 rc=1 且点名 fixture_wiring / 全真 id rc=0 且 PASS=1 / 全部错 id 仍 rc=2；r31 夹具 31 项 31 过（[GATE:fixture-pass]）。为何不新增夹具腿：r31 层 b 已覆盖 0 个那条，部分落空这条由上面四态实测覆盖并写进本注；若下一轮要长期看守，可在 r31 加一腿断言「假 id + 真 id ⇒ rc==1 且 MISSING-SELECTOR 出现」（本轮未加，因为我把改动挂在该夹具的门表自证之下、它已经被跑到）。取值：bash _temp/r290_sem.sh（四态与夹具一次跑完）；python 05-exec/r31_run_gates_fixtures.py（末行 [GATE:fixture-pass]）。】
