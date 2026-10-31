@@ -325,7 +325,7 @@ debt_runs 实测 current_round 298/299/300 对应 overdue 0/0/**4**，跳变与�
 ④ **家族规模比条目自述的大**：R289-2 正文写「迁两件」，而 r287 基线里同一家族还有 _temp/r276_scan.py 与
    _temp/r276_finalize.py（被两份面件引用），另有 r277_verdict.py **在任何盘上都不存在**（死句柄）。
    本轮只迁了条目点名的两件（其验收靶已达成），残余登记为 R300-7。
-- [ ] **R300-7（r300 登记，P2）** **R289-2 家族残余三处单独一单（r276_scan.py / r276_finalize.py 两份 _temp 件 + r277_verdict.py 死句柄）：验收靶 = r287 不可解析出处再跌 3 且新增 0**：一手（r300 实测）：R289-2 落地后，同家族还剩三处「不可解析出处」，须单独处置（本轮不夹带，避免半截）：
+- [ ] **R300-7（r300 登记，P2）** **R289-2 家族残余三处单独一单（r276_scan.py / r276_finalize.py 两份 _temp 件 + r277_verdict.py 死句柄）：验收靶 = r287 不可解析出处再跌 3 且新增 0**：一手（r300 实测）：R289-2 落地后，同家族还剩三处「不可解析出处」，须单独处置（本轮不夹带，避免半截）： 【r309 裁决=已落地｜r309 改判：已落地。现核：git ls-files _repro/r276qi = 4 件在库（r276_scan/r276_finalize/qi_collect/qi_build）；r277_verdict 死句柄的引用面 r302 起清零（本轮 r287 再跑 [PROVRESOLVE_OK]）。家族三处全部收口。】
 ① _temp/r276_scan.py（12,284B，实测在盘）被 06-benchmark/r276_contract_vs_impl_conflicts.json 引用；
 ② _temp/r276_finalize.py（8,369B，实测在盘）同上那份面件引用；
 ③ _temp/r277_verdict.py **在任何盘上都不存在**（_temp 与 05-exec 两处 ls 均无）⇒ 是**死句柄**，处置口径
@@ -619,7 +619,7 @@ python 05-exec/landing_replay_check.py --spec 05-exec/landing_specs/security-aud
    判据仍是「local sha == remote sha」，不是 push 命令的输出（本轮 push 曾打印 Everything up-to-date 却确实已送达）。
 另记一条同批的操作事实（r46）：对一条很长的条目做 note 追加时被拒（读回验证失败、已安全回滚，fail-closed）⇒
 长条目上补记改为**新开一条短条目**更稳，别硬往长行尾部塞标记。
-- [ ] **R304-1（r304 登记，P1）** **需求 5 的季度版本扫描成可跑工具（import 基准比较器、单一 caliber）：49 对里 2 对上游已变（gstack / hyperframes-media）+ 季档落盘 + 看门狗同构自述；三腿（漂移必检出/取不到必 UNKNOWN/基准缺失 rc=2）全实测**：一手（r304，派发件 5236ea27 交付 + 我复跑 rc=0 并提升到 _repro/r304a/）：**需求 5 的季度版本扫描接成可跑工具**。
+- [ ] **R304-1（r304 登记，P1）** **需求 5 的季度版本扫描成可跑工具（import 基准比较器、单一 caliber）：49 对里 2 对上游已变（gstack / hyperframes-media）+ 季档落盘 + 看门狗同构自述；三腿（漂移必检出/取不到必 UNKNOWN/基准缺失 rc=2）全实测**：一手（r304，派发件 5236ea27 交付 + 我复跑 rc=0 并提升到 _repro/r304a/）：**需求 5 的季度版本扫描接成可跑工具**。 【r309 裁决=已落地｜r309 改判：已落地且**本回合仍在用**：_repro/r304a/ 判据 rc=0（我 r307 刚复跑：[R304:SCAN] upstream_changed=1）；季档带时间戳并存的修法（r309 前的 R307-3 登记）也已执行（audit_2026-10-31T0749Z.json 在盘）。】
 末行（我复跑逐字一致）：[R304:SCAN] quarter=2026Q4 pairs=49 ok=47 upstream_changed=2 local_changed=0 both=0 unknown=0 candidates=2
 两个候选 = gstack 与 hyperframes-media（与 r303 建锚时的对账一致），每个带三值：上游提交号 / 上游同名件 sha / 本地件 sha。
 口径：五态不重写 —— 扫描件直接 import 基准件自带的 run_comparison/summarize（单一口径、单一所有者）。
@@ -628,7 +628,7 @@ python 05-exec/landing_replay_check.py --spec 05-exec/landing_specs/security-aud
 季档自描述：quarter/path_rule/generated_at（本地朴素时标=看门狗读取口径）/generated_at_utc/candidate_rule 全落件；
 watchdog_conformance 实测「把看门狗扫描根指向本输出根即认到本件且时标一致」，并显式写明本轮 in_repo_default_run=false 及其原因（写面在仓默认扫描面之外）——两条路线都写清、不含糊。
 取值：cd _repro/r304a && python -B check_r304a.py（末行 [R304:SCAN] …）；python -B check_r304a.py --selftest（两腿）。
-- [ ] **R304-2（r304 登记，P1）** **R261-7 两件准入条件实测：C5=ok 但派发件自证是**空过**（门禁成员面不含这两件、无判别力）；C6 按 r36 尺=ok 但文本级换装留 45 条 UNLOCATED、payload 后 F 臂仍缺 3 条（候选自缺）；脚本 5 个里 3 可跑 2 环境受阻 ⇒ 维持 KEEP 并换成三条更具体未测项；顺带校正方案件里的死引用 r36_ref_resolvability.py**：一手（r304，C1 派发件 1e5ae32f 交付 + 我自干 C6 半 + 我复跑）：**R261-7 两件的换装准入条件测掉了**。
+- [ ] **R304-2（r304 登记，P1）** **R261-7 两件准入条件实测：C5=ok 但派发件自证是**空过**（门禁成员面不含这两件、无判别力）；C6 按 r36 尺=ok 但文本级换装留 45 条 UNLOCATED、payload 后 F 臂仍缺 3 条（候选自缺）；脚本 5 个里 3 可跑 2 环境受阻 ⇒ 维持 KEEP 并换成三条更具体未测项；顺带校正方案件里的死引用 r36_ref_resolvability.py**：一手（r304，C1 派发件 1e5ae32f 交付 + 我自干 C6 半 + 我复跑）：**R261-7 两件的换装准入条件测掉了**。 【r309 裁决=已落地｜r309 改判：已落地（三项未测全部补齐且两件已据此落地）。C5 空过 → r305_wiring_headroom.py 有约束判据（入库+登记）；C6 的 45 条 UNLOCATED 由 F 臂 payload 37 件全落解决（第五件 spec leg N 逐件 blob 等值）；候选脚本 r307 实测可跑（Edge 在位，rc=1=exit(fails) 设计语义）。裁定从 KEEP 转执行：r306 落 A 臂、r308 落 F 臂。】
 C5（合入后 inject_union_bytes ≤ 硬顶）末行：[R304C:ADMIT] c5=ok members=5 live=63337 merged=63337 cap=65536 scripts=5 scripts_ok=3 scripts_fail=2。
 成员 5 条现读（A-memory-start/SKILL.md 12167 + references/contract.md 14331 + global_memory/core/behavior_core.md 27066 +
 .zcode/AGENTS.md 4277 + 本项目 AGENTS.md 5496），cap 现读常量件 inject_budget.hard_cap_bytes=65536，余量 2199。
@@ -647,7 +647,7 @@ F 臂 5 个脚本 node --check 全 0；20 秒运行探针 draw/lint/scenes rc=0 
 ⇒ 裁定：R261-7 两件**维持 KEEP**，且未测项换成更具体的三条：① C5 对该面无判别力（空过，需另找对这两件有约束的注入面判据）；
 ② F 臂有 3 条候选自缺引用须先修；③ 5 个脚本里 2 个在本机跑不起来（缺 Chrome / 网络件）⇒ 换装前须先给运行环境或降级该依赖。
 取值：cd _repro/r304c && python -B check_r304c.py（末行 [R304C:ADMIT] …）；C6 证据 _temp/r304b/c6_evidence.json。
-- [ ] **R304-3（r304 登记，P1）** **补两件缺失的 .upstream 声明（rule_editor 无创建能力 ⇒ 受控写入 + 记决定/理由/回滚）；自抓到「畸形 repo 行被静默忽略」这一坑（我漏写 owner 导致声明等于没有、全流程零报错）并修好；门禁/镜像/矩阵三面验证**：一手（r304，Lead 自干 + 我自己的一个错）：给 A-prompt-better 与 frontend-skill 补上**缺失的 .upstream 声明**。
+- [ ] **R304-3（r304 登记，P1）** **补两件缺失的 .upstream 声明（rule_editor 无创建能力 ⇒ 受控写入 + 记决定/理由/回滚）；自抓到「畸形 repo 行被静默忽略」这一坑（我漏写 owner 导致声明等于没有、全流程零报错）并修好；门禁/镜像/矩阵三面验证**：一手（r304，Lead 自干 + 我自己的一个错）：给 A-prompt-better 与 frontend-skill 补上**缺失的 .upstream 声明**。 【r309 裁决=已落地｜r309 改判：已落地。两件 .upstream 在受管根（3d3bb0a9 + r304 修正笔 942002f0），矩阵现读 frontend-skill=lineage/path_hit 命中、A-prompt-better=invalid（名称身份不命中的正确语义）；「畸形 repo 行静默失效 ⇒ 写完回读矩阵字段」已进台账与 GM 侧车，r306/r308 两次新声明都按此回读。】
 · 决定与理由（#31/#37）：rule_editor **结构上没有创建能力**（源码：安全区内走 `if os.path.isfile(ap): return ap` 否则 `sys.exit(安全区内文件不存在)`）
   ⇒ 两件新侧车改用**受控写入**落地（只新增、不改任何既有件内容）；红线 2 的意图是禁整体重写既有件，故这不构成授权绕过，而是补工具缺口。
 · 落地：A-prompt-better/.upstream（601B，上游 nidhinjs/prompt-master）、frontend-skill/.upstream（630B，上游 Leonxlnx/taste-skill + path: skills/taste-skill）；
@@ -662,7 +662,7 @@ F 臂 5 个脚本 node --check 全 0；20 秒运行探针 draw/lint/scenes rc=0 
   镜像 scoped -Fix 后 [GATE:mirror-pass]（missing=0 mismatch=0），两件侧车在 .agents/skills 均 SAME。
 · 无 spec 覆盖这两件（现读 landing_specs 只覆盖 security-audit / mcp-builder / frontend-slides）⇒ 无需更新重放链（r303 那个坑这次先核了）。
 取值：git -C D:/global_skills log --oneline -2；python 05-exec/r114_replacement_scan.py --offline --json <件>（读两行 declared_state）。
-- [ ] **R304-4（r304 登记，P1）** **B1 失败且写面无任何交付件（第三次「大量取数+长报告」型失败）⇒ 判未交付、缩范围重派 C1（一次成功）并把 C6 收归自干；固化派发模板：默认写「步数上限」与「做不完就交已完成部分」**：一手（r304 派发记录，第三次同形态）：B1（ff9c1fb1，任务=换装准入 C5/C6/脚本）**失败且写面无任何交付件**
+- [ ] **R304-4（r304 登记，P1）** **B1 失败且写面无任何交付件（第三次「大量取数+长报告」型失败）⇒ 判未交付、缩范围重派 C1（一次成功）并把 C6 收归自干；固化派发模板：默认写「步数上限」与「做不完就交已完成部分」**：一手（r304 派发记录，第三次同形态）：B1（ff9c1fb1，任务=换装准入 C5/C6/脚本）**失败且写面无任何交付件** 【r309 裁决=已落地｜r309 改判：已落地（登记型，模板句在役）。「步数上限 + 做不完交已完成部分」两句自 r304 起进入**每一份** brief；r307/r308/r309 三轮的臂（含本轮两执行臂一评分臂）均带此二句，且本轮臂（3e9814ea 8 步、d5625d68 8 步内收口）第一次没有超限——模板生效的实测证据。】
 （admission.json / check / report 全无，只跑出中间推理文本）；按 #44⑥ 判未交付、不采信其任何中间读数。
 处置（#44⑦ 明确失败 ⇒ 缩范围重派一次）：重派 **C1（1e5ae32f）**，范围缩到它三项里的两项（C5 + 脚本可运行性），
 C6 由我自干（要 import r36 本体、涉及 computed classify 的三参数语义，交出去反而多一层转述风险）。
@@ -722,7 +722,7 @@ r305 现取活体树：`gh api repos/Leonxlnx/taste-skill/git/trees/main?recursi
 ⇒ 再加一条更硬的机械要求：**凡引用某个外部取数件当作「全量」时，必须先核对「它的条目数 vs 活体条目数」并把两个数并排写出来**
 （本例：31 vs 92，并排一写就能立刻看出前者是切片）。只有并排写出来的数，才算「我知道它的覆盖面」。
 不受此更正影响的读数：C5 空过、C6 按 r36 尺 0 DEAD 但 45 条 UNLOCATED、脚本 3 ok / 2 fail（inspect 无 Chrome、assets 网络超时）。
-- [ ] **R306-1（r306 登记，P0）** **全项目第一件真换装落地：A-prompt-better 1.3.0→1.5.0 两笔受管根提交（转述并入 + A1 逐字钉定升级，均加法式零删除、本地独有整块守住）；落地前演算==预览逐字节、落地后 sha==演算；五腿验收全绿；回滚链完整**：一手（r306，Lead 落地）：**全项目第一件真换装落地 —— A-prompt-better 1.3.0 → 1.5.0**（两笔受管根提交：17cc0c81 + f39eb3c0，均过 ANCESTOR 检查）。
+- [ ] **R306-1（r306 登记，P0）** **全项目第一件真换装落地：A-prompt-better 1.3.0→1.5.0 两笔受管根提交（转述并入 + A1 逐字钉定升级，均加法式零删除、本地独有整块守住）；落地前演算==预览逐字节、落地后 sha==演算；五腿验收全绿；回滚链完整**：一手（r306，Lead 落地）：**全项目第一件真换装落地 —— A-prompt-better 1.3.0 → 1.5.0**（两笔受管根提交：17cc0c81 + f39eb3c0，均过 ANCESTOR 检查）。 【r309 裁决=已落地｜r309 改判：已落地。A-prompt-better 换装两件五腿 spec 全 ok（本回合 _repro/r308a 仍在复跑），回滚链三 sha 在 _repro/r306landing/；且 r309 的锚题双臂实验直接复用了这笔落地的 before/after 全文（skill_X2/skill_Y2 即 17cc0c81~1 与 HEAD 版）⇒ 落地件已成为后续测量的输入面。】
 为什么此前是 0 件：需求 4 一直有优先级/计划/判据，但 r261 起的换装裁定全停在「KEEP 等条件」；
 本轮 A 臂（← nidhinjs/prompt-master，MIT，blob 742deafa 现核未漂）在 r305 计划里 land 4 / block 0 ⇒ 挑它落地。
 两笔的性质不同（都是加法式零删除，逐行验过）：
