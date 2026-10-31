@@ -45,8 +45,12 @@ def score_computable(prompt_text, log_text):
     # item5：无高虚构技法（字面出现即为 0，除非上下文是「禁止使用」）
     hits = []
     for m in FABRICATION.finditer(prompt_text):
-        ctx = prompt_text[max(0, m.start() - 60):m.start()]
-        if not re.search(r"(慎用|不用|禁止|避免|不得|黑名单|不要)", ctx):
+        # 否定语境的判定从「前 60 字符」扩到「整句」：r309 校准实测——合规版写「不引入 Tree of Thought … 改用五阶段
+        # 检查点」，前 60 窗里只有「：不」之前半截、判定漏掉 ⇒ 把合规答案错判 0。取本句（上一个句读到此）找否定。
+        lo = max(prompt_text.rfind("。", 0, m.start()), prompt_text.rfind("\n", 0, m.start()),
+                 prompt_text.rfind("；", 0, m.start()), prompt_text.rfind(";", 0, m.start())) + 1
+        seg = prompt_text[lo:m.end() + 30]
+        if not re.search(r"(慎用|不用|不引入|不采用|不使用|不应|不要|禁止|避免|不得|勿|别|黑名单|禁用|改用|替代|换用)", seg):
             hits.append(m.group(0))
     r["item5_no_fabricated"] = 1 if not hits else 0
     r["item5_hits"] = hits[:3]
