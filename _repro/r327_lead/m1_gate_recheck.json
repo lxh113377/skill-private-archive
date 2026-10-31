@@ -1,0 +1,1194 @@
+{
+ "schema": "swap-gate-r112-v1",
+ "generated_at": "2026-10-31T18:05:47+00:00",
+ "ruler": {
+  "kind": "content_addressed",
+  "q1": "同源已证（内容寻址，非相似度）",
+  "q2": "upstream_only > 0",
+  "q3": "upstream_only > local_only",
+  "q4": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+ },
+ "face": {
+  "total_skill_n": 191,
+  "provenance_tiers": {
+   "declared": 28,
+   "inferred": 33,
+   "self_built": 66,
+   "unknown": 64
+  },
+  "same_source_judged_n": 40,
+  "coverage_ratio": 0.2094,
+  "probe_file": "upstream.json",
+  "scan_file": "provenance.json",
+  "blind_n": 151
+ },
+ "counts": {
+  "LOCAL_AHEAD_KEEP": 13,
+  "UNVERIFIED": 17,
+  "UPGRADE_REVIEW": 10
+ },
+ "behind_list": [
+  {
+   "slug": "github",
+   "verdict": "UPGRADE_REVIEW",
+   "priority": "NORMAL",
+   "upstream_only": 17,
+   "local_only": 38,
+   "upstream": "sickn33/agentic-awesome-skills/plugins/agentic-awesome-skills-claude/skills/github/SKILL.md",
+   "upstream_last_commit_date": "2026-07-08T20:02:03Z"
+  },
+  {
+   "slug": "react-best-practices",
+   "verdict": "UPGRADE_REVIEW",
+   "priority": "NORMAL",
+   "upstream_only": 14,
+   "local_only": 35,
+   "upstream": "sickn33/agentic-awesome-skills/plugins/agentic-awesome-skills-claude/skills/react-best-practices/SKILL.md",
+   "upstream_last_commit_date": "2026-07-08T20:02:03Z"
+  },
+  {
+   "slug": "shadcn",
+   "verdict": "UPGRADE_REVIEW",
+   "priority": "HIGH",
+   "upstream_only": 14,
+   "local_only": 6,
+   "upstream": "sickn33/agentic-awesome-skills/plugins/agentic-awesome-skills-claude/skills/shadcn/SKILL.md",
+   "upstream_last_commit_date": "2026-07-08T20:02:03Z"
+  },
+  {
+   "slug": "test-driven-development",
+   "verdict": "UPGRADE_REVIEW",
+   "priority": "NORMAL",
+   "upstream_only": 11,
+   "local_only": 51,
+   "upstream": "obra/superpowers/skills/test-driven-development/SKILL.md",
+   "upstream_last_commit_date": "2026-09-19T00:31:35Z"
+  },
+  {
+   "slug": "defuddle",
+   "verdict": "UPGRADE_REVIEW",
+   "priority": "NORMAL",
+   "upstream_only": 2,
+   "local_only": 21,
+   "upstream": "kepano/obsidian-skills/skills/defuddle/SKILL.md",
+   "upstream_last_commit_date": "2026-09-09T07:37:32Z"
+  },
+  {
+   "slug": "hyperframes-registry",
+   "verdict": "UPGRADE_REVIEW",
+   "priority": "NORMAL",
+   "upstream_only": 2,
+   "local_only": 17,
+   "upstream": "calesthio/OpenMontage/.agents/skills/hyperframes-registry/SKILL.md",
+   "upstream_last_commit_date": "2026-06-27T21:00:00Z"
+  },
+  {
+   "slug": "healthcare-cdss-patterns",
+   "verdict": "UPGRADE_REVIEW",
+   "priority": "NORMAL",
+   "upstream_only": 1,
+   "local_only": 4,
+   "upstream": "affaan-m/ECC/docs/ja-JP/skills/healthcare-cdss-patterns/SKILL.md",
+   "upstream_last_commit_date": "2026-05-17T06:31:40Z"
+  },
+  {
+   "slug": "healthcare-emr-patterns",
+   "verdict": "UPGRADE_REVIEW",
+   "priority": "NORMAL",
+   "upstream_only": 1,
+   "local_only": 4,
+   "upstream": "affaan-m/ECC/docs/ja-JP/skills/healthcare-emr-patterns/SKILL.md",
+   "upstream_last_commit_date": "2026-05-17T06:31:40Z"
+  },
+  {
+   "slug": "healthcare-eval-harness",
+   "verdict": "UPGRADE_REVIEW",
+   "priority": "NORMAL",
+   "upstream_only": 1,
+   "local_only": 4,
+   "upstream": "affaan-m/ECC/docs/ja-JP/skills/healthcare-eval-harness/SKILL.md",
+   "upstream_last_commit_date": "2026-05-17T06:31:40Z"
+  },
+  {
+   "slug": "web-design-guidelines",
+   "verdict": "UPGRADE_REVIEW",
+   "priority": "NORMAL",
+   "upstream_only": 1,
+   "local_only": 3,
+   "upstream": "calesthio/OpenMontage/.agents/skills/web-design-guidelines/SKILL.md",
+   "upstream_last_commit_date": "2026-03-29T15:25:17Z"
+  }
+ ],
+ "rows": [
+  {
+   "slug": "algorithmic-art",
+   "verdict": "LOCAL_AHEAD_KEEP",
+   "priority": null,
+   "reason": null,
+   "q": {
+    "Q1_same_source": true,
+    "Q2_upstream_has_new": false,
+    "Q3_upstream_delta_dominant": false,
+    "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+   },
+   "evidence": {
+    "local_only": 2,
+    "upstream_only": 0
+   },
+   "relation": "local_ahead",
+   "stats": {
+    "local_lines": 284,
+    "upstream_lines": 282,
+    "common": 282,
+    "local_only": 2,
+    "upstream_only": 0,
+    "jaccard": 0.993
+   },
+   "upstream_repo": "anthropics/skills",
+   "upstream_path": "skills/algorithmic-art/SKILL.md",
+   "upstream_last_commit_date": "2025-12-01T18:05:36Z",
+   "upstream_last_commit_msg": "Move example skills into dedicated folder and create minimal top-level folder structure (#129)",
+   "provenance_tier": "inferred"
+  },
+  {
+   "slug": "brainstorming",
+   "verdict": "UNVERIFIED",
+   "priority": null,
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）",
+   "q": {
+    "Q1_same_source": null,
+    "Q2_upstream_has_new": null,
+    "Q3_upstream_delta_dominant": null,
+    "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+   },
+   "evidence": null,
+   "relation": null,
+   "stats": null,
+   "upstream_repo": null,
+   "upstream_path": null,
+   "upstream_last_commit_date": null,
+   "upstream_last_commit_msg": null,
+   "provenance_tier": "inferred"
+  },
+  {
+   "slug": "brand-guidelines",
+   "verdict": "LOCAL_AHEAD_KEEP",
+   "priority": null,
+   "reason": null,
+   "q": {
+    "Q1_same_source": true,
+    "Q2_upstream_has_new": false,
+    "Q3_upstream_delta_dominant": false,
+    "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+   },
+   "evidence": {
+    "local_only": 2,
+    "upstream_only": 0
+   },
+   "relation": "local_ahead",
+   "stats": {
+    "local_lines": 50,
+    "upstream_lines": 48,
+    "common": 48,
+    "local_only": 2,
+    "upstream_only": 0,
+    "jaccard": 0.96
+   },
+   "upstream_repo": "anthropics/skills",
+   "upstream_path": "skills/brand-guidelines/SKILL.md",
+   "upstream_last_commit_date": "2025-12-01T18:05:36Z",
+   "upstream_last_commit_msg": "Move example skills into dedicated folder and create minimal top-level folder structure (#129)",
+   "provenance_tier": "declared"
+  },
+  {
+   "slug": "canvas-design",
+   "verdict": "LOCAL_AHEAD_KEEP",
+   "priority": null,
+   "reason": null,
+   "q": {
+    "Q1_same_source": true,
+    "Q2_upstream_has_new": false,
+    "Q3_upstream_delta_dominant": false,
+    "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+   },
+   "evidence": {
+    "local_only": 7,
+    "upstream_only": 0
+   },
+   "relation": "local_ahead",
+   "stats": {
+    "local_lines": 88,
+    "upstream_lines": 81,
+    "common": 81,
+    "local_only": 7,
+    "upstream_only": 0,
+    "jaccard": 0.9205
+   },
+   "upstream_repo": "anthropics/skills",
+   "upstream_path": "skills/canvas-design/SKILL.md",
+   "upstream_last_commit_date": "2025-12-01T18:05:36Z",
+   "upstream_last_commit_msg": "Move example skills into dedicated folder and create minimal top-level folder structure (#129)",
+   "provenance_tier": "declared"
+  },
+  {
+   "slug": "code-review",
+   "verdict": "UNVERIFIED",
+   "priority": null,
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）",
+   "q": {
+    "Q1_same_source": null,
+    "Q2_upstream_has_new": null,
+    "Q3_upstream_delta_dominant": null,
+    "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+   },
+   "evidence": null,
+   "relation": null,
+   "stats": null,
+   "upstream_repo": null,
+   "upstream_path": null,
+   "upstream_last_commit_date": null,
+   "upstream_last_commit_msg": null,
+   "provenance_tier": "inferred"
+  },
+  {
+   "slug": "commit-archaeologist",
+   "verdict": "LOCAL_AHEAD_KEEP",
+   "priority": null,
+   "reason": null,
+   "q": {
+    "Q1_same_source": true,
+    "Q2_upstream_has_new": false,
+    "Q3_upstream_delta_dominant": false,
+    "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+   },
+   "evidence": {
+    "local_only": 2,
+    "upstream_only": 0
+   },
+   "relation": "local_ahead",
+   "stats": {
+    "local_lines": 99,
+    "upstream_lines": 97,
+    "common": 97,
+    "local_only": 2,
+    "upstream_only": 0,
+    "jaccard": 0.9798
+   },
+   "upstream_repo": "Shubhamsaboo/awesome-llm-apps",
+   "upstream_path": "agent_skills/commit-archaeologist/SKILL.md",
+   "upstream_last_commit_date": "2026-07-19T00:31:51Z",
+   "upstream_last_commit_msg": "Add commit-archaeologist skill: reconstruct the why behind code from git history (#974)",
+   "provenance_tier": "inferred"
+  },
+  {
+   "slug": "defuddle",
+   "verdict": "UPGRADE_REVIEW",
+   "priority": "NORMAL",
+   "reason": null,
+   "q": {
+    "Q1_same_source": true,
+    "Q2_upstream_has_new": true,
+    "Q3_upstream_delta_dominant": false,
+    "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+   },
+   "evidence": {
+    "upstream_only": 2,
+    "local_only": 21,
+    "upstream_repo": "kepano/obsidian-skills",
+    "upstream_path": "skills/defuddle/SKILL.md",
+    "upstream_last_commit_date": "2026-09-09T07:37:32Z",
+    "upstream_last_commit_msg": "docs: shorten defuddle skill description"
+   },
+   "relation": "diverged",
+   "stats": {
+    "local_lines": 43,
+    "upstream_lines": 24,
+    "common": 22,
+    "local_only": 21,
+    "upstream_only": 2,
+    "jaccard": 0.4889
+   },
+   "upstream_repo": "kepano/obsidian-skills",
+   "upstream_path": "skills/defuddle/SKILL.md",
+   "upstream_last_commit_date": "2026-09-09T07:37:32Z",
+   "upstream_last_commit_msg": "docs: shorten defuddle skill description",
+   "provenance_tier": "inferred"
+  },
+  {
+   "slug": "doc-coauthoring",
+   "verdict": "UNVERIFIED",
+   "priority": null,
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）",
+   "q": {
+    "Q1_same_source": null,
+    "Q2_upstream_has_new": null,
+    "Q3_upstream_delta_dominant": null,
+    "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+   },
+   "evidence": null,
+   "relation": null,
+   "stats": null,
+   "upstream_repo": null,
+   "upstream_path": null,
+   "upstream_last_commit_date": null,
+   "upstream_last_commit_msg": null,
+   "provenance_tier": "inferred"
+  },
+  {
+   "slug": "docx",
+   "verdict": "UNVERIFIED",
+   "priority": null,
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）",
+   "q": {
+    "Q1_same_source": null,
+    "Q2_upstream_has_new": null,
+    "Q3_upstream_delta_dominant": null,
+    "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+   },
+   "evidence": null,
+   "relation": null,
+   "stats": null,
+   "upstream_repo": null,
+   "upstream_path": null,
+   "upstream_last_commit_date": null,
+   "upstream_last_commit_msg": null,
+   "provenance_tier": "inferred"
+  },
+  {
+   "slug": "find-skills",
+   "verdict": "UNVERIFIED",
+   "priority": null,
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）",
+   "q": {
+    "Q1_same_source": null,
+    "Q2_upstream_has_new": null,
+    "Q3_upstream_delta_dominant": null,
+    "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+   },
+   "evidence": null,
+   "relation": null,
+   "stats": null,
+   "upstream_repo": null,
+   "upstream_path": null,
+   "upstream_last_commit_date": null,
+   "upstream_last_commit_msg": null,
+   "provenance_tier": "inferred"
+  },
+  {
+   "slug": "frontend-design",
+   "verdict": "UNVERIFIED",
+   "priority": null,
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）",
+   "q": {
+    "Q1_same_source": null,
+    "Q2_upstream_has_new": null,
+    "Q3_upstream_delta_dominant": null,
+    "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+   },
+   "evidence": null,
+   "relation": null,
+   "stats": null,
+   "upstream_repo": null,
+   "upstream_path": null,
+   "upstream_last_commit_date": null,
+   "upstream_last_commit_msg": null,
+   "provenance_tier": "inferred"
+  },
+  {
+   "slug": "frontend-slides",
+   "verdict": "UNVERIFIED",
+   "priority": null,
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）",
+   "q": {
+    "Q1_same_source": null,
+    "Q2_upstream_has_new": null,
+    "Q3_upstream_delta_dominant": null,
+    "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+   },
+   "evidence": null,
+   "relation": null,
+   "stats": null,
+   "upstream_repo": null,
+   "upstream_path": null,
+   "upstream_last_commit_date": null,
+   "upstream_last_commit_msg": null,
+   "provenance_tier": "declared"
+  },
+  {
+   "slug": "github",
+   "verdict": "UPGRADE_REVIEW",
+   "priority": "NORMAL",
+   "reason": null,
+   "q": {
+    "Q1_same_source": true,
+    "Q2_upstream_has_new": true,
+    "Q3_upstream_delta_dominant": false,
+    "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+   },
+   "evidence": {
+    "upstream_only": 17,
+    "local_only": 38,
+    "upstream_repo": "sickn33/agentic-awesome-skills",
+    "upstream_path": "plugins/agentic-awesome-skills-claude/skills/github/SKILL.md",
+    "upstream_last_commit_date": "2026-07-08T20:02:03Z",
+    "upstream_last_commit_msg": "chore: Rename project to Agentic Awesome Skills"
+   },
+   "relation": "diverged",
+   "stats": {
+    "local_lines": 60,
+    "upstream_lines": 39,
+    "common": 22,
+    "local_only": 38,
+    "upstream_only": 17,
+    "jaccard": 0.2857
+   },
+   "upstream_repo": "sickn33/agentic-awesome-skills",
+   "upstream_path": "plugins/agentic-awesome-skills-claude/skills/github/SKILL.md",
+   "upstream_last_commit_date": "2026-07-08T20:02:03Z",
+   "upstream_last_commit_msg": "chore: Rename project to Agentic Awesome Skills",
+   "provenance_tier": "declared"
+  },
+  {
+   "slug": "grill-me",
+   "verdict": "UNVERIFIED",
+   "priority": null,
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）",
+   "q": {
+    "Q1_same_source": null,
+    "Q2_upstream_has_new": null,
+    "Q3_upstream_delta_dominant": null,
+    "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+   },
+   "evidence": null,
+   "relation": null,
+   "stats": null,
+   "upstream_repo": null,
+   "upstream_path": null,
+   "upstream_last_commit_date": null,
+   "upstream_last_commit_msg": null,
+   "provenance_tier": "declared"
+  },
+  {
+   "slug": "healthcare-cdss-patterns",
+   "verdict": "UPGRADE_REVIEW",
+   "priority": "NORMAL",
+   "reason": null,
+   "q": {
+    "Q1_same_source": true,
+    "Q2_upstream_has_new": true,
+    "Q3_upstream_delta_dominant": false,
+    "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+   },
+   "evidence": {
+    "upstream_only": 1,
+    "local_only": 4,
+    "upstream_repo": "affaan-m/ECC",
+    "upstream_path": "docs/ja-JP/skills/healthcare-cdss-patterns/SKILL.md",
+    "upstream_last_commit_date": "2026-05-17T06:31:40Z",
+    "upstream_last_commit_msg": "docs: add native Japanese translation of ECC documentation (ja-JP)"
+   },
+   "relation": "diverged",
+   "stats": {
+    "local_lines": 169,
+    "upstream_lines": 166,
+    "common": 165,
+    "local_only": 4,
+    "upstream_only": 1,
+    "jaccard": 0.9706
+   },
+   "upstream_repo": "affaan-m/ECC",
+   "upstream_path": "docs/ja-JP/skills/healthcare-cdss-patterns/SKILL.md",
+   "upstream_last_commit_date": "2026-05-17T06:31:40Z",
+   "upstream_last_commit_msg": "docs: add native Japanese translation of ECC documentation (ja-JP)",
+   "provenance_tier": "inferred"
+  },
+  {
+   "slug": "healthcare-emr-patterns",
+   "verdict": "UPGRADE_REVIEW",
+   "priority": "NORMAL",
+   "reason": null,
+   "q": {
+    "Q1_same_source": true,
+    "Q2_upstream_has_new": true,
+    "Q3_upstream_delta_dominant": false,
+    "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+   },
+   "evidence": {
+    "upstream_only": 1,
+    "local_only": 4,
+    "upstream_repo": "affaan-m/ECC",
+    "upstream_path": "docs/ja-JP/skills/healthcare-emr-patterns/SKILL.md",
+    "upstream_last_commit_date": "2026-05-17T06:31:40Z",
+    "upstream_last_commit_msg": "docs: add native Japanese translation of ECC documentation (ja-JP)"
+   },
+   "relation": "diverged",
+   "stats": {
+    "local_lines": 117,
+    "upstream_lines": 114,
+    "common": 113,
+    "local_only": 4,
+    "upstream_only": 1,
+    "jaccard": 0.9576
+   },
+   "upstream_repo": "affaan-m/ECC",
+   "upstream_path": "docs/ja-JP/skills/healthcare-emr-patterns/SKILL.md",
+   "upstream_last_commit_date": "2026-05-17T06:31:40Z",
+   "upstream_last_commit_msg": "docs: add native Japanese translation of ECC documentation (ja-JP)",
+   "provenance_tier": "inferred"
+  },
+  {
+   "slug": "healthcare-eval-harness",
+   "verdict": "UPGRADE_REVIEW",
+   "priority": "NORMAL",
+   "reason": null,
+   "q": {
+    "Q1_same_source": true,
+    "Q2_upstream_has_new": true,
+    "Q3_upstream_delta_dominant": false,
+    "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+   },
+   "evidence": {
+    "upstream_only": 1,
+    "local_only": 4,
+    "upstream_repo": "affaan-m/ECC",
+    "upstream_path": "docs/ja-JP/skills/healthcare-eval-harness/SKILL.md",
+    "upstream_last_commit_date": "2026-05-17T06:31:40Z",
+    "upstream_last_commit_msg": "docs: add native Japanese translation of ECC documentation (ja-JP)"
+   },
+   "relation": "diverged",
+   "stats": {
+    "local_lines": 126,
+    "upstream_lines": 123,
+    "common": 122,
+    "local_only": 4,
+    "upstream_only": 1,
+    "jaccard": 0.9606
+   },
+   "upstream_repo": "affaan-m/ECC",
+   "upstream_path": "docs/ja-JP/skills/healthcare-eval-harness/SKILL.md",
+   "upstream_last_commit_date": "2026-05-17T06:31:40Z",
+   "upstream_last_commit_msg": "docs: add native Japanese translation of ECC documentation (ja-JP)",
+   "provenance_tier": "inferred"
+  },
+  {
+   "slug": "hyperframes",
+   "verdict": "UNVERIFIED",
+   "priority": null,
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）",
+   "q": {
+    "Q1_same_source": null,
+    "Q2_upstream_has_new": null,
+    "Q3_upstream_delta_dominant": null,
+    "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+   },
+   "evidence": null,
+   "relation": null,
+   "stats": null,
+   "upstream_repo": null,
+   "upstream_path": null,
+   "upstream_last_commit_date": null,
+   "upstream_last_commit_msg": null,
+   "provenance_tier": "inferred"
+  },
+  {
+   "slug": "hyperframes-cli",
+   "verdict": "UNVERIFIED",
+   "priority": null,
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）",
+   "q": {
+    "Q1_same_source": null,
+    "Q2_upstream_has_new": null,
+    "Q3_upstream_delta_dominant": null,
+    "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+   },
+   "evidence": null,
+   "relation": null,
+   "stats": null,
+   "upstream_repo": null,
+   "upstream_path": null,
+   "upstream_last_commit_date": null,
+   "upstream_last_commit_msg": null,
+   "provenance_tier": "inferred"
+  },
+  {
+   "slug": "hyperframes-media",
+   "verdict": "UNVERIFIED",
+   "priority": null,
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）",
+   "q": {
+    "Q1_same_source": null,
+    "Q2_upstream_has_new": null,
+    "Q3_upstream_delta_dominant": null,
+    "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+   },
+   "evidence": null,
+   "relation": null,
+   "stats": null,
+   "upstream_repo": null,
+   "upstream_path": null,
+   "upstream_last_commit_date": null,
+   "upstream_last_commit_msg": null,
+   "provenance_tier": "inferred"
+  },
+  {
+   "slug": "hyperframes-registry",
+   "verdict": "UPGRADE_REVIEW",
+   "priority": "NORMAL",
+   "reason": null,
+   "q": {
+    "Q1_same_source": true,
+    "Q2_upstream_has_new": true,
+    "Q3_upstream_delta_dominant": false,
+    "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+   },
+   "evidence": {
+    "upstream_only": 2,
+    "local_only": 17,
+    "upstream_repo": "calesthio/OpenMontage",
+    "upstream_path": ".agents/skills/hyperframes-registry/SKILL.md",
+    "upstream_last_commit_date": "2026-06-27T21:00:00Z",
+    "upstream_last_commit_msg": "chore(deps,skills): bump Remotion 4.0.441→4.0.484; re-vendor HyperFrames skills at v0.7.17"
+   },
+   "relation": "diverged",
+   "stats": {
+    "local_lines": 81,
+    "upstream_lines": 66,
+    "common": 64,
+    "local_only": 17,
+    "upstream_only": 2,
+    "jaccard": 0.7711
+   },
+   "upstream_repo": "calesthio/OpenMontage",
+   "upstream_path": ".agents/skills/hyperframes-registry/SKILL.md",
+   "upstream_last_commit_date": "2026-06-27T21:00:00Z",
+   "upstream_last_commit_msg": "chore(deps,skills): bump Remotion 4.0.441→4.0.484; re-vendor HyperFrames skills at v0.7.17",
+   "provenance_tier": "inferred"
+  },
+  {
+   "slug": "internal-comms",
+   "verdict": "LOCAL_AHEAD_KEEP",
+   "priority": null,
+   "reason": null,
+   "q": {
+    "Q1_same_source": true,
+    "Q2_upstream_has_new": false,
+    "Q3_upstream_delta_dominant": false,
+    "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+   },
+   "evidence": {
+    "local_only": 2,
+    "upstream_only": 0
+   },
+   "relation": "local_ahead",
+   "stats": {
+    "local_lines": 27,
+    "upstream_lines": 25,
+    "common": 25,
+    "local_only": 2,
+    "upstream_only": 0,
+    "jaccard": 0.9259
+   },
+   "upstream_repo": "anthropics/skills",
+   "upstream_path": "skills/internal-comms/SKILL.md",
+   "upstream_last_commit_date": "2025-12-01T18:05:36Z",
+   "upstream_last_commit_msg": "Move example skills into dedicated folder and create minimal top-level folder structure (#129)",
+   "provenance_tier": "inferred"
+  },
+  {
+   "slug": "json-canvas",
+   "verdict": "LOCAL_AHEAD_KEEP",
+   "priority": null,
+   "reason": null,
+   "q": {
+    "Q1_same_source": true,
+    "Q2_upstream_has_new": false,
+    "Q3_upstream_delta_dominant": false,
+    "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+   },
+   "evidence": {
+    "local_only": 2,
+    "upstream_only": 0
+   },
+   "relation": "local_ahead",
+   "stats": {
+    "local_lines": 156,
+    "upstream_lines": 154,
+    "common": 154,
+    "local_only": 2,
+    "upstream_only": 0,
+    "jaccard": 0.9872
+   },
+   "upstream_repo": "kepano/obsidian-skills",
+   "upstream_path": "skills/json-canvas/SKILL.md",
+   "upstream_last_commit_date": "2026-02-25T11:32:59Z",
+   "upstream_last_commit_msg": "feat: improve skill quality scores across 4 skills",
+   "provenance_tier": "inferred"
+  },
+  {
+   "slug": "mcp-builder",
+   "verdict": "LOCAL_AHEAD_KEEP",
+   "priority": null,
+   "reason": null,
+   "q": {
+    "Q1_same_source": true,
+    "Q2_upstream_has_new": false,
+    "Q3_upstream_delta_dominant": false,
+    "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+   },
+   "evidence": {
+    "local_only": 2,
+    "upstream_only": 0
+   },
+   "relation": "local_ahead",
+   "stats": {
+    "local_lines": 159,
+    "upstream_lines": 157,
+    "common": 157,
+    "local_only": 2,
+    "upstream_only": 0,
+    "jaccard": 0.9874
+   },
+   "upstream_repo": "anthropics/skills",
+   "upstream_path": "skills/mcp-builder/SKILL.md",
+   "upstream_last_commit_date": "2025-12-01T18:05:36Z",
+   "upstream_last_commit_msg": "Move example skills into dedicated folder and create minimal top-level folder structure (#129)",
+   "provenance_tier": "declared"
+  },
+  {
+   "slug": "obsidian-bases",
+   "verdict": "LOCAL_AHEAD_KEEP",
+   "priority": null,
+   "reason": null,
+   "q": {
+    "Q1_same_source": true,
+    "Q2_upstream_has_new": false,
+    "Q3_upstream_delta_dominant": false,
+    "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+   },
+   "evidence": {
+    "local_only": 2,
+    "upstream_only": 0
+   },
+   "relation": "local_ahead",
+   "stats": {
+    "local_lines": 294,
+    "upstream_lines": 292,
+    "common": 292,
+    "local_only": 2,
+    "upstream_only": 0,
+    "jaccard": 0.9932
+   },
+   "upstream_repo": "kepano/obsidian-skills",
+   "upstream_path": "skills/obsidian-bases/SKILL.md",
+   "upstream_last_commit_date": "2026-04-07T08:34:35Z",
+   "upstream_last_commit_msg": "docs(obsidian-bases): fix invalid filter schema example",
+   "provenance_tier": "inferred"
+  },
+  {
+   "slug": "obsidian-cli",
+   "verdict": "LOCAL_AHEAD_KEEP",
+   "priority": null,
+   "reason": null,
+   "q": {
+    "Q1_same_source": true,
+    "Q2_upstream_has_new": false,
+    "Q3_upstream_delta_dominant": false,
+    "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+   },
+   "evidence": {
+    "local_only": 2,
+    "upstream_only": 0
+   },
+   "relation": "local_ahead",
+   "stats": {
+    "local_lines": 56,
+    "upstream_lines": 54,
+    "common": 54,
+    "local_only": 2,
+    "upstream_only": 0,
+    "jaccard": 0.9643
+   },
+   "upstream_repo": "kepano/obsidian-skills",
+   "upstream_path": "skills/obsidian-cli/SKILL.md",
+   "upstream_last_commit_date": "2026-02-25T11:32:59Z",
+   "upstream_last_commit_msg": "feat: improve skill quality scores across 4 skills",
+   "provenance_tier": "inferred"
+  },
+  {
+   "slug": "obsidian-markdown",
+   "verdict": "LOCAL_AHEAD_KEEP",
+   "priority": null,
+   "reason": null,
+   "q": {
+    "Q1_same_source": true,
+    "Q2_upstream_has_new": false,
+    "Q3_upstream_delta_dominant": false,
+    "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+   },
+   "evidence": {
+    "local_only": 2,
+    "upstream_only": 0
+   },
+   "relation": "local_ahead",
+   "stats": {
+    "local_lines": 108,
+    "upstream_lines": 106,
+    "common": 106,
+    "local_only": 2,
+    "upstream_only": 0,
+    "jaccard": 0.9815
+   },
+   "upstream_repo": "kepano/obsidian-skills",
+   "upstream_path": "skills/obsidian-markdown/SKILL.md",
+   "upstream_last_commit_date": "2026-02-25T11:32:59Z",
+   "upstream_last_commit_msg": "feat: improve skill quality scores across 4 skills",
+   "provenance_tier": "inferred"
+  },
+  {
+   "slug": "pdf",
+   "verdict": "UNVERIFIED",
+   "priority": null,
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）",
+   "q": {
+    "Q1_same_source": null,
+    "Q2_upstream_has_new": null,
+    "Q3_upstream_delta_dominant": null,
+    "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+   },
+   "evidence": null,
+   "relation": null,
+   "stats": null,
+   "upstream_repo": null,
+   "upstream_path": null,
+   "upstream_last_commit_date": null,
+   "upstream_last_commit_msg": null,
+   "provenance_tier": "inferred"
+  },
+  {
+   "slug": "react-best-practices",
+   "verdict": "UPGRADE_REVIEW",
+   "priority": "NORMAL",
+   "reason": null,
+   "q": {
+    "Q1_same_source": true,
+    "Q2_upstream_has_new": true,
+    "Q3_upstream_delta_dominant": false,
+    "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+   },
+   "evidence": {
+    "upstream_only": 14,
+    "local_only": 35,
+    "upstream_repo": "sickn33/agentic-awesome-skills",
+    "upstream_path": "plugins/agentic-awesome-skills-claude/skills/react-best-practices/SKILL.md",
+    "upstream_last_commit_date": "2026-07-08T20:02:03Z",
+    "upstream_last_commit_msg": "chore: Rename project to Agentic Awesome Skills"
+   },
+   "relation": "diverged",
+   "stats": {
+    "local_lines": 120,
+    "upstream_lines": 99,
+    "common": 85,
+    "local_only": 35,
+    "upstream_only": 14,
+    "jaccard": 0.6343
+   },
+   "upstream_repo": "sickn33/agentic-awesome-skills",
+   "upstream_path": "plugins/agentic-awesome-skills-claude/skills/react-best-practices/SKILL.md",
+   "upstream_last_commit_date": "2026-07-08T20:02:03Z",
+   "upstream_last_commit_msg": "chore: Rename project to Agentic Awesome Skills",
+   "provenance_tier": "inferred"
+  },
+  {
+   "slug": "scope-creep-detector",
+   "verdict": "LOCAL_AHEAD_KEEP",
+   "priority": null,
+   "reason": null,
+   "q": {
+    "Q1_same_source": true,
+    "Q2_upstream_has_new": false,
+    "Q3_upstream_delta_dominant": false,
+    "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+   },
+   "evidence": {
+    "local_only": 2,
+    "upstream_only": 0
+   },
+   "relation": "local_ahead",
+   "stats": {
+    "local_lines": 94,
+    "upstream_lines": 92,
+    "common": 92,
+    "local_only": 2,
+    "upstream_only": 0,
+    "jaccard": 0.9787
+   },
+   "upstream_repo": "Shubhamsaboo/awesome-llm-apps",
+   "upstream_path": "agent_skills/scope-creep-detector/SKILL.md",
+   "upstream_last_commit_date": null,
+   "upstream_last_commit_msg": null,
+   "provenance_tier": "inferred"
+  },
+  {
+   "slug": "security-audit",
+   "verdict": "UNVERIFIED",
+   "priority": null,
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）",
+   "q": {
+    "Q1_same_source": null,
+    "Q2_upstream_has_new": null,
+    "Q3_upstream_delta_dominant": null,
+    "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+   },
+   "evidence": null,
+   "relation": null,
+   "stats": null,
+   "upstream_repo": null,
+   "upstream_path": null,
+   "upstream_last_commit_date": null,
+   "upstream_last_commit_msg": null,
+   "provenance_tier": "inferred"
+  },
+  {
+   "slug": "shadcn",
+   "verdict": "UPGRADE_REVIEW",
+   "priority": "HIGH",
+   "reason": null,
+   "q": {
+    "Q1_same_source": true,
+    "Q2_upstream_has_new": true,
+    "Q3_upstream_delta_dominant": true,
+    "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+   },
+   "evidence": {
+    "upstream_only": 14,
+    "local_only": 6,
+    "upstream_repo": "sickn33/agentic-awesome-skills",
+    "upstream_path": "plugins/agentic-awesome-skills-claude/skills/shadcn/SKILL.md",
+    "upstream_last_commit_date": "2026-07-08T20:02:03Z",
+    "upstream_last_commit_msg": "chore: Rename project to Agentic Awesome Skills"
+   },
+   "relation": "diverged",
+   "stats": {
+    "local_lines": 180,
+    "upstream_lines": 188,
+    "common": 174,
+    "local_only": 6,
+    "upstream_only": 14,
+    "jaccard": 0.8969
+   },
+   "upstream_repo": "sickn33/agentic-awesome-skills",
+   "upstream_path": "plugins/agentic-awesome-skills-claude/skills/shadcn/SKILL.md",
+   "upstream_last_commit_date": "2026-07-08T20:02:03Z",
+   "upstream_last_commit_msg": "chore: Rename project to Agentic Awesome Skills",
+   "provenance_tier": "inferred"
+  },
+  {
+   "slug": "subagent-driven-development",
+   "verdict": "UNVERIFIED",
+   "priority": null,
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）",
+   "q": {
+    "Q1_same_source": null,
+    "Q2_upstream_has_new": null,
+    "Q3_upstream_delta_dominant": null,
+    "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+   },
+   "evidence": null,
+   "relation": null,
+   "stats": null,
+   "upstream_repo": null,
+   "upstream_path": null,
+   "upstream_last_commit_date": null,
+   "upstream_last_commit_msg": null,
+   "provenance_tier": "inferred"
+  },
+  {
+   "slug": "test-driven-development",
+   "verdict": "UPGRADE_REVIEW",
+   "priority": "NORMAL",
+   "reason": null,
+   "q": {
+    "Q1_same_source": true,
+    "Q2_upstream_has_new": true,
+    "Q3_upstream_delta_dominant": false,
+    "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+   },
+   "evidence": {
+    "upstream_only": 11,
+    "local_only": 51,
+    "upstream_repo": "obra/superpowers",
+    "upstream_path": "skills/test-driven-development/SKILL.md",
+    "upstream_last_commit_date": "2026-09-19T00:31:35Z",
+    "upstream_last_commit_msg": "Release v6.4.1: diagnosing-superpowers, Native plan execution, OpenCode 2.0 and Muse support (#2338)"
+   },
+   "relation": "diverged",
+   "stats": {
+    "local_lines": 256,
+    "upstream_lines": 216,
+    "common": 205,
+    "local_only": 51,
+    "upstream_only": 11,
+    "jaccard": 0.7678
+   },
+   "upstream_repo": "obra/superpowers",
+   "upstream_path": "skills/test-driven-development/SKILL.md",
+   "upstream_last_commit_date": "2026-09-19T00:31:35Z",
+   "upstream_last_commit_msg": "Release v6.4.1: diagnosing-superpowers, Native plan execution, OpenCode 2.0 and Muse support (#2338)",
+   "provenance_tier": "inferred"
+  },
+  {
+   "slug": "theme-factory",
+   "verdict": "LOCAL_AHEAD_KEEP",
+   "priority": null,
+   "reason": null,
+   "q": {
+    "Q1_same_source": true,
+    "Q2_upstream_has_new": false,
+    "Q3_upstream_delta_dominant": false,
+    "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+   },
+   "evidence": {
+    "local_only": 2,
+    "upstream_only": 0
+   },
+   "relation": "local_ahead",
+   "stats": {
+    "local_lines": 43,
+    "upstream_lines": 41,
+    "common": 41,
+    "local_only": 2,
+    "upstream_only": 0,
+    "jaccard": 0.9535
+   },
+   "upstream_repo": "anthropics/skills",
+   "upstream_path": "skills/theme-factory/SKILL.md",
+   "upstream_last_commit_date": "2025-12-01T18:05:36Z",
+   "upstream_last_commit_msg": "Move example skills into dedicated folder and create minimal top-level folder structure (#129)",
+   "provenance_tier": "inferred"
+  },
+  {
+   "slug": "ui-ux-pro-max",
+   "verdict": "UNVERIFIED",
+   "priority": null,
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）",
+   "q": {
+    "Q1_same_source": null,
+    "Q2_upstream_has_new": null,
+    "Q3_upstream_delta_dominant": null,
+    "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+   },
+   "evidence": null,
+   "relation": null,
+   "stats": null,
+   "upstream_repo": null,
+   "upstream_path": null,
+   "upstream_last_commit_date": null,
+   "upstream_last_commit_msg": null,
+   "provenance_tier": "declared"
+  },
+  {
+   "slug": "verification-before-completion",
+   "verdict": "UNVERIFIED",
+   "priority": null,
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）",
+   "q": {
+    "Q1_same_source": null,
+    "Q2_upstream_has_new": null,
+    "Q3_upstream_delta_dominant": null,
+    "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+   },
+   "evidence": null,
+   "relation": null,
+   "stats": null,
+   "upstream_repo": null,
+   "upstream_path": null,
+   "upstream_last_commit_date": null,
+   "upstream_last_commit_msg": null,
+   "provenance_tier": "inferred"
+  },
+  {
+   "slug": "web-design-guidelines",
+   "verdict": "UPGRADE_REVIEW",
+   "priority": "NORMAL",
+   "reason": null,
+   "q": {
+    "Q1_same_source": true,
+    "Q2_upstream_has_new": true,
+    "Q3_upstream_delta_dominant": false,
+    "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+   },
+   "evidence": {
+    "upstream_only": 1,
+    "local_only": 3,
+    "upstream_repo": "calesthio/OpenMontage",
+    "upstream_path": ".agents/skills/web-design-guidelines/SKILL.md",
+    "upstream_last_commit_date": "2026-03-29T15:25:17Z",
+    "upstream_last_commit_msg": "Initial release — OpenMontage: the first open-source agentic video production system"
+   },
+   "relation": "diverged",
+   "stats": {
+    "local_lines": 28,
+    "upstream_lines": 26,
+    "common": 25,
+    "local_only": 3,
+    "upstream_only": 1,
+    "jaccard": 0.8621
+   },
+   "upstream_repo": "calesthio/OpenMontage",
+   "upstream_path": ".agents/skills/web-design-guidelines/SKILL.md",
+   "upstream_last_commit_date": "2026-03-29T15:25:17Z",
+   "upstream_last_commit_msg": "Initial release — OpenMontage: the first open-source agentic video production system",
+   "provenance_tier": "inferred"
+  },
+  {
+   "slug": "writing-plans",
+   "verdict": "LOCAL_AHEAD_KEEP",
+   "priority": null,
+   "reason": null,
+   "q": {
+    "Q1_same_source": true,
+    "Q2_upstream_has_new": false,
+    "Q3_upstream_delta_dominant": false,
+    "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+   },
+   "evidence": {
+    "local_only": 16,
+    "upstream_only": 0
+   },
+   "relation": "local_ahead",
+   "stats": {
+    "local_lines": 150,
+    "upstream_lines": 134,
+    "common": 134,
+    "local_only": 16,
+    "upstream_only": 0,
+    "jaccard": 0.8933
+   },
+   "upstream_repo": "obra/superpowers",
+   "upstream_path": "skills/writing-plans/SKILL.md",
+   "upstream_last_commit_date": "2026-09-25T18:06:27Z",
+   "upstream_last_commit_msg": "Release v6.4.2: leaner plans from writing-plans (#2384)",
+   "provenance_tier": "inferred"
+  },
+  {
+   "slug": "xlsx",
+   "verdict": "UNVERIFIED",
+   "priority": null,
+   "reason": "无可识别同源候选（全部 unrelated 或取不到）",
+   "q": {
+    "Q1_same_source": null,
+    "Q2_upstream_has_new": null,
+    "Q3_upstream_delta_dominant": null,
+    "Q4_semantic_dup": "INVALID：r105 词面尺（裸 token/IDF）与 r111 BGE 语义尺六变体全部不可分（区间重叠）⇒ 语义判重不参与本裁决"
+   },
+   "evidence": null,
+   "relation": null,
+   "stats": null,
+   "upstream_repo": null,
+   "upstream_path": null,
+   "upstream_last_commit_date": null,
+   "upstream_last_commit_msg": null,
+   "provenance_tier": "inferred"
+  }
+ ]
+}
