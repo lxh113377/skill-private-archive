@@ -1,7 +1,7 @@
 {
  "schema": "r304a.quarterly_version_scan.v1",
- "generated_at": "2026-10-31T17:44:51",
- "generated_at_utc": "2026-10-31T09:44:51+00:00",
+ "generated_at": "2026-10-31T20:08:42",
+ "generated_at_utc": "2026-10-31T12:08:42+00:00",
  "quarter": "2026Q4",
  "baseline": {
   "schema": "r303-absorption-baseline-v2(r311 扩 3 对)",
@@ -46,31 +46,33 @@
   "upstream_changed": 1,
   "both_changed": 0,
   "unknown": 0,
-  "candidates": 1,
+  "candidates": 0,
+  "frozen": 1,
   "local_drift": 0,
   "unknown_pairs": 0,
   "caliber": "r303a five-state comparator, imported and not re-implemented",
   "candidate_rule": "candidate = upstream side moved since the anchor (UPSTREAM_CHANGED or BOTH_CHANGED); unknown never counts as a candidate"
  },
- "candidates": [
+ "candidates": [],
+ "frozen": [
   {
    "slug": "gstack",
    "repo": "garrytan/gstack",
    "baseline_local_sha": "f3477b0a0bb9111da70b111dfc7b678e17286ad1436670262d00800b5b30306d",
    "baseline_upstream_sha": "11bd23cc72e7535978675f6da3ddcf39d7720b5b",
    "current_local_sha": "f3477b0a0bb9111da70b111dfc7b678e17286ad1436670262d00800b5b30306d",
-   "current_upstream_sha": "8ef728bd161403ef862a76300259d32afc4c517e",
-   "current_upstream_commit_sha": "89f203300498596cfcee37017f9966af9b0ebc3a",
+   "current_upstream_sha": "6bbb4e0c5f6de62eec91ce503091a11910e28987",
+   "current_upstream_commit_sha": "088bfc5914f8001a3d49b3a0c35d6f7cb800268c",
    "local_changed": false,
    "upstream_changed": true,
    "state": "UPSTREAM_CHANGED",
    "notes": [],
    "three_values": {
-    "upstream_commit_sha": "89f203300498596cfcee37017f9966af9b0ebc3a",
-    "upstream_file_sha": "8ef728bd161403ef862a76300259d32afc4c517e",
+    "upstream_commit_sha": "088bfc5914f8001a3d49b3a0c35d6f7cb800268c",
+    "upstream_file_sha": "6bbb4e0c5f6de62eec91ce503091a11910e28987",
     "local_file_sha": "f3477b0a0bb9111da70b111dfc7b678e17286ad1436670262d00800b5b30306d"
    },
-   "candidate_kind": "upstream_absorption"
+   "candidate_kind": "frozen_not_same_lineage"
   }
  ],
  "local_drift": [],
@@ -290,8 +292,8 @@
    "baseline_local_sha": "f3477b0a0bb9111da70b111dfc7b678e17286ad1436670262d00800b5b30306d",
    "baseline_upstream_sha": "11bd23cc72e7535978675f6da3ddcf39d7720b5b",
    "current_local_sha": "f3477b0a0bb9111da70b111dfc7b678e17286ad1436670262d00800b5b30306d",
-   "current_upstream_sha": "8ef728bd161403ef862a76300259d32afc4c517e",
-   "current_upstream_commit_sha": "89f203300498596cfcee37017f9966af9b0ebc3a",
+   "current_upstream_sha": "6bbb4e0c5f6de62eec91ce503091a11910e28987",
+   "current_upstream_commit_sha": "088bfc5914f8001a3d49b3a0c35d6f7cb800268c",
    "local_changed": false,
    "upstream_changed": true,
    "state": "UPSTREAM_CHANGED",
@@ -499,7 +501,7 @@
    "baseline_upstream_sha": "821111317265648bdaa42643d82a5cfc393592ba",
    "current_local_sha": "a7949682e54d031d1973c16c8181a58469fe198eb33892b9a95c663e0dfe7aae",
    "current_upstream_sha": "821111317265648bdaa42643d82a5cfc393592ba",
-   "current_upstream_commit_sha": "115d96eed947a6b039eca67581e4c1f8302746ce",
+   "current_upstream_commit_sha": "1ed5976b000fc0df2910d32ed33717794da1bee2",
    "local_changed": false,
    "upstream_changed": false,
    "state": "OK",

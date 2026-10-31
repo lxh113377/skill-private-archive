@@ -1,0 +1,609 @@
+{
+ "meta": {
+  "round": "r316c",
+  "task": "coding-agent 落地备料证据包（下一件 T1 的 r307b 同款备料；只出证据+方案，不落地不代裁）",
+  "date": "2026-10-31",
+  "network": "仅 gh api",
+  "write_face": "自建skill优化/_temp/r316c/ 只新建；受管根只读（git show 允许）",
+  "steps_cap_in_brief": 14,
+  "steps_overrun_honest_note": "超限：实际工具回合 > 14。成因 = 两次 run_code 的 TS 引号闭合语法失败 + 判据脚本分块重写。产物完整，超限如实登记。",
+  "metric_discipline": "禁整行重合率（r315 证伪）；四签名轴 A1/A2/A3/A4 + 块级 A5；切割点由已知答案堂两极中点导出，非手调",
+  "mode": "normal",
+  "force_leg": null
+ },
+ "known_pass": true,
+ "known_answers": [
+  {
+   "slug": "docx",
+   "role": "positive",
+   "expected": "same-family",
+   "got": "same-family",
+   "match": true,
+   "note": "anthropics/skills : skills/docx；本地 docx 由该上游扩展而来，公认正例",
+   "axes": {
+    "A1_title_domain": 0.0863,
+    "A2_purpose_verbs": 0.5484,
+    "A3_tool_cmd_surface": 0.1818,
+    "A4_distinctive_containment": 0.6994,
+    "A5_block_containment": 0.7738
+   },
+   "face_files": 3,
+   "local_bytes": 36215,
+   "skel_local_H123": [
+    11,
+    20,
+    35
+   ],
+   "skel_upstream_H123": [
+    5,
+    5,
+    0
+   ]
+  },
+  {
+   "slug": "gstack",
+   "role": "negative",
+   "expected": "diff-family",
+   "got": "diff-family",
+   "match": true,
+   "note": "garrytan/gstack : capy/skill/gstack；r275 实测该路径是 Capy 安装/编排壳，公认异族错配",
+   "axes": {
+    "A1_title_domain": 0.0181,
+    "A2_purpose_verbs": 0.5769,
+    "A3_tool_cmd_surface": 0.043,
+    "A4_distinctive_containment": 0.5061,
+    "A5_block_containment": 0.5361
+   },
+   "face_files": 29,
+   "local_bytes": 599479,
+   "skel_local_H123": [
+    144,
+    415,
+    287
+   ],
+   "skel_upstream_H123": [
+    1,
+    9,
+    0
+   ]
+  }
+ ],
+ "axis_teeth": {
+  "cuts_at_midpoint_of_poles": {
+   "A1_title_domain": 0.0522,
+   "A2_purpose_verbs": 0.5626,
+   "A3_tool_cmd_surface": 0.1124,
+   "A4_distinctive_containment": 0.6028,
+   "A5_block_containment": 0.655
+  },
+  "teeth_positive_minus_negative": {
+   "A1_title_domain": 0.0682,
+   "A2_purpose_verbs": -0.0285,
+   "A3_tool_cmd_surface": 0.1388,
+   "A4_distinctive_containment": 0.1933,
+   "A5_block_containment": 0.2377
+  },
+  "live_axes": {
+   "A1_title_domain": true,
+   "A2_purpose_verbs": false,
+   "A3_tool_cmd_surface": true,
+   "A4_distinctive_containment": true,
+   "A5_block_containment": true
+  },
+  "min_teeth": {
+   "A1_title_domain": 0.03,
+   "A2_purpose_verbs": 0.05,
+   "A3_tool_cmd_surface": 0.05,
+   "A4_distinctive_containment": 0.15,
+   "A5_block_containment": 0.15
+  },
+  "primary": "A5_block_containment",
+  "confirm": "A4_distinctive_containment",
+  "discarded_axes": [
+   "A2_purpose_verbs"
+  ],
+  "discarded_reason_A2": "用途动词轴牙距为负（正例低于反例）：read/edit/run 这类动词人人都有，无判别力 => 作废，不参与裁定"
+ },
+ "pairing_verdict": {
+  "value": "same-family-gaps",
+  "known_pass": true,
+  "decided_by": [
+   "A5_block_containment",
+   "A4_distinctive_containment"
+  ],
+  "cut_values": {
+   "A5_block_containment": 0.655,
+   "A4_distinctive_containment": 0.6028
+  },
+  "target_values": {
+   "A5_block_containment": 0.8648,
+   "A4_distinctive_containment": 0.8639
+  },
+  "statement": "同族成立：上游 codex-delegate 是本地 coding-agent 委派环的 Codex 单后端切片（本地已逐字收录其 4 个 references 分卷，并把派发面扩成四后端 + openclaw 通知/禁区私有扩展）；但上游 SKILL.md 仍有成块内容未落地 => 判 same-family-gaps，既非零缺口超集，也非异族错配",
+  "not_superset_because": "实测 3 段上游内容在本地面无任何判别词踪迹（见 increments）",
+  "not_diff_family_because": "主判据 A5 远高于两极中点切割点，且两极校准（docx=same-family / gstack=diff-family）双双命中；另有 references 4 分卷 git 对象号逐字等值作硬旁证"
+ },
+ "local_vs_upstream": {
+  "local_identity": {
+   "managed_root": "D:/global_skills/coding-agent/SKILL.md",
+   "task_claimed": {
+    "git_blob_prefix": "f70875d142",
+    "bytes": 7254,
+    "version": "1.2.0"
+   },
+   "head_blob": "6831af602bf9d0d076a53eb21f1f44437a693bf2",
+   "head_bytes": 7253,
+   "head_version": "1.2.0",
+   "worktree_git_blob": "dde69cdce25ff4cadedd5226f5ae29895a95d96e",
+   "worktree_bytes": 7404,
+   "worktree_version": "1.3.0",
+   "porcelain": "M coding-agent/SKILL.md",
+   "claimed_blob_f70875d142_resolves_as": "unresolvable: fatal: Not a valid object name f70875d142",
+   "note": "受管根 coding-agent/SKILL.md 工作树相对 HEAD 有未提交改动（版本史 1.2.0 -> 1.3.0）；任务所给 blob 前缀 f70875d142 在本仓解析不出对象，实测 HEAD=6831af60…、工作树=dde69cdc…"
+  },
+  "upstream_drift": {
+   "self_computed_git_blob_sha": "821111317265648bdaa42643d82a5cfc393592ba",
+   "declared_baseline_blob": "821111317265648bdaa42643d82a5cfc393592ba",
+   "gh_api_contents_sha_now": "821111317265648bdaa42643d82a5cfc393592ba",
+   "gh_error": null,
+   "bytes_on_disk": 10285,
+   "sha256": "6ab8e251a3e033ebd5c66c671b2dc2d01b753ef0d4755b5f3b40cb7588152929",
+   "self_matches_declared": true,
+   "gh_matches_declared": true,
+   "verdict": "no-drift：三方一致（自算 git 对象号 == 在册基线 == gh api 现取）"
+  },
+  "target_axes": {
+   "slug": "coding-agent",
+   "face_files": 6,
+   "local_bytes": 42653,
+   "skeleton_local_H123": [
+    10,
+    43,
+    5
+   ],
+   "skeleton_upstream_H123": [
+    6,
+    9,
+    5
+   ],
+   "axes": {
+    "A1_title_domain": 0.2033,
+    "A2_purpose_verbs": 0.5106,
+    "A3_tool_cmd_surface": 0.2761,
+    "A4_distinctive_containment": 0.8639,
+    "A5_block_containment": 0.8648
+   }
+  },
+  "upstream_block_coverage": [
+   {
+    "head": "## When to Use",
+    "upstream_lines_1based_inclusive": [
+     21,
+     34
+    ],
+    "n_distinctive": 5,
+    "cov": 1.0,
+    "absent_sample": []
+   },
+   {
+    "head": "## When NOT to use this",
+    "upstream_lines_1based_inclusive": [
+     35,
+     40
+    ],
+    "n_distinctive": 3,
+    "cov": 1.0,
+    "absent_sample": []
+   },
+   {
+    "head": "## Prerequisites (check once)",
+    "upstream_lines_1based_inclusive": [
+     41,
+     49
+    ],
+    "n_distinctive": 13,
+    "cov": 1.0,
+    "absent_sample": []
+   },
+   {
+    "head": "## The loop",
+    "upstream_lines_1based_inclusive": [
+     50,
+     53
+    ],
+    "n_distinctive": 1,
+    "cov": 1.0,
+    "absent_sample": []
+   },
+   {
+    "head": "### 1. Write the brief",
+    "upstream_lines_1based_inclusive": [
+     54,
+     61
+    ],
+    "n_distinctive": 7,
+    "cov": 0.5714,
+    "absent_sample": [
+     "-the-brief",
+     "claude.md/agents.md",
+     "references/writing-the-brief.md"
+    ]
+   },
+   {
+    "head": "### 2. Dispatch",
+    "upstream_lines_1based_inclusive": [
+     62,
+     81
+    ],
+    "n_distinctive": 50,
+    "cov": 0.9,
+    "absent_sample": [
+     "--help",
+     ".../relay.mjs",
+     "fallback",
+     "references/dispatch-and-poll.md",
+     "routinely"
+    ]
+   },
+   {
+    "head": "### 3. Wait for completion",
+    "upstream_lines_1based_inclusive": [
+     82,
+     98
+    ],
+    "n_distinctive": 16,
+    "cov": 1.0,
+    "absent_sample": []
+   },
+   {
+    "head": "### 4. Review — do not trust the self-report",
+    "upstream_lines_1based_inclusive": [
+     99,
+     112
+    ],
+    "n_distinctive": 17,
+    "cov": 0.8824,
+    "absent_sample": [
+     "-verify",
+     "references/review-and-land.md"
+    ]
+   },
+   {
+    "head": "### 5. Land it",
+    "upstream_lines_1based_inclusive": [
+     113,
+     121
+    ],
+    "n_distinctive": 8,
+    "cov": 1.0,
+    "absent_sample": []
+   },
+   {
+    "head": "## Read-only second opinions",
+    "upstream_lines_1based_inclusive": [
+     122,
+     131
+    ],
+    "n_distinctive": 9,
+    "cov": 0.7778,
+    "absent_sample": [
+     "grok",
+     "readonlyviolation"
+    ]
+   },
+   {
+    "head": "## Authorization model",
+    "upstream_lines_1based_inclusive": [
+     132,
+     140
+    ],
+    "n_distinctive": 8,
+    "cov": 0.75,
+    "absent_sample": [
+     "-but-unasked",
+     "references/review-and-land.md"
+    ]
+   },
+   {
+    "head": "## If you have the openai-codex plugin",
+    "upstream_lines_1based_inclusive": [
+     141,
+     157
+    ],
+    "n_distinctive": 12,
+    "cov": 0.75,
+    "absent_sample": [
+     "-rescue",
+     "-review",
+     "codex-rescue"
+    ]
+   },
+   {
+    "head": "## References",
+    "upstream_lines_1based_inclusive": [
+     158,
+     169
+    ],
+    "n_distinctive": 14,
+    "cov": 0.6429,
+    "absent_sample": [
+     "-the-brief",
+     "references/dispatch-and-poll.md",
+     "references/multi-task-queues.md",
+     "references/review-and-land.md",
+     "references/writing-the-brief.md"
+    ]
+   },
+   {
+    "head": "## Limitations",
+    "upstream_lines_1based_inclusive": [
+     170,
+     175
+    ],
+    "n_distinctive": 6,
+    "cov": 0.8333,
+    "absent_sample": [
+     "limitations"
+    ]
+   }
+  ],
+  "absorbed_verbatim_reference_parity": [
+   {
+    "file": "dispatch-and-poll.md",
+    "present": true,
+    "local_bytes": 11738,
+    "upstream_bytes": 11738,
+    "local_git_blob": "b124b940e797d07f5ded53b4286efdd1606fea38",
+    "upstream_git_blob": "b124b940e797d07f5ded53b4286efdd1606fea38",
+    "verbatim_equal": true
+   },
+   {
+    "file": "multi-task-queues.md",
+    "present": true,
+    "local_bytes": 3741,
+    "upstream_bytes": 3741,
+    "local_git_blob": "ab8cb0113e0e511b4a02e316ab6bd0878904134d",
+    "upstream_git_blob": "ab8cb0113e0e511b4a02e316ab6bd0878904134d",
+    "verbatim_equal": true
+   },
+   {
+    "file": "review-and-land.md",
+    "present": true,
+    "local_bytes": 7877,
+    "upstream_bytes": 7877,
+    "local_git_blob": "bf64373d2112142b6a9f6a941e0f4cfc34997f4f",
+    "upstream_git_blob": "bf64373d2112142b6a9f6a941e0f4cfc34997f4f",
+    "verbatim_equal": true
+   },
+   {
+    "file": "writing-the-brief.md",
+    "present": true,
+    "local_bytes": 6172,
+    "upstream_bytes": 6172,
+    "local_git_blob": "71f256ec62f614de44fceff0b4764677894fe823",
+    "upstream_git_blob": "71f256ec62f614de44fceff0b4764677894fe823",
+    "verbatim_equal": true
+   }
+  ],
+  "local_only_private_extensions": [
+   "四后端启动形态（codex/claude/opencode/workbuddy；含 WorkBuddy asar 内 codebuddy CLI 路径与 node 包装法）",
+   "openclaw 通知路由块（channel/target/account/reply_to/thread_id；完成或失败只发一条）",
+   "OpenClaw 状态目录禁区（~/.openclaw、$OPENCLAW_STATE_DIR、~/Projects/openclaw 不派活）",
+   "process 动作面（list/poll/log/submit/write/paste/kill）与状态播报节律",
+   "Scratch Codex（mktemp -d + git init 的可信仓库前置）",
+   "长 issue-to-PR 环（issue 当持久规格，回报 issue URL 与 sessionId）",
+   "中文委派契约分卷 references/delegation-contract.md（上游无同名单件；五步环与退出码语义重写为中文对账面）"
+  ],
+  "blocks_cov_below_0.90": [
+   "### 1. Write the brief",
+   "### 4. Review — do not trust the self-report",
+   "## Read-only second opinions",
+   "## Authorization model",
+   "## If you have the openai-codex plugin",
+   "## References",
+   "## Limitations"
+  ],
+  "direction_verdict": "本地 ⊇ 上游（结构上超集）+ 3 段成块尾巴未落地；不是「零缺口超集」，也不是「异族错配」"
+ },
+ "increments": [
+  {
+   "inc_id": "INC-01",
+   "upstream_block": "## Read-only second opinions",
+   "upstream_lines_1based_inclusive": [
+    122,
+    131
+   ],
+   "class": "content-gap",
+   "bytes": 700,
+   "verbatim": "## Read-only second opinions\n\nThe relay doubles as a clean way to get an adversarial second opinion with a verified read-only filesystem profile: dispatch\n`--read-only` with a brief that lists the agreed points, then each contested point with both\npositions, and ask Codex to defend or concede each — deliverable in its final message, touching no\nfiles. Any delegation skill whose implementer offers a read-only mode supports the same use, but\ncheck how hard that mode's guarantee is first: Codex's sandbox enforces it, while Grok's is\nbest-effort and only flagged after the fact (`readOnlyViolation`) — for those implementers,\nverify `touchedFiles` came back empty instead of assuming no edits.\n",
+   "verbatim_sha256": "2fb5181eccbc29cb6d13388e49002b8c0a107cc598e3db8ec8ef2f36c664565f",
+   "reverified": true,
+   "signature_tokens_absent_locally": [
+    "readOnlyViolation",
+    "best-effort",
+    "concede",
+    "defend",
+    "adversarial",
+    "contested"
+   ],
+   "signature_tokens_found_locally": [],
+   "gap_strength": "strong",
+   "landing": "D:/global_skills/coding-agent/references/delegation-contract.md：本地 ## Read-only second opinions 段（实测第 72-75 行）之后追加两块",
+   "rationale": "本地只写了「把只读写进 brief、别靠对方自觉」。上游同段还多两样可执行内容：(a) 对抗流程=先列已同意点、再逐个争议点给出双方立场、要求对方 defend 或 concede、结论写在最终消息；(b) 只读强度分档=Codex 沙箱硬强制，其它实现是 best-effort 且只在事后标 readOnlyViolation，故对后者必须改验 touchedFiles 是否为空。本地是四后端（codex/claude/opencode/workbuddy），(b) 比上游单后端原版更适用。",
+   "gate_for_r317": "rule_editor 三道闸；禁 write 整体重写（自建skill优化/AGENTS.md 红线 2）",
+   "known_pass_at_build": true,
+   "pairing_at_build": "same-family-gaps"
+  },
+  {
+   "inc_id": "INC-02",
+   "upstream_block": "## If you have the openai-codex plugin",
+   "upstream_lines_1based_inclusive": [
+    141,
+    157
+   ],
+   "class": "deliberately-skipped-recheck",
+   "bytes": 1134,
+   "verbatim": "## If you have the openai-codex plugin\n\nThe official openai-codex Claude Code plugin is excellent and **complementary** — `codex-delegate`\nbuilds on the same `codex` CLI, it doesn't replace the plugin. They point in different directions:\n\n- The plugin's `codex:codex-rescue` agent is a **forwarder**: it hands one task to Codex and returns\n  the output. It deliberately does not poll, review, or commit.\n- The plugin's review command and stop-review gate run the **inverse** direction: **Codex reviews your work**.\n- `codex-delegate` is the **orchestration loop in the other direction**: *you* drive Codex to\n  implement across one task or a queue, and *you* review and land each result. That loop — brief →\n  dispatch → poll → review → commit, with the orchestrator owning the commit — is what the plugin\n  leaves to you, and what this skill encodes.\n\nIf you have the plugin installed, its companion CLI is an optional alternative dispatch backend; the\nupstream `relay.mjs` is a separate runtime dependency beyond the `codex` binary\n(Node and `git`, which the relay also needs, are prerequisites for every skill here).\n",
+   "verbatim_sha256": "3d34db0031bb9e6d80bf47abc4a140e4a0269958826ec2c32fcef727e7b0060b",
+   "reverified": true,
+   "signature_tokens_absent_locally": [
+    "codex-rescue",
+    "forwarder",
+    "complementary",
+    "inverse",
+    "stop-review",
+    "deliberately"
+   ],
+   "signature_tokens_found_locally": [],
+   "gap_strength": "strong",
+   "landing": "D:/global_skills/coding-agent/references/delegation-contract.md：Authorization model 之前新增小节「与 openai-codex 插件的方向图」",
+   "rationale": "三向区分：插件 codex-rescue 是转发器（不 poll/不 review/不 commit）；插件评审与 stop-review 门是反方向（Codex 审你的活）；本件是正向编排环（你派、你审、你落地）。本地 v1.2.0 版本史明写「属插件专属，未吸收」= 既往主动取舍，故登记为候选并标须重裁，不当无争议缺口。风险面：本地已含 claude 启动形态，用户同时装插件时易把活整包交给插件，丢掉 review+land 责任面。",
+   "gate_for_r317": "rule_editor 三道闸；禁 write 整体重写（自建skill优化/AGENTS.md 红线 2）",
+   "known_pass_at_build": true,
+   "pairing_at_build": "same-family-gaps"
+  },
+  {
+   "inc_id": "INC-03",
+   "upstream_block": "## When to Use (paragraph: designed-for vs proven)",
+   "upstream_lines_1based_inclusive": [
+    30,
+    33
+   ],
+   "class": "honesty-gap",
+   "bytes": 335,
+   "verbatim": "Nothing here is specific to one orchestrating agent. The loop needs only the ability to run a shell\ncommand and read a file, so it works the same whether you are Claude Code, OpenCode with a selected\nmodel, or any comparable agent. (It is designed for and run on Claude Code; treat other orchestrators\nas designed-for, not yet proven.)",
+   "verbatim_sha256": "85dfddc1c76bdbe4659472100ed14fb5572ca3de59d35996df626e04fc440ce6",
+   "reverified": true,
+   "signature_tokens_absent_locally": [
+    "orchestrating",
+    "comparable",
+    "designed-for"
+   ],
+   "signature_tokens_found_locally": [
+    "proven"
+   ],
+   "gap_strength": "strong",
+   "landing": "D:/global_skills/coding-agent/SKILL.md：正文 # Coding Agent 与 ## Hard rules 之间补一行后端证据分档声明",
+   "rationale": "上游明写「不为单一编排 agent 设计，但在 Claude Code 上运行验证过；其它编排器算 designed-for、不算已证」。本地宣称可派四后端，却没有已实测/未证的分档声明 => 证据状态诚实性缺口（不是命令缺口），一句话可补。",
+   "gate_for_r317": "rule_editor 三道闸；禁 write 整体重写（自建skill优化/AGENTS.md 红线 2）",
+   "known_pass_at_build": true,
+   "pairing_at_build": "same-family-gaps"
+  },
+  {
+   "inc_id": "INC-04",
+   "upstream_block": "## References",
+   "upstream_lines_1based_inclusive": [
+    158,
+    169
+   ],
+   "class": "navigation-gap-orphan-volumes",
+   "bytes": 743,
+   "verbatim": "## References\n\n- [references/writing-the-brief.md](references/writing-the-brief.md) — how to write a brief Codex can\n  execute blind: structure, XML blocks, the report contract, embedding the real gate commands.\n- [references/dispatch-and-poll.md](references/dispatch-and-poll.md) — `relay.mjs` flags, the\n  `result.json` contract, backgrounding per orchestrator, and recovery when a run misbehaves.\n- [references/review-and-land.md](references/review-and-land.md) — the review checklist, the commit\n  boundary, and the exact-session rework cycle.\n- [references/multi-task-queues.md](references/multi-task-queues.md) — running a sequential queue:\n  carrying constraints forward, progress tracking, and the end-of-run coherence check.\n\n",
+   "verbatim_sha256": "73d02b3cab8c60cb608548a5015443c030052cd10633f8d3cce9406cf6ff6881",
+   "reverified": true,
+   "signature_tokens_absent_locally": [
+    "references/writing-the-brief.md",
+    "references/dispatch-and-poll.md",
+    "references/review-and-land.md",
+    "references/multi-task-queues.md"
+   ],
+   "signature_tokens_found_locally": [],
+   "gap_strength": "strong",
+   "landing": "D:/global_skills/coding-agent/SKILL.md：在 ## Delegation contract (read before delegating) 之后新增 ## References 小节，四条链接各带一行用途（可中文，路径须逐字保留）",
+   "rationale": "本轮新抓的实测缺口（非历史结论）：上游 4 个 references 分卷本地已逐字收录（git 对象号等值，见 absorbed_verbatim_reference_parity），但 coding-agent 全目录内没有任何文件链到这四条路径——逐条 grep -rlF 实测 0 命中；SKILL.md 只链 delegation-contract.md，四卷仅互相交叉引用，因此从入口不可达（孤儿卷）。后果：路由与检索面看不见这四卷，生产上等于没有吸收；本仓 v1.3.0 自身的「修断链」纪律也要求补。落地面最小：SKILL.md 加一个 ## References 小节四行，零内容改写风险。",
+   "gate_for_r317": "rule_editor 三道闸；禁 write 整体重写（自建skill优化/AGENTS.md 红线 2）",
+   "known_pass_at_build": true,
+   "pairing_at_build": "same-family-gaps"
+  }
+ ],
+ "none_reason": null,
+ "swap_candidates": {
+  "fetched_via": "仅 gh api",
+  "source_face": "gh api repos/<r> 本轮直连现取",
+  "policy": "stars / pushed_at / license 三值现取，禁抄历史数",
+  "items": [
+   {
+    "repo": "amElnagdy/delegate-skills",
+    "fetched": true,
+    "stars": 2539,
+    "pushed_at": "2026-10-29T23:13:49Z",
+    "license": "MIT",
+    "archived": false
+   },
+   {
+    "repo": "Yeachan-Heo/oh-my-claudecode",
+    "fetched": true,
+    "stars": 40440,
+    "pushed_at": "2026-10-31T11:32:19Z",
+    "license": "MIT",
+    "archived": false
+   },
+   {
+    "repo": "OrchestratorInc/agent-orchestrator",
+    "fetched": true,
+    "stars": 13945,
+    "pushed_at": "2026-10-31T11:49:21Z",
+    "license": "Apache-2.0",
+    "archived": false
+   }
+  ],
+  "relevance_note": "本件判 same-family-gaps，主路径是增量吸收而非换装；下表仅供 r317 若要换装时参考。另记一条实测：声明路径在聚合仓是 docs-only（contents 只有 SKILL.md + references/，无 scripts/），而源仓 amElnagdy/delegate-skills 每个 *-delegate 变体各带 scripts/relay.mjs（agy 41187B、aider 35091B）=> 真正未到手的是运行时 relay，不是文档；引入运行时属范围变更，须 Lead 裁。"
+ },
+ "negative_controls": {
+  "legA": {
+   "ran": true,
+   "on_inc_id": "INC-01",
+   "mutation": "verbatim 末字符改成另一字符",
+   "original_reverified": true,
+   "mutated_reverified": false,
+   "expected": {
+    "original_reverified": true,
+    "mutated_reverified": false
+   },
+   "pass": true
+  },
+  "legB": {
+   "rule": "把正例 docx 判词强制改成 diff-family => known-pass 必须 False",
+   "known_pass_normal": true,
+   "known_pass_under_flip": false,
+   "pass": true
+  },
+  "legB_as_executed_by_flag": {
+   "force_leg": null,
+   "known_pass_this_invocation": true
+  }
+ },
+ "handoff_to_r317": {
+  "gates": "rule_editor 三道闸；禁 write 整体重写（自建skill优化/AGENTS.md 红线 2）",
+  "suggested_order": [
+   "INC-01 真内容缺口：只读对抗流程 + 只读强度分档（本地四后端比上游单后端更需要）",
+   "INC-03 一句话后端证据分档（落 SKILL.md 正文须同步 version 与版本史）",
+   "INC-02 既往 v1.2.0 主动跳过项，属重裁而非无争议缺口，须 Lead 裁"
+  ],
+  "bigger_fish_measured": "真正未到手的是运行时 relay.mjs：声明路径实测 docs-only（gh contents 只回 SKILL.md + references/，无 scripts/）；源仓 amElnagdy/delegate-skills 每个 *-delegate 变体各带 scripts/relay.mjs（实测树读数 agy 41187B / aider 35091B）。引入运行时 = 范围变更，须先裁，本备料包不擅自推进",
+  "dirty_face_warning": "受管根 coding-agent/SKILL.md 工作树相对 HEAD 有未提交改动（版本史 1.2.0 -> 1.3.0）；落地前须确认归属，防并发写者（#44 D7.2）",
+  "not_landed_by_design": "本件按 brief 只出证据+方案：未写受管根一个字节，未代裁落哪个文件 / 是否引入运行时 / 是否换装"
+ },
+ "selftest": {
+  "mode": "normal",
+  "legA": {
+   "ran": true,
+   "on_inc_id": "INC-01",
+   "mutation": "verbatim 末字符改成另一字符",
+   "original_reverified": true,
+   "mutated_reverified": false,
+   "expected": {
+    "original_reverified": true,
+    "mutated_reverified": false
+   },
+   "pass": true
+  },
+  "legB": {
+   "rule": "把正例 docx 判词强制改成 diff-family => known-pass 必须 False",
+   "known_pass_normal": true,
+   "known_pass_under_flip": false,
+   "pass": true
+  },
+  "overall_pass": true
+ }
+}

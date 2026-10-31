@@ -72,12 +72,20 @@ def three_values(rec):
     }
 
 
-def partition(records):
+def partition(records, freeze=None):
     # split the five states into the three review buckets; unknown is never a candidate
-    candidates, local_drift, unknown = [], [], []
+    # r318 冻结名单：declared_state=NOT_SAME_LINEAGE 的配对（gstack，r317 终裁）上游仍会被扫、
+    # 状态仍如实报（UPSTREAM_CHANGED 计数不动），但**不进候选面**——候选=可吸收动作，异族靶不该再被指路。
+    freeze = freeze or set()
+    candidates, local_drift, unknown, frozen = [], [], [], []
     for r in records:
         st = r.get('state')
-        if st in UPSTREAM_STATES:
+        if st in UPSTREAM_STATES and r.get('slug') in freeze:
+            item = dict(r)
+            item['three_values'] = three_values(r)
+            item['candidate_kind'] = 'frozen_not_same_lineage'
+            frozen.append(item)
+        elif st in UPSTREAM_STATES:
             item = dict(r)
             item['three_values'] = three_values(r)
             item['candidate_kind'] = 'upstream_absorption'
@@ -86,13 +94,14 @@ def partition(records):
             local_drift.append(dict(r))
         elif st == 'UNKNOWN':
             unknown.append(dict(r))
-    return candidates, local_drift, unknown
+    return candidates, local_drift, unknown, frozen
 
 
-def build_quarter_doc(doc, records, summary, quarter, now):
-    cand, drift, unk = partition(records)
+def build_quarter_doc(doc, records, summary, quarter, now, freeze=None):
+    cand, drift, unk, frozen = partition(records, freeze)
     qsummary = dict(summary)
     qsummary['candidates'] = len(cand)
+    qsummary['frozen'] = len(frozen)
     qsummary['local_drift'] = len(drift)
     qsummary['unknown_pairs'] = len(unk)
     qsummary['caliber'] = 'r303a five-state comparator, imported and not re-implemented'
@@ -138,6 +147,7 @@ def build_quarter_doc(doc, records, summary, quarter, now):
         },
         'summary': qsummary,
         'candidates': cand,
+        'frozen': frozen,
         'local_drift': drift,
         'unknown_pairs': unk,
         'pairs': records,
@@ -148,10 +158,21 @@ def format_scan_line(summary, quarter):
     return ('[R304:SCAN] quarter=%s pairs=%d ok=%d upstream_changed=%d local_changed=%d both=%d unknown=%d candidates=%d'
             % (quarter, summary.get('pairs', 0), summary.get('ok', 0), summary.get('upstream_changed', 0),
                summary.get('local_changed', 0), summary.get('both_changed', 0), summary.get('unknown', 0),
-               summary.get('candidates', 0)))
+               summary.get('candidates', 0)) + ' frozen=%d' % summary.get('frozen', 0))
 
 
-def run_scan(baseline, outdir, quarter=None, workers=8, only=None, write=True, verbose=True, quiet=False):
+def load_freeze(path):
+    # r318：冻结名单=外部 JSON（slug 数组）；缺失返回空集（禁把「读不到名单」读成「全员可吸收」——
+    # 名单缺失只影响候选面收缩，不影响任何状态读数）。
+    try:
+        with open(path, encoding='utf-8') as fh:
+            d = json.load(fh)
+        return set(d.get('slugs') or d if isinstance(d, list) else d.get('slugs') or [])
+    except Exception:
+        return set()
+
+
+def run_scan(baseline, outdir, quarter=None, workers=8, only=None, write=True, verbose=True, quiet=False, freeze=None):
     # returns (quarter_doc or None, rc, quarter_id); rc=2 means the baseline is absent
     now = datetime.now()
     q = quarter or quarter_of(now)
@@ -162,7 +183,12 @@ def run_scan(baseline, outdir, quarter=None, workers=8, only=None, write=True, v
     cmp = load_module(DEFAULT_COMPARATOR, 'r303a_compare_baseline')
     doc, records = cmp.run_comparison(baseline, workers, only)
     summary = cmp.summarize(records)
-    qdoc = build_quarter_doc(doc, records, summary, q, now)
+    # r318 一致性：freeze=None 走库级默认名单（importer 如 check_r304a 与 CLI 同口径），
+    # 显式传 set() 才能关——否则判据面 candidates=1、工具面 candidates=0 两处读数打架。
+    if freeze is None:
+        fl = os.path.join(HERE, 'absorption_freeze_list.json')
+        freeze = load_freeze(fl) if os.path.isfile(fl) else set()
+    qdoc = build_quarter_doc(doc, records, summary, q, now, freeze=freeze)
     if verbose and not quiet:
         for r in records:
             print('%-30s %-16s local_changed=%-5s upstream_changed=%-5s notes=%s'
@@ -192,10 +218,15 @@ def main(argv=None):
     ap.add_argument('--workers', type=int, default=8)
     ap.add_argument('--only', default=None)
     ap.add_argument('--json-out', default=None)
+    ap.add_argument('--freeze', default=os.path.join(HERE, 'absorption_freeze_list.json'),
+                    help='r318 冻结名单 JSON（NOT_SAME_LINEAGE 等：状态照报、不进候选面）')
     ap.add_argument('--quiet', action='store_true')
     a = ap.parse_args(argv)
     only = a.only.split(',') if a.only else None
-    qdoc, rc, q = run_scan(a.baseline, a.outdir, a.quarter, a.workers, only, True, not a.quiet, a.quiet)
+    freeze = load_freeze(a.freeze) if a.freeze and os.path.isfile(a.freeze) else set()
+    if not a.quiet and freeze:
+        print('[R304:FREEZE] slugs=%s' % ','.join(sorted(freeze)))
+    qdoc, rc, q = run_scan(a.baseline, a.outdir, a.quarter, a.workers, only, True, not a.quiet, a.quiet, freeze)
     if rc == 2 or qdoc is None:
         return 2
     if a.json_out:

@@ -1,0 +1,14 @@
+[
+  {
+    "head": "## References",
+    "keys": [
+      "references/writing-the-brief.md",
+      "references/dispatch-and-poll.md",
+      "references/review-and-land.md",
+      "references/multi-task-queues.md"
+    ],
+    "class": "navigation-gap-orphan-volumes",
+    "land": "D:/global_skills/coding-agent/SKILL.md：在 ## Delegation contract (read before delegating) 之后新增 ## References 小节，四条链接各带一行用途（可中文，路径须逐字保留）",
+    "why": "本轮新抓的实测缺口（非历史结论）：上游 4 个 references 分卷本地已逐字收录（git 对象号等值，见 absorbed_verbatim_reference_parity），但 coding-agent 全目录内没有任何文件链到这四条路径——逐条 grep -rlF 实测 0 命中；SKILL.md 只链 delegation-contract.md，四卷仅互相交叉引用，因此从入口不可达（孤儿卷）。后果：路由与检索面看不见这四卷，生产上等于没有吸收；本仓 v1.3.0 自身的「修断链」纪律也要求补。落地面最小：SKILL.md 加一个 ## References 小节四行，零内容改写风险。"
+  }
+]

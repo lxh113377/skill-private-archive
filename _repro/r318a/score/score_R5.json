@@ -1,0 +1,494 @@
+{
+  "round": "R5 (r317 轮次5 · 第三方盲评 · 人判四项 1/2/3/7 + paste-clean 语义核)",
+  "mechanical_items_untouched": [
+    4,
+    5,
+    6,
+    8
+  ],
+  "rubric_basis": [
+    "_repro/r309a/rubric2.md item1/2/3/7",
+    "_repro/r312a/rubric3.md item1/2/3/7"
+  ],
+  "citation_verification": {
+    "quotes_checked": 77,
+    "mismatch": 0,
+    "negative_controls_checked": 10,
+    "negative_controls_all_correct": true,
+    "method": "indexOf 逐条回验 + 行号一致断言；另注入 10 条伪造引文/伪造计数作负控，全部按预期未命中"
+  },
+  "arms": {
+    "out_X2e": {
+      "task": "task2 (_temp/r309a/task2.md)",
+      "items": {
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "7": 1
+      },
+      "quality": "4/4",
+      "citations": {
+        "1": [
+          {
+            "f": "optimized_prompt.md:2",
+            "q": "你是本仓库前端资产维护与发布的执行 agent，拥有命令行权限"
+          },
+          {
+            "f": "optimized_prompt.md:67",
+            "q": "识别通道：读取仓库内既有部署线索，例如 CI 配置、部署脚本"
+          },
+          {
+            "f": "optimized_prompt.md:82",
+            "q": "交付前逐条实测并在报告中写明数值或比对结果，不写「已通过」这类结论词"
+          }
+        ],
+        "2": [
+          {
+            "f": "optimized_prompt.md:20",
+            "q": "需求含糊处，本任务书已作如下唯一裁定，执行时不再另择理解"
+          },
+          {
+            "f": "optimized_prompt.md:21",
+            "q": "「商品图太丑」按可观察缺陷处理"
+          },
+          {
+            "f": "optimized_prompt.md:23",
+            "q": "「想全面一点、多从几个角度反复推敲」由你自行定方法"
+          },
+          {
+            "f": "optimized_prompt.md:24",
+            "q": "「自己跑完部署上线」= 使用该站既有部署通道 + 部署后复验线上产物"
+          }
+        ],
+        "3": [
+          {
+            "f": "optimized_prompt.md:93",
+            "q": "一份 Markdown 收尾报告，字段顺序固定"
+          },
+          {
+            "f": "optimized_prompt.md:97",
+            "q": "4 Done 判据核对：4 条各给判据命令、期望值、实测值"
+          },
+          {
+            "f": "optimized_prompt.md:82",
+            "q": "交付前逐条实测并在报告中写明数值或比对结果，不写「已通过」这类结论词"
+          }
+        ],
+        "7": [
+          {
+            "f": "optimized_prompt.md:29",
+            "q": "重制质量差的商品图"
+          },
+          {
+            "f": "optimized_prompt.md:30",
+            "q": "以此带动页面整体观感变好"
+          },
+          {
+            "f": "optimized_prompt.md:42",
+            "q": "四视角推敲：每张候选改动各推一遍"
+          },
+          {
+            "f": "optimized_prompt.md:31",
+            "q": "全部自检通过后自行部署，并对线上产物复验取证"
+          },
+          {
+            "f": "optimized_prompt.md:70",
+            "q": "部署后必须复验线上产物：命令返回成功不等于上线成功"
+          }
+        ]
+      },
+      "paste_clean": {
+        "verdict": "pass",
+        "addressee_test": "复核句全部写成执行 agent 的自检动作，无编辑手记段、无直呼派发人、无路径件名称谓",
+        "evidence": [
+          {
+            "f": "optimized_prompt.md:11",
+            "q": "执行任何写入动作之前先逐条复核一次，收尾之前再复核一次"
+          },
+          {
+            "f": "optimized_prompt.md:122",
+            "q": "收尾前最后复核，按顺序自问三件事"
+          }
+        ],
+        "notes": "meta 词表扫描（优化前/核心改动/原请求/用户原话/派发/粘贴/老大/盘符路径/_temp/件名）命中 0；10 条伪造引文负控（含「粘贴前请复核以下 scope locks」「## 优化前 / 核心改动 / 其他调整」「C:/Users/37533/Desktop/workspace」）全部未命中"
+      },
+      "differing_items": [],
+      "differing_note": "四项 task2 双臂同分 ⇒ 此项无区分力（1/2/3/7 各自均无区分力）；本轮区分来自 paste-clean 之外无差异"
+    },
+    "out_Y2e": {
+      "task": "task2 (_temp/r309a/task2.md)",
+      "items": {
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "7": 1
+      },
+      "quality": "4/4",
+      "citations": {
+        "1": [
+          {
+            "f": "optimized_prompt.md:4",
+            "q": "你是纯静态 HTML 超市站的前端资产工程师"
+          },
+          {
+            "f": "optimized_prompt.md:45",
+            "q": "git status --porcelain 的每条改动路径都在 assets 内且为图片"
+          },
+          {
+            "f": "optimized_prompt.md:9",
+            "q": "禁止凭记忆猜路径、文件名或价格字段名"
+          }
+        ],
+        "2": [
+          {
+            "f": "optimized_prompt.md:36",
+            "q": "「想全面一点、多从几个角度反复推敲」的执行做法：以三个互不重叠的视角各把完整产物过一遍"
+          },
+          {
+            "f": "optimized_prompt.md:10",
+            "q": "价格数据可能散落在 HTML 模板 / JSON / JS 中，动手前先定位并列出「价格载体文件」清单"
+          },
+          {
+            "f": "optimized_prompt.md:25",
+            "q": "按此规格同名覆盖替换商品图，把「图丑」在资产层解决"
+          }
+        ],
+        "3": [
+          {
+            "f": "optimized_prompt.md:96",
+            "q": "收尾报告用 markdown，五段"
+          },
+          {
+            "f": "optimized_prompt.md:32",
+            "q": "按「位置 / 原因 / 预期收益 / 风险」四列列出"
+          },
+          {
+            "f": "optimized_prompt.md:102",
+            "q": "只给结论、依据、复验结果，不输出推理过程本身"
+          }
+        ],
+        "7": [
+          {
+            "f": "optimized_prompt.md:25",
+            "q": "按此规格同名覆盖替换商品图，把「图丑」在资产层解决"
+          },
+          {
+            "f": "optimized_prompt.md:19",
+            "q": "页面观感提升若需要改 HTML/CSS：不动文件，写进收尾报告的「需授权清单」"
+          },
+          {
+            "f": "optimized_prompt.md:40",
+            "q": "三视角各跑两轮：第一轮找缺陷并修，第二轮只复验"
+          },
+          {
+            "f": "optimized_prompt.md:27",
+            "q": "按 <phases> 的部署门把站点上线并复验线上"
+          },
+          {
+            "f": "optimized_prompt.md:107",
+            "q": "不许动商品价格——价格载体文件字节级不变"
+          }
+        ]
+      },
+      "paste_clean": {
+        "verdict": "pass",
+        "addressee_test": "复核指令是 agent 的第 0 步动作；无优化前后对照、无直呼派发人",
+        "evidence": [
+          {
+            "f": "optimized_prompt.md:15",
+            "q": "第 0 步（动手前必做）：逐条复核本段与 <stop_conditions>，用命令输出确认站点真实路径"
+          },
+          null
+        ],
+        "notes": "L106「末尾再钉一遍（与 <scope_locks> 同文）」属文档自述式交叉引用（首尾复述技巧的自我标注），非面向派发人的动作要求，判为良性；若父级口径把任何文档自述也算元内容，则本臂改判 fail（其余证据不变）。meta 词表扫描除该自述外命中 0。"
+      },
+      "differing_items": [],
+      "differing_note": "四项 task2 双臂同分 ⇒ 此项无区分力（1/2/3/7 各自均无区分力）；本轮区分来自 paste-clean 之外无差异"
+    },
+    "out_X5": {
+      "task": "task3 (_temp/r312a/task3.md)",
+      "items": {
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "7": 1
+      },
+      "quality": "4/4",
+      "citations": {
+        "1": [
+          {
+            "f": "optimized_prompt.md:7",
+            "q": "你是资深数据工程方向的 coding agent。交付一个能被他人直接复跑、直接验收的清洗脚本"
+          },
+          {
+            "f": "optimized_prompt.md:14",
+            "q": "交付对象：本任务书会被交给任意 coding agent 执行，不假设任何特定厂商工具或内部术语"
+          },
+          {
+            "f": "optimized_prompt.md:23",
+            "q": "提供 --selftest，逐条跑 verification 清单并打印实际结果，非零退出码表示有断言未过"
+          }
+        ],
+        "2": [
+          {
+            "f": "optimized_prompt.md:11",
+            "q": "脏项类型未知：可能含缺失值、重复行、日期与金额格式不一、列名与编码不一致，须由脚本实际探查后确定"
+          },
+          {
+            "f": "optimized_prompt.md:32",
+            "q": "不确定就说不知道：列语义、单位、币种无法由数据内证据判定时，标注 unknown 并写入报告待决项"
+          },
+          {
+            "f": "optimized_prompt.md:21",
+            "q": "多候选路径择优：在同一脚本内实现 3-5 个候选清洗策略"
+          }
+        ],
+        "3": [
+          {
+            "f": "optimized_prompt.md:62",
+            "q": "一、clean/report.md，中文，固定五节"
+          },
+          {
+            "f": "optimized_prompt.md:68",
+            "q": "二、脚本 stdout 末尾打印结构化结论"
+          },
+          {
+            "f": "optimized_prompt.md:69",
+            "q": "三、报告与 stdout 的数字必须同源同值，不得两处各写一套"
+          }
+        ],
+        "7": [
+          {
+            "f": "optimized_prompt.md:19",
+            "q": "单入口脚本放在 clean/ 下"
+          },
+          {
+            "f": "optimized_prompt.md:20",
+            "q": "两条死线（必须自证，判据见 done_criteria）：① 订单金额字段不能动；② 只许改 clean/ 目录下的文件"
+          },
+          {
+            "f": "optimized_prompt.md:22",
+            "q": "交付「待写入批次」三件套"
+          },
+          {
+            "f": "optimized_prompt.md:33",
+            "q": "仍是一条命令即可落地，但可回滚、可先审"
+          },
+          {
+            "f": "optimized_prompt.md:94",
+            "q": "任务结尾重申两条死线"
+          }
+        ]
+      },
+      "paste_clean": {
+        "verdict": "fail",
+        "addressee_test": "正文内嵌编辑手记：以「原请求」对照 + 「本件唯一方向性改动」标注改动本身，收信人是对照原请求的派发人，不是执行 agent",
+        "evidence": [
+          {
+            "f": "optimized_prompt.md:33",
+            "q": "生产写入改道（本件唯一方向性改动）：原请求「让脚本直接往生产库写」与「无凭据、不连库」冲突"
+          },
+          {
+            "f": "optimized_prompt.md:1",
+            "q": "任务书：超市销售 CSV 清洗脚本（多候选路径择优 · 生产入库改道交付）"
+          },
+          {
+            "f": "optimized_prompt.md:31",
+            "q": "收尾列出本次被新增或被修改的全部文件路径供人复核"
+          }
+        ],
+        "notes": "process_log.md:9 与 :18 显示作者明知「对比/核心改动」属编辑层（log L18 声称不把对比表写进本体），但 L33 的方向性改动标注与 L1 标题的「改道交付」仍把该层带进了正文。改道规则本身另有合规落点（task P1 L22、anti_patterns L46），删掉 L33 的括号标注与「原请求」句即可 pass。"
+      },
+      "differing_items": [],
+      "differing_note": "四项 task3 双臂同分 ⇒ 此项无区分力（1/2/3/7 各自均无区分力）；区分全部落在 paste-clean（双臂皆 fail，Y5 另有直呼粘贴者硬违约）"
+    },
+    "out_Y5": {
+      "task": "task3 (_temp/r312a/task3.md)",
+      "items": {
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "7": 1
+      },
+      "quality": "4/4",
+      "citations": {
+        "1": [
+          {
+            "f": "optimized_prompt.md:11",
+            "q": "你是资深数据工程 agent"
+          },
+          {
+            "f": "optimized_prompt.md:63",
+            "q": "git status 显示的改动文件 100% 位于 clean/ 之下"
+          },
+          {
+            "f": "optimized_prompt.md:54",
+            "q": "python clean/clean_sales.py --dry-run 退出码 0"
+          }
+        ],
+        "2": [
+          {
+            "f": "optimized_prompt.md:21",
+            "q": "原始需求有多种读法，已按最优一种执行；如与实际不符，改本段即可，不必重来"
+          },
+          {
+            "f": "optimized_prompt.md:22",
+            "q": "「多想几种清洗路径都试一遍择优」= 真实实现并真实运行多个候选方案"
+          },
+          {
+            "f": "optimized_prompt.md:25",
+            "q": "「弄干净」= 空值、重复行、编码/乱码、格式与类型不一致、异常值、口径不统一六类，逐类给出计数"
+          },
+          {
+            "f": "optimized_prompt.md:24",
+            "q": "「那批 CSV」= 目录内全部 .csv，按 mtime 与行数各自处理，不合并成单文件"
+          }
+        ],
+        "3": [
+          {
+            "f": "optimized_prompt.md:100",
+            "q": "交付文件树（相对仓库根，说明写在箭头后）"
+          },
+          {
+            "f": "optimized_prompt.md:111",
+            "q": "REPORT.md 固定章节：数据画像 / 候选方案 / 评分表"
+          },
+          {
+            "f": "optimized_prompt.md:112",
+            "q": "所有指标一律带口径与分母；表格用 markdown；不使用「较多、明显、基本」等模糊量词"
+          }
+        ],
+        "7": [
+          {
+            "f": "optimized_prompt.md:32",
+            "q": "主脚本：clean/clean_sales.py，默认 --dry-run，输出清洗结果到 clean/out/"
+          },
+          {
+            "f": "optimized_prompt.md:31",
+            "q": "实现并运行不少于 3 个完整候选清洗方案"
+          },
+          {
+            "f": "optimized_prompt.md:16",
+            "q": "订单金额字段不可改写：以画像结果识别出的金额列"
+          },
+          {
+            "f": "optimized_prompt.md:17",
+            "q": "只允许新建或修改 clean/ 目录下的文件"
+          },
+          {
+            "f": "optimized_prompt.md:91",
+            "q": "清洗结果当天落到 clean/out/ 供下游立刻使用（立竿见影）"
+          },
+          {
+            "f": "optimized_prompt.md:133",
+            "q": "默认路径是 --dry-run，本次生产库写入次数为 0"
+          }
+        ]
+      },
+      "paste_clean": {
+        "verdict": "fail",
+        "addressee_test": "直呼粘贴者 + 编辑层留在正文 + 要求文档主人改段",
+        "evidence": [
+          {
+            "f": "optimized_prompt.md:140",
+            "q": "This prompt is for an agentic tool with real system access. Review the scope locks, forbidden actions, and stop conditions before pasting."
+          },
+          {
+            "f": "optimized_prompt.md:90",
+            "q": "用户原话「直接往生产库写，立竿见影」保留意图、改道路径，理由：本任务不提供凭据"
+          },
+          {
+            "f": "optimized_prompt.md:21",
+            "q": "原始需求有多种读法，已按最优一种执行；如与实际不符，改本段即可，不必重来"
+          },
+          {
+            "f": "optimized_prompt.md:3",
+            "q": "## Context (carry forward)"
+          }
+        ],
+        "notes": "L140 即题面点名的违约形态（面向发任务书/粘贴者的「paste 前复核」指令，英文整段独立成段，非 agent 可执行动作）；L90 是「优化前→改道」类编辑手记；L21「改本段即可，不必重来」把修订权交给文档所有者；L3 段名 carry forward 是文档来源标注。process_log.md:2 自述「交付件末尾附 <agentic_notice> 段（scope-lock 复核告警）」，属有意设计而非笔误。"
+      },
+      "differing_items": [],
+      "differing_note": "四项 task3 双臂同分 ⇒ 此项无区分力（1/2/3/7 各自均无区分力）；区分全部落在 paste-clean（双臂皆 fail，Y5 另有直呼粘贴者硬违约）"
+    }
+  },
+  "task2_pair": {
+    "X": "out_X2e",
+    "Y": "out_Y2e",
+    "differing_items": [],
+    "statement": "四项 task2 双臂同分 ⇒ 此项无区分力（1/2/3/7 各自均无区分力）；本轮区分来自 paste-clean 之外无差异"
+  },
+  "task3_pair": {
+    "X": "out_X5",
+    "Y": "out_Y5",
+    "differing_items": [],
+    "statement": "四项 task3 双臂同分 ⇒ 此项无区分力（1/2/3/7 各自均无区分力）；区分全部落在 paste-clean（双臂皆 fail，Y5 另有直呼粘贴者硬违约）"
+  },
+  "paste_clean_summary": {
+    "pass": [
+      "out_X2e",
+      "out_Y2e"
+    ],
+    "fail": [
+      "out_X5",
+      "out_Y5"
+    ],
+    "count": "2/4"
+  },
+  "form_checks": {
+    "out_X2e": {
+      "lines": 125,
+      "log_lines": 22,
+      "triple_backtick_count": 0,
+      "whole_doc_fenced": false,
+      "xml_tag_sections": 16,
+      "H1": 0,
+      "H2": 0,
+      "drive_path_or_filename_or_title_hits": "none（无盘符路径、无 _temp、无 optimized_prompt/process_log 件名、无称谓）",
+      "log_claim_crosscheck": "log L20 声称 16 段 = 实测 16 个唯一尖括号段名，一致"
+    },
+    "out_Y2e": {
+      "lines": 110,
+      "log_lines": 15,
+      "triple_backtick_count": 0,
+      "whole_doc_fenced": false,
+      "xml_tag_sections": 13,
+      "H1": 1,
+      "H2": 0,
+      "drive_path_or_filename_or_title_hits": "none",
+      "log_claim_crosscheck": "log L13 声称交付件 13 个闭合段 = 实测 13，一致；首行为中文标题、不含路径或件名"
+    },
+    "out_X5": {
+      "lines": 97,
+      "log_lines": 23,
+      "triple_backtick_count": 0,
+      "whole_doc_fenced": false,
+      "xml_tag_sections": 12,
+      "H1": 1,
+      "H2": 0,
+      "drive_path_or_filename_or_title_hits": "none（H1 为「任务书」，系用户原话用词，非本端路径/规范件名）",
+      "log_claim_crosscheck": "log L19 声称尖括号段名 12 个 = 实测 12，一致"
+    },
+    "out_Y5": {
+      "lines": 141,
+      "log_lines": 15,
+      "triple_backtick_count": 0,
+      "whole_doc_fenced": false,
+      "xml_tag_sections": 15,
+      "H1": 1,
+      "H2": 1,
+      "drive_path_or_filename_or_title_hits": "none；但正文含英文整段面向粘贴者提示（L140）与英文段名 carry forward（L3）",
+      "log_claim_crosscheck": "log L4 声称 15 尖括号段 + 1 个 ## 标题段 = 实测 15 + 1，一致"
+    }
+  },
+  "unverifiable": [
+    "四臂与技能版本/前后臂的映射不可知（题面禁读 hidden_assignment.json 并禁推断身份），本评只做文本判定，不写任何版本归因。",
+    "「页面变好看」「数据变干净」的实际效果无法核实：题面只交交付件、不执行、不改项目文件（不影响 1/2/3/7 的文本判点，仅影响任何效果性结论）。",
+    "out_X5 optimized_prompt.md:14「本任务书会被交给任意 coding agent 执行」的收信人：我按文本判为对执行 agent 的「勿假设厂商工具」指引（不计入违约证据）；若父级口径把任何派发链描述都算元内容，本臂证据行再加 L14，判词仍为 fail（结论不变）。",
+    "out_Y2e optimized_prompt.md:106「末尾再钉一遍（与 <scope_locks> 同文）」判为良性自述；若父级口径把文档自述也算元内容，本臂改判 fail（判据已写明，便于揭盲后一键改判）。"
+  ],
+  "length_not_scored": "篇幅不计分：125/110/97/141 行差异未参与任何判点，四 log 均 ≤25 行合规。",
+  "steps_declared": 10,
+  "final_line": "[R317C:BLIND-R5] per-arm 4/4 ×4 differing=[] paste-clean=2/4 mismatch=0",
+  "steps_detail": "① 读 rubric×2+题面×2 ② 读八份交付件 ③ 首轮引文回验+形态计数+6 负控 ④ 元内容词表扫描 ⑤ 终轮 77 引文+10 负控复算 ⑥ 写 score_R5.json ⑦ 写 reasons 首次失败（零落盘） ⑧ 写 reasons_R5.md ⑨ 回读校验两文件 ⑩ 步数更正申报；上限 12 未超"
+}
