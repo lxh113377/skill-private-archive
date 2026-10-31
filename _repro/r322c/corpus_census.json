@@ -1,0 +1,11 @@
+{
+ "panel_files": 167,
+ "user_msgs": 1974,
+ "len_hist": {
+  ">200": 1925,
+  "<=200": 49
+ },
+ "short_single_line": 0,
+ "gm_volumes": 2396,
+ "gm_user_utterance_hits": 7
+}

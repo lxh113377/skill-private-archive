@@ -1,0 +1,22 @@
+{
+ "items": [
+  {
+   "k": "R322-1",
+   "p": "P1",
+   "s": "入口可达普查第三、四层口径缺陷：闭包起点只算顶层 SKILL.md（嵌套入口 53 个）、嵌套入口写的是安装后镜像路径（.claude/skills）⇒ 孤儿判定与可达性两个口径都要分级",
+   "d": "一手（Lead 自干 _repro/r322a/，判据 [R322A:CLOSURE] verdict=MIXED fake_orphans=6 teeth=pass，负控 3 条）：① 全树 SKILL.md 244 个 = 顶层 191（与在册名册一致）+ 嵌套 53，有嵌套入口的件仅 3 个（cloudbase 32 / gstack 20 / frontend-slides 1）；② gstack 6 个孤儿经嵌套入口 5/6 逐字引用（qa/SKILL.md 引 2、review/SKILL.md 引 3），第 6 条 review/TODOS-format.md 被 ship/plan-eng-review/CHANGELOG 等 8 处提到 ⇒ 结构可达；③ 但 review/SKILL.md:294 写的是 Read .claude/skills/review/checklist.md（**安装后镜像路径**）⇒ 若按件内路径解析（L2）则 0/5 可解析。⇒ 口径要分两级：L1 basename 可达（v2 采此级）/ L2 路径解析可达（未实装）。**为什么本轮不收紧**：按 L2 必须同时给「镜像路径 ⇒ 件内路径」显式映射，否则把 5 条正确引用判成断链（假红）；承 R263 先评审再改尺。验收靶：若将来收紧到 L2，必须附映射规则 + 一条「正确镜像引用不许翻红」的夹具腿。取值：python -B _repro/r322a/check_r322a.py；python -B _repro/r322b/r322_v2_census.py --closure nested --json <out>。"
+  },
+  {
+   "k": "R322-2",
+   "p": "P1",
+   "s": "入口普查 v2 建成：三处口径修正 + 四桶分账，精确复现官方旧读数（broken=10/orphans=624），并证明旧读数 10 条断链**无一是真断链**",
+   "d": "一手（Lead 自干 _repro/r322b/，判据 [R322B:V2CENSUS] broken_real=0 placeholder=9 orphans_top=624 orphans_nested=618 conservation=ok teeth=pass，负控 noise/placeholder/inject/nested 四条全有牙）：① **P-1 噪声白名单**：624 = 552 真候选 + 72 噪声（OFL 字体许可 30 / LICENSE 前缀 3 / 目录 README 28 / 下划线内部索引 11），两本账守恒 552+72=624、4447+334=4781KB；② **P-2 占位符展开对树 + 生成物分桶**：旧的 10 条 broken = **0 真断链 + 9 PLACEHOLDER_PATTERN（story-* 的 split-NN.md，glob 展开均命中 split-01..10 共 34 个真实件）+ 1 GENERATED_OUTPUT_REF（html-ppt/examples/my-talk/index.html 是 new-deck.sh 运行产物）**，三桶仍计 broken 分母只解释类型；③ **P-4 嵌套闭包**：--closure nested 后 orphans 624→618、gstack 6→0，新增 1 条 GENERATED_INSTRUCTION_REF（gstack/.github/workflows/test.yml 是嵌套入口 qa/SKILL.md:435 的 Create 指令）。④ **本轮自抓根因（最重要）**：我首跑报 560 vs 官方 624，差 64 全是中文名文件 ⇒ 旧件 git() 未带 -c core.quotepath=false，ls-tree 对 109 条非 ASCII 路径输出八进制转义形态，不 unquote 就整批丢中文文件；v2 自建 tree_clean() 后首跑即精确复现 624。⇒ **旧读数 624 是对的，但它依赖的 tree 通道是脆的：换个 git 配置就静默少 64 个文件且判据照样 PASS**（承 r105 陈旧输入面 / r260 读数过期同族）。验收靶：v2 判据进 05-exec/ 常驻前须先过准入门 r129 声明（本轮未建，具名不凑）。取值：python -B _repro/r322b/check_r322b.py；python -B _repro/r322b/r322_v2_census.py --closure top|nested --json <out>。"
+  },
+  {
+   "k": "R322-3",
+   "p": "P0",
+   "s": "需求 6 的**供给缺口**首测：真实语料里短单句指令 = 0 条（97.5% 是 200+ 字符任务书）⇒ r321-4 的「扩池 ≥60 条只缺写权」判断需修正为「还缺料」",
+   "d": "一手（Lead 自干 _repro/r322c/，判据 [R322C:POOL] short_single_line=0 verdict=SUPPLY_GAP teeth=pass，负控 short 有牙）：现算读数 {\"panel_files\":167,\"user_msgs\":1974,\"len_hist\":{\">200\":1925,\"<=200\":49},\"short_single_line\":0,\"gm_volumes\":2396,\"gm_user_utterance_hits\":7} —— DSH 会话记录 167 个会话 / **1974 条 user 消息**里 97.5% 长度 > 200 字符、短单句指令 **0 条**；D:/global_memory/memory 2396 卷里可用「老大说：…」形态 7 条且多为规则条文。⇒ 真实语料形态是**任务书**，与 layered_testset.json（291 条 8–40 字短句）**分布完全不同**。三层缺口：① 数据缺口（r321 已知：池 20 条里 14 条已被直连表覆盖、干净候选仅 6）；② **分布缺口（本轮新测）：没有料可扩池** ⇒ 「扩池到 60 条」本身不可执行；③ 判据缺口：拿任务书当 query，exact judge 会基本全 miss。**对 R321-4 next_action 的修正（按 R241 不改写已发布条目，只在此登记）**：不止缺「焚诀/eval 写权」，还缺供给。两条真路（都比扩池贵）：(a) 让任务以短指令形态出现（入口改造）或人工归一化任务书（= 造基准需人判）；(b) 把 exact 换成「任务书 ⇒ 应触达哪几个 skill」的多标签判据（属改尺，须 R263 评审）。**禁做**：把任务书截成短句当候选 = 造语料，会重演 2026-08-16 拿盲测失败样本补直连（泄漏 63.6%）的同族错误。验收靶：若真实语料将来出现短指令，check_r322c.py 必须转红逼重测（已写进判据）。取值：python -B _repro/r322c/check_r322c.py；python -B -c 读 _repro/r322c/corpus_census.json。"
+  }
+ ]
+}

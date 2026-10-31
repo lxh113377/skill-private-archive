@@ -1,0 +1,12 @@
+{
+ "bucket": "MIRROR_INSTALL_PATH",
+ "evidence": [
+  "gstack/review/SKILL.md:294 Read `.claude/skills/review/checklist.md`（镜像安装路径）",
+  "gstack/review/SKILL.md:302 Read `.claude/skills/review/greptile-triage.md`",
+  "gstack/review/SKILL.md:351 Read `.claude/skills/review/design-checklist.md`",
+  "gstack/qa/SKILL.md 同类（其 references/issue-taxonomy.md 亦以 .claude/skills 形态被读）"
+ ],
+ "meaning": "同一批文件在「件内相对路径」与「安装后镜像路径」两种形态下都被引用；我的可达判定用的是 basename 包含 ⇒ 两种形态都能命中，所以 5/6 判可达",
+ "why_it_matters": "若判据改成严格相对路径解析，这 5 条会全部翻红（.claude/skills 不在件内）⇒ 说明「嵌套入口的可达性」本身有两个正确性级别（我叫它们 L1 basename 可达 / L2 路径解析可达）",
+ "decision": "本 v2 采 L1（basename 包含）并在报告写明；L2 未做，属缺口不属豁免"
+}

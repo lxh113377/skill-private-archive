@@ -1,0 +1,54 @@
+{
+ "schema": "r322a-nested-closure-1",
+ "head": "e8f489ebcf788f9b4f258ab96bb6c3cf465c5b25",
+ "actor": "lead (arms died with zero output on provider switch; per #44-7 lead took over gate question)",
+ "verdict": "MIXED",
+ "totals": {
+  "skill_md_all": 244,
+  "top_level": 191,
+  "nested": 53,
+  "skills_with_nested": 3
+ },
+ "skills_with_nested": {
+  "cloudbase": 32,
+  "gstack": 20,
+  "frontend-slides": 1
+ },
+ "mirror_fact": "C:/Users/37533/.agents/skills/gstack/ contains 19+ nested SKILL.md (qa, review, browse, ship, ...) => nested entries ARE distributed as a skill tree by the mirror; but session catalog lists only top-level gstack => not independently registered as session entry points",
+ "fake_orphan_by_skill": [
+  {
+   "slug": "gstack",
+   "orphans": 6,
+   "covered_by_nested": 6,
+   "true_orphan": 0,
+   "note": "5/6 referenced verbatim by qa|review SKILL.md(.tmpl); 6th (review/TODOS-format.md) unreferenced by any SKILL.md but sits beside review/SKILL.md which references its siblings => structurally sibling-reachable"
+  },
+  {
+   "slug": "ppt-master",
+   "orphans": 171,
+   "covered_by_nested": 0,
+   "true_orphan": 171,
+   "note": "top-level only, no nested SKILL.md"
+  },
+  {
+   "slug": "story-setup",
+   "orphans": 132,
+   "covered_by_nested": 0,
+   "true_orphan": 132
+  },
+  {
+   "slug": "story-long-write",
+   "orphans": 96,
+   "covered_by_nested": 0,
+   "true_orphan": 96
+  }
+ ],
+ "top_to_nested_refs": {
+  "gstack": 1,
+  "ppt-master": 0,
+  "story-setup": 0,
+  "story-long-write": 0
+ },
+ "loader_fact": "UNVERIFIED for runtime loader: session catalog (DSH available_skills) lists only top-level slugs; mirror distributes nested trees. No registry file pinning loader behavior was found in A-skill-manager/A-memory-start within timebox; absence of evidence recorded, not read as either verdict.",
+ "limits": "runtime loader behavior unpinned; cloudbase 32 nested + frontend-slides 1 not fake-orphan-audited (cloudbase not in 52-piece absorption roster census scope; frontend-slides trivial)"
+}

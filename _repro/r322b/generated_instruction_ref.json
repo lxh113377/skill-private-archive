@@ -1,0 +1,8 @@
+{
+ "bucket": "GENERATED_INSTRUCTION_REF",
+ "path": ".github/workflows/test.yml",
+ "found_in": "gstack/qa/SKILL.md:435 与 gstack/design-review/SKILL.md:412（同为 Create 该文件的指令句）",
+ "why_not_real_broken": "指令动词 Create ⇒ 该文件是被要求创建的目标仓 CI 文件，不是本件树内既有路径；同段落还有 only commit if there are changes 的条件句。旧件只走顶层入口看不到嵌套入口这段，故 r320 没报出它。",
+ "why_must_stay_visible": "静态可达口径下它仍是「入口提到、树里没有」⇒ 计入 broken 分母并在报告显形，禁判它不是断链（否则任何指令式生成路径都能免责）。",
+ "teeth": "若该文件真被建进树里，本桶必须消失、broken 自动 -1；判据用内存注入验证该桶不恒真。"
+}
