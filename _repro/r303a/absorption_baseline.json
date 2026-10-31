@@ -1,5 +1,5 @@
 {
- "schema": "r303a.absorption_baseline.v1",
+ "schema": "r303-absorption-baseline-v2(r311 扩 3 对)",
  "generated_at": "2026-10-30T14:53:39+00:00",
  "anchor_note": "历史吸收时该同名件的 sha 未留痕 => 已不可知; 本件以生成时刻为基准锚点, 自此往后「同名件内容变没变」成为可判读数. 本锚只标志可比对的零时刻, 不代表吸收当时的历史状态. local_file_sha 为本地件字节的 sha256(64 位十六进制); upstream_file_sha 为上游同名件的 git blob sha1(40 位十六进制) - 两者算法不同, 不可跨域比较, 只与各自的历史值比较. upstream_commit_sha 为锚定时刻该仓默认分支的提交号.",
  "pairs": [
@@ -590,6 +590,42 @@
    "local_version": "1.4.2",
    "baseline_at": "2026-10-30T14:53:39+00:00",
    "evidence_cmd": "gh api repos/zarazhangrui/frontend-slides/commits/main --jq .sha && gh api 'repos/zarazhangrui/frontend-slides/contents/plugins/frontend-slides/skills/frontend-slides/SKILL.md?ref=main' --jq .sha && sha256sum 'D:/global_skills/frontend-slides/SKILL.md' | cut -c1-64"
+  },
+  {
+   "slug": "A-prompt-better",
+   "repo": "nidhinjs/prompt-master",
+   "upstream_path": "SKILL.md",
+   "upstream_commit_sha": "503f323bc356f82d8a32cb21c72dee4e6b209fbb",
+   "upstream_file_sha": "742deafaf4222f9f0e9d9410e72483dad64fe716",
+   "upstream_version": null,
+   "local_file_sha": "fac939d845fa3b6780c9fa9b50638d49ed0a84cf8d6b1b421af0c049839728e8",
+   "local_version": "1.5.0",
+   "baseline_at": "2026-10-31T09:39:08+00:00",
+   "evidence_cmd": "gh api repos/nidhinjs/prompt-master/contents/SKILL.md --jq .sha"
+  },
+  {
+   "slug": "frontend-skill",
+   "repo": "Leonxlnx/taste-skill",
+   "upstream_path": "skills/taste-skill/SKILL.md",
+   "upstream_commit_sha": "af8a897996e159ccc89c9da535dff714d5dba62d",
+   "upstream_file_sha": "d8444f13b76be100b3b088dfdae738e85288d6b6",
+   "upstream_version": null,
+   "local_file_sha": "a98aa8c13d43e568b034aa09e1447d55db0000517ce879ed1736edf5777b8482",
+   "local_version": "1.1.0",
+   "baseline_at": "2026-10-31T09:39:11+00:00",
+   "evidence_cmd": "gh api repos/Leonxlnx/taste-skill/contents/skills/taste-skill/SKILL.md --jq .sha"
+  },
+  {
+   "slug": "security-audit",
+   "repo": "cloudflare/security-audit-skill",
+   "upstream_path": "skills/security-audit/SKILL.md",
+   "upstream_commit_sha": "c1c8a8c1471069fb0e188eeaff69b8e8db6564a8",
+   "upstream_file_sha": "92178dad304d3f63e37582a297026a7874e12c62",
+   "upstream_version": null,
+   "local_file_sha": "2a9b3db6bc044914b7ebebf6ef4cfe48575fc1e8e761d58da258c368f18b9e33",
+   "local_version": "2.1.0",
+   "baseline_at": "2026-10-31T09:39:17+00:00",
+   "evidence_cmd": "gh api repos/cloudflare/security-audit-skill/contents/skills/security-audit/SKILL.md --jq .sha"
   }
  ]
 }

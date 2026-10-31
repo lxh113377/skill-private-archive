@@ -1,0 +1,25 @@
+{
+ "schema": "r311-baseline-v2-extension",
+ "note": "r311 扩入 3 对（r302-r308 落地/声明件）；判据要求每对恰好 10 键 ⇒ 溯源另记本件，不入 pairs",
+ "pairs_added": 3,
+ "detail": [
+  {
+   "slug": "A-prompt-better",
+   "added_by": "r311（扩基线：r302-r308 落地/声明件补入；r303 原 49 对逐字不变）",
+   "upstream_file_sha": "742deafaf4222f9f0e9d9410e72483dad64fe716",
+   "local_file_sha": "fac939d845fa3b6780c9fa9b50638d49ed0a84cf8d6b1b421af0c049839728e8"
+  },
+  {
+   "slug": "frontend-skill",
+   "added_by": "r311（扩基线：r302-r308 落地/声明件补入；r303 原 49 对逐字不变）",
+   "upstream_file_sha": "d8444f13b76be100b3b088dfdae738e85288d6b6",
+   "local_file_sha": "a98aa8c13d43e568b034aa09e1447d55db0000517ce879ed1736edf5777b8482"
+  },
+  {
+   "slug": "security-audit",
+   "added_by": "r311（扩基线：r302-r308 落地/声明件补入；r303 原 49 对逐字不变）",
+   "upstream_file_sha": "92178dad304d3f63e37582a297026a7874e12c62",
+   "local_file_sha": "2a9b3db6bc044914b7ebebf6ef4cfe48575fc1e8e761d58da258c368f18b9e33"
+  }
+ ]
+}

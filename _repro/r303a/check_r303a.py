@@ -89,8 +89,11 @@ def main():
     if sorted(doc.keys()) != ['anchor_note', 'generated_at', 'pairs', 'schema']:
         integ.append('top-keys')
     pairs = doc.get('pairs') or []
-    if len(pairs) != 49:
-        integ.append('pairs-n=' + str(len(pairs)))
+    # r311：分母不再硬编码 49——基线在 r311 扩到 52 对（补进 r302-r308 已落地/已声明的三件，
+    # 否则尺对本轮改动永远是盲区）。任何写死基线规模的断言都会在扩容当日把自己判红。
+    NPAIRS = len(pairs)
+    if NPAIRS < 49:
+        integ.append('pairs-n=' + str(NPAIRS) + '（<49 说明基线被截短）')
     slugs = [p.get('slug') for p in pairs]
     if len(set(slugs)) != len(slugs):
         integ.append('slug-duplicates')
@@ -145,15 +148,16 @@ def main():
     # 第三处（我 patch 第二版时自己引入的）：守恒式写成 ok+unk==49，那是**假定 lc/uc/both 全为 0** 才成立；
     # 一旦真读到上游漂移（uc=1、ok=48）就变成 48!=49 恒红。正解是「五态切分」：
     #   ok + local_changed + upstream_changed + both_changed + unknown == pairs（每对恰归一态，不重不漏）。
-    anchor_ok = (live.get('pairs') == 49) and (lc == 0) and (both == 0) and \
-                ((ok + lc + uc + both + unk) == 49)
+    # r311：分母取基线实际规模 NPAIRS（扩到 52 后写死 49 会把自己判红）；五态切分守恒仍成立
+    anchor_ok = (live.get('pairs') == NPAIRS) and (lc == 0) and (both == 0) and \
+                ((ok + lc + uc + both + unk) == NPAIRS)
     if uc:
         print('DRIFT-OBSERVED upstream_changed=%d（锚之后上游确实动过；这是读数、不是缺陷）' % uc)
     checks['anchor_clean'] = anchor_ok
     print('anchor_clean', anchor_ok)
     if not anchor_ok:
         fails.append('anchor-not-clean')
-    if unk >= 49:
+    if unk >= NPAIRS:
         fails.append('acquisition-dead')
         checks['acquisition_alive'] = False
     else:
