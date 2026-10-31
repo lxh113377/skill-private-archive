@@ -1,16 +1,22 @@
-# DECOMPOSE · r318（落地轮：coding-agent 1.4.0 补链 + 冻结机制 + n=5 终读）【补写卡——本轮先干后记，如实登记 R318-2】
+# DECOMPOSE · r319（「吸收未入口」全库巡检首跑 + browse 对账备料 + coding-agent INC-03 落地走道）
 
-> 起点 dc3e4c5 链。goal 第 89 回合 ⇒ r318。本卡在回合尾补写：r317 卡的「下一步四步」即本轮实际执行计划，
-> 但按 checkpoints 规则应在动手前落卡——延迟原因=收尾消息（G2/G3/R5）到达节奏把动作切成串行队列，卡被挤后。
-> 教训：臂交付驱动的工作流≠免卡豁免。
+> 本卡先于本轮任何产物写入落盘。起点 bd3b7f2（tag r318 后）。goal 第 90 回合 ⇒ r319。
 
-## 本轮实做（全部实测在库）
-| # | 件 | 结果 |
-|---|---|---|
-| 1 | coding-agent 1.4.0 落地（INC-04 补链，rule_editor a0092c9c）| 四卷 29528B 可路由；三门禁 mirror-pass/violation=0；基线刷新只动该对、51 对全等 |
-| 2 | 冻结名单机制（gstack）+ 并档落地 + r220 --exclude（r315 承诺兑现）| SCAN cand 1→0 frozen=1；audit_prev 在库；死链三态透明 |
-| 3 | n=5 全项终表（5 批盲评并入）| X77/80 Y80/80=+3.90%；≥30% 判定「未测到且现形态测不到」+路径改道声明入迁移方案 |
-| 4 | 在途清零 | 轮次5 双臂/G2/G3/R5 全收；R318-1 P0 入账；tag r318；账龄 R315-1 改判 OVERDUE 0 |
+## 起点实测（现取）
+- HEAD bd3b7f2、我名下仓 dirty=0；受管根 HEAD=a0092c9c（我 1.4.0 落地后位）。
+- 受管根他面在途脏件（data-analysis/diagram-maker/figma/dingtalk-shared 等，非我产出）⇒ **本轮写面只碰
+  coding-agent 与项目仓**；撞车即停（D7.2）。
+- r318 揭出新缺陷类：**落盘未入口**（coding-agent 四卷吸收后入口不链=路由不可达）⇒ 同类若在其它 51 对
+  存在，吸收成本全空转——本轮首查全库。
 
-skip_reason（负申报）：本轮为串行落地队列（受管根单写者=rule_editor 走道、判据/合判=决策本体、工具修=单文件≤30 行），
-派发触发表实际未命中「互不引用工作流≥2」——G2/G3 上轮已派、本轮只裁；唯卡延迟一项为真违规，已自记。
+## 本轮分解（真实派发 = 2 臂并行 + Lead 2 件）
+| # | 件 | 验收 | 写面 |
+|---|---|---|---|
+| A1 | 入口可达性巡检 52 对全库：正文引用的卷不存在=断链；卷存在而正文不链=孤儿（未入口）；双向+已知
+|    | 答案堂（正例=coding-agent 修好后应孤儿 0；反例=git 前态 0fcf7842~1 的 F 臂应报孤儿）| [R319A:ENTRY] court=PASS broken=<n> orphans=<n> | _temp/r319a/ |
+| A2 | G4 browse 对账备料（gstack 改配补齐件）：browse 触发面/工具面与本地命令面逐条对账，仍先过堂 | [R319G4:BROWSE] court=pass verdict=<..> | _temp/r319b/ |
+| L1 | Lead：coding-agent INC-03（designed-for 分档一句）走 rule_editor；INC-01/02 留重裁（需 references 深改）| compare OK+基线刷新+mirror | 受管根 coding-agent |
+| L2 | Lead：paste-clean 例句化入派发模板+收口 | grep 复验+入账/tag/账龄/GM | 项目仓 |
+
+30 秒卡：① ≥2 互不引用工作流 是；② 是；③ 是；④ 齐；⑤ 发 2；⑥⑦ 判据入 brief；⑧ 我复跑巡检+对账各一。
+skip_reason：INC 落地=受管根单写者严格串行；例句化/合账=决策本体自留。
