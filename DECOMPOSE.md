@@ -1,24 +1,25 @@
-# DECOMPOSE · r325（R324-2 两份 spec 兑现 + 需求 2 季度时效实测 + 巡检动线实跑）
+# DECOMPOSE · r328（M2/M3 盘点纠正 + 9 条到龄债务收口 + 棘轮恢复 PASS）
 
-> 起点 4425ffa（tag r324，11-01 01:36）｜goal 第 5 回合 ⇒ 轮号 r325（R325-* 领号前核零命中，已核）。
+> 起点 6926520（tag r327，11-01 02:2x）｜goal 第 8 回合 ⇒ 轮号 r328（`R328-*` 领号前核零命中）。
+> ⚠️ **本卡未在开工时落**（我又是先查再补写卡，与 R318-2 记的同一个错）—— 已在本轮报告自抓并裁决 R318-2 时具名。
 
-## 起点实测（现取 01:4x）
-- 三方一致：HEAD = origin/main = 4425ffa；tags r324/r323/r322 在。
-- `05-exec/landing_specs/` 现有 **5 份**（A-prompt-better / frontend-skill / frontend-slides / mcp-builder / security-audit），**仍无 r324/r323a**（= R324-2 的缺口）。
-- 需求 2 时效面（现取）：`quarterly_r260/2026Q4/replacement_matrix.json` generated_at **2026-10-27T17:09:50Z**（5 天前）；`replacement_matrix_shadowstrict.json` **2026-10-30T14:16:38Z**（2 天前）；季度总产物 `quarterly/2026Q4/audit.json` 2026-10-25。
-- 规范 §2 写「每季度首周（1/4/7/10 月）」⇒ 现在 11-01 已过 Q4 首周，**下一窗口 = 2027-01 首周**；但「当期矩阵是否过期」要按判据口径算，不由我口头判。
+## 为什么本轮做「盘点纠正 + 账龄收口」而不是新测量
+- r327 我登记了 R327-2「M2 出口清单未落」。本轮一查：**它其实早已在盘** —— `_repro/r327_lead/m2_b1.json` 的 `rows` 有 **191 行**、每行含 slug+repo+score+c1/c3/c4 三态+verdict；`06-benchmark/r261_c2_adjudication_priority28.json` 的 `rows` 有 **28 行**、每行含 verdict+priority_tier+overlap 理由、守恒 `equal=true`。
+  ⇒ **R327-2 是我的误判**（只看了 stats 聚合行、没看 rows 逐件面）。本轮纠正。
+- 同时棘轮判 FAIL（`overdue_debt_items 实测=5 基线=0`）⇒ 9 条到龄债务集中到期，必须先收口，否则 M3 出口判据（要求 `[RATCHET:PASS]`）不成立。
 
-## 本轮分解（W=3 ⇒ N=3）
-| # | 件 | owner | 判据命令 + 期望末行 |
-|---|---|---|---|
-| 1 | R324-2 兑现：两份 landing spec（r324 入口可达面 / r323a G-L1 门）+ 逐腿读数 | 臂 A `_repro/r325a/` | `python -B _repro/r325a/check_r325a.py` ⇒ `[R325A:SPEC] specs=2 legs=<n> unverified=<k> teeth=pass` |
-| 2 | 需求 2 季度时效实测：规范定义 / 矩阵龄期 / cadence 门绿红 / 输入面守卫 / 下季清单 | 臂 B `_repro/r325b/` | `python -B _repro/r325b/check_r325b.py` ⇒ `[R325B:CADENCE] age_days=<n> verdict=<态> gate_rc=<rc> teeth=pass` |
-| 3 | Lead：按附三 §5 的巡检动线**真跑一遍**（不是读它），产出本季入口可达面读数 + 台账/报告/提交/tag/推送 | Lead | 动线三命令全 rc=0，读数落 `06-benchmark/entry_reachability_*.json` |
+## 本轮分解
+| # | 件 | 判据 |
+|---|---|---|
+| 1 | 9 条到龄债务逐条现核后裁决（6 条已落地 / 2 条挂账至 r329 具名 / 1 条行为整改已见效但复发） | `OVERDUE 0` + `[RATCHET:PASS]` |
+| 2 | M2/M3 出口清单盘点纠正（R327-2 误判纠正 + M3 出口判据复跑） | `m2_b1.json` rows=191、`r261_priority28.json` rows=28 守恒 |
+| 3 | 报告 + 台账 + 提交 + tag + 推送 | 三读数一致 |
 
 ## 30 秒卡 8 问
-① 互不引用 ≥2 ⇒ 是（A 写 spec / B 读 eval+benchmark 时效面）。② ≥3 回合 ⇒ 是。③ ≥2 独立面 ⇒ 是（landing 判据 schema 面 vs 季度节律面）。④ 四问全过。⑤ 发 2 件（件3 自留：写共享台账与动线实跑，最终答复）。⑥⑦ brief 七项与判据齐。⑧ 收件后我复跑：A 挑一条 spec 用 `--neg hand-edited` 验它真参与 R 腿；B 用 `quarterly_cadence_face` 门直接跑一遍对账它的 rc。
-skip_reason（件3）：写面冲突（memory/07 与 06-benchmark 共享面，串行）+ 最终方案·diff·答复 Lead 自留。
+① 互不引用 ≥2 ⇒ 否（本轮三件是同一件事的三步：现核→裁决→复验，严格串行）。② ≥3 回合 ⇒ 是。③ ≥2 独立面 ⇒ 否（同一面）。
+⇒ 按 #44 表格命中「**严格串行**」（后一步输入=前一步输出且接口无法预固定：每条裁决必须依赖其现核读数），**不派臂**。
+skip_reason：严格串行（账龄逐条審核判-复验同一流水线；臂全灭三连轮后派发不占关键路径，但本条无法切分）。
 
 ## 并行写面纪律
-- 臂 A 只写 `_repro/r325a/` + 两份新 spec；臂 B 只写 `_repro/r325b/`。Lead 交付前不写这两处。
-- 部署面（受管根）本轮**零写入**：本轮三件都不需要改受管根（spec 与时效都是本仓侧）。
+- 本轮零受管根写入（无落盘需求）。
+- 台账写入经 r46 唯一入口（9 次；同轮幂等靠 r46 自身拒绝，不绕闸）。
