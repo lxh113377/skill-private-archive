@@ -1,0 +1,6 @@
+== pre_state（r308 F 臂落地，任何写入之前）==
+time: 2026-10-31T16:13:57.696404+08:00
+managed HEAD: f39eb3c0
+SKILL.md sha256: 4a87c81063d4cb66954b379012091d3dad0cc53c6f88b428eac2f78d0b3085f8 size=7711
+agents/openai.yaml sha256: e12288464311eeedcec370bf7625081b3bfb429ffe4c5d34acc9cf4bfd89db79 size=326
+dir listing: .upstream, LICENSE.txt, SKILL.md, agents

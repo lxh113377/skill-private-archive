@@ -1,0 +1,1216 @@
+{
+ "manifest_meta": {
+  "round": "r307b",
+  "task": "前端臂取数解锁（r305b 的 B3 与 B4 两卡点补取）+ 合并编辑清单备料",
+  "candidate_repo": "Leonxlnx/taste-skill",
+  "ref": "main",
+  "commit": "12af471f627f866411b4bd785b19646d3672784c",
+  "tree_truncated": false,
+  "tree_source": "gh api 仓的 git/trees 递归读数（ref 见本件，truncated 见本件）",
+  "fetch_method": "gh api 仓的 git/blobs 按对象号逐件取，base64 解码为字节",
+  "fetch_at": "2026-10-31T15:3x+08:00（本轮实测）",
+  "sha_semantics": "blob_sha = git 原生对象号（树读数 + 本地按 blob 头重算，双源全等）；sha256 = 对取回字节自算的内容号。",
+  "supplementary_targets_unblocking": [
+   "skills/taste-skill/assets/charts.js",
+   "skills/taste-skill/assets/base.js"
+  ],
+  "prior_conflict_resolved": "r304 的树读数证实两件在上游活体树真实存在（r304 曾误称候选仓没有，已校正）；r305b 记为 candidate_gap 的 B3 与 B4 由本件补取并钉双 sha 解锁。",
+  "honesty_rule": "取不到的如实置 fetched=false 并写原因，禁猜内容；本轮 0 件失败。"
+ },
+ "files": [
+  {
+   "rel": ".agents/plugins/marketplace.json",
+   "blob_sha": "786a26e57bc6f3427d6a167c7f2e742852f7584a",
+   "size": 410,
+   "sha256": "b9325fd668c8c27de5b82cd415287219804243615be6af9f6af2f347298d5290",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/.agents__plugins__marketplace.json",
+   "note": null
+  },
+  {
+   "rel": ".claude-plugin/marketplace.json",
+   "blob_sha": "15cb0635a4ea9b6c92c4da8d2e5933bc27e16792",
+   "size": 945,
+   "sha256": "742d4e196014ec46c33f1ccd0298febf0fea1ecb4e89618350367cf81cc3936e",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/.claude-plugin__marketplace.json",
+   "note": null
+  },
+  {
+   "rel": ".codex-plugin/plugin.json",
+   "blob_sha": "82cc22a264538fbc8ed658ac5b86730fd3a7701e",
+   "size": 1218,
+   "sha256": "c49c0e3ea14b497ae4533b1b42bbd19c92b3e8de4c8a31ada846e6949b672a43",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/.codex-plugin__plugin.json",
+   "note": null
+  },
+  {
+   "rel": ".gitattributes",
+   "blob_sha": "dfdb8b771ce07609491fa2e83698969fd917a135",
+   "size": 17,
+   "sha256": "1d5d71dcc6ccd28ab46a335349ecc74742ca4b81f4fcad212f8d134f70f1f13e",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/.gitattributes",
+   "note": null
+  },
+  {
+   "rel": ".github/FUNDING.yml",
+   "blob_sha": "53f942c49a08e18756e181d69632741cee570077",
+   "size": 17,
+   "sha256": "38f3a3fac585c3c35d6ed2297baba8d2d22ea974fa9799f842771c2f7c42d916",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/.github__FUNDING.yml",
+   "note": null
+  },
+  {
+   "rel": ".github/workflows/check-skills.yml",
+   "blob_sha": "5343a89039e0b4bbff4a3fa22aef8314cddb1f66",
+   "size": 903,
+   "sha256": "b929773871ad7baa3c2e6e94a9d54032611353281e31f6f17036af933ebd4076",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/.github__workflows__check-skills.yml",
+   "note": null
+  },
+  {
+   "rel": ".gitignore",
+   "blob_sha": "ca155c0d7d442aef9b5c75d2d54b63257732a801",
+   "size": 48,
+   "sha256": "017e423c61b2a8991ae6db3c6d25463efbc5497765ac0c9083b9d0e517b7fa44",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/.gitignore",
+   "note": null
+  },
+  {
+   "rel": "CHANGELOG.md",
+   "blob_sha": "99479e10c3a86a015eea43aca412792872b6a99e",
+   "size": 28030,
+   "sha256": "9f7d127065a9c0219ac28f3147c0ccea6f66cb7126c1f945835c89a65186a485",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/CHANGELOG.md",
+   "note": null
+  },
+  {
+   "rel": "LICENSE",
+   "blob_sha": "48a2f6640b81ff8eca9ce7f6a96337692713ef5b",
+   "size": 1065,
+   "sha256": "4575a543ab88dad12ccea7d97e563d0bce5b448b06072e65d3264497dad326df",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/LICENSE",
+   "note": null
+  },
+  {
+   "rel": "README.md",
+   "blob_sha": "8efa355f7d03ada51edccea568dccf26e628b511",
+   "size": 15088,
+   "sha256": "a3e3735d1bd37553801bc09918804f93b8f0a98448f3cb58001332832bb89357",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/README.md",
+   "note": null
+  },
+  {
+   "rel": "assets/readme-tastecode-dark.webp",
+   "blob_sha": "feb4ff50ef41fcf8d107acb40dd90cbf5ecc6659",
+   "size": 48042,
+   "sha256": "f0193a5405c4060a1b4901b4891ffe007ec5a4311392c5755a440c07555695f5",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/assets__readme-tastecode-dark.webp",
+   "note": null
+  },
+  {
+   "rel": "assets/readme-tastecode.webp",
+   "blob_sha": "a177e9055aeb9ebef1ab9ff7b21d891f5167909a",
+   "size": 29104,
+   "sha256": "242e045fb27f05c63bb836334452bdba34c20dab57c11e881a6693b4649029b5",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/assets__readme-tastecode.webp",
+   "note": null
+  },
+  {
+   "rel": "assets/sponsors/imgly-logo.svg",
+   "blob_sha": "5ec885f784404d664377f61a274c499738190f73",
+   "size": 1174,
+   "sha256": "2dd10ba9f8005d6b52149db678d611678609e653d0870b42cdb083fe9506e85f",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/assets__sponsors__imgly-logo.svg",
+   "note": null
+  },
+  {
+   "rel": "assets/sponsors/interfaces-dev-icon.webp",
+   "blob_sha": "3c898598a6c6ff34f76957314a5ad247ab3f7be5",
+   "size": 1924,
+   "sha256": "bc6607b4721cd0b3f9a8314a6b5c8e36ee3bb53b988fbc55cb0d856e893a2873",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/assets__sponsors__interfaces-dev-icon.webp",
+   "note": null
+  },
+  {
+   "rel": "assets/sponsors/kimi-icon.png",
+   "blob_sha": "033c0f4fb2e28a9daeca0205812d15bf3e547893",
+   "size": 11486,
+   "sha256": "dbd00e2ad61ea8832ef0b024662a4a8a5d1b66f0599d5d42e1c9688b9d4cfdf6",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/assets__sponsors__kimi-icon.png",
+   "note": null
+  },
+  {
+   "rel": "assets/sponsors/reactbits-icon-dark.svg",
+   "blob_sha": "8aeca3812e914fd112a041c21736acacb394d2c1",
+   "size": 3939,
+   "sha256": "e78e92b5289d049945dd6c3c7403d6d6799d78c7c4e503a4ace5ac0927df4840",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/assets__sponsors__reactbits-icon-dark.svg",
+   "note": null
+  },
+  {
+   "rel": "assets/sponsors/reactbits-icon-light.svg",
+   "blob_sha": "d6ba3062d24da4fdf2e4bdc01f49cec55c9d67f0",
+   "size": 3937,
+   "sha256": "fbb62de0895647def6c562ec3bf2819de0d4bb091ce3114dfd72b17288af4020",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/assets__sponsors__reactbits-icon-light.svg",
+   "note": null
+  },
+  {
+   "rel": "assets/sponsors/sentdm.png",
+   "blob_sha": "f93b23958966bb3eb90880b7f984773feadd02a7",
+   "size": 4382,
+   "sha256": "e22c024eba502cf83b1d86018d310d23430b8173093dda9f9686190df1db0b48",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/assets__sponsors__sentdm.png",
+   "note": null
+  },
+  {
+   "rel": "assets/sponsors/sidrune-ai.png",
+   "blob_sha": "6ce494dcabaa592247337a15f13bb825e5698915",
+   "size": 21326,
+   "sha256": "566009ccc7995311710eb0da3c0c57ed77706cbc54f501492ba82ebccbe6d0d3",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/assets__sponsors__sidrune-ai.png",
+   "note": null
+  },
+  {
+   "rel": "assets/sponsors/vercel-logo.svg",
+   "blob_sha": "34e3e5ec4ef089630d748f69b47674b3bec7edcc",
+   "size": 242,
+   "sha256": "e1346e2d4f4d2e81f01939f5e333720c527185471dcdae90304f476766c1633f",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/assets__sponsors__vercel-logo.svg",
+   "note": null
+  },
+  {
+   "rel": "assets/taste-skill-wordmark-dark.png",
+   "blob_sha": "5ed03e0a3ee8ee77b5a92caa5c4edd61a7deeb0d",
+   "size": 61650,
+   "sha256": "bb75e333ee6ebc418f80d5bff8bc093ae5589830623e9aeffe76909aed107b7d",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/assets__taste-skill-wordmark-dark.png",
+   "note": null
+  },
+  {
+   "rel": "assets/taste-skill-wordmark.png",
+   "blob_sha": "a62a052968687e76d69868cb283dd175ff8285e1",
+   "size": 51509,
+   "sha256": "c3a3e8f94a2a751b90510b30e8f635590764225a4584ad5c1494523b5ec9a408",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/assets__taste-skill-wordmark.png",
+   "note": null
+  },
+  {
+   "rel": "assets/vercel-oss-program-badge.svg",
+   "blob_sha": "bd2bd2533b920ad1b945b74f7c182fe51aee192d",
+   "size": 13296,
+   "sha256": "edd338b3735bc2668b84d11d6f98b2704c45fae93fa5918d5cfbdcd6b43cf041",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/assets__vercel-oss-program-badge.svg",
+   "note": null
+  },
+  {
+   "rel": "examples/v2/CREDITS.md",
+   "blob_sha": "a31747d6056a80fb53e19ea92005602be879119c",
+   "size": 10491,
+   "sha256": "5e865281e168253eb49ce77ee2028c797a5c5c9eb2db54213ec9d1dae35de18e",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/examples__v2__CREDITS.md",
+   "note": null
+  },
+  {
+   "rel": "examples/v2/coffee-questions.webp",
+   "blob_sha": "3146bb097de91e35fd91afa3c27212702af971ca",
+   "size": 26692,
+   "sha256": "9bdbbf34a628babd282f7a551ab6950ddbe9f39276bd6339d482c2c032b5c718",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/examples__v2__coffee-questions.webp",
+   "note": null
+  },
+  {
+   "rel": "examples/v2/coffee-roast.webp",
+   "blob_sha": "4189800b0e1a63b5501c6a16176a03e068e8e2b1",
+   "size": 113142,
+   "sha256": "58c09f2a49e70aba014064d51a8964d8ee8bc816f060df84cb647fe453a8f523",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/examples__v2__coffee-roast.webp",
+   "note": null
+  },
+  {
+   "rel": "examples/v2/coffee-storefront.webp",
+   "blob_sha": "ab0d6abcf888d4feb30be3a7369f5398cb65c68f",
+   "size": 29172,
+   "sha256": "56cce0f3f4afdff3b8d977479fb892278caca5dee7599fd78252e56f7d98f0ff",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/examples__v2__coffee-storefront.webp",
+   "note": null
+  },
+  {
+   "rel": "examples/v2/night-dates.webp",
+   "blob_sha": "2f0d60f9a63bb06d947a1b4d65d2d3439fd63afa",
+   "size": 173606,
+   "sha256": "a312f4f1c8fdee4f242adcf17e9724f6d5533b9cfe4ece5a7d25560002ec9e56",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/examples__v2__night-dates.webp",
+   "note": null
+  },
+  {
+   "rel": "install.sh",
+   "blob_sha": "9ac14c2171df2f140fed785f0def46f36d9f4c06",
+   "size": 4012,
+   "sha256": "710df355887360965f9135e4460d8e37049282b5eedad2ee94075048b9f2560f",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/install.sh",
+   "note": null
+  },
+  {
+   "rel": "skills/taste-skill/README.md",
+   "blob_sha": "a98ba126ce373ba5e639560d8628834d5fa43347",
+   "size": 5345,
+   "sha256": "5e33fd716b3e1ffaca9340f645d44c193f9b446107fa67f0cce498d33025672c",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/skills__taste-skill__README.md",
+   "note": null
+  },
+  {
+   "rel": "skills/taste-skill/SKILL.md",
+   "blob_sha": "d8444f13b76be100b3b088dfdae738e85288d6b6",
+   "size": 39537,
+   "sha256": "3435ed963b15a1b6447746ec8844ab2cd38d8d2e8ead3451937f42df01e408c4",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/skills__taste-skill__SKILL.md",
+   "note": null
+  },
+  {
+   "rel": "skills/taste-skill/assets/app.css",
+   "blob_sha": "865e4ed4804556aaff51897d22bf0c1bcbee9549",
+   "size": 15918,
+   "sha256": "16518c3a999fb81b2698137f1f743128c189272e8b1d411c4b02598c6755b67f",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/skills__taste-skill__assets__app.css",
+   "note": null
+  },
+  {
+   "rel": "skills/taste-skill/assets/base.css",
+   "blob_sha": "75915d3b1ea8780090a365eabfb5c4b697cc6e86",
+   "size": 6520,
+   "sha256": "aa6ea21613c79e06e06dea3d33200c78590c89b0346bb976ec07947bb45ceafa",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/skills__taste-skill__assets__base.css",
+   "note": null
+  },
+  {
+   "rel": "skills/taste-skill/assets/base.js",
+   "blob_sha": "86ec0afacba394f64db238c44b8e7b980f2383b3",
+   "size": 2162,
+   "sha256": "8d50416125596b84c0083d5d5ffba09add57db4b06cbf0eedac2d4999b7653bc",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/skills__taste-skill__assets__base.js",
+   "note": null
+  },
+  {
+   "rel": "skills/taste-skill/assets/charts.js",
+   "blob_sha": "8060404d133089930638804830e192218436eaa7",
+   "size": 59016,
+   "sha256": "a7e916594729576b7c7e37048a68508a3243fe8fbc9654775cd245232e9f8100",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/skills__taste-skill__assets__charts.js",
+   "note": null
+  },
+  {
+   "rel": "skills/taste-skill/assets/scenes/stage.css",
+   "blob_sha": "190763d3c1661e7a602bec21fce952dece67bf15",
+   "size": 1141,
+   "sha256": "b5c587dac45ac6fcc34ae7cb4aa2b3e43797b2ef5d71fd32b48483bda3fca3e0",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/skills__taste-skill__assets__scenes__stage.css",
+   "note": null
+  },
+  {
+   "rel": "skills/taste-skill/assets/scenes/stage.js",
+   "blob_sha": "315b1d9d2ec4b160979a904b13488ea7179b48e9",
+   "size": 7691,
+   "sha256": "9ce782a94406e6a230c49ca5f87e56aff9d436da3f56416b1659421f8976bc2b",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/skills__taste-skill__assets__scenes__stage.js",
+   "note": null
+  },
+  {
+   "rel": "skills/taste-skill/evals/evals.json",
+   "blob_sha": "f6d598008f22d980d135a863a7a151609822bb3f",
+   "size": 8198,
+   "sha256": "df0ee2a248cd5445c0e1600eb095dc0d43dd312f5b4bb4316a78471ae0d22a74",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/skills__taste-skill__evals__evals.json",
+   "note": null
+  },
+  {
+   "rel": "skills/taste-skill/library/app.json",
+   "blob_sha": "c06fb45f8bb6b09398f19ba35b2f71ae2363a310",
+   "size": 74229,
+   "sha256": "3678ccbe1e8d05feff6d4f07fa16a0d610aefeea5e697e842a876713ba763cf5",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/skills__taste-skill__library__app.json",
+   "note": null
+  },
+  {
+   "rel": "skills/taste-skill/library/directions.json",
+   "blob_sha": "f7f82e1a921e7009da7ce6f88410d2c8a94cf214",
+   "size": 61466,
+   "sha256": "d71e3824af33a92d9e1ca543e17f80baa5b7a30c815df5125cfe3300a14892c1",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/skills__taste-skill__library__directions.json",
+   "note": null
+  },
+  {
+   "rel": "skills/taste-skill/library/heroes.json",
+   "blob_sha": "74227d956a049f548d99f7b420ccc6218ae3c40e",
+   "size": 108240,
+   "sha256": "98d5e01104412a5fb27936f9c686f3bc0a5f76ce0793186d3de46b982c65b172",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/skills__taste-skill__library__heroes.json",
+   "note": null
+  },
+  {
+   "rel": "skills/taste-skill/library/motions.json",
+   "blob_sha": "ff3818f561f338b15dbe1ff45620729ef0ff8d3b",
+   "size": 9033,
+   "sha256": "51815dd09a823c829897f99ed9ea7dc5c35bd305ac989b8a0632ea6d42a3f08b",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/skills__taste-skill__library__motions.json",
+   "note": null
+  },
+  {
+   "rel": "skills/taste-skill/library/palettes.json",
+   "blob_sha": "9de29b16db9c9f57b977dd38648a47f866572e54",
+   "size": 34753,
+   "sha256": "a14be9f45baba848c53436f4aa44eb4f1925ad3e232c5d1dcddf4f565661a525",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/skills__taste-skill__library__palettes.json",
+   "note": null
+  },
+  {
+   "rel": "skills/taste-skill/library/photos.json",
+   "blob_sha": "f403b772d3d6ae11ef07cfe44514fb019d918820",
+   "size": 160632,
+   "sha256": "8fc3b76bca90f44675bd99d99bb4ce95b0756c6c5d4141b7e917d11d90e61520",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/skills__taste-skill__library__photos.json",
+   "note": null
+  },
+  {
+   "rel": "skills/taste-skill/library/sections.json",
+   "blob_sha": "042b8ab18ef1aa6e67a6f0f2c171fa9357528623",
+   "size": 276146,
+   "sha256": "7c2c8a470a22501176948661f803434db8c542a511281752c717252de80c1ad8",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/skills__taste-skill__library__sections.json",
+   "note": null
+  },
+  {
+   "rel": "skills/taste-skill/library/sites.json",
+   "blob_sha": "ef070e3ccdf5cb9c388bab1fd0aacb0371cba413",
+   "size": 869073,
+   "sha256": "a2bc4d0cff8ebff481f0dfd4879c106d5e1e16cb3122f9ab3702184a5e1f3502",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/skills__taste-skill__library__sites.json",
+   "note": null
+  },
+  {
+   "rel": "skills/taste-skill/library/type.json",
+   "blob_sha": "f2a9e6ee47774029dd50fa2856cf963d4e69352f",
+   "size": 82326,
+   "sha256": "dbabf41a468775cf6cc5ea5f3c898b0663293822e167b72b02feba1ef03ebf37",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/skills__taste-skill__library__type.json",
+   "note": null
+  },
+  {
+   "rel": "skills/taste-skill/references/app-screens.md",
+   "blob_sha": "784439ed799484a98958764a5bf3ede2a1d25296",
+   "size": 85358,
+   "sha256": "55e937ec30de605b53a11310b446f328a3ce7403de24fff008920a00be1a5ed4",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/skills__taste-skill__references__app-screens.md",
+   "note": null
+  },
+  {
+   "rel": "skills/taste-skill/references/colour.md",
+   "blob_sha": "a20a810fa1f080414035a5e0fdc5002977e56ab2",
+   "size": 6853,
+   "sha256": "6556bcc7eed48b7bc2d0d281c28bf57c1b75e94d7ca0bde49f5d9df8c6a09351",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/skills__taste-skill__references__colour.md",
+   "note": null
+  },
+  {
+   "rel": "skills/taste-skill/references/copy.md",
+   "blob_sha": "69f20af2bff6d40cc07d4dcadaa45440ced550bf",
+   "size": 9436,
+   "sha256": "676edbe75d5f3cfd8a793010ea9f730525ae074b231a674c2426264d3398262e",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/skills__taste-skill__references__copy.md",
+   "note": null
+  },
+  {
+   "rel": "skills/taste-skill/references/critique.md",
+   "blob_sha": "1989a85c83232e86aec66baf733a843947392b37",
+   "size": 11157,
+   "sha256": "9c2f4392674530b3f02ac529fba53d82ab37b85f401c4c1989fbe98d6217f0b4",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/skills__taste-skill__references__critique.md",
+   "note": null
+  },
+  {
+   "rel": "skills/taste-skill/references/imagery.md",
+   "blob_sha": "ddd88d7a31dd3a5d7f4675ead4524f34d037f665",
+   "size": 51025,
+   "sha256": "518def6b2c643b295e13e66b09b66f2e3fc1421d3cf6c7dbb1dc749097ad2ad9",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/skills__taste-skill__references__imagery.md",
+   "note": null
+  },
+  {
+   "rel": "skills/taste-skill/references/layout.md",
+   "blob_sha": "dae26af173b4b60f96291f816700f390ffd8e37e",
+   "size": 18315,
+   "sha256": "40080640719b07737afb94a8868afef87767a1ab4892814d9b6882e2d283453b",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/skills__taste-skill__references__layout.md",
+   "note": null
+  },
+  {
+   "rel": "skills/taste-skill/references/motion.md",
+   "blob_sha": "c8f649d4fa45c369c53ce375a00d2f125182f181",
+   "size": 55400,
+   "sha256": "79f94d8469898d2bf6186c198ad86ddf691a67c6536eaec36a4ec101285d9a37",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/skills__taste-skill__references__motion.md",
+   "note": null
+  },
+  {
+   "rel": "skills/taste-skill/references/research.md",
+   "blob_sha": "c38364af48f9e95dc90a2e6b47ae75ffdc24731e",
+   "size": 24262,
+   "sha256": "83433646a352cae588591e05bc0a75fe1deadff55ede8851bc8dd5dd483adfc5",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/skills__taste-skill__references__research.md",
+   "note": null
+  },
+  {
+   "rel": "skills/taste-skill/references/scenes.md",
+   "blob_sha": "c2c568b5f1d18128658b28a273e90028fc22bb30",
+   "size": 9817,
+   "sha256": "733ac7258a1a28f2f6ae8205bc36ba66c563594ad0a2e2f829c5eaaba3199a61",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/skills__taste-skill__references__scenes.md",
+   "note": null
+  },
+  {
+   "rel": "skills/taste-skill/references/tells.md",
+   "blob_sha": "9cfa4a89e466eb6df81b7a1b776421c378aad840",
+   "size": 7420,
+   "sha256": "8e6de4411c43d3108f832b3f33bb1a2a838148a72b92a176df893b67d99a0da9",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/skills__taste-skill__references__tells.md",
+   "note": null
+  },
+  {
+   "rel": "skills/taste-skill/references/type.md",
+   "blob_sha": "c1552b700e9bebb2fedf79f82c875615d0f876ac",
+   "size": 8495,
+   "sha256": "6353ff1d0ce2f9913628c88fbcb7dad3cc3877e61196848bce99e33a17d20611",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/skills__taste-skill__references__type.md",
+   "note": null
+  },
+  {
+   "rel": "skills/taste-skill/scripts/assets.mjs",
+   "blob_sha": "4f9c5b1c1fcc5a821685c5cea35f326bcf15d75b",
+   "size": 64522,
+   "sha256": "b4b4b99b5634735f5a0b4213169cda5240ee6bbed8ed8042ad1bcf2b6607c1fa",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/skills__taste-skill__scripts__assets.mjs",
+   "note": null
+  },
+  {
+   "rel": "skills/taste-skill/scripts/draw.mjs",
+   "blob_sha": "6db3d89422057902457c97643c13f4b351d1459b",
+   "size": 54140,
+   "sha256": "6c2047d207d2400d3b099956dfe2ac306203b614246e66bc8760212a7f797dbf",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/skills__taste-skill__scripts__draw.mjs",
+   "note": null
+  },
+  {
+   "rel": "skills/taste-skill/scripts/inspect.mjs",
+   "blob_sha": "f1790ca0f1a7c26221455c4e1e91e69e16363dff",
+   "size": 28853,
+   "sha256": "c0d7366f789b3f594787b37a525d1d7096104a499aac8a97ae04b405046cf02c",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/skills__taste-skill__scripts__inspect.mjs",
+   "note": null
+  },
+  {
+   "rel": "skills/taste-skill/scripts/lib/app-draw.mjs",
+   "blob_sha": "e246a38f15d4f3b163a3d3aa5378c71462a4c24f",
+   "size": 14715,
+   "sha256": "aa0802d341d19b53ec14ec21746e428be49a8ec3ed7b30253194105fc18a8df6",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/skills__taste-skill__scripts__lib__app-draw.mjs",
+   "note": null
+  },
+  {
+   "rel": "skills/taste-skill/scripts/lib/cdp.mjs",
+   "blob_sha": "03ef99c144923d0905ffc6222189bc8901836f4a",
+   "size": 11920,
+   "sha256": "320fb75c6454a97b88458e5c33559a1188042aa0041bd5eff53455900236c88a",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/skills__taste-skill__scripts__lib__cdp.mjs",
+   "note": null
+  },
+  {
+   "rel": "skills/taste-skill/scripts/lib/inspection-files.mjs",
+   "blob_sha": "d375fcb6b1db149eb11b9ccde3d2f485060b51ca",
+   "size": 478,
+   "sha256": "5635c0d5fbe0f5bd012e58534bcd554ff7440a4e5c724a61a61c476c7f42e918",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/skills__taste-skill__scripts__lib__inspection-files.mjs",
+   "note": null
+  },
+  {
+   "rel": "skills/taste-skill/scripts/lib/probe.mjs",
+   "blob_sha": "d45372bc2f594e2ab674889646ca6fc846cec6b8",
+   "size": 82552,
+   "sha256": "a5a17df891e438f55f196d8233601c3c79c873755f442c1ac5c3568de4e6bb48",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/skills__taste-skill__scripts__lib__probe.mjs",
+   "note": null
+  },
+  {
+   "rel": "skills/taste-skill/scripts/lib/rules.mjs",
+   "blob_sha": "daf22a9cd2fe19339796f406aca6aa9a24872a96",
+   "size": 37298,
+   "sha256": "8244aa9f53e77a59a562410310414e6b1a0f0cf002ce8f5aa792740b7f0149bf",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/skills__taste-skill__scripts__lib__rules.mjs",
+   "note": null
+  },
+  {
+   "rel": "skills/taste-skill/scripts/lint.mjs",
+   "blob_sha": "9277761d18222e5fc75c85ed79aa032f3d086598",
+   "size": 11747,
+   "sha256": "05f2fae2f56fc051b539cdbacb43a6f78fbbfb9644bb74aa11be472ff12dcaf5",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/skills__taste-skill__scripts__lint.mjs",
+   "note": null
+  },
+  {
+   "rel": "skills/taste-skill/scripts/scenes.mjs",
+   "blob_sha": "7bbde8e6bdf27859af0d54db1e1b2756de3a7d56",
+   "size": 8980,
+   "sha256": "234ec582e2b841457c33033feeeba8535f9ac285495a74d08dc533a1566c90d5",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/skills__taste-skill__scripts__scenes.mjs",
+   "note": null
+  },
+  {
+   "rel": "tests/frontmatter.mjs",
+   "blob_sha": "68aa94ef6cd339b03c24b650c0cf416255f137e0",
+   "size": 4069,
+   "sha256": "571147eaace6706a4c44435c6da3dd76a0038a8128f55a0f92b7dcea46d9be3f",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/tests__frontmatter.mjs",
+   "note": null
+  },
+  {
+   "rel": "tests/inspection-files.mjs",
+   "blob_sha": "b6466df124f78e0b10bc001b2bd6e4e5f86273f9",
+   "size": 1626,
+   "sha256": "ee74d2b1fa2932792bf492a79744e1c6fc24cd39b4899849e725fdfbdcd47a47",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/tests__inspection-files.mjs",
+   "note": null
+  },
+  {
+   "rel": "tests/profile-cleanup.mjs",
+   "blob_sha": "caa65e0204321d745bebb0a738367bd7335e81ad",
+   "size": 4845,
+   "sha256": "acc20467c734c7c6df43d942968b864c651339120688bc5b5687384a43068630",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/tests__profile-cleanup.mjs",
+   "note": null
+  },
+  {
+   "rel": "tests/text-encoding.mjs",
+   "blob_sha": "7cb27f63f0403d0aee7b10b4bfca837872f3f4d2",
+   "size": 1796,
+   "sha256": "7f325399c9146a8df8f67925326daf319685c2ee4108da02f7ff36b76396683b",
+   "fetched": true,
+   "git_native_recompute_match": true,
+   "mirror": "blobs/tests__text-encoding.mjs",
+   "note": null
+  }
+ ],
+ "summary": {
+  "total": 72,
+  "fetched": 72,
+  "blob_pinned": 72
+ },
+ "coverage_check": {
+  "note": "合并计划的 files 逐行 src 用了两种口径（技能目录相对 与 仓根相对）；本块把每行映射到名册的仓根相对 rel 并核覆盖，映射规则写在 resolution 里，同名两可行按该行的理由口径裁决。",
+  "plan_rows": 72,
+  "plan_action_counts": {
+   "drop": 34,
+   "land": 34,
+   "block": 4
+  },
+  "manifest_rows": 72,
+  "mapped_hit": 72,
+  "mapped_miss": [],
+  "manifest_orphans": [],
+  "plan_rows_sharing_one_manifest_row": [],
+  "rows": [
+   {
+    "src": "README.md",
+    "action": "drop",
+    "rel": "skills/taste-skill/README.md",
+    "resolution": "ambiguous_resolved_by_why"
+   },
+   {
+    "src": "SKILL.md",
+    "action": "land",
+    "rel": "skills/taste-skill/SKILL.md",
+    "resolution": "unique"
+   },
+   {
+    "src": "assets/app.css",
+    "action": "land",
+    "rel": "skills/taste-skill/assets/app.css",
+    "resolution": "unique"
+   },
+   {
+    "src": "assets/base.css",
+    "action": "land",
+    "rel": "skills/taste-skill/assets/base.css",
+    "resolution": "unique"
+   },
+   {
+    "src": "assets/base.js",
+    "action": "block",
+    "rel": "skills/taste-skill/assets/base.js",
+    "resolution": "unique"
+   },
+   {
+    "src": "assets/charts.js",
+    "action": "block",
+    "rel": "skills/taste-skill/assets/charts.js",
+    "resolution": "unique"
+   },
+   {
+    "src": "assets/scenes/stage.css",
+    "action": "land",
+    "rel": "skills/taste-skill/assets/scenes/stage.css",
+    "resolution": "unique"
+   },
+   {
+    "src": "assets/scenes/stage.js",
+    "action": "land",
+    "rel": "skills/taste-skill/assets/scenes/stage.js",
+    "resolution": "unique"
+   },
+   {
+    "src": "evals/evals.json",
+    "action": "drop",
+    "rel": "skills/taste-skill/evals/evals.json",
+    "resolution": "unique"
+   },
+   {
+    "src": "library/app.json",
+    "action": "land",
+    "rel": "skills/taste-skill/library/app.json",
+    "resolution": "unique"
+   },
+   {
+    "src": "library/directions.json",
+    "action": "land",
+    "rel": "skills/taste-skill/library/directions.json",
+    "resolution": "unique"
+   },
+   {
+    "src": "library/heroes.json",
+    "action": "land",
+    "rel": "skills/taste-skill/library/heroes.json",
+    "resolution": "unique"
+   },
+   {
+    "src": "library/motions.json",
+    "action": "land",
+    "rel": "skills/taste-skill/library/motions.json",
+    "resolution": "unique"
+   },
+   {
+    "src": "library/palettes.json",
+    "action": "land",
+    "rel": "skills/taste-skill/library/palettes.json",
+    "resolution": "unique"
+   },
+   {
+    "src": "library/photos.json",
+    "action": "land",
+    "rel": "skills/taste-skill/library/photos.json",
+    "resolution": "unique"
+   },
+   {
+    "src": "library/sections.json",
+    "action": "land",
+    "rel": "skills/taste-skill/library/sections.json",
+    "resolution": "unique"
+   },
+   {
+    "src": "library/sites.json",
+    "action": "land",
+    "rel": "skills/taste-skill/library/sites.json",
+    "resolution": "unique"
+   },
+   {
+    "src": "library/type.json",
+    "action": "land",
+    "rel": "skills/taste-skill/library/type.json",
+    "resolution": "unique"
+   },
+   {
+    "src": "references/app-screens.md",
+    "action": "land",
+    "rel": "skills/taste-skill/references/app-screens.md",
+    "resolution": "unique"
+   },
+   {
+    "src": "references/colour.md",
+    "action": "land",
+    "rel": "skills/taste-skill/references/colour.md",
+    "resolution": "unique"
+   },
+   {
+    "src": "references/copy.md",
+    "action": "land",
+    "rel": "skills/taste-skill/references/copy.md",
+    "resolution": "unique"
+   },
+   {
+    "src": "references/critique.md",
+    "action": "land",
+    "rel": "skills/taste-skill/references/critique.md",
+    "resolution": "unique"
+   },
+   {
+    "src": "references/imagery.md",
+    "action": "land",
+    "rel": "skills/taste-skill/references/imagery.md",
+    "resolution": "unique"
+   },
+   {
+    "src": "references/layout.md",
+    "action": "land",
+    "rel": "skills/taste-skill/references/layout.md",
+    "resolution": "unique"
+   },
+   {
+    "src": "references/motion.md",
+    "action": "land",
+    "rel": "skills/taste-skill/references/motion.md",
+    "resolution": "unique"
+   },
+   {
+    "src": "references/research.md",
+    "action": "land",
+    "rel": "skills/taste-skill/references/research.md",
+    "resolution": "unique"
+   },
+   {
+    "src": "references/scenes.md",
+    "action": "land",
+    "rel": "skills/taste-skill/references/scenes.md",
+    "resolution": "unique"
+   },
+   {
+    "src": "references/tells.md",
+    "action": "land",
+    "rel": "skills/taste-skill/references/tells.md",
+    "resolution": "unique"
+   },
+   {
+    "src": "references/type.md",
+    "action": "land",
+    "rel": "skills/taste-skill/references/type.md",
+    "resolution": "unique"
+   },
+   {
+    "src": "scripts/assets.mjs",
+    "action": "block",
+    "rel": "skills/taste-skill/scripts/assets.mjs",
+    "resolution": "unique"
+   },
+   {
+    "src": "scripts/draw.mjs",
+    "action": "land",
+    "rel": "skills/taste-skill/scripts/draw.mjs",
+    "resolution": "unique"
+   },
+   {
+    "src": "scripts/inspect.mjs",
+    "action": "block",
+    "rel": "skills/taste-skill/scripts/inspect.mjs",
+    "resolution": "unique"
+   },
+   {
+    "src": "scripts/lib/app-draw.mjs",
+    "action": "land",
+    "rel": "skills/taste-skill/scripts/lib/app-draw.mjs",
+    "resolution": "unique"
+   },
+   {
+    "src": "scripts/lib/cdp.mjs",
+    "action": "land",
+    "rel": "skills/taste-skill/scripts/lib/cdp.mjs",
+    "resolution": "unique"
+   },
+   {
+    "src": "scripts/lib/inspection-files.mjs",
+    "action": "land",
+    "rel": "skills/taste-skill/scripts/lib/inspection-files.mjs",
+    "resolution": "unique"
+   },
+   {
+    "src": "scripts/lib/probe.mjs",
+    "action": "land",
+    "rel": "skills/taste-skill/scripts/lib/probe.mjs",
+    "resolution": "unique"
+   },
+   {
+    "src": "scripts/lib/rules.mjs",
+    "action": "land",
+    "rel": "skills/taste-skill/scripts/lib/rules.mjs",
+    "resolution": "unique"
+   },
+   {
+    "src": "scripts/lint.mjs",
+    "action": "land",
+    "rel": "skills/taste-skill/scripts/lint.mjs",
+    "resolution": "unique"
+   },
+   {
+    "src": "scripts/scenes.mjs",
+    "action": "land",
+    "rel": "skills/taste-skill/scripts/scenes.mjs",
+    "resolution": "unique"
+   },
+   {
+    "src": ".agents/plugins/marketplace.json",
+    "action": "drop",
+    "rel": ".agents/plugins/marketplace.json",
+    "resolution": "unique"
+   },
+   {
+    "src": ".claude-plugin/marketplace.json",
+    "action": "drop",
+    "rel": ".claude-plugin/marketplace.json",
+    "resolution": "unique"
+   },
+   {
+    "src": ".codex-plugin/plugin.json",
+    "action": "drop",
+    "rel": ".codex-plugin/plugin.json",
+    "resolution": "unique"
+   },
+   {
+    "src": ".gitattributes",
+    "action": "drop",
+    "rel": ".gitattributes",
+    "resolution": "unique"
+   },
+   {
+    "src": ".github/FUNDING.yml",
+    "action": "drop",
+    "rel": ".github/FUNDING.yml",
+    "resolution": "unique"
+   },
+   {
+    "src": ".github/workflows/check-skills.yml",
+    "action": "drop",
+    "rel": ".github/workflows/check-skills.yml",
+    "resolution": "unique"
+   },
+   {
+    "src": ".gitignore",
+    "action": "drop",
+    "rel": ".gitignore",
+    "resolution": "unique"
+   },
+   {
+    "src": "CHANGELOG.md",
+    "action": "drop",
+    "rel": "CHANGELOG.md",
+    "resolution": "unique"
+   },
+   {
+    "src": "LICENSE",
+    "action": "land",
+    "rel": "LICENSE",
+    "resolution": "unique"
+   },
+   {
+    "src": "README.md",
+    "action": "drop",
+    "rel": "README.md",
+    "resolution": "ambiguous_resolved_by_why"
+   },
+   {
+    "src": "assets/readme-tastecode-dark.webp",
+    "action": "drop",
+    "rel": "assets/readme-tastecode-dark.webp",
+    "resolution": "unique"
+   },
+   {
+    "src": "assets/readme-tastecode.webp",
+    "action": "drop",
+    "rel": "assets/readme-tastecode.webp",
+    "resolution": "unique"
+   },
+   {
+    "src": "assets/sponsors/imgly-logo.svg",
+    "action": "drop",
+    "rel": "assets/sponsors/imgly-logo.svg",
+    "resolution": "unique"
+   },
+   {
+    "src": "assets/sponsors/interfaces-dev-icon.webp",
+    "action": "drop",
+    "rel": "assets/sponsors/interfaces-dev-icon.webp",
+    "resolution": "unique"
+   },
+   {
+    "src": "assets/sponsors/kimi-icon.png",
+    "action": "drop",
+    "rel": "assets/sponsors/kimi-icon.png",
+    "resolution": "unique"
+   },
+   {
+    "src": "assets/sponsors/reactbits-icon-dark.svg",
+    "action": "drop",
+    "rel": "assets/sponsors/reactbits-icon-dark.svg",
+    "resolution": "unique"
+   },
+   {
+    "src": "assets/sponsors/reactbits-icon-light.svg",
+    "action": "drop",
+    "rel": "assets/sponsors/reactbits-icon-light.svg",
+    "resolution": "unique"
+   },
+   {
+    "src": "assets/sponsors/sentdm.png",
+    "action": "drop",
+    "rel": "assets/sponsors/sentdm.png",
+    "resolution": "unique"
+   },
+   {
+    "src": "assets/sponsors/sidrune-ai.png",
+    "action": "drop",
+    "rel": "assets/sponsors/sidrune-ai.png",
+    "resolution": "unique"
+   },
+   {
+    "src": "assets/sponsors/vercel-logo.svg",
+    "action": "drop",
+    "rel": "assets/sponsors/vercel-logo.svg",
+    "resolution": "unique"
+   },
+   {
+    "src": "assets/taste-skill-wordmark-dark.png",
+    "action": "drop",
+    "rel": "assets/taste-skill-wordmark-dark.png",
+    "resolution": "unique"
+   },
+   {
+    "src": "assets/taste-skill-wordmark.png",
+    "action": "drop",
+    "rel": "assets/taste-skill-wordmark.png",
+    "resolution": "unique"
+   },
+   {
+    "src": "assets/vercel-oss-program-badge.svg",
+    "action": "drop",
+    "rel": "assets/vercel-oss-program-badge.svg",
+    "resolution": "unique"
+   },
+   {
+    "src": "examples/v2/CREDITS.md",
+    "action": "drop",
+    "rel": "examples/v2/CREDITS.md",
+    "resolution": "unique"
+   },
+   {
+    "src": "examples/v2/coffee-questions.webp",
+    "action": "drop",
+    "rel": "examples/v2/coffee-questions.webp",
+    "resolution": "unique"
+   },
+   {
+    "src": "examples/v2/coffee-roast.webp",
+    "action": "drop",
+    "rel": "examples/v2/coffee-roast.webp",
+    "resolution": "unique"
+   },
+   {
+    "src": "examples/v2/coffee-storefront.webp",
+    "action": "drop",
+    "rel": "examples/v2/coffee-storefront.webp",
+    "resolution": "unique"
+   },
+   {
+    "src": "examples/v2/night-dates.webp",
+    "action": "drop",
+    "rel": "examples/v2/night-dates.webp",
+    "resolution": "unique"
+   },
+   {
+    "src": "install.sh",
+    "action": "drop",
+    "rel": "install.sh",
+    "resolution": "unique"
+   },
+   {
+    "src": "tests/frontmatter.mjs",
+    "action": "drop",
+    "rel": "tests/frontmatter.mjs",
+    "resolution": "unique"
+   },
+   {
+    "src": "tests/inspection-files.mjs",
+    "action": "drop",
+    "rel": "tests/inspection-files.mjs",
+    "resolution": "unique"
+   },
+   {
+    "src": "tests/profile-cleanup.mjs",
+    "action": "drop",
+    "rel": "tests/profile-cleanup.mjs",
+    "resolution": "unique"
+   },
+   {
+    "src": "tests/text-encoding.mjs",
+    "action": "drop",
+    "rel": "tests/text-encoding.mjs",
+    "resolution": "unique"
+   }
+  ],
+  "conclusion": "计划 72 行 1:1 映射进名册 72 行，无名册孤儿、无一名册行被两计划行重复认领 ⇒ 候选全部文件逐件有名册行"
+ },
+ "supplementary_detail": [
+  {
+   "rel": "skills/taste-skill/assets/charts.js",
+   "blob_sha": "8060404d133089930638804830e192218436eaa7",
+   "sha256": "a7e916594729576b7c7e37048a68508a3243fe8fbc9654775cd245232e9f8100",
+   "size": 59016,
+   "fetched": true,
+   "mirror": "blobs/skills__taste-skill__assets__charts.js",
+   "unblocks": "r305b blocked B3/B4"
+  },
+  {
+   "rel": "skills/taste-skill/assets/base.js",
+   "blob_sha": "86ec0afacba394f64db238c44b8e7b980f2383b3",
+   "sha256": "8d50416125596b84c0083d5d5ffba09add57db4b06cbf0eedac2d4999b7653bc",
+   "size": 2162,
+   "fetched": true,
+   "mirror": "blobs/skills__taste-skill__assets__base.js",
+   "unblocks": "r305b blocked B3/B4"
+  }
+ ]
+}

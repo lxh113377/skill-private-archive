@@ -1,0 +1,46 @@
+{
+ "computable": {
+  "X": {
+   "item4_first30": 1,
+   "item4_frac": 0.021,
+   "item5_no_fabricated": 1,
+   "item5_hits": [],
+   "item6_scope": 1,
+   "item8_consistent": 1,
+   "aux": {
+    "prompt_bytes": 10486,
+    "has_clarify": true,
+    "deliver_format": 8,
+    "demand_terms": [
+     "上线",
+     "图片",
+     "土",
+     "部署"
+    ],
+    "log_lines": 20
+   }
+  },
+  "Y": {
+   "item4_first30": 1,
+   "item4_frac": 0.061,
+   "item5_no_fabricated": 1,
+   "item5_hits": [],
+   "item6_scope": 1,
+   "item8_consistent": 1,
+   "aux": {
+    "prompt_bytes": 10361,
+    "has_clarify": true,
+    "deliver_format": 9,
+    "demand_terms": [
+     "上线",
+     "图片",
+     "土",
+     "换图",
+     "部署"
+    ],
+    "log_lines": 18
+   }
+  }
+ },
+ "unblinded": true
+}

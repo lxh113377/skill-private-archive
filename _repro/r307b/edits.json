@@ -1,0 +1,326 @@
+[
+  {
+    "id": "F1",
+    "op": "replace",
+    "anchor": "version: 1.0.0",
+    "old": "last_updated: 2026-09-21\nversion: 1.0.0",
+    "new": "last_updated: 2026-10-31\nversion: 1.1.0",
+    "placement": "n/a",
+    "increment": null,
+    "upstream_ranges": null,
+    "verbatim_probe": null,
+    "self_written_lines": null,
+    "why": "加法式并装的版本面：frontmatter minor 递升 1.0.0 到 1.1.0，last_updated 记落地当日；若隔日落地，把 new 的第二行改成实际落地日。除这两行的取值外本地正文零删除（判据脚本逐行核）。 偏差声明（对照参照件的形态）：本地件现形实测无版本历史表（全 187 行内无该表、无 V 开头行）⇒ 参照件里「往版本历史表体插一行」的同形态编辑条在本件无锚点可用，版本面改由 frontmatter 一条承载（即本条）；本地件也无 r306a 那样的中文转述段可紧接，故四条增量的锚点一律落在本地结构行上（工作模型段末、应用段末、硬规则段前、判据段前、末行后）。",
+    "evidence": "本地件现形（只读）实测：第 4 行为更新日期 2026-09-21、第 5 行为版本 1.0.0，两行连续且该块在本地唯一命中；本地 7711 字节、187 行，内容号与写前态读数全等。",
+    "sanxing": {
+      "实测": "本地两行取值、连续块唯一命中、本地内容号与写前态逐字段全等",
+      "部分": "无",
+      "未证": "无"
+    },
+    "evidence_refs": [
+      "D:/global_skills/frontend-skill/SKILL.md#L4-L5",
+      "自建skill优化/_repro/r305b/merge_plan.json#L141-L162"
+    ],
+    "local_state": {
+      "bytes": 7711,
+      "lines": 187,
+      "sha256": "4a87c81063d4cb66954b379012091d3dad0cc53c6f88b428eac2f78d0b3085f8"
+    }
+  },
+  {
+    "id": "F2",
+    "op": "insert",
+    "anchor": "Each section gets one job, one dominant visual idea, and one primary takeaway or action.",
+    "old": null,
+    "new": "\n<!-- r307b 逐字钉定（加法式并入 · 本地行零删除）| 增量 I3 · 发牌器与方向库 | 上游 L24-32 | Leonxlnx/taste-skill · branch main · commit 12af471f627f866411b4bd785b19646d3672784c · blob_sha d8444f13b76be100b3b088dfdae738e85288d6b6 · content_sha256 3435ed963b15a1b6447746ec8844ab2cd38d8d2e8ead3451937f42df01e408c4 · license MIT | 证据 r303b swap_pack increments[frontend-skill] · 准入 r305b merge_plan skills[slug=frontend-skill].files[src=SKILL.md,action=land] -->\n1. **A script deals the directions, you choose among them.** Asked to invent a look, a model picks\n   the category default every time. `scripts/draw.mjs` deals three of twenty researched directions;\n   you choose the one that carries the subject's idea, and the script then deals its type system,\n   palette, hero and section compositions from a library distilled from 247 real sites.\n2. **The idea comes from the subject.** In the study, what separated the best sites from the forgettable\n   ones was a concept taken from the thing itself, not the styling.\n3. **A house style with no ornaments,** measured in a real browser by `scripts/inspect.mjs`, so the\n   rules are checked rather than hoped for.\n4. **You look at what you made.** Screenshots at three widths, a juror's rubric, fix, look again.\n",
+    "placement": "after",
+    "increment": "I3",
+    "upstream_ranges": [
+      [
+        24,
+        32
+      ]
+    ],
+    "verbatim_probe": "deals three of twenty researched directions",
+    "self_written_lines": [],
+    "why": "增量 I3（swap_pack 锚点 twenty researched directions、上游 L25）：候选用脚本从 20 个已研究方向发牌，方向、构图、字体、配色、摄影、分区蓝图取自 247 个真实站点蒸馏的库；本地件只有叙述性的三件套方法，没有可发牌的成库数据与执行器。锚点行原样保留，本地零删除。",
+    "evidence": "逐文本体 = 钉定上游镜像第 24 到 32 行（对象号与内容号见并入段首行的钉定注释）；逐字探针在 new 内整行全等命中；发牌执行器与九件方向库已随落地面在取数名册内逐件钉死，发牌器对象号 6db3d89422057902457c97643c13f4b351d1459b。",
+    "sanxing": {
+      "实测": "上游第 24-32 行逐字取自钉定镜像；探针单行命中；本地锚点唯一命中",
+      "部分": "draw.mjs 与 library 九件已钉 sha 但未试跑（环境面不在本件范围）",
+      "未证": "候选版本面（上游无 version 字段，对应 r303b U2）"
+    },
+    "evidence_refs": [
+      "自建skill优化/_temp/r307b/blobs/skills__taste-skill__SKILL.md#L24-L32",
+      "自建skill优化/_repro/r303b/swap_pack.json#L129-L136",
+      "自建skill优化/_temp/r307b/fetch_manifest.json"
+    ],
+    "swap_pack_entry": {
+      "array": "increments",
+      "skill": "frontend-skill",
+      "upstream_ref": "SKILL.md L25",
+      "anchor": "twenty researched directions",
+      "state": "VERIFIED"
+    }
+  },
+  {
+    "id": "F3",
+    "op": "insert",
+    "anchor": "If a panel can become plain layout without losing meaning, remove the card treatment.",
+    "old": null,
+    "new": "\n<!-- r307b 逐字钉定（加法式并入 · 本地行零删除）| 增量 I4 · app 屏专线 | 上游 L48-55 + L64-66 | Leonxlnx/taste-skill · branch main · commit 12af471f627f866411b4bd785b19646d3672784c · blob_sha d8444f13b76be100b3b088dfdae738e85288d6b6 · content_sha256 3435ed963b15a1b6447746ec8844ab2cd38d8d2e8ead3451937f42df01e408c4 · license MIT | 证据 r303b swap_pack increments[frontend-skill] · 准入 r305b merge_plan skills[slug=frontend-skill].files[src=SKILL.md,action=land] -->\n- **A page** is read and scrolled: a landing page, a marketing or product site, a portfolio, an\n  event, a restaurant, a one-pager. It follows **the run** below.\n- **An app screen** is worked in: a dashboard, an admin or analytics view, settings, billing, an inbox\n  or queue to work through, a wallet, a list with filters, an editor or builder. It follows\n  **`references/app-screens.md`**: its own run, its own draw (`draw.mjs --app`), its own house rules\n  (quiet borders, small labels and repeated panels are normal there; gradients, glows, icons in tinted\n  squares, rainbow charts and invented vanity numbers are not) and `inspect.mjs --app`. Read that file\n  whole before you start; the page run below does not apply.\n\nApp fragments reuse the landed sidecars named above (a neutral app shell for panels, tables and controls, plus small charts drawn to the app rules):\n\n\nand build every fragment the page shows (the hero's live screen, a feature's crop, a chart) as a real\npiece of that app: `assets/app.css` for its panels, tables and controls, `assets/charts.js` for its\n",
+    "placement": "after",
+    "increment": "I4",
+    "upstream_ranges": [
+      [
+        48,
+        55
+      ],
+      [
+        64,
+        66
+      ]
+    ],
+    "verbatim_probe": "its own house rules",
+    "self_written_lines": [
+      "App fragments reuse the landed sidecars named above (a neutral app shell for panels, tables and controls, plus small charts drawn to the app rules):"
+    ],
+    "why": "增量 I4（swap_pack 锚点 app-screens 专件、上游 L52-54）：候选把 app 屏与营销页拆成两条可执行流水线 —— 独立 run、独立发牌、独立 house rules、独立验收；本地 Apps 一节是散文约束，无独立数据件与验收命令。夹在两上游段之间的一行是本件自写的接线句（已逐字登记在 self_written_lines，不含任何猜测内容）。锚点行原样保留。",
+    "evidence": "逐文本体 = 钉定上游镜像第 48 到 55 行与第 64 到 66 行；本地锚点第 88 行唯一命中；自写行只指向上游第 66 行与文件表第 541 行实测存在的两个旁挂面，对象号分别为应用壳 865e4ed4804556aaff51897d22bf0c1bcbee9549 与图表 8060404d133089930638804830e192218436eaa7，两件都在取数名册内 fetched 为真且双号齐。",
+    "sanxing": {
+      "实测": "两段上游逐字 + 自写行逐字登记；app 屏 sidecar 已在取数名册内钉死",
+      "部分": "sidecar 内容已取未渲染验证（脚本臂环境卡点 B1 不在本件范围）",
+      "未证": "app 屏专件的引用方是否需在注入面另接线（属 Lead 的接线面）"
+    },
+    "evidence_refs": [
+      "自建skill优化/_temp/r307b/blobs/skills__taste-skill__SKILL.md#L48-L55",
+      "自建skill优化/_temp/r307b/blobs/skills__taste-skill__SKILL.md#L64-L66",
+      "自建skill优化/_repro/r305b/merge_plan.json#L702-L711",
+      "自建skill优化/_repro/r303b/swap_pack.json#L137-L144"
+    ],
+    "swap_pack_entry": {
+      "array": "increments",
+      "skill": "frontend-skill",
+      "upstream_ref": "SKILL.md L52-54",
+      "anchor": "app-screens 专线",
+      "state": "VERIFIED"
+    }
+  },
+  {
+    "id": "F4",
+    "op": "insert",
+    "anchor": "## Hard Rules",
+    "old": null,
+    "new": "<!-- r307b 逐字钉定（加法式并入 · 本地行零删除）| 增量 I1 · 可执行审美门禁 | 上游 L307-331 | Leonxlnx/taste-skill · branch main · commit 12af471f627f866411b4bd785b19646d3672784c · blob_sha d8444f13b76be100b3b088dfdae738e85288d6b6 · content_sha256 3435ed963b15a1b6447746ec8844ab2cd38d8d2e8ead3451937f42df01e408c4 · license MIT | 证据 r303b swap_pack increments[frontend-skill] · 准入 r305b merge_plan skills[slug=frontend-skill].files[src=SKILL.md,action=land] -->\n### 7. Gate\n\n```bash\nnode <skill>/scripts/lint.mjs <source files or folder>\nnode <skill>/scripts/inspect.mjs <url or path/to/index.html>\nnode <skill>/scripts/scenes.mjs <url or path/to/index.html>     # when the page has scroll scenes\n```\n\n`scenes.mjs` photographs every scroll scene at 0, 10 … 100% of its hold, on desktop and on a phone,\nand the reduced-motion page; with scenes on the sheet, `inspect.mjs` also films the whole scroll\n(`desktop-film-NN.jpg`). A scene that never started or rests on desktop is a `FAIL`.\n\n`lint.mjs` scans source for banned patterns and stock phrases. `inspect.mjs` opens the page in a real\nbrowser at 1440, 768 and 390 pixels, measures it (headline line counts, type sizes, fonts actually\nloaded, colours, rules, shadows, gradients, contrast, overflow, and the frame: equal margins, sections\nhuddled on one side, blank stretches, the title, untitled sections, text against the screen edge) and\nsaves screenshots to `.taste-skill/inspect/`. Fix every `FAIL`. Treat each `WARN` as wrong unless you can defend it to a\ndesigner in one sentence. Re-run until there are no `FAIL`s. Do not argue with the meter and do not\nhide things from it. The inspector serves local files over a throwaway local server; if the page must\nalso open straight from the file system, open `index.html` that way once before you finish.\n\nInspect what the visitor receives. With a build step, run the last gate on the production build\n(`vite build && vite preview`, `next build && next start`, or the built `index.html`), not only on the\ndev server: minifiers and bundlers change what ships (one dropped a `backdrop-filter` that the dev\nserver showed). The inspector warns when it is looking at a dev server.\n",
+    "placement": "before",
+    "increment": "I1",
+    "upstream_ranges": [
+      [
+        307,
+        331
+      ]
+    ],
+    "verbatim_probe": "Re-run until there are no",
+    "self_written_lines": [],
+    "why": "增量 I1（swap_pack 锚点 inspect 执行器、上游 L307-322）：第 7 步门的可执行面 —— 源码扫禁用模式与套话，真实浏览器按 1440 / 768 / 390 三档实测标题行数、字号、字体是否真的加载、对比度、溢出与版面帧，滚动场景另有一件覆盖；并含「最后一道门要跑在生产构建上」的实测告警。本地是纯散文规则、目录内零脚本，没有任何可执行门禁。并入段自成一块置于硬规则段之前，锚点行原样保留。",
+    "evidence": "逐文本体 = 钉定上游镜像第 307 到 331 行；逐字探针整行全等命中；本地锚点第 155 行唯一命中；三道门的执行器对象号 源码扫描 9277761d18222e5fc75c85ed79aa032f3d086598、真实浏览器实测 f1790ca0f1a7c26221455c4e1e91e69e16363dff、滚动场景 7bbde8e6bdf27859af0d54db1e1b2756de3a7d56，均已在取数名册内 fetched 为真。环境前提：本机无浏览器属写前态既记的环境卡点，网络超时同属之，二者不在本件范围，落地前须由 Lead 复跑探针。",
+    "sanxing": {
+      "实测": "上游第 307-331 行逐字；三件执行器与依赖 lib 已钉双 sha；本地锚点唯一命中",
+      "部分": "门禁可跑性未证（本机无 Chrome ⇒ r305b B1 环境卡点，本件不碰）",
+      "未证": "候选版本面（上游无 version 字段）"
+    },
+    "evidence_refs": [
+      "自建skill优化/_temp/r307b/blobs/skills__taste-skill__SKILL.md#L307-L331",
+      "自建skill优化/_repro/r305b/merge_plan.json#L819-L835",
+      "自建skill优化/_temp/r307b/fetch_manifest.json"
+    ],
+    "swap_pack_entry": {
+      "array": "increments",
+      "skill": "frontend-skill",
+      "upstream_ref": "SKILL.md L307-322",
+      "anchor": "inspect 执行器",
+      "state": "VERIFIED"
+    }
+  },
+  {
+    "id": "F5",
+    "op": "insert",
+    "anchor": "## Litmus Checks",
+    "old": null,
+    "new": "<!-- r307b 逐字钉定（加法式并入 · 本地行零删除）| 增量 I2 · 交付判据 0 FAIL | 上游 L363-373 | Leonxlnx/taste-skill · branch main · commit 12af471f627f866411b4bd785b19646d3672784c · blob_sha d8444f13b76be100b3b088dfdae738e85288d6b6 · content_sha256 3435ed963b15a1b6447746ec8844ab2cd38d8d2e8ead3451937f42df01e408c4 · license MIT | 证据 r303b swap_pack increments[frontend-skill] · 准入 r305b merge_plan skills[slug=frontend-skill].files[src=SKILL.md,action=land] -->\n### 10. Report\n\nDo not report until all of these are true; each one was skipped in a test run that came out badly:\n\n- `inspect.mjs` shows **0 FAIL** at 1440, 768 and 390, on the final version of the page.\n- You opened every screenshot it listed after the last change, not only the first screen.\n- With scroll scenes: `scenes.mjs` ran on the final page with no problems, and you read every sheet\n  (desktop, phone, reduced motion).\n- A stranger reading the first screen for five seconds can say what this is and what to do.\n- Every section has a heading; the margins match on both sides; no stretch of the page is empty.\n- The critique of your last round is written down in the shape of `references/critique.md` §4.\n",
+    "placement": "before",
+    "increment": "I2",
+    "upstream_ranges": [
+      [
+        363,
+        373
+      ]
+    ],
+    "verbatim_probe": "shows **0 FAIL** at 1440, 768 and 390",
+    "self_written_lines": [],
+    "why": "增量 I2（swap_pack 锚点 0 FAIL、上游 L367）：候选给出可复算的交付判据 —— 最终版在三档宽度 0 FAIL 才允许报告，并逐条列出改动后须打开全部截图、陌生读者五秒能说出这是什么等前置。本地无可复跑交付判据，交付标准停留在文字要求。置于本地判据段之前，与上一条门禁段构成「跑门 → 判交付」两块。锚点行原样保留。",
+    "evidence": "逐文本体 = 钉定上游镜像第 363 到 373 行；逐字探针整行全等命中；本地判据段标题第 178 行唯一命中；该判据所依赖的门禁执行器与上一条同源，已在名册内钉死。",
+    "sanxing": {
+      "实测": "上游第 363-373 行逐字；探针命中；本地锚点唯一命中",
+      "部分": "判据可执行性随 F4 的浏览器环境（本件不测）",
+      "未证": "无"
+    },
+    "evidence_refs": [
+      "自建skill优化/_temp/r307b/blobs/skills__taste-skill__SKILL.md#L363-L373",
+      "自建skill优化/_repro/r303b/swap_pack.json#L121-L128"
+    ],
+    "swap_pack_entry": {
+      "array": "increments",
+      "skill": "frontend-skill",
+      "upstream_ref": "SKILL.md L367",
+      "anchor": "0 FAIL",
+      "state": "VERIFIED"
+    }
+  },
+  {
+    "id": "F6",
+    "op": "insert",
+    "anchor": "- Would the design still feel premium if all decorative shadows were removed?",
+    "old": null,
+    "new": "<!-- r307b 逐字钉定（加法式并入 · 本地行零删除）| 卡点解锁 B3 与 B4 · 补取件指针对账 | 上游 L539-541 | Leonxlnx/taste-skill · branch main · commit 12af471f627f866411b4bd785b19646d3672784c · blob_sha d8444f13b76be100b3b088dfdae738e85288d6b6 · content_sha256 3435ed963b15a1b6447746ec8844ab2cd38d8d2e8ead3451937f42df01e408c4 · license MIT | 证据 r303b swap_pack increments[frontend-skill] · 准入 r305b merge_plan skills[slug=frontend-skill].files[src=SKILL.md,action=land] -->\n## Bundled Foundation and Chart Sidecars\n\nThe two files that r305b blocked as candidate gaps were re-fetched and pinned in r307b; the pointers below are upstream verbatim.\n\n| File | Read it when |\n| --- | --- |\n| `assets/base.css` · `assets/base.js` | An optional neutral foundation to build on. |\n| `assets/scenes/` | The scroll scenes: the shared stage (`stage.js`, `stage.css`) and, for each scene in the library, its `.js`, `.css` and a working demo page in `demo/`. |\n| `assets/app.css` · `assets/charts.js` | For app screens: a neutral shell, panels, tables and controls, and small SVG charts drawn to the app rules. |\n",
+    "placement": "after",
+    "increment": null,
+    "upstream_ranges": [
+      [
+        539,
+        541
+      ]
+    ],
+    "verbatim_probe": "An optional neutral foundation to build on.",
+    "self_written_lines": [
+      "## Bundled Foundation and Chart Sidecars",
+      "The two files that r305b blocked as candidate gaps were re-fetched and pinned in r307b; the pointers below are upstream verbatim.",
+      "| File | Read it when |",
+      "| --- | --- |"
+    ],
+    "why": "本件主目的 = 解 r305b 的 B3 与 B4 两个可解卡点（候选取件缺件冲突）。上游对这两件只留指针：文件表两行（一件可选的中性基础、一件 app 屏的小图表件）与正文一处；把指针逐字钉下来，落地后 sidecar 名在本地可解析，不再靠转述。四行表体与标题为本件自写（逐字登记），首三行表头是上游文件表的通用表头，逐字取自上游第 522-523 行同形态。追加在本地末行之后，本地零删除。",
+    "evidence": "补取两件实测：图表面件 59016 字节、对象号 8060404d133089930638804830e192218436eaa7、内容号 a7e916594729576b7c7e37048a68508a3243fe8fbc9654775cd245232e9f8100；中性基础脚本件 2162 字节、对象号 86ec0afacba394f64db238c44b8e7b980f2383b3、内容号 8d50416125596b84c0083d5d5ffba09add57db4b06cbf0eedac2d4999b7653bc。两件的对象号由取回字节按 git 原生算法本地重算，与递归树读数全等；内容号为自算；再对文件面读数一遍（判据脚本的 contents 对账腿可复跑）。上游指针 = 钉定镜像第 539 到 541 行，另有第 66 行一处正文指针随第 3 条并入。",
+    "sanxing": {
+      "实测": "两件已取回、双 sha 齐、blob 号双源全等；上游指针逐字；本地末行锚点唯一命中",
+      "部分": "两件内容已取但未在浏览器里渲染验证（环境面不在本件范围）",
+      "未证": "两件在本地被谁引用（r303b U4 同族的引用方未核面）"
+    },
+    "evidence_refs": [
+      "自建skill优化/_temp/r307b/fetch_manifest.json",
+      "自建skill优化/_temp/r307b/blobs/skills__taste-skill__SKILL.md#L539-L541",
+      "自建skill优化/_repro/r305b/merge_plan.json#L836-L851",
+      "自建skill优化/_repro/r305b/merge_plan.json#L712-L721"
+    ],
+    "swap_pack_entry": {
+      "array": "blocked",
+      "skill": "frontend-skill",
+      "ids": [
+        "B3",
+        "B4"
+      ],
+      "kind": "candidate_gap",
+      "disposition": "unblocked_by_r307b_refetch"
+    }
+  },
+  {
+    "id": "F7",
+    "op": "hold",
+    "anchor": "- Canonical full-bleed rule: on branded landing pages, the hero itself must run edge-to-edge with no inherited page gutters, framed container, or shared max-width; constrain only the inner text/action column.",
+    "old": null,
+    "new": null,
+    "placement": "n/a",
+    "increment": null,
+    "upstream_ranges": null,
+    "verbatim_probe": null,
+    "self_written_lines": null,
+    "why": "本地独有块 1/3 守住：品牌落地页 hero 必须 edge-to-edge 的那条硬规矩 —— 禁并掉、禁改写、禁挪位。上游全文对该规矩的三个关键词实测命中为 0，候选无此条，任何「按候选整体重写」都会把它抹掉。",
+    "evidence": "r303b 换装证据包的 local_only 数组第 3 项（skill 为 frontend-skill、local_ref 指向正文第 48 行、state 为 VERIFIED）；本件在本地现形重读，该行第 48 行整行唯一命中；上游钉定镜像对该主题词实测命中 0（判据脚本逐行复算，删掉本块必须掉到 2/3）。",
+    "sanxing": {
+      "实测": "本地第 48 行唯一命中；上游反证命中 0",
+      "部分": "无",
+      "未证": "无"
+    },
+    "evidence_refs": [
+      "D:/global_skills/frontend-skill/SKILL.md#L48",
+      "自建skill优化/_repro/r303b/swap_pack.json#L160-L168"
+    ],
+    "local_only_ref": {
+      "array": "local_only",
+      "index": 2,
+      "lines": "48-48"
+    },
+    "hold_kind": "line_block",
+    "hold_lines": [
+      48,
+      48
+    ]
+  },
+  {
+    "id": "F8",
+    "op": "hold",
+    "anchor": "Viewport budget:",
+    "old": null,
+    "new": null,
+    "placement": "n/a",
+    "increment": null,
+    "upstream_ranges": null,
+    "verbatim_probe": null,
+    "self_written_lines": null,
+    "why": "本地独有块 2/3 守住：首屏预算整块（标题行加两条规则，第 57 到 60 行）—— 上游无此段，必须逐字保留；并入段只落在它之前或之后，不覆盖它、不改它的行序。",
+    "evidence": "r303b 换装证据包的 local_only 数组第 4 项（local_ref 指向正文第 57 到 60 行、state 为 VERIFIED）；本件在本地现形重读：第 57 行标题整行唯一命中，第 58 到 60 行为其块体（含空行，块体逐行在判据里核）；上游镜像对该段两个主题词实测命中 0。",
+    "sanxing": {
+      "实测": "第 57 行唯一命中 + 第 58-60 行块体逐字在盘；上游反证命中 0",
+      "部分": "无",
+      "未证": "无"
+    },
+    "evidence_refs": [
+      "D:/global_skills/frontend-skill/SKILL.md#L57-L60",
+      "自建skill优化/_repro/r303b/swap_pack.json#L169-L176"
+    ],
+    "local_only_ref": {
+      "array": "local_only",
+      "index": 3,
+      "lines": "57-60"
+    },
+    "hold_kind": "line_block",
+    "hold_lines": [
+      57,
+      60
+    ]
+  },
+  {
+    "id": "F9",
+    "op": "hold",
+    "anchor": "agents/openai.yaml (local-only platform config, not a SKILL.md line)",
+    "old": null,
+    "new": null,
+    "placement": "n/a",
+    "increment": null,
+    "upstream_ranges": null,
+    "verbatim_probe": null,
+    "self_written_lines": null,
+    "why": "本地独有块 3/3 守住：agents 平台配置文件 —— 守法不是守文字，本清单任何一条编辑都不得引用、改写或删除该路径。候选仓的技能目录子面实测只有 assets / evals / library / references / scripts 五面，无 agents 子面，按候选覆盖目录必丢该件。",
+    "evidence": "r303b 换装证据包的 local_only 数组第 5 项（326 字节、state 为 VERIFIED）与 unknown 数组第 4 项（该件被谁引用未核，属死引用风险面，本件不动它）；本件只读实测该配置件 326 字节、内容号 e12288464311eeedcec370bf7625081b3bfb429ffe4c5d34acc9cf4bfd89db79，与写前态读数逐字段全等；候选全树 72 件名册内无该子面（命中 0）。",
+    "sanxing": {
+      "实测": "本地该件 326 字节与内容号同写前态全等；候选全树 72 件内无该子面",
+      "部分": "无",
+      "未证": "该配置件的引用方（写前态既记未核项，本件不涉）"
+    },
+    "evidence_refs": [
+      "D:/global_skills/frontend-skill/agents/openai.yaml",
+      "自建skill优化/_repro/r303b/swap_pack.json#L177-L182",
+      "自建skill优化/_repro/r305b/merge_plan.json#L152-L156"
+    ],
+    "local_only_ref": {
+      "array": "local_only",
+      "index": 4,
+      "file": "agents/openai.yaml",
+      "bytes": 326,
+      "sha256": "e12288464311eeedcec370bf7625081b3bfb429ffe4c5d34acc9cf4bfd89db79"
+    },
+    "hold_kind": "file_exists",
+    "hold_target": "agents/openai.yaml",
+    "anchor_scope": "file",
+    "anchor_scope_note": "第三条本地独有项是文件而非正文行：本地件内没有描述该配置件的行（实测 grep 命中 0），故本条不设文字锚点，守法 = 字节数与内容号全等 + 本清单任何一条不得引用或改写该路径。判据脚本对 anchor_scope=file 的条目跳过文字锚点计数，其余 8 条全部文字锚点唯一命中。"
+  }
+]
