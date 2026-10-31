@@ -1,0 +1,100 @@
+{
+ "task2|r1|X": {
+  "cur_fake": [
+   "anti_patterns"
+  ],
+  "i8": 0,
+  "would_be_rescued": [],
+  "log_mentions": 15
+ },
+ "task2|r1|Y": {
+  "cur_fake": [],
+  "i8": 1,
+  "would_be_rescued": [],
+  "log_mentions": 0
+ },
+ "task3|r1|X": {
+  "cur_fake": [],
+  "i8": 1,
+  "would_be_rescued": [],
+  "log_mentions": 10
+ },
+ "task3|r1|Y": {
+  "cur_fake": [],
+  "i8": 1,
+  "would_be_rescued": [],
+  "log_mentions": 14
+ },
+ "task2|r2|X": {
+  "cur_fake": [],
+  "i8": 1,
+  "would_be_rescued": [],
+  "log_mentions": 3
+ },
+ "task2|r2|Y": {
+  "cur_fake": [],
+  "i8": 1,
+  "would_be_rescued": [],
+  "log_mentions": 13
+ },
+ "task3|r2|X": {
+  "cur_fake": [],
+  "i8": 1,
+  "would_be_rescued": [],
+  "log_mentions": 10
+ },
+ "task3|r2|Y": {
+  "cur_fake": [],
+  "i8": 1,
+  "would_be_rescued": [],
+  "log_mentions": 16
+ },
+ "task2|r3|X": {
+  "cur_fake": [],
+  "i8": 1,
+  "would_be_rescued": [],
+  "log_mentions": 2
+ },
+ "task2|r3|Y": {
+  "cur_fake": [],
+  "i8": 1,
+  "would_be_rescued": [],
+  "log_mentions": 15
+ },
+ "task3|r3|X": {
+  "cur_fake": [],
+  "i8": 1,
+  "would_be_rescued": [],
+  "log_mentions": 14
+ },
+ "task3|r3|Y": {
+  "cur_fake": [],
+  "i8": 1,
+  "would_be_rescued": [],
+  "log_mentions": 0
+ },
+ "task2|r4|X": {
+  "cur_fake": [],
+  "i8": 1,
+  "would_be_rescued": [],
+  "log_mentions": 12
+ },
+ "task2|r4|Y": {
+  "cur_fake": [],
+  "i8": 1,
+  "would_be_rescued": [],
+  "log_mentions": 0
+ },
+ "task3|r4|X": {
+  "cur_fake": [],
+  "i8": 1,
+  "would_be_rescued": [],
+  "log_mentions": 0
+ },
+ "task3|r4|Y": {
+  "cur_fake": [],
+  "i8": 1,
+  "would_be_rescued": [],
+  "log_mentions": 8
+ }
+}
