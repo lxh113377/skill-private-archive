@@ -5,7 +5,7 @@
   "target": "frontend-skill/SKILL.md",
   "fm_key": "version",
   "fm_date_key": "last_updated",
-  "expect": "1.1.0",
+  "expect": "1.1.1",
   "history_heading": "## Version history"
  },
  "replays": [
@@ -13,13 +13,18 @@
    "target": "frontend-skill/SKILL.md",
    "base_ref": "0fcf7842~1",
    "patches": [
-    "_repro/r308land/patch_r308_frontend.json"
+    "_repro/r308land/patch_r308_frontend.json",
+    "_repro/r330_lead/patch_r323_refs.json",
+    "_repro/r330_lead/patch_r323_history.json",
+    "_repro/r330_lead/patch_r323_version.json"
    ]
   },
   {
    "target": "frontend-skill/.upstream",
    "base_ref": "HEAD",
-   "patches": [],
+   "patches": [
+    "_repro/r330_lead/patch_upstream_noop.json"
+   ],
    "note": "空补丁链守卫（r306b 同款）：任何对声明件的非链内改写必被本腿拒"
   }
  ],
