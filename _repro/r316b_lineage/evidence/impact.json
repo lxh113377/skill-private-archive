@@ -1,0 +1,86 @@
+{
+ "path_rule_under_review": {
+  "file": "D:/global_skills/gstack/.upstream",
+  "verbatim": "garrytan/gstack | path: capy/skill/gstack",
+  "sha256": null
+ },
+ "measured_now": "2026-10-31T19:3x+08 (gh api live fetch)",
+ "baseline_registry": {
+  "file": "自建skill优化/_repro/r303a/absorption_baseline.json",
+  "schema": "r303a.absorption_baseline.v1",
+  "pairs_total": 52,
+  "pairs_on_garrytan_gstack": 1,
+  "the_only_affected_pair": {
+   "slug": "gstack",
+   "repo": "garrytan/gstack",
+   "upstream_path": "capy/skill/gstack/SKILL.md",
+   "upstream_file_sha_pin": "11bd23cc72e7535978675f6da3ddcf39d7720b5b",
+   "upstream_commit_pin": "b61744517cc35b3109f06a54d64857be27f60c4e",
+   "local_file_sha": "f3477b0a0bb9111da70b111dfc7b678e17286ad1436670262d00800b5b30306d",
+   "local_version": "1.3.0"
+  },
+  "collision_check": "garrytan/gstack 在 52 对里只有 gstack 一对；全表含 browse 字样的路径为 0（仅 agent-browser 指向 vercel-labs，无关）⇒ 把 path 改成 browse 不会与任何既有 pair 撞靶。",
+  "repo_distribution_top": [
+   [
+    "anthropics/skills",
+    11
+   ],
+   [
+    "worldwonderer/oh-story-claudecode",
+    11
+   ],
+   [
+    "heygen-com/hyperframes",
+    5
+   ],
+   [
+    "obra/superpowers",
+    5
+   ]
+  ]
+ },
+ "consumers_of_this_path_rule": [
+  {
+   "face": "r303a/compare_baseline.py",
+   "how": "按 pair.upstream_path 现拉上游 blob 比对（UNKNOWN 永不读作 OK）",
+   "effect_if_changed": "该 pair 的 upstream 侧换靶；旧 pin 11bd23cc 与新靶不可比，必须重建该 pair 锚点"
+  },
+  {
+   "face": "r304a/r304_quarterly_version_scan.py",
+   "how": "复用同一 loader + DEFAULT_BASELINE 指向 r303a/absorption_baseline.json；UPSTREAM_CHANGED/BOTH_CHANGED ⇒ 吸收候选",
+   "effect_if_changed": "本季唯一 UPSTREAM_CHANGED 候选（gstack）的语义会随 path 改写而改变：换 browse 后 capy 侧漂移不再被报"
+  },
+  {
+   "face": "05-exec/r114_replacement_scan.py:569-668",
+   "how": "解析 .upstream 侧车三形态（1 行纯 repo / 2 行 repo+path / 3-4 行）→ declared 上游",
+   "effect_if_changed": "直接读 path 行；改成 browse 后声明面立即变更"
+  },
+  {
+   "face": "05-exec/r263_declared_upstream_face.py",
+   "how": "逐件读 D:/global_skills/<skill>/.upstream + gh api，产 declared_upstream_face（declared_state=lineage 靶）",
+   "effect_if_changed": "gstack 记录的靶路径变更，版本面(BEHIND/AHEAD)语义随之换族"
+  },
+  {
+   "face": "05-exec/r264_sidecar_semantics.py",
+   "how": "给 .upstream 侧车分类；R263-3 规定 BEHIND 只在 SAME_LINEAGE 时读作版本差",
+   "effect_if_changed": "这正是本件要回答的分类：capy 若判异族，则 gstack 的版本面读数不该按同族 BEHIND 用"
+  },
+  {
+   "face": "05-exec/r291_req2_compliance.py:45",
+   "how": "盘上真相现读 .upstream 首行（只取 repo 首行，不取 path）",
+   "effect_if_changed": "不受 path 改写影响（首行仍是 garrytan/gstack）⇒ 改动不会破这条合规面"
+  },
+  {
+   "face": "05-exec/check_r291_landed.py:31",
+   "how": "git show <ref>:<slug>/.upstream 比对落地面",
+   "effect_if_changed": "落地面 hash 变更，需同步该检查基准"
+  },
+  {
+   "face": "快照/台账（只读引用，不改行为）",
+   "how": "06-benchmark/r263,r264,r271,r275,r277,replacement_matrix_shadowstrict.json；memory/07-next-steps.md；_repro/r301c,r302b,r314b,r315a",
+   "effect_if_changed": "这些是历史读数，引用旧 path；改写后新读数与旧读数不可直接对比，需在台账注明换代时刻"
+  }
+ ],
+ "blast_radius_summary": "改 .upstream 的 path 行 ⇒ 动 52 对里的 1 对（gstack）+ 6 个活面（compare/quarterly/r114/r263/r264/check_r291_landed）+ 1 个落地面 hash；不动 r291_req2（只读首行 repo）；不动其余 51 对。",
+ "managed_root_write_needed": "是：D:/global_skills/gstack/.upstream 第 2 行（受管根 git 跟踪件）。本件未写。"
+}

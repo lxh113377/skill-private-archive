@@ -1,0 +1,2418 @@
+{
+ "schema": "r316b-lineage-1",
+ "generated_at": "2026-10-31T11:47:17+00:00",
+ "metric_design": {
+  "name": "signature-containment-lineage",
+  "banned": "whole-line overlap ratio (r315: non-discriminating on superset forks)",
+  "containment": "|A n B| / min(|A|,|B|) -> one-sided expansion cannot dilute the score",
+  "dimensions": [
+   "D1 fm_name verbatim",
+   "D2 family profile (dominant + cosine)",
+   "D3 h1_topic words",
+   "D4 purpose_verbs",
+   "D5 trigger_face",
+   "D6 tool_command_face",
+   "S1 gen-marker parity",
+   "S2 heading set",
+   "S3 inline-code/CLI token set",
+   "S4 length ratio (report-only)"
+  ],
+  "hard_gates": {
+   "G1_identity": "fm name verbatim equal AND same dominant family AND (h1>=0.50 OR purpose>=0.50 OR tool>=0.50)",
+   "G2_semantics": "mean(usable of purpose/trigger/tool) >= 0.50",
+   "G3_structure": "gen-marker parity OR heading>=0.40 OR code>=0.40 OR family cosine>=0.70"
+  },
+  "abstain_rule": "min(|A|,|B|)>=3 and |A n B|>=2 (h1: >=2/>=1, code: >=5/>=3); >=2 abstaining gated dims -> unclear",
+  "thresholds_declared_before_run": true,
+  "asymmetry_rule": "abstention can only block a positive claim; diff-family requires >=3 of 5 affirmative disproof signals (P1 identity absent / P2 dominant family / P3 heading<=0.15 both>=5 / P4 code<=0.15 both>=10 / P5 generator marker on one side only)",
+  "same_family_rule": "abstain<=1 AND G1 AND G2 AND G3",
+  "design_iterations": [
+   "run-1: abstained whenever |A n B| < min_inter, which conflated no-evidence with evidence-of-no-overlap and made diff-family unreachable (floor was unclear) -> fixed to abstain only on thin min(|A|,|B|)",
+   "run-1: json.dump failed on sets -> added jsonable()",
+   "run-2: TRIG_ONLY contained host lifecycle phrases (session start / run first / before any) -> removed (fix F1); this only lowers scores, applied after the first court reading and re-verified",
+   "run-2: added the asymmetry rule + first-party provenance identity channel, because a 2-vocabulary dim abstaining must not launder a 5-signal alien reading into unclear",
+   "run-3: identity_tokens split the whole kind:repo:path label on slashes, so the REPO owner stayed a token; fixed to read the path as the last colon part. Court verdicts are identical before and after this fix (COURT+ same-family, COURT- diff-family); it only strengthens negative-control leg A's identity disproof and lets the first-party provenance clause name the browse candidate."
+  ],
+  "vocab_sizes": {
+   "purpose_verbs": 50,
+   "tool_nouns": 26,
+   "domain_words": 119,
+   "families": 8,
+   "trigger_phrases": 11
+  },
+  "anti_gaming": [
+   "vocabularies are domain-agnostic functional words, not tuned to any pair",
+   "negative scope clauses (do not use / not for) are cut before matching",
+   "family profile uses counts so a 1-hit family cannot tie with the owning family",
+   "fence-filtered headings so shell comments never count as sections"
+  ]
+ },
+ "known_answers": [
+  {
+   "case": "docx",
+   "polarity": "positive (must be same-family)",
+   "pair": "local:D:/global_skills/docx/SKILL.md <-> up:anthropics/skills:skills/docx/SKILL.md",
+   "verdict_same_family": true,
+   "verdict": "same-family",
+   "metric_values": {
+    "semantic_mean": 0.7857,
+    "gates": {
+     "G1_identity": true,
+     "G2_semantic_mean_ge_0.50": true,
+     "G3_structure": true
+    },
+    "dims": {
+     "D3_h1_topic": {
+      "containment": 0.25,
+      "usable": true,
+      "sizes": [
+       5,
+       4
+      ],
+      "inter": 1,
+      "verbatim_equal": false
+     },
+     "D4_purpose_verbs": {
+      "containment": 0.8571,
+      "usable": true,
+      "sizes": [
+       14,
+       7
+      ],
+      "inter": 6
+     },
+     "D5_trigger_face": {
+      "containment": 1.0,
+      "usable": true,
+      "sizes": [
+       4,
+       6
+      ],
+      "inter": 4
+     },
+     "D6_tool_command": {
+      "containment": 0.5,
+      "usable": true,
+      "sizes": [
+       5,
+       4
+      ],
+      "inter": 2
+     },
+     "S2_heading_topics": {
+      "containment": 0.1667,
+      "usable": true,
+      "sizes": [
+       47,
+       6
+      ],
+      "inter": 1
+     },
+     "S3_code_tokens": {
+      "containment": 0.3673,
+      "usable": true,
+      "sizes": [
+       101,
+       49
+      ],
+      "inter": 18
+     },
+     "D2_family": {
+      "cosine": 0.9867,
+      "same_dominant": true,
+      "dominant": [
+       "word_document",
+       "word_document"
+      ]
+     },
+     "S1_gen_parity": {
+      "parity": true,
+      "markers": [
+       [],
+       []
+      ]
+     },
+     "S4_length_ratio": {
+      "ratio": 0.1067
+     }
+    },
+    "abstain_count": 0
+   }
+  },
+  {
+   "case": "gstack-capy",
+   "polarity": "negative (must be diff-family)",
+   "pair": "local:D:/global_skills/gstack/SKILL.md <-> declared:garrytan/gstack:capy/skill/gstack/SKILL.md",
+   "verdict_diff_family": true,
+   "verdict": "diff-family",
+   "metric_values": {
+    "semantic_mean": 0.6,
+    "gates": {
+     "G1_identity": false,
+     "G2_semantic_mean_ge_0.50": true,
+     "G3_structure": true
+    },
+    "dims": {
+     "D3_h1_topic": {
+      "containment": 0.0,
+      "usable": true,
+      "sizes": [
+       4,
+       4
+      ],
+      "inter": 0,
+      "verbatim_equal": false
+     },
+     "D4_purpose_verbs": {
+      "containment": 0.6,
+      "usable": true,
+      "sizes": [
+       20,
+       10
+      ],
+      "inter": 6
+     },
+     "D5_trigger_face": {
+      "containment": null,
+      "usable": false,
+      "sizes": [
+       2,
+       0
+      ],
+      "inter": 0
+     },
+     "D6_tool_command": {
+      "containment": null,
+      "usable": false,
+      "sizes": [
+       4,
+       2
+      ],
+      "inter": 0
+     },
+     "S2_heading_topics": {
+      "containment": 0.0,
+      "usable": true,
+      "sizes": [
+       37,
+       10
+      ],
+      "inter": 0
+     },
+     "S3_code_tokens": {
+      "containment": 0.0719,
+      "usable": true,
+      "sizes": [
+       160,
+       153
+      ],
+      "inter": 11
+     },
+     "D2_family": {
+      "cosine": 0.7361,
+      "same_dominant": false,
+      "dominant": [
+       "browser_qa",
+       "engineering_workflow"
+      ]
+     },
+     "S1_gen_parity": {
+      "parity": false,
+      "markers": [
+       [
+        "auto-generated",
+        "do not edit directly",
+        "regenerate:"
+       ],
+       []
+      ]
+     },
+     "S4_length_ratio": {
+      "ratio": 0.1366
+     }
+    },
+    "abstain_count": 2
+   }
+  }
+ ],
+ "known_pass": true,
+ "verdict_suggestion_allowed": true,
+ "court_gate": {
+  "rule": "known_pass=false => this deliverable is a probe report only and may NOT issue a verdict suggestion",
+  "passed": true
+ },
+ "gstack_options": {
+  "keep_capy": {
+   "pair": "local:D:/global_skills/gstack/SKILL.md <-> declared:garrytan/gstack:capy/skill/gstack/SKILL.md",
+   "verdict": "diff-family",
+   "dims": {
+    "D3_h1_topic": {
+     "containment": 0.0,
+     "usable": true,
+     "sizes": [
+      4,
+      4
+     ],
+     "inter": 0,
+     "verbatim_equal": false
+    },
+    "D4_purpose_verbs": {
+     "containment": 0.6,
+     "usable": true,
+     "sizes": [
+      20,
+      10
+     ],
+     "inter": 6
+    },
+    "D5_trigger_face": {
+     "containment": null,
+     "usable": false,
+     "sizes": [
+      2,
+      0
+     ],
+     "inter": 0
+    },
+    "D6_tool_command": {
+     "containment": null,
+     "usable": false,
+     "sizes": [
+      4,
+      2
+     ],
+     "inter": 0
+    },
+    "S2_heading_topics": {
+     "containment": 0.0,
+     "usable": true,
+     "sizes": [
+      37,
+      10
+     ],
+     "inter": 0
+    },
+    "S3_code_tokens": {
+     "containment": 0.0719,
+     "usable": true,
+     "sizes": [
+      160,
+      153
+     ],
+     "inter": 11
+    },
+    "D2_family": {
+     "cosine": 0.7361,
+     "same_dominant": false,
+     "dominant": [
+      "browser_qa",
+      "engineering_workflow"
+     ]
+    },
+    "S1_gen_parity": {
+     "parity": false,
+     "markers": [
+      [
+       "auto-generated",
+       "do not edit directly",
+       "regenerate:"
+      ],
+      []
+     ]
+    },
+    "S4_length_ratio": {
+     "ratio": 0.1366
+    }
+   },
+   "usable_dims": [
+    "D3_h1_topic",
+    "D4_purpose_verbs",
+    "S2_heading_topics"
+   ],
+   "abstain_count": 2,
+   "semantic_mean": 0.6,
+   "gates": {
+    "G1_identity": false,
+    "G2_semantic_mean_ge_0.50": true,
+    "G3_structure": true
+   },
+   "gates_passed": 2,
+   "disproofs": {
+    "P1_identity_absent": false,
+    "P2_family_differs": true,
+    "P3_no_shared_sections": true,
+    "P4_no_shared_surface": true,
+    "P5_generator_split": true
+   },
+   "disproof_count": 4,
+   "identity": {
+    "fm_name_equal": true,
+    "provenance_clause_match": false,
+    "candidate_tokens": [
+     "capy"
+    ],
+    "fm_names": [
+     "gstack",
+     "gstack"
+    ]
+   },
+   "noise_floor_note": "dims with containment < 0.10 are disproofs, not abstentions"
+  },
+  "switch_browse": {
+   "pair": "local:D:/global_skills/gstack/SKILL.md <-> alt:garrytan/gstack:browse/SKILL.md",
+   "verdict": "unclear",
+   "dims": {
+    "D3_h1_topic": {
+     "containment": 0.0,
+     "usable": true,
+     "sizes": [
+      4,
+      2
+     ],
+     "inter": 0,
+     "verbatim_equal": false
+    },
+    "D4_purpose_verbs": {
+     "containment": 0.8,
+     "usable": true,
+     "sizes": [
+      20,
+      5
+     ],
+     "inter": 4
+    },
+    "D5_trigger_face": {
+     "containment": null,
+     "usable": false,
+     "sizes": [
+      2,
+      0
+     ],
+     "inter": 0
+    },
+    "D6_tool_command": {
+     "containment": null,
+     "usable": false,
+     "sizes": [
+      4,
+      0
+     ],
+     "inter": 0
+    },
+    "S2_heading_topics": {
+     "containment": 0.12,
+     "usable": true,
+     "sizes": [
+      37,
+      25
+     ],
+     "inter": 3
+    },
+    "S3_code_tokens": {
+     "containment": 0.2338,
+     "usable": true,
+     "sizes": [
+      160,
+      154
+     ],
+     "inter": 36
+    },
+    "D2_family": {
+     "cosine": 0.9449,
+     "same_dominant": true,
+     "dominant": [
+      "browser_qa",
+      "browser_qa"
+     ]
+    },
+    "S1_gen_parity": {
+     "parity": true,
+     "markers": [
+      [
+       "auto-generated",
+       "do not edit directly",
+       "regenerate:"
+      ],
+      [
+       "auto-generated",
+       "do not edit directly",
+       "regenerate:"
+      ]
+     ]
+    },
+    "S4_length_ratio": {
+     "ratio": 0.7298
+    }
+   },
+   "usable_dims": [
+    "D3_h1_topic",
+    "D4_purpose_verbs",
+    "S2_heading_topics"
+   ],
+   "abstain_count": 2,
+   "semantic_mean": 0.8,
+   "gates": {
+    "G1_identity": true,
+    "G2_semantic_mean_ge_0.50": true,
+    "G3_structure": true
+   },
+   "gates_passed": 3,
+   "disproofs": {
+    "P1_identity_absent": false,
+    "P2_family_differs": false,
+    "P3_no_shared_sections": true,
+    "P4_no_shared_surface": false,
+    "P5_generator_split": false
+   },
+   "disproof_count": 1,
+   "identity": {
+    "fm_name_equal": false,
+    "provenance_clause_match": true,
+    "candidate_tokens": [
+     "browse"
+    ],
+    "fm_names": [
+     "gstack",
+     "browse"
+    ]
+   },
+   "noise_floor_note": "dims with containment < 0.10 are disproofs, not abstentions"
+  },
+  "against_root_skillmd": {
+   "pair": "local:D:/global_skills/gstack/SKILL.md <-> alt:garrytan/gstack:SKILL.md",
+   "verdict": "unclear",
+   "dims": {
+    "D3_h1_topic": {
+     "containment": 0.0,
+     "usable": true,
+     "sizes": [
+      4,
+      2
+     ],
+     "inter": 0,
+     "verbatim_equal": false
+    },
+    "D4_purpose_verbs": {
+     "containment": null,
+     "usable": false,
+     "sizes": [
+      20,
+      2
+     ],
+     "inter": 1
+    },
+    "D5_trigger_face": {
+     "containment": null,
+     "usable": false,
+     "sizes": [
+      2,
+      0
+     ],
+     "inter": 0
+    },
+    "D6_tool_command": {
+     "containment": null,
+     "usable": false,
+     "sizes": [
+      4,
+      0
+     ],
+     "inter": 0
+    },
+    "S2_heading_topics": {
+     "containment": 0.2727,
+     "usable": true,
+     "sizes": [
+      37,
+      11
+     ],
+     "inter": 3
+    },
+    "S3_code_tokens": {
+     "containment": 0.2881,
+     "usable": true,
+     "sizes": [
+      160,
+      118
+     ],
+     "inter": 34
+    },
+    "D2_family": {
+     "cosine": 0.9164,
+     "same_dominant": true,
+     "dominant": [
+      "browser_qa",
+      "browser_qa"
+     ]
+    },
+    "S1_gen_parity": {
+     "parity": true,
+     "markers": [
+      [
+       "auto-generated",
+       "do not edit directly",
+       "regenerate:"
+      ],
+      [
+       "auto-generated",
+       "do not edit directly",
+       "regenerate:"
+      ]
+     ]
+    },
+    "S4_length_ratio": {
+     "ratio": 0.4317
+    }
+   },
+   "usable_dims": [
+    "D3_h1_topic",
+    "S2_heading_topics"
+   ],
+   "abstain_count": 3,
+   "semantic_mean": null,
+   "gates": {
+    "G1_identity": false,
+    "G2_semantic_mean_ge_0.50": false,
+    "G3_structure": true
+   },
+   "gates_passed": 1,
+   "disproofs": {
+    "P1_identity_absent": false,
+    "P2_family_differs": false,
+    "P3_no_shared_sections": false,
+    "P4_no_shared_surface": false,
+    "P5_generator_split": false
+   },
+   "disproof_count": 0,
+   "identity": {
+    "fm_name_equal": true,
+    "provenance_clause_match": false,
+    "candidate_tokens": [],
+    "fm_names": [
+     "gstack",
+     "gstack"
+    ]
+   },
+   "noise_floor_note": "dims with containment < 0.10 are disproofs, not abstentions"
+  }
+ },
+ "negative_controls": {
+  "legA_cross_docx_vs_pdf": {
+   "verbatim_expectation": "diff-family",
+   "verdict": "diff-family",
+   "pass": true,
+   "metrics": {
+    "pair": "local:D:/global_skills/docx/SKILL.md <-> neg:anthropics/skills:skills/pdf/SKILL.md",
+    "verdict": "diff-family",
+    "dims": {
+     "D3_h1_topic": {
+      "containment": 0.0,
+      "usable": true,
+      "sizes": [
+       5,
+       2
+      ],
+      "inter": 0,
+      "verbatim_equal": false
+     },
+     "D4_purpose_verbs": {
+      "containment": 0.4444,
+      "usable": true,
+      "sizes": [
+       14,
+       9
+      ],
+      "inter": 4
+     },
+     "D5_trigger_face": {
+      "containment": null,
+      "usable": false,
+      "sizes": [
+       4,
+       2
+      ],
+      "inter": 1
+     },
+     "D6_tool_command": {
+      "containment": null,
+      "usable": false,
+      "sizes": [
+       5,
+       0
+      ],
+      "inter": 0
+     },
+     "S2_heading_topics": {
+      "containment": 0.0,
+      "usable": true,
+      "sizes": [
+       47,
+       28
+      ],
+      "inter": 0
+     },
+     "S3_code_tokens": {
+      "containment": 0.0,
+      "usable": true,
+      "sizes": [
+       101,
+       9
+      ],
+      "inter": 0
+     },
+     "D2_family": {
+      "cosine": 0.6736,
+      "same_dominant": false,
+      "dominant": [
+       "word_document",
+       "pdf_documents"
+      ]
+     },
+     "S1_gen_parity": {
+      "parity": true,
+      "markers": [
+       [],
+       []
+      ]
+     },
+     "S4_length_ratio": {
+      "ratio": 0.3654
+     }
+    },
+    "usable_dims": [
+     "D3_h1_topic",
+     "D4_purpose_verbs",
+     "S2_heading_topics"
+    ],
+    "abstain_count": 2,
+    "semantic_mean": 0.4444,
+    "gates": {
+     "G1_identity": false,
+     "G2_semantic_mean_ge_0.50": false,
+     "G3_structure": true
+    },
+    "gates_passed": 1,
+    "disproofs": {
+     "P1_identity_absent": true,
+     "P2_family_differs": true,
+     "P3_no_shared_sections": true,
+     "P4_no_shared_surface": false,
+     "P5_generator_split": false
+    },
+    "disproof_count": 3,
+    "identity": {
+     "fm_name_equal": false,
+     "provenance_clause_match": false,
+     "candidate_tokens": [
+      "pdf"
+     ],
+     "fm_names": [
+      "docx",
+      "pdf"
+     ]
+    },
+    "noise_floor_note": "dims with containment < 0.10 are disproofs, not abstentions"
+   }
+  },
+  "legB_cleared_vocab": {
+   "verbatim_expectation": "unclear",
+   "verdict": "unclear",
+   "pass": true,
+   "metrics": {
+    "pair": "local:D:/global_skills/docx/SKILL.md <-> up:anthropics/skills:skills/docx/SKILL.md",
+    "verdict": "unclear",
+    "dims": {
+     "D3_h1_topic": {
+      "containment": null,
+      "usable": false,
+      "sizes": [
+       0,
+       0
+      ],
+      "inter": 0,
+      "verbatim_equal": false
+     },
+     "D4_purpose_verbs": {
+      "containment": null,
+      "usable": false,
+      "sizes": [
+       0,
+       0
+      ],
+      "inter": 0
+     },
+     "D5_trigger_face": {
+      "containment": null,
+      "usable": false,
+      "sizes": [
+       0,
+       0
+      ],
+      "inter": 0
+     },
+     "D6_tool_command": {
+      "containment": null,
+      "usable": false,
+      "sizes": [
+       0,
+       0
+      ],
+      "inter": 0
+     },
+     "S2_heading_topics": {
+      "containment": null,
+      "usable": false,
+      "sizes": [
+       0,
+       0
+      ],
+      "inter": 0
+     },
+     "S3_code_tokens": {
+      "containment": null,
+      "usable": false,
+      "sizes": [
+       0,
+       0
+      ],
+      "inter": 0
+     },
+     "D2_family": {
+      "cosine": 0.0,
+      "same_dominant": false,
+      "dominant": [
+       null,
+       null
+      ]
+     },
+     "S1_gen_parity": {
+      "parity": false,
+      "markers": [
+       [],
+       []
+      ]
+     },
+     "S4_length_ratio": {
+      "ratio": 0.1067
+     }
+    },
+    "usable_dims": [],
+    "abstain_count": 5,
+    "semantic_mean": null,
+    "gates": {
+     "G1_identity": false,
+     "G2_semantic_mean_ge_0.50": false,
+     "G3_structure": false
+    },
+    "gates_passed": 0,
+    "disproofs": {
+     "P1_identity_absent": false,
+     "P2_family_differs": true,
+     "P3_no_shared_sections": false,
+     "P4_no_shared_surface": false,
+     "P5_generator_split": false
+    },
+    "disproof_count": 1,
+    "identity": {
+     "fm_name_equal": true,
+     "provenance_clause_match": false,
+     "candidate_tokens": [],
+     "fm_names": [
+      "docx",
+      "docx"
+     ]
+    },
+    "noise_floor_note": "dims with containment < 0.10 are disproofs, not abstentions"
+   }
+  }
+ },
+ "impact": {
+  "path_rule_under_review": {
+   "file": "D:/global_skills/gstack/.upstream",
+   "verbatim": "garrytan/gstack | path: capy/skill/gstack",
+   "sha256": null
+  },
+  "measured_now": "2026-10-31T19:3x+08 (gh api live fetch)",
+  "baseline_registry": {
+   "file": "自建skill优化/_repro/r303a/absorption_baseline.json",
+   "schema": "r303a.absorption_baseline.v1",
+   "pairs_total": 52,
+   "pairs_on_garrytan_gstack": 1,
+   "the_only_affected_pair": {
+    "slug": "gstack",
+    "repo": "garrytan/gstack",
+    "upstream_path": "capy/skill/gstack/SKILL.md",
+    "upstream_file_sha_pin": "11bd23cc72e7535978675f6da3ddcf39d7720b5b",
+    "upstream_commit_pin": "b61744517cc35b3109f06a54d64857be27f60c4e",
+    "local_file_sha": "f3477b0a0bb9111da70b111dfc7b678e17286ad1436670262d00800b5b30306d",
+    "local_version": "1.3.0"
+   },
+   "collision_check": "garrytan/gstack 在 52 对里只有 gstack 一对；全表含 browse 字样的路径为 0（仅 agent-browser 指向 vercel-labs，无关）⇒ 把 path 改成 browse 不会与任何既有 pair 撞靶。",
+   "repo_distribution_top": [
+    [
+     "anthropics/skills",
+     11
+    ],
+    [
+     "worldwonderer/oh-story-claudecode",
+     11
+    ],
+    [
+     "heygen-com/hyperframes",
+     5
+    ],
+    [
+     "obra/superpowers",
+     5
+    ]
+   ]
+  },
+  "consumers_of_this_path_rule": [
+   {
+    "face": "r303a/compare_baseline.py",
+    "how": "按 pair.upstream_path 现拉上游 blob 比对（UNKNOWN 永不读作 OK）",
+    "effect_if_changed": "该 pair 的 upstream 侧换靶；旧 pin 11bd23cc 与新靶不可比，必须重建该 pair 锚点"
+   },
+   {
+    "face": "r304a/r304_quarterly_version_scan.py",
+    "how": "复用同一 loader + DEFAULT_BASELINE 指向 r303a/absorption_baseline.json；UPSTREAM_CHANGED/BOTH_CHANGED ⇒ 吸收候选",
+    "effect_if_changed": "本季唯一 UPSTREAM_CHANGED 候选（gstack）的语义会随 path 改写而改变：换 browse 后 capy 侧漂移不再被报"
+   },
+   {
+    "face": "05-exec/r114_replacement_scan.py:569-668",
+    "how": "解析 .upstream 侧车三形态（1 行纯 repo / 2 行 repo+path / 3-4 行）→ declared 上游",
+    "effect_if_changed": "直接读 path 行；改成 browse 后声明面立即变更"
+   },
+   {
+    "face": "05-exec/r263_declared_upstream_face.py",
+    "how": "逐件读 D:/global_skills/<skill>/.upstream + gh api，产 declared_upstream_face（declared_state=lineage 靶）",
+    "effect_if_changed": "gstack 记录的靶路径变更，版本面(BEHIND/AHEAD)语义随之换族"
+   },
+   {
+    "face": "05-exec/r264_sidecar_semantics.py",
+    "how": "给 .upstream 侧车分类；R263-3 规定 BEHIND 只在 SAME_LINEAGE 时读作版本差",
+    "effect_if_changed": "这正是本件要回答的分类：capy 若判异族，则 gstack 的版本面读数不该按同族 BEHIND 用"
+   },
+   {
+    "face": "05-exec/r291_req2_compliance.py:45",
+    "how": "盘上真相现读 .upstream 首行（只取 repo 首行，不取 path）",
+    "effect_if_changed": "不受 path 改写影响（首行仍是 garrytan/gstack）⇒ 改动不会破这条合规面"
+   },
+   {
+    "face": "05-exec/check_r291_landed.py:31",
+    "how": "git show <ref>:<slug>/.upstream 比对落地面",
+    "effect_if_changed": "落地面 hash 变更，需同步该检查基准"
+   },
+   {
+    "face": "快照/台账（只读引用，不改行为）",
+    "how": "06-benchmark/r263,r264,r271,r275,r277,replacement_matrix_shadowstrict.json；memory/07-next-steps.md；_repro/r301c,r302b,r314b,r315a",
+    "effect_if_changed": "这些是历史读数，引用旧 path；改写后新读数与旧读数不可直接对比，需在台账注明换代时刻"
+   }
+  ],
+  "blast_radius_summary": "改 .upstream 的 path 行 ⇒ 动 52 对里的 1 对（gstack）+ 6 个活面（compare/quarterly/r114/r263/r264/check_r291_landed）+ 1 个落地面 hash；不动 r291_req2（只读首行 repo）；不动其余 51 对。",
+  "managed_root_write_needed": "是：D:/global_skills/gstack/.upstream 第 2 行（受管根 git 跟踪件）。本件未写。"
+ },
+ "signatures": {
+  "local:D:/global_skills/docx/SKILL.md": {
+   "label": "local:D:/global_skills/docx/SKILL.md",
+   "path": "D:/global_skills/docx/SKILL.md",
+   "sha256": "78940e50c8b09e1b1bb1d5f0f1fe996f7d439c4b13fe6b203d61342a68c6741f",
+   "bytes": 29488,
+   "lines": 862,
+   "fm_name": "docx",
+   "fm_keys": [
+    "description",
+    "description_zh",
+    "last_updated",
+    "license",
+    "name",
+    "version"
+   ],
+   "fm_version": "2.2.0",
+   "h1_topic": "docx-pro: complete word document skill",
+   "h1_words": [
+    "complete",
+    "document",
+    "docx",
+    "skill",
+    "word"
+   ],
+   "heading_topics": [
+    "accepting all tracked changes",
+    "additional resources",
+    "after generating: validate + preview",
+    "bootstrap",
+    "comments",
+    "common operations",
+    "converting legacy .doc to .docx",
+    "decision matrix",
+    "docx-pro: complete word document skill",
+    "essential docx-js rules",
+    "external dependencies",
+    "extracting text",
+    "fallback: node renderer (no pandoc required)",
+    "first step: environment check",
+    "footnotes",
+    "gotchas",
+    "headers and footers",
+    "heading styles",
+    "hyperlinks",
+    "images",
+    "lists (never use unicode bullet characters)",
+    "multi-column layouts",
+    "page breaks",
+    "page dimensions",
+    "part a: markdown pipeline",
+    "part b: template fill",
+    "part c: chinese typography",
+    "part d: generating from scratch with docx-js",
+    "part e: patching existing documents",
+    "part f: xml patterns",
+    "placeholder workflow",
+    "preferred: pandoc",
+    "reference-document workflow",
+    "rendering pages as images",
+    "schema ordering",
+    "stage 1 — unpack",
+    "stage 2 — edit the xml",
+    "stage 3 — repack",
+    "standard workflow (requirement → docx)",
+    "tab stops",
+    "table of contents",
+    "tables",
+    "tracked changes",
+    "utility scripts",
+    "validation",
+    "version history",
+    "⚠️ golden rule: compose first, render second"
+   ],
+   "gen_markers": [],
+   "purpose": [
+    "bootstrap",
+    "check",
+    "compose",
+    "convert",
+    "create",
+    "document",
+    "edit",
+    "extract",
+    "fill",
+    "patch",
+    "read",
+    "render",
+    "review",
+    "validate"
+   ],
+   "trigger": [
+    "mention",
+    "requests",
+    "trigger",
+    "triggers"
+   ],
+   "tool": [
+    "node",
+    "npm",
+    "pandoc",
+    "python",
+    "xml"
+   ],
+   "domain": [
+    "cjk",
+    "column",
+    "comment",
+    "document",
+    "docx",
+    "extract",
+    "heading",
+    "image",
+    "letter",
+    "memo",
+    "ooxml",
+    "pandoc",
+    "parent",
+    "pdf",
+    "sheet",
+    "slide",
+    "spreadsheet",
+    "tab",
+    "template",
+    "toc",
+    "tracked",
+    "typography",
+    "word",
+    "workflow"
+   ],
+   "family_profile": {
+    "word_document": 18,
+    "pdf_documents": 3,
+    "data_tables": 4,
+    "browser_qa": 3,
+    "host_protocol": 1,
+    "cohort_runtime": 1,
+    "engineering_workflow": 2,
+    "media_visual": 3
+   },
+   "dominant_family": "word_document",
+   "dominant_family_score": 18,
+   "code_tokens": [
+    "--cjk",
+    "--merge-runs",
+    "--parent",
+    "--toc",
+    "--validate",
+    ".docx",
+    ".md",
+    "/boss",
+    "/brief",
+    "/comment",
+    "/contract",
+    "/doctor",
+    "/document",
+    "/docx",
+    "/example",
+    "/footer",
+    "/helpers",
+    "/image",
+    "/image1",
+    "/import",
+    "/inline-code",
+    "/italic",
+    "/media",
+    "/memo",
+    "/office",
+    "/pack",
+    "/picture",
+    "/pipeline",
+    "/preview",
+    "/reference",
+    "/releases",
+    "/report-standard",
+    "/skills",
+    "/slide",
+    "/soffice",
+    "/spec",
+    "/styles",
+    "/template",
+    "/templates",
+    "/theme",
+    "/trailing",
+    "/unordered",
+    "/unpack",
+    "/validate",
+    "/word",
+    "/zh-cn",
+    "00ab1234",
+    "ascii",
+    "columnwidths",
+    "comment.py",
+    "contract.docx",
+    "docx",
+    "durableid",
+    "eastasia",
+    "fill_template.py",
+    "letter.docx",
+    "levelformat.bullet",
+    "libreoffice",
+    "margins",
+    "md_to_docx.mjs",
+    "md_to_docx.py",
+    "meeting-minutes.docx",
+    "memo.docx",
+    "microsoft",
+    "node",
+    "npm",
+    "office/helpers/",
+    "outlinelevel",
+    "output.docx",
+    "pageorientation.landscape",
+    "pandoc",
+    "pdftoppm",
+    "percentage",
+    "preview.py",
+    "python",
+    "report-standard.docx",
+    "scripts/accept_changes.py",
+    "scripts/comment.py",
+    "scripts/doctor.py",
+    "scripts/fill_template.py",
+    "scripts/md_to_docx.mjs",
+    "scripts/md_to_docx.py",
+    "scripts/merge_runs.py",
+    "scripts/office/pack.py",
+    "scripts/office/soffice.py",
+    "scripts/office/unpack.py",
+    "scripts/office/validate.py",
+    "scripts/preview.py",
+    "scripts/styles/zh-cn.js",
+    "shadingtype.clear",
+    "simsun",
+    "soffice",
+    "templates/",
+    "type",
+    "unpacked/word/",
+    "validate.py",
+    "width",
+    "widthtype.dxa",
+    "word/_rels/document.xml.rels",
+    "word/media/",
+    "xml"
+   ],
+   "provenance": "上游同步：anthropics/skills skills/docx（source-available；本地 v2.0.0 为超集 fork=77 文件 vs 上游 59，含 {{token}}/cjk 流程）。上游路径最后动过 2026-07-17（commits atom 实测），repo 无 tags/releases ⇒ sha-pin 回灌：季度巡检比对 skills/docx 树哈希，差异项人工审读回灌，禁盲目覆盖本地 cjk 特化。 - **2.2.0**（2026-10-27）— 与上游跟版：跟版补齐上游 `scripts/merge_runs.py` 与 `office/helpers/` 三件（pptx_chart/slide/theme）。"
+  },
+  "up:anthropics/skills:skills/docx/SKILL.md": {
+   "label": "up:anthropics/skills:skills/docx/SKILL.md",
+   "path": "C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_temp/r316b/evidence/anthropic_docx.md",
+   "sha256": "8017469ea95fb7d28225c62daf8e2f3492a7b516fc64c18c28977cbf8980b7fe",
+   "bytes": 6911,
+   "lines": 92,
+   "fm_name": "docx",
+   "fm_keys": [
+    "description",
+    "license",
+    "name"
+   ],
+   "fm_version": null,
+   "h1_topic": "docx creation, editing, and analysis",
+   "h1_words": [
+    "analysis",
+    "creation",
+    "docx",
+    "editing"
+   ],
+   "heading_topics": [
+    "comments",
+    "creating with docx-js — gotchas",
+    "dependencies",
+    "docx creation, editing, and analysis",
+    "editing existing documents",
+    "verify the output"
+   ],
+   "gen_markers": [],
+   "purpose": [
+    "convert",
+    "create",
+    "document",
+    "edit",
+    "extract",
+    "read",
+    "verify"
+   ],
+   "trigger": [
+    "mention",
+    "requests",
+    "trigger",
+    "triggers",
+    "use this skill",
+    "use when"
+   ],
+   "tool": [
+    "npm",
+    "pandoc",
+    "unzip",
+    "zip"
+   ],
+   "domain": [
+    "column",
+    "comment",
+    "document",
+    "docx",
+    "dotx",
+    "extract",
+    "heading",
+    "image",
+    "letter",
+    "letterhead",
+    "memo",
+    "pandoc",
+    "paragraph",
+    "pdf",
+    "sheet",
+    "spreadsheet",
+    "tab",
+    "template",
+    "tracked",
+    "word"
+   ],
+   "family_profile": {
+    "word_document": 16,
+    "pdf_documents": 2,
+    "data_tables": 3,
+    "browser_qa": 2,
+    "host_protocol": 0,
+    "cohort_runtime": 1,
+    "engineering_workflow": 0,
+    "media_visual": 1
+   },
+   "dominant_family": "word_document",
+   "dominant_family_score": 16,
+   "code_tokens": [
+    "--author",
+    "--original",
+    ".doc",
+    ".docx",
+    "/comment",
+    "/document",
+    "/height",
+    "/office",
+    "/rezip",
+    "/soffice",
+    "/validate",
+    "/word",
+    "accept_changes.py",
+    "alignment",
+    "columnwidths",
+    "comments.xml",
+    "commentsextended.xml",
+    "commentsextensible.xml",
+    "commentsids.xml",
+    "config",
+    "document.xml",
+    "docx",
+    "headinglevel.",
+    "imagerun",
+    "leader",
+    "literally",
+    "merge_runs.py",
+    "npm",
+    "orientation",
+    "outlinelevel",
+    "page",
+    "page-01.jpg",
+    "page-12.jpg",
+    "pagebreak",
+    "pandoc",
+    "paragraph",
+    "pdftoppm",
+    "positionaltab",
+    "require",
+    "shadingtype.clear",
+    "soffice",
+    "solid",
+    "textrun",
+    "type",
+    "unzip",
+    "width",
+    "widthtype.dxa",
+    "word/document.xml",
+    "zip"
+   ],
+   "provenance": ""
+  },
+  "neg:anthropics/skills:skills/pdf/SKILL.md": {
+   "label": "neg:anthropics/skills:skills/pdf/SKILL.md",
+   "path": "C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_temp/r316b/evidence/anthropic_pdf.md",
+   "sha256": "9f78b8359fbd4943ad260a7a1e436e5a96503406d6c34e99f69223d647d85b9c",
+   "bytes": 8072,
+   "lines": 315,
+   "fm_name": "pdf",
+   "fm_keys": [
+    "description",
+    "license",
+    "name"
+   ],
+   "fm_version": null,
+   "h1_topic": "pdf processing guide",
+   "h1_words": [
+    "guide",
+    "processing"
+   ],
+   "heading_topics": [
+    "add watermark",
+    "advanced table extraction",
+    "basic pdf creation",
+    "command-line tools",
+    "common tasks",
+    "create pdf with multiple pages",
+    "extract images",
+    "extract metadata",
+    "extract tables",
+    "extract text from scanned pdfs",
+    "extract text with layout",
+    "merge pdfs",
+    "next steps",
+    "overview",
+    "password protection",
+    "pdf processing guide",
+    "pdfplumber - text and table extraction",
+    "pdftk (if available)",
+    "pdftotext (poppler-utils)",
+    "pypdf - basic operations",
+    "python libraries",
+    "qpdf",
+    "quick reference",
+    "quick start",
+    "reportlab - create pdfs",
+    "rotate pages",
+    "split pdf",
+    "subscripts and superscripts"
+   ],
+   "gen_markers": [],
+   "purpose": [
+    "create",
+    "extract",
+    "fill",
+    "merge",
+    "read",
+    "rotate",
+    "search",
+    "split",
+    "watermark"
+   ],
+   "trigger": [
+    "mention",
+    "use this skill"
+   ],
+   "tool": [],
+   "domain": [
+    "encrypt",
+    "extract",
+    "forms",
+    "image",
+    "ocr",
+    "pdf",
+    "pdftotext",
+    "pypdf",
+    "qpdf",
+    "rotate",
+    "tab",
+    "watermark",
+    "word"
+   ],
+   "family_profile": {
+    "word_document": 6,
+    "pdf_documents": 10,
+    "data_tables": 4,
+    "browser_qa": 1,
+    "host_protocol": 0,
+    "cohort_runtime": 0,
+    "engineering_workflow": 0,
+    "media_visual": 2
+   },
+   "dominant_family": "pdf_documents",
+   "dominant_family_score": 10,
+   "code_tokens": [
+    "/super",
+    "/superscript",
+    "/superscripts",
+    "page.extract_tables",
+    "page.extract_text",
+    "pdfimages",
+    "pdftotext",
+    "qpdf",
+    "writer.add_page"
+   ],
+   "provenance": ""
+  },
+  "local:D:/global_skills/gstack/SKILL.md": {
+   "label": "local:D:/global_skills/gstack/SKILL.md",
+   "path": "D:/global_skills/gstack/SKILL.md",
+   "sha256": "5c00c92e1160b6b1e0a6208a862681d9a57ee13f042f4613cc3ae79c9a598de1",
+   "bytes": 27307,
+   "lines": 644,
+   "fm_name": "gstack",
+   "fm_keys": [
+    "allowed-tools",
+    "description",
+    "last_updated",
+    "name",
+    "version"
+   ],
+   "fm_version": "1.3.0",
+   "h1_topic": "development workflow skill suggestions",
+   "h1_words": [
+    "development",
+    "skill",
+    "suggestions",
+    "workflow"
+   ],
+   "heading_topics": [
+    "askuserquestion format",
+    "command reference",
+    "compare two pages / environments",
+    "completeness principle — boil the lake",
+    "completion status protocol",
+    "contributor mode",
+    "development workflow skill suggestions",
+    "dogfood a feature end-to-end",
+    "escalation",
+    "gstack browse: qa testing & dogfooding",
+    "important",
+    "inspection",
+    "interaction",
+    "meta",
+    "multi-step chain (efficient for long flows)",
+    "navigation",
+    "preamble (run first)",
+    "qa workflows",
+    "quick assertion patterns",
+    "reading",
+    "server",
+    "setup (run this check before any browse command)",
+    "snapshot",
+    "snapshot system",
+    "tabs",
+    "telemetry (run last)",
+    "test a user flow (login, signup, checkout, etc.)",
+    "test authenticated pages (import real browser cookies)",
+    "test dialogs (delete confirmations, prompts)",
+    "test file upload",
+    "test forms with validation",
+    "test responsive layouts",
+    "tips",
+    "verify a deployment / check prod",
+    "version history",
+    "visual",
+    "上游同步状态（v1.2.0）"
+   ],
+   "gen_markers": [
+    "auto-generated",
+    "do not edit directly",
+    "regenerate:"
+   ],
+   "purpose": [
+    "assert",
+    "check",
+    "compare",
+    "deploy",
+    "document",
+    "handle",
+    "inspect",
+    "interact",
+    "load",
+    "navigate",
+    "read",
+    "release",
+    "review",
+    "run",
+    "screenshot",
+    "ship",
+    "suggest",
+    "test",
+    "upgrade",
+    "verify"
+   ],
+   "trigger": [
+    "use when",
+    "when the user"
+   ],
+   "tool": [
+    "bun",
+    "css",
+    "curl",
+    "html"
+   ],
+   "domain": [
+    "assert",
+    "assertion",
+    "branch",
+    "browser",
+    "bug",
+    "captain",
+    "checkout",
+    "claude",
+    "codex",
+    "console",
+    "deployment",
+    "design",
+    "dialog",
+    "document",
+    "dogfood",
+    "forms",
+    "freeze",
+    "guard",
+    "headless",
+    "install.sh",
+    "navigate",
+    "pdf",
+    "qa",
+    "responsive",
+    "row",
+    "screenshot",
+    "session",
+    "tab",
+    "telemetry",
+    "toc",
+    "upload",
+    "url",
+    "viewport",
+    "workflow"
+   ],
+   "family_profile": {
+    "word_document": 4,
+    "pdf_documents": 2,
+    "data_tables": 1,
+    "browser_qa": 19,
+    "host_protocol": 6,
+    "cohort_runtime": 1,
+    "engineering_workflow": 9,
+    "media_visual": 0
+   },
+   "dominant_family": "browser_qa",
+   "dominant_family_score": 19,
+   "code_tokens": [
+    "/abort",
+    "/above-fold",
+    "/after-login",
+    "/agent",
+    "/analytics",
+    "/annotated",
+    "/boil-the-ocean",
+    "/browse",
+    "/browse-annotated",
+    "/browse-v2-upstream",
+    "/button",
+    "/careful",
+    "/checked",
+    "/codex",
+    "/confirm",
+    "/contributor-logs",
+    "/design-consultation",
+    "/design-review",
+    "/desktop",
+    "/directory",
+    "/disabled",
+    "/dist",
+    "/document-release",
+    "/editable",
+    "/enabled",
+    "/error",
+    "/false",
+    "/feature-annotated",
+    "/fill",
+    "/focused",
+    "/form",
+    "/freeze",
+    "/garryslist",
+    "/github",
+    "/github-profile",
+    "/gstack",
+    "/gstack-config",
+    "/gstack-telemetry-log",
+    "/gstack-update-check",
+    "/gstack-upgrade",
+    "/guard",
+    "/hero",
+    "/hidden",
+    "/install",
+    "/investigate",
+    "/layout",
+    "/login",
+    "/mobile",
+    "/new-feature",
+    "/null",
+    "/office-hours",
+    "/path",
+    "/plan-ceo-review",
+    "/plan-design-review",
+    "/plan-eng-review",
+    "/posts",
+    "/prod",
+    "/prod-check",
+    "/profile",
+    "/prompt",
+    "/result",
+    "/retro",
+    "/review",
+    "/sessions",
+    "/settings",
+    "/setup",
+    "/ship",
+    "/skill-usage",
+    "/skills",
+    "/staging",
+    "/tablet",
+    "/task",
+    "/test-file",
+    "/unfreeze",
+    "/upload",
+    "/upload-result",
+    "/viewport",
+    "/warning",
+    "/yourapp",
+    "_branch",
+    "_contrib",
+    "accessibility",
+    "and",
+    "attrs",
+    "back",
+    "browse-js-no-await",
+    "bun",
+    "captain.md",
+    "chain",
+    "click",
+    "closetab",
+    "completeness",
+    "console",
+    "cookie",
+    "cookie-import",
+    "cookie-import-browser",
+    "cookies",
+    "css",
+    "curl",
+    "dialog",
+    "dialog-accept",
+    "dialog-dismiss",
+    "diff",
+    "eval",
+    "false",
+    "fill",
+    "for",
+    "forms",
+    "forward",
+    "goto",
+    "gstack-config",
+    "handoff",
+    "header",
+    "hover",
+    "html",
+    "just_upgraded",
+    "lake_intro",
+    "links",
+    "mcp__claude-in-chrome__",
+    "mkdir",
+    "name",
+    "needs_setup",
+    "network",
+    "newtab",
+    "only",
+    "open",
+    "outcome",
+    "pdf",
+    "perf",
+    "press",
+    "proactive",
+    "references/browse-v2-upstream.md",
+    "reload",
+    "responsive",
+    "restart",
+    "resume",
+    "screenshot",
+    "scripts/install.sh",
+    "scroll",
+    "select",
+    "skill_name",
+    "snapshot",
+    "status",
+    "stop",
+    "storage",
+    "tab",
+    "tabs",
+    "tel_prompted",
+    "text",
+    "touch",
+    "true",
+    "type",
+    "upgrade_available",
+    "upload",
+    "url",
+    "used_browse",
+    "useragent",
+    "viewport",
+    "wait",
+    "yes"
+   ],
+   "provenance": "## 上游同步状态（v1.2.0） - 上游 browse 已重构 **v2.0.0**（aside 真实浏览器模式 + headless 回退 + section-index）。核心工作流吸收卷：`references/browse-v2-upstream.md`（sha/哈希锚点见卷尾）。 - **1.3.0**（2026-10-27）— 与上游跟版：跟版补齐上游 `captain.md` 与 `scripts/install.sh`。"
+  },
+  "declared:garrytan/gstack:capy/skill/gstack/SKILL.md": {
+   "label": "declared:garrytan/gstack:capy/skill/gstack/SKILL.md",
+   "path": "C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_temp/r316b/evidence/gstack_capy_skill.md",
+   "sha256": "e37666d80d44046df064ebd7073382117c6bae1e58453f4540dc9585ae0cdbe8",
+   "bytes": 21622,
+   "lines": 88,
+   "fm_name": "gstack",
+   "fm_keys": [
+    "description",
+    "name"
+   ],
+   "fm_version": null,
+   "h1_topic": "gstack for capy and claude code",
+   "h1_words": [
+    "capy",
+    "claude",
+    "code",
+    "gstack"
+   ],
+   "heading_topics": [
+    "adapt host-specific instructions to capy",
+    "before any push or pull request",
+    "gstack for capy and claude code",
+    "launch every gstack command with the gstack_launch line",
+    "load the right workflow",
+    "maintenance",
+    "plan, approve, ship",
+    "session start: check, then install only when needed",
+    "unattended runs for a parent agent",
+    "working under a captain"
+   ],
+   "gen_markers": [],
+   "purpose": [
+    "approve",
+    "check",
+    "debug",
+    "document",
+    "install",
+    "launch",
+    "load",
+    "review",
+    "run",
+    "ship"
+   ],
+   "trigger": [],
+   "tool": [
+    "bash",
+    "grep"
+   ],
+   "domain": [
+    "autoplan",
+    "bug",
+    "captain",
+    "capy",
+    "claude",
+    "code review",
+    "design",
+    "document",
+    "documentation",
+    "factory",
+    "host",
+    "install.sh",
+    "parent",
+    "pins",
+    "planning",
+    "pull request",
+    "qa",
+    "revision",
+    "runtime",
+    "security",
+    "session",
+    "shipping",
+    "subagent",
+    "unattended",
+    "voice",
+    "workflow"
+   ],
+   "family_profile": {
+    "word_document": 6,
+    "pdf_documents": 0,
+    "data_tables": 1,
+    "browser_qa": 7,
+    "host_protocol": 9,
+    "cohort_runtime": 9,
+    "engineering_workflow": 10,
+    "media_visual": 3
+   },
+   "dominant_family": "engineering_workflow",
+   "dominant_family_score": 10,
+   "code_tokens": [
+    "--by",
+    "--check",
+    "--estimate-usd",
+    "--for",
+    "--max-rounds",
+    "--mode",
+    "--no-ui",
+    "--out",
+    "--reading",
+    "--revision",
+    "--spend-cap",
+    "--token-cap",
+    "./setup",
+    ".gstack/pregate.json",
+    ".gstack/ship-policy.json",
+    "/after",
+    "/autoplan",
+    "/captain",
+    "/capy",
+    "/claude-haiku-5-5",
+    "/claude-sonnet-5-5",
+    "/factory",
+    "/garrytan",
+    "/gate",
+    "/github",
+    "/gstack",
+    "/gstack-artifact",
+    "/gstack-capy-session",
+    "/gstack-pregate",
+    "/gstack-upgrade",
+    "/install",
+    "/local",
+    "/model",
+    "/pregate",
+    "/scripts",
+    "/setup",
+    "/share",
+    "/ship",
+    "/ship-budget",
+    "/ship-policy",
+    "/skill",
+    "/skills",
+    "/tmp",
+    "/unattended",
+    "/usr/local/bin/bun",
+    "/work",
+    "agent_model",
+    "anthropic/claude-haiku-5-5",
+    "approved",
+    "autoplan",
+    "autoplan/driver.md",
+    "autoplan/skill.md",
+    "bash",
+    "behind",
+    "bin/",
+    "bin/gstack-capy-session",
+    "calls",
+    "captain_brief_incomplete",
+    "capy",
+    "capy-asks",
+    "capy/skill/gstack/factory.md",
+    "cost.credits",
+    "cost.tokens",
+    "decisions.jsonl",
+    "docs/captain.md",
+    "docs/ship-budget.md",
+    "docs/unattended.md",
+    "done",
+    "duration_seconds",
+    "env",
+    "export",
+    "extras",
+    "factory.md",
+    "fail",
+    "failed",
+    "findings.jsonl",
+    "first",
+    "fix",
+    "floor",
+    "for",
+    "gate_rev",
+    "grep",
+    "gstack",
+    "gstack-approvals",
+    "gstack-artifact",
+    "gstack-autoplan",
+    "gstack-capy-skill",
+    "gstack-gate",
+    "gstack-models",
+    "gstack-plan-reality",
+    "gstack-pr-shots",
+    "gstack-pregate",
+    "gstack-ship-budget",
+    "gstack_autoplan_checkpoint_dir",
+    "gstack_capy",
+    "gstack_capy_auto_upgrade",
+    "gstack_capy_self_upgrade",
+    "gstack_launch",
+    "gstack_launch_file",
+    "gstack_launch_path",
+    "gstack_min_revision",
+    "gstack_result",
+    "head",
+    "host",
+    "idle",
+    "input",
+    "install",
+    "machine",
+    "min_gstack_version",
+    "models",
+    "next",
+    "note",
+    "opus",
+    "outside-voice",
+    "pass",
+    "pins",
+    "plan.md",
+    "preferences.yaml",
+    "printenv",
+    "provider/model",
+    "rec",
+    "rejected",
+    "reservation",
+    "reservation_id",
+    "review",
+    "review-record.md",
+    "revision",
+    "run.json",
+    "runtime",
+    "runtime_pin_conflict",
+    "scripts/install.sh",
+    "sealed",
+    "self_upgrade",
+    "set",
+    "ship",
+    "ship/driver.md",
+    "ship/skill.md",
+    "ship_receipt",
+    "skill",
+    "skip",
+    "stage",
+    "stop",
+    "summary",
+    "tail",
+    "tasks.jsonl",
+    "timing.json",
+    "tools.subagent.list",
+    "tools.subagent.start",
+    "upgrade",
+    "upgrade_busy",
+    "upgrade_refused",
+    "wait",
+    "warn"
+   ],
+   "provenance": ""
+  },
+  "alt:garrytan/gstack:browse/SKILL.md": {
+   "label": "alt:garrytan/gstack:browse/SKILL.md",
+   "path": "C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_temp/r316b/evidence/gstack_browse_skill.md",
+   "sha256": "f3d90cd3e7c41ce5c860c723dc97287b195f22c550c8c58d7ab1ededcee0d2f4",
+   "bytes": 34206,
+   "lines": 470,
+   "fm_name": "browse",
+   "fm_keys": [
+    "allowed-tools",
+    "description",
+    "name",
+    "preamble-tier",
+    "triggers",
+    "version"
+   ],
+   "fm_version": "2.0.0",
+   "h1_topic": "preamble (run first)",
+   "h1_words": [
+    "first",
+    "preamble"
+   ],
+   "heading_topics": [
+    "artifacts sync (skill start)",
+    "browse: give the agent eyes",
+    "browser fallback: gstack's own headless browser",
+    "browser setup (aside — run this check before any browser step)",
+    "completion status protocol",
+    "cookbook (verified against aside cli 1.26 — use these shapes, not memory)",
+    "fallback command reference",
+    "find the `$b` binary",
+    "model-specific behavioral patch (claude)",
+    "operational self-improvement",
+    "pick the mode",
+    "plan mode safe operations",
+    "plan status footer",
+    "preamble (run first)",
+    "report",
+    "rules for driving a real browser",
+    "run it",
+    "section index — read each section when its situation applies",
+    "skill invocation during plan mode",
+    "telemetry (run last)",
+    "translate the aside scripts step by step",
+    "voice",
+    "what changes without aside",
+    "what this skill does not do",
+    "what this skill is for"
+   ],
+   "gen_markers": [
+    "auto-generated",
+    "do not edit directly",
+    "regenerate:"
+   ],
+   "purpose": [
+    "check",
+    "patch",
+    "read",
+    "run",
+    "screenshot"
+   ],
+   "trigger": [],
+   "tool": [],
+   "domain": [
+    "browser",
+    "canary",
+    "claude",
+    "codex",
+    "console",
+    "design",
+    "document",
+    "dom",
+    "headless",
+    "memo",
+    "pdf",
+    "qa",
+    "row",
+    "scrape",
+    "screenshot",
+    "session",
+    "tab",
+    "telemetry",
+    "toc",
+    "url",
+    "voice"
+   ],
+   "family_profile": {
+    "word_document": 6,
+    "pdf_documents": 2,
+    "data_tables": 2,
+    "browser_qa": 15,
+    "host_protocol": 7,
+    "cohort_runtime": 1,
+    "engineering_workflow": 3,
+    "media_visual": 2
+   },
+   "dominant_family": "browser_qa",
+   "dominant_family_score": 15,
+   "code_tokens": [
+    "---",
+    "--clear-storage",
+    "--domain",
+    "--verify-auth",
+    "./setup",
+    ".gstack/browse-reports/",
+    "/abort",
+    "/account",
+    "/after",
+    "/analytics",
+    "/aside",
+    "/aside-prompt",
+    "/benchmark",
+    "/browse",
+    "/browse-reports",
+    "/canary",
+    "/codex",
+    "/command-list",
+    "/dashboard",
+    "/design-html",
+    "/design-review",
+    "/diagram",
+    "/dist",
+    "/error",
+    "/exclude",
+    "/gstack",
+    "/gstack-",
+    "/gstack-browser-ensure",
+    "/gstack-egress-lib",
+    "/gstack-learnings-log",
+    "/gstack-skill-end",
+    "/gstack-skill-start",
+    "/gstack-upgrade",
+    "/initial",
+    "/logout",
+    "/make-pdf",
+    "/null",
+    "/office-hours",
+    "/open-gstack-browser",
+    "/pair-agent",
+    "/plan",
+    "/plan-",
+    "/profile",
+    "/qa",
+    "/qa-only",
+    "/review",
+    "/scrape",
+    "/screenshots",
+    "/sections",
+    "/server",
+    "/setup",
+    "/setup-browser-cookies",
+    "/ship",
+    "/skills",
+    "/telemetry",
+    "/unknown",
+    "all",
+    "annotatedscreenshot",
+    "artifacts_sync",
+    "aside",
+    "aside_dir",
+    "aside_not_running",
+    "attachbrowsertab",
+    "attempted",
+    "attention",
+    "browse/skill.md",
+    "check",
+    "click",
+    "closetab",
+    "codex",
+    "console.log",
+    "console_errors",
+    "core",
+    "count",
+    "diff_end",
+    "diff_start",
+    "document.body.innertext",
+    "else",
+    "emulation.setdevicemetricsoverride",
+    "error_message",
+    "evaluate",
+    "ext.ajax.on",
+    "failed_step",
+    "fill",
+    "gbrain",
+    "goto",
+    "gstack-brain-restore",
+    "gstack-skill-start",
+    "gstack_instruction",
+    "gstack_instruction_begin",
+    "gstack_instruction_end",
+    "gstack_step_ok",
+    "headless",
+    "hover",
+    "innertext",
+    "interactive",
+    "isvisible",
+    "json.stringify",
+    "key",
+    "link",
+    "listbrowsertabs",
+    "mcp__",
+    "mkdir",
+    "mode",
+    "nav",
+    "needs_aside",
+    "needs_setup",
+    "off",
+    "open",
+    "opentab",
+    "outcome",
+    "output",
+    "page-",
+    "pdf",
+    "pg.evaluate",
+    "pg.fill",
+    "pg.goto",
+    "pg.locator",
+    "pg.pdf",
+    "pg.press",
+    "pg.screenshot",
+    "press",
+    "proactive",
+    "ready",
+    "reason",
+    "recommendation",
+    "remote-mode",
+    "report_dir",
+    "resources",
+    "return",
+    "s.diff",
+    "s.tree",
+    "screenshot",
+    "sections/command-list.md",
+    "selectoption",
+    "session_id",
+    "session_kind",
+    "setvalue",
+    "skill_prefix",
+    "skill_start_proto",
+    "snapshot",
+    "status",
+    "store.reload",
+    "tel_start",
+    "text",
+    "text_end",
+    "text_start",
+    "textcontent",
+    "throw",
+    "true",
+    "type",
+    "url",
+    "used_browse",
+    "waitfor"
+   ],
+   "provenance": ""
+  },
+  "alt:garrytan/gstack:SKILL.md": {
+   "label": "alt:garrytan/gstack:SKILL.md",
+   "path": "C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_temp/r316b/evidence/gstack_root_skill.md",
+   "sha256": "9359f0d037c679eee4c160fde835252e75c3dfee50cbc4e360c3cbe69e037a39",
+   "bytes": 20843,
+   "lines": 278,
+   "fm_name": "gstack",
+   "fm_keys": [
+    "allowed-tools",
+    "description",
+    "name",
+    "preamble-tier",
+    "triggers",
+    "version"
+   ],
+   "fm_version": "1.2.0",
+   "h1_topic": "preamble (run first)",
+   "h1_words": [
+    "first",
+    "preamble"
+   ],
+   "heading_topics": [
+    "artifacts sync (skill start)",
+    "completion status protocol",
+    "model-specific behavioral patch (claude)",
+    "operational self-improvement",
+    "plan mode safe operations",
+    "plan status footer",
+    "preamble (run first)",
+    "route first",
+    "skill invocation during plan mode",
+    "telemetry (run last)",
+    "voice"
+   ],
+   "gen_markers": [
+    "auto-generated",
+    "do not edit directly",
+    "regenerate:"
+   ],
+   "purpose": [
+    "patch",
+    "run"
+   ],
+   "trigger": [],
+   "tool": [],
+   "domain": [
+    "autoplan",
+    "browser",
+    "canary",
+    "captain",
+    "claude",
+    "codex",
+    "design",
+    "document",
+    "freeze",
+    "guard",
+    "headless",
+    "pdf",
+    "qa",
+    "row",
+    "scrape",
+    "session",
+    "telemetry",
+    "toc",
+    "voice"
+   ],
+   "family_profile": {
+    "word_document": 3,
+    "pdf_documents": 2,
+    "data_tables": 1,
+    "browser_qa": 11,
+    "host_protocol": 10,
+    "cohort_runtime": 3,
+    "engineering_workflow": 9,
+    "media_visual": 1
+   },
+   "dominant_family": "browser_qa",
+   "dominant_family_score": 11,
+   "code_tokens": [
+    "./setup",
+    "/abort",
+    "/analytics",
+    "/autoplan",
+    "/benchmark",
+    "/benchmark-models",
+    "/browse",
+    "/canary",
+    "/captain",
+    "/careful",
+    "/claude",
+    "/claude-code",
+    "/codex",
+    "/context-restore",
+    "/context-save",
+    "/cso",
+    "/design-consultation",
+    "/design-html",
+    "/design-review",
+    "/deslop-shared-libs",
+    "/devex-review",
+    "/document-generate",
+    "/document-release",
+    "/error",
+    "/eval-plan",
+    "/freeze",
+    "/gstack",
+    "/gstack-",
+    "/gstack-codex",
+    "/gstack-learnings-log",
+    "/gstack-skill-end",
+    "/gstack-skill-start",
+    "/gstack-telemetry-log",
+    "/gstack-upgrade",
+    "/guard",
+    "/health",
+    "/investigate",
+    "/ios-clean",
+    "/ios-design-review",
+    "/ios-fix",
+    "/ios-qa",
+    "/ios-sync",
+    "/land-and-deploy",
+    "/learn",
+    "/make-pdf",
+    "/modernize",
+    "/module",
+    "/null",
+    "/office-hours",
+    "/open-gstack-browser",
+    "/pair-agent",
+    "/plan",
+    "/plan-",
+    "/plan-ceo-review",
+    "/plan-design-review",
+    "/plan-devex-review",
+    "/plan-eng-review",
+    "/plan-tune",
+    "/qa",
+    "/qa-only",
+    "/retro",
+    "/review",
+    "/scrape",
+    "/setup",
+    "/setup-browser-cookies",
+    "/setup-deploy",
+    "/ship",
+    "/skillify",
+    "/skills",
+    "/spec",
+    "/telemetry",
+    "/test-audit",
+    "/ubicloud",
+    "/unfreeze",
+    "/unknown",
+    "/verify",
+    "/write-skill",
+    "all",
+    "artifacts_sync",
+    "attempted",
+    "attention",
+    "browse",
+    "codex",
+    "core",
+    "direct",
+    "error_message",
+    "failed_step",
+    "false",
+    "gbrain",
+    "gstack-brain-restore",
+    "gstack-config",
+    "gstack-skill-start",
+    "gstack_instruction",
+    "gstack_instruction_begin",
+    "gstack_instruction_end",
+    "headless",
+    "interactive",
+    "key",
+    "mcp__",
+    "mode",
+    "off",
+    "open",
+    "outcome",
+    "proactive",
+    "reason",
+    "recommendation",
+    "remote-mode",
+    "route_outcome",
+    "routed",
+    "session_id",
+    "session_kind",
+    "setup",
+    "skill_prefix",
+    "skill_start_proto",
+    "status",
+    "tel_start",
+    "true",
+    "used_browse"
+   ],
+   "provenance": ""
+  }
+ }
+}
