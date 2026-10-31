@@ -1,0 +1,50 @@
+######## CONTROL（期望 PASS / rc=0） rc=0
+NOTE live_source_sha=de9867053aab snapshot_sha=de9867053aab SAME
+NOTE inc_hits=I1=1 I2=1 I3=1 I4=1
+NOTE lo_kept_detail=LO1(blk=1/probe=1) LO2(blk=1/probe=1)
+GATE=PASS
+[R306A:MERGE] edits=6 increments_present=4/4 local_only_kept=2/2 anchors_unique=true version=1.4.0->1.5.0
+
+######## LEG_A 腿A --drop-increment I1 rc=1
+NOTE inc_hits=I1=0 I2=1 I3=1 I4=1
+NOTE lo_kept_detail=LO1(blk=1/probe=1) LO2(blk=1/probe=1)
+NOTE fail_reasons=INCREMENT_MISSING(I1)
+GATE=FAIL NEGCONTROL=I1
+[R306A:MERGE] edits=6 increments_present=3/4 local_only_kept=2/2 anchors_unique=true version=1.4.0->1.5.0
+
+######## LEG_A 腿A --drop-increment I2 rc=1
+NOTE inc_hits=I1=1 I2=0 I3=1 I4=1
+NOTE lo_kept_detail=LO1(blk=1/probe=1) LO2(blk=1/probe=1)
+NOTE fail_reasons=INCREMENT_MISSING(I2)
+GATE=FAIL NEGCONTROL=I2
+[R306A:MERGE] edits=6 increments_present=3/4 local_only_kept=2/2 anchors_unique=true version=1.4.0->1.5.0
+
+######## LEG_A 腿A --drop-increment I3 rc=1
+NOTE inc_hits=I1=1 I2=1 I3=0 I4=1
+NOTE lo_kept_detail=LO1(blk=1/probe=1) LO2(blk=1/probe=1)
+NOTE fail_reasons=INCREMENT_MISSING(I3)
+GATE=FAIL NEGCONTROL=I3
+[R306A:MERGE] edits=6 increments_present=3/4 local_only_kept=2/2 anchors_unique=true version=1.4.0->1.5.0
+
+######## LEG_A 腿A --drop-increment I4 rc=1
+NOTE inc_hits=I1=1 I2=1 I3=1 I4=0
+NOTE lo_kept_detail=LO1(blk=1/probe=1) LO2(blk=1/probe=1)
+NOTE fail_reasons=INCREMENT_MISSING(I4)
+GATE=FAIL NEGCONTROL=I4
+[R306A:MERGE] edits=6 increments_present=3/4 local_only_kept=2/2 anchors_unique=true version=1.4.0->1.5.0
+
+######## LEG_B 腿B --drop-local LO1 rc=1
+NOTE lost_lines_sample=## 七步闭环衔接（R195，V1.2） || > 本 skill 是七步闭环的 ② 环节（共享规范：` || 1. 对用户原始消息走 Step 1-3 质量预判 || 2. Level 1 达标 → 直接进 ③（A-ask-
+NOTE inc_hits=I1=1 I2=1 I3=1 I4=1
+NOTE lo_kept_detail=LO1(blk=0/probe=0) LO2(blk=1/probe=1)
+NOTE fail_reasons=LOCAL_ONLY_MISSING(LO1) | ADDITIVE_VIOLATION(丢失行数=6)
+GATE=FAIL NEGCONTROL=LO1
+[R306A:MERGE] edits=6 increments_present=4/4 local_only_kept=1/2 anchors_unique=true version=1.4.0->1.5.0
+
+######## LEG_B 腿B --drop-local LO2 rc=1
+NOTE lost_lines_sample=#### Level 1 —— 达标（跳过优化） || 同时满足以下 4 项： || - 角色/任务定义清晰 || - 输出格式已指定
+NOTE inc_hits=I1=1 I2=1 I3=1 I4=1
+NOTE lo_kept_detail=LO1(blk=1/probe=1) LO2(blk=0/probe=0)
+NOTE fail_reasons=LOCAL_ONLY_MISSING(LO2) | ADDITIVE_VIOLATION(丢失行数=15)
+GATE=FAIL NEGCONTROL=LO2
+[R306A:MERGE] edits=6 increments_present=4/4 local_only_kept=1/2 anchors_unique=true version=1.4.0->1.5.0

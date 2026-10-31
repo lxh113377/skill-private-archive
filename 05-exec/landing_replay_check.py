@@ -219,6 +219,14 @@ def leg_V(spec):
     if txt is None:
         return "UNVERIFIED", ["件取不到"]
     fm_v = fm_d = hist_v = hist_d = None
+    # r306 工具侧修（B1 实测缺陷上报）：三份既有模板件的版本史都是项目符号行（- **x.y.z** (日期)），
+    # 但 A-prompt-better 的史是 Markdown 表格行（| V1.5.0 | 2026-10-31 | … |），本腿原来只认前者
+    # ⇒ 对表格形态 hist=None 假红。修法按「判据不迁就工具、工具加形态分支」：
+    #   spec 给了 history_form=markdown-table + history_row_regex 时，史行走**正则捕获组**
+    #   （组1=版本、组2=日期）；不给则保持原项目符号路径（既有三 spec 行为零变化）。
+    tform = (v.get("history_form") or "").strip()
+    trow = v.get("history_row_regex")
+    trow_c = re.compile(trow) if (tform == "markdown-table" and trow) else None
     in_hist = False
     for ln in txt.split(NL):
         if ln.startswith(v["fm_key"] + ": "):
@@ -227,6 +235,11 @@ def leg_V(spec):
             fm_d = ln.split(": ", 1)[1].strip()
         elif ln.strip().startswith("#"):
             in_hist = bool(hre) and ln.strip().startswith(hre)
+        elif trow_c and (not hist_v) and in_hist and ln.startswith("|"):
+            # 表格分支：整行按 spec 给的正则匹配（^\| 已含在正则里，行首再挡一次省扫描）
+            mm = trow_c.match(ln)
+            if mm:
+                hist_v, hist_d = mm.group(1).strip(), mm.group(2).strip()
         elif (not hist_v) and in_hist and ln.startswith("- **"):
             # 括号两种写法都真实存在（本轮实测）：security-audit 用半角 - **2.1.0** (2026-10-30)，
             # mcp-builder 用全角 - **1.1.0**（2026-10-30）。只认半角会把后者判成 hist=None => 假红。

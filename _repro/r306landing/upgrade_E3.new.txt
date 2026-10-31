@@ -1,0 +1,14 @@
+当用户请求引用既往工作、决定或会话历史时，把该上下文块**前置**到生成的 prompt，并确保它落在前 30% 内——尾部内容在目标模型的注意力衰减中最易丢失（ Place it in the first 30% so it survives attention decay ）。
+<!-- r306a 逐字钉定（加法式并入，本地行零删除）| 增量 I2 | 上游 L440-450 | nidhinjs/prompt-master · SKILL.md v1.8.2 · MIT · upstream_blob_sha 742deafaf4222f9f0e9d9410e72483dad64fe716 · upstream_content_sha256 36e68cdcd62c38b2f99c2538c83fefb8c8837ea9b7eed75297fe76e45c452e75 | 证据 swap_pack.json increments[1] | 准入 r305b merge_plan.json skills[slug=A-prompt-better].files[src=SKILL.md,action=land] -->
+
+### Memory Block
+
+When the user's request references prior work, decisions, or session history — prepend this block to the generated prompt. Place it in the first 30% of the prompt so it survives attention decay in the target model.
+
+```
+## Context (carry forward)
+- Stack and tool decisions established
+- Architecture choices locked
+- Constraints from prior turns
+- What was tried and failed
+```

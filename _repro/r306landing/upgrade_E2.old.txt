@@ -1,0 +1,1 @@
+- 单 prompt 场景慎用高虚构风险技法（仅当用户明确要求且目标工具真实支持时才用）：**Mixture of Experts**（单前向内的模拟多人路由）/ **Tree of Thought**（无真实并行的模拟分支）/ **Graph of Thought**（依赖多数工具里没有的外部图引擎）/ **Universal Self-Consistency**（需独立多次采样）/ 作为分层手法的 **Prompt chaining**（链越长、虚构风险越复合）——这些框架在单 prompt 里多为「表演」而非真实执行，优先用角色指派、few-shot、grounding 锚点与显式验收标准替代

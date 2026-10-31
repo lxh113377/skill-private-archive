@@ -1,0 +1,1 @@
+当用户请求引用既往工作、决定或会话历史时，把该上下文块**前置**到生成的 prompt，并确保它落在前 30% 内——尾部内容在目标模型的注意力衰减中最易丢失（ Place it in the first 30% so it survives attention decay ）。

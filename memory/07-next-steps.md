@@ -722,6 +722,42 @@ r305 现取活体树：`gh api repos/Leonxlnx/taste-skill/git/trees/main?recursi
 ⇒ 再加一条更硬的机械要求：**凡引用某个外部取数件当作「全量」时，必须先核对「它的条目数 vs 活体条目数」并把两个数并排写出来**
 （本例：31 vs 92，并排一写就能立刻看出前者是切片）。只有并排写出来的数，才算「我知道它的覆盖面」。
 不受此更正影响的读数：C5 空过、C6 按 r36 尺 0 DEAD 但 45 条 UNLOCATED、脚本 3 ok / 2 fail（inspect 无 Chrome、assets 网络超时）。
+- [ ] **R306-1（r306 登记，P0）** **全项目第一件真换装落地：A-prompt-better 1.3.0→1.5.0 两笔受管根提交（转述并入 + A1 逐字钉定升级，均加法式零删除、本地独有整块守住）；落地前演算==预览逐字节、落地后 sha==演算；五腿验收全绿；回滚链完整**：一手（r306，Lead 落地）：**全项目第一件真换装落地 —— A-prompt-better 1.3.0 → 1.5.0**（两笔受管根提交：17cc0c81 + f39eb3c0，均过 ANCESTOR 检查）。
+为什么此前是 0 件：需求 4 一直有优先级/计划/判据，但 r261 起的换装裁定全停在「KEEP 等条件」；
+本轮 A 臂（← nidhinjs/prompt-master，MIT，blob 742deafa 现核未漂）在 r305 计划里 land 4 / block 0 ⇒ 挑它落地。
+两笔的性质不同（都是加法式零删除，逐行验过）：
+· 第一笔 1.3.0→1.4.0：四区增量（L22-27 高虚构技法黑名单 / L442 Memory Block 前 30% / L469-470 agentic scope-lock 复核 / L482 六问）
+  以**中文转述**并入 + 检查清单 +2 项 + 版本三连（frontmatter 与版本史表行同步）。
+· 第二笔 1.4.0→1.5.0（A1 派发件的价值所在）：A1 重读现形后发现转述的**上游逐字探针 0/4 命中** ⇒ 它的 6 条编辑
+  把转述**升级为逐字钉定**（每条增量附 upstream_blob_sha 742deafaf422… 定位器注释，4 处）。
+  我从它的 edits.json 程序化生成 rule_editor 的 6 对 old/new（禁手打——new 内含 $ 与反引号），
+  落地前先把六条演算到活体文件、与其 merged_preview.md **逐字节比对 PASS** 才动受管根；落地后活体 sha 前缀 fac939d845fa == 演算。
+验收面（全部现跑）：A1 判据对活体 GATE=PASS（increments 4/4、local_only 2/2、anchors_unique）；r36 [RESOLVE:OK]；镜像 [GATE:mirror-pass] + .agents SAME；
+棘轮 PASS；rule_editor gates 的 global_skills violation=0（仍只有 C16/C29-C30 两条既有红）。
+本地独有两条逐字守住（LO1 七步闭环②整块、LO2 Level 分流 20 行整块 + 近因单行）—— A1 腿 B 证明删任一条判据必红。
+回滚：受管根 git revert 17cc0c81 f39eb3c0（两笔都在主线）；逐件 sha 链在 _repro/r306landing/（pre 01884cd1 → 中间 de986705 → 现 fac939d8）。
+取值：cd _repro/r306a && python -B check_r306a.py；python 05-exec/landing_replay_check.py --spec 05-exec/landing_specs/A-prompt-better.json。
+- [ ] **R306-2（r306 登记，P1）** **两臂交付（A1 逐字钉定升级 + B1 规格与回滚演练含假退两型）；B1 规格安装为第四件正式 landing spec（gate=PASS）；注册表 lag 同步因焚诀仓级 pre-commit 三色红被拒（不用 --no-verify 绕门，worktree 保留、挂账等合规通道带走）**：一手（r306）：两臂交付 + 一条**登记不改**的注册表滞后。
+· A1（862013c5，retry 版一次交付成功）：edits.json 6 条 + merged_preview.md + 判据（两腿六次复跑全 FAIL rc=1：漏任一增量必红、删任一本地独有必红）；
+  它还**纠正了我 brief 里的现形偏差**（我抄 675 行/1.3.0，它重读 686 行/1.4.0——因为我的第一笔落地正发生在它工作期间）；步数超限自报（约 30），纪律面如实。
+· B1（9afc6b8f）：规格 A-prompt-better.json（七键与三份模板同集；base_ref=17cc0c81~1、9 hunk 两笔链）+ 回滚演练
+  （pre/post/revert 三 sha 链 + 两条**假回滚**必红：CRLF 假退、半链假退）+ 判据 10 条自曝负控。
+  它工作期间受管根被动两次，它每次都重取现形重建链（这验证了「链上追加必须同步 expect」的纪律）。
+· 我把 B1 规格装成**第四件正式 landing spec**（05-exec/landing_specs/A-prompt-better.json，gate=PASS）⇒ 该件自此进入「改了必须重放链」的受管制。
+· **注册表滞后（登记不改）**：我的 bump 把本件推进 lag 名单（15→16）。同步通道实测：eval/build_registry.py 只做补缺
+  （dry-run 打印 [4] 无需补充即退出），无版本同步路径 ⇒ 按先例 d22437b 机械同步（备份 .bak-before-r306-sync → 只改本件一条 →
+  json 读回校验 → 复算 lag 16→15）。但**提交被焚诀仓 pre-commit 拒**：C10（skill_content 147 != 注册表 191）/ C14（ci-blind-eval 8 天未刷）/
+  C29（评分产物与 STATUS 脱节）+ 8 条测试失败——**全部是本会话之前的仓级红**，不是我的改动引入（我 diff 只有一个 version 值）。
+  我不用 --no-verify 绕门 ⇒ 处置：unstage（避免把我 staged 里 29 件他人在途面误并入）、worktree 保留同步值、此面挂账：**下一笔碰注册表的
+  合规提交会自然带走这一行**，或等 C10/C14/C29 修好后专项提交。lag 现状=15（官方面现读，HEAD 里本件仍记 1.3.0）。
+- [ ] **R306-3（r306 登记，P1）** **工具侧修 leg_V 表格分支（B1 上报缺陷；spec 带 history_form/history_row_regex 走正则、不带走原路径）：三既有 spec 回归全绿零变化、新 spec 五腿全 ok ⇒ 落地后验证面从 3 件升为 4 件受管制**：一手（r306，Lead 修工具侧）：landing_replay_check.py 的 **leg_V 加表格分支**（B1 上报的实测缺陷）。
+缺陷原样：V 腿只认项目符号史行（- **x.y.z** (日期)），A-prompt-better 的史是 Markdown 表格行（| V1.5.0 | 2026-10-31 | …）
+⇒ hist=None/None 假红（B1 实测把它喂真工具复现）。修法按「判据不迁就工具、工具加形态分支」：
+spec 给 history_form=markdown-table + history_row_regex（B1 的规格本来就带了这两个字段当接口）⇒ 史行走正则捕获组；
+不给 ⇒ 原项目符号路径**零改动**。**回归实测**：security-audit / mcp-builder / frontend-slides 三件仍 rc=0 gate=PASS、
+fm 读数不变（2.1.0 / 1.1.0 / 1.4.2）；A-prompt-better 规格五腿全 ok、gate=PASS（R 腿 9 hunk 重放逐字节==HEAD）。
+⇒ 至此需求 4/5 的「落地后验证标准」面有**四件**受管制（三件此前 + 本轮换装件）。
+取值：python 05-exec/landing_replay_check.py --spec 05-exec/landing_specs/A-prompt-better.json（末行 gate=PASS）。
 - [ ] **R290-1（r290 登记，P1）** **r46 锚点匹配收紧为「行首复选框后首个加粗段内含 key」：解除「引用过某条 ⇒ 永不能裁该条」的死锁，且不削弱 W-14 串条防护**：一手（r290 现场）：我想把 R261-7 从上轮误写的挂账改判为降级，r46 返回 [MARK:REFUSED] ② 锚点命中数 != 1，命中 [42, 53] —— 第 53 行是**我上轮写的 R289-6 条目正文**里引用了 R261-7。原实现 find_item_lines 用裸 `key in line`，于是「引用过某条 ⇒ 永远无法裁决该条」，机器闸反过来挡住了对本条的正确纠正。修法与踩坑：① 我先试「行首必须 `- [ ] **`+key」的严格式 ⇒ 真实台账 236 条零歧义，但夹具 **14 项红**（夹具用的是 `- [ ] **【P0·待办 丙（r44 登记）】】**` 这种 key 不在首段起点的排版）⇒ 我的严格式**过窄**，不是夹具错；② 我又加过「严格零命中则回退宽松匹配」的安全网 ⇒ 自查发现该回退正是 W-14 事故形态（会把正文引用行当锚点，把裁决写到无关条目）⇒ **删掉回退**；③ 终解 = 匹配「行首复选框后的第一个加粗段」内是否含 key（re.match 到首个 **…** 段），两种既有排版都覆盖、正文引用（哪怕第二段加粗）永不命中。判别力自证：新增 t24~t27 + m3 变异共 5 腿（m3 首版我用夹具的 run() 前置了正式 TOOL 路径 ⇒ 变异体被当位置参数、argparse rc=2 是**假红不是判别力**，改为 subprocess 直接调变异体后 PASS）。取值：python 05-exec/r46_mark_verdict_fixtures.py（末行 [GATE:fixture-pass]，现 30 项 30 过）；python _temp/r290_selfproof.py（真实台账带过期挂账的条目 22 条，⑧ 会拦）。 【r296 裁决=已落地｜夹具活数现读 r46=30/30 全过、r31=31/31；锚点口径已被 r46 与本会话三次插入实践共同验证（r292 起用它裁 R289-6/R292-4/R295-1 均 rc=0）。原靶（不得把裁决写到无关条目）达成。】
 - [ ] **R290-2（r290 登记，P1）** **机器闸 ⑧ 落地：条目先前已挂账且目标轮已过 ⇒ 本次禁再挂账，只能执行/降级/作废三选一（带逃生门与真实数据自证）**：一手（r289 我造成的错 + r290 的机制化）：R261-7 第 2 次到期时我先写成「挂账至 r290」，违反自立的 R271-2；根因不是不懂规矩，而是**下裁决时没人问我这条已经挂过几次** ⇒ 必须前移到写时由机器判。实现 = r46 第 ⑧ 重拒写：读该条目自己已有的「裁决=挂账至 rN」标记，若存在 N < 本轮 round（上次挂账目标轮已过）且本次 verdict 仍是挂账 ⇒ 拒写并点名证据轮号；轮号取不到不猜（宁可放行不误伤）。范围纪律：只约束**延期型**裁决，终局裁决（执行/降级/作废）不受影响；首轮挂账放行；目标轮未到（如挂到 r99）放行。逃生门 --allow-repeat-deferral 显式放行且留痕（不是死闸）。真实数据自证（临时卷副本，不碰真台账）：⑧ 对 probe 条目 rc=1 且台账未写入；同条目改「降级（转长期看守）」rc=0 且 marker 落盘；带逃生门 rc=0。R289-6 的验收靶（下一轮起 R261-7 能被合法改判且留两次痕迹）已达成：r290 台账同现「【r289 裁决=挂账至 r290…】」与「【r290 裁决=降级…】」，REPEAT 由 1 归 0。取值：python 05-exec/r46_mark_verdict_fixtures.py（t24~t27/m3 五腿）、python _temp/r290_real2.py（真实数据三态：拦挂账/放降级/逃生门）。
 - [ ] **R290-3（r290 登记，P2）** **run_gates.py 的 --gate 传不存在的 id 会被**静默丢弃**：部分选中时报 PASS 且写「无 MISSING」，只在 0 个时才报 UNVERIFIED**：一手（r290 现场）：我为验证迁库结果跑 `--gate mark_verdict_fixtures --gate provenance_resolve_face --gate provenance_resolve_fixtures --gate tracked_empty`（最后一个 id 我拼错了，真名 tracked_empty_check），返回 `[GATES:PASS] PASS=3（无 FAIL / 无 UNVERIFIED / 无 MISSING）` —— 三门都绿，但那句「无 MISSING」是**假安心**：第四门根本没跑，runner 没有任何一行告诉我它被丢弃。二次实测：只传一个不存在的 id 时它确实会拦（`[GATES:UNVERIFIED] 选中的门为 0 个，禁止判「全绿」（R247）`），说明 R247 的零输入保护在**全部落空**时有效、**部分落空**时失效。修法（下一轮，小改）：在 --gate 过滤后比对「请求的 id 集合 vs 实际选中的 id 集合」，差集非空 ⇒ 打印 `[GATES:MISSING-SELECTOR]` 并以非零退出（与现有 0 个的处理对齐，别另造一套语义）；同时给夹具补一条腿：传一个不存在的 id + 一个真 id ⇒ 必须判红并点名被丢弃的 id（证明有牙）。判别力证据已在手：本次实测 rows=3 而请求=4。取值：python 05-exec/run_gates.py --gate definitely_not_a_gate --no-ledger --json _temp/x.json（期望现在就是 UNVERIFIED，因为选中 0 个）；python -c 读 _temp/r290_g4.json 的 gates 长度 = 3（请求 4）。注意：本轮我没有把这当成「已跑全量」的证据 —— 我随后补跑了 tracked_empty_check 并单独取到 PASS=1，才认定新增跟踪件不触发非空文本门。 【r290 裁决=已落地｜同轮即修（不等下一轮）。实现 = run_gates.py 汇总前算差集 requested-selected_ids，非空即打 [GATES:MISSING-SELECTOR] 点名被丢弃的 id。关键取舍是**顺序**：第一版我把差集分支放在「0 个选中」之前 ⇒ r31 夹具层 b（该腿断言 rc==2 且报 UNVERIFIED）判红 FAIL 1 项 —— 那是夹具对我改动的**正确反应**，我破坏的是既有 R247 语义而不是夹具错。正解：先跑 not rows ⇒ 保留 rc=2 语义，再跑 dropped ⇒ rc=1；两条语义互不吞并。四态实测（每步取真实退出码、不经管道）：0 个选中 rc=2 且末行 UNVERIFIED / 部分落空 rc=1 且点名 fixture_wiring / 全真 id rc=0 且 PASS=1 / 全部错 id 仍 rc=2；r31 夹具 31 项 31 过（[GATE:fixture-pass]）。为何不新增夹具腿：r31 层 b 已覆盖 0 个那条，部分落空这条由上面四态实测覆盖并写进本注；若下一轮要长期看守，可在 r31 加一腿断言「假 id + 真 id ⇒ rc==1 且 MISSING-SELECTOR 出现」（本轮未加，因为我把改动挂在该夹具的门表自证之下、它已经被跑到）。取值：bash _temp/r290_sem.sh（四态与夹具一次跑完）；python 05-exec/r31_run_gates_fixtures.py（末行 [GATE:fixture-pass]）。】

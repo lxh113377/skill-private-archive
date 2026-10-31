@@ -1,0 +1,7 @@
+=== r306 落地前证据（Lead 记录，任何改动之前）===
+2026-10-31T14:15:32+08:00
+01884cd11aed608ba09d3911e96f0d4143a034ce75980719a0c04cf54f3d0aa3 *D:/glo
+lines=675
+mtime=2026-10-20 09:17:48.664087900 +0800 size=28761
+managed_HEAD=942002f0
+last_touch=ab6663e3 skill治理轮2(P1首批): 六件换芯v1.1.0(defuddle主包切换/browser-cdp委托0.39.1+

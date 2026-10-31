@@ -1,0 +1,9 @@
+<!-- r306a 逐字钉定（加法式并入，本地行零删除）| 增量 I3 | 上游 L469-473 | nidhinjs/prompt-master · SKILL.md v1.8.2 · MIT · upstream_blob_sha 742deafaf4222f9f0e9d9410e72483dad64fe716 · upstream_content_sha256 36e68cdcd62c38b2f99c2538c83fefb8c8837ea9b7eed75297fe76e45c452e75 | 证据 swap_pack.json increments[2] | 准入 r305b merge_plan.json skills[slug=A-prompt-better].files[src=SKILL.md,action=land] -->
+
+### Agentic Output Warning
+
+For prompts targeting agentic tools (Claude Code, Devin, Cursor, Windsurf, Cline, Bolt, SWE-agent, Manus, or anything that executes commands or edits files — mandatory for Templates G, H, M, agentic uses of N, and any prompt referencing filesystem, terminal, dependency, or database operations), append this notice:
+
+"This prompt is for an agentic tool with real system access. Review the scope locks, forbidden actions, and stop conditions before pasting. Confirm file paths, directories, and permissions match the actual project."
+
+## 元能力：主动自评

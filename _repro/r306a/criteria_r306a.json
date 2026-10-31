@@ -1,0 +1,100 @@
+{
+  "round": "r306a",
+  "produced_by": "A1 r306a：构造 A 臂换装落地编辑清单（只出清单，不落地；是否换装由 Lead 裁定）",
+  "base_file": "local_snapshot.SKILL.md",
+  "base_sha256_at_build": "de9867053aabcb65ca820f564e0104122ce175af1704d308342d5aad20f453bb",
+  "live_sha256_at_build": "de9867053aabcb65ca820f564e0104122ce175af1704d308342d5aad20f453bb",
+  "prestate_drift_note": "brief 记本地件 675 行 / version 1.3.0 / sha 01884cd1…；本轮重读实得 686 行（含末空行）/ version 1.4.0 / sha de9867053aab，其版本历史 V1.4.0 行自称四区增量已并入、实为中文转述（四条增量的逐字探针在基线上实测 0 命中，见 increments.pre_state_count）⇒ 锚点一律按重读现形构造。",
+  "how_to_execute": "按 edits.json 顺序逐条执行：op=replace ⇒ 用 new 整串替换 anchor（anchor 等于 old）；op=insert ⇒ placement=after 把 new 直接接在 anchor 之后、=before 接在 anchor 之前。字面拼接：勿用正则替换（new 内含 $ 与反引号会被 re.sub 误解析），勿裁剪 new 首尾换行。",
+  "increments": [
+    {
+      "id": "I1",
+      "eid": "E2",
+      "anchor_probe": "simulated multi-persona routing in a single forward pass",
+      "upstream_lines": "L21-27",
+      "swap_pack_index": 0,
+      "upstream_ref": "nidhinjs/prompt-master:SKILL.md L22-27",
+      "state": "VERIFIED",
+      "pre_state_count": 0,
+      "post_state_count_expect": 1,
+      "note": "上游引用串见 evidence 件（逐字取自候选件正文对应区间）"
+    },
+    {
+      "id": "I2",
+      "eid": "E3",
+      "anchor_probe": "survives attention decay in the target model",
+      "upstream_lines": "L440-450",
+      "swap_pack_index": 1,
+      "upstream_ref": "nidhinjs/prompt-master:SKILL.md L442",
+      "state": "VERIFIED",
+      "pre_state_count": 0,
+      "post_state_count_expect": 1,
+      "note": "上游引用串见 evidence 件（逐字取自候选件正文对应区间）"
+    },
+    {
+      "id": "I3",
+      "eid": "E4",
+      "anchor_probe": "This prompt is for an agentic tool with real system access",
+      "upstream_lines": "L469-473",
+      "swap_pack_index": 2,
+      "upstream_ref": "nidhinjs/prompt-master:SKILL.md L469-470",
+      "state": "VERIFIED",
+      "pre_state_count": 0,
+      "post_state_count_expect": 1,
+      "note": "上游引用串见 evidence 件（逐字取自候选件正文对应区间）"
+    },
+    {
+      "id": "I4",
+      "eid": "E5",
+      "anchor_probe": "Has every fabricated technique been removed?",
+      "upstream_lines": "L477-489",
+      "swap_pack_index": 3,
+      "upstream_ref": "nidhinjs/prompt-master:SKILL.md L482",
+      "state": "VERIFIED",
+      "pre_state_count": 0,
+      "post_state_count_expect": 1,
+      "note": "上游引用串见 evidence 件（逐字取自候选件正文对应区间）"
+    }
+  ],
+  "local_only": [
+    {
+      "id": "LO1",
+      "swap_pack_index": 0,
+      "local_ref": "D:/global_skills/A-prompt-better/SKILL.md L34-39",
+      "capability": "七步闭环的第 ② 环节衔接（R195，V1.2）：声明本件是七步闭环的 ② 环节，引用记忆侧共享规范 workflow_seven_step.md V1.0，并写明门禁项 G6 已于 2026-09-28 废止、不需要再写「跳过 G6」。",
+      "probes": [
+        "## 七步闭环衔接（R195，V1.2）",
+        "门禁项 G6 已于 2026-09-28 废止"
+      ],
+      "verbatim_blocks": [
+        "## 七步闭环衔接（R195，V1.2）\n\n> 本 skill 是七步闭环的 ② 环节（共享规范：`D:\\global_memory\\prompts\\workflow_seven_step.md` V1.0）。\n\n1. 对用户原始消息走 Step 1-3 质量预判\n2. Level 1 达标 → 直接进 ③（A-ask-questions）。注：门禁项 G6 已于 2026-09-28 废止，**不再声明也不需要写\"跳过 G6\"**\n3. Level 2/3 → 展示优化前后对比 → 按优化版继续 → 进 ③\n4. 不改原意；优化后的任务描述同步进任务卡「本轮目标」"
+      ]
+    },
+    {
+      "id": "LO2",
+      "swap_pack_index": 1,
+      "local_ref": "D:/global_skills/A-prompt-better/SKILL.md L146-165 与 L205",
+      "capability": "Level 1/2/3 达标分流（Level 1 直接跳过优化、Level 2/3 进入优化流程）＋闭合标签近因规则（最重要的约束放在 </task> 标签之前）。",
+      "probes": [
+        "#### Level 1 —— 达标（跳过优化）",
+        "#### Level 3 —— 不及格（完整重构）",
+        "- 最重要的约束放在 `</task>` 标签之前（近因效应）"
+      ],
+      "verbatim_blocks": [
+        "#### Level 1 —— 达标（跳过优化）\n同时满足以下 4 项：\n- 角色/任务定义清晰\n- 输出格式已指定\n- 关键约束明确\n- 表达精炼无冗余\n\n→ 告知\"prompt 已达高质量标准，无需优化，直接执行\"。\n\n#### Level 2 —— 勉强（轻量优化）\n满足 2-3 项，但表达基本通顺，核心意图清晰。\n\n→ **只补缺失项，不重写结构**。例如：角色已明确但输出格式未指定 → 只加 `<output_format>` 标签，其余保持原样。\n\n#### Level 3 —— 不及格（完整重构）\n满足 ≤1 项，或表达混乱导致意图模糊。\n\n→ 按 Step 4 方法论完整重构。\n\n**判断原则**：用户来找你就是觉得不够好。Level 2 和 Level 3 都进入优化流程。Level 1 才跳过。",
+        "- 最重要的约束放在 `</task>` 标签之前（近因效应）"
+      ]
+    }
+  ],
+  "expected": {
+    "edits": 6,
+    "increments_present": 4,
+    "local_only_kept": 2,
+    "anchors_unique": true,
+    "version_old": "1.4.0",
+    "version_new": "1.5.0"
+  },
+  "out_of_scope_for_this_face": "r305b 合并计划里 A 臂另三个整文件 land 项（许可件、两份引用侧参考件）属复制动作、不是编辑清单；本清单只覆盖正文件的增量改写（merge_order 第 3 步）。",
+  "regen_note": "本轮在 E5（增量 I4）末尾补一条水平分隔线，使并入的 RECENCY ZONE 自成一块；其余五条形制未变。",
+  "prose_path_policy": "解说字段只给定位（条目序号、行区间、段落名），不写路径形态字符串；逐字文本与上游引用串按证据包原样保留。"
+}

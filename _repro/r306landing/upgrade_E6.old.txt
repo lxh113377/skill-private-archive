@@ -1,0 +1,1 @@
+| V1.4.0 | 2026-10-31 | 换装增量并入（nidhinjs/prompt-master @ blob 742deafa、MIT，四区 L22-27/L442/L469-470/L482）：单 prompt 高虚构技法黑名单、Memory Block 前 30% 前置、agentic 产出 scope-lock 复核、检查清单 +2 项；本地独有（七步闭环 Step ② 衔接、Level 1/2/3 分流与闭合标签近因）逐字保留 |

@@ -1,0 +1,126 @@
+[
+  {
+    "id": "E1",
+    "op": "replace",
+    "anchor": "version: 1.4.0\nlast_updated: 2026-10-31",
+    "old": "version: 1.4.0\nlast_updated: 2026-10-31",
+    "new": "version: 1.5.0\nlast_updated: 2026-10-31",
+    "placement": "n/a",
+    "increment": null,
+    "upstream_lines": null,
+    "verbatim_probe": null,
+    "why": "frontmatter 现形实测为 version 1.4.0 / last_updated 2026-10-31（brief 所述 1.3.0、675 行已过期，偏差记在本件偏差条）；本轮属加法式并装 ⇒ minor 递升 1.4.0 到 1.5.0；last_updated 按落地当日，若隔日落地面把 new 的第二行改成落地日。",
+    "evidence": "基线快照 frontmatter 第 11-12 行（锚点在快照内唯一命中）；版本口径对账 swap_pack 的 skills[0].local_version（旧读数 1.3.0）与 skills[0].candidates[0].version（候选版本）",
+    "swap_pack_entry": {
+      "array": "skills",
+      "index": 0,
+      "field": "local_version",
+      "value": "1.3.0",
+      "candidate_version": "1.8.2"
+    }
+  },
+  {
+    "id": "E2",
+    "op": "insert",
+    "anchor": "- 单 prompt 场景慎用高虚构风险技法（仅当用户明确要求且目标工具真实支持时才用）：**Mixture of Experts**（单前向内的模拟多人路由）/ **Tree of Thought**（无真实并行的模拟分支）/ **Graph of Thought**（依赖多数工具里没有的外部图引擎）/ **Universal Self-Consistency**（需独立多次采样）/ 作为分层手法的 **Prompt chaining**（链越长、虚构风险越复合）——这些框架在单 prompt 里多为「表演」而非真实执行，优先用角色指派、few-shot、grounding 锚点与显式验收标准替代",
+    "old": null,
+    "new": "\n<!-- r306a 逐字钉定（加法式并入，本地行零删除）| 增量 I1 | 上游 L21-27 | nidhinjs/prompt-master · SKILL.md v1.8.2 · MIT · upstream_blob_sha 742deafaf4222f9f0e9d9410e72483dad64fe716 · upstream_content_sha256 36e68cdcd62c38b2f99c2538c83fefb8c8837ea9b7eed75297fe76e45c452e75 | 证据 swap_pack.json increments[0] | 准入 r305b merge_plan.json skills[slug=A-prompt-better].files[src=SKILL.md,action=land] -->\n\n- Prefer simpler techniques (role assignment, few-shot examples, grounding anchors, and explicit verification criteria) over complex meta-reasoning frameworks in single-prompt contexts. The following techniques carry higher fabrication risk when used in a single prompt and should only be applied when the user explicitly requests them and the target tool supports them:\n  - **Mixture of Experts** -- simulated multi-persona routing in a single forward pass\n  - **Tree of Thought** -- simulated branching without real parallel execution\n  - **Graph of Thought** -- requires an external graph engine not present in most tools\n  - **Universal Self-Consistency** -- requires independent sampling passes\n  - **Prompt chaining as a layered technique** -- compounds fabrication risk across longer chains\n- Never request hidden chain-of-thought, private reasoning, or a verbatim reasoning trace from any model. Ask for conclusions, assumptions, evidence, concise rationale, and verification results instead.\n",
+    "placement": "after",
+    "increment": "I1",
+    "upstream_lines": "L21-27",
+    "verbatim_probe": "simulated multi-persona routing in a single forward pass",
+    "why": "增量 I1：上游 L21-27 整段逐字钉定，作为「优化原则」列表的新条目紧接本地既有中文转述之后。加法式 —— 锚点行原样保留，本地零删除。本地件无该黑名单，也无「不得索取隐藏思维链」硬规则（对上游该段的缺席探针 grep 命中 0）；本地只有 Level 1/2/3 分流与近因位置规则。",
+    "evidence": "swap_pack 的 increments[0]（anchor 与 upstream_ref、state 见下）；逐文本体 = 候选件正文 L21-27",
+    "swap_pack_entry": {
+      "array": "increments",
+      "index": 0,
+      "skill": "A-prompt-better",
+      "upstream_ref": "nidhinjs/prompt-master:SKILL.md L22-27",
+      "anchor": "Mixture of Experts",
+      "state": "VERIFIED"
+    }
+  },
+  {
+    "id": "E3",
+    "op": "insert",
+    "anchor": "当用户请求引用既往工作、决定或会话历史时，把该上下文块**前置**到生成的 prompt，并确保它落在前 30% 内——尾部内容在目标模型的注意力衰减中最易丢失（ Place it in the first 30% so it survives attention decay ）。",
+    "old": null,
+    "new": "\n<!-- r306a 逐字钉定（加法式并入，本地行零删除）| 增量 I2 | 上游 L440-450 | nidhinjs/prompt-master · SKILL.md v1.8.2 · MIT · upstream_blob_sha 742deafaf4222f9f0e9d9410e72483dad64fe716 · upstream_content_sha256 36e68cdcd62c38b2f99c2538c83fefb8c8837ea9b7eed75297fe76e45c452e75 | 证据 swap_pack.json increments[1] | 准入 r305b merge_plan.json skills[slug=A-prompt-better].files[src=SKILL.md,action=land] -->\n\n### Memory Block\n\nWhen the user's request references prior work, decisions, or session history — prepend this block to the generated prompt. Place it in the first 30% of the prompt so it survives attention decay in the target model.\n\n```\n## Context (carry forward)\n- Stack and tool decisions established\n- Architecture choices locked\n- Constraints from prior turns\n- What was tried and failed\n```\n",
+    "placement": "after",
+    "increment": "I2",
+    "upstream_lines": "L440-450",
+    "verbatim_probe": "survives attention decay in the target model",
+    "why": "增量 I2：上游 L440-450 整段逐字钉定，同级 ### 段紧接本地既有转述段之后（含 Context carry-forward 代码块）。加法式 —— 锚点行原样保留。",
+    "evidence": "swap_pack 的 increments[1]；逐文本体 = 候选件正文 L440-450",
+    "swap_pack_entry": {
+      "array": "increments",
+      "index": 1,
+      "skill": "A-prompt-better",
+      "upstream_ref": "nidhinjs/prompt-master:SKILL.md L442",
+      "anchor": "first 30%",
+      "state": "VERIFIED"
+    }
+  },
+  {
+    "id": "E4",
+    "op": "insert",
+    "anchor": "## 元能力：主动自评",
+    "old": null,
+    "new": "<!-- r306a 逐字钉定（加法式并入，本地行零删除）| 增量 I3 | 上游 L469-473 | nidhinjs/prompt-master · SKILL.md v1.8.2 · MIT · upstream_blob_sha 742deafaf4222f9f0e9d9410e72483dad64fe716 · upstream_content_sha256 36e68cdcd62c38b2f99c2538c83fefb8c8837ea9b7eed75297fe76e45c452e75 | 证据 swap_pack.json increments[2] | 准入 r305b merge_plan.json skills[slug=A-prompt-better].files[src=SKILL.md,action=land] -->\n\n### Agentic Output Warning\n\nFor prompts targeting agentic tools (Claude Code, Devin, Cursor, Windsurf, Cline, Bolt, SWE-agent, Manus, or anything that executes commands or edits files — mandatory for Templates G, H, M, agentic uses of N, and any prompt referencing filesystem, terminal, dependency, or database operations), append this notice:\n\n\"This prompt is for an agentic tool with real system access. Review the scope locks, forbidden actions, and stop conditions before pasting. Confirm file paths, directories, and permissions match the actual project.\"\n\n",
+    "placement": "before",
+    "increment": "I3",
+    "upstream_lines": "L469-473",
+    "verbatim_probe": "This prompt is for an agentic tool with real system access",
+    "why": "增量 I3：上游 L469-473 整段逐字钉定，### 段收在 Quick Reference 段末（下一个顶层段之前）。加法式 —— 锚点行原样保留。",
+    "evidence": "swap_pack 的 increments[2]；逐文本体 = 候选件正文 L469-473",
+    "swap_pack_entry": {
+      "array": "increments",
+      "index": 2,
+      "skill": "A-prompt-better",
+      "upstream_ref": "nidhinjs/prompt-master:SKILL.md L469-470",
+      "anchor": "Agentic Output Warning",
+      "state": "VERIFIED"
+    }
+  },
+  {
+    "id": "E5",
+    "op": "insert",
+    "anchor": "## 元能力：主动自评",
+    "old": null,
+    "new": "<!-- r306a 逐字钉定（加法式并入，本地行零删除）| 增量 I4 | 上游 L477-489 | nidhinjs/prompt-master · SKILL.md v1.8.2 · MIT · upstream_blob_sha 742deafaf4222f9f0e9d9410e72483dad64fe716 · upstream_content_sha256 36e68cdcd62c38b2f99c2538c83fefb8c8837ea9b7eed75297fe76e45c452e75 | 证据 swap_pack.json increments[3] | 准入 r305b merge_plan.json skills[slug=A-prompt-better].files[src=SKILL.md,action=land] -->\n\n## RECENCY ZONE — Verification and Success Lock\n\n**Before delivering any prompt, verify:**\n\n1. Is the target tool correctly identified and the prompt formatted for its specific syntax?\n2. Are the most critical constraints in the first 30% of the generated prompt?\n3. Does every instruction use the strongest signal word? MUST over should. NEVER over avoid.\n4. Has every fabricated technique been removed?\n5. Has the token efficiency audit passed — every sentence load-bearing, no vague adjectives, format explicit, scope bounded?\n6. Would this prompt produce the right output on the first attempt?\n\n**Success criteria**\nThe user pastes the prompt into their target tool. It works on the first try. Zero re-prompts needed. That is the only metric.---\n\n",
+    "placement": "before",
+    "increment": "I4",
+    "upstream_lines": "L477-489",
+    "verbatim_probe": "Has every fabricated technique been removed?",
+    "why": "增量 I4：上游 L477-489 整段逐字钉定，## 顶层段（交付前六问＋成功判据）置于本地「元能力：主动自评」之前，收尾补一条水平分隔线让并入段自成一块。加法式 —— 锚点行原样保留。",
+    "evidence": "swap_pack 的 increments[3]；逐文本体 = 候选件正文 L477-489",
+    "swap_pack_entry": {
+      "array": "increments",
+      "index": 3,
+      "skill": "A-prompt-better",
+      "upstream_ref": "nidhinjs/prompt-master:SKILL.md L482",
+      "anchor": "most critical constraints",
+      "state": "VERIFIED"
+    }
+  },
+  {
+    "id": "E6",
+    "op": "insert",
+    "anchor": "| V1.4.0 | 2026-10-31 | 换装增量并入（nidhinjs/prompt-master @ blob 742deafa、MIT，四区 L22-27/L442/L469-470/L482）：单 prompt 高虚构技法黑名单、Memory Block 前 30% 前置、agentic 产出 scope-lock 复核、检查清单 +2 项；本地独有（七步闭环 Step ② 衔接、Level 1/2/3 分流与闭合标签近因）逐字保留 |",
+    "old": null,
+    "new": "| V1.5.0 | 2026-10-31 | r306a 换装补装（A 臂落地编辑清单，只加不删）：四条上游增量逐字钉定 —— I1 单 prompt 高虚构技法黑名单＋禁索取隐藏思维链（上游 L21-27）、I2 Memory Block 前 30% 注意力衰减位约束含 Context carry-forward 代码块（L440-450）、I3 Agentic Output Warning 原文（L469-473）、I4 RECENCY ZONE 交付前六问＋成功判据（L477-489）；本地独有（七步闭环 Step ② 衔接、Level 1/2/3 分流与闭合标签近因）逐字未动 |\n",
+    "placement": "before",
+    "increment": null,
+    "upstream_lines": null,
+    "verbatim_probe": null,
+    "why": "版本历史表体「最新行在上」⇒ 新行插在 V1.4.0 行之前；既有行一字不改。",
+    "evidence": "基线快照版本历史段（V1.4.0 行锚点唯一命中；该行自称四区增量已并入，实为中文转述 ⇒ 本轮改为逐字钉定）",
+    "swap_pack_entry": {
+      "array": "skills",
+      "index": 0,
+      "field": "local_lines",
+      "value": 675,
+      "lines_now": 686
+    }
+  }
+]
