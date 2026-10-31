@@ -612,7 +612,7 @@ python -B compare_baseline.py --baseline absorption_baseline.json（末行 [R303
    须走 `powershell.exe -NoProfile -ExecutionPolicy Bypass -File …`（我因此先拿到一次「空输出 exit 1」的空结果）。
 取值：python 05-exec/r38_debt_aging.py --json <件> --ledger 06-benchmark/debt_runs.jsonl；
 python 05-exec/landing_replay_check.py --spec 05-exec/landing_specs/security-audit.json（末行 gate=PASS）。
-- [ ] **R303-5（r303 登记，P2）** **两条操作事实：schannel 类 push 失败先试 HTTP/1.1 降级（本轮第一次即成，DEPLOY=OK；判据仍是 local==remote sha 而非 push 输出）｜对超长条目做 r46 note 会被读回验证拒绝并安全回滚，补记宜新开短条目**：一手（r303 收尾，我当场踩到）：项目仓 push 连续 3 次报 schannel: failed to receive handshake, SSL/TLS connection failed
+- [ ] **R303-5（r303 登记，P2）** **两条操作事实：schannel 类 push 失败先试 HTTP/1.1 降级（本轮第一次即成，DEPLOY=OK；判据仍是 local==remote sha 而非 push 输出）｜对超长条目做 r46 note 会被读回验证拒绝并安全回滚，补记宜新开短条目**：一手（r303 收尾，我当场踩到）：项目仓 push 连续 3 次报 schannel: failed to receive handshake, SSL/TLS connection failed 【r312 裁决=已落地｜r312 改判：已落地（登记型，两条事实都在役）。HTTP/1.1 降级自 r303 起每次 schannel 类失败即用（r306/r308/r310/r312 多笔 push 全程带 -c http.version=HTTP/1.1，本回合 push 再验 DEPLOY=OK）；「长条目补记被拒⇒新开短条」在 r305（R305-4）、r309（R309-1 拆法）反复执行。判据仍是 local==remote sha 非 push 输出——r309 那次「fatal 但 sha 已同」的误读即按此排除。】
 （MAIN_VERIFIED=0），而**同一分钟里 GM 仓 push 成功** ⇒ 不是全断网，而是（极可能）HTTP/2 与 schannel 的交互问题。
 处置：给 push 加参数把传输降到 HTTP/1.1，**第一次即成**（a9ade82..170839a），local==remote=170839a、DEPLOY=OK。
 ⇒ 记法：schannel 握手类 push 失败先试 HTTP/1.1 降级，别急着归因「网断了」，更别用跳过证书校验那种降级；
@@ -758,7 +758,7 @@ spec 给 history_form=markdown-table + history_row_regex（B1 的规格本来就
 fm 读数不变（2.1.0 / 1.1.0 / 1.4.2）；A-prompt-better 规格五腿全 ok、gate=PASS（R 腿 9 hunk 重放逐字节==HEAD）。
 ⇒ 至此需求 4/5 的「落地后验证标准」面有**四件**受管制（三件此前 + 本轮换装件）。
 取值：python 05-exec/landing_replay_check.py --spec 05-exec/landing_specs/A-prompt-better.json（末行 gate=PASS）。
-- [ ] **R307-1（r307 登记，P1）** **季度面来源审查（4 件全是 r113 本体系真产物 ⇒ CADENCE:PASS 的 green 是真的；r260c 与今日实跑件键集全等）+ r113 离线全链今日复跑 19 步 PASS + SOP 三层动线与换装季义务落维护规范（死链/r119 双门复跑过）**：一手（r307，Lead 自干件 #3，全部现跑）：季度巡检面的**来源审查** + r113 离线全链今日复跑 + SOP 三层接线落维护规范。
+- [ ] **R307-1（r307 登记，P1）** **季度面来源审查（4 件全是 r113 本体系真产物 ⇒ CADENCE:PASS 的 green 是真的；r260c 与今日实跑件键集全等）+ r113 离线全链今日复跑 19 步 PASS + SOP 三层动线与换装季义务落维护规范（死链/r119 双门复跑过）**：一手（r307，Lead 自干件 #3，全部现跑）：季度巡检面的**来源审查** + r113 离线全链今日复跑 + SOP 三层接线落维护规范。 【r312 裁决=已落地｜r312 改判：已落地。四件全 r113 本体系真产物的审查在 _repro/r307lead 与本报告；r113 离线全链复跑 19 步 PASS 记录在案；SOP 三层动线+换装季义务已落维护规范（r307 附节，r311 又补第 4 节入册义务）⇒ 长效面闭环。】
 ① 来源审查（合理怀疑：面里 4 件混着，green 是谁喂的？）：quarterly(10-25, a366ed6/r230 提交) ＋ quarterly_r260/260b/260c(10-28, 336c68a 与
    373a038) ⇒ **四件全是 r113 本体的真产物**（schema 同 quarterly-skill-audit-v1；r260c 与今日实跑件**键集全等**、正牌季档仅差
    side_write_policy 一键；r260* 是那些轮用 --out-dir 落的预览跑且入了库）⇒ 看门狗取最新=10-28 真跑，[CADENCE:PASS]（龄 3.0≤100）
@@ -787,7 +787,7 @@ fm 读数不变（2.1.0 / 1.1.0 / 1.4.2）；A-prompt-better 规格五腿全 ok�
 ⇒ 自记教训（与恒绿/空过同族）：**脚本 rc!=0 别直接记「环境受阻」，先读它的退出语义与依赖结构**——
    我 r304 把「缺 lib/ 的单文件跑法」和「有 FAIL findings 的正常 rc=1」都当成不可用，差点让第二件换装白挂一季。
 取值：见 _temp/r307lead/audit_summary.md §4（对照表 + 实测逐字）；复现：在 _temp/r307lead/ftest 下 node scripts/inspect.mjs page.html。
-- [ ] **R307-3（r307 登记，P1）** **版本面今日复跑：漂移读数 2→1，逐对 gh 现值归因到底（gstack 仍漂且上游在活跃推进；hyperframes-media 落回基线值、但昨季档被今日原地覆盖⇒无法确证是回改还是瞬时态）⇒ 登记并修机制缺陷：季档同季覆盖写毁历史读数，改带日期并存**：一手（r307，Lead 复跑版本面 + 归因到底）：季度扫描今日读数与昨日的差异**全部解释清楚**，并揪出一个机制缺陷。
+- [ ] **R307-3（r307 登记，P1）** **版本面今日复跑：漂移读数 2→1，逐对 gh 现值归因到底（gstack 仍漂且上游在活跃推进；hyperframes-media 落回基线值、但昨季档被今日原地覆盖⇒无法确证是回改还是瞬时态）⇒ 登记并修机制缺陷：季档同季覆盖写毁历史读数，改带日期并存**：一手（r307，Lead 复跑版本面 + 归因到底）：季度扫描今日读数与昨日的差异**全部解释清楚**，并揪出一个机制缺陷。 【r312 裁决=已落地｜r312 改判：已落地。带时间戳并存修法已执行：audit_2026-10-31T0749Z.json 在盘（_repro/r304a/06-benchmark/version_scan/2026Q4/）；r311 扩基线后该义务扩展为「落地/补声明当季入册」（SOP 第 4 节）⇒ 版本面存档毁于原地覆盖的病已封口。】
 今日复跑：[R304:SCAN] quarter=2026Q4 pairs=49 ok=48 upstream_changed=1 candidates=1（昨日 10-30 交付时是 ok=47/up=2：gstack+hyperframes-media）。
 逐对 gh api 现值归因：
 · **gstack（garrytan/gstack，path=capy/skill/gstack/SKILL.md）仍漂**：基线 11bd23cc → 今 8ef728bd（新提交 99706…）⇒ 上游在活跃推送，候选保持。
@@ -863,7 +863,7 @@ e1228846）随包 ⇒ 判据对冻结基线复算 3/3 全绿；blobs/（3MB 上�
 payload 本体已被受管根 git 跟踪），克隆态缺它 ⇒ UNVERIFIED rc=2 明说不假绿。提升过程我还踩一次 HERE 未定义 NameError（当场修）。
 取值：git -C D:/global_skills log --oneline -4；python 05-exec/landing_replay_check.py --spec 05-exec/landing_specs/frontend-skill.json（五腿 ok）；
 写面复算 B1：R307B_LOCAL_SKILL=_repro/r307b/local_pre_state.SKILL.md python _temp/r307b/check_r307b.py ⇒ 3/3。
-- [ ] **R309-1（r309 登记，P0）** **判别性锚题上线（三陷阱打在两版真实差上、题面不泄判据词、出厂双向检验）+ 我自己造的尺当场三缺陷全抓获全修（item8 中文分词假绿·实证、item5 语境窗假红、item4 度量与规格不符）⇒ 新规矩「自然语言判据每条断言双向压样」+ 双臂机械判分同分（含 Y2 自报全项盘上复算为真、唯一真差属逐字吸收度另一把尺）**：一手（r309，Lead）：判别性锚题 + 判据三处缺陷当场抓获并修（两处是我自己上一轮造尺时留的）。
+- [ ] **R309-1（r309 登记，P0）** **判别性锚题上线（三陷阱打在两版真实差上、题面不泄判据词、出厂双向检验）+ 我自己造的尺当场三缺陷全抓获全修（item8 中文分词假绿·实证、item5 语境窗假红、item4 度量与规格不符）⇒ 新规矩「自然语言判据每条断言双向压样」+ 双臂机械判分同分（含 Y2 自报全项盘上复算为真、唯一真差属逐字吸收度另一把尺）**：一手（r309，Lead）：判别性锚题 + 判据三处缺陷当场抓获并修（两处是我自己上一轮造尺时留的）。 【r312 裁决=已落地｜r312 改判：已落地且已产出后续。判别性锚题+三向出厂压样在 _repro/r312a（task3 复刻同套）；判据五连修含 r312 真实臂再抓的两个假红（未使用子串/豁免词表）全修毕、selftest 持续 PASS；n=2 终表 7/8→8/8 与 8/8→8/8 出齐（N2_FINAL.md）。本条预告的「多题面」路径已走通一题，余下按 R312-2 纪律扩轮次（每题≥3 轮）。】
 ① 题面（task2.md）带三个陷阱，全部打在**两版真实差**上（grep 现取：Mixture/ToT 0→2、scope lock 0→2、注意力衰减 0→3）：
    用户显式要求「想全面多角度推敲」（诱导加 ToT/MoE）、「最重要限制写在任务书**最后**」（诱导违反前 30%）、
    下游 agent「直接部署上线有命令行权限」（诱导缺 agentic 复核）。题面不泄判据词（Tree of Thought=0/scope lock=0/前30%=0）。
