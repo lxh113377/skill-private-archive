@@ -333,7 +333,7 @@ debt_runs 实测 current_round 298/299/300 对应 overdue 0/0/**4**，跳变与�
 手法可复用本轮建好的 _repro/r276qi/ 与 work 镜像口径；验收靶 = r287 末行「不可解析出处」再跌 3 且**新增 0**；
 注意解释文字不得含路径形态（见 R300-6 第②条）。
 取值：python 05-exec/r287_provenance_resolve.py --json <件>；python -c 读 06-benchmark/r287_provenance_baseline.json 的 keys 筛 r276/r277。
-- [ ] **R301-1（r301 登记，P1）** **r114 两处机制修（path 归属自解析 + 根级腿改前后缀式）落地：12 腿夹具全 PASS（含 L9c 有牙证明）、191 行零漂移、回滚对 r299 版 0 差异；并落纸 §5.7「复验基线必须钉在特性引入前，禁浮动 HEAD」**：一手（r301，Lead 自干件）：r114 两处机制修 + 12 腿夹具 + 两条守约束复验。
+- [ ] **R301-1（r301 登记，P1）** **r114 两处机制修（path 归属自解析 + 根级腿改前后缀式）落地：12 腿夹具全 PASS（含 L9c 有牙证明）、191 行零漂移、回滚对 r299 版 0 差异；并落纸 §5.7「复验基线必须钉在特性引入前，禁浮动 HEAD」**：一手（r301，Lead 自干件）：r114 两处机制修 + 12 腿夹具 + 两条守约束复验。 【r306 裁决=已落地｜已落地（本轮 r306 复跑取证）：05-exec/r300_declared_face_fixtures.py 现跑末行 [DECLARED:FACE:PASS] legs=12 passed=12；两处机制修（path 归属自解析 + 根级边界式）在 r114 本体（def 可 grep），191 行零漂移与回滚等值在 r301 当时已验。】
 修的什么（依独立预测面 r300 的边界异议，两条都是「通道真实、真实语料未触发」型）：
 ① **声明 path: 的归属自解析**：旧写法把侧车声明的子路径无条件套到本件的每个声明仓上（多仓侧车实测 5 件），
    而该路径往往只属于其中一个仓（实测 electron 声明的 path: skill-data/electron 只在 vercel-labs/agent-browser
@@ -356,7 +356,7 @@ debt_runs 实测 current_round 298/299/300 对应 overdue 0/0/**4**，跳变与�
   同族：R293「旧矩阵快照当现行事实」、R298「读改前旧快照当现行值」—— 表现都是复验报红、最易被读成回归。
 取值：python -B 05-exec/r300_declared_face_fixtures.py；python -B _temp/r300_populate_ab.py；
 python -B _temp/r301_rbpin.py（回滚 vs r299 版，末行 不一致 = 0）。
-- [ ] **R301-2（r301 登记，P1）** **R300-7 落地并经我独立复跑：r276_scan/r276_finalize 迁出 + 两处面件改口径 + r277 死句柄删引用；不可解析出处 50→47（跌 3，与处置条数逐一对应），四件 _temp 残留全 0；附「判据读 git 真相 ⇒ 迁移验收必须先入索引」的规矩**：一手（r301，派发件 c6980b57 交付 + 我独立复跑）：R300-7 落地。
+- [ ] **R301-2（r301 登记，P1）** **R300-7 落地并经我独立复跑：r276_scan/r276_finalize 迁出 + 两处面件改口径 + r277 死句柄删引用；不可解析出处 50→47（跌 3，与处置条数逐一对应），四件 _temp 残留全 0；附「判据读 git 真相 ⇒ 迁移验收必须先入索引」的规矩**：一手（r301，派发件 c6980b57 交付 + 我独立复跑）：R300-7 落地。 【r306 裁决=已落地｜已落地。现核：git ls-files _repro/r276qi 计 4 件（迁出面件在库）；r287 出处面现跑 [PROVRESOLVE_OK]（50→47 的跌 3 即本条成果）。】
 交付内容：_temp/r276_scan.py（12,284B）与 _temp/r276_finalize.py（8,369B）迁到跟踪目录 _repro/r276qi/，
 12 处/多处中间态改指 _repro/r276qi/work/（.gitignore:101 的 _repro/*/work/ 命中，git check-ignore 实测），
 两份面件（r276_contract_vs_impl_conflicts.json 的 1 处、r277_contract_conflicts_afterfix.json 的 2 处）改口径；
@@ -371,7 +371,7 @@ r277_verdict.py 死句柄按「删引用 + 写明原因」处置（实测该件�
 并把「入库后应为 47」写成对我的明确前置要求 —— 既没越权 git 写，也没让判据在错的 index 态下给假结论。
 ⇒ 与我 r300 的教训互补：**判据读的是 git 真相（ls-files），所以「文件在盘上」不等于「判据看得见它」**；
 凡迁移类落地，验收必须显式写「先入索引再跑判据」，否则我会拿到一个假红（本轮若不做这步就会误判 A1 失败）。
-- [ ] **R301-3（r301 登记，P1）** **B1（需求 5 版本面）失败无收尾消息、只留探针 ⇒ 判未交付、不采信其读数，并按 #44⑦ 缩范围重派 C1（含步数上限与「别硬撑」）；同批记我自己的程序中断混淆（r300 同族复犯，预防方式未改）**：一手（r301，两条连在一起记）：
+- [ ] **R301-3（r301 登记，P1）** **B1（需求 5 版本面）失败无收尾消息、只留探针 ⇒ 判未交付、不采信其读数，并按 #44⑦ 缩范围重派 C1（含步数上限与「别硬撑」）；同批记我自己的程序中断混淆（r300 同族复犯，预防方式未改）**：一手（r301，两条连在一起记）： 【r306 裁决=已落地｜已落地（登记型）。本条的产物就是这次处置记录本身：B1 判未交付不采信 + 按 #44⑦ 缩范围重派 C1（带步数上限与「别硬撑」句）成功交付；该模板句自此进入我每轮 brief（r302-r306 全部带「步数上限」）。程序中断混淆的更正也已落当轮台账。】
 ① **B1（f0475fa7，任务=需求 5 版本面）失败退出且无收尾消息**，写面 _temp/r301b/ 只留 4 个探针（_probe.py /
    _probe2 / _probe3 / vread.py，合计 7,165B），**没有** version_scan.json、没有判据、没有报告 ⇒ 按 #44⑥「自述不算
    证据、以磁盘为准」判未交付，**不使用其任何读数**（探针里的中间结果一律不采信，那是拿别人的半成品冒充结论）。
@@ -407,7 +407,7 @@ python -c 读该件的 reproduce_selfcheck.mismatches 与 mismatch_examples（�
 另记一条同时观察到、与本回归无关的门态（避免被读成本轮引入）：r291_req2_compliance 现报 [REQ2:UNVERIFIED]，
 原因是它缺省读 06-benchmark/replacement_matrix_shadowstrict.json（generated_at 2026-10-27，早于 r261-5 护栏、无
 declared_upstream_repo 字段）⇒ 属 R300-2② 已登记的那份陈旧跟踪面，须由它自己的生产者（r221_caliber_shadow.py）刷新。
-- [ ] **R301-5（r301 登记，P1）** **需求 5 的版本面首次成读数：49 对口 line 里 behind=42 / current=1 / local_ahead=5 / unknown=1（含 12 对上游正文抽样 12/12 VERIFIED）；口径限制写死：它答「上游仓仍有活动」不答「同名件内容变了」，故 behind=42 只作需求 4 的排序线索**：一手（r301，派发件 8e059b8c 交付 + 我独立复跑 + 我自己抽检）：**需求 5 的「版本扫描」这一半第一次有了读数**。
+- [ ] **R301-5（r301 登记，P1）** **需求 5 的版本面首次成读数：49 对口 line 里 behind=42 / current=1 / local_ahead=5 / unknown=1（含 12 对上游正文抽样 12/12 VERIFIED）；口径限制写死：它答「上游仓仍有活动」不答「同名件内容变了」，故 behind=42 只作需求 4 的排序线索**：一手（r301，派发件 8e059b8c 交付 + 我独立复跑 + 我自己抽检）：**需求 5 的「版本扫描」这一半第一次有了读数**。 【r306 裁决=已落地｜已落地。现核：_repro/r301c/ 读数件在库且带 [R301C:FRESH] 末行（behind=42 / current=1 / local_ahead=5 / unknown=1，12 对抽样复算）；该读数此后被 r302 优先级表与 r303 吸收基准直接继承（基准面的 upstream_changed 就是它「只能当线索」那层的可判版本）。】
 读数（提升后在 _repro/r301c 里我复跑，末行逐字一致，rc=0）：
   [R301C:FRESH] pairs=49 behind=42 current=1 local_ahead=5 unknown=1 sampled=12
 口径（写死、单一时间轴）：本地 SKILL.md 头部 last_updated **vs** 上游仓 pushed_at，都取 YYYY-MM-DD；
@@ -533,7 +533,7 @@ changed_fields 分布 stars=90 / pushed_at=75 / test_path_n=47 / workflow_n=10 /
 **brief 里凡出现命令行开关/门 id/参数名，必须由我先实跑 --help 或现读源码确认再写**，否则等于把自己的猜测当接口交给别人。
 取值：python 05-exec/r260_local_baseline.py --json 06-benchmark/r260_local_baseline.json；
 python -B 05-exec/r302_r260_input_pin_fixtures.py；python 05-exec/run_gates.py --gate local_baseline_face。
-- [ ] **R303-1（r303 登记，P0）** **我自查纠正一处假缺口：r302 说「shadow 面带 declared_upstream_repo 但不带 declared_state」是抽样错误（只看了 rows[:5]），全量现读 55 行都带 declared_state（lineage 49/invalid 6）⇒ 据此拟的「改 r221」作废；并升级自律：报「有多少/有没有」前必须先给全量计数命令与数**：一手（r303，我自查发现并纠正）：r302 我登记的「shadow 面覆盖缺口」**是我抽样错误造成的假缺口**。
+- [ ] **R303-1（r303 登记，P0）** **我自查纠正一处假缺口：r302 说「shadow 面带 declared_upstream_repo 但不带 declared_state」是抽样错误（只看了 rows[:5]），全量现读 55 行都带 declared_state（lineage 49/invalid 6）⇒ 据此拟的「改 r221」作废；并升级自律：报「有多少/有没有」前必须先给全量计数命令与数**：一手（r303，我自查发现并纠正）：r302 我登记的「shadow 面覆盖缺口」**是我抽样错误造成的假缺口**。 【r306 裁决=已落地｜已落地。现核：R302-2 正文带 r303 校正注（grep 命中 1）；基于错前提的 r221 改动已取消；「全量计数 + 键/值分开数」的自律进了 R303-1 本体与 GM 侧车，并在本轮 r305（31 vs 92 并排计数）再次被执行——包括我自己第 4 次复发时用它当场抓住了自己。】
 我在 r302 只看了 rows[:5]（前五行恰好无声明 ⇒ 既没有 declared_state 键、declared_upstream_repo 的值也都是 None），
 就直接写成「刷新后的 shadow 面带 declared_upstream_repo 但不带 declared_state ⇒ 读该面者看不到 lineage/invalid 这一维」，
 并据此提出「须让 r221 把 declared_state 一并带过去」。**全量计数我根本没跑**。
@@ -592,7 +592,7 @@ hyperframes-media 仓 heygen-com/hyperframes，两件 contents 类型均为 file
 local_changed=1 ⇒ 本地件变了**仍判红**，放宽没有把牙拔掉。
 取值：cd _repro/r303a && python -B check_r303a.py（末行 [R303:BASELINE] …）；
 python -B compare_baseline.py --baseline absorption_baseline.json（末行 [R303A:COMPARE] …）。
-- [ ] **R303-4（r303 登记，P0）** **四条操作教训（全部本轮实测）：账龄要在 commit+tag 之后再跑（tag 才推轮号）｜r46 锚点必须落在第一个加粗段（用条目自身编号段）｜改被 spec 覆盖的文件后必须跑那条 spec（我 r302 漏跑导致三处静默红）｜判据放宽后立刻跑依赖它的 spec（我 patch leg_P 漏初始化 ⇒ 三 spec 静默坏）；附未签名 ps1 需 ExecutionPolicy Bypass**：一手（r303 收尾段，四条操作教训，每条都是我本轮真踩过并当场核实的）：
+- [ ] **R303-4（r303 登记，P0）** **四条操作教训（全部本轮实测）：账龄要在 commit+tag 之后再跑（tag 才推轮号）｜r46 锚点必须落在第一个加粗段（用条目自身编号段）｜改被 spec 覆盖的文件后必须跑那条 spec（我 r302 漏跑导致三处静默红）｜判据放宽后立刻跑依赖它的 spec（我 patch leg_P 漏初始化 ⇒ 三 spec 静默坏）；附未签名 ps1 需 ExecutionPolicy Bypass**：一手（r303 收尾段，四条操作教训，每条都是我本轮真踩过并当场核实的）： 【r306 裁决=已落地｜已落地。四条全部在按序执行而非只写下来：① 「提交→打 tag→跑账龄」本轮 r306 真实走完（打完 tag 抓到 6 条并当场处置）；② r46 用条目自身编号段作锚点（本轮关 6 条即用它，一次成功）；③ 改被 spec 覆盖的文件后跑该 spec（本轮 A 臂落地后五腿全跑）；④ 判据改写后立刻跑依赖它的 spec（本轮 leg_V 加表格分支后立刻回归三件既有 spec）。GM 侧车 part3 在库（gm_part3=1）。本轮还多付了一条同款学费：r306 第一笔提交因 add 清单里含尚未生成的文件而整批失败，但 tag 仍打在旧 HEAD 上——r300 那个事故的精确复发，处置也照 r300 的规矩：删本地+远端错 tag、在真 HEAD 重建、remote 用 r306^{} 剥皮比对（TAG_ON_HEAD=1）。】
 ① **账龄必须在 commit+tag 之后再跑一次**：我按 r300 立的规矩在提交前跑了账龄（当时 OVERDUE 0），
    提交并打 tag r303 之后它跳到 **6**。机理：r38 的 round 取「log 与 tag 的较大者」，我打 tag 才把轮号推到 303，
    于是 302 窗口内没到期的那批同时到期。⇒ 规矩修正：**提交前那次只用于预判，真正的到期面是「打完 tag 之后」的读数**；
