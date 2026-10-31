@@ -1,0 +1,10 @@
+{
+ "schema": "r332-candidate-health-admission-evidence-1",
+ "gate": "candidate_health_face",
+ "script": "r331_candidate_health.py",
+ "single_run": "[GATES:PASS] PASS=1（candidate_health_face PASS rc=0 168ms）",
+ "fixtures": "[R332:FIXTURE] 5/5 teeth=pass（t1 正常 rc=0 / t2 stale 超顶 rc=1 / m1 阈值放宽必转绿 / t3 空面 rc=2 UNVERIFIED / t4 矩阵缺失 rc=2）",
+ "registered": "05-exec/.read_face_registry.json 第 53 条（evidence=06-benchmark/candidate_health_latest.json）",
+ "admission": "[ADMIT] 脚本 313 / 已登记 116 / 未声明的产读数脚本 0",
+ "why_link": "R331-1 兑现 + R332 入门表：需求2 社区活跃度/维护状态两维时效守卫"
+}

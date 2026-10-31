@@ -114,12 +114,13 @@
    "teeth_proof_matrix",
    "r269_converge_face",
    "local_baseline_face",
+   "candidate_health_face",
    "quarterly_cadence_face",
    "maintenance_trim_face",
    "provenance_resolve_face",
    "provenance_resolve_fixtures"
   ],
-  "_snapshot_at": "2026-10-31 21:49",
+  "_snapshot_at": "2026-11-01 03:06",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
@@ -419,6 +420,10 @@
   "declared_face_fixtures": {
    "evidence": "05-exec/r300_declared_face_fixtures.py",
    "at": "2026-10-30 21:00"
+  },
+  "candidate_health_face": {
+   "evidence": "C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r332_lead/ADMISSION_EVIDENCE.json",
+   "at": "2026-11-01 03:06"
   }
  }
 }

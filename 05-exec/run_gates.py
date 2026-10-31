@@ -1806,6 +1806,25 @@ GATES = [
               "故由编排方注册常驻（第 111 门），每轮真跑复现漂移与 copyleft 敞口。",
     },
     {
+        # r331/r332：需求 2 的「社区活跃度 / 维护状态」两维时效守卫。
+        # 为什么独立成门：⑥ 替代候选段重算「有没有更好的」，本门守「当前候选面的上游还活着吗」；
+        # 两者必须同季跑但语义不同；stale 占比是「上游自然衰退」的第一读数，不给常驻面就只能靠人记得去看。
+        "id": "candidate_health_face",
+        "script": "r331_candidate_health.py",
+        "argv": ["--today", "2026-11-01", "--json", "06-benchmark/candidate_health_latest.json"],
+        "pass_token": "[R331:HEALTH]",
+        "portable": True,
+        "why": "r331 一手：需求2 要求「社区活跃度、维护状态良好」，但 937 个候选的 pushed_at/archived 两读数没有任何常驻判据会报警，只会在某次人工巡检时偶然看见；本门把 stale/archived/restricted 三轴变成每轮真跑读数，阈值 2% 而实测 0.11%（留 20 倍余量防上游自然衰退做成恒红）；与 6 段分工：那段算有没有更好的，本门守现有的还活着吗。",
+        "covers": [
+            "stale 轴：pushed_at 距今 > 365 天（r114 C4「12 个月内 pushed_at」）⇒ 逐件点名",
+            "archived 轴：上游仓 archived=true ⇒ 停摆点名",
+            "restricted 轴：licen[cs]e 属 AGPL/GPL/LGPL/CC-BY-SA/CC-BY-NC/UNLICENSED/NOASSERTION 或空 ⇒ 受限点名",
+            "阈值：stale 占比 > 2% ⇒ rc=1（r331 实测 0.11%，留 20 倍余量防自然衰退变恒红）",
+            "空面：候选 0 条 ⇒ rc=2 UNVERIFIED（禁按 0 条记绿，R247）",
+            "日期口径：--today 在 argv 里钉死，判据复算不随本机日期漂移",
+        ],
+    },
+    {
         # r260：需求5「季度」二字的节律看门狗（CI 可跑面，纯 stdlib）
         "id": "quarterly_cadence_face",
         "script": "r260_quarterly_cadence.py",
