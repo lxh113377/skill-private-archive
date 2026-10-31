@@ -1,0 +1,39 @@
+{
+ "computable": {
+  "X": {
+   "item4_first30": 1,
+   "item4_frac": 0.274,
+   "item5_no_fabricated": 1,
+   "item5_hits": [],
+   "item6_scope": 1,
+   "item8_fake_sections": [],
+   "item8_support": "12/12",
+   "item8_consistent": 1,
+   "aux": {
+    "prompt_bytes": 11444,
+    "has_clarify": true,
+    "deliver_format": 3,
+    "demand_terms": [],
+    "log_lines": 20
+   }
+  },
+  "Y": {
+   "item4_first30": 1,
+   "item4_frac": 0.264,
+   "item5_no_fabricated": 1,
+   "item5_hits": [],
+   "item6_scope": 1,
+   "item8_fake_sections": [],
+   "item8_support": "10/12",
+   "item8_consistent": 1,
+   "aux": {
+    "prompt_bytes": 7399,
+    "has_clarify": true,
+    "deliver_format": 5,
+    "demand_terms": [],
+    "log_lines": 22
+   }
+  }
+ },
+ "unblinded": true
+}

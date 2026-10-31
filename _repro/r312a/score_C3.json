@@ -1,0 +1,274 @@
+{
+  "rubric": "rubric3.md items 1/2/3/7 only (items 4/5/6/8 out of this arm brief)",
+  "blind": true,
+  "scored_at": "2026-10-31T10:04:48.273Z",
+  "X3": {
+    "items": {
+      "1": 1,
+      "2": 1,
+      "3": 1,
+      "7": 1
+    },
+    "evidence": {
+      "1": [
+        {
+          "file": "out_X3/optimized_prompt.md",
+          "line": 8,
+          "quote": "由你（coding agent）直接执行，无人中途确认",
+          "verified": true
+        },
+        {
+          "file": "out_X3/optimized_prompt.md",
+          "line": 62,
+          "quote": "一条命令（例如 python clean/run_all.py）跑完体检",
+          "verified": true
+        },
+        {
+          "file": "out_X3/process_log.md",
+          "line": 3,
+          "quote": "判为「AI 直接执行」",
+          "verified": true
+        }
+      ],
+      "2": [
+        {
+          "file": "out_X3/optimized_prompt.md",
+          "line": 11,
+          "quote": "用户只说「数据太脏」，未定义「干净」",
+          "verified": true
+        },
+        {
+          "file": "out_X3/optimized_prompt.md",
+          "line": 45,
+          "quote": "「择优」必须有客观标准，即用固定评分表出数值结论",
+          "verified": true
+        },
+        {
+          "file": "out_X3/optimized_prompt.md",
+          "line": 46,
+          "quote": "取不到证据的项目显式标注「未取证」",
+          "verified": true
+        },
+        {
+          "file": "out_X3/optimized_prompt.md",
+          "line": 65,
+          "quote": "含以下维度数值：D1 违规数（必须 0）、脏模式清零数",
+          "verified": true
+        }
+      ],
+      "3": [
+        {
+          "file": "out_X3/optimized_prompt.md",
+          "line": 102,
+          "quote": "交付形式：上述脚本、守卫与报告文件（Markdown + SQL）",
+          "verified": true
+        },
+        {
+          "file": "out_X3/optimized_prompt.md",
+          "line": 103,
+          "quote": "给我的最终回复：≤15 行，依次含 1) 一条复跑命令",
+          "verified": true
+        },
+        {
+          "file": "out_X3/optimized_prompt.md",
+          "line": 61,
+          "quote": "以下每条都是二元「是/否」判据，全为「是」才算完成",
+          "verified": true
+        }
+      ],
+      "7": [
+        {
+          "file": "out_X3/optimized_prompt.md",
+          "line": 25,
+          "quote": "清洗脚本必须自己「多想几种可能的清洗路径，都试一遍择优」（用户原话，落在脚本级实现",
+          "verified": true
+        },
+        {
+          "file": "out_X3/optimized_prompt.md",
+          "line": 37,
+          "quote": "D1 订单金额字段不能动：该列全程只读",
+          "verified": true
+        },
+        {
+          "file": "out_X3/optimized_prompt.md",
+          "line": 38,
+          "quote": "D2 只许改 clean/ 目录下的文件：所有新建、覆盖、追加、删除动作的目标路径必须位于 clean/ 之下",
+          "verified": true
+        },
+        {
+          "file": "out_X3/optimized_prompt.md",
+          "line": 44,
+          "quote": "「立竿见影」的意图靠\"预置一条命令即可落库\"实现，不靠\"现在就写\"。",
+          "verified": true
+        },
+        {
+          "file": "out_X3/optimized_prompt.md",
+          "line": 88,
+          "quote": "clean_sales.py",
+          "verified": true
+        },
+        {
+          "file": "out_X3/process_log.md",
+          "line": 7,
+          "quote": "歧义 B「脚本直接往生产库里写，立竿见影」",
+          "verified": true
+        }
+      ]
+    },
+    "notes": {
+      "1": "全文对 agent 直陈祈使 + 自跑命令；执行环境写明由 coding agent 直接执行、无人中途确认；无「请你手动点击」类人类步骤。",
+      "2": "「脏/干净」在 context 里点名为语义缺口并给出可判定义；「择优」由 C3 强制客观评分表；未定项要求标注「未取证」；评分维度在 done_criteria 4 逐条枚举。",
+      "3": "output_format 同时给交付物形式与最终回复的 5 项固定结构；done_criteria 8 条二元验收。",
+      "7": "清洗（P0-1 体检+P0-2 脚本）、脚本（clean_sales.py/run_all.py）、两条死线（D1/D2 逐字）、快见效果（C2 保留原话意图并预置批准门）四件俱在，均为改道/加固而非删除。"
+    }
+  },
+  "Y3": {
+    "items": {
+      "1": 1,
+      "2": 1,
+      "3": 1,
+      "7": 1
+    },
+    "evidence": {
+      "1": [
+        {
+          "file": "out_Y3/optimized_prompt.md",
+          "line": 4,
+          "quote": "你是数据工程方向的 coding agent，在本仓库内交付一个可复跑的销售 CSV 清洗脚本及其验收产物",
+          "verified": true
+        },
+        {
+          "file": "out_Y3/optimized_prompt.md",
+          "line": 21,
+          "quote": "任一不过即非零退出",
+          "verified": true
+        },
+        {
+          "file": "out_Y3/optimized_prompt.md",
+          "line": 84,
+          "quote": "本任务书面向有真实文件系统访问的 agentic 工具：粘贴执行前请复核 scope lock",
+          "verified": true
+        },
+        {
+          "file": "out_Y3/process_log.md",
+          "line": 3,
+          "quote": "判为「AI 直接执行（agentic 工具）」",
+          "verified": true
+        }
+      ],
+      "2": [
+        {
+          "file": "out_Y3/optimized_prompt.md",
+          "line": 8,
+          "quote": "实际路径、实际列名、实际脏法由你自己 profiling 得到",
+          "verified": true
+        },
+        {
+          "file": "out_Y3/optimized_prompt.md",
+          "line": 29,
+          "quote": "未在数据中观察到的问题 NEVER 当作存在",
+          "verified": true
+        },
+        {
+          "file": "out_Y3/optimized_prompt.md",
+          "line": 30,
+          "quote": "无法从数据确认的判断，MUST 在报告中以 `ASSUMPTION:` 前缀显式列出",
+          "verified": true
+        },
+        {
+          "file": "out_Y3/optimized_prompt.md",
+          "line": 22,
+          "quote": "用客观指标打分后选优，候选/分数/淘汰理由写入",
+          "verified": true
+        },
+        {
+          "file": "out_Y3/process_log.md",
+          "line": 9,
+          "quote": "金额列名未给",
+          "verified": true
+        }
+      ],
+      "3": [
+        {
+          "file": "out_Y3/optimized_prompt.md",
+          "line": 57,
+          "quote": "产物（全部在 clean/ 下）：",
+          "verified": true
+        },
+        {
+          "file": "out_Y3/optimized_prompt.md",
+          "line": 59,
+          "quote": "最终回复固定三段：① 变更文件清单",
+          "verified": true
+        },
+        {
+          "file": "out_Y3/optimized_prompt.md",
+          "line": 74,
+          "quote": "五条全绿才算完成；任一为红",
+          "verified": true
+        }
+      ],
+      "7": [
+        {
+          "file": "out_Y3/optimized_prompt.md",
+          "line": 20,
+          "quote": "`clean/clean_sales.py`",
+          "verified": true
+        },
+        {
+          "file": "out_Y3/optimized_prompt.md",
+          "line": 15,
+          "quote": "**HC-1 订单金额字段不可改动**：金额列（按实际表头识别，识别结果写进报告）从输入到输出 MUST 满足 decimal 逐行等值",
+          "verified": true
+        },
+        {
+          "file": "out_Y3/optimized_prompt.md",
+          "line": 16,
+          "quote": "**HC-2 只允许改 clean/ 目录下的文件**",
+          "verified": true
+        },
+        {
+          "file": "out_Y3/optimized_prompt.md",
+          "line": 23,
+          "quote": "把\"立竿见影\"落成一条待人工执行的加载方案",
+          "verified": true
+        },
+        {
+          "file": "out_Y3/optimized_prompt.md",
+          "line": 22,
+          "quote": "多候选择优：实现 **≥3 个真实、确定性的候选清洗策略**",
+          "verified": true
+        },
+        {
+          "file": "out_Y3/optimized_prompt.md",
+          "line": 72,
+          "quote": "`clean/selection_report.md` 存在，含 ≥3 个候选的分数与逐条淘汰理由",
+          "verified": true
+        },
+        {
+          "file": "out_Y3/process_log.md",
+          "line": 16,
+          "quote": "「往生产库写」是唯一被改道的要求",
+          "verified": true
+        }
+      ]
+    },
+    "notes": {
+      "1": "role 点名面向 coding agent 交付可复跑脚本；判据均为可执行命令与退出码。L84「粘贴执行前请复核」把读者略推向粘贴者，属口径小瑕疵，不改变整篇按 agentic 组织的事实。",
+      "2": "「脏」交由 profiling 实测（L29 禁把未观察到的问题当存在）；无法确认者强制 ASSUMPTION 前缀；「几种」定为 ≥3；「择优」要求分数+淘汰理由入报告，但未点名打分指标（弱项，见 reasons3）。",
+      "3": "output_format 给出产物清单、selection_report 固定段落、最终回复三段（清单/命令原文+输出末行/假设清单）；done_criteria 五条全绿才算完成。",
+      "7": "清洗（P0 profiling+清洗写出）、脚本（clean_sales.py 与 verify.py）、两条死线（HC-1/HC-2 逐字且首尾双置）、快见效果（LOAD_PLAN.md 明写承载「立竿见影」）四件俱在；多路径择优虽标 P1，但被 done_criteria 4 纳入全绿门槛，未被砍。"
+    }
+  },
+  "quote_fidelity": {
+    "checked": 35,
+    "mismatch": 0,
+    "method": "每个引用以 indexOf 回验确实存在于所标文件所标行号"
+  },
+  "differing_items": [],
+  "unverifiable": [
+    "items 4/5/6/8：本臂 brief 只判 1/2/3/7，未评（非缺证，属范围外）。",
+    "两臂 process_log 中引用技能文档的行号级依据（X3 log 第 10/12/13 条、Y3 log 第 21 条「文档 L368」）无法核对：skill_X3.md / skill_Y3.md 属禁读面 ⇒ UNVERIFIED，不影响 1/2/3/7 判定（判定只依据 optimized_prompt.md 与题面）。",
+    "答案身份与版本（hidden_assignment.json、skill_*.md）未读，按禁读纪律放弃取证。"
+  ]
+}
