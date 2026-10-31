@@ -787,6 +787,36 @@ fm 读数不变（2.1.0 / 1.1.0 / 1.4.2）；A-prompt-better 规格五腿全 ok�
 ⇒ 自记教训（与恒绿/空过同族）：**脚本 rc!=0 别直接记「环境受阻」，先读它的退出语义与依赖结构**——
    我 r304 把「缺 lib/ 的单文件跑法」和「有 FAIL findings 的正常 rc=1」都当成不可用，差点让第二件换装白挂一季。
 取值：见 _temp/r307lead/audit_summary.md §4（对照表 + 实测逐字）；复现：在 _temp/r307lead/ftest 下 node scripts/inspect.mjs page.html。
+- [ ] **R307-3（r307 登记，P1）** **版本面今日复跑：漂移读数 2→1，逐对 gh 现值归因到底（gstack 仍漂且上游在活跃推进；hyperframes-media 落回基线值、但昨季档被今日原地覆盖⇒无法确证是回改还是瞬时态）⇒ 登记并修机制缺陷：季档同季覆盖写毁历史读数，改带日期并存**：一手（r307，Lead 复跑版本面 + 归因到底）：季度扫描今日读数与昨日的差异**全部解释清楚**，并揪出一个机制缺陷。
+今日复跑：[R304:SCAN] quarter=2026Q4 pairs=49 ok=48 upstream_changed=1 candidates=1（昨日 10-30 交付时是 ok=47/up=2：gstack+hyperframes-media）。
+逐对 gh api 现值归因：
+· **gstack（garrytan/gstack，path=capy/skill/gstack/SKILL.md）仍漂**：基线 11bd23cc → 今 8ef728bd（新提交 99706…）⇒ 上游在活跃推送，候选保持。
+· **hyperframes-media（heygen-com/hyperframes，path=skills/media-use/SKILL.md）不再漂**：基线 ddb316ea == 今 gh 现值 ⇒ 落回基准值。
+  成因老实说：我**无法完全判定**是上游先改又恰好改回同字节，还是昨扫时读到瞬时态（比如默认分支切换瞬间）——
+  因为**今日复跑把昨日季档原地覆盖了**（同 <季>/audit.json 路径、且 _repro/r304a/06-benchmark 未入库 ⇒ 无 git 历史可查）。
+  能确证的只有：基线件自 r303 入库后没被任何人动过（git log 只有 effb7ae 一笔），所以「相等」这个判定是可信的；
+  不可信的是**昨日那份读数的存档**——它被我的复跑毁了。
+⇒ 机制缺陷（登记并修）：季度扫描件按季覆盖写 audit.json ⇒ **同季内复跑会毁掉上一份读数**，而版本面恰恰是「会随时间变」的
+  读数面（gstack 一天内 commit 又从 b617445 前进到 99706）。修法：季档名带时间戳（audit_<UTC 日期>.json 并存），
+  看门狗面外（version_scan）所以加文件不触假绿；下次扫描前先把今日这份 cp 一份带日期的。
+取值：cd _repro/r304a && python -B r304_quarterly_version_scan.py（末行 [R304:SCAN]）；
+逐对现值：gh api repos/<repo>/contents/<path> --jq .sha 对 _repro/r303a/absorption_baseline.json 的 upstream_file_sha。
+- [ ] **R307-4（r307 登记，P0）** **需求6执行级A/B对指南件恒在量程外：真臂 delta=not_applicable（commands 0/0，我独立标尺同读数）、腿A伪件+200%证明尺在数东西；r281 的 22.22% 靠「新增真可跑命令」、指南件无同类⇒不可外推 ⇒ 指南型换装的验收只能走内容层或造锚题双臂执行，「≥30%」用文本A/B对这类件根本产不出数（收紧我自己此前的口径）**：一手（r307，派发件 24110d0b 交付 + 我独立复跑真臂与腿 A 逐字一致 + 我先立了独立标尺对照）：
+**需求 6 的执行级 A/B 对「指南性件」恒在量程之外** —— 这是本轮对任务级 30% 说法最硬的一条限定。
+读数（我复跑）：真臂 [R307A:AB] method=r281 five_items=4/5 q_a=0 q_b=0 delta=not_applicable verdict=na；
+腿 A（伪件 after 多两条命令）q_a=1 q_b=3 delta=+200.00% verdict=reported ⇒ 尺真的在数东西，na 不是恒 0 假平。
+我的独立标尺（先于臂交付落 _repro/r307lead/gt_for_A1.md）：两版全文**字面命令都是 0**、净增 41 行全是方法论断言/清单项/
+定位器注释 ⇒ 与臂的 commands_found=0/0 对上（不是我判它、是两条独立路径同读数）。
+机制解释（臂引 r281 口径）：+22.22% 那条的成因是「新增一条真可跑真可落盘的命令」（命令面）；本件增量是四条指南断言，
+无同类新增 ⇒ **不可外推**：拿 r281 原题集喂本件，判据拒因 rubric_is_task_anchored_and_task_text_differs、硬出百分比必报 na。
+⇒ 关键结论（写进报告与后续规范）：**换装「指南型」skill 不能用执行级文本 A/B 产出可引用的质量百分比**；该件的需求 6 证据面
+   只能是**内容层**（逐字钉定 4/4：I1-I4 改前探针 0 命中→改后各 1；本地独有 2/2；加法式零删除；spec 五腿全 ok）。
+⇒ 要拿执行级数字论证此类件收益，**须先造一道与 prompt 优化对口的锚题、双臂同题面执行**（卡点=无锚题输入，已登记为下一步）。
+⇒ 对我自己此前口径的收紧：我一路报 22.22%<30% 说「未达标」；本轮再加一条——**那把尺子本身对指南件不出数**，
+   所以「换装完成后质量提升 ≥30%」这个验收，在指南件这一类**无法用文本 A/B 满足**，只能靠锚题执行级或内容层双轨。
+取版对账（防串）：before sha12 01884cd11aed(28761B)=git show 17cc0c81~1；after fac939d845fa(35594B)=git show f39eb3c0，
+与我 r306 回滚链的 pre/现两位一致。臂自报步数超上限（约 16/12），产出完整无截断、如实。
+取值：cd _repro/r307a && python -B check_r307a.py --mode five_items --before before_130.md --after after_150.md --workdir work_real --py <PY>
 - [ ] **R290-1（r290 登记，P1）** **r46 锚点匹配收紧为「行首复选框后首个加粗段内含 key」：解除「引用过某条 ⇒ 永不能裁该条」的死锁，且不削弱 W-14 串条防护**：一手（r290 现场）：我想把 R261-7 从上轮误写的挂账改判为降级，r46 返回 [MARK:REFUSED] ② 锚点命中数 != 1，命中 [42, 53] —— 第 53 行是**我上轮写的 R289-6 条目正文**里引用了 R261-7。原实现 find_item_lines 用裸 `key in line`，于是「引用过某条 ⇒ 永远无法裁决该条」，机器闸反过来挡住了对本条的正确纠正。修法与踩坑：① 我先试「行首必须 `- [ ] **`+key」的严格式 ⇒ 真实台账 236 条零歧义，但夹具 **14 项红**（夹具用的是 `- [ ] **【P0·待办 丙（r44 登记）】】**` 这种 key 不在首段起点的排版）⇒ 我的严格式**过窄**，不是夹具错；② 我又加过「严格零命中则回退宽松匹配」的安全网 ⇒ 自查发现该回退正是 W-14 事故形态（会把正文引用行当锚点，把裁决写到无关条目）⇒ **删掉回退**；③ 终解 = 匹配「行首复选框后的第一个加粗段」内是否含 key（re.match 到首个 **…** 段），两种既有排版都覆盖、正文引用（哪怕第二段加粗）永不命中。判别力自证：新增 t24~t27 + m3 变异共 5 腿（m3 首版我用夹具的 run() 前置了正式 TOOL 路径 ⇒ 变异体被当位置参数、argparse rc=2 是**假红不是判别力**，改为 subprocess 直接调变异体后 PASS）。取值：python 05-exec/r46_mark_verdict_fixtures.py（末行 [GATE:fixture-pass]，现 30 项 30 过）；python _temp/r290_selfproof.py（真实台账带过期挂账的条目 22 条，⑧ 会拦）。 【r296 裁决=已落地｜夹具活数现读 r46=30/30 全过、r31=31/31；锚点口径已被 r46 与本会话三次插入实践共同验证（r292 起用它裁 R289-6/R292-4/R295-1 均 rc=0）。原靶（不得把裁决写到无关条目）达成。】
 - [ ] **R290-2（r290 登记，P1）** **机器闸 ⑧ 落地：条目先前已挂账且目标轮已过 ⇒ 本次禁再挂账，只能执行/降级/作废三选一（带逃生门与真实数据自证）**：一手（r289 我造成的错 + r290 的机制化）：R261-7 第 2 次到期时我先写成「挂账至 r290」，违反自立的 R271-2；根因不是不懂规矩，而是**下裁决时没人问我这条已经挂过几次** ⇒ 必须前移到写时由机器判。实现 = r46 第 ⑧ 重拒写：读该条目自己已有的「裁决=挂账至 rN」标记，若存在 N < 本轮 round（上次挂账目标轮已过）且本次 verdict 仍是挂账 ⇒ 拒写并点名证据轮号；轮号取不到不猜（宁可放行不误伤）。范围纪律：只约束**延期型**裁决，终局裁决（执行/降级/作废）不受影响；首轮挂账放行；目标轮未到（如挂到 r99）放行。逃生门 --allow-repeat-deferral 显式放行且留痕（不是死闸）。真实数据自证（临时卷副本，不碰真台账）：⑧ 对 probe 条目 rc=1 且台账未写入；同条目改「降级（转长期看守）」rc=0 且 marker 落盘；带逃生门 rc=0。R289-6 的验收靶（下一轮起 R261-7 能被合法改判且留两次痕迹）已达成：r290 台账同现「【r289 裁决=挂账至 r290…】」与「【r290 裁决=降级…】」，REPEAT 由 1 归 0。取值：python 05-exec/r46_mark_verdict_fixtures.py（t24~t27/m3 五腿）、python _temp/r290_real2.py（真实数据三态：拦挂账/放降级/逃生门）。
 - [ ] **R290-3（r290 登记，P2）** **run_gates.py 的 --gate 传不存在的 id 会被**静默丢弃**：部分选中时报 PASS 且写「无 MISSING」，只在 0 个时才报 UNVERIFIED**：一手（r290 现场）：我为验证迁库结果跑 `--gate mark_verdict_fixtures --gate provenance_resolve_face --gate provenance_resolve_fixtures --gate tracked_empty`（最后一个 id 我拼错了，真名 tracked_empty_check），返回 `[GATES:PASS] PASS=3（无 FAIL / 无 UNVERIFIED / 无 MISSING）` —— 三门都绿，但那句「无 MISSING」是**假安心**：第四门根本没跑，runner 没有任何一行告诉我它被丢弃。二次实测：只传一个不存在的 id 时它确实会拦（`[GATES:UNVERIFIED] 选中的门为 0 个，禁止判「全绿」（R247）`），说明 R247 的零输入保护在**全部落空**时有效、**部分落空**时失效。修法（下一轮，小改）：在 --gate 过滤后比对「请求的 id 集合 vs 实际选中的 id 集合」，差集非空 ⇒ 打印 `[GATES:MISSING-SELECTOR]` 并以非零退出（与现有 0 个的处理对齐，别另造一套语义）；同时给夹具补一条腿：传一个不存在的 id + 一个真 id ⇒ 必须判红并点名被丢弃的 id（证明有牙）。判别力证据已在手：本次实测 rows=3 而请求=4。取值：python 05-exec/run_gates.py --gate definitely_not_a_gate --no-ledger --json _temp/x.json（期望现在就是 UNVERIFIED，因为选中 0 个）；python -c 读 _temp/r290_g4.json 的 gates 长度 = 3（请求 4）。注意：本轮我没有把这当成「已跑全量」的证据 —— 我随后补跑了 tracked_empty_check 并单独取到 PASS=1，才认定新增跟踪件不触发非空文本门。 【r290 裁决=已落地｜同轮即修（不等下一轮）。实现 = run_gates.py 汇总前算差集 requested-selected_ids，非空即打 [GATES:MISSING-SELECTOR] 点名被丢弃的 id。关键取舍是**顺序**：第一版我把差集分支放在「0 个选中」之前 ⇒ r31 夹具层 b（该腿断言 rc==2 且报 UNVERIFIED）判红 FAIL 1 项 —— 那是夹具对我改动的**正确反应**，我破坏的是既有 R247 语义而不是夹具错。正解：先跑 not rows ⇒ 保留 rc=2 语义，再跑 dropped ⇒ rc=1；两条语义互不吞并。四态实测（每步取真实退出码、不经管道）：0 个选中 rc=2 且末行 UNVERIFIED / 部分落空 rc=1 且点名 fixture_wiring / 全真 id rc=0 且 PASS=1 / 全部错 id 仍 rc=2；r31 夹具 31 项 31 过（[GATE:fixture-pass]）。为何不新增夹具腿：r31 层 b 已覆盖 0 个那条，部分落空这条由上面四态实测覆盖并写进本注；若下一轮要长期看守，可在 r31 加一腿断言「假 id + 真 id ⇒ rc==1 且 MISSING-SELECTOR 出现」（本轮未加，因为我把改动挂在该夹具的门表自证之下、它已经被跑到）。取值：bash _temp/r290_sem.sh（四态与夹具一次跑完）；python 05-exec/r31_run_gates_fixtures.py（末行 [GATE:fixture-pass]）。】

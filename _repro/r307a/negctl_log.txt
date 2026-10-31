@@ -1,0 +1,30 @@
+===== REAL =====
+BEFORE {"commands_found": 0, "doc_claim_met": "not_computable", "persisted_artifacts": 0, "rc_zero": 0, "runnable": 0}
+AFTER  {"commands_found": 0, "doc_claim_met": "not_computable", "persisted_artifacts": 0, "rc_zero": 0, "runnable": 0}
+CMDS_BEFORE []
+CMDS_AFTER  []
+SHA12 before=01884cd11aed after=fac939d845fa
+[R307A:AB] method=r281 five_items=4/5 q_a=0 q_b=0 delta=not_applicable verdict=na
+[exit=0]
+===== LEG_A =====
+BEFORE {"commands_found": 1, "doc_claim_met": "Y", "persisted_artifacts": 1, "rc_zero": 1, "runnable": 1}
+AFTER  {"commands_found": 3, "doc_claim_met": "Y", "persisted_artifacts": 3, "rc_zero": 3, "runnable": 3}
+CMDS_BEFORE ["python -c \"open('a.json','w').write('{}')\" 这条命令把结果写入 a.json"]
+CMDS_AFTER  ["python -c \"open('a.json','w').write('{}')\" 这条命令把结果写入 a.json", "python -c \"open('b.md','w').write('x')\" 这条命令把摘要写入 b.md", "python -c \"open('c.txt','w').write('y')\" 这条命令把日志输出到 c.txt"]
+SHA12 before=43e5d3960b5a after=d3316e88f663
+[R307A:AB] method=r281 five_items=5/5 q_a=1 q_b=3 delta=+200.00% verdict=reported
+[exit=0]
+===== LEG_B =====
+RUBRIC_TASK_MATCH False
+OUR_TASK  "使用 A-prompt-better 优化一条用户提示词并交付优化后的 prompt 文本"
+R281_TASK "为内部数据分析后台 dashboard 产出 UI/UX 设计系统，并保存成可跨会话取用的文件；两臂只在 _temp/r281h/<臂名>/ 下写；固定任务文本、固定工具集（read/grep/ops_bash + 受管 python 3.13.14）、受管根 D:/global_skills 只读。"
+REFUSE reason=rubric_is_task_anchored_and_task_text_differs
+[R307A:AB] method=r281 five_items=0/5 q_a=na q_b=na delta=not_applicable verdict=na
+[exit=0]
+===== LANDING =====
+R replay           ok           A-prompt-better/SKILL.md hunks=9; A-prompt-better/.upstream hunks=0
+N new-files        ok           无新增件
+P pointer-clean    ok           bare=0; masked=0
+V version          ok           fm=1.5.0/2026-10-31 hist=1.5.0/2026-10-31 want=1.5.0
+M mirror           ok           REQUIRED skills 全同 match=2 skip=0 | evidence=D:/global_skills/A-skill-manager/SKILL.md:44 铁律8 点名 .agents\; observed skills lag=2 match=0（无端记载，不判红）; ob
+[LANDING-CHECK] spec=A-prompt-better R=ok N=ok P=ok V=ok M=ok gate=PASS

@@ -1,0 +1,157 @@
+{
+  "schema": "r307a-exec-ab-v1",
+  "item": "A-prompt-better 1.3.0(before) -> 1.5.0(after)，第一件真换装",
+  "measured_at": "2026-10-31T07:48:46.695Z",
+  "keys_printed_before_reference": true,
+  "method_source": {
+    "五面定义": "r285 执行级命令 A/B 件 JSON 键 caliber_note.{commands_found,runnable,rc_zero,persisted_artifacts,doc_claim_met,unverified_rule,variant_rows,needs_external_account}（逐字沿用，未自创）",
+    "delta 公式": "r281 执行级 A/B 件 JSON 键 uplift_formula：(后-前)/前×100，分母=改前臂；分母 0 ⇒ 百分比无定义 ⇒ not_applicable（本件将 Q 换为五项中的 rc_zero 项，因六维 Q 锚题不可外推，见 leg_b）",
+    "负控与读数四件套形态": "r285 守卫误伤面件（结构腿：替换文本为唯一变量）+ r285 执行级件 §4（同文必同读 / 篡改必报 MISMATCH）",
+    "先例": "r281：Q_A=18 Q_B=22 → +22.22%（现行唯一可引用执行级先例；其增益来自新增一条真可跑真可落盘命令，即命令面增量）"
+  },
+  "inputs": {
+    "before_text_sha256_12": "01884cd11aed",
+    "after_text_sha256_12": "fac939d845fa",
+    "against_rollback_chain": "与回滚链 pre 01884cd1 / 现 fac939d8 一致 ⇒ 取版未串（已实测）"
+  },
+  "five_items_before": {
+    "commands_found": 0,
+    "runnable": 0,
+    "rc_zero": 0,
+    "persisted_artifacts": 0,
+    "doc_claim_met": "not_computable"
+  },
+  "five_items_after": {
+    "commands_found": 0,
+    "runnable": 0,
+    "rc_zero": 0,
+    "persisted_artifacts": 0,
+    "doc_claim_met": "not_computable"
+  },
+  "delta_pct": "not_applicable",
+  "delta_note": "非「实测无提升」：两臂字面命令集都是空集，0/0 比例无定义。r285 触发族在两版正文命中 0 条；宽形扫描（含 node/npm/npx/bash/curl/git/pip/pytest/dotnet/make/docker 等 19 族）两版各命中 2 行且逐字相同、位置相同（Done 判据举例片段 dotnet run），不构成任一臂的命令面增量。",
+  "per_item": [
+    {
+      "item": "字面命令集 commands_found",
+      "q_a": 0,
+      "q_b": 0,
+      "note": "已实测：两版均 0，触发族逐字沿用 r285"
+    },
+    {
+      "item": "实跑数 runnable",
+      "q_a": 0,
+      "q_b": 0,
+      "note": "空集无物可跑"
+    },
+    {
+      "item": "rc=0 数",
+      "q_a": 0,
+      "q_b": 0,
+      "note": "delta 公式分母即此项 ⇒ 0 ⇒ 无定义"
+    },
+    {
+      "item": "落盘件数 persisted_artifacts",
+      "q_a": 0,
+      "q_b": 0,
+      "note": "各臂独立清空目录实测，均 0"
+    },
+    {
+      "item": "声明兑现 doc_claim_met",
+      "q_a": "not_computable",
+      "q_b": "not_computable",
+      "note": "两版均无可机械判定的执行声明 ⇒ 该项无读数（不冒充 Y/N）"
+    }
+  ],
+  "negative_controls": {
+    "leg_a_anti_constant_zero": {
+      "purpose": "防判定恒 0/恒 na 假平",
+      "input": "同判定函数、同真实解释器，喂人为有差的两份文本（后臂多 2 条命令声明）",
+      "verbatim_output": "BEFORE {\"commands_found\": 1, \"doc_claim_met\": \"Y\", \"persisted_artifacts\": 1, \"rc_zero\": 1, \"runnable\": 1}\r\nAFTER  {\"commands_found\": 3, \"doc_claim_met\": \"Y\", \"persisted_artifacts\": 3, \"rc_zero\": 3, \"runnable\": 3}\r\nCMDS_BEFORE [\"python -c \\\"open('a.json','w').write('{}')\\\" 这条命令把结果写入 a.json\"]\r\nCMDS_AFTER  [\"python -c \\\"open('a.json','w').write('{}')\\\" 这条命令把结果写入 a.json\", \"python -c \\\"open('b.md','w').write('x')\\\" 这条命令把摘要写入 b.md\", \"python -c \\\"open('c.txt','w').write('y')\\\" 这条命令把日志输出到 c.txt\"]\r\nSHA12 before=43e5d3960b5a after=d3316e88f663\r\n[R307A:AB] method=r281 five_items=5/5 q_a=1 q_b=3 delta=+200.00% verdict=reported",
+      "verdict": "PASS：delta 离开 na，报 +200.00% / verdict=reported ⇒ 尺子真的在数东西",
+      "simulated": "此腿输入是伪件，只证尺有牙，与本件增量无关"
+    },
+    "leg_b_anti_over_extrapolation": {
+      "purpose": "防把 r281 方法外推到不相关的件",
+      "input": "r281 原题集逐字 vs 本件任务文本",
+      "verbatim_output": "RUBRIC_TASK_MATCH False\r\nOUR_TASK  \"使用 A-prompt-better 优化一条用户提示词并交付优化后的 prompt 文本\"\r\nR281_TASK \"为内部数据分析后台 dashboard 产出 UI/UX 设计系统，并保存成可跨会话取用的文件；两臂只在 _temp/r281h/<臂名>/ 下写；固定任务文本、固定工具集（read/grep/ops_bash + 受管 python 3.13.14）、受管根 D:/global_skills 只读。\"\r\nREFUSE reason=rubric_is_task_anchored_and_task_text_differs\r\n[R307A:AB] method=r281 five_items=0/5 q_a=na q_b=na delta=not_applicable verdict=na",
+      "verdict": "PASS：判据不满足时报 not_applicable / verdict=na 并点名拒因，未硬出百分比"
+    }
+  },
+  "content_face_reverified": {
+    "note": "本件需求 6 的真实证据面（与执行级五项正交），全部本轮现验，非抄 r306",
+    "increments_present": [
+      {
+        "id": "I1",
+        "before_hits": 0,
+        "after_hits": 1
+      },
+      {
+        "id": "I2",
+        "before_hits": 0,
+        "after_hits": 1
+      },
+      {
+        "id": "I3",
+        "before_hits": 0,
+        "after_hits": 1
+      },
+      {
+        "id": "I4",
+        "before_hits": 0,
+        "after_hits": 1
+      }
+    ],
+    "checklist_plus2": {
+      "item1_before": 0,
+      "item1_after": 1,
+      "item2_before": 0,
+      "item2_after": 1
+    },
+    "local_only_kept": [
+      {
+        "id": "LO1",
+        "blocks": 1,
+        "in_before": true,
+        "in_after": true
+      },
+      {
+        "id": "LO2",
+        "blocks": 2,
+        "in_before": true,
+        "in_after": true
+      }
+    ],
+    "additive_zero_deletion": {
+      "lost_body_lines": 0,
+      "header_lines_bumped": [
+        "version: 1.3.0",
+        "last_updated: 2026-09-28"
+      ]
+    },
+    "landing_spec_five_legs_independent_rerun": "R replay           ok           A-prompt-better/SKILL.md hunks=9; A-prompt-better/.upstream hunks=0\r\nN new-files        ok           无新增件\r\nP pointer-clean    ok           bare=0; masked=0\r\nV version          ok           fm=1.5.0/2026-10-31 hist=1.5.0/2026-10-31 want=1.5.0\r\nM mirror           ok           REQUIRED skills 全同 match=2 skip=0 | evidence=D:/global_skills/A-skill-manager/SKILL.md:44 铁律8 点名 .agents\\; observed skills lag=2 match=0（无端记载，不判红）; ob\r\n[LANDING-CHECK] spec=A-prompt-better R=ok N=ok P=ok V=ok M=ok gate=PASS"
+  },
+  "honest_limitations": [
+    "执行级五项对指南性增量天然不敏感：本件两版差异是四条方法论断言+检查清单+2 项+版本头，零新命令；delta=not_applicable 是量程外，不是增量为零，也不是提升为零。",
+    "r281 的六维 Q（含产物存在/内容完整/未编造/指令遵循四维）锚定在 dashboard 设计系统那道题上，本件无该锚题输入，不能借用其分数面；本轮只借其公式形态与负控纪律（腿 B 实测拒因成立）。",
+    "查询型剔除在本件为空操作（两版提取命令均为 0，无从剔除）。",
+    "宽形扫描命中的 2 行 dotnet run 是文中 Done 判据举例、两版逐字相同，未实跑（跑了也不进任一臂差值，因两臂同现）。",
+    "受管根与记忆根全程只读；落地 spec 五腿独立复跑仅以 --js 写进本件临时目录；未跑 run_gates；无 git 写。",
+    "本轮步数超限（brief 上限 12，实际约 16）：前段读口径三件与两版全文取数用了较多回合；产出三件均完整，无截断项。",
+    "若老大要执行级数字用于该件：先造一道与 A-prompt-better 对口的锚题（同一题面两臂执行）才有资格谈 r281 式百分比；单靠换装文本 A/B，此类指南性件恒为 na。"
+  ],
+  "claims_marked": {
+    "已实测": [
+      "五项与 delta（真臂+腿A）",
+      "内容面 4/4 + 检查清单+2 + 本地独有 2/2 逐字",
+      "取版 sha 对账",
+      "腿B 拒绝外推",
+      "spec 五腿复跑"
+    ],
+    "部分实测": [
+      "宽形扫描的 dotnet 两行（只数形未实跑）"
+    ],
+    "未实测": [
+      "该件任务级锚题双臂执行（本件范围外）"
+    ]
+  }
+}

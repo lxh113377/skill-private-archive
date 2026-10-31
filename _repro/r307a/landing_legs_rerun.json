@@ -1,0 +1,47 @@
+{
+ "schema": "landing-replay-v1",
+ "skill": "A-prompt-better",
+ "spec": "C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/05-exec/landing_specs/A-prompt-better.json",
+ "legs": [
+  {
+   "name": "R replay",
+   "state": "ok",
+   "detail": [
+    "A-prompt-better/SKILL.md hunks=9",
+    "A-prompt-better/.upstream hunks=0"
+   ]
+  },
+  {
+   "name": "N new-files",
+   "state": "ok",
+   "detail": [
+    "无新增件"
+   ]
+  },
+  {
+   "name": "P pointer-clean",
+   "state": "ok",
+   "detail": [
+    "bare=0",
+    "masked=0"
+   ]
+  },
+  {
+   "name": "V version",
+   "state": "ok",
+   "detail": [
+    "fm=1.5.0/2026-10-31 hist=1.5.0/2026-10-31 want=1.5.0"
+   ]
+  },
+  {
+   "name": "M mirror",
+   "state": "ok",
+   "detail": [
+    "REQUIRED skills 全同 match=2 skip=0 | evidence=D:/global_skills/A-skill-manager/SKILL.md:44 铁律8 点名 .agents\\",
+    "observed skills lag=2 match=0（无端记载，不判红）",
+    "observed skills lag=2 match=0（无端记载，不判红）"
+   ]
+  }
+ ],
+ "gate": "PASS"
+}
