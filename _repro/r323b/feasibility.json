@@ -1,0 +1,112 @@
+{
+  "schema": "r323b-multilabel-1",
+  "verdict": "PARTIAL",
+  "judge_branches": [
+    {
+      "name": "exact",
+      "file_line": "eval/frozen_blind_eval.py:15",
+      "rule": "exact=1.0, usable-suboptimal=0.75, wrong=0.5, blindspot=0.4",
+      "multi_val_capable": false,
+      "consumes_expected": false,
+      "semantics": "计分规则文档行：四档权重声明（尺子的口径正文）"
+    },
+    {
+      "name": "usable-suboptimal",
+      "file_line": "eval/frozen_blind_eval.py:28",
+      "rule": "JUDGE_WEIGHT = {'exact': 1.0, 'usable-suboptimal': 0.75, 'wrong': 0.5, 'blindspot': 0.4}",
+      "multi_val_capable": false,
+      "consumes_expected": false,
+      "semantics": "唯一权重旋钮（模块级常量）：judge -> 权重，未知 judge 回落 0.5"
+    },
+    {
+      "name": "default_exact",
+      "file_line": "eval/frozen_blind_eval.py:64",
+      "rule": "judge = q.get('judge', 'exact')",
+      "multi_val_capable": false,
+      "consumes_expected": false,
+      "semantics": "题面无 judge 字段时按 exact 计"
+    },
+    {
+      "name": "wrong",
+      "file_line": "eval/frozen_blind_eval.py:66",
+      "rule": "w = JUDGE_WEIGHT.get(judge, 0.5)",
+      "multi_val_capable": false,
+      "consumes_expected": false,
+      "semantics": "judge 查表得权重；不在表的 judge 一律 0.5（不拒收）"
+    },
+    {
+      "name": "top1_equality",
+      "file_line": "eval/frozen_blind_eval.py:70",
+      "rule": "hit = (top1 in (None, 'NONE')) if expected is None else (top1 == expected)",
+      "multi_val_capable": false,
+      "consumes_expected": true,
+      "semantics": "命中判据本体：期望 None 走 NONE 盲区判定，否则**标量相等**。喂 list 会静默全 miss（不报错）"
+    },
+    {
+      "name": "aggregate_score",
+      "file_line": "eval/frozen_blind_eval.py:82",
+      "rule": "score = round(hit_w / n * 100, 1) if n else 0.0",
+      "multi_val_capable": true,
+      "consumes_expected": false,
+      "semantics": "分数=命中权重和/总条数；分母恒 n，与 expected 取值形态无关（故对多标签中性）"
+    },
+    {
+      "name": "max_achievable",
+      "file_line": "eval/frozen_blind_eval.py:85",
+      "rule": "max_achievable = round(total_w / n * 100, 1) if n else 0.0",
+      "multi_val_capable": true,
+      "consumes_expected": false,
+      "semantics": "设计上限=权重和/条数；同样只由 judge 决定 ⇒ 多标签不改变它"
+    }
+  ],
+  "testset_schema": "layered_testset.json 顶层 = list，5 个 {tier, queries}；queries 每项字段实测 = query(str,291) / expected_skill(str|None,291) / judge(str,291) / source(str,291) / skill(str,291) / note(12 条独有)。 expected_skill 类型实测：str=269 / NoneType=22 / list=0 ⇒ 目前严格单值。 无 acceptable / aliases / also_ok / labels 任何多值字段。 一条真实条目原文（tier=skills）：{\"query\": \"需求有点模糊，帮我先问清楚再动手\", \"expected_skill\": \"A-ask-questions\", \"judge\": \"exact\", \"source\": \"auto-draft\", \"skill\": \"A-ask-questions\"}",
+  "reusable_caps": [
+    "convention：expected_skill 已可传 list —— 同一行 <exp_set = {exp} if isinstance(exp, str) else set(exp)> 逐字出现在 8 处：eval/unified_router.py:356,366 · eval/eval_dual_tree.py:125 · eval/functional_dim_checks.py:168 · eval/llm_layer.py:271 · eval/run_dual_regression.py:30 · eval/scorecard.py:128 · eval/skill_hitrate_eval_v2.py:129 · eval/tune_threshold.py:45",
+    "unified_router.route() 已返回完整 candidates 排序表（unified_router.py:229-230 candidates，:121-122 文档）⇒ 多标签判定可直接吃 top-k，无需改路由器",
+    "unified_router.run_eval 已同时算 top1 与 top3（:377-389），且 set 成员判定已在 :377/:380/:385/:388 ⇒ set-recall 骨架已在，只是没接进 frozen_blind_eval",
+    "JUDGE_WEIGHT 四档权重表（frozen_blind_eval.py:28）是唯一权重旋钮；改权重的入口只有这一行",
+    "blindset_leak_manifest.py::score() (:93-107) 是独立于盲测的 judge 加权计分器，已按 judge 过滤，未知 judge 返回 pct=None（不假装量到，:204-206 有自测腿）",
+    "blindset_leak_manifest.py::annotate() (:69-90) 只做泄漏标注（LEAKED/CLEAN + 命中规则 idx），不判对错 ⇒ 不能当多标签标注器复用",
+    "blindset_gate_baseline.json 已分面记 max_achievable_pct=95.2（bge 面），上限口径有现成落点"
+  ],
+  "min_change": {
+    "files": 1,
+    "summary": "frozen_blind_eval.py:70 一行把标量相等改成集合成员判定（expected is None 分支原样保留）即可让 list 型 expected 生效；权重表、分母 n、上限算法零改动。",
+    "has_knob": false,
+    "knob_detail": "无 argparse / 无 env / 无 judge 开关：该文件只有 --json 与 --set {frozen|layered} 两个 argv 分支（:113-114），实测 HAS_ARGPARSE=False（连 import argparse 都没有）。JUDGE_WEIGHT 是模块常量 ⇒ 改口径必然落在代码上。",
+    "full_path_files": 3,
+    "full_path_detail": "① eval/frozen_blind_eval.py:70 判分（1 行）② eval/layered_testset.json 加标签字段（数据面，纯增量，不改旧字段）③ eval/blindset_gate_baseline.json 重签 testset_sha256（否则 CI 门判「不可信」）；注意 ci_blind_eval.py 本体在 scripts/ 不属本清单。"
+  },
+  "old_readings_impact": "291 条基准可重算，且历史分数**不会失效**：judge 权重和(sum_w=277.05)、分母(n=291) 都不受标签影响（见 95.2 不变性实测）， 变的只有「命中」判据变宽 ⇒ 新旧读数同尺可比，但**禁混引**（同一查询在多标签下更易命中，跨口径相减即失真）。 真会失效的是基线指纹，不是分数：blindset_gate_baseline.json 的 testset_sha256 一旦题集字节变化，scripts/ci_blind_eval.py:114-120 走 fail-closed 判「本门不可信」且**不回落 hard_floor=50** ⇒ 必须重签 1 个基线文件。 现读确认守卫在位：题集 sha256 = e1d700258d2b55ad2515df98bd35dd051154b9870222266b0e4852b33c4a0856，与基线逐字相同。",
+  "max_achievable_estimate": "95.2（实算复现，不变；干净面同为 87.5）。多标签**不改变** max_achievable —— 权重只由 judge 标签决定，加多少个 acceptable 都不动分子分母。 实测分期望落 [88.3, 95.2]：下界=blindset_gate_baseline.json bge 面 2026-10-01 实测 88.3，上界=上限 95.2。 确切值算不出，缺两样：① 291 条每条的 acceptable 标签集（现为 0 条，需新标注）② 一次真跑 route() 的实测（本轮只读取证，不跑全量 291 条）。",
+  "blockers": [
+    {
+      "why": "题面形态不匹配：现役 291 条全是短句，最长 30 字符、均值 11.5；>200 字符 0 条 ⇒「任务书 → 多标签」在这把尺上零样本可测",
+      "evidence": "python -B _probe_shape.py -> N 291 MEAN 11.5 MEDIAN 11 MIN 3 MAX 30 | LEN_GT 30 0 | LEN_GT 200 0 (rc=0)"
+    },
+    {
+      "why": "无多标签数据：expected_skill 全库 291 条 list=0（str=269/None=22），schema 仅 query/expected_skill/judge/source/skill/note，无 acceptable/aliases/also_ok",
+      "evidence": "python -B _probe_schema.py -> EXPECTED_TYPE_DIST {str:269, NoneType:22} | LIST_VALUED_EXPECTED 0 | QUERY_FIELDS {query, expected_skill, judge, source, skill, note} (rc=0)"
+    },
+    {
+      "why": "判分器本身是标量相等：frozen_blind_eval.py:70 对 list 型 expected 静默全 miss（不报错、不告警）",
+      "evidence": "python -B _probe_break.py -> LIST_BREAKS False / LIST_BREAKS2 False（正确答案喂 list 仍判 False）| SET_MEMBERSHIP_WOULD_BE True (rc=0)"
+    },
+    {
+      "why": "改题集即破基线指纹：ci_blind_eval 对 testset_sha256 走 fail-closed「不可信」，不回落 hard_floor，必须重签基线",
+      "evidence": "grep -n testset_sha256 scripts/ci_blind_eval.py -> :114-120 fail-closed (rc=0)；题集现读 sha e1d70025... 与基线逐字相同"
+    },
+    {
+      "why": "无可复用旋钮：frozen_blind_eval.py 无 argparse / 无 env / 无 judge 开关，权重表为模块常量 ⇒ 任何口径变更都落在代码上",
+      "evidence": "python -B _probe_schema.py -> HAS_ARGPARSE False；仅 --json / --set 两 argv 分支 (frozen_blind_eval.py:113-114) (rc=0)"
+    },
+    {
+      "why": "annotate() 不是多标签标注器：只做泄漏标注(LEAKED/CLEAN+命中规则)，不判对错 ⇒ 不能拿来生成 acceptable 集",
+      "evidence": "read eval/blindset_leak_manifest.py:69-90 -> 仅 status LEAKED/CLEAN，无对错判定 (rc=0)"
+    },
+    {
+      "why": "旧判据在真实语料上读数无意义：97.5% 的 DSH user 消息 >200 字符、短单句 0 条，而这张尺最长 30 字符 ⇒ exact judge 在任务书形态 query 上基本全 miss（上一轮一手结论，本轮回读口径自洽）",
+      "evidence": "本轮实算 291 条 MAX 30 / LEN_GT 200 = 0 (rc=0)；语料侧 97.5%/0 条引 _repro/r322c/corpus_census.json（上一轮一手读数，本轮未重跑）"
+    }
+  ]
+}

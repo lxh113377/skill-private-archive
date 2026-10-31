@@ -1,0 +1,14 @@
+## References 取用规则（目录级）
+
+本件 `references/` 下共 11 卷，按**你要画的东西**取用，不必逐卷通读：
+
+| 卷 | 何时读 |
+|---|---|
+| `colour.md` / `type.md` / `layout.md` / `motion.md` / `copy.md` / `imagery.md` | 对应章节（Beautiful Defaults / Landing Pages / Apps / Imagery / Copy / Motion）要落地时，作为该维的细则与判据 |
+| `tells.md` | 每次出稿前自查「AI 味」—— 它是带日期的 tells 注册表（banned 项 inspector 会 fail） |
+| `research.md` / `scenes.md` | 选题调研与场景编排阶段 |
+| `app-screens.md` / `critique.md` | 已在上文两处具名引用（app 屏专线 / 上一轮批评） |
+
+> 为什么是「目录级规则」而不是逐条链接：卷与章节一一对应，逐条挂链会让入口膨胀且与章节重复（r322 实测：293 个孤儿里 53% 属此类）。判据 = `references/` 下每个卷要么被本表覆盖、要么被正文具名引用。
+
+## Version history

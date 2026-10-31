@@ -1,0 +1,73 @@
+mirror=fail noise=fail evolution=pass stub=fail
+  ⚠️ mirror: fail (rc=1)
+     INFO     源文件: 16492 | 镜像文件: 16590
+     MISMATCH 1 个文件 hash 不一致:
+     MISMATCH   frontend-skill\SKILL.md
+     WARN     98 个文件仅在镜像存在（历史遗留，不阻断；可人工清理）:
+     WARN       _bak\A-project-better-20261005_050334\A-project-better\references\acceptance-patterns.md
+     WARN       _bak\A-project-better-20261005_050334\A-project-better\references\benchmark.md
+     WARN       _bak\A-project-better-20261005_050334\A-project-better\references\benchmark.part1.md
+     WARN       _bak\A-project-better-20261005_050334\A-project-better\references\benchmark.part2.md
+     WARN       _bak\A-project-better-20261005_050334\A-project-better\references\benchmark.part3.md
+     WARN       _bak\A-project-better-20261005_050334\A-project-better\references\checklists.md
+     WARN       _bak\A-project-better-20261005_050334\A-project-better\references\roadmap.md
+     WARN       _bak\A-project-better-20261005_050334\A-project-better\references\rules.md
+     WARN       _bak\A-project-better-20261005_050334\A-project-better\references\version-history.md
+     WARN       _bak\A-project-better-20261005_050334\A-project-better\references\version-history.part1.md
+     [GATE:mirror-fail]
+     FAIL     镜像不完整: missing=0 mismatch=1
+  ⚠️ noise: fail (rc=1)
+     ========================================================================
+     noise_lint — 焚诀生成文件存放规范校验 (致命纪律 #17)
+     ========================================================================
+     # 扫描根目录：D:\global_skills
+     # 扫描根目录：D:\global_memory
+     # 扫描根目录：D:\global_memory_archive
+     # 扫描根目录：C:\Users\37533\Desktop\workspace\焚诀
+     ========================================================================
+     汇总： {"global_skills": {"ok": 195, "quarantine": 6, "violation": 0, "exempt": 1}, "global_memory": {"ok": 249, "quarantine": 35, "violation": 19, "exempt": 0}, "global_mem
+     [GATE:noise-fail]
+     FAIL 发现 19 个违规散落项 → 必须迁往对应 _trash，禁止删除。
+     ⚠️ 例外（同源纪律 R269）：活跃工具运行态文件/目录禁迁 _trash，改走 .gitignore 豁免（命中即降级 quarantine）。
+        VIOL D:\global_memory\.chain_status_r39.txt  ->  D:\global_memory\_trash\.chain_status_r39.txt
+        VIOL D:\global_memory\05-exec  ⛔ 禁迁 _trash（版本库本体或内含已入库文件）→ 处置：登记 KNOWN_CORE 或由归属方确认
+        VIOL D:\global_memory\_govtodo_msg.txt  ->  D:\global_memory\_trash\_govtodo_msg.txt
+        VIOL D:\global_memory\_r1415_msg.txt  ->  D:\global_memory\_trash\_r1415_msg.txt
+        VIOL D:\global_memory\_r16_gm_msg.txt  ->  D:\global_memory\_trash\_r16_gm_msg.txt
+        VIOL D:\global_memory\_r17_msg.txt  ->  D:\global_memory\_trash\_r17_msg.txt
+        VIOL D:\global_memory\_r18_msg.txt  ->  D:\global_memory\_trash\_r18_msg.txt
+        VIOL D:\global_memory\_r19_msg.txt  ->  D:\global_memory\_trash\_r19_msg.txt
+        VIOL D:\global_memory\_r19b_msg.txt  ->  D:\global_memory\_trash\_r19b_msg.txt
+        VIOL D:\global_memory\_r19c_msg.txt  ->  D:\global_memory\_trash\_r19c_msg.txt
+        VIOL D:\global_memory\_r19d_msg.txt  ->  D:\global_memory\_trash\_r19d_msg.txt
+        VIOL D:\global_memory\_r20_msg.txt  ->  D:\global_memory\_trash\_r20_msg.txt
+        VIOL D:\global_memory\_r20b_msg.txt  ->  D:\global_memory\_trash\_r20b_msg.txt
+     …（余 7 行，明细见判据脚本原文）
+  ⚠️ stub: fail (rc=1)
+     ======================================================================
+     gate_stub_runner — 判据隔离桩统一复跑（R272）
+     ======================================================================
+       [FAIL] C16-domain           未解析到 N/M 汇总（末行=(空)，rc=1） | stderr:                          '对应用例判据面为空，禁当有效样本' % _dead) ;; AssertionError: 桩夹具改写空转（tag ['b1']：真实产物中 0 命中）——锚
+       [OK  ] C16-memory-current   stub_c16_memory: 16/16（判定腿 12 + 卷族腿 4） (rc=0)
+       [OK  ] FP15-count-source    stub_fp15_count: 4/4 (注册表实测 191) (rc=0)
+       [OK  ] JUNCTION-hm-skills   stub_check_junction: 5/5 (rc=0)
+       [OK  ] C17-consumers        stub_c17_consumers: 10/10 (rc=0)
+       [OK  ] C18-cross-writer     stub_c18_cross_writer: 6/6 (rc=0)
+       [OK  ] C19-gate-wiring      stub_c19_gate_wiring: 8/8 (rc=0)
+       [OK  ] STUB-RUNNER-coverage stub_runner_coverage: 17/17 (rc=0)
+       [OK  ] C20-portability      stub_c20_portability.py: 14/14 (rc=0)
+       [OK  ] C21-commit-auth      stub_c21_commit_auth: 8/8 (rc=0)
+       [OK  ] C22-linkguard        stub_c22_linkguard: 10/10 (rc=0)
+       [OK  ] C23-landing          stub_c23_landing: 11/11 (rc=0)
+       [OK  ] C24-directmap        stub_c24_directmap: 6/6 (rc=0)
+       [OK  ] C26-memory-recall    stub_c26_memory_recall: 16/16 (rc=0)
+       [OK  ] C27-C28-security-compliance stub_c27_c28_security_compliance: 20/20 (rc=0)
+       [OK  ] GATE-secret-scan     stub_secret_scan: 9/9 (rc=0)
+       [OK  ] C25-inject-budget    stub_c25_inject_budget: 10/10 (rc=0)
+       [FAIL] C29-C30-index-routing stub_c29_c30_index_routing: 21/22 (rc=1) | 失败例: [FAIL] C29 注册调用面=() 实跑=FAIL detail=评分产物与 STATUS 脱节: json.overall=173.8
+       [OK  ] C31-inject-ledger    stub_c31_inject_ledger: 10/10 (rc=0)
+       [OK  ] C32-empty-baseline   stub_c32_empty_baseline: 16/16 (rc=0)
+       [OK  ] C33-memory-index     stub_c33_memory_index: 9/9 (rc=0)
+       [OK  ] VOLUME-gov           volume_gov_stub: 180/180 (lane=fast rc=0)
+     …（余 31 行，明细见判据脚本原文）
+RC=1

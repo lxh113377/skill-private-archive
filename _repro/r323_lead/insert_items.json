@@ -1,0 +1,22 @@
+{
+ "items": [
+  {
+   "k": "R323-1",
+   "p": "P0",
+   "s": "**本仓首次补链真实落盘并用实测证明生效**：frontend-skill 入口补 references 目录级取用规则（11 卷），孤儿 1→0、全库 624→623、镜像转绿",
+   "d": "一手（Lead 自干，八步留痕 = _repro/r323_lead/LANDING_RECORD.md）：① 受管根提交 feaeac98c0dd，frontend-skill/SKILL.md +16 −2（1 件，他人 79 行零卷入）；② 效应实测：复跑 v2 普查 ⇒ frontend-skill orphans 1→0、全库 624→623、prose 552→551、守恒 551+72=623；③ 版本三处一致 version 1.1.1 / last_updated 2026-11-01 / 版本史首条 1.1.1（逐行现读）；④ 镜像 [GATE:mirror-pass] missing=0 mismatch=0（补 1 件、extra=98 为历史遗留警告级）；⑤ 回滚双前提：.bak = D:/global_memory_archive/_trash/rule_backup/frontend-skill.SKILL.md.20261101_004232_763887.bak + HEAD^:frontend-skill/SKILL.md 可读；⑥ 工序全走 rule_editor（dry-run 命中行 252 / 1 处全可应用 → 真写 → 改后全文复读 → commit 收口）。**这是需求 4「迁移替换方案」第一次有「执行 + 验证 + 回滚」三件齐的实物样本**。验收靶（下一件补链复用同工序）：补链后该件孤儿归零、全库孤儿单调下降、mirror-pass、回滚双前提齐。取值：python -B _repro/r322b/r322_v2_census.py --closure top --json <out>；git -C D:/global_skills show --stat HEAD；powershell -File 焚诀/skill/sync/check-skill-mirror.ps1。"
+  },
+  {
+   "k": "R323-2",
+   "p": "P1",
+   "s": "agent-browser/references/commands.md 该**剪枝**不是补链：它是 3.0.0 薄壳化的残留厚镜像件（293 行命令参考，最后改动 2026-09-21 早于薄壳化 10-20，全受管根零引用）⇒ 补链=把「随版获取」退回「本地快照」，重引漂移风险",
+   "d": "一手（Lead 现核三条证据）：① 入口 L20-26 明写「完整命令/参数权威 = 上游随版指南 `agent-browser skills get core --full`」（薄壳化 3.0.0，2026-10-20，见 L89 版本史）；② `git log -- agent-browser/references/commands.md` = 仅 `400dcaf7 2026-09-21 chore(baseline): 建立 git 基线`，**早于**薄壳化；③ `git grep -l references/commands.md -- agent-browser/ gstack/ browser-cdp/ browser-skill/` rc=1（全受管根零引用）。⇒ 补链会把薄壳化已经消除的「本地快照漂移」重新引入。**为什么不本轮删**：删件属破坏性动作，红线 7 要求双前提（备份落 _trash + git 可回滚）且须评审；`_trash` 迁移还牵 noise_lint 的 KNOWN_CORE 面。处置：登记剪枝候选，下一步 = 先跑「删后被谁引用」全树面（已实测 0 引用）再走 rule_editor 的删除路径或 handoff 归档。验收靶：该件从 references/ 移除后 `agent-browser` 的 v2 孤儿仍为 0、且入口 L20-26 指路仍成立。取值：git -C D:/global_skills log --format=%h_%ad_%s -3 -- agent-browser/references/commands.md；git -C D:/global_skills grep -l references/commands.md。"
+  },
+  {
+   "k": "R323-3",
+   "p": "P0",
+   "s": "需求 6 定音：换多标签判据**救不了 ≥30%** —— 换完 max_achievable 仍是 95.2（全量）/87.5（干净面），上限不变就永远到不了 30%",
+   "d": "一手（B 臂 db149799 读码 + 实数，Lead 复跑其判据 [R323B:MULTILABEL] verdict=PARTIAL judges=7 teeth=pass）：① judge 分支 7 条逐条带 file:line 与逐字规则；② 最小改法仅 **1 行代码**（frozen_blind_eval.py:70 标量相等→集合成员判定）+ 数据面加标签字段 + 重签 blindset_gate_baseline.json 的 testset_sha256；③ 该文件**无开关**（连 import argparse 都没有，只有 --json/--set 两个 argv 分支，JUDGE_WEIGHT 是模块常量）⇒ 改口径必落代码；④ **关键读数：max_achievable 不变**（权重只由 judge 标签决定，加 acceptable 不动分子分母）⇒ 多标签把这些题从 87.5 里的失分救回来也救不到 30%；⑤ 291 基准可重算、历史分数不失效（sum_w=277.05/n=291 不受标签影响），但跨口径禁混引。**两条 blocker 都不是权限**：(a) 题面形态不匹配 —— 现役 291 条最长 30 字符、均值 11.5、>200 字符 0 条 ⇒「任务书→多标签」零样本可测；(b) 无多标签数据 —— expected_skill 全库 list=0（str 269/None 22），schema 无 acceptable/aliases/also_ok。⇒ 与 R321 的「干净面 0.00pp」、R322-3 的「短指令 0 条」拼成同一结论：**≥30% 不是还没做，是度量对象本身不成立**（真实任务在这把尺上无样本；尺上样本在真实语料里不存在）。处置：需求 6 不再按「换尺」推进，改按「换度量对象」立项（含造新料或重造尺，均超任务书范畴，须单独立项评审）。验收靶：任何未来「≥30%」申报必须同时给出（当前面上限 + 同面对照 + 样本形态）三件读数。取值：python -B _repro/r323b/check_r323b.py；读 _repro/r323b/feasibility.json 的 max_achievable_estimate 与 blockers。"
+  }
+ ]
+}

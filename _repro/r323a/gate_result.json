@@ -1,0 +1,721 @@
+{
+  "schema": "_r323a-gl1-target-gate-1",
+  "generated_at": "2026-11-01T00:52:33+08:00",
+  "managed_root": "D:/global_skills",
+  "git": "C:/Program Files/Git/bin/git.exe",
+  "head": "feaeac98c0ddbff470d94de40817936e02a8ba5d",
+  "head_rc": 0,
+  "head_stderr": "",
+  "toplevel": "D:/global_skills",
+  "toplevel_rc": 0,
+  "expect_head": "",
+  "require_head_pin": "",
+  "targets": [
+    "gstack",
+    "ui-ux-pro-max",
+    "theme-factory",
+    "agent-browser",
+    "frontend-skill",
+    "ppt-master",
+    "story-setup",
+    "story-long-write",
+    "data-analysis",
+    "diagram-maker",
+    "hyperframes-media",
+    "story-review",
+    "story-short-analyze"
+  ],
+  "items": {
+    "gstack": {
+      "slug": "gstack",
+      "state": "CLEAN",
+      "path": "gstack/SKILL.md",
+      "rows": [],
+      "markers": [],
+      "head_blob": "3d9592a92789",
+      "index_blob": "3d9592a92789"
+    },
+    "ui-ux-pro-max": {
+      "slug": "ui-ux-pro-max",
+      "state": "CLEAN",
+      "path": "ui-ux-pro-max/SKILL.md",
+      "rows": [],
+      "markers": [],
+      "head_blob": "60e20aa09d28",
+      "index_blob": "60e20aa09d28"
+    },
+    "theme-factory": {
+      "slug": "theme-factory",
+      "state": "CLEAN",
+      "path": "theme-factory/SKILL.md",
+      "rows": [],
+      "markers": [],
+      "head_blob": "79d0f637a152",
+      "index_blob": "79d0f637a152"
+    },
+    "agent-browser": {
+      "slug": "agent-browser",
+      "state": "CLEAN",
+      "path": "agent-browser/SKILL.md",
+      "rows": [],
+      "markers": [],
+      "head_blob": "94d1d164267c",
+      "index_blob": "94d1d164267c"
+    },
+    "frontend-skill": {
+      "slug": "frontend-skill",
+      "state": "CLEAN",
+      "path": "frontend-skill/SKILL.md",
+      "rows": [],
+      "markers": [],
+      "head_blob": "52c0f1572111",
+      "index_blob": "52c0f1572111"
+    },
+    "ppt-master": {
+      "slug": "ppt-master",
+      "state": "DIRTY",
+      "path": "ppt-master/SKILL.md",
+      "rows": [
+        {
+          "line": " M ppt-master/SKILL.md",
+          "index_marker": " ",
+          "worktree_marker": "M",
+          "path": "ppt-master/SKILL.md",
+          "markers": [
+            "M"
+          ]
+        }
+      ],
+      "markers": [
+        "M"
+      ],
+      "index_marker": " ",
+      "worktree_marker": "M"
+    },
+    "story-setup": {
+      "slug": "story-setup",
+      "state": "DIRTY",
+      "path": "story-setup/SKILL.md",
+      "rows": [
+        {
+          "line": " M story-setup/SKILL.md",
+          "index_marker": " ",
+          "worktree_marker": "M",
+          "path": "story-setup/SKILL.md",
+          "markers": [
+            "M"
+          ]
+        }
+      ],
+      "markers": [
+        "M"
+      ],
+      "index_marker": " ",
+      "worktree_marker": "M"
+    },
+    "story-long-write": {
+      "slug": "story-long-write",
+      "state": "DIRTY",
+      "path": "story-long-write/SKILL.md",
+      "rows": [
+        {
+          "line": " M story-long-write/SKILL.md",
+          "index_marker": " ",
+          "worktree_marker": "M",
+          "path": "story-long-write/SKILL.md",
+          "markers": [
+            "M"
+          ]
+        }
+      ],
+      "markers": [
+        "M"
+      ],
+      "index_marker": " ",
+      "worktree_marker": "M"
+    },
+    "data-analysis": {
+      "slug": "data-analysis",
+      "state": "DIRTY",
+      "path": "data-analysis/SKILL.md",
+      "rows": [
+        {
+          "line": " M data-analysis/SKILL.md",
+          "index_marker": " ",
+          "worktree_marker": "M",
+          "path": "data-analysis/SKILL.md",
+          "markers": [
+            "M"
+          ]
+        }
+      ],
+      "markers": [
+        "M"
+      ],
+      "index_marker": " ",
+      "worktree_marker": "M"
+    },
+    "diagram-maker": {
+      "slug": "diagram-maker",
+      "state": "DIRTY",
+      "path": "diagram-maker/SKILL.md",
+      "rows": [
+        {
+          "line": " M diagram-maker/SKILL.md",
+          "index_marker": " ",
+          "worktree_marker": "M",
+          "path": "diagram-maker/SKILL.md",
+          "markers": [
+            "M"
+          ]
+        }
+      ],
+      "markers": [
+        "M"
+      ],
+      "index_marker": " ",
+      "worktree_marker": "M"
+    },
+    "hyperframes-media": {
+      "slug": "hyperframes-media",
+      "state": "DIRTY",
+      "path": "hyperframes-media/SKILL.md",
+      "rows": [
+        {
+          "line": " M hyperframes-media/SKILL.md",
+          "index_marker": " ",
+          "worktree_marker": "M",
+          "path": "hyperframes-media/SKILL.md",
+          "markers": [
+            "M"
+          ]
+        }
+      ],
+      "markers": [
+        "M"
+      ],
+      "index_marker": " ",
+      "worktree_marker": "M"
+    },
+    "story-review": {
+      "slug": "story-review",
+      "state": "DIRTY",
+      "path": "story-review/SKILL.md",
+      "rows": [
+        {
+          "line": " M story-review/SKILL.md",
+          "index_marker": " ",
+          "worktree_marker": "M",
+          "path": "story-review/SKILL.md",
+          "markers": [
+            "M"
+          ]
+        }
+      ],
+      "markers": [
+        "M"
+      ],
+      "index_marker": " ",
+      "worktree_marker": "M"
+    },
+    "story-short-analyze": {
+      "slug": "story-short-analyze",
+      "state": "DIRTY",
+      "path": "story-short-analyze/SKILL.md",
+      "rows": [
+        {
+          "line": " M story-short-analyze/SKILL.md",
+          "index_marker": " ",
+          "worktree_marker": "M",
+          "path": "story-short-analyze/SKILL.md",
+          "markers": [
+            "M"
+          ]
+        }
+      ],
+      "markers": [
+        "M"
+      ],
+      "index_marker": " ",
+      "worktree_marker": "M"
+    }
+  },
+  "can_land": [
+    {
+      "slug": "gstack",
+      "path": "gstack/SKILL.md"
+    },
+    {
+      "slug": "ui-ux-pro-max",
+      "path": "ui-ux-pro-max/SKILL.md"
+    },
+    {
+      "slug": "theme-factory",
+      "path": "theme-factory/SKILL.md"
+    },
+    {
+      "slug": "agent-browser",
+      "path": "agent-browser/SKILL.md"
+    },
+    {
+      "slug": "frontend-skill",
+      "path": "frontend-skill/SKILL.md"
+    }
+  ],
+  "blocked": [
+    {
+      "slug": "ppt-master",
+      "path": "ppt-master/SKILL.md",
+      "markers": [
+        "M"
+      ],
+      "rows": [
+        {
+          "line": " M ppt-master/SKILL.md",
+          "index_marker": " ",
+          "worktree_marker": "M",
+          "path": "ppt-master/SKILL.md",
+          "markers": [
+            "M"
+          ]
+        }
+      ],
+      "index_marker": " ",
+      "worktree_marker": "M"
+    },
+    {
+      "slug": "story-setup",
+      "path": "story-setup/SKILL.md",
+      "markers": [
+        "M"
+      ],
+      "rows": [
+        {
+          "line": " M story-setup/SKILL.md",
+          "index_marker": " ",
+          "worktree_marker": "M",
+          "path": "story-setup/SKILL.md",
+          "markers": [
+            "M"
+          ]
+        }
+      ],
+      "index_marker": " ",
+      "worktree_marker": "M"
+    },
+    {
+      "slug": "story-long-write",
+      "path": "story-long-write/SKILL.md",
+      "markers": [
+        "M"
+      ],
+      "rows": [
+        {
+          "line": " M story-long-write/SKILL.md",
+          "index_marker": " ",
+          "worktree_marker": "M",
+          "path": "story-long-write/SKILL.md",
+          "markers": [
+            "M"
+          ]
+        }
+      ],
+      "index_marker": " ",
+      "worktree_marker": "M"
+    },
+    {
+      "slug": "data-analysis",
+      "path": "data-analysis/SKILL.md",
+      "markers": [
+        "M"
+      ],
+      "rows": [
+        {
+          "line": " M data-analysis/SKILL.md",
+          "index_marker": " ",
+          "worktree_marker": "M",
+          "path": "data-analysis/SKILL.md",
+          "markers": [
+            "M"
+          ]
+        }
+      ],
+      "index_marker": " ",
+      "worktree_marker": "M"
+    },
+    {
+      "slug": "diagram-maker",
+      "path": "diagram-maker/SKILL.md",
+      "markers": [
+        "M"
+      ],
+      "rows": [
+        {
+          "line": " M diagram-maker/SKILL.md",
+          "index_marker": " ",
+          "worktree_marker": "M",
+          "path": "diagram-maker/SKILL.md",
+          "markers": [
+            "M"
+          ]
+        }
+      ],
+      "index_marker": " ",
+      "worktree_marker": "M"
+    },
+    {
+      "slug": "hyperframes-media",
+      "path": "hyperframes-media/SKILL.md",
+      "markers": [
+        "M"
+      ],
+      "rows": [
+        {
+          "line": " M hyperframes-media/SKILL.md",
+          "index_marker": " ",
+          "worktree_marker": "M",
+          "path": "hyperframes-media/SKILL.md",
+          "markers": [
+            "M"
+          ]
+        }
+      ],
+      "index_marker": " ",
+      "worktree_marker": "M"
+    },
+    {
+      "slug": "story-review",
+      "path": "story-review/SKILL.md",
+      "markers": [
+        "M"
+      ],
+      "rows": [
+        {
+          "line": " M story-review/SKILL.md",
+          "index_marker": " ",
+          "worktree_marker": "M",
+          "path": "story-review/SKILL.md",
+          "markers": [
+            "M"
+          ]
+        }
+      ],
+      "index_marker": " ",
+      "worktree_marker": "M"
+    },
+    {
+      "slug": "story-short-analyze",
+      "path": "story-short-analyze/SKILL.md",
+      "markers": [
+        "M"
+      ],
+      "rows": [
+        {
+          "line": " M story-short-analyze/SKILL.md",
+          "index_marker": " ",
+          "worktree_marker": "M",
+          "path": "story-short-analyze/SKILL.md",
+          "markers": [
+            "M"
+          ]
+        }
+      ],
+      "index_marker": " ",
+      "worktree_marker": "M"
+    }
+  ],
+  "unknown": [],
+  "counts": {
+    "targets": 13,
+    "can_land": 5,
+    "blocked": 8,
+    "unknown": 0
+  },
+  "repo_status": {
+    "rc": 0,
+    "stderr": "",
+    "total": 79,
+    "staged": 0,
+    "worktree_only": 76,
+    "untracked": 3,
+    "sum_check": true
+  },
+  "plan": {
+    "path": "04-plan/入口补链批次表_r321_2026-10-31.md",
+    "sha256_12": "f3704d08799c",
+    "lines": 147,
+    "roster": [
+      "agent-browser",
+      "data-analysis",
+      "diagram-maker",
+      "frontend-skill",
+      "gstack",
+      "hyperframes",
+      "hyperframes-media",
+      "ppt-master",
+      "story-cover",
+      "story-deslop",
+      "story-import",
+      "story-long-analyze",
+      "story-long-write",
+      "story-review",
+      "story-scan",
+      "story-setup",
+      "story-short-analyze",
+      "story-short-write",
+      "theme-factory",
+      "ui-ux-pro-max"
+    ],
+    "roster_total": 20,
+    "sources": {
+      "story-setup": [
+        {
+          "line": 64,
+          "rule": "R3",
+          "evidence": "> 分母收敛链（三段全部现算，非估算）：**624 → 552**（扣 72 个噪声类）→ 其中 **293** 个目录名已在入口出现（补目录级取用规则即可）→ 必须**逐条挂链**的 **259** 个。259 才是批次表 B1–B6 的真实工作量下界；96.1% 的逐条工作量集中在 story-setup / pp"
+        },
+        {
+          "line": 73,
+          "rule": "R1",
+          "evidence": "| B2 | `story-setup` | 132 | 1011 | `references/agent-references/*` 补索引段（该目录 16 个名称在入口出现过，先判目录级覆盖够不够，不够才逐条） | 同 B1；另跑该件自带 s*-narrability-criteria 是否仍可达 | 同上，路径 "
+        },
+        {
+          "line": 145,
+          "rule": "R3",
+          "evidence": "- B1–B5 的目标入口件（ppt-master / story-setup / story-long-write / story-review / hyperframes-media / data-analysis / diagram-maker）**全部 DIRTY**（他人在途）⇒ 一律不得动（红线 7 双前提"
+        }
+      ],
+      "ppt-master": [
+        {
+          "line": 64,
+          "rule": "R3",
+          "evidence": "> 分母收敛链（三段全部现算，非估算）：**624 → 552**（扣 72 个噪声类）→ 其中 **293** 个目录名已在入口出现（补目录级取用规则即可）→ 必须**逐条挂链**的 **259** 个。259 才是批次表 B1–B6 的真实工作量下界；96.1% 的逐条工作量集中在 story-setup / pp"
+        },
+        {
+          "line": 72,
+          "rule": "R1",
+          "evidence": "| B1 | `ppt-master` | 147 | 1350 | 入口 references 区补目录级取用规则（`scripts/docs/*`、`references/*`），7 个大文档（svg-pipeline 96.7 KB / svg-contract 57.9 KB / confirm_ui 56.2"
+        }
+      ],
+      "story-long-write": [
+        {
+          "line": 64,
+          "rule": "R3",
+          "evidence": "> 分母收敛链（三段全部现算，非估算）：**624 → 552**（扣 72 个噪声类）→ 其中 **293** 个目录名已在入口出现（补目录级取用规则即可）→ 必须**逐条挂链**的 **259** 个。259 才是批次表 B1–B6 的真实工作量下界；96.1% 的逐条工作量集中在 story-setup / pp"
+        },
+        {
+          "line": 74,
+          "rule": "R1",
+          "evidence": "| B3 | `story-long-write` | 96 | 917 | `references/genre-prose-cards/*`（64 个目录名已在入口出现）只补取用规则一句（何时读哪张卡），禁逐个加链 | 该件 orphans 降幅不少于目录命中数 64；不出现新断链 | 同上 |"
+        },
+        {
+          "line": 145,
+          "rule": "R3",
+          "evidence": "- B1–B5 的目标入口件（ppt-master / story-setup / story-long-write / story-review / hyperframes-media / data-analysis / diagram-maker）**全部 DIRTY**（他人在途）⇒ 一律不得动（红线 7 双前提"
+        }
+      ],
+      "story-short-analyze": [
+        {
+          "line": 75,
+          "rule": "R2",
+          "evidence": "| B4 | story 族其余 8 件（short-analyze/short-write/review/import/long-analyze/deslop/scan/cover） | 106 | 886 | 族内同处方；`anti-ai-writing.md` 三份同字节 36483B 重复，先判有意分发还是冗余"
+        }
+      ],
+      "story-short-write": [
+        {
+          "line": 75,
+          "rule": "R2",
+          "evidence": "| B4 | story 族其余 8 件（short-analyze/short-write/review/import/long-analyze/deslop/scan/cover） | 106 | 886 | 族内同处方；`anti-ai-writing.md` 三份同字节 36483B 重复，先判有意分发还是冗余"
+        }
+      ],
+      "story-review": [
+        {
+          "line": 75,
+          "rule": "R2",
+          "evidence": "| B4 | story 族其余 8 件（short-analyze/short-write/review/import/long-analyze/deslop/scan/cover） | 106 | 886 | 族内同处方；`anti-ai-writing.md` 三份同字节 36483B 重复，先判有意分发还是冗余"
+        },
+        {
+          "line": 145,
+          "rule": "R3",
+          "evidence": "- B1–B5 的目标入口件（ppt-master / story-setup / story-long-write / story-review / hyperframes-media / data-analysis / diagram-maker）**全部 DIRTY**（他人在途）⇒ 一律不得动（红线 7 双前提"
+        }
+      ],
+      "story-import": [
+        {
+          "line": 75,
+          "rule": "R2",
+          "evidence": "| B4 | story 族其余 8 件（short-analyze/short-write/review/import/long-analyze/deslop/scan/cover） | 106 | 886 | 族内同处方；`anti-ai-writing.md` 三份同字节 36483B 重复，先判有意分发还是冗余"
+        }
+      ],
+      "story-long-analyze": [
+        {
+          "line": 75,
+          "rule": "R2",
+          "evidence": "| B4 | story 族其余 8 件（short-analyze/short-write/review/import/long-analyze/deslop/scan/cover） | 106 | 886 | 族内同处方；`anti-ai-writing.md` 三份同字节 36483B 重复，先判有意分发还是冗余"
+        }
+      ],
+      "story-deslop": [
+        {
+          "line": 75,
+          "rule": "R2",
+          "evidence": "| B4 | story 族其余 8 件（short-analyze/short-write/review/import/long-analyze/deslop/scan/cover） | 106 | 886 | 族内同处方；`anti-ai-writing.md` 三份同字节 36483B 重复，先判有意分发还是冗余"
+        }
+      ],
+      "story-scan": [
+        {
+          "line": 75,
+          "rule": "R2",
+          "evidence": "| B4 | story 族其余 8 件（short-analyze/short-write/review/import/long-analyze/deslop/scan/cover） | 106 | 886 | 族内同处方；`anti-ai-writing.md` 三份同字节 36483B 重复，先判有意分发还是冗余"
+        }
+      ],
+      "story-cover": [
+        {
+          "line": 75,
+          "rule": "R2",
+          "evidence": "| B4 | story 族其余 8 件（short-analyze/short-write/review/import/long-analyze/deslop/scan/cover） | 106 | 886 | 族内同处方；`anti-ai-writing.md` 三份同字节 36483B 重复，先判有意分发还是冗余"
+        }
+      ],
+      "hyperframes": [
+        {
+          "line": 76,
+          "rule": "R1",
+          "evidence": "| B5 | `hyperframes` 三件 | 42 | 117 | 多为字体许可与 audio 资产，预期大部分归 P-1 白名单；真需补链的只有 hyperframes 的 3 条全不命中项 | 复跑后三件全不命中项合计不大于 2 | 同上 |"
+        }
+      ],
+      "data-analysis": [
+        {
+          "line": 77,
+          "rule": "R1",
+          "evidence": "| B6 | `data-analysis` / `gstack` / `ui-ux-pro-max` / `diagram-maker` / `agent-browser` / `frontend-skill` / `theme-factory` | 29 | 166 | 单件 1–10 个，逐条补链成本最低（`da"
+        },
+        {
+          "line": 77,
+          "rule": "R1",
+          "evidence": "| B6 | `data-analysis` / `gstack` / `ui-ux-pro-max` / `diagram-maker` / `agent-browser` / `frontend-skill` / `theme-factory` | 29 | 166 | 单件 1–10 个，逐条补链成本最低（`da"
+        },
+        {
+          "line": 145,
+          "rule": "R3",
+          "evidence": "- B1–B5 的目标入口件（ppt-master / story-setup / story-long-write / story-review / hyperframes-media / data-analysis / diagram-maker）**全部 DIRTY**（他人在途）⇒ 一律不得动（红线 7 双前提"
+        }
+      ],
+      "gstack": [
+        {
+          "line": 77,
+          "rule": "R1",
+          "evidence": "| B6 | `data-analysis` / `gstack` / `ui-ux-pro-max` / `diagram-maker` / `agent-browser` / `frontend-skill` / `theme-factory` | 29 | 166 | 单件 1–10 个，逐条补链成本最低（`da"
+        }
+      ],
+      "ui-ux-pro-max": [
+        {
+          "line": 77,
+          "rule": "R1",
+          "evidence": "| B6 | `data-analysis` / `gstack` / `ui-ux-pro-max` / `diagram-maker` / `agent-browser` / `frontend-skill` / `theme-factory` | 29 | 166 | 单件 1–10 个，逐条补链成本最低（`da"
+        }
+      ],
+      "diagram-maker": [
+        {
+          "line": 77,
+          "rule": "R1",
+          "evidence": "| B6 | `data-analysis` / `gstack` / `ui-ux-pro-max` / `diagram-maker` / `agent-browser` / `frontend-skill` / `theme-factory` | 29 | 166 | 单件 1–10 个，逐条补链成本最低（`da"
+        }
+      ],
+      "agent-browser": [
+        {
+          "line": 77,
+          "rule": "R1",
+          "evidence": "| B6 | `data-analysis` / `gstack` / `ui-ux-pro-max` / `diagram-maker` / `agent-browser` / `frontend-skill` / `theme-factory` | 29 | 166 | 单件 1–10 个，逐条补链成本最低（`da"
+        }
+      ],
+      "frontend-skill": [
+        {
+          "line": 77,
+          "rule": "R1",
+          "evidence": "| B6 | `data-analysis` / `gstack` / `ui-ux-pro-max` / `diagram-maker` / `agent-browser` / `frontend-skill` / `theme-factory` | 29 | 166 | 单件 1–10 个，逐条补链成本最低（`da"
+        }
+      ],
+      "theme-factory": [
+        {
+          "line": 77,
+          "rule": "R1",
+          "evidence": "| B6 | `data-analysis` / `gstack` / `ui-ux-pro-max` / `diagram-maker` / `agent-browser` / `frontend-skill` / `theme-factory` | 29 | 166 | 单件 1–10 个，逐条补链成本最低（`da"
+        }
+      ],
+      "hyperframes-media": [
+        {
+          "line": 145,
+          "rule": "R3",
+          "evidence": "- B1–B5 的目标入口件（ppt-master / story-setup / story-long-write / story-review / hyperframes-media / data-analysis / diagram-maker）**全部 DIRTY**（他人在途）⇒ 一律不得动（红线 7 双前提"
+        }
+      ]
+    },
+    "unresolved_rows": [
+      {
+        "line": 13,
+        "evidence": "2. **真补链候选 = 552 个文件 / 4447 KB**，但高度集中：`ppt-master` + `story-setup` + `story-long-write` 三件占 **3278 KB = 73.7%**。排期按件切，不按文件切。",
+        "reason": "family_by_count_no_member_list"
+      },
+      {
+        "line": 64,
+        "evidence": "> 分母收敛链（三段全部现算，非估算）：**624 → 552**（扣 72 个噪声类）→ 其中 **293** 个目录名已在入口出现（补目录级取用规则即可）→ 必须**逐条挂链**的 **259** 个。259 才是批次表 B1–B6 的真实工作量下界；96.1% 的逐条工作量集中在 story-setup / pp",
+        "reason": "family_by_count_no_member_list"
+      },
+      {
+        "line": 76,
+        "evidence": "| B5 | `hyperframes` 三件 | 42 | 117 | 多为字体许可与 audio 资产，预期大部分归 P-1 白名单；真需补链的只有 hyperframes 的 3 条全不命中项 | 复跑后三件全不命中项合计不大于 2 | 同上 |",
+        "reason": "family_by_count_no_member_list"
+      },
+      {
+        "line": 79,
+        "evidence": "排批理由（不是随手排）：B1–B3 三件 = 73.7% 的空转字节，先做这三件就覆盖大部分损失；B4 族内同处方批量；B5 预期被 P-1 白名单消掉（先修口径再动它，避免补一批许可证链接）；B6 是长尾但每条都是真 prose。",
+        "reason": "family_by_count_no_member_list"
+      }
+    ]
+  },
+  "assertions": {
+    "partition": {
+      "ok": true,
+      "detail": "每件恰好落一态：CLEAN=5 DIRTY=8 UNKNOWN=0",
+      "hits": []
+    },
+    "conservation": {
+      "ok": true,
+      "detail": "5 + 8 + 0 = 13 vs targets=13",
+      "hits": []
+    },
+    "markers": {
+      "ok": true,
+      "detail": "blocked 具名标记：ppt-master=M, story-setup=M, story-long-write=M, data-analysis=M, diagram-maker=M, hyperframes-media=M, story-review=M, story-short-analyze=M",
+      "hits": []
+    },
+    "clean_has_no_mark": {
+      "ok": true,
+      "hits": []
+    },
+    "unknown_not_clean": {
+      "ok": true,
+      "hits": []
+    },
+    "head": {
+      "ok": true,
+      "detail": "head=feaeac98c0ddbff470d94de40817936e02a8ba5d expect=",
+      "hits": []
+    },
+    "same_source": {
+      "ok": true,
+      "detail": "计划名册 20 件，被检目标 13 件，目标 ⊆ 名册 = True",
+      "plan_path": "04-plan/入口补链批次表_r321_2026-10-31.md",
+      "plan_sha256_12": "f3704d08799c",
+      "unresolved_rows": 4,
+      "hits": []
+    },
+    "head_pin": {
+      "ok": true,
+      "detail": "pin=feaeac98c0ddbff470d94de40817936e02a8ba5d（本次落盘基线；后续复跑用 --require-head-pin 校验）"
+    }
+  },
+  "ok": true,
+  "gate": "ok",
+  "head_pin": "feaeac98c0ddbff470d94de40817936e02a8ba5d",
+  "head_pin_source": "cli --pin at 2026-11-01T00:52:33+08:00"
+}
