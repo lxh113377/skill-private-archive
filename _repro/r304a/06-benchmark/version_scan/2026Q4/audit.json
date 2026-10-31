@@ -1,12 +1,12 @@
 {
  "schema": "r304a.quarterly_version_scan.v1",
- "generated_at": "2026-10-31T15:49:12",
- "generated_at_utc": "2026-10-31T07:49:12+00:00",
+ "generated_at": "2026-10-31T17:44:51",
+ "generated_at_utc": "2026-10-31T09:44:51+00:00",
  "quarter": "2026Q4",
  "baseline": {
-  "schema": "r303a.absorption_baseline.v1",
+  "schema": "r303-absorption-baseline-v2(r311 扩 3 对)",
   "generated_at": "2026-10-30T14:53:39+00:00",
-  "pairs": 49
+  "pairs": 52
  },
  "path_rule": {
   "scan_root": "the output root this runner was pointed at",
@@ -40,8 +40,8 @@
   "missing_baseline_is_unverified": true
  },
  "summary": {
-  "pairs": 49,
-  "ok": 48,
+  "pairs": 52,
+  "ok": 51,
   "local_changed": 0,
   "upstream_changed": 1,
   "both_changed": 0,
@@ -60,13 +60,13 @@
    "baseline_upstream_sha": "11bd23cc72e7535978675f6da3ddcf39d7720b5b",
    "current_local_sha": "f3477b0a0bb9111da70b111dfc7b678e17286ad1436670262d00800b5b30306d",
    "current_upstream_sha": "8ef728bd161403ef862a76300259d32afc4c517e",
-   "current_upstream_commit_sha": "99706a47bb683cb46ef11ae2262a42355e14f14a",
+   "current_upstream_commit_sha": "89f203300498596cfcee37017f9966af9b0ebc3a",
    "local_changed": false,
    "upstream_changed": true,
    "state": "UPSTREAM_CHANGED",
    "notes": [],
    "three_values": {
-    "upstream_commit_sha": "99706a47bb683cb46ef11ae2262a42355e14f14a",
+    "upstream_commit_sha": "89f203300498596cfcee37017f9966af9b0ebc3a",
     "upstream_file_sha": "8ef728bd161403ef862a76300259d32afc4c517e",
     "local_file_sha": "f3477b0a0bb9111da70b111dfc7b678e17286ad1436670262d00800b5b30306d"
    },
@@ -291,7 +291,7 @@
    "baseline_upstream_sha": "11bd23cc72e7535978675f6da3ddcf39d7720b5b",
    "current_local_sha": "f3477b0a0bb9111da70b111dfc7b678e17286ad1436670262d00800b5b30306d",
    "current_upstream_sha": "8ef728bd161403ef862a76300259d32afc4c517e",
-   "current_upstream_commit_sha": "99706a47bb683cb46ef11ae2262a42355e14f14a",
+   "current_upstream_commit_sha": "89f203300498596cfcee37017f9966af9b0ebc3a",
    "local_changed": false,
    "upstream_changed": true,
    "state": "UPSTREAM_CHANGED",
@@ -499,7 +499,7 @@
    "baseline_upstream_sha": "821111317265648bdaa42643d82a5cfc393592ba",
    "current_local_sha": "a7949682e54d031d1973c16c8181a58469fe198eb33892b9a95c663e0dfe7aae",
    "current_upstream_sha": "821111317265648bdaa42643d82a5cfc393592ba",
-   "current_upstream_commit_sha": "c148cb11975917e3e3955ba6fb9fdabbb3965f49",
+   "current_upstream_commit_sha": "115d96eed947a6b039eca67581e4c1f8302746ce",
    "local_changed": false,
    "upstream_changed": false,
    "state": "OK",
@@ -708,6 +708,45 @@
    "current_local_sha": "e47d5c0c100dd4c0b3bac48b0635e833c4f201e5eee86ab603c01fcf043e7b7c",
    "current_upstream_sha": "9b8374bf128db6d5c18921d170bdc6a230808f82",
    "current_upstream_commit_sha": "9906a34d640d2111f724544cbc50f7f130569ae1",
+   "local_changed": false,
+   "upstream_changed": false,
+   "state": "OK",
+   "notes": []
+  },
+  {
+   "slug": "A-prompt-better",
+   "repo": "nidhinjs/prompt-master",
+   "baseline_local_sha": "fac939d845fa3b6780c9fa9b50638d49ed0a84cf8d6b1b421af0c049839728e8",
+   "baseline_upstream_sha": "742deafaf4222f9f0e9d9410e72483dad64fe716",
+   "current_local_sha": "fac939d845fa3b6780c9fa9b50638d49ed0a84cf8d6b1b421af0c049839728e8",
+   "current_upstream_sha": "742deafaf4222f9f0e9d9410e72483dad64fe716",
+   "current_upstream_commit_sha": "49b3a72469b1e7287d66387004ccfcca90e5968a",
+   "local_changed": false,
+   "upstream_changed": false,
+   "state": "OK",
+   "notes": []
+  },
+  {
+   "slug": "frontend-skill",
+   "repo": "Leonxlnx/taste-skill",
+   "baseline_local_sha": "a98aa8c13d43e568b034aa09e1447d55db0000517ce879ed1736edf5777b8482",
+   "baseline_upstream_sha": "d8444f13b76be100b3b088dfdae738e85288d6b6",
+   "current_local_sha": "a98aa8c13d43e568b034aa09e1447d55db0000517ce879ed1736edf5777b8482",
+   "current_upstream_sha": "d8444f13b76be100b3b088dfdae738e85288d6b6",
+   "current_upstream_commit_sha": "12af471f627f866411b4bd785b19646d3672784c",
+   "local_changed": false,
+   "upstream_changed": false,
+   "state": "OK",
+   "notes": []
+  },
+  {
+   "slug": "security-audit",
+   "repo": "cloudflare/security-audit-skill",
+   "baseline_local_sha": "2a9b3db6bc044914b7ebebf6ef4cfe48575fc1e8e761d58da258c368f18b9e33",
+   "baseline_upstream_sha": "92178dad304d3f63e37582a297026a7874e12c62",
+   "current_local_sha": "2a9b3db6bc044914b7ebebf6ef4cfe48575fc1e8e761d58da258c368f18b9e33",
+   "current_upstream_sha": "92178dad304d3f63e37582a297026a7874e12c62",
+   "current_upstream_commit_sha": "c1c8a8c1471069fb0e188eeaff69b8e8db6564a8",
    "local_changed": false,
    "upstream_changed": false,
    "state": "OK",
