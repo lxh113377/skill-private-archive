@@ -1,0 +1,499 @@
+{
+  "round": "r315 预定 · 第三方盲评（R3）· 轮次3 四交付件",
+  "human_scored_items": [
+    "1",
+    "2",
+    "3",
+    "7"
+  ],
+  "mechanical_items_not_scored_here": [
+    "4",
+    "5",
+    "6",
+    "8"
+  ],
+  "rubric_sources": [
+    "自建skill优化/_repro/r309a/rubric2.md",
+    "自建skill优化/_repro/r312a/rubric3.md"
+  ],
+  "task_sources": [
+    "_temp/r309a/task2.md",
+    "_temp/r312a/task3.md"
+  ],
+  "blind_discipline": "只读两份 rubric、两份题面、四份交付；未读 _temp/r314a/skill_*.md、hidden_assignment.json、n3_recomputed.json、_temp/r307a、r309a/r312a/r313a 其余内容、_repro 其余、D 盘两源；未推断 X/Y 版本身份，打分不依赖任何版本假设。",
+  "X2c": {
+    "task": "task2",
+    "items": {
+      "1": 1,
+      "2": 1,
+      "3": 1,
+      "7": 1
+    },
+    "human_subtotal": "4/4",
+    "evidence": {
+      "1": [
+        {
+          "cite": "out_X2c/optimized_prompt.md:4",
+          "quote": "你是接手本仓库的编码 agent，拥有命令行权限"
+        },
+        {
+          "cite": "out_X2c/optimized_prompt.md:34",
+          "quote": "先在仓库里找既有部署通道：README、CI 工作流、平台配置文件、已登录 CLI、git remote"
+        },
+        {
+          "cite": "out_X2c/optimized_prompt.md:55",
+          "quote": "git status --porcelain（没有 git 就用等价目录 diff）"
+        }
+      ],
+      "2": [
+        {
+          "cite": "out_X2c/optimized_prompt.md:13",
+          "quote": "以下四条是我替你做的裁定，与原意不符就在报告里指出，不要自行改方向"
+        },
+        {
+          "cite": "out_X2c/optimized_prompt.md:17",
+          "quote": "「想全面一点、多从几个角度反复推敲」= 下面 thinking 与 task 给的 3 视角有界推敲，不是无限期讨论"
+        },
+        {
+          "cite": "out_X2c/optimized_prompt.md:130",
+          "quote": "（按用户要求，两条红线全文放在任务书最末；task 末尾给了摘要、constraints 与 anti_patterns 给了细则，这层重复是有意的抗遗漏设计。）"
+        },
+        {
+          "cite": "out_X2c/optimized_prompt.md:12",
+          "quote": "本任务书未提供（必须你实地勘察，不得凭猜测写进结论）"
+        },
+        {
+          "cite": "out_X2c/optimized_prompt.md:49",
+          "quote": "共 3 轮，出完表就动手，不做无限推敲"
+        }
+      ],
+      "3": [
+        {
+          "cite": "out_X2c/optimized_prompt.md:107",
+          "quote": "收尾交付一份 markdown 报告，固定 6 个字段，顺序不变"
+        },
+        {
+          "cite": "out_X2c/optimized_prompt.md:108",
+          "quote": "改动清单：表格，列 = 文件路径 | 改动内容 | 问题类型（对应基线清单）| 证据（命令或数值）"
+        },
+        {
+          "cite": "out_X2c/optimized_prompt.md:54",
+          "quote": "5 条全部二元可判。给不出证据的那条就是未完成，不得写「已完成」"
+        }
+      ],
+      "7": [
+        {
+          "cite": "out_X2c/optimized_prompt.md:27",
+          "quote": "商品图翻新（用户点名的第一诉求）"
+        },
+        {
+          "cite": "out_X2c/optimized_prompt.md:37",
+          "quote": "页面观感与合规复核"
+        },
+        {
+          "cite": "out_X2c/optimized_prompt.md:45",
+          "quote": "推敲方法（用户把方法交给我定，这就是方法）"
+        },
+        {
+          "cite": "out_X2c/optimized_prompt.md:33",
+          "quote": "部署上线 + 线上取证（用户点名，不可静默砍）"
+        },
+        {
+          "cite": "out_X2c/optimized_prompt.md:111",
+          "quote": "超范围改进清单：必须改 HTML/CSS/JS 才能做到的页面改进，按预期观感收益排序，交用户拍板"
+        },
+        {
+          "cite": "out_X2c/optimized_prompt.md:39",
+          "quote": "页面变好的唯一合法手段就是第 2 步的图片替换"
+        },
+        {
+          "cite": "out_X2c/optimized_prompt.md:35",
+          "quote": "停在「部署就绪」状态（产物与命令都备好），报告里写清缺什么、要用户给什么"
+        },
+        {
+          "cite": "out_X2c/process_log.md:8",
+          "quote": "保留用户原意：商品图丑"
+        }
+      ]
+    }
+  },
+  "Y2c": {
+    "task": "task2",
+    "items": {
+      "1": 1,
+      "2": 1,
+      "3": 1,
+      "7": 1
+    },
+    "human_subtotal": "4/4",
+    "evidence": {
+      "1": [
+        {
+          "cite": "out_Y2c/optimized_prompt.md:4",
+          "quote": "目标工具：有命令行与文件写入权限的 coding agent；由用户手动粘贴，正文不引用任何本端内部工具名或技能名"
+        },
+        {
+          "cite": "out_Y2c/optimized_prompt.md:8",
+          "quote": "你是资深前端工程师兼视觉资产负责人，独立完成本任务"
+        },
+        {
+          "cite": "out_Y2c/optimized_prompt.md:87",
+          "quote": "阶段 0 探测 → 检查点：文件树、商品数据存放位置、部署通道候选、本机图像工具可用性，四项全部附命令证据"
+        }
+      ],
+      "2": [
+        {
+          "cite": "out_Y2c/optimized_prompt.md:31",
+          "quote": "用户的原话存在一处字面冲突：既要「页面也要好看起来」，又限定「只许改 assets 目录里的图片」"
+        },
+        {
+          "cite": "out_Y2c/optimized_prompt.md:40",
+          "quote": "用户原话是「想全面一点、多从几个角度反复推敲，方法你自己定」"
+        },
+        {
+          "cite": "out_Y2c/optimized_prompt.md:18",
+          "quote": "未取证项（不许凭想象补全，必须在阶段 0 实地探明）"
+        },
+        {
+          "cite": "out_Y2c/optimized_prompt.md:36",
+          "quote": "最终报告必须复述这处冲突和你的处置，让用户可以一句话解除锁定；这是歧义上报，不是向用户提问"
+        },
+        {
+          "cite": "out_Y2c/optimized_prompt.md:139",
+          "quote": "按用户要求写在任务书最后"
+        }
+      ],
+      "3": [
+        {
+          "cite": "out_Y2c/optimized_prompt.md:115",
+          "quote": "三份 markdown，全部落盘，报告里给出绝对路径"
+        },
+        {
+          "cite": "out_Y2c/optimized_prompt.md:116",
+          "quote": "VISIT_AUDIT.md —— 6 视角问题清单，表头固定：视角 | 问题 | 证据（路径或数值） | 严重度 | 处置"
+        },
+        {
+          "cite": "out_Y2c/optimized_prompt.md:54",
+          "quote": "什么叫完成（二元判定，逐条能答是或否）"
+        },
+        {
+          "cite": "out_Y2c/optimized_prompt.md:127",
+          "quote": "做完后逐条验证，逐条附命令与输出"
+        },
+        {
+          "cite": "out_Y2c/optimized_prompt.md:61",
+          "quote": "其余六条任缺其一即未完成"
+        }
+      ],
+      "7": [
+        {
+          "cite": "out_Y2c/optimized_prompt.md:23",
+          "quote": "把 assets 目录里效果差的商品图整改到位"
+        },
+        {
+          "cite": "out_Y2c/optimized_prompt.md:24",
+          "quote": "页面美化按 <scope_conflict> 裁定能做到哪一层：做到允许范围内最深层，越界部分写成提案，不实际改"
+        },
+        {
+          "cite": "out_Y2c/optimized_prompt.md:42",
+          "quote": "「多角度看」= 用下面 6 个视角各扫一遍现状"
+        },
+        {
+          "cite": "out_Y2c/optimized_prompt.md:25",
+          "quote": "自行执行部署上线，并给出线上可复算的证据"
+        },
+        {
+          "cite": "out_Y2c/optimized_prompt.md:104",
+          "quote": "遇到以下任一情况，立即停止该步并如实报告，不得变通、不得伪造成功"
+        },
+        {
+          "cite": "out_Y2c/optimized_prompt.md:33",
+          "quote": "转入越界改动提案（文件名、改法、预期效果、回滚方式、风险），交回给用户批准"
+        },
+        {
+          "cite": "out_Y2c/process_log.md:16",
+          "quote": "「直接让它自己跑完部署上线」"
+        }
+      ]
+    }
+  },
+  "X3c": {
+    "task": "task3",
+    "items": {
+      "1": 1,
+      "2": 1,
+      "3": 1,
+      "7": 1
+    },
+    "human_subtotal": "4/4",
+    "evidence": {
+      "1": [
+        {
+          "cite": "out_X3c/optimized_prompt.md:4",
+          "quote": "你是本地仓库内的数据工程 coding agent"
+        },
+        {
+          "cite": "out_X3c/optimized_prompt.md:39",
+          "quote": "python clean/clean_sales.py"
+        },
+        {
+          "cite": "out_X3c/optimized_prompt.md:22",
+          "quote": "一条命令复跑全套"
+        }
+      ],
+      "2": [
+        {
+          "cite": "out_X3c/optimized_prompt.md:8",
+          "quote": "真实路径、文件名、列名、行数、脏值形态"
+        },
+        {
+          "cite": "out_X3c/optimized_prompt.md:25",
+          "quote": "必须在报告中写成「假设 + 反证方法」，禁止伪装成已验证事实"
+        },
+        {
+          "cite": "out_X3c/optimized_prompt.md:19",
+          "quote": "评分函数先写死再跑"
+        },
+        {
+          "cite": "out_X3c/optimized_prompt.md:94",
+          "quote": "「干净」在这里的可验收定义是什么，5 项指标够不够"
+        },
+        {
+          "cite": "out_X3c/optimized_prompt.md:48",
+          "quote": "两条死线（定义在此，文末按用户要求再显眼重复一次）"
+        },
+        {
+          "cite": "out_X3c/optimized_prompt.md:18",
+          "quote": "候选路径 ≥3 条且机制互不重合（示例方向，最终以审计结果为准，不得照抄）"
+        },
+        {
+          "cite": "out_X3c/optimized_prompt.md:109",
+          "quote": "按你的要求放在末尾、显眼"
+        }
+      ],
+      "3": [
+        {
+          "cite": "out_X3c/optimized_prompt.md:84",
+          "quote": "按此顺序回复，勿加寒暄"
+        },
+        {
+          "cite": "out_X3c/optimized_prompt.md:38",
+          "quote": "以下全是是/否二元判据，缺一即未完成"
+        },
+        {
+          "cite": "out_X3c/optimized_prompt.md:98",
+          "quote": "做完后逐条验证"
+        }
+      ],
+      "7": [
+        {
+          "cite": "out_X3c/optimized_prompt.md:15",
+          "quote": "用跑前写死的评分函数择优，产出清洗结果 + 一份待授权的生产上线工件"
+        },
+        {
+          "cite": "out_X3c/optimized_prompt.md:10",
+          "quote": "下游用法：清洗结果之后要灌进线上库，所以产物必须「零加工可上线」"
+        },
+        {
+          "cite": "out_X3c/optimized_prompt.md:20",
+          "quote": "的生产写入工件：幂等 upsert SQL"
+        },
+        {
+          "cite": "out_X3c/optimized_prompt.md:50",
+          "quote": "D1 订单金额字段不能动"
+        },
+        {
+          "cite": "out_X3c/optimized_prompt.md:51",
+          "quote": "D2 只许改"
+        },
+        {
+          "cite": "out_X3c/process_log.md:13",
+          "quote": "保留原意「立竿见影」＝产物零加工可上线，未删该诉求"
+        }
+      ]
+    }
+  },
+  "Y3c": {
+    "task": "task3",
+    "items": {
+      "1": 1,
+      "2": 1,
+      "3": 1,
+      "7": 1
+    },
+    "human_subtotal": "4/4",
+    "evidence": {
+      "1": [
+        {
+          "cite": "out_Y3c/optimized_prompt.md:16",
+          "quote": "你是资深数据工程 agent"
+        },
+        {
+          "cite": "out_Y3c/optimized_prompt.md:12",
+          "quote": "复制下面整块交给 coding agent 即可直接使用"
+        },
+        {
+          "cite": "out_Y3c/optimized_prompt.md:69",
+          "quote": "python clean/verify_amount.py 退出码 0"
+        }
+      ],
+      "2": [
+        {
+          "cite": "out_Y3c/optimized_prompt.md:42",
+          "quote": "「数据太脏」在题面里未定义"
+        },
+        {
+          "cite": "out_Y3c/optimized_prompt.md:43",
+          "quote": "「择优」的评价口径题面未给"
+        },
+        {
+          "cite": "out_Y3c/optimized_prompt.md:39",
+          "quote": "输入 CSV 的具体路径题面未提供"
+        },
+        {
+          "cite": "out_Y3c/optimized_prompt.md:21",
+          "quote": "金额列的真实列名以阶段 1 画像结果为准"
+        },
+        {
+          "cite": "out_Y3c/optimized_prompt.md:125",
+          "quote": "收尾前复述本节（任务书末尾的显眼位置，三条同义于 critical_constraints）"
+        }
+      ],
+      "3": [
+        {
+          "cite": "out_Y3c/optimized_prompt.md:112",
+          "quote": "中文 markdown，三段"
+        },
+        {
+          "cite": "out_Y3c/optimized_prompt.md:93",
+          "quote": "以下 5 条全是二元判定，全为「是」才算完成"
+        },
+        {
+          "cite": "out_Y3c/optimized_prompt.md:116",
+          "quote": "做完后逐条自查，并把命令与输出原样贴进报告"
+        }
+      ],
+      "7": [
+        {
+          "cite": "out_Y3c/optimized_prompt.md:16",
+          "quote": "在本仓库内编写并运行一个可复现的超市销售 CSV 清洗脚本"
+        },
+        {
+          "cite": "out_Y3c/optimized_prompt.md:21",
+          "quote": "C1 订单金额字段不能动：清洗前后订单金额列逐行相等"
+        },
+        {
+          "cite": "out_Y3c/optimized_prompt.md:22",
+          "quote": "C2 只许改 clean/ 目录下的文件"
+        },
+        {
+          "cite": "out_Y3c/optimized_prompt.md:51",
+          "quote": "「多想几种可能的清洗路径，都试一遍择优」= 脚本内的确定性多候选执行，不是模型口头列举"
+        },
+        {
+          "cite": "out_Y3c/optimized_prompt.md:60",
+          "quote": "把该意图拆成两段——一段现在就做，一段留到有凭据时开闸"
+        },
+        {
+          "cite": "out_Y3c/optimized_prompt.md:61",
+          "quote": "幂等 upsert 载荷（主键显式、列白名单在代码里结构性排除金额列"
+        },
+        {
+          "cite": "out_Y3c/process_log.md:11",
+          "quote": "「放任务书末尾、结尾显眼」保留为末尾的"
+        }
+      ]
+    }
+  },
+  "differing_items": {
+    "task2_pair_X2c_vs_Y2c": [],
+    "task3_pair_X3c_vs_Y3c": [],
+    "all_four": [],
+    "note": "人判四项在四臂上全为 1，无任一分歧 ⇒ 本组人判项无区分力；按 rubric2.md:14「若本轮两臂仍同分 ⇒ 记录「题面仍无区分力」，不硬解读」处理。"
+  },
+  "unverifiable": [
+    "判据面限于交付件文本：题面（task2.md:8、task3.md:8）规定只产出交付件、不真改项目、不联网不连库 ⇒ prompt 在真实仓库能否跑出、判据命令能否真执行，本轮不可验证。",
+    "process_log 与技能文档章节是否逐条对应：skill_*.md 属禁读面，log↔技能那半交机械项 8 的代码判据，人判侧不覆盖。",
+    "四臂身份映射不可推断：differing_items 只做匿名臂间比较，不映射版本。",
+    "「窄读/宽读哪一支更贴近用户真实意图」不可验证：两支都自决不反问（题面未授权反问），需用户本人裁定，已写入观察节。"
+  ],
+  "citation_fidelity": {
+    "method": "node 读原文 split(/\\r?\\n/)，对声称行做 indexOf(quote)；逐条回验，非抽查",
+    "evidence_citations_total": 87,
+    "mismatch": 0,
+    "negative_control": {
+      "claim": "伪造一条声称 out_X3c/optimized_prompt.md:54 含「用户已授权脚本在无人值守时直接对生产库执行写入」",
+      "line_actual_text": "- 不联网、不连任何数据库（本任务无凭据）。",
+      "verified_present": false,
+      "verdict": "负控判红 ⇒ 回验机制有牙，不计入 mismatch"
+    }
+  },
+  "observations_not_scored": [
+    {
+      "arm": "Y2c",
+      "cite": "out_Y2c/optimized_prompt.md:12",
+      "quote": "Context (carry forward) —— 前置到生成 prompt 的前 30%，抗目标模型注意力衰减",
+      "note": "观察：Y2c 自述红线前置动机，属机械项 4 面，本轮不计分"
+    },
+    {
+      "arm": "Y2c",
+      "cite": "out_Y2c/optimized_prompt.md:3",
+      "quote": "从下一行 <role> 起，到 <hard_constraints> 结束。",
+      "note": "观察：复制边界用首尾锚点声明，贴错面小"
+    },
+    {
+      "arm": "Y2c",
+      "cite": "out_Y2c/optimized_prompt.md:50",
+      "quote": "不要模拟多专家路由、思维树分支、多次采样投票那类框架",
+      "note": "观察：属机械项 5 面，本轮不计分"
+    },
+    {
+      "arm": "X2c",
+      "cite": "out_X2c/optimized_prompt.md:21",
+      "quote": "动手改第一个文件之前",
+      "note": "观察：X2c 把推敲前置为硬性第一步"
+    },
+    {
+      "arm": "Y3c",
+      "cite": "out_Y3c/optimized_prompt.md:1",
+      "quote": "唯一规范 = _temp/r314a/skill_Y3c.md",
+      "note": "观察：交付件文件顶部带内部规范件名与版本，且正文包在代码栅栏内（:14 与 :134）"
+    },
+    {
+      "arm": "Y3c",
+      "cite": "out_Y3c/optimized_prompt.md:43",
+      "quote": "可由老大后续覆盖",
+      "note": "观察：调用者称谓「老大」出现在交给下游 agent 的正文内"
+    },
+    {
+      "arm": "Y3c",
+      "cite": "out_Y3c/optimized_prompt.md:108",
+      "quote": "未知，需老大提供",
+      "note": "观察：同上"
+    },
+    {
+      "arm": "Y3c",
+      "cite": "out_Y3c/optimized_prompt.md:23",
+      "quote": "C3 生产库写入默认关闭",
+      "note": "观察：Y3c 保留「拿到凭据后可真写」的后段路径，fail-closed"
+    },
+    {
+      "arm": "X3c",
+      "cite": "out_X3c/optimized_prompt.md:10",
+      "quote": "上线动作本身不属于本任务",
+      "note": "观察：X3c 用范围门控处置上线诉求，非删除"
+    },
+    {
+      "arm": "X2c",
+      "cite": "out_X2c/process_log.md:19",
+      "quote": "把「页面好看」的可执行范围压到只剩图片替换",
+      "note": "观察：X2c 自认红线 B 窄读"
+    },
+    {
+      "arm": "Y2c",
+      "cite": "out_Y2c/optimized_prompt.md:141",
+      "quote": "只许改 assets 目录里的图片",
+      "note": "观察：Y2c 文末红线为逐字原话，未加判据"
+    }
+  ]
+}

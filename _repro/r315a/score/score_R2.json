@@ -1,0 +1,175 @@
+{
+  "meta": {
+    "round": "r313 · 轮次2 四交付件 · 第三方盲评",
+    "judged_items": [
+      1,
+      2,
+      3,
+      7
+    ],
+    "rubrics": "_repro/r309a/rubric2.md + _repro/r312a/rubric3.md",
+    "tasks": {
+      "task2": "_temp/r309a/task2.md (out_X2b/out_Y2b)",
+      "task3": "_temp/r312a/task3.md (out_X3b/out_Y3b)"
+    },
+    "citation_fidelity": "71 条引用全部 indexOf 回验所标行命中；伪造负控 4 条（每臂 1）全部未命中",
+    "mismatch": 0
+  },
+  "X2b": {
+    "items": {
+      "1": {
+        "score": 1,
+        "quotes": [
+          "out_X2b/optimized_prompt.md:3 「本文件整份交给有命令行权限的 coding agent 直接执行」",
+          "out_X2b/optimized_prompt.md:6 「你是这个纯静态 HTML 超市仓库的前端资产改造与部署执行 agent，拥有命令行权限」",
+          "out_X2b/optimized_prompt.md:70 「手段：git ls-files、列目录、grep 引用」"
+        ]
+      },
+      "2": {
+        "score": 1,
+        "quotes": [
+          "out_X2b/optimized_prompt.md:26 「原始请求有歧义，以下按最优理解裁定并执行（不反问）」",
+          "out_X2b/optimized_prompt.md:31 「「想全面一点、多从几个角度反复推敲」是方法要求而非客套」",
+          "out_X2b/optimized_prompt.md:15 「它们在任务书末尾」（对「放结尾最显眼」裁定为末尾保留 + 前置复述）"
+        ]
+      },
+      "3": {
+        "score": 1,
+        "quotes": [
+          "out_X2b/optimized_prompt.md:107 「报告必须含以下 8 个段落（顺序可同此）」",
+          "out_X2b/optimized_prompt.md:125 「收尾只交两样」（交付物清单）",
+          "out_X2b/optimized_prompt.md:89 「做完后逐条自检，任一不过就回到对应阶段重修」（验收面）"
+        ]
+      },
+      "7": {
+        "score": 1,
+        "quotes": [
+          "换图：out_X2b/optimized_prompt.md:11 「把太难看的商品图换掉或重制」",
+          "变好看：out_X2b/optimized_prompt.md:12 「让页面看起来更好」",
+          "多角度推敲：out_X2b/optimized_prompt.md:35 「把「想全面一点」变成可验收动作」",
+          "下游自跑上线：out_X2b/optimized_prompt.md:13 「全部做完后由你自己部署上线，并给出线上证据」",
+          "未砍且不删需求（替代处置）：out_X2b/optimized_prompt.md:75 「停在「产物就绪」，在报告写清缺口、已试过什么、需要什么才能上线」",
+          "out_X2b/process_log.md:13 「部署上线不做无条件承诺」（与交付件可对应）"
+        ]
+      }
+    }
+  },
+  "Y2b": {
+    "items": {
+      "1": {
+        "score": 1,
+        "quotes": [
+          "out_Y2b/optimized_prompt.md:3 「目标执行体：具备命令行权限的 coding agent」",
+          "out_Y2b/optimized_prompt.md:8 「你有命令行权限，可以在本仓库内读文件、跑脚本、执行部署命令」",
+          "out_Y2b/optimized_prompt.md:123 「Review the scope locks, forbidden actions, and stop conditions before pasting.」（按 agentic 形态附复核提醒）"
+        ]
+      },
+      "2": {
+        "score": 1,
+        "quotes": [
+          "out_Y2b/optimized_prompt.md:21 「以下必须由你在阶段 0 实测得到，禁止假设」（未知事实逐类点名）",
+          "out_Y2b/optimized_prompt.md:27 「达不成项逐条列出，交用户批准」（K2 与「变好看」冲突显式化）",
+          "out_Y2b/optimized_prompt.md:112 「收尾再确认一次（放这里是因为长任务后半段最容易把红线忘掉）」（对「放结尾最显眼」给出显式处置）"
+        ]
+      },
+      "3": {
+        "score": 1,
+        "quotes": [
+          "out_Y2b/optimized_prompt.md:85 「Markdown，按以下顺序六段，段名逐字照用」",
+          "out_Y2b/optimized_prompt.md:86 「现状审计（表格：路径 / 格式 / 尺寸 / 体积 / 引用数）」",
+          "out_Y2b/optimized_prompt.md:92 「每段都要有可复核命令及其输出」（验收形态）"
+        ]
+      },
+      "7": {
+        "score": 1,
+        "quotes": [
+          "换图/图整改：out_Y2b/optimized_prompt.md:31 「商品图资产整改（只写 assets 内图片）」",
+          "变好看：out_Y2b/optimized_prompt.md:35 「页面观感提升提案：只写提案不改文件」（未删，改道提案）",
+          "多角度推敲：out_Y2b/optimized_prompt.md:27 「①首屏观感 ②商品图一致性 ③加载性能 ④可访问性 ⑤引用完整性风险」",
+          "下游自跑上线：out_Y2b/optimized_prompt.md:36 「部署上线：按 phases 阶段 4 执行，必须过门」",
+          "上线证据保留：out_Y2b/optimized_prompt.md:45 「部署命令返回成功，线上首页可访问且图片正常加载」",
+          "out_Y2b/process_log.md:9 「直接让它自己跑完部署上线」（保留清单对位到 task P1-6）"
+        ]
+      }
+    }
+  },
+  "X3b": {
+    "items": {
+      "1": {
+        "score": 1,
+        "quotes": [
+          "out_X3b/optimized_prompt.md:4 「你是数据工程方向的 coding agent，在一个本地 Git 仓库内工作」",
+          "out_X3b/optimized_prompt.md:8 「可用能力 = 读写工作区文件、运行 shell 与 Python」",
+          "out_X3b/optimized_prompt.md:1 「交给 coding agent 的任务书（优化版，可直接复制使用）」"
+        ]
+      },
+      "2": {
+        "score": 1,
+        "quotes": [
+          "脏/弄干净被澄清：out_X3b/optimized_prompt.md:13 「需求来源：一批超市销售 CSV 数据脏（编码/BOM、表头命名不统一、日期多态格式、数量存成文本、重复行、缺失值、门店编号格式混杂）」",
+          "择优被裁定：out_X3b/optimized_prompt.md:14 「本任务书把它固定为「开发期跑候选对比 → 交付单一确定性脚本」的形态」",
+          "标注假设（列名未给）：out_X3b/optimized_prompt.md:30 「探数时按实际列名锁定，同义候选：金额 / amount / total / 实付 / 应付」",
+          "out_X3b/optimized_prompt.md:9 「不得编造标识符：不猜表名、不猜列名、不猜连接串」"
+        ]
+      },
+      "3": {
+        "score": 1,
+        "quotes": [
+          "out_X3b/optimized_prompt.md:55 「交付文件（全部在 clean/ 下）」（清单）",
+          "out_X3b/optimized_prompt.md:59 「clean/decision.md —— 候选对比决策表（Markdown 表格）」",
+          "out_X3b/optimized_prompt.md:62 「收尾报告（对话正文，不新建文件）：逐条对应 <done_criteria> 的实测数字 + 未达标项」（验收）"
+        ]
+      },
+      "7": {
+        "score": 1,
+        "quotes": [
+          "清洗+脚本：out_X3b/optimized_prompt.md:4 「交付物是超市销售 CSV 的清洗脚本与配套产物」",
+          "择优（多想几种路径都试一遍）：out_X3b/optimized_prompt.md:22 「针对脏值清单实现不少于 3 条不同的清洗路径并全部真实跑完所有输入 CSV」",
+          "死线一：out_X3b/optimized_prompt.md:116 「订单金额字段不能动：从输入到输出逐字符相同」",
+          "死线二：out_X3b/optimized_prompt.md:117 「只许改 clean/ 目录下的文件（含新建）：clean/ 之外零写入」",
+          "快见效果未被砍（保留写库能力+替代路径）：out_X3b/optimized_prompt.md:87 「写库能力不删除，改以脚本 + 显式 --execute + 人工授权形式保留，功能等价、时机后移」",
+          "即时产物：out_X3b/optimized_prompt.md:24 「P0-4 清洗产出：清洗结果写 clean/out/」"
+        ]
+      }
+    }
+  },
+  "Y3b": {
+    "items": {
+      "1": {
+        "score": 1,
+        "quotes": [
+          "out_Y3b/optimized_prompt.md:4 「你是本仓库唯一执行体的 coding agent，负责编写并真实运行一个 CSV 数据清洗脚本」",
+          "out_Y3b/optimized_prompt.md:93 「本 prompt 面向拥有真实文件系统访问的 agentic 工具」（scope lock/禁止动作/停止条件复核）",
+          "out_Y3b/optimized_prompt.md:22 「按 <phases> 逐阶段推进，检查点不过不得进入下一阶段」（按其执行形态组织）"
+        ]
+      },
+      "2": {
+        "score": 1,
+        "quotes": [
+          "脏未定义被澄清：out_Y3b/optimized_prompt.md:18 「未知项：脏在哪些维度（空值、重复、类型、编码、异常值、单位、日期格式）尚未审计，必须先审计再定规则」",
+          "标注假设成强制段落：out_Y3b/optimized_prompt.md:73 「把你不得不猜的地方（金额列名、脏因判断、去重键选择）写成显式假设加依据，禁止默默替用户选定」",
+          "金额列名歧义：out_Y3b/optimized_prompt.md:9 「先读真实表头确认列名，并把确认结果写进报告」"
+        ]
+      },
+      "3": {
+        "score": 1,
+        "quotes": [
+          "out_Y3b/optimized_prompt.md:71 「段落固定为：`## 输入确认` / `## 关键假设` / `## 审计结论` / `## 候选对比表` / `## 择优结论` / `## 规则追溯` / `## 断言输出` / `## 未完成与待审`」",
+          "out_Y3b/optimized_prompt.md:45 「产物命名固定：clean/clean_sales.py、clean/audit.md、clean/clean_sales_output.csv、clean/manual_review.csv、clean/cleaning_report.md」",
+          "out_Y3b/optimized_prompt.md:72 「收尾回复不超过 10 行：改动文件清单 + 三行断言输出原文」（验收）"
+        ]
+      },
+      "7": {
+        "score": 1,
+        "quotes": [
+          "清洗/脚本：out_Y3b/optimized_prompt.md:16 「目标：一份干净数据集 + 可复算的清洗依据，而不只是一句「弄干净了」」",
+          "择优（都试一遍）保留：out_Y3b/optimized_prompt.md:35 「实现 3 到 5 个策略变体」",
+          "死线一：out_Y3b/optimized_prompt.md:9 「HC1 订单金额字段不能动」",
+          "死线二：out_Y3b/optimized_prompt.md:10 「HC2 只许改 clean/ 目录下的文件」",
+          "写库诉求未删、改道给替代：out_Y3b/optimized_prompt.md:46 「真实写入需人在带外提供凭据并单独授权」",
+          "out_Y3b/process_log.md:9 「用户意图「立竿见影」改由 clean/ 即时产物＋报告满足，改的是手段不是目的」"
+        ]
+      }
+    }
+  }
+}
