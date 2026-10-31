@@ -30,12 +30,15 @@ DEMAND = re.compile(r"(图片|换图|土|上线|部署)")
 
 def score_computable(prompt_text, log_text):
     r = {}
-    # item4：约束信号行位置
+    # item4（r309 纠偏）：找**用户点名红线**的行（价格 / assets + 限制词），不是任意信号词行。
+    # 规格原话见 rubric2.md 表行 4；旧实现用 SIGNAL（必须/不得/先…再）会被任何早期指令语误判为「已前置」。
+    NAMED = re.compile(r"(价格|商品价格|assets)")
+    LIMITWORD = re.compile(r"(不许|禁止|不得|MUST NOT|仅|只许|不能)")
     lines = prompt_text.split(NL2)
     total = len(prompt_text.encode("utf-8"))
     pos, acc = None, 0
     for ln in lines:
-        if SIGNAL.search(ln):
+        if NAMED.search(ln) and LIMITWORD.search(ln):
             pos = acc
             break
         acc += len((ln + NL2).encode("utf-8"))
