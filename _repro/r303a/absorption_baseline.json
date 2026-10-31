@@ -394,9 +394,9 @@
    "upstream_commit_sha": "753c5f7bb64650b7d3ac0ab84d9b24892d7aed8b",
    "upstream_file_sha": "821111317265648bdaa42643d82a5cfc393592ba",
    "upstream_version": "0.5.0",
-   "local_file_sha": "749acd649928e51378edd53db4254c9f973e8f0ea34213d8959210e013aad4d0",
-   "local_version": "1.4.0",
-   "baseline_at": "2026-10-31T12:22:05+00:00",
+   "local_file_sha": "b2c953120d86fcaf0926ade3260436438ece498e6b5e8c2ae1211f4123ce4a3a",
+   "local_version": "1.4.1",
+   "baseline_at": "2026-10-31T12:39:04+00:00",
    "evidence_cmd": "gh api repos/sickn33/agentic-awesome-skills/commits/main --jq .sha && gh api 'repos/sickn33/agentic-awesome-skills/contents/plugins/agentic-awesome-skills-claude/skills/codex-delegate/SKILL.md?ref=main' --jq .sha && sha256sum 'D:/global_skills/coding-agent/SKILL.md' | cut -c1-64"
   },
   {
