@@ -1,0 +1,6 @@
+capy/skill/gstack|191e14fb|-
+capy/skill/gstack/SKILL.md|8ef728bd|21608
+capy/skill/gstack/captain.md|dbae2e25|11498
+capy/skill/gstack/factory.md|7e472397|3299
+capy/skill/gstack/scripts|85497606|-
+capy/skill/gstack/scripts/install.sh|2cb8ae4c|9889

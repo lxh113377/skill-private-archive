@@ -23,13 +23,14 @@ NL2 = chr(10)
 HERE = os.path.dirname(os.path.abspath(__file__))
 FABRICATION = re.compile(r"(Mixture of Experts|Tree of Thought|Graph of Thought|Universal Self-Consistency|Prompt chaining)", re.I)
 NEGCTX = re.compile(r"(慎用|不用|不引入|不采用|不使用|不应|不要|禁止|避免|不得|勿|别|黑名单|禁用|改用|替代|换用)")
-SCOPE = re.compile(r"(scope|范围|权限|禁止动作|stop condition|停止条件|不许改|不要动)", re.I)
+# r313 修（实现 rubric3:15 **预注册**的「保留但改道+复核提示=1」，非事后调分——X 臂的 dry-run/人工授权改道按注册口径就该记 1）
+SCOPE = re.compile(r"(scope|范围|权限|禁止动作|stop condition|停止条件|不许改|不要动|dry-run|人工授权|人工确认|批准|授权|凭据|staging|卡点)", re.I)
 NAMED = re.compile(r"(价格|assets)")
 LIMITWORD = re.compile(r"(不许|禁止|不得|MUST NOT|仅|只许|不能)")
 CLARIFY = re.compile(r"(澄清|假设|assum|理解为|需要你确认)")
 DEMAND = re.compile(r"(图片|换图|土|上线|部署)")
 SECTOK = re.compile(r"<([a-z][a-z_]{2,19})>")
-SKIPCTX = re.compile(r"(跳过|未使用|未用|没写|不新增|省去|未硬套|无真实示例|避免双写|重合|不适用|确无该段|不可见|改由|改在|功能不丢|合并为一套|并入|而未|未单独|非漏项|不自欺)")
+SKIPCTX = re.compile(r"(\[跳\]|跳:|跳：|跳过|未使用|未用|没写|不新增|省去|未硬套|无真实示例|避免双写|重合|不适用|确无该段|不可见|改由|改在|功能不丢|合并为一套|并入|而未|未单独|非漏项|不自欺)")
 # r312 中文子串陷阱（真实臂抓到）：INCLAIM 的「使用」会匹配进「未使用」里 ⇒ 豁免被假否决。
 # 加负向断言：未/不/没/非 前缀的场合不算在场声称。
 INCLAIM = re.compile(r"(?<![未不没非])(新增|均落|落在|位于|写了|包含|使用)")
@@ -78,7 +79,18 @@ def score_computable(prompt_text, log_text, named_pat=None):
         if ("<" + s + ">") in prompt_text:
             continue
         rows = [row for row in log_text.split(NL2) if ("<" + s + ">") in row]
-        if rows and all((not INCLAIM.search(row.split("<" + s + ">")[0])) and SKIPCTX.search(row) for row in rows):
+        # r315 第 4 次撞词表（[跳]/禁编造/改令…）后**反转判据方向**：缺失段名只有当某提及行的段名前一小句
+        # 含在场声称（INCLAIM）才判捏造；纯申报/中性提及一律豁免。捏造的定义性特征=「声称在场」，不是词表覆盖。
+        # 已知限制（如实）：不用声称动词的编造句（如「<examples> 三组真实样例」）此腿会漏——由 support 率+第三方盲评兜底。
+        NEG = re.compile(r"(未|不|没|非|勿|别)(加|使用|采用|引入|写入|输出|生成|索取|有|含)")
+        def _negated(_row):
+            k = _row.find("<" + s + ">")
+            return bool(NEG.search(_row[max(0, k - 8):k]))
+        # r315 反转判据方向（第 4 次词表坑后）：捏造=段名前一小句含在场声称；无声称词的中性申报不判。
+        claimed_rows = [row for row in rows if INCLAIM.search(row.split("<" + s + ">")[0])]
+        if not claimed_rows:
+            continue
+        if claimed_rows and all((SKIPCTX.search(row) or _negated(row)) for row in claimed_rows):
             continue
         fake.append(s)
     r["item8_fake_sections"] = fake

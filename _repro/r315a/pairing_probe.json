@@ -1,0 +1,418 @@
+[
+ {
+  "slug": "data-analysis",
+  "repo": "K-Dense-AI/scientific-agent-skills",
+  "path": "skills/exploratory-data-analysis/SKILL.md",
+  "local_lines": 150,
+  "up_lines": 226,
+  "overlap": 0.0267
+ },
+ {
+  "slug": "rag-eval",
+  "repo": "NVIDIA-AI-Blueprints/rag",
+  "path": "skills/rag-eval/SKILL.md",
+  "local_lines": 108,
+  "up_lines": 98,
+  "overlap": 1.0
+ },
+ {
+  "slug": "commit-archaeologist",
+  "repo": "Shubhamsaboo/awesome-llm-apps",
+  "path": "agent_skills/commit-archaeologist/SKILL.md",
+  "local_lines": 99,
+  "up_lines": 97,
+  "overlap": 1.0
+ },
+ {
+  "slug": "scope-creep-detector",
+  "repo": "Shubhamsaboo/awesome-llm-apps",
+  "path": "agent_skills/scope-creep-detector/SKILL.md",
+  "local_lines": 94,
+  "up_lines": 92,
+  "overlap": 1.0
+ },
+ {
+  "slug": "algorithmic-art",
+  "repo": "anthropics/skills",
+  "path": "skills/algorithmic-art/SKILL.md",
+  "local_lines": 284,
+  "up_lines": 282,
+  "overlap": 1.0
+ },
+ {
+  "slug": "brand-guidelines",
+  "repo": "anthropics/skills",
+  "path": "skills/brand-guidelines/SKILL.md",
+  "local_lines": 50,
+  "up_lines": 48,
+  "overlap": 1.0
+ },
+ {
+  "slug": "canvas-design",
+  "repo": "anthropics/skills",
+  "path": "skills/canvas-design/SKILL.md",
+  "local_lines": 88,
+  "up_lines": 81,
+  "overlap": 1.0
+ },
+ {
+  "slug": "doc-coauthoring",
+  "repo": "anthropics/skills",
+  "path": "skills/doc-coauthoring/SKILL.md",
+  "local_lines": 84,
+  "up_lines": 229,
+  "overlap": 0.0238
+ },
+ {
+  "slug": "docx",
+  "repo": "anthropics/skills",
+  "path": "skills/docx/SKILL.md",
+  "local_lines": 505,
+  "up_lines": 59,
+  "overlap": 0.0678
+ },
+ {
+  "slug": "frontend-design",
+  "repo": "anthropics/skills",
+  "path": "skills/frontend-design/SKILL.md",
+  "local_lines": 151,
+  "up_lines": 43,
+  "overlap": 0.0698
+ },
+ {
+  "slug": "internal-comms",
+  "repo": "anthropics/skills",
+  "path": "skills/internal-comms/SKILL.md",
+  "local_lines": 27,
+  "up_lines": 25,
+  "overlap": 1.0
+ },
+ {
+  "slug": "mcp-builder",
+  "repo": "anthropics/skills",
+  "path": "skills/mcp-builder/SKILL.md",
+  "local_lines": 174,
+  "up_lines": 170,
+  "overlap": 1.0
+ },
+ {
+  "slug": "pdf",
+  "repo": "anthropics/skills",
+  "path": "skills/pdf/SKILL.md",
+  "local_lines": 199,
+  "up_lines": 174,
+  "overlap": 0.1724
+ },
+ {
+  "slug": "theme-factory",
+  "repo": "anthropics/skills",
+  "path": "skills/theme-factory/SKILL.md",
+  "local_lines": 43,
+  "up_lines": 41,
+  "overlap": 1.0
+ },
+ {
+  "slug": "xlsx",
+  "repo": "anthropics/skills",
+  "path": "skills/xlsx/SKILL.md",
+  "local_lines": 178,
+  "up_lines": 74,
+  "overlap": 0.0676
+ },
+ {
+  "slug": "chart-visualization",
+  "repo": "antvis/chart-visualization-skills",
+  "path": "skills/chart-visualization/SKILL.md",
+  "local_lines": 58,
+  "up_lines": 81,
+  "overlap": 0.0862
+ },
+ {
+  "slug": "gstack",
+  "repo": "garrytan/gstack",
+  "path": "capy/skill/gstack/SKILL.md",
+  "local_lines": 437,
+  "up_lines": 52,
+  "overlap": 0.0385
+ },
+ {
+  "slug": "diagram-maker",
+  "repo": "github/awesome-copilot",
+  "path": "skills/excalidraw-diagram-generator/SKILL.md",
+  "local_lines": 48,
+  "up_lines": 446,
+  "overlap": 0.0208
+ },
+ {
+  "slug": "figma",
+  "repo": "heygen-com/hyperframes",
+  "path": "skills/figma/SKILL.md",
+  "local_lines": 35,
+  "up_lines": 37,
+  "overlap": 0.0571
+ },
+ {
+  "slug": "hyperframes",
+  "repo": "heygen-com/hyperframes",
+  "path": "skills/hyperframes/SKILL.md",
+  "local_lines": 79,
+  "up_lines": 54,
+  "overlap": 0.3148
+ },
+ {
+  "slug": "hyperframes-cli",
+  "repo": "heygen-com/hyperframes",
+  "path": "skills/hyperframes-cli/SKILL.md",
+  "local_lines": 115,
+  "up_lines": 68,
+  "overlap": 0.0441
+ },
+ {
+  "slug": "hyperframes-media",
+  "repo": "heygen-com/hyperframes",
+  "path": "skills/media-use/SKILL.md",
+  "local_lines": 171,
+  "up_lines": 43,
+  "overlap": 0.0698
+ },
+ {
+  "slug": "hyperframes-registry",
+  "repo": "heygen-com/hyperframes",
+  "path": "skills/hyperframes-registry/SKILL.md",
+  "local_lines": 81,
+  "up_lines": 41,
+  "overlap": 0.0976
+ },
+ {
+  "slug": "ppt-master",
+  "repo": "hugohe3/ppt-master",
+  "path": "skills/ppt-master/SKILL.md",
+  "local_lines": 124,
+  "up_lines": 113,
+  "overlap": 0.9646
+ },
+ {
+  "slug": "html-ppt",
+  "repo": "lewislulu/html-ppt-skill",
+  "path": "SKILL.md",
+  "local_lines": 172,
+  "up_lines": 250,
+  "overlap": 0.9012
+ },
+ {
+  "slug": "grill-me",
+  "repo": "mattpocock/skills",
+  "path": "skills/productivity/grill-me/SKILL.md",
+  "local_lines": 37,
+  "up_lines": 5,
+  "overlap": 0.4
+ },
+ {
+  "slug": "ui-ux-pro-max",
+  "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
+  "path": ".claude/skills/ui-ux-pro-max/SKILL.md",
+  "local_lines": 74,
+  "up_lines": 128,
+  "overlap": 0.4054
+ },
+ {
+  "slug": "brainstorming",
+  "repo": "obra/superpowers",
+  "path": "skills/brainstorming/SKILL.md",
+  "local_lines": 124,
+  "up_lines": 231,
+  "overlap": 0.0403
+ },
+ {
+  "slug": "subagent-driven-development",
+  "repo": "obra/superpowers",
+  "path": "skills/executing-plans/SKILL.md",
+  "local_lines": 59,
+  "up_lines": 262,
+  "overlap": 0.0169
+ },
+ {
+  "slug": "test-driven-development",
+  "repo": "obra/superpowers",
+  "path": "skills/test-driven-development/SKILL.md",
+  "local_lines": 257,
+  "up_lines": 216,
+  "overlap": 0.9537
+ },
+ {
+  "slug": "verification-before-completion",
+  "repo": "obra/superpowers",
+  "path": "skills/verification-before-completion/SKILL.md",
+  "local_lines": 306,
+  "up_lines": 80,
+  "overlap": 0.4
+ },
+ {
+  "slug": "writing-plans",
+  "repo": "obra/superpowers",
+  "path": "skills/writing-plans/SKILL.md",
+  "local_lines": 150,
+  "up_lines": 134,
+  "overlap": 1.0
+ },
+ {
+  "slug": "coding-agent",
+  "repo": "sickn33/agentic-awesome-skills",
+  "path": "plugins/agentic-awesome-skills-claude/skills/codex-delegate/SKILL.md",
+  "local_lines": 109,
+  "up_lines": 133,
+  "overlap": 0.0367
+ },
+ {
+  "slug": "oracle",
+  "repo": "steipete/oracle",
+  "path": "skills/oracle/SKILL.md",
+  "local_lines": 101,
+  "up_lines": 157,
+  "overlap": 0.0594
+ },
+ {
+  "slug": "agent-browser",
+  "repo": "vercel-labs/agent-browser",
+  "path": "skills/agent-browser/SKILL.md",
+  "local_lines": 70,
+  "up_lines": 34,
+  "overlap": 0.1176
+ },
+ {
+  "slug": "electron",
+  "repo": "vercel-labs/agent-browser",
+  "path": "skill-data/electron/SKILL.md",
+  "local_lines": 33,
+  "up_lines": 124,
+  "overlap": 0.2424
+ },
+ {
+  "slug": "find-skills",
+  "repo": "vercel-labs/skills",
+  "path": "skills/find-skills/SKILL.md",
+  "local_lines": 29,
+  "up_lines": 87,
+  "overlap": 0.1379
+ },
+ {
+  "slug": "story",
+  "repo": "worldwonderer/oh-story-claudecode",
+  "path": "skills/story/SKILL.md",
+  "local_lines": 86,
+  "up_lines": 117,
+  "overlap": 0.4186
+ },
+ {
+  "slug": "story-cover",
+  "repo": "worldwonderer/oh-story-claudecode",
+  "path": "skills/story-cover/SKILL.md",
+  "local_lines": 27,
+  "up_lines": 101,
+  "overlap": 0.2222
+ },
+ {
+  "slug": "story-deslop",
+  "repo": "worldwonderer/oh-story-claudecode",
+  "path": "skills/story-deslop/SKILL.md",
+  "local_lines": 121,
+  "up_lines": 81,
+  "overlap": 0.0741
+ },
+ {
+  "slug": "story-import",
+  "repo": "worldwonderer/oh-story-claudecode",
+  "path": "skills/story-import/SKILL.md",
+  "local_lines": 138,
+  "up_lines": 81,
+  "overlap": 0.1481
+ },
+ {
+  "slug": "story-long-analyze",
+  "repo": "worldwonderer/oh-story-claudecode",
+  "path": "skills/story-long-analyze/SKILL.md",
+  "local_lines": 52,
+  "up_lines": 73,
+  "overlap": 0.0962
+ },
+ {
+  "slug": "story-long-write",
+  "repo": "worldwonderer/oh-story-claudecode",
+  "path": "skills/story-long-write/SKILL.md",
+  "local_lines": 31,
+  "up_lines": 77,
+  "overlap": 0.3871
+ },
+ {
+  "slug": "story-review",
+  "repo": "worldwonderer/oh-story-claudecode",
+  "path": "skills/story-review/SKILL.md",
+  "local_lines": 118,
+  "up_lines": 154,
+  "overlap": 0.339
+ },
+ {
+  "slug": "story-scan",
+  "repo": "worldwonderer/oh-story-claudecode",
+  "path": "skills/story-long-scan/SKILL.md",
+  "local_lines": 65,
+  "up_lines": 99,
+  "overlap": 0.0462
+ },
+ {
+  "slug": "story-setup",
+  "repo": "worldwonderer/oh-story-claudecode",
+  "path": "skills/story-setup/SKILL.md",
+  "local_lines": 70,
+  "up_lines": 111,
+  "overlap": 0.2286
+ },
+ {
+  "slug": "story-short-analyze",
+  "repo": "worldwonderer/oh-story-claudecode",
+  "path": "skills/story-short-analyze/SKILL.md",
+  "local_lines": 112,
+  "up_lines": 97,
+  "overlap": 0.3299
+ },
+ {
+  "slug": "story-short-write",
+  "repo": "worldwonderer/oh-story-claudecode",
+  "path": "skills/story-short-write/SKILL.md",
+  "local_lines": 108,
+  "up_lines": 76,
+  "overlap": 0.25
+ },
+ {
+  "slug": "frontend-slides",
+  "repo": "zarazhangrui/frontend-slides",
+  "path": "plugins/frontend-slides/skills/frontend-slides/SKILL.md",
+  "local_lines": 221,
+  "up_lines": 247,
+  "overlap": 0.6878
+ },
+ {
+  "slug": "A-prompt-better",
+  "repo": "nidhinjs/prompt-master",
+  "path": "SKILL.md",
+  "local_lines": 500,
+  "up_lines": 325,
+  "overlap": 0.0862
+ },
+ {
+  "slug": "frontend-skill",
+  "repo": "Leonxlnx/taste-skill",
+  "path": "skills/taste-skill/SKILL.md",
+  "local_lines": 199,
+  "up_lines": 449,
+  "overlap": 0.2764
+ },
+ {
+  "slug": "security-audit",
+  "repo": "cloudflare/security-audit-skill",
+  "path": "skills/security-audit/SKILL.md",
+  "local_lines": 194,
+  "up_lines": 125,
+  "overlap": 0.016
+ }
+]
