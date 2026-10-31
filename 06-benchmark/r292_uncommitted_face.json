@@ -1,0 +1,9 @@
+{
+ "schema": "uncommitted-this-round-v1",
+ "round": "292",
+ "dirty_tracked": 31,
+ "suspect_count": 0,
+ "suspects": [],
+ "limit_note": "工作树共享：本面不证明作者，只给线索（新增行含本轮轮号 + 处置词）",
+ "disposal": "Lead 收尾前逐个提交或撤销；留着就走 = 发布面缺件（r290 实测）"
+}

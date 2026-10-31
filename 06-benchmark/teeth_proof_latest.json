@@ -2,7 +2,7 @@
  "schema": "teeth-proof-matrix-v1",
  "readonly": true,
  "provenance_cmd": "python 05-exec/r254_teeth_proof_matrix.py --json <件>",
- "gates_n": 113,
+ "gates_n": 115,
  "fixture_files": [
   "r105_debt_face_freshness_fixtures.py",
   "r112_cache_guard_fixtures.py",
@@ -38,6 +38,7 @@
   "r21e_ratchet_attrib_fixtures.py",
   "r254_proof_fixtures.py",
   "r260_maintenance_trim_fixtures.py",
+  "r287_provenance_fixtures.py",
   "r29_rubric_calibre_fixtures.py",
   "r31_run_gates_fixtures.py",
   "r32_freshness_fixtures.py",
@@ -988,6 +989,22 @@
    "mutation": false,
    "selftest": true,
    "proof": "fixture"
+  },
+  {
+   "id": "provenance_resolve_face",
+   "script": "r287_provenance_resolve.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
+  },
+  {
+   "id": "provenance_resolve_fixtures",
+   "script": "r287_provenance_fixtures.py",
+   "fixture": true,
+   "mutation": true,
+   "selftest": false,
+   "proof": "mutation"
   }
  ]
 }

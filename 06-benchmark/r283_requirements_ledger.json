@@ -1,6 +1,6 @@
 {
  "schema": "requirements-ledger-v1",
- "generated_at": "2026-10-30 01:28",
+ "generated_at": "2026-10-30 22:01",
  "provenance_cmd": "python 05-exec/r283_requirements_ledger.py",
  "note": "generated, not hand-written: numbers are read from the faces at run time and every pointer is existence-checked before being written",
  "rows": [
@@ -140,7 +140,7 @@
     "04-plan/后续维护规范_季度巡检机制_r113_2026-10-18.md"
    ],
    "readings": {
-    "round_reports_on_disk": 141
+    "round_reports_on_disk": 153
    },
    "gap": "本件补的正是需求 1/7 缺的汇总层（此前只有逐轮报告）",
    "cmd": "python 05-exec/r283_requirements_ledger.py",

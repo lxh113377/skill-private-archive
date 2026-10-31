@@ -2,7 +2,7 @@
  "schema": "route-truth-v2",
  "readonly": true,
  "router": "C:/Users/37533/Desktop/workspace/焚诀/eval\\unified_router.py",
- "measured_at": "2026-10-29 22:06:51",
+ "measured_at": "2026-10-30 13:29:25",
  "rows": [
   {
    "skill": "win-toolchain-pitfalls",
@@ -39,7 +39,7 @@
     }
    ],
    "llm_reason": "Top-3几乎并列 (diff=0.0001)",
-   "elapsed_s": 0.2
+   "elapsed_s": 0.3
   },
   {
    "skill": "win-toolchain-pitfalls",
@@ -76,7 +76,7 @@
     }
    ],
    "llm_reason": "Top-3几乎并列 (diff=0.0058)",
-   "elapsed_s": 0.3
+   "elapsed_s": 0.4
   },
   {
    "skill": "chaoshi-web-deploy",
@@ -212,7 +212,7 @@
     "dingtalk-aitable"
    ],
    "outcome": "DISPUTED",
-   "elapsed_s": 0.2
+   "elapsed_s": 0.3
   },
   {
    "task": "D1 查额度",
@@ -226,7 +226,7 @@
     "fenjue-lessons-hitrate"
    ],
    "outcome": "HIT",
-   "elapsed_s": 0.2
+   "elapsed_s": 0.3
   },
   {
    "task": "Workers 调用量",
@@ -240,7 +240,7 @@
     "pixelle-api-ensure"
    ],
    "outcome": "HIT",
-   "elapsed_s": 0.2
+   "elapsed_s": 0.3
   },
   {
    "task": "Resend 发邮",
@@ -268,7 +268,7 @@
     "libreoffice-base"
    ],
    "outcome": "UNOWNED",
-   "elapsed_s": 0.3
+   "elapsed_s": 0.2
   }
  ],
  "task_judged": 7,

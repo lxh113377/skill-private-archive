@@ -17,12 +17,12 @@
   "Resend",
   "Upstash-Redis"
  ],
- "face_files": 307,
+ "face_files": 325,
  "tools": [
   {
    "tool": "GitHub",
-   "hits": 103,
-   "probe_share": 0.631,
+   "hits": 105,
+   "probe_share": 0.638,
    "real_hits": 38,
    "real_files": [
     "quarterly_audit.yml",
@@ -105,15 +105,16 @@
   },
   {
    "tool": "SQLite",
-   "hits": 32,
-   "probe_share": 0.25,
-   "real_hits": 24,
+   "hits": 45,
+   "probe_share": 0.178,
+   "real_hits": 37,
    "real_files": [
-    "r203_ledger_index.py"
+    "r203_ledger_index.py",
+    "r282i_usage_source_forensics.py"
    ],
    "line_exec": 0,
    "line_comment": 0,
-   "line_prose": 19,
+   "line_prose": 32,
    "line_cjk_prose": 0,
    "state": "USED",
    "real_state": "REAL_USED"
@@ -176,7 +177,7 @@
    "real_state": "REAL_GAP"
   }
  ],
- "total_hits": 295,
- "real_face_files": 184,
- "real_total_hits": 99
+ "total_hits": 310,
+ "real_face_files": 197,
+ "real_total_hits": 112
 }

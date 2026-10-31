@@ -3,9 +3,17 @@
  "readonly": true,
  "provenance_cmd": "python 05-exec/r260_r269_converge.py --json <件>",
  "rule_leaf": "memory/06-constraints.part18.md",
- "untracked_py_n": 0,
- "counts": {},
+ "untracked_py_n": 1,
+ "counts": {
+  "NOTIFY_FIRST": 1
+ },
  "buck_passing": [],
- "items": [],
- "face_state": "empty-by-successful-query"
+ "items": [
+  {
+   "file": "05-exec/r290_uncommitted_face.py",
+   "refs_n": 4,
+   "verdict": "NOTIFY_FIRST",
+   "reason": "被 4 处引用，处置前须具名通知"
+  }
+ ]
 }
