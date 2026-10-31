@@ -1,0 +1,136 @@
+{
+ "schema": "r321-lower-bound-1",
+ "head": "e8f489ebcf788f9b4f258ab96bb6c3cf465c5b25",
+ "prose_total": 552,
+ "by_name": 0,
+ "dir_only": 293,
+ "hard_miss": 259,
+ "per_skill": {
+  "data-analysis": {
+   "prose": 7,
+   "by_name": 0,
+   "dir_only": 6,
+   "hard_miss": 1
+  },
+  "theme-factory": {
+   "prose": 10,
+   "by_name": 0,
+   "dir_only": 10,
+   "hard_miss": 0
+  },
+  "gstack": {
+   "prose": 6,
+   "by_name": 0,
+   "dir_only": 4,
+   "hard_miss": 2
+  },
+  "diagram-maker": {
+   "prose": 2,
+   "by_name": 0,
+   "dir_only": 2,
+   "hard_miss": 0
+  },
+  "hyperframes": {
+   "prose": 33,
+   "by_name": 0,
+   "dir_only": 33,
+   "hard_miss": 0
+  },
+  "hyperframes-media": {
+   "prose": 6,
+   "by_name": 0,
+   "dir_only": 0,
+   "hard_miss": 6
+  },
+  "hyperframes-registry": {
+   "prose": 3,
+   "by_name": 0,
+   "dir_only": 3,
+   "hard_miss": 0
+  },
+  "ppt-master": {
+   "prose": 147,
+   "by_name": 0,
+   "dir_only": 45,
+   "hard_miss": 102
+  },
+  "ui-ux-pro-max": {
+   "prose": 2,
+   "by_name": 0,
+   "dir_only": 2,
+   "hard_miss": 0
+  },
+  "agent-browser": {
+   "prose": 1,
+   "by_name": 0,
+   "dir_only": 1,
+   "hard_miss": 0
+  },
+  "story-cover": {
+   "prose": 2,
+   "by_name": 0,
+   "dir_only": 2,
+   "hard_miss": 0
+  },
+  "story-deslop": {
+   "prose": 6,
+   "by_name": 0,
+   "dir_only": 6,
+   "hard_miss": 0
+  },
+  "story-import": {
+   "prose": 12,
+   "by_name": 0,
+   "dir_only": 12,
+   "hard_miss": 0
+  },
+  "story-long-analyze": {
+   "prose": 11,
+   "by_name": 0,
+   "dir_only": 11,
+   "hard_miss": 0
+  },
+  "story-long-write": {
+   "prose": 96,
+   "by_name": 0,
+   "dir_only": 64,
+   "hard_miss": 32
+  },
+  "story-review": {
+   "prose": 15,
+   "by_name": 0,
+   "dir_only": 15,
+   "hard_miss": 0
+  },
+  "story-scan": {
+   "prose": 5,
+   "by_name": 0,
+   "dir_only": 5,
+   "hard_miss": 0
+  },
+  "story-setup": {
+   "prose": 132,
+   "by_name": 0,
+   "dir_only": 16,
+   "hard_miss": 116
+  },
+  "story-short-analyze": {
+   "prose": 29,
+   "by_name": 0,
+   "dir_only": 29,
+   "hard_miss": 0
+  },
+  "story-short-write": {
+   "prose": 26,
+   "by_name": 0,
+   "dir_only": 26,
+   "hard_miss": 0
+  },
+  "frontend-skill": {
+   "prose": 1,
+   "by_name": 0,
+   "dir_only": 1,
+   "hard_miss": 0
+  }
+ }
+}

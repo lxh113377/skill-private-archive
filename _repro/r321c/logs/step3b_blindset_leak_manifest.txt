@@ -1,0 +1,77 @@
+CMD: python -B -B C:\Users\37533\Desktop\workspace\skill焚诀\自建skill优化\_repro\r321c\work\fj\eval\blindset_leak_manifest.py
+rc=0
+STDOUT:
+{
+  "schema": "fenjue-blindset-leak-manifest-v1",
+  "source": "eval/layered_testset.json",
+  "rule_table": "eval/direct_map_fallback_data.py::_DIRECT_MAP_FALLBACK（已剔除 NONE 目标）",
+  "n_rules": 248,
+  "total": 291,
+  "leaked": 185,
+  "clean": 106,
+  "leak_rate_pct": 63.6,
+  "by_tier": {
+    "skills": {
+      "n": 151,
+      "leak": 106,
+      "clean": 45
+    },
+    "cli": {
+      "n": 59,
+      "leak": 40,
+      "clean": 19
+    },
+    "short": {
+      "n": 51,
+      "leak": 32,
+      "clean": 19
+    },
+    "fault_finding": {
+      "n": 19,
+      "leak": 7,
+      "clean": 12
+    },
+    "negative": {
+      "n": 11,
+      "leak": 0,
+      "clean": 11
+    }
+  },
+  "score_full": {
+    "n": 291,
+    "pct": 95.2,
+    "by_judge": {
+      "exact": 266,
+      "usable-suboptimal": 3,
+      "wrong": 0,
+      "blindspot": 22
+    }
+  },
+  "score_clean_only": {
+    "n": 106,
+    "pct": 87.5,
+    "by_judge": {
+      "exact": 84,
+      "usable-suboptimal": 0,
+      "wrong": 0,
+      "blindspot": 22
+    }
+  },
+  "score_leaked_only": {
+    "n": 185,
+    "pct": 99.6,
+    "by_judge": {
+      "exact": 182,
+      "usable-suboptimal": 3,
+      "wrong": 0,
+      "blindspot": 0
+    }
+  },
+  "leak_attribution_pp": 7.7,
+  "score_caveat": "judge 加权口径，非盲评实测分（盲评要真跑 Codex，另计）。其价值在于**两个口径的差** leak_attribution_pp —— 它直接量出「被硬编码的题面把分数抬了多少」。",
+  "governance": "评测面与功能面拆开：规则一行不动（删了会断真实查询），只在评测面标注 LEAKED。此后任何命中率汇报必须**同时给两个数**，单给全量分即视为口径失真。"
+}
+
+条目明细已落 C:\Users\37533\Desktop\workspace\skill焚诀\自建skill优化\_repro\r321c\work\fj\eval\blindset_leak_manifest.json（291 条）
+
+STDERR:

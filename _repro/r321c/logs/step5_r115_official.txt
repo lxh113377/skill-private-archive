@@ -1,0 +1,18 @@
+CMD: python -B C:\Users\37533\Desktop\workspace\skill焚诀\自建skill优化\05-exec\r115_quality_truth.py --json C:\Users\37533\Desktop\workspace\skill焚诀\自建skill优化\_repro\r321c\work\r115_official_out.json
+rc=0
+STDOUT:
+覆盖根：production route() via eval/frozen_blind_eval.py（不重实现判据）
+  L1 layered（bge 层）: 90.7% （278/291 条，上限 95.2）
+  L2 frozen （bge 层）: 65.0% （7/10 条）
+  L1 layered  Wilson 95%: [92.5, 97.4]（n=291）
+  L2 frozen   Wilson 95%: [39.7, 89.2]（n=10）
+  需求6 R1 相对提升: 2.7%（阈值 30%）⇒ 未达
+  需求6 R2 区间判定: 区间重叠(幅度落在抽样抖动内)
+  需求6 总判定  : 未满足
+  L3 泄漏面          : 测试集 185/291 = 63.6% ｜ 干净面 106 条 ｜ 轮换池 14/20 = 70.0%
+     detail: 盲测集泄漏 185/291 = 63.6%｜干净面 106 条｜轮换池泄漏 14/20 = 70.0%｜双口径：全量 95.2% / 干净面 87.5% / 泄漏面 99.6%（泄漏抬分 7.7pp）
+  L4 干净面          : 87.5% （?/106 条，剔除泄漏 185 条，来源=hitrate_holdout.testset + detail（官方件自算，非本件重算））
+JSON -> C:\Users\37533\Desktop\workspace\skill焚诀\自建skill优化\_repro\r321c\work\r115_official_out.json
+[QUALITY:PROD] L1=90.7% L2=65.0% L4=87.5%
+
+STDERR:

@@ -2,7 +2,7 @@
  "schema": "teeth-proof-matrix-v1",
  "readonly": true,
  "provenance_cmd": "python 05-exec/r254_teeth_proof_matrix.py --json <件>",
- "gates_n": 115,
+ "gates_n": 116,
  "fixture_files": [
   "r105_debt_face_freshness_fixtures.py",
   "r112_cache_guard_fixtures.py",
@@ -40,6 +40,8 @@
   "r260_maintenance_trim_fixtures.py",
   "r287_provenance_fixtures.py",
   "r29_rubric_calibre_fixtures.py",
+  "r300_declared_face_fixtures.py",
+  "r302_r260_input_pin_fixtures.py",
   "r31_run_gates_fixtures.py",
   "r32_freshness_fixtures.py",
   "r34_onwrite_fixtures.py",
@@ -237,6 +239,14 @@
    "mutation": true,
    "selftest": false,
    "proof": "mutation"
+  },
+  {
+   "id": "declared_face_fixtures",
+   "script": "r300_declared_face_fixtures.py",
+   "fixture": true,
+   "mutation": false,
+   "selftest": false,
+   "proof": "fixture"
   },
   {
    "id": "r19_scan_fixtures",
@@ -753,10 +763,10 @@
   {
    "id": "input_pin_fixtures",
    "script": "r67_input_pin_fixtures.py",
-   "fixture": false,
+   "fixture": true,
    "mutation": false,
    "selftest": false,
-   "proof": "NONE"
+   "proof": "fixture"
   },
   {
    "id": "runner_internals_fixtures",
@@ -969,10 +979,10 @@
   {
    "id": "local_baseline_face",
    "script": "r260_local_baseline.py",
-   "fixture": false,
+   "fixture": true,
    "mutation": false,
    "selftest": true,
-   "proof": "selftest"
+   "proof": "fixture"
   },
   {
    "id": "quarterly_cadence_face",

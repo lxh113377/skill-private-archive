@@ -1,13 +1,32 @@
 {
  "schema": "zijian-md-deadlink-v1",
- "generated_at": "2026-10-30T13:29:14",
+ "generated_at": "2026-10-31T22:07:23",
  "root": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化",
- "md_files": 539,
+ "md_files": 678,
  "face": "shipping (git-tracked + non-ignored untracked); drafts excluded",
- "face_files_total": 3694,
- "dead": 0,
- "items": [],
- "token": "[GATE:deadlink-pass]",
- "status": "PASS",
+ "face_files_total": 4106,
+ "dead": 3,
+ "items": [
+  {
+   "file": "_repro/r314b/evidence/recheck_upstream_SKILL.md",
+   "line": 64,
+   "target": "captain.md",
+   "resolved": "_repro/r314b/evidence/captain.md"
+  },
+  {
+   "file": "_repro/r314b/evidence/upstream_SKILL.md",
+   "line": 64,
+   "target": "captain.md",
+   "resolved": "_repro/r314b/evidence/captain.md"
+  },
+  {
+   "file": "_repro/r316b_lineage/evidence/gstack_capy_skill.md",
+   "line": 64,
+   "target": "captain.md",
+   "resolved": "_repro/r316b_lineage/evidence/captain.md"
+  }
+ ],
+ "token": "[GATE:deadlink-fail]",
+ "status": "FAIL",
  "note": "围栏感知 + 占位符跳过；三腿自证见 --selftest（反例/围栏/占位符）"
 }

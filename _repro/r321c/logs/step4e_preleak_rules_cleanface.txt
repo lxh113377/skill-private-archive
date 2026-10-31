@@ -1,0 +1,869 @@
+CMD: python -B C:\Users\37533\Desktop\workspace\skill焚诀\自建skill优化\_repro\r321c\work\fj_pre\eval\frozen_blind_eval.py --json --set layered
+rc=0
+STDOUT:
+{
+  "score": 80.0,
+  "max_achievable": 87.5,
+  "n": 106,
+  "bge_status": "engaged",
+  "semantic_layer": "bge",
+  "hits": 98,
+  "results": [
+    {
+      "query": "需求有点模糊，帮我先问清楚再动手",
+      "expected": "A-ask-questions",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "A-ask-questions",
+      "hit": true
+    },
+    {
+      "query": "聚合多个检查脚本的 runner 老是假绿",
+      "expected": "audit-runner-safe-aggregate",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "audit-runner-safe-aggregate",
+      "hit": true
+    },
+    {
+      "query": "清理 C 盘空间",
+      "expected": "c-cleanup",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "c-cleanup",
+      "hit": true
+    },
+    {
+      "query": "超市后台商品编辑，用内联编辑模式改",
+      "expected": "chaoshi-admin-inline-edit",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "chaoshi-admin-inline-edit",
+      "hit": true
+    },
+    {
+      "query": "分析这个 CSV 文件",
+      "expected": "data-analysis",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "data-analysis",
+      "hit": true
+    },
+    {
+      "query": "写个 Word 文档",
+      "expected": "docx",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "docx",
+      "hit": true
+    },
+    {
+      "query": "马斯克会怎么想这个问题",
+      "expected": "elon-musk-perspective",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "elon-musk-perspective",
+      "hit": true
+    },
+    {
+      "query": "按焚诀评分机制给三件套评个分",
+      "expected": "fenjue-advisor-scoring",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "fenjue-lessons-hitrate",
+      "hit": false
+    },
+    {
+      "query": "GitHub 创建 PR",
+      "expected": "github",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "github",
+      "hit": true
+    },
+    {
+      "query": "gsap 做滚动触发动画",
+      "expected": "gsap",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "gsap",
+      "hit": true
+    },
+    {
+      "query": "帮我分析视频前三秒的钩子吸引力",
+      "expected": "hook-analyzer-skill",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "hook-analyzer-skill",
+      "hit": true
+    },
+    {
+      "query": "帮我做一个 HTML 幻灯片",
+      "expected": "html-ppt",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "html-ppt",
+      "hit": true
+    },
+    {
+      "query": "PDF 扫描件本地解析成结构化数据",
+      "expected": "pdf",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "pdf",
+      "hit": true
+    },
+    {
+      "query": "Notion 会议准备",
+      "expected": "meeting-intelligence",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "meeting-intelligence",
+      "hit": true
+    },
+    {
+      "query": "多引擎搜索一下这个技术",
+      "expected": "multi-search-engine",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "spike",
+      "hit": false
+    },
+    {
+      "query": "帮我在 PDF 里改一段文字",
+      "expected": "nano-pdf",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "nano-pdf",
+      "hit": true
+    },
+    {
+      "query": "Node 进程 CPU 飙高挂 inspector 排查",
+      "expected": "node-inspect-debugger",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "node-inspect-debugger",
+      "hit": true
+    },
+    {
+      "query": "帮我用 Notion CLI 查询数据库",
+      "expected": "notion-cli",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "notion-cli",
+      "hit": true
+    },
+    {
+      "query": "帮我在 Obsidian 里创建 Bases 视图",
+      "expected": "obsidian-bases",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "obsidian-bases",
+      "hit": true
+    },
+    {
+      "query": "帮我在 Obsidian 里搜索笔记",
+      "expected": "obsidian-cli",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "obsidian-cli",
+      "hit": true
+    },
+    {
+      "query": "Obsidian 笔记管理",
+      "expected": "obsidian-markdown",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "obsidian-markdown",
+      "hit": true
+    },
+    {
+      "query": "派发 OC 任务时加执行护栏防秒停",
+      "expected": "oc-dispatch-exec-guard",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "oc-dispatch-exec-guard",
+      "hit": true
+    },
+    {
+      "query": "对 OC 输出做双门禁质量审计",
+      "expected": "openclaw-dual-gate-quality-audit",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "openclaw-dual-gate-quality-audit",
+      "hit": true
+    },
+    {
+      "query": "跑一轮焚诀周维护任务",
+      "expected": "openclaw-fenjue-weekly",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "openclaw-fenjue-weekly",
+      "hit": true
+    },
+    {
+      "query": "把这个 PDF 合并一下",
+      "expected": "pdf",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "pdf",
+      "hit": true
+    },
+    {
+      "query": "帮我检测并启动本地 Pixelle 视频服务",
+      "expected": "pixelle-api-ensure",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "pixelle-api-ensure",
+      "hit": true
+    },
+    {
+      "query": "写个 PPT",
+      "expected": "ppt-master",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "ppt-master",
+      "hit": true
+    },
+    {
+      "query": "帮我清理提示词里堆积的补丁",
+      "expected": "prompt-consolidation",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "sq-cleanmgr-c",
+      "hit": false
+    },
+    {
+      "query": "提示词系统里的矛盾规则查一遍",
+      "expected": "prompt-system-audit",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "prompt-system-audit",
+      "hit": true
+    },
+    {
+      "query": "python 脚本下断点单步调试",
+      "expected": "python-debugpy",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "python-debugpy",
+      "hit": true
+    },
+    {
+      "query": "帮我在 Notion 里做综合调研文档",
+      "expected": "research-documentation",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "research-documentation",
+      "hit": true
+    },
+    {
+      "query": "帮我修 Git Bash 里的中文乱码",
+      "expected": "shell-encoding-pitfalls",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "shell-encoding-pitfalls",
+      "hit": true
+    },
+    {
+      "query": "路由触发词质量差需要重生",
+      "expected": "A-skill-manager",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "A-skill-manager",
+      "hit": true
+    },
+    {
+      "query": "帮我批量审计并修复静态站点",
+      "expected": "static-site-batch-audit-fix",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "static-site-batch-audit-fix",
+      "hit": true
+    },
+    {
+      "query": "TDD 开发新功能",
+      "expected": "test-driven-development",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "test-driven-development",
+      "hit": true
+    },
+    {
+      "query": "Git Bash 调 CLI 报错帮我排查",
+      "expected": "windows-bash-cli-interop-pitfalls",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "windows-bash-cli-interop-pitfalls",
+      "hit": true
+    },
+    {
+      "query": "执行前帮我预检一遍工作流",
+      "expected": "workflow-preflight-check",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "workflow-preflight-check",
+      "hit": true
+    },
+    {
+      "query": "Excel 数据分析",
+      "expected": "xlsx",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "xlsx",
+      "hit": true
+    },
+    {
+      "query": "云开发数据库查询慢怎么优化",
+      "expected": "cloudbase-db-optimize",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "cloudbase-db-optimize",
+      "hit": true
+    },
+    {
+      "query": "数据库查询慢建索引",
+      "expected": "cloudbase-db-optimize",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "cloudbase-db-optimize",
+      "hit": true
+    },
+    {
+      "query": "帮我开书写长篇网文",
+      "expected": "story-long-write",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "story-long-write",
+      "hit": true
+    },
+    {
+      "query": "帮我拆解这本爆款小说",
+      "expected": "story-long-analyze",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "story-long-analyze",
+      "hit": true
+    },
+    {
+      "query": "wttr 天气查询",
+      "expected": "weather",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "cloudbase-db-optimize",
+      "hit": false
+    },
+    {
+      "query": "写个能自动发邮件的脚本",
+      "expected": "office-automation-pro",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "office-automation-pro",
+      "hit": true
+    },
+    {
+      "query": "在知识库里查资料",
+      "expected": "wps-knowledgebase",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "wps-knowledgebase",
+      "hit": true
+    },
+    {
+      "query": "ffmpeg 截取视频前10秒",
+      "expected": "video-frames",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "video-frames",
+      "hit": true
+    },
+    {
+      "query": "用 curl 调用 OpenAI 语音转写 API",
+      "expected": "openai-whisper-api",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "openai-whisper-api",
+      "hit": true
+    },
+    {
+      "query": "用 gh 检查 CI 状态",
+      "expected": "github",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "github",
+      "hit": true
+    },
+    {
+      "query": "用 gh 提 PR",
+      "expected": "github",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "github",
+      "hit": true
+    },
+    {
+      "query": "node --inspect 排查 CPU 飙高",
+      "expected": "node-inspect-debugger",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "node-inspect-debugger",
+      "hit": true
+    },
+    {
+      "query": "python pdb 断点调试",
+      "expected": "python-debugpy",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "python-debugpy",
+      "hit": true
+    },
+    {
+      "query": "python 读取 Excel 文件",
+      "expected": "xlsx",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "xlsx",
+      "hit": true
+    },
+    {
+      "query": "python 合并 PDF",
+      "expected": "pdf",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "pdf",
+      "hit": true
+    },
+    {
+      "query": "python 画 matplotlib 交互图",
+      "expected": "data-visualization",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "data-visualization",
+      "hit": true
+    },
+    {
+      "query": "mysql 导出数据做透视",
+      "expected": "data-analysis",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "data-analysis",
+      "hit": true
+    },
+    {
+      "query": "npx 安装 HF 组件",
+      "expected": "hyperframes-registry",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "hyperframes-registry",
+      "hit": true
+    },
+    {
+      "query": "用 oracle 命令二审代码",
+      "expected": "oracle",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "oracle",
+      "hit": true
+    },
+    {
+      "query": "截个屏",
+      "expected": "screenshot",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "screenshot",
+      "hit": true
+    },
+    {
+      "query": "tcb hosting 部署超市前端",
+      "expected": "chaoshi-web-deploy",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "chaoshi-web-deploy",
+      "hit": true
+    },
+    {
+      "query": "cloudbase 云函数部署后订单不显示",
+      "expected": "chaoshi-web-deploy",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "chaoshi-web-deploy",
+      "hit": true
+    },
+    {
+      "query": "mediakit-cli 剪辑视频加背景音乐",
+      "expected": "byted-mediakit-shared",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "byted-mediakit-shared",
+      "hit": true
+    },
+    {
+      "query": "discover 找桌面应用的隐藏 CLI",
+      "expected": "discover-agent-cli",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "discover-agent-cli",
+      "hit": true
+    },
+    {
+      "query": "Electron 自动化操作 VS Code",
+      "expected": "electron",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "electron",
+      "hit": true
+    },
+    {
+      "query": "用 gh 看仓库 PR 列表",
+      "expected": "github",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "github",
+      "hit": true
+    },
+    {
+      "query": "C盘满了",
+      "expected": "c-cleanup",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "c-cleanup",
+      "hit": true
+    },
+    {
+      "query": "写测试",
+      "expected": "testing",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "testing",
+      "hit": true
+    },
+    {
+      "query": "跑测试",
+      "expected": "testing",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "testing",
+      "hit": true
+    },
+    {
+      "query": "做PPT",
+      "expected": "ppt-master",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "ppt-master",
+      "hit": true
+    },
+    {
+      "query": "读Excel",
+      "expected": "xlsx",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "xlsx",
+      "hit": true
+    },
+    {
+      "query": "编辑PDF",
+      "expected": "nano-pdf",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "nano-pdf",
+      "hit": true
+    },
+    {
+      "query": "读PDF",
+      "expected": "pdf",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "pdf",
+      "hit": true
+    },
+    {
+      "query": "拆分文件",
+      "expected": "bigfile-split",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "bigfile-split",
+      "hit": true
+    },
+    {
+      "query": "删技能",
+      "expected": "A-skill-manager",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "A-skill-manager",
+      "hit": true
+    },
+    {
+      "query": "合并技能",
+      "expected": "A-skill-manager",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "A-skill-manager",
+      "hit": true
+    },
+    {
+      "query": "审计提示词",
+      "expected": "prompt-system-audit",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "prompt-system-audit",
+      "hit": true
+    },
+    {
+      "query": "同步技能",
+      "expected": "A-skill-manager",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "cross-platform-agent-sync",
+      "hit": false
+    },
+    {
+      "query": "规则同步",
+      "expected": "cross-platform-agent-sync",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "cross-platform-agent-sync",
+      "hit": true
+    },
+    {
+      "query": "深度调研",
+      "expected": "deep-research-pro",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "research-documentation",
+      "hit": false
+    },
+    {
+      "query": "多引擎搜索",
+      "expected": "multi-search-engine",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "web-access",
+      "hit": false
+    },
+    {
+      "query": "UI设计",
+      "expected": "ui-ux-pro-max",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "ui-ux-pro-max",
+      "hit": true
+    },
+    {
+      "query": "数据分析",
+      "expected": "data-analysis",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "data-analysis",
+      "hit": true
+    },
+    {
+      "query": "查企业",
+      "expected": "天眼一下",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "天眼一下",
+      "hit": true
+    },
+    {
+      "query": "写个脚本定期备份数据库",
+      "expected": "tencent-cos-skill__skillhub",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "libreoffice-base",
+      "hit": false
+    },
+    {
+      "query": "帮我配一下",
+      "expected": null,
+      "judge": "blindspot",
+      "weight": 0.4,
+      "router_top1": "NONE",
+      "hit": true
+    },
+    {
+      "query": "弄个好看的",
+      "expected": null,
+      "judge": "blindspot",
+      "weight": 0.4,
+      "router_top1": "NONE",
+      "hit": true
+    },
+    {
+      "query": "怎么搞",
+      "expected": null,
+      "judge": "blindspot",
+      "weight": 0.4,
+      "router_top1": "NONE",
+      "hit": true
+    },
+    {
+      "query": "优化一下",
+      "expected": null,
+      "judge": "blindspot",
+      "weight": 0.4,
+      "router_top1": "NONE",
+      "hit": true
+    },
+    {
+      "query": "查一下",
+      "expected": null,
+      "judge": "blindspot",
+      "weight": 0.4,
+      "router_top1": "NONE",
+      "hit": true
+    },
+    {
+      "query": "帮我看看",
+      "expected": null,
+      "judge": "blindspot",
+      "weight": 0.4,
+      "router_top1": "NONE",
+      "hit": true
+    },
+    {
+      "query": "画个东西",
+      "expected": null,
+      "judge": "blindspot",
+      "weight": 0.4,
+      "router_top1": "NONE",
+      "hit": true
+    },
+    {
+      "query": "写个报告",
+      "expected": null,
+      "judge": "blindspot",
+      "weight": 0.4,
+      "router_top1": "NONE",
+      "hit": true
+    },
+    {
+      "query": "帮我下载",
+      "expected": null,
+      "judge": "blindspot",
+      "weight": 0.4,
+      "router_top1": "NONE",
+      "hit": true
+    },
+    {
+      "query": "我该怎么做",
+      "expected": null,
+      "judge": "blindspot",
+      "weight": 0.4,
+      "router_top1": "NONE",
+      "hit": true
+    },
+    {
+      "query": "帮我处理一下",
+      "expected": null,
+      "judge": "blindspot",
+      "weight": 0.4,
+      "router_top1": "NONE",
+      "hit": true
+    },
+    {
+      "query": "数据分析一下",
+      "expected": "data-analysis",
+      "judge": "exact",
+      "weight": 1.0,
+      "router_top1": "data-analysis",
+      "hit": true
+    },
+    {
+      "query": "今天天气怎么样？",
+      "expected": null,
+      "judge": "blindspot",
+      "weight": 0.4,
+      "router_top1": "NONE",
+      "hit": true
+    },
+    {
+      "query": "讲个笑话",
+      "expected": null,
+      "judge": "blindspot",
+      "weight": 0.4,
+      "router_top1": "NONE",
+      "hit": true
+    },
+    {
+      "query": "1+1等于几",
+      "expected": null,
+      "judge": "blindspot",
+      "weight": 0.4,
+      "router_top1": "NONE",
+      "hit": true
+    },
+    {
+      "query": "你是谁",
+      "expected": null,
+      "judge": "blindspot",
+      "weight": 0.4,
+      "router_top1": "NONE",
+      "hit": true
+    },
+    {
+      "query": "现在几点了",
+      "expected": null,
+      "judge": "blindspot",
+      "weight": 0.4,
+      "router_top1": "NONE",
+      "hit": true
+    },
+    {
+      "query": "推荐一本好书",
+      "expected": null,
+      "judge": "blindspot",
+      "weight": 0.4,
+      "router_top1": "NONE",
+      "hit": true
+    },
+    {
+      "query": "周末去哪玩",
+      "expected": null,
+      "judge": "blindspot",
+      "weight": 0.4,
+      "router_top1": "NONE",
+      "hit": true
+    },
+    {
+      "query": "东京和北京时差几个小时",
+      "expected": null,
+      "judge": "blindspot",
+      "weight": 0.4,
+      "router_top1": "NONE",
+      "hit": true
+    },
+    {
+      "query": "世界杯哪年在卡塔尔办的",
+      "expected": null,
+      "judge": "blindspot",
+      "weight": 0.4,
+      "router_top1": "NONE",
+      "hit": true
+    },
+    {
+      "query": "帮我起个英文名",
+      "expected": null,
+      "judge": "blindspot",
+      "weight": 0.4,
+      "router_top1": "NONE",
+      "hit": true
+    },
+    {
+      "query": "苹果和香蕉哪个热量高",
+      "expected": null,
+      "judge": "blindspot",
+      "weight": 0.4,
+      "router_top1": "NONE",
+      "hit": true
+    }
+  ],
+  "set": "layered"
+}
+
+STDERR:
+C:\Users\37533\Desktop\workspace\skill焚诀\自建skill优化\_repro\r321c\work\fj_pre\eval\direct_layer.py:55: SyntaxWarning: invalid escape sequence '\+'
+  ("^1\+1等于几$|^1加1等于几$|^算术题$|^数学题$|^算一下$", "NONE"),
+C:\Users\37533\Desktop\workspace\skill焚诀\自建skill优化\_repro\r321c\work\fj_pre\eval\direct_layer.py:186: SyntaxWarning: invalid escape sequence '\s'
+  ("c\s*盘.*红|磁盘.*满|空间不够|存储.*爆|c\s*盘.*爆|磁盘.*红|清理.*c\s*盘|清理.*c\s*盘.*空间|c\s*盘.*空间|清理.*磁盘|清.*c\s*盘|c\s*盘.*清理", "c-cleanup"),
+[bge_layer] BGE 语义层已通过 onnxruntime 后端加载（torch 不可用，已绕过）

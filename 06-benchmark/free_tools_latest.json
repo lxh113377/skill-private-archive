@@ -3,9 +3,9 @@
  "cmd": "python 05-exec/r163_free_tools_face.py --json <out>",
  "roster_n": 10,
  "counts": {
-  "READY": 7,
+  "READY": 6,
   "GAP_SERVICE": 1,
-  "GAP_CRED": 2
+  "GAP_CRED": 3
  },
  "rows": [
   {
@@ -34,8 +34,8 @@
       "code": "10042"
      },
      "pages": {
-      "state": "ready",
-      "reason": null
+      "state": "probe_error",
+      "tail": "ROR\u001b[41;31m]\u001b[0m \u001b[1mfetch failed\u001b[0m\n\n\n🪵  Logs were written to \"C:\\Users\\37533\\AppData\\Roaming\\xdg.config\\.wrangler\\logs\\wrangler-2026-10-31_14-00-56_378.log\"\n"
      },
      "workers": {
       "state": "ready",
@@ -47,7 +47,8 @@
      "r2"
     ],
     "services_not_ready": [
-     "r2"
+     "r2",
+     "pages"
     ],
     "judged_service": "d1"
    }
@@ -68,8 +69,8 @@
       "code": "10042"
      },
      "pages": {
-      "state": "ready",
-      "reason": null
+      "state": "probe_error",
+      "tail": "ROR\u001b[41;31m]\u001b[0m \u001b[1mfetch failed\u001b[0m\n\n\n🪵  Logs were written to \"C:\\Users\\37533\\AppData\\Roaming\\xdg.config\\.wrangler\\logs\\wrangler-2026-10-31_14-00-56_378.log\"\n"
      },
      "workers": {
       "state": "ready",
@@ -81,7 +82,8 @@
      "r2"
     ],
     "services_not_ready": [
-     "r2"
+     "r2",
+     "pages"
     ],
     "judged_service": "r2",
     "code": "10042"
@@ -89,7 +91,7 @@
   },
   {
    "tool": "Cloudflare-Pages",
-   "state": "READY",
+   "state": "GAP_CRED",
    "note": {
     "version": "4.152.0",
     "logged_in": true,
@@ -103,22 +105,24 @@
       "code": "10042"
      },
      "pages": {
-      "state": "ready",
-      "reason": null
+      "state": "probe_error",
+      "tail": "ROR\u001b[41;31m]\u001b[0m \u001b[1mfetch failed\u001b[0m\n\n\n🪵  Logs were written to \"C:\\Users\\37533\\AppData\\Roaming\\xdg.config\\.wrangler\\logs\\wrangler-2026-10-31_14-00-56_378.log\"\n"
      },
      "workers": {
       "state": "ready",
       "reason": null
      }
     },
-    "detail": "service_not_enabled",
+    "detail": "service_not_probed",
     "services_not_enabled": [
      "r2"
     ],
     "services_not_ready": [
-     "r2"
+     "r2",
+     "pages"
     ],
-    "judged_service": "pages"
+    "judged_service": "pages",
+    "svc_state": "probe_error"
    }
   },
   {
@@ -137,8 +141,8 @@
       "code": "10042"
      },
      "pages": {
-      "state": "ready",
-      "reason": null
+      "state": "probe_error",
+      "tail": "ROR\u001b[41;31m]\u001b[0m \u001b[1mfetch failed\u001b[0m\n\n\n🪵  Logs were written to \"C:\\Users\\37533\\AppData\\Roaming\\xdg.config\\.wrangler\\logs\\wrangler-2026-10-31_14-00-56_378.log\"\n"
      },
      "workers": {
       "state": "ready",
@@ -150,7 +154,8 @@
      "r2"
     ],
     "services_not_ready": [
-     "r2"
+     "r2",
+     "pages"
     ],
     "judged_service": "workers"
    }
@@ -211,5 +216,5 @@
   }
  ],
  "rule": "仅 BROKEN 判红；GAP_CRED/GAP_CLI 是诚实显形（外部凭据/平台形态缺口，#29③）",
- "generated_at": "2026-10-30 13:24"
+ "generated_at": "2026-10-31 22:01"
 }

@@ -4,7 +4,7 @@
  "provenance_cmd": "python 05-exec/r250_source_freshness_scan.py --json <件>",
  "gate_declared_outputs": 34,
  "roster_sources": 16,
- "reference_gate_runs_mtime": 1793323100.2349129,
+ "reference_gate_runs_mtime": 1793370752.192567,
  "grace_hours": 6.0,
  "orphans": [],
  "stale": [],
@@ -13,7 +13,7 @@
    "use": "roster",
    "file": "free_tools_latest.json",
    "declared_by": "free_tools_face",
-   "mtime": 1793324192.9987352,
+   "mtime": 1793455271.5918965,
    "stale": false
   },
   {
@@ -27,7 +27,7 @@
    "use": "matrix_canonical",
    "file": "tool_skill_matrix_latest.json",
    "declared_by": "tool_skill_matrix",
-   "mtime": 1793324212.7161262,
+   "mtime": 1793455411.5254471,
    "stale": false
   },
   {
@@ -41,84 +41,84 @@
    "use": "truth",
    "file": "route_truth_latest.json",
    "declared_by": "route_truth_measure",
-   "mtime": 1793324375.829809,
+   "mtime": 1793455693.5062034,
    "stale": false
   },
   {
    "use": "ingress",
    "file": "ingress_latest.json",
    "declared_by": "ingress_face",
-   "mtime": 1793324357.0986915,
+   "mtime": 1793455632.5356948,
    "stale": false
   },
   {
    "use": "recall",
    "file": "recall_latest.json",
    "declared_by": "recall_face",
-   "mtime": 1793324356.8497028,
+   "mtime": 1793455631.7748861,
    "stale": false
   },
   {
    "use": "carrier",
    "file": "tool_carrier_latest.json",
    "declared_by": "tool_carrier_face",
-   "mtime": 1793324360.4995327,
+   "mtime": 1793455636.3072228,
    "stale": false
   },
   {
    "use": "workflow",
    "file": "workflow_usage_latest.json",
    "declared_by": "workflow_usage_face",
-   "mtime": 1793324361.949537,
+   "mtime": 1793455638.3461232,
    "stale": false
   },
   {
    "use": "readface:Cloudflare-Workers",
    "file": "workers_quota_latest.json",
    "declared_by": "workers_quota_face",
-   "mtime": 1793324274.4543757,
+   "mtime": 1793455495.5985706,
    "stale": false
   },
   {
    "use": "readface:Cloudflare-D1",
    "file": "quota_face_latest.json",
    "declared_by": "quota_face",
-   "mtime": 1793324270.6769361,
+   "mtime": 1793455492.5516572,
    "stale": false
   },
   {
    "use": "readface:GitHub",
    "file": "gh_billing_latest.json",
    "declared_by": "gh_billing_face",
-   "mtime": 1793324367.4984229,
+   "mtime": 1793455659.6567655,
    "stale": false
   },
   {
    "use": "readface:Cloudflare-R2",
    "file": "r2_enable_latest.json",
    "declared_by": "r2_enable_face",
-   "mtime": 1793324283.8002193,
+   "mtime": 1793455510.3967812,
    "stale": false
   },
   {
    "use": "readface:Cloudflare-Turnstile",
    "file": "turnstile_usage_latest.json",
    "declared_by": "turnstile_usage_face",
-   "mtime": 1793324371.6145835,
+   "mtime": 1793455663.3492055,
    "stale": false
   },
   {
    "use": "readface:SQLite",
    "file": "sqlite_usage_latest.json",
    "declared_by": "sqlite_usage_face",
-   "mtime": 1793324363.3956225,
+   "mtime": 1793455645.554973,
    "stale": false
   },
   {
    "use": "readface:Cloudflare-Pages",
    "file": "pages_http_latest.json",
    "declared_by": "pages_http_face",
-   "mtime": 1793324276.2220657,
+   "mtime": 1793455500.1023443,
    "stale": false
   }
  ]

@@ -128,7 +128,7 @@
     ]
    },
    "read_why": null,
-   "usage_value": 29806.0,
+   "usage_value": 30948.0,
    "usage_meta": {
     "unit": "分钟（官方计费·账号级·端点默认窗口）",
     "extra": 0.0,
@@ -297,7 +297,7 @@
   },
   {
    "tool": "Cloudflare-Pages",
-   "state": "READY",
+   "state": "GAP_CRED",
    "mention_skills": [
     "A-project-handoff",
     "byted-bp-cdn-pagesdeploy",
@@ -379,12 +379,12 @@
     ]
    },
    "read_why": null,
-   "usage_value": 264388,
+   "usage_value": 298884,
    "usage_meta": {
     "unit": "次",
     "extra": null,
     "extra_label": null,
-    "window": "2026-10-01~2026-10-31"
+    "window": "2026-10-01~2026-11-01"
    },
    "usage_why": null
   },
@@ -456,7 +456,7 @@
     "unit": "次",
     "extra": null,
     "extra_label": null,
-    "window": "2026-10-01~2026-10-31"
+    "window": "2026-10-01~2026-11-01"
    },
    "usage_why": null
   },
@@ -538,12 +538,12 @@
     ]
    },
    "read_why": null,
-   "usage_value": 14.05,
+   "usage_value": 14.23,
    "usage_meta": {
     "unit": "MiB（本地库体量·非额度）",
-    "extra": 48023,
+    "extra": 48282,
     "extra_label": "合计行数",
-    "window": "2026-10-30T13:29:15"
+    "window": "2026-10-31T22:07:24"
    },
    "usage_why": null
   },
@@ -669,8 +669,8 @@
     "extra": null,
     "extra_label": null,
     "window": [
-     "2026-10-05",
-     "2026-10-30"
+     "2026-10-06",
+     "2026-10-31"
     ]
    },
    "usage_why": null
@@ -751,7 +751,7 @@
  "gates_reading": {
   "carrier": {
    "tools": 10,
-   "vols": 2013,
+   "vols": 2024,
    "uncarried": 0,
    "k5": true
   },
@@ -769,14 +769,14 @@
   },
   "matrix_src": {
    "file": "tool_skill_matrix_latest.json",
-   "generated_at": "2026-10-30 13:26",
+   "generated_at": "2026-10-31 22:03",
    "cmd": "python 05-exec/r163_tool_skill_matrix.py --json <out>"
   },
   "workflow_src": {
    "file": "workflow_usage_latest.json",
    "generated_at": null,
-   "face_files": 325,
-   "real_face_files": 197,
+   "face_files": 328,
+   "real_face_files": 198,
    "real_total_hits": 112
   },
   "third_src": {
@@ -789,7 +789,7 @@
    "files": "tool_skill_matrix_latest.json"
   }
  },
- "read_at": "2026-10-30T13:29:25",
+ "read_at": "2026-10-31T22:08:16",
  "ft_rows": [
   {
    "tool": "GitHub",
@@ -817,8 +817,8 @@
       "code": "10042"
      },
      "pages": {
-      "state": "ready",
-      "reason": null
+      "state": "probe_error",
+      "tail": "ROR\u001b[41;31m]\u001b[0m \u001b[1mfetch failed\u001b[0m\n\n\n🪵  Logs were written to \"C:\\Users\\37533\\AppData\\Roaming\\xdg.config\\.wrangler\\logs\\wrangler-2026-10-31_14-00-56_378.log\"\n"
      },
      "workers": {
       "state": "ready",
@@ -830,7 +830,8 @@
      "r2"
     ],
     "services_not_ready": [
-     "r2"
+     "r2",
+     "pages"
     ],
     "judged_service": "d1"
    }
@@ -851,8 +852,8 @@
       "code": "10042"
      },
      "pages": {
-      "state": "ready",
-      "reason": null
+      "state": "probe_error",
+      "tail": "ROR\u001b[41;31m]\u001b[0m \u001b[1mfetch failed\u001b[0m\n\n\n🪵  Logs were written to \"C:\\Users\\37533\\AppData\\Roaming\\xdg.config\\.wrangler\\logs\\wrangler-2026-10-31_14-00-56_378.log\"\n"
      },
      "workers": {
       "state": "ready",
@@ -864,7 +865,8 @@
      "r2"
     ],
     "services_not_ready": [
-     "r2"
+     "r2",
+     "pages"
     ],
     "judged_service": "r2",
     "code": "10042"
@@ -872,7 +874,7 @@
   },
   {
    "tool": "Cloudflare-Pages",
-   "state": "READY",
+   "state": "GAP_CRED",
    "note": {
     "version": "4.152.0",
     "logged_in": true,
@@ -886,22 +888,24 @@
       "code": "10042"
      },
      "pages": {
-      "state": "ready",
-      "reason": null
+      "state": "probe_error",
+      "tail": "ROR\u001b[41;31m]\u001b[0m \u001b[1mfetch failed\u001b[0m\n\n\n🪵  Logs were written to \"C:\\Users\\37533\\AppData\\Roaming\\xdg.config\\.wrangler\\logs\\wrangler-2026-10-31_14-00-56_378.log\"\n"
      },
      "workers": {
       "state": "ready",
       "reason": null
      }
     },
-    "detail": "service_not_enabled",
+    "detail": "service_not_probed",
     "services_not_enabled": [
      "r2"
     ],
     "services_not_ready": [
-     "r2"
+     "r2",
+     "pages"
     ],
-    "judged_service": "pages"
+    "judged_service": "pages",
+    "svc_state": "probe_error"
    }
   },
   {
@@ -920,8 +924,8 @@
       "code": "10042"
      },
      "pages": {
-      "state": "ready",
-      "reason": null
+      "state": "probe_error",
+      "tail": "ROR\u001b[41;31m]\u001b[0m \u001b[1mfetch failed\u001b[0m\n\n\n🪵  Logs were written to \"C:\\Users\\37533\\AppData\\Roaming\\xdg.config\\.wrangler\\logs\\wrangler-2026-10-31_14-00-56_378.log\"\n"
      },
      "workers": {
       "state": "ready",
@@ -933,7 +937,8 @@
      "r2"
     ],
     "services_not_ready": [
-     "r2"
+     "r2",
+     "pages"
     ],
     "judged_service": "workers"
    }

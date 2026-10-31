@@ -1,0 +1,4 @@
+rc=0
+R321C_JSON{"frozen_before_rotation": {"n": 10, "leak": 7, "clean": 3, "rate_pct": 70.0}, "frozen_after_rotation": {"n": 10, "leak": 7, "clean": 3, "rate_pct": 70.0}, "pool": {"n": 20, "leak": 14, "clean": 6, "rate": 70.0, "by_tier": {"pool": {"n": 20, "leak": 14}}}, "pool_clean_n": 6}
+
+ERR:

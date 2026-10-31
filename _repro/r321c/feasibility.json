@@ -1,0 +1,114 @@
+{
+  "schema": "r321c-blind-feasibility-1",
+  "verdict": "PARTIAL",
+  "steps": [
+    {
+      "n": 1,
+      "cmd": "python -B _repro/r321c/work/fj/eval/rotate_blindset.py    (焚诀件逐字节副本内 dry-run；读码对象 = C:/Users/37533/Desktop/workspace/焚诀/eval/rotate_blindset.py)",
+      "rc": 0,
+      "reading": "活动样本 10 条 → 保留 7 / 轮出 3 / 换入 3 | 轮出: 这周给客户写个邮件催款(internal-comms) / 给一个GitHub项目写代码审查意见(github) / 用ffmpeg把视频转成gif动图(video-frames) | 换入: 做一个本地前端可视化html页面(chart-visualization) / 查企业工商信息(天眼一下) / 提取视频字幕(video-whisper-transcribe) | 技能覆盖: 10 → 9 (OK) | dry-run: 未应用 (加 --force 应用轮换)",
+      "conclusion": "季度轮换的输入 = 活动集 eval/frozen_blind_test.json(10 条) + 池 eval/blindset_query_pool.json(20 条，须带 expected_skill+judge 否则拒绝)；输出 = 就地改写 ACTIVE + 归档 frozen_blind_test.vN.json + 台账 blindset_rotation.json。没有任何 --out/--json/env 输出参数（sys.argv 只认 --force）。但三个输出全部由 EVAL_DIR = os.path.dirname(os.path.abspath(__file__)) 派生 ⇒ 把同一件按字节复制到 _repro/r321c/work/ 下跑，写面就随 __file__ 落到我方临时目录，焚诀 eval 一个字节都不必写。任务书里「只能原地写 eval ⇒ 该腿 BLOCKED」这一条不成立。"
+    },
+    {
+      "n": 2,
+      "cmd": "python -B _repro/r321c/work/fj/eval/rotate_blindset.py --force",
+      "rc": 0,
+      "reading": "活动样本 10 条 → 保留 7 / 轮出 3 / 换入 3 | 换入: 做一个本地前端可视化html页面(chart-visualization) / 查企业工商信息(天眼一下) / 提取视频字幕(video-whisper-transcribe) | ✅ 已应用 v2: 活动集更新, 旧版归档 frozen_blind_test.v2.json",
+      "conclusion": "轮换在副本内实际落地（v2 台账 + v2 归档 + 新活动集都在我方 work 目录），尺子原件 SHA 与盘上一字不差（见 step 13）。"
+    },
+    {
+      "n": 3,
+      "cmd": "python -B _repro/r321c/work/drv_leak.py    (R321C_EVAL=_repro/r321c/work/fj/eval；复用件内 blindset_leak_manifest.rules()/annotate()/score()，未另写口径)",
+      "rc": 0,
+      "reading": "R321C_JSON{\"n_rules\": 248, \"total\": 10, \"leaked\": 7, \"clean\": 3, \"leak_rate_pct\": 70.0, \"score_full\": {\"n\": 10, \"pct\": 95.0}, \"score_clean_only\": {\"n\": 3, \"pct\": 91.7}, \"score_leaked_only\": {\"n\": 7, \"pct\": 96.4}, \"leak_attribution_pp\": 3.3}",
+      "conclusion": "轮换后活动面泄漏率 70.0%（7/10）。与轮换前同面（v2 归档 = 轮换前的 ACTIVE）对账见 step 4：前后同为 7/10 = 70.0%，泄漏率没有下降。"
+    },
+    {
+      "n": 4,
+      "cmd": "python -B _repro/r321c/work/drv_prepost2.py    (件内函数并算 old=frozen_blind_test.v2.json / new=frozen_blind_test.json / pool 三面)",
+      "rc": 0,
+      "reading": "{\"frozen_before_rotation\": {\"n\": 10, \"leak\": 7, \"clean\": 3, \"rate_pct\": 70.0}, \"frozen_after_rotation\": {\"n\": 10, \"leak\": 7, \"clean\": 3, \"rate_pct\": 70.0}, \"pool\": {\"n\": 20, \"leak\": 14, \"clean\": 6, \"rate\": 70.0}, \"pool_clean_n\": 6}",
+      "conclusion": "结构性根因：轮换只能从池里换入，而池自身 70.0% 已泄漏（14/20），干净候选仅 6 条 ⇒ 换 3 条不可能把干净面做大，反而每季消耗同一批已被硬编码的题面。这是需求 6 的真缺口，且不是权限缺口（不需写 eval、不需凭据、不需装东西）。"
+    },
+    {
+      "n": 5,
+      "cmd": "python -B _repro/r321c/work/fj/eval/hitrate_holdout.py --json",
+      "rc": 0,
+      "reading": "{\"status\": \"PASS\", \"detail\": \"盲测集泄漏 185/291 = 63.6%｜干净面 106 条｜轮换池泄漏 14/20 = 70.0%｜双口径：全量 95.2% / 干净面 87.5% / 泄漏面 99.6%（泄漏抬分 7.7pp）\", \"testset\": {\"n\": 291, \"leak\": 185, \"clean\": 106, \"rate\": 63.6}, \"pool\": {\"n\": 20, \"leak\": 14, \"rate\": 70.0}, \"ratchet_caps\": {\"leak_rate_pct\": 63.6, \"pool_leak_rate_pct\": 70.0}, \"clean_min\": 60, \"manifest_stale\": []}",
+      "conclusion": "官方 L3 泄漏审计件在副本里原样跑通（rc=0、棘轮 PASS、清单未过期）⇒ 泄漏率现值可只读取证；现行值仍是 63.6%（185/291），与 r320a 台账口径一致。"
+    },
+    {
+      "n": 6,
+      "cmd": "python -B _repro/r321c/work/fj/eval/blindset_leak_manifest.py",
+      "rc": 0,
+      "reading": "\"n_rules\": 248, \"total\": 291, \"leaked\": 185, \"clean\": 106, \"leak_rate_pct\": 63.6, \"score_full\": {\"n\": 291, \"pct\": 95.2, \"by_judge\": {\"exact\": 266, \"usable-suboptimal\": 3, \"wrong\": 0, \"blindspot\": 22}}, \"score_clean_only\": {\"n\": 106, \"pct\": 87.5}, \"score_leaked_only\": {\"n\": 185, \"pct\": 99.6}, \"leak_attribution_pp\": 7.7 | 条目明细已落 _repro/r321c/work/fj/eval/blindset_leak_manifest.json（291 条）",
+      "conclusion": "逐条泄漏清单（官方件自算）在副本内重生成，产物落我方 work 目录；泄漏抬分现值 7.7pp（全量 95.2 vs 干净面 87.5，judge 加权口径）。"
+    },
+    {
+      "n": 7,
+      "cmd": "python -B _repro/r321c/work/drv_build_clean.py    (用件内 annotate() 从 layered_testset 剔除 185 条 LEAKED → 干净 106 面，装入副本 eval/layered_testset.json)",
+      "rc": 0,
+      "reading": "CLEAN_FACE_N=106 | {\"n\": 291, \"leaked\": 185, \"clean\": 106}",
+      "conclusion": "干净 held-out 面（106 条、逐条按官方 annotate 剔除）成功构造在我方临时目录，且由件内既有检测函数构造，不是自写口径。"
+    },
+    {
+      "n": 8,
+      "cmd": "python -B _repro/r321c/work/fj/eval/frozen_blind_eval.py --json --set layered    (件本体未改一字、SHA 同盘上；只把题面换成 step7 的干净 106 面；cwd=副本，FENJUE_ROUTE_TRACE=0 FENJUE_ROUTE_CACHE=0)",
+      "rc": 0,
+      "reading": "{\"score\": 80.0, \"max_achievable\": 87.5, \"n\": 106, \"bge_status\": \"engaged\", \"semantic_layer\": \"bge\", \"hits\": 98}   (stderr: [bge_layer] BGE 语义层已通过 onnxruntime 后端加载（torch 不可用，已绕过）)",
+      "conclusion": "现实读数拿到了：当前生产路由在干净 106 面上的官方分 = 80.0%（judge 加权口径；原始 top1 命中 98/106 = 92.5%），语义面 bge/engaged。需求 6 第一次在同一把官方尺上拿到「不靠泄漏」的分。"
+    },
+    {
+      "n": 9,
+      "cmd": "python -B _repro/r321c/work/fj_full/eval/frozen_blind_eval.py --json --set layered    (第二份副本 fj_full：题面原样 291、规则表现盘，未做任何替换)",
+      "rc": 0,
+      "reading": "{\"score\": 90.7, \"max_achievable\": 95.2, \"n\": 291, \"bge_status\": \"engaged\", \"semantic_layer\": \"bge\", \"hits\": 278}",
+      "conclusion": "同一时间窗、同一尺、同一解释器下生产面现行值 = 90.7%（278/291 原始 top1 = 95.5%）。生产面与干净面差 10.7pp（90.7 → 80.0），即被硬编码题面抬起来的分。"
+    },
+    {
+      "n": 10,
+      "cmd": "git -C C:/Users/37533/Desktop/workspace/焚诀 show 8c3f81e^:eval/direct_layer.py > _repro/r321c/work/direct_layer_pre_leak.py ; python -B _repro/r321c/work/fj_pre/eval/frozen_blind_eval.py --json --set layered    (fj_pre = 副本 + direct_layer.py 换成泄漏补全之前那版 git blob，题面原样 291；盘上件未被改动)",
+      "rc": 0,
+      "reading": "{\"score\": 89.7, \"max_achievable\": 95.2, \"n\": 291, \"bge_status\": \"engaged\", \"hits\": 275}  |  pre_leak blob 含 R-fix(2026-08-16) 标记 = false；现盘版本 = true（标记在 line 269: # ====== R-fix(2026-08-16) 盲测失败 query 直连补全（layered_testset 25 失败案例） ======）",
+      "conclusion": "对照腿可跑：在同一 291 面上，泄漏补全前 89.7%、补全后 90.7% ⇒ delta +1.0pp（相对 +1.1%）。把 2026-08-16 那次补全单独定价，量级远小于需求 6 的 30%。"
+    },
+    {
+      "n": 11,
+      "cmd": "python -B _repro/r321c/work/fj_pre/eval/frozen_blind_eval.py --json --set layered    (fj_pre 题面同样替换为 step7 干净 106 面 ⇒ 只让规则表这一维变化)",
+      "rc": 0,
+      "reading": "{\"score\": 80.0, \"n\": 106, \"hits\": 98, \"semantic_layer\": \"bge\"}",
+      "conclusion": "干净 106 面上泄漏补全前/后 80.0% vs 80.0%（hits 98 vs 98，delta 0.0pp）⇒ 那批补全规则的增益全部落在被泄漏的题上，对干净面零贡献。这是「≥30% 提升」在当前证据下最硬的反证。"
+    },
+    {
+      "n": 12,
+      "cmd": "python -B 05-exec/r115_quality_truth.py --json _repro/r321c/work/r115_official_out.json    (消费者件原样、未改一字，产物重定向到 r321c)",
+      "rc": 0,
+      "reading": "[QUALITY:PROD] L1=90.7% L2=65.0% L4=87.5% | 需求6 R1 相对提升: 2.7%（阈值 30%）⇒ 未达 | 需求6 R2 区间判定: 区间重叠(幅度落在抽样抖动内) | 需求6 总判定: 未满足 | L3: 测试集 185/291 = 63.6%｜干净面 106 条｜轮换池 14/20 = 70.0%",
+      "conclusion": "官方消费者能只读跑通（rc=0、产物落我方目录），但它不接受外部面：源码 os.environ 命中 0 条，FENJUE = r\"C:\\Users\\37533\\Desktop\\workspace\\焚诀\" 与 EVAL/BENCH 全为模块级硬编码常量，--json 只改输出文件路径 ⇒ 该腿记 PARTIAL 并具名「消费者件不接受外部面」。它自报的需求 6 判定：R1 相对提升 2.7%（未达 30%）、R2 区间重叠。"
+    },
+    {
+      "n": 13,
+      "cmd": "git -C C:/Users/37533/Desktop/workspace/焚诀 status --porcelain -- eval/frozen_blind_test.json eval/blindset_rotation.json eval/blindset_query_pool.json eval/layered_testset.json eval/hitrate_holdout_baseline.json eval/frozen_blind_eval.py eval/rotate_blindset.py eval/unified_router.py ; 逐件 sha256 前 12 位对比盘上 vs 副本",
+      "rc": 0,
+      "reading": "上述 8 个轮换/尺子件 status 全为空（与 HEAD 一致、未被写）；SHA12: frozen_blind_eval.py b2984598c506 SAME / unified_router.py cd757e8cd244 SAME / hitrate_holdout.py 7fc594af3f9f SAME / blindset_leak_manifest.py f4207eff58d4 SAME / direct_layer.py 34b16df11bce SAME | 副本 eval/route_trace.jsonl 停在 3832645 B（fj 与 fj_full 两份都是），盘上那份同期涨到 3859545 B",
+      "conclusion": "红线 6（禁写焚诀）实测未被触碰：轮换三输出、清单、台账全落 _repro/r321c/work/ 内，盘上件与 HEAD 逐字节一致。盘上 route_trace 的增长来自并发写者（我探针未写它：带 FENJUE_ROUTE_TRACE=0，且两份副本该文件字节数与复制时刻一致）。"
+    }
+  ],
+  "leak_before": "63.6%（185/291，官方 hitrate_holdout.py 现行值；轮换池 70.0% = 14/20；frozen 面 70.0% = 7/10）",
+  "leak_after": "轮换后 frozen 面 70.0%（7/10）—— 与轮换前 70.0% 相同，泄漏率未下降；池内干净候选仅 6 条，不足以做大干净面",
+  "quality_now": "干净 106 面官方分 80.0%（hits 98/106 = 原始 top1 92.5%，max_achievable 87.5，semantic_layer=bge/engaged）；同期生产 291 面 90.7%（278/291 = 原始 top1 95.5%）；官方消费者 L4 干净面自算 87.5%（judge 加权口径，非实测路由分）",
+  "delta": "2026-08-16 泄漏补全对照（同尺同面只换规则表）：生产 291 面 89.7% → 90.7% = +1.0pp（相对 +1.1%）；干净 106 面 80.0% → 80.0% = 0.0pp。官方消费者自报需求 6 R1 相对提升 2.7%（阈值 30% ⇒ 未达），R2 区间重叠。Wilson 95%（eval/interval_stats.py）：278/291 = 95.5% [92.5,97.4]；275/291 = 94.5% [91.3,96.6]；98/106 = 92.5% [85.8,96.1] —— 两两重叠 ⇒ 无一条面支撑「≥30% 提升」",
+  "blockers": [
+    {
+      "step": 4,
+      "kind": "other",
+      "evidence": "python -B _repro/r321c/work/drv_prepost2.py → rc=0 → {\"frozen_before_rotation\":{\"n\":10,\"leak\":7,\"clean\":3,\"rate_pct\":70.0},\"frozen_after_rotation\":{\"n\":10,\"leak\":7,\"clean\":3,\"rate_pct\":70.0},\"pool\":{\"n\":20,\"leak\":14,\"clean\":6,\"rate\":70.0},\"pool_clean_n\":6}。轮换只从 blindset_query_pool.json 换入，而该池 70.0% 已被直连规则表覆盖、干净候选只有 6 条 ⇒ 季度轮换在数学上无法产出「干净 held-out 盲测集」，只能产出同一批泄漏题面的新排列。非权限/凭据/运行时问题（本腿 rc=0，全程未写焚诀、未花钱、未装东西）。"
+    },
+    {
+      "step": 12,
+      "kind": "hardcoded_face",
+      "evidence": "python -B 05-exec/r115_quality_truth.py --json _repro/r321c/work/r115_official_out.json → rc=0，但面不可切换：源码 grep os.environ 命中 0 条；模块级常量 FENJUE = r\"C:\\Users\\37533\\Desktop\\workspace\\焚诀\"、EVAL = os.path.join(FENJUE,\"eval\")、BENCH = os.path.join(ROOT,\"06-benchmark\")；face_layered()/face_frozen()/face_holdout() 全部 run_json(<该 EVAL 下脚本>)，--json 仅重定向输出文件。stderr 为空（rc=0 无报错）⇒ 件可跑但只认盘上面。具名「消费者件不接受外部面」；要让它读外部干净面必须改尺子（本任务禁止）。"
+    }
+  ],
+  "next_action": "verdict 非 BLOCKED，链路已跑通并出读数，此处写「把需求 6 从 PARTIAL 推到 REACHABLE 需要什么」：① 扩池（唯一能改的实质变量）—— eval/blindset_query_pool.json 需补到 ≥60 条未命中直连规则表的真实 query（现 20 条里仅 6 条干净）；属数据/采集活，不缺凭据不缺权限，但它写的是焚诀 eval ⇒ 须由持该面写权的会话经老大授权或走 PR，不由本只读会话代做。② 消费者侧要能指面向外部 —— 给 r115_quality_truth.py 加 FENJUE_ROOT/--face 旋钮（属改尺子，须另批按 R263「修判据不改数据」评审）。③ 幅度结论现在即可下：任何「替换前后 ≥30%」的说法在本轮四条面（291 生产 / 106 干净 / 10 frozen / 20 池）上都不成立 —— 补全对照最高 +1.0pp、官方 R1 自报 2.7%、Wilson 区间两两重叠；要真拿 ≥30% 须换任务完成质量的度量对象，或先造出 n≥60 的干净面并在同一面上跑替换前基线（steps 10/11 已给出做法与限制）。"
+}

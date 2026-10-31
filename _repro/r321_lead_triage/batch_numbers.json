@@ -1,0 +1,323 @@
+{
+ "schema": "r321-batch-numbers-2",
+ "rule": "single-source aligned with check_r321.py is_noise",
+ "head": "e8f489ebcf788f9b4f258ab96bb6c3cf465c5b25",
+ "prose_total_files": 552,
+ "prose_total_kb": 4447,
+ "noise_total_files": 72,
+ "noise_total_kb": 334,
+ "per_skill": {
+  "data-analysis": {
+   "prose": 7,
+   "bytes": 66539,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "rag-eval": {
+   "prose": 0,
+   "bytes": 0,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "commit-archaeologist": {
+   "prose": 0,
+   "bytes": 0,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "scope-creep-detector": {
+   "prose": 0,
+   "bytes": 0,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "algorithmic-art": {
+   "prose": 0,
+   "bytes": 0,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "brand-guidelines": {
+   "prose": 0,
+   "bytes": 0,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "canvas-design": {
+   "prose": 0,
+   "bytes": 0,
+   "noise": 27,
+   "noise_bytes": 118615
+  },
+  "doc-coauthoring": {
+   "prose": 0,
+   "bytes": 0,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "docx": {
+   "prose": 0,
+   "bytes": 0,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "frontend-design": {
+   "prose": 0,
+   "bytes": 0,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "internal-comms": {
+   "prose": 0,
+   "bytes": 0,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "mcp-builder": {
+   "prose": 0,
+   "bytes": 0,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "pdf": {
+   "prose": 0,
+   "bytes": 0,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "theme-factory": {
+   "prose": 10,
+   "bytes": 5315,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "xlsx": {
+   "prose": 0,
+   "bytes": 0,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "chart-visualization": {
+   "prose": 0,
+   "bytes": 0,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "gstack": {
+   "prose": 6,
+   "bytes": 33312,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "diagram-maker": {
+   "prose": 2,
+   "bytes": 17136,
+   "noise": 1,
+   "noise_bytes": 6537
+  },
+  "figma": {
+   "prose": 0,
+   "bytes": 0,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "hyperframes": {
+   "prose": 33,
+   "bytes": 80597,
+   "noise": 3,
+   "noise_bytes": 13520
+  },
+  "hyperframes-cli": {
+   "prose": 0,
+   "bytes": 0,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "hyperframes-media": {
+   "prose": 6,
+   "bytes": 34352,
+   "noise": 2,
+   "noise_bytes": 2270
+  },
+  "hyperframes-registry": {
+   "prose": 3,
+   "bytes": 4589,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "ppt-master": {
+   "prose": 147,
+   "bytes": 1382443,
+   "noise": 24,
+   "noise_bytes": 185948
+  },
+  "html-ppt": {
+   "prose": 0,
+   "bytes": 0,
+   "noise": 15,
+   "noise_bytes": 15213
+  },
+  "grill-me": {
+   "prose": 0,
+   "bytes": 0,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "ui-ux-pro-max": {
+   "prose": 2,
+   "bytes": 29177,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "brainstorming": {
+   "prose": 0,
+   "bytes": 0,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "subagent-driven-development": {
+   "prose": 0,
+   "bytes": 0,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "test-driven-development": {
+   "prose": 0,
+   "bytes": 0,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "verification-before-completion": {
+   "prose": 0,
+   "bytes": 0,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "writing-plans": {
+   "prose": 0,
+   "bytes": 0,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "coding-agent": {
+   "prose": 0,
+   "bytes": 0,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "oracle": {
+   "prose": 0,
+   "bytes": 0,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "agent-browser": {
+   "prose": 1,
+   "bytes": 11191,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "electron": {
+   "prose": 0,
+   "bytes": 0,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "find-skills": {
+   "prose": 0,
+   "bytes": 0,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "story": {
+   "prose": 0,
+   "bytes": 0,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "story-cover": {
+   "prose": 2,
+   "bytes": 13800,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "story-deslop": {
+   "prose": 6,
+   "bytes": 30225,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "story-import": {
+   "prose": 12,
+   "bytes": 61149,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "story-long-analyze": {
+   "prose": 11,
+   "bytes": 90040,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "story-long-write": {
+   "prose": 96,
+   "bytes": 939012,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "story-review": {
+   "prose": 15,
+   "bytes": 168457,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "story-scan": {
+   "prose": 5,
+   "bytes": 12316,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "story-setup": {
+   "prose": 132,
+   "bytes": 1035408,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "story-short-analyze": {
+   "prose": 29,
+   "bytes": 304987,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "story-short-write": {
+   "prose": 26,
+   "bytes": 226001,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "frontend-slides": {
+   "prose": 0,
+   "bytes": 0,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "A-prompt-better": {
+   "prose": 0,
+   "bytes": 0,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "frontend-skill": {
+   "prose": 1,
+   "bytes": 7420,
+   "noise": 0,
+   "noise_bytes": 0
+  },
+  "security-audit": {
+   "prose": 0,
+   "bytes": 0,
+   "noise": 0,
+   "noise_bytes": 0
+  }
+ }
+}

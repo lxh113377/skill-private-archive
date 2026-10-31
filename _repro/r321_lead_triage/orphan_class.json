@@ -1,0 +1,113 @@
+{
+ "schema": "r321-orphan-class-1",
+ "head": "e8f489ebcf788f9b4f258ab96bb6c3cf465c5b25",
+ "classes": {
+  "PROSE_MD(真补链候选)": {
+   "n": 550,
+   "bytes": 4543891
+  },
+  "LICENSE_OR_CREDITS(不该补链)": {
+   "n": 33,
+   "bytes": 145792
+  },
+  "DIR_README(约定可发现)": {
+   "n": 28,
+   "bytes": 101105
+  },
+  "UNDERSCORE_META(内部索引)": {
+   "n": 11,
+   "bytes": 95206
+  },
+  "OTHER_TXT": {
+   "n": 2,
+   "bytes": 9575
+  }
+ },
+ "per_skill_real": {
+  "data-analysis": {
+   "n": 7,
+   "kb": 65
+  },
+  "theme-factory": {
+   "n": 10,
+   "kb": 5
+  },
+  "gstack": {
+   "n": 6,
+   "kb": 33
+  },
+  "diagram-maker": {
+   "n": 2,
+   "kb": 17
+  },
+  "hyperframes": {
+   "n": 33,
+   "kb": 79
+  },
+  "hyperframes-media": {
+   "n": 6,
+   "kb": 34
+  },
+  "hyperframes-registry": {
+   "n": 3,
+   "kb": 4
+  },
+  "ppt-master": {
+   "n": 147,
+   "kb": 1350
+  },
+  "ui-ux-pro-max": {
+   "n": 2,
+   "kb": 28
+  },
+  "agent-browser": {
+   "n": 1,
+   "kb": 11
+  },
+  "story-cover": {
+   "n": 2,
+   "kb": 13
+  },
+  "story-deslop": {
+   "n": 6,
+   "kb": 30
+  },
+  "story-import": {
+   "n": 12,
+   "kb": 60
+  },
+  "story-long-analyze": {
+   "n": 11,
+   "kb": 88
+  },
+  "story-long-write": {
+   "n": 96,
+   "kb": 917
+  },
+  "story-review": {
+   "n": 15,
+   "kb": 165
+  },
+  "story-scan": {
+   "n": 5,
+   "kb": 12
+  },
+  "story-setup": {
+   "n": 132,
+   "kb": 1011
+  },
+  "story-short-analyze": {
+   "n": 29,
+   "kb": 298
+  },
+  "story-short-write": {
+   "n": 26,
+   "kb": 221
+  },
+  "frontend-skill": {
+   "n": 1,
+   "kb": 7
+  }
+ },
+ "note": "Lead 自算，口径见 classes 键名"
+}

@@ -1,0 +1,162 @@
+{
+  "schema": "r321a-debt-verify-1",
+  "head": {
+    "repo": "7019ce92a6d149c65169b2d1c368fcfa13e7e6f7",
+    "skills": "e8f489ebcf788f9b4f258ab96bb6c3cf465c5b25"
+  },
+  "items": [
+    {
+      "key": "R311-2",
+      "state": "NOT_LANDED",
+      "claim": "注册表 lag 单独看守：worktree 已同步 1.5.0、git 版仍旧值（A-prompt-better 那一行），把同步值提交进 git",
+      "evidence": [
+        {
+          "cmd": "\"C:/Program Files/Git/bin/git.exe\" -C D:/global_skills ls-files \"*unified-skills-index*\"",
+          "exit": 0,
+          "reading": "空输出（rc=0）⇒ 受管根 D:/global_skills 内不存在 unified-skills-index.json；全盘检索仅命中焚诀仓 C:\\Users\\37533\\Desktop\\workspace\\焚诀\\skill\\registry\\unified-skills-index.json（115671B，worktree sha256-12=a7b9fcf744dd）。brief 给的检法（在 global_skills 里比该件 git 版/工作树版）在受管根面无对应件。"
+        },
+        {
+          "cmd": "\"C:/Program Files/Git/bin/git.exe\" -C \"C:/Users/37533/Desktop/workspace/焚诀\" status --porcelain -- skill/registry/unified-skills-index.json",
+          "exit": 0,
+          "reading": "M skill/registry/unified-skills-index.json ⇒ 该件工作树与 git 版仍不一致（lag 仍在）。"
+        },
+        {
+          "cmd": "\"C:/Program Files/Git/bin/git.exe\" -C \"C:/Users/37533/Desktop/workspace/焚诀\" diff --numstat -- skill/registry/unified-skills-index.json",
+          "exit": 0,
+          "reading": "2\t2\tskill/registry/unified-skills-index.json ⇒ 差异规模与条目原话「我的 diff 只有这一个值」一致（含行尾换行补齐共 2 行）。"
+        },
+        {
+          "cmd": "\"C:/Program Files/Git/bin/git.exe\" -C \"C:/Users/37533/Desktop/workspace/焚诀\" show HEAD:skill/registry/unified-skills-index.json",
+          "exit": 0,
+          "reading": "HEAD L198-204 末两元素 = \"      },\" / \"      \\\"version\\\": \\\"1.3.0\\\"\"；同件工作树同窗 = \"      },\" / \"      \\\"version\\\": \\\"1.5.0\\\"\"。逐 key 版本字段全量比对唯一差异 = A-prompt-better: HEAD=1.3.0 WORKTREE=1.5.0（HEAD blob sha256-12=f9066731c1e6 vs worktree a7b9fcf744dd）。"
+        },
+        {
+          "cmd": "\"C:/Program Files/Git/bin/git.exe\" -C \"C:/Users/37533/Desktop/workspace/焚诀\" log --since=2026-10-30 --oneline -- skill/registry/unified-skills-index.json",
+          "exit": 0,
+          "reading": "空输出 ⇒ 10-30 之后无任何触碰该件的提交（条目自列重访条件①「下一笔合规提交碰到注册表」未触发）；该件最后一次提交 = f480955 2026-10-27 17:45:29 +0800（焚诀仓 HEAD=44ab22c 2026-10-31 20:31:00 +0800）。"
+        },
+        {
+          "cmd": "\"C:/Program Files/Git/bin/git.exe\" -C D:/global_skills status --porcelain -- A-skill-manager",
+          "exit": 0,
+          "reading": "空输出，且 git 版与工作树逐哈希同：git rev-parse HEAD:A-skill-manager/SKILL.md = 696d0d85764e996ebc6bd7c3daea3d149fa9cac8 = 盘上 blob 哈希；registry-drift.md 两侧同为 57a8f2191b083b8df2b27c77f85ea76a2cfc46fe ⇒ 受管根技能件侧无 lag；lag 只在焚诀仓注册表那一行。"
+        }
+      ],
+      "recommend": "继续挂账，禁裁「已落地」，维持 P2 看守口径。理由：被看守的底层事实（git 版仍旧值）实测仍在——HEAD=1.3.0 vs worktree=1.5.0、未提交、且 10-30 后无触碰注册表的提交（重访条件①未触发）。台账勾选框仍为 [ ]，与读数一致。拒因（三色红）本次未复跑，不作为降级依据。"
+    },
+    {
+      "key": "R317-2",
+      "state": "LANDED",
+      "claim": "判据第四修=LIMITWORD 宽表（窄表漏配中文词形两边都咬；假红 Y5/task3-r2X 救回，真尾置 task2-r4/task3-r3 保持）+ 回归三向 + R241 校正注",
+      "evidence": [
+        {
+          "cmd": "\"C:/Program Files/Git/bin/git.exe\" show 1a97a0a^:_repro/r312a/anchor_judge.py",
+          "exit": 0,
+          "reading": "修复前 LIMITWORD = re.compile(r\"(不许|禁止|不得|MUST NOT|仅|只许|不能)\") ⇒ 7 项窄表，确认「不可/只允许/一律/一字不…」等中文词形确实缺目。"
+        },
+        {
+          "cmd": "\"C:/Program Files/Git/bin/git.exe\" show 1a97a0a:_repro/r312a/anchor_judge.py",
+          "exit": 0,
+          "reading": "修复后 LIMITWORD = re.compile(r\"(不许|不得|不能|不可|禁止|MUST NOT|仅|只许|只允许|一律|一字不|保持原|原样|不动|禁改|以本段为准|一票否决|fail-closed)\") ⇒ 18 项宽表；盘上工作树同值（_repro/r312a/anchor_judge.py:31，sha256-12=254c1153370b，该件 git status 为空 ⇒ 盘上=已提交版）。git log -1 该件 = 1a97a0a fix(r317d): 判据第四修 LIMITWORD 宽表（窄表漏配中文词形两边都咬）+ 20 格全量重算 + R241 校正注。"
+        },
+        {
+          "cmd": "\"C:/Program Files/Git/bin/git.exe\" merge-base --is-ancestor 1a97a0a HEAD",
+          "exit": 0,
+          "reading": "rc=0 ⇒ 宽表修尺那笔提交在当前 HEAD（7019ce92a6d1）祖先链上，不是未提交的在途改动。"
+        },
+        {
+          "cmd": "python -B _repro/r312a/anchor_judge.py --selftest",
+          "exit": 0,
+          "reading": "[ST-BAD] {\"item4_first30\": 0, \"item5_no_fabricated\": 0, \"item6_scope\": 0, \"item8_consistent\": 0} / [ST-GOOD] {\"item4_first30\": 1, \"item5_no_fabricated\": 1, \"item6_scope\": 1, \"item8_consistent\": 1, \"item8_fake_sections\": []} / [R310:SELFTEST] PASS （BAD 四项全 0 / GOOD 四项全 1，含跳过申报豁免）⇒ 夹具腿双向有牙。"
+        },
+        {
+          "cmd": "python -B _repro/r312a/calib3.py",
+          "exit": 0,
+          "reading": "[CALIB3-NAIVE] 4=0(frac=0.784) 5=0(hits=['Tree of Thought', 'Mixture of Experts']) 6=0 / [CALIB3-GOOD] 4=1(frac=0.0) 5=1 6=1 8=1(fake=[]) / [R312:CALIB] PASS ⇒ 出厂三向压在宽表判据上仍成立。"
+        },
+        {
+          "cmd": "python -B -c \"import json;d=json.load(open('_repro/r317a/i4_audit.json',encoding='utf-8'));print(json.dumps({k:(v['narrow'] and v['narrow'][1],v['broad'] and v['broad'][1]) for k,v in d.items()},ensure_ascii=False))\"",
+          "exit": 0,
+          "reading": "{\"r5|X(终版)\": [0.141, 0.096], \"r5|Y\": [0.548, 0.031], \"r4|X\": [0.58, 0.346], \"r4|Y\": [0.017, 0.017], \"r2|X\": [0.427, 0.235], \"r3|X\": [0.306, 0.306], \"r1|X\": [0.16, 0.16]}（i4_audit.json sha256-12=c3c33a1ff41e）⇒ 条目原话逐格对上：Y5 窄 .548→宽 .031（假红救回）、task3/r2 X 窄 .427→宽 .235（救回）、task2/r4 X 宽 .346 仍 >.30、task3/r3 X .306 两表一致（真尾置保持）。审计先于修复：i4_audit.py mtime=11:38:01 早于 anchor_judge.py mtime=11:39:34。"
+        },
+        {
+          "cmd": "python -B -c \"import io;print([l[:60] for l in io.open('_repro/r316a/N4_MECHANICAL.md',encoding='utf-8').read().splitlines() if 'R241' in l])\"",
+          "exit": 0,
+          "reading": "['## R241 校正注（r317 追加，原文不改）']（_repro/r316a/N4_MECHANICAL.md sha256-12=9f4969392e1b）⇒ R241 校正注确已追加到已发布表文末，旧表原文未改。"
+        }
+      ],
+      "recommend": "裁决=已落地（判据本体面）。理由：宽表定义在工作树/已提交/HEAD 祖先三处一致，selftest 与 calib 双 PASS，审计-修复时序与逐格窄宽读数与条目原话可复算对上。两句附加：① 「已落地」不等于零残留——「复核提示入标准模板」子义务未取到盘上证（见 limits）；② 宽表目前只活在 _repro 实验判据面（05-exec 全域 git grep LIMITWORD = 0 命中，run_gates.py / ratchet_gate.py 不引用 anchor_judge），未接常驻门 ⇒ 若 Lead 要「修尺制度化」口径须另开看守条。"
+    },
+    {
+      "key": "R317-3",
+      "state": "LANDED",
+      "claim": "n=5 二十格终读入库：合并 +8.11%（X37/40 vs Y40/40）；X 三败分落 3 项×3 轮无一复现；Fisher 不显著；幅度随判据修正单调收缩",
+      "evidence": [
+        {
+          "cmd": "\"C:/Program Files/Git/bin/git.exe\" log --oneline -2 -- _repro/r317a/N5_MECHANICAL.md",
+          "exit": 0,
+          "reading": "04c3001 test(r317e): n=5 二十格终表+R317-3 入账（合并 +8.11%；三败散点无一复现⇒i4 与 i8 同款退化噪声形态；幅度随判据修正单调收缩=假红占比自证）⇒ 表已入库（非在途）；merge-base --is-ancestor 04c3001 HEAD rc=0。"
+        },
+        {
+          "cmd": "python -B -c \"import io;t=io.open('_repro/r317a/N5_MECHANICAL.md',encoding='utf-8').read();print(t.splitlines()[0]);print([l for l in t.splitlines() if '合并' in l])\"",
+          "exit": 0,
+          "reading": "首行『# r317 · n=5 全表（宽表修毕判据，20 格等轮；规矩 B 定性线达成）』；正文『等轮 delta：task2 +11.11%、task3 +5.26%；机械合计 X=37/40 vs Y=40/40 ⇒ 全 20 格合并 +8.11%（n=5）』；末行『r317 新 brief（复核提示=执行 agent 自检动作）当轮生效，R4 的 0/4 是否反转看 R5 盲评语义核（在途）。』（N5_MECHANICAL.md sha256-12=ddae63afaf5c，2014B）"
+        },
+        {
+          "cmd": "python -B _repro/r317a/round5_agg.py",
+          "exit": 0,
+          "reading": "20 格逐字复现：task2 X=[3,4,4,3,4] Y=[4,4,4,4,4] delta=+11.11%(n=5)；task3 X=[4,4,3,4,4] Y=[4,4,4,4,4] delta=+5.26%(n=5)；[PENDING] 无；败格读数 task2/r1 X i8=0 fake=['anti_patterns']、task2/r4 X i4=0(frac 0.346)、task3/r3 X i4=0(frac 0.306) ⇒ 与表内 +8.11% 与「三败分落 3 项×3 轮」逐字一致。副作用（如实登记）：脚本自写 _temp/r314a/n4_recomputed.json（3922B，_temp/ 在 .gitignore 内），未动受管根/判据/台账。"
+        },
+        {
+          "cmd": "python -B -c \"import io;t=io.open('_repro/r318a/N5_FINAL.md',encoding='utf-8').read();print(t.splitlines()[0]);print(t.splitlines()[2])\"",
+          "exit": 0,
+          "reading": "『# r318 · n=5 全项终表（需求 6 的最终可引用读数；5 批独立盲评 + 宽表单判据机械全重算）』/『X（换装前 1.3.0）=77/80，Y（换装后 1.5.0）=80/80 ⇒ 合并 delta=+3.90%（n=5，观测点）』（N5_FINAL.md sha256-12=8f0c0db203d3，入库提交 dc3e4c5 为 HEAD 祖先 rc=0）⇒ 同口径晚一版读数并存，可引读数归属留给 Lead 钉。"
+        }
+      ],
+      "recommend": "裁决=已落地。理由：终表落盘且已提交，复跑逐格逐字一致（+8.11%/+11.11%/+5.26%、三败散点），Fisher 不显著与单调收缩两句在表内原文在案。附加：关闭本条时同时钉「需求 6 可引用读数口径」——盘上有两个数（r317a 四项机械 +8.11% vs r318a 全项 +3.90%），二者不冲突但口径不同，不钉死会留下下次复算分叉。"
+    },
+    {
+      "key": "R317-4",
+      "state": "LANDED",
+      "claim": "gstack 终裁=配错成立，本季仅落 NOT_SAME_LINEAGE 归类（r318 实施，不写受管根、不作废 pin）；browse 改配证据不足维持冻结",
+      "evidence": [
+        {
+          "cmd": "\"C:/Program Files/Git/bin/git.exe\" grep -n NOT_SAME_LINEAGE -- _repro 05-exec 06-benchmark",
+          "exit": 0,
+          "reading": "11 命中，关键原文：_repro/r304a/absorption_freeze_list.json:1 {\"schema\":\"r318-absorption-freeze-v1\",\"note\":\"NOT_SAME_LINEAGE 冻结名单（r317 终裁 gstack）：状态如实报、候选面摘出\",\"slugs\":[\"gstack\"]}（sha256-12=4ca3a6c95648）；_repro/r304a/r304_quarterly_version_scan.py:77 与 :222（枚举进 partition 逻辑与 --freeze 参数，candidate_kind=frozen_not_same_lineage）；_repro/r317a/LEAD_ADJUDICATION.md:1『gstack 配错成立=NOT_SAME_LINEAGE 归类；不改 path、维持吸收冻结』（sha256-12=98a0f7639b7b）。"
+        },
+        {
+          "cmd": "\"C:/Program Files/Git/bin/git.exe\" grep -n NOT_SAME_LINEAGE -- 05-exec/r114_replacement_scan.py",
+          "exit": 1,
+          "reading": "空输出 rc=1 ⇒ brief 猜的落点（r114 判据本体）无该枚举值；对 r114 全文另扫 declared_state / DECLARED_STATES 亦 0 命中。实际落点 = _repro/r304a 季度扫描件 + r317a 裁决件 + 台账面（memory/07-next-steps.md:1059/1062）。"
+        },
+        {
+          "cmd": "\"C:/Program Files/Git/bin/git.exe\" log --oneline -1 -- _repro/r304a/absorption_freeze_list.json",
+          "exit": 0,
+          "reading": "78b9771 test(r318): coding-agent 1.4.0 落地全套收口（INC-04 补链）+ R5 盲评/G3 备料入库 + 冻结名单与并档机制 ⇒ 名单随 r318 入库；ls-files 对 absorption_freeze_list.json 与 2026Q4/audit.json 均返回路径（两件都被跟踪，非在途）。"
+        },
+        {
+          "cmd": "python -B -c \"import json;d=json.load(open('_repro/r304a/06-benchmark/version_scan/2026Q4/audit.json',encoding='utf-8'));print(json.dumps(d['summary'],ensure_ascii=False));print('frozen[0].slug=',d['frozen'][0]['slug'],'kind=',d['frozen'][0]['candidate_kind'])\"",
+          "exit": 0,
+          "reading": "summary={\"pairs\":52,\"ok\":51,\"local_changed\":0,\"upstream_changed\":1,\"both_changed\":0,\"unknown\":0,\"candidates\":0,\"frozen\":1,\"local_drift\":0,\"unknown_pairs\":0,...}；frozen[0].slug=gstack kind=frozen_not_same_lineage（audit.json sha256-12=7fd07f9bd610）⇒ 归类不只写在裁定文本里，季度扫描候选面真被摘出（candidates=0、frozen=1），效果有产物。"
+        },
+        {
+          "cmd": "\"C:/Program Files/Git/bin/git.exe\" -C D:/global_skills status --porcelain -- gstack/.upstream",
+          "exit": 0,
+          "reading": "空输出 ⇒ 「不写受管根」兑现（r318 之后至今无改动）。"
+        },
+        {
+          "cmd": "\"C:/Program Files/Git/bin/git.exe\" -C D:/global_skills show HEAD:gstack/.upstream",
+          "exit": 0,
+          "reading": "前两行 = 『garrytan/gstack』/『path: capy/skill/gstack』⇒ pin 未作废、path 未改写（条目「不动 path」兑现）。"
+        },
+        {
+          "cmd": "python -B -c \"import io;t=io.open('_repro/r319b/report.md',encoding='utf-8').read();print([l.strip()[:120] for l in t.splitlines() if 'NOT_SAME_LINEAGE' in l])\"",
+          "exit": 0,
+          "reading": "['1. **维持归类（NOT_SAME_LINEAGE，不动 path）**']（report.md sha256-12=fec57ff88fd2；browse_check.json sha256-12=4045cd39e7e8 同句在 :3125）⇒ r319 browse 对账续件读向仍是维持归类，与「改配证据不足」一致。"
+        }
+      ],
+      "recommend": "裁决=已落地。理由：归类文本（r317 终裁）+ 机器面实现（r304a freeze/partition）+ 效果产物（2026Q4 audit candidates=0/frozen=1）三层都在盘上且已提交；受管根零写、.upstream 与 path 未改，「本季仅落归类」的边界条件全部实测成立。附加两句：① 本条文本里「R241 校正我 brief 转述的 437/52 行」这一子面的盘上落点未定位（见 limits），若要零残留口径请 Lead 另裁；② G2 堂我读的是 r317a/r319b 落盘读数（known-pass=true），未自行复跑 check_r316b.py（其 --out 写面在 _temp，越本件白名单）。"
+    }
+  ],
+  "limits": "未取证的面（具名）。R311-2：① 三色红拒因（C10 skill_content 147!=191 / C14 ci-blind-eval 8 天未刷 / C29 评分产物与 STATUS 脱节 + 8 条测试失败）未复跑 pre-commit ⇒ 「提交仍会被拒」是条目既往陈述、非本轮实测；② lag 名单全量（条目称 lag 15）未复算，只核 A-prompt-better 一行；③ D:/global_skills 按 brief 检法无对应件（该仓无 unified-skills-index.json；A-skill-manager 全跟踪件 git==disk）。R317-2：① 「r318 起入标准模板」未落证——04-plan/派发模板增补_r319_形态纪律例句化.md（1029B）含 paste-clean 但不含「复核提示」；② 宽表是否进常驻门禁不成立（05-exec 全域 git grep LIMITWORD=0；run_gates.py / ratchet_gate.py 不引用 anchor_judge）。R317-3：① 5 批独立盲评原件（人判四项 80 臂-项全 1）未逐份复算；② Fisher p≈0.5 与 p≈0.24 未独立重算，只取表内原文；③ r317a(+8.11%) 与 r318a(+3.90%) 两口径引用归属留给 Lead。R317-4：① R241 的「437/52 行→实测 643/83」校正注盘上落点未定位（仓内 md grep 437 只命中台账 :991/:1059/:1066、_repro/r303b/report.md 的 675 行口径与无关读数；_repro/r316a/N4_MECHANICAL.md 的 R241 校正注属宽表口径、不含 643/83）；② G2 堂（_repro/r316b_lineage/check_r316b.py --selftest）未独立复跑；③ r318 备料「browse 命令面逐条对账」只读结论行，未核 6 轴逐条齐否（_repro/r318a/g3_prep/report.md 291 行内无 NOT_SAME_LINEAGE 字样）。通用：全程只读、零 git 写；唯一盘上副作用=复跑 round5_agg.py 触发脚本自写 _temp/r314a/n4_recomputed.json（gitignored，非判据/台账面）；本件产出只写 _repro/r321a/。"
+}

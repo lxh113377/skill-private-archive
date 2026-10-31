@@ -1,0 +1,6 @@
+CMD: python -B -B C:\Users\37533\Desktop\workspace\skill焚诀\自建skill优化\_repro\r321c\work\drv_leak.py
+rc=0
+STDOUT:
+R321C_JSON{"n_rules": 248, "total": 10, "leaked": 7, "clean": 3, "leak_rate_pct": 70.0, "score_full": {"n": 10, "pct": 95.0, "by_judge": {"exact": 8, "usable-suboptimal": 2, "wrong": 0, "blindspot": 0}}, "score_clean_only": {"n": 3, "pct": 91.7, "by_judge": {"exact": 2, "usable-suboptimal": 1, "wrong": 0, "blindspot": 0}}, "score_leaked_only": {"n": 7, "pct": 96.4, "by_judge": {"exact": 6, "usable-suboptimal": 1, "wrong": 0, "blindspot": 0}}, "leak_attribution_pp": 3.3}
+
+STDERR:

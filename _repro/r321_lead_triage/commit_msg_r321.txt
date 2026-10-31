@@ -1,0 +1,32 @@
+test(r321): 双臂收件独立复跑 + 账龄 4→0 + 入口补链批次表 + 首版口径被推翻（断链 10→真 1、624→逐条 259）
+
+收件（判据逐字复现，不采信自述）：A1 入口普查 [R319A:ENTRY] court=pass skills=52 broken=10 orphans=624 orphan_kb=4781；
+A2 browse 对账 [R319G4:BROWSE] verdict=unclear matched-axes=3/6（合格产出，弃权维 D5/D6 有逐条实底）。
+
+本轮新增三臂产出与自抓：
+1) 账龄现核 _repro/r321a/（A 臂只读取证 + 我复跑 ok=4/4）⇒ 4 条 OVERDUE 落裁决：R317-2/3/4 已落地（各自带承重证据），
+   R311-2 现核 NOT_LANDED 转降级看守（lag 本体实测仍在：焚诀仓注册表件仍 M、HEAD 1.3.0 vs 盘上 1.5.0）。
+   复算：未闭环 348 OVERDUE 0 / ACTIVE 9 / DECIDED 337 / REPEAT 0；[RATCHET:PASS]；r46 夹具 30/30。
+2) 断链真伪二分 _repro/r321b/（B 臂）⇒ real=1 placeholder=9，且根因比怀疑更重：check_r319a.py:51 的 PATH_OK 不含占位符
+   字符 ⇒ :122 剔占位符分支恒 False = 死代码，其报告「剔占位符」是空头承诺。9 条假阳全在 changelog 讲命名规约
+   （story-cover/SKILL.md:47），树内 split-01..10 共 34 个真实存在且被入口逐字点名。唯一真断链 html-ppt/examples/my-talk/index.html。
+3) 入口补链批次表 04-plan/入口补链批次表_r321_2026-10-31.md（六批，优先级/动作/验证/回滚齐）+ 判据 _repro/r321_lead_triage/check_r321.py
+   （从普查 JSON 现算再比对表内抄录值；--neg kb|slug|swallow 三负控全有牙）⇒ [R321:BATCH] batches=6 files=552 kb=4447 coverage=ok。
+   噪声分层：624 = 552 真候选 + 72 不该补链（OFL 字体许可 30/目录 README 28/下划线内部索引 11/其它许可 3），两本账各自守恒。
+   目录级可达现算 link_lower_bound.json：552 里 293 个目录名已在入口 ⇒ 需逐条挂链的真实下界 259，96.1% 集中在三件。
+4) C 臂（副本内跑季度轮换）在盘 logs 首证：r320「季度轮换不能代跑」被推翻（rotate rc=0 于 work/fj 副本，真实 eval 命中 0 条）；
+   干净面 n=106 score 80.0/上限 87.5、生产面 291 得 90.7、泄漏前规则表面 89.7 ⇒ 去泄漏面上 ≥30% 同样算术不可达。
+   该臂收尾消息未到 ⇒ 按 D7.2 不判其交付、其目录 _repro/r321c/ 不入本提交（FORBID 断言 0 命中）。
+
+我自己三处错（登记 R321-1/2/3 + 报告 §5，不洗）：
+- 同一分类规则写两套实现（判据前缀匹配 vs 我的锚定行首正则）⇒ 把对的 147/1350 改错再改回，靠判据 MISMATCH 腿显形。
+- README 加 2436B 只看字符数没看字节数，越 root_doc_max 16384B ⇒ 整段零改写迁 memory/readme-r321-entry-face.md（净增压到 758B）。
+  连带抓出既存债：README 20568B 会话前即越限而 volume_tiers_face 判 PASS（该门不验逐件越限），下轮领号入册。
+- 「独立复跑」把双臂证据件覆写成回退来源（report.r320.md 树来源行与其括注自相矛盾）⇒ 已逐路径 git checkout -- 还原三件到索引原版并复验状态回到纯 A；
+  教训：复跑判据 ≠ 有权覆写 owner 的盘上证据件，复算应在副本或只读输出上做。所有权污染面 selftest PASS（a=polluted b=changed c=ok）。
+
+门禁归因（116 门 FAIL=7 UNVERIFIED=1）：ratchet 已由本轮转绿；其余 7 门引入提交 1449f7c(19:01)/e8dd5b4(19:48)/23e11f5(10-30)/0710c38(19:52)
+与 gitignored 草稿 ⇒ 全部早于本会话开工，按 R269 只登记不代修；cf_deploy_face 正确地判 UNVERIFIED(rc=2)。
+并案范围具名（防读成代提交他人件）：r320 会话在途暂存件（双臂产物 + 07:R320-2 + r114 附录 + r320_debt/debt_runs 行）一并并入，
+理由 = 07 与 r114 附录引用这些路径，不并则成死引用；本轮已对双臂判据逐字复跑方并入（双向留痕见报告 §1/§2）。
+session-scope 显式清单 56 文件（_repro/r321_lead_triage/stage_list.txt），FORBID 命中 0；其余 43 脏行留工作树未并。

@@ -1,0 +1,98 @@
+{
+ "schema": "commit-gate-map-r137-v1",
+ "cmd": "python 05-exec/r137_commit_gate_map.py --json <out>",
+ "staged_n": 56,
+ "staged": [
+  "04-plan/后续维护规范_季度巡检机制_r113_2026-10-18.md",
+  "04-plan/迁移替换方案_r114_2026-10-18.md",
+  "06-benchmark/debt_runs.jsonl",
+  "06-benchmark/r320_debt.json",
+  "DECOMPOSE.md",
+  "README.md",
+  "_repro/r319b/browse_check.json",
+  "_repro/r319b/check_r319b.py",
+  "_repro/r319b/ev/face_single/gstack/SKILL.md",
+  "_repro/r319b/ev/local_head_SKILL.md",
+  "_repro/r319b/report.md",
+  "_repro/r320a/entry_census/CONFLICT_NOTE_lead_self.md",
+  "_repro/r320a/entry_census/_lead_v3_FAILED_entry_scan.json",
+  "_repro/r320a/entry_census/check_r319a.py",
+  "_repro/r320a/entry_census/entry_scan.json",
+  "_repro/r320a/entry_census/entry_scan.r320.json",
+  "_repro/r320a/entry_census/report.md",
+  "_repro/r320a/entry_census/report.r320.md",
+  "memory/07-next-steps.md",
+  "04-plan/入口补链批次表_r321_2026-10-31.md",
+  "06-benchmark/r321_gate_run.json",
+  "06-benchmark/全量对标报告_r321_双臂收件与入口口径推翻与干净面首读数_2026-10-31.md",
+  "_repro/r320a/entry_census/_entry_scan.json",
+  "_repro/r320a/entry_census/_report.md",
+  "_repro/r321_lead_triage/",
+  "_repro/r321a/",
+  "_repro/r321b/",
+  "memory/readme-r321-entry-face.md",
+  "06-benchmark/ci_health_latest.json",
+  "06-benchmark/dead_regex_latest.json",
+  "06-benchmark/dup_policy_latest.json",
+  "06-benchmark/fixture_wiring_latest.json",
+  "06-benchmark/free_tool_roster_latest.json",
+  "06-benchmark/free_tools_latest.json",
+  "06-benchmark/gate_reconcile_registry.json",
+  "06-benchmark/gate_run_md_deadlink_latest.json",
+  "06-benchmark/gate_runs.jsonl",
+  "06-benchmark/gh_billing_latest.json",
+  "06-benchmark/input_pins.jsonl",
+  "06-benchmark/pages_http_latest.json",
+  "06-benchmark/probe_cost_latest.json",
+  "06-benchmark/provenance_resolve_latest.json",
+  "06-benchmark/quarterly_cadence_latest.json",
+  "06-benchmark/quota_face_latest.json",
+  "06-benchmark/r260_local_baseline.json",
+  "06-benchmark/r269_converge_latest.json",
+  "06-benchmark/roster_audit_latest.json",
+  "06-benchmark/route_truth_latest.json",
+  "06-benchmark/source_freshness_latest.json",
+  "06-benchmark/sqlite_usage_latest.json",
+  "06-benchmark/teeth_proof_latest.json",
+  "06-benchmark/tool_carrier_latest.json",
+  "06-benchmark/tool_skill_matrix_latest.json",
+  "06-benchmark/turnstile_usage_latest.json",
+  "06-benchmark/workers_quota_latest.json",
+  "06-benchmark/workflow_usage_latest.json"
+ ],
+ "required_gates": {
+  "causal_evidence_face": {
+   "gates": [
+    "06-benchmark/全量对标报告_r321_双臂收件与入口口径推翻与干净面首读数_2026-10-31.md"
+   ],
+   "why": "写了报告 ⇒ 因果结论须有实测支撑或显式标注（#33）",
+   "in_gates_table": true
+  },
+  "debt_aging": {
+   "gates": [
+    "memory/07-next-steps.md"
+   ],
+   "why": "改了 07 台账 ⇒ 账龄件须重生（写记忆后必算账龄）",
+   "in_gates_table": false
+  },
+  "contract_lifecycle_face": {
+   "gates": [
+    "memory/07-next-steps.md"
+   ],
+   "why": "改了契约纪律面（判据/转办/纪律条目/P0 台账）⇒ 契约全生命周期风险预警须为 P0=0（R152 分级阻断）",
+   "in_gates_table": true
+  }
+ },
+ "required_gate_ids": [
+  "causal_evidence_face",
+  "contract_lifecycle_face",
+  "debt_aging"
+ ],
+ "in_scope_n": 3,
+ "reading": {
+  "in_scope_n": "本次提交落在本仓纪律面的门数（0 = 不属本仓判据面，不阻断）",
+  "required_gate_ids": "本次提交**必须过**的门 id 列表 —— pre-commit 依此逐门跑并按结果阻断",
+  "staged_n": "本次暂存文件数"
+ },
+ "generated_at": "2026-10-31 22:27"
+}

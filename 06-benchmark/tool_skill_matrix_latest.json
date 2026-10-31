@@ -3,7 +3,7 @@
  "cmd": "python 05-exec/r163_tool_skill_matrix.py --json <out>",
  "tools_n": 11,
  "note": "命令级匹配（非产品名）；零引用不判红，具名显形供人决定是否补搭配。两把尺的解读边界（r185）：per_tool = 提到（文档或代码），per_tool_exec = 代码真调用。**「仅文档」不等于「没搭配」** —— 权威部署手册型 skill（如 chaoshi-web-deploy）本就不自带脚本，其价值是让人正确敲命令；把可执行面当成唯一合格标准会诱导造脚本凑数（r166「凑引用即造需求」同族）。本尺只用于发现「提到却一次都没跑过」的候选，不判红。",
- "generated_at": "2026-10-30 13:26",
+ "generated_at": "2026-10-31 22:03",
  "gs_root": "D:\\global_skills",
  "skills_scanned": 191,
  "skills_with_tools": 35,
@@ -202,7 +202,7 @@
    "GitHub": 1
   },
   "security-audit": {
-   "GitHub": 1
+   "GitHub": 4
   },
   "shell-encoding-pitfalls": {
    "GitHub": 1

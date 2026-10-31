@@ -1,10 +1,14 @@
 {
  "schema": "fixture-wiring-v1",
  "readonly": true,
- "fixtures_total": 57,
- "orphans": [],
+ "fixtures_total": 59,
+ "orphans": [
+  "r302_r260_input_pin_fixtures.py"
+ ],
  "baseline": [],
- "new_orphans": [],
+ "new_orphans": [
+  "r302_r260_input_pin_fixtures.py"
+ ],
  "referenced_by_peers": [
   "r150_gov_fixtures.py",
   "r19_fixture_mutation_check.py",

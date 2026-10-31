@@ -1,0 +1,16 @@
+CMD: python -B C:\Users\37533\Desktop\workspace\skill焚诀\自建skill优化\_repro\r321c\work\fj\eval\rotate_blindset.py --force
+rc=0
+STDOUT:
+活动样本 10 条 → 保留 7 / 轮出 3 / 换入 3
+轮出样本:
+  - 把PPT里的文字提取出来做成演讲稿 (pptx)
+  - 写个脚本定期备份数据库 (tencent-cos-skill__skillhub)
+  - 给一个GitHub项目写代码审查意见 (github)
+换入样本:
+  + 做一个本地前端可视化html页面 (chart-visualization)
+  + 查企业工商信息 (天眼一下)
+  + 提取视频字幕 (video-whisper-transcribe)
+技能覆盖: 10 → 9 (OK)
+✅ 已应用 v2: 活动集更新, 旧版归档 frozen_blind_test.v2.json
+
+STDERR:

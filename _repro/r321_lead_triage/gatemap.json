@@ -1,0 +1,65 @@
+{
+ "schema": "commit-gate-map-r137-v1",
+ "cmd": "python 05-exec/r137_commit_gate_map.py --json <out>",
+ "staged_n": 23,
+ "staged": [
+  "DECOMPOSE.md",
+  "README.md",
+  "memory/readme-r321-entry-face.md",
+  "memory/07-next-steps.md",
+  "04-plan/入口补链批次表_r321_2026-10-31.md",
+  "04-plan/后续维护规范_季度巡检机制_r113_2026-10-18.md",
+  "06-benchmark/全量对标报告_r321_双臂收件与入口口径推翻与干净面首读数_2026-10-31.md",
+  "_repro/r321a/verdict.json",
+  "_repro/r321a/report.md",
+  "_repro/r321a/check_r321a.py",
+  "_repro/r321b/broken_verify.json",
+  "_repro/r321b/report.md",
+  "_repro/r321b/check_r321b.py",
+  "_repro/r321_lead_triage/check_r321.py",
+  "_repro/r321_lead_triage/orphan_class.json",
+  "_repro/r321_lead_triage/batch_numbers.json",
+  "_repro/r321_lead_triage/link_lower_bound.json",
+  "_repro/r321_lead_triage/BROKEN_LEAD_EVIDENCE.md",
+  "_repro/r321_lead_triage/rule_editor_gates.txt",
+  "_repro/r321_lead_triage/deadlink_after.json",
+  "_repro/r321_lead_triage/debt_after.json",
+  "_repro/r321_lead_triage/debt_final.json",
+  "_repro/r321_lead_triage/volume_after.json"
+ ],
+ "required_gates": {
+  "causal_evidence_face": {
+   "gates": [
+    "06-benchmark/全量对标报告_r321_双臂收件与入口口径推翻与干净面首读数_2026-10-31.md"
+   ],
+   "why": "写了报告 ⇒ 因果结论须有实测支撑或显式标注（#33）",
+   "in_gates_table": true
+  },
+  "debt_aging": {
+   "gates": [
+    "memory/07-next-steps.md"
+   ],
+   "why": "改了 07 台账 ⇒ 账龄件须重生（写记忆后必算账龄）",
+   "in_gates_table": false
+  },
+  "contract_lifecycle_face": {
+   "gates": [
+    "memory/07-next-steps.md"
+   ],
+   "why": "改了契约纪律面（判据/转办/纪律条目/P0 台账）⇒ 契约全生命周期风险预警须为 P0=0（R152 分级阻断）",
+   "in_gates_table": true
+  }
+ },
+ "required_gate_ids": [
+  "causal_evidence_face",
+  "contract_lifecycle_face",
+  "debt_aging"
+ ],
+ "in_scope_n": 3,
+ "reading": {
+  "in_scope_n": "本次提交落在本仓纪律面的门数（0 = 不属本仓判据面，不阻断）",
+  "required_gate_ids": "本次提交**必须过**的门 id 列表 —— pre-commit 依此逐门跑并按结果阻断",
+  "staged_n": "本次暂存文件数"
+ },
+ "generated_at": "2026-10-31 22:23"
+}

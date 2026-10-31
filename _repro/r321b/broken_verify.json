@@ -1,0 +1,112 @@
+{
+  "schema": "r321b-broken-verify-1",
+  "skills_head": "e8f489ebcf788f9b4f258ab96bb6c3cf465c5b25",
+  "items": [
+    {
+      "path": "html-ppt/examples/my-talk/index.html",
+      "kind": "REAL_BROKEN",
+      "entry_line": "html-ppt/SKILL.md:102",
+      "tree_truth": "html-ppt/examples/ 下 HEAD 树只有 html-ppt/examples/demo-deck/index.html 一个文件；全 HEAD 树 16509 条里含 my-talk 的路径数=0；上游 lewislulu/html-ppt-skill main 的 examples/ 也只有 demo-deck（同一形态）",
+      "cmd": "git -C D:/global_skills cat-file -e HEAD:html-ppt/examples/my-talk/index.html",
+      "exit": 128
+    },
+    {
+      "path": "story-cover/references/split-NN.md",
+      "kind": "PLACEHOLDER_FALSE",
+      "entry_line": "story-cover/SKILL.md:47",
+      "tree_truth": "story-cover/references/ 实际存在 5 个真实分卷（split-01.md, split-02.md, split-03.md, split-04.md, split-05.md），无字面 split-NN.md；入口同时逐字点名了这 5 个真实件（tree_but_unmentioned=0、mentioned_but_absent=0）；占位符展开命中数=5",
+      "cmd": "git -C D:/global_skills ls-tree -r --name-only HEAD -- story-cover/references/ | grep -E 'split-[0-9]+\\.md|split-NN\\.md'",
+      "exit": 0
+    },
+    {
+      "path": "story-deslop/references/split-NN.md",
+      "kind": "PLACEHOLDER_FALSE",
+      "entry_line": "story-deslop/SKILL.md:181",
+      "tree_truth": "story-deslop/references/ 实际存在 1 个真实分卷（split-01.md），无字面 split-NN.md；入口同时逐字点名了这 1 个真实件（tree_but_unmentioned=0、mentioned_but_absent=0）；占位符展开命中数=1",
+      "cmd": "git -C D:/global_skills ls-tree -r --name-only HEAD -- story-deslop/references/ | grep -E 'split-[0-9]+\\.md|split-NN\\.md'",
+      "exit": 0
+    },
+    {
+      "path": "story-import/references/split-NN.md",
+      "kind": "PLACEHOLDER_FALSE",
+      "entry_line": "story-import/SKILL.md:234",
+      "tree_truth": "story-import/references/ 实际存在 10 个真实分卷（split-01.md, split-02.md, split-03.md, split-04.md, split-05.md, split-06.md, split-07.md, split-08.md, split-09.md, split-10.md），无字面 split-NN.md；入口同时逐字点名了这 10 个真实件（tree_but_unmentioned=0、mentioned_but_absent=0）；占位符展开命中数=10",
+      "cmd": "git -C D:/global_skills ls-tree -r --name-only HEAD -- story-import/references/ | grep -E 'split-[0-9]+\\.md|split-NN\\.md'",
+      "exit": 0
+    },
+    {
+      "path": "story-long-analyze/references/split-NN.md",
+      "kind": "PLACEHOLDER_FALSE",
+      "entry_line": "story-long-analyze/SKILL.md:98",
+      "tree_truth": "story-long-analyze/references/ 实际存在 2 个真实分卷（split-01.md, split-02.md），无字面 split-NN.md；入口同时逐字点名了这 2 个真实件（tree_but_unmentioned=0、mentioned_but_absent=0）；占位符展开命中数=2",
+      "cmd": "git -C D:/global_skills ls-tree -r --name-only HEAD -- story-long-analyze/references/ | grep -E 'split-[0-9]+\\.md|split-NN\\.md'",
+      "exit": 0
+    },
+    {
+      "path": "story-long-write/references/split-NN.md",
+      "kind": "PLACEHOLDER_FALSE",
+      "entry_line": "story-long-write/SKILL.md:53",
+      "tree_truth": "story-long-write/references/ 实际存在 3 个真实分卷（split-01.md, split-02.md, split-03.md），无字面 split-NN.md；入口同时逐字点名了这 3 个真实件（tree_but_unmentioned=0、mentioned_but_absent=0）；占位符展开命中数=3",
+      "cmd": "git -C D:/global_skills ls-tree -r --name-only HEAD -- story-long-write/references/ | grep -E 'split-[0-9]+\\.md|split-NN\\.md'",
+      "exit": 0
+    },
+    {
+      "path": "story-review/references/split-NN.md",
+      "kind": "PLACEHOLDER_FALSE",
+      "entry_line": "story-review/SKILL.md:186",
+      "tree_truth": "story-review/references/ 实际存在 5 个真实分卷（split-01.md, split-02.md, split-03.md, split-04.md, split-05.md），无字面 split-NN.md；入口同时逐字点名了这 5 个真实件（tree_but_unmentioned=0、mentioned_but_absent=0）；占位符展开命中数=5",
+      "cmd": "git -C D:/global_skills ls-tree -r --name-only HEAD -- story-review/references/ | grep -E 'split-[0-9]+\\.md|split-NN\\.md'",
+      "exit": 0
+    },
+    {
+      "path": "story-setup/references/split-NN.md",
+      "kind": "PLACEHOLDER_FALSE",
+      "entry_line": "story-setup/SKILL.md:99",
+      "tree_truth": "story-setup/references/ 实际存在 2 个真实分卷（split-01.md, split-02.md），无字面 split-NN.md；入口同时逐字点名了这 2 个真实件（tree_but_unmentioned=0、mentioned_but_absent=0）；占位符展开命中数=2",
+      "cmd": "git -C D:/global_skills ls-tree -r --name-only HEAD -- story-setup/references/ | grep -E 'split-[0-9]+\\.md|split-NN\\.md'",
+      "exit": 0
+    },
+    {
+      "path": "story-short-analyze/references/split-NN.md",
+      "kind": "PLACEHOLDER_FALSE",
+      "entry_line": "story-short-analyze/SKILL.md:179",
+      "tree_truth": "story-short-analyze/references/ 实际存在 3 个真实分卷（split-01.md, split-02.md, split-03.md），无字面 split-NN.md；入口同时逐字点名了这 3 个真实件（tree_but_unmentioned=0、mentioned_but_absent=0）；占位符展开命中数=3",
+      "cmd": "git -C D:/global_skills ls-tree -r --name-only HEAD -- story-short-analyze/references/ | grep -E 'split-[0-9]+\\.md|split-NN\\.md'",
+      "exit": 0
+    },
+    {
+      "path": "story-short-write/references/split-NN.md",
+      "kind": "PLACEHOLDER_FALSE",
+      "entry_line": "story-short-write/SKILL.md:169",
+      "tree_truth": "story-short-write/references/ 实际存在 2 个真实分卷（split-01.md, split-02.md），无字面 split-NN.md；入口同时逐字点名了这 2 个真实件（tree_but_unmentioned=0、mentioned_but_absent=0）；占位符展开命中数=2",
+      "cmd": "git -C D:/global_skills ls-tree -r --name-only HEAD -- story-short-write/references/ | grep -E 'split-[0-9]+\\.md|split-NN\\.md'",
+      "exit": 0
+    }
+  ],
+  "counts": {
+    "real": 1,
+    "placeholder": 9,
+    "other": 0
+  },
+  "proposed_fix": [
+    {
+      "rule": "断链候选先过「占位符展开对树」：token 形态含占位符（末段主干纯大写后缀如 -NN/-XXX、* ? {x} <x> $VAR）时，按其在 HEAD 本 slug 子树里做 glob/正则展开，命中 ≥1 个真实文件 ⇒ 记 PLACEHOLDER_PATTERN、从 broken 分母剔除并单独计数；命中 0 ⇒ 仍判红（存在性检查本身不放宽）",
+      "kills": 9,
+      "keeps_red": [
+        "story-review/references/dispatch-NN.md（占位形态但本件树内展开 0 命中，实测仍判红）",
+        "html-ppt/examples/my-talk/index.html（无占位形态、树内不存在，实测仍判红）",
+        "story-import/references/split-11.md（真实命名形态但树里没有，实测仍判红）"
+      ]
+    },
+    {
+      "rule": "断链候选过「同行规约上下文词（窄表：分卷 / 迁至）」：该 token 在入口原文出现的行同时含这两个规约动词之一 ⇒ 该行在讲分卷命名规约而非指向具体文件，记 PLACEHOLDER_PATTERN、从 broken 分母剔除并单独计数；否则维持判红。实测窄表零漏判；把表放宽到含 模板/template/命名/pattern 会漏放真断链 data-analysis/assets/report_templateX.md（文件名自带 template 子串即命中），故窄表为推荐形态",
+      "kills": 9,
+      "keeps_red": [
+        "html-ppt/examples/my-talk/index.html（所在行 L102/L118/L124 均不含「分卷/迁至」，实测仍判红）",
+        "story-import/references/split-11.md（真实命名形态且树里没有，注入行无规约词，实测仍判红）",
+        "story-review/references/dispatch-NN.md（占位形态但同行无规约词，实测仍判红）",
+        "data-analysis/assets/report_templateX.md（typo 型真断链，窄表实测仍判红；宽表已实测漏判）"
+      ]
+    }
+  ]
+}

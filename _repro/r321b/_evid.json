@@ -1,0 +1,123 @@
+{
+ "evid": [
+  {
+   "slug": "story-cover",
+   "cmd": "git -C D:/global_skills ls-tree -r --name-only HEAD -- story-cover/references/ | grep -E 'split-[0-9]+\\.md|split-NN\\.md'",
+   "rc": 0,
+   "real_count": 5,
+   "real": [
+    "split-01.md",
+    "split-02.md",
+    "split-03.md",
+    "split-04.md",
+    "split-05.md"
+   ],
+   "literal_NN": 0
+  },
+  {
+   "slug": "story-deslop",
+   "cmd": "git -C D:/global_skills ls-tree -r --name-only HEAD -- story-deslop/references/ | grep -E 'split-[0-9]+\\.md|split-NN\\.md'",
+   "rc": 0,
+   "real_count": 1,
+   "real": [
+    "split-01.md"
+   ],
+   "literal_NN": 0
+  },
+  {
+   "slug": "story-import",
+   "cmd": "git -C D:/global_skills ls-tree -r --name-only HEAD -- story-import/references/ | grep -E 'split-[0-9]+\\.md|split-NN\\.md'",
+   "rc": 0,
+   "real_count": 10,
+   "real": [
+    "split-01.md",
+    "split-02.md",
+    "split-03.md",
+    "split-04.md",
+    "split-05.md",
+    "split-06.md",
+    "split-07.md",
+    "split-08.md",
+    "split-09.md",
+    "split-10.md"
+   ],
+   "literal_NN": 0
+  },
+  {
+   "slug": "story-long-analyze",
+   "cmd": "git -C D:/global_skills ls-tree -r --name-only HEAD -- story-long-analyze/references/ | grep -E 'split-[0-9]+\\.md|split-NN\\.md'",
+   "rc": 0,
+   "real_count": 2,
+   "real": [
+    "split-01.md",
+    "split-02.md"
+   ],
+   "literal_NN": 0
+  },
+  {
+   "slug": "story-long-write",
+   "cmd": "git -C D:/global_skills ls-tree -r --name-only HEAD -- story-long-write/references/ | grep -E 'split-[0-9]+\\.md|split-NN\\.md'",
+   "rc": 0,
+   "real_count": 3,
+   "real": [
+    "split-01.md",
+    "split-02.md",
+    "split-03.md"
+   ],
+   "literal_NN": 0
+  },
+  {
+   "slug": "story-review",
+   "cmd": "git -C D:/global_skills ls-tree -r --name-only HEAD -- story-review/references/ | grep -E 'split-[0-9]+\\.md|split-NN\\.md'",
+   "rc": 0,
+   "real_count": 5,
+   "real": [
+    "split-01.md",
+    "split-02.md",
+    "split-03.md",
+    "split-04.md",
+    "split-05.md"
+   ],
+   "literal_NN": 0
+  },
+  {
+   "slug": "story-setup",
+   "cmd": "git -C D:/global_skills ls-tree -r --name-only HEAD -- story-setup/references/ | grep -E 'split-[0-9]+\\.md|split-NN\\.md'",
+   "rc": 0,
+   "real_count": 2,
+   "real": [
+    "split-01.md",
+    "split-02.md"
+   ],
+   "literal_NN": 0
+  },
+  {
+   "slug": "story-short-analyze",
+   "cmd": "git -C D:/global_skills ls-tree -r --name-only HEAD -- story-short-analyze/references/ | grep -E 'split-[0-9]+\\.md|split-NN\\.md'",
+   "rc": 0,
+   "real_count": 3,
+   "real": [
+    "split-01.md",
+    "split-02.md",
+    "split-03.md"
+   ],
+   "literal_NN": 0
+  },
+  {
+   "slug": "story-short-write",
+   "cmd": "git -C D:/global_skills ls-tree -r --name-only HEAD -- story-short-write/references/ | grep -E 'split-[0-9]+\\.md|split-NN\\.md'",
+   "rc": 0,
+   "real_count": 2,
+   "real": [
+    "split-01.md",
+    "split-02.md"
+   ],
+   "literal_NN": 0
+  }
+ ],
+ "ce": {
+  "rc": 128,
+  "stderr": "fatal: path 'html-ppt/examples/my-talk/index.html' does not exist in 'HEAD'\n"
+ },
+ "lt": "html-ppt/examples/demo-deck/index.html\n"
+}

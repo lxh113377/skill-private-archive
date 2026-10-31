@@ -1,6 +1,6 @@
 {
  "schema": "r260-local-baseline-v1",
- "generated_at": "2026-10-30T14:32:32+00:00",
+ "generated_at": "2026-10-31T14:08:38+00:00",
  "cmd": "python 05-exec/r260_local_baseline.py",
  "rerun": "cd 自建skill优化 && export PYTHONPYCACHEPREFIX=/tmp/pycache_r260b && python 05-exec/r260_local_baseline.py",
  "single_source": {
@@ -334,7 +334,7 @@
     "test_path_n": 0,
     "workflow_n": 0,
     "license": "UNLICENSED",
-    "pushed_at": "2026-10-30"
+    "pushed_at": "2026-10-31"
    },
    "score5": {
     "fc": 2,
@@ -471,8 +471,8 @@
   "matrix_caliber": "license_cap_off",
   "cap_discriminates": true,
   "input_pin_version": "r302-pin-v1",
-  "stale_input_n": 90,
-  "stale_input_rank0_n": 26,
+  "stale_input_n": 98,
+  "stale_input_rank0_n": 27,
   "stale_input_examples": [
    {
     "slug": "A-dynamic-workflow",
@@ -484,6 +484,16 @@
      "stars",
      "pushed_at",
      "test_path_n"
+    ]
+   },
+   {
+    "slug": "A-prompt-better",
+    "repo": "nidhinjs/prompt-master",
+    "rank": 0,
+    "recorded_pin": "5ee358da87098683",
+    "live_pin": "4134ced01893abac",
+    "changed_fields": [
+     "stars"
     ]
    },
    {
@@ -520,24 +530,10 @@
      "pushed_at",
      "test_path_n"
     ]
-   },
-   {
-    "slug": "agent-browser",
-    "repo": "vercel-labs/agent-browser",
-    "rank": 1,
-    "recorded_pin": "06c0673ad09b6eb2",
-    "live_pin": "2f8ccea93b63c2fa",
-    "changed_fields": [
-     "stars",
-     "pushed_at",
-     "skill_md_n",
-     "skill_md_exact_n",
-     "test_path_n"
-    ]
    }
   ],
   "unknown_n": 0,
-  "pinned_scored_n": 847,
+  "pinned_scored_n": 839,
   "input_pin_note": "input_pin = sha256(规范化 JSON(score5 输入投影))[:16]，投影字段 = r225 矩阵逐候选记录下来的那批 score5 输入（PIN_FIELDS）；两侧同规则现算，不依赖任何历史 pin 字段（r225 没有，且禁改写）。判档：pin 同 + score5 不同 ⇒ 量尺漂移（计入 mismatches）；pin 不同 ⇒ 输入被合法刷新（stale_input，不计 mismatches、不判 FAIL）；活件取不到 ⇒ unknown。未记录的四个字段（blob_n、readme_n、tree_state、license_body_class）不进投影 ⇒ 只改这些字段的刷新可能被误判成漂移（具名边界）。",
   "caliber_note": "两口径漂移分别记录（cap_on=90 与 cap_off=0）：较小值视为该矩阵件产出时的口径。cap_discriminates=False 且两者皆 0 ⇒ 本次样本对 cap 无差别，禁据此判许可档有效；两者皆非 0 ⇒ 未知改动/真双源，本门当场红。",
   "claim": "mismatches==0 即本件与该矩阵件产出时同一把尺（两个 cap 档至少一个能零漂移复现）；两档皆 >0 即双源/未登记换代，自证不成立；stale_input_n 是输入刷新数，不参与本布尔"
@@ -1116,14 +1112,14 @@
     },
     "license": "UNLICENSED",
     "license_note": "no_license_file",
-    "blob_n": 1,
+    "blob_n": 2,
     "skill_md_n": 1,
     "skill_md_exact_n": 1,
     "readme_n": 0,
     "docs_md_n": 0,
     "test_path_n": 0,
     "workflow_n": 0,
-    "pushed_at_mtime": "2026-10-20",
+    "pushed_at_mtime": "2026-10-31",
     "tree_truncated": false,
     "community_na": true,
     "score_total": 7,
@@ -1142,7 +1138,7 @@
     "score_cmp4": 10,
     "fc_caliber": "strict",
     "license": "MIT",
-    "stars": 15014,
+    "stars": 15287,
     "archived": false,
     "skill_md_exact_n": 1,
     "blob_n": 5,
@@ -3124,7 +3120,7 @@
     "docs_md_n": 0,
     "test_path_n": 0,
     "workflow_n": 0,
-    "pushed_at_mtime": "2026-10-27",
+    "pushed_at_mtime": "2026-10-31",
     "tree_truncated": false,
     "community_na": true,
     "score_total": 9,
@@ -3607,7 +3603,7 @@
     "docs_md_n": 0,
     "test_path_n": 0,
     "workflow_n": 0,
-    "pushed_at_mtime": "2026-10-29",
+    "pushed_at_mtime": "2026-10-30",
     "tree_truncated": false,
     "community_na": true,
     "score_total": 7,
@@ -5739,14 +5735,14 @@
     },
     "license": "Apache-2.0",
     "license_note": "fingerprint:LICENSE.txt",
-    "blob_n": 3,
+    "blob_n": 41,
     "skill_md_n": 1,
     "skill_md_exact_n": 1,
     "readme_n": 0,
     "docs_md_n": 0,
     "test_path_n": 0,
     "workflow_n": 0,
-    "pushed_at_mtime": "2026-10-20",
+    "pushed_at_mtime": "2026-10-31",
     "tree_truncated": false,
     "community_na": true,
     "score_total": 9,

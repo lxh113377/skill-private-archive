@@ -98,6 +98,14 @@ Set-Location 'C:\Users\37533\Desktop\workspace\焚诀'; & "C:\Users\37533\.workb
 | 6 | 替换后质量提升 ≥30% 且无兼容性问题 | [06-benchmark/全量对标报告_r260_判据四处根因修与两条新常驻门_2026-10-28.md](06-benchmark/全量对标报告_r260_判据四处根因修与两条新常驻门_2026-10-28.md) §8（两种读法并写）＋ [04-plan/要求6验收裁决与收口件_r233_口径B达标口径C不可达_2026-10-25.md](04-plan/要求6验收裁决与收口件_r233_口径B达标口径C不可达_2026-10-25.md)＋ [04-plan/需求6口径对照与决策件_r216_2026-10-25.md](04-plan/需求6口径对照与决策件_r216_2026-10-25.md)＋读数件 [06-benchmark/r260_req6_quality_truth.json](06-benchmark/r260_req6_quality_truth.json) / [06-benchmark/r260_req6_attainability.json](06-benchmark/r260_req6_attainability.json) | truth 件 `2026-10-27T17:02:54+00:00` | `python.exe -c "import json;d=json.load(open(r'06-benchmark/r260_req6_quality_truth.json',encoding='utf-8'));print(d['generated_at'],list(d['faces'].keys())[:6])"` 再 `python 05-exec/r214_req6_attainability.py --selftest`（`rc=1` 即 IMPOSSIBLE 语义 = 该件自身即负向对照） |
 | 7 | 四类文档（报告 / 对比表 / 迁移方案 / 维护规范） | 逐轮报告索引 = [memory/readme-benchmark-reports.md](memory/readme-benchmark-reports.md) + 分卷 `part1..part6` + **新增 [part7](memory/readme-benchmark-reports.part7.md)**（r209→r260 + 本轮入口件）＋对比表 [06-benchmark/comparison.md](06-benchmark/comparison.md)＋迁移方案见需求 4＋维护规范见需求 5＋基数口径 [06-benchmark/交付物基数对账_r261_2026-10-28.md](06-benchmark/交付物基数对账_r261_2026-10-28.md) | 本卷 r261（2026-10-28） | `python.exe -c "import glob;print(len(glob.glob(r'06-benchmark/全量对标报告_r*.md')))"`（现读 125）与 `find memory -name "readme-benchmark-reports*.md" -size +4096c | wc -l`（期望 `0`） |
 
+### r321 增补 · 入口可达性维 + 解释器路径校正
+
+> 本节正文按体量治理 R161（`root_doc_max` 16,384B）**整段零改写迁至** [memory/readme-r321-entry-face.md](memory/readme-r321-entry-face.md)。
+> 一句话：r320 普查量到新缺陷类「落盘未入口」（624 孤儿 / 4781 KB），r321 复核其中断链 10 条**只有 1 条是真的**、
+> 真需逐条补链的下界 259 个（其余 293 个已被目录名覆盖）；同时实测 README 上方「收口门禁」代码块里的
+> `C:\Program Files\Python312\python.exe` 本机已不存在（`spawn ENOENT`），改用 venv 3.13.14 或 LibreOffice 3.13.15。
+> 交付件句柄与取值命令全在迁移后的分卷里（本文件不抄数，承本节既有口径）。
+
 ### 已过期、不得当现状引用的旧件（具名）
 
 | 旧件 | 过期的是**口径**还是**数值** | 为什么不得当现状 |

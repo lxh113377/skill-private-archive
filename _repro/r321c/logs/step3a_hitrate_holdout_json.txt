@@ -1,0 +1,6 @@
+CMD: python -B -B C:\Users\37533\Desktop\workspace\skill焚诀\自建skill优化\_repro\r321c\work\fj\eval\hitrate_holdout.py --json
+rc=0
+STDOUT:
+{"status": "PASS", "detail": "盲测集泄漏 185/291 = 63.6%｜干净面 106 条｜轮换池泄漏 14/20 = 70.0%｜双口径：全量 95.2% / 干净面 87.5% / 泄漏面 99.6%（泄漏抬分 7.7pp）", "testset": {"n": 291, "leak": 185, "clean": 106, "rate": 63.6, "by_tier": {"skills": {"n": 151, "leak": 106}, "cli": {"n": 59, "leak": 40}, "short": {"n": 51, "leak": 32}, "fault_finding": {"n": 19, "leak": 7}, "negative": {"n": 11, "leak": 0}}}, "pool": {"n": 20, "leak": 14, "clean": 6, "rate": 70.0, "by_tier": {"pool": {"n": 20, "leak": 14}}}, "ratchet_caps": {"leak_rate_pct": 63.6, "pool_leak_rate_pct": 70.0}, "clean_min": 60, "manifest_stale": [], "schema": "fenjue-hitrate-holdout-v1"}
+
+STDERR:

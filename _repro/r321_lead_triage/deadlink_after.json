@@ -1,0 +1,32 @@
+{
+ "schema": "zijian-md-deadlink-v1",
+ "generated_at": "2026-10-31T22:12:47",
+ "root": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化",
+ "md_files": 678,
+ "face": "shipping (git-tracked + non-ignored untracked); drafts excluded",
+ "face_files_total": 4114,
+ "dead": 3,
+ "items": [
+  {
+   "file": "_repro/r314b/evidence/recheck_upstream_SKILL.md",
+   "line": 64,
+   "target": "captain.md",
+   "resolved": "_repro/r314b/evidence/captain.md"
+  },
+  {
+   "file": "_repro/r314b/evidence/upstream_SKILL.md",
+   "line": 64,
+   "target": "captain.md",
+   "resolved": "_repro/r314b/evidence/captain.md"
+  },
+  {
+   "file": "_repro/r316b_lineage/evidence/gstack_capy_skill.md",
+   "line": 64,
+   "target": "captain.md",
+   "resolved": "_repro/r316b_lineage/evidence/captain.md"
+  }
+ ],
+ "token": "[GATE:deadlink-fail]",
+ "status": "FAIL",
+ "note": "围栏感知 + 占位符跳过；三腿自证见 --selftest（反例/围栏/占位符）"
+}
