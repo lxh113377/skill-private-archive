@@ -1,0 +1,68 @@
+{
+ "schema": "r325b-cadence-1",
+ "generated_at": "2026-11-01T01:46:32",
+ "today": "2026-11-01",
+ "spec_def": {
+  "quote": "| 定期 | 每季度首周（1 月 / 4 月 / 7 月 / 10 月） | 全链巡检：05-exec/r113_quarterly_audit.py |",
+  "file_line": "04-plan/后续维护规范_季度巡检机制_r113_2026-10-18.md:32",
+  "meaning": "节律是「每季度首周」，不是「每 91 天」；Q4 首周为 10 月，下一窗口 = 2027-01 首周"
+ },
+ "matrix": {
+  "path": "06-benchmark/quarterly_r260/2026Q4/replacement_matrix.json",
+  "generated_at": "2026-10-27T17:09:50+00:00",
+  "age_days": 4,
+  "verdict": "WITHIN",
+  "rows": 191,
+  "note": "本期矩阵由 r260 生成；另一份 shadowstrict 版 generated_at=2026-10-30T14:16:38Z（1.1 天）。两份都在 100 天上限内。"
+ },
+ "cadence_gate": {
+  "cmd": "python -B 05-exec/r260_quarterly_cadence.py --json _repro/r325_lead/cadence2.json",
+  "rc": 0,
+  "reading": "[CADENCE] 最新季产物 = 06-benchmark/quarterly_r260c/2026Q4/audit.json（2026-10-28T16:26:30）｜[CADENCE] 季产物龄期 3.4 天 ≤ 上限 100 天｜[CADENCE:PASS] 季度节律在限内",
+  "threshold_days": 100
+ },
+ "inputs_guarded": [
+  {
+   "artifact": "06-benchmark/absorption_baseline_face.json",
+   "guard": "有：r303/r304 的 BASELINE 门（r304_scan 报 pairs/ok/uc）+ r324 入口可达面判据把缺失读成 rc=2 UNVERIFIED"
+  },
+  {
+   "artifact": "D:/global_skills/**/.upstream",
+   "guard": "有：r263_declared_upstream_face.py 逐件对账（BEHIND/AHEAD/无 release/取不到四态）"
+  },
+  {
+   "artifact": "06-benchmark/quarterly_r260/2026Q4/replacement_matrix.json",
+   "guard": "有：quarterly_cadence_face 门按龄期判红（本季 3.4 天 ≤ 100 天）"
+  },
+  {
+   "artifact": "06-benchmark/replacement_matrix_shadowstrict.json",
+   "guard": "部分：它由 r260 的 shadowstrict 腿生成，未见独立龄期守卫（其时效靠与主矩阵同步使用）"
+  }
+ ],
+ "next_run_checklist": [
+  {
+   "cmd": "python -B 05-exec/r113_quarterly_audit.py --quarter 2027Q1",
+   "expect": "产出 06-benchmark/quarterly/2027Q1/audit.json，steps 数 > 0"
+  },
+  {
+   "cmd": "python -B 05-exec/r260_quarterly_cadence.py --json <out>",
+   "expect": "[CADENCE:PASS] 季度节律在限内"
+  },
+  {
+   "cmd": "python -B 05-exec/r324_entry_reachability_face.py --closure top --json 06-benchmark/entry_reachability_20270101.json",
+   "expect": "[R324:ENTRY] closure=top ... orphans_top=<n>"
+  },
+  {
+   "cmd": "python -B 05-exec/r324_entry_reachability_face.py --closure nested --json 06-benchmark/entry_reachability_nested_20270101.json",
+   "expect": "[R324:ENTRY] closure=nested ... orphans_top=<n>"
+  },
+  {
+   "cmd": "python -B 05-exec/r114_replacement_scan.py --offline",
+   "expect": "MATCHED/FAMILY_ONLY/NO_OS_CANDIDATE/UNVERIFIED 四态计数"
+  },
+  {
+   "cmd": "python -B 05-exec/r263_declared_upstream_face.py --selftest",
+   "expect": "末行 rc=0（声明上游面判据自证）"
+  }
+ ]
+}

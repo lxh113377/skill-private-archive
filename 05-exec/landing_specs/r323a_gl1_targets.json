@@ -1,0 +1,26 @@
+{
+ "skill": "r323a_gl1_targets",
+ "managed": "C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化",
+ "replays": [],
+ "new_files": [
+  {
+   "target": "_repro/r323a/g_l1_target_gate.py",
+   "note": [
+    "G-L1 目标件门仍住一次性取证目录 ⇒ 本条 spec 的首要作用是**把该缺口显影**：",
+    "N 腿会报「无等值锚点 UNVERIFIED」，同时 bare_tokens 含 _repro/ ⇒ P 腿（若该件被入口引用）也会显形。",
+    "常驻化后本 spec 的 target 应改为 05-exec/ 下的路径（下一轮 R324-2 的后续）。"
+   ]
+  }
+ ],
+ "bare_tokens": [
+  "_repro/",
+  "_temp/"
+ ],
+ "mirror_roots": [
+  {
+   "path": "C:/Users/37533/.agents/skills",
+   "required": false,
+   "evidence": "同上：本仓工具件不进技能镜像"
+  }
+ ]
+}

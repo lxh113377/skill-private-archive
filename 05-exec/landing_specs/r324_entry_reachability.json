@@ -1,0 +1,27 @@
+{
+ "skill": "r324_entry_reachability_face",
+ "managed": "C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化",
+ "replays": [],
+ "new_files": [
+  {
+   "target": "05-exec/r324_entry_reachability_face.py",
+   "note": [
+    "本仓自造件（内联旧件 helper + judge，判定逻辑零改动）⇒ 无上游同名文件可锚。",
+    "spec 只声明 target，不挂 patches/no_upstream_anchor：N 腿会走到「无等值锚点 → UNVERIFIED」分支，",
+    "这是设计行为而不是缺陷（见 landing_replay_check.py:166-174）。要让它变绿需要给出存档 sha，",
+    "但那等于把「我当下盘上这一版」钉成期望值 —— 自我指证，不做（R287 的注入幽灵同族）。"
+   ]
+  }
+ ],
+ "bare_tokens": [
+  "_repro/",
+  "_temp/"
+ ],
+ "mirror_roots": [
+  {
+   "path": "C:/Users/37533/.agents/skills",
+   "required": false,
+   "evidence": "本件是本仓 05-exec 工具件，不进技能镜像；required=false 故 M 腿不因此判红"
+  }
+ ]
+}

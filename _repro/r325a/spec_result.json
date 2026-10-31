@@ -1,0 +1,31 @@
+{
+ "schema": "r325a-spec-result-1",
+ "generated_at": "2026-11-01T01:45:30",
+ "note": "两份 spec 均由 Lead 实测（双臂全灭后自干）；末行与退出码逐字记录，UNVERIFIED 腿的原因写在 report.md。",
+ "specs": [
+  {
+   "spec": "r324_entry_reachability.json",
+   "rc": 2,
+   "tail": "[LANDING-CHECK] spec=r324_entry_reachability_face R=ok N=UNVERIFIED P=ok V=UNVERIFIED M=ok gate=UNVERIFIED",
+   "legs": {
+    "R": "ok",
+    "N": "UNVERIFIED",
+    "P": "ok",
+    "V": "UNVERIFIED",
+    "M": "ok"
+   }
+  },
+  {
+   "spec": "r323a_gl1_targets.json",
+   "rc": 2,
+   "tail": "[LANDING-CHECK] spec=r323a_gl1_targets R=ok N=UNVERIFIED P=ok V=UNVERIFIED M=ok gate=UNVERIFIED",
+   "legs": {
+    "R": "ok",
+    "N": "UNVERIFIED",
+    "P": "ok",
+    "V": "UNVERIFIED",
+    "M": "ok"
+   }
+  }
+ ]
+}

@@ -1,27 +1,24 @@
-# DECOMPOSE · r324（把巡检判据从一次性目录搬进常驻面并正式登册 = 需求 5 的真落地）
+# DECOMPOSE · r325（R324-2 两份 spec 兑现 + 需求 2 季度时效实测 + 巡检动线实跑）
 
-> 起点 9f0a992（tag r323，11-01 01:08）｜goal 第 4 回合 ⇒ 轮号 r324（R324-* 领号前先核零命中）。
+> 起点 4425ffa（tag r324，11-01 01:36）｜goal 第 5 回合 ⇒ 轮号 r325（R325-* 领号前核零命中，已核）。
 
-## 起点实测与缺口定位（现取）
-- 本仓/受管根/远端三方一致：HEAD = origin/main = 9f0a992。受管根 79 行他人在途（索引 0 行）。
-- **需求 5 的真缺口**：r321–r323 产出的四件巡检判据（入口普查 v1/v2、嵌套闭包审计、G-L1 目标件门）**全部还住在 `_repro/`**。
-  `05-exec/` 现只有 r113_quarterly_audit / r150_volume_tiers / r155_selftest_census / r260_quarterly_cadence，**没有入口可达面**。
-- 准入门 `.read_face_registry.json` 现 51 条，结构 = `{"<script>": {"evidence": "<路径>", "registered_at": "<ts>"}}`；未登册的产读数脚本会被判 UNDECLARED（r260 实测硬拒）。
-- 需求 2 时效：`replacement_matrix_shadowstrict.json` = 2026-10-30T14:16Z（3 天前，在效期内）；`quarterly/2026Q4/audit.json` = 2026-10-25（rows=0 是它的结构）。
+## 起点实测（现取 01:4x）
+- 三方一致：HEAD = origin/main = 4425ffa；tags r324/r323/r322 在。
+- `05-exec/landing_specs/` 现有 **5 份**（A-prompt-better / frontend-skill / frontend-slides / mcp-builder / security-audit），**仍无 r324/r323a**（= R324-2 的缺口）。
+- 需求 2 时效面（现取）：`quarterly_r260/2026Q4/replacement_matrix.json` generated_at **2026-10-27T17:09:50Z**（5 天前）；`replacement_matrix_shadowstrict.json` **2026-10-30T14:16:38Z**（2 天前）；季度总产物 `quarterly/2026Q4/audit.json` 2026-10-25。
+- 规范 §2 写「每季度首周（1/4/7/10 月）」⇒ 现在 11-01 已过 Q4 首周，**下一窗口 = 2027-01 首周**；但「当期矩阵是否过期」要按判据口径算，不由我口头判。
 
-## 本轮分解（W=3 独立就绪 ⇒ N=3）
+## 本轮分解（W=3 ⇒ N=3）
 | # | 件 | owner | 判据命令 + 期望末行 |
 |---|---|---|---|
-| 1 | 入口可达面**常驻化**：把 v2 普查（含三处修正 + 四桶）从 `_repro/r322b/` 搬进 `05-exec/` 为 `r324_entry_reachability_face.py`，输入面不用 `_temp`/`_repro` 硬编码，输出可落 `06-benchmark/` | 臂 A `_repro/r324a/` | `python -B _repro/r324a/check_r324a.py` ⇒ `[R324A:PERMANENT] portable=ok parity=ok teeth=pass` |
-| 2 | G-L1 目标件门常驻化 + 落 `landing_specs` 三件扩展（G-L1 gate / v2 census / 本件自身），使 `landing_replay_check.py` 能对它们复算 | 臂 B `_repro/r324b/` | `python -B _repro/r324b/check_r324b.py` ⇒ `[R324B:SPEC] specs=<n> replay=ok teeth=pass` |
-| 3 | 季度巡检规范补「入口可达面」巡检段 + 判据件入册义务（把 R322-2 的验收靶从纸面变成有主） | **Lead 自留**（写 04-plan 共享件） | 规范件新增段可 grep 到；与 05-exec 实际件名一致 |
-| 4 | Lead：登册（`.read_face_registry.json` 加 2 条）+ 跑准入门 + 台账/报告/提交/tag/推送 | Lead | `python -B 05-exec/r129_reconcile_admission.py` ⇒ 未声明数不增 |
+| 1 | R324-2 兑现：两份 landing spec（r324 入口可达面 / r323a G-L1 门）+ 逐腿读数 | 臂 A `_repro/r325a/` | `python -B _repro/r325a/check_r325a.py` ⇒ `[R325A:SPEC] specs=2 legs=<n> unverified=<k> teeth=pass` |
+| 2 | 需求 2 季度时效实测：规范定义 / 矩阵龄期 / cadence 门绿红 / 输入面守卫 / 下季清单 | 臂 B `_repro/r325b/` | `python -B _repro/r325b/check_r325b.py` ⇒ `[R325B:CADENCE] age_days=<n> verdict=<态> gate_rc=<rc> teeth=pass` |
+| 3 | Lead：按附三 §5 的巡检动线**真跑一遍**（不是读它），产出本季入口可达面读数 + 台账/报告/提交/tag/推送 | Lead | 动线三命令全 rc=0，读数落 `06-benchmark/entry_reachability_*.json` |
 
 ## 30 秒卡 8 问
-① 互不引用 ≥2 ⇒ 是（A 搬普查判据 / B 扩 landing spec / 两件写面不相交）。② ≥3 回合 ⇒ 是。③ ≥2 独立面 ⇒ 是（`05-exec/` 常驻面 vs `05-exec/landing_specs/` 复算面）。④ 四问全过。⑤ 发 2 件（件3/件4 自留：写面为 04-plan 共享件与登册面，同文件先串后派 + 最终答复）。⑥⑦ brief 七项与判据齐。⑧ 收件后我复跑：A 用它的 parity 腿复算 624/552/72 三读数与我 r322 读数逐项对；B 跑 `landing_replay_check.py --spec` 验两件 spec 的 R/N/P/V/M 五腿。
-skip_reason（件3/件4）：写面冲突（04-plan 与 .read_face_registry 属共享权威件，须串行）+ 最终方案·diff·答复 Lead 自留。
+① 互不引用 ≥2 ⇒ 是（A 写 spec / B 读 eval+benchmark 时效面）。② ≥3 回合 ⇒ 是。③ ≥2 独立面 ⇒ 是（landing 判据 schema 面 vs 季度节律面）。④ 四问全过。⑤ 发 2 件（件3 自留：写共享台账与动线实跑，最终答复）。⑥⑦ brief 七项与判据齐。⑧ 收件后我复跑：A 挑一条 spec 用 `--neg hand-edited` 验它真参与 R 腿；B 用 `quarterly_cadence_face` 门直接跑一遍对账它的 rc。
+skip_reason（件3）：写面冲突（memory/07 与 06-benchmark 共享面，串行）+ 最终方案·diff·答复 Lead 自留。
 
 ## 并行写面纪律
-- 臂 A 只写 `_repro/r324a/` 与 `05-exec/r324_entry_reachability_face.py`（新件，非他人面）；臂 B 只写 `_repro/r324b/` 与 `05-exec/landing_specs/*.json`。
-- Lead 在交付前不写这两处；登册与规范件由 Lead 串行做。
-- 每笔提交前核 `git show --name-status` 非本会话路径 = 0。
+- 臂 A 只写 `_repro/r325a/` + 两份新 spec；臂 B 只写 `_repro/r325b/`。Lead 交付前不写这两处。
+- 部署面（受管根）本轮**零写入**：本轮三件都不需要改受管根（spec 与时效都是本仓侧）。
