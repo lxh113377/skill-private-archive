@@ -205,6 +205,18 @@ def main():
     md = sum(1 for x in face_files if x.endswith('.md'))
     if md == 0:
         print('[GATE:deadlink-unverified] md=0 ⇒ 零输入不得记 PASS（R247）'); sys.exit(2)
+    # r318 --exclude=前缀：上游字节快照证据件（_repro/**/evidence/**——其正文链接指向上游仓 sibling
+    # 文件、单文件导入天然不可解）可划出判红面；**分母同步扣减**（md 计数=实扫面，防「md=N 死链=0」
+    # 的 N 变虚数——本仓 #32 形态）。口子透明可审计：打印划出件数。除上游证据前缀外不得用来藏自家死链。
+    excl = []
+    for x in args:
+        if x.startswith('--exclude='):
+            excl = [q.strip().rstrip('/') for q in x.split('=', 1)[1].split(',') if q.strip()]
+    if excl:
+        kept = [f for f in face_files if not any(f.replace(os.sep, '/').startswith(q) for q in excl)]
+        print('[EXCLUDE] 前缀=%s 划出 %d 件、留 %d 件（分母同步扣减）' % (excl, len(face_files) - len(kept), len(kept)))
+        face_files = kept
+        md = sum(1 for x in face_files if x.endswith('.md'))
     res = dead(root, (face_files, face_dirs))
     token = '[GATE:deadlink-pass]' if not res else '[GATE:deadlink-fail]'
     print('md=%d 死链=%d %s' % (md, len(res), token))
