@@ -550,7 +550,7 @@ r303 全量现读（python -B _temp/r303_chk_shadow.py）：带 declared_state �
 **报任何「有多少 / 有没有」之前，先给出计数命令与全量数，禁止用样例或切片代替。**
 取值：python -B _temp/r303_chk_shadow.py（末行打印 declared_state 分布与各计数）；
 python 05-exec/r221_caliber_shadow.py --matrix <件>（末行 [SHADOW:IDENTICAL] 不变）。
-- [ ] **R303-2（r303 登记，P1）** **R261-7 两件换装证据包落地（increments=8 / local_only=5 / unknown=5，两腿含「ref 无效必判 UNVERIFIED」）；我据此裁定本轮不换装并具名挡住的项（C5/C6/候选脚本可运行性未测）——维持 KEEP 走 §4 六条硬规矩，不绕门**：一手（r303，派发件 997f2608 交付 + 我独立复跑三项）：R261-7 两件的**换装证据包**已备齐（不代裁「值不值得换」，裁定归我）。
+- [ ] **R303-2（r303 登记，P1）** **R261-7 两件换装证据包落地（increments=8 / local_only=5 / unknown=5，两腿含「ref 无效必判 UNVERIFIED」）；我据此裁定本轮不换装并具名挡住的项（C5/C6/候选脚本可运行性未测）——维持 KEEP 走 §4 六条硬规矩，不绕门**：一手（r303，派发件 997f2608 交付 + 我独立复跑三项）：R261-7 两件的**换装证据包**已备齐（不代裁「值不值得换」，裁定归我）。 【r308 裁决=已落地｜r308 改判：已落地（且本条的 KEEP 裁定已被后续轮次按新证据**正当推翻**——不是打脸，是条件变了）。现核：A 臂已落（受管根 17cc0c81+f39eb3c0，r306：逐字钉定 4/4、本地独有 2/2、spec 五腿全绿）；F 臂已落（0fcf7842+c7e3a0cc+c5d8391d，r308：逐字五条+37 payload、第五件 spec 五腿全绿、两负控有牙）。当时挡住的三项未测项后来都有读数：C5→r305 判「空过」并由 r305_wiring_headroom 换有约束判据；C6→r304/r307 按 r36 尺 0 DEAD（45 条 UNLOCATED 由 payload 全落解决）；候选脚本→r307 实测 Edge 在位可跑。⇒ 换装从「维持 KEEP」到两件真落地，用了两轮把准入条件补齐——这正是 §4 六条硬规矩的正确运行方式。】
 末行（我复跑 rc=0，逐字一致）：[R303:SWAP] skills=2 candidates=2 increments=8 local_only=5 unknown=5。
 关键事实（都经我复核）：
 ① **台账里那四个行号指的不是本地件**：L22-23/442/469/482 指候选 nidhinjs/prompt-master 的 SKILL.md（我 gh api 现取 → 499 行），
@@ -570,7 +570,7 @@ python 05-exec/r221_caliber_shadow.py --matrix <件>（末行 [SHADOW:IDENTICAL]
 **本轮不做换装落地**，两件维持 KEEP 并具名未核项（C5 inject_union_bytes 未在「合入后」态测、C6 死引用未测、候选脚本未跑）。
 这不是拖延：§4 是这条通道自己的准入条件，绕过它换装就等于绕过我 r261 立的那道门。
 取值：cd _temp/r303b && python -B check_r303b.py；逐条增量与 unknown 见同目录 swap_pack.json 与 report.md。
-- [ ] **R303-3（r303 登记，P1）** **吸收基准面落地：49 对「本地件 sha + 上游同名件 sha + 版本」基准 + 可复用五态比较器 + 三负控（含「上游 20 分钟内真漂了 1 件」的活证据）；我修了判据三处（含我自己 patch 时新引入的守恒式错），并补了「本地件变必判红」的反向腿**：一手（r303，派发件 a1cbd4f7 交付 + 我独立复跑迁移提升后三项）：**需求 4 判「内容漂移」缺的那个基准建立起来了**。
+- [ ] **R303-3（r303 登记，P1）** **吸收基准面落地：49 对「本地件 sha + 上游同名件 sha + 版本」基准 + 可复用五态比较器 + 三负控（含「上游 20 分钟内真漂了 1 件」的活证据）；我修了判据三处（含我自己 patch 时新引入的守恒式错），并补了「本地件变必判红」的反向腿**：一手（r303，派发件 a1cbd4f7 交付 + 我独立复跑迁移提升后三项）：**需求 4 判「内容漂移」缺的那个基准建立起来了**。 【r308 裁决=已落地｜r308 改判：已落地。现核：_repro/r303a/ 三件在库；比较器多轮真读到漂移（r303 当日 1、r304 交付 2、r307 今日 1）；r304a 季度扫描工具 import 它的 run_comparison/summarize（单一口径）；r308 的换装落地又给它接上「升级后重生成基准」的SOP 义务（维护规范 r307 附节）。三负控 + 我修的判据三处 + 反向腿（本地件变必判红）全在判据里。】
 产出：absorption_baseline.json（49 对，每对 10 键：slug/repo/upstream_path/upstream_commit_sha/upstream_file_sha/
 upstream_version/local_file_sha/local_version/baseline_at/evidence_cmd）、compare_baseline.py（**可复用比较器**，
 输出五态 OK/LOCAL_CHANGED/UPSTREAM_CHANGED/BOTH_CHANGED/UNKNOWN）、check_r303a.py（判据）。全部提升到 _repro/r303a/。
@@ -709,7 +709,7 @@ r305 现取活体树：`gh api repos/Leonxlnx/taste-skill/git/trees/main?recursi
 另有一条**防再空过**的打印：`[VACUOUS-FACE] 被换装两件在注入面内 = False` ⇒ 谁读这个数都能看见「C5 对它们零约束」这件事，不会被 ok 骗过去。
 入库与登记：脚本进 05-exec（本仓读面工具），并按 r129 的 `--register` 带证据登记（证据 = 其 --json 产物）⇒ r129 现读「脚本 311 / 已登记 115 / 未声明的产读数脚本 **0**」。
 取值：python 05-exec/r305_wiring_headroom.py --selftest；python 05-exec/r305_wiring_headroom.py --spec _temp/r305_wiring_spec.json（末行 [R305:HEADROOM] …）。
-- [ ] **R305-4（r305 登记，P0）** **对 R304-2 的校正（新开短条目，因长条目 note 被拒写）：我 r304「F 臂 3 条候选自缺引用」是错的 —— 拿 31 条的上游清单冒充全量（活体 92 条），两条 assets 确实在仓；r305b 独立发现且处置正确；该错是「切片冒充全量」的第 4 次复发，新增机械要求「引用外部件当全量时必须并排写条目数 vs 活体数」**：一手（r305，Lead 登记）：**对 R304-2 的校正**（新开短条目承载 —— 因为直接对该长条目做 r46 note 被「读回验证失败，已回滚」拒写，
+- [ ] **R305-4（r305 登记，P0）** **对 R304-2 的校正（新开短条目，因长条目 note 被拒写）：我 r304「F 臂 3 条候选自缺引用」是错的 —— 拿 31 条的上游清单冒充全量（活体 92 条），两条 assets 确实在仓；r305b 独立发现且处置正确；该错是「切片冒充全量」的第 4 次复发，新增机械要求「引用外部件当全量时必须并排写条目数 vs 活体数」**：一手（r305，Lead 登记）：**对 R304-2 的校正**（新开短条目承载 —— 因为直接对该长条目做 r46 note 被「读回验证失败，已回滚」拒写， 【r308 裁决=已落地｜r308 改判：已落地。现核：「引用外部件当全量前并排写条目数 vs 活体数」的机械要求已执行两轮——r307 版本面归因（gstack/hyperframes-media 逐对 gh 现值对基线）与 r308 落地（B1 名册 72 行 vs 活体树 92 节点/72 blob 并排核对后才写盘、逐件双 sha 断言）。该错的源头（31 vs 92 切片）由 B1 备料与 r308 payload 全落彻底闭环。】
 这正是 R303-5 记的那条操作事实：长条目上的补记宜新开短条目，别硬往长行尾部塞标记）。
 **被纠正的原话**：R304-2 末段「F 臂 33/36，其中 3 条连候选自己的仓都没有（assets/charts.js 两条 + assets/base.js）」。
 **改正**：该结论**是错的**。r305 现取活体树核对 —— gh api repos/Leonxlnx/taste-skill/git/trees/main?recursive=1 **92 个条目**，
