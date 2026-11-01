@@ -46,7 +46,10 @@ def targets_from(matrix_path):
                    if (c.get("license") or "").upper() in ("NOASSERTION", "")})
 
 
-FACE_FILES = ["r261_matrix_licensed.json", "r262_matrix_bodied.json"]
+# r337（R331-2 根因）：原值只有 r261/r262 两面 ⇒ 2026Q4 季度矩阵里的 NOASSERTION 仓进不了 union，
+# pack 永远停在 20 仓。补现行季度面（路径相对 06-benchmark，targets_union 按 join 解析）。
+FACE_FILES = ["r261_matrix_licensed.json", "r262_matrix_bodied.json",
+              "quarterly_r260/2026Q4/replacement_matrix.json"]
 
 
 def targets_union(root_dir=ROOT):

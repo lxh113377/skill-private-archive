@@ -35,7 +35,7 @@ def license_restricted(lic):
     return any(k in u for k in RESTRICTED)
 
 
-def scan(matrix, today):
+def scan(matrix, today, pack=None):
     d = json.load(io.open(matrix, encoding="utf-8"))
     rows = d.get("rows") or []
     total = 0
@@ -54,7 +54,13 @@ def scan(matrix, today):
             if c.get("archived"):
                 arch.append({"repo": repo, "archived": True})
             if license_restricted(c.get("license")):
-                restricted.append({"repo": repo, "license": c.get("license")})
+                u = (c.get("license") or "").upper()
+                if u in ("NOASSERTION", ""):
+                    g = body_grade(repo, pack) if pack is not None else "no_pack"
+                    restricted.append({"repo": repo, "license": c.get("license"), "body": g})
+                else:
+                    # AGPL/GPL/UNLICENSED 等明牌受限：字段即证据，不必正文（正文腿只管撒谎字段面）
+                    restricted.append({"repo": repo, "license": c.get("license"), "body": "api_explicit"})
             per_repo[repo] = per_repo.get(repo, 0) + 1
     return {
         "schema": "r331-candidate-health-1",
@@ -66,10 +72,55 @@ def scan(matrix, today):
         "stale": stale,
         "archived": arch,
         "restricted": restricted,
+        "restricted_body_breakdown": _breakdown(restricted),
         "pushed_at_unparsable": nolic,
         "stale_rate": round(len(stale) / float(total), 4) if total else None,
     }
 
+
+
+# r337（R331-2 兑现）：restricted 轴从「按 API 字段一刀切」升级为「正文证据分级」。
+# 一手背景：R261-6 实测 GitHub 的 license.spdx_id 对 NOASSERTION 仓撒谎（dify 报 NOASSERTION、
+# 正文实为 modified Apache + 商业限制条款）。r262 建了正文抓包件但 candidate_health 没消费它 ⇒
+# 本门 143 条 restricted 里 86 行只有字段证据。本腿把证据分三档：body_confirmed / api_field / body_unknown。
+BODY_PACK_DEFAULT = os.path.join(ROOT, "06-benchmark", "license_body_r262.json")
+BODY_RESTRICTED = ("copyleft", "restricted", "noncommercial", "proprietary")
+
+
+def load_body_pack(path):
+    """读正文抓包件；不可得 ⇒ 返回 None（本腿自动退回字段口径并显影，R247 禁静默）。"""
+    try:
+        d = json.load(io.open(path, encoding="utf-8-sig"))
+        return d.get("repos") or {}
+    except Exception:
+        return None
+
+
+def body_grade(repo, pack):
+    """NOASSERTION/空许可行的证据分档：body_confirmed|body_permissive|body_unknown|no_pack。"""
+    if pack is None:
+        return "no_pack"
+    e = pack.get(repo)
+    if not e:
+        return "body_unknown"     # pack 里没有该仓 = 没正文证据，保守档
+    cls = (e.get("license_body_class") or "").lower()
+    st = (e.get("state") or "").upper()
+    if st != "OK":
+        return "body_unknown"
+    if cls in BODY_RESTRICTED:
+        return "body_confirmed"
+    if cls in ("permissive", "apache-2.0", "mit", "bsd", "isc", "unlicense_note"):
+        return "body_permissive"
+    return "body_unknown"
+
+
+def _breakdown(restricted):
+    """restricted 按证据档聚合（供末行输出与报告对账）。"""
+    c = {}
+    for x in restricted:
+        b = x.get("body") or "none"
+        c[b] = c.get(b, 0) + 1
+    return c
 
 def main(argv=None):
     ap = argparse.ArgumentParser()
@@ -78,6 +129,8 @@ def main(argv=None):
     ap.add_argument("--json", dest="out", default="")
     ap.add_argument("--max-stale-rate", type=float, default=0.02,
                     help="stale 占比硬顶；默认 2%（r331 实测 0.1% ⇒ 留 20 倍余量给上游自然衰退）")
+    ap.add_argument("--body-pack", dest="bp", default=BODY_PACK_DEFAULT,
+                    help="正文抓包件（r262）；不可得时 restricted 腿退回字段口径并显影 no_pack")
     ap.add_argument("--selftest", action="store_true")
     a = ap.parse_args(argv)
     if a.selftest:
@@ -93,7 +146,9 @@ def main(argv=None):
     if today is None:
         print("[R331:HEALTH] rc=2 UNVERIFIED --today 不可解析: " + a.today)
         return 2
-    doc = scan(a.matrix, today)
+    pack = load_body_pack(os.path.abspath(a.bp)) if a.bp else None
+    doc = scan(a.matrix, today, pack)
+    doc["body_pack"] = {"path": a.bp, "loaded": pack is not None, "repos_n": (len(pack) if pack else 0)}
     if doc["total_candidates"] == 0:
         print("[R331:HEALTH] rc=2 UNVERIFIED 候选面为空（禁按 0 条记绿，R247）")
         return 2
@@ -107,9 +162,12 @@ def main(argv=None):
         print("[R331:STALE-OVER] stale %d/%d = %.2f%% > 硬顶 %.2f%%：%s"
               % (len(doc["stale"]), n, rate * 100, a.max_stale_rate * 100,
                  ", ".join(x["repo"] + "(" + x["pushed_at"] + ")" for x in doc["stale"][:8])))
-    print("[R331:HEALTH] cands=%d repos=%d stale=%d(%.2f%%) archived=%d restricted=%d unparsable=%d"
+    _bd = doc["restricted_body_breakdown"]
+    print("[R331:HEALTH] cands=%d repos=%d stale=%d(%.2f%%) archived=%d restricted=%d unparsable=%d body[confirmed=%d permissive=%d unknown=%d no_pack=%d]"
           % (n, doc["distinct_repos"], len(doc["stale"]), rate * 100,
-             len(doc["archived"]), len(doc["restricted"]), len(doc["pushed_at_unparsable"])))
+             len(doc["archived"]), len(doc["restricted"]), len(doc["pushed_at_unparsable"]),
+             _bd.get("body_confirmed", 0), _bd.get("body_permissive", 0),
+             _bd.get("body_unknown", 0), _bd.get("no_pack", 0)))
     return rc
 
 

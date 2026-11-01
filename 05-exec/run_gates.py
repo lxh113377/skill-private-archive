@@ -1821,6 +1821,7 @@ GATES = [
             "restricted 轴：licen[cs]e 属 AGPL/GPL/LGPL/CC-BY-SA/CC-BY-NC/UNLICENSED/NOASSERTION 或空 ⇒ 受限点名",
             "阈值：stale 占比 > 2% ⇒ rc=1（r331 实测 0.11%，留 20 倍余量防自然衰退变恒红）",
             "空面：候选 0 条 ⇒ rc=2 UNVERIFIED（禁按 0 条记绿，R247）",
+            "r337 第 4 轴：restricted 按正文证据分档（body_confirmed/permissive/unknown/no_pack），NOASSERTION 谎言字段面用 r262 pack 显影；restricted 计数保持字段口径保守值不改语义",
             "日期口径：--today 在 argv 里钉死，判据复算不随本机日期漂移",
         ],
     },

@@ -1,15 +1,16 @@
 {
  "schema": "license-body-pack-v1",
- "fetched_at": "2026-10-28T18:58:42",
+ "fetched_at": "2026-11-01T15:47:07",
  "provenance_cmd": "python 05-exec/r262_license_body_pack.py",
  "rule": "R261-6: API license.spdx_id lies for NOASSERTION repos; read the body",
  "classifier": "05-exec/r114_replacement_scan.py::classify_body (single source)",
  "matrix_face": "06-benchmark\\r261_matrix_licensed.json",
- "targets_n": 20,
- "ok_n": 20,
+ "targets_n": 22,
+ "ok_n": 22,
  "faces": [
   "r261_matrix_licensed.json",
-  "r262_matrix_bodied.json"
+  "r262_matrix_bodied.json",
+  "quarterly_r260/2026Q4/replacement_matrix.json"
  ],
  "repos": {
   "A9T9/RPA": {
@@ -220,6 +221,27 @@
    "restricted_phrases": [],
    "sha8_head": "6e6e5f5c",
    "bytes_read": 1729
+  },
+  "lobehub/lobehub": {
+   "state": "OK",
+   "license_body_class": "restricted",
+   "license_body_spdx": "",
+   "license_body_path": "LICENSE",
+   "restricted_phrases": [
+    "WITH THE FOLLOWING ADDITIONAL CONDITIONS",
+    "COMMERCIAL LICENSE MUST BE OBTAINED"
+   ],
+   "sha8_head": "790a8c42",
+   "bytes_read": 1118
+  },
+  "manaflow-ai/cmux": {
+   "state": "OK",
+   "license_body_class": "restricted",
+   "license_body_spdx": "BUSL-1.1",
+   "license_body_path": "LICENSE",
+   "restricted_phrases": [],
+   "sha8_head": "82402ff2",
+   "bytes_read": 6144
   }
  }
 }
