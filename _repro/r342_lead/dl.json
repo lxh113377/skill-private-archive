@@ -1,0 +1,20 @@
+{
+ "schema": "zijian-md-deadlink-v1",
+ "generated_at": "2026-11-01T16:58:54",
+ "root": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化",
+ "md_files": 707,
+ "face": "shipping (git-tracked + non-ignored untracked); drafts excluded",
+ "face_files_total": 4331,
+ "dead": 1,
+ "items": [
+  {
+   "file": "06-benchmark/全量对标报告_r341_commands改判补链点名落盘_2026-11-01.md",
+   "line": 41,
+   "target": "commands.md",
+   "resolved": "06-benchmark/commands.md"
+  }
+ ],
+ "token": "[GATE:deadlink-fail]",
+ "status": "FAIL",
+ "note": "围栏感知 + 占位符跳过；三腿自证见 --selftest（反例/围栏/占位符）"
+}

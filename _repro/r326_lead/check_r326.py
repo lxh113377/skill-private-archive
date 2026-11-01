@@ -13,7 +13,7 @@ PY = sys.executable
 
 # 表内声明 → 现跑期望（六个承重命令；只取末行里的稳定片段，不整行比对，避免路径类噪声）
 CHECKS = [
-    ("需求1 入口可达", ["05-exec/r324_entry_reachability_face.py", "--closure", "top"], "", "orphans_top=623"),
+    ("需求1 入口可达", ["05-exec/r324_entry_reachability_face.py", "--closure", "top"], "", "orphans_top="),  # r342：值不写死，改由腿7 对账 latest + 单调不升
     ("需求3 本地同尺", ["05-exec/r260_local_baseline.py"], "", "[R260:PASS] 三态守恒 191"),
     ("需求5 准入门", ["05-exec/r129_reconcile_admission.py"], "", "未声明的产读数脚本 0"),
     ("需求5 cadence", ["05-exec/r260_quarterly_cadence.py", "--json", "_repro/r326_lead/cad2.json"], "", "[CADENCE:PASS]"),
@@ -37,8 +37,10 @@ def main():
     doc = open(DOC, encoding="utf-8").read()
     errs = []
     n_ok = 0
+    tails = {}
     for name, args, sub, want in CHECKS:
         rc, tail, out = run_one(args, sub)
+        tails[name] = (out or "") + chr(10) + (tail or "")
         hit = (want in tail) or (want in out)
         if not hit:
             errs.append("%s 末行不含「%s」:: %s" % (name, want, tail[:90]))
@@ -53,6 +55,23 @@ def main():
     # 需求 6 必须显式标「不成立」（防被静默改成达标）
     if "度量对象本身不成立" not in doc:
         errs.append("需求6 未标「度量对象本身不成立」")
+    # 腿7（r342 新增，取代写死数字）：三件对账——总览件现值 == latest == (现跑末行)，且相对 r326 快照单调不升。
+    # 一手根因：原 CHECKS 写死 "orphans_top=623" ⇒ 落地生效（数字下降）反而判红，
+    # 与 M3 判据自己注明的「9 是现值不是常量、禁硬编码计数」同一病根（R326-1 造门时犯了自家立过的错）。
+    lat_p = os.path.join(ROOT, "06-benchmark", "entry_reachability_latest.json")
+    base_p = os.path.join(HERE, "entry_baseline_20261101.json")
+    if not os.path.isfile(lat_p) or not os.path.isfile(base_p):
+        errs.append("腿7 输入缺失：latest 或 baseline 件不在盘")
+    else:
+        cur_n = json.load(open(lat_p, encoding="utf-8"))["totals"]["orphans_top"]
+        base_n = json.load(open(base_p, encoding="utf-8"))["totals"]["orphans_top"]
+        o1 = tails.get("需求1 入口可达", "")
+        if "orphans_top=%d" % cur_n not in o1:
+            errs.append("现跑末行 != latest 现值 %d" % cur_n)
+        if ("孤儿 **%d**" % cur_n) not in doc and ("孤儿 %d" % cur_n) not in doc:
+            errs.append("总览件需求1 读数未同步 latest=%d（保鲜靶失效）" % cur_n)
+        if cur_n > base_n:
+            errs.append("orphans_top %d 升过 r326 基线 %d（落地应只降不升；升=有新孤儿须先记账）" % (cur_n, base_n))
     neg = os.environ.get("R326_NEG")
     if neg == "drop_req":
         ok = ("| **6** |" not in doc.replace("| **6** |", "| X |", 1))
@@ -60,7 +79,7 @@ def main():
         return 0 if ok else 1
     if neg == "cmd":
         rc, tail, _ = run_one(["05-exec/r324_entry_reachability_face.py", "--closure", "bogus"], "")
-        ok = (rc != 0) or ("orphans_top=623" not in tail)
+        ok = (rc != 0) or ("orphans_top=" not in tail)  # 非法 --closure ⇒ 不成末行（r342 动态化，原写死 623 已无牙）
         print("[R326:NEG] cmd teeth=" + ("pass" if ok else "FAIL"))
         return 0 if ok else 1
     if neg == "req6":
