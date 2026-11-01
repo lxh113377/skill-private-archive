@@ -1,0 +1,35 @@
+{
+ "schema": "r343-hardcode-census-1",
+ "generated_at": "2026-11-01T17:05:31",
+ "method": "grep -E 三形态（==/!= 数字；读数串带3位数字；WANT/EXPECT 常量）扫 05-exec/*.py 全量 + _repro/*/check_*.py 与判据件；逐条读 ±8 行上下文三分类",
+ "scan_hits": {
+  "A_compare": 37,
+  "B_reading": 0,
+  "C_expect_const": 0,
+  "D_repro_reading": 14
+ },
+ "classify_summary": {
+  "lesion_fixed_this_round": 1,
+  "lesion_fixed_r342": 1,
+  "threshold_or_protocol": "≈20（365 天/1024B/±12 窗/429 等 HTTP 码/sha 长 40/覆盖率 50.0 合成/7 键结构常量）",
+  "synthetic_fixture": "≈29（夹具自造文档测零件：r105 seed 12 / r196 合计字节 / r217 fixed=5 / r220_caliber _doc(9,2) / r218 selftest 40 …——夹具内输入输出同源、数不会漂，合法）",
+  "one_shot_build_note": "（r276qi 的 rows=191 属一次性取证件的期望说明、非活门）"
+ },
+ "lesions": [
+  {
+   "file": "_repro/r337_lead/check_r337.py",
+   "line": "27/43/95",
+   "what": "写死 22（NOASSERTION 去重仓数=活测量，随季度矩阵重生成漂）",
+   "fix": "改对账式：从权威矩阵现算 na 集 ⇒ pack ⊇ na（缺=落后点名）+ pack 全 OK + repos_n 与 pack 本体对账；末行去写死（顺带踩到 %-literal 吞参 TypeError，已去裸 %）",
+   "verified": "[R337:BODY] pack_cov_full gate=PASS … teeth=pass + 三负控有牙"
+  },
+  {
+   "file": "_repro/r326_lead/check_r326.py",
+   "line": "原腿1",
+   "what": "写死 orphans_top=623（r342 当场抓到：落地降数反判红 + 负控 cmd 同失效）",
+   "fix": "r342 已修（前缀锚 + 腿7 三件对账 + 单调不升）",
+   "verified": "[R326:OVERVIEW] 6/6 复跑"
+  }
+ ],
+ "boundary_note": "普查口径写死在卡：活测量比对=病灶；阈值/结构常量/合成夹具输入输出同源=非病灶；「阈值从被检判据读」（r260_maintenance_trim t0）是被表扬过的正形态。"
+}
