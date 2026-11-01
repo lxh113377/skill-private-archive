@@ -1,19 +1,18 @@
-# DECOMPOSE · r337（R331-2 兑现：NOASSERTION 正文级覆盖 20→22 仓全量收口 + candidate_health 口径升级）
+# DECOMPOSE · r338（compat 判别力现尺复算）—— ⚠️ 本卡**后补**，违规自记
 
-> 起点 722d76b（tag r336）｜goal 第 18 回合 ⇒ 轮号 r337（`R337-*` 领号前核零命中）。**卡先落**。
+> 起点 9caeb8f（tag r337）｜goal 第 20 回合 ⇒ 轮号 r338。
+> **诚实纠正**：本轮**没有先落卡就开工**（开场直接进了 compat 复算），且首笔提交 2f5275b 的信息里写了「见提交面 DECOMPOSE.md」而当时该文件仍是 r337 内容 ⇒ **提交信息不实**（r321「提交信息≠内容」同族复发）。本卡为补写，并以**追加提交**纠正，不 amend 已入库笔。
+> 违规计数：R318-2 那条「先落卡」纪律**第七次**被我本人违反（r318 首记、r328、r333 自记三次，r335/r336/r337 遵守，本轮又犯）。
 
-## 起点实测（本轮现取）
-- gh auth status ⇒ github.com 已登录（抓取通道可用）。
-- `replacement_matrix.json` 里 license=NOASSERTION **去重 = 22 仓**（r331 报的「86 件」是候选行数，22 仓是抓取面 ⇒ 抓取量可控，r331 的四倍量估算按行数算的、偏保守）。
-- `r262_license_body_pack.py` 已有 `build_pack()`（targets_union + gh api + classify_body 单源）。r331-2 卡点「20→86 四倍量」经现核修正为「union 面是否已覆盖这 22 仓」。
-
-## 本轮分解（W=2 ⇒ N=2）
+## 本轮实际做的事（复盘）
 | # | 件 | 判据 |
 |---|---|---|
-| 1 | 现跑 build_pack（或其 targets 对账）⇒ 22 仓正文级归类全覆盖、缺口具名 | pack `repos` ⊇ 22 仓；每仓 state=OK 或具名 FAIL |
-| 2 | candidate_health 消费正文面：restricted 里 NOASSERTION 按 body 归类改判，restricted 数随之更新（禁自造分类器，复用 r114 classify_body 单源） | `[R331:HEALTH]` 新读数 + 与 body pack 对账 |
+| 1 | compat 现尺复算（937 候选 / 191 slug）⇒ 判别力回归：删维换面 0/191（旧存分）→ **34/191（现行尺）** | `python -B _repro/r338_lead/compat_power.py` ⇒ `[R338:COMPAT] … rank0_flips=34/191` |
+| 2 | 两条负控（cap-off 换面必=0；五档和必=937） | 同脚本内现跑 |
+| 3 | R326-3 compat 半重裁（前提过期）+ R332-2 已落地 + 新挂 R338-1/R338-2 | `r38_debt_aging` 读数 |
+| 4 | 总览件需求 3 行同步（⚠️→✅「已自愈」） | 现改 + W4 复扫 live_uncited=0 |
 
-## 30 秒卡 8 问
-① 互不引用 ≥2 ⇒ 是（抓取面 vs 判据消费面）。② ≥3 回合 ⇒ 是。③ ≥2 独立面 ⇒ 是。④ 过。
-⑤ 发 0 臂：臂八连全灭在案 + 件1→件2 严格串行（件2 输入=件1 产物）。
-skip_reason：严格串行（件2 吃件1 的 pack 产物，接口无法预固定——缺口仓集合要跑了才知道）。
+## 30 秒卡 8 问（补答）
+① 互不引用 ≥2 ⇒ 是（compat 复算 / 账龄裁决，但账龄裁决依赖复算读数）。② ≥3 回合 ⇒ 是。③ ≥2 独立面 ⇒ 是（矩阵候选面 vs 台账面）。
+④ 四问过。⑤ 发 0 臂（R325-4 策略：臂九连全灭在案，本轮全部 Lead 现算）。⑥⑦⑧ 判据齐。
+skip_reason（补）：**严格串行**——R326-3 重裁必须引用 compat 复算读数；写手侧模板件与账龄共享 04-plan/memory 写面。
