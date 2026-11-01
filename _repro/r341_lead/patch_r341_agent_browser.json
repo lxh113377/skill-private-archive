@@ -1,0 +1,14 @@
+[
+ {
+  "old": "| trust-boundaries.md / fork-provenance.md | 信任边界与本仓分叉留痕 |",
+  "new": "| trust-boundaries.md / fork-provenance.md | 信任边界与本仓分叉留痕 |\n| commands.md | 上游完整命令卷（0.39.1 快照，离线对照用）——**命令权威 = `skills get core --full` 随版获取**，本卷非权威、随上游同步 |"
+ },
+ {
+  "old": "version: 3.2.0\nlast_updated: 2026-10-20",
+  "new": "version: 3.2.1\nlast_updated: 2026-11-01"
+ },
+ {
+  "old": "## 版本历史\n\n| 版本 | 日期 | 变更 |\n|---|---|---|\n| 3.2.0 | 2026-10-23 |",
+  "new": "## 版本历史\n\n| 版本 | 日期 | 变更 |\n|---|---|---|\n| 3.2.1 | 2026-11-01 | commands.md 补进 references 导航表：R323-2「零入链⇒应剪枝」前提被本轮实测推翻（同目录 5 卷 Related 均链它 + 上游 skill-data/core/references 含此卷）⇒ 处置由剪枝改为**补链点名**；命令权威仍是 `skills get core --full` 随版获取，本卷定位=离线对照快照 |\n| 3.2.0 | 2026-10-23 |"
+ }
+]

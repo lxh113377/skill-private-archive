@@ -8,8 +8,8 @@
   "broken_real": 0,
   "placeholder": 9,
   "generated_output_ref": 1,
-  "orphans_top": 623,
-  "orphans_prose": 551,
+  "orphans_top": 622,
+  "orphans_prose": 550,
   "orphans_noise": 72,
   "noise_kb": 334,
   "tree_rows": 16509
@@ -1591,17 +1591,12 @@
   {
    "slug": "agent-browser",
    "broken": [],
-   "orphans": [
-    [
-     "references/commands.md",
-     11191
-    ]
-   ],
+   "orphans": [],
    "v2": {
     "broken_real": 0,
     "placeholder": 0,
     "generated_output_ref": 0,
-    "orphans_prose": 1,
+    "orphans_prose": 0,
     "orphans_noise": 0
    }
   },
