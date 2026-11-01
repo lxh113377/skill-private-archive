@@ -1827,7 +1827,7 @@ GATES = [
         # 两者必须同季跑但语义不同；stale 占比是「上游自然衰退」的第一读数，不给常驻面就只能靠人记得去看。
         "id": "candidate_health_face",
         "script": "r331_candidate_health.py",
-        "argv": ["--today", "2026-11-01", "--json", "06-benchmark/candidate_health_latest.json"],
+        "argv": ["--today", "2026-11-01", "--exempt-body-permissive", "--json", "06-benchmark/candidate_health_latest.json"],
         "pass_token": "[R331:HEALTH]",
         "portable": True,
         "why": "r331 一手：需求2 要求「社区活跃度、维护状态良好」，但 937 个候选的 pushed_at/archived 两读数没有任何常驻判据会报警，只会在某次人工巡检时偶然看见；本门把 stale/archived/restricted 三轴变成每轮真跑读数，阈值 2% 而实测 0.11%（留 20 倍余量防上游自然衰退做成恒红）；与 6 段分工：那段算有没有更好的，本门守现有的还活着吗。",
@@ -1838,6 +1838,7 @@ GATES = [
             "阈值：stale 占比 > 2% ⇒ rc=1（r331 实测 0.11%，留 20 倍余量防自然衰退变恒红）",
             "空面：候选 0 条 ⇒ rc=2 UNVERIFIED（禁按 0 条记绿，R247）",
             "r337 第 4 轴：restricted 按正文证据分档（body_confirmed/permissive/unknown/no_pack），NOASSERTION 谎言字段面用 r262 pack 显影；restricted 计数保持字段口径保守值不改语义",
+            "r344（R263 案一采纳自决）：门表 argv 加 --exempt-body-permissive ⇒ 字段 NOASSERTION 而正文证实 permissive 的行出列到 exonerated（restricted 143→129 为报表口径，不动任何 score5 输入）；unknown 保守不出列；回滚=删该参数一行",
             "日期口径：--today 在 argv 里钉死，判据复算不随本机日期漂移",
         ],
     },

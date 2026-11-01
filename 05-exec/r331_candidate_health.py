@@ -35,11 +35,12 @@ def license_restricted(lic):
     return any(k in u for k in RESTRICTED)
 
 
-def scan(matrix, today, pack=None):
+def scan(matrix, today, pack=None, exempt=False):
     d = json.load(io.open(matrix, encoding="utf-8"))
     rows = d.get("rows") or []
     total = 0
     stale, arch, restricted = [], [], []
+    exonerated = []   # r344：仅 exempt=True 时填充
     nolic = []
     per_repo = {}
     for r in rows:
@@ -57,7 +58,13 @@ def scan(matrix, today, pack=None):
                 u = (c.get("license") or "").upper()
                 if u in ("NOASSERTION", ""):
                     g = body_grade(repo, pack) if pack is not None else "no_pack"
-                    restricted.append({"repo": repo, "license": c.get("license"), "body": g})
+                    # r344（R337-2 低危半）：flag 开时正文证实 permissive 的 NOASSERTION 行出列到
+                    # exonerated（字段口径冤枉名单）；flag 关 = 原字段口径行为逐字节不变（默认关，
+                    # 因改判定语义在 R263 评审包批准前不许动门默认面）。
+                    if exempt and g == "body_permissive":
+                        exonerated.append({"repo": repo, "license": c.get("license"), "body": g})
+                    else:
+                        restricted.append({"repo": repo, "license": c.get("license"), "body": g})
                 else:
                     # AGPL/GPL/UNLICENSED 等明牌受限：字段即证据，不必正文（正文腿只管撒谎字段面）
                     restricted.append({"repo": repo, "license": c.get("license"), "body": "api_explicit"})
@@ -72,6 +79,9 @@ def scan(matrix, today, pack=None):
         "stale": stale,
         "archived": arch,
         "restricted": restricted,
+        "exonerated": exonerated,
+        # r342 教训落地：守恒断言用「豁免前字段计数」动态对账，绝不写死 143/191 这类现值
+        "field_restricted_n": len(restricted) + len(exonerated),
         "restricted_body_breakdown": _breakdown(restricted),
         "pushed_at_unparsable": nolic,
         "stale_rate": round(len(stale) / float(total), 4) if total else None,
@@ -127,6 +137,8 @@ def main(argv=None):
     ap.add_argument("--matrix", default=DEFAULT_MATRIX)
     ap.add_argument("--today", default="", help="YYYY-MM-DD；缺省取本机今天（判据复算须显式给，防随日期漂移）")
     ap.add_argument("--json", dest="out", default="")
+    ap.add_argument("--exempt-body-permissive", action="store_true", dest="exempt_bp",
+                    help="r344（R263 评审中）：正文证实 permissive 的 NOASSERTION 出列 restricted ⇒ exonerated；默认关=字段口径不变")
     ap.add_argument("--max-stale-rate", type=float, default=0.02,
                     help="stale 占比硬顶；默认 2%（r331 实测 0.1% ⇒ 留 20 倍余量给上游自然衰退）")
     ap.add_argument("--body-pack", dest="bp", default=BODY_PACK_DEFAULT,
@@ -137,8 +149,10 @@ def main(argv=None):
         ok1 = license_restricted("AGPL-3.0") and not license_restricted("MIT")
         ok2 = license_restricted("") and license_restricted("NOASSERTION")
         ok3 = parse_date("2026-10-25") is not None and parse_date("garbage") is None
-        print("[R331:SELFTEST] restricted_agpl_not_mit=%s empty_and_noassertion=%s date_parse=%s" % (ok1, ok2, ok3))
-        return 0 if (ok1 and ok2 and ok3) else 1
+        ok4 = body_grade("x/y", {"x/y": {"state": "OK", "license_body_class": "permissive"}}) == "body_permissive"
+        ok5 = body_grade("x/y", {"x/y": {"state": "OK", "license_body_class": "copyleft"}}) == "body_confirmed"
+        print("[R331:SELFTEST] restricted_agpl_not_mit=%s empty_and_noassertion=%s date_parse=%s exempt_permissive=%s exempt_copyleft=%s" % (ok1, ok2, ok3, ok4, ok5))
+        return 0 if (ok1 and ok2 and ok3 and ok4 and ok5) else 1
     if not os.path.isfile(a.matrix):
         print("[R331:HEALTH] rc=2 UNVERIFIED 矩阵不存在: " + a.matrix)
         return 2
@@ -147,7 +161,7 @@ def main(argv=None):
         print("[R331:HEALTH] rc=2 UNVERIFIED --today 不可解析: " + a.today)
         return 2
     pack = load_body_pack(os.path.abspath(a.bp)) if a.bp else None
-    doc = scan(a.matrix, today, pack)
+    doc = scan(a.matrix, today, pack, bool(getattr(a, "exempt_bp", False)))
     doc["body_pack"] = {"path": a.bp, "loaded": pack is not None, "repos_n": (len(pack) if pack else 0)}
     if doc["total_candidates"] == 0:
         print("[R331:HEALTH] rc=2 UNVERIFIED 候选面为空（禁按 0 条记绿，R247）")
@@ -163,6 +177,8 @@ def main(argv=None):
               % (len(doc["stale"]), n, rate * 100, a.max_stale_rate * 100,
                  ", ".join(x["repo"] + "(" + x["pushed_at"] + ")" for x in doc["stale"][:8])))
     _bd = doc["restricted_body_breakdown"]
+    if doc.get("exonerated"):
+        print("[R331:HEALTH] exempt=on exonerated=%d restricted_after=%d field_before=%d" % (len(doc["exonerated"]), len(doc["restricted"]), doc["field_restricted_n"]))
     print("[R331:HEALTH] cands=%d repos=%d stale=%d(%.2f%%) archived=%d restricted=%d unparsable=%d body[confirmed=%d permissive=%d unknown=%d no_pack=%d]"
           % (n, doc["distinct_repos"], len(doc["stale"]), rate * 100,
              len(doc["archived"]), len(doc["restricted"]), len(doc["pushed_at_unparsable"]),

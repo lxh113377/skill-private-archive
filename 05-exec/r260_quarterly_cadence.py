@@ -53,6 +53,52 @@ def newest_audit(root=ROOT):
     return best if best else (None, None)
 
 
+# r344（R325-2/R337-2 龄期守卫半）：shadowstrict 矩阵独立龄期腿。
+# 一手根因：r325 实测 replacement_matrix_shadowstrict.json 只靠「与主矩阵同步使用」保时效，
+# 没有任何门会发现它单独腐烂（主矩阵到点重生成、shadowstrict 被忘记是真实风险形态）。
+# 缺件/不可析 ⇒ 本腿显影且不许记绿（R247），时区形态自适应：带偏移按 aware 比较、裸串按 naive。
+SHADOW_MATRICES = ("06-benchmark/replacement_matrix_shadowstrict.json",)
+
+
+def parse_ts_flex(ts):
+    """带 +00:00/ Z 的按 aware 解、裸串按 naive 解；解不了 ⇒ None（交调用方显影，禁猜）。"""
+    s = str(ts)
+    if s.endswith("Z"):
+        s = s[:-1] + "+00:00"
+    try:
+        return datetime.fromisoformat(s)
+    except ValueError:
+        pass
+    try:
+        return datetime.strptime(s[:19], DATE_FMT)
+    except ValueError:
+        return None
+
+
+def matrix_age_leg(root=ROOT, paths=SHADOW_MATRICES, max_days=100):
+    """返回 [(relpath, age_days 或 None, 状态)]；状态 ok|over|missing|unparsable。"""
+    out = []
+    for rel in paths:
+        fp = os.path.join(root, rel.replace("/", os.sep))
+        if not os.path.isfile(fp):
+            out.append((rel, None, "missing"))
+            continue
+        try:
+            doc = json.load(io.open(fp, encoding="utf-8-sig"))
+        except Exception:
+            out.append((rel, None, "unparsable"))
+            continue
+        ga = doc.get("generated_at")
+        d = parse_ts_flex(ga) if ga else None
+        if d is None:
+            out.append((rel, None, "unparsable"))
+            continue
+        now_ = datetime.now(d.tzinfo) if d.tzinfo else datetime.now()
+        age = (now_ - d).total_seconds() / 86400.0
+        out.append((rel, age, "ok" if age <= max_days else "over"))
+    return out
+
+
 def judge(ts, now, max_days):
     """核心判据：单一纯函数，便于夹具与变异对照复用。返回 (rc, 说明)。"""
     if ts is None:
@@ -126,6 +172,17 @@ def main():
         io.open(args.out, "w", encoding="utf-8", newline=chr(10)).write(json.dumps(doc, ensure_ascii=False, indent=1))
     print("[CADENCE] 最新季产物 = %s（%s）" % (doc["newest_audit"], doc["generated_at"]))
     print("[CADENCE] %s" % why)
+    # r344：shadowstrict 龄期腿（缺/烂/超龄都不许记绿：R247）
+    for rel, age, st in matrix_age_leg(max_days=args.max_days):
+        if st == "ok":
+            print("[CADENCE:MATRIX] %s 龄期 %.1f 天 ≤ 上限 %s 天" % (rel, age, args.max_days))
+        elif st == "over":
+            rc = max(rc, 1)
+            print("[CADENCE:MATRIX-OVER] %s 龄期 %.1f 天 > %s 天 ⇒ shadowstrict 需随季度重生成" % (rel, age, args.max_days))
+        else:
+            if rc == 0:
+                rc = 2
+            print("[CADENCE:MATRIX-%s] %s 无可用 generated_at ⇒ 本腿不可判（禁按在限内记绿）" % (st.upper(), rel))
     if rc == 0:
         print("[CADENCE:PASS] 季度节律在限内")
     elif rc == 1:
