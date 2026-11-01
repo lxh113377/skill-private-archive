@@ -2163,16 +2163,29 @@ def main():
             continue
         selected_ids.add(g["id"])
         if args.portable_only and not g["portable"]:
-            print("%-32s SKIPPED-BY-DESIGN  %s" % (g["id"], g.get("not_portable_reason", "未声明原因")))
+            print("%-32s SKIPPED-BY-DESIGN  %s" % (g["id"], g.get("not_portable_reason", "未声明原因")), flush=True)
             rows.append({"id": g["id"], "state": "SKIPPED", "rc": None, "elapsed_ms": 0,
                          "portable": False, "covers": g["covers"]})
             continue
         state, rc, ms, tail = run_gate(g, args.timeout)
         total_ms += ms
-        print("%-32s %-11s rc=%-4s %5dms  %s" % (g["id"], state, rc, ms, g["why"]))
-        print("      覆盖根: %s" % " ; ".join(g["covers"]))
+        print("%-32s %-11s rc=%-4s %5dms  %s" % (g["id"], state, rc, ms, g["why"]), flush=True)
+        print("      覆盖根: %s" % " ; ".join(g["covers"]), flush=True)
         if state != "PASS":
-            print("      末输出: %s" % tail)
+            print("      末输出: %s" % tail, flush=True)
+        # r333（R332-2 兑现）：逐门进度落独立文件（每门 append + flush）——
+        # 旧版只在**结束时**把整段输出落文件 ⇒ hang 时中途不可观测，不知道卡在哪道门
+        # （r330 那次 136 行后 hang 就是这个问题）。本行让 `tail -f` 能看到逐门行。
+        try:
+            _prog = os.environ.get("GATE_PROGRESS_FILE", "")
+            if _prog:
+                with open(_prog, "a", encoding="utf-8") as _pf:
+                    _pf.write(json.dumps({"ts": datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),
+                                          "id": g["id"], "state": state, "rc": rc, "ms": ms},
+                                         ensure_ascii=False) + chr(10))
+                    _pf.flush()
+        except OSError:
+            pass
         rows.append({"id": g["id"], "state": state, "rc": rc, "elapsed_ms": ms,
                      "portable": g["portable"], "covers": g["covers"], "tail": tail})
 

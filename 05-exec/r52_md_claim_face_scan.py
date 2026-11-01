@@ -177,9 +177,14 @@ def scan_files(paths):
             items.append(c)
     s = summarize(items)
     live = [x for x in items if not x.get("historical")]
+    # r333（R332-2 同族自抓）：原来只有 live_uncited 的**计数**、没有逐条明细 ⇒
+    # 判红时不知道该改哪条（`--top` 印的是全量 uncited_list，历史件混在里面）。
+    # 补齐 live_uncited_list，使「可整改面敞口」可逐条定位。
+    live_uncited_items = [x for x in live if not x["has_cmd"]]
     s.update({"files": len(paths),
               "live_claims": len(live),
-              "live_uncited": sum(1 for x in live if not x["has_cmd"]),
+              "live_uncited": len(live_uncited_items),
+              "live_uncited_list": live_uncited_items,
               "historical_claims": len(items) - len(live),
               "window_lines": WINDOW, "live_from_round": LIVE_FROM})
     return s
