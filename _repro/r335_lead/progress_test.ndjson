@@ -1,0 +1,2 @@
+{"ts": "2026-11-01T15:22:29", "id": "fixture_wiring_face", "state": "FAIL", "rc": 1, "ms": 3137}
+{"ts": "2026-11-01T15:23:35", "id": "runner_internals_fixtures", "state": "PASS", "rc": 0, "ms": 65892}

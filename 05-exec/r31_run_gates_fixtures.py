@@ -35,6 +35,17 @@ except Exception:
 RESULTS = []
 
 
+
+
+def _scrub_env():
+    """r335（R333-3 根因）：子 runner 继承 GATE_PROGRESS_FILE 会往同一进度件多记行
+    （119=117+2 的差额正是本夹具层 b 两次 CHEAP 单门子跑记的）。本夹具的子跑是**接线自证**、
+    不是父轮次门执行 ⇒ 剥掉该变量，父进度件只收父循环的行。
+    """
+    e = dict(os.environ)
+    e.pop("GATE_PROGRESS_FILE", None)
+    return e
+
 def ck(name, cond, detail=""):
     RESULTS.append((bool(cond), name, detail))
     print("%s %-58s %s" % ("PASS" if cond else "FAIL", name, detail if not cond else ""))
@@ -203,7 +214,7 @@ def main():
        str([g["id"] for g in rg.GATES if g["id"] == CHEAP]))
     pb = subprocess.run([sys.executable, str(TARGET), "--gate", CHEAP, "--no-ledger"],
                         capture_output=True, text=True, encoding="utf-8", errors="replace",
-                        timeout=300, cwd=str(HERE.parent))
+                        timeout=300, cwd=str(HERE.parent), env=_scrub_env())
     outb = (pb.stdout or "") + (pb.stderr or "")
     ck("层b 接线自证：单门真跑（rc∈{0,1}，打印了该门 id 与覆盖根）",
        pb.returncode in (0, 1) and CHEAP in outb and "覆盖根:" in outb,
@@ -218,14 +229,14 @@ def main():
              "--no-ledger"]
     p2 = subprocess.run(_cmd2,
                         capture_output=True, text=True, encoding="utf-8", errors="replace",
-                        timeout=300, cwd=str(HERE.parent))
+                        timeout=300, cwd=str(HERE.parent), env=_scrub_env())
     out2 = (p2.stdout or "") + (p2.stderr or "")
     ck("层b --portable-only 跳过本机专属门且显式打印原因（非静默）",
        "SKIPPED-BY-DESIGN" in out2 and (np_gate or "\\x00") in out2, out2[-260:])
     subprocess.run([sys.executable, str(TARGET), "--gate", CHEAP, "--no-ledger", "--json",
                     str(tmp / "run.json")],
                    capture_output=True, text=True, encoding="utf-8", errors="replace",
-                   timeout=300, cwd=str(HERE.parent))
+                   timeout=300, cwd=str(HERE.parent), env=_scrub_env())
     ck("层b 产出 JSON 且 schema=gate-run-v1 / readonly=True",
        (tmp / "run.json").exists()
        and json.loads((tmp / "run.json").read_text(encoding="utf-8")).get("schema") == "gate-run-v1"
@@ -233,7 +244,7 @@ def main():
        "run.json 存在=%s" % (tmp / "run.json").exists())
     p3 = subprocess.run([sys.executable, str(TARGET), "--gate", "不存在的门"],
                         capture_output=True, text=True, encoding="utf-8", errors="replace",
-                        timeout=300, cwd=str(HERE.parent))
+                        timeout=300, cwd=str(HERE.parent), env=_scrub_env())
     ck("层b 选中门为 0 → exit 2 且报 UNVERIFIED（R247）",
        p3.returncode == 2 and "UNVERIFIED" in ((p3.stdout or "") + (p3.stderr or "")),
        "rc=%s" % p3.returncode)
