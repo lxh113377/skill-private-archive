@@ -1,0 +1,316 @@
+{
+ "schema": "r339-commit-face-1",
+ "replay": 25,
+ "revs": [
+  {
+   "rev": "313252c84019f7a2cba155bc8627fc489bce02bd",
+   "declared": 3,
+   "actual": 3,
+   "c1": "ok",
+   "c2_red": [],
+   "c3_advisory": [],
+   "c4_red": [],
+   "verdict": "GREEN"
+  },
+  {
+   "rev": "2f5275b3c41a842b00c8e9fdf6df262887f848f7",
+   "declared": 7,
+   "actual": 7,
+   "c1": "ok",
+   "c2_red": [],
+   "c3_advisory": [],
+   "c4_red": [
+    {
+     "file": "06-benchmark/全量对标报告_r338_compat判别力现尺复算_2026-11-01.md",
+     "claim": "卡先落",
+     "line": 3
+    }
+   ],
+   "verdict": "RED"
+  },
+  {
+   "rev": "9caeb8f498322fadcf738d2395f0bd64414f3663",
+   "declared": 1,
+   "actual": 1,
+   "c1": "ok",
+   "c2_red": [],
+   "c3_advisory": [],
+   "c4_red": [],
+   "verdict": "GREEN"
+  },
+  {
+   "rev": "dd35d1b6b83fe39cafc028ca912e4744e0965e19",
+   "declared": 12,
+   "actual": 12,
+   "c1": "ok",
+   "c2_red": [],
+   "c3_advisory": [
+    {
+     "path": "_repro/r337_lead/",
+     "why": "mention_no_claim"
+    }
+   ],
+   "c4_red": [],
+   "verdict": "GREEN"
+  },
+  {
+   "rev": "722d76b53f4964a14068c9a02968b4ab1391e938",
+   "declared": 11,
+   "actual": 11,
+   "c1": "ok",
+   "c2_red": [],
+   "c3_advisory": [
+    {
+     "path": "_temp/r295a/meta_raw.json",
+     "why": "mention_no_claim"
+    }
+   ],
+   "c4_red": [],
+   "verdict": "GREEN"
+  },
+  {
+   "rev": "2bde30fab3551264006a8efeafb94b60766af41b",
+   "declared": 7,
+   "actual": 7,
+   "c1": "ok",
+   "c2_red": [],
+   "c3_advisory": [],
+   "c4_red": [],
+   "verdict": "GREEN"
+  },
+  {
+   "rev": "0614b578ea703ead6625a73238c2a5affc21986b",
+   "declared": 18,
+   "actual": 18,
+   "c1": "ok",
+   "c2_red": [],
+   "c3_advisory": [],
+   "c4_red": [],
+   "verdict": "GREEN"
+  },
+  {
+   "rev": "f50a6da4d44c3c031da651f0fab6a9c4039d7b14",
+   "declared": 13,
+   "actual": 13,
+   "c1": "ok",
+   "c2_red": [],
+   "c3_advisory": [],
+   "c4_red": [],
+   "verdict": "GREEN"
+  },
+  {
+   "rev": "5bd66fdaee71feb417f860043d6bf5fab0ec6626",
+   "declared": 9,
+   "actual": 9,
+   "c1": "ok",
+   "c2_red": [],
+   "c3_advisory": [],
+   "c4_red": [],
+   "verdict": "GREEN"
+  },
+  {
+   "rev": "d4d5dd304d8238a059aa7b392129aab8965db5ff",
+   "declared": 6,
+   "actual": 6,
+   "c1": "ok",
+   "c2_red": [],
+   "c3_advisory": [],
+   "c4_red": [],
+   "verdict": "GREEN"
+  },
+  {
+   "rev": "92643ba999a34800d6da432dc32813710fec31e9",
+   "declared": 10,
+   "actual": 10,
+   "c1": "ok",
+   "c2_red": [],
+   "c3_advisory": [],
+   "c4_red": [],
+   "verdict": "GREEN"
+  },
+  {
+   "rev": "22f35d05cd322ff65d0a3fb4a89bde9b5642ef6e",
+   "declared": 10,
+   "actual": 10,
+   "c1": "ok",
+   "c2_red": [],
+   "c3_advisory": [],
+   "c4_red": [],
+   "verdict": "GREEN"
+  },
+  {
+   "rev": "340e01a7a4668a7f250f828c8c50456147cdfc5f",
+   "declared": 4,
+   "actual": 4,
+   "c1": "ok",
+   "c2_red": [],
+   "c3_advisory": [
+    {
+     "path": "_repro/r327_lead/m2_b1.json",
+     "why": "mention_no_claim"
+    },
+    {
+     "path": "06-benchmark/r261_c2_adjudication_priority28.json",
+     "why": "mention_no_claim"
+    }
+   ],
+   "c4_red": [],
+   "verdict": "GREEN"
+  },
+  {
+   "rev": "6926520975cdbec0e172782e9fa1bb1d2a3f51f2",
+   "declared": 7,
+   "actual": 7,
+   "c1": "ok",
+   "c2_red": [],
+   "c3_advisory": [
+    {
+     "path": "05-exec/r112_swap_gate.py",
+     "why": "mention_no_claim"
+    },
+    {
+     "path": "05-exec/r125_c16_machine.py",
+     "why": "mention_no_claim"
+    }
+   ],
+   "c4_red": [],
+   "verdict": "GREEN"
+  },
+  {
+   "rev": "8357623cabfaf630da259fa77318afad49df1acf",
+   "declared": 5,
+   "actual": 5,
+   "c1": "ok",
+   "c2_red": [],
+   "c3_advisory": [],
+   "c4_red": [],
+   "verdict": "GREEN"
+  },
+  {
+   "rev": "031dff4aef93bc641b7b8955f7f58b387280e2fa",
+   "declared": 15,
+   "actual": 15,
+   "c1": "ok",
+   "c2_red": [],
+   "c3_advisory": [
+    {
+     "path": "04-plan/后续维护规范",
+     "why": "mention_no_claim"
+    }
+   ],
+   "c4_red": [],
+   "verdict": "GREEN"
+  },
+  {
+   "rev": "4425ffa9462b70966d34b155175d0dcc58a5c8b2",
+   "declared": 17,
+   "actual": 17,
+   "c1": "ok",
+   "c2_red": [],
+   "c3_advisory": [],
+   "c4_red": [],
+   "verdict": "GREEN"
+  },
+  {
+   "rev": "9f0a9922a9ae3282a5c1a9cfb9d0dc6a9739c257",
+   "declared": 23,
+   "actual": 23,
+   "c1": "ok",
+   "c2_red": [],
+   "c3_advisory": [
+    {
+     "path": "_repro/r323a/",
+     "why": "mention_no_claim"
+    }
+   ],
+   "c4_red": [],
+   "verdict": "GREEN"
+  },
+  {
+   "rev": "ccfa01ff3c769d90094dc97b03c7613e6c0e942f",
+   "declared": 23,
+   "actual": 23,
+   "c1": "ok",
+   "c2_red": [],
+   "c3_advisory": [],
+   "c4_red": [],
+   "verdict": "GREEN"
+  },
+  {
+   "rev": "45620ea6c937a50da1e15f7efc4c5dfda56fa280",
+   "declared": 1,
+   "actual": 1,
+   "c1": "ok",
+   "c2_red": [],
+   "c3_advisory": [],
+   "c4_red": [],
+   "verdict": "GREEN"
+  },
+  {
+   "rev": "1db446b2d5c7a782d47aeb0bbc58ef075a60cb6d",
+   "declared": 2,
+   "actual": 1,
+   "c1": "MISMATCH declared=2 actual=1",
+   "c2_red": [],
+   "c3_advisory": [
+    {
+     "path": "04-plan/后续维护规范",
+     "why": "mention_no_claim"
+    },
+    {
+     "path": "memory/07-next-steps.md",
+     "why": "mention_no_claim"
+    }
+   ],
+   "c4_red": [],
+   "verdict": "RED"
+  },
+  {
+   "rev": "27f0340a9b02ce5d40f8cd6755d939775478d470",
+   "declared": 1,
+   "actual": 1,
+   "c1": "ok",
+   "c2_red": [
+    {
+     "path": "memory/07-next-steps.md",
+     "verb": "入库",
+     "line": "为什么不放过：`git grep -n part181 -- memory/07-next-steps.md` 现引 1 处 ⇒ 该卷不入库，别人 clone 后这条引用就断（正是本轮 r320 普查那条「落盘未入口」的镜像形态：入口在、字"
+    }
+   ],
+   "c3_advisory": [],
+   "c4_red": [],
+   "verdict": "RED"
+  },
+  {
+   "rev": "3d8ed77309ef79a395f697f50f9cdf2b7c01a110",
+   "declared": 2,
+   "actual": 2,
+   "c1": "ok",
+   "c2_red": [],
+   "c3_advisory": [],
+   "c4_red": [],
+   "verdict": "GREEN"
+  },
+  {
+   "rev": "c92f99914dd7cdca5a82f83c6eebd3bb71b18438",
+   "declared": 2,
+   "actual": 2,
+   "c1": "ok",
+   "c2_red": [],
+   "c3_advisory": [],
+   "c4_red": [],
+   "verdict": "GREEN"
+  },
+  {
+   "rev": "71f4e58e9ab735b3baea3209669dd762ce91a077",
+   "declared": 2,
+   "actual": 2,
+   "c1": "ok",
+   "c2_red": [],
+   "c3_advisory": [],
+   "c4_red": [],
+   "verdict": "GREEN"
+  }
+ ],
+ "unverified": []
+}

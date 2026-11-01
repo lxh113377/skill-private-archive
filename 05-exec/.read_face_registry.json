@@ -226,5 +226,10 @@
   "evidence": "06-benchmark/candidate_health_latest.json",
   "registered_at": "2026-11-01 03:01",
   "why": "R331-1 兑现 + R332 入门表：需求2 社区活跃度/维护状态两维的时效守卫（stale/archived/restricted 三轴，阈值 2%，空面 rc=2）"
+ },
+ "r339_commit_msg_files_face.py": {
+  "evidence": "06-benchmark/commit_face_latest.json",
+  "registered_at": "2026-11-01 16:17",
+  "why": "R338-3 兑现：提交面机械门 C1 计数/C2 声称路径/C4 正文声称卡先落 三腿；25 笔回放 3 真阳 0 误红；memory/archive 豁免防恒红"
  }
 }

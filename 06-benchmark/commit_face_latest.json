@@ -1,0 +1,17 @@
+{
+ "schema": "r339-commit-face-1",
+ "replay": 1,
+ "revs": [
+  {
+   "rev": "313252c84019f7a2cba155bc8627fc489bce02bd",
+   "declared": 3,
+   "actual": 3,
+   "c1": "ok",
+   "c2_red": [],
+   "c3_advisory": [],
+   "c4_red": [],
+   "verdict": "GREEN"
+  }
+ ],
+ "unverified": []
+}

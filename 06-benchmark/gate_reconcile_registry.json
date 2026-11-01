@@ -114,13 +114,14 @@
    "teeth_proof_matrix",
    "r269_converge_face",
    "local_baseline_face",
+   "commit_msg_face",
    "candidate_health_face",
    "quarterly_cadence_face",
    "maintenance_trim_face",
    "provenance_resolve_face",
    "provenance_resolve_fixtures"
   ],
-  "_snapshot_at": "2026-11-01 03:06",
+  "_snapshot_at": "2026-11-01 16:17",
   "gate_table_reconcile": {
    "evidence": "06-benchmark/gate_reconcile_registry.json",
    "at": "2026-10-20 17:13"
@@ -424,6 +425,10 @@
   "candidate_health_face": {
    "evidence": "C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r332_lead/ADMISSION_EVIDENCE.json",
    "at": "2026-11-01 03:06"
+  },
+  "commit_msg_face": {
+   "evidence": "C:/Users/37533/Desktop/workspace/skill焚诀/自建skill优化/_repro/r339_lead/ADMISSION_EVIDENCE.json",
+   "at": "2026-11-01 16:17"
   }
  }
 }

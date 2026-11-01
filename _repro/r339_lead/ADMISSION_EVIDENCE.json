@@ -1,0 +1,11 @@
+{
+ "schema": "r339-commit-face-admission-evidence-1",
+ "gate": "commit_msg_face",
+ "script": "r339_commit_msg_files_face.py",
+ "selftest": "[R339:SELFTEST] 11/11 teeth=pass",
+ "replay25": "[R339:COMMITFACE] revs=25 red=True unver=0",
+ "replay25_detail": "3 RED 全真阳性：2f5275b(C4 卡先落不实)/1db446b2d5(C1 declared=2 actual=1)/27f0340a9b(C2 声称并入件不在笔内)；22 GREEN 零误红",
+ "single_run": "commit_msg_face PASS rc=0 517ms + [GATES:PASS]",
+ "never_red_guard": "memory/ 与 archive/ 历史容器排除出 C4（台账以引文形态常驻「卡先落」，纳入则每笔碰台账必红——本轮实测抓到并当场排除）",
+ "why_link": "R338-3 验收靶兑现（提交面机械门）"
+}
