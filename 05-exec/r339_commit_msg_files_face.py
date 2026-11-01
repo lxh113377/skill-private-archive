@@ -28,6 +28,8 @@ CLAIM_RE = re.compile("本笔 *[（(]* *([0-9]+)")
 CLAIM_VERBS = ["卡先落", "见提交面", "入库", "落盘", "已落", "并入", "新增件", "常驻", "写进",
                "接进", "入门表", "已建", "补链落盘", "已写入", "落地", "登册", "迁"]
 WINDOW = 30
+# 具名豁免形态：「卡先落于 rNNN」/「卡先落 rNNN」/「卡先落于 <hex7+>」
+NAMED_RE = re.compile("卡先落[于 ]+r?(?:[0-9a-f]{7,40}|[0-9]{2,4})")
 
 
 def git(*args):
@@ -87,13 +89,33 @@ def check_rev(rev):
             blob = git("show", "%s:%s" % (rev, fp))
             if blob is None:
                 continue
-            for claim in ("卡先落", "先落卡"):
-                if claim in blob:
-                    ln = next((i + 1 for i, x in enumerate(blob.splitlines()) if claim in x), 0)
-                    res.setdefault("c4_red", []).append({"file": fp, "claim": claim, "line": ln})
-                    break
+            # r340（R339-2 兑现）：具名豁免形态「卡先落于 rNNN」不算声称（它是在指认
+            # 卡所在的另一笔）；裸「卡先落」仍算。注意子串重叠——「卡先落于 r339」本身
+            # 含「卡先落」三字，必须先判豁免形态再判红（夹具 t12 专测此重叠）。
+            for claim, ln in c4_hits(blob):
+                res.setdefault("c4_red", []).append({"file": fp, "claim": claim, "line": ln})
+                break
     return res
 
+
+def c4_hits(blob):
+    """纯函数（r340 抽取，夹具可端到端测）：扫一段正文里的「卡先落/先落卡」声称，
+    跳过具名豁免形态「卡先落于 rNNN / 卡先落于 <hex>」（那是在指认卡所在的另一笔）。
+    返回命中列表 [(claim, line_no)]；空 = 无未豁免声称。
+    """
+    hits = []
+    for claim in ("卡先落", "先落卡"):
+        pos = -1
+        while True:
+            pos = blob.find(claim, pos + 1)
+            if pos < 0:
+                break
+            ctx = blob[pos:pos + 16]
+            if NAMED_RE.search(ctx):
+                continue
+            hits.append((claim, blob[:pos].count(chr(10)) + 1))
+            break
+    return hits
 
 def verdict_of(res):
     """RED = C1 明确不符 或 C2 非空；取不到 = UNVERIFIED；其余 GREEN。"""
@@ -133,6 +155,10 @@ def selftest():
     r4 = mk(1, 1)
     r4["c4_red"] = [{"file": "06-benchmark/x.md", "claim": "卡先落", "line": 3}]
     cases.append(("t11 C4 非空 ⇒ RED", verdict_of(r4) == "RED"))
+    # t12/t13（r340）：具名豁免形态识别 —— 「卡先落于 rNNN」不判红、裸「卡先落」判红；
+    #   子串重叠是这条的命门（「卡先落于 rNNN」本身含「卡先落」，先判豁免再判红）
+    cases.append(("t12 端到端：具名豁免正文 ⇒ c4_hits 零命中", c4_hits("开头一句。\n本卡具名豁免：卡先落于 r339。\n") == []))
+    cases.append(("t13 端到端：裸声称仍在第 2 行被抓", c4_hits("一行。\n卡先落（本笔未入库）\n") == [("卡先落", 2)]))
     n = 0
     for name, ok in cases:
         print("%s %s" % ("PASS" if ok else "FAIL", name))
