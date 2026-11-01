@@ -1,0 +1,193 @@
+{
+ "schema": "r338-compat-power-1",
+ "generated_at": "2026-10-27T17:09:50+00:00",
+ "face": "937 candidates / 191 slugs (r260 matrix body) rescored with the CURRENT scale",
+ "compat_dist_old_stored": {
+  "5": 890,
+  "3": 46,
+  "4": 1
+ },
+ "compat_dist_new_scale": {
+  "5": 773,
+  "1": 113,
+  "3": 44,
+  "4": 7
+ },
+ "candidates_total": 937,
+ "capped_count": 119,
+ "body_fingerprint_used": 86,
+ "permissive_body_exonerating_NOASSERTION": 14,
+ "rank0_flips_n": 34,
+ "rank0_flips": [
+  {
+   "slug": "A-prompt-better",
+   "old_rank0": "code-yeongyu/oh-my-openagent",
+   "new_rank0": "JuliusBrussee/caveman"
+  },
+  {
+   "slug": "ci-pipeline-debugging",
+   "old_rank0": "Imbad0202/academic-research-skills",
+   "new_rank0": "JuliusBrussee/caveman"
+  },
+  {
+   "slug": "code-review",
+   "old_rank0": "code-yeongyu/oh-my-openagent",
+   "new_rank0": "wanshuiyin/Auto-claude-code-research-in-sleep"
+  },
+  {
+   "slug": "codebuddy-chat-web",
+   "old_rank0": "CherryHQ/cherry-studio",
+   "new_rank0": "iOfficeAI/AionUi"
+  },
+  {
+   "slug": "consulting-analysis",
+   "old_rank0": "Imbad0202/academic-research-skills",
+   "new_rank0": "wanshuiyin/Auto-claude-code-research-in-sleep"
+  },
+  {
+   "slug": "dingtalk-aisearch",
+   "old_rank0": "volcengine/OpenViking",
+   "new_rank0": "Graphify-Labs/graphify"
+  },
+  {
+   "slug": "dingtalk-aitable",
+   "old_rank0": "volcengine/OpenViking",
+   "new_rank0": "Vexa-ai/vexa"
+  },
+  {
+   "slug": "dingtalk-contact",
+   "old_rank0": "volcengine/OpenViking",
+   "new_rank0": "Graphify-Labs/graphify"
+  },
+  {
+   "slug": "dingtalk-event",
+   "old_rank0": "volcengine/OpenViking",
+   "new_rank0": "Graphify-Labs/graphify"
+  },
+  {
+   "slug": "dingtalk-shared",
+   "old_rank0": "volcengine/OpenViking",
+   "new_rank0": "Graphify-Labs/graphify"
+  },
+  {
+   "slug": "discover-agent-cli",
+   "old_rank0": "NanmiCoder/cc-haha",
+   "new_rank0": "ThinkInAIXYZ/deepchat"
+  },
+  {
+   "slug": "elon-musk-perspective",
+   "old_rank0": "Imbad0202/academic-research-skills",
+   "new_rank0": "wanshuiyin/Auto-claude-code-research-in-sleep"
+  },
+  {
+   "slug": "figma",
+   "old_rank0": "langgenius/dify",
+   "new_rank0": "scenario-labs/skills"
+  },
+  {
+   "slug": "knowledge-capture",
+   "old_rank0": "volcengine/OpenViking",
+   "new_rank0": "Egonex-AI/Understand-Anything"
+  },
+  {
+   "slug": "libreoffice-impress",
+   "old_rank0": "code-yeongyu/oh-my-openagent",
+   "new_rank0": "genspark-ai/genoffice"
+  },
+  {
+   "slug": "local-computer-use",
+   "old_rank0": "NanmiCoder/cc-haha",
+   "new_rank0": "feder-cr/invisible_dots"
+  },
+  {
+   "slug": "local-screenshot-qa",
+   "old_rank0": "NanmiCoder/cc-haha",
+   "new_rank0": "maziyarpanahi/openmed"
+  },
+  {
+   "slug": "meeting-intelligence",
+   "old_rank0": "volcengine/OpenViking",
+   "new_rank0": "tirth8205/code-review-graph"
+  },
+  {
+   "slug": "oracle",
+   "old_rank0": "Imbad0202/academic-research-skills",
+   "new_rank0": "wanshuiyin/Auto-claude-code-research-in-sleep"
+  },
+  {
+   "slug": "prompt-consolidation",
+   "old_rank0": "Imbad0202/academic-research-skills",
+   "new_rank0": "zenstory-ai/drama-skills"
+  },
+  {
+   "slug": "prompt-system-audit",
+   "old_rank0": "Imbad0202/academic-research-skills",
+   "new_rank0": "Ar9av/obsidian-wiki"
+  },
+  {
+   "slug": "react-best-practices",
+   "old_rank0": "FlorianBruniaux/claude-code-ultimate-guide",
+   "new_rank0": "siddsachar/row-bot"
+  },
+  {
+   "slug": "research-documentation",
+   "old_rank0": "calesthio/OpenMontage",
+   "new_rank0": "Graphify-Labs/graphify"
+  },
+  {
+   "slug": "shell-encoding-pitfalls",
+   "old_rank0": "mksglu/context-mode",
+   "new_rank0": "siddsachar/row-bot"
+  },
+  {
+   "slug": "story",
+   "old_rank0": "Imbad0202/academic-research-skills",
+   "new_rank0": "wanshuiyin/Auto-claude-code-research-in-sleep"
+  },
+  {
+   "slug": "story-cover",
+   "old_rank0": "calesthio/OpenMontage",
+   "new_rank0": "krillinai/OpenCreator"
+  },
+  {
+   "slug": "story-deslop",
+   "old_rank0": "Imbad0202/academic-research-skills",
+   "new_rank0": "wanshuiyin/Auto-claude-code-research-in-sleep"
+  },
+  {
+   "slug": "story-import",
+   "old_rank0": "Imbad0202/academic-research-skills",
+   "new_rank0": "EverMind-AI/EverOS"
+  },
+  {
+   "slug": "story-long-write",
+   "old_rank0": "Imbad0202/academic-research-skills",
+   "new_rank0": "EverMind-AI/EverOS"
+  },
+  {
+   "slug": "story-review",
+   "old_rank0": "Imbad0202/academic-research-skills",
+   "new_rank0": "wanshuiyin/Auto-claude-code-research-in-sleep"
+  },
+  {
+   "slug": "story-scan",
+   "old_rank0": "Imbad0202/academic-research-skills",
+   "new_rank0": "wanshuiyin/Auto-claude-code-research-in-sleep"
+  },
+  {
+   "slug": "story-short-analyze",
+   "old_rank0": "Imbad0202/academic-research-skills",
+   "new_rank0": "zenstory-ai/drama-skills"
+  },
+  {
+   "slug": "story-short-write",
+   "old_rank0": "Imbad0202/academic-research-skills",
+   "new_rank0": "zenstory-ai/drama-skills"
+  },
+  {
+   "slug": "writing-plans",
+   "old_rank0": "Imbad0202/academic-research-skills",
+   "new_rank0": "zhayujie/CowAgent"
+  }
+ ]
+}
