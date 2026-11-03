@@ -53,7 +53,7 @@ jobs:
         run: python 05-exec/r58_action_pin_fixtures.py
       - name: 留证（CI 侧只读，产物上传而不回写仓库）
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02  # v4，tag `v4` 当前指向（r260 gh api 实测）
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9  # v4，tag `v4` 当前指向（r260 gh api 实测）
         with:
           name: quarterly-cadence-ci
           path: |
