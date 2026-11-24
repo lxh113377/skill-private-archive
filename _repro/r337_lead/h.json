@@ -735,6 +735,8 @@
    "body": "body_confirmed"
   }
  ],
+ "exonerated": [],
+ "field_restricted_n": 143,
  "restricted_body_breakdown": {
   "body_confirmed": 65,
   "body_permissive": 14,

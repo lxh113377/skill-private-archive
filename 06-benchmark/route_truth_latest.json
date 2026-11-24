@@ -2,44 +2,44 @@
  "schema": "route-truth-v2",
  "readonly": true,
  "router": "C:/Users/37533/Desktop/workspace/焚诀/eval\\unified_router.py",
- "measured_at": "2026-10-31 22:08:13",
+ "measured_at": "2026-11-21 07:42:51",
  "rows": [
   {
    "skill": "win-toolchain-pitfalls",
    "topic": "CF/GitHub 免费额度读数与自动化链静默失败（R805 §9.16 / R810 §9.17 在 references）",
    "query": "wrangler 读 Cloudflare 免费额度 date_geq 过滤字段 Rate limiter budget depleted 怎么查",
-   "top1": "local-mineru",
+   "top1": "wps-knowledgebase",
    "direct_hit": false,
    "rank_of_skill": null,
    "candidates": [
     {
-     "name": "local-mineru",
-     "score": 0.6032,
-     "keyword": 0.0717
+     "name": "wps-knowledgebase",
+     "score": 0.6074,
+     "keyword": 0.0425
     },
     {
-     "name": "wps-knowledgebase",
-     "score": 0.6031,
-     "keyword": 0.0403
+     "name": "handoff",
+     "score": 0.6036,
+     "keyword": 0.0691
+    },
+    {
+     "name": "local-mineru",
+     "score": 0.6032,
+     "keyword": 0.0671
     },
     {
      "name": "local-realtime-translator",
      "score": 0.5927,
-     "keyword": 0.077
+     "keyword": 0.0748
     },
     {
      "name": "local-txt2img",
-     "score": 0.59,
-     "keyword": 0.074
-    },
-    {
-     "name": "pdf",
-     "score": 0.5892,
-     "keyword": 0.0671
+     "score": 0.5905,
+     "keyword": 0.0724
     }
    ],
-   "llm_reason": "Top-3几乎并列 (diff=0.0001)",
-   "elapsed_s": 6.8
+   "llm_reason": "Top-3几乎并列 (diff=0.0038)",
+   "elapsed_s": 1.5
   },
   {
    "skill": "win-toolchain-pitfalls",
@@ -52,31 +52,31 @@
     {
      "name": "scope-creep-detector",
      "score": 0.6534,
-     "keyword": 0.064
+     "keyword": 0.0732
     },
     {
      "name": "commit-archaeologist",
      "score": 0.6476,
-     "keyword": 0.1754
+     "keyword": 0.1671
+    },
+    {
+     "name": "handoff",
+     "score": 0.6215,
+     "keyword": 0.1284
     },
     {
      "name": "workbuddy-mcp",
-     "score": 0.6185,
-     "keyword": 0.069
+     "score": 0.6159,
+     "keyword": 0.072
     },
     {
      "name": "dingtalk-todo",
      "score": 0.6112,
-     "keyword": 0.0176
-    },
-    {
-     "name": "figma",
-     "score": 0.6099,
-     "keyword": 0.0372
+     "keyword": 0.016
     }
    ],
    "llm_reason": "Top-3几乎并列 (diff=0.0058)",
-   "elapsed_s": 3.3
+   "elapsed_s": 1.5
   },
   {
    "skill": "chaoshi-web-deploy",
@@ -93,7 +93,7 @@
     }
    ],
    "llm_reason": "",
-   "elapsed_s": 0.4
+   "elapsed_s": 0.3
   },
   {
    "skill": "ci-pipeline-debugging",
@@ -106,31 +106,31 @@
     {
      "name": "github",
      "score": 0.6246,
-     "keyword": 0.2398
+     "keyword": 0.2224
     },
     {
      "name": "browser-cdp",
      "score": 0.5741,
-     "keyword": 0.0733
+     "keyword": 0.0731
     },
     {
      "name": "gstack",
      "score": 0.5585,
-     "keyword": 0.059
+     "keyword": 0.0524
     },
     {
      "name": "web-access",
      "score": 0.5578,
-     "keyword": 0.0749
+     "keyword": 0.0712
     },
     {
      "name": "electron",
      "score": 0.541,
-     "keyword": 0.0396
+     "keyword": 0.0372
     }
    ],
    "llm_reason": "",
-   "elapsed_s": 1.9
+   "elapsed_s": 1.8
   }
  ],
  "tasks": [
@@ -144,7 +144,7 @@
     "chaoshi-web-deploy"
    ],
    "outcome": "HIT_DIRECT",
-   "elapsed_s": 0.4
+   "elapsed_s": 0.2
   },
   {
    "task": "CI 红了",
@@ -156,7 +156,7 @@
     "ci-pipeline-debugging"
    ],
    "outcome": "HIT_DIRECT",
-   "elapsed_s": 0.3
+   "elapsed_s": 0.2
   },
   {
    "task": "钩子静默推送",
@@ -167,10 +167,10 @@
    "top3": [
     "win-toolchain-pitfalls",
     "wb-git-commit-recipe",
-    "coding-agent"
+    "debugging-fixing"
    ],
    "outcome": "HIT",
-   "elapsed_s": 2.0
+   "elapsed_s": 1.5
   },
   {
    "task": "Actions 分钟",
@@ -181,10 +181,10 @@
    "top3": [
     "chaoshi-web-deploy",
     "frontend-asset-library",
-    "screenshot"
+    "web-access"
    ],
    "outcome": "HIT",
-   "elapsed_s": 2.0
+   "elapsed_s": 1.5
   },
   {
    "task": "R2 开桶",
@@ -195,10 +195,10 @@
    "top3": [
     "libreoffice-headless-win",
     "sq-cleanmgr-c",
-    "A-project-handoff"
+    "A-memory-start"
    ],
    "outcome": "MISS",
-   "elapsed_s": 2.0
+   "elapsed_s": 1.4
   },
   {
    "task": "Turnstile",
@@ -208,11 +208,11 @@
    "direct_hit": false,
    "top3": [
     "codebuddy-chat-web",
-    "win-toolchain-pitfalls",
+    "A-desktop-manual-ops",
     "dingtalk-aitable"
    ],
    "outcome": "DISPUTED",
-   "elapsed_s": 2.7
+   "elapsed_s": 1.5
   },
   {
    "task": "D1 查额度",
@@ -226,7 +226,7 @@
     "fenjue-lessons-hitrate"
    ],
    "outcome": "HIT",
-   "elapsed_s": 2.1
+   "elapsed_s": 1.5
   },
   {
    "task": "Workers 调用量",
@@ -240,21 +240,21 @@
     "pixelle-api-ensure"
    ],
    "outcome": "HIT",
-   "elapsed_s": 1.8
+   "elapsed_s": 1.3
   },
   {
    "task": "Resend 发邮",
    "want": "",
    "query": "用 Resend 免费发送邮件验证码",
-   "top1": "dingtalk-mail",
+   "top1": "A-desktop-manual-ops",
    "direct_hit": false,
    "top3": [
+    "A-desktop-manual-ops",
     "dingtalk-mail",
-    "office-automation-pro",
-    "codebuddy-chat-web"
+    "office-automation-pro"
    ],
    "outcome": "UNOWNED",
-   "elapsed_s": 1.8
+   "elapsed_s": 1.5
   },
   {
    "task": "Upstash 限流",
@@ -268,7 +268,7 @@
     "libreoffice-base"
    ],
    "outcome": "UNOWNED",
-   "elapsed_s": 2.3
+   "elapsed_s": 1.3
   }
  ],
  "task_judged": 7,

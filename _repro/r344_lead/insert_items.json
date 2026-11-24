@@ -1,0 +1,10 @@
+{
+ "items": [
+  {
+   "k": "R344-1",
+   "p": "P1",
+   "s": "R263 合并评审包出稿即执行（#37 自决不悬置）：案一豁免 flag 落地（restricted 129/exonerated 14/守恒 field=143）、案二 shadowstrict 龄期腿落地（三态负控有牙）、案三 compat 生成路径残项登记；candidate_health 门默认面从此带豁免口径",
+   "d": "一手（Lead 自干）：① 包=04-plan/R263评审包_豁免接判定与龄期守卫_r344_2026-11-01.md，A2 影响面全现算（`--today 2026-11-01` 双态跑 h_off/h_on：143/0 对 129/14，去重 5 仓=activepieces/TencentDB-Agent-Memory/webiny-js/design-harness/mcp-inspector；unknown 保守不出列=context-mode/docker-selenium；stale/archived 不受影响 1/1）。② 案一落地=r331 加 --exempt-body-permissive（默认关=逐字节不变，双态实测）+ run_gates argv 加旗 + covers 加行 + check_r337 两条新断言（field_restricted_n==restricted+exonerated 守恒；flag 关时 exonerated 必须空=默认不变性）。门单跑 PASS rc=0 93ms，candidate_health_latest.json 已滚到豁免态。③ 案二=r260_quarterly_cadence.py 加 SHADOW_MATRICES/parse_ts_flex/matrix_age_leg：现跑 `[CADENCE:MATRIX] … 龄期 1.8 天 ≤ 100`；missing/unparsable⇒rc 顶 2 不许记绿、over⇒rc=1；负控三态在 _repro/r344_lead/neg_face 合成面实测全过（用后已删）；selftest 5/5 不回退、quarterly_cadence_face 门 PASS。④ 案三登记：r114 :741 硬编码 score5(m,True,True) 与 :1281 走旗标并存，下季重生成时统一（独立小改，不绑本案）。⑤ 自抓：A4 首版「老大阅后如无异议我下轮改」= #37 例外未申请的回抛形态 ⇒ 当场改为「决定+依据+回滚」三件套并本轮执行完。**教训**：评审包≠暂停牌——可回滚低风险半按 #31 自决落地、把回滚写进包，重险半（改 score5 输入）才留待批。取值：python -B _repro/r337_lead/check_r337.py（含两新断言）；python -B 05-exec/run_gates.py --gate candidate_health_face --no-ledger；python -B 05-exec/r260_quarterly_cadence.py --json <out>。"
+  }
+ ]
+}

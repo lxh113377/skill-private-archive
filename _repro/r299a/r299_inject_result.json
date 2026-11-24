@@ -1,0 +1,2234 @@
+{
+ "pairs_n": 62,
+ "slugs_n": 55,
+ "rows": [
+  {
+   "repo": "vercel-labs/agent-browser",
+   "declared_path": "skills/agent-browser",
+   "path_hit": {
+    "path": "skills/agent-browser/SKILL.md",
+    "sha": "67e8a49ad8d8",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "skills/agent-browser/SKILL.md",
+     "sha": "67e8a49ad8d8"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 11,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 3,
+     "eff": 3,
+     "compat": 5,
+     "docs": 3,
+     "community": 4
+    },
+    "score_total": 18,
+    "fc_caliber": "strict",
+    "stars": 44555,
+    "pushed_at": "2026-10-25",
+    "license": "Apache-2.0"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "agent-browser",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "vercel-labs/agent-browser"
+  },
+  {
+   "repo": "anthropics/skills",
+   "declared_path": "skills/algorithmic-art",
+   "path_hit": {
+    "path": "skills/algorithmic-art/SKILL.md",
+    "sha": "634f6fa42e4e",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "skills/algorithmic-art/SKILL.md",
+     "sha": "634f6fa42e4e"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 20,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 1,
+     "compat": 3,
+     "docs": 3,
+     "community": 5
+    },
+    "score_total": 16,
+    "fc_caliber": "strict",
+    "stars": 183570,
+    "pushed_at": "2026-10-09",
+    "license": "UNLICENSED"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "algorithmic-art",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "anthropics/skills"
+  },
+  {
+   "repo": "obra/superpowers",
+   "declared_path": "skills/brainstorming",
+   "path_hit": {
+    "path": "skills/brainstorming/SKILL.md",
+    "sha": "7f5eef02f894",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "skills/brainstorming/SKILL.md",
+     "sha": "7f5eef02f894"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 15,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 2,
+     "compat": 5,
+     "docs": 4,
+     "community": 5
+    },
+    "score_total": 20,
+    "fc_caliber": "strict",
+    "stars": 304728,
+    "pushed_at": "2026-10-23",
+    "license": "MIT"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "brainstorming",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "obra/superpowers"
+  },
+  {
+   "repo": "anthropics/skills",
+   "declared_path": "skills/brand-guidelines",
+   "path_hit": {
+    "path": "skills/brand-guidelines/SKILL.md",
+    "sha": "47c72c607bdb",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "skills/brand-guidelines/SKILL.md",
+     "sha": "47c72c607bdb"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 20,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 1,
+     "compat": 3,
+     "docs": 3,
+     "community": 5
+    },
+    "score_total": 16,
+    "fc_caliber": "strict",
+    "stars": 183570,
+    "pushed_at": "2026-10-09",
+    "license": "UNLICENSED"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "brand-guidelines",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "anthropics/skills"
+  },
+  {
+   "repo": "ChromeDevTools/chrome-devtools-mcp",
+   "declared_path": null,
+   "path_hit": null,
+   "slug_hits": [],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 7,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 3,
+     "eff": 4,
+     "compat": 5,
+     "docs": 4,
+     "community": 5
+    },
+    "score_total": 21,
+    "fc_caliber": "strict",
+    "stars": 54471,
+    "pushed_at": "2026-10-30",
+    "license": "Apache-2.0"
+   },
+   "kind": "invalid",
+   "why": "全树 7 个 SKILL.md 里，声明路径 （未声明） 与 slug 目录均未落地 ⇒ 声明失效",
+   "counts_toward_skill_n": false,
+   "slug": "browser-cdp",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "ChromeDevTools/chrome-devtools-mcp"
+  },
+  {
+   "repo": "vercel-labs/agent-browser",
+   "declared_path": null,
+   "path_hit": null,
+   "slug_hits": [],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 11,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 3,
+     "eff": 3,
+     "compat": 5,
+     "docs": 3,
+     "community": 4
+    },
+    "score_total": 18,
+    "fc_caliber": "strict",
+    "stars": 44555,
+    "pushed_at": "2026-10-25",
+    "license": "Apache-2.0"
+   },
+   "kind": "invalid",
+   "why": "全树 11 个 SKILL.md 里，声明路径 （未声明） 与 slug 目录均未落地 ⇒ 声明失效",
+   "counts_toward_skill_n": false,
+   "slug": "browser-cdp",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "ChromeDevTools/chrome-devtools-mcp"
+  },
+  {
+   "repo": "anthropics/skills",
+   "declared_path": "skills/canvas-design",
+   "path_hit": {
+    "path": "skills/canvas-design/SKILL.md",
+    "sha": "9f63fee82de8",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "skills/canvas-design/SKILL.md",
+     "sha": "9f63fee82de8"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 20,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 1,
+     "compat": 3,
+     "docs": 3,
+     "community": 5
+    },
+    "score_total": 16,
+    "fc_caliber": "strict",
+    "stars": 183570,
+    "pushed_at": "2026-10-09",
+    "license": "UNLICENSED"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "canvas-design",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "anthropics/skills"
+  },
+  {
+   "repo": "antvis/chart-visualization-skills",
+   "declared_path": "skills/chart-visualization",
+   "path_hit": {
+    "path": "skills/chart-visualization/SKILL.md",
+    "sha": "66cb8f87ddb9",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "skills/chart-visualization/SKILL.md",
+     "sha": "66cb8f87ddb9"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 9,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 3,
+     "eff": 2,
+     "compat": 5,
+     "docs": 3,
+     "community": 2
+    },
+    "score_total": 15,
+    "fc_caliber": "strict",
+    "stars": 516,
+    "pushed_at": "2026-09-22",
+    "license": "MIT"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "chart-visualization",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "antvis/chart-visualization-skills"
+  },
+  {
+   "repo": "sickn33/agentic-awesome-skills",
+   "declared_path": "plugins/agentic-awesome-skills-claude/skills/codex-delegate",
+   "path_hit": {
+    "path": "plugins/agentic-awesome-skills-claude/skills/codex-delegate/SKILL.md",
+    "sha": "821111317265",
+    "via": "declared_path"
+   },
+   "slug_hits": [],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 8851,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 5,
+     "eff": 5,
+     "compat": 5,
+     "docs": 5,
+     "community": 4
+    },
+    "score_total": 24,
+    "fc_caliber": "strict",
+    "stars": 48467,
+    "pushed_at": "2026-10-24",
+    "license": "MIT"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "coding-agent",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "sickn33/agentic-awesome-skills"
+  },
+  {
+   "repo": "Shubhamsaboo/awesome-llm-apps",
+   "declared_path": "agent_skills/commit-archaeologist",
+   "path_hit": {
+    "path": "agent_skills/commit-archaeologist/SKILL.md",
+    "sha": "a80214bea587",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "agent_skills/commit-archaeologist/SKILL.md",
+     "sha": "a80214bea587"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 10,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 3,
+     "eff": 3,
+     "compat": 5,
+     "docs": 3,
+     "community": 5
+    },
+    "score_total": 19,
+    "fc_caliber": "strict",
+    "stars": 142977,
+    "pushed_at": "2026-10-22",
+    "license": "Apache-2.0"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "commit-archaeologist",
+   "row_verdict_before": "UNVERIFIED",
+   "matrix_declared": "Shubhamsaboo/awesome-llm-apps"
+  },
+  {
+   "repo": "K-Dense-AI/scientific-agent-skills",
+   "declared_path": "skills/exploratory-data-analysis",
+   "path_hit": {
+    "path": "skills/exploratory-data-analysis/SKILL.md",
+    "sha": "c461f99dea05",
+    "via": "declared_path"
+   },
+   "slug_hits": [],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 177,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 5,
+     "eff": 5,
+     "compat": 5,
+     "docs": 5,
+     "community": 5
+    },
+    "score_total": 25,
+    "fc_caliber": "strict",
+    "stars": 54473,
+    "pushed_at": "2026-10-19",
+    "license": "MIT"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "data-analysis",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "K-Dense-AI/scientific-agent-skills"
+  },
+  {
+   "repo": "kepano/defuddle",
+   "declared_path": null,
+   "path_hit": null,
+   "slug_hits": [],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 0,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 1,
+     "eff": 4,
+     "compat": 3,
+     "docs": 3,
+     "community": 3
+    },
+    "score_total": 14,
+    "fc_caliber": "strict",
+    "stars": 9824,
+    "pushed_at": "2026-10-25",
+    "license": "MIT"
+   },
+   "kind": "invalid",
+   "why": "全树 0 个 SKILL.md 里，声明路径 （未声明） 与 slug 目录均未落地 ⇒ 声明失效",
+   "counts_toward_skill_n": false,
+   "slug": "defuddle",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "kepano/defuddle"
+  },
+  {
+   "repo": "adbar/trafilatura",
+   "declared_path": null,
+   "path_hit": null,
+   "slug_hits": [],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 0,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 1,
+     "eff": 4,
+     "compat": 3,
+     "docs": 3,
+     "community": 3
+    },
+    "score_total": 14,
+    "fc_caliber": "strict",
+    "stars": 7042,
+    "pushed_at": "2026-10-29",
+    "license": "Apache-2.0"
+   },
+   "kind": "invalid",
+   "why": "全树 0 个 SKILL.md 里，声明路径 （未声明） 与 slug 目录均未落地 ⇒ 声明失效",
+   "counts_toward_skill_n": false,
+   "slug": "defuddle",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "kepano/defuddle"
+  },
+  {
+   "repo": "github/awesome-copilot",
+   "declared_path": "skills/excalidraw-diagram-generator",
+   "path_hit": {
+    "path": "skills/excalidraw-diagram-generator/SKILL.md",
+    "sha": "1a290eae1c7a",
+    "via": "declared_path"
+   },
+   "slug_hits": [],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 466,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 5,
+     "eff": 3,
+     "compat": 5,
+     "docs": 4,
+     "community": 4
+    },
+    "score_total": 21,
+    "fc_caliber": "strict",
+    "stars": 40379,
+    "pushed_at": "2026-10-23",
+    "license": "MIT"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "diagram-maker",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "github/awesome-copilot"
+  },
+  {
+   "repo": "anthropics/skills",
+   "declared_path": "skills/doc-coauthoring",
+   "path_hit": {
+    "path": "skills/doc-coauthoring/SKILL.md",
+    "sha": "a5a69839ef4a",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "skills/doc-coauthoring/SKILL.md",
+     "sha": "a5a69839ef4a"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 20,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 1,
+     "compat": 3,
+     "docs": 3,
+     "community": 5
+    },
+    "score_total": 16,
+    "fc_caliber": "strict",
+    "stars": 183570,
+    "pushed_at": "2026-10-09",
+    "license": "UNLICENSED"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "doc-coauthoring",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "anthropics/skills"
+  },
+  {
+   "repo": "anthropics/skills",
+   "declared_path": "skills/docx",
+   "path_hit": {
+    "path": "skills/docx/SKILL.md",
+    "sha": "fb954a460a1e",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "skills/docx/SKILL.md",
+     "sha": "fb954a460a1e"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 20,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 1,
+     "compat": 3,
+     "docs": 3,
+     "community": 5
+    },
+    "score_total": 16,
+    "fc_caliber": "strict",
+    "stars": 183570,
+    "pushed_at": "2026-10-09",
+    "license": "UNLICENSED"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "docx",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "anthropics/skills"
+  },
+  {
+   "repo": "microsoft/playwright-mcp",
+   "declared_path": null,
+   "path_hit": null,
+   "slug_hits": [],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 0,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 0,
+     "eff": 2,
+     "compat": 3,
+     "docs": 3,
+     "community": 4
+    },
+    "score_total": 12,
+    "fc_caliber": "strict",
+    "stars": 38601,
+    "pushed_at": "2026-10-22",
+    "license": "Apache-2.0"
+   },
+   "kind": "invalid",
+   "why": "全树 0 个 SKILL.md 里，声明路径 （未声明） 与 slug 目录均未落地 ⇒ 声明失效",
+   "counts_toward_skill_n": false,
+   "slug": "dogfood",
+   "row_verdict_before": "UNVERIFIED",
+   "matrix_declared": "microsoft/playwright-mcp"
+  },
+  {
+   "repo": "web-infra-dev/midscene",
+   "declared_path": null,
+   "path_hit": null,
+   "slug_hits": [],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 0,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 1,
+     "eff": 5,
+     "compat": 3,
+     "docs": 3,
+     "community": 4
+    },
+    "score_total": 16,
+    "fc_caliber": "strict",
+    "stars": 15436,
+    "pushed_at": "2026-10-30",
+    "license": "MIT"
+   },
+   "kind": "invalid",
+   "why": "全树 0 个 SKILL.md 里，声明路径 （未声明） 与 slug 目录均未落地 ⇒ 声明失效",
+   "counts_toward_skill_n": false,
+   "slug": "dogfood",
+   "row_verdict_before": "UNVERIFIED",
+   "matrix_declared": "microsoft/playwright-mcp"
+  },
+  {
+   "repo": "vercel-labs/agent-browser",
+   "declared_path": "skill-data/electron",
+   "path_hit": {
+    "path": "skill-data/electron/SKILL.md",
+    "sha": "e4bf00e8e669",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "skill-data/electron/SKILL.md",
+     "sha": "e4bf00e8e669"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 11,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 3,
+     "eff": 3,
+     "compat": 5,
+     "docs": 3,
+     "community": 4
+    },
+    "score_total": 18,
+    "fc_caliber": "strict",
+    "stars": 44555,
+    "pushed_at": "2026-10-25",
+    "license": "Apache-2.0"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "electron",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "vercel-labs/agent-browser"
+  },
+  {
+   "repo": "microsoft/playwright",
+   "declared_path": "skill-data/electron",
+   "path_hit": null,
+   "slug_hits": [],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 10,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 3,
+     "eff": 5,
+     "compat": 5,
+     "docs": 5,
+     "community": 5
+    },
+    "score_total": 23,
+    "fc_caliber": "strict",
+    "stars": 98845,
+    "pushed_at": "2026-10-30",
+    "license": "Apache-2.0"
+   },
+   "kind": "invalid",
+   "why": "全树 10 个 SKILL.md 里，声明路径 skill-data/electron 与 slug 目录均未落地 ⇒ 声明失效",
+   "counts_toward_skill_n": false,
+   "slug": "electron",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "vercel-labs/agent-browser"
+  },
+  {
+   "repo": "heygen-com/hyperframes",
+   "declared_path": "skills/figma",
+   "path_hit": {
+    "path": "skills/figma/SKILL.md",
+    "sha": "2a33e19bee87",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "skills/figma/SKILL.md",
+     "sha": "2a33e19bee87"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 26,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 5,
+     "compat": 5,
+     "docs": 4,
+     "community": 5
+    },
+    "score_total": 23,
+    "fc_caliber": "strict",
+    "stars": 71624,
+    "pushed_at": "2026-10-25",
+    "license": "Apache-2.0"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "figma",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "heygen-com/hyperframes"
+  },
+  {
+   "repo": "vercel-labs/skills",
+   "declared_path": "skills/find-skills",
+   "path_hit": {
+    "path": "skills/find-skills/SKILL.md",
+    "sha": "a41bdd074bb5",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "skills/find-skills/SKILL.md",
+     "sha": "a41bdd074bb5"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 3,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 3,
+     "eff": 3,
+     "compat": 5,
+     "docs": 3,
+     "community": 4
+    },
+    "score_total": 18,
+    "fc_caliber": "strict",
+    "stars": 37185,
+    "pushed_at": "2026-10-29",
+    "license": "MIT"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "find-skills",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "vercel-labs/skills"
+  },
+  {
+   "repo": "anthropics/skills",
+   "declared_path": "skills/frontend-design",
+   "path_hit": {
+    "path": "skills/frontend-design/SKILL.md",
+    "sha": "a5333457c414",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "skills/frontend-design/SKILL.md",
+     "sha": "a5333457c414"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 20,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 1,
+     "compat": 3,
+     "docs": 3,
+     "community": 5
+    },
+    "score_total": 16,
+    "fc_caliber": "strict",
+    "stars": 183570,
+    "pushed_at": "2026-10-09",
+    "license": "UNLICENSED"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "frontend-design",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "anthropics/skills"
+  },
+  {
+   "repo": "zarazhangrui/frontend-slides",
+   "declared_path": "plugins/frontend-slides/skills/frontend-slides",
+   "path_hit": {
+    "path": "plugins/frontend-slides/skills/frontend-slides/SKILL.md",
+    "sha": "9b8374bf128d",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "plugins/frontend-slides/skills/frontend-slides/SKILL.md",
+     "sha": "9b8374bf128d"
+    }
+   ],
+   "repo_is_skill_hit": {
+    "path": "SKILL.md",
+    "sha": "9b8374bf128d",
+    "via": "repo_name",
+    "name_ok": true,
+    "sole_only": false
+   },
+   "tree_skill_md_n": 2,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 2,
+     "eff": 0,
+     "compat": 5,
+     "docs": 3,
+     "community": 3
+    },
+    "score_total": 13,
+    "fc_caliber": "strict",
+    "stars": 31230,
+    "pushed_at": "2026-06-23",
+    "license": "MIT"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "frontend-slides",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "zarazhangrui/frontend-slides"
+  },
+  {
+   "repo": "mattpocock/skills",
+   "declared_path": "skills/productivity/grill-me",
+   "path_hit": {
+    "path": "skills/productivity/grill-me/SKILL.md",
+    "sha": "3947ff9c4ad9",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "skills/productivity/grill-me/SKILL.md",
+     "sha": "3947ff9c4ad9"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 38,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 1,
+     "compat": 5,
+     "docs": 4,
+     "community": 5
+    },
+    "score_total": 19,
+    "fc_caliber": "strict",
+    "stars": 302675,
+    "pushed_at": "2026-10-22",
+    "license": "MIT"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "grill-me",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "mattpocock/skills"
+  },
+  {
+   "repo": "garrytan/gstack",
+   "declared_path": "capy/skill/gstack",
+   "path_hit": {
+    "path": "capy/skill/gstack/SKILL.md",
+    "sha": "ed9ab9eb7e63",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "capy/skill/gstack/SKILL.md",
+     "sha": "ed9ab9eb7e63"
+    }
+   ],
+   "repo_is_skill_hit": {
+    "path": "SKILL.md",
+    "sha": "feafb991e726",
+    "via": "repo_name",
+    "name_ok": true,
+    "sole_only": false
+   },
+   "tree_skill_md_n": 75,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 5,
+     "compat": 5,
+     "docs": 5,
+     "community": 5
+    },
+    "score_total": 24,
+    "fc_caliber": "strict",
+    "stars": 138223,
+    "pushed_at": "2026-10-30",
+    "license": "MIT"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "gstack",
+   "row_verdict_before": "UNVERIFIED",
+   "matrix_declared": "garrytan/gstack"
+  },
+  {
+   "repo": "lewislulu/html-ppt-skill",
+   "declared_path": null,
+   "path_hit": null,
+   "slug_hits": [],
+   "repo_is_skill_hit": {
+    "path": "SKILL.md",
+    "sha": "4381965e976a",
+    "via": "repo_name",
+    "name_ok": true,
+    "sole_only": true
+   },
+   "tree_skill_md_n": 1,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 2,
+     "eff": 0,
+     "compat": 5,
+     "docs": 3,
+     "community": 3
+    },
+    "score_total": 13,
+    "fc_caliber": "strict",
+    "stars": 8910,
+    "pushed_at": "2026-09-14",
+    "license": "MIT"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "html-ppt",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "lewislulu/html-ppt-skill"
+  },
+  {
+   "repo": "heygen-com/hyperframes",
+   "declared_path": "skills/hyperframes",
+   "path_hit": {
+    "path": "skills/hyperframes/SKILL.md",
+    "sha": "6f4166472b0f",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "skills/hyperframes/SKILL.md",
+     "sha": "6f4166472b0f"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 26,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 5,
+     "compat": 5,
+     "docs": 4,
+     "community": 5
+    },
+    "score_total": 23,
+    "fc_caliber": "strict",
+    "stars": 71624,
+    "pushed_at": "2026-10-25",
+    "license": "Apache-2.0"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "hyperframes",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "heygen-com/hyperframes"
+  },
+  {
+   "repo": "heygen-com/hyperframes",
+   "declared_path": "skills/hyperframes-cli",
+   "path_hit": {
+    "path": "skills/hyperframes-cli/SKILL.md",
+    "sha": "7f51bc528abc",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "skills/hyperframes-cli/SKILL.md",
+     "sha": "7f51bc528abc"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 26,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 5,
+     "compat": 5,
+     "docs": 4,
+     "community": 5
+    },
+    "score_total": 23,
+    "fc_caliber": "strict",
+    "stars": 71624,
+    "pushed_at": "2026-10-25",
+    "license": "Apache-2.0"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "hyperframes-cli",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "heygen-com/hyperframes"
+  },
+  {
+   "repo": "heygen-com/hyperframes",
+   "declared_path": "skills/media-use",
+   "path_hit": {
+    "path": "skills/media-use/SKILL.md",
+    "sha": "562649280a3e",
+    "via": "declared_path"
+   },
+   "slug_hits": [],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 26,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 5,
+     "compat": 5,
+     "docs": 4,
+     "community": 5
+    },
+    "score_total": 23,
+    "fc_caliber": "strict",
+    "stars": 71624,
+    "pushed_at": "2026-10-25",
+    "license": "Apache-2.0"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "hyperframes-media",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "heygen-com/hyperframes"
+  },
+  {
+   "repo": "heygen-com/hyperframes",
+   "declared_path": "skills/hyperframes-registry",
+   "path_hit": {
+    "path": "skills/hyperframes-registry/SKILL.md",
+    "sha": "7b1bc6a6c95c",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "skills/hyperframes-registry/SKILL.md",
+     "sha": "7b1bc6a6c95c"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 26,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 5,
+     "compat": 5,
+     "docs": 4,
+     "community": 5
+    },
+    "score_total": 23,
+    "fc_caliber": "strict",
+    "stars": 71624,
+    "pushed_at": "2026-10-25",
+    "license": "Apache-2.0"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "hyperframes-registry",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "heygen-com/hyperframes"
+  },
+  {
+   "repo": "anthropics/skills",
+   "declared_path": "skills/internal-comms",
+   "path_hit": {
+    "path": "skills/internal-comms/SKILL.md",
+    "sha": "56ea935b74f3",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "skills/internal-comms/SKILL.md",
+     "sha": "56ea935b74f3"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 20,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 1,
+     "compat": 3,
+     "docs": 3,
+     "community": 5
+    },
+    "score_total": 16,
+    "fc_caliber": "strict",
+    "stars": 183570,
+    "pushed_at": "2026-10-09",
+    "license": "UNLICENSED"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "internal-comms",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "anthropics/skills"
+  },
+  {
+   "repo": "anthropics/skills",
+   "declared_path": "skills/mcp-builder",
+   "path_hit": {
+    "path": "skills/mcp-builder/SKILL.md",
+    "sha": "d61a9056202a",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "skills/mcp-builder/SKILL.md",
+     "sha": "d61a9056202a"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 20,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 1,
+     "compat": 3,
+     "docs": 3,
+     "community": 5
+    },
+    "score_total": 16,
+    "fc_caliber": "strict",
+    "stars": 183570,
+    "pushed_at": "2026-10-09",
+    "license": "UNLICENSED"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "mcp-builder",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "anthropics/skills"
+  },
+  {
+   "repo": "steipete/oracle",
+   "declared_path": "skills/oracle",
+   "path_hit": {
+    "path": "skills/oracle/SKILL.md",
+    "sha": "4ab68b1fd982",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "skills/oracle/SKILL.md",
+     "sha": "4ab68b1fd982"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 2,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 2,
+     "eff": 5,
+     "compat": 5,
+     "docs": 4,
+     "community": 3
+    },
+    "score_total": 19,
+    "fc_caliber": "strict",
+    "stars": 4059,
+    "pushed_at": "2026-10-27",
+    "license": "MIT"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "oracle",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "steipete/oracle"
+  },
+  {
+   "repo": "anthropics/skills",
+   "declared_path": "skills/pdf",
+   "path_hit": {
+    "path": "skills/pdf/SKILL.md",
+    "sha": "d3e046a5ae10",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "skills/pdf/SKILL.md",
+     "sha": "d3e046a5ae10"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 20,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 1,
+     "compat": 3,
+     "docs": 3,
+     "community": 5
+    },
+    "score_total": 16,
+    "fc_caliber": "strict",
+    "stars": 183570,
+    "pushed_at": "2026-10-09",
+    "license": "UNLICENSED"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "pdf",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "anthropics/skills"
+  },
+  {
+   "repo": "hugohe3/ppt-master",
+   "declared_path": "skills/ppt-master",
+   "path_hit": {
+    "path": "skills/ppt-master/SKILL.md",
+    "sha": "39e6c8a6ab8e",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "skills/ppt-master/SKILL.md",
+     "sha": "39e6c8a6ab8e"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 1,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 2,
+     "eff": 2,
+     "compat": 5,
+     "docs": 4,
+     "community": 5
+    },
+    "score_total": 18,
+    "fc_caliber": "strict",
+    "stars": 71042,
+    "pushed_at": "2026-10-30",
+    "license": "MIT"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "ppt-master",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "hugohe3/ppt-master"
+  },
+  {
+   "repo": "NVIDIA-AI-Blueprints/rag",
+   "declared_path": "skills/rag-eval",
+   "path_hit": {
+    "path": "skills/rag-eval/SKILL.md",
+    "sha": "010478c61d86",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "skills/rag-eval/SKILL.md",
+     "sha": "010478c61d86"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 3,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 3,
+     "eff": 5,
+     "compat": 5,
+     "docs": 5,
+     "community": 2
+    },
+    "score_total": 20,
+    "fc_caliber": "strict",
+    "stars": 808,
+    "pushed_at": "2026-10-29",
+    "license": "Apache-2.0"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "rag-eval",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "NVIDIA-AI-Blueprints/rag"
+  },
+  {
+   "repo": "Shubhamsaboo/awesome-llm-apps",
+   "declared_path": "agent_skills/scope-creep-detector",
+   "path_hit": {
+    "path": "agent_skills/scope-creep-detector/SKILL.md",
+    "sha": "302718a69b41",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "agent_skills/scope-creep-detector/SKILL.md",
+     "sha": "302718a69b41"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 10,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 3,
+     "eff": 3,
+     "compat": 5,
+     "docs": 3,
+     "community": 5
+    },
+    "score_total": 19,
+    "fc_caliber": "strict",
+    "stars": 142977,
+    "pushed_at": "2026-10-22",
+    "license": "Apache-2.0"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "scope-creep-detector",
+   "row_verdict_before": "UNVERIFIED",
+   "matrix_declared": "Shubhamsaboo/awesome-llm-apps"
+  },
+  {
+   "repo": "trailofbits/skills",
+   "declared_path": null,
+   "path_hit": null,
+   "slug_hits": [],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 97,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 4,
+     "compat": 1,
+     "docs": 3,
+     "community": 3
+    },
+    "score_total": 15,
+    "fc_caliber": "strict",
+    "stars": 7881,
+    "pushed_at": "2026-10-28",
+    "license": "CC-BY-SA-4.0"
+   },
+   "kind": "invalid",
+   "why": "全树 97 个 SKILL.md 里，声明路径 （未声明） 与 slug 目录均未落地 ⇒ 声明失效",
+   "counts_toward_skill_n": false,
+   "slug": "security-audit",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "trailofbits/skills"
+  },
+  {
+   "repo": "worldwonderer/oh-story-claudecode",
+   "declared_path": "skills/story",
+   "path_hit": {
+    "path": "skills/story/SKILL.md",
+    "sha": "f99b794a131a",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "skills/story/SKILL.md",
+     "sha": "f99b794a131a"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 14,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 3,
+     "compat": 5,
+     "docs": 4,
+     "community": 3
+    },
+    "score_total": 19,
+    "fc_caliber": "strict",
+    "stars": 8137,
+    "pushed_at": "2026-10-30",
+    "license": "MIT"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "story",
+   "row_verdict_before": "FAMILY_ONLY",
+   "matrix_declared": "worldwonderer/oh-story-claudecode"
+  },
+  {
+   "repo": "worldwonderer/oh-story-claudecode",
+   "declared_path": "skills/story-cover",
+   "path_hit": {
+    "path": "skills/story-cover/SKILL.md",
+    "sha": "a01d8b2a6acb",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "skills/story-cover/SKILL.md",
+     "sha": "a01d8b2a6acb"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 14,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 3,
+     "compat": 5,
+     "docs": 4,
+     "community": 3
+    },
+    "score_total": 19,
+    "fc_caliber": "strict",
+    "stars": 8137,
+    "pushed_at": "2026-10-30",
+    "license": "MIT"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "story-cover",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "worldwonderer/oh-story-claudecode"
+  },
+  {
+   "repo": "worldwonderer/oh-story-claudecode",
+   "declared_path": "skills/story-deslop",
+   "path_hit": {
+    "path": "skills/story-deslop/SKILL.md",
+    "sha": "03966448cc42",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "skills/story-deslop/SKILL.md",
+     "sha": "03966448cc42"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 14,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 3,
+     "compat": 5,
+     "docs": 4,
+     "community": 3
+    },
+    "score_total": 19,
+    "fc_caliber": "strict",
+    "stars": 8137,
+    "pushed_at": "2026-10-30",
+    "license": "MIT"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "story-deslop",
+   "row_verdict_before": "FAMILY_ONLY",
+   "matrix_declared": "worldwonderer/oh-story-claudecode"
+  },
+  {
+   "repo": "worldwonderer/oh-story-claudecode",
+   "declared_path": "skills/story-import",
+   "path_hit": {
+    "path": "skills/story-import/SKILL.md",
+    "sha": "f9c0780837cd",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "skills/story-import/SKILL.md",
+     "sha": "f9c0780837cd"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 14,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 3,
+     "compat": 5,
+     "docs": 4,
+     "community": 3
+    },
+    "score_total": 19,
+    "fc_caliber": "strict",
+    "stars": 8137,
+    "pushed_at": "2026-10-30",
+    "license": "MIT"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "story-import",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "worldwonderer/oh-story-claudecode"
+  },
+  {
+   "repo": "worldwonderer/oh-story-claudecode",
+   "declared_path": "skills/story-long-analyze",
+   "path_hit": {
+    "path": "skills/story-long-analyze/SKILL.md",
+    "sha": "e05dc6d162f3",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "skills/story-long-analyze/SKILL.md",
+     "sha": "e05dc6d162f3"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 14,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 3,
+     "compat": 5,
+     "docs": 4,
+     "community": 3
+    },
+    "score_total": 19,
+    "fc_caliber": "strict",
+    "stars": 8137,
+    "pushed_at": "2026-10-30",
+    "license": "MIT"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "story-long-analyze",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "worldwonderer/oh-story-claudecode"
+  },
+  {
+   "repo": "worldwonderer/oh-story-claudecode",
+   "declared_path": "skills/story-long-write",
+   "path_hit": {
+    "path": "skills/story-long-write/SKILL.md",
+    "sha": "4dd517a625f0",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "skills/story-long-write/SKILL.md",
+     "sha": "4dd517a625f0"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 14,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 3,
+     "compat": 5,
+     "docs": 4,
+     "community": 3
+    },
+    "score_total": 19,
+    "fc_caliber": "strict",
+    "stars": 8137,
+    "pushed_at": "2026-10-30",
+    "license": "MIT"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "story-long-write",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "worldwonderer/oh-story-claudecode"
+  },
+  {
+   "repo": "worldwonderer/oh-story-claudecode",
+   "declared_path": "skills/story-review",
+   "path_hit": {
+    "path": "skills/story-review/SKILL.md",
+    "sha": "42c80f63bbdc",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "skills/story-review/SKILL.md",
+     "sha": "42c80f63bbdc"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 14,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 3,
+     "compat": 5,
+     "docs": 4,
+     "community": 3
+    },
+    "score_total": 19,
+    "fc_caliber": "strict",
+    "stars": 8137,
+    "pushed_at": "2026-10-30",
+    "license": "MIT"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "story-review",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "worldwonderer/oh-story-claudecode"
+  },
+  {
+   "repo": "worldwonderer/oh-story-claudecode",
+   "declared_path": "skills/story-long-scan",
+   "path_hit": {
+    "path": "skills/story-long-scan/SKILL.md",
+    "sha": "dddafa94ccdd",
+    "via": "declared_path"
+   },
+   "slug_hits": [],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 14,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 3,
+     "compat": 5,
+     "docs": 4,
+     "community": 3
+    },
+    "score_total": 19,
+    "fc_caliber": "strict",
+    "stars": 8137,
+    "pushed_at": "2026-10-30",
+    "license": "MIT"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "story-scan",
+   "row_verdict_before": "FAMILY_ONLY",
+   "matrix_declared": "worldwonderer/oh-story-claudecode"
+  },
+  {
+   "repo": "worldwonderer/oh-story-claudecode",
+   "declared_path": "skills/story-setup",
+   "path_hit": {
+    "path": "skills/story-setup/SKILL.md",
+    "sha": "a67312cb4878",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "skills/story-setup/SKILL.md",
+     "sha": "a67312cb4878"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 14,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 3,
+     "compat": 5,
+     "docs": 4,
+     "community": 3
+    },
+    "score_total": 19,
+    "fc_caliber": "strict",
+    "stars": 8137,
+    "pushed_at": "2026-10-30",
+    "license": "MIT"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "story-setup",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "worldwonderer/oh-story-claudecode"
+  },
+  {
+   "repo": "worldwonderer/oh-story-claudecode",
+   "declared_path": "skills/story-short-analyze",
+   "path_hit": {
+    "path": "skills/story-short-analyze/SKILL.md",
+    "sha": "fbfb42f29055",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "skills/story-short-analyze/SKILL.md",
+     "sha": "fbfb42f29055"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 14,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 3,
+     "compat": 5,
+     "docs": 4,
+     "community": 3
+    },
+    "score_total": 19,
+    "fc_caliber": "strict",
+    "stars": 8137,
+    "pushed_at": "2026-10-30",
+    "license": "MIT"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "story-short-analyze",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "worldwonderer/oh-story-claudecode"
+  },
+  {
+   "repo": "worldwonderer/oh-story-claudecode",
+   "declared_path": "skills/story-short-write",
+   "path_hit": {
+    "path": "skills/story-short-write/SKILL.md",
+    "sha": "0fdf2e883951",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "skills/story-short-write/SKILL.md",
+     "sha": "0fdf2e883951"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 14,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 3,
+     "compat": 5,
+     "docs": 4,
+     "community": 3
+    },
+    "score_total": 19,
+    "fc_caliber": "strict",
+    "stars": 8137,
+    "pushed_at": "2026-10-30",
+    "license": "MIT"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "story-short-write",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "worldwonderer/oh-story-claudecode"
+  },
+  {
+   "repo": "obra/superpowers",
+   "declared_path": "skills/executing-plans",
+   "path_hit": {
+    "path": "skills/executing-plans/SKILL.md",
+    "sha": "ac77129d7c69",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "skills/subagent-driven-development/SKILL.md",
+     "sha": "ea170ed101d6"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 15,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 2,
+     "compat": 5,
+     "docs": 4,
+     "community": 5
+    },
+    "score_total": 20,
+    "fc_caliber": "strict",
+    "stars": 304728,
+    "pushed_at": "2026-10-23",
+    "license": "MIT"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "subagent-driven-development",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "obra/superpowers"
+  },
+  {
+   "repo": "gastownhall/beads",
+   "declared_path": null,
+   "path_hit": null,
+   "slug_hits": [],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 3,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 3,
+     "eff": 4,
+     "compat": 5,
+     "docs": 5,
+     "community": 4
+    },
+    "score_total": 21,
+    "fc_caliber": "strict",
+    "stars": 28297,
+    "pushed_at": "2026-10-30",
+    "license": "MIT"
+   },
+   "kind": "invalid",
+   "why": "全树 3 个 SKILL.md 里，声明路径 （未声明） 与 slug 目录均未落地 ⇒ 声明失效",
+   "counts_toward_skill_n": false,
+   "slug": "taskflow",
+   "row_verdict_before": "UNVERIFIED",
+   "matrix_declared": "gastownhall/beads"
+  },
+  {
+   "repo": "obra/superpowers",
+   "declared_path": "skills/test-driven-development",
+   "path_hit": {
+    "path": "skills/test-driven-development/SKILL.md",
+    "sha": "46838cc9e893",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "skills/test-driven-development/SKILL.md",
+     "sha": "46838cc9e893"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 15,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 2,
+     "compat": 5,
+     "docs": 4,
+     "community": 5
+    },
+    "score_total": 20,
+    "fc_caliber": "strict",
+    "stars": 304728,
+    "pushed_at": "2026-10-23",
+    "license": "MIT"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "test-driven-development",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "obra/superpowers"
+  },
+  {
+   "repo": "anthropics/skills",
+   "declared_path": "skills/theme-factory",
+   "path_hit": {
+    "path": "skills/theme-factory/SKILL.md",
+    "sha": "90dfceaf2ecd",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "skills/theme-factory/SKILL.md",
+     "sha": "90dfceaf2ecd"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 20,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 1,
+     "compat": 3,
+     "docs": 3,
+     "community": 5
+    },
+    "score_total": 16,
+    "fc_caliber": "strict",
+    "stars": 183570,
+    "pushed_at": "2026-10-09",
+    "license": "UNLICENSED"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "theme-factory",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "anthropics/skills"
+  },
+  {
+   "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
+   "declared_path": ".claude/skills/ui-ux-pro-max",
+   "path_hit": {
+    "path": ".claude/skills/ui-ux-pro-max/SKILL.md",
+    "sha": "41f8e2fd7f8c",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": ".claude/skills/ui-ux-pro-max/SKILL.md",
+     "sha": "41f8e2fd7f8c"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 13,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 4,
+     "compat": 5,
+     "docs": 3,
+     "community": 5
+    },
+    "score_total": 21,
+    "fc_caliber": "strict",
+    "stars": 140041,
+    "pushed_at": "2026-10-23",
+    "license": "MIT"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "ui-ux-pro-max",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "nextlevelbuilder/ui-ux-pro-max-skill"
+  },
+  {
+   "repo": "obra/superpowers",
+   "declared_path": "skills/verification-before-completion",
+   "path_hit": {
+    "path": "skills/verification-before-completion/SKILL.md",
+    "sha": "7d45333cc4a4",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "skills/verification-before-completion/SKILL.md",
+     "sha": "7d45333cc4a4"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 15,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 2,
+     "compat": 5,
+     "docs": 4,
+     "community": 5
+    },
+    "score_total": 20,
+    "fc_caliber": "strict",
+    "stars": 304728,
+    "pushed_at": "2026-10-23",
+    "license": "MIT"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "verification-before-completion",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "obra/superpowers"
+  },
+  {
+   "repo": "Panniantong/Agent-Reach",
+   "declared_path": null,
+   "path_hit": null,
+   "slug_hits": [],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 1,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 2,
+     "eff": 3,
+     "compat": 5,
+     "docs": 4,
+     "community": 5
+    },
+    "score_total": 19,
+    "fc_caliber": "strict",
+    "stars": 101959,
+    "pushed_at": "2026-10-25",
+    "license": "MIT"
+   },
+   "kind": "invalid",
+   "why": "全树 1 个 SKILL.md 里，声明路径 （未声明） 与 slug 目录均未落地 ⇒ 声明失效",
+   "counts_toward_skill_n": false,
+   "slug": "web-access",
+   "row_verdict_before": "FAMILY_ONLY",
+   "matrix_declared": "Panniantong/Agent-Reach"
+  },
+  {
+   "repo": "unclecode/crawl4ai",
+   "declared_path": null,
+   "path_hit": null,
+   "slug_hits": [],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 0,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 1,
+     "eff": 5,
+     "compat": 3,
+     "docs": 5,
+     "community": 5
+    },
+    "score_total": 19,
+    "fc_caliber": "strict",
+    "stars": 86572,
+    "pushed_at": "2026-10-29",
+    "license": "Apache-2.0"
+   },
+   "kind": "invalid",
+   "why": "全树 0 个 SKILL.md 里，声明路径 （未声明） 与 slug 目录均未落地 ⇒ 声明失效",
+   "counts_toward_skill_n": false,
+   "slug": "web-access",
+   "row_verdict_before": "FAMILY_ONLY",
+   "matrix_declared": "Panniantong/Agent-Reach"
+  },
+  {
+   "repo": "D4Vinci/Scrapling",
+   "declared_path": null,
+   "path_hit": null,
+   "slug_hits": [],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 1,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 2,
+     "eff": 4,
+     "compat": 5,
+     "docs": 5,
+     "community": 5
+    },
+    "score_total": 21,
+    "fc_caliber": "strict",
+    "stars": 90365,
+    "pushed_at": "2026-10-29",
+    "license": "BSD-3-Clause"
+   },
+   "kind": "invalid",
+   "why": "全树 1 个 SKILL.md 里，声明路径 （未声明） 与 slug 目录均未落地 ⇒ 声明失效",
+   "counts_toward_skill_n": false,
+   "slug": "web-access",
+   "row_verdict_before": "FAMILY_ONLY",
+   "matrix_declared": "Panniantong/Agent-Reach"
+  },
+  {
+   "repo": "firecrawl/firecrawl",
+   "declared_path": null,
+   "path_hit": null,
+   "slug_hits": [],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 5,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 3,
+     "eff": 5,
+     "compat": 1,
+     "docs": 3,
+     "community": 5
+    },
+    "score_total": 17,
+    "fc_caliber": "strict",
+    "stars": 196844,
+    "pushed_at": "2026-10-30",
+    "license": "AGPL-3.0"
+   },
+   "kind": "invalid",
+   "why": "全树 5 个 SKILL.md 里，声明路径 （未声明） 与 slug 目录均未落地 ⇒ 声明失效",
+   "counts_toward_skill_n": false,
+   "slug": "web-access",
+   "row_verdict_before": "FAMILY_ONLY",
+   "matrix_declared": "Panniantong/Agent-Reach"
+  },
+  {
+   "repo": "obra/superpowers",
+   "declared_path": "skills/writing-plans",
+   "path_hit": {
+    "path": "skills/writing-plans/SKILL.md",
+    "sha": "4cf0275d88d6",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "skills/writing-plans/SKILL.md",
+     "sha": "4cf0275d88d6"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 15,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 2,
+     "compat": 5,
+     "docs": 4,
+     "community": 5
+    },
+    "score_total": 20,
+    "fc_caliber": "strict",
+    "stars": 304728,
+    "pushed_at": "2026-10-23",
+    "license": "MIT"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "writing-plans",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "obra/superpowers"
+  },
+  {
+   "repo": "anthropics/skills",
+   "declared_path": "skills/xlsx",
+   "path_hit": {
+    "path": "skills/xlsx/SKILL.md",
+    "sha": "9da54804cc8c",
+    "via": "declared_path"
+   },
+   "slug_hits": [
+    {
+     "path": "skills/xlsx/SKILL.md",
+     "sha": "9da54804cc8c"
+    }
+   ],
+   "repo_is_skill_hit": null,
+   "tree_skill_md_n": 20,
+   "truncated": false,
+   "dims": {
+    "score5": {
+     "fc": 4,
+     "eff": 1,
+     "compat": 3,
+     "docs": 3,
+     "community": 5
+    },
+    "score_total": 16,
+    "fc_caliber": "strict",
+    "stars": 183570,
+    "pushed_at": "2026-10-09",
+    "license": "UNLICENSED"
+   },
+   "kind": "lineage",
+   "counts_toward_skill_n": false,
+   "slug": "xlsx",
+   "row_verdict_before": "MATCHED",
+   "matrix_declared": "anthropics/skills"
+  }
+ ],
+ "tally": {
+  "lineage": 49,
+  "invalid": 13,
+  "unmeasured": 0
+ },
+ "tally_by_slug": {
+  "lineage": 49,
+  "invalid": 7,
+  "unmeasured": 0
+ },
+ "multi_repo_sidecars_n": 5,
+ "flip_no_os_to_invalid": 0,
+ "legs": {
+  "A": "PASS",
+  "B": "PASS",
+  "C": "PASS",
+  "D": "PASS",
+  "D1": "PASS",
+  "D2": "PASS",
+  "C_detail": {
+   "slug": "data-analysis",
+   "declared_path": "skills/exploratory-data-analysis",
+   "path_hit": {
+    "path": "skills/exploratory-data-analysis/SKILL.md",
+    "sha": "c461f99dea05",
+    "via": "declared_path"
+   },
+   "kind": "lineage"
+  },
+  "B_detail": {
+   "kind": "lineage",
+   "slug_hits": [
+    {
+     "path": "agent_skills/commit-archaeologist/SKILL.md",
+     "sha": "a80214bea587"
+    }
+   ],
+   "counts_toward_skill_n": false,
+   "dims": {
+    "score5": {
+     "fc": 3,
+     "eff": 3,
+     "compat": 5,
+     "docs": 3,
+     "community": 5
+    },
+    "score_total": 19,
+    "fc_caliber": "strict",
+    "stars": 142977,
+    "pushed_at": "2026-10-22",
+    "license": "Apache-2.0"
+   }
+  }
+ }
+}

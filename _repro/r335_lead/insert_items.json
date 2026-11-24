@@ -1,0 +1,10 @@
+{
+ "items": [
+  {
+   "k": "R335-1",
+   "p": "P1",
+   "s": "R333-3 疑点根因闭环并修复：119=117 父门 + 2 行来自 r31 层 b 子 runner 继承进度变量 ⇒ 给 r31 全部 TARGET 子跑加 `_scrub_env()`；靶向验证子跑零多记、夹具自身仍 PASS",
+   "d": "一手（Lead 自干，R325-4 派发即假定会死 ⇒ 未派臂、七连全灭在案）：① 取证链：grep 全文件 run_gate( 仅 :2167 一处主循环调用 ⇒ 内部重试（:2025-2052）合并返回不另记行 ⇒ 排除「重试多记」；进度写入点全仓唯一（run_gates.py:2180）；门表 117/117 unique 无重复 id；⇒ 只剩「另一进程写同一路径」。② 真凶 = r31_run_gates_fixtures.py 层 b：pb（:204 `--gate fixture_wiring_face --no-ledger`）与第三处（:225 `--gate CHEAP --no-ledger --json`）各起子 runner 单门真跑，**继承父进程 GATE_PROGRESS_FILE** ⇒ 各写一行。时序吻合：进度件第 86/87 行（03:32:58/03:33:04）落在 runner_internals_fixtures 执行窗（03:32:34–03:33:54、80118ms）内、排在父行 88 之前；p2 走 SKIPPED continue、p3 空选择提前 return ⇒ 不记 ⇒ 恰好 +2。③ 修法 = `_scrub_env()`（dict(os.environ).pop GATE_PROGRESS_FILE）注入 r31 的 4 处 TARGET 子跑；py_compile OK。④ 验证 = 单跑 fixture_wiring_face + runner_internals_fixtures：进度件恰 2 行、fixture_wiring=1；runner_internals_fixtures 仍 PASS（65892ms）。⑤ 顺带三条账龄到即收（R328-1/R330-1/R331-1 现核全判已落地——「完成记录当待办」同族第三轮），OVERDUE 3→0 / DECIDED 371。验收靶：下轮全量门 progress 行数 == 实跑门数（无子跑混入）。取值：cat _repro/r335_lead/progress_test.ndjson；python -B 05-exec/run_gates.py --gate fixture_wiring_face --gate runner_internals_fixtures --no-ledger（GATE_PROGRESS_FILE 指向新件）。"
+  }
+ ]
+}

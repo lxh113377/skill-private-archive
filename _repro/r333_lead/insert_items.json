@@ -1,0 +1,22 @@
+{
+ "items": [
+  {
+   "k": "R333-1",
+   "p": "P0",
+   "s": "R332-2 兑现：runner 加**逐门进度落盘**（GATE_PROGRESS_FILE，每门 append+flush）⇒ 据此**首次拿到完整全量门读数**（progress 119 行 / 门表 117 unique 门，r330-r332 三次都没跑完过），红门归因 6 真 + 1 设计内",
+   "d": "一手（Lead 自干）：① 改动：`run_gates.py` 逐门 print 加 `flush=True`（4 处）+ 每门结束向 `$GATE_PROGRESS_FILE` append 一行 JSON（ts/id/state/rc/ms）并 flush。**根因**（r332 登记）：旧 runner 只在结束时把整段输出落文件 ⇒ stdout 被缓冲，hang 时看不到任何进度（r330 bash-193 与 r332 起法都是这个病）。② 首跑即暴露我自己的新 bug：进度段用了 `io.open` 而 run_gates.py **不 import io** ⇒ 第一门跑完就 NameError 崩（gates.txt 14 行有 Traceback）。修法=改内置 open + chr(10)。**教训：改 runner 加新语句必须先查模块级 import（同族=函数搬体内漏自由变量，第 5 次）**。③ 二跑成功：progress 119 行、逐门 ts 可见（ratchet_gate 后曾停 ~2 分钟属慢门非 hang，之后推进到 119 行跑完），`[GATES:FAIL] FAIL=7 UNVERIFIED=0`、`红门分类：真故障 REAL_RED=6 (gov_acceptance_face, ratchet_gate, control_char_scan, md_claim_face, fixture_wiring_face, skill_wiring_face)｜设计内 DESIGN_INHERENT_RED=1 (gate_run_freshness)`。④ **读数疑点如实登记（不当已证）**：progress 里 `fixture_wiring_face×3` 而门表 117 个 id 全 unique ⇒ 119≠117 的来源未查明（候选解释：meta 门二次跑 / 重跑腿各记一行），已登 R333-3。⑤ ratchet_gate 红是**跑时快照**（overdue 12 未收口前），收口后现跑 `[RATCHET:PASS]`（本轮已证）。验收靶：下一轮任何「全量门已跑完」的说法必须能给 progress.ndjson 的行数与末门 ts。取值：GATE_PROGRESS_FILE=<路径> python -B 05-exec/run_gates.py --json <out>；wc -l <路径>。"
+  },
+  {
+   "k": "R333-2",
+   "p": "P0",
+   "s": "12 条到龄债务全部现核裁决（9 判已落地=已完成工作被误当待办登记、1 判已落地=R324-2 实物已在、1 判误判作废=R327-2、1 真待办降级长期看守=R323-2 剪枝）⇒ OVERDUE 12→0；同轮修掉 r52 判据的**可诊断性缺口**（live_uncited 只有计数无明细）并把 48 条敞口落成清单件",
+   "d": "一手（Lead 逐条现核，r46 十五次 MARK:OK 读回验证）：① 12 条到期 = R323-2/R324-2/R325-1..4/R326-1..2/R327-1..2/R328-2/R329-1，账龄 3–9 轮。**系统性发现**：其中 9 条的正文写的就是「已完成 + 判据末行」——即**我把完成记录当待办登记**（登记粒度缺陷：P0/P1 条目标题是事实陈述不是动作，落账后没有配套「完成即勾」动作）。裁决全部标已落地并写明「非待办」根因。② R324-2 现核 `landing_specs/` 有 `r324_entry_reachability.json` + `r323a_gl1_targets.json` 两实物 ⇒ 已落地；R327-2 在 r328 已判误判作废（M2 出口物 rows=191 本就存在）⇒ 已落地(作废)；③ R323-2（agent-browser/references/commands.md 剪枝）是**唯一真待办**：删件属破坏性动作需双前提 + 牵 noise_lint KNOWN_CORE 面，降级转长期看守并写明下次到期必动。复算 `OVERDUE 0 / DECIDED 374`（12 条入 DECIDED）。④ 同轮把 `r52_md_claim_face_scan.py` 的**可诊断性缺口**修掉：原码只有 `live_uncited` 计数（:182）无 `live_uncited_list` ⇒ 判红时 `--top` 印的是全量 uncited_list（历史件混在内）指向错件。补 `live_uncited_items` 入产物 ⇒ 现跑 `live_uncited=48 / list n=48`，按文件聚合出 9 份报告分布（r322 13 条最多），落 `_repro/r333_lead/MDCLAIM_OPEN_48.md` 逐条清单（文件·行·token + 复算命令）。⑤ **登记不改**：48 条敞口逐条补命令属大面改报告（9 份 × 平均 5 条），且历史面 755 按 R241 不回改；列 r334 P1。取值：python -B 05-exec/r38_debt_aging.py --json <out>；python -B 05-exec/r52_md_claim_face_scan.py --json <out>；python -B 05-exec/ratchet_gate.py。"
+  },
+  {
+   "k": "R333-3",
+   "p": "P1",
+   "s": "读数疑点未查明（如实登记不当已证）：progress.ndjson 119 行 > 门表 117 unique id，且 `fixture_wiring_face` 出现 ×3 —— 要么 runner 有重复跑腿、要么 meta 门二次记账；在查明前**任何「全量=N 门」的表述都禁写死 117**",
+   "d": "一手（本轮现算）：`_repro/r333_lead/progress.ndjson` 119 行、其中 fixture_wiring_face 出现 3 次；`run_gates.py` 的 `\"id\"` 计数 = 117、去重后仍 117（无重复定义）。⇒ 119−117=2 的差额恰好与 fixture_wiring_face 多出的 2 行对齐，说明**该门被跑了 3 次**而非门表有 3 个同名 id。候选解释（均未证）：a) r202 的 runner 有「重跑仍 FAIL ⇒ 判真红」的二遍腿，某些门进 progress 两行、该门可能三行；b) meta 面二次记账。**为什么本轮不深挖**：需要读 run_gate() 的重跑分支与 rows.append 的全部位置，属独立取证（≥3 回合），且不影响本轮任何裁决的正确性（progress 只用于「跑到哪」的定位）。**禁做**：把「117 门全量」写进任何权威件直到查明——这正是 #36 禁假完成的口径。验收靶：读 run_gates.py 全部 rows.append/progress 写入点，解释 119=117+2 的确切来源；若属重复跑腿则在进度件里加 attempt 字段消歧。取值：python -c 读 progress.ndjson 计数；grep -c '\"id\":' 05-exec/run_gates.py。"
+  }
+ ]
+}

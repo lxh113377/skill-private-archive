@@ -1,0 +1,10 @@
+{
+ "items": [
+  {
+   "k": "R339-1",
+   "p": "P0",
+   "s": "R338-3 兑现：提交面机械门 `commit_msg_face` 建成并入门表（门表 117→118、登册 53→54、准入门未声明 0、对账登记）——「先数后写」从人肉纪律升为机器判据；25 笔历史回放 **3 RED 全真阳性 / 22 GREEN 零误红**",
+   "d": "一手（Lead 自干，判据 [R339:SELFTEST] 11/11 teeth=pass + [R339:COMMITFACE] revs=25 red=True unver=0）：① 三腿：C1 计数（「本笔 N」== show --name-only 实数）/ C2 声称路径（±30 字有声称动词的仓内路径必须在笔内）/ **C4 正文声称**（该笔报告 .md 正文写「卡先落」而本笔无 DECOMPOSE.md ⇒ 红——这是抓到 r338 的关键，因不实句在报告正文而非提交信息，纯 C2 抓不到）。② **25 笔回放是真阳验证不是自检**：3 RED 全是已自认的历史错——2f5275b(C4，r338 我写的「卡先落」那笔实际没卡)/1db446b2d5(C1，declared=2 actual=1)/27f0340a9b(C2，声称「并入 part181」而那笔没它=r321 已知案)，22 GREEN 零误红 ⇒ 有牙且不恒红（r260 恒红门教训的反面验证）。③ **自抓一处恒红风险并当场排除**：C4 首版把 memory/ 纳入扫描 ⇒ 台账以引文形态常驻「卡先落」（R318-2 条目正文本身含这四字），2f5275b 被 memory/07 也点名 ⇒ 若保留，每一笔碰台账的提交必红 = 新门自造恒红。修法=排除 memory//archive/（历史容器），C4 只评 04-plan/06-benchmark 本轮自述文书；此边界写进 covers 与源码注释。④ 三处小坑自抓：正则字符类 `[([0-9]+)` 未闭合（py_compile 抓到）、Node 数组里塞含 `${`+引号的 Python 源码两次触发 TS 解析错（改「干净整段 writeFileSync」而非数组拼、CJK 字面直写不转义）、锚 idx 用 lastIndexOf 定位块首。⑤ 落地链齐：判据本体 → registry 54 条 → run_gates 门表（118 门，why/covers 七键）→ r130 --record 对账登记 → gate_table_reconcile PASS → r129 未声明 0。⑥ R326-3 用规范词「作废」重标（r338 我自造「部分过期」不在 VERDICT_TERMS、判据正确不认的那条），OVERDUE 1→0 / DECIDED 379 / RATCHET PASS / live_uncited=0。验收靶：本门随每轮 run_gates 真跑 HEAD；若未来某笔误红（卡在上文一笔、报告在本笔的拆分提交形态），须改写「卡先落于 <rev>」具名，禁静默加豁免。取值：python -B 05-exec/r339_commit_msg_files_face.py --selftest；--replay 25。"
+  }
+ ]
+}

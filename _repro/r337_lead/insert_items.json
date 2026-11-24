@@ -1,0 +1,10 @@
+{
+ "items": [
+  {
+   "k": "R337-1",
+   "p": "P0",
+   "s": "R331-2 兑现且**根因修正**：正文覆盖缺口不是「20→86 四倍量撞限流」（按行数误估），而是 `FACE_FILES` 硬编码不含当前矩阵 ⇒ 补面后 to_fetch=2、22/22 全有正文；candidate_health 加第 4 轴证据分档（65/14/7/57 守恒 143）、restricted 语义不越权",
+   "d": "一手（Lead 自干，判据 [R337:BODY] pack=22/22 gate=PASS body[confirmed=65 permissive=14 unknown=7 api_explicit=57] sum_ok teeth=pass，3 负控有牙）：① **根因修正**：原估「四倍抓取量」按候选行数（86 行）算，现核去重仅 22 仓；真因=`r262_license_body_pack.py` 的 `FACE_FILES` 只列 r261/r262 两面、不含 quarterly_r260/2026Q4 矩阵 ⇒ union 永缺新仓。补第三面真跑 `[BODY-PACK] union=22 already=20 to_fetch=2`、`[BODY-PACK:OK] 22/22`；新两仓均受限（lobehub modified-Apache 附加条款 / cmux BUSL-1.1）。回滚前提齐：改前备份 `_repro/r337_lead/license_body_r337.before.json`。② **第 4 轴**：r331 加 `load_body_pack()`+`body_grade()`（复用 r262 pack 的 license_body_class，不自造分类器）；restricted 每条带 body 档，四档 65+14+7+57=143 守恒；**restricted 计数不改**（字段口径保守值，改判定语义=改尺须 R263 评审，不越权）；pack 不可得 ⇒ `no_pack=86` 显影退化（R247）。门表 token 兼容实测 PASS、covers 补第 4 轴行。③ **rank0 对照排除改尺**：两新仓未进任何 rank0、18 个 NOASSERTION-rank0 早经正文在册 ⇒ 排序零变化，原条担心的「扩覆盖改 rank0 须评审」实测排除。④ **自抓「负控无牙」第 4 次**：token 负控首版断言 `\"[R331:HEALTH]\" in out2` 而 out2 是 runner 聚合输出、根本不含子进程 token ⇒ 恒不成立；改对=变异门表 pass_token 使门必须转红（用完还原、零残留）。教训：**负控写完必须自检「断言的串真的存在于被检对象」**。⑤ 写手纪律首战达标：r337 报告按 W1/W2 写作、收尾复扫 live_uncited=0（几十个数字零敞口）；账龄 3 条到即收（R331-2 本活 + R333-1/2 完成记录当待办第六轮），OVERDUE 0/DECIDED 377。取值：python -B _repro/r337_lead/check_r337.py；python -B 05-exec/r331_candidate_health.py --today 2026-11-01 --json <out>；python -B 05-exec/r52_md_claim_face_scan.py --json <out>。"
+  }
+ ]
+}

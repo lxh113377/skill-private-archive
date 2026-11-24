@@ -1,0 +1,16 @@
+{
+ "items": [
+  {
+   "k": "R341-1",
+   "p": "P1",
+   "s": "**删除类受管根动作的引用面口径写死**：r323 判 commands.md「全受管根零入链」只查了 SKILL.md 导航/入链，漏了**同目录兄弟卷的 Related 行** ⇒ 差点删掉被 5 卷链着的上游原生卷（真死链 5 条）。规矩：动手前引用面必须 = `git grep -l \"<文件名片段>\" -- *.md` 全仓扫 + 上游对照（gh api 看它是不是上游原生卷）",
+   "d": "一手（r341 兑现 R323-2 时的前置核抓到，本轮未造成损害因在 dry-run 前发现）：① 旧前提怎么来的：r323 记录「全受管根零引用」，当时按「入口 SKILL.md 是否链它」判；本轮 `git -C D:/global_skills grep -l commands.md -- *.md` 现核 = 11 个文件命中，其中 5 个是同目录兄弟卷 L5 的 `**Related**: [commands.md](commands.md) ...`（profiling/proxy-support/snapshot-refs/streaming/video-recording）+ A-project-handoff 等跨件引用，均非孤本可删。② 上游对照：`gh api repos/vercel-labs/agent-browser/contents/skill-data/core/references` 实测 commands.md **在上游 10 卷清单内** ⇒ 它是随上游来的原生卷，删=制造漂移，与 fork-provenance「其余与上游逐字节一致」的留痕直接冲突。③ 真实缺口重定位：SKILL.md L74「references 导航」表点名了 10 卷、独漏 commands.md（薄壳化时想当然）⇒ 处置从「剪枝」改为「补链点名」（GS a8f65c8f，导航 +1 行明确『命令权威=skills get core --full 随版获取，本卷非权威、离线对照快照』，语义上保住薄壳化决策不两头堵）。④ 生效实测：r324 普查 agent-browser orphans 1→0、全库 623→622、prose 551→550，镜像 sha 与权威一致。⑤ 规矩固化进本条即验收靶：下一件删除类动作前，登记文本必须含「git grep 全仓 *.md 结果 + 上游该路径是否存在」两项读数，缺一项即不许动刀。取值：python -B 05-exec/r324_entry_reachability_face.py --closure top --json <新名>；git -C D:/global_skills grep -l commands.md -- *.md。"
+  },
+  {
+   "k": "R341-2",
+   "p": "P1",
+   "s": "两条环境坑（本轮实测，各烧 2-3 回合）：① run_code 里给子进程 env **覆盖 PATH**（哪怕只是补 git 目录）⇒ python.exe `spawn ENOENT`——本宿主 process.env 近乎空，覆盖即毁掉系统目录默认搜索；② ops_bash 的 shell 里 `cd \"C:/…中文路径\"` 报 No such file（编码），**必须用 workdir 参数**、command 内全相对/ASCII",
+   "d": "一手（r341 落盘过程实测）：① 坑①：rule_editor commit 内部裸调 git（subprocess.run([\"git\",...]) 无 GIT_BIN 通道），为喂给它我在 run_code 的 env 里设了 PATH=C:/Windows;...Git/bin —— 结果连 python.exe 本体都 spawn ENOENT（两次，误以为解释器被删，fs.stat 证明 241152B 在位）。**根因**：run_code 宿主给的 process.env 近乎空（本会话开头即以 `process.env starts empty` 声明），`{...process.env, PATH:\"...\"}` 交出的环境只有 PATH 一项、缺 SystemRoot/COMSPEC 等 CreateProcess 所需变量 ⇒ 启动器 trampoline 直接失败、错误却长得像「文件不存在」。正解=**不碰 PATH**，改走 ops_bash（真实 shell 环境自带 git），rule_editor 的裸 git 在其下正常。规则：**给 run_code 子进程加环境变量时只增不改 PATH；确需 git 的长流程一律 ops_bash**。② 坑②：ops_bash 的 command 里 `cd \"C:/Users/37533/Desktop/workspace/skill焚诀/…\"` 报 No such file or directory（bash 收到 UTF-8 中文路径反斜杠序列不解析），首两个 job（673/685 之一）就这么废了；正解=用工具的 **workdir 参数**（宿主直接设 cwd、不过 shell 引号层），command 里只用相对路径。③ 两坑都属「工具层环境」不是代码缺陷，误判成后者会白修半天（win-toolchain-pitfalls 同族，本机新增两形态）。取值：本轮三次失败 job（673 cd 失败 / 676 与 684 成功形态对照）即样本。"
+  }
+ ]
+}

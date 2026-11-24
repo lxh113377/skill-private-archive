@@ -3,9 +3,8 @@
  "cmd": "python 05-exec/r163_free_tools_face.py --json <out>",
  "roster_n": 10,
  "counts": {
-  "READY": 6,
-  "GAP_SERVICE": 1,
-  "GAP_CRED": 3
+  "READY": 3,
+  "GAP_CRED": 7
  },
  "rows": [
   {
@@ -20,106 +19,107 @@
   },
   {
    "tool": "Cloudflare-D1",
-   "state": "READY",
+   "state": "GAP_CRED",
    "note": {
-    "version": "4.152.0",
+    "version": "4.164.0",
     "logged_in": true,
     "services": {
      "d1": {
-      "state": "ready",
-      "reason": null
+      "state": "probe_error",
+      "tail": "porary account and print a claim URL.\n\n\n🪵  Logs were written to \"C:\\Users\\37533\\AppData\\Roaming\\xdg.config\\.wrangler\\logs\\wrangler-2026-11-20_23-38-31_888.log\"\n"
      },
      "r2": {
-      "state": "not_enabled",
-      "code": "10042"
+      "state": "probe_error",
+      "tail": "porary account and print a claim URL.\n\n\n🪵  Logs were written to \"C:\\Users\\37533\\AppData\\Roaming\\xdg.config\\.wrangler\\logs\\wrangler-2026-11-20_23-38-34_791.log\"\n"
      },
      "pages": {
       "state": "probe_error",
-      "tail": "ROR\u001b[41;31m]\u001b[0m \u001b[1mfetch failed\u001b[0m\n\n\n🪵  Logs were written to \"C:\\Users\\37533\\AppData\\Roaming\\xdg.config\\.wrangler\\logs\\wrangler-2026-10-31_14-00-56_378.log\"\n"
+      "tail": "ts value to CLOUDFLARE_API_TOKEN.\u001b[0m\n\n\n🪵  Logs were written to \"C:\\Users\\37533\\AppData\\Roaming\\xdg.config\\.wrangler\\logs\\wrangler-2026-11-20_23-38-38_113.log\"\n"
      },
      "workers": {
-      "state": "ready",
-      "reason": null
+      "state": "api_error",
+      "code": "10000"
      }
     },
-    "detail": "service_not_enabled",
-    "services_not_enabled": [
-     "r2"
-    ],
+    "detail": "service_not_probed",
+    "services_not_enabled": [],
     "services_not_ready": [
+     "d1",
      "r2",
-     "pages"
+     "pages",
+     "workers"
     ],
-    "judged_service": "d1"
+    "judged_service": "d1",
+    "svc_state": "probe_error"
    }
   },
   {
    "tool": "Cloudflare-R2",
-   "state": "GAP_SERVICE",
+   "state": "GAP_CRED",
    "note": {
-    "version": "4.152.0",
+    "version": "4.164.0",
     "logged_in": true,
     "services": {
      "d1": {
-      "state": "ready",
-      "reason": null
+      "state": "probe_error",
+      "tail": "porary account and print a claim URL.\n\n\n🪵  Logs were written to \"C:\\Users\\37533\\AppData\\Roaming\\xdg.config\\.wrangler\\logs\\wrangler-2026-11-20_23-38-31_888.log\"\n"
      },
      "r2": {
-      "state": "not_enabled",
-      "code": "10042"
+      "state": "probe_error",
+      "tail": "porary account and print a claim URL.\n\n\n🪵  Logs were written to \"C:\\Users\\37533\\AppData\\Roaming\\xdg.config\\.wrangler\\logs\\wrangler-2026-11-20_23-38-34_791.log\"\n"
      },
      "pages": {
       "state": "probe_error",
-      "tail": "ROR\u001b[41;31m]\u001b[0m \u001b[1mfetch failed\u001b[0m\n\n\n🪵  Logs were written to \"C:\\Users\\37533\\AppData\\Roaming\\xdg.config\\.wrangler\\logs\\wrangler-2026-10-31_14-00-56_378.log\"\n"
+      "tail": "ts value to CLOUDFLARE_API_TOKEN.\u001b[0m\n\n\n🪵  Logs were written to \"C:\\Users\\37533\\AppData\\Roaming\\xdg.config\\.wrangler\\logs\\wrangler-2026-11-20_23-38-38_113.log\"\n"
      },
      "workers": {
-      "state": "ready",
-      "reason": null
+      "state": "api_error",
+      "code": "10000"
      }
     },
-    "detail": "service_not_enabled",
-    "services_not_enabled": [
-     "r2"
-    ],
+    "detail": "service_not_probed",
+    "services_not_enabled": [],
     "services_not_ready": [
+     "d1",
      "r2",
-     "pages"
+     "pages",
+     "workers"
     ],
     "judged_service": "r2",
-    "code": "10042"
+    "svc_state": "probe_error"
    }
   },
   {
    "tool": "Cloudflare-Pages",
    "state": "GAP_CRED",
    "note": {
-    "version": "4.152.0",
+    "version": "4.164.0",
     "logged_in": true,
     "services": {
      "d1": {
-      "state": "ready",
-      "reason": null
+      "state": "probe_error",
+      "tail": "porary account and print a claim URL.\n\n\n🪵  Logs were written to \"C:\\Users\\37533\\AppData\\Roaming\\xdg.config\\.wrangler\\logs\\wrangler-2026-11-20_23-38-31_888.log\"\n"
      },
      "r2": {
-      "state": "not_enabled",
-      "code": "10042"
+      "state": "probe_error",
+      "tail": "porary account and print a claim URL.\n\n\n🪵  Logs were written to \"C:\\Users\\37533\\AppData\\Roaming\\xdg.config\\.wrangler\\logs\\wrangler-2026-11-20_23-38-34_791.log\"\n"
      },
      "pages": {
       "state": "probe_error",
-      "tail": "ROR\u001b[41;31m]\u001b[0m \u001b[1mfetch failed\u001b[0m\n\n\n🪵  Logs were written to \"C:\\Users\\37533\\AppData\\Roaming\\xdg.config\\.wrangler\\logs\\wrangler-2026-10-31_14-00-56_378.log\"\n"
+      "tail": "ts value to CLOUDFLARE_API_TOKEN.\u001b[0m\n\n\n🪵  Logs were written to \"C:\\Users\\37533\\AppData\\Roaming\\xdg.config\\.wrangler\\logs\\wrangler-2026-11-20_23-38-38_113.log\"\n"
      },
      "workers": {
-      "state": "ready",
-      "reason": null
+      "state": "api_error",
+      "code": "10000"
      }
     },
     "detail": "service_not_probed",
-    "services_not_enabled": [
-     "r2"
-    ],
+    "services_not_enabled": [],
     "services_not_ready": [
+     "d1",
      "r2",
-     "pages"
+     "pages",
+     "workers"
     ],
     "judged_service": "pages",
     "svc_state": "probe_error"
@@ -127,37 +127,38 @@
   },
   {
    "tool": "Cloudflare-Workers",
-   "state": "READY",
+   "state": "GAP_CRED",
    "note": {
-    "version": "4.152.0",
+    "version": "4.164.0",
     "logged_in": true,
     "services": {
      "d1": {
-      "state": "ready",
-      "reason": null
+      "state": "probe_error",
+      "tail": "porary account and print a claim URL.\n\n\n🪵  Logs were written to \"C:\\Users\\37533\\AppData\\Roaming\\xdg.config\\.wrangler\\logs\\wrangler-2026-11-20_23-38-31_888.log\"\n"
      },
      "r2": {
-      "state": "not_enabled",
-      "code": "10042"
+      "state": "probe_error",
+      "tail": "porary account and print a claim URL.\n\n\n🪵  Logs were written to \"C:\\Users\\37533\\AppData\\Roaming\\xdg.config\\.wrangler\\logs\\wrangler-2026-11-20_23-38-34_791.log\"\n"
      },
      "pages": {
       "state": "probe_error",
-      "tail": "ROR\u001b[41;31m]\u001b[0m \u001b[1mfetch failed\u001b[0m\n\n\n🪵  Logs were written to \"C:\\Users\\37533\\AppData\\Roaming\\xdg.config\\.wrangler\\logs\\wrangler-2026-10-31_14-00-56_378.log\"\n"
+      "tail": "ts value to CLOUDFLARE_API_TOKEN.\u001b[0m\n\n\n🪵  Logs were written to \"C:\\Users\\37533\\AppData\\Roaming\\xdg.config\\.wrangler\\logs\\wrangler-2026-11-20_23-38-38_113.log\"\n"
      },
      "workers": {
-      "state": "ready",
-      "reason": null
+      "state": "api_error",
+      "code": "10000"
      }
     },
-    "detail": "service_not_enabled",
-    "services_not_enabled": [
-     "r2"
-    ],
+    "detail": "service_not_probed",
+    "services_not_enabled": [],
     "services_not_ready": [
+     "d1",
      "r2",
-     "pages"
+     "pages",
+     "workers"
     ],
-    "judged_service": "workers"
+    "judged_service": "workers",
+    "svc_state": "api_error"
    }
   },
   {
@@ -181,16 +182,9 @@
   },
   {
    "tool": "Cloudflare-Turnstile",
-   "state": "READY",
+   "state": "GAP_CRED",
    "note": {
-    "widgets_n": 1,
-    "sitekeys": [
-     "0x4AAAAAAFgp4grsBDhuMqpl"
-    ],
-    "used_in_repo": false,
-    "used_why": "hits=[]",
-    "project_root": "C:\\\\Users\\\\37533\\\\Desktop\\\\workspace\\\\超市web\\\\supermarket-web",
-    "judged_by": "cloudflare_widget_exists（不是本机 env）; used_in_repo=仓内是否仍引用"
+    "detail": "api_http_401"
    }
   },
   {
@@ -216,5 +210,5 @@
   }
  ],
  "rule": "仅 BROKEN 判红；GAP_CRED/GAP_CLI 是诚实显形（外部凭据/平台形态缺口，#29③）",
- "generated_at": "2026-10-31 22:01"
+ "generated_at": "2026-11-21 07:38"
 }

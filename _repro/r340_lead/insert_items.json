@@ -1,0 +1,16 @@
+{
+ "items": [
+  {
+   "k": "R340-1",
+   "p": "P1",
+   "s": "**定量关闭「等 CLEAN 就补链」的口子**：10 件 CLEAN 目标里 prose 孤儿共 13 条（theme-factory 10 / ui-ux-pro-max 2 / agent-browser 1），全部落在两个既有裁决内（10+2 目录级覆盖保持、1 应剪枝）⇒ B 类批次对 CLEAN 件**实际零待补空间**；html-ppt 的 15 条全在 noise 桶（prose=0）",
+   "d": "一手（Lead 自干，判据 = 现跑普查逐件 v2 读数）：① 数据源：`python -B 05-exec/r324_entry_reachability_face.py --closure top --json _repro/r340_lead/census_top.json` ⇒ `[R324:ENTRY] … orphans_top=623 orphans_prose=551`（与 06-benchmark/entry_reachability_20261101.json 一致）；本轮新增读法 = `per[].v2.orphans_prose` **逐件**拆（以前只看总量，本轮为回答『CLEAN 了能补什么』才拆）。② G-L1 逐件现核（`git -C D:/global_skills status --porcelain -- <slug>/SKILL.md`，暂存必须 0）：CLEAN 10 件 = theme-factory/ui-ux-pro-max/agent-browser/html-ppt/frontend-slides/security-audit/docx/xlsx/pdf/mcp-builder（后 6 件 orphans=0）；DIRTY 4 件 = ppt-master 171/story-setup 132/story-long-write 96/story-short-write 26。③ **结论**：CLEAN∩prose孤儿 = 13 条，其中 theme-factory 10 + ui-ux-pro-max 2 属 r323 已判「目录级覆盖保持」（themes/*.md 被 Catalog 一句覆盖、补 10 条链接=膨胀入口），agent-browser 1 条属 R323-2 已判「应剪枝不该补链」⇒ **零可补**。补链产能真实去向=a) 每季重测本表（DIRTY 件转 CLEAN 时 ppt-master 有 147 prose 大面）b) 做 R323-2 剪枝 c) 别再为「找可补件」重扫 CLEAN 面。验收靶：下一季巡检记录里本表（CLEAN×prose 两列）必须重测一次再下结论——件的可补性随在途状态漂移，本轮结论只对 2026-11-01 快照负责。"
+  },
+  {
+   "k": "R340-2",
+   "p": "P2",
+   "s": "C4 门的**已知边界**（非漏洞，如实登记）：它能抓「声称卡先落而本笔无卡」（r338 型），抓不到「压根没声称也没落卡」（本轮 r340 型——开场未落卡、报告也没写声称词 ⇒ 门全绿）。纪律类违规无法纯靠被检文本自证 ⇒ 别再为补这个洞加机制，靠 30 秒卡自查",
+   "d": "一手（本轮自抓 + 机制推演）：① 事实：r340 开场未落 DECOMPOSE 卡（R318-2 第八次违反），但本笔提交里报告**不含**「卡先落」字样 ⇒ `commit_msg_face` 对这种形态判 GREEN（它只在「有声称 + 笔内无卡」时红）。② 为什么不补这个洞：要抓「没声称也没落卡」就得让门**脱离被检文本**去查外部事实（轮序第一写动作是否卡）⇒ 需要会话级时间线数据，仓内判据拿不到（git 只看提交序，看不到轮内动作序）；硬造（如要求每笔必含 DECOMPOSE.md）= 把「拆提交」逼成「塞提交」，且对历史 390 笔全违例、门一上即恒红（r260 教训第三次应验）。③ 正确定位：C4 的价值=让**说谎有成本**（写了声称就必须真入库），不=让**沉默有成本**；后者归 30 秒卡自查与账本自记（本轮卡片与报告 §0 双双如实标注第八次）。④ 处置：不建机制、只立边界（写进 r340 报告 §3 与本条），未来若有人再提「门该抓沉默违规」，引用本条的成本分析即可。取值：python -B 05-exec/r339_commit_msg_files_face.py --replay 3（本轮笔应 GREEN——正是边界演示）。"
+  }
+ ]
+}

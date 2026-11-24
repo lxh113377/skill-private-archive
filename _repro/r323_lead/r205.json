@@ -1,0 +1,13 @@
+{
+ "schema": "autopush-face-v1",
+ "readonly": true,
+ "hook_autopush": true,
+ "silent_swallow": false,
+ "log_rows": 341,
+ "last_rc": 128,
+ "notes": [
+  "TRACE_STALE：留痕末行 head=9f0a992 与当前 HEAD 不同，且 HEAD 已是 origin/main 祖先 ⇒ 末行失败不描述当前提交（当前提交已推）",
+  "PROXY_UNSET：钩子未显式配代理；全局 http.proxy 与钩子裸跑是两件事，P4 会抓真实失败"
+ ],
+ "provenance_cmd": "python 05-exec/r205_push_autopush_face.py"
+}

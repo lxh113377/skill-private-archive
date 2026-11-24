@@ -231,5 +231,10 @@
   "evidence": "06-benchmark/commit_face_latest.json",
   "registered_at": "2026-11-01 16:17",
   "why": "R338-3 兑现：提交面机械门 C1 计数/C2 声称路径/C4 正文声称卡先落 三腿；25 笔回放 3 真阳 0 误红；memory/archive 豁免防恒红"
+ },
+ "r345_anchor_judge.py": {
+  "evidence": "_repro/r345_lead/sanity.json",
+  "registered_at": "2026-11-01 17:24",
+  "why": "R321-2 制度化：39 系列双臂机械判分器（LIMITWORD 宽表在 :31）自 _repro/r312a 搬常驻面；selftest 双态 + 缺件 rc=2 + 真判 sanity 三验；零新改判分逻辑（sha 同源复制）"
  }
 }

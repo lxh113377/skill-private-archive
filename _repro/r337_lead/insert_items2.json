@@ -1,0 +1,10 @@
+{
+ "items": [
+  {
+   "k": "R337-2",
+   "p": "P1",
+   "s": "正文证据分档已显影但**未接进排序判定**：body_permissive=14 条被字段口径冤枉（正文实为 permissive 却计入 restricted）、body_confirmed=65 是字段+正文双证；把分档升级为 restricted 判定语义=改尺 ⇒ 须 R263 评审 + 新旧 rank0 对照件",
+   "d": "一手（r337 本轮产物）：① 第 4 轴只**显影**证据（`body[...]` 进末行与 JSON），`license_restricted()` 判定不变 ⇒ 门表语义零变化、可安全进全量（实测 PASS）；② 现成证据已够开评审包：`_repro/r337_lead/health_body4.json` 每条 restricted 带 `body` 档 + `06-benchmark/license_body_r262.json` 22 仓正文（含 14 条 permissive 被字段冤枉、7 条分类器 unknown）；③ **为什么本轮不做**（具名）：改 `license_restricted()` 语义会动 compat 维输入 ⇒ 与 R326-3 的 compat 重设计**同一把尺**，两条必须合并成一份 R263 评审包（分开做=改两次尺、对照面打架）；④ 验收靶：评审包须含（新旧 restricted 数对照 + 受影响 rank0 清单 + unknown 7 条的处置）。取值：python -B 05-exec/r331_candidate_health.py --today <d> --json <out>；读 _repro/r337_lead/health_body4.json 的 restricted_body_breakdown。"
+  }
+ ]
+}

@@ -3,11 +3,10 @@
  "readonly": true,
  "row": {
   "tool": "cloudflare_workers_requests",
-  "state": "MEASURED",
-  "why": "",
+  "state": "UNVERIFIED",
+  "why": "HTTP 401（服务端）",
   "cred_path": "C:\\Users\\37533\\AppData\\Roaming\\xdg.config\\.wrangler\\config\\default.toml",
-  "window": "2026-10-01~2026-11-01",
-  "invocations_month": 0
+  "window": "2026-11-01~2026-11-21"
  },
  "provenance_cmd": "python 05-exec/r199_workers_face.py --json <件>"
 }

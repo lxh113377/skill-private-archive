@@ -1,9 +1,9 @@
 {
  "schema": "provenance-resolve-v1",
- "generated_at": "2026-10-31 22:08",
+ "generated_at": "2026-11-21 07:43",
  "provenance_cmd": "python 05-exec/r287_provenance_resolve.py",
  "readonly": true,
- "faces_total": 1720,
+ "faces_total": 1767,
  "unresolvable_total": 47,
  "temp_prefixed": 39,
  "baseline_keys": 23,

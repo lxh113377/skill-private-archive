@@ -1,0 +1,10 @@
+{
+ "items": [
+  {
+   "k": "R336-1",
+   "p": "P1",
+   "s": "R335-1 验收靶**精确达成**：全量门真跑 progress=117 行 == runner 报「执行 117 门」、**重复 id 0**（r333 那次 119=117+2 的子跑混入已消除）；红门从 7 降到 5（ratchet + md_claim 双双转绿），4 真红全部归属清楚",
+   "d": "一手（Lead 自干，判据 = 全量门真跑读数）：① **验靶达成**：`_repro/r336_lead/progress.ndjson` 117 行、id 去重后仍 117（`重复=0`）；runner 末行 `执行 117 门 / 跳过 0 门 / 合计耗时 705263 ms`——r335 的 `_scrub_env()` 修复在真实全量跑中证明有效（子 runner 不再往父进度件多记）。② **红门从 r333 的 7 降到本轮 5**：`ratchet_gate` 转绿（overdue 收口持续）、`md_claim_face` 转绿（r334 清零 52→0 持续）；剩 `红门分类：真故障 REAL_RED=4 (gov_acceptance_face, control_char_scan, fixture_wiring_face, skill_wiring_face)｜设计内 DESIGN_INHERENT_RED=1 (gate_run_freshness)`。③ **4 真红逐一归属（本轮不代修，具名）**：(a) `control_char_scan` = `_temp/r295a/meta_raw.json` 含码位127×6——该文件 mtime 10-30、**git 未跟踪**（他 session 在途产物，非本会话写面）；(b) `fixture_wiring_face` = `r302_r260_input_pin_fixtures.py` 孤儿——r302 他人在途夹具，非本轮引入（r333 已具名）；(c) `skill_wiring_face` = `story-short-write/workflow-revision.md` 无指针分卷——受管根他面，本会话零受管根写入；(d) `gov_acceptance A2` = 共享记忆体量册龄期 4.57 天>3（归属方=GM 侧，多写者纪律 D7.2 不代刷）。⇒ 四者**均非本会话引入或归属本会话写面**，按 R269 只登记不代修。④ 写手模板件（R334-1 落地）见同轮 `04-plan/报告写手纪律_数字必带取值行_r336_2026-11-01.md`，落地后自证 live_uncited=0。验收靶：本轮 progress 行数==门数已成事实；下一轮任何「全量门已跑完」须给 progress 行数 + 重复 id 数两项。取值：wc -l _repro/r336_lead/progress.ndjson；读 06-benchmark/r336_gate_run.json 末行分类。"
+  }
+ ]
+}

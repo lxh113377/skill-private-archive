@@ -1,0 +1,37 @@
+05-exec/baseline_contract_scan.py:147:    return [] if val == 1024 else ["desc_max_official=%s 与官方上限 1024 不符" % val]
+05-exec/landing_replay_check.py:160:                if len(got) == 40:
+05-exec/r105_debt_face_freshness_fixtures.py:92:           got == 12, "got=%r" % (got,))
+05-exec/r105_debt_face_freshness_fixtures.py:138:           leaked == 12, "naive=%r real=%r" % (leaked, rg.overdue_debt_items()))
+05-exec/r105_debt_face_freshness_fixtures.py:151:           through == 12, "got=%r" % (through,))
+05-exec/r179_dual_face.py:182:            if e.code == 429 and i < tries - 1:
+05-exec/r193_ci_health_fixtures.py:74:       s["runs"] == 50 and s["success_rate"] == 0.1,
+05-exec/r196_quota_fixtures.py:74:        ck("B2 合计字节正确", tot == 6828032 + 2396160, str(tot))
+05-exec/r196_quota_fixtures.py:145:       mn == 15.0 and cnt == 2 and skp == 2, (mn, cnt, skp))
+05-exec/r196_quota_fixtures.py:151:    ck("E2 起点早于月初的 run 不计入本月", mn2 == 20.0 and cnt2 == 1, (mn2, cnt2))
+05-exec/r196_quota_fixtures.py:161:        and ms.month == 10 and ms.year == 2026), ms.isoformat())
+05-exec/r196_quota_fixtures.py:196:       bool(info6) and info6.get("minutes_all_workflows") == 30.0,
+05-exec/r199_workers_face.py:152:            row["why"] = "HTTP %s（%s）" % (e.code, "凭据不足" if e.code == 403 else
+05-exec/r199_workers_face.py:153:                                            ("限流" if e.code == 429 else "服务端"))
+05-exec/r199_workers_fixtures.py:39:    ck("t1 sums across accounts", m.sum_invocations(good) == 50, m.sum_invocations(good))
+05-exec/r19_baseline_contract_fixtures.py:293:       st2[0]["stale"] is True and st2[0]["gap"] == 23, st2)
+05-exec/r19_scan_fixtures.py:85:    check("desc.cap: 上限值为 1024（anthropics/agent-skills 官方口径）", desc.DESC_MAX == 1024)
+05-exec/r200_cf_introspect_probe.py:85:                          "HTTP %s 限流（预算耗尽）" % e.code if e.code == 429 else
+05-exec/r200_pages_fixtures.py:48:    ck("P1 正常两行求和=350、天数=2", tot == 350 and days == 2, (tot, days))
+05-exec/r201_r2_enable_face.py:96:    if a[0] != 200 or a_code is not True:
+05-exec/r201_r2_enable_face.py:113:    if b[0] == 200 and isinstance(b[1], dict) and b[1].get("success"):
+05-exec/r201_r2_enable_face.py:116:    if cf_code(b[1]) == 10042:
+05-exec/r201_r2_enable_face.py:146:    if a[0] != 200 or not (isinstance(a[1], dict) and a[1].get("success")):
+05-exec/r201_r2_fixtures.py:54:       and det.get("buckets_code") == 10042, (st, det))
+05-exec/r217_miss_migration.py:206:              r["fixed_n"] == 5 and r["still_real_n"] == 7 and r["relative_change_pct"] == 41.7, r)
+05-exec/r218_workflow_usage_face.py:54:        #   第 98 门独立复算当场报漂移 28!=25 才暴露。凡是**写着工具名/模式文本的度量件**都属这一族：
+05-exec/r218_workflow_usage_face.py:190:    ok4 = len(re.findall('turnstile', probe_txt)) == 40 and is_probe('x/r163_free_tools_face.py')
+05-exec/r220_caliber_flip.py:182:              m6["state"] == "CLEAN" and m6["coverage_pct"] == 50.0
+05-exec/r260_maintenance_trim_fixtures.py:56:    ck("t0 threshold read from the judge under test", R.TWELVE_MONTHS_DAYS == 365 and thr < ev,
+05-exec/r39_debt_ledger_fixtures.py:188:       getattr(rg, "deferred_debt_items", lambda: None)() == 23,
+05-exec/r39_debt_ledger_fixtures.py:194:       getattr(rg, "deferred_debt_items", lambda: None)() == 30, "")
+05-exec/r39_debt_ledger_fixtures.py:275:       getattr(rg, "repeat_debt_items", lambda: None)() == 11, "")
+05-exec/r39_debt_ledger_fixtures.py:293:       and (lambda r: r.get("coverage_status") == "INCOMPLETE" and r.get("coverage_prev_overdue") == 15
+05-exec/r67_input_pin_fixtures.py:164:              pb.get("dirty_n") == 45 and len(pb.get("diff_files") or []) == 40
+05-exec/r67_input_pin_fixtures.py:307:              len(pick) == 40 and n_new == 12 and n_old == 28 and len(set(pick)) == 40,
+05-exec/r67_input_pin_fixtures.py:316:              n_new_mut == 30 and len(pick_mut) == 40, "new=%d n=%d" % (n_new_mut, len(pick_mut)))
+05-exec/r67_input_pin_fixtures.py:324:              len(pick4) == 40 and n_new4 == 37, "n=%d new=%d" % (len(pick4), n_new4))

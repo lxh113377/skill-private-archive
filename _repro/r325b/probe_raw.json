@@ -1,0 +1,144 @@
+{
+ "root": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化",
+ "probed_at": "2026-11-01T01:39:30",
+ "items": [
+  {
+   "path": "06-benchmark/quarterly_r260/2026Q4/replacement_matrix.json",
+   "exists": true,
+   "bytes": 732876,
+   "lines": 28333,
+   "mtime": "2026-10-28T01:09:50",
+   "sha256_12": "40025a63ef53",
+   "generated_at": "2026-10-27T17:09:50+00:00",
+   "top_keys": [
+    "cmd",
+    "conservation",
+    "errors",
+    "face",
+    "families",
+    "generated_at",
+    "queries",
+    "rows",
+    "schema"
+   ]
+  },
+  {
+   "path": "06-benchmark/replacement_matrix_shadowstrict.json",
+   "exists": true,
+   "bytes": 743154,
+   "lines": 0,
+   "mtime": "2026-10-31T15:33:06",
+   "sha256_12": "618255469ea0",
+   "generated_at": "2026-10-30T14:16:38+00:00",
+   "top_keys": [
+    "cmd",
+    "conservation",
+    "errors",
+    "face",
+    "families",
+    "generated_at",
+    "license_face",
+    "maintenance_face",
+    "queries",
+    "rows",
+    "schema"
+   ]
+  },
+  {
+   "path": "06-benchmark/quarterly/2026Q4/audit.json",
+   "exists": true,
+   "bytes": 18367,
+   "lines": 273,
+   "mtime": "2026-10-28T14:55:13",
+   "sha256_12": "11b6fd1ac6cf",
+   "generated_at": "2026-10-25T19:46:09+0800",
+   "top_keys": [
+    "artifacts",
+    "cmd",
+    "domain_face_reading",
+    "face_ok",
+    "face_reason",
+    "failed_steps",
+    "generated_at",
+    "quarter",
+    "req6_attainability_reading",
+    "schema",
+    "steps",
+    "swap_impact_reading",
+    "tag_closure_reading",
+    "trace_face_reading",
+    "upstream_meta",
+    "upstream_meta_unverified"
+   ]
+  },
+  {
+   "path": "06-benchmark/quarterly_cadence_latest.json",
+   "exists": true,
+   "bytes": 333,
+   "lines": 9,
+   "mtime": "2026-10-31T22:08:38",
+   "sha256_12": "b700290b1f37",
+   "generated_at": "2026-10-28T16:26:30",
+   "top_keys": [
+    "generated_at",
+    "max_days",
+    "newest_audit",
+    "provenance_cmd",
+    "rc",
+    "reading",
+    "readonly",
+    "schema"
+   ]
+  },
+  {
+   "path": "06-benchmark/local_frontmatter.json",
+   "exists": true,
+   "bytes": 96555,
+   "lines": 1156,
+   "mtime": "2026-10-28T14:53:20",
+   "sha256_12": "a668d0865ab7",
+   "generated_at": "2026-10-28T06:53:20+00:00",
+   "top_keys": [
+    "authority",
+    "cmd",
+    "face_note",
+    "generated_at",
+    "n",
+    "parser_source",
+    "rows",
+    "schema"
+   ]
+  },
+  {
+   "path": "06-benchmark/r276_quarterly_inspection_dryrun.json",
+   "exists": true,
+   "bytes": 18506,
+   "lines": 533,
+   "mtime": "2026-10-30T21:30:13",
+   "sha256_12": "2bd209da08ca",
+   "generated_at": "2026-10-29T21:04:51+08:00",
+   "top_keys": [
+    "caliber_note",
+    "evidence_states",
+    "executability",
+    "faces",
+    "generated_at",
+    "joins",
+    "negative_control",
+    "provenance_cmd",
+    "readonly",
+    "schema",
+    "scope",
+    "改进",
+    "缺口"
+   ]
+  }
+ ],
+ "dirs": [
+  "quarterly",
+  "quarterly_cadence_latest.json",
+  "quarterly_r260",
+  "quarterly_r260b",
+  "quarterly_r260c"
+ ]
+}

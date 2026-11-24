@@ -1,0 +1,343 @@
+{
+  "schema": "t4-migration-batches-v1",
+  "generated_note": "machine-readable batch assignment; regenerate with 04_plan_check.py --stats or the t4 generator; do not hand-edit | captain 2026-11-07 定点修正：A-skill-manager(protected) 移出 P0 -> holds；P1 补位 chaoshi-web-deploy(idx=19)；守恒 77 = P0 5 + P1 24 + P2 28 + gaps 11 + holds 9",
+  "denominator": {
+    "high": 51,
+    "mid": 26,
+    "low": 30,
+    "exclude": 43,
+    "total": 150,
+    "scope_rule": "自建skill优化/memory/06-constraints.md:122 HIGH+MID=77 为替换分母"
+  },
+  "algorithm": "index = 4*compat_gain + 2*known_defects_n + min(rel_skill_n,5) + (class==HIGH?2:0) - 99*missing; missing = semantic_gap or rel_skill_n==0 or compat_gain<=0",
+  "counts": {
+    "replaceable": 57,
+    "P0": 5,
+    "P1": 24,
+    "P2": 28,
+    "gaps": 11,
+    "holds": 9
+  },
+  "anchors": {
+    "archive_repo": "自建skill优化",
+    "archive_describe": "r344",
+    "archive_head": "617c8cf",
+    "source_repo": "D:/global_skills",
+    "source_head": "afec0a7e",
+    "source_existing_tag": "backup/pre-cleanup-20261016",
+    "planned": {
+      "P0": "r345",
+      "P1": "r346",
+      "P2": "r347"
+    }
+  },
+  "P0": [
+    {
+      "slug": "prompt-consolidation",
+      "index": 21,
+      "cur_compat": 3,
+      "best_compat": 5,
+      "compat_gain": 2,
+      "known_defects_n": 3,
+      "rel_skill_n": 5,
+      "best_candidate": "blader/humanizer"
+    },
+    {
+      "slug": "windows-bash-cli-interop-pitfalls",
+      "index": 21,
+      "cur_compat": 3,
+      "best_compat": 5,
+      "compat_gain": 2,
+      "known_defects_n": 3,
+      "rel_skill_n": 5,
+      "best_candidate": "CursorTouch/Windows-MCP"
+    },
+    {
+      "slug": "windows-cli-utf8-wrapper",
+      "index": 21,
+      "cur_compat": 3,
+      "best_compat": 5,
+      "compat_gain": 2,
+      "known_defects_n": 3,
+      "rel_skill_n": 5,
+      "best_candidate": "CursorTouch/Windows-MCP"
+    },
+    {
+      "slug": "windows-gitbash-chinese-path-pit",
+      "index": 20,
+      "cur_compat": 3,
+      "best_compat": 5,
+      "compat_gain": 2,
+      "known_defects_n": 3,
+      "rel_skill_n": 4,
+      "best_candidate": "cheaper-inference/OmniRoute"
+    },
+    {
+      "slug": "chaoshi-web-deploy",
+      "index": 19,
+      "cur_compat": 3,
+      "best_compat": 5,
+      "compat_gain": 2,
+      "known_defects_n": 2,
+      "rel_skill_n": 5,
+      "class": "HIGH",
+      "best_candidate": null,
+      "backfilled_by": "captain-2026-11-07 (替换 protected A-skill-manager)"
+    }
+  ],
+  "P1": [
+    "oc-dispatch-exec-guard",
+    "openclaw-dual-gate-quality-audit",
+    "prompt-system-audit",
+    "static-site-batch-audit-fix",
+    "A-memory-start",
+    "A-prompt-better",
+    "c-cleanup",
+    "chaoshi-image-optimization",
+    "code-review",
+    "hook-analyzer-skill",
+    "ican-frontend-design-system",
+    "local-vram",
+    "openclaw-fenjue-weekly",
+    "openclaw-task-supervision",
+    "utf8-encoding-fix",
+    "video-whisper-transcribe",
+    "workflow-preflight-check",
+    "A-get-memory",
+    "A-project-better",
+    "A-project-handoff",
+    "audit-runner-safe-aggregate",
+    "bigfile-split",
+    "cross-platform-agent-sync",
+    "debugging-fixing"
+  ],
+  "P2": [
+    "fenjue-memory-audit",
+    "ican-deploy",
+    "local-asr",
+    "local-computer-use",
+    "local-img2img",
+    "local-mineru",
+    "local-ocr-npu",
+    "local-realtime-translator",
+    "local-screenshot-qa",
+    "local-tts",
+    "local-txt2img",
+    "office-automation-pro",
+    "shell-encoding-pitfalls",
+    "story-cover",
+    "video-breakdown-skill",
+    "wechat-automation",
+    "wechat-voice-transcription",
+    "windows-native-ocr",
+    "workbuddy-mcp",
+    "9b-lightworkflow",
+    "agent-browser",
+    "audio-deliverable-pipeline",
+    "discover-agent-cli",
+    "hermes-installer",
+    "html-to-docx-win-fix",
+    "report-generator-skill",
+    "testing",
+    "win-toolchain-pitfalls"
+  ],
+  "semantic_gaps": [
+    {
+      "slug": "天眼一下",
+      "disposition": "自建升级/保持，不替换",
+      "reason": "t2 semantic_gap=true；54 条定向线索仅元数据已实测、功能等价 ❌未实测，不升格为替代"
+    },
+    {
+      "slug": "A-ask-questions",
+      "disposition": "自建升级/保持，不替换",
+      "reason": "t2 semantic_gap=true；54 条定向线索仅元数据已实测、功能等价 ❌未实测，不升格为替代"
+    },
+    {
+      "slug": "chaoshi-admin-inline-edit",
+      "disposition": "自建升级/保持，不替换",
+      "reason": "t2 semantic_gap=true；54 条定向线索仅元数据已实测、功能等价 ❌未实测，不升格为替代"
+    },
+    {
+      "slug": "cloudbase-db-optimize",
+      "disposition": "自建升级/保持，不替换",
+      "reason": "t2 semantic_gap=true；54 条定向线索仅元数据已实测、功能等价 ❌未实测，不升格为替代"
+    },
+    {
+      "slug": "dogfood",
+      "disposition": "自建升级/保持，不替换",
+      "reason": "t2 semantic_gap=true；54 条定向线索仅元数据已实测、功能等价 ❌未实测，不升格为替代"
+    },
+    {
+      "slug": "fenjue-lessons-hitrate",
+      "disposition": "自建升级/保持，不替换",
+      "reason": "t2 semantic_gap=true；54 条定向线索仅元数据已实测、功能等价 ❌未实测，不升格为替代"
+    },
+    {
+      "slug": "story-deslop",
+      "disposition": "自建升级/保持，不替换",
+      "reason": "t2 semantic_gap=true；54 条定向线索仅元数据已实测、功能等价 ❌未实测，不升格为替代"
+    },
+    {
+      "slug": "story-scan",
+      "disposition": "自建升级/保持，不替换",
+      "reason": "t2 semantic_gap=true；54 条定向线索仅元数据已实测、功能等价 ❌未实测，不升格为替代"
+    },
+    {
+      "slug": "vp-perspective-audit",
+      "disposition": "自建升级/保持，不替换",
+      "reason": "t2 semantic_gap=true；54 条定向线索仅元数据已实测、功能等价 ❌未实测，不升格为替代"
+    },
+    {
+      "slug": "wb-git-commit-recipe",
+      "disposition": "自建升级/保持，不替换",
+      "reason": "t2 semantic_gap=true；54 条定向线索仅元数据已实测、功能等价 ❌未实测，不升格为替代"
+    },
+    {
+      "slug": "wps-knowledgebase",
+      "disposition": "自建升级/保持，不替换",
+      "reason": "t2 semantic_gap=true；54 条定向线索仅元数据已实测、功能等价 ❌未实测，不升格为替代"
+    }
+  ],
+  "holds": [
+    {
+      "slug": "A-java-problem",
+      "cur_compat": 3,
+      "best_compat": 3,
+      "rel_skill_n": 5,
+      "reason": "无 compat 正增益，HOLD 待 t6 同业务指标 A/B 复评"
+    },
+    {
+      "slug": "story-import",
+      "cur_compat": 5,
+      "best_compat": 5,
+      "rel_skill_n": 5,
+      "reason": "无 compat 正增益，HOLD 待 t6 同业务指标 A/B 复评"
+    },
+    {
+      "slug": "story-long-analyze",
+      "cur_compat": 5,
+      "best_compat": 5,
+      "rel_skill_n": 3,
+      "reason": "无 compat 正增益，HOLD 待 t6 同业务指标 A/B 复评"
+    },
+    {
+      "slug": "story-long-write",
+      "cur_compat": 5,
+      "best_compat": 5,
+      "rel_skill_n": 5,
+      "reason": "无 compat 正增益，HOLD 待 t6 同业务指标 A/B 复评"
+    },
+    {
+      "slug": "story-review",
+      "cur_compat": 5,
+      "best_compat": 5,
+      "rel_skill_n": 5,
+      "reason": "无 compat 正增益，HOLD 待 t6 同业务指标 A/B 复评"
+    },
+    {
+      "slug": "story-setup",
+      "cur_compat": 5,
+      "best_compat": 5,
+      "rel_skill_n": 5,
+      "reason": "无 compat 正增益，HOLD 待 t6 同业务指标 A/B 复评"
+    },
+    {
+      "slug": "story-short-analyze",
+      "cur_compat": 5,
+      "best_compat": 5,
+      "rel_skill_n": 5,
+      "reason": "无 compat 正增益，HOLD 待 t6 同业务指标 A/B 复评"
+    },
+    {
+      "slug": "story-short-write",
+      "cur_compat": 5,
+      "best_compat": 5,
+      "rel_skill_n": 5,
+      "reason": "无 compat 正增益，HOLD 待 t6 同业务指标 A/B 复评"
+    },
+    {
+      "slug": "A-skill-manager",
+      "cur_compat": 3,
+      "best_compat": 5,
+      "rel_skill_n": 5,
+      "reason": "protected_hold：_my-skills/registry.json protected_skills 明列「所有技能增删改查唯一入口」；禁替换，仅允许经 rule_editor.py 自建增量升级"
+    }
+  ],
+  "low_keep": [
+    "ai-video-homework-pipeline",
+    "brainstorming",
+    "browser-cdp",
+    "chart-visualization",
+    "coding-agent",
+    "consulting-analysis",
+    "data-analysis",
+    "data-visualization",
+    "defuddle",
+    "diagram-maker",
+    "doc-coauthoring",
+    "executing-plans",
+    "gsap",
+    "hyperframes",
+    "hyperframes-cli",
+    "hyperframes-media",
+    "hyperframes-registry",
+    "json-canvas",
+    "node-inspect-debugger",
+    "obsidian-bases",
+    "obsidian-cli",
+    "obsidian-markdown",
+    "pixelle-api-ensure",
+    "python-debugpy",
+    "refactoring",
+    "spike",
+    "story",
+    "test-driven-development",
+    "web-design-guidelines",
+    "writing-plans"
+  ],
+  "exclude": [
+    "algorithmic-art",
+    "brand-guidelines",
+    "byted-bp-cdn-pagesdeploy",
+    "byted-mediakit-shared",
+    "byted-seedance-video-generate",
+    "byted-seedream-image-generate",
+    "canvas-design",
+    "cloudbase__skillhub",
+    "computer-use-guidance-windows",
+    "docx",
+    "electron",
+    "elon-musk-perspective",
+    "figma",
+    "find-skills",
+    "first-principles-decomposer",
+    "frontend-design",
+    "frontend-skill",
+    "frontend-slides",
+    "github",
+    "gstack",
+    "html-ppt",
+    "internal-comms",
+    "knowledge-capture",
+    "mcporter",
+    "meeting-intelligence",
+    "nano-pdf",
+    "notion-cli",
+    "openai-whisper-api",
+    "oracle",
+    "pdf",
+    "pptx",
+    "research-documentation",
+    "screenshot",
+    "shadcn",
+    "slides",
+    "spec-to-implementation",
+    "sq-cleanmgr-c",
+    "taskflow",
+    "taskflow-inbox-triage",
+    "theme-factory",
+    "ui-ux-pro-max",
+    "video-frames",
+    "xlsx"
+  ]
+}

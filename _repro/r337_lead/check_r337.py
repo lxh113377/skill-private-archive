@@ -45,6 +45,13 @@ def main():
     for k in ("body_confirmed", "body_permissive", "body_unknown", "api_explicit"):
         if k not in bd:
             errs.append("分档缺 " + k)
+    # r344（R337-2 落地半的自证）：守恒腿——field_restricted_n 动态等于 豁免前总数（禁写死 143，r342 教训）
+    if hd.get("field_restricted_n") != len(hd.get("restricted") or []) + len(hd.get("exonerated") or []):
+        errs.append("守恒破: field_restricted_n=%s restricted=%d exonerated=%d" % (
+            hd.get("field_restricted_n"), len(hd.get("restricted") or []), len(hd.get("exonerated") or [])))
+    # 默认面（flag 关）不变性：exonerated 必须空（改判定只在显式开关下发生，评审包批准前默认保守）
+    if (hd.get("exonerated") or []):
+        errs.append("默认面异常：未开 flag 却有 exonerated %d 条" % len(hd["exonerated"]))
     if bd.get("body_confirmed", 0) < 30:
         errs.append("confirmed=%d 异常（r262 实测 42 AGPL 明牌 + NOASSERTION 正文确认应 >=30）" % bd.get("body_confirmed", 0))
     if hd.get("body_pack", {}).get("repos_n") != len(repos):  # r343：与 pack 本体对账，不写死

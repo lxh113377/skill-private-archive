@@ -6,22 +6,22 @@
  "endpoint": "/users/lxh113377/settings/billing/usage",
  "window_items_dates": [
   "2026-08-01",
-  "2026-10-01"
+  "2026-11-01"
  ],
  "state": "MEASURED",
- "items_n": 12,
- "minutes_total": 30948.0,
- "gross_total": 213.7279,
+ "items_n": 19,
+ "minutes_total": 36957.0,
+ "gross_total": 259.1178,
  "net_total": 0.0,
  "wholly_discounted": true,
  "per_product": {
   "actions / Actions Linux": {
-   "quantity": 25547.0,
+   "quantity": 29362.0,
    "unitType": "Minutes",
-   "gross": 153.282,
-   "discount": 153.282,
+   "gross": 176.172,
+   "discount": 176.172,
    "net": 0.0,
-   "items": 3,
+   "items": 4,
    "repos": [
     "fenjue-legacy-private",
     "supermarket-web",
@@ -29,38 +29,41 @@
    ]
   },
   "actions / Actions Windows": {
-   "quantity": 5284.0,
+   "quantity": 7478.0,
    "unitType": "Minutes",
-   "gross": 52.839999999999996,
-   "discount": 52.839999999999996,
+   "gross": 74.78,
+   "discount": 74.78,
    "net": 0.0,
-   "items": 2,
+   "items": 3,
    "repos": [
     "skill-hitrate-toolkit",
-    "global-memory-hub"
+    "global-memory-hub",
+    "workbench"
    ]
   },
   "actions / Actions storage": {
-   "quantity": 1030.6473462049998,
+   "quantity": 1667.1180200630001,
    "unitType": "GigabyteHours",
-   "gross": 0.346312796,
-   "discount": 0.346312796,
+   "gross": 0.5601772190000001,
+   "discount": 0.560185677,
    "net": 0.0,
-   "items": 3,
+   "items": 4,
    "repos": [
     "lxh113377.github.io",
-    "ican"
+    "ican",
+    "workbench"
    ]
   },
   "git_lfs / Git LFS storage": {
-   "quantity": 59.43880719,
+   "quantity": 103.46398517,
    "unitType": "GigabyteHours",
-   "gross": 0.005590837,
-   "discount": 0.005590837,
+   "gross": 0.009732317,
+   "discount": 0.009732317,
    "net": 0.0,
-   "items": 3,
+   "items": 4,
    "repos": [
-    "fenjue-private-archive"
+    "fenjue-private-archive",
+    "yi-workspace"
    ]
   },
   "actions / Actions macOS 3-core": {
@@ -72,6 +75,39 @@
    "items": 1,
    "repos": [
     "global-memory-hub"
+   ]
+  },
+  "git_lfs / Git LFS bandwidth": {
+   "quantity": 0.352741876,
+   "unitType": "Gigabytes",
+   "gross": 0.030864834,
+   "discount": 0.030864834,
+   "net": 0.0,
+   "items": 1,
+   "repos": [
+    "yi-workspace"
+   ]
+  },
+  "codespaces / Codespaces compute 2-core": {
+   "quantity": 1.71074,
+   "unitType": "Hours",
+   "gross": 0.3079332,
+   "discount": 0.3079332,
+   "net": 0.0,
+   "items": 1,
+   "repos": [
+    "supermarket-web"
+   ]
+  },
+  "codespaces / Codespaces storage": {
+   "quantity": 0.044476304,
+   "unitType": "GigabyteMonths",
+   "gross": 0.00311334,
+   "discount": 0.00311334,
+   "net": 0.0,
+   "items": 1,
+   "repos": [
+    "supermarket-web"
    ]
   }
  },

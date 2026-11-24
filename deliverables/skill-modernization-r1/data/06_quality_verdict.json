@@ -1,0 +1,42 @@
+{
+  "faces": [
+    {
+      "face": "L1_layered",
+      "baseline": 88.3,
+      "baseline_assumed": false,
+      "current": 90.7,
+      "max_achievable": 95.2,
+      "need_for_30pct": 114.79,
+      "arithmetically_reachable": false,
+      "n": 291,
+      "verdict": "IMPOSSIBLE"
+    },
+    {
+      "face": "L2_frozen",
+      "baseline": 65.0,
+      "baseline_assumed": true,
+      "current": 65.0,
+      "max_achievable": 95.0,
+      "need_for_30pct": 84.5,
+      "arithmetically_reachable": true,
+      "n": 10,
+      "verdict": "EVALUATED"
+    },
+    {
+      "face": "L4_clean",
+      "baseline": 87.5,
+      "baseline_assumed": true,
+      "current": 87.5,
+      "max_achievable": 100.0,
+      "need_for_30pct": 113.75,
+      "arithmetically_reachable": false,
+      "n": 106,
+      "verdict": "IMPOSSIBLE"
+    }
+  ],
+  "threshold_pct": 30.0,
+  "relative_gain_pct": 2.7,
+  "r1_threshold_met": false,
+  "ci_overlap": true,
+  "ci_note": "区间重叠(幅度落在抽样抖动内)"
+}

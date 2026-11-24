@@ -1,0 +1,182 @@
+{
+ "schema": "zijian-md-deadlink-v1",
+ "generated_at": "2026-11-01T02:38:31",
+ "root": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化",
+ "md_files": 690,
+ "face": "shipping (git-tracked + non-ignored untracked); drafts excluded",
+ "face_files_total": 4222,
+ "dead": 28,
+ "items": [
+  {
+   "file": "memory/readme-reqmap-r260.md",
+   "line": 10,
+   "target": "06-benchmark/需求闭环审计件_r227_七项逐条对照_2026-10-25.md",
+   "resolved": "memory/06-benchmark/需求闭环审计件_r227_七项逐条对照_2026-10-25.md"
+  },
+  {
+   "file": "memory/readme-reqmap-r260.md",
+   "line": 14,
+   "target": "06-benchmark/r260_perf_face.json",
+   "resolved": "memory/06-benchmark/r260_perf_face.json"
+  },
+  {
+   "file": "memory/readme-reqmap-r260.md",
+   "line": 14,
+   "target": "06-benchmark/r260_inventory_defect_face.json",
+   "resolved": "memory/06-benchmark/r260_inventory_defect_face.json"
+  },
+  {
+   "file": "memory/readme-reqmap-r260.md",
+   "line": 14,
+   "target": "06-benchmark/性能维度_r260_2026-10-28.md",
+   "resolved": "memory/06-benchmark/性能维度_r260_2026-10-28.md"
+  },
+  {
+   "file": "memory/readme-reqmap-r260.md",
+   "line": 15,
+   "target": "06-benchmark/quarterly_r260/2026Q4/replacement_matrix.json",
+   "resolved": "memory/06-benchmark/quarterly_r260/2026Q4/replacement_matrix.json"
+  },
+  {
+   "file": "memory/readme-reqmap-r260.md",
+   "line": 15,
+   "target": "06-benchmark/定向检索复核_r260_2026-10-28.md",
+   "resolved": "memory/06-benchmark/定向检索复核_r260_2026-10-28.md"
+  },
+  {
+   "file": "memory/readme-reqmap-r260.md",
+   "line": 15,
+   "target": "06-benchmark/非GitHub社区检索面_r260_2026-10-28.md",
+   "resolved": "memory/06-benchmark/非GitHub社区检索面_r260_2026-10-28.md"
+  },
+  {
+   "file": "memory/readme-reqmap-r260.md",
+   "line": 16,
+   "target": "06-benchmark/r260_local_baseline.json",
+   "resolved": "memory/06-benchmark/r260_local_baseline.json"
+  },
+  {
+   "file": "memory/readme-reqmap-r260.md",
+   "line": 16,
+   "target": "06-benchmark/本地同尺基线与compat判别力_r260_2026-10-28.md",
+   "resolved": "memory/06-benchmark/本地同尺基线与compat判别力_r260_2026-10-28.md"
+  },
+  {
+   "file": "memory/readme-reqmap-r260.md",
+   "line": 16,
+   "target": "06-benchmark/替代检索与五维评估矩阵_r114_2026-10-18.md",
+   "resolved": "memory/06-benchmark/替代检索与五维评估矩阵_r114_2026-10-18.md"
+  },
+  {
+   "file": "memory/readme-reqmap-r260.md",
+   "line": 17,
+   "target": "04-plan/迁移替换方案_r260_日历版.md",
+   "resolved": "memory/04-plan/迁移替换方案_r260_日历版.md"
+  },
+  {
+   "file": "memory/readme-reqmap-r260.md",
+   "line": 17,
+   "target": "06-benchmark/回滚演练记录_r260_四级全通负控有牙_2026-10-28.md",
+   "resolved": "memory/06-benchmark/回滚演练记录_r260_四级全通负控有牙_2026-10-28.md"
+  },
+  {
+   "file": "memory/readme-reqmap-r260.md",
+   "line": 17,
+   "target": "06-benchmark/r260_rollback_drill.json",
+   "resolved": "memory/06-benchmark/r260_rollback_drill.json"
+  },
+  {
+   "file": "memory/readme-reqmap-r260.md",
+   "line": 17,
+   "target": "04-plan/迁移替换方案_r113_2026-10-18.md",
+   "resolved": "memory/04-plan/迁移替换方案_r113_2026-10-18.md"
+  },
+  {
+   "file": "memory/readme-reqmap-r260.md",
+   "line": 17,
+   "target": "04-plan/迁移替换方案_r114_2026-10-18.md",
+   "resolved": "memory/04-plan/迁移替换方案_r114_2026-10-18.md"
+  },
+  {
+   "file": "memory/readme-reqmap-r260.md",
+   "line": 18,
+   "target": "05-exec/r113_quarterly_audit.py",
+   "resolved": "memory/05-exec/r113_quarterly_audit.py"
+  },
+  {
+   "file": "memory/readme-reqmap-r260.md",
+   "line": 18,
+   "target": "04-plan/后续维护规范_季度巡检机制_r113_2026-10-18.md",
+   "resolved": "memory/04-plan/后续维护规范_季度巡检机制_r113_2026-10-18.md"
+  },
+  {
+   "file": "memory/readme-reqmap-r260.md",
+   "line": 18,
+   "target": "06-benchmark/quarterly_r260b/2026Q4/audit.json",
+   "resolved": "memory/06-benchmark/quarterly_r260b/2026Q4/audit.json"
+  },
+  {
+   "file": "memory/readme-reqmap-r260.md",
+   "line": 18,
+   "target": "06-benchmark/r260_quarterly_silent.json",
+   "resolved": "memory/06-benchmark/r260_quarterly_silent.json"
+  },
+  {
+   "file": "memory/readme-reqmap-r260.md",
+   "line": 19,
+   "target": "06-benchmark/全量对标报告_r260_判据四处根因修与两条新常驻门_2026-10-28.md",
+   "resolved": "memory/06-benchmark/全量对标报告_r260_判据四处根因修与两条新常驻门_2026-10-28.md"
+  },
+  {
+   "file": "memory/readme-reqmap-r260.md",
+   "line": 19,
+   "target": "04-plan/要求6验收裁决与收口件_r233_口径B达标口径C不可达_2026-10-25.md",
+   "resolved": "memory/04-plan/要求6验收裁决与收口件_r233_口径B达标口径C不可达_2026-10-25.md"
+  },
+  {
+   "file": "memory/readme-reqmap-r260.md",
+   "line": 19,
+   "target": "04-plan/需求6口径对照与决策件_r216_2026-10-25.md",
+   "resolved": "memory/04-plan/需求6口径对照与决策件_r216_2026-10-25.md"
+  },
+  {
+   "file": "memory/readme-reqmap-r260.md",
+   "line": 19,
+   "target": "06-benchmark/r260_req6_quality_truth.json",
+   "resolved": "memory/06-benchmark/r260_req6_quality_truth.json"
+  },
+  {
+   "file": "memory/readme-reqmap-r260.md",
+   "line": 19,
+   "target": "06-benchmark/r260_req6_attainability.json",
+   "resolved": "memory/06-benchmark/r260_req6_attainability.json"
+  },
+  {
+   "file": "memory/readme-reqmap-r260.md",
+   "line": 20,
+   "target": "memory/readme-benchmark-reports.md",
+   "resolved": "memory/memory/readme-benchmark-reports.md"
+  },
+  {
+   "file": "memory/readme-reqmap-r260.md",
+   "line": 20,
+   "target": "memory/readme-benchmark-reports.part7.md",
+   "resolved": "memory/memory/readme-benchmark-reports.part7.md"
+  },
+  {
+   "file": "memory/readme-reqmap-r260.md",
+   "line": 20,
+   "target": "06-benchmark/comparison.md",
+   "resolved": "memory/06-benchmark/comparison.md"
+  },
+  {
+   "file": "memory/readme-reqmap-r260.md",
+   "line": 20,
+   "target": "06-benchmark/交付物基数对账_r261_2026-10-28.md",
+   "resolved": "memory/06-benchmark/交付物基数对账_r261_2026-10-28.md"
+  }
+ ],
+ "token": "[GATE:deadlink-fail]",
+ "status": "FAIL",
+ "note": "围栏感知 + 占位符跳过；三腿自证见 --selftest（反例/围栏/占位符）"
+}

@@ -1,0 +1,16 @@
+{
+ "items": [
+  {
+   "k": "R332-1",
+   "p": "P0",
+   "s": "R331-1 兑现：候选健康守卫**正式入门表 + 登册**（门表 116→117、台账 52→53、准入门未声明 0），并用**五腿夹具含变异对照**证明新门不是恒绿",
+   "d": "一手（Lead 自干，判据 `[R332:FIXTURE] 5/5 teeth=pass` + 四门现跑）：① 门表 `run_gates.py` 新增 `candidate_health_face`（116→117 门），七键齐（id/script/argv/pass_token/portable/covers/why）；单门 `PASS rc=0 168ms`。② 登册 `.read_face_registry.json` 52→53（evidence=06-benchmark/candidate_health_latest.json）；准入门 `[ADMIT] 脚本 313 / 已登记 116 / **未声明 0**`。③ **门表对账闸当场抓到**：首跑报 `UNREGISTERED 新增门 candidate_health_face 无对账登记行` ⇒ 跑 `r130 --record --evidence <绝对路径>` 后 PASS（这正是 r130 立该闸的目的）。④ **五腿夹具（防恒绿）**：t1 正常面 rc=0 / t2 stale 超顶 rc=1 且含 `[R331:STALE-OVER]` / **m1 变异腿（同超顶矩阵 + `--max-stale-rate 1.0` ⇒ 必须转绿，证明阈值承重而非硬编码红）** / t3 空面 rc=2 UNVERIFIED / t4 矩阵缺失 rc=2。⑤ **五处自抓全修**：(a) 门表条目漏 `why` 致 runner KeyError；(b) `why` 写成多行字符串致 SyntaxError（该字段必须单行字面量）；(c) **路径少斜杠写出坏目录 `自建skill优化_repro/`**——已删坏目录、证据件搬回正确位置并重登记；(d) 新门漏跑对账闸；(e) `md_deadlink_face` 抓到 **r330 报告里的真断链**（件在 04-plan/ 我却按 06-benchmark/ 写链接）⇒ 改 `../04-plan/` 后 `md=694 死链=0`。⑥ 门状态：新门 PASS / 对账闸 PASS / 死链门 PASS / 体量门 PASS；`fixture_wiring_face` FAIL 但具名 **既存孤儿 `r302_r260_input_pin_fixtures.py`（非本轮引入，本轮夹具在 _repro/ 不扫该面）**，按 R269 不代修。验收靶：下季巡检动线跑本门 stale ≤2%。取值：python -B _repro/r332_lead/r332_candidate_health_fixtures.py；python -B 05-exec/run_gates.py --gate candidate_health_face --no-ledger。"
+  },
+  {
+   "k": "R332-2",
+   "p": "P1",
+   "s": "r330 起的**全量门作业 hang 在 136 行后无进展**，job_kill 后改针对性复验 ⇒ 本轮**不宣称「全量 117 门全绿」**，只报受影响 5 道门现跑读数（如实收口，不留「跑过了」的假象）",
+   "d": "一手（本轮实测 + 自抓）：① r330 起 `bash-193`（`run_gates.py > gates.txt`）跑到 136 行后**长时间零新增**（至少 25 分钟），判定为某道门 hang 或 runner 卡住；② 处置 = `job_kill` + 改**针对性复验**（本轮改动面仅 r220_md_deadlink / run_gates / r150_volume_tiers / r331_candidate_health 四件 + 1 个新门，映射到 5 道门：md_deadlink_face / gate_table_reconcile / candidate_health_face / volume_tiers_face / fixture_wiring_face）；③ 现跑结果：4 PASS + 1 FAIL（FAIL 门为既存孤儿，具名非本轮引入）。**为什么不当「全量已跑」**：没跑完就是没跑完；用 5 道门读数冒充 117 门全绿 = #36 假交付。④ **hang 根因未定**（未取证哪道门），本轮只登记不猜；下轮可加「每门超时 + 进度落文件（逐门刷新）」来定位——当前 runner 只在结束时把整段 tail 落文件，中途不可观测，这本身就是可改进点。验收靶：给 runner 加逐门进度刷新（每门结束即写一行），使 hang 可定位到具体门名。取值：python -B 05-exec/run_gates.py --json <out>（观察最后一行门 id）；cat _repro/r330_lead/gates.txt | tail -1。"
+  }
+ ]
+}

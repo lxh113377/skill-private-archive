@@ -1,0 +1,17 @@
+04-plan/后续维护规范_季度巡检机制_r113_2026-10-18.md
+05-exec/.read_face_registry.json
+05-exec/r324_entry_reachability_face.py
+06-benchmark/absorption_baseline_face.json
+06-benchmark/entry_reachability_latest.json
+06-benchmark/全量对标报告_r324_巡检判据常驻化与登册_2026-11-01.md
+DECOMPOSE.md
+_repro/r324_lead/admission_after.json
+_repro/r324_lead/admission_before.json
+_repro/r324_lead/debt.json
+_repro/r324_lead/new_nested.json
+_repro/r324_lead/new_top.json
+_repro/r324a/check_r324a.py
+_repro/r324a/old_nested.json
+_repro/r324a/old_top.json
+_repro/r324a/parity.json
+memory/07-next-steps.md

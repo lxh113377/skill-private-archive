@@ -1,0 +1,10 @@
+{
+ "items": [
+  {
+   "k": "R330-1",
+   "p": "P0",
+   "s": "需求 4「替换优先级」收成跨件总表；**发现三件 UPGRADE_CANDIDATE 全部已落地（3/3）**，并修掉 `frontend-skill` 落地 spec 落后实体（R=BAD/V=BAD → 五腿全 PASS）",
+   "d": "一手（Lead 自干，判据 [R330:PRIORITY] specs=3 upg=3 cut=28 rest=163 matrix_sum=191 teeth=pass，3 条负控有牙）：① **总表** `04-plan/替换优先级总表_r330_2026-11-01.md`：191 件处置态守恒（UPGRADE_CANDIDATE **3** / KEEP_LOCAL 13 / NO_OS_EQUIVALENT 12 = 已裁 **28**；未裁 **163** = 191−28），并写明「矩阵四态 MATCHED 167/NO_OS_CANDIDATE 13/FAMILY_ONLY 11 **不含该不该换**」所以 163 件无裁决是**优先级设计而非遗漏**。② **最重要发现**：三件 UPGRADE_CANDIDATE（`A-prompt-better` / `frontend-skill` / `security-audit`，全部 `priority_tier=NEAR`）**全部已落地**——A-prompt-better 1.5.0（f39eb3c0）、frontend-skill 1.1.1（feaeac98+r308）、security-audit 2.1.0（d5f02440/bee0888e）；三件 landing spec 本轮现跑**五腿全 PASS**。此前没有任何文件说出「替换优先级已执行完毕」这个事实。③ **修掉一个真缺陷**：`frontend-skill` 的 spec `version.expect` 停在 1.1.0、patch 链只有 r308 一条 ⇒ `R=BAD/V=BAD/gate=FAIL`；根因是**我 r323 做补链落盘时没走 landing spec 工序**（只跑 rule_editor + 复普查，没同步 spec）。修法 = patch 链补三条（r323 refs 节 / 版本史行 / 版本号）+ expect 改 1.1.1 ⇒ 复跑 `R=ok N=ok P=ok V=ok M=ok gate=PASS`。④ 判据自抓一处：我第一版断言「矩阵侧 UPGRADE_CANDIDATE 必须 =3」是**自相矛盾**（该值只产自 28 件裁决件、不在矩阵四态里）⇒ 删该腿，改在文档写明口径。**教训**：任何受管根落盘必须同步三件事（rule_editor 写盘 / 复跑判据 / **更新该件 landing spec**），第三件我漏了。验收靶：以后每笔受管根落盘，收尾必须跑一次该件 spec 并贴末行。取值：python -B _repro/r330_lead/check_r330.py；python -B 05-exec/landing_replay_check.py --spec 05-exec/landing_specs/frontend-skill.json。"
+  }
+ ]
+}

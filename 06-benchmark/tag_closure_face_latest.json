@@ -34,7 +34,7 @@
    ],
    "domain": null,
    "raw_rank": 1,
-   "raw_score": 0.5556
+   "raw_score": 0.5612
   }
  ],
  "unreachable": [
@@ -52,7 +52,7 @@
    ],
    "domain": null,
    "raw_rank": 1,
-   "raw_score": 0.5556
+   "raw_score": 0.5612
   },
   {
    "set": "layered",
@@ -67,8 +67,8 @@
     "cross-platform-agent-sync"
    ],
    "domain": null,
-   "raw_rank": 118,
-   "raw_score": 0.4298
+   "raw_rank": 100,
+   "raw_score": 0.4387
   }
  ],
  "rows": [
@@ -83,8 +83,8 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": null,
-   "raw_rank": 1,
-   "raw_score": 0.645
+   "raw_rank": 2,
+   "raw_score": 0.5481
   },
   {
    "set": "layered",
@@ -104,7 +104,7 @@
    ],
    "domain": "memory",
    "raw_rank": 1,
-   "raw_score": 0.7533
+   "raw_score": 0.7498
   },
   {
    "set": "layered",
@@ -118,7 +118,7 @@
    "tag_hits": [],
    "domain": "memory",
    "raw_rank": 1,
-   "raw_score": 0.6355
+   "raw_score": 0.6379
   },
   {
    "set": "layered",
@@ -144,8 +144,8 @@
     "spec-to-implementation"
    ],
    "domain": "doc",
-   "raw_rank": 2,
-   "raw_score": 0.6254
+   "raw_rank": 3,
+   "raw_score": 0.6263
   },
   {
    "set": "layered",
@@ -159,7 +159,7 @@
    "tag_hits": [],
    "domain": "creative",
    "raw_rank": 1,
-   "raw_score": 0.6613
+   "raw_score": 0.6909
   },
   {
    "set": "layered",
@@ -173,7 +173,7 @@
    "tag_hits": [],
    "domain": "web",
    "raw_rank": 1,
-   "raw_score": 0.6469
+   "raw_score": 0.6544
   },
   {
    "set": "layered",
@@ -201,7 +201,7 @@
    "tag_hits": [],
    "domain": null,
    "raw_rank": 1,
-   "raw_score": 0.6597
+   "raw_score": 0.6592
   },
   {
    "set": "layered",
@@ -262,7 +262,7 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "web",
-   "raw_rank": 8,
+   "raw_rank": 9,
    "raw_score": 0.5672
   },
   {
@@ -349,7 +349,7 @@
    "tag_hits": [],
    "domain": "code",
    "raw_rank": 1,
-   "raw_score": 0.7491
+   "raw_score": 0.7473
   },
   {
    "set": "layered",
@@ -389,7 +389,7 @@
    "tag_hits": [],
    "domain": null,
    "raw_rank": 1,
-   "raw_score": 0.7108
+   "raw_score": 0.7046
   },
   {
    "set": "layered",
@@ -403,7 +403,7 @@
    "tag_hits": [],
    "domain": "web",
    "raw_rank": 1,
-   "raw_score": 0.702
+   "raw_score": 0.6979
   },
   {
    "set": "layered",
@@ -419,7 +419,7 @@
    ],
    "domain": "web",
    "raw_rank": 1,
-   "raw_score": 0.6717
+   "raw_score": 0.6797
   },
   {
    "set": "layered",
@@ -432,7 +432,7 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "data",
-   "raw_rank": 8,
+   "raw_rank": 9,
    "raw_score": 0.5191
   },
   {
@@ -459,8 +459,8 @@
     "天眼一下"
    ],
    "domain": "research",
-   "raw_rank": 3,
-   "raw_score": 0.5398
+   "raw_rank": 2,
+   "raw_score": 0.544
   },
   {
    "set": "layered",
@@ -474,7 +474,7 @@
    "tag_hits": [],
    "domain": "web",
    "raw_rank": 4,
-   "raw_score": 0.6159
+   "raw_score": 0.6104
   },
   {
    "set": "layered",
@@ -487,8 +487,8 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "code",
-   "raw_rank": 74,
-   "raw_score": 0.5521
+   "raw_rank": 76,
+   "raw_score": 0.5527
   },
   {
    "set": "layered",
@@ -545,7 +545,7 @@
    "tag_hits": [],
    "domain": null,
    "raw_rank": 1,
-   "raw_score": 0.5646
+   "raw_score": 0.5765
   },
   {
    "set": "layered",
@@ -558,8 +558,8 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "memory",
-   "raw_rank": 125,
-   "raw_score": 0.4407
+   "raw_rank": 122,
+   "raw_score": 0.4435
   },
   {
    "set": "layered",
@@ -574,8 +574,8 @@
     "cross-platform-agent-sync"
    ],
    "domain": "system",
-   "raw_rank": 10,
-   "raw_score": 0.5394
+   "raw_rank": 15,
+   "raw_score": 0.5211
   },
   {
    "set": "layered",
@@ -602,8 +602,8 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "data",
-   "raw_rank": 34,
-   "raw_score": 0.5058
+   "raw_rank": 35,
+   "raw_score": 0.5056
   },
   {
    "set": "layered",
@@ -631,7 +631,7 @@
    "tag_hits": [],
    "domain": "code",
    "raw_rank": 1,
-   "raw_score": 0.6939
+   "raw_score": 0.6953
   },
   {
    "set": "layered",
@@ -700,7 +700,7 @@
    "tag_hits": [],
    "domain": "general_utils",
    "raw_rank": 1,
-   "raw_score": 0.736
+   "raw_score": 0.7326
   },
   {
    "set": "layered",
@@ -727,7 +727,7 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "doc",
-   "raw_rank": 6,
+   "raw_rank": 5,
    "raw_score": 0.6379
   },
   {
@@ -742,7 +742,7 @@
    "tag_hits": [],
    "domain": "local",
    "raw_rank": 1,
-   "raw_score": 0.6554
+   "raw_score": 0.658
   },
   {
    "set": "layered",
@@ -768,7 +768,7 @@
     "workflow-preflight-check"
    ],
    "domain": "automation",
-   "raw_rank": 6,
+   "raw_rank": 7,
    "raw_score": 0.5777
   },
   {
@@ -796,8 +796,8 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": null,
-   "raw_rank": 145,
-   "raw_score": 0.438
+   "raw_rank": 156,
+   "raw_score": 0.4324
   },
   {
    "set": "layered",
@@ -810,7 +810,7 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "general_utils",
-   "raw_rank": 29,
+   "raw_rank": 28,
    "raw_score": 0.4874
   },
   {
@@ -853,7 +853,7 @@
    "tag_hits": [],
    "domain": null,
    "raw_rank": 1,
-   "raw_score": 0.6309
+   "raw_score": 0.6283
   },
   {
    "set": "layered",
@@ -867,7 +867,7 @@
    "tag_hits": [],
    "domain": "memory",
    "raw_rank": 4,
-   "raw_score": 0.613
+   "raw_score": 0.6237
   },
   {
    "set": "layered",
@@ -880,8 +880,8 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "system",
-   "raw_rank": 35,
-   "raw_score": 0.3968
+   "raw_rank": 33,
+   "raw_score": 0.4007
   },
   {
    "set": "layered",
@@ -918,7 +918,7 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": null,
-   "raw_rank": 7,
+   "raw_rank": 6,
    "raw_score": 0.4795
   },
   {
@@ -932,7 +932,7 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": null,
-   "raw_rank": 4,
+   "raw_rank": 3,
    "raw_score": 0.5269
   },
   {
@@ -958,8 +958,8 @@
     "writing-plans"
    ],
    "domain": "design",
-   "raw_rank": 49,
-   "raw_score": 0.5214
+   "raw_rank": 56,
+   "raw_score": 0.5165
   },
   {
    "set": "layered",
@@ -973,7 +973,7 @@
    "tag_hits": [],
    "domain": "design",
    "raw_rank": 14,
-   "raw_score": 0.4801
+   "raw_score": 0.48
   },
   {
    "set": "layered",
@@ -1004,8 +1004,8 @@
     "story-short-write"
    ],
    "domain": "creative",
-   "raw_rank": 6,
-   "raw_score": 0.5287
+   "raw_rank": 7,
+   "raw_score": 0.5293
   },
   {
    "set": "layered",
@@ -1018,7 +1018,7 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "web",
-   "raw_rank": 18,
+   "raw_rank": 23,
    "raw_score": 0.4875
   },
   {
@@ -1046,7 +1046,7 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "web",
-   "raw_rank": 70,
+   "raw_rank": 71,
    "raw_score": 0.5117
   },
   {
@@ -1087,7 +1087,7 @@
    ],
    "domain": "media",
    "raw_rank": 1,
-   "raw_score": 0.7324
+   "raw_score": 0.7336
   },
   {
    "set": "layered",
@@ -1132,7 +1132,7 @@
     "story-short-write"
    ],
    "domain": "creative",
-   "raw_rank": 17,
+   "raw_rank": 18,
    "raw_score": 0.4579
   },
   {
@@ -1201,7 +1201,7 @@
    "tag_hits": [],
    "domain": null,
    "raw_rank": 4,
-   "raw_score": 0.5412
+   "raw_score": 0.5444
   },
   {
    "set": "layered",
@@ -1214,7 +1214,7 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": null,
-   "raw_rank": 7,
+   "raw_rank": 9,
    "raw_score": 0.4802
   },
   {
@@ -1242,7 +1242,7 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "doc",
-   "raw_rank": 9,
+   "raw_rank": 10,
    "raw_score": 0.4562
   },
   {
@@ -1256,8 +1256,8 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "local",
-   "raw_rank": 34,
-   "raw_score": 0.5001
+   "raw_rank": 31,
+   "raw_score": 0.5025
   },
   {
    "set": "layered",
@@ -1312,8 +1312,8 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "local",
-   "raw_rank": 9,
-   "raw_score": 0.5736
+   "raw_rank": 8,
+   "raw_score": 0.5744
   },
   {
    "set": "layered",
@@ -1340,8 +1340,8 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "web",
-   "raw_rank": 105,
-   "raw_score": 0.3799
+   "raw_rank": 99,
+   "raw_score": 0.3874
   },
   {
    "set": "layered",
@@ -1382,8 +1382,8 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "local",
-   "raw_rank": 26,
-   "raw_score": 0.4941
+   "raw_rank": 27,
+   "raw_score": 0.4935
   },
   {
    "set": "layered",
@@ -1396,7 +1396,7 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "general_utils",
-   "raw_rank": 33,
+   "raw_rank": 34,
    "raw_score": 0.5285
   },
   {
@@ -1534,7 +1534,7 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "doc",
-   "raw_rank": 30,
+   "raw_rank": 31,
    "raw_score": 0.5126
   },
   {
@@ -1549,7 +1549,7 @@
    "tag_hits": [],
    "domain": null,
    "raw_rank": 1,
-   "raw_score": 0.7114
+   "raw_score": 0.701
   },
   {
    "set": "layered",
@@ -1608,7 +1608,7 @@
    ],
    "domain": null,
    "raw_rank": 1,
-   "raw_score": 0.7187
+   "raw_score": 0.7186
   },
   {
    "set": "layered",
@@ -1622,7 +1622,7 @@
    "tag_hits": [],
    "domain": "system",
    "raw_rank": 1,
-   "raw_score": 0.6378
+   "raw_score": 0.6079
   },
   {
    "set": "layered",
@@ -1635,8 +1635,8 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "system",
-   "raw_rank": 3,
-   "raw_score": 0.5493
+   "raw_rank": 2,
+   "raw_score": 0.5479
   },
   {
    "set": "layered",
@@ -1663,7 +1663,7 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "doc",
-   "raw_rank": 16,
+   "raw_rank": 15,
    "raw_score": 0.4935
   },
   {
@@ -1691,7 +1691,7 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "doc",
-   "raw_rank": 31,
+   "raw_rank": 36,
    "raw_score": 0.506
   },
   {
@@ -1706,7 +1706,7 @@
    "tag_hits": [],
    "domain": "code",
    "raw_rank": 1,
-   "raw_score": 0.6845
+   "raw_score": 0.6937
   },
   {
    "set": "layered",
@@ -1720,7 +1720,7 @@
    "tag_hits": [],
    "domain": null,
    "raw_rank": 1,
-   "raw_score": 0.6511
+   "raw_score": 0.6573
   },
   {
    "set": "layered",
@@ -1798,7 +1798,7 @@
    ],
    "domain": "data",
    "raw_rank": 1,
-   "raw_score": 0.715
+   "raw_score": 0.7062
   },
   {
    "set": "layered",
@@ -1856,7 +1856,7 @@
    "tag_hits": [],
    "domain": "code",
    "raw_rank": 2,
-   "raw_score": 0.5981
+   "raw_score": 0.6075
   },
   {
    "set": "layered",
@@ -1869,8 +1869,8 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "system",
-   "raw_rank": 15,
-   "raw_score": 0.5506
+   "raw_rank": 26,
+   "raw_score": 0.5312
   },
   {
    "set": "layered",
@@ -1883,8 +1883,8 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "system",
-   "raw_rank": 4,
-   "raw_score": 0.5314
+   "raw_rank": 5,
+   "raw_score": 0.5098
   },
   {
    "set": "layered",
@@ -1898,7 +1898,7 @@
    "tag_hits": [],
    "domain": "system",
    "raw_rank": 1,
-   "raw_score": 0.6405
+   "raw_score": 0.6324
   },
   {
    "set": "layered",
@@ -1912,7 +1912,7 @@
    "tag_hits": [],
    "domain": "system",
    "raw_rank": 4,
-   "raw_score": 0.5579
+   "raw_score": 0.5577
   },
   {
    "set": "layered",
@@ -1925,8 +1925,8 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": null,
-   "raw_rank": 7,
-   "raw_score": 0.4985
+   "raw_rank": 9,
+   "raw_score": 0.4938
   },
   {
    "set": "layered",
@@ -1939,8 +1939,8 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "system",
-   "raw_rank": 9,
-   "raw_score": 0.533
+   "raw_rank": 13,
+   "raw_score": 0.5159
   },
   {
    "set": "layered",
@@ -1955,8 +1955,8 @@
     "A-skill-manager"
    ],
    "domain": "system",
-   "raw_rank": 3,
-   "raw_score": 0.6333
+   "raw_rank": 5,
+   "raw_score": 0.6192
   },
   {
    "set": "layered",
@@ -1970,7 +1970,7 @@
    "tag_hits": [],
    "domain": null,
    "raw_rank": 1,
-   "raw_score": 0.5631
+   "raw_score": 0.5716
   },
   {
    "set": "layered",
@@ -1983,8 +1983,8 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "system",
-   "raw_rank": 3,
-   "raw_score": 0.6132
+   "raw_rank": 4,
+   "raw_score": 0.6028
   },
   {
    "set": "layered",
@@ -1998,7 +1998,7 @@
    "tag_hits": [],
    "domain": "system",
    "raw_rank": 2,
-   "raw_score": 0.5991
+   "raw_score": 0.6119
   },
   {
    "set": "layered",
@@ -2012,7 +2012,7 @@
    "tag_hits": [],
    "domain": "system",
    "raw_rank": 5,
-   "raw_score": 0.52
+   "raw_score": 0.5264
   },
   {
    "set": "layered",
@@ -2025,8 +2025,8 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "system",
-   "raw_rank": 5,
-   "raw_score": 0.5771
+   "raw_rank": 8,
+   "raw_score": 0.5638
   },
   {
    "set": "layered",
@@ -2040,7 +2040,7 @@
    "tag_hits": [],
    "domain": "system",
    "raw_rank": 1,
-   "raw_score": 0.5914
+   "raw_score": 0.5982
   },
   {
    "set": "layered",
@@ -2067,7 +2067,7 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": null,
-   "raw_rank": 42,
+   "raw_rank": 46,
    "raw_score": 0.4977
   },
   {
@@ -2099,7 +2099,7 @@
    ],
    "domain": "code",
    "raw_rank": 1,
-   "raw_score": 0.714
+   "raw_score": 0.7037
   },
   {
    "set": "layered",
@@ -2112,7 +2112,7 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "automation",
-   "raw_rank": 10,
+   "raw_rank": 8,
    "raw_score": 0.5681
   },
   {
@@ -2168,7 +2168,7 @@
    ],
    "domain": "automation",
    "raw_rank": 1,
-   "raw_score": 0.6541
+   "raw_score": 0.6456
   },
   {
    "set": "layered",
@@ -2208,7 +2208,7 @@
    ],
    "domain": "design",
    "raw_rank": 2,
-   "raw_score": 0.592
+   "raw_score": 0.5924
   },
   {
    "set": "layered",
@@ -2240,7 +2240,7 @@
    ],
    "domain": "code",
    "raw_rank": 1,
-   "raw_score": 0.7798
+   "raw_score": 0.7734
   },
   {
    "set": "layered",
@@ -2292,7 +2292,7 @@
    ],
    "domain": "media",
    "raw_rank": 3,
-   "raw_score": 0.5491
+   "raw_score": 0.5394
   },
   {
    "set": "layered",
@@ -2306,7 +2306,7 @@
    "tag_hits": [],
    "domain": "automation",
    "raw_rank": 1,
-   "raw_score": 0.7975
+   "raw_score": 0.7959
   },
   {
    "set": "layered",
@@ -2347,7 +2347,7 @@
    ],
    "domain": "automation",
    "raw_rank": 1,
-   "raw_score": 0.7142
+   "raw_score": 0.7158
   },
   {
    "set": "layered",
@@ -2361,7 +2361,7 @@
    "tag_hits": [],
    "domain": "automation",
    "raw_rank": 1,
-   "raw_score": 0.7091
+   "raw_score": 0.717
   },
   {
    "set": "layered",
@@ -2374,8 +2374,8 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "code",
-   "raw_rank": 11,
-   "raw_score": 0.5298
+   "raw_rank": 7,
+   "raw_score": 0.5411
   },
   {
    "set": "layered",
@@ -2389,7 +2389,7 @@
    "tag_hits": [],
    "domain": "code",
    "raw_rank": 2,
-   "raw_score": 0.6809
+   "raw_score": 0.6862
   },
   {
    "set": "layered",
@@ -2403,7 +2403,7 @@
    "tag_hits": [],
    "domain": "code",
    "raw_rank": 1,
-   "raw_score": 0.7123
+   "raw_score": 0.7129
   },
   {
    "set": "layered",
@@ -2417,7 +2417,7 @@
    "tag_hits": [],
    "domain": "local",
    "raw_rank": 2,
-   "raw_score": 0.5885
+   "raw_score": 0.5801
   },
   {
    "set": "layered",
@@ -2431,7 +2431,7 @@
    "tag_hits": [],
    "domain": "automation",
    "raw_rank": 1,
-   "raw_score": 0.6543
+   "raw_score": 0.6511
   },
   {
    "set": "layered",
@@ -2465,7 +2465,7 @@
     "xlsx"
    ],
    "domain": "data",
-   "raw_rank": 53,
+   "raw_rank": 56,
    "raw_score": 0.4694
   },
   {
@@ -2492,7 +2492,7 @@
    ],
    "domain": "research",
    "raw_rank": 1,
-   "raw_score": 0.7428
+   "raw_score": 0.705
   },
   {
    "set": "layered",
@@ -2506,7 +2506,7 @@
    "tag_hits": [],
    "domain": "data",
    "raw_rank": 1,
-   "raw_score": 0.8031
+   "raw_score": 0.7953
   },
   {
    "set": "layered",
@@ -2520,7 +2520,7 @@
    "tag_hits": [],
    "domain": "data",
    "raw_rank": 1,
-   "raw_score": 0.7426
+   "raw_score": 0.7376
   },
   {
    "set": "layered",
@@ -2534,7 +2534,7 @@
    "tag_hits": [],
    "domain": null,
    "raw_rank": 1,
-   "raw_score": 0.6823
+   "raw_score": 0.6842
   },
   {
    "set": "layered",
@@ -2548,7 +2548,7 @@
    "tag_hits": [],
    "domain": null,
    "raw_rank": 1,
-   "raw_score": 0.6562
+   "raw_score": 0.6721
   },
   {
    "set": "layered",
@@ -2557,7 +2557,7 @@
    "gate": "OPEN",
    "reachable": false,
    "rescued_by_l15": false,
-   "route_top1": "cloudbase-db-optimize",
+   "route_top1": "天眼一下",
    "actually_hit": false,
    "tag_hits": [],
    "domain": null,
@@ -2576,7 +2576,7 @@
    "tag_hits": [],
    "domain": null,
    "raw_rank": 1,
-   "raw_score": 0.7861
+   "raw_score": 0.7873
   },
   {
    "set": "layered",
@@ -2590,7 +2590,7 @@
    "tag_hits": [],
    "domain": null,
    "raw_rank": 1,
-   "raw_score": 0.685
+   "raw_score": 0.6878
   },
   {
    "set": "layered",
@@ -2668,7 +2668,7 @@
    ],
    "domain": "media",
    "raw_rank": 1,
-   "raw_score": 0.728
+   "raw_score": 0.7092
   },
   {
    "set": "layered",
@@ -2721,8 +2721,8 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "web",
-   "raw_rank": 20,
-   "raw_score": 0.5069
+   "raw_rank": 28,
+   "raw_score": 0.4976
   },
   {
    "set": "layered",
@@ -2735,7 +2735,7 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "code",
-   "raw_rank": 24,
+   "raw_rank": 25,
    "raw_score": 0.5576
   },
   {
@@ -2763,7 +2763,7 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": null,
-   "raw_rank": 90,
+   "raw_rank": 91,
    "raw_score": 0.5242
   },
   {
@@ -2777,7 +2777,7 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": null,
-   "raw_rank": 46,
+   "raw_rank": 45,
    "raw_score": 0.517
   },
   {
@@ -2791,7 +2791,7 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": null,
-   "raw_rank": 12,
+   "raw_rank": 11,
    "raw_score": 0.508
   },
   {
@@ -2807,8 +2807,8 @@
     "A-skill-manager"
    ],
    "domain": "system",
-   "raw_rank": 3,
-   "raw_score": 0.5949
+   "raw_rank": 4,
+   "raw_score": 0.5809
   },
   {
    "set": "layered",
@@ -2821,8 +2821,8 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "design",
-   "raw_rank": 88,
-   "raw_score": 0.5138
+   "raw_rank": 93,
+   "raw_score": 0.5076
   },
   {
    "set": "layered",
@@ -2937,7 +2937,7 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "code",
-   "raw_rank": 2,
+   "raw_rank": 3,
    "raw_score": 0.6473
   },
   {
@@ -2951,7 +2951,7 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "code",
-   "raw_rank": 33,
+   "raw_rank": 31,
    "raw_score": 0.5884
   },
   {
@@ -3023,7 +3023,7 @@
     "A-skill-manager"
    ],
    "domain": "system",
-   "raw_rank": 18,
+   "raw_rank": 16,
    "raw_score": 0.5141
   },
   {
@@ -3079,7 +3079,7 @@
    "tag_hits": [],
    "domain": null,
    "raw_rank": 1,
-   "raw_score": 0.7295
+   "raw_score": 0.752
   },
   {
    "set": "layered",
@@ -3106,7 +3106,7 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "web",
-   "raw_rank": 84,
+   "raw_rank": 86,
    "raw_score": 0.4403
   },
   {
@@ -3147,7 +3147,7 @@
    ],
    "domain": "design",
    "raw_rank": 1,
-   "raw_score": 0.6392
+   "raw_score": 0.6511
   },
   {
    "set": "layered",
@@ -3161,7 +3161,7 @@
    "tag_hits": [],
    "domain": null,
    "raw_rank": 1,
-   "raw_score": 0.6916
+   "raw_score": 0.6911
   },
   {
    "set": "layered",
@@ -3175,7 +3175,7 @@
    "tag_hits": [],
    "domain": null,
    "raw_rank": 1,
-   "raw_score": 0.671
+   "raw_score": 0.6639
   },
   {
    "set": "layered",
@@ -3189,7 +3189,7 @@
    "tag_hits": [],
    "domain": "media",
    "raw_rank": 1,
-   "raw_score": 0.6677
+   "raw_score": 0.6702
   },
   {
    "set": "layered",
@@ -3280,8 +3280,8 @@
     "wechat-voice-transcription"
    ],
    "domain": "media",
-   "raw_rank": 3,
-   "raw_score": 0.5726
+   "raw_rank": 4,
+   "raw_score": 0.5618
   },
   {
    "set": "layered",
@@ -3313,7 +3313,7 @@
    ],
    "domain": "code",
    "raw_rank": 1,
-   "raw_score": 0.6582
+   "raw_score": 0.6567
   },
   {
    "set": "layered",
@@ -3327,7 +3327,7 @@
    "tag_hits": [],
    "domain": "web",
    "raw_rank": 1,
-   "raw_score": 0.7379
+   "raw_score": 0.7299
   },
   {
    "set": "layered",
@@ -3408,7 +3408,7 @@
    "tag_hits": [],
    "domain": "local",
    "raw_rank": 8,
-   "raw_score": 0.5972
+   "raw_score": 0.5976
   },
   {
    "set": "layered",
@@ -3422,7 +3422,7 @@
    "tag_hits": [],
    "domain": "automation",
    "raw_rank": 1,
-   "raw_score": 0.8112
+   "raw_score": 0.8088
   },
   {
    "set": "layered",
@@ -3438,7 +3438,7 @@
    ],
    "domain": "code",
    "raw_rank": 2,
-   "raw_score": 0.6571
+   "raw_score": 0.6669
   },
   {
    "set": "layered",
@@ -3452,7 +3452,7 @@
    "tag_hits": [],
    "domain": "code",
    "raw_rank": 2,
-   "raw_score": 0.683
+   "raw_score": 0.6836
   },
   {
    "set": "layered",
@@ -3466,7 +3466,7 @@
    "tag_hits": [],
    "domain": "code",
    "raw_rank": 2,
-   "raw_score": 0.6526
+   "raw_score": 0.6576
   },
   {
    "set": "layered",
@@ -3480,7 +3480,7 @@
    "tag_hits": [],
    "domain": "code",
    "raw_rank": 1,
-   "raw_score": 0.8121
+   "raw_score": 0.8087
   },
   {
    "set": "layered",
@@ -3493,8 +3493,8 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": null,
-   "raw_rank": 129,
-   "raw_score": 0.4224
+   "raw_rank": 136,
+   "raw_score": 0.4187
   },
   {
    "set": "layered",
@@ -3521,7 +3521,7 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": null,
-   "raw_rank": 28,
+   "raw_rank": 30,
    "raw_score": 0.4915
   },
   {
@@ -3549,7 +3549,7 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "code",
-   "raw_rank": 17,
+   "raw_rank": 15,
    "raw_score": 0.6307
   },
   {
@@ -3578,7 +3578,7 @@
    "tag_hits": [],
    "domain": "code",
    "raw_rank": 1,
-   "raw_score": 0.7261
+   "raw_score": 0.7359
   },
   {
    "set": "layered",
@@ -3591,7 +3591,7 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "doc",
-   "raw_rank": 2,
+   "raw_rank": 1,
    "raw_score": 0.5942
   },
   {
@@ -3606,7 +3606,7 @@
    "tag_hits": [],
    "domain": "code",
    "raw_rank": 1,
-   "raw_score": 0.7568
+   "raw_score": 0.753
   },
   {
    "set": "layered",
@@ -3620,7 +3620,7 @@
    "tag_hits": [],
    "domain": "code",
    "raw_rank": 2,
-   "raw_score": 0.5298
+   "raw_score": 0.5378
   },
   {
    "set": "layered",
@@ -3652,7 +3652,7 @@
    ],
    "domain": "code",
    "raw_rank": 1,
-   "raw_score": 0.7008
+   "raw_score": 0.6976
   },
   {
    "set": "layered",
@@ -3683,7 +3683,7 @@
    ],
    "domain": "code",
    "raw_rank": 1,
-   "raw_score": 0.5862
+   "raw_score": 0.5847
   },
   {
    "set": "layered",
@@ -3761,7 +3761,7 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "doc",
-   "raw_rank": 4,
+   "raw_rank": 3,
    "raw_score": 0.5111
   },
   {
@@ -3775,7 +3775,7 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "data",
-   "raw_rank": 49,
+   "raw_rank": 50,
    "raw_score": 0.4515
   },
   {
@@ -3789,7 +3789,7 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "doc",
-   "raw_rank": 100,
+   "raw_rank": 105,
    "raw_score": 0.3364
   },
   {
@@ -3803,7 +3803,7 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "doc",
-   "raw_rank": 3,
+   "raw_rank": 4,
    "raw_score": 0.4755
   },
   {
@@ -3832,7 +3832,7 @@
    "tag_hits": [],
    "domain": null,
    "raw_rank": 5,
-   "raw_score": 0.5637
+   "raw_score": 0.5543
   },
   {
    "set": "layered",
@@ -3859,8 +3859,8 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": null,
-   "raw_rank": 10,
-   "raw_score": 0.5418
+   "raw_rank": 9,
+   "raw_score": 0.5473
   },
   {
    "set": "layered",
@@ -3874,7 +3874,7 @@
    "tag_hits": [],
    "domain": "automation",
    "raw_rank": 1,
-   "raw_score": 0.6755
+   "raw_score": 0.6832
   },
   {
    "set": "layered",
@@ -3888,7 +3888,7 @@
    "tag_hits": [],
    "domain": null,
    "raw_rank": 2,
-   "raw_score": 0.55
+   "raw_score": 0.5508
   },
   {
    "set": "layered",
@@ -3902,7 +3902,7 @@
    "tag_hits": [],
    "domain": "memory",
    "raw_rank": 1,
-   "raw_score": 0.6183
+   "raw_score": 0.6253
   },
   {
    "set": "layered",
@@ -3945,7 +3945,7 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": null,
-   "raw_rank": 3,
+   "raw_rank": 5,
    "raw_score": 0.5591
   },
   {
@@ -3988,7 +3988,7 @@
    "tag_hits": [],
    "domain": null,
    "raw_rank": 1,
-   "raw_score": 0.5501
+   "raw_score": 0.5589
   },
   {
    "set": "layered",
@@ -4016,7 +4016,7 @@
    "tag_hits": [],
    "domain": null,
    "raw_rank": 1,
-   "raw_score": 0.5585
+   "raw_score": 0.5629
   },
   {
    "set": "layered",
@@ -4030,7 +4030,7 @@
    "tag_hits": [],
    "domain": null,
    "raw_rank": 1,
-   "raw_score": 0.6451
+   "raw_score": 0.6554
   },
   {
    "set": "layered",
@@ -4044,7 +4044,7 @@
    "tag_hits": [],
    "domain": null,
    "raw_rank": 1,
-   "raw_score": 0.5567
+   "raw_score": 0.5638
   },
   {
    "set": "layered",
@@ -4077,7 +4077,7 @@
    ],
    "domain": null,
    "raw_rank": 1,
-   "raw_score": 0.6682
+   "raw_score": 0.6779
   },
   {
    "set": "layered",
@@ -4090,8 +4090,8 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "system",
-   "raw_rank": 12,
-   "raw_score": 0.3725
+   "raw_rank": 13,
+   "raw_score": 0.3764
   },
   {
    "set": "layered",
@@ -4107,7 +4107,7 @@
    ],
    "domain": "memory",
    "raw_rank": 1,
-   "raw_score": 0.6244
+   "raw_score": 0.63
   },
   {
    "set": "layered",
@@ -4127,7 +4127,7 @@
    ],
    "domain": "memory",
    "raw_rank": 1,
-   "raw_score": 0.7521
+   "raw_score": 0.7479
   },
   {
    "set": "layered",
@@ -4143,7 +4143,7 @@
    ],
    "domain": null,
    "raw_rank": 1,
-   "raw_score": 0.5556
+   "raw_score": 0.5612
   },
   {
    "set": "layered",
@@ -4159,7 +4159,7 @@
    ],
    "domain": null,
    "raw_rank": 1,
-   "raw_score": 0.6259
+   "raw_score": 0.6265
   },
   {
    "set": "layered",
@@ -4225,8 +4225,8 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": null,
-   "raw_rank": 7,
-   "raw_score": 0.5176
+   "raw_rank": 1,
+   "raw_score": 0.5491
   },
   {
    "set": "layered",
@@ -4281,8 +4281,8 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "design",
-   "raw_rank": 13,
-   "raw_score": 0.4941
+   "raw_rank": 15,
+   "raw_score": 0.4896
   },
   {
    "set": "layered",
@@ -4295,8 +4295,8 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": null,
-   "raw_rank": 14,
-   "raw_score": 0.5685
+   "raw_rank": 15,
+   "raw_score": 0.5673
   },
   {
    "set": "layered",
@@ -4321,7 +4321,7 @@
    ],
    "domain": "design",
    "raw_rank": 1,
-   "raw_score": 0.6318
+   "raw_score": 0.6316
   },
   {
    "set": "layered",
@@ -4370,7 +4370,7 @@
    "tag_hits": [],
    "domain": null,
    "raw_rank": 1,
-   "raw_score": 0.5652
+   "raw_score": 0.587
   },
   {
    "set": "layered",
@@ -4421,8 +4421,8 @@
     "wechat-voice-transcription"
    ],
    "domain": "media",
-   "raw_rank": 2,
-   "raw_score": 0.5569
+   "raw_rank": 3,
+   "raw_score": 0.552
   },
   {
    "set": "layered",
@@ -4435,8 +4435,8 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "general_utils",
-   "raw_rank": 2,
-   "raw_score": 0.5464
+   "raw_rank": 1,
+   "raw_score": 0.555
   },
   {
    "set": "layered",
@@ -4479,8 +4479,8 @@
     "cross-platform-agent-sync"
    ],
    "domain": null,
-   "raw_rank": 118,
-   "raw_score": 0.4298
+   "raw_rank": 100,
+   "raw_score": 0.4387
   },
   {
    "set": "layered",
@@ -4494,7 +4494,7 @@
    "tag_hits": [],
    "domain": null,
    "raw_rank": 1,
-   "raw_score": 0.5745
+   "raw_score": 0.5735
   },
   {
    "set": "layered",
@@ -4507,8 +4507,8 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": null,
-   "raw_rank": 25,
-   "raw_score": 0.5693
+   "raw_rank": 34,
+   "raw_score": 0.5651
   },
   {
    "set": "layered",
@@ -4534,7 +4534,7 @@
     "workflow-preflight-check"
    ],
    "domain": "automation",
-   "raw_rank": 28,
+   "raw_rank": 30,
    "raw_score": 0.4849
   },
   {
@@ -4598,7 +4598,7 @@
    "tag_hits": [],
    "domain": null,
    "raw_rank": 12,
-   "raw_score": 0.4275
+   "raw_score": 0.4249
   },
   {
    "set": "frozen",
@@ -4639,7 +4639,7 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": null,
-   "raw_rank": 7,
+   "raw_rank": 9,
    "raw_score": 0.4802
   },
   {
@@ -4667,7 +4667,7 @@
    "actually_hit": true,
    "tag_hits": [],
    "domain": "data",
-   "raw_rank": 10,
+   "raw_rank": 9,
    "raw_score": 0.5627
   },
   {
@@ -4682,7 +4682,7 @@
    "tag_hits": [],
    "domain": "automation",
    "raw_rank": 2,
-   "raw_score": 0.6723
+   "raw_score": 0.6777
   },
   {
    "set": "frozen",
@@ -4750,7 +4750,7 @@
    "tag_hits": [],
    "domain": null,
    "raw_rank": 1,
-   "raw_score": 0.6215
+   "raw_score": 0.625
   }
  ]
 }

@@ -3,9 +3,9 @@
  "replay": 1,
  "revs": [
   {
-   "rev": "313252c84019f7a2cba155bc8627fc489bce02bd",
-   "declared": 3,
-   "actual": 3,
+   "rev": "617c8cf101417a19a405fee86939ee42a0a7d3f9",
+   "declared": 14,
+   "actual": 14,
    "c1": "ok",
    "c2_red": [],
    "c3_advisory": [],

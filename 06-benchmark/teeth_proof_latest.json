@@ -2,7 +2,7 @@
  "schema": "teeth-proof-matrix-v1",
  "readonly": true,
  "provenance_cmd": "python 05-exec/r254_teeth_proof_matrix.py --json <件>",
- "gates_n": 116,
+ "gates_n": 118,
  "fixture_files": [
   "r105_debt_face_freshness_fixtures.py",
   "r112_cache_guard_fixtures.py",
@@ -983,6 +983,22 @@
    "mutation": false,
    "selftest": true,
    "proof": "fixture"
+  },
+  {
+   "id": "commit_msg_face",
+   "script": "r339_commit_msg_files_face.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": true,
+   "proof": "selftest"
+  },
+  {
+   "id": "candidate_health_face",
+   "script": "r331_candidate_health.py",
+   "fixture": false,
+   "mutation": false,
+   "selftest": true,
+   "proof": "selftest"
   },
   {
    "id": "quarterly_cadence_face",

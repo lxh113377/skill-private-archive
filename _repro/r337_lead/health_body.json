@@ -1,0 +1,751 @@
+{
+ "schema": "r331-candidate-health-1",
+ "matrix": "06-benchmark/quarterly_r260/2026Q4/replacement_matrix.json",
+ "generated_at": "2026-10-27T17:09:50+00:00",
+ "today": "2026-11-01",
+ "total_candidates": 937,
+ "distinct_repos": 242,
+ "stale": [
+  {
+   "repo": "trimstray/test-your-sysadmin-skills",
+   "pushed_at": "2024-11-19",
+   "days": 712
+  }
+ ],
+ "archived": [
+  {
+   "repo": "PleasePrompto/notebooklm-skill",
+   "archived": true
+  }
+ ],
+ "restricted": [
+  {
+   "repo": "Devin-AXIS/iPolloWork",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "langgenius/dify",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "activepieces/activepieces",
+   "license": "NOASSERTION",
+   "body": "body_permissive"
+  },
+  {
+   "repo": "mksglu/context-mode",
+   "license": "NOASSERTION",
+   "body": "body_unknown"
+  },
+  {
+   "repo": "TencentCloud/TencentDB-Agent-Memory",
+   "license": "NOASSERTION",
+   "body": "body_permissive"
+  },
+  {
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "license": "UNLICENSED",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "HKUSTDial/Supervisor-Skills",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "hesreallyhim/awesome-claude-code",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "mksglu/context-mode",
+   "license": "NOASSERTION",
+   "body": "body_unknown"
+  },
+  {
+   "repo": "TencentCloud/TencentDB-Agent-Memory",
+   "license": "NOASSERTION",
+   "body": "body_permissive"
+  },
+  {
+   "repo": "mksglu/context-mode",
+   "license": "NOASSERTION",
+   "body": "body_unknown"
+  },
+  {
+   "repo": "TencentCloud/TencentDB-Agent-Memory",
+   "license": "NOASSERTION",
+   "body": "body_permissive"
+  },
+  {
+   "repo": "code-yeongyu/oh-my-openagent",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "Imbad0202/academic-research-skills",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "volcengine/OpenViking",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "langgenius/dify",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "tizzy916/humanities-writing-companion",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "langgenius/dify",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "calesthio/OpenMontage",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "langgenius/dify",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "volcengine/OpenViking",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "langgenius/dify",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "langgenius/dify",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "larashero3-dotcom/lieflat-charts",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "Imbad0202/academic-research-skills",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "langgenius/dify",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "webiny/webiny-js",
+   "license": "NOASSERTION",
+   "body": "body_permissive"
+  },
+  {
+   "repo": "siteboon/claudecodeui",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "langgenius/dify",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "volcengine/OpenViking",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "code-yeongyu/oh-my-openagent",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "CherryHQ/cherry-studio",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "Imbad0202/academic-research-skills",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "CherryHQ/cherry-studio",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "TencentCloud/TencentDB-Agent-Memory",
+   "license": "NOASSERTION",
+   "body": "body_permissive"
+  },
+  {
+   "repo": "langgenius/dify",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "Imbad0202/academic-research-skills",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "kubesphere/kubesphere",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "larashero3-dotcom/lieflat-charts",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "volcengine/OpenViking",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "calesthio/OpenMontage",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "volcengine/OpenViking",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "volcengine/OpenViking",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "calesthio/OpenMontage",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "inkeep/open-knowledge",
+   "license": "GPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "inkeep/open-knowledge",
+   "license": "GPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "volcengine/OpenViking",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "calesthio/OpenMontage",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "calesthio/OpenMontage",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "inkeep/open-knowledge",
+   "license": "GPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "volcengine/OpenViking",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "calesthio/OpenMontage",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "inkeep/open-knowledge",
+   "license": "GPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "NanmiCoder/cc-haha",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "op7418/CodePilot",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "op7418/guizang-ppt-skill",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "SeleniumHQ/docker-selenium",
+   "license": "NOASSERTION",
+   "body": "body_unknown"
+  },
+  {
+   "repo": "langgenius/dify",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "op7418/CodePilot",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "Imbad0202/academic-research-skills",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "mksglu/context-mode",
+   "license": "NOASSERTION",
+   "body": "body_unknown"
+  },
+  {
+   "repo": "TencentCloud/TencentDB-Agent-Memory",
+   "license": "NOASSERTION",
+   "body": "body_permissive"
+  },
+  {
+   "repo": "langgenius/dify",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "calesthio/OpenMontage",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "NanmiCoder/cc-haha",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "calesthio/OpenMontage",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "tizzy916/humanities-writing-companion",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "langgenius/dify",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "lobehub/lobehub",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "Devin-AXIS/iPolloWork",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "op7418/guizang-ppt-skill",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "chuspeeism/dashi-ppt-skill",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "langgenius/dify",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "tigerless-labs/design-harness",
+   "license": "NOASSERTION",
+   "body": "body_permissive"
+  },
+  {
+   "repo": "inkeep/open-knowledge",
+   "license": "GPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "volcengine/OpenViking",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "calesthio/OpenMontage",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "code-yeongyu/oh-my-openagent",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "op7418/guizang-ppt-skill",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "shaom/brand-to-design-md-skill",
+   "license": "UNLICENSED",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "NanmiCoder/cc-haha",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "shaom/brand-to-design-md-skill",
+   "license": "UNLICENSED",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "shaom/brand-to-design-md-skill",
+   "license": "UNLICENSED",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "NanmiCoder/cc-haha",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "shaom/brand-to-design-md-skill",
+   "license": "UNLICENSED",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "TencentCloud/TencentDB-Agent-Memory",
+   "license": "NOASSERTION",
+   "body": "body_permissive"
+  },
+  {
+   "repo": "modelcontextprotocol/inspector",
+   "license": "NOASSERTION",
+   "body": "body_permissive"
+  },
+  {
+   "repo": "volcengine/OpenViking",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "chuspeeism/dashi-ppt-skill",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "langgenius/dify",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "YaoApp/yao",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "tfriedel/claude-office-skills",
+   "license": "UNLICENSED",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "calesthio/OpenMontage",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "Imbad0202/academic-research-skills",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "calesthio/OpenMontage",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "mksglu/context-mode",
+   "license": "NOASSERTION",
+   "body": "body_unknown"
+  },
+  {
+   "repo": "chuspeeism/dashi-ppt-skill",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "calesthio/OpenMontage",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "op7418/guizang-ppt-skill",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "chuspeeism/dashi-ppt-skill",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "code-yeongyu/oh-my-openagent",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "Imbad0202/academic-research-skills",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "Imbad0202/academic-research-skills",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "langgenius/dify",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "volcengine/OpenViking",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "FlorianBruniaux/claude-code-ultimate-guide",
+   "license": "CC-BY-SA-4.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "langgenius/dify",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "chuspeeism/dashi-ppt-skill",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "tigerless-labs/design-harness",
+   "license": "NOASSERTION",
+   "body": "body_permissive"
+  },
+  {
+   "repo": "calesthio/OpenMontage",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "langgenius/dify",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "oil-oil/draw-ui",
+   "license": "UNLICENSED",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "mksglu/context-mode",
+   "license": "NOASSERTION",
+   "body": "body_unknown"
+  },
+  {
+   "repo": "Imbad0202/academic-research-skills",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "webiny/webiny-js",
+   "license": "NOASSERTION",
+   "body": "body_permissive"
+  },
+  {
+   "repo": "Imbad0202/academic-research-skills",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "calesthio/OpenMontage",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "Imbad0202/academic-research-skills",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "Imbad0202/academic-research-skills",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "Imbad0202/academic-research-skills",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "realrossmanngroup/no_ai_slop_writing_rules",
+   "license": "UNLICENSED",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "Imbad0202/academic-research-skills",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "Imbad0202/academic-research-skills",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "code-yeongyu/oh-my-openagent",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "manaflow-ai/cmux",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "Imbad0202/academic-research-skills",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "Imbad0202/academic-research-skills",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "langgenius/dify",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "op7418/guizang-ppt-skill",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "modelcontextprotocol/inspector",
+   "license": "NOASSERTION",
+   "body": "body_permissive"
+  },
+  {
+   "repo": "langgenius/dify",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "langgenius/dify",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "volcengine/OpenViking",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "eze-is/web-access",
+   "license": "UNLICENSED",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "langgenius/dify",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "calesthio/OpenMontage",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "op7418/guizang-ppt-skill",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "A9T9/RPA",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "langgenius/dify",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "activepieces/activepieces",
+   "license": "NOASSERTION",
+   "body": "body_permissive"
+  },
+  {
+   "repo": "langgenius/dify",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  },
+  {
+   "repo": "volcengine/OpenViking",
+   "license": "AGPL-3.0",
+   "body": "api_explicit"
+  },
+  {
+   "repo": "Imbad0202/academic-research-skills",
+   "license": "NOASSERTION",
+   "body": "body_confirmed"
+  }
+ ],
+ "restricted_body_breakdown": {
+  "body_confirmed": 65,
+  "body_permissive": 14,
+  "body_unknown": 7,
+  "api_explicit": 57
+ },
+ "pushed_at_unparsable": [],
+ "stale_rate": 0.0011,
+ "body_pack": {
+  "path": "C:\\Users\\37533\\Desktop\\workspace\\skill焚诀\\自建skill优化\\06-benchmark\\license_body_r262.json",
+  "loaded": true,
+  "repos_n": 22
+ }
+}

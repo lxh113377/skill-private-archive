@@ -1,0 +1,97 @@
+{
+  "schema": "t7-summary-manifest-v1",
+  "task": {
+    "source_task_id": "t7",
+    "assignee": "doc-integrator",
+    "attempt_id": "65d79d6f-f7cf-42df-826b-1e09fc7d8a70"
+  },
+  "documents": [
+    {
+      "path": "问题分析报告.md",
+      "covers": [
+        "REQ1",
+        "REQ7"
+      ],
+      "sources": [
+        "01_skill_inventory.md",
+        "data/inventory.json"
+      ]
+    },
+    {
+      "path": "对比评估表.md",
+      "covers": [
+        "REQ2",
+        "REQ3",
+        "REQ7"
+      ],
+      "sources": [
+        "02_replacement_candidates.md",
+        "data/candidates.json",
+        "03_evaluation_matrix.md",
+        "data/matrix.csv"
+      ]
+    },
+    {
+      "path": "迁移执行计划.md",
+      "covers": [
+        "REQ4",
+        "REQ6_INTERFACE",
+        "REQ7"
+      ],
+      "sources": [
+        "04_migration_plan.md",
+        "04_migration_batches.json",
+        "06_quality_validation.md"
+      ]
+    },
+    {
+      "path": "后续维护规范文档.md",
+      "covers": [
+        "REQ5",
+        "REQ6",
+        "REQ7"
+      ],
+      "sources": [
+        "05_inspection_regime.md",
+        "data/quarterly_check.md",
+        "06_quality_validation.md",
+        "data/06_quality_verdict.json"
+      ]
+    },
+    {
+      "path": "README.md",
+      "covers": [
+        "REQ7_INDEX"
+      ],
+      "sources": [
+        "data/summary_manifest.json"
+      ]
+    }
+  ],
+  "requirements": {
+    "REQ1": "问题分析报告.md §1–§2",
+    "REQ2": "对比评估表.md §1",
+    "REQ3": "对比评估表.md §2–§4",
+    "REQ4": "迁移执行计划.md §1–§5",
+    "REQ5": "后续维护规范文档.md §1–§2",
+    "REQ6": "后续维护规范文档.md §3 + 迁移执行计划.md §4",
+    "REQ7": "四文档 + README.md"
+  },
+  "commands": {
+    "coverage": "python -B deliverables/skill-modernization-r1/07_coverage_check.py",
+    "numeric": "python -B deliverables/skill-modernization-r1/07_numeric_check.py",
+    "gates": "python -B 05-exec/run_gates.py --json _temp/t7_gates_full.json"
+  },
+  "expected_last_lines": {
+    "coverage": "[COVERAGE:PASS] 需求覆盖=7/7 差异=0",
+    "numeric": "[NUMERIC:PASS] 差异 0",
+    "negative_control": "[NEGCTRL:RED]"
+  },
+  "redlines": [
+    "readonly D:/global_skills",
+    "R241 no rewrite",
+    "protected_hold A-skill-manager",
+    "T structural correction",
+    "REQ6 impossible"
+  ]
+}

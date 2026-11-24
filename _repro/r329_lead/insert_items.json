@@ -1,0 +1,10 @@
+{
+ "items": [
+  {
+   "k": "R329-1",
+   "p": "P0",
+   "s": "**两条第 2 次到期的挂账一次兑现**（R321-1 死链门接线 / R321-6 体量门逐件腿），并连带抓出并修掉 **34 处外迁分卷断链**（含我 r321 造的 3 轮未被发现的真断链）",
+   "d": "一手（Lead 自干，判据 [R329:LANDED] deadlink_passed rootdoc=OK readme=14696B binary_exclude=ok fnmatch=ok teeth=pass，3 条负控有牙）：① **R321-1**：`r220_md_deadlink.py` 的 `startswith(q)` 升级为 `fnmatch.fnmatch(path, pat) or startswith(pat)` + `import fnmatch`；`run_gates.py` 的 md_deadlink_face argv 接上 `--exclude=_repro/*/evidence/*`；实测 `[EXCLUDE] 划出 26 件、留 4223 件（分母同步扣减）` + `md=690 死链=0 [GATE:deadlink-pass]`。② **R321-6**：`r150_volume_tiers.py` 新增 `root_doc_files()`+`check_root_docs()` 与三态腿 `[GOVTIER:ROOTDOC-OK|OVER|UNVERIFIED]`；加腿后立刻抓到 `README.md(21326B) > root_doc_max=16384`（纸面门被证伪）；按 r175 先例把最大单段（需求映射 7497B）整段零改写迁 `memory/readme-reqmap-r260.md`，README **21326→14696B**；复跑 `[GOVTIER:ROOTDOC-OK] 3 件均在 16384 内`。③ **真收获 = 连带修掉 34 处断链**：排除生效后死链门**仍红**，暴露 `memory/readme-r321-entry-face.md`（r321 外迁遗留）与新建 `memory/readme-reqmap-r260.md`（本轮外迁）里所有仓根相对路径未按新目录重写；修法 = 对 `](...)` 目标与反引号路径统一加 `../`。**这解释了为什么那 3 条真断链活了 3 轮没人发现**：门表没接线（`--exclude` 只落工具层），门每次都被上游快照红占满视野。④ 四条自抓：外迁必重写路径 / 只修反引号不修链接目标 / `build()` 不返回 `budget` 平铺视图（按想象取键致腿恒 UNVERIFIED）/ run_code cwd 转义致首跑 ENOENT。验收靶：下轮任何「整段外迁」动作后必须立刻跑死链门（已写进报告 §1.3 教训）。取值：python -B _repro/r329_lead/check_r329.py。"
+  }
+ ]
+}

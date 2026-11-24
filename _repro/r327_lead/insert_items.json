@@ -1,0 +1,16 @@
+{
+ "items": [
+  {
+   "k": "R327-1",
+   "p": "P0",
+   "s": "需求 4 的「时间节点/验证标准」**首次被真题跑**：M1 过期 2 天补跑（两条承重断言全过）、M2 期内执行（守恒 191+0+0+0+0）；并修正 r326 总览件把需求 4 判成 ✅ 的错判",
+   "d": "一手（Lead 自干，判据 [R327:M1] counts=13/17/10 sum=40 anchor=9e33cce4cf11 obsidian=LOCAL_AHEAD_KEEP teeth=pass，3 条负控有牙）：① **发现路径**：写 r326 总览件时我给需求 4 打了 ✅「四要素齐（回滚已演练非纸面）」，r327 查日历版发现 M1 截止 2026-10-30 **已过期 2 天且无人执行**、M2（截止 11-04）期内也未执行 ⇒ **需求 4 的时间节点此前只是纸面日期**。② M1 补跑：`05-exec/r112_swap_gate.py --scan …provenance.json --probe …upstream.json` 末行 `[SWAP:GATE] counts={\"LOCAL_AHEAD_KEEP\":13,\"UNVERIFIED\":17,\"UPGRADE_REVIEW\":10}`，与 §1.1a 基线**逐字一致**、sum=40=len(rows) 守恒；obsidian-bases = `LOCAL_AHEAD_KEEP`（M1 明令不得回退 ✅）；另两件落 `UPGRADE_REVIEW` 经核属 §1.1a 基线 10 件内正常态（**不是回退**，M1 原文只对 obsidian-bases 有此断言）。③ M2 期内执行：`05-exec/r125_c16_machine.py --matrix …` ⇒ `stats: {\"total\":191,\"no_candidate\":0,\"c1_fail\":0,\"c3_fail\":0,\"c4_fail\":0,\"need_c2_human\":191}`，守恒 191+0+0+0+0==191 ✅。④ **回滚锚核验自抓**：我第一次拿 `git rev-parse r259`（=5953fe9e，**annotated tag 对象** sha）去比 commit sha，误判「锚漂移」；正解 `git rev-list -n 1 r259` = `9e33cce4cf11` 与原文逐字一致 ⇒ **锚没漂**。规矩写死：**比 tag 锚一律用 `rev-list -n 1`，不用 `rev-parse`**。⑤ r326 总览件需求 4 行已回写为「⚠️ 时间节点曾长期未执行（M1 过期 2 天、r327 才补；M2 出口物未落）」，且复跑 `check_r326` 仍 6/6。验收靶：M2 的出口物（两面分流机读清单）落盘后本条可转「四要素真齐」。取值：python -B _repro/r327_lead/check_r327.py；python -B _repro/r326_lead/check_r326.py。"
+  },
+  {
+   "k": "R327-2",
+   "p": "P1",
+   "s": "M2 的**出口物未落**：日历版要求「一份机读裁决清单（含每件 C1/C3/C4 机器腿态 + 待人读标记）」，本轮只跑了验证腿（守恒通过），清单本体没生成 ⇒ M2 不能判完成",
+   "d": "一手（r327 实测）：M2 原文「**出口物** = 一份机读裁决清单（含每件的 C1/C3/C4 机器腿态 + 待人读标记），不是纸面清单」。本轮 `05-exec/r125_c16_machine.py --matrix 06-benchmark/quarterly_r260/2026Q4/replacement_matrix.json --json _repro/r327_lead/m2_b1.json` rc=0、stats 守恒通过，**但该判据的产物本身就是「机器腿态汇总」而非「逐件清单」**（stats 是聚合行）。⇒ M2 两面分流（同源 40 件：10→M3 / 17→M6 / 13→M6；异名 191 件全量进 C2 队列）的**逐件清单尚未生成**。**为什么不本轮补**（具名）：清单生成需要 `r125_c16_machine.py` 的逐件明细腿（本轮产物看只有 stats 与 matrix 指针，需读其实现确认是否有 per-row 输出）；且 M3（截止 11-11）本就要求「逐件人读」，清单是它的输入 ⇒ 与 M3 一起做更省一次。验收靶：一份逐件清单（≥191 行、每行含 slug + C1/C3/C4 三态 + readable_required 标记），且能对上 M1 的 counts 与 M2 的 stats。取值：读 _repro/r327_lead/m2_b1.json 的键结构；python -B 05-exec/r125_c16_machine.py --matrix … --json <新名>。"
+  }
+ ]
+}

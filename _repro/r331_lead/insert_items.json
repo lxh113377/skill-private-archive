@@ -1,0 +1,16 @@
+{
+ "items": [
+  {
+   "k": "R331-1",
+   "p": "P0",
+   "s": "需求 2 的「社区活跃度 / 维护状态」两维**首建时效守卫** `05-exec/r331_candidate_health.py`，并实测候选面健康度（stale 0.11% / archived 0.1%）⇒ 「维护状态良好」首次有机器守卫而非靠一次性巡检",
+   "d": "一手（Lead 自干，判据 `[R331:HEALTH] cands=937 repos=242 stale=1(0.11%) archived=1 restricted=143 unparsable=0` + selftest 三腿全 True）：① **先纠正一处看错**：r330 我说矩阵行没有 stars/pushed_at/license —— 看错层；`rows[]` 没有，但 `rows[].candidates[]` **每件都有**（stars/pushed_at/license/archived/score5{…,community}）⇒ 需求 2 两维数据面本就齐，缺的是**守卫**。② 新守卫三态口径**全部沿用既有**不新造：stale = pushed_at 距今 > 365 天（r114 C4 原话「12 个月内 pushed_at」）、archived = 上游停摆、restricted = r113-3 + r262 已知集合（空许可按受限、与 r113-3 同口径）。③ 实测：`cands=937 / repos=242 / stale=1（0.11%：trimstray/test-your-sysadmin-skills 2024-11-19） / archived=1 / unparsable=0` ⇒ **stale 0.11% 远低于 2% 硬顶**（留 20 倍余量防上游自然衰退变恒红，r260 恒红门教训）。④ 设计要点：`--today` 可显式给（判据复算不随日期漂移）；空面 rc=2（候选 0 条不判绿，R247）；selftest 三条内存自证（AGPL≠MIT / 空与 NOASSERTION 都算受限 / 日期解析）。⑤ 已接进季度巡检动线（04-plan 附三 §5 补一行命令 + 读数形态 + 判定阈值 + 与 ⑥ 段的分工）。**未接 run_gates**：新门须先过准入门 r129 声明，本轮先落判据+动线，下轮入门表。验收靶：下季巡检按动线跑本件，stale 占比 ≤2%。取值：python -B 05-exec/r331_candidate_health.py --today 2026-11-01 --json <out>。"
+  },
+  {
+   "k": "R331-2",
+   "p": "P1",
+   "s": "新守卫顺带暴露的真缺口：937 候选里 **143 件许可受限（15.3%）**，其中 **86 件 NOASSERTION 只有 20 仓做过正文级核实**（r262 的 license_body 覆盖面不足）⇒ 需求 2「维护状态良好/可用性」对这批件判不了",
+   "d": "一手（本轮现算 + 对照既有件）：① 许可分布 `NOASSERTION 86 / AGPL-3.0 42 / UNLICENSED 9 / GPL-3.0 5 / CC-BY-SA-4.0 1`；② `06-benchmark/license_body_r262.json` 现读 `targets_n=20 / ok_n=20`（R261-6 立、r262 只抓 20 仓正文）⇒ 86 件 NOASSERTION 里绝大多数**无正文级归类**；③ 这不是新守卫的缺陷，是 **R261-6 覆盖面缺口**：r262 只做 20 仓，没扩到全量。**为什么本轮不扩**（具名）：从 20→86 是四倍抓取量、走 gh api contents 逐仓取 LICENSE 正文，会撞 gh 限流（本仓 r321 已实测 Cloudflare/gh 限流会让判据正确判 UNVERIFIED 而非绿），属独立工程；且扩完要重算 restricted 数并可能改变 rank0 排序（那是改尺，须 R263 评审）。**处置**：在本守卫的动线条文里**显式标注该数偏保守**（按 API 字段判、不代表真受限），并把「扩正文覆盖」列为下季候选工程。验收靶：license_body 覆盖面从 20 仓扩到 ≥86 件 NOASSERTION 对应仓，且 restricted 数随之更新并给出 rank0 变动对照。取值：python -B 05-exec/r331_candidate_health.py --today <d> --json <out>；python -c 读 license_body_r262.json 的 targets_n/ok_n。"
+  }
+ ]
+}
